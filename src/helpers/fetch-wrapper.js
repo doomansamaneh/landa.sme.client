@@ -2,7 +2,7 @@ import axios from "axios"
 import { useAuthStore } from "../stores"
 
 //const baseUrl = `${import.meta.env.VITE_API_URL}/users`
-const baseUrl = "http://localhost:5188"
+const baseUrl = "https://api.landa-sme.ir"
 axios.defaults.baseURL = baseUrl
 
 export const fetchWrapper = {
