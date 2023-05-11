@@ -1,60 +1,73 @@
 <template>
   <q-layout view="rHh rpR fFf" container style="height: 100vh">
-    <q-header elevated class="bg-primary text-white shadow-2">
-      <q-toolbar>
-        <q-avatar color="white" class="q-mx-sm" text-color="black">A</q-avatar>
-        <q-separator dark vertical />
-
-        <q-btn-dropdown
-          stretch
-          flat
-          no-caps
-          dropdown-icon="keyboard_arrow_down"
+    <q-header class="bg-white text-black q-qx-md">
+      <q-toolbar class="q-px-lg">
+        <q-toolbar-title class="text-black"
+          ><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title
         >
-          <template v-slot:label>
-            <div class="row items-center no-wrap">
-              <div>
+
+        <div class="flex items-center q-gutter-sm cursor-pointer">
+          <div class="text-body">{{ username }}</div>
+          <q-icon color="dark" size="sm" name="o_account_circle" />
+          <q-menu>
+            <q-list dense padding style="min-width: 240px;" class="q-py-md">
+              <q-item-label class="text-h5" header>
+                <q-avatar color="blue-4" class="q-mx-sm" text-color="white"
+                  >خ</q-avatar
+                >
                 {{ username }}
-              </div>
-            </div>
-          </template>
+              </q-item-label>
+              <q-item clickable v-ripple v-close-popup class="q-py-sm">
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                  <q-avatar
+                    color="grey-4"
+                    text-color="dark"
+                    icon="o_password"
+                    size="md"
+                  />
+                </q-item-section>
+                </div>
 
-          <q-list padding>
-            <q-item-label class="text-h5" header>
-              <q-avatar color="blue-4" class="q-mx-sm" text-color="white"
-                >A</q-avatar
+                <q-item-section>Change Password</q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+                tabindex="0"
+                @click="authStore.logout()"
+                class="q-py-sm"
               >
-              {{ username }}
-            </q-item-label>
-            <q-item clickable v-close-popup>
-              <q-item-section avatar>
-                <q-avatar icon="password" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>change password</q-item-label>
-              </q-item-section>
-            </q-item>
-
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-              @click="authStore.logout()"
-            >
-              <q-item-section avatar>
-                <q-avatar icon="logout" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label>logout</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
-
-        <q-space />
-        <div>Landa SME v{{ $q.version }}</div>
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                  <q-avatar
+                    color="grey-4"
+                    text-color="dark"
+                    icon="logout"
+                    size="md"
+                  />
+                </q-item-section>
+                </div>
+                <q-item-section>Logout</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </div>
       </q-toolbar>
     </q-header>
+
+    <!-- <q-header class="bg-white text-black q-qx-md">
+      <q-toolbar class="q-px-lg">
+        <q-toolbar-title class="text-black"
+          ><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title
+        >
+
+        <div class="flex items-center q-gutter-sm cursor-pointer">
+          <div class="text-body">خشایار</div>
+          <q-icon color="dark" size="sm" name="o_account_circle" />
+        </div>
+      </q-toolbar>
+    </q-header> -->
 
     <q-page-container>
       <router-view />
@@ -78,3 +91,14 @@ const username = computed(() => {
   return ""
 })
 </script>
+
+<style>
+.q-toolbar__title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.navbar-logo {
+  text-decoration: none;
+  color: black;
+}
+</style>

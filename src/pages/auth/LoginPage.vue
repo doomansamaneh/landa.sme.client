@@ -47,8 +47,14 @@
 </script> -->
 
 <template>
-  <q-page class="fullscreen row bg-white justify-center items-center">
-    <q-header style="height: 80px" class="flex bg-white text-dark">
+  <q-page
+    class="fullscreen row justify-center items-center"
+    style="background-color: #f5f6f9"
+  >
+    <q-header
+      style="height: 80px; background-color: #f5f6f9"
+      class="flex text-dark"
+    >
       <q-toolbar>
         <q-toolbar-title
           class="flex justify-start q-ml-lg text-weight-bold text-h5 text-dark"
@@ -68,21 +74,21 @@
             no-caps
             color="grey-9"
             icon="language"
-            label="English"
+            label="en"
             @click="onMainClick"
             class="text-dark shadow-1"
-            style="height:42px;"
+            style="height: 42px"
           >
             <q-list>
               <q-item clickable v-close-popup @click="onItemClick">
                 <q-item-section>
-                  <q-item-label>Arabic</q-item-label>
+                  <q-item-label>fa</q-item-label>
                 </q-item-section>
               </q-item>
 
               <q-item clickable v-close-popup @click="onItemClick">
                 <q-item-section>
-                  <q-item-label>Farsi</q-item-label>
+                  <q-item-label>ar</q-item-label>
                 </q-item-section>
               </q-item>
             </q-list>
@@ -99,24 +105,37 @@
           style="width: 270px"
         />
       </div>
-      <q-card class="form no-shadow">
+      <q-card class="form no-shadow" style="background-color: #f5f6f9">
         <q-card-section>
           <q-form class="q-gutter-md">
-            <q-input
-              outlined
-              v-model="username"
-              placeholder="Username (Mobile/Email) "
-              dense
-              class="text-body"
-            />
-            <q-input
-              outlined
-              v-model="password"
-              placeholder="Password"
-              dense
-              class="text-body"
-              clearable
-            />
+            <div class="username-input">
+              <q-input
+                outlined
+                v-model="username"
+                placeholder="Username (Mobile/Email) "
+                dense
+                class="text-body"
+              />
+            </div>
+            <div class="password-input">
+              <q-input
+                outlined
+                v-model="password"
+                :type="isPwd ? 'password' : 'text'"
+                placeholder="Password"
+                dense
+                class="text-body"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    size="xs"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
+            </div>
             <div class="row justify-between items-center">
               <div class="flex">
                 <q-btn
@@ -173,6 +192,8 @@ const showRegister = 0
 const username = ref("")
 const password = ref("")
 
+const isPwd = ref(true)
+
 async function authenticate() {
   const authStore = useAuthStore()
   await authStore.login(username.value, password.value)
@@ -188,6 +209,7 @@ async function authenticate() {
   text-decoration: none;
   color: #0087f6;
 }
+
 @media only screen and (max-width: 360px) {
   .q-toolbar {
     padding: 0;
