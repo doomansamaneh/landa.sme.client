@@ -1,6 +1,7 @@
 import authRoutes from "./auth-routes"
 import businessRoutes from "./business-routes"
 
+
 const routes = [
   {
     path: "/",

@@ -44,7 +44,7 @@ module.exports = configure(function (/* ctx */) {
 
       "roboto-font", // optional, you are not bound to it
       "material-icons", // optional, you are not bound to it
-      'material-icons-outlined',
+      "material-icons-outlined"
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
@@ -87,6 +87,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {},
+      // lang: "fa",
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -104,7 +105,7 @@ module.exports = configure(function (/* ctx */) {
 
     // animations: 'all', // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: 'all',
+    animations: "all",
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#property-sourcefiles
     // sourceFiles: {

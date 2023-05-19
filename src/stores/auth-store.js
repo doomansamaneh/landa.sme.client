@@ -19,12 +19,12 @@ export const useAuthStore = defineStore("auth", {
         })
 
         const data = response.data;
-        if (data.code == 0) 
+        if (data.code == 0)
         {
-          //todo: 
+          //todo:
           alert(data.message);
         }
-        else 
+        else
         {
           // update pinia state
           this.user = data

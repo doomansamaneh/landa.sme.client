@@ -16,9 +16,10 @@
       <div class="col col-3"></div>
     </div> -->
 
-    <q-footer bordered class="bg-white text-dark q-py-md xs">
+    <q-page class="row justify-center items-center bg-blue-1">
+      <q-footer bordered class="bg-white text-dark q-py-md xs">
         <div class="q-pb-sm" v-if="showMoreOptions">
-          <q-item clickable v-ripple class="q-py-sm">
+          <q-item clickable v-ripple class="q-py-md">
             <q-item-section avatar>
               <q-avatar
                 color="grey-4"
@@ -29,7 +30,7 @@
             </q-item-section>
             <q-item-section>Entering the Business</q-item-section>
           </q-item>
-          <q-item clickable v-ripple class="q-py-sm">
+          <q-item clickable v-close-popup v-ripple class="q-py-md">
             <q-item-section avatar>
               <q-avatar
                 color="grey-4"
@@ -40,7 +41,7 @@
             </q-item-section>
             <q-item-section>Invite User</q-item-section>
           </q-item>
-          <q-item clickable v-ripple class="q-py-sm">
+          <q-item clickable v-ripple class="q-py-md">
             <q-item-section avatar>
               <q-avatar
                 color="grey-4"
@@ -51,7 +52,7 @@
             </q-item-section>
             <q-item-section>Delete</q-item-section>
           </q-item>
-          <q-item clickable v-ripple class="q-py-sm">
+          <q-item clickable v-ripple class="q-py-md">
             <q-item-section avatar>
               <q-avatar
                 color="grey-4"
@@ -65,19 +66,21 @@
         </div>
         <div class="flex justify-between items-center q-pl-sm q-pr-lg">
           <div class="col-2">
-            <q-btn
-              class="more-icon"
-              style="color: grey"
-              key="more-button"
-              unelevated
-              falt
-              round
-              :ripple="false"
-              icon="more_vert"
-              size="md"
-              @click="showMoreOptions = !showMoreOptions"
-            >
-            </q-btn>
+
+              <q-btn
+                class="more-icon"
+                style="color: grey"
+                key="more-button"
+                unelevated
+                falt
+                round
+                :ripple="false"
+                icon="more_vert"
+                size="md"
+                @click="showMoreOptions = !showMoreOptions"
+              >
+              </q-btn>
+
           </div>
           <div class="flex q-gutter-sm col-2">
             <q-chip
@@ -147,14 +150,14 @@
 
                 <div class="business-button">
                   <q-btn
-                    class="business-name"
+                    class="business-name-btn ellipsis-2-lines"
                     flat
                     no-caps
                     text-color="dark"
                     :ripple="{ color: 'grey-6' }"
                   >
-                    <div class="text-weight-bold" style="font-size: 12px">
-                      دومان سامانه برای تست
+                    <div class="text-weight-bold business-name-mobile ellipsis-2-lines" style="font-size: 12px">
+                     Dooman Samaneh for Test
                     </div>
                     <q-icon right size="xs" name="o_login" />
                   </q-btn>
@@ -178,14 +181,14 @@
 
                 <div class="business-button">
                   <q-btn
-                    class="business-name"
+                    class="business-name-btn"
                     flat
                     no-caps
                     text-color="dark"
                     :ripple="{ color: 'grey-6' }"
                   >
-                    <div class="text-weight-bold" style="font-size: 12px">
-                      دفتر کارگشا (دمو)
+                    <div class="text-weight-bold business-name-mobile ellipsis-2-lines" style="font-size: 12px">
+                      Daftar Kargosha (Demo)
                     </div>
                     <q-icon right size="xs" name="o_login" />
                   </q-btn>
@@ -239,14 +242,14 @@
                 />
 
                 <q-btn
-                  class="business-name"
+                  class="business-name-btn"
                   flat
                   no-caps
                   text-color="dark"
                   :ripple="{ color: 'grey-6' }"
                 >
-                  <div class="text-weight-bold" style="font-size: 12px">
-                    دومان سامانه برای تست
+                  <div class="text-weight-bold business-name-desktop ellipsis-2-lines" style="font-size: 12px">
+                   Dooman Samaneh for Test
                   </div>
                   <q-icon right size="xs" name="o_login" />
                 </q-btn>
@@ -369,14 +372,14 @@
 
                 <div class="">
                   <q-btn
-                    class="business-name"
+                    class="business-name-btn"
                     flat
                     no-caps
                     text-color="dark"
                     :ripple="{ color: 'grey-6' }"
                   >
-                    <div class="text-weight-bold" style="font-size: 12px">
-                      دفتر کارگشا (دمو)
+                    <div class="text-weight-bold business-name-desktop ellipsis-2-lines" style="font-size: 12px">
+                      Daftar Kargosha (Demo)
                     </div>
                     <q-icon right size="xs" name="o_login" />
                   </q-btn>
@@ -430,7 +433,8 @@
           </q-card-section>
         </q-card>
       </div>
-  </q-page>
+    </q-page>
+    </q-page>
 </template>
 
 <script setup>
@@ -529,7 +533,7 @@ const cardSelection = () =>{
   border-radius: 5px;
 }
 
-.business-name {
+.business-name-btn {
   border-radius: 5px;
   padding: 8px 12px;
   border: 1px solid rgb(230, 230, 230);
@@ -558,5 +562,13 @@ const cardSelection = () =>{
 
 .more-icon {
   margin-left: 2px;
+}
+
+.business-name-mobile{
+  width: 125px;
+}
+
+.business-name-desktop{
+  width: 130px;
 }
 </style>

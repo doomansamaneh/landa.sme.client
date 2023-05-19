@@ -9,24 +9,38 @@
         <div class="flex items-center q-gutter-sm cursor-pointer">
           <div class="text-body">{{ username }}</div>
           <q-icon color="dark" size="sm" name="o_account_circle" />
-          <q-menu>
-            <q-list dense padding style="min-width: 240px;" class="q-py-md">
-              <q-item-label class="text-h5" header>
-                <q-avatar color="blue-4" class="q-mx-sm" text-color="white"
-                  >خ</q-avatar
-                >
-                {{ username }}
+          <q-menu
+            fit
+            class=""
+            transition-show="jump-down"
+            transition-hide="jump-up"
+            :offset="[10, 28]"
+          >
+            <q-list dense padding style="min-width: 240px" class="q-py-md">
+              <q-item-label class="text-h6" header>
+                <div class="column items-center justify-center q-mt-md">
+                  <q-avatar
+                    color="blue-4"
+                    class="q-mx-sm"
+                    text-color="white"
+                    style="width: 72px; height: 72px"
+                    ><div class="text-weight-bold">خ</div></q-avatar
+                  >
+                  <div class="q-mt-md">
+                    {{ username }}
+                  </div>
+                </div>
               </q-item-label>
-              <q-item clickable v-ripple v-close-popup class="q-py-sm">
+              <q-item clickable v-ripple v-close-popup class="q-mt-md">
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                  <q-avatar
-                    color="grey-4"
-                    text-color="dark"
-                    icon="o_password"
-                    size="md"
-                  />
-                </q-item-section>
+                    <q-avatar
+                      color="grey-4"
+                      text-color="dark"
+                      icon="o_password"
+                      size="md"
+                    />
+                  </q-item-section>
                 </div>
 
                 <q-item-section>Change Password</q-item-section>
@@ -40,13 +54,13 @@
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                  <q-avatar
-                    color="grey-4"
-                    text-color="dark"
-                    icon="logout"
-                    size="md"
-                  />
-                </q-item-section>
+                    <q-avatar
+                      color="grey-4"
+                      text-color="dark"
+                      icon="logout"
+                      size="md"
+                    />
+                  </q-item-section>
                 </div>
                 <q-item-section>Logout</q-item-section>
               </q-item>
@@ -79,6 +93,7 @@
 import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
+import router from "src/router"
 
 const authStore = useAuthStore()
 
@@ -90,6 +105,7 @@ const username = computed(() => {
   if (authStore.user) return authStore.user.user.fullName
   return ""
 })
+
 </script>
 
 <style>
