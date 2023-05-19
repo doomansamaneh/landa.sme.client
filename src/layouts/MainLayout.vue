@@ -31,7 +31,13 @@
                   </div>
                 </div>
               </q-item-label>
-              <q-item clickable v-ripple v-close-popup class="q-mt-md">
+              <q-item
+                clickable
+                v-ripple
+                v-close-popup
+                @click="goToChangePasswordSave"
+                class="q-mt-md"
+              >
                 <div class="q-py-sm">
                   <q-item-section avatar>
                     <q-avatar
@@ -91,11 +97,11 @@
 
 <script setup>
 import { ref, computed } from "vue"
-import { useRouter } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
 import router from "src/router"
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 
 // if (!authStore.user) {
 //   authStore.logout()

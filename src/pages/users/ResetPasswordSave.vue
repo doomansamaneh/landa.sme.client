@@ -10,7 +10,7 @@
       <q-toolbar>
         <q-toolbar-title
           class="flex justify-start q-ml-lg text-weight-bold text-h5 text-dark"
-          >Log in</q-toolbar-title
+          ><span class="ellipsis">Password reset</span></q-toolbar-title
         >
         <div class="flex q-pr-lg q-gutter-sm">
           <q-btn
@@ -60,21 +60,31 @@
       <q-card class="form no-shadow" style="background-color: #f5f6f9">
         <q-card-section>
           <q-form class="q-gutter-md">
-            <div class="username-input">
+            <div class="old-password-input">
               <q-input
                 outlined
-                v-model="username"
-                placeholder="Username (Mobile/Email) "
-                dense
-                class="text-body bg-white"
-              />
-            </div>
-            <div class="password-input">
-              <q-input
-                outlined
-                v-model="password"
+                v-model="oldPassword"
                 :type="isPwd ? 'password' : 'text'"
-                placeholder="Password"
+                placeholder="Old Password"
+                dense
+                class="text-body bg-white #"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    size="xs"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
+            </div>
+            <div class="new-password-input">
+              <q-input
+                outlined
+                v-model="newPassword"
+                :type="isPwd ? 'password' : 'text'"
+                placeholder="New Password"
                 dense
                 class="text-body bg-white"
               >
@@ -88,29 +98,24 @@
                 </template>
               </q-input>
             </div>
-            <div class="row justify-between items-center">
-              <div class="flex">
-                <q-btn
-                  unelevated
-                  color="grey-6"
-                  label="65 + 8"
-                  dense
-                  class="q-px-md text-h6"
-                />
-              </div>
-              <div class="q-pr-md">
-                <q-btn round flat color="blue-6" icon="refresh" dense />
-              </div>
-
-              <div class="col-5">
-                <q-input
-                  outlined
-                  v-model="ph"
-                  placeholder="1234"
-                  dense
-                  class="text-body bg-white"
-                />
-              </div>
+            <div class="confirm-new-password-input">
+              <q-input
+                outlined
+                v-model="confirmNewPassword"
+                :type="isPwd ? 'password' : 'text'"
+                placeholder="Confirm New Password"
+                dense
+                class="text-body bg-white"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    :name="isPwd ? 'visibility_off' : 'visibility'"
+                    size="xs"
+                    class="cursor-pointer"
+                    @click="isPwd = !isPwd"
+                  />
+                </template>
+              </q-input>
             </div>
           </q-form>
         </q-card-section>
@@ -121,22 +126,28 @@
             size="md"
             class="full-width text-weight-bold"
             no-caps
-            label="Log in"
+            label="Change Password"
             style="height: 40px"
             @click="authenticate"
           />
         </q-card-actions>
-        <q-card-section class="text-center q-pa-none">
-        </q-card-section>
       </q-card>
     </div>
   </q-page>
 </template>
 
 <script setup>
+import { ref } from "vue";
 
+const oldPassword = ref("");
+const newPassword = ref("");
+const confirmNewPassword = ref("");
+
+const isPwd = ref(true);
 </script>
 
 <style>
-
+.q-card {
+  width: 300px;
+}
 </style>

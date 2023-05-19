@@ -83,6 +83,7 @@
                       text-color="dark"
                       icon="o_password"
                       size="md"
+                      @click="goToChangePasswordSavePage"
                     />
                   </q-item-section>
                 </div>
@@ -130,6 +131,10 @@ const username = computed(() => {
   if (authStore.user) return authStore.user.user.fullName
   return ""
 })
+
+function goToChangePasswordSavePage() {
+  router.push('/reset-password-save')
+}
 </script>
 
 <style>

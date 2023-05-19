@@ -1,9 +1,10 @@
 import authRoutes from "./auth-routes"
 import businessRoutes from "./business-routes"
 
-
 const routes = [
   {
+    path: "/",
+    component: () => import("layouts/BusinessLayout.vue"),
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [

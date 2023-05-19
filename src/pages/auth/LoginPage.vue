@@ -57,7 +57,7 @@
     >
       <q-toolbar>
         <q-toolbar-title
-          class="flex justify-start q-ml-lg text-weight-bold text-h5 text-dark"
+          class="text-h5 flex justify-start q-ml-lg text-weight-bold text-dark"
           >Log in</q-toolbar-title
         >
         <div class="flex q-pr-lg q-gutter-sm">
@@ -112,9 +112,11 @@
               <q-input
                 outlined
                 v-model="username"
-                placeholder="Username (Mobile/Email) "
+                placeholder="Username (Mobile/Email)"
                 dense
-                class="text-body bg-white"
+                class="noen-border text-body bg-white"
+                color="blue-5"
+                required
               />
             </div>
             <div class="password-input">
@@ -125,6 +127,8 @@
                 placeholder="Password"
                 dense
                 class="text-body bg-white"
+                color="blue-5"
+                required
               >
                 <template v-slot:append>
                   <q-icon
@@ -157,6 +161,7 @@
                   placeholder="1234"
                   dense
                   class="text-body bg-white"
+                  color="blue-5"
                 />
               </div>
             </div>
@@ -165,6 +170,7 @@
         <q-card-actions class="q-px-md">
           <q-btn
             unelevated
+            type="submit"
             color="light-blue-6"
             size="md"
             class="full-width text-weight-bold"
@@ -172,6 +178,7 @@
             label="Log in"
             style="height: 40px"
             @click="authenticate"
+
           />
         </q-card-actions>
         <q-card-section class="text-center q-pa-none">
@@ -190,6 +197,7 @@ import { useAuthStore } from "../../stores"
 
 const showRegister = 0
 const username = ref("")
+const usernameClass = ref("")
 const password = ref("")
 
 const isPwd = ref(true)
@@ -214,5 +222,13 @@ async function authenticate() {
   .q-toolbar {
     padding: 0;
   }
+}
+
+.q-field--focused {
+  outline: none;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 5px rgb(147, 214, 255),
+    0 0 5px rgb(147, 214, 255), 0 0 2px rgb(147, 214, 255),
+    0 0 3px rgb(147, 214, 255);
+  transition: box-shadow 0.3s ease-in-out;
 }
 </style>
