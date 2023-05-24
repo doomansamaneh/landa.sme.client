@@ -3,7 +3,7 @@ export const encryptor = {
     if (!str) str = ""
     str = str == "undefined" || str == "null" ? "" : str
     try {
-      const key = 146
+      const key = 140
       let pos = 0
       let ostr = ""
       while (pos < str.length) {

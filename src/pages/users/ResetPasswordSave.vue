@@ -1,122 +1,62 @@
 <template>
-  <q-page
-    class="fullscreen row justify-center items-center"
-    style="background-color: #f5f6f9"
-  >
-    <q-header
-      style="height: 80px; background-color: #f5f6f9"
-      class="flex text-dark"
-    >
-      <q-toolbar>
-        <q-toolbar-title
-          class="flex justify-start q-ml-lg text-weight-bold text-h5 text-dark"
-          ><span class="ellipsis">Password reset</span></q-toolbar-title
-        >
-        <div class="flex q-pr-lg q-gutter-sm">
-          <q-btn
-            unelevated
-            no-caps
-            color="blue-6"
-            label="Sign up"
-            class="text-weight-bold"
-          />
-          <q-btn-dropdown
-            outline
-            push
-            no-caps
-            color="grey-9"
-            icon="language"
-            label="en"
-            @click="onMainClick"
-            class="text-dark shadow-1"
-            style="height: 42px"
-          >
-            <q-list>
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>fa</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup @click="onItemClick">
-                <q-item-section>
-                  <q-item-label>ar</q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-btn-dropdown>
-        </div>
-      </q-toolbar>
-    </q-header>
-
-    <div class="login-form q-mt-xl">
-      <div class="logo flex justify-center">
-        <q-img
-          src="/src/assets/about-us-header.png"
-          class="q-mb-md"
-          style="width: 270px"
-        />
-      </div>
-      <q-card class="form no-shadow" style="background-color: #f5f6f9">
+  <q-page class="row justify-center items-center bg-blue-5 ">
+    <div class="login-form">
+      <q-card class="change-password-form">
         <q-card-section>
           <q-form class="q-gutter-md">
-            <div class="old-password-input">
-              <q-input
-                outlined
-                v-model="oldPassword"
-                :type="isPwd ? 'password' : 'text'"
-                placeholder="Old Password"
-                dense
-                class="text-body bg-white #"
-              >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility_off' : 'visibility'"
-                    size="xs"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-            </div>
-            <div class="new-password-input">
-              <q-input
-                outlined
-                v-model="newPassword"
-                :type="isPwd ? 'password' : 'text'"
-                placeholder="New Password"
-                dense
-                class="text-body bg-white"
-              >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility_off' : 'visibility'"
-                    size="xs"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-            </div>
-            <div class="confirm-new-password-input">
-              <q-input
-                outlined
-                v-model="confirmNewPassword"
-                :type="isPwd ? 'password' : 'text'"
-                placeholder="Confirm New Password"
-                dense
-                class="text-body bg-white"
-              >
-                <template v-slot:append>
-                  <q-icon
-                    :name="isPwd ? 'visibility_off' : 'visibility'"
-                    size="xs"
-                    class="cursor-pointer"
-                    @click="isPwd = !isPwd"
-                  />
-                </template>
-              </q-input>
-            </div>
+            <q-input
+              outlined
+              v-model="oldPassword"
+              :type="isPwdOldPassword ? 'password' : 'text'"
+              placeholder="Old Password"
+              dense
+              class="text-body bg-white"
+            >
+              <template v-slot:append>
+                <q-icon
+                  :name="isPwdOldPassword ? 'visibility_off' : 'visibility'"
+                  size="xs"
+                  class="cursor-pointer"
+                  @click="isPwdOldPassword = !isPwdOldPassword"
+                />
+              </template>
+            </q-input>
+
+            <q-input
+              outlined
+              v-model="newPassword"
+              :type="isPwdNewPassword ? 'password' : 'text'"
+              placeholder="New Password"
+              dense
+              class="text-body bg-white"
+            >
+              <template v-slot:append>
+                <q-icon
+                  :name="isPwdNewPassword ? 'visibility_off' : 'visibility'"
+                  size="xs"
+                  class="cursor-pointer"
+                  @click="isPwdNewPassword = !isPwdNewPassword"
+                />
+              </template>
+            </q-input>
+
+            <q-input
+              outlined
+              v-model="confirmNewPassword"
+              :type="isPwdConfirmPassword ? 'password' : 'text'"
+              placeholder="Confirm New Password"
+              dense
+              class="text-body bg-white"
+            >
+              <template v-slot:append>
+                <q-icon
+                  :name="isPwdConfirmPassword ? 'visibility_off' : 'visibility'"
+                  size="xs"
+                  class="cursor-pointer"
+                  @click="isPwdConfirmPassword = !isPwdConfirmPassword"
+                />
+              </template>
+            </q-input>
           </q-form>
         </q-card-section>
         <q-card-actions class="q-px-md">
@@ -128,7 +68,8 @@
             no-caps
             label="Change Password"
             style="height: 40px"
-            @click="authenticate"
+            type="submit"
+            @click="changePassword"
           />
         </q-card-actions>
       </q-card>
@@ -137,17 +78,43 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from "vue"
 
-const oldPassword = ref("");
-const newPassword = ref("");
-const confirmNewPassword = ref("");
+import { useAuthStore } from "../../stores"
+import { fetchWrapper } from "../../helpers"
 
-const isPwd = ref(true);
+const authStore = useAuthStore()
+
+const oldPassword = ref("")
+const newPassword = ref("")
+const confirmNewPassword = ref("")
+
+const isPwdOldPassword = ref(true)
+const isPwdNewPassword = ref(true)
+const isPwdConfirmPassword = ref(true)
+
+async function changePassword() {
+  await fetchWrapper
+    .post("scr/users/ResetPasswordSave", {
+      id: authStore.user.user.id,
+      oldPassword: oldPassword.value,
+      password: newPassword.value,
+      confirmPassword: confirmNewPassword.value
+    })
+    .then((response) => {
+      console.log(response)
+      //handleResponse(response, data)
+    })
+    .finally(() => {
+      //loading.value = false;
+    })
+}
 </script>
 
 <style>
 .q-card {
   width: 300px;
+  height: 250px;
+  border-radius: 9px;
 }
 </style>

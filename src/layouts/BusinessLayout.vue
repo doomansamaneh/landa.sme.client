@@ -68,14 +68,22 @@
                     class="q-mx-sm"
                     text-color="white"
                     style="width: 72px; height: 72px"
-                    ><div class="text-weight-bold">خ</div></q-avatar
+                    ><div class="text-weight-bold">
+                      {{ getFirstChar(username) }}
+                    </div></q-avatar
                   >
                   <div class="q-mt-md">
                     {{ username }}
                   </div>
                 </div>
               </q-item-label>
-              <q-item clickable v-ripple v-close-popup class="q-mt-md">
+              <q-item
+                clickable
+                v-ripple
+                v-close-popup
+                class="q-mt-md"
+                @click="goToChangePasswordPage"
+              >
                 <div class="q-py-sm">
                   <q-item-section avatar>
                     <q-avatar
@@ -83,7 +91,6 @@
                       text-color="dark"
                       icon="o_password"
                       size="md"
-                      @click="goToChangePasswordSavePage"
                     />
                   </q-item-section>
                 </div>
@@ -123,8 +130,10 @@
 
 <script setup>
 import { ref, computed } from "vue"
+import { useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
 
+const router = useRouter()
 const authStore = useAuthStore()
 
 const username = computed(() => {
@@ -132,8 +141,12 @@ const username = computed(() => {
   return ""
 })
 
-function goToChangePasswordSavePage() {
-  router.push('/reset-password-save')
+function goToChangePasswordPage() {
+  router.push("/business/changePassword")
+}
+
+function getFirstChar(str) {
+  return str.charAt(0)
 }
 </script>
 
