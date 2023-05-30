@@ -1,42 +1,44 @@
 import { defineStore } from "pinia"
-
 import { fetchWrapper, encryptor } from "../helpers"
-//import { router } from "../router"
 import { useAlertStore } from "../stores/alert-store"
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: JSON.parse(localStorage.getItem("user")),
-    returnUrl: null
+    returnUrl: null,
+    errorCode0: "",
+    errorCode0Message: ""
   }),
 
   actions: {
     async login(username, password) {
       try {
-        const response = await fetchWrapper.post(`account/login`, {
+        const response = await fetchWrapper.post("account/login", {
           loginName: encryptor.encrypt(username),
           password: encryptor.encrypt(password)
         })
 
-        const data = response.data;
-        if (data.code == 0)
-        {
-          //todo:
-          alert(data.message);
-        }
-        else
-        {
-          // update pinia state
+        const data = response.data
+
+        if (data.code === 0) {
+          this.errorCode0 = data.code
+          this.errorCode0Message = "Invalid username or password."
+          // alert(data.message)
+        } else {
+          this.errorCode0 = ""
+          this.errorCode0Message = ""
+          // update Pinia state
           this.user = data
           // store user details and jwt in local storage to keep user logged in between page refreshes
           localStorage.setItem("user", JSON.stringify(this.user))
           // redirect to previous url or default to home page
-          this.router.push(this.returnUrl || "/business")
+          this.redirect(this.returnUrl || "/business")
         }
       } catch (error) {
-        alert("login error: " + error)
-        // const alertStore = useAlertStore()
-        // alertStore.error(error)
+        useAlertStore().addAlert({
+          type: "negative",
+          message: "There was an error logging in. Please try again later."
+        })
       }
     },
     clearUser() {
@@ -45,10 +47,17 @@ export const useAuthStore = defineStore("auth", {
     },
     logout() {
       this.clearUser()
-      this.router.push("/account/login")
+      this.redirect("/account/login")
     },
     redirect(url) {
       this.router.push(url)
+    }
+  },
+
+  // Getter function to show the error 0 banner
+  getters: {
+    showErrorCode0Banner() {
+      return this.errorCode0 === 0
     }
   }
 })

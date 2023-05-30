@@ -27,12 +27,13 @@
     const selected = ref([])
     const rows = ref([])
     const loading = ref(false)
+
     const pagination = ref({
         sortBy: thisProps.sortBy,
         page: 1,
         rowsPerPage: 10,
         rowsNumber: 0
-    })
+    });
 
     onMounted(() => {
         reloadData();

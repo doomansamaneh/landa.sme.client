@@ -1,16 +1,19 @@
 <template>
-  <q-page class="row justify-center items-center bg-blue-5 ">
+  <q-page class="row justify-center items-center bg-blue-5">
     <div class="login-form">
       <q-card class="change-password-form">
         <q-card-section>
-          <q-form class="q-gutter-md">
+          <q-form class="" @submit="changePassword">
             <q-input
               outlined
               v-model="oldPassword"
               :type="isPwdOldPassword ? 'password' : 'text'"
               placeholder="Old Password"
               dense
-              class="text-body bg-white"
+              class="text-body bg-whit"
+              required
+              lazy-rules
+              :rules="[(val) => val !== null && val !== '']"
             >
               <template v-slot:append>
                 <q-icon
@@ -21,7 +24,6 @@
                 />
               </template>
             </q-input>
-
             <q-input
               outlined
               v-model="newPassword"
@@ -29,6 +31,9 @@
               placeholder="New Password"
               dense
               class="text-body bg-white"
+              required
+              lazy-rules
+              :rules="[(val) => val !== null && val !== '']"
             >
               <template v-slot:append>
                 <q-icon
@@ -47,6 +52,9 @@
               placeholder="Confirm New Password"
               dense
               class="text-body bg-white"
+              required
+              lazy-rules
+              :rules="[(val) => val !== null && val !== '']"
             >
               <template v-slot:append>
                 <q-icon
@@ -57,21 +65,19 @@
                 />
               </template>
             </q-input>
+            <div class="q-mt-lg">
+              <q-btn
+                unelevated
+                type="submit"
+                color="light-blue-6"
+                size="md"
+                class="change-password-btn full-width text-weight-bold q-py-sm"
+                no-caps
+                label="Change Password"
+              />
+            </div>
           </q-form>
         </q-card-section>
-        <q-card-actions class="q-px-md">
-          <q-btn
-            unelevated
-            color="light-blue-6"
-            size="md"
-            class="full-width text-weight-bold"
-            no-caps
-            label="Change Password"
-            style="height: 40px"
-            type="submit"
-            @click="changePassword"
-          />
-        </q-card-actions>
       </q-card>
     </div>
   </q-page>
@@ -114,7 +120,10 @@ async function changePassword() {
 <style>
 .q-card {
   width: 300px;
-  height: 250px;
   border-radius: 9px;
+}
+
+.change-password-btn {
+  height: 40px;
 }
 </style>
