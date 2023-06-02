@@ -21,7 +21,8 @@
         dataSource: String,
         color: String,
     });
-    const emits = defineEmits(['changeSelected'])
+
+    // const emits = defineEmits(['changeSelected'])
 
     const filter = ref("")
     const selected = ref([])

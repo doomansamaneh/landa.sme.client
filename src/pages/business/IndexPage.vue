@@ -1,6 +1,6 @@
 <template>
-  <!--<q-page class="row justify-center items-center bg-blue-1">
-     <div class="row q-py-md">
+  <!-- <q-page class="row justify-center items-center bg-blue-1"> -->
+     <!-- <div class="row q-py-md">
       <div class="col col-3"></div>
       <div class="col">
         <div class="q-pb-md q-gutter-sm">
