@@ -195,11 +195,11 @@ const rows = ref([])
 const loading = ref(false)
 
 const pagination = ref({
-        sortBy: "name",
-        page: 1,
-        rowsPerPage: 10,
-        rowsNumber: 0
-    });
+  sortBy: "name",
+  page: 1,
+  rowsPerPage: 10,
+  rowsNumber: 0
+})
 
 async function gotoBusiness() {
   await fetchWrapper
@@ -211,38 +211,39 @@ async function gotoBusiness() {
 }
 
 onMounted(() => {
-        reloadData();
-    });
+  reloadData()
+})
 
-    async function reloadData() {
-        loadData(pagination.value)
-    }
+async function reloadData() {
+  loadData(pagination.value)
+}
 
-    async function loadData(data) {
-        loading.value = true
-        await fetchWrapper
-            .post("business/getBusinessGridData",
-                {
-                    pageSize: data.rowsPerPage,
-                    sortColumn: data.sortBy,
-                    sortOrder: data.descending ? 1 : 2,
-                    currentPage: data.page,
-                    //columns: columns
-                })
-            .then((response) => { handleResponse(response, data) })
-            .finally(() => { loading.value = false; })
-    }
+async function loadData(data) {
+  loading.value = true
+  await fetchWrapper
+    .post("business/getBusinessGridData", {
+      pageSize: data.rowsPerPage,
+      sortColumn: data.sortBy,
+      sortOrder: data.descending ? 1 : 2,
+      currentPage: data.page
+      //columns: columns
+    })
+    .then((response) => {
+      handleResponse(response, data)
+    })
+    .finally(() => {
+      loading.value = false
+    })
+}
 
-    function handleResponse(response, data) {
-        rows.value = response.data.items
-        pagination.value.rowsNumber = response.data.page.totalItems
-        pagination.value.rowsPerPage = response.data.page.pageSize
-        pagination.value.page = response.data.page.currentPage
-        pagination.value.sortBy = data.sortBy
-        pagination.value.descending = data.descending
-        alert("Hello")
-        console.log(rows);
-    }
+function handleResponse(response, data) {
+  rows.value = response.data.items
+  pagination.value.rowsNumber = response.data.page.totalItems
+  pagination.value.rowsPerPage = response.data.page.pageSize
+  pagination.value.page = response.data.page.currentPage
+  pagination.value.sortBy = data.sortBy
+  pagination.value.descending = data.descending
+}
 </script>
 
 <style>
@@ -296,7 +297,7 @@ onMounted(() => {
   width: 130px;
 }
 
-.q-btn:hover{
-  background-color:rgb(241, 241, 241);
+.q-btn:hover {
+  background-color: rgb(241, 241, 241);
 }
 </style>

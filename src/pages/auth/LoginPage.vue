@@ -24,21 +24,18 @@
                 no-caps
                 color="grey-9"
                 icon="language"
-                label="en"
-                @click="onMainClick"
-                class="text-dark bg-white"
-                style="height: 42px"
+                :label="$t('currentLanguage')"
               >
                 <q-list>
-                  <q-item clickable v-close-popup @click="onItemClick">
+                  <q-item
+                    v-for="language in supportedLanguages"
+                    :key="language.code"
+                    clickable
+                    @click="changeLanguage(language.code)"
+                    v-close-popup
+                  >
                     <q-item-section>
-                      <q-item-label>fa</q-item-label>
-                    </q-item-section>
-                  </q-item>
-
-                  <q-item clickable v-close-popup @click="onItemClick">
-                    <q-item-section>
-                      <q-item-label>ar</q-item-label>
+                      <q-item-label>{{ language.label }}</q-item-label>
                     </q-item-section>
                   </q-item>
                 </q-list>
@@ -141,21 +138,27 @@
         </div>
       </div>
       <div class="error-code0-banner" v-if="authStore.showErrorCode0Banner">
-          <transition
-            appear
-            enter-active-class="animated fadeIn"
-            leave-active-class="animated bounceInDown"
-            :duration="1000"
-          >
-            <q-banner inline-actions class="q-banner-error bg-red-1 text-red">
-              <q-icon name="error" size="22px" class="q-mr-xs" />
-              <span>{{ authStore.errorCode0Message }}</span>
-              <template v-slot:action>
-                <q-btn @click="closeErrorCode0Banner" flat unelevated color="red" label="Dismiss" />
-              </template>
-            </q-banner>
-          </transition>
-        </div>
+        <transition
+          appear
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated bounceInDown"
+          :duration="1000"
+        >
+          <q-banner inline-actions class="q-banner-error bg-red-1 text-red">
+            <q-icon name="error" size="22px" class="q-mr-xs" />
+            <span>{{ $t('code0Error') }}</span>
+            <template v-slot:action>
+              <q-btn
+                @click="closeErrorCode0Banner"
+                flat
+                unelevated
+                color="red"
+                label="Dismiss"
+              />
+            </template>
+          </q-banner>
+        </transition>
+      </div>
     </q-layout>
   </q-page>
 </template>
@@ -163,7 +166,9 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import { useAuthStore } from "../../stores"
+import { useI18n } from "vue-i18n"
 import { data } from "autoprefixer"
+const { locale, messages } = useI18n({ useScope: 'global' });
 
 const authStore = useAuthStore()
 const username = ref("")
@@ -176,9 +181,20 @@ async function authenticate() {
 }
 
 const closeErrorCode0Banner = () => {
-  authStore.errorCode0 = ''
-  authStore.errorCode0Message = ''
+  authStore.errorCode0 = ""
+  authStore.errorCode0Message = ""
 }
+//Language switcher
+// Define the supported languages with their language code and the label to display in the dropdown
+const supportedLanguages = [
+  { code: 'en', label: 'English' },
+  { code: 'fa', label: 'Farsi' },
+  { code: 'ar', label: 'Arabic' },
+];
+
+// The currentLanguage ref is used to display the currently selected language in the button label
+const currentLanguage = ref('en');
+
 </script>
 
 <style lang="scss">
