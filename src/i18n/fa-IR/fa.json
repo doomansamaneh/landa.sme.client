@@ -1,0 +1,51 @@
+{
+  "login-page": {
+    "page-title": "ورود",
+    "placeholders": {
+      "username": "نام کاربری، موبایل یا ایمیل",
+      "password": "رمز عبور"
+    },
+    "buttons": {
+      "signup": "ثبت نام",
+      "login": "ورود"
+    },
+    "language-switcher": {
+      "english": "انگلیسی",
+      "farsi": "فارسی",
+      "arabic": "عربی"
+    },
+
+    "forgot-password": "رمز عبور خود را فراموش کرده اید؟",
+    "invalid-username-password": "نام کاربری و یا رمز عبور خود را به درستی وارد نکرده اید"
+  },
+
+  "business-layout": {
+    "buttons": {
+      "change-password": "تغییر رمز عبور",
+      "logout": "خروج از سامانه"
+    }
+  },
+
+  "business-page": {
+    "card-title": "کسب و کارهای من",
+    "card-message": "برای ورود به کسب و کار، بر روی نام آن کلیک کنید",
+    "buttons": {
+      "add-new-business-tooltip": "ایجاد کسب و کار جدید",
+      "more-button": {
+        "enter-business": "ورود به کسب و کار",
+        "invite-user": "دعوت از کاربر",
+        "delete": "حذف",
+        "payment-history": "تاریخچه پرداخت"
+      }
+    }
+  },
+
+  "change-password-page": {
+    "placeholders": {
+      "old-password": "رمز عبور پیشین",
+      "new-password": "رمز عبور",
+      "confirm-password": "تکرار رمز عبور"
+    },
+    "buttons": { "change-password": "تغییر رمز عبور" }
+  }
+}

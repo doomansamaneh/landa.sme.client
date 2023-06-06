@@ -51,7 +51,9 @@
                   </q-item-section>
                 </div>
 
-                <q-item-section>Change Password</q-item-section>
+                <q-item-section>{{
+                  $t("business-layout.buttons.change-password")
+                }}</q-item-section>
               </q-item>
               <q-item
                 clickable
@@ -70,7 +72,9 @@
                     />
                   </q-item-section>
                 </div>
-                <q-item-section>Logout</q-item-section>
+                <q-item-section>{{
+                  $t("business-layout.buttons.logout")
+                }}</q-item-section>
               </q-item>
             </q-list>
           </q-menu>

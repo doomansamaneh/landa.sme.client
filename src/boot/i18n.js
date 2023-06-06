@@ -1,11 +1,11 @@
-import { createI18n } from 'vue-i18n'
-import messages from 'src/i18n'
+import { createI18n } from "vue-i18n"
+import messages from "src/i18n"
 
 export default ({ app }) => {
   // Create I18n instance
   const i18n = createI18n({
     legacy: false,
-    locale: 'en-US',
+    locale: "en-US",
     globalInjection: true,
     messages
   })

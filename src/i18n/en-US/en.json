@@ -1,0 +1,51 @@
+{
+  "login-page": {
+    "page-title": "Log in",
+    "placeholders": {
+      "username": "Username(Mobile/Email)",
+      "password": "Password"
+    },
+    "buttons": {
+      "signup": "Sign up",
+      "login": "Log in"
+    },
+    "language-switcher": {
+      "english": "English",
+      "farsi": "Farsi",
+      "arabic": "Arabic"
+    },
+
+    "forgot-password": "Forgot your password?",
+    "invalid-username-password": "Invalid username or password"
+  },
+
+  "business-layout": {
+    "buttons": {
+      "change-password": "Change Password",
+      "logout": "Log out"
+    }
+  },
+
+  "business-page": {
+    "card-title": "My Businesses",
+    "card-message": "Click on the business name to enter",
+    "buttons": {
+      "add-new-business-tooltip": "Add New Business",
+      "more-button": {
+        "enter-business": "Entering the Business",
+        "invite-user": "Invite user",
+        "delete": "Delete",
+        "payment-history": "Payment History"
+      }
+    }
+  },
+
+  "change-password-page": {
+    "placeholders": {
+      "old-password": "Old Password",
+      "new-password": "New Password",
+      "confirm-password": "Confirm New Password"
+    },
+    "buttons": { "change-password": "Change Password" }
+  }
+}

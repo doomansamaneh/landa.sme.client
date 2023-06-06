@@ -1,0 +1,50 @@
+{
+  "login-page": {
+    "page-title": "تسجيل الدخول",
+    "placeholders": {
+      "username": "المستخدم",
+      "password": "كلمة المرور"
+    },
+    "buttons": {
+      "signup": "اشتراك",
+      "login": "دخول"
+    },
+    "language-switcher": {
+      "english": "إنجليزي",
+      "farsi": "الفارسية",
+      "arabic": "عربي"
+    },
+
+    "forgot-password": "نسيت كلمة المرور الخاصة بي",
+    "invalid-username-password": "لم تقم بإدخال اسم المستخدم أو كلمة المرور بشكل صحيح"
+  },
+
+  "business-layout": {
+    "buttons": {
+      "change-password": "تغيير كلمة المرور",
+      "logout": "تسجيل الخروج من البوابة"
+    }
+  },
+
+  "business-page": {
+    "card-title": "أعمالي",
+    "card-message": "لغرض الدخول في عمل أو مهنة ما، انقر على اسمه",
+    "buttons": {
+      "add-new-business-tooltip": "إنشاء أعمال جديدة",
+
+      "enter-business": "تسجيل الدخول للأعمال والمهن",
+      "invite-user": "دعوة المستخدم",
+      "delete": "حذف",
+      "payment-history": "تاریخ الدفع"
+    }
+  },
+
+  "change-password-page": {
+    "placeholders": {
+      "old-password": "كلمة المرور السابقة",
+      "new-password": "كلمة المرور",
+      "confirm-password": "تأكيد كلمة المرور"
+    },
+    "buttons": { "change-password": "تغییر كلمة المرور" }
+  }
+}

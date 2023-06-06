@@ -8,7 +8,9 @@
               outlined
               v-model="oldPassword"
               :type="isPwdOldPassword ? 'password' : 'text'"
-              placeholder="Old Password"
+              :placeholder="
+                $t('change-password-page.placeholders.old-password')
+              "
               dense
               class="text-body bg-whit"
               required
@@ -28,7 +30,9 @@
               outlined
               v-model="newPassword"
               :type="isPwdNewPassword ? 'password' : 'text'"
-              placeholder="New Password"
+              :placeholder="
+                $t('change-password-page.placeholders.new-password')
+              "
               dense
               class="text-body bg-white"
               required
@@ -49,7 +53,9 @@
               outlined
               v-model="confirmNewPassword"
               :type="isPwdConfirmPassword ? 'password' : 'text'"
-              placeholder="Confirm New Password"
+              :placeholder="
+                $t('change-password-page.placeholders.confirm-password')
+              "
               dense
               class="text-body bg-white"
               required
@@ -73,7 +79,7 @@
                 size="md"
                 class="change-password-btn full-width text-weight-bold q-py-sm"
                 no-caps
-                label="Change Password"
+                :label="$t('change-password-page.buttons.change-password')"
               />
             </div>
           </q-form>

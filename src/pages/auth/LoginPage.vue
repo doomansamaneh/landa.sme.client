@@ -6,16 +6,16 @@
           <q-toolbar>
             <q-toolbar-title
               class="flex justify-start q-ml-lg text-weight-bold text-dark"
-              ><span class="text-weight-bold text-h5"
-                >Log in</span
-              ></q-toolbar-title
+              ><span class="text-weight-bold text-h5">{{
+                $t("login-page.page-title")
+              }}</span></q-toolbar-title
             >
             <div class="flex q-pr-lg q-gutter-sm">
               <q-btn
                 unelevated
                 no-caps
                 color="blue-6"
-                label="Sign up"
+                :label="$t('login-page.buttons.signup')"
                 class="signup-btn text-weight-bold"
               />
               <q-btn-dropdown
@@ -60,7 +60,7 @@
                   <q-input
                     outlined
                     v-model="username"
-                    placeholder="Username (Mobile/Email)"
+                    :placeholder="$t('login-page.placeholders.username')"
                     dense
                     class="noen-border text-body"
                     required
@@ -73,7 +73,7 @@
                     outlined
                     v-model="password"
                     :type="isPwd ? 'password' : 'text'"
-                    placeholder="Password"
+                    :placeholder="$t('login-page.placeholders.password')"
                     dense
                     required
                     lazy-rules
@@ -122,7 +122,7 @@
                       size="md"
                       class="login-btn full-width text-weight-bold q-py-sm"
                       no-caps
-                      label="Log in"
+                      :label="$t('login-page.buttons.login')"
                     />
                   </div>
                 </div>
@@ -131,7 +131,7 @@
 
             <q-card-section class="text-center q-pa-none">
               <p class="forgot-password text-blue-7 q-mt-lg">
-                <a href="#">Forgot your password?</a>
+                <a href="#">{{ $t("login-page.forgot-password") }}</a>
               </p>
             </q-card-section>
           </q-card>
@@ -146,7 +146,7 @@
         >
           <q-banner inline-actions class="q-banner-error bg-red-1 text-red">
             <q-icon name="error" size="22px" class="q-mr-xs" />
-            <span>{{ $t('code0Error') }}</span>
+            <span>{{ $t("login-page.invalid-username-password") }}</span>
             <template v-slot:action>
               <q-btn
                 @click="closeErrorCode0Banner"
@@ -168,7 +168,7 @@ import { ref, onMounted, computed } from "vue"
 import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
 import { data } from "autoprefixer"
-const { locale, messages } = useI18n({ useScope: 'global' });
+const { locale, messages } = useI18n({ useScope: "global" })
 
 const authStore = useAuthStore()
 const username = ref("")
@@ -187,14 +187,13 @@ const closeErrorCode0Banner = () => {
 //Language switcher
 // Define the supported languages with their language code and the label to display in the dropdown
 const supportedLanguages = [
-  { code: 'en', label: 'English' },
-  { code: 'fa', label: 'Farsi' },
-  { code: 'ar', label: 'Arabic' },
-];
+  { code: "en", label: "English" },
+  { code: "fa", label: "Farsi" },
+  { code: "ar", label: "Arabic" }
+]
 
 // The currentLanguage ref is used to display the currently selected language in the button label
-const currentLanguage = ref('en');
-
+const currentLanguage = ref("en")
 </script>
 
 <style lang="scss">
