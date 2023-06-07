@@ -31,11 +31,12 @@
     "card-message": "لغرض الدخول في عمل أو مهنة ما، انقر على اسمه",
     "buttons": {
       "add-new-business-tooltip": "إنشاء أعمال جديدة",
-
-      "enter-business": "تسجيل الدخول للأعمال والمهن",
-      "invite-user": "دعوة المستخدم",
-      "delete": "حذف",
-      "payment-history": "تاریخ الدفع"
+      "more-button": {
+        "enter-business": "تسجيل الدخول للأعمال والمهن",
+        "invite-user": "دعوة المستخدم",
+        "delete": "حذف",
+        "payment-history": "تاریخ الدفع"
+      }
     }
   },
 

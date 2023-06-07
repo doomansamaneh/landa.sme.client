@@ -19,26 +19,26 @@
                 class="signup-btn text-weight-bold"
               />
               <q-btn-dropdown
-                outline
-                push
                 no-caps
-                color="grey-9"
                 icon="language"
-                :label="$t('currentLanguage')"
+                :label="selectedLanguageLabel"
+                v-model="selectedLanguage"
+                :options="languageOptions"
               >
-                <q-list>
+                <q-item-section>
                   <q-item
-                    v-for="language in supportedLanguages"
-                    :key="language.code"
                     clickable
-                    @click="changeLanguage(language.code)"
-                    v-close-popup
+                    v-for="(lang, index) in supportedLanguages"
+                    :key="index"
                   >
-                    <q-item-section>
-                      <q-item-label>{{ language.label }}</q-item-label>
+                    <q-item-section @click="switchLanguage(lang.code)">
+                      <q-item-label>{{ lang.name }}</q-item-label>
+                    </q-item-section>
+                    <q-item-section v-if="currentLanguage === lang.code">
+                      <q-icon name="done" right></q-icon>
                     </q-item-section>
                   </q-item>
-                </q-list>
+                </q-item-section>
               </q-btn-dropdown>
             </div>
           </q-toolbar>
@@ -168,7 +168,7 @@ import { ref, onMounted, computed } from "vue"
 import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
 import { data } from "autoprefixer"
-const { locale, messages } = useI18n({ useScope: "global" })
+const { t, locale, messages } = useI18n({ useScope: "global" })
 
 const authStore = useAuthStore()
 const username = ref("")
@@ -185,15 +185,44 @@ const closeErrorCode0Banner = () => {
   authStore.errorCode0Message = ""
 }
 //Language switcher
-// Define the supported languages with their language code and the label to display in the dropdown
 const supportedLanguages = [
-  { code: "en", label: "English" },
-  { code: "fa", label: "Farsi" },
-  { code: "ar", label: "Arabic" }
+  {
+    code: "en-US",
+    name: "English"
+  },
+  {
+    code: "fa-IR",
+    name: "فارسی"
+  },
+  {
+    code: "ar",
+    name: "عربي"
+  }
 ]
 
-// The currentLanguage ref is used to display the currently selected language in the button label
-const currentLanguage = ref("en")
+const userSelectedLanguage = localStorage.getItem("selectedLanguage")
+
+const currentLanguage = ref(userSelectedLanguage || "en-US")
+
+const selectedLanguageLabel = computed(() => {
+  switch (currentLanguage.value) {
+    case "en-US":
+      return "English"
+    case "fa-IR":
+      return "فارسی"
+    case "ar":
+      return "عربی"
+    default:
+      return ""
+  }
+})
+
+const switchLanguage = (code) => {
+  currentLanguage.value = code
+  locale.value = code
+  localStorage.setItem("selectedLanguage", code)
+  i18n.locale = language
+}
 </script>
 
 <style lang="scss">

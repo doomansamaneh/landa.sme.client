@@ -5,7 +5,9 @@ export default ({ app }) => {
   // Create I18n instance
   const i18n = createI18n({
     legacy: false,
-    locale: "en-US",
+    useGlobal: true,
+    locale: localStorage.getItem("selectedLanguage") || "en-US",
+    fallbackLocale: "en-US",
     globalInjection: true,
     messages
   })
