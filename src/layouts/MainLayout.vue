@@ -101,7 +101,7 @@ import { useRoute, useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
 import router from "src/router"
 
-const authStore = useAuthStore();
+const authStore = useAuthStore()
 
 // if (!authStore.user) {
 //   authStore.logout()
@@ -111,7 +111,6 @@ const username = computed(() => {
   if (authStore.user) return authStore.user.user.fullName
   return ""
 })
-
 </script>
 
 <style>

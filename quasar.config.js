@@ -103,7 +103,11 @@ module.exports = configure(function (/* ctx */) {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
+      plugins: ["Loading"],
       config: {
+        loading: {
+          /* look at QuasarConfOptions from the API card */
+        },
         screen: {
           bodyClasses: true // <<< add this
         }

@@ -196,21 +196,27 @@
       </q-card>
     </div>
   </div>
-
-  <!-- <q-page class="row justify-center items-center"> -->
-  <!-- </q-page> -->
 </template>
 
 <script setup>
 import { fetchWrapper } from "../../helpers"
-import { onMounted } from "vue"
+import { onMounted, onBeforeUnmount } from "vue"
 import { ref } from "vue"
+import { useQuasar, QSpinnerPie, Loading } from "quasar"
 
 const rows = ref([])
-const loading = ref(false)
-
+const columns = [
+  {
+    name: "Name",
+    field: "name",
+    align: "left",
+    sortable: true,
+    sortBy: "name"
+  }
+]
 const pagination = ref({
   sortBy: "name",
+  descending: false,
   page: 1,
   rowsPerPage: 10,
   rowsNumber: 0
@@ -234,21 +240,32 @@ async function reloadData() {
 }
 
 async function loadData(data) {
-  loading.value = true
-  await fetchWrapper
-    .post("business/getBusinessGridData", {
+  // Show loading overlay
+  Loading.show({
+    spinner: QSpinnerPie,
+    spinnerColor: "white",
+    spinnerSize: 140,
+    backgroundColor: "primary"
+  })
+
+  try {
+    const response = await fetchWrapper.post("business/getBusinessGridData", {
       pageSize: data.rowsPerPage,
       sortColumn: data.sortBy,
       sortOrder: data.descending ? 1 : 2,
       currentPage: data.page
       //columns: columns
     })
-    .then((response) => {
-      handleResponse(response, data)
-    })
-    .finally(() => {
-      loading.value = false
-    })
+
+    handleResponse(response, data)
+  } catch (error) {
+    console.error(error)
+  } finally {
+    // Hide loading overlay
+    setTimeout(() => {
+      Loading.hide()
+    }, 2000)
+  }
 }
 
 function handleResponse(response, data) {

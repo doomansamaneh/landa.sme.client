@@ -24,6 +24,8 @@
                 :label="selectedLanguageLabel"
                 v-model="selectedLanguage"
                 :options="languageOptions"
+                class="bg-white text-primary"
+                auto-close
               >
                 <q-item-section>
                   <q-item
@@ -35,7 +37,12 @@
                       <q-item-label>{{ lang.name }}</q-item-label>
                     </q-item-section>
                     <q-item-section v-if="currentLanguage === lang.code">
-                      <q-icon name="done" right></q-icon>
+                      <q-icon
+                        name="done"
+                        color="primary"
+                        size="xs"
+                        right
+                      ></q-icon>
                     </q-item-section>
                   </q-item>
                 </q-item-section>
@@ -123,7 +130,11 @@
                       class="login-btn full-width text-weight-bold q-py-sm"
                       no-caps
                       :label="$t('login-page.buttons.login')"
-                    />
+                    >
+                      <div class="q-pl-sm" v-if="isLoggingIn">
+                        <q-spinner-pie class="white" size="xs" />
+                      </div>
+                    </q-btn>
                   </div>
                 </div>
               </q-form>
@@ -148,12 +159,13 @@
             <q-icon name="error" size="22px" class="q-mr-xs" />
             <span>{{ $t("login-page.invalid-username-password") }}</span>
             <template v-slot:action>
-              <q-btn
+              <q-icon
                 @click="closeErrorCode0Banner"
                 flat
                 unelevated
                 color="red"
-                label="Dismiss"
+                name="close"
+                class="cursor-pointer"
               />
             </template>
           </q-banner>
@@ -223,6 +235,9 @@ const switchLanguage = (code) => {
   localStorage.setItem("selectedLanguage", code)
   i18n.locale = language
 }
+
+// Define computed variable for isLoggingIn state
+const isLoggingIn = computed(() => authStore.isLoggingIn)
 </script>
 
 <style lang="scss">
@@ -274,7 +289,7 @@ const switchLanguage = (code) => {
 
 .q-banner {
   margin-top: 25px;
-  border-bottom: 2px solid rgb(233, 60, 60);
+  border-top: 1px solid rgb(233, 60, 60);
 }
 
 .login-form {
@@ -294,5 +309,15 @@ const switchLanguage = (code) => {
 
 .q-banner-error {
   height: 70px;
+}
+
+.q-btn-dropdown--simple * + .q-btn-dropdown__arrow {
+  margin-left: 8px;
+  color: $primary;
+}
+
+.q-btn--actionable.q-btn--standard:before {
+  border: 1px solid $primary;
+  box-shadow: none;
 }
 </style>

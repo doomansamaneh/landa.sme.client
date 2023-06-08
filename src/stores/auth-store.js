@@ -7,12 +7,15 @@ export const useAuthStore = defineStore("auth", {
     user: JSON.parse(localStorage.getItem("user")),
     returnUrl: null,
     errorCode0: "",
-    errorCode0Message: ""
+    errorCode0Message: "",
+    isLoggingIn: false // new state variable
   }),
 
   actions: {
     async login(username, password) {
       try {
+        this.isLoggingIn = true // Set isLoggingIn to true before sending request
+
         const response = await fetchWrapper.post("account/login", {
           loginName: encryptor.encrypt(username),
           password: encryptor.encrypt(password)
@@ -24,6 +27,7 @@ export const useAuthStore = defineStore("auth", {
           this.errorCode0 = data.code
           this.errorCode0Message = "Invalid username or password."
           // alert(data.message)
+          this.isLoggingIn = false
         } else {
           this.errorCode0 = ""
           this.errorCode0Message = ""
@@ -31,14 +35,20 @@ export const useAuthStore = defineStore("auth", {
           this.user = data
           // store user details and jwt in local storage to keep user logged in between page refreshes
           localStorage.setItem("user", JSON.stringify(this.user))
-          // redirect to previous url or default to home page
-          this.redirect(this.returnUrl || "/business")
+          // Use setTimeout to wait for 2 seconds before redirecting
+          setTimeout(() => {
+            this.redirect(this.returnUrl || "/business")
+          }, 2000)
         }
       } catch (error) {
         useAlertStore().addAlert({
           type: "negative",
           message: "There was an error logging in. Please try again later."
         })
+      } finally {
+        setTimeout(() => {
+          this.isLoggingIn = false // Set isLoggingIn back to false after the request completes
+        }, 2000)
       }
     },
     clearUser() {
