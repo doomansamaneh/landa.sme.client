@@ -70,7 +70,7 @@ module.exports = configure(function (/* ctx */) {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node16"
       },
-      rtl: true,
+      // rtl: true,
       vueRouterMode: "history" // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
@@ -112,7 +112,7 @@ module.exports = configure(function (/* ctx */) {
           bodyClasses: true // <<< add this
         }
       },
-      // lang: "fa",
+      lang: ["fa"],
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack

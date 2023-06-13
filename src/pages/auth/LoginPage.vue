@@ -181,6 +181,7 @@ import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
 import { data } from "autoprefixer"
 const { t, locale, messages } = useI18n({ useScope: "global" })
+import { Quasar } from "quasar"
 
 const authStore = useAuthStore()
 const username = ref("")
@@ -233,8 +234,33 @@ const switchLanguage = (code) => {
   currentLanguage.value = code
   locale.value = code
   localStorage.setItem("selectedLanguage", code)
-  i18n.locale = language
+
+  // Determine direction of language
+  let dir = "ltr"
+  if (code !== "en-US") {
+    dir = "rtl"
+  }
+
+  // Save language and direction to local storage
+  localStorage.setItem("languageDirection", dir)
 }
+
+onMounted(() => {
+  // Retrieve selected language from local storage
+  const userSelectedLanguage = localStorage.getItem("selectedLanguage")
+  if (userSelectedLanguage) {
+    currentLanguage.value = userSelectedLanguage
+    locale.value = userSelectedLanguage
+  }
+
+  // Retrieve language direction from local storage
+  const languageDirection = localStorage.getItem("languageDirection")
+  if (languageDirection) {
+    document.documentElement.setAttribute("dir", languageDirection)
+  } else {
+    document.documentElement.setAttribute("dir", "ltr")
+  }
+})
 
 // Define computed variable for isLoggingIn state
 const isLoggingIn = computed(() => authStore.isLoggingIn)
