@@ -26,20 +26,40 @@
             </q-btn>
           </div>
         </q-item>
-
+        <q-linear-progress indeterminate color="primary" v-if="loadingData" />
         <q-separator />
         <q-card-section class="q-pa-lg q-gutter-md">
+          <div class="Search-bar" v-if="pagination.rowsPerPage >= 5">
+            <q-input
+              outlined
+              dense
+              v-model="searchTerm"
+              placeholder="Search"
+              @keydown.enter="reloadData"
+              clearable
+              v-if="shouldShowPaginationAndSearchBar"
+            >
+              <template v-slot:prepend>
+                <q-icon
+                  name="search"
+                  size="sm"
+                  color="grey-5"
+                  @click="reloadData"
+                />
+              </template>
+            </q-input>
+          </div>
           <q-card
             class="selectable my-inner-card row justify-around items-center no-shadow q-pl-sm"
             bordered
-            v-for="(item, index) in rows"
+            v-for="(item, index) in pagedRows"
             :key="index"
           >
             <div class="icon flex items-center q-gutter-md col-6">
               <q-avatar
-                color="grey-4"
-                text-color="dark"
-                icon="o_person_add"
+                color="blue-7"
+                text-color="white"
+                icon="o_person"
                 size="lg"
                 v-if="item.isOwner"
               />
@@ -192,6 +212,42 @@
               </q-menu>
             </div>
           </q-card>
+          <div
+            class="row q-pt-md justify-between items-center"
+            v-if="shouldShowPaginationAndSearchBar"
+          >
+            <div class="row col-auto" v-if="hidePaginationWhenAllItemsLoaded">
+              <q-pagination
+                v-model="pagination.page"
+                :min="1"
+                :max="maxPage"
+                direction-links
+                boundary-links
+                icon-first="keyboard_double_arrow_left"
+                icon-last="keyboard_double_arrow_right"
+                icon-prev="chevron_left"
+                icon-next="chevron_right"
+                @update:model-value="reloadData"
+                class="q-gutter-xs"
+                padding="2px 5px 2px 5px"
+                rounded
+                unelevated
+                color="grey-8"
+                active-color="blue-7"
+              />
+            </div>
+            <div class="row col-auto">
+              <q-select
+                outlined
+                dense
+                v-model="pagination.rowsPerPage"
+                :options="[5, 10, 20]"
+                @update:model-value="reloadData"
+                transition-show="flip-up"
+                transition-hide="flip-down"
+              />
+            </div>
+          </div>
         </q-card-section>
       </q-card>
     </div>
@@ -200,36 +256,36 @@
 
 <script setup>
 import { fetchWrapper } from "../../helpers"
-import { onMounted, onBeforeUnmount } from "vue"
+import { computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { ref } from "vue"
 import { useQuasar, QSpinnerPie, Loading } from "quasar"
 
 const rows = ref([])
-const columns = [
-  {
-    name: "Name",
-    field: "name",
-    align: "left",
-    sortable: true,
-    sortBy: "name"
-  }
-]
+const loadingData = ref(false)
+const searchTerm = ref("")
 const pagination = ref({
   sortBy: "name",
   descending: false,
   page: 1,
-  rowsPerPage: 10,
+  rowsPerPage: 5,
   rowsNumber: 0
 })
 
-async function gotoBusiness() {
-  await fetchWrapper
-    .post("business/gotoBusiness/41f1c444-8450-40c9-b590-c0807a41a4e5")
-    .then((response) => {
-      console.log(response)
-    })
-    .finally(() => {})
-}
+const shouldShowPaginationAndSearchBar = computed(() => {
+  return pagination.value.rowsPerPage >= 5
+})
+
+const hidePaginationWhenAllItemsLoaded = computed(() => {
+  return pagination.value.rowsPerPage <= 11
+})
+
+const maxPage = computed(() =>
+  Math.ceil(pagination.value.rowsNumber / pagination.value.rowsPerPage)
+)
+
+const pagedRows = computed(() => {
+  return rows.value
+})
 
 onMounted(() => {
   reloadData()
@@ -240,41 +296,42 @@ async function reloadData() {
 }
 
 async function loadData(data) {
-  // Show loading overlay
-  Loading.show({
-    spinner: QSpinnerPie,
-    spinnerColor: "white",
-    spinnerSize: 140,
-    backgroundColor: "primary"
-  })
+  loadingData.value = true
 
-  try {
-    const response = await fetchWrapper.post("business/getBusinessGridData", {
+  let filterExpression = []
+
+  if (searchTerm.value) {
+    filterExpression.push({
+      fieldName: "b.title",
+      operator: 3,
+      value: searchTerm.value
+    })
+  }
+
+  const response = await fetchWrapper
+    .post("business/getBusinessGridData", {
       pageSize: data.rowsPerPage,
       sortColumn: data.sortBy,
       sortOrder: data.descending ? 1 : 2,
-      currentPage: data.page
-      //columns: columns
+      currentPage: data.page,
+      filterExpression: filterExpression
     })
 
-    handleResponse(response, data)
-  } catch (error) {
-    console.error(error)
-  } finally {
-    // Hide loading overlay
-    setTimeout(() => {
-      Loading.hide()
-    }, 2000)
-  }
+    .then((response) => {
+      handleResponse(response, data)
+    })
+    .finally(() => {
+      loadingData.value = false
+    })
 }
 
-function handleResponse(response, data) {
+function handleResponse(response, pagination) {
   rows.value = response.data.items
-  pagination.value.rowsNumber = response.data.page.totalItems
-  pagination.value.rowsPerPage = response.data.page.pageSize
-  pagination.value.page = response.data.page.currentPage
-  pagination.value.sortBy = data.sortBy
-  pagination.value.descending = data.descending
+  pagination.rowsNumber = response.data.page.totalItems
+  pagination.rowsPerPage = response.data.page.pageSize
+  pagination.page = response.data.page.currentPage
+  pagination.sortBy = pagination.sortBy
+  pagination.descending = pagination.descending
 }
 </script>
 
