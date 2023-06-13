@@ -176,12 +176,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted, watchEffect, computed, watch } from "vue"
 import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
-import { data } from "autoprefixer"
+
 const { t, locale, messages } = useI18n({ useScope: "global" })
-import { Quasar } from "quasar"
 
 const authStore = useAuthStore()
 const username = ref("")
@@ -189,27 +188,25 @@ const password = ref("")
 const isPwd = ref(true)
 
 async function authenticate() {
-  const authStore = useAuthStore()
   await authStore.login(username.value, password.value)
 }
 
-const closeErrorCode0Banner = () => {
-  authStore.errorCode0 = ""
-  authStore.errorCode0Message = ""
-}
 //Language switcher
 const supportedLanguages = [
   {
     code: "en-US",
-    name: "English"
+    name: "English",
+    dir: "ltr"
   },
   {
     code: "fa-IR",
-    name: "فارسی"
+    name: "فارسی",
+    dir: "rtl"
   },
   {
     code: "ar",
-    name: "عربي"
+    name: "عربي",
+    dir: "rtl"
   }
 ]
 
@@ -264,6 +261,11 @@ onMounted(() => {
 
 // Define computed variable for isLoggingIn state
 const isLoggingIn = computed(() => authStore.isLoggingIn)
+
+// Reload page when currentLanguage changes
+watch(currentLanguage, () => {
+  location.reload()
+})
 </script>
 
 <style lang="scss">
