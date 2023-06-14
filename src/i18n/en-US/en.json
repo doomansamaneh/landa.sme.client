@@ -28,6 +28,7 @@
 
   "business-page": {
     "card-title": "My Businesses",
+    "card-searchbar": "Search",
     "card-message": "Click on the business name to enter",
     "buttons": {
       "add-new-business-tooltip": "Add New Business",

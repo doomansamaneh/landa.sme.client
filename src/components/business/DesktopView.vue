@@ -20,7 +20,7 @@
           <div class="flex items-center q-gutter-md">
             <q-icon color="grey" size="md" name="o_help_outline" />
             <q-btn unelevated round color="green-7" icon="add">
-              <q-tooltip anchor="top right" self="top left">
+              <q-tooltip anchor="top left" self="top right">
                 {{ $t("business-page.buttons.add-new-business-tooltip") }}
               </q-tooltip>
             </q-btn>
@@ -34,7 +34,7 @@
               outlined
               dense
               v-model="searchTerm"
-              placeholder="Search"
+              :placeholder="$t('business-page.card-searchbar')"
               @keydown.enter="reloadData"
               clearable
               v-if="shouldShowPaginationAndSearchBar"

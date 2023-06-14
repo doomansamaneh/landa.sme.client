@@ -28,6 +28,7 @@
 
   "business-page": {
     "card-title": "أعمالي",
+    "card-searchbar": "بحث",
     "card-message": "لغرض الدخول في عمل أو مهنة ما، انقر على اسمه",
     "buttons": {
       "add-new-business-tooltip": "إنشاء أعمال جديدة",
