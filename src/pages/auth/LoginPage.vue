@@ -214,7 +214,7 @@ const userSelectedLanguage = localStorage.getItem("selectedLanguage")
 const userLanguageDirection = localStorage.getItem("languageDirection")
 
 // Set the default language and direction
-const currentLanguage = ref(userSelectedLanguage || "en-US")
+const currentLanguage = ref(userSelectedLanguage || "fa-IR") // changed from "en-US" to "fa-IR"
 const languageDirection = ref(userLanguageDirection || "ltr")
 
 const selectedLanguageLabel = computed(() => {

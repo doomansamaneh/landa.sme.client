@@ -6,7 +6,7 @@ export default ({ app }) => {
   const i18n = createI18n({
     legacy: false,
     useGlobal: true,
-    locale: localStorage.getItem("selectedLanguage") || "en-US",
+    locale: localStorage.getItem("selectedLanguage") || "fa-IR",
     fallbackLocale: "en-US",
     globalInjection: true,
     messages
