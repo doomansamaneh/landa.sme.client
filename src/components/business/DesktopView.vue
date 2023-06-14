@@ -10,7 +10,7 @@
               >{{ $t("business-page.card-title") }}</q-item-label
             >
             <q-item-label
-              class="text-body text-grey-7"
+              class="text-body text-grey-7 q-pt-xs"
               caption
               style="font-size: 13px"
             >
