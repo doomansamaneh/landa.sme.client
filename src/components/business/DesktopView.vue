@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="row">
     <div class="q-pa-md q-mt-md q-mb-xl row items-start q-gutter-md">
       <q-card class="select-business-card q-card-desktop" bordered>
         <q-item class="q-px-lg q-py-lg">
@@ -216,8 +216,9 @@
             class="row q-pt-md justify-between items-center"
             v-if="shouldShowPaginationAndSearchBar"
           >
-            <div class="row col-auto" v-if="hidePaginationWhenAllItemsLoaded">
+            <div class="col-8">
               <q-pagination
+                v-if="hidePaginationWhenAllItemsLoaded"
                 v-model="pagination.page"
                 :min="1"
                 :max="maxPage"
@@ -236,7 +237,7 @@
                 active-color="blue-7"
               />
             </div>
-            <div class="row col-auto">
+            <div class="col-2">
               <q-select
                 outlined
                 dense
@@ -245,6 +246,7 @@
                 @update:model-value="reloadData"
                 transition-show="flip-up"
                 transition-hide="flip-down"
+                class="q-px-md"
               />
             </div>
           </div>

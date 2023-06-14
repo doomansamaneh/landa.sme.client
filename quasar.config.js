@@ -112,7 +112,7 @@ module.exports = configure(function (/* ctx */) {
           bodyClasses: true // <<< add this
         }
       },
-      lang: ["en-US"],
+      lang: ["fa"],
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack

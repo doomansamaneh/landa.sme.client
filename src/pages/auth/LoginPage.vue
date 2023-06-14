@@ -22,7 +22,6 @@
                 no-caps
                 icon="language"
                 :label="selectedLanguageLabel"
-                v-model="selectedLanguage"
                 :options="languageOptions"
                 class="bg-white text-primary"
                 auto-close
@@ -191,7 +190,7 @@ async function authenticate() {
   await authStore.login(username.value, password.value)
 }
 
-//Language switcher
+// Language switcher
 const supportedLanguages = [
   {
     code: "en-US",
@@ -210,9 +209,13 @@ const supportedLanguages = [
   }
 ]
 
+// Retrieve selected language and direction from local storage
 const userSelectedLanguage = localStorage.getItem("selectedLanguage")
+const userLanguageDirection = localStorage.getItem("languageDirection")
 
+// Set the default language and direction
 const currentLanguage = ref(userSelectedLanguage || "en-US")
+const languageDirection = ref(userLanguageDirection || "ltr")
 
 const selectedLanguageLabel = computed(() => {
   switch (currentLanguage.value) {
@@ -230,7 +233,6 @@ const selectedLanguageLabel = computed(() => {
 const switchLanguage = (code) => {
   currentLanguage.value = code
   locale.value = code
-  localStorage.setItem("selectedLanguage", code)
 
   // Determine direction of language
   let dir = "ltr"
@@ -239,23 +241,26 @@ const switchLanguage = (code) => {
   }
 
   // Save language and direction to local storage
+  localStorage.setItem("selectedLanguage", code)
   localStorage.setItem("languageDirection", dir)
+
+  // Update direction for current page
+  languageDirection.value = dir
 }
 
 onMounted(() => {
-  // Retrieve selected language from local storage
+  // Retrieve selected language and direction from local storage
   const userSelectedLanguage = localStorage.getItem("selectedLanguage")
+  const userLanguageDirection = localStorage.getItem("languageDirection")
+
   if (userSelectedLanguage) {
     currentLanguage.value = userSelectedLanguage
     locale.value = userSelectedLanguage
   }
 
-  // Retrieve language direction from local storage
-  const languageDirection = localStorage.getItem("languageDirection")
-  if (languageDirection) {
-    document.documentElement.setAttribute("dir", languageDirection)
-  } else {
-    document.documentElement.setAttribute("dir", "ltr")
+  if (userLanguageDirection) {
+    document.documentElement.setAttribute("dir", userLanguageDirection)
+    languageDirection.value = userLanguageDirection
   }
 })
 
