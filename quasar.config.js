@@ -112,10 +112,8 @@ module.exports = configure(function (/* ctx */) {
           bodyClasses: true // <<< add this
         }
       },
-      lang: ["fa"],
-
-      // iconSet: 'material-icons', // Quasar icon set
-      // lang: 'en-US', // Quasar language pack
+      iconSet: "material-icons", // Quasar icon set
+      lang: "fa",
 
       // For special cases outside of where the auto-import strategy can have an impact
       // (like functional components as one of the examples),
@@ -128,9 +126,8 @@ module.exports = configure(function (/* ctx */) {
       plugins: []
     },
 
-    // animations: 'all', // --- includes all animations
+    animations: "all", // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: "all",
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#property-sourcefiles
     // sourceFiles: {

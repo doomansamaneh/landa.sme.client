@@ -50,8 +50,8 @@
           </q-toolbar>
         </q-header>
       </div>
-      <div class="body-section full-width">
-        <div class="login-form column justify-center items-center">
+      <div class="body-section q-mt-xl">
+        <div class="login-form-container column justify-center items-center">
           <div class="logo flex justify-center">
             <q-img
               src="/src/assets/about-us-header.png"
@@ -59,7 +59,10 @@
               style="width: 270px"
             />
           </div>
-          <q-card class="form no-shadow" style="background-color: #f5f6f9">
+          <q-card
+            class="login-form no-shadow"
+            style="background-color: #f5f6f9"
+          >
             <q-card-section>
               <q-form class="" @submit="authenticate">
                 <div class="username-input">
@@ -129,6 +132,7 @@
                       class="login-btn full-width text-weight-bold q-py-sm"
                       no-caps
                       :label="$t('login-page.buttons.login')"
+                      :disable="isLoggingIn"
                     >
                       <div class="q-pl-sm" v-if="isLoggingIn">
                         <q-spinner-pie class="white" size="xs" />
@@ -178,8 +182,7 @@
 import { ref, onMounted, watchEffect, computed, watch } from "vue"
 import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
-
-const { t, locale, messages } = useI18n({ useScope: "global" })
+const { locale } = useI18n()
 
 const authStore = useAuthStore()
 const username = ref("")
@@ -282,7 +285,7 @@ watch(currentLanguage, () => {
   background-color: #f5f6f9;
 }
 
-.q-card {
+.login-form-container {
   width: 300px;
 }
 
@@ -312,13 +315,6 @@ watch(currentLanguage, () => {
   left: 0;
   right: 0;
 }
-
-/* .q-field--dense .q-field__control, .q-field--dense .q-field__marginal {
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 5px rgb(147, 214, 255),
-    0 0 5px rgb(147, 214, 255), 0 0 2px rgb(147, 214, 255),
-    0 0 3px rgb(147, 214, 255);
-  transition: box-shadow 0.3s ease-in-out;
-} */
 
 .q-banner {
   margin-top: 25px;

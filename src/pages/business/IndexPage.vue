@@ -1,5 +1,5 @@
 <template>
-  <q-page class="row justify-center items-center bg-blue-1">
+  <q-page class="flex justify-center items-center bg-blue-5">
     <MobileView />
     <DesktopView />
   </q-page>

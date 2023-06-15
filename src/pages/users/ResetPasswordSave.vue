@@ -123,8 +123,8 @@ async function changePassword() {
 }
 </script>
 
-<style>
-.q-card {
+<style scoped>
+.change-password-form {
   width: 300px;
   border-radius: 9px;
 }
