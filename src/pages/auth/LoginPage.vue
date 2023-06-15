@@ -59,10 +59,7 @@
               style="width: 270px"
             />
           </div>
-          <q-card
-            class="login-form no-shadow"
-            style="background-color: #f5f6f9"
-          >
+          <q-card class="no-shadow" style="background-color: #f5f6f9">
             <q-card-section>
               <q-form class="" @submit="authenticate">
                 <div class="username-input">
@@ -319,11 +316,6 @@ watch(currentLanguage, () => {
 .q-banner {
   margin-top: 25px;
   border-top: 1px solid rgb(233, 60, 60);
-}
-
-.login-form {
-  margin-bottom: 16px;
-  margin-top: 42px;
 }
 
 @media (max-width: $breakpoint-sm-max) {
