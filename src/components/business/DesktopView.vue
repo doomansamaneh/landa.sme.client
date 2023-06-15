@@ -127,7 +127,7 @@
                 <q-item-section>
                   <div class="flex items-center">
                     <q-avatar
-                      color="grey-9"
+                      color="grey-4"
                       text-color="dark"
                       icon="login"
                       size="sm"
