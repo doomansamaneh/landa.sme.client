@@ -21,7 +21,7 @@
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@intlify/vue-i18n-loader": "^5.0.0",
+    "@intlify/vue-i18n-loader": "^5.0.1",
     "@quasar/app-vite": "^1.0.0",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.10.0",

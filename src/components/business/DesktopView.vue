@@ -125,7 +125,7 @@
             <q-list>
               <q-item clickable v-close-popup>
                 <q-item-section>
-                  <div class="flex items-center">
+                  <div class="flex items-center q-gutter-x-sm">
                     <q-avatar
                       color="grey-4"
                       text-color="dark"

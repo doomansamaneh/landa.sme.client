@@ -7,7 +7,6 @@ export default ({ app }) => {
     legacy: false,
     useGlobal: true,
     locale: localStorage.getItem("selectedLanguage") || "fa-IR",
-    fallbackLocale: "en-US",
     globalInjection: true,
     messages
   })

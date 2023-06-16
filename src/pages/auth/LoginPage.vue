@@ -180,8 +180,12 @@ import { ref, onMounted, watchEffect, computed, watch } from "vue"
 import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
 const { locale } = useI18n()
+import { Quasar } from "quasar"
+import { useQuasar } from "quasar"
 
+const $q = useQuasar()
 const authStore = useAuthStore()
+
 const username = ref("")
 const password = ref("")
 const isPwd = ref(true)
@@ -190,33 +194,34 @@ async function authenticate() {
   await authStore.login(username.value, password.value)
 }
 
-// Language switcher
+// Define computed variable for isLoggingIn state
+const isLoggingIn = computed(() => authStore.isLoggingIn)
+
 const supportedLanguages = [
   {
     code: "en-US",
     name: "English",
-    dir: "ltr"
+    dir: "ltr",
+    quasarLang: "en-US" // add Quasar language code for each language
   },
   {
     code: "fa-IR",
     name: "فارسی",
-    dir: "rtl"
+    dir: "rtl",
+    quasarLang: "fa-IR"
   },
   {
     code: "ar",
-    name: "عربي",
-    dir: "rtl"
+    name: "العربیة",
+    dir: "rtl",
+    quasarLang: "ar"
   }
 ]
 
-// Retrieve selected language and direction from local storage
-const userSelectedLanguage = localStorage.getItem("selectedLanguage")
-const userLanguageDirection = localStorage.getItem("languageDirection")
-
-// Set the default language and direction
-const currentLanguage = ref(userSelectedLanguage || "fa-IR") // changed from "en-US" to "fa-IR"
-const languageDirection = ref(userLanguageDirection || "ltr")
-
+const currentLanguage = ref(
+  // Get the saved language from local storage or use the default language
+  localStorage.getItem("selectedLanguage") || "fa-IR"
+)
 const selectedLanguageLabel = computed(() => {
   switch (currentLanguage.value) {
     case "en-US":
@@ -224,53 +229,29 @@ const selectedLanguageLabel = computed(() => {
     case "fa-IR":
       return "فارسی"
     case "ar":
-      return "عربی"
+      return "العربیة"
     default:
       return ""
   }
 })
 
-const switchLanguage = (code) => {
+function switchLanguage(code) {
   currentLanguage.value = code
   locale.value = code
 
-  // Determine direction of language
-  let dir = "ltr"
-  if (code !== "en-US") {
-    dir = "rtl"
-  }
+  // Find selected language from supportedLanguages
+  const selectedLang = supportedLanguages.find((l) => l.code === code)
 
-  // Save language and direction to local storage
+  // Save language to local storage
   localStorage.setItem("selectedLanguage", code)
-  localStorage.setItem("languageDirection", dir)
+  localStorage.setItem("languageDirection", selectedLang.dir)
 
   // Update direction for current page
-  languageDirection.value = dir
+  document.documentElement.setAttribute("dir", selectedLang.dir)
+
+  // Update lang for current page
+  document.documentElement.lang = code
 }
-
-onMounted(() => {
-  // Retrieve selected language and direction from local storage
-  const userSelectedLanguage = localStorage.getItem("selectedLanguage")
-  const userLanguageDirection = localStorage.getItem("languageDirection")
-
-  if (userSelectedLanguage) {
-    currentLanguage.value = userSelectedLanguage
-    locale.value = userSelectedLanguage
-  }
-
-  if (userLanguageDirection) {
-    document.documentElement.setAttribute("dir", userLanguageDirection)
-    languageDirection.value = userLanguageDirection
-  }
-})
-
-// Define computed variable for isLoggingIn state
-const isLoggingIn = computed(() => authStore.isLoggingIn)
-
-// Reload page when currentLanguage changes
-watch(currentLanguage, () => {
-  location.reload()
-})
 </script>
 
 <style lang="scss">
