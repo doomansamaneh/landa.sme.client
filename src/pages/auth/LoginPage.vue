@@ -197,6 +197,11 @@ async function authenticate() {
 // Define computed variable for isLoggingIn state
 const isLoggingIn = computed(() => authStore.isLoggingIn)
 
+const closeErrorCode0Banner = () => {
+  authStore.errorCode0 = ""
+  authStore.errorCode0Message = ""
+}
+
 const supportedLanguages = [
   {
     code: "en-US",
