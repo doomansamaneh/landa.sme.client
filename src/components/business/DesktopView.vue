@@ -202,7 +202,7 @@
     </q-card-section>
     <div
       class="row q-pt-md justify-between bg-grey-3 q-px-lg q-py-md"
-      v-if="hidePaginationWhenSearching"
+      v-if="isSearching"
     >
       <div class="col-8 flex items-center">
         <q-pagination
@@ -264,11 +264,11 @@ const shouldShowPaginationAndSearchBar = computed(() => {
   return pagination.value.rowsPerPage >= 5
 })
 
-const hidePaginationWhenSearching = computed(() => {
-  return searchTerm.value === ""
+const hidePaginationWhenAllItemsLoaded = computed(() => {
+  return pagination.value.rowsNumber >= pagination.value.rowsPerPage
 })
 
-const hidePaginationWhenAllItemsLoaded = computed(() => {
+const isSearching = computed(() => {
   return pagination.value.rowsNumber >= pagination.value.rowsPerPage
 })
 
