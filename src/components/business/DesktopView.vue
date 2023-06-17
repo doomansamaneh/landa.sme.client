@@ -28,7 +28,7 @@
         <q-input
           outlined
           dense
-          class="text-caption"
+          class="text-caption q-mb-sm"
           v-model="searchTerm"
           :placeholder="$t('business-page.card-searchbar')"
           @keydown.enter="reloadData"
@@ -143,7 +143,7 @@
               <div class="isNotOwner" v-if="item.isOwner">
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <div class="flex items-center">
+                    <div class="flex items-center q-gutter-x-sm">
                       <q-avatar
                         color="grey-4"
                         text-color="dark"
@@ -161,7 +161,7 @@
                 <q-separator />
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <div class="flex items-center">
+                    <div class="flex items-center q-gutter-x-sm">
                       <q-avatar
                         color="grey-4"
                         text-color="dark"
@@ -177,7 +177,7 @@
                 <q-separator />
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <div class="flex items-center">
+                    <div class="flex items-center q-gutter-x-sm">
                       <q-avatar
                         color="grey-4"
                         text-color="dark"
@@ -202,7 +202,7 @@
     </q-card-section>
     <div
       class="row q-pt-md justify-between bg-grey-3 q-px-lg q-py-md"
-      v-if="isSearching"
+      v-if="shouldShowPaginationAndSearchBar && isSearching"
     >
       <div class="col-8 flex items-center">
         <q-pagination
@@ -269,7 +269,7 @@ const hidePaginationWhenAllItemsLoaded = computed(() => {
 })
 
 const isSearching = computed(() => {
-  return pagination.value.rowsNumber >= pagination.value.rowsPerPage
+  return searchTerm.value.trim() === ""
 })
 
 function clearSearch() {
