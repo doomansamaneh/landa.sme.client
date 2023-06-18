@@ -21,10 +21,7 @@
     <q-linear-progress indeterminate color="primary" v-if="loadingData" />
     <q-separator />
     <q-card-section class="q-px-lg q-gutter-y-md">
-      <div
-        class="Search-bar q-px-sm q-pt-sm"
-        v-if="pagination.rowsPerPage >= 5"
-      >
+      <div class="search-bar q-px-sm q-pt-sm" v-if="showSearchbar">
         <q-input
           outlined
           dense
@@ -32,7 +29,6 @@
           v-model="searchTerm"
           :placeholder="$t('business-page.card-searchbar')"
           @keydown.enter="reloadData"
-          v-if="shouldShowPaginationAndSearchBar"
         >
           <template v-slot:prepend>
             <q-icon
@@ -50,7 +46,7 @@
               size="sm"
               color="grey-5"
               @click="clearSearch"
-              v-if="isSearchTermNotEmpty"
+              v-if="isSearchTermFull"
             />
           </template>
         </q-input>
@@ -202,12 +198,12 @@
     </q-card-section>
     <div
       class="row q-pt-md justify-between bg-grey-3 q-px-lg q-py-md"
-      v-if="shouldShowPaginationAndSearchBar && isSearching"
+      v-if="showPagebar"
     >
       <div class="col-8 flex items-center">
         <q-pagination
-          v-if="hidePaginationWhenAllItemsLoaded"
-          v-model="pagination.page"
+          v-if="showPaging"
+          v-model="pagination.currentPage"
           :min="1"
           :max="maxPage"
           direction-links
@@ -231,7 +227,7 @@
           borderd
           bg-color="white"
           dense
-          v-model="pagination.rowsPerPage"
+          v-model="pagination.pageSize"
           :options="[5, 10, 20]"
           @update:model-value="reloadData"
           transition-show="flip-up"
@@ -247,7 +243,6 @@
 import { fetchWrapper } from "../../helpers"
 import { computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { ref } from "vue"
-import { useQuasar, QSpinnerPie, Loading } from "quasar"
 
 const rows = ref([])
 const loadingData = ref(false)
@@ -255,33 +250,32 @@ const searchTerm = ref("")
 const pagination = ref({
   sortBy: "name",
   descending: false,
-  page: 1,
-  rowsPerPage: 5,
-  rowsNumber: 0
+  currentPage: 1,
+  pageSize: 5,
+  totalItems: 0
 })
 
-const shouldShowPaginationAndSearchBar = computed(() => {
-  return pagination.value.rowsPerPage >= 5
+const showPagebar = computed(() => {
+  return pagination.value.totalItems > 5
 })
 
-const hidePaginationWhenAllItemsLoaded = computed(() => {
-  return pagination.value.rowsNumber >= pagination.value.rowsPerPage
+const showPaging = computed(() => {
+  return pagination.value.totalItems > pagination.value.pageSize
 })
 
-const isSearching = computed(() => {
-  return searchTerm.value.trim() === ""
+const showSearchbar = computed(() => {
+  return pagination.value.totalItems > 5 || isSearchTermFull
 })
 
 function clearSearch() {
   searchTerm.value = ""
-  pagination.value.filterExpression = []
   reloadData()
 }
 
-const isSearchTermNotEmpty = computed(() => searchTerm.value !== "")
+const isSearchTermFull = computed(() => searchTerm.value !== "")
 
 const maxPage = computed(() =>
-  Math.ceil(pagination.value.rowsNumber / pagination.value.rowsPerPage)
+  Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
 )
 
 const pagedRows = computed(() => {
@@ -311,10 +305,10 @@ async function loadData(data) {
 
   const response = await fetchWrapper
     .post("business/getBusinessGridData", {
-      pageSize: data.rowsPerPage,
+      pageSize: data.pageSize,
       sortColumn: data.sortBy,
       sortOrder: data.descending ? 1 : 2,
-      currentPage: data.page,
+      currentPage: data.currentPage,
       filterExpression: filterExpression
     })
 
@@ -328,9 +322,9 @@ async function loadData(data) {
 
 function handleResponse(response, pagination) {
   rows.value = response.data.items
-  pagination.rowsNumber = response.data.page.totalItems
-  pagination.rowsPerPage = response.data.page.pageSize
-  pagination.page = response.data.page.currentPage
+  pagination.totalItems = response.data.page.totalItems
+  pagination.pageSize = response.data.page.pageSize
+  pagination.currentPage = response.data.page.currentPage
   pagination.sortBy = pagination.sortBy
   pagination.descending = pagination.descending
 }

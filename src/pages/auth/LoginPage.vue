@@ -54,7 +54,7 @@
         <div class="login-form-container column justify-center items-center">
           <div class="logo flex justify-center">
             <q-img
-              src="/src/assets/about-us-header.png"
+              src="../../assets/about-us-header.png"
               class="q-mb-md"
               style="width: 270px"
             />
@@ -179,7 +179,7 @@
 import { ref, onMounted, watchEffect, computed, watch } from "vue"
 import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
-const { locale } = useI18n()
+const { locale } = useI18n({ useScope: "global" })
 import { Quasar } from "quasar"
 import { useQuasar } from "quasar"
 
@@ -202,6 +202,7 @@ const closeErrorCode0Banner = () => {
   authStore.errorCode0Message = ""
 }
 
+// Change Language with Refresh
 const supportedLanguages = [
   {
     code: "en-US",
@@ -256,6 +257,17 @@ function switchLanguage(code) {
 
   // Update lang for current page
   document.documentElement.lang = code
+}
+
+// Watch for changes in the selected language and update local storage
+watch(locale, (newValue) => {
+  localStorage.setItem("selectedLanguage", newValue)
+  refreshPage()
+})
+
+// Refresh the page
+const refreshPage = () => {
+  window.location.reload()
 }
 </script>
 
