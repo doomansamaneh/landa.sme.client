@@ -57,11 +57,11 @@
         </q-input>
       </div>
       <q-card
-        class="row justify-around items-center no-shadow q-py-md"
+        class="row justify-between items-center no-shadow q-py-md q-px-md"
         v-for="(item, index) in pagedRows"
         :key="index"
       >
-        <div class="icon flex items-center q-gutter-x-lg col-6 q-pl-xs">
+        <div class="flex items-center col-6 q-gutter-x-sm">
           <q-avatar
             color="blue-7"
             text-color="white"
@@ -72,42 +72,52 @@
           <q-avatar color="grey-4" icon="o_person" size="lg" v-else />
 
           <q-btn
-            class="business-name-btn q-px-sm q-py-sm"
-            flat
+            class="btn-fixed-width text-caption text-weight-bold"
+            align="left"
             no-caps
+            flat
             text-color="dark"
-            :ripple="{ color: 'grey-5' }"
+            :ripple="false"
             @click="gotoBusiness"
+            :label="item.name"
+            icon="o_login"
           >
-            <span
-              class="business-name-desktop ellipsis text-caption text-caption text-weight-bold"
-              >{{ item.name }}</span
-            >
-            <q-icon right size="xs" name="o_login" color="blue-7" />
+            <q-tooltip>
+              {{ $t("business-page.buttons.more-button.enter-business") }}
+            </q-tooltip>
           </q-btn>
         </div>
 
-        <div class="flex items-center q-gutter-x-md">
-          <q-badge color="negative" class="expire-date q-py-md q-px-md" outline
-            ><q-icon name="o_history" class="q-mr-sm" size="xs" />
+        <div class="expire-date-container flex items-center q-gutter-x-xl">
+          <label class="text-grey"
+            ><q-icon
+              class="expire-date-clock text-grey"
+              name="history"
+              size="sm"
+            />
             {{ item.dateCreatedString }}
-          </q-badge>
+            <q-tooltip> سر رسید </q-tooltip>
+          </label>
           <q-btn
             v-if="item.isOwner"
             class="service-extension q-pa-sm"
-            unelevated
-            color="orange"
-            icon="o_shopping_bag"
-            size="sm"
+            round
+            flat
+            color="positive"
+            icon="o_add_shopping_cart"
+            size="md"
+            :ripple="false"
           />
           <q-btn
             v-else
             class="service-extension q-pa-sm"
-            unelevated
+            round
+            flat
             color="grey"
-            icon="o_shopping_bag"
-            size="sm"
+            icon="o_add_shopping_cart"
+            size="md"
             disable
+            :ripple="false"
           />
         </div>
         <div class="more-options col-1 q-pl-md">
@@ -344,28 +354,22 @@ function handleResponse(response, pagination) {
   display: none;
 }
 
-.business-name-desktop {
-  width: 130px;
-}
-
-.q-btn:hover {
-  background-color: rgb(241, 241, 241);
-}
-
 .card-header {
   padding-left: 32px;
   padding-right: 32px;
 }
 
-.business-name-btn {
-  border: 1px solid rgb(218, 218, 218);
+.expire-date-clock {
+  animation: rotate-animation 3s linear infinite;
+  transition: transform 0.3s ease-in-out;
 }
 
-.expire-date {
-  padding: 8px 24px 8px 24px;
-}
-
-.service-extension {
-  padding: 9px;
+@keyframes rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 </style>
