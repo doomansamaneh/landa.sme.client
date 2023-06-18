@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-card-desktop q-my-xl">
+  <q-card class="q-card-desktop q-my-xl gt-xs">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
         <q-item-label class="text-weight-bold text-grey-10 text-body1">{{
@@ -18,8 +18,13 @@
         </q-btn>
       </div>
     </q-item>
-    <q-linear-progress indeterminate color="primary" v-if="loadingData" />
     <q-separator />
+    <q-linear-progress
+      indeterminate
+      size="xs"
+      color="primary"
+      v-if="loadingData"
+    />
     <q-card-section class="q-px-lg q-gutter-y-md">
       <div class="search-bar q-px-sm q-pt-sm" v-if="showSearchbar">
         <q-input
