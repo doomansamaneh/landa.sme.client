@@ -55,6 +55,8 @@ async function handleResponse(response) {
 }
 
 function handleResponeError(error) {
-  alert("2. error occured")
+  const authStore = useAuthStore()
+  // alert("2. error occured")
+  authStore.isOnline = false
   return Promise.reject(error)
 }

@@ -7,8 +7,8 @@ export const useAuthStore = defineStore("auth", {
     user: JSON.parse(localStorage.getItem("user")),
     returnUrl: null,
     errorCode0: "",
-    errorCode0Message: "",
-    isLoggingIn: false // new state variable
+    isLoggingIn: false, // new state variable
+    isOnline: navigator.onLine
   }),
 
   actions: {
@@ -25,12 +25,10 @@ export const useAuthStore = defineStore("auth", {
 
         if (data.code === 0) {
           this.errorCode0 = data.code
-          this.errorCode0Message = "Invalid username or password."
           // alert(data.message)
           this.isLoggingIn = false
         } else {
           this.errorCode0 = ""
-          this.errorCode0Message = ""
           // update Pinia state
           this.user = data
           // store user details and jwt in local storage to keep user logged in between page refreshes
@@ -41,10 +39,6 @@ export const useAuthStore = defineStore("auth", {
           }, 2000)
         }
       } catch (error) {
-        useAlertStore().addAlert({
-          type: "negative",
-          message: "There was an error logging in. Please try again later."
-        })
       } finally {
         setTimeout(() => {
           this.isLoggingIn = false // Set isLoggingIn back to false after the request completes
@@ -61,6 +55,9 @@ export const useAuthStore = defineStore("auth", {
     },
     redirect(url) {
       this.router.push(url)
+    },
+    updateOnlineStatus() {
+      this.isOnline = navigator.onLine
     }
   },
 

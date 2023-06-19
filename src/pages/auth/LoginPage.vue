@@ -171,12 +171,42 @@
           </q-banner>
         </transition>
       </div>
+      <div class="error-offline-banner" v-if="!authStore.isOnline">
+        <transition
+          appear
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated bounceInDown"
+          :duration="1000"
+        >
+          <q-banner inline-actions class="q-banner-error bg-yellow-1 text-dark">
+            <q-icon name="public" size="22px" class="q-mr-xs" color="orange" />
+            <span>از اتصال اینترنت خود اطمینان حاصل کنید</span>
+            <template v-slot:action>
+              <q-icon
+                @click="closeOfflineErrorBanner"
+                flat
+                unelevated
+                color="orange"
+                name="close"
+                class="cursor-pointer"
+              />
+            </template>
+          </q-banner>
+        </transition>
+      </div>
     </q-layout>
   </q-page>
 </template>
 
 <script setup>
-import { ref, onMounted, watchEffect, computed, watch } from "vue"
+import {
+  ref,
+  onBeforeUnmount,
+  onMounted,
+  watchEffect,
+  computed,
+  watch
+} from "vue"
 import { useAuthStore } from "../../stores"
 import { useI18n } from "vue-i18n"
 const { locale } = useI18n({ useScope: "global" })
@@ -201,6 +231,25 @@ const closeErrorCode0Banner = () => {
   authStore.errorCode0 = ""
   authStore.errorCode0Message = ""
 }
+
+const closeOfflineErrorBanner = () => {
+  authStore.isOnline = true
+}
+
+onMounted(() => {
+  // Add event listeners to detect online/offline status changes
+  window.addEventListener("online", authStore.updateOnlineStatus)
+  window.addEventListener("offline", authStore.updateOnlineStatus)
+
+  // Initialize the initial online/offline status
+  authStore.updateOnlineStatus()
+})
+
+onBeforeUnmount(() => {
+  // Remove event listeners when the component is unmounted
+  window.removeEventListener("online", authStore.updateOnlineStatus)
+  window.removeEventListener("offline", authStore.updateOnlineStatus)
+})
 
 // Change Language with Refresh
 const supportedLanguages = [
@@ -309,11 +358,19 @@ const refreshPage = () => {
   bottom: 0;
   left: 0;
   right: 0;
-}
 
-.q-banner {
   margin-top: 25px;
   border-top: 1px solid rgb(233, 60, 60);
+}
+
+.error-offline-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin-top: 25px;
+  border-top: 1px solid rgb(255, 196, 86);
 }
 
 @media (max-width: $breakpoint-sm-max) {
@@ -325,11 +382,6 @@ const refreshPage = () => {
     margin-top: 0;
   }
 }
-
-.q-banner-error {
-  height: 70px;
-}
-
 .q-btn-dropdown--simple * + .q-btn-dropdown__arrow {
   margin-left: 8px;
   color: $primary;
