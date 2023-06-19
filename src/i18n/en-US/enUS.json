@@ -16,7 +16,8 @@
     },
 
     "forgot-password": "Forgot your password?",
-    "invalid-username-password": "Invalid username or password"
+    "invalid-username-password": "Invalid username or password",
+    "network-error": "Ensure your internet connection"
   },
 
   "business-layout": {
@@ -31,7 +32,11 @@
     "card-searchbar": "Search",
     "card-message": "Click on the business name to enter",
     "buttons": {
-      "add-new-business-tooltip": "Add New Business",
+      "add-new-business-tooltip": "َAdd New Business",
+      "guide-tooltip": "Guide",
+      "expire-date-tooltip": "Expire date",
+      "service-extension-tooltip": "Service extension",
+      "more-tooltip": "More",
       "more-button": {
         "enter-business": "Entering the Business",
         "invite-user": "Invite user",

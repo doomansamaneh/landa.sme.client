@@ -10,7 +10,9 @@
         </q-item-label>
       </q-item-section>
       <div class="flex items-center q-gutter-x-md">
-        <q-icon color="grey" size="md" name="o_help_outline" />
+        <q-icon color="grey" size="md" name="o_help_outline">
+          <q-tooltip>{{ $t("business-page.buttons.guide-tooltip") }}</q-tooltip>
+        </q-icon>
         <q-btn unelevated round color="green-7" icon="add">
           <q-tooltip anchor="top left" self="top right">
             {{ $t("business-page.buttons.add-new-business-tooltip") }}
@@ -96,29 +98,38 @@
               size="sm"
             />
             {{ item.dateCreatedString }}
-            <q-tooltip> سر رسید </q-tooltip>
+            <q-tooltip>{{
+              $t("business-page.buttons.expire-date-tooltip")
+            }}</q-tooltip>
           </label>
           <q-btn
             v-if="item.isOwner"
             class="service-extension q-pa-sm"
             round
+            dense
             flat
             color="positive"
             icon="o_add_shopping_cart"
             size="md"
             :ripple="false"
-          />
+          >
+            <q-tooltip>{{
+              $t("business-page.buttons.service-extension-tooltip")
+            }}</q-tooltip>
+          </q-btn>
           <q-btn
             v-else
             class="service-extension q-pa-sm"
             round
+            dense
             flat
             color="grey"
             icon="o_add_shopping_cart"
             size="md"
             disable
             :ripple="false"
-          />
+          >
+          </q-btn>
         </div>
         <div class="more-options col-1 q-pl-md">
           <q-btn
@@ -131,7 +142,11 @@
             icon="more_vert"
             size="md"
             dense
-          />
+          >
+            <q-tooltip>{{
+              $t("business-page.buttons.more-tooltip")
+            }}</q-tooltip>
+          </q-btn>
           <q-menu>
             <q-list>
               <q-item clickable v-close-popup>

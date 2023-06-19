@@ -16,7 +16,8 @@
     },
 
     "forgot-password": "نسيت كلمة المرور الخاصة بي",
-    "invalid-username-password": "لم تقم بإدخال اسم المستخدم أو كلمة المرور بشكل صحيح"
+    "invalid-username-password": "لم تقم بإدخال اسم المستخدم أو كلمة المرور بشكل صحيح",
+    "network-error": "تأكد من اتصالك بالإنترنت"
   },
 
   "business-layout": {
@@ -32,6 +33,10 @@
     "card-message": "لغرض الدخول في عمل أو مهنة ما، انقر على اسمه",
     "buttons": {
       "add-new-business-tooltip": "إنشاء أعمال جديدة",
+      "guide-tooltip": "مرشد",
+      "expire-date-tooltip": "تاريخ انتهاء الصلاحية",
+      "service-extension-tooltip": "تمديد الخدمة",
+      "more-tooltip": "أكثر",
       "more-button": {
         "enter-business": "تسجيل الدخول للأعمال والمهن",
         "invite-user": "دعوة المستخدم",

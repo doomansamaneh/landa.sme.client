@@ -180,7 +180,7 @@
         >
           <q-banner inline-actions class="q-banner-error bg-yellow-1 text-dark">
             <q-icon name="public" size="22px" class="q-mr-xs" color="orange" />
-            <span>از اتصال اینترنت خود اطمینان حاصل کنید</span>
+            <span>{{ $t("login-page.network-error") }}</span>
             <template v-slot:action>
               <q-icon
                 @click="closeOfflineErrorBanner"

@@ -16,7 +16,8 @@
     },
 
     "forgot-password": "رمز عبور خود را فراموش کرده اید؟",
-    "invalid-username-password": "نام کاربری و یا رمز عبور خود را به درستی وارد نکرده اید"
+    "invalid-username-password": "نام کاربری و یا رمز عبور خود را به درستی وارد نکرده اید",
+    "network-error": "از اتصال اینترنت خود اطمینان حاصل کنید"
   },
 
   "business-layout": {
@@ -32,6 +33,10 @@
     "card-message": "برای ورود به کسب و کار، بر روی نام آن کلیک کنید",
     "buttons": {
       "add-new-business-tooltip": "ایجاد کسب و کار جدید",
+      "guide-tooltip": "راهنما",
+      "expire-date-tooltip": "سر رسید",
+      "service-extension-tooltip": "تمدید سرویس",
+      "more-tooltip": "بیشتر",
       "more-button": {
         "enter-business": "ورود به کسب و کار",
         "invite-user": "دعوت از کاربر",
