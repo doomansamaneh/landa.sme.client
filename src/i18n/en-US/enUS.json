@@ -37,6 +37,14 @@
       "expire-date-tooltip": "Expire date",
       "service-extension-tooltip": "Service extension",
       "more-tooltip": "More",
+      "guide": {
+        "slide1": "Welcome to Landa. We hope you enjoy working with Landa. Let's see the simple guide to use the system together.",
+        "slide2": "You can enter by clicking on your business name.",
+        "slide3": "If you plan to perform more operations such as deleting the business or adding a new user to the business, use this section.",
+        "slide4": "This icon means that you are the owner or creator of this business. You can delete and renew the businesses you have created and add the users you want.",
+        "slide5": "Use this option to renew the service (purchase a subscription).",
+        "slide6": "To learn about different parts of the software, you can enter the encyclopedia section of the website."
+      },
       "more-button": {
         "enter-business": "Entering the Business",
         "invite-user": "Invite user",

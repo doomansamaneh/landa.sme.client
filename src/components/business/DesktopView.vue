@@ -1,4 +1,5 @@
 <template>
+  <DesktopViewGuide v-model="showGuideDialog" />
   <q-card class="q-card-desktop q-my-xl gt-xs">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
@@ -10,7 +11,13 @@
         </q-item-label>
       </q-item-section>
       <div class="flex items-center q-gutter-x-md">
-        <q-icon color="grey" size="md" name="o_help_outline">
+        <q-icon
+          class="cursor-pointer"
+          color="grey"
+          size="md"
+          name="o_help_outline"
+          @click="showGuideDialog = true"
+        >
           <q-tooltip>{{ $t("business-page.buttons.guide-tooltip") }}</q-tooltip>
         </q-icon>
         <q-btn unelevated round color="green-7" icon="add">
@@ -270,11 +277,13 @@
 </template>
 
 <script setup>
+import DesktopViewGuide from "../../components/business/DesktopViewGuide.vue"
 import { fetchWrapper } from "../../helpers"
 import { computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { ref } from "vue"
 
 const rows = ref([])
+const showGuideDialog = ref(false)
 const loadingData = ref(false)
 const searchTerm = ref("")
 const pagination = ref({
