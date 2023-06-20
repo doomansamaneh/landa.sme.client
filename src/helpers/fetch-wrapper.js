@@ -15,31 +15,27 @@ export const fetchWrapper = {
 
 function request(method) {
   return (url, data) => {
-    //url = `${baseUrl}/${url}`
-    return new Promise((resolve, reject) => {
-      clearError()
-      const fullUrl = `${baseUrl}/${url}`
-      const authHeaders = authHeader(fullUrl)
-      axios({
-        method: method,
-        url: fullUrl,
-        headers: authHeaders,
-        data: data
-      }).then(response => {
-        const result = handleKnownError(response)
-        resolve(result)
-      }).catch(error => {
-        const errorReuslt = handleError(error)
-        reject(errorReuslt)
-      })
+    clearError()
+    const fullUrl = `${baseUrl}/${url}`
+    const authHeaders = getAuthHeaders()
+    axios({
+      method: method,
+      url: fullUrl,
+      headers: authHeaders,
+      data: data
     })
+    // .then(response => {
+    //   handleKnownError(response)
+    // }).catch(error => {
+    //   handleError(error)
+    // })
   }
 }
 
-function authHeader(url) {
+function getAuthHeaders() {
   const { user } = useAuthStore()
   const isLoggedIn = !!user?.token
-  const isApiUrl = true //url.startsWith(import.meta.env.VITE_API_URL)
+  const isApiUrl = true
   if (isLoggedIn && isApiUrl) {
     return { Authorization: `Bearer ${user.token}` }
   } else {
@@ -47,7 +43,7 @@ function authHeader(url) {
   }
 }
 
-async function handleKnownError(response) {
+function handleKnownError(response) {
   if (response.data.code == 0) {
     const error = {
       status: response.status,
@@ -57,10 +53,10 @@ async function handleKnownError(response) {
     setError(error)
     return Promise.reject(response)
   }
-  return response
+  return Promise.resolve(response)
 }
 
-async function handleError(error) {
+function handleError(error) {
   const response = error.response
   if (response.status) {
     const { user, logout } = useAuthStore()
@@ -85,11 +81,11 @@ async function handleError(error) {
     }
     setError(alert)
   }
-  return error
+  return Promise.reject(error)
 }
 
 function clearError() {
-  //alertStore.clear()
+  alertStore.clear()
   if (!navigator.onLine) {
     setError({
       status: 100,

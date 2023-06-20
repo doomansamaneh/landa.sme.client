@@ -177,6 +177,7 @@
   })
 
   const showSearchbar = computed(() => {
+    return true
     return pagination.value.totalItems > defaultPageSize || !isSearchEmpty.value
   })
 
@@ -210,7 +211,7 @@
 
     if (searchTerm.value) {
       filterExpression.push({
-        fieldName: "b.title",
+        fieldName: "title",
         operator: 3,
         value: searchTerm.value
       })
@@ -224,7 +225,6 @@
         currentPage: data.currentPage,
         filterExpression: filterExpression
       })
-
       .then((response) => {
         handleResponse(response, data)
       })
@@ -249,7 +249,7 @@
   }
 
   .q-btn .q-focus-helper {
-    display: none;
+    /* display: none; */
   }
 
   .card-header {
