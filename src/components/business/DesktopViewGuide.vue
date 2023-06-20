@@ -1,16 +1,15 @@
 <template>
   <q-dialog :position="position">
     <q-carousel
-      transition-prev="slide-right"
-      transition-next="slide-left"
-      swipeable
+      navigation
+      arrows
       padding
+      control-color="primary"
+      navigation-icon="radio_button_unchecked"
+      navigation-active-icon="radio_button_checked"
       animated
       v-model="slide"
-      control-color="primary"
-      navigation-icon="radio_button_checked"
-      navigation
-      class="bg-white shadow-1 rounded-borders cursor-pointer"
+      ref="carousel"
     >
       <q-carousel-slide :name="1" class="column no-wrap flex-center">
         <q-img src="../../assets/about-us-header.png" />
@@ -28,7 +27,7 @@
           />
 
           <q-btn
-            class="btn-fixed-width text-body2 text-weight-bold"
+            class="btn-fixed-width business-name-btn text-body2 text-weight-bold"
             align="left"
             no-caps
             flat
@@ -71,7 +70,6 @@
         <q-btn
           class="service-extension q-pa-sm"
           round
-          dense
           flat
           color="positive"
           icon="o_add_shopping_cart"
@@ -107,5 +105,9 @@ const position = ref("top")
 
 .q-img {
   width: 50%;
+}
+
+.business-name-btn .q-focus-helper {
+  display: none;
 }
 </style>
