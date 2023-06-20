@@ -1,9 +1,10 @@
 import axios from "axios"
-import { useAuthStore } from "../stores"
+import { useAuthStore, useAlertStore } from "../stores"
 
-//const baseUrl = `${import.meta.env.VITE_API_URL}/users`
 const baseUrl = "https://api.landa-sme.ir"
 axios.defaults.baseURL = baseUrl
+
+const alertStore = useAlertStore
 
 export const fetchWrapper = {
   get: request("GET"),
@@ -14,14 +15,24 @@ export const fetchWrapper = {
 
 function request(method) {
   return (url, data) => {
-    url = `${baseUrl}/${url}`
-
-    return axios({
-      method: method,
-      url: url,
-      headers: authHeader(url),
-      data: data
-    }).catch(handleResponeError)
+    //url = `${baseUrl}/${url}`
+    return new Promise((resolve, reject) => {
+      clearError()
+      const fullUrl = `${baseUrl}/${url}`
+      const authHeaders = authHeader(fullUrl)
+      axios({
+        method: method,
+        url: fullUrl,
+        headers: authHeaders,
+        data: data
+      }).then(response => {
+        const result = handleKnownError(response)
+        resolve(result)
+      }).catch(error => {
+        const errorReuslt = handleError(error)
+        reject(errorReuslt)
+      })
+    })
   }
 }
 
@@ -36,27 +47,63 @@ function authHeader(url) {
   }
 }
 
-async function handleResponse(response) {
-  // check for error response
+async function handleKnownError(response) {
+  if (response.data.code == 0) {
+    const error = {
+      status: response.status,
+      message: response.data.message,
+      type: "warning"
+    }
+    setError(error)
+    return Promise.reject(response)
+  }
+  return response
+}
+
+async function handleError(error) {
+  const response = error.response
   if (response.status) {
     const { user, logout } = useAuthStore()
-    if ([401, 403].includes(response.status) && user) {
-      // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
-      logout()
+    if ([401, 403].includes(response.status)) {
+      if (user) { logout() }
     }
-    return response
+    else {
+      const data = response.data;
+      const alert = {
+        status: response.status,
+        message: "",
+        type: "error"
+      }
+      if (data && data.message) alert.message = data.message
+      setError(alert)
+    }
   } else {
-    // get error message from body or default to response status
-    const error = (data && data.message) || response.status
-    alert("1. error occured")
-    console.log(error)
-    return Promise.reject(error)
+    const alert = {
+      status: "101",
+      type: "error",
+      message: "unkown error"
+    }
+    setError(alert)
+  }
+  return error
+}
+
+function clearError() {
+  //alertStore.clear()
+  if (!navigator.onLine) {
+    setError({
+      status: 100,
+      type: "info",
+      message: "login-page.network-error",
+      showAlert: true
+    })
+  } else {
+    alertStore.alert = null
   }
 }
 
-function handleResponeError(error) {
-  const authStore = useAuthStore()
-  // alert("2. error occured")
-  authStore.isOnline = false
-  return Promise.reject(error)
+function setError(alert) {
+  alert.showAlert = true
+  alertStore.alert = alert
+  //alertStore.set(alert)
 }

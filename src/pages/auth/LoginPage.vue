@@ -4,44 +4,22 @@
       <div class="header-section">
         <q-header class="header flex items-center text-dark q-py-lg">
           <q-toolbar>
-            <q-toolbar-title
-              class="flex justify-start q-ml-lg text-weight-bold text-dark"
-              ><span class="text-weight-bold text-h5">{{
+            <q-toolbar-title class="flex justify-start q-ml-lg text-weight-bold text-dark"><span
+                class="text-weight-bold text-h5">{{
                 $t("login-page.page-title")
-              }}</span></q-toolbar-title
-            >
+              }}</span></q-toolbar-title>
             <div class="flex q-pr-lg q-gutter-sm">
-              <q-btn
-                unelevated
-                no-caps
-                color="blue-6"
-                :label="$t('login-page.buttons.signup')"
-                class="signup-btn text-weight-bold"
-              />
-              <q-btn-dropdown
-                no-caps
-                icon="language"
-                :label="selectedLanguageLabel"
-                :options="languageOptions"
-                class="bg-white text-primary"
-                auto-close
-              >
+              <q-btn unelevated no-caps color="blue-6" :label="$t('login-page.buttons.signup')"
+                class="signup-btn text-weight-bold" />
+              <q-btn-dropdown no-caps icon="language" :label="selectedLanguageLabel" :options="languageOptions"
+                class="bg-white text-primary" auto-close>
                 <q-item-section>
-                  <q-item
-                    clickable
-                    v-for="(lang, index) in supportedLanguages"
-                    :key="index"
-                  >
+                  <q-item clickable v-for="(lang, index) in supportedLanguages" :key="index">
                     <q-item-section @click="switchLanguage(lang.code)">
                       <q-item-label>{{ lang.name }}</q-item-label>
                     </q-item-section>
                     <q-item-section v-if="currentLanguage === lang.code">
-                      <q-icon
-                        name="done"
-                        color="primary"
-                        size="xs"
-                        right
-                      ></q-icon>
+                      <q-icon name="done" color="primary" size="xs" right></q-icon>
                     </q-item-section>
                   </q-item>
                 </q-item-section>
@@ -53,84 +31,41 @@
       <div class="body-section q-mt-xl">
         <div class="login-form-container column justify-center items-center">
           <div class="logo flex justify-center">
-            <q-img
-              src="../../assets/about-us-header.png"
-              class="q-mb-md"
-              style="width: 270px"
-            />
+            <q-img src="../../assets/about-us-header.png" class="q-mb-md" style="width: 270px" />
           </div>
           <q-card class="no-shadow" style="background-color: #f5f6f9">
             <q-card-section>
               <q-form class="" @submit="authenticate">
                 <div class="username-input">
-                  <q-input
-                    outlined
-                    v-model="username"
-                    :placeholder="$t('login-page.placeholders.username')"
-                    dense
-                    class="noen-border text-body"
-                    required
-                    lazy-rules
-                    :rules="[(val) => val !== null && val !== '']"
-                  />
+                  <q-input outlined v-model="username" :placeholder="$t('login-page.placeholders.username')" dense
+                    class="noen-border text-body" required lazy-rules :rules="[(val) => val !== null && val !== '']" />
                 </div>
                 <div class="password-input">
-                  <q-input
-                    outlined
-                    v-model="password"
-                    :type="isPwd ? 'password' : 'text'"
-                    :placeholder="$t('login-page.placeholders.password')"
-                    dense
-                    required
-                    lazy-rules
-                    :rules="[(val) => val !== null && val !== '']"
-                  >
+                  <q-input outlined v-model="password" :type="isPwd ? 'password' : 'text'"
+                    :placeholder="$t('login-page.placeholders.password')" dense required lazy-rules
+                    :rules="[(val) => val !== null && val !== '']">
                     <template v-slot:append>
-                      <q-icon
-                        :name="isPwd ? 'visibility_off' : 'visibility'"
-                        size="xs"
-                        class="cursor-pointer"
-                        @click="isPwd = !isPwd"
-                      />
+                      <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" size="xs" class="cursor-pointer"
+                        @click="isPwd = !isPwd" />
                     </template>
                   </q-input>
                 </div>
                 <div class="row justify-between items-center">
                   <div class="flex">
-                    <q-btn
-                      unelevated
-                      color="grey-6"
-                      label="65 + 8"
-                      dense
-                      class="q-px-md text-h6"
-                    />
+                    <q-btn unelevated color="grey-6" label="65 + 8" dense class="q-px-md text-h6" />
                   </div>
                   <div class="q-pr-md">
                     <q-btn round flat color="blue-6" icon="refresh" dense />
                   </div>
 
                   <div class="col-5">
-                    <q-input
-                      outlined
-                      v-model="ph"
-                      placeholder="1234"
-                      dense
-                      class="text-body bg-white"
-                      color="blue-5"
-                    />
+                    <q-input outlined v-model="ph" placeholder="1234" dense class="text-body bg-white" color="blue-5" />
                   </div>
 
                   <div class="full-width q-mt-lg">
-                    <q-btn
-                      unelevated
-                      type="submit"
-                      color="light-blue-6"
-                      size="md"
-                      class="login-btn full-width text-weight-bold q-py-sm"
-                      no-caps
-                      :label="$t('login-page.buttons.login')"
-                      :disable="isLoggingIn"
-                    >
+                    <q-btn unelevated type="submit" color="light-blue-6" size="md"
+                      class="login-btn full-width text-weight-bold q-py-sm" no-caps
+                      :label="$t('login-page.buttons.login')" :disable="isLoggingIn">
                       <div class="q-pl-sm" v-if="isLoggingIn">
                         <q-spinner-pie class="white" size="xs" />
                       </div>
@@ -148,247 +83,192 @@
           </q-card>
         </div>
       </div>
-      <div class="error-code0-banner" v-if="authStore.showErrorCode0Banner">
-        <transition
-          appear
-          enter-active-class="animated fadeIn"
-          leave-active-class="animated bounceInDown"
-          :duration="1000"
-        >
-          <q-banner inline-actions class="q-banner-error bg-red-1 text-red">
-            <q-icon name="error" size="22px" class="q-mr-xs" />
-            <span>{{ $t("login-page.invalid-username-password") }}</span>
-            <template v-slot:action>
-              <q-icon
-                @click="closeErrorCode0Banner"
-                flat
-                unelevated
-                color="red"
-                name="close"
-                class="cursor-pointer"
-              />
-            </template>
-          </q-banner>
-        </transition>
-      </div>
-      <div class="error-offline-banner" v-if="!authStore.isOnline">
-        <transition
-          appear
-          enter-active-class="animated fadeIn"
-          leave-active-class="animated bounceInDown"
-          :duration="1000"
-        >
-          <q-banner inline-actions class="q-banner-error bg-yellow-1 text-dark">
-            <q-icon name="public" size="22px" class="q-mr-xs" color="orange" />
-            <span>{{ $t("login-page.network-error") }}</span>
-            <template v-slot:action>
-              <q-icon
-                @click="closeOfflineErrorBanner"
-                flat
-                unelevated
-                color="orange"
-                name="close"
-                class="cursor-pointer"
-              />
-            </template>
-          </q-banner>
-        </transition>
-      </div>
     </q-layout>
   </q-page>
 </template>
 
 <script setup>
-import {
-  ref,
-  onBeforeUnmount,
-  onMounted,
-  watchEffect,
-  computed,
-  watch
-} from "vue"
-import { useAuthStore } from "../../stores"
-import { useI18n } from "vue-i18n"
-const { locale } = useI18n({ useScope: "global" })
-import { Quasar } from "quasar"
-import { useQuasar } from "quasar"
+  import {
+    ref,
+    onBeforeUnmount,
+    onMounted,
+    watchEffect,
+    computed,
+    watch
+  } from "vue"
+  import { useAuthStore } from "../../stores"
+  import { useI18n } from "vue-i18n"
+  const { locale } = useI18n({ useScope: "global" })
+  import { Quasar } from "quasar"
+  import { useQuasar } from "quasar"
 
-const $q = useQuasar()
-const authStore = useAuthStore()
+  const $q = useQuasar()
+  const authStore = useAuthStore()
 
-const username = ref("")
-const password = ref("")
-const isPwd = ref(true)
+  const username = ref("")
+  const password = ref("")
+  const isPwd = ref(true)
 
-async function authenticate() {
-  await authStore.login(username.value, password.value)
-}
-
-// Define computed variable for isLoggingIn state
-const isLoggingIn = computed(() => authStore.isLoggingIn)
-
-const closeErrorCode0Banner = () => {
-  authStore.errorCode0 = ""
-  authStore.errorCode0Message = ""
-}
-
-const closeOfflineErrorBanner = () => {
-  authStore.isOnline = true
-}
-
-onMounted(() => {
-  // Add event listeners to detect online/offline status changes
-  window.addEventListener("online", authStore.updateOnlineStatus)
-  window.addEventListener("offline", authStore.updateOnlineStatus)
-
-  // Initialize the initial online/offline status
-  authStore.updateOnlineStatus()
-})
-
-onBeforeUnmount(() => {
-  // Remove event listeners when the component is unmounted
-  window.removeEventListener("online", authStore.updateOnlineStatus)
-  window.removeEventListener("offline", authStore.updateOnlineStatus)
-})
-
-// Change Language with Refresh
-const supportedLanguages = [
-  {
-    code: "en-US",
-    name: "English",
-    dir: "ltr",
-    quasarLang: "en-US" // add Quasar language code for each language
-  },
-  {
-    code: "fa-IR",
-    name: "فارسی",
-    dir: "rtl",
-    quasarLang: "fa-IR"
-  },
-  {
-    code: "ar",
-    name: "العربیة",
-    dir: "rtl",
-    quasarLang: "ar"
+  async function authenticate() {
+    await authStore.login(username.value, password.value)
   }
-]
 
-const currentLanguage = ref(
-  // Get the saved language from local storage or use the default language
-  localStorage.getItem("selectedLanguage") || "fa-IR"
-)
-const selectedLanguageLabel = computed(() => {
-  switch (currentLanguage.value) {
-    case "en-US":
-      return "English"
-    case "fa-IR":
-      return "فارسی"
-    case "ar":
-      return "العربیة"
-    default:
-      return ""
+  const isLoggingIn = computed(() => authStore.isLoggingIn)
+
+  onMounted(() => {
+    // Add event listeners to detect online/offline status changes
+    //window.addEventListener("online", authStore.updateOnlineStatus)
+    //window.addEventListener("offline", authStore.updateOnlineStatus)
+
+    // Initialize the initial online/offline status
+    //authStore.updateOnlineStatus()
+  })
+
+  onBeforeUnmount(() => {
+    // Remove event listeners when the component is unmounted
+    //window.removeEventListener("online", authStore.updateOnlineStatus)
+    //window.removeEventListener("offline", authStore.updateOnlineStatus)
+  })
+
+  // Change Language with Refresh
+  const supportedLanguages = [
+    {
+      code: "en-US",
+      name: "English",
+      dir: "ltr",
+      quasarLang: "en-US" // add Quasar language code for each language
+    },
+    {
+      code: "fa-IR",
+      name: "فارسی",
+      dir: "rtl",
+      quasarLang: "fa-IR"
+    },
+    {
+      code: "ar",
+      name: "العربیة",
+      dir: "rtl",
+      quasarLang: "ar"
+    }
+  ]
+
+  const currentLanguage = ref(
+    // Get the saved language from local storage or use the default language
+    localStorage.getItem("selectedLanguage") || "fa-IR"
+  )
+  const selectedLanguageLabel = computed(() => {
+    switch (currentLanguage.value) {
+      case "en-US":
+        return "English"
+      case "fa-IR":
+        return "فارسی"
+      case "ar":
+        return "العربیة"
+      default:
+        return ""
+    }
+  })
+
+  function switchLanguage(code) {
+    currentLanguage.value = code
+    locale.value = code
+
+    // Find selected language from supportedLanguages
+    const selectedLang = supportedLanguages.find((l) => l.code === code)
+
+    // Save language to local storage
+    localStorage.setItem("selectedLanguage", code)
+    localStorage.setItem("languageDirection", selectedLang.dir)
+
+    // Update direction for current page
+    document.documentElement.setAttribute("dir", selectedLang.dir)
+
+    // Update lang for current page
+    document.documentElement.lang = code
   }
-})
 
-function switchLanguage(code) {
-  currentLanguage.value = code
-  locale.value = code
+  // Watch for changes in the selected language and update local storage
+  watch(locale, (newValue) => {
+    localStorage.setItem("selectedLanguage", newValue)
+    refreshPage()
+  })
 
-  // Find selected language from supportedLanguages
-  const selectedLang = supportedLanguages.find((l) => l.code === code)
-
-  // Save language to local storage
-  localStorage.setItem("selectedLanguage", code)
-  localStorage.setItem("languageDirection", selectedLang.dir)
-
-  // Update direction for current page
-  document.documentElement.setAttribute("dir", selectedLang.dir)
-
-  // Update lang for current page
-  document.documentElement.lang = code
-}
-
-// Watch for changes in the selected language and update local storage
-watch(locale, (newValue) => {
-  localStorage.setItem("selectedLanguage", newValue)
-  refreshPage()
-})
-
-// Refresh the page
-const refreshPage = () => {
-  window.location.reload()
-}
+  // Refresh the page
+  const refreshPage = () => {
+    //window.location.reload()
+  }
 </script>
 
 <style lang="scss">
-.header {
-  background-color: #f5f6f9;
-}
-
-.q-page {
-  background-color: #f5f6f9;
-}
-
-.login-form-container {
-  width: 300px;
-}
-
-.forgot-password a {
-  text-decoration: none;
-  color: #0087f6;
-}
-
-.q-field--outlined .q-field__control:before {
-  background-color: white;
-}
-
-.q-field--outlined:hover .q-field__control:before {
-  border-color: primary;
-}
-
-.q-field--highlighte {
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 5px rgb(147, 214, 255),
-    0 0 5px rgb(147, 214, 255), 0 0 2px rgb(147, 214, 255),
-    0 0 3px rgb(147, 214, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.error-code0-banner {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin-top: 25px;
-  border-top: 1px solid rgb(233, 60, 60);
-}
-
-.error-offline-banner {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin-top: 25px;
-  border-top: 1px solid rgb(255, 196, 86);
-}
-
-@media (max-width: $breakpoint-sm-max) {
-  .q-toolbar {
-    padding: 0;
+  .header {
+    background-color: #f5f6f9;
   }
 
-  .q-banner {
-    margin-top: 0;
+  .q-page {
+    background-color: #f5f6f9;
   }
-}
-.q-btn-dropdown--simple * + .q-btn-dropdown__arrow {
-  margin-left: 8px;
-  color: $primary;
-}
 
-.q-btn--actionable.q-btn--standard:before {
-  border: 1px solid $primary;
-  box-shadow: none;
-}
+  .login-form-container {
+    width: 300px;
+  }
+
+  .forgot-password a {
+    text-decoration: none;
+    color: #0087f6;
+  }
+
+  .q-field--outlined .q-field__control:before {
+    background-color: white;
+  }
+
+  .q-field--outlined:hover .q-field__control:before {
+    border-color: primary;
+  }
+
+  .q-field--highlighte {
+    box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 5px rgb(147, 214, 255),
+      0 0 5px rgb(147, 214, 255), 0 0 2px rgb(147, 214, 255),
+      0 0 3px rgb(147, 214, 255);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  .error-code0-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin-top: 25px;
+    border-top: 1px solid rgb(233, 60, 60);
+  }
+
+  .error-offline-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin-top: 25px;
+    border-top: 1px solid rgb(255, 196, 86);
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    .q-toolbar {
+      padding: 0;
+    }
+
+    .q-banner {
+      margin-top: 0;
+    }
+  }
+
+  .q-btn-dropdown--simple *+.q-btn-dropdown__arrow {
+    margin-left: 8px;
+    color: $primary;
+  }
+
+  .q-btn--actionable.q-btn--standard:before {
+    border: 1px solid $primary;
+    box-shadow: none;
+  }
 </style>

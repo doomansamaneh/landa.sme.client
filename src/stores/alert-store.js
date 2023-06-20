@@ -1,19 +1,25 @@
 import { defineStore } from "pinia"
 
-export const useAlertStore = defineStore({
-  id: "alert",
+export const useAlertStore = defineStore("alert", {
   state: () => ({
     alert: null
   }),
   actions: {
-    success(message) {
-      this.alert = { message, type: "alert-success" }
-    },
-    error(message) {
-      this.alert = { message, type: "alert-danger" }
+    set(alert) {
+      alert.showAlert = true
+      this.alert = alert
     },
     clear() {
-      this.alert = null
+      if (!navigator.onLine) {
+        this.set({
+          status: 100,
+          type: "info",
+          message: "login-page.network-error",
+          showAlert: true
+        })
+      } else {
+        this.alert = null
+      }
     }
   }
 })

@@ -1,49 +1,32 @@
 import { defineStore } from "pinia"
 import { fetchWrapper, encryptor } from "../helpers"
-import { useAlertStore } from "../stores/alert-store"
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: JSON.parse(localStorage.getItem("user")),
     returnUrl: null,
-    errorCode0: "",
-    isLoggingIn: false, // new state variable
-    isOnline: navigator.onLine
+    isLoggingIn: false,
   }),
 
   actions: {
     async login(username, password) {
-      try {
-        this.isLoggingIn = true // Set isLoggingIn to true before sending request
 
-        const response = await fetchWrapper.post("account/login", {
-          loginName: encryptor.encrypt(username),
-          password: encryptor.encrypt(password)
-        })
+      this.isLoggingIn = true
+      const response = await fetchWrapper.post("account/login", {
+        loginName: encryptor.encrypt(username),
+        password: encryptor.encrypt(password)
+      }).finally(() => {
+        this.isLoggingIn = false
+      })
 
-        const data = response.data
+      this.setUser(response)
+      this.redirect(this.returnUrl || "/business")
+    },
 
-        if (data.code === 0) {
-          this.errorCode0 = data.code
-          // alert(data.message)
-          this.isLoggingIn = false
-        } else {
-          this.errorCode0 = ""
-          // update Pinia state
-          this.user = data
-          // store user details and jwt in local storage to keep user logged in between page refreshes
-          localStorage.setItem("user", JSON.stringify(this.user))
-          // Use setTimeout to wait for 2 seconds before redirecting
-          setTimeout(() => {
-            this.redirect(this.returnUrl || "/business")
-          }, 2000)
-        }
-      } catch (error) {
-      } finally {
-        setTimeout(() => {
-          this.isLoggingIn = false // Set isLoggingIn back to false after the request completes
-        }, 2000)
-      }
+    setUser(response) {
+      this.user = response.data
+      // store user details and jwt in local storage to keep user logged in between page refreshes
+      localStorage.setItem("user", JSON.stringify(this.user))
     },
     clearUser() {
       this.user = null
@@ -56,15 +39,5 @@ export const useAuthStore = defineStore("auth", {
     redirect(url) {
       this.router.push(url)
     },
-    updateOnlineStatus() {
-      this.isOnline = navigator.onLine
-    }
   },
-
-  // Getter function to show the error 0 banner
-  getters: {
-    showErrorCode0Banner() {
-      return this.errorCode0 === 0
-    }
-  }
 })
