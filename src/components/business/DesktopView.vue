@@ -235,12 +235,12 @@
 
   function handleResponse(response, pagination) {
     rows.value = response.data.items
-    pagination = response.data.page
-    // pagination.totalItems = response.data.page.totalItems
-    // pagination.pageSize = response.data.page.pageSize
-    // pagination.currentPage = response.data.page.currentPage
-    // pagination.sortBy = pagination.sortBy
-    // pagination.descending = pagination.descending
+    //pagination.value = response.data.page
+    pagination.totalItems = response.data.page.totalItems
+    pagination.pageSize = response.data.page.pageSize
+    pagination.currentPage = response.data.page.currentPage
+    pagination.sortBy = pagination.sortBy
+    pagination.descending = pagination.descending
   }
 </script>
 
