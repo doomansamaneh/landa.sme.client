@@ -24,7 +24,7 @@
 
     const alertStore = useAlertStore()
 
-    const showBanner = computed(() => alertStore.alert && authStore.alert.showAlert)
+    const showBanner = computed(() => alertStore.alert && alertStore.alert.showAlert)
     function hideBanner() {
         alertStore.alert.showAlert = false
     }

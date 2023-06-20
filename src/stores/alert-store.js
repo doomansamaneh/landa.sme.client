@@ -1,14 +1,14 @@
 import { defineStore } from "pinia"
 
-export const useAlertStore = defineStore({
-  id: "alert",
+export const useAlertStore = defineStore("alert", {
   state: () => ({
     alert: null
   }),
+  
   actions: {
-    set(alert) {
-      alert.showAlert = true
-      this.alert = alert
+    set(message) {
+      message.showAlert = true
+      this.alert = message
     },
     clear() {
       if (!navigator.onLine) {

@@ -165,7 +165,7 @@
     descending: false,
     currentPage: 1,
     pageSize: defaultPageSize,
-    totalItems: 0
+    totalItems: 0,
   })
 
   const showPagebar = computed(() => {
@@ -211,7 +211,7 @@
 
     if (searchTerm.value) {
       filterExpression.push({
-        fieldName: "title",
+        fieldName: "b.title",
         operator: 3,
         value: searchTerm.value
       })
@@ -235,11 +235,12 @@
 
   function handleResponse(response, pagination) {
     rows.value = response.data.items
-    pagination.totalItems = response.data.page.totalItems
-    pagination.pageSize = response.data.page.pageSize
-    pagination.currentPage = response.data.page.currentPage
-    pagination.sortBy = pagination.sortBy
-    pagination.descending = pagination.descending
+    pagination = response.data.page
+    // pagination.totalItems = response.data.page.totalItems
+    // pagination.pageSize = response.data.page.pageSize
+    // pagination.currentPage = response.data.page.currentPage
+    // pagination.sortBy = pagination.sortBy
+    // pagination.descending = pagination.descending
   }
 </script>
 

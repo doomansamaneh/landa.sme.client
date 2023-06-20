@@ -1,10 +1,9 @@
 import axios from "axios"
-import { useAuthStore, useAlertStore } from "../stores"
+import { useAuthStore } from "../stores"
+import { useAlertStore } from "../stores"
 
 const baseUrl = "https://api.landa-sme.ir"
 axios.defaults.baseURL = baseUrl
-
-const alertStore = useAlertStore
 
 export const fetchWrapper = {
   get: request("GET"),
@@ -18,17 +17,16 @@ function request(method) {
     clearError()
     const fullUrl = `${baseUrl}/${url}`
     const authHeaders = getAuthHeaders()
-    axios({
+    return axios({
       method: method,
       url: fullUrl,
       headers: authHeaders,
       data: data
+    }).then(response => {
+      return handleKnownError(response)
+    }).catch(error => {
+      return handleError(error)
     })
-    // .then(response => {
-    //   handleKnownError(response)
-    // }).catch(error => {
-    //   handleError(error)
-    // })
   }
 }
 
@@ -65,13 +63,13 @@ function handleError(error) {
     }
     else {
       const data = response.data;
-      const alert = {
+      const alertData = {
         status: response.status,
         message: "",
         type: "error"
       }
-      if (data && data.message) alert.message = data.message
-      setError(alert)
+      if (data && data.message) alertData.message = data.message
+      setError(alertData)
     }
   } else {
     const alert = {
@@ -85,21 +83,9 @@ function handleError(error) {
 }
 
 function clearError() {
-  alertStore.clear()
-  if (!navigator.onLine) {
-    setError({
-      status: 100,
-      type: "info",
-      message: "login-page.network-error",
-      showAlert: true
-    })
-  } else {
-    alertStore.alert = null
-  }
+  useAlertStore().clear()
 }
 
-function setError(alert) {
-  alert.showAlert = true
-  alertStore.alert = alert
-  //alertStore.set(alert)
+function setError(error) {
+  useAlertStore().set(error)
 }
