@@ -4,23 +4,20 @@ export const useAlertStore = defineStore("alert", {
   state: () => ({
     alert: null
   }),
-  
+
   actions: {
+    showAlert() {
+      return this.alert && this.alert.showAlert
+    },
+    hide() {
+      if (this.alert) this.alert.showAlert = false
+    },
     set(message) {
       message.showAlert = true
       this.alert = message
     },
     clear() {
-      if (!navigator.onLine) {
-        this.set({
-          status: 100,
-          type: "info",
-          message: "login-page.network-error",
-          showAlert: true
-        })
-      } else {
-        this.alert = null
-      }
+      this.alert = null
     }
   }
 })
