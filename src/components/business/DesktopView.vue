@@ -158,7 +158,7 @@
               $t("business-page.buttons.more-tooltip")
             }}</q-tooltip>
           </q-btn>
-          <q-menu>
+          <q-menu class="q-py-sm">
             <q-list>
               <q-item clickable v-close-popup>
                 <q-item-section>
