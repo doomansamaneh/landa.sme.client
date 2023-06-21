@@ -55,30 +55,30 @@ function handleKnownError(response) {
 }
 
 function handleError(error) {
-  const response = error.response
-  if (response.status) {
+  const alertData = {
+    status: 900,
+    message: "",
+    type: "error"
+  }
+  if (error.response) {
+    alertData.status = error.response.status
     const { user, logout } = useAuthStore()
-    if ([401, 403].includes(response.status)) {
+    if ([401, 403].includes(error.response.status)) {
       if (user) { logout() }
     }
     else {
-      const data = response.data;
-      const alertData = {
-        status: response.status,
-        message: "",
-        type: "error"
-      }
+      const data = error.response.data;
       if (data && data.message) alertData.message = data.message
-      setError(alertData)
     }
-  } else {
-    const alert = {
-      status: "101",
-      type: "error",
-      message: "unkown error"
-    }
-    setError(alert)
   }
+  else if (error.request) {
+    alertData.status = error.request.status
+    alertData.message = "login-page.network-error"
+  }
+  else {
+    alertData.message = error
+  }
+  setError(alertData)
   return Promise.reject(error)
 }
 

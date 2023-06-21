@@ -1,13 +1,13 @@
 <template>
-    <div class="error-offline-banner" v-if="showBanner">
+    <div v-if="showBanner">
         <transition appear enter-active-class="animated fadeIn" leave-active-class="animated bounceInDown"
             :duration="1000">
             <q-banner inline-actions class="q-banner-error bg-yellow-1 text-dark">
                 <q-icon name="public" size="22px" class="q-mr-xs" color="orange" />
                 <span>
-                    <strong class="q-pr-lg">{{alertStore.alert.status}}</strong>
+                    <strong class="q-pf-lg">{{status}}</strong>
                     <span>
-                        {{ $t(alertStore.alert.message) }}
+                        {{ $t(message) }}
                     </span>
                 </span>
                 <template v-slot:action>
@@ -24,9 +24,12 @@
 
     const alertStore = useAlertStore()
 
-    const showBanner = computed(() => alertStore.alert && alertStore.alert.showAlert)
+    const showBanner = computed(() => alertStore.showAlert())
+    const status = computed(() => alertStore.alert != null ? alertStore.alert.status : 0)
+    const message = computed(() => alertStore.alert != null ? alertStore.alert.message : "")
+
     function hideBanner() {
-        alertStore.alert.showAlert = false
+        alertStore.hide()
     }
 </script>
 
