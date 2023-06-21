@@ -11,7 +11,13 @@
         </q-item-label>
       </q-item-section>
       <div class="flex items-center q-gutter-x-md">
-        <q-icon class="cursor-pointer" color="grey" size="md" name="o_help_outline" @click="showGuideDialog = true">
+        <q-icon
+          class="cursor-pointer"
+          color="grey"
+          size="md"
+          name="o_help_outline"
+          @click="showGuideDialog = true"
+        >
           <q-tooltip>{{ $t("business-page.buttons.guide-tooltip") }}</q-tooltip>
         </q-icon>
         <q-btn unelevated round color="green-7" icon="add">
@@ -22,28 +28,73 @@
       </div>
     </q-item>
     <q-separator />
-    <q-linear-progress indeterminate size="xs" color="primary" v-if="loadingData" />
+    <q-linear-progress
+      indeterminate
+      size="xs"
+      color="primary"
+      v-if="loadingData"
+    />
     <q-card-section class="q-px-lg q-gutter-y-md">
       <div class="search-bar q-px-sm q-pt-sm" v-if="showSearchbar">
-        <q-input outlined dense class="text-caption q-mb-sm" v-model="searchTerm"
-          :placeholder="$t('business-page.card-searchbar')" @keydown.enter="reloadData">
+        <q-input
+          outlined
+          dense
+          class="text-caption q-mb-sm"
+          v-model="searchTerm"
+          :placeholder="$t('business-page.card-searchbar')"
+          @keydown.enter="reloadData"
+        >
           <template v-slot:prepend>
-            <q-icon name="search" class="cursor-pointer" size="sm" color="blue-5" @click="reloadData" />
+            <q-icon
+              name="search"
+              class="cursor-pointer"
+              size="sm"
+              color="blue-5"
+              @click="reloadData"
+            />
           </template>
           <template v-slot:append>
-            <q-icon name="cancel" class="cursor-pointer" size="sm" color="grey-5" @click="clearSearch"
-              v-if="!isSearchEmpty" />
+            <q-icon
+              name="cancel"
+              class="cursor-pointer"
+              size="sm"
+              color="grey-5"
+              @click="clearSearch"
+              v-if="!isSearchEmpty"
+            />
           </template>
         </q-input>
       </div>
-      <q-card class="row justify-between items-center no-shadow q-py-md q-px-md" v-for="(item, index) in pagedRows"
-        :key="index">
-        <div class="flex items-center col-6 q-gutter-x-sm">
-          <q-avatar color="blue-7" text-color="white" icon="o_person" size="lg" v-if="item.isOwner" />
+      <q-card
+        class="row justify-between items-center no-shadow q-py-md q-px-md"
+        v-for="(item, index) in pagedRows"
+        :key="index"
+      >
+        <div class="col-6 q-gutter-x-sm">
+          <q-avatar
+            color="blue-7"
+            text-color="white"
+            icon="o_person"
+            size="lg"
+            v-if="item.isOwner"
+          />
           <q-avatar color="grey-4" icon="o_person" size="lg" v-else />
-
-          <q-btn class="btn-fixed-width text-caption text-weight-bold" align="left" no-caps flat text-color="dark"
-            :ripple="false" @click="gotoBusiness" :label="item.title" icon="o_login">
+          <q-btn
+            class="business-name-btn text-caption text-weight-bold"
+            no-caps
+            flat
+            text-color="dark"
+            :ripple="false"
+            @click="gotoBusiness"
+          >
+            <div class="flex no-wrap q-gutter-sm">
+              <div class="">
+                <q-icon name="o_login" />
+              </div>
+              <div class="business-name flex">
+                <span class="ellipsis">{{ item.title }}</span>
+              </div>
+            </div>
             <q-tooltip>
               {{ $t("business-page.buttons.more-button.enter-business") }}
             </q-tooltip>
@@ -51,35 +102,73 @@
         </div>
 
         <div class="expire-date-container flex items-center q-gutter-x-xl">
-          <label class="text-grey"><q-icon class="expire-date-clock text-grey" name="history" size="sm" />
+          <label class="text-grey"
+            ><q-icon
+              class="expire-date-clock text-grey"
+              name="history"
+              size="sm"
+            />
             {{ item.dateCreatedString }}
             <q-tooltip>{{
               $t("business-page.buttons.expire-date-tooltip")
             }}</q-tooltip>
           </label>
-          <q-btn v-if="item.isOwner" class="service-extension q-pa-sm" round dense flat color="positive"
-            icon="o_add_shopping_cart" size="md" :ripple="false">
+          <q-btn
+            v-if="item.isOwner"
+            class="service-extension q-pa-sm"
+            round
+            dense
+            flat
+            color="positive"
+            icon="o_add_shopping_cart"
+            size="md"
+            :ripple="false"
+          >
             <q-tooltip>{{
               $t("business-page.buttons.service-extension-tooltip")
             }}</q-tooltip>
           </q-btn>
-          <q-btn v-else class="service-extension q-pa-sm" round dense flat color="grey" icon="o_add_shopping_cart"
-            size="md" disable :ripple="false">
+          <q-btn
+            v-else
+            class="service-extension q-pa-sm"
+            round
+            dense
+            flat
+            color="grey"
+            icon="o_add_shopping_cart"
+            size="md"
+            disable
+            :ripple="false"
+          >
           </q-btn>
         </div>
         <div class="more-options col-1 q-pl-md">
-          <q-btn class="more-icon" style="color: grey" unelevated falt round :ripple="false" icon="more_vert" size="md"
-            dense>
+          <q-btn
+            class="more-icon"
+            style="color: grey"
+            unelevated
+            falt
+            round
+            :ripple="false"
+            icon="more_vert"
+            size="md"
+            dense
+          >
             <q-tooltip>{{
               $t("business-page.buttons.more-tooltip")
             }}</q-tooltip>
           </q-btn>
-          <q-menu>
+          <q-menu class="q-py-sm">
             <q-list>
               <q-item clickable v-close-popup>
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar color="grey-4" text-color="dark" icon="login" size="sm" />
+                    <q-avatar
+                      color="grey-4"
+                      text-color="dark"
+                      icon="login"
+                      size="sm"
+                    />
                     <div class="text-caption">
                       {{
                         $t("business-page.buttons.more-button.enter-business")
@@ -92,7 +181,12 @@
                 <q-item clickable v-close-popup>
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar color="grey-4" text-color="dark" icon="o_person_add" size="sm" />
+                      <q-avatar
+                        color="grey-4"
+                        text-color="dark"
+                        icon="o_person_add"
+                        size="sm"
+                      />
                       <div class="text-caption">
                         {{
                           $t("business-page.buttons.more-button.invite-user")
@@ -105,7 +199,12 @@
                 <q-item clickable v-close-popup>
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar color="grey-4" text-color="dark" icon="o_delete" size="sm" />
+                      <q-avatar
+                        color="grey-4"
+                        text-color="dark"
+                        icon="o_delete"
+                        size="sm"
+                      />
                       <div class="text-caption">
                         {{ $t("business-page.buttons.more-button.delete") }}
                       </div>
@@ -116,7 +215,12 @@
                 <q-item clickable v-close-popup>
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar color="grey-4" text-color="dark" icon="credit_card" size="sm" />
+                      <q-avatar
+                        color="grey-4"
+                        text-color="dark"
+                        icon="credit_card"
+                        size="sm"
+                      />
                       <div class="text-caption">
                         {{
                           $t(
@@ -133,152 +237,162 @@
         </div>
       </q-card>
     </q-card-section>
-    <div class="row q-pt-md justify-between bg-grey-3 q-px-lg q-py-md" v-if="showPagebar">
+    <div
+      class="row q-pt-md justify-between bg-grey-3 q-px-lg q-py-md"
+      v-if="showPagebar"
+    >
       <div class="col-8 flex items-center">
-        <q-pagination v-if="showPaging" v-model="pagination.currentPage" :min="1" :max="maxPage" direction-links
-          boundary-links icon-first="keyboard_double_arrow_left" icon-last="keyboard_double_arrow_right"
-          icon-prev="chevron_left" icon-next="chevron_right" @update:model-value="reloadData" class="q-gutter-x-xs"
-          padding="2px 5px 2px 5px" rounded unelevated color="grey-8" active-color="blue-7" />
+        <q-pagination
+          v-if="showPaging"
+          v-model="pagination.currentPage"
+          :min="1"
+          :max="maxPage"
+          direction-links
+          boundary-links
+          icon-first="keyboard_double_arrow_left"
+          icon-last="keyboard_double_arrow_right"
+          icon-prev="chevron_left"
+          icon-next="chevron_right"
+          @update:model-value="reloadData"
+          class="q-gutter-x-xs"
+          padding="2px 5px 2px 5px"
+          rounded
+          unelevated
+          color="grey-8"
+          active-color="blue-7"
+        />
       </div>
       <div class="col-2">
-        <q-select outlined borderd bg-color="white" dense v-model="pagination.pageSize" :options="[5, 10, 20]"
-          @update:model-value="reloadData" transition-show="flip-up" transition-hide="flip-down" class="q-pl-lg" />
+        <q-select
+          outlined
+          borderd
+          bg-color="white"
+          dense
+          v-model="pagination.pageSize"
+          :options="[5, 10, 20]"
+          @update:model-value="reloadData"
+          transition-show="flip-up"
+          transition-hide="flip-down"
+          class="q-pl-lg"
+        />
       </div>
     </div>
   </q-card>
 </template>
 
 <script setup>
-  import DesktopViewGuide from "../../components/business/DesktopViewGuide.vue"
-  import { fetchWrapper } from "../../helpers"
-  import { computed, onMounted, onBeforeUnmount, watch } from "vue"
-  import { ref } from "vue"
+import DesktopViewGuide from "../../components/business/DesktopViewGuide.vue"
+import { fetchWrapper } from "../../helpers"
+import { computed, onMounted, onBeforeUnmount, watch } from "vue"
+import { ref } from "vue"
 
-  const rows = ref([])
-  const showGuideDialog = ref(false)
-  const loadingData = ref(false)
-  const searchTerm = ref("")
-  const defaultPageSize = 5;
+const rows = ref([])
+const showGuideDialog = ref(false)
+const loadingData = ref(false)
+const searchTerm = ref("")
+const defaultPageSize = 5
 
-  const pagination = ref({
-    sortBy: "title",
-    descending: false,
-    currentPage: 1,
-    pageSize: defaultPageSize,
-    totalItems: 0,
-  })
+const pagination = ref({
+  sortBy: "title",
+  descending: false,
+  currentPage: 1,
+  pageSize: defaultPageSize,
+  totalItems: 0
+})
 
-  const showPagebar = computed(() => {
-    return pagination.value.totalItems > defaultPageSize
-  })
+const showPagebar = computed(() => {
+  return pagination.value.totalItems > defaultPageSize
+})
 
-  const showPaging = computed(() => {
-    return pagination.value.totalItems > pagination.value.pageSize
-  })
+const showPaging = computed(() => {
+  return pagination.value.totalItems > pagination.value.pageSize
+})
 
-  const showSearchbar = computed(() => {
-    return true
-    return pagination.value.totalItems > defaultPageSize || !isSearchEmpty.value
-  })
+const showSearchbar = computed(() => {
+  return true
+  return pagination.value.totalItems > defaultPageSize || !isSearchEmpty.value
+})
 
-  function clearSearch() {
-    searchTerm.value = ""
-    reloadData()
-  }
+function clearSearch() {
+  searchTerm.value = ""
+  reloadData()
+}
 
-  const isSearchEmpty = computed(() => !searchTerm.value || searchTerm.value.trim().length === 0)
+const isSearchEmpty = computed(
+  () => !searchTerm.value || searchTerm.value.trim().length === 0
+)
 
-  const maxPage = computed(() =>
-    Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
-  )
+const maxPage = computed(() =>
+  Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
+)
 
-  const pagedRows = computed(() => {
-    return rows.value
-  })
+const pagedRows = computed(() => {
+  return rows.value
+})
 
-  onMounted(() => {
-    reloadData()
-  })
+onMounted(() => {
+  reloadData()
+})
 
-  async function reloadData() {
-    loadData(pagination.value)
-  }
+async function reloadData() {
+  loadData(pagination.value)
+}
 
-  async function loadData(data) {
-    loadingData.value = true
+async function loadData(data) {
+  loadingData.value = true
 
-    let filterExpression = []
+  let filterExpression = []
 
-    if (searchTerm.value) {
-      filterExpression.push({
-        fieldName: "b.title",
-        operator: 3,
-        value: searchTerm.value
-      })
-    }
-
-    const response = await fetchWrapper
-      .post("business/getBusinessGridData", {
-        pageSize: data.pageSize,
-        sortColumn: data.sortBy,
-        sortOrder: data.descending ? 1 : 2,
-        currentPage: data.currentPage,
-        filterExpression: filterExpression
-      })
-      .then((response) => {
-        handleResponse(response, data)
-      })
-      .finally(() => {
-        loadingData.value = false
-      })
-  }
-
-  function handleResponse(response, pagination) {
-    rows.value = response.data.items
-    //pagination.value = response.data.page
-    pagination.totalItems = response.data.page.totalItems
-    pagination.pageSize = response.data.page.pageSize
-    pagination.currentPage = response.data.page.currentPage
-    pagination.sortBy = pagination.sortBy
-    pagination.descending = pagination.descending
-  }
-
-  async function gotoBusiness() {
-  await fetchWrapper
-    .post("business/gotoBusiness/41f1c444-8450-40c9-b590-c0807a41a4e5")
-    .then((response) => {
-      console.log(response)
+  if (searchTerm.value) {
+    filterExpression.push({
+      fieldName: "b.title",
+      operator: 3,
+      value: searchTerm.value
     })
-    .finally(() => {})
+  }
+
+  const response = await fetchWrapper
+    .post("business/getBusinessGridData", {
+      pageSize: data.pageSize,
+      sortColumn: data.sortBy,
+      sortOrder: data.descending ? 1 : 2,
+      currentPage: data.currentPage,
+      filterExpression: filterExpression
+    })
+    .then((response) => {
+      handleResponse(response, data)
+    })
+    .finally(() => {
+      loadingData.value = false
+    })
+}
+
+function handleResponse(response, pagination) {
+  rows.value = response.data.items
+  //pagination.value = response.data.page
+  pagination.totalItems = response.data.page.totalItems
+  pagination.pageSize = response.data.page.pageSize
+  pagination.currentPage = response.data.page.currentPage
+  pagination.sortBy = pagination.sortBy
+  pagination.descending = pagination.descending
 }
 </script>
 
 <style lang="scss">
-  .q-card-desktop {
-    width: 620px !important;
-  }
+.q-card-desktop {
+  width: 620px !important;
+}
 
-  .q-btn .q-focus-helper {
-    /* display: none; */
-  }
+.business-name-btn .q-focus-helper {
+  display: none;
+}
 
-  .card-header {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+.card-header {
+  padding-left: 32px;
+  padding-right: 32px;
+}
 
-  .expire-date-clock {
-    /* animation: rotate-animation 3s linear infinite;
-    transition: transform 0.3s ease-in-out; */
-  }
-
-  @keyframes rotate-animation {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(-360deg);
-    }
-  }
+.business-name {
+  max-width: 150px;
+}
 </style>
