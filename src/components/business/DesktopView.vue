@@ -66,9 +66,11 @@
         </q-input>
       </div>
       <q-card
-        class="row justify-between items-center no-shadow q-py-md q-px-md"
+        class="row justify-between items-center no-shadow q-py-md q-px-md cursor-pointer"
         v-for="(item, index) in pagedRows"
         :key="index"
+        @click="selectCard(index)"
+        :class="{ selected: isSelected(index) }"
       >
         <div class="col-6 q-gutter-x-sm">
           <q-avatar
@@ -291,6 +293,7 @@ const showGuideDialog = ref(false)
 const loadingData = ref(false)
 const searchTerm = ref("")
 const defaultPageSize = 5
+const selectedCard = ref(false)
 
 const pagination = ref({
   sortBy: "title",
@@ -378,6 +381,14 @@ function handleResponse(response, pagination) {
 }
 
 async function gotoBusiness() {}
+
+function selectCard(index) {
+  selectedCard.value = index
+}
+
+function isSelected(index) {
+  return selectedCard.value === index
+}
 </script>
 
 <style lang="scss">
@@ -396,5 +407,9 @@ async function gotoBusiness() {}
 
 .business-name {
   max-width: 150px;
+}
+
+.selected {
+  background-color: $select;
 }
 </style>
