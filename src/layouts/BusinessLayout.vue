@@ -4,8 +4,6 @@
       <q-toolbar class="q-px-lg">
         <q-toolbar-title class="text-black"><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title>
 
-        <alert-banner />
-
         <div class="flex items-center q-gutter-sm cursor-pointer">
           <div class="text-body">{{ username }}</div>
           <q-icon color="dark" size="sm" name="o_account_circle" />
@@ -54,6 +52,7 @@
       <router-view />
     </q-page-container>
 
+    <alert-banner />
   </q-layout>
 </template>
 

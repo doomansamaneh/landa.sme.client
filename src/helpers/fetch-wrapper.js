@@ -42,15 +42,7 @@ function getAuthHeaders() {
 }
 
 function handleKnownError(response) {
-  if (response.data.code == 0) {
-    const error = {
-      status: response.status,
-      message: response.data.message,
-      type: "warning"
-    }
-    setError(error)
-    return Promise.reject(response)
-  }
+  if (response.data.code == 0) return Promise.reject(response)
   return Promise.resolve(response)
 }
 
@@ -73,7 +65,11 @@ function handleError(error) {
   }
   else if (error.request) {
     alertData.status = error.request.status
-    alertData.message = "login-page.network-error"
+    if (error.data && error.data.message) {
+      alertData.type = "warning"
+      alertData.message = error.data.message
+    }
+    else alertData.message = "login-page.network-error"
   }
   else {
     alertData.message = error

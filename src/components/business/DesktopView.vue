@@ -252,7 +252,7 @@
     pagination.descending = pagination.descending
   }
 
-  async function gotoBusiness(){}
+  async function gotoBusiness() { }
 </script>
 
 <style lang="scss">
