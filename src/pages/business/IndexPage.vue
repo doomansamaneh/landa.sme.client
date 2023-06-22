@@ -56,14 +56,8 @@ function reloadData() {
   gridBusiness.value.reloadData()
 }
 
-async function gotoBusiness() {
-  await fetchWrapper
-    .post("business/gotoBusiness/41f1c444-8450-40c9-b590-c0807a41a4e5")
-    .then((response) => {
-      console.log(response)
-    })
-    .finally(() => {})
-}
 </script>
 
-<style></style>
+<style>
+  
+</style>
