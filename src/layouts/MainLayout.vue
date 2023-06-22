@@ -1,6 +1,7 @@
 <template>
   <q-layout view="rHh rpR fFf" container style="height: 100vh">
     <q-header class="bg-white text-black q-qx-md">
+      <h4>main layout</h4>
       <q-toolbar class="q-px-lg">
         <q-toolbar-title class="text-black"
           ><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title

@@ -4,5 +4,6 @@ export default {
   children: [
     { path: "", component: () => import("pages/business/IndexPage.vue") },
     { path: "changePassword", component: () => import("pages/users/ResetPasswordSave.vue") }
-  ]
+  ],
+  // path: "/",
 }
