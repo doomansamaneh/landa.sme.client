@@ -1,6 +1,6 @@
 <template>
   <DesktopViewGuide v-model="showGuideDialog" />
-  <q-card class="q-card-desktop q-my-lg gt-xs">
+  <q-card class="q-card-desktop q-my-lg gt-xs no-shadow">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
         <q-item-label class="text-weight-bold text-body1">{{
@@ -242,17 +242,15 @@
           icon-prev="chevron_left"
           icon-next="chevron_right"
           @update:model-value="reloadData"
-          class="q-gutter-x-xs"
-          padding="2px 5px 2px 5px"
+          gutter="xs"
+          padding="2px 4px 2px 4px"
           rounded
-          unelevated
         />
       </div>
       <div class="col-2">
         <q-select
-          outlined
-          borderd
           dense
+          outlined
           v-model="pagination.pageSize"
           :options="[5, 10, 20]"
           @update:model-value="reloadData"

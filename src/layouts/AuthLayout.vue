@@ -4,11 +4,13 @@
       <q-header class="login-header flex items-center q-py-lg">
         <q-toolbar>
           <q-toolbar-title
-            class="flex justify-start q-ml-lg text-weight-bold text-dark"
-            ><span class="text-weight-bold text-h5">{{
+            class="flex justify-start items-center q-ml-lg text-weight-bold text-dark"
+            ><span class="page-title text-weight-bold text-h5">{{
               $t("login-page.page-title")
-            }}</span></q-toolbar-title
-          >
+            }}</span>
+            <div class="q-ml-md">
+              <theme-switcher /></div
+          ></q-toolbar-title>
           <div class="flex q-pr-lg q-gutter-sm">
             <q-btn
               unelevated
@@ -35,7 +37,7 @@
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
 import LanguageSwitcher from "src/components/LanguageSwitcher.vue"
-
+import ThemeSwitcher from "src/components/business/ThemeSwitcher.vue"
 const authStore = useAuthStore()
 authStore.clearUser()
 </script>

@@ -9,43 +9,15 @@
         <div class="flex items-center q-gutter-x-xs cursor-pointer">
           <q-icon size="sm" name="o_account_circle" />
           <div class="text-body">{{ username }}</div>
+          <theme-switcher />
           <q-menu
             fit
-            class=""
+            class="no-shadow"
             transition-show="jump-down"
             transition-hide="jump-up"
             :offset="[10, 28]"
           >
             <q-list dense padding class="user-profile">
-              <div class="flex justify-between items-center q-pl-xs q-pr-md">
-                <q-toggle
-                  color="blue-8"
-                  v-model="darkMode"
-                  unchecked-icon="light_mode"
-                  checked-icon="dark_mode"
-                />
-                <div class="q-gutter-x-xs">
-                  <q-icon
-                    name="circle"
-                    size="xs"
-                    color="primary"
-                    class="cursor-pointer"
-                    icon="format_paint"
-                  />
-                  <q-icon
-                    name="circle"
-                    size="xs"
-                    color="green"
-                    class="cursor-pointer"
-                  />
-                  <q-icon
-                    name="circle"
-                    size="xs"
-                    color="red"
-                    class="cursor-pointer"
-                  />
-                </div>
-              </div>
               <q-item-label class="text-h6" header>
                 <div class="column items-center justify-center q-mt-md">
                   <q-avatar
@@ -114,13 +86,10 @@ import { ref, computed, watchEffect, onMounted, watch } from "vue"
 import { useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
-import { useQuasar } from "quasar"
+import ThemeSwitcher from "src/components/business/ThemeSwitcher.vue"
 
 const router = useRouter()
 const authStore = useAuthStore()
-const $q = useQuasar()
-
-const darkMode = ref(false)
 
 const username = computed(() => {
   if (authStore.user) return authStore.user.user.fullName
@@ -134,18 +103,6 @@ function goToChangePasswordPage() {
 function getFirstChar(str) {
   return str.charAt(0)
 }
-
-watch(darkMode, (newVal) => {
-  $q.dark.set(newVal ? "auto" : false)
-  localStorage.setItem("darkMode", newVal)
-})
-
-onMounted(() => {
-  const darkModeisActive = localStorage.getItem("darkMode")
-  if (darkModeisActive === "true") {
-    darkMode.value = true
-  }
-})
 </script>
 
 <style>
