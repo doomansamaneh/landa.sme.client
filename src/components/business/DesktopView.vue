@@ -1,26 +1,25 @@
 <template>
   <DesktopViewGuide v-model="showGuideDialog" />
-  <q-card class="q-card-desktop q-my-xl gt-xs">
+  <q-card class="q-card-desktop q-my-lg gt-xs">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
-        <q-item-label class="text-weight-bold text-grey-10 text-body1">{{
+        <q-item-label class="text-weight-bold text-body1">{{
           $t("business-page.card-title")
         }}</q-item-label>
-        <q-item-label class="text-body text-grey-7 q-pt-xs text-body2" caption>
+        <q-item-label class="q-pt-xs text-body2" caption>
           {{ $t("business-page.card-message") }}
         </q-item-label>
       </q-item-section>
       <div class="flex items-center q-gutter-x-md">
         <q-icon
-          class="cursor-pointer"
-          color="grey"
+          class="guide-icon cursor-pointer"
           size="md"
           name="o_help_outline"
           @click="showGuideDialog = true"
         >
           <q-tooltip>{{ $t("business-page.buttons.guide-tooltip") }}</q-tooltip>
         </q-icon>
-        <q-btn unelevated round color="green-7" icon="add">
+        <q-btn unelevated round icon="add" class="add-new-business">
           <q-tooltip anchor="top left" self="top right">
             {{ $t("business-page.buttons.add-new-business-tooltip") }}
           </q-tooltip>
@@ -35,7 +34,7 @@
       v-if="loadingData"
     />
     <q-card-section class="q-px-lg q-gutter-y-md">
-      <div class="search-bar q-px-sm q-pt-sm" v-if="showSearchbar">
+      <div class="search-bar q-pt-sm" v-if="showSearchbar">
         <q-input
           outlined
           dense
@@ -74,13 +73,17 @@
       >
         <div class="col-6 q-gutter-x-sm">
           <q-avatar
-            color="blue-7"
-            text-color="white"
+            class="business-isowner"
             icon="o_person"
             size="lg"
             v-if="item.isOwner"
           />
-          <q-avatar color="grey-4" icon="o_person" size="lg" v-else />
+          <q-avatar
+            class="business-isnotowner"
+            icon="o_person"
+            size="lg"
+            v-else
+          />
           <q-btn
             class="business-name-btn text-caption text-weight-bold"
             no-caps
@@ -90,7 +93,7 @@
             @click="gotoBusiness"
           >
             <div class="flex no-wrap q-gutter-sm">
-              <div class="">
+              <div class="business-name-icon">
                 <q-icon name="o_login" />
               </div>
               <div class="business-name flex">
@@ -104,9 +107,9 @@
         </div>
 
         <div class="expire-date-container flex items-center q-gutter-x-xl">
-          <label class="text-grey"
+          <label class="dark-icon2"
             ><q-icon
-              class="expire-date-clock text-grey"
+              class="expire-date-clock dark-icon2"
               name="history"
               size="sm"
             />
@@ -124,7 +127,6 @@
             color="positive"
             icon="o_add_shopping_cart"
             size="md"
-            :ripple="false"
           >
             <q-tooltip>{{
               $t("business-page.buttons.service-extension-tooltip")
@@ -132,26 +134,22 @@
           </q-btn>
           <q-btn
             v-else
-            class="service-extension q-pa-sm"
+            class="service-extension dark-icon2 q-pa-sm"
             round
             dense
             flat
-            color="grey"
             icon="o_add_shopping_cart"
             size="md"
             disable
-            :ripple="false"
           >
           </q-btn>
         </div>
         <div class="more-options col-1 q-pl-md">
           <q-btn
-            class="more-icon"
-            style="color: grey"
+            class="more-icon dark-icon2"
             unelevated
             falt
             round
-            :ripple="false"
             icon="more_vert"
             size="md"
             dense
@@ -160,17 +158,12 @@
               $t("business-page.buttons.more-tooltip")
             }}</q-tooltip>
           </q-btn>
-          <q-menu>
+          <q-menu transition-show="jump-down" transition-hide="jump-up">
             <q-list padding>
               <q-item clickable v-close-popup>
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar
-                      color="grey-4"
-                      text-color="dark"
-                      icon="login"
-                      size="sm"
-                    />
+                    <q-avatar icon="login" size="sm" class="dark-icon" />
                     <div class="text-caption">
                       {{
                         $t("business-page.buttons.more-button.enter-business")
@@ -184,10 +177,9 @@
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
                       <q-avatar
-                        color="grey-4"
-                        text-color="dark"
                         icon="o_person_add"
                         size="sm"
+                        class="dark-icon"
                       />
                       <div class="text-caption">
                         {{
@@ -201,12 +193,7 @@
                 <q-item clickable v-close-popup>
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar
-                        color="grey-4"
-                        text-color="dark"
-                        icon="o_delete"
-                        size="sm"
-                      />
+                      <q-avatar icon="o_delete" size="sm" class="dark-icon" />
                       <div class="text-caption">
                         {{ $t("business-page.buttons.more-button.delete") }}
                       </div>
@@ -218,10 +205,9 @@
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
                       <q-avatar
-                        color="grey-4"
-                        text-color="dark"
                         icon="credit_card"
                         size="sm"
+                        class="dark-icon"
                       />
                       <div class="text-caption">
                         {{
@@ -240,10 +226,10 @@
       </q-card>
     </q-card-section>
     <div
-      class="row q-pt-md justify-between bg-grey-3 q-px-lg q-py-md"
+      class="row q-pt-md justify-between dark-icon q-px-lg q-py-md"
       v-if="showPagebar"
     >
-      <div class="col-8 flex items-center">
+      <div class="pagination col-8 flex items-center">
         <q-pagination
           v-if="showPaging"
           v-model="pagination.currentPage"
@@ -260,22 +246,19 @@
           padding="2px 5px 2px 5px"
           rounded
           unelevated
-          color="grey-8"
-          active-color="blue-7"
         />
       </div>
       <div class="col-2">
         <q-select
           outlined
           borderd
-          bg-color="white"
           dense
           v-model="pagination.pageSize"
           :options="[5, 10, 20]"
           @update:model-value="reloadData"
           transition-show="flip-up"
           transition-hide="flip-down"
-          class="q-pl-lg"
+          class="q-pl-lg dark-icon2"
         />
       </div>
     </div>
@@ -343,6 +326,7 @@ async function reloadData() {
 
 async function loadData(data) {
   loadingData.value = true
+  selectedCard.value = false
 
   let filterExpression = []
 
@@ -396,20 +380,7 @@ function isSelected(index) {
   width: 620px !important;
 }
 
-.business-name-btn .q-focus-helper {
-  display: none;
-}
-
-.card-header {
-  padding-left: 32px;
-  padding-right: 32px;
-}
-
 .business-name {
   max-width: 150px;
-}
-
-.selected {
-  background-color: $select;
 }
 </style>

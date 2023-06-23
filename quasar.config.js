@@ -104,8 +104,9 @@ module.exports = configure(function (/* ctx */) {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
-      plugins: ["Loading"],
+      plugins: ["LocalStorage", "Loading"],
       config: {
+        dark: false,
         loading: {
           /* look at QuasarConfOptions from the API card */
         },

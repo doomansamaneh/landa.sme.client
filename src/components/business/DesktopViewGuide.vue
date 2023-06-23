@@ -20,6 +20,7 @@
       <q-carousel-slide :name="2" class="column no-wrap flex-center">
         <div class="flex items-center q-gutter-x-sm">
           <q-avatar
+            class="business-isowner"
             color="blue-7"
             text-color="white"
             icon="o_person"
@@ -27,15 +28,21 @@
           />
 
           <q-btn
-            class="btn-fixed-width business-name-btn text-body2 text-weight-bold"
-            align="left"
+            class="business-name-btn text-caption text-weight-bold"
             no-caps
             flat
             text-color="dark"
             :ripple="false"
-            label="دومان سامانه برای تست"
-            icon="o_login"
+            @click="gotoBusiness"
           >
+            <div class="flex no-wrap q-gutter-sm">
+              <div class="business-name-icon">
+                <q-icon name="o_login" />
+              </div>
+              <div class="business-name flex">
+                <span class="ellipsis">دومان سامانه برای تست</span>
+              </div>
+            </div>
           </q-btn>
         </div>
 
@@ -46,12 +53,10 @@
       <q-carousel-slide :name="3" class="column no-wrap flex-center">
         <div class="flex items-center q-gutter-x-sm"></div>
         <q-btn
-          class="more-icon"
-          style="color: grey"
+          class="more-icon dark-icon2"
           unelevated
           falt
           round
-          :ripple="false"
           icon="more_vert"
           size="xl"
           dense

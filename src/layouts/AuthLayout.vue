@@ -1,7 +1,7 @@
 <template>
   <q-layout>
     <div class="header-section">
-      <q-header class="header flex items-center text-dark q-py-lg">
+      <q-header class="login-header flex items-center q-py-lg">
         <q-toolbar>
           <q-toolbar-title
             class="flex justify-start q-ml-lg text-weight-bold text-dark"

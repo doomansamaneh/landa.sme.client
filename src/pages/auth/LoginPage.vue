@@ -1,5 +1,5 @@
 <template>
-  <q-page class="full-screen flex justify-center items-center">
+  <q-page class="login-page full-screen flex justify-center items-center">
     <div class="body-section q-mb-xl">
       <div class="login-form-container">
         <div class="logo flex justify-center">
@@ -9,9 +9,9 @@
             style="width: 270px"
           />
         </div>
-        <q-card class="no-shadow" style="background-color: #f5f6f9">
+        <q-card class="login-form no-shadow">
           <q-card-section>
-            <q-form class="" @submit="authenticate">
+            <q-form class="login-form" @submit="authenticate">
               <div class="username-input">
                 <q-input
                   outlined
@@ -64,7 +64,7 @@
                     outlined
                     placeholder="1234"
                     dense
-                    class="text-body bg-white"
+                    class="text-body"
                     color="blue-5"
                   />
                 </div>
@@ -130,14 +130,6 @@ const isLoggingIn = computed(() => authStore.isLoggingIn)
 </script>
 
 <style lang="scss">
-.header {
-  background-color: #f5f6f9;
-}
-
-.q-page {
-  background-color: #f5f6f9;
-}
-
 .login-form-container {
   width: 300px;
 }

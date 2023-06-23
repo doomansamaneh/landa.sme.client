@@ -1,0 +1,136 @@
+body.body--dark {
+  background-color: #040c2d;
+  .q-header {
+    background-color: $dark;
+    color: white;
+  }
+
+  .q-toolbar,
+  .q-toolbar a {
+    color: white;
+  }
+
+  .username {
+    color: white;
+  }
+
+  .dark-icon .q-avatar__content {
+    background-color: #586599;
+  }
+  .dark-icon {
+    background-color: #2d3767;
+  }
+  .business-isowner .q-avatar__content {
+    background-color: #0096ed;
+  }
+  .business-isnotowner .q-avatar__content {
+    background-color: #586599;
+  }
+
+  .business-name,
+  .business-name-icon {
+    color: white;
+  }
+
+  .dark-icon2 {
+    color: #5b6aa8;
+  }
+  .dark-icon3 {
+    color: #5b6aa8;
+  }
+  .q-pagination .q-icon.notranslate.material-icons {
+    color: white;
+  }
+
+  .q-pagination .q-btn__content {
+    color: white;
+  }
+
+  .guide-icon {
+    color: #5b6aa8;
+  }
+
+  .add-new-business {
+    background-color: #00af00;
+    color: white;
+  }
+
+  .selected {
+    background-color: #5663972f;
+  }
+
+  .login-header {
+    background-color: $dark-page;
+  }
+
+  .login-page {
+    background-color: #040c2d;
+  }
+
+  .login-form {
+    background-color: #040c2d;
+  }
+}
+
+body.body--light {
+  background-color: #29b0ff;
+  .q-header {
+    background-color: white;
+  }
+
+  .dark-icon .q-avatar__content {
+    background-color: rgb(240, 240, 240);
+  }
+
+  .business-isowner .q-avatar__content {
+    background-color: #0096ed;
+    color: white;
+  }
+  .business-isnotowner .q-avatar__content {
+    background-color: rgb(230, 230, 230);
+  }
+
+  .dark-icon {
+    background-color: rgb(240, 240, 240);
+  }
+
+  .dark-icon2 {
+    color: #acacac;
+  }
+
+  .dark-icon3 {
+    color: #ffffff;
+  }
+
+  .guide-icon {
+    color: #c4c4c4;
+  }
+
+  .q-pagination .q-icon.notranslate.material-icons {
+    color: $black;
+  }
+
+  .q-pagination .q-btn__content {
+    color: $black;
+  }
+
+  .add-new-business {
+    background-color: #00af00;
+    color: white;
+  }
+  .selected {
+    background-color: $select;
+  }
+
+  .login-header {
+    background-color: #fbfbfb;
+  }
+
+  .login-page {
+    background-color: #fbfbfb;
+  }
+
+  .login-form {
+    background-color: #fbfbfb;
+  }
+}

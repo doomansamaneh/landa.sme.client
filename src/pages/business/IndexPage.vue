@@ -1,63 +1,13 @@
 <template>
-  <q-page class="flex justify-center items-center bg-blue-5">
-    <MobileView />
+  <q-page class="flex justify-center items-center">
+    <!-- <MobileView /> -->
     <DesktopView />
   </q-page>
 </template>
 
 <script setup>
-import { ref } from "vue"
-import DataGrid from "../../components/shared/DataGrid.vue"
 import MobileView from "src/components/business/MobileView.vue"
 import DesktopView from "src/components/business/DesktopView.vue"
-
-import { fetchWrapper } from "../../helpers"
-
-const gridBusiness = ref(null)
-
-const columns = [
-  {
-    name: "row-number",
-    required: true,
-    label: "#",
-    align: "left",
-    sortable: false,
-    headerStyle: "width: 5px"
-  },
-  {
-    name: "name",
-    required: true,
-    label: "name",
-    align: "left",
-    field: (row) => row.name,
-    format: (val) => `${val}`,
-    sortable: true
-  },
-  {
-    name: "toDate",
-    required: true,
-    label: "to date",
-    align: "left",
-    field: "toDateString",
-    sortable: true,
-    headerStyle: "width: 50px"
-  },
-  {
-    name: "dateCreated",
-    required: true,
-    label: "dayes to expire",
-    field: (row) => row.daysToExpire,
-    sortable: true,
-    headerStyle: "width: 50px"
-  }
-]
-
-function reloadData() {
-  gridBusiness.value.reloadData()
-}
-
 </script>
 
-<style>
-  
-</style>
+<style></style>

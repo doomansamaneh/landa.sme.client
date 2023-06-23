@@ -1,6 +1,6 @@
 <template>
-  <q-page class="row justify-center items-center bg-blue-5">
-    <div class="login-form">
+  <q-page class="column justify-center items-center">
+    <div class="">
       <q-card class="change-password-form">
         <q-card-section>
           <q-form class="" @submit="changePassword">
@@ -12,7 +12,7 @@
                 $t('change-password-page.placeholders.old-password')
               "
               dense
-              class="text-body bg-whit"
+              class="text-body"
               required
               lazy-rules
               :rules="[(val) => val !== null && val !== '']"
@@ -34,7 +34,7 @@
                 $t('change-password-page.placeholders.new-password')
               "
               dense
-              class="text-body bg-white"
+              class="text-body"
               required
               lazy-rules
               :rules="[(val) => val !== null && val !== '']"
@@ -57,7 +57,7 @@
                 $t('change-password-page.placeholders.confirm-password')
               "
               dense
-              class="text-body bg-white"
+              class="text-body"
               required
               lazy-rules
               :rules="[(val) => val !== null && val !== '']"
@@ -85,6 +85,15 @@
           </q-form>
         </q-card-section>
       </q-card>
+    </div>
+    <div class="flex jsutify-center items-center">
+      <q-btn
+        flat
+        unelevated
+        @click="$router.go(-1)"
+        class="text-weight-bolder dark-icon3 q-mt-lg"
+        >بازگشت</q-btn
+      >
     </div>
   </q-page>
 </template>
