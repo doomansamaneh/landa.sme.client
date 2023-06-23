@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@intlify/vue-i18n-loader": "^5.0.1",
-    "@quasar/app-vite": "^1.0.0",
+    "@quasar/app-vite": "^1.4.3",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
