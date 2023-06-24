@@ -69,9 +69,4 @@ const selectTheme = (theme) => {
   localStorage.setItem("selectedTheme", theme)
 }
 </script>
-<style>
-.q-btn--actionable.q-btn--standard:before {
-  border: none;
-  box-shadow: none;
-}
-</style>
+<style></style>

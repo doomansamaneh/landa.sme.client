@@ -128,7 +128,7 @@ async function authenticate() {
 const isLoggingIn = computed(() => authStore.isLoggingIn)
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login-form-container {
   width: 300px;
 }
@@ -136,10 +136,5 @@ const isLoggingIn = computed(() => authStore.isLoggingIn)
 .forgot-password a {
   text-decoration: none;
   color: #0087f6;
-}
-
-.q-btn--actionable.q-btn--standard:before {
-  border: 1px solid $primary;
-  box-shadow: none;
 }
 </style>

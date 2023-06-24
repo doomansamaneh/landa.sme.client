@@ -19,7 +19,7 @@
               :label="$t('login-page.buttons.signup')"
               class="signup-btn text-weight-bold"
             />
-            <language-switcher />
+            <language-switcher class="lang-switcher" />
           </div>
         </q-toolbar>
       </q-header>
@@ -42,4 +42,9 @@ const authStore = useAuthStore()
 authStore.clearUser()
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.lang-switcher.q-btn--actionable.q-btn--standard:before {
+  border: 1px solid $primary;
+  box-shadow: none;
+}
+</style>

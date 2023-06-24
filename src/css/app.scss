@@ -135,6 +135,13 @@ body.theme--blue {
   .q-field__control {
     color: $primary;
   }
+
+  .q-field__control,
+  .q-linear-progress,
+  .q-carousel__navigation-inner .q-btn,
+  .q-carousel__arrow .q-icon {
+    color: $primary;
+  }
 }
 
 // Theme: Orange
