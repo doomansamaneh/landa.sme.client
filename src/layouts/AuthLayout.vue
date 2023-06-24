@@ -4,7 +4,7 @@
       <q-header class="login-header flex items-center q-py-lg">
         <q-toolbar>
           <q-toolbar-title
-            class="row justify-start q-ml-lg text-weight-bold text-dark"
+            class="row justify-start items-center q-ml-lg text-weight-bold text-dark"
             ><span class="page-title text-weight-bold text-h5">{{
               $t("login-page.page-title")
             }}</span>
