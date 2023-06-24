@@ -84,10 +84,6 @@ body.body--light {
     background-color: $accent;
   }
 
-  .profile-pic .q-avatar__content {
-    background-color: $primary;
-  }
-
   .business-isowner .q-avatar__content {
     background-color: $primary;
     color: $white;
@@ -157,17 +153,18 @@ body.theme--orange {
   --q-primary: orangered;
 
   .profile-pic .q-avatar__content {
-    background-color: $primary;
+    background-color: orange;
   }
 
   .q-field__control,
   .q-linear-progress,
   .q-carousel__navigation-inner .q-btn,
   .q-carousel__arrow .q-icon {
-    color: orangered;
+    color: $primary;
   }
 }
 
+// Theme: Greeen
 body.theme--green {
   --q-primary: green;
 
