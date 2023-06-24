@@ -11,7 +11,7 @@
             <theme-switcher class="gt-xs" />
           </div>
         </q-toolbar-title>
-        <div class="flex q-pr-lg q-gutter-sm gt-xs">
+        <div class="flex q-pr-md q-gutter-x-sm">
           <q-btn
             unelevated
             no-caps
@@ -19,7 +19,7 @@
             :label="$t('login-page.buttons.signup')"
             class="signup-btn text-weight-bold"
           />
-          <language-switcher class="lang-switcher" />
+          <language-switcher class="lang-switcher gt-xs" />
         </div>
         <div class="q-pr-md xs">
           <q-btn
