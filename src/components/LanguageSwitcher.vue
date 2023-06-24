@@ -4,7 +4,7 @@
     icon="language"
     :label="selectedLanguageLabel"
     :options="languageOptions"
-    class="bg-white text-primary"
+    class="bg-white text-blue-7"
     auto-close
   >
     <q-item-section>

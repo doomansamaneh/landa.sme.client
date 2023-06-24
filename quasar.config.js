@@ -104,9 +104,6 @@ module.exports = configure(function (/* ctx */) {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
-      theme: {
-        importAll: true,
-      },
       plugins: ["LocalStorage", "Loading"],
       config: {
         dark: false,

@@ -5,7 +5,7 @@
         <q-card-section>
           <q-form class="" @submit="changePassword">
             <q-input
-              filled
+              outlined
               v-model="oldPassword"
               :type="isPwdOldPassword ? 'password' : 'text'"
               :placeholder="
@@ -27,7 +27,7 @@
               </template>
             </q-input>
             <q-input
-              filled
+              outlined
               v-model="newPassword"
               :type="isPwdNewPassword ? 'password' : 'text'"
               :placeholder="
@@ -50,7 +50,7 @@
             </q-input>
 
             <q-input
-              filled
+              outlined
               v-model="confirmNewPassword"
               :type="isPwdConfirmPassword ? 'password' : 'text'"
               :placeholder="
@@ -91,7 +91,7 @@
         flat
         unelevated
         @click="$router.go(-1)"
-        class="text-weight-bolder dark-icon3 q-mt-lg"
+        class="text-weight-bolder text-white q-mt-lg"
         >بازگشت</q-btn
       >
     </div>

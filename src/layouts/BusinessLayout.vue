@@ -21,11 +21,7 @@
               <q-list dense padding class="user-profile">
                 <q-item-label class="text-h6" header>
                   <div class="column items-center justify-center q-mt-md">
-                    <q-avatar
-                      color="blue-4"
-                      class="profile-pic q-mx-sm"
-                      text-color="white"
-                    >
+                    <q-avatar class="profile-pic q-mx-sm" text-color="white">
                       <div class="text-weight-bold">
                         <span class="username">{{
                           getFirstChar(username)

@@ -12,7 +12,7 @@
       </q-item-section>
       <div class="flex items-center q-gutter-x-md">
         <q-icon
-          class="guide-icon cursor-pointer"
+          class="dark-3 cursor-pointer"
           size="md"
           name="o_help_outline"
           @click="showGuideDialog = true"
@@ -28,15 +28,15 @@
     </q-item>
     <q-separator />
     <q-linear-progress
+      class="business-progress"
       indeterminate
       size="xs"
-      color="primary"
       v-if="loadingData"
     />
     <q-card-section class="q-px-lg q-gutter-y-md">
       <div class="search-bar q-pt-sm" v-if="showSearchbar">
         <q-input
-          filled
+          outlined
           dense
           class="text-caption q-mb-sm"
           v-model="searchTerm"
@@ -46,9 +46,9 @@
           <template v-slot:prepend>
             <q-icon
               name="search"
-              class="cursor-pointer"
+              class="search-icon cursor-pointer"
               size="sm"
-              color="blue-5"
+              color="primary"
               @click="reloadData"
             />
           </template>
@@ -107,7 +107,7 @@
         </div>
 
         <div class="expire-date-container flex items-center q-gutter-x-xl">
-          <label class="dark-icon2"
+          <label class="dark-2"
             ><q-icon
               class="expire-date-clock dark-icon2"
               name="history"
@@ -134,7 +134,7 @@
           </q-btn>
           <q-btn
             v-else
-            class="service-extension dark-icon2 q-pa-sm"
+            class="service-extension dark-2 q-pa-sm"
             round
             dense
             flat
@@ -146,7 +146,7 @@
         </div>
         <div class="more-options col-1 q-pl-md">
           <q-btn
-            class="more-icon dark-icon2"
+            class="more-icon dark-2"
             unelevated
             falt
             round
@@ -163,7 +163,7 @@
               <q-item clickable v-close-popup>
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar icon="login" size="sm" class="dark-icon" />
+                    <q-avatar icon="login" size="sm" class="dark-1" />
                     <div class="text-caption">
                       {{
                         $t("business-page.buttons.more-button.enter-business")
@@ -176,11 +176,7 @@
                 <q-item clickable v-close-popup>
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar
-                        icon="o_person_add"
-                        size="sm"
-                        class="dark-icon"
-                      />
+                      <q-avatar icon="o_person_add" size="sm" class="dark-1" />
                       <div class="text-caption">
                         {{
                           $t("business-page.buttons.more-button.invite-user")
@@ -193,7 +189,7 @@
                 <q-item clickable v-close-popup>
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar icon="o_delete" size="sm" class="dark-icon" />
+                      <q-avatar icon="o_delete" size="sm" class="dark-1" />
                       <div class="text-caption">
                         {{ $t("business-page.buttons.more-button.delete") }}
                       </div>
@@ -204,11 +200,7 @@
                 <q-item clickable v-close-popup>
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar
-                        icon="credit_card"
-                        size="sm"
-                        class="dark-icon"
-                      />
+                      <q-avatar icon="credit_card" size="sm" class="dark-1" />
                       <div class="text-caption">
                         {{
                           $t(
@@ -226,7 +218,7 @@
       </q-card>
     </q-card-section>
     <div
-      class="row q-pt-md justify-between dark-icon q-px-lg q-py-md"
+      class="row q-pt-md justify-between dark-1 q-px-lg q-py-md"
       v-if="showPagebar"
     >
       <div class="pagination col-8 flex items-center">
@@ -244,22 +236,21 @@
           @update:model-value="reloadData"
           gutter="xs"
           padding="2px 4px 2px 4px"
-          rounded
-          flat
-          color="grey"
+          round
+          color="grey-8"
           active-color="primary"
         />
       </div>
       <div class="col-2">
         <q-select
           dense
-          filled
+          outlined
           v-model="pagination.pageSize"
           :options="[5, 10, 20]"
           @update:model-value="reloadData"
           transition-show="flip-up"
           transition-hide="flip-down"
-          class="q-pl-lg dark-icon2"
+          class="q-pl-lg dark-2 text-weight-bolder"
         />
       </div>
     </div>
@@ -271,6 +262,9 @@ import DesktopViewGuide from "../../components/business/DesktopViewGuide.vue"
 import { fetchWrapper } from "../../helpers"
 import { computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { ref } from "vue"
+import { useQuasar } from "quasar"
+
+const $q = useQuasar()
 
 const rows = ref([])
 const showGuideDialog = ref(false)

@@ -20,13 +20,13 @@
                   class="noen-border text-body"
                   required
                   lazy-rules
-                  filled
+                  outlined
                   :rules="[(val) => val !== null && val !== '']"
                 />
               </div>
               <div class="password-input">
                 <q-input
-                  filled
+                  outlined
                   v-model="password"
                   :type="isPwd ? 'password' : 'text'"
                   :placeholder="$t('login-page.placeholders.password')"
@@ -61,11 +61,10 @@
 
                 <div class="col-5">
                   <q-input
-                    filled
+                    outlined
                     placeholder="1234"
                     dense
                     class="text-body"
-                    color="blue-5"
                   />
                 </div>
 
@@ -137,56 +136,6 @@ const isLoggingIn = computed(() => authStore.isLoggingIn)
 .forgot-password a {
   text-decoration: none;
   color: #0087f6;
-}
-
-.q-field--outlined .q-field__control:before {
-  background-color: white;
-}
-
-.q-field--outlined:hover .q-field__control:before {
-  border-color: primary;
-}
-
-.q-field--highlighte {
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 5px rgb(147, 214, 255),
-    0 0 5px rgb(147, 214, 255), 0 0 2px rgb(147, 214, 255),
-    0 0 3px rgb(147, 214, 255);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.error-code0-banner {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin-top: 25px;
-  border-top: 1px solid rgb(233, 60, 60);
-}
-
-.error-offline-banner {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin-top: 25px;
-  border-top: 1px solid rgb(255, 196, 86);
-}
-
-@media (max-width: $breakpoint-sm-max) {
-  .q-toolbar {
-    padding: 0;
-  }
-
-  .q-banner {
-    margin-top: 0;
-  }
-}
-
-.q-btn-dropdown--simple * + .q-btn-dropdown__arrow {
-  margin-left: 8px;
-  color: $primary;
 }
 
 .q-btn--actionable.q-btn--standard:before {

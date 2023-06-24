@@ -1,62 +1,47 @@
 body.body--dark {
-  background-color: #040c2d;
   .q-header {
-    background-color: $dark;
-    color: white;
+    background-color: $dark-6;
   }
-
-  .page-title {
-    color: white;
-  }
-
+  .page-title,
   .q-toolbar,
-  .q-toolbar a {
-    color: white;
-  }
-
-  .username {
-    color: white;
-  }
-
-  .dark-icon .q-avatar__content {
-    background-color: #586599;
-  }
-  .dark-icon {
-    background-color: #2d3767;
-  }
-  .business-isowner .q-avatar__content {
-    background-color: #0096ed;
-  }
-  .business-isnotowner .q-avatar__content {
-    background-color: #586599;
-  }
-
+  .q-toolbar a,
+  .username,
   .business-name,
-  .business-name-icon {
-    color: white;
+  .business-name-icon,
+  .login-form,
+  .q-field__control {
+    color: $white;
   }
 
-  .dark-icon2 {
-    color: #5b6aa8;
+  .dark-1 .q-avatar__content {
+    background-color: $dark-5;
   }
-  .dark-icon3 {
-    color: #5b6aa8;
+
+  .dark-1,
+  .business-isowner .q-avatar__content {
+    background-color: $dark-6;
   }
+
+  .business-isnotowner .q-avatar__content {
+    background-color: $dark-5;
+  }
+
+  .dark-2,
+  .dark-3 {
+    color: $dark-4;
+  }
+
   .q-pagination .q-icon.notranslate.material-icons {
-    color: #a3acd2;
+    color: $dark-4;
   }
 
   .q-pagination .q-btn__content {
-    color: #f9f9f9;
-  }
-
-  .guide-icon {
-    color: #5b6aa8;
+    color: $accent;
   }
 
   .add-new-business {
-    background-color: #00af00;
-    color: white;
+    background-color: $green;
+    color: $white;
   }
 
   .selected {
@@ -67,51 +52,53 @@ body.body--dark {
     background-color: $dark-page;
   }
 
-  .login-page {
-    background-color: #040c2d;
-  }
-
+  .login-page,
   .login-form {
     background-color: #040c2d;
   }
 
-  .q-field__control {
-    color: #5b6aa8;
+  .q-field--outlined .q-field__control:before {
+    background-color: $dark;
+  }
+
+  .q-field__control,
+  .q-linear-progress,
+  .q-carousel__navigation-inner .q-btn,
+  .q-carousel__arrow .q-icon {
+    color: $dark;
   }
 }
 
 body.body--light {
-  background-color: #29b0ff;
+  background-color: $primary;
   .q-header {
-    background-color: white;
+    background-color: $white;
   }
 
-  .dark-icon .q-avatar__content {
-    background-color: rgb(240, 240, 240);
+  .dark-icon .q-avatar__content,
+  .business-isnotowner .q-avatar__content {
+    background-color: $accent;
+  }
+
+  .profile-pic .q-avatar__content {
+    background-color: $primary;
   }
 
   .business-isowner .q-avatar__content {
-    background-color: #0096ed;
-    color: white;
-  }
-  .business-isnotowner .q-avatar__content {
-    background-color: rgb(230, 230, 230);
+    background-color: $primary;
+    color: $white;
   }
 
-  .dark-icon {
-    background-color: rgb(240, 240, 240);
+  .dark-1 {
+    background-color: $dark-1;
   }
 
-  .dark-icon2 {
-    color: #acacac;
+  .dark-2 {
+    color: $dark-3;
   }
 
-  .dark-icon3 {
-    color: #ffffff;
-  }
-
-  .guide-icon {
-    color: #c4c4c4;
+  .dark-3 {
+    color: $dark-3;
   }
 
   .q-pagination .q-icon.notranslate.material-icons {
@@ -119,22 +106,64 @@ body.body--light {
   }
 
   .add-new-business {
-    background-color: #00af00;
-    color: white;
+    background-color: $green;
+    color: $white;
   }
+
   .selected {
     background-color: $select;
   }
 
-  .login-header {
-    background-color: #fbfbfb;
-  }
-
-  .login-page {
-    background-color: #fbfbfb;
-  }
-
+  .login-header,
+  .login-page,
   .login-form {
     background-color: #fbfbfb;
+  }
+
+  .q-field--outlined .q-field__control:before {
+    background-color: white;
+  }
+}
+
+// Theme: Blue
+body.theme--blue {
+  --q-primary: #00aeff;
+  .profile-pic .q-avatar__content {
+    background-color: $primary;
+  }
+
+  .q-field__control {
+    color: $primary;
+  }
+}
+
+// Theme: Orange
+body.theme--orange {
+  --q-primary: orangered;
+
+  .profile-pic .q-avatar__content {
+    background-color: $primary;
+  }
+
+  .q-field__control,
+  .q-linear-progress,
+  .q-carousel__navigation-inner .q-btn,
+  .q-carousel__arrow .q-icon {
+    color: orangered;
+  }
+}
+
+body.theme--green {
+  --q-primary: green;
+
+  .profile-pic .q-avatar__content {
+    background-color: $green;
+  }
+
+  .q-field__control,
+  .q-linear-progress,
+  .q-carousel__navigation-inner .q-btn,
+  .q-carousel__arrow .q-icon {
+    color: $green;
   }
 }

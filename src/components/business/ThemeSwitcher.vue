@@ -10,12 +10,25 @@
       <q-icon
         name="circle"
         size="xs"
-        color="primary"
+        color="blue-5"
         class="cursor-pointer"
         icon="format_paint"
+        @click="selectTheme('blue')"
       />
-      <q-icon name="circle" size="xs" color="green" class="cursor-pointer" />
-      <q-icon name="circle" size="xs" color="red" class="cursor-pointer" />
+      <q-icon
+        name="circle"
+        size="xs"
+        color="green"
+        class="cursor-pointer"
+        @click="selectTheme('green')"
+      />
+      <q-icon
+        name="circle"
+        size="xs"
+        color="orange"
+        class="cursor-pointer"
+        @click="selectTheme('orange')"
+      />
     </div>
   </div>
 </template>
@@ -23,10 +36,12 @@
 <script setup>
 import { ref, onMounted, watch } from "vue"
 import { useQuasar } from "quasar"
+import { setCssVar } from "quasar"
 
 const $q = useQuasar()
 
 const darkMode = ref(false)
+const selectedTheme = ref("")
 
 watch(darkMode, (newVal) => {
   $q.dark.set(newVal ? "auto" : false)
@@ -38,5 +53,25 @@ onMounted(() => {
   if (darkModeisActive === "true") {
     darkMode.value = true
   }
+
+  const storedTheme = localStorage.getItem("selectedTheme")
+  if (storedTheme) {
+    selectTheme(storedTheme)
+  }
 })
+
+const selectTheme = (theme) => {
+  if (selectedTheme.value) {
+    document.body.classList.remove(`theme--${selectedTheme.value}`)
+  }
+  document.body.classList.add(`theme--${theme}`)
+  selectedTheme.value = theme
+  localStorage.setItem("selectedTheme", theme)
+}
 </script>
+<style>
+.q-btn--actionable.q-btn--standard:before {
+  border: none;
+  box-shadow: none;
+}
+</style>
