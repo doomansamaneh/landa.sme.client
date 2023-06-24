@@ -67,6 +67,10 @@ body.body--dark {
   .q-carousel__arrow .q-icon {
     color: $dark;
   }
+
+  .hamb {
+    color: $white;
+  }
 }
 
 body.body--light {
@@ -122,6 +126,10 @@ body.body--light {
 
   .q-field--outlined .q-field__control:before {
     background-color: white;
+  }
+
+  .hamb {
+    color: $black;
   }
 }
 

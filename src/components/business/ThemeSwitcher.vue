@@ -36,7 +36,6 @@
 <script setup>
 import { ref, onMounted, watch } from "vue"
 import { useQuasar } from "quasar"
-import { setCssVar } from "quasar"
 
 const $q = useQuasar()
 
