@@ -5,70 +5,74 @@
         <q-toolbar-title class="text-black"
           ><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title
         >
-
-        <div class="flex items-center q-gutter-x-xs cursor-pointer">
-          <q-icon size="sm" name="o_account_circle" />
-          <div class="text-body">{{ username }}</div>
+        <div class="flex q-gutter-x-md">
           <theme-switcher />
-          <q-menu
-            fit
-            class="no-shadow"
-            transition-show="jump-down"
-            transition-hide="jump-up"
-            :offset="[10, 28]"
-          >
-            <q-list dense padding class="user-profile">
-              <q-item-label class="text-h6" header>
-                <div class="column items-center justify-center q-mt-md">
-                  <q-avatar
-                    color="blue-4"
-                    class="profile-pic q-mx-sm"
-                    text-color="white"
-                  >
-                    <div class="text-weight-bold">
-                      <span class="username">{{ getFirstChar(username) }}</span>
-                    </div>
-                  </q-avatar>
-                  <div class="q-mt-md">
-                    <span class="username">{{ username }}</span>
-                  </div>
-                </div>
-              </q-item-label>
-              <q-item
-                clickable
-                v-ripple
-                v-close-popup
-                class="q-mt-md"
-                @click="goToChangePasswordPage"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar class="dark-icon" icon="o_password" size="md" />
-                  </q-item-section>
-                </div>
 
-                <q-item-section>{{
-                  $t("business-layout.buttons.change-password")
-                }}</q-item-section>
-              </q-item>
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-                @click="authStore.logout()"
-                class="q-py-sm"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar class="dark-icon" icon="logout" size="md" />
-                  </q-item-section>
-                </div>
-                <q-item-section>{{
-                  $t("business-layout.buttons.logout")
-                }}</q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
+          <div class="flex items-center q-gutter-x-xs cursor-pointer">
+            <q-icon size="sm" name="o_account_circle" />
+            <div class="text-body">{{ username }}</div>
+            <q-menu
+              fit
+              class="no-shadow"
+              transition-show="jump-down"
+              transition-hide="jump-up"
+              :offset="[10, 28]"
+            >
+              <q-list dense padding class="user-profile">
+                <q-item-label class="text-h6" header>
+                  <div class="column items-center justify-center q-mt-md">
+                    <q-avatar
+                      color="blue-4"
+                      class="profile-pic q-mx-sm"
+                      text-color="white"
+                    >
+                      <div class="text-weight-bold">
+                        <span class="username">{{
+                          getFirstChar(username)
+                        }}</span>
+                      </div>
+                    </q-avatar>
+                    <div class="q-mt-md">
+                      <span class="username">{{ username }}</span>
+                    </div>
+                  </div>
+                </q-item-label>
+                <q-item
+                  clickable
+                  v-ripple
+                  v-close-popup
+                  class="q-mt-md"
+                  @click="goToChangePasswordPage"
+                >
+                  <div class="q-py-sm">
+                    <q-item-section avatar>
+                      <q-avatar class="dark-icon" icon="o_password" size="md" />
+                    </q-item-section>
+                  </div>
+
+                  <q-item-section>{{
+                    $t("business-layout.buttons.change-password")
+                  }}</q-item-section>
+                </q-item>
+                <q-item
+                  clickable
+                  v-close-popup
+                  tabindex="0"
+                  @click="authStore.logout()"
+                  class="q-py-sm"
+                >
+                  <div class="q-py-sm">
+                    <q-item-section avatar>
+                      <q-avatar class="dark-icon" icon="logout" size="md" />
+                    </q-item-section>
+                  </div>
+                  <q-item-section>{{
+                    $t("business-layout.buttons.logout")
+                  }}</q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </div>
         </div>
       </q-toolbar>
     </q-header>

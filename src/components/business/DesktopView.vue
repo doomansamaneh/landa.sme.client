@@ -36,7 +36,7 @@
     <q-card-section class="q-px-lg q-gutter-y-md">
       <div class="search-bar q-pt-sm" v-if="showSearchbar">
         <q-input
-          outlined
+          filled
           dense
           class="text-caption q-mb-sm"
           v-model="searchTerm"
@@ -245,12 +245,15 @@
           gutter="xs"
           padding="2px 4px 2px 4px"
           rounded
+          flat
+          color="grey"
+          active-color="primary"
         />
       </div>
       <div class="col-2">
         <q-select
           dense
-          outlined
+          filled
           v-model="pagination.pageSize"
           :options="[5, 10, 20]"
           @update:model-value="reloadData"

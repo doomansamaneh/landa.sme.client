@@ -14,19 +14,19 @@
             <q-form class="login-form" @submit="authenticate">
               <div class="username-input">
                 <q-input
-                  outlined
                   v-model="username"
                   :placeholder="$t('login-page.placeholders.username')"
                   dense
                   class="noen-border text-body"
                   required
                   lazy-rules
+                  filled
                   :rules="[(val) => val !== null && val !== '']"
                 />
               </div>
               <div class="password-input">
                 <q-input
-                  outlined
+                  filled
                   v-model="password"
                   :type="isPwd ? 'password' : 'text'"
                   :placeholder="$t('login-page.placeholders.password')"
@@ -61,7 +61,7 @@
 
                 <div class="col-5">
                   <q-input
-                    outlined
+                    filled
                     placeholder="1234"
                     dense
                     class="text-body"

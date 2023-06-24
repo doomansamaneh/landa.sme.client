@@ -5,7 +5,7 @@
         <q-card-section>
           <q-form class="" @submit="changePassword">
             <q-input
-              outlined
+              filled
               v-model="oldPassword"
               :type="isPwdOldPassword ? 'password' : 'text'"
               :placeholder="
@@ -27,7 +27,7 @@
               </template>
             </q-input>
             <q-input
-              outlined
+              filled
               v-model="newPassword"
               :type="isPwdNewPassword ? 'password' : 'text'"
               :placeholder="
@@ -50,7 +50,7 @@
             </q-input>
 
             <q-input
-              outlined
+              filled
               v-model="confirmNewPassword"
               :type="isPwdConfirmPassword ? 'password' : 'text'"
               :placeholder="

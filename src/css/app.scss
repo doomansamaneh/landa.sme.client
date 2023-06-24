@@ -43,11 +43,11 @@ body.body--dark {
     color: #5b6aa8;
   }
   .q-pagination .q-icon.notranslate.material-icons {
-    color: white;
+    color: #a3acd2;
   }
 
   .q-pagination .q-btn__content {
-    color: white;
+    color: #f9f9f9;
   }
 
   .guide-icon {
@@ -73,6 +73,10 @@ body.body--dark {
 
   .login-form {
     background-color: #040c2d;
+  }
+
+  .q-field__control {
+    color: #5b6aa8;
   }
 }
 
@@ -111,10 +115,6 @@ body.body--light {
   }
 
   .q-pagination .q-icon.notranslate.material-icons {
-    color: $black;
-  }
-
-  .q-pagination .q-btn__content {
     color: $black;
   }
 
