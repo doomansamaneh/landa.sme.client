@@ -4,7 +4,7 @@
       <div class="login-form-container">
         <div class="logo flex justify-center">
           <q-img
-            src="../../assets/about-us-header.png"
+            src="../../../public/about-us-header.png"
             class="q-mb-md"
             style="width: 270px"
           />
