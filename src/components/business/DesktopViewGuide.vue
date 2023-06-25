@@ -4,6 +4,8 @@
       navigation
       arrows
       padding
+      control-color="primary"
+      na
       navigation-icon="radio_button_unchecked"
       navigation-active-icon="radio_button_checked"
       animated
