@@ -71,10 +71,15 @@ body.body--dark {
   .hamb {
     color: $white;
   }
+
+  .bread-crumbs {
+    background-color: #0c1745;
+    color: white;
+  }
 }
 
 body.body--light {
-  background-color: $primary;
+  background: linear-gradient(to bottom, rgb(108, 221, 255), $primary);
   .q-header {
     background-color: $white;
   }
@@ -126,6 +131,10 @@ body.body--light {
 
   .hamb {
     color: $black;
+  }
+
+  .bread-crumbs {
+    background-color: #e4f8ff;
   }
 }
 

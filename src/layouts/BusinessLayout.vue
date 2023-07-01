@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header class="text-black q-qx-md">
+    <q-header class="text-black">
       <q-toolbar class="q-px-lg">
         <q-toolbar-title class="text-black"
           ><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title
@@ -74,6 +74,11 @@
           </div>
         </div>
       </q-toolbar>
+      <div class="bread-crumbs flex items-center q-py-sm">
+        <div class="q-px-lg">
+          <bread-crumbs />
+        </div>
+      </div>
     </q-header>
 
     <q-page-container>
@@ -90,6 +95,7 @@ import { useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
 import ThemeSwitcher from "src/components/business/ThemeSwitcher.vue"
+import BreadCrumbs from "src/components/BreadCrumbs.vue"
 
 const router = useRouter()
 const authStore = useAuthStore()
