@@ -199,7 +199,10 @@
                 <q-separator spaced />
                 <q-item clickable v-close-popup>
                   <q-item-section>
-                    <div class="flex items-center q-gutter-x-sm">
+                    <div
+                      class="flex items-center q-gutter-x-sm"
+                      @click="goToPaymentHistory"
+                    >
                       <q-avatar icon="credit_card" size="sm" class="dark-1" />
                       <div class="text-caption">
                         {{
@@ -216,6 +219,19 @@
           </q-menu>
         </div>
       </q-card>
+      <div
+        class="no-results flex justify-center q-my-xl items-center q-gutter-x-sm"
+        v-if="showSearchbar && pagedRows.length === 0 && !loadingData"
+      >
+        <div class="">
+          <q-icon
+            name="o_sentiment_dissatisfied"
+            size="sm"
+            class="no-results-icon"
+          />
+        </div>
+        <div class="">چیزی یافت نشد!</div>
+      </div>
     </q-card-section>
     <div
       class="row q-pt-md justify-between dark-1 q-px-lg q-py-md"
@@ -263,7 +279,9 @@ import { fetchWrapper } from "../../helpers"
 import { computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { ref } from "vue"
 import { useQuasar } from "quasar"
+import { useRouter } from "vue-router"
 
+const router = useRouter()
 const $q = useQuasar()
 
 const rows = ref([])
@@ -360,6 +378,10 @@ function handleResponse(response, pagination) {
 }
 
 async function gotoBusiness() {}
+
+async function goToPaymentHistory() {
+  router.push("/business/Payments")
+}
 
 function selectCard(index) {
   selectedCard.value = index

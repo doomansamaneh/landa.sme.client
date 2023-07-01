@@ -90,7 +90,7 @@
       <q-btn
         flat
         unelevated
-        @click="$router.go(-1)"
+        @click="$router.push('/business')"
         class="text-weight-bolder text-white q-mt-lg"
         >بازگشت</q-btn
       >
