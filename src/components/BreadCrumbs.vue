@@ -1,17 +1,34 @@
 <template>
   <q-breadcrumbs active-color="primary" style="font-size: 12px" separator="-">
-    <q-breadcrumbs-el label="business" to="/business" icon="business" />
-    <q-breadcrumbs-el label="business" to="/business" icon="business" />
+    <q-breadcrumbs-el
+      v-for="item in items"
+      :key="item.path"
+      :label="item.name"
+      :icon="item.meta.icon"
+      :to="item.path"
+    />
+    <template #separator>
+      <q-icon name="arrow_forward_ios" />
+    </template>
   </q-breadcrumbs>
 </template>
 
 <script setup>
 import { useRouter } from "vue-router"
-import { ref } from "vue"
+import { ref, watch } from "vue"
 
-const router = useRouter()
+const route = useRouter()
 
-const list = router.currentRoute.value
+const items = ref([])
+
+watch(() => {
+  getRoute()
+})
+
+function getRoute() {
+  items.value = route.currentRoute.value.matched
+}
+getRoute()
 </script>
 
 <style>
