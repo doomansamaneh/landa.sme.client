@@ -1,4 +1,5 @@
 body.body--dark {
+  .q-card,
   .q-header {
     background-color: $dark-6;
   }
@@ -9,6 +10,7 @@ body.body--dark {
   .business-name,
   .business-name-icon,
   .login-form,
+  .q-item__label--caption
   .q-field__control {
     color: $white;
   }
