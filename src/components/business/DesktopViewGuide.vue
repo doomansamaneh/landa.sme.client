@@ -65,7 +65,12 @@
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="4" class="column no-wrap flex-center">
-        <q-avatar color="blue-7" text-color="white" icon="o_person" size="xl" />
+        <q-avatar
+          color="primary"
+          text-color="white"
+          icon="o_person"
+          size="xl"
+        />
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("business-page.buttons.guide.slide4") }}
         </div>

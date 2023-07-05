@@ -1,4 +1,37 @@
 <template>
+  <DesktopViewGuide v-model="showGuideDialog" />
+  <q-item class="card-header q-px-lg q-py-lg">
+    <q-item-section>
+      <q-item-label class="text-weight-bold text-body1">{{
+        $t("business-page.card-title")
+      }}</q-item-label>
+      <q-item-label class="q-pt-xs text-body2" caption>
+        {{ $t("business-page.card-message") }}
+      </q-item-label>
+    </q-item-section>
+    <div class="flex items-center q-gutter-x-md">
+      <q-icon
+        class="dark-3 cursor-pointer"
+        size="md"
+        name="o_help_outline"
+        @click="showGuideDialog = true"
+      >
+        <q-tooltip>{{ $t("business-page.buttons.guide-tooltip") }}</q-tooltip>
+      </q-icon>
+      <q-btn unelevated round icon="add" class="add-new-business">
+        <q-tooltip anchor="top left" self="top right">
+          {{ $t("business-page.buttons.add-new-business-tooltip") }}
+        </q-tooltip>
+      </q-btn>
+    </div>
+  </q-item>
+  <q-separator />
+  <q-linear-progress
+    class="business-progress"
+    indeterminate
+    size="xs"
+    v-if="loadingData"
+  />
   <q-card-section class="q-px-lg q-gutter-y-md">
     <div class="search-bar q-pt-sm" v-if="showSearchbar">
       <q-input
@@ -191,25 +224,66 @@
       <div class="">چیزی یافت نشد!</div>
     </div>
   </q-card-section>
+  <div
+    class="row q-pt-md justify-between dark-1 q-px-lg q-py-md"
+    v-if="showPagebar"
+  >
+    <div class="pagination col-8 flex items-center">
+      <q-pagination
+        v-if="showPaging"
+        v-model="pagination.currentPage"
+        :min="1"
+        :max="maxPage"
+        direction-links
+        boundary-links
+        icon-first="keyboard_double_arrow_left"
+        icon-last="keyboard_double_arrow_right"
+        icon-prev="chevron_left"
+        icon-next="chevron_right"
+        @update:model-value="reloadData"
+        gutter="xs"
+        padding="2px 4px 2px 4px"
+        round
+        color="grey-8"
+        active-color="primary"
+      />
+    </div>
+    <div class="col-2">
+      <q-select
+        dense
+        outlined
+        v-model="pagination.pageSize"
+        :options="[5, 10, 20]"
+        @update:model-value="reloadData"
+        transition-show="flip-up"
+        transition-hide="flip-down"
+        class="q-pl-lg dark-2 text-weight-bolder"
+      />
+    </div>
+  </div>
 </template>
 
 <script setup>
-import DesktopViewGuide from "../../components/business/DesktopViewGuide.vue"
 import { fetchWrapper } from "../../helpers"
-import { computed, onMounted, onBeforeUnmount, watch } from "vue"
+import DesktopViewGuide from "../business/DesktopViewGuide.vue"
+import { computed, onMounted, onBeforeUnmount, watch, defineProps } from "vue"
 import { ref } from "vue"
 import { useQuasar } from "quasar"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
-const $q = useQuasar()
-
-const rows = ref([])
 const showGuideDialog = ref(false)
+const rows = ref([])
 const loadingData = ref(false)
 const searchTerm = ref("")
 const defaultPageSize = 5
 const selectedCard = ref(false)
+
+const thisProps = defineProps({
+  title: String,
+  dataSource: String,
+  color: String
+})
 
 const pagination = ref({
   sortBy: "title",
@@ -272,7 +346,7 @@ async function loadData(data) {
   }
 
   const response = await fetchWrapper
-    .post("business/getBusinessGridData", {
+    .post(thisProps.dataSource, {
       pageSize: data.pageSize,
       sortColumn: data.sortBy,
       sortOrder: data.descending ? 1 : 2,
@@ -310,82 +384,6 @@ function selectCard(index) {
 function isSelected(index) {
   return selectedCard.value === index
 }
-
-import DataGrid from "../../components/shared/DataGrid.vue"
-import TestContainer from "../../components/shared/TestContainer.vue"
-const gridBusiness = ref(null)
-
-const columns = [
-  {
-    name: "row-number",
-    required: true,
-    label: "#",
-    align: "left",
-    sortable: false,
-    headerStyle: "width: 5px"
-  },
-  {
-    name: "name",
-    required: true,
-    label: "name",
-    align: "left",
-    field: (row) => row.name,
-    format: (val) => `${val}`,
-    sortable: true
-  },
-  {
-    name: "toDate",
-    required: true,
-    label: "to date",
-    align: "left",
-    field: "toDateString",
-    sortable: true,
-    headerStyle: "width: 50px"
-  },
-  {
-    name: "dateCreated",
-    required: true,
-    label: "dayes to expire",
-    field: (row) => row.daysToExpire,
-    sortable: true,
-    headerStyle: "width: 50px"
-  }
-]
-
-const columns2 = [
-  {
-    name: "row-number",
-    required: true,
-    label: "#",
-    align: "left",
-    sortable: false,
-    headerStyle: "width: 5px"
-  },
-  {
-    name: "name",
-    required: true,
-    label: "name",
-    align: "left",
-    field: (row) => row.name,
-    format: (val) => `${val}`,
-    sortable: true
-  }
-]
-
-function reloadData_test() {
-  gridBusiness.value.reloadData()
-}
-
-import DataView from "../../components/shared/DataView.vue"
-import CardContainer from "../../components/shared/CardContainer.vue"
 </script>
 
-<style>
-.q-card-desktop {
-  width: 620px !important;
-}
-
-.business-name {
-  max-width: 150px;
-}
-</style>
+<style></style>

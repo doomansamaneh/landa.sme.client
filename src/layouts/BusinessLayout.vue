@@ -74,10 +74,8 @@
           </div>
         </div>
       </q-toolbar>
-      <div class="bread-crumbs flex items-center q-py-sm">
-        <div class="q-px-lg">
-          <bread-crumbs />
-        </div>
+      <div class="bread-crumbs q-py-sm q-px-lg">
+        <bread-crumbs />
       </div>
     </q-header>
 
@@ -131,5 +129,9 @@ function getFirstChar(str) {
 .profile-pic {
   width: 72px;
   height: 72px;
+}
+
+.q-breadcrumbs__el.items-center {
+  display: block;
 }
 </style>

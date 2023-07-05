@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex justify-center items-center">
-    <q-card class="q-card-desktop q-my-lg gt-xs no-shadow">
+    <q-card class="q-card-desktop q-my-xl gt-xs no-shadow">
       <q-item class="card-header q-px-lg q-py-lg">
         <div class="service-extension-btn q-mr-md">
           <q-btn unelevated round icon="add" class="add-new-business">

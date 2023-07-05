@@ -14,13 +14,17 @@ body.body--dark {
     color: $white;
   }
 
+  .q-item__label--caption .q-field__control {
+    background-color: red;
+  }
+
   .dark-1 .q-avatar__content {
     background-color: $dark-5;
   }
 
   .dark-1,
   .business-isowner .q-avatar__content {
-    background-color: $dark-6;
+    background-color: $dark;
   }
 
   .business-isnotowner .q-avatar__content {
@@ -76,6 +80,10 @@ body.body--dark {
   .bread-crumbs {
     background-color: #0c1745;
     color: white;
+  }
+
+  .pagination-el {
+    background-color: $dark;
   }
 }
 
