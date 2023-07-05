@@ -10,8 +10,7 @@ body.body--dark {
   .business-name,
   .business-name-icon,
   .login-form,
-  .q-item__label--caption
-  .q-field__control {
+  .q-item__label--caption .q-field__control {
     color: $white;
   }
 
@@ -81,7 +80,7 @@ body.body--dark {
 }
 
 body.body--light {
-  background: linear-gradient(to bottom, rgb(108, 221, 255), $primary);
+  background-color: #84e3ff;
   .q-header {
     background-color: $white;
   }

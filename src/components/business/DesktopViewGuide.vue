@@ -5,7 +5,6 @@
       arrows
       padding
       control-color="primary"
-      na
       navigation-icon="radio_button_unchecked"
       navigation-active-icon="radio_button_checked"
       animated
@@ -22,7 +21,6 @@
         <div class="flex items-center q-gutter-x-sm">
           <q-avatar
             class="business-isowner"
-            color="blue-7"
             text-color="white"
             icon="o_person"
             size="xl"
