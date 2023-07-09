@@ -9,10 +9,10 @@
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
           <q-item-label class="text-weight-bold text-body1">{{
-            $t("business-page.card-title")
+            $t("page.card-title")
           }}</q-item-label>
           <q-item-label class="q-pt-xs text-body2" caption>
-            {{ $t("business-page.card-message") }}
+            {{ $t("page.card-message") }}
           </q-item-label>
         </q-item-section>
         <div class="flex items-center q-gutter-x-md">
@@ -22,13 +22,11 @@
             name="o_help_outline"
             @click="showGuideDialog = true"
           >
-            <q-tooltip>{{
-              $t("business-page.buttons.guide-tooltip")
-            }}</q-tooltip>
+            <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
           </q-icon>
           <q-btn unelevated round icon="add" class="add-new-business">
             <q-tooltip anchor="top left" self="top right">
-              {{ $t("business-page.buttons.add-new-business-tooltip") }}
+              {{ $t("page.buttons.add-new-business-tooltip") }}
             </q-tooltip>
           </q-btn>
         </div>
@@ -66,7 +64,7 @@
             </div>
           </div>
           <q-tooltip>
-            {{ $t("business-page.buttons.more-button.enter-business") }}
+            {{ $t("page.buttons.more-button.enter-business") }}
           </q-tooltip>
         </q-btn>
       </div>
@@ -79,9 +77,7 @@
             size="sm"
           />
           {{ item.dateCreatedString }}
-          <q-tooltip>{{
-            $t("business-page.buttons.expire-date-tooltip")
-          }}</q-tooltip>
+          <q-tooltip>{{ $t("page.buttons.expire-date-tooltip") }}</q-tooltip>
         </label>
         <q-btn
           v-if="item.isOwner"
@@ -94,7 +90,7 @@
           size="md"
         >
           <q-tooltip>{{
-            $t("business-page.buttons.service-extension-tooltip")
+            $t("page.buttons.service-extension-tooltip")
           }}</q-tooltip>
         </q-btn>
         <q-btn
@@ -119,7 +115,7 @@
           size="md"
           dense
         >
-          <q-tooltip>{{ $t("business-page.buttons.more-tooltip") }}</q-tooltip>
+          <q-tooltip>{{ $t("page.buttons.more-tooltip") }}</q-tooltip>
         </q-btn>
         <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list padding>
@@ -128,7 +124,7 @@
                 <div class="flex items-center q-gutter-x-sm">
                   <q-avatar icon="login" size="sm" class="dark-1" />
                   <div class="text-caption">
-                    {{ $t("business-page.buttons.more-button.enter-business") }}
+                    {{ $t("page.buttons.more-button.enter-business") }}
                   </div>
                 </div>
               </q-item-section>
@@ -139,7 +135,7 @@
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar icon="o_person_add" size="sm" class="dark-1" />
                     <div class="text-caption">
-                      {{ $t("business-page.buttons.more-button.invite-user") }}
+                      {{ $t("page.buttons.more-button.invite-user") }}
                     </div>
                   </div>
                 </q-item-section>
@@ -150,7 +146,7 @@
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar icon="o_delete" size="sm" class="dark-1" />
                     <div class="text-caption">
-                      {{ $t("business-page.buttons.more-button.delete") }}
+                      {{ $t("page.buttons.more-button.delete") }}
                     </div>
                   </div>
                 </q-item-section>
@@ -164,9 +160,7 @@
                   >
                     <q-avatar icon="credit_card" size="sm" class="dark-1" />
                     <div class="text-caption">
-                      {{
-                        $t("business-page.buttons.more-button.payment-history")
-                      }}
+                      {{ $t("page.buttons.more-button.payment-history") }}
                     </div>
                   </div>
                 </q-item-section>

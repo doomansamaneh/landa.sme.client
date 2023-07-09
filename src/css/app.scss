@@ -51,6 +51,7 @@ body.body--dark {
 
   .selected {
     background-color: #5663972f;
+    border-radius: 4px;
   }
 
   .login-header {
@@ -126,6 +127,7 @@ body.body--light {
 
   .selected {
     background-color: $select;
+    border-radius: 4px;
   }
 
   .login-header,

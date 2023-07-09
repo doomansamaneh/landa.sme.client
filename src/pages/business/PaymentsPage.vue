@@ -37,7 +37,7 @@
             dense
             class="text-caption q-mb-sm"
             v-model="searchTerm"
-            :placeholder="$t('business-page.card-searchbar')"
+            :placeholder="$t('page.card-searchbar')"
             @keydown.enter="reloadData"
           >
             <template v-slot:prepend>
@@ -128,9 +128,7 @@
               size="md"
               dense
             >
-              <q-tooltip>{{
-                $t("business-page.buttons.more-tooltip")
-              }}</q-tooltip>
+              <q-tooltip>{{ $t("page.buttons.more-tooltip") }}</q-tooltip>
             </q-btn>
             <q-menu transition-show="jump-down" transition-hide="jump-up">
               <q-list padding>

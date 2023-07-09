@@ -14,7 +14,7 @@
       <q-carousel-slide :name="1" class="column no-wrap flex-center">
         <q-img src="../../assets/about-us-header.png" />
         <div class="text-center q-mt-lg q-px-xl">
-          {{ $t("business-page.buttons.guide.slide1") }}
+          {{ $t("page.buttons.guide.slide1") }}
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="2" class="column no-wrap flex-center">
@@ -46,7 +46,7 @@
         </div>
 
         <div class="q-mt-lg text-center">
-          {{ $t("business-page.buttons.guide.slide2") }}
+          {{ $t("page.buttons.guide.slide2") }}
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="3" class="column no-wrap flex-center">
@@ -61,7 +61,7 @@
           dense
         />
         <div class="q-mt-lg text-center q-px-xl">
-          {{ $t("business-page.buttons.guide.slide3") }}
+          {{ $t("page.buttons.guide.slide3") }}
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="4" class="column no-wrap flex-center">
@@ -72,7 +72,7 @@
           size="xl"
         />
         <div class="q-mt-lg text-center q-px-xl">
-          {{ $t("business-page.buttons.guide.slide4") }}
+          {{ $t("page.buttons.guide.slide4") }}
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="5" class="column no-wrap flex-center">
@@ -86,13 +86,13 @@
           :ripple="false"
         />
         <div class="q-mt-lg text-center q-px-xl">
-          {{ $t("business-page.buttons.guide.slide5") }}
+          {{ $t("page.buttons.guide.slide5") }}
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="6" class="column no-wrap flex-center">
         <q-icon name="import_contacts" size="xl" color="blue-grey-8" />
         <div class="q-mt-lg text-center q-px-xl">
-          {{ $t("business-page.buttons.guide.slide6") }}
+          {{ $t("page.buttons.guide.slide6") }}
         </div>
       </q-carousel-slide>
     </q-carousel>

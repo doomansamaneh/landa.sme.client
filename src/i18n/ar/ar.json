@@ -27,9 +27,10 @@
     }
   },
 
-  "business-page": {
+  "page": {
     "card-title": "أعمالي",
     "card-searchbar": "بحث",
+    "nothing-found": "لم يتم العثور على شيء",
     "card-message": "لغرض الدخول في عمل أو مهنة ما، انقر على اسمه",
     "buttons": {
       "add-new-business-tooltip": "إنشاء أعمال جديدة",

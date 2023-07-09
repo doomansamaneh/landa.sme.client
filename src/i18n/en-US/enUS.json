@@ -27,9 +27,10 @@
     }
   },
 
-  "business-page": {
+  "page": {
     "card-title": "My Businesses",
     "card-searchbar": "Search",
+    "nothing-found": "Nothing found!",
     "card-message": "Click on the business name to enter",
     "buttons": {
       "add-new-business-tooltip": "َAdd New Business",

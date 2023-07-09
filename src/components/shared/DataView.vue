@@ -3,7 +3,7 @@
     <slot name="header"></slot>
     <q-separator />
     <q-linear-progress
-      class="business-progress"
+      class="progress"
       indeterminate
       size="xs"
       v-if="loadingData"
@@ -17,7 +17,7 @@
             dense
             class="text-caption q-mb-sm"
             v-model="searchTerm"
-            :placeholder="$t('business-page.card-searchbar')"
+            :placeholder="$t('page.card-searchbar')"
             @keydown.enter="reloadData"
           >
             <template v-slot:prepend>
@@ -64,7 +64,7 @@
             class="no-results-icon"
           />
         </div>
-        <div class="">چیزی یافت نشد!</div>
+        <div class="">{{ $t("page.nothing-found") }}</div>
       </div>
     </q-card-section>
 
