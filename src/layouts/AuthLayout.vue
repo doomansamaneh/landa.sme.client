@@ -8,7 +8,7 @@
             $t("login-page.page-title")
           }}</span>
           <div class="q-ml-md">
-            <theme-switcher class="gt-xs" />
+            <switch-theme class="gt-xs" />
           </div>
         </q-toolbar-title>
         <div class="flex q-pr-md q-gutter-x-sm">
@@ -19,7 +19,7 @@
             :label="$t('login-page.buttons.signup')"
             class="signup-btn text-weight-bold"
           />
-          <language-switcher class="lang-switcher gt-xs" />
+          <switch-language class="lang-switcher gt-xs" />
         </div>
         <div class="q-pr-md xs">
           <q-btn
@@ -75,7 +75,7 @@
                   />
                 </div>
                 <div class="flex justify-center q-mb-xl absolute-bottom">
-                  <language-switcher class="lang-switcher" />
+                  <switch-language class="lang-switcher" />
                 </div>
               </div>
             </q-list>
@@ -95,8 +95,8 @@
 <script setup>
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
-import LanguageSwitcher from "src/components/shared/LanguageSwitcher.vue"
-import ThemeSwitcher from "app/landa.sme.client/src/components/shared/SwitchTheme.vue"
+import SwitchLanguage from "../components/shared/SwitchLanguage.vue"
+import SwitchTheme from "../components/shared/SwitchTheme.vue"
 
 import { useQuasar } from "quasar"
 import { ref, onMounted, watch } from "vue"

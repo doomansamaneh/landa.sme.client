@@ -6,7 +6,7 @@
           ><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title
         >
         <div class="flex q-gutter-x-md">
-          <theme-switcher />
+          <switch-theme />
 
           <div class="flex items-center q-gutter-x-xs cursor-pointer">
             <q-icon size="sm" name="o_account_circle" />
@@ -92,7 +92,7 @@ import { ref, computed, watchEffect, onMounted, watch } from "vue"
 import { useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
-import ThemeSwitcher from "app/landa.sme.client/src/components/shared/SwitchTheme.vue"
+import SwitchTheme from "../components/shared/SwitchTheme.vue"
 import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
 
 const router = useRouter()
