@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <q-card class="card-desktop">
     <slot name="header"></slot>
     <q-separator />
@@ -52,112 +51,6 @@
         :class="{ selected: isSelected(index) }"
       >
         <slot name="item" :item="item"></slot>
-=======
-  <DesktopViewGuide v-model="showGuideDialog" />
-  <!-- <q-item class="card-header q-px-lg q-py-lg">
-    <q-item-section>
-      <q-item-label class="text-weight-bold text-body1">{{
-        $t("business-page.card-title")
-      }}</q-item-label>
-      <q-item-label class="q-pt-xs text-body2" caption>
-        {{ $t("business-page.card-message") }}
-      </q-item-label>
-    </q-item-section>
-    <div class="flex items-center q-gutter-x-md">
-      <q-icon
-        class="dark-3 cursor-pointer"
-        size="md"
-        name="o_help_outline"
-        @click="showGuideDialog = true"
-      >
-        <q-tooltip>{{ $t("business-page.buttons.guide-tooltip") }}</q-tooltip>
-      </q-icon>
-      <q-btn unelevated round icon="add" class="add-new-business">
-        <q-tooltip anchor="top left" self="top right">
-          {{ $t("business-page.buttons.add-new-business-tooltip") }}
-        </q-tooltip>
-      </q-btn>
-    </div>
-  </q-item> -->
-  <q-separator />
-  <q-linear-progress
-    class="business-progress"
-    indeterminate
-    size="xs"
-    v-if="loadingData"
-  />
-  <q-card-section class="q-px-lg q-gutter-y-md">
-    <div class="search-bar q-pt-sm" v-if="showSearchbar">
-      <q-input
-        outlined
-        dense
-        class="text-caption q-mb-sm"
-        v-model="searchTerm"
-        :placeholder="$t('business-page.card-searchbar')"
-        @keydown.enter="reloadData"
-      >
-        <template v-slot:prepend>
-          <q-icon
-            name="search"
-            class="search-icon cursor-pointer"
-            size="sm"
-            color="primary"
-            @click="reloadData"
-          />
-        </template>
-        <template v-slot:append>
-          <q-icon
-            name="cancel"
-            class="cursor-pointer"
-            size="sm"
-            color="grey-5"
-            @click="clearSearch"
-            v-if="!isSearchEmpty"
-          />
-        </template>
-      </q-input>
-    </div>
-    <q-card
-      class="row justify-between items-center no-shadow q-py-md q-px-md cursor-pointer"
-      v-for="(item, index) in pagedRows"
-      :key="index"
-      @click="selectCard(index)"
-      :class="{ selected: isSelected(index) }"
-    >
-      <div class="col-6 q-gutter-x-sm">
-        <q-avatar
-          class="business-isowner"
-          icon="o_person"
-          size="lg"
-          v-if="item.isOwner"
-        />
-        <q-avatar
-          class="business-isnotowner"
-          icon="o_person"
-          size="lg"
-          v-else
-        />
-        <q-btn
-          class="business-name-btn text-caption text-weight-bold"
-          no-caps
-          flat
-          text-color="dark"
-          :ripple="false"
-          @click="gotoBusiness"
-        >
-          <div class="flex no-wrap q-gutter-sm">
-            <div class="business-name-icon">
-              <q-icon name="o_login" />
-            </div>
-            <div class="business-name flex">
-              <span class="ellipsis">{{ item.title }}</span>
-            </div>
-          </div>
-          <q-tooltip>
-            {{ $t("business-page.buttons.more-button.enter-business") }}
-          </q-tooltip>
-        </q-btn>
->>>>>>> 4128d347753fc16a3b761313a3cfc7b0cddb429d
       </div>
 
       <div
@@ -220,7 +113,7 @@ import { fetchWrapper } from "../../helpers"
 import { computed, onMounted, onBeforeUnmount, watch, defineProps } from "vue"
 import { ref } from "vue"
 import { useQuasar } from "quasar"
-import { stringifyQuery, useRouter } from "vue-router"
+import { useRouter } from "vue-router"
 
 const router = useRouter()
 const rows = ref([])
