@@ -1,6 +1,6 @@
 <template>
   <DesktopViewGuide v-model="showGuideDialog" />
-  <q-item class="card-header q-px-lg q-py-lg">
+  <!-- <q-item class="card-header q-px-lg q-py-lg">
     <q-item-section>
       <q-item-label class="text-weight-bold text-body1">{{
         $t("business-page.card-title")
@@ -24,7 +24,7 @@
         </q-tooltip>
       </q-btn>
     </div>
-  </q-item>
+  </q-item> -->
   <q-separator />
   <q-linear-progress
     class="business-progress"
@@ -269,7 +269,7 @@ import DesktopViewGuide from "../business/DesktopViewGuide.vue"
 import { computed, onMounted, onBeforeUnmount, watch, defineProps } from "vue"
 import { ref } from "vue"
 import { useQuasar } from "quasar"
-import { useRouter } from "vue-router"
+import { stringifyQuery, useRouter } from "vue-router"
 
 const router = useRouter()
 const showGuideDialog = ref(false)
@@ -282,7 +282,9 @@ const selectedCard = ref(false)
 const thisProps = defineProps({
   title: String,
   dataSource: String,
-  color: String
+  color: String,
+  orderByField: String,
+  searchField: String
 })
 
 const pagination = ref({

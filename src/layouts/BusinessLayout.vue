@@ -92,8 +92,8 @@ import { ref, computed, watchEffect, onMounted, watch } from "vue"
 import { useRouter } from "vue-router"
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
-import ThemeSwitcher from "src/components/business/ThemeSwitcher.vue"
-import BreadCrumbs from "src/components/BreadCrumbs.vue"
+import ThemeSwitcher from "app/landa.sme.client/src/components/shared/SwitchTheme.vue"
+import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
 
 const router = useRouter()
 const authStore = useAuthStore()
