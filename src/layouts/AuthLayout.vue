@@ -95,8 +95,8 @@
 <script setup>
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
-import LanguageSwitcher from "src/components/LanguageSwitcher.vue"
-import ThemeSwitcher from "src/components/business/ThemeSwitcher.vue"
+import LanguageSwitcher from "src/components/shared/LanguageSwitcher.vue"
+import ThemeSwitcher from "app/landa.sme.client/src/components/shared/SwitchTheme.vue"
 
 import { useQuasar } from "quasar"
 import { ref, onMounted, watch } from "vue"
