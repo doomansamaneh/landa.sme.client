@@ -192,7 +192,7 @@ const showGuideDialog = ref(false)
 </script>
 
 <style>
-.q-card-desktop {
+.card-desktop {
   width: 620px !important;
 }
 
