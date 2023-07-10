@@ -3,6 +3,7 @@ import { useAuthStore } from "../stores"
 import { useAlertStore } from "../stores"
 
 const baseUrl = "https://api.landa-sme.ir"
+//const baseUrl = "http://localhost:9090"
 axios.defaults.baseURL = baseUrl
 
 export const fetchWrapper = {
