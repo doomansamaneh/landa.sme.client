@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex justify-center items-center">
-    <q-card class="q-card-desktop gt-xs no-shadow q-my-xl">
+    <q-card class="q-card-desktop gt-xs blue-shadow q-my-xl">
       <data-view
         dataSource="business/getBusinessGridData"
         orderByField="title"

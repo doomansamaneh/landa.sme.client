@@ -1,5 +1,5 @@
 <template>
-  <q-card class="card-desktop no-shadow">
+  <q-card class="card-desktop">
     <slot name="header"></slot>
     <q-separator />
     <q-linear-progress
