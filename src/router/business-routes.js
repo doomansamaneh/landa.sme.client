@@ -11,9 +11,16 @@ export default {
       },
     },
     {
-      path: "payments", name: "Payments", component: () => import("pages/business/PaymentsPage.vue"), meta: {
+      path: "payments/:businessId", name: "Payments", component: () => import("src/pages/business/PaymentPage.vue"), meta: {
         icon: "payment"
+
       },
-    }
+    },
+    {
+      path: "paymentDetail", name: "Payments Detail", component: () => import("src/pages/business/PaymentDetail.vue"), meta: {
+        icon: "o_info"
+      },
+    },
+
   ],
 }

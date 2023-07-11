@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex justify-center items-center q-py-xl">
+  <q-page class="flex justify-center items-center full-screen">
     <!-- <MobileView /> -->
     <DesktopView />
   </q-page>
