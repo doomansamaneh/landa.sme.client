@@ -4,10 +4,10 @@
     <q-separator />
     <q-linear-progress class="progress" indeterminate size="xs" v-if="loadingData" />
 
-    <q-card-section class="q-px-lg q-gutter-y-md">
+    <q-card-section v-if="!showSearchbar" class="q-pb-xs">
       <slot name="search-bar">
-        <div class="search-bar q-pt-sm" v-if="showSearchbar">
-          <q-input outlined dense class="text-caption q-mb-sm" v-model="searchTerm"
+        <div class="search-bar">
+          <q-input outlined dense class="text-caption q-mb-sm_" v-model="searchTerm"
             :placeholder="$t('page.card-searchbar')" @keydown.enter="reloadData">
             <template v-slot:prepend>
               <q-icon name="search" class="search-icon cursor-pointer" size="sm" color="primary" @click="reloadData" />
@@ -19,24 +19,26 @@
           </q-input>
         </div>
       </slot>
+    </q-card-section>
 
-      <div class="row justify-between items-center no-shadow q-py-md q-px-md cursor-pointer"
-        v-for="(item, index) in pagedRows" :key="index" @click="selectCard(index)"
-        :class="{ selected: isSelected(index) }">
+    <q-card-section v-if="pagedRows.length > 0">
+      <div class="row justify-between items-center q-py-md q-px-md cursor-pointer" v-for="(item, index) in pagedRows"
+        :key="index" @click="selectCard(index)" :class="{ selected: isSelected(index) }">
         <slot name="item" :item="item"></slot>
       </div>
+    </q-card-section>
 
-      <div class="nothing-found q-py-xl q-mb-md q-mt-xs no-results column justify-center items-center q-gutter-y-md"
-        v-if="showSearchbar && pagedRows.length === 0 && !loadingData">
+    <q-card-section v-if="pagedRows.length === 0 && !loadingData">
+      <div class="nothing-found no-results column justify-center items-center q-py-xl_q-mb-md_q-mt-xs_q-gutter-y-md">
         <div class="">
           <!-- <q-avatar
-            icon="search"
-            size="3rem"
-            class="no-results-icon"
-            round
-            color="primary"
-            text-color="white"
-          /> -->
+          icon="search"
+          size="3rem"
+          class="no-results-icon"
+          round
+          color="primary"
+          text-color="white"
+        /> -->
           <q-img class="nothing-found-svg" src="../../../public/page-lost.svg" style="width: 200px" />
         </div>
         <div class="">{{ $t("page.nothing-found") }}</div>

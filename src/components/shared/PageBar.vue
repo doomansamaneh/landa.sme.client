@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-pt-md justify-between dark-1 q-px-lg q-py-md" v-if="showPagebar">
+  <div v-if="showPagebar" class="row justify-between dark-1 q-px-md q-py-md fit">
     <div class="pagination col-8 flex items-center">
       <q-pagination v-if="showPaging" v-model="pagination.currentPage" :min="1" :max="maxPage" direction-links
         boundary-links icon-first="keyboard_double_arrow_left" icon-last="keyboard_double_arrow_right"
