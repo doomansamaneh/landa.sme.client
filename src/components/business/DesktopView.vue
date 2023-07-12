@@ -18,12 +18,7 @@
               </q-item-label>
             </q-item-section>
             <div class="flex items-center q-mr-xs">
-              <q-icon
-                class="dark-3 cursor-pointer"
-                size="sm"
-                name="o_refresh"
-                @click="reloadData"
-              >
+              <q-icon class="dark-3 cursor-pointer" size="sm" name="o_refresh">
                 <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
               </q-icon>
             </div>
@@ -131,7 +126,7 @@
               unelevated
               falt
               round
-              icon="more_vert"
+              icon="more_horiz"
               size="md"
               dense
             >
@@ -176,7 +171,11 @@
                     </q-item-section>
                   </q-item>
                   <q-separator spaced />
-                  <q-item clickable v-close-popup @click="goToPaymentHistory">
+                  <q-item
+                    clickable
+                    v-close-popup
+                    @click="goToPaymentHistory(item)"
+                  >
                     <q-item-section>
                       <div class="flex items-center q-gutter-x-sm">
                         <q-avatar icon="credit_card" size="sm" class="dark-1" />
@@ -197,6 +196,7 @@
 </template>
 
 <script setup>
+import func from "app/vue-temp/vue-editor-bridge"
 import businessRoutes from "src/router/business-routes"
 import { ref, defineProps } from "vue"
 import { useRouter } from "vue-router"
@@ -206,12 +206,19 @@ const router = useRouter()
 import DataView from "../../components/shared/DataView.vue"
 import DesktopViewGuide from "./DesktopViewGuide.vue"
 
+//const businessDataView = ref(null)
+
 async function gotoBusiness() {}
 
-async function goToPaymentHistory() {
-  const businessId = "79f898ef-de59-4390-a7e9-f68880f2caa5"
-  router.push(`business/payments/${businessId}`)
+async function goToPaymentHistory(item) {
+  //alert(item.id)
+  //console.log(item)
+  router.push(`business/payments/${item.id}/${item.title}`)
 }
+
+// function reloadData() {
+//   businessDataView.value.reloadData()
+// }
 
 const showGuideDialog = ref(false)
 </script>

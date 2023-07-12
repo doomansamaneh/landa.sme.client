@@ -2,10 +2,10 @@
   <q-page class="flex justify-center items-center">
     <q-card class="q-card-desktop gt-xs no-shadow q-my-xl">
       <data-view
-        :dataSource="`business/getBusinessPaymentGridData/${businessId}`"
+        :dataSource="`business/getBusinessPaymentGridData/${$route.params.businessId}`"
         orderByField="fromDate"
         searchField="amount"
-        :businessTitle="businessTitle"
+        @page-changed="loadData"
       >
         <template #header>
           <q-item class="card-header q-px-lg q-py-lg">
@@ -25,7 +25,7 @@
                 >تاریخچه پرداخت</q-item-label
               >
               <q-item-label class="q-pt-xs text-body2" caption>
-                {{ businessTitle }}
+                {{ $route.params.businessTitle }}
               </q-item-label>
             </q-item-section>
             <div class="flex items-center q-mr-xs">
@@ -47,13 +47,13 @@
         </template>
 
         <template #item="{ item }">
-          <div class="col-6 q-gutter-x-md">
+          <div class="col-5">
             <div class="flex justify-start">
-              <label class="dark-2"
+              <label class=""
                 ><q-icon
-                  class="expire-date-clock dark-icon2"
+                  class="expire-date-clock dark-2"
                   name="history"
-                  size="sm"
+                  size="md"
                 />
                 {{
                   "از: " +
@@ -66,35 +66,46 @@
             </div>
           </div>
 
-          <div
-            class="expire-date-container col-3 flex items-center q-gutter-x-xl"
-          >
-            <label class="dark-2"
+          <div class="col-2 flex items-center">
+            <label class=""
               ><q-icon
-                class="expire-date-clock dark-icon2"
+                class="expire-date-clock dark-2"
                 name="attach_money"
-                size="sm"
+                size="xs"
               />
-              {{ numberWithCommas(item.amount) }}
-              <q-tooltip>مبلغ</q-tooltip>
+              {{ item.amount.toLocaleString() }}
+              <q-tooltip>مبلغ پرداختی</q-tooltip>
             </label>
+            <!-- <q-badge color="primary" class="amount q-py-xs">
+              <q-icon name="attach_money" color="white" class="q-ml-xs" />
+              <span>{{ numberWithCommas(item.amount) }}</span>
+              <q-tooltip>مبلغ پرداختی</q-tooltip>
+            </q-badge> -->
+          </div>
+          <div class="">
+            <q-badge
+              color="warning"
+              text-color="white"
+              label="طرح 3"
+              class="q-py-xs q-px-sm"
+            />
           </div>
           <div
-            class="expire-date-container col-4 flex items-center justify-center q-gutter-x-xl"
+            class="expire-date-container col-2 flex items-center justify-center q-gutter-x-xl"
           >
             <q-badge
               v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
               color="orange"
               text-color="white"
               label="دوره آزمایشی"
-              class="q-py-xs"
+              class="q-py-xs q-px-sm"
             />
             <q-badge
               v-else
-              color="orange"
+              color="positive"
               text-color="white"
               label="پرداخت شده"
-              class="q-py-xs"
+              class="q-py-xs q-px-sm"
             />
           </div>
           <div class="more-options col-1 q-pl-md">
@@ -103,7 +114,7 @@
               unelevated
               falt
               round
-              icon="more_vert"
+              icon="more_horiz"
               size="md"
               dense
             >
@@ -149,8 +160,8 @@ const route = useRouter()
 // const searchTerm = ref("")
 // const defaultPageSize = 11
 // const selectedCard = ref(false)
-const businessId = ref("79f898ef-de59-4390-a7e9-f68880f2caa5")
-const businessTitle = ref("دومان سامانه برای تست")
+// const businessId = route.params.businessId
+// const businessTitle = ref("دومان سامانه برای تست")
 // const pagination = ref({
 //   sortBy: "dateCreated",
 //   descending: true,
@@ -212,7 +223,7 @@ const businessTitle = ref("دومان سامانه برای تست")
 //   }
 
 //   const response = await fetchWrapper
-//     .post("business/getBusinessGridData", {
+//     .post(`business/getBusinessPaymentGridData/${businessId.value}`, {
 //       pageSize: data.pageSize,
 //       sortColumn: data.sortBy,
 //       sortOrder: data.descending ? 1 : 2,
@@ -243,9 +254,13 @@ async function goToPaymentDetail() {
   router.push("/business/PaymentDetail")
 }
 
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-}
+// function numberWithCommas(x) {
+//   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+// }
+
+const amountString = computed(() => {
+  return item.amount.toLocaleString({ minimumFractionDigits: 2 })
+})
 </script>
 
 <style lang="scss">
@@ -256,4 +271,8 @@ function numberWithCommas(x) {
 .business-name {
   max-width: 150px;
 }
+
+// .amount {
+//   width: 85px;
+// }
 </style>

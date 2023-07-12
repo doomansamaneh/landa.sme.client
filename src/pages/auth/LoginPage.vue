@@ -5,8 +5,7 @@
         <div class="logo flex justify-center">
           <q-img
             src="../../../public/about-us-header.png"
-            class="q-mb-md"
-            style="width: 270px"
+            class="login-img q-mb-md"
           />
         </div>
         <q-card class="login-form no-shadow">
@@ -136,5 +135,9 @@ const isLoggingIn = computed(() => authStore.isLoggingIn)
 .forgot-password a {
   text-decoration: none;
   color: #0087f6;
+}
+
+.login-img {
+  width: 270px;
 }
 </style>

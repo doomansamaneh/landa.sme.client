@@ -54,59 +54,29 @@
       </div>
 
       <div
-        class="no-results flex justify-center q-my-xl items-center q-gutter-x-sm"
+        class="nothing-found q-py-xl q-mb-md q-mt-xs no-results column justify-center items-center q-gutter-y-md"
         v-if="showSearchbar && pagedRows.length === 0 && !loadingData"
       >
         <div class="">
-          <q-icon
-            name="o_sentiment_dissatisfied"
-            size="sm"
+          <!-- <q-avatar
+            icon="search"
+            size="3rem"
             class="no-results-icon"
+            round
+            color="primary"
+            text-color="white"
+          /> -->
+          <q-img
+            class="nothing-found-svg"
+            src="../../../public/page-lost.svg"
+            style="width: 200px"
           />
         </div>
         <div class="">{{ $t("page.nothing-found") }}</div>
       </div>
     </q-card-section>
 
-    <div
-      class="row q-pt-md justify-between dark-1 q-px-lg q-py-md"
-      v-if="showPagebar"
-    >
-      <div class="pagination col-8 flex items-center">
-        <q-pagination
-          v-if="showPaging"
-          v-model="pagination.currentPage"
-          :min="1"
-          :max="maxPage"
-          direction-links
-          boundary-links
-          icon-first="keyboard_double_arrow_left"
-          icon-last="keyboard_double_arrow_right"
-          icon-prev="chevron_left"
-          icon-next="chevron_right"
-          @update:model-value="reloadData"
-          gutter="xs"
-          padding="2px 4px 2px 4px"
-          round
-          color="grey-8"
-          active-color="primary"
-        />
-      </div>
-      <div class="col-2">
-        <q-select
-          dense
-          outlined
-          v-model="pagination.pageSize"
-          :options="[5, 10, 20]"
-          @update:model-value="reloadData"
-          transition-show="flip-up"
-          transition-hide="flip-down"
-          class="q-pl-lg"
-          input-class="text-red"
-          popup-content-class="text-body2 text-weight-medium text-grey-8"
-        />
-      </div>
-    </div>
+    <page-bar :pagination="pagination" @page-changed="loadData" />
   </q-card>
 </template>
 
@@ -124,6 +94,7 @@ import { ref } from "vue"
 import { useQuasar } from "quasar"
 import { useRouter } from "vue-router"
 import businessRoutes from "src/router/business-routes"
+import PageBar from "./PageBar.vue"
 
 const router = useRouter()
 const rows = ref([])
@@ -150,19 +121,6 @@ const pagination = ref({
   totalItems: 0
 })
 
-const showPagebar = computed(() => {
-  return pagination.value.totalItems > defaultPageSize
-})
-
-const showPaging = computed(() => {
-  return pagination.value.totalItems > pagination.value.pageSize
-})
-
-const showSearchbar = computed(() => {
-  return true
-  return pagination.value.totalItems > defaultPageSize || !isSearchEmpty.value
-})
-
 function clearSearch() {
   searchTerm.value = ""
   reloadData()
@@ -170,10 +128,6 @@ function clearSearch() {
 
 const isSearchEmpty = computed(
   () => !searchTerm.value || searchTerm.value.trim().length === 0
-)
-
-const maxPage = computed(() =>
-  Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
 )
 
 const pagedRows = computed(() => {
@@ -221,7 +175,6 @@ async function loadData(data) {
 function handleResponse(response, pagination) {
   rows.value = response.data.items
   //pagination.value = response.data.page
-  businessId.value = response.data.items.id
   pagination.totalItems = response.data.page.totalItems
   pagination.pageSize = response.data.page.pageSize
   pagination.currentPage = response.data.page.currentPage
@@ -245,5 +198,9 @@ function isSelected(index) {
 
 .q-field--auto-height.q-field--dense .q-field__native {
   font-weight: 500;
+}
+
+.nothing-found-svg {
+  width: 200px;
 }
 </style>

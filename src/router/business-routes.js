@@ -11,7 +11,7 @@ export default {
       },
     },
     {
-      path: "payments/:businessId", name: "Payments", component: () => import("src/pages/business/PaymentPage.vue"), meta: {
+      path: "payments/:businessId/:businessTitle", name: "Payments", component: () => import("src/pages/business/PaymentPage.vue"), meta: {
         icon: "payment"
 
       },
