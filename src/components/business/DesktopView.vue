@@ -1,29 +1,49 @@
 <template>
   <q-page class="flex justify-center items-center">
-    <data-view ref="businessDataView" dataSource="business/getBusinessGridData" orderByField="title"
-      searchField="b.title">
-
+    <data-view
+      ref="businessDataView"
+      dataSource="business/getBusinessGridData"
+      orderByField="title"
+      searchField="b.title"
+      @reload-data="handleReloadData"
+    >
       <template #header>
         <DesktopViewGuide v-model="showGuideDialog" />
         <q-item class="card-header q-px-lg q-py-lg">
           <q-item-section>
-            <q-item-label class="text-weight-bold text-body1">{{
-                $t("page.card-title")
-              }}</q-item-label>
-            <q-item-label class="q-pt-xs text-body2" caption>
-              {{ $t("page.card-message") }}
-            </q-item-label>
+            <q-item-label class="text-bold text-subtitle1">{{
+              $t("page.card-title")
+            }}</q-item-label>
+            <q-item-label class="q-pt-xs text-subtitle2" caption>{{
+              $t("page.card-message")
+            }}</q-item-label>
           </q-item-section>
           <div class="flex items-center q-mr-xs">
-            <q-icon class="dark-3 cursor-pointer" size="sm" name="o_refresh" @click="reloadData">
+            <q-icon
+              class="dark-3 cursor-pointer"
+              size="sm"
+              name="o_refresh"
+              @click="$emit('reload-data')"
+            >
               <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon class="dark-3 cursor-pointer" size="sm" name="o_help_outline" @click="showGuideDialog = true">
+            <q-icon
+              class="dark-3 cursor-pointer"
+              size="sm"
+              name="o_help_outline"
+              @click="showGuideDialog = true"
+            >
               <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
             </q-icon>
-            <q-btn unelevated round icon="add" class="add-new-business" size="12px">
+            <q-btn
+              unelevated
+              round
+              icon="add"
+              class="add-new-business"
+              size="12px"
+            >
               <q-tooltip anchor="top left" self="top right">
                 {{ $t("page.buttons.add-new-business-tooltip") }}
               </q-tooltip>
@@ -34,10 +54,22 @@
 
       <template #item="{ item }">
         <div class="col-6 q-gutter-x-sm">
-          <q-avatar class="business-isowner" icon="o_person" size="lg" v-if="item.isOwner" />
-          <q-avatar class="business-isnotowner" icon="o_person" size="lg" v-else />
-          <q-btn class="business-name-btn text-caption text-weight-bold" no-caps flat text-color="dark" :ripple="false"
-            @click="gotoBusiness">
+          <q-avatar
+            :class="{
+              'business-isowner': item.isOwner,
+              'business-isnotowner': !item.isOwner
+            }"
+            icon="o_person"
+            size="lg"
+          />
+          <q-btn
+            class="business-name-btn text-caption text-weight-bold"
+            no-caps
+            flat
+            text-color="dark"
+            :ripple="false"
+            @click="gotoBusiness"
+          >
             <div class="flex no-wrap q-gutter-sm">
               <div class="business-name-icon">
                 <q-icon name="o_login" />
@@ -53,24 +85,50 @@
         </div>
 
         <div class="expire-date-container flex items-center q-gutter-x-xl">
-          <label class="dark-2"><q-icon class="expire-date-clock dark-icon2" name="history" size="sm" />
+          <label class="dark-2">
+            <q-icon
+              class="expire-date-clock dark-icon2"
+              name="history"
+              size="sm"
+            />
             {{ item.dateCreatedString }}
-            <q-tooltip>{{
-                $t("page.buttons.expire-date-tooltip")
-              }}</q-tooltip>
+            <q-tooltip>{{ $t("page.buttons.expire-date-tooltip") }}</q-tooltip>
           </label>
-          <q-btn v-if="item.isOwner" class="service-extension q-pa-sm" round dense flat color="positive"
-            icon="o_add_shopping_cart" size="md">
+          <q-btn
+            v-if="item.isOwner"
+            class="service-extension q-pa-sm"
+            round
+            dense
+            flat
+            color="positive"
+            icon="o_add_shopping_cart"
+            size="md"
+          >
             <q-tooltip>{{
-                $t("page.buttons.service-extension-tooltip")
-              }}</q-tooltip>
+              $t("page.buttons.service-extension-tooltip")
+            }}</q-tooltip>
           </q-btn>
-          <q-btn v-else class="service-extension dark-2 q-pa-sm" round dense flat icon="o_add_shopping_cart" size="md"
-            disable>
-          </q-btn>
+          <q-btn
+            v-else
+            class="service-extension dark-2 q-pa-sm"
+            round
+            dense
+            flat
+            icon="o_add_shopping_cart"
+            size="md"
+            disable
+          />
         </div>
         <div class="more-options col-1 q-pl-md">
-          <q-btn class="more-icon dark-2" unelevated falt round icon="more_horiz" size="md" dense>
+          <q-btn
+            class="more-icon dark-2"
+            unelevated
+            flat
+            round
+            icon="more_horiz"
+            size="md"
+            dense
+          >
             <q-tooltip>{{ $t("page.buttons.more-tooltip") }}</q-tooltip>
           </q-btn>
           <q-menu transition-show="jump-down" transition-hide="jump-up">
@@ -108,7 +166,11 @@
                   </q-item-section>
                 </q-item>
                 <q-separator spaced />
-                <q-item clickable v-close-popup @click="goToPaymentHistory(item)">
+                <q-item
+                  clickable
+                  v-close-popup
+                  @click="goToPaymentHistory(item)"
+                >
                   <q-item-section>
                     <div class="flex items-center q-gutter-x-sm">
                       <q-avatar icon="credit_card" size="sm" class="dark-1" />
@@ -123,40 +185,35 @@
           </q-menu>
         </div>
       </template>
-
     </data-view>
   </q-page>
 </template>
 
 <script setup>
-  import businessRoutes from "src/router/business-routes"
-  import { ref } from "vue"
-  import { useRouter } from "vue-router"
+import businessRoutes from "src/router/business-routes"
+import { ref, onMounted, computed } from "vue"
+import { useRouter } from "vue-router"
 
-  import DataView from "../../components/shared/DataView.vue"
-  import DesktopViewGuide from "./DesktopViewGuide.vue"
+import DataView from "../../components/shared/DataView.vue"
+import DesktopViewGuide from "./DesktopViewGuide.vue"
 
-  const router = useRouter()
-  const businessDataView = ref(null)
-  const showGuideDialog = ref(false)
+const router = useRouter()
+const businessDataView = ref(null)
+const showGuideDialog = ref(false)
 
-  async function gotoBusiness() { }
+async function gotoBusiness() {}
 
-  async function goToPaymentHistory(item) {
-    router.push(`business/payments/${item.id}/${item.title}`)
-  }
+async function goToPaymentHistory(item) {
+  router.push(`business/payments/${item.id}/${item.title}`)
+}
 
-  async function reloadData() {
-    businessDataView.value.reloadData()
-  }
+function handleReloadData() {
+  // businessDataView.value.reloadData()
+}
 </script>
 
 <style>
-  .card-desktop {
-    width: 620px !important;
-  }
-
-  .business-name {
-    max-width: 150px;
-  }
+.business-name {
+  max-width: 150px;
+}
 </style>
