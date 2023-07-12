@@ -29,12 +29,7 @@
               </q-item-label>
             </q-item-section>
             <div class="flex items-center q-mr-xs">
-              <q-icon
-                class="dark-3 cursor-pointer"
-                size="sm"
-                name="o_refresh"
-                @click="reloadData"
-              >
+              <q-icon class="dark-3 cursor-pointer" size="sm" name="o_refresh">
                 <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
               </q-icon>
             </div>
@@ -80,7 +75,7 @@
                 name="attach_money"
                 size="sm"
               />
-              {{ item.amount }}
+              {{ numberWithCommas(item.amount) }}
               <q-tooltip>مبلغ</q-tooltip>
             </label>
           </div>
@@ -246,6 +241,13 @@ const businessTitle = ref("دومان سامانه برای تست")
 
 async function goToPaymentDetail() {
   router.push("/business/PaymentDetail")
+}
+
+function numberWithCommas(x) {
+  x = x.toString()
+  var pattern = /(-?\d+)(\d{3})/
+  while (pattern.test(x)) x = x.replace(pattern, "$1,$2")
+  return x
 }
 </script>
 
