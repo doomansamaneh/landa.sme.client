@@ -63,14 +63,6 @@
   import businessRoutes from "src/router/business-routes"
   import PageBar from "./PageBar.vue"
 
-  const router = useRouter()
-  const rows = ref([])
-  const loadingData = ref(false)
-  const searchTerm = ref("")
-  const defaultPageSize = 5
-  const selectedCard = ref(false)
-  const businessId = ref("")
-
   const props = defineProps({
     title: String,
     dataSource: String,
@@ -80,6 +72,14 @@
     businessTitle: String
   })
 
+  const router = useRouter()
+  const rows = ref([])
+  const loadingData = ref(false)
+  const searchTerm = ref("")
+  const defaultPageSize = 5
+  const selectedCard = ref(false)
+  const businessId = ref("")
+
   const pagination = ref({
     sortBy: props.orderByField,
     descending: false,
@@ -88,9 +88,9 @@
     totalItems: 0
   })
 
-  function clearSearch() {
+  async function clearSearch() {
     searchTerm.value = ""
-    reloadData()
+    await reloadData()
   }
 
   const isSearchEmpty = computed(
@@ -106,7 +106,7 @@
   })
 
   async function reloadData() {
-    loadData(pagination.value)
+    await loadData(pagination.value)
   }
 
   async function loadData(data) {
@@ -123,7 +123,7 @@
       })
     }
 
-    const response = await fetchWrapper
+    await fetchWrapper
       .post(props.dataSource, {
         pageSize: data.pageSize,
         sortColumn: data.sortBy,

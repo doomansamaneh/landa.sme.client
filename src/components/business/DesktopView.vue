@@ -1,8 +1,8 @@
 <template>
   <q-page class="flex justify-center items-center">
     <q-card class="q-card-desktop gt-xs blue-shadow q-my-xl">
-      <data-view dataSource="business/getBusinessGridData" orderByField="title" searchField="b.title"
-        ref="businessDataView">
+      <data-view ref="businessDataView" dataSource="business/getBusinessGridData" orderByField="title"
+        searchField="b.title">
         <template #header>
           <DesktopViewGuide v-model="showGuideDialog" />
           <q-item class="card-header q-px-lg q-py-lg">
@@ -149,7 +149,6 @@
   async function reloadData() {
     businessDataView.value.reloadData()
   }
-
 </script>
 
 <style>
