@@ -99,8 +99,9 @@
           <q-btn
             v-if="item.isOwner"
             rounded
-            class="service-extension text-caption q-px-sm"
+            class="service-extension text-caption q-px-sm q-py-xs"
             outline
+            size="11px"
           >
             <q-icon name="add" class="q-pr-xs" size="14px" />
             {{ $t("page.buttons.service-extension-tooltip") }}
@@ -113,7 +114,8 @@
             rounded
             v-else
             disable
-            class="service-extension-not-owner text-caption q-px-sm"
+            class="service-extension-not-owner text-caption q-px-sm q-py-xs"
+            size="11px"
           >
             <q-icon name="add" class="q-pr-xs" size="14px" />
             {{ $t("page.buttons.service-extension-tooltip") }}

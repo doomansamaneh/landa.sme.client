@@ -1,5 +1,5 @@
 <template>
-  <q-card class="card-desktop">
+  <q-card class="card-desktop no-shadow">
     <slot name="header"></slot>
     <q-separator />
     <q-linear-progress
@@ -195,5 +195,6 @@ function isSelected(index) {
 
 .q-field--auto-height.q-field--dense .q-field__native {
   font-weight: 500;
+  font-size: 13px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-card-desktop gt-xs no-shadow q-my-xl">
+  <q-card class="card-desktop gt-xs no-shadow q-my-xl">
     <data-view
       :dataSource="`business/getBusinessPaymentGridData/${$route.params.businessId}`"
       orderByField="fromDate"
@@ -8,7 +8,6 @@
     >
       <template #header>
         <q-item class="card-header q-px-lg q-py-lg">
-          <div class="page-title"></div>
           <q-item-section>
             <q-item-label class="text-bold text-subtitle1"
               >تاریخچه پرداخت</q-item-label
@@ -135,8 +134,8 @@ const route = useRouter()
 
 const planTitle = "طرح 3"
 
-async function goToPaymentDetail() {
-  router.push("/business/PaymentDetail")
+async function goToPaymentDetail(item) {
+  router.push(`/business/PaymentDetail/${item.id}`)
 }
 
 const formatCurrency = (value) => {
@@ -154,7 +153,7 @@ function toPersianDigits(number) {
 </script>
 
 <style lang="scss">
-.q-card-desktop {
+.card-desktop {
   width: 620px !important;
 }
 

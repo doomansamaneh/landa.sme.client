@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="showPagebar"
-    class="row justify-between dark-1 q-px-md q-py-md fit"
-  >
+  <div v-if="showPagebar" class="row justify-between dark-1 q-px-md q-py-md">
     <div class="pagination flex items-center">
       <q-pagination
         v-if="showPaging"
@@ -17,11 +14,11 @@
         icon-next="chevron_right"
         @update:model-value="handlePageChange"
         gutter="xs"
-        padding="2px 2px 1px 2px"
+        padding="3px 2px 1px 2px"
         round
         color="grey-8"
         active-color="primary"
-        size="14px"
+        size="13px"
       />
     </div>
     <div class="col-2">
