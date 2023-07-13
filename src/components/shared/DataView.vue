@@ -190,7 +190,7 @@ function isSelected(index) {
 
 <style>
 .card-desktop {
-  width: 620px !important;
+  width: 650px !important;
 }
 
 .q-field--auto-height.q-field--dense .q-field__native {

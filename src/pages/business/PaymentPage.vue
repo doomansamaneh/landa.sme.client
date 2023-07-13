@@ -8,17 +8,7 @@
     >
       <template #header>
         <q-item class="card-header q-px-lg q-py-lg">
-          <div class="service-extension-btn q-mr-md">
-            <q-btn
-              unelevated
-              round
-              icon="add"
-              size="12px"
-              class="add-new-business q-py-sm"
-            >
-              <q-tooltip> تمدید سرویس </q-tooltip>
-            </q-btn>
-          </div>
+          <div class="page-title"></div>
           <q-item-section>
             <q-item-label class="text-bold text-subtitle1"
               >تاریخچه پرداخت</q-item-label
@@ -28,75 +18,78 @@
             </q-item-label>
           </q-item-section>
           <div class="flex items-center q-mr-xs">
-            <q-icon class="dark-3 cursor-pointer" size="sm" name="o_refresh">
+            <q-icon
+              class="dark-3 cursor-pointer"
+              size="xs"
+              name="o_refresh"
+              @click="$emit('reload-data')"
+            >
               <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
             <q-icon
               class="dark-3 cursor-pointer"
-              size="sm"
+              size="xs"
               name="arrow_back"
               @click="$router.go(-1)"
             >
               <q-tooltip>بازگشت</q-tooltip>
             </q-icon>
+            <q-btn
+              rounded
+              class="service-extension text-caption q-px-md q-py-sm"
+              outline
+            >
+              <q-icon name="add" class="q-pr-xs" size="xs" />
+              <span class="text-caption">{{
+                $t("page.buttons.service-extension-tooltip")
+              }}</span>
+              <q-tooltip>{{
+                $t("page.buttons.service-extension-tooltip")
+              }}</q-tooltip>
+            </q-btn>
           </div>
         </q-item>
       </template>
 
       <template #item="{ item }">
-        <div class="col-5">
+        <div class="col-4">
           <div class="flex justify-start">
-            <label class=""
+            <label class="text-caption"
               ><q-icon
                 class="expire-date-clock dark-2"
                 name="history"
-                size="md"
+                size="xs"
               />
-              {{
-                "از: " + item.fromDateString + " " + "تا: " + item.toDateString
-              }}
+              {{ toPersianDigits(item.fromDateString) }} -
+              {{ toPersianDigits(item.toDateString) }}
             </label>
           </div>
         </div>
 
         <div class="col-2 flex items-center">
-          <label class=""
-            ><q-icon
-              class="expire-date-clock dark-2"
-              name="attach_money"
-              size="xs"
-            />
-            {{ item.amount.toLocaleString() }}
+          <label class="text-caption">
+            {{ formatCurrency(item.amount) }}
+            <span>ریال</span>
             <q-tooltip>مبلغ پرداختی</q-tooltip>
           </label>
         </div>
-        <div class="">
-          <q-badge
-            color="warning"
-            text-color="white"
-            label="طرح 3"
-            class="q-py-xs q-px-sm"
-          />
+        <div class="col-1">
+          <label class="text-caption text-primary">{{ planTitle }}</label>
         </div>
         <div
-          class="expire-date-container col-2 flex items-center justify-center q-gutter-x-xl"
+          class="expire-date-container col-3 flex items-center justify-center q-gutter-x-xl"
         >
-          <q-badge
+          <label
             v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
-            color="orange"
-            text-color="white"
-            label="دوره آزمایشی"
-            class="q-py-xs q-px-sm"
-          />
-          <q-badge
-            v-else
-            color="positive"
-            text-color="white"
-            label="پرداخت شده"
-            class="q-py-xs q-px-sm"
-          />
+            class="text-caption"
+          >
+            <q-icon name="circle" color="orange" size="8px" /> دوره آزمایشی
+          </label>
+          <label v-else class="text-caption">
+            <q-icon name="circle" color="positive" size="8px" /> پرداخت شده
+          </label>
         </div>
         <div class="more-options col-1 q-pl-md">
           <q-btn
@@ -140,13 +133,24 @@ import { useRoute, useRouter } from "vue-router"
 const router = useRouter()
 const route = useRouter()
 
+const planTitle = "طرح 3"
+
 async function goToPaymentDetail() {
   router.push("/business/PaymentDetail")
 }
 
-const amountString = computed(() => {
-  return item.amount.toLocaleString({ minimumFractionDigits: 2 })
-})
+const formatCurrency = (value) => {
+  return value.toLocaleString("fa-IR", {
+    // style: "currency",
+    currency: "IRR",
+    minimumFractionDigits: 0
+  })
+}
+
+function toPersianDigits(number) {
+  const persianDigits = "۰۱۲۳۴۵۶۷۸۹"
+  return number.toString().replace(/\d/g, (digit) => persianDigits[digit])
+}
 </script>
 
 <style lang="scss">

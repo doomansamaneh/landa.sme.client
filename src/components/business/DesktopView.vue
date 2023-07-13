@@ -21,7 +21,7 @@
           <div class="flex items-center q-mr-xs">
             <q-icon
               class="dark-3 cursor-pointer"
-              size="sm"
+              size="xs"
               name="o_refresh"
               @click="$emit('reload-data')"
             >
@@ -31,7 +31,7 @@
           <div class="flex items-center q-gutter-x-md">
             <q-icon
               class="dark-3 cursor-pointer"
-              size="sm"
+              size="xs"
               name="o_help_outline"
               @click="showGuideDialog = true"
             >
@@ -53,17 +53,17 @@
       </template>
 
       <template #item="{ item }">
-        <div class="col-6 q-gutter-x-sm">
+        <div class="col-6">
           <q-avatar
             :class="{
               'business-isowner': item.isOwner,
               'business-isnotowner': !item.isOwner
             }"
             icon="o_person"
-            size="lg"
+            size="md"
           />
           <q-btn
-            class="business-name-btn text-caption text-weight-bold"
+            class="business-name-btn text-caption"
             no-caps
             flat
             text-color="dark"
@@ -72,7 +72,7 @@
           >
             <div class="flex no-wrap q-gutter-sm">
               <div class="business-name-icon">
-                <q-icon name="o_login" />
+                <q-icon name="o_login" size="xs" />
               </div>
               <div class="business-name flex">
                 <span class="ellipsis">{{ item.title }}</span>
@@ -84,40 +84,43 @@
           </q-btn>
         </div>
 
-        <div class="expire-date-container flex items-center q-gutter-x-xl">
-          <label class="dark-2">
+        <div class="expire-date-container flex col-2 items-center">
+          <label class="dark-2 text-caption">
             <q-icon
               class="expire-date-clock dark-icon2"
               name="history"
-              size="sm"
+              size="xs"
             />
-            {{ item.dateCreatedString }}
+            {{ toPersianDigits(item.dateCreatedString) }}
             <q-tooltip>{{ $t("page.buttons.expire-date-tooltip") }}</q-tooltip>
           </label>
+        </div>
+        <div class="col-3 flex justify-center items-center">
           <q-btn
             v-if="item.isOwner"
-            class="service-extension q-pa-sm"
-            round
-            dense
-            flat
-            color="positive"
-            icon="o_add_shopping_cart"
-            size="md"
+            rounded
+            class="service-extension text-caption q-px-sm"
+            outline
           >
+            <q-icon name="add" class="q-pr-xs" size="14px" />
+            {{ $t("page.buttons.service-extension-tooltip") }}
             <q-tooltip>{{
               $t("page.buttons.service-extension-tooltip")
             }}</q-tooltip>
           </q-btn>
           <q-btn
+            outline
+            rounded
             v-else
-            class="service-extension dark-2 q-pa-sm"
-            round
-            dense
-            flat
-            icon="o_add_shopping_cart"
-            size="md"
             disable
-          />
+            class="service-extension-not-owner text-caption q-px-sm"
+          >
+            <q-icon name="add" class="q-pr-xs" size="14px" />
+            {{ $t("page.buttons.service-extension-tooltip") }}
+            <q-tooltip>{{
+              $t("page.buttons.service-extension-tooltip")
+            }}</q-tooltip></q-btn
+          >
         </div>
         <div class="more-options col-1 q-pl-md">
           <q-btn
@@ -209,6 +212,11 @@ async function goToPaymentHistory(item) {
 
 function handleReloadData() {
   // businessDataView.value.reloadData()
+}
+
+function toPersianDigits(number) {
+  const persianDigits = "۰۱۲۳۴۵۶۷۸۹"
+  return number.toString().replace(/\d/g, (digit) => persianDigits[digit])
 }
 </script>
 
