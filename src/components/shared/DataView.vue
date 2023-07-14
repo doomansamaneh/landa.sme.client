@@ -1,6 +1,6 @@
 <template>
   <q-card class="card-desktop no-shadow">
-    <slot name="header"></slot>
+    <slot name="header"> </slot>
     <q-separator />
     <q-linear-progress
       class="progress"
@@ -100,7 +100,7 @@ const props = defineProps({
   businessTitle: String
 })
 
-const emits = defineEmits(["reload-data"])
+// const emits = defineEmits(["reload-data"])
 
 const router = useRouter()
 const rows = ref([])
@@ -137,8 +137,11 @@ onMounted(() => {
 
 async function reloadData() {
   await loadData(pagination.value)
-  emits("reload-data")
 }
+
+// async function onRequest(props) {
+//   await loadData(props.pagination)
+// }
 
 async function loadData(data) {
   loadingData.value = true
@@ -186,6 +189,10 @@ function selectCard(index) {
 function isSelected(index) {
   return selectedCard.value === index
 }
+
+defineExpose({
+  reloadData
+})
 </script>
 
 <style>

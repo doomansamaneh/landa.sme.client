@@ -1,10 +1,11 @@
 <template>
   <data-view
     class="card-desktop gt-xs no-shadow q-my-xl"
+    ref="businessDataView"
     :dataSource="`business/getBusinessPaymentGridData/${$route.params.businessId}`"
     orderByField="fromDate"
     searchField="amount"
-    @page-changed="loadData"
+    @reload-data="reloadData"
   >
     <template #header>
       <q-item class="card-header q-px-lg q-py-lg">
@@ -22,7 +23,7 @@
               class="dark-3 cursor-pointer"
               size="xs"
               name="o_refresh"
-              @click="$emit('reload-data')"
+              @click="reloadData"
             >
               <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
             </q-icon>
@@ -134,6 +135,7 @@ const router = useRouter()
 const route = useRouter()
 
 const planTitle = "طرح 3"
+const businessDataView = ref(null)
 
 async function goToPaymentDetail(item) {
   router.push(`/business/PaymentDetail/${item.id}`)
@@ -145,6 +147,10 @@ const formatCurrency = (value) => {
     currency: "IRR",
     minimumFractionDigits: 0
   })
+}
+async function reloadData() {
+  // alert("Reload btn Clicked!")
+  businessDataView.value.reloadData()
 }
 
 function toPersianDigits(number) {

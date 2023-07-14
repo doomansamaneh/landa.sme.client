@@ -4,7 +4,7 @@
     dataSource="business/getBusinessGridData"
     orderByField="title"
     searchField="b.title"
-    @reload-data="handleReloadData"
+    @reload-data="reloadData"
   >
     <template #header>
       <DesktopViewGuide v-model="showGuideDialog" />
@@ -23,7 +23,7 @@
               class="dark-3 cursor-pointer"
               size="xs"
               name="o_refresh"
-              @click="$emit('reload-data')"
+              @click="reloadData"
             >
               <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
             </q-icon>
@@ -210,8 +210,9 @@ async function goToPaymentHistory(item) {
   router.push(`business/payments/${item.id}/${item.title}`)
 }
 
-function handleReloadData() {
-  // businessDataView.value.reloadData()
+async function reloadData() {
+  // alert("Reload btn Clicked!")
+  businessDataView.value.reloadData()
 }
 
 function toPersianDigits(number) {
