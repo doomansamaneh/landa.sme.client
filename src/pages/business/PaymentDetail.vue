@@ -7,26 +7,28 @@
           همه هزینه ها به ریال می باشد
         </q-item-label>
       </q-item-section>
-      <div class="flex items-center q-mr-xs">
-        <q-icon
-          class="dark-3 cursor-pointer"
-          size="xs"
-          name="o_refresh"
-          @click="$emit('reload-data')"
-        >
-          <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
-        </q-icon>
-      </div>
-      <div class="flex items-center q-gutter-x-md">
-        <q-icon
-          class="dark-3 cursor-pointer"
-          size="xs"
-          name="arrow_back"
-          @click="$router.go(-1)"
-        >
-          <q-tooltip>بازگشت</q-tooltip>
-        </q-icon>
-      </div>
+      <q-card-actions>
+        <div class="flex items-center q-mr-xs">
+          <q-icon
+            class="dark-3 cursor-pointer"
+            size="xs"
+            name="o_refresh"
+            @click="$emit('reload-data')"
+          >
+            <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
+          </q-icon>
+        </div>
+        <div class="flex items-center q-gutter-x-md">
+          <q-icon
+            class="dark-3 cursor-pointer"
+            size="xs"
+            name="arrow_back"
+            @click="$router.go(-1)"
+          >
+            <q-tooltip>بازگشت</q-tooltip>
+          </q-icon>
+        </div>
+      </q-card-actions>
     </q-item>
     <q-separator />
     <q-card-section>
