@@ -103,6 +103,7 @@
           class="service-extension text-caption q-px-sm q-py-xs"
           outline
           size="11px"
+          no-caps
         >
           <q-icon name="add" class="q-pr-xs" size="14px" />
           {{ $t("page.buttons.service-extension-tooltip") }}
@@ -112,6 +113,7 @@
         </q-btn>
         <q-btn
           outline
+          no-caps
           rounded
           v-else
           disable
