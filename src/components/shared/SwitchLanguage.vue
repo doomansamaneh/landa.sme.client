@@ -25,19 +25,11 @@
 </template>
 
 <script setup>
-import {
-  ref,
-  onBeforeUnmount,
-  onMounted,
-  watchEffect,
-  computed,
-  watch
-} from "vue"
-
+import { ref, computed, watch } from "vue"
 import { useI18n } from "vue-i18n"
+
 const { locale } = useI18n({ useScope: "global" })
 
-// Change Language with Refresh
 const supportedLanguages = [
   {
     code: "en-US",
@@ -59,26 +51,15 @@ const supportedLanguages = [
   }
 ]
 
-const currentLanguage = ref(
-  // Get the saved language from local storage or use the default language
-  localStorage.getItem("selectedLanguage") || "fa-IR"
-)
-const selectedLanguageLabel = computed(() => {
-  switch (currentLanguage.value) {
-    case "en-US":
-      return "English"
-    case "fa-IR":
-      return "فارسی"
-    case "ar":
-      return "العربیة"
-    default:
-      return ""
-  }
-})
+const currentLanguage = ref(localStorage.getItem("selectedLanguage") || "fa-IR")
 
-// Add computed property for selected language code
-const selectedLangCode = computed(() => {
-  return currentLanguage.value
+const selectedLanguageLabel = computed(() => {
+  const labels = {
+    "en-US": "English",
+    "fa-IR": "فارسی",
+    ar: "العربیة"
+  }
+  return labels[currentLanguage.value] || ""
 })
 
 function switchLanguage(code) {
@@ -86,59 +67,31 @@ function switchLanguage(code) {
   currentLanguage.value = code
   locale.value = code
 
-  // Find selected language from supportedLanguages
   const selectedLang = supportedLanguages.find((l) => l.code === code)
 
-  // Save language to local storage
   localStorage.setItem("selectedLanguage", code)
   localStorage.setItem("languageDirection", selectedLang.dir)
 
-  // Update direction for current page
   document.documentElement.setAttribute("dir", selectedLang.dir)
-
-  // Update lang for current page
   document.documentElement.lang = code
 
-  // Remove previous digits-- class from body element
   document.body.classList.remove(`digits--${oldLanguage}`)
-
-  // Add class to body element
   document.body.classList.add(`digits--${selectedLang.code}`)
 
   refreshPage()
 }
-
-// Watch for changes in the selected language and update local storage
-watch(locale, (newValue) => {
-  localStorage.setItem("selectedLanguage", newValue)
-})
-
-// Add the class on page load
-onMounted(() => {
-  const savedLanguage = localStorage.getItem("selectedLanguage")
-  if (savedLanguage) {
-    document.body.classList.add(`digits--${savedLanguage}`)
-  }
-})
 
 // Refresh the page
 const refreshPage = () => {
   window.location.reload()
 }
 
-// Watch for changes in the current page URL
-watchEffect(() => {
-  // Remove the class from body element
-  document.body.classList.forEach((className) => {
-    if (className.startsWith("digits--")) {
-      document.body.classList.remove(className)
-    }
-  })
-
-  // Add class to body element based on the stored language code
-  const savedLanguage = localStorage.getItem("selectedLanguage")
-  if (savedLanguage) {
-    document.body.classList.add(`digits--${savedLanguage}`)
-  }
+watch(locale, (newValue) => {
+  localStorage.setItem("selectedLanguage", newValue)
 })
+
+const savedLanguage = localStorage.getItem("selectedLanguage")
+if (savedLanguage) {
+  document.body.classList.add(`digits--${savedLanguage}`)
+}
 </script>
