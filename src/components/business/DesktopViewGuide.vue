@@ -23,7 +23,7 @@
             class="business-isowner"
             text-color="white"
             icon="o_person"
-            size="xl"
+            size="lg"
           />
 
           <q-btn
@@ -57,7 +57,7 @@
           falt
           round
           icon="more_vert"
-          size="xl"
+          size="lg"
           dense
         />
         <div class="q-mt-lg text-center q-px-xl">
@@ -69,7 +69,7 @@
           color="primary"
           text-color="white"
           icon="o_person"
-          size="xl"
+          size="lg"
         />
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("page.buttons.guide.slide4") }}
@@ -82,7 +82,7 @@
           flat
           color="positive"
           icon="o_add_shopping_cart"
-          size="xl"
+          size="lg"
           :ripple="false"
         />
         <div class="q-mt-lg text-center q-px-xl">
@@ -90,7 +90,7 @@
         </div>
       </q-carousel-slide>
       <q-carousel-slide :name="6" class="column no-wrap flex-center">
-        <q-icon name="import_contacts" size="xl" color="blue-grey-8" />
+        <q-icon name="import_contacts" size="lg" color="blue-grey-8" />
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("page.buttons.guide.slide6") }}
         </div>

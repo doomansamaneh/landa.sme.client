@@ -35,6 +35,7 @@
     "buttons": {
       "add-new-business-tooltip": "ایجاد کسب و کار جدید",
       "guide-tooltip": "راهنما",
+      "reload-data": "تازه سازی",
       "expire-date-tooltip": "سر رسید",
       "service-extension-tooltip": "تمدید سرویس",
       "more-tooltip": "بیشتر",

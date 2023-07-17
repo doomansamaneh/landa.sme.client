@@ -236,3 +236,7 @@ body.theme--green {
     color: $green;
   }
 }
+
+.pagination .q-btn::before {
+  box-shadow: none;
+}

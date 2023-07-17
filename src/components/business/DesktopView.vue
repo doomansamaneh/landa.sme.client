@@ -25,7 +25,7 @@
               name="o_refresh"
               @click="reloadData"
             >
-              <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
+              <q-tooltip>{{ $t("page.buttons.reload-data") }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">

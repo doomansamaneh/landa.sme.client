@@ -35,6 +35,7 @@
     "buttons": {
       "add-new-business-tooltip": "إنشاء أعمال جديدة",
       "guide-tooltip": "مرشد",
+      "reload-data": "مرطب",
       "expire-date-tooltip": "تاريخ انتهاء الصلاحية",
       "service-extension-tooltip": "تمديد الخدمة",
       "more-tooltip": "أكثر",

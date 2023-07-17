@@ -19,6 +19,7 @@
         color="grey-8"
         active-color="primary"
         size="13px"
+        class="pagination"
       />
     </div>
     <div class="col-2">

@@ -35,6 +35,7 @@
     "buttons": {
       "add-new-business-tooltip": "َAdd New Business",
       "guide-tooltip": "Guide",
+      "reload-data": "Refresh",
       "expire-date-tooltip": "Expire date",
       "service-extension-tooltip": "Service extension",
       "more-tooltip": "More",
