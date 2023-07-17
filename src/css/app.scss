@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Vazir";
+  src: url("../assets//Fonts/Vazir.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Thin.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Medium.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Bold.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Vazir FD";
   src: url("../assets//Fonts/Vazir-Light-FD-WOL.ttf") format("truetype"),
     url("../assets//Fonts/Vazir-Thin-FD-WOL.ttf") format("truetype"),
@@ -7,30 +15,30 @@
 }
 
 @font-face {
-  font-family: "Vazir";
-  src: url("../assets//Fonts/Vazir.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Thin.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Medium.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Bold.ttf") format("truetype"),
-    url("../assets//Fonts/") format("truetype");
+  font-family: "Roboto";
+  src: url("../assets//Fonts/Roboto-Regular.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Medium.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Light.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Bold.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Black.ttf") format("truetype");
 }
 
 // @import url("https://v1.fontapi.ir/css/VazirFD");
 
 body {
-  font-family: "Vazir", "Vazir FD", sans-serif;
+  font-family: "Vazir FD", "Vazir", "Roboto", sans-serif;
 }
 
 body.digits--en-US {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Vazir", sans-serif;
 }
 
 body.digits--fa-IR {
-  font-family: "Vazir FD", sans-serif;
+  font-family: "Vazir FD", "Roboto", sans-serif;
 }
 
 body.digits--ar {
-  font-family: "Vazir FD", sans-serif;
+  font-family: "Vazir FD", "Roboto", sans-serif;
 }
 
 body.body--dark {

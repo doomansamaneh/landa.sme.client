@@ -92,7 +92,7 @@
             name="history"
             size="xs"
           />
-          {{ toPersianDigits(item.dateCreatedString) }}
+          {{ item.dateCreatedString }}
           <q-tooltip>{{ $t("page.buttons.expire-date-tooltip") }}</q-tooltip>
         </label>
       </div>
@@ -212,11 +212,6 @@ async function goToPaymentHistory(item) {
 async function reloadData() {
   // alert("Reload btn Clicked!")
   businessDataView.value.reloadData()
-}
-
-function toPersianDigits(number) {
-  const persianDigits = "۰۱۲۳۴۵۶۷۸۹"
-  return number.toString().replace(/\d/g, (digit) => persianDigits[digit])
 }
 </script>
 
