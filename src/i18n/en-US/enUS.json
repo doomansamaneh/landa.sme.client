@@ -33,11 +33,12 @@
     "nothing-found": "Nothing found!",
     "card-message": "Click on the business name to enter",
     "buttons": {
-      "add-new-business-tooltip": "َAdd New Business",
+      "add-new-business-tooltip": "Add New Business",
       "guide-tooltip": "Guide",
       "reload-data": "Refresh",
       "expire-date-tooltip": "Expire date",
       "service-extension-tooltip": "Service extension",
+      "guest-user": "کاربر مهمان",
       "more-tooltip": "More",
       "guide": {
         "slide1": "Welcome to Landa. We hope you enjoy working with Landa. Let's see the simple guide to use the system together.",

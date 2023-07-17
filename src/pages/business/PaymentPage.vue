@@ -64,8 +64,8 @@
               name="history"
               size="xs"
             />
-            {{ toPersianDigits(item.fromDateString) }} -
-            {{ toPersianDigits(item.toDateString) }}
+            {{ item.fromDateString }} -
+            {{ item.toDateString }}
           </label>
         </div>
       </div>
@@ -153,10 +153,10 @@ async function reloadData() {
   businessDataView.value.reloadData()
 }
 
-function toPersianDigits(number) {
-  const persianDigits = "۰۱۲۳۴۵۶۷۸۹"
-  return number.toString().replace(/\d/g, (digit) => persianDigits[digit])
-}
+// function toPersianDigits(number) {
+//   const persianDigits = "۰۱۲۳۴۵۶۷۸۹"
+//   return number.toString().replace(/\d/g, (digit) => persianDigits[digit])
+// }
 </script>
 
 <style lang="scss">

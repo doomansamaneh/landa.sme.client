@@ -44,25 +44,25 @@
               >
             </div>
           </div>
-          <div class="col-2 flex justify-center">
+          <div class="col-2 flex justify-end q-mr-sm">
             <label>
               <q-icon name="o_category" class="dark-3" />
               <span class="text-caption"> طرح ۲ </span>
             </label>
           </div>
-          <div class="col-2 row justify-center">
+          <div class="col-3 row justify-center">
             <label>
               <q-icon name="o_history" class="dark-3" />
               <span class="text-caption q-pl-xs">۱۴۰۲/۱۱/۱۱ - ۱۴۰۳/۰۱/۲۹</span>
             </label>
           </div>
-          <div class="col-2 row justify-center q-pl-lg">
+          <div class="col row justify-center q-pl-lg">
             <label>
               <span class="text-caption q-pl-xs">۴۹۰,۰۰۰</span>
               <span class="q-ml-xs text-caption">ریال</span>
             </label>
           </div>
-          <div class="col-2 row justify-center">
+          <div class="col-2 row justify-end">
             <label class="text-caption">
               <q-icon name="circle" color="orange" size="8px" /> دوره آزمایشی
             </label>

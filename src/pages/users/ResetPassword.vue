@@ -116,7 +116,7 @@ const isPwdConfirmPassword = ref(true)
 
 async function changePassword() {
   await fetchWrapper
-    .post("scr/users/ResetPasswordSave", {
+    .post("scr/users/setPassword", {
       id: authStore.user.user.id,
       oldPassword: oldPassword.value,
       password: newPassword.value,

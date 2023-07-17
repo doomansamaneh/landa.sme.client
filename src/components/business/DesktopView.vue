@@ -117,11 +117,10 @@
           rounded
           v-else
           disable
-          class="service-extension-not-owner text-caption q-px-sm q-py-xs"
+          class="service-extension-not-owner text-caption q-px-lg q-py-xs"
           size="11px"
         >
-          <q-icon name="add" class="q-pr-xs" size="14px" />
-          {{ $t("page.buttons.service-extension-tooltip") }}
+          {{ $t("page.buttons.guest-user") }}
           <q-tooltip>{{
             $t("page.buttons.service-extension-tooltip")
           }}</q-tooltip></q-btn

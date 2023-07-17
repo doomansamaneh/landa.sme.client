@@ -6,7 +6,7 @@ export default {
   children: [
     { path: "", component: () => import("pages/business/IndexPage.vue") },
     {
-      path: "changePassword", name: "Change Password", component: () => import("pages/users/ResetPasswordSave.vue"), meta: {
+      path: "changePassword", name: "Change Password", component: () => import("src/pages/users/ResetPassword.vue"), meta: {
         icon: "password"
       },
     },
