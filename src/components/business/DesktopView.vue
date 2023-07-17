@@ -20,17 +20,18 @@
         <q-card-actions>
           <div class="flex items-center q-mr-xs">
             <q-icon
-              class="dark-3 cursor-pointer"
+              class="icon-hover dark-3 cursor-pointer"
               size="xs"
               name="o_refresh"
               @click="reloadData"
+              clickable
             >
               <q-tooltip>{{ $t("page.buttons.reload-data") }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
             <q-icon
-              class="dark-3 cursor-pointer"
+              class="icon-hover dark-3 cursor-pointer"
               size="xs"
               name="o_help_outline"
               @click="showGuideDialog = true"
