@@ -10,9 +10,7 @@
     <template #header>
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
-          <q-item-label class="text-bold text-subtitle1"
-            >تاریخچه پرداخت</q-item-label
-          >
+          <q-item-label class="text-bold">تاریخچه پرداخت</q-item-label>
           <q-item-label class="q-pt-xs text-subtitle2" caption>
             {{ $route.params.businessTitle }}
           </q-item-label>
@@ -142,12 +140,17 @@ async function goToPaymentDetail(item) {
 }
 
 const formatCurrency = (value) => {
-  return value.toLocaleString("fa-IR", {
-    // style: "currency",
-    currency: "IRR",
-    minimumFractionDigits: 0
-  })
+  const language = localStorage.getItem("selectedLanguage")
+  if (language === "fa-IR") {
+    return value.toLocaleString("fa-IR", {
+      minimumFractionDigits: 0
+    })
+  } else {
+    // Default formatting for other languages
+    return value.toLocaleString()
+  }
 }
+
 async function reloadData() {
   // alert("Reload btn Clicked!")
   businessDataView.value.reloadData()

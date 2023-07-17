@@ -2,7 +2,7 @@
   <q-card class="card-desktop gt-xs no-shadow q-my-xl">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
-        <q-item-label class="text-bold text-subtitle1">پرداخت</q-item-label>
+        <q-item-label class="text-bold">پرداخت</q-item-label>
         <q-item-label class="q-pt-xs text-subtitle2" caption>
           همه هزینه ها به ریال می باشد
         </q-item-label>

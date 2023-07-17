@@ -10,7 +10,7 @@
       <DesktopViewGuide v-model="showGuideDialog" />
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
-          <q-item-label class="text-bold text-subtitle1">{{
+          <q-item-label class="text-bold">{{
             $t("page.card-title")
           }}</q-item-label>
           <q-item-label class="q-pt-xs text-subtitle2" caption>{{
@@ -76,7 +76,7 @@
             <div class="business-name-icon">
               <q-icon name="o_login" size="xs" />
             </div>
-            <div class="business-name flex">
+            <div class="business-name flex text-weight-regular">
               <span class="ellipsis">{{ item.title }}</span>
             </div>
           </div>
