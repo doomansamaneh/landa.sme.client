@@ -1,6 +1,11 @@
 <template>
-  <data-view ref="businessDataView" dataSource="business/getBusinessGridData" orderByField="title" searchField="b.title"
-    @reload-data="reloadData">
+  <data-view
+    ref="businessDataView"
+    dataSource="business/getBusinessGridData"
+    orderByField="title"
+    searchField="b.title"
+    @reload-data="reloadData"
+  >
     <template #header>
       <DesktopViewGuide v-model="showGuideDialog" />
       <q-item class="card-header q-px-lg q-py-lg">
@@ -14,17 +19,33 @@
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-mr-xs">
-            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="o_refresh" @click="reloadData" clickable>
+            <q-icon
+              class="icon-hover dark-3 cursor-pointer"
+              size="xs"
+              name="o_refresh"
+              @click="reloadData"
+              clickable
+            >
               <q-tooltip>{{ $t("page.buttons.reload-data") }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="o_help_outline"
-              @click="showGuideDialog = true">
+            <q-icon
+              class="icon-hover dark-3 cursor-pointer"
+              size="xs"
+              name="o_help_outline"
+              @click="showGuideDialog = true"
+            >
               <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
             </q-icon>
-            <q-btn rounded class="service-extension text-caption q-px-sm q-py-xs" size="11px" no-caps outline
-              unelevated>
+            <q-btn
+              rounded
+              class="service-extension text-caption q-px-sm q-py-xs"
+              size="11px"
+              no-caps
+              outline
+              unelevated
+            >
               <q-icon name="add" class="q-pr-xs" size="14px" />
               {{ $t("page.buttons.add-new-business-tooltip") }}
             </q-btn>
@@ -35,12 +56,22 @@
 
     <template #item="{ item }">
       <div class="col-6">
-        <q-avatar :class="{
+        <q-avatar
+          :class="{
             'business-isowner': item.isOwner,
             'business-isnotowner': !item.isOwner
-          }" icon="o_person" size="md" />
-        <q-btn class="business-name-btn text-caption_" no-caps flat text-color="dark" :ripple="false"
-          @click="gotoBusiness">
+          }"
+          icon="o_person"
+          size="md"
+        />
+        <q-btn
+          class="business-name-btn text-caption_"
+          no-caps
+          flat
+          text-color="dark"
+          :ripple="false"
+          @click="gotoBusiness"
+        >
           <div class="flex no-wrap q-gutter-sm">
             <div class="business-name-icon">
               <q-icon name="o_login" size="xs" />
@@ -57,18 +88,40 @@
 
       <div class="expire-date-container flex col-2 items-center">
         <label class="dark-2 text-caption">
-          <q-icon class="expire-date-clock dark-icon2" name="history" size="xs" v-if="!item.expired" />
-          <q-icon class="expire-date-clock dark-icon2" color="warning " name="warning" size="xs" v-if="item.expired" />
+          <q-icon
+            class="expire-date-clock dark-icon2"
+            name="history"
+            size="xs"
+            v-if="!item.expired"
+          />
+          <q-icon
+            class="expire-date-clock dark-icon2"
+            color="warning "
+            name="warning"
+            size="xs"
+            v-if="item.expired"
+          />
           {{ item.toDateString }}
           <q-tooltip>{{ $t("page.buttons.expire-date-tooltip") }}</q-tooltip>
         </label>
       </div>
       <div class="col-3 flex justify-center items-center">
-        <renew-subscribtion class="bg-green text-white" :businessId="item.id"
-          v-if="item.isOwner && item.daysToExpire < 350" />
+        <renew-subscribtion
+          class="bg-green text-white"
+          :businessId="item.id"
+          v-if="item.isOwner && item.daysToExpire < 350"
+        />
       </div>
       <div class="more-options col-1 q-pl-md">
-        <q-btn class="more-icon dark-2" unelevated flat round icon="more_horiz" size="md" dense>
+        <q-btn
+          class="more-icon dark-2"
+          unelevated
+          flat
+          round
+          icon="more_horiz"
+          size="md"
+          dense
+        >
           <q-tooltip>{{ $t("page.buttons.more-tooltip") }}</q-tooltip>
         </q-btn>
         <q-menu transition-show="jump-down" transition-hide="jump-up">
@@ -125,32 +178,31 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from "vue"
-  import { useRouter } from "vue-router"
-  //import businessRoutes from "src/router/business-routes"
+import { ref, onMounted, computed } from "vue"
+import { useRouter } from "vue-router"
+//import businessRoutes from "src/router/business-routes"
 
-  import DataView from "src/components/shared/DataView.vue"
-  import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
-  import DesktopViewGuide from "./GuideView.vue"
+import DataView from "src/components/shared/DataView.vue"
+import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
+import DesktopViewGuide from "./GuideView.vue"
 
-  const router = useRouter()
-  const businessDataView = ref(null)
-  const showGuideDialog = ref(false)
+const router = useRouter()
+const businessDataView = ref(null)
+const showGuideDialog = ref(false)
 
-  async function gotoBusiness() { }
+async function gotoBusiness() {}
 
-  async function goToPaymentHistory(item) {
-    router.push(`business/payments/${item.id}/${item.title}`)
-  }
+async function goToPaymentHistory(item) {
+  router.push(`business/payments/${item.id}/${item.title}`)
+}
 
-  async function reloadData() {
-    businessDataView.value.reloadData()
-  }
-
+async function reloadData() {
+  businessDataView.value.reloadData()
+}
 </script>
 
 <style>
-  .business-name {
-    max-width: 140px;
-  }
+.business-name {
+  max-width: 140px;
+}
 </style>
