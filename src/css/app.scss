@@ -70,6 +70,10 @@ body.body--dark {
     background-color: red;
   }
 
+  .q-field__native.q-placeholder{
+    color: $dark-3;
+  }
+
   .q-avatar__content {
     background-color: #56639789;
   }

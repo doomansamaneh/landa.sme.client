@@ -8,7 +8,7 @@ const routes = [
     children: [
       {
         path: "",
-        component: () => import("pages/business/IndexPage.vue")
+        component: () => import("pages/management/BusinessPage.vue")
       }
     ]
   },

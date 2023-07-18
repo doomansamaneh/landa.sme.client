@@ -1,12 +1,8 @@
 <template>
-  <data-view
-    class="card-desktop gt-xs no-shadow q-my-xl"
-    ref="businessDataView"
-    :dataSource="`business/getBusinessPaymentGridData/${$route.params.businessId}`"
-    orderByField="fromDate"
-    searchField="amount"
-    @reload-data="reloadData"
-  >
+  <h2>test page</h2>
+  <!-- <data-view class="card-desktop gt-xs no-shadow q-my-xl" ref="businessDataView"
+    :dataSource="`business/getBusinessPaymentGridData/${$route.params.businessId}`" orderByField="fromDate"
+    searchField="amount" @reload-data="reloadData">
     <template #header>
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
@@ -17,29 +13,15 @@
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-mr-xs">
-            <q-icon
-              class="dark-3 cursor-pointer"
-              size="xs"
-              name="o_refresh"
-              @click="reloadData"
-            >
+            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="o_refresh" @click="reloadData">
               <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="dark-3 cursor-pointer"
-              size="xs"
-              name="arrow_back"
-              @click="$router.go(-1)"
-            >
+            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="arrow_back" @click="$router.go(-1)">
               <q-tooltip>بازگشت</q-tooltip>
             </q-icon>
-            <q-btn
-              rounded
-              class="service-extension text-caption q-px-md q-py-sm"
-              outline
-            >
+            <q-btn rounded class="service-extension text-caption q-px-md q-py-sm" outline>
               <q-icon name="add" class="q-pr-xs" size="xs" />
               <span class="text-caption">{{
                 $t("page.buttons.service-extension-tooltip")
@@ -56,12 +38,7 @@
     <template #item="{ item }">
       <div class="col-4">
         <div class="flex justify-start">
-          <label class="text-caption"
-            ><q-icon
-              class="expire-date-clock dark-2"
-              name="history"
-              size="xs"
-            />
+          <label class="text-caption"><q-icon class="expire-date-clock dark-2" name="history" size="xs" />
             {{ item.fromDateString }} -
             {{ item.toDateString }}
           </label>
@@ -78,13 +55,8 @@
       <div class="col-1">
         <label class="text-caption text-primary">{{ planTitle }}</label>
       </div>
-      <div
-        class="expire-date-container col-3 flex items-center justify-center q-gutter-x-xl"
-      >
-        <label
-          v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
-          class="text-caption"
-        >
+      <div class="expire-date-container col-3 flex items-center justify-center q-gutter-x-xl">
+        <label v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'" class="text-caption">
           <q-icon name="circle" color="orange" size="8px" /> دوره آزمایشی
         </label>
         <label v-else class="text-caption">
@@ -92,15 +64,7 @@
         </label>
       </div>
       <div class="more-options col-1 q-pl-md">
-        <q-btn
-          class="more-icon dark-2"
-          unelevated
-          falt
-          round
-          icon="more_horiz"
-          size="md"
-          dense
-        >
+        <q-btn class="more-icon dark-2" unelevated falt round icon="more_horiz" size="md" dense>
           <q-tooltip>{{ $t("page.buttons.more-tooltip") }}</q-tooltip>
         </q-btn>
         <q-menu transition-show="jump-down" transition-hide="jump-up">
@@ -117,61 +81,50 @@
         </q-menu>
       </div>
     </template>
-  </data-view>
+  </data-view> -->
 </template>
 
 <script setup>
-import DesktopViewGuide from "../../components/business/DesktopViewGuide.vue"
-import DataView from "../../components/shared/DataView.vue"
-import { fetchWrapper } from "../../helpers"
-import { computed, onMounted, onBeforeUnmount, watch } from "vue"
-import { ref } from "vue"
-import { useQuasar } from "quasar"
-import { useRoute, useRouter } from "vue-router"
+  import DesktopViewGuide from "src/components/business/DesktopViewGuide.vue"
+  import DataView from "src/components/shared/DataView.vue"
+  import { fetchWrapper } from "src/helpers"
+  import { computed, onMounted, onBeforeUnmount, watch } from "vue"
+  import { ref } from "vue"
+  import { useQuasar } from "quasar"
+  import { useRoute, useRouter } from "vue-router"
 
-const router = useRouter()
-const route = useRouter()
+  const router = useRouter()
+  const route = useRouter()
 
-const planTitle = "طرح 3"
-const businessDataView = ref(null)
+  const planTitle = "طرح 3"
+  const businessDataView = ref(null)
 
-async function goToPaymentDetail(item) {
-  router.push(`/business/PaymentDetail/${item.id}`)
-}
-
-const formatCurrency = (value) => {
-  const language = localStorage.getItem("selectedLanguage")
-  if (language === "fa-IR") {
-    return value.toLocaleString("fa-IR", {
-      minimumFractionDigits: 0
-    })
-  } else {
-    // Default formatting for other languages
-    return value.toLocaleString()
+  async function goToPaymentDetail(item) {
+    router.push(`/business/PaymentDetail/${item.id}`)
   }
-}
 
-async function reloadData() {
-  // alert("Reload btn Clicked!")
-  businessDataView.value.reloadData()
-}
+  const formatCurrency = (value) => {
+    const language = localStorage.getItem("selectedLanguage")
+    if (language === "fa-IR") {
+      return value.toLocaleString("fa-IR", {
+        minimumFractionDigits: 0
+      })
+    } else {
+      return value.toLocaleString()
+    }
+  }
 
-// function toPersianDigits(number) {
-//   const persianDigits = "۰۱۲۳۴۵۶۷۸۹"
-//   return number.toString().replace(/\d/g, (digit) => persianDigits[digit])
-// }
+  async function reloadData() {
+    businessDataView.value.reloadData()
+  }
 </script>
 
 <style lang="scss">
-.card-desktop {
-  width: 620px !important;
-}
+  .card-desktop {
+    width: 620px !important;
+  }
 
-.business-name {
-  max-width: 150px;
-}
-
-// .amount {
-//   width: 85px;
-// }
+  .business-name {
+    max-width: 150px;
+  }
 </style>

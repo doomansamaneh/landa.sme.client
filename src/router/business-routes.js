@@ -4,20 +4,20 @@ export default {
     icon: "business"
   },
   children: [
-    { path: "", component: () => import("pages/business/IndexPage.vue") },
+    { path: "", component: () => import("pages/management/BusinessPage.vue") },
     {
-      path: "changePassword", name: "Change Password", component: () => import("src/pages/users/ResetPassword.vue"), meta: {
+      path: "changePassword", name: "Change Password", component: () => import("pages/users/ResetPassword.vue"), meta: {
         icon: "password"
       },
     },
     {
-      path: "payments/:businessId/:businessTitle", name: "Payments", component: () => import("src/pages/business/PaymentPage.vue"), meta: {
+      path: "payments/:businessId/:businessTitle", name: "Payments", component: () => import("pages/management/PaymentPage.vue"), meta: {
         icon: "payment"
 
       },
     },
     {
-      path: "paymentDetail/:paymentId", name: "Payments Detail", component: () => import("src/pages/business/PaymentDetail.vue"), meta: {
+      path: "paymentDetail/:paymentId", name: "Payments Detail", component: () => import("pages/management/PaymentDetailPage.vue"), meta: {
         icon: "o_info"
       },
     },
