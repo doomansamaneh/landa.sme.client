@@ -82,6 +82,35 @@
     <q-page-container>
       <q-page class="flex justify-center items-center full-screen">
         <router-view />
+        <q-dialog
+          v-model="changePasswordPopup"
+          persistent
+          transition-show="slide-down"
+          transition-hide="fade"
+          transition-duration="600"
+          no-route-dismiss
+        >
+          <reset-password>
+            <template #header>
+              <q-item-section>
+                <q-item-label class="text-bold">تغییر رمز عبور</q-item-label>
+              </q-item-section>
+              <q-card-actions>
+                <div class="flex items-center q-gutter-x-md">
+                  <q-icon
+                    class="icon-hover dark-3 cursor-pointer"
+                    size="xs"
+                    name="close"
+                    @click="close"
+                    v-close-popup
+                  >
+                    <q-tooltip>بستن</q-tooltip>
+                  </q-icon>
+                </div>
+              </q-card-actions>
+            </template>
+          </reset-password>
+        </q-dialog>
       </q-page>
     </q-page-container>
 
@@ -96,9 +125,12 @@ import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
 import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
+import ResetPassword from "src/components/users/ResetPassword.vue"
 
 const router = useRouter()
 const authStore = useAuthStore()
+
+const changePasswordPopup = ref(false)
 
 const username = computed(() => {
   if (authStore.user) return authStore.user.user.fullName
@@ -106,8 +138,13 @@ const username = computed(() => {
 })
 
 function goToChangePasswordPage() {
-  router.push("/business/changePassword")
+  changePasswordPopup.value = true // Open the dialog
+  // router.push("/business/changePassword") // Change the route
 }
+
+// function close() {
+//   router.go(-1)
+// }
 
 function getFirstChar(str) {
   return str.charAt(0)
