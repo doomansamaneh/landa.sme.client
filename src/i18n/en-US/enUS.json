@@ -75,6 +75,6 @@
       "new-password": "New Password",
       "confirm-password": "Confirm New Password"
     },
-    "buttons": { "change-password": "Change Password" }
+    "buttons": { "change-password": "Change Password", "close": "Close" }
   }
 }

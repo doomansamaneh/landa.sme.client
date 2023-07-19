@@ -44,11 +44,12 @@
             </q-icon>
             <q-btn
               rounded
-              class="service-extension text-caption q-px-sm q-py-xs"
-              size="11px"
+              class="service-extension text-caption"
+              size="12px"
               no-caps
               outline
               unelevated
+              padding="6px 12px"
             >
               <q-icon name="add" class="q-pr-xs" size="14px" />
               {{ $t("page.buttons.add-new-business-tooltip") }}
@@ -119,9 +120,9 @@
           }}</q-tooltip>
         </label>
       </div>
-      <div class="col-3 flex justify-end items-center">
+      <div class="col-3 flex justify-center items-center">
         <renew-subscribtion
-          class="bg-green text-white q-m"
+          class="bg-green text-white"
           :businessId="item.id"
           v-if="item.isOwner && item.daysToExpire < 350"
         />

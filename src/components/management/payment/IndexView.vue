@@ -43,6 +43,7 @@
             </q-icon>
             <renew-subscribtion
               class="bg-green text-white"
+              size="12px"
               :businessId="$route.params.businessId"
             />
           </div>

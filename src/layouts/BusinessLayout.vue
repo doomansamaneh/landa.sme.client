@@ -106,7 +106,9 @@
                     @click="close"
                     v-close-popup
                   >
-                    <q-tooltip>بستن</q-tooltip>
+                    <q-tooltip class="custom-tooltip">{{
+                      $t("change-password-page.buttons.close")
+                    }}</q-tooltip>
                   </q-icon>
                 </div>
               </q-card-actions>

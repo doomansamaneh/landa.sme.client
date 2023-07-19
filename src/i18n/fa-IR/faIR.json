@@ -75,6 +75,6 @@
       "new-password": "رمز عبور",
       "confirm-password": "تکرار رمز عبور"
     },
-    "buttons": { "change-password": "تغییر رمز عبور" }
+    "buttons": { "change-password": "تغییر رمز عبور", "close": "بستن" }
   }
 }

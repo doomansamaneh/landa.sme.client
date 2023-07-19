@@ -1,11 +1,12 @@
 <template>
   <q-btn
     rounded
-    class="text-caption_ q-px-sm q-py-xs"
-    size="11px"
+    class=""
+    size="12px"
     no-caps
     filled
     unelevated
+    padding="6px 12px"
   >
     <q-icon name="add" class="q-pr-xs" size="14px" />
     {{ $t("page.buttons.renew-subscription") }}

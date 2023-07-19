@@ -12,7 +12,9 @@
             name="arrow_back"
             @click="$router.go(-1)"
           >
-            <q-tooltip>بازگشت</q-tooltip>
+            <q-tooltip class="custom-tooltip">{{
+              $t("page.buttons.back")
+            }}</q-tooltip>
           </q-icon>
         </div>
       </q-card-actions>

@@ -75,6 +75,6 @@
       "new-password": "كلمة المرور",
       "confirm-password": "تأكيد كلمة المرور"
     },
-    "buttons": { "change-password": "تغییر كلمة المرور" }
+    "buttons": { "change-password": "تغییر كلمة المرور", "close": "لإغلاق" }
   }
 }
