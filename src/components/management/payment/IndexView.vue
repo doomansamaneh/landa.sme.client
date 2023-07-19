@@ -66,7 +66,7 @@
         </div>
       </div>
 
-      <div class="col-2 flex items-center">
+      <div class="col-2 flex items-center justify-start">
         <label class="text-caption">
           {{ formatCurrency(item.amount) }}
           <span>ریال</span>
@@ -76,7 +76,9 @@
         </label>
       </div>
       <div class="col-1 row justify-center">
-        <label class="text-caption text-light-blue-7">{{ planTitle }}</label>
+        <label class="text-caption text-light-blue-7 q-pr-sm">{{
+          planTitle
+        }}</label>
       </div>
       <div
         class="expire-date-container col-3 flex items-center justify-center q-gutter-x-xl"

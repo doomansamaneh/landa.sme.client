@@ -2,7 +2,7 @@
   <q-btn
     rounded
     class=""
-    size="12px"
+    size="11px"
     no-caps
     filled
     unelevated

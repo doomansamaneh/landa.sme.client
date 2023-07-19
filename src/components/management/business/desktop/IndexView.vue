@@ -120,7 +120,7 @@
           }}</q-tooltip>
         </label>
       </div>
-      <div class="col-3 flex justify-center items-center">
+      <div class="col-3 flex justify-center items-center q-ml-md">
         <renew-subscribtion
           class="bg-green text-white"
           :businessId="item.id"
