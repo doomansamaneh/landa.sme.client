@@ -1,31 +1,24 @@
 <template>
   <div v-if="showBanner">
-    <transition
-      appear
-      enter-active-class="animated fadeIn"
-      leave-active-class="animated bounceInDown"
-      :duration="1000"
-    >
-      <q-banner inline-actions class="error-banner bg-yellow-1 text-dark">
-        <q-icon name="public" size="22px" class="q-mr-xs" color="orange" />
+    <q-banner inline-actions class="error-banner bg-yellow-1 text-dark">
+      <q-icon name="public" size="22px" class="q-mr-xs" color="orange" />
+      <span>
+        <strong class="q-pr-lg">{{ status }}</strong>
         <span>
-          <strong class="q-pr-lg">{{ status }}</strong>
-          <span>
-            {{ $t(message) }}
-          </span>
+          {{ $t(message) }}
         </span>
-        <template v-slot:action>
-          <q-icon
-            @click="hideBanner"
-            flat
-            unelevated
-            color="orange"
-            name="close"
-            class="cursor-pointer"
-          />
-        </template>
-      </q-banner>
-    </transition>
+      </span>
+      <template v-slot:action>
+        <q-icon
+          @click="hideBanner"
+          flat
+          unelevated
+          color="orange"
+          name="close"
+          class="cursor-pointer"
+        />
+      </template>
+    </q-banner>
   </div>
 </template>
 
@@ -56,6 +49,6 @@ function hideBanner() {
   right: 0;
 
   margin-top: 25px;
-  border-top: 1px solid rgb(255, 196, 86);
+  border-top: 1px solid rgb(255, 171, 16);
 }
 </style>

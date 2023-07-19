@@ -26,7 +26,9 @@
               @click="reloadData"
               clickable
             >
-              <q-tooltip>{{ $t("page.buttons.reload-data") }}</q-tooltip>
+              <q-tooltip class="custom-tooltip" delay="600">{{
+                $t("page.buttons.reload-data")
+              }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
@@ -36,7 +38,9 @@
               name="o_help_outline"
               @click="showGuideDialog = true"
             >
-              <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
+              <q-tooltip class="custom-tooltip" delay="600">{{
+                $t("page.buttons.guide-tooltip")
+              }}</q-tooltip>
             </q-icon>
             <q-btn
               rounded
@@ -55,7 +59,7 @@
     </template>
 
     <template #item="{ item }">
-      <div class="col-6">
+      <div class="col-5">
         <q-avatar
           :class="{
             'business-isowner': item.isOwner,
@@ -80,8 +84,16 @@
               <span class="ellipsis">{{ item.title }}</span>
             </div>
           </div>
-          <q-tooltip>
-            {{ $t("page.buttons.more-button.enter-business") }}
+          <q-tooltip
+            class="custom-tooltip text-body2"
+            transition-show="scale"
+            transition-hide="scale"
+            delay="600"
+            anchor="top left"
+            self="top right"
+            :offset="[-5, -2]"
+          >
+            {{ item.title }}
           </q-tooltip>
         </q-btn>
       </div>
@@ -102,12 +114,14 @@
             v-if="item.expired"
           />
           {{ item.toDateString }}
-          <q-tooltip>{{ $t("page.buttons.expire-date-tooltip") }}</q-tooltip>
+          <q-tooltip class="custom-tooltip" delay="600">{{
+            $t("page.buttons.expire-date-tooltip")
+          }}</q-tooltip>
         </label>
       </div>
-      <div class="col-3 flex justify-center items-center">
+      <div class="col-3 flex justify-end items-center">
         <renew-subscribtion
-          class="bg-green text-white"
+          class="bg-green text-white q-m"
           :businessId="item.id"
           v-if="item.isOwner && item.daysToExpire < 350"
         />
@@ -122,7 +136,9 @@
           size="md"
           dense
         >
-          <q-tooltip>{{ $t("page.buttons.more-tooltip") }}</q-tooltip>
+          <q-tooltip class="custom-tooltip" delay="600">{{
+            $t("page.buttons.more-tooltip")
+          }}</q-tooltip>
         </q-btn>
         <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list padding>

@@ -36,10 +36,12 @@
       "add-new-business-tooltip": "Add New Business",
       "guide-tooltip": "Guide",
       "reload-data": "Refresh",
+      "back": "Back",
       "expire-date-tooltip": "Expire date",
       "service-extension-tooltip": "Service extension",
       "guest-user": "Guest user",
       "more-tooltip": "More",
+      "renew-subscription": "Renew Subscription",
       "guide": {
         "slide1": "Welcome to Landa. We hope you enjoy working with Landa. Let's see the simple guide to use the system together.",
         "slide2": "You can enter by clicking on your business name.",
@@ -54,10 +56,20 @@
         "delete": "Delete",
         "payment-history": "Payment History"
       }
+    },
+    "payment-history": {
+      "payment-card-title": "Payment History",
+      "trial": "Trial",
+      "paid": "Paid",
+      "amount-paid": "Amount Paid",
+      "buttons": {
+        "view": "View"
+      }
     }
   },
 
   "change-password-page": {
+    "title": "Change Password",
     "placeholders": {
       "old-password": "Old Password",
       "new-password": "New Password",

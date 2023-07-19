@@ -93,7 +93,9 @@
           <reset-password>
             <template #header>
               <q-item-section>
-                <q-item-label class="text-bold">تغییر رمز عبور</q-item-label>
+                <q-item-label class="text-bold">{{
+                  $t("change-password-page.title")
+                }}</q-item-label>
               </q-item-section>
               <q-card-actions>
                 <div class="flex items-center q-gutter-x-md">

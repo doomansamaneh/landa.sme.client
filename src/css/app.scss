@@ -55,6 +55,10 @@ body.body--dark {
     color: $hover-dark;
   }
 
+  .custom-tooltip {
+    background-color: $dark-5;
+  }
+
   .page-title,
   .q-toolbar,
   .q-toolbar a,
@@ -171,6 +175,11 @@ body.body--light {
 
   .icon-hover.q-icon:hover {
     color: $hover-light;
+  }
+
+  .custom-tooltip {
+    background-color: $dark-1;
+    color: $dark;
   }
 
   .dark-icon .q-avatar__content,

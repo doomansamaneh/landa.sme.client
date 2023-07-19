@@ -36,10 +36,12 @@
       "add-new-business-tooltip": "ایجاد کسب و کار جدید",
       "guide-tooltip": "راهنما",
       "reload-data": "تازه سازی",
+      "back": "بازگشت",
       "expire-date-tooltip": "سر رسید",
       "service-extension-tooltip": "تمدید اشتراک",
       "guest-user": "کاربر مهمان",
       "more-tooltip": "بیشتر",
+      "renew-subscription": "تمدید اشتراک",
       "guide": {
         "slide1": "به لاندا خوش آمدید. امیدواریم از کار کردن با لاندا لذت ببرید. راهنمای ساده استفاده از سامانه را با هم ببینیم.",
         "slide2": "با کلیک روی نام کسب و کارتان می توانید وارد آن شوید.",
@@ -54,10 +56,20 @@
         "delete": "حذف",
         "payment-history": "تاریخچه پرداخت"
       }
+    },
+    "payment-history": {
+      "payment-card-title": "تاریخچه پرداخت",
+      "trial": "دوره آزمایشی",
+      "paid": "پرداخت شده",
+      "amount-paid": "مبلغ پرداخت شده",
+      "buttons": {
+        "view": "مشاهده"
+      }
     }
   },
 
   "change-password-page": {
+    "title": "تغییر رمز عبور",
     "placeholders": {
       "old-password": "رمز عبور پیشین",
       "new-password": "رمز عبور",

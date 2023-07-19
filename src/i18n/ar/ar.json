@@ -36,10 +36,12 @@
       "add-new-business-tooltip": "إنشاء أعمال جديدة",
       "guide-tooltip": "مرشد",
       "reload-data": "مرطب",
+      "back": "العودة",
       "expire-date-tooltip": "تاريخ انتهاء الصلاحية",
       "service-extension-tooltip": "تمديد الخدمة",
       "guest-user": "حساب زائر",
       "more-tooltip": "أكثر",
+      "renew-subscription": "تجديد الاشتراك",
       "guide": {
         "slide1": "مرحبا بكم في لاندا. نأمل أن تستمتع بالعمل مع لاندا. دعنا نرى الدليل البسيط لاستخدام النظام معًا.",
         "slide2": "يمكنك الدخول من خلال النقر على اسم عملك.",
@@ -54,10 +56,20 @@
         "delete": "حذف",
         "payment-history": "تاریخ الدفع"
       }
+    },
+    "payment-history": {
+      "payment-card-title": "تاریخ الدفع",
+      "trial": "محاكمة",
+      "paid": "مدفوع",
+      "amount-paid": "المبلغ المدفوع",
+      "buttons": {
+        "view": "منظر"
+      }
     }
   },
 
   "change-password-page": {
+    "title": "تغییر كلمة المرور",
     "placeholders": {
       "old-password": "كلمة المرور السابقة",
       "new-password": "كلمة المرور",
