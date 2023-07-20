@@ -66,15 +66,24 @@
           />
         </template>
       </q-input>
-      <div class="q-mt-lg">
+      <div class="flex justify-between q-mb-xs">
         <q-btn
           unelevated
           type="submit"
           color="light-blue-6"
           size="md"
-          class="change-password-btn full-width text-weight-bold q-py-sm"
+          class="change-password-btn text-weight-bold q-py-sm"
           no-caps
           :label="$t('change-password-page.buttons.change-password')"
+        />
+        <q-btn
+          unelevated
+          color="negative"
+          size="md"
+          class="cancel-btn text-weight-bold q-py-sm text-white bg-red-7"
+          no-caps
+          label="انصراف"
+          v-close-popup
         />
       </div>
     </q-form>
@@ -123,5 +132,10 @@ async function changePassword() {
 
 .change-password-btn {
   height: 40px;
+  width: 60%;
+}
+
+.cancel-btn {
+  width: 36%;
 }
 </style>

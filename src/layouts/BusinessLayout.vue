@@ -84,11 +84,9 @@
         <router-view />
         <q-dialog
           v-model="changePasswordPopup"
-          persistent
           transition-show="slide-down"
           transition-hide="fade"
           transition-duration="600"
-          no-route-dismiss
         >
           <reset-password>
             <template #header>

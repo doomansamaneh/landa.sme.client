@@ -8,14 +8,36 @@
         </q-item-label>
       </q-item-section>
       <q-card-actions>
-        <div class="flex items-center q-mr-xs">
+        <div class="flex q-gutter-x-sm q-mr-md">
+          <div class="">
+            <q-icon
+              class="icon-hover dark-3 cursor-pointer"
+              size="xs"
+              name="o_description"
+              @click="$emit('reload-data')"
+            >
+              <q-tooltip>تبدیل به اکسل</q-tooltip>
+            </q-icon>
+          </div>
+          <div class="">
+            <q-icon
+              class="icon-hover dark-3 cursor-pointer"
+              size="xs"
+              name="o_print"
+              @click="print"
+            >
+              <q-tooltip>پرینت</q-tooltip>
+            </q-icon>
+          </div>
+        </div>
+        <div class="flex items-center q-gutter-x-md q-pr-xs">
           <q-icon
             class="icon-hover dark-3 cursor-pointer"
             size="xs"
             name="o_refresh"
             @click="$emit('reload-data')"
           >
-            <q-tooltip>{{ $t("page.buttons.guide-tooltip") }}</q-tooltip>
+            <q-tooltip>{{ $t("page.buttons.reload-data") }}</q-tooltip>
           </q-icon>
         </div>
         <div class="flex items-center q-gutter-x-md">
@@ -31,9 +53,11 @@
       </q-card-actions>
     </q-item>
     <q-separator />
-    <q-card-section>
-      <q-item class="flex justify-between items-center text-caption q-mb-xs">
-        <div class="q-pr-xl">
+    <q-item>
+      <div
+        class="invoice-text-container flex justify-between items-center full-width text-center q-py-xl text-bold text-body2 q-mt-sm"
+      >
+        <div class="">
           <q-item-label class="">
             <img
               class="sme-logo"
@@ -42,35 +66,29 @@
             />
           </q-item-label>
         </div>
-        <!-- <div class="flex q-gutter-md text-caption text-bold items-center">
+        <div class="">
+          <span class="text-subtitle1 text-bold"
+            >صورتحساب فروش کالا و خدمات</span
+          >
+        </div>
+        <div class="column q-gutter-md text-caption text-bold items-center">
           <div>
             <span>
-              <span>تاریخ:</span>
+              <span class="text-weight-thin">تاریخ:</span>
               1401/02/09</span
             >
           </div>
           <div class="">
             <span>
-              <span>شماره فاکتور:</span>
+              <span class="text-weight-thin">شماره فاکتور:</span>
               20108</span
             >
           </div>
-        </div> -->
-        <table>
-          <thead>
-            <tr>
-              <th class="text-left">شماره:</th>
-              <th class="text-left">تاریخ:</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-left">20810</td>
-              <td>1401/05/02</td>
-            </tr>
-          </tbody>
-        </table>
-      </q-item>
+        </div>
+      </div>
+    </q-item>
+    <q-separator class="q-mt-sm q-mx-md" />
+    <q-card-section>
       <q-item class="flex justify-between text-caption">
         <div class="">
           <q-item-lanel class=""
@@ -116,36 +134,36 @@
           </q-item-label>
         </div>
       </q-item>
-      <q-separator class="q-mt-sm q-mx-md" />
-      <q-item>
-        <div
-          class="invoice-text full-width text-center bg-blue-8 q-py-md text-bold text-body2 text-white"
-        >
-          صورتحساب فروش کالا و خدمات
-        </div>
-      </q-item>
+      <q-separator class="q-my-sm q-mx-md" />
+
       <q-item class="column">
-        <table class="text-caption rounded-table">
+        <table class="invoice-table text-caption">
           <thead class="text-left">
             <tr>
-              <th class="q-py-sm xs-width">
+              <th class="xs-width">
                 <span class="">ردیف</span>
               </th>
-              <th class="xl-width"><span class="">کالا / خدمت</span></th>
+              <th class="xl-width"><span class="">طرح</span></th>
               <th class="xs-width"><span class="">مقدار</span></th>
               <th class="xs-width"><span class="">واحد</span></th>
-              <th><span class="">مبلغ واحد</span></th>
-              <th><span class="">مبلغ کل</span></th>
+              <th class="lg-width"><span class="">تاریخ</span></th>
+              <th class="md-width"><span class="">مبلغ واحد</span></th>
+              <th class="md-width"><span class="">مبلغ کل</span></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="q-py-sm"><span class="">1</span></td>
-              <td><span class="">طرح 2 حسابداری</span></td>
-              <td><span class="">1.5</span></td>
-              <td><span class="">ماه</span></td>
+              <td class=""><span class="">1</span></td>
+              <td>
+                <span class=""
+                  >طرح 1: (حسابداری، خرید و فروش، دریافت و پرداخت)</span
+                >
+              </td>
+              <td><span class="">1000</span></td>
+              <td><span class="">دستگاه</span></td>
+              <td><span class="">1401/02/09 - 1401-03-09</span></td>
+              <td><span class="">490,000</span></td>
               <td><span class="">500,000</span></td>
-              <td><span class="">750,000</span></td>
             </tr>
             <tr>
               <td class="q-py-sm"><span class="">2</span></td>
@@ -153,33 +171,34 @@
                 <div class="ellipsis-2-lines">
                   <div class="custom-ellipsis">
                     <span
-                      >طرح دوم حسابداری پیشرفته لاندا کسب و کارهای کوچک و متوسط
-                      به وسیله خشایار شمالی</span
+                      >طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
+                      دستمزد)</span
                     >
                   </div>
                 </div>
               </td>
-              <td><span class="q-pl-xs">1.5</span></td>
-              <td><span class="q-pl-xs">ماه</span></td>
-              <td><span class="q-pl-xs">500,000</span></td>
-              <td><span class="q-pl-xs">750,000</span></td>
+              <td><span class="">1.5</span></td>
+              <td><span class="">ماه</span></td>
+              <td><span class="">1401/02/09 - 1401-03-24</span></td>
+              <td><span class="">500,000</span></td>
+              <td><span class="">750,000</span></td>
             </tr>
             <tr>
-              <td class="text-right q-py-sm" colspan="5">
+              <td class="text-right" colspan="6">
                 <span class="text-bold">جمع:</span>
               </td>
-              <td class="q-py-sm">
+              <td class="">
                 <span class="text-bold">10,750,000</span>
               </td>
             </tr>
             <tr>
-              <td class="text-right q-py-sm" colspan="5">
+              <td class="text-right" colspan="6">
                 <span class="text-bold">جمع مالیات و عوارض:</span>
               </td>
               <td><span class="text-bold">967,500</span></td>
             </tr>
             <tr>
-              <td class="text-right q-py-sm" colspan="5">
+              <td class="text-right" colspan="6">
                 <span class="text-bold q-pl-xs">جمع کل:</span
                 ><span class="">
                   <span class="text-bold q-pl-xs"
@@ -192,7 +211,7 @@
               <td><span class="text-bold">11,717,500</span></td>
             </tr>
             <tr>
-              <td class="text-right q-pr-sm q-py-sm" colspan="6">
+              <td class="text-right q-pr-sm" colspan="7">
                 <span class="text-bold q-pr-md"
                   >جمع دریافتی:<span class="text-weight-thin q-pl-xs"
                     >11,717,500</span
@@ -208,7 +227,7 @@
                     >(150,000,000)</span
                   ></span
                 >
-                <span class="text-bold q-pr-md q-pl-sm bg-grey-4"
+                <span class="text-bold q-pr-md q-pl-sm dark-1-bg"
                   >جمع مانده:<span class="text-weight-thin q-pl-xs"
                     ><b class="underline">(150,000,000)</b></span
                   ></span
@@ -217,17 +236,17 @@
             </tr>
           </tbody>
         </table>
-        <table class="q-my-sm text-caption">
+        <table class="quote-table q-mt-sm text-caption">
           <tr>
-            <td colspan="6" class="q-py-md">
+            <td colspan="6" class="quote-place">
               <span class="text-bold">توضیحات:</span>
             </td>
           </tr>
           <tr>
-            <td class="sign-place q-py-xl">
+            <td class="sign-place">
               <span> مهر و امضای فروشنده</span>
             </td>
-            <td class="sign-place q-px-xs">
+            <td class="sign-place">
               <span>مهر و امضای خریدار</span>
             </td>
           </tr>
@@ -236,6 +255,12 @@
     </q-card-section>
   </q-card>
 </template>
+
+<script setup>
+function print() {
+  window.print()
+}
+</script>
 
 <style scoped>
 .card-desktop {
@@ -247,7 +272,7 @@
 }
 
 .sme-logo {
-  width: 150px;
+  width: 72px;
 }
 .seller-address {
   width: 250px;
@@ -257,47 +282,58 @@
   line-height: 1.7rem;
 }
 
-.invoice-text {
-  border-bottom: 5px solid rgb(80, 182, 255);
+.invoice-text-container {
   border-radius: 4px;
+  padding: 42px 32px;
+}
+
+.sign-place {
+  width: 50%;
+  padding: 50px 8px;
+}
+
+.quote-place {
+  padding: 32px 8px;
+}
+
+.xs-width {
+  width: 7%;
+}
+.md-width {
+  width: 10%;
+}
+
+.lg-width {
+  width: 25%;
+}
+.xl-width {
+  width: 40%;
+}
+
+.custom-ellipsis {
+  width: 100%;
 }
 
 table,
 td,
 th {
-  border: 1px solid;
-}
-
-th,
-td {
-  padding: 8px;
+  border: none;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-}
-.rounded-table {
-  border-radius: 10px;
-}
-.sign-place {
-  width: 50%;
-}
-.underline {
-  border-bottom: 2px solid black;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-.xs-width {
-  width: 5%;
-}
-.md-width {
-  width: 10%;
-}
-.xl-width {
-  width: 55%;
+th,
+td {
+  padding: 24px 8px;
 }
 
-.custom-ellipsis {
-  width: 100%;
+.invoice-table {
+  padding: 8px;
 }
 </style>
