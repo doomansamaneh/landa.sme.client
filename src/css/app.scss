@@ -196,6 +196,14 @@ body.body--dark {
   .invoice-text-container {
     background-color: $dark-5;
   }
+
+  .dark-container {
+    background-color: $dark-5;
+  }
+
+  .plan-title {
+    background-color: $dark;
+  }
 }
 
 body.body--light {
@@ -234,6 +242,10 @@ body.body--light {
   .dark-1-bg {
     padding: 8px 16px;
     border-radius: 4px;
+    background-color: $dark-1;
+  }
+
+  .dark-container {
     background-color: $dark-1;
   }
 

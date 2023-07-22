@@ -16,7 +16,7 @@
               name="o_description"
               @click="$emit('reload-data')"
             >
-              <q-tooltip>تبدیل به اکسل</q-tooltip>
+              <q-tooltip class="custom-tooltip">تبدیل به اکسل</q-tooltip>
             </q-icon>
           </div>
           <div class="" ref="print">
@@ -26,7 +26,7 @@
               name="o_print"
               @click="print"
             >
-              <q-tooltip>پرینت</q-tooltip>
+              <q-tooltip class="custom-tooltip">پرینت</q-tooltip>
             </q-icon>
           </div>
         </div>
@@ -37,7 +37,9 @@
             name="o_refresh"
             @click="$emit('reload-data')"
           >
-            <q-tooltip>{{ $t("page.buttons.reload-data") }}</q-tooltip>
+            <q-tooltip class="custom-tooltip">{{
+              $t("page.buttons.reload-data")
+            }}</q-tooltip>
           </q-icon>
         </div>
         <div class="flex items-center q-gutter-x-md">
@@ -47,7 +49,7 @@
             name="arrow_back"
             @click="$router.go(-1)"
           >
-            <q-tooltip>بازگشت</q-tooltip>
+            <q-tooltip class="custom-tooltip">بازگشت</q-tooltip>
           </q-icon>
         </div>
       </q-card-actions>

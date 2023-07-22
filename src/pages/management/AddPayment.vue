@@ -9,17 +9,6 @@
         </q-item-label>
       </q-item-section>
       <q-card-actions>
-        <div class="flex q-gutter-x-sm q-mr-md"></div>
-        <div class="flex items-center q-gutter-x-md q-pr-xs">
-          <q-icon
-            class="icon-hover dark-3 cursor-pointer"
-            size="xs"
-            name="o_refresh"
-            @click="$emit('reload-data')"
-          >
-            <q-tooltip>{{ $t("page.buttons.reload-data") }}</q-tooltip>
-          </q-icon>
-        </div>
         <div class="flex items-center q-gutter-x-md">
           <q-icon
             class="icon-hover dark-3 cursor-pointer"
@@ -27,7 +16,7 @@
             name="arrow_back"
             @click="$router.go(-1)"
           >
-            <q-tooltip>بازگشت</q-tooltip>
+            <q-tooltip class="custom-tooltip">بازگشت</q-tooltip>
           </q-icon>
         </div>
       </q-card-actions>
@@ -63,53 +52,61 @@
             <q-item-label>طرح (ریال):</q-item-label>
           </div>
           <div class="col-10">
-            <q-btn-dropdown
-              outline
-              label="انتخاب طرح"
-              class="full-width q-pl-md"
-            >
-              <table class="text-left full-width">
-                <thead>
-                  <tr>
-                    <th class="xs-width"><span>#</span></th>
-                    <th class="md-width"><span>عنوان</span></th>
-                    <th style="lg-width"><span>هزینه ماهانه</span></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>طرح 1: (حسابداری، خرید و فروش، دریافت و پرداخت)</td>
-                    <td>149000</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-                      دستمزد)
-                    </td>
-                    <td>149000</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>
-                      طرح 3: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-                      دستمزد، api)
-                    </td>
-                    <td>149000</td>
-                  </tr>
-                </tbody>
-              </table>
+            <q-btn-dropdown dense outline class="q-pl-md">
+              <data-view
+                ref="businessDataView"
+                dataSource="business/getBusinessGridData"
+                orderByField="title"
+                searchField="b.title"
+                @reload-data="reloadData"
+                class="plan-title"
+              >
+                <template #item="{ item }">
+                  <table class="plan-title-table text-left full-width">
+                    <thead class="text-caption">
+                      <tr>
+                        <th class=""><span>#</span></th>
+                        <th class=""><span>عنوان</span></th>
+                        <th style=""><span>هزینه ماهانه</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{ item.statusId }}</td>
+                        <td>
+                          <span>{{ item.planTitle }}</span>
+                        </td>
+                        <td>{{ item.daysToExpire }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </template>
+              </data-view>
             </q-btn-dropdown>
           </div>
           <div class="col-2 q-my-lg">
             <q-item-label>دوره تمدید:</q-item-label>
           </div>
           <div class="col-10">
-            <q-select dense outlined v-model="periodModel" :options="period" />
+            <q-btn-dropdown
+              dense
+              outline
+              :label="selectedPeriod"
+              class="q-pl-md"
+              auto-close
+            >
+              <q-item
+                clickable
+                v-for="item in period"
+                :key="item"
+                @click="selectPeriod(item)"
+              >
+                <q-item-section>{{ item }}</q-item-section>
+              </q-item>
+            </q-btn-dropdown>
           </div>
           <div
-            class="total row bg-grey-4 q-py-xl q-my-md full-width items-center q-pl-lg"
+            class="total dark-container row q-py-xl q-my-md full-width items-center q-pl-lg"
           >
             <div class="col-2 q-my-md">
               <q-item-label>تخفیف وفاداری:</q-item-label>
@@ -158,37 +155,19 @@
 
 <script setup>
 import { ref, watch } from "vue"
+import DataView from "src/components/shared/DataView.vue"
 
-const planTitleModel = ref(null)
-const periodModel = ref("1 ماه")
-const planTitle = [
-  "طرح 1:  (حسابداری، خرید و فروش، دریافت و پرداخت)",
-  "طرح 2:  (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و دستمزد)",
-  "طرح 3:  (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و دستمزد، api)"
-]
 const period = [
   "1 ماه",
   "3 ماه",
   "6 ماه (6 درصد تخفیف)",
   "12 ماه (15 درصد تخفیف)"
 ]
+const selectedPeriod = ref(period[0])
 
-// Reactive variables for storing selected values and total
-const total = ref(0)
-
-// Watch for changes in planTitleModel and periodModel and update the total
-watch([planTitleModel, periodModel], ([selectedPlan, selectedPeriod]) => {
-  // Convert the selected period to a numeric value (e.g., "1 ماه" => 1)
-  const periodValue = parseInt(selectedPeriod.split(" ")[0], 10)
-
-  // Calculate the total based on the selected plan and periodValue
-  const selectedPlanIndex = planTitle.indexOf(selectedPlan)
-  const planCosts = [140000, 160000, 190000] // Replace with actual costs based on plan index
-  const planCost = planCosts[selectedPlanIndex] || 0 // Default to 0 if index not found
-
-  // Calculate the total
-  total.value = planCost * periodValue
-})
+function selectPeriod(item) {
+  selectedPeriod.value = item
+}
 </script>
 
 <style lang="scss" scoped>
@@ -200,37 +179,8 @@ watch([planTitleModel, periodModel], ([selectedPlan, selectedPeriod]) => {
   border-radius: 4px;
 }
 
-.plan-drop-down {
-  width: 500px;
-}
-
-table {
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
 th,
 td {
-  padding: 24px 8px;
-}
-
-tbody tr:hover {
-  background-color: #f2f2f28a;
-}
-
-.xs-width {
-  width: 8px;
-}
-.md-width {
-  width: 16px;
-}
-
-.lg-width {
-  width: 24px;
-}
-.xl-width {
-  width: 32px;
+  padding: 16px 16px;
 }
 </style>

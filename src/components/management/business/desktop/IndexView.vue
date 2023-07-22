@@ -216,6 +216,10 @@ async function goToPaymentHistory(item) {
 async function reloadData() {
   businessDataView.value.reloadData()
 }
+
+// function selectCard(index) {
+//   selectedCard.value = index
+// }
 </script>
 
 <style>
