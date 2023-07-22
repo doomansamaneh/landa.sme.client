@@ -87,6 +87,7 @@
           transition-show="slide-down"
           transition-hide="fade"
           transition-duration="600"
+          no-backdrop-dismiss
         >
           <reset-password>
             <template #header>
@@ -143,10 +144,6 @@ function goToChangePasswordPage() {
   changePasswordPopup.value = true // Open the dialog
   // router.push("/business/changePassword") // Change the route
 }
-
-// function close() {
-//   router.go(-1)
-// }
 
 function getFirstChar(str) {
   return str.charAt(0)

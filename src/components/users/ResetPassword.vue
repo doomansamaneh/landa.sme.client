@@ -66,24 +66,24 @@
           />
         </template>
       </q-input>
-      <div class="flex justify-between q-mb-xs">
+      <div class="flex justify-between q-mt-sm q-mb-sm">
         <q-btn
           unelevated
           type="submit"
           color="light-blue-6"
           size="md"
-          class="change-password-btn text-weight-bold q-py-sm"
+          class="change-password-btn q-py-sm"
           no-caps
           :label="$t('change-password-page.buttons.change-password')"
         />
         <q-btn
           unelevated
-          color="negative"
           size="md"
-          class="cancel-btn text-weight-bold q-py-sm text-white bg-red-7"
+          class="cancel-btn text-weight-bold q-py-sm"
           no-caps
           label="انصراف"
           v-close-popup
+          flat
         />
       </div>
     </q-form>

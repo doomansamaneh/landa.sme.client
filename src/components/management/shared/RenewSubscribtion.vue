@@ -7,6 +7,7 @@
     filled
     unelevated
     padding="6px 12px"
+    @click="goToAddPayment"
   >
     <q-icon name="add" class="q-pr-xs" size="14px" />
     {{ $t("page.buttons.renew-subscription") }}
@@ -24,6 +25,10 @@ const props = defineProps({
   title: String,
   businessId: String
 })
+
+async function goToAddPayment() {
+  router.push(`business/addPayment/1234`)
+}
 
 const router = useRouter()
 </script>

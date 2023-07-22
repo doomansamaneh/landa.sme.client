@@ -20,6 +20,13 @@ export default {
       path: "paymentDetail/:paymentId", name: "Payments Detail", component: () => import("pages/management/PaymentDetailPage.vue"), meta: {
         icon: "o_info"
       },
+
+    },
+    {
+      path: "addPayment/:paymentId", name: "Renew Subscription", component: () => import("pages/management/AddPayment.vue"), meta: {
+        icon: "add"
+      },
+
     },
 
   ],

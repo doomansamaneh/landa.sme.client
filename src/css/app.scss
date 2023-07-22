@@ -100,16 +100,16 @@ body.body--dark {
     background-color: $dark-5;
   }
 
-  tbody tr:hover {
+  .invoice-table tbody tr:hover {
     background-color: #5663972f;
   }
 
-  th {
+  .invoice-table th {
     background-color: $dark-5;
     border-bottom: 2px solid $primary;
   }
 
-  td {
+  .invoice-table td {
     border-bottom: 1px solid $dark-5;
   }
 
@@ -241,7 +241,7 @@ body.body--light {
     background-color: $dark-1;
   }
 
-  tbody tr:hover {
+  .invoice-table tbody tr:hover {
     background-color: #f2f2f28a;
   }
 
@@ -249,12 +249,12 @@ body.body--light {
     border-bottom: 2px solid $primary;
   }
 
-  th {
+  .invoice-table th {
     background-color: $dark-1;
     border-bottom: 2px solid $primary;
   }
 
-  td {
+  .invoice-table td {
     border-bottom: 1px solid #ececec;
   }
   .dark-2 {
@@ -331,7 +331,7 @@ body.theme--blue {
     color: $primary;
   }
 
-  th {
+  .invoice-table th {
     border-bottom: 2px solid $primary;
   }
 }
@@ -351,7 +351,7 @@ body.theme--orange {
     color: orangered;
   }
 
-  th {
+  .invoice-table th {
     border-bottom: 2px solid orangered;
   }
 
@@ -379,7 +379,7 @@ body.theme--green {
     color: $green;
   }
 
-  th {
+  .invoice-table th {
     border-bottom: 2px solid $green;
   }
 }

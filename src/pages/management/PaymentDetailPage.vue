@@ -19,7 +19,7 @@
               <q-tooltip>تبدیل به اکسل</q-tooltip>
             </q-icon>
           </div>
-          <div class="">
+          <div class="" ref="print">
             <q-icon
               class="icon-hover dark-3 cursor-pointer"
               size="xs"
@@ -71,7 +71,7 @@
             >صورتحساب فروش کالا و خدمات</span
           >
         </div>
-        <div class="column q-gutter-md text-caption text-bold items-center">
+        <div class="column q-gutter-sm text-right text-caption text-bold">
           <div>
             <span>
               <span class="text-weight-thin">تاریخ:</span>
