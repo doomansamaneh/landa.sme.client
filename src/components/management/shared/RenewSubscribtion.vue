@@ -27,7 +27,7 @@ const props = defineProps({
 })
 
 async function goToAddPayment() {
-  router.push("buisness/addPayment")
+  router.push("business/addPayment/1234")
 }
 
 const router = useRouter()
