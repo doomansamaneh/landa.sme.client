@@ -52,37 +52,41 @@
             <q-item-label>طرح (ریال):</q-item-label>
           </div>
           <div class="col-10">
-            <q-btn-dropdown dense outline class="q-pl-md">
-              <data-view
-                ref="businessDataView"
-                dataSource="business/getBusinessGridData"
-                orderByField="title"
-                searchField="b.title"
-                @reload-data="reloadData"
-                class="plan-title"
-              >
-                <template #item="{ item }">
-                  <table class="plan-title-table text-left full-width">
-                    <thead class="text-caption">
-                      <tr>
-                        <th class=""><span>#</span></th>
-                        <th class=""><span>عنوان</span></th>
-                        <th style=""><span>هزینه ماهانه</span></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{{ item.statusId }}</td>
-                        <td>
-                          <span>{{ item.planTitle }}</span>
-                        </td>
-                        <td>{{ item.daysToExpire }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <div class="q-input-menu-wrapper">
+              <q-input outlined dense class="input" v-model="selectedPlan">
+                <template v-slot:append>
+                  <q-icon
+                    name="clear"
+                    size="16px"
+                    color="primary"
+                    v-if="selectedPlan && selectedPlan.length > 0"
+                    class="cursor-pointer"
+                    @click="clearSelection"
+                  />
+                  <q-icon
+                    name="o_expand_more"
+                    class="cursor-pointer"
+                    size="sm"
+                  />
                 </template>
-              </data-view>
-            </q-btn-dropdown>
+              </q-input>
+              <q-menu
+                transition-show="jump-down"
+                transition-hide="jump-up"
+                :offset="[-20, 5]"
+              >
+                <lookup-view
+                  ref="businessDataView"
+                  dataSource="business/getBusinessGridData"
+                  orderByField="title"
+                  searchField="b.title"
+                  @reload-data="reloadData"
+                  class="lookup"
+                  @selected-plan="selectCard()"
+                >
+                </lookup-view>
+              </q-menu>
+            </div>
           </div>
           <div class="col-2 q-my-lg">
             <q-item-label>دوره تمدید:</q-item-label>
@@ -156,6 +160,7 @@
 <script setup>
 import { ref, watch } from "vue"
 import DataView from "src/components/shared/DataView.vue"
+import LookupView from "src/components/shared/LookupView.vue"
 
 const period = [
   "1 ماه",
@@ -164,9 +169,19 @@ const period = [
   "12 ماه (15 درصد تخفیف)"
 ]
 const selectedPeriod = ref(period[0])
+const selectedPlan = ref("")
+const planTitle = ["طرح 1", "طرح 2", "طرح 3"]
 
 function selectPeriod(item) {
   selectedPeriod.value = item
+}
+
+function clearSelection() {
+  selectedPlan.value = ""
+}
+
+function selectCard() {
+  selectedPlan.value = planTitle
 }
 </script>
 
@@ -182,5 +197,22 @@ function selectPeriod(item) {
 th,
 td {
   padding: 16px 16px;
+}
+
+table {
+  border-collapse: collapse;
+  border: none;
+}
+
+.input {
+  width: 400px;
+}
+
+.selected-row {
+  background-color: #f4fcd1 !important;
+}
+
+tbody tr:hover {
+  background-color: #f3f3f3;
 }
 </style>

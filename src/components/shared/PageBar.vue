@@ -22,7 +22,7 @@
         class="pagination"
       />
     </div>
-    <div class="col-2">
+    <div class="">
       <q-select
         dense
         outlined
@@ -31,8 +31,6 @@
         @update:model-value="handlePageChange"
         transition-show="flip-up"
         transition-hide="flip-down"
-        class="q-pl-lg"
-        input-class="text-red"
         popup-content-class="text-caption text-weight-medium text-grey-8"
       />
     </div>
