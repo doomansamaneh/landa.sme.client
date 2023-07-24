@@ -28,7 +28,7 @@
             <q-item-label>کسب و کار:</q-item-label>
           </div>
           <div class="col-10">
-            <span class="q-pl-xs"
+            <span class="text-bold q-pl-xs"
               >دومان سامانه برای تست و انجام کارهای دمو</span
             >
           </div>
@@ -106,7 +106,7 @@
             </q-btn-dropdown>
           </div>
           <div
-            class="total dark-container row q-my-md full-width items-center q-px-lg"
+            class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
           >
             <div class="row col-6 q-gutter-y-lg">
               <div class="col-7"><span>تخفیف وفاداری:</span></div>
@@ -118,8 +118,28 @@
               <div class="col-7"><span>جمع کل:</span></div>
               <div class="col-4"><span class="text-bold">149,000</span></div>
             </div>
-            <div class="bus col-6 row justify-center bg-red q-py-xl">
-              <img src="public/landa-sme-logo.png" alt="Sadad" />
+            <div class="sadad col-6 row justify-center items-center">
+              <div class="row justify-center q-gutter-x-md">
+                <q-radio
+                  v-model="shape"
+                  checked-icon="task_alt"
+                  val="line"
+                  color="dark"
+                >
+                  <q-tooltip class="text-body1">
+                    <span class="sadad-tooltip"
+                      >پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان
+                      پذیر است</span
+                    >
+                  </q-tooltip>
+                </q-radio>
+                <div class="">
+                  <img
+                    src="../../../../public/sadad-new.png"
+                    alt="درگاه پرداخت الکترونیک سداد"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -154,6 +174,8 @@ const period = [
   "6 ماه (6 درصد تخفیف)",
   "12 ماه (15 درصد تخفیف)"
 ]
+
+const shape = ref("line")
 const selectedPeriod = ref(period[0])
 const selectedPlan = ref("")
 
@@ -204,5 +226,18 @@ table {
 
 tbody tr:hover {
   background-color: #f3f3f3;
+}
+
+.sadad {
+  border-radius: 4px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 </style>

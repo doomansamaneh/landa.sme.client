@@ -23,8 +23,8 @@ export default {
 
     },
     {
-      path: "addPayment/:paymentId", name: "Renew Subscription", component: () => import("src/pages/management/AddPaymentPage.vue"), meta: {
-        icon: "add"
+      path: "addPayment/:paymentId", name: "Renew Subscription", component: () => import("pages/management/AddPaymentPage.vue"), meta: {
+        icon: "o_monetization_on"
       },
 
     },

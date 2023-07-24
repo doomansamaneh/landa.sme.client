@@ -3,7 +3,7 @@
     <div class="body-section q-mb-xl">
       <div class="login-form-container">
         <div class="logo flex justify-center">
-          <q-img
+          <img
             src="../../../public/about-us-header.png"
             class="login-img q-mb-md"
           />
