@@ -36,44 +36,43 @@
     </q-card-section>
     <q-separator />
     <q-linear-progress
-      class="progress"
+      class="progress q-mb-sm"
       indeterminate
       size="xs"
       v-if="loadingData"
     />
-    <q-card-section v-if="pagedRows.length > 0">
-      <table
-        class="plan-title-table text-left full-width"
-        ref="table"
-        @keydown.up="selectPrevious"
-        @keydown.down="selectNext"
-        @keydown.enter="selectedCard"
-        tabindex="0"
-      >
-        <thead class="text-caption">
-          <tr class="">
-            <th class=""><span>#</span></th>
-            <th class=""><span>عنوان</span></th>
-            <th style=""><span>هزینه ماهانه</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(item, index) in rows"
-            :key="item.id"
-            :class="{ 'selected-row': index === selectedRowIndex }"
-            @click="$emit('selected-plan')"
-            class="cursor-pointer"
-          >
-            <td>{{ item.statusId }}</td>
-            <td>
-              <span>{{ item.planTitle }}</span>
-            </td>
-            <td>{{ item.daysToExpire }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </q-card-section>
+    <!-- <q-card-section v-if="pagedRows.length > 0"> </q-card-section> -->
+    <table
+      class="plan-title-table text-left full-width q-mt-md text-caption"
+      ref="table"
+      @keydown.up="selectPrevious"
+      @keydown.down="selectNext"
+      @keydown.enter="selectedCard"
+    >
+      <thead class="text-caption">
+        <tr class="">
+          <th class=""><span>#</span></th>
+          <th class=""><span>عنوان</span></th>
+          <th style=""><span>هزینه ماهانه</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          tabindex="1"
+          v-for="(item, index) in rows"
+          :key="item.id"
+          :class="{ 'selected-row': index === selectedCardIndex }"
+          @click="onRowClicked(index)"
+          class="cursor-pointer"
+        >
+          <td>{{ item.statusId }}</td>
+          <td>
+            <span>{{ item.planTitle }}</span>
+          </td>
+          <td>{{ item.daysToExpire }}</td>
+        </tr>
+      </tbody>
+    </table>
 
     <q-card-section v-if="pagedRows.length === 0 && !loadingData">
       <div
@@ -126,10 +125,10 @@ const router = useRouter()
 const rows = ref([])
 const loadingData = ref(false)
 const searchTerm = ref("")
-const defaultPageSize = 3
+const defaultPageSize = 5
 const selectedCard = ref(false)
 const businessId = ref("")
-const selectedRowIndex = ref(0)
+const selectedCardIndex = ref(0)
 const pagination = ref({
   sortBy: props.orderByField,
   descending: false,
@@ -140,6 +139,13 @@ const pagination = ref({
 async function clearSearch() {
   searchTerm.value = ""
   await reloadData()
+}
+
+const selectedRowIndex = computed(() => selectedCardIndex.value)
+function onRowClicked(index) {
+  selectedCardIndex.value = index
+  const selectedPlan = rows.value[index]
+  emit("selected-plan", selectedPlan)
 }
 
 const isSearchEmpty = computed(
@@ -210,21 +216,32 @@ defineExpose({
 })
 
 function selectPrevious() {
-  if (selectedRowIndex.value > 0) {
-    selectedRowIndex.value--
+  if (selectedCardIndex.value > 0) {
+    selectedCardIndex.value--
   }
 }
 
 function selectNext() {
-  if (selectedRowIndex.value < rows.value.length - 1) {
-    selectedRowIndex.value++
+  if (selectedCardIndex.value < rows.value.length - 1) {
+    selectedCardIndex.value++
   }
 }
+
+const showPagebar = computed(() => {
+  return pagination.value.totalItems > defaultPageSize
+})
+
+const showPaging = computed(
+  () => pagination.value.totalItems > pagination.value.pageSize
+)
+const maxPage = computed(() =>
+  Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
+)
 </script>
 
 <style scoped>
 .plan-title-card {
-  width: 500px !important;
+  width: 400px !important;
 }
 
 .q-field--auto-height.q-field--dense .q-field__native {

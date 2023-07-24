@@ -63,8 +63,8 @@ const maxPage = computed(() =>
   Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
 )
 
-const emits = defineEmits(["page-changed"])
+const emit = defineEmits(["page-changed"])
 function handlePageChange() {
-  emits("page-changed", pagination.value)
+  emit("page-changed", pagination.value)
 }
 </script>
