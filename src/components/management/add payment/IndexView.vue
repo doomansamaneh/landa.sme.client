@@ -124,9 +124,10 @@
                   v-model="shape"
                   checked-icon="task_alt"
                   val="line"
-                  color="dark"
+                  color=""
+                  size="md"
                 >
-                  <q-tooltip class="text-body1">
+                  <q-tooltip class="custom-tooltip text-body1">
                     <span class="sadad-tooltip"
                       >پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان
                       پذیر است</span
@@ -144,15 +145,11 @@
           </div>
         </div>
         <div class="flex items-center q-mt-sm">
-          <q-btn
-            unelevated
-            color="positive"
-            padding="8px 16px"
-            class="text-bold"
-            ><q-icon name="o_monetization_on" class="q-pr-xs" />
+          <q-btn unelevated rounded color="positive" padding="8px 16px" class=""
+            ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
             پرداخت
           </q-btn>
-          <span class="text-caption q-pl-lg"
+          <span class="text-caption q-pl-md"
             >پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
             کارت خود را فعال کرده باشید.</span
           >
@@ -233,11 +230,11 @@ tbody tr:hover {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.2);
+  background: #ffffff33;
   border-radius: 4px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 20px #0000001a;
+  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff4d;
 }
 </style>
