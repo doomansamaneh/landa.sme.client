@@ -4,8 +4,8 @@
     dense
     class="input lookup"
     v-model="selectedRow"
-    @keyup="searchInLookup"
     @keydown.enter="selectRow"
+    @keyup.stop="searchInLookup"
   >
     <template #append>
       <q-icon
@@ -281,10 +281,12 @@ const maxPage = computed(() =>
 )
 
 function searchInLookup() {
-  reloadData()
-  setTimeout(() => {
-    popup.value.show()
-  }, 2000)
+  if (selectedRow.value.length > 0) {
+    setTimeout(() => {
+      reloadData()
+      popup.value.show()
+    }, 1500)
+  }
 }
 </script>
 
