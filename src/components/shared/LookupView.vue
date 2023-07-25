@@ -1,5 +1,12 @@
 <template>
-  <q-input outlined dense class="input" v-model="selectedRow">
+  <q-input
+    outlined
+    dense
+    class="input"
+    v-model="selectedRow"
+    @click="searchInLookup"
+    debounce="2000"
+  >
     <template #append>
       <q-icon
         name="clear"
@@ -36,6 +43,7 @@
           <slot name="search-bar">
             <div class="search-bar">
               <q-input
+                autofocus
                 outlined
                 dense
                 class="text-caption"
@@ -126,16 +134,7 @@
 
 <script setup>
 import { fetchWrapper } from "../../helpers"
-import {
-  ref,
-  computed,
-  onMounted,
-  onBeforeUnmount,
-  watch
-  // defineEmits,
-  // defineProps,
-  // defineExpose
-} from "vue"
+import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { useQuasar } from "quasar"
 import { useRouter } from "vue-router"
 import businessRoutes from "src/router/business-routes"
@@ -149,8 +148,6 @@ const props = defineProps({
   searchField: String,
   businessTitle: String
 })
-
-// const emit = defineEmits(["selected-row"])
 
 const router = useRouter()
 const rows = ref([])
@@ -185,13 +182,9 @@ function clearSelection() {
 function onRowClicked(item, index) {
   selectedCardIndex.value = index
   popup.value.hide()
-  // emit("selected-row", item)
+
   selectedRow.value = `${item.title} - ${item.planTitle}`
 }
-
-// function selectCard(item) {
-//   selectedRow.value = `${item.name} - ${item.planTitle}`
-// }
 
 const isSearchEmpty = computed(
   () => !searchTerm.value || searchTerm.value.trim().length === 0
@@ -208,10 +201,6 @@ onMounted(() => {
 async function reloadData() {
   await loadData(pagination.value)
 }
-
-// async function onRequest(props) {
-//   await loadData(props.pagination)
-// }
 
 async function loadData(data) {
   loadingData.value = true
@@ -256,33 +245,18 @@ function isSelected(index) {
   return selectedCard.value === index
 }
 
-defineExpose({
-  reloadData
-  // FocusOnTable
-})
-
 function lookupShow() {
-  // alert("lookup is open....")
   document.getElementById("table")?.focus()
   popup.value.show()
-  // table.value.FocusOnTable()
 }
 
-// function FocusOnTable() {
-//   alert("Table is focused!")
-// }
-
 function selectPrevious() {
-  // alert("Down Arrow key pressed!")
-
   if (selectedCardIndex.value > 0) {
     selectedCardIndex.value--
   }
 }
 
 function selectNext() {
-  // alert("Up Arrow key pressed!")
-
   if (selectedCardIndex.value < rows.value.length - 1) {
     selectedCardIndex.value++
   }
@@ -294,10 +268,6 @@ function selectRow() {
   popup.value.hide()
 }
 
-// function selectTest() {
-//   alert("Click...")
-// }
-
 const showPagebar = computed(() => {
   return pagination.value.totalItems > defaultPageSize
 })
@@ -308,6 +278,11 @@ const showPaging = computed(
 const maxPage = computed(() =>
   Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
 )
+
+function searchInLookup() {
+  // reloadData()
+  console.log(searchTerm)
+}
 </script>
 
 <style scoped>

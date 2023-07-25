@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import PaymentDetailPage from "src/components/management/payment detail/IndexView.vue"
+import PaymentDetailPage from "src/components/management/paymentDetail/IndexView.vue"
 </script>

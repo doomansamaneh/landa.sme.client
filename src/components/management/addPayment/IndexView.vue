@@ -2,8 +2,10 @@
   <q-card class="card-desktop gt-xs no-shadow q-my-xl">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
-        <q-item-label class="text-bold">تمدید سرویس</q-item-label>
-        <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
+        <q-item-label class="text-bold text-subtitle1"
+          >تمدید سرویس</q-item-label
+        >
+        <q-item-label class="dark-2 q-pt-xs" caption>
           همه هزینه ها به ریال می باشد
         </q-item-label>
       </q-item-section>
@@ -52,28 +54,6 @@
           </div>
           <div class="row col-10">
             <div class="q-input-menu-wrapper col-5">
-              <!-- <q-input outlined dense class="input" v-model="selectedRow">
-                <template #append>
-                  <q-icon
-                    name="clear"
-                    size="16px"
-                    color="primary"
-                    v-if="selectedRow && selectedRow.length > 0"
-                    class="cursor-pointer"
-                    @click="clearSelection"
-                  />
-                  <q-icon
-                    name="o_expand_more"
-                    class="cursor-pointer"
-                    size="sm"
-                  />
-                </template> -->
-              <!-- <q-popup-proxy
-                  transition-show="jump-down"
-                  transition-hide="jump-up"
-                  @show="lookupShow"
-                  ref=""
-                > -->
               <lookup-view
                 dataSource="business/getBusinessGridData"
                 orderByField="title"
@@ -81,8 +61,6 @@
                 class="lookup"
               >
               </lookup-view>
-              <!-- </q-popup-proxy> -->
-              <!-- </q-input> -->
             </div>
           </div>
           <div class="col-2 q-my-lg">
@@ -164,9 +142,6 @@
 import { ref, watch } from "vue"
 import DataView from "src/components/shared/DataView.vue"
 import LookupView from "src/components/shared/LookupView.vue"
-
-// const businessDataView = ref(null)
-// const planTitle = ["طرح 1", "طرح 2", "طرح 3"]
 
 const period = [
   "1 ماه",

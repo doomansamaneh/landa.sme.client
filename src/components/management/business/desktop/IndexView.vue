@@ -10,7 +10,7 @@
       <DesktopViewGuide v-model="showGuideDialog" />
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
-          <q-item-label class="text-bold">{{
+          <q-item-label class="text-bold text-subtitle1">{{
             $t("page.card-title")
           }}</q-item-label>
           <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>{{
