@@ -2,10 +2,10 @@
   <q-input
     outlined
     dense
-    class="input"
+    class="input lookup"
     v-model="selectedRow"
-    @click="searchInLookup"
-    debounce="2000"
+    @keyup="searchInLookup"
+    @keydown.enter="selectRow"
   >
     <template #append>
       <q-icon
@@ -32,6 +32,7 @@
       transition-show="jump-down"
       transition-hide="jump-up"
       no-refocus
+      no-focus
     >
       <q-card
         class="plan-title-card no-shadow"
@@ -47,7 +48,7 @@
                 outlined
                 dense
                 class="text-caption"
-                v-model="searchTerm"
+                v-model="selectedRow"
                 :placeholder="$t('page.card-searchbar')"
                 @keydown.enter="reloadData"
               >
@@ -152,10 +153,13 @@ const props = defineProps({
 const router = useRouter()
 const rows = ref([])
 const loadingData = ref(false)
+const selectedRow = ref("")
 const searchTerm = ref("")
 const defaultPageSize = 5
 const selectedCard = ref(false)
 const businessId = ref("")
+const popup = ref(null)
+const table = ref(null)
 const selectedCardIndex = ref(0)
 const pagination = ref({
   sortBy: props.orderByField,
@@ -166,14 +170,11 @@ const pagination = ref({
 })
 
 async function clearSearch() {
-  searchTerm.value = ""
+  selectedRow.value = ""
   await reloadData()
 }
 
 const selectedRowIndex = computed(() => selectedCardIndex.value)
-const popup = ref(null)
-const table = ref(null)
-const selectedRow = ref("")
 
 function clearSelection() {
   selectedRow.value = ""
@@ -187,7 +188,7 @@ function onRowClicked(item, index) {
 }
 
 const isSearchEmpty = computed(
-  () => !searchTerm.value || searchTerm.value.trim().length === 0
+  () => !selectedRow.value || selectedRow.value.trim().length === 0
 )
 
 const pagedRows = computed(() => {
@@ -208,11 +209,11 @@ async function loadData(data) {
 
   let filterExpression = []
 
-  if (searchTerm.value) {
+  if (selectedRow.value) {
     filterExpression.push({
       fieldName: props.searchField,
       operator: 3,
-      value: searchTerm.value
+      value: selectedRow.value
     })
   }
 
@@ -280,8 +281,10 @@ const maxPage = computed(() =>
 )
 
 function searchInLookup() {
-  // reloadData()
-  console.log(searchTerm)
+  reloadData()
+  setTimeout(() => {
+    popup.value.show()
+  }, 2000)
 }
 </script>
 

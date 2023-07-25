@@ -50,18 +50,15 @@
             <span class="q-pl-xs">1403/03/23</span>
           </div>
           <div class="col-2">
-            <q-item-label>طرح (ریال):</q-item-label>
+            <q-item-label><span>طرح (ریال):</span></q-item-label>
           </div>
           <div class="row col-10">
-            <div class="q-input-menu-wrapper col-5">
-              <lookup-view
-                dataSource="business/getBusinessGridData"
-                orderByField="title"
-                searchField="b.title"
-                class="lookup"
-              >
-              </lookup-view>
-            </div>
+            <lookup-view
+              dataSource="business/getBusinessGridData"
+              orderByField="title"
+              searchField="b.title"
+            >
+            </lookup-view>
           </div>
           <div class="col-2 q-my-lg">
             <q-item-label>دوره تمدید:</q-item-label>
