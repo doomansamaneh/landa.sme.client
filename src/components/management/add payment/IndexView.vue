@@ -52,13 +52,13 @@
           </div>
           <div class="row col-10">
             <div class="q-input-menu-wrapper col-5">
-              <q-input outlined dense class="input" v-model="selectedPlan">
+              <!-- <q-input outlined dense class="input" v-model="selectedRow">
                 <template #append>
                   <q-icon
                     name="clear"
                     size="16px"
                     color="primary"
-                    v-if="selectedPlan && selectedPlan.length > 0"
+                    v-if="selectedRow && selectedRow.length > 0"
                     class="cursor-pointer"
                     @click="clearSelection"
                   />
@@ -67,21 +67,22 @@
                     class="cursor-pointer"
                     size="sm"
                   />
-                </template>
-                <q-menu transition-show="jump-down" transition-hide="jump-up">
-                  <lookup-view
-                    ref="businessDataView"
-                    dataSource="business/getBusinessGridData"
-                    orderByField="title"
-                    searchField="b.title"
-                    @reload-data="reloadData"
-                    class="lookup"
-                    @selected-plan="selectCard()"
-                    @keydown.enter="selectCard()"
-                  >
-                  </lookup-view>
-                </q-menu>
-              </q-input>
+                </template> -->
+              <!-- <q-popup-proxy
+                  transition-show="jump-down"
+                  transition-hide="jump-up"
+                  @show="lookupShow"
+                  ref=""
+                > -->
+              <lookup-view
+                dataSource="business/getBusinessGridData"
+                orderByField="title"
+                searchField="b.title"
+                class="lookup"
+              >
+              </lookup-view>
+              <!-- </q-popup-proxy> -->
+              <!-- </q-input> -->
             </div>
           </div>
           <div class="col-2 q-my-lg">
@@ -164,7 +165,9 @@ import { ref, watch } from "vue"
 import DataView from "src/components/shared/DataView.vue"
 import LookupView from "src/components/shared/LookupView.vue"
 
-const planTitle = ["طرح 1", "طرح 2", "طرح 3"]
+// const businessDataView = ref(null)
+// const planTitle = ["طرح 1", "طرح 2", "طرح 3"]
+
 const period = [
   "1 ماه",
   "3 ماه",
@@ -174,23 +177,10 @@ const period = [
 
 const shape = ref("line")
 const selectedPeriod = ref(period[0])
-const selectedPlan = ref("")
 
 function selectPeriod(item) {
   selectedPeriod.value = item
 }
-
-function clearSelection() {
-  selectedPlan.value = ""
-}
-
-function selectCard() {
-  selectedPlan.value = planTitle
-}
-
-watch(selectedPlan, (newValue) => {
-  console.log("Selected Plan:", newValue)
-})
 </script>
 
 <style lang="scss" scoped>

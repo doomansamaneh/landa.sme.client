@@ -1,96 +1,127 @@
 <template>
-  <q-card class="plan-title-card no-shadow">
-    <q-card-section v-if="!showSearchbar" class="">
-      <slot name="search-bar">
-        <div class="search-bar">
-          <q-input
-            outlined
-            dense
-            class="text-caption"
-            v-model="searchTerm"
-            :placeholder="$t('page.card-searchbar')"
-            @keydown.enter="reloadData"
-          >
-            <template v-slot:prepend>
-              <q-icon
-                name="search"
-                class="search-icon cursor-pointer"
-                size="sm"
-                color="primary"
-                @click="reloadData"
-              />
-            </template>
-            <template v-slot:append>
-              <q-icon
-                name="cancel"
-                class="cursor-pointer"
-                size="sm"
-                color="grey-5"
-                @click="clearSearch"
-                v-if="!isSearchEmpty"
-              />
-            </template>
-          </q-input>
-        </div>
-      </slot>
-    </q-card-section>
-    <q-separator />
-    <q-linear-progress
-      class="progress q-mb-sm"
-      indeterminate
-      size="xs"
-      v-if="loadingData"
-    />
-    <!-- <q-card-section v-if="pagedRows.length > 0"> </q-card-section> -->
-    <table
-      class="plan-title-table text-left full-width q-mt-md text-caption"
-      ref="table"
-      @keydown.up="selectPrevious"
-      @keydown.down="selectNext"
-      @keydown.enter="selectedCard"
+  <q-input outlined dense class="input" v-model="selectedRow">
+    <template #append>
+      <q-icon
+        name="clear"
+        size="16px"
+        color="primary"
+        v-if="selectedRow && selectedRow.length > 0"
+        class="cursor-pointer"
+        @click="clearSelection"
+      />
+
+      <q-icon
+        @click="lookupShow"
+        name="o_expand_more"
+        class="cursor-pointer"
+        size="sm"
+      />
+    </template>
+    <q-menu
+      fit
+      no-parent-event
+      @show="lookupShow"
+      ref="popup"
+      transition-show="jump-down"
+      transition-hide="jump-up"
+      no-refocus
     >
-      <thead class="text-caption">
-        <tr class="">
-          <th class=""><span>#</span></th>
-          <th class=""><span>عنوان</span></th>
-          <th style=""><span>هزینه ماهانه</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          tabindex="1"
-          v-for="(item, index) in rows"
-          :key="item.id"
-          :class="{ 'selected-row': index === selectedCardIndex }"
-          @click="onRowClicked(index)"
-          class="cursor-pointer"
-        >
-          <td>{{ item.statusId }}</td>
-          <td>
-            <span>{{ item.planTitle }}</span>
-          </td>
-          <td>{{ item.daysToExpire }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <q-card-section v-if="pagedRows.length === 0 && !loadingData">
-      <div
-        class="nothing-found no-results column justify-center items-center q-my-xl"
+      <q-card
+        class="plan-title-card no-shadow"
+        @keydown.down="selectNext"
+        @keydown.up="selectPrevious"
+        @keydown.enter="selectRow"
       >
-        <div class="">
-          <img
-            class="nothing-found-svg"
-            src="../../../public/page-lost.svg"
-            style="width: 150px"
-          />
-        </div>
-        <div class="">{{ $t("page.nothing-found") }}</div>
-      </div>
-    </q-card-section>
+        <q-card-section v-if="!showSearchbar" class="">
+          <slot name="search-bar">
+            <div class="search-bar">
+              <q-input
+                outlined
+                dense
+                class="text-caption"
+                v-model="searchTerm"
+                :placeholder="$t('page.card-searchbar')"
+                @keydown.enter="reloadData"
+              >
+                <template v-slot:prepend>
+                  <q-icon
+                    name="search"
+                    class="search-icon cursor-pointer"
+                    size="sm"
+                    color="primary"
+                    @click="reloadData"
+                  />
+                </template>
+                <template v-slot:append>
+                  <q-icon
+                    name="cancel"
+                    class="cursor-pointer"
+                    size="sm"
+                    color="grey-5"
+                    @click="clearSearch"
+                    v-if="!isSearchEmpty"
+                  />
+                </template>
+              </q-input>
+            </div>
+          </slot>
+        </q-card-section>
+        <q-separator />
+        <q-linear-progress
+          class="progress q-mb-sm"
+          indeterminate
+          size="xs"
+          v-if="loadingData"
+        />
+        <!-- <q-card-section v-if="pagedRows.length > 0"> </q-card-section> -->
+        <table
+          id="table"
+          class="plan-title-table text-left full-width q-mt-md text-caption"
+          tabindex="1"
+        >
+          <thead class="text-caption">
+            <tr class="">
+              <th class=""><span>#</span></th>
+              <th class=""><span>عنوان</span></th>
+              <th style=""><span>هزینه ماهانه</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in rows"
+              :key="item.id"
+              :class="{ 'selected-row': index === selectedCardIndex }"
+              @click="onRowClicked(item, index)"
+              class="cursor-pointer"
+            >
+              <td>{{ item.statusId }}</td>
+              <td>
+                <span>{{ item.planTitle }}</span>
+              </td>
+              <td>{{ item.daysToExpire }}</td>
+            </tr>
+          </tbody>
+        </table>
 
-    <page-bar :pagination="pagination" @page-changed="loadData" />
-  </q-card>
+        <q-card-section v-if="pagedRows.length === 0 && !loadingData">
+          <div
+            class="nothing-found no-results column justify-center items-center q-my-xl"
+          >
+            <div class="">
+              <img
+                class="nothing-found-svg"
+                src="../../../public/page-lost.svg"
+                style="width: 150px"
+              />
+            </div>
+            <div class="">{{ $t("page.nothing-found") }}</div>
+          </div>
+        </q-card-section>
+
+        <page-bar :pagination="pagination" @page-changed="loadData" />
+      </q-card>
+    </q-menu>
+  </q-input>
 </template>
 
 <script setup>
@@ -100,9 +131,10 @@ import {
   computed,
   onMounted,
   onBeforeUnmount,
-  watch,
-  defineEmits,
-  defineProps
+  watch
+  // defineEmits,
+  // defineProps,
+  // defineExpose
 } from "vue"
 import { useQuasar } from "quasar"
 import { useRouter } from "vue-router"
@@ -115,11 +147,10 @@ const props = defineProps({
   color: String,
   orderByField: String,
   searchField: String,
-  businessTitle: String,
-  selectedPlan: String
+  businessTitle: String
 })
 
-const emit = defineEmits(["selected-plan"])
+// const emit = defineEmits(["selected-row"])
 
 const router = useRouter()
 const rows = ref([])
@@ -136,17 +167,31 @@ const pagination = ref({
   pageSize: defaultPageSize,
   totalItems: 0
 })
+
 async function clearSearch() {
   searchTerm.value = ""
   await reloadData()
 }
 
 const selectedRowIndex = computed(() => selectedCardIndex.value)
-function onRowClicked(index) {
-  selectedCardIndex.value = index
-  const selectedPlan = rows.value[index]
-  emit("selected-plan", selectedPlan)
+const popup = ref(null)
+const table = ref(null)
+const selectedRow = ref("")
+
+function clearSelection() {
+  selectedRow.value = ""
 }
+
+function onRowClicked(item, index) {
+  selectedCardIndex.value = index
+  popup.value.hide()
+  // emit("selected-row", item)
+  selectedRow.value = `${item.title} - ${item.planTitle}`
+}
+
+// function selectCard(item) {
+//   selectedRow.value = `${item.name} - ${item.planTitle}`
+// }
 
 const isSearchEmpty = computed(
   () => !searchTerm.value || searchTerm.value.trim().length === 0
@@ -213,19 +258,45 @@ function isSelected(index) {
 
 defineExpose({
   reloadData
+  // FocusOnTable
 })
 
+function lookupShow() {
+  // alert("lookup is open....")
+  document.getElementById("table")?.focus()
+  popup.value.show()
+  // table.value.FocusOnTable()
+}
+
+// function FocusOnTable() {
+//   alert("Table is focused!")
+// }
+
 function selectPrevious() {
+  // alert("Down Arrow key pressed!")
+
   if (selectedCardIndex.value > 0) {
     selectedCardIndex.value--
   }
 }
 
 function selectNext() {
+  // alert("Up Arrow key pressed!")
+
   if (selectedCardIndex.value < rows.value.length - 1) {
     selectedCardIndex.value++
   }
 }
+
+function selectRow() {
+  const selectedItem = rows.value[selectedCardIndex.value]
+  selectedRow.value = `${selectedItem.title} - ${selectedItem.planTitle}`
+  popup.value.hide()
+}
+
+// function selectTest() {
+//   alert("Click...")
+// }
 
 const showPagebar = computed(() => {
   return pagination.value.totalItems > defaultPageSize
@@ -280,5 +351,10 @@ tbody tr:hover {
 
 .selected-row {
   background-color: #fffae5 !important;
+}
+
+table:focus,
+.plan-title-card:focus {
+  outline: none;
 }
 </style>
