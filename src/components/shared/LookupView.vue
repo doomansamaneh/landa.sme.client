@@ -51,18 +51,45 @@
         />
         <table
           id="table"
-          class="plan-title-table text-left full-width q-mt-md text-caption"
+          class="plan-title-table text-left full-width text-caption"
           tabindex="0"
         >
           <thead class="text-caption">
             <tr class="">
               <th class="cursor-pointer" @click="sortData('statusId')">
+                <q-icon
+                  :name="
+                    sortColumn === 'statusId' && sortAscending
+                      ? 'arrow_drop_up'
+                      : 'arrow_drop_down'
+                  "
+                  size="18px"
+                  color="primary"
+                />
                 <span>#</span>
               </th>
               <th class="cursor-pointer" @click="sortData('planTitle')">
+                <q-icon
+                  :name="
+                    sortColumn === 'planTitle' && sortAscending
+                      ? 'arrow_drop_up'
+                      : 'arrow_drop_down'
+                  "
+                  size="18px"
+                  color="primary"
+                />
                 <span>عنوان</span>
               </th>
               <th class="cursor-pointer" @click="sortData('daysToExpire')">
+                <q-icon
+                  :name="
+                    sortColumn === 'daysToExpire' && sortAscending
+                      ? 'arrow_drop_up'
+                      : 'arrow_drop_down'
+                  "
+                  size="18px"
+                  color="primary"
+                />
                 <span>هزینه ماهانه</span>
               </th>
             </tr>
@@ -134,6 +161,8 @@ const businessId = ref("")
 const popup = ref(null)
 const table = ref(null)
 let showMenu = false
+let sortColumn = null
+let sortAscending = true
 const search = ref(null)
 const selectedCardIndex = ref(0)
 const pagination = ref({
@@ -260,28 +289,21 @@ function searchInLookup() {
   reloadData()
 }
 
-function alertInput() {
-  alert("Input changed...")
-}
-
 function onMenuShow() {
   document.getElementById("table")?.focus()
-  // table.value.focus()
+  search.value.focus()
 }
 
 function onMenuHide() {
   search.value.focus()
 }
 
-let sortColumn = null
-let sortAscending = true
-
 function sortData(column) {
   if (sortColumn === column) {
     sortAscending = !sortAscending
   } else {
     sortColumn = column
-    sortAscending = true
+    // Remove the line "sortAscending = true;" from here
   }
 
   rows.value.sort((a, b) => {
@@ -316,10 +338,7 @@ td {
   padding-left: 16px;
 }
 th {
-  padding-top: 0;
-  padding-bottom: 16px;
-  padding-right: 16px;
-  padding-left: 16px;
+  padding: 16px;
 }
 table {
   border-collapse: collapse;
