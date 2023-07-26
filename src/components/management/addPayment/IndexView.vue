@@ -24,113 +24,119 @@
     </q-item>
     <q-separator />
     <q-item class="q-px-lg column q-mb-md">
-      <q-form>
-        <div class="row items-center">
-          <div class="col-2 q-my-lg">
-            <q-item-label>کسب و کار:</q-item-label>
-          </div>
-          <div class="col-10">
-            <span class="text-bold q-pl-xs"
-              >دومان سامانه برای تست و انجام کارهای دمو</span
-            >
-          </div>
-          <div class="col-2">
-            <q-item-label>طرح فعلی:</q-item-label>
-          </div>
-          <div class="col-10">
-            <span class="q-pl-xs"
-              >طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-              دستمزد)</span
-            >
-          </div>
-          <div class="col-2 q-my-lg">
-            <q-item-label>تا تاریخ:</q-item-label>
-          </div>
-          <div class="col-10">
-            <span class="q-pl-xs">1403/03/23</span>
-          </div>
-          <div class="col-2">
-            <q-item-label><span>طرح (ریال):</span></q-item-label>
-          </div>
-          <div class="row col-10">
-            <lookup-view
-              dataSource="business/getBusinessGridData"
-              orderByField="title"
-              searchField="b.title"
-            >
-            </lookup-view>
-          </div>
-          <div class="col-2 q-my-lg">
-            <q-item-label>دوره تمدید:</q-item-label>
-          </div>
-          <div class="col-10">
-            <q-btn-dropdown
-              dense
-              outline
-              :label="selectedPeriod"
-              class="q-pl-md"
-              auto-close
-            >
-              <q-item
-                clickable
-                v-for="item in period"
-                :key="item"
-                @click="selectPeriod(item)"
-              >
-                <q-item-section>{{ item }}</q-item-section>
-              </q-item>
-            </q-btn-dropdown>
-          </div>
-          <div
-            class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
+      <!-- <q-form for=""> -->
+      <div class="row items-center">
+        <div class="col-2 q-my-lg">
+          <q-item-label>کسب و کار:</q-item-label>
+        </div>
+        <div class="col-10">
+          <span class="text-bold q-pl-xs"
+            >دومان سامانه برای تست و انجام کارهای دمو</span
           >
-            <div class="row col-6 q-gutter-y-lg">
-              <div class="col-7"><span>تخفیف وفاداری:</span></div>
-              <div class="col-4"><span>36,000</span></div>
-              <div class="col-7"><span>جمع:</span></div>
-              <div class="col-4"><span>149,000</span></div>
-              <div class="col-7"><span>تخفیف:</span></div>
-              <div class="col-4"><span>0</span></div>
-              <div class="col-7"><span>جمع کل:</span></div>
-              <div class="col-4"><span class="text-bold">149,000</span></div>
-            </div>
-            <div class="sadad col-6 row justify-center items-center">
-              <div class="row justify-center q-gutter-x-md">
-                <q-radio
-                  v-model="shape"
-                  checked-icon="task_alt"
-                  val="line"
-                  color=""
-                  size="md"
-                >
-                  <q-tooltip class="custom-tooltip text-body1">
-                    <span class="sadad-tooltip"
-                      >پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان
-                      پذیر است</span
-                    >
-                  </q-tooltip>
-                </q-radio>
-                <div class="">
-                  <img
-                    src="../../../../public/sadad-new.png"
-                    alt="درگاه پرداخت الکترونیک سداد"
-                  />
-                </div>
+        </div>
+        <div class="col-2">
+          <q-item-label>طرح فعلی:</q-item-label>
+        </div>
+        <div class="col-10">
+          <span class="q-pl-xs"
+            >طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
+            دستمزد)</span
+          >
+        </div>
+        <div class="col-2 q-my-lg">
+          <q-item-label>تا تاریخ:</q-item-label>
+        </div>
+        <div class="col-10">
+          <span class="q-pl-xs">1403/03/23</span>
+        </div>
+        <div class="col-2">
+          <q-item-label><span>طرح (ریال):</span></q-item-label>
+        </div>
+        <div class="row col-10">
+          <lookup-view
+            dataSource="business/getBusinessGridData"
+            orderByField="title"
+            searchField="b.title"
+          >
+          </lookup-view>
+        </div>
+        <div class="col-2 q-my-lg">
+          <q-item-label>دوره تمدید:</q-item-label>
+        </div>
+        <div class="col-10">
+          <q-btn-dropdown
+            dense
+            outline
+            :label="selectedPeriod"
+            class="q-pl-md"
+            auto-close
+          >
+            <q-item
+              clickable
+              v-for="item in period"
+              :key="item"
+              @click="selectPeriod(item)"
+            >
+              <q-item-section>{{ item }}</q-item-section>
+            </q-item>
+          </q-btn-dropdown>
+        </div>
+        <div
+          class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
+        >
+          <div class="row col-6 q-gutter-y-lg">
+            <div class="col-7"><span>تخفیف وفاداری:</span></div>
+            <div class="col-4"><span>36,000</span></div>
+            <div class="col-7"><span>جمع:</span></div>
+            <div class="col-4"><span>149,000</span></div>
+            <div class="col-7"><span>تخفیف:</span></div>
+            <div class="col-4"><span>0</span></div>
+            <div class="col-7"><span>جمع کل:</span></div>
+            <div class="col-4"><span class="text-bold">149,000</span></div>
+          </div>
+          <div class="sadad col-6 row justify-center items-center">
+            <div class="row justify-center q-gutter-x-md">
+              <q-radio
+                v-model="shape"
+                checked-icon="task_alt"
+                val="line"
+                color=""
+                size="md"
+              >
+                <q-tooltip class="custom-tooltip text-body1">
+                  <span class="sadad-tooltip"
+                    >پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان پذیر
+                    است</span
+                  >
+                </q-tooltip>
+              </q-radio>
+              <div class="">
+                <img
+                  src="../../../../public/sadad-new.png"
+                  alt="درگاه پرداخت الکترونیک سداد"
+                />
               </div>
             </div>
           </div>
         </div>
-        <div class="flex items-center q-mt-sm">
-          <q-btn unelevated rounded color="positive" padding="8px 16px" class=""
-            ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
-            پرداخت
-          </q-btn>
-          <span class="text-caption q-pl-md"
-            >پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
-            کارت خود را فعال کرده باشید.</span
-          >
-        </div>
-      </q-form>
+      </div>
+      <div class="flex items-center q-mt-sm">
+        <q-btn
+          type="submit"
+          unelevated
+          rounded
+          color="positive"
+          padding="8px 16px"
+          class=""
+          ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
+          پرداخت
+        </q-btn>
+        <span class="text-caption q-pl-md"
+          >پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
+          کارت خود را فعال کرده باشید.</span
+        >
+      </div>
+      <!-- </q-form> -->
     </q-item>
   </q-card>
 </template>

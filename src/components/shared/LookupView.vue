@@ -1,11 +1,15 @@
 <template>
   <q-input
+    ref="search"
     outlined
     dense
     class="input lookup"
     v-model="selectedRow"
     @input="selectRow"
     @keyup.stop="searchInLookup"
+    @keydown.down="selectNext"
+    @keydown.up="selectPrevious"
+    @keydown.enter="selectRow"
   >
     <template #append>
       <q-icon
@@ -14,79 +18,40 @@
         color="primary"
         v-if="selectedRow && selectedRow.length > 0"
         class="cursor-pointer"
-        @click="clearSelection"
+        @click="clearSearch"
       />
 
       <q-icon
         @click="lookupShow"
         name="o_expand_more"
-        class="cursor-pointer"
+        class="show-lookup-icon cursor-pointer"
         size="sm"
       />
     </template>
     <q-menu
       fit
       no-parent-event
-      @show="lookupShow"
+      @show="onMenuShow"
+      @hide="onMenuHide"
       ref="popup"
       transition-show="jump-down"
       transition-hide="jump-up"
       no-refocus
       no-focus
+      class="menu"
+      v-show="showMenu"
     >
-      <q-card
-        class="plan-title-card no-shadow"
-        @keydown.down="selectNext"
-        @keydown.up="selectPrevious"
-        @keydown.enter="selectRow"
-      >
-        <!-- <q-card-section v-if="!showSearchbar" class="">
-          <slot name="search-bar">
-            <div class="search-bar">
-              <q-input
-                autofocus
-                outlined
-                dense
-                class="text-caption"
-                v-model="selectedRow"
-                :placeholder="$t('page.card-searchbar')"
-                @keydown.enter="reloadData"
-              >
-                <template v-slot:prepend>
-                  <q-icon
-                    name="search"
-                    class="search-icon cursor-pointer"
-                    size="sm"
-                    color="primary"
-                    @click="reloadData"
-                  />
-                </template>
-                <template v-slot:append>
-                  <q-icon
-                    name="cancel"
-                    class="cursor-pointer"
-                    size="sm"
-                    color="grey-5"
-                    @click="clearSearch"
-                    v-if="!isSearchEmpty"
-                  />
-                </template>
-              </q-input>
-            </div>
-          </slot>
-        </q-card-section>
-        <q-separator /> -->
+      <q-card class="plan-title-card no-shadow">
         <q-linear-progress
           class="progress q-mb-sm"
           indeterminate
           size="xs"
           v-if="loadingData"
         />
-        <!-- <q-card-section v-if="pagedRows.length > 0"> </q-card-section> -->
         <table
           id="table"
           class="plan-title-table text-left full-width q-mt-md text-caption"
-          tabindex="1"
+          tabindex="0"
         >
           <thead class="text-caption">
             <tr class="">
@@ -161,6 +126,8 @@ const selectedCard = ref(false)
 const businessId = ref("")
 const popup = ref(null)
 const table = ref(null)
+let showMenu = false
+const search = ref(null)
 const selectedCardIndex = ref(0)
 const pagination = ref({
   sortBy: props.orderByField,
@@ -170,9 +137,9 @@ const pagination = ref({
   totalItems: 0
 })
 
-async function clearSearch() {
+function clearSearch() {
   selectedRow.value = ""
-  await reloadData()
+  reloadData()
 }
 
 const selectedRowIndex = computed(() => selectedCardIndex.value)
@@ -184,7 +151,6 @@ function clearSelection() {
 function onRowClicked(item, index) {
   selectedCardIndex.value = index
   popup.value.hide()
-
   selectedRow.value = `${item.title} - ${item.planTitle}`
 }
 
@@ -249,6 +215,7 @@ function isSelected(index) {
 
 function lookupShow() {
   document.getElementById("table")?.focus()
+  search.value.focus()
   popup.value.show()
 }
 
@@ -286,7 +253,15 @@ function searchInLookup() {
   debounceTimer = setTimeout(() => {
     reloadData()
     popup.value.show()
-  }, 2000) // Adjust the debounce time as needed (milliseconds)
+  }, 2000)
+}
+
+function onMenuShow() {
+  table.value.focus()
+}
+
+function onMenuHide() {
+  search.value.focus()
 }
 </script>
 
@@ -336,5 +311,9 @@ tbody tr:hover {
 table:focus,
 .plan-title-card:focus {
   outline: none;
+}
+
+.show-lookup-icon:hover {
+  color: rgb(0, 187, 255);
 }
 </style>
