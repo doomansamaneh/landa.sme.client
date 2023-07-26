@@ -5,11 +5,11 @@
     dense
     class="input lookup"
     v-model="selectedRow"
-    @input="selectRow"
-    @keyup.stop="searchInLookup"
+    @update:model-value="searchInLookup"
     @keydown.down="selectNext"
     @keydown.up="selectPrevious"
     @keydown.enter="selectRow"
+    debounce="2000"
   >
     <template #append>
       <q-icon
@@ -24,6 +24,7 @@
       <q-icon
         @click="lookupShow"
         name="o_expand_more"
+        id="expand-more-icon"
         class="show-lookup-icon cursor-pointer"
         size="sm"
       />
@@ -55,9 +56,15 @@
         >
           <thead class="text-caption">
             <tr class="">
-              <th class=""><span>#</span></th>
-              <th class=""><span>عنوان</span></th>
-              <th style=""><span>هزینه ماهانه</span></th>
+              <th class="cursor-pointer" @click="sortData('statusId')">
+                <span>#</span>
+              </th>
+              <th class="cursor-pointer" @click="sortData('planTitle')">
+                <span>عنوان</span>
+              </th>
+              <th class="cursor-pointer" @click="sortData('daysToExpire')">
+                <span>هزینه ماهانه</span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -70,7 +77,7 @@
             >
               <td>{{ item.statusId }}</td>
               <td>
-                <span>{{ item.planTitle }}</span>
+                <span>{{ item.title }}</span>
               </td>
               <td>{{ item.daysToExpire }}</td>
             </tr>
@@ -116,8 +123,8 @@ const props = defineProps({
 })
 
 const router = useRouter()
+const businessNameId = ref()
 const rows = ref([])
-let debounceTimer
 const loadingData = ref(false)
 const selectedRow = ref("")
 const searchTerm = ref("")
@@ -249,19 +256,46 @@ const maxPage = computed(() =>
 )
 
 function searchInLookup() {
-  clearTimeout(debounceTimer)
-  debounceTimer = setTimeout(() => {
-    reloadData()
-    popup.value.show()
-  }, 2000)
+  popup.value.show()
+  reloadData()
+}
+
+function alertInput() {
+  alert("Input changed...")
 }
 
 function onMenuShow() {
-  table.value.focus()
+  document.getElementById("table")?.focus()
+  // table.value.focus()
 }
 
 function onMenuHide() {
   search.value.focus()
+}
+
+let sortColumn = null
+let sortAscending = true
+
+function sortData(column) {
+  if (sortColumn === column) {
+    sortAscending = !sortAscending
+  } else {
+    sortColumn = column
+    sortAscending = true
+  }
+
+  rows.value.sort((a, b) => {
+    const aValue = a[column]
+    const bValue = b[column]
+
+    if (typeof aValue === "string") {
+      return sortAscending
+        ? aValue.localeCompare(bValue)
+        : bValue.localeCompare(aValue)
+    } else {
+      return sortAscending ? aValue - bValue : bValue - aValue
+    }
+  })
 }
 </script>
 
@@ -311,9 +345,5 @@ tbody tr:hover {
 table:focus,
 .plan-title-card:focus {
   outline: none;
-}
-
-.show-lookup-icon:hover {
-  color: rgb(0, 187, 255);
 }
 </style>
