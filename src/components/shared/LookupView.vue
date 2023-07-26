@@ -4,7 +4,7 @@
     dense
     class="input lookup"
     v-model="selectedRow"
-    @keydown.enter="selectRow"
+    @input="selectRow"
     @keyup.stop="searchInLookup"
   >
     <template #append>
@@ -40,7 +40,7 @@
         @keydown.up="selectPrevious"
         @keydown.enter="selectRow"
       >
-        <q-card-section v-if="!showSearchbar" class="">
+        <!-- <q-card-section v-if="!showSearchbar" class="">
           <slot name="search-bar">
             <div class="search-bar">
               <q-input
@@ -75,7 +75,7 @@
             </div>
           </slot>
         </q-card-section>
-        <q-separator />
+        <q-separator /> -->
         <q-linear-progress
           class="progress q-mb-sm"
           indeterminate
@@ -152,6 +152,7 @@ const props = defineProps({
 
 const router = useRouter()
 const rows = ref([])
+let debounceTimer
 const loadingData = ref(false)
 const selectedRow = ref("")
 const searchTerm = ref("")
@@ -281,12 +282,11 @@ const maxPage = computed(() =>
 )
 
 function searchInLookup() {
-  if (selectedRow.value.length > 0) {
-    setTimeout(() => {
-      reloadData()
-      popup.value.show()
-    }, 1500)
-  }
+  clearTimeout(debounceTimer)
+  debounceTimer = setTimeout(() => {
+    reloadData()
+    popup.value.show()
+  }, 2000) // Adjust the debounce time as needed (milliseconds)
 }
 </script>
 
