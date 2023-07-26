@@ -1,4 +1,10 @@
 {
+  "route-names": {
+    "Business": "کسب و کار ها",
+    "Payments": "پرداخت ها",
+    "Payments Detail": "جزئیات پرداخت ها",
+    "Renew Subscription": "تمدید اشتراک"
+  },
   "login-page": {
     "page-title": "ورود",
     "placeholders": {

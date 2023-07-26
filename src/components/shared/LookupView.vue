@@ -39,8 +39,6 @@
       transition-hide="jump-up"
       no-refocus
       no-focus
-      class="menu"
-      v-show="showMenu"
     >
       <q-card class="plan-title-card no-shadow">
         <q-linear-progress
@@ -54,21 +52,16 @@
           class="plan-title-table text-left full-width text-caption"
           tabindex="0"
         >
-          <thead class="text-caption">
+          <thead class="lookup-table-head">
             <tr class="">
-              <th class="cursor-pointer" @click="sortData('statusId')">
-                <q-icon
-                  :name="
-                    sortColumn === 'statusId' && sortAscending
-                      ? 'arrow_drop_up'
-                      : 'arrow_drop_down'
-                  "
-                  size="18px"
-                  color="primary"
-                />
+              <th class="cursor-pointer" style="width: 5%">
                 <span>#</span>
               </th>
-              <th class="cursor-pointer" @click="sortData('planTitle')">
+              <th
+                class="cursor-pointer"
+                @click="sortData('planTitle')"
+                style="width: 50%"
+              >
                 <q-icon
                   :name="
                     sortColumn === 'planTitle' && sortAscending
@@ -80,7 +73,11 @@
                 />
                 <span>عنوان</span>
               </th>
-              <th class="cursor-pointer" @click="sortData('daysToExpire')">
+              <th
+                class="cursor-pointer"
+                style="width: 30%"
+                @click="sortData('daysToExpire')"
+              >
                 <q-icon
                   :name="
                     sortColumn === 'daysToExpire' && sortAscending
@@ -94,7 +91,7 @@
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="lookup-table-body">
             <tr
               v-for="(item, index) in rows"
               :key="item.id"
@@ -126,7 +123,9 @@
           </div>
         </q-card-section>
 
-        <page-bar :pagination="pagination" @page-changed="loadData" />
+        <div class="q-pt-sm">
+          <page-bar :pagination="pagination" @page-changed="loadData" />
+        </div>
       </q-card>
     </q-menu>
   </q-input>
@@ -332,33 +331,16 @@ function sortData(column) {
 }
 
 td {
-  padding-top: 16px;
-  padding-bottom: 16px;
-  padding-right: 16px;
-  padding-left: 16px;
-}
-th {
   padding: 16px;
 }
+
+th {
+  padding: 16px 12px;
+}
+
 table {
   border-collapse: collapse;
   border: none;
-}
-
-thead {
-  border-bottom: 2px solid red;
-  margin-bottom: 20px;
-}
-tbody {
-  padding-top: 20px;
-}
-
-tbody tr:hover {
-  background-color: #ebebeb;
-}
-
-.selected-row {
-  background-color: #fffae5 !important;
 }
 
 table:focus,

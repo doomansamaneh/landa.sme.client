@@ -1,9 +1,9 @@
 <template>
-  <q-breadcrumbs active-color="primary" style="font-size: 12px" separator="-">
+  <q-breadcrumbs active-color="primary" class="text-caption" separator="-">
     <q-breadcrumbs-el
       v-for="item in items"
       :key="item.path"
-      :label="item.name"
+      :label="$t(item.name)"
       :icon="item.meta.icon"
       :to="item.path"
     />
@@ -16,8 +16,10 @@
 <script setup>
 import { useRouter } from "vue-router"
 import { ref, watch } from "vue"
+import { useI18n } from "vue-i18n"
 
 const route = useRouter()
+const { t } = useI18n()
 
 const items = ref([])
 
@@ -26,11 +28,12 @@ watch(() => {
 })
 
 function getRoute() {
-  items.value = route.currentRoute.value.matched
+  items.value = route.currentRoute.value.matched.map((match) => {
+    return {
+      ...match,
+      name: match.name ? `route-names.${match.name}` : ""
+    }
+  })
 }
 getRoute()
 </script>
-
-<style>
-/* Customize the breadcrumbs styles as needed */
-</style>

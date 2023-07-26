@@ -1,4 +1,10 @@
 {
+  "route-names": {
+    "Business": "Business",
+    "Payments": "Payments",
+    "Payments Detail": "Payments Detail",
+    "Renew Subscription": "Renew Subscription"
+  },
   "login-page": {
     "page-title": "Log in",
     "placeholders": {

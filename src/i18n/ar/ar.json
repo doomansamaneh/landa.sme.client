@@ -1,4 +1,10 @@
 {
+  "route-names": {
+    "Business": "أعمالي",
+    "Payments": "المدفوعات",
+    "Payments Detail": "تفاصيل المدفوعات",
+    "Renew Subscription": "تجديد الاشتراك"
+  },
   "login-page": {
     "page-title": "تسجيل الدخول",
     "placeholders": {

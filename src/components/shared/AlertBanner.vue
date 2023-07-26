@@ -1,7 +1,7 @@
 <template>
   <div v-if="showBanner">
-    <q-banner inline-actions class="error-banner bg-yellow-1 text-dark">
-      <q-icon name="public" size="22px" class="q-mr-xs" color="orange" />
+    <q-banner inline-actions class="error-banner">
+      <q-icon name="public" size="22px" class="q-icon-banner q-mr-xs" />
       <span>
         <strong class="q-pr-lg">{{ status }}</strong>
         <span>
@@ -13,9 +13,8 @@
           @click="hideBanner"
           flat
           unelevated
-          color="orange"
           name="close"
-          class="cursor-pointer"
+          class="q-icon-banner cursor-pointer"
         />
       </template>
     </q-banner>
@@ -49,6 +48,5 @@ function hideBanner() {
   right: 0;
 
   margin-top: 25px;
-  border-top: 1px solid rgb(255, 171, 16);
 }
 </style>

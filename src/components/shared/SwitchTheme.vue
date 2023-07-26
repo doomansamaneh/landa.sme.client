@@ -18,9 +18,9 @@
       <q-icon
         name="circle"
         size="xs"
-        color="green"
+        color="purple"
         class="cursor-pointer"
-        @click="selectTheme('green')"
+        @click="selectTheme('purple')"
       />
       <q-icon
         name="circle"

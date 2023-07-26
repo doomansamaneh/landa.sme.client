@@ -3,8 +3,15 @@
     <q-header class="text-black">
       <q-toolbar class="q-px-lg">
         <q-toolbar-title class="text-black"
-          ><a href="#" class="navbar-logo">Landa-SME</a></q-toolbar-title
-        >
+          ><a
+            href="https://landa-sme.ir"
+            target="blank"
+            class="row items-center navbar-logo"
+            ><img
+              class="logo"
+              src="../../public/landa-sme-logo.png"
+              alt="landa-sme" /></a
+        ></q-toolbar-title>
         <div class="flex q-gutter-x-md">
           <switch-theme />
 
@@ -151,6 +158,9 @@ function getFirstChar(str) {
 </script>
 
 <style>
+.logo {
+  width: 48px;
+}
 .q-toolbar__title {
   font-size: 14px;
   font-weight: 600;
