@@ -15,7 +15,7 @@
           <q-input
             outlined
             dense
-            class="text-caption q-mb-sm_"
+            class="text-caption"
             v-model="searchTerm"
             :placeholder="$t('page.card-searchbar')"
             @keydown.enter="reloadData"

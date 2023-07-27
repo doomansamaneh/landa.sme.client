@@ -14,6 +14,16 @@
 
 // src/css/quasar.variables.scss
 
+body.body--dark.theme--blue {
+  --q-dark: #141f48;
+}
+body.body--dark.theme--orange {
+  --q-dark: #2d1e27;
+}
+body.body--dark.theme--purple {
+  --q-dark: #301139;
+}
+
 $primary: #00aeff;
 $secondary: #ffffff;
 $accent: #f9f9f9;
@@ -35,3 +45,7 @@ $info: #31ccec;
 $warning: #f2c037;
 $hover-light: #c5c5c5;
 $hover-dark: #8492c9;
+$dark-orange-1: #3f3135;
+$dark-orange-2: #392329;
+$dark-purple-1: #4f2465;
+$dark-purple-2: #3d174f;

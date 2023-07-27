@@ -2,13 +2,11 @@
   <q-page class="login-page full-screen flex justify-center items-center">
     <div class="body-section q-mb-xl">
       <div class="login-form-container">
-        <div class="logo flex justify-center">
+        <q-card class="login-form no-shadow row justify-center">
           <img
             src="../../../public/about-us-header.png"
             class="login-img q-mb-md"
           />
-        </div>
-        <q-card class="login-form no-shadow">
           <q-card-section>
             <q-form class="login-form" @submit="authenticate">
               <div class="username-input">

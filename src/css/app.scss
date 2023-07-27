@@ -580,12 +580,21 @@ body.body--dark.theme--blue {
     outline: 1px solid var(--q-primary) !important;
     box-shadow: 0 0 4px 0 rgb(0, 157, 255) !important;
   }
+
+  .bread-crumbs {
+    border-bottom: 2px solid #394b95;
+    border-top: 2px solid #394b95;
+  }
 }
 
 body.body--dark.theme--orange {
   background-color: #170000;
-  .lookup-table-body tr:hover {
-    background-color: $dark-5;
+  .q-card,
+  .q-header {
+    background-color: $dark-orange-1;
+  }
+  .q-field--outlined .q-field__control:before {
+    background-color: $dark-orange-1;
   }
 
   .selected-row {
@@ -593,10 +602,160 @@ body.body--dark.theme--orange {
     outline: 1px solid orangered !important;
     box-shadow: 0 0 4px 0 rgb(255, 149, 0) !important;
   }
+
+  .dark-background {
+    background-color: $dark-orange-1;
+  }
+  .dark-1 {
+    background-color: #2d1e27;
+  }
+
+  .q-separator {
+    background-color: #b699aa9c;
+  }
+
+  .business-isowner .q-avatar__content {
+    background-color: $primary;
+  }
+
+  .business-isnotowner .q-avatar__content {
+    background-color: $dark-orange-2;
+  }
+
+  .bread-crumbs {
+    background-color: $dark-orange-1;
+    border-bottom: 2px solid #5d4753;
+    border-top: 2px solid #5d4753;
+  }
+
+  .icon-hover.q-icon:hover {
+    color: #967b76;
+  }
+
+  .custom-tooltip {
+    background-color: $dark-orange-2;
+  }
+
+  .q-avatar__content {
+    background-color: #ff7a6b42;
+  }
+
+  .dark-1 .q-avatar__content {
+    background-color: $dark-orange-1;
+  }
+
+  .dark-1-bg {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: $dark-orange-2;
+  }
+
+  .invoice-table tbody tr:hover {
+    background-color: #c976692f;
+  }
+
+  .invoice-table th {
+    background-color: $dark-orange-2;
+    border-bottom: 2px solid orangered;
+  }
+
+  .invoice-table td {
+    border-bottom: 1px solid $dark-orange-2;
+  }
+
+  .dark-2,
+  .dark-3 {
+    color: #ae929b;
+  }
+
+  .q-pagination .q-btn__content {
+    color: $accent;
+  }
+
+  .add-new-business {
+    background-color: $green;
+    color: $white;
+  }
+
+  .underline {
+    border-bottom: 2px solid orangered;
+  }
+
+  .selected {
+    background-color: #975f562f;
+    border-radius: 4px;
+  }
+
+  .lookup-table-body tr:hover {
+    background-color: #c976691c;
+  }
+
+  .lookup-table-body {
+    padding-top: 20px;
+    border-top: 2px solid orangered;
+    margin-bottom: 20px;
+  }
+
+  .login-header {
+    background-color: #170000;
+  }
+
+  .login-page,
+  .login-form {
+    background-color: #170000;
+  }
+
+  .q-field__control,
+  .q-linear-progress,
+  .q-carousel__navigation-inner .q-btn,
+  .q-carousel__arrow .q-icon {
+    color: orangered;
+  }
+
+  .service-extension {
+    color: $positive;
+  }
+
+  .pagination .q-icon.notranslate.material-icons {
+    color: white;
+  }
+
+  .invoice-text-container {
+    background-color: $dark-orange-2;
+  }
+
+  .dark-container {
+    background-color: $dark-5;
+  }
+
+  .plan-title {
+    background-color: $dark;
+  }
+
+  .error-banner {
+    background-color: $dark-orange-1;
+  }
+
+  .q-icon-banner {
+    color: #adb4bf;
+  }
+
+  .error-banner {
+    border-top: 3px solid $warning;
+  }
 }
 
 body.body--dark.theme--purple {
   background-color: #170025;
+
+  .q-card,
+  .q-header {
+    background-color: $dark-purple-1;
+  }
+
+  .q-field--outlined .q-field__control:before {
+    background-color: $dark-purple-1;
+  }
 
   .lookup-table-body tr:hover {
     background-color: $dark-5;
@@ -606,5 +765,146 @@ body.body--dark.theme--purple {
     background-color: #ec58ff45 !important;
     outline: 1px solid var(--q-primary) !important;
     box-shadow: 0 0 4px 0 rgb(255, 162, 244) !important;
+  }
+
+  .dark-background {
+    background-color: $dark-orange-1;
+  }
+  .dark-1 {
+    background-color: #301139;
+  }
+
+  .q-separator {
+    background-color: #be5bbe65;
+  }
+
+  .business-isowner .q-avatar__content {
+    background-color: $primary;
+  }
+
+  .business-isnotowner .q-avatar__content {
+    background-color: $dark-purple-2;
+  }
+
+  .bread-crumbs {
+    background-color: $dark-purple-1;
+    border-bottom: 2px solid #633576;
+    border-top: 2px solid #633576;
+  }
+
+  .icon-hover.q-icon:hover {
+    color: #8b5dac;
+  }
+
+  .custom-tooltip {
+    background-color: $dark-purple-2;
+  }
+
+  .q-avatar__content {
+    background-color: #e16bff42;
+  }
+
+  .dark-1 .q-avatar__content {
+    background-color: $dark-purple-1;
+  }
+
+  .dark-1-bg {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: $dark-purple-2;
+  }
+
+  .invoice-table tbody tr:hover {
+    background-color: #7d3f76a2;
+  }
+
+  .invoice-table th {
+    background-color: $dark-purple-2;
+    border-bottom: 2px solid #b62cb6;
+  }
+
+  .invoice-table td {
+    border-bottom: 1px solid $dark-purple-2;
+  }
+
+  .dark-2,
+  .dark-3 {
+    color: #be85d2;
+  }
+
+  .q-pagination .q-btn__content {
+    color: $accent;
+  }
+
+  .add-new-business {
+    background-color: $green;
+    color: $white;
+  }
+
+  .underline {
+    border-bottom: 2px solid #b62cb6;
+  }
+
+  .selected {
+    background-color: #59306d;
+    border-radius: 4px;
+  }
+
+  .lookup-table-body tr:hover {
+    background-color: #7d3f76a2;
+  }
+
+  .lookup-table-body {
+    padding-top: 20px;
+    border-top: 2px solid #b62cb6;
+    margin-bottom: 20px;
+  }
+
+  .login-header {
+    background-color: #170025;
+  }
+
+  .login-page,
+  .login-form {
+    background-color: #170025;
+  }
+
+  .q-field__control,
+  .q-linear-progress,
+  .q-carousel__navigation-inner .q-btn,
+  .q-carousel__arrow .q-icon {
+    color: #b62cb6;
+  }
+
+  .service-extension {
+    color: $positive;
+  }
+
+  .pagination .q-icon.notranslate.material-icons {
+    color: white;
+  }
+
+  .invoice-text-container {
+    background-color: $dark-purple-2;
+  }
+
+  .dark-container {
+    background-color: $dark-5;
+  }
+
+  .plan-title {
+    background-color: $dark;
+  }
+
+  .error-banner {
+    background-color: $dark-purple-1;
+  }
+
+  .q-icon-banner {
+    color: #fca5ff;
+  }
+
+  .error-banner {
+    border-top: 3px solid $warning;
   }
 }
