@@ -1,17 +1,18 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <q-header class="text-black">
-      <q-toolbar class="q-px-lg">
-        <q-toolbar-title class="text-black"
-          ><a
+      <q-toolbar class="q-px-lg row justify-between">
+        <div class="">
+          <a
             href="https://landa-sme.ir"
             target="blank"
             class="row items-center navbar-logo"
             ><img
               class="logo"
               src="../../public/landa-sme-logo.png"
-              alt="landa-sme" /></a
-        ></q-toolbar-title>
+              alt="landa-sme"
+          /></a>
+        </div>
         <div class="flex q-gutter-x-md">
           <switch-theme />
 
@@ -81,7 +82,7 @@
           </div>
         </div>
       </q-toolbar>
-      <div class="bread-crumbs q-py-sm q-px-lg">
+      <div class="bread-crumbs q-py-xs q-px-lg">
         <bread-crumbs />
       </div>
     </q-header>

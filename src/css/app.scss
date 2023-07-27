@@ -148,7 +148,7 @@ body.body--dark {
   }
 
   .selected {
-    background-color: #5663972f;
+    background-color: #56639759;
     border-radius: 4px;
   }
 
@@ -234,8 +234,11 @@ body.body--dark {
   .error-banner {
     border-top: 3px solid $warning;
   }
-}
 
+  .q-breadcrumbs__el:hover {
+    color: yellow;
+  }
+}
 body.body--light {
   background-color: #008eff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -352,9 +355,10 @@ body.body--light {
   }
 
   .bread-crumbs {
-    background-color: #e4f8ff5f;
-    border-top: 1px solid #e4f8ff5f;
-    border-top: 1px solid #e4f8ff5f;
+    background-color: #e5f8ff;
+    border-top: 1px solid #96e3ff;
+    border-top: 1px solid #96e3ff;
+    box-shadow: 0 0 2px 0 #008cff55;
   }
 
   .service-extension {
@@ -476,11 +480,25 @@ body.theme--orange {
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid orangered;
   }
+
+  .bread-crumbs {
+    background-color: #ffede7;
+    border-top: 1px solid #ffa587;
+    border-top: 1px solid #ffa587;
+    box-shadow: 0 0 2px 0 #ffb096bb;
+  }
 }
 
 // Theme: Purple
 body.theme--purple {
   --q-primary: #c729df;
+
+  .bread-crumbs {
+    background-color: #fde7ff;
+    border-top: 1px solid #f8a7ff;
+    border-top: 1px solid #f8a7ff;
+    box-shadow: 0 0 2px 0 #f7a2ff;
+  }
 
   .profile-pic .q-avatar__content {
     background-color: $purple;
@@ -584,6 +602,7 @@ body.body--dark.theme--blue {
   .bread-crumbs {
     border-bottom: 2px solid #394b95;
     border-top: 2px solid #394b95;
+    box-shadow: 0 0 2px 0 rgb(0, 140, 255);
   }
 }
 
@@ -603,9 +622,6 @@ body.body--dark.theme--orange {
     box-shadow: 0 0 4px 0 rgb(255, 149, 0) !important;
   }
 
-  .dark-background {
-    background-color: $dark-orange-1;
-  }
   .dark-1 {
     background-color: #2d1e27;
   }
@@ -624,8 +640,9 @@ body.body--dark.theme--orange {
 
   .bread-crumbs {
     background-color: $dark-orange-1;
-    border-bottom: 2px solid #5d4753;
-    border-top: 2px solid #5d4753;
+    border-bottom: 2px solid rgba(255, 94, 0, 0.177);
+    border-top: 2px solid rgba(255, 94, 0, 0.177);
+    box-shadow: 0 0 2px 0 rgb(255, 94, 0);
   }
 
   .icon-hover.q-icon:hover {
@@ -655,7 +672,7 @@ body.body--dark.theme--orange {
   }
 
   .invoice-table th {
-    background-color: $dark-orange-2;
+    background-color: #24181f;
     border-bottom: 2px solid orangered;
   }
 
@@ -682,7 +699,7 @@ body.body--dark.theme--orange {
   }
 
   .selected {
-    background-color: #975f562f;
+    background-color: #99645c2f;
     border-radius: 4px;
   }
 
@@ -721,11 +738,7 @@ body.body--dark.theme--orange {
   }
 
   .invoice-text-container {
-    background-color: $dark-orange-2;
-  }
-
-  .dark-container {
-    background-color: $dark-5;
+    background-color: #24181f;
   }
 
   .plan-title {
@@ -746,7 +759,7 @@ body.body--dark.theme--orange {
 }
 
 body.body--dark.theme--purple {
-  background-color: #170025;
+  background-color: #15152b;
 
   .q-card,
   .q-header {
@@ -762,16 +775,13 @@ body.body--dark.theme--purple {
   }
 
   .selected-row {
-    background-color: #ec58ff45 !important;
+    background-color: #413f76d2 !important;
     outline: 1px solid var(--q-primary) !important;
     box-shadow: 0 0 4px 0 rgb(255, 162, 244) !important;
   }
 
-  .dark-background {
-    background-color: $dark-orange-1;
-  }
   .dark-1 {
-    background-color: #301139;
+    background-color: #1b193d;
   }
 
   .q-separator {
@@ -790,10 +800,11 @@ body.body--dark.theme--purple {
     background-color: $dark-purple-1;
     border-bottom: 2px solid #633576;
     border-top: 2px solid #633576;
+    box-shadow: 0 0 2px 0 #80439a;
   }
 
   .icon-hover.q-icon:hover {
-    color: #8b5dac;
+    color: #9161a2;
   }
 
   .custom-tooltip {
@@ -815,12 +826,12 @@ body.body--dark.theme--purple {
   }
 
   .invoice-table tbody tr:hover {
-    background-color: #7d3f76a2;
+    background-color: #413f76d2;
   }
 
   .invoice-table th {
-    background-color: $dark-purple-2;
-    border-bottom: 2px solid #b62cb6;
+    background-color: #222045;
+    border-bottom: 2px solid $purple;
   }
 
   .invoice-table td {
@@ -842,38 +853,38 @@ body.body--dark.theme--purple {
   }
 
   .underline {
-    border-bottom: 2px solid #b62cb6;
+    border-bottom: 2px solid $purple;
   }
 
   .selected {
-    background-color: #59306d;
+    background-color: #413f76d2;
     border-radius: 4px;
   }
 
   .lookup-table-body tr:hover {
-    background-color: #7d3f76a2;
+    background-color: #363467d2;
   }
 
   .lookup-table-body {
     padding-top: 20px;
-    border-top: 2px solid #b62cb6;
+    border-top: 2px solid $purple;
     margin-bottom: 20px;
   }
 
   .login-header {
-    background-color: #170025;
+    background-color: #1b193d;
   }
 
   .login-page,
   .login-form {
-    background-color: #170025;
+    background-color: #1b193d;
   }
 
   .q-field__control,
   .q-linear-progress,
   .q-carousel__navigation-inner .q-btn,
   .q-carousel__arrow .q-icon {
-    color: #b62cb6;
+    color: $purple;
   }
 
   .service-extension {
@@ -885,11 +896,7 @@ body.body--dark.theme--purple {
   }
 
   .invoice-text-container {
-    background-color: $dark-purple-2;
-  }
-
-  .dark-container {
-    background-color: $dark-5;
+    background-color: #222045;
   }
 
   .plan-title {
@@ -897,7 +904,7 @@ body.body--dark.theme--purple {
   }
 
   .error-banner {
-    background-color: $dark-purple-1;
+    background-color: $dark-purple-2;
   }
 
   .q-icon-banner {

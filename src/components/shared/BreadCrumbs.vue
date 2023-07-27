@@ -1,5 +1,5 @@
 <template>
-  <q-breadcrumbs active-color="primary" class="text-caption" separator="-">
+  <q-breadcrumbs active-color="primary" class="text-body2">
     <q-breadcrumbs-el
       v-for="item in items"
       :key="item.path"
