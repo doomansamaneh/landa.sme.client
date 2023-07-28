@@ -203,6 +203,10 @@ body.body--dark {
     background-color: $dark;
   }
 
+  .q-breadcrumbs__el.q-router-link--active {
+    color: #ffffad;
+  }
+
   .service-extension {
     color: $positive;
   }

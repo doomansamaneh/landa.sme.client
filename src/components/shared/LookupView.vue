@@ -57,11 +57,35 @@
               <th class="" style="width: 5%">
                 <span>#</span>
               </th>
-              <th class="cursor-pointer" style="width: 50%">
-                <span>عنوان</span>
+              <th class="" style="width: 50%">
+                <q-icon
+                  v-if="pagination.sortBy === 'title'"
+                  :name="
+                    pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
+                  "
+                  size="20px"
+                  color="primary"
+                />
+                <span
+                  @click="sortSelectedColumn('title')"
+                  class="cursor-pointer"
+                  >عنوان</span
+                >
               </th>
-              <th class="cursor-pointer" style="width: 30%">
-                <span>هزینه ماهانه</span>
+              <th class="" style="width: 30%">
+                <q-icon
+                  v-if="pagination.sortBy === 'payedAmount'"
+                  :name="
+                    pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
+                  "
+                  size="20px"
+                  color="primary"
+                />
+                <span
+                  class="cursor-pointer"
+                  @click="sortSelectedColumn('payedAmount')"
+                  >هزینه ماهانه</span
+                >
               </th>
             </tr>
           </thead>
@@ -77,7 +101,7 @@
               <td>
                 <span>{{ item.title }}</span>
               </td>
-              <td>{{ item.daysToExpire }}</td>
+              <td>{{ item.payedAmount }}</td>
             </tr>
           </tbody>
         </table>
@@ -193,6 +217,13 @@ async function loadData(data) {
     })
   }
 
+  if (sortColumn) {
+    filterExpression.push({
+      fieldName: sortColumn,
+      operator: sortAscending ? 1 : 2
+    })
+  }
+
   await fetchWrapper
     .post(props.dataSource, {
       pageSize: data.pageSize,
@@ -269,6 +300,17 @@ function onMenuShow() {
 
 function onMenuHide() {
   search.value.focus()
+}
+
+function sortSelectedColumn(selectedColumn) {
+  if (pagination.value.sortBy === selectedColumn) {
+    pagination.value.descending = !pagination.value.descending
+  } else {
+    pagination.value.sortBy = selectedColumn
+    pagination.value.descending = false
+  }
+
+  reloadData()
 }
 </script>
 
