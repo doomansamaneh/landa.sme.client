@@ -54,39 +54,13 @@
         >
           <thead class="lookup-table-head">
             <tr class="">
-              <th class="cursor-pointer" style="width: 5%">
+              <th class="" style="width: 5%">
                 <span>#</span>
               </th>
-              <th
-                class="cursor-pointer"
-                @click="sortData('planTitle')"
-                style="width: 50%"
-              >
-                <q-icon
-                  :name="
-                    sortColumn === 'planTitle' && sortAscending
-                      ? 'arrow_drop_up'
-                      : 'arrow_drop_down'
-                  "
-                  size="18px"
-                  color="primary"
-                />
+              <th class="cursor-pointer" style="width: 50%">
                 <span>عنوان</span>
               </th>
-              <th
-                class="cursor-pointer"
-                style="width: 30%"
-                @click="sortData('daysToExpire')"
-              >
-                <q-icon
-                  :name="
-                    sortColumn === 'daysToExpire' && sortAscending
-                      ? 'arrow_drop_up'
-                      : 'arrow_drop_down'
-                  "
-                  size="18px"
-                  color="primary"
-                />
+              <th class="cursor-pointer" style="width: 30%">
                 <span>هزینه ماهانه</span>
               </th>
             </tr>
@@ -295,28 +269,6 @@ function onMenuShow() {
 
 function onMenuHide() {
   search.value.focus()
-}
-
-function sortData(column) {
-  if (sortColumn === column) {
-    sortAscending = !sortAscending
-  } else {
-    sortColumn = column
-    // Remove the line "sortAscending = true;" from here
-  }
-
-  rows.value.sort((a, b) => {
-    const aValue = a[column]
-    const bValue = b[column]
-
-    if (typeof aValue === "string") {
-      return sortAscending
-        ? aValue.localeCompare(bValue)
-        : bValue.localeCompare(aValue)
-    } else {
-      return sortAscending ? aValue - bValue : bValue - aValue
-    }
-  })
 }
 </script>
 
