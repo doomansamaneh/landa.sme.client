@@ -63,23 +63,34 @@
         <div class="col-2 q-my-lg">
           <q-item-label>دوره تمدید:</q-item-label>
         </div>
-        <div class="col-10">
-          <q-btn-dropdown
+        <div class="row col-10">
+          <q-select
+            hide-dropdown-icon
+            v-model="selectedPeriod"
+            :options="period"
             dense
-            outline
-            :label="selectedPeriod"
-            class="q-pl-md"
+            outlined
             auto-close
+            class="period-select"
+            use-chips
           >
-            <q-item
-              clickable
-              v-for="item in period"
-              :key="item"
-              @click="selectPeriod(item)"
-            >
-              <q-item-section>{{ item }}</q-item-section>
-            </q-item>
-          </q-btn-dropdown>
+            <template #append>
+              <!-- <q-icon
+                ref="clearSearch"
+                name="clear"
+                size="16px"
+                color="primary"
+                v-if="selectedPeriod && selectedPeriod.length > 0"
+                class="cursor-pointer"
+                @click="clearSelection"
+              /> -->
+              <q-icon
+                name="o_expand_more"
+                class="show-lookup-icon cursor-pointer"
+                size="sm"
+              />
+            </template>
+          </q-select>
         </div>
         <div
           class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
@@ -159,11 +170,19 @@ const selectedPeriod = ref(period[0])
 function selectPeriod(item) {
   selectedPeriod.value = item
 }
+
+function clearSelection() {
+  selectedPeriod.value = ""
+}
 </script>
 
 <style lang="scss" scoped>
 .card-desktop {
   width: 720px !important;
+}
+
+.period-select {
+  width: 400px;
 }
 
 .total {
