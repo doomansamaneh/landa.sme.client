@@ -41,12 +41,9 @@
       no-focus
     >
       <q-card class="plan-title-card no-shadow">
-        <q-linear-progress
-          class="progress q-mb-sm"
-          indeterminate
-          size="xs"
-          v-if="loadingData"
-        />
+        <q-inner-loading :showing="loadingData">
+          <q-spinner size="50px" color="primary" />
+        </q-inner-loading>
         <table
           id="table"
           class="plan-title-table text-left full-width text-caption"
@@ -105,7 +102,6 @@
             </tr>
           </tbody>
         </table>
-
         <q-card-section v-if="pagedRows.length === 0 && !loadingData">
           <div
             class="nothing-found no-results column justify-center items-center q-my-xl"
@@ -204,7 +200,10 @@ async function reloadData() {
 }
 
 async function loadData(data) {
-  loadingData.value = true
+  const loaderTimeout = 500
+  let loadingTimer = setTimeout(() => {
+    loadingData.value = true
+  }, loaderTimeout)
   selectedCard.value = false
 
   let filterExpression = []
@@ -236,6 +235,7 @@ async function loadData(data) {
       handleResponse(response, data)
     })
     .finally(() => {
+      clearTimeout(loadingTimer)
       loadingData.value = false
     })
 }
