@@ -27,7 +27,7 @@ const props = defineProps({
 })
 
 async function goToAddPayment() {
-  router.push("business/addPayment/1234")
+  router.push(`business/addPayment/${props.businessId}/${props.title}`)
 }
 
 const router = useRouter()

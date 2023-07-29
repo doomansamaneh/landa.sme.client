@@ -45,6 +45,7 @@
               class="bg-green text-white"
               size="12px"
               :businessId="$route.params.businessId"
+              :businessTitle="$route.params.businessTitle"
             />
           </div>
         </q-card-actions>
