@@ -5,6 +5,7 @@
     orderByField="title"
     searchField="b.title"
     @reload-data="reloadData"
+    class="q-my-xl"
   >
     <template #header>
       <DesktopViewGuide v-model="showGuideDialog" />
@@ -165,7 +166,7 @@
                 </q-item-section>
               </q-item>
               <q-separator spaced />
-              <q-item clickable v-close-popup>
+              <q-item clickable v-close-popup @click="showDeleteBusiness">
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar icon="o_delete" size="sm" class="dark-1" />
@@ -222,6 +223,36 @@
       </template>
     </invite-user>
   </q-dialog>
+  <q-dialog
+    v-model="DeleteBusienssPopup"
+    transition-show="slide-down"
+    transition-hide="fade"
+    transition-duration="600"
+    no-backdrop-dismiss
+  >
+    <delete-business>
+      <template #header>
+        <q-item-section>
+          <q-item-label class="text-bold">حذف کسب و کار</q-item-label>
+        </q-item-section>
+        <q-card-actions>
+          <div class="flex items-center q-gutter-x-md">
+            <q-icon
+              class="icon-hover dark-3 cursor-pointer"
+              size="xs"
+              name="close"
+              @click="close"
+              v-close-popup
+            >
+              <q-tooltip class="custom-tooltip">{{
+                $t("change-password-page.buttons.close")
+              }}</q-tooltip>
+            </q-icon>
+          </div>
+        </q-card-actions>
+      </template>
+    </delete-business>
+  </q-dialog>
 </template>
 
 <script setup>
@@ -230,6 +261,7 @@ import { useRouter } from "vue-router"
 //import businessRoutes from "src/router/business-routes"
 
 import InviteUser from "src/components/users/InviteUser.vue"
+import DeleteBusiness from "src/components/users/DeleteBusiness.vue"
 import DataView from "src/components/shared/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
 import DesktopViewGuide from "./GuideView.vue"
@@ -238,6 +270,7 @@ const router = useRouter()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
 const inviteUserPopup = ref(false)
+const DeleteBusienssPopup = ref(false)
 
 async function gotoBusiness() {}
 
@@ -252,6 +285,12 @@ async function reloadData() {
 function showInviteUser() {
   inviteUserPopup.value = true
   // router.push("business/inviteUser")
+  // alert("invite user")
+}
+
+function showDeleteBusiness() {
+  DeleteBusienssPopup.value = true
+  // router.push("business/deleteBusiness")
   // alert("invite user")
 }
 

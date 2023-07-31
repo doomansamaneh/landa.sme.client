@@ -16,6 +16,11 @@ export default {
       },
     },
     {
+      path: "deleteBusiness", name: "Delete Business", component: () => import("pages/users/DeleteBusiness.vue"), meta: {
+        icon: "o_delete"
+      },
+    },
+    {
       path: "payments/:businessId/:businessTitle", name: "Payments", component: () => import("pages/management/PaymentPage.vue"), meta: {
         icon: "payment"
 
