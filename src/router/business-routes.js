@@ -11,6 +11,11 @@ export default {
       },
     },
     {
+      path: "inviteUser", name: "Invite User", component: () => import("pages/users/InviteUser.vue"), meta: {
+        icon: "o_profile"
+      },
+    },
+    {
       path: "payments/:businessId/:businessTitle", name: "Payments", component: () => import("pages/management/PaymentPage.vue"), meta: {
         icon: "payment"
 

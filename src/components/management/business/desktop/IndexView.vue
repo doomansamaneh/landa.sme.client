@@ -154,7 +154,7 @@
               </q-item-section>
             </q-item>
             <div class="isNotOwner" v-if="item.isOwner">
-              <q-item clickable v-close-popup>
+              <q-item clickable v-close-popup @click="showInviteUser">
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar icon="o_person_add" size="sm" class="dark-1" />
@@ -192,6 +192,36 @@
       </div>
     </template>
   </data-view>
+  <q-dialog
+    v-model="inviteUserPopup"
+    transition-show="slide-down"
+    transition-hide="fade"
+    transition-duration="600"
+    no-backdrop-dismiss
+  >
+    <invite-user>
+      <template #header>
+        <q-item-section>
+          <q-item-label class="text-bold">دعوت از کاربر</q-item-label>
+        </q-item-section>
+        <q-card-actions>
+          <div class="flex items-center q-gutter-x-md">
+            <q-icon
+              class="icon-hover dark-3 cursor-pointer"
+              size="xs"
+              name="close"
+              @click="close"
+              v-close-popup
+            >
+              <q-tooltip class="custom-tooltip">{{
+                $t("change-password-page.buttons.close")
+              }}</q-tooltip>
+            </q-icon>
+          </div>
+        </q-card-actions>
+      </template>
+    </invite-user>
+  </q-dialog>
 </template>
 
 <script setup>
@@ -199,6 +229,7 @@ import { ref, onMounted, computed } from "vue"
 import { useRouter } from "vue-router"
 //import businessRoutes from "src/router/business-routes"
 
+import InviteUser from "src/components/users/InviteUser.vue"
 import DataView from "src/components/shared/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
 import DesktopViewGuide from "./GuideView.vue"
@@ -206,6 +237,7 @@ import DesktopViewGuide from "./GuideView.vue"
 const router = useRouter()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
+const inviteUserPopup = ref(false)
 
 async function gotoBusiness() {}
 
@@ -215,6 +247,12 @@ async function goToPaymentHistory(item) {
 
 async function reloadData() {
   businessDataView.value.reloadData()
+}
+
+function showInviteUser() {
+  inviteUserPopup.value = true
+  // router.push("business/inviteUser")
+  // alert("invite user")
 }
 
 // function selectCard(index) {
