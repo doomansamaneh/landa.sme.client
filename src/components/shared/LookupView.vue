@@ -2,13 +2,16 @@
   <q-input
     ref="search"
     outlined
+    required
+    :rules="[(val) => val && val.length > 0]"
+    lazy-rules
     dense
     class="input lookup"
     v-model="selectedRow"
     @update:model-value="searchInLookup"
     @keydown.down="selectNext"
     @keydown.up="selectPrevious"
-    @keydown.enter="selectRow"
+    @keydown.enter.prevent.stop="selectRow"
     debounce="2000"
   >
     <template #append>

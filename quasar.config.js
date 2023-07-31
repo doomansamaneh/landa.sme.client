@@ -90,12 +90,12 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       // fontSet: "Vazirmatn",
-      plugins: ["LocalStorage", "Loading"],
       config: {
         dark: false,
         loading: {
           /* look at QuasarConfOptions from the API card */
         },
+        // notify: {},
         screen: {
           bodyClasses: true // <<< add this
         }
@@ -112,7 +112,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ["LocalStorage", "Loading", "Notify"],
     },
 
     animations: "all", // --- includes all animations

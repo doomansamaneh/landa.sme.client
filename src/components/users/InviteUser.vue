@@ -162,7 +162,4 @@ async function changePassword() {
 .cancel-btn {
   width: 36%;
 }
-
-.user-group {
-}
 </style>
