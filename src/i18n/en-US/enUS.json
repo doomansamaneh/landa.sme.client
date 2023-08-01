@@ -72,6 +72,38 @@
       "buttons": {
         "view": "View"
       }
+    },
+    "renew-subscription": {
+      "title": "Renew Subscription",
+      "caption": "All costs are in Iranian Rials",
+      "business-name-label": "Business Name:",
+      "current-plan": "Current Plan:",
+      "to-date": "Until Date:",
+      "plan": "Plan (Rials):",
+      "extension-period": "Period:",
+      "loyalty-discount": "Loyalty Discount:",
+      "total": "Total:",
+      "discount": "Discount:",
+      "sum-total": "Total Sum:",
+      "pay-message": "",
+      "buttons": {
+        "payment": "Payment"
+      }
+    },
+    "add-business": {
+      "title": "Add New Business",
+      "caption": "All costs are in Iranian Rials",
+      "to-date": "Until Date:",
+      "plan": "Plan (Rials):",
+      "extension-period": "Period:",
+      "loyalty-discount": "Loyalty Discount:",
+      "total": "Total:",
+      "discount": "Discount:",
+      "sum-total": "Total Sum:",
+      "pay-message": "",
+      "buttons": {
+        "payment": "Payment"
+      }
     }
   },
 
@@ -83,5 +115,20 @@
       "confirm-password": "Confirm New Password"
     },
     "buttons": { "change-password": "Change Password", "close": "Close" }
+  },
+  "invite-user-page": {
+    "title": "Invite user",
+    "placeholders": {
+      "name": "Name",
+      "email": "Email"
+    },
+    "buttons": { "invite-user": "Invite User", "cancel": "Cancel" }
+  },
+  "delete-business-page": {
+    "title": "Delete Business",
+    "placeholders": {
+      "password": "Enter your password"
+    },
+    "buttons": { "delete-business": "Delete Business", "cancel": "Cancel" }
   }
 }

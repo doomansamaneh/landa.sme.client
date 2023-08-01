@@ -72,6 +72,38 @@
       "buttons": {
         "view": "مشاهده"
       }
+    },
+    "renew-subscription": {
+      "title": "تمدید اشتراک",
+      "caption": "همه هزینه ها به ریال می‌باشد",
+      "business-name-label": "نام کسب و کار:",
+      "current-plan": "طرح فعلی:",
+      "to-date": "تا تاریخ:",
+      "plan": "طرح (ریال):",
+      "extension-period": "دوره تمدید:",
+      "loyalty-discount": "تخفیف وفاداری:",
+      "total": "جمع:",
+      "discount": "تخفیف:",
+      "sum-total": "جمع کل:",
+      "pay-message": "پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم کارت خود را فعال کرده باشید.",
+      "buttons": {
+        "payment": "پرداخت"
+      }
+    },
+    "add-business": {
+      "title": "ایجاد کسب و کار جدید",
+      "caption": "همه هزینه ها به ریال می‌باشد",
+      "business-name-label": "نام کسب و کار:",
+      "plan": "طرح (ریال):",
+      "extension-period": "دوره تمدید:",
+      "loyalty-discount": "تخفیف وفاداری:",
+      "total": "جمع:",
+      "discount": "تخفیف:",
+      "sum-total": "جمع کل:",
+      "pay-message": "پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم کارت خود را فعال کرده باشید.",
+      "buttons": {
+        "payment": "پرداخت"
+      }
     }
   },
 
@@ -83,5 +115,20 @@
       "confirm-password": "تکرار رمز عبور"
     },
     "buttons": { "change-password": "تغییر رمز عبور", "close": "بستن" }
+  },
+  "invite-user-page": {
+    "title": "دعوت از کاربر",
+    "placeholders": {
+      "name": "نام",
+      "email": "ایمیل"
+    },
+    "buttons": { "invite-user": "دعوت از کاربر", "cancel": "انصراف" }
+  },
+  "delete-business-page": {
+    "title": "حذف کسب و کار",
+    "placeholders": {
+      "password": "رمز عبور"
+    },
+    "buttons": { "delete-business": "حذف کسب و کار", "cancel": "انصراف" }
   }
 }

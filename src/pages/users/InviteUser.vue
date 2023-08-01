@@ -2,7 +2,9 @@
   <invite-user>
     <template #header>
       <q-item-section>
-        <q-item-label class="text-bold">دعوت از کاربر</q-item-label>
+        <q-item-label class="text-bold">{{
+          $t("invite-user-page.title")
+        }}</q-item-label>
       </q-item-section>
       <q-card-actions>
         <div class="flex items-center q-gutter-x-md">

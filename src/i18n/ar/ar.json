@@ -72,6 +72,38 @@
       "buttons": {
         "view": "منظر"
       }
+    },
+    "renew-subscription": {
+      "title": "تجديد الخدمة",
+      "caption": "جميع التكاليف بالريال الإيراني",
+      "business-name-label": "الاسم التجاري:",
+      "current-plan": "التصميم الحالي:",
+      "to-date": "حتى تاريخ:",
+      "plan": "الخطة (بالريال):",
+      "extension-period": "فترة التجديد:",
+      "loyalty-discount": "خصم الولاء:",
+      "total": "المجموع:",
+      "discount": "الخصم:",
+      "sum-total": "المجموع:",
+      "pay-message": "يمكن الدفع عن طريق كافة بطاقات الشبكة المصرفية. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقة الدفع.",
+      "buttons": {
+        "payment": "دفع"
+      }
+    },
+    "add-business": {
+      "title": "إنشاء أعمال جديدة",
+      "caption": "جميع التكاليف بالريال الإيراني",
+      "business-name-label": "الاسم التجاري:",
+      "plan": "الخطة (بالريال):",
+      "extension-period": "فترة التجديد:",
+      "loyalty-discount": "خصم الولاء:",
+      "total": "المجموع:",
+      "discount": "الخصم:",
+      "sum-total": "المجموع:",
+      "pay-message": "يمكن الدفع عن طريق كافة بطاقات الشبكة المصرفية. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقة الدفع.",
+      "buttons": {
+        "payment": "دفع"
+      }
     }
   },
 
@@ -83,5 +115,22 @@
       "confirm-password": "تأكيد كلمة المرور"
     },
     "buttons": { "change-password": "تغییر كلمة المرور", "close": "لإغلاق" }
+  },
+
+  "invite-user-page": {
+    "title": "دعوة المستخدم",
+    "placeholders": {
+      "name": "الاسم",
+      "email": "البريد الالكتروني"
+    },
+    "buttons": { "invite-user": "دعوة المستخدم", "cancel": "يلغي" }
+  },
+
+  "delete-business-page": {
+    "title": "حذف العمل والمهنة",
+    "placeholders": {
+      "password": "كلمة المرور"
+    },
+    "buttons": { "delete-business": "حذف العمل والمهنة", "cancel": "يلغي" }
   }
 }

@@ -8,7 +8,7 @@
       <q-input
         outlined
         v-model="nameOfUser"
-        placeholder="نام"
+        :placeholder="$t('invite-user-page.placeholders.name')"
         dense
         class="text-body"
         required
@@ -17,7 +17,7 @@
       />
       <q-input
         v-model="emailOfUser"
-        placeholder="ایمیل"
+        :placeholder="$t('invite-user-page.placeholders.email')"
         dense
         class="noen-border text-body"
         required
@@ -64,14 +64,14 @@
           size="md"
           class="change-password-btn q-py-sm"
           no-caps
-          label="دعوت از کاربر"
+          :label="$t('invite-user-page.buttons.invite-user')"
         />
         <q-btn
           unelevated
           size="md"
           class="cancel-btn text-weight-bold q-py-sm"
           no-caps
-          label="انصراف"
+          :label="$t('invite-user-page.buttons.cancel')"
           v-close-popup
           flat
         />

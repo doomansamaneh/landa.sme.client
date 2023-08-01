@@ -32,14 +32,14 @@
           size="md"
           class="change-password-btn q-py-sm"
           no-caps
-          label="حذف کسب و کار"
+          :label="$t('delete-business-page.buttons.delete-business')"
         />
         <q-btn
           unelevated
           size="md"
           class="cancel-btn text-weight-bold q-py-sm"
           no-caps
-          label="انصراف"
+          :label="$t('delete-business-page.buttons.cancel')"
           v-close-popup
           flat
         />

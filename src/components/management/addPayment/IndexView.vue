@@ -2,11 +2,11 @@
   <q-card class="card-desktop gt-xs no-shadow q-my-xl">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
-        <q-item-label class="text-bold text-subtitle1"
-          >تمدید سرویس</q-item-label
-        >
+        <q-item-label class="text-bold text-subtitle1">{{
+          $t("page.renew-subscription.title")
+        }}</q-item-label>
         <q-item-label class="dark-2 q-pt-xs" caption>
-          همه هزینه ها به ریال می باشد
+          {{ $t("page.renew-subscription.caption") }}
         </q-item-label>
       </q-item-section>
       <q-card-actions>
@@ -17,7 +17,9 @@
             name="arrow_back"
             @click="$router.go(-1)"
           >
-            <q-tooltip class="custom-tooltip">بازگشت</q-tooltip>
+            <q-tooltip class="custom-tooltip">{{
+              $t("page.buttons.back")
+            }}</q-tooltip>
           </q-icon>
         </div>
       </q-card-actions>
@@ -27,7 +29,9 @@
       <q-form @submit="onSubmit">
         <div class="row items-center">
           <div class="col-2 q-my-lg">
-            <q-item-label>کسب و کار:</q-item-label>
+            <q-item-label>{{
+              $t("page.renew-subscription.business-name-label")
+            }}</q-item-label>
           </div>
           <div class="col-10">
             <span class="text-bold q-pl-xs"
@@ -35,7 +39,9 @@
             >
           </div>
           <div class="col-2">
-            <q-item-label>طرح فعلی:</q-item-label>
+            <q-item-label>{{
+              $t("page.renew-subscription.current-plan")
+            }}</q-item-label>
           </div>
           <div class="col-10">
             <span class="q-pl-xs"
@@ -44,14 +50,18 @@
             >
           </div>
           <div class="col-2 q-my-lg">
-            <q-item-label>تا تاریخ:</q-item-label>
+            <q-item-label>{{
+              $t("page.renew-subscription.to-date")
+            }}</q-item-label>
           </div>
           <div class="col-10">
             <span class="q-pl-xs">1403/03/23</span>
           </div>
           <div class="col-2">
             <q-item-label class="required-label"
-              ><span>طرح (ریال):</span></q-item-label
+              ><span>{{
+                $t("page.renew-subscription.plan")
+              }}</span></q-item-label
             >
           </div>
           <div class="row col-10">
@@ -63,7 +73,9 @@
             </lookup-view>
           </div>
           <div class="col-2 required-label">
-            <q-item-label>دوره تمدید:</q-item-label>
+            <q-item-label>{{
+              $t("page.renew-subscription.extension-period")
+            }}</q-item-label>
           </div>
           <div class="row col-10">
             <q-select
@@ -103,13 +115,23 @@
             class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
           >
             <div class="row col-6 q-gutter-y-lg">
-              <div class="col-7"><span>تخفیف وفاداری:</span></div>
+              <div class="col-7">
+                <span>{{
+                  $t("page.renew-subscription.loyalty-discount")
+                }}</span>
+              </div>
               <div class="col-4"><span>36,000</span></div>
-              <div class="col-7"><span>جمع:</span></div>
+              <div class="col-7">
+                <span>{{ $t("page.renew-subscription.total") }}</span>
+              </div>
               <div class="col-4"><span>149,000</span></div>
-              <div class="col-7"><span>تخفیف:</span></div>
+              <div class="col-7">
+                <span>{{ $t("page.renew-subscription.discount") }}</span>
+              </div>
               <div class="col-4"><span>0</span></div>
-              <div class="col-7"><span>جمع کل:</span></div>
+              <div class="col-7">
+                <span>{{ $t("page.renew-subscription.sum-total") }}</span>
+              </div>
               <div class="col-4"><span class="text-bold">149,000</span></div>
             </div>
             <div class="sadad col-6 row justify-center items-center">
@@ -144,10 +166,11 @@
             unelevated
             rounded
             color="positive"
+            no-caps
             padding="8px 16px"
             class=""
             ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
-            پرداخت
+            {{ $t("page.renew-subscription.buttons.payment") }}
           </q-btn>
           <span class="text-caption q-pl-md"
             >پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
