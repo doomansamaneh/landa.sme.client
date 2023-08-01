@@ -51,6 +51,7 @@
               outline
               unelevated
               padding="6px 12px"
+              @click="goToAddBusiness"
             >
               <q-icon name="add" class="q-pr-xs" size="14px" />
               {{ $t("page.buttons.add-new-business-tooltip") }}
@@ -276,6 +277,10 @@ async function gotoBusiness() {}
 
 async function goToPaymentHistory(item) {
   router.push(`business/payments/${item.id}/${item.title}`)
+}
+
+function goToAddBusiness() {
+  router.push("business/addBusiness")
 }
 
 async function reloadData() {

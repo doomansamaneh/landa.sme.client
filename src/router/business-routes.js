@@ -21,6 +21,11 @@ export default {
       },
     },
     {
+      path: "addBusiness", name: "Add Business", component: () => import("pages/management/AddBusiness.vue"), meta: {
+        icon: "o_add"
+      },
+    },
+    {
       path: "payments/:businessId/:businessTitle", name: "Payments", component: () => import("pages/management/PaymentPage.vue"), meta: {
         icon: "payment"
 
