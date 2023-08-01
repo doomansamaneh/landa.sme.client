@@ -3,7 +3,8 @@
     "Business": "Business",
     "Payments": "Payments",
     "Payments Detail": "Payments Detail",
-    "Renew Subscription": "Renew Subscription"
+    "Renew Subscription": "Renew Subscription",
+    "Add New Business": "Add New Business"
   },
   "login-page": {
     "page-title": "Log in",

@@ -27,7 +27,7 @@
       <q-form @submit="onSubmit">
         <div class="row items-center">
           <div class="col-2 q-my-lg">
-            <q-item-label class="required-label">کسب و کار:</q-item-label>
+            <q-item-label class="required-label">نام کسب و کار:</q-item-label>
           </div>
           <div class="col-10">
             <q-input
