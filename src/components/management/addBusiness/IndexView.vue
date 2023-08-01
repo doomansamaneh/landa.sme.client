@@ -46,9 +46,7 @@
           </div>
           <div class="col-2">
             <q-item-label class="required-label"
-              ><span>{{
-                $t("page.add-business.business-name-label")
-              }}</span></q-item-label
+              ><span>{{ $t("page.add-business.plan") }}</span></q-item-label
             >
           </div>
           <div class="row col-10">
