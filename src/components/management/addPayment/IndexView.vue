@@ -71,7 +71,7 @@
               searchField="b.title"
               ref="lookup"
             >
-              <template #th>
+              <template #thead>
                 <th class="" style="width: 5%">
                   <span>#</span>
                 </th>
@@ -287,7 +287,10 @@ onMounted(() => {
   height: 300px;
 }
 
-th,
+th {
+  padding: 24px 12px;
+}
+
 td {
   padding: 16px 16px;
 }

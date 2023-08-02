@@ -44,7 +44,7 @@
       no-focus
     >
       <q-card class="plan-title-card no-shadow">
-        <q-inner-loading :showing="loadingData">
+        <q-inner-loading :showing="loadingData" class="q-my-lg">
           <q-spinner size="50px" color="primary" />
         </q-inner-loading>
         <table
@@ -52,11 +52,8 @@
           class="plan-title-table text-left full-width text-caption"
           tabindex="0"
         >
-          <thead class="lookup-table-head">
-            <tr class="">
-              <slot name="th" />
-            </tr>
-          </thead>
+          <slot name="thead" />
+
           <tbody class="lookup-table-body">
             <tr
               v-for="(item, index) in rows"
@@ -301,7 +298,11 @@ td {
 }
 
 th {
-  padding: 16px 12px;
+  padding: 24px 12px;
+}
+
+thead {
+  background-color: #7fbff3;
 }
 
 table {
