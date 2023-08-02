@@ -97,7 +97,7 @@
           transition-duration="600"
           no-backdrop-dismiss
         >
-          <reset-password>
+          <change-password>
             <template #header>
               <q-item-section>
                 <q-item-label class="text-bold">{{
@@ -120,7 +120,7 @@
                 </div>
               </q-card-actions>
             </template>
-          </reset-password>
+          </change-password>
         </q-dialog>
       </q-page>
     </q-page-container>

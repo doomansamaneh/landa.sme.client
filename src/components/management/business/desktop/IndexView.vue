@@ -126,6 +126,7 @@
         <renew-subscribtion
           class="bg-green text-white"
           :businessId="item.id"
+          :title="item.title"
           v-if="item.isOwner && item.daysToExpire < 350"
         />
       </div>

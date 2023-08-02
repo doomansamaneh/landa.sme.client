@@ -52,43 +52,7 @@
           class="plan-title-table text-left full-width text-caption"
           tabindex="0"
         >
-          <thead class="lookup-table-head">
-            <tr class="">
-              <th class="" style="width: 5%">
-                <span>#</span>
-              </th>
-              <th class="" style="width: 50%">
-                <q-icon
-                  v-if="pagination.sortBy === 'title'"
-                  :name="
-                    pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-                  "
-                  size="20px"
-                  color="primary"
-                />
-                <span
-                  @click="sortSelectedColumn('title')"
-                  class="cursor-pointer"
-                  >عنوان</span
-                >
-              </th>
-              <th class="" style="width: 30%">
-                <q-icon
-                  v-if="pagination.sortBy === 'payedAmount'"
-                  :name="
-                    pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-                  "
-                  size="20px"
-                  color="primary"
-                />
-                <span
-                  class="cursor-pointer"
-                  @click="sortSelectedColumn('payedAmount')"
-                  >هزینه ماهانه</span
-                >
-              </th>
-            </tr>
-          </thead>
+          <slot name="thead" />
           <tbody class="lookup-table-body">
             <tr
               v-for="(item, index) in rows"
@@ -97,11 +61,7 @@
               @click="onRowClicked(item, index)"
               class="cursor-pointer"
             >
-              <td>{{ item.statusId }}</td>
-              <td>
-                <span>{{ item.title }}</span>
-              </td>
-              <td>{{ item.payedAmount }}</td>
+              <slot name="td" :item="item" />
             </tr>
           </tbody>
         </table>

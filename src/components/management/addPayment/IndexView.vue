@@ -235,7 +235,7 @@ import { fetchWrapper } from "src/helpers"
 import DataView from "src/components/shared/DataView.vue"
 import LookupView from "src/components/shared/LookupView.vue"
 
-import ContactLookup from "src/components/shared/ContactLookup.vue"
+import ContactLookup from "src/components/shared/Lookups/ContactLookup.vue"
 
 const $q = useQuasar()
 const lookup = ref(null)

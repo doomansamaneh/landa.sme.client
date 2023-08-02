@@ -2,7 +2,6 @@
   <lookup-view
     dataSource="business/getBusinessGridData"
     orderByField="title"
-    searchField="b.title"
     ref="lookup"
   >
     <template #thead>
