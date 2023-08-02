@@ -69,8 +69,54 @@
               dataSource="business/getBusinessGridData"
               orderByField="title"
               searchField="b.title"
+              ref="lookup"
             >
+              <template #th>
+                <th class="" style="width: 5%">
+                  <span>#</span>
+                </th>
+                <th class="" style="width: 50%">
+                  <q-icon
+                    v-if="pagination.sortBy === 'title'"
+                    :name="
+                      pagination.descending
+                        ? 'arrow_drop_up'
+                        : 'arrow_drop_down'
+                    "
+                    size="20px"
+                    color="primary"
+                  />
+                  <span @click="sortColumn('title')" class="cursor-pointer"
+                    >عنوان</span
+                  >
+                </th>
+                <th class="" style="width: 30%">
+                  <q-icon
+                    v-if="pagination.sortBy === 'payedAmount'"
+                    :name="
+                      pagination.descending
+                        ? 'arrow_drop_up'
+                        : 'arrow_drop_down'
+                    "
+                    size="20px"
+                    color="primary"
+                  />
+                  <span
+                    class="cursor-pointer"
+                    @click="sortColumn('payedAmount')"
+                    >هزینه ماهانه</span
+                  >
+                </th>
+              </template>
+              <template #td="{ item }">
+                <td>{{ item.statusId }}</td>
+                <td>
+                  <span>{{ item.title }}</span>
+                </td>
+                <td>{{ item.payedAmount }}</td>
+              </template>
             </lookup-view>
+            <contact-lookup class="bg-grey-2"> </contact-lookup>
           </div>
           <div class="col-2 required-label">
             <q-item-label>{{
@@ -183,13 +229,15 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
+import { ref, watch, onMounted } from "vue"
 import { useQuasar } from "quasar"
 import DataView from "src/components/shared/DataView.vue"
 import LookupView from "src/components/shared/LookupView.vue"
+import ContactLookup from "src/components/shared/ContactLookup.vue"
 
 const $q = useQuasar()
-
+const lookup = ref(null)
+const pagination = ref(null)
 const period = [
   "1 ماه",
   "3 ماه",
@@ -215,6 +263,14 @@ const onSubmit = () => {
     timeout: 1500
   })
 }
+
+function sortColumn(columnName) {
+  lookup.value.sortSelectedColumn(columnName)
+}
+
+onMounted(() => {
+  pagination.value = lookup.value.pagination
+})
 </script>
 
 <style lang="scss" scoped>
