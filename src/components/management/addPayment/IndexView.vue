@@ -34,9 +34,9 @@
             }}</q-item-label>
           </div>
           <div class="col-10">
-            <span class="text-bold q-pl-xs"
-              >دومان سامانه برای تست و انجام کارهای دمو</span
-            >
+            <span class="text-bold q-pl-xs">{{
+              $route.params.businessTitle
+            }}</span>
           </div>
           <div class="col-2">
             <q-item-label>{{
@@ -44,10 +44,7 @@
             }}</q-item-label>
           </div>
           <div class="col-10">
-            <span class="q-pl-xs"
-              >طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-              دستمزد)</span
-            >
+            <span class="q-pl-xs">{{ $route.params.planTitle }}</span>
           </div>
           <div class="col-2 q-my-lg">
             <q-item-label>{{
@@ -65,57 +62,8 @@
             >
           </div>
           <div class="row col-10">
-            <lookup-view
-              dataSource="business/GetPlanLookupData"
-              orderByField="title"
-              ref="lookup"
-            >
-              <template #thead>
-                <th class="" style="width: 5%">
-                  <span>#</span>
-                </th>
-                <th class="" style="width: 50%">
-                  <q-icon
-                    v-if="pagination.sortBy === 'title'"
-                    :name="
-                      pagination.descending
-                        ? 'arrow_drop_up'
-                        : 'arrow_drop_down'
-                    "
-                    size="20px"
-                    color="primary"
-                  />
-                  <span @click="sortColumn('title')" class="cursor-pointer"
-                    >عنوان</span
-                  >
-                </th>
-                <th class="" style="width: 30%">
-                  <q-icon
-                    v-if="pagination.sortBy === 'payedAmount'"
-                    :name="
-                      pagination.descending
-                        ? 'arrow_drop_up'
-                        : 'arrow_drop_down'
-                    "
-                    size="20px"
-                    color="primary"
-                  />
-                  <span
-                    class="cursor-pointer"
-                    @click="sortColumn('payedAmount')"
-                    >هزینه ماهانه</span
-                  >
-                </th>
-              </template>
-              <template #td="{ item }">
-                <td>{{ item.statusId }}</td>
-                <td>
-                  <span>{{ item.title }}</span>
-                </td>
-                <td>{{ item.payedAmount }}</td>
-              </template>
-            </lookup-view>
-            <contact-lookup class="bg-grey-2"> </contact-lookup>
+            <plan-lookup @plan-selected="onPlanSelected" />
+            <!-- <contact-lookup> </contact-lookup> -->
           </div>
           <div class="col-2 required-label">
             <q-item-label>{{
@@ -125,8 +73,10 @@
           <div class="row col-10">
             <q-select
               hide-dropdown-icon
-              v-model="selectedPeriod"
+              v-model="periodSelected"
               :options="period"
+              option-value="value"
+              option-label="label"
               dense
               required
               :rules="[
@@ -139,15 +89,6 @@
               use-chips
             >
               <template #append>
-                <!-- <q-icon
-                ref="clearSearch"
-                name="clear"
-                size="16px"
-                color="primary"
-                v-if="selectedPeriod && selectedPeriod.length > 0"
-                class="cursor-pointer"
-                @click="clearSelection"
-              /> -->
                 <q-icon
                   name="o_expand_more"
                   class="show-lookup-icon cursor-pointer"
@@ -165,19 +106,27 @@
                   $t("page.renew-subscription.loyalty-discount")
                 }}</span>
               </div>
-              <div class="col-4"><span>36,000</span></div>
+              <div class="col-4">
+                <span>{{ loyaltyDiscount }}</span>
+              </div>
               <div class="col-7">
                 <span>{{ $t("page.renew-subscription.total") }}</span>
               </div>
-              <div class="col-4"><span>149,000</span></div>
+              <div class="col-4">
+                <span>{{ total }}</span>
+              </div>
               <div class="col-7">
                 <span>{{ $t("page.renew-subscription.discount") }}</span>
               </div>
-              <div class="col-4"><span>0</span></div>
+              <div class="col-4">
+                <span>{{ discount }}</span>
+              </div>
               <div class="col-7">
                 <span>{{ $t("page.renew-subscription.sum-total") }}</span>
               </div>
-              <div class="col-4"><span class="text-bold">149,000</span></div>
+              <div class="col-4">
+                <span class="text-bold">{{ totalSum }}</span>
+              </div>
             </div>
             <div class="sadad col-6 row justify-center items-center">
               <div class="row justify-center q-gutter-x-md">
@@ -231,25 +180,24 @@
 import { ref, watch, onMounted } from "vue"
 import { useQuasar } from "quasar"
 import { fetchWrapper } from "src/helpers"
-
 import DataView from "src/components/shared/DataView.vue"
-import LookupView from "src/components/shared/LookupView.vue"
-
-import ContactLookup from "src/components/shared/Lookups/ContactLookup.vue"
+import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
+// import ContactLookup from "src/components/shared/Lookups/ContactLookup.vue"
 
 const $q = useQuasar()
 const lookup = ref(null)
+const shape = ref("line")
 const pagination = ref(null)
-const period = [
-  "1 ماه",
-  "3 ماه",
-  "6 ماه (6 درصد تخفیف)",
-  "12 ماه (15 درصد تخفیف)"
-]
+const period = ref([])
+const periodSelected = ref(period.value[0])
+const selectedPlan = ref(0)
+let totalAmount = ref(0)
+let loyaltyDiscount = ref(0)
+let discount = ref(0)
 
-onMounted(() => {
-  loadData()
-})
+function selectPeriod(item) {
+  periodSelected.value = item
+}
 
 async function loadData() {
   let businessId = "79f898ef-de59-4390-a7e9-f68880f2caa5"
@@ -268,13 +216,21 @@ async function loadData() {
 }
 
 function handleMonthResponse(data) {
-  // alert("month data has been loaded")
+  period.value = data.map((item) => ({
+    label: `${item.month} ماه${
+      item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
+    }`,
+    value: item.month
+  }))
+
   console.log(data)
 }
 
 function handleDiscountResponse(data) {
   // alert("discount data has been loaded")
-  console.log(data)
+  console.log(`loyaltyDiscount: ${data}`)
+
+  loyaltyDiscount.value = data
 }
 
 function sortColumn(columnName) {
@@ -282,8 +238,17 @@ function sortColumn(columnName) {
 }
 
 onMounted(() => {
-  pagination.value = lookup.value.pagination
+  loadData()
 })
+
+function onPlanSelected(item) {
+  // console.log(`Selected Plan cost: ${selectedPlan.value}`)
+  selectedPlan.value = item.cost
+}
+
+let total = selectedPlan
+
+let totalSum = total
 </script>
 
 <style lang="scss" scoped>
@@ -300,10 +265,6 @@ onMounted(() => {
   height: 300px;
 }
 
-th,
-td {
-  padding: 16px 16px;
-}
 th {
   padding: 24px 12px;
 }

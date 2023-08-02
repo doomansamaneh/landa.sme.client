@@ -1,5 +1,5 @@
 <template>
-  <vue3-html2pdf
+  <!-- <vue3-html2pdf
     :show-layout="false"
     :float-layout="true"
     :enable-download="true"
@@ -203,7 +203,7 @@
         </q-card-section>
       </q-card>
     </template>
-  </vue3-html2pdf>
+  </vue3-html2pdf> -->
   <!-- ------------------------------------------------------------------------- -->
   <!-- ------------------------------------------------------------------------- -->
   <!-- ------------------------------------------------------------------------- -->
@@ -466,13 +466,13 @@
 
 <script setup>
 import { ref } from "vue"
-import Vue3Html2pdf from "vue3-html2pdf"
+// import Vue3Html2pdf from "vue3-html2pdf"
 
-const html2Pdf = ref(null)
+// const html2Pdf = ref(null)
 
-function print() {
-  html2Pdf.value.generatePdf()
-}
+// function print() {
+//   html2Pdf.value.generatePdf()
+// }
 </script>
 
 <style scoped>

@@ -27,7 +27,7 @@
               @click="reloadData"
               clickable
             >
-              <q-tooltip class="custom-tooltip" delay="600">{{
+              <q-tooltip class="custom-tooltip" :delay="600">{{
                 $t("page.buttons.reload-data")
               }}</q-tooltip>
             </q-icon>
@@ -39,7 +39,7 @@
               name="o_help_outline"
               @click="showGuideDialog = true"
             >
-              <q-tooltip class="custom-tooltip" delay="600">{{
+              <q-tooltip class="custom-tooltip" :delay="600">{{
                 $t("page.buttons.guide-tooltip")
               }}</q-tooltip>
             </q-icon>
@@ -117,7 +117,7 @@
             v-if="item.expired"
           />
           {{ item.toDateString }}
-          <q-tooltip class="custom-tooltip" delay="600">{{
+          <q-tooltip class="custom-tooltip" :delay="600">{{
             $t("page.buttons.expire-date-tooltip")
           }}</q-tooltip>
         </label>
@@ -127,6 +127,7 @@
           class="bg-green text-white"
           :businessId="item.id"
           :title="item.title"
+          :planTitle="item.planTitle"
           v-if="item.isOwner && item.daysToExpire < 350"
         />
       </div>
@@ -140,7 +141,7 @@
           size="md"
           dense
         >
-          <q-tooltip class="custom-tooltip" delay="600">{{
+          <q-tooltip class="custom-tooltip" :delay="600">{{
             $t("page.buttons.more-tooltip")
           }}</q-tooltip>
         </q-btn>

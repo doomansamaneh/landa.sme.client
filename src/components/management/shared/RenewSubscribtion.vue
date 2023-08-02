@@ -23,11 +23,14 @@ import { useRouter } from "vue-router"
 
 const props = defineProps({
   title: String,
-  businessId: String
+  businessId: String,
+  planTitle: String
 })
 
 async function goToAddPayment() {
-  router.push(`business/addPayment/${props.businessId}/${props.title}`)
+  router.push(
+    `business/addPayment/${props.businessId}/${props.title}/${props.planTitle}`
+  )
 }
 
 const router = useRouter()

@@ -61,7 +61,7 @@
               @click="onRowClicked(item, index)"
               class="cursor-pointer"
             >
-              <slot name="td" :item="item" />
+              <slot name="td" :item="item" :index="index" />
             </tr>
           </tbody>
         </table>
@@ -90,7 +90,14 @@
 
 <script setup>
 import { fetchWrapper } from "../../helpers"
-import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
+import {
+  ref,
+  computed,
+  onMounted,
+  onBeforeUnmount,
+  watch,
+  defineEmits
+} from "vue"
 import { useQuasar } from "quasar"
 import { useRouter } from "vue-router"
 import businessRoutes from "src/router/business-routes"
@@ -104,6 +111,8 @@ const props = defineProps({
   searchField: String,
   businessTitle: String
 })
+
+const emit = defineEmits(["plan-selected"])
 
 const router = useRouter()
 const businessNameId = ref()
@@ -143,7 +152,8 @@ function clearSelection() {
 function onRowClicked(item, index) {
   selectedCardIndex.value = index
   popup.value.hide()
-  selectedRow.value = `${item.title} - ${item.planTitle}`
+  selectedRow.value = `${item.title}`
+  emit("plan-selected", item)
 }
 
 const isSearchEmpty = computed(
@@ -236,8 +246,9 @@ function selectNext() {
 
 function selectRow() {
   const selectedItem = rows.value[selectedCardIndex.value]
-  selectedRow.value = `${selectedItem.title} - ${selectedItem.planTitle}`
+  selectedRow.value = `${selectedItem.title}`
   popup.value.hide()
+  console.log(selectedRow.value)
 }
 
 const showPagebar = computed(() => {

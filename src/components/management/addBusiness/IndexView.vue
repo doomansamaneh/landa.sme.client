@@ -50,12 +50,7 @@
             >
           </div>
           <div class="row col-10">
-            <lookup-view
-              dataSource="business/getBusinessGridData"
-              orderByField="title"
-              searchField="b.title"
-            >
-            </lookup-view>
+            <plan-lookup> </plan-lookup>
           </div>
           <div class="col-2 required-label">
             <q-item-label>{{
@@ -168,7 +163,7 @@
 import { ref, watch } from "vue"
 import { useQuasar } from "quasar"
 import DataView from "src/components/shared/DataView.vue"
-import LookupView from "src/components/shared/LookupView.vue"
+import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
 
 const $q = useQuasar()
 

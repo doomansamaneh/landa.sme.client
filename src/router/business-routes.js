@@ -38,7 +38,7 @@ export default {
 
     },
     {
-      path: "addPayment/:businessId/:businessTitle", name: "Renew Subscription", component: () => import("pages/management/AddPaymentPage.vue"), meta: {
+      path: "addPayment/:businessId/:businessTitle/:planTitle", name: "Renew Subscription", component: () => import("pages/management/AddPaymentPage.vue"), meta: {
         icon: "o_monetization_on"
       },
 

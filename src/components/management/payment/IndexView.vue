@@ -37,7 +37,7 @@
               name="arrow_back"
               @click="$router.go(-1)"
             >
-              <q-tooltip class="custom-tooltip" delay="600">{{
+              <q-tooltip class="custom-tooltip" :delay="600">{{
                 $t("page.buttons.back")
               }}</q-tooltip>
             </q-icon>
@@ -71,7 +71,7 @@
         <label class="text-caption">
           {{ formatCurrency(item.amount) }}
           <span>ریال</span>
-          <q-tooltip class="custom-tooltip" delay="600">
+          <q-tooltip class="custom-tooltip" :delay="600">
             {{ $t("page.payment-history.amount-paid") }}</q-tooltip
           >
         </label>
@@ -106,7 +106,7 @@
           size="md"
           dense
         >
-          <q-tooltip class="custom-tooltip" delay="600">{{
+          <q-tooltip class="custom-tooltip" :delay="600">{{
             $t("page.buttons.more-tooltip")
           }}</q-tooltip>
         </q-btn>
@@ -159,6 +159,10 @@ const formatCurrency = (value) => {
     return value.toLocaleString()
   }
 }
+
+defineExpose({
+  formatCurrency
+})
 
 async function reloadData() {
   businessDataView.value.reloadData()
