@@ -96,6 +96,7 @@
                 />
               </template>
             </q-select>
+            <p>{{ periodSelected }}</p>
           </div>
           <div
             class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
@@ -107,25 +108,25 @@
                 }}</span>
               </div>
               <div class="col-4">
-                <span>{{ loyaltyDiscount }}</span>
+                <span>{{ loyaltyDiscount.toLocaleString() }}</span>
               </div>
               <div class="col-7">
                 <span>{{ $t("page.renew-subscription.total") }}</span>
               </div>
               <div class="col-4">
-                <span>{{ total }}</span>
+                <span>{{ subTotal }}</span>
               </div>
               <div class="col-7">
                 <span>{{ $t("page.renew-subscription.discount") }}</span>
               </div>
               <div class="col-4">
-                <span>{{ discount }}</span>
+                <span>{{ discount.toLocaleString() }}</span>
               </div>
               <div class="col-7">
                 <span>{{ $t("page.renew-subscription.sum-total") }}</span>
               </div>
               <div class="col-4">
-                <span class="text-bold">{{ totalSum }}</span>
+                <span class="text-bold">{{ total.toLocaleString() }}</span>
               </div>
             </div>
             <div class="sadad col-6 row justify-center items-center">
@@ -177,13 +178,14 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue"
+import { ref, watch, onMounted, computed } from "vue"
 import { useQuasar } from "quasar"
+import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 import DataView from "src/components/shared/DataView.vue"
 import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
 // import ContactLookup from "src/components/shared/Lookups/ContactLookup.vue"
-
+const route = useRoute()
 const $q = useQuasar()
 const lookup = ref(null)
 const shape = ref("line")
@@ -191,7 +193,8 @@ const pagination = ref(null)
 const period = ref([])
 const periodSelected = ref(period.value[0])
 const selectedPlan = ref(0)
-let totalAmount = ref(0)
+let subTotal = ref(0)
+let total = ref(0)
 let loyaltyDiscount = ref(0)
 let discount = ref(0)
 
@@ -200,11 +203,12 @@ function selectPeriod(item) {
 }
 
 async function loadData() {
-  let businessId = "79f898ef-de59-4390-a7e9-f68880f2caa5"
+  let businessId = route.params.businessId
   await fetchWrapper
     .get(`business/GetMonths/${businessId}`)
     .then((response) => {
       handleMonthResponse(response.data.data)
+      periodSelected.value = period.value[0]
     })
 
   let planId = "606d8e04-69ef-4520-8d0e-20673167d0e2"
@@ -220,16 +224,15 @@ function handleMonthResponse(data) {
     label: `${item.month} ماه${
       item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
     }`,
-    value: item.month
+    value: `${item.month}`
   }))
 
-  console.log(data)
+  // alert(`businessId:${route.params.businessId}`)
 }
 
 function handleDiscountResponse(data) {
   // alert("discount data has been loaded")
   console.log(`loyaltyDiscount: ${data}`)
-
   loyaltyDiscount.value = data
 }
 
@@ -242,13 +245,20 @@ onMounted(() => {
 })
 
 function onPlanSelected(item) {
-  // console.log(`Selected Plan cost: ${selectedPlan.value}`)
+  console.log(`Selected Plan cost: ${selectedPlan.value}`)
   selectedPlan.value = item.cost
 }
 
-let total = selectedPlan
+watch(selectedPlan, (PlanCost) => {
+  subTotal.value = PlanCost - loyaltyDiscount.value
+  discount.value = 221276
+  total.value = subTotal.value - discount.value
+})
 
-let totalSum = total
+watch(periodSelected.value, (newValue) => {
+  let periodMonth = newValue.value
+  console.log(`Month: ${periodMonth}`)
+})
 </script>
 
 <style lang="scss" scoped>

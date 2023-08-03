@@ -43,7 +43,7 @@
         <span>{{ item.title }}</span>
       </td>
       <td>
-        <span class="">{{ formatCurrency(item.cost) }}</span>
+        <span class="">{{ item.cost.toLocaleString() }}</span>
       </td>
     </template>
   </lookup-view>
@@ -55,7 +55,6 @@ import { ref, onMounted, watch } from "vue"
 
 const lookup = ref(null)
 const pagination = ref(null)
-const counter = ref(0)
 
 function sortColumn(columnName) {
   lookup.value.sortSelectedColumn(columnName)
@@ -64,17 +63,6 @@ function sortColumn(columnName) {
 onMounted(() => {
   pagination.value = lookup.value.pagination
 })
-
-const formatCurrency = (value) => {
-  const language = localStorage.getItem("selectedLanguage")
-  if (language === "fa-IR") {
-    return value.toLocaleString("fa-IR", {
-      minimumFractionDigits: 0
-    })
-  } else {
-    return value.toLocaleString()
-  }
-}
 </script>
 
 <style lang="scss" scoped>

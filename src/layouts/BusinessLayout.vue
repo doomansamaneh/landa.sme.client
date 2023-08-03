@@ -7,7 +7,10 @@
             href="https://landa-sme.ir"
             target="blank"
             class="row items-center navbar-logo"
-            ><img class="logo" src="landa-sme-logo.png" alt="landa-sme"
+            ><img
+              class="logo"
+              src="../../public/landa-sme-logo.png"
+              alt="landa-sme"
           /></a>
         </div>
         <div class="flex q-gutter-x-md">
