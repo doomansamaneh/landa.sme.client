@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { ref, computed, emit } from "vue"
+import { ref, computed } from "vue"
 
 const searchTerm = ref("")
 const placeholder = "Enter your search term"
