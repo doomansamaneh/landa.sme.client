@@ -63,7 +63,6 @@
           </div>
           <div class="row col-10">
             <plan-lookup @plan-selected="onPlanSelected" />
-            <!-- <contact-lookup> </contact-lookup> -->
           </div>
           <div class="col-2 required-label">
             <q-item-label>{{
@@ -114,7 +113,7 @@
                 <span>{{ $t("page.renew-subscription.total") }}</span>
               </div>
               <div class="col-4">
-                <span>{{ subTotal }}</span>
+                <span>{{ subTotal.toLocaleString() }}</span>
               </div>
               <div class="col-7">
                 <span>{{ $t("page.renew-subscription.discount") }}</span>
@@ -184,7 +183,7 @@ import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 import DataView from "src/components/shared/DataView.vue"
 import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
-// import ContactLookup from "src/components/shared/Lookups/ContactLookup.vue"
+
 const route = useRoute()
 const $q = useQuasar()
 const lookup = ref(null)
@@ -192,18 +191,14 @@ const shape = ref("line")
 const pagination = ref(null)
 const period = ref([])
 const periodSelected = ref(period.value[0])
-const selectedPlan = ref(0)
-let subTotal = ref(0)
-let total = ref(0)
-let loyaltyDiscount = ref(0)
-let discount = ref(0)
-
-function selectPeriod(item) {
-  periodSelected.value = item
-}
+const selectedPlan = ref(null)
+const subTotal = ref(0)
+const total = ref(0)
+const loyaltyDiscount = ref(0)
+const discount = ref(0)
 
 async function loadData() {
-  let businessId = route.params.businessId
+  const businessId = route.params.businessId
   await fetchWrapper
     .get(`business/GetMonths/${businessId}`)
     .then((response) => {
@@ -211,7 +206,7 @@ async function loadData() {
       periodSelected.value = period.value[0]
     })
 
-  let planId = "606d8e04-69ef-4520-8d0e-20673167d0e2"
+  const planId = "606d8e04-69ef-4520-8d0e-20673167d0e2"
   await fetchWrapper
     .get(`business/GetLoyalDiscount/${businessId}/${planId}`)
     .then((response) => {
@@ -221,13 +216,17 @@ async function loadData() {
 
 function handleMonthResponse(data) {
   period.value = data.map((item) => ({
+    id: item.id,
     label: `${item.month} ماه${
       item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
     }`,
-    value: `${item.month}`
+    month: `${item.month}`,
+    discountPercent: parseFloat(item.percent)
   }))
 
   // alert(`businessId:${route.params.businessId}`)
+
+  console.log(data)
 }
 
 function handleDiscountResponse(data) {
@@ -244,20 +243,34 @@ onMounted(() => {
   loadData()
 })
 
-function onPlanSelected(item) {
-  console.log(`Selected Plan cost: ${selectedPlan.value}`)
-  selectedPlan.value = item.cost
+function onPlanSelected(plan) {
+  selectedPlan.value = plan.cost
+  // console.log(`Plan Selceted Cost: ${selectedPlan.value}`)
+  alert(plan.id)
+  computeValues(selectedPlan.value, periodSelected.value)
 }
 
-watch(selectedPlan, (PlanCost) => {
-  subTotal.value = PlanCost - loyaltyDiscount.value
-  discount.value = 221276
-  total.value = subTotal.value - discount.value
-})
+function selectPeriod(item) {
+  periodSelected.value = item
+  computeValues(selectedPlan.value, periodSelected.value)
+}
 
-watch(periodSelected.value, (newValue) => {
-  let periodMonth = newValue.value
-  console.log(`Month: ${periodMonth}`)
+function computeValues(PlanCost, selectedPeriod) {
+  PlanCost = parseFloat(PlanCost)
+  const selectedPercent = parseFloat(selectedPeriod.discountPercent)
+
+  subTotal.value = (PlanCost - loyaltyDiscount.value) * selectedPeriod.month
+
+  const discountPerMonth = (selectedPercent / 100) * PlanCost
+  discount.value = discountPerMonth * selectedPeriod.month
+
+  total.value = subTotal.value - discount.value
+}
+
+watch([selectedPlan, periodSelected], ([PlanCost, selectedPeriod]) => {
+  if (selectedPlan.value) {
+    computeValues(PlanCost, selectedPeriod)
+  }
 })
 </script>
 
