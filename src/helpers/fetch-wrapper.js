@@ -25,9 +25,9 @@ function request(method) {
       headers: authHeaders,
       data: data
     }).then(response => {
-      return handleKnownError(response)
+      return handleKnownError(url, response)
     }).catch(error => {
-      return handleError(error)
+      return handleError(url, error)
     })
   }
 }
@@ -43,15 +43,15 @@ function getAuthHeaders() {
   }
 }
 
-function handleKnownError(response) {
+function handleKnownError(url, response) {
   if (response.data.code == 0) return Promise.reject(response)
   return Promise.resolve(response)
 }
 
-function handleError(error) {
+function handleError(url, error) {
   const alertData = {
     status: 900,
-    message: "",
+    message: url,
     type: "error"
   }
   if (error.response) {

@@ -7,7 +7,7 @@
     lazy-rules
     dense
     class="input lookup"
-    v-model="selectedRow"
+    v-model="selectedText"
     @update:model-value="searchInLookup"
     @keydown.down="selectNext"
     @keydown.up="selectPrevious"
@@ -19,7 +19,7 @@
         name="clear"
         size="16px"
         color="primary"
-        v-if="selectedRow && selectedRow.length > 0"
+        v-if="selectedText && selectedText.length > 0"
         class="cursor-pointer"
         @click="clearSearch"
       />
@@ -105,13 +105,13 @@ const props = defineProps({
   businessTitle: String
 })
 
-const emit = defineEmits(["plan-selected"])
+const emit = defineEmits(["row-selected"])
 
 const router = useRouter()
 const businessNameId = ref()
 const rows = ref([])
 const loadingData = ref(false)
-const selectedRow = ref("")
+const selectedText = ref("")
 const searchTerm = ref("")
 const defaultPageSize = 5
 const selectedCard = ref(false)
@@ -132,25 +132,26 @@ const pagination = ref({
 })
 
 function clearSearch() {
-  selectedRow.value = ""
+  selectedText.value = ""
   reloadData()
+  emitSelectRow(null)
 }
 
 const selectedRowIndex = computed(() => selectedCardIndex.value)
 
 function clearSelection() {
-  selectedRow.value = ""
+  selectedText.value = ""
 }
 
 function onRowClicked(item, index) {
   selectedCardIndex.value = index
   popup.value.hide()
-  selectedRow.value = `${item.title}`
-  emit("plan-selected", item)
+  selectedText.value = item
+  emitSelectRow(item)
 }
 
 const isSearchEmpty = computed(
-  () => !selectedRow.value || selectedRow.value.trim().length === 0
+  () => !selectedText.value || selectedText.value.trim().length === 0
 )
 
 const pagedRows = computed(() => {
@@ -174,11 +175,11 @@ async function loadData(pagination) {
 
   let filterExpression = []
 
-  if (selectedRow.value) {
+  if (selectedText.value) {
     filterExpression.push({
       fieldName: props.searchField,
       operator: 3,
-      value: selectedRow.value
+      value: selectedText.value
     })
   }
 
@@ -238,10 +239,13 @@ function selectNext() {
 }
 
 function selectRow() {
-  const selectedItem = rows.value[selectedCardIndex.value]
-  selectedRow.value = `${selectedItem.title}`
+  const item = rows.value[selectedCardIndex.value]
   popup.value.hide()
-  console.log(selectedRow.value)
+  emitSelectRow(item)
+}
+
+function emitSelectRow(item) {
+  emit("row-selected", item)
 }
 
 const showPagebar = computed(() => {
@@ -282,8 +286,13 @@ function sortSelectedColumn(selectedColumn) {
 
 defineExpose({
   sortSelectedColumn,
-  pagination
+  pagination,
+  setText
 })
+
+function setText(text) {
+  selectedText.value = text
+}
 </script>
 
 <style scoped>

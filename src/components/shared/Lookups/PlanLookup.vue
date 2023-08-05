@@ -3,6 +3,7 @@
     dataSource="business/GetPlanLookupData"
     orderByField="title"
     ref="lookup"
+    @row-selected="rowSelected"
   >
     <template #thead>
       <thead class="lookup-table-head">
@@ -54,12 +55,16 @@ import LookupView from "src/components/shared/LookupView.vue"
 import { ref, onMounted, watch } from "vue"
 
 const lookup = ref(null)
+const text = ref(null)
 const pagination = ref(null)
 
 function sortColumn(columnName) {
   lookup.value.sortSelectedColumn(columnName)
 }
 
+function rowSelected(item) {
+  lookup.value.setText(item?.title)
+}
 onMounted(() => {
   pagination.value = lookup.value.pagination
 })

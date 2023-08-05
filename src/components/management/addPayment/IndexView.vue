@@ -62,7 +62,7 @@
             >
           </div>
           <div class="row col-10">
-            <plan-lookup @plan-selected="onPlanSelected" />
+            <plan-lookup @row-selected="onPlanSelected" />
           </div>
           <div class="col-2 required-label">
             <q-item-label>{{
@@ -72,8 +72,9 @@
           <div class="row col-10">
             <q-select
               hide-dropdown-icon
-              v-model="periodSelected"
-              :options="period"
+              v-model="selectedPeriod"
+              @update:model-value="selectPeriod"
+              :options="periodItems"
               option-value="value"
               option-label="label"
               dense
@@ -85,7 +86,6 @@
               outlined
               auto-close
               class="period-select"
-              use-chips
             >
               <template #append>
                 <q-icon
@@ -95,37 +95,44 @@
                 />
               </template>
             </q-select>
-            <p>{{ periodSelected }}</p>
           </div>
           <div
             class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
           >
-            <div class="row col-6 q-gutter-y-lg">
-              <div class="col-7">
-                <span>{{
-                  $t("page.renew-subscription.loyalty-discount")
-                }}</span>
+            <div class="col-6 q-gutter-y-lg">
+              <div class="row" v-if="loyaltyDiscountTotal > 0">
+                <div class="col-7">
+                  <span>{{
+                    $t("page.renew-subscription.loyalty-discount")
+                  }}</span>
+                </div>
+                <div class="col-4">
+                  <span>{{ loyaltyDiscountTotal.toLocaleString() }}</span>
+                </div>
               </div>
-              <div class="col-4">
-                <span>{{ loyaltyDiscount.toLocaleString() }}</span>
+              <div class="row">
+                <div class="col-7">
+                  <span>{{ $t("page.renew-subscription.total") }}</span>
+                </div>
+                <div class="col-4">
+                  <span>{{ subTotal.toLocaleString() }}</span>
+                </div>
               </div>
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.total") }}</span>
+              <div class="row">
+                <div class="col-7">
+                  <span>{{ $t("page.renew-subscription.discount") }}</span>
+                </div>
+                <div class="col-4">
+                  <span>{{ discount.toLocaleString() }}</span>
+                </div>
               </div>
-              <div class="col-4">
-                <span>{{ subTotal.toLocaleString() }}</span>
-              </div>
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.discount") }}</span>
-              </div>
-              <div class="col-4">
-                <span>{{ discount.toLocaleString() }}</span>
-              </div>
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.sum-total") }}</span>
-              </div>
-              <div class="col-4">
-                <span class="text-bold">{{ total.toLocaleString() }}</span>
+              <div class="row">
+                <div class="col-7">
+                  <span>{{ $t("page.renew-subscription.sum-total") }}</span>
+                </div>
+                <div class="col-4">
+                  <span class="text-bold">{{ total.toLocaleString() }}</span>
+                </div>
               </div>
             </div>
             <div class="sadad col-6 row justify-center items-center">
@@ -189,12 +196,13 @@ const $q = useQuasar()
 const lookup = ref(null)
 const shape = ref("line")
 const pagination = ref(null)
-const period = ref([])
-const periodSelected = ref(period.value[0])
+const periodItems = ref([])
+const selectedPeriod = ref(periodItems.value[0])
 const selectedPlan = ref(null)
 const subTotal = ref(0)
 const total = ref(0)
 const loyaltyDiscount = ref(0)
+const loyaltyDiscountTotal = ref(0)
 const discount = ref(0)
 
 async function loadData() {
@@ -203,35 +211,32 @@ async function loadData() {
     .get(`business/GetMonths/${businessId}`)
     .then((response) => {
       handleMonthResponse(response.data.data)
-      periodSelected.value = period.value[0]
     })
 
-  const planId = "606d8e04-69ef-4520-8d0e-20673167d0e2"
   await fetchWrapper
-    .get(`business/GetLoyalDiscount/${businessId}/${planId}`)
+    .get(`business/GetBusiness/${businessId}`)
     .then((response) => {
-      handleDiscountResponse(response.data.data)
+      handleBusinessData(response.data.data)
     })
 }
 
+function handleBusinessData(data) {
+  console.log(data.lastPayment.planTitle)
+}
+
 function handleMonthResponse(data) {
-  period.value = data.map((item) => ({
+  periodItems.value = data.map((item) => ({
     id: item.id,
     label: `${item.month} ماه${
       item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
     }`,
     month: `${item.month}`,
-    discountPercent: parseFloat(item.percent)
+    discountPercent: item.percent
   }))
-
-  // alert(`businessId:${route.params.businessId}`)
-
-  console.log(data)
+  selectedPeriod.value = periodItems.value[0]
 }
 
 function handleDiscountResponse(data) {
-  // alert("discount data has been loaded")
-  console.log(`loyaltyDiscount: ${data}`)
   loyaltyDiscount.value = data
 }
 
@@ -243,35 +248,45 @@ onMounted(() => {
   loadData()
 })
 
-function onPlanSelected(plan) {
-  selectedPlan.value = plan.cost
-  // console.log(`Plan Selceted Cost: ${selectedPlan.value}`)
-  alert(plan.id)
-  computeValues(selectedPlan.value, periodSelected.value)
+async function onPlanSelected(plan) {
+  selectedPlan.value = plan
+  if (plan != null) await getLoyalDiscount(plan.id)
+  computeValues()
 }
 
-function selectPeriod(item) {
-  periodSelected.value = item
-  computeValues(selectedPlan.value, periodSelected.value)
+async function selectPeriod(item) {
+  selectedPeriod.value = item
+  computeValues()
 }
 
-function computeValues(PlanCost, selectedPeriod) {
-  PlanCost = parseFloat(PlanCost)
-  const selectedPercent = parseFloat(selectedPeriod.discountPercent)
+function computeValues() {
+  if (selectedPlan.value == null) resetValues()
+  else {
+    loyaltyDiscountTotal.value =
+      loyaltyDiscount.value * selectedPeriod.value.month
+    const planCost = selectedPlan.value.cost
+    const selectedPercent = selectedPeriod.value.discountPercent
 
-  subTotal.value = (PlanCost - loyaltyDiscount.value) * selectedPeriod.month
+    subTotal.value =
+      planCost * selectedPeriod.value.month - loyaltyDiscountTotal.value
 
-  const discountPerMonth = (selectedPercent / 100) * PlanCost
-  discount.value = discountPerMonth * selectedPeriod.month
-
-  total.value = subTotal.value - discount.value
-}
-
-watch([selectedPlan, periodSelected], ([PlanCost, selectedPeriod]) => {
-  if (selectedPlan.value) {
-    computeValues(PlanCost, selectedPeriod)
+    discount.value = Math.round((subTotal.value * selectedPercent) / 100)
+    total.value = Math.round(subTotal.value - discount.value)
   }
-})
+}
+
+function resetValues() {
+  loyaltyDiscountTotal.value = discount.value = total.value = subTotal.value = 0
+}
+
+async function getLoyalDiscount(planId) {
+  const businessId = route.params.businessId
+  await fetchWrapper
+    .get(`business/GetLoyalDiscount/${businessId}/${planId}`)
+    .then((response) => {
+      handleDiscountResponse(response.data.data)
+    })
+}
 </script>
 
 <style lang="scss" scoped>
