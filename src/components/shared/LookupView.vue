@@ -2,9 +2,8 @@
   <q-input
     ref="search"
     outlined
-    required
-    :rules="[(val) => val && val.length > 0]"
-    lazy-rules
+    :required="required"
+    :rules="rules"
     dense
     class="input lookup"
     v-model="selectedText"
@@ -102,7 +101,9 @@ const props = defineProps({
   color: String,
   orderByField: String,
   searchField: String,
-  businessTitle: String
+  businessTitle: String,
+  required: Boolean,
+  rules: Array
 })
 
 const emit = defineEmits(["row-selected"])
@@ -132,7 +133,7 @@ const pagination = ref({
 })
 
 function clearSearch() {
-  selectedText.value = ""
+  selectedText.value = null
   reloadData()
   emitSelectRow(null)
 }
@@ -145,7 +146,7 @@ function clearSelection() {
 
 function onRowClicked(item, index) {
   selectedCardIndex.value = index
-  popup.value.hide()
+  hidePopup()
   selectedText.value = item
   emitSelectRow(item)
 }
@@ -159,15 +160,23 @@ const pagedRows = computed(() => {
 })
 
 onMounted(() => {
-  reloadData()
+  // reloadData()
 })
 
-async function reloadData() {
+async function reloadData(showLoading = true) {
+  if (showLoading) {
+    loadingData.value = true
+  }
+  if (pagedRows.value.length === 0) {
+    loadingData.value = true
+  } else {
+    loadingData.value = false
+  }
   await loadData(pagination.value)
 }
 
 async function loadData(pagination) {
-  const loaderTimeout = 500
+  const loaderTimeout = 1000
   let loadingTimer = setTimeout(() => {
     loadingData.value = true
   }, loaderTimeout)
@@ -220,10 +229,11 @@ function isSelected(index) {
   return selectedCard.value === index
 }
 
-function lookupShow() {
+async function lookupShow() {
   document.getElementById("table")?.focus()
   search.value.focus()
-  popup.value.show()
+  showPopup()
+  await reloadData()
 }
 
 function selectPrevious() {
@@ -240,7 +250,7 @@ function selectNext() {
 
 function selectRow() {
   const item = rows.value[selectedCardIndex.value]
-  popup.value.hide()
+  hidePopup()
   emitSelectRow(item)
 }
 
@@ -260,7 +270,7 @@ const maxPage = computed(() =>
 )
 
 function searchInLookup() {
-  popup.value.show()
+  showPopup()
   reloadData()
 }
 
@@ -284,6 +294,14 @@ function sortSelectedColumn(selectedColumn) {
   reloadData()
 }
 
+function showPopup() {
+  popup.value.show()
+}
+
+function hidePopup() {
+  popup.value.hide()
+}
+
 defineExpose({
   sortSelectedColumn,
   pagination,
@@ -298,11 +316,6 @@ function setText(text) {
 <style scoped>
 .plan-title-card {
   width: 400px !important;
-}
-
-.q-field--auto-height.q-field--dense .q-field__native {
-  font-weight: 500;
-  font-size: 13px;
 }
 
 td {

@@ -31,10 +31,10 @@
             </template>
             <template v-slot:append>
               <q-icon
-                name="cancel"
+                name="clear"
                 class="cursor-pointer"
-                size="sm"
-                color="grey-5"
+                size="16px"
+                color="primary"
                 @click="clearSearch"
                 v-if="!isSearchEmpty"
               />
@@ -187,13 +187,8 @@ defineExpose({
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 .card-desktop {
   width: 650px !important;
-}
-
-.q-field--auto-height.q-field--dense .q-field__native {
-  font-weight: 500;
-  font-size: 13px;
 }
 </style>

@@ -4,6 +4,8 @@
     orderByField="title"
     ref="lookup"
     @row-selected="rowSelected"
+    :required="true"
+    :rules="[(val) => val && val.length > 0]"
   >
     <template #thead>
       <thead class="lookup-table-head">

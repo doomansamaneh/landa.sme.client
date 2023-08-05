@@ -34,9 +34,7 @@
             }}</q-item-label>
           </div>
           <div class="col-10">
-            <span class="text-bold q-pl-xs">{{
-              $route.params.businessTitle
-            }}</span>
+            <span class="text-bold q-pl-xs">{{ businessTitle }}</span>
           </div>
           <div class="col-2">
             <q-item-label>{{
@@ -44,7 +42,7 @@
             }}</q-item-label>
           </div>
           <div class="col-10">
-            <span class="q-pl-xs">{{ $route.params.planTitle }}</span>
+            <span class="q-pl-xs">{{ planTitle }}</span>
           </div>
           <div class="col-2 q-my-lg">
             <q-item-label>{{
@@ -52,7 +50,7 @@
             }}</q-item-label>
           </div>
           <div class="col-10">
-            <span class="q-pl-xs">1403/03/23</span>
+            <span class="q-pl-xs">{{ toDate }}</span>
           </div>
           <div class="col-2">
             <q-item-label class="required-label"
@@ -64,7 +62,7 @@
           <div class="row col-10">
             <plan-lookup @row-selected="onPlanSelected" />
           </div>
-          <div class="col-2 required-label">
+          <div class="col-2">
             <q-item-label>{{
               $t("page.renew-subscription.extension-period")
             }}</q-item-label>
@@ -72,17 +70,10 @@
           <div class="row col-10">
             <q-select
               hide-dropdown-icon
+              dense
               v-model="selectedPeriod"
               @update:model-value="selectPeriod"
               :options="periodItems"
-              option-value="value"
-              option-label="label"
-              dense
-              required
-              :rules="[
-                (val) =>
-                  (val !== null && val !== '') || 'پر کردن این فیلد الزامی است'
-              ]"
               outlined
               auto-close
               class="period-select"
@@ -106,7 +97,7 @@
                     $t("page.renew-subscription.loyalty-discount")
                   }}</span>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                   <span>{{ loyaltyDiscountTotal.toLocaleString() }}</span>
                 </div>
               </div>
@@ -114,7 +105,7 @@
                 <div class="col-7">
                   <span>{{ $t("page.renew-subscription.total") }}</span>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                   <span>{{ subTotal.toLocaleString() }}</span>
                 </div>
               </div>
@@ -122,7 +113,7 @@
                 <div class="col-7">
                   <span>{{ $t("page.renew-subscription.discount") }}</span>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                   <span>{{ discount.toLocaleString() }}</span>
                 </div>
               </div>
@@ -130,8 +121,10 @@
                 <div class="col-7">
                   <span>{{ $t("page.renew-subscription.sum-total") }}</span>
                 </div>
-                <div class="col-4">
-                  <span class="text-bold">{{ total.toLocaleString() }}</span>
+                <div class="col-5">
+                  <span class="underline"
+                    ><b>{{ total.toLocaleString() }}</b> ریال
+                  </span>
                 </div>
               </div>
             </div>
@@ -204,6 +197,9 @@ const total = ref(0)
 const loyaltyDiscount = ref(0)
 const loyaltyDiscountTotal = ref(0)
 const discount = ref(0)
+const planTitle = ref(null)
+const businessTitle = ref(null)
+const toDate = ref(null)
 
 async function loadData() {
   const businessId = route.params.businessId
@@ -220,8 +216,13 @@ async function loadData() {
     })
 }
 
-function handleBusinessData(data) {
-  console.log(data.lastPayment.planTitle)
+async function getLoyalDiscount(planId) {
+  const businessId = route.params.businessId
+  await fetchWrapper
+    .get(`business/GetLoyalDiscount/${businessId}/${planId}`)
+    .then((response) => {
+      handleDiscountResponse(response.data.data)
+    })
 }
 
 function handleMonthResponse(data) {
@@ -236,17 +237,23 @@ function handleMonthResponse(data) {
   selectedPeriod.value = periodItems.value[0]
 }
 
-function handleDiscountResponse(data) {
-  loyaltyDiscount.value = data
+function handleBusinessData(data) {
+  planTitle.value = data.lastPayment.planTitle
+  businessTitle.value = data.title
+  toDate.value = data.lastPayment.toDateString
 }
 
-function sortColumn(columnName) {
-  lookup.value.sortSelectedColumn(columnName)
+function handleDiscountResponse(data) {
+  loyaltyDiscount.value = data
 }
 
 onMounted(() => {
   loadData()
 })
+
+function sortColumn(columnName) {
+  lookup.value.sortSelectedColumn(columnName)
+}
 
 async function onPlanSelected(plan) {
   selectedPlan.value = plan
@@ -277,15 +284,6 @@ function computeValues() {
 
 function resetValues() {
   loyaltyDiscountTotal.value = discount.value = total.value = subTotal.value = 0
-}
-
-async function getLoyalDiscount(planId) {
-  const businessId = route.params.businessId
-  await fetchWrapper
-    .get(`business/GetLoyalDiscount/${businessId}/${planId}`)
-    .then((response) => {
-      handleDiscountResponse(response.data.data)
-    })
 }
 </script>
 
