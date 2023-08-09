@@ -1,12 +1,6 @@
 <template>
-  <data-view
-    ref="businessDataView"
-    dataSource="business/getBusinessGridData"
-    orderByField="title"
-    searchField="b.title"
-    @reload-data="reloadData"
-    class="q-my-xl"
-  >
+  <data-view ref="businessDataView" dataSource="business/getBusinessGridData" orderByField="title" searchField="b.title"
+    @reload-data="reloadData" class="q-my-xl">
     <template #header>
       <DesktopViewGuide v-model="showGuideDialog" />
       <q-item class="card-header q-px-lg q-py-lg">
@@ -20,39 +14,21 @@
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-mr-xs">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="xs"
-              name="o_refresh"
-              @click="reloadData"
-              clickable
-            >
+            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="o_refresh" @click="reloadData" clickable>
               <q-tooltip class="custom-tooltip" :delay="600">{{
                 $t("page.buttons.reload-data")
               }}</q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="xs"
-              name="o_help_outline"
-              @click="showGuideDialog = true"
-            >
+            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="o_help_outline"
+              @click="showGuideDialog = true">
               <q-tooltip class="custom-tooltip" :delay="600">{{
                 $t("page.buttons.guide-tooltip")
               }}</q-tooltip>
             </q-icon>
-            <q-btn
-              rounded
-              class="service-extension text-caption"
-              size="12px"
-              no-caps
-              outline
-              unelevated
-              padding="6px 12px"
-              @click="goToAddBusiness"
-            >
+            <q-btn rounded class="service-extension text-caption" size="12px" no-caps outline unelevated
+              padding="6px 12px" @click="goToAddBusiness">
               <q-icon name="add" class="q-pr-xs" size="14px" />
               {{ $t("page.buttons.add-new-business-tooltip") }}
             </q-btn>
@@ -63,39 +39,22 @@
 
     <template #item="{ item }">
       <div class="col-5">
-        <q-avatar
-          :class="{
+        <q-avatar :class="{
             'business-isowner': item.isOwner,
             'business-isnotowner': !item.isOwner
-          }"
-          icon="o_person"
-          size="md"
-        />
-        <q-btn
-          class="business-name-btn text-caption_"
-          no-caps
-          flat
-          text-color="dark"
-          :ripple="false"
-          @click="gotoBusiness"
-        >
+          }" icon="o_person" size="md" />
+        <q-btn class="business-name-btn text-caption_" no-caps flat text-color="dark" :ripple="false"
+          @click="gotoBusiness">
           <div class="flex no-wrap q-gutter-sm">
-            <div class="business-name-icon">
+            <!-- <div class="business-name-icon">
               <q-icon name="o_login" size="xs" />
-            </div>
+            </div> -->
             <div class="business-name flex text-weight-regular">
               <span class="ellipsis">{{ item.title }}</span>
             </div>
           </div>
-          <q-tooltip
-            class="custom-tooltip text-body2"
-            transition-show="scale"
-            transition-hide="scale"
-            delay="600"
-            anchor="top left"
-            self="top right"
-            :offset="[-5, -2]"
-          >
+          <q-tooltip class="custom-tooltip text-body2" transition-show="scale" transition-hide="scale" delay="600"
+            anchor="top left" self="top right" :offset="[-5, -2]">
             {{ item.title }}
           </q-tooltip>
         </q-btn>
@@ -103,19 +62,8 @@
 
       <div class="expire-date-container flex col-2 items-center">
         <label class="dark-2 text-caption">
-          <q-icon
-            class="expire-date-clock dark-icon2"
-            name="history"
-            size="xs"
-            v-if="!item.expired"
-          />
-          <q-icon
-            class="expire-date-clock dark-icon2"
-            color="warning "
-            name="warning"
-            size="xs"
-            v-if="item.expired"
-          />
+          <q-icon class="expire-date-clock dark-icon2" name="history" size="xs" v-if="!item.expired" />
+          <q-icon class="expire-date-clock dark-icon2" color="warning " name="warning" size="xs" v-if="item.expired" />
           {{ item.toDateString }}
           <q-tooltip class="custom-tooltip" :delay="600">{{
             $t("page.buttons.expire-date-tooltip")
@@ -123,24 +71,11 @@
         </label>
       </div>
       <div class="col-3 flex justify-center items-center q-ml-md">
-        <renew-subscribtion
-          class="bg-green text-white"
-          :businessId="item.id"
-          :title="item.title"
-          :planTitle="item.planTitle"
-          v-if="item.isOwner && item.daysToExpire < 350"
-        />
+        <renew-subscribtion class="bg-green text-white" :businessId="item.id" :title="item.title"
+          :planTitle="item.planTitle" v-if="item.isOwner && item.daysToExpire < 350" />
       </div>
       <div class="more-options col-1 q-pl-md">
-        <q-btn
-          class="more-icon dark-2"
-          unelevated
-          flat
-          round
-          icon="more_horiz"
-          size="md"
-          dense
-        >
+        <q-btn class="more-icon dark-2" unelevated flat round icon="more_horiz" size="md" dense>
           <q-tooltip class="custom-tooltip" :delay="600">{{
             $t("page.buttons.more-tooltip")
           }}</q-tooltip>
@@ -196,13 +131,8 @@
       </div>
     </template>
   </data-view>
-  <q-dialog
-    v-model="inviteUserPopup"
-    transition-show="slide-down"
-    transition-hide="fade"
-    transition-duration="600"
-    no-backdrop-dismiss
-  >
+  <q-dialog v-model="inviteUserPopup" transition-show="slide-down" transition-hide="fade" transition-duration="600"
+    no-backdrop-dismiss>
     <invite-user>
       <template #header>
         <q-item-section>
@@ -212,13 +142,7 @@
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="xs"
-              name="close"
-              @click="close"
-              v-close-popup
-            >
+            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="close" @click="close" v-close-popup>
               <q-tooltip class="custom-tooltip">{{
                 $t("change-password-page.buttons.close")
               }}</q-tooltip>
@@ -228,13 +152,8 @@
       </template>
     </invite-user>
   </q-dialog>
-  <q-dialog
-    v-model="DeleteBusienssPopup"
-    transition-show="slide-down"
-    transition-hide="fade"
-    transition-duration="600"
-    no-backdrop-dismiss
-  >
+  <q-dialog v-model="DeleteBusienssPopup" transition-show="slide-down" transition-hide="fade" transition-duration="600"
+    no-backdrop-dismiss>
     <delete-business>
       <template #header>
         <q-item-section>
@@ -244,13 +163,7 @@
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="xs"
-              name="close"
-              @click="close"
-              v-close-popup
-            >
+            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="close" @click="close" v-close-popup>
               <q-tooltip class="custom-tooltip">{{
                 $t("change-password-page.buttons.close")
               }}</q-tooltip>
@@ -263,47 +176,47 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
-import { useRouter } from "vue-router"
-//import businessRoutes from "src/router/business-routes"
+  import { ref, onMounted, computed } from "vue"
+  import { useRouter } from "vue-router"
+  //import businessRoutes from "src/router/business-routes"
 
-import InviteUser from "src/components/users/InviteUser.vue"
-import DeleteBusiness from "src/components/users/DeleteBusiness.vue"
-import DataView from "src/components/shared/DataView.vue"
-import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
-import DesktopViewGuide from "./GuideView.vue"
+  import InviteUser from "src/components/users/InviteUser.vue"
+  import DeleteBusiness from "src/components/users/DeleteBusiness.vue"
+  import DataView from "src/components/shared/DataView.vue"
+  import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
+  import DesktopViewGuide from "./GuideView.vue"
 
-const router = useRouter()
-const businessDataView = ref(null)
-const showGuideDialog = ref(false)
-const inviteUserPopup = ref(false)
-const DeleteBusienssPopup = ref(false)
+  const router = useRouter()
+  const businessDataView = ref(null)
+  const showGuideDialog = ref(false)
+  const inviteUserPopup = ref(false)
+  const DeleteBusienssPopup = ref(false)
 
-async function gotoBusiness() {}
+  async function gotoBusiness() { }
 
-async function goToPaymentHistory(item) {
-  router.push(`business/payments/${item.id}/${item.title}`)
-}
+  async function goToPaymentHistory(item) {
+    router.push(`business/payments/${item.id}/${item.title}`)
+  }
 
-function goToAddBusiness() {
-  router.push("business/addBusiness")
-}
+  function goToAddBusiness() {
+    router.push("business/addBusiness")
+  }
 
-async function reloadData() {
-  businessDataView.value.reloadData()
-}
+  async function reloadData() {
+    businessDataView.value.reloadData()
+  }
 
-function showInviteUser() {
-  inviteUserPopup.value = true
-  // router.push("business/inviteUser")
-  // alert("invite user")
-}
+  function showInviteUser() {
+    inviteUserPopup.value = true
+    // router.push("business/inviteUser")
+    // alert("invite user")
+  }
 
-function showDeleteBusiness() {
-  DeleteBusienssPopup.value = true
-  // router.push("business/deleteBusiness")
-  // alert("invite user")
-}
+  function showDeleteBusiness() {
+    DeleteBusienssPopup.value = true
+    // router.push("business/deleteBusiness")
+    // alert("invite user")
+  }
 
 // function selectCard(index) {
 //   selectedCard.value = index
@@ -311,7 +224,7 @@ function showDeleteBusiness() {
 </script>
 
 <style>
-.business-name {
-  max-width: 140px;
-}
+  .business-name {
+    max-width: 140px;
+  }
 </style>

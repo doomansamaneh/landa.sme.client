@@ -1,41 +1,17 @@
 <template>
-  <lookup-view
-    dataSource="business/GetPlanLookupData"
-    orderByField="title"
-    ref="lookup"
-    @row-selected="rowSelected"
-    :required="true"
-    :rules="[(val) => val && val.length > 0]"
-  >
+  <lookup-view dataSource="business/GetPlanLookupData" orderByField="title" textTemplate="{{ title }}"
+    searchField="title" ref="lookup" :required="true" :rules="[(val) => val && val.length > 0]">
     <template #thead>
       <thead class="lookup-table-head">
         <tr class="">
-          <th class="" style="width: 5%">
+          <th class="" style="width: 1px">
             <span>#</span>
           </th>
-          <th class="" style="width: 60%">
-            <q-icon
-              v-if="pagination.sortBy === 'title'"
-              :name="
-                pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-              "
-              size="20px"
-              color="primary"
-            />
-            <span @click="sortColumn('title')" class="cursor-pointer">طرح</span>
+          <th class="">
+            <header-column fieldName="title" title="طرح" :lookup="lookup"></header-column>
           </th>
           <th class="" style="width: 15%">
-            <q-icon
-              v-if="pagination.sortBy === 'cost'"
-              :name="
-                pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-              "
-              size="20px"
-              color="primary"
-            />
-            <span class="cursor-pointer" @click="sortColumn('cost')"
-              >ماهانه</span
-            >
+            <header-column fieldName="cost" title="ماهانه" :lookup="lookup"></header-column>
           </th>
         </tr>
       </thead>
@@ -46,46 +22,20 @@
         <span>{{ item.title }}</span>
       </td>
       <td>
-        <span class="">{{ item.cost.toLocaleString() }}</span>
+        <span>{{ item.cost.toLocaleString() }}</span>
       </td>
     </template>
   </lookup-view>
 </template>
 
 <script setup>
-import LookupView from "src/components/shared/LookupView.vue"
-import { ref, onMounted, watch } from "vue"
+  import LookupView from "src/components/shared/LookupView.vue"
+  import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
+  import { ref } from "vue"
 
-const lookup = ref(null)
-const text = ref(null)
-const pagination = ref(null)
+  const lookup = ref(null)
 
-function sortColumn(columnName) {
-  lookup.value.sortSelectedColumn(columnName)
-}
-
-function rowSelected(item) {
-  lookup.value.setText(item?.title)
-}
-onMounted(() => {
-  pagination.value = lookup.value.pagination
-})
+  // function rowSelected(item) {
+  //   lookup.value.setCustomText("text")
+  // }
 </script>
-
-<style lang="scss" scoped>
-td {
-  padding: 16px;
-}
-
-th {
-  padding: 24px 12px;
-}
-
-.container {
-  position: absolute;
-  padding-top: 16px;
-  padding-right: 12px;
-  right: 0;
-  z-index: 1;
-}
-</style>
