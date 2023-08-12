@@ -593,6 +593,9 @@ body.body--light.theme--purple {
 ////////////////////////////////////////////Themes on dark
 
 body.body--dark.theme--blue {
+  .inner-loader {
+    background-color: #2d3767c7;
+  }
   background-color: $dark-page;
   .lookup-table-body tr:hover {
     background-color: $dark-5;
@@ -611,6 +614,9 @@ body.body--dark.theme--blue {
 }
 
 body.body--dark.theme--orange {
+  .inner-loader {
+    background-color: #3f3135b4;
+  }
   background-color: #170000;
   .q-card,
   .q-header {
@@ -763,6 +769,9 @@ body.body--dark.theme--orange {
 }
 
 body.body--dark.theme--purple {
+  .inner-loader {
+    background-color: #2d2b55b1;
+  }
   background-color: #15152b;
 
   .q-card,

@@ -44,7 +44,7 @@
       no-focus
     >
       <q-card class="plan-title-card no-shadow">
-        <q-inner-loading :showing="loadingData" class="q-my-lg">
+        <q-inner-loading :showing="loadingData" class="inner-loader q-my-lg">
           <q-spinner size="50px" color="primary" />
         </q-inner-loading>
         <table
@@ -237,7 +237,6 @@ async function lookupShow() {
   document.getElementById("table")?.focus()
   search.value.focus()
   showPopup()
-  await reloadData()
 }
 
 async function selectPrevious() {
