@@ -117,6 +117,7 @@ const defaultPageSize = 5
 const selectedCard = ref(false)
 const businessId = ref("")
 const popup = ref(null)
+const hasLoadedData = ref(false)
 const table = ref(null)
 let showMenu = false
 let sortColumn = null
@@ -131,21 +132,23 @@ const pagination = ref({
   totalItems: 0
 })
 
-function clearSearch() {
+async function clearSearch() {
   setIdText(null)
   emitSelectRow(null)
+  onMenuHide()
 }
 
-function onRowClicked(item, index) {
+async function onRowClicked(item, index) {
   selectedRowIndex.value = index
   setIdText(item)
   hidePopup()
   emitSelectRow(item)
 }
 
-function setIdText(item) {
+async function setIdText(item) {
   selectedId.value = item?.id
   setText(item)
+  await reloadData()
 }
 
 function setText(item) {
@@ -234,9 +237,17 @@ function isSelected(index) {
 }
 
 async function lookupShow() {
-  document.getElementById("table")?.focus()
-  search.value.focus()
-  showPopup()
+  if (!hasLoadedData.value) {
+    document.getElementById("table")?.focus()
+    search.value.focus()
+    showPopup()
+    await reloadData()
+    hasLoadedData.value = true
+  } else {
+    document.getElementById("table")?.focus()
+    search.value.focus()
+    showPopup()
+  }
 }
 
 async function selectPrevious() {
@@ -245,7 +256,7 @@ async function selectPrevious() {
   } else {
     selectedRowIndex.value--
   }
-  await showPopup()
+  await lookupShow()
 }
 
 async function selectNext() {
@@ -254,7 +265,7 @@ async function selectNext() {
   } else {
     selectedRowIndex.value++
   }
-  await showPopup()
+  await lookupShow()
 }
 
 function selectRow() {
@@ -306,7 +317,6 @@ function sortSelectedColumn(selectedColumn) {
 
 async function showPopup() {
   popup.value.show()
-  await reloadData()
 }
 
 function hidePopup() {
