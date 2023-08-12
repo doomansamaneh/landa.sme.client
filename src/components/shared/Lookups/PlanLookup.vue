@@ -1,6 +1,13 @@
 <template>
-  <lookup-view dataSource="business/GetPlanLookupData" orderByField="title" textTemplate="{{ title }}"
-    searchField="title" ref="lookup" :required="true" :rules="[(val) => val && val.length > 0]">
+  <lookup-view
+    dataSource="business/GetPlanLookupData"
+    orderByField="title"
+    textTemplate="{{ title }}"
+    searchField="title"
+    ref="lookup"
+    :required="true"
+    :rules="[(val) => val && val.length > 0]"
+  >
     <template #thead>
       <thead class="lookup-table-head">
         <tr class="">
@@ -8,10 +15,18 @@
             <span>#</span>
           </th>
           <th class="">
-            <header-column fieldName="title" title="طرح" :lookup="lookup"></header-column>
+            <header-column
+              fieldName="title"
+              title="طرح"
+              :lookup="lookup"
+            ></header-column>
           </th>
           <th class="" style="width: 15%">
-            <header-column fieldName="cost" title="ماهانه" :lookup="lookup"></header-column>
+            <header-column
+              fieldName="cost"
+              title="ماهانه"
+              :lookup="lookup"
+            ></header-column>
           </th>
         </tr>
       </thead>
@@ -29,13 +44,13 @@
 </template>
 
 <script setup>
-  import LookupView from "src/components/shared/LookupView.vue"
-  import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
-  import { ref } from "vue"
+import LookupView from "src/components/shared/LookupView.vue"
+import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
+import { ref } from "vue"
 
-  const lookup = ref(null)
+const lookup = ref(null)
 
-  // function rowSelected(item) {
-  //   lookup.value.setCustomText("text")
-  // }
+// function rowSelected(item) {
+//   lookup.value.setCustomText("text")
+// }
 </script>

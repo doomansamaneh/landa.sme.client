@@ -1,5 +1,6 @@
 import authRoutes from "./auth-routes"
 import businessRoutes from "./business-routes"
+import mainRoutes from "./main-routes"
 
 const routes = [
   {
@@ -14,6 +15,7 @@ const routes = [
   },
   { ...authRoutes },
   { ...businessRoutes },
+  { ...mainRoutes },
 
   // catch all redirect to home page
   //{ path: '/:pathMatch(.*)*', redirect: '/' },
