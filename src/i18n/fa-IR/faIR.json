@@ -114,7 +114,11 @@
       "new-password": "رمز عبور",
       "confirm-password": "تکرار رمز عبور"
     },
-    "buttons": { "change-password": "تغییر رمز عبور", "close": "بستن" }
+    "buttons": {
+      "change-password": "تغییر رمز عبور",
+      "close": "بستن",
+      "cancel": "بازگشت"
+    }
   },
   "invite-user-page": {
     "title": "دعوت از کاربر",
@@ -122,13 +126,13 @@
       "name": "نام",
       "email": "ایمیل"
     },
-    "buttons": { "invite-user": "دعوت از کاربر", "cancel": "انصراف" }
+    "buttons": { "invite-user": "دعوت از کاربر", "cancel": "بازگشت" }
   },
   "delete-business-page": {
     "title": "حذف کسب و کار",
     "placeholders": {
       "password": "رمز عبور"
     },
-    "buttons": { "delete-business": "حذف کسب و کار", "cancel": "انصراف" }
+    "buttons": { "delete-business": "حذف کسب و کار", "cancel": "بازگشت" }
   }
 }

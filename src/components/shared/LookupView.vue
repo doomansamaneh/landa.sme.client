@@ -364,14 +364,6 @@ table:focus,
   outline: none;
 }
 
-/* td {
-    padding: 16px;
-  }
-
-  th {
-    padding: 24px 12px;
-  } */
-
 .container {
   position: absolute;
   padding-top: 16px;

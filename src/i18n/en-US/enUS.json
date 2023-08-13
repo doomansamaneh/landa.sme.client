@@ -114,7 +114,11 @@
       "new-password": "New Password",
       "confirm-password": "Confirm New Password"
     },
-    "buttons": { "change-password": "Change Password", "close": "Close" }
+    "buttons": {
+      "change-password": "Change Password",
+      "close": "Close",
+      "cancel": "Cancel"
+    }
   },
   "invite-user-page": {
     "title": "Invite user",
@@ -122,7 +126,10 @@
       "name": "Name",
       "email": "Email"
     },
-    "buttons": { "invite-user": "Invite User", "cancel": "Cancel" }
+    "buttons": {
+      "invite-user": "Invite User",
+      "close": "close"
+    }
   },
   "delete-business-page": {
     "title": "Delete Business",

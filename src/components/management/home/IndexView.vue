@@ -46,7 +46,7 @@
                 round
                 dense
                 size="12px"
-                color="grey-8"
+                color=""
                 icon="tune"
                 class="text-dark"
               />
@@ -58,7 +58,7 @@
             flat
             dense
             round
-            color="grey-8"
+            color=""
             icon="o_person_search"
             class="text-dark gt-xs"
             size="14px"
@@ -67,7 +67,7 @@
             flat
             dense
             round
-            color="grey-8"
+            color=""
             icon="o_account_circle"
             size="14px"
             class="text-dark"
@@ -77,7 +77,7 @@
             flat
             dense
             round
-            color="grey-8"
+            color=""
             icon="o_settings"
             class="text-dark"
             size="14px"
@@ -92,7 +92,7 @@
       show-if-above
       :width="300"
       :breakpoint="500"
-      class="drawer bg-white text-bold text-caption"
+      class="drawer bg-white"
     >
       <div class="searchbar-sidebar q-mb-md q-px-md">
         <q-input
@@ -111,7 +111,7 @@
       </div>
 
       <q-list class="q-ml-sm q-mr-xs">
-        <q-item class="flex items-center">
+        <q-item class="flex items-center" to="/home/bueinessId">
           <q-icon name="o_dashboard" class="dashboard" color="blue" size="sm" />
           <span class="custom-lg-mr text-grey-8">پیشخوان</span>
         </q-item>
