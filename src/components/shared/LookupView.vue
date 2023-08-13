@@ -25,7 +25,7 @@
       />
 
       <q-icon
-        @click="lookupShow"
+        @click="isPopupOpen = !isPopupOpen"
         name="o_expand_more"
         id="expand-more-icon"
         class="show-lookup-icon cursor-pointer"
@@ -35,6 +35,7 @@
     <q-menu
       fit
       no-parent-event
+      v-model="isPopupOpen"
       @show="onMenuShow"
       @hide="onMenuHide"
       ref="popup"
@@ -117,6 +118,7 @@ const defaultPageSize = 5
 const selectedCard = ref(false)
 const businessId = ref("")
 const popup = ref(null)
+const isPopupOpen = ref(false)
 const hasLoadedData = ref(false)
 const table = ref(null)
 let showMenu = false
@@ -148,7 +150,9 @@ async function onRowClicked(item, index) {
 async function setIdText(item) {
   selectedId.value = item?.id
   setText(item)
-  await reloadData()
+  if (isPopupOpen.value) {
+    await reloadData()
+  }
 }
 
 function setText(item) {
@@ -172,8 +176,6 @@ const isSearchEmpty = computed(() => !selectedId.value)
 const pagedRows = computed(() => {
   return rows.value
 })
-
-onMounted(() => {})
 
 async function reloadData(showLoading = true) {
   if (showLoading) {
@@ -256,7 +258,7 @@ async function selectPrevious() {
   } else {
     selectedRowIndex.value--
   }
-  await lookupShow()
+  await showPopup()
 }
 
 async function selectNext() {
@@ -265,7 +267,7 @@ async function selectNext() {
   } else {
     selectedRowIndex.value++
   }
-  await lookupShow()
+  await showPopup()
 }
 
 function selectRow() {
@@ -292,7 +294,6 @@ const maxPage = computed(() =>
 
 function searchInLookup() {
   showPopup()
-  reloadData()
 }
 
 function onMenuShow() {
@@ -328,6 +329,15 @@ defineExpose({
   pagination,
   setIdText,
   setCustomText
+})
+
+onMounted(() => {
+  onMenuHide()
+  watch(isPopupOpen, async (newValue) => {
+    if (newValue) {
+      lookupShow()
+    }
+  })
 })
 </script>
 
