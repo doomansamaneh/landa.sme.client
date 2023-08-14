@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Vazir";
+  src: url("../assets//Fonts/Vazir.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Thin.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Medium.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Vazir FD";
+  src: url("../assets//Fonts/Vazir-Light-FD-WOL.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Thin-FD-WOL.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Medium-FD-WOL.ttf") format("truetype"),
+    url("../assets//Fonts/Vazir-Bold-FD-WOL.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets//Fonts/Roboto-Regular.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Medium.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Light.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Bold.ttf") format("truetype"),
+    url("../assets//Fonts/Roboto-Black.ttf") format("truetype");
+}
+
+// @import url("https://v1.fontapi.ir/css/VazirFD");
+
+body {
+  font-family: "Vazir FD", "Vazir", "Roboto", sans-serif;
+}
+
+.digits--en-US {
+  font-family: "Roboto", "Vazir", sans-serif;
+}
+
+.digits--fa-IR {
+  font-family: "Vazir FD", "Roboto", sans-serif;
+}
+
+.digits--ar {
+  font-family: "Vazir FD", "Roboto", sans-serif;
+}

@@ -11,6 +11,7 @@
     @keydown.enter.prevent.stop="selectRow"
     @keydown="handleKeyDown"
     debounce="2000"
+    :placeholder="placeholder"
   >
     <template #append>
       <q-icon
@@ -101,7 +102,8 @@ const props = defineProps({
   orderByField: String,
   searchField: String,
   required: Boolean,
-  rules: Array
+  rules: Array,
+  placeholder: String
 })
 
 const emit = defineEmits(["row-selected"])
