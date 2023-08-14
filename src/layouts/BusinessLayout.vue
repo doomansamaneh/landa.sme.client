@@ -3,15 +3,8 @@
     <q-header class="text-black">
       <q-toolbar class="q-px-lg row justify-between">
         <div class="">
-          <a
-            href="https://landa-sme.ir"
-            target="blank"
-            class="row items-center navbar-logo"
-            ><img
-              class="logo"
-              src="../../public/landa-sme-logo.png"
-              alt="landa-sme"
-          /></a>
+          <a href="https://landa-sme.ir" target="blank" class="row items-center navbar-logo"><img class="logo"
+              src="../../public/landa-sme-logo.png" alt="landa-sme" /></a>
         </div>
         <div class="flex q-gutter-x-md">
           <switch-theme />
@@ -19,20 +12,11 @@
           <div class="flex items-center q-gutter-x-xs cursor-pointer">
             <q-icon size="sm" name="o_account_circle" />
             <div class="text-body">{{ username }}</div>
-            <q-menu
-              fit
-              class="no-shadow"
-              transition-show="jump-down"
-              transition-hide="jump-up"
-              :offset="[10, 28]"
-            >
+            <q-menu fit class="no-shadow" transition-show="jump-down" transition-hide="jump-up" :offset="[10, 28]">
               <q-list dense padding class="user-profile">
                 <q-item-label class="text-h6" header>
                   <div class="column items-center justify-center q-mt-md">
-                    <q-avatar
-                      class="profile-pic q-mx-sm bg-primary"
-                      text-color="white"
-                    >
+                    <q-avatar class="profile-pic q-mx-sm bg-primary" text-color="white">
                       <div class="text-weight-bold">
                         <span class="username">{{
                           getFirstChar(username)
@@ -44,13 +28,7 @@
                     </div>
                   </div>
                 </q-item-label>
-                <q-item
-                  clickable
-                  v-ripple
-                  v-close-popup
-                  class="q-mt-md"
-                  @click="goToChangePasswordPage"
-                >
+                <q-item clickable v-ripple v-close-popup class="q-mt-md" @click="goToChangePasswordPage">
                   <div class="q-py-sm">
                     <q-item-section avatar>
                       <q-avatar class="dark-icon" icon="o_password" size="md" />
@@ -61,13 +39,7 @@
                     $t("business-layout.buttons.change-password")
                   }}</q-item-section>
                 </q-item>
-                <q-item
-                  clickable
-                  v-close-popup
-                  tabindex="0"
-                  @click="authStore.logout()"
-                  class="q-py-sm"
-                >
+                <q-item clickable v-close-popup tabindex="0" @click="authStore.logout()" class="q-py-sm">
                   <div class="q-py-sm">
                     <q-item-section avatar>
                       <q-avatar class="dark-icon" icon="logout" size="md" />
@@ -90,35 +62,24 @@
     <q-page-container>
       <q-page class="flex justify-center items-center full-screen">
         <router-view />
-        <q-dialog
-          v-model="changePasswordPopup"
-          transition-show="slide-down"
-          transition-hide="fade"
-          transition-duration="600"
-          no-backdrop-dismiss
-        >
+        <q-dialog v-model="changePasswordPopup" transition-show="slide-down" transition-hide="fade"
+          transition-duration="600" no-backdrop-dismiss>
           <change-password>
             <template #header>
-              <q-item-section>
-                <q-item-label class="text-bold">{{
-                  $t("change-password-page.title")
-                }}</q-item-label>
-              </q-item-section>
-              <q-card-actions>
-                <div class="flex items-center q-gutter-x-md">
-                  <q-icon
-                    class="icon-hover dark-3 cursor-pointer"
-                    size="xs"
-                    name="close"
-                    @click="close"
-                    v-close-popup
-                  >
-                    <q-tooltip class="custom-tooltip">{{
+              <q-card-section class="row items-center">
+                <div class="text-h6">{{$t("change-password-page.title")}}</div>
+                <q-space />
+                <q-btn icon="close" class="icon-hover dark-3" flat round dense v-close-popup />
+              </q-card-section>
+
+              <!-- <div class="flex items-left q-gutter-x-md">
+                <div class="text-h6">{{$t("change-password-page.title")}}</div>
+                <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="close" @click="close" v-close-popup>
+                  <q-tooltip class="custom-tooltip">{{
                       $t("change-password-page.buttons.close")
                     }}</q-tooltip>
-                  </q-icon>
-                </div>
-              </q-card-actions>
+                </q-icon>
+              </div> -->
             </template>
           </change-password>
         </q-dialog>
@@ -130,59 +91,59 @@
 </template>
 
 <script setup>
-import { ref, computed, watchEffect, onMounted, watch } from "vue"
-import { useRouter } from "vue-router"
-import { useAuthStore } from "src/stores"
-import AlertBanner from "src/components/shared/AlertBanner.vue"
-import SwitchTheme from "src/components/shared/SwitchTheme.vue"
-import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
-import ChangePassword from "src/components/users/ChangePassword.vue"
+  import { ref, computed, watchEffect, onMounted, watch } from "vue"
+  import { useRouter } from "vue-router"
+  import { useAuthStore } from "src/stores"
+  import AlertBanner from "src/components/shared/AlertBanner.vue"
+  import SwitchTheme from "src/components/shared/SwitchTheme.vue"
+  import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
+  import ChangePassword from "src/components/users/ChangePassword.vue"
 
-const router = useRouter()
-const authStore = useAuthStore()
+  const router = useRouter()
+  const authStore = useAuthStore()
 
-const changePasswordPopup = ref(false)
+  const changePasswordPopup = ref(false)
 
-const username = computed(() => {
-  if (authStore.user) return authStore.user.fullName
-  return ""
-})
+  const username = computed(() => {
+    if (authStore.user) return authStore.user.fullName
+    return ""
+  })
 
-function goToChangePasswordPage() {
-  changePasswordPopup.value = true // Open the dialog
-  // router.push("/business/changePassword") // Change the route
-}
+  function goToChangePasswordPage() {
+    changePasswordPopup.value = true // Open the dialog
+    // router.push("/business/changePassword") // Change the route
+  }
 
-function getFirstChar(str) {
-  return str.charAt(0)
-}
+  function getFirstChar(str) {
+    return str.charAt(0)
+  }
 </script>
 
 <style>
-.logo {
-  width: 48px;
-}
+  .logo {
+    width: 48px;
+  }
 
-.q-toolbar__title {
-  font-size: 14px;
-  font-weight: 600;
-}
+  .q-toolbar__title {
+    font-size: 14px;
+    font-weight: 600;
+  }
 
-.navbar-logo {
-  text-decoration: none;
-  color: black;
-}
+  .navbar-logo {
+    text-decoration: none;
+    color: black;
+  }
 
-.user-profile {
-  min-width: 240px;
-}
+  .user-profile {
+    min-width: 240px;
+  }
 
-.profile-pic {
-  width: 72px;
-  height: 72px;
-}
+  .profile-pic {
+    width: 72px;
+    height: 72px;
+  }
 
-.q-breadcrumbs__el.items-center {
-  display: block;
-}
+  .q-breadcrumbs__el.items-center {
+    display: block;
+  }
 </style>
