@@ -51,8 +51,8 @@
 <script setup>
 import { ref } from "vue"
 
-import { useAuthStore } from "../../stores"
-import { fetchWrapper } from "../../helpers"
+import { useAuthStore } from "../../../stores"
+import { fetchWrapper } from "../../../helpers"
 
 const authStore = useAuthStore()
 

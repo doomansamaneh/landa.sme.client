@@ -149,6 +149,10 @@ body.body--dark {
     background-color: $primary;
   }
 
+  .q-breadcrumbs__el {
+    color: white;
+  }
+
   .selected {
     background-color: #56639759;
     border-radius: 4px;

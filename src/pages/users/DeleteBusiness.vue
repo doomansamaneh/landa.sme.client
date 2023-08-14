@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import DeleteBusiness from "src/components/users/DeleteBusiness.vue"
+import DeleteBusiness from "src/components/management/business/DeleteBusiness.vue"
 </script>
 
 <style lang="scss" scoped></style>
