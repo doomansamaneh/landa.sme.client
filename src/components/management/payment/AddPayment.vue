@@ -24,8 +24,8 @@
     <q-separator />
     <!-- <q-item class="q-px-lg column q-mb-md">
     </q-item> -->
-    <q-form @submit="onSubmit">
-      <q-card-section>
+    <q-card-section>
+      <q-form ref="form">
         <div class="row q-mb-lg">
           <div class="col-2">
             <q-item-label>{{
@@ -81,74 +81,72 @@
             </q-select>
           </div>
         </div>
-      </q-card-section>
+      </q-form>
+    </q-card-section>
 
-      <q-card-section>
-        <div class="total glass row q-mb-md justify-between items-center q-px-xl">
-          <div class="col-6 q-gutter-y-lg">
-            <div class="row" v-if="loyaltyDiscountTotal > 0">
-              <div class="col-7">
-                <span>{{
+    <q-card-section>
+      <div class="total glass row q-mb-md justify-between items-center q-px-xl">
+        <div class="col-6 q-gutter-y-lg">
+          <div class="row" v-if="loyaltyDiscountTotal > 0">
+            <div class="col-7">
+              <span>{{
                   $t("page.renew-subscription.loyalty-discount")
                 }}</span>
-              </div>
-              <div class="col-5">
-                <span>{{ loyaltyDiscountTotal.toLocaleString() }}</span>
-              </div>
             </div>
-            <div class="row">
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.total") }}</span>
-              </div>
-              <div class="col-5">
-                <span>{{ subTotal.toLocaleString() }}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.discount") }}</span>
-              </div>
-              <div class="col-5">
-                <span>{{ discount.toLocaleString() }}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.sum-total") }}</span>
-              </div>
-              <div class="col-5">
-                <span class="underline"><b>{{ total.toLocaleString() }}</b> ریال
-                </span>
-              </div>
+            <div class="col-5">
+              <span>{{ loyaltyDiscountTotal.toLocaleString() }}</span>
             </div>
           </div>
-          <div class="col-6 q-gutter-x-lg">
-            <div class="row">
-              <q-radio v-model="shape" checked-icon="task_alt" val="line" color="" size="md">
-                <q-tooltip class="custom-tooltip text-body1">
-                  <span class="sadad-tooltip">پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان پذیر
-                    است</span>
-                </q-tooltip>
-              </q-radio>
-              <div class="q-pa-md">
-                <img src="../../../../public/sadad-new.png" alt="درگاه پرداخت الکترونیک سداد" />
-              </div>
+          <div class="row">
+            <div class="col-7">
+              <span>{{ $t("page.renew-subscription.total") }}</span>
+            </div>
+            <div class="col-5">
+              <span>{{ subTotal.toLocaleString() }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <span>{{ $t("page.renew-subscription.discount") }}</span>
+            </div>
+            <div class="col-5">
+              <span>{{ discount.toLocaleString() }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <span>{{ $t("page.renew-subscription.sum-total") }}</span>
+            </div>
+            <div class="col-5">
+              <span class="underline"><b>{{ total.toLocaleString() }}</b> ریال
+              </span>
             </div>
           </div>
         </div>
-      </q-card-section>
+        <div class="col-6 q-gutter-x-lg">
+          <div class="row">
+            <q-radio v-model="shape" checked-icon="task_alt" val="line" color="" size="md">
+              <q-tooltip class="custom-tooltip text-body1">
+                <span class="sadad-tooltip">پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان پذیر
+                  است</span>
+              </q-tooltip>
+            </q-radio>
+            <div class="q-pa-md">
+              <img src="../../../../public/sadad-new.png" alt="درگاه پرداخت الکترونیک سداد" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </q-card-section>
 
-      <q-card-section class="dark-1">
-        <div class="flex items-center q-mt-sm">
-          <q-btn type="submit" unelevated rounded color="positive" no-caps padding="8px 16px" class=""><q-icon
-              name="o_monetization_on" class="q-pr-xs" size="xs" />
-            {{ $t("page.renew-subscription.buttons.payment") }}
-          </q-btn>
-          <span class="text-caption q-pl-md">پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
-            کارت خود را فعال کرده باشید.</span>
-        </div>
-      </q-card-section>
-    </q-form>
+    <q-card-actions class="dark-1 q-pa-md">
+      <q-btn type="submit" @click="submitForm" unelevated rounded color="positive" no-caps padding="8px 16px"
+        class=""><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
+        {{ $t("page.renew-subscription.buttons.payment") }}
+      </q-btn>
+      <span class="text-caption q-pl-md">پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
+        کارت خود را فعال کرده باشید.</span>
+    </q-card-actions>
 
   </q-card>
 </template>
@@ -162,21 +160,23 @@
   import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
 
   const route = useRoute()
-  const $q = useQuasar()
   const lookup = ref(null)
   const shape = ref("line")
   const pagination = ref(null)
   const periodItems = ref([])
   const selectedPeriod = ref(periodItems.value[0])
   const selectedPlan = ref(null)
-  const subTotal = ref(0)
+
   const total = ref(0)
+  const subTotal = ref(0)
   const loyaltyDiscount = ref(0)
   const loyaltyDiscountTotal = ref(0)
   const discount = ref(0)
   const planTitle = ref(null)
   const businessTitle = ref(null)
   const toDate = ref(null)
+
+  const form = ref(null)
 
   async function loadData() {
     const businessId = route.params.businessId
@@ -260,6 +260,17 @@
 
   function resetValues() {
     loyaltyDiscountTotal.value = discount.value = total.value = subTotal.value = 0
+  }
+
+  function submitForm() {
+    form.value.validate().then(success => {
+      if (success) {
+        alert("validation successfull")
+      }
+      else {
+        alert("validation error")
+      }
+    })
   }
 </script>
 
