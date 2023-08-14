@@ -25,7 +25,7 @@
     <!-- <q-item class="q-px-lg column q-mb-md">
     </q-item> -->
     <q-card-section>
-      <q-form ref="form">
+      <q-form ref="form" autofocus>
         <div class="row q-mb-lg">
           <div class="col-2">
             <q-item-label>{{
@@ -36,7 +36,7 @@
             <span class="text-bold q-pl-xs">{{ businessTitle }}</span>
           </div>
         </div>
-        <div class="row q-mb-lg">
+        <div class="row items-center q-mb-lg">
           <div class="col-2">
             <q-item-label>{{
               $t("page.renew-subscription.current-plan")
@@ -46,7 +46,7 @@
             <span class="q-pl-xs">{{ planTitle }}</span>
           </div>
         </div>
-        <div class="row q-mb-lg">
+        <div class="row items-center q-mb-lg">
           <div class="col-2">
             <q-item-label>{{
               $t("page.renew-subscription.to-date")
@@ -56,7 +56,7 @@
             <span class="q-pl-xs">{{ toDate }}</span>
           </div>
         </div>
-        <div class="row q-mb-lg">
+        <div class="row items-center q-mb-lg_">
           <div class="col-2">
             <q-item-label class="required-label"><span>{{
                 $t("page.renew-subscription.plan")
@@ -66,7 +66,7 @@
             <plan-lookup @row-selected="onPlanSelected" />
           </div>
         </div>
-        <div class="row q-mb-lg">
+        <div class="row items-center q-mb-lg">
           <div class="col-2">
             <q-item-label>{{
               $t("page.renew-subscription.extension-period")

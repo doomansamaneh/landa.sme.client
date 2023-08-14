@@ -1,21 +1,14 @@
 <template>
-  <div v-if="showPagebar">
-    <!-- class="row justify-between bg-grey-2 q-px-md q-py-md" -->
-    <q-card-section class="row justify-between dark-1 q-px-md q-py-md">
-      <q-pagination v-if="showPaging" v-model="pagination.currentPage" :min="1" :max="maxPage" direction-links
-        boundary-links icon-first="keyboard_double_arrow_left" icon-last="keyboard_double_arrow_right"
-        icon-prev="chevron_left" icon-next="chevron_right" @update:model-value="handlePageChange" gutter="xs"
-        padding="3px 2px 1px 2px" round color="grey-8" active-color="primary" size="13px" class="pagination" />
-      <!-- <div class="pagination_ flex_items-center">
-    </div> -->
-      <q-space />
-      <q-select dense outlined v-model="pagination.pageSize" :options="[5, 10, 20]"
-        @update:model-value="handlePageChange" transition-show="flip-up" transition-hide="flip-down"
-        popup-content-class="text-caption text-weight-medium text-grey-8" />
-      <!-- <div class="">
-    </div> -->
-    </q-card-section>
-  </div>
+  <q-card-actions v-if="showPagebar" class="row justify-between dark-1 q-px-md q-py-md">
+    <q-pagination v-if="showPaging" v-model="pagination.currentPage" :min="1" :max="maxPage" direction-links
+      boundary-links icon-first="keyboard_double_arrow_left" icon-last="keyboard_double_arrow_right"
+      icon-prev="chevron_left" icon-next="chevron_right" @update:model-value="handlePageChange" gutter="xs"
+      padding="3px 2px 1px 2px" round color="grey-8" active-color="primary" size="13px" class="pagination" />
+    <q-space />
+    <q-select dense outlined v-model="pagination.pageSize" :options="[5, 10, 20]" @update:model-value="handlePageChange"
+      transition-show="flip-up" transition-hide="flip-down"
+      popup-content-class="text-caption text-weight-medium text-grey-8" />
+  </q-card-actions>
 </template>
 
 <script setup>

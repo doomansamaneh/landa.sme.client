@@ -120,6 +120,7 @@
       "cancel": "بازگشت"
     }
   },
+
   "invite-user-page": {
     "title": "دعوت از کاربر",
     "placeholders": {
@@ -128,6 +129,7 @@
     },
     "buttons": { "invite-user": "دعوت از کاربر", "cancel": "بازگشت" }
   },
+  
   "delete-business-page": {
     "title": "حذف کسب و کار",
     "placeholders": {

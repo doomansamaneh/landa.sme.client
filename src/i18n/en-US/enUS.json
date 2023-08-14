@@ -6,6 +6,7 @@
     "Renew Subscription": "Renew Subscription",
     "Add New Business": "Add New Business"
   },
+
   "login-page": {
     "page-title": "Log in",
     "placeholders": {
@@ -64,6 +65,7 @@
         "payment-history": "Payment History"
       }
     },
+
     "payment-history": {
       "payment-card-title": "Payment History",
       "trial": "Trial",
@@ -73,6 +75,7 @@
         "view": "View"
       }
     },
+
     "renew-subscription": {
       "title": "Renew Subscription",
       "caption": "All costs are in Iranian Rials",
@@ -90,6 +93,7 @@
         "payment": "Payment"
       }
     },
+
     "add-business": {
       "title": "Add New Business",
       "caption": "All costs are in Iranian Rials",
@@ -120,6 +124,7 @@
       "cancel": "Cancel"
     }
   },
+
   "invite-user-page": {
     "title": "Invite user",
     "placeholders": {
@@ -131,6 +136,7 @@
       "close": "close"
     }
   },
+  
   "delete-business-page": {
     "title": "Delete Business",
     "placeholders": {

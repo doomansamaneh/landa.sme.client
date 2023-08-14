@@ -3,7 +3,7 @@
     <slot name="header" />
     <!-- <q-separator /> -->
     <q-card-section>
-      <q-form ref="form">
+      <q-form ref="form" autofocus>
         <q-input outlined v-model="oldPassword" :type="isPwdOldPassword ? 'password' : 'text'"
           :placeholder="$t('change-password-page.placeholders.old-password')" dense class="text-body" required
           lazy-rules :rules="[(val) => val !== null && val !== '']">
@@ -44,8 +44,8 @@
 <script setup>
   import { ref } from "vue"
 
-  import { useAuthStore } from "../../stores"
-  import { fetchWrapper } from "../../helpers"
+  import { useAuthStore } from "src/stores"
+  import { fetchWrapper } from "src/helpers"
 
   const authStore = useAuthStore()
 

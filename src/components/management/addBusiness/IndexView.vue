@@ -11,12 +11,7 @@
       </q-item-section>
       <q-card-actions>
         <div class="flex items-center q-gutter-x-md">
-          <q-icon
-            class="icon-hover dark-3 cursor-pointer"
-            size="xs"
-            name="arrow_back"
-            @click="$router.go(-1)"
-          >
+          <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="arrow_back" @click="$router.go(-1)">
             <q-tooltip class="custom-tooltip">{{
               $t("page.buttons.back")
             }}</q-tooltip>
@@ -34,20 +29,11 @@
             }}</q-item-label>
           </div>
           <div class="col-10">
-            <q-input
-              dense
-              outlined
-              required
-              lazy-rules
-              :rules="[(val) => val && val.length > 0]"
-              v-model="businessName"
-              class="input"
-            />
+            <q-input dense outlined required lazy-rules :rules="[(val) => val && val.length > 0]" v-model="businessName"
+              class="input" />
           </div>
           <div class="col-2">
-            <q-item-label class="required-label"
-              ><span>{{ $t("page.add-business.plan") }}</span></q-item-label
-            >
+            <q-item-label class="required-label"><span>{{ $t("page.add-business.plan") }}</span></q-item-label>
           </div>
           <div class="row col-10">
             <plan-lookup> </plan-lookup>
@@ -58,21 +44,10 @@
             }}</q-item-label>
           </div>
           <div class="row col-10">
-            <q-select
-              hide-dropdown-icon
-              v-model="selectedPeriod"
-              :options="period"
-              dense
-              required
-              :rules="[
+            <q-select hide-dropdown-icon v-model="selectedPeriod" :options="period" dense required :rules="[
                 (val) =>
                   (val !== null && val !== '') || 'پر کردن این فیلد الزامی است'
-              ]"
-              outlined
-              auto-close
-              class="period-select"
-              use-chips
-            >
+              ]" outlined auto-close class="period-select" use-chips>
               <template #append>
                 <!-- <q-icon
                 ref="clearSearch"
@@ -83,17 +58,11 @@
                 class="cursor-pointer"
                 @click="clearSelection"
               /> -->
-                <q-icon
-                  name="o_expand_more"
-                  class="show-lookup-icon cursor-pointer"
-                  size="sm"
-                />
+                <q-icon name="o_expand_more" class="show-lookup-icon cursor-pointer" size="sm" />
               </template>
             </q-select>
           </div>
-          <div
-            class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl"
-          >
+          <div class="total glass row q-mt-lg q-mb-md full-width justify-between items-center q-px-xl">
             <div class="row col-6 q-gutter-y-lg">
               <div class="col-7">
                 <span>{{ $t("page.add-business.loyalty-discount") }}</span>
@@ -114,40 +83,22 @@
             </div>
             <div class="sadad col-6 row justify-center items-center">
               <div class="row justify-center q-gutter-x-md">
-                <q-radio
-                  v-model="shape"
-                  checked-icon="task_alt"
-                  val="line"
-                  color=""
-                  size="md"
-                >
+                <q-radio v-model="shape" checked-icon="task_alt" val="line" color="" size="md">
                   <q-tooltip class="custom-tooltip text-body1">
-                    <span class="sadad-tooltip"
-                      >پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان
-                      پذیر است</span
-                    >
+                    <span class="sadad-tooltip">پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان
+                      پذیر است</span>
                   </q-tooltip>
                 </q-radio>
                 <div class="">
-                  <img
-                    src="../../../../public/sadad-new.png"
-                    alt="درگاه پرداخت الکترونیک سداد"
-                  />
+                  <img src="../../../../public/sadad-new.png" alt="درگاه پرداخت الکترونیک سداد" />
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="flex items-center q-mt-sm">
-          <q-btn
-            type="submit"
-            unelevated
-            rounded
-            color="positive"
-            padding="8px 16px"
-            no-caps
-            class=""
-            ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
+          <q-btn type="submit" unelevated rounded color="positive" padding="8px 16px" no-caps class=""><q-icon
+              name="o_monetization_on" class="q-pr-xs" size="xs" />
             {{ $t("page.add-business.buttons.payment") }}
           </q-btn>
           <span class="text-caption q-pl-md">{{
@@ -160,91 +111,91 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
-import { useQuasar } from "quasar"
-import DataView from "src/components/shared/DataView.vue"
-import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
+  import { ref, watch } from "vue"
+  import { useQuasar } from "quasar"
+  import DataView from "src/components/shared/DataView.vue"
+  import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
 
-const $q = useQuasar()
+  const $q = useQuasar()
 
-const period = [
-  "1 ماه",
-  "3 ماه",
-  "6 ماه (6 درصد تخفیف)",
-  "12 ماه (15 درصد تخفیف)"
-]
+  const period = [
+    "1 ماه",
+    "3 ماه",
+    "6 ماه (6 درصد تخفیف)",
+    "12 ماه (15 درصد تخفیف)"
+  ]
 
-const shape = ref("line")
-const businessName = ref("")
-const selectedPeriod = ref(period[0])
+  const shape = ref("line")
+  const businessName = ref("")
+  const selectedPeriod = ref(period[0])
 
-function selectPeriod(item) {
-  selectedPeriod.value = item
-}
+  function selectPeriod(item) {
+    selectedPeriod.value = item
+  }
 
-function clearSelection() {
-  selectedPeriod.value = ""
-}
+  function clearSelection() {
+    selectedPeriod.value = ""
+  }
 
-const onSubmit = () => {
-  $q.notify({
-    type: "positive",
-    message: "عملیات با موفقیت انجام شد",
-    timeout: 1500
-  })
-}
+  const onSubmit = () => {
+    $q.notify({
+      type: "positive",
+      message: "عملیات با موفقیت انجام شد",
+      timeout: 1500
+    })
+  }
 </script>
 
 <style lang="scss" scoped>
-.card-desktop {
-  width: 720px !important;
-}
+  .card-desktop {
+    width: 720px !important;
+  }
 
-.period-select {
-  width: 400px;
-}
+  .period-select {
+    width: 400px;
+  }
 
-.total {
-  border-radius: 4px;
-  height: 300px;
-}
+  .total {
+    border-radius: 4px;
+    height: 300px;
+  }
 
-th,
-td {
-  padding: 16px 16px;
-}
+  th,
+  td {
+    padding: 16px 16px;
+  }
 
-table {
-  border-collapse: collapse;
-  border: none;
-}
+  table {
+    border-collapse: collapse;
+    border: none;
+  }
 
-.input {
-  width: 400px;
-}
+  .input {
+    width: 400px;
+  }
 
-.selected-row {
-  background-color: #f4fcd1 !important;
-}
+  .selected-row {
+    background-color: #f4fcd1 !important;
+  }
 
-tbody tr:hover {
-  background-color: #f3f3f3;
-}
+  tbody tr:hover {
+    background-color: #f3f3f3;
+  }
 
-.sadad {
-  border-radius: 4px;
-}
+  .sadad {
+    border-radius: 4px;
+  }
 
-.glass {
-  background: #ffffff33;
-  border-radius: 4px;
-  box-shadow: 0 2px 20px #0000001a;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid #ffffff4d;
-}
+  .glass {
+    background: #ffffff33;
+    border-radius: 4px;
+    box-shadow: 0 2px 20px #0000001a;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid #ffffff4d;
+  }
 
-.required-label {
-  margin-bottom: 20px;
-}
+  .required-label {
+    margin-bottom: 20px;
+  }
 </style>
