@@ -5,6 +5,7 @@
     textTemplate="{{ title }}"
     searchField="title"
     ref="lookup"
+    placeholder="طرح مورد نظر خود را انتخاب کنید"
     :required="true"
     :rules="[(val) => val && val.length > 0]"
   >

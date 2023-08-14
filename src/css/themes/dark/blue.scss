@@ -1,0 +1,57 @@
+body.body--dark.theme--blue {
+  --q-primary: #00aeff;
+  .profile-pic .q-avatar__content {
+    background-color: $primary;
+  }
+
+  .underline {
+    border-bottom: 2px solid $primary;
+  }
+
+  .q-field__control {
+    color: $primary;
+  }
+
+  .q-field__control,
+  .q-linear-progress,
+  .q-carousel__navigation-inner .q-btn,
+  .q-carousel__arrow .q-icon {
+    color: $primary;
+  }
+
+  .invoice-table th {
+    border-bottom: 2px solid $primary;
+  }
+
+  .lookup-table-body {
+    border-top: 2px solid $primary;
+  }
+
+  .glass {
+    background: rgba(0, 170, 255, 0.056);
+    border-radius: 4px;
+    box-shadow: 0 2px 20px #0000001a;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid $primary;
+  }
+
+  .inner-loader {
+    background-color: #2d3767c7;
+  }
+
+  .lookup-table-body tr:hover {
+    background-color: #3c4c8cca;
+  }
+  .selected-row {
+    background-color: #394b95 !important;
+    outline: 1px solid var(--q-primary) !important;
+    box-shadow: 0 0 4px 0 rgb(0, 157, 255) !important;
+  }
+
+  .bread-crumbs {
+    border-bottom: 2px solid #394b95;
+    border-top: 2px solid #394b95;
+    box-shadow: 0 0 2px 0 rgb(0, 140, 255);
+  }
+}

@@ -1,50 +1,52 @@
 <template>
-  <q-toolbar
-    position="top"
-    expand
-    class="toolbar gt-xs bg-white text-white q-py-md q-px-lg"
-  >
-    <div class="q-gutter-x-md">
-      <q-btn
-        color="white bg-blue-7"
-        icon="add_circle_outline"
-        label="ایجاد"
-        padding="8px 16px"
-        rounded
-        flat
-        class="text-caption text-bold"
-      />
-      <q-btn
-        color="grey-8"
-        icon="o_edit"
-        label="ویرایش"
-        padding="8px 16px"
-        outline
-        rounded
-        class="text-caption text-bold"
-      />
-      <q-btn
-        color="grey-8"
-        icon="o_delete"
-        label="حذف"
-        padding="8px 16px"
-        outline
-        rounded
-        class="text-caption text-bold"
-      />
-      <q-btn
-        color="grey-8"
-        icon="o_more_horiz"
-        label="بیشتر"
-        padding="8px 16px"
-        outline
-        rounded
-        class="text-caption text-bold"
-      />
-    </div>
-  </q-toolbar>
-  <div class="">
-    <table class="full-width text-left">
+  <q-page-sticky position="top" expand class="toolbar z-max q-mb-md gt-xs">
+    <q-toolbar class="gt-xs main-layout-color text-white q-py-md q-px-xl">
+      <div class="q-gutter-x-md">
+        <q-btn
+          color="white bg-blue-7"
+          rounded
+          flat
+          class="text-caption text-bold"
+          padding="8px 16px"
+        >
+          <q-icon name="add_circle_outline" class="q-pr-xs" />
+          <span>ایجاد</span>
+        </q-btn>
+        <q-btn
+          color="grey-8"
+          rounded
+          outline
+          class="text-caption text-bold"
+          padding="8px 16px"
+        >
+          <q-icon name="o_edit" class="q-pr-xs" />
+          <span>ویرایش</span>
+        </q-btn>
+        <q-btn
+          color="grey-8"
+          rounded
+          outline
+          class="text-caption text-bold"
+          padding="8px 16px"
+        >
+          <q-icon name="o_delete" class="q-pr-xs" />
+          <span>حذف</span>
+        </q-btn>
+        <q-btn
+          color="grey-8"
+          rounded
+          outline
+          class="text-caption text-bold"
+          padding="8px 16px"
+        >
+          <q-icon name="o_more_horiz" class="q-pr-xs" />
+          <span>بیشتر</span>
+        </q-btn>
+      </div>
+    </q-toolbar>
+  </q-page-sticky>
+  <div class="table-container">
+    <table class="full-width text-left text-caption">
       <thead>
         <tr class="table-head">
           <th>#</th>
@@ -59,7 +61,7 @@
             />
             <span>شماره</span>
           </th>
-          <th style="width: 12%">
+          <th style="width: 10%">
             <q-icon
               :name="isAscending ? 'arrow_drop_up' : 'arrow_drop_down'"
               size="20px"
@@ -99,7 +101,7 @@
             />
             <span>تخفیف</span>
           </th>
-          <th class="" style="width: 12%">
+          <th class="" style="width: 10%">
             <q-icon
               :name="isAscending ? 'arrow_drop_up' : 'arrow_drop_down'"
               size="20px"
@@ -108,6 +110,11 @@
             <span>نوع</span>
           </th>
           <th style="width: 15%">
+            <q-icon
+              :name="isAscending ? 'arrow_drop_up' : 'arrow_drop_down'"
+              size="20px"
+              color="primary"
+            />
             <span>وضعیت</span>
           </th>
         </tr>
@@ -138,13 +145,10 @@
           <td>{{ item.totalSum }}</td>
           <td>{{ item.discount }}</td>
           <td>{{ item.type }}</td>
-          <td>
-            <q-badge
-              class="text-body2 q-py-sm q-px-md"
-              rounded
-              color="negative"
-              >{{ item.status }}</q-badge
-            >
+          <td class="row justify-center">
+            <q-badge class="q-py-sm q-px-sm" rounded color="negative">{{
+              item.status
+            }}</q-badge>
           </td>
         </tr>
       </tbody>
@@ -175,7 +179,9 @@
         </tr>
       </tfoot>
     </table>
-    <div class="q-py-lg q-px-lg bg-white row justify-between items-center">
+    <div
+      class="pagination q-py-lg q-px-lg bg-white row justify-between items-center"
+    >
       <!-- <page-bar :pagination="pagination" @page-changed="loadData" /> -->
       <div class="col-4">
         <q-pagination
@@ -360,7 +366,8 @@ const rows = ref([
 
 <style lang="scss" scoped>
 .table-head {
-  background-color: #e7f4ff;
+  border-bottom: 2px solid rgb(230, 230, 230);
+  background-color: white;
 }
 
 th span {
@@ -369,12 +376,20 @@ th span {
 
 th,
 td {
-  padding: 24px 8px;
+  padding: 20px 8px;
 }
 
 table {
   border-collapse: collapse;
   border: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden;
+}
+
+.pagination {
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 table:focus,
@@ -390,6 +405,10 @@ table tbody tr:hover {
 }
 
 .select {
-  width: 72px;
+  width: 75px;
+}
+
+.table-container {
+  padding: 72px 42px 72px 42px;
 }
 </style>

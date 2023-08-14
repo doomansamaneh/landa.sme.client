@@ -9,34 +9,6 @@
   >
     <template #header>
       <DesktopViewGuide v-model="showGuideDialog" />
-      <!-- <q-card-section>
-        <div class="text-h6">{{$t("page.card-title")}}</div>
-        <div class="dark-2 text-subtitle3">{{ $t("page.card-message") }}</div>
-
-        <q-card-actions>
-          <div class="flex items-center q-mr-xs">
-            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="o_refresh" @click="reloadData" clickable>
-              <q-tooltip class="custom-tooltip" :delay="600">{{
-                $t("page.buttons.reload-data")
-              }}</q-tooltip>
-            </q-icon>
-          </div>
-          <div class="flex items-center q-gutter-x-md">
-            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="o_help_outline"
-              @click="showGuideDialog = true">
-              <q-tooltip class="custom-tooltip" :delay="600">{{
-                $t("page.buttons.guide-tooltip")
-              }}</q-tooltip>
-            </q-icon>
-            <q-btn rounded class="service-extension text-caption" size="12px" no-caps outline unelevated
-              padding="6px 12px" @click="goToAddBusiness">
-              <q-icon name="add" class="q-pr-xs" size="14px" />
-              {{ $t("page.buttons.add-new-business-tooltip") }}
-            </q-btn>
-          </div>
-        </q-card-actions>
-      </q-card-section> -->
-
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
           <q-item-label class="text-h6">{{
@@ -100,12 +72,12 @@
           size="md"
         />
         <q-btn
-          class="business-name-btn text-caption_"
+          class="business-name-btn"
           no-caps
           flat
           text-color="dark"
           :ripple="false"
-          @click="gotoBusiness"
+          @click="gotoBusiness(item)"
         >
           <div class="flex no-wrap q-gutter-sm">
             <div class="business-name flex text-weight-regular">
@@ -166,7 +138,7 @@
           size="md"
           dense
         >
-          <q-tooltip class="custom-tooltip" :delay="600">{{
+          <q-tooltip class="custom-tooltip" :delay="600" :offset="[-60, -70]">{{
             $t("page.buttons.more-tooltip")
           }}</q-tooltip>
         </q-btn>
@@ -332,5 +304,9 @@ function showDeleteBusiness() {
 .business-name {
   max-width: 140px;
 }
+
+.q-card__section.q-card__section--vert {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
 </style>
-src/components/management/business/DeleteBusiness.vue

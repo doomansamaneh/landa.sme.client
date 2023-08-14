@@ -5,5 +5,5 @@ export default {
   },
   children: [
     { path: ":businessId", component: () => import("pages/management/HomePage.vue") },
-    { path: "proformas", component: () => import("src/pages/management/proformasPage.vue") },]
+    { path: "proformas", component: () => import("src/pages/management/proformaPage.vue") },]
 }
