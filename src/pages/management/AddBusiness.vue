@@ -1,8 +1,7 @@
-v
 <template>
   <add-business />
 </template>
 
 <script setup>
-import AddBusiness from "src/components/management/addBusiness/IndexView.vue"
+import AddBusiness from "src/components/management/addBusiness.vue"
 </script>
