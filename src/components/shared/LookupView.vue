@@ -22,7 +22,7 @@
 
         <!-- //todo: replace lookup-body with no-apdding -->
         <q-card-section class="lookup-body">
-          <table id="table" class="text-left full-width text-caption" tabindex="0">
+          <table id="table" class="text-left text-caption" tabindex="0">
             <slot name="thead" />
             <tbody class="lookup-table-body">
               <tr v-for="(item, index) in rows" :key="item.id" :class="{ 'selected-row': index === selectedRowIndex }"
@@ -48,12 +48,12 @@
 </template>
 
 <script setup>
-  import { fetchWrapper } from "../../helpers"
+  import { fetchWrapper } from "src/helpers"
   import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
   import { useQuasar } from "quasar"
   import { useRouter } from "vue-router"
   import businessRoutes from "src/router/business-routes"
-  import PageBar from "./PageBar.vue"
+  import PageBar from "src/components/shared/PageBar.vue"
 
   const props = defineProps({
     dataSource: String,
@@ -336,6 +336,7 @@
   table {
     border-collapse: collapse;
     border: none;
+    width: 100%;
   }
 
   table:focus,
