@@ -24,27 +24,28 @@
           />
         </template>
       </q-input>
-      <div class="flex justify-between q-mt-sm q-mb-sm">
-        <q-btn
-          unelevated
-          type="submit"
-          color="red-6"
-          size="md"
-          class="change-password-btn q-py-sm"
-          no-caps
-          :label="$t('delete-business-page.buttons.delete-business')"
-        />
-        <q-btn
-          unelevated
-          size="md"
-          class="cancel-btn text-weight-bold q-py-sm"
-          no-caps
-          :label="$t('delete-business-page.buttons.cancel')"
-          v-close-popup
-          flat
-        />
-      </div>
     </q-form>
+    <q-card-actions class="row q-pa-md dark-1">
+      <q-btn
+        type="submit"
+        @click="submitForm"
+        color="red-6"
+        size="md"
+        padding="8px 16px"
+        class="change-password-btn q-py-sm"
+        no-caps
+        :label="$t('delete-business-page.buttons.delete-business')"
+      />
+      <q-btn
+        size="md"
+        padding="8px 16px"
+        class="cancel-btn text-bold q-py-sm"
+        no-caps
+        :label="$t('delete-business-page.buttons.cancel')"
+        v-close-popup
+        flat
+      />
+    </q-card-actions>
   </q-card>
 </template>
 
@@ -59,10 +60,21 @@ const authStore = useAuthStore()
 const password = ref("")
 const isPwd = ref(true)
 
+async function submitForm() {
+  await form.value.validate().then((success) => {
+    if (success) {
+      changePassword()
+    } else {
+      //todo: how to show validation message to user
+      alert("validation error")
+    }
+  })
+}
+
 async function changePassword() {
   await fetchWrapper
-    .post("scr/users/setPassword", {
-      id: authStore.user.user.id,
+    .post("scr/users/changePassword", {
+      id: authStore.user.id,
       oldPassword: oldPassword.value,
       password: newPassword.value,
       confirmPassword: confirmNewPassword.value
@@ -70,6 +82,9 @@ async function changePassword() {
     .then((response) => {
       console.log(response)
       //handleResponse(response, data)
+    })
+    .success(() => {
+      //todo: close popup if open
     })
     .finally(() => {
       //loading.value = false;
@@ -83,12 +98,12 @@ async function changePassword() {
   border-radius: 9px;
 }
 
-.change-password-btn {
+/* .change-password-btn {
   height: 40px;
   width: 60%;
 }
 
 .cancel-btn {
   width: 36%;
-}
+} */
 </style>
