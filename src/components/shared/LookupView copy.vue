@@ -13,14 +13,15 @@
 
     <q-menu fit no-parent-event v-model="isPopupOpen" @show="onMenuShow" @hide="onMenuHide" ref="popup"
       transition-show="jump-down" transition-hide="jump-up" no-refocus no-focus class="">
-      <div class="lookup">
-        <div>
+      <q-card class="lookup-card no-box-shadow">
+        <q-card-section class="no-padding">
           <q-inner-loading :showing="loadingData" class="inner-loader q-my-lg">
             <q-spinner size="50px" color="primary" />
           </q-inner-loading>
-        </div>
+        </q-card-section>
 
-        <div class="lookup-body">
+        <!-- //todo: replace lookup-body with no-apdding -->
+        <q-card-section class="lookup-body">
           <table id="table" class="text-left text-caption" tabindex="0">
             <slot name="thead" />
             <tbody class="lookup-table-body">
@@ -30,18 +31,18 @@
               </tr>
             </tbody>
           </table>
+        </q-card-section>
 
-          <div v-if="pagedRows.length === 0 && !loadingData"
-            class="nothing-found no-padding no-results column justify-center items-center q-my-xl">
-            <div class="">
-              <img class="nothing-found-svg" src="../../../public/page-lost.svg" style="width: 150px" />
-            </div>
-            <div class="">{{ $t("page.nothing-found") }}</div>
+        <q-card-section v-if="pagedRows.length === 0 && !loadingData"
+          class="nothing-found no-padding no-results column justify-center items-center q-my-xl">
+          <div class="">
+            <img class="nothing-found-svg" src="../../../public/page-lost.svg" style="width: 150px" />
           </div>
-        </div>
+          <div class="">{{ $t("page.nothing-found") }}</div>
+        </q-card-section>
 
         <page-bar :pagination="pagination" @page-changed="loadData" />
-      </div>
+      </q-card>
     </q-menu>
   </q-input>
 </template>
@@ -316,12 +317,12 @@
 </script>
 
 <style>
-  .lookup {
-    width: 400px;
+  .lookup-card {
+    width: 400px !important;
   }
 
   .lookup-body {
-    padding: 1px 0px;
+    padding: 1px;
   }
 
   td {
@@ -335,7 +336,7 @@
   table {
     border-collapse: collapse;
     border: none;
-    /* width: 100%; */
+    width: 100%;
   }
 
   table:focus,
@@ -349,9 +350,5 @@
     padding-right: 12px;
     right: 0;
     z-index: 1;
-  }
-
-  .q-position-engine {
-    visibility: inherit !important;
   }
 </style>
