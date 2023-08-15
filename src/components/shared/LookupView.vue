@@ -12,8 +12,8 @@
     </template>
 
     <q-menu fit no-parent-event v-model="isPopupOpen" @show="onMenuShow" @hide="onMenuHide" ref="popup"
-      transition-show="jump-down" transition-hide="jump-up" no-refocus no-focus class="">
-      <div class="lookup">
+      transition-show="jump-down" transition-hide="jump-up" no-refocus no-focus>
+      <div class="lookup_">
         <div>
           <q-inner-loading :showing="loadingData" class="inner-loader q-my-lg">
             <q-spinner size="50px" color="primary" />
@@ -23,7 +23,7 @@
         <div class="lookup-body">
           <table id="table" class="text-left text-caption" tabindex="0">
             <slot name="thead" />
-            <tbody class="lookup-table-body">
+            <tbody class="lookup-table-body_">
               <tr v-for="(item, index) in rows" :key="item.id" :class="{ 'selected-row': index === selectedRowIndex }"
                 @click="onRowClicked(item, index)" class="cursor-pointer">
                 <slot name="td" :item="item" :index="index" />
@@ -318,6 +318,7 @@
 <style>
   .lookup {
     width: 400px;
+    min-height: 100px;
   }
 
   .lookup-body {
@@ -351,7 +352,7 @@
     z-index: 1;
   }
 
-  .q-position-engine {
-    visibility: inherit !important;
-  }
+  /* .q-position-engine {
+    visibility: inherit;
+  } */
 </style>
