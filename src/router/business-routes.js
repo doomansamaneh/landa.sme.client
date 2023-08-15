@@ -21,7 +21,7 @@ export default {
       },
     },
     {
-      path: "addBusiness", name: "Add New Business", component: () => import("pages/management/AddBusiness.vue"), meta: {
+      path: "addBusiness", name: "Add New Business", component: () => import("pages/management/AddBusinessPage.vue"), meta: {
         icon: "o_add"
       },
     },

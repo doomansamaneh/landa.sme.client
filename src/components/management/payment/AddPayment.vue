@@ -12,12 +12,7 @@
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="xs"
-              name="arrow_back"
-              @click="$router.go(-1)"
-            >
+            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="arrow_back" @click="$router.go(-1)">
               <q-tooltip class="custom-tooltip">{{
                 $t("page.buttons.back")
               }}</q-tooltip>
@@ -27,17 +22,9 @@
       </q-item>
     </q-card-section>
     <q-separator />
-<<<<<<< HEAD
-    <!-- <q-item class="q-px-lg column q-mb-md">
-    </q-item> -->
     <q-card-section>
       <q-form ref="form" autofocus>
         <div class="row q-mb-lg">
-=======
-    <q-form @submit="onSubmit">
-      <q-card-section class="padding-x">
-        <div class="row q-mb-lg items-center">
->>>>>>> develop.khashayar
           <div class="col-2">
             <q-item-label>{{
               $t("page.renew-subscription.business-name-label")
@@ -47,11 +34,7 @@
             <span class="text-bold q-pl-xs">{{ businessTitle }}</span>
           </div>
         </div>
-<<<<<<< HEAD
         <div class="row items-center q-mb-lg">
-=======
-        <div class="row q-mb-lg items-center">
->>>>>>> develop.khashayar
           <div class="col-2">
             <q-item-label>{{
               $t("page.renew-subscription.current-plan")
@@ -71,17 +54,11 @@
             <span class="q-pl-xs">{{ toDate }}</span>
           </div>
         </div>
-<<<<<<< HEAD
         <div class="row items-center q-mb-lg_">
-=======
-        <div class="row">
->>>>>>> develop.khashayar
           <div class="col-2">
-            <q-item-label class="pt-md"
-              ><span class="">{{
+            <q-item-label class="pt-md"><span class="">{{
                 $t("page.renew-subscription.plan")
-              }}</span></q-item-label
-            >
+              }}</span></q-item-label>
           </div>
           <div class="col-10">
             <plan-lookup @row-selected="onPlanSelected" />
@@ -94,22 +71,10 @@
             }}</q-item-label>
           </div>
           <div class="col-10">
-            <q-select
-              hide-dropdown-icon
-              dense
-              v-model="selectedPeriod"
-              @update:model-value="selectPeriod"
-              :options="periodItems"
-              outlined
-              auto-close
-              class="period-select"
-            >
+            <q-select hide-dropdown-icon dense v-model="selectedPeriod" @update:model-value="selectPeriod"
+              :options="periodItems" outlined auto-close class="period-select">
               <template #append>
-                <q-icon
-                  name="o_expand_more"
-                  class="show-lookup-icon cursor-pointer"
-                  size="sm"
-                />
+                <q-icon name="o_expand_more" class="show-lookup-icon cursor-pointer" size="sm" />
               </template>
             </q-select>
           </div>
@@ -117,66 +82,42 @@
       </q-form>
     </q-card-section>
 
-      <q-card-section>
-        <div
-          class="total glass row q-mb-md justify-between items-center q-px-xl margin-md"
-        >
-          <div class="col-6 q-gutter-y-lg">
-            <div class="row" v-if="loyaltyDiscountTotal > 0">
-              <div class="col-7">
-                <span>{{
+    <q-card-section>
+      <div class="total glass row q-mb-md justify-between items-center q-px-xl margin-md">
+        <div class="col-6 q-gutter-y-lg">
+          <div class="row" v-if="loyaltyDiscountTotal > 0">
+            <div class="col-7">
+              <span>{{
                   $t("page.renew-subscription.loyalty-discount")
                 }}</span>
             </div>
-            <div class="row">
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.total") }}</span>
-              </div>
-              <div class="col-5">
-                <span>{{ subTotal.toLocaleString() }}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.discount") }}</span>
-              </div>
-              <div class="col-5">
-                <span>{{ discount.toLocaleString() }}</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-7">
-                <span>{{ $t("page.renew-subscription.sum-total") }}</span>
-              </div>
-              <div class="col-5">
-                <span class="underline"
-                  ><b>{{ total.toLocaleString() }}</b> ریال
-                </span>
-              </div>
+            <div class="col-5">
+              <span>{{ loyaltyDiscount.toLocaleString() }}</span>
             </div>
           </div>
-          <div class="col-6 q-gutter-x-lg">
-            <div class="row">
-              <q-radio
-                v-model="shape"
-                checked-icon="task_alt"
-                val="line"
-                color=""
-                size="md"
-              >
-                <q-tooltip class="custom-tooltip text-body1">
-                  <span class="sadad-tooltip"
-                    >پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان پذیر
-                    است</span
-                  >
-                </q-tooltip>
-              </q-radio>
-              <div class="q-pa-md">
-                <img
-                  src="../../../../public/sadad-new.png"
-                  alt="درگاه پرداخت الکترونیک سداد"
-                />
-              </div>
+          <div class="row">
+            <div class="col-7">
+              <span>{{ $t("page.renew-subscription.total") }}</span>
+            </div>
+            <div class="col-5">
+              <span>{{ subTotal.toLocaleString() }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <span>{{ $t("page.renew-subscription.discount") }}</span>
+            </div>
+            <div class="col-5">
+              <span>{{ discount.toLocaleString() }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <span>{{ $t("page.renew-subscription.sum-total") }}</span>
+            </div>
+            <div class="col-5">
+              <span class="underline"><b>{{ total.toLocaleString() }}</b> ریال
+              </span>
             </div>
           </div>
         </div>
@@ -209,12 +150,12 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, computed } from "vue"
-import { useQuasar } from "quasar"
-import { useRoute } from "vue-router"
-import { fetchWrapper } from "src/helpers"
-import DataView from "src/components/shared/DataView.vue"
-import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
+  import { ref, watch, onMounted, computed } from "vue"
+  import { useQuasar } from "quasar"
+  import { useRoute } from "vue-router"
+  import { fetchWrapper } from "src/helpers"
+  import DataView from "src/components/shared/DataView.vue"
+  import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
 
   const route = useRoute()
   const lookup = ref(null)
@@ -243,78 +184,12 @@ import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
         handleMonthResponse(response.data.data)
       })
 
-  await fetchWrapper
-    .get(`business/GetBusiness/${businessId}`)
-    .then((response) => {
-      handleBusinessData(response.data.data)
-    })
-}
-
-async function getLoyalDiscount(planId) {
-  const businessId = route.params.businessId
-  await fetchWrapper
-    .get(`business/GetLoyalDiscount/${businessId}/${planId}`)
-    .then((response) => {
-      handleDiscountResponse(response.data.data)
-    })
-}
-
-function handleMonthResponse(data) {
-  periodItems.value = data.map((item) => ({
-    id: item.id,
-    label: `${item.month} ماه${
-      item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
-    }`,
-    month: `${item.month}`,
-    discountPercent: item.percent
-  }))
-  selectedPeriod.value = periodItems.value[0]
-}
-
-function handleBusinessData(data) {
-  planTitle.value = data.lastPayment.planTitle
-  businessTitle.value = data.title
-  toDate.value = data.lastPayment.toDateString
-}
-
-function handleDiscountResponse(data) {
-  loyaltyDiscount.value = data
-}
-
-onMounted(() => {
-  loadData()
-})
-
-function sortColumn(columnName) {
-  lookup.value.sortSelectedColumn(columnName)
-}
-
-async function onPlanSelected(plan) {
-  selectedPlan.value = plan
-  if (plan != null) await getLoyalDiscount(plan.id)
-  computeValues()
-}
-
-async function selectPeriod(item) {
-  selectedPeriod.value = item
-  computeValues()
-}
-
-function computeValues() {
-  if (selectedPlan.value == null) resetValues()
-  else {
-    loyaltyDiscountTotal.value =
-      loyaltyDiscount.value * selectedPeriod.value.month
-    const planCost = selectedPlan.value.cost
-    const selectedPercent = selectedPeriod.value.discountPercent
-
-    subTotal.value =
-      planCost * selectedPeriod.value.month - loyaltyDiscountTotal.value
-
-    discount.value = Math.round((subTotal.value * selectedPercent) / 100)
-    total.value = Math.round(subTotal.value - discount.value)
+    await fetchWrapper
+      .get(`business/GetBusiness/${businessId}`)
+      .then((response) => {
+        handleBusinessData(response.data.data)
+      })
   }
-}
 
   async function getLoyalDiscount(planId) {
     const businessId = route.params.businessId
@@ -341,6 +216,10 @@ function computeValues() {
     businessTitle.value = data.title
     toDate.value = data.lastPayment.toDateString
   }
+
+  onMounted(() => {
+    loadData()
+  })
 
   function handleDiscountResponse(data) {
     loyaltyDiscount.value = data
@@ -398,71 +277,71 @@ function computeValues() {
 </script>
 
 <style lang="scss" scoped>
-.card-desktop {
-  width: 720px !important;
-}
+  .card-desktop {
+    width: 720px !important;
+  }
 
-.period-select {
-  width: 400px;
-}
+  .period-select {
+    width: 400px;
+  }
 
-.total {
-  border-radius: 4px;
-  height: 300px;
-}
+  .total {
+    border-radius: 4px;
+    height: 300px;
+  }
 
-th {
-  padding: 24px 12px;
-}
+  th {
+    padding: 24px 12px;
+  }
 
-td {
-  padding: 16px 16px;
-}
+  td {
+    padding: 16px 16px;
+  }
 
-table {
-  border-collapse: collapse;
-  border: none;
-}
+  table {
+    border-collapse: collapse;
+    border: none;
+  }
 
-.input {
-  width: 400px;
-}
+  .input {
+    width: 400px;
+  }
 
-.selected-row {
-  background-color: #f4fcd1 !important;
-}
+  .selected-row {
+    background-color: #f4fcd1 !important;
+  }
 
-tbody tr:hover {
-  background-color: #f3f3f3;
-}
+  tbody tr:hover {
+    background-color: #f3f3f3;
+  }
 
-.sadad {
-  border-radius: 4px;
-}
+  .sadad {
+    border-radius: 4px;
+  }
 
-.glass {
-  background: #ffffff33;
-  border-radius: 4px;
-  box-shadow: 0 2px 20px #0000001a;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid #ffffff4d;
-}
+  .glass {
+    background: #ffffff33;
+    border-radius: 4px;
+    box-shadow: 0 2px 20px #0000001a;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid #ffffff4d;
+  }
 
-.q-card__section--vert {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
+  .q-card__section--vert {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 
-.padding-x {
-  padding: 24px 36px;
-}
+  .padding-x {
+    padding: 24px 36px;
+  }
 
-.pt-md {
-  padding-top: 12px;
-}
+  .pt-md {
+    padding-top: 12px;
+  }
 
-.margin-md {
-  margin: 0 20px 12px 20px;
-}
+  .margin-md {
+    margin: 0 20px 12px 20px;
+  }
 </style>
