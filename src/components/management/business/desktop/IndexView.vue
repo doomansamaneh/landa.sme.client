@@ -204,24 +204,20 @@
     <invite-user>
       <template #header>
         <q-item-section>
-          <q-item-label class="text-bold">{{
+          <q-item-label class="text-h6">{{
             $t("invite-user-page.title")
           }}</q-item-label>
         </q-item-section>
         <q-card-actions>
-          <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="xs"
-              name="close"
-              @click="close"
-              v-close-popup
-            >
-              <q-tooltip class="custom-tooltip">{{
-                $t("change-password-page.buttons.close")
-              }}</q-tooltip>
-            </q-icon>
-          </div>
+          <q-space />
+          <q-btn
+            icon="close"
+            class="icon-hover dark-3"
+            flat
+            round
+            dense
+            v-close-popup
+          />
         </q-card-actions>
       </template>
     </invite-user>
@@ -236,24 +232,20 @@
     <delete-business>
       <template #header>
         <q-item-section>
-          <q-item-label class="text-bold">{{
+          <q-item-label class="text-h6">{{
             $t("delete-business-page.title")
           }}</q-item-label>
         </q-item-section>
         <q-card-actions>
-          <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="xs"
-              name="close"
-              @click="close"
-              v-close-popup
-            >
-              <q-tooltip class="custom-tooltip">{{
-                $t("change-password-page.buttons.close")
-              }}</q-tooltip>
-            </q-icon>
-          </div>
+          <q-space />
+          <q-btn
+            icon="close"
+            class="icon-hover dark-3"
+            flat
+            round
+            dense
+            v-close-popup
+          />
         </q-card-actions>
       </template>
     </delete-business>

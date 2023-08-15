@@ -135,6 +135,7 @@
 <script setup>
 import { ref, computed, watchEffect, onMounted, watch } from "vue"
 import { useRouter } from "vue-router"
+import { useQuasar } from "quasar"
 import { useAuthStore } from "src/stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
@@ -143,6 +144,29 @@ import ChangePassword from "src/components/users/ChangePassword.vue"
 
 const router = useRouter()
 const authStore = useAuthStore()
+const $q = useQuasar()
+
+// function showChangePasswordPopup() {
+//   $q.dialog({
+//     title: "Options",
+//     message: "Choose your options, but make sure you also pick the second one.",
+//     options: {
+//       type: "checkbox",
+//       model: [],
+//       isValid: (model) => model.includes("opt2"),
+//       // inline: true
+//       items: [
+//         { label: "Option 1", value: "opt1", color: "secondary" },
+//         { label: "Option 2", value: "opt2" },
+//         { label: "Option 3", value: "opt3" }
+//       ]
+//     },
+//     cancel: true,
+//     persistent: true
+//   }).onOk((data) => {
+//     // console.log('>>>> OK, received', data)
+//   })
+// }
 
 const changePasswordPopup = ref(false)
 
