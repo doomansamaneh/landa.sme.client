@@ -329,7 +329,7 @@ defineExpose({
 }
 
 .lookup-body {
-  padding: 1px 0px;
+  padding: 12px 0px;
 }
 
 td {
