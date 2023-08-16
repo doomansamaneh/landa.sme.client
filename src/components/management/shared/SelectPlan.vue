@@ -73,7 +73,8 @@
         </div>
         <div class="col-5">
           <span class="underline"
-            ><b>{{ total.toLocaleString() }}</b> ریال
+            ><b>{{ total.toLocaleString() }}</b>
+            {{ $t("page.add-business.rial") }}
           </span>
         </div>
       </div>

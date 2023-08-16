@@ -18,14 +18,14 @@
           <th class="">
             <header-column
               fieldName="title"
-              title="طرح"
+              :title="$t('page.add-business.lookup.plan')"
               :lookup="lookup"
             ></header-column>
           </th>
-          <th class="" style="width: 15%">
+          <th class="" style="width: 23%">
             <header-column
               fieldName="cost"
-              title="ماهانه"
+              :title="$t('page.add-business.lookup.per-month')"
               :lookup="lookup"
             ></header-column>
           </th>
@@ -50,8 +50,4 @@ import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
 import { ref } from "vue"
 
 const lookup = ref(null)
-
-// function rowSelected(item) {
-//   lookup.value.setCustomText("text")
-// }
 </script>

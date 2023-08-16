@@ -96,9 +96,11 @@
 
     "add-business": {
       "title": "Add New Business",
+      "business-name-label": "Business Name:",
       "caption": "All costs are in Iranian Rials",
       "to-date": "Until Date:",
       "plan": "Plan (Rials):",
+      "rial": "Rials",
       "extension-period": "Period:",
       "loyalty-discount": "Loyalty Discount:",
       "total": "Total:",
@@ -107,6 +109,39 @@
       "pay-message": "",
       "buttons": {
         "payment": "Payment"
+      },
+      "lookup": {
+        "plan": "plan",
+        "per-month": "Monthly"
+      }
+    },
+    "payment-detail": {
+      "title": "Payment",
+      "caption": "All costs are in Iranian Rials",
+      "invoice-label": "Invoice",
+      "invoice-date": "Date: ",
+      "invoice-number": "No: ",
+      "customer": "Customer: ",
+      "seller": "Seller: ",
+      "row": "No",
+      "plan": "Plan",
+      "amount": "Amount",
+      "unit": "Unit",
+      "date": "Date",
+      "unit-price": "Unit Price",
+      "total": "Total",
+      "vat-total": "VAT Total: ",
+      "sub-total": "Total: ",
+      "total-total": "Total: ",
+      "total-receipt": "Total Receipt: ",
+      "remained": "Remained: ",
+      "remained-but-this-year": "Remained But This Year: ",
+      "remained-total": "Remained Total: ",
+      "rial": "Rials",
+
+      "buttons": {
+        "print": "Print",
+        "excel": "Print out Excel"
       }
     }
   },
@@ -133,10 +168,11 @@
     },
     "buttons": {
       "invite-user": "Invite User",
-      "close": "close"
+      "close": "close",
+      "cancel": "Cancel"
     }
   },
-  
+
   "delete-business-page": {
     "title": "Delete Business",
     "placeholders": {

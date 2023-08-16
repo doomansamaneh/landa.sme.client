@@ -55,81 +55,91 @@
     </q-card-section>
 
     <q-card-actions class="dark-1 q-pa-lg">
-      <q-btn type="submit" @click="submitForm" unelevated rounded color="positive" no-caps padding="8px 16px"
-        class=""><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
+      <q-btn
+        type="submit"
+        @click="submitForm"
+        unelevated
+        rounded
+        color="positive"
+        no-caps
+        padding="8px 16px"
+        class=""
+        ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
         {{ $t("page.renew-subscription.buttons.payment") }}
       </q-btn>
-      <span class="text-caption q-pl-md">پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
-        کارت خود را فعال کرده باشید.</span>
+      <span class="text-caption q-pl-md"
+        >پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
+        کارت خود را فعال کرده باشید.</span
+      >
     </q-card-actions>
   </q-card>
 </template>
 
 <script setup>
-  import { ref, watch, onMounted, computed } from "vue"
-  import { useQuasar } from "quasar"
-  import { useRoute } from "vue-router"
-  import { fetchWrapper } from "src/helpers"
-  import SelectPlan from "src/components/management/shared/SelectPlan.vue"
-  import BackButton from "src/components/shared/buttons/BackButton.vue"
+import { ref, watch, onMounted, computed } from "vue"
+import { useQuasar } from "quasar"
+import { useRoute } from "vue-router"
+import { fetchWrapper } from "src/helpers"
+import SelectPlan from "src/components/management/shared/SelectPlan.vue"
+import BackButton from "src/components/shared/buttons/BackButton.vue"
 
-  const route = useRoute()
-  const shape = ref("line")
+const route = useRoute()
+const shape = ref("line")
 
-  const planTitle = ref(null)
-  const businessTitle = ref(null)
-  const toDate = ref(null)
+const planTitle = ref(null)
+const businessTitle = ref(null)
+const toDate = ref(null)
 
-  const form = ref(null)
+const form = ref(null)
 
-  async function loadData() {
-    const businessId = route.params.businessId
-    await fetchWrapper
-      .get(`business/GetBusiness/${businessId}`)
-      .then((response) => {
-        handleBusinessData(response.data.data)
-      })
-  }
-
-  function handleBusinessData(data) {
-    planTitle.value = data.lastPayment.planTitle
-    businessTitle.value = data.title
-    toDate.value = data.lastPayment.toDateString
-  }
-
-  onMounted(() => {
-    loadData()
-  })
-
-  function submitForm() {
-    form.value.validate().then((success) => {
-      if (success) {
-        alert("validation successfull")
-      } else {
-        alert("validation error")
-      }
+async function loadData() {
+  const businessId = route.params.businessId
+  await fetchWrapper
+    .get(`business/GetBusiness/${businessId}`)
+    .then((response) => {
+      handleBusinessData(response.data.data)
     })
-  }
+}
+
+function handleBusinessData(data) {
+  planTitle.value = data.lastPayment.planTitle
+  businessTitle.value = data.title
+  toDate.value = data.lastPayment.toDateString
+}
+
+onMounted(() => {
+  loadData()
+})
+
+function submitForm() {
+  form.value.validate().then((success) => {
+    if (success) {
+      alert("validation successfull")
+    } else {
+      alert("validation error")
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
-  .card-desktop {
-    width: 700px !important;
-  }
+.card-desktop {
+  width: 700px !important;
+}
 
-  .input {
-    width: 400px;
-  }
+.input {
+  width: 400px;
+}
 
-  .padding-x {
-    padding: 24px 36px;
-  }
+.padding-x {
+  padding: 24px 36px;
+}
 
-  .pt-md {
-    padding-top: 12px;
-  }
+.pt-md {
+  padding-top: 12px;
+}
 
-  .margin-md {
-    margin: 0 20px 12px 20px;
-  }
+.margin-md {
+  margin: 0 20px 12px 20px;
+}
 </style>
