@@ -236,10 +236,6 @@
     await showPopup()
   }
 
-  function onMenuShow() {
-    isPopupOpen.value = true
-  }
-
   function onMenuHide() {
     isPopupOpen.value = false
     search.value.focus()
@@ -261,18 +257,9 @@
     await reloadData()
   }
 
-  function hidePopup() {
-    popup.value.hide()
-  }
-
   function onMenuShow() {
     isPopupOpen.value = true;
     search.value.focus()
-  }
-
-  async function showPopup() {
-    popup.value.show()
-    await reloadData()
   }
 
   function hidePopup() {
@@ -282,13 +269,6 @@
   const isSearchEmpty = computed(() => !selectedId.value)
 
   const noDataFound = computed(() => rows.value.length === 0 && !loadingData.value)
-
-  defineExpose({
-    sortSelectedColumn,
-    pagination,
-    setIdText,
-    setCustomText
-  })
 
   defineExpose({
     sortSelectedColumn,
