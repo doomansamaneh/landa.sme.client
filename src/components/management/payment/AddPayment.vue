@@ -81,7 +81,7 @@ import { useQuasar } from "quasar"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 import SelectPlan from "src/components/management/shared/SelectPlan.vue"
-import BackButton from "src/components/shared/buttons/BackButton.vue"
+import BackButton from "src/components/shared/Buttons/BackButton.vue"
 
 const route = useRoute()
 const shape = ref("line")

@@ -5,7 +5,7 @@
     textTemplate="{{ title }}"
     searchField="title"
     ref="lookup"
-    placeholder="طرح مورد نظر خود را انتخاب کنید"
+    :placeholder="$t('page.add-business.plan-lookup.placeholder')"
     :required="true"
     :rules="[(val) => val && val.length > 0]"
   >
@@ -18,14 +18,14 @@
           <th class="">
             <header-column
               fieldName="title"
-              :title="$t('page.add-business.lookup.plan')"
+              :title="$t('page.add-business.plan-lookup.plan')"
               :lookup="lookup"
             ></header-column>
           </th>
           <th class="" style="width: 23%">
             <header-column
               fieldName="cost"
-              :title="$t('page.add-business.lookup.per-month')"
+              :title="$t('page.add-business.plan-lookup.per-month')"
               :lookup="lookup"
             ></header-column>
           </th>

@@ -98,6 +98,7 @@
     "add-business": {
       "title": "Add New Business",
       "business-name-label": "Business Name:",
+      "pay-caption": "Is possible from all Shetab cards. you must activate the second password of your card.",
       "caption": "All costs are in Iranian Rials",
       "to-date": "Until Date:",
       "plan": "Plan (Rials):",
@@ -111,9 +112,10 @@
       "buttons": {
         "payment": "Payment"
       },
-      "lookup": {
+      "plan-lookup": {
         "plan": "plan",
-        "per-month": "Monthly"
+        "per-month": "Monthly",
+        "placeholder": "Choose the plan you want"
       }
     },
     "payment-detail": {
