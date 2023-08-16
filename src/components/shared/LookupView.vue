@@ -1,29 +1,27 @@
 <template>
   <q-input ref="search" outlined :required="required" :rules="rules" dense class="input lookup" v-model="selectedText"
     @update:model-value="searchInLookup" @keydown.enter.prevent.stop="selectRow" @keydown="handleKeyDown"
-    debounce="2000" :placeholder="placeholder">
+    debounce="1000" :placeholder="placeholder">
 
     <template #append>
       <q-icon name="clear" size="16px" color="primary" v-if="!isSearchEmpty" class="cursor-pointer"
         @click="clearSearch" />
 
-      <q-icon @click="isPopupOpen = !isPopupOpen" name="o_expand_more" id="expand-more-icon"
-        class="show-lookup-icon cursor-pointer" size="sm" />
+      <q-icon @click="handlePopup" name="o_expand_more" id="expand-more-icon" class="show-lookup-icon cursor-pointer"
+        size="sm" />
     </template>
 
     <q-menu fit no-parent-event v-model="isPopupOpen" @show="onMenuShow" @hide="onMenuHide" ref="popup"
       transition-show="jump-down" transition-hide="jump-up" no-refocus no-focus>
-      <div class="lookup_">
-        <div>
-          <q-inner-loading :showing="loadingData" class="inner-loader q-my-lg">
-            <q-spinner size="50px" color="primary" />
-          </q-inner-loading>
-        </div>
+      <div class="container_ lookup-container">
+        <q-inner-loading :showing="loadingData" class="inner-loader q-my-lg">
+          <q-spinner size="50px" color="primary" />
+        </q-inner-loading>
 
         <div class="lookup-body">
-          <table id="table" class="text-left text-caption" tabindex="0">
+          <table id="table_" ref="table" class="text-left text-caption" tabindex="0">
             <slot name="thead" />
-            <tbody class="lookup-table-body_">
+            <tbody class="lookup-table-body">
               <tr v-for="(item, index) in rows" :key="item.id" :class="{ 'selected-row': index === selectedRowIndex }"
                 @click="onRowClicked(item, index)" class="cursor-pointer">
                 <slot name="td" :item="item" :index="index" />
@@ -73,23 +71,30 @@
   const selectedText = ref("")
   const searchTerm = ref("")
   const defaultPageSize = 5
-  const selectedCard = ref(false)
+  //const selectedCard = ref(false)
   const businessId = ref("")
-  const popup = ref(null)
-  const isPopupOpen = ref(false)
-  const hasLoadedData = ref(false)
-  const table = ref(null)
-  let showMenu = false
+ 
   let sortColumn = null
   let sortAscending = true
-  const search = ref(null)
-  const selectedRowIndex = ref(0)
+  
   const pagination = ref({
     sortBy: props.orderByField,
     descending: false,
     currentPage: 1,
     pageSize: defaultPageSize,
     totalItems: 0
+  })
+
+  const search = ref(null)
+  const selectedRowIndex = ref(0)
+  const popup = ref(null)
+  const isPopupOpen = ref(false)
+  const hasLoadedData = ref(false)
+  const table = ref(null)
+  let showMenu = false
+
+  onMounted(() => {
+    onMenuHide()
   })
 
   function handleKeyDown(event) {
@@ -122,9 +127,6 @@
   async function setIdText(item) {
     selectedId.value = item?.id
     setText(item)
-    if (isPopupOpen.value) {
-      await reloadData()
-    }
   }
 
   function setText(item) {
@@ -143,21 +145,19 @@
     selectedText.value = displayText
   }
 
-  const isSearchEmpty = computed(() => !selectedId.value)
-
-  const pagedRows = computed(() => {
-    return rows.value
-  })
+  // const pagedRows = computed(() => {
+  //   return rows.value
+  // })
 
   async function reloadData(showLoading = true) {
-    if (showLoading) {
-      loadingData.value = true
-    }
-    if (pagedRows.value.length === 0) {
-      loadingData.value = true
-    } else {
-      loadingData.value = false
-    }
+    // if (showLoading) {
+    //   loadingData.value = true
+    // }
+    // if (rows.value.length === 0) {
+    //   loadingData.value = true
+    // } else {
+    //   loadingData.value = false
+    // }
     await loadData(pagination.value)
   }
 
@@ -166,7 +166,7 @@
     let loadingTimer = setTimeout(() => {
       loadingData.value = true
     }, loaderTimeout)
-    selectedCard.value = false
+    //selectedCard.value = false
 
     let filterExpression = []
 
@@ -194,6 +194,8 @@
       .finally(() => {
         clearTimeout(loadingTimer)
         loadingData.value = false
+        if (rows?.value.length < selectedRowIndex.value + 1)
+          selectedRowIndex.value = 0
       })
   }
 
@@ -206,40 +208,48 @@
     pagination.descending = pagination.descending
   }
 
-  function isSelected(index) {
-    return selectedCard.value === index
+  // function isSelected(index) {
+  //   return selectedCard.value === index
+  // }
+
+  // async function showLookup() {
+  //   if (!hasLoadedData.value) {
+  //     //document.getElementById("table")?.focus()
+  //     table.value.focus()
+  //     search.value.focus()
+  //     showPopup()
+  //     await reloadData()
+  //     hasLoadedData.value = true
+  //   } else {
+  //     //document.getElementById("table")?.focus()
+  //     table.value.focus()
+  //     search.value.focus()
+  //     showPopup()
+  //   }
+  // }
+
+  function handlePopup() {
+    if (isPopupOpen.value) hidePopup()
+    else showPopup()
   }
 
-  async function lookupShow() {
-    if (!hasLoadedData.value) {
-      document.getElementById("table")?.focus()
-      search.value.focus()
+  function selectPrevious() {
+    if (isPopupOpen.value) {
+      if (selectedRowIndex.value === 0)
+        selectedRowIndex.value = rows.value.length - 1
+      else selectedRowIndex.value--
+    }
+  }
+
+  function selectNext() {
+    if (isPopupOpen.value) {
+      if (selectedRowIndex.value === rows.value.length - 1)
+        selectedRowIndex.value = 0
+      else selectedRowIndex.value++
+    }
+    else {
       showPopup()
-      await reloadData()
-      hasLoadedData.value = true
-    } else {
-      document.getElementById("table")?.focus()
-      search.value.focus()
-      showPopup()
     }
-  }
-
-  async function selectPrevious() {
-    if (selectedRowIndex.value === 0) {
-      selectedRowIndex.value = rows.value.length - 1
-    } else {
-      selectedRowIndex.value--
-    }
-    await showPopup()
-  }
-
-  async function selectNext() {
-    if (selectedRowIndex.value === rows.value.length - 1) {
-      selectedRowIndex.value = 0
-    } else {
-      selectedRowIndex.value++
-    }
-    await showPopup()
   }
 
   function selectRow() {
@@ -253,6 +263,49 @@
     emit("row-selected", item)
   }
 
+  async function searchInLookup() {
+    await showPopup()
+  }
+
+  function onMenuShow() {
+    isPopupOpen.value = true;
+  }
+
+  function onMenuHide() {
+    isPopupOpen.value = false;
+    search.value.focus()
+  }
+
+  async function sortSelectedColumn(selectedColumn) {
+    if (pagination.value.sortBy === selectedColumn) {
+      pagination.value.descending = !pagination.value.descending
+    } else {
+      pagination.value.sortBy = selectedColumn
+      pagination.value.descending = false
+    }
+
+    await reloadData()
+  }
+
+  async function showPopup() {
+    if (!isPopupOpen.value) {
+      popup.value.show()
+    }
+    await reloadData()
+  }
+
+  function hidePopup() {
+    popup.value.hide()
+  }
+
+  // watch(isPopupOpen, async (newValue) => {
+  //   if (newValue) {
+  //     showLookup()
+  //   }
+  // })
+
+  const isSearchEmpty = computed(() => !selectedId.value)
+
   const showPagebar = computed(() => {
     return pagination.value.totalItems > defaultPageSize
   })
@@ -265,38 +318,6 @@
     Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
   )
 
-  function searchInLookup() {
-    showPopup()
-  }
-
-  function onMenuShow() {
-    document.getElementById("table")?.focus()
-    search.value.focus()
-  }
-
-  function onMenuHide() {
-    search.value.focus()
-  }
-
-  function sortSelectedColumn(selectedColumn) {
-    if (pagination.value.sortBy === selectedColumn) {
-      pagination.value.descending = !pagination.value.descending
-    } else {
-      pagination.value.sortBy = selectedColumn
-      pagination.value.descending = false
-    }
-
-    reloadData()
-  }
-
-  async function showPopup() {
-    popup.value.show()
-  }
-
-  function hidePopup() {
-    popup.value.hide()
-  }
-
   defineExpose({
     sortSelectedColumn,
     pagination,
@@ -304,21 +325,12 @@
     setCustomText
   })
 
-  onMounted(() => {
-    onMenuHide()
-  })
-
-  watch(isPopupOpen, async (newValue) => {
-    if (newValue) {
-      lookupShow()
-    }
-  })
 </script>
 
 <style>
-  .lookup {
+  .lookup-container {
     width: 400px;
-    min-height: 100px;
+    /* min-height: 100px; */
   }
 
   .lookup-body {
