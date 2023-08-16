@@ -46,7 +46,7 @@
     >
       <div class="container_ lookup-container">
         <q-inner-loading :showing="showLoader" class="inner-loader q-my-lg">
-          <q-spinner size="50px" color="primary" />
+          <q-spinner size="52px" color="primary" />
         </q-inner-loading>
 
         <div class="lookup-body">
