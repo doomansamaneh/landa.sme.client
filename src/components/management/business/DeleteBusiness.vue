@@ -3,7 +3,6 @@
     <q-item>
       <slot name="header" />
     </q-item>
-    <q-separator />
     <q-form class="q-pt-lg q-pb-md q-px-md" @submit="changePassword">
       <q-input
         outlined
@@ -39,7 +38,7 @@
       <q-btn
         size="md"
         padding="8px 16px"
-        class="cancel-btn text-bold q-py-sm"
+        class="cancel-btn q-py-sm"
         no-caps
         :label="$t('delete-business-page.buttons.cancel')"
         v-close-popup

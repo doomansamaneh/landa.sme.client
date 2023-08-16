@@ -2,7 +2,6 @@
   <q-input ref="search" outlined :required="required" :rules="rules" dense class="input lookup" v-model="selectedText"
     @update:model-value="searchInLookup" @keydown.enter.prevent.stop="selectRow" @keydown="handleKeyDown"
     debounce="1000" :placeholder="placeholder">
-
     <template #append>
       <q-icon name="clear" size="16px" color="primary" v-if="!isSearchEmpty" class="cursor-pointer"
         @click="clearSearch" />
@@ -146,7 +145,7 @@
   }
 
   async function reloadData(showLoading = true) {
-    //todo: how to cach data reloading
+    //todo: how to cache data reloading
     await loadData(pagination.value)
   }
 
@@ -217,8 +216,7 @@
       if (selectedRowIndex.value === rows.value.length - 1)
         selectedRowIndex.value = 0
       else selectedRowIndex.value++
-    }
-    else {
+    } else {
       showPopup()
     }
   }
@@ -239,12 +237,11 @@
   }
 
   function onMenuShow() {
-    isPopupOpen.value = true;
-    search.value.focus()
+    isPopupOpen.value = true
   }
 
   function onMenuHide() {
-    isPopupOpen.value = false;
+    isPopupOpen.value = false
     search.value.focus()
   }
 
@@ -268,6 +265,20 @@
     popup.value.hide()
   }
 
+  function onMenuShow() {
+    isPopupOpen.value = true;
+    search.value.focus()
+  }
+
+  async function showPopup() {
+    popup.value.show()
+    await reloadData()
+  }
+
+  function hidePopup() {
+    popup.value.hide()
+  }
+
   const isSearchEmpty = computed(() => !selectedId.value)
 
   const noDataFound = computed(() => rows.value.length === 0 && !loadingData.value)
@@ -279,6 +290,12 @@
     setCustomText
   })
 
+  defineExpose({
+    sortSelectedColumn,
+    pagination,
+    setIdText,
+    setCustomText
+  })
 </script>
 
 <style>

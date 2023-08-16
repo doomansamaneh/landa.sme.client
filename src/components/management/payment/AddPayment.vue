@@ -1,7 +1,7 @@
 <template>
   <q-card class="card-desktop no-shadow q-my-xl">
     <q-card-section>
-      <q-item class="">
+      <q-item>
         <q-item-section>
           <q-item-label class="text-h6">{{
             $t("page.renew-subscription.title")
@@ -18,7 +18,7 @@
       </q-item>
     </q-card-section>
     <q-separator />
-    <q-card-section>
+    <q-card-section class="q-mx-md q-pt-lg">
       <q-form ref="form" autofocus>
         <div class="row q-mb-lg">
           <div class="col-2">
@@ -50,12 +50,11 @@
             <span class="q-pl-xs">{{ toDate }}</span>
           </div>
         </div>
-
         <select-plan />
       </q-form>
     </q-card-section>
 
-    <q-card-actions class="dark-1 q-pa-md">
+    <q-card-actions class="dark-1 q-pa-lg">
       <q-btn type="submit" @click="submitForm" unelevated rounded color="positive" no-caps padding="8px 16px"
         class=""><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
         {{ $t("page.renew-subscription.buttons.payment") }}
@@ -63,7 +62,6 @@
       <span class="text-caption q-pl-md">پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
         کارت خود را فعال کرده باشید.</span>
     </q-card-actions>
-
   </q-card>
 </template>
 
@@ -104,11 +102,10 @@
   })
 
   function submitForm() {
-    form.value.validate().then(success => {
+    form.value.validate().then((success) => {
       if (success) {
         alert("validation successfull")
-      }
-      else {
+      } else {
         alert("validation error")
       }
     })
@@ -117,16 +114,11 @@
 
 <style lang="scss" scoped>
   .card-desktop {
-    width: 720px !important;
+    width: 700px !important;
   }
 
   .input {
     width: 400px;
-  }
-
-  .q-card__section--vert {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
   }
 
   .padding-x {

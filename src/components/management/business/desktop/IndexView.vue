@@ -294,11 +294,6 @@ function showDeleteBusiness() {
 
 <style>
 .business-name {
-  max-width: 140px;
-}
-
-.q-card__section.q-card__section--vert {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  max-width: 160px;
 }
 </style>
