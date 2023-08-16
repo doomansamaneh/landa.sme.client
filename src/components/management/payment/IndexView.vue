@@ -18,10 +18,10 @@
           </q-item-label>
         </q-item-section>
         <q-card-actions>
-          <div class="flex items-center q-mr-xs">
+          <div class="flex items-center q-mx-sm">
             <q-icon
               class="icon-hover dark-3 cursor-pointer"
-              size="xs"
+              size="sm"
               name="o_refresh"
               @click="reloadData"
             >
@@ -61,7 +61,7 @@
       <div class="col-2 flex items-center justify-start">
         <label class="text-caption">
           {{ formatCurrency(item.amount) }}
-          <span>ریال</span>
+          <span>{{ $t("page.payment-history.rial") }}</span>
           <q-tooltip class="custom-tooltip" :delay="600">
             {{ $t("page.payment-history.amount-paid") }}</q-tooltip
           >
@@ -129,7 +129,7 @@ import { fetchWrapper } from "src/helpers"
 
 import DataView from "src/components/shared/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
-import BackButton from "src/components/shared/buttons/BackButton.vue"
+import BackButton from "src/components/shared/Buttons/BackButton.vue"
 
 const router = useRouter()
 const route = useRouter()

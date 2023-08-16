@@ -67,6 +67,7 @@
     "payment-history": {
       "payment-card-title": "تاریخچه پرداخت",
       "trial": "دوره آزمایشی",
+      "rial": "ریال",
       "paid": "پرداخت شده",
       "amount-paid": "مبلغ پرداخت شده",
       "buttons": {

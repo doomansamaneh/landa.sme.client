@@ -69,6 +69,7 @@
     "payment-history": {
       "payment-card-title": "Payment History",
       "trial": "Trial",
+      "rial": "rials",
       "paid": "Paid",
       "amount-paid": "Amount Paid",
       "buttons": {
