@@ -6,6 +6,7 @@
     "Renew Subscription": "تجديد الاشتراك",
     "Add New Business": "إنشاء أعمال جديدة"
   },
+
   "login-page": {
     "page-title": "تسجيل الدخول",
     "placeholders": {
@@ -173,5 +174,21 @@
       "password": "كلمة المرور"
     },
     "buttons": { "delete-business": "حذف العمل والمهنة", "cancel": "يلغي" }
+  },
+  "shared": {
+    "labels": {
+      "ok": "نعم",
+      "cancel": "يلغي",
+      "save": "يحفظ",
+      "new": "جديد",
+      "edit": "يحرر",
+      "delete": "حذف"
+    },
+    "messages": {
+      "deleted-successfully": "حذف بنجاح"
+    },
+    "propmpts": {
+      "are-you-sure": "هل أنت متأكد؟"
+    }
   }
 }

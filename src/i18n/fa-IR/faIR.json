@@ -6,6 +6,7 @@
     "Renew Subscription": "تمدید اشتراک",
     "Add New Business": "ایجاد کسب و کار جدید"
   },
+
   "login-page": {
     "page-title": "ورود",
     "placeholders": {
@@ -178,7 +179,7 @@
   "shared": {
     "labels": {
       "ok": "بسیار خوب",
-      "cancel": "انصراف",
+      "cancel": "بازگشت",
       "save": "ذخیره",
       "new": "جدید",
       "edit": "ویرایش",

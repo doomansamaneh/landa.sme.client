@@ -182,5 +182,22 @@
       "password": "Enter your password"
     },
     "buttons": { "delete-business": "Delete Business", "cancel": "Cancel" }
+  },
+
+  "shared": {
+    "labels": {
+      "ok": "Ok",
+      "cancel": "Cancel",
+      "save": "Save",
+      "new": "New",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "messages": {
+      "deleted-successfully": "Deleted Successfully"
+    },
+    "propmpts": {
+      "are-you-sure": "Are You Sure?"
+    }
   }
 }
