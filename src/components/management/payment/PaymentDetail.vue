@@ -210,9 +210,11 @@
   <q-card class="card-desktop gt-xs no-shadow q-my-xl">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
-        <q-item-label class="text-h6">پرداخت</q-item-label>
+        <q-item-label class="text-h6">{{
+          $t("page.payment-detail.title")
+        }}</q-item-label>
         <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
-          همه هزینه ها به ریال می باشد
+          {{ $t("page.payment-detail.caption") }}
         </q-item-label>
       </q-item-section>
       <q-card-actions>
@@ -220,28 +222,32 @@
           <div class="">
             <q-icon
               class="icon-hover dark-3 cursor-pointer"
-              size="xs"
+              size="sm"
               name="o_description"
               @click="$emit('reload-data')"
             >
-              <q-tooltip class="custom-tooltip">تبدیل به اکسل</q-tooltip>
+              <q-tooltip class="custom-tooltip">
+                {{ $t("page.payment-detail.buttons.excel") }}</q-tooltip
+              >
             </q-icon>
           </div>
           <div class="">
             <q-icon
               class="icon-hover dark-3 cursor-pointer"
-              size="xs"
+              size="sm"
               name="o_print"
               @click="print"
             >
-              <q-tooltip class="custom-tooltip">پرینت</q-tooltip>
+              <q-tooltip class="custom-tooltip">{{
+                $t("page.payment-detail.buttons.print")
+              }}</q-tooltip>
             </q-icon>
           </div>
         </div>
-        <div class="flex items-center q-gutter-x-md q-pr-xs">
+        <div class="flex items-center q-gutter-x-md q-pr-sm">
           <q-icon
             class="icon-hover dark-3 cursor-pointer"
-            size="xs"
+            size="sm"
             name="o_refresh"
             @click="$emit('reload-data')"
           >
@@ -253,11 +259,13 @@
         <div class="flex items-center q-gutter-x-md">
           <q-icon
             class="icon-hover dark-3 cursor-pointer"
-            size="xs"
+            size="sm"
             name="arrow_back"
             @click="$router.go(-1)"
           >
-            <q-tooltip class="custom-tooltip">بازگشت</q-tooltip>
+            <q-tooltip class="custom-tooltip">{{
+              $t("page.buttons.back")
+            }}</q-tooltip>
           </q-icon>
         </div>
       </q-card-actions>
@@ -277,20 +285,22 @@
           </q-item-label>
         </div>
         <div class="">
-          <span class="text-subtitle1 text-bold"
-            >صورتحساب فروش کالا و خدمات</span
-          >
+          <span class="text-subtitle1 text-bold">{{
+            $t("page.payment-detail.invoice-label")
+          }}</span>
         </div>
-        <div class="column q-gutter-sm text-right text-caption text-bold">
+        <div class="column q-gutter-sm text-right text-caption">
           <div>
             <span>
-              <span class="text-weight-thin">تاریخ:</span>
+              <span class="">{{ $t("page.payment-detail.invoice-date") }}</span>
               1401/02/09</span
             >
           </div>
           <div class="">
             <span>
-              <span class="text-weight-thin">شماره فاکتور:</span>
+              <span class="">{{
+                $t("page.payment-detail.invoice-number")
+              }}</span>
               20108</span
             >
           </div>
@@ -302,9 +312,9 @@
       <q-item class="flex justify-between text-caption">
         <div class="">
           <q-item-label class=""
-            ><span class="text-weight-bold"
-              >فروشنده:
-              <span class="text-weight-light">حسابداری آنلاین لاندا</span></span
+            ><span class="text-weight-bold">
+              {{ $t("page.payment-detail.seller") }}
+              <span class="text-weight-thin">حسابداری آنلاین لاندا</span></span
             >
             <div class="seller-address">
               <q-item-label class="q-mt-sm">
@@ -325,7 +335,8 @@
         <div class="">
           <q-item-label class=""
             ><span class="text-weight-bold"
-              >خریدار: <span class="text-weight-light">خشایار شمالی</span></span
+              >{{ $t("page.payment-detail.customer")
+              }}<span class="text-weight-light">خشایار شمالی</span></span
             >
             <div class="seller-address">
               <q-item-label class="q-mt-sm">
@@ -350,14 +361,26 @@
         <thead class="text-left">
           <tr>
             <th class="xs-width">
-              <span class="">ردیف</span>
+              <span class="">{{ $t("page.payment-detail.row") }}</span>
             </th>
-            <th class="xl-width"><span class="">طرح</span></th>
-            <th class="xs-width"><span class="">مقدار</span></th>
-            <th class="xs-width"><span class="">واحد</span></th>
-            <th class="lg-width"><span class="">تاریخ</span></th>
-            <th class="md-width"><span class="">مبلغ واحد</span></th>
-            <th class="md-width"><span class="">مبلغ کل</span></th>
+            <th class="xl-width">
+              <span class="">{{ $t("page.payment-detail.plan") }}</span>
+            </th>
+            <th class="xs-width">
+              <span class="">{{ $t("page.payment-detail.amount") }}</span>
+            </th>
+            <th class="xs-width">
+              <span class="">{{ $t("page.payment-detail.unit") }}</span>
+            </th>
+            <th class="lg-width">
+              <span class="">{{ $t("page.payment-detail.date") }}</span>
+            </th>
+            <th class="md-width">
+              <span class="">{{ $t("page.payment-detail.unit-price") }}</span>
+            </th>
+            <th class="md-width">
+              <span class="">{{ $t("page.payment-detail.total") }}</span>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -394,50 +417,50 @@
           </tr>
           <tr>
             <td class="text-right" colspan="6">
-              <span class="text-bold">جمع:</span>
+              <span class="">{{ $t("page.payment-detail.sub-total") }}</span>
             </td>
             <td class="">
-              <span class="text-bold">10,750,000</span>
+              <span class="">10,750,000</span>
             </td>
           </tr>
           <tr>
             <td class="text-right" colspan="6">
-              <span class="text-bold">جمع مالیات و عوارض:</span>
+              <span class="">{{ $t("page.payment-detail.vat-total") }}</span>
             </td>
-            <td><span class="text-bold">967,500</span></td>
+            <td><span class="">967,500</span></td>
           </tr>
           <tr>
             <td class="text-right" colspan="6">
-              <span class="text-bold q-pl-xs">جمع کل:</span
+              <span class="q-pl-xs">{{
+                $t("page.payment-detail.sub-total")
+              }}</span
               ><span class="">
-                <span class="text-bold q-pl-xs"
+                <span class="q-pl-xs"
                   ><span class="text-weight-thin q-pr-xs"
                     >یازده میلیون و هفتصد و هفده هزار و پانصد</span
-                  >ریال</span
+                  >{{ $t("page.payment-detail.rial") }}</span
                 >
               </span>
             </td>
-            <td><span class="text-bold">11,717,500</span></td>
+            <td><span class="">11,717,500</span></td>
           </tr>
           <tr>
-            <td class="text-right q-pr-sm" colspan="7">
-              <span class="text-bold q-pr-md"
-                >جمع دریافتی:<span class="text-weight-thin q-pl-xs"
-                  >11,717,500</span
-                ></span
+            <td class="text-right" colspan="7">
+              <span class=""
+                >{{ $t("page.payment-detail.total-receipt")
+                }}<span class="q-pl-xs">11,717,500</span></span
               >
-              <span class="text-bold q-pr-md"
-                >مانده:<span class="q-pl-xs"
-                  ><b class="underline">0</b></span
-                ></span
+              <span class="q-px-md"
+                >{{ $t("page.payment-detail.remained") }}
+                <span class="q-pl-xs"><b class="underline">0</b></span></span
               >
-              <span class="text-bold q-pr-md"
-                >مانده از قبل:<span class="text-weight-thin q-pl-xs"
-                  >(150,000,000)</span
-                ></span
+              <span class="q-pr-md"
+                >{{ $t("page.payment-detail.remained-but-this-year")
+                }}<span class="q-pl-xs">(150,000,000)</span></span
               >
-              <span class="text-bold q-pr-md q-pl-sm dark-1-bg"
-                >جمع مانده:<span class="text-weight-thin q-pl-xs"
+              <span class="dark-1-bg"
+                >{{ $t("page.payment-detail.remained-total") }}
+                <span class="q-pl-xs"
                   ><b class="underline">(150,000,000)</b></span
                 ></span
               >
@@ -445,7 +468,7 @@
           </tr>
         </tbody>
       </table>
-      <table class="quote-table q-mt-xl text-caption">
+      <!-- <table class="quote-table q-mt-xl text-caption">
         <tr>
           <td colspan="6" class="quote-place">
             <span class="text-bold">توضیحات:</span>
@@ -459,7 +482,7 @@
             <span>مهر و امضای خریدار</span>
           </td>
         </tr>
-      </table>
+      </table> -->
     </q-card-section>
   </q-card>
 </template>

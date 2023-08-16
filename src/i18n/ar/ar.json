@@ -95,6 +95,7 @@
       "caption": "جميع التكاليف بالريال الإيراني",
       "business-name-label": "الاسم التجاري:",
       "plan": "الخطة (بالريال):",
+      "rial": "ریال",
       "extension-period": "فترة التجديد:",
       "loyalty-discount": "خصم الولاء:",
       "total": "المجموع:",
@@ -103,6 +104,39 @@
       "pay-message": "يمكن الدفع عن طريق كافة بطاقات الشبكة المصرفية. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقة الدفع.",
       "buttons": {
         "payment": "دفع"
+      },
+      "lookup": {
+        "plan": "الخطة",
+        "per-month": "شهريا"
+      }
+    },
+    "payment-detail": {
+      "title": "قسط",
+      "caption": "جميع التكاليف بالريال الإيراني",
+      "invoice-label": "فاتورة",
+      "invoice-date": "تاريخ: ",
+      "invoice-number": "رقم الفاتورة: ",
+      "customer": "عميل: ",
+      "seller": "تاجر: ",
+      "row": "صف",
+      "date": "تاریخ",
+      "plan": "الخطة",
+      "amount": "الحجم",
+      "unit": "وحدة",
+      "unit-price": "سعر الوحدة",
+      "total": "المجموع",
+      "vat-total": "مجموع الضرائب والرسوم: ",
+      "sub-total": "المجموع: ",
+      "total-total": "المجموع: ",
+      "total-receipt": "مجموع الاستلام: ",
+      "remained": "الباقي: ",
+      "remained-but-this-year": "غادر من قبل: ",
+      "remained-total": "المتراكمة: ",
+      "rial": "ریال",
+
+      "buttons": {
+        "print": "مطبعة",
+        "excel": "اطبع إكسل"
       }
     }
   },

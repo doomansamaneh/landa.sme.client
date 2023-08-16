@@ -95,6 +95,7 @@
       "caption": "همه هزینه ها به ریال می‌باشد",
       "business-name-label": "نام کسب و کار:",
       "plan": "طرح (ریال):",
+      "rial": "ریال",
       "extension-period": "دوره تمدید:",
       "loyalty-discount": "تخفیف وفاداری:",
       "total": "جمع:",
@@ -103,6 +104,39 @@
       "pay-message": "پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم کارت خود را فعال کرده باشید.",
       "buttons": {
         "payment": "پرداخت"
+      },
+      "lookup": {
+        "plan": "طرح",
+        "per-month": "ماهانه"
+      }
+    },
+
+    "payment-detail": {
+      "title": "پرداخت",
+      "caption": "همه هزینه ها به ریال می‌باشد",
+      "invoice-label": "صورتحساب فروش کالا و خدمات",
+      "invoice-date": "تاریخ: ",
+      "invoice-number": "شماره فاکتور: ",
+      "customer": "خریدار: ",
+      "seller": "فروشنده: ",
+      "row": "ردیف",
+      "date": "تاریخ",
+      "plan": "طرح",
+      "amount": "مقدار",
+      "unit": "واحد",
+      "unit-price": "مبلغ واحد",
+      "total": "مبلغ کل",
+      "vat-total": "جمع عوارض و مالیات: ",
+      "sub-total": "جمع: ",
+      "total-total": "جمع کل: ",
+      "total-receipt": "جمع دریافتی: ",
+      "remained": "مانده: ",
+      "remained-but-this-year": "مانده از قبل: ",
+      "remained-total": "جمع مانده: ",
+      "rial": "ریال",
+      "buttons": {
+        "print": "چاپ",
+        "excel": "تبدیل به اکسل"
       }
     }
   },
@@ -129,7 +163,7 @@
     },
     "buttons": { "invite-user": "دعوت از کاربر", "cancel": "بازگشت" }
   },
-  
+
   "delete-business-page": {
     "title": "حذف کسب و کار",
     "placeholders": {

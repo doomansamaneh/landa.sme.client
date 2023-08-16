@@ -14,7 +14,7 @@
           <div class="flex items-center q-gutter-x-md">
             <q-icon
               class="icon-hover dark-3 cursor-pointer"
-              size="xs"
+              size="sm"
               name="arrow_back"
               @click="$router.go(-1)"
             >

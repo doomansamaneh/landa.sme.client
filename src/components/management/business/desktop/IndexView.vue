@@ -19,10 +19,10 @@
           }}</q-item-label>
         </q-item-section>
         <q-card-actions>
-          <div class="flex items-center q-mr-xs">
+          <div class="flex items-center q-mr-sm">
             <q-icon
               class="icon-hover dark-3 cursor-pointer"
-              size="xs"
+              size="sm"
               name="o_refresh"
               @click="reloadData"
               clickable
@@ -35,7 +35,7 @@
           <div class="flex items-center q-gutter-x-md">
             <q-icon
               class="icon-hover dark-3 cursor-pointer"
-              size="xs"
+              size="sm"
               name="o_help_outline"
               @click="showGuideDialog = true"
             >

@@ -30,6 +30,7 @@
         @click="submitForm"
         color="red-6"
         size="md"
+        unelevated
         padding="8px 16px"
         class="change-password-btn q-py-sm"
         no-caps
