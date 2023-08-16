@@ -12,11 +12,7 @@
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon class="icon-hover dark-3 cursor-pointer" size="xs" name="arrow_back" @click="$router.go(-1)">
-              <q-tooltip class="custom-tooltip">{{
-                $t("page.buttons.back")
-              }}</q-tooltip>
-            </q-icon>
+            <back-button />
           </div>
         </q-card-actions>
       </q-item>
@@ -77,6 +73,7 @@
   import { useRoute } from "vue-router"
   import { fetchWrapper } from "src/helpers"
   import SelectPlan from "src/components/management/shared/SelectPlan.vue"
+  import BackButton from "src/components/shared/buttons/BackButton.vue"
 
   const route = useRoute()
   const shape = ref("line")

@@ -14,12 +14,12 @@
     <q-menu fit no-parent-event v-model="isPopupOpen" @show="onMenuShow" @hide="onMenuHide" ref="popup"
       transition-show="jump-down" transition-hide="jump-up" no-refocus no-focus>
       <div class="container_ lookup-container">
-        <q-inner-loading :showing="loadingData" class="inner-loader q-my-lg">
+        <q-inner-loading :showing="showLoader" class="inner-loader q-my-lg">
           <q-spinner size="50px" color="primary" />
         </q-inner-loading>
 
         <div class="lookup-body">
-          <table id="table_" ref="table" class="text-left text-caption" tabindex="0">
+          <table ref="table" class="text-left text-caption" tabindex="0">
             <slot name="thead" />
             <tbody class="lookup-table-body">
               <tr v-for="(item, index) in rows" :key="item.id" :class="{ 'selected-row': index === selectedRowIndex }"
@@ -29,7 +29,7 @@
             </tbody>
           </table>
 
-          <div v-if="pagedRows.length === 0 && !loadingData"
+          <div v-if="noDataFound"
             class="nothing-found no-padding no-results column justify-center items-center q-my-xl">
             <div class="">
               <img class="nothing-found-svg" src="../../../public/page-lost.svg" style="width: 150px" />
@@ -46,7 +46,7 @@
 
 <script setup>
   import { fetchWrapper } from "src/helpers"
-  import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
+  import { ref, computed, onMounted } from "vue"
   import { useQuasar } from "quasar"
   import { useRouter } from "vue-router"
   import businessRoutes from "src/router/business-routes"
@@ -66,17 +66,17 @@
 
   const router = useRouter()
   const rows = ref([])
+  const showLoader = ref(false)
   const loadingData = ref(false)
   const selectedId = ref(null)
   const selectedText = ref("")
   const searchTerm = ref("")
   const defaultPageSize = 5
-  //const selectedCard = ref(false)
   const businessId = ref("")
- 
+
   let sortColumn = null
   let sortAscending = true
-  
+
   const pagination = ref({
     sortBy: props.orderByField,
     descending: false,
@@ -145,28 +145,18 @@
     selectedText.value = displayText
   }
 
-  // const pagedRows = computed(() => {
-  //   return rows.value
-  // })
-
   async function reloadData(showLoading = true) {
-    // if (showLoading) {
-    //   loadingData.value = true
-    // }
-    // if (rows.value.length === 0) {
-    //   loadingData.value = true
-    // } else {
-    //   loadingData.value = false
-    // }
+    //todo: how to cach data reloading
     await loadData(pagination.value)
   }
 
   async function loadData(pagination) {
-    const loaderTimeout = 1000
+    const loaderTimeout = 500
+    loadingData.value = true;
     let loadingTimer = setTimeout(() => {
-      loadingData.value = true
+      if (loadingData.value) showLoader.value = true
     }, loaderTimeout)
-    //selectedCard.value = false
+
 
     let filterExpression = []
 
@@ -193,7 +183,8 @@
       })
       .finally(() => {
         clearTimeout(loadingTimer)
-        loadingData.value = false
+        loadingData.value = false;
+        showLoader.value = false
         if (rows?.value.length < selectedRowIndex.value + 1)
           selectedRowIndex.value = 0
       })
@@ -207,26 +198,6 @@
     pagination.sortBy = pagination.sortBy
     pagination.descending = pagination.descending
   }
-
-  // function isSelected(index) {
-  //   return selectedCard.value === index
-  // }
-
-  // async function showLookup() {
-  //   if (!hasLoadedData.value) {
-  //     //document.getElementById("table")?.focus()
-  //     table.value.focus()
-  //     search.value.focus()
-  //     showPopup()
-  //     await reloadData()
-  //     hasLoadedData.value = true
-  //   } else {
-  //     //document.getElementById("table")?.focus()
-  //     table.value.focus()
-  //     search.value.focus()
-  //     showPopup()
-  //   }
-  // }
 
   function handlePopup() {
     if (isPopupOpen.value) hidePopup()
@@ -269,6 +240,7 @@
 
   function onMenuShow() {
     isPopupOpen.value = true;
+    search.value.focus()
   }
 
   function onMenuHide() {
@@ -288,9 +260,7 @@
   }
 
   async function showPopup() {
-    if (!isPopupOpen.value) {
-      popup.value.show()
-    }
+    popup.value.show()
     await reloadData()
   }
 
@@ -298,25 +268,9 @@
     popup.value.hide()
   }
 
-  // watch(isPopupOpen, async (newValue) => {
-  //   if (newValue) {
-  //     showLookup()
-  //   }
-  // })
-
   const isSearchEmpty = computed(() => !selectedId.value)
 
-  const showPagebar = computed(() => {
-    return pagination.value.totalItems > defaultPageSize
-  })
-
-  const showPaging = computed(
-    () => pagination.value.totalItems > pagination.value.pageSize
-  )
-
-  const maxPage = computed(() =>
-    Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
-  )
+  const noDataFound = computed(() => rows.value.length === 0 && !loadingData.value)
 
   defineExpose({
     sortSelectedColumn,
@@ -355,16 +309,4 @@
   .plan-title-card:focus {
     outline: none;
   }
-
-  .container {
-    position: absolute;
-    padding-top: 16px;
-    padding-right: 12px;
-    right: 0;
-    z-index: 1;
-  }
-
-  /* .q-position-engine {
-    visibility: inherit;
-  } */
 </style>

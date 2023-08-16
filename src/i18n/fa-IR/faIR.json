@@ -129,12 +129,29 @@
     },
     "buttons": { "invite-user": "دعوت از کاربر", "cancel": "بازگشت" }
   },
-  
+
   "delete-business-page": {
     "title": "حذف کسب و کار",
     "placeholders": {
       "password": "رمز عبور"
     },
     "buttons": { "delete-business": "حذف کسب و کار", "cancel": "بازگشت" }
+  },
+
+  "shared": {
+    "labels": {
+      "ok": "بسیار خوب",
+      "cancel": "انصراف",
+      "save": "ذخیره",
+      "new": "جدید",
+      "edit": "ویرایش",
+      "delete": "حذف"
+    },
+    "messages": {
+      "deleted-successfully": "با موفقیت حذف شد"
+    },
+    "propmpts": {
+      "are-you-sure": "آیا اطمینان دارید"
+    }
   }
 }
