@@ -84,7 +84,7 @@
       <q-btn
         flat
         size="md"
-        class="text-bold"
+        class=""
         no-caps
         padding="8px 16px"
         :label="$t('change-password-page.buttons.cancel')"
