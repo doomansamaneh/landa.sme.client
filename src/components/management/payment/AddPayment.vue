@@ -20,7 +20,7 @@
     <q-separator />
     <q-card-section class="q-mx-md q-pt-lg">
       <q-form ref="form" autofocus>
-        <div class="row q-mb-lg">
+        <div class="row q-mb-lg items-center">
           <div class="col-2">
             <q-item-label>{{
               $t("page.renew-subscription.business-name-label")
@@ -67,10 +67,9 @@
         ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
         {{ $t("page.renew-subscription.buttons.payment") }}
       </q-btn>
-      <span class="text-caption q-pl-md"
-        >پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم
-        کارت خود را فعال کرده باشید.</span
-      >
+      <span class="text-caption q-pl-md">{{
+        $t("page.add-business.pay-caption")
+      }}</span>
     </q-card-actions>
   </q-card>
 </template>

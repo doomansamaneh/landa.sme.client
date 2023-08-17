@@ -165,6 +165,7 @@
       "name": "نام",
       "email": "ایمیل"
     },
+    "select-group-caption": "می‌خواهید کاربر عضو چه گروهی باشد؟",
     "buttons": { "invite-user": "دعوت از کاربر", "cancel": "بازگشت" }
   },
 

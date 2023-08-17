@@ -39,7 +39,7 @@
           :options="userGroup"
           hide-dropdown-icon
           use-chips
-          hint="می‌خواهید کاربر عضو چه گروهی باشد؟"
+          :hint="$t('invite-user-page.select-group-caption')"
           hide-hint
           class="user-group"
         >

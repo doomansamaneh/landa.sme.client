@@ -169,6 +169,7 @@
       "name": "Name",
       "email": "Email"
     },
+    "select-group-caption": "What group do you want the user to be a member of?",
     "buttons": {
       "invite-user": "Invite User",
       "close": "close",
