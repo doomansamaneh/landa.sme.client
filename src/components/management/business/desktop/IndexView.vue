@@ -193,75 +193,22 @@
       </div>
     </template>
   </data-view>
-
-  <q-dialog
-    v-model="inviteUserPopup"
-    transition-show="slide-down"
-    transition-hide="fade"
-    transition-duration="600"
-    no-backdrop-dismiss
-  >
-    <invite-user>
-      <template #header>
-        <q-item-section>
-          <q-item-label class="text-h6">{{
-            $t("invite-user-page.title")
-          }}</q-item-label>
-        </q-item-section>
-        <q-card-actions>
-          <q-space />
-          <q-btn
-            icon="close"
-            class="icon-hover dark-3"
-            flat
-            round
-            dense
-            v-close-popup
-          />
-        </q-card-actions>
-      </template>
-    </invite-user>
-  </q-dialog>
-  <q-dialog
-    v-model="DeleteBusienssPopup"
-    transition-show="slide-down"
-    transition-hide="fade"
-    transition-duration="600"
-    no-backdrop-dismiss
-  >
-    <delete-business>
-      <template #header>
-        <q-item-section>
-          <q-item-label class="text-h6">{{
-            $t("delete-business-page.title")
-          }}</q-item-label>
-        </q-item-section>
-        <q-card-actions>
-          <q-space />
-          <q-btn
-            icon="close"
-            class="icon-hover dark-3"
-            flat
-            round
-            dense
-            v-close-popup
-          />
-        </q-card-actions>
-      </template>
-    </delete-business>
-  </q-dialog>
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import { useRouter } from "vue-router"
+import { useQuasar } from "quasar"
 import InviteUser from "src/components/users/InviteUser.vue"
 import DeleteBusiness from "src/components/management/business/DeleteBusiness.vue"
 import DataView from "src/components/shared/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
 import DesktopViewGuide from "./GuideView.vue"
+import InviteUserDialog from "src/components/users/InviteUserDialog.vue"
+import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
 
 const router = useRouter()
+const $q = useQuasar()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
 const inviteUserPopup = ref(false)
@@ -284,11 +231,15 @@ async function reloadData() {
 }
 
 function showInviteUser() {
-  inviteUserPopup.value = true
+  $q.dialog({
+    component: InviteUserDialog
+  })
 }
 
 function showDeleteBusiness() {
-  DeleteBusienssPopup.value = true
+  $q.dialog({
+    component: DeleteBusinessDialog
+  })
 }
 </script>
 
