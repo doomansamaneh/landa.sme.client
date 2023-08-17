@@ -1,6 +1,6 @@
 <template>
-  <q-card class="change-password-card">
-    <q-card-section class="row items-center">
+  <q-card class="dialog-card">
+    <q-card-section class="row items-center q-px-lg">
       <div class="text-h6">
         {{ $t("change-password-page.title") }}
       </div>
@@ -11,7 +11,7 @@
     </q-card-section>
 
     <q-card-section>
-      <q-form ref="form" autofocus>
+      <q-form ref="form" autofocus class="q-px-sm">
         <q-input
           outlined
           v-model="oldPassword"
@@ -79,7 +79,7 @@
       </q-form>
     </q-card-section>
 
-    <actions @ok-clicked="submitForm">
+    <actions @ok-clicked="submitForm" class="q-px-lg">
       <template #ok-label>{{
         $t("change-password-page.buttons.change-password")
       }}</template>
@@ -134,9 +134,9 @@ async function changePassword() {
 </script>
 
 <style scoped>
-.change-password-card {
-  width: 300px;
-  /* border-radius: 9px; */
+.dialog-card {
+  width: 400px;
+  border-radius: 8px;
 }
 
 /* .change-password-btn {

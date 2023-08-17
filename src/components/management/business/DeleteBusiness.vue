@@ -1,61 +1,58 @@
 <template>
-  <q-card class="change-password-card">
-    <q-item>
-      <slot name="header" />
-    </q-item>
-    <q-form class="q-pt-lg q-pb-md q-px-md" @submit="changePassword">
-      <q-input
-        outlined
-        v-model="password"
-        :type="isPwd ? 'password' : 'text'"
-        :placeholder="$t('login-page.placeholders.password')"
-        dense
-        required
-        lazy-rules
-        :rules="[(val) => val !== null && val !== '']"
-      >
-        <template v-slot:append>
-          <q-icon
-            :name="isPwd ? 'visibility_off' : 'visibility'"
-            size="xs"
-            class="cursor-pointer"
-            @click="isPwd = !isPwd"
-          />
-        </template>
-      </q-input>
-    </q-form>
-    <q-card-actions class="row q-pa-md dark-1">
-      <q-btn
-        type="submit"
-        @click="submitForm"
-        color="red-6"
-        size="md"
-        unelevated
-        padding="8px 16px"
-        class="change-password-btn q-py-sm"
-        no-caps
-        :label="$t('delete-business-page.buttons.delete-business')"
-      />
-      <q-btn
-        size="md"
-        padding="8px 16px"
-        class="cancel-btn q-py-sm"
-        no-caps
-        :label="$t('delete-business-page.buttons.cancel')"
-        v-close-popup
-        flat
-      />
-    </q-card-actions>
+  <q-card class="dialog-card">
+    <q-card-section class="row items-center q-px-lg">
+      <div class="text-h6">
+        {{ $t("delete-business-page.title") }}
+      </div>
+      <q-space />
+      <slot name="close-icon">
+        <back-button />
+      </slot>
+    </q-card-section>
+    <q-card-section>
+      <q-form class="q-px-sm" @submit="changePassword" ref="form" autofocus>
+        <q-input
+          outlined
+          v-model="password"
+          :type="isPwd ? 'password' : 'text'"
+          :placeholder="$t('login-page.placeholders.password')"
+          dense
+          required
+          lazy-rules
+          :rules="[(val) => val !== null && val !== '']"
+        >
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              size="xs"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
+      </q-form>
+    </q-card-section>
+    <actions @ok-clicked="submitForm" class="q-px-lg">
+      <template #ok-label>{{
+        $t("delete-business-page.buttons.delete-business")
+      }}</template>
+    </actions>
   </q-card>
 </template>
 
 <script setup>
 import { ref } from "vue"
 
+import BackButton from "src/components/shared/buttons/BackButton.vue"
+import Actions from "src/components/shared/forms/FormCardActions.vue"
+
 import { useAuthStore } from "../../../stores"
 import { fetchWrapper } from "../../../helpers"
 
 const authStore = useAuthStore()
+
+const emit = defineEmits(["submitted"])
+const form = ref(null)
 
 const password = ref("")
 const isPwd = ref(true)
@@ -93,9 +90,9 @@ async function changePassword() {
 </script>
 
 <style scoped>
-.change-password-card {
+.dialog-card {
   width: 400px;
-  border-radius: 9px;
+  border-radius: 8px;
 }
 
 /* .change-password-btn {
