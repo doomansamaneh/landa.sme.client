@@ -48,7 +48,7 @@
           <span>{{ $t("page.renew-subscription.loyalty-discount") }}</span>
         </div>
         <div class="col-5">
-          <span>{{ loyaltyDiscount.toLocaleString() }}</span>
+          <span>{{ loyaltyDiscountTotal.toLocaleString() }}</span>
         </div>
       </div>
       <div class="row">

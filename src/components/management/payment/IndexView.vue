@@ -5,7 +5,6 @@
     :dataSource="`business/getBusinessPaymentGridData/${$route.params.businessId}`"
     orderByField="fromDate"
     searchField="amount"
-    @reload-data="reloadData"
   >
     <template #header>
       <q-item class="card-header q-px-lg q-py-lg">

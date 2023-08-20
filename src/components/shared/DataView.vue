@@ -80,8 +80,11 @@ import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { useQuasar } from "quasar"
 import { useRouter } from "vue-router"
 import { fetchWrapper } from "../../helpers"
+import { usePaginationStore } from "src/stores/pagination-store.js"
 import businessRoutes from "src/router/business-routes"
 import PageBar from "./PageBar.vue"
+
+const paginationStore = usePaginationStore()
 
 const props = defineProps({
   title: String,
@@ -154,7 +157,7 @@ async function loadData(pagination) {
       pageSize: pagination.pageSize,
       sortColumn: pagination.sortBy,
       sortOrder: pagination.descending ? 1 : 2,
-      currentPage: pagination.currentPage,
+      currentPage: paginationStore.currentPage,
       filterExpression: filterExpression
     })
     .then((response) => {
