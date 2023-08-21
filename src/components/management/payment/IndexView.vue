@@ -1,8 +1,8 @@
 <template>
   <data-view
     class="card-desktop gt-xs no-shadow q-my-xl"
-    ref="businessDataView"
-    :dataSource="`business/getBusinessPaymentGridData/${$route.params.businessId}`"
+    ref="paymentGrid"
+    :dataSource="paymentDataSource"
     orderByField="fromDate"
     searchField="amount"
     storeName="payment"
@@ -14,7 +14,7 @@
             $t("page.payment-history.payment-card-title")
           }}</q-item-label>
           <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
-            {{ $route.params.businessTitle }}
+            {{ business?.title }}
           </q-item-label>
         </q-item-section>
         <q-card-actions>
@@ -23,7 +23,7 @@
               class="icon-hover dark-3 cursor-pointer"
               size="sm"
               name="o_refresh"
-              @click="reloadData"
+              @click="refreshPayments"
             >
               <q-tooltip class="custom-tooltip">{{
                 $t("page.buttons.reload-data")
@@ -35,8 +35,7 @@
             <renew-subscribtion
               class="bg-green text-white"
               size="12px"
-              :businessId="$route.params.businessId"
-              :businessTitle="$route.params.businessTitle"
+              :business="business"
             />
           </div>
         </q-card-actions>
@@ -68,9 +67,9 @@
         </label>
       </div>
       <div class="col-1 row justify-center">
-        <label class="text-caption text-light-blue-7 q-pr-sm">{{
-          planTitle
-        }}</label>
+        <label class="text-caption text-light-blue-7 q-pr-sm">
+          {{ item.planTitle }}
+        </label>
       </div>
       <div
         class="expire-date-container col-3 flex items-center justify-center q-gutter-x-xl"
@@ -103,14 +102,16 @@
         </q-btn>
         <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list padding>
-            <q-item clickable v-close-popup @click="goToPaymentDetail">
+            <q-item clickable v-close-popup>
               <q-item-section>
-                <div class="flex items-center q-gutter-x-sm">
-                  <q-avatar icon="o_visibility" size="sm" class="dark-1" />
-                  <div class="text-caption">
-                    {{ $t("page.payment-history.buttons.view") }}
+                <router-link :to="getDetailUrl(item)">
+                  <div class="flex items-center q-gutter-x-sm">
+                    <q-avatar icon="o_visibility" size="sm" class="dark-1" />
+                    <div class="text-caption">
+                      {{ $t("page.payment-history.buttons.view") }}
+                    </div>
                   </div>
-                </div>
+                </router-link>
               </q-item-section>
             </q-item>
           </q-list>
@@ -121,26 +122,18 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onBeforeUnmount, watch } from "vue"
-import { ref } from "vue"
-import { useQuasar } from "quasar"
-import { useRoute, useRouter } from "vue-router"
+import { ref, onMounted, computed } from "vue"
+import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 
 import DataView from "src/components/shared/DataView.vue"
-import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
-import BackButton from "src/components/shared/Buttons/BackButton.vue"
 
-const router = useRouter()
-const route = useRouter()
+const route = useRoute()
 
-const planTitle = "طرح 3"
-const businessDataView = ref(null)
+const business = ref(null)
+const paymentGrid = ref(null)
 
-async function goToPaymentDetail(item) {
-  router.push(`/business/PaymentDetail/${item.id}`)
-}
-
+//todo: remove this code from here to somewhere more general
 const formatCurrency = (value) => {
   const language = localStorage.getItem("selectedLanguage")
   if (language === "fa-IR") {
@@ -152,17 +145,41 @@ const formatCurrency = (value) => {
   }
 }
 
+async function loadData() {
+  await fetchWrapper
+    .get(`business/GetBusiness/${route.params.businessId}`)
+    .then((response) => {
+      business.value = response.data.data
+    })
+}
+
+async function refreshPayments() {
+  paymentGrid.value.reloadData()
+}
+
+function getDetailUrl(item) {
+  return `/business/PaymentDetail/${item.id}`
+}
+
+onMounted(() => {
+  loadData()
+})
+
+const paymentDataSource = computed(
+  () => `business/getBusinessPaymentGridData/${route.params.businessId}`
+)
+
 defineExpose({
   formatCurrency
 })
-
-async function reloadData() {
-  businessDataView.value.reloadData()
-}
 </script>
 
 <style lang="scss" scoped>
 .card-desktop {
   width: 620px !important;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 </style>

@@ -43,11 +43,11 @@
 <script setup>
 import { ref } from "vue"
 
-import BackButton from "src/components/shared/buttons/BackButton.vue"
-import Actions from "src/components/shared/forms/FormCardActions.vue"
+import { useAuthStore } from "src/stores"
+import { fetchWrapper } from "src/helpers"
 
-import { useAuthStore } from "../../../stores"
-import { fetchWrapper } from "../../../helpers"
+import Actions from "src/components/shared/forms/FormCardActions.vue"
+import BackButton from "src/components/shared/buttons/GoBackLink.vue"
 
 const authStore = useAuthStore()
 

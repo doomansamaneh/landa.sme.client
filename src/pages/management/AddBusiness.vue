@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import AddBusiness from "src/components/management/business/addBusiness.vue"
+import AddBusiness from "src/components/management/business/AddBusiness.vue"
 </script>

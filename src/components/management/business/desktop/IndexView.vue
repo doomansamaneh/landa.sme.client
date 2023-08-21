@@ -44,19 +44,7 @@
                 $t("page.buttons.guide-tooltip")
               }}</q-tooltip>
             </q-icon>
-            <q-btn
-              rounded
-              class="service-extension text-caption"
-              size="12px"
-              no-caps
-              outline
-              unelevated
-              padding="6px 12px"
-              @click="goToAddBusiness"
-            >
-              <q-icon name="add" class="q-pr-xs" size="14px" />
-              {{ $t("page.buttons.add-new-business-tooltip") }}
-            </q-btn>
+            <add-business />
           </div>
         </q-card-actions>
       </q-item>
@@ -120,15 +108,11 @@
           }}</q-tooltip>
         </label>
       </div>
+
       <div class="col-3 flex justify-center items-center q-ml-md">
-        <renew-subscribtion
-          class="bg-green text-white"
-          :businessId="item.id"
-          :title="item.title"
-          :planTitle="item.planTitle"
-          v-if="item.isOwner && item.daysToExpire < 350"
-        />
+        <renew-subscribtion class="bg-green text-white" :business="item" />
       </div>
+
       <div class="more-options col-1 q-pl-md">
         <q-btn
           class="more-icon dark-2"
@@ -178,14 +162,16 @@
                 </q-item-section>
               </q-item>
               <q-separator spaced />
-              <q-item clickable v-close-popup @click="goToPaymentHistory(item)">
+              <q-item clickable v-close-popup>
                 <q-item-section>
-                  <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar icon="credit_card" size="sm" class="dark-1" />
-                    <div class="text-caption_">
-                      {{ $t("page.buttons.more-button.payment-history") }}
+                  <router-link :to="getPaymentLogUrl(item)">
+                    <div class="flex items-center q-gutter-x-sm">
+                      <q-avatar icon="credit_card" size="sm" class="dark-1" />
+                      <div class="text-caption_">
+                        {{ $t("page.buttons.more-button.payment-history") }}
+                      </div>
                     </div>
-                  </div>
+                  </router-link>
                 </q-item-section>
               </q-item>
             </div>
@@ -203,7 +189,8 @@ import { useQuasar } from "quasar"
 import InviteUser from "src/components/users/InviteUser.vue"
 import DeleteBusiness from "src/components/management/business/DeleteBusiness.vue"
 import DataView from "src/components/shared/DataView.vue"
-import RenewSubscribtion from "src/components/management/shared/RenewSubscribtion.vue"
+import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
+import AddBusiness from "src/components/management/shared/AddBusinessLink.vue"
 import DesktopViewGuide from "./GuideView.vue"
 import InviteUserDialog from "src/components/users/InviteUserDialog.vue"
 import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
@@ -216,15 +203,12 @@ const inviteUserPopup = ref(false)
 const DeleteBusienssPopup = ref(false)
 
 async function gotoBusiness(item) {
-  router.push(`home/${item.id}`)
+  //todo: call goto
+  router.push(`/home/${item.id}`)
 }
 
-async function goToPaymentHistory(item) {
-  router.push(`business/payments/${item.id}/${item.title}`)
-}
-
-function goToAddBusiness() {
-  router.push("business/addBusiness")
+function getPaymentLogUrl(item) {
+  return `/business/payments/${item.id}`
 }
 
 async function reloadData() {
@@ -247,5 +231,10 @@ function showDeleteBusiness() {
 <style>
 .business-name {
   max-width: 160px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 </style>

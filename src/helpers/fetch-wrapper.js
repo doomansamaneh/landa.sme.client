@@ -2,8 +2,8 @@ import axios from "axios"
 import { useAuthStore } from "../stores"
 import { useAlertStore } from "../stores"
 
-const baseUrl = "https://api.landa-sme.ir"
-//const baseUrl = "http://localhost:9090"
+//const baseUrl = "https://api.landa-sme.ir"
+const baseUrl = "http://localhost:9090"
 
 axios.defaults.baseURL = baseUrl
 
@@ -24,11 +24,13 @@ function request(method) {
       url: fullUrl,
       headers: authHeaders,
       data: data
-    }).then(response => {
-      return handleKnownError(url, response)
-    }).catch(error => {
-      return handleError(url, error)
     })
+      .then((response) => {
+        return handleKnownError(url, response)
+      })
+      .catch((error) => {
+        return handleError(url, error)
+      })
   }
 }
 
@@ -58,22 +60,20 @@ function handleError(url, error) {
     alertData.status = error.response.status
     const { user, logout } = useAuthStore()
     if ([401, 403].includes(error.response.status)) {
-      if (user) { logout() }
-    }
-    else {
-      const data = error.response.data;
+      if (user) {
+        logout()
+      }
+    } else {
+      const data = error.response.data
       if (data && data.message) alertData.message = data.message
     }
-  }
-  else if (error.request) {
+  } else if (error.request) {
     alertData.status = error.request.status
     if (error.data && error.data.message) {
       alertData.type = "warning"
       alertData.message = error.data.message
-    }
-    else alertData.message = "login-page.network-error"
-  }
-  else {
+    } else alertData.message = "login-page.network-error"
+  } else {
     alertData.message = error
   }
   setError(alertData)
