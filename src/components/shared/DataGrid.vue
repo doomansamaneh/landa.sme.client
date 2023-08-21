@@ -9,14 +9,14 @@
     :loading="loading"
     :rows="rows"
     :title="title"
-    v-model:pagination="pagination"
+    v-model:pagination="pageSetting"
     :rows-per-page-options="[5, 10, 25, 50, 100]"
     @request="onRequest"
     binary-state-sort
     :columns="columns"
     :table-style="
       'counter-reset: cssRowCounter ' +
-      (pagination.page - 1) * pagination.rowsPerPage +
+      (pageSetting.page - 1) * pageSetting.rowsPerPage +
       ';'
     "
   >
@@ -28,9 +28,9 @@
 
 <script setup>
 import { ref, onMounted } from "vue"
-import { fetchWrapper } from "../../helpers"
+import { fetchWrapper } from "src/helpers"
 
-const thisProps = defineProps({
+const props = defineProps({
   sortBy: String,
   columns: Array,
   title: String,
@@ -45,8 +45,8 @@ const selected = ref([])
 const rows = ref([])
 const loading = ref(false)
 
-const pagination = ref({
-  sortBy: thisProps.sortBy,
+const pageSetting = ref({
+  sortBy: props.sortBy,
   page: 1,
   rowsPerPage: 10,
   rowsNumber: 0
@@ -57,7 +57,7 @@ onMounted(() => {
 })
 
 async function reloadData() {
-  await loadData(pagination.value)
+  await loadData(pageSetting)
 }
 
 async function onRequest(props) {
@@ -67,11 +67,11 @@ async function onRequest(props) {
 async function loadData(pagination) {
   loading.value = true
   await fetchWrapper
-    .post(thisProps.dataSource, {
-      pageSize: pagination.rowsPerPage,
-      sortColumn: pagination.sortBy,
-      sortOrder: pagination.descending ? 1 : 2,
-      currentPage: pagination.page
+    .post(props.dataSource, {
+      pageSize: pageSetting.value.rowsPerPage,
+      sortColumn: pageSetting.value.sortBy,
+      sortOrder: pageSetting.value.descending ? 1 : 2,
+      currentPage: pageSetting.value.page
       //columns: columns
     })
     .then((response) => {
@@ -84,11 +84,11 @@ async function loadData(pagination) {
 
 function handleResponse(pagedData, pagination) {
   rows.value = pagedData.items
-  pagination.value.rowsNumber = pagedData.page.totalItems
-  pagination.value.rowsPerPage = pagedData.page.pageSize
-  pagination.value.page = pagedData.page.currentPage
-  pagination.value.sortBy = pagination.sortBy
-  pagination.value.descending = pagination.descending
+  pageSetting.value.rowsNumber = pagedData.page.totalItems
+  pageSetting.value.rowsPerPage = pagedData.page.pageSize
+  pageSetting.value.page = pagedData.page.currentPage
+  pageSetting.value.sortBy = pagination.sortBy
+  pageSetting.value.descending = pagination.descending
 }
 
 function onSelect() {

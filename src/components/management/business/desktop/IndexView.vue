@@ -12,12 +12,12 @@
       <DesktopViewGuide v-model="showGuideDialog" />
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
-          <q-item-label class="text-h6">{{
-            $t("pages.business")
-          }}</q-item-label>
-          <q-item-label class="dark-2 q-pt-xs_ text-subtitle2" caption>{{
-            $t("page.card-message")
-          }}</q-item-label>
+          <q-item-label class="text-h6">
+            {{ $t("pages.business") }}
+          </q-item-label>
+          <q-item-label class="dark-2 q-pt-xs_ text-subtitle2" caption>
+            {{ $t("page.card-message") }}
+          </q-item-label>
         </q-item-section>
         <q-card-actions>
           <div class="flex items-center q-mr-sm">
@@ -28,9 +28,9 @@
               @click="reloadData"
               clickable
             >
-              <q-tooltip class="custom-tooltip" :delay="600">{{
-                $t("page.buttons.reload-data")
-              }}</q-tooltip>
+              <q-tooltip class="custom-tooltip" :delay="600">
+                {{ $t("page.buttons.reload-data") }}
+              </q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
@@ -40,9 +40,9 @@
               name="o_help_outline"
               @click="showGuideDialog = true"
             >
-              <q-tooltip class="custom-tooltip" :delay="600">{{
-                $t("page.buttons.guide-tooltip")
-              }}</q-tooltip>
+              <q-tooltip class="custom-tooltip" :delay="600">
+                {{ $t("page.buttons.guide-tooltip") }}
+              </q-tooltip>
             </q-icon>
             <add-business />
           </div>
@@ -194,6 +194,7 @@ import AddBusiness from "src/components/management/shared/AddBusinessLink.vue"
 import DesktopViewGuide from "./GuideView.vue"
 import InviteUserDialog from "src/components/users/InviteUserDialog.vue"
 import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
+import { fetchWrapper } from "src/helpers"
 
 const router = useRouter()
 const $q = useQuasar()
@@ -203,8 +204,12 @@ const inviteUserPopup = ref(false)
 const DeleteBusienssPopup = ref(false)
 
 async function gotoBusiness(item) {
-  //todo: call goto
-  router.push(`/home/${item.id}`)
+  await fetchWrapper
+    .post(`business/gotoBusiness/${item.id}`)
+    .then((response) => {
+      alert(`goto business: ${response.data.data.culture}`)
+      router.push(`/${response.data.data.url}/${item.id}`)
+    })
 }
 
 function getPaymentLogUrl(item) {

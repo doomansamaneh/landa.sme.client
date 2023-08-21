@@ -1,6 +1,7 @@
 {
   "pages": {
     "business": "کسب و کار‌های من",
+    "business-expired": "انقضای سرویس",
     "payments": "پرداختها",
     "payment-detail": "ریز پرداخت",
     "renew-subscription": "تمدید اشتراک",

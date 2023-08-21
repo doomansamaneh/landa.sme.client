@@ -62,6 +62,14 @@ export default {
       meta: {
         icon: "o_monetization_on"
       }
+    },
+    {
+      path: "expired/:businessId",
+      name: "business-expired",
+      component: () => import("src/pages/management/BusinessExpiredPage.vue"),
+      meta: {
+        icon: "o_monetization_on"
+      }
     }
   ]
 }
