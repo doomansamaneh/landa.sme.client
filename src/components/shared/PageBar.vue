@@ -41,12 +41,13 @@
 import { ref, onMounted, computed } from "vue"
 import { usePaginationStore } from "src/stores/pagination-store.js"
 
-const paginationStore = usePaginationStore()
-
 const props = defineProps({
   pagination: Object,
-  currentPage: Number
+  currentPage: Number,
+  storeName: String
 })
+
+const paginationStore = usePaginationStore(props.storeName)
 
 const pagination = ref(props.pagination)
 const defaultPageSize = 5
@@ -63,8 +64,7 @@ const maxPage = computed(() =>
 )
 
 const emit = defineEmits(["page-changed"])
-function handlePageChange(newPage) {
-  paginationStore.setCurrentPage(newPage)
+function handlePageChange() {
   emit("page-changed", pagination.value)
 }
 </script>

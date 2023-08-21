@@ -4,6 +4,7 @@
     dataSource="business/getBusinessGridData"
     orderByField="title"
     searchField="b.title"
+    storeName="business"
     @reload-data="reloadData"
     class="q-my-xl"
   >

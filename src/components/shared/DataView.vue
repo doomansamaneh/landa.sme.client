@@ -71,7 +71,11 @@
       </div>
     </q-card-section>
 
-    <page-bar :pagination="pagination" @page-changed="loadData" />
+    <page-bar
+      :pagination="pagination"
+      @page-changed="loadData"
+      :storeName="props.storeName"
+    />
   </q-card>
 </template>
 
@@ -84,16 +88,17 @@ import { usePaginationStore } from "src/stores/pagination-store.js"
 import businessRoutes from "src/router/business-routes"
 import PageBar from "./PageBar.vue"
 
-const paginationStore = usePaginationStore()
-
 const props = defineProps({
   title: String,
   dataSource: String,
   color: String,
   orderByField: String,
   searchField: String,
-  businessTitle: String
+  businessTitle: String,
+  storeName: String
 })
+
+const paginationStore = usePaginationStore(props.storeName)
 
 // const emits = defineEmits(["reload-data"])
 
@@ -151,6 +156,8 @@ async function loadData(pagination) {
       value: searchTerm.value
     })
   }
+
+  console.log("paginationStore =>", paginationStore)
 
   await fetchWrapper
     .post(props.dataSource, {
