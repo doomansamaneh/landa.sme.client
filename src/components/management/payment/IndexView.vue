@@ -10,9 +10,9 @@
     <template #header>
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
-          <q-item-label class="text-h6">{{
-            $t("page.payment-history.payment-card-title")
-          }}</q-item-label>
+          <q-item-label class="text-h6">
+            {{ $t("pages.payments") }}
+          </q-item-label>
           <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
             {{ business?.title }}
           </q-item-label>
@@ -25,9 +25,9 @@
               name="o_refresh"
               @click="refreshPayments"
             >
-              <q-tooltip class="custom-tooltip">{{
-                $t("page.buttons.reload-data")
-              }}</q-tooltip>
+              <q-tooltip class="custom-tooltip">
+                {{ $t("page.buttons.reload-data") }}
+              </q-tooltip>
             </q-icon>
           </div>
           <div class="flex items-center q-gutter-x-md">
@@ -96,9 +96,9 @@
           size="md"
           dense
         >
-          <q-tooltip class="custom-tooltip" :delay="600">{{
-            $t("page.buttons.more-tooltip")
-          }}</q-tooltip>
+          <q-tooltip class="custom-tooltip" :delay="600">
+            {{ $t("page.buttons.more-tooltip") }}
+          </q-tooltip>
         </q-btn>
         <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list padding>
@@ -127,6 +127,8 @@ import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 
 import DataView from "src/components/shared/DataView.vue"
+import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
+import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 
 const route = useRoute()
 

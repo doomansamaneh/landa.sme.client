@@ -1,10 +1,10 @@
 {
-  "route-names": {
-    "Business": "کسب و کار‌های من",
-    "Payments": "پرداخت ها",
-    "Payments Detail": "جزئیات پرداخت ها",
-    "Renew Subscription": "تمدید اشتراک",
-    "Add New Business": "ایجاد کسب و کار جدید"
+  "pages": {
+    "business": "کسب و کار‌های من",
+    "payments": "پرداختها",
+    "payment-detail": "ریز پرداخت",
+    "renew-subscription": "تمدید اشتراک",
+    "add-new-business": "ایجاد کسب و کار جدید"
   },
 
   "login-page": {

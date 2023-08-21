@@ -210,9 +210,9 @@
   <q-card class="card-desktop gt-xs no-shadow q-my-xl">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
-        <q-item-label class="text-h6">{{
-          $t("page.payment-detail.title")
-        }}</q-item-label>
+        <q-item-label class="text-h6">
+          {{ $t("pages.payment-detail") }}
+        </q-item-label>
         <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
           {{ $t("page.payment-detail.caption") }}
         </q-item-label>
@@ -257,16 +257,7 @@
           </q-icon>
         </div>
         <div class="flex items-center q-gutter-x-md">
-          <q-icon
-            class="icon-hover dark-3 cursor-pointer"
-            size="sm"
-            name="arrow_back"
-            @click="$router.go(-1)"
-          >
-            <q-tooltip class="custom-tooltip">{{
-              $t("page.buttons.back")
-            }}</q-tooltip>
-          </q-icon>
+          <back-button />
         </div>
       </q-card-actions>
     </q-item>
@@ -285,9 +276,9 @@
           </q-item-label>
         </div>
         <div class="">
-          <span class="text-subtitle1 text-bold">{{
-            $t("page.payment-detail.invoice-label")
-          }}</span>
+          <span class="text-subtitle1 text-bold">
+            {{ $t("page.payment-detail.invoice-label") }}
+          </span>
         </div>
         <div class="column q-gutter-sm text-right text-caption">
           <div>
@@ -298,9 +289,9 @@
           </div>
           <div class="">
             <span>
-              <span class="">{{
-                $t("page.payment-detail.invoice-number")
-              }}</span>
+              <span class="">
+                {{ $t("page.payment-detail.invoice-number") }}
+              </span>
               20108</span
             >
           </div>
@@ -334,9 +325,9 @@
         </div>
         <div class="">
           <q-item-label class=""
-            ><span class="text-weight-bold"
-              >{{ $t("page.payment-detail.customer")
-              }}<span class="text-weight-light">خشایار شمالی</span></span
+            ><span class="text-weight-bold">
+              {{ $t("page.payment-detail.customer") }}
+              <span class="text-weight-light">خشایار شمالی</span></span
             >
             <div class="seller-address">
               <q-item-label class="q-mt-sm">
@@ -345,12 +336,10 @@
                   خیابان عنایتی، کوچه محمدی، پلاک 22</span
                 >
               </q-item-label>
-              <q-item-label class="q-pt-xs"
-                ><q-icon
-                  name="phone"
-                  class="dark-2 q-pr-xs"
-                />021-55511102</q-item-label
-              >
+              <q-item-label class="q-pt-xs">
+                <q-icon name="phone" class="dark-2 q-pr-xs" />
+                021-55511102
+              </q-item-label>
             </div>
           </q-item-label>
         </div>
@@ -387,9 +376,9 @@
           <tr>
             <td class=""><span class="">1</span></td>
             <td>
-              <span class=""
-                >طرح 1: (حسابداری، خرید و فروش، دریافت و پرداخت)</span
-              >
+              <span class="">
+                طرح 1: (حسابداری، خرید و فروش، دریافت و پرداخت)
+              </span>
             </td>
             <td><span class="">1000</span></td>
             <td><span class="">دستگاه</span></td>
@@ -402,10 +391,10 @@
             <td>
               <div class="ellipsis-2-lines">
                 <div class="custom-ellipsis">
-                  <span
-                    >طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-                    دستمزد)</span
-                  >
+                  <span>
+                    طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
+                    دستمزد)
+                  </span>
                 </div>
               </div>
             </td>
@@ -431,24 +420,25 @@
           </tr>
           <tr>
             <td class="text-right" colspan="6">
-              <span class="q-pl-xs">{{
-                $t("page.payment-detail.sub-total")
-              }}</span
-              ><span class="">
-                <span class="q-pl-xs"
-                  ><span class="text-weight-thin q-pr-xs"
-                    >یازده میلیون و هفتصد و هفده هزار و پانصد</span
-                  >{{ $t("page.payment-detail.rial") }}</span
-                >
+              <span class="q-pl-xs">
+                {{ $t("page.payment-detail.sub-total") }}
+              </span>
+              <span class="">
+                <span class="q-pl-xs">
+                  <span class="text-weight-thin q-pr-xs">
+                    یازده میلیون و هفتصد و هفده هزار و پانصد
+                  </span>
+                  {{ $t("page.payment-detail.rial") }}
+                </span>
               </span>
             </td>
             <td><span class="">11,717,500</span></td>
           </tr>
           <tr>
             <td class="text-right" colspan="7">
-              <span class=""
-                >{{ $t("page.payment-detail.total-receipt")
-                }}<span class="q-pl-xs">11,717,500</span></span
+              <span class="">
+                {{ $t("page.payment-detail.total-receipt") }}
+                <span class="q-pl-xs">11,717,500</span></span
               >
               <span class="q-px-md"
                 >{{ $t("page.payment-detail.remained") }}
@@ -489,6 +479,7 @@
 
 <script setup>
 import { ref } from "vue"
+import BackButton from "src/components/shared/buttons/GoBackLink.vue"
 // import Vue3Html2pdf from "vue3-html2pdf"
 
 // const html2Pdf = ref(null)

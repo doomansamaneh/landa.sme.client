@@ -13,7 +13,7 @@
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
           <q-item-label class="text-h6">{{
-            $t("page.card-title")
+            $t("pages.business")
           }}</q-item-label>
           <q-item-label class="dark-2 q-pt-xs_ text-subtitle2" caption>{{
             $t("page.card-message")

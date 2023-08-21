@@ -1,6 +1,6 @@
 <template>
   <q-btn
-    v-bind="showLink"
+    v-if="showLink"
     rounded
     size="11px"
     no-caps
@@ -10,7 +10,7 @@
   >
     <router-link :to="addPaymentUrl">
       <q-icon name="add" class="q-pr-xs" size="14px" />
-      {{ $t("page.buttons.renew-subscription") }}
+      {{ $t("pages.renew-subscription") }}
     </router-link>
   </q-btn>
 </template>
@@ -26,10 +26,10 @@ const props = defineProps({
 })
 
 const addPaymentUrl = computed(
-  () => `/business/addPayment/${props.business.id}`
+  () => `/business/addPayment/${props.business?.id}`
 )
 const showLink = computed(
-  () => props.business.isOwner && props.business.daysToExpire < 350
+  () => props.business?.isOwner && props.business?.daysToExpire < 30
 )
 </script>
 

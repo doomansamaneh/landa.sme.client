@@ -18,7 +18,7 @@ import { useRouter } from "vue-router"
 import { ref, watch } from "vue"
 import { useI18n } from "vue-i18n"
 
-const route = useRouter()
+const router = useRouter()
 const { t } = useI18n()
 
 const items = ref([])
@@ -28,12 +28,12 @@ watch(() => {
 })
 
 function getRoute() {
-  items.value = route.currentRoute.value.matched.map((match) => {
+  items.value = router.currentRoute.value.matched.map((match) => {
     return {
       ...match,
-      name: match.name ? `route-names.${match.name}` : ""
+      name: match.name ? `pages.${match.name}` : ""
     }
   })
 }
-getRoute()
+//getRoute()
 </script>

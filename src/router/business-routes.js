@@ -1,7 +1,7 @@
 export default {
   path: "/business",
   component: () => import("layouts/BusinessLayout.vue"),
-  name: "Business",
+  name: "business",
   meta: {
     icon: "business"
   },
@@ -9,7 +9,7 @@ export default {
     { path: "", component: () => import("pages/management/BusinessPage.vue") },
     {
       path: "changePassword",
-      name: "Change Password",
+      name: "change-password",
       component: () => import("src/pages/users/ChangePassword.vue"),
       meta: {
         icon: "password"
@@ -17,7 +17,7 @@ export default {
     },
     {
       path: "inviteUser",
-      name: "Invite User",
+      name: "invite-user",
       component: () => import("pages/users/InviteUser.vue"),
       meta: {
         icon: "o_profile"
@@ -25,7 +25,7 @@ export default {
     },
     {
       path: "deleteBusiness",
-      name: "Delete Business",
+      name: "delete-business",
       component: () => import("pages/users/DeleteBusiness.vue"),
       meta: {
         icon: "o_delete"
@@ -33,7 +33,7 @@ export default {
     },
     {
       path: "addBusiness",
-      name: "Add New Business",
+      name: "add-new-business",
       component: () => import("pages/management/AddBusiness.vue"),
       meta: {
         icon: "o_add"
@@ -41,7 +41,7 @@ export default {
     },
     {
       path: "payments/:businessId",
-      name: "Payments",
+      name: "payments",
       component: () => import("pages/management/PaymentPage.vue"),
       meta: {
         icon: "payment"
@@ -49,7 +49,7 @@ export default {
     },
     {
       path: "paymentDetail/:paymentId",
-      name: "Payments Detail",
+      name: "payment-detail",
       component: () => import("pages/management/PaymentDetailPage.vue"),
       meta: {
         icon: "o_info"
@@ -57,7 +57,7 @@ export default {
     },
     {
       path: "addPayment/:businessId",
-      name: "Renew Subscription",
+      name: "renew-subscription",
       component: () => import("pages/management/AddPaymentPage.vue"),
       meta: {
         icon: "o_monetization_on"
