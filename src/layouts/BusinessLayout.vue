@@ -82,9 +82,7 @@
           </div>
         </div>
       </q-toolbar>
-      <div class="bread-crumbs q-py-xs q-px-lg">
-        <bread-crumbs />
-      </div>
+      <bread-crumbs />
     </q-header>
 
     <q-page-container>

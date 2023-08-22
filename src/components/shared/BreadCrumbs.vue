@@ -1,7 +1,11 @@
 <template>
-  <q-breadcrumbs active-color="primary" class="text-body2">
+  <q-breadcrumbs
+    v-if="show"
+    active-color="primary"
+    class="text-body2 bread-crumbs q-py-xs q-px-lg"
+  >
     <q-breadcrumbs-el
-      v-for="item in items"
+      v-for="item in validItems"
       :key="item.path"
       :label="$t(item.name)"
       :icon="item.meta.icon"
@@ -14,8 +18,8 @@
 </template>
 
 <script setup>
+import { ref, watch, computed } from "vue"
 import { useRouter } from "vue-router"
-import { ref, watch } from "vue"
 import { useI18n } from "vue-i18n"
 
 const router = useRouter()
@@ -35,5 +39,9 @@ function getRoute() {
     }
   })
 }
-//getRoute()
+
+const show = computed(() => validItems.value.length > 0)
+const validItems = computed(() =>
+  items.value.filter((item) => item.name != null && item.name != "")
+)
 </script>
