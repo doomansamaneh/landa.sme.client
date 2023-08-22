@@ -66,13 +66,8 @@
           >
         </label>
       </div>
-      <div class="col-1 row justify-center">
-        <label class="text-caption text-light-blue-7 q-pr-sm">
-          {{ item.planTitle }}
-        </label>
-      </div>
       <div
-        class="expire-date-container col-3 flex items-center justify-center q-gutter-x-xl"
+        class="expire-date-container col-3 flex items-center justify-start"
       >
         <label
           v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
@@ -125,7 +120,6 @@
 import { ref, onMounted, computed } from "vue"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
-
 import DataView from "src/components/shared/DataView.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
