@@ -35,8 +35,8 @@ const columns = [
     label: "مشتری"
   },
   { name: "subject", field: "subject", sortable: true, label: "شرح" },
-  { name: "amount", field: "amount", sortable: true, label: "جمع کل" },
-  { name: "subject", field: "subject", sortable: true, label: "شرح" }
+  { name: "amount", field: "amount", sortable: true, label: "جمع کل" }
+  //{ name: "subject", field: "subject", sortable: true, label: "شرح" }
   //{ name: "typeTitle", field: "typeTitle", sortable: true, label: "نوع" },
   //{ name: "statusTitle", field: "statusTitle", sortable: true, label: "وضعیت" }
 ]
