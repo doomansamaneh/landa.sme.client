@@ -11,8 +11,8 @@ export default {
       component: () => import("src/pages/management/HomePage.vue")
     },
     {
-      path: "proformas",
-      component: () => import("src/pages/management/ProformaPage.vue")
+      path: "sls/quote",
+      component: () => import("src/components/areas/sls/quote/IndexView.vue")
     }
   ]
 }

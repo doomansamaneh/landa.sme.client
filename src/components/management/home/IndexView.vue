@@ -24,7 +24,7 @@
         <q-toolbar-title
           class="text-subtitle2 text-bold col-6 flex justify-start"
         >
-          {{ title }}
+          {{ selectedBusiness.title }}
         </q-toolbar-title>
 
         <div class="search-bar col-4 q-mr-xl gt-sm">
@@ -120,7 +120,7 @@
           label="بازرگانی، خرید و فروش"
           class="text-grey-8"
         >
-          <q-item to="/home/proformas" clickable class="q-mx-md">
+          <q-item to="/home/sls/quote" clickable class="q-mx-md">
             <q-item-section avatar class="item-section">
               <q-icon color="grey-8" name="content_paste" />
             </q-item-section>
@@ -498,10 +498,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, computed } from "vue"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
+import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 
+const selectedBusiness = useSelectedBusinessStore()
 const route = useRoute()
 
 const title = ref("")
@@ -517,8 +519,9 @@ async function loadData() {
 }
 
 function handleBusinessData(data) {
-  console.log(data)
-  title.value = data.title
+  localStorage.setItem("businessTitle", data.title)
+  const businessTitle = localStorage.getItem("businessTitle")
+  selectedBusiness.title = businessTitle
 }
 
 onMounted(() => {
