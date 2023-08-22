@@ -1,6 +1,6 @@
 export default {
   path: "/home",
-  component: () => import("layouts/MainLayout.vue"),
+  component: () => import("src/layouts/MainLayout.vue"),
   name: "Home",
   meta: {
     icon: "home"
@@ -8,7 +8,7 @@ export default {
   children: [
     {
       path: ":businessId",
-      component: () => import("pages/management/HomePage.vue")
+      component: () => import("src/pages/management/HomePage.vue")
     },
     {
       path: "proformas",

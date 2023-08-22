@@ -29,7 +29,7 @@ const addPaymentUrl = computed(
   () => `/business/addPayment/${props.business?.id}`
 )
 const showLink = computed(
-  () => props.business?.isOwner && props.business?.daysToExpire < 30
+  () => props.business?.isOwner && props.business?.daysToExpire < 300
 )
 </script>
 

@@ -39,7 +39,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
-import { usePaginationStore } from "src/stores/pagination-store.js"
+import { usePaginationStore } from "src/stores/page-store.js"
 
 const props = defineProps({
   pagination: Object,

@@ -84,7 +84,7 @@ import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
 import { useQuasar } from "quasar"
 import { useRouter } from "vue-router"
 import { fetchWrapper } from "src/helpers"
-import { usePaginationStore } from "src/stores/pagination-store.js"
+import { usePaginationStore } from "src/stores/page-store.js"
 import businessRoutes from "src/router/business-routes"
 import PageBar from "./PageBar.vue"
 
