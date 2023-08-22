@@ -1,37 +1,38 @@
 {
-  "route-names": {
-    "Business": "Business",
-    "Payments": "Payments",
-    "Payments Detail": "Payments Detail",
-    "Renew Subscription": "Renew Subscription",
-    "Add New Business": "Add New Business"
+  "pages": {
+    "business": "My Businesses",
+    "business-expired": "Service Expired",
+    "payments": "Payments",
+    "payment-detail": "Payment Details",
+    "renew-subscription": "Renew Subscription",
+    "add-new-business": "Add New Business"
   },
 
   "login-page": {
-    "page-title": "Log in",
+    "page-title": "Login",
     "placeholders": {
-      "username": "Username(Mobile/Email)",
+      "username": "Username, Mobile, or Email",
       "password": "Password"
     },
     "buttons": {
-      "signup": "Sign up",
-      "login": "Log in"
+      "signup": "Sign Up",
+      "login": "Login"
     },
     "language-switcher": {
       "english": "English",
-      "farsi": "Farsi",
+      "farsi": "Persian",
       "arabic": "Arabic"
     },
 
     "forgot-password": "Forgot your password?",
     "invalid-username-password": "Invalid username or password",
-    "network-error": "Ensure your internet connection"
+    "network-error": "Make sure you're connected to the internet"
   },
 
   "business-layout": {
     "buttons": {
       "change-password": "Change Password",
-      "logout": "Log out"
+      "logout": "Log Out"
     }
   },
 
@@ -44,107 +45,103 @@
       "add-new-business-tooltip": "Add New Business",
       "guide-tooltip": "Guide",
       "reload-data": "Refresh",
-      "back": "Go Back",
-      "expire-date-tooltip": "Expire date",
-      "service-extension-tooltip": "Service extension",
-      "guest-user": "Guest user",
+      "back": "Back",
+      "expire-date-tooltip": "Expiration Date",
+      "service-extension-tooltip": "Service Extension",
+      "guest-user": "Guest User",
       "more-tooltip": "More",
       "renew-subscription": "Renew Subscription",
       "guide": {
-        "slide1": "Welcome to Landa. We hope you enjoy working with Landa. Let's see the simple guide to use the system together.",
-        "slide2": "You can enter by clicking on your business name.",
-        "slide3": "If you plan to perform more operations such as deleting the business or adding a new user to the business, use this section.",
-        "slide4": "This icon means that you are the owner or creator of this business. You can delete and renew the businesses you have created and add the users you want.",
+        "slide1": "Welcome to Landa. We hope you enjoy working with Landa. Let's go through a simple guide on how to use the system.",
+        "slide2": "You can enter your business by clicking on its name.",
+        "slide3": "If you want to perform more actions like deleting a business or adding a new user to a business, use this section.",
+        "slide4": "This icon means that you're the owner or creator of this business. You can delete and extend businesses you've created and add desired users to it.",
         "slide5": "Use this option to renew the service (purchase a subscription).",
-        "slide6": "To learn about different parts of the software, you can enter the encyclopedia section of the website."
+        "slide6": "For tutorials on different parts of the software, you can visit the Knowledge Base section on the website."
       },
       "more-button": {
-        "enter-business": "Entering the Business",
-        "invite-user": "Invite user",
+        "enter-business": "Enter Business",
+        "invite-user": "Invite User",
         "delete": "Delete",
         "payment-history": "Payment History"
       }
     },
-
     "payment-history": {
       "payment-card-title": "Payment History",
       "trial": "Trial",
-      "rial": "rials",
+      "rial": "Rial",
       "paid": "Paid",
       "amount-paid": "Amount Paid",
       "buttons": {
         "view": "View"
       }
     },
-
     "renew-subscription": {
       "title": "Renew Subscription",
-      "caption": "All costs are in Iranian Rials",
+      "caption": "All costs are in Rial",
       "business-name-label": "Business Name:",
       "current-plan": "Current Plan:",
       "to-date": "Until Date:",
-      "plan": "Plan (Rials):",
-      "extension-period": "Period:",
+      "plan": "Plan (Rial):",
+      "extension-period": "Extension Period:",
       "loyalty-discount": "Loyalty Discount:",
       "total": "Total:",
       "discount": "Discount:",
       "sum-total": "Total Sum:",
-      "pay-message": "",
+      "pay-message": "Payment is possible using all Shetab cards. You need to activate your card's second password for payment.",
       "buttons": {
         "payment": "Payment"
       }
     },
-
     "add-business": {
       "title": "Add New Business",
+      "caption": "All costs are in Rial",
+      "pay-caption": "Payment is possible using all Shetab cards. You need to activate your card's second password for payment.",
       "business-name-label": "Business Name:",
-      "pay-caption": "Is possible from all Shetab cards. you must activate the second password of your card.",
-      "caption": "All costs are in Iranian Rials",
-      "to-date": "Until Date:",
-      "plan": "Plan (Rials):",
-      "rial": "Rials",
-      "extension-period": "Period:",
+      "plan": "Plan (Rial):",
+      "rial": "Rial",
+      "extension-period": "Extension Period:",
       "loyalty-discount": "Loyalty Discount:",
       "total": "Total:",
       "discount": "Discount:",
       "sum-total": "Total Sum:",
-      "pay-message": "",
+      "pay-message": "Payment is possible using all Shetab cards. You need to activate your card's second password for payment.",
       "buttons": {
         "payment": "Payment"
       },
       "plan-lookup": {
-        "plan": "plan",
-        "per-month": "Monthly",
-        "placeholder": "Choose the plan you want"
+        "plan": "Plan",
+        "per-month": "Per Month",
+        "placeholder": "Select your desired plan"
       }
     },
+
     "payment-detail": {
       "title": "Payment",
-      "caption": "All costs are in Iranian Rials",
+      "caption": "All costs are in Rial",
       "invoice-label": "Invoice",
       "invoice-date": "Date: ",
-      "invoice-number": "No: ",
+      "invoice-number": "Invoice Number: ",
       "customer": "Customer: ",
       "seller": "Seller: ",
-      "row": "No",
+      "row": "Row",
+      "date": "Date",
       "plan": "Plan",
       "amount": "Amount",
       "unit": "Unit",
-      "date": "Date",
       "unit-price": "Unit Price",
       "total": "Total",
-      "vat-total": "VAT Total: ",
-      "sub-total": "Total: ",
-      "total-total": "Total: ",
+      "vat-total": "Total Taxes and VAT: ",
+      "sub-total": "Sub Total: ",
+      "total-total": "Total Total: ",
       "total-receipt": "Total Receipt: ",
       "remained": "Remained: ",
-      "remained-but-this-year": "Remained But This Year: ",
-      "remained-total": "Remained Total: ",
-      "rial": "Rials",
-
+      "remained-but-this-year": "Remained from before: ",
+      "remained-total": "Total Remained: ",
+      "rial": "Rial",
       "buttons": {
         "print": "Print",
-        "excel": "Print out Excel"
+        "excel": "Convert to Excel"
       }
     }
   },
@@ -154,7 +151,7 @@
     "placeholders": {
       "old-password": "Old Password",
       "new-password": "New Password",
-      "confirm-password": "Confirm New Password"
+      "confirm-password": "Confirm Password"
     },
     "buttons": {
       "change-password": "Change Password",
@@ -164,30 +161,26 @@
   },
 
   "invite-user-page": {
-    "title": "Invite user",
+    "title": "Invite User",
     "placeholders": {
       "name": "Name",
       "email": "Email"
     },
-    "select-group-caption": "What group do you want the user to be a member of?",
-    "buttons": {
-      "invite-user": "Invite User",
-      "close": "close",
-      "cancel": "Cancel"
-    }
+    "select-group-caption": "Which group do you want the user to be a member of?",
+    "buttons": { "invite-user": "Invite User", "cancel": "Cancel" }
   },
 
   "delete-business-page": {
     "title": "Delete Business",
     "placeholders": {
-      "password": "Enter your password"
+      "password": "Password"
     },
     "buttons": { "delete-business": "Delete Business", "cancel": "Cancel" }
   },
 
   "shared": {
     "labels": {
-      "ok": "Ok",
+      "ok": "OK",
       "cancel": "Cancel",
       "save": "Save",
       "new": "New",
@@ -195,10 +188,10 @@
       "delete": "Delete"
     },
     "messages": {
-      "deleted-successfully": "Deleted Successfully"
+      "deleted-successfully": "Deleted successfully"
     },
     "prompts": {
-      "are-you-sure": "Are You Sure?"
+      "are-you-sure": "Are you sure"
     }
   }
 }

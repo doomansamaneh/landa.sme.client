@@ -1,195 +1,197 @@
 {
-  "route-names": {
-    "Business": "أعمالي",
-    "Payments": "المدفوعات",
-    "Payments Detail": "تفاصيل المدفوعات",
-    "Renew Subscription": "تجديد الاشتراك",
-    "Add New Business": "إنشاء أعمال جديدة"
+  "pages": {
+    "business": "أعمالي",
+    "business-expired": "انتهاء الخدمة",
+    "payments": "المدفوعات",
+    "payment-detail": "تفاصيل الدفع",
+    "renew-subscription": "تجديد الاشتراك",
+    "add-new-business": "إضافة عمل جديد"
   },
 
   "login-page": {
     "page-title": "تسجيل الدخول",
     "placeholders": {
-      "username": "المستخدم",
+      "username": "اسم المستخدم، الهاتف المحمول أو البريد الإلكتروني",
       "password": "كلمة المرور"
     },
     "buttons": {
-      "signup": "اشتراك",
-      "login": "دخول"
+      "signup": "التسجيل",
+      "login": "تسجيل الدخول"
     },
     "language-switcher": {
-      "english": "إنجليزي",
+      "english": "الإنجليزية",
       "farsi": "الفارسية",
-      "arabic": "عربي"
+      "arabic": "العربية"
     },
 
-    "forgot-password": "نسيت كلمة المرور الخاصة بي",
-    "invalid-username-password": "لم تقم بإدخال اسم المستخدم أو كلمة المرور بشكل صحيح",
-    "network-error": "تأكد من اتصالك بالإنترنت"
+    "forgot-password": "نسيت كلمة المرور؟",
+    "invalid-username-password": "اسم المستخدم أو كلمة المرور غير صالحة",
+    "network-error": "تحقق من اتصالك بالإنترنت"
   },
 
   "business-layout": {
     "buttons": {
       "change-password": "تغيير كلمة المرور",
-      "logout": "تسجيل الخروج من البوابة"
+      "logout": "تسجيل الخروج"
     }
   },
 
   "page": {
     "card-title": "أعمالي",
     "card-searchbar": "بحث",
-    "nothing-found": "لم يتم العثور على شيء",
-    "card-message": "لغرض الدخول في عمل أو مهنة ما، انقر على اسمه",
+    "nothing-found": "لا يوجد نتائج!",
+    "card-message": "انقر على اسم العمل للدخول",
     "buttons": {
-      "add-new-business-tooltip": "إنشاء أعمال جديدة",
-      "guide-tooltip": "مرشد",
-      "reload-data": "مرطب",
-      "back": "العودة",
-      "expire-date-tooltip": "تاريخ انتهاء الصلاحية",
+      "add-new-business-tooltip": "إضافة عمل جديد",
+      "guide-tooltip": "دليل",
+      "reload-data": "تحديث",
+      "back": "عودة",
+      "expire-date-tooltip": "تاريخ الانتهاء",
       "service-extension-tooltip": "تمديد الخدمة",
-      "guest-user": "حساب زائر",
-      "more-tooltip": "أكثر",
+      "guest-user": "مستخدم ضيف",
+      "more-tooltip": "المزيد",
       "renew-subscription": "تجديد الاشتراك",
       "guide": {
-        "slide1": "مرحبا بكم في لاندا. نأمل أن تستمتع بالعمل مع لاندا. دعنا نرى الدليل البسيط لاستخدام النظام معًا.",
-        "slide2": "يمكنك الدخول من خلال النقر على اسم عملك.",
-        "slide3": "إذا كنت تخطط لإجراء المزيد من العمليات مثل حذف النشاط التجاري أو إضافة مستخدم جديد إلى الشركة ، فاستخدم هذا القسم.",
-        "slide4": "هذا الرمز يعني أنك مالك أو منشئ هذا العمل. يمكنك حذف وتجديد الأعمال التي قمت بإنشائها وإضافة المستخدمين الذين تريدهم.",
+        "slide1": "مرحبًا بك في لاندا. نأمل أن تستمتع بالعمل مع لاندا. دعونا نستعرض دليل بسيط حول كيفية استخدام النظام.",
+        "slide2": "يمكنك الدخول إلى عملك عن طريق النقر فوق اسمه.",
+        "slide3": "إذا كنت ترغب في أداء مزيد من الإجراءات مثل حذف عمل أو إضافة مستخدم جديد إلى عمل، استخدم هذا القسم.",
+        "slide4": "هذا الرمز يعني أنك صاحب أو منشئ هذا العمل. يمكنك حذف وتمديد الأعمال التي قمت بإنشائها وإضافة المستخدمين المطلوبين إليها.",
         "slide5": "استخدم هذا الخيار لتجديد الخدمة (شراء اشتراك).",
-        "slide6": "للتعرف على أجزاء مختلفة من البرنامج ، يمكنك الدخول إلى قسم الموسوعة على موقع الويب."
+        "slide6": "للحصول على دروس حول أجزاء مختلفة من البرنامج، يمكنك زيارة قسم قاعدة المعرفة على الموقع الإلكتروني."
       },
       "more-button": {
-        "enter-business": "تسجيل الدخول للأعمال والمهن",
-        "invite-user": "دعوة المستخدم",
+        "enter-business": "الدخول إلى العمل",
+        "invite-user": "دعوة مستخدم",
         "delete": "حذف",
-        "payment-history": "تاریخ الدفع"
+        "payment-history": "سجل المدفوعات"
       }
     },
     "payment-history": {
-      "payment-card-title": "تاریخ الدفع",
-      "trial": "محاكمة",
-      "rial": "ریال",
+      "payment-card-title": "سجل المدفوعات",
+      "trial": "فترة تجريبية",
+      "rial": "ريال",
       "paid": "مدفوع",
       "amount-paid": "المبلغ المدفوع",
       "buttons": {
-        "view": "منظر"
+        "view": "عرض"
       }
     },
     "renew-subscription": {
-      "title": "تجديد الخدمة",
-      "caption": "جميع التكاليف بالريال الإيراني",
-      "business-name-label": "الاسم التجاري:",
-      "current-plan": "التصميم الحالي:",
-      "to-date": "حتى تاريخ:",
-      "plan": "الخطة (بالريال):",
-      "extension-period": "فترة التجديد:",
+      "title": "تجديد الاشتراك",
+      "caption": "جميع التكاليف بالريال",
+      "business-name-label": "اسم العمل:",
+      "current-plan": "الخطة الحالية:",
+      "to-date": "حتى التاريخ:",
+      "plan": "الخطة (ريال):",
+      "extension-period": "فترة التمديد:",
       "loyalty-discount": "خصم الولاء:",
-      "total": "المجموع:",
+      "total": "الإجمالي:",
       "discount": "الخصم:",
-      "sum-total": "المجموع:",
-      "pay-message": "يمكن الدفع عن طريق كافة بطاقات الشبكة المصرفية. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقة الدفع.",
+      "sum-total": "المجموع الكلي:",
+      "pay-message": "الدفع ممكن باستخدام جميع بطاقات شتاب. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقتك لإتمام الدفع.",
       "buttons": {
-        "payment": "دفع"
+        "payment": "الدفع"
       }
     },
     "add-business": {
-      "title": "إنشاء أعمال جديدة",
-      "caption": "جميع التكاليف بالريال الإيراني",
-      "pay-caption": "يمكن السداد من جميع بطاقات شتاب. للدفع ، يجب عليك تفعيل كلمة المرور الثانية لبطاقتك.",
-      "business-name-label": "الاسم التجاري:",
-      "plan": "الخطة (بالريال):",
-      "rial": "ریال",
-      "extension-period": "فترة التجديد:",
+      "title": "إضافة عمل جديد",
+      "caption": "جميع التكاليف بالريال",
+      "pay-caption": "الدفع ممكن باستخدام جميع بطاقات شتاب. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقتك لإتمام الدفع.",
+      "business-name-label": "اسم العمل:",
+      "plan": "الخطة (ريال):",
+      "rial": "ريال",
+      "extension-period": "فترة التمديد:",
       "loyalty-discount": "خصم الولاء:",
-      "total": "المجموع:",
+      "total": "الإجمالي:",
       "discount": "الخصم:",
-      "sum-total": "المجموع:",
-      "pay-message": "يمكن الدفع عن طريق كافة بطاقات الشبكة المصرفية. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقة الدفع.",
+      "sum-total": "المجموع الكلي:",
+      "pay-message": "الدفع ممكن باستخدام جميع بطاقات شتاب. يجب أن تقوم بتفعيل كلمة المرور الثانية لبطاقتك لإتمام الدفع.",
       "buttons": {
-        "payment": "دفع"
+        "payment": "الدفع"
       },
       "plan-lookup": {
         "plan": "الخطة",
-        "per-month": "شهريا",
-        "placeholder": "اختر الخطة التي تريدها"
+        "per-month": "شهرياً",
+        "placeholder": "حدد الخطة المطلوبة"
       }
     },
-    "payment-detail": {
-      "title": "قسط",
-      "caption": "جميع التكاليف بالريال الإيراني",
-      "invoice-label": "فاتورة",
-      "invoice-date": "تاريخ: ",
-      "invoice-number": "رقم الفاتورة: ",
-      "customer": "عميل: ",
-      "seller": "تاجر: ",
-      "row": "صف",
-      "date": "تاریخ",
-      "plan": "الخطة",
-      "amount": "الحجم",
-      "unit": "وحدة",
-      "unit-price": "سعر الوحدة",
-      "total": "المجموع",
-      "vat-total": "مجموع الضرائب والرسوم: ",
-      "sub-total": "المجموع: ",
-      "total-total": "المجموع: ",
-      "total-receipt": "مجموع الاستلام: ",
-      "remained": "الباقي: ",
-      "remained-but-this-year": "غادر من قبل: ",
-      "remained-total": "المتراكمة: ",
-      "rial": "ریال",
 
+    "payment-detail": {
+      "title": "الدفع",
+      "caption": "جميع التكاليف بالريال",
+      "invoice-label": "فاتورة",
+      "invoice-date": "التاريخ: ",
+      "invoice-number": "رقم الفاتورة: ",
+      "customer": "العميل: ",
+      "seller": "البائع: ",
+      "row": "الصف",
+      "date": "التاريخ",
+      "plan": "الخطة",
+      "amount": "المبلغ",
+      "unit": "الوحدة",
+      "unit-price": "سعر",
+      "total": "الإجمالي",
+      "vat-total": "إجمالي الضرائب والقيمة المضافة: ",
+      "sub-total": "المجموع الفرعي: ",
+      "total-total": "الإجمالي الكلي: ",
+      "total-receipt": "إجمالي الإيصال: ",
+      "remained": "المتبقي: ",
+      "remained-but-this-year": "المتبقي من قبل: ",
+      "remained-total": "إجمالي المتبقي: ",
+      "rial": "ريال",
       "buttons": {
-        "print": "مطبعة",
-        "excel": "اطبع إكسل"
+        "print": "طباعة",
+        "excel": "تحويل إلى إكسل"
       }
     }
   },
 
   "change-password-page": {
-    "title": "تغییر كلمة المرور",
+    "title": "تغيير كلمة المرور",
     "placeholders": {
-      "old-password": "كلمة المرور السابقة",
-      "new-password": "كلمة المرور",
+      "old-password": "كلمة المرور القديمة",
+      "new-password": "كلمة المرور الجديدة",
       "confirm-password": "تأكيد كلمة المرور"
     },
     "buttons": {
-      "change-password": "تغییر كلمة المرور",
-      "close": "لإغلاق",
-      "cancel": "يلغي"
+      "change-password": "تغيير كلمة المرور",
+      "close": "إغلاق",
+      "cancel": "إلغاء"
     }
   },
 
   "invite-user-page": {
-    "title": "دعوة المستخدم",
+    "title": "دعوة مستخدم",
     "placeholders": {
       "name": "الاسم",
-      "email": "البريد الالكتروني"
+      "email": "البريد الإلكتروني"
     },
-    "select-group-caption": "ما هي المجموعة التي تريد أن يكون المستخدم عضوا فيها؟",
-    "buttons": { "invite-user": "دعوة المستخدم", "cancel": "يلغي" }
+    "select-group-caption": "أي مجموعة ترغب في أن يكون المستخدم عضوًا فيها؟",
+    "buttons": { "invite-user": "دعوة مستخدم", "cancel": "إلغاء" }
   },
 
   "delete-business-page": {
-    "title": "حذف العمل والمهنة",
+    "title": "حذف العمل",
     "placeholders": {
       "password": "كلمة المرور"
     },
-    "buttons": { "delete-business": "حذف العمل والمهنة", "cancel": "يلغي" }
+    "buttons": { "delete-business": "حذف العمل", "cancel": "إلغاء" }
   },
+
   "shared": {
     "labels": {
-      "ok": "نعم",
-      "cancel": "يلغي",
-      "save": "يحفظ",
+      "ok": "موافق",
+      "cancel": "إلغاء",
+      "save": "حفظ",
       "new": "جديد",
-      "edit": "يحرر",
+      "edit": "تعديل",
       "delete": "حذف"
     },
     "messages": {
-      "deleted-successfully": "حذف بنجاح"
+      "deleted-successfully": "تم الحذف بنجاح"
     },
     "prompts": {
-      "are-you-sure": "هل أنت متأكد؟"
+      "are-you-sure": "هل أنت متأكد"
     }
   }
 }
