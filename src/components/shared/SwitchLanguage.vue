@@ -7,8 +7,8 @@
     class="bg-white text-blue-7 text-bold"
     auto-close
   >
-    <q-item-section>
-      <q-item
+    <q-item-section class="z-max">
+      <q-item class="z-max"
         clickable
         v-for="(lang, index) in supportedLanguages"
         :key="index"
@@ -101,3 +101,10 @@ function setDigits() {
   }
 }
 </script>
+
+<style lang="scss">
+.lang-switcher.q-btn--actionable.q-btn--standard:before {
+  border: 1px solid $primary;
+  box-shadow: none;
+}
+</style>

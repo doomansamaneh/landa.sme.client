@@ -1,5 +1,5 @@
 <template>
-  <q-page-sticky position="top" expand class="toolbar z-max gt-xs">
+  <q-page-sticky position="top" expand class="toolbar gt-xs">
     <q-toolbar class="gt-xs main-layout-color text-white q-px-lg">
       <div class="q-gutter-x-md">
         <q-btn
@@ -10,7 +10,7 @@
           padding="5px 10px"
         >
           <q-icon name="add_circle_outline" class="q-pr-xs" />
-          <span>ایجاد</span>
+          <span class="">ایجاد</span>
         </q-btn>
         <q-btn
           color="grey-8"
@@ -20,7 +20,7 @@
           padding="5px 10px"
         >
           <q-icon name="o_edit" class="q-pr-xs" />
-          <span>ویرایش</span>
+          <span class="text">ویرایش</span>
         </q-btn>
         <q-btn
           color="grey-8"
@@ -30,7 +30,7 @@
           padding="5px 10px"
         >
           <q-icon name="o_delete" class="q-pr-xs" />
-          <span>حذف</span>
+          <span class="text">حذف</span>
         </q-btn>
         <q-btn
           color="grey-8"
@@ -40,7 +40,7 @@
           padding="5px 10px"
         >
           <q-icon name="o_more_horiz" class="q-pr-xs" />
-          <span>بیشتر</span>
+          <span class="text">بیشتر</span>
         </q-btn>
       </div>
     </q-toolbar>
@@ -364,7 +364,7 @@ const rows = ref([
 ])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .table-head {
   border-bottom: 2px solid rgb(230, 230, 230);
   background-color: white;

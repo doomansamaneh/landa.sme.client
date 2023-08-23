@@ -138,7 +138,7 @@
     </template>
 
     <template v-slot:bottom-row>
-      <tr class="bg-blue-grey-2 text-bold">
+      <tr class="subtotal text-bold">
         <td class="no-hover"></td>
         <td></td>
         <td></td>
@@ -149,7 +149,7 @@
         <td></td>
         <td></td>
       </tr>
-      <tr class="bg-blue-grey-14 text-white text-bold">
+      <tr class="total text-white text-bold">
         <td class="no-hover"></td>
         <td></td>
         <td></td>
@@ -169,7 +169,7 @@
     </template>
     <template v-slot:body-cell-typeTitle="props">
       <q-td :props="props">
-        <q-badge color="dark" outline :label="props.value" />
+        <q-badge class="text" outline :label="props.value" />
       </q-td>
     </template>
   </q-table>

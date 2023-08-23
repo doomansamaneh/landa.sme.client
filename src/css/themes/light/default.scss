@@ -8,6 +8,24 @@
     background-color: $white;
   }
 
+  tr.subtotal{
+    background-color: #eee;
+
+  }
+
+  tr.total{
+    background-color: #607d8b;
+
+  }
+
+  .text{
+    color: #1d1d1d;
+  }
+
+  .q-item__section--side > .q-icon {
+    font-size: 24px;
+    color: #707070
+}
   .icon-hover.q-icon:hover {
     color: $hover-light;
   }

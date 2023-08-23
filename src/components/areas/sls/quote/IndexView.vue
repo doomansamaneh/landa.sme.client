@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow">
+  <q-card class="home no-shadow no-border">
     <q-card-section>
       <!-- <h4>پیش فاکتورها</h4> -->
       <grid
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import Index from "src/components/management/proforma/IndexView.vue"
+import Index from "src/components/management/quote/IndexView.vue"
 // import grid from "src/components/shared/DataGrid.vue"
 import grid from "src/components/shared/MyDataGrid.vue"
 import { useRouter } from "vue-router"
@@ -99,8 +99,4 @@ const columns = [
     align: "center"
   }
 ]
-
-const gotoBusiness = () => {
-  router.push("/business")
-}
 </script>
