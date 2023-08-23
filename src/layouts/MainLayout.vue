@@ -13,6 +13,7 @@ import HomePage from "src/components/management/home/IndexView.vue"
 
 <style>
 .main-layout-color {
-  background-color: #f5f6f9;
+  background-color: #ffffff;
+  border-bottom: 1px solid #2d2d2d2d;
 }
 </style>

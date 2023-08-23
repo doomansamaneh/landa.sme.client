@@ -1,13 +1,13 @@
 <template>
-  <q-page-sticky position="top" expand class="toolbar z-max q-mb-md gt-xs">
-    <q-toolbar class="gt-xs main-layout-color text-white q-py-md q-px-xl">
+  <q-page-sticky position="top" expand class="toolbar z-max gt-xs">
+    <q-toolbar class="gt-xs main-layout-color text-white q-px-lg">
       <div class="q-gutter-x-md">
         <q-btn
           color="white bg-blue-7"
           rounded
           flat
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="add_circle_outline" class="q-pr-xs" />
           <span>ایجاد</span>
@@ -16,8 +16,8 @@
           color="grey-8"
           rounded
           outline
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="o_edit" class="q-pr-xs" />
           <span>ویرایش</span>
@@ -26,8 +26,8 @@
           color="grey-8"
           rounded
           outline
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="o_delete" class="q-pr-xs" />
           <span>حذف</span>
@@ -36,8 +36,8 @@
           color="grey-8"
           rounded
           outline
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="o_more_horiz" class="q-pr-xs" />
           <span>بیشتر</span>
@@ -45,7 +45,7 @@
       </div>
     </q-toolbar>
   </q-page-sticky>
-  <div class="table-container">
+  <!-- <div class="table-container">
     <table class="full-width text-left text-caption">
       <thead>
         <tr class="table-head">
@@ -182,8 +182,8 @@
     <div
       class="pagination q-py-lg q-px-lg bg-white row justify-between items-center"
     >
-      <!-- <page-bar :pagination="pagination" @page-changed="loadData" /> -->
-      <div class="col-4">
+      <page-bar :pagination="pagination" @page-changed="loadData" />
+       <div class="col-4">
         <q-pagination
           direction-links
           max="5"
@@ -219,7 +219,7 @@
         <span>ردیف در هر صفحه</span>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
