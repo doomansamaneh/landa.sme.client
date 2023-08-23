@@ -1,51 +1,51 @@
 <template>
-  <q-page-sticky position="top" expand class="toolbar z-max q-mb-md gt-xs">
-    <q-toolbar class="gt-xs main-layout-color text-white q-py-md q-px-xl">
+  <q-page-sticky position="top" expand class="toolbar gt-xs">
+    <q-toolbar class="gt-xs main-layout-color text-white q-px-lg">
       <div class="q-gutter-x-md">
         <q-btn
           color="white bg-blue-7"
           rounded
           flat
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="add_circle_outline" class="q-pr-xs" />
-          <span>ایجاد</span>
+          <span class="">ایجاد</span>
         </q-btn>
         <q-btn
           color="grey-8"
           rounded
           outline
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="o_edit" class="q-pr-xs" />
-          <span>ویرایش</span>
+          <span class="text">ویرایش</span>
         </q-btn>
         <q-btn
           color="grey-8"
           rounded
           outline
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="o_delete" class="q-pr-xs" />
-          <span>حذف</span>
+          <span class="text">حذف</span>
         </q-btn>
         <q-btn
           color="grey-8"
           rounded
           outline
-          class="text-caption text-bold"
-          padding="8px 16px"
+          class="text-caption"
+          padding="5px 10px"
         >
           <q-icon name="o_more_horiz" class="q-pr-xs" />
-          <span>بیشتر</span>
+          <span class="text">بیشتر</span>
         </q-btn>
       </div>
     </q-toolbar>
   </q-page-sticky>
-  <div class="table-container">
+  <!-- <div class="table-container">
     <table class="full-width text-left text-caption">
       <thead>
         <tr class="table-head">
@@ -182,8 +182,8 @@
     <div
       class="pagination q-py-lg q-px-lg bg-white row justify-between items-center"
     >
-      <!-- <page-bar :pagination="pagination" @page-changed="loadData" /> -->
-      <div class="col-4">
+      <page-bar :pagination="pagination" @page-changed="loadData" />
+       <div class="col-4">
         <q-pagination
           direction-links
           max="5"
@@ -219,7 +219,7 @@
         <span>ردیف در هر صفحه</span>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
@@ -364,7 +364,7 @@ const rows = ref([
 ])
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .table-head {
   border-bottom: 2px solid rgb(230, 230, 230);
   background-color: white;

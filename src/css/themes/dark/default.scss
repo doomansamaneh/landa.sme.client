@@ -1,14 +1,55 @@
 body.body--dark {
-  .main-layout-color {
+
+  .bg-dark{
+    background-color: #040c2d !important;
+  }
+
+  tr.subtotal{
+    background-color: #131d47;
+
+  }
+
+  tr.total{
+    background-color: #090c46;
+
+  }
+
+  .q-menu{
     background-color: $dark-6;
+    border: 1px solid $dark-5;
+  }
+
+  .q-btn .q-icon{
+    color: white;
+
+  }
+
+  .text{
+    color: white;
+  }
+
+  .main-layout-color {
+    background-color: #040c2d;
   }
   .inner-loader {
     background-color: #141f48c0;
   }
 
+  .home.q-card{
+    background-color: #040c2d;
+  }
+
+  .q-table__container{
+    background-color: #040c2d;
+  }
+
   .q-card,
   .q-header {
     background-color: $dark-6;
+  }
+
+  .q-card{
+    border: 1px solid $dark-5;
   }
 
   background-color: #040c2d;

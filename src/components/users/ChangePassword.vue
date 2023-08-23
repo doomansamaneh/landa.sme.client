@@ -1,5 +1,5 @@
 <template>
-  <q-card class="dialog-card">
+  <q-card class="dialog-card no-shadow">
     <q-card-section class="row items-center q-px-lg">
       <div class="text-h6">
         {{ $t("change-password-page.title") }}

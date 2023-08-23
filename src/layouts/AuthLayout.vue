@@ -137,10 +137,3 @@ const selectTheme = (theme) => {
   localStorage.setItem("selectedTheme", theme)
 }
 </script>
-
-<style lang="scss" scoped>
-.lang-switcher.q-btn--actionable.q-btn--standard:before {
-  border: 1px solid $primary;
-  box-shadow: none;
-}
-</style>

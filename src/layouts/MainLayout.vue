@@ -11,8 +11,19 @@
 import HomePage from "src/components/management/home/IndexView.vue"
 </script>
 
-<style>
+<style lang="scss">
 .main-layout-color {
-  background-color: #f5f6f9;
+  background-color: #ffffff;
+  border-bottom: 1px solid #2d2d2d2d;
+}
+
+.q-menu{
+  z-index: 9999;
+}
+
+
+.lang-switcher.q-btn--actionable.q-btn--standard:before {
+  border: 1px solid $primary;
+  box-shadow: none;
 }
 </style>

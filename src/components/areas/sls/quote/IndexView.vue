@@ -1,21 +1,22 @@
 <template>
-  <q-card>
-    <q-btn icon="arrow_back" @click="gotoBusiness">کسب و کارها</q-btn>
+  <q-card class="home no-shadow no-border">
     <q-card-section>
-      <menu-items />
+      <!-- <h4>پیش فاکتورها</h4> -->
+      <grid
+        dataSource="sls/quote/getGridData"
+        :columns="columns"
+        sortBy="no"
+        class="q-mt-xl"
+      />
     </q-card-section>
-    <q-card-section>
-      <h4>پیش فاکتورها</h4>
-      <grid dataSource="sls/quote/getGridData" :columns="columns" sortBy="no" />
-    </q-card-section>
-    <q-card-section>
+    <!-- <q-card-section>
       <h4>فاکتورها</h4>
       <grid
         dataSource="sls/invoice/getGridData"
         :columns="columns"
         sortBy="no"
       />
-    </q-card-section>
+    </q-card-section> -->
   </q-card>
 
   <div v-if="showIndex">
@@ -24,30 +25,79 @@
 </template>
 
 <script setup>
-import Index from "src/components/management/proforma/IndexView.vue"
-import grid from "src/components/shared/DataGrid.vue"
-import menuItems from "./TestView.vue"
-
+import Index from "src/components/management/quote/IndexView.vue"
+// import grid from "src/components/shared/DataGrid.vue"
+import grid from "src/components/shared/MyDataGrid.vue"
 import { useRouter } from "vue-router"
+import { ref } from "vue"
 
 const router = useRouter()
 
-const showIndex = false
+const showIndex = true
 
 const columns = [
-  { name: "no", field: "no", sortable: true, label: "شماره" },
-  { name: "date", field: "date", sortable: true, label: "تاریخ" },
+  // {
+  //   name: "index",
+  //   label: "#",
+  //   field: "index"
+  // },
+  {
+    name: "no",
+    field: "no",
+    sortable: true,
+    label: "شماره",
+    align: "left",
+  },
+
+  {
+    name: "dateString",
+    field: "dateString",
+    sortable: true,
+    label: "تاریخ",
+    align: "left"
+  },
   {
     name: "customerName",
     field: "customerName",
     sortable: true,
-    label: "مشتری"
+    label: "مشتری",
+    align: "left"
   },
-  { name: "subject", field: "subject", sortable: true, label: "شرح" },
-  { name: "amount", field: "amount", sortable: true, label: "جمع کل" }
-  //{ name: "subject", field: "subject", sortable: true, label: "شرح" }
-  //{ name: "typeTitle", field: "typeTitle", sortable: true, label: "نوع" },
-  //{ name: "statusTitle", field: "statusTitle", sortable: true, label: "وضعیت" }
+  {
+    name: "subject",
+    field: "subject",
+    sortable: true,
+    label: "شرح",
+    align: "left"
+  },
+  {
+    name: "amount",
+    field: "amount",
+    sortable: true,
+    label: "جمع کل",
+    align: "left"
+  },
+  {
+    name: "discountAmount",
+    field: "discountAmount",
+    sortable: true,
+    label: "تخفیف",
+    align: "left"
+  },
+  {
+    name: "typeTitle",
+    field: "typeTitle",
+    sortable: true,
+    label: "نوع",
+    align: "center"
+  },
+  {
+    name: "statusTitle",
+    field: "statusTitle",
+    sortable: true,
+    label: "وضعیت",
+    align: "center"
+  }
 ]
 
 const gotoBusiness = () => {
