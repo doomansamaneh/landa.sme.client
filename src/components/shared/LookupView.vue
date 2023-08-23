@@ -72,7 +72,7 @@
             <div class="">
               <img
                 class="nothing-found-svg"
-                src="../../../public/page-lost.svg"
+                src="/page-lost.svg"
                 style="width: 150px"
               />
             </div>

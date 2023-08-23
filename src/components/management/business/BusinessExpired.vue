@@ -19,7 +19,7 @@
     </q-card-section>
     <q-separator />
     <q-card-section class="flex items-center justify-start q-gutter-lg"
-      ><img src="../../../../public/sad.svg" alt="expired" class="q-pt-md" />
+      ><img src="/sad.svg" alt="expired" class="q-pt-md" />
       <span class="text-subtitle1">متاسفانه کسب و کار شما منقضی شده است.</span>
 
       <!-- <q-btn

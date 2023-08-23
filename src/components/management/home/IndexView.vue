@@ -511,11 +511,12 @@ const drawerRight = ref(false)
 
 async function loadData() {
   const businessId = route.params.businessId
-  await fetchWrapper
-    .get(`business/GetBusiness/${businessId}`)
-    .then((response) => {
-      handleBusinessData(response.data.data)
-    })
+  if (businessId)
+    await fetchWrapper
+      .get(`business/GetBusiness/${businessId}`)
+      .then((response) => {
+        handleBusinessData(response.data.data)
+      })
 }
 
 function handleBusinessData(data) {

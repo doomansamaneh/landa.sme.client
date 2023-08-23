@@ -2,6 +2,9 @@
   <q-card>
     <q-btn icon="arrow_back" @click="gotoBusiness">کسب و کارها</q-btn>
     <q-card-section>
+      <menu-items />
+    </q-card-section>
+    <q-card-section>
       <h4>پیش فاکتورها</h4>
       <grid dataSource="sls/quote/getGridData" :columns="columns" sortBy="no" />
     </q-card-section>
@@ -23,6 +26,8 @@
 <script setup>
 import Index from "src/components/management/proforma/IndexView.vue"
 import grid from "src/components/shared/DataGrid.vue"
+import menuItems from "./TestView.vue"
+
 import { useRouter } from "vue-router"
 
 const router = useRouter()
@@ -45,8 +50,7 @@ const columns = [
   //{ name: "statusTitle", field: "statusTitle", sortable: true, label: "وضعیت" }
 ]
 
-
-const gotoBusiness = () =>{
+const gotoBusiness = () => {
   router.push("/business")
 }
 </script>

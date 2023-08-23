@@ -96,10 +96,7 @@
           </q-tooltip>
         </q-radio>
         <div class="q-pa-md">
-          <img
-            src="../../../../public/sadad-new.png"
-            alt="درگاه پرداخت الکترونیک سداد"
-          />
+          <img src="/sadad-new.png" alt="درگاه پرداخت الکترونیک سداد" />
         </div>
       </div>
     </div>
