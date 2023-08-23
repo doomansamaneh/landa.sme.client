@@ -28,6 +28,7 @@
 import Index from "src/components/management/quote/IndexView.vue"
 // import grid from "src/components/shared/DataGrid.vue"
 import grid from "src/components/shared/MyDataGrid.vue"
+import menuItems from "./TestView.vue"
 import { useRouter } from "vue-router"
 import { ref } from "vue"
 
