@@ -23,7 +23,7 @@
               <q-item-label class="">
                 <img
                   class="sme-logo"
-                  src="../../../../public/landa-sme-logo.png"
+                  src="/landa-sme-logo.png"
                   alt=""
                 />
               </q-item-label>
@@ -268,11 +268,7 @@
       >
         <div class="">
           <q-item-label class="">
-            <img
-              class="sme-logo"
-              src="../../../../public/landa-sme-logo.png"
-              alt=""
-            />
+            <img class="sme-logo" src="/landa-sme-logo.png" alt="" />
           </q-item-label>
         </div>
         <div class="">
