@@ -164,7 +164,7 @@
 
     <template v-slot:body-cell-statusTitle="props">
       <q-td :props="props">
-        <q-badge color="warning" :label="props.value" />
+        <q-badge color="orange" :label="props.value" />
       </q-td>
     </template>
     <template v-slot:body-cell-typeTitle="props">

@@ -8,6 +8,28 @@ body.body--dark.theme--purple {
     box-shadow: 0 0 2px 0 #f7a2ff;
   }
 
+  .bg-dark{
+    background-color: $dark-purple-1 !important;
+  }
+
+  tr.subtotal{
+    background-color: #30113d;
+
+  }
+
+  tr.total{
+    background-color: #21062d;
+
+  }
+
+  .main-layout-color {
+    background-color: #15152b;
+  }
+
+  .q-table__container{
+    background-color: #15152b;
+  }
+
   .profile-pic .q-avatar__content {
     background-color: $purple;
   }
@@ -60,6 +82,11 @@ body.body--dark.theme--purple {
     background-color: $dark-purple-1;
   }
 
+  .q-card{
+    background-color: #15152b;
+    border: 1px solid #80439a;
+  }
+
   .q-field--outlined .q-field__control:before {
     background-color: $dark-purple-1;
   }
@@ -75,7 +102,7 @@ body.body--dark.theme--purple {
   }
 
   .dark-1 {
-    background-color: #1b193d;
+    background-color: #333355bd;
   }
 
   .q-separator {
@@ -120,13 +147,13 @@ body.body--dark.theme--purple {
   }
 
   .invoice-table tbody tr:hover {
-    background-color: #413f76d2;
+    background-color: #371d44d2;
   }
 
   .invoice-table th {
-    background-color: #222045;
-    border-bottom: 2px solid $purple;
-  }
+    background-color: #171634;
+    border-bottom: 2px solid #c729df;
+}
 
   .invoice-table td {
     border-bottom: 1px solid $dark-purple-2;
@@ -151,8 +178,13 @@ body.body--dark.theme--purple {
   }
 
   .selected {
-    background-color: #413f76d2;
+    background-color: #333355bd;
     border-radius: 4px;
+  }
+
+  .q-menu{
+    background-color: $dark-purple-1;
+    border: 1px solid #80439a;
   }
 
   .lookup-table-body {
@@ -183,8 +215,8 @@ body.body--dark.theme--purple {
   }
 
   .invoice-text-container {
-    background-color: #222045;
-  }
+    background-color: #171634;
+}
 
   .plan-title {
     background-color: $dark;

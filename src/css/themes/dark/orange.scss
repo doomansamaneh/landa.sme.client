@@ -5,6 +5,25 @@ body.body--dark.theme--orange {
     background-color: orange;
   }
 
+  .bg-dark{
+    background-color: $dark-orange-1 !important;
+  }
+
+  tr.subtotal{
+    background-color: #3d1611;
+
+  }
+
+  tr.total{
+    background-color: #540c0c;
+
+  }
+  .main-layout-color {
+    background-color: $dark-orange-1;
+  }
+
+
+
   .q-field__control,
   .q-linear-progress,
   .q-carousel__navigation-inner .q-btn,
@@ -54,9 +73,17 @@ body.body--dark.theme--orange {
     background-color: #2d1e27ce;
   }
   background-color: #170000;
+
+  .q-table__container{
+    background-color: #170000;
+  }
   .q-card,
   .q-header {
     background-color: $dark-orange-1;
+  }
+
+  .q-card{
+    border: 1px solid #902600;
   }
   .q-field--outlined .q-field__control:before {
     background-color: $dark-orange-1;
@@ -69,8 +96,15 @@ body.body--dark.theme--orange {
   }
 
   .dark-1 {
-    background-color: #2d1e27;
+    background-color: #99645c51;
+
   }
+
+  .q-menu{
+    background-color: $dark-orange-1;
+    border: 1px solid #902600;
+  }
+
 
   .q-separator {
     background-color: #b699aa9c;
@@ -118,9 +152,9 @@ body.body--dark.theme--orange {
   }
 
   .invoice-table th {
-    background-color: #30252c;
+    background-color: #1f0f19;
     border-bottom: 2px solid orangered;
-  }
+}
 
   .invoice-table td {
     border-bottom: 1px solid $dark-orange-2;
@@ -145,7 +179,7 @@ body.body--dark.theme--orange {
   }
 
   .selected {
-    background-color: #99645c2f;
+    background-color: #99645c37;
     border-radius: 4px;
   }
 
@@ -184,8 +218,8 @@ body.body--dark.theme--orange {
   }
 
   .invoice-text-container {
-    background-color: #30252c;
-  }
+    background-color: #1f0f19;
+}
 
   .plan-title {
     background-color: $dark;

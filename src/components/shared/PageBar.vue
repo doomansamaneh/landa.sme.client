@@ -26,6 +26,7 @@
     <q-space />
     <q-select
       dense
+      class="select"
       outlined
       v-model="pagination.pageSize"
       :options="[5, 10, 20]"
