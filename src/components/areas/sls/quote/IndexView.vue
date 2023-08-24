@@ -22,6 +22,10 @@
   <div v-if="showTopBar">
     <top-bar />
   </div>
+
+  <div class="">
+    <menu-items/>
+  </div>
 </template>
 
 <script setup>

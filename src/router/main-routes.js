@@ -1,7 +1,7 @@
 export default {
-  path: "/home",
+  path: "/",
   component: () => import("src/layouts/MainLayout.vue"),
-  name: "Home",
+  name: "",
   meta: {
     icon: "home"
   },

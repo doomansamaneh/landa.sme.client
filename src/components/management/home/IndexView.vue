@@ -15,13 +15,21 @@
             icon="menu"
             class="text"
           />
-          <q-btn flat round dense color="text" icon="search" class="text-dark xs" />
+          <q-btn
+            flat
+            round
+            dense
+            color="text"
+            icon="search"
+            class="text-dark xs"
+          />
         </div>
         <div class="search-for-mobile xs"></div>
         <q-toolbar-title
           class="text-subtitle2 text-bold col-6 flex justify-start"
         >
-          <span class="text q-pr-sm">{{ selectedBusiness.title }}</span> <span class="text">-</span>
+          <span class="text q-pr-sm">{{ selectedBusiness.title }}</span>
+          <span class="text">-</span>
           <span class="text q-pl-sm text-weight-medium"> سال مالی: 1402</span>
         </q-toolbar-title>
 
@@ -228,7 +236,23 @@
           <q-icon name="o_dashboard" class="dashboard" color="blue" size="sm" />
           <span class="text custom-lg-mr">پیشخوان</span>
         </q-item>
-        <q-expansion-item
+        <div v-for="item in menuItems" :key="item">
+          <q-expansion-item :label="item.title" :icon="item.icon">
+            <q-item
+              v-for="subItem in filteredMenuItemsSls"
+              :key="subItem"
+              :to="subItem.url"
+              clickable
+              class="q-mx-md"
+            >
+              <q-item-section avatar class="item-section">
+                <q-icon color="" :name="subItem.icon" />
+              </q-item-section>
+              <q-item-section>{{ subItem.title }}</q-item-section>
+            </q-item>
+          </q-expansion-item>
+        </div>
+        <!-- <q-expansion-item
           icon="o_shop_2"
           label="بازرگانی، خرید و فروش"
           class=""
@@ -592,7 +616,7 @@
             </q-item-section>
             <q-item-section>گزارش چک</q-item-section>
           </q-item>
-        </q-expansion-item>
+        </q-expansion-item> -->
         <q-separator inset />
         <div class="settings" style="cursor: pointer; margin-bottom: 32px">
           <q-item class="flex items-center q-mt-xs">
@@ -629,6 +653,7 @@ const authStore = useAuthStore()
 const $q = useQuasar()
 
 const title = ref("")
+const menuItems = ref([])
 const drawerRight = ref(false)
 
 async function loadData() {
@@ -639,6 +664,21 @@ async function loadData() {
       .then((response) => {
         handleBusinessData(response.data.data)
       })
+}
+
+async function getMenuItems() {
+  await fetchWrapper
+    .get("scr/users/getMenuItems")
+    .then((response) => {
+      // alert("menu items fetched")
+      // console.log(response.data)
+      handleMenuItemsData(response.data.data)
+    })
+    .finally(() => {})
+}
+
+function handleMenuItemsData(data) {
+  menuItems.value = data
 }
 
 function handleBusinessData(data) {
@@ -658,8 +698,20 @@ function changePasswordDialog() {
   })
 }
 
+const getFilteredMenuItems = (desiredParentName) => {
+  return computed(() => {
+    return menuItems.value.filter(
+      (item) => item.parentName === desiredParentName
+    )
+  })
+}
+
+//todo: load dynamically subItems of menuItems
+const filteredMenuItemsSls = getFilteredMenuItems("SlsMenu")
+const filteredMenuItemsTrs = getFilteredMenuItems("TrsMenu")
+
 onMounted(() => {
-  loadData()
+  loadData(), getMenuItems()
 })
 
 const gotoBusiness = () => {

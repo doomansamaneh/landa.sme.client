@@ -208,7 +208,10 @@ async function gotoBusiness(item) {
     .post(`business/gotoBusiness/${item.id}`)
     .then((response) => {
       alert(`goto business: ${response.data.data.culture}`)
-      router.push(`/${response.data.data.url}`)
+      // console.log(`goto business: ${response.data.data}`);
+      // router.push(`/${response.data.data.url}`)
+      //todo: resolve main-route for gotoBusiness
+      router.push(`/${item.id}`)
     })
 }
 

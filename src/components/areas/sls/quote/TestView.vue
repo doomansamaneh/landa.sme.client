@@ -1,6 +1,6 @@
 <template>
   <h4>دریافت منوها</h4>
-  <q-btn @click="getMenuItems">دریافت همه منوها</q-btn>
+  <q-btn @click="getMenuItems" color="blue">دریافت همه منوها</q-btn>
 </template>
 
 <script setup>
