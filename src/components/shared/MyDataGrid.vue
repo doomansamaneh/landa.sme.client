@@ -1,6 +1,6 @@
 <template>
   <q-table
-    class="text-left"
+    class="text-left sticky-header-table"
     :card-class="color"
     hide-pagination
     icon-first-page="search"
@@ -26,6 +26,63 @@
   >
     <template v-slot:body-cell-row-number>
       <q-td><span class="rowNumber" /> </q-td>
+    </template>
+
+    <template v-slot:top-row>
+      <q-tr>
+        <q-th>
+          <q-icon name="search" size="42px" color="primary" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+        <q-th>
+          <q-input outlined dense class="q-py-sm" />
+        </q-th>
+      </q-tr>
+    </template>
+
+    <template v-slot:bottom-row>
+      <tr class="subtotal text-bold">
+        <td class=""></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan=""></td>
+        <td colspan=""></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="total text-white text-bold">
+        <td class=""></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td colspan="">266,460,000</td>
+        <td colspan="">800,000</td>
+        <td></td>
+        <td></td>
+      </tr>
     </template>
 
     <template v-slot:bottom>
@@ -68,98 +125,33 @@
           <span>ردیف در هر صفحه</span>
         </div>
       </td>
-      <!-- <div class="row items-center justify-between">
-            <div class="">
-            <span>۱ - ۱۰ از ۴۵۰</span>
-          </div>
-          <div class="row justify-between q-py-md">
-            <q-pagination
-              direction-links
-              max="5"
-              boundary-links
-              icon-first="keyboard_double_arrow_left"
-              icon-last="keyboard_double_arrow_right"
-              icon-prev="chevron_left"
-              icon-next="chevron_right"
-              gutter="xs"
-              padding="3px 2px 1px 2px"
-              round
-              color="grey-8"
-              active-color="primary"
-              size="14px"
-              class="pagination"
-            />
-          </div>
-          <div class="row justify-end items-center q-gutter-x-md q-py-md">
-            <q-select
-              dense
-              outlined
-              :options="[5, 10, 20]"
-              @update:model-value="handlePageChange"
-              transition-show="flip-up"
-              transition-hide="flip-down"
-              popup-content-class="text-caption text-weight-medium text-grey-8"
-              class="select"
-            />
-            <span>ردیف در هر صفحه</span>
-          </div>
-          </div> -->
-    </template>
-    <template v-slot:top-row>
-      <q-tr>
-        <q-th colspan="">
-          <q-icon name="search" size="42px" color="primary" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-        <q-th>
-          <q-input outlined dense class="q-py-sm" />
-        </q-th>
-      </q-tr>
     </template>
 
-    <template v-slot:bottom-row>
-      <tr class="subtotal text-bold">
-        <td class="no-hover"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td colspan=""></td>
-        <td colspan=""></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr class="total text-white text-bold">
-        <td class="no-hover"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td colspan="">266,460,000</td>
-        <td colspan="">800,000</td>
-        <td></td>
-        <td></td>
-      </tr>
+    <template v-slot:body="props">
+      <q-tr :props="props">
+        <q-td auto-width>
+          <q-btn
+            size="md"
+            color="primary"
+            flat
+            dense
+            round
+            @click="props.expand = !props.expand"
+            :icon="props.expand ? 'expand_less' : 'chevron_left'"
+          />
+        </q-td>
+        <q-td v-for="col in props.cols" :key="col.name" :props="props">
+          {{ col.value }}
+        </q-td>
+      </q-tr>
+      <q-tr v-show="props.expand" :props="props">
+        <q-td colspan="100%">
+          <div class="text-left q-py-xl">
+            نام مشتری:
+            <span class="text-bold"> {{ props.row.customerName }} </span>
+          </div>
+        </q-td>
+      </q-tr>
     </template>
 
     <template v-slot:body-cell-statusTitle="props">
@@ -271,5 +263,27 @@ function getSelectedString() {
 .q-table__bottom {
   display: flex;
   justify-content: space-between;
+}
+
+.sticky-header-table {
+  height: 600px;
+}
+
+.sticky-header-table thead tr th {
+  position: sticky;
+  z-index: 1;
+  background-color: white;
+}
+
+.sticky-header-table thead tr:first-child th {
+  top: 0;
+}
+
+.sticky-header-table.q-table--loading thead tr:last-child th {
+  top: 48px;
+}
+
+.sticky-header-table tbody {
+  scroll-margin-top: 48px;
 }
 </style>

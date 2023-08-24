@@ -21,7 +21,7 @@
         <q-toolbar-title
           class="text-subtitle2 text-bold col-6 flex justify-start"
         >
-          <span class="text q-pr-sm">{{ selectedBusiness.title }}</span> -
+          <span class="text q-pr-sm">{{ selectedBusiness.title }}</span> <span class="text">-</span>
           <span class="text q-pl-sm text-weight-medium"> سال مالی: 1402</span>
         </q-toolbar-title>
 
@@ -46,7 +46,7 @@
                 size="12px"
                 color=""
                 icon="tune"
-                class="text-dark"
+                class="btn-icon"
               />
             </template>
           </q-input>
@@ -58,7 +58,7 @@
             round
             color=""
             icon="o_person_search"
-            class="text-dark gt-xs"
+            class="btn-icon gt-xs"
             size="14px"
           />
           <q-btn
@@ -68,7 +68,7 @@
             color="text"
             icon="o_account_circle"
             size="14px"
-            class="text-dark"
+            class="btn-icon"
           >
             <q-menu
               class="no-shadow z-max"
@@ -154,7 +154,7 @@
             round
             color=""
             icon="o_settings"
-            class="text-dark"
+            class="btn-icon"
             size="14px"
           >
             <q-menu

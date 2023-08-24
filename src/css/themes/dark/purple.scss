@@ -159,6 +159,14 @@ body.body--dark.theme--purple {
     border-bottom: 1px solid $dark-purple-2;
   }
 
+  tr.q-tr:hover{
+    background-color: $dark-purple-1;
+   }
+
+  //  tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
+  //   background-color: #171634;
+  // }
+
   .dark-2,
   .dark-3 {
     color: #bfa2c9;

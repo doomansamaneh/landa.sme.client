@@ -19,13 +19,13 @@
     </q-card-section> -->
   </q-card>
 
-  <div v-if="showIndex">
-    <index />
+  <div v-if="showTopBar">
+    <top-bar />
   </div>
 </template>
 
 <script setup>
-import Index from "src/components/management/quote/IndexView.vue"
+import topBar from "src/components/management/quote/IndexView.vue"
 // import grid from "src/components/shared/DataGrid.vue"
 import grid from "src/components/shared/MyDataGrid.vue"
 import menuItems from "./TestView.vue"
@@ -34,7 +34,7 @@ import { ref } from "vue"
 
 const router = useRouter()
 
-const showIndex = true
+const showTopBar = true
 
 const columns = [
   // {
@@ -90,14 +90,14 @@ const columns = [
     field: "typeTitle",
     sortable: true,
     label: "نوع",
-    align: "center"
+    align: "left"
   },
   {
     name: "statusTitle",
     field: "statusTitle",
     sortable: true,
     label: "وضعیت",
-    align: "center"
+    align: "left"
   }
 ]
 

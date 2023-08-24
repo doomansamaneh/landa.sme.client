@@ -10,13 +10,28 @@
 
   tr.subtotal{
     background-color: #eee;
+  }
 
+  // tr.subtotal:hover{
+  //   background-color: #eee;
+  // }
+
+  tr.q-tr:hover{
+    background-color: white;
+   }
+
+   tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
+    background-color: #eee;
   }
 
   tr.total{
     background-color: #607d8b;
-
   }
+
+  // tr.total:hover{
+  //   background-color: #607d8b;
+
+  // }
 
   .text{
     color: #1d1d1d;
@@ -168,7 +183,7 @@
   }
 
   .lookup-table-body tr:hover {
-    background-color: #e8f4ff;
+    background-color: #ffe8e8;
   }
 
   .glass {

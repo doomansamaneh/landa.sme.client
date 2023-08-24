@@ -10,12 +10,16 @@ body.body--dark.theme--orange {
   }
 
   tr.subtotal{
-    background-color: #3d1611;
+    background-color: #6a0c008f;
 
   }
 
+  // tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
+  //   background-color: #7e433a1b;
+  // }
+
   tr.total{
-    background-color: #540c0c;
+    background-color: #540c0c49;
 
   }
   .main-layout-color {
@@ -146,6 +150,10 @@ body.body--dark.theme--orange {
     border-radius: 4px;
     background-color: $dark-orange-2;
   }
+
+  tr.q-tr:hover{
+    background-color: $dark-orange-1;
+   }
 
   .invoice-table tbody tr:hover {
     background-color: #c976692f;

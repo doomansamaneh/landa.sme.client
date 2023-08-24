@@ -9,6 +9,15 @@ body.body--dark {
 
   }
 
+ tr.q-tr:hover{
+  background-color: #040c2d;
+ }
+
+//  tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
+//   background-color: #040c2d;
+// }
+
+
   tr.total{
     background-color: #090c46;
 
@@ -19,7 +28,7 @@ body.body--dark {
     border: 1px solid $dark-5;
   }
 
-  .q-btn .q-icon{
+  .btn-icon .q-icon{
     color: white;
 
   }
