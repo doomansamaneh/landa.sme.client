@@ -24,11 +24,11 @@
       ';'
     "
   >
-    <template v-slot:body-cell-row-number>
+    <!-- <template v-slot:body-cell-row-number>
       <q-td><span class="rowNumber" /> </q-td>
-    </template>
+    </template> -->
 
-    <template v-slot:top-row>
+    <template v-slot:top-row v-if="!dataLoadFailed">
       <q-tr>
         <q-th>
           <q-icon name="search" size="42px" color="primary" />
@@ -60,7 +60,7 @@
       </q-tr>
     </template>
 
-    <template v-slot:bottom-row>
+    <template v-slot:bottom-row v-if="!dataLoadFailed">
       <tr class="subtotal text-bold">
         <td class=""></td>
         <td></td>
@@ -164,6 +164,18 @@
         <q-badge class="text" outline :label="props.value" />
       </q-td>
     </template>
+
+    <template v-slot:no-data="{ message }">
+      <div
+        class="full-width row flex-center text-accent q-gutter-sm q-pt-lg"
+        v-if="dataLoadFailed"
+      >
+        <img src="/sad.svg" class="no-data-table-img" alt="" />
+        <span class="text">
+          {{ message }}
+        </span>
+      </div>
+    </template>
   </q-table>
 </template>
 
@@ -186,6 +198,7 @@ const selected = ref([])
 const current = ref(1)
 const rows = ref([])
 const loading = ref(false)
+const dataLoadFailed = ref(false)
 
 const pageSetting = ref({
   sortBy: props.sortBy,
@@ -208,6 +221,7 @@ async function onRequest(props) {
 
 async function loadData(pagination) {
   loading.value = true
+  dataLoadFailed.value = false
   await fetchWrapper
     .post(props.dataSource, {
       pageSize: pageSetting.value.rowsPerPage,
@@ -218,6 +232,9 @@ async function loadData(pagination) {
     })
     .then((response) => {
       handleResponse(response.data.data, pagination)
+    })
+    .catch((error) => {
+      dataLoadFailed.value = true
     })
     .finally(() => {
       loading.value = false
@@ -258,6 +275,10 @@ function getSelectedString() {
 
 .select {
   width: 75px;
+}
+
+.no-data-table-img {
+  width: 120px;
 }
 
 .q-table__bottom {
