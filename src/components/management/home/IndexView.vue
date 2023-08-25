@@ -237,7 +237,7 @@
           <span class="text custom-lg-mr">پیشخوان</span>
         </q-item>
         <div
-          v-for="parentItem in topLevelMenuItems"
+          v-for="parentItem in drawerMenuItems"
           :key="parentItem.name"
         >
           <q-expansion-item :label="$t(`drawer.items.${parentItem.title}`)" :icon="parentItem.icon">
@@ -291,7 +291,7 @@ const authStore = useAuthStore()
 const $q = useQuasar()
 
 const title = ref("")
-const menuItems = ref([])
+const items = ref([])
 const drawerRight = ref(false)
 
 async function loadData() {
@@ -308,15 +308,13 @@ async function getMenuItems() {
   await fetchWrapper
     .get("scr/users/getMenuItems")
     .then((response) => {
-      // alert("menu items fetched")
-      // console.log(response.data)
       handleMenuItemsData(response.data.data)
     })
     .finally(() => {})
 }
 
 function handleMenuItemsData(data) {
-  menuItems.value = data
+  items.value = data
 }
 
 function handleBusinessData(data) {
@@ -340,38 +338,12 @@ onMounted(() => {
   loadData(), getMenuItems()
 })
 
-// const groupedMenuItems = computed(() => {
-//   const groups = {}
-//   menuItems.value.forEach((item) => {
-//     if (!groups[item.parentName]) {
-//       groups[item.parentName] = []
-//     }
-//     groups[item.parentName].push(item)
-//   })
-//   return groups
-// })
-
-// const getParentTitle = (parentName) => {
-//   const menuItem = menuItems.value.find(
-//     (item) => item.parentName === parentName
-//   )
-//   return menuItem ? menuItem.title : parentName
-// }
-
-// // Get parent icon for a specific parentName from menuItems
-// const getParentIcon = (parentName) => {
-//   const menuItem = menuItems.value.find(
-//     (item) => item.parentName === parentName
-//   )
-//   return menuItem ? menuItem.icon : "default_icon" // Replace with a default icon
-// }
-
-const topLevelMenuItems = computed(() => {
-  return menuItems.value
+const drawerMenuItems = computed(() => {
+  return items.value
     .filter((item) => item.parentName === null)
     .map((item) => ({
       ...item,
-      subItems: menuItems.value.filter(
+      subItems: items.value.filter(
         (subItem) => subItem.parentName === item.name
       )
     }))
