@@ -211,7 +211,7 @@
       side="left"
       v-model="drawerRight"
       show-if-above
-      :width="300"
+      :width="305"
       :breakpoint="500"
       class="drawer"
     >
@@ -219,8 +219,8 @@
         <q-input
           color="grey-5"
           outlined
-          v-model="text"
-          placeholder="جستوجو"
+          v-model="searchText"
+          placeholder="جستوجو در منو"
           dense
           rounded
           class="text-caption"
@@ -236,11 +236,11 @@
           <q-icon name="o_dashboard" class="dashboard" color="blue" size="sm" />
           <span class="text custom-lg-mr">پیشخوان</span>
         </q-item>
-        <div
-          v-for="parentItem in drawerMenuItems"
-          :key="parentItem.name"
-        >
-          <q-expansion-item :label="$t(`drawer.items.${parentItem.title}`)" :icon="parentItem.icon">
+        <div v-for="parentItem in drawerMenuItems" :key="parentItem.name">
+          <q-expansion-item
+            :label="$t(`drawer.items.${parentItem.title}`)"
+            :icon="parentItem.icon"
+          >
             <q-item
               v-for="subItem in parentItem.subItems"
               :key="subItem.name"
@@ -251,7 +251,9 @@
               <q-item-section avatar class="item-section">
                 <q-icon color="" :name="subItem.icon" />
               </q-item-section>
-              <q-item-section>{{ $t(`drawer.sub-items.${subItem.title}`) }}</q-item-section>
+              <q-item-section>{{
+                $t(`drawer.sub-items.${subItem.title}`)
+              }}</q-item-section>
             </q-item>
           </q-expansion-item>
         </div>
@@ -293,6 +295,7 @@ const $q = useQuasar()
 const title = ref("")
 const items = ref([])
 const drawerRight = ref(false)
+const searchText = ref("")
 
 async function loadData() {
   const businessId = route.params.businessId
@@ -339,7 +342,7 @@ onMounted(() => {
 })
 
 const drawerMenuItems = computed(() => {
-  return items.value
+  const filteredItems = items.value
     .filter((item) => item.parentName === null)
     .map((item) => ({
       ...item,
@@ -347,6 +350,31 @@ const drawerMenuItems = computed(() => {
         (subItem) => subItem.parentName === item.name
       )
     }))
+
+  if (searchText.value.trim() === "") {
+    return filteredItems
+  } else {
+    const searchLower = searchText.value.toLowerCase()
+    return filteredItems
+      .map((item) => {
+        const filteredSubItems = item.subItems.filter((subItem) =>
+          subItem.title.toLowerCase().includes(searchLower)
+        )
+
+        if (
+          filteredSubItems.length > 0 ||
+          item.title.toLowerCase().includes(searchLower)
+        ) {
+          return {
+            ...item,
+            subItems: filteredSubItems
+          }
+        } else {
+          return null
+        }
+      })
+      .filter(Boolean)
+  }
 })
 
 const gotoBusiness = () => {
