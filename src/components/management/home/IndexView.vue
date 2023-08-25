@@ -236,11 +236,14 @@
           <q-icon name="o_dashboard" class="dashboard" color="blue" size="sm" />
           <span class="text custom-lg-mr">پیشخوان</span>
         </q-item>
-        <div v-for="item in menuItems" :key="item">
-          <q-expansion-item :label="item.title" :icon="item.icon">
+        <div
+          v-for="parentItem in topLevelMenuItems"
+          :key="parentItem.name"
+        >
+          <q-expansion-item :label="$t(`drawer.items.${parentItem.title}`)" :icon="parentItem.icon">
             <q-item
-              v-for="subItem in filteredMenuItemsSls"
-              :key="subItem"
+              v-for="subItem in parentItem.subItems"
+              :key="subItem.name"
               :to="subItem.url"
               clickable
               class="q-mx-md"
@@ -248,375 +251,10 @@
               <q-item-section avatar class="item-section">
                 <q-icon color="" :name="subItem.icon" />
               </q-item-section>
-              <q-item-section>{{ subItem.title }}</q-item-section>
+              <q-item-section>{{ $t(`drawer.sub-items.${subItem.title}`) }}</q-item-section>
             </q-item>
           </q-expansion-item>
         </div>
-        <!-- <q-expansion-item
-          icon="o_shop_2"
-          label="بازرگانی، خرید و فروش"
-          class=""
-        >
-          <q-item to="/home/sls/quote" clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="" name="content_paste" />
-            </q-item-section>
-            <q-item-section>پیش‌فاکتور‌ها</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="" name="o_receipt_long" />
-            </q-item-section>
-            <q-item-section>فاکتورهای فروش</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="o_shopping_cart"></q-icon>
-            </q-item-section>
-            <q-item-section>فاکتور‌های خرید</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="turn_left"></q-icon>
-            </q-item-section>
-            <q-item-section>برگشت از فروش‌ها</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="o_subject"></q-icon>
-            </q-item-section>
-            <q-item-section>انواع فروش</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>انواع خرید</q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-expansion-item
-          icon="credit_card"
-          label="دریافت و پرداخت"
-          class="sub-item text-text"
-        >
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="arrow_downward" />
-            </q-item-section>
-            <q-item-section>دریافت‌ها</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="arrow_upward"></q-icon>
-            </q-item-section>
-            <q-item-section>پرداخت‌ها</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="attach_money"></q-icon>
-            </q-item-section>
-            <q-item-section>هزینه</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="swap_horiz"></q-icon>
-            </q-item-section>
-            <q-item-section>انتقال وجه</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>حساب‌های بانکی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="inbox"></q-icon>
-            </q-item-section>
-            <q-item-section>صندوق</q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-expansion-item
-          icon="receipt_long"
-          label="حسابداری"
-          class="sub-item text-text"
-        >
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="receipt_long"></q-icon>
-            </q-item-section>
-            <q-item-section>سند حسابداری</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="build"></q-icon>
-            </q-item-section>
-            <q-item-section>عملیات حسابداری</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="analytics"></q-icon>
-            </q-item-section>
-            <q-item-section>سرفصل حساب‌ها</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="category"></q-icon>
-            </q-item-section>
-            <q-item-section>گروه حساب‌ها</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>حساب‌های کل</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="menu"></q-icon>
-            </q-item-section>
-            <q-item-section>حساب‌های معین</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="view_module"></q-icon>
-            </q-item-section>
-            <q-item-section>حساب‌های تفضیلی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="browse_gallery"></q-icon>
-            </q-item-section>
-            <q-item-section>سال مالی</q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-expansion-item
-          icon="o_account_box"
-          label="حقوق و دستمزد"
-          class="sub-item text-text"
-        >
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="o_account_box"></q-icon>
-            </q-item-section>
-            <q-item-section>حقوق و دستمزد ماهانه</q-item-section>
-          </q-item>
-        </q-expansion-item>
-        <q-expansion-item
-          icon="o_home"
-          label="انبارداری"
-          class="sub-item text-text"
-        >
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="swap_vert"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش موجودی کالا</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>موجودی اول دوره</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>اصلاح موجودی</q-item-section>
-          </q-item>
-        </q-expansion-item>
-        <q-expansion-item
-          icon="o_group"
-          label="سازمان، مخاطب، کاربر"
-          class="sub-item text-text"
-        >
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>واحد سازمانی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>نوع واحد سازمانی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="person"></q-icon>
-            </q-item-section>
-            <q-item-section>مخاطب، شخص</q-item-section>
-          </q-item>
-        </q-expansion-item>
-        <q-expansion-item
-          icon="o_info"
-          label="اطلاعات پایه"
-          class="sub-item text-text"
-        >
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="credit_card"></q-icon>
-            </q-item-section>
-            <q-item-section>نوع حساب بانکی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="account_balance"></q-icon>
-            </q-item-section>
-            <q-item-section>بانک</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="apps"></q-icon>
-            </q-item-section>
-            <q-item-section>شعبه بانک</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="monetization_on"></q-icon>
-            </q-item-section>
-            <q-item-section>ارز</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="location_on"></q-icon>
-            </q-item-section>
-            <q-item-section>محل جغرافیایی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="view_comfy"></q-icon>
-            </q-item-section>
-            <q-item-section>گروه کالا و خدمات</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="monitor"></q-icon>
-            </q-item-section>
-            <q-item-section>کالا/خدمت</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="format_list_numbered_rtl"></q-icon>
-            </q-item-section>
-            <q-item-section>واحدهای سنجش</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="format_list_numbered_rtl"></q-icon>
-            </q-item-section>
-            <q-item-section>تبدیل واحد سنجش</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="monetization_on"></q-icon>
-            </q-item-section>
-            <q-item-section>انواع مالیات بر ارزش افزوده</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>نوع تماس</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="subject"></q-icon>
-            </q-item-section>
-            <q-item-section>شغل</q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-expansion-item
-          icon="bar_chart"
-          label="گزارش‌ها"
-          class="sub-item text-text"
-          id="reports"
-        >
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="pie_chart"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش مرور حساب</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="text_fields"></q-icon>
-            </q-item-section>
-            <q-item-section>تراز آزمایشی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="title"></q-icon>
-            </q-item-section>
-            <q-item-section>ترازنامه</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="menu"></q-icon>
-            </q-item-section>
-            <q-item-section>صورت سود و زیان</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="menu"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش دفاتر</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="group"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش حساب شخص</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="group"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش بدهکاران</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="group"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش بستانکاران</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="receipt_long"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش خرید و فروش فصلی</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="receipt_long"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش مرور فروش</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="shopping_cart"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش مرور خرید</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="text" name="swap_vert"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش موجودی کالا</q-item-section>
-          </q-item>
-          <q-item clickable class="q-mx-md">
-            <q-item-section avatar class="item-section">
-              <q-icon color="" name="receipt_long"></q-icon>
-            </q-item-section>
-            <q-item-section>گزارش چک</q-item-section>
-          </q-item>
-        </q-expansion-item> -->
         <q-separator inset />
         <div class="settings" style="cursor: pointer; margin-bottom: 32px">
           <q-item class="flex items-center q-mt-xs">
@@ -698,20 +336,45 @@ function changePasswordDialog() {
   })
 }
 
-const getFilteredMenuItems = (desiredParentName) => {
-  return computed(() => {
-    return menuItems.value.filter(
-      (item) => item.parentName === desiredParentName
-    )
-  })
-}
-
-//todo: load dynamically subItems of menuItems
-const filteredMenuItemsSls = getFilteredMenuItems("SlsMenu")
-const filteredMenuItemsTrs = getFilteredMenuItems("TrsMenu")
-
 onMounted(() => {
   loadData(), getMenuItems()
+})
+
+// const groupedMenuItems = computed(() => {
+//   const groups = {}
+//   menuItems.value.forEach((item) => {
+//     if (!groups[item.parentName]) {
+//       groups[item.parentName] = []
+//     }
+//     groups[item.parentName].push(item)
+//   })
+//   return groups
+// })
+
+// const getParentTitle = (parentName) => {
+//   const menuItem = menuItems.value.find(
+//     (item) => item.parentName === parentName
+//   )
+//   return menuItem ? menuItem.title : parentName
+// }
+
+// // Get parent icon for a specific parentName from menuItems
+// const getParentIcon = (parentName) => {
+//   const menuItem = menuItems.value.find(
+//     (item) => item.parentName === parentName
+//   )
+//   return menuItem ? menuItem.icon : "default_icon" // Replace with a default icon
+// }
+
+const topLevelMenuItems = computed(() => {
+  return menuItems.value
+    .filter((item) => item.parentName === null)
+    .map((item) => ({
+      ...item,
+      subItems: menuItems.value.filter(
+        (subItem) => subItem.parentName === item.name
+      )
+    }))
 })
 
 const gotoBusiness = () => {
