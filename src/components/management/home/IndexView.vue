@@ -415,10 +415,4 @@ const gotoBusiness = () => {
 .q-item__section--avatar {
   min-width: 0;
 }
-
-.q-item.q-router-link--active {
-  background-color: $select;
-  border-radius: 8px;
-  border-left: 4px solid $primary;
-}
 </style>

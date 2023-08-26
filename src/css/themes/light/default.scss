@@ -8,6 +8,12 @@
     background-color: $white;
   }
 
+  .q-item.q-router-link--active {
+    background-color: $select;
+    border-radius: 8px;
+    border-left: 4px solid var(--q-primary);
+  }
+
   tr.subtotal{
     background-color: #eee;
   }

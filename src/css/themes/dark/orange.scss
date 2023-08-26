@@ -1,17 +1,23 @@
 body.body--dark.theme--orange {
   --q-primary: orangered;
+  --q-select: #95503932;
+
+  .q-item.q-router-link--active {
+    background-color: var(--q-select);
+    border-radius: 8px;
+    border-left: 4px solid var(--q-primary);
+  }
 
   .profile-pic .q-avatar__content {
     background-color: orange;
   }
 
-  .bg-dark{
+  .bg-dark {
     background-color: $dark-orange-1 !important;
   }
 
-  tr.subtotal{
+  tr.subtotal {
     background-color: #6a0c008f;
-
   }
 
   // tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
@@ -22,15 +28,12 @@ body.body--dark.theme--orange {
     background-color: #170000;
   }
 
-  tr.total{
+  tr.total {
     background-color: #540c0c49;
-
   }
   .main-layout-color {
     background-color: $dark-orange-1;
   }
-
-
 
   .q-field__control,
   .q-linear-progress,
@@ -82,7 +85,7 @@ body.body--dark.theme--orange {
   }
   background-color: #170000;
 
-  .q-table__container{
+  .q-table__container {
     background-color: #170000;
   }
   .q-card,
@@ -90,7 +93,7 @@ body.body--dark.theme--orange {
     background-color: $dark-orange-1;
   }
 
-  .q-card{
+  .q-card {
     border: 1px solid #902600;
   }
   .q-field--outlined .q-field__control:before {
@@ -105,14 +108,12 @@ body.body--dark.theme--orange {
 
   .dark-1 {
     background-color: #99645c51;
-
   }
 
-  .q-menu{
+  .q-menu {
     background-color: $dark-orange-1;
     border: 1px solid #902600;
   }
-
 
   .q-separator {
     background-color: #b699aa9c;
@@ -155,9 +156,9 @@ body.body--dark.theme--orange {
     background-color: $dark-orange-2;
   }
 
-  tr.q-tr:hover{
+  tr.q-tr:hover {
     background-color: $dark-orange-1;
-   }
+  }
 
   .invoice-table tbody tr:hover {
     background-color: #c976692f;
@@ -166,7 +167,7 @@ body.body--dark.theme--orange {
   .invoice-table th {
     background-color: #1f0f19;
     border-bottom: 2px solid orangered;
-}
+  }
 
   .invoice-table td {
     border-bottom: 1px solid $dark-orange-2;
@@ -231,7 +232,7 @@ body.body--dark.theme--orange {
 
   .invoice-text-container {
     background-color: #1f0f19;
-}
+  }
 
   .plan-title {
     background-color: $dark;

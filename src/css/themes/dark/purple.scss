@@ -1,6 +1,14 @@
 body.body--dark.theme--purple {
   --q-primary: #c729df;
 
+  --q-select: #2d2d4f60;
+
+  .q-item.q-router-link--active {
+    background-color: var(--q-select);
+    border-radius: 8px;
+    border-left: 4px solid var(--q-primary);
+  }
+
   .bread-crumbs {
     background-color: #fde7ff;
     border-top: 1px solid #f8a7ff;

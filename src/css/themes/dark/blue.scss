@@ -1,5 +1,13 @@
 body.body--dark.theme--blue {
   --q-primary: #00aeff;
+  --q-select: #394b953e;
+
+  .q-item.q-router-link--active {
+    background-color: var(--q-select);
+    border-radius: 8px;
+    border-left: 4px solid $primary;
+  }
+
   .profile-pic .q-avatar__content {
     background-color: $primary;
   }

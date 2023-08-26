@@ -1,7 +1,15 @@
 body.body--dark {
 
+  --q-select: #394b9556;
+
   .bg-dark{
     background-color: #040c2d !important;
+  }
+
+  .q-item.q-router-link--active {
+    background-color: var(--q-select);
+    border-radius: 8px;
+    border-left: 4px solid $primary;
   }
 
   tr.subtotal{
