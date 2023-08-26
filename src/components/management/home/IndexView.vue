@@ -174,7 +174,7 @@
                   class="q-py-sm row justify-center"
                 >
                   <div class="q-py-sm">
-                    <switch-language />
+                    <switch-language class="language-main-layout" />
                   </div>
                 </q-item>
               </q-list>
@@ -397,5 +397,10 @@ const gotoDashboard = () => {
 
 .q-item__section--avatar {
   min-width: 0;
+}
+
+.language-main-layout.q-btn--actionable.q-btn--standard:before {
+  box-shadow: none;
+  border: 1px solid $primary;
 }
 </style>

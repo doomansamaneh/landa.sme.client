@@ -48,7 +48,7 @@ const columns = [
     field: "no",
     sortable: true,
     label: "شماره",
-    align: "left",
+    align: "left"
   },
 
   {
@@ -98,6 +98,10 @@ const columns = [
     field: "statusTitle",
     sortable: true,
     label: "وضعیت",
+    align: "left"
+  },
+  {
+    name: "statusTitle",
     align: "left"
   }
 ]

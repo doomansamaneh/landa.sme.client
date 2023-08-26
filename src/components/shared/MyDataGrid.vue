@@ -106,7 +106,7 @@
 
     <template v-slot:top-row v-if="!dataLoadFailed">
       <q-tr>
-        <q-th>
+        <q-th colspan="">
           <q-icon name="search" size="42px" color="primary" />
         </q-th>
         <q-th>
@@ -133,29 +133,34 @@
         <q-th>
           <q-input outlined dense class="q-py-sm" />
         </q-th>
+        <q-th>
+          <q-icon name="o_menu_open" size="md" color="primary" />
+        </q-th>
       </q-tr>
     </template>
 
     <template v-slot:bottom-row v-if="!dataLoadFailed">
       <tr class="subtotal text-bold">
-        <td class=""></td>
+        <td colspan=""></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
         <td colspan=""></td>
         <td colspan=""></td>
+        <td></td>
         <td></td>
         <td></td>
       </tr>
       <tr class="total text-white text-bold">
-        <td class=""></td>
+        <td colspan=""></td>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
         <td colspan="">266,460,000</td>
         <td colspan="">800,000</td>
+        <td></td>
         <td></td>
         <td></td>
       </tr>
@@ -203,11 +208,18 @@
       </td>
     </template>
 
-    <!-- <template v-slot:body="props">
+    <template v-slot:body="props">
       <q-tr :props="props">
-        <q-td v-for="col in props.cols" :key="col.name" :props="props">
-          {{ col.value }}
-        </q-td>
+        <q-td><q-checkbox v-model="selected" :val="props.row" /></q-td>
+        <!-- <q-td>{{ props.row.index }}</q-td> -->
+        <q-td>{{ props.row.no }}</q-td>
+        <q-td>{{ props.row.dateString }}</q-td>
+        <q-td>{{ props.row.customerName }}</q-td>
+        <q-td>{{ props.row.subject }}</q-td>
+        <q-td>{{ props.row.amount }}</q-td>
+        <q-td>{{ props.row.discountAmount }}</q-td>
+        <q-td>{{ props.row.typeTitle }}</q-td>
+        <q-td>{{ props.row.statusTitle }}</q-td>
         <q-td auto-width>
           <q-btn
             size="md"
@@ -228,7 +240,7 @@
           </div>
         </q-td>
       </q-tr>
-    </template> -->
+    </template>
 
     <template v-slot:body-cell-statusTitle="props">
       <q-td :props="props">
