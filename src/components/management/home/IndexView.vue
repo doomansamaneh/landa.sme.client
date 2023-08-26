@@ -215,7 +215,7 @@
       :breakpoint="500"
       class="drawer"
     >
-      <div class="searchbar-sidebar q-mb-md q-px-md">
+      <div class="searchbar-sidebar q-my-md q-px-md">
         <q-input
           color="grey-5"
           outlined
@@ -231,25 +231,32 @@
         </q-input>
       </div>
 
-      <q-list class="q-ml-sm q-mr-xs">
-        <q-item class="flex items-center" to="/home/bueinessId">
-          <q-icon name="o_dashboard" class="dashboard" color="blue" size="sm" />
-          <span class="text custom-lg-mr">پیشخوان</span>
-        </q-item>
+      <q-list class="menu-list q-ml-sm q-mr-xs">
+        <div class="settings">
+          <q-item class="flex items-center cursor-pointer">
+            <q-icon
+              name="o_dashboard"
+              class="settings q-mr-md"
+              color="primary"
+              size="sm"
+            ></q-icon>
+            <span class="">{{ $t("drawer.items.dashboard") }}</span>
+          </q-item>
+        </div>
         <div v-for="parentItem in drawerMenuItems" :key="parentItem.name">
           <q-expansion-item
             :label="$t(`drawer.items.${parentItem.title}`)"
-            :icon="parentItem.icon"
+            :icon="`o_${parentItem.icon}`"
           >
             <q-item
               v-for="subItem in parentItem.subItems"
               :key="subItem.name"
               :to="subItem.url"
               clickable
-              class="q-mx-md"
+              class="q-mx-md q-my-sm"
             >
               <q-item-section avatar class="item-section">
-                <q-icon color="" :name="subItem.icon" />
+                <q-icon :name="`o_${subItem.icon}`" />
               </q-item-section>
               <q-item-section>{{
                 $t(`drawer.sub-items.${subItem.title}`)
@@ -258,15 +265,15 @@
           </q-expansion-item>
         </div>
         <q-separator inset />
-        <div class="settings" style="cursor: pointer; margin-bottom: 32px">
-          <q-item class="flex items-center q-mt-xs">
+        <div class="settings">
+          <q-item class="flex items-center q-mb-xl q-mt-sm cursor-pointer">
             <q-icon
               name="o_settings"
               class="settings q-mr-md"
               color="orange"
               size="sm"
             ></q-icon>
-            <span class="">پیکربندی سامانه</span>
+            <span class="">{{ $t("drawer.items.settings") }}</span>
           </q-item>
         </div>
       </q-list>
@@ -383,10 +390,6 @@ const gotoBusiness = () => {
 </script>
 
 <style lang="scss">
-.searchbar-sidebar {
-  margin-top: 19px;
-}
-
 .drawer {
   border-right: 1px solid rgb(219, 219, 219);
   border-left: none;
@@ -394,10 +397,6 @@ const gotoBusiness = () => {
 
 .q-focus-helper {
   display: none;
-}
-
-.custom-lg-mr {
-  margin-left: 32px;
 }
 
 .user-profile {
@@ -411,5 +410,15 @@ const gotoBusiness = () => {
   min-height: 400px;
   border: 1px solid #2d2d2d2d;
   border-radius: inherit;
+}
+
+.q-item__section--avatar {
+  min-width: 0;
+}
+
+.q-item.q-router-link--active {
+  background-color: $select;
+  border-radius: 8px;
+  border-left: 4px solid $primary;
 }
 </style>

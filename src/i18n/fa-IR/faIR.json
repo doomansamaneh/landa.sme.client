@@ -1,6 +1,7 @@
 {
   "drawer": {
     "items": {
+      "dashboard":"پیشخوان",
       "Sales And Purchase": "بازرگانی، خرید و فروش",
       "Receipt and Payement": "دریافت و پرداخت",
       "Accounting": "حسابداری",
@@ -9,7 +10,8 @@
       "Organization": "سازمان، مخاطب، کاربر",
       "Base Info": "اطلاعات پایه‌ای",
       "Security": "امنیت",
-      "Menu_Rpt": "گزارشها"
+      "Menu_Rpt": "گزارشها",
+      "settings":"پیکربندی سامانه"
     },
     "sub-items": {
       "Proformas": "پیش‌فاکتور‌ها",
