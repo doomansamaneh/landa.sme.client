@@ -1,12 +1,12 @@
 <template>
-  <q-card class="home no-shadow no-border">
+  <q-card class="card-table home no-shadow no-border">
     <q-card-section>
       <!-- <h4>پیش فاکتورها</h4> -->
       <grid
         dataSource="sls/quote/getGridData"
         :columns="columns"
         sortBy="no"
-        class="q-mt-xl"
+        class=""
       />
     </q-card-section>
     <!-- <q-card-section>
@@ -19,13 +19,13 @@
     </q-card-section> -->
   </q-card>
 
-  <div v-if="showTopBar">
+  <!-- <div v-if="showTopBar">
     <top-bar />
-  </div>
+  </div> -->
 </template>
 
 <script setup>
-import topBar from "src/components/management/quote/IndexView.vue"
+// import topBar from "src/components/management/quote/IndexView.vue"
 // import grid from "src/components/shared/DataGrid.vue"
 import grid from "src/components/shared/MyDataGrid.vue"
 // import menuItems from "./TestView.vue"
@@ -40,7 +40,8 @@ const columns = [
   // {
   //   name: "index",
   //   label: "#",
-  //   field: "index"
+  //   field: "index",
+  //   align: "left",
   // },
   {
     name: "no",

@@ -2,6 +2,9 @@
   <q-table
     class="text-left sticky-header-table"
     :card-class="color"
+    :class="tableClass"
+    ref="tableRef"
+    tabindex="0"
     hide-pagination
     icon-first-page="search"
     card="blue"
@@ -23,10 +26,83 @@
       (pageSetting.page - 1) * pageSetting.rowsPerPage +
       ';'
     "
+    @focusin="activateNavigation"
+    @focusout="deactivateNavigation"
+    @keydown="onKey"
   >
     <!-- <template v-slot:body-cell-row-number>
       <q-td><span class="rowNumber" /> </q-td>
     </template> -->
+
+    <template v-slot:top>
+      <div class="col-2 q-table__title">پیش فاکتورها</div>
+      <div class="col-4 q-mr-xl q-gutter-x-md">
+        <q-btn
+          color="white"
+          rounded
+          flat
+          class="text-caption bg-blue-7"
+          padding="5px 10px"
+        >
+          <q-icon name="add_circle_outline" class="q-pr-xs" />
+          <span class="">ایجاد</span>
+        </q-btn>
+        <q-btn
+          color="grey-8"
+          rounded
+          outline
+          class="btn-icon text-caption"
+          padding="5px 10px"
+        >
+          <q-icon name="o_edit" class="q-pr-xs" />
+          <span class="text">ویرایش</span>
+        </q-btn>
+        <q-btn
+          color="grey-8"
+          rounded
+          outline
+          class="btn-icon text-caption"
+          padding="5px 10px"
+        >
+          <q-icon name="o_delete" class="q-pr-xs" />
+          <span class="text">حذف</span>
+        </q-btn>
+        <q-btn
+          color="grey-8"
+          rounded
+          outline
+          class="btn-icon text-caption"
+          padding="5px 10px"
+        >
+          <q-icon name="o_more_horiz" class="q-pr-xs" />
+          <span class="text">بیشتر</span>
+        </q-btn>
+      </div>
+      <div class="row items-center q-gutter-x-sm">
+        <q-input
+          color="grey-5"
+          outlined
+          v-model="text"
+          dense
+          class="home pro-searchbar q-py-sm text-caption"
+          placeholder="جستوجوی پیشرفته"
+          rounded
+        >
+          <template v-slot:prepend>
+            <q-icon name="search" color="primary" />
+          </template>
+        </q-input>
+        <q-btn
+          flat
+          round
+          dense
+          size="16px"
+          color=""
+          icon="o_filter_alt"
+          class="pro-search-filter text btn-icon"
+        />
+      </div>
+    </template>
 
     <template v-slot:top-row v-if="!dataLoadFailed">
       <q-tr>
@@ -111,7 +187,7 @@
         </div>
       </div>
       <td>
-        <div class="row justify-end items-center q-gutter-x-md q-py-md">
+        <div class="row justify-end items-center q-gutter-x-md">
           <q-select
             dense
             outlined
@@ -127,8 +203,11 @@
       </td>
     </template>
 
-    <template v-slot:body="props">
+    <!-- <template v-slot:body="props">
       <q-tr :props="props">
+        <q-td v-for="col in props.cols" :key="col.name" :props="props">
+          {{ col.value }}
+        </q-td>
         <q-td auto-width>
           <q-btn
             size="md"
@@ -140,9 +219,6 @@
             :icon="props.expand ? 'expand_less' : 'chevron_left'"
           />
         </q-td>
-        <q-td v-for="col in props.cols" :key="col.name" :props="props">
-          {{ col.value }}
-        </q-td>
       </q-tr>
       <q-tr v-show="props.expand" :props="props">
         <q-td colspan="100%">
@@ -152,7 +228,7 @@
           </div>
         </q-td>
       </q-tr>
-    </template>
+    </template> -->
 
     <template v-slot:body-cell-statusTitle="props">
       <q-td :props="props">
@@ -180,7 +256,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, computed, nextTick, toRaw } from "vue"
 import { fetchWrapper } from "src/helpers"
 
 const props = defineProps({
@@ -199,6 +275,8 @@ const current = ref(1)
 const rows = ref([])
 const loading = ref(false)
 const dataLoadFailed = ref(false)
+const tableRef = ref(null)
+const navigationActive = ref(false)
 
 const pageSetting = ref({
   sortBy: props.sortBy,
@@ -265,6 +343,103 @@ function getSelectedString() {
         selected.value.length > 1 ? "s" : ""
       } selected of ${rows.value.length}`
 }
+
+//////////// table navigation ////////////////////
+const tableClass = computed(() =>
+  navigationActive.value === true ? "no-outline" : null
+)
+
+function activateNavigation() {
+  navigationActive.value = true
+}
+
+function deactivateNavigation() {
+  navigationActive.value = false
+}
+
+function onKey(evt) {
+  if (
+    navigationActive.value !== true ||
+    [33, 34, 35, 36, 38, 40].indexOf(evt.keyCode) === -1 ||
+    tableRef.value === null
+  ) {
+    return
+  }
+
+  evt.preventDefault()
+
+  const { computedRowsNumber, computedRows } = tableRef.value
+
+  if (computedRows.length === 0) {
+    return
+  }
+
+  const currentIndex =
+    selected.value.length > 0
+      ? computedRows.indexOf(toRaw(selected.value[0]))
+      : -1
+  const currentPage = pageSetting.value.page
+  const rowsPerPage =
+    pageSetting.value.rowsPerPage === 0
+      ? computedRowsNumber
+      : pageSetting.value.rowsPerPage
+  const lastIndex = computedRows.length - 1
+  const lastPage = Math.ceil(computedRowsNumber / rowsPerPage)
+
+  let index = currentIndex
+  let page = currentPage
+
+  switch (evt.keyCode) {
+    case 36: // Home
+      page = 1
+      index = 0
+      break
+    case 35: // End
+      page = lastPage
+      index = rowsPerPage - 1
+      break
+    case 33: // PageUp
+      page = currentPage <= 1 ? lastPage : currentPage - 1
+      if (index < 0) {
+        index = 0
+      }
+      break
+    case 34: // PageDown
+      page = currentPage >= lastPage ? 1 : currentPage + 1
+      if (index < 0) {
+        index = rowsPerPage - 1
+      }
+      break
+    case 38: // ArrowUp
+      if (currentIndex <= 0) {
+        page = currentPage <= 1 ? lastPage : currentPage - 1
+        index = rowsPerPage - 1
+      } else {
+        index = currentIndex - 1
+      }
+      break
+    case 40: // ArrowDown
+      if (currentIndex >= lastIndex) {
+        page = currentPage >= lastPage ? 1 : currentPage + 1
+        index = 0
+      } else {
+        index = currentIndex + 1
+      }
+      break
+  }
+
+  if (page !== pageSetting.value.page) {
+    pageSetting.value.page = page
+
+    nextTick(() => {
+      const { computedRows } = tableRef.value
+      selected.value = [computedRows[Math.min(index, computedRows.length - 1)]]
+      tableRef.value.$el.focus()
+    })
+  } else {
+    selected.value = [computedRows[index]]
+  }
+}
 </script>
 
 <style>
@@ -284,10 +459,11 @@ function getSelectedString() {
 .q-table__bottom {
   display: flex;
   justify-content: space-between;
+  padding: 24px 16px 0 16px !important;
 }
 
 .sticky-header-table {
-  height: 600px;
+  height: 650px;
 }
 
 .sticky-header-table thead tr th {
@@ -306,5 +482,22 @@ function getSelectedString() {
 
 .sticky-header-table tbody {
   scroll-margin-top: 48px;
+}
+
+.pro-searchbar {
+  width: 500px;
+}
+
+.q-table__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pro-search-filter {
+  border: 1px solid #bdbdbd;
+}
+
+.card-table .q-card__section--vert {
+  padding: 0 16px;
 }
 </style>

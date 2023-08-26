@@ -3,7 +3,7 @@ export default {
   component: () => import("src/layouts/MainLayout.vue"),
   name: "dashboard",
   meta: {
-    icon: "home"
+    icon: "o_dashboard"
   },
   children: [
     {

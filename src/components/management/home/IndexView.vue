@@ -26,38 +26,15 @@
         </div>
         <div class="search-for-mobile xs"></div>
         <q-toolbar-title
-          class="text-subtitle2 text-bold col-6 flex justify-start"
+          class="text-subtitle2 text-bold col-4 flex justify-start"
         >
           <span class="text q-pr-sm">{{ selectedBusiness.title }}</span>
           <span class="text">-</span>
           <span class="text q-pl-sm text-weight-medium"> سال مالی: 1402</span>
         </q-toolbar-title>
 
-        <div class="search-bar col-4 q-mr-xl gt-sm">
-          <q-input
-            color="grey-5"
-            outlined
-            v-model="text"
-            dense
-            class="home q-py-sm text-caption"
-            placeholder="جستوجوی پیشرفته"
-            rounded
-          >
-            <template v-slot:prepend>
-              <q-icon name="search" color="primary" />
-            </template>
-            <template v-slot:append>
-              <q-btn
-                flat
-                round
-                dense
-                size="12px"
-                color=""
-                icon="tune"
-                class="btn-icon"
-              />
-            </template>
-          </q-input>
+        <div class="col q-mr-xl gt-sm">
+          <bread-crumbs class="home-bread-crumbs" />
         </div>
         <div class="round-icons q-gutter-sm">
           <q-btn
@@ -66,17 +43,18 @@
             round
             color=""
             icon="o_person_search"
-            class="btn-icon gt-xs"
+            class="btn-icon text gt-xs"
             size="14px"
           />
           <q-btn
             flat
             dense-dark
             round
-            color="text"
+            dense
+            color=""
             icon="o_account_circle"
             size="14px"
-            class="btn-icon"
+            class="btn-icon text"
           >
             <q-menu
               class="no-shadow z-max"
@@ -162,7 +140,7 @@
             round
             color=""
             icon="o_settings"
-            class="btn-icon"
+            class="btn-icon text"
             size="14px"
           >
             <q-menu
@@ -232,7 +210,7 @@
       </div>
 
       <q-list class="menu-list q-ml-sm q-mr-xs">
-        <div class="settings">
+        <div class="settings" @click="gotoDashboard">
           <q-item class="flex items-center cursor-pointer">
             <q-icon
               name="o_dashboard"
@@ -292,6 +270,7 @@ import ChangePasswordDialog from "src/components/users/ChangePasswordDialog.vue"
 import { useAuthStore } from "src/stores"
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
 import SwitchLanguage from "src/components/shared/SwitchLanguage.vue"
+import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
 
 const selectedBusiness = useSelectedBusinessStore()
 const route = useRoute()
@@ -386,6 +365,10 @@ const drawerMenuItems = computed(() => {
 
 const gotoBusiness = () => {
   router.push("/business")
+}
+
+const gotoDashboard = () => {
+  router.push("/dashboard")
 }
 </script>
 

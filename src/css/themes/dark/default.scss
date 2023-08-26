@@ -12,6 +12,13 @@ body.body--dark {
     border-left: 4px solid $primary;
   }
 
+  .home-bread-crumbs{
+    background-color: 040c2d !important;
+    border-top: 1px solid white !important;
+    border-bottom: 1px solid white !important;
+    box-shadow: none !important;
+  }
+
   tr.subtotal{
     background-color: #131d47;
 
