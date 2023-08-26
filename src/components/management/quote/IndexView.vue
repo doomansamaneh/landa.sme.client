@@ -1,5 +1,5 @@
 <template>
-  <q-page-sticky position="top" expand class="toolbar gt-xs">
+  <q-page-sticky position="top" expand class="toolbar gt-xs z-max">
     <q-toolbar class="gt-xs main-layout-color text-white q-px-lg">
       <div class="q-gutter-x-md">
         <q-btn
@@ -47,5 +47,4 @@
   </q-page-sticky>
 </template>
 
-<script setup>
-</script>
+<script setup></script>

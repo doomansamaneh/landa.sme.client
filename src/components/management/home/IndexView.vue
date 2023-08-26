@@ -342,32 +342,32 @@ onMounted(() => {
 })
 
 const drawerMenuItems = computed(() => {
-  const filteredItems = items.value
-    .filter((item) => item.parentName === null)
-    .map((item) => ({
-      ...item,
-      subItems: items.value.filter(
-        (subItem) => subItem.parentName === item.name
-      )
-    }))
+  const menuItemsWithSubItems = items.value.filter((item) =>
+    items.value.some((subItem) => subItem.parentName === item.name)
+  )
+
+  const menuItemsIncludingSubItems = menuItemsWithSubItems.map((item) => ({
+    ...item,
+    subItems: items.value.filter((subItem) => subItem.parentName === item.name)
+  }))
 
   if (searchText.value.trim() === "") {
-    return filteredItems
+    return menuItemsIncludingSubItems
   } else {
     const searchLower = searchText.value.toLowerCase()
-    return filteredItems
+    return menuItemsIncludingSubItems
       .map((item) => {
-        const filteredSubItems = item.subItems.filter((subItem) =>
+        const menuItemsWithSubItems = item.subItems.filter((subItem) =>
           subItem.title.toLowerCase().includes(searchLower)
         )
 
         if (
-          filteredSubItems.length > 0 ||
+          menuItemsWithSubItems.length > 0 ||
           item.title.toLowerCase().includes(searchLower)
         ) {
           return {
             ...item,
-            subItems: filteredSubItems
+            subItems: menuItemsWithSubItems
           }
         } else {
           return null
