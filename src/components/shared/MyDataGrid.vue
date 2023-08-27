@@ -218,8 +218,10 @@
         <q-td>{{ props.row.subject }}</q-td>
         <q-td>{{ props.row.amount }}</q-td>
         <q-td>{{ props.row.discountAmount }}</q-td>
-        <q-td>{{ props.row.typeTitle }}</q-td>
-        <q-td>{{ props.row.statusTitle }}</q-td>
+        <q-td
+          ><q-badge class="text" outline :label="props.row.typeTitle"
+        /></q-td>
+        <q-td><q-badge color="orange" :label="props.row.statusTitle" /></q-td>
         <q-td auto-width>
           <q-btn
             size="md"
