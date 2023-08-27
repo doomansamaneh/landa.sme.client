@@ -18,7 +18,7 @@
     "postcss-rtlcss": "^3.7.2",
     "quasar": "^2.12.2",
     "to": "^0.2.9",
-    "update": "^0.7.4",
+    "update": "^0.4.2",
     "vue": "^3.0.0",
     "vue-i18n": "^9.3.0-beta.19",
     "vue-router": "^4.0.0",
@@ -31,7 +31,8 @@
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^9.0.0",
-    "prettier": "2.8.8"
+    "prettier": "2.8.8",
+    "volar-service-vetur": "latest"
   },
   "engines": {
     "node": "^18 || ^16 || ^14.19",
