@@ -223,6 +223,8 @@
         </div>
         <div v-for="parentItem in drawerMenuItems" :key="parentItem.name">
           <q-expansion-item
+            ref="expansion"
+            group="menu"
             :label="$t(`drawer.items.${parentItem.title}`)"
             :icon="`o_${parentItem.icon}`"
           >
