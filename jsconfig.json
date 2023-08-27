@@ -6,6 +6,7 @@
       "src/*": ["src/*"],
       "app/*": ["*"],
       "components/*": ["src/components/*"],
+      "composables/*": ["src/composables/*"],
       "layouts/*": ["src/layouts/*"],
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],

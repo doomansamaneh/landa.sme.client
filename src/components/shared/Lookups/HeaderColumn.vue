@@ -5,11 +5,14 @@
     size="20px"
     color="primary"
   />
-  <span @click="sortColumn()" class="cursor-pointer">{{ title }}</span>
+  <span
+    @click="sortColumn()"
+    class="cursor-pointer"
+  >{{ title }}</span>
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from "vue"
+import { computed } from "vue"
 
 const props = defineProps({
   title: String,
@@ -21,7 +24,7 @@ function sortColumn() {
   props.lookup.sortSelectedColumn(props.fieldName)
 }
 
-const isAscending = computed(() => !props.lookup.pagination.descending)
+const isAscending = computed(() => props.lookup.pagination.sortOrder === 1)
 const showSortIcon = computed(
   () => props.lookup.pagination.sortBy === props.fieldName
 )

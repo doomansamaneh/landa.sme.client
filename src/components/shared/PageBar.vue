@@ -5,7 +5,7 @@
   >
     <q-pagination
       v-if="showPaging"
-      v-model="paginationStore.currentPage"
+      v-model="pagination.currentPage"
       :min="1"
       :max="maxPage"
       direction-links
@@ -29,7 +29,7 @@
       class="select"
       outlined
       v-model="pagination.pageSize"
-      :options="[5, 10, 20]"
+      :options="pageSizeOptions"
       @update:model-value="handlePageChange"
       transition-show="flip-up"
       transition-hide="flip-down"
@@ -39,33 +39,33 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
-import { usePaginationStore } from "src/stores/page-store.js"
+import { computed } from "vue"
 
 const props = defineProps({
   pagination: Object,
-  currentPage: Number,
-  storeName: String
 })
 
-const paginationStore = usePaginationStore(props.storeName)
-
-const pagination = ref(props.pagination)
 const defaultPageSize = 5
 
-const showPagebar = computed(() => {
-  return pagination.value.totalItems > defaultPageSize
-})
+const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
 
-const showPaging = computed(
-  () => pagination.value.totalItems > pagination.value.pageSize
-)
-const maxPage = computed(() =>
-  Math.ceil(pagination.value.totalItems / pagination.value.pageSize)
-)
+const pagination = computed(() => props.pagination)
+
+const showPaging = computed(() => pagination.value.totalItems > pagination.value.pageSize)
+
+const maxPage = computed(() => Math.ceil(pagination.value.totalItems / pagination.value.pageSize))
+
+const pageSizeOptions = computed(() => {
+  let options = [5]
+  if (pagination.value.totalItems > 5) options.push(10)
+  if (pagination.value.totalItems > 10) options.push(25)
+  if (pagination.value.totalItems > 25) options.push(50)
+  if (pagination.value.totalItems > 50) options.push(100)
+  return options
+})
 
 const emit = defineEmits(["page-changed"])
 function handlePageChange() {
-  emit("page-changed", pagination.value)
+  emit("page-changed")
 }
 </script>

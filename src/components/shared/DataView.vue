@@ -9,7 +9,10 @@
       v-if="loadingData"
     />
 
-    <q-card-section v-if="!showSearchbar" class="q-pb-xs">
+    <q-card-section
+      v-if="!showSearchbar"
+      class="q-pb-xs"
+    >
       <slot name="search-bar">
         <div class="search-bar">
           <q-input
@@ -52,14 +55,15 @@
         @click="selectCard(index)"
         :class="{ selected: isSelected(index) }"
       >
-        <slot name="item" :item="item"></slot>
+        <slot
+          name="item"
+          :item="item"
+        ></slot>
       </div>
     </q-card-section>
 
     <q-card-section v-if="pagedRows.length === 0 && !loadingData">
-      <div
-        class="nothing-found no-results column justify-center items-center q-my-xl"
-      >
+      <div class="nothing-found no-results column justify-center items-center q-my-xl">
         <div class="">
           <img
             class="nothing-found-svg"
@@ -74,18 +78,14 @@
     <page-bar
       :pagination="pagination"
       @page-changed="loadData"
-      :storeName="props.storeName"
     />
   </q-card>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from "vue"
-import { useQuasar } from "quasar"
-import { useRouter } from "vue-router"
+import { ref, computed, onMounted } from "vue"
 import { fetchWrapper } from "src/helpers"
 import { usePaginationStore } from "src/stores/page-store.js"
-import businessRoutes from "src/router/business-routes"
 import PageBar from "./PageBar.vue"
 
 const props = defineProps({
@@ -94,28 +94,25 @@ const props = defineProps({
   color: String,
   orderByField: String,
   searchField: String,
-  businessTitle: String,
   storeName: String
 })
 
 const paginationStore = usePaginationStore(props.storeName)
 
-// const emits = defineEmits(["reload-data"])
-
-const router = useRouter()
 const rows = ref([])
 const loadingData = ref(false)
 const searchTerm = ref("")
 const defaultPageSize = 5
 const selectedCard = ref(false)
-const businessId = ref("")
 
 const pagination = ref({
-  sortBy: props.orderByField,
-  descending: false,
-  currentPage: 1,
+  currentPage: paginationStore.currentPage,
   pageSize: defaultPageSize,
-  totalItems: 0
+  sortColumn: props.orderByField,
+  sortOrder: 1,
+  totalItems: 0,
+  searchTerm: "",
+  filterExpression: [],
 })
 
 async function clearSearch() {
@@ -123,30 +120,31 @@ async function clearSearch() {
   await reloadData()
 }
 
-const isSearchEmpty = computed(
-  () => !searchTerm.value || searchTerm.value.trim().length === 0
-)
-
-const pagedRows = computed(() => {
-  return rows.value
-})
-
 onMounted(() => {
   reloadData()
 })
 
 async function reloadData() {
-  await loadData(pagination.value)
+  await loadData()
 }
 
-// async function onRequest(props) {
-//   await loadData(props.pagination)
-// }
-
-async function loadData(pagination) {
+async function loadData() {
   loadingData.value = true
   selectedCard.value = false
 
+  setFilterExpression()
+
+  await fetchWrapper
+    .post(props.dataSource, pagination.value)
+    .then((response) => {
+      handleResponse(response.data.data)
+    })
+    .finally(() => {
+      loadingData.value = false
+    })
+}
+
+function setFilterExpression() {
   let filterExpression = []
 
   if (searchTerm.value) {
@@ -156,32 +154,13 @@ async function loadData(pagination) {
       value: searchTerm.value
     })
   }
-
-  console.log("paginationStore =>", paginationStore)
-
-  await fetchWrapper
-    .post(props.dataSource, {
-      pageSize: pagination.pageSize,
-      sortColumn: pagination.sortBy,
-      sortOrder: pagination.descending ? 1 : 2,
-      currentPage: paginationStore.currentPage,
-      filterExpression: filterExpression
-    })
-    .then((response) => {
-      handleResponse(response.data.data, pagination)
-    })
-    .finally(() => {
-      loadingData.value = false
-    })
+  pagination.value.filterExpression = filterExpression
 }
 
-function handleResponse(pagedData, pagination) {
+function handleResponse(pagedData) {
   rows.value = pagedData.items
-  pagination.totalItems = pagedData.page.totalItems
-  pagination.pageSize = pagedData.page.pageSize
-  pagination.currentPage = pagedData.page.currentPage
-  pagination.sortBy = pagination.sortBy
-  pagination.descending = pagination.descending
+  pagination.value.totalItems = pagedData.page.totalItems
+  paginationStore.setCurrentPage(pagination.value.currentPage)
 }
 
 function selectCard(index) {
@@ -191,6 +170,14 @@ function selectCard(index) {
 function isSelected(index) {
   return selectedCard.value === index
 }
+
+const isSearchEmpty = computed(() =>
+  !searchTerm.value || searchTerm.value.trim().length === 0
+)
+
+const pagedRows = computed(() => {
+  return rows.value
+})
 
 defineExpose({
   reloadData

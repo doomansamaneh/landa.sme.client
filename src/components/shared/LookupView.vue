@@ -45,12 +45,22 @@
       no-focus
     >
       <div class="container_ lookup-container">
-        <q-inner-loading :showing="showLoader" class="inner-loader q-my-lg">
-          <q-spinner size="52px" color="primary" />
+        <q-inner-loading
+          :showing="showLoader"
+          class="inner-loader q-my-lg"
+        >
+          <q-spinner
+            size="52px"
+            color="primary"
+          />
         </q-inner-loading>
 
         <div class="lookup-body">
-          <table ref="table" class="text-left text-caption" tabindex="0">
+          <table
+            ref="table"
+            class="text-left text-caption"
+            tabindex="0"
+          >
             <slot name="thead" />
             <tbody class="lookup-table-body">
               <tr
@@ -60,7 +70,11 @@
                 @click="onRowClicked(item, index)"
                 class="cursor-pointer"
               >
-                <slot name="td" :item="item" :index="index" />
+                <slot
+                  name="td"
+                  :item="item"
+                  :index="index"
+                />
               </tr>
             </tbody>
           </table>
@@ -80,18 +94,18 @@
           </div>
         </div>
 
-        <page-bar :pagination="pagination" @page-changed="loadData" />
+        <page-bar
+          :pagination="pagination"
+          @page-changed="reloadData"
+        />
       </div>
     </q-menu>
   </q-input>
 </template>
 
 <script setup>
-import { fetchWrapper } from "src/helpers"
 import { ref, computed, onMounted } from "vue"
-import { useQuasar } from "quasar"
-import { useRouter } from "vue-router"
-import businessRoutes from "src/router/business-routes"
+import { fetchWrapper } from "src/helpers"
 import PageBar from "src/components/shared/PageBar.vue"
 
 const props = defineProps({
@@ -106,34 +120,29 @@ const props = defineProps({
 
 const emit = defineEmits(["row-selected"])
 
-const router = useRouter()
 const rows = ref([])
+const dataLoded = ref(false)
 const showLoader = ref(false)
 const loadingData = ref(false)
 const selectedId = ref(null)
 const selectedText = ref("")
-const searchTerm = ref("")
 const defaultPageSize = 5
-const businessId = ref("")
-
-let sortColumn = null
-let sortAscending = true
 
 const pagination = ref({
-  sortBy: props.orderByField,
-  descending: false,
   currentPage: 1,
   pageSize: defaultPageSize,
-  totalItems: 0
+  sortColumn: props.orderByField,
+  sortOrder: 1,
+  totalItems: 0,
+  searchTerm: "",
+  filterExpression: [],
 })
 
 const search = ref(null)
 const selectedRowIndex = ref(0)
 const popup = ref(null)
 const isPopupOpen = ref(false)
-const hasLoadedData = ref(false)
 const table = ref(null)
-let showMenu = false
 
 onMounted(() => {
   onMenuHide()
@@ -157,6 +166,7 @@ async function clearSearch() {
   setIdText(null)
   emitSelectRow(null)
   onMenuHide()
+  dataLoded.value = false
 }
 
 async function onRowClicked(item, index) {
@@ -188,17 +198,39 @@ function setCustomText(displayText) {
 }
 
 async function reloadData(showLoading = true) {
-  //todo: how to cache data reloading
-  await loadData(pagination.value)
+  dataLoded.value = false
+  await loadData()
 }
 
-async function loadData(pagination) {
-  const loaderTimeout = 500
-  loadingData.value = true
-  let loadingTimer = setTimeout(() => {
-    if (loadingData.value) showLoader.value = true
-  }, loaderTimeout)
+async function loadData() {
+  if (!dataLoded.value) {
+    const loaderTimeout = 500
+    loadingData.value = true
+    let loadingTimer = setTimeout(() => {
+      if (loadingData.value) showLoader.value = true
+    }, loaderTimeout)
 
+    setFilterExpression()
+
+    await fetchWrapper
+      .post(props.dataSource, pagination.value)
+      .then((response) => {
+        handleResponse(response.data.data)
+      })
+      .finally(() => {
+        clearTimeout(loadingTimer)
+
+        loadingData.value = false
+        showLoader.value = false
+        dataLoded.value = true
+
+        if (rows?.value.length < selectedRowIndex.value + 1)
+          selectedRowIndex.value = 0
+      })
+  }
+}
+
+function setFilterExpression() {
   let filterExpression = []
 
   if (!selectedId.value && selectedText.value && props.searchField) {
@@ -208,41 +240,20 @@ async function loadData(pagination) {
       value: selectedText.value
     })
   }
-
-  await fetchWrapper
-    .post(props.dataSource, {
-      pageSize: pagination.pageSize,
-      sortColumn: pagination.sortBy,
-      sortOrder: pagination.descending ? 2 : 1,
-      currentPage: pagination.currentPage,
-      //todo: molki, check why search term is not working on backend
-      //searchTerm: selectedText.value,
-      filterExpression: filterExpression
-    })
-    .then((response) => {
-      handleResponse(response.data.data, pagination)
-    })
-    .finally(() => {
-      clearTimeout(loadingTimer)
-      loadingData.value = false
-      showLoader.value = false
-      if (rows?.value.length < selectedRowIndex.value + 1)
-        selectedRowIndex.value = 0
-    })
+  pagination.value.filterExpression = filterExpression
 }
 
-function handleResponse(pagedData, pagination) {
+function handleResponse(pagedData) {
   rows.value = pagedData.items
-  pagination.totalItems = pagedData.page.totalItems
-  pagination.pageSize = pagedData.page.pageSize
-  pagination.currentPage = pagedData.page.currentPage
-  pagination.sortBy = pagination.sortBy
-  pagination.descending = pagination.descending
+  pagination.value.totalItems = pagedData.page.totalItems
 }
 
-function handlePopup() {
+async function handlePopup() {
   if (isPopupOpen.value) hidePopup()
-  else showPopup()
+  else {
+    showPopup()
+    await loadData()
+  }
 }
 
 function selectPrevious() {
@@ -253,13 +264,14 @@ function selectPrevious() {
   }
 }
 
-function selectNext() {
+async function selectNext() {
   if (isPopupOpen.value) {
     if (selectedRowIndex.value === rows.value.length - 1)
       selectedRowIndex.value = 0
     else selectedRowIndex.value++
   } else {
     showPopup()
+    await loadData()
   }
 }
 
@@ -275,7 +287,8 @@ function emitSelectRow(item) {
 }
 
 async function searchInLookup() {
-  await showPopup()
+  showPopup()
+  await reloadData()
 }
 
 function onMenuHide() {
@@ -285,10 +298,11 @@ function onMenuHide() {
 
 async function sortSelectedColumn(selectedColumn) {
   if (pagination.value.sortBy === selectedColumn) {
-    pagination.value.descending = !pagination.value.descending
+    if (pagination.value.sortOrder === 1) pagination.value.sortOrder = 2
+    else pagination.value.sortOrder = 1
   } else {
     pagination.value.sortBy = selectedColumn
-    pagination.value.descending = false
+    pagination.value.sortOrder = 1
   }
 
   await reloadData()
@@ -296,7 +310,6 @@ async function sortSelectedColumn(selectedColumn) {
 
 async function showPopup() {
   popup.value.show()
-  await reloadData()
 }
 
 function onMenuShow() {

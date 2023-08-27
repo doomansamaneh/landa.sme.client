@@ -12,7 +12,10 @@
     <template #thead>
       <thead class="lookup-table-head">
         <tr class="">
-          <th class="" style="width: 1px">
+          <th
+            class=""
+            style="width: 1px"
+          >
             <span>#</span>
           </th>
           <th class="">
@@ -22,7 +25,10 @@
               :lookup="lookup"
             ></header-column>
           </th>
-          <th class="" style="width: 23%">
+          <th
+            class=""
+            style="width: 23%"
+          >
             <header-column
               fieldName="cost"
               :title="$t('page.add-business.plan-lookup.per-month')"
@@ -32,6 +38,7 @@
         </tr>
       </thead>
     </template>
+
     <template #td="{ item, index }">
       <td>{{ index + 1 }}</td>
       <td>
@@ -45,9 +52,9 @@
 </template>
 
 <script setup>
+import { ref } from "vue"
 import LookupView from "src/components/shared/LookupView.vue"
 import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
-import { ref } from "vue"
 
 const lookup = ref(null)
 </script>
