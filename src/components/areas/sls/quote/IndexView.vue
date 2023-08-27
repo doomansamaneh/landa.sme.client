@@ -37,12 +37,18 @@ const router = useRouter()
 const showTopBar = true
 
 const columns = [
-  // {
-  //   name: "index",
-  //   label: "#",
-  //   field: "index",
-  //   align: "left",
-  // },
+  {
+    name: "row-number",
+    required: true,
+    label: "#",
+    align: "left",
+  },
+  {
+    name: "multiple-selection",
+    field: "multiple-selection",
+    label: "",
+    align: "left"
+  },
   {
     name: "no",
     field: "no",

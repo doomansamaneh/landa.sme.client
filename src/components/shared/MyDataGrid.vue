@@ -9,7 +9,6 @@
     icon-first-page="search"
     card="blue"
     color="primary"
-    selection="multiple"
     :selected-rows-label="getSelectedString"
     flat
     :loading="loading"
@@ -30,9 +29,17 @@
     @focusout="deactivateNavigation"
     @keydown="onKey"
   >
-    <!-- <template v-slot:body-cell-row-number>
-      <q-td><span class="rowNumber" /> </q-td>
-    </template> -->
+    <template v-slot:header-cell-multiple-selection="props">
+      <q-th :props="props">
+        <q-checkbox
+          size="52px"
+          v-model="selected"
+          class="select-all"
+          checked-icon="task_alt"
+          unchecked-icon="o_circle"
+        />
+      </q-th>
+    </template>
 
     <template v-slot:top>
       <div class="col-2 q-table__title">پیش فاکتورها</div>
@@ -106,7 +113,7 @@
 
     <template v-slot:top-row v-if="!dataLoadFailed">
       <q-tr>
-        <q-th colspan="">
+        <q-th colspan="2">
           <q-icon name="search" size="42px" color="primary" />
         </q-th>
         <q-th>
@@ -141,7 +148,7 @@
 
     <template v-slot:bottom-row v-if="!dataLoadFailed">
       <tr class="subtotal text-bold">
-        <td colspan=""></td>
+        <td colspan="2"></td>
         <td></td>
         <td></td>
         <td></td>
@@ -153,7 +160,7 @@
         <td></td>
       </tr>
       <tr class="total text-white text-bold">
-        <td colspan=""></td>
+        <td colspan="2"></td>
         <td></td>
         <td></td>
         <td></td>
@@ -210,8 +217,15 @@
 
     <template v-slot:body="props">
       <q-tr :props="props">
-        <q-td><q-checkbox v-model="selected" :val="props.row" /></q-td>
-        <!-- <q-td>{{ props.row.index }}</q-td> -->
+        <q-td><span class="rowNumber" /></q-td>
+        <q-td
+          ><q-checkbox
+            size="52px"
+            v-model="selected"
+            :val="props.row"
+            checked-icon="task_alt"
+            unchecked-icon="o_circle"
+        /></q-td>
         <q-td>{{ props.row.no }}</q-td>
         <q-td>{{ props.row.dateString }}</q-td>
         <q-td>{{ props.row.customerName }}</q-td>
@@ -459,7 +473,7 @@ function onKey(evt) {
 <style>
 .rowNumber::before {
   counter-increment: cssRowCounter;
-  content: counter(cssRowCounter) ". ";
+  content: counter(cssRowCounter);
 }
 
 .select {
