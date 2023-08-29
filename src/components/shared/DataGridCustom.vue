@@ -1,11 +1,12 @@
 <template>
   <q-card class="no-shadow no-border">
     <q-card-section class="q-pa-none">
-      <div class="q-table--dense q-table--horizontal-separator">
+      <div class="q-table--dense column no-wrap q-table--no-wrap">
         <table class="q-table">
           <thead>
             <tr>
               <th
+                class="label"
                 v-for="col in columns"
                 :key="col.name"
                 :style="col.style"
@@ -23,7 +24,7 @@
               <th v-if="showExpandIcon"></th>
             </tr>
             <tr>
-              <th v-for="col in columns" :key="col.name">
+              <th v-for="col in columns" :key="col.name" class="filter">
                 <q-input
                   outlined
                   v-model="col.value"
@@ -43,7 +44,6 @@
                 :class="col.cellClass"
                 :style="col.cellStyle"
               >
-
                 <slot :name="`cell_${col.field}`" :item="row">
                   {{ row[col.field] }}
                 </slot>
@@ -69,7 +69,11 @@
         </table>
       </div>
     </q-card-section>
-    <page-bar class="page-bar q-mt-xs" :pagination="pagination" @page-changed="loadData" />
+    <page-bar
+      class="page-bar q-mt-xs"
+      :pagination="pagination"
+      @page-changed="loadData"
+    />
   </q-card>
 </template>
 
@@ -199,12 +203,19 @@ defineExpose({
 
 <style>
 .q-table--dense .q-table td {
-    padding: 16px 8px;
+  padding: 16px 8px;
 }
 
-.q-table--dense{
+.q-table--dense .q-table .label {
+  padding-bottom: 4px;
+}
 
+.q-table--dense .q-table .filter {
+  padding-bottom: 16px;
   border-bottom: 1px solid #2d2d2d2d;
+}
 
+.q-table--dense {
+  border-bottom: 1px solid #2d2d2d2d;
 }
 </style>
