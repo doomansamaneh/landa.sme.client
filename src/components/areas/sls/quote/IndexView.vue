@@ -50,7 +50,6 @@ const router = useRouter()
 const showTopBar = true
 
 const columns = ref([
-
   {
     name: "index",
     field: "index",
