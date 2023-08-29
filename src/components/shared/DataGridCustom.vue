@@ -1,7 +1,7 @@
 <template>
   <q-card class="no-shadow no-border">
     <q-card-section class="q-pa-none">
-      <div class="q-table--dense q-table__separator">
+      <div class="q-table--dense q-table--horizontal-separator">
         <table class="q-table">
           <thead>
             <tr>
