@@ -3,9 +3,10 @@
     v-if="showPagebar"
     class="row justify-between dark-1 q-px-md q-py-md"
   >
+    <span>{{ paged.totalItems.toLocaleString() }}</span>
     <q-pagination
       v-if="showPaging"
-      v-model="pagination.currentPage"
+      v-model="paged.currentPage"
       :min="1"
       :max="maxPage"
       direction-links
@@ -21,14 +22,14 @@
       color="grey-8"
       active-color="primary"
       size="13px"
-      class="pagination"
+      class="paged"
     />
     <q-space />
     <q-select
       dense
       class="select"
       outlined
-      v-model="pagination.pageSize"
+      v-model="paged.pageSize"
       :options="pageSizeOptions"
       @update:model-value="handlePageChange"
       transition-show="flip-up"
@@ -47,20 +48,20 @@ const props = defineProps({
 
 const defaultPageSize = 5
 
-const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
+const showPagebar = computed(() => paged.value.totalItems > defaultPageSize)
 
-const pagination = computed(() => props.pagination)
+const paged = computed(() => props.pagination)
 
-const showPaging = computed(() => pagination.value.totalItems > pagination.value.pageSize)
+const showPaging = computed(() => paged.value.totalItems > paged.value.pageSize)
 
-const maxPage = computed(() => Math.ceil(pagination.value.totalItems / pagination.value.pageSize))
+const maxPage = computed(() => Math.ceil(paged.value.totalItems / paged.value.pageSize))
 
 const pageSizeOptions = computed(() => {
   let options = [5]
-  if (pagination.value.totalItems > 5) options.push(10)
-  if (pagination.value.totalItems > 10) options.push(25)
-  if (pagination.value.totalItems > 25) options.push(50)
-  if (pagination.value.totalItems > 50) options.push(100)
+  if (paged.value.totalItems > 5) options.push(10)
+  if (paged.value.totalItems > 10) options.push(25)
+  if (paged.value.totalItems > 25) options.push(50)
+  if (paged.value.totalItems > 50) options.push(100)
   return options
 })
 

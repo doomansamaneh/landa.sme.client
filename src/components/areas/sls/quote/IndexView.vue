@@ -1,7 +1,6 @@
 <template>
   <q-card class="card-table home no-shadow no-border">
-    <q-card-section>
-      <!-- <h4>پیش فاکتورها</h4> -->
+    <q-card-section v-if="false">
       <grid
         dataSource="sls/quote/getGridData"
         :columns="columns"
@@ -9,14 +8,28 @@
         class=""
       />
     </q-card-section>
-    <!-- <q-card-section>
+    <q-card-section>
       <h4>فاکتورها</h4>
-      <grid
+      <old-grid
         dataSource="sls/invoice/getGridData"
         :columns="columns"
-        sortBy="no"
-      />
-    </q-card-section> -->
+        sortColumn="no"
+        expandable="true"
+      >
+        <template #cell_amount="{ item }">
+          <span>{{ item.amount.toLocaleString() }}</span>
+        </template>
+        <template #cell_statusTitle="{ item }">
+          <q-badge>{{ item.statusTitle }}</q-badge>
+        </template>
+        <template #detail="{ item }">
+          <div>
+            <h4>{{ item.no }}</h4>
+            {{ item.customerName }}
+          </div>
+        </template>
+      </old-grid>
+    </q-card-section>
   </q-card>
 
   <!-- <div v-if="showTopBar">
@@ -26,7 +39,7 @@
 
 <script setup>
 // import topBar from "src/components/management/quote/IndexView.vue"
-// import grid from "src/components/shared/DataGrid.vue"
+import OldGrid from "src/components/shared/DataGridCustom.vue"
 import grid from "src/components/shared/MyDataGrid.vue"
 // import menuItems from "./TestView.vue"
 import { useRouter } from "vue-router"
@@ -36,40 +49,47 @@ const router = useRouter()
 
 const showTopBar = true
 
-const columns = [
-  {
-    name: "row-number",
-    required: true,
-    label: "#",
-    align: "left",
-  },
-  {
-    name: "multiple-selection",
-    field: "multiple-selection",
-    label: "",
-    align: "left"
-  },
-  {
-    name: "no",
-    field: "no",
-    sortable: true,
-    label: "شماره",
-    align: "left"
-  },
+const columns = ref([
 
   {
-    name: "dateString",
+    name: "index",
+    field: "index",
+    label: "#",
+    class: "",
+    style: ""
+  },
+  // {
+  //   name: "multiple-selection",
+  //   field: "multiple-selection",
+  //   label: "",
+  //   align: "left"
+  // },
+  {
+    name: "i.no",
+    field: "no",
+    showFilter: true,
+    sortable: true,
+    label: "شماره",
+    class: "",
+    cellClass: "bg-blue text-white text-center",
+    cellStyle: "",
+    value: ""
+  },
+  {
+    name: "date",
     field: "dateString",
     sortable: true,
     label: "تاریخ",
-    align: "left"
   },
   {
-    name: "customerName",
+    name: "c.name",
     field: "customerName",
     sortable: true,
     label: "مشتری",
-    align: "left"
+    style: "width: 240px; color: red;",
+    template: "<div></div>",
+    showFilter: true,
+    value: ""
   },
   {
     name: "subject",
@@ -106,11 +126,11 @@ const columns = [
     label: "وضعیت",
     align: "left"
   },
-  {
-    name: "statusTitle",
-    align: "left"
-  }
-]
+  // {
+  //   name: "statusTitle",
+  //   align: "left"
+  // }
+])
 
 const gotoBusiness = () => {
   router.push("/business")

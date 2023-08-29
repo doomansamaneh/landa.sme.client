@@ -20,11 +20,10 @@
     @request="onRequest"
     binary-state-sort
     :columns="columns"
-    :table-style="
-      'counter-reset: cssRowCounter ' +
+    :table-style="'counter-reset: cssRowCounter ' +
       (pageSetting.page - 1) * pageSetting.rowsPerPage +
       ';'
-    "
+      "
     @focusin="activateNavigation"
     @focusout="deactivateNavigation"
     @keydown="onKey"
@@ -51,7 +50,10 @@
           class="text-caption bg-blue-7"
           padding="5px 10px"
         >
-          <q-icon name="add_circle_outline" class="q-pr-xs" />
+          <q-icon
+            name="add_circle_outline"
+            class="q-pr-xs"
+          />
           <span class="">ایجاد</span>
         </q-btn>
         <q-btn
@@ -61,7 +63,10 @@
           class="btn-icon text-caption"
           padding="5px 10px"
         >
-          <q-icon name="o_edit" class="q-pr-xs" />
+          <q-icon
+            name="o_edit"
+            class="q-pr-xs"
+          />
           <span class="text">ویرایش</span>
         </q-btn>
         <q-btn
@@ -71,7 +76,10 @@
           class="btn-icon text-caption"
           padding="5px 10px"
         >
-          <q-icon name="o_delete" class="q-pr-xs" />
+          <q-icon
+            name="o_delete"
+            class="q-pr-xs"
+          />
           <span class="text">حذف</span>
         </q-btn>
         <q-btn
@@ -81,7 +89,10 @@
           class="btn-icon text-caption"
           padding="5px 10px"
         >
-          <q-icon name="o_more_horiz" class="q-pr-xs" />
+          <q-icon
+            name="o_more_horiz"
+            class="q-pr-xs"
+          />
           <span class="text">بیشتر</span>
         </q-btn>
       </div>
@@ -96,7 +107,10 @@
           rounded
         >
           <template v-slot:prepend>
-            <q-icon name="search" color="primary" />
+            <q-icon
+              name="search"
+              color="primary"
+            />
           </template>
         </q-input>
         <q-btn
@@ -111,42 +125,88 @@
       </div>
     </template>
 
-    <template v-slot:top-row v-if="!dataLoadFailed">
+    <template
+      v-slot:top-row
+      v-if="!dataLoadFailed"
+    >
       <q-tr>
         <q-th colspan="2">
-          <q-icon name="search" size="42px" color="primary" />
+          <q-icon
+            name="search"
+            size="42px"
+            color="primary"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-input outlined dense class="q-py-sm" />
+          <q-input
+            outlined
+            dense
+            class="q-py-sm"
+          />
         </q-th>
         <q-th>
-          <q-icon name="o_menu_open" size="md" color="primary" />
+          <!-- <q-icon
+            name="o_menu_open"
+            size="md"
+            color="primary"
+          /> -->
         </q-th>
       </q-tr>
     </template>
 
-    <template v-slot:bottom-row v-if="!dataLoadFailed">
+    <template
+      v-slot:bottom-row
+      v-if="!dataLoadFailed"
+    >
       <tr class="subtotal text-bold">
         <td colspan="2"></td>
         <td></td>
@@ -218,24 +278,28 @@
     <template v-slot:body="props">
       <q-tr :props="props">
         <q-td><span class="rowNumber" /></q-td>
-        <q-td
-          ><q-checkbox
+        <q-td><q-checkbox
             size="52px"
             v-model="selected"
             :val="props.row"
             checked-icon="task_alt"
             unchecked-icon="o_circle"
-        /></q-td>
+          /></q-td>
         <q-td>{{ props.row.no }}</q-td>
         <q-td>{{ props.row.dateString }}</q-td>
         <q-td>{{ props.row.customerName }}</q-td>
         <q-td>{{ props.row.subject }}</q-td>
         <q-td>{{ props.row.amount }}</q-td>
         <q-td>{{ props.row.discountAmount }}</q-td>
-        <q-td
-          ><q-badge class="text" outline :label="props.row.typeTitle"
-        /></q-td>
-        <q-td><q-badge color="orange" :label="props.row.statusTitle" /></q-td>
+        <q-td><q-badge
+            class="text"
+            outline
+            :label="props.row.typeTitle"
+          /></q-td>
+        <q-td><q-badge
+            color="orange"
+            :label="props.row.statusTitle"
+          /></q-td>
         <q-td auto-width>
           <q-btn
             size="md"
@@ -248,7 +312,10 @@
           />
         </q-td>
       </q-tr>
-      <q-tr v-show="props.expand" :props="props">
+      <q-tr
+        v-show="props.expand"
+        :props="props"
+      >
         <q-td colspan="100%">
           <div class="text-left q-py-xl">
             نام مشتری:
@@ -260,12 +327,19 @@
 
     <template v-slot:body-cell-statusTitle="props">
       <q-td :props="props">
-        <q-badge color="orange" :label="props.value" />
+        <q-badge
+          color="orange"
+          :label="props.value"
+        />
       </q-td>
     </template>
     <template v-slot:body-cell-typeTitle="props">
       <q-td :props="props">
-        <q-badge class="text" outline :label="props.value" />
+        <q-badge
+          class="text"
+          outline
+          :label="props.value"
+        />
       </q-td>
     </template>
 
@@ -274,7 +348,11 @@
         class="full-width row flex-center text-accent q-gutter-sm q-pt-lg"
         v-if="dataLoadFailed"
       >
-        <img src="/sad.svg" class="no-data-table-img" alt="" />
+        <img
+          src="/sad.svg"
+          class="no-data-table-img"
+          alt=""
+        />
         <span class="text">
           {{ message }}
         </span>
@@ -367,9 +445,8 @@ defineExpose({
 function getSelectedString() {
   return selected.value.length === 0
     ? ""
-    : `${selected.value.length} record${
-        selected.value.length > 1 ? "s" : ""
-      } selected of ${rows.value.length}`
+    : `${selected.value.length} record${selected.value.length > 1 ? "s" : ""
+    } selected of ${rows.value.length}`
 }
 
 //////////// table navigation ////////////////////
@@ -407,10 +484,9 @@ function onKey(evt) {
       ? computedRows.indexOf(toRaw(selected.value[0]))
       : -1
   const currentPage = pageSetting.value.page
-  const rowsPerPage =
-    pageSetting.value.rowsPerPage === 0
-      ? computedRowsNumber
-      : pageSetting.value.rowsPerPage
+  const rowsPerPage = pageSetting.value.rowsPerPage === 0
+    ? computedRowsNumber
+    : pageSetting.value.rowsPerPage
   const lastIndex = computedRows.length - 1
   const lastPage = Math.ceil(computedRowsNumber / rowsPerPage)
 
@@ -525,7 +601,7 @@ function onKey(evt) {
   border: 1px solid #bdbdbd;
 }
 
-.card-table .q-card__section--vert {
+/* .card-table .q-card__section--vert {
   padding: 0 16px;
-}
+} */
 </style>

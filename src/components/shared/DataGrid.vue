@@ -14,15 +14,8 @@
     @request="onRequest"
     binary-state-sort
     :columns="columns"
-    :table-style="
-      'counter-reset: cssRowCounter ' +
-      (pageSetting.page - 1) * pageSetting.rowsPerPage +
-      ';'
-    "
+    selection="multiple"
   >
-    <template v-slot:body-cell-row-number>
-      <q-td><span class="rowNumber" /> </q-td>
-    </template>
   </q-table>
 </template>
 
@@ -89,6 +82,10 @@ function handleResponse(pagedData, pagination) {
   pageSetting.value.page = pagedData.page.currentPage
   pageSetting.value.sortBy = pagination.sortBy
   pageSetting.value.descending = pagination.descending
+
+  rows.value.forEach((row, index) => {
+    row.index = ((pagedData.page.currentPage - 1) * pagedData.page.pageSize) + index + 1
+  })
 }
 
 function onSelect() {
@@ -100,9 +97,4 @@ defineExpose({
 })
 </script>
 
-<style>
-.rowNumber::before {
-  counter-increment: cssRowCounter;
-  content: counter(cssRowCounter) ". ";
-}
-</style>
+<style></style>
