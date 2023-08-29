@@ -12,6 +12,15 @@ body.body--dark.theme--blue {
     background-color: $primary;
   }
 
+  .q-table--dense .q-table .filter {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $dark-5;
+  }
+
+  .q-table--dense {
+    border-bottom: 1px solid $dark-5;
+  }
+  
   .underline {
     border-bottom: 2px solid $primary;
   }

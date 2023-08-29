@@ -11,7 +11,16 @@ body.body--dark.theme--orange {
   .page-bar{
     background-color: #170000 !important;
   }
-  
+
+  .q-table--dense .q-table .filter {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #b699aa9c;
+  }
+
+  .q-table--dense {
+    border-bottom: 1px solid #b699aa9c;
+  }
+
   .profile-pic .q-avatar__content {
     background-color: orange;
   }

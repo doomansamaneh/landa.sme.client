@@ -12,8 +12,16 @@ body.body--dark.theme--purple {
   .page-bar{
 
     background-color: #15152b !important;
+}
 
-  }ّ
+  .q-table--dense .q-table .filter {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #c097c8a0;
+}
+
+  .q-table--dense {
+    border-bottom: 1px solid #c097c8a0;
+  }
 
   .bread-crumbs {
     background-color: #fde7ff;
@@ -120,7 +128,7 @@ body.body--dark.theme--purple {
   }
 
   .q-separator {
-    background-color: #be5bbe65;
+    background-color: #c097c8a0;
   }
 
   .business-isowner .q-avatar__content {
