@@ -1,7 +1,7 @@
 <template>
-  <q-card class="no-shadow">
+  <q-card class="no-shadow no-border">
     <q-card-section class="q-pa-none">
-      <div class="q-table--cell-separator q-dark q-table--flat q-table--bordered q-table--dark">
+      <div class="q-table--dense q-table__separator">
         <table class="q-table">
           <thead>
             <tr>
@@ -23,25 +23,19 @@
               <th v-if="showExpandIcon"></th>
             </tr>
             <tr>
-              <th
-                v-for="col in columns"
-                :key="col.name"
-              >
+              <th v-for="col in columns" :key="col.name">
                 <q-input
                   outlined
                   v-model="col.value"
                   dense
                   v-if="col.showFilter"
                   @change="reloadData"
-                ></q-input>
+                />
               </th>
               <th v-if="showExpandIcon"></th>
             </tr>
           </thead>
-          <tbody
-            v-for="row in rows"
-            :key="row.id"
-          >
+          <tbody v-for="row in rows" :key="row.id">
             <tr>
               <td
                 v-for="col in columns"
@@ -49,10 +43,8 @@
                 :class="col.cellClass"
                 :style="col.cellStyle"
               >
-                <slot
-                  :name="`cell_${col.field}`"
-                  :item="row"
-                >
+
+                <slot :name="`cell_${col.field}`" :item="row">
                   {{ row[col.field] }}
                 </slot>
               </td>
@@ -68,26 +60,16 @@
                 />
               </td>
             </tr>
-            <tr
-              class="expand"
-              v-if="row.expanded"
-            >
+            <tr class="expand" v-if="row.expanded">
               <td colspan="100%">
-                <slot
-                  name="detail"
-                  :item="row"
-                >
-                </slot>
+                <slot name="detail" :item="row"> </slot>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </q-card-section>
-    <page-bar
-      :pagination="pagination"
-      @page-changed="loadData"
-    />
+    <page-bar class="page-bar q-mt-xs" :pagination="pagination" @page-changed="loadData" />
   </q-card>
 </template>
 
@@ -119,7 +101,7 @@ const pagination = ref({
   sortOrder: 1,
   totalItems: 0,
   searchTerm: "",
-  filterExpression: [],
+  filterExpression: []
 })
 
 onMounted(() => {
@@ -127,8 +109,8 @@ onMounted(() => {
 })
 
 function setColumnFilter() {
-  pagination.value.filterExpression = [];
-  props.columns.forEach(item => {
+  pagination.value.filterExpression = []
+  props.columns.forEach((item) => {
     if (item.value) {
       pagination.value.filterExpression.push({
         fieldName: item.name,
@@ -136,7 +118,7 @@ function setColumnFilter() {
         value: item.value
       })
     }
-  });
+  })
 }
 
 async function sortColumn(col) {
@@ -175,15 +157,18 @@ function handleResponse(pagedData) {
   //paginationStore.setCurrentPage(pagination.value.currentPage)
 
   rows.value.forEach((row, index) => {
-    row.index = ((pagedData.page.currentPage - 1) * pagedData.page.pageSize) + index + 1
+    row.index =
+      (pagedData.page.currentPage - 1) * pagedData.page.pageSize + index + 1
   })
 }
 
 function getSortIcon(col) {
   if (col.sortable && col.name === pagination.value.sortColumn) {
-    return pagination.value.sortOrder === 1 ? 'arrow_drop_up' : 'arrow_drop_down'
+    return pagination.value.sortOrder === 1
+      ? "arrow_drop_up"
+      : "arrow_drop_down"
   }
-  return "";
+  return ""
 }
 
 function showSortIcon(col) {
@@ -212,4 +197,14 @@ defineExpose({
 })
 </script>
 
-<style></style>
+<style>
+.q-table--dense .q-table td {
+    padding: 16px 8px;
+}
+
+.q-table--dense{
+
+  border-bottom: 1px solid #2d2d2d2d;
+
+}
+</style>

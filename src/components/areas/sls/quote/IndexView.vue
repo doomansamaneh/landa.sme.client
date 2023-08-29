@@ -9,9 +9,10 @@
       />
     </q-card-section>
     <q-card-section>
-      <h4>فاکتورها</h4>
+      <span class="q-table__title q-ml-md ">پیش فاکتورها</span>
       <old-grid
-        dataSource="sls/invoice/getGridData"
+      class="q-mt-lg"
+        dataSource="sls/quote/getGridData"
         :columns="columns"
         sortColumn="no"
         expandable="true"
@@ -54,24 +55,19 @@ const columns = ref([
     name: "index",
     field: "index",
     label: "#",
-    class: "",
-    style: ""
+    class: "text-left",
+    style: "",
   },
-  // {
-  //   name: "multiple-selection",
-  //   field: "multiple-selection",
-  //   label: "",
-  //   align: "left"
-  // },
   {
     name: "i.no",
     field: "no",
     showFilter: true,
     sortable: true,
     label: "شماره",
-    class: "",
-    cellClass: "bg-blue text-white text-center",
+    class: "text-left",
+    cellClass: "text-left",
     cellStyle: "",
+    style: "width:100px;",
     value: ""
   },
   {
@@ -79,15 +75,18 @@ const columns = ref([
     field: "dateString",
     sortable: true,
     label: "تاریخ",
+    class: "text-left",
+    showFilter: true
   },
   {
     name: "c.name",
     field: "customerName",
     sortable: true,
     label: "مشتری",
-    style: "width: 240px; color: red;",
+    style: "",
     template: "<div></div>",
     showFilter: true,
+    class: "text-left",
     value: ""
   },
   {
@@ -95,36 +94,48 @@ const columns = ref([
     field: "subject",
     sortable: true,
     label: "شرح",
-    align: "left"
+    align: "left",
+    class: "text-left",
+    showFilter: true,
+    style: "width:25%"
   },
   {
     name: "amount",
     field: "amount",
     sortable: true,
     label: "جمع کل",
-    align: "left"
+    align: "left",
+    class: "text-left",
+    showFilter: true
   },
   {
     name: "discountAmount",
     field: "discountAmount",
     sortable: true,
     label: "تخفیف",
-    align: "left"
+    align: "left",
+    class: "text-left",
+    showFilter: true
   },
   {
     name: "typeTitle",
     field: "typeTitle",
     sortable: true,
     label: "نوع",
-    align: "left"
+    align: "left",
+    class: "text-left",
+    showFilter: true
   },
   {
     name: "statusTitle",
     field: "statusTitle",
     sortable: true,
     label: "وضعیت",
-    align: "left"
-  },
+    align: "left",
+    class: "text-left",
+    showFilter: true,
+    style: "width:100px;"
+  }
   // {
   //   name: "statusTitle",
   //   align: "left"

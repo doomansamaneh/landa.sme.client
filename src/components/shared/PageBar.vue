@@ -3,7 +3,7 @@
     v-if="showPagebar"
     class="row justify-between dark-1 q-px-md q-py-md"
   >
-    <span>{{ paged.totalItems.toLocaleString() }}</span>
+    <span class="text-caption q-pr-lg">{{ indexRange }} از {{ paged.totalItems.toLocaleString() }}</span>
     <q-pagination
       v-if="showPaging"
       v-model="paged.currentPage"
@@ -22,7 +22,7 @@
       color="grey-8"
       active-color="primary"
       size="13px"
-      class="paged"
+      class="pagination"
     />
     <q-space />
     <q-select
@@ -43,7 +43,7 @@
 import { computed } from "vue"
 
 const props = defineProps({
-  pagination: Object,
+  pagination: Object
 })
 
 const defaultPageSize = 5
@@ -54,7 +54,9 @@ const paged = computed(() => props.pagination)
 
 const showPaging = computed(() => paged.value.totalItems > paged.value.pageSize)
 
-const maxPage = computed(() => Math.ceil(paged.value.totalItems / paged.value.pageSize))
+const maxPage = computed(() =>
+  Math.ceil(paged.value.totalItems / paged.value.pageSize)
+)
 
 const pageSizeOptions = computed(() => {
   let options = [5]
@@ -69,4 +71,13 @@ const emit = defineEmits(["page-changed"])
 function handlePageChange() {
   emit("page-changed")
 }
+
+const indexRange = computed(() => {
+  const startIdx = (paged.value.currentPage - 1) * paged.value.pageSize + 1
+  const endIdx = Math.min(
+    startIdx + paged.value.pageSize - 1,
+    paged.value.totalItems
+  )
+  return `${startIdx} - ${endIdx}`
+})
 </script>

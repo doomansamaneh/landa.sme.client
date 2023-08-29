@@ -34,7 +34,7 @@
         </q-toolbar-title>
 
         <div class="col q-mr-xl gt-sm">
-          <bread-crumbs class="home-bread-crumbs" />
+          <!-- <bread-crumbs class="home-bread-crumbs" /> -->
         </div>
         <div class="round-icons q-gutter-sm">
           <q-btn

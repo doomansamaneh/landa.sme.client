@@ -6,6 +6,7 @@
     ref="tableRef"
     tabindex="0"
     hide-pagination
+    dense
     icon-first-page="search"
     card="blue"
     color="primary"
