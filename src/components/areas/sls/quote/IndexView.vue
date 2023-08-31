@@ -1,5 +1,5 @@
 <template>
-  <q-card class="card-table home no-shadow no-border">
+  <!-- <q-card class="card-table home no-shadow no-border">
     <q-card-section v-if="false">
       <grid
         dataSource="sls/invoice/getGridData"
@@ -9,10 +9,19 @@
       />
     </q-card-section>
     <q-card-section>
-      <span class="q-table__title q-ml-md ">پیش فاکتورها</span>
+     
+    </q-card-section>
+  </q-card> -->
+
+  
+  <q-card class="q-ma-lg" flat>
+    <q-card-section>
+      <span class="text-h6">پیش فاکتورها</span>
+    </q-card-section>
+    <q-card-section>
       <old-grid
-      class="q-mt-lg"
-        dataSource="sls/invoice/getGridData"
+      class="q-table--horizontal-separator q-table--bordered"
+        dataSource="sls/quote/getGridData"
         :columns="columns"
         sortColumn="no"
         :expandable="true"
@@ -32,7 +41,45 @@
       </old-grid>
     </q-card-section>
   </q-card>
-
+  
+  <q-card class="q-ma-lg" bordered flat_>
+    <q-card-section class="bg-blue text-white">
+      <span class="text-h6">فاکتورها</span>
+    </q-card-section>
+    <q-separator />
+    <q-card-section>
+    <old-grid
+      class="q-mt-lg_"
+      dataSource="sls/invoice/getGridData"
+      :columns="columns"
+      sortColumn="no"
+      :expandable="true"
+      >
+        <template #cell_amount="{ item }">
+          <span>{{ item.amount.toLocaleString() }}</span>
+        </template>
+        <template #cell_subject="{ item }">
+          <span>{{ item.subject }}</span>
+          <div v-if="item.summary">summary: {{ item.summary }}</div>
+          <div class="q-gutter-xs">
+            <q-badge v-if="item.typeTitle">{{ item.typeTitle }}</q-badge>
+            <q-badge v-if="item.contractTitle">{{ item.contractTitle }}</q-badge>
+            <q-badge >قرارداد شماره یک</q-badge>
+            <q-badge >بازاریاب شماره دو</q-badge>
+          </div>
+        </template>
+        <template #cell_statusTitle="{ item }">
+          <q-badge>{{ item.statusTitle }}</q-badge>
+        </template>
+        <template #detail="{ item }">
+          <div>
+            <h4>{{ item.no }}</h4>
+            {{ item.customerName }}
+          </div>
+        </template>
+      </old-grid>
+    </q-card-section>
+    </q-card>
   <!-- <div v-if="showTopBar">
     <top-bar />
   </div> -->

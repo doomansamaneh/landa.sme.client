@@ -75,10 +75,10 @@
       </div>
     </q-card-section>
 
-    <page-bar
-      :pagination="pagination"
-      @page-changed="loadData"
-    />
+      <page-bar class="q-pa-md dark-1"
+        :pagination="pagination"
+        @page-changed="loadData"
+      />
   </q-card>
 </template>
 
@@ -96,6 +96,8 @@ const props = defineProps({
   searchField: String,
   storeName: String
 })
+
+const pageBar=ref(null)
 
 const paginationStore = usePaginationStore(props.storeName)
 

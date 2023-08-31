@@ -1,7 +1,6 @@
 <template>
-  <q-card class="no-shadow no-border">
-    <q-card-section class="q-pa-none">
-      <div class="q-table--dense column q-table--no-wrap_no-wrap">
+  <div class="q-table__container column">
+      <div class="q-table__middle scroll">
         <table class="q-table">
           <thead>
             <tr>
@@ -68,13 +67,14 @@
           </tbody>
         </table>
       </div>
-    </q-card-section>
-    <page-bar
-      class="page-bar q-mt-xs"
-      :pagination="pagination"
-      @page-changed="loadData"
-    />
-  </q-card>
+      <div class="q-table__bottom">
+        <page-bar
+          class="page-bar_ q-pb-md"
+          :pagination="pagination"
+          @page-changed="loadData"
+        />
+      </div>
+  </div>
 </template>
 
 <script setup>

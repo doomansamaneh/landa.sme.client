@@ -1,7 +1,7 @@
 <template>
   <q-card-actions
     v-if="showPagebar"
-    class="row justify-between dark-1 q-px-md q-py-md"
+    class="fit row justify-end items-center q-pa-none"
   >
     <span class="text-caption q-pr-lg">{{ indexRange }} از {{ paged.totalItems.toLocaleString() }}</span>
     <q-pagination
