@@ -1,7 +1,7 @@
 <template>
   <q-card class="no-shadow no-border">
     <q-card-section class="q-pa-none">
-      <div class="q-table--dense column no-wrap q-table--no-wrap">
+      <div class="q-table--dense column q-table--no-wrap_no-wrap">
         <table class="q-table">
           <thead>
             <tr>
@@ -114,7 +114,10 @@ onMounted(() => {
 
 function setColumnFilter() {
   pagination.value.filterExpression = []
+  let columns = ""
   props.columns.forEach((item) => {
+    if (columns === "") columns = item.name
+    else columns = `${columns},${item.name}`
     if (item.value) {
       pagination.value.filterExpression.push({
         fieldName: item.name,
@@ -123,6 +126,7 @@ function setColumnFilter() {
       })
     }
   })
+  pagination.value.columns = columns
 }
 
 async function sortColumn(col) {

@@ -2,7 +2,7 @@
   <q-card class="card-table home no-shadow no-border">
     <q-card-section v-if="false">
       <grid
-        dataSource="sls/quote/getGridData"
+        dataSource="sls/invoice/getGridData"
         :columns="columns"
         sortBy="no"
         class=""
@@ -12,10 +12,10 @@
       <span class="q-table__title q-ml-md ">پیش فاکتورها</span>
       <old-grid
       class="q-mt-lg"
-        dataSource="sls/quote/getGridData"
+        dataSource="sls/invoice/getGridData"
         :columns="columns"
         sortColumn="no"
-        expandable="true"
+        :expandable="true"
       >
         <template #cell_amount="{ item }">
           <span>{{ item.amount.toLocaleString() }}</span>
@@ -59,7 +59,7 @@ const columns = ref([
     style: "",
   },
   {
-    name: "i.no",
+    name: "no",
     field: "no",
     showFilter: true,
     sortable: true,
@@ -79,7 +79,7 @@ const columns = ref([
     showFilter: true
   },
   {
-    name: "c.name",
+    name: "customerName",
     field: "customerName",
     sortable: true,
     label: "مشتری",
@@ -97,7 +97,7 @@ const columns = ref([
     align: "left",
     class: "text-left",
     showFilter: true,
-    style: "width:25%"
+    style: "width:20%"
   },
   {
     name: "amount",
