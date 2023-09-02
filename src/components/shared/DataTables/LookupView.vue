@@ -95,6 +95,7 @@
         </div>
 
         <page-bar
+          v-if="showPagebar"
           :pagination="pagination"
           @page-changed="reloadData"
         />
@@ -106,7 +107,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue"
 import { fetchWrapper } from "src/helpers"
-import PageBar from "src/components/shared/PageBar.vue"
+import PageBar from "./PageBar.vue"
 
 const props = defineProps({
   dataSource: String,
@@ -320,6 +321,8 @@ function onMenuShow() {
 function hidePopup() {
   popup.value.hide()
 }
+
+const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
 
 const isSearchEmpty = computed(() => !selectedId.value)
 

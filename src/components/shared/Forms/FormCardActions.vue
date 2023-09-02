@@ -42,6 +42,6 @@ function okClicked() {
 }
 
 function cancelClicked() {
-  emit("canel-clicked")
+  emit("cancel-clicked")
 }
 </script>

@@ -9,7 +9,11 @@
     padding="6px 12px"
   >
     <router-link to="/business/addBusiness">
-      <q-icon name="add" class="q-pr-xs" size="14px" />
+      <q-icon
+        name="add"
+        class="q-pr-xs"
+        size="14px"
+      />
       {{ $t("page.buttons.add-new-business-tooltip") }}
     </router-link>
   </q-btn>

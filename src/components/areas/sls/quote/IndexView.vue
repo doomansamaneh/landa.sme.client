@@ -100,8 +100,8 @@
 
 <script setup>
 // import topBar from "src/components/management/quote/IndexView.vue"
-import OldGrid from "src/components/shared/DataGridCustom.vue"
-import grid from "src/components/shared/MyDataGrid.vue"
+import OldGrid from "src/components/shared/DataTables/DataGridCustom.vue"
+import grid from "src/components/shared/DataTables/MyDataGrid.vue"
 // import menuItems from "./TestView.vue"
 import { useRouter } from "vue-router"
 import { ref } from "vue"

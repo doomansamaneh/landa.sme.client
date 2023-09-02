@@ -1,11 +1,11 @@
 <template>
   <div class="row items-center">
     <div class="col-2">
-      <q-item-label class="q-mb-lg"
-        ><span class="">{{
-          $t("page.renew-subscription.plan")
-        }}</span></q-item-label
-      >
+      <q-item-label class="q-mb-lg">
+        <span class="">
+          {{ $t("page.renew-subscription.plan") }}
+        </span>
+      </q-item-label>
     </div>
     <div class="col-10">
       <plan-lookup @row-selected="onPlanSelected" />
@@ -13,9 +13,9 @@
   </div>
   <div class="row items-center q-mb-lg">
     <div class="col-2">
-      <q-item-label class="">{{
-        $t("page.renew-subscription.extension-period")
-      }}</q-item-label>
+      <q-item-label class="">
+        {{ $t("page.renew-subscription.extension-period") }}
+      </q-item-label>
     </div>
     <div class="col-10">
       <q-select
@@ -39,11 +39,12 @@
     </div>
   </div>
 
-  <div
-    class="total glass row q-mb-sm justify-between items-center q-px-xl margin-md"
-  >
+  <div class="total glass row q-mb-sm justify-between items-center q-px-xl margin-md">
     <div class="col-6 q-gutter-y-lg">
-      <div class="row" v-if="loyaltyDiscountTotal > 0">
+      <div
+        class="row"
+        v-if="loyaltyDiscountTotal > 0"
+      >
         <div class="col-7">
           <span>{{ $t("page.renew-subscription.loyalty-discount") }}</span>
         </div>
@@ -72,8 +73,7 @@
           <span>{{ $t("page.renew-subscription.sum-total") }}</span>
         </div>
         <div class="col-5">
-          <span class="underline"
-            ><b>{{ total.toLocaleString() }}</b>
+          <span class="underline"><b>{{ total.toLocaleString() }}</b>
             {{ $t("page.add-business.rial") }}
           </span>
         </div>
@@ -89,14 +89,15 @@
           size="md"
         >
           <q-tooltip class="custom-tooltip text-body1">
-            <span class="sadad-tooltip"
-              >پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان پذیر
-              است</span
-            >
+            <span class="sadad-tooltip">پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان پذیر
+              است</span>
           </q-tooltip>
         </q-radio>
         <div class="q-pa-md">
-          <img src="/sadad-new.png" alt="درگاه پرداخت الکترونیک سداد" />
+          <img
+            src="/sadad-new.png"
+            alt="درگاه پرداخت الکترونیک سداد"
+          />
         </div>
       </div>
     </div>
@@ -113,7 +114,6 @@ import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
 const route = useRoute()
 const lookup = ref(null)
 const shape = ref("line")
-const pagination = ref(null)
 const periodItems = ref([])
 const selectedPeriod = ref(periodItems.value[0])
 const selectedPlan = ref(null)
@@ -147,9 +147,8 @@ async function getLoyalDiscount(planId) {
 function handleMonthResponse(data) {
   periodItems.value = data.map((item) => ({
     id: item.id,
-    label: `${item.month} ماه${
-      item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
-    }`,
+    label: `${item.month} ماه${item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
+      }`,
     month: `${item.month}`,
     discountPercent: item.percent
   }))

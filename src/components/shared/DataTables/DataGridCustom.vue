@@ -3,7 +3,7 @@
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
-          <tr class="q-tr">
+          <tr>
             <th
               v-if="numbered"
               style="width: 1px;"
@@ -27,7 +27,7 @@
               style="width: 1px;"
             ></th>
           </tr>
-          <tr class="q-tr">
+          <tr>
             <th v-if="numbered"></th>
             <th
               v-for="col in columns"
@@ -44,16 +44,31 @@
             </th>
             <th v-if="expandable"></th>
           </tr>
+          <tr
+            v-if="showLoader"
+            class="q-table__progress"
+          >
+            <th
+              colspan="100%"
+              class="relative-position"
+            >
+              <q-linear-progress
+                indeterminate
+                rounded
+                color="negative"
+                class="q-mt-sm"
+              />
+            </th>
+          </tr>
         </thead>
         <tbody>
           <template
             v-for="(row, index) in rows"
             :key="row.id"
           >
-            <tr class="q-tr">
+            <tr>
               <td v-if="numbered"><small class="text-grey_">{{ rowIndex(index) }}</small></td>
               <td
-                class="q-td"
                 v-for="col in columns"
                 :key="col.name"
                 :class="col.cellClass"
@@ -95,10 +110,25 @@
             </tr>
           </template>
         </tbody>
+        <tbody v-if="!loading && rows.length == 0">
+          <tr>
+            <td colspan="100%">
+              <slot name="noDataFound">
+                //todo: ui/ux
+                هیچ داده ای پیدا نشد
+              </slot>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
-    <div class="q-table__bottom">
+    <div
+      v-if="showPagebar"
+      class="q-table__bottom"
+    >
+
       <page-bar
+        ref="pagebar"
         class="page-bar_ q-pb-md"
         :pagination="pagination"
         @page-changed="loadData"
@@ -136,12 +166,15 @@ const filter = ref("")
 const selected = ref([])
 const rows = ref([])
 const loading = ref(false)
-//const test = ref("");
+const showLoader = ref(false)
+const pagebar = ref(null);
+const loaderTimeout = 500
+const defaultPageSize = 5
 
 const pagination = ref({
   currentPage: 1,
   //paginationStore.currentPage,
-  pageSize: 5,
+  pageSize: defaultPageSize,
   sortColumn: props.sortBy,
   sortOrder: 1,
   totalItems: 0,
@@ -189,6 +222,11 @@ async function reloadData() {
 
 async function loadData() {
   loading.value = true
+
+  let loadingTimer = setTimeout(() => {
+    if (loading.value) showLoader.value = true
+  }, loaderTimeout)
+
   setColumnFilter()
   await fetchWrapper
     .post(props.dataSource, pagination.value)
@@ -196,7 +234,9 @@ async function loadData() {
       handleResponse(response.data.data)
     })
     .finally(() => {
+      clearTimeout(loadingTimer)
       loading.value = false
+      showLoader.value = false
     })
 }
 
@@ -206,18 +246,6 @@ function handleResponse(pagedData) {
   //paginationStore.setCurrentPage(pagination.value.currentPage)
 }
 
-function getSortIcon(col) {
-  if (col.sortable && col.name === pagination.value.sortColumn) {
-    return pagination.value.sortOrder === 1
-      ? "arrow_drop_up"
-      : "arrow_drop_down"
-  }
-  return ""
-}
-
-// function showSortIcon(col) {
-//   return col.sortable && col.name === pagination.value.sortColumn
-// }
 
 function onSelect() {
   emit("changeSelected", selected)
@@ -238,6 +266,8 @@ function toggleExpand(row) {
     if (row.id != item.id) item.expanded = false
   })
 }
+
+const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
 
 function headerClass(col) {
   return `${col.class}`
@@ -264,7 +294,8 @@ const __containerClass = computed(() =>
 )
 
 const containerClass = computed(() =>
-  __containerClass.value + (loading.value === true ? ' q-table--loading' : '')
+  __containerClass.value
+  + (loading.value === true ? ' q-table--loading' : '')
 )
 
 defineExpose({
@@ -273,12 +304,6 @@ defineExpose({
 </script>
 
 <style lang="sass">
-.expand-icon 
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)
-    transition-duration: 0.3s
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.5, 1)
-    transition-delay: 0s
-    transition-property: transform
 
 // .q-table--dense .q-table td {
 //   padding: 16px 8px;

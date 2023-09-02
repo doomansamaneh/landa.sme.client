@@ -75,10 +75,12 @@
       </div>
     </q-card-section>
 
-      <page-bar class="q-pa-md dark-1"
-        :pagination="pagination"
-        @page-changed="loadData"
-      />
+    <page-bar
+      v-if="showPagebar"
+      class="q-pa-md dark-1"
+      :pagination="pagination"
+      @page-changed="loadData"
+    />
   </q-card>
 </template>
 
@@ -97,7 +99,7 @@ const props = defineProps({
   storeName: String
 })
 
-const pageBar=ref(null)
+const pageBar = ref(null)
 
 const paginationStore = usePaginationStore(props.storeName)
 
@@ -180,6 +182,8 @@ const isSearchEmpty = computed(() =>
 const pagedRows = computed(() => {
   return rows.value
 })
+
+const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
 
 defineExpose({
   reloadData

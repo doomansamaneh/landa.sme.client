@@ -1,8 +1,5 @@
 <template>
-  <q-card-actions
-    v-if="showPagebar"
-    class="fit row justify-end items-center q-pa-none"
-  >
+  <q-card-actions class="fit row justify-end items-center q-pa-none">
     <span class="text-caption q-pr-lg">{{ indexRange }} از {{ paged.totalItems.toLocaleString() }}</span>
     <q-pagination
       v-if="showPaging"
@@ -46,10 +43,6 @@ const props = defineProps({
   pagination: Object
 })
 
-const defaultPageSize = 5
-
-const showPagebar = computed(() => paged.value.totalItems > defaultPageSize)
-
 const paged = computed(() => props.pagination)
 
 const showPaging = computed(() => paged.value.totalItems > paged.value.pageSize)
@@ -67,11 +60,6 @@ const pageSizeOptions = computed(() => {
   return options
 })
 
-const emit = defineEmits(["page-changed"])
-function handlePageChange() {
-  emit("page-changed")
-}
-
 const indexRange = computed(() => {
   const startIdx = (paged.value.currentPage - 1) * paged.value.pageSize + 1
   const endIdx = Math.min(
@@ -80,4 +68,9 @@ const indexRange = computed(() => {
   )
   return `${startIdx} - ${endIdx}`
 })
+
+const emit = defineEmits(["page-changed"])
+function handlePageChange() {
+  emit("page-changed")
+}
 </script>

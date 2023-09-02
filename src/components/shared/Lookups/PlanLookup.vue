@@ -53,7 +53,7 @@
 
 <script setup>
 import { ref } from "vue"
-import LookupView from "src/components/shared/LookupView.vue"
+import LookupView from "src/components/shared/DataTables/LookupView.vue"
 import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
 
 const lookup = ref(null)

@@ -13,7 +13,10 @@
           <q-item-label class="text-h6">
             {{ $t("pages.payments") }}
           </q-item-label>
-          <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
+          <q-item-label
+            class="dark-2 q-pt-xs text-subtitle2"
+            caption
+          >
             {{ business?.title }}
           </q-item-label>
         </q-item-section>
@@ -45,8 +48,7 @@
     <template #item="{ item }">
       <div class="col-4">
         <div class="flex justify-start">
-          <label class="text-caption"
-            ><q-icon
+          <label class="text-caption"><q-icon
               class="expire-date-clock dark-2"
               name="history"
               size="xs"
@@ -61,23 +63,34 @@
         <label class="text-caption">
           {{ formatCurrency(item.amount) }}
           <span>{{ $t("page.payment-history.rial") }}</span>
-          <q-tooltip class="custom-tooltip" :delay="600">
-            {{ $t("page.payment-history.amount-paid") }}</q-tooltip
+          <q-tooltip
+            class="custom-tooltip"
+            :delay="600"
           >
+            {{ $t("page.payment-history.amount-paid") }}</q-tooltip>
         </label>
       </div>
-      <div
-        class="expire-date-container col-3 flex items-center justify-start"
-      >
+      <div class="expire-date-container col-3 flex items-center justify-start">
         <label
           v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
           class="text-caption"
         >
-          <q-icon name="circle" color="orange" size="8px" />
+          <q-icon
+            name="circle"
+            color="orange"
+            size="8px"
+          />
           {{ $t("page.payment-history.trial") }}
         </label>
-        <label v-else class="text-caption">
-          <q-icon name="circle" color="positive" size="8px" />
+        <label
+          v-else
+          class="text-caption"
+        >
+          <q-icon
+            name="circle"
+            color="positive"
+            size="8px"
+          />
           {{ $t("page.payment-history.paid") }}
         </label>
       </div>
@@ -91,17 +104,30 @@
           size="md"
           dense
         >
-          <q-tooltip class="custom-tooltip" :delay="600">
+          <q-tooltip
+            class="custom-tooltip"
+            :delay="600"
+          >
             {{ $t("page.buttons.more-tooltip") }}
           </q-tooltip>
         </q-btn>
-        <q-menu transition-show="jump-down" transition-hide="jump-up">
+        <q-menu
+          transition-show="jump-down"
+          transition-hide="jump-up"
+        >
           <q-list padding>
-            <q-item clickable v-close-popup>
+            <q-item
+              clickable
+              v-close-popup
+            >
               <q-item-section>
                 <router-link :to="getDetailUrl(item)">
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar icon="o_visibility" size="sm" class="dark-1" />
+                    <q-avatar
+                      icon="o_visibility"
+                      size="sm"
+                      class="dark-1"
+                    />
                     <div class="text-caption">
                       {{ $t("page.payment-history.buttons.view") }}
                     </div>
@@ -120,7 +146,7 @@
 import { ref, onMounted, computed } from "vue"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
-import DataView from "src/components/shared/DataView.vue"
+import DataView from "src/components/shared/DataTables/DataView.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 
@@ -174,6 +200,7 @@ defineExpose({
 .card-desktop {
   width: 620px !important;
 }
+
 a {
   text-decoration: none;
   color: inherit;

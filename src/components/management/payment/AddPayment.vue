@@ -3,9 +3,9 @@
     <q-card-section>
       <q-item>
         <q-item-section>
-          <q-item-label class="text-h6">{{
-            $t("page.renew-subscription.title")
-          }}</q-item-label>
+          <q-item-label class="text-h6">
+            {{ $t("page.renew-subscription.title") }}
+          </q-item-label>
           <q-item-label class="dark-2 text-subtitle2">
             {{ $t("page.renew-subscription.caption") }}
           </q-item-label>
@@ -19,12 +19,15 @@
     </q-card-section>
     <q-separator />
     <q-card-section class="q-mx-md q-pt-lg">
-      <q-form ref="form" autofocus>
+      <q-form
+        ref="form"
+        autofocus
+      >
         <div class="row q-mb-lg items-center">
           <div class="col-2">
-            <q-item-label>{{
-              $t("page.renew-subscription.business-name-label")
-            }}</q-item-label>
+            <q-item-label>
+              {{ $t("page.renew-subscription.business-name-label") }}
+            </q-item-label>
           </div>
           <div class="col-10">
             <span class="text-bold q-pl-xs">{{ businessTitle }}</span>
@@ -32,9 +35,9 @@
         </div>
         <div class="row items-center q-mb-lg">
           <div class="col-2">
-            <q-item-label>{{
-              $t("page.renew-subscription.current-plan")
-            }}</q-item-label>
+            <q-item-label>
+              {{ $t("page.renew-subscription.current-plan") }}
+            </q-item-label>
           </div>
           <div class="col-10">
             <span class="q-pl-xs">{{ planTitle }}</span>
@@ -42,9 +45,9 @@
         </div>
         <div class="row items-center q-mb-lg">
           <div class="col-2">
-            <q-item-label>{{
-              $t("page.renew-subscription.to-date")
-            }}</q-item-label>
+            <q-item-label>
+              {{ $t("page.renew-subscription.to-date") }}
+            </q-item-label>
           </div>
           <div class="col-10">
             <span class="q-pl-xs">{{ toDate }}</span>
@@ -64,7 +67,11 @@
         no-caps
         padding="8px 16px"
         class=""
-        ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
+      ><q-icon
+          name="o_monetization_on"
+          class="q-pr-xs"
+          size="xs"
+        />
         {{ $t("page.renew-subscription.buttons.payment") }}
       </q-btn>
       <span class="text-caption q-pl-md">{{

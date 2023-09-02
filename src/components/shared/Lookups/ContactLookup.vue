@@ -14,38 +14,53 @@
             class="q-py-sm q-px-md"
             rounded
           >
-            <q-icon name="o_add" size="xs" class="q-pr-xs" />
+            <q-icon
+              name="o_add"
+              size="xs"
+              class="q-pr-xs"
+            />
             <span class="text-body2">ایجاد</span>
           </q-btn>
         </div>
 
         <tr class="">
-          <th class="" style="width: 5%">
+          <th
+            class=""
+            style="width: 5%"
+          >
             <span>#</span>
           </th>
-          <th class="" style="width: 5%">
+          <th
+            class=""
+            style="width: 5%"
+          >
             <q-icon
               v-if="pagination.sortBy === 'statusId'"
-              :name="
-                pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-              "
+              :name="pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
+                "
               size="20px"
               color="primary"
             />
-            <span @click="sortColumn('statusId')" class="cursor-pointer"
-              >کد</span
-            >
+            <span
+              @click="sortColumn('statusId')"
+              class="cursor-pointer"
+            >کد</span>
           </th>
-          <th class="" style="width: 30%">
+          <th
+            class=""
+            style="width: 30%"
+          >
             <q-icon
               v-if="pagination.sortBy === 'name'"
-              :name="
-                pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-              "
+              :name="pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
+                "
               size="20px"
               color="primary"
             />
-            <span class="cursor-pointer" @click="sortColumn('name')">نام</span>
+            <span
+              class="cursor-pointer"
+              @click="sortColumn('name')"
+            >نام</span>
           </th>
         </tr>
       </thead>
@@ -61,7 +76,7 @@
 </template>
 
 <script setup>
-import LookupView from "src/components/shared/LookupView.vue"
+import LookupView from "src/components/shared/DataTables/LookupView.vue"
 import { ref, onMounted } from "vue"
 
 const lookup = ref(null)
@@ -76,8 +91,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
-td {
+<style lang="scss" scoped>td {
   padding: 16px;
 }
 
@@ -91,5 +105,4 @@ th {
   padding-right: 12px;
   right: 0;
   z-index: 1;
-}
-</style>
+}</style>
