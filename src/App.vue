@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { defineComponent } from "vue"
+//import { defineComponent } from "vue"
 console.log(
   "%cSUPPORT: %cLANDA-SME.COM",
   "color: white; font-family: sans-serif; font-size: 2.5em; font-weight: bolder; text-shadow: #000 1px 1px;",

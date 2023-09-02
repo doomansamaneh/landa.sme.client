@@ -207,7 +207,7 @@ async function gotoBusiness(item) {
   await fetchWrapper
     .post(`business/gotoBusiness/${item.id}`)
     .then((response) => {
-      alert(`goto business: ${response.data.data.culture}`)
+      //alert(`goto business: ${response.data.data.culture}`)
       // console.log(`goto business: ${response.data.data}`);
       // router.push(`/${response.data.data.url}`)
       //todo: resolve main-route for gotoBusiness

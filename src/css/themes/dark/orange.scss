@@ -55,9 +55,9 @@ body.body--dark.theme--orange {
     color: orangered;
   }
 
-  .invoice-table th {
-    border-bottom: 2px solid orangered;
-  }
+  // .invoice-table th {
+  //   border-bottom: 2px solid orangered;
+  // }
 
   .underline {
     border-bottom: 3px solid orangered;
@@ -169,22 +169,23 @@ body.body--dark.theme--orange {
     background-color: $dark-orange-2;
   }
 
-  tr.q-tr:hover {
-    background-color: $dark-orange-1;
-  }
+  // tr.q-tr:hover {
+  //   background-color: $dark-orange-1;
+  // }
 
-  .invoice-table tbody tr:hover {
-    background-color: #c976692f;
-  }
+  //todo: avoid using sepcial names
+  // .invoice-table tbody tr:hover {
+  //   background-color: #c976692f;
+  // }
 
-  .invoice-table th {
-    background-color: #1f0f19;
-    border-bottom: 2px solid orangered;
-  }
+  // .invoice-table th {
+  //   background-color: #1f0f19;
+  //   border-bottom: 2px solid orangered;
+  // }
 
-  .invoice-table td {
-    border-bottom: 1px solid $dark-orange-2;
-  }
+  // .invoice-table td {
+  //   border-bottom: 1px solid $dark-orange-2;
+  // }
 
   .dark-2,
   .dark-3 {
@@ -243,9 +244,9 @@ body.body--dark.theme--orange {
     color: white;
   }
 
-  .invoice-text-container {
-    background-color: #1f0f19;
-  }
+  // .invoice-text-container {
+  //   background-color: #1f0f19;
+  // }
 
   .plan-title {
     background-color: $dark;

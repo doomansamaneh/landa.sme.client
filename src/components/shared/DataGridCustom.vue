@@ -1,56 +1,79 @@
 <template>
-  <div class="q-table__container column">
-      <div class="q-table__middle scroll">
-        <table class="q-table">
-          <thead>
-            <tr>
-              <th
-                class="label"
-                v-for="col in columns"
-                :key="col.name"
-                :style="col.style"
-                :class="col.class"
-                @click="sortColumn(col)"
-              >
-                <q-icon
-                  v-if="showSortIcon(col)"
-                  :name="getSortIcon(col)"
-                  size="20px"
-                  color="primary"
-                />
-                <span class="cursor-pointer">{{ col.label }}</span>
-              </th>
-              <th v-if="showExpandIcon"></th>
-            </tr>
-            <tr>
-              <th v-for="col in columns" :key="col.name" class="filter">
-                <q-input
-                  outlined
-                  v-model="col.value"
-                  dense
-                  v-if="col.showFilter"
-                  @change="reloadData"
-                />
-              </th>
-              <th v-if="showExpandIcon"></th>
-            </tr>
-          </thead>
-          <tbody v-for="row in rows" :key="row.id">
-            <tr>
+  <div :class="containerClass">
+    <div class="q-table__middle scroll">
+      <table class="q-table">
+        <thead>
+          <tr class="q-tr">
+            <th
+              v-if="numbered"
+              style="width: 1px;"
+            >#</th>
+            <th
+              v-for="col in columns"
+              :key="col.name"
+              :style="col.style"
+              :class="headerClass(col)"
+              @click="sortColumn(col)"
+            >
+              <span class="q-icon q-table__sort-icon">
+                <svg viewBox="0 0 24 24">
+                  <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"></path>
+                </svg>
+              </span>
+              <span>{{ col.label }}</span>
+            </th>
+            <th
+              v-if="expandable"
+              style="width: 1px;"
+            ></th>
+          </tr>
+          <tr class="q-tr">
+            <th v-if="numbered"></th>
+            <th
+              v-for="col in columns"
+              :key="col.name"
+              class="filter"
+            >
+              <q-input
+                outlined
+                v-model="col.value"
+                dense
+                v-if="col.showFilter"
+                @change="reloadData"
+              />
+            </th>
+            <th v-if="expandable"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <template
+            v-for="(row, index) in rows"
+            :key="row.id"
+          >
+            <tr class="q-tr">
+              <td v-if="numbered"><small class="text-grey_">{{ rowIndex(index) }}</small></td>
               <td
+                class="q-td"
                 v-for="col in columns"
                 :key="col.name"
                 :class="col.cellClass"
                 :style="col.cellStyle"
               >
-                <slot :name="`cell_${col.field}`" :item="row">
+                <slot
+                  :name="`cell_${col.field}`"
+                  :item="row"
+                >
                   {{ row[col.field] }}
                 </slot>
               </td>
-              <td v-if="showExpandIcon">
+              <td
+                v-if="expandable"
+                style="width: 1px;"
+              >
                 <q-btn
                   size="md"
                   color="primary"
+                  class="expand-icon"
                   flat
                   dense
                   round
@@ -59,26 +82,34 @@
                 />
               </td>
             </tr>
-            <tr class="expand" v-if="row.expanded">
+            <tr
+              class="expand"
+              v-if="row.expanded"
+            >
               <td colspan="100%">
-                <slot name="detail" :item="row"> </slot>
+                <slot
+                  name="detail"
+                  :item="row"
+                > </slot>
               </td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="q-table__bottom">
-        <page-bar
-          class="page-bar_ q-pb-md"
-          :pagination="pagination"
-          @page-changed="loadData"
-        />
-      </div>
+          </template>
+        </tbody>
+      </table>
+    </div>
+    <div class="q-table__bottom">
+      <page-bar
+        class="page-bar_ q-pb-md"
+        :pagination="pagination"
+        @page-changed="loadData"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
+import { useQuasar } from 'quasar'
 import { fetchWrapper } from "src/helpers"
 import PageBar from "./PageBar.vue"
 
@@ -86,11 +117,21 @@ const props = defineProps({
   sortBy: String,
   columns: Array,
   dataSource: String,
-  expandable: Boolean
+  expandable: Boolean,
+
+  numbered: Boolean,
+  separator: String,
+  square: Boolean,
+  bordered: Boolean,
+  flat: Boolean,
+  dense: Boolean,
+  grid: Boolean,
+  wrapCells: Boolean,
 })
 
 // const emits = defineEmits(['changeSelected'])
 
+const $q = useQuasar()
 const filter = ref("")
 const selected = ref([])
 const rows = ref([])
@@ -163,11 +204,6 @@ function handleResponse(pagedData) {
   rows.value = pagedData.items
   pagination.value.totalItems = pagedData.page.totalItems
   //paginationStore.setCurrentPage(pagination.value.currentPage)
-
-  rows.value.forEach((row, index) => {
-    row.index =
-      (pagedData.page.currentPage - 1) * pagedData.page.pageSize + index + 1
-  })
 }
 
 function getSortIcon(col) {
@@ -179,19 +215,22 @@ function getSortIcon(col) {
   return ""
 }
 
-function showSortIcon(col) {
-  return col.sortable && col.name === pagination.value.sortColumn
-}
+// function showSortIcon(col) {
+//   return col.sortable && col.name === pagination.value.sortColumn
+// }
 
 function onSelect() {
   emit("changeSelected", selected)
+}
+
+function rowIndex(index) {
+  return (pagination.value.currentPage - 1) * pagination.value.pageSize + index + 1
 }
 
 function getColStyle(col) {
   return col.style
 }
 
-const showExpandIcon = computed(() => props.expandable)
 
 function toggleExpand(row) {
   row.expanded = !row.expanded
@@ -200,26 +239,61 @@ function toggleExpand(row) {
   })
 }
 
+function headerClass(col) {
+  return `${col.class}`
+    + (col.sortable === true ? " sortable" : '')
+    + (col.sortable && col.name === pagination.value.sortColumn ? " sorted" : "")
+    + (col.sortable && col.name === pagination.value.sortColumn ? (pagination.value.sortOrder === 1 ? "" : " sort-desc") : "")
+}
+
+const cardDefaultClass = computed(() =>
+  ' q-table__card'
+  + ($q.dark.isActive === true ? ' q-table__card--dark q-dark' : '')
+  + (props.square === true ? ' q-table--square' : '')
+  + (props.flat === true ? ' q-table--flat' : '')
+  + (props.bordered === true ? ' q-table--bordered' : '')
+)
+
+const __containerClass = computed(() =>
+  `q-table__container q-table--${props.separator}-separator column no-wrap`
+  + (props.grid === true ? ' q-table--grid' : cardDefaultClass.value)
+  + ($q.dark?.isActive === true ? ' q-table--dark' : '')
+  + (props.dense === true ? ' q-table--dense' : '')
+  + (props.wrapCells === false ? ' q-table--no-wrap' : '')
+  //+ (inFullscreen.value === true ? ' fullscreen scroll' : '')
+)
+
+const containerClass = computed(() =>
+  __containerClass.value + (loading.value === true ? ' q-table--loading' : '')
+)
+
 defineExpose({
   reloadData
 })
 </script>
 
-<style>
-.q-table--dense .q-table td {
-  padding: 16px 8px;
-}
+<style lang="sass">
+.expand-icon 
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.5, 1)
+    transition-duration: 0.3s
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.5, 1)
+    transition-delay: 0s
+    transition-property: transform
 
-.q-table--dense .q-table .label {
-  padding-bottom: 4px;
-}
+// .q-table--dense .q-table td {
+//   padding: 16px 8px;
+// }
 
-.q-table--dense .q-table .filter {
-  padding-bottom: 16px;
-  border-bottom: 1px solid #2d2d2d2d;
-}
+// .q-table--dense .q-table .label {
+//   padding-bottom: 4px;
+// }
 
-.q-table--dense {
-  border-bottom: 1px solid #2d2d2d2d;
-}
+// .q-table--dense .q-table .filter {
+//   padding-bottom: 16px;
+//   border-bottom: 1px solid #2d2d2d2d;
+// }
+
+// .q-table--dense 
+//   border-bottom: 1px solid #2d2d2d2d
+
 </style>

@@ -1,7 +1,14 @@
 <template>
   <div v-if="showBanner">
-    <q-banner inline-actions class="error-banner">
-      <q-icon name="public" size="22px" class="q-icon-banner q-mr-xs" />
+    <q-banner
+      inline-actions
+      class="error-banner"
+    >
+      <q-icon
+        name="public"
+        size="22px"
+        class="q-icon-banner q-mr-xs"
+      />
       <span>
         <strong class="q-pr-lg">{{ status }}</strong>
         <span>

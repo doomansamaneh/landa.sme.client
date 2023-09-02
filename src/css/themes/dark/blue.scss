@@ -17,10 +17,10 @@ body.body--dark.theme--blue {
     border-bottom: 1px solid $dark-5;
   }
 
-  .q-table--dense {
-    border-bottom: 1px solid $dark-5;
-  }
-  
+  // .q-table--dense {
+  //   border-bottom: 1px solid $dark-5;
+  // }
+
   .underline {
     border-bottom: 2px solid $primary;
   }
@@ -36,9 +36,9 @@ body.body--dark.theme--blue {
     color: $primary;
   }
 
-  .invoice-table th {
-    border-bottom: 2px solid $primary;
-  }
+  // .invoice-table th {
+  //   border-bottom: 2px solid $primary;
+  // }
 
   .lookup-table-body {
     border-top: 2px solid $primary;
@@ -57,9 +57,11 @@ body.body--dark.theme--blue {
     background-color: #141f48c0;
   }
 
+  //todo: use parametric colors
   .lookup-table-body tr:hover {
     background-color: #3c4c8c74;
   }
+
   .selected-row {
     background-color: #394b95 !important;
     outline: 1px solid var(--q-primary) !important;

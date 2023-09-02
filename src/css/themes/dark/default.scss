@@ -17,9 +17,9 @@ body.body--dark {
     border-bottom: 1px solid $dark-5;
   }
 
-  .q-table--dense {
-    border-bottom: 1px solid $dark-5;
-  }
+  // .q-table--dense {
+  //   border-bottom: 1px solid $dark-5;
+  // }
 
   .q-item.q-router-link--active {
     background-color: var(--q-select);
@@ -39,9 +39,9 @@ body.body--dark {
 
   }
 
- tr.q-tr:hover{
-  background-color: #040c2d;
- }
+//  tr.q-tr:hover{
+//   background-color: #040c2d;
+//  }
 
 //  tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
 //   background-color: #040c2d;
@@ -150,18 +150,18 @@ body.body--dark {
     background-color: $dark-5;
   }
 
-  .invoice-table tbody tr:hover {
-    background-color: #5663972f;
-  }
+  // .invoice-table tbody tr:hover {
+  //   background-color: #5663972f;
+  // }
 
-  .invoice-table th {
-    background-color: #0c174570;
-    border-bottom: 2px solid $primary;
-  }
+  // .invoice-table th {
+  //   background-color: #0c174570;
+  //   border-bottom: 2px solid $primary;
+  // }
 
-  .invoice-table td {
-    border-bottom: 1px solid $dark-5;
-  }
+  // .invoice-table td {
+  //   border-bottom: 1px solid $dark-5;
+  // }
 
   .business-isowner .q-avatar__content {
     background-color: $primary;
@@ -272,9 +272,9 @@ body.body--dark {
     color: $dark-4;
   }
 
-  .invoice-text-container {
-    background-color: #0c174570;
-  }
+  // .invoice-text-container {
+  //   background-color: #0c174570;
+  // }
 
   .dark-container {
     background-color: $dark-5;

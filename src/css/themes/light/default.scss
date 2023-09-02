@@ -35,13 +35,13 @@
   //   background-color: #eee;
   // }
 
-  tr.q-tr:hover{
-    background-color: white;
-   }
+  // tr.q-tr:hover{
+  //   background-color: white;
+  //  }
 
-   tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
-    background-color: #eee;
-  }
+  //  tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
+  //   background-color: #eee;
+  // }
 
   tr.total{
     background-color: #607d8b;
@@ -97,22 +97,23 @@
     background-color: $dark-1;
   }
 
-  .invoice-table tbody tr:hover {
-    background-color: #f2f2f28a;
-  }
+  // .invoice-table tbody tr:hover {
+  //   background-color: #f2f2f28a;
+  // }
 
   .underline {
     border-bottom: 3px solid $primary;
   }
 
-  .invoice-table th {
-    background-color: $dark-1;
-    border-bottom: 2px solid $primary;
-  }
+  // .invoice-table th {
+  //   background-color: $dark-1;
+  //   border-bottom: 2px solid $primary;
+  // }
 
-  .invoice-table td {
-    border-bottom: 1px solid #ececec;
-  }
+  // .invoice-table td {
+  //   border-bottom: 1px solid #ececec;
+  // }
+
   .dark-2 {
     color: $dark-3;
   }
@@ -179,9 +180,10 @@
   .service-extension-not-owner {
     color: $dark-2;
   }
-  .invoice-text-container {
-    background-color: $dark-1;
-  }
+  
+  // .invoice-text-container {
+  //   background-color: $dark-1;
+  // }
 
   .error-banner {
     background-color: $yellow-1;

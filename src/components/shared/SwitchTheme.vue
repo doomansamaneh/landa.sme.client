@@ -39,18 +39,11 @@ import { useQuasar } from "quasar"
 
 const $q = useQuasar()
 
-const darkMode = ref(false)
 const selectedTheme = ref("")
+const darkMode = ref(false)
 
 watch(darkMode, (newVal) => {
-  $q.dark.set(newVal ? "auto" : false)
-  if (newVal) {
-    document.body.classList.remove(`body--light`)
-    document.body.classList.add(`body--dark`)
-  } else {
-    document.body.classList.add(`body--light`)
-    document.body.classList.remove(`body--dark`)
-  }
+  $q.dark.set(newVal)
   localStorage.setItem("darkMode", newVal)
 })
 

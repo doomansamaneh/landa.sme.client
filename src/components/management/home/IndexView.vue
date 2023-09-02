@@ -25,9 +25,7 @@
           />
         </div>
         <div class="search-for-mobile xs"></div>
-        <q-toolbar-title
-          class="text-subtitle2 text-bold col-4 flex justify-start"
-        >
+        <q-toolbar-title class="text-subtitle2 text-bold col-4 flex justify-start">
           <span class="text q-pr-sm">{{ selectedBusiness.title }}</span>
           <span class="text">-</span>
           <span class="text q-pl-sm text-weight-medium"> سال مالی: 1402</span>
@@ -62,15 +60,27 @@
               transition-hide="jump-up"
               :offset="[51, 24]"
             >
-              <q-list dense padding class="user-profile">
-                <q-item-label class="text-h6" header>
+              <q-list
+                dense
+                padding
+                class="user-profile"
+              >
+                <q-item-label
+                  class="text-h6"
+                  header
+                >
                   <div class="column items-center justify-center q-mt-md">
                     <div class="q-mt-md">
                       <span class="username">{{ username }}</span>
                     </div>
                   </div>
                 </q-item-label>
-                <q-item clickable v-ripple v-close-popup class="q-mt-md">
+                <q-item
+                  clickable
+                  v-ripple
+                  v-close-popup
+                  class="q-mt-md"
+                >
                   <div class="q-py-sm">
                     <q-item-section avatar>
                       <q-avatar
@@ -92,7 +102,11 @@
                 >
                   <div class="q-py-sm">
                     <q-item-section avatar>
-                      <q-avatar class="dark-icon" icon="password" size="md" />
+                      <q-avatar
+                        class="dark-icon"
+                        icon="password"
+                        size="md"
+                      />
                     </q-item-section>
                   </div>
                   <q-item-section>
@@ -108,7 +122,11 @@
                 >
                   <div class="q-py-sm">
                     <q-item-section avatar>
-                      <q-avatar class="dark-icon" icon="o_business" size="md" />
+                      <q-avatar
+                        class="dark-icon"
+                        icon="o_business"
+                        size="md"
+                      />
                     </q-item-section>
                   </div>
                   <q-item-section>
@@ -124,7 +142,11 @@
                 >
                   <div class="q-py-sm">
                     <q-item-section avatar>
-                      <q-avatar class="dark-icon" icon="o_logout" size="md" />
+                      <q-avatar
+                        class="dark-icon"
+                        icon="o_logout"
+                        size="md"
+                      />
                     </q-item-section>
                   </div>
                   <q-item-section>{{
@@ -150,8 +172,15 @@
               transition-hide="jump-up"
               :offset="[10, 24]"
             >
-              <q-list dense padding class="user-setting">
-                <q-item-label class="text-h6" header>
+              <q-list
+                dense
+                padding
+                class="user-setting"
+              >
+                <q-item-label
+                  class="text-h6"
+                  header
+                >
                   <div class="column items-center justify-center q-mt-md">
                     <div class="q-mt-md">
                       <span class="username">تنظیمات</span>
@@ -198,19 +227,25 @@
           color="grey-5"
           outlined
           v-model="searchText"
-          placeholder="جستوجو در منو"
+          placeholder="جستجو در منو"
           dense
           rounded
           class="text-caption"
         >
           <template v-slot:prepend>
-            <q-icon name="o_search" color="primary" />
+            <q-icon
+              name="o_search"
+              color="primary"
+            />
           </template>
         </q-input>
       </div>
 
       <q-list class="menu-list q-ml-sm q-mr-xs">
-        <div class="settings" @click="gotoDashboard">
+        <div
+          class="settings"
+          @click="gotoDashboard"
+        >
           <q-item class="flex items-center cursor-pointer">
             <q-icon
               name="o_dashboard"
@@ -221,7 +256,10 @@
             <span class="">{{ $t("drawer.items.dashboard") }}</span>
           </q-item>
         </div>
-        <div v-for="parentItem in drawerMenuItems" :key="parentItem.name">
+        <div
+          v-for="parentItem in drawerMenuItems"
+          :key="parentItem.name"
+        >
           <q-expansion-item
             ref="expansion"
             group="menu"
@@ -235,7 +273,10 @@
               clickable
               class="q-mx-md q-my-sm"
             >
-              <q-item-section avatar class="item-section">
+              <q-item-section
+                avatar
+                class="item-section"
+              >
                 <q-icon :name="`o_${subItem.icon}`" />
               </q-item-section>
               <q-item-section>{{
@@ -301,7 +342,7 @@ async function getMenuItems() {
     .then((response) => {
       handleMenuItemsData(response.data.data)
     })
-    .finally(() => {})
+    .finally(() => { })
 }
 
 function handleMenuItemsData(data) {
@@ -374,8 +415,7 @@ const gotoDashboard = () => {
 }
 </script>
 
-<style lang="scss">
-.drawer {
+<style lang="scss">.drawer {
   border-right: 1px solid rgb(219, 219, 219);
   border-left: none;
 }
@@ -404,5 +444,4 @@ const gotoDashboard = () => {
 .language-main-layout.q-btn--actionable.q-btn--standard:before {
   box-shadow: none;
   border: 1px solid $primary;
-}
-</style>
+}</style>
