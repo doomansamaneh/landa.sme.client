@@ -27,20 +27,27 @@
               style="width: 1px;"
             ></th>
           </tr>
-          <tr>
+          <tr class="filter-row">
             <th v-if="numbered"></th>
             <th
               v-for="col in columns"
               :key="col.name"
               class="filter"
             >
-              <q-input
-                outlined
-                v-model="col.value"
-                dense
+              <slot
                 v-if="col.showFilter"
-                @change="reloadData"
-              />
+                :name="`filter_${col.name}`"
+                :col="col"
+              >
+                <q-input
+                  outlined
+                  dense
+                  v-model="col.value"
+                  @change="reloadData"
+                />
+                <!-- debounce="500"
+                  @update:model-value="reloadData" -->
+              </slot>
             </th>
             <th v-if="expandable"></th>
           </tr>
@@ -197,7 +204,7 @@ function setColumnFilter() {
     if (item.value) {
       pagination.value.filterExpression.push({
         fieldName: item.name,
-        operator: 3,
+        operator: item.operator ?? 3,
         value: item.value
       })
     }

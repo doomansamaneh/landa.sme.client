@@ -1,28 +1,35 @@
 <template>
-  <!-- <q-card class="card-table home no-shadow no-border">
-    <q-card-section v-if="false">
-      <grid
-        dataSource="sls/invoice/getGridData"
-        :columns="columns"
-        sortBy="no"
-        class=""
-      />
-    </q-card-section>
-    <q-card-section>
-     
-    </q-card-section>
-  </q-card> -->
-
   <div style="margin: 32px;">
-    <span class="text-h6">پیش فاکتورها</span>
+    <span class="text-h5">پیش فاکتورها</span>
+  </div>
+  <div style="margin:48px; max-width: 400px;">
+    <h4>test select events</h4>
+    <q-select
+      dense
+      outlined
+      emit-value
+      v-model="statusTitle"
+      :options="statusOptions"
+      @update:model-value="handleSelect"
+    />
+    <q-select
+      class="q-mt-lg"
+      dense
+      outlined
+      emit-value
+      @update:model-value="handleSelect"
+      :options="statusOptions"
+      v-model="statusTitle"
+    />
   </div>
 
   <old-grid
+    ref="gridQ1"
     style="margin: 56px;"
     dataSource="sls/quote/getGridData"
     :columns="columns"
     sortColumn="no"
-    separator="none"
+    separator="horizontal"
     flat
     numbered
     bordered
@@ -32,6 +39,17 @@
     wrapCells
     expandable
   >
+    <template #filter_statusTitle="{ col }">
+      <q-select
+        clearable
+        dense
+        outlined
+        emit-value
+        v-model="col.value"
+        :options="statusOptions"
+        @update:model-value="gridQ1?.reloadData"
+      />
+    </template>
     <template #cell_amount="{ item }">
       <span>{{ item.amount.toLocaleString() }}</span>
     </template>
@@ -142,19 +160,21 @@ import { ref } from "vue"
 const router = useRouter()
 
 const showTopBar = true
+const statusTitle = ref("")
 
 const columns = ref([
   {
     name: "no",
     field: "no",
-    showFilter: true,
     sortable: false,
     label: "شماره",
     class: "text-left",
     cellClass: "text-left",
     cellStyle: "",
     style: "width:100px;",
-    value: ""
+    showFilter: true,
+    operator: 1,
+    value: "",
   },
   {
     name: "date",
@@ -220,7 +240,8 @@ const columns = ref([
     align: "left",
     class: "text-left",
     showFilter: true,
-    style: "width:100px;"
+    style: "width:100px;",
+    value: ""
   }
   // {
   //   name: "statusTitle",
@@ -228,7 +249,24 @@ const columns = ref([
   // }
 ])
 
-const gotoBusiness = () => {
-  router.push("/business")
+const gridQ1 = ref(null)
+
+const statusOptions = [{
+  label: 'دائم',
+  value: 'دائم'
+},
+{
+  label: 'موقت',
+  value: 'موقت'
+},
+{
+  label: 'ابطال شده',
+  value: 'ابطال شده',
+}
+]
+
+function handleSelect(val) {
+  alert(`filter changed 1: ${val}`)
+  alert(`filter changed 12: ${statusTitle.value}`)
 }
 </script>

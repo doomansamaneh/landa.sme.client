@@ -70,7 +70,7 @@ const indexRange = computed(() => {
 })
 
 const emit = defineEmits(["page-changed"])
-function handlePageChange() {
+function handlePageChange(val) {
   emit("page-changed")
 }
 </script>
