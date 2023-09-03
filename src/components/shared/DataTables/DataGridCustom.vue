@@ -66,7 +66,10 @@
             v-for="(row, index) in rows"
             :key="row.id"
           >
-            <tr>
+            <tr
+              @click="setActiveRow(row)"
+              :class="activeClass(row)"
+            >
               <td v-if="numbered"><small class="text-grey_">{{ rowIndex(index) }}</small></td>
               <td
                 v-for="col in columns"
@@ -128,7 +131,6 @@
     >
 
       <page-bar
-        ref="pagebar"
         class="page-bar_ q-pb-md"
         :pagination="pagination"
         @page-changed="loadData"
@@ -162,12 +164,12 @@ const props = defineProps({
 // const emits = defineEmits(['changeSelected'])
 
 const $q = useQuasar()
-const filter = ref("")
 const selected = ref([])
 const rows = ref([])
 const loading = ref(false)
 const showLoader = ref(false)
-const pagebar = ref(null);
+const activeRow = ref(null)
+
 const loaderTimeout = 500
 const defaultPageSize = 5
 
@@ -255,10 +257,14 @@ function rowIndex(index) {
   return (pagination.value.currentPage - 1) * pagination.value.pageSize + index + 1
 }
 
-function getColStyle(col) {
-  return col.style
+function setActiveRow(row) {
+  activeRow.value = row
+  //todo: emit active-row-changed
 }
 
+function activeClass(row) {
+  return row.id === activeRow.value?.id ? "row-active" : ""
+}
 
 function toggleExpand(row) {
   row.expanded = !row.expanded
@@ -303,7 +309,10 @@ defineExpose({
 })
 </script>
 
-<style lang="sass">
+<style lang="scss">
+.row-active {
+  background-color: #90949863;
+}
 
 // .q-table--dense .q-table td {
 //   padding: 16px 8px;
@@ -320,5 +329,4 @@ defineExpose({
 
 // .q-table--dense 
 //   border-bottom: 1px solid #2d2d2d2d
-
 </style>

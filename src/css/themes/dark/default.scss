@@ -1,19 +1,15 @@
 body.body--dark {
-
   --q-select: #394b9556;
 
-  .bg-dark{
+  .bg-dark {
     background-color: #040c2d !important;
   }
 
-  .page-bar{
-
+  .page-bar {
     background-color: #040c2d !important;
-
   }
 
   .q-table--dense .q-table .filter {
-    padding-bottom: 16px;
     border-bottom: 1px solid $dark-5;
   }
 
@@ -27,38 +23,35 @@ body.body--dark {
     border-left: 4px solid $primary;
   }
 
-  .home-bread-crumbs{
+  .home-bread-crumbs {
     background-color: 040c2d !important;
     border-top: 1px solid white !important;
     border-bottom: 1px solid white !important;
     box-shadow: none !important;
   }
 
-  tr.subtotal{
+  tr.subtotal {
     background-color: #131d47;
-
   }
 
-//  tr.q-tr:hover{
-//   background-color: #040c2d;
-//  }
+  //  tr.q-tr:hover{
+  //   background-color: #040c2d;
+  //  }
 
-//  tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
-//   background-color: #040c2d;
-// }
+  //  tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
+  //   background-color: #040c2d;
+  // }
 
-
-  tr.total{
+  tr.total {
     background-color: #090c46;
-
   }
 
-  .q-menu{
+  .q-menu {
     background-color: $dark-6;
     border: 1px solid $dark-5;
   }
 
-  .btn-icon .q-icon{
+  .btn-icon .q-icon {
     color: white;
   }
 
@@ -66,8 +59,7 @@ body.body--dark {
     background-color: #040c2d;
   }
 
-
-  .text{
+  .text {
     color: white;
   }
 
@@ -78,11 +70,11 @@ body.body--dark {
     background-color: #141f48c0;
   }
 
-  .home.q-card{
+  .home.q-card {
     background-color: #040c2d;
   }
 
-  .q-table__container{
+  .q-table__container {
     background-color: #040c2d;
   }
 
@@ -91,7 +83,7 @@ body.body--dark {
     background-color: $dark-6;
   }
 
-  .q-card{
+  .q-card {
     border: 1px solid $dark-5;
   }
 

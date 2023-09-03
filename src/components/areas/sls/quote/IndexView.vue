@@ -13,6 +13,38 @@
     </q-card-section>
   </q-card> -->
 
+  <div style="margin: 32px;">
+    <span class="text-h6">پیش فاکتورها</span>
+  </div>
+
+  <old-grid
+    style="margin: 56px;"
+    dataSource="sls/quote/getGridData"
+    :columns="columns"
+    sortColumn="no"
+    separator="none"
+    flat
+    numbered
+    bordered
+    square_
+    grid_
+    dense
+    wrapCells
+    expandable
+  >
+    <template #cell_amount="{ item }">
+      <span>{{ item.amount.toLocaleString() }}</span>
+    </template>
+    <template #cell_statusTitle="{ item }">
+      <q-badge>{{ item.statusTitle }}</q-badge>
+    </template>
+    <template #detail="{ item }">
+      <div>
+        <h4>{{ item.no }}</h4>
+        {{ item.customerName }}
+      </div>
+    </template>
+  </old-grid>
 
   <q-card
     class="q-ma-lg"
@@ -67,6 +99,7 @@
         dataSource="sls/invoice/getGridData"
         :columns="columns"
         sortColumn="no"
+        flat
       >
         <template #cell_amount="{ item }">
           <span>{{ item.amount.toLocaleString() }}</span>

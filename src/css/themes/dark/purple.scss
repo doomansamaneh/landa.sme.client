@@ -9,15 +9,13 @@ body.body--dark.theme--purple {
     border-left: 4px solid var(--q-primary);
   }
 
-  .page-bar{
-
+  .page-bar {
     background-color: #15152b !important;
-}
+  }
 
   .q-table--dense .q-table .filter {
-    padding-bottom: 16px;
     border-bottom: 1px solid #c097c8a0;
-}
+  }
 
   .q-table--dense {
     border-bottom: 1px solid #c097c8a0;
@@ -30,25 +28,23 @@ body.body--dark.theme--purple {
     box-shadow: 0 0 2px 0 #f7a2ff;
   }
 
-  .bg-dark{
+  .bg-dark {
     background-color: $dark-purple-1 !important;
   }
 
-  tr.subtotal{
+  tr.subtotal {
     background-color: #30113d;
-
   }
 
-  tr.total{
+  tr.total {
     background-color: #21062d;
-
   }
 
   .main-layout-color {
     background-color: #15152b;
   }
 
-  .q-table__container{
+  .q-table__container {
     background-color: #15152b;
   }
 
@@ -104,7 +100,7 @@ body.body--dark.theme--purple {
     background-color: $dark-purple-1;
   }
 
-  .q-card{
+  .q-card {
     background-color: #15152b;
     border: 1px solid #80439a;
   }
@@ -168,22 +164,22 @@ body.body--dark.theme--purple {
     background-color: $dark-purple-2;
   }
 
-//   .invoice-table tbody tr:hover {
-//     background-color: #371d44d2;
-//   }
+  //   .invoice-table tbody tr:hover {
+  //     background-color: #371d44d2;
+  //   }
 
-//   .invoice-table th {
-//     background-color: #171634;
-//     border-bottom: 2px solid #c729df;
-// }
+  //   .invoice-table th {
+  //     background-color: #171634;
+  //     border-bottom: 2px solid #c729df;
+  // }
 
-//   .invoice-table td {
-//     border-bottom: 1px solid $dark-purple-2;
-//   }
+  //   .invoice-table td {
+  //     border-bottom: 1px solid $dark-purple-2;
+  //   }
 
-  tr.q-tr:hover{
+  tr.q-tr:hover {
     background-color: $dark-purple-1;
-   }
+  }
 
   //  tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
   //   background-color: #171634;
@@ -192,7 +188,6 @@ body.body--dark.theme--purple {
   .sticky-header-table thead tr th {
     background-color: #15152b;
   }
-
 
   .dark-2,
   .dark-3 {
@@ -217,7 +212,7 @@ body.body--dark.theme--purple {
     border-radius: 4px;
   }
 
-  .q-menu{
+  .q-menu {
     background-color: $dark-purple-1;
     border: 1px solid #80439a;
   }
@@ -249,9 +244,9 @@ body.body--dark.theme--purple {
     color: white;
   }
 
-//   .invoice-text-container {
-//     background-color: #171634;
-// }
+  //   .invoice-text-container {
+  //     background-color: #171634;
+  // }
 
   .plan-title {
     background-color: $dark;
