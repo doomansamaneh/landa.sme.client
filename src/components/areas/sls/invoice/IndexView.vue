@@ -1,33 +1,21 @@
 <template>
   <div style="margin: 32px;">
-    <span class="text-h5">پیش فاکتورها</span>
+    <span class="text-h5">فاکتورها</span>
   </div>
-  <div style="margin:48px; max-width: 400px;">
-    <h4>test select events</h4>
-    <q-select
-      dense
-      outlined
-      emit-value
-      v-model="statusTitle"
-      :options="statusOptions"
-      @update:model-value="handleSelect"
-    />
-    <q-select
-      class="q-mt-lg"
-      dense
-      outlined
-      emit-value
-      @update:model-value="handleSelect"
-      :options="statusOptions"
-      v-model="statusTitle"
+
+  <div style="margin: 56px;">
+    <advanced-search
+      ref="adSearch"
+      @apply-search="applySearch"
     />
   </div>
 
   <old-grid
-    ref="gridQ1"
+    ref="gridI1"
     style="margin: 56px;"
-    dataSource="sls/quote/getGridData"
+    dataSource="sls/invoice/getGridData"
     :columns="columns"
+    :advancedSearch="adSearch"
     sortColumn="no"
     separator="horizontal"
     flat
@@ -47,7 +35,7 @@
         emit-value
         v-model="col.value"
         :options="statusOptions"
-        @update:model-value="gridQ1?.reloadData"
+        @update:model-value="gridI1?.reloadData"
       />
     </template>
     <template #cell_amount="{ item }">
@@ -66,28 +54,35 @@
 
   <q-card
     class="q-ma-lg"
-    flat
+    bordered
+    flat_
   >
-    <q-card-section>
-      <span class="text-h6">پیش فاکتورها</span>
+    <q-card-section class="bg-blue text-white">
+      <span class="text-h6">فاکتورها</span>
     </q-card-section>
+    <q-separator />
     <q-card-section>
       <old-grid
-        dataSource="sls/quote/getGridData"
+        ref="gridI2"
+        class="q-mt-lg_"
+        dataSource="sls/invoice/getGridData"
         :columns="columns"
+        :advancedSearch="adSearch"
         sortColumn="no"
-        separator="horizontal"
         flat
-        numbered
-        bordered
-        square_
-        grid_
-        dense
-        wrapCells
-        expandable
       >
         <template #cell_amount="{ item }">
           <span>{{ item.amount.toLocaleString() }}</span>
+        </template>
+        <template #cell_subject="{ item }">
+          <span>{{ item.subject }}</span>
+          <div v-if="item.summary">summary: {{ item.summary }}</div>
+          <div class="q-gutter-xs">
+            <q-badge v-if="item.typeTitle">{{ item.typeTitle }}</q-badge>
+            <q-badge v-if="item.contractTitle">{{ item.contractTitle }}</q-badge>
+            <q-badge>قرارداد شماره یک</q-badge>
+            <q-badge>بازاریاب شماره دو</q-badge>
+          </div>
         </template>
         <template #cell_statusTitle="{ item }">
           <q-badge>{{ item.statusTitle }}</q-badge>
@@ -101,7 +96,6 @@
       </old-grid>
     </q-card-section>
   </q-card>
-
   <!-- <div v-if="showTopBar">
     <top-bar />
   </div> -->
@@ -110,14 +104,8 @@
 <script setup>
 import { ref } from "vue"
 import { useRouter } from "vue-router"
-// import topBar from "src/components/management/quote/IndexView.vue"
 import OldGrid from "src/components/shared/DataTables/DataGridCustom.vue"
-import grid from "src/components/shared/DataTables/MyDataGrid.vue"
-
-const router = useRouter()
-
-const showTopBar = true
-const statusTitle = ref("")
+import advancedSearch from "./AdvancedSearch.vue"
 
 const columns = ref([
   {
@@ -200,13 +188,11 @@ const columns = ref([
     style: "width:100px;",
     value: ""
   }
-  // {
-  //   name: "statusTitle",
-  //   align: "left"
-  // }
 ])
 
-const gridQ1 = ref(null)
+const adSearch = ref(null)
+const gridI1 = ref(null)
+const gridI2 = ref(null)
 
 const statusOptions = [{
   label: 'دائم',
@@ -222,8 +208,10 @@ const statusOptions = [{
 }
 ]
 
-function handleSelect(val) {
-  alert(`filter changed 1: ${val}`)
-  alert(`filter changed 12: ${statusTitle.value}`)
+async function applySearch(model) {
+  gridI1.value.setSearchModel(model)
+  gridI2.value.setSearchModel(model)
+  await gridI1.value.reloadData()
+  await gridI2.value.reloadData()
 }
 </script>

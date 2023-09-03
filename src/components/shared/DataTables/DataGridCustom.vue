@@ -147,7 +147,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted, computed, reactive } from "vue"
 import { useQuasar } from 'quasar'
 import { fetchWrapper } from "src/helpers"
 import PageBar from "./PageBar.vue"
@@ -157,7 +157,6 @@ const props = defineProps({
   columns: Array,
   dataSource: String,
   expandable: Boolean,
-
   numbered: Boolean,
   separator: String,
   square: Boolean,
@@ -166,6 +165,7 @@ const props = defineProps({
   dense: Boolean,
   grid: Boolean,
   wrapCells: Boolean,
+  advancedSearch: Object
 })
 
 // const emits = defineEmits(['changeSelected'])
@@ -176,7 +176,6 @@ const rows = ref([])
 const loading = ref(false)
 const showLoader = ref(false)
 const activeRow = ref(null)
-
 const loaderTimeout = 500
 const defaultPageSize = 5
 
@@ -193,9 +192,16 @@ const pagination = ref({
 
 onMounted(() => {
   reloadData()
+  //todo: how to capture event raised by advanced search proxy
+  //if not possible then remove advancedSearch property
+  props.advancedSearch?.addEventListener('apply-search', applySearch)
 })
 
-function setColumnFilter() {
+function applySearch() {
+  alert('search applied')
+}
+
+function setPayload() {
   pagination.value.filterExpression = []
   let columns = ""
   props.columns.forEach((item) => {
@@ -210,6 +216,8 @@ function setColumnFilter() {
     }
   })
   pagination.value.columns = columns
+  //console.log(props.advancedSearch)
+  //pagination.value.searchModel = JSON.stringify(searchModel.value)
 }
 
 async function sortColumn(col) {
@@ -236,7 +244,8 @@ async function loadData() {
     if (loading.value) showLoader.value = true
   }, loaderTimeout)
 
-  setColumnFilter()
+  setPayload()
+
   await fetchWrapper
     .post(props.dataSource, pagination.value)
     .then((response) => {
@@ -267,6 +276,10 @@ function rowIndex(index) {
 function setActiveRow(row) {
   activeRow.value = row
   //todo: emit active-row-changed
+}
+
+function setSearchModel(model) {
+  pagination.value.searchModel = JSON.stringify(model)
 }
 
 function activeClass(row) {
@@ -312,7 +325,8 @@ const containerClass = computed(() =>
 )
 
 defineExpose({
-  reloadData
+  reloadData,
+  setSearchModel
 })
 </script>
 

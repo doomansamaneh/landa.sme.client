@@ -14,5 +14,10 @@ export default {
       path: "sls/quote",
       component: () => import("src/components/areas/sls/quote/IndexView.vue")
     }
+    ,
+    {
+      path: "sls/invoice",
+      component: () => import("src/components/areas/sls/invoice/IndexView.vue")
+    }
   ]
 }

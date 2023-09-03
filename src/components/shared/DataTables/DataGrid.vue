@@ -28,6 +28,7 @@ const props = defineProps({
   columns: Array,
   title: String,
   dataSource: String,
+  advancedSearch: Object,
   color: String
 })
 
@@ -50,6 +51,7 @@ onMounted(() => {
 })
 
 async function reloadData() {
+  console.log(props.advancedSearch);
   await loadData(pageSetting)
 }
 
