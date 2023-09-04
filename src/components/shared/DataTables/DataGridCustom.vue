@@ -27,8 +27,11 @@
               style="width: 1px;"
             ></th>
           </tr>
-          <tr class="filter-row">
-            <th v-if="numbered"></th>
+          <tr class="row-filter">
+            <th
+              v-if="numbered"
+              class="filter"
+            ></th>
             <th
               v-for="col in columns"
               :key="col.name"
@@ -42,14 +45,22 @@
                 <q-input
                   outlined
                   dense
+                  clearable
                   v-model="col.value"
-                  @change="reloadData"
+                  debounce="500"
+                  @update:model-value="reloadData"
                 />
-                <!-- debounce="500"
-                  @update:model-value="reloadData" -->
+                <!-- 
+                  @change="reloadData"
+                  debounce="500"
+                  @update:model-value="reloadData" 
+                -->
               </slot>
             </th>
-            <th v-if="expandable"></th>
+            <th
+              v-if="expandable"
+              class="filter"
+            ></th>
           </tr>
           <tr
             v-if="showLoader"
@@ -138,7 +149,7 @@
     >
 
       <page-bar
-        class="page-bar_ q-pb-md"
+        class="page-bar_"
         :pagination="pagination"
         @page-changed="loadData"
       />
@@ -150,6 +161,7 @@
 import { ref, onMounted, computed, reactive } from "vue"
 import { useQuasar } from 'quasar'
 import { fetchWrapper } from "src/helpers"
+import { sqlOperator } from "src/constants"
 import PageBar from "./PageBar.vue"
 
 const props = defineProps({
@@ -210,7 +222,7 @@ function setPayload() {
     if (item.value) {
       pagination.value.filterExpression.push({
         fieldName: item.name,
-        operator: item.operator ?? 3,
+        operator: item.operator ?? sqlOperator.like,
         value: item.value
       })
     }
@@ -311,7 +323,7 @@ const cardDefaultClass = computed(() =>
 )
 
 const __containerClass = computed(() =>
-  `q-table__container q-table--${props.separator}-separator column no-wrap`
+  `q-table__container q-table--${props.separator}-separator column no-wrap q-pt-md`
   + (props.grid === true ? ' q-table--grid' : cardDefaultClass.value)
   + ($q.dark?.isActive === true ? ' q-table--dark' : '')
   + (props.dense === true ? ' q-table--dense' : '')
@@ -332,7 +344,7 @@ defineExpose({
 
 <style lang="scss">
 .row-active {
-  background-color: #90949863;
+  background-color: #f1f3f4;
 }
 
 // .q-table--dense .q-table td {

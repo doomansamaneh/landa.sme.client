@@ -1,10 +1,12 @@
 <template>
-  <q-card>
+  <q-card class="q-pa-md">
     <q-card-section class="q-gutter-lg">
       <q-option-group
-        :options="dateRangeOptions"
+        class="row"
         type="radio"
+        :options="dateRangeOptions"
         v-model="searchModel.dateRange"
+        @update:model-value="applySearch"
       />
       <q-checkbox
         v-model="searchModel.waitToSendTax"
@@ -30,6 +32,21 @@
         label="شرح"
       />
     </q-card-section>
+
+    <q-card-actions align="right">
+      <q-btn
+        color="primary"
+        label="Search"
+        no-caps
+        @click="applySearch"
+      />
+      <q-btn
+        flat
+        label="Clear Search"
+        no-caps
+        @click="clearSearch"
+      />
+    </q-card-actions>
   </q-card>
   <q-card-actions align="right">
     <q-btn
@@ -48,46 +65,28 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-
-const props = defineProps({
-})
+import { computed, ref } from "vue"
+import { dateRange } from "src/constants"
+import { helper } from "src/helpers"
 
 const searchModel = ref({
   dateRange: 0,
   waitToSendTax: false
 })
 
-const dateRangeOptions = [
-  {
-    label: 'همه',
-    value: 0
-  },
-  {
-    label: 'امروز',
-    value: 1
-  },
-  {
-    label: 'این هفته',
-    value: 2
-  },
-  {
-    label: 'این ماه',
-    value: 3
-  }
-]
+const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange))
 
 const emit = defineEmits(["apply-search"])
 
-function applySearch() {
+async function applySearch() {
   emit("apply-search", searchModel.value)
 }
 
-function clearSearch() {
+async function clearSearch() {
   searchModel.value = {
     dateRange: 0,
     waitToSendTax: false
   }
-  applySearch()
+  await applySearch()
 }
 </script>

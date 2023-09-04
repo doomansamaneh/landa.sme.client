@@ -262,7 +262,11 @@
       "save": "ذخیره",
       "new": "جدید",
       "edit": "ویرایش",
-      "delete": "حذف"
+      "delete": "حذف",
+      "all" : "همه",
+      "today": "امروز",
+      "thisWeek": "این هفته",
+      "thisMonth": "این ماه"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد"

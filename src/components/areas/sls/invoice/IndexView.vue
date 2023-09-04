@@ -3,7 +3,7 @@
     <span class="text-h5">فاکتورها</span>
   </div>
 
-  <div style="margin: 56px;">
+  <div style="margin: 89px;">
     <advanced-search
       ref="adSearch"
       @apply-search="applySearch"
@@ -12,7 +12,8 @@
 
   <old-grid
     ref="gridI1"
-    style="margin: 56px;"
+    class="q-pt-lg"
+    style="margin: 89px;"
     dataSource="sls/invoice/getGridData"
     :columns="columns"
     :advancedSearch="adSearch"

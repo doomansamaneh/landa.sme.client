@@ -561,11 +561,11 @@ function onKey(evt) {
   width: 120px;
 }
 
-.q-table__bottom {
+/* .q-table__bottom {
   display: flex;
   justify-content: space-between;
   padding: 24px 16px 0 16px !important;
-}
+} */
 
 .sticky-header-table {
   height: 650px;

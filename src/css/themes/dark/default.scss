@@ -9,8 +9,15 @@ body.body--dark {
     background-color: #040c2d !important;
   }
 
-  .q-table--dense .q-table .filter {
-    border-bottom: 1px solid $dark-5;
+  .q-table {
+    .filter {
+      border-bottom: 1px solid $dark-5;
+    }
+    .row-active {
+      background-color: #394b95 !important;
+      outline: 1px solid #00aeffbe !important;
+      box-shadow: 0 0 4px 0 rgb(0, 140, 255) !important;
+    }
   }
 
   // .q-table--dense {
@@ -63,7 +70,7 @@ body.body--dark {
     color: white;
   }
 
-  .main-layout-color {
+  .layout {
     background-color: #040c2d;
   }
   .inner-loader {

@@ -1,7 +1,7 @@
 <template>
   <q-layout
     view="hHh Lpr lff"
-    class="main-layout-color"
+    class="layout"
   >
     <q-page-container>
       <home-page />
@@ -27,8 +27,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.main-layout-color {
-  background-color: #ffffff;
+.layout {
+  background-color: #f1f3f4;
   border-bottom: 1px solid #2d2d2d2d;
 }
 
