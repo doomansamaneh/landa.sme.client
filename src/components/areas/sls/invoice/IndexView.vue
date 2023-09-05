@@ -10,48 +10,79 @@
     />
   </div>
 
-  <old-grid
-    ref="gridI1"
+  <div
     class="q-pt-lg"
     style="margin: 89px;"
-    dataSource="sls/invoice/getGridData"
-    :columns="columns"
-    :advancedSearch="adSearch"
-    sortColumn="no"
-    separator="horizontal"
-    flat
-    numbered
-    bordered
-    square_
-    grid_
-    dense
-    wrapCells
-    expandable
   >
-    <template #filter_statusTitle="{ col }">
-      <q-select
-        clearable
-        dense
-        outlined
-        emit-value
-        v-model="col.value"
-        :options="statusOptions"
-        @update:model-value="gridI1?.reloadData"
-      />
-    </template>
-    <template #cell_amount="{ item }">
-      <span>{{ item.amount.toLocaleString() }}</span>
-    </template>
-    <template #cell_statusTitle="{ item }">
-      <q-badge>{{ item.statusTitle }}</q-badge>
-    </template>
-    <template #detail="{ item }">
-      <div>
-        <h4>{{ item.no }}</h4>
-        {{ item.customerName }}
-      </div>
-    </template>
-  </old-grid>
+    <div class="q-gutter-md">
+      <q-btn
+        v-if="gridI1?.activeRow != null"
+        flat
+        class="bg-blue"
+        no-caps
+      >
+        edit (invoice no: {{ gridI1?.activeRow.no }})
+      </q-btn>
+
+      <q-btn
+        v-if="gridI1?.selection.length > 0"
+        flat
+        class="bg-blue"
+        no-caps
+      >
+        delete all ({{ gridI1?.selection.length }} rows selected)
+      </q-btn>
+    </div>
+    <old-grid
+      ref="gridI1"
+      dataSource="sls/invoice/getGridData"
+      :columns="columns"
+      :advancedSearch="adSearch"
+      sortColumn="no"
+      separator="horizontal"
+      flat
+      multiSelect
+      numbered
+      bordered
+      square_
+      grid_
+      dense
+      wrapCells
+      expandable
+      @active-row-changed="rowChanged"
+      @selection-changed="selectionChanged"
+    >
+      <template #filter_statusTitle="{ col }">
+        <q-select
+          clearable
+          dense
+          outlined
+          emit-value
+          v-model="col.value"
+          :options="statusOptions"
+          @update:model-value="gridI1?.reloadData"
+        />
+      </template>
+      <template #cell_amount="{ item }">
+        <span>{{ item.amount.toLocaleString() }}</span>
+      </template>
+      <template #cell_statusTitle="{ item }">
+        <q-badge>{{ item.statusTitle }}</q-badge>
+      </template>
+      <template #detail="{ item }">
+        <div>
+          <h4>{{ item.no }}</h4>
+          <pre>{{ item }}</pre>
+        </div>
+      </template>
+    </old-grid>
+    <div class="q-pa-lg">
+      <h4>active row</h4>
+      <pre>{{ gridI1?.activeRow }}</pre>
+      <h4>selected rows</h4>
+      <pre>{{ gridI1?.selection }}</pre>
+    </div>
+  </div>
 
   <q-card
     class="q-ma-lg"
@@ -104,7 +135,6 @@
 
 <script setup>
 import { ref } from "vue"
-import { useRouter } from "vue-router"
 import OldGrid from "src/components/shared/DataTables/DataGridCustom.vue"
 import advancedSearch from "./AdvancedSearch.vue"
 
@@ -208,6 +238,17 @@ const statusOptions = [{
   value: 'ابطال شده',
 }
 ]
+
+
+function rowChanged(row) {
+  console.log(row)
+  //alert('row changed')
+}
+
+function selectionChanged(selection) {
+  console.log(selection)
+  //alert('selection changed')
+}
 
 async function applySearch(model) {
   gridI1.value.setSearchModel(model)

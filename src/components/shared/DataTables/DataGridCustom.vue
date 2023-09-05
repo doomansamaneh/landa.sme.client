@@ -9,6 +9,15 @@
               style="width: 1px;"
             >#</th>
             <th
+              v-if="multiSelect"
+              style="width: 1px;"
+            >
+              <q-checkbox
+                v-model="selectedAll"
+                @update:model-value="selectAll"
+              />
+            </th>
+            <th
               v-for="col in columns"
               :key="col.name"
               :style="col.style"
@@ -32,6 +41,7 @@
               v-if="numbered"
               class="filter"
             ></th>
+            <th v-if="multiSelect"> </th>
             <th
               v-for="col in columns"
               :key="col.name"
@@ -89,6 +99,12 @@
               :class="activeClass(row)"
             >
               <td v-if="numbered"><small class="text-grey_">{{ rowIndex(index) }}</small></td>
+              <td v-if="multiSelect">
+                <q-checkbox
+                  v-model="row.selected"
+                  @update:model-value="selectRow(row)"
+                />
+              </td>
               <td
                 v-for="col in columns"
                 :key="col.name"
@@ -147,7 +163,6 @@
       v-if="showPagebar"
       class="q-table__bottom"
     >
-
       <page-bar
         class="page-bar_"
         :pagination="pagination"
@@ -170,6 +185,7 @@ const props = defineProps({
   dataSource: String,
   expandable: Boolean,
   numbered: Boolean,
+  multiSelect: Boolean,
   separator: String,
   square: Boolean,
   bordered: Boolean,
@@ -180,10 +196,9 @@ const props = defineProps({
   advancedSearch: Object
 })
 
-// const emits = defineEmits(['changeSelected'])
+const emit = defineEmits(['active-row-changed', 'selection-changed'])
 
 const $q = useQuasar()
-const selected = ref([])
 const rows = ref([])
 const loading = ref(false)
 const showLoader = ref(false)
@@ -206,7 +221,7 @@ onMounted(() => {
   reloadData()
   //todo: how to capture event raised by advanced search proxy
   //if not possible then remove advancedSearch property
-  props.advancedSearch?.addEventListener('apply-search', applySearch)
+  //props.advancedSearch?.addEventListener('apply-search', applySearch)
 })
 
 function applySearch() {
@@ -272,22 +287,31 @@ async function loadData() {
 
 function handleResponse(pagedData) {
   rows.value = pagedData.items
+  rows.value.forEach((row) => {
+    row.selected = false
+  })
   pagination.value.totalItems = pagedData.page.totalItems
   //paginationStore.setCurrentPage(pagination.value.currentPage)
-}
-
-
-function onSelect() {
-  emit("changeSelected", selected)
 }
 
 function rowIndex(index) {
   return (pagination.value.currentPage - 1) * pagination.value.pageSize + index + 1
 }
 
+function selectAll(checked) {
+  rows.value.forEach((row) => row.selected = checked)
+  emitSelection()
+}
+
+function selectRow(row) {
+  emitSelection()
+}
+
+function emitSelection() { emit('selection-changed', selection.value) }
+
 function setActiveRow(row) {
   activeRow.value = row
-  //todo: emit active-row-changed
+  emit("active-row-changed", row)
 }
 
 function setSearchModel(model) {
@@ -305,7 +329,14 @@ function toggleExpand(row) {
   })
 }
 
+const selectedAll = computed(() => {
+  if (selection.value?.length == 0) return false
+  if (selection.value.length === rows.value.length) return true
+  return ""
+})
+
 const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
+const selection = computed(() => rows.value.filter(row => row.selected === true))
 
 function headerClass(col) {
   return `${col.class}`
@@ -338,7 +369,10 @@ const containerClass = computed(() =>
 
 defineExpose({
   reloadData,
-  setSearchModel
+  setSearchModel,
+  activeRow,
+  selection,
+  rows,
 })
 </script>
 
@@ -361,5 +395,4 @@ defineExpose({
 // }
 
 // .q-table--dense 
-//   border-bottom: 1px solid #2d2d2d2d
-</style>
+//   border-bottom: 1px solid #2d2d2d2d</style>
