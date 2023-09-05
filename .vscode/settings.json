@@ -7,7 +7,7 @@
   "html.format.wrapAttributes": "force-expand-multiline",
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
   "[vue]": {
-    "editor.defaultFormatter": "Vue.volar"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
