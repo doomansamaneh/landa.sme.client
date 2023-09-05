@@ -96,7 +96,7 @@
           >
             <tr
               @click="setActiveRow(row)"
-              :class="activeClass(row)"
+              :class="getRowClass(row)"
             >
               <td v-if="numbered"><small class="text-grey_">{{ rowIndex(index) }}</small></td>
               <td v-if="multiSelect">
@@ -157,6 +157,18 @@
             </td>
           </tr>
         </tbody>
+        <tfoot>
+          <slot
+            name="footer-subtotal"
+            :selection="selection"
+          >
+          </slot>
+          <slot
+            name="footer-total"
+            :summary="summary"
+          >
+          </slot>
+        </tfoot>
       </table>
     </div>
     <div
@@ -200,6 +212,7 @@ const emit = defineEmits(['active-row-changed', 'selection-changed'])
 
 const $q = useQuasar()
 const rows = ref([])
+const summary = ref(null)
 const loading = ref(false)
 const showLoader = ref(false)
 const activeRow = ref(null)
@@ -287,6 +300,7 @@ async function loadData() {
 
 function handleResponse(pagedData) {
   rows.value = pagedData.items
+  summary.value = pagedData.summaryData
   rows.value.forEach((row) => {
     row.selected = false
   })
@@ -318,8 +332,9 @@ function setSearchModel(model) {
   pagination.value.searchModel = JSON.stringify(model)
 }
 
-function activeClass(row) {
-  return row.id === activeRow.value?.id ? "row-active" : ""
+function getRowClass(row) {
+  return (row.id === activeRow.value?.id ? "row-active" : "")
+    + (row.selected === true ? " selected" : "")
 }
 
 function toggleExpand(row) {
@@ -395,4 +410,5 @@ defineExpose({
 // }
 
 // .q-table--dense 
-//   border-bottom: 1px solid #2d2d2d2d</style>
+//   border-bottom: 1px solid #2d2d2d2d
+</style>

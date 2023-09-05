@@ -75,6 +75,30 @@
           <pre>{{ item }}</pre>
         </div>
       </template>
+
+      <template #footer-subtotal="{ selection }">
+        <tr
+          v-if="selection?.length > 1"
+          class="bg-red text-white"
+        >
+          <td colspan="6"></td>
+          <td>{{ selection.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</td>
+          <td>{{ selection.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</td>
+          <td colspan="100%"></td>
+        </tr>
+      </template>
+
+      <template #footer-total="{ summary }">
+        <tr
+          v-if="summary != null"
+          class="bg-blue text-white"
+        >
+          <td colspan="6"></td>
+          <td>{{ summary.Amount.toLocaleString() }}</td>
+          <td>{{ summary.DiscountAmount.toLocaleString() }}</td>
+          <td colspan="100%"></td>
+        </tr>
+      </template>
     </old-grid>
     <div class="q-pa-lg">
       <h4>active row</h4>
