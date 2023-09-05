@@ -14,11 +14,11 @@
     class="q-pt-lg"
     style="margin: 89px;"
   >
-    <div class="q-gutter-md">
+    <div class="q-gutter-md q-py-lg">
       <q-btn
         v-if="gridI1?.activeRow != null"
         flat
-        class="bg-blue"
+        class="bg-blue-5 text-white"
         no-caps
       >
         edit (invoice no: {{ gridI1?.activeRow.no }})
@@ -27,7 +27,7 @@
       <q-btn
         v-if="gridI1?.selection.length > 0"
         flat
-        class="bg-blue"
+        class="bg-blue-9 text-white"
         no-caps
       >
         delete all ({{ gridI1?.selection.length }} rows selected)
@@ -77,35 +77,42 @@
       </template>
 
       <template #footer-subtotal="{ selection }">
-        <tr
-          v-if="selection?.length > 1"
-          class="bg-red text-white"
+        <td
+          colspan="6"
+          class="text-right"
         >
-          <td colspan="6"></td>
-          <td>{{ selection.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</td>
-          <td>{{ selection.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</td>
-          <td colspan="100%"></td>
-        </tr>
+          <strong>جمع انتخاب شده</strong>
+        </td>
+        <td>{{ selection.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</td>
+        <td>{{ selection.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</td>
+        <td colspan="100%"></td>
       </template>
 
       <template #footer-total="{ summary }">
-        <tr
-          v-if="summary != null"
-          class="bg-blue text-white"
+        <td
+          colspan="6"
+          class="text-right"
         >
-          <td colspan="6"></td>
-          <td>{{ summary.Amount.toLocaleString() }}</td>
-          <td>{{ summary.DiscountAmount.toLocaleString() }}</td>
-          <td colspan="100%"></td>
-        </tr>
+          <strong>جمع کل</strong>
+        </td>
+        <td>{{ summary.Amount.toLocaleString() }}</td>
+        <td>{{ summary.DiscountAmount.toLocaleString() }}</td>
+        <td colspan="100%"></td>
       </template>
     </old-grid>
+
     <div class="q-pa-lg">
-      <h4>active row</h4>
-      <pre>{{ gridI1?.activeRow }}</pre>
-      <h4>selected rows</h4>
-      <pre>{{ gridI1?.selection }}</pre>
+      <template v-if="gridI1?.selection.length > 0">
+        <h4>selected rows: {{ gridI1?.selection.length }}</h4>
+        <pre>{{ gridI1?.selection }}</pre>
+      </template>
+
+      <template v-if="gridI1?.activeRow != null">
+        <h4>active row</h4>
+        <pre>{{ gridI1?.activeRow }}</pre>
+      </template>
     </div>
+
   </div>
 
   <q-card

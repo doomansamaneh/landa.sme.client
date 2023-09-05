@@ -147,29 +147,39 @@
             </tr>
           </template>
         </tbody>
-        <tbody v-if="!loading && rows.length == 0">
-          <tr>
-            <td colspan="100%">
-              <slot name="noDataFound">
-                //todo: ui/ux
-                هیچ داده ای پیدا نشد
-              </slot>
-            </td>
+        <tfoot class="table-total">
+          <tr
+            v-if="selection.length > 1"
+            class="grid-subtotal bg-grey-3 text-black"
+          >
+            <!-- //todo: css class and remove bg-grey -->
+            <slot
+              name="footer-subtotal"
+              :selection="selection"
+            >
+            </slot>
           </tr>
-        </tbody>
-        <tfoot>
-          <slot
-            name="footer-subtotal"
-            :selection="selection"
+          <tr
+            v-if="summary != null"
+            class="grid-total bg-blue text-white"
           >
-          </slot>
-          <slot
-            name="footer-total"
-            :summary="summary"
-          >
-          </slot>
+            <!-- //todo: css class and remove bg-blue -->
+            <slot
+              name="footer-total"
+              :summary="summary"
+            >
+            </slot>
+          </tr>
         </tfoot>
       </table>
+    </div>
+    <div
+      v-if="!loading && rows.length == 0"
+      class="q-table__bottom items-center q-table__bottom--nodata"
+    >
+      <slot name="noDataFound">
+        <no-data-found />
+      </slot>
     </div>
     <div
       v-if="showPagebar"
@@ -190,6 +200,7 @@ import { useQuasar } from 'quasar'
 import { fetchWrapper } from "src/helpers"
 import { sqlOperator } from "src/constants"
 import PageBar from "./PageBar.vue"
+import NoDataFound from "./NoDataFound.vue"
 
 const props = defineProps({
   sortBy: String,

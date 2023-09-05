@@ -63,16 +63,7 @@
     </q-card-section>
 
     <q-card-section v-if="pagedRows.length === 0 && !loadingData">
-      <div class="nothing-found no-results column justify-center items-center q-my-xl">
-        <div class="">
-          <img
-            class="nothing-found-svg"
-            src="page-lost.svg"
-            style="width: 150px"
-          />
-        </div>
-        <div class="">{{ $t("page.nothing-found") }}</div>
-      </div>
+      <no-data-found />
     </q-card-section>
 
     <page-bar
@@ -89,6 +80,7 @@ import { ref, computed, onMounted } from "vue"
 import { fetchWrapper } from "src/helpers"
 import { usePaginationStore } from "src/stores/page-store.js"
 import PageBar from "./PageBar.vue"
+import NoDataFound from "./NoDataFound.vue"
 
 const props = defineProps({
   title: String,
