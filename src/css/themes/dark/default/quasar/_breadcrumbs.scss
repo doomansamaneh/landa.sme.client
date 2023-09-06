@@ -1,10 +1,10 @@
 body.body--dark{
   .q-breadcrumbs__el {
-    color: white;
+    color: $white;
   }
 
   .q-breadcrumbs__separator {
-    color: white;
+    color: $white;
   }
 
   .q-breadcrumbs__el.q-router-link--active {

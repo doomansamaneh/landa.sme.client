@@ -146,24 +146,24 @@ body.body--dark.theme--purple {
     background-color: $dark-purple-1;
   }
 
-  .dark-1-bg {
+  .highlight-text {
     padding: 8px 16px;
     border-radius: 4px;
     background-color: $dark-purple-2;
   }
 
-    .invoice-table tbody tr:hover {
-      background-color: #371d44d2;
-    }
-
-    .invoice-table th {
-      background-color: #171634;
-      border-bottom: 2px solid $purple;
+  .invoice-table tbody tr:hover {
+    background-color: #371d44d2;
   }
 
-    .invoice-table td {
-      border-bottom: 1px solid $dark-purple-2;
-    }
+  .invoice-table th {
+    background-color: #171634;
+    border-bottom: 2px solid $purple;
+  }
+
+  .invoice-table td {
+    border-bottom: 1px solid $dark-purple-2;
+  }
 
   tr.q-tr:hover {
     background-color: $dark-purple-1;
@@ -232,8 +232,8 @@ body.body--dark.theme--purple {
     color: white;
   }
 
-    .invoice-text-container {
-      background-color: #171634;
+  .invoice-text-container {
+    background-color: #171634;
   }
 
   .plan-title {
