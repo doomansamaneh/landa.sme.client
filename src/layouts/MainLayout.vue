@@ -2,7 +2,7 @@
   <q-layout view="hHh Lpr lff" class="layout">
     <q-page-container>
       <top-bar @toggle-drawer="toggleDrawer" />
-      <side-bar />
+      <side-bar :drawer="drawer" />
       <router-view />
     </q-page-container>
   </q-layout>
@@ -24,7 +24,7 @@ const route = useRoute()
 const router = useRouter()
 const $q = useQuasar()
 
-const sideBar = ref(false)
+const drawer = ref(true)
 
 const selectedBusiness = useSelectedBusinessStore()
 
@@ -45,7 +45,7 @@ function handleBusinessData(data) {
 }
 
 function toggleDrawer() {
-  alert("drawer...")
+  drawer.value = !drawer.value
 }
 
 //todo: remove this part to a global place such as composables or store

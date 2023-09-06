@@ -2,9 +2,8 @@
   <q-drawer
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
     side="left"
-    show-if-above
     :width="305"
-    v-model="drawer"
+    :model-value="drawer"
     :breakpoint="500"
     class="drawer"
   >
@@ -84,11 +83,11 @@ import { fetchWrapper } from "src/helpers"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
-// const props = defineProps({
-//   drawer: Boolean
-// })
+const props = defineProps({
+  drawer: Boolean
+})
 const items = ref([])
-const drawer = ref(false)
+// const drawer = ref(false)
 const searchText = ref("")
 
 async function getMenuItems() {
@@ -147,5 +146,4 @@ const gotoDashboard = () => {
 onMounted(() => {
   getMenuItems()
 })
-
 </script>
