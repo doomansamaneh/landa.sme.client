@@ -64,44 +64,6 @@
     </template>
   </old-grid>
 
-  <q-card
-    class="q-ma-lg"
-    flat
-  >
-    <q-card-section>
-      <span class="text-h6">پیش فاکتورها</span>
-    </q-card-section>
-    <q-card-section>
-      <old-grid
-        dataSource="sls/quote/getGridData"
-        :columns="columns"
-        sortColumn="no"
-        separator="horizontal"
-        flat
-        numbered
-        bordered
-        square_
-        grid_
-        dense
-        wrapCells
-        expandable
-      >
-        <template #cell_amount="{ item }">
-          <span>{{ item.amount.toLocaleString() }}</span>
-        </template>
-        <template #cell_statusTitle="{ item }">
-          <q-badge>{{ item.statusTitle }}</q-badge>
-        </template>
-        <template #detail="{ item }">
-          <div>
-            <h4>{{ item.no }}</h4>
-            {{ item.customerName }}
-          </div>
-        </template>
-      </old-grid>
-    </q-card-section>
-  </q-card>
-
   <!-- <div v-if="showTopBar">
     <top-bar />
   </div> -->
