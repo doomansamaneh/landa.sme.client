@@ -9,7 +9,7 @@ body.body--dark.theme--orange {
   }
 
   .page-bar {
-    background-color: #170000 !important;
+    background-color: $dark-orange-1 !important;
   }
 
   .q-table--dense .q-table .filter {
@@ -37,7 +37,7 @@ body.body--dark.theme--orange {
   // }
 
   .sticky-header-table thead tr th {
-    background-color: #170000;
+    background-color: $dark-orange-1;
   }
 
   tr.total {
@@ -95,10 +95,10 @@ body.body--dark.theme--orange {
   .inner-loader {
     background-color: #2d1e27ce;
   }
-  background-color: #170000;
+  background-color: $dark-orange-1;
 
   .q-table__container {
-    background-color: #170000;
+    background-color: $dark-orange-1;
   }
   .q-card,
   .q-header {
@@ -220,12 +220,12 @@ body.body--dark.theme--orange {
   }
 
   .login-header {
-    background-color: #170000;
+    background-color: $dark-orange-1;
   }
 
   .login-page,
   .login-form {
-    background-color: #170000;
+    background-color: $dark-orange-1;
   }
 
   .q-field__control,
