@@ -1,18 +1,20 @@
-
-// body.body--dark.theme--blue {
-//   --q-dark: #040c2d;
-// }
-// body.body--dark.theme--orange {
-//   --q-dark: #170000;
-// }
-// body.body--dark.theme--purple {
-//   --q-dark: #15152b;
-// }
+body.body--dark {
+  --q-dark: #ffffff47;
+}
+body.body--dark.theme--blue {
+  --q-dark: #040c2d;
+}
+body.body--dark.theme--orange {
+  --q-dark: #170000;
+}
+body.body--dark.theme--purple {
+  --q-dark: #15152b;
+}
 
 $primary: #00aeff;
 $secondary: #ffffff;
 $accent: #f9f9f9;
-$dark: #ffffff47;
+$dark: #141f48;
 $dark-1: #f0f0f0;
 $dark-2: #c4c4c4;
 $dark-3: #acacac;
@@ -23,7 +25,7 @@ $dark-6: #040c2d;
 $white: #ffffff;
 $black: #292929;
 $dark-page: #040c2d;
-$select: #F5F5F5;
+$select: #f5f5f5;
 $positive: #21ba45;
 $negative: #c10015;
 $info: #31ccec;
