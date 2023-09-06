@@ -22,9 +22,6 @@
         </template>
       </q-input>
     </div>
-
-    <!-- <q-scroll-area class="fit"> -->
-
     <q-list class="menu-list q-ml-sm q-mr-xs">
       <div class="settings" @click="gotoDashboard">
         <q-item class="flex items-center cursor-pointer">
@@ -73,7 +70,6 @@
         </q-item>
       </div>
     </q-list>
-    <!-- </q-scroll-area> -->
   </q-drawer>
 </template>
 
@@ -87,7 +83,6 @@ const props = defineProps({
   drawer: Boolean
 })
 const items = ref([])
-// const drawer = ref(false)
 const searchText = ref("")
 
 async function getMenuItems() {
