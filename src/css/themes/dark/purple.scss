@@ -263,4 +263,17 @@ body.body--dark.theme--purple {
   .error-banner {
     border-top: 3px solid $warning;
   }
+
+  .q-table {
+    .filter {
+      border-bottom: 1px solid $dark-5;
+    }
+    .row-active {
+      background-color: #84399576 !important;
+    }
+  }
+
+  .q-table__container {
+    background-color: #15152b;
+  }
 }

@@ -262,4 +262,14 @@ body.body--dark.theme--orange {
   .error-banner {
     border-top: 3px solid $warning;
   }
+
+  .q-table {
+    .filter {
+      border-bottom: 1px solid $dark-5;
+    }
+    .row-active {
+      background-color: #955939 !important;
+    }
+  }
+
 }
