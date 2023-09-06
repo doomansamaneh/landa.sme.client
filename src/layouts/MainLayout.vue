@@ -1,8 +1,8 @@
 <template>
   <q-layout view="hHh Lpr lff" class="layout">
     <q-page-container>
-      <top-bar @toggle-drawer="toggleDrawer" />
-      <side-bar :drawer="drawer" />
+      <main-header @toggle-drawer="toggleDrawer" />
+      <menu-bar :drawer="drawer" />
       <router-view />
     </q-page-container>
   </q-layout>
@@ -15,8 +15,8 @@ import { useRoute } from "vue-router"
 import { useRouter } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 import HomePage from "src/components/management/home/IndexView.vue"
-import SideBar from "src/components/layouts/main/SideBar.vue"
-import TopBar from "src/components/layouts/main/TopBar.vue"
+import MenuBar from "src/components/layouts/main/MenuBar.vue"
+import MainHeader from "src/components/layouts/main/MainHeader.vue"
 
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 
@@ -66,11 +66,6 @@ onMounted(() => {
 
 .q-menu {
   z-index: 9999;
-}
-
-.drawer {
-  border-right: 1px solid rgb(219, 219, 219);
-  border-left: none;
 }
 
 .q-focus-helper {

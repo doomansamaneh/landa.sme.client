@@ -5,7 +5,7 @@
     :width="305"
     :model-value="drawer"
     :breakpoint="500"
-    class="drawer"
+    bordered
   >
     <div class="searchbar-sidebar q-my-md q-px-md">
       <q-input
@@ -136,6 +136,7 @@ const drawerMenuItems = computed(() => {
 
 const gotoDashboard = () => {
   router.push("/dashboard")
+  alert("you are going to dashbord...")
 }
 
 onMounted(() => {
