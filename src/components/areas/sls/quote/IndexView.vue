@@ -32,6 +32,7 @@
     separator="horizontal"
     flat
     numbered
+    multi-select
     bordered
     square_
     grid_
