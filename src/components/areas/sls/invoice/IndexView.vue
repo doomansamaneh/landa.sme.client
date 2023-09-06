@@ -25,12 +25,12 @@
       </q-btn>
 
       <q-btn
-        v-if="gridI1?.selection.length > 0"
+        v-if="gridI1?.selectedRows.length > 0"
         flat
         class="bg-blue-9 text-white"
         no-caps
       >
-        delete all ({{ gridI1?.selection.length }} rows selected)
+        delete all ({{ gridI1?.selectedRows.length }} rows selected)
       </q-btn>
     </div>
     <old-grid
@@ -50,7 +50,7 @@
       wrapCells
       expandable
       @active-row-changed="rowChanged"
-      @selection-changed="selectionChanged"
+      @selectedRows-changed="selectedRowsChanged"
     >
       <template #filter_statusTitle="{ col }">
         <q-select
@@ -76,15 +76,15 @@
         </div>
       </template>
 
-      <template #footer-subtotal="{ selection }">
+      <template #footer-subtotal="{ selectedRows }">
         <td
           colspan="6"
           class="text-right"
         >
-          <strong>جمع انتخاب شده</strong>
+           انتخاب شده
         </td>
-        <td>{{ selection.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</td>
-        <td>{{ selection.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</td>
+        <td><b>{{ selectedRows.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</b></td>
+        <td><b>{{ selectedRows.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</b></td>
         <td colspan="100%"></td>
       </template>
 
@@ -93,18 +93,23 @@
           colspan="6"
           class="text-right"
         >
-          <strong>جمع کل</strong>
+          جمع کل
         </td>
-        <td>{{ summary.Amount.toLocaleString() }}</td>
-        <td>{{ summary.DiscountAmount.toLocaleString() }}</td>
+        <td><b>{{ summary.Amount.toLocaleString() }}</b></td>
+        <td><b>{{ summary.DiscountAmount.toLocaleString() }}</b></td>
         <td colspan="100%"></td>
       </template>
     </old-grid>
 
     <div class="q-pa-lg">
-      <template v-if="gridI1?.selection.length > 0">
-        <h4>selected rows: {{ gridI1?.selection.length }}</h4>
-        <pre>{{ gridI1?.selection }}</pre>
+      <template v-if="gridI1?.allSelectedIds.length > 0">
+        <h4>all selected ids: {{ gridI1?.allSelectedIds.length }}</h4>
+        <pre>{{ gridI1?.allSelectedIds }}</pre>
+      </template>
+
+      <template v-if="gridI1?.selectedRows.length > 0">
+        <h4>selected rows: {{ gridI1?.selectedRows.length }}</h4>
+        <pre>{{ gridI1?.selectedRows }}</pre>
       </template>
 
       <template v-if="gridI1?.activeRow != null">
@@ -272,13 +277,12 @@ const statusOptions = [{
 
 
 function rowChanged(row) {
-  console.log(row)
   //alert('row changed')
 }
 
-function selectionChanged(selection) {
-  console.log(selection)
-  //alert('selection changed')
+function selectedRowsChanged(selectedRows) {
+  //console.log(selectedRows)
+  //alert('selectedRows changed')
 }
 
 async function applySearch(model) {

@@ -13,7 +13,7 @@
               style="width: 1px;"
             >
               <q-checkbox
-                v-model="selectedAll"
+                v-model="checkAll"
                 @update:model-value="selectAll"
               />
             </th>
@@ -102,7 +102,7 @@
               <td v-if="multiSelect">
                 <q-checkbox
                   v-model="row.selected"
-                  @update:model-value="selectRow(row)"
+                  @update:model-value="selectRow(row, $event)"
                 />
               </td>
               <td
@@ -149,13 +149,13 @@
         </tbody>
         <tfoot class="table-total">
           <tr
-            v-if="selection.length > 1"
+            v-if="selectedRows.length > 1"
             class="grid-subtotal bg-grey-3 text-black"
           >
             <!-- //todo: css class and remove bg-grey -->
             <slot
               name="footer-subtotal"
-              :selection="selection"
+              :selectedRows="selectedRows"
             >
             </slot>
           </tr>
@@ -195,7 +195,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive } from "vue"
+import { ref, onMounted, computed, reactive, toRaw } from "vue"
 import { useQuasar } from 'quasar'
 import { fetchWrapper } from "src/helpers"
 import { sqlOperator } from "src/constants"
@@ -219,10 +219,11 @@ const props = defineProps({
   advancedSearch: Object
 })
 
-const emit = defineEmits(['active-row-changed', 'selection-changed'])
+const emit = defineEmits(['active-row-changed', 'selectedRows-changed'])
 
 const $q = useQuasar()
 const rows = ref([])
+const allSelectedIds = ref([])
 const summary = ref(null)
 const loading = ref(false)
 const showLoader = ref(false)
@@ -313,7 +314,7 @@ function handleResponse(pagedData) {
   rows.value = pagedData.items
   summary.value = pagedData.summaryData
   rows.value.forEach((row) => {
-    row.selected = false
+    row.selected = (allSelectedIds.value.indexOf(row.id)> -1)
   })
   pagination.value.totalItems = pagedData.page.totalItems
   //paginationStore.setCurrentPage(pagination.value.currentPage)
@@ -324,15 +325,31 @@ function rowIndex(index) {
 }
 
 function selectAll(checked) {
-  rows.value.forEach((row) => row.selected = checked)
-  emitSelection()
+  rows.value.forEach((row) => {
+    row.selected = checked
+    updatedSelectedIds(row, checked)
+  })
+  emitselectedRows()
 }
 
-function selectRow(row) {
-  emitSelection()
+function selectRow(row, checked) {
+  updatedSelectedIds(row, checked)
+  emitselectedRows()
 }
 
-function emitSelection() { emit('selection-changed', selection.value) }
+function updatedSelectedIds(row, checked){
+  const index = allSelectedIds.value.indexOf(row.id)
+  if (checked) {
+    if (index < 0) allSelectedIds.value.push(row.id)
+  }
+  else  {
+    if (index >= 0) allSelectedIds.value.splice(index, 1)
+  }
+}
+
+function emitselectedRows() { 
+  emit('selectedRows-changed', selectedRows.value) 
+}
 
 function setActiveRow(row) {
   activeRow.value = row
@@ -355,14 +372,14 @@ function toggleExpand(row) {
   })
 }
 
-const selectedAll = computed(() => {
-  if (selection.value?.length == 0) return false
-  if (selection.value.length === rows.value.length) return true
+const checkAll = computed(() => {
+  if (selectedRows.value?.length == 0) return false
+  if (selectedRows.value.length === rows.value.length) return true
   return ""
 })
 
 const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
-const selection = computed(() => rows.value.filter(row => row.selected === true))
+const selectedRows = computed(() => rows.value.filter(row => row.selected === true))
 
 function headerClass(col) {
   return `${col.class}`
@@ -397,7 +414,8 @@ defineExpose({
   reloadData,
   setSearchModel,
   activeRow,
-  selection,
+  selectedRows,
+  allSelectedIds,
   rows,
 })
 </script>
