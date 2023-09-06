@@ -1,0 +1,14 @@
+body.body--dark {
+  .q-table {
+    .filter {
+      border-bottom: 1px solid $dark-5;
+    }
+    .row-active {
+      background-color: #{$primary}20 !important;
+    }
+  }
+
+  .q-table__container {
+    background-color: $dark-page;
+  }
+}

@@ -20,6 +20,6 @@
   },
   "vue.codeActions.enabled": false,
   "[scss]": {
-    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

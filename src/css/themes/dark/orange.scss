@@ -16,10 +16,6 @@ body.body--dark.theme--orange {
     border-bottom: 1px solid #b699aa9c;
   }
 
-  // .q-table--dense {
-  //   border-bottom: 1px solid #b699aa9c;
-  // }
-
   .profile-pic .q-avatar__content {
     background-color: orange;
   }
@@ -27,11 +23,6 @@ body.body--dark.theme--orange {
   .bg-dark {
     background-color: $dark-orange-1 !important;
   }
-
-
-  // tr:not(:first-child):not(:nth-last-child(-n+2)):hover {
-  //   background-color: #7e433a1b;
-  // }
 
   .sticky-header-table thead tr th {
     background-color: $dark-orange-1;
@@ -167,17 +158,21 @@ body.body--dark.theme--orange {
   }
 
   // todo: avoid using sepcial names
-  .invoice-table tbody tr:hover {
-    background-color: #c976692f;
-  }
+  .invoice-table {
+    tbody {
+      tr:hover {
+        background-color: #{$dark-5}10;
+      }
+    }
 
-  .invoice-table th {
-    background-color: #1f0f19;
-    border-bottom: 2px solid orangered;
-  }
+    th {
+      background-color: #{$secondary-orange};
+      border-bottom: 2px solid $primary;
+    }
 
-  .invoice-table td {
-    border-bottom: 1px solid $dark-orange-2;
+    td {
+      border-bottom: 1px solid $dark-orange-2;
+    }
   }
 
   .dark-2,

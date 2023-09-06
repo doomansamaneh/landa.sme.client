@@ -60,10 +60,10 @@
                   debounce="500"
                   @update:model-value="reloadData"
                 />
-                <!-- 
+                <!--
                   @change="reloadData"
                   debounce="500"
-                  @update:model-value="reloadData" 
+                  @update:model-value="reloadData"
                 -->
               </slot>
             </th>
@@ -444,6 +444,6 @@ defineExpose({
 //   border-bottom: 1px solid #2d2d2d2d;
 // }
 
-// .q-table--dense 
+// .q-table--dense
 //   border-bottom: 1px solid #2d2d2d2d
 </style>

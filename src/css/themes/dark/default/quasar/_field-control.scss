@@ -1,0 +1,21 @@
+body.body--dark{
+
+  .q-field__control{
+    color: $primary;
+  }
+  .q-field--outlined .q-field__control:before {
+    background-color: $dark-6;
+  }
+
+  .q-item__label--caption .q-field__control {
+    color: $white;
+  }
+
+  .q-item__label--caption .q-field__control {
+    background-color: red;
+  }
+
+  .q-field__native.q-placeholder {
+    color: white;
+  }
+}

@@ -1,8 +1,8 @@
 <template>
   <q-header
     bordered
-    class="bg-white q-px-sm"
-    :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
+    class="q-px-sm"
+    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between">
       <div class="menu-button q-gutter-xs">
