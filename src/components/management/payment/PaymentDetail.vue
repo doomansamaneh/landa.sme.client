@@ -191,7 +191,7 @@
                       >(150,000,000)</span
                     ></span
                   >
-                  <span class="text-bold q-pr-md q-pl-sm dark-1-bg"
+                  <span class="text-bold q-pr-md q-pl-sm highlight-text"
                     >جمع مانده:<span class="text-weight-thin q-pl-xs"
                       ><b class="underline">(150,000,000)</b></span
                     ></span
@@ -444,7 +444,7 @@
                 >{{ $t("page.payment-detail.remained-but-this-year")
                 }}<span class="q-pl-xs">(150,000,000)</span></span
               >
-              <span class="dark-1-bg"
+              <span class="highlight-text"
                 >{{ $t("page.payment-detail.remained-total") }}
                 <span class="q-pl-xs"
                   ><b class="underline">(150,000,000)</b></span

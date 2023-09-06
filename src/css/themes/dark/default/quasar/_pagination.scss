@@ -1,13 +1,13 @@
 body.body--dark {
   .q-pagination .q-icon.notranslate.material-icons {
-    color: $dark-4;
+    color: $blue-theme-accent;
   }
 
   .q-pagination .q-btn__content {
-    color: $accent;
+    color: $white;
   }
 
   .pagination-el {
-    background-color: $dark;
+    background-color: $blue-theme-dark;
   }
 }

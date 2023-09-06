@@ -4,23 +4,23 @@ body.body--dark {
   background-size: cover;
 
   .custom-tooltip {
-    background-color: $dark-5;
+    background-color: $blue-theme-secondary;
   }
 
   .invoice-table {
     tbody {
       tr:hover {
-        background-color: #{$dark-5}10;
+        background-color: #{$blue-theme-secondary}10;
       }
     }
 
     th {
-      background-color: #{$primary}10;
-      border-bottom: 2px solid $primary;
+      background-color: #{$blue-theme-primary}10;
+      border-bottom: 2px solid $blue-theme-primary;
     }
 
     td {
-      border-bottom: 1px solid $dark-5;
+      border-bottom: 1px solid $blue-theme-secondary;
     }
   }
 
@@ -30,25 +30,25 @@ body.body--dark {
   }
 
   .underline {
-    border-bottom: 2px solid $primary;
+    border-bottom: 2px solid $blue-theme-primary;
   }
 
   .lookup-table-body tr:hover {
-    background-color: #{$primary}10;
+    background-color: #{$blue-theme-primary}10;
   }
 
   .lookup-table-body {
     padding: 20px;
-    border-top: 2px solid $primary;
+    border-top: 2px solid $blue-theme-primary;
   }
 
   .login-header {
-    background-color: $dark-page;
+    background-color: $blue-theme-dark-page;
   }
 
   .login-page,
   .login-form {
-    background-color: $dark-page;
+    background-color: $blue-theme-dark-page;
   }
 
   .login-form {
@@ -56,38 +56,34 @@ body.body--dark {
   }
 
   .bread-crumbs {
-    border-bottom: 2px solid #{$primary}20;
-    border-top: 2px solid #{$primary}20;
-    box-shadow: 0 0 2px 0 $primary;
+    border-bottom: 2px solid #{$blue-theme-primary}20;
+    border-top: 2px solid #{$blue-theme-primary}20;
+    box-shadow: 0 0 2px 0 $blue-theme-primary;
   }
 
   .service-extension {
     color: $positive;
   }
 
-  .service-extension-not-owner {
-    color: $dark-4;
-  }
-
   .invoice-text-container {
-    background-color: #0c174570;
+    background-color: #{$blue-theme-primary}10;
   }
 
   .glass {
-    background: #{$primary}10;
+    background: #{$blue-theme-primary}10;
     border-radius: 4px;
-    box-shadow: 0 2px 20px #{$dark-page};
+    box-shadow: 0 2px 20px #{$blue-theme-dark-page};
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid $primary;
+    border: 1px solid $blue-theme-primary;
   }
 
   .dark-container {
-    background-color: $dark-5;
+    background-color: $blue-theme-secondary;
   }
 
   .plan-title {
-    background-color: $dark;
+    background-color: $blue-theme-dark;
   }
 
   .page-title {
@@ -95,15 +91,12 @@ body.body--dark {
   }
 
   .error-banner {
-    background-color: $dark;
+    background-color: $blue-theme-dark;
+    border-top: 3px solid $warning;
   }
 
   .q-icon-banner {
-    color: $dark-5;
-  }
-
-  .error-banner {
-    border-top: 3px solid $warning;
+    color: $blue-theme-secondary
   }
 
   .hamb {
@@ -111,9 +104,9 @@ body.body--dark {
   }
 
   .selected-row {
-    background-color: #{$primary}20 !important;
-    outline: 1px solid $primary !important;
-    box-shadow: 0 0 4px 0 #{$primary}20 !important;
+    background-color: #{$blue-theme-primary}20 !important;
+    outline: 1px solid $blue-theme-primary !important;
+    box-shadow: 0 0 4px 0 #{$blue-theme-primary}20 !important;
   }
 
   .icon-hover.q-icon:hover {
@@ -127,11 +120,11 @@ body.body--dark {
   }
 
   .home.q-card {
-    background-color: $dark-page;
+    background-color: $blue-theme-dark-page;
   }
 
   .inner-loader {
-    background-color: #{$primary}20;
+    background-color: #{$blue-theme-primary}20;
   }
 
   .text {
@@ -139,11 +132,30 @@ body.body--dark {
   }
 
   .selected {
-    background-color: #{$primary}10;
+    background-color: #{$blue-theme-primary}10;
     border-radius: 4px;
   }
 
   .layout {
-    background-color: $dark-page;
+    background-color: $blue-theme-dark-page;
+  }
+
+  .dark-1 {
+    background-color: $blue-theme-dark;
+  }
+
+  .dark-2,
+  .dark-3 {
+    color: $blue-theme-accent;
+  }
+
+  .highlight-text {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #{$blue-theme-primary}30;
+  }
+
+  .bg-dark {
+    background-color: $blue-theme-dark-page !important;
   }
 }
