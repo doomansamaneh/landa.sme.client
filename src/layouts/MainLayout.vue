@@ -15,8 +15,8 @@ import { useRoute } from "vue-router"
 import { useRouter } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 import HomePage from "src/components/management/home/IndexView.vue"
-import SideBar from "src/components/layouts/main/sideBar.vue"
-import TopBar from "src/components/layouts/main/topBar.vue"
+import SideBar from "src/components/layouts/main/SideBar.vue"
+import TopBar from "src/components/layouts/main/TopBar.vue"
 
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 

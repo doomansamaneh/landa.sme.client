@@ -6,7 +6,25 @@
 @import "./themes/light/orange.scss";
 @import "./themes/light/purple.scss";
 
-@import "./themes/dark/default.scss";
+// @import "./themes/dark/default.scss";
+
+///////////////////////////////////////////
+@import "./themes/core/helper";
+@import "./themes/dark/default/quasar/card";
+@import "./themes/dark/default/quasar/header";
+@import "./themes/dark/default/quasar/table";
+@import "./themes/dark/default/quasar/menu";
+@import "./themes/dark/default/quasar/separator";
+@import "./themes/dark/default/quasar/avatar";
+@import "./themes/dark/default/quasar/pagination";
+@import "./themes/dark/default/quasar/breadcrumbs";
+@import "./themes/dark/default/quasar/field-control";
+@import "./themes/dark/default/quasar/carousel";
+@import "./themes/dark/default/quasar/toolbar";
+@import "./themes/dark/default/quasar/linear-progress";
+@import "./themes/dark/default/quasar/item";
+@import "./themes/dark/default/custom/index.scss";
+//////////////////////////////////////////
 @import "./themes/dark/blue.scss";
 @import "./themes/dark/orange.scss";
 @import "./themes/dark/purple.scss";

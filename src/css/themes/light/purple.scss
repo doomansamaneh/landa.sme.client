@@ -23,17 +23,13 @@ body.body--light.theme--purple {
     color: $purple;
   }
 
-  // .invoice-table th {
-  //   border-bottom: 2px solid $purple;
-  // }
+  .invoice-table th {
+    border-bottom: 2px solid $purple;
+  }
 
   .lookup-table-body {
     border-top: 2px solid $purple;
   }
-
-  // .lookup-table-body tr:hover {
-  //   background-color: #fdefff;
-  // }
 
   .selected-row {
     // background-color: #fbdeff !important;

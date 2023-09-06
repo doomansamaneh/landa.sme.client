@@ -12,9 +12,9 @@ body.body--light.theme--orange {
     color: orangered;
   }
 
-  // .invoice-table th {
-  //   border-bottom: 2px solid orangered;
-  // }
+  .invoice-table th {
+    border-bottom: 2px solid orangered;
+  }
 
   .underline {
     border-bottom: 3px solid orangered;
@@ -24,9 +24,6 @@ body.body--light.theme--orange {
     border-top: 2px solid orangered;
   }
 
-  // .lookup-table-body tr:hover {
-  //   background-color: #f1f1f1;
-  // }
 
   .selected-row {
     // background-color: #fffbea !important;
@@ -49,7 +46,7 @@ body.body--light.theme--orange {
     border-bottom: 1px solid #ffa587;
     box-shadow: 0 0 2px 0 #ffb096bb;
   }
-  
+
 
   background-color: #6713005f;
   .lookup-table-body tr:hover {

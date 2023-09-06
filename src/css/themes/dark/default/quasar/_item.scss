@@ -1,0 +1,7 @@
+body.body--dark {
+  .q-item.q-router-link--active {
+    background-color: #{$primary}20;
+    border-radius: 8px;
+    border-left: 4px solid $primary;
+  }
+}
