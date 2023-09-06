@@ -18,7 +18,7 @@
               />
             </th>
             <th
-              v-for="col in columns"
+              v-for="col in gridColumns"
               :key="col.name"
               :style="col.style"
               :class="headerClass(col)"
@@ -43,7 +43,7 @@
             ></th>
             <th v-if="multiSelect"> </th>
             <th
-              v-for="col in columns"
+              v-for="col in gridColumns"
               :key="col.name"
               class="filter"
             >
@@ -106,7 +106,7 @@
                 />
               </td>
               <td
-                v-for="col in columns"
+                v-for="col in gridColumns"
                 :key="col.name"
                 :class="col.cellClass"
                 :style="col.cellStyle"
@@ -187,7 +187,7 @@
     >
       <page-bar
         class="page-bar_"
-        :pagination="pagination"
+        :pagination="gridPagination"
         @page-changed="loadData"
       />
     </div>
@@ -216,7 +216,7 @@ const props = defineProps({
   dense: Boolean,
   grid: Boolean,
   wrapCells: Boolean,
-  advancedSearch: Object
+  gridStore: Object
 })
 
 const emit = defineEmits(['active-row-changed', 'selectedRows-changed'])
@@ -254,32 +254,33 @@ function applySearch() {
 }
 
 function setPayload() {
-  pagination.value.filterExpression = []
+  gridPagination.value.filterExpression = []
   let columns = ""
-  props.columns.forEach((item) => {
+  gridColumns.value.forEach((item) => {
     if (columns === "") columns = item.name
     else columns = `${columns},${item.name}`
     if (item.value) {
-      pagination.value.filterExpression.push({
+      gridPagination.value.filterExpression.push({
         fieldName: item.name,
         operator: item.operator ?? sqlOperator.like,
         value: item.value
       })
     }
   })
-  pagination.value.columns = columns
+  gridPagination.value.columns = columns
+  gridPagination.value.searchModel = JSON.stringify(props.gridStore?.searchModel.value)
   //console.log(props.advancedSearch)
-  //pagination.value.searchModel = JSON.stringify(searchModel.value)
+  //gridPagination.value.searchModel = JSON.stringify(searchModel.value)
 }
 
 async function sortColumn(col) {
   if (col.sortable) {
-    if (pagination.value.sortColumn === col.name) {
-      if (pagination.value.sortOrder === 1) pagination.value.sortOrder = 2
-      else pagination.value.sortOrder = 1
+    if (gridPagination.value.sortColumn === col.name) {
+      if (gridPagination.value.sortOrder === 1) gridPagination.value.sortOrder = 2
+      else gridPagination.value.sortOrder = 1
     } else {
-      pagination.value.sortColumn = col.name
-      pagination.value.sortOrder = 1
+      gridPagination.value.sortColumn = col.name
+      gridPagination.value.sortOrder = 1
     }
     await reloadData()
   }
@@ -299,7 +300,7 @@ async function loadData() {
   setPayload()
 
   await fetchWrapper
-    .post(props.dataSource, pagination.value)
+    .post(props.dataSource, gridPagination.value)
     .then((response) => {
       handleResponse(response.data.data)
     })
@@ -314,14 +315,14 @@ function handleResponse(pagedData) {
   rows.value = pagedData.items
   summary.value = pagedData.summaryData
   rows.value.forEach((row) => {
-    row.selected = (allSelectedIds.value.indexOf(row.id)> -1)
+    row.selected = (allSelectedIds.value.indexOf(row.id) > -1)
   })
-  pagination.value.totalItems = pagedData.page.totalItems
-  //paginationStore.setCurrentPage(pagination.value.currentPage)
+  gridPagination.value.totalItems = pagedData.page.totalItems
+  //paginationStore.setCurrentPage(gridPagination.value.currentPage)
 }
 
 function rowIndex(index) {
-  return (pagination.value.currentPage - 1) * pagination.value.pageSize + index + 1
+  return (gridPagination.value.currentPage - 1) * gridPagination.value.pageSize + index + 1
 }
 
 function selectAll(checked) {
@@ -337,27 +338,23 @@ function selectRow(row, checked) {
   emitselectedRows()
 }
 
-function updatedSelectedIds(row, checked){
+function updatedSelectedIds(row, checked) {
   const index = allSelectedIds.value.indexOf(row.id)
   if (checked) {
     if (index < 0) allSelectedIds.value.push(row.id)
   }
-  else  {
+  else {
     if (index >= 0) allSelectedIds.value.splice(index, 1)
   }
 }
 
-function emitselectedRows() { 
-  emit('selectedRows-changed', selectedRows.value) 
+function emitselectedRows() {
+  emit('selectedRows-changed', selectedRows.value)
 }
 
 function setActiveRow(row) {
   activeRow.value = row
   emit("active-row-changed", row)
-}
-
-function setSearchModel(model) {
-  pagination.value.searchModel = JSON.stringify(model)
 }
 
 function getRowClass(row) {
@@ -378,14 +375,24 @@ const checkAll = computed(() => {
   return ""
 })
 
-const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
+const showPagebar = computed(() => gridPagination.value.totalItems > defaultPageSize)
 const selectedRows = computed(() => rows.value.filter(row => row.selected === true))
+
+const gridColumns = computed(() => {
+  if (props.gridStore != null) return props.gridStore.columns.value
+  return props.columns
+})
+
+const gridPagination = computed(() => {
+  if (props.gridStore != null) return props.gridStore.pagination.value
+  return pagination.value
+})
 
 function headerClass(col) {
   return `${col.class}`
     + (col.sortable === true ? " sortable" : '')
-    + (col.sortable && col.name === pagination.value.sortColumn ? " sorted" : "")
-    + (col.sortable && col.name === pagination.value.sortColumn ? (pagination.value.sortOrder === 1 ? "" : " sort-desc") : "")
+    + (col.sortable && col.name === gridPagination.value.sortColumn ? " sorted" : "")
+    + (col.sortable && col.name === gridPagination.value.sortColumn ? (gridPagination.value.sortOrder === 1 ? "" : " sort-desc") : "")
 }
 
 const cardDefaultClass = computed(() =>
@@ -412,7 +419,6 @@ const containerClass = computed(() =>
 
 defineExpose({
   reloadData,
-  setSearchModel,
   activeRow,
   selectedRows,
   allSelectedIds,

@@ -33,7 +33,7 @@
       />
     </q-card-section>
 
-    <q-card-actions align="right">
+    <!-- <q-card-actions align="right">
       <q-btn
         color="primary"
         label="Search"
@@ -46,7 +46,7 @@
         no-caps
         @click="clearSearch"
       />
-    </q-card-actions>
+    </q-card-actions> -->
   </q-card>
   <q-card-actions align="right">
     <q-btn
@@ -69,10 +69,11 @@ import { computed, ref } from "vue"
 import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 
-const searchModel = ref({
-  dateRange: 0,
-  waitToSendTax: false
+const props = defineProps({
+  gridStore: Object
 })
+
+const searchModel = computed(() => props.gridStore.searchModel.value)
 
 const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange))
 
@@ -83,10 +84,7 @@ async function applySearch() {
 }
 
 async function clearSearch() {
-  searchModel.value = {
-    dateRange: 0,
-    waitToSendTax: false
-  }
+  props.gridStore.setDefaultSearchModel()
   await applySearch()
 }
 </script>
