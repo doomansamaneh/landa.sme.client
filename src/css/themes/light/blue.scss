@@ -27,17 +27,13 @@ body.body--light.theme--blue {
     color: $primary;
   }
 
-  // .invoice-table th {
-  //   border-bottom: 2px solid $primary;
-  // }
+  .invoice-table th {
+    border-bottom: 2px solid $primary;
+  }
 
   .lookup-table-body {
     border-top: 2px solid $primary;
   }
-
-  // .lookup-table-body tr:hover {
-  //   background-color: #eef7ff;
-  // }
 
   .glass {
     background: rgba(0, 170, 255, 0.056);
