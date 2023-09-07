@@ -23,7 +23,7 @@
     />
   </div>
 
-  <old-grid
+  <data-grid
     ref="gridQ1"
     style="margin: 56px;"
     dataSource="sls/quote/getGridData"
@@ -63,7 +63,7 @@
         {{ item.customerName }}
       </div>
     </template>
-  </old-grid>
+  </data-grid>
 
   <!-- <div v-if="showTopBar">
     <top-bar />
@@ -74,8 +74,7 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 // import topBar from "src/components/management/quote/IndexView.vue"
-import OldGrid from "src/components/shared/DataTables/DataGridCustom.vue"
-import grid from "src/components/shared/DataTables/MyDataGrid.vue"
+import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
 
 const router = useRouter()
 

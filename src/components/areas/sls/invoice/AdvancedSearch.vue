@@ -10,26 +10,33 @@
       />
       <q-checkbox
         v-model="searchModel.waitToSendTax"
-        label="منتظر ارسال به سامانه مودیان"
+        :label='$t("shared.labels.waitToSendTax")'
       />
 
       <q-input
         outlined
         dense
         v-model="searchModel.amountFrom"
-        label="مبلغ از"
+        :label='$t("shared.labels.amountFrom")'
       />
       <q-input
         outlined
         dense
         v-model="searchModel.amountTo"
-        label="مبلغ تا"
+        :label='$t("shared.labels.amountTo")'
       />
       <q-input
         outlined
         dense
         v-model="searchModel.comment"
-        label="شرح"
+        :label='$t("shared.labels.comment")'
+      />
+    </q-card-section>
+
+    <q-card-section>
+      <chip
+        :search-model="searchModel"
+        :remove-item="removeItem"
       />
     </q-card-section>
 
@@ -48,6 +55,9 @@
       />
     </q-card-actions> -->
   </q-card>
+
+
+
   <q-card-actions align="right">
     <q-btn
       color="primary"
@@ -65,9 +75,10 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
+import chip from "src/components/shared/SearchChip.vue"
 
 const props = defineProps({
   gridStore: Object
@@ -85,6 +96,11 @@ async function applySearch() {
 
 async function clearSearch() {
   props.gridStore.setDefaultSearchModel()
+  await applySearch()
+}
+
+async function removeItem(item) {
+  searchModel.value[item.name] = ""
   await applySearch()
 }
 </script>

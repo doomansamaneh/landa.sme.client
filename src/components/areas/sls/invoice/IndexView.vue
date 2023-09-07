@@ -61,11 +61,10 @@
         animated
       >
         <q-tab-panel name="invoice">
-          <old-grid
+          <data-grid
             ref="gridI1"
             dataSource="sls/invoice/getGridData"
             :gridStore="gridStore"
-            sortColumn="no"
             separator="horizontal"
             flat
             multiSelect
@@ -128,7 +127,7 @@
               <td><b>{{ summary.DiscountAmount.toLocaleString() }}</b></td>
               <td colspan="100%"></td>
             </template>
-          </old-grid>
+          </data-grid>
         </q-tab-panel>
 
         <q-tab-panel name="canceled">
@@ -158,10 +157,10 @@
 
 <script setup>
 import { computed, ref } from "vue"
-import OldGrid from "src/components/shared/DataTables/DataGridCustom.vue"
-import advancedSearch from "./AdvancedSearch.vue"
+import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import AdvancedSearch from "./AdvancedSearch.vue"
 import gridV2 from "./IndexViewV2.vue"
-import { useInvoice } from "../_composables/invoiceStore"
+import { useInvoice } from "../_composables/useInvoice"
 
 const gridStore = useInvoice()
 
