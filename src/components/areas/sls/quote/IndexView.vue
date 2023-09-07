@@ -1,8 +1,12 @@
 <template>
-  <div style="margin: 32px;">
+  <q-btn @click="testStore.increamentLocal">increament local</q-btn>
+  <q-btn @click="testStore.increamentGlobal">increament global</q-btn>
+  <h4>{{ testStore.localCount }}</h4>
+  <h4>{{ testStore.globalCount }}</h4>
+  <div style="margin: 32px">
     <span class="text-h5">پیش فاکتورها</span>
   </div>
-  <div style="margin:48px; max-width: 400px;">
+  <div style="margin: 48px; max-width: 400px">
     <h4>test select events</h4>
     <q-select
       dense
@@ -25,7 +29,7 @@
 
   <data-grid
     ref="gridQ1"
-    style="margin: 56px;"
+    style="margin: 56px"
     dataSource="sls/quote/getGridData"
     :columns="columns"
     sortColumn="no"
@@ -77,6 +81,7 @@ import { useRouter } from "vue-router"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
 
 const router = useRouter()
+const testStore = useTest()
 
 const showTopBar = true
 const statusTitle = ref("")
@@ -93,7 +98,7 @@ const columns = ref([
     style: "width:100px;",
     showFilter: true,
     operator: 1,
-    value: "",
+    value: ""
   },
   {
     name: "date",
@@ -170,18 +175,19 @@ const columns = ref([
 
 const gridQ1 = ref(null)
 
-const statusOptions = [{
-  label: 'دائم',
-  value: 'دائم'
-},
-{
-  label: 'موقت',
-  value: 'موقت'
-},
-{
-  label: 'ابطال شده',
-  value: 'ابطال شده',
-}
+const statusOptions = [
+  {
+    label: "دائم",
+    value: "دائم"
+  },
+  {
+    label: "موقت",
+    value: "موقت"
+  },
+  {
+    label: "ابطال شده",
+    value: "ابطال شده"
+  }
 ]
 
 function handleSelect(val) {
