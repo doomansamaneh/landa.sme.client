@@ -91,7 +91,7 @@
         </thead>
         <tbody>
           <template
-            v-for="(row, index) in rows"
+            v-for="(row, index) in gridRows"
             :key="row.id"
           >
             <tr
@@ -174,7 +174,7 @@
       </table>
     </div>
     <div
-      v-if="!loading && rows.length == 0"
+      v-if="!loading && gridRows.length == 0"
       class="q-table__bottom items-center q-table__bottom--nodata"
     >
       <slot name="noDataFound">
@@ -219,7 +219,7 @@ const props = defineProps({
   gridStore: Object
 })
 
-const emit = defineEmits(['active-row-changed', 'selectedRows-changed'])
+const emit = defineEmits(['active-row-changed', 'selected-rows-changed'])
 
 const $q = useQuasar()
 const rows = ref([])
@@ -233,7 +233,6 @@ const defaultPageSize = 5
 
 const pagination = ref({
   currentPage: 1,
-  //paginationStore.currentPage,
   pageSize: defaultPageSize,
   sortColumn: props.sortBy,
   sortOrder: 1,
@@ -243,7 +242,10 @@ const pagination = ref({
 })
 
 onMounted(() => {
-  reloadData()
+  if (!props.gridStore?.firstLoad.value) {
+    props.gridStore?.setLoaded()
+    reloadData()
+  }
   //todo: how to capture event raised by advanced search proxy
   //if not possible then remove advancedSearch property
   //props.advancedSearch?.addEventListener('apply-search', applySearch)
@@ -312,9 +314,9 @@ async function loadData() {
 }
 
 function handleResponse(pagedData) {
-  rows.value = pagedData.items
+  gridRows.value = pagedData.items
   summary.value = pagedData.summaryData
-  rows.value.forEach((row) => {
+  gridRows.value.forEach((row) => {
     row.selected = (allSelectedIds.value.indexOf(row.id) > -1)
   })
   gridPagination.value.totalItems = pagedData.page.totalItems
@@ -326,7 +328,7 @@ function rowIndex(index) {
 }
 
 function selectAll(checked) {
-  rows.value.forEach((row) => {
+  gridRows.value.forEach((row) => {
     row.selected = checked
     updatedSelectedIds(row, checked)
   })
@@ -349,7 +351,7 @@ function updatedSelectedIds(row, checked) {
 }
 
 function emitselectedRows() {
-  emit('selectedRows-changed', selectedRows.value)
+  emit('selected-rows-changed', selectedRows.value)
 }
 
 function setActiveRow(row) {
@@ -364,19 +366,19 @@ function getRowClass(row) {
 
 function toggleExpand(row) {
   row.expanded = !row.expanded
-  rows.value.forEach((item) => {
+  gridRows.value.forEach((item) => {
     if (row.id != item.id) item.expanded = false
   })
 }
 
 const checkAll = computed(() => {
   if (selectedRows.value?.length == 0) return false
-  if (selectedRows.value.length === rows.value.length) return true
+  if (selectedRows.value.length === gridRows.value.length) return true
   return ""
 })
 
 const showPagebar = computed(() => gridPagination.value.totalItems > defaultPageSize)
-const selectedRows = computed(() => rows.value.filter(row => row.selected === true))
+const selectedRows = computed(() => gridRows.value.filter(row => row.selected === true))
 
 const gridColumns = computed(() => {
   if (props.gridStore != null) return props.gridStore.columns.value
@@ -386,6 +388,17 @@ const gridColumns = computed(() => {
 const gridPagination = computed(() => {
   if (props.gridStore != null) return props.gridStore.pagination.value
   return pagination.value
+})
+
+const gridRows = computed({
+  get() {
+    if (props.gridStore != null) return props.gridStore.rows.value
+    return rows.value
+  },
+  set(value) {
+    if (props.gridStore != null) return props.gridStore.setRows(value)
+    return rows.value = value
+  }
 })
 
 function headerClass(col) {
@@ -426,24 +439,4 @@ defineExpose({
 })
 </script>
 
-<style lang="scss">
-.row-active {
-  background-color: #f1f3f4;
-}
-
-// .q-table--dense .q-table td {
-//   padding: 16px 8px;
-// }
-
-// .q-table--dense .q-table .label {
-//   padding-bottom: 4px;
-// }
-
-// .q-table--dense .q-table .filter {
-//   padding-bottom: 16px;
-//   border-bottom: 1px solid #2d2d2d2d;
-// }
-
-// .q-table--dense
-//   border-bottom: 1px solid #2d2d2d2d
-</style>
+<style lang="scss"></style>
