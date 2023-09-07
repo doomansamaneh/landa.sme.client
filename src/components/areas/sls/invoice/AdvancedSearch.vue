@@ -16,18 +16,21 @@
       <q-input
         outlined
         dense
+        clearable
         v-model="searchModel.amountFrom"
         :label='$t("shared.labels.amountFrom")'
       />
       <q-input
         outlined
         dense
+        clearable
         v-model="searchModel.amountTo"
         :label='$t("shared.labels.amountTo")'
       />
       <q-input
         outlined
         dense
+        clearable
         v-model="searchModel.comment"
         :label='$t("shared.labels.comment")'
       />
@@ -100,7 +103,17 @@ async function clearSearch() {
 }
 
 async function removeItem(item) {
-  searchModel.value[item.name] = ""
+  //todo: how to find field type and dynamically set to it's default value
+  let value = "";
+  switch (item.name) {
+    case "dateRange":
+      value = 0
+      break
+    case "waitToSendTax":
+      value = false
+      break
+  }
+  searchModel.value[item.name] = value
   await applySearch()
 }
 </script>
