@@ -266,7 +266,12 @@
       "all" : "همه",
       "today": "امروز",
       "thisWeek": "این هفته",
-      "thisMonth": "این ماه"
+      "thisMonth": "این ماه",
+      "amountFrom": "مبلغ از",
+      "amountTo": "مبلغ تا",
+      "waitToSendTax": "منتظر ارسال به سامانه مودیان",
+      "comment": "شرح",
+      "dateRange": "بازه زمانی"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد"

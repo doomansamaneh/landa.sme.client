@@ -9,7 +9,7 @@
     </q-card-section>
     <q-separator />
     <q-card-section>
-      <old-grid
+      <data-grid
         ref="gridI2"
         class="q-mt-lg_"
         dataSource="sls/invoice/getGridData"
@@ -40,14 +40,14 @@
             {{ item.customerName }}
           </div>
         </template>
-      </old-grid>
+      </data-grid>
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
 import { computed, ref } from "vue"
-import OldGrid from "src/components/shared/DataTables/DataGridCustom.vue"
+import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
 
 const columns = ref([
   {

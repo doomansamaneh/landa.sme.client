@@ -14,14 +14,17 @@ const statusOptions = [{
 }
 ]
 
+const firstLoad = ref(false)
+
+const rows = ref([])
 // const allSelectedIds = ref([])
 // const selectedRows = ref([])
 // const activeRow = ref(null)
-const defaultSearchModel = {
+
+const searchModel = ref({
     dateRange: 0,
     waitToSendTax: false
-}
-const searchModel = ref(defaultSearchModel)
+})
 
 const pagination = ref({
     currentPage: 1,
@@ -119,6 +122,14 @@ const columns = ref([
 
 export function useInvoice() {
 
+    const setLoaded = () => {
+        firstLoad.value = true
+    }
+
+    const setRows = (value) => {
+        rows.value = value;
+    }
+
     const setDefaultSearchModel = () => {
         searchModel.value = {
             dateRange: 0,
@@ -130,8 +141,13 @@ export function useInvoice() {
         statusOptions,
         columns,
         pagination,
+        firstLoad,
         searchModel,
-        setDefaultSearchModel
+        rows,
+
+        setLoaded,
+        setRows,
+        setDefaultSearchModel,
         // selectedRows,
         // allSelectedIds,
         // activeRow
