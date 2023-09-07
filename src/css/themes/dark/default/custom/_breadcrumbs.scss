@@ -1,0 +1,7 @@
+body.body--dark {
+  .bread-crumbs {
+    border-bottom: 2px solid #{$theme-primary}20;
+    border-top: 2px solid #{$theme-primary}20;
+    box-shadow: 0 0 2px 0 $theme-primary;
+  }
+}

@@ -31,13 +31,13 @@
                       text-color="white"
                     >
                       <div class="text-weight-bold">
-                        <span class="username">{{
+                        <span class="text-on-dark">{{
                           getFirstChar(username)
                         }}</span>
                       </div>
                     </q-avatar>
                     <div class="q-mt-md">
-                      <span class="username">{{ username }}</span>
+                      <span class="text-on-dark">{{ username }}</span>
                     </div>
                   </div>
                 </q-item-label>

@@ -69,7 +69,7 @@
           @click="gotoBusiness(item)"
         >
           <div class="flex no-wrap q-gutter-sm">
-            <div class="business-name flex text-weight-regular">
+            <div class="business-name text-on-dark flex text-weight-regular">
               <span class="ellipsis">{{ item.title }}</span>
             </div>
           </div>

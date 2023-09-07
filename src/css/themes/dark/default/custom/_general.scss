@@ -1,0 +1,23 @@
+body.body--dark {
+  .icon-hover.q-icon:hover {
+    color: $hover-dark;
+  }
+
+  .text-on-dark {
+    color: $white;
+  }
+
+  .dark-1 {
+    background-color: $theme-dark;
+  }
+
+  .dark-2,
+  .dark-3 {
+    color: $theme-accent;
+  }
+
+  //for change color of drawer and header of main layout at dark mode
+  .bg-dark {
+    background-color: $theme-dark-page !important;
+  }
+}

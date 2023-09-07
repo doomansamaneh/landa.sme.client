@@ -12,7 +12,7 @@
           round
           dense
           icon="menu"
-          class="text"
+          class="text-on-dark"
         />
         <q-btn
           flat
@@ -27,9 +27,9 @@
       <q-toolbar-title
         class="text-subtitle2 text-bold col-4 flex justify-start"
       >
-        <span class="text q-pr-sm">{{ selectedBusiness.title }}</span>
-        <span class="text">-</span>
-        <span class="text q-pl-sm text-weight-medium"> سال مالی: 1402</span>
+        <span class="text-on-dark q-pr-sm">{{ selectedBusiness.title }}</span>
+        <span class="text-on-dark">-</span>
+        <span class="text-on-dark q-pl-sm text-weight-medium"> سال مالی: 1402</span>
       </q-toolbar-title>
 
       <div class="col q-mr-xl gt-sm">
@@ -42,7 +42,7 @@
           round
           color=""
           icon="o_person_search"
-          class="btn-icon text gt-xs"
+          class="btn-icon text-on-dark gt-xs"
           size="14px"
         />
         <q-btn
@@ -53,7 +53,7 @@
           color=""
           icon="o_account_circle"
           size="14px"
-          class="btn-icon text"
+          class="btn-icon text-on-dark"
         >
           <q-menu
             class="no-shadow z-max"
@@ -65,7 +65,7 @@
               <q-item-label class="text-h6" header>
                 <div class="column items-center justify-center q-mt-md">
                   <div class="q-mt-md">
-                    <span class="username">{{ username }}</span>
+                    <span class="text-on-dark">{{ username }}</span>
                   </div>
                 </div>
               </q-item-label>
@@ -135,7 +135,7 @@
           round
           color=""
           icon="o_settings"
-          class="btn-icon text"
+          class="btn-icon text-on-dark"
           size="14px"
         >
           <q-menu
@@ -149,7 +149,7 @@
               <q-item-label class="text-h6" header>
                 <div class="column items-center justify-center q-mt-md">
                   <div class="q-mt-md">
-                    <span class="username">تنظیمات</span>
+                    <span class="text-on-dark">تنظیمات</span>
                   </div>
                 </div>
               </q-item-label>

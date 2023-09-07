@@ -1,10 +1,11 @@
 <template>
   <q-btn
     rounded
-    class="service-extension text-caption"
+    class="text-caption"
     size="12px"
     no-caps
     outline
+    color="positive"
     unelevated
     padding="6px 12px"
   >

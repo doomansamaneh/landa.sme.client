@@ -1,0 +1,32 @@
+body.body--dark {
+  .invoice-table {
+    tbody {
+      tr:hover {
+        background-color: #{$theme-secondary}10;
+      }
+    }
+
+    th {
+      background-color: #{$theme-primary}10;
+      border-bottom: 2px solid $theme-primary;
+    }
+
+    td {
+      border-bottom: 1px solid $theme-secondary;
+    }
+  }
+
+  .invoice-text-container {
+    background-color: #{$theme-primary}10;
+  }
+
+  .underline {
+    border-bottom: 2px solid $theme-primary;
+  }
+
+  .highlight-text {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: #{$theme-primary}30;
+  }
+}

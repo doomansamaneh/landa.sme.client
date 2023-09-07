@@ -35,11 +35,11 @@
             @click="gotoBusiness"
           >
             <div class="flex no-wrap q-gutter-sm">
-              <div class="business-name-icon">
+              <div class="text-on-dark">
                 <q-icon name="o_login" />
               </div>
-              <div class="business-name flex">
-                <span class="ellipsis">دومان سامانه برای تست</span>
+              <div class="flex">
+                <span class="ellipsis text-on-dark">دومان سامانه برای تست</span>
               </div>
             </div>
           </q-btn>
@@ -77,7 +77,7 @@
       </q-carousel-slide>
       <q-carousel-slide :name="5" class="column no-wrap flex-center">
         <q-btn
-          class="service-extension q-pa-sm"
+          class="q-pa-sm"
           round
           flat
           color="positive"

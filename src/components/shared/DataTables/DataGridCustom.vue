@@ -108,12 +108,12 @@
         <tfoot class="table-total">
           <tr
             v-if="selectedRows.length > 1"
-            class="grid-subtotal bg-grey-3 text-black"
+            class="grid-subtotal text-black"
           >
             <!-- //todo: css class and remove bg-grey -->
             <slot name="footer-subtotal" :selectedRows="selectedRows"> </slot>
           </tr>
-          <tr v-if="summary != null" class="grid-total bg-blue text-white">
+          <tr v-if="summary != null" class="grid-total text-white">
             <!-- //todo: css class and remove bg-blue -->
             <slot name="footer-total" :summary="summary"> </slot>
           </tr>
@@ -394,9 +394,9 @@ defineExpose({
 
 <style lang="scss">
 //todo: Add to custom scss file.
-.row-active {
-  background-color: #f1f3f4;
-}
+// .row-active {
+//   background-color: #f1f3f4;
+// }
 
 // .q-table--dense .q-table td {
 //   padding: 16px 8px;

@@ -68,7 +68,7 @@
             name="o_edit"
             class="q-pr-xs"
           />
-          <span class="text">ویرایش</span>
+          <span class="text-on-dark">ویرایش</span>
         </q-btn>
         <q-btn
           color="grey-8"
@@ -81,7 +81,7 @@
             name="o_delete"
             class="q-pr-xs"
           />
-          <span class="text">حذف</span>
+          <span class="text-on-dark">حذف</span>
         </q-btn>
         <q-btn
           color="grey-8"
@@ -94,7 +94,7 @@
             name="o_more_horiz"
             class="q-pr-xs"
           />
-          <span class="text">بیشتر</span>
+          <span class="text-on-dark">بیشتر</span>
         </q-btn>
       </div>
       <div class="row items-center q-gutter-x-sm">
@@ -121,7 +121,7 @@
           size="16px"
           color=""
           icon="o_filter_alt"
-          class="pro-search-filter text btn-icon"
+          class="pro-search-filter text-on-dark btn-icon"
         />
       </div>
     </template>
@@ -293,7 +293,7 @@
         <q-td>{{ props.row.amount }}</q-td>
         <q-td>{{ props.row.discountAmount }}</q-td>
         <q-td><q-badge
-            class="text"
+            class="text-on-dark"
             outline
             :label="props.row.typeTitle"
           /></q-td>
@@ -337,7 +337,7 @@
     <template v-slot:body-cell-typeTitle="props">
       <q-td :props="props">
         <q-badge
-          class="text"
+          class="text-on-dark"
           outline
           :label="props.value"
         />
@@ -354,7 +354,7 @@
           class="no-data-table-img"
           alt=""
         />
-        <span class="text">
+        <span class="text-on-dark">
           {{ message }}
         </span>
       </div>

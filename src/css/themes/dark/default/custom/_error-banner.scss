@@ -1,0 +1,9 @@
+body.body--dark {
+  .error-banner {
+    background-color: $theme-dark;
+    border-top: 3px solid $warning;
+  }
+  .q-icon-banner {
+    color: $theme-secondary;
+  }
+}

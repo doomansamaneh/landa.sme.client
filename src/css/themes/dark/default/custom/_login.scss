@@ -1,0 +1,14 @@
+body.body--dark {
+  .login-header {
+    background-color: $theme-dark-page;
+  }
+
+  .login-page,
+  .login-form {
+    background-color: $theme-dark-page;
+  }
+
+  .login-form {
+    color: $white;
+  }
+}

@@ -3,8 +3,8 @@
     <q-header class="login-header flex items-center justify-between q-py-lg">
       <q-toolbar class="">
         <q-toolbar-title
-          class="row justify-start items-center q-ml-lg text-weight-bold text-dark"
-          ><span class="page-title text-weight-bold text-h5">{{
+          class="row justify-start items-center q-ml-lg text-bold text-dark"
+          ><span class="text-on-dark text-bold text-h5">{{
             $t("login-page.page-title")
           }}</span>
           <div class="q-ml-md">
@@ -26,7 +26,6 @@
             icon="menu"
             round
             dense
-            class="hamb"
             @click="drawer = !drawer"
             flat
             unelevated
