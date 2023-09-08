@@ -1,1 +1,31 @@
-/*# sourceMappingURL=quasar.variables.css.map */
+body.body--light {
+  background-color: #00aeff;
+}
+
+body.body--dark {
+  background-color: #040c2d;
+}
+
+body.body--light.theme--orange {
+  background-color: #ff6600;
+}
+
+body.body--dark.theme--orange {
+  background-color: #170000;
+}
+
+body.body--light.theme--purple {
+  background-color: #c729df;
+}
+
+body.body--dark.theme--purple {
+  background-color: #15152b;
+}
+
+body.body--light.theme--blue {
+  background-color: #00aeff;
+}
+
+body.body--dark.theme--blue {
+  background-color: #040c2d;
+}/*# sourceMappingURL=quasar.variables.css.map */
