@@ -24,8 +24,6 @@ export function useDataTable(dataSource
         sortColumn: "",
         sortOrder: 1,
         totalItems: 0,
-        searchTerm: "",
-        searchModel: "",
         filterExpression: []
     })
 

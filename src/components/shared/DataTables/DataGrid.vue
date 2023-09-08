@@ -152,7 +152,7 @@
         <tfoot class="table-total">
           <tr
             v-if="tableStore.selectedRows.value.length > 1"
-            class="grid-subtotal text-black"
+            class="grid-subtotal"
           >
             <slot
               name="footer-subtotal"
@@ -160,8 +160,8 @@
             > </slot>
           </tr>
           <tr
-            v-if="tableStore.summaryData != null"
-            class="grid-total text-white"
+            v-if="tableStore.rows.value.length > 1 && tableStore.summaryData != null"
+            class="grid-total"
           >
             <slot
               name="footer-total"
@@ -194,13 +194,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive, toRaw } from "vue"
+import { ref, onMounted, computed } from "vue"
 import { useQuasar } from "quasar"
 import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
 import { useDataTable } from "src/composables/useDataTable"
 
 const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
+const $q = useQuasar()
 
 const props = defineProps({
   sortBy: String,
@@ -220,8 +221,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
-
-const $q = useQuasar()
 
 const gridColumns = computed(() => {
   if (props.gridStore != null) return props.gridStore.columns.value
