@@ -1,4 +1,5 @@
 @import "./fonts/main.scss";
+
 @import "./quasar.variables.scss";
 
 @import "./themes/light/default.scss";
@@ -6,8 +7,9 @@
 @import "./themes/light/orange.scss";
 @import "./themes/light/purple.scss";
 
-// @import "./themes/dark/default.scss";
-
+@import "./themes/dark/blue.scss";
+@import "./themes/dark/orange.scss";
+@import "./themes/dark/purple.scss";
 ///////////////////////////////////////////
 @import "./themes/dark/default/quasar/card";
 @import "./themes/dark/default/quasar/header";
@@ -25,6 +27,30 @@
 @import "./themes/dark/default/quasar/drawer";
 @import "./themes/dark/default/custom/index.scss";
 //////////////////////////////////////////
-@import "./themes/dark/blue.scss";
-@import "./themes/dark/orange.scss";
-@import "./themes/dark/purple.scss";
+
+body.body--light {
+  background-color: map-get($themes, blue, primary);
+}
+
+body.body--dark {
+  background-color: map-get($themes, blue, dark-page);
+}
+
+@each $theme-name, $theme-colors in $themes {
+  $primary: map-get($theme-colors, primary);
+  $hover-dark: map-get($theme-colors, secondary);
+  $dark: map-get($theme-colors, dark-page);
+  $theme-primary: map-get($theme-colors, primary);
+  $theme-secondary: map-get($theme-colors, secondary);
+  $theme-accent: map-get($theme-colors, accent);
+  $theme-dark: map-get($theme-colors, dark);
+  $theme-dark-page: map-get($theme-colors, dark-page);
+
+  body.body--light.theme--#{$theme-name} {
+    background-color: $theme-primary;
+  }
+
+  body.body--dark.theme--#{$theme-name} {
+    background-color: $theme-dark-page;
+  }
+}

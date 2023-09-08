@@ -1,14 +1,4 @@
-// body.body--dark.theme--blue {
-//   --q-dark: #040c2d;
-// }
-// body.body--dark.theme--orange {
-//   --q-dark: #170000;
-// }
-// body.body--dark.theme--purple {
-//   --q-dark: #15152b;
-// }
-
-// Quasar Theme Colors ///////////
+// Quasar Theme Colors //////
 $primary: #00aeff;
 $secondary: #ffffff;
 $accent: #f9f9f9;
@@ -37,7 +27,7 @@ $dark-purple-2: #353355;
 $main-layout-color: #ffffff;
 $secondary-orange: #1f0f19;
 
-//  Custom theme colors //////
+// Custom theme colors //////
 $theme-primary: #00aeff;
 $theme-secondary: #586599;
 $theme-accent: #a3acd2;
@@ -67,30 +57,3 @@ $themes: (
     dark-page: #040c2d
   )
 );
-
-body.body--light {
-  background-color: map-get($themes, blue, primary);
-}
-
-body.body--dark {
-  background-color: map-get($themes, blue, dark-page);
-}
-
-@each $theme-name, $theme-colors in $themes {
-  $primary: map-get($theme-colors, primary);
-  $hover-dark: map-get($theme-colors, secondary);
-  $dark: map-get($theme-colors, dark-page);
-  $theme-primary: map-get($theme-colors, primary);
-  $theme-secondary: map-get($theme-colors, secondary);
-  $theme-accent: map-get($theme-colors, accent);
-  $theme-dark: map-get($theme-colors, dark);
-  $theme-dark-page: map-get($theme-colors, dark-page);
-
-  body.body--light.theme--#{$theme-name} {
-    background-color: $theme-primary;
-  }
-
-  body.body--dark.theme--#{$theme-name} {
-    background-color: $theme-dark-page;
-  }
-}
