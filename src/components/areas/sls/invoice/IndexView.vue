@@ -5,7 +5,7 @@
 
   <div style="margin: 0px 89px;">
     <advanced-search
-      :gridStore="gridStore"
+      :grid-store="invoiceStore"
       @apply-search="applySearch"
     />
   </div>
@@ -64,7 +64,7 @@
           <data-grid
             ref="gridI1"
             dataSource="sls/invoice/getGridData"
-            :gridStore="gridStore"
+            :grid-store="invoiceStore"
             separator="horizontal"
             flat
             multiSelect
@@ -85,7 +85,7 @@
                 outlined
                 emit-value
                 v-model="col.value"
-                :options="gridStore.statusOptions"
+                :options="invoiceStore.statusOptions"
                 @update:model-value="gridI1?.reloadData"
               />
             </template>
@@ -123,14 +123,16 @@
               >
                 جمع کل
               </td>
-              <td><b>{{ summary.Amount.toLocaleString() }}</b></td>
-              <td><b>{{ summary.DiscountAmount.toLocaleString() }}</b></td>
-              <td colspan="100%"></td>
+              <td><b>{{ summary?.Amount.toLocaleString() }}</b></td>
+              <td><b>{{ summary?.DiscountAmount.toLocaleString() }}</b></td>
+              <td colspan="100%">
+              </td>
             </template>
           </data-grid>
         </q-tab-panel>
 
         <q-tab-panel name="canceled">
+          <h4>v2</h4>
           <grid-v2 />
         </q-tab-panel>
       </q-tab-panels>
@@ -162,7 +164,7 @@ import AdvancedSearch from "./AdvancedSearch.vue"
 import gridV2 from "./IndexViewV2.vue"
 import { useInvoice } from "../_composables/useInvoice"
 
-const gridStore = useInvoice()
+const invoiceStore = useInvoice()
 
 const gridI1 = ref(null)
 const tab = ref('invoice')
@@ -177,7 +179,7 @@ function selectedRowsChanged(selectedRows) {
 }
 
 async function applySearch(model) {
-  await gridI1.value.reloadData()
+  await gridI1?.value.reloadData()
   //await gridI2.value.reloadData()
 }
 </script>

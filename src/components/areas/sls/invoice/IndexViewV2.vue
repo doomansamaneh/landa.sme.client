@@ -13,9 +13,13 @@
         ref="gridI2"
         class="q-mt-lg_"
         dataSource="sls/invoice/getGridData"
+        :grid-store="invoiceStore"
         :columns="columns"
-        :advancedSearch="adSearch"
+        :advanced-search="adSearch"
         sortColumn="no"
+        expandable
+        multi-select
+        wrap-cells
         flat
       >
         <template #cell_amount="{ item }">
@@ -40,7 +44,32 @@
             {{ item.customerName }}
           </div>
         </template>
+
+        <template #footer-subtotal="{ selectedRows }">
+          <td
+            colspan="5"
+            class="text-right"
+          >
+            انتخاب شده
+          </td>
+          <td><b>{{ selectedRows.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</b></td>
+          <td>
+            <b>{{ selectedRows.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</b>
+          </td>
+          <td colspan="100%"></td>
+        </template>
+
+        <template #footer-total="{ summary }">
+          <td colspan="100%">
+            <pre>{{ summary }}</pre>
+          </td>
+        </template>
       </data-grid>
+    </q-card-section>
+
+    <q-card-section>
+      <pre>{{ gridI2?.activeRow }}</pre>
+      <pre>{{ gridI2?.selectedRows }}</pre>
     </q-card-section>
   </q-card>
 </template>
@@ -48,89 +77,9 @@
 <script setup>
 import { computed, ref } from "vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import { useInvoice } from "../_composables/useInvoice"
 
-const columns = ref([
-  {
-    name: "no",
-    field: "no",
-    sortable: false,
-    label: "شماره",
-    class: "text-left",
-    cellClass: "text-left",
-    cellStyle: "",
-    style: "width:100px;",
-    showFilter: true,
-    operator: 1,
-    value: "",
-  },
-  {
-    name: "date",
-    field: "dateString",
-    sortable: true,
-    label: "تاریخ",
-    class: "text-left",
-    showFilter: true
-  },
-  {
-    name: "customerName",
-    field: "customerName",
-    sortable: true,
-    label: "مشتری",
-    style: "",
-    template: "<div></div>",
-    showFilter: true,
-    class: "text-left",
-    value: ""
-  },
-  {
-    name: "subject",
-    field: "subject",
-    sortable: true,
-    label: "شرح",
-    align: "left",
-    class: "text-left",
-    showFilter: true,
-    style: "width:20%"
-  },
-  {
-    name: "amount",
-    field: "amount",
-    sortable: true,
-    label: "جمع کل",
-    align: "left",
-    class: "text-left",
-    showFilter: true
-  },
-  {
-    name: "discountAmount",
-    field: "discountAmount",
-    sortable: true,
-    label: "تخفیف",
-    align: "left",
-    class: "text-left",
-    showFilter: true
-  },
-  {
-    name: "typeTitle",
-    field: "typeTitle",
-    sortable: true,
-    label: "نوع",
-    align: "left",
-    class: "text-left",
-    showFilter: true
-  },
-  {
-    name: "statusTitle",
-    field: "statusTitle",
-    sortable: true,
-    label: "وضعیت",
-    align: "left",
-    class: "text-left",
-    showFilter: true,
-    style: "width:100px;",
-    value: ""
-  }
-])
+const invoiceStore = useInvoice()
 
 const gridI2 = ref(null)
 

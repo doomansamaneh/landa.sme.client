@@ -17,9 +17,9 @@ const statusOptions = [{
 const firstLoad = ref(false)
 
 const rows = ref([])
-// const allSelectedIds = ref([])
-// const selectedRows = ref([])
-// const activeRow = ref(null)
+const allSelectedIds = ref([])
+const activeRow = ref(null)
+const summaryData = ref(null)
 
 const searchModel = ref({
     dateRange: 0,
@@ -121,14 +121,7 @@ const columns = ref([
 ])
 
 export function useInvoice() {
-
-    const setLoaded = () => {
-        firstLoad.value = true
-    }
-
-    const setRows = (value) => {
-        rows.value = value;
-    }
+    const setLoaded = () => { firstLoad.value = true }
 
     const setDefaultSearchModel = () => {
         searchModel.value = {
@@ -144,12 +137,11 @@ export function useInvoice() {
         firstLoad,
         searchModel,
         rows,
+        allSelectedIds,
+        activeRow,
+        summaryData,
 
-        setLoaded,
-        setRows,
         setDefaultSearchModel,
-        // selectedRows,
-        // allSelectedIds,
-        // activeRow
+        setLoaded
     }
 }

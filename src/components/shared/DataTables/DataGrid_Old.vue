@@ -4,9 +4,18 @@
       <table class="q-table">
         <thead>
           <tr>
-            <th v-if="numbered" style="width: 1px">#</th>
-            <th v-if="multiSelect" style="width: 1px">
-              <q-checkbox v-model="checkAll" @update:model-value="selectAll" />
+            <th
+              v-if="numbered"
+              style="width: 1px"
+            >#</th>
+            <th
+              v-if="multiSelect"
+              style="width: 1px"
+            >
+              <q-checkbox
+                v-model="checkAll"
+                @update:model-value="selectAll"
+              />
             </th>
             <th
               v-for="col in gridColumns"
@@ -17,19 +26,27 @@
             >
               <span class="q-icon q-table__sort-icon">
                 <svg viewBox="0 0 24 24">
-                  <path
-                    d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"
-                  ></path>
+                  <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"></path>
                 </svg>
               </span>
               <span>{{ col.label }}</span>
             </th>
-            <th v-if="expandable" style="width: 1px"></th>
+            <th
+              v-if="expandable"
+              style="width: 1px"
+            ></th>
           </tr>
           <tr class="row-filter">
-            <th v-if="numbered" class="filter"></th>
+            <th
+              v-if="numbered"
+              class="filter"
+            ></th>
             <th v-if="multiSelect"></th>
-            <th v-for="col in gridColumns" :key="col.name" class="filter">
+            <th
+              v-for="col in gridColumns"
+              :key="col.name"
+              class="filter"
+            >
               <slot
                 v-if="col.showFilter"
                 :name="`filter_${col.name}`"
@@ -50,10 +67,19 @@
                 -->
               </slot>
             </th>
-            <th v-if="expandable" class="filter"></th>
+            <th
+              v-if="expandable"
+              class="filter"
+            ></th>
           </tr>
-          <tr v-if="showLoader" class="q-table__progress">
-            <th colspan="100%" class="relative-position">
+          <tr
+            v-if="showLoader"
+            class="q-table__progress"
+          >
+            <th
+              colspan="100%"
+              class="relative-position"
+            >
               <q-linear-progress
                 indeterminate
                 rounded
@@ -64,8 +90,14 @@
           </tr>
         </thead>
         <tbody>
-          <template v-for="(row, index) in rows" :key="row.id">
-            <tr @click="setActiveRow(row)" :class="getRowClass(row)">
+          <template
+            v-for="(row, index) in gridRows"
+            :key="row.id"
+          >
+            <tr
+              @click="setActiveRow(row)"
+              :class="getRowClass(row)"
+            >
               <td v-if="numbered">
                 <small class="text-grey_">{{ rowIndex(index) }}</small>
               </td>
@@ -81,11 +113,17 @@
                 :class="col.cellClass"
                 :style="col.cellStyle"
               >
-                <slot :name="`cell_${col.field}`" :item="row">
+                <slot
+                  :name="`cell_${col.field}`"
+                  :item="row"
+                >
                   {{ row[col.field] }}
                 </slot>
               </td>
-              <td v-if="expandable" style="width: 1px">
+              <td
+                v-if="expandable"
+                style="width: 1px"
+              >
                 <q-btn
                   size="md"
                   color="primary"
@@ -98,32 +136,53 @@
                 />
               </td>
             </tr>
-            <tr class="expand" v-if="row.expanded">
+            <tr
+              class="expand"
+              v-if="row.expanded"
+            >
               <td colspan="100%">
-                <slot name="detail" :item="row"> </slot>
+                <slot
+                  name="detail"
+                  :item="row"
+                > </slot>
               </td>
             </tr>
           </template>
         </tbody>
         <tfoot class="table-total">
-          <tr v-if="selectedRows.length > 1" class="grid-subtotal text-black">
-            <slot name="footer-subtotal" :selectedRows="selectedRows"> </slot>
+          <tr
+            v-if="selectedRows.length > 1"
+            class="grid-subtotal text-black"
+          >
+            <slot
+              name="footer-subtotal"
+              :selectedRows="selectedRows"
+            > </slot>
           </tr>
-          <tr v-if="summary != null" class="grid-total text-white">
-            <slot name="footer-total" :summary="summary"> </slot>
+          <tr
+            v-if="summary != null"
+            class="grid-total text-white"
+          >
+            <slot
+              name="footer-total"
+              :summary="summary"
+            > </slot>
           </tr>
         </tfoot>
       </table>
     </div>
     <div
-      v-if="!loading && rows.length == 0"
+      v-if="!loading && gridRows.length == 0"
       class="q-table__bottom items-center q-table__bottom--nodata"
     >
       <slot name="noDataFound">
         <no-data-found />
       </slot>
     </div>
-    <div v-if="showPagebar" class="q-table__bottom">
+    <div
+      v-if="showPagebar"
+      class="q-table__bottom"
+    >
       <page-bar
         class="page-bar_"
         :pagination="gridPagination"
@@ -134,7 +193,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, reactive, toRaw } from "vue"
+import { ref, onMounted, computed, reactive } from "vue"
 import { useQuasar } from "quasar"
 import { fetchWrapper } from "src/helpers"
 import { sqlOperator } from "src/constants"
@@ -158,7 +217,7 @@ const props = defineProps({
   gridStore: Object
 })
 
-const emit = defineEmits(["active-row-changed", "selectedRows-changed"])
+const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 
 const $q = useQuasar()
 const rows = ref([])
@@ -172,7 +231,6 @@ const defaultPageSize = 5
 
 const pagination = ref({
   currentPage: 1,
-  //paginationStore.currentPage,
   pageSize: defaultPageSize,
   sortColumn: props.sortBy,
   sortOrder: 1,
@@ -182,7 +240,10 @@ const pagination = ref({
 })
 
 onMounted(() => {
-  reloadData()
+  if (!props.gridStore?.firstLoad.value) {
+    props.gridStore?.setLoaded()
+    reloadData()
+  }
   //todo: how to capture event raised by advanced search proxy
   //if not possible then remove advancedSearch property
   //props.advancedSearch?.addEventListener('apply-search', applySearch)
@@ -210,8 +271,6 @@ function setPayload() {
   gridPagination.value.searchModel = JSON.stringify(
     props.gridStore?.searchModel.value
   )
-  //console.log(props.advancedSearch)
-  //gridPagination.value.searchModel = JSON.stringify(searchModel.value)
 }
 
 async function sortColumn(col) {
@@ -254,9 +313,9 @@ async function loadData() {
 }
 
 function handleResponse(pagedData) {
-  rows.value = pagedData.items
+  gridRows.value = pagedData.items
   summary.value = pagedData.summaryData
-  rows.value.forEach((row) => {
+  gridRows.value.forEach((row) => {
     row.selected = allSelectedIds.value.indexOf(row.id) > -1
   })
   gridPagination.value.totalItems = pagedData.page.totalItems
@@ -272,7 +331,7 @@ function rowIndex(index) {
 }
 
 function selectAll(checked) {
-  rows.value.forEach((row) => {
+  gridRows.value.forEach((row) => {
     row.selected = checked
     updatedSelectedIds(row, checked)
   })
@@ -294,7 +353,7 @@ function updatedSelectedIds(row, checked) {
 }
 
 function emitselectedRows() {
-  emit("selectedRows-changed", selectedRows.value)
+  emit("selected-rows-changed", selectedRows.value)
 }
 
 function setActiveRow(row) {
@@ -311,14 +370,14 @@ function getRowClass(row) {
 
 function toggleExpand(row) {
   row.expanded = !row.expanded
-  rows.value.forEach((item) => {
+  gridRows.value.forEach((item) => {
     if (row.id != item.id) item.expanded = false
   })
 }
 
 const checkAll = computed(() => {
   if (selectedRows.value?.length == 0) return false
-  if (selectedRows.value.length === rows.value.length) return true
+  if (selectedRows.value.length === gridRows.value.length) return true
   return ""
 })
 
@@ -326,7 +385,7 @@ const showPagebar = computed(
   () => gridPagination.value.totalItems > defaultPageSize
 )
 const selectedRows = computed(() =>
-  rows.value.filter((row) => row.selected === true)
+  gridRows.value.filter((row) => row.selected === true)
 )
 
 const gridColumns = computed(() => {
@@ -337,6 +396,17 @@ const gridColumns = computed(() => {
 const gridPagination = computed(() => {
   if (props.gridStore != null) return props.gridStore.pagination.value
   return pagination.value
+})
+
+const gridRows = computed({
+  get() {
+    if (props.gridStore != null) return props.gridStore.rows.value
+    return rows.value
+  },
+  set(value) {
+    if (props.gridStore != null) return props.gridStore.setRows(value)
+    return (rows.value = value)
+  }
 })
 
 function headerClass(col) {
@@ -387,25 +457,4 @@ defineExpose({
 })
 </script>
 
-<style lang="scss">
-//todo: Add to custom scss file.
-// .row-active {
-//   background-color: #f1f3f4;
-// }
-
-// .q-table--dense .q-table td {
-//   padding: 16px 8px;
-// }
-
-// .q-table--dense .q-table .label {
-//   padding-bottom: 4px;
-// }
-
-// .q-table--dense .q-table .filter {
-//   padding-bottom: 16px;
-//   border-bottom: 1px solid #2d2d2d2d;
-// }
-
-// .q-table--dense
-//   border-bottom: 1px solid #2d2d2d2d
-</style>
+<style lang="scss"></style>
