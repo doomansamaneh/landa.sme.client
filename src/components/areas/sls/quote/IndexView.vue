@@ -44,7 +44,7 @@
     wrapCells
     expandable
   >
-    <template #filter_statusTitle="{ col }">
+    <!-- <template #filter_statusTitle="{ col }">
       <q-select
         clearable
         dense
@@ -66,12 +66,8 @@
         <h4>{{ item.no }}</h4>
         {{ item.customerName }}
       </div>
-    </template>
+    </template> -->
   </data-grid>
-
-  <!-- <div v-if="showTopBar">
-    <top-bar />
-  </div> -->
 </template>
 
 <script setup>
