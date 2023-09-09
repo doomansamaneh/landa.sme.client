@@ -228,14 +228,11 @@ const gridColumns = computed(() => {
 })
 
 onMounted(() => {
-  if (!props.gridStore?.firstLoad.value) {
-    props.gridStore?.setLoaded()
-    reloadData()
-  }
+  tableStore.loadData()
 })
 
 async function reloadData() {
-  await tableStore.loadData()
+  await tableStore.reloadData()
 }
 
 function selectAll(checked) {

@@ -44,7 +44,7 @@
     wrapCells
     expandable
   >
-    <!-- <template #filter_statusTitle="{ col }">
+    <template #filter_statusTitle="{ col }">
       <q-select
         clearable
         dense
@@ -66,7 +66,7 @@
         <h4>{{ item.no }}</h4>
         {{ item.customerName }}
       </div>
-    </template> -->
+    </template>
   </data-grid>
 </template>
 
