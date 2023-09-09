@@ -1,7 +1,7 @@
 @mixin data-tables-dark {
   //lookup
   .lookup-table-body tr:hover {
-    background-color: #{$primary}10;
+    background-color: #{$white}10;
   }
 
   .lookup-table-body {

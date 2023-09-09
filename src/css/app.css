@@ -131,7 +131,7 @@ body.body--light .bread-crumbs {
   box-shadow: 0 0 2px 0 #00aeff;
 }
 body.body--light .lookup-table-body tr:hover {
-  background-color: #00aeff10;
+  background-color: #2d2d2d10;
 }
 body.body--light .lookup-table-body {
   padding: 20px;
@@ -313,7 +313,7 @@ body.body--dark .q-table__container {
 }
 body.body--dark .q-toolbar,
 body.body--dark .q-toolbar a {
-  color: #2d2d2d;
+  color: #ffffff;
 }
 body.body--dark .bread-crumbs {
   border-bottom: 1px solid #00aeff20;
@@ -321,7 +321,7 @@ body.body--dark .bread-crumbs {
   box-shadow: 0 0 1px 0 #00aeff;
 }
 body.body--dark .lookup-table-body tr:hover {
-  background-color: #00aeff10;
+  background-color: #ffffff10;
 }
 body.body--dark .lookup-table-body {
   padding: 20px;
@@ -519,7 +519,7 @@ body.body--light.theme--seyedi .bread-crumbs {
   box-shadow: 0 0 2px 0 #00b200;
 }
 body.body--light.theme--seyedi .lookup-table-body tr:hover {
-  background-color: #00b20010;
+  background-color: #2d2d2d10;
 }
 body.body--light.theme--seyedi .lookup-table-body {
   padding: 20px;
@@ -700,7 +700,7 @@ body.body--dark.theme--seyedi .q-table__container {
 }
 body.body--dark.theme--seyedi .q-toolbar,
 body.body--dark.theme--seyedi .q-toolbar a {
-  color: #2d2d2d;
+  color: #ffffff;
 }
 body.body--dark.theme--seyedi .bread-crumbs {
   border-bottom: 1px solid #00b20020;
@@ -708,7 +708,7 @@ body.body--dark.theme--seyedi .bread-crumbs {
   box-shadow: 0 0 1px 0 #00b200;
 }
 body.body--dark.theme--seyedi .lookup-table-body tr:hover {
-  background-color: #00b20010;
+  background-color: #ffffff10;
 }
 body.body--dark.theme--seyedi .lookup-table-body {
   padding: 20px;
@@ -906,7 +906,7 @@ body.body--light.theme--orange .bread-crumbs {
   box-shadow: 0 0 2px 0 #ff6600;
 }
 body.body--light.theme--orange .lookup-table-body tr:hover {
-  background-color: #ff660010;
+  background-color: #2d2d2d10;
 }
 body.body--light.theme--orange .lookup-table-body {
   padding: 20px;
@@ -1087,7 +1087,7 @@ body.body--dark.theme--orange .q-table__container {
 }
 body.body--dark.theme--orange .q-toolbar,
 body.body--dark.theme--orange .q-toolbar a {
-  color: #2d2d2d;
+  color: #ffffff;
 }
 body.body--dark.theme--orange .bread-crumbs {
   border-bottom: 1px solid #ff660020;
@@ -1095,7 +1095,7 @@ body.body--dark.theme--orange .bread-crumbs {
   box-shadow: 0 0 1px 0 #ff6600;
 }
 body.body--dark.theme--orange .lookup-table-body tr:hover {
-  background-color: #ff660010;
+  background-color: #ffffff10;
 }
 body.body--dark.theme--orange .lookup-table-body {
   padding: 20px;
@@ -1293,7 +1293,7 @@ body.body--light.theme--purple .bread-crumbs {
   box-shadow: 0 0 2px 0 #c729df;
 }
 body.body--light.theme--purple .lookup-table-body tr:hover {
-  background-color: #c729df10;
+  background-color: #2d2d2d10;
 }
 body.body--light.theme--purple .lookup-table-body {
   padding: 20px;
@@ -1474,7 +1474,7 @@ body.body--dark.theme--purple .q-table__container {
 }
 body.body--dark.theme--purple .q-toolbar,
 body.body--dark.theme--purple .q-toolbar a {
-  color: #2d2d2d;
+  color: #ffffff;
 }
 body.body--dark.theme--purple .bread-crumbs {
   border-bottom: 1px solid #c729df20;
@@ -1482,7 +1482,7 @@ body.body--dark.theme--purple .bread-crumbs {
   box-shadow: 0 0 1px 0 #c729df;
 }
 body.body--dark.theme--purple .lookup-table-body tr:hover {
-  background-color: #c729df10;
+  background-color: #ffffff10;
 }
 body.body--dark.theme--purple .lookup-table-body {
   padding: 20px;
@@ -1680,7 +1680,7 @@ body.body--light.theme--blue .bread-crumbs {
   box-shadow: 0 0 2px 0 #00aeff;
 }
 body.body--light.theme--blue .lookup-table-body tr:hover {
-  background-color: #00aeff10;
+  background-color: #2d2d2d10;
 }
 body.body--light.theme--blue .lookup-table-body {
   padding: 20px;
@@ -1861,7 +1861,7 @@ body.body--dark.theme--blue .q-table__container {
 }
 body.body--dark.theme--blue .q-toolbar,
 body.body--dark.theme--blue .q-toolbar a {
-  color: #2d2d2d;
+  color: #ffffff;
 }
 body.body--dark.theme--blue .bread-crumbs {
   border-bottom: 1px solid #00aeff20;
@@ -1869,7 +1869,7 @@ body.body--dark.theme--blue .bread-crumbs {
   box-shadow: 0 0 1px 0 #00aeff;
 }
 body.body--dark.theme--blue .lookup-table-body tr:hover {
-  background-color: #00aeff10;
+  background-color: #ffffff10;
 }
 body.body--dark.theme--blue .lookup-table-body {
   padding: 20px;
