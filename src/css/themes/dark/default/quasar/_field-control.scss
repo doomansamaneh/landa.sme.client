@@ -1,4 +1,4 @@
-body.body--dark{
+@mixin q-field-control-dark{
 
   .q-field__control{
     color: $primary;

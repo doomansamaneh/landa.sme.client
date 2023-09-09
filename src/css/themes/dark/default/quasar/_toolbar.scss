@@ -1,7 +1,6 @@
-body.body--dark {
-  
+@mixin q-toolbar-dark {
   .q-toolbar,
   .q-toolbar a {
-    color: $white;
+    color: $black;
   }
 }

@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin q-pagination-dark{
   .q-pagination .q-icon.notranslate.material-icons {
     color: $accent;
   }

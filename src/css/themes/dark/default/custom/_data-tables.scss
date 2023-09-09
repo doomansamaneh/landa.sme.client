@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin data-tables-dark {
   //lookup
   .lookup-table-body tr:hover {
     background-color: #{$primary}10;

@@ -1,4 +1,4 @@
-body.body--light {
+@mixin q-carousel-light {
   .q-carousel__navigation-inner .q-btn,
   .q-carousel__arrow .q-icon {
     color: $primary;

@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin q-drawer-dark{
   .q-drawer--left.q-drawer--bordered.q-drawer--dark {
     border-right: 1px solid #ffffff47;
   }

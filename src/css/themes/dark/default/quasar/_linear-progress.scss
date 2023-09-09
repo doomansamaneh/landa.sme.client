@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin q-linear-progress-dark {
   .q-linear-progress {
     color: $primary;
   }

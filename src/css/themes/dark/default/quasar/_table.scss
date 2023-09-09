@@ -1,8 +1,6 @@
-body.body--dark {
+@mixin q-table-dark{
   .q-table {
-    .filter {
-      border-bottom: 1px solid $secondary;
-    }
+    
     .row-active {
       background-color: darken($accent, 40) !important;
     }

@@ -1,4 +1,4 @@
-body.body--light {
+@mixin general-light {
   .icon-hover.q-icon:hover {
     color: #{$black}50;
   }

@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin q-separator-dark {
   .q-separator {
     background-color: $secondary;
   }

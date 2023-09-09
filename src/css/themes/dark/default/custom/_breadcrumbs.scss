@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin breadcrumbs-dark {
   .bread-crumbs {
     border-bottom: 1px solid #{$primary}20;
     border-top: 1px solid #{$primary}20;

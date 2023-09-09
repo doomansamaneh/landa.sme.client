@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin general-dark {
   .icon-hover.q-icon:hover {
     color: darken($accent, 20);
   }

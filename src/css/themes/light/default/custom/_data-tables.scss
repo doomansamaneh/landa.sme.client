@@ -1,6 +1,6 @@
-body.body--light {
-  //lookup
-  .lookup-table-body tr:hover {
+@mixin data-tables-light {
+   //lookup
+   .lookup-table-body tr:hover {
     background-color: #{$primary}10;
   }
 

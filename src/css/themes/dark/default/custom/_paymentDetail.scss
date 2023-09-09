@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin payment-detail-dark{
   .invoice-table {
     tbody {
       tr:hover {

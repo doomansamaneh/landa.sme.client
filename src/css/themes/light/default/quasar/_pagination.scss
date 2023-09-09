@@ -1,4 +1,4 @@
-body.body--light {
+@mixin q-pagination-light {
   .q-pagination .q-icon.notranslate.material-icons {
     color: $black;
   }

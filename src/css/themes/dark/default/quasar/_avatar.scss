@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin q-avatar-dark {
   .q-avatar__content {
     background-color: #{$primary}10;
   }
@@ -6,5 +6,9 @@ body.body--dark {
   .business-isowner .q-avatar__content,
   .profile-pic .q-avatar__content {
     background-color: $primary;
+  }
+
+  .business-isnotowner .q-avatar__content {
+    background-color: lighten($dark, 5);
   }
 }

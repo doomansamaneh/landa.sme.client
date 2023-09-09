@@ -1,4 +1,4 @@
-body.body--dark {
+@mixin q-header-dark {
   .q-header {
     background-color: $dark-page;
   }

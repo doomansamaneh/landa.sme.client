@@ -1,4 +1,4 @@
-body.body--light{
+@mixin q-field-control-light {
 
   .q-field__control{
     color: $primary;

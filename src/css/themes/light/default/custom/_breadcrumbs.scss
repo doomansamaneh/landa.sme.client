@@ -1,4 +1,4 @@
-body.body--light {
+@mixin breadcrumbs-light {
   .bread-crumbs {
     border-bottom: 2px solid #{$primary}20;
     border-top: 2px solid #{$primary}20;

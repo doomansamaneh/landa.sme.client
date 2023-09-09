@@ -1,4 +1,4 @@
-body.body--light {
+@mixin q-header-light {
   .q-header {
     background-color: $white;
   }

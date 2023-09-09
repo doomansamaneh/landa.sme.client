@@ -1,4 +1,4 @@
-body.body--light {
+@mixin q-menu-light {
   .q-menu {
     background-color: $white;
     border: 1px solid #{$black}10;
