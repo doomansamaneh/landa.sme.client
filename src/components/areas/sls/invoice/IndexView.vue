@@ -160,7 +160,7 @@
 <script setup>
 import { computed, ref } from "vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
-import AdvancedSearch from "./AdvancedSearch.vue"
+import AdvancedSearch from "./_AdvancedSearch.vue"
 import gridV2 from "./IndexViewV2.vue"
 import { useInvoice } from "../_composables/useInvoice"
 

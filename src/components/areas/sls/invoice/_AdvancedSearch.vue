@@ -87,7 +87,7 @@ const props = defineProps({
   gridStore: Object
 })
 
-const searchModel = computed(() => props.gridStore.searchModel.value)
+const searchModel = computed(() => props.gridStore.state.searchModel.value)
 
 const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange))
 

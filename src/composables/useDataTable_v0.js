@@ -3,51 +3,100 @@ import { sqlOperator } from "src/constants/enums"
 import { fetchWrapper } from "src/helpers"
 
 export function useDataTable(dataSource
-    , dataColumns
+    , columns
     , store) {
 
+    if (store?.columns != null) columns = store.columns.value
     const defaultPageSize = store?.defaultPageSize ?? 5
-
-    const _state = {
-        firstLoad: ref(false),
-        rows: ref([]),
-        allSelectedIds: ref([]),
-        activeRow: ref(null),
-        summaryData: ref(null),
-        searchModel: ref(null)
-    }
-
-    const _pagination = ref({
-        currentPage: 1,
-        pageSize: defaultPageSize,
-        sortOrder: 1,
-        totalItems: 0,
-        filterExpression: []
-    })
-
-    const columns = computed(() => store?.columns.value ?? dataColumns)
-    const state = computed(() => store?.state ?? _state)
-    const pagination = computed(() => store?.pagination.value ?? _pagination.value)
-
     const loaderTimeout = 500
 
     const loading = ref(false)
     const showLoader = ref(false)
 
+    const _rows = ref([])
+    const _allSelectedIds = ref([])
+    const _summaryData = ref(null)
+    const _activeRow = ref(null)
+
+    const _pagination = ref({
+        currentPage: 1,
+        pageSize: defaultPageSize,
+        sortColumn: "",
+        sortOrder: 1,
+        totalItems: 0,
+        filterExpression: []
+    })
+
+    const rows = computed({
+        get() {
+            if (store != null) return store.rows.value
+            return _rows.value
+        },
+        set(value) {
+            if (store != null) store.rows.value = value
+            else _rows.value = value
+        }
+    })
+
+    const activeRow = computed({
+        get() {
+            if (store != null) return store.activeRow.value
+            return _activeRow.value
+        },
+        set(value) {
+            if (store != null) store.activeRow.value = value
+            else _activeRow.value = value
+        }
+    })
+
+    const summaryData = computed({
+        get() {
+            if (store != null) return store.summaryData.value
+            return _summaryData.value
+        },
+        set(value) {
+            if (store != null) store.summaryData.value = value
+            else _summaryData.value = value
+        }
+    })
+
+    const pagination = computed(() => {
+        if (store != null) return store.pagination.value
+        return _pagination.value
+    })
+
+    const allSelectedIds = computed(() => {
+        if (store != null) return store.allSelectedIds.value
+        return _allSelectedIds.value
+    })
 
     const showPagebar = computed(() =>
         pagination.value.totalItems > defaultPageSize
     )
 
     const selectedRows = computed(() =>
-        state.value.rows.value.filter((row) => row.selected === true)
+        rows.value.filter((row) => row.selected === true)
     )
 
     const checkedAll = computed(() => {
         if (selectedRows.value?.length == 0) return false
-        if (selectedRows.value.length === state.value.rows.value.length) return true
+        if (selectedRows.value.length === rows.value.length) return true
         return ""
     })
+
+    // const checkedAll = computed({
+    //     ge() {
+    //         if (selectedRows.value?.length == 0) return false
+    //         if (selectedRows.value.length === rows.value.length) return true
+    //         return ""
+    //     },
+    //     set(value) {
+    //         rows.value.forEach((row) => {
+    //             row.selected = value
+    //             updatedSelectedIds(row, value)
+    //         })
+    //     }
+    // })
 
     function rowIndex(index) {
         return (
@@ -58,13 +107,6 @@ export function useDataTable(dataSource
     }
 
     async function loadData() {
-        if (!state.value.firstLoad.value) {
-            state.value.firstLoad.value = true
-            await reloadData()
-        }
-    }
-
-    async function reloadData() {
         loading.value = true
 
         let loadingTimer = setTimeout(() => {
@@ -88,20 +130,20 @@ export function useDataTable(dataSource
     function handleResponse(pagedData) {
         const items = pagedData.items
         items.forEach((item) => {
-            item.selected = state.value.allSelectedIds.value.indexOf(item.id) > -1
+            item.selected = allSelectedIds.value.indexOf(item.id) > -1
         })
-        state.value.rows.value = items
-        state.value.summaryData.value = pagedData.summaryData
-        pagination.value.totalItems = pagedData.page.totalItems
+        rows.value = items
+        summaryData.value = pagedData.summaryData
         pagination.value.currentPage = pagedData.page.currentPage
+        pagination.value.totalItems = pagedData.page.totalItems
     }
 
     function setActiveRow(row) {
-        state.value.activeRow.value = row
+        activeRow.value = row
     }
 
     function selectAll(checked) {
-        state.value.rows.value.forEach((row) => {
+        rows.value.forEach((row) => {
             row.selected = checked
             updatedSelectedIds(row, checked)
         })
@@ -112,31 +154,31 @@ export function useDataTable(dataSource
     }
 
     function updatedSelectedIds(row, checked) {
-        const index = state.value.allSelectedIds.value.indexOf(row.id)
+        const index = allSelectedIds.value.indexOf(row.id)
         if (checked) {
-            if (index < 0) state.value.allSelectedIds.value.push(row.id)
+            if (index < 0) allSelectedIds.value.push(row.id)
         } else {
-            if (index >= 0) state.value.allSelectedIds.value.splice(index, 1)
+            if (index >= 0) allSelectedIds.value.splice(index, 1)
         }
     }
 
     function setPayload() {
         pagination.value.filterExpression = []
         let payLoadCols = ""
-        columns.value.forEach((col) => {
-            if (payLoadCols === "") payLoadCols = col.name
-            else payLoadCols = `${payLoadCols},${col.name}`
-            if (col.value) {
+        columns?.forEach((item) => {
+            if (payLoadCols === "") payLoadCols = item.name
+            else payLoadCols = `${payLoadCols},${item.name}`
+            if (item.value) {
                 pagination.value.filterExpression.push({
-                    fieldName: col.name,
-                    operator: col.operator ?? sqlOperator.like,
-                    value: col.value
+                    fieldName: item.name,
+                    operator: item.operator ?? sqlOperator.like,
+                    value: item.value
                 })
             }
         })
         pagination.value.columns = payLoadCols
-        if (state.value.searchModel != null)
-            pagination.value.searchModel = JSON.stringify(state.value.searchModel.value)
+        if (store?.searchModel != null)
+            pagination.value.searchModel = JSON.stringify(store.searchModel.value)
     }
 
     async function sortColumn(col) {
@@ -149,13 +191,13 @@ export function useDataTable(dataSource
                 pagination.value.sortColumn = col.name
                 pagination.value.sortOrder = 1
             }
-            await reloadData()
+            await loadData()
         }
     }
 
     function toggleExpand(row) {
         row.expanded = !row.expanded
-        state.value.rows.value.forEach((item) => {
+        rows.value.forEach((item) => {
             if (row.id != item.id) item.expanded = false
         })
     }
@@ -176,27 +218,25 @@ export function useDataTable(dataSource
     }
 
     function getRowClass(row) {
-        return (row.id === state.value.activeRow.value?.id ? "row-active" : "") +
+        return (row.id === activeRow.value?.id ? "row-active" : "") +
             (row.selected === true ? " selected" : "")
     }
 
     return {
-        allSelectedIds: state.value.allSelectedIds,
-        rows: state.value.rows,
-        activeRow: state.value.activeRow,
-        summaryData: state.value.summaryData,
-
-        selectedRows,
+        allSelectedIds,
+        rows,
         showPagebar,
+        selectedRows,
         rowIndex,
+        activeRow,
         pagination,
         checkedAll,
+        summaryData,
 
         selectAll,
         setActiveRow,
         updatedSelectedIds,
         loadData,
-        reloadData,
         selectRow,
         sortColumn,
         toggleExpand,

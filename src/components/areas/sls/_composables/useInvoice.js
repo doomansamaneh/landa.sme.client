@@ -1,30 +1,16 @@
 import { ref } from "vue"
 
-const statusOptions = [{
-    label: 'دائم',
-    value: 'دائم'
-},
-{
-    label: 'موقت',
-    value: 'موقت'
-},
-{
-    label: 'ابطال شده',
-    value: 'ابطال شده',
+const state = {
+    firstLoad: ref(false),
+    rows: ref([]),
+    allSelectedIds: ref([]),
+    activeRow: ref(null),
+    summaryData: ref(null),
+    searchModel: ref({
+        dateRange: 0,
+        waitToSendTax: false
+    })
 }
-]
-
-const firstLoad = ref(false)
-
-const rows = ref([])
-const allSelectedIds = ref([])
-const activeRow = ref(null)
-const summaryData = ref(null)
-
-const searchModel = ref({
-    dateRange: 0,
-    waitToSendTax: false
-})
 
 const pagination = ref({
     currentPage: 1,
@@ -121,27 +107,24 @@ const columns = ref([
 ])
 
 export function useInvoice() {
-    const setLoaded = () => { firstLoad.value = true }
+    const reset = () => {
+        state.firstLoad.value = false
+        setDefaultSearchModel()
+    }
 
     const setDefaultSearchModel = () => {
-        searchModel.value = {
+        state.searchModel.value = {
             dateRange: 0,
             waitToSendTax: false
         }
     }
 
     return {
-        statusOptions,
         columns,
         pagination,
-        firstLoad,
-        searchModel,
-        rows,
-        allSelectedIds,
-        activeRow,
-        summaryData,
+        state,
 
         setDefaultSearchModel,
-        setLoaded
+        reset
     }
 }

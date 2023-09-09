@@ -68,10 +68,6 @@
       </div>
     </template>
   </data-grid>
-
-  <!-- <div v-if="showTopBar">
-    <top-bar />
-  </div> -->
 </template>
 
 <script setup>
