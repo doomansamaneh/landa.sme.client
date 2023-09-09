@@ -18,34 +18,19 @@ $positive: #21ba45;
 $negative: #c10015;
 $info: #31ccec;
 $warning: #f2c037;
-$hover-light: #c5c5c5;
-$hover-dark: #8492c9;
-$dark-orange-1: #170000;
-$dark-orange-2: #93546759;
-$dark-purple-1: #15152b;
-$dark-purple-2: #353355;
-$main-layout-color: #ffffff;
-$secondary-orange: #1f0f19;
-
-// Custom theme colors //////
-// $theme-primary: #00aeff;
-// $theme-secondary: #586599;
-// $theme-accent: #a3acd2;
-// $theme-dark: #141f48;
-// $theme-dark-page: #040c2d;
 
 $themes: (
   orange: (
     primary: #ff6600,
-    secondary: #ff9933,
-    accent: #ffcc99,
-    dark: #993300,
+    secondary: #bd854c,
+    accent: #fdb46b,
+    dark: #5a1e01,
     dark-page: #170000
   ),
   purple: (
     primary: #c729df,
-    secondary: #a64ca6,
-    accent: #d0a0d0,
+    secondary: #934593,
+    accent: #d08ad0,
     dark: #4b004b,
     dark-page: #15152b
   ),

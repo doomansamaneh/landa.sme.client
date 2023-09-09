@@ -1,77 +1,1105 @@
 @import "./fonts/main.scss";
-
 @import "./quasar.variables.scss";
-
-@import "./themes/light/default.scss";
-@import "./themes/light/blue.scss";
-@import "./themes/light/orange.scss";
-@import "./themes/light/purple.scss";
-
-@import "./themes/dark/blue.scss";
-@import "./themes/dark/orange.scss";
-@import "./themes/dark/purple.scss";
 ///////////////////////////////////////////
-@import "./themes/light/default/quasar/card";
-@import "./themes/light/default/quasar/header";
-@import "./themes/light/default/quasar/table";
-@import "./themes/light/default/quasar/menu";
-@import "./themes/light/default/quasar/separator";
-@import "./themes/light/default/quasar/avatar";
-@import "./themes/light/default/quasar/pagination";
-@import "./themes/light/default/quasar/breadcrumbs";
-@import "./themes/light/default/quasar/field-control";
-@import "./themes/light/default/quasar/carousel";
-@import "./themes/light/default/quasar/toolbar";
-@import "./themes/light/default/quasar/linear-progress";
-@import "./themes/light/default/quasar/item";
-@import "./themes/light/default/quasar/drawer";
-@import "./themes/light/default/custom/index.scss";
+// @import "./themes/light/default/quasar/card";
+// @import "./themes/light/default/quasar/header";
+// @import "./themes/light/default/quasar/table";
+// @import "./themes/light/default/quasar/menu";
+// @import "./themes/light/default/quasar/separator";
+// @import "./themes/light/default/quasar/avatar";
+// @import "./themes/light/default/quasar/pagination";
+// @import "./themes/light/default/quasar/breadcrumbs";
+// @import "./themes/light/default/quasar/field-control";
+// @import "./themes/light/default/quasar/carousel";
+// @import "./themes/light/default/quasar/toolbar";
+// @import "./themes/light/default/quasar/linear-progress";
+// @import "./themes/light/default/quasar/item";
+// @import "./themes/light/default/quasar/drawer";
+// @import "./themes/light/default/custom/index.scss";
 //////////////////////////////////////////
-@import "./themes/dark/default/quasar/card";
-@import "./themes/dark/default/quasar/header";
-@import "./themes/dark/default/quasar/table";
-@import "./themes/dark/default/quasar/menu";
-@import "./themes/dark/default/quasar/separator";
-@import "./themes/dark/default/quasar/avatar";
-@import "./themes/dark/default/quasar/pagination";
-@import "./themes/dark/default/quasar/breadcrumbs";
-@import "./themes/dark/default/quasar/field-control";
-@import "./themes/dark/default/quasar/carousel";
-@import "./themes/dark/default/quasar/toolbar";
-@import "./themes/dark/default/quasar/linear-progress";
-@import "./themes/dark/default/quasar/item";
-@import "./themes/dark/default/quasar/drawer";
-@import "./themes/dark/default/custom/index.scss";
+// @import "./themes/dark/default/quasar/card";
+// @import "./themes/dark/default/quasar/header";
+// @import "./themes/dark/default/quasar/table";
+// @import "./themes/dark/default/quasar/menu";
+// @import "./themes/dark/default/quasar/separator";
+// @import "./themes/dark/default/quasar/avatar";
+// @import "./themes/dark/default/quasar/pagination";
+// @import "./themes/dark/default/quasar/breadcrumbs";
+// @import "./themes/dark/default/quasar/field-control";
+// @import "./themes/dark/default/quasar/carousel";
+// @import "./themes/dark/default/quasar/toolbar";
+// @import "./themes/dark/default/quasar/linear-progress";
+// @import "./themes/dark/default/quasar/item";
+// @import "./themes/dark/default/quasar/drawer";
+// @import "./themes/dark/default/custom/index.scss";
 //////////////////////////////////////////
 
 body.body--light {
-  background-color: map-get($themes, orange, primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+
+  background-color: $primary;
+
+    .q-avatar__content {
+      background-color: #{$black}10;
+    }
+
+    .business-isowner .q-avatar__content,
+    .profile-pic .q-avatar__content {
+      background-color: $primary;
+      color: $white;
+    }
+
+    .business-isnotowner .q-avatar__content {
+      background-color: #{$black}10;
+    }
+
+    .q-breadcrumbs__el {
+      color: $black;
+    }
+
+    .q-breadcrumbs__separator {
+      color: $black;
+    }
+
+    .q-breadcrumbs__el.q-router-link--active {
+      color: $primary;
+    }
+
+    .q-card {
+      background-color: $white;
+    }
+
+    .q-carousel__navigation-inner .q-btn,
+    .q-carousel__arrow .q-icon {
+      color: $primary;
+    }
+
+    .q-drawer--left.q-drawer--bordered.q-drawer--dark {
+      border-right: 1px solid #ffffff47;
+    }
+
+    .q-drawer--right.q-drawer--bordered.q-drawer--dark {
+      border-left: 1px solid #ffffff47;
+    }
+
+    .q-field__control {
+      color: $primary;
+    }
+    .q-field--outlined .q-field__control:before {
+      background-color: $white;
+    }
+
+    .q-item__label--caption .q-field__control {
+      color: $black;
+    }
+
+    .q-item__label--caption .q-field__control {
+      background-color: red;
+    }
+
+    .q-field__native.q-placeholder {
+      color: $black;
+    }
+
+    .q-header {
+      background-color: $white;
+    }
+
+    .q-item.q-router-link--active {
+      background-color: #{$primary}20;
+      border-radius: 8px;
+      border-left: 4px solid $primary;
+      color: $primary;
+
+      .q-icon {
+        color: $primary;
+      }
+    }
+
+    .q-item__section--avatar {
+      color: #{$black}80;
+    }
+
+    .q-linear-progress {
+      color: $primary;
+    }
+
+    .q-menu {
+      background-color: $white;
+      border: 1px solid #{$black}10;
+    }
+
+    .q-pagination .q-icon.notranslate.material-icons {
+      color: $black;
+    }
+
+    .pagination-el {
+      background-color: $black;
+    }
+
+    .q-separator {
+      background-color: #{$black}10;
+    }
+
+    .q-table {
+      .filter {
+        border-bottom: 1px solid #{$dark}20;
+      }
+      .row-active {
+        background-color: #{$dark}20 !important;
+      }
+    }
+
+    .q-table__container {
+      background-color: $white;
+    }
+
+    .q-toolbar,
+    .q-toolbar a {
+      color: $black;
+    }
+
+    .bread-crumbs {
+      border-bottom: 1px solid #{$primary}20;
+      border-top: 1px solid #{$primary}20;
+      box-shadow: 0 0 2px 0 $primary;
+    }
+
+    //lookup
+    .lookup-table-body tr:hover {
+      background-color: #{$primary}10;
+    }
+
+    .lookup-table-body {
+      padding: 20px;
+      border-top: 2px solid $primary;
+    }
+
+    .inner-loader {
+      background-color: #{$primary}20;
+    }
+
+    .glass {
+      background: #{$primary}10;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid $primary;
+    }
+
+    //Grid
+    .selected {
+      background-color: #{$black}10;
+      border-radius: 4px;
+    }
+
+    .grid-total {
+      background-color: $primary;
+      color: $white;
+    }
+
+    .grid-subtotal {
+      background-color: #{$accent}20;
+    }
+
+    //dataView
+    .selected-row {
+      background-color: #{$primary}20 !important;
+      outline: 1px solid $primary !important;
+      box-shadow: 0 0 4px 0 #{$primary}20 !important;
+    }
+
+    .error-banner {
+      background-color: lighten($warning, 40);
+      border-top: 3px solid $warning;
+    }
+    .q-icon-banner {
+      color: $warning;
+    }
+
+    .icon-hover.q-icon:hover {
+      color: #{$black}50;
+    }
+
+    .text-on-dark {
+      color: $black;
+    }
+
+    .dark-1 {
+      background-color: lighten($black, 77);
+    }
+
+    .dark-2,
+    .dark-3 {
+      color: #{$black}60;
+    }
+
+    //for change color of drawer and header of main layout at dark mode
+    .bg-dark {
+      background-color: $white !important;
+    }
+
+    .login-header {
+      background-color: #f6f6f6;
+    }
+
+    .login-page,
+    .login-form {
+      background-color: #f6f6f6;
+    }
+
+    .layout {
+      background-color: #f1f1f1;
+    }
+
+    .pagination {
+      .q-btn--actionable.q-btn--standard:before {
+        box-shadow: none;
+      }
+    }
+
+    .invoice-table {
+      tbody {
+        tr:hover {
+          background-color: #{$black}10;
+        }
+      }
+
+      th {
+        background-color: #{$primary}10;
+        border-bottom: 2px solid $primary;
+      }
+
+      td {
+        border-bottom: 1px solid #{$black}10;
+      }
+    }
+
+    .invoice-text-container {
+      background-color: #{$primary}10;
+    }
+
+    .underline {
+      border-bottom: 2px solid $primary;
+    }
+
+    .highlight-text {
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #{$primary}30;
+    }
+
+    .custom-tooltip {
+      background-color: lighten($black, 50);
+    }
 }
 
 body.body--dark {
-  background-color: map-get($themes, orange, dark-page);
-}
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+
+  background-color: $dark-page;;
+
+    //quasar classes
+    .q-avatar__content {
+      background-color: #{$primary}10;
+    }
+
+    .business-isowner .q-avatar__content,
+    .profile-pic .q-avatar__content {
+      background-color: $primary;
+    }
+
+    .business-isnotowner .q-avatar__content {
+      background-color: lighten($dark, 5);
+    }
+
+    .q-breadcrumbs__el {
+      color: $white;
+    }
+
+    .q-breadcrumbs__separator {
+      color: $white;
+    }
+
+    .q-breadcrumbs__el.q-router-link--active {
+      color: #ffffad;
+    }
+
+    .q-breadcrumbs__el:hover {
+      color: yellow;
+    }
+
+    .q-card {
+      background-color: $dark-page;
+      border: 1px solid $secondary;
+    }
+
+    .q-carousel__navigation-inner .q-btn,
+    .q-carousel__arrow .q-icon {
+      color: $primary;
+    }
+
+    .q-drawer--left.q-drawer--bordered.q-drawer--dark {
+      border-right: 1px solid #ffffff47;
+    }
+
+    .q-drawer--right.q-drawer--bordered.q-drawer--dark {
+      border-left: 1px solid #ffffff47;
+    }
+
+    .q-field__control {
+      color: $primary;
+    }
+    .q-field--outlined .q-field__control:before {
+      background-color: $dark-page;
+    }
+
+    .q-item__label--caption .q-field__control {
+      color: $white;
+    }
+
+    .q-item__label--caption .q-field__control {
+      background-color: red;
+    }
+
+    .q-field__native.q-placeholder {
+      color: $white;
+    }
+
+    .q-header {
+      background-color: $dark-page;
+    }
+
+    .q-item.q-router-link--active {
+      background-color: #{$primary}20;
+      border-radius: 8px;
+      border-left: 4px solid $primary;
+      color: $primary;
+      .q-icon {
+        color: $primary;
+      }
+    }
+
+    .q-linear-progress {
+      color: $primary;
+    }
+
+    .q-menu {
+      background-color: $dark-page;
+      border: 1px solid $secondary;
+    }
+
+    .q-pagination .q-icon.notranslate.material-icons {
+      color: $accent;
+    }
+
+    .q-pagination .q-btn__content {
+      color: $white;
+    }
+
+    .pagination-el {
+      background-color: $dark;
+    }
+
+    .q-separator {
+      background-color: $secondary;
+    }
+
+    .q-table {
+      .row-active {
+        background-color: darken($accent, 40) !important;
+      }
+    }
+
+    .q-table__container {
+      background-color: $dark-page;
+    }
+
+    .q-toolbar,
+    .q-toolbar a {
+      color: $white;
+    }
+
+    //custom classes
+    .bread-crumbs {
+      border-bottom: 2px solid #{$primary}20;
+      border-top: 2px solid #{$primary}20;
+      box-shadow: 0 0 1px 0 $primary;
+    }
+
+    //lookup
+    .lookup-table-body tr:hover {
+      background-color: #{$primary}10;
+    }
+
+    .lookup-table-body {
+      padding: 20px;
+      border-top: 2px solid $primary;
+    }
+
+    .inner-loader {
+      background-color: #{$primary}20;
+    }
+
+    .glass {
+      background: #{$primary}10;
+      border-radius: 4px;
+      box-shadow: 0 2px 20px #{$dark-page};
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid $primary;
+    }
+
+    //Grid
+    .selected {
+      background-color: #{$dark};
+      border-radius: 4px;
+    }
+
+    .grid-total {
+      background-color: darken($secondary, 20%);
+    }
+
+    .grid-subtotal {
+      background-color: #{$accent};
+      color: $black;
+    }
+
+    //dataView
+    .selected-row {
+      background-color: #{$primary}20 !important;
+      outline: 1px solid $primary !important;
+      box-shadow: 0 0 4px 0 #{$primary}20 !important;
+    }
+
+    .error-banner {
+      background-color: $dark;
+      border-top: 3px solid $warning;
+    }
+    .q-icon-banner {
+      color: $secondary;
+    }
+
+    .icon-hover.q-icon:hover {
+      color: darken($accent, 20);
+    }
+
+    .text-on-dark {
+      color: $white;
+    }
+
+    .dark-1 {
+      background-color: $dark;
+    }
+
+    .dark-2,
+    .dark-3 {
+      color: $accent;
+    }
+
+    //for change color of drawer and header of main layout at dark mode
+    .bg-dark {
+      background-color: $dark-page !important;
+    }
+
+    .login-header {
+      background-color: $dark-page;
+    }
+
+    .login-page,
+    .login-form {
+      background-color: $dark-page;
+    }
+
+    .login-form {
+      color: $white;
+    }
+
+    .layout {
+      background-color: $dark-page;
+    }
+
+    .pagination {
+      .q-btn--actionable.q-btn--standard:before {
+        box-shadow: none;
+      }
+    }
+    .invoice-table {
+      tbody {
+        tr:hover {
+          background-color: #{$secondary}10;
+        }
+      }
+
+      th {
+        background-color: #{$primary}10;
+        border-bottom: 2px solid $primary;
+      }
+
+      td {
+        border-bottom: 1px solid #{$white}20;
+      }
+    }
+
+    .invoice-text-container {
+      background-color: #{$primary}10;
+    }
+
+    .underline {
+      border-bottom: 2px solid $primary;
+    }
+
+    .highlight-text {
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #{$primary}30;
+    }
+
+    .custom-tooltip {
+      background-color: $secondary;
+    }
+
+    .q-tab-panel {
+      background-color: $dark-page;
+    }
+  }
 
 @each $theme-name, $theme-colors in $themes {
-  body.body--light.theme--#{$theme-name} {
-    $primary: map-get($theme-colors, primary);
-    $secondary: map-get($theme-colors, secondary);
-    $accent: map-get($theme-colors, accent);
-    $dark: map-get($theme-colors, dark);
-    $dark-page: map-get($theme-colors, dark-page);
-    $hover-dark: map-get($theme-colors, secondary);
+  $primary: map-get($theme-colors, primary);
+  $secondary: map-get($theme-colors, secondary);
+  $accent: map-get($theme-colors, accent);
+  $dark: map-get($theme-colors, dark);
+  $dark-page: map-get($theme-colors, dark-page);
+  $hover-dark: map-get($theme-colors, secondary);
 
+
+  body.body--light.theme--#{$theme-name} {
     background-color: $primary;
+
+    .q-avatar__content {
+      background-color: #{$black}10;
+    }
+
+    .business-isowner .q-avatar__content,
+    .profile-pic .q-avatar__content {
+      background-color: $primary;
+      color: $white;
+    }
+
+    .business-isnotowner .q-avatar__content {
+      background-color: #{$black}10;
+    }
+
+    .q-breadcrumbs__el {
+      color: $black;
+    }
+
+    .q-breadcrumbs__separator {
+      color: $black;
+    }
+
+    .q-breadcrumbs__el.q-router-link--active {
+      color: $primary;
+    }
+
+    .q-card {
+      background-color: $white;
+    }
+
+    .q-carousel__navigation-inner .q-btn,
+    .q-carousel__arrow .q-icon {
+      color: $primary;
+    }
+
+    .q-drawer--left.q-drawer--bordered.q-drawer--dark {
+      border-right: 1px solid #ffffff47;
+    }
+
+    .q-drawer--right.q-drawer--bordered.q-drawer--dark {
+      border-left: 1px solid #ffffff47;
+    }
+
+    .q-field__control {
+      color: $primary;
+    }
+    .q-field--outlined .q-field__control:before {
+      background-color: $white;
+    }
+
+    .q-item__label--caption .q-field__control {
+      color: $black;
+    }
+
+    .q-item__label--caption .q-field__control {
+      background-color: red;
+    }
+
+    .q-field__native.q-placeholder {
+      color: $black;
+    }
+
+    .q-header {
+      background-color: $white;
+    }
+
+    .q-item.q-router-link--active {
+      background-color: #{$primary}20;
+      border-radius: 8px;
+      border-left: 4px solid $primary;
+      color: $primary;
+
+      .q-icon {
+        color: $primary;
+      }
+    }
+
+    .q-item__section--avatar {
+      color: #{$black}80;
+    }
+
+    .q-linear-progress {
+      color: $primary;
+    }
+
+    .q-menu {
+      background-color: $white;
+      border: 1px solid #{$black}10;
+    }
+
+    .q-pagination .q-icon.notranslate.material-icons {
+      color: $black;
+    }
+
+    .pagination-el {
+      background-color: $black;
+    }
+
+    .q-separator {
+      background-color: #{$black}10;
+    }
+
+    .q-table {
+      .filter {
+        border-bottom: 1px solid #{$dark}20;
+      }
+      .row-active {
+        background-color: #{$dark}20 !important;
+      }
+    }
+
+    .q-table__container {
+      background-color: $white;
+    }
+
+    .q-toolbar,
+    .q-toolbar a {
+      color: $black;
+    }
+
+    .bread-crumbs {
+      border-bottom: 1px solid #{$primary}20;
+      border-top: 1px solid #{$primary}20;
+      box-shadow: 0 0 2px 0 $primary;
+    }
+
+    //lookup
+    .lookup-table-body tr:hover {
+      background-color: #{$primary}10;
+    }
+
+    .lookup-table-body {
+      padding: 20px;
+      border-top: 2px solid $primary;
+    }
+
+    .inner-loader {
+      background-color: #{$primary}20;
+    }
+
+    .glass {
+      background: #{$primary}10;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid $primary;
+    }
+
+    //Grid
+    .selected {
+      background-color: #{$black}10;
+      border-radius: 4px;
+    }
+
+    .grid-total {
+      background-color: $primary;
+      color: $white;
+    }
+
+    .grid-subtotal {
+      background-color: #{$accent}20;
+    }
+
+    //dataView
+    .selected-row {
+      background-color: #{$primary}20 !important;
+      outline: 1px solid $primary !important;
+      box-shadow: 0 0 4px 0 #{$primary}20 !important;
+    }
+
+    .error-banner {
+      background-color: lighten($warning, 40);
+      border-top: 3px solid $warning;
+    }
+    .q-icon-banner {
+      color: $warning;
+    }
+
+    .icon-hover.q-icon:hover {
+      color: #{$black}50;
+    }
+
+    .text-on-dark {
+      color: $black;
+    }
+
+    .dark-1 {
+      background-color: lighten($black, 77);
+    }
+
+    .dark-2,
+    .dark-3 {
+      color: #{$black}60;
+    }
+
+    //for change color of drawer and header of main layout at dark mode
+    .bg-dark {
+      background-color: $white !important;
+    }
+
+    .login-header {
+      background-color: #f6f6f6;
+    }
+
+    .login-page,
+    .login-form {
+      background-color: #f6f6f6;
+    }
+
+    .layout {
+      background-color: #f1f1f1;
+    }
+
+    .pagination {
+      .q-btn--actionable.q-btn--standard:before {
+        box-shadow: none;
+      }
+    }
+
+    .invoice-table {
+      tbody {
+        tr:hover {
+          background-color: #{$black}10;
+        }
+      }
+
+      th {
+        background-color: #{$primary}10;
+        border-bottom: 2px solid $primary;
+      }
+
+      td {
+        border-bottom: 1px solid #{$black}10;
+      }
+    }
+
+    .invoice-text-container {
+      background-color: #{$primary}10;
+    }
+
+    .underline {
+      border-bottom: 2px solid $primary;
+    }
+
+    .highlight-text {
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #{$primary}30;
+    }
+
+    .custom-tooltip {
+      background-color: lighten($black, 50);
+    }
   }
 
   body.body--dark.theme--#{$theme-name} {
-    $primary: map-get($theme-colors, primary);
-    $secondary: map-get($theme-colors, secondary);
-    $accent: map-get($theme-colors, accent);
-    $dark: map-get($theme-colors, dark);
-    $dark-page: map-get($theme-colors, dark-page);
-    $hover-dark: map-get($theme-colors, secondary);
+    background-color: $dark-page;;
 
-    background-color: $dark-page;
+    //quasar classes
+    .q-avatar__content {
+      background-color: #{$primary}10;
+    }
+
+    .business-isowner .q-avatar__content,
+    .profile-pic .q-avatar__content {
+      background-color: $primary;
+    }
+
+    .business-isnotowner .q-avatar__content {
+      background-color: lighten($dark, 5);
+    }
+
+    .q-breadcrumbs__el {
+      color: $white;
+    }
+
+    .q-breadcrumbs__separator {
+      color: $white;
+    }
+
+    .q-breadcrumbs__el.q-router-link--active {
+      color: #ffffad;
+    }
+
+    .q-breadcrumbs__el:hover {
+      color: yellow;
+    }
+
+    .q-card {
+      background-color: $dark-page;
+      border: 1px solid $secondary;
+    }
+
+    .q-carousel__navigation-inner .q-btn,
+    .q-carousel__arrow .q-icon {
+      color: $primary;
+    }
+
+    .q-drawer--left.q-drawer--bordered.q-drawer--dark {
+      border-right: 1px solid #ffffff47;
+    }
+
+    .q-drawer--right.q-drawer--bordered.q-drawer--dark {
+      border-left: 1px solid #ffffff47;
+    }
+
+    .q-field__control {
+      color: $primary;
+    }
+    .q-field--outlined .q-field__control:before {
+      background-color: $dark-page;
+    }
+
+    .q-item__label--caption .q-field__control {
+      color: $white;
+    }
+
+    .q-item__label--caption .q-field__control {
+      background-color: red;
+    }
+
+    .q-field__native.q-placeholder {
+      color: $white;
+    }
+
+    .q-header {
+      background-color: $dark-page;
+    }
+
+    .q-item.q-router-link--active {
+      background-color: #{$primary}20;
+      border-radius: 8px;
+      border-left: 4px solid $primary;
+      color: $primary;
+      .q-icon {
+        color: $primary;
+      }
+    }
+
+    .q-linear-progress {
+      color: $primary;
+    }
+
+    .q-menu {
+      background-color: $dark-page;
+      border: 1px solid $secondary;
+    }
+
+    .q-pagination .q-icon.notranslate.material-icons {
+      color: $accent;
+    }
+
+    .q-pagination .q-btn__content {
+      color: $white;
+    }
+
+    .pagination-el {
+      background-color: $dark;
+    }
+
+    .q-separator {
+      background-color: $secondary;
+    }
+
+    .q-table {
+      .row-active {
+        background-color: darken($accent, 40) !important;
+      }
+    }
+
+    .q-table__container {
+      background-color: $dark-page;
+    }
+
+    .q-toolbar,
+    .q-toolbar a {
+      color: $white;
+    }
+
+    //custom classes
+    .bread-crumbs {
+      border-bottom: 2px solid #{$primary}20;
+      border-top: 2px solid #{$primary}20;
+      box-shadow: 0 0 1px 0 $primary;
+    }
+
+    //lookup
+    .lookup-table-body tr:hover {
+      background-color: #{$primary}10;
+    }
+
+    .lookup-table-body {
+      padding: 20px;
+      border-top: 2px solid $primary;
+    }
+
+    .inner-loader {
+      background-color: #{$primary}20;
+    }
+
+    .glass {
+      background: #{$primary}10;
+      border-radius: 4px;
+      box-shadow: 0 2px 20px #{$dark-page};
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid $primary;
+    }
+
+    //Grid
+    .selected {
+      background-color: #{$dark};
+      border-radius: 4px;
+    }
+
+    .grid-total {
+      background-color: darken($secondary, 20%);
+    }
+
+    .grid-subtotal {
+      background-color: #{$accent};
+      color: $black;
+    }
+
+    //dataView
+    .selected-row {
+      background-color: #{$primary}20 !important;
+      outline: 1px solid $primary !important;
+      box-shadow: 0 0 4px 0 #{$primary}20 !important;
+    }
+
+    .error-banner {
+      background-color: $dark;
+      border-top: 3px solid $warning;
+    }
+    .q-icon-banner {
+      color: $secondary;
+    }
+
+    .icon-hover.q-icon:hover {
+      color: darken($accent, 20);
+    }
+
+    .text-on-dark {
+      color: $white;
+    }
+
+    .dark-1 {
+      background-color: $dark;
+    }
+
+    .dark-2,
+    .dark-3 {
+      color: $accent;
+    }
+
+    //for change color of drawer and header of main layout at dark mode
+    .bg-dark {
+      background-color: $dark-page !important;
+    }
+
+    .login-header {
+      background-color: $dark-page;
+    }
+
+    .login-page,
+    .login-form {
+      background-color: $dark-page;
+    }
+
+    .login-form {
+      color: $white;
+    }
+
+    .layout {
+      background-color: $dark-page;
+    }
+
+    .pagination {
+      .q-btn--actionable.q-btn--standard:before {
+        box-shadow: none;
+      }
+    }
+    .invoice-table {
+      tbody {
+        tr:hover {
+          background-color: #{$secondary}10;
+        }
+      }
+
+      th {
+        background-color: #{$primary}10;
+        border-bottom: 2px solid $primary;
+      }
+
+      td {
+        border-bottom: 1px solid #{$white}20;
+      }
+    }
+
+    .invoice-text-container {
+      background-color: #{$primary}10;
+    }
+
+    .underline {
+      border-bottom: 2px solid $primary;
+    }
+
+    .highlight-text {
+      padding: 8px 16px;
+      border-radius: 4px;
+      background-color: #{$primary}30;
+    }
+
+    .custom-tooltip {
+      background-color: $secondary;
+    }
+
+    .q-tab-panel {
+      background-color: $dark-page;
+    }
   }
 }

@@ -1,6 +1,6 @@
 body.body--dark {
   .icon-hover.q-icon:hover {
-    color: $hover-dark;
+    color: darken($accent, 20);
   }
 
   .text-on-dark {

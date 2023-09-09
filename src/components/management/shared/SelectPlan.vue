@@ -217,12 +217,12 @@ function resetValues() {
   border-radius: 4px;
 }
 
-.glass {
-  background: #ffffff33;
-  border-radius: 4px;
-  box-shadow: 0 2px 20px #0000001a;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid #ffffff4d;
-}
+// .glass {
+//   background: #ffffff33;
+//   border-radius: 4px;
+//   box-shadow: 0 2px 20px #0000001a;
+//   backdrop-filter: blur(4px);
+//   -webkit-backdrop-filter: blur(5px);
+//   border: 1px solid #ffffff4d;
+// }
 </style>

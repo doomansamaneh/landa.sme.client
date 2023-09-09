@@ -16,7 +16,6 @@ body.body--light {
   .glass {
     background: #{$primary}10;
     border-radius: 4px;
-    box-shadow: 0 2px 20px #{$dark-page};
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid $primary;

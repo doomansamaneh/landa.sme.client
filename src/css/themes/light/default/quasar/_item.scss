@@ -4,4 +4,8 @@ body.body--light {
     border-radius: 8px;
     border-left: 4px solid $primary;
   }
+
+  .q-item__section--avatar{
+    color: #{$black}80;
+  }
 }

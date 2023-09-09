@@ -27,11 +27,11 @@
                 <q-item-label class="text-h6" header>
                   <div class="column items-center justify-center q-mt-md">
                     <q-avatar
-                      class="profile-pic q-mx-sm bg-primary"
+                      class="profile-pic q-mx-sm"
                       text-color="white"
                     >
-                      <div class="text-weight-bold">
-                        <span class="text-on-dark">{{
+                      <div class="text-bold">
+                        <span class="">{{
                           getFirstChar(username)
                         }}</span>
                       </div>
