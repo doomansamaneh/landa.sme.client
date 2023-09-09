@@ -579,6 +579,8 @@ body.body--dark {
 
   body.body--light.theme--#{$theme-name} {
     background-color: $primary;
+    --q-primary: #{$primary};
+    --q-dark: #{$dark-page};
 
     .q-avatar__content {
       background-color: #{$black}10;
@@ -836,11 +838,13 @@ body.body--dark {
   }
 
   body.body--dark.theme--#{$theme-name} {
-    background-color: $dark-page;;
+    background-color: $dark-page;
+    --q-primary: #{$primary};
+    --q-dark: #{$dark-page};
 
     //quasar classes
     .q-avatar__content {
-      background-color: #{$primary}10;
+      background-color: #{$primary}40;
     }
 
     .business-isowner .q-avatar__content,
