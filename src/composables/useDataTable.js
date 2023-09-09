@@ -6,28 +6,26 @@ export function useDataTable(dataSource
     , dataColumns
     , store) {
 
+    const defaultPageSize = store?.defaultPageSize ?? 5
+
     const _state = {
         firstLoad: ref(false),
         rows: ref([]),
         allSelectedIds: ref([]),
         activeRow: ref(null),
         summaryData: ref(null),
-        searchModel: ref({
-            dateRange: 0,
-            waitToSendTax: false
-        })
+        searchModel: ref(null)
     }
 
     const _pagination = ref({
         currentPage: 1,
-        pageSize: 5,
+        pageSize: defaultPageSize,
         sortOrder: 1,
         totalItems: 0,
         filterExpression: []
     })
 
     const columns = computed(() => store?.columns.value ?? dataColumns)
-    const defaultPageSize = store?.defaultPageSize ?? 5
     const state = computed(() => store?.state ?? _state)
     const pagination = computed(() => store?.pagination.value ?? _pagination.value)
 
