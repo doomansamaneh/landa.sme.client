@@ -1,10 +1,10 @@
 body.body--dark{
 
   .q-field__control{
-    color: $theme-primary;
+    color: $primary;
   }
   .q-field--outlined .q-field__control:before {
-    background-color: $theme-dark-page;
+    background-color: $dark-page;
   }
 
   .q-item__label--caption .q-field__control {

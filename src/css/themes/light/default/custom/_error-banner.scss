@@ -1,0 +1,9 @@
+body.body--light {
+  .error-banner {
+    background-color: lighten($warning, 40);
+    border-top: 3px solid $warning;
+  }
+  .q-icon-banner {
+    color: $warning;
+  }
+}

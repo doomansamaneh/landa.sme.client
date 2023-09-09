@@ -1,0 +1,14 @@
+body.body--light {
+  .q-table {
+    .filter {
+      border-bottom: 1px solid #{$dark}20;
+    }
+    .row-active {
+      background-color: #{$dark}20 !important;
+    }
+  }
+
+  .q-table__container {
+    background-color: $white;
+  }
+}

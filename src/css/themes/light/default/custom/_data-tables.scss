@@ -1,0 +1,46 @@
+body.body--light {
+  //lookup
+  .lookup-table-body tr:hover {
+    background-color: #{$primary}10;
+  }
+
+  .lookup-table-body {
+    padding: 20px;
+    border-top: 2px solid $primary;
+  }
+
+  .inner-loader {
+    background-color: #{$primary}20;
+  }
+
+  .glass {
+    background: #{$primary}10;
+    border-radius: 4px;
+    box-shadow: 0 2px 20px #{$dark-page};
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid $primary;
+  }
+
+  //Grid
+  .selected {
+    background-color: #{$black}10;
+    border-radius: 4px;
+  }
+
+  .grid-total {
+    background-color: $primary;
+    color: $white;
+  }
+
+  .grid-subtotal {
+    background-color: #{$accent}20;
+  }
+
+  //dataView
+  .selected-row {
+    background-color: #{$primary}20 !important;
+    outline: 1px solid $primary !important;
+    box-shadow: 0 0 4px 0 #{$primary}20 !important;
+  }
+}

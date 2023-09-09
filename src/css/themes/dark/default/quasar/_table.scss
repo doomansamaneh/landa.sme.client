@@ -1,14 +1,14 @@
 body.body--dark {
   .q-table {
     .filter {
-      border-bottom: 1px solid $theme-secondary;
+      border-bottom: 1px solid $secondary;
     }
     .row-active {
-      background-color: darken($theme-accent, 40) !important;
+      background-color: darken($accent, 40) !important;
     }
   }
 
   .q-table__container {
-    background-color: $theme-dark-page;
+    background-color: $dark-page;
   }
 }

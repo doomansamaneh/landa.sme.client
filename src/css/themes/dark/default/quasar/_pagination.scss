@@ -1,6 +1,6 @@
 body.body--dark {
   .q-pagination .q-icon.notranslate.material-icons {
-    color: $theme-accent;
+    color: $accent;
   }
 
   .q-pagination .q-btn__content {
@@ -8,6 +8,6 @@ body.body--dark {
   }
 
   .pagination-el {
-    background-color: $theme-dark;
+    background-color: $dark;
   }
 }

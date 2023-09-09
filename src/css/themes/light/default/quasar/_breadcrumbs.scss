@@ -1,0 +1,17 @@
+body.body--light{
+  .q-breadcrumbs__el {
+    color: $black;
+  }
+
+  .q-breadcrumbs__separator {
+    color: $black;
+  }
+
+  .q-breadcrumbs__el.q-router-link--active {
+    color: $primary;
+  }
+
+  // .q-breadcrumbs__el:hover {
+  //   color: $primary;
+  // }
+}

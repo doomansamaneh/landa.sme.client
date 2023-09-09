@@ -1,0 +1,11 @@
+body.body--light {
+  .q-avatar__content {
+    background-color: #{$black}10;
+  }
+
+  .business-isowner .q-avatar__content,
+  .profile-pic .q-avatar__content {
+    background-color: $primary;
+    color: $white;
+  }
+}

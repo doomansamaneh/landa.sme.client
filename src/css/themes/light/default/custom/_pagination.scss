@@ -1,0 +1,7 @@
+body.body--light {
+  .pagination {
+    .q-btn--actionable.q-btn--standard:before {
+      box-shadow: none;
+    }
+  }
+}
