@@ -6,6 +6,9 @@
       v-model="paged.currentPage"
       :min="1"
       :max="maxPage"
+      max-pages="5"
+      :ellipses="false"
+      :boundary-numbers="false"
       direction-links
       boundary-links
       icon-first="keyboard_double_arrow_left"
