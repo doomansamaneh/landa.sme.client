@@ -1,7 +1,7 @@
 @mixin q-table-dark {
   .q-table {
     .row-active {
-      background-color: #{$dark} !important;
+      background-color: #{$dark}40 !important;
     }
   }
 
@@ -10,6 +10,6 @@
   }
 
   .row-selected{
-    background-color: lighten($dark-page, 3);
+    background-color: lighten($dark-page, 1);
   }
 }

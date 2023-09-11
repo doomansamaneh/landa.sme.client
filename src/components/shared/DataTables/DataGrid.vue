@@ -3,6 +3,17 @@
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
+         <q-icon
+              class="icon-hover dark-3 cursor-pointer q-ml-md q-mb-md"
+              size="sm"
+              name="o_refresh"
+              @click="reloadData"
+              clickable
+            >
+              <q-tooltip class="custom-tooltip" :delay="600">
+                {{ $t("page.buttons.reload-data") }}
+              </q-tooltip>
+            </q-icon>
           <tr>
             <th
               v-if="numbered"
@@ -228,11 +239,13 @@ const gridColumns = computed(() => {
 })
 
 onMounted(() => {
-  tableStore.loadData()
+  reloadData()
 })
 
+// Todo: need a refresh button to reload data inside the data-grid itself
 async function reloadData() {
-  await tableStore.reloadData()
+  // alert("reloadData clicked");
+  await tableStore.loadData()
 }
 
 function selectAll(checked) {

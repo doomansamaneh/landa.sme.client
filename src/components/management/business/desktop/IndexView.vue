@@ -5,7 +5,6 @@
     orderByField="title"
     searchField="b.title"
     storeName="business"
-    @reload-data="reloadData"
     class="q-my-xl"
   >
     <template #header>
