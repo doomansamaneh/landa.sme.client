@@ -1,0 +1,27 @@
+@mixin theme-dark {
+  --q-primary: #{$primary};
+  --q-dark: #{$dark-page};
+  background-color: $dark-page;
+  @include q-avatar-dark();
+  @include q-breadcrumbs-dark();
+  @include q-card-dark();
+  @include q-carousel-dark();
+  @include q-drawer-dark();
+  @include q-field-control-dark();
+  @include q-header-dark();
+  @include q-item-dark();
+  @include q-linear-progress-dark();
+  @include q-menu-dark();
+  @include q-pagination-dark();
+  @include q-table-dark();
+  @include q-toolbar-dark();
+  @include breadcrumbs-dark();
+  @include business-layout-dark();
+  @include data-tables-dark();
+  @include error-banner-dark();
+  @include general-dark();
+  @include login-dark();
+  @include main-layout-dark();
+  @include payment-detail-dark();
+  @include q-panel-dark();
+}

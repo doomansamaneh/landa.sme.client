@@ -16,6 +16,7 @@
 @import "./themes/light/default/quasar/item";
 @import "./themes/light/default/quasar/drawer";
 @import "./themes/light/default/custom/index.scss";
+@import "./themes/light/default/app.scss";
 //////////////////////////////////////////
 @import "./themes/dark/default/quasar/card";
 @import "./themes/dark/default/quasar/header";
@@ -33,69 +34,15 @@
 @import "./themes/dark/default/quasar/drawer";
 @import "./themes/dark/default/quasar/panel";
 @import "./themes/dark/default/custom/index.scss";
+@import "./themes/dark/default/app.scss";
 //////////////////////////////////////////
 
 body.body--light {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-attachment: fixed;
-  background-size: cover;
-
-  background-color: $primary;
-
-  @include q-avatar-light();
-  @include q-breadcrumbs-light();
-  @include q-card-light();
-  @include q-carousel-light();
-  @include q-drawer-light();
-  @include q-field-control-light();
-  @include q-header-light();
-  @include q-item-light();
-  @include q-linear-progress-light();
-  @include q-menu-light();
-  @include q-pagination-light();
-  @include q-separator-light();
-  @include q-table-light();
-  @include q-toolbar-light();
-  @include breadcrumbs-light();
-  @include data-tables-light();
-  @include general-light();
-  @include login-light();
-  @include main-layout-light();
-  @include business-layout-light();
-  @include pagination-light();
-  @include payment-detail-light();
-  @include tooltip-light();
+  @include theme-light;
 }
 
 body.body--dark {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-attachment: fixed;
-  background-size: cover;
-
-  background-color: $dark-page;
-
-  @include q-avatar-dark();
-  @include q-breadcrumbs-dark();
-  @include q-card-dark();
-  @include q-carousel-dark();
-  @include q-drawer-dark();
-  @include q-field-control-dark();
-  @include q-header-dark();
-  @include q-item-dark();
-  @include q-linear-progress-dark();
-  @include q-menu-dark();
-  @include q-pagination-dark();
-  @include q-table-dark();
-  @include q-toolbar-dark();
-  @include breadcrumbs-dark();
-  @include business-layout-dark();
-  @include data-tables-dark();
-  @include error-banner-dark();
-  @include general-dark();
-  @include login-dark();
-  @include main-layout-dark();
-  @include payment-detail-dark();
-  @include q-panel-dark();
+  @include theme-dark;
 }
 
 @each $theme-name, $theme-colors in $themes {
@@ -107,61 +54,10 @@ body.body--dark {
   $hover-dark: map-get($theme-colors, secondary);
 
   body.body--light.theme--#{$theme-name} {
-    background-color: $primary;
-    --q-primary: #{$primary};
-    --q-dark: #{$dark-page};
-
-    @include q-avatar-light();
-    @include q-breadcrumbs-light();
-    @include q-card-light();
-    @include q-carousel-light();
-    @include q-drawer-light();
-    @include q-field-control-light();
-    @include q-header-light();
-    @include q-item-light();
-    @include q-linear-progress-light();
-    @include q-menu-light();
-    @include q-pagination-light();
-    @include q-separator-light();
-    @include q-table-light();
-    @include q-toolbar-light();
-    @include breadcrumbs-light();
-    @include data-tables-light();
-    @include general-light();
-    @include login-light();
-    @include main-layout-light();
-    @include business-layout-light();
-    @include pagination-light();
-    @include payment-detail-light();
-    @include tooltip-light();
+    @include theme-light;
   }
 
   body.body--dark.theme--#{$theme-name} {
-    background-color: $dark-page;
-    --q-primary: #{$primary};
-    --q-dark: #{$dark-page};
-
-    @include q-avatar-dark();
-    @include q-breadcrumbs-dark();
-    @include q-card-dark();
-    @include q-carousel-dark();
-    @include q-drawer-dark();
-    @include q-field-control-dark();
-    @include q-header-dark();
-    @include q-item-dark();
-    @include q-linear-progress-dark();
-    @include q-menu-dark();
-    @include q-pagination-dark();
-    @include q-table-dark();
-    @include q-toolbar-dark();
-    @include breadcrumbs-dark();
-    @include business-layout-dark();
-    @include data-tables-dark();
-    @include error-banner-dark();
-    @include general-dark();
-    @include login-dark();
-    @include main-layout-dark();
-    @include payment-detail-dark();
-    @include q-panel-dark();
+    @include theme-dark;
   }
 }

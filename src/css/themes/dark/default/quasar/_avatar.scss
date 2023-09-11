@@ -1,6 +1,6 @@
 @mixin q-avatar-dark {
   .q-avatar__content {
-    background-color: #{$primary}10;
+    background-color: lighten($dark, 5);
   }
 
   .business-isowner .q-avatar__content,
