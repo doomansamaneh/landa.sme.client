@@ -1,0 +1,11 @@
+@mixin lang-switcher-light {
+  .lang-switcher.q-btn--actionable.q-btn--standard:before {
+    box-shadow: none;
+    border: 1px solid $primary;
+  }
+
+  .language-main-layout.q-btn--actionable.q-btn--standard:before {
+    box-shadow: none;
+    border: 1px solid $primary;
+  }
+}

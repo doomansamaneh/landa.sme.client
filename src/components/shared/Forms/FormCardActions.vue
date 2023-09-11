@@ -5,7 +5,7 @@
       <q-btn
         type="submit"
         @click="okClicked"
-        color="light-blue-6"
+        color="primary"
         unelevated
         no-caps
         padding="8px 16px"

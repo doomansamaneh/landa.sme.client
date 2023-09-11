@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-between items-center q-px-xs">
     <q-toggle
-      color="blue-8"
+      color="primary"
       v-model="darkMode"
       unchecked-icon="light_mode"
       checked-icon="dark_mode"
@@ -47,20 +47,6 @@ watch(darkMode, (newVal) => {
   localStorage.setItem("darkMode", newVal)
 })
 
-onMounted(() => {
-  const darkModeisActive = localStorage.getItem("darkMode")
-  if (darkModeisActive === "true") {
-    darkMode.value = true
-  }
-
-  const storedTheme = localStorage.getItem("selectedTheme")
-  if (storedTheme) {
-    selectTheme(storedTheme)
-  }
-
-  setDigits()
-})
-
 const selectTheme = (theme) => {
   if (selectedTheme.value) {
     document.body.classList.remove(`theme--${selectedTheme.value}`)
@@ -77,7 +63,18 @@ function setDigits() {
   }
 }
 
-function reloadPage() {
-  window.location.reload()
-}
+onMounted(() => {
+  const darkModeisActive = localStorage.getItem("darkMode")
+  if (darkModeisActive === "true") {
+    darkMode.value = true
+  }
+
+  const storedTheme = localStorage.getItem("selectedTheme")
+  if (storedTheme) {
+    selectTheme(storedTheme)
+  }
+
+  setDigits()
+})
+
 </script>

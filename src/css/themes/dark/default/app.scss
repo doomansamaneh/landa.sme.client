@@ -15,6 +15,7 @@
   @include q-pagination-dark();
   @include q-table-dark();
   @include q-toolbar-dark();
+  @include q-panel-dark();
   @include breadcrumbs-dark();
   @include business-layout-dark();
   @include data-tables-dark();
@@ -23,5 +24,6 @@
   @include login-dark();
   @include main-layout-dark();
   @include payment-detail-dark();
-  @include q-panel-dark();
+  @include tooltip-dark();
+  @include lang-switcher-dark();
 }

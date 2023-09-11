@@ -15,7 +15,7 @@
           <q-btn
             unelevated
             no-caps
-            color="blue-6"
+            color="primary"
             :label="$t('login-page.buttons.signup')"
             class="signup-btn text-weight-bold"
           />

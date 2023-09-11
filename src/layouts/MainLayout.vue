@@ -1,5 +1,8 @@
 <template>
-  <q-layout view="hHh Lpr lff" class="layout">
+  <q-layout
+    view="hHh Lpr lff"
+    class="layout"
+  >
     <q-page-container>
       <main-header @toggle-drawer="toggleDrawer" />
       <menu-bar :drawer="drawer" />
@@ -10,19 +13,15 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
-import { useQuasar } from "quasar"
 import { useRoute } from "vue-router"
-import { useRouter } from "vue-router"
 import { fetchWrapper } from "src/helpers"
-import HomePage from "src/components/management/home/IndexView.vue"
+import { useSelectedBusinessStore } from "src/stores/selected-business.js"
+import { useTheme } from "src/components/layouts/main/_composables/ThemeStore.js"
 import MenuBar from "src/components/layouts/main/MenuBar.vue"
 import MainHeader from "src/components/layouts/main/MainHeader.vue"
 
-import { useSelectedBusinessStore } from "src/stores/selected-business.js"
-
+const theme = useTheme()
 const route = useRoute()
-const router = useRouter()
-const $q = useQuasar()
 
 const drawer = ref(true)
 
@@ -48,14 +47,11 @@ function toggleDrawer() {
   drawer.value = !drawer.value
 }
 
-//todo: remove this part to a global place such as composables or store
 onMounted(() => {
   loadData()
-  const darkModeisActive = localStorage.getItem("darkMode")
-  if (darkModeisActive === "true") {
-    $q.dark.set(true)
-  }
+  theme.store()
 })
+
 </script>
 
 <style lang="scss">
@@ -88,31 +84,4 @@ onMounted(() => {
 .q-item__section--avatar {
   min-width: 0;
 }
-
-.language-main-layout.q-btn--actionable.q-btn--standard:before {
-  box-shadow: none;
-  border: 1px solid $primary;
-}
-
-// /* width */
-// ::-webkit-scrollbar {
-//   width: 10px;
-// }
-
-// /* Track */
-// ::-webkit-scrollbar-track {
-//   background: #f1f1f1;
-//   border-radius: 10px;
-// }
-
-// /* Handle */
-// ::-webkit-scrollbar-thumb {
-//   background: #709dff;
-//   border-radius: 10px;
-// }
-
-// /* Handle on hover */
-// ::-webkit-scrollbar-thumb:hover {
-//   background: #6797ff;
-// }
 </style>

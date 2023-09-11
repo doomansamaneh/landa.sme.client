@@ -1,11 +1,15 @@
 @mixin q-table-light {
   .q-table {
     .row-active {
-      background-color: #{$dark}20 !important;
+      background-color: #{$primary}20 !important;
     }
   }
 
   .q-table__container {
     background-color: $white;
+  }
+
+  .row-selected{
+    background-color: #{$primary}10;
   }
 }

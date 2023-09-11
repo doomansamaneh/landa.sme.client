@@ -4,11 +4,12 @@
     icon="language"
     :label="selectedLanguageLabel"
     :options="languageOptions"
-    class="bg-white text-blue-7 text-bold"
+    class="lang-switcher text-primary text-bold"
     auto-close
   >
     <q-item-section class="z-max">
-      <q-item class="z-max"
+      <q-item
+        class="z-max"
         clickable
         v-for="(lang, index) in supportedLanguages"
         :key="index"
@@ -17,7 +18,12 @@
           <q-item-label>{{ lang.name }}</q-item-label>
         </q-item-section>
         <q-item-section v-if="currentLanguage === lang.code">
-          <q-icon name="done" color="primary" size="xs" right></q-icon>
+          <q-icon
+            name="done"
+            color="primary"
+            size="xs"
+            right
+          ></q-icon>
         </q-item-section>
       </q-item>
     </q-item-section>
@@ -35,7 +41,7 @@ const supportedLanguages = [
     code: "en-US",
     name: "English",
     dir: "ltr",
-    quasarLang: "en-US" // add Quasar language code for each language
+    quasarLang: "en-US"
   },
   {
     code: "fa-IR",
@@ -101,10 +107,3 @@ function setDigits() {
   }
 }
 </script>
-
-<style lang="scss">
-.lang-switcher.q-btn--actionable.q-btn--standard:before {
-  border: 1px solid $primary;
-  box-shadow: none;
-}
-</style>

@@ -177,7 +177,7 @@ export function useDataTable(dataSource
 
     function getRowClass(row) {
         return (row.id === state.value.activeRow.value?.id ? "row-active" : "") +
-            (row.selected === true ? " selected" : "")
+            (row.selected === true ? " row-selected" : "")
     }
 
     return {

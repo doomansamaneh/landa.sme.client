@@ -11,7 +11,11 @@
     </q-card-section>
 
     <q-card-section>
-      <q-form ref="form" autofocus class="q-px-sm">
+      <q-form
+        ref="form"
+        autofocus
+        class="q-px-sm"
+      >
         <q-input
           outlined
           v-model="oldPassword"
@@ -58,9 +62,8 @@
           outlined
           v-model="confirmNewPassword"
           :type="isPwdConfirmPassword ? 'password' : 'text'"
-          :placeholder="
-            $t('change-password-page.placeholders.confirm-password')
-          "
+          :placeholder="$t('change-password-page.placeholders.confirm-password')
+            "
           dense
           class="text-body"
           required
@@ -79,7 +82,10 @@
       </q-form>
     </q-card-section>
 
-    <actions @ok-clicked="submitForm" class="q-px-lg">
+    <actions
+      @ok-clicked="submitForm"
+      class="q-px-lg"
+    >
       <template #ok-label>{{
         $t("change-password-page.buttons.change-password")
       }}</template>
@@ -93,8 +99,8 @@ import { ref } from "vue"
 import { useAuthStore } from "src/stores"
 import { fetchWrapper } from "src/helpers"
 
-import Actions from "src/components/shared/forms/FormCardActions.vue"
-import BackButton from "src/components/shared/buttons/GoBackLink.vue"
+import Actions from "src/components/shared/Forms/FormCardActions.vue"
+import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 
 const emit = defineEmits(["submitted"])
 const authStore = useAuthStore()
@@ -130,7 +136,7 @@ async function changePassword() {
     .then((response) => {
       emit("submitted", response)
     })
-    .finally(() => {})
+    .finally(() => { })
 }
 </script>
 
@@ -147,5 +153,4 @@ async function changePassword() {
 
   .cancel-btn {
     width: 36%;
-  } */
-</style>
+  } */</style>

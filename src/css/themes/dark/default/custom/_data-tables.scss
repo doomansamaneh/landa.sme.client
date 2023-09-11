@@ -24,22 +24,22 @@
 
   //Grid
   .selected {
-    background-color: #{$dark}30;
+    background-color: #{$dark};
     border-radius: 4px;
   }
 
   .grid-total {
-    background-color: darken($secondary, 20%);
+    background-color: darken($secondary, 10%);
   }
 
   .grid-subtotal {
-    background-color: #{$accent};
-    color: $black;
+    background-color: #{$secondary}20;
+    color: $white;
   }
 
   //dataView
   .selected-row {
-    background-color: #{$primary}20 !important;
+    background-color: #{$dark}20 !important;
     outline: 1px solid $primary !important;
     box-shadow: 0 0 4px 0 #{$primary}20 !important;
   }

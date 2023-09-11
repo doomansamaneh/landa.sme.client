@@ -194,9 +194,6 @@ const selectedBusiness = useSelectedBusinessStore()
 
 const emit = defineEmits(["toggle-drawer"])
 
-const title = ref("")
-// const drawerRight = ref(false)
-
 const username = computed(() => {
   if (authStore.user) return authStore.user.fullName
   return ""

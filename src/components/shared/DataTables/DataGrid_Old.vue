@@ -364,7 +364,7 @@ function setActiveRow(row) {
 function getRowClass(row) {
   return (
     (row.id === activeRow.value?.id ? "row-active" : "") +
-    (row.selected === true ? " selected" : "")
+    (row.selected === true ? " row-selected" : "")
   )
 }
 

@@ -50,7 +50,7 @@
                   />
                 </div>
                 <div class="q-pr-md">
-                  <q-btn round flat color="blue-6" icon="refresh" dense />
+                  <q-btn round flat color="primary" icon="refresh" dense />
                 </div>
 
                 <div class="col-5">
@@ -66,7 +66,7 @@
                   <q-btn
                     unelevated
                     type="submit"
-                    color="light-blue-6"
+                    color="primary"
                     size="md"
                     class="login-btn full-width text-weight-bold q-py-sm"
                     no-caps
@@ -83,8 +83,8 @@
           </q-card-section>
 
           <q-card-section class="text-center q-pa-none">
-            <p class="forgot-password text-blue-7 q-mt-lg">
-              <a href="#">{{ $t("login-page.forgot-password") }}</a>
+            <p class="forgot-password q-mt-lg">
+              <a href="#" class="text-primary">{{ $t("login-page.forgot-password") }}</a>
             </p>
           </q-card-section>
         </q-card>
@@ -127,10 +127,10 @@ const isLoggingIn = computed(() => authStore.isLoggingIn)
   width: 300px;
 }
 
-.forgot-password a {
-  text-decoration: none;
-  color: #0087f6;
-}
+// .forgot-password a {
+//   text-decoration: none;
+//   color: #0087f6;
+// }
 
 .login-img {
   width: 270px;

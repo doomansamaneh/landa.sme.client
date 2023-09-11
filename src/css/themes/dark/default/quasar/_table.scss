@@ -1,12 +1,15 @@
-@mixin q-table-dark{
+@mixin q-table-dark {
   .q-table {
-    
     .row-active {
-      background-color: darken($accent, 40) !important;
+      background-color: #{$dark} !important;
     }
   }
 
   .q-table__container {
     background-color: $dark-page;
+  }
+
+  .row-selected{
+    background-color: lighten($dark-page, 3);
   }
 }
