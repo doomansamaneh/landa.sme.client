@@ -3,9 +3,15 @@
     <div class="body-section q-mb-xl">
       <div class="login-form-container">
         <q-card class="login-form no-shadow no-border row justify-center">
-          <img src="/about-us-header.png" class="login-img q-mb-md" />
+          <img
+            src="/about-us-header.png"
+            class="login-img q-mb-md"
+          />
           <q-card-section>
-            <q-form class="login-form" @submit="authenticate">
+            <q-form
+              class="login-form"
+              @submit="authenticate"
+            >
               <div class="username-input">
                 <q-input
                   v-model="username"
@@ -50,7 +56,13 @@
                   />
                 </div>
                 <div class="q-pr-md">
-                  <q-btn round flat color="primary" icon="refresh" dense />
+                  <q-btn
+                    round
+                    flat
+                    color="primary"
+                    icon="refresh"
+                    dense
+                  />
                 </div>
 
                 <div class="col-5">
@@ -73,8 +85,14 @@
                     :label="$t('login-page.buttons.login')"
                     :disable="isLoggingIn"
                   >
-                    <div class="q-pl-sm" v-if="isLoggingIn">
-                      <q-spinner-pie class="white" size="xs" />
+                    <div
+                      class="q-pl-sm"
+                      v-if="isLoggingIn"
+                    >
+                      <q-spinner-pie
+                        class="white"
+                        size="xs"
+                      />
                     </div>
                   </q-btn>
                 </div>
@@ -84,7 +102,10 @@
 
           <q-card-section class="text-center q-pa-none">
             <p class="forgot-password q-mt-lg">
-              <a href="#" class="text-primary">{{ $t("login-page.forgot-password") }}</a>
+              <a
+                href="https://landa-sme.ir/account/forgetpassword"
+                class="text-primary"
+              >{{ $t("login-page.forgot-password") }}</a>
             </p>
           </q-card-section>
         </q-card>
@@ -122,17 +143,14 @@ async function authenticate() {
 const isLoggingIn = computed(() => authStore.isLoggingIn)
 </script>
 
-<style lang="scss" scoped>
-.login-form-container {
+<style lang="scss" scoped>.login-form-container {
   width: 300px;
 }
 
-// .forgot-password a {
-//   text-decoration: none;
-//   color: #0087f6;
-// }
+.forgot-password a {
+  text-decoration: none;
+}
 
 .login-img {
   width: 270px;
-}
-</style>
+}</style>

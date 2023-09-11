@@ -2,9 +2,9 @@
   <q-layout>
     <q-header class="login-header flex items-center justify-between q-py-lg">
       <q-toolbar class="">
-        <q-toolbar-title
-          class="row justify-start items-center q-ml-lg text-bold text-dark"
-          ><span class="text-on-dark text-bold text-h5">{{
+        <q-toolbar-title class="row justify-start items-center q-ml-lg text-bold text-dark"><span
+            class="text-on-dark text-bold text-h5"
+          >{{
             $t("login-page.page-title")
           }}</span>
           <div class="q-ml-md">
@@ -18,6 +18,7 @@
             color="primary"
             :label="$t('login-page.buttons.signup')"
             class="signup-btn text-weight-bold"
+            @click="gotoRegisterPage"
           />
           <switch-language class="lang-switcher gt-xs" />
         </div>
@@ -38,9 +39,7 @@
             :class="$q.dark.isActive ? 'bg-dark' : 'bg-dark'"
           >
             <q-list class="flex justify-center q-mt-xl">
-              <div
-                class="column justify-center items-center q-gutter-y-md q-mt-xl"
-              >
+              <div class="column justify-center items-center q-gutter-y-md q-mt-xl">
                 <q-icon
                   name="circle"
                   size="xl"
@@ -134,5 +133,9 @@ const selectTheme = (theme) => {
   document.body.classList.add(`theme--${theme}`)
   selectedTheme.value = theme
   localStorage.setItem("selectedTheme", theme)
+}
+
+const gotoRegisterPage = () => {
+  window.location.href = "https://landa-sme.ir/account/register"
 }
 </script>
