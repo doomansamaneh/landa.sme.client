@@ -7,9 +7,9 @@
           >{{
             $t("login-page.page-title")
           }}</span>
-          <div class="q-ml-md">
+          <!-- <div class="q-ml-md">
             <switch-theme class="gt-xs" />
-          </div>
+          </div> -->
         </q-toolbar-title>
         <div class="flex q-pr-md q-gutter-x-sm">
           <q-btn

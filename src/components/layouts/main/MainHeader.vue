@@ -23,9 +23,11 @@
         <span class="text-on-dark q-pl-sm text-weight-medium"> سال مالی: 1402</span>
       </q-toolbar-title>
       <div class="row items-center">
-        <div class="theme-place row q-pr-md q-pl-sm">
-        <switch-theme />
-        </div>
+        <q-separator vertical inset />
+          <div class="row items-center q-pr-lg q-pl-md">
+            <switch-theme />
+          </div>
+          <q-separator vertical inset />
         <div class="row q-gutter-x-sm q-ml-sm">
           <q-btn
           flat

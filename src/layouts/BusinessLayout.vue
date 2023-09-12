@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header class="text-black">
+    <q-header class="text-black" bordered>
       <q-toolbar class="q-px-lg row justify-between">
         <div class="">
           <a
@@ -11,9 +11,11 @@
           /></a>
         </div>
         <div class="flex q-gutter-x-md">
-          <div class="theme-place q-pr-md q-pl-sm">
+          <q-separator vertical inset />
+          <div class="row items-center q-pr-sm">
             <switch-theme />
           </div>
+          <q-separator vertical inset />
           <div class="flex items-center q-gutter-x-xs cursor-pointer">
             <q-icon size="sm" name="o_account_circle" />
             <div class="text-body">{{ username }}</div>
