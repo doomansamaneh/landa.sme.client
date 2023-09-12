@@ -8,7 +8,7 @@
         removable
         @remove="removeItem(item)"
         color="primary"
-        text-color="reverse"
+        text-color="white"
         icon="search"
       >
         {{ $t(`shared.labels.${item.label}`) }}: {{ $t(`shared.labels.${item.value}`) }}

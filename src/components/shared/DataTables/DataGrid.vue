@@ -133,6 +133,7 @@
                   round
                   @click="tableStore.toggleExpand(row)"
                   :icon="row.expanded ? 'expand_less' : 'chevron_left'"
+                  :class="row.expanded ? 'expand-open' : 'expand-close'"
                 />
               </td>
             </tr>
@@ -299,3 +300,15 @@ defineExpose({
   rows: tableStore.rows
 })
 </script>
+
+<style lang="scss" scoped>
+.expand-open {
+  transform: rotate(-360deg);
+  transition-duration: 700ms;
+}
+
+.expand-close {
+  transform: rotate(0);
+  transition-duration: 700ms;
+}
+</style>
