@@ -2,7 +2,12 @@
   .q-table {
     .row-active {
       background-color: #{$primary}20 !important;
+      td{
+        border-top: 1px solid $primary;
+        border-bottom: 1px solid $primary;
+      }
     }
+
   }
 
   .q-table__container {

@@ -2,6 +2,10 @@
   .q-table {
     .row-active {
       background-color: #{$dark}40 !important;
+      td{
+        border-top: 1px solid $primary;
+        border-bottom: 1px solid $primary;
+      }
     }
   }
 
