@@ -3,17 +3,6 @@
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
-         <q-icon
-              class="icon-hover dark-3 cursor-pointer q-ml-md q-mb-md"
-              size="sm"
-              name="o_refresh"
-              @click="reloadData"
-              clickable
-            >
-              <q-tooltip class="custom-tooltip" :delay="600">
-                {{ $t("page.buttons.reload-data") }}
-              </q-tooltip>
-            </q-icon>
           <tr>
             <th
               v-if="numbered"
@@ -199,7 +188,24 @@
         class="page-bar_"
         :pagination="tableStore.pagination.value"
         @page-changed="reloadData"
-      />
+      >
+        <template #reload>
+          <q-icon
+            class="icon-hover dark-3 cursor-pointer q-pr-md"
+            size="sm"
+            name="o_refresh"
+            @click="reloadData"
+            clickable
+          >
+            <q-tooltip
+              class="custom-tooltip"
+              :delay="600"
+            >
+              {{ $t("page.buttons.reload-data") }}
+            </q-tooltip>
+          </q-icon>
+        </template>
+      </page-bar>
     </div>
   </div>
 </template>
@@ -239,13 +245,12 @@ const gridColumns = computed(() => {
 })
 
 onMounted(() => {
-  reloadData()
+  tableStore.loadData()
 })
 
 // Todo: need a refresh button to reload data inside the data-grid itself
 async function reloadData() {
-  // alert("reloadData clicked");
-  await tableStore.loadData()
+  await tableStore.reloadData()
 }
 
 function selectAll(checked) {
@@ -267,28 +272,25 @@ function setActiveRow(row) {
   emit("active-row-changed", row)
 }
 
-const cardDefaultClass = computed(
-  () =>
-    " q-table__card" +
-    ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "") +
-    (props.square === true ? " q-table--square" : "") +
-    (props.flat === true ? " q-table--flat" : "") +
-    (props.bordered === true ? " q-table--bordered" : "")
+const cardDefaultClass = computed(() =>
+  " q-table__card" +
+  ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "") +
+  (props.square === true ? " q-table--square" : "") +
+  (props.flat === true ? " q-table--flat" : "") +
+  (props.bordered === true ? " q-table--bordered" : "")
 )
 
-const __containerClass = computed(
-  () =>
-    `q-table__container q-table--${props.separator}-separator column no-wrap q-pt-md` +
-    (props.grid === true ? " q-table--grid" : cardDefaultClass.value) +
-    ($q.dark?.isActive === true ? " q-table--dark" : "") +
-    (props.dense === true ? " q-table--dense" : "") +
-    (props.wrapCells === false ? " q-table--no-wrap" : "")
+const __containerClass = computed(() =>
+  `q-table__container q-table--${props.separator}-separator column no-wrap q-pt-md` +
+  (props.grid === true ? " q-table--grid" : cardDefaultClass.value) +
+  ($q.dark?.isActive === true ? " q-table--dark" : "") +
+  (props.dense === true ? " q-table--dense" : "") +
+  (props.wrapCells === false ? " q-table--no-wrap" : "")
   //+ (inFullscreen.value === true ? ' fullscreen scroll' : '')
 )
 
-const containerClass = computed(
-  () =>
-    __containerClass.value + (tableStore.loading === true ? " q-table--loading" : "")
+const containerClass = computed(() =>
+  __containerClass.value + (tableStore.loading === true ? " q-table--loading" : "")
 )
 
 defineExpose({

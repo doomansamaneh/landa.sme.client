@@ -1,12 +1,16 @@
 <template>
   <q-card-actions class="fit row justify-end items-center q-pa-none">
-    <span class="text-caption q-pr-lg">{{ indexRange }} از {{ paged.totalItems.toLocaleString() }}</span>
+    <slot name="reload"></slot>
+    <span class="text-caption q-pr-lg">
+      {{ indexRange }} {{ $t("shared.labels.from") }} {{ paged.totalItems.toLocaleString() }}
+    </span>
+    <!-- //todo: use css class instead of styling siz and padding -->
     <q-pagination
       v-if="showPaging"
       v-model="paged.currentPage"
       :min="1"
       :max="maxPage"
-      max-pages="5"
+      max-pages="7"
       :ellipses="false"
       :boundary-numbers="false"
       direction-links
@@ -17,11 +21,11 @@
       icon-next="chevron_right"
       @update:model-value="handlePageChange"
       gutter="xs"
-      padding="3px 2px 1px 2px"
       round
+      padding="3px 2px 1px 2px"
+      size="13px"
       color="grey-8"
       active-color="primary"
-      size="13px"
       class="pagination"
     />
     <q-space />
