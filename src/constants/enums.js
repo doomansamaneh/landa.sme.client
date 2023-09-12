@@ -1,3 +1,18 @@
+export const statusOptions = [
+    {
+        label: "دائم",
+        value: "دائم"
+    },
+    {
+        label: "موقت",
+        value: "موقت"
+    },
+    {
+        label: "ابطال شده",
+        value: "ابطال شده"
+    }
+]
+
 export const dateRange = {
     // all: 0,
     // today: 2,

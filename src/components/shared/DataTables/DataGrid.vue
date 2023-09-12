@@ -180,12 +180,10 @@
       </slot>
     </div>
     <div
-      v-if="tableStore.showPagebar"
+      v-if="tableStore.showPagebar.value"
       class="q-table__bottom"
     >
       <page-bar
-        v-if="tableStore.showPagebar.value"
-        class="page-bar_"
         :pagination="tableStore.pagination.value"
         @page-changed="reloadData"
       >

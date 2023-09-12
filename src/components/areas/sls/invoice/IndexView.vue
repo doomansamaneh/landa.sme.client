@@ -85,7 +85,7 @@
                 outlined
                 emit-value
                 v-model="col.value"
-                :options="invoiceStore.statusOptions"
+                :options="statusOptions"
                 @update:model-value="gridI1?.reloadData"
               />
             </template>
@@ -109,9 +109,9 @@
               >
                 انتخاب شده
               </td>
-              <td><b>{{ selectedRows.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</b></td>
+              <td><b>{{ getSubtotal(selectedRows, "amount").toLocaleString() }}</b></td>
               <td>
-                <b>{{ selectedRows.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</b>
+                <b>{{ getSubtotal(selectedRows, "discountAmount").toLocaleString() }}</b>
               </td>
               <td colspan="100%"></td>
             </template>
@@ -159,10 +159,11 @@
 
 <script setup>
 import { computed, ref } from "vue"
+import { statusOptions } from "src/constants"
+import { useInvoice } from "../_composables/useInvoice"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
 import AdvancedSearch from "./_AdvancedSearch.vue"
 import gridV2 from "./IndexViewV2.vue"
-import { useInvoice } from "../_composables/useInvoice"
 
 const invoiceStore = useInvoice()
 
@@ -176,6 +177,10 @@ function rowChanged(row) {
 function selectedRowsChanged(selectedRows) {
   //console.log(selectedRows)
   //alert('selectedRows changed')
+}
+
+function getSubtotal(selectedRows, fieldName) {
+  return selectedRows.reduce((sum, item) => { return sum + item[fieldName] }, 0)
 }
 
 async function applySearch(model) {
