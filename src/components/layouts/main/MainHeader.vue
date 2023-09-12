@@ -5,7 +5,7 @@
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between">
-      <div class="menu-button q-gutter-xs">
+      <div class="q-gutter-xs">
         <q-btn
           flat
           @click="$emit('toggle-drawer')"
@@ -14,29 +14,20 @@
           icon="menu"
           class="text-on-dark"
         />
-        <q-btn
-          flat
-          round
-          dense
-          color="text"
-          icon="search"
-          class="text-dark xs"
-        />
       </div>
-      <div class="search-for-mobile xs"></div>
       <q-toolbar-title
-        class="text-subtitle2 text-bold col-4 flex justify-start"
+        class="text-subtitle2 text-bold flex justify-start"
       >
         <span class="text-on-dark q-pr-sm">{{ selectedBusiness.title }}</span>
         <span class="text-on-dark">-</span>
         <span class="text-on-dark q-pl-sm text-weight-medium"> سال مالی: 1402</span>
       </q-toolbar-title>
-
-      <div class="col q-mr-xl gt-sm">
-        <!-- <bread-crumbs class="home-bread-crumbs" /> -->
-      </div>
-      <div class="round-icons q-gutter-sm">
-        <q-btn
+      <div class="row q-gutter-x-sm items-center">
+        <div class="theme-place row q-pr-md q-pl-xs">
+        <switch-theme />
+        </div>
+        <div class="q-ml-md">
+          <q-btn
           flat
           dense
           round
@@ -153,16 +144,6 @@
                   </div>
                 </div>
               </q-item-label>
-              <q-item
-                clickable
-                v-ripple
-                v-close-popup
-                class="q-mt-md row justify-center"
-              >
-                <div class="q-py-sm">
-                  <switch-theme />
-                </div>
-              </q-item>
               <q-item clickable tabindex="0" class="q-py-sm row justify-center">
                 <div class="q-py-sm">
                   <switch-language class="language-main-layout" />
@@ -172,6 +153,7 @@
           </q-menu>
         </q-btn>
       </div>
+        </div>
     </q-toolbar>
   </q-header>
 </template>
@@ -209,3 +191,12 @@ const gotoBusiness = () => {
   router.push("/business")
 }
 </script>
+
+<style lang="scss" scoped>
+.theme-place{
+
+  border-left: 1px solid #ffffff47;
+  border-right: 1px solid #ffffff47;
+
+}
+</style>
