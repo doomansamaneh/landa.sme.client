@@ -23,10 +23,10 @@
         <span class="text-on-dark q-pl-sm text-weight-medium"> سال مالی: 1402</span>
       </q-toolbar-title>
       <div class="row items-center">
-        <div class="theme-place row q-pr-md q-pl-xs">
+        <div class="theme-place row q-pr-md q-pl-sm">
         <switch-theme />
         </div>
-        <div class="row q-gutter-x-sm q-ml-md">
+        <div class="row q-gutter-x-sm q-ml-sm">
           <q-btn
           flat
           dense
@@ -191,12 +191,3 @@ const gotoBusiness = () => {
   router.push("/business")
 }
 </script>
-
-<style lang="scss" scoped>
-.theme-place{
-
-  border-left: 1px solid #ffffff47;
-  border-right: 1px solid #ffffff47;
-
-}
-</style>

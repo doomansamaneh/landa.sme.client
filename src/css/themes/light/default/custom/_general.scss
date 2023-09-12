@@ -7,6 +7,13 @@
     color: $black;
   }
 
+  .theme-place {
+
+    border-left: 1px solid #2d2d2d2d;
+    border-right: 1px solid #2d2d2d2d;
+
+  }
+
   .dark-1 {
     background-color: lighten($black, 77);
   }
