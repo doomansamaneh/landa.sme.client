@@ -11,8 +11,9 @@
           /></a>
         </div>
         <div class="flex q-gutter-x-md">
-          <switch-theme />
-
+          <div class="theme-place q-pr-md q-pl-sm">
+            <switch-theme />
+          </div>
           <div class="flex items-center q-gutter-x-xs cursor-pointer">
             <q-icon size="sm" name="o_account_circle" />
             <div class="text-body">{{ username }}</div>
