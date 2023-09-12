@@ -8,14 +8,12 @@
       <span class="text-h6">فاکتورها</span>
     </q-card-section>
     <q-separator />
-    <q-card-section>
+    <q-card-section class="q-pa-none">
       <data-grid
         ref="gridI2"
         class="q-mt-lg_"
         dataSource="sls/invoice/getGridData"
         :grid-store="invoiceStore"
-        :columns="columns"
-        :advanced-search="adSearch"
         sortColumn="no"
         expandable
         multi-select
@@ -65,11 +63,6 @@
           </td>
         </template>
       </data-grid>
-    </q-card-section>
-
-    <q-card-section>
-      <pre>{{ gridI2?.activeRow }}</pre>
-      <pre>{{ gridI2?.selectedRows }}</pre>
     </q-card-section>
   </q-card>
 </template>

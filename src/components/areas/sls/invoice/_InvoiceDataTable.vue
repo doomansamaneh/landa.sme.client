@@ -1,6 +1,6 @@
 <template>
   <data-grid
-    ref="gridI1"
+    ref="dataTable"
     dataSource="sls/invoice/getGridData"
     :grid-store="invoiceStore"
     separator="horizontal"
@@ -8,13 +8,9 @@
     multiSelect
     numbered
     bordered
-    square_
-    grid_
     dense
     wrapCells
     expandable
-    @active-row-changed="rowChanged"
-    @selectedRows-changed="selectedRowsChanged"
   >
     <template #filter_statusTitle="{ col }">
       <q-select
@@ -23,8 +19,8 @@
         outlined
         emit-value
         v-model="col.value"
-        :options="invoiceStore.statusOptions"
-        @update:model-value="gridI1?.reloadData"
+        :options="statusOptions"
+        @update:model-value="dataTable?.reloadData"
       />
     </template>
     <template #cell_amount="{ item }">
@@ -47,9 +43,9 @@
       >
         انتخاب شده
       </td>
-      <td><b>{{ selectedRows.reduce((sum, item) => { return sum + item.amount }, 0).toLocaleString() }}</b></td>
+      <td><b>{{ helper.getSubtotal(selectedRows, "amount").toLocaleString() }}</b></td>
       <td>
-        <b>{{ selectedRows.reduce((sum, item) => { return sum + item.discountAmount }, 0).toLocaleString() }}</b>
+        <b>{{ helper.getSubtotal(selectedRows, "discountAmount").toLocaleString() }}</b>
       </td>
       <td colspan="100%"></td>
     </template>
@@ -70,18 +66,14 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
+import { ref } from "vue"
+import { statusOptions } from "src/constants"
+import { helper } from "src/helpers"
+import { useInvoice } from "../_composables/useInvoice"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+
+const invoiceStore = useInvoice()
 const dataTable = ref(null)
-
-function rowChanged(row) {
-  //alert('row changed')
-}
-
-function selectedRowsChanged(selectedRows) {
-  //console.log(selectedRows)
-  //alert('selectedRows changed')
-}
 
 defineExpose({
   dataTable

@@ -61,78 +61,10 @@
         animated
       >
         <q-tab-panel name="invoice">
-          <data-grid
-            ref="gridI1"
-            dataSource="sls/invoice/getGridData"
-            :grid-store="invoiceStore"
-            separator="horizontal"
-            flat
-            multiSelect
-            numbered
-            bordered
-            square_
-            grid_
-            dense
-            wrapCells
-            expandable
-            @active-row-changed="rowChanged"
-            @selectedRows-changed="selectedRowsChanged"
-          >
-            <template #filter_statusTitle="{ col }">
-              <q-select
-                clearable
-                dense
-                outlined
-                emit-value
-                v-model="col.value"
-                :options="statusOptions"
-                @update:model-value="gridI1?.reloadData"
-              />
-            </template>
-            <template #cell_amount="{ item }">
-              <span>{{ item.amount.toLocaleString() }}</span>
-            </template>
-            <template #cell_statusTitle="{ item }">
-              <q-badge>{{ item.statusTitle }}</q-badge>
-            </template>
-            <template #detail="{ item }">
-              <div>
-                <h4>{{ item.no }}</h4>
-                <pre>{{ item }}</pre>
-              </div>
-            </template>
-
-            <template #footer-subtotal="{ selectedRows }">
-              <td
-                colspan="6"
-                class="text-right"
-              >
-                انتخاب شده
-              </td>
-              <td><b>{{ getSubtotal(selectedRows, "amount").toLocaleString() }}</b></td>
-              <td>
-                <b>{{ getSubtotal(selectedRows, "discountAmount").toLocaleString() }}</b>
-              </td>
-              <td colspan="100%"></td>
-            </template>
-
-            <template #footer-total="{ summary }">
-              <td
-                colspan="6"
-                class="text-right"
-              >
-                جمع کل
-              </td>
-              <td><b>{{ summary?.Amount.toLocaleString() }}</b></td>
-              <td><b>{{ summary?.DiscountAmount.toLocaleString() }}</b></td>
-              <td colspan="100%">
-              </td>
-            </template>
-          </data-grid>
+          <invoice ref="invoiceTable" />
         </q-tab-panel>
 
         <q-tab-panel name="canceled">
-          <h4>v2</h4>
           <grid-v2 />
         </q-tab-panel>
       </q-tab-panels>
@@ -159,29 +91,17 @@
 
 <script setup>
 import { computed, ref } from "vue"
-import { statusOptions } from "src/constants"
 import { useInvoice } from "../_composables/useInvoice"
-import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import Invoice from "./_InvoiceDataTable.vue"
 import AdvancedSearch from "./_AdvancedSearch.vue"
-import gridV2 from "./IndexViewV2.vue"
+import GridV2 from "./IndexViewV2.vue"
 
 const invoiceStore = useInvoice()
+const invoiceTable = ref(null)
 
-const gridI1 = ref(null)
 const tab = ref('invoice')
 
-function rowChanged(row) {
-  //alert('row changed')
-}
-
-function selectedRowsChanged(selectedRows) {
-  //console.log(selectedRows)
-  //alert('selectedRows changed')
-}
-
-function getSubtotal(selectedRows, fieldName) {
-  return selectedRows.reduce((sum, item) => { return sum + item[fieldName] }, 0)
-}
+const gridI1 = computed(() => invoiceTable.value?.dataTable)
 
 async function applySearch(model) {
   await gridI1?.value.reloadData()

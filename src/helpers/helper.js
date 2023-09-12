@@ -7,4 +7,7 @@ export const helper = {
     })
     return list
   },
+  getSubtotal(selectedRows, fieldName) {
+    return selectedRows.reduce((sum, item) => { return sum + item[fieldName] }, 0)
+  }
 }
