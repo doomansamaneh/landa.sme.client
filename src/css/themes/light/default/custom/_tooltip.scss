@@ -1,7 +1,7 @@
 @mixin tooltip-light{
 
   .custom-tooltip {
-    background-color: lighten($black, 50);
+    background-color: $primary;
   }
 
 }

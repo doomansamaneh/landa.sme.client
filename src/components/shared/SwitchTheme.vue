@@ -1,43 +1,53 @@
 <template>
-  <div class="flex justify-between items-center q-px-xs">
+  <div class="flex justify-between items-center">
+   <div class="">
     <q-toggle
       color="primary"
       v-model="darkMode"
       unchecked-icon="light_mode"
       checked-icon="dark_mode"
     />
+   </div>
     <div class="q-gutter-x-xs">
       <q-icon
+        v-for="(theme, themeName) in themes"
+        :key="themeName"
         name="circle"
         size="xs"
-        color="blue-5"
+        :style="{ color: getPrimaryColor(themeName) }"
         class="cursor-pointer"
-        icon="format_paint"
-        @click="selectTheme('blue')"
-      />
-      <q-icon
-        name="circle"
-        size="xs"
-        color="purple"
-        class="cursor-pointer"
-        @click="selectTheme('purple')"
-      />
-      <q-icon
-        name="circle"
-        size="xs"
-        color="orange"
-        class="cursor-pointer"
-        @click="selectTheme('orange')"
+        @click="selectTheme(themeName)"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from "vue"
+import { ref, onMounted, watch, computed } from "vue"
 import { useQuasar } from "quasar"
 
 const $q = useQuasar()
+
+const themes = {
+  seyedi: {
+    primary: "#00b200",
+  },
+  orange: {
+    primary: "#ff6600",
+  },
+  purple: {
+    primary: "#c729df",
+  },
+  blue: {
+    primary: "#00aeff",
+  },
+  golden: {
+    primary: "#ffcc00",
+  },
+  jigari: {
+    primary: "#dc143c",
+  }
+}
 
 const selectedTheme = ref("")
 const darkMode = ref(false)
@@ -77,4 +87,7 @@ onMounted(() => {
   setDigits()
 })
 
+const getPrimaryColor = (themeName) => {
+  return themes[themeName].primary
+}
 </script>
