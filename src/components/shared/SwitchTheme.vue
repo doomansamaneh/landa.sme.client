@@ -1,14 +1,14 @@
 <template>
   <div class="flex justify-between items-center">
-   <div class="">
-    <q-toggle
-      color="primary"
-      v-model="darkMode"
-      unchecked-icon="light_mode"
-      checked-icon="dark_mode"
-    />
-   </div>
-    <div class="q-gutter-x-xs">
+    <div class="">
+      <q-toggle
+        color="primary"
+        v-model="darkMode"
+        unchecked-icon="light_mode"
+        checked-icon="dark_mode"
+      />
+    </div>
+    <div class="row items-center q-gutter-x-xs">
       <q-icon
         v-for="(theme, themeName) in themes"
         :key="themeName"
@@ -17,7 +17,9 @@
         :style="{ color: getPrimaryColor(themeName) }"
         class="cursor-pointer"
         @click="selectTheme(themeName)"
-      />
+      >
+        <q-tooltip>{{ themeName }}</q-tooltip>
+      </q-icon>
     </div>
   </div>
 </template>
@@ -91,3 +93,4 @@ const getPrimaryColor = (themeName) => {
   return themes[themeName].primary
 }
 </script>
+

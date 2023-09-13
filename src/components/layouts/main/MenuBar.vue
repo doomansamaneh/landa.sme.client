@@ -2,7 +2,7 @@
   <q-drawer
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
     side="left"
-    :width="305"
+    :width="263"
     :model-value="drawer"
     :breakpoint="500"
     bordered
@@ -14,7 +14,6 @@
         v-model="searchText"
         placeholder="جستجو در منو"
         dense
-        clearable
         rounded
         class="text-caption"
       >
@@ -22,6 +21,16 @@
           <q-icon
             name="o_search"
             color="primary"
+          />
+        </template>
+        <template v-slot:append>
+          <q-icon
+            name="clear"
+            class="cursor-pointer"
+            size="16px"
+            color="primary"
+            @click="clearSearch"
+            v-if="!isSearchEmpty"
           />
         </template>
       </q-input>
@@ -34,11 +43,11 @@
         <q-item class="flex items-center cursor-pointer">
           <q-icon
             name="o_dashboard"
-            class="settings q-mr-md"
+            class="settings q-mr-sm"
             color="primary"
-            size="sm"
+            size="xs"
           ></q-icon>
-          <span class="">{{ $t("main-menu-items.dashboard") }}</span>
+          <span class="text-sm">{{ $t("main-menu-items.dashboard") }}</span>
         </q-item>
       </div>
       <div
@@ -50,36 +59,37 @@
           group="menu"
           :label="parentItem.title"
           :icon="`o_${parentItem.icon}`"
+          class="text-sm"
         >
           <q-item
             v-for="subItem in parentItem.subItems"
             :key="subItem.name"
             :to="subItem.url"
             clickable
-            class="q-mx-md q-my-sm"
+            class="q-mx-md"
           >
             <q-item-section
               avatar
               class="item-section"
             >
-              <q-icon :name="`o_${subItem.icon}`" />
+              <q-icon :name="`o_${subItem.icon}`" size="xs" />
             </q-item-section>
             <q-item-section>
-              {{ subItem.title }}
+              <span class="text-caption"> {{ subItem.title }} </span>
             </q-item-section>
           </q-item>
         </q-expansion-item>
       </div>
       <q-separator inset />
       <div class="settings">
-        <q-item class="flex items-center q-mb-xs q-mt-sm cursor-pointer">
+        <q-item class="flex items-center q-mb-md q-mt-sm cursor-pointer">
           <q-icon
             name="o_settings"
-            class="settings q-mr-md"
+            class="settings q-mr-sm"
             color="orange"
-            size="sm"
+            size="xs"
           ></q-icon>
-          <span class="">{{ $t("main-menu-items.settings") }}</span>
+          <span class="text-sm">{{ $t("main-menu-items.settings") }}</span>
         </q-item>
       </div>
     </q-list>
@@ -159,7 +169,29 @@ const gotoDashboard = () => {
   alert("you are going to dashbord...")
 }
 
+function clearSearch() {
+  searchText.value = ""
+}
+
+const isSearchEmpty = computed(() =>
+  !searchText.value || searchText.value.trim().length === 0
+)
+
 onMounted(() => {
   getMenuItems()
 })
 </script>
+
+<style lang="scss">
+.text-sm {
+  font-size: 13px;
+}
+
+.q-item__section--side {
+
+  padding-right: 8px;
+   .q-icon {
+    font-size: 18px;
+   }
+}
+</style>
