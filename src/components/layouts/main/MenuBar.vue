@@ -14,6 +14,7 @@
         v-model="searchText"
         placeholder="جستجو در منو"
         dense
+        clearable
         rounded
         class="text-caption"
       >
