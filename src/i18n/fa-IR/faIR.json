@@ -1,19 +1,14 @@
 {
-  "drawer": {
-    "items": {
+  "main-menu-items": {
       "dashboard":"پیشخوان",
       "Sales And Purchase": "بازرگانی، خرید و فروش",
       "Receipt and Payement": "دریافت و پرداخت",
       "Accounting": "حسابداری",
-      "Payroll": "حقوق و دستمزد",
       "Menu_Inv": "انبارداری",
-      "Organization": "سازمان، مخاطب، کاربر",
       "Base Info": "اطلاعات پایه‌ای",
       "Security": "امنیت",
       "Menu_Rpt": "گزارشها",
-      "settings":"پیکربندی سامانه"
-    },
-    "sub-items": {
+      "settings":"پیکربندی سامانه",
       "Proformas": "پیش‌فاکتور‌ها",
       "Invoices": "فاکتورهای فروش",
       "Purchase": "فاکتورهای خرید",
@@ -73,7 +68,6 @@
       "Purchase Review": "گزارش مرور خرید",
       "Trial Balance": "گزارش موخودی کالا",
       "Report_Check": "گزارش چک"
-    }
   },
   "pages": {
     "business": "کسب و کار‌های من",

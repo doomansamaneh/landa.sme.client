@@ -18,12 +18,18 @@
         class="text-caption"
       >
         <template v-slot:prepend>
-          <q-icon name="o_search" color="primary" />
+          <q-icon
+            name="o_search"
+            color="primary"
+          />
         </template>
       </q-input>
     </div>
     <q-list class="menu-list q-ml-sm q-mr-xs">
-      <div class="settings" @click="gotoDashboard">
+      <div
+        class="settings"
+        @click="gotoDashboard"
+      >
         <q-item class="flex items-center cursor-pointer">
           <q-icon
             name="o_dashboard"
@@ -31,14 +37,17 @@
             color="primary"
             size="sm"
           ></q-icon>
-          <span class="">{{ $t("drawer.items.dashboard") }}</span>
+          <span class="">{{ $t("main-menu-items.dashboard") }}</span>
         </q-item>
       </div>
-      <div v-for="parentItem in drawerMenuItems" :key="parentItem.name">
+      <div
+        v-for="parentItem in drawerMenuItems"
+        :key="parentItem.name"
+      >
         <q-expansion-item
           ref="expansion"
           group="menu"
-          :label="$t(`drawer.items.${parentItem.title}`)"
+          :label="parentItem.title"
           :icon="`o_${parentItem.icon}`"
         >
           <q-item
@@ -48,12 +57,15 @@
             clickable
             class="q-mx-md q-my-sm"
           >
-            <q-item-section avatar class="item-section">
+            <q-item-section
+              avatar
+              class="item-section"
+            >
               <q-icon :name="`o_${subItem.icon}`" />
             </q-item-section>
-            <q-item-section>{{
-              $t(`drawer.sub-items.${subItem.title}`)
-            }}</q-item-section>
+            <q-item-section>
+              {{ subItem.title }}
+            </q-item-section>
           </q-item>
         </q-expansion-item>
       </div>
@@ -66,7 +78,7 @@
             color="orange"
             size="sm"
           ></q-icon>
-          <span class="">{{ $t("drawer.items.settings") }}</span>
+          <span class="">{{ $t("main-menu-items.settings") }}</span>
         </q-item>
       </div>
     </q-list>
@@ -77,11 +89,15 @@
 import { ref, onMounted, computed } from "vue"
 import { fetchWrapper } from "src/helpers"
 import { useRouter } from "vue-router"
+import { useI18n } from "vue-i18n"
+
+const { t } = useI18n()
 
 const router = useRouter()
 const props = defineProps({
   drawer: Boolean
 })
+
 const items = ref([])
 const searchText = ref("")
 
@@ -91,10 +107,13 @@ async function getMenuItems() {
     .then((response) => {
       handleMenuItemsData(response.data.data)
     })
-    .finally(() => {})
+    .finally(() => { })
 }
 
 function handleMenuItemsData(data) {
+  data.forEach((item) => {
+    item.title = t(`main-menu-items.${item.title}`)
+  })
   items.value = data
 }
 
@@ -115,7 +134,7 @@ const drawerMenuItems = computed(() => {
     return menuItemsIncludingSubItems
       .map((item) => {
         const menuItemsWithSubItems = item.subItems.filter((subItem) =>
-          subItem.title.toLowerCase().includes(searchLower)
+          subItem.title.toLowerCase().includes(searchLower) || subItem.name.toLowerCase().includes(searchLower)
         )
 
         if (
