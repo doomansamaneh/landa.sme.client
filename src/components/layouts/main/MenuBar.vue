@@ -66,7 +66,7 @@
             :key="subItem.name"
             :to="subItem.url"
             clickable
-            class="q-mx-md"
+            class="q-mx-md q-my-xs"
           >
             <q-item-section
               avatar
