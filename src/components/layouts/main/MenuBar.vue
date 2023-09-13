@@ -12,7 +12,7 @@
         color="grey-5"
         outlined
         v-model="searchText"
-        placeholder="جستجو در منو"
+        :placeholder="$t('main-menu-items.search')"
         dense
         rounded
         class="text-caption"
