@@ -186,6 +186,8 @@ export function useDataTable(dataSource
     activeRow: state.value.activeRow,
     summaryData: state.value.summaryData,
 
+    loading,
+    showLoader,
     selectedRows,
     showPagebar,
     rowIndex,
