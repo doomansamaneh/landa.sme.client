@@ -18,7 +18,7 @@
         class="cursor-pointer"
         @click="selectTheme(themeName)"
       >
-        <q-tooltip>{{ themeName }}</q-tooltip>
+        <q-tooltip :style="{ background: getPrimaryColor(themeName) }">{{ themeName }}</q-tooltip>
       </q-icon>
     </div>
   </div>
@@ -44,7 +44,7 @@ const themes = {
     primary: "#00aeff",
   },
   golden: {
-    primary: "#ffcc00",
+    primary: "#c89002",
   },
   jigari: {
     primary: "#dc143c",
