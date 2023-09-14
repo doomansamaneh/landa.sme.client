@@ -1,7 +1,7 @@
 <template>
   <q-layout
     view="hHh Lpr lff"
-    class="layout"
+    class="main-layout"
   >
     <q-page-container>
       <main-header @toggle-drawer="toggleDrawer" />
@@ -55,10 +55,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.layout {
-  background-color: #f1f3f4;
-  border-bottom: 1px solid #2d2d2d2d;
-}
+// .layout {
+//   background-color: #f1f3f4;
+//   border-bottom: 1px solid #2d2d2d2d;
+// }
 
 .q-menu {
   z-index: 9999;

@@ -37,11 +37,11 @@
 @import "./themes/dark/default/app.scss";
 //////////////////////////////////////////
 
-body.body--light {
+.body--light {
   @include theme-light;
 }
 
-body.body--dark {
+.body--dark {
   @include theme-dark;
 }
 
@@ -53,11 +53,11 @@ body.body--dark {
   $dark-page: map-get($theme-colors, dark-page);
   $hover-dark: map-get($theme-colors, secondary);
 
-  body.body--light.theme--#{$theme-name} {
+  .body--light.theme--#{$theme-name} {
     @include theme-light;
   }
 
-  body.body--dark.theme--#{$theme-name} {
+  .body--dark.theme--#{$theme-name} {
     @include theme-dark;
   }
 }

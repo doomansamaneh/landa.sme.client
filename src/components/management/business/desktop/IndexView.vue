@@ -14,7 +14,10 @@
           <q-item-label class="text-h6">
             {{ $t("pages.business") }}
           </q-item-label>
-          <q-item-label class="dark-2 q-pt-xs_ text-subtitle2" caption>
+          <q-item-label
+            class="dark-2 q-pt-xs_ text-subtitle2"
+            caption
+          >
             {{ $t("page.card-message") }}
           </q-item-label>
         </q-item-section>
@@ -27,7 +30,10 @@
               @click="reloadData"
               clickable
             >
-              <q-tooltip class="custom-tooltip" :delay="600">
+              <q-tooltip
+                class="custom-tooltip"
+                :delay="600"
+              >
                 {{ $t("page.buttons.reload-data") }}
               </q-tooltip>
             </q-icon>
@@ -39,7 +45,10 @@
               name="o_help_outline"
               @click="showGuideDialog = true"
             >
-              <q-tooltip class="custom-tooltip" :delay="600">
+              <q-tooltip
+                class="custom-tooltip"
+                :delay="600"
+              >
                 {{ $t("page.buttons.guide-tooltip") }}
               </q-tooltip>
             </q-icon>
@@ -102,14 +111,20 @@
             v-if="item.expired"
           />
           {{ item.toDateString }}
-          <q-tooltip class="custom-tooltip" :delay="600">{{
+          <q-tooltip
+            class="custom-tooltip"
+            :delay="600"
+          >{{
             $t("page.buttons.expire-date-tooltip")
           }}</q-tooltip>
         </label>
       </div>
 
       <div class="col-3 flex justify-center items-center q-ml-md">
-        <renew-subscribtion class="bg-green text-white" :business="item" />
+        <renew-subscribtion
+          class="bg-green text-white"
+          :business="item"
+        />
       </div>
 
       <div class="more-options col-1 q-pl-md">
@@ -122,27 +137,53 @@
           size="md"
           dense
         >
-          <q-tooltip class="custom-tooltip" :delay="600" :offset="[-60, -70]">{{
+          <q-tooltip
+            class="custom-tooltip"
+            :delay="600"
+            :offset="[-60, -70]"
+          >{{
             $t("page.buttons.more-tooltip")
           }}</q-tooltip>
         </q-btn>
-        <q-menu transition-show="jump-down" transition-hide="jump-up">
+        <q-menu
+          transition-show="jump-down"
+          transition-hide="jump-up"
+        >
           <q-list padding>
-            <q-item clickable v-close-popup @click="gotoBusiness(item)">
+            <q-item
+              clickable
+              v-close-popup
+              @click="gotoBusiness(item)"
+            >
               <q-item-section>
                 <div class="flex items-center q-gutter-x-sm">
-                  <q-avatar icon="login" size="sm" class="dark-1" />
+                  <q-avatar
+                    icon="login"
+                    size="sm"
+                    class="dark-1"
+                  />
                   <div class="text-caption_">
                     {{ $t("page.buttons.more-button.enter-business") }}
                   </div>
                 </div>
               </q-item-section>
             </q-item>
-            <div class="isNotOwner" v-if="item.isOwner">
-              <q-item clickable v-close-popup @click="showInviteUser">
+            <div
+              class="isNotOwner"
+              v-if="item.isOwner"
+            >
+              <q-item
+                clickable
+                v-close-popup
+                @click="showInviteUser"
+              >
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar icon="o_person_add" size="sm" class="dark-1" />
+                    <q-avatar
+                      icon="o_person_add"
+                      size="sm"
+                      class="dark-1"
+                    />
                     <div class="text-caption_">
                       {{ $t("page.buttons.more-button.invite-user") }}
                     </div>
@@ -150,10 +191,18 @@
                 </q-item-section>
               </q-item>
               <q-separator spaced />
-              <q-item clickable v-close-popup @click="showDeleteBusiness">
+              <q-item
+                clickable
+                v-close-popup
+                @click="showDeleteBusiness"
+              >
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar icon="o_delete" size="sm" class="dark-1" />
+                    <q-avatar
+                      icon="o_delete"
+                      size="sm"
+                      class="dark-1"
+                    />
                     <div class="text-caption_">
                       {{ $t("page.buttons.more-button.delete") }}
                     </div>
@@ -161,11 +210,18 @@
                 </q-item-section>
               </q-item>
               <q-separator spaced />
-              <q-item clickable v-close-popup>
+              <q-item
+                clickable
+                v-close-popup
+              >
                 <q-item-section>
                   <router-link :to="getPaymentLogUrl(item)">
                     <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar icon="credit_card" size="sm" class="dark-1" />
+                      <q-avatar
+                        icon="credit_card"
+                        size="sm"
+                        class="dark-1"
+                      />
                       <div class="text-caption_">
                         {{ $t("page.buttons.more-button.payment-history") }}
                       </div>

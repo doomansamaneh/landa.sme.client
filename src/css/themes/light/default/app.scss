@@ -1,6 +1,6 @@
 @mixin theme-light {
   --q-primary: #{$primary};
-  background-color: $primary;
+  background-color: #f1f1f1;
   @include q-avatar-light();
   @include q-breadcrumbs-light();
   @include q-card-light();
