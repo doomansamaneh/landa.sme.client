@@ -21,12 +21,6 @@
     border: 1px solid $primary;
   }
 
-  //Grid
-  .selected {
-    background-color: #{$black}10;
-    border-radius: 4px;
-  }
-
   .grid-total {
     background-color: $primary;
     color: $white;
@@ -36,10 +30,19 @@
     background-color: #{$accent}50;
   }
 
-  //dataView
-  .selected-row {
+  .row-active {
+    //border-radius: 4px;
     background-color: #{$primary}20 !important;
-    outline: 1px solid $primary !important;
     box-shadow: 0 0 4px 0 #{$primary}20 !important;
+    outline: 1px solid $primary !important;
+    td {
+      // border-top: 1px solid $primary;
+      // border-bottom: 1px solid $primary;
+      border-color: $primary;
+    }
+  }
+
+  .row-selected {
+    background-color: #{$primary}10;
   }
 }

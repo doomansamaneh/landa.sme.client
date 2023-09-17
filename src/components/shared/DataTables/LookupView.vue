@@ -66,7 +66,7 @@
               <tr
                 v-for="(item, index) in rows"
                 :key="item.id"
-                :class="{ 'selected-row': index === selectedRowIndex }"
+                :class="{ 'row-active': index === selectedRowIndex }"
                 @click="onRowClicked(item, index)"
                 class="cursor-pointer"
               >

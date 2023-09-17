@@ -4,9 +4,8 @@
     ref="paymentGrid"
     :dataSource="paymentDataSource"
     :columns="columns"
-    orderByField="fromDate"
+    sort-column="fromDate"
     searchField="amount"
-    storeName="payment"
   >
     <template #header>
       <q-item class="card-header q-px-lg q-py-lg">

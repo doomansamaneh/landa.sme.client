@@ -1,23 +1,5 @@
 @mixin q-table-dark {
-  .row-active {
-    background-color: #{$dark}40;
-  }
-
-  .q-table {
-    .row-active {
-      background-color: #{$dark}40 !important;
-      td {
-        border-top: 1px solid $primary;
-        border-bottom: 1px solid $primary;
-      }
-    }
-  }
-
   .q-table__container {
     background-color: $dark-page;
-  }
-
-  .row-selected {
-    background-color: lighten($dark-page, 1);
   }
 }

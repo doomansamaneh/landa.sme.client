@@ -2,8 +2,7 @@
   <data-view
     ref="businessDataView"
     dataSource="business/getBusinessGridData"
-    sortColumn="title"
-    searchField="title"
+    :grid-store="businessStore"
     class="q-my-xl"
   >
     <template #header>
@@ -84,7 +83,7 @@
             class="custom-tooltip text-body2"
             transition-show="scale"
             transition-hide="scale"
-            delay="600"
+            :delay="600"
             anchor="top left"
             self="top right"
             :offset="[-5, -2]"
@@ -247,28 +246,19 @@ import DesktopViewGuide from "./GuideView.vue"
 import InviteUserDialog from "src/components/users/InviteUserDialog.vue"
 import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
 import { fetchWrapper } from "src/helpers"
+import { useBusiness } from "src/components/management/_composables/useBusiness"
+import { useResetStores } from "src/composables/useResetStores"
+
+const businessStore = useBusiness()
+const resetStore = useResetStores()
 
 const router = useRouter()
 const $q = useQuasar()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
 
-const columns = ref([
-  {
-    name: "name",
-    field: "name",
-  },
-  {
-    name: "title",
-    field: "title",
-  },
-  {
-    name: "planTitle",
-    field: "planTitle",
-  }
-])
-
 async function gotoBusiness(item) {
+  resetStore.reset()
   await fetchWrapper
     .post(`business/gotoBusiness/${item.id}`)
     .then((response) => {

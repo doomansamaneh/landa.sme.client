@@ -125,8 +125,8 @@ export function useDataTable(dataSource
 
   function setPayload() {
     pagination.value.filterExpression = []
-    let payLoadCols = ""
     if (columns.value) {
+      let payLoadCols = ""
       columns.value.forEach((col) => {
         if (payLoadCols === "") payLoadCols = col.name
         else payLoadCols = `${payLoadCols},${col.name}`
@@ -138,9 +138,18 @@ export function useDataTable(dataSource
           })
         }
       })
+
+      if (pagination.value.searchField && pagination.value.searchTerm) {
+        pagination.value.filterExpression.push({
+          fieldName: pagination.value.searchField,
+          operator: sqlOperator.like,
+          value: pagination.value.searchTerm
+        })
+      }
+
+      pagination.value.columns = payLoadCols
     }
-    else console.warn("columns are not defined")
-    pagination.value.columns = payLoadCols
+    else console.warn("[landa]: columns are not defined")
     if (state.value.searchModel != null)
       pagination.value.searchModel = JSON.stringify(state.value.searchModel.value)
   }

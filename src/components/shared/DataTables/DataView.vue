@@ -1,18 +1,18 @@
 <template>
-  <q-card class="card-desktop no-shadow">
+  <q-card
+    class="card-desktop"
+    flat
+  >
     <slot name="header"> </slot>
     <q-separator />
     <q-linear-progress
       class="progress"
       indeterminate
       size="xs"
-      v-if="loadingData"
+      v-if="tableStore.showLoader.value"
     />
 
-    <q-card-section
-      v-if="!showSearchbar"
-      class="q-pb-xs"
-    >
+    <q-card-section class="q-pb-xs">
       <slot name="search-bar">
         <div class="search-bar">
           <q-input
@@ -89,7 +89,8 @@ const props = defineProps({
   dataSource: String,
   sortColumn: String,
   searchField: String,
-  columns: Array
+  columns: Array,
+  gridStore: Object
 })
 
 const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
@@ -100,8 +101,10 @@ async function clearSearch() {
 }
 
 onMounted(() => {
-  tableStore.pagination.value.sortColumn = props.sortColumn
-  tableStore.pagination.value.sortColumn = props.sortColumn
+  if (!props.gridStore) {
+    tableStore.pagination.value.sortColumn = props.sortColumn
+    tableStore.pagination.value.searchField = props.searchField
+  }
   tableStore.loadData()
 })
 
