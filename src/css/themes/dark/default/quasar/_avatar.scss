@@ -11,4 +11,11 @@
   .business-isnotowner .q-avatar__content {
     background-color: lighten($dark, 5);
   }
+
+  .delete-avatar {
+    .q-avatar__content {
+      background-color: $negative !important;
+      color: $white;
+  }
+  }
 }

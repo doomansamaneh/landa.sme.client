@@ -158,9 +158,9 @@
                   <q-avatar
                     icon="login"
                     size="sm"
-                    class="dark-1"
+                    class=""
                   />
-                  <div class="text-caption_">
+                  <div class="">
                     {{ $t("page.buttons.more-button.enter-business") }}
                   </div>
                 </div>
@@ -180,12 +180,31 @@
                     <q-avatar
                       icon="o_person_add"
                       size="sm"
-                      class="dark-1"
+                      class=""
                     />
-                    <div class="text-caption_">
+                    <div class="">
                       {{ $t("page.buttons.more-button.invite-user") }}
                     </div>
                   </div>
+                </q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+              >
+                <q-item-section>
+                  <router-link :to="`/business/payments/${item.id}`">
+                    <div class="flex items-center q-gutter-x-sm">
+                      <q-avatar
+                        icon="credit_card"
+                        size="sm"
+                        class=""
+                      />
+                      <div class="">
+                        {{ $t("page.buttons.more-button.payment-history") }}
+                      </div>
+                    </div>
+                  </router-link>
                 </q-item-section>
               </q-item>
               <q-separator spaced />
@@ -199,34 +218,15 @@
                     <q-avatar
                       icon="o_delete"
                       size="sm"
-                      class="dark-1"
+                      class="delete-avatar"
                     />
-                    <div class="text-caption_">
+                    <div class="">
                       {{ $t("page.buttons.more-button.delete") }}
                     </div>
                   </div>
                 </q-item-section>
               </q-item>
-              <q-separator spaced />
-              <q-item
-                clickable
-                v-close-popup
-              >
-                <q-item-section>
-                  <router-link :to="`/business/payments/${item.id}`">
-                    <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar
-                        icon="credit_card"
-                        size="sm"
-                        class="dark-1"
-                      />
-                      <div class="text-caption_">
-                        {{ $t("page.buttons.more-button.payment-history") }}
-                      </div>
-                    </div>
-                  </router-link>
-                </q-item-section>
-              </q-item>
+              <!-- <q-separator spaced /> -->
             </div>
           </q-list>
         </q-menu>
@@ -287,7 +287,7 @@ function showDeleteBusiness() {
 }
 </script>
 
-<style>
+<style lang="scss">
 .business-name {
   max-width: 160px;
 }
