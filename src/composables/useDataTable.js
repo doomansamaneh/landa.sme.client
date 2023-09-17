@@ -11,6 +11,7 @@ export function useDataTable(dataSource
   const _state = {
     firstLoad: ref(false),
     rows: ref([]),
+    searchField: ref(""),
     allSelectedIds: ref([]),
     activeRow: ref(null),
     summaryData: ref(null),
@@ -21,6 +22,7 @@ export function useDataTable(dataSource
     currentPage: 1,
     pageSize: defaultPageSize,
     sortOrder: 1,
+    sortColumn: "",
     totalItems: 0,
     searchTerm: "",
     filterExpression: []
@@ -124,17 +126,20 @@ export function useDataTable(dataSource
   function setPayload() {
     pagination.value.filterExpression = []
     let payLoadCols = ""
-    columns.value.forEach((col) => {
-      if (payLoadCols === "") payLoadCols = col.name
-      else payLoadCols = `${payLoadCols},${col.name}`
-      if (col.value) {
-        pagination.value.filterExpression.push({
-          fieldName: col.name,
-          operator: col.operator ?? sqlOperator.like,
-          value: col.value
-        })
-      }
-    })
+    if (columns.value) {
+      columns.value.forEach((col) => {
+        if (payLoadCols === "") payLoadCols = col.name
+        else payLoadCols = `${payLoadCols},${col.name}`
+        if (col.value) {
+          pagination.value.filterExpression.push({
+            fieldName: col.name,
+            operator: col.operator ?? sqlOperator.like,
+            value: col.value
+          })
+        }
+      })
+    }
+    else console.warn("columns are not defined")
     pagination.value.columns = payLoadCols
     if (state.value.searchModel != null)
       pagination.value.searchModel = JSON.stringify(state.value.searchModel.value)
@@ -206,7 +211,6 @@ export function useDataTable(dataSource
     getSortableClass,
     getRowClass
   }
-
 }
 
 

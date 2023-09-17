@@ -2,10 +2,8 @@
   <data-view
     ref="businessDataView"
     dataSource="business/getBusinessGridData"
-    :columns="columns"
-    orderByField="title"
-    searchField="b.title"
-    storeName="business"
+    sortColumn="title"
+    searchField="title"
     class="q-my-xl"
   >
     <template #header>
@@ -216,7 +214,7 @@
                 v-close-popup
               >
                 <q-item-section>
-                  <router-link :to="getPaymentLogUrl(item)">
+                  <router-link :to="`/business/payments/${item.id}`">
                     <div class="flex items-center q-gutter-x-sm">
                       <q-avatar
                         icon="credit_card"
@@ -242,8 +240,6 @@
 import { ref, onMounted, computed } from "vue"
 import { useRouter } from "vue-router"
 import { useQuasar } from "quasar"
-import InviteUser from "src/components/users/InviteUser.vue"
-import DeleteBusiness from "src/components/management/business/DeleteBusiness.vue"
 import DataView from "src/components/shared/DataTables/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 import AddBusiness from "src/components/management/shared/AddBusinessLink.vue"
@@ -256,8 +252,6 @@ const router = useRouter()
 const $q = useQuasar()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
-const inviteUserPopup = ref(false)
-const DeleteBusienssPopup = ref(false)
 
 const columns = ref([
   {
@@ -286,10 +280,6 @@ async function gotoBusiness(item) {
     })
 }
 
-function getPaymentLogUrl(item) {
-  return `/business/payments/${item.id}`
-}
-
 async function reloadData() {
   businessDataView.value.reloadData()
 }
@@ -312,6 +302,7 @@ function showDeleteBusiness() {
   max-width: 160px;
 }
 
+/* //todo: add class for this kind of a */
 a {
   text-decoration: none;
   color: inherit;

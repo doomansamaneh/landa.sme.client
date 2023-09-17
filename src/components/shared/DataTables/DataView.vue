@@ -87,9 +87,8 @@ const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore
 
 const props = defineProps({
   dataSource: String,
-  orderByField: String,
+  sortColumn: String,
   searchField: String,
-  storeName: String,
   columns: Array
 })
 
@@ -101,8 +100,9 @@ async function clearSearch() {
 }
 
 onMounted(() => {
+  tableStore.pagination.value.sortColumn = props.sortColumn
+  tableStore.pagination.value.sortColumn = props.sortColumn
   tableStore.loadData()
-
 })
 
 async function reloadData() {
