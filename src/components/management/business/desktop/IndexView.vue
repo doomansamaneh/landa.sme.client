@@ -2,6 +2,7 @@
   <data-view
     ref="businessDataView"
     dataSource="business/getBusinessGridData"
+    :columns="columns"
     orderByField="title"
     searchField="b.title"
     storeName="business"
@@ -257,6 +258,21 @@ const businessDataView = ref(null)
 const showGuideDialog = ref(false)
 const inviteUserPopup = ref(false)
 const DeleteBusienssPopup = ref(false)
+
+const columns = ref([
+  {
+    name: "name",
+    field: "name",
+  },
+  {
+    name: "title",
+    field: "title",
+  },
+  {
+    name: "planTitle",
+    field: "planTitle",
+  }
+])
 
 async function gotoBusiness(item) {
   await fetchWrapper

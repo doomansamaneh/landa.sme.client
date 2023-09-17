@@ -1,8 +1,12 @@
 @mixin q-table-dark {
+  .row-active {
+    background-color: #{$dark}40;
+  }
+
   .q-table {
     .row-active {
       background-color: #{$dark}40 !important;
-      td{
+      td {
         border-top: 1px solid $primary;
         border-bottom: 1px solid $primary;
       }
@@ -13,7 +17,7 @@
     background-color: $dark-page;
   }
 
-  .row-selected{
+  .row-selected {
     background-color: lighten($dark-page, 1);
   }
 }

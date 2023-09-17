@@ -308,12 +308,13 @@ defineExpose({
 
 <style lang="scss" scoped>
 .expand-open {
-  transform: rotate(90deg);
-  transition-duration: 700ms;
+  transform: rotate(-90deg);
+  transition-duration: 300ms;
 }
 
 .expand-close {
   transform: rotate(0);
-  transition-duration: 700ms;
+  transition-duration: 300ms;
 }
+
 </style>

@@ -3,6 +3,7 @@
     class="card-desktop gt-xs no-shadow q-my-xl"
     ref="paymentGrid"
     :dataSource="paymentDataSource"
+    :columns="columns"
     orderByField="fromDate"
     searchField="amount"
     storeName="payment"
@@ -154,6 +155,25 @@ const route = useRoute()
 
 const business = ref(null)
 const paymentGrid = ref(null)
+
+const columns = ref([
+  {
+    name: "amount",
+    field: "amount",
+  },
+  {
+    name: "businessTitle",
+    field: "businessTitle",
+  },
+  {
+    name: "fromDate",
+    field: "fromDate",
+  },
+  {
+    name: "toDate",
+    field: "toDate",
+  }
+])
 
 //todo: remove this code from here to somewhere more general
 const formatCurrency = (value) => {

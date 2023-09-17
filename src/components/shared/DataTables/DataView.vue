@@ -19,9 +19,9 @@
             outlined
             dense
             class="text-caption"
-            v-model="searchTerm"
+            v-model="tableStore.pagination.value.searchTerm"
             :placeholder="$t('page.card-searchbar')"
-            @keydown.enter="reloadData"
+            @keydown.enter="tableStore?.reloadData"
           >
             <template v-slot:prepend>
               <q-icon
@@ -47,139 +47,81 @@
       </slot>
     </q-card-section>
 
-    <q-card-section v-if="pagedRows.length > 0">
+    <q-card-section v-if="tableStore.rows.value.length > 0">
       <div
         class="row justify-between items-center q-py-md q-px-md cursor-pointer"
-        v-for="(item, index) in pagedRows"
-        :key="index"
-        @click="selectCard(index)"
-        :class="{ selected: isSelected(index) }"
+        v-for="(row) in tableStore.rows.value"
+        :key="row.id"
+        @click="setActiveRow(row)"
+        :class="tableStore.getRowClass(row)"
       >
         <slot
           name="item"
-          :item="item"
+          :item="row"
         ></slot>
       </div>
     </q-card-section>
 
-    <q-card-section v-if="pagedRows.length === 0 && !loadingData">
+    <q-card-section v-if="!tableStore.loading.value && tableStore.rows.value.length == 0">
       <no-data-found />
     </q-card-section>
 
     <page-bar
-      v-if="showPagebar"
+      v-if="tableStore.showPagebar.value"
       class="q-pa-md dark-1"
-      :pagination="pagination"
-      @page-changed="loadData"
+      :pagination="tableStore.pagination.value"
+      @page-changed="tableStore.reloadData"
     />
   </q-card>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from "vue"
-import { fetchWrapper } from "src/helpers"
-import { usePaginationStore } from "src/stores/page-store.js"
+// import { fetchWrapper } from "src/helpers"
+// import { usePaginationStore } from "src/stores/page-store.js"
 import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
+import { useDataTable } from "src/composables/useDataTable"
+
+const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const props = defineProps({
-  title: String,
   dataSource: String,
-  color: String,
   orderByField: String,
   searchField: String,
-  storeName: String
+  storeName: String,
+  columns: Array
 })
 
-const pageBar = ref(null)
-
-const paginationStore = usePaginationStore(props.storeName)
-
-const rows = ref([])
-const loadingData = ref(false)
-const searchTerm = ref("")
-const defaultPageSize = 5
-const selectedCard = ref(false)
-
-const pagination = ref({
-  currentPage: paginationStore.currentPage,
-  pageSize: defaultPageSize,
-  sortColumn: props.orderByField,
-  sortOrder: 1,
-  totalItems: 0,
-  searchTerm: "",
-  filterExpression: [],
-})
+const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 
 async function clearSearch() {
-  searchTerm.value = ""
+  tableStore.pagination.value.searchTerm = ""
   await reloadData()
 }
 
 onMounted(() => {
-  reloadData()
+  tableStore.loadData()
+
 })
 
 async function reloadData() {
-  await loadData()
-}
-
-async function loadData() {
-  loadingData.value = true
-  selectedCard.value = false
-
-  setFilterExpression()
-
-  await fetchWrapper
-    .post(props.dataSource, pagination.value)
-    .then((response) => {
-      handleResponse(response.data.data)
-    })
-    .finally(() => {
-      loadingData.value = false
-    })
-}
-
-function setFilterExpression() {
-  let filterExpression = []
-
-  if (searchTerm.value) {
-    filterExpression.push({
-      fieldName: props.searchField,
-      operator: 3,
-      value: searchTerm.value
-    })
-  }
-  pagination.value.filterExpression = filterExpression
-}
-
-function handleResponse(pagedData) {
-  rows.value = pagedData.items
-  pagination.value.totalItems = pagedData.page.totalItems
-  paginationStore.setCurrentPage(pagination.value.currentPage)
-}
-
-function selectCard(index) {
-  selectedCard.value = index
-}
-
-function isSelected(index) {
-  return selectedCard.value === index
+  await tableStore.reloadData()
 }
 
 const isSearchEmpty = computed(() =>
-  !searchTerm.value || searchTerm.value.trim().length === 0
+  !tableStore.pagination.value.searchTerm || tableStore.pagination.value.searchTerm.trim().length === 0
 )
 
-const pagedRows = computed(() => {
-  return rows.value
-})
-
-const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
+function setActiveRow(row) {
+  tableStore.setActiveRow(row)
+  emit("active-row-changed", row)
+}
 
 defineExpose({
   reloadData
 })
+
 </script>
 
 <style lang="scss" scoped>

@@ -22,6 +22,7 @@ export function useDataTable(dataSource
     pageSize: defaultPageSize,
     sortOrder: 1,
     totalItems: 0,
+    searchTerm: "",
     filterExpression: []
   })
 
