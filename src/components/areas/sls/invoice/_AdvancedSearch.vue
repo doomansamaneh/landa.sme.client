@@ -1,6 +1,6 @@
 <template>
-  <q-card class="q-pa-md">
-    <q-card-section class="q-gutter-lg">
+  <q-card class="q-pa-md q-mb-xl no-shadow">
+    <q-card-section class="q-gutter-y-lg">
       <q-option-group
         class="row"
         type="radio"
@@ -57,24 +57,65 @@
         @click="clearSearch"
       />
     </q-card-actions> -->
+    <q-card-actions
+    align="right"
+  >
+    <q-btn
+      class="bg-primary text-white"
+      rounded
+      padding="8px 16px"
+      unelevated
+      @click="applySearch"
+      size="12px"
+    ><q-icon
+        name="search"
+        class="q-mr-sm"
+      />جستوجو</q-btn>
+    <q-btn
+      class=""
+      rounded
+      unelevated
+      padding="8px 16px"
+      flat
+      @click="clearSearch"
+      size="12px"
+    ><q-icon
+        name="clear"
+        class="q-mr-sm"
+      />پاکسازی جستوجو</q-btn>
+  </q-card-actions>
   </q-card>
 
 
 
-  <q-card-actions align="right">
+  <!-- <q-card-actions
+    align="right"
+    class="q-my-md"
+  >
     <q-btn
-      color="primary"
-      label="Search"
-      no-caps
+      class="bg-primary text-white"
+      rounded
+      padding="8px 16px"
+      unelevated
       @click="applySearch"
-    />
+      size="12px"
+    ><q-icon
+        name="search"
+        class="q-mr-sm"
+      />جستوجو</q-btn>
     <q-btn
+      class=""
+      rounded
+      unelevated
+      padding="8px 16px"
       flat
-      label="Clear Search"
-      no-caps
       @click="clearSearch"
-    />
-  </q-card-actions>
+      size="12px"
+    ><q-icon
+        name="clear"
+        class="q-mr-sm"
+      />پاکسازی جستوجو</q-btn>
+  </q-card-actions> -->
 </template>
 
 <script setup>

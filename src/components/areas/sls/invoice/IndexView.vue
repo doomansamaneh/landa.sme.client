@@ -1,17 +1,65 @@
 <template>
-  <div style="margin: 32px;">
-    <span class="text-h5">فاکتورها</span>
+  <div class="">
+    <q-page-sticky
+      class="q-py-md z-top bg-main q-px-xl q-py-lg"
+      position="top"
+      expand
+    >
+      <q-toolbar>
+        <q-toobar-title>
+          <span class="text-h5 q-mr-xl">فاکتورها</span>
+        </q-toobar-title>
+        <div class="q-gutter-x-md">
+          <q-btn
+          class="btn q-py-sm q-px-md bg-primary text-white"
+          size="12px"
+          rounded
+          unelevated
+        ><q-icon
+            name="o_add"
+            class="q-mr-sm"
+          />ایجاد</q-btn>
+        <q-btn
+          class="btn q-py-sm q-px-md"
+          outline
+          rounded
+          size="12px"
+        ><q-icon
+            name="o_edit"
+            class="q-mr-sm"
+          />ویرایش</q-btn>
+        <q-btn
+          class="btn q-py-sm q-px-md"
+          outline
+          rounded
+          size="12px"
+        ><q-icon
+            name="o_delete"
+            class="q-mr-sm"
+          />حذف</q-btn>
+        <q-btn
+          class="btn q-py-sm q-px-md"
+          outline
+          size="12px"
+          rounded
+        ><q-icon
+            name="more_horiz"
+            class="q-mr-sm"
+          />بیشتر</q-btn>
+        </div>
+      </q-toolbar>
+    </q-page-sticky>
   </div>
 
-  <div style="margin: 0px 89px;">
+  <div style="margin: 100px 48px 0 48px;">
     <advanced-search
       :grid-store="invoiceStore"
       @apply-search="applySearch"
     />
   </div>
 
-  <div style="margin:0px 89px;">
-    <div class="q-gutter-md q-py-lg">
+  <div class="q-mx-xl">
+    <div class="q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
         flat
