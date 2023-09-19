@@ -1,6 +1,6 @@
 <template>
-  <q-card class="q-pa-md q-mb-xl no-shadow">
-    <q-card-section class="q-gutter-y-lg">
+  <q-card class="q-px-md no-shadow">
+    <q-card-section class="row justify-between">
       <q-option-group
         class="row"
         type="radio"
@@ -8,40 +8,78 @@
         v-model="searchModel.dateRange"
         @update:model-value="applySearch"
       />
-      <q-checkbox
-        v-model="searchModel.waitToSendTax"
-        :label='$t("shared.labels.waitToSendTax")'
-      />
-
-      <q-input
-        outlined
-        dense
-        clearable
-        v-model="searchModel.amountFrom"
-        :label='$t("shared.labels.amountFrom")'
-      />
-      <q-input
-        outlined
-        dense
-        clearable
-        v-model="searchModel.amountTo"
-        :label='$t("shared.labels.amountTo")'
-      />
-      <q-input
-        outlined
-        dense
-        clearable
-        v-model="searchModel.comment"
-        :label='$t("shared.labels.comment")'
+      <q-btn
+        round
+        flat
+        class="bg-dark"
+        :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+        @click="expanded = !expanded"
       />
     </q-card-section>
+    <q-slide-transition>
+      <q-card-section v-show="expanded" :duration="700">
+        <q-checkbox
+          v-model="searchModel.waitToSendTax"
+          :label='$t("shared.labels.waitToSendTax")'
+        />
+        <div class="q-gutter-y-sm q-pl-sm q-my-md">
+          <q-input
+          outlined
+          dense
+          clearable
+          v-model="searchModel.amountFrom"
+          :placeholder='$t("shared.labels.amountFrom")'
+          style="max-width: 400px;"
+        />
+        <q-input
+          outlined
+          dense
+          clearable
+          v-model="searchModel.amountTo"
+          :placeholder='$t("shared.labels.amountTo")'
+          style="max-width: 400px;"
+        />
+        <q-input
+          outlined
+          dense
+          clearable
+          v-model="searchModel.comment"
+          :placeholder='$t("shared.labels.comment")'
+          style="max-width: 400px;"
+        />
+        </div>
+        <!-- <chip
+          :search-model="searchModel"
+          :remove-item="removeItem"
+        /> -->
+      <q-card-actions align="left">
+      <q-btn
+        class="bg-primary text-white"
+        rounded
+        padding="8px 16px"
+        unelevated
+        @click="applySearch"
+        size="12px"
+      ><q-icon
+          name="search"
+          class="q-mr-xs"
+        />جستوجو</q-btn>
+      <q-btn
+        class=""
+        rounded
+        unelevated
+        padding="8px 16px"
+        flat
+        @click="clearSearch"
+        size="12px"
+      ><q-icon
+          name="clear"
+          class="q-mr-xs"
+        />پاکسازی جستوجو</q-btn>
+    </q-card-actions>
+  </q-card-section>
 
-    <q-card-section>
-      <chip
-        :search-model="searchModel"
-        :remove-item="removeItem"
-      />
-    </q-card-section>
+    </q-slide-transition>
 
     <!-- <q-card-actions align="right">
       <q-btn
@@ -57,33 +95,6 @@
         @click="clearSearch"
       />
     </q-card-actions> -->
-    <q-card-actions
-    align="right"
-  >
-    <q-btn
-      class="bg-primary text-white"
-      rounded
-      padding="8px 16px"
-      unelevated
-      @click="applySearch"
-      size="12px"
-    ><q-icon
-        name="search"
-        class="q-mr-xs"
-      />جستوجو</q-btn>
-    <q-btn
-      class=""
-      rounded
-      unelevated
-      padding="8px 16px"
-      flat
-      @click="clearSearch"
-      size="12px"
-    ><q-icon
-        name="clear"
-        class="q-mr-xs"
-      />پاکسازی جستوجو</q-btn>
-  </q-card-actions>
   </q-card>
 
 
@@ -128,6 +139,7 @@ const props = defineProps({
   gridStore: Object
 })
 
+const expanded = ref(false)
 const searchModel = computed(() => props.gridStore.state.searchModel.value)
 
 const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange))

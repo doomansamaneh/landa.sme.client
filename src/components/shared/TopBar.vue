@@ -11,7 +11,7 @@
           rounded
           outline
           class="q-ml-sm bg-dark text-on-dark"
-        >15</q-badge>
+        ><span class="text-body2">15</span></q-badge>
         <!-- {{ tableStore.pagination.value.totalItems }} -->
       </div>
       <div class="q-gutter-x-md">
@@ -25,31 +25,28 @@
             class="q-mr-xs"
           />ایجاد</q-btn>
         <q-btn
-          class="text-caption"
+          class="bordered-btn bg-dark text-caption"
           padding="6px 12px"
           rounded
           unelevated
-          outline
         ><q-icon
             name="o_edit"
             class="q-mr-xs"
           />ویرایش</q-btn>
         <q-btn
-          class="text-caption"
+          class="bordered-btn bg-dark text-caption"
           padding="6px 12px"
           rounded
           unelevated
-          outline
         ><q-icon
             name="o_delete"
             class="q-mr-xs"
           />حذف</q-btn>
         <q-btn
-          class="text-caption"
+          class="bordered-btn bg-dark text-caption"
           padding="6px 12px"
           rounded
           unelevated
-          outline
         ><q-icon
             name="more_horiz"
             class="q-mr-xs"
@@ -70,3 +67,9 @@ const props = defineProps({
 
 </script>
 
+<style lang="scss">
+.bordered-btn {
+  border: 1px solid #d9dce5;
+  box-shadow: 0 0 2px 0 #dedede;
+}
+</style>
