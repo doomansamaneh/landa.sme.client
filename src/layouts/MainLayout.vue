@@ -64,9 +64,9 @@ onMounted(() => {
   z-index: 9999;
 }
 
-.q-focus-helper {
-  display: none;
-}
+// .q-focus-helper {
+//   display: none;
+// }
 
 .user-profile {
   min-width: 240px;

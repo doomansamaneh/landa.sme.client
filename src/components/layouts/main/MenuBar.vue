@@ -187,6 +187,12 @@ onMounted(() => {
   font-size: 13px;
 }
 
+.q-drawer {
+  .q-focus-helper {
+    display: none;
+  }
+}
+
 .q-item__section--side {
 
   padding-right: 8px;
