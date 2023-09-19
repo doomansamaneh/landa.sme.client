@@ -46,7 +46,7 @@
             dense
             round
             color=""
-            icon="o_person_search"
+            icon="o_contacts"
             class="btn-icon text-on-dark gt-xs"
             size="14px"
           />
