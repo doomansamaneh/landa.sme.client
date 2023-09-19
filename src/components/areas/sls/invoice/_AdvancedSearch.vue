@@ -69,7 +69,7 @@
       size="12px"
     ><q-icon
         name="search"
-        class="q-mr-sm"
+        class="q-mr-xs"
       />جستوجو</q-btn>
     <q-btn
       class=""
@@ -81,7 +81,7 @@
       size="12px"
     ><q-icon
         name="clear"
-        class="q-mr-sm"
+        class="q-mr-xs"
       />پاکسازی جستوجو</q-btn>
   </q-card-actions>
   </q-card>

@@ -10,9 +10,9 @@
         <q-badge
           rounded
           outline
-
           class="q-ml-sm bg-dark text-on-dark"
         >15</q-badge>
+        <!-- {{ tableStore.pagination.value.totalItems }} -->
       </div>
       <div class="q-gutter-x-md">
         <q-btn
@@ -60,6 +60,9 @@
 </template>
 
 <script setup>
+import { useDataTable } from "src/composables/useDataTable"
+
+const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const props = defineProps({
   title: String
@@ -67,4 +70,3 @@ const props = defineProps({
 
 </script>
 
-<style></style>
