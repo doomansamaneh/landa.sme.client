@@ -1,12 +1,12 @@
 <template>
-  <q-btn @click="testStore.increamentLocal">increament local</q-btn>
-  <q-btn @click="testStore.increamentGlobal">increament global</q-btn>
-  <h4>{{ testStore.localCount }}</h4>
-  <h4>{{ testStore.globalCount }}</h4>
-  <div style="margin: 32px">
-    <span class="text-h5">پیش فاکتورها</span>
-  </div>
-  <div style="margin: 48px; max-width: 400px">
+  <top-bar title="پیش فاکتورها" />
+  <div style="margin: 0 60px; max-width: 400px;">
+    <div style="margin-top: 120px;">
+      <q-btn @click="testStore.increamentLocal">increament local</q-btn>
+      <q-btn @click="testStore.increamentGlobal">increament global</q-btn>
+      <h4>{{ testStore.localCount }}</h4>
+      <h4>{{ testStore.globalCount }}</h4>
+    </div>
     <h4>test select events</h4>
     <q-select
       dense
@@ -29,7 +29,7 @@
 
   <data-grid
     ref="gridQ1"
-    style="margin: 56px"
+    style="margin: 60px;"
     dataSource="sls/quote/getGridData"
     :columns="columns"
     sortColumn="no"
@@ -76,6 +76,7 @@ import { useRouter } from "vue-router"
 import { useTest } from "../_composables/testStore"
 // import topBar from "src/components/management/quote/IndexView.vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import TopBar from "src/components/shared/TopBar.vue"
 
 const router = useRouter()
 const testStore = useTest()

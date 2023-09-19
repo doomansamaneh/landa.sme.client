@@ -1,64 +1,13 @@
 <template>
-  <div class="">
-    <q-page-sticky
-      class="q-py-md z-top bg-main q-px-xl q-py-lg"
-      position="top"
-      expand
-    >
-      <q-toolbar>
-        <q-toobar-title>
-          <span class="text-h5 q-mr-xl">فاکتورها</span>
-        </q-toobar-title>
-        <div class="q-gutter-x-md">
-          <q-btn
-          class="btn q-py-sm q-px-md bg-primary text-white"
-          size="12px"
-          rounded
-          unelevated
-        ><q-icon
-            name="o_add"
-            class="q-mr-sm"
-          />ایجاد</q-btn>
-        <q-btn
-          class="btn q-py-sm q-px-md"
-          outline
-          rounded
-          size="12px"
-        ><q-icon
-            name="o_edit"
-            class="q-mr-sm"
-          />ویرایش</q-btn>
-        <q-btn
-          class="btn q-py-sm q-px-md"
-          outline
-          rounded
-          size="12px"
-        ><q-icon
-            name="o_delete"
-            class="q-mr-sm"
-          />حذف</q-btn>
-        <q-btn
-          class="btn q-py-sm q-px-md"
-          outline
-          size="12px"
-          rounded
-        ><q-icon
-            name="more_horiz"
-            class="q-mr-sm"
-          />بیشتر</q-btn>
-        </div>
-      </q-toolbar>
-    </q-page-sticky>
-  </div>
-
-  <div style="margin: 100px 48px 0 48px;">
+  <top-bar title="فاکتورها" />
+  <div style="margin: 100px 60px 0 60px;">
     <advanced-search
       :grid-store="invoiceStore"
       @apply-search="applySearch"
     />
   </div>
 
-  <div class="q-mx-xl">
+  <div style="margin: 60px">
     <div class="q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
@@ -69,40 +18,41 @@
         edit (invoice no: {{ gridI1?.activeRow.no }})
       </q-btn>
 
-      <q-btn
-        v-if="gridI1?.selectedRows.length > 0"
-        flat
-        class="bg-blue-9 text-white"
-        no-caps
-      >
-        delete all ({{ gridI1?.selectedRows.length }} rows selected)
-      </q-btn>
+      <div class="q-mb-lg">
+        <q-btn
+          v-if="gridI1?.selectedRows.length > 0"
+          flat
+          class="bg-blue-9 text-white"
+          no-caps
+        >
+          delete all ({{ gridI1?.selectedRows.length }} rows selected)
+        </q-btn>
+      </div>
     </div>
 
     <div>
       <q-tabs
         v-model="tab"
-        dense
         inline-label
         align="left"
-        class="text-grey"
-        active-color="primary"
-        indicator-color="primary"
+        class="bg-dark text-grey"
         narrow-indicator
       >
         <q-tab
           name="invoice"
           label="فاکتورهای فروش"
           icon="check"
+          class="text-on-dark"
         />
         <q-tab
           name="canceled"
           label="ابطال شده"
-          icon="cancel"
+          icon="o_cancel"
+          class="text-red"
         />
       </q-tabs>
 
-      <q-separator />
+      <!-- <q-separator /> -->
 
       <q-tab-panels
         v-model="tab"
@@ -143,6 +93,7 @@ import { useInvoice } from "../_composables/useInvoice"
 import Invoice from "./_InvoiceDataTable.vue"
 import AdvancedSearch from "./_AdvancedSearch.vue"
 import GridV2 from "./IndexViewV2.vue"
+import TopBar from "src/components/shared/TopBar.vue"
 
 const invoiceStore = useInvoice()
 const invoiceTable = ref(null)
