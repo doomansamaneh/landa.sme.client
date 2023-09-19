@@ -52,7 +52,7 @@
         />
       </q-tabs>
 
-      <!-- <q-separator /> -->
+      <q-separator />
 
       <q-tab-panels
         v-model="tab"
