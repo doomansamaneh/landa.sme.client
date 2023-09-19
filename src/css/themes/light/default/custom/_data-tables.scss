@@ -1,6 +1,6 @@
 @mixin data-tables-light {
-   //lookup
-   .lookup-table-body tr:hover {
+  //lookup
+  .lookup-table-body tr:hover {
     background-color: #{$black}10;
   }
 
@@ -31,14 +31,13 @@
   }
 
   .row-active {
-    border-radius: 4px;
+    // border-radius: 4px;
     background-color: #{$primary}20 !important;
-    box-shadow: 0 0 4px 0 #{$primary}20 !important;
-    outline: 1px solid $primary !important;
+    // box-shadow: 0 0 4px 0 #{$primary}20 !important;
+    // outline: 1px solid $primary !important;
     td {
-      // border-top: 1px solid $primary;
-      // border-bottom: 1px solid $primary;
-      border-color: $primary;
+      border-top: 1px solid $primary;
+      border-bottom: 1px solid $primary;
     }
   }
 
