@@ -1,13 +1,13 @@
 <template>
   <top-bar title="فاکتورها" />
-  <div style="margin: 100px 60px 0 60px;">
+  <div style="margin: 84px 60px 0 60px;">
     <advanced-search
       :grid-store="invoiceStore"
       @apply-search="applySearch"
     />
   </div>
 
-  <div style="margin: 60px">
+  <div style="margin: 0 60px 0 60px">
     <div class="q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"

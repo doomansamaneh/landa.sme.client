@@ -1,6 +1,7 @@
 <template>
   <q-header
     bordered
+    class="q-px-sm"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between">

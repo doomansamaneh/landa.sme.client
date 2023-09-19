@@ -1,20 +1,25 @@
 <template>
   <q-page-sticky
-    class="q-py-md z-top bg-main q-px-xl q-py-lg"
+    class="z-top bg-main q-px-xl q-py-md"
     position="top"
     expand
   >
     <q-toolbar>
-      <q-toobar-title>
-        <span class="text-h5 q-mr-xl">{{ title }}</span>
-      </q-toobar-title>
+      <div class="row items-center q-mr-xl">
+        <span class="text-h6">{{ title }}</span>
+        <q-badge
+          rounded
+          outline
+
+          class="q-ml-sm bg-dark text-on-dark"
+        >15</q-badge>
+      </div>
       <div class="q-gutter-x-md">
         <q-btn
           class="bg-primary text-white text-caption"
           padding="6px 12px"
           rounded
           unelevated
-          outline
         ><q-icon
             name="o_add"
             class="q-mr-xs"
@@ -27,7 +32,7 @@
           outline
         ><q-icon
             name="o_edit"
-            class="q-mr-sm"
+            class="q-mr-xs"
           />ویرایش</q-btn>
         <q-btn
           class="text-caption"
@@ -37,7 +42,7 @@
           outline
         ><q-icon
             name="o_delete"
-            class="q-mr-sm"
+            class="q-mr-xs"
           />حذف</q-btn>
         <q-btn
           class="text-caption"
@@ -47,7 +52,7 @@
           outline
         ><q-icon
             name="more_horiz"
-            class="q-mr-sm"
+            class="q-mr-xs"
           />بیشتر</q-btn>
       </div>
     </q-toolbar>
