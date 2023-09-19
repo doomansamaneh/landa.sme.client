@@ -193,15 +193,9 @@
                     </div>
                   </div>
                 </q-item-label>
-                <q-item
-                  clickable
-                  tabindex="0"
-                  class="q-py-sm row justify-center"
-                >
-                  <div class="q-py-sm">
+                  <div class="row justify-center q-py-sm">
                     <switch-language class="language-main-layout" />
                   </div>
-                </q-item>
               </q-list>
             </q-menu>
           </q-btn>
