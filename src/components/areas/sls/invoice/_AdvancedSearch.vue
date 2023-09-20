@@ -234,8 +234,9 @@ async function removeItem(item) {
   await applySearch()
 }
 
+const calendar = computed(() => culture.value.calendar)
 //todo: remove this property to a general composable to be accessable every where
-const calendar = computed(() => {
+const culture = computed(() => {
   const currentLanguage = localStorage.getItem("selectedLanguage") || "fa-IR"
   const defaultCulture = { name: "en", calendar: "gregorian" }
   //todo: [DRY]: remove langs to constants, 
@@ -247,7 +248,6 @@ const calendar = computed(() => {
     { name: "fa", calendar: "persian" },
     { name: "ar", calendar: "hijri" }
   ]
-  var culture = cultures.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
-  return culture.calendar
+  return cultures.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
 })
 </script>
