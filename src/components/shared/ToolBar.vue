@@ -4,8 +4,8 @@
     position="top"
     expand
   >
-    <q-toolbar>
-      <div class="row items-center q-mr-xl">
+    <q-toolbar class="q-mx-sm">
+      <div class="row items-center">
         <span class="text-h6">{{ title }}</span>
         <q-badge
           rounded
