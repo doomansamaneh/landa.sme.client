@@ -84,4 +84,5 @@ onMounted(() => {
 .q-item__section--avatar {
   min-width: 0;
 }
+
 </style>

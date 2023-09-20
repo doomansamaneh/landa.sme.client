@@ -1,13 +1,14 @@
 <template>
   <top-bar title="فاکتورها" />
-  <div style="margin: 84px 60px 0 60px;">
+  <div>
     <advanced-search
+    class="q-mt-lg"
       :grid-store="invoiceStore"
       @apply-search="applySearch"
     />
   </div>
 
-  <div style="margin: 0 60px 0 60px">
+  <div>
     <div class="q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
@@ -68,7 +69,7 @@
       </q-tab-panels>
     </div>
 
-    <div class="q-pa-lg">
+    <div>
       <template v-if="gridI1?.allSelectedIds.length > 0">
         <h4>all selected ids: {{ gridI1?.allSelectedIds.length }}</h4>
         <pre>{{ gridI1?.allSelectedIds }}</pre>
@@ -93,7 +94,7 @@ import { useInvoice } from "../_composables/useInvoice"
 import Invoice from "./_InvoiceDataTable.vue"
 import AdvancedSearch from "./_AdvancedSearch.vue"
 import GridV2 from "./IndexViewV2.vue"
-import TopBar from "src/components/shared/TopBar.vue"
+import TopBar from "src/components/shared/ToolBar.vue"
 
 const invoiceStore = useInvoice()
 const invoiceTable = ref(null)

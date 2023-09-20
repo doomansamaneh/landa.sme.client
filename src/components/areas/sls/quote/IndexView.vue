@@ -1,35 +1,38 @@
 <template>
   <top-bar title="پیش فاکتورها" />
-  <div style="margin: 0 60px; max-width: 400px;">
-    <div style="margin-top: 120px;">
+  <div>
+    <div class="q-mt-lg">
       <q-btn @click="testStore.increamentLocal">increament local</q-btn>
       <q-btn @click="testStore.increamentGlobal">increament global</q-btn>
       <h4>{{ testStore.localCount }}</h4>
       <h4>{{ testStore.globalCount }}</h4>
     </div>
     <h4>test select events</h4>
-    <q-select
-      dense
-      outlined
-      emit-value
-      v-model="statusTitle"
-      :options="statusOptions"
-      @update:model-value="handleSelect"
-    />
-    <q-select
-      class="q-mt-lg"
-      dense
-      outlined
-      emit-value
-      @update:model-value="handleSelect"
-      :options="statusOptions"
-      v-model="statusTitle"
-    />
+    <div class="row">
+      <div class="col-2 q-mb-lg">
+        <q-select
+        dense
+        outlined
+        emit-value
+        v-model="statusTitle"
+        :options="statusOptions"
+        @update:model-value="handleSelect"
+      />
+      <q-select
+        class="q-mt-lg"
+        dense
+        outlined
+        emit-value
+        @update:model-value="handleSelect"
+        :options="statusOptions"
+        v-model="statusTitle"
+      />
+      </div>
+    </div>
   </div>
 
   <data-grid
     ref="gridQ1"
-    style="margin: 60px;"
     dataSource="sls/quote/getGridData"
     :columns="columns"
     sortColumn="no"
@@ -76,7 +79,7 @@ import { useRouter } from "vue-router"
 import { useTest } from "../_composables/testStore"
 // import topBar from "src/components/management/quote/IndexView.vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
-import TopBar from "src/components/shared/TopBar.vue"
+import TopBar from "src/components/shared/ToolBar.vue"
 
 const router = useRouter()
 const testStore = useTest()

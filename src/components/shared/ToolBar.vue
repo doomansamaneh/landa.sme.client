@@ -1,6 +1,6 @@
 <template>
   <q-page-sticky
-    class="z-top bg-main q-px-xl q-py-md"
+    class="z-1 bg-main q-px-xl q-py-md"
     position="top"
     expand
   >
@@ -15,7 +15,7 @@
         <!-- {{ tableStore.pagination.value.totalItems }} -->
       </div>
       <div class="q-space"></div>
-      <div class="q-gutter-x-md">
+      <div class="q-gutter-x-sm">
         <q-btn
           class="bg-primary text-white text-caption"
           padding="6px 12px"
@@ -72,5 +72,9 @@ const props = defineProps({
 .bordered-btn {
   border: 1px solid #d9dce5;
   box-shadow: 0 0 2px 0 #dedede;
+}
+
+.z-1 {
+  z-index: 1;
 }
 </style>

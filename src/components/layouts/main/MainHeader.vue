@@ -21,11 +21,12 @@
           <q-badge class="q-pl-sm q-py-xs">{{ $t('shared.labels.today') }}: {{
             date.toLocaleDateString("fa-IR", options) }}
           </q-badge>
-          <q-badge
-            class="q-py-xs"
-            color="primary"
+          <q-btn
             outline
-          >سال مالی: 1402</q-badge>
+            dense
+            class="q-py-xs q-px-sm text-caption"
+            color="primary"
+          >سال مالی: 1402</q-btn>
         </div>
       </q-toolbar-title>
       <div class="row items-center">
@@ -81,24 +82,6 @@
                     </div>
                   </div>
                 </q-item-label>
-                <q-item
-                  clickable
-                  v-ripple
-                  v-close-popup
-                  class="q-mt-md"
-                >
-                  <div class="q-py-sm">
-                    <q-item-section avatar>
-                      <q-avatar
-                        class="dark-icon"
-                        icon="o_date_range"
-                        size="md"
-                      />
-                    </q-item-section>
-                  </div>
-
-                  <q-item-section>تغییر سال مالی</q-item-section>
-                </q-item>
                 <q-item
                   clickable
                   v-close-popup
@@ -193,9 +176,9 @@
                     </div>
                   </div>
                 </q-item-label>
-                  <div class="row justify-center q-py-sm">
-                    <switch-language class="language-main-layout" />
-                  </div>
+                <div class="row justify-center q-py-sm">
+                  <switch-language class="language-main-layout" />
+                </div>
               </q-list>
             </q-menu>
           </q-btn>

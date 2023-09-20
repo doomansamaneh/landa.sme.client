@@ -124,7 +124,7 @@
           ><q-icon
               name="search"
               class="q-mr-xs"
-            />جستوجو</q-btn>
+            />جستجو</q-btn>
           <q-btn
             class=""
             rounded
@@ -136,7 +136,7 @@
           ><q-icon
               name="clear"
               class="q-mr-xs"
-            />پاکسازی جستوجو</q-btn>
+            />حذف فیلتر</q-btn>
         </q-card-actions>
       </q-card-section>
 
@@ -239,7 +239,7 @@ const calendar = computed(() => culture.value.calendar)
 const culture = computed(() => {
   const currentLanguage = localStorage.getItem("selectedLanguage") || "fa-IR"
   const defaultCulture = { name: "en", calendar: "gregorian", title: "English", flag: "" }
-  //todo: [DRY]: remove langs to constants, 
+  //todo: [DRY]: remove langs to constants,
   // use in languageStting
   // also, you could add other language specefic properties such as digits, ... to this object and use it, so u can delete extra if, then else
   // and your code is more clean
