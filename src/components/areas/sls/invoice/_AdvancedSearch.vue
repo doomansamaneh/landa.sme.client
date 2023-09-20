@@ -17,67 +17,128 @@
       />
     </q-card-section>
     <q-slide-transition>
-      <q-card-section v-show="expanded" :duration="700">
+      <q-card-section
+        v-show="expanded"
+        :duration="700"
+      >
         <q-checkbox
           v-model="searchModel.waitToSendTax"
           :label='$t("shared.labels.waitToSendTax")'
         />
         <div class="q-gutter-y-sm q-pl-sm q-my-md">
+          <div class="row q-gutter-x-sm">
+            <q-input
+              outlined
+              dense
+              clearable
+              v-model="searchModel.amountFrom"
+              :placeholder='$t("shared.labels.amountFrom")'
+              style="max-width: 170px;"
+            />
+            <q-input
+              outlined
+              dense
+              clearable
+              v-model="searchModel.amountTo"
+              :placeholder='$t("shared.labels.amountTo")'
+              style="max-width: 170px;"
+            />
+          </div>
+          <div class="row q-gutter-x-sm">
+            <q-input
+              outlined
+              dense
+              v-model="fromDate"
+              mask="date"
+              style="max-width: 170px;"
+              placeholder="تاریخ از"
+            >
+              <template v-slot:append>
+                <q-icon
+                  name="event"
+                  class="cursor-pointer"
+                >
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date
+                      v-model="fromDate"
+                      :calendar="getCalendarType(currentLanguage)"
+                      today-btn
+                    />
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+            <q-input
+              outlined
+              dense
+              v-model="toDate"
+              mask="date"
+              style="max-width: 170px;"
+              placeholder="تاریخ تا"
+            >
+              <template v-slot:append>
+                <q-icon
+                  name="event"
+                  class="cursor-pointer"
+                >
+                  <q-popup-proxy
+                    cover
+                    transition-show="scale"
+                    transition-hide="scale"
+                  >
+                    <q-date
+                      v-model="toDate"
+                      :calendar="getCalendarType(currentLanguage)"
+                      today-btn
+                    />
+                  </q-popup-proxy>
+                </q-icon>
+              </template>
+            </q-input>
+          </div>
           <q-input
-          outlined
-          dense
-          clearable
-          v-model="searchModel.amountFrom"
-          :placeholder='$t("shared.labels.amountFrom")'
-          style="max-width: 400px;"
-        />
-        <q-input
-          outlined
-          dense
-          clearable
-          v-model="searchModel.amountTo"
-          :placeholder='$t("shared.labels.amountTo")'
-          style="max-width: 400px;"
-        />
-        <q-input
-          outlined
-          dense
-          clearable
-          v-model="searchModel.comment"
-          :placeholder='$t("shared.labels.comment")'
-          style="max-width: 400px;"
-        />
+            outlined
+            dense
+            clearable
+            v-model="searchModel.comment"
+            :placeholder='$t("shared.labels.comment")'
+            style="max-width: 350px;"
+          />
         </div>
         <!-- <chip
           :search-model="searchModel"
           :remove-item="removeItem"
         /> -->
-      <q-card-actions align="left">
-      <q-btn
-        class="bg-primary text-white"
-        rounded
-        padding="8px 16px"
-        unelevated
-        @click="applySearch"
-        size="12px"
-      ><q-icon
-          name="search"
-          class="q-mr-xs"
-        />جستوجو</q-btn>
-      <q-btn
-        class=""
-        rounded
-        unelevated
-        padding="8px 16px"
-        flat
-        @click="clearSearch"
-        size="12px"
-      ><q-icon
-          name="clear"
-          class="q-mr-xs"
-        />پاکسازی جستوجو</q-btn>
-    </q-card-actions>
-  </q-card-section>
+        <q-card-actions align="left">
+          <q-btn
+            class="bg-primary text-white"
+            rounded
+            padding="8px 16px"
+            unelevated
+            @click="applySearch"
+            size="12px"
+          ><q-icon
+              name="search"
+              class="q-mr-xs"
+            />جستوجو</q-btn>
+          <q-btn
+            class=""
+            rounded
+            unelevated
+            padding="8px 16px"
+            flat
+            @click="clearSearch"
+            size="12px"
+          ><q-icon
+              name="clear"
+              class="q-mr-xs"
+            />پاکسازی جستوجو</q-btn>
+        </q-card-actions>
+      </q-card-section>
 
     </q-slide-transition>
 
@@ -130,7 +191,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue"
+import { computed, onMounted, ref, watch } from "vue"
 import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 import chip from "src/components/shared/SearchChip.vue"
@@ -140,6 +201,9 @@ const props = defineProps({
 })
 
 const expanded = ref(false)
+const fromDate = ref(null)
+const toDate = ref(null)
+
 const searchModel = computed(() => props.gridStore.state.searchModel.value)
 
 const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange))
@@ -169,4 +233,17 @@ async function removeItem(item) {
   searchModel.value[item.name] = value
   await applySearch()
 }
+
+const currentLanguage = ref(localStorage.getItem("selectedLanguage") || "fa-IR")
+
+const getCalendarType = (language) => {
+  if (language === "fa-IR") {
+    return "persian";
+  } else if (language === "ar") {
+    return "hijri";
+  } else {
+    return "gregorian";
+  }
+}
+
 </script>
