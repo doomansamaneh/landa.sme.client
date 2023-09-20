@@ -241,13 +241,13 @@ const calendar = computed(() => {
   //todo: [DRY]: remove langs to constants, 
   // use in languageStting
   // also, you could add other language specefic properties such as digits, ... to this object and use it, so u can delete extra if, then else
-  // and yout code is more clean
-  const langs = [
+  // and your code is more clean
+  const cultures = [
     { name: "fa-IR", calendar: "persian" },
     { name: "fa", calendar: "persian" },
     { name: "ar", calendar: "hijri" }
   ]
-  var culture = langs.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
+  var culture = cultures.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
   return culture.calendar
 })
 </script>
