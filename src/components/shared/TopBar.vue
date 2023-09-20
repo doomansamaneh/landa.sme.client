@@ -14,6 +14,7 @@
         ><span class="text-body2">15</span></q-badge>
         <!-- {{ tableStore.pagination.value.totalItems }} -->
       </div>
+      <div class="q-space"></div>
       <div class="q-gutter-x-md">
         <q-btn
           class="bg-primary text-white text-caption"

@@ -15,7 +15,7 @@
         name="circle"
         size="xs"
         :style="{ color: getPrimaryColor(themeName) }"
-        class="cursor-pointer"
+        :class="getClass(themeName)"
         @click="selectTheme(themeName)"
       >
         <q-tooltip :style="{ background: getPrimaryColor(themeName) }">{{ themeName }}</q-tooltip>
@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from "vue"
+import { ref, onMounted, watch, computed, watchEffect } from "vue"
 import { useQuasar } from "quasar"
 
 const $q = useQuasar()
@@ -92,5 +92,17 @@ onMounted(() => {
 const getPrimaryColor = (themeName) => {
   return themes[themeName].primary
 }
+const getClass = (themeName) => {
+  return "cursor-pointer" +
+    (selectedTheme.value === themeName ? " active" : "")
+}
 </script>
+
+<style scoped>
+.active {
+  border: 2px solid;
+  border-radius: 50px;
+}
+</style>
+
 

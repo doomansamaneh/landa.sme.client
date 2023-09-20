@@ -59,8 +59,7 @@
       </td>
       <td><b>{{ summary?.Amount.toLocaleString() }}</b></td>
       <td><b>{{ summary?.DiscountAmount.toLocaleString() }}</b></td>
-      <td colspan="100%">
-      </td>
+      <td colspan="100%"></td>
     </template>
   </data-grid>
 </template>
