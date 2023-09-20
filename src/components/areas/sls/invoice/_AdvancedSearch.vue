@@ -65,7 +65,7 @@
                   >
                     <q-date
                       v-model="fromDate"
-                      :calendar="getCalendarType(currentLanguage)"
+                      :calendar="calendar"
                       today-btn
                     />
                   </q-popup-proxy>
@@ -92,7 +92,7 @@
                   >
                     <q-date
                       v-model="toDate"
-                      :calendar="getCalendarType(currentLanguage)"
+                      :calendar="calendar"
                       today-btn
                     />
                   </q-popup-proxy>
@@ -234,16 +234,20 @@ async function removeItem(item) {
   await applySearch()
 }
 
-const currentLanguage = ref(localStorage.getItem("selectedLanguage") || "fa-IR")
-
-const getCalendarType = (language) => {
-  if (language === "fa-IR") {
-    return "persian";
-  } else if (language === "ar") {
-    return "hijri";
-  } else {
-    return "gregorian";
-  }
-}
-
+//todo: remove this property to a general composable to be accessable every where
+const calendar = computed(() => {
+  const currentLanguage = localStorage.getItem("selectedLanguage") || "fa-IR"
+  const defaultCulture = { name: "en", calendar: "gregorian" }
+  //todo: [DRY]: remove langs to constants, 
+  // use in languageStting
+  // also, you could add other language specefic properties such as digits, ... to this object and use it, so u can delete extra if, then else
+  // and yout code is more clean
+  const langs = [
+    { name: "fa-IR", calendar: "persian" },
+    { name: "fa", calendar: "persian" },
+    { name: "ar", calendar: "hijri" }
+  ]
+  var culture = langs.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
+  return culture.calendar
+})
 </script>
