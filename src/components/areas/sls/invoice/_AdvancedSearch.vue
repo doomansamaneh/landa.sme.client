@@ -238,15 +238,15 @@ const calendar = computed(() => culture.value.calendar)
 //todo: remove this property to a general composable to be accessable every where
 const culture = computed(() => {
   const currentLanguage = localStorage.getItem("selectedLanguage") || "fa-IR"
-  const defaultCulture = { name: "en", calendar: "gregorian" }
+  const defaultCulture = { name: "en", calendar: "gregorian", title: "English", flag: "" }
   //todo: [DRY]: remove langs to constants, 
   // use in languageStting
   // also, you could add other language specefic properties such as digits, ... to this object and use it, so u can delete extra if, then else
   // and your code is more clean
   const cultures = [
-    { name: "fa-IR", calendar: "persian" },
-    { name: "fa", calendar: "persian" },
-    { name: "ar", calendar: "hijri" }
+    { name: "fa-IR", calendar: "persian", title: "فارسی", flag: "" },
+    { name: "fa", calendar: "persian", title: "فارسی", flag: "" },
+    { name: "ar", calendar: "hijri", title: "العربیة", flag: "" }
   ]
   return cultures.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
 })
