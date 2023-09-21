@@ -63,7 +63,7 @@
             >
               <slot
                 v-if="col.showFilter"
-                :name="`filter_${col.name}`"
+                :name="`filter-${col.name}`"
                 :col="col"
               >
                 <q-input
@@ -128,7 +128,7 @@
                 :style="col.cellStyle"
               >
                 <slot
-                  :name="`cell_${col.field}`"
+                  :name="`cell-${col.field}`"
                   :item="row"
                 >
                   {{ row[col.field] }}

@@ -12,7 +12,7 @@
     wrapCells
     expandable
   >
-    <template #filter_statusTitle="{ col }">
+    <template #filter-statusTitle="{ col }">
       <q-select
         clearable
         dense
@@ -23,10 +23,10 @@
         @update:model-value="dataTable?.reloadData"
       />
     </template>
-    <template #cell_amount="{ item }">
+    <template #cell-amount="{ item }">
       <span>{{ item.amount.toLocaleString() }}</span>
     </template>
-    <template #cell_statusTitle="{ item }">
+    <template #cell-statusTitle="{ item }">
       <q-badge>{{ item.statusTitle }}</q-badge>
     </template>
     <template #detail="{ item }">

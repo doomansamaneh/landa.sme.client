@@ -20,10 +20,10 @@
         wrap-cells
         flat
       >
-        <template #cell_amount="{ item }">
+        <template #cell-amount="{ item }">
           <span>{{ item.amount.toLocaleString() }}</span>
         </template>
-        <template #cell_subject="{ item }">
+        <template #cell-subject="{ item }">
           <span>{{ item.subject }}</span>
           <div v-if="item.summary">summary: {{ item.summary }}</div>
           <div class="q-gutter-xs">
@@ -33,13 +33,13 @@
             <q-badge>بازاریاب شماره دو</q-badge>
           </div>
         </template>
-        <template #cell_statusTitle="{ item }">
+        <template #cell-statusTitle="{ item }">
           <q-badge>{{ item.statusTitle }}</q-badge>
         </template>
         <template #detail="{ item }">
           <div>
             <h4>{{ item.no }}</h4>
-            {{ item.customerName }}
+            <pre>{{ item }}</pre>
           </div>
         </template>
 

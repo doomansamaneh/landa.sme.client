@@ -11,22 +11,22 @@
     <div class="row">
       <div class="col-2 q-mb-lg">
         <q-select
-        dense
-        outlined
-        emit-value
-        v-model="statusTitle"
-        :options="statusOptions"
-        @update:model-value="handleSelect"
-      />
-      <q-select
-        class="q-mt-lg"
-        dense
-        outlined
-        emit-value
-        @update:model-value="handleSelect"
-        :options="statusOptions"
-        v-model="statusTitle"
-      />
+          dense
+          outlined
+          emit-value
+          v-model="statusTitle"
+          :options="statusOptions"
+          @update:model-value="handleSelect"
+        />
+        <q-select
+          class="q-mt-lg"
+          dense
+          outlined
+          emit-value
+          @update:model-value="handleSelect"
+          :options="statusOptions"
+          v-model="statusTitle"
+        />
       </div>
     </div>
   </div>
@@ -47,7 +47,7 @@
     wrapCells
     expandable
   >
-    <template #filter_statusTitle="{ col }">
+    <template #filter-statusTitle="{ col }">
       <q-select
         clearable
         dense
@@ -58,16 +58,20 @@
         @update:model-value="gridQ1?.reloadData"
       />
     </template>
-    <template #cell_amount="{ item }">
+    <template #cell-amount="{ item }">
       <span>{{ item.amount.toLocaleString() }}</span>
     </template>
-    <template #cell_statusTitle="{ item }">
+    <template #cell-discountAmount="{ item }">
+      <span>{{ item.discountAmount.toLocaleString() }}</span>
+    </template>
+    <template #cell-statusTitle="{ item }">
       <q-badge>{{ item.statusTitle }}</q-badge>
     </template>
     <template #detail="{ item }">
       <div>
         <h4>{{ item.no }}</h4>
         {{ item.customerName }}
+        <pre>{{ item }}</pre>
       </div>
     </template>
   </data-grid>
