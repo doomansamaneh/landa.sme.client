@@ -1,5 +1,7 @@
 @mixin theme-light {
   --q-primary: #{$primary};
+  --q-secondary: #{$secondary};
+  --q-accent: #{$accent};
   background-color: #f1f1f1;
   @include q-avatar-light();
   @include q-breadcrumbs-light();
