@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-px-md no-shadow">
+  <q-card class="q-px-md q-mt-md no-shadow">
     <q-card-section class="row justify-between">
       <q-option-group
         class="row"
