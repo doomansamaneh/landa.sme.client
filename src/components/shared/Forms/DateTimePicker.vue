@@ -61,3 +61,8 @@ const culture = computed(() => {
   return cultures.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
 })
 </script>
+<style>
+.q-date {
+  width: 300px;
+}
+</style>
