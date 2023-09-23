@@ -8,7 +8,7 @@
   </div>
 
   <div>
-    <div class="row items-center q-gutter-md q-my-md">
+    <div class="row items-center q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
         flat

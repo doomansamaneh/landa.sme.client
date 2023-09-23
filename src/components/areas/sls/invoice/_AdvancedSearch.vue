@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-px-md no-shadow">
+  <q-card class="q-px-md q-mt-md no-shadow">
     <q-card-section class="row justify-between">
       <q-option-group
         class="row"
@@ -17,7 +17,7 @@
       />
     </q-card-section>
     <q-slide-transition>
-      <q-card-section
+      <div class="q-mx-md"
         v-show="expanded"
         :duration="700"
       >
@@ -98,7 +98,11 @@
             style="max-width: 350px;"
           />
         </div>
-        <q-card-actions align="left">
+        <!-- <chip
+          :search-model="searchModel"
+          :remove-item="removeItem"
+        /> -->
+        <q-card-actions align="left" class="q-pb-lg">
           <q-btn
             class="bg-primary text-white"
             rounded
@@ -128,7 +132,7 @@
             حذف فیلتر
           </q-btn>
         </q-card-actions>
-      </q-card-section>
+      </div>
 
     </q-slide-transition>
 
