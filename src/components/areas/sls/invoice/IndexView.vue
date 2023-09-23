@@ -1,8 +1,7 @@
 <template>
   <top-bar title="فاکتورها" />
-  <div>
+  <div class="q-mt-lg">
     <advanced-search
-      class="q-mt-lg"
       :grid-store="invoiceStore"
       @apply-search="applySearch"
     />
