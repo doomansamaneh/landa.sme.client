@@ -5,8 +5,11 @@
     v-model="value"
     mask="date"
     clearable
+    clear-icon="clear"
     :label="label"
     :placeholder="placeholder"
+    class="text-caption"
+    style="width: 195px;"
   >
     <template v-slot:append>
       <q-icon

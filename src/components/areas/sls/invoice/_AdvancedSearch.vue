@@ -1,191 +1,124 @@
 <template>
   <q-card class="q-px-md q-mt-md no-shadow">
-    <q-card-section class="row justify-between">
+    <q-card-section class="row items-center justify-between">
       <q-option-group
-        class="row"
+        class="row text-caption"
         type="radio"
+        size="md"
         :options="dateRangeOptions"
         v-model="searchModel.dateRange"
         @update:model-value="applySearch"
       />
-      <q-btn
-        round
-        flat
-        class="bg-dark"
-        :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-        @click="expanded = !expanded"
-      />
+      <div class="row items-center">
+        <q-btn
+          round
+          flat
+          class="bg-dark"
+          :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+          @click="expanded = !expanded"
+        />
+        <span class="text-caption">
+          جستجوی پیشرفته
+        </span>
+      </div>
     </q-card-section>
     <q-slide-transition>
-      <div class="q-mx-md"
+      <div
+        class="row q-mx-md"
         v-show="expanded"
-        :duration="700"
       >
-        <q-checkbox
-          v-model="searchModel.waitToSendTax"
-          :label='$t("shared.labels.waitToSendTax")'
-        />
-        <div class="q-gutter-y-sm q-pl-sm q-my-md">
-          <div class="row q-gutter-x-sm">
-            <q-input
-              outlined
-              dense
-              clearable
-              v-model="searchModel.amountFrom"
-              :placeholder='$t("shared.labels.amountFrom")'
-              style="max-width: 170px;"
-            />
-            <q-input
-              outlined
-              dense
-              clearable
-              v-model="searchModel.amountTo"
-              :placeholder='$t("shared.labels.amountTo")'
-              style="max-width: 170px;"
+        <div class="">
+          <div class="q-gutter-y-sm q-pl-sm q-my-md">
+            <div class="row q-gutter-x-sm items-center">
+              <q-input
+                outlined
+                dense
+                clear-icon="clear"
+                clearable
+                v-model="searchModel.amountFrom"
+                :placeholder='$t("shared.labels.amountFrom")'
+                class="text-caption"
+                style="width: 195px;"
+              />
+              <q-input
+                outlined
+                dense
+                clear-icon="clear"
+                clearable
+                v-model="searchModel.amountTo"
+                :placeholder='$t("shared.labels.amountTo")'
+                class="text-caption"
+                style="width: 195px;"
+              />
+            </div>
+            <div class="row q-gutter-x-sm items-center">
+              <date-time
+                v-model="searchModel.dateFrom"
+                :placeholder='$t("shared.labels.dateFrom")'
+              />
+              <date-time
+                v-model="searchModel.dateTo"
+                :placeholder='$t("shared.labels.dateTo")'
+              />
+            </div>
+            <div class="row items-center q-gutter-x-sm">
+              <q-input
+                outlined
+                dense
+                clearable
+                v-model="searchModel.comment"
+                :placeholder='$t("shared.labels.comment")'
+                clear-icon="clear"
+                class="text-caption"
+                style="width: 400px;"
+              />
+            </div>
+            <q-checkbox
+              size="sm"
+              class="q-pt-sm text-caption"
+              v-model="searchModel.waitToSendTax"
+              :label='$t("shared.labels.waitToSendTax")'
             />
           </div>
-          <div class="row q-gutter-x-sm">
-            <!-- @update:modelValue="aler('1')" -->
-
-            <date-time
-              v-model="searchModel.dateFrom"
-              :placeholder='$t("shared.labels.dateFrom")'
-              style="max-width: 170px;"
-            />
-
-            <date-time
-              v-model="searchModel.dateTo"
-              :placeholder='$t("shared.labels.dateTo")'
-              style="max-width: 170px;"
-            />
-
-            <!-- <q-input
-              outlined
-              dense
-              v-model="searchModel.dateFrom"
-              mask="date"
-              clearable
-              style="max-width: 170px;"
-              :placeholder='$t("shared.labels.dateFrom")'
+          <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
+            <q-btn
+              class="bg-primary text-white"
+              rounded
+              padding="8px 16px"
+              unelevated
+              @click="applySearch"
+              size="12px"
             >
-              <template v-slot:append>
-                <q-icon
-                  name="event"
-                  class="cursor-pointer"
-                >
-                  <q-popup-proxy
-                    cover
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-date
-                      v-model="searchModel.dateFrom"
-                      :calendar="calendar"
-                      today-btn
-                    />
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input> -->
-
+              <q-icon
+                name="search"
+                class="q-mr-xs"
+              />جستجو
+            </q-btn>
+            <q-btn
+              class=""
+              rounded
+              unelevated
+              padding="8px 16px"
+              flat
+              @click="clearSearch"
+              size="12px"
+            >
+              <q-icon
+                name="clear"
+                class="q-mr-xs"
+              />
+              حذف فیلتر
+            </q-btn>
           </div>
-          <q-input
-            outlined
-            dense
-            clearable
-            v-model="searchModel.comment"
-            :placeholder='$t("shared.labels.comment")'
-            style="max-width: 350px;"
-          />
         </div>
-        <!-- <chip
-          :search-model="searchModel"
-          :remove-item="removeItem"
-        /> -->
-        <q-card-actions align="left" class="q-pb-lg">
-          <q-btn
-            class="bg-primary text-white"
-            rounded
-            padding="8px 16px"
-            unelevated
-            @click="applySearch"
-            size="12px"
-          >
-            <q-icon
-              name="search"
-              class="q-mr-xs"
-            />جستجو
-          </q-btn>
-          <q-btn
-            class=""
-            rounded
-            unelevated
-            padding="8px 16px"
-            flat
-            @click="clearSearch"
-            size="12px"
-          >
-            <q-icon
-              name="clear"
-              class="q-mr-xs"
-            />
-            حذف فیلتر
-          </q-btn>
-        </q-card-actions>
       </div>
-
     </q-slide-transition>
-
-    <!-- <q-card-actions align="right">
-      <q-btn
-        color="primary"
-        label="Search"
-        no-caps
-        @click="applySearch"
-      />
-      <q-btn
-        flat
-        label="Clear Search"
-        no-caps
-        @click="clearSearch"
-      />
-    </q-card-actions> -->
   </q-card>
-
   <chip
-    class="q-mt-md"
+    class="q-my-md"
     :search-model="searchModel"
     :remove-item="removeItem"
   />
-
-  <!-- <q-card-actions
-    align="right"
-    class="q-my-md"
-  >
-    <q-btn
-      class="bg-primary text-white"
-      rounded
-      padding="8px 16px"
-      unelevated
-      @click="applySearch"
-      size="12px"
-    ><q-icon
-        name="search"
-        class="q-mr-sm"
-      />جستوجو</q-btn>
-    <q-btn
-      class=""
-      rounded
-      unelevated
-      padding="8px 16px"
-      flat
-      @click="clearSearch"
-      size="12px"
-    ><q-icon
-        name="clear"
-        class="q-mr-sm"
-      />پاکسازی جستوجو</q-btn>
-  </q-card-actions> -->
 </template>
 
 <script setup>
