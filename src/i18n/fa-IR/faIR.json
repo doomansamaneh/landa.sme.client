@@ -268,7 +268,9 @@
       "amountTo": "مبلغ تا",
       "waitToSendTax": "منتظر ارسال به سامانه مودیان",
       "comment": "شرح",
-      "dateRange": "بازه زمانی"
+      "dateRange": "بازه زمانی",
+      "dateFrom": "تاریخ از",
+      "dateTo": "تاریخ تا"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد"

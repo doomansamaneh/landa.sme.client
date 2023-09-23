@@ -11,7 +11,8 @@
         text-color="white"
         icon="search"
       >
-        {{ $t(`shared.labels.${item.label}`) }}: {{ $t(`shared.labels.${item.value}`) }}
+        {{ $t(`shared.labels.${item.label}`) }}: {{ item.value }}
+        <!-- {{ $t(`shared.labels.${item.value}`) }} -->
       </q-chip>
     </template>
   </div>

@@ -45,13 +45,28 @@
             />
           </div>
           <div class="row q-gutter-x-sm">
-            <q-input
+            <!-- @update:modelValue="aler('1')" -->
+
+            <date-time
+              v-model="searchModel.dateFrom"
+              :placeholder='$t("shared.labels.dateFrom")'
+              style="max-width: 170px;"
+            />
+
+            <date-time
+              v-model="searchModel.dateTo"
+              :placeholder='$t("shared.labels.dateTo")'
+              style="max-width: 170px;"
+            />
+
+            <!-- <q-input
               outlined
               dense
-              v-model="fromDate"
+              v-model="searchModel.dateFrom"
               mask="date"
+              clearable
               style="max-width: 170px;"
-              placeholder="تاریخ از"
+              :placeholder='$t("shared.labels.dateFrom")'
             >
               <template v-slot:append>
                 <q-icon
@@ -64,41 +79,15 @@
                     transition-hide="scale"
                   >
                     <q-date
-                      v-model="fromDate"
+                      v-model="searchModel.dateFrom"
                       :calendar="calendar"
                       today-btn
                     />
                   </q-popup-proxy>
                 </q-icon>
               </template>
-            </q-input>
-            <q-input
-              outlined
-              dense
-              v-model="toDate"
-              mask="date"
-              style="max-width: 170px;"
-              placeholder="تاریخ تا"
-            >
-              <template v-slot:append>
-                <q-icon
-                  name="event"
-                  class="cursor-pointer"
-                >
-                  <q-popup-proxy
-                    cover
-                    transition-show="scale"
-                    transition-hide="scale"
-                  >
-                    <q-date
-                      v-model="toDate"
-                      :calendar="calendar"
-                      today-btn
-                    />
-                  </q-popup-proxy>
-                </q-icon>
-              </template>
-            </q-input>
+            </q-input> -->
+
           </div>
           <q-input
             outlined
@@ -109,10 +98,6 @@
             style="max-width: 350px;"
           />
         </div>
-        <!-- <chip
-          :search-model="searchModel"
-          :remove-item="removeItem"
-        /> -->
         <q-card-actions align="left">
           <q-btn
             class="bg-primary text-white"
@@ -121,10 +106,12 @@
             unelevated
             @click="applySearch"
             size="12px"
-          ><q-icon
+          >
+            <q-icon
               name="search"
               class="q-mr-xs"
-            />جستجو</q-btn>
+            />جستجو
+          </q-btn>
           <q-btn
             class=""
             rounded
@@ -133,10 +120,13 @@
             flat
             @click="clearSearch"
             size="12px"
-          ><q-icon
+          >
+            <q-icon
               name="clear"
               class="q-mr-xs"
-            />حذف فیلتر</q-btn>
+            />
+            حذف فیلتر
+          </q-btn>
         </q-card-actions>
       </q-card-section>
 
@@ -158,7 +148,11 @@
     </q-card-actions> -->
   </q-card>
 
-
+  <chip
+    class="q-mt-md"
+    :search-model="searchModel"
+    :remove-item="removeItem"
+  />
 
   <!-- <q-card-actions
     align="right"
@@ -195,14 +189,13 @@ import { computed, onMounted, ref, watch } from "vue"
 import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 import chip from "src/components/shared/SearchChip.vue"
+import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
 
 const props = defineProps({
   gridStore: Object
 })
 
 const expanded = ref(false)
-const fromDate = ref(null)
-const toDate = ref(null)
 
 const searchModel = computed(() => props.gridStore.state.searchModel.value)
 
@@ -234,20 +227,4 @@ async function removeItem(item) {
   await applySearch()
 }
 
-const calendar = computed(() => culture.value.calendar)
-//todo: remove this property to a general composable to be accessable every where
-const culture = computed(() => {
-  const currentLanguage = localStorage.getItem("selectedLanguage") || "fa-IR"
-  const defaultCulture = { name: "en", calendar: "gregorian", title: "English", flag: "" }
-  //todo: [DRY]: remove langs to constants,
-  // use in languageStting
-  // also, you could add other language specefic properties such as digits, ... to this object and use it, so u can delete extra if, then else
-  // and your code is more clean
-  const cultures = [
-    { name: "fa-IR", calendar: "persian", title: "فارسی", flag: "" },
-    { name: "fa", calendar: "persian", title: "فارسی", flag: "" },
-    { name: "ar", calendar: "hijri", title: "العربیة", flag: "" }
-  ]
-  return cultures.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
-})
 </script>
