@@ -77,7 +77,7 @@
                   header
                 >
                   <div class="column items-center justify-center q-mt-md">
-                    <div class="q-mt-md">
+                    <div class="q-my-md">
                       <span class="text-on-dark">{{ username }}</span>
                     </div>
                   </div>
