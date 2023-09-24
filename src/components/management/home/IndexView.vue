@@ -1,8 +1,12 @@
 <template>
-  <bar-chart />
-  <line-chart />
-  <doughnut-chart />
-  <pie-chart />
+  <div class="q-gutter-y-lg">
+    <bar-chart />
+    <line-chart />
+    <div class="row q-gutter-x-lg">
+      <doughnut-chart />
+      <pie-chart />
+    </div>
+  </div>
 </template>
 
 <script setup>

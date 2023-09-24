@@ -4,6 +4,7 @@
       class="bar-chart"
       :options="chartOptions"
       :data="chartData"
+      :style="myStyles"
     />
   </q-card>
 </template>
@@ -17,10 +18,17 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 const $q = useQuasar()
 
+const height = ref(400)
+
+const myStyles = {
+  height: `${height.value}px`,
+  position: 'relative',
+}
+
 const chartData = ref({
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['شرکت سامانه های هوشمند نسل سوم', 'Key Store', 'انجمن عایق های رطوبتی استان مرکزی', 'نمایندگی آزمایشگاه مصالح ساختمانی', 'خشایار شمالی', 'بانک ملی ایران', 'ایران رایانه'],
   datasets: [{
-    label: 'January',
+    label: 'مشتری',
     backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
       'rgba(255, 159, 64, 0.2)',
@@ -30,7 +38,7 @@ const chartData = ref({
       'rgba(153, 102, 255, 0.2)',
       'rgba(201, 203, 207, 0.2)'
     ],
-    borderWidth: 1,
+    borderWidth: 2,
     barPercentage: 0.5,
     barThickness: 48,
     maxBarThickness: 48,
@@ -45,9 +53,7 @@ const chartData = ref({
       'rgb(153, 102, 255)',
       'rgb(201, 203, 207)'
     ],
-    fill: false,
-    tension: 0.5,
-    data: [40, 39, 10, 40, 39, 80, 40]
+    data: [20000000, 40000000, 60000000, 8000000, 10000000, 12000000, 14000000, 16000000, 18000000]
   }],
 });
 
@@ -56,36 +62,57 @@ const chartOptions = ref({
   maintainAspectRatio: false,
   scales: {
     x: {
-      stacked: true,
       ticks: {
-        color: 'black',
+        font: {
+          family: 'Vazir FD',
+          size: 12,
+        },
       },
       grid: {
-        display: false,
-        offset: true,
-      },
+
+      }
     },
     y: {
-      stacked: true,
       beginAtZero: true,
       ticks: {
-        color: 'black',
+        font: {
+          family: 'Vazir FD',
+          size: 12,
+        },
       },
       grid: {
-        display: false,
+
       },
     },
   },
   plugins: {
     legend: {
-      display: false,
+      position: 'bottom',
       labels: {
         color: 'black',
+        padding: 42,
+        font: {
+          family: 'Vazir FD',
+          size: 14,
+        },
       },
     },
-    // tooltip: {
-    //     backgroundColor: 'red'
-    //   }
+    tooltip: {
+      enabled: true,
+      backgroundColor: 'white',
+      borderColor: 'black',
+      borderWidth: 1,
+      titleColor: 'black',
+      bodyColor: 'black',
+      titleFont: {
+        family: 'Vazir FD',
+        size: 12,
+      },
+      bodyFont: {
+        family: 'Vazir FD',
+        size: 11,
+      },
+    },
   },
 });
 
@@ -95,12 +122,17 @@ if (isDarkMode === "true") {
 
   chartOptions.value.scales.x.ticks.color = 'white';
   chartOptions.value.scales.y.ticks.color = 'white';
+  chartOptions.value.scales.x.grid.color = 'rgba(255,255,255,0.2)';
+  chartOptions.value.scales.y.grid.color = 'rgba(255,255,255,0.2)';
   chartOptions.value.plugins.legend.labels.color = 'white';
 
 } else {
   chartOptions.value.scales.x.ticks.color = 'black';
   chartOptions.value.scales.y.ticks.color = 'black';
   chartOptions.value.plugins.legend.labels.color = 'black';
+  chartOptions.value.plugins.tooltip.backgroundColor = '#2d2d2d';
+  chartOptions.value.plugins.tooltip.titleColor = 'white';
+  chartOptions.value.plugins.tooltip.bodyColor = 'white';
 }
 
 </script>
