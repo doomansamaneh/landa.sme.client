@@ -15,7 +15,7 @@
         />
         <!-- {{ tableStore.pagination.value.totalItems }} -->
       </div>
-      <div class="q-space"></div>
+      <div class="q-space" />
       <div class="q-gutter-x-sm">
         <q-btn
           class="bg-primary text-white text-caption"
@@ -68,14 +68,3 @@ const props = defineProps({
 })
 
 </script>
-
-<style lang="scss">
-.bordered-btn {
-  border: 1px solid #d9dce5;
-  box-shadow: 0 0 2px 0 #dedede;
-}
-
-.z-1 {
-  z-index: 1;
-}
-</style>

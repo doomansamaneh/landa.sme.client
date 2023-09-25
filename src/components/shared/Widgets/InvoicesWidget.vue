@@ -11,7 +11,7 @@
             class="q-ml-sm bg-dark text-on-dark text-body2"
           />
         </div>
-        <span>جمع کل</span>
+        <span class="text-caption">جمع کل</span>
         <q-badge
           rounded
           outline
@@ -19,7 +19,7 @@
           color="primary"
           class="q-ml-sm bg-dark text-bold q-py-xs q-px-sm"
         />
-        <span>دریافت شده</span>
+        <span class="text-caption">دریافت شده</span>
         <q-badge
           rounded
           outline
@@ -27,7 +27,7 @@
           color="primary"
           class="q-ml-sm bg-dark text-bold q-py-xs q-px-sm"
         />
-        <span>مانده امسال</span>
+        <span class="text-caption">مانده امسال</span>
         <q-badge
           rounded
           outline
@@ -35,7 +35,7 @@
           color="primary"
           class="q-ml-sm bg-dark text-bold q-py-xs q-px-sm"
         />
-        <span>مانده از قبل</span>
+        <span class="text-caption">مانده از قبل</span>
         <q-badge
           rounded
           outline
@@ -49,17 +49,13 @@
           unelevated
           rounded
           class="bordered-btn bg-dark q-py-xs"
-        >ایجاد فاکتور</q-btn>
+        ><q-icon
+            name="o_add"
+            size="16px"
+            class="q-mr-xs"
+          />ایجاد فاکتور</q-btn>
       </div>
     </q-card>
   </div>
 </template>
 
-<style lang="scss">
-
-.bordered-btn {
-  border: 1px solid #d9dce5;
-  box-shadow: 0 0 2px 0 #dedede;
-}
-
-</style>

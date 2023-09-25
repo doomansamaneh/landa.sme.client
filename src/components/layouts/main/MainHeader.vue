@@ -21,12 +21,6 @@
           <q-badge class="q-pl-sm q-py-xs">{{ $t('shared.labels.today') }}: {{
             date.toLocaleDateString("fa-IR", options) }}
           </q-badge>
-          <q-btn
-            outline
-            dense
-            class="q-py-xs q-px-sm text-caption"
-            color="primary"
-          >سال مالی: 1402</q-btn>
         </div>
       </q-toolbar-title>
       <div class="row items-center">
