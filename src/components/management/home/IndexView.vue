@@ -1,16 +1,17 @@
 <template>
-  <div class="col justify-center items-center">
-    <q-btn @click="testStore.increamentLocal">increament local</q-btn>
-    <q-btn @click="testStore.increamentGlobal">increament global</q-btn>
-    <h4>{{ testStore.localCount }}</h4>
-    <h4>{{ testStore.globalCount }}</h4>
-    <h6>بزودی در اینجا داشبورد قرار خواهد گرفت</h6>
+  <div class="q-gutter-y-lg">
+    <bar-chart />
+    <line-chart />
+    <div class="row q-gutter-x-lg">
+      <doughnut-chart />
+      <pie-chart />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { useTest } from "src/components/areas/sls/_composables/testStore"
-const testStore = useTest()
+import BarChart from 'src/components/shared/Charts/BarChart.vue'
+import LineChart from 'src/components/shared/Charts/LineChart.vue'
+import DoughnutChart from 'src/components/shared/Charts/PieChart.vue'
+import PieChart from 'src/components/shared/Charts/DoughnutChart.vue'
 </script>
-
-<style lang="scss"></style>

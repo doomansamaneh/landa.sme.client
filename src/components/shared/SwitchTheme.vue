@@ -92,6 +92,7 @@ onMounted(() => {
 const getPrimaryColor = (themeName) => {
   return themes[themeName].primary
 }
+
 const getClass = (themeName) => {
   return "cursor-pointer" +
     (selectedTheme.value === themeName ? " active" : "")
