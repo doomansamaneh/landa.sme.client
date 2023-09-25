@@ -88,8 +88,6 @@ const isDarkMode = localStorage.getItem('darkMode')
 if (isDarkMode === "true") {
   chartOptions.value.plugins.legend.labels.color = 'white';
   chartOptions.value.plugins.legend.title.color = 'white';
-
-
 } else {
   chartOptions.value.plugins.legend.labels.color = 'black';
   chartOptions.value.plugins.tooltip.backgroundColor = '#2d2d2d';

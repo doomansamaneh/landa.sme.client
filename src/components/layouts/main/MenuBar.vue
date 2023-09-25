@@ -72,7 +72,10 @@
               avatar
               class="item-section"
             >
-              <q-icon :name="`o_${subItem.icon}`" size="xs" />
+              <q-icon
+                :name="`o_${subItem.icon}`"
+                size="xs"
+              />
             </q-item-section>
             <q-item-section>
               <span class="text-caption"> {{ subItem.title }} </span>
@@ -166,7 +169,7 @@ const drawerMenuItems = computed(() => {
 
 const gotoDashboard = () => {
   router.push("/dashboard")
-  alert("you are going to dashbord...")
+  //alert("you are going to dashbord...")
 }
 
 function clearSearch() {
@@ -196,8 +199,8 @@ onMounted(() => {
 .q-item__section--side {
 
   padding-right: 8px;
-   .q-icon {
+
+  .q-icon {
     font-size: 18px;
-   }
-}
-</style>
+  }
+}</style>
