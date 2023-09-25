@@ -28,6 +28,11 @@
         v-show="expanded"
       >
         <div class="">
+          <q-checkbox
+            class="q-pt-sm text-caption"
+            v-model="searchModel.waitToSendTax"
+            :label='$t("shared.labels.waitToSendTax")'
+          />
           <div class="q-gutter-y-sm q-pl-sm q-my-md">
             <div class="row q-gutter-x-sm items-center">
               <q-input
@@ -73,12 +78,6 @@
                 style="width: 400px;"
               />
             </div>
-            <q-checkbox
-              size="sm"
-              class="q-pt-sm text-caption"
-              v-model="searchModel.waitToSendTax"
-              :label='$t("shared.labels.waitToSendTax")'
-            />
           </div>
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
             <q-btn
