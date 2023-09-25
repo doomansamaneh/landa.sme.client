@@ -10,8 +10,9 @@
         <q-badge
           rounded
           outline
-          class="q-ml-sm bg-dark text-on-dark"
-        ><span class="text-body2">15</span></q-badge>
+          label="15"
+          class="q-ml-sm bg-dark text-on-dark text-body2"
+        />
         <!-- {{ tableStore.pagination.value.totalItems }} -->
       </div>
       <div class="q-space"></div>
