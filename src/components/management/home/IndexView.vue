@@ -22,7 +22,7 @@
     </q-toolbar>
   </q-page-sticky>
 
-  <div class="q-gutter-y-lg q-mt-xs">
+  <div class="q-mt-md">
     <invoices-widget />
   </div>
   <div class="q-gutter-y-lg">

@@ -8,4 +8,14 @@
       color: $primary;
     }
   }
+
+  .q-expansion-item--expanded {
+    .q-item__label {
+      color: $primary;
+    }
+
+    .q-item__section--avatar {
+        color: $primary;
+    }
+  }
 }
