@@ -58,8 +58,9 @@ const culture = computed(() => {
   // and your code is more clean
   const cultures = [
     { name: "fa-IR", calendar: "persian", title: "فارسی", flag: "" },
-    { name: "fa", calendar: "persian", title: "فارسی", flag: "" },
-    { name: "ar", calendar: "hijri", title: "العربیة", flag: "" }
+    //{ name: "fa", calendar: "persian", title: "فارسی", flag: "" },
+    { name: "ar", calendar: "hijri", title: "العربیة", flag: "" },
+    defaultCulture
   ]
   return cultures.filter((c) => c.name === currentLanguage)[0] ?? defaultCulture
 })
