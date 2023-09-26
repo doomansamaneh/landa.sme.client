@@ -56,4 +56,5 @@ function switchLanguage(code) {
 // function setDigits() {
 //   document.body.classList.add(`digits--${cultureStore.culture.value.code}`)
 // }
+
 </script>

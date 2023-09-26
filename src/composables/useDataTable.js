@@ -1,6 +1,6 @@
 import { computed, ref } from "vue"
 import { sqlOperator } from "src/constants/enums"
-import { fetchWrapper } from "src/helpers"
+import { fetchWrapper, helper } from "src/helpers"
 
 export function useDataTable(dataSource
   , dataColumns
@@ -37,7 +37,6 @@ export function useDataTable(dataSource
   const loading = ref(false)
   const showLoader = ref(false)
 
-
   const showPagebar = computed(() =>
     pagination.value.totalItems > defaultPageSize
   )
@@ -68,6 +67,10 @@ export function useDataTable(dataSource
   }
 
   async function reloadData() {
+    await reloadConcreteData(pagination.value, handleResponse)
+  }
+
+  async function reloadConcreteData(gridPage, gridhandleResponse) {
     loading.value = true
 
     let loadingTimer = setTimeout(() => {
@@ -77,9 +80,9 @@ export function useDataTable(dataSource
     setPayload()
 
     await fetchWrapper
-      .post(dataSource, pagination.value)
+      .post(dataSource, gridPage)
       .then((response) => {
-        handleResponse(response.data.data)
+        gridhandleResponse(response.data.data)
       })
       .finally(() => {
         clearTimeout(loadingTimer)
@@ -195,6 +198,26 @@ export function useDataTable(dataSource
       (row.selected === true ? " row-selected" : "")
   }
 
+  function exportCurrentPage() {
+    helper.exportCsv(state.value.rows.value, columns.value)
+  }
+
+  async function exportAll() {
+    const allPage = {
+      pageSize: -1,
+      sortOrder: pagination.value.sortOrder,
+      sortColumn: pagination.value.sortColumn,
+      searchTerm: pagination.value.searchTerm,
+      filterExpression: pagination.value.filterExpression,
+      searchModel: pagination.value.searchModel
+    }
+    await reloadConcreteData(allPage, handleAllResponse)
+
+    function handleAllResponse(pagedData) {
+      helper.exportCsv(pagedData.items, columns.value)
+    }
+  }
+
   return {
     allSelectedIds: state.value.allSelectedIds,
     rows: state.value.rows,
@@ -204,6 +227,7 @@ export function useDataTable(dataSource
     loading,
     showLoader,
     selectedRows,
+    columns,
     showPagebar,
     rowIndex,
     pagination,
@@ -218,7 +242,9 @@ export function useDataTable(dataSource
     sortColumn,
     toggleExpand,
     getSortableClass,
-    getRowClass
+    getRowClass,
+    exportCurrentPage,
+    exportAll
   }
 }
 

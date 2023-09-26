@@ -1,4 +1,27 @@
 <template>
+  <q-btn
+    class="bg-primary text-white text-caption q-mx-md q-mb-sm"
+    padding="6px 12px"
+    unelevated
+    @click="dataTable.tableStore.exportCurrentPage()"
+  >
+    <q-icon
+      name="download"
+      class="q-mr-xs"
+    />تبدیل به اکسل
+  </q-btn>
+  <q-btn
+    class="bg-primary text-white text-caption q-mx-md q-mb-sm"
+    padding="6px 12px"
+    unelevated
+    @click="dataTable.tableStore.exportAll()"
+  >
+    <q-icon
+      name="download"
+      class="q-mr-xs"
+    />تبدیل همه به اکسل
+  </q-btn>
+
   <data-grid
     ref="dataTable"
     dataSource="sls/invoice/getGridData"
@@ -8,13 +31,14 @@
     multiSelect
     numbered
     bordered
-    dense
+    dense_
     wrapCells
     expandable
   >
     <template #filter-statusTitle="{ col }">
       <q-select
         clearable
+        clear-icon="clear"
         dense
         outlined
         emit-value

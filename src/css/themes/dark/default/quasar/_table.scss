@@ -2,4 +2,10 @@
   .q-table__container {
     background-color: $dark-page;
   }
+  .q-table__bottom{
+    padding: 15px;
+  }
+  .q-table th {
+    padding: 8px;
+  }
 }

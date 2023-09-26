@@ -1,15 +1,28 @@
 <template>
   <div :class="containerClass">
     <div class="q-table__middle scroll">
+      <!-- <q-btn
+        class="bg-primary text-white text-caption q-mx-md q-mb-sm"
+        padding="6px 12px"
+        unelevated
+        @click="tableStore.exportCurrentPage()"
+      >
+        <q-icon
+          name="download"
+          class="q-mr-xs"
+        />تبدیل به اکسل
+      </q-btn>
       <q-btn
         class="bg-primary text-white text-caption q-mx-md q-mb-sm"
         padding="6px 12px"
         unelevated
-        @click="exportTable"
-      ><q-icon
+        @click="tableStore.exportAll()"
+      >
+        <q-icon
           name="download"
           class="q-mr-xs"
-        />تبدیل به اکسل</q-btn>
+        />تبدیل همه به اکسل
+      </q-btn> -->
       <table class="q-table">
         <thead>
           <tr>
@@ -70,6 +83,7 @@
                   outlined
                   dense
                   clearable
+                  clear-icon="clear"
                   v-model="col.value"
                   debounce="500"
                   @update:model-value="reloadData"
@@ -225,13 +239,14 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
-import { exportFile, useQuasar } from "quasar"
-import PageBar from "./PageBar.vue"
-import NoDataFound from "./NoDataFound.vue"
+import { useQuasar } from "quasar"
 import { useDataTable } from "src/composables/useDataTable"
 
-const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
+import PageBar from "./PageBar.vue"
+import NoDataFound from "./NoDataFound.vue"
+
 const $q = useQuasar()
+const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const props = defineProps({
   sortBy: String,
@@ -305,58 +320,13 @@ const containerClass = computed(() =>
   __containerClass.value + (tableStore.showLoader.value === true ? " q-table--loading" : "")
 )
 
-function wrapCsvValue(val, formatFn, row) {
-  let formatted = formatFn !== void 0
-    ? formatFn(val, row)
-    : val
-
-  formatted = formatted === void 0 || formatted === null
-    ? ''
-    : String(formatted)
-
-  formatted = formatted.split('"').join('""')
-
-  /**
-   * Excel accepts \n and \r in strings, but some other CSV parsers do not
-   * Uncomment the next two lines to escape new lines
-   */
-  // .split('\n').join('\\n')
-  // .split('\r').join('\\r')
-
-  return `"${formatted}"`
-}
-
-function exportTable() {
-  const content = [props.gridStore.columns.value.map(col => wrapCsvValue(col.label))].concat(
-    tableStore.rows.value.map(row => props.gridStore.columns.value.map(col => wrapCsvValue(
-      typeof col.field === 'function'
-        ? col.field(row)
-        : row[col.field === void 0 ? col.name : col.field],
-      col.format,
-      row
-    )).join(','))
-  ).join('\r\n')
-
-  const status = exportFile(
-    'landa-sme.csv',
-    "\ufeff" + content,
-    'text/csv')
-
-  if (status !== true) {
-    $q.notify({
-      message: 'Browser denied file download...',
-      color: 'negative',
-      icon: 'warning'
-    })
-  }
-}
-
 defineExpose({
   reloadData,
   activeRow: tableStore.activeRow,
   selectedRows: tableStore.selectedRows,
   allSelectedIds: tableStore.allSelectedIds,
-  rows: tableStore.rows
+  rows: tableStore.rows,
+  tableStore
 })
 </script>
 

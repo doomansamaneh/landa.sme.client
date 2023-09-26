@@ -2,6 +2,9 @@
   <top-bar title="پیش فاکتورها" />
   <div>
     <div class="q-mt-lg">
+      <q-btn @click="alertFact(10)">10!</q-btn>
+      <q-btn @click="alertFact(1000)">1000!</q-btn>
+
       <q-btn @click="testStore.increamentLocal">increament local</q-btn>
       <q-btn @click="testStore.increamentGlobal">increament global</q-btn>
       <h4>{{ testStore.localCount }}</h4>
@@ -198,5 +201,15 @@ const statusOptions = [
 function handleSelect(val) {
   alert(`filter changed 1: ${val}`)
   alert(`filter changed 12: ${statusTitle.value}`)
+}
+
+function alertFact(n) {
+  const result = fact(n)
+  alert(result)
+}
+
+function fact(n) {
+  if (n <= 0) return 1
+  return n * fact(n - 1)
 }
 </script>
