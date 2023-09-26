@@ -32,41 +32,20 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from "vue"
+import { cultures } from "src/constants/enums"
 import { useI18n } from "vue-i18n"
 
 const { locale } = useI18n({ useScope: "global" })
 
-const supportedLanguages = [
-  {
-    code: "en-US",
-    name: "English",
-    dir: "ltr",
-    quasarLang: "en-US"
-  },
-  {
-    code: "fa-IR",
-    name: "فارسی",
-    dir: "rtl",
-    quasarLang: "fa-IR"
-  },
-  {
-    code: "ar",
-    name: "العربیة",
-    dir: "rtl",
-    quasarLang: "ar"
-  }
-]
+const supportedLanguages = cultures
 
 const currentLanguage = ref(localStorage.getItem("selectedLanguage") || "fa-IR")
 
 const selectedLanguageLabel = computed(() => {
-  const labels = {
-    "en-US": "English",
-    "fa-IR": "فارسی",
-    ar: "العربیة"
-  }
-  return labels[currentLanguage.value] || ""
-})
+  const currentLanguageCode = currentLanguage.value;
+  const culture = cultures.find(culture => culture.code === currentLanguageCode);
+  return culture ? culture.name : "";
+});
 
 function switchLanguage(code) {
   const oldLanguage = currentLanguage.value
