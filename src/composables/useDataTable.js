@@ -67,10 +67,21 @@ export function useDataTable(dataSource
   }
 
   async function reloadData() {
-    await reloadConcreteData(pagination.value, handleResponse)
+    await fetchData(pagination.value, handleResponse)
+
+    function handleResponse(pagedData) {
+      const items = pagedData.items
+      items.forEach((item) => {
+        item.selected = state.value.allSelectedIds.value.indexOf(item.id) > -1
+      })
+      state.value.rows.value = items
+      state.value.summaryData.value = pagedData.summaryData
+      pagination.value.totalItems = pagedData.page.totalItems
+      pagination.value.currentPage = pagedData.page.currentPage
+    }
   }
 
-  async function reloadConcreteData(gridPage, gridhandleResponse) {
+  async function fetchData(gridPage, gridhandleResponse) {
     loading.value = true
 
     let loadingTimer = setTimeout(() => {
@@ -89,17 +100,37 @@ export function useDataTable(dataSource
         loading.value = false
         showLoader.value = false
       })
-  }
 
-  function handleResponse(pagedData) {
-    const items = pagedData.items
-    items.forEach((item) => {
-      item.selected = state.value.allSelectedIds.value.indexOf(item.id) > -1
-    })
-    state.value.rows.value = items
-    state.value.summaryData.value = pagedData.summaryData
-    pagination.value.totalItems = pagedData.page.totalItems
-    pagination.value.currentPage = pagedData.page.currentPage
+    function setPayload() {
+      pagination.value.filterExpression = []
+      if (columns.value) {
+        let payLoadCols = ""
+        columns.value.forEach((col) => {
+          if (payLoadCols === "") payLoadCols = col.name
+          else payLoadCols = `${payLoadCols},${col.name}`
+          if (col.value) {
+            pagination.value.filterExpression.push({
+              fieldName: col.name,
+              operator: col.operator ?? sqlOperator.like,
+              value: col.value
+            })
+          }
+        })
+
+        if (pagination.value.searchField && pagination.value.searchTerm) {
+          pagination.value.filterExpression.push({
+            fieldName: pagination.value.searchField,
+            operator: sqlOperator.like,
+            value: pagination.value.searchTerm
+          })
+        }
+
+        pagination.value.columns = payLoadCols
+      }
+      else console.warn("[landa]: columns are not defined")
+      if (state.value.searchModel != null)
+        pagination.value.searchModel = JSON.stringify(state.value.searchModel.value)
+    }
   }
 
   function setActiveRow(row) {
@@ -124,37 +155,6 @@ export function useDataTable(dataSource
     } else {
       if (index >= 0) state.value.allSelectedIds.value.splice(index, 1)
     }
-  }
-
-  function setPayload() {
-    pagination.value.filterExpression = []
-    if (columns.value) {
-      let payLoadCols = ""
-      columns.value.forEach((col) => {
-        if (payLoadCols === "") payLoadCols = col.name
-        else payLoadCols = `${payLoadCols},${col.name}`
-        if (col.value) {
-          pagination.value.filterExpression.push({
-            fieldName: col.name,
-            operator: col.operator ?? sqlOperator.like,
-            value: col.value
-          })
-        }
-      })
-
-      if (pagination.value.searchField && pagination.value.searchTerm) {
-        pagination.value.filterExpression.push({
-          fieldName: pagination.value.searchField,
-          operator: sqlOperator.like,
-          value: pagination.value.searchTerm
-        })
-      }
-
-      pagination.value.columns = payLoadCols
-    }
-    else console.warn("[landa]: columns are not defined")
-    if (state.value.searchModel != null)
-      pagination.value.searchModel = JSON.stringify(state.value.searchModel.value)
   }
 
   async function sortColumn(col) {
@@ -203,17 +203,11 @@ export function useDataTable(dataSource
   }
 
   async function exportAll() {
-    const allPage = {
-      pageSize: -1,
-      sortOrder: pagination.value.sortOrder,
-      sortColumn: pagination.value.sortColumn,
-      searchTerm: pagination.value.searchTerm,
-      filterExpression: pagination.value.filterExpression,
-      searchModel: pagination.value.searchModel
-    }
-    await reloadConcreteData(allPage, handleAllResponse)
+    const allPage = { ...pagination.value }
+    allPage.pageSize = -1
+    await fetchData(allPage, handleResponse)
 
-    function handleAllResponse(pagedData) {
+    function handleResponse(pagedData) {
       helper.exportCsv(pagedData.items, columns.value)
     }
   }
@@ -247,5 +241,3 @@ export function useDataTable(dataSource
     exportAll
   }
 }
-
-
