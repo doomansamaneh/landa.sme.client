@@ -11,6 +11,15 @@
     color : $white
   }
 
+  .bordered-btn {
+    border: 1px solid #d9dce5;
+    box-shadow: 0 0 2px 0 #dedede;
+  }
+
+  .z-1 {
+    z-index: 1;
+  }
+
   // .theme-place {
   //   border-left: 1px solid #ffffff47;
   //   border-right: 1px solid #ffffff47;

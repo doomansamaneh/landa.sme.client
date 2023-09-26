@@ -1,5 +1,28 @@
 <template>
-  <div class="q-gutter-y-lg">
+  <q-page-sticky
+    class="z-1 bg-main q-px-xl q-py-md"
+    position="top"
+    expand
+  >
+    <q-toolbar class="q-mx-sm">
+      <div class="row items-center">
+        <span class="text-h6">داشبورد</span>
+      </div>
+      <div class="q-space" />
+      <q-btn
+        class="bordered-btn bg-dark"
+        padding="6px 16px"
+        unelevated
+        @click="exportTable"
+      ><q-icon
+          name="o_calendar_today"
+          class="q-pr-sm"
+          size="16px"
+        />سال مالی: 1402</q-btn>
+    </q-toolbar>
+  </q-page-sticky>
+
+  <div class="q-mt-md">
     <invoices-widget />
   </div>
   <div class="q-gutter-y-lg">
@@ -20,13 +43,4 @@ import PieChart from 'src/components/shared/Charts/DoughnutChart.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
 </script>
 
-<style lang="scss">
-.bordered-btn {
-  border: 1px solid #d9dce5;
-  box-shadow: 0 0 2px 0 #dedede;
-}
-
-.actions {
-  max-width: calc(100% - 68px);
-}
-</style>
+<style lang="scss"></style>
