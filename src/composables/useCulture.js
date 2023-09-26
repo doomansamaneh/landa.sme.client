@@ -1,6 +1,5 @@
 import { computed } from "vue"
 import { cultures } from "src/constants/enums"
-import { Loading } from "quasar"
 
 export function useCulture() {
   const getCulture = () => {
