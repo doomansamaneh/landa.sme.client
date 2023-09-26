@@ -1,5 +1,5 @@
 <template>
-  <top-bar title="فاکتورها1" />
+  <top-bar title="فاکتورها" />
   <div class="q-mt-lg">
     <advanced-search
       :grid-store="invoiceStore"
