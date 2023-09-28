@@ -15,13 +15,18 @@
           class="text-on-dark"
         />
       </div>
-      <q-toolbar-title class="text-subtitle2 text-bold flex justify-start">
-        <span class="text-on-dark q-pr-sm">{{ selectedBusiness.title }}</span>
-        <div class="row q-gutter-x-sm q-px-md">
-          <q-badge class="q-pl-sm q-py-xs">{{ $t('shared.labels.today') }}: {{
-            date.toLocaleDateString("fa-IR", options) }}
-          </q-badge>
-        </div>
+      <q-toolbar-title class="text-subtitle2 text-bold flex justify-start items-center">
+        <span class="text-on-dark q-pr-lg">{{ selectedBusiness.title }}</span>
+        <q-btn
+          class="bordered-btn bg-dark text-on-dark"
+          padding="4px 12px"
+          unelevated
+          @click="exportTable"
+        ><q-icon
+            name="o_calendar_today"
+            class="q-pr-sm"
+            size="16px"
+          />سال مالی: 1402</q-btn>
       </q-toolbar-title>
       <div class="row items-center">
         <q-separator

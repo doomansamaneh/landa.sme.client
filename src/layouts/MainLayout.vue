@@ -6,19 +6,21 @@
     <q-page-container>
       <main-header @toggle-drawer="toggleDrawer" />
       <menu-bar :drawer="drawer" />
+    <today-date />
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted } from "vue"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 import { useTheme } from "src/components/layouts/main/_composables/ThemeStore.js"
 import MenuBar from "src/components/layouts/main/MenuBar.vue"
 import MainHeader from "src/components/layouts/main/MainHeader.vue"
+import TodayDate from "src/components/shared/TodayDate.vue"
 
 const theme = useTheme()
 const route = useRoute()
@@ -84,5 +86,4 @@ onMounted(() => {
 .q-item__section--avatar {
   min-width: 0;
 }
-
 </style>
