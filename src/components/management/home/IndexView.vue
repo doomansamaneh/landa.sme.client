@@ -9,16 +9,6 @@
         <span class="text-h6">داشبورد</span>
       </div>
       <div class="q-space" />
-      <q-btn
-        class="bordered-btn bg-dark"
-        padding="6px 16px"
-        unelevated
-        @click="exportTable"
-      ><q-icon
-          name="o_calendar_today"
-          class="q-pr-sm"
-          size="16px"
-        />سال مالی: 1402</q-btn>
     </q-toolbar>
   </q-page-sticky>
 
