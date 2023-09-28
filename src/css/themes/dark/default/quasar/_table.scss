@@ -8,4 +8,15 @@
   .q-table th {
     padding: 8px;
   }
+
+  .markup {
+    .q-table th {
+      padding: 0 16px;
+    }
+    & td {
+
+      padding: 0 16px;
+
+    }
+  }
 }

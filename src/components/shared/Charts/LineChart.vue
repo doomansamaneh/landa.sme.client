@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow q-pa-xl">
+  <q-card class="no-shadow q-pa-lg">
     <Line
       class="line-chart"
       :options="chartOptions"

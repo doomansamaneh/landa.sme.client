@@ -44,4 +44,11 @@
   .row-selected {
     background-color: #{$primary}10;
   }
+
+  .div-table-container {
+    outline: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .div-table-cell {
+    outline: 1px solid rgba(0, 0, 0, 0.12);
+  }
 }

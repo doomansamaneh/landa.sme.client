@@ -3,8 +3,8 @@
     class="z-1 q-pa-sm"
     position="bottom-right"
   >
-    <q-badge class="q-pl-sm q-py-xs">{{ $t('shared.labels.today') }}: {{
-      date.toLocaleDateString("fa-IR", options) }}
+    <q-badge class="q-px-sm q-py-sm"><span class="text-body2">{{ $t('shared.labels.today') }}: {{
+      date.toLocaleDateString("fa-IR", options) }}</span>
     </q-badge>
   </q-page-sticky>
 </template>

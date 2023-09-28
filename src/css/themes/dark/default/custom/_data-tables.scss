@@ -52,4 +52,11 @@
   .row-selected {
     background-color: lighten($dark-page, 5);
   }
+
+  .div-table-container {
+    outline: 1px solid rgba(255, 255, 255, 0.28);
+  }
+  .div-table-cell {
+    outline: 1px solid rgba(255, 255, 255, 0.28);
+  }
 }
