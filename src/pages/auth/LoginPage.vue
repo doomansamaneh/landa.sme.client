@@ -2,7 +2,7 @@
   <q-page class="login-page full-screen flex justify-center items-center">
     <div class="body-section q-mb-xl">
       <div class="login-form-container">
-        <q-card class="login-form no-shadow no-outline row justify-center">
+        <q-card class="login-form no-shadow no-outline no-border row justify-center">
           <img
             src="/about-us-header.png"
             class="login-img q-mb-md"

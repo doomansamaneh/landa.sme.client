@@ -452,7 +452,7 @@ function getSelectedString() {
 
 //////////// table navigation ////////////////////
 const tableClass = computed(() =>
-  navigationActive.value === true ? "no-outline" : null
+  navigationActive.value === true ? "no-border" : null
 )
 
 function activateNavigation() {

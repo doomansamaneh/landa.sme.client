@@ -1,6 +1,6 @@
 @mixin q-card-dark {
   .q-card {
     background-color: $dark-page;
-    outline: 1px solid $secondary;
+    border: 1px solid $secondary;
   }
 }

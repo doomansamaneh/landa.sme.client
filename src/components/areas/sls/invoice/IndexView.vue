@@ -6,7 +6,6 @@
       @apply-search="applySearch"
     />
   </div>
-
   <div>
     <div class="row items-center q-gutter-md">
       <q-btn
@@ -17,7 +16,6 @@
       >
         edit (invoice no: {{ gridI1?.activeRow.no }})
       </q-btn>
-
       <div>
         <q-btn
           v-if="gridI1?.selectedRows.length > 0"
