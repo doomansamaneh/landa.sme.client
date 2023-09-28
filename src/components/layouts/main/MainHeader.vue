@@ -1,7 +1,7 @@
 <template>
   <q-header
     bordered
-    class="q-px-sm"
+    class="q-px-sm q-py-xs"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between">
@@ -40,12 +40,24 @@
           vertical
           inset
         />
-        <div class="row q-gutter-x-sm q-ml-sm">
+        <div class="row q-gutter-x-md q-ml-md">
+          <q-btn
+            round
+            unelevated
+            dense
+            icon="o_notifications"
+            class="text-on-dark"
+          >
+            <q-badge
+              floating
+              color="red"
+              rounded
+            >4</q-badge>
+          </q-btn>
           <q-btn
             flat
             dense
             round
-            color=""
             icon="o_contacts"
             class="btn-icon text-on-dark gt-xs"
             size="14px"
@@ -55,7 +67,6 @@
             dense-dark
             round
             dense
-            color=""
             icon="o_account_circle"
             size="14px"
             class="btn-icon text-on-dark"
@@ -148,7 +159,6 @@
             flat
             dense
             round
-            color=""
             icon="o_settings"
             class="btn-icon text-on-dark"
             size="14px"
