@@ -1,5 +1,8 @@
 <template>
-  <div class="q-gutter-xs">
+  <div
+    class="q-gutter-xs"
+    v-if="searchItems?.length > 0"
+  >
     <template
       v-for="item in searchItems"
       :key="item.name"

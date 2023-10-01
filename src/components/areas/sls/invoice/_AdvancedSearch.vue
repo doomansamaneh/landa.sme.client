@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-px-md q-mt-md no-shadow">
+  <q-card flat>
     <q-card-section class="row items-center justify-between">
       <q-option-group
         class="row text-caption"
@@ -9,26 +9,22 @@
         v-model="searchModel.dateRange"
         @update:model-value="applySearch"
       />
-      <div class="row items-center">
-        <q-btn
-          round
-          flat
-          dense
-          class="bg-dark"
-          :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-          @click="expanded = !expanded"
-        />
-        <span class="text-caption">
-          جستجوی پیشرفته
-        </span>
-      </div>
-    </q-card-section>
-    <q-slide-transition>
-      <div
-        class="row q-mx-md"
-        v-show="expanded"
+      <q-btn
+        flat
+        dense
+        _round
+        :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+        @click="expanded = !expanded"
       >
-        <div class="">
+        <span class="text-caption">
+          {{ $t("shared.labels.advancedSearch") }}
+        </span>
+      </q-btn>
+    </q-card-section>
+
+    <q-card-section class="row q-pa-none">
+      <q-slide-transition v-show="expanded">
+        <div class="q-px-md">
           <q-checkbox
             class="q-pt-sm text-caption"
             v-model="searchModel.waitToSendTax"
@@ -67,7 +63,7 @@
                 :placeholder='$t("shared.labels.dateTo")'
               />
             </div>
-            <div class="row items-center q-gutter-x-sm">
+            <div class="row q-gutter-x-sm items-center">
               <q-input
                 outlined
                 dense
@@ -82,12 +78,11 @@
           </div>
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
             <q-btn
-              class="bg-primary text-white"
+              class="text-caption bg-primary text-white"
               rounded
               padding="8px 16px"
               unelevated
               @click="applySearch"
-              size="12px"
             >
               <q-icon
                 name="search"
@@ -95,13 +90,12 @@
               />جستجو
             </q-btn>
             <q-btn
-              class=""
+              class="text-caption"
               rounded
               unelevated
               padding="8px 16px"
               flat
               @click="clearSearch"
-              size="12px"
             >
               <q-icon
                 name="clear"
@@ -111,8 +105,8 @@
             </q-btn>
           </div>
         </div>
-      </div>
-    </q-slide-transition>
+      </q-slide-transition>
+    </q-card-section>
   </q-card>
   <chip
     class="q-my-md"
@@ -163,5 +157,4 @@ async function removeItem(item) {
   searchModel.value[item.name] = value
   await applySearch()
 }
-
 </script>

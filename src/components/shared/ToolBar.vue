@@ -5,18 +5,6 @@
     expand
   >
     <q-toolbar class="q-mx-sm">
-      <div class="row items-center">
-        <slot name="header">
-          <span class="text-h6">{{ title }}</span>
-          <q-badge
-            rounded
-            outline
-            label="15"
-            class="q-ml-sm bg-dark text-on-dark text-body2"
-          />
-        </slot>
-      </div>
-      <div class="q-space" />
       <div class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn
@@ -66,6 +54,18 @@
             />
             {{ $t("shared.labels.more") }}
           </q-btn>
+        </slot>
+      </div>
+      <div class="q-space" />
+      <div class="row items-center">
+        <slot name="header">
+          <span class="text-h6">{{ title }}</span>
+          <q-badge
+            rounded
+            outline
+            label="15"
+            class="q-ml-sm bg-dark text-on-dark text-body2"
+          />
         </slot>
       </div>
     </q-toolbar>

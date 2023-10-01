@@ -276,7 +276,8 @@
       "total": "جمع کل",
       "selectedRows": "انتخاب شده‌ها",
       "exportExcel": "تبدیل به اکسل",
-      "exportExcelCurrentPage": "تبدیل به اکسل صفحه جاری"
+      "exportExcelCurrentPage": "تبدیل به اکسل صفحه جاری",
+      "advancedSearch": "جستجوی پیشرفته"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد"

@@ -1,14 +1,14 @@
 <template>
   <tool-bar>
     <template #header>
-      <span class="text-h6">فاکتورهای فروش</span>
       <q-badge
         v-if="tableStore?.pagination.value.totalItems > 0"
         rounded
         outline
         :label="tableStore?.pagination.value.totalItems"
-        class="q-ml-sm bg-dark text-on-dark text-body2"
+        class="q-mr-sm bg-dark text-on-dark text-body2"
       />
+      <span class="text-h6">فاکتورهای فروش</span>
     </template>
     <template #buttons>
       <q-btn
@@ -26,7 +26,7 @@
       </q-btn>
       <template v-if="invoiceStore.state.activeRow?.value != null">
         <q-btn
-          class="bordered-btn bg-dark text-caption"
+          class="bordered-btn_bg-dark text-caption"
           rounded
           unelevated
           no-caps
@@ -39,7 +39,7 @@
       </template>
       <template v-if="tableStore?.selectedRows?.value?.length > 0">
         <q-btn
-          class="bordered-btn bg-dark text-caption"
+          class="bordered-btn_bg-dark text-caption"
           rounded
           unelevated
           no-caps
@@ -53,7 +53,7 @@
       </template>
       <template v-else-if="tableStore?.activeRow?.value != null">
         <q-btn
-          class="bordered-btn bg-dark text-caption"
+          class="bordered-btn_bg-dark text-caption"
           rounded
           unelevated
         >
@@ -65,7 +65,7 @@
         </q-btn>
       </template>
       <q-btn
-        class="bordered-btn bg-dark text-caption"
+        class="bordered-btn_bg-dark text-caption"
         rounded
         unelevated
       >
@@ -77,13 +77,15 @@
       </q-btn>
     </template>
   </tool-bar>
-  <div class="q-mt-lg">
+
+  <div class="q-my-md">
     <advanced-search
       :grid-store="invoiceStore"
       @apply-search="applySearch"
     />
   </div>
-  <div>
+
+  <q-card flat>
     <!-- <div class="row items-center q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
@@ -140,7 +142,7 @@
         <grid-v2 ref="canceledInvoiceTable" />
       </q-tab-panel>
     </q-tab-panels>
-  </div>
+  </q-card>
 
   <div v-if="false">
     <template v-if="gridI1?.allSelectedIds.length > 0">
@@ -181,3 +183,9 @@ async function applySearch(model) {
   await tableStore.value.reloadData()
 }
 </script>
+
+<style>
+.q-card {
+  border: 1px solid;
+}
+</style>
