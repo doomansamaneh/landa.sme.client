@@ -321,11 +321,6 @@ const containerClass = computed(() =>
 )
 
 defineExpose({
-  reloadData,
-  activeRow: tableStore.activeRow,
-  selectedRows: tableStore.selectedRows,
-  allSelectedIds: tableStore.allSelectedIds,
-  rows: tableStore.rows,
   tableStore
 })
 </script>

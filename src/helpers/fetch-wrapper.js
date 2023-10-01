@@ -2,7 +2,7 @@ import axios from "axios"
 import { useAuthStore } from "../stores"
 import { useAlertStore } from "../stores"
 
-// const baseUrl = "http://localhost:5188"
+//const baseUrl = "http://localhost:5188"
 const baseUrl = "https://api.landa-sme.ir"
 
 axios.defaults.baseURL = baseUrl

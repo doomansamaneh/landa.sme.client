@@ -1,5 +1,82 @@
 <template>
-  <top-bar title="فاکتورها" />
+  <tool-bar>
+    <template #header>
+      <span class="text-h6">فاکتورهای فروش</span>
+      <q-badge
+        v-if="tableStore?.pagination.value.totalItems > 0"
+        rounded
+        outline
+        :label="tableStore?.pagination.value.totalItems"
+        class="q-ml-sm bg-dark text-on-dark text-body2"
+      />
+    </template>
+    <template #buttons>
+      <q-btn
+        class="bg-primary text-white text-caption"
+        padding="6px 12px"
+        rounded
+        no-caps
+        unelevated
+      >
+        <q-icon
+          name="o_add"
+          class="q-mr-xs"
+        />
+        {{ $t("shared.labels.create") }}
+      </q-btn>
+      <template v-if="invoiceStore.state.activeRow?.value != null">
+        <q-btn
+          class="bordered-btn bg-dark text-caption"
+          rounded
+          unelevated
+          no-caps
+        ><q-icon
+            name="o_edit"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.edit") }} ({{ invoiceStore.state.activeRow?.value?.no }})
+        </q-btn>
+      </template>
+      <template v-if="tableStore?.selectedRows?.value?.length > 0">
+        <q-btn
+          class="bordered-btn bg-dark text-caption"
+          rounded
+          unelevated
+          no-caps
+        >
+          <q-icon
+            name="o_delete"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.delete") }} ({{ tableStore?.selectedRows?.value?.length }} rows)
+        </q-btn>
+      </template>
+      <template v-else-if="tableStore?.activeRow?.value != null">
+        <q-btn
+          class="bordered-btn bg-dark text-caption"
+          rounded
+          unelevated
+        >
+          <q-icon
+            name="o_delete"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.delete") }} ({{ tableStore?.activeRow?.value?.no }})
+        </q-btn>
+      </template>
+      <q-btn
+        class="bordered-btn bg-dark text-caption"
+        rounded
+        unelevated
+      >
+        <q-icon
+          name="more_horiz"
+          class="q-mr-xs"
+        />
+        {{ $t("shared.labels.more") }}
+      </q-btn>
+    </template>
+  </tool-bar>
   <div class="q-mt-lg">
     <advanced-search
       :grid-store="invoiceStore"
@@ -7,7 +84,7 @@
     />
   </div>
   <div>
-    <div class="row items-center q-gutter-md">
+    <!-- <div class="row items-center q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
         flat
@@ -26,7 +103,7 @@
           delete all ({{ gridI1?.selectedRows.length }} rows selected)
         </q-btn>
       </div>
-    </div>
+    </div> -->
 
     <q-tabs
       v-model="tab"
@@ -60,7 +137,7 @@
       </q-tab-panel>
 
       <q-tab-panel name="canceled">
-        <grid-v2 />
+        <grid-v2 ref="canceledInvoiceTable" />
       </q-tab-panel>
     </q-tab-panels>
   </div>
@@ -89,17 +166,18 @@ import { useInvoice } from "../_composables/useInvoice"
 import Invoice from "./_InvoiceDataTable.vue"
 import AdvancedSearch from "./_AdvancedSearch.vue"
 import GridV2 from "./IndexViewV2.vue"
-import TopBar from "src/components/shared/ToolBar.vue"
+import ToolBar from "src/components/shared/ToolBar.vue"
 
 const invoiceStore = useInvoice()
 const invoiceTable = ref(null)
+const canceledInvoiceTable = ref(null)
 
 const tab = ref('invoice')
 
-const gridI1 = computed(() => invoiceTable.value?.dataTable)
+const tableStore = computed(() => invoiceTable.value?.dataTable.tableStore ?? canceledInvoiceTable.value?.dataTable.tableStore)
+//const tableStore = computed(() => invoiceTable.value?.dataTable.tableStore)
 
 async function applySearch(model) {
-  await gridI1?.value.reloadData()
-  //await gridI2.value.reloadData()
+  await tableStore.value.reloadData()
 }
 </script>
