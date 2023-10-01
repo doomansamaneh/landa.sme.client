@@ -71,9 +71,12 @@ export function useDataTable(dataSource
 
     function handleResponse(pagedData) {
       const items = pagedData.items
+      let clearActiveRow = true
       items.forEach((item) => {
         item.selected = state.value.allSelectedIds.value.indexOf(item.id) > -1
+        if (clearActiveRow) clearActiveRow = state.value.activeRow.value?.id != item.id
       })
+      if (clearActiveRow) setActiveRow(null)
       state.value.rows.value = items
       state.value.summaryData.value = pagedData.summaryData
       pagination.value.totalItems = pagedData.page.totalItems

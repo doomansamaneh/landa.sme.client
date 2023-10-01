@@ -258,8 +258,10 @@
       "cancel": "انصراف",
       "save": "ذخیره",
       "new": "جدید",
+      "create": "ایجاد",
       "edit": "ویرایش",
       "delete": "حذف",
+      "more": "بیشتر",
       "all" : "همه",
       "today": "امروز",
       "thisWeek": "این هفته",
@@ -270,7 +272,11 @@
       "comment": "شرح",
       "dateRange": "بازه زمانی",
       "dateFrom": "تاریخ از",
-      "dateTo": "تاریخ تا"
+      "dateTo": "تاریخ تا",
+      "total": "جمع کل",
+      "selectedRows": "انتخاب شده‌ها",
+      "exportExcel": "تبدیل به اکسل",
+      "exportExcelCurrentPage": "تبدیل به اکسل صفحه جاری"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد"

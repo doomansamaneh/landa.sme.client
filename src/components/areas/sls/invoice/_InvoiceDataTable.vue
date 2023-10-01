@@ -1,27 +1,28 @@
 <template>
-  <q-btn
-    class="bg-primary text-white text-caption q-mx-md q-mb-sm"
-    padding="6px 12px"
-    unelevated
-    @click="dataTable.tableStore.exportCurrentPage()"
-  >
-    <q-icon
-      name="download"
-      class="q-mr-xs"
-    />تبدیل به اکسل
-  </q-btn>
-  <q-btn
-    class="bg-primary text-white text-caption q-mx-md q-mb-sm"
-    padding="6px 12px"
-    unelevated
-    @click="dataTable.tableStore.exportAll()"
-  >
-    <q-icon
-      name="download"
-      class="q-mr-xs"
-    />تبدیل همه به اکسل
-  </q-btn>
-
+  <div class="q-gutter-md q-mb-md">
+    <q-btn
+      class="bg-primary text-white text-caption"
+      unelevated
+      @click="dataTable.tableStore.exportCurrentPage()"
+    >
+      <q-icon
+        name="download"
+        class="q-mr-xs"
+      />
+      {{ $t("shared.labels.exportExcelCurrentPage") }}
+    </q-btn>
+    <q-btn
+      class="bg-primary text-white text-caption"
+      unelevated
+      @click="dataTable.tableStore.exportAll()"
+    >
+      <q-icon
+        name="download"
+        class="q-mr-xs"
+      />
+      {{ $t("shared.labels.exportExcel") }}
+    </q-btn>
+  </div>
   <data-grid
     ref="dataTable"
     dataSource="sls/invoice/getGridData"
@@ -65,7 +66,7 @@
         colspan="6"
         class="text-right"
       >
-        انتخاب شده
+        {{ $t("shared.labels.selectedRows") }}
       </td>
       <td><b>{{ helper.getSubtotal(selectedRows, "amount").toLocaleString() }}</b></td>
       <td>
@@ -79,7 +80,7 @@
         colspan="6"
         class="text-right"
       >
-        جمع کل
+        {{ $t("shared.labels.total") }}
       </td>
       <td><b>{{ summary?.Amount.toLocaleString() }}</b></td>
       <td><b>{{ summary?.DiscountAmount.toLocaleString() }}</b></td>

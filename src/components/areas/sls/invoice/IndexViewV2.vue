@@ -10,7 +10,7 @@
     <q-separator />
     <q-card-section class="q-pa-none">
       <data-grid
-        ref="gridI2"
+        ref="dataTable"
         class="q-mt-lg_"
         dataSource="sls/invoice/getGridData"
         :grid-store="invoiceStore"
@@ -74,6 +74,10 @@ import { useInvoice } from "../_composables/useInvoice"
 
 const invoiceStore = useInvoice()
 
-const gridI2 = ref(null)
+const dataTable = ref(null)
+
+defineExpose({
+  dataTable
+})
 
 </script>
