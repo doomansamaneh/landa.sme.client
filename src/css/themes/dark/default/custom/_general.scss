@@ -7,8 +7,8 @@
     color: $white;
   }
 
-  .icon{
-    color : $white
+  .icon {
+    color: $white;
   }
 
   .bordered-btn {
@@ -46,4 +46,12 @@
   .no-outline {
     outline: none;
   }
+
+  .text-level-2 {
+    color: #ffffff47;
+    &:hover {
+      color: $white;
+    }
+  }
+
 }

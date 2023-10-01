@@ -48,4 +48,11 @@
   .no-outline {
     outline: none;
   }
+
+  .text-level-2 {
+    color: #707070;
+    &:hover {
+      color: #2d2d2d;
+    }
+  }
 }

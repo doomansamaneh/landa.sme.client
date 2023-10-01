@@ -45,18 +45,21 @@
         label="هزینه"
         icon="o_price_change"
       />
-      <div class="flex justify-end q-px-md full-width" v-if="tab == 'sales-income-cost'">
+      <div
+        class="flex justify-end q-px-md full-width"
+        v-if="tab == 'sales-income-cost'"
+      >
         <q-btn
-            @click="chartToTabel"
-            unelevated
-            dense
-            class="q-px-sm bordered-btn"
-          > <q-icon
-              :name="icon"
-              size="18px"
-              color="white"
-            />
-            <span class="q-pl-xs text-caption">{{ label }}</span></q-btn>
+          @click="chartToTabel"
+          unelevated
+          dense
+          class="q-px-sm bordered-btn"
+        > <q-icon
+            :name="icon"
+            size="18px"
+            color="white"
+          />
+          <span class="q-pl-xs text-caption">{{ label }}</span></q-btn>
       </div>
     </q-tabs>
 
@@ -68,19 +71,6 @@
       swipeable
     >
       <q-tab-panel name="sales-income-cost">
-        <!-- <div class="q-mb-md row justify-end">
-          <q-btn
-            @click="chartToTabel"
-            unelevated
-            dense
-            class="q-px-sm bordered-btn"
-          > <q-icon
-              :name="icon"
-              size="18px"
-              color="primary"
-            />
-            <span class="q-pl-xs text-caption">{{ label }}</span></q-btn>
-        </div> -->
         <div>
           <line-chart v-if="!toggleChartToTable" />
           <markup-table v-if="toggleChartToTable" />
@@ -88,14 +78,10 @@
       </q-tab-panel>
 
       <q-tab-panel name="financial ratio">
-        <bar-chart />
+        <financial-ratio-widget />
       </q-tab-panel>
     </q-tab-panels>
   </div>
-  <!-- <div class="row q-gutter-x-lg">
-      <doughnut-chart />
-      <pie-chart />
-    </div> -->
   <div class="row q-my-lg  q-gutter-x-lg justify-between">
     <div class="col-5">
       <income-widget />
@@ -115,6 +101,7 @@ import PieChart from 'src/components/shared/Charts/DoughnutChart.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
 import IncomeWidget from 'src/components/shared/Widgets/IncomeWidget.vue'
+import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWidget.vue'
 
 const tab = ref('sales-income-cost')
 const toggleChartToTable = ref(false)
