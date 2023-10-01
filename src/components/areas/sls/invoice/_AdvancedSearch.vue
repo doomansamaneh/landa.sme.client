@@ -13,6 +13,7 @@
         <q-btn
           round
           flat
+          dense
           class="bg-dark"
           :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
           @click="expanded = !expanded"
