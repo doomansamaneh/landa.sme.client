@@ -5,8 +5,32 @@
     expand
   >
     <q-toolbar class="q-mx-sm">
-      <div class="row items-center">
+      <div class="row items-center q-gutter-x-sm">
         <span class="text-h6">داشبورد</span>
+        <q-btn
+          @click="widgetsLayout"
+          size="13px"
+          unelevated
+          round
+          dense
+        ><q-icon
+            name="o_widgets"
+            :color="activeColor"
+          /></q-btn>
+        <q-btn
+          v-if="toggleWidgetsLayout"
+          unelevated
+          rounded
+          dense
+          padding="6px 12px"
+        >
+          <q-icon
+            name="o_restart_alt"
+            class="q-pr-xs"
+            size="20px"
+          />
+          <span>حالت اولیه</span>
+        </q-btn>
       </div>
       <div class="q-space" />
     </q-toolbar>
@@ -31,7 +55,7 @@
         icon="o_monetization_on"
       />
       <q-tab
-        name="financial ratio"
+        name="financial-ratio"
         label="نسبتهای مالی"
         icon="o_price_change"
       />
@@ -61,6 +85,21 @@
           />
           <span class="q-pl-xs text-caption">{{ label }}</span></q-btn>
       </div>
+      <div
+        class="flex justify-end q-px-md full-width"
+        v-if="tab == 'sales'"
+      >
+        <q-btn
+          unelevated
+          dense
+          class="q-px-sm bordered-btn"
+        > <q-icon
+            name="o_pie_chart"
+            size="18px"
+            color="white"
+          />
+          <span class="q-pl-xs text-caption">گزارش مرور فروش</span></q-btn>
+      </div>
     </q-tabs>
 
     <q-separator />
@@ -77,9 +116,55 @@
         </div>
       </q-tab-panel>
 
-      <q-tab-panel name="financial ratio">
+      <q-tab-panel name="financial-ratio">
         <financial-ratio-widget />
       </q-tab-panel>
+
+      <q-tab-panel name="sales">
+        <bar-chart />
+        <q-card class="no-shadow q-pa-md">
+          <div class="text-h6 q-ml-md">فروش بر اساس کالاو خدمات</div>
+          <q-card-section>
+            <div class="div-table-container">
+              <div class="div-table">
+                <div class="div-table-header">
+                  <div class="div-table-cell">کالا/خدمات</div>
+                  <div class="div-table-cell">مقدار</div>
+                  <div class="div-table-cell">واحد</div>
+                  <div class="div-table-cell">مبلغ واحد</div>
+                  <div class="div-table-cell">مبلغ کل</div>
+                </div>
+
+                <div
+                  class="div-table-row"
+                  v-for="item in rows"
+                  :key="item"
+                >
+                  <div class="div-table-cell">{{ item.item }}</div>
+                  <div class="div-table-cell">{{ item.quantity }}</div>
+                  <div class="div-table-cell">{{ item.unit }}</div>
+                  <div class="div-table-cell">{{ item.unitPrice }}</div>
+                  <div class="div-table-cell text-bold">{{ item.totalPrice }}</div>
+                </div>
+
+                <div class="div-table-row">
+                  <div class="div-table-cell">
+                    <div class="">درآمد خالص</div>
+                  </div>
+                  <div class="div-table-cell">
+                    <div class="">5,010,192,500</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </q-card-section>
+        </q-card>
+      </q-tab-panel>
+
+      <q-tab-panel name="cost">
+        <bar-chart />
+      </q-tab-panel>
+
     </q-tab-panels>
   </div>
   <div class="row q-my-lg  q-gutter-x-lg justify-between">
@@ -105,15 +190,56 @@ import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWi
 
 const tab = ref('sales-income-cost')
 const toggleChartToTable = ref(false)
+const toggleWidgetsLayout = ref(false)
+const rows = ref([
+  { item: 'بلیط کنسرت همایون شجریان', quantity: 12, unit: 'عدد', unitPrice: 8_000_000, totalPrice: 96_000_000 },
+  { item: 'موز', quantity: 3, unit: 'کیلوگرم', unitPrice: 550_000, totalPrice: 1_650_000 },
+]);
+
 
 const chartToTabel = () => {
   toggleChartToTable.value = !toggleChartToTable.value
 }
 
+const widgetsLayout = () => {
+  toggleWidgetsLayout.value = !toggleWidgetsLayout.value
+}
+
 const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_window'));
 const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
+const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
 
 
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.div-table-container {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.div-table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.div-table-header {
+  display: table-header-group;
+  font-weight: bold;
+}
+
+.div-table-row {
+  display: table-row;
+}
+
+.div-table-cell {
+  display: table-cell;
+  padding: 12px;
+  text-align: left;
+}
+
+.colspan-5 {
+      grid-column: span 2;
+    }
+</style>
