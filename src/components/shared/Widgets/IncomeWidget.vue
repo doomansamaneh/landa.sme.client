@@ -229,7 +229,7 @@ const cost = [
 
 </script>
 
-<style lang="scss">
+<style lang="scss"  scoped>
 .div-table-container {
   border-radius: 4px;
   overflow: hidden;
