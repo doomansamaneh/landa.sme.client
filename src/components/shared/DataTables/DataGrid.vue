@@ -28,11 +28,11 @@
           <tr>
             <th
               v-if="numbered"
-              style="width: 1px"
+              class="dense"
             >#</th>
             <th
               v-if="multiSelect"
-              style="width: 1px"
+              class="dense"
             >
               <q-checkbox
                 v-model="tableStore.checkedAll.value"
@@ -66,9 +66,12 @@
           <tr class="row-filter">
             <th
               v-if="numbered"
-              class="filter"
+              class="dense"
             ></th>
-            <th v-if="multiSelect"></th>
+            <th
+              v-if="multiSelect"
+              class="dense"
+            ></th>
             <th
               v-for="col in gridColumns"
               :key="col.name"
@@ -126,10 +129,16 @@
               @click="setActiveRow(row)"
               :class="tableStore.getRowClass(row)"
             >
-              <td v-if="numbered">
+              <td
+                v-if="numbered"
+                class="dense"
+              >
                 <small class="text-grey_">{{ tableStore.rowIndex(index) }}</small>
               </td>
-              <td v-if="multiSelect">
+              <td
+                v-if="multiSelect"
+                class="dense"
+              >
                 <q-checkbox
                   v-model="row.selected"
                   @update:model-value="selectRow(row, $event)"
@@ -334,5 +343,11 @@ defineExpose({
 .expand-close {
   transform: rotate(0);
   transition-duration: 300ms;
+}
+
+.dense {
+  width: 1px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 </style>
