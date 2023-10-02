@@ -38,7 +38,7 @@
   <div class="q-mt-md">
     <invoices-widget />
   </div>
-  <q-card class="bordered no-shadow">
+  <q-card class="bordered">
     <q-tabs
       v-model="tab"
       inline-label
