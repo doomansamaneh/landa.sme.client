@@ -171,34 +171,11 @@
 
     </q-tab-panels>
   </q-card>
-  <div class="row q-my-lg q-gutter-x-lg justify-between">
-    <div class="col-5">
-      <income-widget />
-    </div>
-    <div class="col">
-      <pie-chart />
-    </div>
+  <div class="q-my-lg">
+    <income-widget />
   </div>
   <div class="">
-    <q-tree
-      :nodes="nodes"
-      node-key="label"
-    >
-      <template #default-header="prop">
-        <div>
-          {{ prop.node.label }}
-        </div>
-        <div class="q-space">
-
-        </div>
-        <div class="">
-        12,000,000
-        </div>
-      </template>
-      <!-- <template #default-body>
-      <span>Body</span>
-    </template> -->
-    </q-tree>
+    <pie-chart />
   </div>
 </template>
 
@@ -210,7 +187,7 @@ import DoughnutChart from 'src/components/shared/Charts/PieChart.vue'
 import PieChart from 'src/components/shared/Charts/PieChart.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
-import IncomeWidget from 'src/components/shared/Widgets/IncomeWidget.vue'
+import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
 import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWidget.vue'
 
 const tab = ref('sales-income-cost')
@@ -236,75 +213,91 @@ const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''))
 
 const nodes = [
   {
-    label: '601- فروش',
+    label: '6- فروش و درآمد',
     children: [
       {
-        label: '60101- فروش کالا',
+        label: '601- فروش',
         children: [
-          { label: 'گردش بدهکار: 0' },
-          { label: 'گردش بستانکار: 21,360,000' },
-        ]
-      },
-      {
-        label: '60103- برگشت از فروش و تخفیفها',
-        children: [
-          { label: 'گردش بدهکار: 5,734,000' },
-          { label: 'گردش بستانکار: 0' },
+          {
+            label: '60101- فروش کالا',
+            children: [
+              { label: 'گردش بدهکار: 0' },
+              { label: 'گردش بستانکار: 21,360,000' },
+            ]
+          },
+          {
+            label: '60103- برگشت از فروش و تخفیفها',
+            children: [
+              { label: 'گردش بدهکار: 5,734,000' },
+              { label: 'گردش بستانکار: 0' },
+            ]
+          }
         ]
       }
     ]
   },
   {
-    label: '701- بهای تمام شده کالای فروش رفته',
+    label: '7- بهای تمام شده کالای فروش رفته و خدمات ارائه شده',
     children: [
       {
-        label: '70103- بهای تمام شده کالای فروش رفته',
+        label: '701- بهای تمام شده کالای فروش رفته',
         children: [
-          { label: 'گردش بدهکار: 46,400,000' },
-          { label: 'گردش بستانکار: 0' },
+          {
+            label: '70103- بهای تمام شده کالای فروش رفته',
+            children: [
+              { label: 'گردش بدهکار: 46,400,000' },
+              { label: 'گردش بستانکار: 0' },
+            ]
+          },
         ]
-      },
-    ]
-  },
-  {
-    label: '805- هزینه‌های توزیع و فروش',
-    children: [
-      {
-        label: '80502- هزینه های بازاریابی و پورسانت',
-        children: [
-          { label: 'گردش بدهکار: 757,500' },
-          { label: 'گردش بستانکار: 0' },
-        ]
-      },
-      {
-        label: '80599- هزینه متفرقه توزیع و فروش',
-        children: [
-          { label: 'گردش بدهکار: 5,734,000' },
-          { label: 'گردش بستانکار: 21,350,000' },
-        ]
-      },
-    ]
-  },
-  {
-    label: '807- هزینه‌های مالی',
-    children: [
-      {
-        label: '80703- هزینه کارمزد وامها و خدمات بانکی',
-        children: [
-          { label: 'گردش بدهکار: 11,000' },
-          { label: 'گردش بستانکار: 0' },
-        ]
+
       }
     ]
   },
   {
-    label: '809- سایر هزینه‌های عملیاتی',
+    label: '8- هزینه‌ها',
     children: [
       {
-        label: '80920- هزینه کسری کالا',
+        label: '805- هزینه‌های توزیع و فروش',
         children: [
-          { label: 'گردش بدهکار: 5,000,000,000' },
-          { label: 'گردش بستانکار: 0' },
+          {
+            label: '80502- هزینه های بازاریابی و پورسانت',
+            children: [
+              { label: 'گردش بدهکار: 757,500' },
+              { label: 'گردش بستانکار: 0' },
+            ]
+          },
+          {
+            label: '80599- هزینه متفرقه توزیع و فروش',
+            children: [
+              { label: 'گردش بدهکار: 5,734,000' },
+              { label: 'گردش بستانکار: 21,350,000' },
+            ]
+          },
+        ]
+      },
+      {
+        label: '807- هزینه‌های مالی',
+        children: [
+          {
+            label: '80703- هزینه کارمزد وامها و خدمات بانکی',
+            children: [
+              { label: 'گردش بدهکار: 11,000' },
+              { label: 'گردش بستانکار: 0' },
+            ]
+          }
+        ]
+      },
+      {
+        label: '809- سایر هزینه‌های عملیاتی',
+        children: [
+          {
+            label: '80920- هزینه کسری کالا',
+            children: [
+              { label: 'گردش بدهکار: 5,000,000,000' },
+              { label: 'گردش بستانکار: 0' },
+            ]
+          }
         ]
       }
     ]
