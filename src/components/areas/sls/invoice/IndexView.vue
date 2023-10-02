@@ -85,7 +85,7 @@
     />
   </div>
 
-  <q-card class="no-shadow bordered">
+  <q-card class="bordered">
     <!-- <div class="row items-center q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"

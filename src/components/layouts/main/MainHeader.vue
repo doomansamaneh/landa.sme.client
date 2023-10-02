@@ -11,12 +11,16 @@
           @click="$emit('toggle-drawer')"
           round
           dense
+          size="16px"
           icon="menu"
           class="text-on-dark"
         />
       </div>
-      <q-toolbar-title class="text-subtitle2 text-bold flex justify-start items-center">
-        <span class="text-on-dark q-pr-lg">{{ selectedBusiness.title }}</span>
+      <q-toolbar-title class="text-subtitle2 text-bold row justify-start items-center">
+        <div class="column">
+          <span class="text-on-dark q-pr-lg">{{ selectedBusiness.title }}</span>
+          <today-date />
+        </div>
         <q-btn
           class="bordered-btn bg-dark text-on-dark"
           padding="4px 12px"
@@ -206,6 +210,7 @@ import { useRouter } from "vue-router"
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
 import SwitchLanguage from "src/components/shared/SwitchLanguage.vue"
 import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
+import TodayDate from "src/components/shared/TodayDate.vue"
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 
 const authStore = useAuthStore()

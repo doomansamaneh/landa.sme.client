@@ -6,7 +6,7 @@
     <q-page-container>
       <main-header @toggle-drawer="toggleDrawer" />
       <menu-bar :drawer="drawer" />
-    <today-date />
+    <!-- <today-date /> -->
       <router-view />
     </q-page-container>
   </q-layout>

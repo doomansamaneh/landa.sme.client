@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow q-pa-xl">
+  <q-card class="q-pa-xl">
     <Doughnut
       class="doughnut-chart"
       :options="chartOptions"

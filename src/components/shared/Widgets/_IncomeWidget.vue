@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow bordered">
+  <q-card class="bordered">
     <q-card-section class="q-pa-lg">
       <q-icon
         name="o_balance"
@@ -10,7 +10,7 @@
         صورت سود و زیان
       </span>
     </q-card-section>
-    <div class="q-px-md">
+    <div class="q-px-lg">
       <q-tree
         :nodes="nodes"
         node-key="label"

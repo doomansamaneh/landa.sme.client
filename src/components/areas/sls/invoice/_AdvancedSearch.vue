@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow bordered">
+  <q-card class="bordered">
     <q-card-section class="row items-center justify-between">
       <q-option-group
         class="row text-caption"
@@ -10,12 +10,16 @@
         @update:model-value="applySearch"
       />
       <q-btn
-        flat
-        dense
-        _round
-        :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
         @click="expanded = !expanded"
+        padding="6px 12px"
+        rounded
+        unelevated
+        dense
       >
+        <q-icon
+          :name="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+          class="q-mr-xs"
+        />
         <span class="text-caption">
           {{ $t("shared.labels.advancedSearch") }}
         </span>
