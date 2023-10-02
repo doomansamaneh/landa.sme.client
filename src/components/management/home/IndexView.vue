@@ -110,26 +110,26 @@
       swipeable
     >
       <q-tab-panel name="sales-income-cost">
-        <div class="q-pa-lg">
+        <div class="q-pa-md">
           <line-chart v-if="!toggleChartToTable" />
           <markup-table v-if="toggleChartToTable" />
         </div>
       </q-tab-panel>
 
       <q-tab-panel name="financial-ratio">
-        <div class="q-pa-lg">
+        <div class="q-pa-md">
           <financial-ratio-widget />
         </div>
       </q-tab-panel>
 
       <q-tab-panel name="sales">
-        <div class="q-pa-lg">
-        <bar-chart />
+        <div class="q-pa-md">
+          <bar-chart />
         </div>
         <q-card class="no-shadow q-pa-md">
           <div class="text-h6 q-ml-md">فروش بر اساس کالاو خدمات</div>
           <q-card-section>
-            <div class="div-table-container">
+            <q-markup-table>
               <div class="div-table">
                 <div class="div-table-header">
                   <div class="div-table-cell">کالا/خدمات</div>
@@ -160,7 +160,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </q-markup-table>
           </q-card-section>
         </q-card>
       </q-tab-panel>
@@ -178,6 +178,27 @@
     <div class="col">
       <pie-chart />
     </div>
+  </div>
+  <div class="">
+    <q-tree
+      :nodes="nodes"
+      node-key="label"
+    >
+      <template #default-header="prop">
+        <div>
+          {{ prop.node.label }}
+        </div>
+        <div class="q-space">
+
+        </div>
+        <div class="">
+        12,000,000
+        </div>
+      </template>
+      <!-- <template #default-body>
+      <span>Body</span>
+    </template> -->
+    </q-tree>
   </div>
 </template>
 
@@ -213,6 +234,82 @@ const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_windo
 const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
 const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
 
+const nodes = [
+  {
+    label: '601- فروش',
+    children: [
+      {
+        label: '60101- فروش کالا',
+        children: [
+          { label: 'گردش بدهکار: 0' },
+          { label: 'گردش بستانکار: 21,360,000' },
+        ]
+      },
+      {
+        label: '60103- برگشت از فروش و تخفیفها',
+        children: [
+          { label: 'گردش بدهکار: 5,734,000' },
+          { label: 'گردش بستانکار: 0' },
+        ]
+      }
+    ]
+  },
+  {
+    label: '701- بهای تمام شده کالای فروش رفته',
+    children: [
+      {
+        label: '70103- بهای تمام شده کالای فروش رفته',
+        children: [
+          { label: 'گردش بدهکار: 46,400,000' },
+          { label: 'گردش بستانکار: 0' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '805- هزینه‌های توزیع و فروش',
+    children: [
+      {
+        label: '80502- هزینه های بازاریابی و پورسانت',
+        children: [
+          { label: 'گردش بدهکار: 757,500' },
+          { label: 'گردش بستانکار: 0' },
+        ]
+      },
+      {
+        label: '80599- هزینه متفرقه توزیع و فروش',
+        children: [
+          { label: 'گردش بدهکار: 5,734,000' },
+          { label: 'گردش بستانکار: 21,350,000' },
+        ]
+      },
+    ]
+  },
+  {
+    label: '807- هزینه‌های مالی',
+    children: [
+      {
+        label: '80703- هزینه کارمزد وامها و خدمات بانکی',
+        children: [
+          { label: 'گردش بدهکار: 11,000' },
+          { label: 'گردش بستانکار: 0' },
+        ]
+      }
+    ]
+  },
+  {
+    label: '809- سایر هزینه‌های عملیاتی',
+    children: [
+      {
+        label: '80920- هزینه کسری کالا',
+        children: [
+          { label: 'گردش بدهکار: 5,000,000,000' },
+          { label: 'گردش بستانکار: 0' },
+        ]
+      }
+    ]
+  }
+]
 
 </script>
 
@@ -244,6 +341,6 @@ const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''))
 }
 
 .colspan-5 {
-      grid-column: span 2;
-    }
+  grid-column: span 2;
+}
 </style>
