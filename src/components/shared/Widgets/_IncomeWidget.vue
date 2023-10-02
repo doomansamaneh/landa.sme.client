@@ -20,6 +20,9 @@
         no-connectors
         icon="o_arrow_forward_ios"
       >
+        <template #default-header="prop">
+          <div class="q-pa-sm">{{ prop.node.label }}</div>
+        </template>
         <template #header-root="prop">
           <div class="q-pa-sm">
             {{ prop.node.label }}
@@ -70,7 +73,7 @@
       </q-tree>
     </div>
     <q-card-section class="row justify-between q-pa-lg">
-      <div class="">
+      <div class="text-bold">
         <q-icon
           name="o_arrow_downward"
           color="primary"
@@ -89,7 +92,7 @@
 const nodes = [
   {
     label: '6- فروش و درآمد',
-    header: 'root',
+    // header: 'root',
     children: [
       {
         label: '601- فروش',
@@ -115,7 +118,7 @@ const nodes = [
   },
   {
     label: '7- بهای تمام شده کالای فروش رفته و خدمات ارائه شده',
-    header: 'root',
+    // header: 'root',
     children: [
       {
         label: '701- بهای تمام شده کالای فروش رفته',
@@ -135,7 +138,7 @@ const nodes = [
   },
   {
     label: '8- هزینه‌ها',
-    header: 'root',
+    // header: 'root',
     children: [
       {
         label: '805- هزینه‌های توزیع و فروش',
