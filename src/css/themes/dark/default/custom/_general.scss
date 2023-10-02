@@ -16,6 +16,10 @@
     box-shadow: 0 0 2px 0 #dedede;
   }
 
+  .bordered {
+    border: 1px solid $secondary;
+  }
+
   .z-1 {
     z-index: 1;
   }

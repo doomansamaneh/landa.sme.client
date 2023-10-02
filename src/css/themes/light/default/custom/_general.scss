@@ -7,11 +7,16 @@
     color: $black;
   }
 
-  .icon{
-    color : #2d2d2d80
+  .icon {
+    color: #2d2d2d80;
   }
 
   .bordered-btn {
+    border: 1px solid #d9dce5;
+    box-shadow: 0 0 2px 0 #dedede;
+  }
+
+  .bordered {
     border: 1px solid #d9dce5;
     box-shadow: 0 0 2px 0 #dedede;
   }

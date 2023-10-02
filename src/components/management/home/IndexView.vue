@@ -38,7 +38,7 @@
   <div class="q-mt-md">
     <invoices-widget />
   </div>
-  <div>
+  <q-card class="bordered no-shadow">
     <q-tabs
       v-model="tab"
       inline-label
@@ -110,18 +110,22 @@
       swipeable
     >
       <q-tab-panel name="sales-income-cost">
-        <div>
+        <div class="q-pa-lg">
           <line-chart v-if="!toggleChartToTable" />
           <markup-table v-if="toggleChartToTable" />
         </div>
       </q-tab-panel>
 
       <q-tab-panel name="financial-ratio">
-        <financial-ratio-widget />
+        <div class="q-pa-lg">
+          <financial-ratio-widget />
+        </div>
       </q-tab-panel>
 
       <q-tab-panel name="sales">
+        <div class="q-pa-lg">
         <bar-chart />
+        </div>
         <q-card class="no-shadow q-pa-md">
           <div class="text-h6 q-ml-md">فروش بر اساس کالاو خدمات</div>
           <q-card-section>
@@ -166,8 +170,8 @@
       </q-tab-panel>
 
     </q-tab-panels>
-  </div>
-  <div class="row q-my-lg  q-gutter-x-lg justify-between">
+  </q-card>
+  <div class="row q-my-lg q-gutter-x-lg justify-between">
     <div class="col-5">
       <income-widget />
     </div>
@@ -182,7 +186,7 @@ import { ref, computed } from "vue"
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
 import DoughnutChart from 'src/components/shared/Charts/PieChart.vue'
-import PieChart from 'src/components/shared/Charts/DoughnutChart.vue'
+import PieChart from 'src/components/shared/Charts/PieChart.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
 import IncomeWidget from 'src/components/shared/Widgets/IncomeWidget.vue'

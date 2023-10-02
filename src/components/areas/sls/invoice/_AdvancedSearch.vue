@@ -1,5 +1,5 @@
 <template>
-  <q-card flat>
+  <q-card class="no-shadow bordered">
     <q-card-section class="row items-center justify-between">
       <q-option-group
         class="row text-caption"

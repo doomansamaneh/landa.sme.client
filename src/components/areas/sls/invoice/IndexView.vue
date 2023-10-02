@@ -85,7 +85,7 @@
     />
   </div>
 
-  <q-card flat>
+  <q-card class="no-shadow bordered">
     <!-- <div class="row items-center q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
@@ -183,9 +183,3 @@ async function applySearch(model) {
   await tableStore.value.reloadData()
 }
 </script>
-
-<style>
-.q-card {
-  border: 1px solid;
-}
-</style>

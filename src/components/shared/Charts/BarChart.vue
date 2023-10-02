@@ -1,12 +1,10 @@
 <template>
-  <q-card class="no-shadow q-pa-lg">
     <Bar
       class="bar-chart"
       :options="chartOptions"
       :data="chartData"
       :style="myStyles"
     />
-  </q-card>
 </template>
 
 <script setup>

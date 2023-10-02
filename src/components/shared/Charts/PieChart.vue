@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow q-pa-xl">
+  <q-card class="no-shadow q-pa-xl bordered">
     <Pie
       class="pie-chart"
       :options="chartOptions"

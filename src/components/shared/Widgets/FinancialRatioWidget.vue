@@ -1,6 +1,6 @@
 <template>
-  <q-card class="no-shadow q-pa-md">
-    <q-card-section class="q-gutter-md">
+  <div class="q-gutter-md">
+    <div class="q-gutter-md q-pb-md">
       <div class="">
         <span class="text-h6">نسبت جاری</span>
         <q-badge
@@ -18,8 +18,8 @@
           سال است. نسبت جاری بیشتر می‌تواند بیانگر وضعیت مطلوب نقدینگی باشد. اگر این عدد بزرگتر از 2 باشد مطلوب است
           و وام دهندگان بزرگ مانند بانکها به این کسب و کار نظر مساعدی خواهند داشت.</span>
       </div>
-    </q-card-section>
-    <q-card-section class="q-gutter-md">
+    </div>
+    <div class="q-gutter-md q-pb-md">
       <div class="">
         <span class="text-h6">دوره وصول مطالبات</span>
         <q-badge
@@ -37,8 +37,8 @@
           شرایط اعتباری سخت شركت است که ممکن به ضرر شرکت تمام شود.
         </span>
       </div>
-    </q-card-section>
-    <q-card-section class="q-gutter-md">
+    </div>
+    <div class="q-gutter-md q-pb-md">
       <div class="">
         <span class="text-h6">نسبت بدهی</span>
         <q-badge
@@ -56,8 +56,8 @@
           شرایط اعتباری سخت شركت است که ممکن به ضرر شرکت تمام شود.
         </span>
       </div>
-    </q-card-section>
-    <q-card-section class="q-gutter-md">
+    </div>
+    <div class="q-gutter-md q-pb-md">
       <div class="">
         <span class="text-h6">حاشیه سود</span>
         <q-badge
@@ -75,10 +75,6 @@
           شرایط اعتباری سخت شركت است که ممکن به ضرر شرکت تمام شود.
         </span>
       </div>
-    </q-card-section>
-  </q-card>
+    </div>
+  </div>
 </template>
-
-<script setup>
-
-</script>

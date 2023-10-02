@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow q-pa-lg markup-table-container">
+  <div class="markup-table-container">
     <div class="q-mb-md">
       <q-badge
         color="secondary"
@@ -112,9 +112,5 @@
         </tr>
       </tbody>
     </q-markup-table>
-  </q-card>
+  </div>
 </template>
-
-<script setup>
-
-</script>
