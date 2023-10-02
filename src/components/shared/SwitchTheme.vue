@@ -31,22 +31,22 @@ import { useQuasar } from "quasar"
 const $q = useQuasar()
 
 const themes = {
-  seyedi: {
+  green: {
     primary: "#00b200",
   },
   orange: {
     primary: "#ff6600",
   },
-  purple: {
-    primary: "#c729df",
-  },
   blue: {
     primary: "#00aeff",
   },
-  golden: {
-    primary: "#c89002",
+  purple: {
+    primary: "#c729df",
   },
-  jigari: {
+  // golden: {
+  //   primary: "#c89002",
+  // },
+  red: {
     primary: "#dc143c",
   }
 }

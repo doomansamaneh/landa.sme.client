@@ -21,7 +21,7 @@ $warning: #f2c037;
 $main-color: #f2f2f2;
 
 $themes: (
-  seyedi: (
+  green: (
     primary: #00b200,
     secondary: #2e8b57,
     accent: #5f9ea0,
@@ -49,14 +49,14 @@ $themes: (
     dark: #141f48,
     dark-page: #040c2d
   ),
-  golden: (
-    primary: #c89002,
-    secondary: #ff9900,
-    accent: #ffdb4d,
-    dark: #613f00,
-    dark-page: #3f2600
-  ),
-  jigari: (
+  // golden: (
+  //   primary: #c89002,
+  //   secondary: #ff9900,
+  //   accent: #ffdb4d,
+  //   dark: #613f00,
+  //   dark-page: #3f2600
+  // ),
+  red: (
     primary: #dc143c,
     secondary: #8b0000,
     accent: #ff6347,
