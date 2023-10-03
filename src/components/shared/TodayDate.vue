@@ -3,20 +3,14 @@
     class="z-1 q-pa-sm"
     position="bottom-right"
   > -->
-  <span class="text-caption text-on-dark">{{ $t('shared.labels.today') }}: {{
-    date.toLocaleDateString("fa-IR", weekday) }} - {{ date.toLocaleDateString("fa-IR", fullDate) }}</span>
+  <span class="text-caption text-on-dark">
+    <!-- {{ $t('shared.labels.today') }}: -->
+    {{ date.getDay() }} -
+    {{ date.toDateString() }}</span>
   <!-- </q-page-sticky> -->
 </template>
 
 <script setup>
+import "src/helpers/extensions";
 const date = new Date()
-const fullDate = {
-  year: "numeric",
-  month: "numeric",
-  day: "numeric"
-}
-
-const weekday = {
-  weekday: "long"
-}
 </script>
