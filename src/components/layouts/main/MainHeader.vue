@@ -53,10 +53,99 @@
             class="text-on-dark"
           >
             <q-badge
+              v-if="notif"
               floating
               color="red"
               rounded
             >4</q-badge>
+            <q-menu
+              class="no-shadow z-max"
+              transition-show="jump-down"
+              transition-hide="jump-up"
+              :offset="[100, 24]"
+              max-width="350px"
+              max-height="300px"
+            >
+              <q-list
+                dense
+                padding
+                class="user-profile"
+              >
+                <q-item-label
+                  class="text-h6"
+                  header
+                >
+                  <div class="column items-center justify-between q-mt-md">
+                    <div class="q-gutter-x-xl">
+                      <span class="text-on-dark">اعلانها</span>
+                      <q-btn
+                        @click="markAll"
+                        unelevated
+                        rounded
+                        class="text-on-dark text-caption"
+                      >
+                        <q-icon
+                          name="o_done_all"
+                          size="xs"
+                        />
+                        <span class="q-ml-xs">همه خوانده‌شده</span>
+                      </q-btn>
+                    </div>
+                  </div>
+                </q-item-label>
+                <q-item
+                  clickable
+                  tabindex="0"
+                  class="q-py-sm"
+                >
+                  <div class="q-py-sm">
+                    <q-item-section avatar>
+                      <q-avatar
+                        class="dark-icon"
+                        size="md"
+                        icon="history"
+                      >
+                        <q-badge
+                          v-if="notif"
+                          floating
+                          color="red"
+                          rounded
+                        >4</q-badge>
+                      </q-avatar>
+                    </q-item-section>
+                  </div>
+                  <q-item-section>
+                    <span class="text-caption">
+                      موعد پرداخت چک رسیده
+                    </span>
+                  </q-item-section>
+                  <q-icon-section class="row items-center">
+                    <q-btn
+                      icon="o_more_horiz"
+                      unelevated
+                      round
+                      size="xs"
+                      dense
+                    >
+                      <q-menu>
+                        <q-list
+                          dense
+                          padding
+                        >
+                          <q-item clickable>
+                            <q-item-section>
+                              <span class="text-caption">
+                                تبدیل به خوانده‌نشده
+                              </span>
+                            </q-item-section>
+                          </q-item>
+                        </q-list>
+                      </q-menu>
+                    </q-btn>
+                  </q-icon-section>
+                </q-item>
+              </q-list>
+            </q-menu>
           </q-btn>
           <q-btn
             flat
@@ -79,7 +168,7 @@
               class="no-shadow z-max"
               transition-show="jump-down"
               transition-hide="jump-up"
-              :offset="[51, 24]"
+              :offset="[60, 24]"
             >
               <q-list
                 dense
@@ -218,12 +307,17 @@ const router = useRouter()
 const $q = useQuasar()
 const selectedBusiness = useSelectedBusinessStore()
 
+const notif = ref(true)
 const emit = defineEmits(["toggle-drawer"])
 
 const username = computed(() => {
   if (authStore.user) return authStore.user.fullName
   return ""
 })
+
+const markAll = () => {
+  notif.value = false
+}
 
 function changePasswordDialog() {
   $q.dialog({
