@@ -75,9 +75,9 @@
       >
         <q-btn
           @click="chartToTabel"
-          unelevated
+          outline
           dense
-          class="q-px-sm bordered-btn"
+          class="q-px-sm"
         > <q-icon
             :name="icon"
             size="18px"
@@ -90,9 +90,9 @@
         v-if="tab == 'sales'"
       >
         <q-btn
-          unelevated
+          outline
           dense
-          class="q-px-sm bordered-btn"
+          class="q-px-sm"
         > <q-icon
             name="o_pie_chart"
             size="18px"

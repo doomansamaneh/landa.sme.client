@@ -1,6 +1,5 @@
 <template>
   <q-drawer
-    :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
     side="left"
     :width="263"
     :model-value="drawer"

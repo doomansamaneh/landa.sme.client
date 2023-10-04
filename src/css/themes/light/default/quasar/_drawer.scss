@@ -6,4 +6,11 @@
   .q-drawer--right.q-drawer--bordered.q-drawer--dark {
     border-left: 1px solid #ffffff47;
   }
+
+  .q-drawer {
+    background: #ffffff20 !important;
+    box-shadow: 0 6px 24px #00000020;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }

@@ -1,9 +1,16 @@
-@mixin q-drawer-dark{
+@mixin q-drawer-dark {
   .q-drawer--left.q-drawer--bordered.q-drawer--dark {
     border-right: 1px solid #ffffff47;
   }
 
   .q-drawer--right.q-drawer--bordered.q-drawer--dark {
     border-left: 1px solid #ffffff47;
+  }
+
+  .q-drawer {
+    background: #ffffff09 !important;
+    box-shadow: 0 6px 24px #ffffff20;
+    backdrop-filter: blur(20);
+    -webkit-backdrop-filter: blur(20px);
   }
 }
