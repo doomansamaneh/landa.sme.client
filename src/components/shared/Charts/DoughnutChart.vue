@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-pa-xl">
+  <q-card class="bordered q-pa-xl">
     <Doughnut
       class="doughnut-chart"
       :options="chartOptions"
@@ -13,17 +13,26 @@ import { ref, onMounted } from "vue"
 import { Doughnut } from "vue-chartjs"
 import { useQuasar } from "quasar"
 
+const props = defineProps({
+  name: String,
+  number: Number,
+  label: String
+})
+
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement, PointElement, LineElement } from 'chart.js'
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement, PointElement, LineElement)
 
 const $q = useQuasar()
+let percentValue = 3;
 
 const chartData = ref({
   labels: [
-    'جاری شرکا'
+    `${props.label}`
   ],
   datasets: [{
-    label: 'My First Dataset',
+    // label: 'My First Dataset',
+    fill: false,
+    lineTension: 0.0,
     backgroundColor: [
       'rgb(255, 99, 132, 0.5)',
       'rgb(54, 162, 235,0.5)',
@@ -35,7 +44,7 @@ const chartData = ref({
       'rgb(255, 205, 86)'
     ],
     hoverOffset: 4,
-    data: [40, 39, 10, 40, 39, 80, 40]
+    data: [percentValue, 100 - percentValue]
   }],
 });
 
@@ -55,13 +64,13 @@ const chartOptions = ref({
       },
       title: {
         display: true,
-        text: `موجودی صندوق ${20}`,
+        text: `${props.name} ${props.number}`,
         font: {
-          size: 16,
+          size: 14,
           family: 'Vazir FD',
           weight: 'bold'
         },
-        padding: 20,
+        padding: 16,
       }
     },
     tooltip: {
@@ -81,6 +90,7 @@ const chartOptions = ref({
       },
     },
   },
+  cutout: 80,
 });
 
 const isDarkMode = localStorage.getItem('darkMode')

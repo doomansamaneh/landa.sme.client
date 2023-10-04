@@ -52,22 +52,22 @@
       <q-tab
         name="sales-income-cost"
         label="فروش و درآمد، هزینه"
-        icon="o_monetization_on"
+        icon="o_shopping_basket"
       />
       <q-tab
         name="financial-ratio"
         label="نسبتهای مالی"
-        icon="o_price_change"
+        icon="o_trending_up"
       />
       <q-tab
         name="sales"
         label="فروش"
-        icon="o_price_change"
+        icon="o_sell"
       />
       <q-tab
         name="cost"
         label="هزینه"
-        icon="o_price_change"
+        icon="o_paid"
       />
       <div
         class="flex justify-end q-px-md full-width"
@@ -174,8 +174,21 @@
   <div class="q-my-lg">
     <income-widget />
   </div>
-  <div class="">
-    <pie-chart />
+  <div class="row q-gutter-lg">
+    <div class="col">
+      <doughnut-chart
+        name="موجودی صندوق"
+        number="8,729,810"
+        label="جاری شرکا"
+      />
+    </div>
+    <div class="col">
+      <doughnut-chart
+        name="موجودی بانک"
+        number="1,717,500"
+        label="شماره حساب بانک تجارت - حساب جاری: 5858 8311 2980 9389"
+      />
+    </div>
   </div>
 </template>
 
@@ -183,7 +196,7 @@
 import { ref, computed } from "vue"
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
-import DoughnutChart from 'src/components/shared/Charts/PieChart.vue'
+import DoughnutChart from 'src/components/shared/Charts/DoughnutChart.vue'
 import PieChart from 'src/components/shared/Charts/PieChart.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
@@ -210,99 +223,6 @@ const widgetsLayout = () => {
 const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_window'));
 const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
 const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
-
-const nodes = [
-  {
-    label: '6- فروش و درآمد',
-    children: [
-      {
-        label: '601- فروش',
-        children: [
-          {
-            label: '60101- فروش کالا',
-            children: [
-              { label: 'گردش بدهکار: 0' },
-              { label: 'گردش بستانکار: 21,360,000' },
-            ]
-          },
-          {
-            label: '60103- برگشت از فروش و تخفیفها',
-            children: [
-              { label: 'گردش بدهکار: 5,734,000' },
-              { label: 'گردش بستانکار: 0' },
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '7- بهای تمام شده کالای فروش رفته و خدمات ارائه شده',
-    children: [
-      {
-        label: '701- بهای تمام شده کالای فروش رفته',
-        children: [
-          {
-            label: '70103- بهای تمام شده کالای فروش رفته',
-            children: [
-              { label: 'گردش بدهکار: 46,400,000' },
-              { label: 'گردش بستانکار: 0' },
-            ]
-          },
-        ]
-
-      }
-    ]
-  },
-  {
-    label: '8- هزینه‌ها',
-    children: [
-      {
-        label: '805- هزینه‌های توزیع و فروش',
-        children: [
-          {
-            label: '80502- هزینه های بازاریابی و پورسانت',
-            children: [
-              { label: 'گردش بدهکار: 757,500' },
-              { label: 'گردش بستانکار: 0' },
-            ]
-          },
-          {
-            label: '80599- هزینه متفرقه توزیع و فروش',
-            children: [
-              { label: 'گردش بدهکار: 5,734,000' },
-              { label: 'گردش بستانکار: 21,350,000' },
-            ]
-          },
-        ]
-      },
-      {
-        label: '807- هزینه‌های مالی',
-        children: [
-          {
-            label: '80703- هزینه کارمزد وامها و خدمات بانکی',
-            children: [
-              { label: 'گردش بدهکار: 11,000' },
-              { label: 'گردش بستانکار: 0' },
-            ]
-          }
-        ]
-      },
-      {
-        label: '809- سایر هزینه‌های عملیاتی',
-        children: [
-          {
-            label: '80920- هزینه کسری کالا',
-            children: [
-              { label: 'گردش بدهکار: 5,000,000,000' },
-              { label: 'گردش بستانکار: 0' },
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
 
 </script>
 
