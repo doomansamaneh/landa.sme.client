@@ -1,10 +1,10 @@
 <template>
-    <Bar
-      class="bar-chart"
-      :options="chartOptions"
-      :data="chartData"
-      :style="myStyles"
-    />
+  <Bar
+    class="bar-chart"
+    :options="chartOptions"
+    :data="chartData"
+    :style="myStyles"
+  />
 </template>
 
 <script setup>
@@ -12,6 +12,13 @@ import { ref, onMounted } from "vue"
 import { Bar } from "vue-chartjs"
 import { useQuasar } from "quasar"
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+const props = defineProps({
+  name: String,
+  label: String,
+  hasName: Boolean,
+  hasLabel: Boolean,
+})
 
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 const $q = useQuasar()
@@ -26,7 +33,7 @@ const myStyles = {
 const chartData = ref({
   labels: ['موز', 'اشتراک لاندا نسخه حرفه ای', 'تجهیزات شبکه', 'طراحی لوگو', 'ادکلن مردانه', 'کفی ساینا', 'تلفن ماهواره ای'],
   datasets: [{
-    label: 'کالا و خدمات',
+    label: `${props.name}`,
     backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
       'rgba(255, 159, 64, 0.2)',
@@ -85,15 +92,29 @@ const chartOptions = ref({
   },
   plugins: {
     legend: {
+      rtl: true,
       position: 'bottom',
       labels: {
+        usePointStyle: true,
+        boxWidth: 6,
+        boxHeight: 6,
         color: 'black',
-        padding: 42,
+        padding: 0,
         font: {
           family: 'Vazir FD',
           size: 14,
         },
       },
+      title: {
+        display: props.hasName,
+        text: `${props.name}`,
+        font: {
+          size: 14,
+          family: 'Vazir FD',
+          weight: 'bold'
+        },
+        padding: 16,
+      }
     },
     tooltip: {
       enabled: true,
@@ -120,13 +141,15 @@ if (isDarkMode === "true") {
 
   chartOptions.value.scales.x.ticks.color = 'white';
   chartOptions.value.scales.y.ticks.color = 'white';
+  chartOptions.value.plugins.legend.title.color = 'white';
+  chartOptions.value.plugins.legend.labels.color = 'white';
   chartOptions.value.scales.x.grid.color = 'rgba(255,255,255,0.2)';
   chartOptions.value.scales.y.grid.color = 'rgba(255,255,255,0.2)';
-  chartOptions.value.plugins.legend.labels.color = 'white';
 
 } else {
   chartOptions.value.scales.x.ticks.color = 'black';
   chartOptions.value.scales.y.ticks.color = 'black';
+  chartOptions.value.plugins.legend.title.color = 'white';
   chartOptions.value.plugins.legend.labels.color = 'black';
   chartOptions.value.plugins.tooltip.backgroundColor = '#2d2d2d';
   chartOptions.value.plugins.tooltip.titleColor = 'white';

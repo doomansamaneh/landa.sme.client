@@ -124,49 +124,20 @@
 
       <q-tab-panel name="sales">
         <div class="q-pa-md">
-          <bar-chart />
+          <bar-chart
+            hasName="true"
+            name="کالا و خدمت"
+          />
         </div>
-        <q-card class="no-shadow q-pa-md">
-          <div class="text-h6 q-ml-md">فروش بر اساس کالاو خدمات</div>
-          <q-card-section>
-            <q-markup-table>
-              <div class="div-table">
-                <div class="div-table-header">
-                  <div class="div-table-cell">کالا/خدمات</div>
-                  <div class="div-table-cell">مقدار</div>
-                  <div class="div-table-cell">واحد</div>
-                  <div class="div-table-cell">مبلغ واحد</div>
-                  <div class="div-table-cell">مبلغ کل</div>
-                </div>
-
-                <div
-                  class="div-table-row"
-                  v-for="item in rows"
-                  :key="item"
-                >
-                  <div class="div-table-cell">{{ item.item }}</div>
-                  <div class="div-table-cell">{{ item.quantity }}</div>
-                  <div class="div-table-cell">{{ item.unit }}</div>
-                  <div class="div-table-cell">{{ item.unitPrice }}</div>
-                  <div class="div-table-cell text-bold">{{ item.totalPrice }}</div>
-                </div>
-
-                <div class="div-table-row">
-                  <div class="div-table-cell">
-                    <div class="">درآمد خالص</div>
-                  </div>
-                  <div class="div-table-cell">
-                    <div class="">5,010,192,500</div>
-                  </div>
-                </div>
-              </div>
-            </q-markup-table>
-          </q-card-section>
-        </q-card>
       </q-tab-panel>
 
       <q-tab-panel name="cost">
-        <bar-chart />
+        <div class="q-pa-md">
+          <bar-chart
+            hasName="true"
+            name="هزینه"
+          />
+        </div>
       </q-tab-panel>
 
     </q-tab-panels>
@@ -206,10 +177,8 @@ import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWi
 const tab = ref('sales-income-cost')
 const toggleChartToTable = ref(false)
 const toggleWidgetsLayout = ref(false)
-const rows = ref([
-  { item: 'بلیط کنسرت همایون شجریان', quantity: 12, unit: 'عدد', unitPrice: 8_000_000, totalPrice: 96_000_000 },
-  { item: 'موز', quantity: 3, unit: 'کیلوگرم', unitPrice: 550_000, totalPrice: 1_650_000 },
-]);
+
+// const productService = ['موز', 'اشتراک لاندا نسخه حرفه ای', 'تجهیزات شبکه', 'طراحی لوگو', 'ادکلن مردانه', 'کفی ساینا', 'تلفن ماهواره ای']
 
 
 const chartToTabel = () => {

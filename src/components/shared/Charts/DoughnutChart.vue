@@ -53,10 +53,14 @@ const chartOptions = ref({
   maintainAspectRatio: false,
   plugins: {
     legend: {
+      rtl: true,
       position: 'bottom',
       labels: {
+        usePointStyle: true,
+        boxWidth: 6,
+        boxHeight: 6,
         color: 'black',
-        padding: 4,
+        padding: 0,
         font: {
           family: 'Vazir FD',
           size: 14,
@@ -70,7 +74,7 @@ const chartOptions = ref({
           family: 'Vazir FD',
           weight: 'bold'
         },
-        padding: 16,
+        padding: 24,
       }
     },
     tooltip: {

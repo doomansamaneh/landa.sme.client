@@ -54,7 +54,7 @@ const chartData = ref({
     pointHoverRadius: 10
   },
   {
-    label: 'فروش  و درآمد',
+    label: 'فروش و درآمد',
     data: [2000000000],
     backgroundColor: 'rgba(75, 192, 192, 0.2)',
     borderColor: 'rgb(75, 192, 192)',
@@ -99,10 +99,14 @@ const chartOptions = ref({
   },
   plugins: {
     legend: {
+      rtl: true,
       position: 'bottom',
       labels: {
+        usePointStyle: true,
+        boxWidth: 6,
+        boxHeight: 6,
         color: 'black',
-        padding: 42,
+        padding: 32,
         font: {
           family: 'Vazir FD',
           size: 14,
