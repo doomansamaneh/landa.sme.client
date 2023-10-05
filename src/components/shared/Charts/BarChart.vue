@@ -99,14 +99,14 @@ const chartOptions = ref({
         boxWidth: 6,
         boxHeight: 6,
         color: 'black',
-        padding: 0,
+        padding: 32,
         font: {
           family: 'Vazir FD',
           size: 14,
         },
       },
       title: {
-        display: props.hasName,
+        display: false,
         text: `${props.name}`,
         font: {
           size: 14,

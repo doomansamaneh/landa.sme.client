@@ -94,11 +94,104 @@
           dense
           class="q-px-sm"
         > <q-icon
-            name="o_pie_chart"
+            name="o_more_horiz"
             size="18px"
             color="white"
           />
-          <span class="q-pl-xs text-caption">گزارش مرور فروش</span></q-btn>
+          <span class="q-pl-xs text-caption">بیشتر</span>
+          <q-menu
+            class="no-shadow z-max"
+            transition-show="jump-down"
+            transition-hide="jump-up"
+          >
+            <q-list
+              style="min-width: 210px;"
+              dense
+              padding
+            >
+              <q-item
+                clickable
+                @click="productServiceChart"
+                v-close-popup
+                tabindex="0"
+                class="q-py-sm"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-icon
+                      class="dark-icon"
+                      name="o_inventory_2"
+                      size="xs"
+                    />
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <span class="text-caption">فروش بر اساس کالا و خدمات</span>
+                </q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                @click="customerReport"
+                v-close-popup
+                tabindex="0"
+                class="q-py-sm"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-icon
+                      class="dark-icon"
+                      name="o_person"
+                      size="xs"
+                    />
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <span class="text-caption">فروش بر اساس مشتری</span>
+                </q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                @click="productServiceGroupChart"
+                v-close-popup
+                tabindex="0"
+                class="q-py-sm"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-icon
+                      class="dark-icon"
+                      name="o_incomplete_circle"
+                      size="xs"
+                    />
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <span class="text-caption">مشاهده گروه کالا و خدمات</span>
+                </q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                @click="goToSaleReview"
+                v-close-popup
+                tabindex="0"
+                class="q-py-sm"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-icon
+                      class="dark-icon"
+                      name="o_pie_chart"
+                      size="xs"
+                    />
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <span class="text-caption">گزارش مرور فروش</span>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
       </div>
     </q-tabs>
 
@@ -123,20 +216,29 @@
       </q-tab-panel>
 
       <q-tab-panel name="sales">
-        <div class="q-pa-md">
-          <bar-chart
-            hasName="true"
-            name="کالا و خدمت"
-          />
+        <div
+          class="q-pa-md"
+          v-if="productService"
+        >
+          <bar-chart name="کالا و خدمت" />
+        </div>
+        <div
+          class="q-pa-md"
+          v-if="customer"
+        >
+          <bar-chart name="مشتری" />
+        </div>
+        <div
+          class="q-pa-md"
+          v-if="productServiceGroup"
+        >
+          <pie-chart />
         </div>
       </q-tab-panel>
 
       <q-tab-panel name="cost">
         <div class="q-pa-md">
-          <bar-chart
-            hasName="true"
-            name="هزینه"
-          />
+          <bar-chart name="هزینه" />
         </div>
       </q-tab-panel>
 
@@ -177,8 +279,9 @@ import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWi
 const tab = ref('sales-income-cost')
 const toggleChartToTable = ref(false)
 const toggleWidgetsLayout = ref(false)
-
-// const productService = ['موز', 'اشتراک لاندا نسخه حرفه ای', 'تجهیزات شبکه', 'طراحی لوگو', 'ادکلن مردانه', 'کفی ساینا', 'تلفن ماهواره ای']
+const productServiceGroup = ref(false)
+const customer = ref(false)
+const productService = ref(true)
 
 
 const chartToTabel = () => {
@@ -187,6 +290,28 @@ const chartToTabel = () => {
 
 const widgetsLayout = () => {
   toggleWidgetsLayout.value = !toggleWidgetsLayout.value
+}
+
+const customerReport = () => {
+  productService.value = false
+  productServiceGroup.value = false
+  customer.value = true
+}
+
+const productServiceGroupChart = () => {
+  productService.value = false
+  customer.value = false
+  productServiceGroup.value = true
+}
+
+const productServiceChart = () => {
+  productService.value = true
+  customer.value = false
+  productServiceGroup.value = false
+}
+
+const goToSaleReview = () => {
+  alert("گزارش مرور فروش")
 }
 
 const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_window'));

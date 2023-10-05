@@ -1,11 +1,11 @@
 <template>
-  <q-card class="q-pa-xl bordered">
+  <!-- <q-card class="q-pa-xl bordered"> -->
     <Pie
       class="pie-chart"
       :options="chartOptions"
       :data="chartData"
     />
-  </q-card>
+  <!-- </q-card> -->
 </template>
 
 <script setup>
