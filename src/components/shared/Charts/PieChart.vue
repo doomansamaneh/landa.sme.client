@@ -1,10 +1,10 @@
 <template>
   <!-- <q-card class="q-pa-xl bordered"> -->
-    <Pie
-      class="pie-chart"
-      :options="chartOptions"
-      :data="chartData"
-    />
+  <Pie
+    class="pie-chart"
+    :options="chartOptions"
+    :data="chartData"
+  />
   <!-- </q-card> -->
 </template>
 

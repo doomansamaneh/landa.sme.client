@@ -135,10 +135,9 @@ const chartOptions = ref({
   },
 });
 
-const isDarkMode = localStorage.getItem('darkMode')
+//const isDarkMode = localStorage.getItem('darkMode')
 
-if (isDarkMode === "true") {
-
+if ($q.dark.mode) {
   chartOptions.value.scales.x.ticks.color = 'white';
   chartOptions.value.scales.y.ticks.color = 'white';
   chartOptions.value.plugins.legend.title.color = 'white';

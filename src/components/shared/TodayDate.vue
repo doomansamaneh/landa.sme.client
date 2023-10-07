@@ -5,7 +5,7 @@
   > -->
   <span class="text-caption text-on-dark">
     <!-- {{ $t('shared.labels.today') }}: -->
-    {{ date.getDay() }} -
+    {{ date.toDayString() }} -
     {{ date.toDateString() }}</span>
   <!-- </q-page-sticky> -->
 </template>

@@ -1,5 +1,5 @@
-import { useCulture } from "src/composables/useCulture";
-const cultureStore = useCulture();
+import { useCulture } from "src/composables/useCulture"
+const cultureStore = useCulture()
 
 Date.prototype.toDateString = function () {
     var date = new Date(this.valueOf());
@@ -9,7 +9,7 @@ Date.prototype.toDateString = function () {
         day: "numeric"
     };
     return date.toLocaleDateString(cultureStore.culture.value.quasarLang, fullDate)
-};
+}
 
 Date.prototype.toDateTimeString = function () {
     var date = new Date(this.valueOf());
@@ -22,12 +22,12 @@ Date.prototype.toDateTimeString = function () {
         second: "numeric"
     };
     return date.toLocaleDateString(cultureStore.culture.value.quasarLang, fullDate)
-};
+}
 
-Date.prototype.getDay = function () {
+Date.prototype.toDayString = function () {
     var date = new Date(this.valueOf());
     const weekday = {
         weekday: "long"
     };
     return date.toLocaleDateString(cultureStore.culture.value.quasarLang, weekday)
-};
+}
