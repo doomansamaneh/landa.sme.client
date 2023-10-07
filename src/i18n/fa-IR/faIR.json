@@ -277,7 +277,8 @@
       "selectedRows": "انتخاب شده‌ها",
       "exportExcel": "تبدیل به اکسل",
       "exportExcelCurrentPage": "تبدیل به اکسل صفحه جاری",
-      "advancedSearch": "جستجوی پیشرفته"
+      "advancedSearch": "جستجوی پیشرفته",
+      "contact-search": "جستجوی مخاطب"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد"

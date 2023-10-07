@@ -8,7 +8,7 @@
       <div class="q-gutter-xs">
         <q-btn
           flat
-          @click="$emit('toggle-drawer')"
+          @click="$emit('toggle-menubar')"
           round
           dense
           size="16px"
@@ -148,34 +148,14 @@
             </q-menu>
           </q-btn>
           <q-btn
+            @click="$emit('toggle-contactbar')"
             flat
             dense
             round
             icon="o_contacts"
             class="btn-icon text-on-dark gt-xs"
             size="14px"
-          >
-
-            <q-drawer
-              side="right"
-              v-model="contactSerachDrawer"
-              show-if-above
-              :width="200"
-              :breakpoint="700"
-              elevated
-              class="bg-primary text-white"
-            >
-              <q-scroll-area class="fit">
-                <div class="q-pa-sm">
-                  <div
-                    v-for="n in 50"
-                    :key="n"
-                  >Drawer {{ n }} / 50</div>
-                </div>
-              </q-scroll-area>
-            </q-drawer>
-
-          </q-btn>
+          />
           <q-btn
             flat
             dense-dark
@@ -329,8 +309,7 @@ const $q = useQuasar()
 const selectedBusiness = useSelectedBusinessStore()
 
 const notif = ref(true)
-const contactSerachDrawer = ref(false)
-const emit = defineEmits(["toggle-drawer"])
+const emit = defineEmits(["toggle-menubar", "toggle-contactbar"])
 
 const username = computed(() => {
   if (authStore.user) return authStore.user.fullName

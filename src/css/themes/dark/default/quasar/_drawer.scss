@@ -8,9 +8,9 @@
   }
 
   .q-drawer {
-    background: #ffffff09 !important;
+    background: #{$dark-page}80 !important;
     box-shadow: 0 6px 24px #ffffff20;
-    backdrop-filter: blur(20);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(42px);
+    -webkit-backdrop-filter: blur(42px);
   }
 }

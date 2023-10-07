@@ -4,9 +4,12 @@
     class="main-layout"
   >
     <q-page-container>
-      <main-header @toggle-drawer="toggleDrawer" />
-      <menu-bar :drawer="drawer" />
-    <!-- <today-date /> -->
+      <main-header
+        @toggle-menubar="toggleMenuBar"
+        @toggle-contactbar="toggleContactBar"
+      />
+      <menu-bar :menuBar="menuBar" />
+      <contact-drawer :contactBar="contactBar" />
       <router-view />
     </q-page-container>
   </q-layout>
@@ -19,13 +22,15 @@ import { fetchWrapper } from "src/helpers"
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 import { useTheme } from "src/components/layouts/main/_composables/ThemeStore.js"
 import MenuBar from "src/components/layouts/main/MenuBar.vue"
+import contactDrawer from "src/components/layouts/main/ContactDrawer.vue"
 import MainHeader from "src/components/layouts/main/MainHeader.vue"
 import TodayDate from "src/components/shared/TodayDate.vue"
 
 const theme = useTheme()
 const route = useRoute()
 
-const drawer = ref(true)
+const menuBar = ref(true)
+const contactBar = ref(false)
 
 const selectedBusiness = useSelectedBusinessStore()
 
@@ -45,8 +50,12 @@ function handleBusinessData(data) {
   selectedBusiness.title = businessTitle
 }
 
-function toggleDrawer() {
-  drawer.value = !drawer.value
+function toggleMenuBar() {
+  menuBar.value = !menuBar.value
+}
+
+function toggleContactBar() {
+  contactBar.value = !contactBar.value
 }
 
 onMounted(() => {
@@ -85,5 +94,4 @@ onMounted(() => {
 
 .q-item__section--avatar {
   min-width: 0;
-}
-</style>
+}</style>

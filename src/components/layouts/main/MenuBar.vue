@@ -1,8 +1,9 @@
 <template>
   <q-drawer
+    class="menu-bar"
     side="left"
     :width="263"
-    :model-value="drawer"
+    :model-value="menuBar"
     :breakpoint="500"
     bordered
   >
@@ -115,7 +116,7 @@ const { t } = useI18n()
 
 const router = useRouter()
 const props = defineProps({
-  drawer: Boolean
+  menuBar: Boolean
 })
 
 const items = ref([])
@@ -212,7 +213,7 @@ onMounted(() => {
   font-size: 13px;
 }
 
-.q-drawer {
+.menu-bar {
   .q-focus-helper {
     display: none;
   }
