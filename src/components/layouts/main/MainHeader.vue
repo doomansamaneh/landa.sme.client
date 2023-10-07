@@ -127,12 +127,15 @@
                       size="xs"
                       dense
                     >
-                      <q-menu>
+                      <q-menu v-model="showing">
                         <q-list
                           dense
                           padding
                         >
-                          <q-item clickable>
+                          <q-item
+                            clickable
+                            @click="showing = false"
+                          >
                             <q-item-section>
                               <span class="text-caption">
                                 تبدیل به خوانده‌نشده
@@ -310,6 +313,7 @@ const selectedBusiness = useSelectedBusinessStore()
 
 const notif = ref(true)
 const emit = defineEmits(["toggle-menubar", "toggle-contactbar"])
+const showing = ref(false)
 
 const username = computed(() => {
   if (authStore.user) return authStore.user.fullName
