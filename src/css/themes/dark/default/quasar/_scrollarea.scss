@@ -1,0 +1,9 @@
+@mixin q-scrollarea-dark {
+  .q-scrollarea__thumb {
+    background-color: $primary !important;
+  }
+
+  .q-scrollarea__bar {
+    background-color: $accent !important;
+  }
+}
