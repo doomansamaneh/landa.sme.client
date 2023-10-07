@@ -8,7 +8,12 @@
     class="text-white"
     bordered
   >
-    <q-scroll-area class="fit">
+    <q-scroll-area
+      class="fit"
+      dark
+      :thumb-style="thumbStyle"
+      :bar-style="barStyle"
+    >
       <div class="searchbar-sidebar q-my-md q-px-md">
         <q-input
           color="grey-5"
@@ -80,6 +85,19 @@ const props = defineProps({
   contactBar: Boolean
 })
 
+const thumbStyle = {
+  left: '4px',
+  borderRadius: '5px',
+  width: '6px',
+  opacity: 0.75
+}
+
+const barStyle = {
+  left: '2px',
+  width: '8px',
+  opacity: 0.2
+}
+
 const searchText = ref("")
 
 function clearSearch() {
@@ -91,6 +109,15 @@ const isSearchEmpty = computed(() =>
 )
 
 const rows = [
+  { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg" },
+  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "" },
+  { fullName: "محمد ینی ملگی", jobTitle: "استاد" },
+  { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg" },
+  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "" },
+  { fullName: "محمد ینی ملگی", jobTitle: "استاد" },
+  { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg" },
+  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "" },
+  { fullName: "محمد ینی ملگی", jobTitle: "استاد" },
   { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg" },
   { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "" },
   { fullName: "محمد ینی ملگی", jobTitle: "استاد" },
