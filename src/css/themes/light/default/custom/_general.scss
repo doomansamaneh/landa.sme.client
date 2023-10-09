@@ -18,7 +18,7 @@
 
   .bordered {
     border: 1px solid #d9dce5;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px;
   }
 
   .z-1 {
@@ -27,6 +27,7 @@
 
   .glass {
     background-color: #{$white}80;
+    backdrop-filter: blur(42px);
   }
 
   // .theme-place {

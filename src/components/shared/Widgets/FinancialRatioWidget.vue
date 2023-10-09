@@ -6,22 +6,25 @@
           <div class="q-gutter-x-xs">
             <span class="text-body1">نسبت جاری</span>
             <q-icon
+              @mouseover="showTooltip(0)"
               name="o_live_help"
               size="xs"
-              class="icon"
+              class="icon-hover dark-3 cursor-pointer"
             >
               <q-tooltip
+                no-parent-event
+                @mouseout="hideTooltip(0)"
+                v-model="tooltips[0]"
                 max-width="500px"
-                :delay="600"
                 transition-show="scale"
                 transition-hide="scale"
                 anchor="center middle"
                 self="center middle"
-                class="q-pa-lg glass text-on-dark line-height"
+                class="glass text-on-dark"
               >
-                <span class="text-body2">
+                <div class="text-body2 line-height q-pa-lg">
                   {{ nesbatJari }}
-                </span>
+                </div>
               </q-tooltip>
             </q-icon>
           </div>
@@ -35,22 +38,25 @@
           <div class="q-gutter-x-xs">
             <span class="text-body1">دوره وصول مطالبات</span>
             <q-icon
+              @mouseover="showTooltip(1)"
               name="o_live_help"
               size="xs"
-              class="icon"
+              class="icon-hover dark-3 cursor-pointer"
             >
               <q-tooltip
+                no-parent-event
+                @mouseout="hideTooltip(1)"
+                v-model="tooltips[1]"
                 max-width="500px"
-                :delay="600"
                 transition-show="scale"
                 transition-hide="scale"
                 anchor="center middle"
                 self="center middle"
-                class="q-pa-lg glass text-on-dark line-height"
+                class="more glass text-on-dark"
               >
-                <span class="text-body2">
+                <div class="text-body2 line-height q-pa-lg">
                   {{ nesbatJari }}
-                </span>
+                </div>
               </q-tooltip>
             </q-icon>
           </div>
@@ -64,22 +70,25 @@
           <div class="q-gutter-x-xs">
             <span class="text-body1">حاشیه سود</span>
             <q-icon
+              @mouseover="showTooltip(2)"
               name="o_live_help"
               size="xs"
-              class="icon"
+              class="icon-hover dark-3 cursor-pointer"
             >
               <q-tooltip
+                no-parent-event
+                @mouseout="hideTooltip(2)"
+                v-model="tooltips[2]"
                 max-width="500px"
-                :delay="600"
                 transition-show="scale"
                 transition-hide="scale"
                 anchor="center middle"
                 self="center middle"
-                class="q-pa-lg glass text-on-dark line-height"
+                class="more glass text-on-dark"
               >
-                <span class="text-body2">
+                <div class="text-body2 line-height q-pa-lg">
                   {{ nesbatJari }}
-                </span>
+                </div>
               </q-tooltip>
             </q-icon>
           </div>
@@ -93,22 +102,25 @@
           <div class="q-gutter-x-xs">
             <span class="text-body1">نسبت بدهی</span>
             <q-icon
+              @mouseover="showTooltip(3)"
               name="o_live_help"
               size="xs"
-              class="icon"
+              class="icon-hover dark-3 cursor-pointer"
             >
               <q-tooltip
+                no-parent-event
+                @mouseout="hideTooltip(3)"
+                v-model="tooltips[3]"
                 max-width="500px"
-                :delay="600"
                 transition-show="scale"
                 transition-hide="scale"
                 anchor="center middle"
                 self="center middle"
-                class="q-pa-lg q-ma-xl glass text-on-dark line-height"
+                class="more glass text-on-dark"
               >
-                <span class="text-body2">
+                <div class="text-body2 line-height q-pa-lg">
                   {{ nesbatJari }}
-                </span>
+                </div>
               </q-tooltip>
             </q-icon>
           </div>
@@ -117,95 +129,35 @@
       </q-card>
     </div>
   </div>
-  <!-- <div class="q-gutter-md">
-    <div class="q-gutter-md q-pb-md">
-      <div class="">
-        <span class="text-h6">نسبت جاری</span>
-        <q-badge
-          rounded
-          outline
-          label="17.67"
-          color="primary"
-          class="q-ml-sm bg-dark text-bold text-body1 q-py-xs q-px-sm"
-        />
-      </div>
-      <div class="">
-        <span class="text-level-2">نسبت جاری از تقسیم داراییهای جاری بر بدهی‌های جاری حاصل می‌شود دارایی جاری به
-          داراییهایی گفته می‌شود
-          كه به سرعت و به سهولت به وجه نقد تبدیل می‌شود و بدهی جاری به بدهی‌هایی گفته می‌شود كه با سررسید كمتر از یک
-          سال است. نسبت جاری بیشتر می‌تواند بیانگر وضعیت مطلوب نقدینگی باشد. اگر این عدد بزرگتر از 2 باشد مطلوب است
-          و وام دهندگان بزرگ مانند بانکها به این کسب و کار نظر مساعدی خواهند داشت.</span>
-      </div>
-    </div>
-    <div class="q-gutter-md q-pb-md">
-      <div class="">
-        <span class="text-h6">دوره وصول مطالبات</span>
-        <q-badge
-          rounded
-          outline
-          label="329 روز"
-          color="primary"
-          class="q-ml-sm bg-dark text-bold text-body1 q-py-xs q-px-sm"
-        />
-      </div>
-      <div class="">
-        <span class="text-level-2">
-          دوره وصول مطالبات بیانگر تعداد روزهایی است كه طول می‌كشد شركت مطالبات خود را وصول كند. هر چه این نسبت كوچكتر
-          باشد بهتر است زیرا به این معناست كه مطالبات شركت سریعتر وصول می‌شود. البته كوچک بودن بیش از حد آن به معنای
-          شرایط اعتباری سخت شركت است که ممکن به ضرر شرکت تمام شود.
-        </span>
-      </div>
-    </div>
-    <div class="q-gutter-md q-pb-md">
-      <div class="">
-        <span class="text-h6">نسبت بدهی</span>
-        <q-badge
-          rounded
-          outline
-          label="0%"
-          color="primary"
-          class="q-ml-sm bg-dark text-bold text-body1 q-py-xs q-px-sm"
-        />
-      </div>
-      <div class="">
-        <span class="text-level-2">
-          دوره وصول مطالبات بیانگر تعداد روزهایی است كه طول می‌كشد شركت مطالبات خود را وصول كند. هر چه این نسبت كوچكتر
-          باشد بهتر است زیرا به این معناست كه مطالبات شركت سریعتر وصول می‌شود. البته كوچک بودن بیش از حد آن به معنای
-          شرایط اعتباری سخت شركت است که ممکن به ضرر شرکت تمام شود.
-        </span>
-      </div>
-    </div>
-    <div class="q-gutter-md q-pb-md">
-      <div class="">
-        <span class="text-h6">حاشیه سود</span>
-        <q-badge
-          rounded
-          outline
-          label="32,456.50%"
-          color="primary"
-          class="q-ml-sm bg-dark text-bold text-body1 q-py-xs q-px-sm"
-        />
-      </div>
-      <div class="">
-        <span class="text-level-2">
-          دوره وصول مطالبات بیانگر تعداد روزهایی است كه طول می‌كشد شركت مطالبات خود را وصول كند. هر چه این نسبت كوچكتر
-          باشد بهتر است زیرا به این معناست كه مطالبات شركت سریعتر وصول می‌شود. البته كوچک بودن بیش از حد آن به معنای
-          شرایط اعتباری سخت شركت است که ممکن به ضرر شرکت تمام شود.
-        </span>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script setup>
+import { ref } from "vue"
+const tooltips = ref([false, false, false, false])
+
+const showTooltip = (index) => {
+  setTimeout(() => {
+
+    tooltips.value[index] = true
+
+  }, 700);
+}
+
+const hideTooltip = (index) => {
+  tooltips.value[index] = false
+}
 
 const nesbatJari = "نسبت جاری از تقسیم داراییهای جاری بر بدهی‌های جاری حاصل می‌شود دارایی جاری به داراییهایی گفته می‌شود كه به سرعت و به سهولت به وجه نقد تبدیل می‌شود و بدهی جاری به بدهی‌هایی گفته می‌شود كه با سررسید كمتر از یک سال است. نسبت جاری بیشتر می‌تواند بیانگر وضعیت مطلوب نقدینگی باشد. اگر این عدد بزرگتر از 2 باشد مطلوب است و وام دهندگان بزرگ مانند بانکها به این کسب و کار نظر مساعدی خواهند داشت."
 
 </script>
 
-<style>
+<style lang="scss">
 .line-height {
   line-height: 28px;
   text-align: justify;
+}
+
+.no-pointer-events {
+  pointer-events: all !important;
 }
 </style>
