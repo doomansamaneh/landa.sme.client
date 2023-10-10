@@ -1,14 +1,14 @@
 <template>
-    <Line
-      class="line-chart"
-      :options="chartOptions"
-      :data="chartData"
-      :style="myStyles"
-    />
+  <Line
+    class="line-chart"
+    :options="chartOptions"
+    :data="chartData"
+    :style="myStyles"
+  />
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, watchEffect, computed } from "vue"
 import { Line } from "vue-chartjs"
 import { useQuasar } from "quasar"
 
@@ -65,90 +65,103 @@ const chartData = ref({
 
 });
 
+const updateChartStyles = () => {
 
-const chartOptions = ref({
-  responsive: true,
-  maintainAspectRatio: false,
-  scales: {
-    x: {
-      ticks: {
+  if ($q.dark.isActive) {
+    alert($q.dark.isActive)
+    chartOptions.value.scales.x.ticks.color = 'white';
+    chartOptions.value.scales.y.ticks.color = 'white';
+    chartOptions.value.plugins.legend.labels.color = 'white';
+    chartOptions.value.scales.x.grid.color = 'rgba(255,255,255,0.2)';
+    chartOptions.value.scales.y.grid.color = 'rgba(255,255,255,0.2)';
 
-        font: {
-          family: 'Vazir FD',
-          size: 12,
-        },
+  } else {
+    chartOptions.value.scales.x.ticks.color = 'black';
+    chartOptions.value.scales.y.ticks.color = 'black';
+    chartOptions.value.plugins.legend.labels.color = 'black';
+    chartOptions.value.plugins.tooltip.backgroundColor = '#2d2d2d';
+    chartOptions.value.plugins.tooltip.titleColor = 'white';
+    chartOptions.value.plugins.tooltip.bodyColor = 'white';
+  }
 
-      },
-      grid: {
-
-      }
-    },
-    y: {
-      ticks: {
-
-        font: {
-          family: 'Vazir FD',
-          size: 12,
-        },
-
-      },
-      grid: {
-
-      }
-    },
-  },
-  plugins: {
-    legend: {
-      rtl: true,
-      position: 'bottom',
-      labels: {
-        usePointStyle: true,
-        boxWidth: 6,
-        boxHeight: 6,
-        color: 'black',
-        padding: 32,
-        font: {
-          family: 'Vazir FD',
-          size: 14,
-        },
-      },
-    },
-    tooltip: {
-      enabled: true,
-      backgroundColor: 'white',
-      borderColor: 'black',
-      borderWidth: 1,
-      titleColor: 'black',
-      bodyColor: 'black',
-      titleFont: {
-        family: 'Vazir FD',
-        size: 12,
-      },
-      bodyFont: {
-        family: 'Vazir FD',
-        size: 11,
-      },
-    },
-  },
-});
-
-const isDarkMode = localStorage.getItem('darkMode')
-
-if (isDarkMode === "true") {
-
-  chartOptions.value.scales.x.ticks.color = 'white';
-  chartOptions.value.scales.y.ticks.color = 'white';
-  chartOptions.value.plugins.legend.labels.color = 'white';
-  chartOptions.value.scales.x.grid.color = 'rgba(255,255,255,0.2)';
-  chartOptions.value.scales.y.grid.color = 'rgba(255,255,255,0.2)';
-
-} else {
-  chartOptions.value.scales.x.ticks.color = 'black';
-  chartOptions.value.scales.y.ticks.color = 'black';
-  chartOptions.value.plugins.legend.labels.color = 'black';
-  chartOptions.value.plugins.tooltip.backgroundColor = '#2d2d2d';
-  chartOptions.value.plugins.tooltip.titleColor = 'white';
-  chartOptions.value.plugins.tooltip.bodyColor = 'white';
+  // ChartJS.update();
 }
 
+const chartOptions = computed(() => {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        ticks: {
+
+          font: {
+            family: 'Vazir FD',
+            size: 12,
+          },
+          color: `${color.value}`
+        },
+        grid: {
+          color: `${gridColor.value}`
+        }
+      },
+      y: {
+        ticks: {
+
+          font: {
+            family: 'Vazir FD',
+            size: 12,
+          },
+          color: `${color.value}`
+        },
+        grid: {
+          color: `${gridColor.value}`
+
+        }
+      },
+    },
+    plugins: {
+      legend: {
+        rtl: true,
+        position: 'bottom',
+        labels: {
+          usePointStyle: true,
+          boxWidth: 6,
+          boxHeight: 6,
+          color: `${color.value}`,
+          padding: 32,
+          font: {
+            family: 'Vazir FD',
+            size: 14,
+          },
+        },
+      },
+      tooltip: {
+        enabled: true,
+        backgroundColor: 'white',
+        borderColor: 'black',
+        borderWidth: 1,
+        titleColor: 'black',
+        bodyColor: 'black',
+        titleFont: {
+          family: 'Vazir FD',
+          size: 12,
+        },
+        bodyFont: {
+          family: 'Vazir FD',
+          size: 11,
+        },
+      },
+    },
+  }
+
+})
+
+const color = computed(() =>
+  $q.dark.isActive ? 'white' : 'black'
+)
+
+const gridColor = computed(() =>
+  $q.dark.isActive ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'
+)
 </script>

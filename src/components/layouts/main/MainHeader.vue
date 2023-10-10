@@ -25,7 +25,6 @@
           class="bordered-btn bg-dark text-on-dark q-mx-md"
           padding="4px 12px"
           unelevated
-          @click="exportTable"
         ><q-icon
             name="o_calendar_today"
             class="q-pr-sm"
@@ -186,12 +185,13 @@
             </q-menu>
           </q-btn>
           <q-btn
-            @click="$emit('toggle-contactbar')"
+            @click="toggleContactSearchBar"
             flat
             dense
             round
-            icon="o_contacts"
+            icon="o_person_search"
             class="btn-icon text-on-dark gt-xs"
+            :class="activeButton"
             size="14px"
           />
           <q-btn
@@ -382,4 +382,20 @@ const activeYearStyle = (year) => {
   return ""
 }
 
+const contactButton = ref(false)
+
+const activeButton = computed(() => (contactButton.value ? 'button-active' : ''));
+
+const toggleContactSearchBar = () => {
+  emit('toggle-contactbar')
+  contactButton.value = !contactButton.value
+}
 </script>
+
+<style>
+.button-active {
+  background-color: #00000017;
+  border-radius: 100%;
+
+}
+</style>

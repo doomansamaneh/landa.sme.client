@@ -287,9 +287,11 @@ const productService = ref(true)
 const chartToTabel = () => {
   toggleChartToTable.value = !toggleChartToTable.value
 }
+const activeButton = ref(false)
 
 const widgetsLayout = () => {
   toggleWidgetsLayout.value = !toggleWidgetsLayout.value
+  activeButton.value = !activeButton.value
 }
 
 const customerReport = () => {

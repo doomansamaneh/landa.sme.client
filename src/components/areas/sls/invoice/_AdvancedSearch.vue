@@ -42,6 +42,7 @@
                 clear-icon="clear"
                 clearable
                 v-model="searchModel.amountFrom"
+                @update:model-value="formatNumber"
                 :placeholder='$t("shared.labels.amountFrom")'
                 class="text-caption"
                 style="width: 195px;"
@@ -161,4 +162,8 @@ async function removeItem(item) {
   searchModel.value[item.name] = value
   await applySearch()
 }
+
+const formatNumber = () => {
+  searchModel.value.amountFrom = searchModel.value.amountFrom.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
 </script>
