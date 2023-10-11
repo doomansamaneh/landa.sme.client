@@ -396,6 +396,5 @@ const toggleContactSearchBar = () => {
 .button-active {
   background-color: #00000017;
   border-radius: 100%;
-
 }
 </style>

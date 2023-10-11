@@ -126,6 +126,9 @@ import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 import chip from "src/components/shared/SearchChip.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
+import { useFormatNumber } from "src/composables/useFormatNumber"
+
+const mask = useFormatNumber
 
 const props = defineProps({
   gridStore: Object
