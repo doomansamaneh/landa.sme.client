@@ -105,7 +105,7 @@
               bordered
               class="rounded-borders"
             >
-              <q-expansion-item>
+              <q-expansion-item group="basicInfo">
                 <template v-slot:header>
                   <q-item-section avatar>
                     <q-icon
@@ -114,23 +114,57 @@
                     />
                   </q-item-section>
 
-                  <q-item-section>
+                  <q-item-section class="text-subtitle1">
                     تماس
                   </q-item-section>
                 </template>
                 <q-card class="no-border no-shadow">
                   <q-card-section>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-                    eveniet doloribus ullam aliquid.
+                    <q-btn
+                      unelevated
+                      class="bg-primary text-white full-width q-pa-md"
+                    >
+                      <q-icon
+                        name="o_add"
+                        class="q-mr-xs"
+                      />
+                      <span>افزودن آیتم جدید</span>
+                    </q-btn>
+                    <div class="row bordered-1 q-pa-md q-mt-lg items-center">
+                      <div class="col">
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">تلفن خانه:</span>
+                          <span>02155511102</span>
+                        </div>
+                      </div>
+                      <div class="col-2 row justify-end items-center">
+                        <div class="row q-gutter-x-sm">
+                          <q-btn
+                            outline
+                            round
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_edit"
+                          />
+                          <q-btn
+                            outline
+                            round
+                            color="negative"
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_delete"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
-              <q-expansion-item>
+              <q-expansion-item group="basicInfo">
                 <template v-slot:header>
                   <q-item-section avatar>
                     <q-icon
-                      name="o_location_on"
+                      name="o_my_location"
                       size="xs"
                     />
                   </q-item-section>
@@ -141,13 +175,48 @@
                 </template>
                 <q-card class="no-border no-shadow">
                   <q-card-section>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-                    eveniet doloribus ullam aliquid.
+                    <q-btn
+                      unelevated
+                      class="bg-primary text-white full-width q-pa-md"
+                    >
+                      <q-icon
+                        name="o_add"
+                        class="q-mr-xs"
+                      />
+                      <span>افزودن آیتم جدید</span>
+                    </q-btn>
+                    <div class="row bordered-1 q-pa-md q-mt-lg items-center">
+                      <div class="col">
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">آدرس خانه:</span>
+                          <span>تهران - شهرری - خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید
+                            عنایی - کوچه مهر 2 - پلاک 22</span>
+                        </div>
+                      </div>
+                      <div class="col-2 row justify-end items-center">
+                        <div class="row q-gutter-x-sm">
+                          <q-btn
+                            outline
+                            round
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_edit"
+                          />
+                          <q-btn
+                            outline
+                            round
+                            color="negative"
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_delete"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
-              <q-expansion-item>
+              <q-expansion-item group="basicInfo">
                 <template v-slot:header>
                   <q-item-section avatar>
                     <q-icon
@@ -162,13 +231,117 @@
                 </template>
                 <q-card class="no-border no-shadow">
                   <q-card-section>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-                    eveniet doloribus ullam aliquid.
+                    <q-btn
+                      unelevated
+                      class="bg-primary text-white full-width q-pa-md"
+                    >
+                      <q-icon
+                        name="o_add"
+                        class="q-mr-xs"
+                      />
+                      <span>افزودن آیتم جدید</span>
+                    </q-btn>
+                    <div class="row bordered-1 q-pa-md q-mt-lg">
+                      <div class="col q-gutter-sm">
+                        <div class="row text-caption items-center">
+                          <q-icon
+                            name="o_account_balance"
+                            color="primary"
+                            size="xs"
+                          />
+                          <span class="text-bold q-ml-sm">بانک تجارت</span>
+                        </div>
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">شماره حساب:</span>
+                          <span>0481038280</span>
+                        </div>
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">شماره کارت:</span>
+                          <span>5859831129809389</span>
+                        </div>
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">شماره شبا:</span>
+                          <span>0000128550232209</span>
+                        </div>
+                      </div>
+                      <div class="col-2 row justify-end items-center">
+                        <div class="row q-gutter-x-sm">
+                          <q-btn
+                            outline
+                            round
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_edit"
+                          />
+                          <q-btn
+                            outline
+                            round
+                            color="negative"
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_delete"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </q-card-section>
+                  <!-- <q-card-section>
+                    <q-btn
+                      unelevated
+                      class="bg-primary text-white full-width q-pa-md"
+                    >
+                      <q-icon
+                        name="o_add"
+                        class="q-mr-xs"
+                      />
+                      <span>افزودن آیتم جدید</span>
+                    </q-btn>
+                    <div class="row q-mt-lg bordered-1 justify-center items-center">
+                      <div class="col q-pa-md q-gutter-sm">
+                        <div class="row text-caption items-center">
+                          <q-icon
+                            name="o_account_balance"
+                            color="primary"
+                            size="xs"
+                          />
+                          <span class="text-bold q-ml-sm">بانک تجارت</span>
+                        </div>
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">شماره حساب:</span>
+                          <span>0481038280</span>
+                        </div>
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">شماره کارت:</span>
+                          <span>5859831129809389</span>
+                        </div>
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">شماره شبا:</span>
+                          <span>0000128550232209</span>
+                        </div>
+                      </div>
+
+                      <div class="col-2 row q-gutter-x-sm justify-center">
+                        <q-btn
+                          outline
+                          round
+                          class="text-on-dark"
+                          size="sm"
+                          icon="o_edit"
+                        />
+                        <q-btn
+                          outline
+                          round
+                          color="negative"
+                          class="text-on-dark"
+                          size="sm"
+                          icon="o_delete"
+                        />
+                      </div>
+                    </div>
+                  </q-card-section> -->
                 </q-card>
               </q-expansion-item>
-              <q-expansion-item>
+              <q-expansion-item group="basicInfo">
                 <template v-slot:header>
                   <q-item-section avatar>
                     <q-icon
@@ -189,7 +362,7 @@
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
-              <q-expansion-item>
+              <q-expansion-item group="basicInfo">
                 <template v-slot:header>
                   <q-item-section avatar>
                     <q-icon
