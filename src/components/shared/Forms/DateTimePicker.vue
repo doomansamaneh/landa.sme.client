@@ -33,10 +33,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useCulture } from "src/composables/useCulture";
-
-const cultureStore = useCulture()
 
 const props = defineProps(['modelValue', 'placeholder', 'label'])
 const emit = defineEmits(['update:modelValue'])
@@ -50,6 +48,7 @@ const value = computed({
   }
 })
 
+const cultureStore = useCulture()
 const calendar = computed(() => cultureStore.culture.value.calendar)
 </script>
 <style>

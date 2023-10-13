@@ -47,14 +47,11 @@
                 class="text-caption"
                 style="width: 195px;"
               />
-              <q-input
-                outlined
-                dense
-                clear-icon="clear"
-                clearable
+
+              <custom-input
                 v-model="searchModel.amountTo"
+                display-format="n0"
                 :placeholder='$t("shared.labels.amountTo")'
-                class="text-caption"
                 style="width: 195px;"
               />
             </div>
@@ -69,6 +66,12 @@
               />
             </div>
             <div class="row q-gutter-x-sm items-center">
+              <custom-input
+                v-model="searchModel.comment"
+                :placeholder='$t("shared.labels.comment")'
+                style="width: 400px;"
+              />
+              <!-- 
               <q-input
                 outlined
                 dense
@@ -78,7 +81,7 @@
                 clear-icon="clear"
                 class="text-caption"
                 style="width: 400px;"
-              />
+              /> -->
             </div>
           </div>
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
@@ -126,6 +129,7 @@ import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 import chip from "src/components/shared/SearchChip.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
+import customInput from "src/components/shared/Forms/CustomInput.vue"
 import { useFormatNumber } from "src/composables/useFormatNumber"
 
 const mask = useFormatNumber
@@ -167,6 +171,7 @@ async function removeItem(item) {
 }
 
 const formatNumber = () => {
-  searchModel.value.amountFrom = searchModel.value.amountFrom.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  if (searchModel.value.amountFrom)
+    searchModel.value.amountFrom = searchModel.value.amountFrom.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 </script>

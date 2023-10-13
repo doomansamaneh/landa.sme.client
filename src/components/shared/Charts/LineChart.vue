@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watchEffect, computed } from "vue"
+import { ref, computed } from "vue"
 import { Line } from "vue-chartjs"
 import { useQuasar } from "quasar"
 
@@ -64,28 +64,6 @@ const chartData = ref({
   }],
 
 });
-
-const updateChartStyles = () => {
-
-  if ($q.dark.isActive) {
-    alert($q.dark.isActive)
-    chartOptions.value.scales.x.ticks.color = 'white';
-    chartOptions.value.scales.y.ticks.color = 'white';
-    chartOptions.value.plugins.legend.labels.color = 'white';
-    chartOptions.value.scales.x.grid.color = 'rgba(255,255,255,0.2)';
-    chartOptions.value.scales.y.grid.color = 'rgba(255,255,255,0.2)';
-
-  } else {
-    chartOptions.value.scales.x.ticks.color = 'black';
-    chartOptions.value.scales.y.ticks.color = 'black';
-    chartOptions.value.plugins.legend.labels.color = 'black';
-    chartOptions.value.plugins.tooltip.backgroundColor = '#2d2d2d';
-    chartOptions.value.plugins.tooltip.titleColor = 'white';
-    chartOptions.value.plugins.tooltip.bodyColor = 'white';
-  }
-
-  // ChartJS.update();
-}
 
 const chartOptions = computed(() => {
   return {
