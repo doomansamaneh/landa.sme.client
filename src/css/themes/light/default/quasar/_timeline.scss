@@ -1,0 +1,27 @@
+@mixin q-timeline-light {
+
+  .q-timeline {
+    padding: 1;
+  }
+  
+  .q-timeline__dot-img {
+    border-radius: 4px;
+    width: 60px;
+    height: 60px;
+    border: 2px solid $primary;
+  }
+
+  .q-timeline__entry--icon .q-timeline__dot:before {
+    height: 60px;
+    width: 60px;
+  }
+
+  .q-timeline__entry--icon .q-timeline__dot:after {
+    width: 4px;
+    color: $primary;
+    opacity: 1;
+    top: 64px;
+    bottom: -4px;
+    left: 27px;
+  }
+}

@@ -105,7 +105,10 @@
               bordered
               class="rounded-borders"
             >
-              <q-expansion-item group="basicInfo">
+              <q-expansion-item
+                group="basicInfo"
+                default-opened
+              >
                 <template v-slot:header>
                   <q-item-section avatar>
                     <q-icon
@@ -356,9 +359,34 @@
                 </template>
                 <q-card class="no-border no-shadow">
                   <q-card-section>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-                    eveniet doloribus ullam aliquid.
+                    <div class="q-gutter-md text-caption">
+                      <div class="row items-center">
+                        <div class="col-3 text-bold">شناسه ملی:</div>
+                        <div class="col">0481038280</div>
+                      </div>
+                      <div class="row items-center">
+                        <div class="col-3 text-bold">شناسه اقتصادی:</div>
+                        <div class="col">0481038280</div>
+                      </div>
+                      <div class="row items-center">
+                        <div class="col-3 text-bold">شناسه کارگاه بیمه:</div>
+                        <div class="col">0481038280</div>
+                      </div>
+                      <div class="row items-center">
+                        <div class="col-3 text-bold">شماره ثبت:</div>
+                        <div class="col">0481038280</div>
+                      </div>
+                      <div class="row items-center">
+                        <div class="col-3 text-bold">تاریخ ثبت:</div>
+                        <div class="col">0481038280</div>
+                      </div>
+                      <div class="row items-center">
+                        <div class="col-3 text-bold">شرح:</div>
+                        <div class="col">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used
+                          to demonstrate the visual form of a document or a typeface without relying on meaningful
+                          content. Lorem ipsum may be used as a placeholder before final copy is available.</div>
+                      </div>
+                    </div>
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
@@ -377,9 +405,43 @@
                 </template>
                 <q-card class="no-border no-shadow">
                   <q-card-section>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, eius reprehenderit eos corrupti
-                    commodi magni quaerat ex numquam, dolorum officiis modi facere maiores architecto suscipit iste
-                    eveniet doloribus ullam aliquid.
+                    <q-btn
+                      unelevated
+                      class="bg-primary text-white full-width q-pa-md"
+                    >
+                      <q-icon
+                        name="o_add"
+                        class="q-mr-xs"
+                      />
+                      <span>افزودن آیتم جدید</span>
+                    </q-btn>
+                    <div class="row bordered-1 q-pa-md q-mt-lg items-center">
+                      <div class="col">
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">تلفن خانه:</span>
+                          <span>02155511102</span>
+                        </div>
+                      </div>
+                      <div class="col-2 row justify-end items-center">
+                        <div class="row q-gutter-x-sm">
+                          <q-btn
+                            outline
+                            round
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_edit"
+                          />
+                          <q-btn
+                            outline
+                            round
+                            color="negative"
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_delete"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
@@ -426,16 +488,52 @@
     </q-tab-panel>
 
     <q-tab-panel name="history">
-      <div class="text-h6">Movies</div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <div class="q-pa-lg">
+        <q-timeline color="accent">
+          <q-timeline-entry
+            avatar="https://cdn.quasar.dev/img/avatar4.jpg"
+            v-for="item in items"
+            :key="item"
+          >
+
+            <template #default>
+              <q-card class="bordered q-ma-xl">
+                <q-card-section class="bg-primary row justify-center items-center">
+                  <span class="text-white">{{ item.date }}</span>
+                </q-card-section>
+                <q-card-section class="row justify-center items-center">
+                  <div class="column text-body1 q-gutter-md items-center q-pa-lg">
+                    <span>{{ item.name }}</span>
+                    <q-badge class="q-px-md q-py-sm"><q-icon
+                        :name="item.icon"
+                        class="q-mr-xs"
+                        size="sm"
+                      /><span class="text-body1">{{ item.value }}</span></q-badge>
+                  </div>
+                </q-card-section>
+              </q-card>
+            </template>
+          </q-timeline-entry>
+        </q-timeline>
+      </div>
     </q-tab-panel>
   </q-tab-panels>
 </template>
 
 <script setup>
 import { ref } from "vue"
+import "src/helpers/extensions";
+const date = new Date()
 
 const tab = ref('profile')
+
+const items = [
+  { name: "خشایار شمالی", icon: "o_add", date: "1402/07/22", value: "ایجاد مخاطب" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/21", value: "ویرایش مخاطب" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/20", value: "ویرایش مخاطب" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/18", value: "ویرایش مخاطب" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/10", value: "ویرایش مخاطب" },
+]
 
 </script>
 
