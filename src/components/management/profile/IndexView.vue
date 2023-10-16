@@ -127,7 +127,7 @@
                     />
                   </q-item-section>
 
-                  <q-item-section class="text-subtitle1">
+                  <q-item-section class="text-subtitle2">
                     تماس
                   </q-item-section>
                 </template>
@@ -201,7 +201,7 @@
                     />
                   </q-item-section>
 
-                  <q-item-section>
+                  <q-item-section class="text-subtitle2">
                     نشانی
                   </q-item-section>
                 </template>
@@ -217,31 +217,42 @@
                       />
                       <span>افزودن آیتم جدید</span>
                     </q-btn>
-                    <div class="row bordered-1 q-pa-md q-mt-lg items-center">
-                      <div class="col">
-                        <div class="text-caption">
-                          <span class="text-bold q-mr-sm">آدرس خانه:</span>
-                          <span>تهران - شهرری - خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید
-                            عنایی - کوچه مهر 2 - پلاک 22</span>
+                    <div
+                      v-for="item in addressItems"
+                      :key="item"
+                    >
+                      <div class="row bordered-1 q-pa-md q-my-md items-center">
+                        <div class="col">
+                          <div class="text-caption">
+                            <q-icon
+                              v-if="item.original"
+                              name="o_check_circle"
+                              class="q-mr-xs"
+                              size="sm"
+                              color="primary"
+                            />
+                            <span class="text-bold q-mr-sm">{{ `${item.name}:` }}</span>
+                            <span>{{ item.value }}</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-2 row justify-end items-center">
-                        <div class="row q-gutter-x-sm">
-                          <q-btn
-                            outline
-                            round
-                            class="text-on-dark"
-                            size="sm"
-                            icon="o_edit"
-                          />
-                          <q-btn
-                            outline
-                            round
-                            color="negative"
-                            class="text-on-dark"
-                            size="sm"
-                            icon="o_delete"
-                          />
+                        <div class="col-2 row justify-end items-center">
+                          <div class="row q-gutter-x-sm">
+                            <q-btn
+                              outline
+                              round
+                              class="text-on-dark"
+                              size="sm"
+                              icon="o_edit"
+                            />
+                            <q-btn
+                              outline
+                              round
+                              color="negative"
+                              class="text-on-dark"
+                              size="sm"
+                              icon="o_delete"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -263,7 +274,7 @@
                     />
                   </q-item-section>
 
-                  <q-item-section>
+                  <q-item-section class="text-subtitle2">
                     حساب بانکی
                   </q-item-section>
                 </template>
@@ -340,7 +351,7 @@
                     />
                   </q-item-section>
 
-                  <q-item-section>
+                  <q-item-section class="text-subtitle2">
                     کسب و کار
                   </q-item-section>
                 </template>
@@ -391,7 +402,7 @@
                     />
                   </q-item-section>
 
-                  <q-item-section>
+                  <q-item-section class="text-subtitle2">
                     فیلدهای سفارشی
                   </q-item-section>
                 </template>
@@ -592,6 +603,12 @@ const phoneItems = [
   { name: "تلفن خانه", value: "02155511102", original: true },
   { name: "موبایل", value: "09338603196" },
   { name: "تلفن محل کار", value: "02144990022" },
+]
+const addressItems = [
+  { name: "آدرس کارخانه", value: "شابدل عظیم - نزدیکا حرم", original: true },
+  { name: "آدرس اداره", value: "پارک دانشجو - تیاتر شهر" },
+  { name: "آدرس خانه", value: "خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید عنایتی - کوچه مهر 2 - پلاک 22" },
+
 ]
 const items = [
   { name: "خشایار شمالی", icon: "o_add", date: "1402/07/22 - 15:05:30", value: "ایجاد مخاطب", systemInfo: "MacOS 192.188.90.90" },
