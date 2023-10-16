@@ -17,12 +17,48 @@
   }
 
   .bordered {
-    border: 1px solid $secondary;
+    border: 1px solid #ffffff47;
   }
 
   .bordered-1 {
     border: 1px solid #ffffff47;
     border-radius: 4px;
+  }
+
+  .border-radius-xs {
+    border-radius: 4px;
+  }
+
+  .border-radius-sm {
+    border-radius: 4px;
+  }
+
+  .border-radius-lg {
+    border-radius: 8px;
+  }
+
+  .border-radius-xl {
+    border-radius: 16px;
+  }
+
+  .line-height-xs {
+    line-height: 24px;
+  }
+
+  .line-height-sm {
+    line-height: 28px;
+  }
+
+  .line-height-md {
+    line-height: 32px;
+  }
+
+  .line-height-lg {
+    line-height: 36px;
+  }
+
+  .line-height-xl {
+    line-height: 40px;
   }
 
   .z-1 {

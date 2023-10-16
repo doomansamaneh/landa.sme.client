@@ -20,7 +20,13 @@
     }
 
     .q-item__section--avatar {
-        color: $primary;
+      color: $primary;
+    }
+  }
+
+  .basic-info.q-expansion-item--expanded {
+    .q-item {
+      background-color: #00000020;
     }
   }
 }

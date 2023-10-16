@@ -18,4 +18,15 @@
         color: $primary;
     }
   }
+
+  .basic-info.q-expansion-item--expanded {
+    .q-item {
+      background-color: #ffffff20;
+    }
+  }
+
+  .q-item__label--caption {
+    color: $accent;
+
+  }
 }

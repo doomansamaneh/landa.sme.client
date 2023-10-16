@@ -1,31 +1,30 @@
 @mixin q-timeline-dark {
-
   .q-timeline {
     padding-left: 48px !important;
   }
 
+  .q-timeline__entry--icon .q-timeline__subtitle {
+    padding: 0;
+  }
+
   .q-timeline__dot-img {
     border-radius: 4px;
+    margin-top: -5px;
     width: 60px;
     height: 60px;
-    border: 2px solid $primary;
+    border: 2px solid darken($primary,10);
   }
 
   .q-timeline__entry--icon .q-timeline__dot:before {
-    height: 60px;
-    width: 60px;
+    display: none;
   }
 
   .q-timeline__entry--icon .q-timeline__dot:after {
     width: 4px;
-    color: $primary;
+    color: darken($primary,10);
     opacity: 1;
-    top: 64px;
-    bottom: -4px;
+    top: 60px;
+    bottom: -40px;
     left: 27px;
   }
-
-
-
 }
-
