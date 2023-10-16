@@ -48,6 +48,7 @@
   <q-separator />
 
   <q-tab-panels
+    class="bordered border-radius-xs"
     v-model="tab"
     animated
   >
@@ -288,60 +289,6 @@
                       </div>
                     </div>
                   </q-card-section>
-                  <!-- <q-card-section>
-                    <q-btn
-                      unelevated
-                      class="bg-primary text-white full-width q-pa-md"
-                    >
-                      <q-icon
-                        name="o_add"
-                        class="q-mr-xs"
-                      />
-                      <span>افزودن آیتم جدید</span>
-                    </q-btn>
-                    <div class="row q-mt-lg bordered-1 justify-center items-center">
-                      <div class="col q-pa-md q-gutter-sm">
-                        <div class="row text-caption items-center">
-                          <q-icon
-                            name="o_account_balance"
-                            color="primary"
-                            size="xs"
-                          />
-                          <span class="text-bold q-ml-sm">بانک تجارت</span>
-                        </div>
-                        <div class="text-caption">
-                          <span class="text-bold q-mr-sm">شماره حساب:</span>
-                          <span>0481038280</span>
-                        </div>
-                        <div class="text-caption">
-                          <span class="text-bold q-mr-sm">شماره کارت:</span>
-                          <span>5859831129809389</span>
-                        </div>
-                        <div class="text-caption">
-                          <span class="text-bold q-mr-sm">شماره شبا:</span>
-                          <span>0000128550232209</span>
-                        </div>
-                      </div>
-
-                      <div class="col-2 row q-gutter-x-sm justify-center">
-                        <q-btn
-                          outline
-                          round
-                          class="text-on-dark"
-                          size="sm"
-                          icon="o_edit"
-                        />
-                        <q-btn
-                          outline
-                          round
-                          color="negative"
-                          class="text-on-dark"
-                          size="sm"
-                          icon="o_delete"
-                        />
-                      </div>
-                    </div>
-                  </q-card-section> -->
                 </q-card>
               </q-expansion-item>
               <q-expansion-item group="basicInfo">
@@ -447,22 +394,6 @@
               </q-expansion-item>
             </q-list>
           </div>
-          <!-- <div class="q-pt-xl row q-gutter-md">
-            <div class="col q-gutter-sm">
-              <span class="text-bold text-on-dark">نام</span>
-              <q-input
-                outlined
-                dense
-              />
-            </div>
-            <div class="col q-gutter-sm">
-              <span class="text-bold text-on-dark">نام و نام‌خانوادگی</span>
-              <q-input
-                outlined
-                dense
-              />
-            </div>
-          </div> -->
         </div>
       </div>
     </q-tab-panel>
