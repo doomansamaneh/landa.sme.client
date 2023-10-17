@@ -22,36 +22,41 @@
   </q-page-sticky>
   <q-tabs
     v-model="tab"
-    dense
-    class="text-grey q-mt-xl"
-    active-color="primary"
-    indicator-color="primary"
+    class="border-radius-xs bg-primary text-white q-mt-xl"
+    indicator-color="white"
     align="justify"
+    inline-label
     narrow-indicator
   >
     <q-tab
       name="profile"
       label="نمایه"
+      icon="o_person"
     />
     <q-tab
       name="quotes"
       label="پیش‌فاکتورها"
+      icon="o_assignment"
     />
     <q-tab
       name="invoices"
       label="فاکتورهای فروش"
+      icon="o_receipt"
     />
     <q-tab
       name="accountSummary"
       label="خلاصه حساب"
+      icon="o_summarize"
     />
     <q-tab
       name="history"
       label="تاریخچه"
+      icon="o_history"
     />
   </q-tabs>
+
   <q-tab-panels
-    class="bordered border-radius-xs"
+    class="bordered border-radius-xs q-mt-md"
     v-model="tab"
     animated
   >
@@ -106,7 +111,7 @@
             </div>
           </div>
           <q-separator class="q-mt-md" />
-          <div class="q-pt-md">
+          <div class="q-py-md">
             <q-list
               bordered
               class="rounded-borders"
@@ -162,18 +167,17 @@
                           </div>
                         </div>
                         <div class="col-2 row justify-end items-center">
-                          <div class="row q-gutter-x-sm">
+                          <div class="row items-center">
                             <q-btn
-                              outline
+                              unelevated
                               round
                               class="text-on-dark"
                               size="sm"
                               icon="o_edit"
                             />
                             <q-btn
-                              outline
+                              unelevated
                               round
-                              color="negative"
                               class="text-on-dark"
                               size="sm"
                               icon="o_delete"
@@ -181,7 +185,6 @@
                           </div>
                         </div>
                       </div>
-
                     </div>
                   </q-card-section>
                 </q-card>
@@ -236,18 +239,17 @@
                           </div>
                         </div>
                         <div class="col-2 row justify-end items-center">
-                          <div class="row q-gutter-x-sm">
+                          <div class="row items-center">
                             <q-btn
-                              outline
+                              unelevated
                               round
                               class="text-on-dark"
                               size="sm"
                               icon="o_edit"
                             />
                             <q-btn
-                              outline
+                              unelevated
                               round
-                              color="negative"
                               class="text-on-dark"
                               size="sm"
                               icon="o_delete"
@@ -291,14 +293,32 @@
                       <span>افزودن آیتم جدید</span>
                     </q-btn>
                     <div class="row bordered-1 q-pa-md q-mt-lg">
-                      <div class="col q-gutter-sm">
-                        <div class="row text-caption items-center">
-                          <q-icon
-                            name="o_account_balance"
-                            color="primary"
-                            size="xs"
-                          />
-                          <span class="text-bold q-ml-sm">بانک تجارت</span>
+                      <div class="col q-gutter-y-sm">
+                        <div class="row text-caption items-center justify-between">
+                          <div class="row">
+                            <q-icon
+                              name="o_account_balance"
+                              color="primary"
+                              size="xs"
+                            />
+                            <span class="text-bold q-ml-sm">بانک تجارت</span>
+                          </div>
+                          <div class="row items-center">
+                            <q-btn
+                              unelevated
+                              round
+                              class="text-on-dark"
+                              size="sm"
+                              icon="o_edit"
+                            />
+                            <q-btn
+                              unelevated
+                              round
+                              class="text-on-dark"
+                              size="sm"
+                              icon="o_delete"
+                            />
+                          </div>
                         </div>
                         <div class="text-caption">
                           <span class="text-bold q-mr-sm">شماره حساب:</span>
@@ -311,25 +331,6 @@
                         <div class="text-caption">
                           <span class="text-bold q-mr-sm">شماره شبا:</span>
                           <span>0000128550232209</span>
-                        </div>
-                      </div>
-                      <div class="col-2 row justify-end items-center">
-                        <div class="row q-gutter-x-sm">
-                          <q-btn
-                            outline
-                            round
-                            class="text-on-dark"
-                            size="sm"
-                            icon="o_edit"
-                          />
-                          <q-btn
-                            outline
-                            round
-                            color="negative"
-                            class="text-on-dark"
-                            size="sm"
-                            icon="o_delete"
-                          />
                         </div>
                       </div>
                     </div>
@@ -361,6 +362,15 @@
                       <div class="row items-center">
                         <div class="col-3 text-bold">شناسه ملی:</div>
                         <div class="col">0481038280</div>
+                        <div class="row">
+                          <q-btn
+                            unelevated
+                            round
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_edit"
+                          />
+                        </div>
                       </div>
                       <div class="row items-center">
                         <div class="col-3 text-bold">شناسه اقتصادی:</div>
@@ -426,18 +436,17 @@
                         </div>
                       </div>
                       <div class="col-2 row justify-end items-center">
-                        <div class="row q-gutter-x-sm">
+                        <div class="row items-center">
                           <q-btn
-                            outline
+                            unelevated
                             round
                             class="text-on-dark"
                             size="sm"
                             icon="o_edit"
                           />
                           <q-btn
-                            outline
+                            unelevated
                             round
-                            color="negative"
                             class="text-on-dark"
                             size="sm"
                             icon="o_delete"
@@ -455,23 +464,26 @@
     </q-tab-panel>
 
     <q-tab-panel name="quotes">
-      <div class="text-h6">Alarms</div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <div class="q-pa-md">
+        <invoice />
+      </div>
     </q-tab-panel>
 
     <q-tab-panel name="invoices">
-      <div class="text-h6">Movies</div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <div class="q-pa-md">
+        <invoice />
+      </div>
     </q-tab-panel>
 
     <q-tab-panel name="accountSummary">
-      <div class="text-h6">Movies</div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <div class="q-pa-md">
+      <invoice />
+      </div>
     </q-tab-panel>
 
     <q-tab-panel name="history">
       <div
-        style="margin: 24px 68px 0 68px;"
+        style="margin: 24px 56px 0 56px;"
         class="q-gutter-y-md"
       >
         <div class="text-body1"><q-icon
@@ -496,10 +508,10 @@
           <span>ذخیره</span>
         </q-btn>
       </div>
-      <div class="q-my-xl q-mx-lg">
+      <div class="q-my-xl q-mx-md">
         <div
           class="q-pb-md text-body1"
-          style="margin: 0 40px;"
+          style="margin: 0 38px;"
         ><q-icon
             name="o_history"
             size="sm"
@@ -519,11 +531,25 @@
                       :name="item.icon"
                       size="sm"
                       color="accent"
+                      class="q-mr-sm"
                     />
-                    <div>{{ item.name }}</div>
-                    <div>{{ item.date }}</div>
+                    <div class="text-caption text-bold">{{ item.name }}</div>
+                    <div class="row items-center">
+                      <span class="text-caption">چند دقیقه پیش</span>
+                      <q-tooltip
+                        transition-show="scale"
+                        transition-hide="scale"
+                        anchor="center left"
+                        self="center right"
+                        :offset="[10, 10]"
+                        :delay="700"
+                        class="glass text-on-dark text-caption"
+                      >
+                        {{ item.date }}
+                      </q-tooltip>
+                    </div>
                   </div>
-                  <div class="row">
+                  <div class="row text-caption">
                     {{ item.systemInfo }}
                   </div>
                 </q-card-section>
@@ -592,8 +618,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, computed } from "vue"
 import "src/helpers/extensions";
+import Invoice from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
 const date = new Date()
 
 const tab = ref('profile')
@@ -612,7 +639,7 @@ const addressItems = [
 ]
 const items = [
   { name: "خشایار شمالی", icon: "o_add", date: "1402/07/22 - 15:05:30", value: "ایجاد مخاطب", systemInfo: "MacOS 192.188.90.90" },
-  { name: "خشایار شمالی", icon: "comment", date: "1402/07/22 - 15:05:30", value: "ایجاد یادداشت جدید", commentValue: "true", comment: "این یک متن تستی است که توسط خشایار شمالی برای آزمایش کامنت‌ها در تایم لاین سیستم حسابداری آنلاین لاندا ایجاد شده است و فاقد هرگونه اعتباری است.", systemInfo: "MacOS 192.188.90.90" },
+  { name: "خشایار شمالی", icon: "o_maps_ugc", date: "1402/07/22 - 15:05:30", value: "ایجاد یادداشت جدید", commentValue: "true", comment: "این یک متن تستی است که توسط خشایار شمالی برای آزمایش کامنت‌ها در تایم لاین سیستم حسابداری آنلاین لاندا ایجاد شده است و فاقد هرگونه اعتباری است.", systemInfo: "MacOS 192.188.90.90" },
   { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/21", value: "ویرایش مخاطب", systemInfo: "MacOS 192.188.90.90" },
   { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/20", value: "ویرایش مخاطب", systemInfo: "MacOS 192.188.70.290" },
   { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/18", value: "ویرایش مخاطب" },

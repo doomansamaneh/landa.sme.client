@@ -27,7 +27,7 @@ console.log(
   border: 4px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
   transition: background-color .32s ease-in-out;
-  margin: 4px;
+  margin: 8px;
   min-height: 32px;
   min-width: 32px;
 

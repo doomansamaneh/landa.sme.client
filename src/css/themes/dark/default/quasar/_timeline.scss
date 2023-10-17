@@ -22,9 +22,9 @@
   .q-timeline__entry--icon .q-timeline__dot:after {
     width: 4px;
     color: darken($primary,10);
-    opacity: 1;
-    top: 60px;
-    bottom: -40px;
+    opacity: 0.75;
+    top: 64px;
+    bottom: -9px;
     left: 27px;
   }
 }

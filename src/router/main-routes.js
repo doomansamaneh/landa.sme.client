@@ -7,6 +7,10 @@ export default {
   },
   children: [
     {
+      path: "/profile",
+      component: () => import("src/pages/management/ProfilePage.vue")
+    },
+    {
       path: ":businessId",
       component: () => import("src/pages/management/HomePage.vue")
     },
@@ -18,10 +22,6 @@ export default {
     {
       path: "sls/invoice",
       component: () => import("src/components/areas/sls/invoice/IndexView.vue")
-    },
-    {
-      path: "/profile",
-      component: () => import("src/pages/management/ProfilePage.vue")
-    },
+    }
   ]
 }
