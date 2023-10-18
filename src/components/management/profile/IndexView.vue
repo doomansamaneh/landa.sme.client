@@ -4,7 +4,7 @@
     position="top"
     expand
   >
-    <q-toolbar class="rwo justify-between q-py-md q-mx-sm">
+    <q-toolbar class="row justify-between q-py-md q-mx-sm">
       <div class="row items-center q-gutter-md">
         <q-avatar size="48px">
           <img
@@ -17,9 +17,103 @@
           <q-item-label caption><span class="text-body2">توسعه دهنده وب</span></q-item-label>
         </div>
       </div>
-      <div class="row text-h6">اطلاعات بیشتر</div>
+      <div class="row q-gutter-sm text-h6">
+        <q-btn
+          class="bg-primary text-white text-caption"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
+        >
+          <q-icon
+            name="o_add"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.create") }}
+        </q-btn>
+        <q-btn
+          class="bordered-btn_bg-dark text-caption"
+          rounded
+          unelevated
+        >
+          <q-icon
+            name="more_horiz"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.more") }}
+        </q-btn>
+      </div>
     </q-toolbar>
   </q-page-sticky>
+  <div class="row q-gutter-md q-mt-xl">
+    <div class="col">
+      <q-card class="info-box no-shadow bordered-1">
+        <q-card-section class="q-gutter-md">
+          <div class="">
+            <q-badge
+              rounded
+              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+            ><span class="text-bold text-caption">18</span></q-badge><span
+              class="text-bold text-caption text-on-dark-1">فاکتورها</span>
+          </div>
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">240,000,000<span
+              class="text-body1 text-bold text-on-dark-1"
+            >ریال</span></div>
+        </q-card-section>
+      </q-card>
+    </div>
+
+    <div class="col">
+      <q-card class="info-box no-shadow bordered-1">
+        <q-card-section class="q-gutter-md">
+          <div class="">
+            <q-badge
+              rounded
+              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+            ><span class="text-bold text-caption">0</span></q-badge><span
+              class="text-bold text-caption text-on-dark-1">مانده حساب</span>
+          </div>
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">0<span
+              class="text-body1 text-bold text-on-dark-1">ریال</span></div>
+        </q-card-section>
+      </q-card>
+    </div>
+
+    <div class="col">
+      <q-card class="info-box no-shadow bordered-1">
+        <q-card-section class="q-gutter-md">
+          <div class="">
+            <q-badge
+              rounded
+              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+            ><span class="text-bold text-caption">4</span></q-badge><span
+              class="text-bold text-caption text-on-dark-1">بدهکار</span>
+          </div>
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">2,000,000<span
+              class="text-body1 text-bold text-on-dark-1 q-gutter-xs"
+            >ریال</span></div>
+        </q-card-section>
+      </q-card>
+    </div>
+
+    <div class="col">
+      <q-card class="info-box no-shadow bordered-1">
+        <q-card-section class="q-gutter-md">
+          <div class="">
+            <q-badge
+              rounded
+              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+            ><span class="text-bold text-caption">9</span></q-badge><span
+              class="text-bold text-caption text-on-dark-1">بستانکار</span>
+          </div>
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">158,300,020<span
+              class="text-body1 text-bold text-on-dark-1"
+            >ریال</span></div>
+        </q-card-section>
+      </q-card>
+    </div>
+
+  </div>
   <q-tabs
     v-model="tab"
     class="border-radius-xs bg-primary text-white q-mt-xl"
@@ -96,7 +190,7 @@
         <div class="col q-py-lg q-pr-lg q-pl-xl q-pr-xl">
           <div class="row justify-between items-center">
             <div class="text-on-dark text-bold text-body1">اطلاعات پایه</div>
-            <div class="q-gutter-md">
+            <!-- <div class="q-gutter-md">
               <q-btn
                 flat
                 class="bg-primary text-white"
@@ -108,7 +202,7 @@
                 />
                 <span>ویرایش</span>
               </q-btn>
-            </div>
+            </div> -->
           </div>
           <q-separator class="q-mt-md" />
           <div class="q-py-md">
@@ -147,6 +241,114 @@
                         class="q-mr-xs"
                       />
                       <span>افزودن آیتم جدید</span>
+                      <q-menu touch-position>
+                        <q-list
+                          dense
+                          padding
+                          style="width:200px"
+                        >
+                          <q-item
+                            clickable
+                            v-close-popup
+                            tabindex="0"
+                          >
+                            <div class="q-py-sm">
+                              <q-item-section avatar>
+                                <q-avatar
+                                  class="dark-icon"
+                                  size="sm"
+                                ><q-icon
+                                    name="o_call"
+                                    size="14px"
+                                  /></q-avatar>
+                              </q-item-section>
+                            </div>
+                            <q-item-section>
+                              <div class="text-caption text-bold">تلفن</div>
+                            </q-item-section>
+                          </q-item>
+                          <q-item
+                            clickable
+                            v-close-popup
+                            tabindex="0"
+                          >
+                            <div class="q-py-sm">
+                              <q-item-section avatar>
+                                <q-avatar
+                                  class="dark-icon"
+                                  size="sm"
+                                ><q-icon
+                                    name="o_mail"
+                                    size="14px"
+                                  /></q-avatar>
+                              </q-item-section>
+                            </div>
+                            <q-item-section>
+                              <div class="text-caption text-bold">ایمیل</div>
+                            </q-item-section>
+                          </q-item>
+                          <q-item
+                            clickable
+                            v-close-popup
+                            tabindex="0"
+                          >
+                            <div class="q-py-sm">
+                              <q-item-section avatar>
+                                <q-avatar
+                                  class="dark-icon"
+                                  size="sm"
+                                ><q-icon
+                                    name="o_share"
+                                    size="14px"
+                                  /></q-avatar>
+                              </q-item-section>
+                            </div>
+                            <q-item-section>
+                              <div class="text-caption text-bold">شبکه‌های اجتماعی</div>
+                            </q-item-section>
+                          </q-item>
+                          <q-item
+                            clickable
+                            v-close-popup
+                            tabindex="0"
+                          >
+                            <div class="q-py-sm">
+                              <q-item-section avatar>
+                                <q-avatar
+                                  class="dark-icon"
+                                  size="sm"
+                                ><q-icon
+                                    name="o_phone_android"
+                                    size="14px"
+                                  /></q-avatar>
+                              </q-item-section>
+                            </div>
+                            <q-item-section>
+                              <div class="text-caption text-bold">موبایل</div>
+                            </q-item-section>
+                          </q-item>
+                          <q-item
+                            clickable
+                            v-close-popup
+                            tabindex="0"
+                          >
+                            <div class="q-py-sm">
+                              <q-item-section avatar>
+                                <q-avatar
+                                  class="dark-icon"
+                                  size="sm"
+                                ><q-icon
+                                    name="o_public"
+                                    size="16px"
+                                  /></q-avatar>
+                              </q-item-section>
+                            </div>
+                            <q-item-section>
+                              <div class="text-caption text-bold">وبسایت</div>
+                            </q-item-section>
+                          </q-item>
+                        </q-list>
+                      </q-menu>
                     </q-btn>
                     <div
                       v-for="item in phoneItems"
@@ -176,6 +378,7 @@
                               icon="o_edit"
                             />
                             <q-btn
+                              @click="deleteAlert"
                               unelevated
                               round
                               class="text-on-dark"
@@ -186,6 +389,7 @@
                         </div>
                       </div>
                     </div>
+                    <q-separator />
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
@@ -248,6 +452,7 @@
                               icon="o_edit"
                             />
                             <q-btn
+                              @click="deleteAlert"
                               unelevated
                               round
                               class="text-on-dark"
@@ -258,6 +463,7 @@
                         </div>
                       </div>
                     </div>
+                    <q-separator />
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
@@ -292,7 +498,11 @@
                       />
                       <span>افزودن آیتم جدید</span>
                     </q-btn>
-                    <div class="row bordered-1 q-pa-md q-mt-lg">
+                    <div
+                      v-for="item in bankAccountDetail"
+                      :key="item"
+                      class="row bordered-1 q-pa-md q-my-md"
+                    >
                       <div class="col q-gutter-y-sm">
                         <div class="row text-caption items-center justify-between">
                           <div class="row">
@@ -301,7 +511,7 @@
                               color="primary"
                               size="xs"
                             />
-                            <span class="text-bold q-ml-sm">بانک تجارت</span>
+                            <span class="text-bold q-ml-sm">{{ item.bankName }}</span>
                           </div>
                           <div class="row items-center">
                             <q-btn
@@ -312,6 +522,7 @@
                               icon="o_edit"
                             />
                             <q-btn
+                              @click="deleteAlert"
                               unelevated
                               round
                               class="text-on-dark"
@@ -322,18 +533,19 @@
                         </div>
                         <div class="text-caption">
                           <span class="text-bold q-mr-sm">شماره حساب:</span>
-                          <span>0481038280</span>
+                          <span>{{ item.accountNumber }}</span>
                         </div>
                         <div class="text-caption">
                           <span class="text-bold q-mr-sm">شماره کارت:</span>
-                          <span>5859831129809389</span>
+                          <span>{{ item.cardNumber }}</span>
                         </div>
                         <div class="text-caption">
                           <span class="text-bold q-mr-sm">شماره شبا:</span>
-                          <span>0000128550232209</span>
+                          <span>{{ item.shabaNumber }}</span>
                         </div>
                       </div>
                     </div>
+                    <q-separator />
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
@@ -428,7 +640,7 @@
                       />
                       <span>افزودن آیتم جدید</span>
                     </q-btn>
-                    <div class="row bordered-1 q-pa-md q-mt-lg items-center">
+                    <div class="row bordered-1 q-pa-md q-mt-md items-center">
                       <div class="col">
                         <div class="text-caption">
                           <span class="text-bold q-mr-sm">تلفن خانه:</span>
@@ -446,6 +658,7 @@
                           />
                           <q-btn
                             unelevated
+                            @click="deleteAlert"
                             round
                             class="text-on-dark"
                             size="sm"
@@ -454,6 +667,34 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row bordered-1 q-pa-md q-mt-md items-center">
+                      <div class="col">
+                        <div class="text-caption">
+                          <span class="text-bold q-mr-sm">تلفن خانه:</span>
+                          <span>02155511102</span>
+                        </div>
+                      </div>
+                      <div class="col-2 row justify-end items-center">
+                        <div class="row items-center">
+                          <q-btn
+                            unelevated
+                            round
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_edit"
+                          />
+                          <q-btn
+                            unelevated
+                            @click="deleteAlert"
+                            round
+                            class="text-on-dark"
+                            size="sm"
+                            icon="o_delete"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <q-separator /> -->
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
@@ -477,7 +718,80 @@
 
     <q-tab-panel name="accountSummary">
       <div class="q-pa-md">
-      <invoice />
+        <div class="row q-gutter-md q-mb-xl">
+
+          <div class="col">
+            <q-card class="info-box no-shadow bordered-1">
+              <q-card-section class="q-gutter-md">
+                <div class="">
+                  <q-badge
+                    rounded
+                    class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+                  ><span class="text-bold text-caption">18</span></q-badge><span
+                    class="text-bold text-caption text-on-dark-1"
+                  >فاکتورها</span>
+                </div>
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">240,000,000<span
+                    class="text-body1 text-bold text-on-dark-1"
+                  >ریال</span></div>
+              </q-card-section>
+            </q-card>
+          </div>
+
+          <div class="col">
+            <q-card class="info-box no-shadow bordered-1">
+              <q-card-section class="q-gutter-md">
+                <div class="">
+                  <q-badge
+                    rounded
+                    class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+                  ><span class="text-bold text-caption">0</span></q-badge><span
+                    class="text-bold text-caption text-on-dark-1"
+                  >مانده حساب</span>
+                </div>
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">0<span
+                    class="text-body1 text-bold text-on-dark-1">ریال</span></div>
+              </q-card-section>
+            </q-card>
+          </div>
+
+          <div class="col">
+            <q-card class="info-box no-shadow bordered-1">
+              <q-card-section class="q-gutter-md">
+                <div class="">
+                  <q-badge
+                    rounded
+                    class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+                  ><span class="text-bold text-caption">4</span></q-badge><span
+                    class="text-bold text-caption text-on-dark-1"
+                  >بدهکار</span>
+                </div>
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">2,000,000<span
+                    class="text-body1 text-bold text-on-dark-1 q-gutter-xs"
+                  >ریال</span></div>
+              </q-card-section>
+            </q-card>
+          </div>
+
+          <div class="col">
+            <q-card class="info-box no-shadow bordered-1">
+              <q-card-section class="q-gutter-md">
+                <div class="">
+                  <q-badge
+                    rounded
+                    class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+                  ><span class="text-bold text-caption">9</span></q-badge><span
+                    class="text-bold text-caption text-on-dark-1"
+                  >بستانکار</span>
+                </div>
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">158,300,020<span
+                    class="text-body1 text-bold text-on-dark-1"
+                  >ریال</span></div>
+              </q-card-section>
+            </q-card>
+          </div>
+        </div>
+        <invoice />
       </div>
     </q-tab-panel>
 
@@ -498,6 +812,7 @@
         <q-btn
           @click="saveComment"
           flat
+          rounded
           class="bg-primary text-white"
         >
           <q-icon
@@ -566,20 +881,39 @@
                     v-show="editCommentBtn"
                   >
                     <q-editor v-model="editCommentValue" />
-                    <q-btn
-                      @click="editCommentBtn = false"
-                      flat
-                      class="bg-primary text-white"
-                    >
-                      <q-icon
-                        name="o_comment"
-                        size="xs"
-                        class="q-mr-sm"
-                      />
-                      <span>ذخیره</span>
-                    </q-btn>
+                    <div class="q-gutter-x-sm">
+                      <q-btn
+                        @click="editCommentBtn = false"
+                        flat
+                        rounded
+                        class="bg-primary text-white"
+                      >
+                        <q-icon
+                          name="o_comment"
+                          size="xs"
+                          class="q-mr-sm"
+                        />
+                        <span>ذخیره</span>
+                      </q-btn>
+                      <q-btn
+                        @click="editCommentBtn = false"
+                        unelevated
+                        rounded
+                        class="text-on-dark"
+                      >
+                        <q-icon
+                          name="o_close"
+                          size="xs"
+                          class="q-mr-xs"
+                        />
+                        <span>انصراف</span>
+                      </q-btn>
+                    </div>
                   </div>
-                  <div class="row justify-end">
+                  <div
+                    v-if="!editCommentBtn"
+                    class="row justify-end"
+                  >
                     <q-btn
                       @click="editComment"
                       unelevated
@@ -594,7 +928,7 @@
                       <span>ویرایش</span>
                     </q-btn>
                     <q-btn
-                      @click="() => deleteComment(item)"
+                      @click="deleteAlert"
                       unelevated
                       rounded
                       class="text-on-dark"
@@ -619,9 +953,13 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
+import DeleteAlert from "src/components/management/profile/DeleteAlert.vue"
+import { useQuasar } from "quasar"
 import "src/helpers/extensions";
 import Invoice from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
+
 const date = new Date()
+const $q = useQuasar()
 
 const tab = ref('profile')
 const editor = ref('')
@@ -637,6 +975,12 @@ const addressItems = [
   { name: "آدرس خانه", value: "خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید عنایتی - کوچه مهر 2 - پلاک 22" },
 
 ]
+
+const bankAccountDetail = [
+  { bankName: 'تجارت', accountNumber: '0481038280', cardNumber: '5859831129809389', shabaNumber: '0000128550232209' },
+  { bankName: 'تجارت', accountNumber: '0481038280', cardNumber: '5859831129809389', shabaNumber: '0000128550232209' },
+  { bankName: 'تجارت', accountNumber: '0481038280', cardNumber: '5859831129809389', shabaNumber: '0000128550232209' },
+]
 const items = [
   { name: "خشایار شمالی", icon: "o_add", date: "1402/07/22 - 15:05:30", value: "ایجاد مخاطب", systemInfo: "MacOS 192.188.90.90" },
   { name: "خشایار شمالی", icon: "o_maps_ugc", date: "1402/07/22 - 15:05:30", value: "ایجاد یادداشت جدید", commentValue: "true", comment: "این یک متن تستی است که توسط خشایار شمالی برای آزمایش کامنت‌ها در تایم لاین سیستم حسابداری آنلاین لاندا ایجاد شده است و فاقد هرگونه اعتباری است.", systemInfo: "MacOS 192.188.90.90" },
@@ -645,6 +989,7 @@ const items = [
   { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/18", value: "ویرایش مخاطب" },
   { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/10", value: "ویرایش مخاطب" },
 ]
+
 const editCommentValue = ref(items[1].comment)
 
 const saveComment = () => {
@@ -674,7 +1019,12 @@ const editComment = () => {
 
   editCommentBtn.value = !editCommentBtn.value
 
+}
 
+const deleteAlert = () => {
+  $q.dialog({
+    component: DeleteAlert
+  })
 }
 
 </script>
@@ -682,6 +1032,11 @@ const editComment = () => {
 <style lang="scss">
 .profile-section {
   width: 400px;
+}
+
+.info-box:hover {
+  border: 1px solid var(--q-primary) !important;
+  cursor: pointer;
 }
 </style>
 

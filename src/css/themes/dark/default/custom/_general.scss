@@ -7,6 +7,14 @@
     color: $white;
   }
 
+  .bg-on-dark {
+    background-color: lighten($dark,5);
+  }
+
+  .text-on-dark-1 {
+    color: darken($white,40);
+  }
+
   .icon {
     color: $white;
   }

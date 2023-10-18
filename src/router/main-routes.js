@@ -7,7 +7,7 @@ export default {
   },
   children: [
     {
-      path: "/profile",
+      path: "/crm/customer",
       component: () => import("src/pages/management/ProfilePage.vue")
     },
     {

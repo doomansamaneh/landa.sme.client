@@ -50,7 +50,7 @@
           v-for="item in rows"
           :key="item"
           clickable
-          to="/profile"
+          to="/crm/customer"
           v-close-popup
           tabindex="0"
           class="q-py-sm text-on-dark"
