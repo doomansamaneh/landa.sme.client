@@ -953,7 +953,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
-import DeleteAlert from "src/components/management/profile/DeleteAlert.vue"
+import DeleteAlert from "/src/components/management/profile/DeleteAlert.vue"
 import { useQuasar } from "quasar"
 import "src/helpers/extensions";
 import Invoice from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"

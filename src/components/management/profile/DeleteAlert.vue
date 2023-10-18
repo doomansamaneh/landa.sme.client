@@ -25,7 +25,7 @@
         />
       </q-card-section>
       <q-card-section>
-        <div class="q-px-sm">اقدام شما منجر به حذف کامل اطلاعات می‌شود، آیا اطمینان حاصل می‌کنید؟</div>
+        <div class="q-px-sm q-mb-sm">اقدام شما منجر به حذف کامل اطلاعات می‌شود، آیا اطمینان حاصل می‌کنید؟</div>
       </q-card-section>
       <actions
         @ok-clicked="submitForm"

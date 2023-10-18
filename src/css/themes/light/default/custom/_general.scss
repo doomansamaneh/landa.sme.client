@@ -1,6 +1,11 @@
 @mixin general-light {
+  ::selection {
+    background-color: $primary;
+    color: white;
+  }
+
   .icon-hover.q-icon:hover {
-    color: #{$black}50;
+    opacity: 0.7 !important;
   }
 
   .text-on-dark {
@@ -8,7 +13,7 @@
   }
 
   .text-on-dark-1 {
-    color: lighten($black,30);
+    color: lighten($black, 30);
   }
 
   .bg-on-dark {

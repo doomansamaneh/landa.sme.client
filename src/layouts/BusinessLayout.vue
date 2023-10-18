@@ -58,11 +58,7 @@
                       class="profile-pic q-mx-sm"
                       text-color="white"
                     >
-                      <div class="text-bold">
-                        <span class="">{{
-                          getFirstChar(username)
-                        }}</span>
-                      </div>
+                      <div class="text-bold">{{ getFirstChar(username) }}</div>
                     </q-avatar>
                     <div class="q-mt-md">
                       <span class="text-on-dark">{{ username }}</span>
@@ -190,4 +186,5 @@ function getFirstChar(str) {
 
 .q-breadcrumbs__el.items-center {
   display: block;
-}</style>
+}
+</style>
