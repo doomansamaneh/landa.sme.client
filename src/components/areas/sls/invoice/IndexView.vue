@@ -160,6 +160,8 @@
       <pre>{{ gridI1?.activeRow }}</pre>
     </template>
   </div>
+
+  <div-table style="width: 100%;"></div-table>
 </template>
 
 <script setup>
@@ -168,6 +170,7 @@ import { useInvoice } from "../_composables/useInvoice"
 import Invoice from "./_InvoiceDataTable.vue"
 import AdvancedSearch from "./_AdvancedSearch.vue"
 import GridV2 from "./IndexViewV2.vue"
+import DivTable from "src/components/shared/DataTables/DataGridDiv.vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 
 const invoiceStore = useInvoice()

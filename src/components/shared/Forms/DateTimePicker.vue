@@ -1,8 +1,8 @@
 <template>
   <q-input
+    v-model="value"
     outlined
     dense
-    v-model="value"
     mask="date"
     clearable
     clear-icon="clear"
@@ -33,8 +33,9 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useCulture } from "src/composables/useCulture";
+import { computed } from "vue"
+import { useCulture } from "src/composables/useCulture"
+import customInput from "src/components/shared/Forms/CustomInput.vue"
 
 const props = defineProps(['modelValue', 'placeholder', 'label'])
 const emit = defineEmits(['update:modelValue'])
