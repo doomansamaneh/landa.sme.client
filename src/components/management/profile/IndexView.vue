@@ -32,6 +32,33 @@
           {{ $t("shared.labels.create") }}
         </q-btn>
         <q-btn
+          class="bg-primary text-white text-caption"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
+          @click="editProfile"
+        >
+          <q-icon
+            name="o_edit"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.edit") }}
+        </q-btn>
+        <q-btn
+          class="bg-primary text-white text-caption"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
+        >
+          <q-icon
+            name="o_delete"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.delete") }}
+        </q-btn>
+        <q-btn
           class="bordered-btn_bg-dark text-caption"
           rounded
           unelevated
@@ -41,13 +68,106 @@
             class="q-mr-xs"
           />
           {{ $t("shared.labels.more") }}
+          <q-menu
+            fit
+            :offset="[0, 20]"
+          >
+            <q-list
+              dense
+              padding
+              style="width:200px"
+            >
+              <q-item
+                clickable
+                v-close-popup
+                tabindex="0"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-avatar
+                      class="dark-icon"
+                      size="sm"
+                    ><q-icon
+                        name="o_refresh"
+                        size="14px"
+                      /></q-avatar>
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <div class="text-caption">تازه‌سازی</div>
+                </q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item
+                clickable
+                v-close-popup
+                tabindex="0"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-avatar
+                      class="dark-icon"
+                      size="sm"
+                    ><q-icon
+                        name="o_close"
+                        size="14px"
+                      /></q-avatar>
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <div class="text-caption">غیر‌فعال‌سازی</div>
+                </q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+                tabindex="0"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-avatar
+                      class="dark-icon"
+                      size="sm"
+                    ><q-icon
+                        name="o_check"
+                        size="14px"
+                      /></q-avatar>
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <div class="text-caption">فعال سازی</div>
+                </q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item
+                clickable
+                v-close-popup
+                tabindex="0"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-avatar
+                      class="dark-icon"
+                      size="sm"
+                    ><q-icon
+                        name="o_download"
+                        size="16px"
+                      /></q-avatar>
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <div class="text-caption">تبدیل به اکسل</div>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
         </q-btn>
       </div>
     </q-toolbar>
   </q-page-sticky>
   <div class="row q-gutter-md q-mt-xl">
     <div class="col">
-      <q-card class="info-box no-shadow bordered-1">
+      <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge
@@ -64,7 +184,7 @@
     </div>
 
     <div class="col">
-      <q-card class="info-box no-shadow bordered-1">
+      <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge
@@ -80,7 +200,7 @@
     </div>
 
     <div class="col">
-      <q-card class="info-box no-shadow bordered-1">
+      <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge
@@ -97,7 +217,7 @@
     </div>
 
     <div class="col">
-      <q-card class="info-box no-shadow bordered-1">
+      <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge
@@ -251,7 +371,7 @@
                               </q-item-section>
                             </div>
                             <q-item-section>
-                              <div class="text-caption text-bold">تلفن</div>
+                              <div class="text-caption">تلفن</div>
                             </q-item-section>
                           </q-item>
                           <q-item
@@ -271,7 +391,7 @@
                               </q-item-section>
                             </div>
                             <q-item-section>
-                              <div class="text-caption text-bold">ایمیل</div>
+                              <div class="text-caption">ایمیل</div>
                             </q-item-section>
                           </q-item>
                           <q-item
@@ -291,7 +411,7 @@
                               </q-item-section>
                             </div>
                             <q-item-section>
-                              <div class="text-caption text-bold">شبکه‌های اجتماعی</div>
+                              <div class="text-caption">شبکه‌های اجتماعی</div>
                             </q-item-section>
                           </q-item>
                           <q-item
@@ -311,7 +431,7 @@
                               </q-item-section>
                             </div>
                             <q-item-section>
-                              <div class="text-caption text-bold">موبایل</div>
+                              <div class="text-caption">موبایل</div>
                             </q-item-section>
                           </q-item>
                           <q-item
@@ -331,7 +451,7 @@
                               </q-item-section>
                             </div>
                             <q-item-section>
-                              <div class="text-caption text-bold">وبسایت</div>
+                              <div class="text-caption">وبسایت</div>
                             </q-item-section>
                           </q-item>
                         </q-list>
@@ -940,6 +1060,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import DeleteAlert from "/src/components/management/profile/DeleteAlert.vue"
+import EditProfile from "src/components/management/profile/editProfileDialog.vue"
 import { useQuasar } from "quasar"
 import "src/helpers/extensions";
 import Invoice from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
@@ -1010,6 +1131,12 @@ const editComment = () => {
 const deleteAlert = () => {
   $q.dialog({
     component: DeleteAlert
+  })
+}
+
+const editProfile = () => {
+  $q.dialog({
+    component: EditProfile
   })
 }
 

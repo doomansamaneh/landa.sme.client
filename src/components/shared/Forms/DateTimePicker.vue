@@ -9,7 +9,6 @@
     :label="label"
     :placeholder="placeholder"
     class="text-caption"
-    style="width: 195px;"
   >
     <template v-slot:append>
       <q-icon
