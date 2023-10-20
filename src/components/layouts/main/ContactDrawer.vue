@@ -61,14 +61,22 @@
               <q-btn
                 round
                 v-if="item.avatar"
-                @mouseenter="handleMouseEnter"
-                @mouseleave="handleMouseLeave"
+                class="avatar"
               >
-                <q-avatar size="52px">
+                <q-avatar
+                  color="primary"
+                  text-color="white"
+                  size="52px"
+                >
                   <img :src="item.avatar">
+                  <q-icon
+                    name="o_visibility"
+                    size="sm"
+                  />
                 </q-avatar>
               </q-btn>
               <q-btn
+                class="first-char"
                 round
                 v-else
               >
@@ -76,11 +84,14 @@
                   size="52px"
                   color="primary"
                   text-color="white"
-                  class="my-img"
                 >
-                  <div class="text-body1 text-bold my-text">
+                  <div class="char text-body1 text-bold">
                     {{ getFirstChar(item.fullName) }}
                   </div>
+                  <q-icon
+                    name="o_visibility"
+                    size="sm"
+                  />
                 </q-avatar>
               </q-btn>
             </q-item-section>
@@ -198,19 +209,34 @@ const togglePhoneNumber = (item) => {
 const goToCustomer = () => {
   router.push("/crm/customer")
 }
+
 </script>
 
 <style lang="scss">
+.avatar {
+  &:hover img {
+    display: none;
+    transition: 0.9s ease-in-out;
 
-.my-img .my-text {
-  opacity: 0.7;
-  transition: .3s;
+    .q-icon {
+      visibility: 1;
+      transition: 0.9s ease-in-out;
+    }
+  }
 }
 
-.my-img:hover .my-text {
-  visibility: visible;
-  opacity: 1;
-  transition: .3s;
-}
+.first-char {
+  .q-icon {
+    display: none;
+  }
 
-</style>
+  &:hover {
+    .char {
+      display: none;
+    }
+
+    .q-icon {
+      display: block;
+    }
+  }
+}</style>

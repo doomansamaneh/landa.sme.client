@@ -190,19 +190,6 @@
         <div class="col q-py-lg q-pr-lg q-pl-xl q-pr-xl">
           <div class="row justify-between items-center">
             <div class="text-on-dark text-bold text-body1">اطلاعات پایه</div>
-            <!-- <div class="q-gutter-md">
-              <q-btn
-                flat
-                class="bg-primary text-white"
-              >
-                <q-icon
-                  name="o_edit"
-                  size="xs"
-                  class="q-mr-xs"
-                />
-                <span>ویرایش</span>
-              </q-btn>
-            </div> -->
           </div>
           <q-separator class="q-mt-md" />
           <div class="q-py-md">
@@ -694,7 +681,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <q-separator /> -->
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
