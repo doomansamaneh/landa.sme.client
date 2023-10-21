@@ -483,6 +483,7 @@
                               class="text-on-dark"
                               size="sm"
                               icon="o_edit"
+                              @click="editData"
                             />
                             <q-btn
                               @click="deleteAlert"
@@ -739,6 +740,7 @@
                   <q-card-section>
                     <q-btn
                       unelevated
+                      @click="addCustomField"
                       class="bg-primary text-white full-width q-pa-md"
                     >
                       <q-icon
@@ -1064,6 +1066,8 @@ import EditProfile from "src/components/management/profile/editProfileDialog.vue
 import { useQuasar } from "quasar"
 import "src/helpers/extensions";
 import Invoice from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
+import EditCustomerData from "src/components/management/profile/EditCustomerDataDialog.vue";
+import AddCustomField from "src/components/management/profile/AddCustomField.vue";
 
 const date = new Date()
 const $q = useQuasar()
@@ -1140,6 +1144,17 @@ const editProfile = () => {
   })
 }
 
+const editData = () => {
+  $q.dialog({
+    component: EditCustomerData
+  })
+}
+
+const addCustomField = () => {
+  $q.dialog({
+    component: AddCustomField
+  })
+}
 </script>
 
 <style lang="scss">
