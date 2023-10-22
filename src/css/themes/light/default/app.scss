@@ -25,6 +25,7 @@
   @include error-banner-light();
   @include general-light();
   @include login-light();
+  @include auth-layout-light();
   @include main-layout-light();
   @include business-layout-light();
   @include pagination-light();

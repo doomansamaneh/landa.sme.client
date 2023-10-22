@@ -318,6 +318,7 @@
               class="rounded-borders"
             >
               <q-expansion-item
+                expand-separator
                 group="basicInfo"
                 default-opened
                 class="basic-info"
@@ -497,11 +498,11 @@
                         </div>
                       </div>
                     </div>
-                    <q-separator />
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
+              expand-separator
                 group="basicInfo"
                 class="basic-info"
               >
@@ -571,11 +572,11 @@
                         </div>
                       </div>
                     </div>
-                    <q-separator />
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
+              expand-separator
                 group="basicInfo"
                 class="basic-info"
               >
@@ -653,11 +654,11 @@
                         </div>
                       </div>
                     </div>
-                    <q-separator />
                   </q-card-section>
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
+              expand-separator
                 group="basicInfo"
                 class="basic-info"
               >
@@ -718,6 +719,7 @@
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
+              expand-separator
                 group="basicInfo"
                 class="basic-info"
               >

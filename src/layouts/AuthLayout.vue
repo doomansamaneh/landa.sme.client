@@ -1,15 +1,12 @@
 <template>
-  <q-layout>
+  <q-layout class="auth-layout">
     <q-header class="login-header flex items-center justify-between q-py-lg">
       <q-toolbar class="">
         <q-toolbar-title class="row justify-start items-center q-ml-lg text-bold text-dark"><span
-            class="text-on-dark text-bold text-h5"
+            class="text-white text-bold text-h5"
           >{{
             $t("login-page.page-title")
           }}</span>
-          <!-- <div class="q-ml-md">
-            <switch-theme class="gt-xs" />
-          </div> -->
         </q-toolbar-title>
         <div class="flex q-pr-md q-gutter-x-sm">
           <q-btn
@@ -139,3 +136,11 @@ const gotoRegisterPage = () => {
   window.location.href = "https://landa-sme.ir/account/register"
 }
 </script>
+
+<style>
+.auth-layout {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg fill-opacity='0.15'%3E%3Cpolygon fill='%23222222' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%23444444' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%23666666' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%23888888' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%23AAAAAA' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>

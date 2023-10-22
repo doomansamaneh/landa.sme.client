@@ -1,35 +1,36 @@
 <template>
-  <q-page class="login-page full-screen flex justify-center items-center">
-    <div class="body-section q-mb-xl">
-      <div class="login-form-container">
-        <q-card class="login-form no-shadow no-outline no-border row justify-center">
-          <img
-            src="/about-us-header.png"
-            class="login-img q-mb-md"
-          />
-          <q-card-section>
-            <q-form
-              class="login-form"
-              @submit="authenticate"
-            >
-              <div class="username-input">
+  <q-page class="full-screen flex justify-center items-center">
+    <q-card class="card-layout q-mb-xl border-radius-lg q-py-md q-px-lg">
+      <q-card-section class="row justify-center items-center">
+        <img
+          src="/about-us-header.png"
+          class="full-width q-my-md"
+        />
+        <q-form
+          class="login-form"
+          @submit="authenticate"
+        >
+          <div class="column q-gutter-md">
+            <div class="q-gutter-y-sm">
+              <q-item-label caption>{{ $t('login-page.placeholders.username') }}</q-item-label>
+              <q-input
+                hide-bottom-space
+                v-model="username"
+                dense
+                required
+                lazy-rules
+                outlined
+                :rules="[(val) => val !== null && val !== '']"
+              />
+            </div>
+            <div class="col">
+              <div class="q-gutter-y-sm">
+                <q-item-label caption>{{ $t('login-page.placeholders.password') }}</q-item-label>
                 <q-input
-                  v-model="username"
-                  :placeholder="$t('login-page.placeholders.username')"
-                  dense
-                  class="noen-border text-body"
-                  required
-                  lazy-rules
-                  outlined
-                  :rules="[(val) => val !== null && val !== '']"
-                />
-              </div>
-              <div class="password-input">
-                <q-input
+                  hide-bottom-space
                   outlined
                   v-model="password"
                   :type="isPwd ? 'password' : 'text'"
-                  :placeholder="$t('login-page.placeholders.password')"
                   dense
                   required
                   lazy-rules
@@ -45,72 +46,72 @@
                   </template>
                 </q-input>
               </div>
-              <div class="row justify-between items-center">
-                <div class="flex">
-                  <q-btn
-                    unelevated
-                    color="grey-6"
-                    label="65 + 8"
-                    dense
-                    class="q-px-md text-h6"
-                  />
-                </div>
-                <div class="q-pr-md">
-                  <q-btn
-                    round
-                    flat
-                    color="primary"
-                    icon="refresh"
-                    dense
-                  />
-                </div>
-
-                <div class="col-5">
-                  <q-input
-                    outlined
-                    placeholder="1234"
-                    dense
-                    class="text-body"
-                  />
-                </div>
-
-                <div class="full-width q-mt-lg">
-                  <q-btn
-                    unelevated
-                    type="submit"
-                    color="primary"
-                    size="md"
-                    class="login-btn full-width text-weight-bold q-py-sm"
-                    no-caps
-                    :label="$t('login-page.buttons.login')"
-                    :disable="isLoggingIn"
-                  >
-                    <div
-                      class="q-pl-sm"
-                      v-if="isLoggingIn"
-                    >
-                      <q-spinner-pie
-                        class="white"
-                        size="xs"
-                      />
-                    </div>
-                  </q-btn>
-                </div>
+            </div>
+          </div>
+          <div class="row justify-between q-gutter-x-md items-center q-my-md">
+            <div class="col-5">
+              <q-item-label
+                caption
+                class="q-pb-sm"
+              >کد صحت سنجی</q-item-label>
+              <q-input
+                outlined
+                hide-bottom-space
+                dense
+                class="text-body"
+              />
+            </div>
+            <div class="col q-gutter-x-sm q-mt-lg">
+              <q-btn
+                unelevated
+                color="grey-6"
+                label="65 + 8"
+                dense
+                padding="4px 16px"
+                class="text-h6"
+              />
+              <q-btn
+                round
+                flat
+                color="primary"
+                icon="refresh"
+                dense
+              />
+            </div>
+          </div>
+          <div class="col">
+            <q-btn
+              unelevated
+              type="submit"
+              color="primary"
+              size="md"
+              class="login-btn full-width text-weight-bold q-py-sm q-mt-md"
+              no-caps
+              :label="$t('login-page.buttons.login')"
+              :disable="isLoggingIn"
+            >
+              <div
+                class="q-pl-sm"
+                v-if="isLoggingIn"
+              >
+                <q-spinner-pie
+                  class="white"
+                  size="xs"
+                />
               </div>
-            </q-form>
-          </q-card-section>
-
-          <q-card-section class="text-center q-pa-none">
-            <p class="forgot-password q-mt-lg">
-              <a
-                href="https://landa-sme.ir/account/forgetpassword"
-                class="text-primary"
-              >{{ $t("login-page.forgot-password") }}</a>
-            </p>
-          </q-card-section>
-        </q-card>
-      </div>
-    </div>
+            </q-btn>
+          </div>
+        </q-form>
+      </q-card-section>
+      <q-card-section class="text-center">
+        <p class="forgot-password">
+          <a
+            href="https://landa-sme.ir/account/forgetpassword"
+            class="text-white"
+          >{{ $t("login-page.forgot-password") }}</a>
+        </p>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
@@ -143,14 +144,26 @@ async function authenticate() {
 const isLoggingIn = computed(() => authStore.isLoggingIn)
 </script>
 
-<style lang="scss" scoped>.login-form-container {
-  width: 300px;
+<style lang="scss" scoped>
+.card-layout {
+  width: 400px;
 }
 
 .forgot-password a {
   text-decoration: none;
 }
 
-.login-img {
-  width: 270px;
-}</style>
+.forgot-password a:hover {
+  text-decoration-line: underline;
+}
+
+.q-item__label--caption {
+  font-size: 16px;
+  letter-spacing: 0;
+  color: #ffffff;
+}
+
+img {
+  filter: brightness(0) invert(1);
+}
+</style>
