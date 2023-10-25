@@ -34,7 +34,7 @@
           v-close-popup
           tabindex="0"
           class="q-py-sm"
-          @click="changePasswordDialog"
+          @click="openPasswordDialog"
         >
           <div class="q-py-sm">
             <q-item-section avatar>
@@ -54,7 +54,7 @@
           v-close-popup
           tabindex="0"
           class="q-py-sm"
-          @click="gotoBusiness"
+          to="/business"
         >
           <div class="q-py-sm">
             <q-item-section avatar>
@@ -85,9 +85,9 @@
               />
             </q-item-section>
           </div>
-          <q-item-section>{{
-            $t("business-layout.buttons.logout")
-          }}</q-item-section>
+          <q-item-section>
+            {{ $t("business-layout.buttons.logout") }}
+          </q-item-section>
         </q-item>
       </q-list>
     </q-menu>
@@ -97,12 +97,14 @@
 <script setup>
 import { ref, computed } from "vue"
 import { useAuthStore } from "src/stores"
+import { useQuasar } from "quasar"
 
 import ChangePasswordDialog from "src/components/users/ChangePasswordDialog.vue"
 
 const authStore = useAuthStore()
+const $q = useQuasar()
 
-function changePasswordDialog() {
+function openPasswordDialog() {
   $q.dialog({
     component: ChangePasswordDialog
   })
@@ -112,6 +114,5 @@ const username = computed(() => {
   if (authStore.user) return authStore.user.fullName
   return ""
 })
-
 
 </script>

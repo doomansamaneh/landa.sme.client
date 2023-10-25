@@ -21,6 +21,7 @@
           :placeholder="$t('main-menu-items.search')"
           dense
           rounded
+          clearable
           class="text-caption"
         >
           <template v-slot:prepend>
@@ -29,24 +30,14 @@
               color="primary"
             />
           </template>
-          <template v-slot:append>
-            <q-icon
-              name="clear"
-              class="cursor-pointer"
-              size="16px"
-              color="primary"
-              @click="clearSearch"
-              v-if="!isSearchEmpty"
-            />
-          </template>
         </q-input>
       </div>
       <q-list class="menu-list q-ml-sm q-mr-xs">
-        <div
-          class="settings"
-          @click="gotoDashboard"
-        >
-          <q-item class="flex items-center cursor-pointer">
+        <div class="settings">
+          <q-item
+            class="flex items-center cursor-pointer"
+            to="/dashboard"
+          >
             <q-icon
               name="o_dashboard"
               class="settings q-mr-sm"
@@ -173,19 +164,6 @@ const drawerMenuItems = computed(() => {
       .filter(Boolean)
   }
 })
-
-const gotoDashboard = () => {
-  router.push("/dashboard")
-  //alert("you are going to dashbord...")
-}
-
-function clearSearch() {
-  searchText.value = ""
-}
-
-const isSearchEmpty = computed(() =>
-  !searchText.value || searchText.value.trim().length === 0
-)
 
 const thumbStyle = {
   left: '4px',

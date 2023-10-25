@@ -85,7 +85,7 @@
     />
   </div>
 
-  <q-card class="bordered">
+  <div class="bordered_">
     <!-- <div class="row items-center q-gutter-md">
       <q-btn
         v-if="gridI1?.activeRow != null"
@@ -109,28 +109,36 @@
 
     <q-tabs
       v-model="tab"
+      class="border-radius-xs bg-primary text-white q-mt-xl"
+      indicator-color="white"
+      align="left"
+      inline-label
+      narrow-indicator
+    >
+
+      <!-- <q-tabs
+      v-model="tab"
       inline-label
       align="left"
       class="bg-dark text-grey"
       narrow-indicator
-    >
+    > -->
       <q-tab
         name="invoice"
         label="فاکتورهای فروش"
         icon="check"
-        class="text-on-dark"
+        class="text-on-dark_"
       />
       <q-tab
         name="canceled"
         label="ابطال شده"
         icon="o_cancel"
-        class="text-red"
+        class="text-on-dark_"
       />
     </q-tabs>
 
-    <q-separator />
-
     <q-tab-panels
+      class="bordered border-radius-xs q-mt-md"
       v-model="tab"
       animated
     >
@@ -142,7 +150,7 @@
         <grid-v2 ref="canceledInvoiceTable" />
       </q-tab-panel>
     </q-tab-panels>
-  </q-card>
+  </div>
 
   <div v-if="false">
     <template v-if="gridI1?.allSelectedIds.length > 0">
@@ -161,7 +169,10 @@
     </template>
   </div>
 
-  <div-table style="width: 100%;"></div-table>
+  <div-table
+    v-if="false"
+    style="width: 100%;"
+  ></div-table>
 </template>
 
 <script setup>
