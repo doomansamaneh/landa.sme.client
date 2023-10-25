@@ -1,7 +1,7 @@
 <template>
   <q-drawer
     side="right"
-    :model-value="contactBar"
+    v-model="contactDrawerStore.state.value"
     overlay
     :width="350"
     :breakpoint="500"
@@ -18,26 +18,18 @@
         <q-input
           color="grey-5"
           outlined
-          v-model="searchText"
+          v-model="tableStore.pagination.value.searchTerm"
           :placeholder="$t('shared.labels.contact-search')"
           dense
+          clearable
           rounded
+          @keydown.enter="reloadData"
           class="text-caption"
         >
           <template v-slot:prepend>
             <q-icon
               name="o_search"
               color="primary"
-            />
-          </template>
-          <template v-slot:append>
-            <q-icon
-              name="clear"
-              class="cursor-pointer"
-              size="16px"
-              color="primary"
-              @click="clearSearch"
-              v-if="!isSearchEmpty"
             />
           </template>
         </q-input>
@@ -47,8 +39,8 @@
         padding
       >
         <q-item
-          v-for="item in rows"
-          :key="item"
+          v-for="(row) in rows"
+          :key="row.id"
           clickable
           v-close-popup
           class="q-py-sm text-on-dark"
@@ -60,7 +52,7 @@
             >
               <q-btn
                 round
-                v-if="item.avatar"
+                v-if="row.avatar"
                 class="avatar"
               >
                 <q-avatar
@@ -68,7 +60,7 @@
                   text-color="white"
                   size="52px"
                 >
-                  <img :src="item.avatar">
+                  <img :src="row.avatar">
                   <q-icon
                     name="o_visibility"
                     size="sm"
@@ -86,7 +78,7 @@
                   text-color="white"
                 >
                   <div class="char text-body1 text-bold">
-                    {{ getFirstChar(item.fullName) }}
+                    {{ getFirstChar(row.name) }}
                   </div>
                   <q-icon
                     name="o_visibility"
@@ -100,10 +92,11 @@
               <q-item-label
                 class="ellipsis text-on-dark text-caption text-bold q-py-xs"
                 style="width:200px"
-              >{{ item.fullName }}
+              >
+                {{ row.code }} {{ row.name }}
               </q-item-label>
               <q-item-label
-                v-if="item.address"
+                v-if="row.locationName"
                 caption
                 class="ellipsis q-mt-xs"
                 style="width: 200px;"
@@ -113,11 +106,12 @@
                   class="q-mr-xs"
                   size="13px"
                   color="primary"
-                />{{ item.address }}
+                />
+                {{ row.locationName }} {{ row.address }}
               </q-item-label>
               <q-item-label
                 @click="telephoneToMobile"
-                v-if="item.phoneNumber || item.mobile"
+                v-if="row.phoneNo || row.mobileNo"
                 caption
               >
                 <q-icon
@@ -125,25 +119,35 @@
                   class="icon-hover q-mr-xs"
                   color="primary"
                   size="13px"
-                />{{ togglePhoneNumber(item) }}
+                />
+                {{ togglePhoneNumber(row) }}
               </q-item-label>
             </q-item-section>
           </div>
         </q-item>
       </q-list>
+      <q-btn
+        v-if="false"
+        class="bg-blue"
+        @click="gotoNext"
+      >load more ...</q-btn>
     </q-scroll-area>
   </q-drawer>
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useRouter } from "vue-router"
+import { useDataTable } from "src/composables/useDataTable"
+import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
+import { useContactDrawer } from "src/composables/useContactDrawer"
+
+const customerStore = useCustomer()
+const contactDrawerStore = useContactDrawer()
+
+const tableStore = useDataTable("crm/customer/getLookupData", customerStore.columns, customerStore)
 
 const router = useRouter()
-
-const props = defineProps({
-  contactBar: Boolean
-})
 
 const togglePhone = ref(true)
 
@@ -160,33 +164,24 @@ const barStyle = {
   opacity: 0.2
 }
 
-const searchText = ref("")
+const rows = ref([]);
 
-function clearSearch() {
-  searchText.value = ""
+onMounted(() => {
+  //todo: 
+  //alert("customer search data loaded. why?")
+  //tableStore.loadData()
+  //rows.value = tableStore.rows.value//.push(...tableStore.rows.value)
+})
+
+async function gotoNext() {
+  tableStore.pagination.value.currentPage += 1
+  await reloadData()
 }
 
-const isSearchEmpty = computed(() =>
-  !searchText.value || searchText.value.trim().length === 0
-)
-
-const rows = [
-  { fullName: "نمایندگی شورای بین المللی شهرداری", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg", mobile: "09338603196", address: "تهران، خیابان شهید رجایی، شهرک سیزده آبان، خیابان شهید رحیمی، خیابان شهید عنایتی، کوچه مهر 2" },
-  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "https://cdn.quasar.dev/img/avatar1.jpg", phoneNumber: "02144300023", mobile: "09126627149", address: "اصفهان، خیابان چهارباغ بالا" },
-  { fullName: "محمد ینی ملگی", jobTitle: "استاد", avatar: "https://cdn.quasar.dev/img/avatar3.jpg" },
-  { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg", phoneNumber: "09123456789", address: "تهران، خیابان شهید رجایی، شهرک سیزده آبان، خیابان شهید رحیمی، خیابان شهید عنایتی، کوچه مهر 2" },
-  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "", phoneNumber: "09351234567", address: "اصفهان، خیابان چهارباغ بالا" },
-  { fullName: "محمد ینی ملگی", jobTitle: "استاد", phoneNumber: "09127718846", address: "شیراز، خیابان زند" },
-  { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg", phoneNumber: "02155511102", mobile: "09127718846", address: "تهران، خیابان شهید رجایی، شهرک سیزده آبان، خیابان شهید رحیمی، خیابان شهید عنایتی، کوچه مهر 2" },
-  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "", address: "اصفهان، خیابان چهارباغ بالا" },
-  { fullName: "محمد ینی ملگی", jobTitle: "استاد", phoneNumber: "09127718846", address: "شیراز، خیابان زند" },
-  { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg", phoneNumber: "09123456789", address: "تهران، خیابان شهید رجایی، شهرک سیزده آبان، خیابان شهید رحیمی، خیابان شهید عنایتی، کوچه مهر 2" },
-  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "", phoneNumber: "09351234567", address: "اصفهان، خیابان چهارباغ بالا" },
-  { fullName: "محمد ینی ملگی", jobTitle: "استاد", phoneNumber: "09127718846" },
-  { fullName: "مادر ترزا", jobTitle: "", avatar: "https://cdn.quasar.dev/img/avatar2.jpg", phoneNumber: "09123456789", address: "تهران، خیابان شهید رجایی، شهرک سیزده آبان، خیابان شهید رحیمی، خیابان شهید عنایتی، کوچه مهر 2" },
-  { fullName: "خشایار شمالی", jobTitle: "توسعه دهنده وب", avatar: "", phoneNumber: "09351234567", address: "اصفهان، خیابان چهارباغ بالا" },
-  { fullName: "محمد ینی ملگی", jobTitle: "استاد", avatar: "https://cdn.quasar.dev/img/avatar1.jpg", phoneNumber: "09127718846", address: "شیراز، خیابان زند" },
-]
+async function reloadData() {
+  await tableStore.reloadData()
+  rows.value = tableStore.rows.value//rows.value.push(...tableStore.rows.value)
+}
 
 function getFirstChar(str) {
   return str.charAt(0)
@@ -197,12 +192,12 @@ const telephoneToMobile = () => {
 }
 
 const icon = computed(() => (togglePhone.value ? 'o_call_end' : 'o_phone_android'));
-// const togglePhoneNumber = (item) => (togglePhone.value ? item.phoneNumber : item.mobile);
-const togglePhoneNumber = (item) => {
+
+const togglePhoneNumber = (row) => {
   if (togglePhone.value) {
-    return item.phoneNumber || "تلفن ندارد";
+    return row.phoneNo || "تلفن ندارد";
   } else {
-    return item.mobile || "موبایل ندارد";
+    return row.mobileNo || "موبایل ندارد";
   }
 };
 
@@ -239,4 +234,5 @@ const goToCustomer = () => {
       display: block;
     }
   }
-}</style>
+}
+</style>

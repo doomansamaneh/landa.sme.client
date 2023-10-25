@@ -1,0 +1,117 @@
+<template>
+  <q-btn
+    flat
+    dense-dark
+    round
+    dense
+    icon="o_account_circle"
+    size="14px"
+    class="btn-icon text-on-dark"
+  >
+    <q-menu
+      class="no-shadow z-max"
+      transition-show="jump-down"
+      transition-hide="jump-up"
+      :offset="[60, 24]"
+    >
+      <q-list
+        dense
+        padding
+        class="user-profile"
+      >
+        <q-item-label
+          class="text-h6"
+          header
+        >
+          <div class="column items-center justify-center q-mt-md">
+            <div class="q-my-md">
+              <span class="text-on-dark">{{ username }}</span>
+            </div>
+          </div>
+        </q-item-label>
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          class="q-py-sm"
+          @click="changePasswordDialog"
+        >
+          <div class="q-py-sm">
+            <q-item-section avatar>
+              <q-avatar
+                class="dark-icon"
+                icon="password"
+                size="md"
+              />
+            </q-item-section>
+          </div>
+          <q-item-section>
+            {{ $t("business-layout.buttons.change-password") }}
+          </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          class="q-py-sm"
+          @click="gotoBusiness"
+        >
+          <div class="q-py-sm">
+            <q-item-section avatar>
+              <q-avatar
+                class="dark-icon"
+                icon="o_business"
+                size="md"
+              />
+            </q-item-section>
+          </div>
+          <q-item-section>
+            {{ $t("pages.business") }}
+          </q-item-section>
+        </q-item>
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          class="q-py-sm"
+          @click="authStore.logout()"
+        >
+          <div class="q-py-sm">
+            <q-item-section avatar>
+              <q-avatar
+                class="dark-icon"
+                icon="o_logout"
+                size="md"
+              />
+            </q-item-section>
+          </div>
+          <q-item-section>{{
+            $t("business-layout.buttons.logout")
+          }}</q-item-section>
+        </q-item>
+      </q-list>
+    </q-menu>
+  </q-btn>
+</template>
+
+<script setup>
+import { ref, computed } from "vue"
+import { useAuthStore } from "src/stores"
+
+import ChangePasswordDialog from "src/components/users/ChangePasswordDialog.vue"
+
+const authStore = useAuthStore()
+
+function changePasswordDialog() {
+  $q.dialog({
+    component: ChangePasswordDialog
+  })
+}
+
+const username = computed(() => {
+  if (authStore.user) return authStore.user.fullName
+  return ""
+})
+
+
+</script>
