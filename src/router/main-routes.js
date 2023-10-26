@@ -21,7 +21,11 @@ export default {
     ,
     {
       path: "sls/invoice",
-      component: () => import("src/components/areas/sls/invoice/IndexView.vue")
+      component: () => import("src/components/areas/sls/invoice/IndexView.vue"),
+    },
+    {
+      path: "sls/invoice/create",
+      component: () => import("src/components/areas/sls/invoice/CreateInvoice.vue"),
     }
   ]
 }

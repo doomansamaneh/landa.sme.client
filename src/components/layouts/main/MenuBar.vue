@@ -2,7 +2,7 @@
   <q-drawer
     class="menu-bar"
     side="left"
-    :width="263"
+    :width="255"
     :model-value="menuBar"
     :breakpoint="500"
     bordered
@@ -33,9 +33,9 @@
         </q-input>
       </div>
       <q-list class="menu-list q-ml-sm q-mr-xs">
-        <div class="settings">
+        <div>
           <q-item
-            class="flex items-center cursor-pointer"
+            class="flex items-center cursor-pointer q-mr-md"
             to="/dashboard"
           >
             <q-icon
@@ -63,7 +63,7 @@
               :key="subItem.name"
               :to="subItem.url"
               clickable
-              class="q-mx-md q-my-xs"
+              class="sub-item q-ml-md q-mr-lg q-my-xs"
             >
               <q-item-section
                 avatar
