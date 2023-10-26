@@ -6,6 +6,7 @@
     :model-value="menuBar"
     :breakpoint="500"
     bordered
+    overlay
   >
     <q-scroll-area
       class="fit"
@@ -13,7 +14,7 @@
       :thumb-style="thumbStyle"
       :bar-style="barStyle"
     >
-      <div class="searchbar-sidebar q-my-md q-px-md">
+      <div class="searchbar-sidebar q-ma-md">
         <q-input
           color="grey-5"
           outlined
@@ -80,8 +81,8 @@
             </q-item>
           </q-expansion-item>
         </div>
-        <q-separator inset />
-        <div class="settings">
+        <q-separator class="q-my-md" inset />
+        <div>
           <q-item class="flex items-center q-mb-md q-mt-sm cursor-pointer">
             <q-icon
               name="o_settings"

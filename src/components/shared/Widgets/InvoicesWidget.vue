@@ -46,6 +46,7 @@
       </div>
       <div class="">
         <q-btn
+          to="/sls/invoice/create"
           unelevated
           rounded
           class="bordered-btn bg-dark q-py-xs"

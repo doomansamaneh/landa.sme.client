@@ -12,6 +12,7 @@
     </template>
     <template #buttons>
       <q-btn
+        to="/sls/invoice/create"
         class="bg-primary text-white text-caption"
         padding="6px 12px"
         rounded
@@ -190,7 +191,7 @@ const canceledInvoiceTable = ref(null)
 
 const tab = ref('invoice')
 
-const tableStore = computed(() => invoiceTable.value?.dataTable.tableStore ?? canceledInvoiceTable.value?.dataTable.tableStore)
+0
 //const tableStore = computed(() => invoiceTable.value?.dataTable.tableStore)
 
 async function applySearch(model) {

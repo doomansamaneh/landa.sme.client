@@ -94,11 +94,13 @@
           </div>
         </div>
 
-        <page-bar
+        <div class="row q-pa-md dark-1">
+          <page-bar
           v-if="showPagebar"
           :pagination="pagination"
           @page-changed="reloadData"
         />
+        </div>
       </div>
     </q-menu>
   </q-input>
@@ -340,7 +342,7 @@ defineExpose({
 
 <style>
 .lookup-container {
-  /* width: 400px; */
+  width: 400px;
 }
 
 .lookup-body {

@@ -2,6 +2,8 @@
   <lookup-view
     dataSource="business/getBusinessGridData"
     orderByField="title"
+    textTemplate="{{ title }}"
+    searchField="title"
     ref="lookup"
   >
     <template #thead>
@@ -22,53 +24,41 @@
             <span class="text-body2">ایجاد</span>
           </q-btn>
         </div>
-
-        <tr class="">
+        <tr>
           <th
             class=""
-            style="width: 5%"
+            style="width: 1%"
           >
             <span>#</span>
           </th>
           <th
             class=""
-            style="width: 5%"
+            style="width: 1%"
           >
-            <q-icon
-              v-if="pagination.sortBy === 'statusId'"
-              :name="pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-                "
-              size="20px"
-              color="primary"
-            />
-            <span
-              @click="sortColumn('statusId')"
-              class="cursor-pointer"
-            >کد</span>
+            <header-column
+              fieldName="statusId"
+              title="کد"
+              :lookup="lookup"
+            ></header-column>
           </th>
           <th
             class=""
-            style="width: 30%"
+            style="width: 20%"
           >
-            <q-icon
-              v-if="pagination.sortBy === 'name'"
-              :name="pagination.descending ? 'arrow_drop_up' : 'arrow_drop_down'
-                "
-              size="20px"
-              color="primary"
-            />
-            <span
-              class="cursor-pointer"
-              @click="sortColumn('name')"
-            >نام</span>
+            <header-column
+              fieldName="name"
+              title="نام"
+              :lookup="lookup"
+            ></header-column>
           </th>
         </tr>
       </thead>
     </template>
-    <template #td="{ item }">
-      <td>{{ 1 }}</td>
+
+    <template #td="{ item, index }">
+      <td>{{ index + 1 }}</td>
       <td>
-        <span>{{ item.statusId }}</span>
+        {{ item.statusId }}
       </td>
       <td>{{ item.name }}</td>
     </template>
@@ -76,19 +66,11 @@
 </template>
 
 <script setup>
+import { ref } from "vue"
 import LookupView from "src/components/shared/DataTables/LookupView.vue"
-import { ref, onMounted } from "vue"
+import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
 
 const lookup = ref(null)
-const pagination = ref(null)
-
-function sortColumn(columnName) {
-  lookup.value.sortSelectedColumn(columnName)
-}
-
-onMounted(() => {
-  pagination.value = lookup.value.pagination
-})
 </script>
 
 <style lang="scss" scoped>
