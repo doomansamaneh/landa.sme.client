@@ -63,6 +63,3 @@ export const helper = {
     }
   }
 }
-
-
-

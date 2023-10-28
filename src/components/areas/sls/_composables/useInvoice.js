@@ -9,7 +9,7 @@ const state = {
     searchModel: ref({
         dateRange: 0,
         waitToSendTax: false
-    })
+    }),
 }
 
 const pagination = ref({
@@ -106,7 +106,10 @@ const columns = ref([
     }
 ])
 
-export function useInvoice() {
+export function useInvoice(defaultFilters) {
+    // if (defaultState != null) Object.assign(state, defaultState)
+    const filterExpression = defaultFilters;
+
     const reset = () => {
         state.firstLoad.value = false
         setDefaultSearchModel()
@@ -123,6 +126,7 @@ export function useInvoice() {
         columns,
         pagination,
         state,
+        filterExpression,
 
         setDefaultSearchModel,
         reset

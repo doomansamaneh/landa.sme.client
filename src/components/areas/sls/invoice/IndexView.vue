@@ -115,6 +115,7 @@
       align="left"
       inline-label
       narrow-indicator
+      @update:model-value="tabChanged"
     >
 
       <!-- <q-tabs
@@ -144,11 +145,17 @@
       animated
     >
       <q-tab-panel name="invoice">
-        <invoice ref="invoiceTable" />
+        <invoice-grid
+          ref="invoiceTable"
+          :grid-store="invoiceStore"
+        />
       </q-tab-panel>
 
       <q-tab-panel name="canceled">
-        <grid-v2 ref="canceledInvoiceTable" />
+        <invoice-grid
+          ref="canceledInvoiceTable"
+          :grid-store="canceledInvoiceStore"
+        />
       </q-tab-panel>
     </q-tab-panels>
   </div>
@@ -179,22 +186,37 @@
 <script setup>
 import { computed, ref } from "vue"
 import { useInvoice } from "../_composables/useInvoice"
-import Invoice from "./_InvoiceDataTable.vue"
+import { sqlOperator } from "src/constants"
+import InvoiceGrid from "./_InvoiceDataTable.vue"
 import AdvancedSearch from "./_AdvancedSearch.vue"
-import GridV2 from "./IndexViewV2.vue"
 import DivTable from "src/components/shared/DataTables/DataGridDiv.vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 
-const invoiceStore = useInvoice()
+const invoiceStore = useInvoice([{
+  fieldName: "d.StatusId",
+  operator: sqlOperator.notEqual,
+  value: "a36af633-d0bb-4857-a542-364e12658d1c"
+}])
+
+const canceledInvoiceStore = useInvoice([{
+  fieldName: "d.StatusId",
+  operator: sqlOperator.equal,
+  value: "a36af633-d0bb-4857-a542-364e12658d1c"
+}])
+
 const invoiceTable = ref(null)
 const canceledInvoiceTable = ref(null)
 
 const tab = ref('invoice')
 
-0
-//const tableStore = computed(() => invoiceTable.value?.dataTable.tableStore)
+const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore ?? canceledInvoiceTable.value?.dataTable?.tableStore)
+
+function tabChanged() {
+  invoiceStore.state.firstLoad.value = false
+  canceledInvoiceStore.state.firstLoad = flase
+}
 
 async function applySearch(model) {
-  await tableStore.value.reloadData()
+  await tableStore.value?.reloadData()
 }
 </script>

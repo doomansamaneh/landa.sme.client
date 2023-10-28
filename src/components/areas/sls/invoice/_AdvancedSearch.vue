@@ -36,7 +36,7 @@
           />
           <div class="q-gutter-y-sm q-pl-sm q-my-md">
             <div class="row q-gutter-x-sm items-center">
-              <q-input
+              <!-- <q-input
                 outlined
                 dense
                 clear-icon="clear"
@@ -45,6 +45,13 @@
                 @update:model-value="formatNumber"
                 :placeholder='$t("shared.labels.amountFrom")'
                 class="text-caption"
+                style="width: 195px;"
+              /> -->
+
+              <custom-input
+                v-model="searchModel.amountFrom"
+                display-format="n0"
+                :placeholder='$t("shared.labels.amountFrom")'
                 style="width: 195px;"
               />
 
@@ -59,17 +66,19 @@
               <date-time
                 v-model="searchModel.dateFrom"
                 :placeholder='$t("shared.labels.dateFrom")'
+                style="width: 195px;"
               />
               <date-time
                 v-model="searchModel.dateTo"
                 :placeholder='$t("shared.labels.dateTo")'
+                style="width: 195px;"
               />
             </div>
             <div class="row q-gutter-x-sm items-center">
               <custom-input
                 v-model="searchModel.comment"
                 :placeholder='$t("shared.labels.comment")'
-                style="width: 400px;"
+                style="width: 398px;"
               />
               <!-- 
               <q-input
@@ -124,15 +133,12 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue"
+import { computed, ref } from "vue"
 import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 import chip from "src/components/shared/SearchChip.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
 import customInput from "src/components/shared/Forms/CustomInput.vue"
-import { useFormatNumber } from "src/composables/useFormatNumber"
-
-const mask = useFormatNumber
 
 const props = defineProps({
   gridStore: Object
@@ -169,9 +175,4 @@ async function removeItem(item) {
   searchModel.value[item.name] = value
   await applySearch()
 }
-
-const formatNumber = () => {
-  if (searchModel.value.amountFrom)
-    searchModel.value.amountFrom = searchModel.value.amountFrom.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
 </script>

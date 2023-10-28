@@ -1,15 +1,15 @@
 export const statusOptions = [
   {
     label: "دائم",
-    value: "دائم"
+    value: "1"
   },
   {
     label: "موقت",
-    value: "موقت"
+    value: "2"
   },
   {
     label: "ابطال شده",
-    value: "ابطال شده"
+    value: "3"
   }
 ]
 

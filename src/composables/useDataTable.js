@@ -105,7 +105,7 @@ export function useDataTable(dataSource
       })
 
     function setPayload() {
-      pagination.value.filterExpression = []
+      pagination.value.filterExpression = store?.filterExpression ?? []
       if (columns.value) {
         let payLoadCols = ""
         columns.value.forEach((col) => {

@@ -502,7 +502,7 @@
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
-              expand-separator
+                expand-separator
                 group="basicInfo"
                 class="basic-info"
               >
@@ -576,7 +576,7 @@
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
-              expand-separator
+                expand-separator
                 group="basicInfo"
                 class="basic-info"
               >
@@ -658,7 +658,7 @@
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
-              expand-separator
+                expand-separator
                 group="basicInfo"
                 class="basic-info"
               >
@@ -719,7 +719,7 @@
                 </q-card>
               </q-expansion-item>
               <q-expansion-item
-              expand-separator
+                expand-separator
                 group="basicInfo"
                 class="basic-info"
               >
@@ -1067,7 +1067,7 @@ import DeleteAlert from "/src/components/management/profile/DeleteAlert.vue"
 import EditProfile from "src/components/management/profile/editProfileDialog.vue"
 import { useQuasar } from "quasar"
 import "src/helpers/extensions";
-import Invoice from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
+import Invoice from "src/components/areas/crm/customer/_InvoiceDataTable.vue"
 import EditCustomerData from "src/components/management/profile/EditCustomerDataDialog.vue";
 import AddCustomField from "src/components/management/profile/AddCustomField.vue";
 

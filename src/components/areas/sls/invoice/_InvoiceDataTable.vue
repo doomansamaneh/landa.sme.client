@@ -25,8 +25,9 @@
   </div>
   <data-grid
     ref="dataTable"
-    dataSource="sls/invoice/getGridData"
-    :grid-store="invoiceStore"
+    :dataSource="dataSource ?? 'sls/invoice/getGridData'"
+    :grid-store="gridStore"
+    :columns="columns"
     separator="horizontal"
     flat
     multiSelect
@@ -36,8 +37,22 @@
     wrapCells
     expandable
   >
+    <template #filter-amount="{ col }">
+      <custom-input
+        v-model="col.value"
+        display-format="n0"
+        debounce="500"
+        @update:model-value="dataTable?.reloadData"
+      />
+    </template>
+
     <template #filter-statusTitle="{ col }">
-      <q-select
+      <custom-select
+        v-model="col.value"
+        :options="statusOptions"
+        @update:model-value="dataTable?.reloadData"
+      />
+      <!-- <q-select
         clearable
         clear-icon="clear"
         dense
@@ -46,7 +61,7 @@
         v-model="col.value"
         :options="statusOptions"
         @update:model-value="dataTable?.reloadData"
-      />
+      /> -->
     </template>
     <template #cell-amount="{ item }">
       <span>{{ item.amount.toLocaleString() }}</span>
@@ -63,13 +78,13 @@
 
     <template #footer-subtotal="{ selectedRows }">
       <td
-        colspan="6"
+        :colspan="colspan"
         class="text-right"
       >
         {{ $t("shared.labels.selectedRows") }}
       </td>
       <td><b>{{ helper.getSubtotal(selectedRows, "amount").toLocaleString() }}</b></td>
-      <td>
+      <td v-if="showDiscount">
         <b>{{ helper.getSubtotal(selectedRows, "discountAmount").toLocaleString() }}</b>
       </td>
       <td colspan="100%"></td>
@@ -77,27 +92,46 @@
 
     <template #footer-total="{ summary }">
       <td
-        colspan="6"
+        :colspan="colspan"
         class="text-right"
       >
         {{ $t("shared.labels.total") }}
       </td>
-      <td><b>{{ summary?.Amount.toLocaleString() }}</b></td>
-      <td><b>{{ summary?.DiscountAmount.toLocaleString() }}</b></td>
+      <td><b>{{ summary?.Amount?.toLocaleString() }}</b></td>
+      <td v-if="showDiscount">
+        <b>{{ summary?.DiscountAmount?.toLocaleString() }}</b>
+      </td>
       <td colspan="100%"></td>
     </template>
   </data-grid>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, computed } from "vue"
 import { statusOptions } from "src/constants"
 import { helper } from "src/helpers"
-import { useInvoice } from "../_composables/useInvoice"
-import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
 
-const invoiceStore = useInvoice()
+import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import CustomInput from "src/components/shared/Forms/CustomInput.vue"
+import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
+
+const props = defineProps({
+  dataSource: String,
+  columns: Array,
+  gridStore: Object
+})
+
 const dataTable = ref(null)
+
+const colspan = computed(() =>
+  dataTable.value?.tableStore?.columns.value.findIndex(column => column.name === "amount")
+  + 1//numbered column
+  + 1//multi check column
+)
+
+const showDiscount = computed(() =>
+  dataTable.value?.tableStore?.columns.value.findIndex(column => column.name === "discountAmount") >= 0
+)
 
 defineExpose({
   dataTable

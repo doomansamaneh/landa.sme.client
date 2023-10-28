@@ -1,28 +1,6 @@
 <template>
   <div :class="containerClass">
     <div class="q-table__middle scroll">
-      <!-- <q-btn
-        class="bg-primary text-white text-caption q-mx-md q-mb-sm"
-        padding="6px 12px"
-        unelevated
-        @click="tableStore.exportCurrentPage()"
-      >
-        <q-icon
-          name="download"
-          class="q-mr-xs"
-        />تبدیل به اکسل
-      </q-btn>
-      <q-btn
-        class="bg-primary text-white text-caption q-mx-md q-mb-sm"
-        padding="6px 12px"
-        unelevated
-        @click="tableStore.exportAll()"
-      >
-        <q-icon
-          name="download"
-          class="q-mr-xs"
-        />تبدیل همه به اکسل
-      </q-btn> -->
       <table class="q-table">
         <thead>
           <tr>
@@ -40,16 +18,13 @@
               />
             </th>
             <th
-              v-for="col in gridColumns"
+              v-for="col in tableStore?.columns.value"
               :key="col.name"
               :style="col.style"
               :class="tableStore.getSortableClass(col)"
               @click="tableStore.sortColumn(col)"
             >
               <span class="q-icon q-table__sort-icon">
-                <!-- <svg viewBox="0 0 24 24">
-                  <path d="M13,20H11V8L5.5,13.5L4.08,12.08L12,4.16L19.92,12.08L18.5,13.5L13,8V20Z"></path>
-                </svg> -->
                 <q-icon
                   name="arrow_drop_down"
                   color="primary"
@@ -73,7 +48,7 @@
               class="dense"
             ></th>
             <th
-              v-for="col in gridColumns"
+              v-for="col in tableStore?.columns.value"
               :key="col.name"
               class="filter"
             >
@@ -82,20 +57,11 @@
                 :name="`filter-${col.name}`"
                 :col="col"
               >
-                <q-input
-                  outlined
-                  dense
-                  clearable
-                  clear-icon="clear"
+                <custom-input
                   v-model="col.value"
                   debounce="500"
                   @update:model-value="reloadData"
                 />
-                <!--
-                  @change="reloadData"
-                  debounce="500"
-                  @update:model-value="reloadData"
-                -->
               </slot>
             </th>
             <th
@@ -145,7 +111,7 @@
                 />
               </td>
               <td
-                v-for="col in gridColumns"
+                v-for="col in tableStore?.columns.value"
                 :key="col.name"
                 :class="col.cellClass"
                 :style="col.cellStyle"
@@ -250,6 +216,7 @@
 import { ref, onMounted, computed } from "vue"
 import { useQuasar } from "quasar"
 import { useDataTable } from "src/composables/useDataTable"
+import customInput from "src/components/shared/Forms/CustomInput.vue"
 
 import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
@@ -276,10 +243,10 @@ const props = defineProps({
 
 const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 
-const gridColumns = computed(() => {
-  if (props.gridStore != null) return props.gridStore.columns.value
-  return props.columns
-})
+// const gridColumns = computed(() => {
+//   if (props.gridStore != null) return props.gridStore.columns.value
+//   return props.columns
+// })
 
 onMounted(() => {
   tableStore.loadData()
