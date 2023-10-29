@@ -822,7 +822,7 @@
 
     <q-tab-panel name="invoices">
       <div class="q-pa-md">
-        <invoice />
+        <invoice :grid-store="invoiceStore" />
       </div>
     </q-tab-panel>
 
@@ -1068,8 +1068,11 @@ import EditProfile from "src/components/management/profile/editProfileDialog.vue
 import { useQuasar } from "quasar"
 import "src/helpers/extensions";
 import Invoice from "src/components/areas/crm/customer/_InvoiceDataTable.vue"
-import EditCustomerData from "src/components/management/profile/EditCustomerDataDialog.vue";
-import AddCustomField from "src/components/management/profile/AddCustomField.vue";
+import EditCustomerData from "src/components/management/profile/EditCustomerDataDialog.vue"
+import AddCustomField from "src/components/management/profile/AddCustomField.vue"
+
+import { useInvoice } from "src/components/areas/crm/_composables/useInvoice"
+const invoiceStore = useInvoice()
 
 const date = new Date()
 const $q = useQuasar()

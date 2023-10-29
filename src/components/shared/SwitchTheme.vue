@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed, watchEffect } from "vue"
+import { ref, onMounted, computed, watch } from "vue"
 import { useQuasar } from "quasar"
 
 const $q = useQuasar()

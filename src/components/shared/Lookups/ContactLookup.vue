@@ -65,12 +65,12 @@
         </tr>
       </thead>
     </template>
-    <template #td="{ item }">
+    <template #td="{ row }">
       <td>{{ 1 }}</td>
       <td>
-        <span>{{ item.statusId }}</span>
+        <span>{{ row.statusId }}</span>
       </td>
-      <td>{{ item.name }}</td>
+      <td>{{ row.name }}</td>
     </template>
   </lookup-view>
 </template>
@@ -92,7 +92,6 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-
 td {
   padding: 16px;
 }
@@ -108,5 +107,4 @@ th {
   right: 0;
   z-index: 1;
 }
-
 </style>

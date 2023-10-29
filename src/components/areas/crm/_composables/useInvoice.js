@@ -1,3 +1,4 @@
+import { defaultPageSize, sqlOperator } from "src/constants"
 import { ref } from "vue"
 
 export function useInvoice() {
@@ -15,7 +16,7 @@ export function useInvoice() {
 
     const pagination = ref({
         currentPage: 1,
-        pageSize: 5,
+        pageSize: defaultPageSize,
         sortColumn: "no",
         sortOrder: 1,
     })
@@ -24,14 +25,14 @@ export function useInvoice() {
         {
             name: "no",
             field: "no",
-            sortable: false,
+            sortable: true,
             label: "شماره",
             class: "text-left",
             cellClass: "text-left",
             cellStyle: "",
             style: "width:100px;",
             showFilter: true,
-            operator: 1,
+            operator: sqlOperator.equal,
             value: "",
         },
         {
@@ -40,6 +41,7 @@ export function useInvoice() {
             sortable: true,
             label: "تاریخ",
             class: "text-left",
+            style: "width:120px;",
             showFilter: true
         },
         {
@@ -50,7 +52,6 @@ export function useInvoice() {
             align: "left",
             class: "text-left",
             showFilter: true,
-            style: "width:20%"
         },
         {
             name: "amount",
@@ -59,6 +60,7 @@ export function useInvoice() {
             label: "جمع کل",
             align: "left",
             class: "text-left",
+            style: "width:90px;",
             showFilter: true
         },
         // {
@@ -79,6 +81,7 @@ export function useInvoice() {
             class: "text-left",
             showFilter: true,
             style: "width:100px;",
+            operator: sqlOperator.equal,
             value: ""
         }
     ])

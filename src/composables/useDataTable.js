@@ -1,14 +1,12 @@
 import { computed, ref } from "vue"
-import { sqlOperator } from "src/constants/enums"
+import { defaultPageSize, sqlOperator } from "src/constants/enums"
 import { fetchWrapper, helper } from "src/helpers"
 
 export function useDataTable(dataSource
   , dataColumns
   , store) {
 
-  const defaultPageSize = store?.defaultPageSize ?? 5
-
-  const _state = {
+  const localState = {
     firstLoad: ref(false),
     rows: ref([]),
     searchField: ref(""),
@@ -18,7 +16,7 @@ export function useDataTable(dataSource
     searchModel: ref(null)
   }
 
-  const _pagination = ref({
+  const localPagination = ref({
     currentPage: 1,
     pageSize: defaultPageSize,
     sortOrder: 1,
@@ -28,9 +26,9 @@ export function useDataTable(dataSource
     filterExpression: []
   })
 
-  const columns = computed(() => store?.columns.value ?? dataColumns)
-  const state = computed(() => store?.state ?? _state)
-  const pagination = computed(() => store?.pagination.value ?? _pagination.value)
+  const columns = computed(() => store?.columns?.value ?? dataColumns)
+  const state = computed(() => store?.state ?? localState)
+  const pagination = computed(() => store?.pagination.value ?? localPagination.value)
 
   const loaderTimeout = 500
 
@@ -46,7 +44,7 @@ export function useDataTable(dataSource
   )
 
   const checkedAll = computed(() => {
-    if (selectedRows.value?.length == 0) return false
+    if (selectedRows.value?.length === 0) return false
     if (selectedRows.value.length === state.value.rows.value.length) return true
     return ""
   })
@@ -66,14 +64,29 @@ export function useDataTable(dataSource
     }
   }
 
-  async function reloadData() {
-    await fetchData(pagination.value, handleResponse)
 
-    function handleResponse(pagedData) {
+  async function handleDataResponse(pagedData) {
+    const items = pagedData.items;
+    let clearActiveRow = true;
+    items.forEach((item) => {
+      item.selected = state.value.allSelectedIds.value.includes(item.id);
+      if (clearActiveRow) clearActiveRow = state.value.activeRow.value?.id != item.id;
+    });
+    if (clearActiveRow) setActiveRow(null);
+    state.value.rows.value = items;
+    state.value.summaryData.value = pagedData.summaryData;
+    pagination.value.totalItems = pagedData.page.totalItems;
+    pagination.value.currentPage = pagedData.page.currentPage;
+  }
+
+  async function reloadData() {
+    await fetchData(pagination.value, handleDataResponse)
+
+    function handleDataResponse(pagedData) {
       const items = pagedData.items
       let clearActiveRow = true
       items.forEach((item) => {
-        item.selected = state.value.allSelectedIds.value.indexOf(item.id) > -1
+        item.selected = state.value.allSelectedIds.value.includes(item.id)
         if (clearActiveRow) clearActiveRow = state.value.activeRow.value?.id != item.id
       })
       if (clearActiveRow) setActiveRow(null)
@@ -82,9 +95,10 @@ export function useDataTable(dataSource
       pagination.value.totalItems = pagedData.page.totalItems
       pagination.value.currentPage = pagedData.page.currentPage
     }
+
   }
 
-  async function fetchData(gridPage, gridhandleResponse) {
+  async function fetchData(gridPage, handleResponse) {
     loading.value = true
 
     let loadingTimer = setTimeout(() => {
@@ -96,44 +110,47 @@ export function useDataTable(dataSource
     await fetchWrapper
       .post(dataSource, gridPage)
       .then((response) => {
-        gridhandleResponse(response.data.data)
+        handleResponse(response.data.data)
       })
       .finally(() => {
         clearTimeout(loadingTimer)
         loading.value = false
         showLoader.value = false
       })
+  }
 
-    function setPayload() {
-      pagination.value.filterExpression = store?.filterExpression ?? []
-      if (columns.value) {
-        let payLoadCols = ""
-        columns.value.forEach((col) => {
-          if (payLoadCols === "") payLoadCols = col.name
-          else payLoadCols = `${payLoadCols},${col.name}`
-          if (col.value) {
-            pagination.value.filterExpression.push({
-              fieldName: col.name,
-              operator: col.operator ?? sqlOperator.like,
-              value: col.value
-            })
-          }
-        })
+  function setPayload() {
+    pagination.value.filterExpression = []
+    if (store?.filterExpression != null) pagination.value.filterExpression = [...store.filterExpression]
 
-        if (pagination.value.searchField && pagination.value.searchTerm) {
+    if (columns.value) {
+      let payLoadCols = ""
+      columns.value.forEach((col) => {
+        if (payLoadCols === "") payLoadCols = col.name
+        else payLoadCols = `${payLoadCols},${col.name}`
+        if (col.value) {
           pagination.value.filterExpression.push({
-            fieldName: pagination.value.searchField,
-            operator: sqlOperator.like,
-            value: pagination.value.searchTerm
+            fieldName: col.name,
+            operator: col.operator ?? sqlOperator.like,
+            value: col.value
           })
         }
+      })
 
-        pagination.value.columns = payLoadCols
+      if (pagination.value.searchField && pagination.value.searchTerm) {
+        pagination.value.filterExpression.push({
+          fieldName: pagination.value.searchField,
+          operator: sqlOperator.like,
+          value: pagination.value.searchTerm
+        })
       }
-      else console.warn("[landa]: columns are not defined")
-      if (state.value.searchModel != null)
-        pagination.value.searchModel = JSON.stringify(state.value.searchModel.value)
+
+      pagination.value.columns = payLoadCols
     }
+    //else console.warn("[landa]: columns are not defined")
+
+    if (state.value.searchModel != null)
+      pagination.value.searchModel = JSON.stringify(state.value.searchModel.value)
   }
 
   function setActiveRow(row) {

@@ -6,7 +6,7 @@
     color="primary"
   />
   <span
-    @click="sortColumn()"
+    @click="sortColumn"
     class="cursor-pointer"
   >{{ title }}</span>
 </template>
@@ -21,11 +21,9 @@ const props = defineProps({
 })
 
 function sortColumn() {
-  props.lookup.sortSelectedColumn(props.fieldName)
+  props.lookup.tableStore.sortColumn({ name: props.fieldName, sortable: true })
 }
 
-const isAscending = computed(() => props.lookup.pagination.sortOrder === 1)
-const showSortIcon = computed(
-  () => props.lookup.pagination.sortBy === props.fieldName
-)
+const isAscending = computed(() => props.lookup.tableStore.pagination.value.sortOrder === 1)
+const showSortIcon = computed(() => props.lookup.tableStore.pagination.value.sortColumn === props.fieldName)
 </script>

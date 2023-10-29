@@ -22,48 +22,8 @@
           name="o_add"
           class="q-mr-xs"
         />
-        {{ $t("shared.labels.create") }}
+        {{ $t("shared.labels.save") }}
       </q-btn>
-      <template v-if="invoiceStore.state.activeRow?.value != null">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-          no-caps
-        ><q-icon
-            name="o_edit"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.edit") }} ({{ invoiceStore.state.activeRow?.value?.no }})
-        </q-btn>
-      </template>
-      <template v-if="tableStore?.selectedRows?.value?.length > 0">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-          no-caps
-        >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.delete") }} ({{ tableStore?.selectedRows?.value?.length }} rows)
-        </q-btn>
-      </template>
-      <template v-else-if="tableStore?.activeRow?.value != null">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-        >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.delete") }} ({{ tableStore?.activeRow?.value?.no }})
-        </q-btn>
-      </template>
       <q-btn
         class="bordered-btn_bg-dark text-caption"
         rounded
@@ -85,11 +45,15 @@
             <div class="col">
               <div class="q-gutter-md">
                 <div>
+                  <h4>{{ customerLookup?.lookup.selectedId }}</h4>
+                  <pre>{{ customerLookup?.lookup.tableStore.activeRow.value }}</pre>
                   <q-item-label
                     caption
                     class="q-mb-sm"
-                  >مشتری</q-item-label>
-                  <customer-lookup />
+                  >
+                    مشتری
+                  </q-item-label>
+                  <customer-lookup ref="customerLookup" />
                 </div>
                 <div>
                   <q-item-label
@@ -138,7 +102,7 @@
               <div class="row items-center q-mb-sm">
                 <q-item-label caption>شماره فاکتور</q-item-label>
                 <q-toggle
-                  v-model="InvoiceNo"
+                  v-model="invoiceNo"
                   checked-icon="check"
                   color="green"
                   size="sm"
@@ -148,9 +112,9 @@
               <q-input
                 dense
                 style="width:195px"
-                v-model="InvoiceNoField"
+                v-model="invoiceNoField"
                 outlined
-                :disable="!InvoiceNo"
+                :disable="!invoiceNo"
               />
             </div>
             <div>
@@ -242,22 +206,16 @@ import { computed, ref } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomerLookup from "src/components/shared/Lookups/CustomerLookup.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
-import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
-import { useInvoice } from "../_composables/useInvoice"
 
-const invoiceStore = useInvoice()
-const invoiceTable = ref(null)
-const canceledInvoiceTable = ref(null)
-
-const tableStore = computed(() => invoiceTable.value?.dataTable.tableStore ?? canceledInvoiceTable.value?.dataTable.tableStore)
-
-const InvoiceNo = ref(false)
-const InvoiceNoField = ref('')
+const invoiceNo = ref(false)
+const invoiceNoField = ref('')
 const date = ref('')
 const dueDate = ref('')
 const quantity = ref(1)
 const amount = ref()
 const totalAmount = ref(69140000)
+
+const customerLookup = ref(null)
 
 </script>
 

@@ -1,3 +1,4 @@
+import { defaultPageSize } from "src/constants";
 import { ref } from "vue"
 
 const state = {
@@ -14,7 +15,7 @@ const state = {
 
 const pagination = ref({
     currentPage: 1,
-    pageSize: 5,
+    pageSize: defaultPageSize,
     sortColumn: "no",
     sortOrder: 1,
     totalItems: 0,

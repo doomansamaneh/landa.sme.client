@@ -116,21 +116,9 @@
 </template>
 
 <script setup>
-import {
-  ref,
-  onBeforeUnmount,
-  onMounted,
-  watchEffect,
-  computed,
-  watch
-} from "vue"
+import { ref, computed } from "vue"
 import { useAuthStore } from "../../stores"
-import { useI18n } from "vue-i18n"
-const { locale } = useI18n({ useScope: "global" })
-import { Quasar } from "quasar"
-import { useQuasar } from "quasar"
 
-const $q = useQuasar()
 const authStore = useAuthStore()
 
 const username = ref("")

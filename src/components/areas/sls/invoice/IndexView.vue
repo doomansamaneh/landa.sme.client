@@ -213,7 +213,7 @@ const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore ?? c
 
 function tabChanged() {
   invoiceStore.state.firstLoad.value = false
-  canceledInvoiceStore.state.firstLoad = flase
+  canceledInvoiceStore.state.firstLoad.value = false
 }
 
 async function applySearch(model) {

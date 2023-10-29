@@ -91,10 +91,9 @@
 import { useAuthStore } from "../stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
 import SwitchLanguage from "../components/shared/SwitchLanguage.vue"
-import SwitchTheme from "../components/shared/SwitchTheme.vue"
 
 import { useQuasar } from "quasar"
-import { ref, onMounted, watch } from "vue"
+import { ref, onMounted, watchEffect } from "vue"
 
 const authStore = useAuthStore()
 authStore.clearUser()
@@ -106,7 +105,7 @@ const $q = useQuasar()
 const darkMode = ref(false)
 const selectedTheme = ref("")
 
-watch(darkMode, (newVal) => {
+watchEffect(darkMode, (newVal) => {
   $q.dark.set(newVal ? "auto" : false)
   localStorage.setItem("darkMode", newVal)
 })

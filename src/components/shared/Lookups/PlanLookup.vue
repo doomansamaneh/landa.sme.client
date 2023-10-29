@@ -18,7 +18,7 @@
           >
             <span>#</span>
           </th>
-          <th class="">
+          <th class="text-left">
             <header-column
               fieldName="title"
               :title="$t('page.add-business.plan-lookup.plan')"
@@ -39,13 +39,13 @@
       </thead>
     </template>
 
-    <template #td="{ item, index }">
+    <template #td="{ row, index }">
       <td>{{ index + 1 }}</td>
       <td>
-        <span>{{ item.title }}</span>
+        <span>{{ row.title }}</span>
       </td>
       <td>
-        <span>{{ item.cost.toLocaleString() }}</span>
+        <span>{{ row.cost.toLocaleString() }}</span>
       </td>
     </template>
   </lookup-view>

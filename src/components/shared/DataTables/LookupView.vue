@@ -44,9 +44,10 @@
       no-refocus
       no-focus
     >
-      <div class="container_ lookup-container">
+      <!-- <div class="container_ lookup-container"> -->
+      <div :class="containerClass">
         <q-inner-loading
-          :showing="showLoader"
+          :showing="tableStore.showLoader.value"
           class="inner-loader q-my-lg"
         >
           <q-spinner
@@ -55,24 +56,24 @@
           />
         </q-inner-loading>
 
-        <div class="lookup-body">
+        <div class="q-table__middle scroll">
           <table
+            class="q-table"
             ref="table"
-            class="text-left text-caption"
             tabindex="0"
           >
             <slot name="thead" />
             <tbody class="lookup-table-body">
               <tr
-                v-for="(item, index) in rows"
-                :key="item.id"
+                v-for="(row, index) in tableStore.rows.value"
+                :key="row.id"
                 :class="{ 'row-active': index === selectedRowIndex }"
-                @click="onRowClicked(item, index)"
+                @click="onRowClicked(row, index)"
                 class="cursor-pointer"
               >
                 <slot
                   name="td"
-                  :item="item"
+                  :row="row"
                   :index="index"
                 />
               </tr>
@@ -80,26 +81,40 @@
           </table>
 
           <div
-            v-if="noDataFound"
-            class="nothing-found no-padding no-results column justify-center items-center q-my-xl"
+            v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
+            class="q-table__bottom items-center q-table__bottom--nodata"
           >
-            <div class="">
-              <img
-                class="nothing-found-svg"
-                src="/page-lost.svg"
-                style="width: 150px"
-              />
-            </div>
-            <div class="">{{ $t("page.nothing-found") }}</div>
+            <slot name="noDataFound">
+              <no-data-found />
+            </slot>
           </div>
         </div>
 
-        <div class="row q-pa-md dark-1">
+        <div
+          v-if="tableStore.showPagebar.value"
+          class="q-table__bottom"
+        >
           <page-bar
-          v-if="showPagebar"
-          :pagination="pagination"
-          @page-changed="reloadData"
-        />
+            :pagination="tableStore.pagination.value"
+            @page-changed="tableStore.reloadData"
+          >
+            <template #reload>
+              <q-icon
+                class="icon-hover dark-3 cursor-pointer q-pr-md"
+                size="sm"
+                name="o_refresh"
+                @click="tableStore.reloadData"
+                clickable
+              >
+                <q-tooltip
+                  class="custom-tooltip"
+                  :delay="600"
+                >
+                  {{ $t("page.buttons.reload-data") }}
+                </q-tooltip>
+              </q-icon>
+            </template>
+          </page-bar>
         </div>
       </div>
     </q-menu>
@@ -108,8 +123,10 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue"
-import { fetchWrapper } from "src/helpers"
+import { useQuasar } from "quasar"
+import { useDataTable } from "src/composables/useDataTable"
 import PageBar from "./PageBar.vue"
+import NoDataFound from "./NoDataFound.vue"
 
 const props = defineProps({
   dataSource: String,
@@ -120,26 +137,23 @@ const props = defineProps({
   rules: Array,
   placeholder: String
 })
-
-const emit = defineEmits(["row-selected"])
-
-const rows = ref([])
-const dataLoded = ref(false)
-const showLoader = ref(false)
-const loadingData = ref(false)
+const $q = useQuasar()
 const selectedId = ref(null)
 const selectedText = ref("")
-const defaultPageSize = 5
 
-const pagination = ref({
-  currentPage: 1,
-  pageSize: defaultPageSize,
-  sortColumn: props.orderByField,
-  sortOrder: 1,
-  totalItems: 0,
-  searchTerm: "",
-  filterExpression: [],
-})
+const store = {
+  pagination: ref({
+    currentPage: 1,
+    pageSize: 7,
+    sortColumn: props.orderByField,
+    sortOrder: 1,
+    searchTerm: selectedText
+  })
+}
+
+const tableStore = useDataTable(props.dataSource, props.columns, store)
+
+const emit = defineEmits(["row-selected"])
 
 const search = ref(null)
 const selectedRowIndex = ref(0)
@@ -166,33 +180,31 @@ function handleKeyDown(event) {
 }
 
 async function clearSearch() {
+  tableStore.setActiveRow(null)
   setIdText(null)
   emitSelectRow(null)
   onMenuHide()
-  dataLoded.value = false
 }
 
-async function onRowClicked(item, index) {
+async function onRowClicked(row, index) {
   selectedRowIndex.value = index
-  setIdText(item)
-  hidePopup()
-  emitSelectRow(item)
+  selectRow(row)
 }
 
-async function setIdText(item) {
-  selectedId.value = item?.id
-  setText(item)
+async function setIdText(row) {
+  selectedId.value = row?.id
+  setText(row)
 }
 
-function setText(item) {
-  if (item == null) selectedText.value = null
+function setText(row) {
+  if (row == null) selectedText.value = null
   else {
     if (props.textTemplate) {
       selectedText.value = props.textTemplate.replace(
         /{{\s*([\w.]+)\s*}}/g,
-        (_, key) => item[key]
+        (_, key) => row[key] ?? ""
       )
-    } else selectedText.value = item.title
+    } else selectedText.value = row.title
   }
 }
 
@@ -200,115 +212,53 @@ function setCustomText(displayText) {
   selectedText.value = displayText
 }
 
-async function reloadData(showLoading = true) {
-  dataLoded.value = false
-  await loadData()
-}
-
-async function loadData() {
-  if (!dataLoded.value) {
-    const loaderTimeout = 500
-    loadingData.value = true
-    let loadingTimer = setTimeout(() => {
-      if (loadingData.value) showLoader.value = true
-    }, loaderTimeout)
-
-    setFilterExpression()
-
-    await fetchWrapper
-      .post(props.dataSource, pagination.value)
-      .then((response) => {
-        handleResponse(response.data.data)
-      })
-      .finally(() => {
-        clearTimeout(loadingTimer)
-
-        loadingData.value = false
-        showLoader.value = false
-        dataLoded.value = true
-
-        if (rows?.value.length < selectedRowIndex.value + 1)
-          selectedRowIndex.value = 0
-      })
-  }
-}
-
-function setFilterExpression() {
-  let filterExpression = []
-
-  if (!selectedId.value && selectedText.value && props.searchField) {
-    filterExpression.push({
-      fieldName: props.searchField,
-      operator: 3,
-      value: selectedText.value
-    })
-  }
-  pagination.value.filterExpression = filterExpression
-}
-
-function handleResponse(pagedData) {
-  rows.value = pagedData.items
-  pagination.value.totalItems = pagedData.page.totalItems
-}
-
 async function handlePopup() {
   if (isPopupOpen.value) hidePopup()
   else {
     showPopup()
-    await loadData()
+    await tableStore.loadData()
   }
 }
 
 function selectPrevious() {
   if (isPopupOpen.value) {
     if (selectedRowIndex.value === 0)
-      selectedRowIndex.value = rows.value.length - 1
+      selectedRowIndex.value = tableStore.rows.value.length - 1
     else selectedRowIndex.value--
   }
 }
 
 async function selectNext() {
   if (isPopupOpen.value) {
-    if (selectedRowIndex.value === rows.value.length - 1)
+    if (selectedRowIndex.value === tableStore.rows.value.length - 1)
       selectedRowIndex.value = 0
     else selectedRowIndex.value++
   } else {
     showPopup()
-    await loadData()
+    await tableStore.loadData()
   }
 }
 
 function selectRow() {
-  const item = rows.value[selectedRowIndex.value]
-  setIdText(item)
+  const row = tableStore.rows.value[selectedRowIndex.value]
+  tableStore.setActiveRow(row)
+  setIdText(row)
   hidePopup()
-  emitSelectRow(item)
+  emitSelectRow(row)
 }
 
-function emitSelectRow(item) {
-  emit("row-selected", item)
+function emitSelectRow(row) {
+  emit("row-selected", row)
 }
 
 async function searchInLookup() {
   showPopup()
-  await reloadData()
+  await tableStore.reloadData()
 }
 
 function onMenuHide() {
   isPopupOpen.value = false
   search.value.focus()
-}
-
-async function sortSelectedColumn(selectedColumn) {
-  if (pagination.value.sortBy === selectedColumn) {
-    if (pagination.value.sortOrder === 1) pagination.value.sortOrder = 2
-    else pagination.value.sortOrder = 1
-  } else {
-    pagination.value.sortBy = selectedColumn
-    pagination.value.sortOrder = 1
-  }
-
-  await reloadData()
 }
 
 async function showPopup() {
@@ -324,47 +274,66 @@ function hidePopup() {
   popup.value.hide()
 }
 
-const showPagebar = computed(() => pagination.value.totalItems > defaultPageSize)
-
 const isSearchEmpty = computed(() => !selectedId.value)
 
-const noDataFound = computed(
-  () => rows.value.length === 0 && !loadingData.value
+const cardDefaultClass = computed(() =>
+  " lookup-container q-table__card q-table--bordered_q-table--flat" +
+  ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "")
+)
+
+const __containerClass = computed(() =>
+  `q-table__container _q-table--horizontal-separator column _no-wrap q-pt-md` +
+  cardDefaultClass.value +
+  ($q.dark?.isActive === true ? " q-table--dark" : "")
+)
+
+const containerClass = computed(() =>
+  __containerClass.value + (tableStore.showLoader.value === true ? " q-table--loading" : "")
 )
 
 defineExpose({
-  sortSelectedColumn,
-  pagination,
   setIdText,
-  setCustomText
+  setCustomText,
+  selectedId,
+  selectedText,
+  tableStore
 })
 </script>
 
 <style>
 .lookup-container {
-  width: 400px;
+  width: 500px;
 }
 
-.lookup-body {
+.lookup-table-head th {
+  border-bottom: 1px solid;
+}
+
+/* .lookup-body {
   padding: 12px 0px;
-}
+} */
 
-td {
+/* td {
   padding: 16px;
 }
 
 th {
   padding: 24px 12px;
-}
+} */
 
-table {
+/* table {
   border-collapse: collapse;
   border: none;
-  /* width: 100%; */
+} */
+
+table:focus {
+  outline: none;
 }
 
-table:focus,
-.plan-title-card:focus {
-  outline: none;
+.lookup-toolbar {
+  position: absolute;
+  right: 5px;
+  top: 25px;
+  z-index: 1;
 }
 </style>

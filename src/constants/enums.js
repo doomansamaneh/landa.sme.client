@@ -45,3 +45,5 @@ export const cultures = [
   { code: "ar", name: "العربیة", calendar: "hijri", dir: "rtl", quasarLang: "ar", flag: "" },
   { code: "en", name: "English", calendar: "gregorian", dir: "ltr", quasarLang: "en-US", flag: "" }
 ]
+
+export const defaultPageSize = 10

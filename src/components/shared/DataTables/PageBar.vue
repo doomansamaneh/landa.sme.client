@@ -4,13 +4,13 @@
     <span class="text-caption q-pr-lg">
       {{ indexRange }} {{ $t("shared.labels.from") }} {{ paged.totalItems.toLocaleString() }}
     </span>
-    <!-- //todo: use css class instead of styling siz and padding -->
+    <!-- //todo: use css class instead of styling size and padding -->
     <q-pagination
       v-if="showPaging"
       v-model="paged.currentPage"
       :min="1"
       :max="maxPage"
-      max-pages="7"
+      max-pages="5"
       :ellipses="false"
       :boundary-numbers="false"
       direction-links
@@ -29,17 +29,19 @@
       class="pagination"
     />
     <q-space />
-    <q-select
-      dense
-      class="select"
-      outlined
-      v-model="paged.pageSize"
-      :options="pageSizeOptions"
-      @update:model-value="handlePageChange"
-      transition-show="flip-up"
-      transition-hide="flip-down"
-      popup-content-class="text-caption text-weight-medium text-grey-8"
-    />
+    <template v-if="sizeSeletion">
+      <q-select
+        dense
+        class="select"
+        outlined
+        v-model="paged.pageSize"
+        :options="pageSizeOptions"
+        @update:model-value="handlePageChange"
+        transition-show="flip-up"
+        transition-hide="flip-down"
+        popup-content-class="text-caption text-weight-medium text-grey-8"
+      />
+    </template>
   </q-card-actions>
 </template>
 
@@ -47,7 +49,8 @@
 import { computed } from "vue"
 
 const props = defineProps({
-  pagination: Object
+  pagination: Object,
+  sizeSeletion: Boolean
 })
 
 const paged = computed(() => props.pagination)

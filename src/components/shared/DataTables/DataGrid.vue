@@ -190,6 +190,7 @@
       <page-bar
         :pagination="tableStore.pagination.value"
         @page-changed="reloadData"
+        sizeSeletion
       >
         <template #reload>
           <q-icon

@@ -1,66 +1,66 @@
 <template>
   <lookup-view
-    dataSource="business/getBusinessGridData"
-    orderByField="title"
-    textTemplate="{{ title }}"
-    searchField="title"
+    dataSource="crm/customer/getlookupData"
+    orderByField="code"
+    textTemplate="{{ code }} {{ name }}"
+    searchField="name"
     ref="lookup"
   >
     <template #thead>
+      <div class="lookup-toolbar">
+        <q-btn
+          dense
+          unelevated
+          color="primary"
+          class="q-py-sm q-px-md"
+          rounded
+        >
+          <q-icon
+            name="o_add"
+            size="xs"
+            class="q-pr-xs"
+          />
+          <span class="text-body2">ایجاد</span>
+        </q-btn>
+      </div>
       <thead class="lookup-table-head">
-        <div class="container">
-          <q-btn
-            dense
-            unelevated
-            color="primary"
-            class="q-py-sm q-px-md"
-            rounded
-          >
-            <q-icon
-              name="o_add"
-              size="xs"
-              class="q-pr-xs"
-            />
-            <span class="text-body2">ایجاد</span>
-          </q-btn>
-        </div>
         <tr>
           <th
             class=""
-            style="width: 1%"
+            style="width: 1px"
           >
             <span>#</span>
           </th>
           <th
-            class=""
+            class="text-left"
             style="width: 1%"
           >
             <header-column
-              fieldName="statusId"
+              fieldName="code"
               title="کد"
               :lookup="lookup"
-            ></header-column>
+            />
           </th>
-          <th
-            class=""
-            style="width: 20%"
-          >
+          <th class="">
             <header-column
               fieldName="name"
               title="نام"
               :lookup="lookup"
-            ></header-column>
+            />
           </th>
         </tr>
       </thead>
     </template>
 
-    <template #td="{ item, index }">
+    <template #td="{ row, index }">
       <td>{{ index + 1 }}</td>
+      <td>{{ row.code }}</td>
       <td>
-        {{ item.statusId }}
+        {{ row.name }}
+        <div>
+          {{ row.locationName }} {{ row.address }} {{ row.phoneNo }} {{ row.mobileNo }}
+        </div>
       </td>
-      <td>{{ item.name }}</td>
     </template>
   </lookup-view>
 </template>
@@ -71,24 +71,8 @@ import LookupView from "src/components/shared/DataTables/LookupView.vue"
 import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
 
 const lookup = ref(null)
+
+defineExpose({
+  lookup
+})
 </script>
-
-<style lang="scss" scoped>
-
-td {
-  padding: 16px;
-}
-
-th {
-  padding: 24px 12px;
-}
-
-.container {
-  position: absolute;
-  padding-top: 16px;
-  padding-right: 12px;
-  right: 0;
-  z-index: 1;
-}
-
-</style>
