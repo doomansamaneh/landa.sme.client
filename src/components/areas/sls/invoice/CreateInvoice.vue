@@ -60,7 +60,7 @@
                     caption
                     class="q-mb-sm"
                   >قرارداد</q-item-label>
-                  <customer-lookup />
+                  <contract-lookup />
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
                     caption
                     class="q-mb-sm"
                   >نوع فروش</q-item-label>
-                  <customer-lookup />
+                  <sale-type-lookup />
                 </div>
               </div>
             </div>
@@ -148,7 +148,7 @@
       <div class="row q-gutter-x-md q-py-sm q-my-md">
 
         <div style="width: 20%;">
-          <customer-lookup placeholder="انتخاب کالا/خدمت" />
+          <product-lookup placeholder="انتخاب کالا/خدمت" />
         </div>
         <div style="width: 7%;">
           <q-input
@@ -158,7 +158,7 @@
           />
         </div>
         <div style="width: 10%;">
-          <customer-lookup placeholder="واحد سنجش" />
+          <product-unit-lookup paceholder="واحد سنجش" />
         </div>
         <div style="width: 10%;">
           <q-input
@@ -168,7 +168,7 @@
           />
         </div>
         <div style="width: 17%;">
-          <customer-lookup placeholder="مالیات بر ارزش افزوده" />
+          <vat-lookup placeholder="مالیات بر ارزش افزوده" />
         </div>
         <div style="width: 10%">
           <q-input
@@ -205,6 +205,11 @@
 import { computed, ref } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomerLookup from "src/components/shared/Lookups/CustomerLookup.vue"
+import ContractLookup from "src/components/shared/Lookups/ContractLookup.vue"
+import ProductLookup from "src/components/shared/Lookups/ProductLookup.vue"
+import ProductUnitLookup from "src/components/shared/Lookups/ProductUnitLookup.vue"
+import SaleTypeLookup from "src/components/shared/Lookups/SaleTypeLookup.vue"
+import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
 
 const invoiceNo = ref(false)

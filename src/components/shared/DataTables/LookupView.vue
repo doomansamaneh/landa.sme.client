@@ -133,6 +133,7 @@ const props = defineProps({
   textTemplate: String,
   orderByField: String,
   searchField: String,
+  columns: String,
   required: Boolean,
   rules: Array,
   placeholder: String
@@ -145,13 +146,14 @@ const store = {
   pagination: ref({
     currentPage: 1,
     pageSize: 7,
+    columns: props.columns,
     sortColumn: props.orderByField,
     sortOrder: 1,
     searchTerm: selectedText
   })
 }
 
-const tableStore = useDataTable(props.dataSource, props.columns, store)
+const tableStore = useDataTable(props.dataSource, null, store)
 
 const emit = defineEmits(["row-selected"])
 

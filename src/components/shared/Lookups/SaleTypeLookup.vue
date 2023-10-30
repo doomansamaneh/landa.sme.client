@@ -1,9 +1,9 @@
 <template>
   <lookup-view
-    dataSource="crm/customer/getlookupData"
-    orderByField="code"
-    textTemplate="{{ code }} {{ name }}"
-    searchField="name"
+    dataSource="sls/saleType/getlookupData"
+    orderByField="title"
+    textTemplate="{{ title }}"
+    searchField="title"
     ref="lookup"
   >
     <template #thead>
@@ -31,20 +31,10 @@
           >
             <span>#</span>
           </th>
-          <th
-            class="text-left"
-            style="width: 1%"
-          >
-            <header-column
-              fieldName="code"
-              title="کد"
-              :lookup="lookup"
-            />
-          </th>
           <th class="text-left">
             <header-column
-              fieldName="name"
-              title="نام"
+              fieldName="title"
+              title="عنوان"
               :lookup="lookup"
             />
           </th>
@@ -54,12 +44,8 @@
 
     <template #td="{ row, index }">
       <td>{{ index + 1 }}</td>
-      <td>{{ row.code }}</td>
       <td>
-        {{ row.name }}
-        <div>
-          {{ row.locationName }} {{ row.address }} {{ row.phoneNo }} {{ row.mobileNo }}
-        </div>
+        {{ row.title }}
       </td>
     </template>
   </lookup-view>

@@ -1,9 +1,9 @@
 <template>
   <lookup-view
-    dataSource="crm/customer/getlookupData"
+    dataSource="cmn/product/getlookupData"
     orderByField="code"
-    textTemplate="{{ code }} {{ name }}"
-    searchField="name"
+    textTemplate="{{ code }} {{ title }}"
+    searchField="title"
     ref="lookup"
   >
     <template #thead>
@@ -41,10 +41,10 @@
               :lookup="lookup"
             />
           </th>
-          <th class="text-left">
+          <th class="">
             <header-column
-              fieldName="name"
-              title="نام"
+              fieldName="title"
+              title="عنوان"
               :lookup="lookup"
             />
           </th>
@@ -56,9 +56,9 @@
       <td>{{ index + 1 }}</td>
       <td>{{ row.code }}</td>
       <td>
-        {{ row.name }}
+        {{ row.title }}
         <div>
-          {{ row.locationName }} {{ row.address }} {{ row.phoneNo }} {{ row.mobileNo }}
+          <pre>{{ row }}</pre>
         </div>
       </td>
     </template>
