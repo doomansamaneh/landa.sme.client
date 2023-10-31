@@ -35,7 +35,7 @@
       <div class="q-space" />
     </q-toolbar>
   </q-page-sticky>
-  <div class="q-mt-md">
+  <div style="margin-top: 38px;">
     <invoices-widget />
   </div>
   <q-card class="bordered">

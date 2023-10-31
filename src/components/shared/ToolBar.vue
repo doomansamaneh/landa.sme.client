@@ -1,10 +1,10 @@
 <template>
   <q-page-sticky
-    class="z-1 bg-main q-px-xl q-py-md"
+    class="z-1 bg-main q-py-md"
     position="top"
     expand
   >
-    <q-toolbar class="q-mx-sm">
+    <q-toolbar class="q-px-xl">
       <div class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn

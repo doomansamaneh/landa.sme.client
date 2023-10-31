@@ -79,7 +79,7 @@
     </template>
   </tool-bar>
 
-  <div class="q-my-md">
+  <div style="margin: 40px 0;">
     <advanced-search
       :grid-store="invoiceStore"
       @apply-search="applySearch"

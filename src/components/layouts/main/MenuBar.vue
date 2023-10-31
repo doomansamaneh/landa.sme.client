@@ -13,7 +13,7 @@
       :thumb-style="thumbStyle"
       :bar-style="barStyle"
     >
-      <div class="searchbar-sidebar q-ma-md">
+      <div class="flex justify-center q-pa-md">
         <q-input
           color="grey-5"
           outlined
@@ -22,7 +22,7 @@
           dense
           rounded
           clearable
-          class="text-caption"
+          class="full-width text-caption"
         >
           <template v-slot:prepend>
             <q-icon
