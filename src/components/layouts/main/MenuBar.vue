@@ -6,7 +6,6 @@
     :model-value="menuBar"
     :breakpoint="500"
     bordered
-    overlay
   >
     <q-scroll-area
       class="fit"
@@ -81,7 +80,10 @@
             </q-item>
           </q-expansion-item>
         </div>
-        <q-separator class="q-my-md" inset />
+        <q-separator
+          class="q-my-md"
+          inset
+        />
         <div>
           <q-item class="flex items-center q-mb-md q-mt-sm cursor-pointer">
             <q-icon
@@ -205,5 +207,4 @@ onMounted(() => {
   .q-icon {
     font-size: 18px;
   }
-}
-</style>
+}</style>
