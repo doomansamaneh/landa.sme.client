@@ -143,10 +143,27 @@
       <div class="row q-gutter-x-md text-bold q-mb-sm">
         <div style="width: 25% ;">کالا/خدمت</div>
         <div style="width: 7%;">تعداد/مقدار</div>
-        <div style="width: 12%;">واحد سنجش</div>
+        <div style="width: 10%;">واحد سنجش</div>
         <div style="width: 10%;">مبلغ</div>
-        <div style="width: 17%;">مالیات بر ارزش افزوده</div>
-        <div class="col row justify-end">مبلغ کل</div>
+        <div style="width: 15%;">مالیات بر ارزش افزوده</div>
+        <div class="col row justify-end items-center q-gutter-x-xs">مبلغ کل
+          <q-icon
+            name="o_info"
+            size="xs"
+            color="primary"
+            class="cursor-pointer"
+          >
+            <q-tooltip
+              :delay="600"
+              class="custom-tooltip"
+              anchor="top right"
+              self="bottom middle"
+              :offset="[50, 10]"
+            >
+              <span class="text-body2">مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش افزوده</span>
+            </q-tooltip>
+          </q-icon>
+        </div>
         <div class="col-1 row justify-end"></div>
       </div>
       <q-separator />
@@ -164,7 +181,7 @@
               v-model="quantity"
             />
           </div>
-          <div style="width: 12%;">
+          <div style="width: 10%;">
             <product-unit-lookup paceholder="واحد سنجش" />
           </div>
           <div style="width: 10%;">
@@ -174,7 +191,7 @@
               v-model="amount"
             />
           </div>
-          <div style="width: 17%;">
+          <div style="width: 15%;">
             <vat-lookup placeholder="مالیات بر ارزش افزوده" />
           </div>
 
@@ -275,7 +292,7 @@
 
           </div>
 
-          <div style="width: 12%;">
+          <div style="width: 10%;">
 
           </div>
 
@@ -303,7 +320,7 @@
             </q-input>
           </div>
 
-          <div style="width: 17%;">
+          <div style="width: 15%;">
             <q-item-label
               caption
               class="q-mb-sm"
@@ -337,7 +354,7 @@
         <div class="col-3 q-gutter-y-md">
           <div class="row q-mr-md">
             <div class="col">مبلغ</div>
-            <div>0 <span class="text-caption"> ریال</span></div>
+            <div>{{ amount }} <span class="text-caption"> ریال</span></div>
           </div>
 
           <div class="row q-mr-md">
@@ -371,17 +388,17 @@
                     v-if="generalDiscount"
                   >
 
-                  <template #append>
-                    <q-btn
-                  size="xs"
-                  :icon="generalDiscountIsCash ? 'attach_money' : 'o_percent'"
-                  class="cursor-pointer"
-                  color="primary"
-                  round
-                  outline
-                  @click="generalDiscountIsCash = !generalDiscountIsCash"
-                />
-                  </template>
+                    <template #append>
+                      <q-btn
+                        size="xs"
+                        :icon="generalDiscountIsCash ? 'attach_money' : 'o_percent'"
+                        class="cursor-pointer"
+                        color="primary"
+                        round
+                        outline
+                        @click="generalDiscountIsCash = !generalDiscountIsCash"
+                      />
+                    </template>
 
                   </q-input>
                 </q-menu>
@@ -391,7 +408,7 @@
               <span>تخفیف</span>
 
             </div>
-            <div>0 <span class="text-caption"> ریال</span></div>
+            <div>{{ generalDiscountValue }} <span class="text-caption"> ریال</span></div>
           </div>
 
           <div class="row q-mr-md">
@@ -435,12 +452,12 @@ const discountIsCash = ref(true)
 const generalDiscountIsCash = ref(true)
 const vatIsCash = ref(true)
 const quantity = ref(1)
-const amount = ref()
-const totalAmount = ref(691400000)
+const amount = ref(0)
+const totalAmount = ref(69140000000)
 const customerLookup = ref(null)
 const showMoreDetail = ref(false)
 const generalDiscount = ref(false)
-const generalDiscountValue = ref()
+const generalDiscountValue = ref(0)
 
 const toggleInvocieNo = () => {
   invoiceNo.value = !invoiceNo.value;
