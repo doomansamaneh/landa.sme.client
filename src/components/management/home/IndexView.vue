@@ -1,10 +1,11 @@
 <template>
   <q-page-sticky
-    class="z-1 bg-main q-px-xl q-py-md"
+    class="z-1 bg-main q-py-md"
+    style="margin: 0 38px;"
     position="top"
     expand
   >
-    <q-toolbar class="q-mx-sm">
+    <q-toolbar>
       <div class="row items-center q-gutter-x-sm">
         <span class="text-h6">داشبورد</span>
         <q-btn
