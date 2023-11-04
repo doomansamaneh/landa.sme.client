@@ -75,12 +75,14 @@ export const helper = {
       // Format 11-digit phone numbers as XXXX-XXX-XXXX
       return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7, 11)}`;
     } else {
-      // Handle other cases as needed
-      return phoneNumber;
+      // For other cases, separate digits in groups of 4
+      const formattedNumber = [];
+      for (let i = 0; i < digits.length; i += 4) {
+        formattedNumber.push(digits.slice(i, i + 4));
+      }
+      return formattedNumber.join(' ');
     }
 
   }
-
-
 
 }
