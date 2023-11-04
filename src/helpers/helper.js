@@ -61,5 +61,26 @@ export const helper = {
         icon: 'warning'
       })
     }
+  },
+
+  separatePhoneNumbers(phoneNumber) {
+    // Use a regular expression to extract digits from the input
+    const digits = phoneNumber.match(/\d/g).join('');
+
+    // Check if the number of digits is 8 or 11 (for Iran)
+    if (digits.length === 8) {
+      // Format 8-digit phone numbers as XXX-XXX-XX
+      return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 8)}`;
+    } else if (digits.length === 11) {
+      // Format 11-digit phone numbers as XXXX-XXX-XXXX
+      return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7, 11)}`;
+    } else {
+      // Handle other cases as needed
+      return phoneNumber;
+    }
+
   }
+
+
+
 }
