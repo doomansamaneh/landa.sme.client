@@ -58,7 +58,7 @@
                       class="profile-pic q-mx-sm"
                       text-color="white"
                     >
-                      <div class="text-bold">{{ getFirstChar(username) }}</div>
+                      <div class="text-bold">{{ helper.getFirstChar(username) }}</div>
                     </q-avatar>
                     <div class="q-mt-md">
                       <span class="text-on-dark">{{ username }}</span>
@@ -127,6 +127,7 @@
 <script setup>
 import { ref, computed, watchEffect, onMounted } from "vue"
 import { useRouter } from "vue-router"
+import { helper } from "src/helpers"
 import { useQuasar } from "quasar"
 import { useAuthStore } from "src/stores"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
@@ -149,9 +150,6 @@ function changePasswordDialog() {
   })
 }
 
-function getFirstChar(str) {
-  return str.charAt(0)
-}
 </script>
 
 <style>

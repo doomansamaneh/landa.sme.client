@@ -64,7 +64,7 @@
                   v-else
                 >
                   <div class="char text-body1 text-bold">
-                    {{ getFirstChar(row.name) }}
+                    {{ helper.getFirstChar(row.name) }}
                   </div>
                 </q-avatar>
               </q-item-section>
@@ -164,10 +164,6 @@ async function gotoNext() {
 async function reloadData() {
   await tableStore.reloadData()
   rows.value = tableStore.rows.value//rows.value.push(...tableStore.rows.value)
-}
-
-function getFirstChar(str) {
-  return str.charAt(0)
 }
 
 const goToCustomer = () => {

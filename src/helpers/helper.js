@@ -83,6 +83,10 @@ export const helper = {
       return formattedNumber.join(' ');
     }
 
+  },
+
+  getFirstChar(str) {
+    return str.charAt(0)
   }
 
 }

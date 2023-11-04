@@ -24,7 +24,13 @@
           header
         >
           <div class="column items-center justify-center q-mt-md">
-            <div class="q-my-md">
+            <q-avatar
+              class="profile-pic q-mx-sm"
+              text-color="white"
+            >
+              <div class="text-bold">{{ helper.getFirstChar(username) }}</div>
+            </q-avatar>
+            <div class="q-mt-md">
               <span class="text-on-dark">{{ username }}</span>
             </div>
           </div>
@@ -97,6 +103,7 @@
 <script setup>
 import { ref, computed } from "vue"
 import { useAuthStore } from "src/stores"
+import { helper } from "src/helpers"
 import { useQuasar } from "quasar"
 
 import ChangePasswordDialog from "src/components/users/ChangePasswordDialog.vue"
@@ -116,3 +123,12 @@ const username = computed(() => {
 })
 
 </script>
+
+<style>
+
+.profile-pic {
+  width: 72px;
+  height: 72px;
+}
+
+</style>
