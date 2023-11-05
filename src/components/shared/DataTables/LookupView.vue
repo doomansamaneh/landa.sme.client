@@ -4,6 +4,8 @@
     outlined
     :required="required"
     :rules="rules"
+    clearable
+    clear-icon="o_close"
     dense
     class="input lookup"
     v-model="selectedText"
@@ -15,15 +17,6 @@
   >
     <template #append>
       <q-icon
-        name="clear"
-        size="16px"
-        color="primary"
-        v-if="!isSearchEmpty"
-        class="cursor-pointer"
-        @click="clearSearch"
-      />
-
-      <q-icon
         @click="handlePopup"
         name="o_expand_more"
         id="expand-more-icon"
@@ -33,7 +26,7 @@
     </template>
 
     <q-menu
-      fit
+      class="overflow-hidden"
       no-parent-event
       v-model="isPopupOpen"
       @show="onMenuShow"
@@ -41,82 +34,72 @@
       ref="popup"
       transition-show="jump-down"
       transition-hide="jump-up"
-      no-refocus
-      no-focus
     >
-      <!-- <div class="container_ lookup-container"> -->
-      <div :class="containerClass">
-        <q-inner-loading
-          :showing="tableStore.showLoader.value"
-          class="inner-loader q-my-lg"
+      <q-inner-loading
+        :showing="tableStore.showLoader.value"
+        class="inner-loader q-mt-xl"
+      >
+        <q-spinner
+          size="52px"
+          color="primary"
+        />
+      </q-inner-loading>
+
+      <div class="header q-pa-md dark-1">
+        <slot name="thead" />
+      </div>
+
+      <q-scroll-area
+        style="height: 250px; width: 600px;"
+        :thumb-style="thumbStyle"
+        :bar-style="barStyle"
+      >
+        <div
+          class="row q-pa-md cursor-pointer"
+          v-for="(row, index) in tableStore.rows.value"
+          :key="row.id"
+          :class="{ 'row-active': index === selectedRowIndex }"
+          @click="onRowClicked(row, index)"
         >
-          <q-spinner
-            size="52px"
-            color="primary"
+          <slot
+            name="td"
+            :row="row"
+            :index="index"
           />
-        </q-inner-loading>
-
-        <div class="q-table__middle scroll">
-          <table
-            class="q-table"
-            ref="table"
-            tabindex="0"
-          >
-            <slot name="thead" />
-            <tbody class="lookup-table-body">
-              <tr
-                v-for="(row, index) in tableStore.rows.value"
-                :key="row.id"
-                :class="{ 'row-active': index === selectedRowIndex }"
-                @click="onRowClicked(row, index)"
-                class="cursor-pointer"
-              >
-                <slot
-                  name="td"
-                  :row="row"
-                  :index="index"
-                />
-              </tr>
-            </tbody>
-          </table>
-
-          <div
-            v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
-            class="q-table__bottom items-center q-table__bottom--nodata"
-          >
-            <slot name="noDataFound">
-              <no-data-found />
-            </slot>
-          </div>
         </div>
 
         <div
-          v-if="tableStore.showPagebar.value"
-          class="q-table__bottom"
+          v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
+          class="q-table__bottom items-center q-table__bottom--nodata"
         >
-          <page-bar
-            :pagination="tableStore.pagination.value"
-            @page-changed="tableStore.reloadData"
-          >
-            <template #reload>
-              <q-icon
-                class="icon-hover dark-3 cursor-pointer q-pr-md"
-                size="sm"
-                name="o_refresh"
-                @click="tableStore.reloadData"
-                clickable
-              >
-                <q-tooltip
-                  class="custom-tooltip"
-                  :delay="600"
-                >
-                  {{ $t("page.buttons.reload-data") }}
-                </q-tooltip>
-              </q-icon>
-            </template>
-          </page-bar>
+          <slot name="noDataFound">
+            <no-data-found />
+          </slot>
         </div>
+      </q-scroll-area>
+
+      <div
+        v-if="tableStore.showPagebar.value"
+        class="q-pa-md row items-center footer dark-1"
+      >
+        <page-bar
+          :pagination="tableStore.pagination.value"
+          @page-changed="tableStore.reloadData"
+        >
+          <template #reload>
+            <q-btn
+              class="q-mr-md"
+              size="sm"
+              round
+              dense
+              unelevated
+              icon="o_refresh"
+              @click="tableStore.reloadData"
+            />
+          </template>
+        </page-bar>
       </div>
+
     </q-menu>
   </q-input>
 </template>
@@ -284,7 +267,7 @@ const cardDefaultClass = computed(() =>
 )
 
 const __containerClass = computed(() =>
-  `q-table__container _q-table--horizontal-separator column _no-wrap q-pt-md` +
+  `q-table__container _q-table--horizontal-separator column _no-wrap` +
   cardDefaultClass.value +
   ($q.dark?.isActive === true ? " q-table--dark" : "")
 )
@@ -300,42 +283,30 @@ defineExpose({
   selectedText,
   tableStore
 })
+
+const thumbStyle = {
+  left: '4px',
+  borderRadius: '5px',
+  width: '6px',
+  opacity: 0.75
+}
+
+const barStyle = {
+  left: '2px',
+  width: '8px',
+  opacity: 0.2
+}
+
 </script>
 
 <style>
-.lookup-container {
-  width: 500px;
+.header {
+  position: sticky;
+  top: 0;
 }
 
-.lookup-table-head th {
-  border-bottom: 1px solid;
-}
-
-/* .lookup-body {
-  padding: 12px 0px;
-} */
-
-/* td {
-  padding: 16px;
-}
-
-th {
-  padding: 24px 12px;
-} */
-
-/* table {
-  border-collapse: collapse;
-  border: none;
-} */
-
-table:focus {
-  outline: none;
-}
-
-.lookup-toolbar {
-  position: absolute;
-  right: 5px;
-  top: 25px;
-  z-index: 1;
+.footer {
+  position: sticky;
+  bottom: 0;
 }
 </style>

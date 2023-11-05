@@ -64,25 +64,40 @@ export const helper = {
   },
 
   separatePhoneNumbers(phoneNumber) {
-    // Use a regular expression to extract digits from the input
-    const digits = phoneNumber.match(/\d/g).join('');
 
-    // Check if the number of digits is 8 or 11 (for Iran)
-    if (digits.length === 8) {
-      // Format 8-digit phone numbers as XXX-XXX-XX
-      return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 8)}`;
-    } else if (digits.length === 11) {
-      // Format 11-digit phone numbers as XXXX-XXX-XXXX
-      return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7, 11)}`;
+    function faToEnNumbers(input) {
+      // Define a mapping of Persian numerals to English numerals
+      const persianToEnglishMap = {
+        '۰': '0',
+        '۱': '1',
+        '۲': '2',
+        '۳': '3',
+        '۴': '4',
+        '۵': '5',
+        '۶': '6',
+        '۷': '7',
+        '۸': '8',
+        '۹': '9',
+      };
+
+      // Use a regular expression to replace Persian numerals with English numerals
+      return input.replace(/[۰-۹]/g, (match) => persianToEnglishMap[match]);
+    }
+    // Convert Persian numerals to English numerals (as shown in the previous response)
+    const convertedPhoneNumber = faToEnNumbers(phoneNumber);
+
+    // Your existing logic to format the phone number based on the number of digits
+    if (convertedPhoneNumber.length === 8) {
+      return `${convertedPhoneNumber.slice(0, 3)} ${convertedPhoneNumber.slice(3, 6)} ${convertedPhoneNumber.slice(6, 8)}`;
+    } else if (convertedPhoneNumber.length === 11) {
+      return `${convertedPhoneNumber.slice(0, 4)} ${convertedPhoneNumber.slice(4, 7)} ${convertedPhoneNumber.slice(7, 11)}`;
     } else {
-      // For other cases, separate digits in groups of 4
       const formattedNumber = [];
-      for (let i = 0; i < digits.length; i += 4) {
-        formattedNumber.push(digits.slice(i, i + 4));
+      for (let i = 0; i < convertedPhoneNumber.length; i += 4) {
+        formattedNumber.push(convertedPhoneNumber.slice(i, i + 4));
       }
       return formattedNumber.join(' ');
     }
-
   },
 
   getFirstChar(str) {

@@ -22,6 +22,7 @@
           dense
           rounded
           clearable
+          clear-icon="o_close"
           class="full-width text-caption"
         >
           <template v-slot:prepend>

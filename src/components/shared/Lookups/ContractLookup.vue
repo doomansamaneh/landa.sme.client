@@ -7,8 +7,23 @@
     searchField="title"
     ref="lookup"
   >
-    <template #thead>
-      <div class="lookup-toolbar">
+  <template #thead>
+      <div class="row items-center">
+        <div class="col-1">#</div>
+        <div class="col-2">
+          <header-column
+            fieldName="code"
+            title="کد"
+            :lookup="lookup"
+          />
+        </div>
+        <div class="col q-pr-md">
+          <header-column
+            fieldName="name"
+            title="شماره"
+            :lookup="lookup"
+          />
+        </div>
         <q-btn
           dense
           unelevated
@@ -21,44 +36,15 @@
             size="xs"
             class="q-pr-xs"
           />
-          <span class="text-body2">ایجاد</span>
+          <span class="text-caption">ایجاد</span>
         </q-btn>
       </div>
-      <thead class="lookup-table-head">
-        <tr>
-          <th
-            class=""
-            style="width: 1px"
-          >
-            <span>#</span>
-          </th>
-          <th
-            class="text-left"
-            style="width: 1%"
-          >
-            <header-column
-              fieldName="no"
-              title="شماره"
-              :lookup="lookup"
-            />
-          </th>
-          <th class="text-left">
-            <header-column
-              fieldName="title"
-              title="عنوان"
-              :lookup="lookup"
-            />
-          </th>
-        </tr>
-      </thead>
     </template>
 
     <template #td="{ row, index }">
-      <td>{{ index + 1 }}</td>
-      <td>{{ row.no }}</td>
-      <td>
-        {{ row.title }}
-      </td>
+      <div class="col-1 row items-center text-caption">{{ index + 1 }}</div>
+      <div class="col-2 row items-center text-caption">{{ row.no }}</div>
+      <div class="col-2 row items-center text-caption">{{ row.title }}</div>
     </template>
   </lookup-view>
 </template>

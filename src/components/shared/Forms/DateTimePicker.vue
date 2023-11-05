@@ -1,6 +1,6 @@
 <template>
   <q-input
-    v-model="value"
+    v-model="date"
     outlined
     dense
     mask="date"
@@ -16,15 +16,35 @@
         class="cursor-pointer"
       >
         <q-popup-proxy
+        class="q-mx-xl"
           cover
           transition-show="scale"
           transition-hide="scale"
+          @before-show="updateProxy"
         >
           <q-date
-            v-model="value"
+            v-model="proxyDate"
             :calendar="calendar"
             today-btn
-          />
+            bordered
+          >
+            <div class="row items-center justify-end q-gutter-sm rtl">
+              <q-btn
+                :label="$t('shared.labels.cancel')"
+                color="primary"
+                flat
+                v-close-popup
+              />
+              <q-btn
+                :label="$t('shared.labels.save')"
+                color="primary"
+                text-color="white"
+                unelevated
+                @click="save"
+                v-close-popup
+              />
+            </div>
+          </q-date>
         </q-popup-proxy>
       </q-icon>
     </template>
@@ -32,24 +52,36 @@
 </template>
 
 <script setup>
-import { computed } from "vue"
+import { ref, computed } from "vue"
 import { useCulture } from "src/composables/useCulture"
 import customInput from "src/components/shared/Forms/CustomInput.vue"
+const cultureStore = useCulture()
 
 const props = defineProps(['modelValue', 'placeholder', 'label'])
 const emit = defineEmits(['update:modelValue'])
 
-const value = computed({
-  get() {
-    return props.modelValue
-  },
-  set(value) {
-    emit('update:modelValue', value)
-  }
-})
+// const value = computed({
+//   get() {
+//     return props.modelValue
+//   },
+//   set(value) {
+//     emit('update:modelValue', value)
+//   }
+// })
 
-const cultureStore = useCulture()
+const date = ref('')
+const proxyDate = ref('')
+
 const calendar = computed(() => cultureStore.culture.value.calendar)
+
+const updateProxy = () => {
+  proxyDate.value = date.value
+}
+
+const save = () => {
+  date.value = proxyDate.value
+}
+
 </script>
 <style>
 .q-date {

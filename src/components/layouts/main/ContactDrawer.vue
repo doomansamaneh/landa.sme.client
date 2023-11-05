@@ -22,6 +22,7 @@
             :placeholder="$t('shared.labels.contact-search')"
             dense
             clearable
+            clear-icon="o_clear"
             rounded
             @keydown.enter="reloadData"
             class="text-caption"

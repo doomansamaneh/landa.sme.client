@@ -26,6 +26,10 @@ export default {
     {
       path: "sls/invoice/create",
       component: () => import("src/components/areas/sls/invoice/CreateInvoice.vue"),
+    },
+    {
+      path: "sls/invoice2/create",
+      component: () => import("src/components/areas/sls/invoice/CreateInvoiceV2.vue"),
     }
   ]
 }

@@ -46,6 +46,7 @@
     </q-card-section>
     <q-card-section>
       <detail-section />
+      <!-- <quick-access /> -->
     </q-card-section>
   </q-card>
 </template>
@@ -53,8 +54,8 @@
 <script setup>
 import { computed, ref } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
-import MasterSection from "src/components/areas/sls/invoice/create/MasterSection.vue"
-import DetailSection from "src/components/areas/sls/invoice/create/DetailSection.vue"
+import MasterSection from "src/components/areas/sls/invoice/create/MasterSectionV2.vue"
+import DetailSection from "src/components/areas/sls/invoice/create/DetailSectionV2.vue"
 </script>
 
 

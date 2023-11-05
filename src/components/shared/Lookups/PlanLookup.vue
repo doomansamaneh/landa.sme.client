@@ -9,45 +9,47 @@
     :required="true"
     :rules="[(val) => val && val.length > 0]"
   >
-    <template #thead>
-      <thead class="lookup-table-head">
-        <tr class="">
-          <th
-            class=""
-            style="width: 1px"
-          >
-            <span>#</span>
-          </th>
-          <th class="text-left">
-            <header-column
-              fieldName="title"
-              :title="$t('page.add-business.plan-lookup.plan')"
-              :lookup="lookup"
-            ></header-column>
-          </th>
-          <th
-            class=""
-            style="width: 23%"
-          >
-            <header-column
-              fieldName="cost"
-              :title="$t('page.add-business.plan-lookup.per-month')"
-              :lookup="lookup"
-            ></header-column>
-          </th>
-        </tr>
-      </thead>
+
+  <template #thead>
+      <div class="row items-center">
+        <div class="col-1">#</div>
+        <div class="col-7">
+          <header-column
+            fieldName="code"
+            :title="$t('page.add-business.plan-lookup.plan')"
+            :lookup="lookup"
+          />
+        </div>
+        <div class="col q-ml-lg">
+          <header-column
+            fieldName="name"
+            :title="$t('page.add-business.plan-lookup.per-month')"
+            :lookup="lookup"
+          />
+        </div>
+        <q-btn
+          dense
+          unelevated
+          color="primary"
+          class="q-py-sm q-px-md"
+          rounded
+        >
+          <q-icon
+            name="o_add"
+            size="xs"
+            class="q-pr-xs"
+          />
+          <span class="text-caption">ایجاد</span>
+        </q-btn>
+      </div>
     </template>
 
     <template #td="{ row, index }">
-      <td>{{ index + 1 }}</td>
-      <td>
-        <span>{{ row.title }}</span>
-      </td>
-      <td>
-        <span>{{ row.cost.toLocaleString() }}</span>
-      </td>
+      <div class="col-1 row items-center text-caption">{{ index + 1 }}</div>
+      <div class="col-7 row items-center text-caption">{{ row.title }}</div>
+      <div class="col row items-center text-caption q-ml-lg">{{ row.cost.toLocaleString() }}</div>
     </template>
+
   </lookup-view>
 </template>
 
