@@ -64,7 +64,7 @@
           <slot
             name="td"
             :row="row"
-            :index="index"
+            :index="tableStore.rowIndex(index)"
           />
         </div>
 

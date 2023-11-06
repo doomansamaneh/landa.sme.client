@@ -1,6 +1,6 @@
 <template>
   <q-input
-    v-model="date"
+    v-model="value"
     outlined
     dense
     mask="date"
@@ -36,7 +36,7 @@
                 v-close-popup
               />
               <q-btn
-                :label="$t('shared.labels.save')"
+                :label="$t('shared.labels.select')"
                 color="primary"
                 text-color="white"
                 unelevated
@@ -60,26 +60,25 @@ const cultureStore = useCulture()
 const props = defineProps(['modelValue', 'placeholder', 'label'])
 const emit = defineEmits(['update:modelValue'])
 
-// const value = computed({
-//   get() {
-//     return props.modelValue
-//   },
-//   set(value) {
-//     emit('update:modelValue', value)
-//   }
-// })
+const value = computed({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit('update:modelValue', value)
+  }
+})
 
-const date = ref('')
 const proxyDate = ref('')
 
 const calendar = computed(() => cultureStore.culture.value.calendar)
 
 const updateProxy = () => {
-  proxyDate.value = date.value
+  proxyDate.value = value.value
 }
 
 const save = () => {
-  date.value = proxyDate.value
+  value.value = proxyDate.value
 }
 
 </script>

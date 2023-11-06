@@ -41,7 +41,7 @@
     </template>
 
     <template #td="{ row, index }">
-      <div class="col-1 row items-center text-caption">{{ index + 1 }}</div>
+      <div class="col-1 row items-center text-caption">{{ index }}</div>
       <div class="col-2 row items-center text-caption">{{ row.code }}</div>
 
       <div class="col-9">
