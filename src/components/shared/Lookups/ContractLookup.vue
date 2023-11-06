@@ -8,19 +8,19 @@
     ref="lookup"
   >
   <template #thead>
-      <div class="row items-center">
+      <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
-        <div class="col-2">
-          <header-column
-            fieldName="code"
-            title="کد"
-            :lookup="lookup"
-          />
-        </div>
-        <div class="col q-pr-md">
+        <div class="col-3 q-pr-md">
           <header-column
             fieldName="name"
             title="شماره"
+            :lookup="lookup"
+          />
+        </div>
+        <div class="col">
+          <header-column
+            fieldName="code"
+            title="عنوان"
             :lookup="lookup"
           />
         </div>
@@ -28,13 +28,15 @@
           dense
           unelevated
           color="primary"
-          class="q-py-sm q-px-md"
+          class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
+          style="margin-top: 12px;"
           rounded
+          size="12px"
         >
           <q-icon
             name="o_add"
-            size="xs"
-            class="q-pr-xs"
+            size="14px"
+            style="margin-left: 2px;"
           />
           <span class="text-caption">ایجاد</span>
         </q-btn>
@@ -42,9 +44,11 @@
     </template>
 
     <template #td="{ row, index }">
-      <div class="col-1 row items-center text-caption">{{ index + 1 }}</div>
-      <div class="col-2 row items-center text-caption">{{ row.no }}</div>
-      <div class="col-2 row items-center text-caption">{{ row.title }}</div>
+      <div class="row q-gutter-x-md" style="width: 400px;">
+        <div class="col-1 text-caption">{{ index }}</div>
+        <div class="col-3 text-caption">{{ row.no }}</div>
+        <div class="col text-caption">{{ row.title }}</div>
+      </div>
     </template>
   </lookup-view>
 </template>

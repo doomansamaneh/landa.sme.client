@@ -4,8 +4,6 @@
     outlined
     :required="required"
     :rules="rules"
-    clearable
-    clear-icon="o_close"
     dense
     class="input lookup"
     v-model="selectedText"
@@ -15,7 +13,13 @@
     debounce="1000"
     :placeholder="placeholder"
   >
-    <template #append>
+  <template #append>
+      <q-icon
+        name="o_close"
+        v-if="!isSearchEmpty"
+        class="cursor-pointer q-field__focusable-action"
+        @click="clearSearch"
+      />
       <q-icon
         @click="handlePopup"
         name="o_expand_more"
@@ -26,7 +30,6 @@
     </template>
 
     <q-menu
-      class="overflow-hidden"
       no-parent-event
       v-model="isPopupOpen"
       @show="onMenuShow"
@@ -34,6 +37,9 @@
       ref="popup"
       transition-show="jump-down"
       transition-hide="jump-up"
+      fit
+      no-focus
+      no-refocus
     >
       <q-inner-loading
         :showing="tableStore.showLoader.value"
@@ -45,17 +51,13 @@
         />
       </q-inner-loading>
 
-      <div class="header q-pa-md dark-1">
+      <div class="header text-caption text-bold bg-dark q-pa-md z-top"
+      style="border-bottom: 1px solid var(--q-primary);">
         <slot name="thead" />
       </div>
 
-      <q-scroll-area
-        style="height: 250px; width: 600px;"
-        :thumb-style="thumbStyle"
-        :bar-style="barStyle"
-      >
         <div
-          class="row q-pa-md cursor-pointer"
+          class="q-pa-md cursor-pointer"
           v-for="(row, index) in tableStore.rows.value"
           :key="row.id"
           :class="{ 'row-active': index === selectedRowIndex }"
@@ -76,7 +78,6 @@
             <no-data-found />
           </slot>
         </div>
-      </q-scroll-area>
 
       <div
         v-if="tableStore.showPagebar.value"

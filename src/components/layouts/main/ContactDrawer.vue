@@ -5,39 +5,40 @@
     overlay
     :width="350"
     :breakpoint="500"
-    class="text-white"
+    class="text-white no-scroll"
     bordered
   >
-    <div ref="scrollTargetRef">
-      <q-infinite-scroll
-        @load="onLoadRef"
-        :offset="200"
-        :scroll-target="scrollTargetRef"
+    <div class="q-ma-md">
+      <q-input
+        color="grey-5"
+        outlined
+        v-model="tableStore.pagination.value.searchTerm"
+        :placeholder="$t('shared.labels.contact-search')"
+        dense
+        clearable
+        clear-icon="o_clear"
+        rounded
+        @keydown.enter="reloadData"
+        class="text-caption"
       >
-        <div class="searchbar-sidebar q-my-md q-px-md">
-          <q-input
-            color="grey-5"
-            outlined
-            v-model="tableStore.pagination.value.searchTerm"
-            :placeholder="$t('shared.labels.contact-search')"
-            dense
-            clearable
-            clear-icon="o_clear"
-            rounded
-            @keydown.enter="reloadData"
-            class="text-caption"
-          >
-            <template v-slot:prepend>
-              <q-icon
-                name="o_search"
-                color="primary"
-              />
-            </template>
-          </q-input>
-        </div>
-        <q-list
-          dense
-          padding
+        <template v-slot:prepend>
+          <q-icon
+            name="o_search"
+            color="primary"
+          />
+        </template>
+      </q-input>
+    </div>
+    <q-scroll-area
+      class="fit"
+      :thumb-style="helper.thumbStyle"
+      :bar-style="helper.barStyle"
+    >
+      <q-list ref="scrollTargetRef">
+        <q-infinite-scroll
+          @load="onLoadRef"
+          :offset="200"
+          :scroll-target="scrollTargetRef"
         >
           <q-item
             @click="goToCustomer"
@@ -119,17 +120,17 @@
               </q-item-section>
             </div>
           </q-item>
-        </q-list>
-        <template v-slot:loading>
-          <div class="row justify-center q-my-md">
-            <q-spinner-dots
-              color="primary"
-              size="40px"
-            />
-          </div>
-        </template>
-      </q-infinite-scroll>
-    </div>
+          <template v-slot:loading>
+            <div class="row justify-center q-my-md">
+              <q-spinner-dots
+                color="primary"
+                size="40px"
+              />
+            </div>
+          </template>
+        </q-infinite-scroll>
+      </q-list>
+    </q-scroll-area>
   </q-drawer>
 </template>
 

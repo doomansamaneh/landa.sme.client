@@ -65,21 +65,19 @@
           >شماره فاکتور</q-item-label>
           <q-input
             type="number"
+            outlined
             dense
             v-model="invoiceNoField"
-            standout="no-shadow bg-dark"
-            borderless
-            class="bordered-1 border-radius-xs"
             :disable="isInputDisabled"
-            style="width: 180px; padding-right:10px"
+            style="width: 180px;"
           >
-            <template #after>
+            <template #append>
               <q-icon
                 size="sm"
                 :name="invoiceNo ? 'o_no_encryption' : 'o_lock'"
-                class="cursor-pointer"
-                style="margin-left:10px"
+                class="cursor-pointer all-pointer-events"
                 @click="toggleInvocieNo"
+
               />
             </template>
           </q-input>

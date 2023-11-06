@@ -1,53 +1,51 @@
 <template>
   <q-drawer
-    class="menu-bar"
+    class="menu-bar no-scroll q-mb-xl"
     side="left"
     :width="255"
     :model-value="menuBar"
-    :breakpoint="500"
+    :breakpoint="400"
     bordered
   >
+    <div class="flex justify-center q-pa-md">
+      <q-input
+        color="grey-5"
+        outlined
+        v-model="searchText"
+        :placeholder="$t('main-menu-items.search')"
+        dense
+        rounded
+        clearable
+        clear-icon="o_close"
+        class="full-width text-caption"
+      >
+        <template v-slot:prepend>
+          <q-icon
+            name="o_search"
+            color="primary"
+          />
+        </template>
+      </q-input>
+    </div>
+
     <q-scroll-area
-      class="fit"
-      dark
-      :thumb-style="thumbStyle"
-      :bar-style="barStyle"
+      style="height: calc(100% - 100px);"
+      :thumb-style="helper.thumbStyle"
+      :bar-style="helper.barStyle"
     >
-      <div class="flex justify-center q-pa-md">
-        <q-input
-          color="grey-5"
-          outlined
-          v-model="searchText"
-          :placeholder="$t('main-menu-items.search')"
-          dense
-          rounded
-          clearable
-          clear-icon="o_close"
-          class="full-width text-caption"
-        >
-          <template v-slot:prepend>
-            <q-icon
-              name="o_search"
-              color="primary"
-            />
-          </template>
-        </q-input>
-      </div>
       <q-list class="menu-list q-ml-sm q-mr-xs">
-        <div>
-          <q-item
-            class="flex items-center cursor-pointer q-mr-md"
-            to="/dashboard"
-          >
-            <q-icon
-              name="o_dashboard"
-              class="settings q-mr-sm"
-              color="primary"
-              size="xs"
-            ></q-icon>
-            <span class="text-sm">{{ $t("main-menu-items.dashboard") }}</span>
-          </q-item>
-        </div>
+        <q-item
+          class="flex items-center cursor-pointer q-mr-md"
+          to="/dashboard"
+        >
+          <q-icon
+            name="o_dashboard"
+            class="settings q-mr-sm"
+            color="primary"
+            size="xs"
+          ></q-icon>
+          <span class="text-sm">{{ $t("main-menu-items.dashboard") }}</span>
+        </q-item>
         <div
           v-for="parentItem in drawerMenuItems"
           :key="parentItem.name"
@@ -81,21 +79,15 @@
             </q-item>
           </q-expansion-item>
         </div>
-        <q-separator
-          class="q-my-md"
-          inset
-        />
-        <div>
-          <q-item class="flex items-center q-mb-md q-mt-sm cursor-pointer">
-            <q-icon
-              name="o_settings"
-              class="settings q-mr-sm"
-              color="orange"
-              size="xs"
-            ></q-icon>
-            <span class="text-sm">{{ $t("main-menu-items.settings") }}</span>
-          </q-item>
-        </div>
+        <q-item class="flex items-center cursor-pointer">
+          <q-icon
+            name="o_settings"
+            class="settings q-mr-sm"
+            color="orange"
+            size="xs"
+          ></q-icon>
+          <span class="text-sm">{{ $t("main-menu-items.settings") }}</span>
+        </q-item>
       </q-list>
     </q-scroll-area>
   </q-drawer>
@@ -106,6 +98,7 @@ import { ref, onMounted, computed } from "vue"
 import { fetchWrapper } from "src/helpers"
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
+import { helper } from "src/helpers"
 
 const { t } = useI18n()
 
@@ -169,22 +162,6 @@ const drawerMenuItems = computed(() => {
   }
 })
 
-const thumbStyle = {
-  left: '4px',
-  borderRadius: '5px',
-  // backgroundColor: '#027be3',
-  width: '6px',
-  opacity: 0.75
-}
-
-const barStyle = {
-  left: '2px',
-  // borderRadius: '9px',
-  // backgroundColor: 'red',
-  width: '8px',
-  opacity: 0.2
-}
-
 onMounted(() => {
   getMenuItems()
 })
@@ -208,4 +185,5 @@ onMounted(() => {
   .q-icon {
     font-size: 18px;
   }
-}</style>
+}
+</style>

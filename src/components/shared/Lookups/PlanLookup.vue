@@ -11,43 +11,31 @@
   >
 
   <template #thead>
-      <div class="row items-center">
+      <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
-        <div class="col-7">
-          <header-column
-            fieldName="code"
-            :title="$t('page.add-business.plan-lookup.plan')"
-            :lookup="lookup"
-          />
-        </div>
-        <div class="col q-ml-lg">
+        <div class="col q-pr-md">
           <header-column
             fieldName="name"
-            :title="$t('page.add-business.plan-lookup.per-month')"
+            title="طرح"
             :lookup="lookup"
           />
         </div>
-        <q-btn
-          dense
-          unelevated
-          color="primary"
-          class="q-py-sm q-px-md"
-          rounded
-        >
-          <q-icon
-            name="o_add"
-            size="xs"
-            class="q-pr-xs"
+        <div class="col-2">
+          <header-column
+            fieldName="code"
+            title="ماهانه"
+            :lookup="lookup"
           />
-          <span class="text-caption">ایجاد</span>
-        </q-btn>
+        </div>
       </div>
     </template>
 
     <template #td="{ row, index }">
-      <div class="col-1 row items-center text-caption">{{ index + 1 }}</div>
-      <div class="col-7 row items-center text-caption">{{ row.title }}</div>
-      <div class="col row items-center text-caption q-ml-lg">{{ row.cost.toLocaleString() }}</div>
+      <div class="row q-gutter-x-md">
+        <div class="col-1 text-caption">{{ index }}</div>
+        <div class="col text-caption">{{ row.title }}</div>
+        <div class="col-2 text-caption">{{ row.cost.toLocaleString() }}</div>
+      </div>
     </template>
 
   </lookup-view>

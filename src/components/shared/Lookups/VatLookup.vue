@@ -7,7 +7,7 @@
     ref="lookup"
   >
   <template #thead>
-      <div class="row items-center">
+      <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
         <div class="col q-pr-md">
           <header-column
@@ -20,13 +20,15 @@
           dense
           unelevated
           color="primary"
-          class="q-py-sm q-px-md"
+          class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
+          style="margin-top: 12px;"
           rounded
+          size="12px"
         >
           <q-icon
             name="o_add"
-            size="xs"
-            class="q-pr-xs"
+            size="14px"
+            style="margin-left: 2px;"
           />
           <span class="text-caption">ایجاد</span>
         </q-btn>
@@ -34,8 +36,10 @@
     </template>
 
     <template #td="{ row, index }">
-      <div class="col-1 row items-center text-caption">{{ index + 1 }}</div>
-      <div class="col row items-center text-caption">{{ row.title }}</div>
+      <div class="row q-gutter-x-md" style="width: 300px;">
+        <div class="col-1 text-caption">{{ index }}</div>
+        <div class="col text-caption">{{ row.title }}</div>
+      </div>
     </template>
   </lookup-view>
 </template>

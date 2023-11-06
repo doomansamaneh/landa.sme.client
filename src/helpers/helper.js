@@ -102,6 +102,19 @@ export const helper = {
 
   getFirstChar(str) {
     return str.charAt(0)
+  },
+
+  thumbStyle: {
+    left: '4px',
+    borderRadius: '5px',
+    width: '6px',
+    opacity: 0.75
+  },
+
+  barStyle: {
+    left: '2px',
+    width: '8px',
+    opacity: 0.2
   }
 
 }
