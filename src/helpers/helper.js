@@ -101,7 +101,7 @@ export const helper = {
   },
 
   getFirstChar(str) {
-    return str.charAt(0)
+    return str?.charAt(0)
   },
 
   thumbStyle: {

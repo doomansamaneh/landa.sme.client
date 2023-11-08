@@ -64,20 +64,19 @@ export function useDataTable(dataSource
     }
   }
 
-
-  async function handleDataResponse(pagedData) {
-    const items = pagedData.items;
-    let clearActiveRow = true;
-    items.forEach((item) => {
-      item.selected = state.value.allSelectedIds.value.includes(item.id);
-      if (clearActiveRow) clearActiveRow = state.value.activeRow.value?.id != item.id;
-    });
-    if (clearActiveRow) setActiveRow(null);
-    state.value.rows.value = items;
-    state.value.summaryData.value = pagedData.summaryData;
-    pagination.value.totalItems = pagedData.page.totalItems;
-    pagination.value.currentPage = pagedData.page.currentPage;
-  }
+  // async function handleDataResponse(pagedData) {
+  //   const items = pagedData.items;
+  //   let clearActiveRow = true;
+  //   items.forEach((item) => {
+  //     item.selected = state.value.allSelectedIds.value.includes(item.id);
+  //     if (clearActiveRow) clearActiveRow = state.value.activeRow.value?.id != item.id;
+  //   });
+  //   if (clearActiveRow) setActiveRow(null);
+  //   state.value.rows.value = items;
+  //   state.value.summaryData.value = pagedData.summaryData;
+  //   pagination.value.totalItems = pagedData.page.totalItems;
+  //   pagination.value.currentPage = pagedData.page.currentPage;
+  // }
 
   async function reloadData() {
     await fetchData(pagination.value, handleDataResponse)
@@ -95,7 +94,6 @@ export function useDataTable(dataSource
       pagination.value.totalItems = pagedData.page.totalItems
       pagination.value.currentPage = pagedData.page.currentPage
     }
-
   }
 
   async function fetchData(gridPage, handleResponse) {

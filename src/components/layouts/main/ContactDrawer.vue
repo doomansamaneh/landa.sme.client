@@ -37,7 +37,7 @@
       <q-list ref="scrollTargetRef">
         <q-infinite-scroll
           @load="onLoadRef"
-          :offset="200"
+          :offset="500"
           :scroll-target="scrollTargetRef"
         >
           <q-item
@@ -149,7 +149,8 @@ const tableStore = useDataTable("crm/customer/getLookupData", customerStore.colu
 
 const router = useRouter()
 
-const rows = ref([]);
+const rows = ref([])
+const scrollTargetRef = ref(null)
 
 onMounted(() => {
   //todo:
@@ -158,22 +159,29 @@ onMounted(() => {
   //rows.value = tableStore.rows.value//.push(...tableStore.rows.value)
 })
 
-async function gotoNext() {
-  tableStore.pagination.value.currentPage += 1
-  await reloadData()
+async function gotoNext(index) {
+  tableStore.pagination.value.currentPage += 1 //index
+  await tableStore.reloadData()
+  rows.value.push(...tableStore.rows.value)
 }
 
 async function reloadData() {
+  tableStore.pagination.value.currentPage = 1
   await tableStore.reloadData()
-  rows.value = tableStore.rows.value//rows.value.push(...tableStore.rows.value)
+  rows.value = tableStore.rows.value
 }
 
 const goToCustomer = () => {
   router.push("/crm/customer")
 }
 
-const onLoadRef = (index, done) => {
-  tableStore.rows.value.push(...tableStore.rows.value)
+const onLoadRef = async (index, done) => {
+  console.log(index)
+  if (tableStore.pagination.value.totalItems > rows.value.length) {
+    await gotoNext(index)
+  }
+  // else
+  //   alert('there is no more items. stop scrolling')
   done()
 }
 
