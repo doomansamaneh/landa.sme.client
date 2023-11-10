@@ -10,11 +10,9 @@
 
     <q-tabs
       v-model="tab"
-      dense
       inline-label
       outside-arrows
-      mobile-arrows
-      class="text-white bg-primary"
+      class="text-on-dark"
     >
       <q-tab name="menu">
         <template #default>
@@ -23,7 +21,7 @@
             size="xs"
             class="q-mr-sm"
           />
-          <div class="text-caption">
+          <div class="text-body3 text-bold">
             منو
           </div>
         </template>
@@ -47,7 +45,7 @@
             size="xs"
             class="q-mr-sm"
           />
-          <div class="text-caption">
+          <div class="text-body3 text-bold">
             کالاهای من
           </div>
         </template>
@@ -62,7 +60,7 @@
             size="xs"
             class="q-mr-sm"
           />
-          <div class="text-caption">
+          <div class="text-body3 text-bold">
             تست 1
           </div>
         </template>
@@ -77,7 +75,7 @@
             size="xs"
             class="q-mr-sm"
           />
-          <div class="text-caption">
+          <div class="text-body3 text-bold">
             تست 2
           </div>
         </template>
@@ -352,5 +350,9 @@ onMounted(() => {
   grid-template-columns: repeat(2, 1fr);
   justify-content: end;
   gap: 0 16px;
+}
+
+.q-tabs__arrow {
+  text-shadow: none;
 }
 </style>
