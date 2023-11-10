@@ -176,7 +176,7 @@ const goToCustomer = () => {
 }
 
 const onLoadRef = async (index, done) => {
-  console.log(index)
+  // console.log(index)
   if (tableStore.pagination.value.totalItems > rows.value.length) {
     await gotoNext(index)
   }

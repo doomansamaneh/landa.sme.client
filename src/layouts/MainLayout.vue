@@ -8,7 +8,14 @@
         @toggle-menubar="toggleMenuBar"
         @toggle-contactbar="toggleContactBar"
       />
-      <menu-bar :menuBar="menuBar" />
+      <menu-bar-v-2
+        v-if="$route.path === '/sls/invoice2/create'"
+        :menuBar="menuBar"
+      />
+      <menu-bar
+        v-else
+        :menuBar="menuBar"
+      />
       <contact-drawer :contactBar="contactBar" />
       <router-view />
     </q-page-container>
@@ -22,6 +29,7 @@ import { fetchWrapper } from "src/helpers"
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 import { useTheme } from "src/components/layouts/main/_composables/ThemeStore.js"
 import MenuBar from "src/components/layouts/main/MenuBar.vue"
+import MenuBarV2 from "src/components/layouts/main/MenuBarV2.vue"
 import contactDrawer from "src/components/layouts/main/ContactDrawer.vue"
 import MainHeader from "src/components/layouts/main/MainHeader.vue"
 import TodayDate from "src/components/shared/TodayDate.vue"
@@ -94,4 +102,5 @@ onMounted(() => {
 
 .q-item__section--avatar {
   min-width: 0;
-}</style>
+}
+</style>

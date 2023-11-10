@@ -215,57 +215,10 @@
 
   <q-separator class="q-mt-md" />
 
-  <div class="row justify-between">
-    <div class="col-7">
+  <div class="clear-fix row q-my-xl">
 
-      <div class="row reverse text-bold items-center justify-between q-my-md bg-primary border-radius-sm">
-        <div class="row q-gutter-xs items-center q-pa-md">
-          <q-btn round unelevated icon="o_settings" size="sm" text-color="white" />
-          <div class="text-bold text-white">دسترسی سریع</div>
-        </div>
-        <q-input
-          color="grey-5"
-          outlined
-          placeholder="جستجو"
-          dense
-          clearable
-          clear-icon="o_close"
-          rounded
-          class="text-caption q-ml-md"
-          style="width: 250px;"
-        >
-          <template v-slot:prepend>
-            <q-icon
-              name="o_search"
-              color="primary"
-            />
-          </template>
-        </q-input>
-      </div>
-      <div class="quick-items-section">
-        <q-card
-          v-for="n in 2"
-          :key="n"
-          class="no-shadow bordered-1"
-        >
-          <q-card-section class="q-gutter-md">
-            <div class="">
-              <q-badge
-                rounded
-                class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-              ><span class="text-bold text-caption">18</span></q-badge><span
-                class="text-bold text-caption text-on-dark-1">موجودی</span>
-            </div>
-            <div class="text-subtitle2 text-bold text-on-dark q-gutter-xs">موز خالدار اکوآدور</div>
-          </q-card-section>
-        </q-card>
-      </div>
-
-    </div>
-    <div
-      class="col-3 q-gutter-y-md q-mr-lg"
-      style="margin-top: 70px;"
-    >
+    <div class="col-8"></div>
+    <div class="col-3 q-gutter-y-md">
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>
         <div>{{ rowAmount }} <span class="text-caption"> ریال</span></div>
@@ -338,11 +291,10 @@
 
       <q-separator
         color="primary"
-        size="2px"
+        size="1.5px"
       />
 
     </div>
-
 
   </div>
 
@@ -507,13 +459,5 @@ const totalAmount = computed(() => {
 
 .quick-items {
   height: 100px;
-}
-
-.quick-items-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-content: end;
-  row-gap: 16px;
-  column-gap: 16px;
 }
 </style>

@@ -33,7 +33,7 @@
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
-      <q-list class="menu-list q-ml-sm q-mr-xs">
+      <q-list class="menu-list">
         <q-item
           class="flex items-center cursor-pointer q-mr-md"
           to="/dashboard"
