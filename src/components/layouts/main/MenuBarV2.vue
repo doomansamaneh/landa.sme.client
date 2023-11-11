@@ -315,7 +315,7 @@ function getProducts() {
 }
 
 function handleResponse(data) {
-  console.log(data);
+  // console.log(data);
   products.value = data;
 }
 

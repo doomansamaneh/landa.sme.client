@@ -1,7 +1,7 @@
 <template>
   <div class="row q-gutter-x-md text-bold q-mb-sm">
     <div style="width: 25% ;">کالا/خدمت</div>
-    <div style="width: 7%;">تعداد/مقدار</div>
+    <div style="width: 9%;">تعداد/مقدار</div>
     <div style="width: 10%;">واحد سنجش</div>
     <div style="width: 10%;">مبلغ</div>
     <div style="width: 15%;">مالیات بر ارزش افزوده</div>
@@ -37,7 +37,7 @@
         <div style="width: 25%;">
           <product-lookup placeholder="انتخاب کالا/خدمت" />
         </div>
-        <div style="width: 7%;">
+        <div style="width: 9%;">
           <q-input
             dense
             outlined
@@ -63,76 +63,17 @@
         </div>
         <div class="col-1 row items-center justify-end q-gutter-x-sm">
           <q-btn
-            color="primary"
             unelevated
             round
             class="text-on-dark"
             size="sm"
-            icon="o_add"
-            @click="addRow(index)"
-          />
-          <q-btn
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_more_horiz"
+            @click="deleteRow(index)"
           >
-            <q-menu
-              :offset="[0, 20]"
-              fit
-              style="width: 150px;"
-            >
-              <q-list
-                dense
-                padding
-              >
-                <q-item
-                  clickable
-                  v-close-popup
-                  tabindex="0"
-                  @click="toggleDetail"
-                >
-                  <div class="q-py-sm">
-                    <q-item-section avatar>
-                      <q-avatar
-                        class="dark-icon"
-                        size="sm"
-                      ><q-icon
-                          name="o_percent"
-                          size="14px"
-                        /></q-avatar>
-                    </q-item-section>
-                  </div>
-                  <q-item-section>
-                    <div>تخفیف</div>
-                  </q-item-section>
-                </q-item>
-                <q-item
-                  clickable
-                  v-close-popup
-                  tabindex="0"
-                  @click="deleteRow(index)"
-                  v-if="rows.length > 1"
-                >
-                  <div class="q-py-sm">
-                    <q-item-section avatar>
-                      <q-avatar
-                        class="dark-icon"
-                        size="sm"
-                      ><q-icon
-                          name="o_delete"
-                          size="14px"
-                        /></q-avatar>
-                    </q-item-section>
-                  </div>
-                  <q-item-section>
-                    <div>حذف</div>
-                  </q-item-section>
-                </q-item>
-              </q-list>
-            </q-menu>
+
+          <q-icon name="o_delete" size="20px"/>
+
           </q-btn>
+          <!-- v-if="rows.length > 1" -->
         </div>
       </div>
       <div

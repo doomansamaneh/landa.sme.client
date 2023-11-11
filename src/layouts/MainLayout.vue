@@ -8,14 +8,11 @@
         @toggle-menubar="toggleMenuBar"
         @toggle-contactbar="toggleContactBar"
       />
-      <menu-bar-v-2
+      <!-- <menu-bar-v-2
         v-if="$route.path === '/sls/invoice2/create'"
         :menuBar="menuBar"
-      />
-      <menu-bar
-        v-else
-        :menuBar="menuBar"
-      />
+      /> -->
+      <menu-bar :menuBar="menuBar" />
       <contact-drawer :contactBar="contactBar" />
       <router-view />
     </q-page-container>
@@ -71,21 +68,16 @@ onMounted(() => {
   theme.store()
 })
 
+if (route.path === '/sls/invoice2/create') {
+  menuBar.value = false;
+}
 </script>
 
 <style lang="scss">
-// .layout {
-//   background-color: #f1f3f4;
-//   border-bottom: 1px solid #2d2d2d2d;
-// }
 
 .q-menu {
   z-index: 9999;
 }
-
-// .q-focus-helper {
-//   display: none;
-// }
 
 .user-profile {
   min-width: 240px;
@@ -103,4 +95,5 @@ onMounted(() => {
 .q-item__section--avatar {
   min-width: 0;
 }
+
 </style>

@@ -23,6 +23,11 @@
 
   }
 
+  .card-hover:hover {
+    background-color: $dark;
+    transition: 300ms;
+  }
+
   .bg-on-dark {
     background-color: lighten($dark, 5);
   }

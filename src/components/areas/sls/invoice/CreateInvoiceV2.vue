@@ -37,25 +37,31 @@
       </q-btn>
     </template>
   </tool-bar>
-  <q-card
-    class="bordered q-pa-md"
+  <div
+    class="row q-gutter-x-lg"
     style="margin-top: 40px;"
   >
-    <q-card-section>
-      <master-section style="margin-bottom: 90px;" />
-    </q-card-section>
-    <q-card-section>
-      <detail-section />
-      <!-- <quick-access /> -->
-    </q-card-section>
-  </q-card>
+    <div class="col-3">
+      <quick-access />
+    </div>
+    <div class="col">
+      <q-card class="bordered q-pa-md fit">
+        <q-card-section>
+          <master-section />
+        </q-card-section>
+        <q-card-section class="q-mt-lg">
+          <detail-section />
+        </q-card-section>
+      </q-card>
+
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import MasterSection from "src/components/areas/sls/invoice/create/MasterSectionV2.vue"
 import DetailSection from "src/components/areas/sls/invoice/create/DetailSectionV2.vue"
+import QuickAccess from "src/components/areas/sls/invoice/create/QuickAccess.vue"
 </script>
-
 

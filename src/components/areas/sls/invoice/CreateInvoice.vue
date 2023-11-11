@@ -38,7 +38,7 @@
     </template>
   </tool-bar>
   <q-card
-    class="bordered q-pa-md"
+    class="bordered q-pa-md fit"
     style="margin-top: 40px;"
   >
     <q-card-section>

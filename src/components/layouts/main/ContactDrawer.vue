@@ -30,14 +30,14 @@
       </q-input>
     </div>
     <q-scroll-area
-      class="fit"
+      style="height: calc(100vh - 150px);"
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
       <q-list ref="scrollTargetRef">
         <q-infinite-scroll
           @load="onLoadRef"
-          :offset="500"
+          :offset="250"
           :scroll-target="scrollTargetRef"
         >
           <q-item
@@ -154,7 +154,7 @@ const scrollTargetRef = ref(null)
 
 onMounted(() => {
   //todo:
-  //alert("customer search data loaded. why?")
+  // alert("customer search data loaded. why?")
   //tableStore.loadData()
   //rows.value = tableStore.rows.value//.push(...tableStore.rows.value)
 })
