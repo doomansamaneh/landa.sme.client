@@ -1,4 +1,6 @@
 <template>
+  <h4>{{ productLookup?.lookup.selectedId }}</h4>
+  <pre>{{ productLookup?.lookup.tableStore.activeRow.value }}</pre>
   <div class="row q-gutter-x-md text-bold q-mb-sm">
     <div style="width: 25% ;">کالا/خدمت</div>
     <div style="width: 9%;">تعداد/مقدار</div>
@@ -35,7 +37,7 @@
       <div class="row q-gutter-md">
 
         <div style="width: 25%;">
-          <product-lookup placeholder="انتخاب کالا/خدمت" />
+          <custom-input placeholder="انتخاب کالا/خدمت" v-model="productName" />
         </div>
         <div style="width: 9%;">
           <q-input
@@ -70,7 +72,10 @@
             @click="deleteRow(index)"
           >
 
-          <q-icon name="o_delete" size="20px"/>
+            <q-icon
+              name="o_delete"
+              size="20px"
+            />
 
           </q-btn>
           <!-- v-if="rows.length > 1" -->
@@ -325,6 +330,7 @@
 
 <script setup>
 import { ref, computed } from "vue"
+import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import ProductLookup from "src/components/shared/Lookups/ProductLookup.vue"
 import ProductUnitLookup from "src/components/shared/Lookups/ProductUnitLookup.vue"
 import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
@@ -335,6 +341,8 @@ const vatIsCash = ref(true)
 const quantity = ref(1)
 const showMoreDetail = ref(false)
 const generalDiscountValue = ref(0)
+const productLookup = ref(null)
+const productName = ref()
 
 const rows = ref([
   {
@@ -400,5 +408,4 @@ const totalAmount = computed(() => {
 
 .quick-items {
   height: 100px;
-}
-</style>
+}</style>

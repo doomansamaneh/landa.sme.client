@@ -67,7 +67,7 @@
               caption
               class="q-mb-sm"
             >قرارداد</q-item-label>
-            <contract-lookup />
+            <contract-lookup ref="contractLookup" />
           </div>
         </div>
         <div style="width: 25%;">
@@ -83,25 +83,25 @@
         <div class="col">
           <div class="row q-gutter-md">
             <div>
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >تاریخ</q-item-label>
-            <date-time
-              v-model="date"
-              style="width:165px"
-            />
-          </div>
-          <div>
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >سررسید</q-item-label>
-            <date-time
-              v-model="dueDate"
-              style="width:165px"
-            />
-          </div>
+              <q-item-label
+                caption
+                class="q-mb-sm"
+              >تاریخ</q-item-label>
+              <date-time
+                v-model="date"
+                style="width:165px"
+              />
+            </div>
+            <div>
+              <q-item-label
+                caption
+                class="q-mb-sm"
+              >سررسید</q-item-label>
+              <date-time
+                v-model="dueDate"
+                style="width:165px"
+              />
+            </div>
           </div>
         </div>
 
@@ -120,6 +120,7 @@ import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
 import DetailSectionV2 from "./DetailSectionV2.vue"
 
 const description = ref('')
+const contractLookup = ref(null)
 const invoiceNo = ref(false)
 const invoiceNoField = ref('1')
 const date = ref('')

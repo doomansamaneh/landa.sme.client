@@ -7,7 +7,6 @@
     clear-icon="clear"
     :label="label"
     :placeholder="placeholder"
-    class="text-caption"
   />
 </template>
 

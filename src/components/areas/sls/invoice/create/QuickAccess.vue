@@ -1,11 +1,9 @@
 <template>
-  <q-card
-    bordered
-    class="fit no-shadow"
-  >
+  <q-card class="bordered fit no-shadow">
     <q-tabs
       v-model="tab"
       inline-label
+      indicator-color="primary"
       outside-arrows
       class="text-on-dark"
     >
@@ -15,14 +13,6 @@
       >
 
         <template #default>
-          <q-badge
-            transparent
-            rounded
-            floating
-            text-color="white"
-            color="red"
-          >6</q-badge>
-
           <q-icon
             name="o_inventory_2"
             size="xs"
@@ -96,94 +86,82 @@
         </div>
 
         <q-scroll-area
-          style="height: 450px;"
+          style="height: 510px;"
           class="q-mb-md"
           :thumb-style="helper.thumbStyle"
           :bar-style="helper.barStyle"
         >
-          <div class="products-container q-gutter-y-md q-pa-sm q-mx-md">
-            <q-card
-              v-ripple
-              bordered
-              v-for="product in products"
-              :key="product.id"
-              class="no-shadow card-hover cursor-pointer"
-              style="min-height: 90px;"
-            >
-              <q-btn
-                class="absolute-top-right"
-                flat
-                unelevated
-                round
-                color="red"
-                size="sm"
-                @click.stop="removeProduct"
+          <div class="q-gutter-y-md q-pa-sm q-mx-sm">
+            <q-list>
+              <q-item
+                @click="incrementQuantity(product)"
+                v-for="(product, index) in products"
+                :key="index"
+                clickable
+                v-close-popup
+                class="q-py-sm border-radius-xs text-on-dark"
               >
-                <q-icon
-                  name="o_close"
+                <q-btn
+                  v-if="isSelected(product)"
+                  unelevated
+                  round
+                  size="sm"
+                  color="secondary"
+                  class="z-max text-bold q-ma-sm absolute-top-left"
+                  @click="incrementQuantity(product)"
+                >
+                  <div class="text-body1">
+                    {{ getSelectedProductQuantity(product) }}
+                  </div>
+                </q-btn>
+                <q-btn
+                  v-if="isSelected(product)"
+                  class="absolute-top-right"
+                  flat
+                  unelevated
+                  round
                   color="red"
-                  size="14px"
-                />
-              </q-btn>
-              <q-btn
-                unelevated
-                round
-                size="sm"
-                color="grey-6"
-                class="absolute-top-left"
-                @click.stop="addProduct"
-              >
-                <div class="text-bold text-body1">8</div>
-              </q-btn>
-              <div class="column q-gutter-y-xs absolute-bottom-left">
-                <q-btn
-                  square
-                  unelevated
-                  color="positive"
-                  @click.stop="addProduct"
-                  padding="2px 4px"
+                  size="sm"
+                  @click.stop="removeProduct(product)"
                 >
                   <q-icon
-                    name="o_add"
-                    color="white"
-                    size="14px"
+                    name="o_close"
+                    color="red"
+                    size="20px"
                   />
                 </q-btn>
-                <q-btn
-                  square
-                  unelevated
-                  color="orange-8"
-                  @click.stop="minusProduct"
-                  padding="2px 4px"
-                >
-                  <q-icon
-                    name="o_remove"
-                    color="white"
-                    size="14px"
-                  />
-                </q-btn>
-              </div>
-              <div class="column items-center q-gutter-y-sm q-pa-md">
-                <q-avatar
-                  class="border-radius-xs"
-                  square
-                  v-if="product.avatar"
-                >
-                  <q-img src="https://cdn.quasar.dev/img/avatar.png" />
-                </q-avatar>
+                <div class="row q-gutter-x-sm items-center q-my-sm">
+                  <q-avatar
+                    class="border-radius-xs"
+                    square
+                    v-if="product.picture"
+                    color="primary"
+                    text-color="white"
+                    size="58px"
+                  >
+                    <img :src="product.picture">
+                  </q-avatar>
 
-                <q-avatar
-                  text-color="white"
-                  color="primary"
-                >
-                  <div class="text-bold text-body1">{{ helper.getFirstChar(product.title) }}</div>
-                </q-avatar>
-                <div class="column q-gutter-y-xs q-px-md text-caption text-center">
-                  <div class="">{{ product.code }}</div>
-                  <div class="">{{ product.title }}</div>
+                  <q-avatar
+                    class="border-radius-xs"
+                    square
+                    size="58px"
+                    color="primary"
+                    text-color="white"
+                    v-else
+                  >
+                    <div class="char text-body1 text-bold">
+                      {{ helper.getFirstChar(product.title) }}
+                    </div>
+                  </q-avatar>
                 </div>
-              </div>
-            </q-card>
+                <q-item-section class="q-pl-md">
+                  <q-item-label class="text-body3">{{ product.code }}</q-item-label>
+                  <q-item-label class="text-body3">{{ product.title }}</q-item-label>
+                </q-item-section>
+
+              </q-item>
+            </q-list>
           </div>
         </q-scroll-area>
       </q-tab-panel>
@@ -199,6 +177,7 @@ import { fetchWrapper } from "src/helpers";
 
 const tab = ref('my-products')
 const products = ref([])
+const selectedProducts = ref([])
 
 function getProducts() {
   fetchWrapper
@@ -216,12 +195,21 @@ function handleResponse(data) {
   products.value = data;
 }
 
-const removeProduct = () => {
-  alert("Product removed!")
+function isSelected(product) {
+  return selectedProducts.value.includes(product)
 }
 
-const addProduct = () => {
-  alert("Product added!")
+function getSelectedProductQuantity(product) {
+  return selectedProducts.value.filter((p) => p === product).length
+}
+
+function incrementQuantity(product) {
+
+  selectedProducts.value.push(product)
+}
+
+function removeProduct(product) {
+  selectedProducts.value = selectedProducts.value.filter((p) => p !== product);
 }
 
 onMounted(() => {
@@ -229,10 +217,3 @@ onMounted(() => {
 })
 
 </script>
-
-<style>
-.products-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-</style>

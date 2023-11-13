@@ -38,14 +38,14 @@
     </template>
   </tool-bar>
   <div
-    class="row q-gutter-x-lg"
+    class="row q-gutter-x-xs"
     style="margin-top: 40px;"
   >
-    <div class="col-3">
+    <div style="width: 22%;">
       <quick-access />
     </div>
     <div class="col">
-      <q-card class="bordered q-pa-md fit">
+      <q-card class="bordered no-shadow q-pa-md fit">
         <q-card-section>
           <master-section />
         </q-card-section>
