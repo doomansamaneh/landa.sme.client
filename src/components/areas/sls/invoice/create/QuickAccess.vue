@@ -94,15 +94,15 @@
           <div class="q-gutter-y-md q-pa-sm q-mx-sm">
             <q-list>
               <q-item
-                @click="incrementQuantity(product)"
                 v-for="(product, index) in products"
                 :key="index"
                 clickable
                 v-close-popup
                 class="q-py-sm border-radius-xs text-on-dark"
+                @click="createInvoice.incrementQuantity(product)"
               >
                 <q-btn
-                  v-if="isSelected(product)"
+                  v-if="createInvoice.isSelected(product)"
                   unelevated
                   round
                   size="sm"
@@ -111,18 +111,18 @@
                   @click="incrementQuantity(product)"
                 >
                   <div class="text-body1">
-                    {{ getSelectedProductQuantity(product) }}
+                    {{ createInvoice.getSelectedProductQuantity(product) }}
                   </div>
                 </q-btn>
                 <q-btn
-                  v-if="isSelected(product)"
+                  v-if="createInvoice.isSelected(product)"
                   class="absolute-top-right"
                   flat
                   unelevated
                   round
                   color="red"
                   size="sm"
-                  @click.stop="removeProduct(product)"
+                  @click.stop="createInvoice.removeProduct(product)"
                 >
                   <q-icon
                     name="o_close"
@@ -174,10 +174,11 @@
 import { ref, computed, onMounted } from "vue"
 import { helper } from "src/helpers";
 import { fetchWrapper } from "src/helpers";
+import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice"
 
+const createInvoice = useCreateInvoice()
 const tab = ref('my-products')
 const products = ref([])
-const selectedProducts = ref([])
 
 function getProducts() {
   fetchWrapper
@@ -192,28 +193,13 @@ function getProducts() {
 }
 
 function handleResponse(data) {
+  // console.log(data);
   products.value = data;
 }
 
-function isSelected(product) {
-  return selectedProducts.value.includes(product)
-}
-
-function getSelectedProductQuantity(product) {
-  return selectedProducts.value.filter((p) => p === product).length
-}
-
-function incrementQuantity(product) {
-
-  selectedProducts.value.push(product)
-}
-
-function removeProduct(product) {
-  selectedProducts.value = selectedProducts.value.filter((p) => p !== product);
-}
-
 onMounted(() => {
-  getProducts()
+  getProducts(),
+  createInvoice
 })
 
 </script>

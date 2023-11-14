@@ -250,25 +250,43 @@
               self="bottom left"
               :offset="[10, 8]"
             >
-              <q-input
-                outlined
-                dense
-                v-model="generalDiscountValue"
-              >
+              <q-card>
+                <q-card-section>
+                  <q-input
+                    outlined
+                    dense
+                    v-model="generalDiscountValue"
+                    @update:model-value="confirmGeneralDiscount"
+                  >
 
-                <template #append>
+                    <template #append>
+                      <q-btn
+                        size="xs"
+                        :icon="generalDiscount ? 'attach_money' : 'o_percent'"
+                        class="cursor-pointer"
+                        color="primary"
+                        round
+                        outline
+                        @click="generalDiscount = !generalDiscount"
+                      />
+                    </template>
+
+                  </q-input>
+                </q-card-section>
+
+                <q-card-actions class="dark-1 q-px-md">
                   <q-btn
-                    size="xs"
-                    :icon="generalDiscount ? 'attach_money' : 'o_percent'"
-                    class="cursor-pointer"
-                    color="primary"
-                    round
-                    outline
-                    @click="generalDiscount = !generalDiscount"
-                  />
-                </template>
-
-              </q-input>
+                    @click="confirmGeneralDiscount"
+                    padding="4px 12px"
+                    unelevated
+                    class="bg-primary text-white"
+                  >تایید</q-btn>
+                  <q-btn
+                    padding="4px 12px"
+                    unelevated
+                  >انصراف</q-btn>
+                </q-card-actions>
+              </q-card>
             </q-menu>
 
           </q-btn>
@@ -311,7 +329,7 @@ const generalDiscount = ref(true)
 const vatIsCash = ref(true)
 const quantity = ref(1)
 const showMoreDetail = ref(false)
-const generalDiscountValue = ref(0)
+const generalDiscountValue = 0
 
 const rows = ref([
   {
@@ -364,7 +382,7 @@ const rowTotalAmount = (row) =>
   Number(row.quantity) * Number(row.amount) - Number(row.rowDiscount) + Number(row.vat);
 
 const totalAmount = computed(() => {
-  return rows.value.reduce((total, row) => total + (Number(row.quantity) * Number(row.amount) - (Number(row.rowDiscount)) - Number(generalDiscountValue.value)) + Number(row.vat), 0);
+  return rows.value.reduce((total, row) => total + (Number(row.quantity) * Number(row.amount) - (Number(row.rowDiscount)) - Number(generalDiscountValue)) + Number(row.vat), 0);
 });
 
 const getProductRef = (index) => {
@@ -372,6 +390,12 @@ const getProductRef = (index) => {
     rows.value[index].prdLookupRef = el;
   };
 };
+
+const confirmGeneralDiscount = () => {
+      const newValue = 'Confirmed';
+
+      generalDiscountValue = newValue;
+    }
 
 </script>
 

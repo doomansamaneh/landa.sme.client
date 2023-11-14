@@ -33,6 +33,7 @@
           dense
           v-model="invoiceNoField"
           :disable="isInputDisabled"
+          style="width:165px"
         >
           <template #append>
             <q-icon
