@@ -301,7 +301,7 @@
 </template>
 
 <script setup>
-import { ref, onBeforeMount, computed } from "vue"
+import { ref, computed } from "vue"
 import ProductLookup from "src/components/shared/Lookups/ProductLookup.vue"
 import ProductUnitLookup from "src/components/shared/Lookups/ProductUnitLookup.vue"
 import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
@@ -372,11 +372,6 @@ const getProductRef = (index) => {
     rows.value[index].prdLookupRef = el;
   };
 };
-
-// You can use onBeforeMount to set the ref for the initial row
-onBeforeMount(() => {
-  rows.value[0].prdLookupRef = null;
-});
 
 </script>
 
