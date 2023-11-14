@@ -31,11 +31,13 @@
       v-for="(row, index) in rows"
       :key="index"
     >
-
       <div class="row q-gutter-md">
-
         <div style="width: 25%;">
-          <product-lookup placeholder="انتخاب کالا/خدمت" />
+          <pre>{{ row.prdLookupRef?.lookup?.tableStore.activeRow.value }}</pre>
+          <product-lookup
+            placeholder="انتخاب کالا/خدمت"
+            :ref="getProductRef(index)"
+          />
         </div>
         <div style="width: 7%;">
           <q-input
@@ -293,14 +295,13 @@
         color="primary"
         size="1.5px"
       />
-
     </div>
 
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, onBeforeMount, computed } from "vue"
 import ProductLookup from "src/components/shared/Lookups/ProductLookup.vue"
 import ProductUnitLookup from "src/components/shared/Lookups/ProductUnitLookup.vue"
 import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
@@ -314,6 +315,7 @@ const generalDiscountValue = ref(0)
 
 const rows = ref([
   {
+    prdLookupRef: null,
     product: '',
     quantity: 0,
     unit: '',
@@ -322,10 +324,11 @@ const rows = ref([
     rowDiscount: 0,
     description: '',
   },
-]);
+])
 
 const addRow = (index) => {
   const newRow = {
+    prdLookupRef: null,
     product: '',
     quantity: 0,
     unit: '',
@@ -336,7 +339,6 @@ const addRow = (index) => {
   };
   rows.value.splice(index + 1, 0, newRow);
 };
-
 
 const deleteRow = (index) => {
   rows.value.splice(index, 1);
@@ -363,6 +365,17 @@ const rowTotalAmount = (row) =>
 
 const totalAmount = computed(() => {
   return rows.value.reduce((total, row) => total + (Number(row.quantity) * Number(row.amount) - (Number(row.rowDiscount)) - Number(generalDiscountValue.value)) + Number(row.vat), 0);
+});
+
+const getProductRef = (index) => {
+  return (el) => {
+    rows.value[index].prdLookupRef = el;
+  };
+};
+
+// You can use onBeforeMount to set the ref for the initial row
+onBeforeMount(() => {
+  rows.value[0].prdLookupRef = null;
 });
 
 </script>

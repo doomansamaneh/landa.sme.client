@@ -6,7 +6,7 @@
     searchField="title"
     ref="lookup"
   >
-  <template #thead>
+    <template #thead>
       <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
         <div class="col-2 q-pr-md">

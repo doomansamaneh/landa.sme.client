@@ -6,7 +6,7 @@
           <div class="q-gutter-md">
             <div>
               <!-- <h4>{{ customerLookup?.lookup.selectedId }}</h4>
-                  <pre>{{ customerLookup?.lookup.tableStore.activeRow.value }}</pre> -->
+              <pre>{{ customerLookup?.lookup.tableStore.activeRow.value }}</pre> -->
               <q-item-label
                 caption
                 class="q-mb-sm"
@@ -77,7 +77,6 @@
                 :name="invoiceNo ? 'o_no_encryption' : 'o_lock'"
                 class="cursor-pointer all-pointer-events"
                 @click="toggleInvocieNo"
-
               />
             </template>
           </q-input>
@@ -133,4 +132,5 @@ const isInputDisabled = computed(() => !invoiceNo.value)
   font-size: 14px;
   letter-spacing: 0;
   color: #697588;
-}</style>
+}
+</style>

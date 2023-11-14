@@ -56,7 +56,6 @@
 import { ref } from "vue"
 import LookupView from "src/components/shared/DataTables/LookupView.vue"
 import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
-import { helper } from "src/helpers"
 
 const lookup = ref(null)
 
