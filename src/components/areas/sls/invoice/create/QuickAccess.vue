@@ -101,35 +101,35 @@
                 class="q-py-sm border-radius-xs text-on-dark"
                 @click="createInvoice.incrementQuantity(product)"
               >
-                <q-btn
-                  v-if="createInvoice.isSelected(product)"
-                  unelevated
-                  round
-                  size="sm"
-                  color="secondary"
-                  class="z-max text-bold q-ma-sm absolute-top-left"
-                  @click="incrementQuantity(product)"
-                >
-                  <div class="text-body1">
-                    {{ createInvoice.getSelectedProductQuantity(product) }}
-                  </div>
-                </q-btn>
-                <q-btn
-                  v-if="createInvoice.isSelected(product)"
-                  class="absolute-top-right"
-                  flat
-                  unelevated
-                  round
-                  color="red"
-                  size="sm"
-                  @click.stop="createInvoice.removeProduct(product)"
-                >
-                  <q-icon
-                    name="o_close"
+                <template v-if="createInvoice.getProductQuantity(product.id) > 0">
+                  <q-btn
+                    unelevated
+                    round
+                    size="sm"
+                    color="secondary"
+                    class="z-max text-bold q-ma-sm absolute-top-left"
+                    @click="createInvoice.incrementQuantity(product)"
+                  >
+                    <div class="text-body1">
+                      {{ createInvoice.getProductQuantity(product.id) }}
+                    </div>
+                  </q-btn>
+                  <q-btn
+                    class="absolute-top-right"
+                    flat
+                    unelevated
+                    round
                     color="red"
-                    size="20px"
-                  />
-                </q-btn>
+                    size="sm"
+                    @click.stop="createInvoice.removeProduct(product)"
+                  >
+                    <q-icon
+                      name="o_close"
+                      color="red"
+                      size="20px"
+                    />
+                  </q-btn>
+                </template>
                 <div class="row q-gutter-x-sm items-center q-my-sm">
                   <q-avatar
                     class="border-radius-xs"
@@ -199,7 +199,7 @@ function handleResponse(data) {
 
 onMounted(() => {
   getProducts(),
-  createInvoice
+    createInvoice
 })
 
 </script>

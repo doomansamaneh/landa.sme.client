@@ -38,14 +38,14 @@
         <div style="width: 25%;">
           <custom-input
             placeholder="انتخاب کالا/خدمت"
-            v-model="createInvoice.productTitle"
+            v-model="row.productTitle"
           />
         </div>
         <div style="width: 9%;">
           <q-input
             dense
             outlined
-            v-model="selectedProductCount"
+            v-model="row.quantity"
           />
         </div>
         <div style="width: 10%;">
@@ -53,14 +53,14 @@
             dense
             outlined
             paceholder="واحد سنجش"
-            v-model="createInvoice.productUnitTitle"
+            v-model="row.productUnitTitle"
           />
         </div>
         <div style="width: 10%;">
           <q-input
             dense
             outlined
-            v-model="createInvoice.productPrice"
+            v-model="row.price"
           />
         </div>
         <div style="width: 15%;">
@@ -76,7 +76,7 @@
             round
             class="text-on-dark"
             size="sm"
-            @click="deleteRow(index)"
+            @click="createInvoice.removeItem(row)"
           >
 
             <q-icon

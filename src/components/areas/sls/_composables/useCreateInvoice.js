@@ -1,52 +1,51 @@
-import { ref } from "vue"
+import { ref, computed } from "vue"
 
 const rows = ref([])
-
-
-const productId = ref('')
-const productTitle = ref('')
-const productPrice = ref('')
-const productUnitTitle = ref('')
 
 export function useCreateInvoice() {
 
   const incrementQuantity = (product) => {
-    rows.value.push(product);
-
-    const selectedProductId = product.id;
-    const selectedProductTitle = product.title;
-    const selectedProductPrice = product.price;
-    const selectedProductUnitTitle = product.productUnitTitle;
-
-    productId.value = selectedProductId
-    productTitle.value = selectedProductTitle
-    productPrice.value = selectedProductPrice
-    productUnitTitle.value = selectedProductUnitTitle
-
+    const selectedRows = rows.value.filter(r => r.productId === product.id)
+    if (selectedRows.length > 0)
+      selectedRows[0].quantity += 1
+    else rows.value.push({
+      productId: product.id,
+      productTitle: `${product.code} ${product.title}`,
+      productUnitId: product.productUnitId,
+      productUnitTitle: product.productUnitTitle,
+      price: product.price,
+      quantity: 1
+    })
   }
 
-  const isSelected = (product) => {
-    return rows.value.includes(product)
+  const removeItem = (item) => {
+    let index = rows.value.indexOf(item);
+    if (index !== -1) {
+      rows.value.splice(index, 1);
+    }
+    //rows.value.splice(product)
   }
 
-  const getSelectedProductQuantity = (product) => {
-    return rows.value.filter((p) => p === product).length
-  }
 
   const removeProduct = (product) => {
-    rows.value = rows.value.filter((p) => p !== product);
+    const selectedRows = rows.value.filter(r => r.productId === product.id)
+    if (selectedRows.length > 0) {
+      removeItem(selectedRows[0])
+    }
+  }
+
+  const getProductQuantity = (productId) => {
+    const selectedRows = rows.value.filter(r => r.productId === productId)
+    if (selectedRows.length > 0) return selectedRows[0].quantity
+    return 0
   }
 
   return {
     rows,
-    productId,
-    productTitle,
-    productPrice,
-    productUnitTitle,
-    incrementQuantity,
-    isSelected,
-    getSelectedProductQuantity,
-    removeProduct
-  }
 
+    incrementQuantity,
+    removeItem,
+    removeProduct,
+    getProductQuantity
+  }
 }

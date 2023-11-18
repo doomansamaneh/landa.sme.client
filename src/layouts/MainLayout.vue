@@ -6,14 +6,14 @@
     <q-page-container>
       <main-header
         @toggle-menubar="toggleMenuBar"
-        @toggle-contactbar="toggleContactBar"
       />
       <!-- <menu-bar-v-2
         v-if="$route.path === '/sls/invoice2/create'"
         :menuBar="menuBar"
       /> -->
       <menu-bar :menuBar="menuBar" />
-      <contact-drawer :contactBar="contactBar" />
+      <h1>{{ contactDrawerStore.state }}</h1>
+      <contact-drawer v-if="contactDrawerStore.state" />
       <router-view />
     </q-page-container>
   </q-layout>
@@ -30,14 +30,15 @@ import MenuBarV2 from "src/components/layouts/main/MenuBarV2.vue"
 import contactDrawer from "src/components/layouts/main/ContactDrawer.vue"
 import MainHeader from "src/components/layouts/main/MainHeader.vue"
 import TodayDate from "src/components/shared/TodayDate.vue"
+import { useContactDrawer } from "src/composables/useContactDrawer"
 
 const theme = useTheme()
 const route = useRoute()
 
 const menuBar = ref(true)
-const contactBar = ref(false)
 
 const selectedBusiness = useSelectedBusinessStore()
+const contactDrawerStore = useContactDrawer()
 
 async function loadData() {
   const businessId = route.params.businessId
@@ -57,10 +58,6 @@ function handleBusinessData(data) {
 
 function toggleMenuBar() {
   menuBar.value = !menuBar.value
-}
-
-function toggleContactBar() {
-  contactBar.value = !contactBar.value
 }
 
 onMounted(() => {
