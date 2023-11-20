@@ -34,9 +34,9 @@
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
-      <!-- <q-infinite-scroll
+      <q-infinite-scroll
         @load="onLoadRef"
-      > -->
+      >
         <q-item
           @click="goToCustomer"
           v-for="(row, index) in rows"
@@ -125,7 +125,7 @@
             />
           </div>
         </template>
-      <!-- </q-infinite-scroll> -->
+      </q-infinite-scroll>
     </q-scroll-area>
   </q-drawer>
 </template>
@@ -147,22 +147,20 @@ const router = useRouter()
 const rows = ref([])
 
 onMounted(() => {
-  //todo:
-  // alert("customer search data loaded. why?")
   //tableStore.loadData()
   //rows.value = tableStore.rows.value//.push(...tableStore.rows.value)
 })
 
 async function gotoNext(index) {
-  // tableStore.pagination.value.currentPage += 1 //index
+  tableStore.pagination.value.currentPage += 1 //index
   await tableStore.reloadData()
   rows.value.push(...tableStore.rows.value)
 }
 
 async function reloadData() {
-  // tableStore.pagination.value.currentPage = 1
-  // await tableStore.reloadData()
-  rows.value = 'hello'
+  tableStore.pagination.value.currentPage = 1
+  await tableStore.reloadData()
+  rows.value.push(...tableStore.rows.value)
 }
 
 const goToCustomer = () => {
@@ -171,9 +169,9 @@ const goToCustomer = () => {
 
 const onLoadRef = async (index, done) => {
   console.log(index)
-  // if (tableStore.pagination.value.totalItems > rows.value.length) {
-  //   await gotoNext(index)
-  // }
+  if (tableStore.pagination.value.totalItems > rows.value.length) {
+    await gotoNext(index)
+  }
   // else
   //   alert('there is no more items. stop scrolling')
   done()
