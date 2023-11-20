@@ -13,7 +13,7 @@
       /> -->
       <menu-bar :menuBar="menuBar" />
       <h1>{{ contactDrawerStore.state }}</h1>
-      <contact-drawer v-if="contactDrawerStore.state" />
+      <contact-drawer v-if="contactDrawerStore.state.value" />
       <router-view />
     </q-page-container>
   </q-layout>
