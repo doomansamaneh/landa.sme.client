@@ -12,8 +12,9 @@
     @keydown="handleKeyDown"
     debounce="1000"
     :placeholder="placeholder"
+    :loading="tableStore.inputInnerLoader.value"
   >
-  <template #append>
+    <template #append>
       <q-icon
         name="o_close"
         v-if="!isSearchEmpty"
@@ -51,33 +52,35 @@
         />
       </q-inner-loading>
 
-      <div class="header text-caption text-bold bg-dark q-pa-md z-top"
-      style="border-bottom: 1px solid var(--q-primary);">
+      <div
+        class="header text-caption text-bold bg-dark q-pa-md z-top"
+        style="border-bottom: 1px solid var(--q-primary);"
+      >
         <slot name="thead" />
       </div>
 
-        <div
-          class="q-pa-md cursor-pointer"
-          v-for="(row, index) in tableStore.rows.value"
-          :key="row.id"
-          :class="{ 'row-active': index === selectedRowIndex }"
-          @click="onRowClicked(row, index)"
-        >
-          <slot
-            name="td"
-            :row="row"
-            :index="tableStore.rowIndex(index)"
-          />
-        </div>
+      <div
+        class="q-pa-md cursor-pointer"
+        v-for="(row, index) in tableStore.rows.value"
+        :key="row.id"
+        :class="{ 'row-active': index === selectedRowIndex }"
+        @click="onRowClicked(row, index)"
+      >
+        <slot
+          name="td"
+          :row="row"
+          :index="tableStore.rowIndex(index)"
+        />
+      </div>
 
-        <div
-          v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
-          class="q-table__bottom items-center q-table__bottom--nodata"
-        >
-          <slot name="noDataFound">
-            <no-data-found />
-          </slot>
-        </div>
+      <div
+        v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
+        class="q-table__bottom items-center q-table__bottom--nodata"
+      >
+        <slot name="noDataFound">
+          <no-data-found />
+        </slot>
+      </div>
 
       <div
         v-if="tableStore.showPagebar.value"
@@ -111,6 +114,7 @@ import { useQuasar } from "quasar"
 import { useDataTable } from "src/composables/useDataTable"
 import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
+import customInput from "src/components/shared/Forms/CustomInput.vue"
 
 const props = defineProps({
   dataSource: String,
@@ -238,8 +242,7 @@ function emitSelectRow(row) {
 }
 
 async function searchInLookup() {
-  showPopup()
-  await tableStore.reloadData()
+  await showPopup()
 }
 
 function onMenuHide() {
@@ -248,8 +251,10 @@ function onMenuHide() {
 }
 
 async function showPopup() {
-  popup.value.show()
+  await tableStore.reloadData();
+  popup.value.show();
 }
+
 
 function onMenuShow() {
   isPopupOpen.value = true

@@ -34,6 +34,7 @@ export function useDataTable(dataSource
 
   const loading = ref(false)
   const showLoader = ref(false)
+  const inputInnerLoader = ref(false)
 
   const showPagebar = computed(() =>
     pagination.value.totalItems > defaultPageSize
@@ -100,7 +101,7 @@ export function useDataTable(dataSource
     loading.value = true
 
     let loadingTimer = setTimeout(() => {
-      if (loading.value) showLoader.value = true
+      if (loading.value) inputInnerLoader.value = true
     }, loaderTimeout)
 
     setPayload()
@@ -114,6 +115,7 @@ export function useDataTable(dataSource
         clearTimeout(loadingTimer)
         loading.value = false
         showLoader.value = false
+        inputInnerLoader.value = false
       })
   }
 
@@ -237,6 +239,7 @@ export function useDataTable(dataSource
     summaryData: state.value.summaryData,
 
     loading,
+    inputInnerLoader,
     showLoader,
     selectedRows,
     columns,
