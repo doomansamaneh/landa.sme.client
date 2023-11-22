@@ -34,9 +34,7 @@
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
-      <q-infinite-scroll
-        @load="onLoadRef"
-      >
+      <q-infinite-scroll @load="onLoadRef">
         <q-item
           @click="goToCustomer"
           v-for="(row, index) in rows"
@@ -168,13 +166,16 @@ const goToCustomer = () => {
 }
 
 const onLoadRef = async (index, done) => {
-  console.log(index)
+  console.log(index, tableStore.pagination.value.totalItems)
+
   if (tableStore.pagination.value.totalItems > rows.value.length) {
     await gotoNext(index)
   }
+  else {
+    done()
+  }
   // else
   //   alert('there is no more items. stop scrolling')
-  done()
 }
 
 </script>

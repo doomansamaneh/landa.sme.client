@@ -4,15 +4,12 @@
     class="main-layout"
   >
     <q-page-container>
-      <main-header
-        @toggle-menubar="toggleMenuBar"
-      />
+      <main-header @toggle-menubar="toggleMenuBar" />
       <!-- <menu-bar-v-2
         v-if="$route.path === '/sls/invoice2/create'"
         :menuBar="menuBar"
       /> -->
       <menu-bar :menuBar="menuBar" />
-      <h1>{{ contactDrawerStore.state }}</h1>
       <contact-drawer v-if="contactDrawerStore.state.value" />
       <router-view />
     </q-page-container>
@@ -71,7 +68,6 @@ if (route.path === '/sls/invoice2/create') {
 </script>
 
 <style lang="scss">
-
 .q-menu {
   z-index: 9999;
 }
@@ -92,5 +88,4 @@ if (route.path === '/sls/invoice2/create') {
 .q-item__section--avatar {
   min-width: 0;
 }
-
 </style>

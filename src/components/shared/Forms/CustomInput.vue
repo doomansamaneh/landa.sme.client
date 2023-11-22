@@ -3,7 +3,7 @@
     v-model="value"
     outlined
     dense
-    clearable
+    :clearable="clearable"
     clear-icon="clear"
     :label="label"
     :placeholder="placeholder"
@@ -13,7 +13,7 @@
 <script setup>
 import { computed } from "vue";
 
-const props = defineProps(['modelValue', 'placeholder', 'label', 'displayFormat']);
+const props = defineProps(['modelValue', 'placeholder', 'label', 'displayFormat', 'clearable']);
 const emit = defineEmits(['update:modelValue']);
 
 const value = computed({

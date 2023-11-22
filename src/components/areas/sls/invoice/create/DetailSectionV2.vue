@@ -42,26 +42,16 @@
           />
         </div>
         <div style="width: 9%;">
-          <q-input
-            dense
-            outlined
-            v-model="row.quantity"
-          />
+          <custom-input v-model="row.quantity" />
         </div>
         <div style="width: 10%;">
-          <q-input
-            dense
-            outlined
-            paceholder="واحد سنجش"
+          <custom-input
             v-model="row.productUnitTitle"
+            placeholder="واحد سنجش"
           />
         </div>
         <div style="width: 10%;">
-          <q-input
-            dense
-            outlined
-            v-model="row.price"
-          />
+          <custom-input v-model="row.price" />
         </div>
         <div style="width: 15%;">
           <vat-lookup placeholder="مالیات بر ارزش افزوده" />
