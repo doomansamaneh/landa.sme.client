@@ -1,6 +1,7 @@
 import { computed, ref } from "vue"
 import { defaultPageSize, sqlOperator } from "src/constants/enums"
 import { fetchWrapper, helper } from "src/helpers"
+import { Loading } from "quasar"
 
 export function useDataTable(dataSource
   , dataColumns
@@ -98,25 +99,22 @@ export function useDataTable(dataSource
   }
 
   async function fetchData(gridPage, handleResponse) {
-    loading.value = true
+    showLoader.value = true
+    inputInnerLoader.value = true
 
-    let loadingTimer = setTimeout(() => {
-      if (loading.value) inputInnerLoader.value = true
-    }, loaderTimeout)
+    try {
 
-    setPayload()
+      setPayload()
 
-    await fetchWrapper
-      .post(dataSource, gridPage)
-      .then((response) => {
-        handleResponse(response.data.data)
-      })
-      .finally(() => {
-        clearTimeout(loadingTimer)
-        loading.value = false
-        showLoader.value = false
-        inputInnerLoader.value = false
-      })
+      const response = await fetchWrapper.post(dataSource, gridPage)
+      handleResponse(response.data.data)
+    } catch (error) {
+      // Handle errors if needed
+      console.error('Error fetching data:', error)
+    } finally {
+      showLoader.value = false
+      inputInnerLoader.value = false
+    }
   }
 
   function setPayload() {
