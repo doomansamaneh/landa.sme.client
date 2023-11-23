@@ -47,13 +47,23 @@
           />
         </div>
         <div style="width: 9%;">
-          <custom-input v-model="row.quantity" />
+          <custom-input type="number" v-model="row.quantity" />
         </div>
         <div style="width: 10%;">
-          <custom-input
-            v-model="row.productUnitTitle"
+          <q-field
+            outlined
+            dense
             placeholder="واحد سنجش"
-          />
+          >
+
+            <template v-slot:control>
+              <div
+                class="self-center full-width no-outline"
+                tabindex="0"
+              >{{ row.productUnitTitle }}</div>
+            </template>
+
+          </q-field>
         </div>
         <div style="width: 10%;">
           <custom-input v-model="row.price" />
@@ -217,4 +227,5 @@ const selectedProductCount = computed(() => createInvoice.rows.value.length);
 
 .quick-items {
   height: 100px;
-}</style>
+}
+</style>
