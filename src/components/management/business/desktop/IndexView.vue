@@ -238,7 +238,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import { useRouter } from "vue-router"
-import { useQuasar } from "quasar"
+import { Loading, useQuasar } from "quasar"
 import DataView from "src/components/shared/DataTables/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 import AddBusiness from "src/components/management/shared/AddBusinessLink.vue"
@@ -248,17 +248,26 @@ import DeleteBusinessDialog from "src/components/management/business/DeleteBusin
 import { fetchWrapper } from "src/helpers"
 import { useBusiness } from "src/components/management/_composables/useBusiness"
 import { useResetStores } from "src/composables/useResetStores"
+import { useI18n } from "vue-i18n"
 
 const businessStore = useBusiness()
 const resetStore = useResetStores()
+
+const { t } = useI18n()
 
 const router = useRouter()
 const $q = useQuasar()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
-
+const loadingMessage = t('shared.messages.loading-message')
 async function gotoBusiness(item) {
+  Loading.show({
+    message: loadingMessage,
+    boxClass: 'bg-dark text-on-dark text-bold',
+    spinnerColor: 'primary'
+  })
   resetStore.reset()
+
   await fetchWrapper
     .post(`business/gotoBusiness/${item.id}`)
     .then((response) => {
@@ -267,7 +276,9 @@ async function gotoBusiness(item) {
       // router.push(`/${response.data.data.url}`)
       //todo: resolve main-route for gotoBusiness
       router.push(`/${item.id}`)
-    })
+    }).finally(() => {
+      Loading.hide()
+    });
 }
 
 async function reloadData() {

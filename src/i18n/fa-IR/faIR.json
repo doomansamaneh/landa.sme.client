@@ -282,7 +282,8 @@
       "contact-search": "جستجوی مخاطب"
     },
     "messages": {
-      "deleted-successfully": "با موفقیت حذف شد"
+      "deleted-successfully": "با موفقیت حذف شد",
+      "loading-message": "لطفا کمی صبر کنید"
     },
     "prompts": {
       "are-you-sure": "آیا اطمینان دارید"
