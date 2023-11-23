@@ -99,6 +99,7 @@
                 clickable
                 v-close-popup
                 class="q-py-sm border-radius-xs text-on-dark"
+                :class="pulseProduct"
                 @click="createInvoice.incrementQuantity(product)"
               >
                 <template v-if="createInvoice.getProductQuantity(product.id) > 0">
@@ -197,9 +198,18 @@ function handleResponse(data) {
   products.value = data;
 }
 
+const pulseProduct = computed(() => (createInvoice.rows.value.length < 1 ? 'pulse' : ''));
+
 onMounted(() => {
   getProducts(),
     createInvoice
 })
 
 </script>
+
+
+<style>
+.pulse {
+  animation: pulse 3s infinite;
+}
+</style>

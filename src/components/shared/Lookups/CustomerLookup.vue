@@ -43,7 +43,7 @@
     </template>
 
     <template #td="{ row, index }">
-      <div class="row q-gutter-x-md">
+      <div class="row q-gutter-x-md" style="width:300px">
         <div class="col-1 text-caption">{{ index }}</div>
         <div class="col-5 text-caption">{{ row.name }}</div>
         <div class="col-4 text-caption">{{ row.code }}</div>

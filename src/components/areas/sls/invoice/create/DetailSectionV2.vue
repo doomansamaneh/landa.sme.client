@@ -27,14 +27,19 @@
     </div>
     <div class="col-1 row justify-end"></div>
   </div>
-  <q-separator class="q-mb-md" />
-  <div class="column q-gutter-y-md">
+  <q-separator />
+  <div class="column q-py-md q-gutter-y-md">
+    <no-product-selected
+      v-if="createInvoice.rows.value.length < 1"
+      class="q-my-md"
+    />
     <div
       v-for="row in createInvoice.rows.value"
       :key="row.id"
     >
 
       <div class="row q-gutter-md">
+
         <div style="width: 25%;">
           <custom-input
             placeholder="انتخاب کالا/خدمت"
@@ -80,7 +85,7 @@
     </div>
   </div>
 
-  <q-separator class="q-mt-md" />
+  <q-separator />
 
   <div class="clear-fix row q-my-xl">
 
@@ -189,6 +194,7 @@ import { ref, computed } from "vue"
 import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice"
 import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
+import NoProductSelected from "src/components/areas/sls/invoice/create/NoProductSelected.vue"
 
 const createInvoice = useCreateInvoice()
 
@@ -211,5 +217,4 @@ const selectedProductCount = computed(() => createInvoice.rows.value.length);
 
 .quick-items {
   height: 100px;
-}
-</style>
+}</style>

@@ -44,6 +44,7 @@
     <div style="width: 22%;">
       <quick-access />
     </div>
+
     <div class="col">
       <q-card class="bordered no-shadow q-pa-md fit">
         <q-card-section>
@@ -55,6 +56,7 @@
       </q-card>
 
     </div>
+
   </div>
 </template>
 
