@@ -85,13 +85,6 @@ const selectedBusiness = useSelectedBusinessStore()
 
 const emit = defineEmits(["toggle-menubar"])
 
-//todo: rename this css class name and add to themes (light, dark)
-const activeButton = computed(() => (contactDrawerStore.state.value == true ? 'button-active' : ''));
+const activeButton = computed(() => (contactDrawerStore.state.value == true ? 'btn-active' : ''));
 </script>
 
-<style>
-.button-active {
-  background-color: #00000017;
-  border-radius: 100%;
-}
-</style>

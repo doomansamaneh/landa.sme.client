@@ -86,7 +86,7 @@
         </div>
 
         <q-scroll-area
-          style="height: 510px;"
+          style="height:calc(100vh - 80px);"
           class="q-mb-md"
           :thumb-style="helper.thumbStyle"
           :bar-style="helper.barStyle"
@@ -206,7 +206,6 @@ onMounted(() => {
 })
 
 </script>
-
 
 <style>
 .pulse {
