@@ -260,6 +260,7 @@ const $q = useQuasar()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
 const loadingMessage = t('shared.messages.loading-message')
+
 async function gotoBusiness(item) {
   Loading.show({
     message: loadingMessage,
