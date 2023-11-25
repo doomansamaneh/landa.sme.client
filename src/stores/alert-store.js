@@ -19,6 +19,16 @@ export const useAlertStore = defineStore("alert", {
     set(message) {
       message.showAlert = true
       this.alert = message
+
+      if (message.showAlert) {
+        setTimeout(() => {
+          const element = document.documentElement;
+          element.scrollTo({
+            top: element.scrollHeight,
+            behavior: 'smooth'
+          });
+        }, 0);
+      }
     },
     clear() {
       this.alert = null

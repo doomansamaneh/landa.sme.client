@@ -2,19 +2,19 @@
   <div v-if="showBanner">
     <q-banner
       inline-actions
-      class="error-banner"
+      class="z-max error-banner"
     >
-      <q-icon
-        name="public"
-        size="22px"
-        class="q-icon-banner q-mr-xs"
-      />
-      <span>
+      <div class="row items-center text-dark">
+        <q-icon
+          name="public"
+          size="22px"
+          class="q-icon-banner q-mr-xs"
+        />
         <strong class="q-pr-lg">{{ status }}</strong>
         <span>
           {{ $t(message) }}
         </span>
-      </span>
+      </div>
       <template v-slot:action>
         <q-icon
           @click="hideBanner"

@@ -1,9 +1,9 @@
 @mixin error-banner-dark {
   .error-banner {
-    background-color: $dark;
+    background-color: lighten($warning, 40);
     border-top: 3px solid $warning;
   }
   .q-icon-banner {
-    color: $secondary;
+    color: $warning;
   }
 }

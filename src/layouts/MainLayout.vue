@@ -13,6 +13,9 @@
       <contact-drawer v-if="contactDrawerStore.state.value" />
       <router-view />
     </q-page-container>
+
+    <alert-banner />
+    
   </q-layout>
 </template>
 
@@ -28,6 +31,7 @@ import contactDrawer from "src/components/layouts/main/ContactDrawer.vue"
 import MainHeader from "src/components/layouts/main/MainHeader.vue"
 import TodayDate from "src/components/shared/TodayDate.vue"
 import { useContactDrawer } from "src/composables/useContactDrawer"
+import AlertBanner from "src/components/shared/AlertBanner.vue"
 
 const theme = useTheme()
 const route = useRoute()
