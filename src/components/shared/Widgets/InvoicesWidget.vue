@@ -29,12 +29,13 @@
         />
         <span class="text-caption">مانده امسال</span>
         <q-badge
-          rounded
-          outline
-          label="23,101,100"
-          color="primary"
-          class="q-ml-sm bg-dark text-bold q-py-xs q-px-sm"
+        rounded
+        outline
+        label="23,101,100"
+        color="primary"
+        class="q-ml-sm bg-dark text-bold q-py-xs q-px-sm"
         />
+        <q-icon name="open_in_new" class="cursor-pointer q-ml-sm" @click="gotoInvoice" />
         <span class="text-caption">مانده از قبل</span>
         <q-badge
           rounded
@@ -43,6 +44,7 @@
           color="primary"
           class="q-ml-sm bg-dark text-bold q-py-xs q-px-sm"
         />
+        <q-icon name="open_in_new" class="cursor-pointer q-ml-sm" @click="gotoInvoice" />
       </div>
       <div class="">
         <q-btn
@@ -60,3 +62,13 @@
   </div>
 </template>
 
+<script setup>
+import { useRouter } from "vue-router"
+
+const router = useRouter()
+
+const gotoInvoice = () => {
+  router.push('/Sls/Invoice')
+}
+
+</script>
