@@ -1,7 +1,6 @@
 import { computed, ref } from "vue"
 import { defaultPageSize, sqlOperator } from "src/constants/enums"
 import { fetchWrapper, helper } from "src/helpers"
-import { Loading } from "quasar"
 
 export function useDataTable(dataSource
   , dataColumns
@@ -30,8 +29,6 @@ export function useDataTable(dataSource
   const columns = computed(() => store?.columns?.value ?? dataColumns)
   const state = computed(() => store?.state ?? localState)
   const pagination = computed(() => store?.pagination.value ?? localPagination.value)
-
-  const loaderTimeout = 500
 
   const loading = ref(false)
   const showLoader = ref(false)
@@ -66,20 +63,6 @@ export function useDataTable(dataSource
     }
   }
 
-  // async function handleDataResponse(pagedData) {
-  //   const items = pagedData.items;
-  //   let clearActiveRow = true;
-  //   items.forEach((item) => {
-  //     item.selected = state.value.allSelectedIds.value.includes(item.id);
-  //     if (clearActiveRow) clearActiveRow = state.value.activeRow.value?.id != item.id;
-  //   });
-  //   if (clearActiveRow) setActiveRow(null);
-  //   state.value.rows.value = items;
-  //   state.value.summaryData.value = pagedData.summaryData;
-  //   pagination.value.totalItems = pagedData.page.totalItems;
-  //   pagination.value.currentPage = pagedData.page.currentPage;
-  // }
-
   async function reloadData() {
     await fetchData(pagination.value, handleDataResponse)
 
@@ -94,6 +77,7 @@ export function useDataTable(dataSource
       state.value.rows.value = items
       state.value.summaryData.value = pagedData.summaryData
       pagination.value.totalItems = pagedData.page.totalItems
+      pagination.value.totalPages = pagedData.page.totalPages
       pagination.value.currentPage = pagedData.page.currentPage
     }
   }
@@ -103,7 +87,6 @@ export function useDataTable(dataSource
     inputInnerLoader.value = true
 
     try {
-
       setPayload()
 
       const response = await fetchWrapper.post(dataSource, gridPage)

@@ -40,6 +40,11 @@ export const sqlOperator = {
   isNotNull: 13
 }
 
+export const sortOrder = {
+  ascending: 1,
+  descending: 2,
+}
+
 export const cultures = [
   { code: "fa-IR", name: "فارسی", calendar: "persian", dir: "rtl", quasarLang: "fa-IR", flag: "" },
   { code: "ar", name: "العربیة", calendar: "hijri", dir: "rtl", quasarLang: "ar", flag: "" },
