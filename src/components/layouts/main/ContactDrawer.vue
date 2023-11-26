@@ -181,7 +181,7 @@ async function reloadData() {
 }
 
 const hasMoreData = computed(() => {
-  return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalItems;
+  return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages;
 });
 
 

@@ -56,7 +56,7 @@
         <div
           v-if="tableStore.pagination.value.totalPages > 1"
           position="bottom-right"
-          class="q-gutter-sm  q-pa-lg"
+          class="q-gutter-sm q-px-lg q-pb-lg"
         >
           <q-btn
             v-if="tableStore.pagination.value.currentPage > 1"
