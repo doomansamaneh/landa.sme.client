@@ -22,6 +22,17 @@
       <div class="fit bg-dark text-white">
 
         <div class="row justify-between q-px-lg q-pt-md">
+          
+          <q-inner-loading
+            :showing="tableStore.showLoader.value"
+            class="inner-loader z-max"
+          >
+            <q-spinner
+              size="52px"
+              color="primary"
+            />
+          </q-inner-loading>
+
           <div class="text-on-dark text-body2 text-bold">
             <q-icon
               class="q-mr-xs"

@@ -109,7 +109,7 @@
                     size="sm"
                     color="secondary"
                     class="z-max text-bold q-ma-sm absolute-top-left"
-                    @click="createInvoice.incrementQuantity(product)"
+                    @click.stop="createInvoice.incrementQuantity(product)"
                   >
                     <div class="text-body1">
                       {{ createInvoice.getProductQuantity(product.id) }}
@@ -157,8 +157,9 @@
                   </q-avatar>
                 </div>
                 <q-item-section class="q-pl-md">
-                  <q-item-label class="text-body3">{{ product.code }}</q-item-label>
-                  <q-item-label class="text-body3">{{ product.title }}</q-item-label>
+                  <q-item-label class="text-caption">{{ product.title }}</q-item-label>
+                  <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">موجودی: </span>{{ product.stock }}</q-item-label>
+                  <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">قیمت فروش: </span>{{ product.price.toLocaleString() }}</q-item-label>
                 </q-item-section>
 
               </q-item>
@@ -194,7 +195,7 @@ function getProducts() {
 }
 
 function handleResponse(data) {
-  // console.log(data);
+  console.log(data);
   products.value = data;
 }
 

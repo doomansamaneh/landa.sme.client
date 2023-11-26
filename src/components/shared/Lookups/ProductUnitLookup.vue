@@ -7,7 +7,7 @@
     searchField="title"
     ref="lookup"
   >
-  <template #thead>
+    <template #thead>
       <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
         <div class="col q-pr-md">
@@ -37,10 +37,18 @@
     </template>
 
     <template #td="{ row, index }">
-      <div class="row q-gutter-x-md" style="width: 180px;">
-        <div class="col-1 text-caption">{{ index }}</div>
-        <div class="col text-caption">{{ row.title }}</div>
-      </div>
+      <q-item
+        clickable
+        v-close-popup
+      >
+        <div
+          class="row items-center q-gutter-x-md"
+          style="width: 180px;"
+        >
+          <div class="col-1 text-caption">{{ index }}</div>
+          <div class="col text-caption">{{ row.title }}</div>
+        </div>
+      </q-item>
     </template>
   </lookup-view>
 </template>

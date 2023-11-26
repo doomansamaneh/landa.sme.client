@@ -11,7 +11,7 @@
         <div class="col-1">#</div>
         <div class="col q-pr-md">
           <header-column
-            fieldName="name"
+            fieldName="title"
             title="عنوان"
             :lookup="lookup"
           />
@@ -36,10 +36,15 @@
     </template>
 
     <template #td="{ row, index }">
-      <div class="row q-gutter-x-md" style="width: 300px;">
+      <q-item
+        clickable
+        v-close-popup
+      >
+      <div class="row items-center q-gutter-x-md" style="width: 300px;">
         <div class="col-1 text-caption">{{ index }}</div>
         <div class="col text-caption">{{ row.title }}</div>
       </div>
+      </q-item>
     </template>
   </lookup-view>
 </template>

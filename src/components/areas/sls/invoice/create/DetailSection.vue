@@ -33,7 +33,7 @@
     >
       <div class="row q-gutter-md">
         <div style="width: 25%;">
-          <pre>{{ row.prdLookupRef?.lookup?.tableStore.activeRow.value }}</pre>
+          <!-- <pre>{{ row.prdLookupRef?.lookup?.tableStore.activeRow.value }}</pre> -->
           <product-lookup
             placeholder="انتخاب کالا/خدمت"
             :ref="getProductRef(index)"

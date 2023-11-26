@@ -53,25 +53,24 @@
       </q-inner-loading>
 
       <div
-        class="header text-caption text-bold bg-dark q-pa-md z-top"
+        class="header text-caption text-bold bg-dark q-pa-md z-max"
         style="border-bottom: 1px solid var(--q-primary);"
       >
         <slot name="thead" />
       </div>
-
-      <div
-        class="q-pa-md cursor-pointer"
-        v-for="(row, index) in tableStore.rows.value"
-        :key="row.id"
-        :class="{ 'row-active': index === selectedRowIndex }"
-        @click="onRowClicked(row, index)"
-      >
-        <slot
-          name="td"
-          :row="row"
-          :index="tableStore.rowIndex(index)"
-        />
-      </div>
+        <div
+          class="cursor-pointer"
+          v-for="(row, index) in tableStore.rows.value"
+          :key="row.id"
+          :class="{ 'row-active': index === selectedRowIndex }"
+          @click="onRowClicked(row, index)"
+        >
+          <slot
+            name="td"
+            :row="row"
+            :index="tableStore.rowIndex(index)"
+          />
+        </div>
 
       <div
         v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
