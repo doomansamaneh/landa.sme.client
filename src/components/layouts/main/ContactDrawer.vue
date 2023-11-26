@@ -60,6 +60,8 @@
               color="primary"
               text-color="white"
               size="52px"
+              square
+              class="border-radius-xs"
             >
               <img :src="row.avatar">
             </q-avatar>
@@ -68,6 +70,8 @@
               size="52px"
               color="primary"
               text-color="white"
+              square
+              class="border-radius-xs"
               v-else
             >
               <div class="char text-body1 text-bold">

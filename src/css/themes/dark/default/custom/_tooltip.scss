@@ -1,5 +1,6 @@
 @mixin tooltip-dark {
   .custom-tooltip {
     background-color: lighten($dark, 5);
+    z-index: 9999;
   }
 }

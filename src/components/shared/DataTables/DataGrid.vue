@@ -140,17 +140,22 @@
                 />
               </td>
             </tr>
-            <tr
-              class="expand"
-              v-if="row.expanded"
+            <transition
+              enter-active-class="animated fadeIn"
+              leave-active-class="animated fadeOut"
             >
-              <td colspan="100%">
-                <slot
-                  name="detail"
-                  :item="row"
-                > </slot>
-              </td>
-            </tr>
+              <tr
+                class="expand"
+                v-if="row.expanded"
+              >
+                <td colspan="100%">
+                  <slot
+                    name="detail"
+                    :item="row"
+                  > </slot>
+                </td>
+              </tr>
+            </transition>
           </template>
         </tbody>
         <tfoot class="table-total">

@@ -12,14 +12,14 @@
         <div class="col-1">#</div>
         <div class="col-3 q-pr-md">
           <header-column
-            fieldName="name"
+            fieldName="no"
             title="شماره"
             :lookup="lookup"
           />
         </div>
         <div class="col">
           <header-column
-            fieldName="code"
+            fieldName="title"
             title="عنوان"
             :lookup="lookup"
           />
