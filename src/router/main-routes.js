@@ -4,6 +4,7 @@ import HomePage from "src/pages/management/HomePage.vue";
 import IndexView from "src/components/areas/sls/quote/IndexView.vue";
 import InvoiceIndexView from "src/components/areas/sls/invoice/IndexView.vue";
 import CreateInvoice from "src/components/areas/sls/invoice/CreateInvoice.vue";
+import InvoicePreview from "src/components/areas/sls/invoice/InvoicePreview.vue";
 import CreateInvoiceV2 from "src/components/areas/sls/invoice/CreateInvoiceV2.vue";
 
 export default {
@@ -29,6 +30,10 @@ export default {
     {
       path: "sls/invoice",
       component: InvoiceIndexView,
+    },
+    {
+      path: "sls/invoice/preview",
+      component: InvoicePreview,
     },
     {
       path: "sls/invoice/create",
