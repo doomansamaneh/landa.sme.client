@@ -36,17 +36,6 @@
           />
           <div class="q-gutter-y-sm q-pl-sm q-my-md">
             <div class="row q-gutter-x-sm items-center">
-              <!-- <q-input
-                outlined
-                dense
-                clear-icon="clear"
-                clearable
-                v-model="searchModel.amountFrom"
-                @update:model-value="formatNumber"
-                :placeholder='$t("shared.labels.amountFrom")'
-                class="text-caption"
-                style="width: 195px;"
-              /> -->
 
               <custom-input
                 v-model="searchModel.amountFrom"
@@ -80,17 +69,6 @@
                 :placeholder='$t("shared.labels.comment")'
                 style="width: 398px;"
               />
-              <!-- 
-              <q-input
-                outlined
-                dense
-                clearable
-                v-model="searchModel.comment"
-                :placeholder='$t("shared.labels.comment")'
-                clear-icon="clear"
-                class="text-caption"
-                style="width: 400px;"
-              /> -->
             </div>
           </div>
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">

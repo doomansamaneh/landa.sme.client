@@ -279,7 +279,10 @@
       "exportExcel": "تبدیل به اکسل",
       "exportExcelCurrentPage": "تبدیل به اکسل صفحه جاری",
       "advancedSearch": "جستجوی پیشرفته",
-      "contact-search": "جستجوی مخاطب"
+      "contact-search": "جستجوی مخاطب",
+      "next": "پسین",
+      "previous": "پیشین",
+      "loadMore":"بارگزاری بیشتر"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",

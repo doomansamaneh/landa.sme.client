@@ -5,9 +5,8 @@ const rows = ref([])
 export function useCreateInvoice() {
 
   const incrementQuantity = (product) => {
-    const selectedRows = rows.value.filter(r => r.productId === product.id)
-    if (selectedRows.length > 0)
-      selectedRows[0].quantity += 1
+    const selectedRows = rows.value.find(r => r.productId === product.id)
+    if (selectedRows) selectedRows.quantity += 1
     else rows.value.push({
       productId: product.id,
       productTitle: `${product.code} ${product.title}`,
@@ -28,15 +27,13 @@ export function useCreateInvoice() {
 
 
   const removeProduct = (product) => {
-    const selectedRows = rows.value.filter(r => r.productId === product.id)
-    if (selectedRows.length > 0) {
-      removeItem(selectedRows[0])
-    }
+    const selectedRows = rows.value.find(r => r.productId === product.id)
+    if (selectedRows) removeItem(selectedRows)
   }
 
   const getProductQuantity = (productId) => {
-    const selectedRows = rows.value.filter(r => r.productId === productId)
-    if (selectedRows.length > 0) return selectedRows[0].quantity
+    const selectedRows = rows.value.find(r => r.productId === productId)
+    if (selectedRows) return selectedRows.quantity
     return 0
   }
 

@@ -28,7 +28,7 @@
         clearable
         clear-icon="o_clear"
         rounded
-        @keydown.enter="reloadData"
+        @keydown.enter="loadData"
         class="text-caption"
       >
         <template v-slot:prepend>
@@ -131,7 +131,7 @@
       </q-item>
 
       <div
-        v-if="rows.length === 0"
+        v-if="!tableStore.loading.value && rows.length === 0"
         class="text-on-dark"
       >
         <no-data-found />
@@ -146,20 +146,22 @@
           unelevated
           @click="gotoNext"
           class="q-ma-lg bg-primary text-white text-body2"
-        >بارگذاری بیشتر</q-btn>
+        >
+          بارگزاری بیشتر
+        </q-btn>
       </div>
     </q-scroll-area>
   </q-drawer>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
+import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import { useDataTable } from "src/composables/useDataTable"
-import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
 import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
 import { useContactDrawer } from "src/composables/useContactDrawer"
 import { helper } from "src/helpers"
+import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
 
 const customerStore = useCustomer()
 const contactDrawerStore = useContactDrawer()
@@ -170,9 +172,10 @@ const router = useRouter()
 const rows = ref([])
 
 async function gotoNext() {
-  tableStore.pagination.value.currentPage += 1
-  await reloadData()
-  // console.log(tableStore.pagination.value.currentPage);
+  if (hasMoreData.value) {
+    tableStore.pagination.value.currentPage += 1
+    await reloadData()
+  }
 }
 
 async function reloadData() {
@@ -180,16 +183,18 @@ async function reloadData() {
   rows.value = [...rows.value, ...tableStore.rows.value]
 }
 
-const hasMoreData = computed(() => {
-  return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages;
-});
+async function loadData() {
+  tableStore.pagination.value.currentPage = 1
+  await tableStore.reloadData()
+  rows.value = tableStore.rows.value
+}
 
+const hasMoreData = computed(() => {
+  return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages
+});
 
 const goToCustomer = () => {
   router.push("/crm/customer")
 }
-
-onMounted(() => {
-})
 
 </script>

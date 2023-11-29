@@ -59,9 +59,11 @@
               >
                 <custom-input
                   v-model="col.value"
+                  clearable
                   debounce="500"
                   @update:model-value="reloadData"
                 />
+                <!-- @keyup.enter="reloadData" -->
               </slot>
             </th>
             <th

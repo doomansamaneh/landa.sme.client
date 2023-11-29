@@ -28,7 +28,7 @@ const columns = ref([
     {
         name: "no",
         field: "no",
-        sortable: false,
+        sortable: true,
         label: "شماره",
         class: "text-left",
         cellClass: "text-left",

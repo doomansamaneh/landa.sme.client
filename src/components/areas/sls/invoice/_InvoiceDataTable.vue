@@ -37,20 +37,21 @@
     wrapCells
     expandable
   >
-    <template #filter-amount="{ col }">
+    <!-- <template #filter-amount="{ col }">
       <custom-input
         v-model="col.value"
         display-format="n0"
         debounce="500"
-        @update:model-value="dataTable?.reloadData"
+        @keyup.enter="reloadData"
+        @update:model-value="reloadData"
       />
-    </template>
+    </template> -->
 
     <template #filter-statusTitle="{ col }">
       <custom-select
         v-model="col.value"
         :options="statusOptions"
-        @update:model-value="dataTable?.reloadData"
+        @update:model-value="reloadData"
       />
       <!-- <q-select
         clearable
@@ -65,6 +66,9 @@
     </template>
     <template #cell-amount="{ item }">
       <span>{{ item.amount.toLocaleString() }}</span>
+    </template>
+    <template #cell-discountAmount="{ item }">
+      <span>{{ item.discountAmount.toLocaleString() }}</span>
     </template>
     <template #cell-statusTitle="{ item }">
       <q-badge>{{ item.statusTitle }}</q-badge>
@@ -97,9 +101,9 @@
       >
         {{ $t("shared.labels.total") }}
       </td>
-      <td><b>{{ summary?.Amount?.toLocaleString() }}</b></td>
+      <td><b>{{ summary?.amount?.toLocaleString() }}</b></td>
       <td v-if="showDiscount">
-        <b>{{ summary?.DiscountAmount?.toLocaleString() }}</b>
+        <b>{{ summary?.discountAmount?.toLocaleString() }}</b>
       </td>
       <td colspan="100%"></td>
     </template>
@@ -132,6 +136,10 @@ const colspan = computed(() =>
 const showDiscount = computed(() =>
   dataTable.value?.tableStore?.columns.value.findIndex(column => column.name === "discountAmount") >= 0
 )
+
+async function reloadData() {
+  await dataTable.value?.tableStore.reloadData()
+}
 
 defineExpose({
   dataTable

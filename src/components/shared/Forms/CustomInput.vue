@@ -24,9 +24,14 @@ const value = computed({
 })
 
 function formatValue(value, format) {
-  if (format === "n0" && value) {
+  if (guard(value, format)) {
     return value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
   return value
+}
+
+function guard(value, format) {
+  return value
+    && format === "n0"
 }
 </script>

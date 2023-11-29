@@ -12,7 +12,7 @@
     <span>{{ `سال مالی: ${fiscalYearStore.currentYear.value?.title}` }}</span>
 
     <q-menu
-      persistent
+      :persistent="false"
       style="width: 400px;"
       class="no-shadow z-max"
       transition-show="jump-down"
@@ -22,7 +22,7 @@
       <div class="fit bg-dark text-white">
 
         <div class="row justify-between q-px-lg q-pt-md">
-          
+
           <q-inner-loading
             :showing="tableStore.showLoader.value"
             class="inner-loader z-max"
@@ -66,31 +66,44 @@
 
         <div
           v-if="tableStore.pagination.value.totalPages > 1"
-          position="bottom-right"
           class="q-gutter-sm q-px-lg q-pb-lg"
         >
           <q-btn
-            v-if="tableStore.pagination.value.currentPage > 1"
+            :disable="tableStore.pagination.value.currentPage <= 1"
             unelevated
             round
             dense
             size="12px"
             color="primary"
             text-color="white"
-            icon="east"
+            icon="chevron_right"
             @click="previous($event)"
-          />
+          >
+            <q-tooltip
+              class="custom-tooltip"
+              :delay="600"
+            >
+              {{ $t("shared.labels.next") }}
+            </q-tooltip>
+          </q-btn>
           <q-btn
-            v-if="tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages"
+            :disable="tableStore.pagination.value.currentPage >= tableStore.pagination.value.totalPages"
             unelevated
             round
             dense
             size="12px"
             color="primary"
             text-color="white"
-            icon="west"
+            icon="chevron_left"
             @click="next($event)"
-          />
+          >
+            <q-tooltip
+              class="custom-tooltip"
+              :delay="600"
+            >
+              {{ $t("shared.labels.previous") }}
+            </q-tooltip>
+          </q-btn>
         </div>
       </div>
     </q-menu>
