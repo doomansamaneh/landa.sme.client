@@ -163,38 +163,38 @@
         <q-separator inset />
         <q-card-section class="q-pb-none">
           <q-item class="flex justify-between text-caption">
-              <q-item-label class=""><span class="text-weight-bold">
-                  {{ $t("page.payment-detail.seller") }}
-                  <span class="text-weight-thin">حسابداری آنلاین لاندا</span></span>
-                <div class="seller-address">
-                  <q-item-label class="q-mt-sm">
-                    <span>شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
-                      زیتون، واحد 105</span>
-                  </q-item-label>
-                  <q-item-label class="q-pt-xs">
-                    <q-icon
-                      name="phone"
-                      class="dark-2 q-pr-xs"
-                    />88944338</q-item-label>
-                </div>
-              </q-item-label>
-              <q-item-label class=""><span class="text-weight-bold">
-                  {{ $t("page.payment-detail.customer") }}
-                  <span class="text-weight-light">خشایار شمالی</span></span>
-                <div class="seller-address">
-                  <q-item-label class="q-mt-sm">
-                    <span>شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
-                      خیابان عنایتی، کوچه محمدی، پلاک 22</span>
-                  </q-item-label>
-                  <q-item-label class="q-pt-xs">
-                    <q-icon
-                      name="phone"
-                      class="dark-2 q-pr-xs"
-                    />
-                    021-55511102
-                  </q-item-label>
-                </div>
-              </q-item-label>
+            <q-item-label class=""><span class="text-weight-bold">
+                {{ $t("page.payment-detail.seller") }}
+                <span class="text-weight-thin">حسابداری آنلاین لاندا</span></span>
+              <div class="seller-address">
+                <q-item-label class="q-mt-sm">
+                  <span>شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
+                    زیتون، واحد 105</span>
+                </q-item-label>
+                <q-item-label class="q-pt-xs">
+                  <q-icon
+                    name="phone"
+                    class="dark-2 q-pr-xs"
+                  />88944338</q-item-label>
+              </div>
+            </q-item-label>
+            <q-item-label class=""><span class="text-weight-bold">
+                {{ $t("page.payment-detail.customer") }}
+                <span class="text-weight-light">خشایار شمالی</span></span>
+              <div class="seller-address">
+                <q-item-label class="q-mt-sm">
+                  <span>شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
+                    خیابان عنایتی، کوچه محمدی، پلاک 22</span>
+                </q-item-label>
+                <q-item-label class="q-pt-xs">
+                  <q-icon
+                    name="phone"
+                    class="dark-2 q-pr-xs"
+                  />
+                  021-55511102
+                </q-item-label>
+              </div>
+            </q-item-label>
           </q-item>
         </q-card-section>
         <q-card-section class="q-pt-none">
@@ -202,25 +202,22 @@
           <table class="invoice-preview-table text-caption q-mt-md">
             <thead class="text-left">
               <tr>
-                <th class="xs-width">
+                <th style="width:1px">
                   <span class="">{{ $t("page.payment-detail.row") }}</span>
                 </th>
-                <th class="xl-width">
-                  <span class="">{{ $t("page.payment-detail.plan") }}</span>
+                <th>
+                  <span class="">کالا/خدمت</span>
                 </th>
-                <th class="xs-width">
+                <th>
                   <span class="">{{ $t("page.payment-detail.amount") }}</span>
                 </th>
-                <th class="xs-width">
+                <th>
                   <span class="">{{ $t("page.payment-detail.unit") }}</span>
                 </th>
-                <th class="lg-width">
-                  <span class="">{{ $t("page.payment-detail.date") }}</span>
-                </th>
-                <th class="md-width">
+                <th>
                   <span class="">{{ $t("page.payment-detail.unit-price") }}</span>
                 </th>
-                <th class="md-width">
+                <th>
                   <span class="">{{ $t("page.payment-detail.total") }}</span>
                 </th>
               </tr>
@@ -235,7 +232,6 @@
                 </td>
                 <td><span class="">1000</span></td>
                 <td><span class="">دستگاه</span></td>
-                <td><span class="">1401/02/09 - 1401-03-09</span></td>
                 <td><span class="">490,000</span></td>
                 <td><span class="">500,000</span></td>
               </tr>
@@ -253,16 +249,15 @@
                 </td>
                 <td><span class="">1.5</span></td>
                 <td><span class="">ماه</span></td>
-                <td><span class="">1401/02/09 - 1401-03-24</span></td>
                 <td><span class="">500,000</span></td>
                 <td><span class="">750,000</span></td>
               </tr>
               <tr>
                 <td
                   class="text-right"
-                  colspan="6"
+                  colspan="5"
                 >
-                  <span class="">{{ $t("page.payment-detail.sub-total") }}</span>
+                  <span class="text-bold">{{ $t("page.payment-detail.sub-total") }}</span>
                 </td>
                 <td class="">
                   <span class="">10,750,000</span>
@@ -271,26 +266,24 @@
               <tr>
                 <td
                   class="text-right"
-                  colspan="6"
+                  colspan="5"
                 >
-                  <span class="">{{ $t("page.payment-detail.vat-total") }}</span>
+                  <span class="text-bold">تخفیف:</span>
                 </td>
                 <td><span class="">967,500</span></td>
               </tr>
               <tr>
                 <td
                   class="text-right"
-                  colspan="6"
+                  colspan="5"
                 >
-                  <span class="q-pl-xs">
-                    {{ $t("page.payment-detail.sub-total") }}
+                  <span class="q-pl-xs text-bold">
+                    جمع کل:
                   </span>
                   <span class="">
-                    <span class="q-pl-xs">
-                      <span class="text-weight-thin q-pr-xs">
-                        یازده میلیون و هفتصد و هفده هزار و پانصد
-                      </span>
-                      {{ $t("page.payment-detail.rial") }}
+                    <span class="">
+                      (یازده میلیون و هفتصد و هفده هزار و پانصد <span class="text-bold">{{ $t("shared.labels.rial")
+                      }}</span>)
                     </span>
                   </span>
                 </td>
@@ -298,12 +291,9 @@
               </tr>
             </tbody>
           </table>
-          <table class="quote-table q-mt-xl text-caption">
+          <table class="text-caption">
             <tr>
-              <td
-                colspan="6"
-                class="quote-place"
-              >
+              <td colspan="6">
                 <span class="text-bold">توضیحات:</span>
               </td>
             </tr>
@@ -321,17 +311,17 @@
       </q-card>
     </div>
     <div class="col-3">
-      <q-card
-        bordered
-        class="no-shadow"
-      >
+      <q-card class="bordered no-shadow">
 
         <q-card-section>
           <div class="column q-gutter-y-sm">
 
             <div class="column q-gutter-y-xs">
               <span class="text-caption text-bold">خریدار</span>
-              <span class="text-body3">خشایار شمالی</span>
+              <a
+                href="#"
+                class="text-body3"
+              >خشایار شمالی</a>
             </div>
 
             <div class="column q-gutter-y-xs">
@@ -416,7 +406,50 @@
               class="no-padding"
             >
 
+              <div class="row q-py-lg q-gutter-sm">
+                <q-btn
+                  color="primary"
+                  padding="4px 12px"
+                  unelevated
+                >
+                  <q-icon
+                    name="o_add"
+                    size="xs"
+                    class="q-mr-xs"
+                  />
+                  <span>دریافت</span>
+                </q-btn>
+
+                <q-btn
+                  color="primary"
+                  padding="4px 12px"
+                  unelevated
+                >
+                  <q-icon
+                    name="o_check"
+                    size="xs"
+                    class="q-mr-xs"
+                  />
+                  <span>تسویه حساب</span>
+                </q-btn>
+
+                <q-btn
+                  color="primary"
+                  padding="4px 12px"
+                  unelevated
+                >
+                  <q-icon
+                    name="o_description"
+                    size="xs"
+                    class="q-mr-xs"
+                  />
+                  <span>سند حسابداری</span>
+                </q-btn>
+
+              </div>
+
             </q-tab-panel>
+
           </q-tab-panels>
 
         </q-card-section>
@@ -433,14 +466,6 @@ const tab = ref('main-info')
 </script>
 
 <style lang="scss" scoped>
-.card-desktop {
-  width: 795px !important;
-}
-
-.business-name {
-  max-width: 250px;
-}
-
 .sme-logo {
   width: 72px;
 }
@@ -456,31 +481,7 @@ const tab = ref('main-info')
 
 .sign-place {
   width: 50%;
-  padding: 50px 8px;
-}
-
-.quote-place {
-  padding: 32px 8px;
-}
-
-.xs-width {
-  width: 7%;
-}
-
-.md-width {
-  width: 10%;
-}
-
-.lg-width {
-  width: 25%;
-}
-
-.xl-width {
-  width: 40%;
-}
-
-.custom-ellipsis {
-  width: 100%;
+  padding-bottom: 150px;
 }
 
 table,
