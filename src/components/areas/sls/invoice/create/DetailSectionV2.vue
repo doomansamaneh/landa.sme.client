@@ -41,10 +41,14 @@
       <div class="row q-gutter-md">
 
         <div style="width: 25%;">
-          <custom-input
-            placeholder="انتخاب کالا/خدمت"
-            v-model="row.productTitle"
-          />
+          <q-field
+            dense
+            outlined
+          >
+            <template v-slot:control>
+              <div>{{ row.productTitle }}</div>
+            </template>
+          </q-field>
         </div>
         <div style="width: 9%;">
           <custom-input
@@ -56,14 +60,9 @@
           <q-field
             outlined
             dense
-            placeholder="واحد سنجش"
           >
-
             <template v-slot:control>
-              <div
-                class="self-center full-width no-outline"
-                tabindex="0"
-              >{{ row.productUnitTitle }}</div>
+              <div>{{ row.productUnitTitle }}</div>
             </template>
 
           </q-field>
@@ -79,7 +78,7 @@
         </div>
 
         <div class="col row items-center justify-end">
-          <div>{{ rowTotalAmount(row).toLocaleString() }} <span class="text-caption"> ریال</span></div>
+          <div>{{ rowPrice(row).toLocaleString() }} <span class="text-caption"> ریال</span></div>
         </div>
         <div class="col-1 row items-center justify-end q-gutter-x-sm">
           <q-btn
@@ -109,7 +108,7 @@
     <div class="col-3 q-gutter-y-md">
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>
-        <div>{{ totalAmount.toLocaleString() }} <span class="text-caption"> ریال</span></div>
+        <div>{{ subTotalAmount.toLocaleString() }} <span class="text-caption"> ریال</span></div>
       </div>
 
       <div class="row q-mr-md">
@@ -132,6 +131,9 @@
             </q-tooltip>
 
             <q-menu
+              ref="discountMenu"
+              no-focus
+              no-refocus
               anchor="bottom right"
               self="bottom left"
               :offset="[10, 8]"
@@ -142,9 +144,9 @@
                     outlined
                     dense
                     v-model="generalDiscountValue"
-                    @update:model-value="confirmGeneralDiscount"
+                    @keydown="validateDiscountInput"
+                    @keydown.enter="applyDiscountOnEnter"
                   >
-
                     <template #append>
                       <q-btn
                         size="xs"
@@ -156,18 +158,19 @@
                         @click="generalDiscount = !generalDiscount"
                       />
                     </template>
-
                   </q-input>
                 </q-card-section>
 
                 <q-card-actions class="dark-1 q-px-md">
                   <q-btn
-                    @click="confirmGeneralDiscount"
+                    v-close-popup
+                    @click="applyDiscount"
                     padding="4px 12px"
                     unelevated
                     class="bg-primary text-white"
                   >تایید</q-btn>
                   <q-btn
+                    v-close-popup
                     padding="4px 12px"
                     unelevated
                   >انصراف</q-btn>
@@ -180,7 +183,8 @@
           <span>تخفیف</span>
 
         </div>
-        <div><span class="text-red">({{ rowDiscount }})</span> <span class="text-red text-caption"> ریال</span></div>
+        <div><span class="text-red">({{ totalDiscount.toLocaleString() }})</span> <span class="text-red text-caption">
+            ریال</span></div>
       </div>
 
       <div class="row q-mr-md">
@@ -206,7 +210,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, watchEffect } from "vue"
 import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice"
 import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
@@ -216,32 +220,78 @@ const createInvoice = useCreateInvoice()
 
 
 const generalDiscount = ref(true)
-const generalDiscountValue = 0
+const generalDiscountValue = ref(0)
 const productLookup = ref(null)
+const totalDiscount = ref(0)
 
+const discountMenu = ref(null)
 
-const selectedProductCount = computed(() => createInvoice.rows.value.length);
-
-const rowTotalAmount = (row) =>
+const rowPrice = (row) =>
   Number(row.quantity) * Number(row.price);
 
-const totalAmount = computed(() => {
+const subTotalAmount = computed(() => {
   return createInvoice.rows.value.reduce((total, row) => total + (Number(row.quantity) * Number(row.price)), 0);
+})
+
+const totalAmount = computed(() => {
+  return createInvoice.rows.value.reduce((total, row) => total + (Number(row.price)), 0);
 });
 
-// const rowDiscount = computed(() => {
-//   return createInvoice.rows.value.reduce((discount, row) => discount + Number(row.rowDiscount), 0);
-// });
+const rowVat = computed(() => {
+  const vatTotal = createInvoice.rows.value.reduce((vat, row) => vat + (Number(row.vat) || 0), 0);
+  return vatTotal.toLocaleString();
+});
 
-// const rowVat = computed(() => {
-//   return createInvoice.rows.value.reduce((vat, row) => vat + Number(row.vat), 0);
-// });
 
-// const confirmGeneralDiscount = () => {
-//   const newValue = 'Confirmed';
+const applyDiscount = () => {
+  if (!generalDiscount.value) {
 
-//   generalDiscountValue = newValue;
-// }
+    let discountPercentage = generalDiscountValue.value
+    discountPercentage = Math.max(0, Math.min(discountPercentage, 100));
+
+    const discountAmount = subTotalAmount.value * (discountPercentage / 100);
+
+    createInvoice.rows.value.forEach(row => {
+      row.price = row.price * (1 - (discountPercentage / 100));
+    });
+
+    totalDiscount.value = discountAmount;
+    generalDiscountValue.value = discountPercentage;
+
+  } else {
+
+    const discountAmount = generalDiscountValue.value;
+
+    createInvoice.rows.value.forEach(row => {
+      const discountPerItem = discountAmount;
+      row.price = Math.max(0, row.price - discountPerItem);
+    });
+
+    totalDiscount.value = discountAmount;
+  }
+};
+
+watchEffect(() => {
+  if (createInvoice.rows.value.length < 1) {
+    totalDiscount.value = 0;
+  }
+});
+
+const validateDiscountInput = (event) => {
+  const input = event.target;
+  const value = parseFloat(input.value + event.key);
+
+  if (isNaN(value) || value < 0 || value > 100 || event.key === '-') {
+    event.preventDefault();
+  }
+};
+
+const applyDiscountOnEnter = (event) => {
+  if (event.key === 'Enter') {
+    applyDiscount();
+    discountMenu.value.hide()
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -253,4 +303,5 @@ const totalAmount = computed(() => {
 
 .quick-items {
   height: 100px;
-}</style>
+}
+</style>
