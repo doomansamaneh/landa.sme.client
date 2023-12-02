@@ -24,12 +24,9 @@ const value = computed({
 })
 
 function formatValue(value, format) {
-  if (typeof value !== 'string') {
-    value = String(value);
-  }
-
   if (guard(value, format)) {
-    return value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const stringValue = String(value);
+    return stringValue.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
   return value;
 }
