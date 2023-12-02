@@ -24,10 +24,14 @@ const value = computed({
 })
 
 function formatValue(value, format) {
-  if (guard(value, format)) {
-    return value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  if (typeof value !== 'string') {
+    value = String(value);
   }
-  return value
+
+  if (guard(value, format)) {
+    return value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  return value;
 }
 
 function guard(value, format) {

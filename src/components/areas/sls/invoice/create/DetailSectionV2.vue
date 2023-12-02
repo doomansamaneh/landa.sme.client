@@ -47,7 +47,10 @@
           />
         </div>
         <div style="width: 9%;">
-          <custom-input type="number" v-model="row.quantity" />
+          <custom-input
+            type="number"
+            v-model="row.quantity"
+          />
         </div>
         <div style="width: 10%;">
           <q-field
@@ -66,14 +69,17 @@
           </q-field>
         </div>
         <div style="width: 10%;">
-          <custom-input v-model="row.price" />
+          <custom-input
+            v-model="row.price"
+            display-format="n0"
+          />
         </div>
         <div style="width: 15%;">
           <vat-lookup placeholder="مالیات بر ارزش افزوده" />
         </div>
 
         <div class="col row items-center justify-end">
-          <div>{{ rowTotalAmount }} <span class="text-caption"> ریال</span></div>
+          <div>{{ rowTotalAmount(row).toLocaleString() }} <span class="text-caption"> ریال</span></div>
         </div>
         <div class="col-1 row items-center justify-end q-gutter-x-sm">
           <q-btn
@@ -103,7 +109,7 @@
     <div class="col-3 q-gutter-y-md">
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>
-        <div>{{ rowAmount }} <span class="text-caption"> ریال</span></div>
+        <div>{{ totalAmount.toLocaleString() }} <span class="text-caption"> ریال</span></div>
       </div>
 
       <div class="row q-mr-md">
@@ -186,7 +192,7 @@
 
       <div class="row q-mr-md">
         <div class="col text-bold">مبلغ کل</div>
-        <div>{{ totalAmount }} <span class="text-caption"> ریال</span></div>
+        <div>{{ totalAmount.toLocaleString() }} <span class="text-caption"> ریال</span></div>
       </div>
 
       <q-separator
@@ -210,12 +216,32 @@ const createInvoice = useCreateInvoice()
 
 
 const generalDiscount = ref(true)
-const generalDiscountValue = ref(0)
+const generalDiscountValue = 0
 const productLookup = ref(null)
 
 
 const selectedProductCount = computed(() => createInvoice.rows.value.length);
 
+const rowTotalAmount = (row) =>
+  Number(row.quantity) * Number(row.price);
+
+const totalAmount = computed(() => {
+  return createInvoice.rows.value.reduce((total, row) => total + (Number(row.quantity) * Number(row.price)), 0);
+});
+
+// const rowDiscount = computed(() => {
+//   return createInvoice.rows.value.reduce((discount, row) => discount + Number(row.rowDiscount), 0);
+// });
+
+// const rowVat = computed(() => {
+//   return createInvoice.rows.value.reduce((vat, row) => vat + Number(row.vat), 0);
+// });
+
+// const confirmGeneralDiscount = () => {
+//   const newValue = 'Confirmed';
+
+//   generalDiscountValue = newValue;
+// }
 </script>
 
 <style lang="scss" scoped>
@@ -227,5 +253,4 @@ const selectedProductCount = computed(() => createInvoice.rows.value.length);
 
 .quick-items {
   height: 100px;
-}
-</style>
+}</style>
