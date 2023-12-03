@@ -1,6 +1,6 @@
 <template>
   <q-page-sticky
-    class="z-1 bg-main q-py-md"
+    class="z-max bg-main q-py-md"
     style="margin: 0 38px;"
     position="top"
     expand
@@ -39,6 +39,7 @@
   <div style="margin-top: 38px;">
     <invoices-widget />
   </div>
+
   <q-card class="bordered">
     <q-tabs
       v-model="tab"
@@ -205,7 +206,8 @@
     >
       <q-tab-panel name="sales-income-cost">
         <div class="q-pa-md">
-          <line-chart v-if="!toggleChartToTable" />
+          <!-- <line-chart v-if="!toggleChartToTable" /> -->
+          <apex-line-chart height="350" />
           <markup-table v-if="toggleChartToTable" />
         </div>
       </q-tab-panel>
@@ -221,7 +223,8 @@
           class="q-pa-md"
           v-if="productService"
         >
-          <bar-chart name="کالا و خدمت" />
+          <!-- <bar-chart name="کالا و خدمت" /> -->
+          <apex-bar-chart height="350" />
         </div>
         <div
           class="q-pa-md"
@@ -267,8 +270,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
+import ApexBarChart from 'src/components/shared/Charts/ApexBarChart.vue'
+import ApexLineChart from 'src/components/shared/Charts/ApexLineChart.vue'
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
 import DoughnutChart from 'src/components/shared/Charts/DoughnutChart.vue'
 import PieChart from 'src/components/shared/Charts/PieChart.vue'
@@ -321,6 +326,8 @@ const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_windo
 const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
 const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
 
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -352,5 +359,4 @@ const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''))
 
 .colspan-5 {
   grid-column: span 2;
-}
-</style>
+}</style>

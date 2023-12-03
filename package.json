@@ -13,6 +13,7 @@
   "dependencies": {
     "@quasar/cli": "^2.2.3",
     "@quasar/extras": "^1.16.4",
+    "apexcharts": "^3.44.0",
     "axios": "^0.21.1",
     "chart.js": "^4.4.0",
     "pinia": "^2.0.11",
@@ -24,6 +25,7 @@
     "vue-chartjs": "^5.2.0",
     "vue-i18n": "^9.3.0-beta.19",
     "vue-router": "^4.0.0",
+    "vue3-apexcharts": "^1.4.4",
     "vue3-html2pdf": "^1.1.2"
   },
   "devDependencies": {
