@@ -14,8 +14,8 @@
       <router-view />
     </q-page-container>
 
-    <alert-banner />
-    
+    <alert-banner class="fixed-bottom z-max" />
+
   </q-layout>
 </template>
 

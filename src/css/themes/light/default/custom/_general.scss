@@ -12,14 +12,12 @@
     color: $black;
   }
 
-  .text-body3{
+  .text-body3 {
     font-size: 13px;
   }
 
   .text-caption-sm {
-
     font-size: 11px;
-
   }
 
   .card-hover:hover {
@@ -46,7 +44,7 @@
 
   .bordered {
     border: 1px solid #00000024;
-    box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px,
+    box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px;
   }
 
   .bordered-1 {
@@ -99,6 +97,11 @@
     backdrop-filter: blur(42px);
   }
 
+  .alert-glass-style {
+    backdrop-filter: blur(42px);
+    background-color: #{$warning}10;
+  }
+
   // .theme-place {
 
   //   border-left: 1px solid #2d2d2d2d;
@@ -147,5 +150,4 @@
     background-color: #00000017;
     border-radius: 100%;
   }
-
 }

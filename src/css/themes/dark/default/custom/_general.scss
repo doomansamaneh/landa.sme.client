@@ -1,5 +1,4 @@
 @mixin general-dark {
-
   .icon-hover.q-icon:hover {
     opacity: 0.7 !important;
   }
@@ -13,14 +12,12 @@
     color: $white;
   }
 
-  .text-body3{
+  .text-body3 {
     font-size: 13px;
   }
 
   .text-caption-sm {
-
     font-size: 11px;
-
   }
 
   .card-hover:hover {
@@ -99,6 +96,11 @@
     backdrop-filter: blur(42px);
   }
 
+  .alert-glass-style {
+    backdrop-filter: blur(42px);
+    background-color: #{$warning}10;
+  }
+
   // .theme-place {
   //   border-left: 1px solid #ffffff47;
   //   border-right: 1px solid #ffffff47;
@@ -145,5 +147,4 @@
     background-color: #ffffff40;
     border-radius: 100%;
   }
-
 }

@@ -2,9 +2,9 @@
   <div v-if="showBanner">
     <q-banner
       inline-actions
-      class="z-max error-banner"
+      class="z-max error-banner alert-glass-style"
     >
-      <div class="row items-center text-dark">
+      <div class="row items-center text-on-dark">
         <q-icon
           name="public"
           size="22px"
