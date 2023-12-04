@@ -78,10 +78,17 @@ function setChartOptions(isDarkMode) {
       curve: 'smooth'
     },
     grid: {
+      borderColor: isDarkMode ? '#ffffff47' : '#2d2d2d2d',
       row: {
         colors: isDarkMode ? darkModeColors : lightModeColors,
         opacity: 0.5
       },
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 32
+    },
     },
     xaxis: {
       categories: [
@@ -90,11 +97,16 @@ function setChartOptions(isDarkMode) {
         'مهر', 'آبان', 'آذر',
         'دی', 'بهمن', 'اسفند'
       ],
+      labels: {
+        style: {
+          colors: isDarkMode ? 'white' : '#2d2d2d',
+        },
+      },
     },
     legend: {
       show: true,
       labels: {
-        colors: isDarkMode ? 'white' : '#2d2d2d', // Adjust text color for dark and light modes
+        colors: isDarkMode ? 'white' : '#2d2d2d',
       },
       showForSingleSeries: false,
       showForNullSeries: true,
