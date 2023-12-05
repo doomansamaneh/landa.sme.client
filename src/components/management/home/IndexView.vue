@@ -1,6 +1,6 @@
 <template>
   <q-page-sticky
-    class="z-max bg-main q-py-md"
+    class="z-1 bg-main q-py-md"
     style="margin: 0 38px;"
     position="top"
     expand
