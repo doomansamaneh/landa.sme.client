@@ -1,9 +1,10 @@
 <template>
-  <ApexCharts
+    <ApexCharts
     type="line"
     :height="height"
     :options="options"
     :series="series"
+    class="apex-line-chart"
   ></ApexCharts>
 </template>
 
@@ -48,6 +49,28 @@ watch(() => $q.dark.isActive, (newValue) => {
 
 function setChartOptions(isDarkMode) {
   options.value = {
+
+    tooltip: {
+      x: {
+        show: false,
+      },
+      // theme: isDarkMode ? 'dark' : 'light',
+      style: {
+        fontSize: '13px',
+        fontFamily: 'Vazir FD',
+      },
+      marker: {
+        width: 8,
+        height: 8,
+      }
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: isDarkMode ? 'white' : '#2d2d2d',
+        },
+      },
+    },
     chart: {
       fontFamily: 'Vazir FD',
       type: 'line',
@@ -75,6 +98,7 @@ function setChartOptions(isDarkMode) {
       enabled: false
     },
     stroke: {
+      width: 3.5,
       curve: 'smooth'
     },
     grid: {
@@ -88,7 +112,7 @@ function setChartOptions(isDarkMode) {
         right: 0,
         bottom: 0,
         left: 32
-    },
+      },
     },
     xaxis: {
       categories: [

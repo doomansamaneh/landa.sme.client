@@ -18,7 +18,7 @@
         :class="getClass(themeName)"
         @click="selectTheme(themeName)"
       >
-        <q-tooltip :style="{ background: getPrimaryColor(themeName) }">{{ themeName }}</q-tooltip>
+        <q-tooltip class="z-max" :style="{ background: getPrimaryColor(themeName) }">{{ themeName }}</q-tooltip>
       </q-icon>
     </div>
   </div>

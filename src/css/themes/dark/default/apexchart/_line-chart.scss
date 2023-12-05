@@ -1,0 +1,41 @@
+@mixin line-chart-dark {
+  .apex-line-chart .apexcharts-tooltip {
+    backdrop-filter: blur(8px) !important;
+    background-color: #ffffff10 !important;
+    color: white !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 16px;
+    border: 1px solid #ffffff47 !important;
+  }
+
+  .apex-line-chart .apexcharts-tooltip-title {
+    padding: 8px;
+    color: white;
+    background-color: #ffffff10 !important;
+    border: none !important;
+  }
+
+  .apex-line-chart .apexcharts-tooltip-series-group {
+    padding: 4px !important;
+    display: flex !important;
+    justify-content: start !important;
+  }
+
+  .apex-line-chart .apexcharts-tooltip-marker {
+    width: 8px !important;
+    height: 8px !important;
+    margin-right: 8px !important;
+  }
+
+  .apex-line-chart .apexcharts-xaxistooltip,
+  .apexcharts-yaxistooltip {
+
+    backdrop-filter: blur(8px) !important;
+    background-color: #ffffff10 !important;
+    color: white !important;
+    font-size: 16px;
+    border: 1px solid #ffffff47 !important;
+
+  }
+}
