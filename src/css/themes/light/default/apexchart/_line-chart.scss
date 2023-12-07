@@ -1,12 +1,15 @@
-@mixin line-chart-light {
+@mixin line-chart-light($rtl: false) {
+  $padding-direction: if($rtl, padding-left, padding-right);
+
   .apex-line-chart .apexcharts-tooltip {
     backdrop-filter: blur(8px) !important;
     background-color: #ffffff10 !important;
     color: #2d2d2d !important;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    #{$padding-direction}: 16px;
     border: 1px solid #00000047 !important;
+    direction: if($rtl, rtl, ltr);
   }
 
   .apex-line-chart .apexcharts-tooltip-title {
@@ -17,25 +20,23 @@
   }
 
   .apex-line-chart .apexcharts-tooltip-series-group {
-    padding: 4px !important;
-    display: flex !important;
-    justify-content: start !important;
+    justify-content: flex-start !important;
   }
 
   .apex-line-chart .apexcharts-tooltip-marker {
     width: 8px !important;
     height: 8px !important;
     margin-right: 8px !important;
+    margin-left: 8px !important;
   }
 
   .apex-line-chart .apexcharts-xaxistooltip,
   .apexcharts-yaxistooltip {
-
     backdrop-filter: blur(8px) !important;
     background-color: #ffffff10 !important;
     color: #2d2d2d !important;
-    font-size: 16px;
+    font-size: 18px;
     border: 1px solid #00000047 !important;
-
+    z-index: 99;
   }
 }

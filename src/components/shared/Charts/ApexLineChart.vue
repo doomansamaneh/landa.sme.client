@@ -1,84 +1,73 @@
 <template>
-    <ApexCharts
-    type="line"
+  <line-chart
     :height="height"
     :options="options"
     :series="series"
     class="apex-line-chart"
-  ></ApexCharts>
+    :class="direction"
+  ></line-chart>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import ApexCharts from 'vue3-apexcharts'
+import { ref, onMounted, watch, computed } from 'vue'
+import LineChart from 'vue3-apexcharts'
 import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
 const props = defineProps(['height'])
 
-const series = ref([
-  {
-    name: "دریافت",
-    data: [700, 41, 35, 51, 49, 62, 69, 91, 148, 78, 42, 147]
-  },
-  {
-    name: "پرداخت",
-    data: [180, 401, 15, 501, 490, 62, 690, 910, 148, 8, 2, 190]
-  },
-  {
-    name: "هزینه",
-    data: [25, 170, 89, 53, 706, 32, 77, 94, 1291, 50, 63, 790]
-  },
-  {
-    name: "فروش و درآمد",
-    data: [140, 67, 92, 38, 55, 80, 703, 27, 460, 71, 299, 88]
-  }
-])
-
 const options = ref(null)
 const darkModeColors = ['var(--q-dark)', 'transparent']
 const lightModeColors = ['#2d2d2d09', 'transparent']
 
-onMounted(() => {
-  setChartOptions($q.dark.isActive)
-})
+const series = ref([
+  {
+    name: "دریافت",
+    data: [
+      32000000, 89000000, 45000000, 1000000,
+      98000000, 23000000, 56000000, 64000000,
+      12000000, 79000000, 75000000, 42000000
+    ],
+  },
+  {
+    name: "پرداخت",
+    data: [
+      19000000, 56000000, 23000000, 8000000,
+      32000000, 46000000, 98000000, 7600000,
+      42000000, 13000000, 7800000, 6500000
+    ]
+  },
+  {
+    name: "هزینه",
+    data: [
+      90000000, 65000000, 1000000, 5000000,
+      23000000, 97000000, 12300000, 89000000,
+      45000000, 31000000, 76000000, 43000000
+    ],
+  },
+  {
+    name: "فروش و درآمد",
+    data: [
+      2000000, 5000000, 2000000, 8000000,
+      3000000, 4000000, 9000000, 7000000,
+      4000000, 13000000, 7000000, 6000000
+    ],
+  }
+])
 
-watch(() => $q.dark.isActive, (newValue) => {
-  setChartOptions(newValue)
-})
+function setOptions() {
 
-function setChartOptions(isDarkMode) {
+  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+
   options.value = {
-
-    tooltip: {
-      x: {
-        show: false,
-      },
-      // theme: isDarkMode ? 'dark' : 'light',
-      style: {
-        fontSize: '13px',
-        fontFamily: 'Vazir FD',
-      },
-      marker: {
-        width: 8,
-        height: 8,
-      }
-    },
-    yaxis: {
-      labels: {
-        style: {
-          colors: isDarkMode ? 'white' : '#2d2d2d',
-        },
-      },
-    },
     chart: {
-      fontFamily: 'Vazir FD',
+      fontFamily,
       type: 'line',
-      zoom: {
-        enabled: false
-      },
       toolbar: {
         show: false
+      },
+      zoom: {
+        enabled: false
       },
       animations: {
         enabled: true,
@@ -91,27 +80,28 @@ function setChartOptions(isDarkMode) {
         dynamicAnimation: {
           enabled: true,
           speed: 450
-        }
+        },
+
       }
-    },
-    dataLabels: {
-      enabled: false
     },
     stroke: {
       width: 3.5,
       curve: 'smooth'
     },
+    markers: {
+      size: 0,
+    },
     grid: {
-      borderColor: isDarkMode ? '#ffffff47' : '#2d2d2d2d',
+      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
       row: {
-        colors: isDarkMode ? darkModeColors : lightModeColors,
+        colors: $q.dark.isActive ? darkModeColors : lightModeColors,
         opacity: 0.5
       },
       padding: {
         top: 0,
         right: 0,
         bottom: 0,
-        left: 32
+        left: 24
       },
     },
     xaxis: {
@@ -123,19 +113,27 @@ function setChartOptions(isDarkMode) {
       ],
       labels: {
         style: {
-          colors: isDarkMode ? 'white' : '#2d2d2d',
+          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
+      },
+    },
+    yaxis: {
+      opposite: false,
+      labels: {
+        style: {
+          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+        },
+        // formatter: function (value) {
+        //   return value.toLocaleString();
+        // },
       },
     },
     legend: {
       show: true,
+      inverseOrder: true,
       labels: {
-        colors: isDarkMode ? 'white' : '#2d2d2d',
+        colors: $q.dark.isActive ? 'white' : '#2d2d2d',
       },
-      showForSingleSeries: false,
-      showForNullSeries: true,
-      showForZeroSeries: true,
-      horizontalAlign: 'center',
       position: 'bottom',
       fontSize: '14px',
       fontWeight: 400,
@@ -144,13 +142,60 @@ function setChartOptions(isDarkMode) {
         width: 8,
         height: 8,
         radius: 50,
-        offsetX: 8,
+        offsetX: $q.lang.rtl ? '-4' : '-4',
       },
       itemMargin: {
         vertical: 16,
         horizontal: 16,
       },
     },
+    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
+    tooltip: {
+      enabled: true,
+      x: {
+        show: false,
+      },
+      y: {
+        show: true,
+      },
+      style: {
+        fontSize: '13px',
+      },
+      marker: {
+        width: 8,
+        height: 8,
+      },
+    },
   }
+  //   // custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+  //   //   let tooltipText = '<div class="apex-custom-tooltip column q-gutter-y-sm q-pa-md">';
+  //   //   series.forEach((singleSeries, index) => {
+  //   //     tooltipText += `<span>
+  //   //       ${w.config.series[index].name}: ${singleSeries[dataPointIndex].toLocaleString()}
+  //   //   </span>`;
+  //   //   });
+  //   //   tooltipText += '</div>';
+  //   //   return tooltipText;
+  //   // }
+
+  // },
+
 }
+
+const direction = computed(() => {
+  return $q.lang.rtl ? 'rtl' : 'ltr';
+})
+
+watch(() => $q.dark.isActive, () => {
+  setOptions()
+})
+
+watch(() => $q.lang.rtl, () => {
+  setOptions()
+})
+
+onMounted(() => {
+  setOptions()
+})
 </script>
+
