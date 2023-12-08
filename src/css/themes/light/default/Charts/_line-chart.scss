@@ -1,9 +1,9 @@
 @mixin line-chart-light($rtl: false) {
   $padding-direction: if($rtl, padding-left, padding-right);
 
-  .apex-line-chart .apexcharts-tooltip {
+  .line-chart .apexcharts-tooltip {
     backdrop-filter: blur(8px) !important;
-    background-color: #ffffff10 !important;
+    background-color: white !important;
     color: #2d2d2d !important;
     padding-top: 12px;
     padding-bottom: 12px;
@@ -12,34 +12,34 @@
     direction: if($rtl, rtl, ltr);
   }
 
-  .apex-line-chart .apexcharts-tooltip-title {
+  .line-chart .apexcharts-tooltip-title {
     padding: 8px;
     color: white;
-    background-color: #ffffff10 !important;
+    background-color: transparent !important;
     border: none !important;
   }
 
-  .apex-line-chart .apexcharts-tooltip-series-group {
+  .line-chart .apexcharts-tooltip-series-group {
     justify-content: flex-start !important;
   }
 
-  .apex-line-chart .apexcharts-tooltip-marker {
+  .line-chart .apexcharts-tooltip-marker {
     width: 8px !important;
     height: 8px !important;
     margin-right: 8px !important;
     margin-left: 8px !important;
   }
 
-  .apex-line-chart .apexcharts-xaxistooltip,
+  .line-chart .apexcharts-xaxistooltip,
   .apexcharts-yaxistooltip {
     backdrop-filter: blur(8px) !important;
-    background-color: #ffffff10 !important;
+    background-color: white !important;
     color: #2d2d2d !important;
     border: 1px solid #00000047 !important;
     z-index: 99;
   }
 
-  .apexcharts-legend {
+  .line-chart .apexcharts-legend {
     padding: 0;
 }
 }

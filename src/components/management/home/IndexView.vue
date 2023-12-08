@@ -206,9 +206,16 @@
     >
       <q-tab-panel name="sales-income-cost">
         <div class="q-pa-md">
-          <!-- <line-chart v-if="!toggleChartToTable" /> -->
           <div v-if="!toggleChartToTable">
-            <div class="row items-center text-caption" v-if="$q.lang.rtl">
+            <line-chart
+              :height="350"
+              :legend="true"
+              v-if="!toggleChartToTable"
+            />
+            <div
+              class="row items-center text-caption"
+              v-if="$q.lang.rtl"
+            >
               <q-icon
                 name="o_info"
                 class="q-mr-xs"
@@ -216,7 +223,6 @@
               />
               تمامی ارقامی که مشاهده می‌کنید به <span class="text-bold q-px-xs">ریال</span> می‌باشند.
             </div>
-            <apex-line-chart height="350" />
           </div>
           <markup-table v-if="toggleChartToTable" />
         </div>
@@ -234,13 +240,13 @@
           v-if="productService"
         >
           <!-- <bar-chart name="کالا و خدمت" /> -->
-          <apex-bar-chart height="350" />
+          <bar-chart height="350" />
         </div>
         <div
           class="q-pa-md"
           v-if="customer"
         >
-          <bar-chart name="مشتری" />
+          <bar-chart height="350" />
         </div>
         <div
           class="q-pa-md"
@@ -252,7 +258,7 @@
 
       <q-tab-panel name="cost">
         <div class="q-pa-md">
-          <bar-chart name="هزینه" />
+          <bar-chart height="350" />
         </div>
       </q-tab-panel>
 
@@ -281,12 +287,12 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue"
+// import BarChart from 'src/components/shared/Charts/BarChartV2.vue'
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
-import ApexBarChart from 'src/components/shared/Charts/ApexBarChart.vue'
-import ApexLineChart from 'src/components/shared/Charts/ApexLineChart.vue'
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
-import DoughnutChart from 'src/components/shared/Charts/DoughnutChart.vue'
-import PieChart from 'src/components/shared/Charts/PieChart.vue'
+// import LineChart from 'src/components/shared/Charts/LineChart.vue'
+import DoughnutChart from 'src/components/shared/Charts/DoughnutChartV2.vue'
+import PieChart from 'src/components/shared/Charts/PieChartV2.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
 import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
@@ -369,5 +375,4 @@ const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''))
 
 .colspan-5 {
   grid-column: span 2;
-}
-</style>
+}</style>

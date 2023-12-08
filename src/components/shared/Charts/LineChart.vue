@@ -1,145 +1,210 @@
 <template>
-  <Line
+  <chart
+    :options="options"
+    :series="series"
+    :height="height"
+    :legend="legend"
     class="line-chart"
-    :options="chartOptions"
-    :data="chartData"
-    :style="myStyles"
+    :class="direction"
   />
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
-import { Line } from "vue-chartjs"
-import { useQuasar } from "quasar"
-
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement, PointElement, LineElement } from 'chart.js'
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement, PointElement, LineElement)
+import { ref, onMounted, watch, computed } from 'vue'
+import Chart from 'src/components/shared/Charts/ChartView.vue';
+import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
+const props = defineProps(['height', 'legend'])
 
-const height = ref(400)
+const options = ref(null)
 
-const myStyles = {
-  height: `${height.value}px`,
-  position: 'relative',
-}
-
-const chartData = ref({
-  labels: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
-  datasets: [{
-    label: 'دریافت',
-    data: [1000000000, 500000, 30000000, 2000000000, 80000000000, 4000000000, 0, 0, 0, 0, 0, 5000000000],
-    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-    borderColor: 'rgb(255, 99, 132)',
-    tension: 0.5,
-    pointStyle: 'circle',
-    pointHoverRadius: 10
+const series = ref([
+  {
+    name: "دریافت",
+    data: [
+      32000000, 89000000, 45000000, 1000000,
+      98000000, 23000000, 56000000, 64000000,
+      12000000, 79000000, 75000000, 42000000
+    ],
   },
   {
-    label: 'پرداخت',
-    data: [432000000, 1000000000, 500000, 30000000, 2000000000, 7000000000, 8000000000, 50000000, 0, 0, 0, 0, 0, 500000000],
-    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-    borderColor: 'rgb(255, 159, 64)',
-    tension: 0.5,
-    pointStyle: 'circle',
-    pointHoverRadius: 10
+    name: "پرداخت",
+    data: [
+      19000000, 56000000, 23000000, 8000000,
+      32000000, 46000000, 98000000, 7600000,
+      42000000, 13000000, 7800000, 6500000
+    ]
   },
   {
-    label: 'هزینه',
-    data: [1000000000, 8000000000, 0, 0, 0, 0, 12000000, 0, 0, 0, 0, 0],
-    backgroundColor: 'rgba(255, 205, 86, 0.2)',
-    borderColor: 'rgb(255, 205, 86)',
-    tension: 0.5,
-    pointStyle: 'circle',
-    pointHoverRadius: 10
+    name: "هزینه",
+    data: [
+      90000000, 65000000, 1000000, 5000000,
+      23000000, 97000000, 12300000, 89000000,
+      45000000, 31000000, 76000000, 43000000
+    ],
   },
   {
-    label: 'فروش و درآمد',
-    data: [2000000000],
-    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-    borderColor: 'rgb(75, 192, 192)',
-    tension: 0.5,
-    pointStyle: 'circle',
-    pointHoverRadius: 10
-  }],
+    name: "فروش و درآمد",
+    data: [
+      2000000, 5000000, 2000000, 8000000,
+      3000000, 4000000, 9000000, 7000000,
+      4000000, 13000000, 7000000, 6000000
+    ],
+  }
+])
 
-});
+function setOptions() {
 
-const chartOptions = computed(() => {
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        ticks: {
+  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
 
-          font: {
-            family: 'Vazir FD',
-            size: 12,
-          },
-          color: `${color.value}`
-        },
-        grid: {
-          color: `${gridColor.value}`
-        }
+  options.value = {
+
+    chart: {
+      offsetY: 4,
+      fontFamily,
+      type: 'line',
+      toolbar: {
+        show: false
       },
-      y: {
-        ticks: {
-
-          font: {
-            family: 'Vazir FD',
-            size: 12,
-          },
-          color: `${color.value}`
+      zoom: {
+        enabled: false
+      },
+      animations: {
+        enabled: true,
+        easing: 'easeinout',
+        speed: 600,
+        animateGradually: {
+          enabled: true,
+          delay: 150
         },
-        grid: {
-          color: `${gridColor.value}`
+        dynamicAnimation: {
+          enabled: true,
+          speed: 450
+        },
 
-        }
+      }
+    },
+    stroke: {
+      width: 3.5,
+      curve: 'smooth'
+    },
+    markers: {
+      size: 0,
+    },
+    grid: {
+      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 24
       },
     },
-    plugins: {
-      legend: {
-        rtl: true,
-        position: 'bottom',
-        labels: {
-          usePointStyle: true,
-          boxWidth: 6,
-          boxHeight: 6,
-          color: `${color.value}`,
-          padding: 32,
-          font: {
-            family: 'Vazir FD',
-            size: 14,
-          },
+    xaxis: {
+      categories: [
+        'فروردین', 'اردیبهشت', 'خرداد',
+        'تیر', 'مرداد', 'شهریور',
+        'مهر', 'آبان', 'آذر',
+        'دی', 'بهمن', 'اسفند'
+      ],
+      labels: {
+        style: {
+          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
       },
-      tooltip: {
-        enabled: true,
-        backgroundColor: 'white',
-        borderColor: 'black',
-        borderWidth: 1,
-        titleColor: 'black',
-        bodyColor: 'black',
-        titleFont: {
-          family: 'Vazir FD',
-          size: 12,
+    },
+    yaxis: {
+      opposite: false,
+      labels: {
+        style: {
+          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
-        bodyFont: {
-          family: 'Vazir FD',
-          size: 11,
+        formatter: function (value) {
+          return formatYAxisLabel(value);
         },
+      },
+    },
+    legend: {
+      show: props.legend,
+      inverseOrder: true,
+      labels: {
+        colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+      },
+      position: 'bottom',
+      fontSize: '14px',
+      fontWeight: 400,
+      offsetY: 16,
+      markers: {
+        width: 14,
+        height: 14,
+        radius: 4,
+        offsetX: $q.lang.rtl ? '-4' : '-4',
+      },
+      itemMargin: {
+        vertical: 16,
+        horizontal: 16,
+      },
+    },
+    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
+    tooltip: {
+      enabled: true,
+      x: {
+        show: false,
+      },
+      y: {
+        show: true,
+      },
+      style: {
+        fontSize: '13px',
+      },
+      marker: {
+        width: 8,
+        height: 8,
       },
     },
   }
+  //   // custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+  //   //   let tooltipText = '<div class="apex-custom-tooltip column q-gutter-y-sm q-pa-md">';
+  //   //   series.forEach((singleSeries, index) => {
+  //   //     tooltipText += `<span>
+  //   //       ${w.config.series[index].name}: ${singleSeries[dataPointIndex].toLocaleString()}
+  //   //   </span>`;
+  //   //   });
+  //   //   tooltipText += '</div>';
+  //   //   return tooltipText;
+  //   // }
 
+  // },
+
+}
+
+const direction = computed(() => {
+  return $q.lang.rtl ? 'rtl' : 'ltr';
 })
 
-const color = computed(() =>
-  $q.dark.isActive ? 'white' : 'black'
-)
+watch(() => $q.dark.isActive, () => {
+  setOptions()
+})
 
-const gridColor = computed(() =>
-  $q.dark.isActive ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)'
-)
+watch(() => $q.lang.rtl, () => {
+  setOptions()
+})
+
+onMounted(() => {
+  setOptions()
+})
+
+function formatYAxisLabel(value) {
+  const parts = String(value).split('.');
+  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  let formattedValue = integerPart;
+
+  if (parts.length > 1) {
+    formattedValue += '.' + parts[1];
+  }
+
+  return formattedValue;
+}
 </script>

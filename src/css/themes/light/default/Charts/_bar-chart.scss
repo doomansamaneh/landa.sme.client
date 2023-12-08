@@ -1,0 +1,46 @@
+@mixin bar-chart-light($rtl: false) {
+  $padding-direction: if($rtl, padding-left, padding-right);
+
+  .bar-chart .apexcharts-tooltip {
+    backdrop-filter: blur(8px) !important;
+    background-color: white !important;
+    color: #2d2d2d !important;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    #{$padding-direction}: 16px;
+    border: 1px solid #00000047 !important;
+    direction: if($rtl, rtl, ltr);
+  }
+
+  .bar-chart .apexcharts-tooltip-title {
+    padding: 4px 16px 0 16px;
+    color: #2d2d2d;
+    font-weight: 600 !important;
+    background-color: #ffffff10 !important;
+    border: none !important;
+  }
+
+  .bar-chart .apexcharts-tooltip-series-group {
+    justify-content: flex-start !important;
+  }
+
+  .bar-chart .apexcharts-tooltip-marker {
+    width: 8px !important;
+    height: 8px !important;
+    margin-right: 8px !important;
+    margin-left: 8px !important;
+  }
+
+  .bar-chart .apexcharts-xaxistooltip,
+  .apexcharts-yaxistooltip {
+    backdrop-filter: blur(8px) !important;
+    background-color: white !important;
+    color: #2d2d2d !important;
+    border: 1px solid #00000047 !important;
+    z-index: 99;
+  }
+
+  .bar-chart .apexcharts-legend {
+    padding: 0;
+}
+}
