@@ -240,13 +240,13 @@
           v-if="productService"
         >
           <!-- <bar-chart name="کالا و خدمت" /> -->
-          <bar-chart height="350" />
+          <bar-chart title="فروش بر اساس کالا و خدمات" :height="350" :legend="false" />
         </div>
         <div
           class="q-pa-md"
           v-if="customer"
         >
-          <bar-chart height="350" />
+          <bar-chart title="فروش بر اساس مشتری" :height="350" :legend="false" />
         </div>
         <div
           class="q-pa-md"
@@ -258,7 +258,7 @@
 
       <q-tab-panel name="cost">
         <div class="q-pa-md">
-          <bar-chart height="350" />
+          <bar-chart height="350" :legend="false" />
         </div>
       </q-tab-panel>
 

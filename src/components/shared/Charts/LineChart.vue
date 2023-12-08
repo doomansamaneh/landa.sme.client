@@ -4,6 +4,7 @@
     :series="series"
     :height="height"
     :legend="legend"
+    :title="title"
     class="line-chart"
     :class="direction"
   />
@@ -15,7 +16,7 @@ import Chart from 'src/components/shared/Charts/ChartView.vue';
 import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
-const props = defineProps(['height', 'legend'])
+const props = defineProps(['height', 'legend', 'title'])
 
 const options = ref(null)
 
@@ -59,7 +60,15 @@ function setOptions() {
   const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
 
   options.value = {
-
+    title: {
+      text: props.title,
+      align: 'center',
+      style: {
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: $q.dark.isActive ? 'white' : '#2d2d2d'
+      },
+    },
     chart: {
       offsetY: 4,
       fontFamily,
@@ -96,7 +105,7 @@ function setOptions() {
       borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
       padding: {
         top: 0,
-        right: 0,
+        right: 16,
         bottom: 0,
         left: 24
       },

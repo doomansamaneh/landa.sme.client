@@ -4,6 +4,7 @@
     :series="series"
     :height="height"
     :legend="legend"
+    :title="title"
     class="bar-chart"
     :class="direction"
   />
@@ -15,42 +16,14 @@ import Chart from 'src/components/shared/Charts/ChartView.vue';
 import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
-const props = defineProps(['height', 'legend'])
+const props = defineProps(['height', 'legend', 'title'])
 
 const options = ref(null)
 
 const series = ref([
   {
-    name: "دریافت",
-    data: [
-      32000000, 89000000, 45000000, 1000000,
-      98000000, 23000000, 56000000, 64000000,
-      12000000, 79000000, 75000000, 42000000
-    ],
-  },
-  {
-    name: "پرداخت",
-    data: [
-      19000000, 56000000, 23000000, 8000000,
-      32000000, 46000000, 98000000, 7600000,
-      42000000, 13000000, 7800000, 6500000
-    ]
-  },
-  {
-    name: "هزینه",
-    data: [
-      90000000, 65000000, 1000000, 5000000,
-      23000000, 97000000, 12300000, 89000000,
-      45000000, 31000000, 76000000, 43000000
-    ],
-  },
-  {
-    name: "فروش و درآمد",
-    data: [
-      2000000, 5000000, 2000000, 8000000,
-      3000000, 4000000, 9000000, 7000000,
-      4000000, 13000000, 7000000, 6000000
-    ],
+    name: "",
+    data: [20000000, 40000000, 60000000, 8000000, 10000000, 12000000, 14000000, 16000000, 18000000]
   }
 ])
 
@@ -59,6 +32,15 @@ function setOptions() {
   const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
 
   options.value = {
+    title: {
+      text: props.title,
+      align: 'center',
+      style: {
+      fontSize:  '14px',
+      fontWeight:  'bold',
+      color:  $q.dark.isActive ? 'white' : '#2d2d2d'
+    },
+    },
     chart: {
       offsetY: 4,
       fontFamily,
@@ -81,12 +63,22 @@ function setOptions() {
           enabled: true,
           speed: 450
         },
-
       }
     },
+    plotOptions: {
+      bar: {
+        borderRadius: 4,
+        borderRadiusApplication: 'end',
+        horizontal: false,
+        columnWidth: '40%',
+        distributed: true,
+      },
+    },
+    dataLabels: {
+      enabled: false
+    },
     stroke: {
-      width: 3.5,
-      curve: 'smooth'
+      width: 2.5,
     },
     markers: {
       size: 0,
@@ -95,19 +87,17 @@ function setOptions() {
       borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
       padding: {
         top: 0,
-        right: 0,
+        right: 16,
         bottom: 0,
         left: 24
       },
     },
     xaxis: {
       categories: [
-        'فروردین', 'اردیبهشت', 'خرداد',
-        'تیر', 'مرداد', 'شهریور',
-        'مهر', 'آبان', 'آذر',
-        'دی', 'بهمن', 'اسفند'
+        'موز', 'استیل البرز', 'عایق رطوبتی نانو', 'اشتراک لاندا نسخه حرفه ای', 'تجهیزات شبکه', 'طراحی لوگو', 'ادکلن مردانه', 'کفی ساینا', 'تلفن ماهواره ای',
       ],
       labels: {
+        offsetY: 12,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
@@ -126,6 +116,7 @@ function setOptions() {
     },
     legend: {
       show: props.legend,
+      showForSingleSeries: true,
       inverseOrder: true,
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
@@ -145,7 +136,9 @@ function setOptions() {
         horizontal: 16,
       },
     },
-    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
+    // colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
+    //   '#f48024', '#69d2e7'
+    // ],
     tooltip: {
       enabled: true,
       x: {
