@@ -17,8 +17,6 @@ const $q = useQuasar()
 const props = defineProps(['height'])
 
 const options = ref(null)
-const darkModeColors = ['var(--q-dark)', 'transparent']
-const lightModeColors = ['#2d2d2d09', 'transparent']
 
 const series = ref([
   {
@@ -60,7 +58,17 @@ function setOptions() {
   const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
 
   options.value = {
+    // title: {
+    //   text: 'تمامی ارقام به ریال می‌باشند',
+    //   align: 'right',
+    //   style: {
+    //     fontSize: '12px',
+    //     color: $q.dark.isActive ? 'white' : '#2d2d2d',
+    //     fontWeight: 'normal'
+    //   }
+    // },
     chart: {
+      offsetY: 4,
       fontFamily,
       type: 'line',
       toolbar: {
@@ -93,10 +101,6 @@ function setOptions() {
     },
     grid: {
       borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
-      row: {
-        colors: $q.dark.isActive ? darkModeColors : lightModeColors,
-        opacity: 0.5
-      },
       padding: {
         top: 0,
         right: 0,
@@ -123,9 +127,9 @@ function setOptions() {
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
-        // formatter: function (value) {
-        //   return value.toLocaleString();
-        // },
+        formatter: function (value) {
+          return formatYAxisLabel(value);
+        },
       },
     },
     legend: {
@@ -139,9 +143,9 @@ function setOptions() {
       fontWeight: 400,
       offsetY: 16,
       markers: {
-        width: 8,
-        height: 8,
-        radius: 50,
+        width: 14,
+        height: 14,
+        radius: 4,
         offsetX: $q.lang.rtl ? '-4' : '-4',
       },
       itemMargin: {
@@ -197,5 +201,19 @@ watch(() => $q.lang.rtl, () => {
 onMounted(() => {
   setOptions()
 })
+
+function formatYAxisLabel(value) {
+  const parts = String(value).split('.');
+  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  let formattedValue = integerPart;
+
+  if (parts.length > 1) {
+    formattedValue += '.' + parts[1];
+  }
+
+  return formattedValue;
+}
+
 </script>
 

@@ -35,8 +35,11 @@
     backdrop-filter: blur(8px) !important;
     background-color: #ffffff10 !important;
     color: #2d2d2d !important;
-    font-size: 18px;
     border: 1px solid #00000047 !important;
     z-index: 99;
   }
+
+  .apexcharts-legend {
+    padding: 0;
+}
 }

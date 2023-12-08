@@ -207,7 +207,17 @@
       <q-tab-panel name="sales-income-cost">
         <div class="q-pa-md">
           <!-- <line-chart v-if="!toggleChartToTable" /> -->
-          <apex-line-chart height="350" />
+          <div v-if="!toggleChartToTable">
+            <div class="row items-center text-caption" v-if="$q.lang.rtl">
+              <q-icon
+                name="o_info"
+                class="q-mr-xs"
+                size="xs"
+              />
+              تمامی ارقامی که مشاهده می‌کنید به <span class="text-bold q-px-xs">ریال</span> می‌باشند.
+            </div>
+            <apex-line-chart height="350" />
+          </div>
           <markup-table v-if="toggleChartToTable" />
         </div>
       </q-tab-panel>
@@ -359,4 +369,5 @@ const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''))
 
 .colspan-5 {
   grid-column: span 2;
-}</style>
+}
+</style>
