@@ -37,7 +37,15 @@
     </q-toolbar>
   </q-page-sticky>
   <div style="margin-top: 38px;">
-    <invoices-widget />
+    <!-- <invoices-widget /> -->
+    <div class="row q-gutter-lg q-mb-lg">
+      <div style="width:65%">
+        <create-new-invoice />
+      </div>
+      <div class="col">
+        <invoices-widget-v2 />
+      </div>
+    </div>
   </div>
 
   <q-card class="bordered">
@@ -282,33 +290,39 @@
   <div class="q-my-lg">
     <income-widget />
   </div>
-  <div class="row q-gutter-lg">
+
+  <div class="row q-gutter-lg q-mb-lg">
+    <div class="col-8">
+      <invoices-widget-v2 />
+    </div>
     <div class="col">
-      <!-- <doughnut-chart
-        name="موجودی صندوق"
-        number="8,729,810"
-        label="جاری شرکا"
-      /> -->
       <q-card class="no-shadow bordered">
         <q-card-section class="q-pa-lg">
           <div class="text-body1">موجودی بانک</div>
           <donut-chart
             :height="350"
+            width="100%"
+            :legend="true"
+          />
+        </q-card-section>
+      </q-card>
+    </div>
+  </div>
+  <div class="row q-gutter-x-lg">
+    <div class="col-7 column q-gutter-y-lg">
+      <q-card class="no-shadow bordered">
+        <q-card-section class="q-pa-lg">
+          <div class="text-body1">موجودی صندوق</div>
+          <donut-chart
+            :height="350"
+            width="100%"
             :legend="true"
           />
         </q-card-section>
       </q-card>
     </div>
     <div class="col">
-      <q-card class="no-shadow bordered">
-        <q-card-section class="q-pa-lg">
-          <div class="text-body1">موجودی صندوق</div>
-          <donut-chart
-            :height="350"
-            :legend="true"
-          />
-        </q-card-section>
-      </q-card>
+      <invoices-widget-v2 />
     </div>
   </div>
 </template>
@@ -323,7 +337,9 @@ import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
 // import LineChart from 'src/components/shared/Charts/LineChartV2.vue'
 // import DoughnutChart from 'src/components/shared/Charts/DoughnutChartV2.vue'
 // import PieChart from 'src/components/shared/Charts/PieChartV2.vue'
+import CreateNewInvoice from 'src/components/shared/Widgets/CreateNewInvoice.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
+import InvoicesWidgetV2 from 'src/components/shared/Widgets/InvoicesWidgetV2.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
 import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
 import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWidget.vue'
