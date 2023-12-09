@@ -5,7 +5,7 @@
     :height="height"
     :legend="legend"
     :title="title"
-    class="bar-chart"
+    class="donut-chart"
     :class="direction"
   />
 </template>
@@ -21,10 +21,7 @@ const props = defineProps(['height', 'legend', 'title'])
 const options = ref(null)
 
 const series = ref([
-  {
-    name: "",
-    data: [20000000, 40000000, 60000000, 8000000, 10000000, 12000000, 14000000, 16000000, 18000000]
-  }
+  200000000, 40000000,
 ])
 
 function setOptions() {
@@ -32,19 +29,24 @@ function setOptions() {
   const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
 
   options.value = {
+    labels: ['شماره حساب بانک آینده: 123456789'],
     title: {
       text: props.title,
-      align: 'center',
+      align: 'top',
+      margin: 0,
+      offsetX: 0,
+      offsetY: 0,
+      floating: true,
       style: {
-      fontSize:  '14px',
-      fontWeight:  'bold',
-      color:  $q.dark.isActive ? 'white' : '#2d2d2d'
-    },
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: $q.dark.isActive ? 'white' : '#2d2d2d',
+      },
     },
     chart: {
       offsetY: 4,
       fontFamily,
-      type: 'bar',
+      type: 'donut',
       toolbar: {
         show: false
       },
@@ -66,53 +68,57 @@ function setOptions() {
       }
     },
     plotOptions: {
-      bar: {
-        borderRadius: 16,
-        borderRadiusApplication: 'end',
-        horizontal: false,
-        columnWidth: '40%',
-        distributed: true,
-      },
+      pie: {
+        customScale: 0.9,
+        // expandOnClick: false,
+        donut: {
+          size: '75%',
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              label: $q.lang.rtl ? 'مجموع' : 'Total',
+              color: $q.dark.isActive ? 'white' : '#2d2d2d',
+              fontSize: '16px',
+              formatter: function (w) {
+                const totalSum = w.globals.seriesTotals.reduce((a, b) => {
+                  return a + b;
+                }, 0);
+
+                return totalSum.toLocaleString();
+              }
+
+            },
+            value: {
+              show: true,
+              fontSize: '16px',
+              fontWeight: 600,
+              color: $q.dark.isActive ? 'white' : '#2d2d2d',
+              offsetY: 4,
+              formatter: function (value) {
+                return formatLabel(value);
+              },
+            },
+            name: {
+              show: false,
+            }
+          }
+
+        }
+      }
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
+    },
+    fill: {
+      type: 'gradient',
     },
     stroke: {
-      width: 2.5,
+      width: 10,
+      colors: $q.dark.isActive ? 'var(--q-dark)' : 'white',
     },
     markers: {
       size: 0,
-    },
-    grid: {
-      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
-      padding: {
-        top: 0,
-        right: 16,
-        bottom: 0,
-        left: 24
-      },
-    },
-    xaxis: {
-      categories: [
-        'موز', 'استیل البرز', 'عایق رطوبتی نانو', 'اشتراک لاندا نسخه حرفه ای', 'تجهیزات شبکه', 'طراحی لوگو', 'ادکلن مردانه', 'کفی ساینا', 'تلفن ماهواره ای',
-      ],
-      labels: {
-        offsetY: 12,
-        style: {
-          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
-        },
-      },
-    },
-    yaxis: {
-      opposite: false,
-      labels: {
-        style: {
-          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
-        },
-        formatter: function (value) {
-          return formatYAxisLabel(value);
-        },
-      },
     },
     legend: {
       show: props.legend,
@@ -136,11 +142,8 @@ function setOptions() {
         horizontal: 16,
       },
     },
-    // colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
-    //   '#f48024', '#69d2e7'
-    // ],
     tooltip: {
-      enabled: true,
+      enabled: false,
       x: {
         show: true,
       },
@@ -155,6 +158,18 @@ function setOptions() {
         height: 8,
       },
     },
+    states: {
+      hover: {
+        filter: {
+          type: 'none'
+        }
+      },
+      active: {
+        filter: {
+          type: 'none'
+        }
+      }
+    }
   }
 
 }
@@ -175,7 +190,7 @@ onMounted(() => {
   setOptions()
 })
 
-function formatYAxisLabel(value) {
+function formatLabel(value) {
   const parts = String(value).split('.');
   const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -188,3 +203,5 @@ function formatYAxisLabel(value) {
   return formattedValue;
 }
 </script>
+
+<style></style>

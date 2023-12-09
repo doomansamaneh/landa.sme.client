@@ -240,25 +240,40 @@
           v-if="productService"
         >
           <!-- <bar-chart name="کالا و خدمت" /> -->
-          <bar-chart title="فروش بر اساس کالا و خدمات" :height="350" :legend="false" />
+          <bar-chart
+            title="فروش بر اساس کالا و خدمات"
+            :height="350"
+            :legend="false"
+          />
         </div>
         <div
           class="q-pa-md"
           v-if="customer"
         >
-          <bar-chart title="فروش بر اساس مشتری" :height="350" :legend="false" />
+          <bar-chart
+            title="فروش بر اساس مشتری"
+            :height="350"
+            :legend="false"
+          />
         </div>
         <div
           class="q-pa-md"
           v-if="productServiceGroup"
         >
-          <pie-chart />
+          <div class="text-body1">موجودی صندوق</div>
+          <pie-chart
+            :height="350"
+            :legend="true"
+          />
         </div>
       </q-tab-panel>
 
       <q-tab-panel name="cost">
         <div class="q-pa-md">
-          <bar-chart height="350" :legend="false" />
+          <bar-chart
+            height="350"
+            :legend="false"
+          />
         </div>
       </q-tab-panel>
 
@@ -269,18 +284,31 @@
   </div>
   <div class="row q-gutter-lg">
     <div class="col">
-      <doughnut-chart
+      <!-- <doughnut-chart
         name="موجودی صندوق"
         number="8,729,810"
         label="جاری شرکا"
-      />
+      /> -->
+      <q-card class="no-shadow bordered">
+        <q-card-section class="q-pa-lg">
+          <div class="text-body1">موجودی بانک</div>
+          <donut-chart
+            :height="350"
+            :legend="true"
+          />
+        </q-card-section>
+      </q-card>
     </div>
     <div class="col">
-      <doughnut-chart
-        name="موجودی بانک"
-        number="1,717,500"
-        label="شماره حساب بانک تجارت - حساب جاری: 5858 8311 2980 9389"
-      />
+      <q-card class="no-shadow bordered">
+        <q-card-section class="q-pa-lg">
+          <div class="text-body1">موجودی صندوق</div>
+          <donut-chart
+            :height="350"
+            :legend="true"
+          />
+        </q-card-section>
+      </q-card>
     </div>
   </div>
 </template>
@@ -288,11 +316,13 @@
 <script setup>
 import { ref, computed, onMounted } from "vue"
 // import BarChart from 'src/components/shared/Charts/BarChartV2.vue'
-import BarChart from 'src/components/shared/Charts/BarChart.vue'
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
-// import LineChart from 'src/components/shared/Charts/LineChart.vue'
-import DoughnutChart from 'src/components/shared/Charts/DoughnutChartV2.vue'
-import PieChart from 'src/components/shared/Charts/PieChartV2.vue'
+import BarChart from 'src/components/shared/Charts/BarChart.vue'
+import PieChart from 'src/components/shared/Charts/PieChart.vue'
+import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
+// import LineChart from 'src/components/shared/Charts/LineChartV2.vue'
+// import DoughnutChart from 'src/components/shared/Charts/DoughnutChartV2.vue'
+// import PieChart from 'src/components/shared/Charts/PieChartV2.vue'
 import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
 import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
@@ -375,4 +405,5 @@ const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''))
 
 .colspan-5 {
   grid-column: span 2;
-}</style>
+}
+</style>
