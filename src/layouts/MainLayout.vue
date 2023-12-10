@@ -4,7 +4,7 @@
     class="main-layout"
   >
     <q-page-container>
-      <main-header @toggle-menubar="toggleMenuBar" />
+      <main-header @toggle-menubar="toggleMenuBar" class="z-max" />
       <!-- <menu-bar-v-2
         v-if="$route.path === '/sls/invoice2/create'"
         :menuBar="menuBar"
@@ -22,6 +22,7 @@
 <script setup>
 import { ref, onMounted } from "vue"
 import { useRoute } from "vue-router"
+import { useQuasar } from "quasar"
 import { fetchWrapper } from "src/helpers"
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 import { useTheme } from "src/components/layouts/main/_composables/ThemeStore.js"
@@ -35,9 +36,9 @@ import AlertBanner from "src/components/shared/AlertBanner.vue"
 
 const theme = useTheme()
 const route = useRoute()
+const $q = useQuasar()
 
-const menuBar = ref(true)
-
+const menuBar = ref(false)
 const selectedBusiness = useSelectedBusinessStore()
 const contactDrawerStore = useContactDrawer()
 

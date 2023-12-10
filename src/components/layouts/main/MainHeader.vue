@@ -65,22 +65,19 @@
 
 <script setup>
 import { ref, computed } from "vue"
-
 import { useQuasar } from "quasar"
-
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
 import { useContactDrawer } from "src/composables/useContactDrawer"
-
 import FiscalYear from "./ToolbarFiscalYear.vue"
 import Notification from "./ToolbarNotification.vue"
 import Profile from "./ToolbarProfile.vue"
 import Settings from "./ToolbarSettings.vue"
-
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
 import TodayDate from "src/components/shared/TodayDate.vue"
 
 const contactDrawerStore = useContactDrawer()
 const $q = useQuasar()
+
 const selectedBusiness = useSelectedBusinessStore()
 
 const emit = defineEmits(["toggle-menubar"])

@@ -3,6 +3,7 @@
     class="menu-bar no-scroll q-mb-xl"
     side="left"
     :width="255"
+    overlay
     :model-value="menuBar"
     :breakpoint="400"
     bordered

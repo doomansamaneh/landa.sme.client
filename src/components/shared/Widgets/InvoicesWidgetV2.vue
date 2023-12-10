@@ -5,7 +5,7 @@
       <q-card-section class="row justify-between">
         <q-avatar
           rounded
-          color="primary"
+          color="blue"
           text-color="white"
           icon="o_pie_chart"
           size="lg"
@@ -21,7 +21,7 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none column q-gutter-y-sm">
-        <div class="text-body2">جمع کل</div>
+        <div class="text-body2">جمع فاکتورها</div>
         <div class="text-h6 text-bold">60,740,410</div>
         <div class="row items-center">
           <q-icon
@@ -69,7 +69,7 @@
       <q-card-section class="row justify-between">
         <q-avatar
           rounded
-          color="primary"
+          color="orange"
           text-color="white"
           icon="o_pie_chart"
           size="lg"
@@ -101,9 +101,9 @@
       <q-card-section class="row justify-between">
         <q-avatar
           rounded
-          color="primary"
+          color="orange"
           text-color="white"
-          icon="o_arrow_downward"
+          icon="o_acute"
           size="lg"
         />
         <div class="row items-center">
@@ -117,14 +117,14 @@
       </q-card-section>
 
       <q-card-section class="q-pt-none column q-gutter-y-sm">
-        <div class="text-body2">دریافت شده</div>
+        <div class="text-body2">مانده از قبل</div>
         <div class="text-h6 text-bold">376,339,310</div>
         <div class="row items-center">
           <q-icon
-            name="o_arrow_upward"
-            color="green"
+            name="o_arrow_downward"
+            color="negative"
           />
-          <div class="text-body2 text-bold text-green">+28%</div>
+          <div class="text-body2 text-bold text-negative">+28%</div>
         </div>
       </q-card-section>
     </q-card>

@@ -38,17 +38,18 @@
   </q-page-sticky>
   <div style="margin-top: 38px;">
     <!-- <invoices-widget /> -->
-    <div class="row q-gutter-lg q-mb-lg">
-      <div style="width:65%">
-        <create-new-invoice />
+    <div class="row q-gutter-x-lg">
+      <div class="col-8 col-md-8 col-sm-12">
+        <!-- <create-new-invoice /> -->
+        <info-carousel />
       </div>
-      <div class="col">
+      <div class="col col-md col-sm-12">
         <invoices-widget-v2 />
       </div>
     </div>
   </div>
 
-  <q-card class="bordered">
+  <q-card class="bordered q-mt-lg">
     <q-tabs
       v-model="tab"
       inline-label
@@ -293,7 +294,7 @@
 
   <div class="row q-gutter-lg q-mb-lg">
     <div class="col-8">
-      <invoices-widget-v2 />
+      <sales-widget />
     </div>
     <div class="col">
       <q-card class="no-shadow bordered">
@@ -329,20 +330,19 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue"
-// import BarChart from 'src/components/shared/Charts/BarChartV2.vue'
+import { useQuasar } from "quasar"
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
 import PieChart from 'src/components/shared/Charts/PieChart.vue'
 import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
-// import LineChart from 'src/components/shared/Charts/LineChartV2.vue'
-// import DoughnutChart from 'src/components/shared/Charts/DoughnutChartV2.vue'
-// import PieChart from 'src/components/shared/Charts/PieChartV2.vue'
-import CreateNewInvoice from 'src/components/shared/Widgets/CreateNewInvoice.vue'
-import InvoicesWidget from 'src/components/shared/Widgets/InvoicesWidget.vue'
+import InfoCarousel from 'src/components/shared/Widgets/InfoCarousel.vue'
 import InvoicesWidgetV2 from 'src/components/shared/Widgets/InvoicesWidgetV2.vue'
+import SalesWidget from 'src/components/shared/Widgets/SalesWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
 import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
 import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWidget.vue'
+
+const $q = useQuasar()
 
 const tab = ref('sales-income-cost')
 const toggleChartToTable = ref(false)
@@ -389,6 +389,7 @@ const label = computed(() => (toggleChartToTable.value ? 'نمایش به صور
 const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
 
 
+// $q.screen.setSizes({ xs: 0, sm: 300, md: 500, lg: 1000, xl: 2000 })
 
 </script>
 
@@ -422,4 +423,15 @@ const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''))
 .colspan-5 {
   grid-column: span 2;
 }
+
+// body.screen--lg {
+
+//   .carousel-container {
+
+//     display: grid;
+//     grid-template-columns: repeat(2, 1fr);
+
+//   }
+
+// }
 </style>

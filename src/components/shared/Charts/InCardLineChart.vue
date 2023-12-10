@@ -5,7 +5,7 @@
     :height="height"
     :legend="legend"
     :title="title"
-    class="bar-chart"
+    class="line-chart"
     :class="direction"
   />
 </template>
@@ -22,9 +22,14 @@ const options = ref(null)
 
 const series = ref([
   {
-    name: "",
-    data: [20000000, 40000000, 60000000, 8000000, 10000000, 12000000, 14000000, 16000000, 18000000]
-  }
+    name: "دریافت",
+    data: [
+      32000000, 33000000, 35000000, 1000000,
+      98000000, 23000000, 56000000, 64000000,
+      12000000, 79000000, 75000000, 42000000
+    ],
+  },
+
 ])
 
 function setOptions() {
@@ -36,20 +41,28 @@ function setOptions() {
       text: props.title,
       align: 'center',
       style: {
-      fontSize:  '14px',
-      fontWeight:  'bold',
-      color:  $q.dark.isActive ? 'white' : '#2d2d2d'
-    },
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: $q.dark.isActive ? 'white' : '#2d2d2d'
+      },
     },
     chart: {
-      offsetY: 0,
+      dropShadow: {
+        enabled: true,
+        top: 8,
+        left: 0,
+        blur: 6,
+        opacity: 0.2,
+        color: '#3cff3c'
+      },
+      // offsetY: 4,
       fontFamily,
-      type: 'bar',
+      type: 'line',
       toolbar: {
         show: false
       },
       zoom: {
-        enabled: false
+        enabled: true
       },
       animations: {
         enabled: true,
@@ -63,49 +76,59 @@ function setOptions() {
           enabled: true,
           speed: 450
         },
+
       }
     },
-    plotOptions: {
-      bar: {
-        borderRadius: 16,
-        borderRadiusApplication: 'end',
-        horizontal: false,
-        columnWidth: '40%',
-        distributed: false,
-      },
-    },
-    dataLabels: {
-      enabled: false
-    },
     stroke: {
-      width: 2.5,
+      width: 7,
+      curve: 'smooth'
     },
     markers: {
       size: 0,
     },
     grid: {
-      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
+      show: false,
       padding: {
-        top: 0,
-        right: 16,
-        bottom: 8,
-        left: 24
+        left: 0,
+        right: 0
       },
+      lines: {
+        show: false
+      },
+      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
     },
     xaxis: {
+      show: false,
+      labels: {
+        show: false
+      },
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      },
+      labels: {
+        show: false
+      },
       categories: [
-        'موز', 'استیل البرز', 'عایق رطوبتی نانو', 'اشتراک لاندا نسخه حرفه ای', 'تجهیزات شبکه', 'طراحی لوگو', 'ادکلن مردانه', 'کفی ساینا', 'تلفن ماهواره ای',
+        'فروردین', 'اردیبهشت', 'خرداد',
+        'تیر', 'مرداد', 'شهریور',
+        'مهر', 'آبان', 'آذر',
+        'دی', 'بهمن', 'اسفند'
       ],
       labels: {
-        offsetY: 12,
+        show: false,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
       },
     },
     yaxis: {
+      show: false,
       opposite: false,
       labels: {
+        show: false,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
@@ -116,7 +139,6 @@ function setOptions() {
     },
     legend: {
       show: props.legend,
-      showForSingleSeries: true,
       inverseOrder: true,
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
@@ -136,13 +158,11 @@ function setOptions() {
         horizontal: 16,
       },
     },
-    // colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
-    //   '#f48024', '#69d2e7'
-    // ],
+    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
     tooltip: {
       enabled: true,
       x: {
-        show: true,
+        show: false,
       },
       y: {
         show: true,
@@ -156,6 +176,18 @@ function setOptions() {
       },
     },
   }
+  //   // custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+  //   //   let tooltipText = '<div class="apex-custom-tooltip column q-gutter-y-sm q-pa-md">';
+  //   //   series.forEach((singleSeries, index) => {
+  //   //     tooltipText += `<span>
+  //   //       ${w.config.series[index].name}: ${singleSeries[dataPointIndex].toLocaleString()}
+  //   //   </span>`;
+  //   //   });
+  //   //   tooltipText += '</div>';
+  //   //   return tooltipText;
+  //   // }
+
+  // },
 
 }
 
