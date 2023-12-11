@@ -310,7 +310,7 @@
     </div>
   </div>
   <div class="row q-gutter-x-lg">
-    <div class="col-7 column q-gutter-y-lg">
+    <div class="col-5 column q-gutter-y-lg">
       <q-card class="no-shadow bordered">
         <q-card-section class="q-pa-lg">
           <div class="text-body1">موجودی صندوق</div>
@@ -323,7 +323,7 @@
       </q-card>
     </div>
     <div class="col">
-      <invoices-widget-v2 />
+      <sales-widget />
     </div>
   </div>
 </template>
