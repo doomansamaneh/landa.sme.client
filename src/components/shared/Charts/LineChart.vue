@@ -70,13 +70,12 @@ function setOptions() {
       },
     },
     chart: {
-      offsetY: 4,
+      fontFamily,
+      type: 'area',
       parentHeightOffset: 0,
       sparkline: {
         enabled: true
       },
-      fontFamily,
-      type: 'area',
       toolbar: {
         show: false
       },
@@ -98,11 +97,12 @@ function setOptions() {
 
       }
     },
+
     dataLabels: {
       enabled: false
     },
     stroke: {
-      width: 3.5,
+      width: 4,
       curve: 'smooth'
     },
     markers: {
@@ -110,16 +110,34 @@ function setOptions() {
     },
     grid: {
       show: false,
-      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
       padding: {
-        top: 140,
-        right: 0,
-        bottom: 0,
-        left: 0
+          top: 140,
+          left: 0,
+          right: 0,
+          bottom: 0
+     },
+      lines: {
+        show: false
       },
+      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
     },
     xaxis: {
       show: false,
+      crosshairs: {
+        width: 1
+      },
+      labels: {
+        show: false
+      },
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      },
+      labels: {
+        show: false
+      },
       categories: [
         'فروردین', 'اردیبهشت', 'خرداد',
         'تیر', 'مرداد', 'شهریور',
@@ -134,9 +152,9 @@ function setOptions() {
       },
     },
     yaxis: {
-      opposite: false,
-      show: false,
       min: 0,
+      show: false,
+      opposite: false,
       labels: {
         show: false,
         style: {
@@ -156,7 +174,7 @@ function setOptions() {
       position: 'top',
       fontSize: '14px',
       fontWeight: 400,
-      // offsetY: 16,
+      offsetY: 16,
       markers: {
         width: 14,
         height: 14,
@@ -186,6 +204,7 @@ function setOptions() {
       },
     },
   }
+
   //   // custom: function ({ series, seriesIndex, dataPointIndex, w }) {
   //   //   let tooltipText = '<div class="apex-custom-tooltip column q-gutter-y-sm q-pa-md">';
   //   //   series.forEach((singleSeries, index) => {
@@ -199,6 +218,7 @@ function setOptions() {
 
   // },
 
+  // colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
 }
 
 const direction = computed(() => {
