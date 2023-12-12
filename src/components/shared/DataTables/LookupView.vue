@@ -58,22 +58,22 @@
       >
         <slot name="thead" />
       </div>
-        <div
-          class="cursor-pointer"
-          v-for="(row, index) in tableStore.rows.value"
-          :key="row.id"
-          :class="{ 'row-active': index === selectedRowIndex }"
-          @click="onRowClicked(row, index)"
-        >
-          <slot
-            name="td"
-            :row="row"
-            :index="tableStore.rowIndex(index)"
-          />
-        </div>
+      <div
+        class="cursor-pointer"
+        v-for="(row, index) in tableStore.rows.value"
+        :key="row.id"
+        :class="{ 'row-active': index === selectedRowIndex }"
+        @click="onRowClicked(row, index)"
+      >
+        <slot
+          name="td"
+          :row="row"
+          :index="tableStore.rowIndex(index)"
+        />
+      </div>
 
       <div
-        v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
+        v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0"
         class="q-table__bottom items-center q-table__bottom--nodata"
       >
         <slot name="noDataFound">

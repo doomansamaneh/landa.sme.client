@@ -131,7 +131,7 @@
       </q-item>
 
       <div
-        v-if="!tableStore.loading.value && rows.length === 0"
+        v-if="!tableStore.showLoader.value && rows.length === 0"
         class="text-on-dark"
       >
         <no-data-found />

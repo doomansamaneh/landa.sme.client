@@ -30,7 +30,7 @@ export function useDataTable(dataSource
   const state = computed(() => store?.state ?? localState)
   const pagination = computed(() => store?.pagination.value ?? localPagination.value)
 
-  const loading = ref(false)
+  //const loading = ref(false)
   const showLoader = ref(false)
   const inputInnerLoader = ref(false)
 
@@ -219,7 +219,7 @@ export function useDataTable(dataSource
     activeRow: state.value.activeRow,
     summaryData: state.value.summaryData,
 
-    loading,
+    //loading,
     inputInnerLoader,
     showLoader,
     selectedRows,

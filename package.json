@@ -11,14 +11,14 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/cli": "^2.2.3",
-    "@quasar/extras": "^1.16.4",
+    "@quasar/cli": "^2.3.0",
+    "@quasar/extras": "^1.16.9",
     "apexcharts": "^3.44.0",
-    "axios": "^0.21.1",
+    "axios": "^1.6.2",
     "chart.js": "^4.4.0",
     "pinia": "^2.0.11",
     "postcss-rtlcss": "^3.7.2",
-    "quasar": "^2.12.2",
+    "quasar": "^2.14.1",
     "to": "^0.2.9",
     "update": "^0.7.4",
     "vue": "^3.0.0",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@intlify/vue-i18n-loader": "^5.0.1",
-    "@quasar/app-vite": "^1.4.3",
+    "@quasar/app-vite": "^1.7.1",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.1.0",
@@ -42,5 +42,15 @@
     "node": "^18 || ^16 || ^14.19",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
-  }
+  },
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doomansamaneh/landa.sme.client.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doomansamaneh/landa.sme.client/issues"
+  },
+  "homepage": "https://github.com/doomansamaneh/landa.sme.client#readme"
 }

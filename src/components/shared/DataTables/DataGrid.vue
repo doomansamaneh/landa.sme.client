@@ -183,7 +183,7 @@
       </table>
     </div>
     <div
-      v-if="!tableStore.loading.value && tableStore.rows.value.length == 0"
+      v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0"
       class="q-table__bottom items-center q-table__bottom--nodata"
     >
       <slot name="noDataFound">

@@ -62,7 +62,7 @@
       </div>
     </q-card-section>
 
-    <q-card-section v-if="!tableStore.loading.value && tableStore.rows.value.length == 0">
+    <q-card-section v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0">
       <no-data-found />
     </q-card-section>
 
