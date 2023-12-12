@@ -28,42 +28,7 @@
             {{ prop.node.label }}
           </div>
           <q-space />
-          <div class="col-2 q-gutter-x-sm text-negative">
-            <span class="text-caption">بدهکار</span>
             <span>5,922,779</span>
-            <!-- <q-badge
-              rounded
-              color="negative"
-              outline
-              label="5,922,779"
-              class="q-ml-sm text-caption text-bold
-                  bg-dark text-on-dark text-body2"
-            /> -->
-          </div>
-          <div class="col-2 q-gutter-x-sm text-positive">
-            <span class="text-caption">بستانکار</span>
-            <span>21,360,000</span>
-            <!-- <q-badge
-              rounded
-              outline
-              color=""
-              label="21,360,000"
-              class="q-ml-sm text-caption text-bold
-                  bg-dark text-on-dark text-body2"
-            /> -->
-          </div>
-          <div class="col-2 q-gutter-x-sm">
-            <span class="text-caption">سود</span>
-            <span>15,437,221</span>
-            <!-- <q-badge
-              rounded
-              color="primary"
-              outline
-              label="15,437,221"
-              class="q-ml-sm text-caption  text-bold
-                  bg-dark text-on-dark text-body2"
-            /> -->
-          </div>
         </template>
         <!-- <template #default-body="prop">
 

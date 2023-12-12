@@ -42,107 +42,7 @@
       <div class="col-8 col-md-8 col-sm-12">
         <!-- <create-new-invoice /> -->
         <!-- <info-carousel /> -->
-        <q-card class="bordered no-shadow">
-          <q-card-section class="q-pa-lg">
-            <div class="row items-center justify-between">
-              <div class="text-body1">فاکتورهای فروش</div>
-              <q-btn
-                to="/sls/invoice/create"
-                unelevated
-                rounded
-                class="bordered-btn bg-dark q-py-xs"
-              ><q-icon
-                  name="o_add"
-                  size="16px"
-                  class="q-mr-xs"
-                />ایجاد فاکتور</q-btn>
-            </div>
-            <div class="text-body2 text-bold">تبریک میگم، %47.4 رشد داشته اید. <span class="text-caption">در ماه
-                گذشته</span></div>
-          </q-card-section>
-
-          <q-card-section class="row q-pt-none q-px-lg q-pt-none q-pb-lg">
-            <div class="col">
-              <q-item class="no-padding">
-                <q-item-section avatar>
-                  <q-avatar
-                    rounded
-                    color="grey"
-                    text-color="white"
-                    icon="o_receipt"
-                    size="xl"
-                    class="grey-shadow"
-                  />
-                </q-item-section>
-
-                <q-item-section class="q-pl-xs">
-                  <q-item-label>جمع کل</q-item-label>
-                  <q-item-label class="text-h6 text-bold">392,529,180</q-item-label>
-                </q-item-section>
-              </q-item>
-            </div>
-
-            <div class="col">
-              <q-item class="no-padding">
-                <q-item-section avatar>
-                  <q-avatar
-                    rounded
-                    color="green"
-                    text-color="white"
-                    icon="o_receipt"
-                    size="xl"
-                    class="green-shadow"
-                  />
-                </q-item-section>
-
-                <q-item-section class="q-pl-xs">
-                  <q-item-label>دریافت شده</q-item-label>
-                  <q-item-label class="text-h6 text-bold">153,444,310</q-item-label>
-                </q-item-section>
-              </q-item>
-            </div>
-
-            <div class="col">
-              <q-item class="no-padding">
-                <q-item-section avatar>
-                  <q-avatar
-                    rounded
-                    color="orange"
-                    text-color="white"
-                    icon="o_receipt"
-                    size="xl"
-                    class="orange-shadow"
-                  />
-                </q-item-section>
-
-                <q-item-section class="q-pl-xs">
-                  <q-item-label>مانده امسال</q-item-label>
-                  <q-item-label class="text-h6 text-bold">392,529,180</q-item-label>
-                </q-item-section>
-              </q-item>
-            </div>
-
-            <div class="col">
-              <q-item class="no-padding">
-                <q-item-section avatar>
-                  <q-avatar
-                    rounded
-                    color="red"
-                    text-color="white"
-                    icon="o_receipt"
-                    size="xl"
-                    class="red-shadow"
-                  />
-                </q-item-section>
-
-                <q-item-section class="q-pl-xs">
-                  <q-item-label>مانده از قبل</q-item-label>
-                  <q-item-label class="text-h6 text-bold">32,314,300</q-item-label>
-                </q-item-section>
-              </q-item>
-            </div>
-          </q-card-section>
-        </q-card>
+        <invoices-widget-v2 />
 
       </div>
       <div class="col col-md col-sm-12">
@@ -151,7 +51,169 @@
     </div>
   </div>
 
-  <q-card class="bordered q-mt-lg">
+  <div class="row q-my-lg">
+
+    <div class="col-4"></div>
+
+    <div class="col-8">
+      <q-card
+        class="bordered q-pa-none"
+        flat
+      >
+        <q-card-section class="col q-py-lg q-pl-lg q-pr-md">
+
+          <div class="row justify-between">
+            <div class="col-11">
+              <q-item class="no-padding">
+                <q-item-section avatar>
+                  <q-avatar
+                    rounded
+                    color="green"
+                    text-color="white"
+                    icon="o_sell"
+                    size="md"
+                    class="green-shadow"
+                  />
+                </q-item-section>
+
+                <q-item-section class="q-pl-xs">
+                  <q-item-label class="text-body2 q-mb-xs">فروش و درآمد، هزینه</q-item-label>
+                </q-item-section>
+              </q-item>
+
+            </div>
+            <div class="col">
+
+              <div class="row justify-end">
+                <q-btn
+                  unelevated
+                  round
+                  dense
+                  :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
+                  size="md"
+                  icon="o_more_vert"
+                >
+
+                  <q-menu fit>
+                    <q-list
+                      dense
+                      padding
+                      style="width:200px"
+                    >
+                      <q-item
+                        clickable
+                        v-close-popup
+                        tabindex="0"
+                        @click="showLineChart"
+                      >
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar
+                              class="dark-icon"
+                              size="sm"
+                            ><q-icon
+                                name="o_refresh"
+                                size="14px"
+                              /></q-avatar>
+                          </q-item-section>
+                        </div>
+                        <q-item-section>
+                          <div class="text-caption">فروش و درآمد، هزینه</div>
+                        </q-item-section>
+                      </q-item>
+                      <q-separator />
+                      <q-item
+                        clickable
+                        v-close-popup
+                        tabindex="0"
+                        @click="showBarChart"
+                      >
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar
+                              class="dark-icon"
+                              size="sm"
+                            ><q-icon
+                                name="o_close"
+                                size="14px"
+                              /></q-avatar>
+                          </q-item-section>
+                        </div>
+                        <q-item-section>
+                          <div class="text-caption">فروش</div>
+                        </q-item-section>
+                      </q-item>
+                      <q-item
+                        clickable
+                        v-close-popup
+                        tabindex="0"
+                      >
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar
+                              class="dark-icon"
+                              size="sm"
+                            ><q-icon
+                                name="o_check"
+                                size="14px"
+                              /></q-avatar>
+                          </q-item-section>
+                        </div>
+                        <q-item-section>
+                          <div class="text-caption">درآمد</div>
+                        </q-item-section>
+                      </q-item>
+                      <q-separator />
+                      <q-item
+                        clickable
+                        v-close-popup
+                        tabindex="0"
+                      >
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar
+                              class="dark-icon"
+                              size="sm"
+                            ><q-icon
+                                name="o_download"
+                                size="16px"
+                              /></q-avatar>
+                          </q-item-section>
+                        </div>
+                        <q-item-section>
+                          <div class="text-caption">تبدیل به اکسل</div>
+                        </q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
+
+                </q-btn>
+              </div>
+
+            </div>
+          </div>
+        </q-card-section>
+
+        <line-chart
+          v-if="lineChart"
+          :height="350"
+          legend="true"
+        />
+
+        <bar-chart
+          v-if="barChart"
+          :height="350"
+          legend="true"
+        />
+
+      </q-card>
+    </div>
+
+  </div>
+
+  <!-- <q-card class="bordered q-mt-lg">
+
+
     <q-tabs
       v-model="tab"
       inline-label
@@ -315,11 +377,10 @@
       animated
       swipeable
     >
-      <q-tab-panel name="sales-income-cost">
-        <div class="q-pa-md">
+      <q-tab-panel name="sales-income-cost" class="no-scroll no-padding">
           <div v-if="!toggleChartToTable">
             <line-chart
-              :height="350"
+              :height="400"
               :legend="true"
               v-if="!toggleChartToTable"
             />
@@ -336,7 +397,6 @@
             </div>
           </div>
           <markup-table v-if="toggleChartToTable" />
-        </div>
       </q-tab-panel>
 
       <q-tab-panel name="financial-ratio">
@@ -350,7 +410,7 @@
           class="q-pa-md"
           v-if="productService"
         >
-          <!-- <bar-chart name="کالا و خدمت" /> -->
+          <bar-chart name="کالا و خدمت" />
           <bar-chart
             title="فروش بر اساس کالا و خدمات"
             :height="350"
@@ -389,14 +449,14 @@
       </q-tab-panel>
 
     </q-tab-panels>
-  </q-card>
+  </q-card> -->
   <div class="row q-my-lg q-gutter-x-lg">
 
-    <div class="col-8">
+    <div class="col">
       <income-widget />
     </div>
 
-    <div class="col">
+    <div class="col-6">
       <q-card class="no-shadow bordered">
         <q-card-section class="q-pa-lg">
           <div class="text-body1">موجودی بانک</div>
@@ -428,23 +488,6 @@
       </q-card>
     </div>
   </div>
-  <div class="row q-gutter-x-lg">
-    <div class="col-5 column q-gutter-y-lg">
-      <q-card class="no-shadow bordered">
-        <q-card-section class="q-pa-lg">
-          <div class="text-body1">موجودی صندوق</div>
-          <donut-chart
-            :height="350"
-            width="100%"
-            :legend="true"
-          />
-        </q-card-section>
-      </q-card>
-    </div>
-    <div class="col">
-      <sales-widget />
-    </div>
-  </div>
 </template>
 
 <script setup>
@@ -470,7 +513,6 @@ const toggleWidgetsLayout = ref(false)
 const productServiceGroup = ref(false)
 const customer = ref(false)
 const productService = ref(true)
-
 
 const chartToTabel = () => {
   toggleChartToTable.value = !toggleChartToTable.value
@@ -508,6 +550,19 @@ const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_windo
 const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
 const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
 
+
+const barChart = ref(false)
+const lineChart = ref(true)
+
+const showBarChart = () => {
+  lineChart.value = false;
+  barChart.value = true;
+}
+
+const showLineChart = () => {
+  barChart.value = false;
+  lineChart.value = true;
+}
 
 // $q.screen.setSizes({ xs: 0, sm: 300, md: 500, lg: 1000, xl: 2000 })
 

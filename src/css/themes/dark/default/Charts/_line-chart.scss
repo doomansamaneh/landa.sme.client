@@ -2,7 +2,7 @@
   $padding-direction: if($rtl, padding-left, padding-right);
 
   .line-chart .apexcharts-tooltip {
-    backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(16px) !important;
     background-color: var(--q-dark) !important;
     color: white !important;
     padding-top: 12px;
@@ -13,8 +13,9 @@
   }
 
   .line-chart .apexcharts-tooltip-title {
-    padding: 8px;
-    color: #2d2d2d;
+    padding: 4px 16px 0 16px;
+    color: white !important;
+    font-weight: 600 !important;
     background-color: transparent !important;
     border: none !important;
   }

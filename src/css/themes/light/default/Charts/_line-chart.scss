@@ -13,9 +13,10 @@
   }
 
   .line-chart .apexcharts-tooltip-title {
-    padding: 8px;
-    color: white;
-    background-color: transparent !important;
+    padding: 4px 16px 0 16px;
+    color: #2d2d2d;
+    font-weight: 600 !important;
+    background-color: #ffffff10 !important;
     border: none !important;
   }
 
@@ -42,4 +43,5 @@
   .line-chart .apexcharts-legend {
     padding: 0;
 }
+
 }

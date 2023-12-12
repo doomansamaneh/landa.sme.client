@@ -71,8 +71,12 @@ function setOptions() {
     },
     chart: {
       offsetY: 4,
+      parentHeightOffset: 0,
+      sparkline: {
+        enabled: true
+      },
       fontFamily,
-      type: 'line',
+      type: 'area',
       toolbar: {
         show: false
       },
@@ -94,6 +98,9 @@ function setOptions() {
 
       }
     },
+    dataLabels: {
+      enabled: false
+    },
     stroke: {
       width: 3.5,
       curve: 'smooth'
@@ -102,15 +109,17 @@ function setOptions() {
       size: 0,
     },
     grid: {
+      show: false,
       borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
       padding: {
-        top: 0,
-        right: 16,
+        top: 140,
+        right: 0,
         bottom: 0,
-        left: 24
+        left: 0
       },
     },
     xaxis: {
+      show: false,
       categories: [
         'فروردین', 'اردیبهشت', 'خرداد',
         'تیر', 'مرداد', 'شهریور',
@@ -118,6 +127,7 @@ function setOptions() {
         'دی', 'بهمن', 'اسفند'
       ],
       labels: {
+        show: false,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
@@ -125,7 +135,10 @@ function setOptions() {
     },
     yaxis: {
       opposite: false,
+      show: false,
+      min: 0,
       labels: {
+        show: false,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
@@ -140,10 +153,10 @@ function setOptions() {
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
       },
-      position: 'bottom',
+      position: 'top',
       fontSize: '14px',
       fontWeight: 400,
-      offsetY: 16,
+      // offsetY: 16,
       markers: {
         width: 14,
         height: 14,
@@ -159,7 +172,7 @@ function setOptions() {
     tooltip: {
       enabled: true,
       x: {
-        show: false,
+        show: true,
       },
       y: {
         show: true,
