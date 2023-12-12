@@ -1,9 +1,9 @@
 @mixin q-avatar-dark {
-  .q-avatar__content {
-    background-color: lighten($dark-page, 10);
-    border: 1px solid #{$primary}10;
-    box-shadow: 0 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
+  // .q-avatar__content {
+  //   background-color: lighten($dark-page, 10);
+  //   border: 1px solid #{$primary}10;
+  //   box-shadow: 0 0 1px 0 rgba(255, 255, 255, 0.3);
+  // }
 
   .business-isowner .q-avatar__content,
   .profile-pic .q-avatar__content {

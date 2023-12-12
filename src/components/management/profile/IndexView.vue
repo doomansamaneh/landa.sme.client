@@ -166,6 +166,27 @@
     </q-toolbar>
   </q-page-sticky>
   <div class="row q-gutter-md q-mt-xl">
+
+    <div class="col">
+    <sales-widget />
+    </div>
+
+    <div class="col">
+    <sales-widget />
+    </div>
+
+    <div class="col">
+    <sales-widget />
+    </div>
+
+    <div class="col">
+    <sales-widget />
+    </div>
+
+
+  </div>
+
+  <div class="row q-mt-lg q-gutter-x-md">
     <div class="col">
       <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
@@ -232,7 +253,6 @@
         </q-card-section>
       </q-card>
     </div>
-
   </div>
   <q-tabs
     v-model="tab"
@@ -1070,6 +1090,7 @@ import "src/helpers/extensions";
 import Invoice from "src/components/areas/crm/customer/_InvoiceDataTable.vue"
 import EditCustomerData from "src/components/management/profile/EditCustomerDataDialog.vue"
 import AddCustomField from "src/components/management/profile/AddCustomField.vue"
+import SalesWidget from "src/components/shared/Widgets/SalesWidget.vue"
 
 import { useInvoice } from "src/components/areas/crm/_composables/useInvoice"
 const invoiceStore = useInvoice()

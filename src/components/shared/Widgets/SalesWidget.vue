@@ -1,103 +1,26 @@
 <template>
-  <div class="container fit">
+  <q-card
+    class="bordered q-pa-none"
+    flat
+  >
+    <q-card-section class="col q-px-lg">
+      <div class="text-h6 text-bold q-mt-sm q-mb-xs">240,000,000</div>
+      <div class="text-body3">
+        فروش
+      </div>
+    </q-card-section>
 
-    <q-card
-      class="q-pa-none"
-      flat
-      bordered
-    >
-      <q-card-section class="col q-pt-xs">
-        <div class="text-h5 q-mt-sm q-mb-xs">دریافت</div>
-        <div class="text-caption text-grey">
-          امسال
-        </div>
-      </q-card-section>
+    <chart
+      :options="options"
+      :series="series"
+      :legend="legend"
+      :title="title"
+      height="80"
+      class="area-chart"
+      :class="direction"
+    />
 
-      <chart
-        :options="options"
-        :series="series"
-        :legend="legend"
-        :title="title"
-        class="line-chart"
-        :class="direction"
-      />
-
-    </q-card>
-
-    <q-card
-      class="no-margin"
-      flat
-      bordered
-    >
-      <q-card-section class="col q-pt-xs">
-        <div class="text-h5 q-mt-sm q-mb-xs">دریافت</div>
-        <div class="text-caption text-grey">
-          امسال
-        </div>
-      </q-card-section>
-
-      <chart
-        :options="options"
-        :series="series"
-        :height="height"
-        :legend="legend"
-        :title="title"
-        class="line-chart"
-        :class="direction"
-      />
-
-    </q-card>
-
-    <q-card
-      class="no-margin"
-      flat
-      bordered
-    >
-      <q-card-section class="col q-pt-xs">
-        <div class="text-h5 q-mt-sm q-mb-xs">دریافت</div>
-        <div class="text-caption text-grey">
-          امسال
-        </div>
-      </q-card-section>
-
-      <chart
-        :options="options"
-        :series="series"
-        :height="height"
-        :legend="legend"
-        :title="title"
-        class="line-chart"
-        :class="direction"
-      />
-
-    </q-card>
-
-    <q-card
-      class="no-margin"
-      flat
-      bordered
-    >
-      <q-card-section class="col q-pt-xs">
-        <div class="text-h5 q-mt-sm q-mb-xs">دریافت</div>
-        <div class="text-caption text-grey">
-          امسال
-        </div>
-      </q-card-section>
-
-      <chart
-        :options="options"
-        :series="series"
-        :height="height"
-        :legend="legend"
-        :title="title"
-        class="line-chart"
-        :class="direction"
-      />
-
-    </q-card>
-
-
-  </div>
+  </q-card>
 </template>
 
 <script setup>
@@ -112,13 +35,13 @@ const options = ref(null)
 
 const series = ref([
   {
-    name: "دریافت",
+    name: "فروش",
     data: [
-      32000000, 33000000, 35000000, 1000000,
-      98000000, 23000000, 56000000, 64000000,
-      12000000, 79000000, 75000000, 42000000
+      2000000, 5000000, 2000000, 8000000,
+      3000000, 4000000, 9000000, 7000000,
+      4000000, 13000000, 7000000, 6000000
     ],
-  },
+  }
 
 ])
 
@@ -137,15 +60,6 @@ function setOptions() {
       },
     },
     chart: {
-      // dropShadow: {
-      //   enabled: true,
-      //   top: 8,
-      //   left: 0,
-      //   blur: 6,
-      //   opacity: 0.2,
-      //   color: '#3cff3c'
-      // },
-      // offsetY: 4,
       fontFamily,
       type: 'area',
       parentHeightOffset: 0,
@@ -156,7 +70,7 @@ function setOptions() {
         show: false
       },
       zoom: {
-        enabled: true
+        enabled: false
       },
       animations: {
         enabled: true,
@@ -187,9 +101,11 @@ function setOptions() {
     grid: {
       show: false,
       padding: {
-        left: 0,
-        right: 0
-      },
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+     },
       lines: {
         show: false
       },
@@ -197,6 +113,9 @@ function setOptions() {
     },
     xaxis: {
       show: false,
+      crosshairs: {
+        width: 1
+      },
       labels: {
         show: false
       },
@@ -223,6 +142,7 @@ function setOptions() {
       },
     },
     yaxis: {
+      min: 0,
       show: false,
       opposite: false,
       labels: {
@@ -256,11 +176,11 @@ function setOptions() {
         horizontal: 16,
       },
     },
-    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
+    colors: ["rgb(36, 183, 160)"],
     tooltip: {
       enabled: true,
       x: {
-        show: false,
+        show: true,
       },
       y: {
         show: true,

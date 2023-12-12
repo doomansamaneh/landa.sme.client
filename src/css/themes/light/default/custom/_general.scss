@@ -43,8 +43,8 @@
   }
 
   .bordered {
-    border: 1px solid #00000024;
-    box-shadow: rgba(0, 0, 0, 0.03) 0px 6px 24px 0px;
+    border: 1px solid #00000024 !important;
+    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important
   }
 
   .bordered-1 {
@@ -149,5 +149,21 @@
   .btn-active {
     background-color: #00000017;
     border-radius: 100%;
+  }
+
+  .orange-shadow {
+    box-shadow: 0 4px 8px -4px $warning;
+  }
+
+  .red-shadow {
+    box-shadow: 0 4px 8px -4px orangered;
+  }
+
+  .green-shadow {
+    box-shadow: 0 4px 8px -4px $positive;
+  }
+
+  .grey-shadow {
+    box-shadow: 0 4px 8px -4px #505050;
   }
 }

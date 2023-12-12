@@ -36,15 +36,117 @@
       <div class="q-space" />
     </q-toolbar>
   </q-page-sticky>
-  <div style="margin-top: 38px;">
+  <div style="margin-top: 42px;">
     <!-- <invoices-widget /> -->
     <div class="row q-gutter-x-lg">
       <div class="col-8 col-md-8 col-sm-12">
         <!-- <create-new-invoice /> -->
-        <info-carousel />
+        <!-- <info-carousel /> -->
+        <q-card class="bordered no-shadow">
+          <q-card-section class="q-pa-lg">
+            <div class="row items-center justify-between">
+              <div class="text-body1">فاکتورهای فروش</div>
+              <q-btn
+                to="/sls/invoice/create"
+                unelevated
+                rounded
+                class="bordered-btn bg-dark q-py-xs"
+              ><q-icon
+                  name="o_add"
+                  size="16px"
+                  class="q-mr-xs"
+                />ایجاد فاکتور</q-btn>
+            </div>
+            <div class="text-body2 text-bold">تبریک میگم، %47.4 رشد داشته اید. <span class="text-caption">در ماه
+                گذشته</span></div>
+          </q-card-section>
+
+          <q-card-section class="row q-pt-none q-px-lg q-pt-none q-pb-lg">
+            <div class="col">
+              <q-item class="no-padding">
+                <q-item-section avatar>
+                  <q-avatar
+                    rounded
+                    color="grey"
+                    text-color="white"
+                    icon="o_receipt"
+                    size="xl"
+                    class="grey-shadow"
+                  />
+                </q-item-section>
+
+                <q-item-section class="q-pl-xs">
+                  <q-item-label>جمع کل</q-item-label>
+                  <q-item-label class="text-h6 text-bold">392,529,180</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+
+            <div class="col">
+              <q-item class="no-padding">
+                <q-item-section avatar>
+                  <q-avatar
+                    rounded
+                    color="green"
+                    text-color="white"
+                    icon="o_receipt"
+                    size="xl"
+                    class="green-shadow"
+                  />
+                </q-item-section>
+
+                <q-item-section class="q-pl-xs">
+                  <q-item-label>دریافت شده</q-item-label>
+                  <q-item-label class="text-h6 text-bold">153,444,310</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+
+            <div class="col">
+              <q-item class="no-padding">
+                <q-item-section avatar>
+                  <q-avatar
+                    rounded
+                    color="orange"
+                    text-color="white"
+                    icon="o_receipt"
+                    size="xl"
+                    class="orange-shadow"
+                  />
+                </q-item-section>
+
+                <q-item-section class="q-pl-xs">
+                  <q-item-label>مانده امسال</q-item-label>
+                  <q-item-label class="text-h6 text-bold">392,529,180</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+
+            <div class="col">
+              <q-item class="no-padding">
+                <q-item-section avatar>
+                  <q-avatar
+                    rounded
+                    color="red"
+                    text-color="white"
+                    icon="o_receipt"
+                    size="xl"
+                    class="red-shadow"
+                  />
+                </q-item-section>
+
+                <q-item-section class="q-pl-xs">
+                  <q-item-label>مانده از قبل</q-item-label>
+                  <q-item-label class="text-h6 text-bold">32,314,300</q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+          </q-card-section>
+        </q-card>
+
       </div>
       <div class="col col-md col-sm-12">
-        <invoices-widget-v2 />
+        <sales-widget />
       </div>
     </div>
   </div>
@@ -288,8 +390,25 @@
 
     </q-tab-panels>
   </q-card>
-  <div class="q-my-lg">
-    <income-widget />
+  <div class="row q-my-lg q-gutter-x-lg">
+
+    <div class="col-8">
+      <income-widget />
+    </div>
+
+    <div class="col">
+      <q-card class="no-shadow bordered">
+        <q-card-section class="q-pa-lg">
+          <div class="text-body1">موجودی بانک</div>
+          <donut-chart
+            :height="350"
+            width="100%"
+            :legend="true"
+          />
+        </q-card-section>
+      </q-card>
+    </div>
+
   </div>
 
   <div class="row q-gutter-lg q-mb-lg">
@@ -299,7 +418,7 @@
     <div class="col">
       <q-card class="no-shadow bordered">
         <q-card-section class="q-pa-lg">
-          <div class="text-body1">موجودی بانک</div>
+          <div class="text-body1">موجودی صندوق</div>
           <donut-chart
             :height="350"
             width="100%"
@@ -331,6 +450,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue"
 import { useQuasar } from "quasar"
+
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
 import PieChart from 'src/components/shared/Charts/PieChart.vue'

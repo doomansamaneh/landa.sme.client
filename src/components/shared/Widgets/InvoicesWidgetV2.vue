@@ -37,7 +37,7 @@
       <q-card-section class="row justify-between">
         <q-avatar
           rounded
-          color="primary"
+          color="green"
           text-color="white"
           icon="o_arrow_downward"
           size="lg"
@@ -65,7 +65,7 @@
       </q-card-section>
     </q-card>
 
-    <q-card class="no-shadow bordered">
+    <!-- <q-card class="no-shadow bordered">
       <q-card-section class="row justify-between">
         <q-avatar
           rounded
@@ -127,7 +127,7 @@
           <div class="text-body2 text-bold text-negative">+28%</div>
         </div>
       </q-card-section>
-    </q-card>
+    </q-card> -->
 
   </div>
 </template>

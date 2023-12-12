@@ -2,7 +2,7 @@
   --q-primary: #{$primary};
   --q-secondary: #{$secondary};
   --q-accent: #{$accent};
-  background-color: #f2f2f2;
+  background-color: rgb(244, 245, 250);
   @include q-avatar-light();
   @include q-breadcrumbs-light();
   @include q-card-light();
@@ -34,4 +34,5 @@
   @include lang-switcher-light();
   @include line-chart-light();
   @include bar-chart-light();
+  @include area-chart-light();
 }
