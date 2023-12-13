@@ -43,4 +43,12 @@
   .bar-chart .apexcharts-legend {
     padding: 0;
 }
+
+.bar-chart .apexcharts-series path {
+  clip-path: inset(0% round 100px);
+  }
+
+  // .bar-chart .apexcharts-bar-series.apexcharts-plot-series .apexcharts-series path {
+  // clip-path: inset(5% 5% 5% 0% round 8px);
+  // }
 }

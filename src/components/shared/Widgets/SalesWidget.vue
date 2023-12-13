@@ -1,6 +1,6 @@
 <template>
   <q-card
-    class="bordered q-pa-none"
+    class="fit bordered no-padding"
     flat
   >
     <q-card-section class="col q-px-lg">
@@ -10,7 +10,7 @@
       </div>
     </q-card-section>
 
-    <chart
+      <chart
       :options="options"
       :series="series"
       :legend="legend"
@@ -21,6 +21,7 @@
     />
 
   </q-card>
+
 </template>
 
 <script setup>
@@ -194,18 +195,7 @@ function setOptions() {
       },
     },
   }
-  //   // custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-  //   //   let tooltipText = '<div class="apex-custom-tooltip column q-gutter-y-sm q-pa-md">';
-  //   //   series.forEach((singleSeries, index) => {
-  //   //     tooltipText += `<span>
-  //   //       ${w.config.series[index].name}: ${singleSeries[dataPointIndex].toLocaleString()}
-  //   //   </span>`;
-  //   //   });
-  //   //   tooltipText += '</div>';
-  //   //   return tooltipText;
-  //   // }
 
-  // },
 
 }
 

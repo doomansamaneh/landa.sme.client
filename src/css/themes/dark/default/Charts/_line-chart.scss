@@ -44,4 +44,10 @@
   .line-chart .apexcharts-legend {
     padding: 0;
 }
+
+.line-chart .apexcharts-canvas {
+  position: absolute !important;
+  bottom: 0 !important;
+}
+
 }

@@ -1,7 +1,7 @@
 <template>
-   <home/>
+   <home />
 </template>
 
 <script setup>
-import Home from "src/components/management/home/IndexView.vue"
+import Home from "src/components/management/home/IndexViewV2.vue"
 </script>

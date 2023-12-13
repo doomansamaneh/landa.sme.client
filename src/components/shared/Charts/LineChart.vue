@@ -111,7 +111,7 @@ function setOptions() {
     grid: {
       show: false,
       padding: {
-          top: 140,
+          top: 100,
           left: 0,
           right: 0,
           bottom: 0
@@ -133,9 +133,6 @@ function setOptions() {
         show: false
       },
       axisTicks: {
-        show: false
-      },
-      labels: {
         show: false
       },
       categories: [
@@ -174,7 +171,7 @@ function setOptions() {
       position: 'top',
       fontSize: '14px',
       fontWeight: 400,
-      offsetY: 16,
+      // offsetY: 16,
       markers: {
         width: 14,
         height: 14,
@@ -182,7 +179,7 @@ function setOptions() {
         offsetX: $q.lang.rtl ? '-4' : '-4',
       },
       itemMargin: {
-        vertical: 16,
+        // vertical: 16,
         horizontal: 16,
       },
     },

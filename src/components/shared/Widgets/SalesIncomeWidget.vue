@@ -1,65 +1,7 @@
 <template>
-  <q-page-sticky
-    class="z-1 bg-main q-py-md"
-    style="margin: 0 38px;"
-    position="top"
-    expand
-  >
-    <q-toolbar>
-      <div class="row items-center q-gutter-x-sm">
-        <span class="text-h6">داشبورد</span>
-        <q-btn
-          @click="widgetsLayout"
-          size="13px"
-          unelevated
-          round
-          dense
-        ><q-icon
-            name="o_widgets"
-            :color="activeColor"
-          /></q-btn>
-        <q-btn
-          v-if="toggleWidgetsLayout"
-          unelevated
-          rounded
-          dense
-          padding="6px 12px"
-        >
-          <q-icon
-            name="o_restart_alt"
-            class="q-pr-xs"
-            size="20px"
-          />
-          <span>حالت اولیه</span>
-        </q-btn>
-      </div>
-      <div class="q-space" />
-    </q-toolbar>
-  </q-page-sticky>
-  <div style="margin-top: 42px;">
-    <!-- <invoices-widget /> -->
-    <div class="row">
-      <div class="col-8 col-md-8 col-sm-12">
-        <!-- <create-new-invoice /> -->
-        <!-- <info-carousel /> -->
-        <invoices-widget-v2 />
 
-      </div>
-      <div class="col col-md col-sm-12">
-        <sales-widget />
-      </div>
-    </div>
-  </div>
-
-  <div class="row q-my-lg">
-
-    <div class="col col-md-4 col-sm-12 container">
-      <ratios-widget />
-    </div>
-
-    <div class="col-8 col-md-8 col-sm-12">
-      <q-card
-        class="bordered q-pa-none"
+<q-card
+        class="fit bordered q-pa-none"
         flat
       >
         <q-card-section class="col q-pt-lg q-pb-none q-pl-lg q-pr-md">
@@ -229,93 +171,14 @@
         />
 
       </q-card>
-    </div>
 
-  </div>
-
-  <div class="row q-my-lg q-gutter-x-lg">
-
-    <div class="col">
-      <income-widget />
-    </div>
-
-    <div class="col-6">
-      <q-card class="no-shadow bordered">
-        <q-card-section class="q-pa-lg">
-          <div class="text-body1">موجودی بانک</div>
-          <donut-chart
-            :height="350"
-            width="100%"
-            :legend="true"
-          />
-        </q-card-section>
-      </q-card>
-    </div>
-
-  </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
-import { useQuasar } from "quasar"
+import { ref } from "vue"
 
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
-import PieChart from 'src/components/shared/Charts/PieChart.vue'
-import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
-import InfoCarousel from 'src/components/shared/Widgets/InfoCarousel.vue'
-import InvoicesWidgetV2 from 'src/components/shared/Widgets/InvoicesWidgetV2.vue'
-import SalesWidget from 'src/components/shared/Widgets/SalesWidget.vue'
-import RatiosWidget from 'src/components/shared/Widgets/RatiosWidget.vue'
-import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
-import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
-import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWidget.vue'
-
-const $q = useQuasar()
-
-const tab = ref('sales-income-cost')
-const toggleChartToTable = ref(false)
-const toggleWidgetsLayout = ref(false)
-const productServiceGroup = ref(false)
-const customer = ref(false)
-const productService = ref(true)
-
-const chartToTabel = () => {
-  toggleChartToTable.value = !toggleChartToTable.value
-}
-const activeButton = ref(false)
-
-const widgetsLayout = () => {
-  toggleWidgetsLayout.value = !toggleWidgetsLayout.value
-  activeButton.value = !activeButton.value
-}
-
-const customerReport = () => {
-  productService.value = false
-  productServiceGroup.value = false
-  customer.value = true
-}
-
-const productServiceGroupChart = () => {
-  productService.value = false
-  customer.value = false
-  productServiceGroup.value = true
-}
-
-const productServiceChart = () => {
-  productService.value = true
-  customer.value = false
-  productServiceGroup.value = false
-}
-
-const goToSaleReview = () => {
-  alert("گزارش مرور فروش")
-}
-
-const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_window'));
-const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
-const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
-
 
 const saleIncome = ref(true)
 const sale = ref(false)
@@ -339,49 +202,5 @@ const showCost = () => {
   cost.value = true
 }
 
-// $q.screen.setSizes({ xs: 0, sm: 300, md: 500, lg: 1000, xl: 2000 })
 
 </script>
-
-<style lang="scss" scoped>
-.div-table-container {
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.div-table {
-  display: table;
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.div-table-header {
-  display: table-header-group;
-  font-weight: bold;
-}
-
-.div-table-row {
-  display: table-row;
-}
-
-.div-table-cell {
-  display: table-cell;
-  padding: 12px;
-  text-align: left;
-}
-
-.colspan-5 {
-  grid-column: span 2;
-}
-
-// body.screen--lg {
-
-//   .carousel-container {
-
-//     display: grid;
-//     grid-template-columns: repeat(2, 1fr);
-
-//   }
-
-// }
-</style>

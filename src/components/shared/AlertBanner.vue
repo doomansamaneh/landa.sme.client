@@ -2,13 +2,14 @@
   <div v-if="showBanner">
     <q-banner
       inline-actions
-      class="z-max error-banner alert-glass-style"
+      class="z-max bg-warning"
     >
-      <div class="row items-center text-on-dark">
+      <div class="row items-center text-black">
         <q-icon
           name="public"
           size="22px"
           class="q-icon-banner q-mr-xs"
+          color="black"
         />
         <strong class="q-pr-lg">{{ status }}</strong>
         <span>
@@ -16,12 +17,14 @@
         </span>
       </div>
       <template v-slot:action>
-        <q-icon
+        <q-btn
           @click="hideBanner"
           flat
+          dense
           unelevated
-          name="close"
-          class="q-icon-banner cursor-pointer"
+          icon="close"
+          color="black"
+          size="sm"
         />
       </template>
     </q-banner>
@@ -47,13 +50,3 @@ function hideBanner() {
 }
 </script>
 
-<style>
-.error-banner {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  margin-top: 25px;
-}
-</style>

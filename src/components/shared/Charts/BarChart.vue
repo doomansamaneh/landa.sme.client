@@ -22,7 +22,7 @@ const options = ref(null)
 
 const series = ref([
   {
-    name: "",
+    name: "کالا و خدمت",
     data: [20000000, 40000000, 60000000, 8000000, 10000000, 12000000, 14000000, 16000000, 18000000]
   }
 ])
@@ -36,13 +36,14 @@ function setOptions() {
       text: props.title,
       align: 'center',
       style: {
-      fontSize:  '14px',
-      fontWeight:  'bold',
-      color:  $q.dark.isActive ? 'white' : '#2d2d2d'
-    },
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: $q.dark.isActive ? 'white' : '#2d2d2d'
+      },
     },
     chart: {
       offsetY: 0,
+      parentHeightOffset: 0,
       fontFamily,
       type: 'bar',
       toolbar: {
@@ -67,36 +68,43 @@ function setOptions() {
     },
     plotOptions: {
       bar: {
-        borderRadius: 16,
-        borderRadiusApplication: 'end',
-        horizontal: false,
-        columnWidth: '40%',
-        distributed: false,
+        // borderRadius: 5,
+        // horizontal: false,
+        columnWidth: '25%',
+        // distributed: false,
       },
     },
     dataLabels: {
       enabled: false
     },
-    stroke: {
-      width: 2.5,
-    },
+    // stroke: {
+    //   width: 2.5,
+    // },
     markers: {
       size: 0,
     },
     grid: {
+      strokeDashArray: 5,
       borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
       padding: {
         top: 0,
-        right: 16,
+        right: 32,
         bottom: 8,
-        left: 24
+        left: 32
       },
     },
     xaxis: {
+      axisBorder: {
+        show: false
+      },
+      axisTicks: {
+        show: false
+      },
       categories: [
         'موز', 'استیل البرز', 'عایق رطوبتی نانو', 'اشتراک لاندا نسخه حرفه ای', 'تجهیزات شبکه', 'طراحی لوگو', 'ادکلن مردانه', 'کفی ساینا', 'تلفن ماهواره ای',
       ],
       labels: {
+        show: false,
         offsetY: 12,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
@@ -104,6 +112,7 @@ function setOptions() {
       },
     },
     yaxis: {
+      show: false,
       opposite: false,
       labels: {
         style: {
@@ -121,10 +130,10 @@ function setOptions() {
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
       },
-      position: 'bottom',
+      position: 'top',
       fontSize: '14px',
       fontWeight: 400,
-      offsetY: 16,
+      // offsetY: 16,
       markers: {
         width: 14,
         height: 14,
@@ -132,7 +141,7 @@ function setOptions() {
         offsetX: $q.lang.rtl ? '-4' : '-4',
       },
       itemMargin: {
-        vertical: 16,
+        // vertical: 16,
         horizontal: 16,
       },
     },
@@ -143,9 +152,13 @@ function setOptions() {
       enabled: true,
       x: {
         show: true,
+
       },
       y: {
         show: true,
+        title: {
+          formatter: seriesName => seriesName == ''
+        }
       },
       style: {
         fontSize: '13px',
