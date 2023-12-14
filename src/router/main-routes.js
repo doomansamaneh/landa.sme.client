@@ -1,6 +1,7 @@
 import MainLayout from "src/layouts/MainLayout.vue";
 import ProfilePage from "src/pages/management/ProfilePage.vue";
 import HomePage from "src/pages/management/HomePage.vue";
+import SettingsPage from "src/pages/management/SettingsPage.vue";
 import IndexView from "src/components/areas/sls/quote/IndexView.vue";
 import InvoiceIndexView from "src/components/areas/sls/invoice/IndexView.vue";
 import CreateInvoice from "src/components/areas/sls/invoice/CreateInvoice.vue";
@@ -42,6 +43,10 @@ export default {
     {
       path: "sls/invoice2/create",
       component: CreateInvoiceV2,
+    },
+    {
+      path: "/settings",
+      component: SettingsPage,
     }
   ]
 }

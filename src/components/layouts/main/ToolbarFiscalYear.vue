@@ -14,7 +14,7 @@
     <q-menu
       :persistent="false"
       style="width: 400px;"
-      class="no-shadow z-max"
+      class="bordered no-shadow z-max"
       transition-show="jump-down"
       transition-hide="jump-up"
       :offset="[0, 24]"

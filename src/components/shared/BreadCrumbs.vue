@@ -2,7 +2,7 @@
   <q-breadcrumbs
     v-if="show"
     active-color="primary"
-    class="text-body2 bread-crumbs q-py-xs q-px-lg"
+    class="text-body2 q-px-lg z-max"
   >
     <q-breadcrumbs-el
       v-for="item in validItems"
@@ -12,7 +12,7 @@
       :to="item.path"
     />
     <template #separator>
-      <q-icon name="arrow_forward_ios" />
+      <q-icon name="arrow_forward_ios" color="white" />
     </template>
   </q-breadcrumbs>
 </template>

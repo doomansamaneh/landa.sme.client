@@ -35,7 +35,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">جمع کل</q-item-label>
-            <q-item-label class="text-h6 text-bold">392,529,180</q-item-label>
+            <q-item-label style="font-size: 18px;" class="text-bold">392,529,180</q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -55,7 +55,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">دریافت شده</q-item-label>
-            <q-item-label class="text-h6 text-bold">153,444,310</q-item-label>
+            <q-item-label style="font-size: 18px;" class="text-bold">153,444,310</q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -77,7 +77,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">مانده امسال</q-item-label>
-            <q-item-label class="text-h6 text-bold">392,529,180</q-item-label>
+            <q-item-label style="font-size: 18px;" class="text-bold">392,529,180</q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -99,7 +99,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">مانده از قبل</q-item-label>
-            <q-item-label class="text-h6 text-bold">32,314,300</q-item-label>
+            <q-item-label style="font-size: 18px;" class="text-bold">32,314,300</q-item-label>
           </q-item-section>
         </q-item>
       </div>

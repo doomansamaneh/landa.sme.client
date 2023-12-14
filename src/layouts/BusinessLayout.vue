@@ -3,40 +3,32 @@
     view="hHh lpR fFf"
     class="business-layout"
   >
-    <q-header
-      class="text-black"
-      bordered
-    >
-      <q-toolbar class="q-px-lg row justify-between">
-        <div class="">
-          <a
-            href="https://landa-sme.ir"
-            target="blank"
-            class="row items-center navbar-logo"
-          ><img
-              class="logo"
-              src="/landa-sme-logo.png"
-              alt="landa-sme"
-            /></a>
-        </div>
-        <div class="flex q-gutter-x-md">
-          <q-separator
-            vertical
-            inset
-          />
-          <div class="row items-center q-pr-sm">
-            <switch-theme />
+    <q-header class="transparent q-py-md">
+      <q-toolbar class="row q-px-lg">
+        <div class="col-8 row items-center q-gutter-x-sm">
+          <div>
+            <a
+              href="https://landa-sme.ir"
+              target="blank"
+              class="row items-center navbar-logo"
+            ><img
+                class="logo"
+                src="/landa-sme-logo.png"
+                alt="landa-sme"
+              /></a>
           </div>
-          <q-separator
-            vertical
-            inset
-          />
+
+          <bread-crumbs />
+        </div>
+        <div class="col row items-center q-gutter-x-sm justify-end">
+          <switch-theme />
           <div class="flex items-center q-gutter-x-xs cursor-pointer">
             <q-icon
               size="sm"
+              color="white"
               name="o_account_circle"
             />
-            <div class="text-body">{{ username }}</div>
+            <div class="text-white">{{ username }}</div>
             <q-menu
               fit
               class="no-shadow"
@@ -110,8 +102,10 @@
             </q-menu>
           </div>
         </div>
+
+
+
       </q-toolbar>
-      <bread-crumbs />
     </q-header>
 
     <q-page-container>
@@ -155,6 +149,7 @@ function changePasswordDialog() {
 <style>
 .logo {
   width: 48px;
+  filter: brightness(0) invert(1);
 }
 
 .business-layout {
@@ -184,4 +179,5 @@ function changePasswordDialog() {
 .q-breadcrumbs__el.items-center {
   display: block;
 }
+
 </style>

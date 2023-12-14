@@ -1,6 +1,6 @@
 <template>
   <q-page-sticky
-    class="z-1 bg-main q-py-md"
+    class="z-1 bg-main q-pb-md"
     position="top"
     expand
   >

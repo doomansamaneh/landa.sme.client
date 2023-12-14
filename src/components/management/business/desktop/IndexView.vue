@@ -3,7 +3,7 @@
     ref="businessDataView"
     dataSource="business/getBusinessGridData"
     :grid-store="businessStore"
-    class="q-my-xl"
+    class="q-mb-xl"
   >
     <template #header>
       <DesktopViewGuide v-model="showGuideDialog" />

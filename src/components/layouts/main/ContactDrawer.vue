@@ -5,12 +5,13 @@
     overlay
     :width="350"
     :breakpoint="500"
-    class="text-white no-scroll"
-    bordered
+    class="no-scroll"
+    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light' "
+
   >
     <q-inner-loading
       :showing="tableStore.showLoader.value"
-      class="inner-loader z-max"
+      class="transparent z-max"
     >
       <q-spinner
         size="52px"
@@ -18,7 +19,7 @@
       />
     </q-inner-loading>
 
-    <div class="q-ma-md">
+    <div class="q-px-md q-pb-md">
       <q-input
         color="grey-5"
         outlined

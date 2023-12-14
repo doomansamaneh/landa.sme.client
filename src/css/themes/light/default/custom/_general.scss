@@ -4,6 +4,12 @@
     color: white;
   }
 
+  .bg-light {
+
+    background-color: $main-color
+
+  }
+
   .icon-hover.q-icon:hover {
     opacity: 0.7 !important;
   }
@@ -178,6 +184,12 @@
   .bluegrey-shadow {
 
     box-shadow: 0 4px 8px -4px #607d8b;
+
+  }
+
+  .primary-shadow {
+
+    box-shadow: 0 4px 8px -4px $primary;
 
   }
 

@@ -1,14 +1,14 @@
 @mixin q-breadcrumbs-light{
   .q-breadcrumbs__el {
-    color: $black;
+    color: white;
   }
 
   .q-breadcrumbs__separator {
-    color: $black;
+    color: white;
   }
 
   .q-breadcrumbs__el.q-router-link--active {
-    color: $primary;
+    color: yellow;
   }
 
   // .q-breadcrumbs__el:hover {

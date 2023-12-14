@@ -9,10 +9,10 @@
     class="btn-icon text-on-dark"
   >
     <q-menu
-      class="no-shadow z-max"
+      class="z-max"
       transition-show="jump-down"
       transition-hide="jump-up"
-      :offset="[60, 24]"
+      :offset="[20, 24 ]"
     >
       <q-list
         dense
@@ -35,6 +35,26 @@
             </div>
           </div>
         </q-item-label>
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          class="q-py-sm"
+          to="/settings"
+        >
+          <div class="q-py-sm">
+            <q-item-section avatar>
+              <q-avatar
+                class="dark-icon"
+                icon="o_settings"
+                size="md"
+              />
+            </q-item-section>
+          </div>
+          <q-item-section>
+            تنظیمات
+          </q-item-section>
+        </q-item>
         <q-item
           clickable
           v-close-popup

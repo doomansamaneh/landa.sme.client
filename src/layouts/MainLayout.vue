@@ -4,7 +4,7 @@
     class="main-layout"
   >
     <q-page-container>
-      <main-header @toggle-menubar="toggleMenuBar" class="z-max" />
+      <main-header @toggle-menubar="toggleMenuBar" />
       <!-- <menu-bar-v-2
         v-if="$route.path === '/sls/invoice2/create'"
         :menuBar="menuBar"
@@ -38,7 +38,7 @@ const theme = useTheme()
 const route = useRoute()
 const $q = useQuasar()
 
-const menuBar = ref(false)
+const menuBar = ref(true)
 const selectedBusiness = useSelectedBusinessStore()
 const contactDrawerStore = useContactDrawer()
 

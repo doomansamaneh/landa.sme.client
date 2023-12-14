@@ -14,7 +14,7 @@ console.log(
 ::-webkit-scrollbar {
   height: 12px;
   width: 14px;
-  background: transparent;
+  background: #00000010;
   z-index: 12;
   overflow: visible;
 }

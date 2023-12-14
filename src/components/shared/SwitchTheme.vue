@@ -1,14 +1,18 @@
 <template>
   <div class="flex justify-between items-center">
     <div class="">
-      <q-toggle
-        color="primary"
-        v-model="darkMode"
-        unchecked-icon="light_mode"
-        checked-icon="dark_mode"
-      />
+      <q-btn
+        round
+        dense
+        flat
+        v-ripple
+        :icon="darkMode ? 'dark_mode' : 'light_mode'"
+        :color="darkMode ? 'blue-3' : 'orange'"
+        @click="toggleDarkMode"
+      >
+      </q-btn>
     </div>
-    <div class="row items-center q-gutter-x-xs">
+    <!-- <div class="row items-center q-gutter-x-xs">
       <q-icon
         v-for="(theme, themeName) in themes"
         :key="themeName"
@@ -18,9 +22,12 @@
         :class="getClass(themeName)"
         @click="selectTheme(themeName)"
       >
-        <q-tooltip class="z-max" :style="{ background: getPrimaryColor(themeName) }">{{ themeName }}</q-tooltip>
+        <q-tooltip
+          class="z-max"
+          :style="{ background: getPrimaryColor(themeName) }"
+        >{{ themeName }}</q-tooltip>
       </q-icon>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -43,9 +50,6 @@ const themes = {
   purple: {
     primary: "#c729df",
   },
-  // golden: {
-  //   primary: "#c89002",
-  // },
   red: {
     primary: "#dc143c",
   }
@@ -58,6 +62,10 @@ watch(darkMode, (newVal) => {
   $q.dark.set(newVal)
   localStorage.setItem("darkMode", newVal)
 })
+
+const toggleDarkMode = () => {
+  darkMode.value = !darkMode.value
+}
 
 const selectTheme = (theme) => {
   if (selectedTheme.value) {
@@ -89,21 +97,19 @@ onMounted(() => {
   setDigits()
 })
 
-const getPrimaryColor = (themeName) => {
-  return themes[themeName].primary
-}
+// const getPrimaryColor = (themeName) => {
+//   return themes[themeName].primary
+// }
 
-const getClass = (themeName) => {
-  return "cursor-pointer" +
-    (selectedTheme.value === themeName ? " active" : "")
-}
+// const getClass = (themeName) => {
+//   return "cursor-pointer" +
+//     (selectedTheme.value === themeName ? " active" : "")
+// }
 </script>
 
 <style scoped>
-.active {
+/* .active {
   border: 2px solid;
   border-radius: 50px;
-}
+} */
 </style>
-
-

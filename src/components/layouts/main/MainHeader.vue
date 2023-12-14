@@ -1,7 +1,6 @@
 <template>
   <q-header
-    bordered
-    class="q-px-sm q-py-xs"
+    class="q-pa-lg"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between">
@@ -23,41 +22,29 @@
           <today-date />
         </div>
 
-        <fiscal-year />
 
       </q-toolbar-title>
 
-      <div class="row items-center">
-        <q-separator
-          vertical
-          inset
+
+
+      <div class="row q-gutter-x-md">
+        <fiscal-year />
+        <switch-theme />
+        <notification />
+
+        <q-btn
+          @click="contactDrawerStore.toggle"
+          flat
+          dense
+          round
+          icon="o_person_search"
+          class="btn-icon text-on-dark gt-xs"
+          :class="activeButton"
+          size="14px"
         />
-        <div class="row items-center q-pr-lg q-pl-md">
-          <switch-theme />
-        </div>
-        <q-separator
-          vertical
-          inset
-        />
-        <div class="row q-gutter-x-md q-ml-md">
 
-          <notification />
+        <profile />
 
-          <q-btn
-            @click="contactDrawerStore.toggle"
-            flat
-            dense
-            round
-            icon="o_person_search"
-            class="btn-icon text-on-dark gt-xs"
-            :class="activeButton"
-            size="14px"
-          />
-
-          <profile />
-          <settings />
-
-        </div>
       </div>
     </q-toolbar>
   </q-header>
@@ -71,7 +58,6 @@ import { useContactDrawer } from "src/composables/useContactDrawer"
 import FiscalYear from "./ToolbarFiscalYear.vue"
 import Notification from "./ToolbarNotification.vue"
 import Profile from "./ToolbarProfile.vue"
-import Settings from "./ToolbarSettings.vue"
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
 import TodayDate from "src/components/shared/TodayDate.vue"
 

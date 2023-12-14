@@ -173,7 +173,7 @@
     </template>
   </tool-bar>
 
-  <div style="margin: 40px 0;">
+  <div style="margin: 84px 0;">
     <advanced-search
       :grid-store="invoiceStore"
       @apply-search="applySearch"

@@ -1,5 +1,5 @@
 <template>
-  <q-card class="fit bordered">
+  <q-card class="bordered">
     <q-card-section class="q-pa-lg">
       <q-icon
         name="o_balance"

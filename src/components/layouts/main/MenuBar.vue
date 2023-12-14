@@ -1,14 +1,15 @@
 <template>
   <q-drawer
-    class="menu-bar no-scroll q-mb-xl"
+    class="menu-bar no-scroll q-mb-xl q-pl-lg"
+    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light' "
     side="left"
-    :width="255"
-    overlay
+    :width="260"
     :model-value="menuBar"
     :breakpoint="400"
-    bordered
+    show-if-above
+    overlay
   >
-    <div class="flex justify-center q-pa-md">
+    <div class="flex justify-center q-px-md q-pb-md">
       <q-input
         color="grey-5"
         outlined
@@ -184,7 +185,7 @@ onMounted(() => {
   padding-right: 8px;
 
   .q-icon {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 </style>
