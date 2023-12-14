@@ -1,7 +1,6 @@
 <template>
   <q-btn
     flat
-    dense-dark
     round
     dense
     icon="o_account_circle"

@@ -14,7 +14,7 @@
     <q-menu
       :persistent="false"
       style="width: 400px;"
-      class="bordered no-shadow z-max"
+      class="bordered"
       transition-show="jump-down"
       transition-hide="jump-up"
       :offset="[0, 24]"
@@ -25,7 +25,7 @@
 
           <q-inner-loading
             :showing="tableStore.showLoader.value"
-            class="inner-loader z-max"
+            class="transparent z-max"
           >
             <q-spinner
               size="52px"
