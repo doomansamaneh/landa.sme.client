@@ -1,5 +1,5 @@
 <template>
-  <desktop-view class="desktop" />
+  <desktop-view />
   <mobile-view />
 </template>
 

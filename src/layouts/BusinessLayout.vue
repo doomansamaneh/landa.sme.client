@@ -31,7 +31,6 @@
             <div class="text-white">{{ username }}</div>
             <q-menu
               fit
-              class="no-shadow"
               transition-show="jump-down"
               transition-hide="jump-up"
               :offset="[10, 28]"

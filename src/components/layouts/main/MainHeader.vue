@@ -6,14 +6,21 @@
     <q-toolbar class="text-dark row justify-between">
       <div class="q-gutter-xs">
         <q-btn
-          flat
           @click="$emit('toggle-menubar')"
           round
+          unelevated
           dense
+          color="primary"
           size="16px"
-          icon="menu"
-          class="text-on-dark"
-        />
+          class="primary-shadow text-on-dark"
+        >
+
+          <q-icon
+            size="xs"
+            name="o_lunch_dining"
+          />
+
+        </q-btn>
       </div>
 
       <q-toolbar-title class="text-subtitle2 text-bold row justify-start items-center">
@@ -28,6 +35,13 @@
 
 
       <div class="row q-gutter-x-md">
+        <q-btn
+          size="md"
+          unelevated
+          label="دانشنامه"
+          href="https://www.landa-sme.ir/LandaKnowledge"
+          class="bordered-btn"
+        />
         <fiscal-year />
         <switch-theme />
         <notification />

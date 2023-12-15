@@ -1,14 +1,21 @@
 <template>
   <q-card class="bordered">
     <q-card-section class="q-pa-lg">
-      <q-icon
-        name="o_balance"
-        color="primary"
-        class="q-mr-xs"
-        size="24px"
-      /><span class="text-h6">
-        صورت سود و زیان
-      </span>
+      <q-item class="no-padding">
+        <q-item-section avatar>
+          <q-avatar
+            rounded
+            color="primary"
+            text-color="white"
+            icon="o_balance"
+            size="md"
+            class="primary-shadow"
+          />
+        </q-item-section>
+        <q-item-section class="q-pl-xs">
+          <q-item-label class="text-body2 q-mb-xs">صورت سود و زیان</q-item-label>
+        </q-item-section>
+      </q-item>
     </q-card-section>
     <div class="q-px-lg">
       <q-tree
@@ -28,7 +35,7 @@
             {{ prop.node.label }}
           </div>
           <q-space />
-            <span>5,922,779</span>
+          <span>5,922,779</span>
         </template>
         <!-- <template #default-body="prop">
 

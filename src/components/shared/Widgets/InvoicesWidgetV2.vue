@@ -63,7 +63,7 @@
       <div class="col">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn @click="hello" flat dense size="0">
+            <q-btn push @click="hello" flat dense size="0">
             <q-avatar
               rounded
               color="orange"
@@ -85,7 +85,7 @@
       <div class="col">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn @click="hello" flat dense size="0">
+            <q-btn push @click="hello" flat dense size="0">
               <q-avatar
               rounded
               color="red"

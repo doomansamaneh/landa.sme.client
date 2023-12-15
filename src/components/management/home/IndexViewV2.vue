@@ -4,11 +4,7 @@
       <invoices-widget-v2 />
     </div>
     <div class="col">
-      <q-card>
-        <q-card-section>
-          فقط 40 روز مانده تا انقضای حساب
-        </q-card-section>
-      </q-card>
+      <some-info />
     </div>
   </div>
 
@@ -22,72 +18,8 @@
   </div>
 
   <div class="row q-mt-lg gap-24">
-    <div class="col">
-      <q-card class="no-shadow bordered">
-        <q-card-section class="row justify-between items-center q-pa-lg">
-          <div class="text-body1">لیست کارها</div>
-          <div class="row items-center">
-            <q-btn
-              unelevated
-              size="8px"
-              round
-              icon="o_add"
-              color="primary"
-              text-color="white"
-              class="primary-shadow"
-            />
-          </div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none q-pb-lg">
-
-          <q-scroll-area style="height: 480px;">
-            <q-list class="column q-gutter-y-md">
-
-              <q-item
-                class="q-pl-none q-pr-lg"
-                v-for="n in 9"
-                :key="n"
-              >
-
-                <q-item-section
-                  side
-                  top
-                >
-                  <q-checkbox
-                    round
-                    size="sm"
-                    v-model="check1"
-                  />
-
-                </q-item-section>
-
-                <div class="q-pl-sm">
-
-                  <div
-                    class="text-body2 line-height-xs"
-                    :class="checked"
-                  >خرید سیب زمینی پیاز برای کارگاه + خرید دو تن جوانه گندم برای
-                    آشپزخانه جهت تولید حلیم</div>
-                  <div class="row q-gutter-x-md q-mt-sm items-center">
-                    <span class="text-body3">23 شهریور 1402</span>
-                    <q-badge
-                      class="q-py-sm q-px-md"
-                      rounded
-                      color="positive"
-                      label="انجام شده"
-                    />
-                  </div>
-
-                </div>
-
-              </q-item>
-
-            </q-list>
-          </q-scroll-area>
-
-        </q-card-section>
-      </q-card>
+    <div class="col column q-gutter-y-lg">
+      <top-products />
     </div>
 
     <div class="col-8">
@@ -97,11 +29,13 @@
         </div>
 
         <div class="col">
-          <q-card class="fit q-mt-lg darkBGImg">
+          <q-card class="fit q-mt-lg darkBGImg bordered">
             <q-card-section>
-              <h1>Hello</h1>
+              <h1>سلام بر سیپاه دیلاور</h1>
             </q-card-section>
+
           </q-card>
+
         </div>
       </div>
     </div>
@@ -114,7 +48,21 @@
     <div class="col-8">
       <q-card class="no-shadow bordered">
         <q-card-section class="q-pa-lg">
-          <div class="text-body1">موجودی بانک</div>
+          <q-item class="no-padding">
+        <q-item-section avatar>
+          <q-avatar
+            rounded
+            color="primary"
+            text-color="white"
+            icon="o_account_balance"
+            size="md"
+            class="primary-shadow"
+          />
+        </q-item-section>
+        <q-item-section class="q-pl-xs">
+          <q-item-label class="text-body2 q-mb-xs">موجودی بانک</q-item-label>
+        </q-item-section>
+      </q-item>
           <donut-chart
             :height="350"
             width="100%"
@@ -127,7 +75,21 @@
     <div class="col">
       <q-card class="no-shadow bordered">
         <q-card-section class="q-pa-lg">
-          <div class="text-body1">موجودی صندوق</div>
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                color="primary"
+                text-color="white"
+                icon="o_inbox"
+                size="md"
+                class="primary-shadow"
+              />
+            </q-item-section>
+            <q-item-section class="q-pl-xs">
+              <q-item-label class="text-body2 q-mb-xs">موجودی صندوق</q-item-label>
+            </q-item-section>
+          </q-item>
           <donut-chart
             :height="350"
             width="100%"
@@ -148,12 +110,11 @@ import RatiosWidget from 'src/components/shared/Widgets/RatiosWidget.vue'
 import SalesIncomeWidget from 'src/components/shared/Widgets/SalesIncomeWidget.vue'
 import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
 import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
+import InfoCarousel from 'src/components/shared/Widgets/InfoCarousel.vue'
+import TodoList from 'src/components/shared/Widgets/TodoList.vue'
+import TopProducts from 'src/components/shared/Widgets/TopProducts.vue'
+import SomeInfo from 'src/components/shared/Widgets/SomeInfo.vue'
 
-const check1 = ref(false)
-
-const checked = computed(() => {
-  return check1.value ? "text-strike" : "";
-});
 
 
 </script>

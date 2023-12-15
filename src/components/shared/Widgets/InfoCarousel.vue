@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow bordered fit">
+  <q-card class="bordered fit">
     <q-carousel
       animated
       swipeable
@@ -12,46 +12,25 @@
       @mouseleave="autoplay = true"
       class="fit"
     >
-      <q-carousel-slide :name="1">
+      <!-- <q-carousel-slide :name="1">
         <div class="row fit items-center">
-    <div class="col-8 q-pa-xl column q-gutter-y-md">
-      <span class="text-h6 text-bold">به لاندا خوش آمدید</span>
-      <span class="text-body2 line-height-sm text-justify">
-        {{ information }}
-      </span>
-      <q-btn
-        to="/sls/invoice/create"
-        unelevated
-        rounded
-        class="bordered-btn bg-dark q-py-sm"
-        style="width: 200px;"
-      ><q-icon
-          name="o_add"
-          size="16px"
-          class="q-mr-xs"
-        />ایجاد فاکتور</q-btn>
-    </div>
-    <div class="col row items-center absolute-bottom-right">
-      <div class="row">
-        <img
-        src="hello.svg"
-        style="height: 350px;"
-        alt=""
-      >
-      </div>
-    </div>
-  </div>
-      </q-carousel-slide>
+          <div class="col-8 q-pa-xl column q-gutter-y-md">
+            <span class="text-body2 line-height-sm text-justify">
+              سلام سوتونم
+            </span>
+          </div>
+
+        </div>
+      </q-carousel-slide> -->
 
       <q-carousel-slide
         :name="2"
         class="q-pa-none"
-        img-src="socials.png"
       >
 
         <div class="fit column justify-center items-center">
           <div class="column items-center">
-            <span class="text-h5 text-primary text-bold q-mb-md">
+            <span class="text-h6 text-bold q-mb-md">
               اخبار را از دست ندهید
             </span>
             <span class="text-body1">صفحات ما را دنبال کنید تا بروز بمانید</span>
@@ -84,14 +63,15 @@
           </div>
         </div>
 
-    </q-carousel-slide>
-  </q-carousel>
-</q-card></template>
+      </q-carousel-slide>
+    </q-carousel>
+  </q-card>
+</template>
 
 <script setup>
 import { ref, watch } from "vue"
 
-const slide = ref(1)
+const slide = ref(2)
 const autoplay = ref(true)
 
 const informationSets = ref([
