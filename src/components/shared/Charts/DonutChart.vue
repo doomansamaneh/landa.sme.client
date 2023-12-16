@@ -7,11 +7,12 @@
     :title="title"
     class="donut-chart"
     :class="direction"
+    @dataPointSelection="dataPointSelection"
   />
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, watchEffect, watch, computed } from 'vue'
 import Chart from 'src/components/shared/Charts/ChartView.vue';
 import { useQuasar } from 'quasar'
 
@@ -178,16 +179,14 @@ const direction = computed(() => {
   return $q.lang.rtl ? 'rtl' : 'ltr';
 })
 
-watch(() => $q.dark.isActive, () => {
-  setOptions()
-})
-
-watch(() => $q.lang.rtl, () => {
-  setOptions()
-})
+watch(() => {
+  return [$q.dark.isActive, $q.lang.rtl];
+}, () => {
+  setOptions();
+});
 
 onMounted(() => {
-  setOptions()
+  setOptions();
 })
 
 function formatLabel(value) {
@@ -202,6 +201,16 @@ function formatLabel(value) {
 
   return formattedValue;
 }
+
+const dataPointSelection = (event, chartContext, config) => {
+
+  alert(config.w.config.labels[config.dataPointIndex]);
+  // console.log('Event:', event);
+  // console.log('Chart Context:', chartContext);
+  // console.log('Config:', config);
+  // console.log('Labels:', config.w.config.labels);
+  // console.log('Data Point Index:', config.dataPointIndex);
+}
+
 </script>
 
-<style></style>

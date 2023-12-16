@@ -14,7 +14,7 @@
             />
           </q-item-section>
           <q-item-section class="q-pl-xs">
-            <q-item-label class="text-body2 q-mb-xs">بیشترین کالای فروخته شده</q-item-label>
+            <q-item-label class="text-body1 q-mb-xs">بیشترین کالای فروخته شده</q-item-label>
           </q-item-section>
         </q-item>
 
@@ -32,7 +32,7 @@
     <q-card-section class="q-pt-none q-pb-lg q-pr-none">
 
       <q-scroll-area
-        style="height:455px;"
+        style="height:370px;"
         class="q-mb-md"
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"

@@ -1,12 +1,12 @@
 <template>
-  <div class="markup-table-container">
-    <div class="q-mb-md">
+  <div class="markup-table-container q-pa-lg">
+    <!-- <div class="q-mb-md">
       <q-badge
         color="secondary"
         rounded
         class="q-mr-sm"
       />کمتر از میانگین
-    </div>
+    </div> -->
     <q-markup-table
       class="markup no-shadow"
       bordered

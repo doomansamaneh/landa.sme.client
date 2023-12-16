@@ -34,12 +34,13 @@
 
 
 
-      <div class="row q-gutter-x-md">
+      <div class="row items-center q-gutter-x-md">
         <q-btn
           size="md"
           unelevated
           label="دانشنامه"
           href="https://www.landa-sme.ir/LandaKnowledge"
+          target="_blank"
           class="bordered-btn"
         />
         <fiscal-year />

@@ -15,7 +15,7 @@
             class="q-mr-xs"
           />ایجاد فاکتور</q-btn>
       </div>
-      <div class="text-body2 text-bold q-mt-sm">تبریک میگم، %47.4 رشد داشته اید. <span class="text-caption">در ماه
+      <div class="text-body3 text-bold q-mt-sm">تبریک میگم، %47.4 رشد داشته اید. <span class="text-caption">در ماه
           گذشته</span></div>
     </q-card-section>
 
