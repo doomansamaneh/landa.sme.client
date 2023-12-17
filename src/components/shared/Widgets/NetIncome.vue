@@ -12,7 +12,7 @@
             <span class="text-body3 text-bold text-green">+%24</span>
           </div>
           <q-item-label caption>رشد نسبت به پارسال سنجیده شده</q-item-label>
-          <q-btn class="q-mt-lg primary-shadow" rounded unelevated color="primary" style="width: 120px;">جزئیات بیشتر</q-btn>
+          <q-btn class="q-mt-lg primary-shadow text-body3" rounded unelevated color="primary" style="width: 120px;">جزئیات بیشتر</q-btn>
         </div>
         <div class="col-4">
           <chart
