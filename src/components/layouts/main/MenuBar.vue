@@ -1,13 +1,13 @@
 <template>
   <q-drawer
-    class="menu-bar no-scroll q-mb-xl q-pl-lg"
+    class="menu-bar no-scroll q-mb-xl q-pl-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light' "
     side="left"
-    :width="260"
+    :width="240"
     :model-value="menuBar"
     :breakpoint="400"
-    show-if-above
-    overlay
+    :overlay="$q.screen.lt.md"
+
   >
     <div class="flex justify-center q-px-md q-pb-md">
       <q-input
@@ -25,13 +25,14 @@
           <q-icon
             name="o_search"
             color="primary"
+            size="18px"
           />
         </template>
       </q-input>
     </div>
 
     <q-scroll-area
-      style="height: calc(100% - 100px);"
+      style="height: calc(100% - 80px);"
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
@@ -64,7 +65,7 @@
               :key="subItem.name"
               :to="subItem.url"
               clickable
-              class="sub-item q-ml-md q-mr-lg q-my-xs"
+              class="sub-item q-mx-md"
             >
               <q-item-section
                 avatar

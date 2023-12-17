@@ -4,7 +4,7 @@
     position="top"
     expand
   >
-    <q-toolbar class="q-px-xl">
+    <q-toolbar class="q-px-lg">
       <div class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn

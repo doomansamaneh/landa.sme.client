@@ -30,7 +30,7 @@
               />
 
               <q-avatar
-                v-if="sale"
+                v-if="salePerProduct || salePerProductGroup || salePerCustomer"
                 rounded
                 color="green"
                 text-color="white"
@@ -40,7 +40,7 @@
               />
 
               <q-avatar
-                v-if="cost"
+                v-if="cost || costDetail"
                 rounded
                 color="red"
                 text-color="white"
@@ -60,13 +60,25 @@
                 class="text-body1 q-mb-xs"
               >جدول فروش و درآمد، هزینه</q-item-label>
               <q-item-label
-                v-if="sale"
+                v-if="salePerProduct"
                 class="text-body1 q-mb-xs"
-              >فروش</q-item-label>
+              >فروش بر اساس کالا و خدمات</q-item-label>
+              <q-item-label
+                v-if="salePerProductGroup"
+                class="text-body1 q-mb-xs"
+              >فروش بر اساس گروه کالا و خدمات</q-item-label>
+              <q-item-label
+                v-if="salePerCustomer"
+                class="text-body1 q-mb-xs"
+              >فروش بر اساس مشتری</q-item-label>
               <q-item-label
                 v-if="cost"
                 class="text-body1 q-mb-xs"
-              >هزینه</q-item-label>
+              >نمودار هزینه</q-item-label>
+              <q-item-label
+                v-if="costDetail"
+                class="text-body1 q-mb-xs"
+              >ریز هزینه</q-item-label>
             </q-item-section>
           </q-item>
 
@@ -135,12 +147,7 @@
                       <div class="text-caption">جدول فروش و درآمد، هزینه</div>
                     </q-item-section>
                   </q-item>
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                    @click="showSale"
-                  >
+                  <q-item clickable>
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
@@ -155,20 +162,85 @@
                     <q-item-section>
                       <div class="text-caption">فروش</div>
                     </q-item-section>
+                    <q-item-section side>
+                      <q-icon name="keyboard_arrow_left" />
+                    </q-item-section>
+                    <q-menu>
+                      <q-list>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          tabindex="0"
+                          @click="showSalePerProduct"
+                        >
+                          <div class="row items-center">
+                            <q-item-section avatar>
+                              <q-avatar
+                                class="dark-icon"
+                                size="sm"
+                              ><q-icon
+                                  name="o_inventory_2"
+                                  size="14px"
+                                /></q-avatar>
+                            </q-item-section>
+                          </div>
+                          <q-item-section>
+                            <div class="text-caption">بر اساس کالا و خدمات</div>
+                          </q-item-section>
+                        </q-item>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          tabindex="0"
+                          @click="showSalePerProductGroup"
+                        >
+                          <div class="row items-center">
+                            <q-item-section avatar>
+                              <q-avatar
+                                class="dark-icon"
+                                size="sm"
+                              ><q-icon
+                                  name="o_inventory_2"
+                                  size="14px"
+                                /></q-avatar>
+                            </q-item-section>
+                          </div>
+                          <q-item-section>
+                            <div class="text-caption">بر اساس گروه کالا و خدمات</div>
+                          </q-item-section>
+                        </q-item>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          tabindex="0"
+                          @click="showSalePerCustomer"
+                        >
+                          <div class="row items-center">
+                            <q-item-section avatar>
+                              <q-avatar
+                                class="dark-icon"
+                                size="sm"
+                              ><q-icon
+                                  name="o_person"
+                                  size="14px"
+                                /></q-avatar>
+                            </q-item-section>
+                          </div>
+                          <q-item-section>
+                            <div class="text-caption">بر اساس مشتری</div>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-menu>
                   </q-item>
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                    @click="showCost"
-                  >
+                  <q-item clickable>
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
                           class="dark-icon"
                           size="sm"
                         ><q-icon
-                            name="o_check"
+                            name="o_attach_money"
                             size="14px"
                           /></q-avatar>
                       </q-item-section>
@@ -176,6 +248,56 @@
                     <q-item-section>
                       <div class="text-caption">هزینه</div>
                     </q-item-section>
+                    <q-item-section side>
+                      <q-icon name="keyboard_arrow_left" />
+                    </q-item-section>
+
+                    <q-menu>
+                      <q-list>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          tabindex="0"
+                          @click="showCost"
+                        >
+                          <div class="row items-center">
+                            <q-item-section avatar>
+                              <q-avatar
+                                class="dark-icon"
+                                size="sm"
+                              ><q-icon
+                                  name="o_equalizer"
+                                  size="14px"
+                                /></q-avatar>
+                            </q-item-section>
+                          </div>
+                          <q-item-section>
+                            <div class="text-caption">نمودار هزینه</div>
+                          </q-item-section>
+                        </q-item>
+                        <q-item
+                          clickable
+                          v-close-popup
+                          tabindex="0"
+                          @click="showCostDetail"
+                        >
+                          <div class="row items-center">
+                            <q-item-section avatar>
+                              <q-avatar
+                                class="dark-icon"
+                                size="sm"
+                              ><q-icon
+                                  name="o_incomplete_circle"
+                                  size="14px"
+                                /></q-avatar>
+                            </q-item-section>
+                          </div>
+                          <q-item-section>
+                            <div class="text-caption">ریز هزینه</div>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                    </q-menu>
                   </q-item>
                 </q-list>
               </q-menu>
@@ -202,7 +324,34 @@
     />
 
     <bar-chart
+      v-if="salePerProduct"
+      :height="300"
+      legend="false"
+      seriesName="کالا و خدمات"
+    />
+
+    <pie-chart
+      v-if="salePerProductGroup"
+      :height="300"
+      legend="false"
+    />
+
+    <bar-chart
+      v-if="salePerCustomer"
+      :height="300"
+      legend="false"
+      seriesName="مشتری"
+    />
+
+    <bar-chart
       v-if="cost"
+      :height="300"
+      legend="false"
+      seriesName="هزینه"
+    />
+
+    <pie-chart
+      v-if="costDetail"
       :height="300"
       legend="false"
     />
@@ -215,40 +364,86 @@ import { ref } from "vue"
 
 import LineChart from 'src/components/shared/Charts/LineChart.vue'
 import BarChart from 'src/components/shared/Charts/BarChart.vue'
+import PieChart from 'src/components/shared/Charts/PieChart.vue'
+import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
 
 const saleIncome = ref(true)
 const saleIncomeTable = ref(false)
-const sale = ref(false)
+const salePerProduct = ref(false)
+const salePerCustomer = ref(false)
+const salePerProductGroup = ref(false)
 const cost = ref(false)
+const costDetail = ref(false)
+
 
 const showSaleIncome = () => {
   saleIncome.value = true;
   saleIncomeTable.value = false;
-  sale.value = false;
+  salePerProductGroup.value = false
+  salePerProduct.value = false
   cost.value = false
+  costDetail.value = false
 }
 
 const showSaleIncomeTable = () => {
   saleIncomeTable.value = true;
   saleIncome.value = false;
-  sale.value = false;
+  salePerProductGroup.value = false
+  salePerProduct.value = false
   cost.value = false
+  costDetail.value = false
 }
 
-const showSale = () => {
+const showSalePerProduct = () => {
   saleIncome.value = false;
   saleIncomeTable.value = false;
-  cost.value = false;
-  sale.value = true;
+  salePerCustomer.value = false
+  salePerProduct.value = true
+  salePerProductGroup.value = false
+  cost.value = false
+  costDetail.value = false
+}
+
+const showSalePerProductGroup = () => {
+  saleIncome.value = false;
+  saleIncomeTable.value = false;
+  salePerCustomer.value = false
+  salePerProduct.value = false
+  cost.value = false
+  costDetail.value = false
+  salePerProductGroup.value = true
+
+}
+
+const showSalePerCustomer = () => {
+  saleIncome.value = false;
+  saleIncomeTable.value = false;
+  salePerProduct.value = false
+  salePerProductGroup.value = false
+  salePerCustomer.value = true
+  cost.value = false
+  costDetail.value = false
 }
 
 const showCost = () => {
   saleIncome.value = false;
   saleIncomeTable.value = false;
-  sale.value = false;
+  salePerProduct.value = false
+  salePerProductGroup.value = false
+  salePerCustomer.value = false
+  costDetail.value = false
   cost.value = true
 }
 
+const showCostDetail = () => {
+  saleIncome.value = false;
+  saleIncomeTable.value = false;
+  salePerProduct.value = false
+  salePerProductGroup.value = false
+  salePerCustomer.value = false
+  cost.value = false
+  costDetail.value = true
+}
 
 </script>

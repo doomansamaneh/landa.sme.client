@@ -52,9 +52,9 @@
         :key="index"
         clickable
         v-close-popup
-        class="q-py-sm text-on-dark"
+        class="text-on-dark"
       >
-        <div class="row q-gutter-x-md items-center q-my-md q-pl-sm">
+        <div class="row q-gutter-x-md items-center q-my-xs q-pl-sm">
           <q-item-section avatar>
             <q-avatar
               v-if="row.avatar"
@@ -72,7 +72,7 @@
               color="primary"
               text-color="white"
               square
-              class="border-radius-xs"
+              class="primary-shadow border-radius-xs"
               v-else
             >
               <div class="char text-body1 text-bold">
@@ -146,9 +146,9 @@
           rounded
           unelevated
           @click="gotoNext"
-          class="q-ma-lg bg-primary text-white text-body2"
+          class="primary-shadow q-ma-lg bg-primary text-white"
         >
-          بارگزاری بیشتر
+          <span class="text-body3">بارگزاری بیشتر</span>
         </q-btn>
       </div>
     </q-scroll-area>

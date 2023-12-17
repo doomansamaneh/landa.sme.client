@@ -2,6 +2,7 @@
   <chart
     :options="options"
     :series="series"
+    :seriesName="seriesName"
     :height="height"
     :legend="legend"
     :title="title"
@@ -16,13 +17,13 @@ import Chart from 'src/components/shared/Charts/ChartView.vue';
 import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
-const props = defineProps(['height', 'legend', 'title'])
+const props = defineProps(['height', 'legend', 'title', 'seriesName'])
 
 const options = ref(null)
 
 const series = ref([
   {
-    name: "کالا و خدمت",
+    name: props.seriesName,
     data: [20000000, 40000000, 60000000, 8000000, 10000000, 12000000, 14000000, 16000000, 18000000]
   }
 ])

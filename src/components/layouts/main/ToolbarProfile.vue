@@ -11,7 +11,7 @@
       class="z-max"
       transition-show="jump-down"
       transition-hide="jump-up"
-      :offset="[20, 24 ]"
+      :offset="[5, 24]"
     >
       <q-list
         dense

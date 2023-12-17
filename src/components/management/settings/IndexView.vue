@@ -39,6 +39,7 @@
       <div class="row">
         <div class="col-4">
           <theme-selector />
+          <lang-switcher />
         </div>
         <q-separator
           vertical
@@ -70,6 +71,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import ThemeSelector from "src/components/shared/ThemeSelector.vue"
+import LangSwitcher from "src/components/shared/SwitchLanguage.vue"
 
 const tab = ref('profile')
 

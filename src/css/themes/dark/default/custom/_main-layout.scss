@@ -4,6 +4,15 @@
   // }
 
   .main-layout {
-    padding: 8px 38px 48px 38px;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 100%;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    -webkit-transition: padding .25s ease-in-out;
+    transition: padding .25s ease-in-out;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <q-header
-    class="q-pa-lg"
+    class="q-py-lg q-px-lg"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
-    <q-toolbar class="text-dark row justify-between">
+    <q-toolbar class="text-dark row justify-between no-padding">
       <div class="q-gutter-xs">
         <q-btn
           @click="$emit('toggle-menubar')"
