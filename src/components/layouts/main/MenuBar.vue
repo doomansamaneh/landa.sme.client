@@ -1,15 +1,15 @@
 <template>
   <q-drawer
     class="menu-bar no-scroll q-mb-xl q-pl-md"
-    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light' "
+    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
     side="left"
-    :width="240"
+    bordered
+    :width="249"
     :model-value="menuBar"
     :breakpoint="400"
     :overlay="$q.screen.lt.md"
-
   >
-    <div class="flex justify-center q-px-md q-pb-md">
+    <div class="flex justify-center q-px-md q-py-lg">
       <q-input
         color="grey-5"
         outlined
@@ -32,7 +32,7 @@
     </div>
 
     <q-scroll-area
-      style="height: calc(100% - 80px);"
+      style="height: calc(100% - 120px);"
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
@@ -65,7 +65,7 @@
               :key="subItem.name"
               :to="subItem.url"
               clickable
-              class="sub-item q-mx-md"
+              class="sub-item q-mr-lg"
             >
               <q-item-section
                 avatar

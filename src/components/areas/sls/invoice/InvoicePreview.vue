@@ -132,7 +132,7 @@
   </tool-bar>
   <div
     class="row q-gutter-x-xl"
-    style="margin-top:40px"
+    style="margin-top:64px"
   >
     <div class="col">
       <q-card class="bordered no-shadow">
@@ -320,7 +320,7 @@
               <span class="text-caption text-bold">خریدار</span>
               <a
                 href="#"
-                class="text-body3"
+                class="link text-body3"
               >خشایار شمالی</a>
             </div>
 
@@ -364,7 +364,7 @@
               </template>
             </q-tab>
             <q-tab
-              name="test-1"
+              name="tax"
               class="q-py-sm"
             >
               <template #default>
@@ -379,17 +379,17 @@
               </template>
             </q-tab>
             <q-tab
-              name="test-2"
+              name="history"
               class="q-py-sm"
             >
               <template #default>
                 <q-icon
-                  name="o_question_mark"
+                  name="o_history"
                   size="xs"
                   class="q-mr-sm"
                 />
                 <div class="text-body3 text-bold">
-                  تست 2
+                  تاریخچه
                 </div>
               </template>
             </q-tab>
@@ -437,6 +437,7 @@
                   color="primary"
                   padding="4px 12px"
                   unelevated
+                  flat
                 >
                   <q-icon
                     name="o_description"
@@ -446,6 +447,223 @@
                   <span>سند حسابداری</span>
                 </q-btn>
 
+              </div>
+
+              <div class="row text-body3 q-gutter-x-sm">
+                <div class="col-7 flex ">جمع کل:</div>
+                <div class="col text-bold">3,000,000</div>
+              </div>
+
+              <div class="row items-center q-gutter-x-xs q-my-md">
+                <q-icon
+                  name="o_arrow_downward"
+                  color="primary"
+                  size="xs"
+                />
+                <span class="text-body3 text-bold">دریافتها</span>
+              </div>
+
+              <div class="row text-body3 q-gutter-x-sm q-mt-md">
+                <div class="col-7 row items-center">
+                  <q-btn
+                    size="sm"
+                    dense
+                    round
+                    unelevated
+                    flat
+                    color="red"
+                    icon="o_delete"
+                    class="q-mr-xs"
+                  />
+                  <span class="text-body3">دریافت - تسویه حساب:</span>
+                </div>
+                <div class="col text-body3">27,000,000</div>
+              </div>
+
+              <div class="row text-body3 q-gutter-x-sm q-mt-md">
+                <div class="col-7 flex ">
+                  <a
+                    href="#"
+                    class="link"
+                  >دریافت - 27/09/1402:</a>
+                </div>
+                <div class="col">3,000,000</div>
+              </div>
+
+              <q-separator color="positive" size="2px" class="q-mt-md"/>
+
+              <div class="row text-body3 q-gutter-x-sm q-mt-md">
+                <div class="col-7 row items-center">
+                  <span class="text-body3 text-bold">جمع دریافتی:</span>
+                </div>
+                <div class="col text-body3 text-bold">30,000,000</div>
+              </div>
+
+              <q-separator color="red" size="2px" class="q-mt-md"/>
+
+              <div class="row text-body3 q-gutter-x-sm q-mt-md">
+                <div class="col-7 row items-center">
+                  <span class="text-body3 text-bold">مانده:</span>
+                </div>
+                <div class="col text-body3 text-bold">0</div>
+              </div>
+
+            </q-tab-panel>
+
+            <q-tab-panel
+              name="tax"
+              class="no-padding"
+            >
+
+              <div class="row q-py-lg">
+                <q-btn
+                  color="red"
+                  padding="4px 12px"
+                  unelevated
+                  class="red-shadow"
+                >
+                  <q-icon
+                    name="o_arrow_upward"
+                    size="xs"
+                    class="q-mr-xs"
+                  />
+                  <span>ارسال به سامانه مودیان</span>
+                </q-btn>
+              </div>
+
+            </q-tab-panel>
+
+            <q-tab-panel
+              name="history"
+              class="no-padding"
+            >
+
+              <div class="q-my-lg">
+
+                <div class="invoice-preview-timeline">
+                  <q-timeline color="accent">
+                    <q-timeline-entry
+                      avatar="https://cdn.quasar.dev/img/avatar2.jpg"
+                      v-for="item in items"
+                      :key="item"
+                    >
+                      <template #default>
+                        <q-card class="bordered-1 no-shadow q-ml-sm">
+                          <q-card-section class="row justify-between items-center q-gutter-sm">
+                            <div class="row items-center q-gutter-x-sm">
+                              <q-icon
+                                :name="item.icon"
+                                size="sm"
+                                color="accent"
+                              />
+                              <div class="text-caption text-bold">{{ item.name }}</div>
+                              <div class="row items-center">
+                                <span class="text-caption">چند دقیقه پیش</span>
+                                <q-tooltip
+                                  transition-show="scale"
+                                  transition-hide="scale"
+                                  :delay="700"
+                                  class="custom-tooltip text-caption"
+                                >
+                                  {{ item.date }}
+                                </q-tooltip>
+                              </div>
+                            </div>
+                            <q-item-label
+                              class="row text-caption-sm"
+                              caption
+                            >
+                              {{ item.systemInfo }}
+                            </q-item-label>
+                          </q-card-section>
+                          <q-card-section
+                            v-if="item.commentValue"
+                            class="q-pt-none"
+                          >
+                            <p
+                              class="text-caption line-height-xs no-letter-spacing"
+                              contenteditable="true"
+                              v-show="!editCommentBtn"
+                            >
+                              {{ item.comment }}
+                            </p>
+                            <div
+                              class="q-gutter-y-md"
+                              v-show="editCommentBtn"
+                            >
+                              <q-editor
+                                v-model="editCommentValue"
+                                class="text-caption"
+                              />
+                              <div class="q-gutter-x-sm">
+                                <q-btn
+                                  @click="editCommentBtn = false"
+                                  padding="4px 12px"
+                                  flat
+                                  rounded
+                                  class="bg-primary text-white text-body3"
+                                >
+                                  <q-icon
+                                    name="o_comment"
+                                    size="xs"
+                                    class="q-mr-sm"
+                                  />
+                                  <span>ذخیره</span>
+                                </q-btn>
+                                <q-btn
+                                  @click="editCommentBtn = false"
+                                  unelevated
+                                  rounded
+                                  class="text-on-dark"
+                                >
+                                  <q-icon
+                                    name="o_close"
+                                    size="xs"
+                                    class="q-mr-xs"
+                                  />
+                                  <span>انصراف</span>
+                                </q-btn>
+                              </div>
+                            </div>
+                            <div
+                              v-if="!editCommentBtn"
+                              class="row justify-start"
+                            >
+                              <q-btn
+                                @click="editComment"
+                                padding="4px 12px"
+                                unelevated
+                                rounded
+                                class="text-on-dark text-body3"
+                              >
+                                <q-icon
+                                  name="o_edit"
+                                  size="xs"
+                                  class="q-mr-sm"
+                                />
+                                <span>ویرایش</span>
+                              </q-btn>
+                              <q-btn
+                                @click="deleteAlert"
+                                padding="4px 12px"
+                                unelevated
+                                rounded
+                                class="text-on-dark text-body3"
+                              >
+                                <q-icon
+                                  name="o_delete"
+                                  size="xs"
+                                  class="q-mr-sm"
+                                />
+                                <span>حذف</span>
+                              </q-btn>
+                            </div>
+                          </q-card-section>
+                        </q-card>
+                      </template>
+                    </q-timeline-entry>
+                  </q-timeline>
+                </div>
               </div>
 
             </q-tab-panel>
@@ -462,7 +680,61 @@
 <script setup>
 import { ref } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
-const tab = ref('main-info')
+import DeleteAlert from "/src/components/management/profile/DeleteAlert.vue"
+import { useQuasar } from "quasar"
+
+const $q = useQuasar()
+
+const tab = ref("main-info")
+const editor = ref('')
+const editCommentBtn = ref(false)
+
+const items = [
+  { name: "خشایار شمالی", icon: "o_add", date: "1402/07/22 - 15:05:30", value: "ایجاد مخاطب", systemInfo: "MacOS 192.188.90.90" },
+  { name: "خشایار شمالی", icon: "o_maps_ugc", date: "1402/07/22 - 15:05:30", value: "ایجاد یادداشت جدید", commentValue: "true", comment: "این یک متن تستی است که توسط خشایار شمالی برای آزمایش کامنت‌ها در تایم لاین سیستم حسابداری آنلاین لاندا ایجاد شده است و فاقد هرگونه اعتباری است.", systemInfo: "MacOS 192.188.90.90" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/21", value: "ویرایش مخاطب", systemInfo: "MacOS 192.188.90.90" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/20", value: "ویرایش مخاطب", systemInfo: "MacOS 192.188.70.290" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/18", value: "ویرایش مخاطب" },
+  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/10", value: "ویرایش مخاطب" },
+]
+
+const editCommentValue = ref(items[1].comment)
+
+const saveComment = () => {
+  if (editor.value.trim() !== "") {
+    const newComment = {
+      name: "خشایار شمالی",
+      icon: "comment",
+      date: "1402/07/24",
+      commentValue: true,
+      comment: editor.value,
+      systemInfo: "MacOS 192.188.90.90",
+    };
+
+    items.push(newComment);
+    editor.value = "";
+  }
+}
+
+const deleteComment = (comment) => {
+  const index = items.indexOf(comment);
+  if (index !== -1) {
+    items.splice(index, 1);
+  }
+}
+
+const editComment = () => {
+
+  editCommentBtn.value = !editCommentBtn.value
+
+}
+
+const deleteAlert = () => {
+  $q.dialog({
+    component: DeleteAlert
+  })
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -498,22 +770,4 @@ table {
 th,
 td {
   padding: 24px 8px;
-}
-
-.invoice-preview-table {
-  tbody {
-    tr:hover {
-      background-color: #{$black}10;
-    }
-  }
-
-  th {
-    border-bottom: 2px solid #{$black}40;
-    border-top: 2px solid #{$black}40;
-  }
-
-  td {
-    border-bottom: 1px solid #{$black}10;
-  }
-}
-</style>
+}</style>

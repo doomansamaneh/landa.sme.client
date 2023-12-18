@@ -87,6 +87,14 @@
     line-height: 40px;
   }
 
+  .no-letter-spacing {
+    letter-spacing: 0 !important;
+  }
+
+  .link {
+    color: $primary;
+  }
+
   .z-1 {
     z-index: 1;
   }

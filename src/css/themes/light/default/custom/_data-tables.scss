@@ -51,4 +51,21 @@
   .div-table-cell {
     outline: 1px solid rgba(0, 0, 0, 0.12);
   }
+
+  .invoice-preview-table {
+    tbody {
+      tr:hover {
+        background-color: #39393920;
+      }
+    }
+
+    th {
+      border-bottom: 2px solid #39393920;
+      border-top: 2px solid #39393920;
+    }
+
+    // td {
+    //   border-bottom: 2px solid #39393920;
+    // }
+  }
 }

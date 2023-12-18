@@ -1,13 +1,13 @@
 <template>
   <q-drawer
+    bordered
     side="right"
     v-model="contactDrawerStore.state.value"
     overlay
     :width="350"
     :breakpoint="500"
     class="no-scroll"
-    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light' "
-
+    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-inner-loading
       :showing="tableStore.showLoader.value"
@@ -19,7 +19,7 @@
       />
     </q-inner-loading>
 
-    <div class="q-px-md q-pb-md">
+    <div class="q-px-md q-py-lg">
       <q-input
         color="grey-5"
         outlined
@@ -41,7 +41,7 @@
       </q-input>
     </div>
     <q-scroll-area
-      style="height: calc(100vh - 150px);"
+      style="height: calc(100vh - 180px);"
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >

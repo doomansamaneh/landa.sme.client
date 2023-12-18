@@ -5,9 +5,7 @@
   }
 
   .bg-light {
-
-    background-color: $main-color
-
+    background-color: $main-color;
   }
 
   .icon-hover.q-icon:hover {
@@ -50,7 +48,7 @@
 
   .bordered {
     border: 1px solid #00000024 !important;
-    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important
+    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important;
   }
 
   .bordered-1 {
@@ -152,6 +150,14 @@
     direction: ltr !important;
   }
 
+  .no-letter-spacing {
+    letter-spacing: 0 !important;
+  }
+
+  .link {
+    color: $primary;
+  }
+
   .btn-active {
     background-color: #00000017;
     border-radius: 100%;
@@ -182,15 +188,10 @@
   }
 
   .bluegrey-shadow {
-
     box-shadow: 0 4px 8px -4px #607d8b;
-
   }
 
   .primary-shadow {
-
     box-shadow: 0 4px 8px -4px $primary;
-
   }
-
 }

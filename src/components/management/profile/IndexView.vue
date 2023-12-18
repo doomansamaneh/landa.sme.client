@@ -962,6 +962,7 @@
             size="sm"
             class="icon q-pr-sm"
           />تاریخچه</div>
+       <div class="profile-timeline">
         <q-timeline color="accent">
           <q-timeline-entry
             avatar="https://cdn.quasar.dev/img/avatar4.jpg"
@@ -1076,6 +1077,7 @@
             </template>
           </q-timeline-entry>
         </q-timeline>
+       </div>
       </div>
     </q-tab-panel>
   </q-tab-panels>

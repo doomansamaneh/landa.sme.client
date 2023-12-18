@@ -10,7 +10,7 @@
       class="dialog-card no-shadow"
       style="width:600px"
     >
-      <q-card-section class="row items-center q-px-lg">
+      <q-card-section class="row items-center q-pl-lg q-pr-md">
         <div class="text-h6">
           پیغام تایید
         </div>

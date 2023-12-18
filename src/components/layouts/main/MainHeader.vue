@@ -1,6 +1,8 @@
 <template>
   <q-header
-    class="q-py-lg q-px-lg"
+  bordered
+    class="q-py-md"
+    style="padding-left: 38px; padding-right: 38px;"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between no-padding">
@@ -36,7 +38,7 @@
 
       <div class="row items-center q-gutter-x-md">
         <q-btn
-          size="md"
+          padding="4px 12px"
           unelevated
           label="دانشنامه"
           href="https://www.landa-sme.ir/LandaKnowledge"
