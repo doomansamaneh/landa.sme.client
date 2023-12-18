@@ -132,7 +132,7 @@
   </tool-bar>
   <div
     class="row q-gutter-x-xl"
-    style="margin-top:64px"
+    style="margin-top:54px"
   >
     <div class="col">
       <q-card class="bordered no-shadow">

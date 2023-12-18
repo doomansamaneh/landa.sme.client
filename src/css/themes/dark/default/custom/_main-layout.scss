@@ -15,4 +15,12 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  @media (max-width: $breakpoint-xs-max) {
+    .main-layout {
+      padding: 20px;
+      -webkit-transition: padding 0.25s ease-in-out;
+      transition: padding 0.25s ease-in-out;
+    }
+  }
 }

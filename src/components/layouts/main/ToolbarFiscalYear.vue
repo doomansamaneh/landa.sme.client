@@ -1,6 +1,7 @@
 <template>
   <q-btn
-    class="bordered-btn border-radius-xs bg-dark text-on-dark q-mx-md"
+    v-if="$q.screen.gt.xs"
+    class="bordered-btn border-radius-xs bg-dark text-on-dark"
     padding="4px 12px"
     unelevated
   >
@@ -108,6 +109,114 @@
       </div>
     </q-menu>
   </q-btn>
+
+  <q-btn
+    v-if="$q.screen.xs"
+    icon="o_calendar_today"
+    class="text-on-dark"
+    dense
+    size="12px"
+    round
+    unelevated
+  >
+    <q-menu
+      :persistent="false"
+      style="width: 400px;"
+      class="bordered"
+      transition-show="jump-down"
+      transition-hide="jump-up"
+      :offset="[0, 24]"
+    >
+      <div class="fit bg-dark text-white">
+
+        <div class="row justify-between q-px-lg q-pt-md">
+
+          <q-inner-loading
+            :showing="tableStore.showLoader.value"
+            class="transparent z-max"
+          >
+            <q-spinner
+              size="52px"
+              color="primary"
+            />
+          </q-inner-loading>
+
+          <div class="text-on-dark text-body2 text-bold">
+            <q-icon
+              class="q-mr-xs"
+              name="o_playlist_add_check"
+              size="sm"
+            />
+            <span class="text-bold text-on-dark">انتخاب سال مالی</span>
+          </div>
+          <!-- <q-badge
+              rounded
+              outline
+              :label="`تعداد سال‌ها: ${tableStore.pagination.value.totalItems}`"
+              class="q-py-sm q-px-sm bg-dark text-on-dark text-body3"
+            /> -->
+        </div>
+
+        <div class="years-container q-pa-lg text-on-dark">
+          <q-btn
+            v-for="year in tableStore.rows.value"
+            :key="year.id"
+            unelevated
+            :label="year.title"
+            :rounded="true"
+            :class="activeYearStyle(year)"
+            @click="fiscalYearStore.setFiscalYear(year)"
+            v-close-popup
+          >
+            {{ year.Id }}
+          </q-btn>
+        </div>
+
+        <div
+          v-if="tableStore.pagination.value.totalPages > 1"
+          class="q-gutter-sm q-px-lg q-pb-lg"
+        >
+          <q-btn
+            :disable="tableStore.pagination.value.currentPage <= 1"
+            unelevated
+            round
+            dense
+            size="12px"
+            color="primary"
+            text-color="white"
+            icon="chevron_right"
+            @click="previous($event)"
+          >
+            <q-tooltip
+              class="custom-tooltip"
+              :delay="600"
+            >
+              {{ $t("shared.labels.next") }}
+            </q-tooltip>
+          </q-btn>
+          <q-btn
+            :disable="tableStore.pagination.value.currentPage >= tableStore.pagination.value.totalPages"
+            unelevated
+            round
+            dense
+            size="12px"
+            color="primary"
+            text-color="white"
+            icon="chevron_left"
+            @click="next($event)"
+          >
+            <q-tooltip
+              class="custom-tooltip"
+              :delay="600"
+            >
+              {{ $t("shared.labels.previous") }}
+            </q-tooltip>
+          </q-btn>
+        </div>
+      </div>
+    </q-menu>
+  </q-btn>
+
 </template>
 
 
