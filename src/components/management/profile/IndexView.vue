@@ -1,10 +1,11 @@
 <template>
   <q-page-sticky
-    class="z-1 bg-main q-px-xl q-py-md"
+    class="z-1 bg-main q-py-sm"
+    style="padding-left: 38px; padding-right: 38px;"
     position="top"
     expand
   >
-    <q-toolbar class="row justify-between q-py-md q-mx-sm">
+    <q-toolbar class="q-px-none row justify-between q-py-md">
       <div class="row items-center q-gutter-md">
         <q-avatar size="48px">
           <img

@@ -134,7 +134,7 @@
   </tool-bar>
   <q-card
     class="bordered q-pa-md fit"
-    style="margin-top: 64px;"
+    style="margin-top: 54px;"
   >
     <q-card-section>
       <master-section style="margin-bottom: 90px;" />

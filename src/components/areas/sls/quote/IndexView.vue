@@ -1,7 +1,7 @@
 <template>
   <top-bar title="پیش فاکتورها" />
   <div>
-    <div style="margin-top: 40px;">
+    <div style="margin-top: 54px;">
       <q-btn @click="alertFact(10)">10!</q-btn>
       <q-btn @click="alertFact(1000)">1000!</q-btn>
 
