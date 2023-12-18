@@ -7,20 +7,20 @@
             rounded
             color="primary"
             text-color="white"
-            icon="o_account_balance"
+            icon="o_inbox"
             size="md"
             class="primary-shadow"
           />
         </q-item-section>
         <q-item-section class="q-pl-xs">
-          <q-item-label class="text-body1 q-mb-xs">موجودی بانک</q-item-label>
+          <q-item-label class="text-body1 q-mb-xs">موجودی صندوق</q-item-label>
         </q-item-section>
       </q-item>
       <chart
         :options="options"
         :series="series"
-        :height="300"
         :legend="true"
+        :height="300"
         :title="title"
         class="donut-chart"
         :class="direction"
@@ -31,7 +31,6 @@
 </template>
 
 <script setup>
-
 import { ref, onMounted, watchEffect, watch, computed } from 'vue'
 import Chart from 'src/components/shared/Charts/ChartView.vue';
 import { useQuasar } from 'quasar'
@@ -42,7 +41,7 @@ const props = defineProps(['height', 'legend', 'title'])
 const options = ref(null)
 
 const series = ref([
-  200000000, 40000000, 50000000
+  805840240,
 ])
 
 function setOptions() {
@@ -50,7 +49,7 @@ function setOptions() {
   const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
 
   options.value = {
-    labels: ['شماره حساب بانک آینده: 123456789', 'شماره حساب بانک تجارت: 5859831129809389', 'شماره حساب بانک ملی: 0102125740006'],
+    labels: ['جاری شرکا'],
     title: {
       text: props.title,
       align: 'top',
@@ -148,9 +147,10 @@ function setOptions() {
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
       },
-      position: 'right',
+      position: 'bottom',
       fontSize: '14px',
       fontWeight: 400,
+      offsetY: 16,
       markers: {
         width: 14,
         height: 14,
@@ -158,8 +158,8 @@ function setOptions() {
         offsetX: $q.lang.rtl ? '-4' : '-4',
       },
       itemMargin: {
-        vertical: 8,
-        horizontal: 0,
+        vertical: 16,
+        horizontal: 16,
       },
     },
     tooltip: {
@@ -232,3 +232,4 @@ const dataPointSelection = (event, chartContext, config) => {
 }
 
 </script>
+
