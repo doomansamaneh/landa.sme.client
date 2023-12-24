@@ -1,5 +1,7 @@
 import { ref } from "vue"
 
+const rows = ref([])
+
 const state = {
     firstLoad: ref(false),
     rows: ref([]),
@@ -40,6 +42,7 @@ export function useCustomer() {
     }
 
     return {
+        rows,
         columns,
         pagination,
         state,

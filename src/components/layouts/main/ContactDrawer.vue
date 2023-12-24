@@ -48,7 +48,7 @@
 
       <q-item
         @click="goToCustomer"
-        v-for="(row, index) in rows"
+        v-for="(row, index) in customerStore.rows.value"
         :key="index"
         clickable
         v-close-popup
@@ -132,7 +132,7 @@
       </q-item>
 
       <div
-        v-if="!tableStore.showLoader.value && rows.length === 0"
+        v-if="!tableStore.showLoader.value && customerStore.rows.value.length === 0"
         class="text-on-dark"
       >
         <no-data-found />
@@ -170,8 +170,6 @@ const contactDrawerStore = useContactDrawer()
 const tableStore = useDataTable("crm/customer/getLookupData", customerStore.columns, customerStore)
 const router = useRouter()
 
-const rows = ref([])
-
 async function gotoNext() {
   if (hasMoreData.value) {
     tableStore.pagination.value.currentPage += 1
@@ -181,13 +179,13 @@ async function gotoNext() {
 
 async function reloadData() {
   await tableStore.reloadData()
-  rows.value = [...rows.value, ...tableStore.rows.value]
+  customerStore.rows.value = [...customerStore.rows.value, ...tableStore.rows.value]
 }
 
 async function loadData() {
   tableStore.pagination.value.currentPage = 1
   await tableStore.reloadData()
-  rows.value = tableStore.rows.value
+  customerStore.rows.value = tableStore.rows.value
 }
 
 const hasMoreData = computed(() => {
