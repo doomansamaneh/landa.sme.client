@@ -4,7 +4,7 @@
     side="right"
     v-model="contactDrawerStore.state.value"
     overlay
-    :width="350"
+    :width="$q.screen.lt.md ? '300' : '350'"
     :breakpoint="500"
     class="no-scroll"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
@@ -40,12 +40,12 @@
         </template>
       </q-input>
     </div>
+
     <q-scroll-area
-      style="height: calc(100vh - 180px);"
+      :style="$q.screen.gt.xs ? 'height: calc(100vh - 180px);' : 'height: calc(100vh - 100px);'"
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
-
       <q-item
         @click="goToCustomer"
         v-for="(row, index) in customerStore.rows.value"

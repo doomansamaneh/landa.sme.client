@@ -1,8 +1,7 @@
 <template>
   <q-header
     bordered
-    class="q-py-md"
-    style="padding-left: 38px; padding-right: 38px;"
+    class="q-pa-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between no-padding">
@@ -24,8 +23,6 @@
           />
 
         </q-btn>
-
-
 
       </div>
 

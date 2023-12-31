@@ -17,12 +17,16 @@ export default {
   },
   children: [
     {
-      path: "/crm/customer",
-      component: ProfilePage
-    },
-    {
       path: ":businessId",
       component: HomePage
+    },
+    {
+      path: "/dashboard",
+      component: HomePage
+    },
+    {
+      path: "/crm/customer",
+      component: ProfilePage
     },
     {
       path: "sls/quote",

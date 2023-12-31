@@ -1,0 +1,13 @@
+@mixin bottom-navigation-light {
+
+  .bottom-navigation .q-tab__label {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    color: #0000008F !important;
+  }
+
+  .bottom-navigation .q-tab--active .q-tab__label{
+    color: $primary !important;
+  }
+
+}

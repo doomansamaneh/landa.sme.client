@@ -112,20 +112,21 @@
 
   <q-btn
     v-if="$q.screen.xs"
-    icon="o_calendar_today"
     class="text-on-dark"
     dense
-    size="12px"
-    round
     unelevated
+    padding="6px 12px"
   >
+    <span class="text-body1 text-bold">{{ `${fiscalYearStore.currentYear.value?.title}` }}</span>
+
     <q-menu
       :persistent="false"
-      style="width: 400px;"
+      anchor="center middle"
+      self="center middle"
       class="bordered"
       transition-show="jump-down"
       transition-hide="jump-up"
-      :offset="[0, 24]"
+      min-height="500px"
     >
       <div class="fit bg-dark text-white">
 
@@ -216,7 +217,6 @@
       </div>
     </q-menu>
   </q-btn>
-
 </template>
 
 

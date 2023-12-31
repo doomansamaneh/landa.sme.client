@@ -1,6 +1,6 @@
 <template>
   <q-drawer
-    class="menu-bar no-scroll q-mb-xl q-pl-md"
+    class="menu-bar no-scroll q-mb-xl"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
     side="left"
     bordered

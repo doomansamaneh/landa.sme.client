@@ -7,70 +7,70 @@
       style="padding-left: 20px; padding-right: 20px;"
       class="row justify-between q-py-md"
     >
-      <div class="q-gutter-xs">
-        <q-btn
-          @click="menuBarStore.toggle"
-          round
-          unelevated
-          dense
-          color="primary"
-          size="16px"
-          class="primary-shadow text-on-dark"
-        >
-
-          <q-icon
-            size="xs"
-            name="o_lunch_dining"
-          />
-
-        </q-btn>
-      </div>
 
       <q-toolbar-title class="text-subtitle2 text-bold row justify-start items-center">
         <div class="column">
-          <span class="text-on-dark">{{ selectedBusiness.title }}</span>
+          <span
+            style="width:200px"
+            class="ellipsis text-on-dark"
+          >{{ selectedBusiness.title }}</span>
           <today-date />
         </div>
       </q-toolbar-title>
 
+      <div class="row q-gutter-x-sm">
+        <fiscal-year />
+        <q-btn
+          unelevated
+          round
+          dense
+          icon="o_unfold_more"
+          size="md"
+          class="text-on-dark"
+          @click="showToolbar"
+        />
+      </div>
     </q-toolbar>
 
     <q-separator />
 
-    <q-toolbar
-      style="padding-left: 20px; padding-right: 20px;"
-      class="row items-center q-py-md"
-    >
-      <div class="col-8 row items-center q-gutter-sm">
-        <switch-theme />
-        <fiscal-year />
-        <q-btn
-          @click="contactDrawerStore.toggle"
-          flat
-          dense
-          round
-          icon="o_person_search"
-          class="btn-icon text-on-dark"
-          :class="activeButton"
-          size="14px"
-        />
-        <notification />
-        <profile />
+    <q-slide-transition>
+      <div v-show="toolbar">
+        <q-toolbar
+          style="padding-left: 20px; padding-right: 20px;"
+          class="row items-center q-py-md"
+        >
+          <div class="col-8 row items-center q-gutter-sm">
+            <switch-theme />
+            <q-btn
+              @click="contactDrawerStore.toggle"
+              flat
+              dense
+              round
+              icon="o_person_search"
+              class="btn-icon text-on-dark"
+              :class="activeButton"
+              size="14px"
+            />
+            <notification />
+            <profile />
+          </div>
+
+          <div class="col row items-center justify-end">
+            <q-btn
+              padding="4px 12px"
+              unelevated
+              label="دانشنامه"
+              href="https://www.landa-sme.ir/LandaKnowledge"
+              target="_blank"
+              class="text-on-dark bordered-btn"
+            />
+          </div>
+
+
+        </q-toolbar>
       </div>
-
-      <div class="col row items-center justify-end">
-        <q-btn
-          padding="4px 12px"
-          unelevated
-          label="دانشنامه"
-          href="https://www.landa-sme.ir/LandaKnowledge"
-          target="_blank"
-          class="text-on-dark bordered-btn"
-        />
-      </div>
-
-
-    </q-toolbar>
+    </q-slide-transition>
 
   </q-header>
 </template>
@@ -91,8 +91,13 @@ import { useMenuBar } from "src/composables/useMenuBar"
 const menuBarStore = useMenuBar()
 const contactDrawerStore = useContactDrawer()
 const $q = useQuasar()
-
 const selectedBusiness = useSelectedBusinessStore()
 
 const activeButton = computed(() => (contactDrawerStore.state.value == true ? 'btn-active' : ''));
+const toolbar = ref(false)
+
+const showToolbar = () => {
+  toolbar.value = !toolbar.value
+}
+
 </script>
