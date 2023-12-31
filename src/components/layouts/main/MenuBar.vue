@@ -5,7 +5,7 @@
     side="left"
     bordered
     :width="249"
-    :model-value="menuBar"
+    v-model="menuBarStore.state.value"
     :breakpoint="400"
     :overlay="$q.screen.lt.md"
   >
@@ -102,10 +102,12 @@ import { fetchWrapper } from "src/helpers"
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import { helper } from "src/helpers"
+import { useMenuBar } from "src/composables/useMenuBar"
 
 const { t } = useI18n()
 
 const router = useRouter()
+const menuBarStore = useMenuBar()
 const props = defineProps({
   menuBar: Boolean
 })
