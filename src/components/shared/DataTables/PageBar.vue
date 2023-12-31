@@ -2,7 +2,7 @@
   <q-card-actions class="fit row justify-end items-center q-pa-none">
     <slot name="reload"></slot>
     <span class="text-caption q-pr-lg">
-      {{ indexRange }} {{ $t("shared.labels.from") }} {{ paged.totalItems.toLocaleString() }}
+      {{ indexRange }} {{ $t("shared.labels.from") }} {{ paged.totalItems }}
     </span>
     <!-- //todo: use css class instead of styling size and padding -->
     <q-pagination

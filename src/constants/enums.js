@@ -51,4 +51,4 @@ export const cultures = [
   { code: "en", name: "English", calendar: "gregorian", dir: "ltr", quasarLang: "en-US", flag: "" }
 ]
 
-export const defaultPageSize = 10
+export const defaultPageSize = 5 //10

@@ -30,7 +30,7 @@ export function useDataTable(dataSource
   const state = computed(() => store?.state ?? localState)
   const pagination = computed(() => store?.pagination.value ?? localPagination.value)
 
-  //const loading = ref(false)
+  // const loading = ref(false)
   const showLoader = ref(false)
   const inputInnerLoader = ref(false)
 
@@ -92,7 +92,6 @@ export function useDataTable(dataSource
       const response = await fetchWrapper.post(dataSource, gridPage)
       handleResponse(response.data.data)
     } catch (error) {
-      // Handle errors if needed
       console.error('Error fetching data:', error)
     } finally {
       showLoader.value = false
