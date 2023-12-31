@@ -1,5 +1,5 @@
 import { computed, ref } from "vue"
-import { defaultPageSize, sqlOperator } from "src/constants/enums"
+import { defaultPageSize, dataViewDefaultPageSize, sqlOperator } from "src/constants/enums"
 import { fetchWrapper, helper } from "src/helpers"
 
 export function useDataTable(dataSource
@@ -37,6 +37,10 @@ export function useDataTable(dataSource
   const showPagebar = computed(() =>
     pagination.value.totalItems > defaultPageSize
   )
+
+  const dataViewShowPagebar = computed(() =>
+  pagination.value.totalItems > dataViewDefaultPageSize
+)
 
   const selectedRows = computed(() =>
     state.value.rows.value.filter((row) => row.selected === true)
@@ -224,6 +228,7 @@ export function useDataTable(dataSource
     selectedRows,
     columns,
     showPagebar,
+    dataViewShowPagebar,
     rowIndex,
     pagination,
     checkedAll,

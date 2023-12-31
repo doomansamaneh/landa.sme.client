@@ -67,7 +67,7 @@
     </q-card-section>
 
     <page-bar
-      v-if="tableStore.showPagebar.value"
+      v-if="tableStore.dataViewShowPagebar.value"
       class="q-pa-md dark-1"
       :pagination="tableStore.pagination.value"
       @page-changed="tableStore.reloadData"
