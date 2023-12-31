@@ -155,7 +155,7 @@
                         color="primary"
                         round
                         outline
-                        @click="generalDiscount = !generalDiscount"
+                        @click="switchDiscount"
                       />
                     </template>
                   </q-input>
@@ -218,7 +218,6 @@ import NoProductSelected from "src/components/areas/sls/invoice/create/NoProduct
 
 const createInvoice = useCreateInvoice()
 
-
 const generalDiscount = ref(true)
 const generalDiscountValue = ref(0)
 const productLookup = ref(null)
@@ -279,10 +278,15 @@ watchEffect(() => {
 
 const validateDiscountInput = (event) => {
   const input = event.target;
-  const value = parseFloat(input.value + event.key);
+  const isGeneralDiscount = generalDiscount.value;
 
-  if (isNaN(value) || value < 0 || value > 100 || event.key === '-') {
-    event.preventDefault();
+  if (!isGeneralDiscount) {
+
+    const value = parseFloat(input.value + event.key);
+
+    if (isNaN(value) || value < 0 || value > 100 || event.key === '-') {
+      event.preventDefault();
+    }
   }
 };
 
@@ -292,6 +296,22 @@ const applyDiscountOnEnter = (event) => {
     discountMenu.value.hide()
   }
 };
+
+const clearGeneralDiscount = () => {
+  generalDiscountValue.value = 0
+}
+
+const switchDiscount = () => {
+  generalDiscount.value = !generalDiscount.value;
+  if (!generalDiscount.value) {
+    clearGeneralDiscount();
+  }
+
+  if (generalDiscount.value) {
+    clearGeneralDiscount();
+  }
+}
+
 </script>
 
 <style lang="scss" scoped>
