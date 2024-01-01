@@ -4,7 +4,7 @@
     position="top"
     expand
   >
-    <q-toolbar style="padding-left: 38px; padding-right: 38px;">
+    <q-toolbar :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 24px; padding-right: 24px;' ">
       <div class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn

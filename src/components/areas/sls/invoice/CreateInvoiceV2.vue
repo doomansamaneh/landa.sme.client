@@ -157,8 +157,8 @@
 
 <script setup>
 import ToolBar from "src/components/shared/ToolBar.vue"
-import MasterSection from "src/components/areas/sls/invoice/create/MasterSectionV2.vue"
-import DetailSection from "src/components/areas/sls/invoice/create/DetailSectionV2.vue"
-import QuickAccess from "src/components/areas/sls/invoice/create/QuickAccess.vue"
+import MasterSection from "src/components/areas/sls/invoice/create/desktop/MasterSectionV2.vue"
+import DetailSection from "src/components/areas/sls/invoice/create/desktop/DetailSectionV2.vue"
+import QuickAccess from "src/components/areas/sls/invoice/create/desktop/QuickAccess.vue"
 </script>
 
