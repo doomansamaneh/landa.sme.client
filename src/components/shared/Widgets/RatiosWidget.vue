@@ -1,6 +1,6 @@
 <template>
-  <div class="row q-gutter-x-lg">
-    <div class="col">
+  <div class="row gap-24">
+    <div class="col col-md col-xs-12">
       <q-card
         class="fit bordered q-pa-none"
         flat
@@ -116,7 +116,7 @@
 
       </q-card>
     </div>
-    <div class="col">
+    <div class="col col-md col-xs-12">
 
       <q-card
         class="fit bordered q-pa-none"
@@ -235,8 +235,8 @@
 
     </div>
   </div>
-  <div class="row q-gutter-x-lg q-mt-lg">
-    <div class="col">
+  <div class="row gap-24 q-mt-lg">
+    <div class="col col-md col-xs-12">
       <q-card
         class="fit bordered q-pa-none"
         flat
@@ -352,7 +352,7 @@
 
       </q-card>
     </div>
-    <div class="col">
+    <div class="col col-md col-xs-12">
       <q-card
         class="fit bordered q-pa-none"
         flat
@@ -481,6 +481,10 @@ import { ref, onMounted, watch, computed } from 'vue'
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: end;
+  gap: 24px;
+}
+
+.gap-24 {
   gap: 24px;
 }
 </style>

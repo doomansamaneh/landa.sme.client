@@ -19,7 +19,7 @@
       <chart
         :options="options"
         :series="series"
-        :height="300"
+        :height="$q.screen.lt.md ? '500': '300' "
         :legend="true"
         :title="title"
         class="donut-chart"
@@ -148,7 +148,7 @@ function setOptions() {
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
       },
-      position: 'right',
+      position: $q.screen.lt.md ? 'bottom' : 'right',
       fontSize: '14px',
       fontWeight: 400,
       markers: {

@@ -15,12 +15,12 @@
             class="q-mr-xs"
           />ایجاد فاکتور</q-btn>
       </div>
-      <div class="text-body3 text-bold q-mt-sm">تبریک میگم، %47.4 رشد داشته اید. <span class="text-caption">در ماه
+      <div class="text-body3 text-bold" :class="$q.screen.lt.md ? 'q-mt-lg' : 'q-mt-sm'">تبریک میگم، %47.4 رشد داشته اید. <span class="text-caption">در ماه
           گذشته</span></div>
     </q-card-section>
 
-    <q-card-section class="row q-pt-none q-px-lg q-pt-sm q-pb-lg">
-      <div class="col">
+    <q-card-section class="row q-gutter-lg q-pt-none q-px-lg q-pt-sm q-pb-lg">
+      <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-avatar
@@ -40,7 +40,7 @@
         </q-item>
       </div>
 
-      <div class="col">
+      <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-avatar
@@ -60,7 +60,7 @@
         </q-item>
       </div>
 
-      <div class="col">
+      <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn push @click="hello" flat dense size="0">
@@ -82,7 +82,7 @@
         </q-item>
       </div>
 
-      <div class="col">
+      <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn push @click="hello" flat dense size="0">

@@ -1,28 +1,28 @@
 <template>
   <div class="row gap-24">
-    <div class="col-8 col-md-8 col-sm-12">
+    <div class="col-8 col-md-8 col-sm-12 col-xs-12">
       <invoices-widget-v2 />
     </div>
-    <div class="col">
+    <div class="col col-md col-xs-12">
       <some-info />
     </div>
   </div>
 
   <div class="row gap-24 q-mt-lg">
-    <div class="col">
+    <div class="col col-md col-xs-12">
       <ratios-widget />
     </div>
-    <div class="col-8 col-md-8 col-sm-12">
+    <div class="col-8 col-md-8 col-sm-12 col-xs-12">
       <sales-income-widget />
     </div>
   </div>
 
   <div class="row q-mt-lg gap-24">
-    <div class="col-8 col-md-8 col-sm-12 column q-gutter-y-lg">
+    <div class="col-8 col-md-8 col-sm-12 col-xs-12 column q-gutter-y-lg">
       <income-widget />
     </div>
 
-    <div class="col col-md col-sm-12 gap-24">
+    <div class="col col-md col-sm-12 col-xs-12 gap-24">
       <top-products />
     </div>
 
@@ -30,11 +30,11 @@
 
   <div class="row q-mt-lg gap-24">
 
-    <div class="col col-md col-sm-12">
+    <div class="col col-md col-sm-12 col-xs-12">
       <fund-balance />
     </div>
 
-    <div class="col-8 col-md-8 col-sm-12">
+    <div class="col-8 col-md-8 col-sm-12 col-xs-12">
       <bank-balance />
     </div>
 
