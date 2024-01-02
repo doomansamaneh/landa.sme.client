@@ -1,6 +1,6 @@
 <template>
   <mobile v-if="$q.screen.xs" />
-  <desktop v-if="$q.screen.gt.xs" />
+  <desktop v-if="$q.screen.gt.sm" />
 </template>
 
 <script setup>

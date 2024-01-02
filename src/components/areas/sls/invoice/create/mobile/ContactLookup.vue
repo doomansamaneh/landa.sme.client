@@ -1,14 +1,7 @@
 <template>
   <tool-bar>
     <template #header>
-      <q-badge
-        v-if="tableStore?.pagination.value.totalItems > 0"
-        rounded
-        outline
-        :label="tableStore?.pagination.value.totalItems"
-        class="q-mr-sm bg-dark text-on-dark text-body2"
-      />
-      <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">ایجاد فاکتور فروش</span>
+      <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">انتخاب مشتری</span>
       <q-btn
         padding="6px 12px"
         flat
@@ -22,14 +15,14 @@
     </template>
     <template #buttons>
       <q-btn
-      class="bg-primary text-white text-body2"
-      padding="6px 12px"
-      rounded
-      no-caps
-      unelevated
-    >
-      {{ $t("shared.labels.save") }}
-    </q-btn>
+        class="bg-primary text-white text-body2"
+        padding="6px 12px"
+        rounded
+        no-caps
+        unelevated
+      >
+        {{ $t("shared.labels.save") }}
+      </q-btn>
       <q-btn
         class="bordered-btn_bg-dark text-body2"
         rounded
@@ -134,22 +127,10 @@
       </q-btn>
     </template>
   </tool-bar>
-  <q-card
-    class="no-border no-shadow fit bg-transparent"
-    style="margin-top: 62px;"
-  >
-    <q-card-section class="no-padding">
-      <master-section class="q-mb-lg" />
-    </q-card-section>
-    <q-card-section class="no-padding">
-      <detail-section />
-    </q-card-section>
-  </q-card>
+  <mobile-contact-lookup class="q-mt-xl" />
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
+import MobileContactLookup from 'src/components/shared/Lookups/MobileContactLookup.vue';
 import ToolBar from "src/components/shared/ToolBar.vue"
-import MasterSection from "src/components/areas/sls/invoice/create/mobile/MasterSection.vue"
-import DetailSection from "src/components/areas/sls/invoice/create/mobile/DetailSection.vue"
 </script>

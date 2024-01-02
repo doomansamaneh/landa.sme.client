@@ -22,14 +22,14 @@
     </template>
     <template #buttons>
       <q-btn
-      class="bg-primary text-white text-body2"
-      padding="6px 12px"
-      rounded
-      no-caps
-      unelevated
-    >
-      {{ $t("shared.labels.save") }}
-    </q-btn>
+        class="bg-primary text-white text-body2"
+        padding="6px 12px"
+        rounded
+        no-caps
+        unelevated
+      >
+        {{ $t("shared.labels.save") }}
+      </q-btn>
       <q-btn
         class="bordered-btn_bg-dark text-body2"
         rounded
@@ -134,22 +134,159 @@
       </q-btn>
     </template>
   </tool-bar>
-  <q-card
-    class="no-border no-shadow fit bg-transparent"
-    style="margin-top: 62px;"
+  <div
+    class="column q-gutter-lg q-mt-xl"
+    v-for="(row, index) in rows"
+    :key="index"
   >
-    <q-card-section class="no-padding">
-      <master-section class="q-mb-lg" />
-    </q-card-section>
-    <q-card-section class="no-padding">
-      <detail-section />
-    </q-card-section>
-  </q-card>
+    <div>
+      <q-item-label
+        caption
+        class="q-mb-sm"
+      >کالا و خدمت</q-item-label>
+      <q-input
+        outlined
+        dense
+        placeholder="انتخاب کالا و خدمات"
+      >
+        <template #append>
+          <q-btn
+            to="/sls/invoice/create/selectproduct/productlookup"
+            round
+            dense
+            icon="o_expand_more"
+          />
+        </template>
+      </q-input>
+    </div>
+
+    <div>
+      <q-item-label
+        caption
+        class="q-mb-sm"
+      >تعداد و مقدار</q-item-label>
+      <q-input
+        dense
+        outlined
+        v-model="row.quantity"
+      />
+    </div>
+
+    <div>
+      <q-item-label
+        caption
+        class="q-mb-sm"
+      >واحد سنجش</q-item-label>
+      <product-unit-lookup paceholder="واحد سنجش" />
+    </div>
+
+    <div>
+      <q-item-label
+        caption
+        class="q-mb-sm"
+      >مبلغ</q-item-label>
+      <q-input
+        dense
+        outlined
+        v-model="row.amount"
+      />
+    </div>
+
+    <div>
+      <q-item-label
+        caption
+        class="q-mb-sm"
+      >مالیات بر ارزش افزوده</q-item-label>
+      <vat-lookup placeholder="مالیات بر ارزش افزوده" />
+    </div>
+
+  </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
+import { ref, computed } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
-import MasterSection from "src/components/areas/sls/invoice/create/mobile/MasterSection.vue"
-import DetailSection from "src/components/areas/sls/invoice/create/mobile/DetailSection.vue"
+import ProductLookup from "src/components/shared/Lookups/ProductLookup.vue"
+import ProductUnitLookup from "src/components/shared/Lookups/ProductUnitLookup.vue"
+import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
+
+const discountIsCash = ref(true)
+const generalDiscount = ref(true)
+const vatIsCash = ref(true)
+const quantity = ref(1)
+const showMoreDetail = ref(false)
+const generalDiscountValue = 0
+
+const rows = ref([
+  {
+    prdLookupRef: null,
+    product: '',
+    quantity: 0,
+    unit: '',
+    amount: 0,
+    vat: 0,
+    rowDiscount: 0,
+    description: '',
+  },
+])
+
+const addRow = (index) => {
+  const newRow = {
+    prdLookupRef: null,
+    product: '',
+    quantity: 0,
+    unit: '',
+    amount: 0,
+    vat: 0,
+    rowDiscount: 0,
+    description: '',
+  };
+  rows.value.splice(index + 1, 0, newRow);
+};
+
+const deleteRow = (index) => {
+  rows.value.splice(index, 1);
+};
+
+const toggleDetail = () => {
+  showMoreDetail.value = !showMoreDetail.value
+};
+
+const rowAmount = computed(() => {
+  return rows.value.reduce((amount, row) => amount + (Number(row.quantity) * Number(row.amount)), 0);
+});
+
+const rowDiscount = computed(() => {
+  return rows.value.reduce((discount, row) => discount + Number(row.rowDiscount), 0);
+});
+
+const rowVat = computed(() => {
+  return rows.value.reduce((vat, row) => vat + Number(row.vat), 0);
+});
+
+const rowTotalAmount = (row) =>
+  Number(row.quantity) * Number(row.amount) - Number(row.rowDiscount) + Number(row.vat);
+
+const totalAmount = computed(() => {
+  return rows.value.reduce((total, row) => total + (Number(row.quantity) * Number(row.amount) - (Number(row.rowDiscount)) - Number(generalDiscountValue)) + Number(row.vat), 0);
+});
+
+const getProductRef = (index) => {
+  return (el) => {
+    rows.value[index].prdLookupRef = el;
+  };
+};
+
+const confirmGeneralDiscount = () => {
+  const newValue = 'Confirmed';
+
+  generalDiscountValue = newValue;
+}
+
 </script>
+
+<style lang="scss" scoped>.q-item__label--caption {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #697588;
+}</style>

@@ -1,5 +1,155 @@
 <template>
-  <div class="row q-gutter-x-md text-bold q-mb-sm">
+  <div class="row q-gutter-sm">
+    <q-btn
+      unelevated
+      color="primary"
+      to="/sls/invoice/create/selectproduct"
+    >
+      انتخاب کالا و خدمت
+    </q-btn>
+
+    <q-btn
+      unelevated
+      color="primary"
+    >
+      تخفیف
+    </q-btn>
+
+    <q-btn
+      unelevated
+      color="primary"
+    >
+      ارزش افزوده
+    </q-btn>
+
+    <q-btn
+      unelevated
+      color="primary"
+    >
+      شرح
+    </q-btn>
+  </div>
+  <q-separator class="q-mt-md q-mb-md" />
+
+  <q-list>
+    <q-item
+      class="q-py-sm q-px-none"
+      v-for="n in 3"
+      :key="n"
+    >
+      <div class="col-7">
+        <span class="text-body3 line-height-sm">
+          اشتراک حسابداری آنلاین لاندا نسخه حرفه‌ای
+          - 2 دستگاه
+        </span>
+      </div>
+      <div class="col row items-center justify-end">
+        <span class="bg-primary text-body3 text-white border-radius-sm q-pa-xs">
+          490,000,00
+        </span>
+      </div>
+    </q-item>
+  </q-list>
+
+  <q-separator class="q-mt-md q-mb-xl" />
+
+  <div class="col-3 q-gutter-y-md">
+    <div class="row q-mr-md">
+      <div class="col">مبلغ</div>
+      <div>{{ rowAmount }} <span class="text-caption"> ریال</span></div>
+    </div>
+
+    <div class="row q-mr-md">
+      <div class="col row q-gutter-sm items-center">
+        <q-btn
+          outline
+          round
+          icon="o_add"
+          size="xs"
+          @click="generalDiscount = true"
+        >
+          <q-tooltip
+            anchor="center left"
+            self="center right"
+            :offset="[10, 10]"
+            class="text-body2 q-px-sm custom-tooltip"
+            :delay="600"
+          >
+            ایجاد تخفیف
+          </q-tooltip>
+
+          <q-menu
+            anchor="bottom right"
+            self="bottom left"
+            :offset="[10, 8]"
+          >
+            <q-card>
+              <q-card-section>
+                <q-input
+                  outlined
+                  dense
+                  v-model="generalDiscountValue"
+                  @update:model-value="confirmGeneralDiscount"
+                >
+
+                  <template #append>
+                    <q-btn
+                      size="xs"
+                      :icon="generalDiscount ? 'attach_money' : 'o_percent'"
+                      class="cursor-pointer"
+                      color="primary"
+                      round
+                      outline
+                      @click="generalDiscount = !generalDiscount"
+                    />
+                  </template>
+
+                </q-input>
+              </q-card-section>
+
+              <q-card-actions class="dark-1 q-px-md">
+                <q-btn
+                  @click="confirmGeneralDiscount"
+                  padding="4px 12px"
+                  unelevated
+                  class="bg-primary text-white"
+                >تایید</q-btn>
+                <q-btn
+                  padding="4px 12px"
+                  unelevated
+                >انصراف</q-btn>
+              </q-card-actions>
+            </q-card>
+          </q-menu>
+
+        </q-btn>
+
+        <span>تخفیف</span>
+
+      </div>
+      <div><span class="text-red">({{ rowDiscount }})</span> <span class="text-red text-caption"> ریال</span></div>
+    </div>
+
+    <div class="row q-mr-md">
+      <div class="col">ارزش افزوده</div>
+      <div>{{ rowVat }} <span class="text-caption"> ریال</span></div>
+    </div>
+
+    <q-separator />
+
+    <div class="row q-mr-md">
+      <div class="col text-bold">مبلغ کل</div>
+      <div>{{ totalAmount }} <span class="text-caption"> ریال</span></div>
+    </div>
+
+    <q-separator
+      color="primary"
+      size="1.5px"
+    />
+  </div>
+
+
+  <!-- <div class="row q-gutter-x-md text-bold q-mb-sm">
     <div style="width: 25% ;">کالا/خدمت</div>
     <div style="width: 7%;">تعداد/مقدار</div>
     <div style="width: 10%;">واحد سنجش</div>
@@ -33,7 +183,6 @@
     >
       <div class="row q-gutter-md">
         <div style="width: 25%;">
-          <!-- <pre>{{ row.prdLookupRef?.lookup?.tableStore.activeRow.value }}</pre> -->
           <product-lookup
             placeholder="انتخاب کالا/خدمت"
             :ref="getProductRef(index)"
@@ -315,7 +464,7 @@
       />
     </div>
 
-  </div>
+  </div> -->
 </template>
 
 <script setup>
@@ -392,10 +541,10 @@ const getProductRef = (index) => {
 };
 
 const confirmGeneralDiscount = () => {
-      const newValue = 'Confirmed';
+  const newValue = 'Confirmed';
 
-      generalDiscountValue = newValue;
-    }
+  generalDiscountValue = newValue;
+}
 
 </script>
 

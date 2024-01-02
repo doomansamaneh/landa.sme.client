@@ -3,9 +3,15 @@
     <template #header>
       <span class="text-h6 q-mr-sm">فاکتور #1 برای خشایار شمالی</span>
       <q-btn
+        padding="6px 12px"
         flat
-        icon="arrow_back"
-      ></q-btn>
+        @click="$router.go(-1)"
+      >
+        <q-icon
+          name="arrow_back"
+          size="sm"
+        />
+      </q-btn>
     </template>
     <template #buttons>
       <q-btn
@@ -490,7 +496,11 @@
                 <div class="col">3,000,000</div>
               </div>
 
-              <q-separator color="positive" size="2px" class="q-mt-md"/>
+              <q-separator
+                color="positive"
+                size="2px"
+                class="q-mt-md"
+              />
 
               <div class="row text-body3 q-gutter-x-sm q-mt-md">
                 <div class="col-7 row items-center">
@@ -499,7 +509,11 @@
                 <div class="col text-body3 text-bold">30,000,000</div>
               </div>
 
-              <q-separator color="red" size="2px" class="q-mt-md"/>
+              <q-separator
+                color="red"
+                size="2px"
+                class="q-mt-md"
+              />
 
               <div class="row text-body3 q-gutter-x-sm q-mt-md">
                 <div class="col-7 row items-center">
@@ -770,4 +784,5 @@ table {
 th,
 td {
   padding: 24px 8px;
-}</style>
+}
+</style>

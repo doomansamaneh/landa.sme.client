@@ -65,6 +65,11 @@ onMounted(() => {
 if (route.path === '/sls/invoice2/create') {
   menuBarStore.state.value = false;
 }
+
+if ($q.screen.lt.md) {
+  menuBarStore.state.value = false;
+}
+
 </script>
 
 <style lang="scss">
