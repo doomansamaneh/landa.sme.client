@@ -171,4 +171,13 @@
     background-color: #ffffff40;
     border-radius: 100%;
   }
+
+  .active-on-select {
+    background-color: lighten($dark, 5);
+    border: 1px solid $primary !important;
+  }
+
+  .important-row {
+    background-color: $dark-page;
+  }
 }

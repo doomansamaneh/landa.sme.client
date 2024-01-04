@@ -21,7 +21,7 @@
             />
           </q-btn>
 
-          <span class="text-body1 text-bold">10</span>
+          <span class="text-body1 text-bold">{{ gridStore.selectedCardIndex.value.length }}</span>
 
         </div>
       </div>
@@ -29,18 +29,20 @@
 
         <div class="row justify-end items-center">
 
-          <div v-if="s" class="row items-center">
+          <div class="row items-center" v-if="!gridStore.selectedCardIndex.value.length">
             <q-badge
-              v-if="tableStore?.pagination.value.totalItems > 0"
               rounded
               outline
-              :label="tableStore?.pagination.value.totalItems"
+              :label="gridStore?.items?.value?.length"
               class="q-mr-sm bg-dark text-on-dark text-body2"
             />
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">فاکتورهای فروش</span>
           </div>
 
-          <div class="row items-center q-gutter-x-sm">
+          <div
+            v-if="gridStore?.selectedCardIndex?.value?.length > 0"
+            class="row items-center q-gutter-x-sm"
+          >
             <q-btn
               dense
               round
@@ -83,7 +85,10 @@
 
     </q-toolbar>
   </q-page-sticky>
-  <div class="colunm q-gutter-lg" style="margin-top: 38px;">
+  <div
+    class="colunm q-gutter-lg"
+    style="margin-top: 38px;"
+  >
     <data-grid />
   </div>
 </template>
@@ -94,6 +99,10 @@ import dataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
 import { computed, ref } from "vue"
 import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
+
+import { useDataTable } from "src/composables/mobile/useDataTable";
+
+const gridStore = useDataTable()
 
 const invoiceStore = useInvoice([{
   fieldName: "d.StatusId",
@@ -111,5 +120,6 @@ const invoiceTable = ref(null)
 const canceledInvoiceTable = ref(null)
 
 const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore ?? canceledInvoiceTable.value?.dataTable?.tableStore)
+
 
 </script>
