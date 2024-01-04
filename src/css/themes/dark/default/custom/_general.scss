@@ -51,6 +51,22 @@
     border-radius: 4px;
   }
 
+  .q-border-1 {
+    border: 1px $primary solid;
+  }
+
+  .q-border-2 {
+    border: 2px $primary solid;
+  }
+
+  .q-border-3 {
+    border: 3px $primary solid;
+  }
+
+  .q-border-4 {
+    border: 4px  $primary solid;
+  }
+
   .border-radius-xs {
     border-radius: 4px;
   }

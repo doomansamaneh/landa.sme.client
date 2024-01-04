@@ -34,7 +34,7 @@
   }
 
   .bg-on-dark {
-    background-color: #e7e7e7;
+    background-color: #f0f0f0;
   }
 
   .icon {
@@ -54,6 +54,22 @@
   .bordered-1 {
     border: 1px solid rgba(0, 0, 0, 0.24);
     border-radius: 4px;
+  }
+
+  .q-border-1 {
+    border: 1px $primary solid;
+  }
+
+  .q-border-2 {
+    border: 2px $primary solid;
+  }
+
+  .q-border-3 {
+    border: 3px $primary solid;
+  }
+
+  .q-border-4 {
+    border: 4px  $primary solid;
   }
 
   .border-radius-xs {
