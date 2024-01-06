@@ -180,6 +180,7 @@ async function gotoNext() {
 async function reloadData() {
   await tableStore.reloadData()
   customerStore.rows.value = [...customerStore.rows.value, ...tableStore.rows.value]
+  console.log(customerStore.rows.value);
 }
 
 async function loadData() {

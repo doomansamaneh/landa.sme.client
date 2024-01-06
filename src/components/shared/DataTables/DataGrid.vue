@@ -307,6 +307,7 @@ const containerClass = computed(() =>
 defineExpose({
   tableStore
 })
+
 </script>
 
 <style lang="scss" scoped>
