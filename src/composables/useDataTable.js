@@ -39,8 +39,8 @@ export function useDataTable(dataSource
   )
 
   const dataViewShowPagebar = computed(() =>
-  pagination.value.totalItems > dataViewDefaultPageSize
-)
+    pagination.value.totalItems > dataViewDefaultPageSize
+  )
 
   const selectedRows = computed(() =>
     state.value.rows.value.filter((row) => row.selected === true)
@@ -149,6 +149,7 @@ export function useDataTable(dataSource
   }
 
   function selectRow(row, checked) {
+    row.selected = checked
     updatedSelectedIds(row, checked)
   }
 

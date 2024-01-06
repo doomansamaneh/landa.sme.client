@@ -21,7 +21,7 @@
             />
           </q-btn>
 
-          <span class="text-body1 text-bold">{{ gridStore.selectedCardIndex.value.length }}</span>
+          <!-- <span class="text-body1 text-bold">{{ gridStore.selectedCardIndex.value.length }}</span> -->
 
         </div>
       </div>
@@ -29,7 +29,8 @@
 
         <div class="row justify-end items-center">
 
-          <div class="row items-center" v-if="!gridStore.selectedCardIndex.value.length">
+          <!-- v-if="!gridStore.selectedCardIndex.value.length" -->
+          <div class="row items-center" >
             <q-badge
               rounded
               outline
@@ -38,9 +39,9 @@
             />
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">فاکتورهای فروش</span>
           </div>
+          <!-- v-if="gridStore?.selectedCardIndex?.value?.length > 0" -->
 
           <div
-            v-if="gridStore?.selectedCardIndex?.value?.length > 0"
             class="row items-center q-gutter-x-sm"
           >
             <q-btn
@@ -80,7 +81,6 @@
 
         </div>
 
-
       </div>
 
     </q-toolbar>
@@ -89,37 +89,17 @@
     class="colunm q-gutter-lg"
     style="margin-top: 38px;"
   >
-    <data-grid />
+    <data-grid data-source="sls/invoice/getGridData" :grid-store="invoiceStore" />
   </div>
 </template>
 
 <script setup>
 import ToolBar from "src/components/shared/ToolBar.vue"
-import dataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
+import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
 import { computed, ref } from "vue"
 import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
 
-import { useDataTable } from "src/composables/mobile/useDataTable";
-
-const gridStore = useDataTable()
-
-const invoiceStore = useInvoice([{
-  fieldName: "d.StatusId",
-  operator: sqlOperator.notEqual,
-  value: "a36af633-d0bb-4857-a542-364e12658d1c"
-}])
-
-const canceledInvoiceStore = useInvoice([{
-  fieldName: "d.StatusId",
-  operator: sqlOperator.equal,
-  value: "a36af633-d0bb-4857-a542-364e12658d1c"
-}])
-
-const invoiceTable = ref(null)
-const canceledInvoiceTable = ref(null)
-
-const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore ?? canceledInvoiceTable.value?.dataTable?.tableStore)
-
+const invoiceStore = useInvoice()
 
 </script>
