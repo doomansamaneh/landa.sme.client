@@ -4,11 +4,11 @@
     v-for="(row, index) in invoiceStore.state.rows.value"
     :key="index"
     :class="tableStore.getRowClass(row)"
-    @click="selectCard(row)"
+    v-touch-hold.mouse="() => selectCard(row)"
   >
     <q-card-section>
       <div class="row items-center justify-center">
-        <q-btn
+        <q-btn v-if="!row.selected"
           round
           unelevated
           class="no-pointer-events bg-on-dark"
@@ -28,6 +28,25 @@
             <div class="char text-body1 text-bold">
               {{ helper.getFirstChar(row.customerName) }}
             </div>
+          </q-avatar>
+
+        </q-btn>
+
+        <q-btn
+          round
+          unelevated
+          class="no-pointer-events"
+          v-if="row.selected"
+        >
+          <q-avatar
+            size="50px"
+            color="primary"
+            text-color="white"
+          >
+            <q-icon
+              name="o_done"
+              size="md"
+            />
           </q-avatar>
         </q-btn>
       </div>

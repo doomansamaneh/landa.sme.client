@@ -5,7 +5,7 @@
     expand
   >
     <q-toolbar
-      class="q-py-sm text-on-dark rtl"
+      class="q-py-md text-on-dark rtl"
       :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 24px; padding-right: 24px;'"
     >
       <div class="col-3">
@@ -21,6 +21,10 @@
             />
           </q-btn>
 
+      <span v-if="selectedRowCount" class="text-on-dark text-body1 text-bold">
+        {{ selectedRowCount }}
+
+      </span>
         </div>
       </div>
       <div class="col">
@@ -38,7 +42,6 @@
             />
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">فاکتورهای فروش</span>
           </div>
-          <!-- v-if="gridStore?.selectedCardIndex?.value?.length > 0" -->
 
           <div
             v-if="invoiceStore.state.activeRow?.value"
@@ -87,7 +90,7 @@
   </q-page-sticky>
   <div
     class="colunm q-gutter-lg"
-    style="margin-top: 38px;"
+    style="margin-top: 46px;"
   >
     <data-grid
       data-source="sls/invoice/getGridData"
@@ -104,5 +107,13 @@ import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
 
 const invoiceStore = useInvoice()
+
+// const activeRowCount = computed(() => {
+//   return invoiceStore.state.activeRow.value ? invoiceStore.state.activeRow.value.length : 0
+// })
+
+const selectedRowCount = computed(() => {
+  return invoiceStore.state.allSelectedIds.value.length
+})
 
 </script>

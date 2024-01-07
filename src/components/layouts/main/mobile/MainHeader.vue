@@ -5,7 +5,7 @@
   >
     <q-toolbar
       style="padding-left: 20px; padding-right: 20px;"
-      class="row justify-between q-py-md"
+      class="row justify-between q-py-sm"
     >
 
       <q-toolbar-title class="text-subtitle2 text-bold row justify-start items-center">
