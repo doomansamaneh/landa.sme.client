@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
+
 import InvoicesWidgetV2 from 'src/components/shared/Widgets/InvoicesWidgetV2.vue'
 import RatiosWidget from 'src/components/shared/Widgets/RatiosWidget.vue'
 import SalesIncomeWidget from 'src/components/shared/Widgets/SalesIncomeWidget.vue'
