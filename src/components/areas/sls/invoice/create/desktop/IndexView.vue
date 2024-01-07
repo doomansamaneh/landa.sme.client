@@ -156,7 +156,6 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import MasterSection from "src/components/areas/sls/invoice/create/desktop/MasterSection.vue"
 import DetailSection from "src/components/areas/sls/invoice/create/desktop/DetailSection.vue"

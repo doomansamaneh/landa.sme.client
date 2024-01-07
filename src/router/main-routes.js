@@ -66,6 +66,18 @@ export default {
     {
       path: "/settings",
       component: SettingsPage,
-    }
+    },
+    {
+      path: "cmn/productGroup",
+      component: () => import("src/components/areas/cmn/productGroup/IndexView.vue"),
+    },
+    {
+      path: "cmn/productGroup/create",
+      component: () => import("src/components/areas/cmn/productGroup/Create2View.vue"),
+    },
+    {
+      path: "cmn/productGroup/edit/:id",
+      component: () => import("src/components/areas/cmn/productGroup/Edit2View.vue"),
+    },
   ]
 }

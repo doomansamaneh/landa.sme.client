@@ -79,10 +79,10 @@ export function useDataTable(dataSource
       })
       if (clearActiveRow) setActiveRow(null)
       state.value.rows.value = items
-      state.value.summaryData.value = pagedData.summaryData
       pagination.value.totalItems = pagedData.page.totalItems
       pagination.value.totalPages = pagedData.page.totalPages
       pagination.value.currentPage = pagedData.page.currentPage
+      if (state.value.summaryData != undefined) state.value.summaryData.value = pagedData.summaryData
     }
   }
 

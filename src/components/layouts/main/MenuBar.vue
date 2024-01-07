@@ -5,7 +5,7 @@
     side="left"
     bordered
     :width="249"
-    v-model="menuBarStore.state.value"
+    v-model="menuBarStore.state.visible.value"
     :breakpoint="400"
     :overlay="$q.screen.lt.md"
   >
@@ -13,7 +13,7 @@
       <q-input
         color="grey-5"
         outlined
-        v-model="searchText"
+        v-model="menuBarStore.searchText.value"
         :placeholder="$t('main-menu-items.search')"
         dense
         rounded
@@ -50,7 +50,7 @@
           <span class="text-sm">{{ $t("main-menu-items.dashboard") }}</span>
         </q-item>
         <div
-          v-for="parentItem in drawerMenuItems"
+          v-for="parentItem in menuBarStore.drawerMenuItems.value"
           :key="parentItem.name"
         >
           <q-expansion-item
@@ -97,8 +97,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
-import { fetchWrapper } from "src/helpers"
+import { onMounted } from "vue"
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import { helper } from "src/helpers"
@@ -108,67 +107,13 @@ const { t } = useI18n()
 
 const router = useRouter()
 const menuBarStore = useMenuBar()
+
 const props = defineProps({
   menuBar: Boolean
 })
 
-const items = ref([])
-const searchText = ref("")
-
-async function getMenuItems() {
-  await fetchWrapper
-    .get("scr/users/getMenuItems")
-    .then((response) => {
-      handleMenuItemsData(response.data.data)
-    })
-    .finally(() => { })
-}
-
-function handleMenuItemsData(data) {
-  data.forEach((item) => {
-    item.title = t(`main-menu-items.${item.title}`)
-  })
-  items.value = data
-}
-
-const drawerMenuItems = computed(() => {
-  const menuItemsWithSubItems = items.value.filter((item) =>
-    items.value.some((subItem) => subItem.parentName === item.name)
-  )
-
-  const menuItemsIncludingSubItems = menuItemsWithSubItems.map((item) => ({
-    ...item,
-    subItems: items.value.filter((subItem) => subItem.parentName === item.name)
-  }))
-
-  if (searchText.value.trim() === "") {
-    return menuItemsIncludingSubItems
-  } else {
-    const searchLower = searchText.value.toLowerCase()
-    return menuItemsIncludingSubItems
-      .map((item) => {
-        const menuItemsWithSubItems = item.subItems.filter((subItem) =>
-          subItem.title.toLowerCase().includes(searchLower) || subItem.name.toLowerCase().includes(searchLower)
-        )
-
-        if (
-          menuItemsWithSubItems.length > 0 ||
-          item.title.toLowerCase().includes(searchLower)
-        ) {
-          return {
-            ...item,
-            subItems: menuItemsWithSubItems
-          }
-        } else {
-          return null
-        }
-      })
-      .filter(Boolean)
-  }
-})
-
 onMounted(() => {
-  getMenuItems()
+  menuBarStore.loadData()
 })
 </script>
 
@@ -184,7 +129,6 @@ onMounted(() => {
 }
 
 .q-item__section--side {
-
   padding-right: 8px;
 
   .q-icon {

@@ -13,6 +13,17 @@ export const statusOptions = [
   }
 ]
 
+export const isActiveOptions = [
+  {
+    label: "فعال",
+    value: "1"
+  },
+  {
+    label: "غیرفعال",
+    value: "0"
+  }
+]
+
 export const dateRange = {
   // all: 0,
   // today: 2,
