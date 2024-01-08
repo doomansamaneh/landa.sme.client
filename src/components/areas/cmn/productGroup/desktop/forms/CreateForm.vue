@@ -63,7 +63,7 @@
                         کد
                     </q-item-label>
                     <q-input
-                        v-model="productGroupStore.model.value.code"
+                        v-model="formStore.model.value.code"
                         outlined
                         lazy-rules
                         :rules="[(val) => val !== null && val !== '']"
@@ -77,7 +77,7 @@
                         عنوان
                     </q-item-label>
                     <q-input
-                        v-model="productGroupStore.model.value.title"
+                        v-model="formStore.model.value.title"
                         outlined
                         lazy-rules
                         :rules="[(val) => val !== null && val !== '']"
@@ -85,7 +85,7 @@
                 </div>
                 <div class="q-mt-md">
                     <q-checkbox
-                        v-model="productGroupStore.model.value.isActive"
+                        v-model="formStore.model.value.isActive"
                         label="فعال"
                     />
                 </div>
@@ -96,57 +96,32 @@
   
 <script setup>
 import { onMounted, ref } from "vue"
-import { useRoute, useRouter } from "vue-router"
-import { fetchWrapper } from "src/helpers"
+import { useRoute } from "vue-router"
 import { useProductGroupModel } from "../../../_composables/useProductGroupModel"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
 import Actions from "src/components/shared/Forms/FormCardActions.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
-import { data } from "autoprefixer"
-import { getChartByID } from "apexcharts"
 
 const props = defineProps({
     action: String
 })
 const form = ref(null)
 const route = useRoute()
-const productGroupStore = useProductGroupModel()
+const formStore = useProductGroupModel()
 
 onMounted(() => {
-    getById()
+    formStore.getById(route.params.id)
 })
-
-async function getById() {
-    const id = route.params.id
-    if (id) {
-        await fetchWrapper
-            .get(`cmn/productGroup/getById/${id}`)
-            .then((response) => {
-                console.log(response.data.data)
-                productGroupStore.model.value = response.data.data
-            })
-    }
-}
 
 async function submitForm() {
     await form.value.validate().then((success) => {
         if (success) {
-            create()
+            formStore.createOrEdit(props.action)
         } else {
             //todo: how to show validation message to user
             alert("validation error")
         }
     })
-}
-
-async function create() {
-    await fetchWrapper
-        .post(props.action, productGroupStore.model.value)
-        .then((response) => {
-            alert(response.message)
-            console.log(response)
-        })
-        .finally(() => { })
 }
 </script>

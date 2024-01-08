@@ -12,6 +12,23 @@ export const helper = {
     return list
   },
 
+  newGuid() {
+    // Generate a random array of 16 bytes (128 bits)
+    const byteArray = new Uint8Array(16);
+    crypto.getRandomValues(byteArray);
+
+    // Set the version (4) and variant (8-11) bits
+    byteArray[6] = (byteArray[6] & 0x0F) | 0x40; // version 4
+    byteArray[8] = (byteArray[8] & 0x3F) | 0x80; // variant 10
+
+    // Convert the array to a hexadecimal string
+    const hexArray = Array.from(byteArray).map(byte => byte.toString(16).padStart(2, '0'));
+    const uuid = hexArray.join('');
+
+    // Insert dashes at the appropriate positions
+    return `${uuid.slice(0, 8)}-${uuid.slice(8, 12)}-${uuid.slice(12, 16)}-${uuid.slice(16, 20)}-${uuid.slice(20)}`;
+  },
+
   getSubtotal(selectedRows, fieldName) {
     return selectedRows.reduce((sum, item) => { return sum + item[fieldName] }, 0)
   },

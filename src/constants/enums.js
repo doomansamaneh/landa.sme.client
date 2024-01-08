@@ -65,3 +65,5 @@ export const cultures = [
 export const defaultPageSize = 10 //10
 
 export const dataViewDefaultPageSize = 5
+
+export const guidEmpty = "00000000-0000-0000-0000-000000000000"

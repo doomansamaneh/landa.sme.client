@@ -119,7 +119,7 @@
                 :style="col.cellStyle"
               >
                 <slot
-                  :name="`cell-${col.field}`"
+                  :name="`cell-${col.name}`"
                   :item="row"
                 >
                   {{ row[col.field] }}

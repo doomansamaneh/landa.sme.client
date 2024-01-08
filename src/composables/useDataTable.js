@@ -110,14 +110,16 @@ export function useDataTable(dataSource
     if (columns.value) {
       let payLoadCols = ""
       columns.value.forEach((col) => {
-        if (payLoadCols === "") payLoadCols = col.name
-        else payLoadCols = `${payLoadCols},${col.name}`
-        if (col.value) {
-          pagination.value.filterExpression.push({
-            fieldName: col.name,
-            operator: col.operator ?? sqlOperator.like,
-            value: col.value
-          })
+        if (col.fieldName) {
+          if (payLoadCols === "") payLoadCols = col.fieldName
+          else payLoadCols = `${payLoadCols},${col.fieldName}`
+          if (col.value) {
+            pagination.value.filterExpression.push({
+              fieldName: col.fieldName,
+              operator: col.operator ?? sqlOperator.like,
+              value: col.value
+            })
+          }
         }
       })
 

@@ -53,6 +53,17 @@ const columns = ref([
         style: "width:120px;",
         showFilter: true
     }
+    ,
+    {
+        name: "actions",
+        field: "",
+        sortable: false,
+        label: "",
+        align: "left",
+        class: "text-left",
+        style: "width:170px;",
+        showFilter: false
+    }
 ])
 
 export function useProductGroup() {

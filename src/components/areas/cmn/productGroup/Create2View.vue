@@ -1,5 +1,5 @@
 <template>
-    <desktop action="cmn/productGroup/create" />
+    <desktop action="create" />
     <!-- <desktop v-if="$q.screen.gt.sm" />
     <mobile v-if="$q.screen.xs" /> -->
 </template>
