@@ -42,7 +42,7 @@
     </div>
 
     <q-scroll-area
-      :style="$q.screen.gt.xs ? 'height: calc(100vh - 180px);' : 'height: calc(100vh - 100px);'"
+      :style="$q.screen.gt.xs ? 'height: calc(100vh - 180px);' : 'height: calc(100vh - 180px);'"
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >

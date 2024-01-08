@@ -218,12 +218,12 @@
           <div class="col">
             <div class="row q-gutter-sm">
               <div class="text-caption text-bold text-blue-3">جمع کل</div>
-              <div class="text-bold text-white text-caption">729,679,649,000</div>
+              <div class="text-bold text-white text-caption">{{ invoiceStore.state?.summaryData?.value?.amount.toLocaleString() }}</div>
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
               <div class="text-caption text-bold text-blue-3">جمع تخفیف‌ها</div>
-              <div class="text-bold text-white text-caption">122,21,429,000</div>
+              <div class="text-bold text-white text-caption">{{ invoiceStore.state?.summaryData?.value?.discountAmount.toLocaleString() }}</div>
             </div>
           </div>
         </div>
