@@ -66,7 +66,7 @@ if (route.path === '/sls/invoice2/create') {
 }
 
 if ($q.screen.lt.md) {
-  menuBarStore.state.visible.visible = false;
+  menuBarStore.state.visible.value = false;
 }
 
 </script>

@@ -173,18 +173,6 @@
               />
             </q-btn>
 
-            <q-btn
-              dense
-              round
-              flat
-            >
-              <q-icon
-                name="o_add"
-                size="sm"
-              />
-            </q-btn>
-
-
           </div>
 
         </div>
@@ -192,6 +180,32 @@
       </div>
 
     </q-toolbar>
+  </q-page-sticky>
+
+  <q-page-sticky
+    position="bottom-left z-1"
+    :offset="[18, 18]"
+  >
+    <q-btn
+      :round="!showIcon"
+      :rounded="showIcon"
+      :padding="showIcon ? '10px 20px' : '10px'"
+      to="/sls/invoice/create"
+      dense
+      color="primary"
+      class="text-body1 no-letter-spacing"
+    >
+      <div class="row items-center q-gutter-x-xs">
+        <q-icon
+          name="o_add"
+          size="sm"
+        />
+        <span v-if="showIcon">
+          {{ $t("shared.labels.create") }}
+        </span>
+      </div>
+    </q-btn>
+
   </q-page-sticky>
 
   <div
@@ -218,12 +232,14 @@
           <div class="col">
             <div class="row q-gutter-sm">
               <div class="text-caption text-bold text-blue-3">جمع کل</div>
-              <div class="text-bold text-white text-caption">{{ invoiceStore.state?.summaryData?.value?.amount.toLocaleString() }}</div>
+              <div class="text-bold text-white text-caption">{{
+                invoiceStore.state?.summaryData?.value?.amount.toLocaleString() }}</div>
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
               <div class="text-caption text-bold text-blue-3">جمع تخفیف‌ها</div>
-              <div class="text-bold text-white text-caption">{{ invoiceStore.state?.summaryData?.value?.discountAmount.toLocaleString() }}</div>
+              <div class="text-bold text-white text-caption">{{
+                invoiceStore.state?.summaryData?.value?.discountAmount.toLocaleString() }}</div>
             </div>
           </div>
         </div>
@@ -231,7 +247,10 @@
       </q-card-section>
     </q-card>
 
-    <q-card class="bordered bg-blue-grey-2">
+    <q-card
+      class="bordered bg-blue-grey-2"
+      v-if="selectedRowCount > 1"
+    >
       <q-card-section>
 
         <div class="row items-center q-gutter-sm">
@@ -253,12 +272,12 @@
           <div class="col">
             <div class="row q-gutter-sm">
               <div class="text-caption text-bold text-grey-7">جمع کل</div>
-              <div class="text-bold text-grey-10 text-caption">729,679,649,000</div>
+              <div class="text-bold text-grey-10 text-caption">{{ amount.toLocaleString() }}</div>
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
               <div class="text-caption text-bold text-grey-7">جمع تخفیف‌ها</div>
-              <div class="text-bold text-grey-10 text-caption">122,21,429,000</div>
+              <div class="text-bold text-grey-10 text-caption">{{ discountAmount.toLocaleString() }}</div>
             </div>
           </div>
         </div>
@@ -295,59 +314,320 @@
     transition-show="slide-up"
     transition-hide="slide-down"
   >
-    <q-card class="bg-primary text-white">
-      <q-bar>
-        <q-space />
-
-        <q-btn
-          dense
-          flat
-          icon="minimize"
-          @click="maximizedToggle = false"
-          :disable="!maximizedToggle"
-        >
-          <q-tooltip
-            v-if="maximizedToggle"
-            class="bg-white text-primary"
-          >Minimize</q-tooltip>
-        </q-btn>
-        <q-btn
-          dense
-          flat
-          icon="crop_square"
-          @click="maximizedToggle = true"
-          :disable="maximizedToggle"
-        >
-          <q-tooltip
-            v-if="!maximizedToggle"
-            class="bg-white text-primary"
-          >Maximize</q-tooltip>
-        </q-btn>
-        <q-btn
-          dense
-          flat
-          icon="close"
-          v-close-popup
-        >
-          <q-tooltip class="bg-white text-primary">Close</q-tooltip>
-        </q-btn>
-      </q-bar>
-
+    <q-card class="q-pa-sm">
       <q-card-section>
-        <div class="text-h6">Alert</div>
+        <q-input
+          class="no-pointer-events"
+          outlined
+          dense
+          rounded
+          @click="showSearchModal"
+          placeholder="جستجو در فاکتورها"
+        >
+          <template #prepend>
+            <q-icon name="o_search" />
+          </template>
+
+          <template #append>
+            <q-btn
+              dense
+              flat
+              icon="close"
+              v-close-popup
+              class="all-pointer-events"
+            />
+          </template>
+        </q-input>
+
+
       </q-card-section>
 
-      <q-card-section class="q-pt-none">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit voluptate voluptas eveniet porro.
-        Rerum blanditiis perferendis totam, ea at omnis vel numquam exercitationem aut, natus minima, porro labore.
+      <q-card-section class="q-pt-sm q-pb-none">
+        <q-scroll-area
+          :thumb-style="{ opacity: 0 }"
+          :bar-style="{ opacity: 0 }"
+          style="height: 60px;"
+          class="no-scroll"
+        >
+          <div>
+            <div class="row items-center q-gutter-md no-wrap">
+
+              <q-btn
+                rounded
+                unelevated
+                padding="8px 12px"
+                :color="activeBtn ? 'primary' : ''"
+                :text-color="!activeBtn ? 'grey-10' : 'white'"
+                class="text-on-dark text-body2"
+                :class="!activeBtn ? 'bordered-btn' : ''"
+                @click="makeBtnActive"
+                style="min-width: 60px;"
+              >
+                <span>{{ $t("shared.labels.all") }}</span>
+              </q-btn>
+
+              <q-btn
+                rounded
+                unelevated
+                padding="8px 12px"
+                :color="activeBtn ? 'primary' : ''"
+                :text-color="!activeBtn ? 'grey-10' : 'white'"
+                class="text-on-dark text-body2"
+                :class="!activeBtn ? 'bordered-btn' : ''"
+                @click="makeBtnActive"
+                style="min-width: 60px;"
+              >
+                <span>{{ $t("shared.labels.today") }}</span>
+              </q-btn>
+
+              <q-btn
+                rounded
+                unelevated
+                padding="8px 12px"
+                :color="activeBtn ? 'primary' : ''"
+                :text-color="!activeBtn ? 'grey-10' : 'white'"
+                class="text-on-dark text-body2"
+                :class="!activeBtn ? 'bordered-btn' : ''"
+                @click="makeBtnActive"
+                style="min-width: 80px;"
+              >
+                <span>{{ $t("shared.labels.thisWeek") }}</span>
+              </q-btn>
+
+              <q-btn
+                rounded
+                unelevated
+                padding="8px 12px"
+                :color="activeBtn ? 'primary' : ''"
+                :text-color="!activeBtn ? 'grey-10' : 'white'"
+                class="text-on-dark text-body2"
+                :class="!activeBtn ? 'bordered-btn' : ''"
+                @click="makeBtnActive"
+                style="min-width: 70px;"
+              >
+                <span>{{ $t("shared.labels.thisMonth") }}</span>
+              </q-btn>
+
+              <q-btn
+                rounded
+                unelevated
+                padding="8px 12px"
+                class="bordered-btn text-on-dark text-body2"
+                @click="openDateModal"
+                style="min-width: 84px;"
+              >
+                <span>مبلغ</span>
+                <q-icon
+                  size="xs"
+                  class="q-ml-sm"
+                  name="o_expand_more"
+                />
+              </q-btn>
+              <q-btn
+                rounded
+                unelevated
+                padding="8px 12px"
+                class="bordered-btn text-on-dark text-body2"
+                @click="openDateModal"
+                style="min-width: 84px;"
+              >
+                <span>تاریخ</span>
+                <q-icon
+                  size="xs"
+                  class="q-ml-sm"
+                  name="o_expand_more"
+                />
+              </q-btn>
+              <q-btn
+                rounded
+                unelevated
+                padding="8px 12px"
+                class="bordered-btn text-on-dark text-body2"
+                @click="openDateModal"
+                style="min-width: 84px;"
+              >
+                <span>شرح</span>
+                <q-icon
+                  size="xs"
+                  class="q-ml-sm"
+                  name="o_expand_more"
+                />
+              </q-btn>
+            </div>
+
+          </div>
+        </q-scroll-area>
       </q-card-section>
+
+      <q-card-section class="column q-col-gutter-md q-pt-none">
+        <div class="row q-col-gutter-sm">
+          <div class="col">
+            <q-item-label
+              caption
+              class="q-mb-sm"
+            >
+              شماره
+            </q-item-label>
+            <q-input
+              outlined
+              dense
+            />
+          </div>
+          <div class="col">
+            <q-item-label
+              caption
+              class="q-mb-sm"
+            >
+              تاریخ
+            </q-item-label>
+            <q-input
+              outlined
+              dense
+            />
+          </div>
+        </div>
+
+        <div>
+          <q-item-label
+            caption
+            class="q-mb-sm"
+          >
+            مشتری
+          </q-item-label>
+          <q-input
+            outlined
+            dense
+          />
+        </div>
+
+        <div>
+          <q-item-label
+            caption
+            class="q-mb-sm"
+          >
+            شرح
+          </q-item-label>
+          <q-input
+            outlined
+            dense
+          />
+        </div>
+
+        <div class="row q-col-gutter-sm">
+          <div class="col">
+            <q-item-label
+              caption
+              class="q-mb-sm"
+            >
+              جمع کل
+            </q-item-label>
+            <q-input
+              outlined
+              dense
+            />
+          </div>
+          <div class="col">
+            <q-item-label
+              caption
+              class="q-mb-sm"
+            >
+              تخفیف
+            </q-item-label>
+            <q-input
+              outlined
+              dense
+            />
+          </div>
+
+
+        </div>
+
+        <div class="row q-col-gutter-sm">
+          <div class="col">
+            <q-item-label
+              caption
+              class="q-mb-sm"
+            >
+              نوع
+            </q-item-label>
+            <q-input
+              outlined
+              dense
+            />
+          </div>
+          <div class="col">
+            <q-item-label
+              caption
+              class="q-mb-sm"
+            >
+              وضعیت
+            </q-item-label>
+            <q-input
+              outlined
+              dense
+            >
+              <template #append>
+                <q-icon name="expand_more" />
+              </template>
+            </q-input>
+          </div>
+
+
+        </div>
+
+      </q-card-section>
+
+
+      <div class="row absolute-bottom q-mb-xl q-mx-lg">
+
+        <q-btn
+          padding="10px 12px"
+          rounded
+          unelevated
+          outline
+          class="q-mb-sm full-width"
+        >
+          <div class="row items-center">
+            <q-icon
+              size="xs"
+              name="o_close"
+              class="q-mr-xs"
+            />
+            <span>
+              حذف فیلتر
+            </span>
+          </div>
+        </q-btn>
+
+        <q-btn
+          padding="10px 12px"
+          rounded
+          unelevated
+          color="primary"
+          class="q-mb-sm full-width"
+        >
+          <div class="row items-center">
+            <q-icon
+              size="xs"
+              name="o_search"
+              class="q-mr-xs"
+            />
+            <span>
+              جستجو
+            </span>
+          </div>
+        </q-btn>
+
+      </div>
+
     </q-card>
   </q-dialog>
 </template>
 
 <script setup>
-import { computed, ref } from "vue"
+import { computed, ref, onMounted, onUnmounted } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
+import AdvancedSearch from "src/components/areas/sls/invoice/_AdvancedSearch.vue"
 import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
 import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
@@ -355,23 +635,56 @@ import { helper } from "src/helpers"
 
 const invoiceStore = useInvoice()
 
-const dataTable = ref(null)
-
 const dialog = ref(false)
+const showIcon = ref(true)
 
-// const activeRowCount = computed(() => {
-//   return invoiceStore.state.activeRow.value ? invoiceStore.state.activeRow.value.length : 0
-// })
+const activeBtn = ref(false)
 
 const selectedRowCount = computed(() => {
   return invoiceStore.state.allSelectedIds.value.length
 })
 
-const showDiscount = computed(() =>
-  dataTable.value?.tableStore?.columns.value.findIndex(column => column.name === "discountAmount") >= 0
-)
+const amount = computed(() => {
+  const selectedRows = invoiceStore.state.rows.value.filter(row =>
+    invoiceStore.state.allSelectedIds.value.includes(row.id)
+  );
+  return selectedRows.reduce((total, row) => total + row.amount, 0);
+});
+
+const discountAmount = computed(() => {
+  const selectedRows = invoiceStore.state.rows.value.filter(row =>
+    invoiceStore.state.allSelectedIds.value.includes(row.id)
+  );
+  return selectedRows.reduce((total, row) => total + row.discountAmount, 0);
+});
+
+
+const handleScroll = () => {
+  const threshold = 50
+  const currentPosition = window.pageYOffset || document.documentElement.scrollTop
+  showIcon.value = currentPosition < threshold
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 const showSearchModal = () => {
   dialog.value = true
 }
+
+const makeBtnActive = () => {
+  activeBtn.value = !activeBtn.value
+}
+
 </script>
+
+<style lang="scss" scoped>.q-item__label--caption {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #697588;
+}</style>
