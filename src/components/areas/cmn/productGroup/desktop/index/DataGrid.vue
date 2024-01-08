@@ -38,7 +38,7 @@
           {{ $t("shared.labels.edit") }} ({{ tableStore?.activeRow?.value?.no }})
         </q-btn>
       </template>
-      <template v-if="selectedIds.length > 0">
+      <template v-if="selectedIds?.length > 0">
         <q-btn
           class="bordered-btn_bg-dark text-caption"
           rounded
@@ -50,7 +50,7 @@
             name="o_delete"
             class="q-mr-xs"
           />
-          {{ $t("shared.labels.delete") }} ({{ selectedIds.length }} rows)
+          {{ $t("shared.labels.delete") }} ({{ selectedIds?.length }} rows)
         </q-btn>
       </template>
       <!-- <template v-else-if="tableStore?.activeRow?.value != null">
@@ -108,7 +108,7 @@
             </q-item>
             <q-separator />
 
-            <template v-if="selectedIds.length > 0">
+            <template v-if="selectedIds?.length > 0">
               <q-item
                 clickable
                 v-close-popup
@@ -273,21 +273,21 @@ async function deleteRow(item) {
 }
 
 async function deleteBatch() {
-  await formStore.deleteBatch(selectedIds.value)
+  await formStore.deleteBatch(selectedIds?.value)
     .then((response) => {
       reloadData()
     })
 }
 
 async function activate() {
-  await formStore.activate(selectedIds.value)
+  await formStore.activate(selectedIds?.value)
     .then((response) => {
       reloadData()
     })
 }
 
 async function deactivate() {
-  await formStore.deactivate(selectedIds.value)
+  await formStore.deactivate(selectedIds?.value)
     .then((response) => {
       reloadData()
     })
