@@ -304,6 +304,7 @@
     <data-grid
       data-source="sls/invoice/getGridData"
       :store="invoiceStore"
+      ref="invoiceTable"
     />
   </div>
 
@@ -314,331 +315,48 @@
     transition-show="slide-up"
     transition-hide="slide-down"
   >
-    <q-card class="q-pa-sm">
-      <q-card-section>
-        <q-input
-          class="no-pointer-events"
-          outlined
-          dense
-          rounded
-          @click="showSearchModal"
-          placeholder="جستجو در فاکتورها"
-        >
-          <template #prepend>
-            <q-icon name="o_search" />
-          </template>
 
-          <template #append>
-            <q-btn
-              dense
-              flat
-              icon="close"
-              v-close-popup
-              class="all-pointer-events"
-            />
-          </template>
-        </q-input>
+    <advanced-search
+      :grid-store="invoiceStore"
+      @apply-search="applySearch"
+    />
 
-
-      </q-card-section>
-
-      <q-card-section class="q-pt-sm q-pb-none">
-        <q-scroll-area
-          :thumb-style="{ opacity: 0 }"
-          :bar-style="{ opacity: 0 }"
-          style="height: 60px;"
-          class="no-scroll"
-        >
-          <div>
-            <div class="row items-center q-gutter-md no-wrap">
-
-              <q-btn
-                rounded
-                unelevated
-                padding="8px 12px"
-                :color="activeBtn ? 'primary' : ''"
-                :text-color="!activeBtn ? 'grey-10' : 'white'"
-                class="text-on-dark text-body2"
-                :class="!activeBtn ? 'bordered-btn' : ''"
-                @click="makeBtnActive"
-                style="min-width: 60px;"
-              >
-                <span>{{ $t("shared.labels.all") }}</span>
-              </q-btn>
-
-              <q-btn
-                rounded
-                unelevated
-                padding="8px 12px"
-                :color="activeBtn ? 'primary' : ''"
-                :text-color="!activeBtn ? 'grey-10' : 'white'"
-                class="text-on-dark text-body2"
-                :class="!activeBtn ? 'bordered-btn' : ''"
-                @click="makeBtnActive"
-                style="min-width: 60px;"
-              >
-                <span>{{ $t("shared.labels.today") }}</span>
-              </q-btn>
-
-              <q-btn
-                rounded
-                unelevated
-                padding="8px 12px"
-                :color="activeBtn ? 'primary' : ''"
-                :text-color="!activeBtn ? 'grey-10' : 'white'"
-                class="text-on-dark text-body2"
-                :class="!activeBtn ? 'bordered-btn' : ''"
-                @click="makeBtnActive"
-                style="min-width: 80px;"
-              >
-                <span>{{ $t("shared.labels.thisWeek") }}</span>
-              </q-btn>
-
-              <q-btn
-                rounded
-                unelevated
-                padding="8px 12px"
-                :color="activeBtn ? 'primary' : ''"
-                :text-color="!activeBtn ? 'grey-10' : 'white'"
-                class="text-on-dark text-body2"
-                :class="!activeBtn ? 'bordered-btn' : ''"
-                @click="makeBtnActive"
-                style="min-width: 70px;"
-              >
-                <span>{{ $t("shared.labels.thisMonth") }}</span>
-              </q-btn>
-
-              <q-btn
-                rounded
-                unelevated
-                padding="8px 12px"
-                class="bordered-btn text-on-dark text-body2"
-                @click="openDateModal"
-                style="min-width: 84px;"
-              >
-                <span>مبلغ</span>
-                <q-icon
-                  size="xs"
-                  class="q-ml-sm"
-                  name="o_expand_more"
-                />
-              </q-btn>
-              <q-btn
-                rounded
-                unelevated
-                padding="8px 12px"
-                class="bordered-btn text-on-dark text-body2"
-                @click="openDateModal"
-                style="min-width: 84px;"
-              >
-                <span>تاریخ</span>
-                <q-icon
-                  size="xs"
-                  class="q-ml-sm"
-                  name="o_expand_more"
-                />
-              </q-btn>
-              <q-btn
-                rounded
-                unelevated
-                padding="8px 12px"
-                class="bordered-btn text-on-dark text-body2"
-                @click="openDateModal"
-                style="min-width: 84px;"
-              >
-                <span>شرح</span>
-                <q-icon
-                  size="xs"
-                  class="q-ml-sm"
-                  name="o_expand_more"
-                />
-              </q-btn>
-            </div>
-
-          </div>
-        </q-scroll-area>
-      </q-card-section>
-
-      <q-card-section class="column q-col-gutter-md q-pt-none">
-        <div class="row q-col-gutter-sm">
-          <div class="col">
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >
-              شماره
-            </q-item-label>
-            <q-input
-              outlined
-              dense
-            />
-          </div>
-          <div class="col">
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >
-              تاریخ
-            </q-item-label>
-            <q-input
-              outlined
-              dense
-            />
-          </div>
-        </div>
-
-        <div>
-          <q-item-label
-            caption
-            class="q-mb-sm"
-          >
-            مشتری
-          </q-item-label>
-          <q-input
-            outlined
-            dense
-          />
-        </div>
-
-        <div>
-          <q-item-label
-            caption
-            class="q-mb-sm"
-          >
-            شرح
-          </q-item-label>
-          <q-input
-            outlined
-            dense
-          />
-        </div>
-
-        <div class="row q-col-gutter-sm">
-          <div class="col">
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >
-              جمع کل
-            </q-item-label>
-            <q-input
-              outlined
-              dense
-            />
-          </div>
-          <div class="col">
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >
-              تخفیف
-            </q-item-label>
-            <q-input
-              outlined
-              dense
-            />
-          </div>
-
-
-        </div>
-
-        <div class="row q-col-gutter-sm">
-          <div class="col">
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >
-              نوع
-            </q-item-label>
-            <q-input
-              outlined
-              dense
-            />
-          </div>
-          <div class="col">
-            <q-item-label
-              caption
-              class="q-mb-sm"
-            >
-              وضعیت
-            </q-item-label>
-            <q-input
-              outlined
-              dense
-            >
-              <template #append>
-                <q-icon name="expand_more" />
-              </template>
-            </q-input>
-          </div>
-
-
-        </div>
-
-      </q-card-section>
-
-
-      <div class="row absolute-bottom q-mb-xl q-mx-lg">
-
-        <q-btn
-          padding="10px 12px"
-          rounded
-          unelevated
-          outline
-          class="q-mb-sm full-width"
-        >
-          <div class="row items-center">
-            <q-icon
-              size="xs"
-              name="o_close"
-              class="q-mr-xs"
-            />
-            <span>
-              حذف فیلتر
-            </span>
-          </div>
-        </q-btn>
-
-        <q-btn
-          padding="10px 12px"
-          rounded
-          unelevated
-          color="primary"
-          class="q-mb-sm full-width"
-        >
-          <div class="row items-center">
-            <q-icon
-              size="xs"
-              name="o_search"
-              class="q-mr-xs"
-            />
-            <span>
-              جستجو
-            </span>
-          </div>
-        </q-btn>
-
-      </div>
-
-    </q-card>
   </q-dialog>
 </template>
 
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
-import AdvancedSearch from "src/components/areas/sls/invoice/_AdvancedSearch.vue"
+import AdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue"
 import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
 import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
 import { helper } from "src/helpers"
+import InvoiceGrid from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
+import DivTable from "src/components/shared/DataTables/DataGridDiv.vue"
 
-const invoiceStore = useInvoice()
+const invoiceStore = useInvoice([{
+  fieldName: "d.StatusId",
+  operator: sqlOperator.notEqual,
+  value: "a36af633-d0bb-4857-a542-364e12658d1c"
+}])
+
+const canceledInvoiceStore = useInvoice([{
+  fieldName: "d.StatusId",
+  operator: sqlOperator.equal,
+  value: "a36af633-d0bb-4857-a542-364e12658d1c"
+}])
+
+const invoiceTable = ref(null)
+const canceledInvoiceTable = ref(null)
+
+const tab = ref('invoice')
+
+const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore ?? canceledInvoiceTable.value?.dataTable?.tableStore)
 
 const dialog = ref(false)
 const showIcon = ref(true)
 
-const activeBtn = ref(false)
 
 const selectedRowCount = computed(() => {
   return invoiceStore.state.allSelectedIds.value.length
@@ -659,6 +377,27 @@ const discountAmount = computed(() => {
 });
 
 
+const showSearchModal = () => {
+  dialog.value = true
+}
+
+function tabChanged() {
+  invoiceStore.state.firstLoad.value = false
+  canceledInvoiceStore.state.firstLoad.value = false
+}
+
+
+async function applySearch(model) {
+  await tableStore.value?.reloadData()
+  // dialog.value = false
+}
+
+
+
+
+
+
+
 const handleScroll = () => {
   const threshold = 50
   const currentPosition = window.pageYOffset || document.documentElement.scrollTop
@@ -672,19 +411,12 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
-
-const showSearchModal = () => {
-  dialog.value = true
-}
-
-const makeBtnActive = () => {
-  activeBtn.value = !activeBtn.value
-}
-
 </script>
 
-<style lang="scss" scoped>.q-item__label--caption {
+<style lang="scss" scoped>
+.q-item__label--caption {
   font-size: 14px;
   letter-spacing: 0;
   color: #697588;
-}</style>
+}
+</style>
