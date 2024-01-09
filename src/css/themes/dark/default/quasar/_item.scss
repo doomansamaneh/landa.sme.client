@@ -11,6 +11,26 @@
     }
   }
 
+  .menu-bar .sub-item.q-item.q-router-link--active {
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+  }
+
+  .menu-bar .first-item.q-item.q-router-link--active {
+
+    margin-bottom: 8px;
+
+  }
+
+  .menu-bar .last-item.q-item.q-router-link--active {
+
+    margin-top: 8px;
+
+  }
+
+
   .q-expansion-item--expanded {
     .q-item__label {
       color: $primary;

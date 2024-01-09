@@ -38,7 +38,7 @@
     >
       <q-list class="menu-list">
         <q-item
-          class="flex items-center cursor-pointer q-mr-md"
+          class="first-item flex items-center cursor-pointer q-mr-md"
           to="/dashboard"
         >
           <q-icon
@@ -82,7 +82,7 @@
             </q-item>
           </q-expansion-item>
         </div>
-        <q-item class="flex items-center cursor-pointer">
+        <q-item class="last-item flex items-center cursor-pointer">
           <q-icon
             name="o_settings"
             class="settings q-mr-sm"
