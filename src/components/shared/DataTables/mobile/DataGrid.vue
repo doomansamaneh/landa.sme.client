@@ -8,7 +8,8 @@
   >
     <q-card-section>
       <div class="row items-center justify-center">
-        <q-btn v-if="!row.selected"
+        <q-btn
+          v-if="!row.selected"
           round
           unelevated
           class="no-pointer-events bg-on-dark"
@@ -209,12 +210,12 @@ import { useInvoice } from "src/components/areas/crm/_composables/useInvoice"
 import { helper } from "src/helpers"
 
 const props = defineProps({
-  store: Object,
+  gridStore: Object,
   dataSource: String
 })
 
 const invoiceStore = useInvoice()
-const tableStore = useDataTable(props.dataSource, props.store.columns, props.store)
+const tableStore = useDataTable(props.dataSource, props.gridStore.columns, props.gridStore)
 
 function selectRow(row, checked) {
   tableStore.selectRow(row, checked)
@@ -263,6 +264,7 @@ onMounted(() => {
 })
 
 defineExpose({
+  loadData,
   tableStore
 })
 

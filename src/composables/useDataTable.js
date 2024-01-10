@@ -91,6 +91,7 @@ export function useDataTable(dataSource
     inputInnerLoader.value = true
 
     try {
+
       setPayload()
 
       const response = await fetchWrapper.post(dataSource, gridPage)

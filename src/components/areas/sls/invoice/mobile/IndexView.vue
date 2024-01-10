@@ -303,7 +303,7 @@
 
     <data-grid
       data-source="sls/invoice/getGridData"
-      :store="invoiceStore"
+      :grid-store="invoiceStore"
       ref="invoiceTable"
     />
   </div>
@@ -326,14 +326,11 @@
 
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from "vue"
-import ToolBar from "src/components/shared/ToolBar.vue"
-import AdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue"
-import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
 import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
-import { helper } from "src/helpers"
-import InvoiceGrid from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
-import DivTable from "src/components/shared/DataTables/DataGridDiv.vue"
+
+import AdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue"
+import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
 
 const invoiceStore = useInvoice([{
   fieldName: "d.StatusId",
@@ -348,11 +345,8 @@ const canceledInvoiceStore = useInvoice([{
 }])
 
 const invoiceTable = ref(null)
-const canceledInvoiceTable = ref(null)
 
-const tab = ref('invoice')
-
-const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore ?? canceledInvoiceTable.value?.dataTable?.tableStore)
+const tableStore = computed(() => invoiceTable.value?.tableStore)
 
 const dialog = ref(false)
 const showIcon = ref(true)
@@ -381,22 +375,10 @@ const showSearchModal = () => {
   dialog.value = true
 }
 
-function tabChanged() {
-  invoiceStore.state.firstLoad.value = false
-  canceledInvoiceStore.state.firstLoad.value = false
-}
-
-
 async function applySearch(model) {
-  await tableStore.value?.reloadData()
-  // dialog.value = false
+  await invoiceTable.value.loadData()
+  dialog.value = false
 }
-
-
-
-
-
-
 
 const handleScroll = () => {
   const threshold = 50
