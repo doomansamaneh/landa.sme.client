@@ -1,5 +1,5 @@
 import { ref } from "vue"
-import { defaultPageSize } from "src/constants";
+import { defaultPageSize, sortOrder, sqlOperator } from "src/constants";
 
 const state = {
     firstLoad: ref(false),
@@ -12,7 +12,7 @@ const pagination = ref({
     currentPage: 1,
     pageSize: defaultPageSize,
     sortColumn: "code",
-    sortOrder: 1,
+    sortOrder: sortOrder.ascending,
     totalItems: 0,
     searchTerm: "",
     searchModel: "",
@@ -30,7 +30,7 @@ const columns = ref([
         cellStyle: "",
         style: "width:100px;",
         showFilter: true,
-        operator: 1,
+        operator: sqlOperator.like,
         value: "",
     },
     {
@@ -66,7 +66,7 @@ const columns = ref([
     }
 ])
 
-export function useProductGroup() {
+export function useProductGrid() {
     const reset = () => {
         state.firstLoad.value = false
     }

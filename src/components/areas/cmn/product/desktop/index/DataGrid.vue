@@ -8,11 +8,11 @@
         :label="tableStore?.pagination.value.totalItems"
         class="q-mr-sm bg-dark text-on-dark text-body2"
       />
-      <span class="text-h6">گروه کالا و خدمت</span>
+      <span class="text-h6">کالا و خدمت</span>
     </template>
     <template #buttons>
       <q-btn
-        to="/cmn/productGroup/create"
+        to="/cmn/product/create"
         class="bg-primary text-white text-caption"
         padding="6px 12px"
         rounded
@@ -27,6 +27,7 @@
       </q-btn>
       <template v-if="tableStore?.activeRow?.value != null">
         <q-btn
+          :to="getEditUrl(tableStore?.activeRow?.value)"
           class="bordered-btn_bg-dark text-caption"
           rounded
           unelevated
@@ -35,7 +36,7 @@
             name="o_edit"
             class="q-mr-xs"
           />
-          {{ $t("shared.labels.edit") }} ({{ tableStore?.activeRow?.value?.no }})
+          {{ $t("shared.labels.edit") }} ({{ tableStore?.activeRow?.value?.code }})
         </q-btn>
       </template>
       <template v-if="selectedIds?.length > 0">
@@ -180,7 +181,7 @@
   <div style="margin: 54px 0 32px 0;">
     <data-grid
       ref="dataGrid"
-      dataSource="cmn/productGroup/getGridData"
+      dataSource="cmn/product/getGridData"
       :grid-store="gridStore"
       separator="horizontal"
       flat
@@ -245,7 +246,7 @@
 <script setup>
 import { ref, computed } from "vue"
 import { isActiveOptions } from "src/constants"
-import { useProductGroupGrid } from "src/components/areas/cmn/_composables/useProductGroupGrid"
+import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid"
 import { useFormActions } from "src/composables/useFormActions"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
@@ -253,11 +254,11 @@ import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
 
 const dataGrid = ref(null)
-const gridStore = useProductGroupGrid()
-const crudStore = useFormActions("cmn/productGroup")
+const gridStore = useProductGrid()
+const crudStore = useFormActions("cmn/product")
 
 function getEditUrl(item) {
-  return `/cmn/productGroup/edit/${item.id}`
+  return `/cmn/product/edit/${item.id}`
 }
 
 async function reloadData() {

@@ -111,7 +111,7 @@ import { computed, ref } from "vue"
 import CustomerLookup from "src/components/shared/Lookups/CustomerLookup.vue"
 import ContractLookup from "src/components/shared/Lookups/ContractLookup.vue"
 import SaleTypeLookup from "src/components/shared/Lookups/SaleTypeLookup.vue"
-import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
+import DateTime from "src/components/shared/Forms/DateTimePicker.vue"
 
 const description = ref('')
 const invoiceNo = ref(false)

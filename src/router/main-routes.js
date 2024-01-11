@@ -79,5 +79,18 @@ export default {
       path: "cmn/productGroup/edit/:id",
       component: () => import("src/components/areas/cmn/productGroup/Edit2View.vue"),
     },
+
+    {
+      path: "cmn/product",
+      component: () => import("src/components/areas/cmn/product/IndexView.vue"),
+    },
+    {
+      path: "cmn/product/create",
+      component: () => import("src/components/areas/cmn/product/Create2View.vue"),
+    },
+    {
+      path: "cmn/product/edit/:id",
+      component: () => import("src/components/areas/cmn/product/Edit2View.vue"),
+    },
   ]
 }

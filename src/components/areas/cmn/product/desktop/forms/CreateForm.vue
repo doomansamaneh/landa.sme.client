@@ -8,7 +8,7 @@
                 :label="tableStore?.pagination.value.totalItems"
                 class="q-mr-sm bg-dark text-on-dark text-body2"
             />
-            <span class="text-h6">ایجاد گروه کالا</span>
+            <span class="text-h6">ایجاد کالا</span>
             <q-btn
                 padding="6px 12px"
                 flat
@@ -83,6 +83,16 @@
                         :rules="[(val) => val !== null && val !== '']"
                     />
                 </div>
+
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        گروه کالا
+                    </q-item-label>
+                    <product-group-lookup />
+                </div>
                 <div class="q-mt-md">
                     <q-checkbox
                         v-model="formStore.model.value.isActive"
@@ -97,9 +107,10 @@
 <script setup>
 import { onMounted, ref } from "vue"
 import { useRoute } from "vue-router"
-import { useProductGroupModel } from "../../../_composables/useProductGroupModel"
+import { useProductModel } from "../../../_composables/useProductModel"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
+import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue"
 import Actions from "src/components/shared/Forms/FormCardActions.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 
@@ -108,7 +119,7 @@ const props = defineProps({
 })
 const form = ref(null)
 const route = useRoute()
-const formStore = useProductGroupModel()
+const formStore = useProductModel()
 
 onMounted(() => {
     formStore.crudStore.getById(route.params.id)
