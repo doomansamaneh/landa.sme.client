@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-pa-sm">
+  <q-card class="no-border q-pa-sm">
     <q-card-section>
 
       <div class="row justify-between items-center">
@@ -25,14 +25,30 @@
         <div>
           <div class="row items-center q-gutter-md no-wrap">
 
-            <q-btn
+              <q-btn
+                v-for="option in dateRangeOptions"
+                :key="option.value"
+                @click="handleDateRangeClick(option.value)"
+                rounded
+                unelevated
+                padding="8px 12px"
+                :color="isActive(option.value) ? 'primary' : ''"
+                :text-color="!isActive(option.value) && !$q.dark.isActive ? 'grey-10' : 'white'"
+                class="text-on-dark text-body2 bordered-btn"
+                :class="{ 'bordered-btn': !isActive(option.value) }"
+                style="min-width: 80px;"
+              >
+                <span>{{ option.label }}</span>
+              </q-btn>
+
+            <!-- <q-btn
               rounded
               unelevated
               padding="8px 12px"
               :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn ? 'grey-10' : 'white'"
+              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
               class="text-on-dark text-body2"
-              :class="!activeBtn ? 'bordered-btn' : ''"
+              :class="!activeBtn ? 'text-on-dark bordered-btn' : ''"
               @click="makeBtnActive"
               style="min-width: 60px;"
             >
@@ -44,7 +60,7 @@
               unelevated
               padding="8px 12px"
               :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn ? 'grey-10' : 'white'"
+              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
               class="text-on-dark text-body2"
               :class="!activeBtn ? 'bordered-btn' : ''"
               @click="makeBtnActive"
@@ -58,7 +74,7 @@
               unelevated
               padding="8px 12px"
               :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn ? 'grey-10' : 'white'"
+              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
               class="text-on-dark text-body2"
               :class="!activeBtn ? 'bordered-btn' : ''"
               @click="makeBtnActive"
@@ -72,14 +88,14 @@
               unelevated
               padding="8px 12px"
               :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn ? 'grey-10' : 'white'"
+              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
               class="text-on-dark text-body2"
               :class="!activeBtn ? 'bordered-btn' : ''"
               @click="makeBtnActive"
               style="min-width: 70px;"
             >
               <span>{{ $t("shared.labels.thisMonth") }}</span>
-            </q-btn>
+            </q-btn> -->
 
             <q-btn
               rounded
@@ -330,7 +346,7 @@
   >
 
     <q-card
-      class="q-mt-xl"
+      class="no-border q-mt-xl"
       position="bottom"
       style="height:100vh"
     >
@@ -374,15 +390,23 @@
 import { computed, ref } from "vue"
 import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
+import { useI18n } from 'vue-i18n';
 import chip from "src/components/shared/SearchChip.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
 import customInput from "src/components/shared/Forms/CustomInput.vue"
+
+
+const { t } = useI18n();
 
 const props = defineProps({
   gridStore: Object
 })
 
+const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange))
+
 const group = ref([])
+
+const dialog = ref(false)
 
 const options = [
   { label: 'دارای مانده', value: '1', color: 'warning' },
@@ -396,18 +420,9 @@ const handleCheckboxChange = () => {
   }
 }
 
-
-const dialog = ref(false)
-const emit = defineEmits(["apply-search"])
-
-const activeBtn = ref(false)
-
-const makeBtnActive = () => {
-  activeBtn.value = !activeBtn.value
-}
+const emit = defineEmits(["apply-search", "update-date-range"])
 
 const searchModel = computed(() => props.gridStore.state.searchModel.value)
-
 
 async function applySearch() {
   emit("apply-search", searchModel.value)
@@ -421,6 +436,18 @@ async function clearSearch() {
 const openCheckoutModal = () => {
   dialog.value = true
 }
+
+const handleDateRangeClick = async (value) => {
+  searchModel.value.dateRange = value;
+  const translatedLabel = t(`shared.labels.${searchModel.value.dateRange}`);
+  emit("update-date-range", { value: searchModel.value.dateRange, label: translatedLabel });
+
+  await applySearch();
+};
+
+const isActive = (value) => {
+  return searchModel.value.dateRange === value;
+};
 
 </script>
 

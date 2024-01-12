@@ -34,19 +34,19 @@
         <div class="row justify-end items-center">
 
           <div
-            class="q-gutter-sm"
+            class="row items-center"
             v-if="!invoiceStore.state.activeRow?.value"
           >
             <q-btn
-              round
+              rounded
               outline
               dense
               unelevated
-              class="bg-dark text-on-dark text-caption text-bold no-pointer-events"
+              class="q-px-sm q-py-xs bg-dark text-on-dark text-caption-sm text-bold no-pointer-events"
             >
               {{ invoiceStore?.pagination.value.totalItems }}
             </q-btn>
-            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">فاکتورهای فروش</span>
+            <span class="q-mr-sm" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">فاکتورهای فروش</span>
           </div>
 
           <div
@@ -291,6 +291,7 @@
   <div class="colunm q-mt-md q-gutter-lg">
     <q-input
       outlined
+      readonly
       dense
       rounded
       @click="showSearchModal"
@@ -300,6 +301,10 @@
         <q-icon name="o_search" />
       </template>
     </q-input>
+
+    <div v-if="selectedDateRange.label && shouldDisplaySelectedDateRange" class="text-body1 no-letter-spacing text-center">
+      نتایج جستجو برای: {{ selectedDateRange.label }}
+    </div>
 
     <data-grid
       data-source="sls/invoice/getGridData"
@@ -319,6 +324,7 @@
     <advanced-search
       :grid-store="invoiceStore"
       @apply-search="applySearch"
+      @update-date-range="handleDateRangeUpdate"
     />
 
   </q-dialog>
@@ -326,11 +332,15 @@
 
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from "vue"
+import { useI18n } from 'vue-i18n';
+
 import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
 
 import AdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue"
 import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
+
+const { t } = useI18n();
 
 const invoiceStore = useInvoice([{
   fieldName: "d.StatusId",
@@ -345,12 +355,13 @@ const canceledInvoiceStore = useInvoice([{
 }])
 
 const invoiceTable = ref(null)
-
 const tableStore = computed(() => invoiceTable.value?.tableStore)
 
 const dialog = ref(false)
 const showIcon = ref(true)
+let previousScrollPosition = 0
 
+const selectedDateRange = ref({ value: "", label: "" });
 
 const selectedRowCount = computed(() => {
   return invoiceStore.state.allSelectedIds.value.length
@@ -381,10 +392,22 @@ async function applySearch(model) {
 }
 
 const handleScroll = () => {
-  const threshold = 50
-  const currentPosition = window.pageYOffset || document.documentElement.scrollTop
-  showIcon.value = currentPosition < threshold
-}
+  const currentPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+  showIcon.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
+
+  previousScrollPosition = currentPosition;
+};
+
+const handleDateRangeUpdate = ({ value, label }) => {
+  if (label !== 'all' && label !== 0) {
+    selectedDateRange.value = { value, label };
+  }
+};
+
+const shouldDisplaySelectedDateRange = computed(() => {
+  return selectedDateRange.value.value !== 'all' && selectedDateRange.value.value !== 0 && selectedDateRange.value.label !== 'shared.labels.0';
+});
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
