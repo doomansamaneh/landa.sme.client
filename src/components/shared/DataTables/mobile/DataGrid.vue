@@ -6,24 +6,26 @@
     :class="tableStore.getRowClass(row)"
     v-touch-hold.mouse="() => selectCard(row)"
   >
-    <q-card-section>
+    <q-card-section class="q-pb-none">
       <div class="row items-center justify-center">
         <q-btn
           v-if="!row.selected"
           round
           unelevated
-          class="no-pointer-events bg-on-dark"
+          class="no-pointer-events"
         >
           <q-avatar
             v-if="row.avatar"
             size="56px"
+            :style="{ backgroundColor: helper.generateDarkAvatarColor(row.customerName)}"
           >
             <img src="https://cdn.quasar.dev/img/avatar1.jpg">
           </q-avatar>
 
           <q-avatar
             size="56px"
-            text-color="primary"
+            text-color="white"
+            :style="{ backgroundColor: helper.generateDarkAvatarColor(row.customerName)}"
             v-else
           >
             <div class="char text-body1 text-bold">
@@ -65,48 +67,8 @@
         </div>
       </div>
       <q-separator class="q-mt-xs" />
-      <div class="row items-center q-py-md">
-        <div class="col-10 row q-gutter-sm items-center">
-          <q-btn
-            dense
-            padding="2px 12px"
-            class="border-radius-sm bg-orange-2 no-pointer-events"
-            unelevated
-          >
-            <span class="text-caption text-red">
-              {{ row.statusTitle }}
-            </span>
-          </q-btn>
 
-          <q-btn
-            dense
-            padding="2px 12px"
-            class="border-radius-sm bg-primary no-pointer-events"
-            unelevated
-          >
-            <span class="text-caption text-white">
-              {{ row.typeTitle }}
-            </span>
-          </q-btn>
-
-        </div>
-        <div class="col">
-
-          <div class="row justify-end q-gutter-sm items-center">
-
-            <q-btn
-              round
-              dense
-              class="text-on-dark"
-              flat
-              icon="o_chevron_left"
-            />
-
-          </div>
-
-        </div>
-      </div>
-      <div class="column q-gutter-sm">
+      <div class="column q-gutter-sm q-my-md">
 
         <div class="row items-center border-radius-sm q-px-sm">
 
@@ -146,7 +108,53 @@
           </div>
         </div>
       </div>
+
+      <div class="row q-gutter-sm items-center">
+        <q-btn
+          dense
+          padding="2px 12px"
+          class="border-radius-sm bg-orange-2 no-pointer-events"
+          unelevated
+        >
+          <span class="text-caption text-red">
+            {{ row.statusTitle }}
+          </span>
+        </q-btn>
+
+        <q-btn
+          dense
+          padding="2px 12px"
+          class="border-radius-sm bg-primary no-pointer-events"
+          unelevated
+        >
+          <span class="text-caption text-white">
+            {{ row.typeTitle }}
+          </span>
+        </q-btn>
+
+      </div>
     </q-card-section>
+
+    <q-card-actions
+      class="q-pa-md"
+      align="between"
+    >
+      <q-btn
+        unelevated
+        class="text-on-dark"
+      >
+        <span class="text-body3 text-bold">مشاهده جزئیات</span>
+      </q-btn>
+
+      <q-btn
+        round
+        unelevated
+        dense
+        icon="o_more_vert"
+        @click="showTools"
+      />
+    </q-card-actions>
+
   </q-card>
 
   <div
@@ -171,39 +179,11 @@
       <span class="text-body3">بارگزاری بیشتر</span>
     </q-btn>
   </div>
-
-  <!-- <div
-      v-if="tableStore.showPagebar.value"
-      class="q-table__bottom"
-    >
-      <page-bar
-        :pagination="tableStore.pagination.value"
-        @page-changed="reloadData"
-        sizeSeletion
-      >
-        <template #reload>
-          <q-icon
-            class="icon-hover dark-3 cursor-pointer q-pr-md"
-            size="sm"
-            name="o_refresh"
-            @click="reloadData"
-            clickable
-          >
-            <q-tooltip
-              class="custom-tooltip"
-              :delay="600"
-            >
-              {{ $t("page.buttons.reload-data") }}
-            </q-tooltip>
-          </q-icon>
-        </template>
-      </page-bar>
-    </div> -->
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
-import PageBar from "src/components/shared/DataTables/PageBar.vue"
+import { useQuasar } from "quasar";
 import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
 import { useDataTable } from "src/composables/useDataTable";
 import { useInvoice } from "src/components/areas/crm/_composables/useInvoice"
@@ -214,6 +194,7 @@ const props = defineProps({
   dataSource: String
 })
 
+const $q = useQuasar()
 const invoiceStore = useInvoice()
 const tableStore = useDataTable(props.dataSource, props.gridStore.columns, props.gridStore)
 
@@ -258,6 +239,107 @@ async function loadData() {
 const hasMoreData = computed(() => {
   return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages
 });
+
+
+function showTools(grid) {
+  $q.bottomSheet({
+    grid,
+    actions: [
+      {
+        label: 'کپی',
+        icon: 'o_copy',
+        id: 'copy'
+      },
+      {
+        label: 'ویرایش',
+        icon: 'o_edit',
+        id: 'edit'
+      },
+      {
+        label: 'چاپ مستقیم',
+        icon: 'o_print',
+        id: 'print-directly'
+      },
+      {
+        label: 'ارسال ایمیل',
+        icon: 'o_email',
+        id: 'send-as-email'
+      },
+      {
+        label: 'پی دی اف - A4',
+        icon: 'o_crop_portrait',
+        id: 'print-a4'
+      },
+      {
+        label: 'پی دی اف - A4 - افقی',
+        icon: 'o_crop_portrait',
+        id: 'print-a4-landscape'
+      },
+      {
+        label: 'پی دی اف - A5',
+        icon: 'o_crop_landscape',
+        id: 'print-a5'
+      },
+      {
+        label: 'پی دی اف - A5 - افقی',
+        icon: 'o_crop_landscape',
+        id: 'print-a5-landscape'
+      },
+      {
+        label: 'چاپ برچسب نشانی',
+        icon: 'o_contact_mail',
+        id: 'print-address-sticky'
+      },
+      {
+        label: 'حذف',
+        icon: 'o_delete',
+        id: 'delete'
+      },
+    ]
+  }).onOk(action => {
+    // console.log('Action chosen:', action.id)
+  }).onCancel(() => {
+    // console.log('Dismissed')
+  }).onDismiss(() => {
+    // console.log('I am triggered on both OK and Cancel')
+  })
+}
+
+function generateDarkAvatarColor(input) {
+  // Simple hash function to generate a color based on the input
+  let hash = 0;
+  for (let i = 0; i < input.length; i++) {
+    hash = input.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  // Convert the hash to a color in hexadecimal format
+  const color = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+
+  // Pad the color with zeros if needed
+  const darkColor = `#${"00000".substring(0, 6 - color.length)}${color}`;
+
+  // Adjust the darkness, you can experiment with the multiplier
+  const darkerColor = darkenColor(darkColor, 0.3);
+
+  return darkerColor;
+}
+
+function darkenColor(hex, factor) {
+  // Convert hex to RGB
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+
+  // Darken the color by a factor (e.g., 0.3)
+  const darkenedR = Math.round(r * (1 - factor));
+  const darkenedG = Math.round(g * (1 - factor));
+  const darkenedB = Math.round(b * (1 - factor));
+
+  // Convert back to hex
+  const darkenedHex = `#${darkenedR.toString(16).padStart(2, '0')}${darkenedG.toString(16).padStart(2, '0')}${darkenedB.toString(16).padStart(2, '0')}`;
+
+  return darkenedHex;
+}
 
 onMounted(() => {
   loadData()

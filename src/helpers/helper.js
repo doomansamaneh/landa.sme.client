@@ -12,21 +12,57 @@ export const helper = {
     return list
   },
 
-  newGuid() {
-    // Generate a random array of 16 bytes (128 bits)
-    const byteArray = new Uint8Array(16);
-    crypto.getRandomValues(byteArray);
+  // newGuid() {
+  //   // Generate a random array of 16 bytes (128 bits)
+  //   const byteArray = new Uint8Array(16);
+  //   crypto.getRandomValues(byteArray);
 
-    // Set the version (4) and variant (8-11) bits
-    byteArray[6] = (byteArray[6] & 0x0F) | 0x40; // version 4
-    byteArray[8] = (byteArray[8] & 0x3F) | 0x80; // variant 10
+  //   // Set the version (4) and variant (8-11) bits
+  //   byteArray[6] = (byteArray[6] & 0x0F) | 0x40; // version 4
+  //   byteArray[8] = (byteArray[8] & 0x3F) | 0x80; // variant 10
 
-    // Convert the array to a hexadecimal string
-    const hexArray = Array.from(byteArray).map(byte => byte.toString(16).padStart(2, '0'));
-    const uuid = hexArray.join('');
+  //   // Convert the array to a hexadecimal string
+  //   const hexArray = Array.from(byteArray).map(byte => byte.toString(16).padStart(2, '0'));
+  //   const uuid = hexArray.join('');
 
-    // Insert dashes at the appropriate positions
-    return `${uuid.slice(0, 8)}-${uuid.slice(8, 12)}-${uuid.slice(12, 16)}-${uuid.slice(16, 20)}-${uuid.slice(20)}`;
+  //   // Insert dashes at the appropriate positions
+  //   return `${uuid.slice(0, 8)}-${uuid.slice(8, 12)}-${uuid.slice(12, 16)}-${uuid.slice(16, 20)}-${uuid.slice(20)}`;
+  // },
+
+  generateDarkAvatarColor(input) {
+    // Simple hash function to generate a color based on the input
+    let hash = 0;
+    for (let i = 0; i < input.length; i++) {
+      hash = input.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    // Convert the hash to a color in hexadecimal format
+    const color = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+
+    // Pad the color with zeros if needed
+    const darkColor = `#${"00000".substring(0, 6 - color.length)}${color}`;
+
+    // Adjust the darkness, you can experiment with the multiplier
+    const darkerColor = this.darkenColor(darkColor, 0.3);
+
+    return darkerColor;
+  },
+
+  darkenColor(hex, factor) {
+    // Convert hex to RGB
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+
+    // Darken the color by a factor (e.g., 0.3)
+    const darkenedR = Math.round(r * (1 - factor));
+    const darkenedG = Math.round(g * (1 - factor));
+    const darkenedB = Math.round(b * (1 - factor));
+
+    // Convert back to hex
+    const darkenedHex = `#${darkenedR.toString(16).padStart(2, '0')}${darkenedG.toString(16).padStart(2, '0')}${darkenedB.toString(16).padStart(2, '0')}`;
+
+    return darkenedHex;
   },
 
   getSubtotal(selectedRows, fieldName) {

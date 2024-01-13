@@ -1,5 +1,7 @@
 <template>
+
   <q-card class="no-border q-pa-sm">
+
     <q-card-section>
 
       <div class="row justify-between items-center">
@@ -337,6 +339,7 @@
 
   </q-card>
 
+
   <q-dialog
     v-model="dialog"
     persistent
@@ -391,10 +394,8 @@ import { computed, ref } from "vue"
 import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 import { useI18n } from 'vue-i18n';
-import chip from "src/components/shared/SearchChip.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
 import customInput from "src/components/shared/Forms/CustomInput.vue"
-
 
 const { t } = useI18n();
 
@@ -430,6 +431,21 @@ async function applySearch() {
 
 async function clearSearch() {
   props.gridStore.setDefaultSearchModel()
+  await applySearch()
+}
+
+async function removeItem(item) {
+  //todo: how to find field type and dynamically set to it's default value
+  let value = "";
+  switch (item.name) {
+    case "dateRange":
+      value = 0
+      break
+    case "waitToSendTax":
+      value = false
+      break
+  }
+  searchModel.value[item.name] = value
   await applySearch()
 }
 

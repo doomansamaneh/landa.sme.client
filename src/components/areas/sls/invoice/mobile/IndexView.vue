@@ -46,7 +46,10 @@
             >
               {{ invoiceStore?.pagination.value.totalItems }}
             </q-btn>
-            <span class="q-mr-sm" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">فاکتورهای فروش</span>
+            <span
+              class="q-mr-sm"
+              :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
+            >فاکتورهای فروش</span>
           </div>
 
           <div
@@ -183,7 +186,7 @@
   </q-page-sticky>
 
   <q-page-sticky
-    position="bottom-left z-1"
+    position="bottom-right z-1"
     :offset="[18, 18]"
   >
     <q-btn
@@ -212,6 +215,16 @@
     class="column q-gutter-sm"
     style="margin-top: 46px;"
   >
+
+    <q-inner-loading
+      :showing="tableStore?.showLoader?.value"
+      class="transparent z-max"
+    >
+      <q-spinner
+        size="52px"
+        color="primary"
+      />
+    </q-inner-loading>
 
     <q-card class="bordered bg-primary">
       <q-card-section>
@@ -302,8 +315,23 @@
       </template>
     </q-input>
 
-    <div v-if="selectedDateRange.label && shouldDisplaySelectedDateRange" class="text-body1 no-letter-spacing text-center">
-      نتایج جستجو برای: {{ selectedDateRange.label }}
+    <div
+      class="row items-center justify-center text-body1 no-letter-spacing"
+      v-if="selectedDateRange.label && shouldDisplaySelectedDateRange"
+    >
+      <q-btn
+        @click="clearDateRangeFilter"
+        size="xs"
+        class="q-mr-sm"
+        round
+        unelevated
+        dense
+        icon="o_close"
+        color="primary"
+      />
+      <span>
+        نتایج جستجو برای: {{ selectedDateRange.label }}
+      </span>
     </div>
 
     <data-grid
@@ -359,6 +387,7 @@ const tableStore = computed(() => invoiceTable.value?.tableStore)
 
 const dialog = ref(false)
 const showIcon = ref(true)
+const advancedSearch = ref(null)
 let previousScrollPosition = 0
 
 const selectedDateRange = ref({ value: "", label: "" });
@@ -381,7 +410,6 @@ const discountAmount = computed(() => {
   return selectedRows.reduce((total, row) => total + row.discountAmount, 0);
 });
 
-
 const showSearchModal = () => {
   dialog.value = true
 }
@@ -393,9 +421,7 @@ async function applySearch(model) {
 
 const handleScroll = () => {
   const currentPosition = window.pageYOffset || document.documentElement.scrollTop;
-
   showIcon.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
-
   previousScrollPosition = currentPosition;
 };
 
@@ -408,6 +434,12 @@ const handleDateRangeUpdate = ({ value, label }) => {
 const shouldDisplaySelectedDateRange = computed(() => {
   return selectedDateRange.value.value !== 'all' && selectedDateRange.value.value !== 0 && selectedDateRange.value.label !== 'shared.labels.0';
 });
+
+const clearDateRangeFilter = () => {
+  selectedDateRange.value = { value: '', label: '' };
+  invoiceStore.setDefaultSearchModel();
+  applySearch();
+};
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
