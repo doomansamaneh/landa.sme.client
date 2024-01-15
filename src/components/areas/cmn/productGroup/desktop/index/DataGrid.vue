@@ -221,29 +221,97 @@
       </template>
 
       <template #cell-actions="{ item }">
-        <q-btn
-          class="text-white text-caption"
-          :to='getEditUrl(item)'
-          unelevated
-        >
-          <q-icon name="edit" />
-        </q-btn>
+        <div class="row q-gutter-sm items-center">
+          <q-btn
+            round
+            class="text-on-dark text-caption"
+            :to='getEditUrl(item)'
+            unelevated
+          >
+            <q-icon name="o_edit" />
+          </q-btn>
 
-        <q-btn
-          class="text-white text-caption"
-          unelevated
-          @click="deleteRow(item)"
-        >
-          <q-icon name="delete" />
-        </q-btn>
+          <q-btn
+            round
+            class="text-on-dark text-caption"
+            unelevated
+            @click="deleteRow(item)"
+          >
+            <q-icon name="o_delete" />
+          </q-btn>
+        </div>
       </template>
 
     </data-grid>
   </div>
+
+  <q-dialog
+    v-model="deleteAlert"
+    ref="dialog"
+    transition-show="slide-down"
+    transition-hide="fade"
+    transition-duration="600"
+    no-backdrop-dismiss
+  >
+    <q-card
+      class="dialog-card no-shadow"
+      style="width:600px"
+    >
+      <q-card-section class="row items-center q-pl-lg q-pr-md">
+        <div class="text-h6 row items-center">
+          <q-icon
+            name="o_info"
+            size="md"
+            class="q-mr-sm text-on-dark"
+          />
+          <span class="text-body1 no-letter-spacing">
+            پیغام تایید
+          </span>
+        </div>
+        <q-space />
+        <q-btn
+          class="icon-hover dark-3"
+          flat
+          round
+          v-close-popup
+        >
+          <q-icon
+            name="o_close"
+            size="sm"
+          />
+        </q-btn>
+      </q-card-section>
+      <q-card-section>
+        <div class="text-body1 no-letter-spacing q-px-sm q-mb-sm">
+          اقدام شما منجر به حذف کامل اطلاعات می‌شود، آیا اطمینان حاصل می‌کنید؟
+        </div>
+      </q-card-section>
+
+      <q-card-actions class="dark-1 q-px-lg q-py-md">
+        <q-btn
+          class="primary-shadow text-body1 no-letter-spacing"
+          unelevated
+          color="primary"
+          @click="confirmDelete"
+        >
+          {{ $t("shared.labels.accept") }}
+        </q-btn>
+        <q-btn
+          class="text-body1 no-letter-spacing"
+          flat
+          @click="cancelDelete"
+        >
+          {{ $t("shared.labels.cancel") }}
+        </q-btn>
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
 import { ref, computed } from "vue"
+import { useQuasar } from "quasar"
+
 import { isActiveOptions } from "src/constants"
 import { useProductGroupGrid } from "src/components/areas/cmn/_composables/useProductGroupGrid"
 import { useFormActions } from "src/composables/useFormActions"
@@ -251,6 +319,12 @@ import { useFormActions } from "src/composables/useFormActions"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+
+const $q = useQuasar()
+
+const deleteAlert = ref(false)
+const itemToDelete = ref(null)
+const isBatchDelete = ref(false)
 
 const dataGrid = ref(null)
 const gridStore = useProductGroupGrid()
@@ -265,17 +339,43 @@ async function reloadData() {
 }
 
 async function deleteRow(item) {
-  //todo: if you agree confirm
-  await crudStore.deleteById(item.id)
-    .then((response) => {
-      reloadData()
-    })
+  itemToDelete.value = item
+  isBatchDelete.value = false
+  deleteAlert.value = true
 }
 
-async function deleteBatch() {
+const deleteBatch = () => {
+  if (selectedIds?.value.length > 0) {
+    isBatchDelete.value = true
+    deleteAlert.value = true
+  }
+}
+
+const confirmDelete = async () => {
+  if (isBatchDelete.value) {
+    await confirmBatchDelete()
+  } else {
+    await confirmDeleteRow()
+  }
+}
+
+async function confirmDeleteRow() {
+  if (itemToDelete.value) {
+    await crudStore.deleteById(itemToDelete.value.id)
+      .then(() => {
+        reloadData()
+        deleteAlert.value = false
+        notif()
+      })
+  }
+}
+
+const confirmBatchDelete = async () => {
   await crudStore.deleteBatch(selectedIds?.value)
-    .then((response) => {
+    .then(() => {
       reloadData()
+      notif()
+      deleteAlert.value = false
     })
 }
 
@@ -299,4 +399,17 @@ async function exportAll() {
 
 const tableStore = computed(() => dataGrid.value?.tableStore)
 const selectedIds = computed(() => tableStore.value?.selectedRows?.value.map(item => item.id))
+
+const cancelDelete = () => {
+  deleteAlert.value = false
+  isBatchDelete.value = false
+}
+
+const notif = () => {
+  $q.notify({
+    type: 'positive',
+    message: 'اطلاعات با موفقیت حذف شد',
+  });
+}
+
 </script>

@@ -26,7 +26,7 @@ export function useFormActions(baseURL, model) {
             await fetchWrapper
                 .post(`${baseURL}/delete/${id}`)
                 .then((response) => {
-                    alert(response.data.message)
+                    // alert(response.data.message)
                 })
         else alert("no row selected")
     }
@@ -36,7 +36,7 @@ export function useFormActions(baseURL, model) {
             await fetchWrapper
                 .post(`${baseURL}/deleteBatch`, idList)
                 .then((response) => {
-                    alert(response.data.message)
+                    // alert(response.data.message)
                 })
         else alert("no row selected")
     }
