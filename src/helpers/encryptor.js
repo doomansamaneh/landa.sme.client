@@ -16,5 +16,5 @@ export const encryptor = {
       return ""
     }
   },
-  decrypt(text) {}
+  decrypt(text) { }
 }

@@ -39,7 +39,7 @@ export function useMenuBar() {
 
   function handleMenuItemsData(data) {
     data.forEach((item) => {
-      item.title = t(`main-menu-items.${item.title}`)
+      item.title = t(`main-menu-items.${item.name}`)
     })
     state.items.value = data
   }
