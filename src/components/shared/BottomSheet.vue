@@ -3,29 +3,17 @@
     ref="bottomSheet"
     :model-value="status"
     auto-close
-    maximized
+    full-width
     transition-show="slide-up"
+    position="bottom"
     transition-hide="slide-down"
   >
 
-    <q-card
-      class="no-border"
-      position="bottom"
-      style="height:100vh; margin-top: 200px;"
-    >
+    <q-card class="no-border">
 
-      <q-card-section>
-        <sloth name="header">
-          Header
-        </sloth>
-      </q-card-section>
-
-      <q-card-section>
-        <sloth name="body">
-          <q-btn>
-            Hello from child
-          </q-btn>
-        </sloth>
+      <q-card-section class="no-padding">
+        <slot name="header" />
+        <slot name="body" />
       </q-card-section>
 
     </q-card>
@@ -37,18 +25,8 @@
 <script setup>
 import { ref, watch } from "vue"
 
-const bottomSheet = ref(null)
-
 const props = defineProps({
   status: Boolean
 })
-
-const onBottomSheetShow = () => {
-  bottomSheet.value.show()
-}
-
-const onBottomSheetHide = () => {
-  bottomSheet.value.hide()
-}
 
 </script>
