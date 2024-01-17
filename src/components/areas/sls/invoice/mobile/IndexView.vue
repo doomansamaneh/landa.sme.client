@@ -196,7 +196,7 @@
       to="/sls/invoice/create"
       dense
       color="primary"
-      class="text-body1 no-letter-spacing"
+      class="text-body1 no-letter-spacing primary-shadow"
     >
       <div class="row items-center q-gutter-x-xs">
         <q-icon

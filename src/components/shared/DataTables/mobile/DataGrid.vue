@@ -17,7 +17,7 @@
           <q-avatar
             v-if="row.avatar"
             size="56px"
-            :style="{ backgroundColor: helper.generateDarkAvatarColor(row.customerName)}"
+            :style="{ backgroundColor: helper.generateDarkAvatarColor(row.customerName) }"
           >
             <img src="https://cdn.quasar.dev/img/avatar1.jpg">
           </q-avatar>
@@ -25,7 +25,7 @@
           <q-avatar
             size="56px"
             text-color="white"
-            :style="{ backgroundColor: helper.generateDarkAvatarColor(row.customerName)}"
+            :style="{ backgroundColor: helper.generateDarkAvatarColor(row.customerName) }"
             v-else
           >
             <div class="char text-body1 text-bold">
@@ -151,7 +151,7 @@
         unelevated
         dense
         icon="o_more_vert"
-        @click="showTools"
+        @click="onBottomSheetShow"
       />
     </q-card-actions>
 
@@ -179,12 +179,33 @@
       <span class="text-body3">بارگزاری بیشتر</span>
     </q-btn>
   </div>
+
+  <bottom-sheet
+    v-if="bottomSheetStatus"
+    :status="bottomSheetStatus"
+    @hide="onBottomSheetHide"
+  >
+
+    <template #header>
+      <div class="row items-center justify-between">
+        <span class="text-on-dark">هدر از پدر</span>
+      </div>
+    </template>
+
+    <template #body>
+      <div class="row items-center justify-between">
+        <span class="text-on-dark">بدنه از پدر</span>
+      </div>
+    </template>
+
+  </bottom-sheet>
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import { useQuasar } from "quasar";
 import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
+import bottomSheet from "src/components/shared/BottomSheet.vue"
 import { useDataTable } from "src/composables/useDataTable";
 import { useInvoice } from "src/components/areas/crm/_composables/useInvoice"
 import { helper } from "src/helpers"
@@ -197,6 +218,8 @@ const props = defineProps({
 const $q = useQuasar()
 const invoiceStore = useInvoice()
 const tableStore = useDataTable(props.dataSource, props.gridStore.columns, props.gridStore)
+
+const bottomSheetStatus = ref(false)
 
 function selectRow(row, checked) {
   tableStore.selectRow(row, checked)
@@ -241,104 +264,79 @@ const hasMoreData = computed(() => {
 });
 
 
-function showTools(grid) {
-  $q.bottomSheet({
-    grid,
-    actions: [
-      {
-        label: 'کپی',
-        icon: 'o_copy',
-        id: 'copy'
-      },
-      {
-        label: 'ویرایش',
-        icon: 'o_edit',
-        id: 'edit'
-      },
-      {
-        label: 'چاپ مستقیم',
-        icon: 'o_print',
-        id: 'print-directly'
-      },
-      {
-        label: 'ارسال ایمیل',
-        icon: 'o_email',
-        id: 'send-as-email'
-      },
-      {
-        label: 'پی دی اف - A4',
-        icon: 'o_crop_portrait',
-        id: 'print-a4'
-      },
-      {
-        label: 'پی دی اف - A4 - افقی',
-        icon: 'o_crop_portrait',
-        id: 'print-a4-landscape'
-      },
-      {
-        label: 'پی دی اف - A5',
-        icon: 'o_crop_landscape',
-        id: 'print-a5'
-      },
-      {
-        label: 'پی دی اف - A5 - افقی',
-        icon: 'o_crop_landscape',
-        id: 'print-a5-landscape'
-      },
-      {
-        label: 'چاپ برچسب نشانی',
-        icon: 'o_contact_mail',
-        id: 'print-address-sticky'
-      },
-      {
-        label: 'حذف',
-        icon: 'o_delete',
-        id: 'delete'
-      },
-    ]
-  }).onOk(action => {
-    // console.log('Action chosen:', action.id)
-  }).onCancel(() => {
-    // console.log('Dismissed')
-  }).onDismiss(() => {
-    // console.log('I am triggered on both OK and Cancel')
-  })
+// function showTools(grid) {
+//   $q.bottomSheet({
+//     grid,
+//     actions: [
+//       {
+//         label: 'کپی',
+//         icon: 'o_copy',
+//         id: 'copy'
+//       },
+//       {
+//         label: 'ویرایش',
+//         icon: 'o_edit',
+//         id: 'edit'
+//       },
+//       {},
+//       {
+//         label: 'ارسال ایمیل',
+//         icon: 'o_email',
+//         id: 'send-as-email'
+//       },
+//       {},
+//       {
+//         label: 'چاپ مستقیم',
+//         icon: 'o_print',
+//         id: 'print-directly'
+//       },
+//       {
+//         label: 'پی دی اف - A4',
+//         icon: 'o_crop_portrait',
+//         id: 'print-a4'
+//       },
+//       {
+//         label: 'پی دی اف - A4 - افقی',
+//         icon: 'o_crop_portrait',
+//         id: 'print-a4-landscape'
+//       },
+//       {
+//         label: 'پی دی اف - A5',
+//         icon: 'o_crop_landscape',
+//         id: 'print-a5'
+//       },
+//       {
+//         label: 'پی دی اف - A5 - افقی',
+//         icon: 'o_crop_landscape',
+//         id: 'print-a5-landscape'
+//       },
+//       {
+//         label: 'چاپ برچسب نشانی',
+//         icon: 'o_contact_mail',
+//         id: 'print-address-sticky'
+//       },
+//       {},
+//       {
+//         label: 'حذف',
+//         icon: 'o_delete',
+//         id: 'delete'
+//       },
+//     ]
+//   }).onOk(action => {
+//     // console.log('Action chosen:', action.id)
+//   }).onCancel(() => {
+//     // console.log('Dismissed')
+//   }).onDismiss(() => {
+//     // console.log('I am triggered on both OK and Cancel')
+//   })
+// }
+
+const onBottomSheetShow = () => {
+  bottomSheetStatus.value = true
 }
 
-function generateDarkAvatarColor(input) {
-  // Simple hash function to generate a color based on the input
-  let hash = 0;
-  for (let i = 0; i < input.length; i++) {
-    hash = input.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  // Convert the hash to a color in hexadecimal format
-  const color = (hash & 0x00FFFFFF).toString(16).toUpperCase();
-
-  // Pad the color with zeros if needed
-  const darkColor = `#${"00000".substring(0, 6 - color.length)}${color}`;
-
-  // Adjust the darkness, you can experiment with the multiplier
-  const darkerColor = darkenColor(darkColor, 0.3);
-
-  return darkerColor;
-}
-
-function darkenColor(hex, factor) {
-  // Convert hex to RGB
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-
-  // Darken the color by a factor (e.g., 0.3)
-  const darkenedR = Math.round(r * (1 - factor));
-  const darkenedG = Math.round(g * (1 - factor));
-  const darkenedB = Math.round(b * (1 - factor));
-
-  // Convert back to hex
-  const darkenedHex = `#${darkenedR.toString(16).padStart(2, '0')}${darkenedG.toString(16).padStart(2, '0')}${darkenedB.toString(16).padStart(2, '0')}`;
-
-  return darkenedHex;
+const onBottomSheetHide = () => {
+  bottomSheetStatus.value = false;
 }
 
 onMounted(() => {
