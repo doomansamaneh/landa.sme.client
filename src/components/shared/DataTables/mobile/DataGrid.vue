@@ -187,18 +187,212 @@
   >
 
     <template #header>
-      <div class="row items-center justify-between">
-        <span class="text-on-dark">هدر از پدر</span>
-      </div>
+
     </template>
 
     <template #body>
-      <div class="row items-center justify-between">
-        <span class="text-on-dark">بدنه از پدر</span>
-      </div>
+      <q-list padding>
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_copy"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">کپی</q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_edit"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">ویرایش</q-item-section>
+        </q-item>
+
+        <q-separator size="1px" />
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_email"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">ارسال ایمیل</q-item-section>
+        </q-item>
+
+        <q-separator size="0.5px" />
+
+        <q-item
+          clickable
+          v-ripple
+          @click="showPrintDialog"
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_print"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">چاپ</q-item-section>
+        </q-item>
+
+        <q-separator />
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_delete"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">حذف</q-item-section>
+        </q-item>
+
+      </q-list>
     </template>
 
   </bottom-sheet>
+
+  <q-dialog
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down"
+    v-model="printDialog"
+  >
+    <q-card class="q-mt-xl">
+      <q-card-section>
+        <div class="row items-center justify-between">
+          <span class="text-body1 no-letter-spacing">چاپ</span>
+          <q-btn
+            round
+            unelevated
+            icon="o_close"
+            v-close-popup
+          />
+        </div>
+      </q-card-section>
+
+      <q-card-section class="no-padding">
+
+        <q-list padding>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_print"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">چاپ مستقیم</q-item-section>
+          </q-item>
+
+          <q-separator />
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_portrait"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A4</q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_landscape"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A4 - افقی</q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_portrait"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A5</q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_landscape"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A5 - افقی</q-item-section>
+          </q-item>
+
+          <q-separator />
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_contact_mail"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">چاپ برچسب نشانی</q-item-section>
+          </q-item>
+
+
+        </q-list>
+
+      </q-card-section>
+    </q-card>
+
+  </q-dialog>
 </template>
 
 <script setup>
@@ -220,6 +414,7 @@ const invoiceStore = useInvoice()
 const tableStore = useDataTable(props.dataSource, props.gridStore.columns, props.gridStore)
 
 const bottomSheetStatus = ref(false)
+const printDialog = ref(false)
 
 function selectRow(row, checked) {
   tableStore.selectRow(row, checked)
@@ -337,6 +532,10 @@ const onBottomSheetShow = () => {
 
 const onBottomSheetHide = () => {
   bottomSheetStatus.value = false;
+}
+
+const showPrintDialog = () => {
+  printDialog.value = true;
 }
 
 onMounted(() => {
