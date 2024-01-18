@@ -15,7 +15,7 @@ export function useCulture() {
 
   const setCulture = (code) => {
     document.body.classList.remove(`digits--${culture.value.code}`)
-    localStorage.setItem("selectedLanguage", code)
+    localStorage.setItem(storageKey, code)
 
     applyCulture()
   }

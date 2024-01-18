@@ -1,6 +1,10 @@
 import { fetchWrapper } from "src/helpers"
+import { useQuasar } from "quasar"
+import ConfirmDialog from "src/components/shared/ConfirmDialog.vue"
 
 export function useFormActions(baseURL, model) {
+    const $q = useQuasar()
+
     async function getById(id) {
         if (id) {
             await fetchWrapper
@@ -16,53 +20,89 @@ export function useFormActions(baseURL, model) {
         await fetchWrapper
             .post(`${baseURL}/${action}`, model.value)
             .then((response) => {
-                alert(response.data.message)
+                notifyResponse(response.data)
                 model.value.id = response.data.data.id
             })
     }
 
-    async function deleteById(id) {
-        if (id)
-            await fetchWrapper
-                .post(`${baseURL}/delete/${id}`)
-                .then((response) => {
-                    // alert(response.data.message)
-                })
-        else alert("no row selected")
+    async function deleteById(id, callBack) {
+        if (id) {
+            $q.dialog({
+                component: ConfirmDialog,
+                componentProps: {
+                    title: 'Delete Confirm',
+                    message: `Are you sure to delete this entity....?`,
+                    ok: `Yes, I'm sure`,
+                }
+            }).onOk(async () => {
+                await fetchWrapper
+                    .post(`${baseURL}/delete/${id}`)
+                    .then((response) => {
+                        notifyResponse(response.data)
+                        if (callBack) callBack()
+                    })
+            })
+        }
+        else notify("no row selected", 'negative')
     }
 
-    async function deleteBatch(idList) {
-        if (validateIdList(idList))
-            await fetchWrapper
-                .post(`${baseURL}/deleteBatch`, idList)
-                .then((response) => {
-                    // alert(response.data.message)
-                })
-        else alert("no row selected")
+    async function deleteBatch(idList, callBack) {
+        if (validateIdList(idList)) {
+            $q.dialog({
+                component: ConfirmDialog,
+                componentProps: {
+                    title: 'Delete Confirm',
+                    message: `Are you sure to delete ${idList.length} rows?`,
+                    ok: `Yes, I'm sure`,
+                }
+            }).onOk(async () => {
+                await fetchWrapper
+                    .post(`${baseURL}/deleteBatch`, idList)
+                    .then((response) => {
+                        notifyResponse(response.data)
+                        if (callBack) callBack()
+                    })
+            })
+        }
+        else notify("no row selected", 'negative')
     }
 
-    async function activate(idList) {
-        if (validateIdList(idList))
+    async function activate(idList, callBack) {
+        if (validateIdList(idList)) {
             await fetchWrapper
                 .post(`${baseURL}/activate`, idList)
                 .then((response) => {
-                    alert(response.data.message)
+                    notifyResponse(response.data)
+                    if (callBack) callBack()
                 })
-        else alert("no row selected")
+        }
+        else notify("no row selected", 'negative')
     }
 
-    async function deactivate(idList) {
+    async function deactivate(idList, callBack) {
         if (validateIdList(idList))
             await fetchWrapper
                 .post(`${baseURL}/deactivate`, idList)
                 .then((response) => {
-                    alert(response.data.message)
+                    notifyResponse(response.data)
+                    if (callBack) callBack()
                 })
-        else alert("no row selected")
+        else notify("no row selected", 'negative')
     }
 
     function validateIdList(idList) {
         return idList && idList.length > 0
+    }
+
+    function notifyResponse(data) {
+        notify(data.message)
+    }
+
+    function notify(message, type = 'positive') {
+        $q.notify({
+            type: type,
+            message: message,
+        });
     }
 
     return {

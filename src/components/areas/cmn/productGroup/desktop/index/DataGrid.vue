@@ -254,7 +254,7 @@
     no-backdrop-dismiss
   >
     <q-card
-      class="dialog-card no-shadow"
+      class="dialog-card no-shadow-"
       style="width:600px"
     >
       <q-card-section class="row items-center q-pl-lg q-pr-md">
@@ -310,7 +310,6 @@
 
 <script setup>
 import { ref, computed } from "vue"
-import { useQuasar } from "quasar"
 
 import { isActiveOptions } from "src/constants"
 import { useProductGroupGrid } from "src/components/areas/cmn/_composables/useProductGroupGrid"
@@ -319,12 +318,6 @@ import { useFormActions } from "src/composables/useFormActions"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
-
-const $q = useQuasar()
-
-const deleteAlert = ref(false)
-const itemToDelete = ref(null)
-const isBatchDelete = ref(false)
 
 const dataGrid = ref(null)
 const gridStore = useProductGroupGrid()
@@ -339,58 +332,19 @@ async function reloadData() {
 }
 
 async function deleteRow(item) {
-  itemToDelete.value = item
-  isBatchDelete.value = false
-  deleteAlert.value = true
+  await crudStore.deleteById(item.id, reloadData)
 }
 
-const deleteBatch = () => {
-  if (selectedIds?.value.length > 0) {
-    isBatchDelete.value = true
-    deleteAlert.value = true
-  }
-}
-
-const confirmDelete = async () => {
-  if (isBatchDelete.value) {
-    await confirmBatchDelete()
-  } else {
-    await confirmDeleteRow()
-  }
-}
-
-async function confirmDeleteRow() {
-  if (itemToDelete.value) {
-    await crudStore.deleteById(itemToDelete.value.id)
-      .then(() => {
-        reloadData()
-        deleteAlert.value = false
-        notif()
-      })
-  }
-}
-
-const confirmBatchDelete = async () => {
-  await crudStore.deleteBatch(selectedIds?.value)
-    .then(() => {
-      reloadData()
-      notif()
-      deleteAlert.value = false
-    })
+async function deleteBatch() {
+  await crudStore.deleteBatch(selectedIds?.value, reloadData)
 }
 
 async function activate() {
-  await crudStore.activate(selectedIds?.value)
-    .then((response) => {
-      reloadData()
-    })
+  await crudStore.activate(selectedIds?.value, reloadData)
 }
 
 async function deactivate() {
-  await crudStore.deactivate(selectedIds?.value)
-    .then((response) => {
-      reloadData()
-    })
+  await crudStore.deactivate(selectedIds?.value, reloadData)
 }
 
 async function exportAll() {
@@ -399,17 +353,5 @@ async function exportAll() {
 
 const tableStore = computed(() => dataGrid.value?.tableStore)
 const selectedIds = computed(() => tableStore.value?.selectedRows?.value.map(item => item.id))
-
-const cancelDelete = () => {
-  deleteAlert.value = false
-  isBatchDelete.value = false
-}
-
-const notif = () => {
-  $q.notify({
-    type: 'positive',
-    message: 'اطلاعات با موفقیت حذف شد',
-  });
-}
 
 </script>
