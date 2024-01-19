@@ -1,7 +1,24 @@
 <template>
   <tool-bar>
     <template #header>
-      <span class="text-h6 q-mr-sm">فاکتور #1 برای خشایار شمالی</span>
+      <span
+        v-if="$q.screen.gt.xs"
+        class="q-mr-sm"
+        :class="$q.screen.gt.xs ? 'text-h6' : 'text-body1'"
+      >فاکتور #1 برای خشایار شمالی</span>
+      <div
+        v-if="$q.screen.lt.sm"
+        :class="$q.screen.lt.sm ? 'text-h6' : 'text-body1'"
+      >
+        <q-btn
+          round
+          dense
+          unelevated
+          icon="o_info"
+          @click="showCustomerDetail"
+        />
+
+      </div>
       <q-btn
         padding="6px 12px"
         flat
@@ -136,72 +153,99 @@
       </q-btn>
     </template>
   </tool-bar>
-  <div
-    class="row q-gutter-x-xl"
-    style="margin-top:54px"
-  >
-    <div class="col">
+  <div class="row q-col-gutter-xl q-mt-sm">
+    <div class="col-md col-sm-12 col-xs-12">
       <q-card class="bordered no-shadow">
-        <q-card-section class="flex items-center justify-between q-pa-lg">
-          <img
-            style="width: 72px;"
-            src="/landa-sme-logo.png"
-            alt=""
-          />
-          <span class="text-subtitle1 text-bold">
-            {{ $t("page.payment-detail.invoice-label") }}
-          </span>
-          <div class="column q-gutter-sm text-right text-caption">
-            <div>
-              <span>
-                <span class="">{{ $t("page.payment-detail.invoice-date") }}</span>
-                1401/02/09</span>
+        <q-card-section>
+
+          <div class="row q-gutter-y-md q-py-md">
+            <div
+              class="col-md col-sm col-xs-12 row items-center"
+              :class="$q.screen.lt.sm ? 'justify-center' : ''"
+            >
+              <img
+                style="width: 72px;"
+                src="/landa-sme-logo.png"
+                alt="landa-sme"
+              />
             </div>
-            <div class="">
-              <span>
-                <span class="">
-                  {{ $t("page.payment-detail.invoice-number") }}
-                </span>
-                20108</span>
+            <div class="col-md col-sm-5 col-xs-12 row items-center justify-center">
+              <span class="text-subtitle1 text-bold">
+                {{ $t("page.payment-detail.invoice-label") }}
+              </span>
+            </div>
+            <div
+              class="col-md col-sm col-xs-12 row items-center"
+              :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
+            >
+              <div class="column q-gutter-sm text-right text-caption">
+                <div
+                  class="row items-center"
+                  :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
+                >
+                  <span>{{ $t("page.payment-detail.invoice-date") }}</span>
+                  1401/02/09
+                </div>
+                <div
+                  class="row items-center"
+                  :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
+                >
+                  <span>
+                    {{ $t("page.payment-detail.invoice-number") }}
+                  </span>
+                  20108
+                </div>
+              </div>
             </div>
           </div>
+
         </q-card-section>
         <q-separator inset />
-        <q-card-section class="q-pb-none">
-          <q-item class="flex justify-between text-caption">
-            <q-item-label class=""><span class="text-weight-bold">
+        <q-card-section>
+
+          <div class="row q-col-gutter-lg">
+            <div
+              class="col-md col-sm col-xs-12"
+              :class="$q.screen.lt.sm ? 'text-center' : ''"
+            >
+              <div class="text-weight-bold q-mb-sm">
                 {{ $t("page.payment-detail.seller") }}
-                <span class="text-weight-thin">حسابداری آنلاین لاندا</span></span>
-              <div class="seller-address">
-                <q-item-label class="q-mt-sm">
-                  <span>شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
-                    زیتون، واحد 105</span>
-                </q-item-label>
-                <q-item-label class="q-pt-xs">
+                <span class="text-weight-thin">حسابداری آنلاین لاندا</span>
+              </div>
+              <div>
+                <span class="line-height-xs">شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
+                  زیتون، واحد 105</span>
+                <div class="q-pt-xs">
                   <q-icon
                     name="phone"
                     class="dark-2 q-pr-xs"
-                  />88944338</q-item-label>
+                  />88944338
+                </div>
               </div>
-            </q-item-label>
-            <q-item-label class=""><span class="text-weight-bold">
+
+            </div>
+            <div
+              class="col-md col-sm col-xs-12"
+              :class="$q.screen.lt.sm ? 'text-center' : ''"
+            >
+              <div class="text-weight-bold q-mb-sm">
                 {{ $t("page.payment-detail.customer") }}
-                <span class="text-weight-light">خشایار شمالی</span></span>
-              <div class="seller-address">
-                <q-item-label class="q-mt-sm">
-                  <span>شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
-                    خیابان عنایتی، کوچه محمدی، پلاک 22</span>
-                </q-item-label>
-                <q-item-label class="q-pt-xs">
+                <span class="text-weight-light">خشایار شمالی</span>
+              </div>
+              <div>
+                <span class="line-height-xs">شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
+                  خیابان عنایتی، کوچه محمدی، پلاک 22</span>
+                <div class="q-pt-xs">
                   <q-icon
                     name="phone"
                     class="dark-2 q-pr-xs"
                   />
                   021-55511102
-                </q-item-label>
+                </div>
               </div>
-            </q-item-label>
-          </q-item>
+            </div>
+          </div>
+
         </q-card-section>
         <q-card-section class="q-pt-none">
 
@@ -316,7 +360,7 @@
         </q-card-section>
       </q-card>
     </div>
-    <div class="col-3">
+    <div class="col-md-3 col-sm-12 col-xs-12">
       <q-card class="bordered no-shadow">
 
         <q-card-section>
@@ -689,6 +733,24 @@
       </q-card>
     </div>
   </div>
+
+  <q-dialog v-model="customerDetail">
+
+    <q-card>
+      <q-card-section>
+        <div class="column q-gutter-sm">
+
+          <span>
+            شماره فاکتور: 1
+          </span>
+
+          <span>به نام: خشایار شمالی</span>
+
+        </div>
+      </q-card-section>
+    </q-card>
+
+  </q-dialog>
 </template>
 
 <script setup>
@@ -699,6 +761,7 @@ import { useQuasar } from "quasar"
 
 const $q = useQuasar()
 
+const customerDetail = ref(false)
 const tab = ref("main-info")
 const editor = ref('')
 const editCommentBtn = ref(false)
@@ -749,20 +812,15 @@ const deleteAlert = () => {
   })
 }
 
+const showCustomerDetail = () => {
+  customerDetail.value = true
+}
+
 </script>
 
 <style lang="scss" scoped>
 .sme-logo {
   width: 72px;
-}
-
-.seller-address {
-  width: 250px;
-}
-
-.seller-address span {
-  text-align: left;
-  line-height: 1.7rem;
 }
 
 .sign-place {
@@ -784,5 +842,4 @@ table {
 th,
 td {
   padding: 24px 8px;
-}
-</style>
+}</style>
