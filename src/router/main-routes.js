@@ -5,7 +5,6 @@ import SettingsPage from "src/pages/management/SettingsPage.vue";
 import IndexView from "src/components/areas/sls/quote/IndexView.vue";
 import InvoiceIndexView from "src/components/areas/sls/invoice/IndexView.vue";
 import CreateInvoice from "src/components/areas/sls/invoice/CreateInvoice.vue";
-import ContactLookup from "src/components/areas/sls/invoice/create/mobile/ContactLookup.vue";
 import SelectProduct from "src/components/areas/sls/invoice/create/mobile/SelectProduct.vue";
 import ProductLookup from "src/components/areas/sls/invoice/create/mobile/ProductLookup.vue";
 import InvoicePreview from "src/components/areas/sls/invoice/InvoicePreview.vue";
@@ -50,10 +49,6 @@ export default {
     {
       path: "sls/invoice/create/selectproduct",
       component: SelectProduct,
-    },
-    {
-      path: "sls/invoice/create/contactlookup",
-      component: ContactLookup,
     },
     {
       path: "sls/invoice/create/selectproduct/productlookup",

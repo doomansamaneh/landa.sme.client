@@ -141,12 +141,12 @@
           color="grey-5"
           outlined
           v-model="searchText"
-          placeholder="جستجو در کالا"
+          placeholder="جستجو"
           dense
           rounded
           clearable
           clear-icon="o_close"
-          class="full-width text-caption"
+          class="full-width text-body2"
         >
           <template v-slot:prepend>
             <q-icon

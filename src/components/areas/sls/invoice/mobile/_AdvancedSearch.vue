@@ -1,6 +1,5 @@
 <template>
-
-  <q-card class="no-border q-pa-sm">
+  <q-card class="no-border q-pt-sm q-px-sm">
 
     <q-card-section>
 
@@ -27,77 +26,21 @@
         <div>
           <div class="row items-center q-gutter-md no-wrap">
 
-              <q-btn
-                v-for="option in dateRangeOptions"
-                :key="option.value"
-                @click="handleDateRangeClick(option.value)"
-                rounded
-                unelevated
-                padding="8px 12px"
-                :color="isActive(option.value) ? 'primary' : ''"
-                :text-color="!isActive(option.value) && !$q.dark.isActive ? 'grey-10' : 'white'"
-                class="text-on-dark text-body2 bordered-btn"
-                :class="{ 'bordered-btn': !isActive(option.value) }"
-                style="min-width: 80px;"
-              >
-                <span>{{ option.label }}</span>
-              </q-btn>
-
-            <!-- <q-btn
-              rounded
-              unelevated
-              padding="8px 12px"
-              :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
-              class="text-on-dark text-body2"
-              :class="!activeBtn ? 'text-on-dark bordered-btn' : ''"
-              @click="makeBtnActive"
-              style="min-width: 60px;"
-            >
-              <span>{{ $t("shared.labels.all") }}</span>
-            </q-btn>
-
             <q-btn
+              v-for="option in dateRangeOptions"
+              :key="option.value"
+              @click="handleDateRangeClick(option.value)"
               rounded
               unelevated
               padding="8px 12px"
-              :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
-              class="text-on-dark text-body2"
-              :class="!activeBtn ? 'bordered-btn' : ''"
-              @click="makeBtnActive"
-              style="min-width: 60px;"
-            >
-              <span>{{ $t("shared.labels.today") }}</span>
-            </q-btn>
-
-            <q-btn
-              rounded
-              unelevated
-              padding="8px 12px"
-              :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
-              class="text-on-dark text-body2"
-              :class="!activeBtn ? 'bordered-btn' : ''"
-              @click="makeBtnActive"
+              :color="isActive(option.value) ? 'primary' : ''"
+              :text-color="!isActive(option.value) && !$q.dark.isActive ? 'grey-10' : 'white'"
+              class="text-on-dark text-body2 bordered-btn"
+              :class="{ 'bordered-btn': !isActive(option.value) }"
               style="min-width: 80px;"
             >
-              <span>{{ $t("shared.labels.thisWeek") }}</span>
+              <span>{{ option.label }}</span>
             </q-btn>
-
-            <q-btn
-              rounded
-              unelevated
-              padding="8px 12px"
-              :color="activeBtn ? 'primary' : ''"
-              :text-color="!activeBtn && !$q.dark.isActive ? 'grey-10' : 'white'"
-              class="text-on-dark text-body2"
-              :class="!activeBtn ? 'bordered-btn' : ''"
-              @click="makeBtnActive"
-              style="min-width: 70px;"
-            >
-              <span>{{ $t("shared.labels.thisMonth") }}</span>
-            </q-btn> -->
 
             <q-btn
               rounded
@@ -125,11 +68,20 @@
       <q-scroll-area
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
-        style="height: calc(100vh - 340px)"
+        style="height:calc(100vh - 340px);"
       >
-        <div class="column q-col-gutter-md">
+        <div class="column q-col-gutter-lg">
+
+          <div class="q-pl-none q-ml-md">
+            <q-checkbox
+              class="text-body2 q-mb-md"
+              v-model="searchModel.waitToSendTax"
+              :label='$t("shared.labels.waitToSendTax")'
+            />
+          </div>
 
           <div class="row q-col-gutter-sm">
+
             <div class="col">
               <q-item-label
                 caption
@@ -184,14 +136,7 @@
             >
               قرارداد
             </q-item-label>
-            <q-input
-              outlined
-              dense
-            >
-              <template #append>
-                <q-icon name="expand_more" />
-              </template>
-            </q-input>
+            <contract-lookup />
           </div>
 
           <div>
@@ -202,46 +147,30 @@
               بازاریاب
             </q-item-label>
             <q-input
+              readonly
               outlined
               dense
+              v-model="searchModel.customerName"
+              @click="showContact = true"
             >
+
               <template #append>
-                <q-icon name="expand_more" />
+                <q-icon
+                  @click="showContact = true"
+                  name="o_expand_more"
+                />
               </template>
+
+
             </q-input>
           </div>
 
-          <div class="row q-col-gutter-sm">
-            <div class="col">
-              <q-item-label
-                caption
-                class="q-mb-sm"
-              >
-                نوع
-              </q-item-label>
-              <q-input
-                outlined
-                dense
-              />
-            </div>
-            <div class="col">
-              <q-item-label
-                caption
-                class="q-mb-sm"
-              >
-                وضعیت
-              </q-item-label>
-              <q-input
-                outlined
-                dense
-              >
-                <template #append>
-                  <q-icon name="expand_more" />
-                </template>
-              </q-input>
-            </div>
-
-
+          <div>
+            <q-item-label
+              caption
+              class="q-mb-sm"
+            >نوع فروش</q-item-label>
+            <sale-type-lookup />
           </div>
 
           <div>
@@ -252,12 +181,21 @@
               کالا و خدمات
             </q-item-label>
             <q-input
+              readonly
               outlined
               dense
+              v-model="searchModel.productName"
+              @click="showProduct = true"
             >
+
               <template #append>
-                <q-icon name="expand_more" />
+                <q-icon
+                  @click="showProduct = true"
+                  name="o_expand_more"
+                />
               </template>
+
+
             </q-input>
           </div>
 
@@ -266,12 +204,25 @@
               caption
               class="q-mb-sm"
             >
-              مخاطب
+              مشتری
             </q-item-label>
             <q-input
+              readonly
               outlined
               dense
-            />
+              v-model="searchModel.customerName"
+              @click="showContact = true"
+            >
+
+              <template #append>
+                <q-icon
+                  @click="showContact = true"
+                  name="o_expand_more"
+                />
+              </template>
+
+
+            </q-input>
           </div>
 
           <div>
@@ -281,10 +232,7 @@
             >
               شرح
             </q-item-label>
-            <custom-input
-              v-model="searchModel.comment"
-              :placeholder='$t("shared.labels.comment")'
-            />
+            <custom-input v-model="searchModel.comment" />
           </div>
 
         </div>
@@ -387,6 +335,32 @@
     </q-card>
 
   </q-dialog>
+
+  <q-dialog
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down"
+    v-model="showContact"
+  >
+    <q-card>
+      <q-card-section>
+        <contact-lookup />
+      </q-card-section>
+    </q-card>
+  </q-dialog>
+
+  <q-dialog
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down"
+    v-model="showProduct"
+  >
+    <q-card>
+      <q-card-section>
+        <product-lookup />
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
@@ -395,7 +369,11 @@ import { dateRange } from "src/constants"
 import { helper } from "src/helpers"
 import { useI18n } from 'vue-i18n';
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
+import ContractLookup from "src/components/shared/Lookups/ContractLookup.vue"
+import SaleTypeLookup from "src/components/shared/Lookups/SaleTypeLookup.vue"
 import customInput from "src/components/shared/Forms/CustomInput.vue"
+import ContactLookup from 'src/components/shared/Lookups/MobileContactLookup.vue';
+import ProductLookup from 'src/components/shared/Lookups/MobileProductLookup.vue';
 
 const { t } = useI18n();
 
@@ -406,8 +384,9 @@ const props = defineProps({
 const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange))
 
 const group = ref([])
-
 const dialog = ref(false)
+const showContact = ref(false)
+const showProduct = ref(false)
 
 const options = [
   { label: 'دارای مانده', value: '1', color: 'warning' },

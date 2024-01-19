@@ -13,7 +13,7 @@ const state = {
 
 const pagination = ref({
     currentPage: 1,
-    pageSize: 7,
+    pageSize: 10,
     sortColumn: "name",
     sortOrder: 1,
     totalItems: 0,

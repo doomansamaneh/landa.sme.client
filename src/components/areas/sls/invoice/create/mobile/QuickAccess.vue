@@ -171,7 +171,6 @@
   </q-card>
 </template>
 
-
 <script setup>
 import { ref, computed, onMounted } from "vue"
 import { helper } from "src/helpers";
