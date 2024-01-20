@@ -40,10 +40,10 @@
         unelevated
       >
         <q-icon
-          name="o_add"
+          name="o_edit"
           class="q-mr-xs"
         />
-        {{ $t("shared.labels.create") }}
+        {{ $t("shared.labels.edit") }}
       </q-btn>
 
       <q-btn
@@ -153,7 +153,7 @@
       </q-btn>
     </template>
   </tool-bar>
-  <div class="row q-col-gutter-xl q-mt-sm">
+  <div class="row q-col-gutter-lg q-mt-lg">
     <div class="col-md col-sm-12 col-xs-12">
       <q-card class="bordered no-shadow">
         <q-card-section>
@@ -201,166 +201,194 @@
 
         </q-card-section>
         <q-separator inset />
-        <q-card-section>
+        <q-card-section class="q-pb-none">
 
-          <div class="row q-col-gutter-lg">
-            <div
-              class="col-md col-sm col-xs-12"
-              :class="$q.screen.lt.sm ? 'text-center' : ''"
-            >
-              <div class="text-weight-bold q-mb-sm">
-                {{ $t("page.payment-detail.seller") }}
-                <span class="text-weight-thin">حسابداری آنلاین لاندا</span>
-              </div>
-              <div>
-                <span class="line-height-xs">شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
-                  زیتون، واحد 105</span>
-                <div class="q-pt-xs">
-                  <q-icon
-                    name="phone"
-                    class="dark-2 q-pr-xs"
-                  />88944338
+          <div class="column items-center">
+            <div class="row q-col-gutter-lg">
+              <div
+                class="col-md col-sm col-xs-12 text-body3"
+                :class="$q.screen.lt.sm ? 'text-center' : ''"
+              >
+                <div class="text-weight-bold q-mb-sm">
+                  {{ $t("page.payment-detail.seller") }}
+                  <span class="text-weight-thin">حسابداری آنلاین لاندا</span>
                 </div>
-              </div>
+                <div>
+                  <span class="line-height-xs">شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
+                    زیتون، واحد 105</span>
+                  <div class="q-pt-xs">
+                    <q-icon
+                      name="phone"
+                      class="dark-2 q-pr-xs"
+                    />88944338
+                  </div>
+                </div>
 
-            </div>
-            <div
-              class="col-md col-sm col-xs-12"
-              :class="$q.screen.lt.sm ? 'text-center' : ''"
-            >
-              <div class="text-weight-bold q-mb-sm">
-                {{ $t("page.payment-detail.customer") }}
-                <span class="text-weight-light">خشایار شمالی</span>
               </div>
-              <div>
-                <span class="line-height-xs">شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
-                  خیابان عنایتی، کوچه محمدی، پلاک 22</span>
-                <div class="q-pt-xs">
-                  <q-icon
-                    name="phone"
-                    class="dark-2 q-pr-xs"
-                  />
-                  021-55511102
+              <div
+                class="col-md col-sm col-xs-12 text-body3"
+                :class="$q.screen.lt.sm ? 'text-center' : ''"
+              >
+                <div class="text-weight-bold q-mb-sm">
+                  {{ $t("page.payment-detail.customer") }}
+                  <span class="text-weight-light">خشایار شمالی</span>
+                </div>
+                <div>
+                  <span class="line-height-xs">شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
+                    خیابان عنایتی، کوچه محمدی، پلاک 22</span>
+                  <div class="q-pt-xs">
+                    <q-icon
+                      name="phone"
+                      class="dark-2 q-pr-xs"
+                    />
+                    021-55511102
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
         </q-card-section>
-        <q-card-section class="q-pt-none">
+        <q-card-section>
 
-          <table class="invoice-preview-table text-caption q-mt-md">
-            <thead class="text-left">
-              <tr>
-                <th style="width:1px">
-                  <span class="">{{ $t("page.payment-detail.row") }}</span>
-                </th>
-                <th>
-                  <span class="">کالا/خدمت</span>
-                </th>
-                <th>
-                  <span class="">{{ $t("page.payment-detail.amount") }}</span>
-                </th>
-                <th>
-                  <span class="">{{ $t("page.payment-detail.unit") }}</span>
-                </th>
-                <th>
-                  <span class="">{{ $t("page.payment-detail.unit-price") }}</span>
-                </th>
-                <th>
-                  <span class="">{{ $t("page.payment-detail.total") }}</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class=""><span class="">1</span></td>
-                <td>
-                  <span class="">
-                    طرح 1: (حسابداری، خرید و فروش، دریافت و پرداخت)
-                  </span>
-                </td>
-                <td><span class="">1000</span></td>
-                <td><span class="">دستگاه</span></td>
-                <td><span class="">490,000</span></td>
-                <td><span class="">500,000</span></td>
-              </tr>
-              <tr>
-                <td class="q-py-sm"><span class="">2</span></td>
-                <td>
-                  <div class="ellipsis-2-lines">
-                    <div class="custom-ellipsis">
-                      <span>
-                        طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-                        دستمزد)
-                      </span>
+          <q-scroll-area
+            style="height: 100vh;"
+            class="full-width"
+            :thumb-style="{ opacity: 0 }"
+            :bar-style="{ opacity: 0 }"
+          >
+            <table class="overflow-hidden invoice-preview-table text-caption">
+              <thead class="text-left">
+                <tr>
+                  <th>
+                    <div class="">{{ $t("page.payment-detail.row") }}</div>
+                  </th>
+                  <th>
+                    <span>کالا/خدمت</span>
+                  </th>
+                  <th>
+                    <div class="">{{ $t("page.payment-detail.amount") }}</div>
+                  </th>
+                  <th>
+                    <div class="">{{ $t("page.payment-detail.unit") }}</div>
+                  </th>
+                  <th>
+                    <div style="width: 70px;">{{ $t("page.payment-detail.unit-price") }}</div>
+                  </th>
+                  <th>
+                    <div class="">{{ $t("page.payment-detail.total") }}</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class=""><span class="">1</span></td>
+                  <td>
+                    <div
+                      :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'"
+                      class="ellipsis-2-lines"
+                    >
+                      <div>
+                        <span>
+                          طرح 1: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
+                          دستمزد)
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td><span class="">1.5</span></td>
-                <td><span class="">ماه</span></td>
-                <td><span class="">500,000</span></td>
-                <td><span class="">750,000</span></td>
-              </tr>
-              <tr>
-                <td
-                  class="text-right"
-                  colspan="5"
-                >
-                  <span class="text-bold">{{ $t("page.payment-detail.sub-total") }}</span>
-                </td>
-                <td class="">
-                  <span class="">10,750,000</span>
-                </td>
-              </tr>
-              <tr>
-                <td
-                  class="text-right"
-                  colspan="5"
-                >
-                  <span class="text-bold">تخفیف:</span>
-                </td>
-                <td><span class="">967,500</span></td>
-              </tr>
-              <tr>
-                <td
-                  class="text-right"
-                  colspan="5"
-                >
-                  <span class="q-pl-xs text-bold">
-                    جمع کل:
-                  </span>
-                  <span class="">
-                    <span class="">
-                      (یازده میلیون و هفتصد و هفده هزار و پانصد <span class="text-bold">{{ $t("shared.labels.rial")
-                      }}</span>)
+                  </td>
+                  <td>
+                    <div>1000</div>
+                  </td>
+                  <td>
+                    <div>دستگاه</div>
+                  </td>
+                  <td>
+                    <div>490,000</div>
+                  </td>
+                  <td>
+                    <div>500,000</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="q-py-sm"><span class="">2</span></td>
+                  <td>
+                    <div
+                      :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'"
+                      class="ellipsis-2-lines"
+                    >
+                      <div>
+                        <span>
+                          طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
+                          دستمزد)
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="">1.5</span></td>
+                  <td><span class="">ماه</span></td>
+                  <td><span class="">500,000</span></td>
+                  <td><span class="">750,000</span></td>
+                </tr>
+                <tr>
+                  <td
+                    class="text-right"
+                    colspan="5"
+                  >
+                    <span class="text-bold">{{ $t("page.payment-detail.sub-total") }}</span>
+                  </td>
+                  <td class="">
+                    <span class="">10,750,000</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td
+                    class="text-right"
+                    colspan="5"
+                  >
+                    <span class="text-bold">تخفیف:</span>
+                  </td>
+                  <td><span class="">967,500</span></td>
+                </tr>
+                <tr>
+                  <td
+                    class="text-right"
+                    colspan="5"
+                  >
+                    <span class="q-pl-xs text-bold">
+                      جمع کل:
                     </span>
-                  </span>
+                    <span class="">
+                      <span class="">
+                        (یازده میلیون و هفتصد و هفده هزار و پانصد <span class="text-bold">{{ $t("shared.labels.rial")
+                        }}</span>)
+                      </span>
+                    </span>
+                  </td>
+                  <td><span class="">11,717,500</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="text-caption">
+              <tr>
+                <td colspan="6">
+                  <span class="text-bold">توضیحات:</span>
                 </td>
-                <td><span class="">11,717,500</span></td>
               </tr>
-            </tbody>
-          </table>
-          <table class="text-caption">
-            <tr>
-              <td colspan="6">
-                <span class="text-bold">توضیحات:</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="sign-place">
-                <span> مهر و امضای فروشنده</span>
-              </td>
-              <td class="sign-place">
-                <span>مهر و امضای خریدار</span>
-              </td>
-            </tr>
-          </table>
+              <tr>
+                <td class="sign-place">
+                  <span> مهر و امضای فروشنده</span>
+                </td>
+                <td class="sign-place">
+                  <span>مهر و امضای خریدار</span>
+                </td>
+              </tr>
+            </table>
+          </q-scroll-area>
 
         </q-card-section>
       </q-card>
     </div>
-    <div class="col-md-3 col-sm-12 col-xs-12">
+    <div class="col-md-4 col-sm-12 col-xs-12">
       <q-card class="bordered no-shadow">
 
         <q-card-section>
@@ -500,7 +528,7 @@
               </div>
 
               <div class="row text-body3 q-gutter-x-sm">
-                <div class="col-7 flex ">جمع کل:</div>
+                <div class="col-7 flex">جمع کل:</div>
                 <div class="col text-bold">3,000,000</div>
               </div>
 
@@ -825,7 +853,7 @@ const showCustomerDetail = () => {
 
 .sign-place {
   width: 50%;
-  padding-bottom: 150px;
+  padding-bottom: 120px;
 }
 
 table,
@@ -842,4 +870,5 @@ table {
 th,
 td {
   padding: 24px 8px;
-}</style>
+}
+</style>

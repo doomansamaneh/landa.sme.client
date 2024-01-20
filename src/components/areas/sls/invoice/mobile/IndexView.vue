@@ -190,9 +190,9 @@
     :offset="[18, 18]"
   >
     <q-btn
-      :round="!showIcon"
-      :rounded="showIcon"
-      :padding="showIcon ? '10px 20px' : '10px'"
+      v-if="showCreate"
+      rounded
+      padding="10px 20px"
       to="/sls/invoice/create"
       dense
       color="primary"
@@ -203,7 +203,7 @@
           name="o_add"
           size="sm"
         />
-        <span v-if="showIcon">
+        <span>
           {{ $t("shared.labels.create") }}
         </span>
       </div>
@@ -386,7 +386,7 @@ const invoiceTable = ref(null)
 const tableStore = computed(() => invoiceTable.value?.tableStore)
 
 const dialog = ref(false)
-const showIcon = ref(true)
+const showCreate = ref(true)
 const advancedSearch = ref(null)
 let previousScrollPosition = 0
 
@@ -421,7 +421,7 @@ async function applySearch(model) {
 
 const handleScroll = () => {
   const currentPosition = window.pageYOffset || document.documentElement.scrollTop;
-  showIcon.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
+  showCreate.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
   previousScrollPosition = currentPosition;
 };
 

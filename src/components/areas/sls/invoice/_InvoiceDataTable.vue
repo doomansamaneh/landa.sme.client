@@ -77,6 +77,7 @@
       <div>
         <h4>{{ item.no }}</h4>
         <pre>{{ item }}</pre>
+        <invoice-preview />
       </div>
     </template>
 
@@ -118,6 +119,8 @@ import { helper } from "src/helpers"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
 import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
+import InvoicePreview from "src/components/areas/sls/invoice/InvoicePreview.vue"
+
 
 const props = defineProps({
   dataSource: String,
