@@ -48,52 +48,65 @@
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
       >
-        <div class="q-gutter-y-md q-py-sm">
-          <q-list>
-            <q-item
-              v-for="(row, index) in productStore.rows.value"
-              :key="index"
-              clickable
-              v-close-popup
-              class="no-padding border-radius-xs text-on-dark"
+        <q-item
+          v-for="(row, index) in productStore.rows.value"
+          :key="index"
+          clickable
+          v-close-popup
+          class="no-padding border-radius-xs text-on-dark"
+        >
+          <div class="row q-gutter-x-sm items-center q-my-sm">
+            <q-avatar
+              class="border-radius-sm"
+              square
+              v-if="row.picture"
+              color="primary"
+              text-color="white"
+              size="56px"
             >
-              <div class="row q-gutter-x-sm items-center q-my-sm">
-                <q-avatar
-                  class="border-radius-xs"
-                  square
-                  v-if="row.picture"
-                  color="primary"
-                  text-color="white"
-                  size="58px"
-                >
-                  <img :src="row.picture">
-                </q-avatar>
+              <img :src="row.picture">
+            </q-avatar>
 
-                <q-avatar
-                  class="border-radius-xs"
-                  square
-                  size="58px"
-                  color="primary"
-                  text-color="white"
-                  v-else
-                >
-                  <div class="char text-body1 text-bold">
-                    {{ helper.getFirstChar(row.title) }}
-                  </div>
-                </q-avatar>
+            <q-avatar
+              class="border-radius-sm"
+              square
+              size="56px"
+              text-color="white"
+              :style="{ backgroundColor: helper.generateDarkAvatarColor(row.title) }"
+              v-else
+            >
+              <div class="char text-body1 text-bold">
+                {{ helper.getFirstChar(row.title) }}
               </div>
-              <q-item-section class="q-pl-md">
-                <q-item-label class="text-caption">{{ row.title }}</q-item-label>
-                <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">موجودی: </span>{{
-                  row.stock }}</q-item-label>
-                <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">قیمت فروش: </span>{{
-                  row.price.toLocaleString() }}</q-item-label>
-              </q-item-section>
+            </q-avatar>
+          </div>
+          <q-item-section class="q-pl-md">
+            <q-item-label class="text-caption">{{ row.title }}</q-item-label>
+            <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">موجودی: </span>{{
+              row.stock }}</q-item-label>
+            <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">قیمت فروش: </span>{{
+              row.price.toLocaleString() }}</q-item-label>
+          </q-item-section>
 
-            </q-item>
-          </q-list>
+        </q-item>
+
+
+        <div
+          class="row justify-center"
+          v-if="hasMoreData"
+        >
+          <q-btn
+            rounded
+            unelevated
+            @click="gotoNext"
+            class="full-width primary-shadow q-ma-lg bg-primary text-white"
+          >
+            <span class="text-body3">بارگزاری بیشتر</span>
+          </q-btn>
         </div>
+
       </q-scroll-area>
+
 
     </q-card-section>
   </q-card>

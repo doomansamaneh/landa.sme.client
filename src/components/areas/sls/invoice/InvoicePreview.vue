@@ -184,7 +184,7 @@
                   :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
                 >
                   <span>{{ $t("page.payment-detail.invoice-date") }}</span>
-                  1401/02/09
+                  {{ item?.dateString }}
                 </div>
                 <div
                   class="row items-center"
@@ -193,7 +193,7 @@
                   <span>
                     {{ $t("page.payment-detail.invoice-number") }}
                   </span>
-                  20108
+                  {{ item?.no }}
                 </div>
               </div>
             </div>
@@ -203,7 +203,7 @@
         <q-separator inset />
         <q-card-section class="q-pb-none">
 
-          <div class="column items-center">
+          <div class="column">
             <div class="row q-col-gutter-lg">
               <div
                 class="col-md col-sm col-xs-12 text-body3"
@@ -231,17 +231,16 @@
               >
                 <div class="text-weight-bold q-mb-sm">
                   {{ $t("page.payment-detail.customer") }}
-                  <span class="text-weight-light">خشایار شمالی</span>
+                  <span class="text-weight-light">{{ item?.customerName }}</span>
                 </div>
                 <div>
-                  <span class="line-height-xs">شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
-                    خیابان عنایتی، کوچه محمدی، پلاک 22</span>
+                  <span class="line-height-xs">-</span>
                   <div class="q-pt-xs">
                     <q-icon
                       name="phone"
                       class="dark-2 q-pr-xs"
                     />
-                    021-55511102
+                    -
                   </div>
                 </div>
               </div>
@@ -290,44 +289,23 @@
                     >
                       <div>
                         <span>
-                          طرح 1: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-                          دستمزد)
+                          {{ item?.subject }}
                         </span>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <div>1000</div>
+                    <div>{{ item?.amount}}</div>
                   </td>
                   <td>
                     <div>دستگاه</div>
                   </td>
                   <td>
-                    <div>490,000</div>
+                    <div>{{ item?.amount.toLocaleString() }}</div>
                   </td>
                   <td>
-                    <div>500,000</div>
+                    <div>{{ item?.payedAmount.toLocaleString() }}</div>
                   </td>
-                </tr>
-                <tr>
-                  <td class="q-py-sm"><span class="">2</span></td>
-                  <td>
-                    <div
-                      :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'"
-                      class="ellipsis-2-lines"
-                    >
-                      <div>
-                        <span>
-                          طرح 2: (حسابداری، خرید و فروش، دریافت و پرداخت، حقوق و
-                          دستمزد)
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  <td><span class="">1.5</span></td>
-                  <td><span class="">ماه</span></td>
-                  <td><span class="">500,000</span></td>
-                  <td><span class="">750,000</span></td>
                 </tr>
                 <tr>
                   <td
@@ -347,7 +325,7 @@
                   >
                     <span class="text-bold">تخفیف:</span>
                   </td>
-                  <td><span class="">967,500</span></td>
+                  <td><span class="">{{ item?.discountAmount }}</span></td>
                 </tr>
                 <tr>
                   <td
@@ -399,12 +377,12 @@
               <a
                 href="#"
                 class="link text-body3"
-              >خشایار شمالی</a>
+              >{{ item?.customerName }}</a>
             </div>
 
-            <div class="column q-gutter-y-xs">
+            <div class="column q-gutter-y-xs" v-if="item?.contractTitle">
               <span class="text-caption text-bold">قرارداد</span>
-              <span class="text-body3">1818 - موز</span>
+              <span class="text-body3">{{ item?.contractTitle }}</span>
             </div>
 
             <div class="column q-gutter-y-xs">
@@ -788,6 +766,10 @@ import DeleteAlert from "/src/components/management/profile/DeleteAlert.vue"
 import { useQuasar } from "quasar"
 
 const $q = useQuasar()
+
+const props = defineProps({
+  item: Array
+})
 
 const customerDetail = ref(false)
 const tab = ref("main-info")

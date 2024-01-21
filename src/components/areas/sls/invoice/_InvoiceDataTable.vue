@@ -74,10 +74,8 @@
       <q-badge>{{ item.statusTitle }}</q-badge>
     </template>
     <template #detail="{ item }">
-      <div>
-        <h4>{{ item.no }}</h4>
-        <pre>{{ item }}</pre>
-        <invoice-preview />
+      <div class="q-pa-md">
+        <invoice-preview :item="item" />
       </div>
     </template>
 
@@ -112,7 +110,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { statusOptions } from "src/constants"
 import { helper } from "src/helpers"
 
@@ -121,11 +119,10 @@ import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
 import InvoicePreview from "src/components/areas/sls/invoice/InvoicePreview.vue"
 
-
 const props = defineProps({
   dataSource: String,
   columns: Array,
-  gridStore: Object
+  gridStore: Object,
 })
 
 const dataTable = ref(null)

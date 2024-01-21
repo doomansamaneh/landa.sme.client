@@ -52,27 +52,27 @@
           :key="index"
           clickable
           v-close-popup
-          class="no-padding text-on-dark"
+          class="no-padding border-radius-xs text-on-dark"
         >
-          <div class="row q-gutter-x-md items-center q-my-xs">
+          <div class="row q-gutter-x-sm items-center q-my-sm">
             <q-item-section avatar>
               <q-avatar
                 v-if="row.avatar"
                 color="primary"
                 text-color="white"
-                size="52px"
+                size="56px"
                 square
-                class="border-radius-xs"
+                class="border-radius-sm"
               >
                 <img :src="row.avatar">
               </q-avatar>
 
               <q-avatar
-                size="52px"
-                color="primary"
+                size="56px"
                 text-color="white"
                 square
-                class="primary-shadow border-radius-xs"
+                class="border-radius-sm"
+                :style="{ backgroundColor: helper.generateDarkAvatarColor(row.name) }"
                 v-else
               >
                 <div class="char text-body1 text-bold">
@@ -83,7 +83,7 @@
 
             <q-item-section>
               <q-item-label
-                class="ellipsis text-on-dark text-caption text-bold q-py-xs"
+                class="ellipsis text-on-dark text-caption text-bold"
                 style="width:200px"
               >
                 {{ row.code }} {{ row.name }}
@@ -101,32 +101,34 @@
                 />
                 {{ row.locationName }} {{ row.address }}
               </q-item-label>
-              <q-item-label
-                caption
-                class="flex justify-end q-gutter-x-xs rtl"
-                v-if="row.phoneNo"
-              >
-                {{ helper.separatePhoneNumbers(row.phoneNo) }}
-                <q-icon
-                  name="o_phone"
-                  class="q-mr-xs"
-                  color="primary"
-                  size="13px"
-                />
-              </q-item-label>
-              <q-item-label
-                caption
-                class="flex justify-end q-gutter-x-xs rtl"
-                v-if="row.mobileNo"
-              >
-                {{ helper.separatePhoneNumbers(row.mobileNo) }}
-                <q-icon
-                  name="o_phone_android"
-                  class="q-mr-xs"
-                  color="primary"
-                  size="13px"
-                />
-              </q-item-label>
+              <div class="row items-center">
+                <q-item-label
+                  caption
+                  class="flex rtl"
+                  v-if="row.phoneNo"
+                >
+                  {{ helper.separatePhoneNumbers(row.phoneNo) }}
+                  <q-icon
+                    name="o_phone"
+                    class="q-mr-xs"
+                    color="primary"
+                    size="13px"
+                  />
+                </q-item-label>
+                <q-item-label
+                  caption
+                  class="flex q-ml-xs rtl"
+                  v-if="row.mobileNo"
+                >
+                  {{ helper.separatePhoneNumbers(row.mobileNo) }}
+                  <q-icon
+                    name="o_phone_android"
+                    class="q-mr-xs"
+                    color="primary"
+                    size="13px"
+                  />
+                </q-item-label>
+              </div>
             </q-item-section>
           </div>
         </q-item>

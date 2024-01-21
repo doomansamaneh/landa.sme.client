@@ -95,13 +95,14 @@
           >
             <tr
               @click="setActiveRow(row)"
+              @dblclick="goToPreview(row)"
               :class="tableStore.getRowClass(row)"
             >
               <td
                 v-if="numbered"
                 class="dense"
               >
-                <small class="text-grey_">{{ tableStore.rowIndex(index) }}</small>
+                <small class="text-on-dark">{{ tableStore.rowIndex(index) }}</small>
               </td>
               <td
                 v-if="multiSelect"
@@ -226,10 +227,13 @@ import { useQuasar } from "quasar"
 import { useDataTable } from "src/composables/useDataTable"
 import customInput from "src/components/shared/Forms/CustomInput.vue"
 
+import { useRouter } from "vue-router"
+
 import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
 
 const $q = useQuasar()
+const router = useRouter()
 const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const props = defineProps({
@@ -303,6 +307,10 @@ const __containerClass = computed(() =>
 const containerClass = computed(() =>
   __containerClass.value + (tableStore.showLoader.value === true ? " q-table--loading" : "")
 )
+
+const goToPreview = (row) => {
+  router.push(`/sls/invoice/preview`)
+}
 
 defineExpose({
   tableStore
