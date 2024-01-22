@@ -309,7 +309,7 @@ const containerClass = computed(() =>
 )
 
 const goToPreview = (row) => {
-  router.push(`/sls/invoice/preview`)
+  router.push(`/sls/invoice/preview/${row.id}`)
 }
 
 defineExpose({
