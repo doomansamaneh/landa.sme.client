@@ -3,7 +3,6 @@ import { useQuasar } from "quasar"
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue"
 
 export function useFormActions(baseURL, model) {
-    const $q = useQuasar()
 
     async function getById(id) {
         if (id) {
@@ -17,6 +16,7 @@ export function useFormActions(baseURL, model) {
     }
 
     async function createOrEdit(action) {
+        if (action === "create") model.value.id = null
         await fetchWrapper
             .post(`${baseURL}/${action}`, model.value)
             .then((response) => {
@@ -31,7 +31,7 @@ export function useFormActions(baseURL, model) {
                 component: ConfirmDialog,
                 componentProps: {
                     title: 'Delete Confirm',
-                    message: `Are you sure to delete this entity....?`,
+                    message: `Are you sure to delete this entity...?`,
                     ok: `Yes, I'm sure`,
                 }
             }).onOk(async () => {
@@ -98,6 +98,7 @@ export function useFormActions(baseURL, model) {
         notify(data.message)
     }
 
+    const $q = useQuasar()
     function notify(message, type = 'positive') {
         $q.notify({
             type: type,

@@ -234,6 +234,15 @@
           <q-btn
             round
             class="text-on-dark text-caption"
+            :to='getCopyUrl(item)'
+            unelevated
+          >
+            <q-icon name="o_copy" />
+          </q-btn>
+
+          <q-btn
+            round
+            class="text-on-dark text-caption"
             unelevated
             @click="deleteRow(item)"
           >
@@ -325,6 +334,10 @@ const crudStore = useFormActions("cmn/productGroup")
 
 function getEditUrl(item) {
   return `/cmn/productGroup/edit/${item.id}`
+}
+
+function getCopyUrl(item) {
+  return `/cmn/productGroup/copy/${item.id}`
 }
 
 async function reloadData() {

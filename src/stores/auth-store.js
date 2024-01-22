@@ -6,15 +6,18 @@ export const useAuthStore = defineStore("auth", {
     user: JSON.parse(localStorage.getItem("user")),
     returnUrl: null,
     isLoggingIn: false,
+    captcha: null,
+    captchaToken: null,
   }),
 
   actions: {
-    async login(username, password) {
-
+    async login(username, password, captchaAnswer) {
       this.isLoggingIn = true
       const response = await fetchWrapper.post("account/login", {
         loginName: encryptor.encrypt(username),
-        password: encryptor.encrypt(password)
+        password: encryptor.encrypt(password),
+        captcha: captchaAnswer,
+        captchaToken: this.captchaToken.jwt
       }).finally(() => {
         this.isLoggingIn = false
       })
@@ -23,19 +26,31 @@ export const useAuthStore = defineStore("auth", {
       this.redirect(this.returnUrl || "/business")
     },
 
+    async getCaptcha() {
+      try {
+        const response = await fetchWrapper.get("captcha/getCaptcha");
+        this.captchaToken = response.data
+      } catch (error) {
+        console.error(error)
+      }
+    },
+
     setUser(response) {
       this.user = response.data.data
       // store user details and jwt in local storage to keep user logged in between page refreshes
       localStorage.setItem("user", JSON.stringify(this.user))
     },
+
     clearUser() {
       this.user = null
       localStorage.removeItem("user")
     },
+
     logout() {
       this.clearUser()
       this.redirect("/account/login")
     },
+
     redirect(url) {
       this.router.push(url)
     },

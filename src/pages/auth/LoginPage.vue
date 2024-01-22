@@ -4,8 +4,9 @@
       <q-card-section class="row justify-center items-center">
         <img
           src="/about-us-header.png"
-          class="full-width q-my-md"
+          class="logo full-width q-my-md"
         />
+
         <q-form
           class="login-form"
           @submit="authenticate"
@@ -27,9 +28,9 @@
               <div class="q-gutter-y-sm">
                 <q-item-label caption>{{ $t('login-page.placeholders.password') }}</q-item-label>
                 <q-input
+                  v-model="password"
                   hide-bottom-space
                   outlined
-                  v-model="password"
                   :type="isPwd ? 'password' : 'text'"
                   dense
                   required
@@ -53,8 +54,11 @@
               <q-item-label
                 caption
                 class="q-pb-sm"
-              >کد صحت سنجی</q-item-label>
+              >
+                کد صحت سنجی
+              </q-item-label>
               <q-input
+                v-model="captcha"
                 outlined
                 hide-bottom-space
                 dense
@@ -62,13 +66,10 @@
               />
             </div>
             <div class="col q-gutter-x-sm q-mt-lg">
-              <q-btn
-                unelevated
-                color="grey-6"
-                label="65 + 8"
-                dense
-                padding="4px 16px"
-                class="text-h6"
+              <img
+                v-if="authStore.captchaToken?.imageBase64"
+                :src="captchaSource"
+                alt="Captcha Image"
               />
               <q-btn
                 round
@@ -76,6 +77,7 @@
                 color="primary"
                 icon="refresh"
                 dense
+                @click="getCaptcha"
               />
             </div>
           </div>
@@ -116,20 +118,31 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useAuthStore } from "../../stores"
 
 const authStore = useAuthStore()
 
 const username = ref("")
 const password = ref("")
+const captcha = ref("")
 const isPwd = ref(true)
 
 async function authenticate() {
-  await authStore.login(username.value, password.value)
+  await authStore.login(username.value, password.value, captcha.value)
 }
 
 const isLoggingIn = computed(() => authStore.isLoggingIn)
+const captchaSource = computed(() => `data:image/jpeg;base64, ${authStore.captchaToken?.imageBase64}`)
+
+onMounted(() => {
+  getCaptcha()
+})
+
+async function getCaptcha() {
+  await authStore.getCaptcha()
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -151,7 +164,7 @@ const isLoggingIn = computed(() => authStore.isLoggingIn)
   color: #ffffff;
 }
 
-img {
+.logo {
   filter: brightness(0) invert(1);
 }
 </style>

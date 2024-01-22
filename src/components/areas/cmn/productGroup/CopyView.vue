@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="create"
-        title="ایجاد"
+        title="کپی"
     />
     <!-- <desktop v-if="$q.screen.gt.sm" />
     <mobile v-if="$q.screen.xs" /> -->

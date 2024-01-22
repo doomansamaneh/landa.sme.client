@@ -1,16 +1,12 @@
 <template>
     <tool-bar>
         <template #header>
-            <q-badge
-                v-if="tableStore?.pagination.value.totalItems > 0"
-                rounded
-                outline
-                :label="tableStore?.pagination.value.totalItems"
-                class="q-mr-sm bg-dark text-on-dark text-body2"
-            />
-            <span class="text-h6">ایجاد گروه کالا</span>
+            <span class="text-h6 q-mr-md">
+                {{ title }} /
+                گروه کالا
+            </span>
             <q-btn
-                padding="6px 12px"
+                padding="6px"
                 flat
                 @click="$router.go(-1)"
             >
@@ -104,7 +100,8 @@ import Actions from "src/components/shared/Forms/FormCardActions.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 
 const props = defineProps({
-    action: String
+    action: String,
+    title: String
 })
 const form = ref(null)
 const route = useRoute()

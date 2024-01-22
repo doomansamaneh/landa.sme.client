@@ -74,6 +74,10 @@ export default {
       path: "cmn/productGroup/edit/:id",
       component: () => import("src/components/areas/cmn/productGroup/Edit2View.vue"),
     },
+    {
+      path: "cmn/productGroup/copy/:id",
+      component: () => import("src/components/areas/cmn/productGroup/CopyView.vue"),
+    },
 
     {
       path: "cmn/product",
