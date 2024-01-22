@@ -39,7 +39,7 @@ export default {
       component: InvoiceIndexView,
     },
     {
-      path: "sls/invoice/preview",
+      path: "sls/invoice/preview/:id",
       component: InvoicePreview,
     },
     {
