@@ -1,4 +1,8 @@
 @mixin theme-light {
+  .main-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
   --q-primary: #{$primary};
   --q-secondary: #{$secondary};
   --q-accent: #{$accent};
@@ -36,4 +40,6 @@
   @include bar-chart-light();
   @include area-chart-light();
   @include bottom-navigation-light();
+  @include main-container-light();
+  @include breakpoints-light();
 }
