@@ -261,7 +261,7 @@
       "ok": "بسیار خوب",
       "true": "بله",
       "cancel": "انصراف",
-      "accept" : "تایید",
+      "accept": "تایید",
       "save": "ذخیره",
       "new": "جدید",
       "create": "ایجاد",
@@ -288,6 +288,12 @@
       "next": "پسین",
       "previous": "پیشین",
       "loadMore": "بارگزاری بیشتر"
+    },
+    "productType": {
+      "main": "اصلی",
+      "part": "قطعه",
+      "useable": "مصرفی",
+      "service": "خدمت/نرم افزار"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",

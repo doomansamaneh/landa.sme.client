@@ -113,7 +113,7 @@ import { useQuasar } from "quasar"
 import { useDataTable } from "src/composables/useDataTable"
 import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
-import customInput from "src/components/shared/Forms/CustomInput.vue"
+import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 
 const props = defineProps({
   dataSource: String,
@@ -125,9 +125,13 @@ const props = defineProps({
   rules: Array,
   placeholder: String
 })
+
+const selectedId = defineModel('selectedId')
+const selectedText = defineModel('selectedText')
+
 const $q = useQuasar()
-const selectedId = ref(null)
-const selectedText = ref("")
+// const selectedId = ref(null)
+// const selectedText = ref("")
 
 const store = {
   pagination: ref({

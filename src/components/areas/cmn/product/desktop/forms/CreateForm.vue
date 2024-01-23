@@ -1,16 +1,12 @@
 <template>
     <tool-bar>
         <template #header>
-            <q-badge
-                v-if="tableStore?.pagination.value.totalItems > 0"
-                rounded
-                outline
-                :label="tableStore?.pagination.value.totalItems"
-                class="q-mr-sm bg-dark text-on-dark text-body2"
-            />
-            <span class="text-h6">ایجاد کالا</span>
+            <span class="text-h6 q-mr-md">
+                {{ title }} /
+                کالا و خدمات
+            </span>
             <q-btn
-                padding="6px 12px"
+                padding="6px"
                 flat
                 @click="$router.go(-1)"
             >
@@ -60,25 +56,25 @@
                         caption
                         class="q-mb-sm"
                     >
-                        کد
+                        گروه کالا
                     </q-item-label>
-                    <q-input
-                        v-model="formStore.model.value.code"
-                        outlined
-                        lazy-rules
-                        :rules="[(val) => val !== null && val !== '']"
+                    <product-group-lookup
+                        v-model:selectedId="formStore.model.value.productGroupId"
+                        v-model:selectedText="formStore.model.value.productGroupTitle"
                     />
                 </div>
+
                 <div class="q-mt-md">
                     <q-item-label
                         caption
                         class="q-mb-sm"
                     >
-                        عنوان
+                        کد
                     </q-item-label>
                     <q-input
-                        v-model="formStore.model.value.title"
+                        v-model="formStore.model.value.code"
                         outlined
+                        dense
                         lazy-rules
                         :rules="[(val) => val !== null && val !== '']"
                     />
@@ -89,10 +85,136 @@
                         caption
                         class="q-mb-sm"
                     >
-                        گروه کالا
+                        بارکد
                     </q-item-label>
-                    <product-group-lookup />
+                    <q-input
+                        v-model="formStore.model.value.barcode"
+                        outlined
+                        dense
+                    />
                 </div>
+
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        شناسه مالیاتی
+                    </q-item-label>
+                    <q-input
+                        v-model="formStore.model.value.taxCode"
+                        outlined
+                        dense
+                    />
+                </div>
+
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        عنوان
+                    </q-item-label>
+                    <q-input
+                        v-model="formStore.model.value.title"
+                        outlined
+                        dense
+                        lazy-rules
+                        :rules="[(val) => val !== null && val !== '']"
+                    />
+                </div>
+
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        نوع
+                    </q-item-label>
+                    <q-select
+                        v-model="formStore.model.value.typeId"
+                        :options="helper.getEnumOptions(productType, 'productType')"
+                        emit-value
+                        map-options
+                        outlined
+                        dense
+                    />
+                </div>
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        واحد سنجش
+                    </q-item-label>
+                    <product-group-lookup
+                        v-model:selectedId="formStore.model.value.productUnitId"
+                        v-model:selectedText="formStore.model.value.productUnitTitle"
+                    />
+                </div>
+
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        قیمت خرید
+                    </q-item-label>
+                    <q-input
+                        v-model="formStore.model.value.purchasePrice"
+                        outlined
+                        dense
+                        lazy-rules
+                        :rules="[(val) => val !== null && val !== '']"
+                    />
+                </div>
+
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        قیمت فروش
+                    </q-item-label>
+                    <q-input
+                        v-model="formStore.model.value.price"
+                        outlined
+                        dense
+                        lazy-rules
+                        :rules="[(val) => val !== null && val !== '']"
+                    />
+                </div>
+
+                <div class="q-mt-md">
+                    <q-item-label
+                        caption
+                        class="q-mb-sm"
+                    >
+                        شرح
+                    </q-item-label>
+                    <q-input
+                        v-model="formStore.model.value.comment"
+                        outlined
+                        dense
+                        type="textarea"
+                        autogrow
+                    />
+                </div>
+
+                <div class="q-mt-md">
+                    <q-checkbox
+                        v-model="formStore.model.value.isForPurchase"
+                        label="برای خرید"
+                    />
+                </div>
+
+                <div class="q-mt-md">
+                    <q-checkbox
+                        v-model="formStore.model.value.isForSale"
+                        label="برای فروش"
+                    />
+                </div>
+
                 <div class="q-mt-md">
                     <q-checkbox
                         v-model="formStore.model.value.isActive"
@@ -107,16 +229,21 @@
 <script setup>
 import { onMounted, ref } from "vue"
 import { useRoute } from "vue-router"
+import { productType } from "src/constants"
+import { helper } from "src/helpers"
 import { useProductModel } from "../../../_composables/useProductModel"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
 import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue"
+import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue"
 import Actions from "src/components/shared/Forms/FormCardActions.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 
 const props = defineProps({
-    action: String
+    action: String,
+    title: String
 })
+
 const form = ref(null)
 const route = useRoute()
 const formStore = useProductModel()

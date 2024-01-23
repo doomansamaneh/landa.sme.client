@@ -83,8 +83,6 @@ import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
 import { useDataTable } from "src/composables/useDataTable"
 
-const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
-
 const props = defineProps({
   dataSource: String,
   sortColumn: String,
@@ -92,6 +90,8 @@ const props = defineProps({
   columns: Array,
   gridStore: Object
 })
+
+const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 

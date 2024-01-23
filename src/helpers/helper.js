@@ -2,12 +2,13 @@ import { useI18n } from "vue-i18n"
 import { exportFile, useQuasar } from "quasar"
 
 export const helper = {
-  getEnumOptions(obj) {
+  getEnumOptions(obj, prefix) {
     const { t } = useI18n()
     let list = []
     Object.keys(obj).forEach(key => {
-      const label = t(`shared.labels.${key}`)
-      list.push({ label: label, value: obj[key] })
+      let labelKey = `shared.labels.${key}`
+      if (prefix) labelKey = `shared.${prefix}.${key}`
+      list.push({ label: t(labelKey), value: obj[key] })
     })
     return list
   },

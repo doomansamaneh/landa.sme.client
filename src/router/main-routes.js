@@ -91,5 +91,9 @@ export default {
       path: "cmn/product/edit/:id",
       component: () => import("src/components/areas/cmn/product/Edit2View.vue"),
     },
+    {
+      path: "cmn/product/copy/:id",
+      component: () => import("src/components/areas/cmn/product/CopyView.vue"),
+    },
   ]
 }

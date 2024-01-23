@@ -1,6 +1,8 @@
 <template>
   <lookup-view
     dataSource="cmn/productGroup/getlookupData"
+    v-model:selectedId="selectedId"
+    v-model:selectedText="selectedText"
     orderByField="code"
     columns="code,title"
     textTemplate="{{ title }}"
@@ -59,6 +61,9 @@ import LookupView from "src/components/shared/DataTables/LookupView.vue"
 import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
 
 const lookup = ref(null)
+
+const selectedId = defineModel('selectedId')
+const selectedText = defineModel('selectedText')
 
 defineExpose({
   lookup

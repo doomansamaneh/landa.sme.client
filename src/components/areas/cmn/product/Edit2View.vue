@@ -1,5 +1,8 @@
 <template>
-    <desktop action="edit" />
+    <desktop
+        action="edit"
+        title="ویرایش"
+    />
     <!-- <desktop v-if="$q.screen.gt.sm" />
     <mobile v-if="$q.screen.xs" /> -->
 </template>

@@ -222,19 +222,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
+import { onMounted, computed } from "vue"
 import { useQuasar } from "quasar"
 import { useDataTable } from "src/composables/useDataTable"
-import customInput from "src/components/shared/Forms/CustomInput.vue"
-
 import { useRouter } from "vue-router"
 
+import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import PageBar from "./PageBar.vue"
 import NoDataFound from "./NoDataFound.vue"
-
-const $q = useQuasar()
-const router = useRouter()
-const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const props = defineProps({
   sortBy: String,
@@ -252,6 +247,10 @@ const props = defineProps({
   wrapCells: Boolean,
   gridStore: Object
 })
+
+const $q = useQuasar()
+const router = useRouter()
+const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 

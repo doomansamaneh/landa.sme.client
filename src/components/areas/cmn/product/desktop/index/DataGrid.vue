@@ -223,19 +223,30 @@
 
       <template #cell-actions="{ item }">
         <q-btn
-          class="text-white text-caption"
+          round
+          class="text-on-dark text-caption"
           :to='getEditUrl(item)'
           unelevated
         >
-          <q-icon name="edit" />
+          <q-icon name="o_edit" />
         </q-btn>
 
         <q-btn
-          class="text-white text-caption"
+          round
+          class="text-on-dark text-caption"
+          :to='getCopyUrl(item)'
+          unelevated
+        >
+          <q-icon name="o_copy" />
+        </q-btn>
+
+        <q-btn
+          round
+          class="text-on-dark text-caption"
           unelevated
           @click="deleteRow(item)"
         >
-          <q-icon name="delete" />
+          <q-icon name="o_delete" />
         </q-btn>
       </template>
 
@@ -259,6 +270,10 @@ const crudStore = useFormActions("cmn/product")
 
 function getEditUrl(item) {
   return `/cmn/product/edit/${item.id}`
+}
+
+function getCopyUrl(item) {
+  return `/cmn/product/copy/${item.id}`
 }
 
 async function reloadData() {

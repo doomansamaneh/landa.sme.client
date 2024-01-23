@@ -78,10 +78,10 @@
 <script setup>
 import { useDataTable } from "src/composables/useDataTable"
 
-const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
-
 const props = defineProps({
   title: String
 })
+
+const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 </script>

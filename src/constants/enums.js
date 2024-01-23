@@ -56,6 +56,13 @@ export const sortOrder = {
   descending: 2,
 }
 
+export const productType = {
+  main: 211,
+  part: 212,
+  useable: 213,
+  service: 214
+}
+
 export const cultures = [
   { code: "fa-IR", name: "فارسی", calendar: "persian", dir: "rtl", quasarLang: "fa-IR", flag: "" },
   { code: "ar", name: "العربیة", calendar: "hijri", dir: "rtl", quasarLang: "ar", flag: "" },
