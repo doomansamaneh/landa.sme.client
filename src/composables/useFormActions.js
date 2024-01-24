@@ -90,6 +90,22 @@ export function useFormActions(baseURL, model) {
         else notify("no row selected", 'negative')
     }
 
+    async function editBatch(idList, editBatchModel, callBack) {
+        if (validateIdList(idList)) {
+            await fetchWrapper
+                .post(`${baseURL}/editBatch`, {
+                    selectedIds: idList,
+                    model: Object.values(editBatchModel)
+                        .filter(item => item.isModified === true)
+                })
+                .then((response) => {
+                    notifyResponse(response.data)
+                    if (callBack) callBack()
+                })
+        }
+        else notify("no row selected", 'negative')
+    }
+
     function validateIdList(idList) {
         return idList && idList.length > 0
     }
@@ -109,6 +125,7 @@ export function useFormActions(baseURL, model) {
     return {
         getById,
         createOrEdit,
+        editBatch,
         deleteById,
         deleteBatch,
         activate,

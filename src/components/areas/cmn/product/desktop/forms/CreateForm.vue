@@ -71,10 +71,8 @@
                     >
                         کد
                     </q-item-label>
-                    <q-input
+                    <custom-input
                         v-model="formStore.model.value.code"
-                        outlined
-                        dense
                         lazy-rules
                         :rules="[(val) => val !== null && val !== '']"
                     />
@@ -87,11 +85,7 @@
                     >
                         بارکد
                     </q-item-label>
-                    <q-input
-                        v-model="formStore.model.value.barcode"
-                        outlined
-                        dense
-                    />
+                    <custom-input v-model="formStore.model.value.barcode" />
                 </div>
 
                 <div class="q-mt-md">
@@ -101,11 +95,7 @@
                     >
                         شناسه مالیاتی
                     </q-item-label>
-                    <q-input
-                        v-model="formStore.model.value.taxCode"
-                        outlined
-                        dense
-                    />
+                    <custom-input v-model="formStore.model.value.taxCode" />
                 </div>
 
                 <div class="q-mt-md">
@@ -115,10 +105,8 @@
                     >
                         عنوان
                     </q-item-label>
-                    <q-input
+                    <custom-input
                         v-model="formStore.model.value.title"
-                        outlined
-                        dense
                         lazy-rules
                         :rules="[(val) => val !== null && val !== '']"
                     />
@@ -131,13 +119,9 @@
                     >
                         نوع
                     </q-item-label>
-                    <q-select
+                    <custom-select
                         v-model="formStore.model.value.typeId"
                         :options="helper.getEnumOptions(productType, 'productType')"
-                        emit-value
-                        map-options
-                        outlined
-                        dense
                     />
                 </div>
                 <div class="q-mt-md">
@@ -147,7 +131,7 @@
                     >
                         واحد سنجش
                     </q-item-label>
-                    <product-group-lookup
+                    <product-unit-lookup
                         v-model:selectedId="formStore.model.value.productUnitId"
                         v-model:selectedText="formStore.model.value.productUnitTitle"
                     />
@@ -160,10 +144,8 @@
                     >
                         قیمت خرید
                     </q-item-label>
-                    <q-input
+                    <custom-input
                         v-model="formStore.model.value.purchasePrice"
-                        outlined
-                        dense
                         lazy-rules
                         :rules="[(val) => val !== null && val !== '']"
                     />
@@ -176,10 +158,8 @@
                     >
                         قیمت فروش
                     </q-item-label>
-                    <q-input
+                    <custom-input
                         v-model="formStore.model.value.price"
-                        outlined
-                        dense
                         lazy-rules
                         :rules="[(val) => val !== null && val !== '']"
                     />
@@ -192,10 +172,8 @@
                     >
                         شرح
                     </q-item-label>
-                    <q-input
+                    <custom-input
                         v-model="formStore.model.value.comment"
-                        outlined
-                        dense
                         type="textarea"
                         autogrow
                     />
@@ -234,14 +212,14 @@ import { helper } from "src/helpers"
 import { useProductModel } from "../../../_composables/useProductModel"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
+import CustomInput from "src/components/shared/Forms/CustomInput.vue"
+import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
 import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue"
 import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue"
-import Actions from "src/components/shared/Forms/FormCardActions.vue"
-import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 
 const props = defineProps({
     action: String,
-    title: String
+    title: String,
 })
 
 const form = ref(null)

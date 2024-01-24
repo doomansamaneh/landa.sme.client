@@ -39,6 +39,23 @@
           {{ $t("shared.labels.edit") }} ({{ tableStore?.activeRow?.value?.code }})
         </q-btn>
       </template>
+
+      <template v-if="selectedIds?.length > 0">
+        <q-btn
+          class="bordered-btn_bg-dark text-caption"
+          rounded
+          unelevated
+          no-caps
+          @click="editBatch"
+        >
+          <q-icon
+            name="o_edit"
+            class="q-mr-xs"
+          />
+          {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} rows)
+        </q-btn>
+      </template>
+
       <template v-if="selectedIds?.length > 0">
         <q-btn
           class="bordered-btn_bg-dark text-caption"
@@ -256,6 +273,7 @@
 
 <script setup>
 import { ref, computed } from "vue"
+import { useQuasar } from "quasar"
 import { isActiveOptions } from "src/constants"
 import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid"
 import { useFormActions } from "src/composables/useFormActions"
@@ -263,10 +281,12 @@ import { useFormActions } from "src/composables/useFormActions"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
 import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import EditBatchDialog from "../forms/EditBatchDialog.vue"
 
 const dataGrid = ref(null)
 const gridStore = useProductGrid()
 const crudStore = useFormActions("cmn/product")
+const $q = useQuasar()
 
 function getEditUrl(item) {
   return `/cmn/product/edit/${item.id}`
@@ -307,6 +327,17 @@ async function deactivate() {
     .then((response) => {
       reloadData()
     })
+}
+
+function editBatch() {
+  $q.dialog({
+    component: EditBatchDialog,
+    componentProps: {
+      selectedIds: selectedIds?.value,
+    }
+  }).onOk(async () => {
+    await reloadData()
+  })
 }
 
 async function exportAll() {

@@ -3,25 +3,24 @@
     v-model="value"
     outlined
     dense
-    :clearable="clearable"
     clear-icon="clear"
-    :label="label"
-    :placeholder="placeholder"
   />
 </template>
 
 <script setup>
 import { computed } from "vue";
 
-const props = defineProps(['modelValue', 'placeholder', 'label', 'displayFormat', 'clearable']);
-const emit = defineEmits(['update:modelValue']);
+//const props = defineProps(['modelValue', 'placeholder', 'label', 'displayFormat', 'clearable']);
+//const emit = defineEmits(['update:modelValue']);
+const props = defineProps(['displayFormat']);
+const value = defineModel('value')
 
-const value = computed({
-  get: () => formatValue(props.modelValue, props.displayFormat),
-  set: (newValue) => {
-    emit('update:modelValue', formatValue(newValue, props.displayFormat))
-  }
-})
+// const value = computed({
+//   get: () => formatValue(props.modelValue, props.displayFormat),
+//   set: (newValue) => {
+//     emit('update:modelValue', formatValue(newValue, props.displayFormat))
+//   }
+// })
 
 function formatValue(value, format) {
   // if (guard(value, format)) {

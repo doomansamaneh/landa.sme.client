@@ -44,6 +44,16 @@ const columns = ref([
         value: ""
     },
     {
+        name: "productGroupTitle",
+        field: "productGroupTitle",
+        sortable: true,
+        label: "گروه کالا",
+        style: "",
+        showFilter: true,
+        class: "text-left",
+        value: ""
+    },
+    {
         name: "isActive",
         field: "isActive",
         sortable: true,
