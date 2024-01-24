@@ -1,133 +1,181 @@
 <template>
   <q-page class="flex full-screen items-center justify-center">
     <div class="main-container">
-      <q-card class="login-card q-mb-xl border-radius-lg">
-        <q-card-section :class="$q.screen.gt.xs ? 'q-pa-xl' : 'q-pa-lg'">
-          <img
-            src="/about-us-header.png"
-            class="logo full-width q-my-md"
-          />
 
-          <q-form
-            class="login-form"
-            @submit="authenticate"
-          >
-            <div class="column q-gutter-md">
-              <div class="q-gutter-y-sm">
-                <q-item-label caption>{{ $t('login-page.placeholders.username') }}</q-item-label>
-                <q-input
-                  hide-bottom-space
-                  v-model="username"
-                  dense
-                  required
-                  lazy-rules
-                  outlined
-                  :rules="[(val) => val !== null && val !== '']"
-                />
-              </div>
-              <div class="col">
-                <div class="q-gutter-y-sm">
-                  <q-item-label caption>{{ $t('login-page.placeholders.password') }}</q-item-label>
-                  <q-input
-                    v-model="password"
-                    hide-bottom-space
-                    outlined
-                    :type="isPwd ? 'password' : 'text'"
-                    dense
-                    required
-                    lazy-rules
-                    :rules="[(val) => val !== null && val !== '']"
-                  >
-                    <template v-slot:append>
-                      <q-icon
-                        :name="isPwd ? 'visibility_off' : 'visibility'"
-                        size="xs"
-                        class="cursor-pointer"
-                        @click="isPwd = !isPwd"
-                      />
-                    </template>
-                  </q-input>
+      <q-card
+        class="bordered no-padding login-card"
+        :class="$q.screen.gt.xs ? 'border-radius-xl' : ''"
+        :style="$q.screen.lt.sm ? 'width:100vw;height:100vh' : ''"
+      >
+        <q-card-section horizontal>
+          <q-card-section class="login-card col-md-7 col-sm-12 col-xs-12">
+            <div class="column q-pa-lg">
+              <div class="q-mb-sm">
+                <div class="row items-center justify-between q-mb-lg">
+                  <div class="text-h5 no-letter-spacing text-weight-bold">ورود</div>
+                  <q-btn
+                    to="https://landa-sme.ir/account/register"
+                    color="primary"
+                    unelevated
+                    padding="8px 16px"
+                    class="border-radius-lg text-body1 no-letter-spacing signup"
+                  >ثبت‌نام</q-btn>
                 </div>
-              </div>
-            </div>
-
-            <div class="column">
-              <div class="row q-mt-lg items-center">
-
-                <q-item-label
-                  caption
-                  class="q-pb-sm"
-                >
-                  کد صحت سنجی
-                </q-item-label>
+                <div class="q-item__label--caption text-body1 line-height-sm no-letter-spacing q-mb-lg">نام‌کاربری و رمز
+                  عبور خود را
+                  وارد کنید، اگر رمز یا نام کاربری خود را فراموش کرده اید بر روی پیوندی به همین نام کلیک کنید.</div>
 
               </div>
-
-              <div class="row items-center q-col-gutter-md">
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                  <q-input
-                    v-model="captcha"
-                    outlined
-                    hide-bottom-space
-                    dense
-                    input-class="text-body1 text-bold"
-                  />
-                </div>
-                <div class="col-md col-sm-6 col-xs-12">
-                  <div class="row items-center q-gutter-md">
-                    <img
-                      v-if="authStore.captchaToken?.imageBase64"
-                      :src="captchaSource"
-                      alt="Captcha Image"
-                      style="height:40px"
-                      class="rounded-borders"
-                    />
-                    <q-btn
-                      round
-                      flat
-                      color="primary"
-                      icon="refresh"
+              <q-form
+                class="login-form"
+                @submit="authenticate"
+              >
+                <div class="column q-gutter-md text-on-dark">
+                  <div class="q-gutter-y-sm">
+                    <q-item-label caption>{{ $t('login-page.placeholders.username') }}</q-item-label>
+                    <q-input
+                      class="login"
+                      hide-bottom-space
+                      v-model="username"
                       dense
-                      @click="getCaptcha"
-                    />
+                      required
+                      lazy-rules
+                      outlined
+                      :rules="[(val) => val !== null && val !== '']"
+                    >
 
+                      <template v-slot:prepend>
+                        <q-icon name="o_mail" />
+                      </template>
 
+                    </q-input>
+                  </div>
+                  <div class="col">
+                    <div class="q-gutter-y-sm">
+                      <q-item-label caption>{{ $t('login-page.placeholders.password') }}</q-item-label>
+                      <q-input
+                        class="login"
+                        v-model="password"
+                        hide-bottom-space
+                        outlined
+                        :type="isPwd ? 'password' : 'text'"
+                        dense
+                        required
+                        lazy-rules
+                        :rules="[(val) => val !== null && val !== '']"
+                      >
+                        <template v-slot:append>
+                          <q-icon
+                            :name="isPwd ? 'visibility_off' : 'visibility'"
+                            size="xs"
+                            class="cursor-pointer"
+                            @click="isPwd = !isPwd"
+                          />
+                        </template>
+
+                        <template v-slot:prepend>
+                          <q-icon name="o_lock" />
+                        </template>
+                      </q-input>
+                    </div>
                   </div>
                 </div>
-              </div>
+
+                <div class="column">
+                  <div class="row q-mt-lg items-center">
+
+                    <q-item-label
+                      caption
+                      class="q-pb-sm"
+                    >
+                      کد صحت سنجی
+                    </q-item-label>
+
+                  </div>
+
+                  <div class="row items-center q-col-gutter-md">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                      <q-input
+                        v-model="captcha"
+                        outlined
+                        hide-bottom-space
+                        dense
+                        input-class="text-body1 text-bold"
+                        class="login"
+                      />
+                    </div>
+                    <div class="col-md col-sm-6 col-xs-12">
+                      <div class="row items-center q-gutter-md">
+                        <img
+                          v-if="authStore.captchaToken?.imageBase64"
+                          :src="captchaSource"
+                          alt="Captcha Image"
+                          style="height:40px"
+                          class="rounded-borders"
+                        />
+                        <q-btn
+                          round
+                          flat
+                          color="primary"
+                          icon="refresh"
+                          dense
+                          @click="getCaptcha"
+                        />
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row items-center q-mt-xl">
+                  <div class="col-md-5 col-sm-5 col-xs-12">
+                    <q-btn
+                      unelevated
+                      type="submit"
+                      color="primary"
+                      class="full-width text-body1 border-radius-lg"
+                      padding="16px 64px"
+                      :label="$t('login-page.buttons.login')"
+                      :disable="isLoggingIn"
+                    >
+                      <div
+                        class="q-pl-sm"
+                        v-if="isLoggingIn"
+                      >
+                        <q-spinner-pie
+                          class="white"
+                          size="xs"
+                        />
+                      </div>
+                    </q-btn>
+
+                  </div>
+                  <div class="col-md col-sm col-xs-12">
+                    <div
+                      class="row forgot-password"
+                      :class="$q.screen.lt.sm ? 'justify-center q-mt-md' : 'justify-end'"
+                    >
+                      <a
+                        href="https://landa-sme.ir/account/forgetpassword"
+                        class="text-primary text-weight-bold no-letter-spacing"
+                      >{{ $t("login-page.forgot-password") }}</a>
+                    </div>
+                  </div>
+                </div>
+              </q-form>
             </div>
+          </q-card-section>
 
-            <q-btn
-              unelevated
-              type="submit"
-              color="primary"
-              class="q-mt-xl full-width text-body1 text-weight-bold"
-              padding="10px 24px"
-              :label="$t('login-page.buttons.login')"
-              :disable="isLoggingIn"
-            >
-              <div
-                class="q-pl-sm"
-                v-if="isLoggingIn"
-              >
-                <q-spinner-pie
-                  class="white"
-                  size="xs"
-                />
-              </div>
-            </q-btn>
-
-          </q-form>
-        </q-card-section>
-        <q-card-section class="text-center">
-          <p class="forgot-password">
-            <a
-              href="https://landa-sme.ir/account/forgetpassword"
-              class="text-white"
-            >{{ $t("login-page.forgot-password") }}</a>
-          </p>
+          <q-card-section
+            v-if="$q.screen.gt.sm"
+            class="login-card-pic col-md col-sm-12 col-xs-12 q-pa-xl"
+          >
+            <boy-animation />
+          </q-card-section>
         </q-card-section>
       </q-card>
+
     </div>
   </q-page>
 </template>
@@ -135,6 +183,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue"
 import { useAuthStore } from "../../stores"
+import BoyAnimation from "src/assets/BoyAnimation.vue"
 
 const authStore = useAuthStore()
 
@@ -160,9 +209,18 @@ async function getCaptcha() {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .forgot-password a {
   text-decoration: none;
+}
+
+.login {
+  .q-field__control {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    outline: none;
+  }
 }
 
 .forgot-password a:hover {
@@ -172,10 +230,50 @@ async function getCaptcha() {
 .q-item__label--caption {
   font-size: 16px;
   letter-spacing: 0;
-  color: #ffffff;
+  color: #9a9a9a;
 }
 
 .logo {
   filter: brightness(0) invert(1);
 }
-</style>
+
+.signup {
+  animation: wiggle 2s linear infinite;
+}
+
+.signup:hover {
+  animation: none
+}
+
+@keyframes wiggle {
+
+  0%,
+  7% {
+    transform: rotateZ(0);
+  }
+
+  15% {
+    transform: rotateZ(-15deg);
+  }
+
+  20% {
+    transform: rotateZ(10deg);
+  }
+
+  25% {
+    transform: rotateZ(-10deg);
+  }
+
+  30% {
+    transform: rotateZ(6deg);
+  }
+
+  35% {
+    transform: rotateZ(-4deg);
+  }
+
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
+}</style>

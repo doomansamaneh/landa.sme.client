@@ -2,10 +2,12 @@
 
   .login-card {
     background: #{$dark-page}40;
-    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid $dark;
+  }
+
+  .login-card-pic {
+    background-color: lighten($dark-page, 5);
   }
 
 }
