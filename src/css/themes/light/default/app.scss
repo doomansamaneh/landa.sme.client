@@ -1,8 +1,4 @@
 @mixin theme-light {
-  .main-container {
-    margin-left: auto;
-    margin-right: auto;
-  }
   --q-primary: #{$primary};
   --q-secondary: #{$secondary};
   --q-accent: #{$accent};

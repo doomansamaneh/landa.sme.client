@@ -68,9 +68,6 @@
 
   .body--light.theme--#{$theme-name} {
     @include theme-light;
-    .auth-layout {
-      background-color: $dark !important;
-    }
   }
 
   .body--dark.theme--#{$theme-name} {
