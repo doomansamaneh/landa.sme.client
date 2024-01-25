@@ -13,25 +13,24 @@
           <q-item-label class="text-h6">
             {{ $t("pages.payments") }}
           </q-item-label>
-          <q-item-label
-            class="dark-2 q-pt-xs text-subtitle2"
-            caption
-          >
+          <q-item-label caption>
             {{ business?.title }}
           </q-item-label>
         </q-item-section>
         <q-card-actions>
-          <div class="flex items-center q-mx-sm">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="sm"
-              name="o_refresh"
+          <div class="flex items-center q-mx-xs">
+            <q-btn
+              round
+              unelevated
+              class="text-on-dark"
+              dense
+              icon="o_refresh"
               @click="refreshPayments"
             >
               <q-tooltip class="custom-tooltip">
                 {{ $t("page.buttons.reload-data") }}
               </q-tooltip>
-            </q-icon>
+            </q-btn>
           </div>
           <div class="flex items-center q-gutter-x-md">
             <back-button />
@@ -46,21 +45,25 @@
     </template>
 
     <template #item="{ item }">
-      <div class="col-4">
+      <div class="col-5">
         <div class="flex justify-start">
-          <label class="text-caption"><q-icon
-              class="expire-date-clock dark-2"
+          <q-item-label
+            caption
+            class="text-on-dark"
+          >
+            <q-icon
+              class="expire-date-clock"
               name="history"
               size="xs"
             />
             {{ item.fromDateString }} -
             {{ item.toDateString }}
-          </label>
+          </q-item-label>
         </div>
       </div>
 
       <div class="col-2 flex items-center justify-start">
-        <label class="text-caption">
+        <q-item-label caption>
           {{ formatCurrency(item.amount) }}
           <span>{{ $t("page.payment-history.rial") }}</span>
           <q-tooltip
@@ -68,12 +71,12 @@
             :delay="600"
           >
             {{ $t("page.payment-history.amount-paid") }}</q-tooltip>
-        </label>
+        </q-item-label>
       </div>
       <div class="expire-date-container col-3 flex items-center justify-start">
-        <label
+        <q-item-label
+          caption
           v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
-          class="text-caption"
         >
           <q-icon
             name="circle"
@@ -81,10 +84,10 @@
             size="8px"
           />
           {{ $t("page.payment-history.trial") }}
-        </label>
-        <label
+        </q-item-label>
+        <q-item-label
+          caption
           v-else
-          class="text-caption"
         >
           <q-icon
             name="circle"
@@ -92,11 +95,11 @@
             size="8px"
           />
           {{ $t("page.payment-history.paid") }}
-        </label>
+        </q-item-label>
       </div>
       <div class="more-options col-1 q-pl-md">
         <q-btn
-          class="more-icon dark-2"
+          class="more-icon text-on-dark"
           unelevated
           falt
           round
@@ -125,10 +128,9 @@
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar
                       icon="o_visibility"
-                      size="sm"
-                      class="dark-1"
+                      size="md"
                     />
-                    <div class="text-caption">
+                    <div class="text-body2">
                       {{ $t("page.payment-history.buttons.view") }}
                     </div>
                   </div>
@@ -220,8 +222,13 @@ defineExpose({
   width: 620px !important;
 }
 
+.q-item__label--caption {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #2d2d2d;
+}
+
 a {
   text-decoration: none;
   color: inherit;
-}
-</style>
+}</style>

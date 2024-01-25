@@ -1,6 +1,6 @@
 @mixin q-avatar-light {
   .q-avatar__content {
-    background-color: #{$black}10;
+    background-color: #{$black}20;
   }
 
   .business-isowner .q-avatar__content,
@@ -10,12 +10,12 @@
   }
 
   .business-isnotowner .q-avatar__content {
-    background-color: #{$black}10;
+    background-color: #{$black}20;
   }
 
   .delete-avatar {
     .q-avatar__content {
-      background-color: $negative !important;
+      background-color: $red-9 !important;
       color: $white;
   }
   }

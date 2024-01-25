@@ -10,7 +10,9 @@
 
   @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {
     .main-container {
-      width: 560px;
+      // width: 560px;
+      padding-left: 38px;
+      padding-right: 38px;
     }
 
   }

@@ -18,7 +18,7 @@
           <q-input
             outlined
             dense
-            class="text-caption"
+            class="text-body2"
             v-model="tableStore.pagination.value.searchTerm"
             :placeholder="$t('page.card-searchbar')"
             @keydown.enter="tableStore?.reloadData"

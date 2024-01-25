@@ -210,55 +210,58 @@
   <q-card class="card-desktop gt-xs no-shadow q-my-xl">
     <q-item class="card-header q-px-lg q-py-lg">
       <q-item-section>
-        <q-item-label class="text-h6">
+        <q-item-label class="text-h6 text-on-dark">
           {{ $t("pages.payment-detail") }}
         </q-item-label>
-        <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
+        <q-item-label caption class="q-mt-sm">
           {{ $t("page.payment-detail.caption") }}
         </q-item-label>
       </q-item-section>
       <q-card-actions>
-        <div class="flex q-gutter-x-sm q-mr-md">
-          <div class="">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="sm"
-              name="o_description"
+        <div class="row items-center q-mr-md">
+          <div class="q-mr-xs">
+            <q-btn
+              round
+              unelevated
+              dense
+              class="text-on-dark"
+              icon="o_description"
               @click="$emit('reload-data')"
             >
               <q-tooltip class="custom-tooltip">
-                {{ $t("page.payment-detail.buttons.excel") }}</q-tooltip
-              >
-            </q-icon>
+                {{ $t("page.payment-detail.buttons.excel") }}</q-tooltip>
+            </q-btn>
           </div>
           <div class="">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="sm"
-              name="o_print"
+            <q-btn
+              class="text-on-dark"
+              dense
+              unelevated
+              round
+              icon="o_print"
               @click="print"
             >
               <q-tooltip class="custom-tooltip">{{
                 $t("page.payment-detail.buttons.print")
               }}</q-tooltip>
-            </q-icon>
+            </q-btn>
           </div>
         </div>
-        <div class="flex items-center q-gutter-x-md q-pr-sm">
-          <q-icon
-            class="icon-hover dark-3 cursor-pointer"
-            size="sm"
-            name="o_refresh"
+        <div class="row items-center q-mr-xs">
+          <q-btn
+            round
+            unelevated
+            dense
+            class="text-on-dark"
+            icon="o_refresh"
             @click="$emit('reload-data')"
           >
             <q-tooltip class="custom-tooltip">{{
               $t("page.buttons.reload-data")
             }}</q-tooltip>
-          </q-icon>
+          </q-btn>
         </div>
-        <div class="flex items-center q-gutter-x-md">
-          <back-button />
-        </div>
+        <back-button />
       </q-card-actions>
     </q-item>
     <q-separator />
@@ -268,7 +271,11 @@
       >
         <div class="">
           <q-item-label class="">
-            <img class="sme-logo" src="/landa-sme-logo.png" alt="" />
+            <img
+              class="sme-logo"
+              src="/landa-sme-logo.png"
+              alt=""
+            />
           </q-item-label>
         </div>
         <div class="">
@@ -280,16 +287,14 @@
           <div>
             <span>
               <span class="">{{ $t("page.payment-detail.invoice-date") }}</span>
-              1401/02/09</span
-            >
+              1401/02/09</span>
           </div>
           <div class="">
             <span>
               <span class="">
                 {{ $t("page.payment-detail.invoice-number") }}
               </span>
-              20108</span
-            >
+              20108</span>
           </div>
         </div>
       </div>
@@ -298,42 +303,36 @@
     <q-card-section>
       <q-item class="flex justify-between text-caption">
         <div class="">
-          <q-item-label class=""
-            ><span class="text-weight-bold">
+          <q-item-label class=""><span class="text-weight-bold">
               {{ $t("page.payment-detail.seller") }}
-              <span class="text-weight-thin">حسابداری آنلاین لاندا</span></span
-            >
+              <span class="text-weight-thin">حسابداری آنلاین لاندا</span></span>
             <div class="seller-address">
               <q-item-label class="q-mt-sm">
-                <span
-                  >شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
-                  زیتون، واحد 105</span
-                >
+                <span>شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
+                  زیتون، واحد 105</span>
               </q-item-label>
               <q-item-label class="q-pt-xs">
                 <q-icon
                   name="phone"
                   class="dark-2 q-pr-xs"
-                />88944338</q-item-label
-              >
+                />88944338</q-item-label>
             </div>
           </q-item-label>
         </div>
         <div class="">
-          <q-item-label class=""
-            ><span class="text-weight-bold">
+          <q-item-label class=""><span class="text-weight-bold">
               {{ $t("page.payment-detail.customer") }}
-              <span class="text-weight-light">خشایار شمالی</span></span
-            >
+              <span class="text-weight-light">خشایار شمالی</span></span>
             <div class="seller-address">
               <q-item-label class="q-mt-sm">
-                <span
-                  >شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
-                  خیابان عنایتی، کوچه محمدی، پلاک 22</span
-                >
+                <span>شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
+                  خیابان عنایتی، کوچه محمدی، پلاک 22</span>
               </q-item-label>
               <q-item-label class="q-pt-xs">
-                <q-icon name="phone" class="dark-2 q-pr-xs" />
+                <q-icon
+                  name="phone"
+                  class="dark-2 q-pr-xs"
+                />
                 021-55511102
               </q-item-label>
             </div>
@@ -401,7 +400,10 @@
             <td><span class="">750,000</span></td>
           </tr>
           <tr>
-            <td class="text-right" colspan="6">
+            <td
+              class="text-right"
+              colspan="6"
+            >
               <span class="">{{ $t("page.payment-detail.sub-total") }}</span>
             </td>
             <td class="">
@@ -409,13 +411,19 @@
             </td>
           </tr>
           <tr>
-            <td class="text-right" colspan="6">
+            <td
+              class="text-right"
+              colspan="6"
+            >
               <span class="">{{ $t("page.payment-detail.vat-total") }}</span>
             </td>
             <td><span class="">967,500</span></td>
           </tr>
           <tr>
-            <td class="text-right" colspan="6">
+            <td
+              class="text-right"
+              colspan="6"
+            >
               <span class="q-pl-xs">
                 {{ $t("page.payment-detail.sub-total") }}
               </span>
@@ -431,25 +439,19 @@
             <td><span class="">11,717,500</span></td>
           </tr>
           <tr>
-            <td class="text-right" colspan="7">
+            <td
+              class="text-right"
+              colspan="7"
+            >
               <span class="">
                 {{ $t("page.payment-detail.total-receipt") }}
-                <span class="q-pl-xs">11,717,500</span></span
-              >
-              <span class="q-px-md"
-                >{{ $t("page.payment-detail.remained") }}
-                <span class="q-pl-xs"><b class="underline">0</b></span></span
-              >
-              <span class="q-pr-md"
-                >{{ $t("page.payment-detail.remained-but-this-year")
-                }}<span class="q-pl-xs">(150,000,000)</span></span
-              >
-              <span class="highlight-text"
-                >{{ $t("page.payment-detail.remained-total") }}
-                <span class="q-pl-xs"
-                  ><b class="underline">(150,000,000)</b></span
-                ></span
-              >
+                <span class="q-pl-xs">11,717,500</span></span>
+              <span class="q-px-md">{{ $t("page.payment-detail.remained") }}
+                <span class="q-pl-xs"><b class="underline">0</b></span></span>
+              <span class="q-pr-md">{{ $t("page.payment-detail.remained-but-this-year")
+              }}<span class="q-pl-xs">(150,000,000)</span></span>
+              <span class="highlight-text">{{ $t("page.payment-detail.remained-total") }}
+                <span class="q-pl-xs"><b class="underline">(150,000,000)</b></span></span>
             </td>
           </tr>
         </tbody>
@@ -475,7 +477,7 @@
 
 <script setup>
 import { ref } from "vue"
-import BackButton from "src/components/shared/buttons/GoBackLink.vue"
+import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 // import Vue3Html2pdf from "vue3-html2pdf"
 
 // const html2Pdf = ref(null)
@@ -486,6 +488,12 @@ import BackButton from "src/components/shared/buttons/GoBackLink.vue"
 </script>
 
 <style scoped>
+.q-item__label--caption {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #2d2d2d;
+}
+
 .card-desktop {
   width: 795px !important;
 }

@@ -1,249 +1,315 @@
 <template>
-  <div class="xs">
-    <q-footer
-      bordered
-      class="bg-white text-dark q-py-md"
-    >
-      <div
-        class="q-pb-sm"
-        v-if="showMoreOptions"
-      >
-        <q-item
-          clickable
-          v-ripple
-          class="q-py-md"
-        >
-          <q-item-section avatar>
-            <q-avatar
-              color="grey-4"
-              text-color="dark"
-              icon="o_person"
-              size="md"
-            />
-          </q-item-section>
-          <q-item-section>Entering the Business</q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          v-close-popup
-          v-ripple
-          class="q-py-md"
-        >
-          <q-item-section avatar>
-            <q-avatar
-              color="grey-4"
-              text-color="dark"
-              icon="o_person_add"
-              size="md"
-            />
-          </q-item-section>
-          <q-item-section>Invite User</q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          v-ripple
-          class="q-py-md"
-        >
-          <q-item-section avatar>
-            <q-avatar
-              color="grey-4"
-              text-color="dark"
-              icon="o_delete"
-              size="md"
-            />
-          </q-item-section>
-          <q-item-section>Delete</q-item-section>
-        </q-item>
-        <q-item
-          clickable
-          v-ripple
-          class="q-py-md"
-        >
-          <q-item-section avatar>
-            <q-avatar
-              color="grey-4"
-              text-color="dark"
-              icon="credit_card"
-              size="md"
-            />
-          </q-item-section>
-          <q-item-section>Invite User</q-item-section>
-        </q-item>
-      </div>
-      <div class="flex justify-between items-center q-pl-sm q-pr-lg">
-        <div class="col-2">
-          <q-btn
-            class="more-icon"
-            style="color: grey"
-            key="more-button"
-            unelevated
-            falt
-            round
-            :ripple="false"
-            icon="more_vert"
-            size="md"
-            @click="showMoreOptions = !showMoreOptions"
-          >
-          </q-btn>
-        </div>
-        <div class="flex q-gutter-sm col-2">
-          <q-chip
-            class="chips expire-date"
-            square
-            icon="o_history"
-            :ripple="false"
-            style="font-size: 12px; background-color: #ffe1b4"
-          >1402/08/09</q-chip>
-          <div class="col-2">
-            <q-btn
-              class="service-extension"
-              unelevated
-              color="orange"
-              icon="o_shopping_bag"
-              size="sm"
-            />
-          </div>
-        </div>
-      </div>
-    </q-footer>
-    <div class="q-pa-md items-start q-gutter-md q-mt-sm q-mb-lg">
-      <q-card
-        class="select-business-card-mobile q-card-mobile"
-        bordered
-      >
-        <q-item class="q-px-lg q-py-lg">
-          <q-item-section>
-            <q-item-label
-              class="text-weight-bold text-grey-10"
-              style="font-size: 18px"
-            >My Businesses</q-item-label>
-            <q-item-label
-              class="text-body text-grey-7 q-pr-lg"
-              caption
-              style="font-size: 13px"
-            >
-              Click on the business name to enter
-            </q-item-label>
+  <data-view
+    ref="businessDataView"
+    dataSource="business/getBusinessGridData"
+    :grid-store="businessStore"
+    class="q-my-xl"
+  >
+    <template #header>
+      <!-- <DesktopViewGuide v-model="showGuideDialog" />
+      <q-item class="card-header q-px-lg q-py-lg">
+        <q-item-section>
+          <q-item-label class="text-h6">
+            {{ $t("pages.business") }}
+          </q-item-label>
+          <q-item-label caption>
+            {{ $t("page.card-message") }}
+          </q-item-label>
         </q-item-section>
-        <div class="flex items-center q-gutter-md">
-          <q-icon
-            color="grey"
-            size="md"
-            name="o_help_outline"
-          />
-          <q-btn
-            unelevated
-            round
-            color="green-7"
-            icon="add"
-          >
-            <q-tooltip
-              anchor="top right"
-              self="top left"
+        <q-card-actions>
+          <div class="flex items-center q-mr-xs">
+            <q-btn
+              round
+              unelevated
+              class="text-on-dark"
+              dense
+              icon="o_refresh"
+              clickable
+              @click="reloadData"
             >
-              Add New Business
-            </q-tooltip>
-          </q-btn>
-        </div>
-      </q-item>
-
-      <q-separator />
-      <q-card-section class="q-pa-lg q-gutter-md">
-        <q-card
-          class="row selectable my-inner-card row justify-start q-px-md items-center no-shadow"
-          bordered
-        >
-          <div class="icon flex items-center q-gutter-md">
-            <div class="">
-              <q-avatar
-                color="grey-4"
-                text-color="dark"
-                icon="o_person_add"
-                size="lg"
-              />
-            </div>
-
-            <div class="business-button">
-              <q-btn
-                class="business-name-btn ellipsis-2-lines"
-                flat
-                no-caps
-                text-color="dark"
-                :ripple="{ color: 'grey-6' }"
+              <q-tooltip
+                class="custom-tooltip"
+                :delay="600"
               >
-                <div
-                  class="text-weight-bold business-name-mobile ellipsis-2-lines"
-                  style="font-size: 12px"
-                >
-                  Dooman Samaneh for Test
-                </div>
-                <q-icon
-                  right
-                  size="xs"
-                  name="o_login"
-                />
-              </q-btn>
+                {{ $t("page.buttons.reload-data") }}
+              </q-tooltip>
+            </q-btn>
+          </div>
+          <div class="flex items-center q-gutter-x-md">
+            <q-btn
+              round
+              unelevated
+              dense
+              class="text-on-dark"
+              icon="o_help_outline"
+              @click="showGuideDialog = true"
+            >
+              <q-tooltip
+                class="custom-tooltip"
+                :delay="600"
+              >
+                {{ $t("page.buttons.guide-tooltip") }}
+              </q-tooltip>
+            </q-btn>
+            <add-business />
+          </div>
+        </q-card-actions>
+      </q-item> -->
+    </template>
+
+    <template #item="{ item }">
+      <div class="col-5">
+        <q-avatar
+          :class="{
+            'business-isowner': item.isOwner,
+            'business-isnotowner': !item.isOwner
+          }"
+          icon="o_person"
+          size="lg"
+        />
+        <q-btn
+          class="business-name-btn"
+          no-caps
+          flat
+          text-color="dark"
+          :ripple="false"
+          @click="gotoBusiness(item)"
+        >
+          <div class="flex no-wrap q-gutter-sm">
+            <div class="business-name text-on-dark flex text-weight-regular">
+              <span class="ellipsis">{{ item.title }}</span>
             </div>
           </div>
-        </q-card>
+          <q-tooltip
+            class="custom-tooltip text-body2"
+            transition-show="scale"
+            transition-hide="scale"
+            :delay="600"
+            anchor="top left"
+            self="top right"
+            :offset="[-5, -2]"
+          >
+            {{ item.title }}
+          </q-tooltip>
+        </q-btn>
+      </div>
 
-        <q-card
-          class="selectable my-inner-card row justify-start q-px-md items-center no-shadow"
-          bordered
+      <div class="expire-date-container flex col-2 items-center">
+        <q-item-label caption>
+          <q-icon
+            class="expire-date-clock dark-icon2"
+            name="history"
+            size="xs"
+            v-if="!item.expired"
+          />
+          <q-icon
+            class="expire-date-clock dark-icon2"
+            color="warning"
+            name="warning"
+            size="xs"
+            v-if="item.expired"
+          />
+          {{ item.toDateString }}
+          <q-tooltip
+            class="custom-tooltip"
+            :delay="600"
+          >{{
+            $t("page.buttons.expire-date-tooltip")
+          }}</q-tooltip>
+        </q-item-label>
+      </div>
+
+      <div class="col-3 flex justify-center items-center q-ml-md">
+        <renew-subscribtion
+          class="bg-green text-white"
+          :business="item"
+        />
+      </div>
+
+      <div class="more-options col-1 q-pl-md">
+        <q-btn
+          class="more-icon text-on-dark"
+          unelevated
+          flat
+          round
+          icon="more_horiz"
+          size="md"
+          dense
         >
-          <div class="icon flex items-center q-gutter-md">
-            <div class="">
-              <q-avatar
-                color="grey-4"
-                text-color="dark"
-                icon="o_person"
-                size="lg"
-              />
-            </div>
-
-            <div class="business-button">
-              <q-btn
-                class="business-name-btn"
-                flat
-                no-caps
-                text-color="dark"
-                :ripple="{ color: 'grey-6' }"
-              >
-                <div
-                  class="text-weight-bold business-name-mobile ellipsis-2-lines"
-                  style="font-size: 12px"
-                >
-                  Daftar Kargosha (Demo)
+          <q-tooltip
+            class="custom-tooltip"
+            :delay="600"
+            :offset="[-60, -70]"
+          >{{
+            $t("page.buttons.more-tooltip")
+          }}</q-tooltip>
+        </q-btn>
+        <q-menu
+          transition-show="jump-down"
+          transition-hide="jump-up"
+        >
+          <q-list padding>
+            <q-item
+              clickable
+              v-close-popup
+              @click="gotoBusiness(item)"
+            >
+              <q-item-section>
+                <div class="flex items-center q-gutter-x-sm">
+                  <q-avatar
+                    icon="o_login"
+                    size="md"
+                  />
+                  <div class="text-body2">
+                    {{ $t("page.buttons.more-button.enter-business") }}
+                  </div>
                 </div>
-                <q-icon
-                  right
-                  size="xs"
-                  name="o_login"
-                />
-              </q-btn>
+              </q-item-section>
+            </q-item>
+            <div
+              class="isNotOwner"
+              v-if="item.isOwner"
+            >
+              <q-item
+                clickable
+                v-close-popup
+                @click="showInviteUser"
+              >
+                <q-item-section>
+                  <div class="flex items-center q-gutter-x-sm">
+                    <q-avatar
+                      icon="o_person_add"
+                      size="md"
+                    />
+                    <div class="text-body2">
+                      {{ $t("page.buttons.more-button.invite-user") }}
+                    </div>
+                  </div>
+                </q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+              >
+                <q-item-section>
+                  <router-link :to="`/business/payments/${item.id}`">
+                    <div class="flex items-center q-gutter-x-sm">
+                      <q-avatar
+                        icon="o_credit_card"
+                        size="md"
+                      />
+                      <div class="text-body2">
+                        {{ $t("page.buttons.more-button.payment-history") }}
+                      </div>
+                    </div>
+                  </router-link>
+                </q-item-section>
+              </q-item>
+              <q-separator spaced />
+              <q-item
+                clickable
+                v-close-popup
+                @click="showDeleteBusiness"
+              >
+                <q-item-section>
+                  <div class="flex items-center q-gutter-x-sm">
+                    <q-avatar
+                      icon="o_delete"
+                      size="md"
+                      class="delete-avatar"
+                    />
+                    <div class="text-body2">
+                      {{ $t("page.buttons.more-button.delete") }}
+                    </div>
+                  </div>
+                </q-item-section>
+              </q-item>
             </div>
-          </div>
-        </q-card>
-      </q-card-section>
-    </q-card>
-  </div>
-</div></template>
+          </q-list>
+        </q-menu>
+      </div>
+    </template>
+  </data-view>
+</template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted, computed } from "vue"
+import { useRouter } from "vue-router"
+import { Loading, useQuasar } from "quasar"
+import DataView from "src/components/shared/DataTables/mobile/business/DataView.vue"
+import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
+import AddBusiness from "src/components/management/shared/AddBusinessLink.vue"
+import DesktopViewGuide from "src/components/management/business/desktop/GuideView.vue"
+import InviteUserDialog from "src/components/users/InviteUserDialog.vue"
+import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
+import { fetchWrapper } from "src/helpers"
+import { useBusiness } from "src/components/management/_composables/useBusiness"
+import { useResetStores } from "src/composables/useResetStores"
+import { useI18n } from "vue-i18n"
 
-const showMoreOptions = ref(false)
+const businessStore = useBusiness()
+const resetStore = useResetStores()
+
+const { t } = useI18n()
+
+const router = useRouter()
+const $q = useQuasar()
+const businessDataView = ref(null)
+const showGuideDialog = ref(false)
+const loadingMessage = t('shared.messages.loading-message')
+
+async function gotoBusiness(item) {
+  Loading.show({
+    message: loadingMessage,
+    boxClass: 'bg-dark text-on-dark text-bold',
+    spinnerColor: 'primary'
+  })
+  resetStore.reset()
+
+  await fetchWrapper
+    .post(`business/gotoBusiness/${item.id}`)
+    .then((response) => {
+      //alert(`goto business: ${response.data.data.culture}`)
+      // console.log(`goto business: ${response.data.data}`);
+      // router.push(`/${response.data.data.url}`)
+      //todo: resolve main-route for gotoBusiness
+      router.push(`/${item.id}`)
+    }).finally(() => {
+      Loading.hide()
+    });
+}
+
+async function reloadData() {
+  businessDataView.value.reloadData()
+}
+
+function showInviteUser() {
+  $q.dialog({
+    component: InviteUserDialog
+  })
+}
+
+function showDeleteBusiness() {
+  $q.dialog({
+    component: DeleteBusinessDialog
+  })
+}
 </script>
 
-<style>.q-card-mobile {
-  width: 320px;
+<style lang="scss" scoped>
+.business-name {
+  max-width: 160px;
 }
 
-.select-business-card-mobile {
-  border-radius: 10px;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+.q-item__label--caption {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #2d2d2d;
 }
 
-.business-name-mobile {
-  width: 125px;
-}</style>
+/* //todo: add class for this kind of a */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+</style>

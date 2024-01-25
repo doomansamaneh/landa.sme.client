@@ -1,11 +1,10 @@
 <template>
   <q-btn
     rounded
-    class="text-caption"
-    size="12px"
+    class="text-body1 no-letter-spacing"
     no-caps
     outline
-    color="positive"
+    color="primary"
     unelevated
     padding="6px 12px"
   >
@@ -13,7 +12,7 @@
       <q-icon
         name="add"
         class="q-pr-xs"
-        size="14px"
+        size="16px"
       />
       {{ $t("page.buttons.add-new-business-tooltip") }}
     </router-link>

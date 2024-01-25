@@ -1,6 +1,10 @@
 <template>
-  <desktop-view />
-  <mobile-view />
+  <div class="main-container">
+   <div class="row items-center justify-center">
+    <desktop-view v-if="$q.screen.gt.xs" />
+   </div>
+    <mobile-view v-if="$q.screen.xs" />
+  </div>
 </template>
 
 <script setup>

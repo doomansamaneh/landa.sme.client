@@ -15,9 +15,9 @@ const pagination = ref({
     sortColumn: "title",
     searchField: "title",
     sortOrder: 1,
-    // totalItems: 0,
-    // searchTerm: "",
-    // searchModel: "",
+    totalItems: 0,
+    searchTerm: "",
+    searchModel: "",
     filterExpression: []
 })
 

@@ -1,15 +1,15 @@
 <template>
   <q-btn
     v-if="showLink"
+    class="text-body3 no-letter-spacing"
     rounded
-    size="11px"
     no-caps
     filled
     unelevated
     padding="6px 12px"
   >
     <router-link :to="addPaymentUrl">
-      <q-icon name="add" class="q-pr-xs" size="14px" />
+      <q-icon name="add" class="q-pr-xs" size="16px" />
       {{ $t("pages.renew-subscription") }}
     </router-link>
   </q-btn>

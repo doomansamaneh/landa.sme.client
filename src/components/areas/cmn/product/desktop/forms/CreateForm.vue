@@ -203,7 +203,7 @@
         </q-card-section>
     </q-card>
 </template>
-  
+
 <script setup>
 import { onMounted, ref } from "vue"
 import { useRoute } from "vue-router"
@@ -214,8 +214,8 @@ import { useProductModel } from "../../../_composables/useProductModel"
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
-import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue"
-import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue"
+import ProductGroupLookup from "src/components/shared/Lookups/ProductGroupLookup.vue"
+import ProductUnitLookup from "src/components/shared/Lookups/ProductUnitLookup.vue"
 
 const props = defineProps({
     action: String,

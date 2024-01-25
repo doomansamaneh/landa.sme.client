@@ -1,6 +1,10 @@
 <template>
   <div class="stage">
-    <div class="table"></div>
+    <div class="table">
+      <div class="row justify-center items-center" style="margin-top: 30px;">
+      <img width="250px" src="./about-us-header.png" alt="">
+      </div>
+    </div>
     <div class="pc"></div>
     <div class="cup"></div>
     <div class="cup-cover"></div>
@@ -42,7 +46,7 @@
 
 
 .stage {
-  height: 400px;
+  height: 500px;
   position: relative;
 }
 

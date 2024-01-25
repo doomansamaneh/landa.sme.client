@@ -3,7 +3,7 @@
     ref="businessDataView"
     dataSource="business/getBusinessGridData"
     :grid-store="businessStore"
-    style="margin-bottom: 72px;"
+    class="q-my-xl"
   >
     <template #header>
       <DesktopViewGuide v-model="showGuideDialog" />
@@ -12,21 +12,20 @@
           <q-item-label class="text-h6">
             {{ $t("pages.business") }}
           </q-item-label>
-          <q-item-label
-            class="dark-2 q-pt-xs_ text-subtitle2"
-            caption
-          >
+          <q-item-label caption>
             {{ $t("page.card-message") }}
           </q-item-label>
         </q-item-section>
         <q-card-actions>
-          <div class="flex items-center q-mr-sm">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="sm"
-              name="o_refresh"
-              @click="reloadData"
+          <div class="flex items-center q-mr-xs">
+            <q-btn
+              round
+              unelevated
+              class="text-on-dark"
+              dense
+              icon="o_refresh"
               clickable
+              @click="reloadData"
             >
               <q-tooltip
                 class="custom-tooltip"
@@ -34,13 +33,15 @@
               >
                 {{ $t("page.buttons.reload-data") }}
               </q-tooltip>
-            </q-icon>
+            </q-btn>
           </div>
           <div class="flex items-center q-gutter-x-md">
-            <q-icon
-              class="icon-hover dark-3 cursor-pointer"
-              size="sm"
-              name="o_help_outline"
+            <q-btn
+              round
+              unelevated
+              dense
+              class="text-on-dark"
+              icon="o_help_outline"
               @click="showGuideDialog = true"
             >
               <q-tooltip
@@ -49,7 +50,7 @@
               >
                 {{ $t("page.buttons.guide-tooltip") }}
               </q-tooltip>
-            </q-icon>
+            </q-btn>
             <add-business />
           </div>
         </q-card-actions>
@@ -64,7 +65,7 @@
             'business-isnotowner': !item.isOwner
           }"
           icon="o_person"
-          size="md"
+          size="lg"
         />
         <q-btn
           class="business-name-btn"
@@ -94,7 +95,7 @@
       </div>
 
       <div class="expire-date-container flex col-2 items-center">
-        <label class="dark-2 text-caption">
+        <q-item-label caption>
           <q-icon
             class="expire-date-clock dark-icon2"
             name="history"
@@ -103,7 +104,7 @@
           />
           <q-icon
             class="expire-date-clock dark-icon2"
-            color="warning "
+            color="warning"
             name="warning"
             size="xs"
             v-if="item.expired"
@@ -115,7 +116,7 @@
           >{{
             $t("page.buttons.expire-date-tooltip")
           }}</q-tooltip>
-        </label>
+        </q-item-label>
       </div>
 
       <div class="col-3 flex justify-center items-center q-ml-md">
@@ -127,7 +128,7 @@
 
       <div class="more-options col-1 q-pl-md">
         <q-btn
-          class="more-icon dark-2"
+          class="more-icon text-on-dark"
           unelevated
           flat
           round
@@ -156,11 +157,10 @@
               <q-item-section>
                 <div class="flex items-center q-gutter-x-sm">
                   <q-avatar
-                    icon="login"
-                    size="sm"
-                    class=""
+                    icon="o_login"
+                    size="md"
                   />
-                  <div class="">
+                  <div class="text-body2">
                     {{ $t("page.buttons.more-button.enter-business") }}
                   </div>
                 </div>
@@ -179,10 +179,9 @@
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar
                       icon="o_person_add"
-                      size="sm"
-                      class=""
+                      size="md"
                     />
-                    <div class="">
+                    <div class="text-body2">
                       {{ $t("page.buttons.more-button.invite-user") }}
                     </div>
                   </div>
@@ -196,11 +195,10 @@
                   <router-link :to="`/business/payments/${item.id}`">
                     <div class="flex items-center q-gutter-x-sm">
                       <q-avatar
-                        icon="credit_card"
-                        size="sm"
-                        class=""
+                        icon="o_credit_card"
+                        size="md"
                       />
-                      <div class="">
+                      <div class="text-body2">
                         {{ $t("page.buttons.more-button.payment-history") }}
                       </div>
                     </div>
@@ -217,16 +215,15 @@
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar
                       icon="o_delete"
-                      size="sm"
+                      size="md"
                       class="delete-avatar"
                     />
-                    <div class="">
+                    <div class="text-body2">
                       {{ $t("page.buttons.more-button.delete") }}
                     </div>
                   </div>
                 </q-item-section>
               </q-item>
-              <!-- <q-separator spaced /> -->
             </div>
           </q-list>
         </q-menu>
@@ -299,9 +296,15 @@ function showDeleteBusiness() {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .business-name {
   max-width: 160px;
+}
+
+.q-item__label--caption {
+  font-size: 14px;
+  letter-spacing: 0;
+  color: #2d2d2d;
 }
 
 /* //todo: add class for this kind of a */

@@ -2,7 +2,7 @@
   <q-breadcrumbs
     v-if="show"
     active-color="primary"
-    class="text-body2 q-px-lg z-max"
+    class="text-body2 no-padding z-max"
   >
     <q-breadcrumbs-el
       v-for="item in validItems"
