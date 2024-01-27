@@ -1,15 +1,20 @@
 <template>
-  <q-page class="flex full-screen items-center justify-center">
+  <q-page :class="$q.screen.gt.xs ? 'flex full-screen items-center justify-center' : 'q-pt-lg'">
     <div class="main-container">
 
       <q-card
-        class="bordered no-padding login-card"
-        :class="$q.screen.gt.xs ? 'border-radius-xl' : ''"
-        :style="$q.screen.lt.sm ? 'width:100vw;height:100vh' : ''"
+        class="no-padding login-card"
+        :class="$q.screen.gt.xs ? 'bordered border-radius-xl' : 'no-shadow no-border'"
       >
         <q-card-section horizontal>
-          <q-card-section class="login-card col-md-7 col-sm-12 col-xs-12">
-            <div class="column q-pa-lg">
+          <q-card-section
+            :class="$q.screen.lt.sm ? 'no-padding' : ''"
+            class="login-card col-md-7 col-sm-12 col-xs-12"
+          >
+            <div
+              class="column"
+              :class="$q.screen.gt.xs ? 'q-pa-lg' : ''"
+            >
               <div class="q-mb-sm">
                 <div class="row items-center justify-between q-mb-lg">
                   <div class="text-h5 no-letter-spacing text-weight-bold">ورود</div>
@@ -154,7 +159,7 @@
                   <div class="col-md col-sm col-xs-12">
                     <div
                       class="row forgot-password"
-                      :class="$q.screen.lt.sm ? 'justify-center q-mt-md' : 'justify-end'"
+                      :class="$q.screen.lt.sm ? 'justify-center q-mt-xl' : 'justify-end'"
                     >
                       <a
                         href="https://landa-sme.ir/account/forgetpassword"
@@ -276,4 +281,5 @@ async function getCaptcha() {
   100% {
     transform: rotateZ(0);
   }
-}</style>
+}
+</style>
