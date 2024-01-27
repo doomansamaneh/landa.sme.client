@@ -35,7 +35,83 @@
       v-for="(row) in businessStore.state.rows.value"
       :key="row.id"
     >
-      <q-card class="full-width bordered no-padding">
+
+      <q-card class="bordered row bg-dark rounded-borders q-pa-md _items-center">
+        <div class="col-2 q-mr-xs">
+          <q-avatar
+            size="36px"
+            text-color="white"
+            color="primary"
+            v-if="row.isOwner"
+          >
+            <q-icon
+              name="o_person"
+              size="20px"
+            />
+          </q-avatar>
+
+          <q-avatar
+            size="36px"
+            class="text-on-dark bg-on-dark"
+            v-else
+          >
+            <q-icon
+              name="o_person"
+              size="20px"
+            />
+          </q-avatar>
+        </div>
+        <div class="col">
+          <div class="column q-gutter-sm">
+
+            <div
+              @click="gotoBusiness(row)"
+              class="text-body3 ellipsis-2-lines"
+            >{{ row.title }}</div>
+
+            <div class="row">
+              <q-item-label caption>
+                <q-icon
+                  class="expire-date-clock dark-icon2"
+                  name="history"
+                  size="16px"
+                  v-if="!row.expired"
+                />
+                <q-icon
+                  class="expire-date-clock dark-icon2"
+                  color="warning"
+                  name="warning"
+                  size="16px"
+                  v-if="row.expired"
+                />
+                {{ row.toDateString }}
+                <q-tooltip
+                  class="custom-tooltip"
+                  :delay="600"
+                >{{
+                  $t("page.buttons.expire-date-tooltip")
+                }}</q-tooltip>
+              </q-item-label>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="row justify-end q-gutter-xs">
+            <renew-subscribtion :business="row" />
+            <q-btn
+              size="13px"
+              unelevated
+              round
+              dense
+              icon="o_more_vert"
+            />
+          </div>
+        </div>
+      </q-card>
+      <!-- <q-card class="full-width bordered no-padding">
         <q-card-section class="q-pb-none q-px-lg">
           <div class="row items-center justify-center q-mb-md">
             <q-avatar
@@ -108,8 +184,6 @@
           align="between"
         >
 
-          <!-- <add-business /> -->
-
           <q-btn
             rounded
             dense
@@ -131,7 +205,7 @@
         </q-card-actions>
 
 
-      </q-card>
+      </q-card> -->
 
 
     </div>
@@ -311,8 +385,7 @@ defineExpose({
 
 <style lang="scss" scoped>
 .q-item__label--caption {
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0;
   color: #2d2d2d;
-}
-</style>
+}</style>

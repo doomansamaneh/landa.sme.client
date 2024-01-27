@@ -1,9 +1,9 @@
 <template>
-  <q-page class="row items-center justify-center overflow-hidden">
+  <q-page :class="$q.screen.gt.xs ? 'row items-center justify-center overflow-hidden' : '' ">
 
     <div class="main-container">
 
-     <business-background />
+     <business-background v-if="$q.screen.gt.xs" />
 
       <desktop-view v-if="$q.screen.gt.xs" />
       <mobile-view v-if="$q.screen.xs" />

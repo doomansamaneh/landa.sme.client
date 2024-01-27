@@ -1,18 +1,40 @@
 <template>
-  <q-btn
-    v-if="showLink"
-    class="text-body3 no-letter-spacing"
-    rounded
-    no-caps
-    filled
-    unelevated
-    padding="6px 12px"
-  >
-    <router-link :to="addPaymentUrl">
-      <q-icon name="add" class="q-pr-xs" size="16px" />
+  <tmplate v-if="$q.screen.gt.xs">
+    <q-btn
+      v-if="showLink"
+      class="text-body3 no-letter-spacing"
+      :to="addPaymentUrl"
+      rounded
+      no-caps
+      color="green"
+      unelevated
+      padding="6px 12px"
+    >
+      <q-icon
+        name="add"
+        class="q-pr-xs"
+        size="16px"
+      />
       {{ $t("pages.renew-subscription") }}
-    </router-link>
-  </q-btn>
+    </q-btn>
+  </tmplate>
+
+  <template v-if="$q.screen.lt.sm">
+    <q-btn
+      v-if="showLink"
+      class="text-caption-sm no-letter-spacing"
+      :to="addPaymentUrl"
+      rounded
+      padding="0 8px"
+      no-caps
+      color="green"
+      dense
+      unelevated
+    >
+      <span class="text-caption-sm">تمدید</span>
+    </q-btn>
+
+  </template>
 </template>
 
 <script setup>
@@ -33,9 +55,3 @@ const showLink = computed(
 )
 </script>
 
-<style scoped>
-a {
-  text-decoration: none;
-  color: inherit;
-}
-</style>

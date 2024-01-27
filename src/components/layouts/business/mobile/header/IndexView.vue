@@ -1,6 +1,6 @@
 <template>
-  <q-header bordered class="business-header bg-dark q-py-xs">
-    <q-toolbar class="row q-my-sm q-px-lg">
+  <q-header bordered class="business-header bg-main bg-dark">
+    <q-toolbar class="row q-my-xs q-px-lg">
       <div class="col-2 row items-center q-gutter-x-sm">
         <div>
           <a
@@ -8,22 +8,22 @@
             target="blank"
             class="row items-center navbar-logo"
           ><img
-              class="logo"
+              :class="$q.dark.isActive ? 'logo' : ''"
               src="/landa-sme-logo.png"
               alt="landa-sme"
+              width="48"
             /></a>
         </div>
 
       </div>
       <div class="col row items-center q-gutter-x-sm justify-end">
         <switch-theme />
-        <div class="flex items-center q-gutter-x-xs cursor-pointer">
+        <div class="flex items-center text-on-dark q-gutter-x-xs cursor-pointer">
           <q-icon
             size="sm"
-            color="white"
             name="o_account_circle"
           />
-          <div class="text-white">{{ username }}</div>
+          <div>{{ username }}</div>
           <q-menu
             fit
             transition-show="jump-down"
@@ -135,7 +135,6 @@ function changePasswordDialog() {
 
 <style lang="scss">
 .logo {
-  width: 48px;
   filter: brightness(0) invert(1);
 }
 
