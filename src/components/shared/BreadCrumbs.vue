@@ -12,7 +12,7 @@
       :to="item.path"
     />
     <template #separator>
-      <q-icon name="arrow_forward_ios" color="white" />
+      <q-icon name="arrow_forward_ios" class="text-on-dark" />
     </template>
   </q-breadcrumbs>
 </template>

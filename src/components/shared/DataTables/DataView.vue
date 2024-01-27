@@ -1,7 +1,6 @@
 <template>
   <q-card
-    class="card-desktop"
-    flat
+    class="bordered card-desktop"
   >
     <slot name="header"> </slot>
     <q-separator />

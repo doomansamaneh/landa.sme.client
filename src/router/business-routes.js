@@ -6,7 +6,7 @@ export default {
     icon: "business"
   },
   children: [
-    { path: "", component: () => import("pages/management/BusinessPage.vue") },
+    { path: "", component: () => import("src/pages/management/BusinessPage.vue") },
     {
       path: "changePassword",
       name: "change-password",

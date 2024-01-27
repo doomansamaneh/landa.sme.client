@@ -2,6 +2,8 @@
   <q-page :class="$q.screen.gt.xs ? 'flex full-screen items-center justify-center' : 'q-pt-lg'">
     <div class="main-container">
 
+      <login-background v-if="$q.screen.gt.xs" />
+
       <q-card
         class="no-padding login-card"
         :class="$q.screen.gt.xs ? 'bordered border-radius-xl' : 'no-shadow no-border'"
@@ -11,10 +13,7 @@
             :class="$q.screen.lt.sm ? 'no-padding' : ''"
             class="login-card col-md-7 col-sm-12 col-xs-12"
           >
-            <div
-              class="column"
-              :class="$q.screen.gt.xs ? 'q-pa-lg' : ''"
-            >
+            <div :class="$q.screen.gt.xs ? 'q-pa-lg' : ''">
               <div class="q-mb-sm">
                 <div class="row items-center justify-between q-mb-lg">
                   <div class="text-h5 no-letter-spacing text-weight-bold">ورود</div>
@@ -99,7 +98,7 @@
                   </div>
 
                   <div class="row items-center q-col-gutter-md">
-                    <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-4 col-sm-4 col-xs-6">
                       <q-input
                         v-model="captcha"
                         outlined
@@ -107,28 +106,29 @@
                         dense
                         input-class="text-body1 text-bold"
                         class="login"
-                      />
+                      >
+                        <template #append>
+                          <q-btn
+                            round
+                            flat
+                            color="primary"
+                            icon="refresh"
+                            dense
+                            size="11px"
+                            @click="getCaptcha"
+                          />
+                        </template>
+                      </q-input>
                     </div>
-                    <div class="col-md col-sm-6 col-xs-12">
-                      <div class="row items-center q-gutter-md">
-                        <img
-                          v-if="authStore.captchaToken?.imageBase64"
-                          :src="captchaSource"
-                          alt="Captcha Image"
-                          style="height:40px"
-                          class="rounded-borders"
-                        />
-                        <q-btn
-                          round
-                          flat
-                          color="primary"
-                          icon="refresh"
-                          dense
-                          @click="getCaptcha"
-                        />
-
-
-                      </div>
+                    <div class="col-md col-sm-6 col-xs row items-center">
+                      <img
+                        v-if="authStore.captchaToken?.imageBase64"
+                        :src="captchaSource"
+                        alt="Captcha Image"
+                        style="height:45px; width:120px object-fit: cover;"
+                        width="150"
+                        class="rounded-borders bordered"
+                      />
                     </div>
                   </div>
                 </div>
@@ -150,7 +150,7 @@
                       >
                         <q-spinner-pie
                           class="white"
-                          size="xs"
+                          size="13px"
                         />
                       </div>
                     </q-btn>
@@ -189,6 +189,7 @@
 import { ref, computed, onMounted } from "vue"
 import { useAuthStore } from "../../stores"
 import BoyAnimation from "src/assets/BoyAnimation.vue"
+import LoginBackground from "src/assets/LoginBackground.vue"
 
 const authStore = useAuthStore()
 
@@ -282,4 +283,5 @@ async function getCaptcha() {
     transform: rotateZ(0);
   }
 }
+
 </style>

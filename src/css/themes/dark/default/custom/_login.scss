@@ -1,13 +1,11 @@
 @mixin login-dark {
 
   .login-card {
-    background: #{$dark-page}40;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: $dark-page;
   }
 
   .login-card-pic {
-    background-color: lighten($dark-page, 5);
+    background-color: lighten($dark-page, 2);
   }
 
 }

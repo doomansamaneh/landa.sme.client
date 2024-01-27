@@ -1,10 +1,10 @@
 @mixin business-layout-light {
-  .business-layout {
-    background-color: darken($primary, 10);
-  }
+  // .business-layout {
+  //   background-color: darken($primary, 10);
+  // }
 
-  .business-header {
-    background-color: darken($primary, 10);
-    border-bottom: 1px solid #{$white}50;
-  }
+  // .business-header {
+  //   background-color: darken($primary, 10);
+  //   border-bottom: 1px solid #{$white}50;
+  // }
 }

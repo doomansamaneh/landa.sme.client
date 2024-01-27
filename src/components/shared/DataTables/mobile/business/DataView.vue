@@ -1,5 +1,5 @@
 <template>
-  <div class="q-my-md q-gutter-md">
+  <div class="column_ q-gutter-md q-my-md">
     <div>
       <q-input
         outlined
@@ -97,15 +97,8 @@
           </div>
           <q-separator class="q-my-md" />
 
-          <div class="column q-gutter-sm q-my-md">
-
-            <div class="row items-center">
-
-              <div class="col">
-                <span class="ellipsis text-body2 text-bold text-on-dark">{{ row.title }}</span>
-              </div>
-            </div>
-
+          <div class="q-my-md">
+            <span class="text-body2 text-bold text-on-dark">{{ row.title }}</span>
           </div>
 
         </q-card-section>

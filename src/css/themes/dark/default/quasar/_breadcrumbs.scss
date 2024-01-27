@@ -8,10 +8,10 @@
   }
 
   .q-breadcrumbs__el.q-router-link--active {
-    color: #ffffad;
+    color: $primary;
   }
 
   .q-breadcrumbs__el:hover {
-    color: yellow;
+    color: lighten($primary, 10);
   }
 }

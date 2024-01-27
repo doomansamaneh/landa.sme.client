@@ -1,5 +1,5 @@
 @mixin auth-layout-dark {
   .auth-layout {
-    background-color: $dark-page;
+    background-color: #{$dark-page}20;
   }
 }
