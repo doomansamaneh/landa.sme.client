@@ -1,6 +1,6 @@
 <template>
   <q-header bordered class="business-header bg-main bg-dark">
-    <q-toolbar class="row q-my-xs q-px-lg">
+    <q-toolbar class="row q-px-lg">
       <div class="col-2 row items-center q-gutter-x-sm">
         <div>
           <a
@@ -101,7 +101,7 @@
 
     </q-toolbar>
     <q-separator class="business-header" />
-    <q-toolbar class="q-px-lg">
+    <q-toolbar style="min-height: 40px;" class="q-px-lg">
       <bread-crumbs />
     </q-toolbar>
   </q-header>

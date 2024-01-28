@@ -1,42 +1,62 @@
 <template>
-  <div class="column_ q-gutter-md q-my-lg">
-    <div>
-      <q-input
-        outlined
-        dense
-        class="text-body2"
-        v-model="tableStore.pagination.value.searchTerm"
-        :placeholder="$t('page.card-searchbar')"
-        @keydown.enter="tableStore?.reloadData"
-      >
-        <template v-slot:prepend>
-          <q-icon
-            name="search"
-            class="search-icon cursor-pointer"
-            size="sm"
-            color="primary"
-            @click="reloadData"
-          />
-        </template>
-        <template v-slot:append>
-          <q-icon
-            name="clear"
-            class="cursor-pointer"
-            size="16px"
-            color="primary"
-            @click="clearSearch"
-            v-if="!isSearchEmpty"
-          />
-        </template>
-      </q-input>
-    </div>
+  <div class="q-my-lg">
 
-    <div
-      v-for="(row) in businessStore.state.rows.value"
-      :key="row.id"
+    <q-input
+      outlined
+      rounded
+      dense
+      class="business-searchbox-mobile text-body2 q-my-md"
+      v-model="tableStore.pagination.value.searchTerm"
+      :placeholder="$t('page.card-searchbar')"
+      @keydown.enter="tableStore?.reloadData"
     >
+      <template v-slot:prepend>
+        <q-icon
+          name="search"
+          class="search-icon cursor-pointer"
+          size="sm"
+          color="primary"
+          @click="reloadData"
+        />
+      </template>
+      <template v-slot:append>
+        <q-icon
+          name="clear"
+          class="cursor-pointer"
+          size="16px"
+          color="primary"
+          @click="clearSearch"
+          v-if="!isSearchEmpty"
+        />
+        <q-btn
+          round
+          unelevated
+          class="text-on-dark"
+          dense
+          icon="o_refresh"
+          size="12px"
+          @click="reloadData"
+        />
+        <q-btn
+          rounded
+          unelevated
+          dense
+          color="primary"
+          padding="2px 12px"
+          class="text-on-dark q-ml-xs text-body3"
+          @click="showGuideDialog = true"
+        >
+          راهنما
+        </q-btn>
+      </template>
+    </q-input>
 
-      <q-card class="bordered row bg-dark rounded-borders q-pa-md _items-center">
+    <div class="q-my-lg q-gutter-y-md">
+      <q-card
+        v-for="(row) in businessStore.state.rows.value"
+        :key="row.id"
+        class="bordered row bg-dark rounded-borders q-pa-md"
+      >
         <div class="col-2 q-mr-xs">
           <q-avatar
             size="36px"
@@ -129,13 +149,9 @@
       </q-btn>
     </div>
 
-    <div>
-      <q-card v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0">
-        <q-card-section>
-          <no-data-found />
-        </q-card-section>
-      </q-card>
-    </div>
+    <template v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0">
+      <no-data-found />
+    </template>
 
     <q-inner-loading
       :showing="tableStore?.showLoader?.value"
@@ -174,6 +190,8 @@
     </q-btn>
 
   </q-page-sticky>
+
+  <MobileViewGuide v-model="showGuideDialog" />
 
   <bottom-sheet
     v-if="bottomSheetStatus"
@@ -234,6 +252,7 @@
           <q-item
             clickable
             v-ripple
+            :to="`/business/payments/${selectedRow.id}`"
           >
             <q-item-section avatar>
               <q-avatar
@@ -296,6 +315,7 @@ import { useBusiness } from "src/components/management/_composables/useBusiness"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
 import InviteUserDialog from "src/components/users/InviteUserDialog.vue"
 import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
+import MobileViewGuide from "src/components/management/business/mobile/GuideView.vue"
 
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
@@ -309,6 +329,7 @@ const businessStore = useBusiness()
 
 const showCreate = ref(true)
 let previousScrollPosition = 0
+const showGuideDialog = ref(false)
 const bottomSheetStatus = ref(false)
 const selectedRow = ref(null);
 

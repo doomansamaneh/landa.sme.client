@@ -11,13 +11,19 @@
       v-model="slide"
       ref="carousel"
     >
-      <q-carousel-slide :name="1" class="column no-wrap flex-center">
+      <q-carousel-slide
+        :name="1"
+        class="column no-wrap flex-center"
+      >
         <q-img src="src/assets/about-us-header.png" />
         <div class="text-center q-mt-lg q-px-xl">
           {{ $t("page.buttons.guide.slide1") }}
         </div>
       </q-carousel-slide>
-      <q-carousel-slide :name="2" class="column no-wrap flex-center">
+      <q-carousel-slide
+        :name="2"
+        class="column no-wrap flex-center"
+      >
         <div class="flex items-center q-gutter-x-sm">
           <q-avatar
             class="business-isowner"
@@ -26,74 +32,85 @@
             size="lg"
           />
 
-          <q-btn
-            class="business-name-btn text-caption text-weight-bold"
-            no-caps
-            flat
-            text-color="dark"
-            :ripple="false"
-            @click="gotoBusiness"
-          >
-            <div class="flex no-wrap q-gutter-sm">
-              <div class="text-on-dark">
-                <q-icon name="o_login" />
-              </div>
-              <div class="flex">
-                <span class="ellipsis text-on-dark">دومان سامانه برای تست</span>
-              </div>
-            </div>
-          </q-btn>
+          <div class="text-body1 no-letter-spacing">
+            <span class="text-on-dark">دومان سامانه برای تست</span>
+          </div>
         </div>
 
         <div class="q-mt-lg text-center">
           {{ $t("page.buttons.guide.slide2") }}
         </div>
       </q-carousel-slide>
-      <q-carousel-slide :name="3" class="column no-wrap flex-center">
-        <div class="flex items-center q-gutter-x-sm"></div>
-        <q-btn
+      <q-carousel-slide
+        :name="3"
+        class="column no-wrap flex-center"
+      >
+        <q-icon
           class="more-icon dark-icon2"
-          unelevated
-          falt
-          round
-          icon="more_vert"
+          name="more_vert"
           size="lg"
-          dense
         />
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("page.buttons.guide.slide3") }}
         </div>
       </q-carousel-slide>
-      <q-carousel-slide :name="4" class="column no-wrap flex-center">
+      <q-carousel-slide
+        :name="4"
+        class="column no-wrap flex-center"
+      >
         <q-avatar
           class="business-isowner"
           text-color="white"
           icon="o_person"
-          size="lg"
+          size="xl"
         />
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("page.buttons.guide.slide4") }}
         </div>
       </q-carousel-slide>
-      <q-carousel-slide :name="5" class="column no-wrap flex-center">
+      <q-carousel-slide
+        :name="5"
+        class="column no-wrap flex-center"
+      >
         <q-btn
-          class="q-pa-sm"
-          round
-          flat
-          color="positive"
-          icon="o_add_shopping_cart"
-          size="lg"
-          :ripple="false"
-        />
+          class="no-pointer-events text-body3 no-letter-spacing"
+          rounded
+          no-caps
+          color="green"
+          unelevated
+          padding="6px 12px"
+        >
+          <q-icon
+            name="add"
+            class="q-pr-xs"
+            size="16px"
+          />
+          {{ $t("pages.renew-subscription") }}
+        </q-btn>
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("page.buttons.guide.slide5") }}
         </div>
       </q-carousel-slide>
-      <q-carousel-slide :name="6" class="column no-wrap flex-center">
-        <q-icon name="import_contacts" size="lg" color="blue-grey-8" />
+      <q-carousel-slide
+        :name="6"
+        class="column no-wrap flex-center"
+      >
+        <q-icon
+          name="import_contacts"
+          size="lg"
+          color="blue-grey-8"
+        />
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("page.buttons.guide.slide6") }}
         </div>
+        <q-btn
+          padding="4px 12px"
+          unelevated
+          label="دانشنامه"
+          href="https://www.landa-sme.ir/LandaKnowledge"
+          target="_blank"
+          class="q-mt-md text-on-dark bordered-btn"
+        />
       </q-carousel-slide>
     </q-carousel>
   </q-dialog>
@@ -106,10 +123,10 @@ const slide = ref(1)
 const position = ref("top")
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .q-carousel {
-  height: 250px;
-  width: 50%;
+  height: 270px;
+  width: 60%;
 }
 
 .q-img {

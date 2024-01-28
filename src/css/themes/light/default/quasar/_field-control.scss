@@ -18,4 +18,9 @@
   .q-field__native.q-placeholder {
     color: $black;
   }
+
+  .business-searchbox-mobile .q-field__control {
+    padding: 0 8px 0 12px !important;
+  }
+
 }

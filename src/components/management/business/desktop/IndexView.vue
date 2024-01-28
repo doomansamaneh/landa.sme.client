@@ -191,21 +191,20 @@
                 </q-item-section>
               </q-item>
               <q-item
+                :to="`/business/payments/${item.id}`"
                 clickable
                 v-close-popup
               >
                 <q-item-section>
-                  <router-link :to="`/business/payments/${item.id}`">
-                    <div class="flex items-center q-gutter-x-sm">
-                      <q-avatar
-                        icon="o_credit_card"
-                        size="md"
-                      />
-                      <div class="text-body2">
-                        {{ $t("page.buttons.more-button.payment-history") }}
-                      </div>
+                  <div class="flex items-center q-gutter-x-sm">
+                    <q-avatar
+                      icon="o_credit_card"
+                      size="md"
+                    />
+                    <div class="text-body2">
+                      {{ $t("page.buttons.more-button.payment-history") }}
                     </div>
-                  </router-link>
+                  </div>
                 </q-item-section>
               </q-item>
               <q-separator spaced />
@@ -303,7 +302,7 @@ function showDeleteBusiness() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .business-name {
   max-width: 160px;
 }
@@ -318,5 +317,11 @@ function showDeleteBusiness() {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.business-name-btn {
+  .q-focus-helper {
+    display: none;
+  }
 }
 </style>

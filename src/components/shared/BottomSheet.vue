@@ -9,7 +9,7 @@
     transition-hide="slide-down"
   >
 
-    <q-card class="no-border">
+    <q-card class="no-border border-radius-lg">
 
       <q-card-section class="no-padding">
         <slot name="header" />

@@ -16,6 +16,7 @@
         <div class="search-bar">
           <q-input
             outlined
+            rounded
             dense
             class="text-body2"
             v-model="tableStore.pagination.value.searchTerm"

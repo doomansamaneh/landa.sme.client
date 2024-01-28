@@ -1,8 +1,6 @@
 <template>
   <transition
-    appear
-    enter-active-class="animated fadeIn"
-    leave-active-class="animated fadeOut"
+    enter-active-class="animated slideInDown"
   >
     <q-header
       v-show="headerStore.showHeader.value"
