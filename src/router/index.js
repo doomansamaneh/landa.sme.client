@@ -3,19 +3,10 @@ import {
   createRouter,
   createMemoryHistory,
   createWebHistory,
-  createWebHashHistory
+  createWebHashHistory,
 } from "vue-router"
 import routes from "./routes"
 import { useAuthStore, useAlertStore } from "../stores"
-
-/*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
- */
 
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
@@ -31,10 +22,11 @@ export default route(function (/* { store, ssrContext } */) {
     // Leave this as is and make changes in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE)
+    history: createHistory(process.env.VUE_ROUTER_BASE),
   })
 
-  Router.beforeEach(async (to) => {
+
+  Router.beforeEach(async (to, from) => {
     // clear alert on route change
     const alertStore = useAlertStore()
     alertStore.clear()
@@ -51,33 +43,3 @@ export default route(function (/* { store, ssrContext } */) {
 
   return Router
 })
-
-// const createHistory = process.env.SERVER
-//   ? createMemoryHistory
-//   : process.env.VUE_ROUTER_MODE === "history"
-//   ? createWebHistory
-//   : createWebHashHistory
-
-// const router = createRouter({
-//   history: createHistory(process.env.VUE_ROUTER_BASE),
-//   linkActiveClass: "active",
-//   routes
-// })
-
-// router.beforeEach(async (to) => {
-//   // clear alert on route change
-//   const alertStore = useAlertStore()
-//   alertStore.clear()
-
-//   // redirect to login page if not logged in and trying to access a restricted page
-//   const publicPages = ["/account/login", "/account/register"]
-//   const authRequired = !publicPages.includes(to.path)
-//   const authStore = useAuthStore()
-
-//   if (authRequired && !authStore.user) {
-//     authStore.returnUrl = to.fullPath
-//     return "/account/login"
-//   }
-// })
-
-// export default router

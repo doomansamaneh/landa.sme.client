@@ -10,4 +10,3 @@
 <script setup>
 import Desktop from "src/components/areas/cmn/product/desktop/forms/EditBatchForm.vue"
 </script>
-  

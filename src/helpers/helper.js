@@ -154,6 +154,10 @@ export const helper = {
     }
   },
 
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  },
+
   getFirstChar(str) {
     return str?.charAt(0)
   },
