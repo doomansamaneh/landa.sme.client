@@ -1,5 +1,5 @@
 <template>
-  <div class="column_ q-gutter-md q-my-md">
+  <div class="column_ q-gutter-md q-my-lg">
     <div>
       <q-input
         outlined
@@ -107,106 +107,11 @@
               round
               dense
               icon="o_more_vert"
+              @click="onBottomSheetShow(row)"
             />
           </div>
         </div>
       </q-card>
-      <!-- <q-card class="full-width bordered no-padding">
-        <q-card-section class="q-pb-none q-px-lg">
-          <div class="row items-center justify-center q-mb-md">
-            <q-avatar
-              size="48px"
-              text-color="white"
-              color="primary"
-              v-if="row.isOwner"
-            >
-              <q-icon
-                name="o_person"
-                size="sm"
-              />
-            </q-avatar>
-
-            <q-avatar
-              size="48px"
-              class="text-on-dark bg-on-dark"
-              v-else
-            >
-              <q-icon
-                name="o_person"
-                size="sm"
-              />
-            </q-avatar>
-          </div>
-          <div class="row justify-between items-center">
-
-            <div class="col row items-center">
-              <q-item-label caption>
-                <q-icon
-                  class="expire-date-clock dark-icon2"
-                  name="history"
-                  size="xs"
-                  v-if="!row.expired"
-                />
-                <q-icon
-                  class="expire-date-clock dark-icon2"
-                  color="warning"
-                  name="warning"
-                  size="xs"
-                  v-if="row.expired"
-                />
-                {{ row.toDateString }}
-                <q-tooltip
-                  class="custom-tooltip"
-                  :delay="600"
-                >{{
-                  $t("page.buttons.expire-date-tooltip")
-                }}</q-tooltip>
-              </q-item-label>
-            </div>
-
-            <div class="col row justify-end items-center">
-              <renew-subscribtion
-                class="bg-green text-white"
-                :business="row"
-              />
-            </div>
-          </div>
-          <q-separator class="q-my-md" />
-
-          <div class="q-my-md">
-            <span class="text-body2 text-bold text-on-dark">{{ row.title }}</span>
-          </div>
-
-        </q-card-section>
-
-        <q-card-actions
-          class="q-pa-md"
-          align="between"
-        >
-
-          <q-btn
-            rounded
-            dense
-            unelevated
-            padding="8px 16px"
-            @click="gotoBusiness(row)"
-          >
-            <span class="text-body2">ورود به کسب و کار</span>
-          </q-btn>
-
-          <q-btn
-            round
-            unelevated
-            dense
-            icon="o_more_vert"
-            @click="onBottomSheetShow"
-          />
-
-        </q-card-actions>
-
-
-      </q-card> -->
-
 
     </div>
 
@@ -269,6 +174,110 @@
     </q-btn>
 
   </q-page-sticky>
+
+  <bottom-sheet
+    v-if="bottomSheetStatus"
+    :status="bottomSheetStatus"
+    @hide="onBottomSheetHide"
+  >
+
+    <template #header>
+
+    </template>
+
+    <template #body>
+      <q-list padding>
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              size="36px"
+            >
+              <q-icon
+                size="xs"
+                name="o_login"
+              />
+            </q-avatar>
+          </q-item-section>
+
+          <q-item-section class="text-body2 no-letter-spacing"> {{ $t("page.buttons.more-button.enter-business") }}
+          </q-item-section>
+        </q-item>
+
+        <template v-if="selectedRow.isOwner">
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                size="36px"
+              >
+                <q-icon
+                  size="xs"
+                  name="o_person_add"
+                />
+              </q-avatar>
+            </q-item-section>
+
+            <q-item-section class="text-body2 no-letter-spacing"> {{ $t("page.buttons.more-button.invite-user") }}
+            </q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                size="36px"
+              >
+                <q-icon
+                  size="xs"
+                  name="o_credit_card"
+                />
+              </q-avatar>
+            </q-item-section>
+
+            <q-item-section class="text-body2 no-letter-spacing"> {{ $t("page.buttons.more-button.payment-history") }}
+            </q-item-section>
+          </q-item>
+
+          <q-separator size="0.5px" />
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="delete-avatar bg-on-dark text-on-dark"
+                size="36px"
+              >
+                <q-icon
+                  size="xs"
+                  name="o_delete"
+                />
+              </q-avatar>
+            </q-item-section>
+
+            <q-item-section class="text-body2 no-letter-spacing"> {{ $t("page.buttons.more-button.delete") }}
+            </q-item-section>
+          </q-item>
+
+        </template>
+
+      </q-list>
+    </template>
+
+  </bottom-sheet>
 </template>
 
 <script setup>
@@ -282,6 +291,7 @@ import { useDataTable } from "src/composables/useDataTable"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 import { useResetStores } from "src/composables/useResetStores"
 import { useBusiness } from "src/components/management/_composables/useBusiness"
+import BottomSheet from "src/components/shared/BottomSheet.vue"
 
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
@@ -294,6 +304,8 @@ const businessStore = useBusiness()
 
 const showCreate = ref(true)
 let previousScrollPosition = 0
+const bottomSheetStatus = ref(false)
+const selectedRow = ref(null);
 
 const props = defineProps({
   dataSource: String,
@@ -363,6 +375,15 @@ const hasMoreData = computed(() => {
   return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages
 });
 
+const onBottomSheetShow = (row) => {
+  selectedRow.value = row;
+  bottomSheetStatus.value = true;
+}
+
+const onBottomSheetHide = () => {
+  bottomSheetStatus.value = false;
+}
+
 onMounted(() => {
   if (!props.gridStore) {
     tableStore.pagination.value.sortColumn = props.sortColumn
@@ -388,4 +409,8 @@ defineExpose({
   font-size: 13px;
   letter-spacing: 0;
   color: #2d2d2d;
-}</style>
+}
+.q-item__section--side {
+  padding-right: 12px;
+}
+</style>

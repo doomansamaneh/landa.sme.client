@@ -166,6 +166,9 @@
                 </div>
               </q-item-section>
             </q-item>
+
+
+
             <div
               class="isNotOwner"
               v-if="item.isOwner"
@@ -225,6 +228,10 @@
                 </q-item-section>
               </q-item>
             </div>
+
+
+
+
           </q-list>
         </q-menu>
       </div>
