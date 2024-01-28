@@ -213,6 +213,7 @@
           <q-item
             clickable
             v-ripple
+            @click="showInviteUser"
           >
             <q-item-section avatar>
               <q-avatar
@@ -255,6 +256,7 @@
           <q-item
             clickable
             v-ripple
+            @click="showDeleteBusiness"
           >
             <q-item-section avatar>
               <q-avatar
@@ -292,12 +294,15 @@ import RenewSubscribtion from "src/components/management/shared/RenewSubscribtio
 import { useResetStores } from "src/composables/useResetStores"
 import { useBusiness } from "src/components/management/_composables/useBusiness"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
+import InviteUserDialog from "src/components/users/InviteUserDialog.vue"
+import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
 
 import { useRouter } from "vue-router"
 import { useI18n } from "vue-i18n"
 import { Loading, useQuasar } from "quasar"
 
 const { t } = useI18n()
+const $q = useQuasar()
 const router = useRouter()
 const resetStore = useResetStores()
 const businessStore = useBusiness()
@@ -384,6 +389,19 @@ const onBottomSheetHide = () => {
   bottomSheetStatus.value = false;
 }
 
+
+function showInviteUser() {
+  $q.dialog({
+    component: InviteUserDialog
+  })
+}
+
+function showDeleteBusiness() {
+  $q.dialog({
+    component: DeleteBusinessDialog
+  })
+}
+
 onMounted(() => {
   if (!props.gridStore) {
     tableStore.pagination.value.sortColumn = props.sortColumn
@@ -410,6 +428,7 @@ defineExpose({
   letter-spacing: 0;
   color: #2d2d2d;
 }
+
 .q-item__section--side {
   padding-right: 12px;
 }
