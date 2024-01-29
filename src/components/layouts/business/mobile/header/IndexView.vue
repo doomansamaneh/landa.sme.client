@@ -1,5 +1,8 @@
 <template>
-  <q-header bordered class="business-header bg-main bg-dark">
+   <transition
+    enter-active-class="animated slideInDown"
+  >
+  <q-header v-show="headerStore.showHeader.value" bordered class="business-header bg-main bg-dark">
     <q-toolbar class="row q-px-lg">
       <div class="col-2 row items-center q-gutter-x-sm">
         <div>
@@ -105,18 +108,22 @@
       <bread-crumbs />
     </q-toolbar>
   </q-header>
+  </transition>
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted, onUnmounted } from "vue"
 import { helper } from "src/helpers"
 import { useQuasar } from "quasar"
 import { useAuthStore } from "src/stores"
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
 import BreadCrumbs from "src/components/shared/BreadCrumbs.vue"
 import ChangePasswordDialog from "src/components/users/ChangePasswordDialog.vue"
+import { useHeader } from "src/composables/mobile/useHeader"
+
 const authStore = useAuthStore()
 const $q = useQuasar()
+const headerStore = useHeader()
 
 const username = computed(() => {
   if (authStore.user) return authStore.user.fullName
@@ -128,6 +135,14 @@ function changePasswordDialog() {
     component: ChangePasswordDialog
   })
 }
+
+onMounted(() => {
+  window.addEventListener('scroll', headerStore.handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', headerStore.handleScroll)
+})
 
 </script>
 

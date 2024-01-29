@@ -96,7 +96,6 @@ import Profile from "src/components/layouts/main/ToolbarProfile.vue"
 import SwitchTheme from "src/components/shared/SwitchTheme.vue"
 import TodayDate from "src/components/shared/TodayDate.vue"
 
-
 const menuBarStore = useMenuBar()
 const contactDrawerStore = useContactDrawer()
 const headerStore = useHeader()

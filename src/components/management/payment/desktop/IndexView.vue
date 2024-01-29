@@ -17,7 +17,7 @@
             {{ business?.title }}
           </q-item-label>
         </q-item-section>
-        <q-card-actions>
+        <q-card-actions class="no-padding">
           <div class="flex items-center q-mx-xs">
             <q-btn
               round
@@ -32,7 +32,7 @@
               </q-tooltip>
             </q-btn>
           </div>
-          <div class="flex items-center q-gutter-x-md">
+          <div class="flex items-center">
             <back-button />
             <renew-subscribtion
               class="bg-green text-white"
@@ -128,6 +128,7 @@
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar
                       icon="o_visibility"
+                      class="bg-on-dark"
                       size="md"
                     />
                     <div class="text-body2">

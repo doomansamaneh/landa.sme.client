@@ -43,7 +43,7 @@
           dense
           color="primary"
           padding="2px 12px"
-          class="text-on-dark q-ml-xs text-body3"
+          class="text-on-dark q-ml-xs text-body3 primary-shadow"
           @click="showGuideDialog = true"
         >
           راهنما
@@ -62,6 +62,7 @@
             size="36px"
             text-color="white"
             color="primary"
+            class="primary-shadow"
             v-if="row.isOwner"
           >
             <q-icon
@@ -172,6 +173,7 @@
     <q-btn
       v-if="showCreate"
       rounded
+      unelevated
       padding="10px 20px"
       to="/sls/invoice/create"
       dense
@@ -270,7 +272,10 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator
+            class="q-my-sm"
+            size="0.5px"
+          />
 
           <q-item
             clickable
@@ -279,7 +284,7 @@
           >
             <q-item-section avatar>
               <q-avatar
-                class="delete-avatar bg-on-dark text-on-dark"
+                class="delete-avatar bg-on-dark red-shadow text-on-dark"
                 size="36px"
               >
                 <q-icon
@@ -452,5 +457,4 @@ defineExpose({
 
 .q-item__section--side {
   padding-right: 12px;
-}
-</style>
+}</style>

@@ -22,7 +22,7 @@
   <template v-if="$q.screen.lt.sm">
     <q-btn
       v-if="showLink"
-      class="text-caption-sm no-letter-spacing"
+      class="text-caption-sm no-letter-spacing green-shadow"
       :to="addPaymentUrl"
       rounded
       padding="0 8px"
