@@ -120,7 +120,7 @@
         </div>
 
         <div class="col-4">
-          <div class="row justify-end q-gutter-xs">
+          <div class="row justify-end items-center q-gutter-xs">
             <renew-subscribtion :business="row" />
             <q-btn
               size="13px"

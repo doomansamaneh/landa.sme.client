@@ -25,7 +25,7 @@
       class="text-caption-sm no-letter-spacing green-shadow"
       :to="addPaymentUrl"
       rounded
-      padding="0 8px"
+      padding="4px 8px"
       no-caps
       color="green"
       dense
