@@ -360,7 +360,7 @@ const isSearchEmpty = computed(() =>
 )
 
 const handleScroll = () => {
-  const currentPosition = window.pageYOffset || document.documentElement.scrollTop;
+  const currentPosition = window.scrollY || document.documentElement.scrollTop;
   showCreate.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
   previousScrollPosition = currentPosition;
 };
@@ -457,4 +457,5 @@ defineExpose({
 
 .q-item__section--side {
   padding-right: 12px;
-}</style>
+}
+</style>

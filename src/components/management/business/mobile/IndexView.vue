@@ -113,9 +113,9 @@
           <q-tooltip
             class="custom-tooltip"
             :delay="600"
-          >{{
-            $t("page.buttons.expire-date-tooltip")
-          }}</q-tooltip>
+          >
+            {{ $t("page.buttons.expire-date-tooltip") }}
+          </q-tooltip>
         </q-item-label>
       </div>
 
@@ -140,9 +140,9 @@
             class="custom-tooltip"
             :delay="600"
             :offset="[-60, -70]"
-          >{{
-            $t("page.buttons.more-tooltip")
-          }}</q-tooltip>
+          >
+            {{ $t("page.buttons.more-tooltip") }}
+          </q-tooltip>
         </q-btn>
         <q-menu
           transition-show="jump-down"

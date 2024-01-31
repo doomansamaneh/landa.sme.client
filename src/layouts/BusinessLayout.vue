@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <desktop-header v-if="$q.screen.gt.xs" />
-    <mobile-header v-if="$q.screen.xs" />
+    <mobile-header v-else />
 
     <q-page-container>
       <router-view />

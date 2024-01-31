@@ -1,13 +1,16 @@
 <template>
-  <q-page :class="$q.screen.gt.xs ? 'row items-center justify-center overflow-hidden' : '' ">
-
+  <q-page :class="$q.screen.gt.xs ? 'row items-center justify-center overflow-hidden' : ''">
     <div class="main-container">
+      <template v-if="$q.screen.gt.xs">
+        <business-background />
+        <desktop-view />
+      </template>
 
-     <business-background v-if="$q.screen.gt.xs" />
-
-      <desktop-view v-if="$q.screen.gt.xs" />
-      <mobile-view v-if="$q.screen.xs" />
+      <template v-if="$q.screen.xs">
+        <mobile-view v-if="$q.screen.xs" />
+      </template>
     </div>
+
   </q-page>
 </template>
 
