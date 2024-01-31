@@ -64,36 +64,35 @@ export default {
     },
     {
       path: "cmn/productGroup",
-      component: () => import("src/components/areas/cmn/productGroup/IndexView.vue"),
+      component: () => import("src/pages/areas/cmn/productGroup/IndexPage.vue"),
     },
     {
       path: "cmn/productGroup/create",
-      component: () => import("src/components/areas/cmn/productGroup/Create2View.vue"),
+      component: () => import("src/pages/areas/cmn/productGroup/CreatePage.vue"),
     },
     {
       path: "cmn/productGroup/edit/:id",
-      component: () => import("src/components/areas/cmn/productGroup/Edit2View.vue"),
+      component: () => import("src/pages/areas/cmn/productGroup/EditPage.vue"),
     },
     {
       path: "cmn/productGroup/copy/:id",
-      component: () => import("src/components/areas/cmn/productGroup/CopyView.vue"),
+      component: () => import("src/pages/areas/cmn/productGroup/CopyPage.vue"),
     },
-
     {
       path: "cmn/product",
-      component: () => import("src/components/areas/cmn/product/IndexView.vue"),
+      component: () => import("src/pages/areas/cmn/product/IndexPage.vue"),
     },
     {
       path: "cmn/product/create",
-      component: () => import("src/components/areas/cmn/product/Create2View.vue"),
+      component: () => import("src/pages/areas/cmn/product/CreatePage.vue"),
     },
     {
       path: "cmn/product/edit/:id",
-      component: () => import("src/components/areas/cmn/product/Edit2View.vue"),
+      component: () => import("src/pages/areas/cmn/product/EditPage.vue"),
     },
     {
       path: "cmn/product/copy/:id",
-      component: () => import("src/components/areas/cmn/product/CopyView.vue"),
+      component: () => import("src/pages/areas/cmn/product/CopyPage.vue"),
     },
   ]
 }

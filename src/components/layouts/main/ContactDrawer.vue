@@ -148,7 +148,9 @@
           @click="gotoNext"
           class="primary-shadow q-ma-lg bg-primary text-white"
         >
-          <span class="text-body3">بارگزاری بیشتر</span>
+          <span class="text-body3">
+            $t{{ sa }}
+          </span>
         </q-btn>
       </div>
     </q-scroll-area>
@@ -162,6 +164,7 @@ import { useDataTable } from "src/composables/useDataTable"
 import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
 import { useContactDrawer } from "src/composables/useContactDrawer"
 import { helper } from "src/helpers"
+
 import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
 
 const customerStore = useCustomer()
@@ -190,7 +193,7 @@ async function loadData() {
 
 const hasMoreData = computed(() => {
   return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages
-});
+})
 
 const goToCustomer = () => {
   router.push("/crm/customer")

@@ -149,7 +149,7 @@
 import { ref, onMounted, computed } from "vue"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
-import DataView from "src/components/shared/DataTables/DataView.vue"
+import DataView from "src/components/shared/DataTables/desktop/DataView.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 
@@ -232,4 +232,5 @@ defineExpose({
 a {
   text-decoration: none;
   color: inherit;
-}</style>
+}
+</style>

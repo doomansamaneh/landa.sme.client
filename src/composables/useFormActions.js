@@ -115,7 +115,6 @@ export function useFormActions(baseURL, model) {
 
     watch(model, async () => {
         isDirty.value = true
-        console.log("watch ", isDirty.value)
     }, { deep: true })
 
     onBeforeRouteLeave((to, from) => {

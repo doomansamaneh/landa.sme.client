@@ -10,6 +10,7 @@
       />
       <span class="text-h6">کالا و خدمت</span>
     </template>
+
     <template #buttons>
       <q-btn
         to="/cmn/product/create"
@@ -25,14 +26,16 @@
         />
         {{ $t("shared.labels.create") }}
       </q-btn>
+
       <template v-if="tableStore?.activeRow?.value != null">
         <q-btn
-          :to="getEditUrl(tableStore?.activeRow?.value)"
+          :to="`/cmn/product/edit/${tableStore?.activeRow?.value.id}`"
           class="bordered-btn_bg-dark text-caption"
           rounded
           unelevated
           no-caps
-        ><q-icon
+        >
+          <q-icon
             name="o_edit"
             class="q-mr-xs"
           />
@@ -62,7 +65,7 @@
           rounded
           unelevated
           no-caps
-          @click="deleteBatch"
+          @click="crudStore.deleteBatch(selectedIds, reloadData)"
         >
           <q-icon
             name="o_delete"
@@ -71,19 +74,7 @@
           {{ $t("shared.labels.delete") }} ({{ selectedIds?.length }} rows)
         </q-btn>
       </template>
-      <!-- <template v-else-if="tableStore?.activeRow?.value != null">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-        >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.delete") }} ({{ tableStore?.activeRow?.value?.no }})
-        </q-btn>
-      </template> -->
+
       <q-btn
         class="bordered-btn_bg-dark text-caption"
         rounded
@@ -131,7 +122,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="activate"
+                @click="crudStore.activate(selectedIds, reloadData)"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -150,7 +141,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="deactivate"
+                @click="crudStore.deactivate(selectedIds, reloadData)"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -172,7 +163,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="exportAll"
+              @click="tableStore.value.exportAll()"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>
@@ -242,7 +233,7 @@
         <q-btn
           round
           class="text-on-dark text-caption"
-          :to='getEditUrl(item)'
+          :to="`/cmn/product/edit/${item.id}`"
           unelevated
         >
           <q-icon name="o_edit" />
@@ -251,7 +242,7 @@
         <q-btn
           round
           class="text-on-dark text-caption"
-          :to='getCopyUrl(item)'
+          :to="`/cmn/product/copy/${item.id}`"
           unelevated
         >
           <q-icon name="o_copy" />
@@ -261,7 +252,7 @@
           round
           class="text-on-dark text-caption"
           unelevated
-          @click="deleteRow(item)"
+          @click="crudStore.deleteById(item.id, reloadData)"
         >
           <q-icon name="o_delete" />
         </q-btn>
@@ -275,58 +266,23 @@
 import { ref, computed } from "vue"
 import { useQuasar } from "quasar"
 import { isActiveOptions } from "src/constants"
-import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid"
 import { useFormActions } from "src/composables/useFormActions"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
-import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
-import EditBatchDialog from "../forms/EditBatchDialog.vue"
+import DataGrid from "src/components/shared/DataTables/desktop/DataGrid.vue"
+import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
+
+const props = defineProps({
+  gridStore: Object
+})
 
 const dataGrid = ref(null)
-const gridStore = useProductGrid()
 const crudStore = useFormActions("cmn/product")
 const $q = useQuasar()
 
-function getEditUrl(item) {
-  return `/cmn/product/edit/${item.id}`
-}
-
-function getCopyUrl(item) {
-  return `/cmn/product/copy/${item.id}`
-}
-
 async function reloadData() {
   await tableStore.value.reloadData()
-}
-
-async function deleteRow(item) {
-  //todo: if you agree confirm
-  await crudStore.deleteById(item.id)
-    .then((response) => {
-      reloadData()
-    })
-}
-
-async function deleteBatch() {
-  await crudStore.deleteBatch(selectedIds?.value)
-    .then((response) => {
-      reloadData()
-    })
-}
-
-async function activate() {
-  await crudStore.activate(selectedIds?.value)
-    .then((response) => {
-      reloadData()
-    })
-}
-
-async function deactivate() {
-  await crudStore.deactivate(selectedIds?.value)
-    .then((response) => {
-      reloadData()
-    })
 }
 
 function editBatch() {
@@ -338,10 +294,6 @@ function editBatch() {
   }).onOk(async () => {
     await reloadData()
   })
-}
-
-async function exportAll() {
-  await tableStore.value.exportAll()
 }
 
 const tableStore = computed(() => dataGrid.value?.tableStore)

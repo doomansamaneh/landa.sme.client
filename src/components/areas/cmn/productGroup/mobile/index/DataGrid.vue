@@ -27,13 +27,11 @@
       </q-btn>
       <template v-if="tableStore?.activeRow?.value != null">
         <q-btn
-          :to="`/cmn/productGroup/edit/${tableStore?.activeRow?.value.id}`"
           class="bordered-btn_bg-dark text-caption"
           rounded
           unelevated
           no-caps
-        >
-          <q-icon
+        ><q-icon
             name="o_edit"
             class="q-mr-xs"
           />
@@ -46,7 +44,7 @@
           rounded
           unelevated
           no-caps
-          @click="crudStore.deleteBatch(selectedIds, reloadData)"
+          @click="deleteBatch"
         >
           <q-icon
             name="o_delete"
@@ -115,7 +113,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="crudStore.activate(selectedIds, reloadData)"
+                @click="activate"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -134,7 +132,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="crudStore.deactivate(selectedIds, reloadData)"
+                @click="deactivate"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -156,7 +154,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="tableStore.exportAll()"
+              @click="exportAll"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>
@@ -193,79 +191,46 @@
       dense_
       expandable_
     >
-
-      <template #filter-isActive="{ col }">
-        <custom-select
-          v-model="col.value"
-          :options="isActiveOptions"
-          @update:model-value="reloadData"
-        />
-      </template>
-
-      <template #cell-isActive="{ item }">
-        <i
-          v-if="item.isActive"
-          class="q-icon text-primary notranslate material-icons-outlined"
-          aria-hidden="true"
-          role="presentation"
-          style="font-size: 18px;"
-        > done
-        </i>
-        <i
-          v-else
-          class="q-icon notranslate material-icons-outlined"
-          aria-hidden="true"
-          role="presentation"
-          style="font-size: 18px;"
-        >
-          cancel
-        </i>
-      </template>
-
       <template #cell-actions="{ item }">
-        <div class="row q-gutter-sm items-center">
-          <q-btn
-            round
-            class="text-on-dark text-caption"
-            :to="`/cmn/productGroup/edit/${item.id}`"
-            unelevated
-          >
-            <q-icon name="o_edit" />
-          </q-btn>
+        <q-btn
+          round
+          class="text-on-dark text-caption"
+          :to='getEditUrl(item)'
+          unelevated
+        >
+          <q-icon name="o_edit" />
+        </q-btn>
 
-          <q-btn
-            round
-            class="text-on-dark text-caption"
-            :to="`/cmn/productGroup/copy/${item.id}`"
-            unelevated
-          >
-            <q-icon name="o_copy" />
-          </q-btn>
+        <q-btn
+          round
+          class="text-on-dark text-caption"
+          :to='getCopyUrl(item)'
+          unelevated
+        >
+          <q-icon name="o_copy" />
+        </q-btn>
 
-          <q-btn
-            round
-            class="text-on-dark text-caption"
-            unelevated
-            @click="crudStore.deleteById(item.id, reloadData)"
-          >
-            <q-icon name="o_delete" />
-          </q-btn>
-        </div>
+        <q-btn
+          round
+          class="text-on-dark text-caption"
+          unelevated
+          @click="deleteRow(item)"
+        >
+          <q-icon name="o_delete" />
+        </q-btn>
       </template>
-
     </data-grid>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue"
-
-import { isActiveOptions } from "src/constants"
+import { useQuasar } from "quasar"
 import { useFormActions } from "src/composables/useFormActions"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
-import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
-import DataGrid from "src/components/shared/DataTables/desktop/DataGrid.vue"
+import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
+import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
 
 const props = defineProps({
   gridStore: Object
@@ -273,12 +238,44 @@ const props = defineProps({
 
 const dataGrid = ref(null)
 const crudStore = useFormActions("cmn/productGroup")
-
-async function reloadData() {
-  await tableStore.value.reloadData()
-}
+const $q = useQuasar()
 
 const tableStore = computed(() => dataGrid.value?.tableStore)
 const selectedIds = computed(() => tableStore.value?.selectedRows?.value.map(item => item.id))
 
+function getEditUrl(item) {
+  return `/cmn/productGroup/edit/${item.id}`
+}
+
+function getCopyUrl(item) {
+  return `/cmn/productGroup/copy/${item.id}`
+}
+
+async function loadData() {
+  await dataGrid.value.resetPage()
+}
+
+async function reloadData() {
+  await tableStore?.value.reloadData()
+}
+
+async function deleteRow(item) {
+  await crudStore.deleteById(item.id, reloadData)
+}
+
+async function deleteBatch() {
+  await crudStore.deleteBatch(selectedIds?.value, reloadData)
+}
+
+async function activate() {
+  await crudStore.activate(selectedIds?.value, reloadData)
+}
+
+async function deactivate() {
+  await crudStore.deactivate(selectedIds?.value, reloadData)
+}
+
+async function exportAll() {
+  await tableStore.value.exportAll()
+}
 </script>

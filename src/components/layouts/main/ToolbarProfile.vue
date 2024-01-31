@@ -125,7 +125,7 @@ import { useAuthStore } from "src/stores"
 import { helper } from "src/helpers"
 import { useQuasar } from "quasar"
 
-import ChangePasswordDialog from "src/components/users/ChangePasswordDialog.vue"
+import ChangePasswordDialog from "src/components/areas/scr/users/ChangePasswordDialog.vue"
 
 const authStore = useAuthStore()
 const $q = useQuasar()
@@ -144,10 +144,8 @@ const username = computed(() => {
 </script>
 
 <style>
-
 .profile-pic {
   width: 72px;
   height: 72px;
 }
-
 </style>

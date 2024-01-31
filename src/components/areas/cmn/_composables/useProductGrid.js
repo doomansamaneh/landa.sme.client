@@ -1,6 +1,8 @@
 import { ref } from "vue"
 import { defaultPageSize, sortOrder, sqlOperator } from "src/constants";
 
+const rows = ref([])
+
 const state = {
     firstLoad: ref(false),
     rows: ref([]),
@@ -62,8 +64,7 @@ const columns = ref([
         class: "text-left",
         style: "width:120px;",
         showFilter: true
-    }
-    ,
+    },
     {
         name: "actions",
         field: "",
@@ -82,6 +83,7 @@ export function useProductGrid() {
     }
 
     return {
+        rows,
         columns,
         pagination,
         state,

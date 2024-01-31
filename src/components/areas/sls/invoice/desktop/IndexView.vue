@@ -270,20 +270,15 @@
       <pre>{{ gridI1?.activeRow }}</pre>
     </template>
   </div>
-
-  <div-table
-    v-if="false"
-    style="width: 100%;"
-  ></div-table>
 </template>
 
 <script setup>
 import { computed, ref } from "vue"
 import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
 import { sqlOperator } from "src/constants"
+
 import InvoiceGrid from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
 import AdvancedSearch from "src/components/areas/sls/invoice/_AdvancedSearch.vue"
-import DivTable from "src/components/shared/DataTables/DataGridDiv.vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 
 const invoiceStore = useInvoice([{

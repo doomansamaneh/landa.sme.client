@@ -69,7 +69,7 @@
 
 <script setup>
 import { computed, ref } from "vue"
-import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import DataGrid from "src/components/shared/DataTables/desktop/DataGrid.vue"
 import { useInvoice } from "../_composables/useInvoice"
 
 const invoiceStore = useInvoice()

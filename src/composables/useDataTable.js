@@ -64,7 +64,9 @@ export function useDataTable(dataSource
     if (!state.value.firstLoad.value) {
       state.value.firstLoad.value = true
       await reloadData()
+      return true
     }
+    return false
   }
 
   async function reloadData() {

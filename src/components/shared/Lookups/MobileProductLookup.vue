@@ -115,11 +115,11 @@
 <script setup>
 import { ref, computed, onMounted } from "vue"
 import { useDataTable } from "src/composables/useDataTable"
-import { useProduct } from "src/components/areas/cmn/_composables/useProduct.js"
+import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid.js"
 import { helper } from "src/helpers"
 import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
 
-const productStore = useProduct()
+const productStore = useProductGrid()
 
 const tableStore = useDataTable("cmn/product/getlookupData", productStore.columns, productStore)
 

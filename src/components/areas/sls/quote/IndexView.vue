@@ -84,8 +84,7 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router"
 import { useTest } from "../_composables/testStore"
-// import topBar from "src/components/management/quote/IndexView.vue"
-import DataGrid from "src/components/shared/DataTables/DataGrid.vue"
+import DataGrid from "src/components/shared/DataTables/desktop/DataGrid.vue"
 import TopBar from "src/components/shared/ToolBar.vue"
 
 const router = useRouter()

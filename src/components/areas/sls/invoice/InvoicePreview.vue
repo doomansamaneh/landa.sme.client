@@ -5,7 +5,9 @@
         v-if="$q.screen.gt.xs"
         class="q-mr-sm"
         :class="$q.screen.gt.xs ? 'text-h6' : 'text-body1'"
-      >فاکتور #1 برای خشایار شمالی</span>
+      >
+        فاکتور #1 برای خشایار شمالی
+      </span>
       <div
         v-if="$q.screen.lt.sm"
         :class="$q.screen.lt.sm ? 'text-h6' : 'text-body1'"
@@ -56,7 +58,6 @@
           class="q-mr-xs"
         />
         {{ $t("shared.labels.more") }}
-
         <q-menu
           fit
           :offset="[0, 20]"
@@ -211,16 +212,21 @@
               >
                 <div class="text-weight-bold q-mb-sm">
                   {{ $t("page.payment-detail.seller") }}
-                  <span class="text-weight-thin">حسابداری آنلاین لاندا</span>
+                  <span class="text-weight-thin">
+                    حسابداری آنلاین لاندا
+                  </span>
                 </div>
                 <div>
-                  <span class="line-height-xs">شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
-                    زیتون، واحد 105</span>
+                  <span class="line-height-xs">
+                    شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
+                    زیتون، واحد 105
+                  </span>
                   <div class="q-pt-xs">
                     <q-icon
                       name="phone"
                       class="dark-2 q-pr-xs"
-                    />88944338
+                    />
+                    88944338
                   </div>
                 </div>
 
@@ -231,7 +237,9 @@
               >
                 <div class="text-weight-bold q-mb-sm">
                   {{ $t("page.payment-detail.customer") }}
-                  <span class="text-weight-light">{{ item?.customerName }}</span>
+                  <span class="text-weight-light">
+                    {{ item?.customerName }}
+                  </span>
                 </div>
                 <div>
                   <span class="line-height-xs">-</span>
@@ -295,16 +303,20 @@
                     </div>
                   </td>
                   <td>
-                    <div>{{ item?.amount}}</div>
+                    <div>{{ item?.amount }}</div>
                   </td>
                   <td>
                     <div>دستگاه</div>
                   </td>
                   <td>
-                    <div>{{ item?.amount.toLocaleString() }}</div>
+                    <div>
+                      {{ item?.amount.toLocaleString() }}
+                    </div>
                   </td>
                   <td>
-                    <div>{{ item?.payedAmount.toLocaleString() }}</div>
+                    <div>
+                      {{ item?.payedAmount.toLocaleString() }}
+                    </div>
                   </td>
                 </tr>
                 <tr>
@@ -312,7 +324,9 @@
                     class="text-right"
                     colspan="5"
                   >
-                    <span class="text-bold">{{ $t("page.payment-detail.sub-total") }}</span>
+                    <span class="text-bold">
+                      {{ $t("page.payment-detail.sub-total") }}
+                    </span>
                   </td>
                   <td class="">
                     <span class="">10,750,000</span>
@@ -325,7 +339,11 @@
                   >
                     <span class="text-bold">تخفیف:</span>
                   </td>
-                  <td><span class="">{{ item?.discountAmount }}</span></td>
+                  <td>
+                    <span class="">
+                      {{ item?.discountAmount }}
+                    </span>
+                  </td>
                 </tr>
                 <tr>
                   <td
@@ -337,8 +355,11 @@
                     </span>
                     <span class="">
                       <span class="">
-                        (یازده میلیون و هفتصد و هفده هزار و پانصد <span class="text-bold">{{ $t("shared.labels.rial")
-                        }}</span>)
+                        (یازده میلیون و هفتصد و هفده هزار و پانصد
+                        <span class="text-bold">
+                          {{ $t("shared.labels.rial") }}
+                        </span>
+                        )
                       </span>
                     </span>
                   </td>
@@ -377,12 +398,19 @@
               <a
                 href="#"
                 class="link text-body3"
-              >{{ item?.customerName }}</a>
+              >
+                {{ item?.customerName }}
+              </a>
             </div>
 
-            <div class="column q-gutter-y-xs" v-if="item?.contractTitle">
+            <div
+              class="column q-gutter-y-xs"
+              v-if="item?.contractTitle"
+            >
               <span class="text-caption text-bold">قرارداد</span>
-              <span class="text-body3">{{ item?.contractTitle }}</span>
+              <span class="text-body3">
+                {{ item?.contractTitle }}
+              </span>
             </div>
 
             <div class="column q-gutter-y-xs">
@@ -761,9 +789,10 @@
 
 <script setup>
 import { ref } from "vue"
-import ToolBar from "src/components/shared/ToolBar.vue"
-import DeleteAlert from "/src/components/management/profile/DeleteAlert.vue"
 import { useQuasar } from "quasar"
+
+import ToolBar from "src/components/shared/ToolBar.vue"
+import DeleteAlert from "src/components/areas/crm/customer/profile/DeleteAlert.vue"
 
 const $q = useQuasar()
 
