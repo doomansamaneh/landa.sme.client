@@ -8,6 +8,7 @@ export default {
   children: [
     {
       path: "",
+      name: "",
       component: () => import("src/pages/management/business/indexPage.vue")
     },
     {

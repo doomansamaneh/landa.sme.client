@@ -1,20 +1,10 @@
 import authRoutes from "./auth-routes"
-import businessRoutes from "./management-routes"
+import managementRoutes from "./management-routes"
 import mainRoutes from "./main-routes"
 
 const routes = [
-  {
-    path: "/",
-    component: () => import("layouts/ManagementLayout.vue"),
-    children: [
-      {
-        path: "",
-        component: () => import("pages/management/business/indexPage.vue")
-      }
-    ]
-  },
   { ...authRoutes },
-  { ...businessRoutes },
+  { ...managementRoutes },
   { ...mainRoutes },
 
   // catch all redirect to home page

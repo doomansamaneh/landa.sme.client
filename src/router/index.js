@@ -5,6 +5,7 @@ import {
   createWebHistory,
   createWebHashHistory,
 } from "vue-router"
+
 import routes from "./routes"
 import { useAuthStore, useAlertStore } from "../stores"
 

@@ -1,5 +1,5 @@
 <template>
-  <tmplate v-if="$q.screen.gt.xs">
+  <template v-if="$q.screen.gt.xs">
     <q-btn
       v-if="showLink"
       class="text-body3 no-letter-spacing"
@@ -17,7 +17,7 @@
       />
       {{ $t("pages.renew-subscription") }}
     </q-btn>
-  </tmplate>
+  </template>
 
   <template v-if="$q.screen.lt.sm">
     <q-btn
@@ -33,7 +33,6 @@
     >
       <span class="text-caption-sm">تمدید</span>
     </q-btn>
-
   </template>
 </template>
 
