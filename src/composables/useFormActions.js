@@ -1,4 +1,4 @@
-import { ref, watch } from "vue"
+import { ref, reactive, watch } from "vue"
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
 import { fetchWrapper, helper } from "src/helpers"
 import { useQuasar } from "quasar"
@@ -113,9 +113,11 @@ export function useFormActions(baseURL, model) {
         });
     }
 
-    watch(model, async () => {
-        isDirty.value = true
-    }, { deep: true })
+    if (model) {
+        watch(model, async () => {
+            isDirty.value = true
+        }, { deep: true })
+    }
 
     onBeforeRouteLeave((to, from) => {
         if (isDirty.value) {
