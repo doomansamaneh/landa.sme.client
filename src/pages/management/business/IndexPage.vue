@@ -1,19 +1,17 @@
 <template>
-    <q-page :class="$q.screen.gt.xs ? 'row items-center justify-center overflow-hidden' : ''">
+    <mobile :grid-store="gridStore" />
+    <!-- <q-page :class="$q.screen.gt.xs ? 'row items-center justify-center overflow-hidden' : ''">
         <div class="main-container">
-
-            <mobile :grid-store="gridStore" />
-
-            <!-- <template v-if="$q.screen.gt.xs">
+            <template v-if="$q.screen.gt.xs">
                 <background />
                 <desktop :grid-store="gridStore" />
             </template>
 
             <template v-if="$q.screen.xs">
                 <mobile :grid-store="gridStore" />
-            </template> -->
+            </template>
         </div>
-    </q-page>
+    </q-page> -->
 </template>
   
 <script setup>

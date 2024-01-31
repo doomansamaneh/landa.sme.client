@@ -1,14 +1,12 @@
 <template>
-    <!-- <desktop
+    <desktop
         v-if="$q.screen.gt.sm"
         :grid-store="gridSotre"
     />
     <mobile
         v-else
         :grid-store="gridSotre"
-    /> -->
-
-    <mobile :grid-store="gridSotre" />
+    />
 </template>
   
 <script setup>

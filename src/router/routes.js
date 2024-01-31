@@ -9,7 +9,7 @@ const routes = [
     children: [
       {
         path: "",
-        component: () => import("pages/management/BusinessPage.vue")
+        component: () => import("pages/management/business/indexPage.vue")
       }
     ]
   },
