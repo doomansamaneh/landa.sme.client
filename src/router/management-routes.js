@@ -14,7 +14,7 @@ export default {
     {
       path: "changePassword",
       name: "change-password",
-      component: () => import("src/pages/users/ChangePassword.vue"),
+      component: () => import("src/pages/areas/scr/users/ChangePassword.vue"),
       meta: {
         icon: "password"
       }
@@ -22,7 +22,7 @@ export default {
     {
       path: "inviteUser",
       name: "invite-user",
-      component: () => import("pages/users/InviteUser.vue"),
+      component: () => import("pages/management/users/InviteUser.vue"),
       meta: {
         icon: "o_profile"
       }
@@ -30,7 +30,7 @@ export default {
     {
       path: "deleteBusiness",
       name: "delete-business",
-      component: () => import("pages/users/DeleteBusiness.vue"),
+      component: () => import("pages/management/users/DeleteBusiness.vue"),
       meta: {
         icon: "o_delete"
       }

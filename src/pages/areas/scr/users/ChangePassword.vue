@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import ChangePassword from "src/components/users/ChangePassword.vue"
+import ChangePassword from "src/components/areas/scr/users/ChangePassword.vue"
 
 function submitted(response) {
   $router.go(-1)
