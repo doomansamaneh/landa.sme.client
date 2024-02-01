@@ -1,4 +1,6 @@
 <template>
+    <!-- <mobile :grid-store="gridSotre" /> -->
+
     <desktop
         v-if="$q.screen.gt.sm"
         :grid-store="gridSotre"

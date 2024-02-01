@@ -2,6 +2,7 @@
   <data-grid
     ref="businessDataView"
     data-source="business/getBusinessGridData"
+    create-url="/business/addBusiness"
     :grid-store="gridStore"
     class="q-my-xl"
   >
@@ -15,7 +16,7 @@
         class="text-on-dark q-ml-xs text-body3 primary-shadow"
         @click="showGuideDialog = true"
       >
-        راهنما
+        {{ $t("shared.labels.userGuide") }}
       </q-btn>
     </template>
 
@@ -46,6 +47,7 @@
             />
           </q-avatar>
         </div>
+
         <div class="col">
           <div class="column q-gutter-sm">
 
@@ -73,13 +75,11 @@
                 <q-tooltip
                   class="custom-tooltip"
                   :delay="600"
-                >{{
-                  $t("page.buttons.expire-date-tooltip")
-                }}</q-tooltip>
+                >
+                  {{ $t("page.buttons.expire-date-tooltip") }}
+                </q-tooltip>
               </q-item-label>
-
             </div>
-
           </div>
         </div>
 
@@ -99,34 +99,10 @@
       </q-card>
     </template>
 
+    <template #create-label>
+      {{ $t("pages.add-new-business") }}
+    </template>
   </data-grid>
-
-  <q-page-sticky
-    position="bottom-right z-1"
-    :offset="[18, 18]"
-  >
-    <q-btn
-      v-if="showCreate"
-      rounded
-      unelevated
-      padding="10px 20px"
-      to="/sls/invoice/create"
-      dense
-      color="primary"
-      class="text-body1 no-letter-spacing primary-shadow"
-    >
-      <div class="row items-center q-gutter-x-xs">
-        <q-icon
-          name="o_add"
-          size="sm"
-        />
-        <span>
-          {{ $t("page.buttons.add-new-business-tooltip") }}
-        </span>
-      </div>
-    </q-btn>
-
-  </q-page-sticky>
 
   <user-guide v-model="showGuideDialog" />
 
@@ -263,7 +239,6 @@ const { t } = useI18n()
 const router = useRouter()
 const resetStore = useResetStores()
 
-const showCreate = ref(true)
 const showGuideDialog = ref(false)
 const bottomSheetStatus = ref(false)
 const selectedRow = ref(null)
@@ -310,21 +285,6 @@ function showDeleteBusiness() {
   $q.dialog({
     component: DeleteBusinessDialog
   })
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
-
-let previousScrollPosition = 0
-const handleScroll = () => {
-  const currentPosition = window.scrollY || document.documentElement.scrollTop;
-  showCreate.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
-  previousScrollPosition = currentPosition;
 }
 </script>
 

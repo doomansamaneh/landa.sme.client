@@ -1,16 +1,10 @@
 <template>
-  <!-- <q-scroll-area
-    class="q-px-md"
-    :style="$q.screen.gt.xs ? 'height: calc(100vh - 180px);' : 'height: calc(100vh - 180px);'"
-    :thumb-style="helper.thumbStyle"
-    :bar-style="helper.barStyle"
-  > -->
   <slot name="header">
     <q-input
       outlined
       rounded
       dense
-      class="business-searchbox-mobile text-body2 q-my-md"
+      class="text-body2 q-my-md"
       v-model="tableStore.pagination.value.searchTerm"
       :placeholder="$t('page.card-searchbar')"
       @keydown.enter="resetPage"
@@ -58,23 +52,52 @@
         name="body"
         :item="row"
       >
-        <q-card class="q-my-md">
+        <q-card class="card-grid-body">
+          <slot
+            name="row-header"
+            :item="row"
+          >
+          </slot>
+
           <q-card-section>
-            <span class="text-on-dark">{{ index + startIndex }}</span>
-            <div
-              v-for="col in gridStore?.columns.value"
-              :key="col.name"
+            <slot
+              name="row-body"
+              :item="row"
             >
-              <slot
-                :name="`cell-${col.name}`"
-                :item="row"
+              <span
+                v-if="numbered"
+                class="text-on-dark"
               >
-                <template v-if="col.field">
-                  {{ col.label }}: {{ row[col.field] }}
-                </template>
-              </slot>
-            </div>
+                {{ index + startIndex }}
+              </span>
+              <div
+                v-for="col in gridStore?.columns.value"
+                :key="col.name"
+              >
+                <slot
+                  :name="`cell-${col.name}`"
+                  :item="row"
+                >
+                  <template v-if="col.field">
+                    {{ col.label }}: {{ row[col.field] }}
+                  </template>
+                </slot>
+              </div>
+            </slot>
           </q-card-section>
+          <q-card-actions class="dark-1">
+            <slot
+              name="row-actions"
+              :item="row"
+            >
+            </slot>
+
+            <slot
+              name="row-more-menus"
+              :item="row"
+            >
+            </slot>
+          </q-card-actions>
         </q-card>
       </slot>
     </template>
@@ -90,8 +113,8 @@
   </div>
 
   <div
-    class="row justify-center"
     v-if="hasMoreData"
+    class="row justify-center"
   >
     <q-btn
       rounded
@@ -104,22 +127,53 @@
       </span>
     </q-btn>
   </div>
-  <!-- </q-scroll-area> -->
+
+  <template v-if="createUrl">
+    <q-page-sticky
+      position="bottom-right z-1"
+      :offset="[18, 18]"
+    >
+      <q-btn
+        v-if="showCreate"
+        rounded
+        unelevated
+        padding="10px 20px"
+        :to="createUrl"
+        dense
+        color="primary"
+        class="text-body1 no-letter-spacing primary-shadow"
+      >
+        <div class="row items-center q-gutter-x-xs">
+          <q-icon
+            name="o_add"
+            size="sm"
+          />
+          <span>
+            <slot name="create-label">
+              {{ $t("shared.labels.create") }}
+            </slot>
+          </span>
+        </div>
+      </q-btn>
+    </q-page-sticky>
+  </template>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
+import { ref, onMounted, onUnmounted, computed } from "vue"
 import { useDataTable } from "src/composables/useDataTable"
-import { helper } from "src/helpers"
 
 import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
 
 const props = defineProps({
   dataSource: String,
-  gridStore: Object
+  createUrl: String,
+  gridStore: Object,
+  numbered: Boolean
 })
 
 const startIndex = ref(1)
+const showCreate = ref(true)
 
 const tableStore = useDataTable(props.dataSource, null, props.gridStore)
 
@@ -162,7 +216,19 @@ const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 
 onMounted(() => {
   tableStore.loadData()
+  window.addEventListener('scroll', handleScroll)
 })
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
+let previousScrollPosition = 0
+const handleScroll = () => {
+  const currentPosition = window.scrollY || document.documentElement.scrollTop;
+  showCreate.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
+  previousScrollPosition = currentPosition;
+}
 
 function selectAll(checked) {
   tableStore.selectAll(checked)
@@ -196,7 +262,4 @@ defineExpose({
   tableStore,
   resetPage
 })
-
 </script>
-
-<style lang="scss" scoped></style>

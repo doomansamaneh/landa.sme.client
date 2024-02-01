@@ -1,7 +1,7 @@
 <template>
   <data-view
     ref="businessDataView"
-    dataSource="business/getBusinessGridData"
+    dataSource="business/addBusiness"
     :grid-store="gridStore"
     class="q-my-xl"
   >

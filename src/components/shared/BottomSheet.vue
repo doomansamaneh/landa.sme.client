@@ -8,8 +8,7 @@
     position="bottom"
     transition-hide="slide-down"
   >
-
-    <q-card class="no-border border-radius-lg">
+    <q-card class="no-border border-radius-xl">
 
       <q-card-section class="no-padding">
         <slot name="header" />
@@ -21,12 +20,8 @@
   </q-dialog>
 </template>
 
-
 <script setup>
-import { ref, watch } from "vue"
-
 const props = defineProps({
   status: Boolean
 })
-
 </script>

@@ -1,226 +1,122 @@
 <template>
-  <tool-bar>
+  <data-grid
+    ref="dataGrid"
+    dataSource="cmn/productGroup/getGridData"
+    :grid-store="gridStore"
+    createUrl="/cmn/product/create"
+    multiSelect
+    numbered
+  >
+    <template #row-header="{ item }">
+      <q-card-section>
+        {{ item.title }}
+      </q-card-section>
+    </template>
+
+    <template #row-actions="{ item }">
+      <q-btn
+        round
+        :to="`/cmn/productGroup/edit/${item.id}`"
+        unelevated
+      >
+        <q-icon name="o_edit" />
+      </q-btn>
+
+      <q-btn
+        round
+        :to="`/cmn/productGroup/copy/${item.id}`"
+        unelevated
+      >
+        <q-icon name="o_copy" />
+      </q-btn>
+
+      <q-btn
+        round
+        unelevated
+        @click="crudStore.deleteById(item.id, reloadData)"
+      >
+        <q-icon name="o_delete" />
+      </q-btn>
+    </template>
+
+    <template #row-more-menus="{ item }">
+      <span class="justify-end">
+        <q-btn
+          unelevated
+          round
+          @click="onBottomSheetShow(item)"
+        >
+          <q-icon name="o_more_vert" />
+        </q-btn>
+      </span>
+    </template>
+  </data-grid>
+
+  <bottom-sheet
+    v-if="bottomSheetStatus"
+    :status="bottomSheetStatus"
+    @hide="onBottomSheetHide"
+  >
     <template #header>
-      <q-badge
-        v-if="tableStore?.pagination.value.totalItems > 0"
-        rounded
-        outline
-        :label="tableStore?.pagination.value.totalItems"
-        class="q-mr-sm bg-dark text-on-dark text-body2"
-      />
-      <span class="text-h6">گروه کالا و خدمت</span>
+      <div class="text-h6 q-pa-md">
+        {{ selectedRow.title }}
+      </div>
     </template>
-    <template #buttons>
-      <q-btn
-        to="/cmn/productGroup/create"
-        class="bg-primary text-white text-caption"
-        padding="6px 12px"
-        rounded
-        no-caps
-        unelevated
-      >
-        <q-icon
-          name="o_add"
-          class="q-mr-xs"
-        />
-        {{ $t("shared.labels.create") }}
-      </q-btn>
-      <template v-if="tableStore?.activeRow?.value != null">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-          no-caps
-        ><q-icon
-            name="o_edit"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.edit") }} ({{ tableStore?.activeRow?.value?.no }})
-        </q-btn>
-      </template>
-      <template v-if="selectedIds?.length > 0">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-          no-caps
-          @click="deleteBatch"
+
+    <template #body>
+      <q-list padding>
+        <q-item
+          clickable
+          v-ripple
+          :to="`/cmn/productGroup/edit/${selectedRow.id}`"
         >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.delete") }} ({{ selectedIds?.length }} rows)
-        </q-btn>
-      </template>
-      <!-- <template v-else-if="tableStore?.activeRow?.value != null">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
+          <q-item-section avatar>
+            <q-avatar class="bg-on-dark text-on-dark">
+              <q-icon name="o_edit" />
+            </q-avatar>
+          </q-item-section>
+
+          <q-item-section class="text-body2 no-letter-spacing">
+            {{ $t("shared.labels.edit") }}
+          </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          :to="`/cmn/productGroup/copy/${selectedRow.id}`"
         >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.delete") }} ({{ tableStore?.activeRow?.value?.no }})
-        </q-btn>
-      </template> -->
-      <q-btn
-        class="bordered-btn_bg-dark text-caption"
-        rounded
-        unelevated
-      >
-        <q-icon
-          name="more_horiz"
-          class="q-mr-xs"
-        />
-        {{ $t("shared.labels.more") }}
+          <q-item-section avatar>
+            <q-avatar class="bg-on-dark text-on-dark">
+              <q-icon name="o_copy" />
+            </q-avatar>
+          </q-item-section>
 
-        <q-menu
-          fit
-          :offset="[0, 20]"
+          <q-item-section class="text-body2 no-letter-spacing">
+            {{ $t("shared.labels.copy") }}
+          </q-item-section>
+        </q-item>
+
+        <q-separator class="q-my-sm" />
+
+        <q-item
+          clickable
+          v-ripple
+          @click="crudStore.deleteById(selectedRow.id, reloadData)"
         >
-          <q-list
-            dense
-            padding
-            style="width:200px"
-          >
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-              @click="reloadData"
-            >
-              <div class="q-py-sm">
-                <q-item-section avatar>
-                  <q-avatar
-                    class="dark-icon"
-                    size="sm"
-                  >
-                    <q-icon name="o_refresh" />
-                  </q-avatar>
-                </q-item-section>
-              </div>
-              <q-item-section>
-                <div class="text-caption">تازه‌سازی</div>
-              </q-item-section>
-            </q-item>
-            <q-separator />
+          <q-item-section avatar>
+            <q-avatar class="delete-avatar bg-on-dark red-shadow text-on-dark">
+              <q-icon name="o_delete" />
+            </q-avatar>
+          </q-item-section>
 
-            <template v-if="selectedIds?.length > 0">
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-                @click="activate"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar
-                      class="dark-icon"
-                      size="sm"
-                    ><q-icon name="o_check" /></q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-caption">فعال سازی</div>
-                </q-item-section>
-              </q-item>
-
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-                @click="deactivate"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar
-                      class="dark-icon"
-                      size="sm"
-                    ><q-icon name="o_close" /></q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-caption">غیر‌فعال‌سازی</div>
-                </q-item-section>
-              </q-item>
-
-              <q-separator />
-            </template>
-
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-              @click="exportAll"
-            >
-              <div class="q-py-sm">
-                <q-item-section avatar>
-                  <q-avatar
-                    class="dark-icon"
-                    size="sm"
-                  ><q-icon
-                      name="o_download"
-                      size="16px"
-                    /></q-avatar>
-                </q-item-section>
-              </div>
-              <q-item-section>
-                <div class="text-caption">تبدیل به اکسل</div>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-menu>
-      </q-btn>
+          <q-item-section class="text-body2 no-letter-spacing">
+            {{ $t("shared.labels.delete") }}
+          </q-item-section>
+        </q-item>
+      </q-list>
     </template>
-  </tool-bar>
-
-  <div class="q-mt-xl">
-    <data-grid
-      ref="dataGrid"
-      dataSource="cmn/productGroup/getGridData"
-      :grid-store="gridStore"
-      separator="horizontal"
-      flat
-      multiSelect
-      numbered
-      bordered
-      wrapCells
-      dense_
-      expandable_
-    >
-      <template #cell-actions="{ item }">
-        <q-btn
-          round
-          class="text-on-dark text-caption"
-          :to='getEditUrl(item)'
-          unelevated
-        >
-          <q-icon name="o_edit" />
-        </q-btn>
-
-        <q-btn
-          round
-          class="text-on-dark text-caption"
-          :to='getCopyUrl(item)'
-          unelevated
-        >
-          <q-icon name="o_copy" />
-        </q-btn>
-
-        <q-btn
-          round
-          class="text-on-dark text-caption"
-          unelevated
-          @click="deleteRow(item)"
-        >
-          <q-icon name="o_delete" />
-        </q-btn>
-      </template>
-    </data-grid>
-  </div>
+  </bottom-sheet>
 </template>
 
 <script setup>
@@ -228,27 +124,30 @@ import { ref, computed } from "vue"
 import { useQuasar } from "quasar"
 import { useFormActions } from "src/composables/useFormActions"
 
-import ToolBar from "src/components/shared/ToolBar.vue"
 import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
-import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
+import BottomSheet from "src/components/shared/BottomSheet.vue"
 
 const props = defineProps({
   gridStore: Object
 })
 
-const dataGrid = ref(null)
-const crudStore = useFormActions("cmn/productGroup")
 const $q = useQuasar()
+const crudStore = useFormActions("cmn/productGroup")
+
+const dataGrid = ref(null)
+const bottomSheetStatus = ref(false)
+const selectedRow = ref(null)
 
 const tableStore = computed(() => dataGrid.value?.tableStore)
 const selectedIds = computed(() => tableStore.value?.selectedRows?.value.map(item => item.id))
 
-function getEditUrl(item) {
-  return `/cmn/productGroup/edit/${item.id}`
+const onBottomSheetShow = (row) => {
+  selectedRow.value = row;
+  bottomSheetStatus.value = true;
 }
 
-function getCopyUrl(item) {
-  return `/cmn/productGroup/copy/${item.id}`
+const onBottomSheetHide = () => {
+  bottomSheetStatus.value = false;
 }
 
 async function loadData() {
@@ -257,10 +156,6 @@ async function loadData() {
 
 async function reloadData() {
   await tableStore?.value.reloadData()
-}
-
-async function deleteRow(item) {
-  await crudStore.deleteById(item.id, reloadData)
 }
 
 async function deleteBatch() {
