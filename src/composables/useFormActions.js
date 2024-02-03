@@ -24,6 +24,7 @@ export function useFormActions(baseURL, model) {
         notifyResponse(response.data)
         model.value.id = response.data.data.id
         await resetIsDirty()
+        return response
     }
 
     async function resetIsDirty() {

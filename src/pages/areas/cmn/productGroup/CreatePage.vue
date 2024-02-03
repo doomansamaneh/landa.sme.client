@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="create"
-        title="ایجاد"
+        title="ایجاد گروه کالا"
     />
 </template>
   

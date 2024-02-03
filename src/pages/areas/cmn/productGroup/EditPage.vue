@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="edit"
-        title="ویرایش"
+        title="ویرایش گروه کالا"
     />
 </template>
   

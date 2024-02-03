@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="editBatch"
-        title="ویرایش دسته‌ای"
+        title="ویرایش دسته‌ای کالا/خدمت"
     />
     <!-- <desktop v-if="$q.screen.gt.sm" />
     <mobile v-if="$q.screen.xs" /> -->

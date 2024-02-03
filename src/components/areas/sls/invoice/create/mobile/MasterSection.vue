@@ -208,11 +208,12 @@
 
 <script setup>
 import { computed, ref } from "vue"
+import { useRouter } from "vue-router"
+
 import CustomerLookup from "src/components/shared/Lookups/CustomerLookup.vue"
 import ContractLookup from "src/components/shared/Lookups/ContractLookup.vue"
 import SaleTypeLookup from "src/components/shared/Lookups/SaleTypeLookup.vue"
 import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
-import { useRouter } from "vue-router"
 
 const router = useRouter()
 const description = ref('')
@@ -233,8 +234,10 @@ const goToCustomerLookup = () => {
 }
 </script>
 
-<style lang="scss" scoped>.q-item__label--caption {
+<style lang="scss" scoped>
+.q-item__label--caption {
   font-size: 14px;
   letter-spacing: 0;
   color: #697588;
-}</style>
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="edit"
-        title="ویرایش"
+        title="ویرایش کالا/خدمت"
     />
     <!-- <desktop v-if="$q.screen.gt.sm" />
     <mobile v-if="$q.screen.xs" /> -->
