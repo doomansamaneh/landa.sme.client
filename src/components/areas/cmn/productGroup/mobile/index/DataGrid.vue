@@ -124,7 +124,7 @@ import { ref, computed } from "vue"
 import { useQuasar } from "quasar"
 import { useFormActions } from "src/composables/useFormActions"
 
-import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
+import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
 
 const props = defineProps({

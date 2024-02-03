@@ -222,7 +222,7 @@ import { Loading, useQuasar } from "quasar"
 import { fetchWrapper } from "src/helpers"
 import { useResetStores } from "src/composables/useResetStores"
 
-import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
+import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"

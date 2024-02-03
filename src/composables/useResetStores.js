@@ -1,9 +1,9 @@
-import { useInvoice } from "src/components/areas/sls/_composables/useInvoiceGrid"
+import { useInvoiceGrid } from "src/components/areas/sls/_composables/useInvoiceGrid"
 import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
 
 export function useResetStores() {
     function reset() {
-        useInvoice().reset()
+        useInvoiceGrid().reset()
         useCustomer().reset()
     }
 
