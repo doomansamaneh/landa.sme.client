@@ -9,7 +9,7 @@ export default {
     {
       path: "",
       name: "",
-      component: () => import("src/pages/management/business/indexPage.vue")
+      component: () => import("src/pages/management/business/IndexPage.vue")
     },
     {
       path: "changePassword",
@@ -46,7 +46,7 @@ export default {
     {
       path: "payments/:businessId",
       name: "payments",
-      component: () => import("pages/management/PaymentPage.vue"),
+      component: () => import("src/pages/management/payment/IndexPage.vue"),
       meta: {
         icon: "payment"
       }

@@ -272,7 +272,7 @@ import { useFormActions } from "src/composables/useFormActions"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
-import DataGrid from "src/components/shared/DataTables/desktop/DataGrid.vue"
+import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue"
 
 const props = defineProps({
   gridStore: Object

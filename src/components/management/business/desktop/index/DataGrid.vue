@@ -166,9 +166,6 @@
                 </div>
               </q-item-section>
             </q-item>
-
-
-
             <div
               class="isNotOwner"
               v-if="item.isOwner"
@@ -243,7 +240,7 @@ import { useI18n } from "vue-i18n"
 import { fetchWrapper } from "src/helpers"
 import { useResetStores } from "src/composables/useResetStores"
 
-import DataView from "src/components/shared/DataTables/desktop/DataView.vue"
+import DataView from "src/components/shared/dataTables/desktop/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 import AddBusiness from "src/components/management/shared/AddBusinessLink.vue"
 import DesktopViewGuide from "components/management/business/desktop/index/GuideView.vue"

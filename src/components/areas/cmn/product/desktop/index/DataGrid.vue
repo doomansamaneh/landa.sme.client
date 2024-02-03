@@ -269,8 +269,8 @@ import { isActiveOptions } from "src/constants"
 import { useFormActions } from "src/composables/useFormActions"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
-import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
-import DataGrid from "src/components/shared/DataTables/desktop/DataGrid.vue"
+import CustomSelect from "src/components/shared/forms/CustomSelect.vue"
+import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue"
 import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
 
 const props = defineProps({
