@@ -3,7 +3,7 @@
     ref="dataGrid"
     dataSource="cmn/productGroup/getGridData"
     :grid-store="gridStore"
-    createUrl="/cmn/product/create"
+    createUrl="/cmn/productGroup/create"
     multiSelect
     numbered
   >
@@ -155,7 +155,8 @@ async function loadData() {
 }
 
 async function reloadData() {
-  await tableStore?.value.reloadData()
+  //await tableStore?.value.reloadData()
+  await dataGrid.value.resetPage()
 }
 
 async function deleteBatch() {

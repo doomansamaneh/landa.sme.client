@@ -106,13 +106,13 @@
   <slot name="footer"></slot>
 
   <div
-    v-if="!tableStore.showLoader.value && gridStore.rows.value.length === 0"
+    v-if="!tableStore.showLoader.value && tableStore?.rows.value.length === 0"
     class="text-on-dark"
   >
     <no-data-found />
   </div>
 
-  <div
+  <!-- <div
     v-if="hasMoreData"
     class="row justify-center"
   >
@@ -126,6 +126,15 @@
         {{ $t("shared.labels.loadMore") }}
       </span>
     </q-btn>
+  </div> -->
+
+  <div v-if="tableStore.showPagebar.value">
+    <page-bar
+      :pagination="tableStore.pagination.value"
+      max-pages=3
+      @page-changed="reloadData"
+    >
+    </page-bar>
   </div>
 
   <template v-if="createUrl">
@@ -163,13 +172,15 @@
 import { ref, onMounted, onUnmounted, computed } from "vue"
 import { useDataTable } from "src/composables/useDataTable"
 
-import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
+import PageBar from "src/components/shared/dataTables/PageBar.vue"
+import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
 
 const props = defineProps({
   dataSource: String,
   createUrl: String,
   gridStore: Object,
-  numbered: Boolean
+  numbered: Boolean,
+  multiSelect: Boolean
 })
 
 const startIndex = ref(1)
@@ -194,18 +205,22 @@ async function gotoNext() {
 
 async function reloadData() {
   await tableStore.reloadData()
-  thisGridStore.value.rows.value = [...thisGridStore.value.rows.value, ...tableStore.rows.value]
+  if (thisGridStore.value.rows)
+    thisGridStore.value.rows.value = tableStore.rows.value
+  //thisGridStore.value.rows.value = [...thisGridStore.value.rows.value, ...tableStore.rows.value]
 }
 
 async function loadData() {
   await tableStore.loadData()
-  thisGridStore.value.rows.value = tableStore.rows.value
+  if (thisGridStore.value.rows)
+    thisGridStore.value.rows.value = tableStore.rows.value
 }
 
 async function resetPage() {
   tableStore.pagination.value.currentPage = 1
   await tableStore.reloadData()
-  thisGridStore.value.rows.value = tableStore.rows.value
+  if (thisGridStore.value.rows)
+    thisGridStore.value.rows.value = tableStore.rows.value
 }
 
 const hasMoreData = computed(() => {

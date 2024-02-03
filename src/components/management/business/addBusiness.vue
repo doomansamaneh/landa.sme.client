@@ -3,9 +3,9 @@
     <q-card-section>
       <q-item class="">
         <q-item-section>
-          <q-item-label class="text-h6">{{
-            $t("page.add-business.title")
-          }}</q-item-label>
+          <q-item-label class="text-h6">
+            {{ $t("pages.add-new-business") }}
+          </q-item-label>
           <q-item-label class="dark-2 text-subtitle2">
             {{ $t("page.add-business.caption") }}
           </q-item-label>
@@ -20,12 +20,15 @@
     <q-separator />
 
     <q-card-section class="q-mx-md">
-      <q-form ref="form" autofocus>
+      <q-form
+        ref="form"
+        autofocus
+      >
         <div class="row items-center q-mt-xs">
           <div class="col-2">
-            <q-item-label class="q-mb-lg">{{
-              $t("page.add-business.business-name-label")
-            }}</q-item-label>
+            <q-item-label class="q-mb-lg">
+              {{ $t("page.add-business.business-name-label") }}
+            </q-item-label>
           </div>
           <div class="col-10">
             <q-input
@@ -54,20 +57,25 @@
         no-caps
         padding="8px 16px"
         class=""
-        ><q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
+      >
+        <q-icon
+          name="o_monetization_on"
+          class="q-pr-xs"
+          size="xs"
+        />
         {{ $t("page.renew-subscription.buttons.payment") }}
       </q-btn>
-      <span class="text-caption q-pl-md">{{
-        $t("page.add-business.pay-caption")
-      }}</span>
+      <span class="text-caption q-pl-md">
+        {{ $t("page.add-business.pay-caption") }}
+      </span>
     </q-card-actions>
   </q-card>
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
+import { ref } from "vue"
 import { useQuasar } from "quasar"
-import { fetchWrapper } from "src/helpers"
+
 import SelectPlan from "src/components/management/shared/SelectPlan.vue"
 import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 

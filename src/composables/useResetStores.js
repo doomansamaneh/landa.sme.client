@@ -1,4 +1,4 @@
-import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
+import { useInvoice } from "src/components/areas/sls/_composables/useInvoiceGrid"
 import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
 
 export function useResetStores() {

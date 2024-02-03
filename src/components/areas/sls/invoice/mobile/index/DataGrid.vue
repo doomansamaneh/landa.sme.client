@@ -360,23 +360,20 @@
 
 <script setup>
 import { computed, ref, onMounted, onUnmounted } from "vue"
-import { useI18n } from 'vue-i18n';
 
-import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
+import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid"
 import { sqlOperator } from "src/constants"
 
-import AdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue"
-import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
+import AdvancedSearch from "components/areas/sls/invoice/mobile/_AdvancedSearch.vue"
+import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue"
 
-const { t } = useI18n();
-
-const invoiceStore = useInvoice([{
+const invoiceStore = useInvoiceGrid([{
   fieldName: "d.StatusId",
   operator: sqlOperator.notEqual,
   value: "a36af633-d0bb-4857-a542-364e12658d1c"
 }])
 
-const canceledInvoiceStore = useInvoice([{
+const canceledInvoiceStore = useInvoiceGrid([{
   fieldName: "d.StatusId",
   operator: sqlOperator.equal,
   value: "a36af633-d0bb-4857-a542-364e12658d1c"

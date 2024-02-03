@@ -1,6 +1,8 @@
 import { defaultPageSize } from "src/constants";
 import { ref } from "vue"
 
+const rows = ref([])
+
 const state = {
     firstLoad: ref(false),
     rows: ref([]),
@@ -107,7 +109,7 @@ const columns = ref([
     }
 ])
 
-export function useInvoice(defaultFilters) {
+export function useInvoiceGrid(defaultFilters) {
     // if (defaultState != null) Object.assign(state, defaultState)
     const filterExpression = defaultFilters;
 
@@ -124,6 +126,7 @@ export function useInvoice(defaultFilters) {
     }
 
     return {
+        rows,
         columns,
         pagination,
         state,

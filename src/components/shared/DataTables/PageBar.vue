@@ -1,25 +1,27 @@
 <template>
-  <q-card-actions class="fit row justify-end items-center q-pa-none">
+  <q-card-actions class="fit row justify-start items-center q-pa-none">
     <slot name="reload"></slot>
-    <span class="text-caption q-pr-lg">
+    <span
+      v-if="showPageCount"
+      class="text-caption q-pr-lg"
+    >
       {{ indexRange }} {{ $t("shared.labels.from") }} {{ paged.totalItems }}
     </span>
     <!-- //todo: use css class instead of styling size and padding -->
     <q-pagination
       v-if="showPaging"
       v-model="paged.currentPage"
-      :min="1"
-      :max="maxPage"
-      max-pages="5"
-      :ellipses="false"
-      :boundary-numbers="false"
+      min="1"
+      :max="max"
+      :max-pages="maxPages"
+      ellipses
+      boundary-numbers
       direction-links
       boundary-links
       icon-first="keyboard_double_arrow_left"
       icon-last="keyboard_double_arrow_right"
       icon-prev="chevron_left"
       icon-next="chevron_right"
-      @update:model-value="handlePageChange"
       gutter="xs"
       round
       padding="3px 2px 1px 2px"
@@ -27,9 +29,10 @@
       color="grey-8"
       active-color="primary"
       class="pagination"
+      @update:model-value="handlePageChange"
     />
-    <q-space />
     <template v-if="sizeSeletion">
+      <q-space />
       <q-select
         dense
         class="select"
@@ -50,14 +53,16 @@ import { computed } from "vue"
 
 const props = defineProps({
   pagination: Object,
-  sizeSeletion: Boolean
+  sizeSeletion: Boolean,
+  showPageCount: Boolean,
+  maxPages: Number
 })
 
 const paged = computed(() => props.pagination)
 
 const showPaging = computed(() => paged.value.totalItems > paged.value.pageSize)
 
-const maxPage = computed(() =>
+const max = computed(() =>
   Math.ceil(paged.value.totalItems / paged.value.pageSize)
 )
 

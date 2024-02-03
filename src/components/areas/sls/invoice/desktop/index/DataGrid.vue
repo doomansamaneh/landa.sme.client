@@ -89,16 +89,19 @@
               clickable
               v-close-popup
               tabindex="0"
+              @click="applySearch"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
                     class="dark-icon"
                     size="sm"
-                  ><q-icon
+                  >
+                    <q-icon
                       name="o_refresh"
                       size="14px"
-                    /></q-avatar>
+                    />
+                  </q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -274,20 +277,20 @@
 
 <script setup>
 import { computed, ref } from "vue"
-import { useInvoice } from "src/components/areas/sls/_composables/useInvoice"
+import { useInvoiceGrid } from "src/components/areas/sls/_composables/useInvoiceGrid"
 import { sqlOperator } from "src/constants"
 
 import InvoiceGrid from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
 import AdvancedSearch from "src/components/areas/sls/invoice/_AdvancedSearch.vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
 
-const invoiceStore = useInvoice([{
+const invoiceStore = useInvoiceGrid([{
   fieldName: "d.StatusId",
   operator: sqlOperator.notEqual,
   value: "a36af633-d0bb-4857-a542-364e12658d1c"
 }])
 
-const canceledInvoiceStore = useInvoice([{
+const canceledInvoiceStore = useInvoiceGrid([{
   fieldName: "d.StatusId",
   operator: sqlOperator.equal,
   value: "a36af633-d0bb-4857-a542-364e12658d1c"

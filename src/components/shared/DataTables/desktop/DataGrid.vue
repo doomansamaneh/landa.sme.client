@@ -198,7 +198,9 @@
       <page-bar
         :pagination="tableStore.pagination.value"
         @page-changed="reloadData"
+        max-pages=5
         sizeSeletion
+        show-page-count
       >
         <template #reload>
           <q-icon

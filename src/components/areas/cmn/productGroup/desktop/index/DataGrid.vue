@@ -180,80 +180,87 @@
   </tool-bar>
 
   <div class="q-mt-xl">
-    <data-grid
-      ref="dataGrid"
-      dataSource="cmn/productGroup/getGridData"
-      :grid-store="gridStore"
-      separator="horizontal"
-      flat
-      multiSelect
-      numbered
-      bordered
-      wrapCells
-      dense_
-      expandable_
-    >
-
-      <template #filter-isActive="{ col }">
-        <custom-select
-          v-model="col.value"
-          :options="isActiveOptions"
-          @update:model-value="reloadData"
-        />
-      </template>
-
-      <template #cell-isActive="{ item }">
-        <i
-          v-if="item.isActive"
-          class="q-icon text-primary notranslate material-icons-outlined"
-          aria-hidden="true"
-          role="presentation"
-          style="font-size: 18px;"
-        > done
-        </i>
-        <i
-          v-else
-          class="q-icon notranslate material-icons-outlined"
-          aria-hidden="true"
-          role="presentation"
-          style="font-size: 18px;"
+    <q-card>
+      <q-card-section class="bg-blue text-white">
+        <div class="text-h5">گروه کالا و خدمت</div>
+      </q-card-section>
+      <q-card-section>
+        <data-grid
+          ref="dataGrid"
+          dataSource="cmn/productGroup/getGridData"
+          :grid-store="gridStore"
+          separator="horizontal"
+          flat
+          multiSelect
+          numbered
+          bordered
+          wrapCells
+          dense_
+          expandable_
         >
-          cancel
-        </i>
-      </template>
 
-      <template #cell-actions="{ item }">
-        <div class="row q-gutter-sm items-center">
-          <q-btn
-            round
-            class="text-on-dark text-caption"
-            :to="`/cmn/productGroup/edit/${item.id}`"
-            unelevated
-          >
-            <q-icon name="o_edit" />
-          </q-btn>
+          <template #filter-isActive="{ col }">
+            <custom-select
+              v-model="col.value"
+              :options="isActiveOptions"
+              @update:model-value="reloadData"
+            />
+          </template>
 
-          <q-btn
-            round
-            class="text-on-dark text-caption"
-            :to="`/cmn/productGroup/copy/${item.id}`"
-            unelevated
-          >
-            <q-icon name="o_copy" />
-          </q-btn>
+          <template #cell-isActive="{ item }">
+            <i
+              v-if="item.isActive"
+              class="q-icon text-primary notranslate material-icons-outlined"
+              aria-hidden="true"
+              role="presentation"
+              style="font-size: 18px;"
+            > done
+            </i>
+            <i
+              v-else
+              class="q-icon notranslate material-icons-outlined"
+              aria-hidden="true"
+              role="presentation"
+              style="font-size: 18px;"
+            >
+              cancel
+            </i>
+          </template>
 
-          <q-btn
-            round
-            class="text-on-dark text-caption"
-            unelevated
-            @click="crudStore.deleteById(item.id, reloadData)"
-          >
-            <q-icon name="o_delete" />
-          </q-btn>
-        </div>
-      </template>
+          <template #cell-actions="{ item }">
+            <div class="row q-gutter-sm items-center">
+              <q-btn
+                round
+                class="text-on-dark text-caption"
+                :to="`/cmn/productGroup/edit/${item.id}`"
+                unelevated
+              >
+                <q-icon name="o_edit" />
+              </q-btn>
 
-    </data-grid>
+              <q-btn
+                round
+                class="text-on-dark text-caption"
+                :to="`/cmn/productGroup/copy/${item.id}`"
+                unelevated
+              >
+                <q-icon name="o_copy" />
+              </q-btn>
+
+              <q-btn
+                round
+                class="text-on-dark text-caption"
+                unelevated
+                @click="crudStore.deleteById(item.id, reloadData)"
+              >
+                <q-icon name="o_delete" />
+              </q-btn>
+            </div>
+          </template>
+
+        </data-grid>
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 

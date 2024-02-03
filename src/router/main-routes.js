@@ -2,8 +2,6 @@ import MainLayout from "src/layouts/MainLayout.vue";
 import ProfilePage from "src/pages/management/ProfilePage.vue";
 import HomePage from "src/pages/management/HomePage.vue";
 import SettingsPage from "src/pages/management/SettingsPage.vue";
-import IndexView from "src/components/areas/sls/quote/IndexView.vue";
-import InvoiceIndexView from "src/components/areas/sls/invoice/IndexView.vue";
 import CreateInvoice from "src/components/areas/sls/invoice/CreateInvoice.vue";
 import SelectProduct from "src/components/areas/sls/invoice/create/mobile/SelectProduct.vue";
 import ProductLookup from "src/components/areas/sls/invoice/create/mobile/ProductLookup.vue";
@@ -32,11 +30,11 @@ export default {
     },
     {
       path: "sls/quote",
-      component: IndexView
+      component: () => import("src/components/areas/sls/quote/IndexView.vue"),
     },
     {
       path: "sls/invoice",
-      component: InvoiceIndexView,
+      component: () => import("pages/areas/sls/invoice/indexPage.vue"),
     },
     {
       path: "sls/invoice/preview/:id",

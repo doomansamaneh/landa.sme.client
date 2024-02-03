@@ -1,4 +1,15 @@
 <template>
+  <div class="text-h6">
+    کالا / خدمت
+    <q-badge
+      v-if="tableStore?.pagination.value.totalItems > 0"
+      align="top"
+      color="blue"
+    >
+      {{ tableStore?.pagination.value.totalItems }}
+    </q-badge>
+  </div>
+
   <data-grid
     ref="dataGrid"
     dataSource="cmn/product/getGridData"
@@ -170,8 +181,9 @@ import { ref, computed } from "vue"
 import { useQuasar } from "quasar"
 import { useFormActions } from "src/composables/useFormActions"
 
-import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue"
+import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
+import ToolBar from "src/components/shared/ToolBar.vue"
 import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
 
 const props = defineProps({

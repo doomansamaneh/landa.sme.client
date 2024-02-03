@@ -14,7 +14,7 @@
         class="q-pr-xs"
         size="16px"
       />
-      {{ $t("page.buttons.add-new-business-tooltip") }}
+      {{ $t("pages.add-new-business") }}
     </router-link>
   </q-btn>
 </template>
