@@ -2,8 +2,8 @@
   <transition
     enter-active-class="animated slideInDown"
   >
+  <!-- v-show="headerStore.showHeader.value" -->
     <q-header
-      v-show="headerStore.showHeader.value"
       bordered
       :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
     >
@@ -118,11 +118,11 @@ const showToolbar = () => {
 //   previousScrollPosition = currentPosition;
 // };
 
-onMounted(() => {
-  window.addEventListener('scroll', headerStore.handleScroll)
-})
+// onMounted(() => {
+//   window.addEventListener('scroll', headerStore.handleScroll)
+// })
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', headerStore.handleScroll)
-})
+// onUnmounted(() => {
+//   window.removeEventListener('scroll', headerStore.handleScroll)
+// })
 </script>

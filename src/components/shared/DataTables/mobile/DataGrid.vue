@@ -4,7 +4,7 @@
       outlined
       rounded
       dense
-      class="text-body2 q-my-md"
+      class="searchbox text-body2 q-my-md"
       v-model="tableStore.pagination.value.searchTerm"
       :placeholder="$t('page.card-searchbar')"
       @keydown.enter="resetPage"
@@ -112,29 +112,46 @@
     <no-data-found />
   </div>
 
-  <!-- <div
-    v-if="hasMoreData"
-    class="row justify-center"
+  <q-inner-loading
+    :showing="tableStore.showLoader.value"
+    class="transparent z-max"
+  >
+    <q-spinner
+      size="52px"
+      color="primary"
+    />
+  </q-inner-loading>
+
+  <div
+    v-if="showPagebar"
+    class="row items-center justify-center q-gutter-sm q-mt-md q-mb-xl"
   >
     <q-btn
-      rounded
+      :disable="previousAction"
       unelevated
-      @click="gotoNext"
-      class="primary-shadow q-ma-lg bg-primary text-white"
+      rounded
+      dense
+      padding="6px 16px"
+      color="primary"
+      @click="previous"
     >
-      <span class="text-body3">
-        {{ $t("shared.labels.loadMore") }}
+      <span class="text-body2 no-letter-spacing">
+        قبلی
       </span>
     </q-btn>
-  </div> -->
-
-  <div v-if="tableStore.showPagebar.value">
-    <page-bar
-      :pagination="tableStore.pagination.value"
-      max-pages=3
-      @page-changed="reloadData"
+    <q-btn
+      :disable="nextAction"
+      unelevated
+      rounded
+      dense
+      padding="6px 16px"
+      color="primary"
+      @click="next"
     >
-    </page-bar>
+      <span class="text-body2 no-letter-spacing">
+        بعدی
+      </span>
+    </q-btn>
   </div>
 
   <template v-if="createUrl">
@@ -153,15 +170,15 @@
         class="text-body1 no-letter-spacing primary-shadow"
       >
         <div class="row items-center q-gutter-x-xs">
-          <q-icon
-            name="o_add"
-            size="sm"
-          />
-          <span>
-            <slot name="create-label">
+          <slot name="create-label">
+            <q-icon
+              name="o_add"
+              size="sm"
+            />
+            <span>
               {{ $t("shared.labels.create") }}
-            </slot>
-          </span>
+            </span>
+          </slot>
         </div>
       </q-btn>
     </q-page-sticky>
@@ -172,8 +189,8 @@
 import { ref, onMounted, onUnmounted, computed } from "vue"
 import { useDataTable } from "src/composables/useDataTable"
 
-import PageBar from "src/components/shared/dataTables/PageBar.vue"
 import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
+import { dataViewDefaultPageSize } from "src/constants"
 
 const props = defineProps({
   dataSource: String,
@@ -183,8 +200,11 @@ const props = defineProps({
   multiSelect: Boolean
 })
 
+const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
+
 const startIndex = ref(1)
 const showCreate = ref(true)
+let previousScrollPosition = 0
 
 const tableStore = useDataTable(props.dataSource, null, props.gridStore)
 
@@ -192,16 +212,11 @@ const thisGridStore = computed(() => {
   return props.gridStore
 })
 
-onMounted(() => {
-  loadData()
-})
+const nextAction = computed(() =>
+  tableStore.pagination.value.currentPage >= tableStore.pagination.value.totalPages
+)
 
-async function gotoNext() {
-  if (hasMoreData.value) {
-    tableStore.pagination.value.currentPage += 1
-    await reloadData()
-  }
-}
+const previousAction = computed(() => tableStore.pagination.value.currentPage <= 1)
 
 async function reloadData() {
   await tableStore.reloadData()
@@ -223,22 +238,6 @@ async function resetPage() {
     thisGridStore.value.rows.value = tableStore.rows.value
 }
 
-const hasMoreData = computed(() => {
-  return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages
-})
-
-const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
-
-onMounted(() => {
-  tableStore.loadData()
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
-
-let previousScrollPosition = 0
 const handleScroll = () => {
   const currentPosition = window.scrollY || document.documentElement.scrollTop;
   showCreate.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
@@ -272,6 +271,27 @@ async function clearSearch() {
 const isSearchEmpty = computed(() =>
   !tableStore.pagination.value.searchTerm || tableStore.pagination.value.searchTerm.trim().length === 0
 )
+
+const showPagebar = computed(() => tableStore.pagination.value.totalItems > dataViewDefaultPageSize)
+
+async function previous(e) {
+  tableStore.pagination.value.currentPage -= 1
+  await reloadData()
+}
+async function next(e) {
+  tableStore.pagination.value.currentPage += 1
+  await reloadData()
+}
+
+onMounted(() => {
+  loadData()
+  reloadData()
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 defineExpose({
   tableStore,

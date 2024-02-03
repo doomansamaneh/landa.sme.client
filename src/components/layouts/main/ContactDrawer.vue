@@ -165,7 +165,7 @@ import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
 import { useContactDrawer } from "src/composables/useContactDrawer"
 import { helper } from "src/helpers"
 
-import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
+import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
 
 const customerStore = useCustomer()
 const contactDrawerStore = useContactDrawer()
