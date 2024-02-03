@@ -1,4 +1,9 @@
 <template>
+  <slot name="title">
+    <!-- <div class="q-my-md">
+      نام صفحه
+    </div> -->
+  </slot>
   <slot name="header">
     <q-input
       outlined
@@ -133,6 +138,7 @@
       dense
       padding="6px 16px"
       color="primary"
+      class="primary-shadow"
       @click="previous"
     >
       <span class="text-body2 no-letter-spacing">
@@ -146,6 +152,7 @@
       dense
       padding="6px 16px"
       color="primary"
+      class="primary-shadow"
       @click="next"
     >
       <span class="text-body2 no-letter-spacing">
@@ -159,18 +166,18 @@
       position="bottom-right z-1"
       :offset="[18, 18]"
     >
-      <q-btn
-        v-if="showCreate"
-        rounded
-        unelevated
-        padding="10px 20px"
-        :to="createUrl"
-        dense
-        color="primary"
-        class="text-body1 no-letter-spacing primary-shadow"
-      >
-        <div class="row items-center q-gutter-x-xs">
-          <slot name="create-label">
+      <slot name="create-label">
+        <q-btn
+          v-if="showCreate"
+          rounded
+          unelevated
+          padding="10px 20px"
+          :to="createUrl"
+          dense
+          color="primary"
+          class="text-body1 no-letter-spacing primary-shadow"
+        >
+          <div class="row items-center q-gutter-x-xs">
             <q-icon
               name="o_add"
               size="sm"
@@ -178,9 +185,9 @@
             <span>
               {{ $t("shared.labels.create") }}
             </span>
-          </slot>
-        </div>
-      </q-btn>
+          </div>
+        </q-btn>
+      </slot>
     </q-page-sticky>
   </template>
 </template>

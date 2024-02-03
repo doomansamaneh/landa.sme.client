@@ -6,6 +6,11 @@
     :grid-store="gridStore"
     class="q-my-xl"
   >
+    <template #title>
+      <div class="text-center line-height-sm text-body2 no-letter-spacing q-my-lg">
+        {{ business?.title }}
+      </div>
+    </template>
 
     <template #body="{ item }">
       <q-card class="bordered row bg-dark rounded-borders q-pa-md">
@@ -94,7 +99,20 @@
     </template>
 
     <template #create-label>
-      نام کسب و کار
+      <q-btn
+        round
+        unelevated
+        @click="$router.push(`/business`)"
+        dense
+        size="20px"
+        color="primary"
+        class="primary-shadow"
+      >
+        <q-icon
+          name="o_business"
+          size="sm"
+        />
+      </q-btn>
     </template>
   </data-grid>
 
@@ -135,8 +153,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useRoute, useRouter } from "vue-router"
+import { fetchWrapper } from "src/helpers"
 
 import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
@@ -146,6 +165,16 @@ const route = useRoute()
 const props = defineProps({
   gridStore: Object
 })
+
+const business = ref(null)
+
+async function loadData() {
+  await fetchWrapper
+    .get(`business/GetBusiness/${route.params.businessId}`)
+    .then((response) => {
+      business.value = response.data.data
+    })
+}
 
 const businessId = computed(() => route.params.businessId)
 
@@ -161,6 +190,9 @@ const onBottomSheetHide = () => {
   bottomSheetStatus.value = false;
 }
 
+onMounted(() => {
+  loadData()
+})
 </script>
 
 <style lang="scss" scoped>

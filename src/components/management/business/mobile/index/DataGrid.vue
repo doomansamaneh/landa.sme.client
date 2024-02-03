@@ -100,7 +100,26 @@
     </template>
 
     <template #create-label>
-      {{ $t("pages.add-new-business") }}
+      <q-btn
+        v-if="showCreate"
+        rounded
+        unelevated
+        padding="10px 20px"
+        to="/business/addBusiness"
+        dense
+        color="primary"
+        class="text-body1 no-letter-spacing primary-shadow"
+      >
+        <div class="row items-center q-gutter-x-xs">
+          <q-icon
+            name="o_add"
+            size="sm"
+          />
+          <span>
+            {{ $t("shared.labels.create") }}
+          </span>
+        </div>
+      </q-btn>
     </template>
   </data-grid>
 
