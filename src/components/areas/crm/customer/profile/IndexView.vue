@@ -86,7 +86,7 @@
                 <div class="q-py-sm">
                   <q-item-section avatar>
                     <q-avatar
-                      class="dark-icon"
+                      class="bg-on-dark"
                       size="sm"
                     ><q-icon
                         name="o_refresh"
@@ -107,7 +107,7 @@
                 <div class="q-py-sm">
                   <q-item-section avatar>
                     <q-avatar
-                      class="dark-icon"
+                      class="bg-on-dark"
                       size="sm"
                     ><q-icon
                         name="o_close"
@@ -127,7 +127,7 @@
                 <div class="q-py-sm">
                   <q-item-section avatar>
                     <q-avatar
-                      class="dark-icon"
+                      class="bg-on-dark"
                       size="sm"
                     ><q-icon
                         name="o_check"
@@ -148,7 +148,7 @@
                 <div class="q-py-sm">
                   <q-item-section avatar>
                     <q-avatar
-                      class="dark-icon"
+                      class="bg-on-dark"
                       size="sm"
                     ><q-icon
                         name="o_download"
@@ -384,7 +384,7 @@
                             <div class="q-py-sm">
                               <q-item-section avatar>
                                 <q-avatar
-                                  class="dark-icon"
+                                  class="bg-on-dark"
                                   size="sm"
                                 ><q-icon
                                     name="o_call"
@@ -404,7 +404,7 @@
                             <div class="q-py-sm">
                               <q-item-section avatar>
                                 <q-avatar
-                                  class="dark-icon"
+                                  class="bg-on-dark"
                                   size="sm"
                                 ><q-icon
                                     name="o_mail"
@@ -424,7 +424,7 @@
                             <div class="q-py-sm">
                               <q-item-section avatar>
                                 <q-avatar
-                                  class="dark-icon"
+                                  class="bg-on-dark"
                                   size="sm"
                                 ><q-icon
                                     name="o_share"
@@ -444,7 +444,7 @@
                             <div class="q-py-sm">
                               <q-item-section avatar>
                                 <q-avatar
-                                  class="dark-icon"
+                                  class="bg-on-dark"
                                   size="sm"
                                 ><q-icon
                                     name="o_phone_android"
@@ -464,7 +464,7 @@
                             <div class="q-py-sm">
                               <q-item-section avatar>
                                 <q-avatar
-                                  class="dark-icon"
+                                  class="bg-on-dark"
                                   size="sm"
                                 ><q-icon
                                     name="o_public"

@@ -21,7 +21,7 @@
     </template>
   </tool-bar>
 
-  <q-card>
+  <q-card class="bordered">
     <q-card-section class="bg-primary text-white">
       <div class="text-h5">{{ title }}</div>
     </q-card-section>

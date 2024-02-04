@@ -97,13 +97,13 @@
       <div class="expire-date-container flex col-2 items-center">
         <q-item-label caption>
           <q-icon
-            class="expire-date-clock dark-icon2"
+            class="expire-date-clock bg-on-dark2"
             name="history"
             size="xs"
             v-if="!item.expired"
           />
           <q-icon
-            class="expire-date-clock dark-icon2"
+            class="expire-date-clock bg-on-dark2"
             color="warning"
             name="warning"
             size="xs"

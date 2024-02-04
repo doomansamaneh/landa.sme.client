@@ -46,7 +46,7 @@
         class="column no-wrap flex-center"
       >
         <q-icon
-          class="more-icon dark-icon2"
+          class="more-icon bg-on-dark2"
           name="more_vert"
           size="lg"
         />

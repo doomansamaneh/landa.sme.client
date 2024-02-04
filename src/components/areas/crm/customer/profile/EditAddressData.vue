@@ -34,7 +34,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       :name="scope.opt.icon"

@@ -110,7 +110,7 @@
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
-                          class="dark-icon"
+                          class="bg-on-dark"
                           size="sm"
                         >
                           <q-icon
@@ -133,7 +133,7 @@
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
-                          class="dark-icon"
+                          class="bg-on-dark"
                           size="sm"
                         >
                           <q-icon
@@ -151,7 +151,7 @@
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
-                          class="dark-icon"
+                          class="bg-on-dark"
                           size="sm"
                         ><q-icon
                             name="o_close"
@@ -176,7 +176,7 @@
                           <div class="row items-center">
                             <q-item-section avatar>
                               <q-avatar
-                                class="dark-icon"
+                                class="bg-on-dark"
                                 size="sm"
                               ><q-icon
                                   name="o_inventory_2"
@@ -197,7 +197,7 @@
                           <div class="row items-center">
                             <q-item-section avatar>
                               <q-avatar
-                                class="dark-icon"
+                                class="bg-on-dark"
                                 size="sm"
                               ><q-icon
                                   name="o_inventory_2"
@@ -218,7 +218,7 @@
                           <div class="row items-center">
                             <q-item-section avatar>
                               <q-avatar
-                                class="dark-icon"
+                                class="bg-on-dark"
                                 size="sm"
                               ><q-icon
                                   name="o_person"
@@ -237,7 +237,7 @@
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
-                          class="dark-icon"
+                          class="bg-on-dark"
                           size="sm"
                         ><q-icon
                             name="o_attach_money"
@@ -263,7 +263,7 @@
                           <div class="row items-center">
                             <q-item-section avatar>
                               <q-avatar
-                                class="dark-icon"
+                                class="bg-on-dark"
                                 size="sm"
                               ><q-icon
                                   name="o_equalizer"
@@ -284,7 +284,7 @@
                           <div class="row items-center">
                             <q-item-section avatar>
                               <q-avatar
-                                class="dark-icon"
+                                class="bg-on-dark"
                                 size="sm"
                               ><q-icon
                                   name="o_incomplete_circle"

@@ -61,13 +61,13 @@
             <div class="row">
               <q-item-label caption>
                 <q-icon
-                  class="expire-date-clock dark-icon2"
+                  class="expire-date-clock bg-on-dark2"
                   name="history"
                   size="16px"
                   v-if="!item.expired"
                 />
                 <q-icon
-                  class="expire-date-clock dark-icon2"
+                  class="expire-date-clock bg-on-dark2"
                   color="warning"
                   name="warning"
                   size="16px"

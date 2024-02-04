@@ -22,14 +22,14 @@
     </template>
     <template #buttons>
       <q-btn
-      class="bg-primary text-white text-body2"
-      padding="6px 12px"
-      rounded
-      no-caps
-      unelevated
-    >
-      {{ $t("shared.labels.save") }}
-    </q-btn>
+        class="bg-primary text-white text-body2"
+        padding="6px 12px"
+        rounded
+        no-caps
+        unelevated
+      >
+        {{ $t("shared.labels.save") }}
+      </q-btn>
       <q-btn
         class="bordered-btn_bg-dark text-body2"
         rounded
@@ -54,7 +54,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_refresh"
@@ -75,7 +75,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_close"
@@ -95,7 +95,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_check"
@@ -116,7 +116,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_download"

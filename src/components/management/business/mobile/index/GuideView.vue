@@ -53,7 +53,7 @@
         <div v-show="slide === 3">
           <div class="row items-center justify-center">
             <q-icon
-              class="more-icon dark-icon2"
+              class="more-icon bg-on-dark2"
               name="more_vert"
               size="lg"
             />
