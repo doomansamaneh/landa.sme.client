@@ -1,7 +1,7 @@
 <template>
   <transition enter-active-class="animated slideInDown">
+    <!-- v-show="headerStore.showHeader.value" -->
     <q-header
-      v-show="headerStore.showHeader.value"
       bordered
       class="business-header bg-main bg-dark"
     >
@@ -140,13 +140,13 @@ function changePasswordDialog() {
   })
 }
 
-onMounted(() => {
-  window.addEventListener('scroll', headerStore.handleScroll)
-})
+// onMounted(() => {
+//   window.addEventListener('scroll', headerStore.handleScroll)
+// })
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', headerStore.handleScroll)
-})
+// onUnmounted(() => {
+//   window.removeEventListener('scroll', headerStore.handleScroll)
+// })
 
 </script>
 

@@ -301,7 +301,7 @@
 
   </div>
 
-  <div class="colunm q-mt-md q-gutter-lg">
+  <div class="column q-mt-md q-gutter-lg">
     <q-input
       outlined
       readonly

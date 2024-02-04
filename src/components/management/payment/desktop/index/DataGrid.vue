@@ -1,11 +1,9 @@
 <template>
   <data-view
-    class="card-desktop gt-xs no-shadow q-my-xl"
     ref="paymentGrid"
     :dataSource="paymentDataSource"
-    :columns="columns"
-    sort-column="fromDate"
-    searchField="amount"
+    :grid-store="gridStore"
+    class="q-my-xl"
   >
     <template #header>
       <q-item class="card-header q-px-lg q-py-lg">
@@ -146,11 +144,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
+
+import BackButton from "src/components/shared/buttons/GoBackLink.vue"
 import DataView from "src/components/shared/dataTables/desktop/DataView.vue"
-import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
 
 const route = useRoute()
@@ -158,24 +157,13 @@ const route = useRoute()
 const business = ref(null)
 const paymentGrid = ref(null)
 
-const columns = ref([
-  {
-    name: "amount",
-    field: "amount",
-  },
-  {
-    name: "businessTitle",
-    field: "businessTitle",
-  },
-  {
-    name: "fromDate",
-    field: "fromDate",
-  },
-  {
-    name: "toDate",
-    field: "toDate",
-  }
-])
+const props = defineProps({
+  gridStore: Object
+})
+
+const paymentDataSource = computed(
+  () => `business/getBusinessPaymentGridData/${route.params.businessId}`
+)
 
 //todo: remove this code from here to somewhere more general
 const formatCurrency = (value) => {
@@ -209,18 +197,14 @@ onMounted(() => {
   loadData()
 })
 
-const paymentDataSource = computed(
-  () => `business/getBusinessPaymentGridData/${route.params.businessId}`
-)
-
 defineExpose({
   formatCurrency
 })
 </script>
 
-<style lang="scss" scoped>
-.card-desktop {
-  width: 620px !important;
+<style lang="scss">
+.business-name {
+  max-width: 160px;
 }
 
 .q-item__label--caption {
@@ -229,8 +213,15 @@ defineExpose({
   color: #2d2d2d;
 }
 
+/* //todo: add class for this kind of a */
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.business-name-btn {
+  .q-focus-helper {
+    display: none;
+  }
 }
 </style>
