@@ -2,7 +2,7 @@
   <template v-if="$q.screen.gt.xs">
     <q-btn
       v-if="showLink"
-      class="text-body3 no-letter-spacing"
+      class="text-body3 no-letter-spacing green-shadow"
       :to="addPaymentUrl"
       rounded
       no-caps

@@ -1,7 +1,11 @@
 @mixin pagination-light {
   .pagination {
     .q-btn--actionable.q-btn--standard:before {
-      box-shadow: none;
+      box-shadow: 0 4px 8px -4px $primary;
     }
+  }
+
+  .select .q-select__dropdown-icon {
+    font-size: 18px;
   }
 }

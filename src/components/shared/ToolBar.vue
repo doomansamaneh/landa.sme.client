@@ -11,8 +11,10 @@
         <div class="q-gutter-x-sm">
           <slot name="buttons">
             <q-btn
-              class="bg-primary text-white"
+              class="bg-primary text-white text-caption"
+              padding="6px 12px"
               rounded
+              no-caps
               unelevated
               :to="`${baseRoute}/create`"
             >

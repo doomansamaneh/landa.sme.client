@@ -61,7 +61,7 @@
       <div class="col-5">
         <q-avatar
           :class="{
-            'business-isowner': item.isOwner,
+            'business-isowner primary-shadow': item.isOwner,
             'business-isnotowner': !item.isOwner
           }"
           icon="o_person"
@@ -215,7 +215,7 @@
                     <q-avatar
                       icon="o_delete"
                       size="md"
-                      class="delete-avatar"
+                      class="delete-avatar red-shadow"
                     />
                     <div class="text-body2">
                       {{ $t("page.buttons.more-button.delete") }}
