@@ -11,7 +11,7 @@
         <div class="q-gutter-x-sm">
           <slot name="buttons">
             <q-btn
-              class="bg-primary text-white text-caption"
+              class="bg-primary primary-shadow text-white text-caption"
               padding="6px 12px"
               rounded
               no-caps
@@ -29,7 +29,7 @@
               <slot name="bootons-edit">
                 <q-btn
                   :to="`${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
-                  class="bordered-btn_bg-dark text-caption"
+                  class="text-caption"
                   rounded
                   unelevated
                   no-caps
