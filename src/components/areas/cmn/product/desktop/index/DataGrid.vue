@@ -8,7 +8,7 @@
         :label="tableStore?.pagination.value.totalItems"
         class="q-mr-sm bg-dark text-on-dark text-body2"
       />
-      <span class="text-h6">کالا و خدمت</span>
+      <span class="text-h6">{{ title }}</span>
     </template>
 
     <template #buttons>
@@ -186,80 +186,85 @@
     </template>
   </tool-bar>
 
-  <div style="margin: 54px 0 32px 0;">
-    <data-grid
-      ref="dataGrid"
-      dataSource="cmn/product/getGridData"
-      :grid-store="gridStore"
-      separator="horizontal"
-      flat
-      multiSelect
-      numbered
-      bordered
-      wrapCells
-      dense_
-      expandable_
-    >
+  <q-card>
+    <q-card-section class="bg-primary text-white">
+      <div class="text-h5">{{ title }}</div>
+    </q-card-section>
+    <q-card-section>
+      <data-grid
+        ref="dataGrid"
+        dataSource="cmn/product/getGridData"
+        :grid-store="gridStore"
+        separator="horizontal"
+        flat
+        multiSelect
+        numbered
+        bordered
+        wrapCells
+        dense_
+        expandable_
+      >
 
-      <template #filter-isActive="{ col }">
-        <custom-select
-          v-model="col.value"
-          :options="isActiveOptions"
-          @update:model-value="reloadData"
-        />
-      </template>
+        <template #filter-isActive="{ col }">
+          <custom-select
+            v-model="col.value"
+            :options="isActiveOptions"
+            @update:model-value="reloadData"
+          />
+        </template>
 
-      <template #cell-isActive="{ item }">
-        <i
-          v-if="item.isActive"
-          class="q-icon text-primary notranslate material-icons-outlined"
-          aria-hidden="true"
-          role="presentation"
-          style="font-size: 18px;"
-        > done
-        </i>
-        <i
-          v-else
-          class="q-icon notranslate material-icons-outlined"
-          aria-hidden="true"
-          role="presentation"
-          style="font-size: 18px;"
-        >
-          cancel
-        </i>
-      </template>
+        <template #cell-isActive="{ item }">
+          <i
+            v-if="item.isActive"
+            class="q-icon text-primary notranslate material-icons-outlined"
+            aria-hidden="true"
+            role="presentation"
+            style="font-size: 18px;"
+          > done
+          </i>
+          <i
+            v-else
+            class="q-icon notranslate material-icons-outlined"
+            aria-hidden="true"
+            role="presentation"
+            style="font-size: 18px;"
+          >
+            cancel
+          </i>
+        </template>
 
-      <template #cell-actions="{ item }">
-        <q-btn
-          round
-          class="text-on-dark text-caption"
-          :to="`/cmn/product/edit/${item.id}`"
-          unelevated
-        >
-          <q-icon name="o_edit" />
-        </q-btn>
+        <template #cell-actions="{ item }">
+          <q-btn
+            round
+            class="text-on-dark text-caption"
+            :to="`/cmn/product/edit/${item.id}`"
+            unelevated
+          >
+            <q-icon name="o_edit" />
+          </q-btn>
 
-        <q-btn
-          round
-          class="text-on-dark text-caption"
-          :to="`/cmn/product/copy/${item.id}`"
-          unelevated
-        >
-          <q-icon name="o_copy" />
-        </q-btn>
+          <q-btn
+            round
+            class="text-on-dark text-caption"
+            :to="`/cmn/product/copy/${item.id}`"
+            unelevated
+          >
+            <q-icon name="o_copy" />
+          </q-btn>
 
-        <q-btn
-          round
-          class="text-on-dark text-caption"
-          unelevated
-          @click="crudStore.deleteById(item.id, reloadData)"
-        >
-          <q-icon name="o_delete" />
-        </q-btn>
-      </template>
+          <q-btn
+            round
+            class="text-on-dark text-caption"
+            unelevated
+            @click="crudStore.deleteById(item.id, reloadData)"
+          >
+            <q-icon name="o_delete" />
+          </q-btn>
+        </template>
 
-    </data-grid>
-  </div>
+      </data-grid>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
@@ -274,7 +279,8 @@ import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue"
 import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
 
 const props = defineProps({
-  gridStore: Object
+  gridStore: Object,
+  title: String
 })
 
 const dataGrid = ref(null)

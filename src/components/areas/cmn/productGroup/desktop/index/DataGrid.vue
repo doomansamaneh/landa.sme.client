@@ -8,7 +8,7 @@
         :label="tableStore?.pagination.value.totalItems"
         class="q-mr-sm bg-dark text-on-dark text-body2"
       />
-      <span class="text-h6">گروه کالا و خدمت</span>
+      <span class="text-h6">{{ title }}</span>
     </template>
     <template #buttons>
       <q-btn
@@ -181,8 +181,8 @@
 
   <div class="q-mt-xl">
     <q-card>
-      <q-card-section class="bg-blue text-white">
-        <div class="text-h5">گروه کالا و خدمت</div>
+      <q-card-section class="bg-primary text-white">
+        <div class="text-h5">{{ title }}</div>
       </q-card-section>
       <q-card-section>
         <data-grid
@@ -271,11 +271,12 @@ import { isActiveOptions } from "src/constants"
 import { useFormActions } from "src/composables/useFormActions"
 
 import ToolBar from "src/components/shared/ToolBar.vue"
-import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
+import CustomSelect from "src/components/shared/forms/CustomSelect.vue"
 import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue"
 
 const props = defineProps({
-  gridStore: Object
+  gridStore: Object,
+  title: String
 })
 
 const dataGrid = ref(null)

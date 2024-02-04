@@ -1,4 +1,9 @@
 import { ref } from "vue"
+import { useRouter } from "vue-router"
+import { Loading } from "quasar"
+import { useI18n } from "vue-i18n"
+import { fetchWrapper } from "src/helpers"
+import { useComposablesStore } from "src/stores/useComposablesStore"
 
 const rows = ref([])
 
@@ -39,9 +44,37 @@ const columns = ref([
 ])
 
 export function useBusinessGrid() {
+    const { t } = useI18n()
+    const loadingMessage = t("shared.messages.loading-message")
+    //const loadingMessage = "shared.messages.loading-message"
+    const composablesStore = useComposablesStore()
+    const router = useRouter()
+
     const reset = () => {
         state.firstLoad.value = false
         setDefaultSearchModel()
+    }
+
+    const gotoBusiness = async (item) => {
+        Loading.show({
+            message: loadingMessage,
+            boxClass: 'bg-dark text-on-dark text-bold',
+            spinnerColor: 'primary'
+        })
+
+        composablesStore.resetAllComposables()
+
+        await fetchWrapper
+            .post(`business/gotoBusiness/${item.id}`)
+            .then((response) => {
+                //alert(`goto business: ${response.data.data.culture}`)
+                // console.log(`goto business: ${response.data.data}`);
+                // router.push(`/${response.data.data.url}`)
+                //todo: resolve main-route for gotoBusiness
+                router.push(`/${item.id}`)
+            }).finally(() => {
+                Loading.hide()
+            });
     }
 
     const setDefaultSearchModel = () => {
@@ -55,6 +88,7 @@ export function useBusinessGrid() {
         state,
 
         setDefaultSearchModel,
+        gotoBusiness,
         reset
     }
 }

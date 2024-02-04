@@ -52,9 +52,11 @@
           <div class="column q-gutter-sm">
 
             <div
-              @click="gotoBusiness(item)"
+              @click="gridStore.gotoBusiness(item)"
               class="text-body3 ellipsis-2-lines"
-            >{{ item.title }}</div>
+            >
+              {{ item.title }}
+            </div>
 
             <div class="row">
               <q-item-label caption>
@@ -233,13 +235,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from "vue"
-import { useRouter } from "vue-router"
-import { useI18n } from "vue-i18n"
-import { Loading, useQuasar } from "quasar"
-
-import { fetchWrapper } from "src/helpers"
-import { useResetStores } from "src/composables/useResetStores"
+import { ref } from "vue"
+import { useQuasar } from "quasar"
 
 import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 
@@ -254,36 +251,10 @@ const props = defineProps({
 })
 
 const $q = useQuasar()
-const { t } = useI18n()
-const router = useRouter()
-const resetStore = useResetStores()
 
 const showGuideDialog = ref(false)
 const bottomSheetStatus = ref(false)
 const selectedRow = ref(null)
-const loadingMessage = t('shared.messages.loading-message')
-
-
-async function gotoBusiness(item) {
-  Loading.show({
-    message: loadingMessage,
-    boxClass: 'bg-dark text-on-dark text-bold',
-    spinnerColor: 'primary'
-  })
-  resetStore.reset()
-
-  await fetchWrapper
-    .post(`business/gotoBusiness/${item.id}`)
-    .then((response) => {
-      //alert(`goto business: ${response.data.data.culture}`)
-      // console.log(`goto business: ${response.data.data}`);
-      //router.push(`/${response.data.data.url}`)
-      //todo: resolve main-route for gotoBusiness
-      router.push(`/${item.id}`)
-    }).finally(() => {
-      Loading.hide()
-    });
-}
 
 const onBottomSheetShow = (row) => {
   selectedRow.value = row;

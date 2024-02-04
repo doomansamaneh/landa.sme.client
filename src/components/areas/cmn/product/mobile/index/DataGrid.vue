@@ -1,6 +1,6 @@
 <template>
   <div class="text-h6">
-    کالا / خدمت
+    {{ title }}
     <q-badge
       v-if="tableStore?.pagination.value.totalItems > 0"
       align="top"
@@ -187,7 +187,8 @@ import ToolBar from "src/components/shared/ToolBar.vue"
 import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
 
 const props = defineProps({
-  gridStore: Object
+  gridStore: Object,
+  title: String
 })
 
 const $q = useQuasar()

@@ -4,10 +4,12 @@
     <desktop
         v-if="$q.screen.gt.sm"
         :grid-store="gridSotre"
+        :title="$t('main-menu-items.Cmn_ProductGroup_View')"
     />
     <mobile
         v-else
         :grid-store="gridSotre"
+        :title="$t('main-menu-items.Cmn_Product_Group')"
     />
 </template>
   

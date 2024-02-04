@@ -161,13 +161,13 @@
 import { ref, computed } from "vue"
 import { useRouter } from "vue-router"
 import { useDataTable } from "src/composables/useDataTable"
-import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
+import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid"
 import { useContactDrawer } from "src/composables/useContactDrawer"
 import { helper } from "src/helpers"
 
 import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
 
-const customerStore = useCustomer()
+const customerStore = useCustomerGrid()
 const contactDrawerStore = useContactDrawer()
 
 const tableStore = useDataTable("crm/customer/getLookupData", customerStore.columns, customerStore)

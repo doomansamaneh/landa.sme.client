@@ -128,7 +128,8 @@ import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
 
 const props = defineProps({
-  gridStore: Object
+  gridStore: Object,
+  title: String
 })
 
 const $q = useQuasar()

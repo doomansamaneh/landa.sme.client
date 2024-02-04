@@ -1,4 +1,5 @@
 import { ref } from "vue"
+import { useComposablesStore } from "src/stores/useComposablesStore"
 
 const rows = ref([])
 
@@ -32,11 +33,14 @@ const columns = ref([
     }
 ])
 
-export function useCustomer() {
-    const reset = () => {
-        state.firstLoad.value = false
-        setDefaultSearchModel()
-    }
+export function useCustomerGrid() {
+    const composablesStore = useComposablesStore()
+    composablesStore.registerComposable({
+        reset: () => {
+            state.firstLoad.value = false
+            setDefaultSearchModel()
+        }
+    })
 
     const setDefaultSearchModel = () => {
     }
@@ -48,6 +52,5 @@ export function useCustomer() {
         state,
 
         setDefaultSearchModel,
-        reset
     }
 }

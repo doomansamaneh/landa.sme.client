@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="edit"
-        title="ویرایش گروه کالا"
+        :title="$t('shared.labels.edit') + ' ' + $t('main-menu-items.Cmn_ProductGroup_View')"
     />
 </template>
   

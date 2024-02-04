@@ -1,6 +1,7 @@
 import { ref, computed } from "vue"
 import { useI18n } from "vue-i18n"
 import { fetchWrapper } from "src/helpers"
+import { useComposablesStore } from "src/stores/useComposablesStore"
 
 const state = {
   firstLoad: ref(false),
@@ -11,14 +12,17 @@ const state = {
 const searchText = ref("")
 
 export function useMenuBar() {
+  const composablesStore = useComposablesStore()
+  composablesStore.registerComposable({
+    reset: () => {
+      state.firstLoad.value = false
+    }
+  })
+
   const { t } = useI18n()
 
   const toggle = () => {
     state.visible.value = !state.visible.value
-  }
-
-  const reset = () => {
-    state.firstLoad.value = false
   }
 
   async function loadData() {
@@ -88,7 +92,6 @@ export function useMenuBar() {
     searchText,
 
     toggle,
-    reset,
     loadData,
     reloadData
   }

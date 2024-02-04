@@ -53,58 +53,63 @@
       v-for="(row, index) in gridStore?.rows?.value"
       :key="row.id"
     >
-      <slot
-        name="body"
-        :item="row"
+      <div
+        @click="setActiveRow(row)"
+        :class="tableStore.getRowClass(row)"
       >
-        <q-card class="card-grid-body">
-          <slot
-            name="row-header"
-            :item="row"
-          >
-          </slot>
-
-          <q-card-section>
+        <slot
+          name="body"
+          :item="row"
+        >
+          <q-card class="card-grid-body">
             <slot
-              name="row-body"
+              name="row-header"
               :item="row"
             >
-              <span
-                v-if="numbered"
-                class="text-on-dark"
+            </slot>
+
+            <q-card-section>
+              <slot
+                name="row-body"
+                :item="row"
               >
-                {{ index + startIndex }}
-              </span>
-              <div
-                v-for="col in gridStore?.columns.value"
-                :key="col.name"
-              >
-                <slot
-                  :name="`cell-${col.name}`"
-                  :item="row"
+                <span
+                  v-if="numbered"
+                  class="text-on-dark"
                 >
-                  <template v-if="col.field">
-                    {{ col.label }}: {{ row[col.field] }}
-                  </template>
-                </slot>
-              </div>
-            </slot>
-          </q-card-section>
-          <q-card-actions class="dark-1">
-            <slot
-              name="row-actions"
-              :item="row"
-            >
-            </slot>
+                  {{ index + startIndex }}
+                </span>
+                <div
+                  v-for="col in gridStore?.columns.value"
+                  :key="col.name"
+                >
+                  <slot
+                    :name="`cell-${col.name}`"
+                    :item="row"
+                  >
+                    <template v-if="col.field">
+                      {{ col.label }}: {{ row[col.field] }}
+                    </template>
+                  </slot>
+                </div>
+              </slot>
+            </q-card-section>
+            <q-card-actions class="dark-1">
+              <slot
+                name="row-actions"
+                :item="row"
+              >
+              </slot>
 
-            <slot
-              name="row-more-menus"
-              :item="row"
-            >
-            </slot>
-          </q-card-actions>
-        </q-card>
-      </slot>
+              <slot
+                name="row-more-menus"
+                :item="row"
+              >
+              </slot>
+            </q-card-actions>
+          </q-card>
+        </slot>
+      </div>
     </template>
   </div>
 
@@ -174,8 +179,8 @@
           padding="10px 20px"
           :to="createUrl"
           dense
-          color="primary"
-          class="text-body1 no-letter-spacing primary-shadow"
+          color="blue"
+          class="text-body1 no-letter-spacing blue-shadow"
         >
           <div class="row items-center q-gutter-x-xs">
             <q-icon
@@ -239,7 +244,7 @@ async function loadData() {
 }
 
 async function resetPage() {
-  tableStore.pagination.value.currentPage = 1
+  //tableStore.pagination.value.currentPage = 1
   await tableStore.reloadData()
   if (thisGridStore.value.rows)
     thisGridStore.value.rows.value = tableStore.rows.value
@@ -305,3 +310,10 @@ defineExpose({
   resetPage
 })
 </script>
+
+<style lang="scss">
+//todo: 
+.row-active {
+  border: 2px solid;
+}
+</style>

@@ -1,5 +1,6 @@
 import { ref } from "vue"
 import { defaultPageSize, sortOrder, sqlOperator } from "src/constants";
+import { useComposablesStore } from "src/stores/useComposablesStore"
 
 const rows = ref([])
 
@@ -78,16 +79,17 @@ const columns = ref([
 ])
 
 export function useProductGrid() {
-    const reset = () => {
-        state.firstLoad.value = false
-    }
+    const composablesStore = useComposablesStore()
+    composablesStore.registerComposable({
+        reset: () => {
+            state.firstLoad.value = false
+        }
+    })
 
     return {
         rows,
         columns,
         pagination,
         state,
-
-        reset
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="editBatch"
-        title="ویرایش دسته‌ای کالا/خدمت"
+        :title="$t('shared.labels.editBatch') + ' ' + $t('main-menu-items.Cmn_Product_View')"
     />
     <!-- <desktop v-if="$q.screen.gt.sm" />
     <mobile v-if="$q.screen.xs" /> -->

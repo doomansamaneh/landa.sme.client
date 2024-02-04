@@ -1,4 +1,6 @@
-import { defaultPageSize } from "src/constants";
+import { defaultPageSize } from "src/constants"
+import { useComposablesStore } from "src/stores/useComposablesStore"
+
 import { ref } from "vue"
 
 const rows = ref([])
@@ -110,13 +112,16 @@ const columns = ref([
 ])
 
 export function useInvoiceGrid(defaultFilters) {
+    const composablesStore = useComposablesStore()
+    composablesStore.registerComposable({
+        reset: () => {
+            state.firstLoad.value = false
+            setDefaultSearchModel()
+        }
+    })
+
     // if (defaultState != null) Object.assign(state, defaultState)
     const filterExpression = defaultFilters;
-
-    const reset = () => {
-        state.firstLoad.value = false
-        setDefaultSearchModel()
-    }
 
     const setDefaultSearchModel = () => {
         state.searchModel.value = {
@@ -133,6 +138,5 @@ export function useInvoiceGrid(defaultFilters) {
         filterExpression,
 
         setDefaultSearchModel,
-        reset
     }
 }

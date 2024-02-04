@@ -73,7 +73,7 @@
           flat
           text-color="dark"
           :ripple="false"
-          @click="gotoBusiness(item)"
+          @click="gridStore.gotoBusiness(item)"
         >
           <div class="flex no-wrap q-gutter-sm">
             <div class="business-name text-on-dark flex text-weight-regular">
@@ -152,7 +152,7 @@
             <q-item
               clickable
               v-close-popup
-              @click="gotoBusiness(item)"
+              @click="gridStore.gotoBusiness(item)"
             >
               <q-item-section>
                 <div class="flex items-center q-gutter-x-sm">
@@ -233,12 +233,7 @@
 
 <script setup>
 import { ref } from "vue"
-import { useRouter } from "vue-router"
-import { Loading, useQuasar } from "quasar"
-import { useI18n } from "vue-i18n"
-
-import { fetchWrapper } from "src/helpers"
-import { useResetStores } from "src/composables/useResetStores"
+import { useQuasar } from "quasar"
 
 import DataView from "src/components/shared/dataTables/desktop/DataView.vue"
 import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
@@ -251,36 +246,9 @@ const props = defineProps({
   gridStore: Object
 })
 
-const resetStore = useResetStores()
-
-const { t } = useI18n()
-
-const router = useRouter()
 const $q = useQuasar()
 const businessDataView = ref(null)
 const showGuideDialog = ref(false)
-const loadingMessage = t('shared.messages.loading-message')
-
-async function gotoBusiness(item) {
-  Loading.show({
-    message: loadingMessage,
-    boxClass: 'bg-dark text-on-dark text-bold',
-    spinnerColor: 'primary'
-  })
-  resetStore.reset()
-
-  await fetchWrapper
-    .post(`business/gotoBusiness/${item.id}`)
-    .then((response) => {
-      //alert(`goto business: ${response.data.data.culture}`)
-      // console.log(`goto business: ${response.data.data}`);
-      // router.push(`/${response.data.data.url}`)
-      //todo: resolve main-route for gotoBusiness
-      router.push(`/${item.id}`)
-    }).finally(() => {
-      Loading.hide()
-    });
-}
 
 async function reloadData() {
   businessDataView.value.reloadData()

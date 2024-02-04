@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="create"
-        title="کپی"
+        :title="$t('shared.labels.copy') + ' ' + $t('main-menu-items.Cmn_ProductGroup_View')"
     />
 </template>
   

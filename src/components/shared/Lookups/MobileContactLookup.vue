@@ -162,11 +162,11 @@
 <script setup>
 import { ref, computed, onMounted } from "vue"
 import { useDataTable } from "src/composables/useDataTable"
-import { useCustomer } from "src/components/areas/crm/_composables/useCustomer"
+import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid"
 import { helper } from "src/helpers"
 import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
 
-const customerStore = useCustomer()
+const customerStore = useCustomerGrid()
 
 const tableStore = useDataTable("crm/customer/getLookupData", customerStore.columns, customerStore)
 

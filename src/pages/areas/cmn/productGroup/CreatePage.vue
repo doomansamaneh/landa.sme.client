@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="create"
-        title="ایجاد گروه کالا"
+        :title="$t('shared.labels.crate') + ' ' + $t('main-menu-items.Cmn_ProductGroup_View')"
     />
 </template>
   
