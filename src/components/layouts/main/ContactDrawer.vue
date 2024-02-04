@@ -24,7 +24,7 @@
         color="grey-5"
         outlined
         v-model="tableStore.pagination.value.searchTerm"
-        :placeholder="$t('shared.labels.contact-search')"
+        :placeholder="$t('shared.labels.contactSearch')"
         dense
         clearable
         clear-icon="o_clear"
