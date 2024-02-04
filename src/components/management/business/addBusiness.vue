@@ -77,7 +77,7 @@ import { ref } from "vue"
 import { useQuasar } from "quasar"
 
 import SelectPlan from "src/components/management/shared/SelectPlan.vue"
-import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
+import BackButton from "src/components/shared/buttons/GoBackLink.vue"
 
 const $q = useQuasar()
 

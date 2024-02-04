@@ -7,8 +7,8 @@ export default {
   },
   children: [
     {
-      path: "",
-      name: "",
+      path: "/business",
+      name: "business",
       component: () => import("src/pages/management/business/IndexPage.vue")
     },
     {
@@ -38,7 +38,7 @@ export default {
     {
       path: "addBusiness",
       name: "add-new-business",
-      component: () => import("pages/management/AddBusiness.vue"),
+      component: () => import("pages/management/addBusiness/IndexPage.vue"),
       meta: {
         icon: "o_add"
       }

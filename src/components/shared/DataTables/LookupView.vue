@@ -38,13 +38,14 @@
       ref="popup"
       transition-show="jump-down"
       transition-hide="jump-up"
-      fit
+      :anchor="$q.screen.lt.sm ? 'bottom middle' : ''"
+      :self="$q.screen.lt.sm ? 'top middle' : ''"
       no-focus
       no-refocus
     >
       <q-inner-loading
         :showing="tableStore.showLoader.value"
-        class="inner-loader q-mt-xl"
+        class="inner-loader_ q-mt-xl"
       >
         <q-spinner
           size="52px"
@@ -53,7 +54,7 @@
       </q-inner-loading>
 
       <div
-        class="header text-caption text-bold bg-dark q-pa-md z-max"
+        class="header text-caption text-bold q-pa-md bg-dark z-max"
         style="border-bottom: 1px solid var(--q-primary);"
       >
         <slot name="thead" />
@@ -111,9 +112,9 @@
 import { ref, computed, onMounted } from "vue"
 import { useQuasar } from "quasar"
 import { useDataTable } from "src/composables/useDataTable"
-import PageBar from "./PageBar.vue"
-import NoDataFound from "./NoDataFound.vue"
-import CustomInput from "src/components/shared/Forms/CustomInput.vue"
+import PageBar from "src/components/shared/dataTables/PageBar.vue"
+import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
+// import CustomInput from "src/components/shared/forms/CustomInput.vue"
 
 const props = defineProps({
   dataSource: String,

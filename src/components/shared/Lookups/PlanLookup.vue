@@ -10,19 +10,19 @@
     :rules="[(val) => val && val.length > 0]"
   >
 
-  <template #thead>
-      <div class="row q-gutter-x-md items-center">
-        <div class="col-1">#</div>
-        <div class="col q-pr-md">
+    <template #thead>
+      <div class="row items-center q-col-gutter-md_">
+        <div style="width: 20px;">#</div>
+        <div class="col-8">
           <header-column
-            fieldName="name"
+            fieldName="title"
             title="طرح"
             :lookup="lookup"
           />
         </div>
-        <div class="col-2">
+        <div class="col">
           <header-column
-            fieldName="code"
+            fieldName="cost"
             title="ماهانه"
             :lookup="lookup"
           />
@@ -31,10 +31,10 @@
     </template>
 
     <template #td="{ row, index }">
-      <div class="row q-gutter-x-md">
-        <div class="col-1 text-caption">{{ index }}</div>
-        <div class="col text-caption">{{ row.title }}</div>
-        <div class="col-2 text-caption">{{ row.cost.toLocaleString() }}</div>
+      <div class="row items-center q-col-gutter-md_ q-pa-md">
+        <div style="width: 20px;" class="text-caption">{{ index }}</div>
+        <div class="col-8 text-caption">{{ row.title }}</div>
+        <div class="col text-caption">{{ row.cost.toLocaleString() }}</div>
       </div>
     </template>
 
