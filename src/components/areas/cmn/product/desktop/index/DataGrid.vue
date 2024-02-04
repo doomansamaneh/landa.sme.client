@@ -20,7 +20,16 @@
       </q-btn>
     </template>
   </tool-bar>
-
+  <!-- ----------------------------------------------- -->
+  Persian tools library tools:
+  <br />
+  <a href="https://github.com/persian-tools/persian-tools">persian tools</a>
+  <input
+    type="number"
+    v-model="numbersInput"
+  />
+  <p>Result: {{ convertedNumber }}</p>
+  <!-- ---------------------------------------------- -->
   <q-card class="bordered">
     <q-card-section class="bg-primary text-white">
       <div class="text-h5">{{ title }}</div>
@@ -74,16 +83,30 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, watchEffect } from "vue"
 import { useQuasar } from "quasar"
 import { isActiveOptions } from "src/constants"
 import { useFormActions } from "src/composables/useFormActions"
+
+/////////////////////////////////////////////////////////////////
+import { numberToWords } from "@persian-tools/persian-tools";
+//////////////////////////////////////////////////////////////////
 
 import ToolBar from "src/components/shared/ToolBar.vue"
 import RowToolBar from "src/components/shared/RowToolBar.vue"
 import CustomSelect from "src/components/shared/forms/CustomSelect.vue"
 import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue"
 import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
+
+/////////////////////////////////
+const numbersInput = ref(1379);
+const convertedNumber = ref();
+
+watchEffect(() => {
+  const converted = numberToWords(numbersInput.value);
+  convertedNumber.value = converted;
+});
+////////////////////////////////////
 
 const props = defineProps({
   gridStore: Object,

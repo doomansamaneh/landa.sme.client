@@ -11,6 +11,7 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@persian-tools/vue-persian-tools": "^0.14.0",
     "@quasar/cli": "^2.3.0",
     "@quasar/extras": "^1.16.9",
     "apexcharts": "^3.44.0",
