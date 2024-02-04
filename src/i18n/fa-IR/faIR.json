@@ -154,11 +154,11 @@
     "renew-subscription": {
       "title": "تمدید اشتراک",
       "caption": "همه هزینه ها به ریال می‌باشد",
-      "business-name-label": "نام کسب و کار:",
+      "business-name-label": "نام کسب و کار",
       "current-plan": "طرح فعلی:",
       "to-date": "تا تاریخ:",
-      "plan": "طرح (ریال):",
-      "extension-period": "دوره تمدید:",
+      "plan": "طرح (ریال)",
+      "extension-period": "دوره تمدید",
       "loyalty-discount": "تخفیف وفاداری:",
       "total": "جمع:",
       "discount": "تخفیف:",
@@ -171,7 +171,7 @@
     "add-business": {
       "caption": "همه هزینه ها به ریال می‌باشد",
       "pay-caption": "پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم کارت خود را فعال کرده باشید.",
-      "business-name-label": "نام کسب و کار:",
+      "business-name-label": "نام کسب و کار",
       "plan": "طرح (ریال):",
       "rial": "ریال",
       "extension-period": "دوره تمدید:",

@@ -2,7 +2,8 @@
   <q-breadcrumbs
     v-if="show"
     active-color="primary"
-    class="text-body2 no-padding z-max"
+    class="no-padding z-max"
+    :class="{ 'text-body3': $q.screen.lt.sm }"
   >
     <q-breadcrumbs-el
       v-for="item in validItems"
@@ -12,33 +13,47 @@
       :to="item.path"
     />
     <template #separator>
-      <q-icon name="arrow_forward_ios" class="text-on-dark" />
+      <q-icon
+        name="arrow_forward_ios"
+        class="text-on-dark"
+      />
     </template>
   </q-breadcrumbs>
 </template>
 
 <script setup>
-import { ref, watch, computed } from "vue"
+import { ref, watchEffect, computed } from "vue"
 import { useRouter } from "vue-router"
-import { useI18n } from "vue-i18n"
 
 const router = useRouter()
-const { t } = useI18n()
 
 const items = ref([])
 
-watch(() => {
+watchEffect(() => {
   getRoute()
 })
 
+
 function getRoute() {
-  items.value = router.currentRoute.value.matched.map((match) => {
+  const newItems = router.currentRoute.value.matched.map((match) => {
     return {
       ...match,
       name: match.name ? `pages.${match.name}` : ""
+    };
+  });
+
+  newItems.forEach((newItem) => {
+    const exists = items.value.some((item) => item.path === newItem.path);
+    if (!exists) {
+      items.value.push(newItem);
     }
-  })
+  });
+
+  items.value = items.value.filter((item) =>
+    newItems.some((newItem) => newItem.path === item.path)
+  );
 }
+
 
 const show = computed(() => validItems.value.length > 0)
 const validItems = computed(() =>

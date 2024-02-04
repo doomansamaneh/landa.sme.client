@@ -1,92 +1,89 @@
 <template>
-  <div class="row items-center">
-    <div class="col-2">
-      <q-item-label class="q-mb-lg">
-        <span class="">
-          {{ $t("page.renew-subscription.plan") }}
-        </span>
+  <div class="row" :class="{ 'q-col-gutter-md' : $q.screen.gt.xs}">
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+      <q-item-label class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">
+        {{ $t("page.renew-subscription.plan") }}
       </q-item-label>
-    </div>
-    <div class="col-10">
       <plan-lookup @row-selected="onPlanSelected" />
     </div>
-  </div>
-  <div class="row items-center q-mb-lg">
-    <div class="col-2">
-      <q-item-label class="">
-        {{ $t("page.renew-subscription.extension-period") }}
-      </q-item-label>
+
+    <div class="col-md col-sm col-xs-12">
+      <div>
+        <q-item-label class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">
+          {{ $t("page.renew-subscription.extension-period") }}
+        </q-item-label>
+        <q-select
+          hide-dropdown-icon
+          dense
+          v-model="selectedPeriod"
+          @update:model-value="selectPeriod"
+          :options="periodItems"
+          outlined
+          auto-close
+        >
+          <template #append>
+            <q-icon
+              name="o_expand_more"
+              class="show-lookup-icon cursor-pointer"
+              size="sm"
+            />
+          </template>
+        </q-select>
+      </div>
     </div>
-    <div class="col-10">
-      <q-select
-        hide-dropdown-icon
-        dense
-        v-model="selectedPeriod"
-        @update:model-value="selectPeriod"
-        :options="periodItems"
-        outlined
-        auto-close
-        class="period-select"
-      >
-        <template #append>
-          <q-icon
-            name="o_expand_more"
-            class="show-lookup-icon cursor-pointer"
-            size="sm"
-          />
-        </template>
-      </q-select>
-    </div>
+
   </div>
 
-  <div class="total glass row q-mb-sm justify-between items-center q-px-xl margin-md">
-    <div class="col-6 q-gutter-y-lg">
+  <div class="total-container rounded-borders row q-mt-lg justify-between items-center" :class="{ 'q-px-xl' : $q.screen.gt.xs, 'q-px-lg' : $q.screen.lt.sm}">
+    <div class="col-md-6 col-sm-6 col-xs-12 q-gutter-y-lg">
       <div
         class="row"
         v-if="loyaltyDiscountTotal > 0"
       >
-        <div class="col-7">
+        <div class="col-md-5 col-sm-3 col-xs-3">
           <span>{{ $t("page.renew-subscription.loyalty-discount") }}</span>
         </div>
-        <div class="col-5">
+        <div class="col-md col-sm col-xs">
           <span>{{ loyaltyDiscountTotal.toLocaleString() }}</span>
         </div>
       </div>
       <div class="row">
-        <div class="col-7">
+        <div class="col-md-5 col-sm-3 col-xs-3">
           <span>{{ $t("page.renew-subscription.total") }}</span>
         </div>
-        <div class="col-5">
+        <div class="col-md col-sm col-xs">
           <span>{{ subTotal.toLocaleString() }}</span>
         </div>
       </div>
       <div class="row">
-        <div class="col-7">
+        <div class="col-md-5 col-sm-3 col-xs-3">
           <span>{{ $t("page.renew-subscription.discount") }}</span>
         </div>
-        <div class="col-5">
+        <div class="col-md col-sm col-xs">
           <span>{{ discount.toLocaleString() }}</span>
         </div>
       </div>
       <div class="row">
-        <div class="col-7">
+        <div class="col-md-5 col-sm-3 col-xs-3">
           <span>{{ $t("page.renew-subscription.sum-total") }}</span>
         </div>
-        <div class="col-5">
+        <div class="col-md-5 col-sm col-xs">
           <span class="underline"><b>{{ total.toLocaleString() }}</b>
             {{ $t("page.add-business.rial") }}
           </span>
         </div>
       </div>
     </div>
-    <div class="col-6 q-gutter-x-lg">
-      <div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12 q-gutter-x-lg">
+      <div class="row items-center">
         <q-radio
           v-model="shape"
           checked-icon="task_alt"
           val="line"
           color=""
-          size="md"
+          dense
+          size="40px"
         >
           <q-tooltip class="custom-tooltip text-body1">
             <span class="sadad-tooltip">پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان پذیر
@@ -97,6 +94,7 @@
           <img
             src="/sadad-new.png"
             alt="درگاه پرداخت الکترونیک سداد"
+            :class="$q.dark.isActive ? 'logo' : ''"
           />
         </div>
       </div>
@@ -109,7 +107,7 @@ import { ref, watch, onMounted, computed } from "vue"
 import { useQuasar } from "quasar"
 import { useRoute } from "vue-router"
 import { fetchWrapper } from "src/helpers"
-import PlanLookup from "src/components/shared/Lookups/PlanLookup.vue"
+import PlanLookup from "src/components/shared/lookups/PlanLookup.vue"
 
 const route = useRoute()
 const lookup = ref(null)
@@ -200,29 +198,13 @@ function resetValues() {
 </script>
 
 <style lang="scss" scoped>
-.period-select {
-  width: 400px;
+.logo {
+  filter: brightness(0) invert(1);
 }
 
-.total {
-  border-radius: 4px;
+.total-container {
   height: 300px;
+  border: 1px solid $primary;
 }
 
-.input {
-  width: 400px;
-}
-
-.sadad {
-  border-radius: 4px;
-}
-
-// .glass {
-//   background: #ffffff33;
-//   border-radius: 4px;
-//   box-shadow: 0 2px 20px #0000001a;
-//   backdrop-filter: blur(4px);
-//   -webkit-backdrop-filter: blur(5px);
-//   border: 1px solid #ffffff4d;
-// }
 </style>
