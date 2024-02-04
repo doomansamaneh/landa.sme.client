@@ -5,9 +5,9 @@
     dense
     class="text-on-dark"
     icon="arrow_back"
-    @click="$router.go(-1)"
+    @click="$router.back()"
   >
-    <q-tooltip class="custom-tooltip">{{ $t("page.buttons.back") }}</q-tooltip>
+    <q-tooltip class="custom-tooltip">{{ $t("shared.labels.back") }}</q-tooltip>
   </q-btn>
 </template>
 <script setup></script>

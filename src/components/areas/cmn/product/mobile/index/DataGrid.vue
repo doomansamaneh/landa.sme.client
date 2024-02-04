@@ -43,21 +43,14 @@
     </template>
 
     <template #cell-isActive="{ item }">
-      <i
+      <q-icon
         v-if="item.isActive"
-        class="q-icon text-primary notranslate material-icons-outlined"
-        aria-hidden="true"
-        role="presentation"
-      > done
-      </i>
-      <i
+        name="o_done"
+      />
+      <q-icon
         v-else
-        class="q-icon notranslate material-icons-outlined"
-        aria-hidden="true"
-        role="presentation"
-      >
-        cancel
-      </i>
+        name="o_cancel"
+      />
     </template>
 
     <template #row-header="{ item }">
@@ -67,46 +60,25 @@
     </template>
 
     <template #row-actions="{ item }">
-      <q-btn
-        round
-        class="text-on-dark text-caption"
-        :to="`/cmn/product/edit/${item.id}`"
-        unelevated
+      <row-tool-bar
+        base-route="/cmn/product"
+        :item="item"
+        :table-store="tableStore"
+        :crud-store="crudStore"
       >
-        <q-icon name="o_edit" />
-      </q-btn>
-
-      <q-btn
-        round
-        class="text-on-dark text-caption"
-        :to="`/cmn/product/copy/${item.id}`"
-        unelevated
-      >
-        <q-icon name="o_copy" />
-      </q-btn>
-
-      <q-btn
-        round
-        class="text-on-dark text-caption"
-        unelevated
-        @click="crudStore.deleteById(item, reloadData)"
-      >
-        <q-icon name="o_delete" />
-      </q-btn>
+        <template #more-items="{ item }">
+          <span class="justify-end">
+            <q-btn
+              unelevated
+              round
+              @click="onBottomSheetShow(item)"
+            >
+              <q-icon name="o_more_vert" />
+            </q-btn>
+          </span>
+        </template>
+      </row-tool-bar>
     </template>
-
-    <template #row-more-menus="{ item }">
-      <span class="justify-end">
-        <q-btn
-          unelevated
-          round
-          @click="onBottomSheetShow(item)"
-        >
-          <q-icon name="o_more_vert" />
-        </q-btn>
-      </span>
-    </template>
-
   </data-grid>
 
   <bottom-sheet
@@ -115,9 +87,7 @@
     @hide="onBottomSheetHide"
   >
     <template #header>
-      <div class="text-h6 q-pa-md">
-        {{ selectedRow.code }} / {{ selectedRow.title }}
-      </div>
+      {{ tableStore?.activeRow.value?.code }} / {{ tableStore?.activeRow.value?.title }}
     </template>
 
     <template #body>
@@ -125,7 +95,7 @@
         <q-item
           clickable
           v-ripple
-          :to="`/cmn/product/edit/${selectedRow.id}`"
+          :to="`/cmn/product/edit/${tableStore?.activeRow.value?.id}`"
         >
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark">
@@ -141,7 +111,7 @@
         <q-item
           clickable
           v-ripple
-          :to="`/cmn/product/copy/${selectedRow.id}`"
+          :to="`/cmn/product/copy/${tableStore?.activeRow.value?.id}`"
         >
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark">
@@ -159,7 +129,7 @@
         <q-item
           clickable
           v-ripple
-          @click="crudStore.deleteById(selectedRow.id, reloadData)"
+          @click="crudStore.deleteById(tableStore?.activeRow.value?.id, reloadData)"
         >
           <q-item-section avatar>
             <q-avatar class="delete-avatar bg-on-dark red-shadow text-on-dark">
@@ -184,6 +154,7 @@ import { useFormActions } from "src/composables/useFormActions"
 import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
+import RowToolBar from "src/components/shared/RowToolBar.vue"
 import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue"
 
 const props = defineProps({
@@ -195,13 +166,11 @@ const $q = useQuasar()
 const crudStore = useFormActions("cmn/product")
 const dataGrid = ref(null)
 const bottomSheetStatus = ref(false)
-const selectedRow = ref(null)
 
 const tableStore = computed(() => dataGrid.value?.tableStore)
 const selectedIds = computed(() => tableStore.value?.selectedRows?.value.map(item => item.id))
 
 const onBottomSheetShow = (row) => {
-  selectedRow.value = row;
   bottomSheetStatus.value = true;
 }
 

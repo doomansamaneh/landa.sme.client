@@ -8,48 +8,32 @@
     numbered
   >
     <template #row-header="{ item }">
-      <q-card-section>
+      <q-card-section class="bg-primary text-white">
         {{ item.title }}
       </q-card-section>
     </template>
 
     <template #row-actions="{ item }">
-      <q-btn
-        round
-        :to="`/cmn/productGroup/edit/${item.id}`"
-        unelevated
+      <row-tool-bar
+        base-route="/cmn/productGroup"
+        :item="item"
+        :table-store="tableStore"
+        :crud-store="crudStore"
       >
-        <q-icon name="o_edit" />
-      </q-btn>
-
-      <q-btn
-        round
-        :to="`/cmn/productGroup/copy/${item.id}`"
-        unelevated
-      >
-        <q-icon name="o_copy" />
-      </q-btn>
-
-      <q-btn
-        round
-        unelevated
-        @click="crudStore.deleteById(item.id, reloadData)"
-      >
-        <q-icon name="o_delete" />
-      </q-btn>
+        <template #more-items="{ item }">
+          <span class="justify-end">
+            <q-btn
+              unelevated
+              round
+              @click="onBottomSheetShow(item)"
+            >
+              <q-icon name="o_more_vert" />
+            </q-btn>
+          </span>
+        </template>
+      </row-tool-bar>
     </template>
 
-    <template #row-more-menus="{ item }">
-      <span class="justify-end">
-        <q-btn
-          unelevated
-          round
-          @click="onBottomSheetShow(item)"
-        >
-          <q-icon name="o_more_vert" />
-        </q-btn>
-      </span>
-    </template>
   </data-grid>
 
   <bottom-sheet
@@ -58,9 +42,7 @@
     @hide="onBottomSheetHide"
   >
     <template #header>
-      <div class="text-h6 q-pa-md">
-        {{ selectedRow.title }}
-      </div>
+      {{ tableStore?.activeRow.value?.title }}
     </template>
 
     <template #body>
@@ -68,7 +50,7 @@
         <q-item
           clickable
           v-ripple
-          :to="`/cmn/productGroup/edit/${selectedRow.id}`"
+          :to="`/cmn/productGroup/edit/${tableStore?.activeRow.value?.id}`"
         >
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark">
@@ -84,7 +66,7 @@
         <q-item
           clickable
           v-ripple
-          :to="`/cmn/productGroup/copy/${selectedRow.id}`"
+          :to="`/cmn/productGroup/copy/${tableStore?.activeRow.value?.id}`"
         >
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark">
@@ -102,7 +84,7 @@
         <q-item
           clickable
           v-ripple
-          @click="crudStore.deleteById(selectedRow.id, reloadData)"
+          @click="crudStore.deleteById(tableStore?.activeRow.value?.id, reloadData)"
         >
           <q-item-section avatar>
             <q-avatar class="delete-avatar bg-on-dark red-shadow text-on-dark">
@@ -125,6 +107,7 @@ import { useQuasar } from "quasar"
 import { useFormActions } from "src/composables/useFormActions"
 
 import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
+import RowToolBar from "src/components/shared/RowToolBar.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
 
 const props = defineProps({
@@ -137,13 +120,11 @@ const crudStore = useFormActions("cmn/productGroup")
 
 const dataGrid = ref(null)
 const bottomSheetStatus = ref(false)
-const selectedRow = ref(null)
 
 const tableStore = computed(() => dataGrid.value?.tableStore)
 const selectedIds = computed(() => tableStore.value?.selectedRows?.value.map(item => item.id))
 
 const onBottomSheetShow = (row) => {
-  selectedRow.value = row;
   bottomSheetStatus.value = true;
 }
 

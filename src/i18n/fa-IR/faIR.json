@@ -119,8 +119,6 @@
     "card-message": "برای ورود به کسب و کار، بر روی نام آن کلیک کنید",
     "buttons": {
       "guide-tooltip": "راهنما",
-      "reload-data": "تازه سازی",
-      "back": "بازگشت",
       "expire-date-tooltip": "سر رسید",
       "service-extension-tooltip": "تمدید اشتراک",
       "guest-user": "کاربر مهمان",
@@ -211,12 +209,7 @@
       "total-receipt": "جمع دریافتی: ",
       "remained": "مانده: ",
       "remained-but-this-year": "مانده از قبل: ",
-      "remained-total": "جمع مانده: ",
-      "rial": "ریال",
-      "buttons": {
-        "print": "چاپ",
-        "excel": "تبدیل به اکسل"
-      }
+      "remained-total": "جمع مانده: "
     }
   },
 
@@ -289,7 +282,13 @@
       "next": "پسین",
       "previous": "پیشین",
       "loadMore": "بارگزاری بیشتر",
-      "userGuide": "راهنما"
+      "userGuide": "راهنما",
+      "refresh": "تازه سازی",
+      "back": "بازگشت",
+      "print": "چاپ",
+      "eportToExcel": "تبدیل به اکسل",
+      "activate": "فعال سازی",
+      "deactivate": "غیرفعال سازی"
     },
     "productType": {
       "main": "اصلی",
