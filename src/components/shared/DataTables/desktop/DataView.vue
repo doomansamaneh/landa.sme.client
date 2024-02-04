@@ -69,6 +69,8 @@
       class="q-pa-md dark-1"
       :pagination="tableStore.pagination.value"
       @page-changed="tableStore.reloadData"
+      size-seletion
+      show-page-count
     />
   </q-card>
 </template>
