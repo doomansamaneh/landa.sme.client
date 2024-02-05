@@ -24,7 +24,7 @@
         >
           <div class="column items-center justify-center q-mt-md">
             <q-avatar
-              class="profile-pic q-mx-sm"
+              class="profile-pic primary-shadow q-mx-sm"
               text-color="white"
             >
               <div class="text-bold">{{ helper.getFirstChar(username) }}</div>
@@ -44,7 +44,7 @@
           <div class="q-py-sm">
             <q-item-section avatar>
               <q-avatar
-                class="dark-icon"
+                class="bg-on-dark"
                 icon="o_settings"
                 size="md"
               />
@@ -64,7 +64,7 @@
           <div class="q-py-sm">
             <q-item-section avatar>
               <q-avatar
-                class="dark-icon"
+                class="bg-on-dark"
                 icon="password"
                 size="md"
               />
@@ -84,7 +84,7 @@
           <div class="q-py-sm">
             <q-item-section avatar>
               <q-avatar
-                class="dark-icon"
+                class="bg-on-dark"
                 icon="o_business"
                 size="md"
               />
@@ -104,7 +104,7 @@
           <div class="q-py-sm">
             <q-item-section avatar>
               <q-avatar
-                class="dark-icon"
+                class="bg-on-dark"
                 icon="o_logout"
                 size="md"
               />

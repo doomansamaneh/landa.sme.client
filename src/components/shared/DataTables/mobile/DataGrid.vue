@@ -312,8 +312,8 @@ defineExpose({
 </script>
 
 <style lang="scss">
-//todo: 
-.row-active {
-  border: 2px solid;
-}
+//todo:
+// .row-active {
+//   border: 2px solid;
+// }
 </style>

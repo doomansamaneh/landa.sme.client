@@ -36,98 +36,98 @@
         {{ $t("shared.labels.more") }}
 
         <q-menu
-            fit
-            :offset="[0, 20]"
+          fit
+          :offset="[0, 20]"
+        >
+          <q-list
+            dense
+            padding
+            style="width:200px"
           >
-            <q-list
-              dense
-              padding
-              style="width:200px"
+            <q-item
+              clickable
+              v-close-popup
+              tabindex="0"
             >
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar
-                      class="dark-icon"
-                      size="sm"
-                    ><q-icon
-                        name="o_refresh"
-                        size="14px"
-                      /></q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-caption">تازه‌سازی</div>
+              <div class="q-py-sm">
+                <q-item-section avatar>
+                  <q-avatar
+                    class="bg-on-dark"
+                    size="sm"
+                  ><q-icon
+                      name="o_refresh"
+                      size="14px"
+                    /></q-avatar>
                 </q-item-section>
-              </q-item>
-              <q-separator />
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar
-                      class="dark-icon"
-                      size="sm"
-                    ><q-icon
-                        name="o_close"
-                        size="14px"
-                      /></q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-caption">غیر‌فعال‌سازی</div>
+              </div>
+              <q-item-section>
+                <div class="text-caption">تازه‌سازی</div>
+              </q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item
+              clickable
+              v-close-popup
+              tabindex="0"
+            >
+              <div class="q-py-sm">
+                <q-item-section avatar>
+                  <q-avatar
+                    class="bg-on-dark"
+                    size="sm"
+                  ><q-icon
+                      name="o_close"
+                      size="14px"
+                    /></q-avatar>
                 </q-item-section>
-              </q-item>
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar
-                      class="dark-icon"
-                      size="sm"
-                    ><q-icon
-                        name="o_check"
-                        size="14px"
-                      /></q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-caption">فعال سازی</div>
+              </div>
+              <q-item-section>
+                <div class="text-caption">غیر‌فعال‌سازی</div>
+              </q-item-section>
+            </q-item>
+            <q-item
+              clickable
+              v-close-popup
+              tabindex="0"
+            >
+              <div class="q-py-sm">
+                <q-item-section avatar>
+                  <q-avatar
+                    class="bg-on-dark"
+                    size="sm"
+                  ><q-icon
+                      name="o_check"
+                      size="14px"
+                    /></q-avatar>
                 </q-item-section>
-              </q-item>
-              <q-separator />
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar
-                      class="dark-icon"
-                      size="sm"
-                    ><q-icon
-                        name="o_download"
-                        size="16px"
-                      /></q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-caption">تبدیل به اکسل</div>
+              </div>
+              <q-item-section>
+                <div class="text-caption">فعال سازی</div>
+              </q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item
+              clickable
+              v-close-popup
+              tabindex="0"
+            >
+              <div class="q-py-sm">
+                <q-item-section avatar>
+                  <q-avatar
+                    class="bg-on-dark"
+                    size="sm"
+                  ><q-icon
+                      name="o_download"
+                      size="16px"
+                    /></q-avatar>
                 </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
+              </div>
+              <q-item-section>
+                <div class="text-caption">تبدیل به اکسل</div>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
 
       </q-btn>
     </template>

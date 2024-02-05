@@ -54,7 +54,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_refresh"
@@ -75,7 +75,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_close"
@@ -95,7 +95,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_check"
@@ -116,7 +116,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_download"
@@ -285,8 +285,10 @@ const confirmGeneralDiscount = () => {
 
 </script>
 
-<style lang="scss" scoped>.q-item__label--caption {
+<style lang="scss" scoped>
+.q-item__label--caption {
   font-size: 14px;
   letter-spacing: 0;
   color: #697588;
-}</style>
+}
+</style>

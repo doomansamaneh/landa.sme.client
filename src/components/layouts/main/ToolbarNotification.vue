@@ -55,7 +55,7 @@
           <div class="q-py-sm">
             <q-item-section avatar>
               <q-avatar
-                class="dark-icon"
+                class="bg-on-dark"
                 size="md"
                 icon="history"
               >

@@ -247,7 +247,7 @@
                   <div class="q-py-sm">
                     <q-item-section avatar>
                       <q-avatar
-                        class="dark-icon"
+                        class="bg-on-dark"
                         size="sm"
                       ><q-icon
                           name="o_percent"
@@ -269,7 +269,7 @@
                   <div class="q-py-sm">
                     <q-item-section avatar>
                       <q-avatar
-                        class="dark-icon"
+                        class="bg-on-dark"
                         size="sm"
                       ><q-icon
                           name="o_delete"

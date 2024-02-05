@@ -62,7 +62,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_refresh"
@@ -83,7 +83,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_close"
@@ -103,7 +103,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_check"
@@ -124,7 +124,7 @@
               <div class="q-py-sm">
                 <q-item-section avatar>
                   <q-avatar
-                    class="dark-icon"
+                    class="bg-on-dark"
                     size="sm"
                   ><q-icon
                       name="o_download"

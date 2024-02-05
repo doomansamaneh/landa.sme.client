@@ -61,7 +61,7 @@
       <div class="col-5">
         <q-avatar
           :class="{
-            'business-isowner': item.isOwner,
+            'business-isowner primary-shadow': item.isOwner,
             'business-isnotowner': !item.isOwner
           }"
           icon="o_person"
@@ -97,13 +97,13 @@
       <div class="expire-date-container flex col-2 items-center">
         <q-item-label caption>
           <q-icon
-            class="expire-date-clock dark-icon2"
+            class="expire-date-clock bg-on-dark2"
             name="history"
             size="xs"
             v-if="!item.expired"
           />
           <q-icon
-            class="expire-date-clock dark-icon2"
+            class="expire-date-clock bg-on-dark2"
             color="warning"
             name="warning"
             size="xs"
@@ -215,7 +215,7 @@
                     <q-avatar
                       icon="o_delete"
                       size="md"
-                      class="delete-avatar"
+                      class="delete-avatar red-shadow"
                     />
                     <div class="text-body2">
                       {{ $t("page.buttons.more-button.delete") }}

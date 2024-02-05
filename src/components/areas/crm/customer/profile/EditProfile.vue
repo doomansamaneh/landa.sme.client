@@ -579,7 +579,7 @@
                         <div class="q-py-sm">
                           <q-item-section avatar>
                             <q-avatar
-                              class="dark-icon"
+                              class="bg-on-dark"
                               size="sm"
                             ><q-icon
                                 name="o_call"
@@ -592,65 +592,65 @@
                         </q-item-section>
                       </q-item>
                       <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
+                        clickable
+                        v-close-popup
+                        tabindex="0"
                       >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar
-                          class="dark-icon"
-                          size="sm"
-                          ><q-icon
-                          name="o_phone_android"
-                          size="14px"
-                          /></q-avatar>
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar
+                              class="bg-on-dark"
+                              size="sm"
+                            ><q-icon
+                                name="o_phone_android"
+                                size="14px"
+                              /></q-avatar>
+                          </q-item-section>
+                        </div>
+                        <q-item-section>
+                          <div class="text-caption">موبایل</div>
                         </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-caption">موبایل</div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar
-                            class="dark-icon"
-                            size="sm"
-                          ><q-icon
-                              name="o_mail"
-                              size="14px"
-                            /></q-avatar>
+                      </q-item>
+                      <q-item
+                        clickable
+                        v-close-popup
+                        tabindex="0"
+                      >
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar
+                              class="bg-on-dark"
+                              size="sm"
+                            ><q-icon
+                                name="o_mail"
+                                size="14px"
+                              /></q-avatar>
+                          </q-item-section>
+                        </div>
+                        <q-item-section>
+                          <div class="text-caption">ایمیل</div>
                         </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-caption">ایمیل</div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                    >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar
-                        class="dark-icon"
-                        size="sm"
-                        ><q-icon
-                        name="o_public"
-                        size="16px"
-                        /></q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-caption">وبسایت</div>
-                    </q-item-section>
-                  </q-item>
+                      </q-item>
+                      <q-item
+                        clickable
+                        v-close-popup
+                        tabindex="0"
+                      >
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar
+                              class="bg-on-dark"
+                              size="sm"
+                            ><q-icon
+                                name="o_public"
+                                size="16px"
+                              /></q-avatar>
+                          </q-item-section>
+                        </div>
+                        <q-item-section>
+                          <div class="text-caption">وبسایت</div>
+                        </q-item-section>
+                      </q-item>
                     </q-list>
                   </q-menu>
                 </q-btn>

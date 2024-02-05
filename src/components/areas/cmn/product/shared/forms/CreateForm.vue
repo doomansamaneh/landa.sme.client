@@ -191,7 +191,7 @@ async function submitForm() {
     await form.value.validate().then(async (success) => {
         if (success) {
             const response = await formStore.crudStore.createOrEdit(props.action)
-            if (response?.data?.code === 200) $router.go(-1)
+            if (response?.data?.code === 200) router.go(-1)
         } else {
             //todo: how to show validation message to user
             alert("validation error")

@@ -11,8 +11,10 @@
         <div class="q-gutter-x-sm">
           <slot name="buttons">
             <q-btn
-              class="bg-primary text-white"
+              class="bg-primary primary-shadow text-white text-caption"
+              padding="6px 12px"
               rounded
+              no-caps
               unelevated
               :to="`${baseRoute}/create`"
             >
@@ -27,7 +29,7 @@
               <slot name="bootons-edit">
                 <q-btn
                   :to="`${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
-                  class="bordered-btn_bg-dark text-caption"
+                  class="text-caption"
                   rounded
                   unelevated
                   no-caps
@@ -91,7 +93,7 @@
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
-                          class="dark-icon"
+                          class="bg-on-dark"
                           size="sm"
                         >
                           <q-icon name="o_refresh" />
@@ -117,7 +119,7 @@
                       <div class="q-py-sm">
                         <q-item-section avatar>
                           <q-avatar
-                            class="dark-icon"
+                            class="bg-on-dark"
                             size="sm"
                           ><q-icon name="o_check" /></q-avatar>
                         </q-item-section>
@@ -138,7 +140,7 @@
                       <div class="q-py-sm">
                         <q-item-section avatar>
                           <q-avatar
-                            class="dark-icon"
+                            class="bg-on-dark"
                             size="sm"
                           ><q-icon name="o_close" /></q-avatar>
                         </q-item-section>
@@ -162,7 +164,7 @@
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar
-                          class="dark-icon"
+                          class="bg-on-dark"
                           size="sm"
                         ><q-icon
                             name="o_download"

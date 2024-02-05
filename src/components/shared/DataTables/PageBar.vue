@@ -1,9 +1,10 @@
 <template>
   <q-card-actions class="fit row justify-start items-center q-pa-none">
     <slot name="reload"></slot>
-    <!-- v-if="showPageCount" -->
+
     <span
-      class="text-caption q-pr-lg"
+      v-if="showPageCount"
+      class="text-body3 no-letter-spacing text-on-dark q-pr-lg"
     >
       {{ indexRange }} {{ $t("shared.labels.from") }} {{ paged.totalItems }}
     </span>
@@ -31,19 +32,22 @@
       class="pagination"
       @update:model-value="handlePageChange"
     />
-    <!-- v-if="sizeSeletion" -->
-      <q-space />
-      <q-select
-        dense
-        class="select"
-        outlined
-        v-model="paged.pageSize"
-        :options="pageSizeOptions"
-        @update:model-value="handlePageChange"
-        transition-show="flip-up"
-        transition-hide="flip-down"
-        popup-content-class="text-caption text-weight-medium text-grey-8"
-      />
+
+    <q-space />
+    <q-select
+      v-if="sizeSeletion"
+      dense
+      style="width: 70px;"
+      dropdown-icon="expand_more"
+      outlined
+      v-model="paged.pageSize"
+      :options="pageSizeOptions"
+      @update:model-value="handlePageChange"
+      transition-show="flip-up"
+      transition-hide="flip-down"
+      class="select text-on-dark text-body3 no-letter-spacing"
+      popup-content-class="text-body3 no-letter-spacing text-weight-medium text-grey-8"
+    />
   </q-card-actions>
 </template>
 
