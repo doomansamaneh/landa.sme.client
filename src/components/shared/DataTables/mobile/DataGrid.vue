@@ -77,7 +77,7 @@
                   v-if="numbered"
                   class="text-on-dark"
                 >
-                  {{ index + startIndex }}
+                  {{ tableStore.rowIndex(index) }}
                 </span>
                 <div
                   v-for="col in gridStore?.columns.value"

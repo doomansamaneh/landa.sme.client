@@ -42,7 +42,9 @@
     @hide="onBottomSheetHide"
   >
     <template #header>
-      {{ tableStore?.activeRow.value?.title }}
+      <div class="text-h6 q-pa-md">
+        {{ tableStore?.activeRow.value?.title }}
+      </div>
     </template>
 
     <template #body>
