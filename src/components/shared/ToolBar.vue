@@ -107,9 +107,8 @@
                     </q-item-section>
                   </q-item>
 
-                  <q-separator class="q-my-sm" />
-
-                  <template v-if="selectedIds?.length > 0">
+                  <template v-if="activation && selectedIds?.length > 0">
+                    <q-separator class="q-my-sm" />
                     <q-item
                       clickable
                       v-close-popup
@@ -142,7 +141,9 @@
                           <q-avatar
                             class="bg-on-dark"
                             size="sm"
-                          ><q-icon name="o_close" /></q-avatar>
+                          >
+                            <q-icon name="o_close" />
+                          </q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
@@ -151,9 +152,12 @@
                         </div>
                       </q-item-section>
                     </q-item>
-
-                    <q-separator class="q-my-sm" />
                   </template>
+
+                  <slot name="bottons-custom">
+                  </slot>
+
+                  <q-separator class="q-my-sm" />
 
                   <q-item
                     clickable
@@ -181,11 +185,8 @@
                 </q-list>
               </q-menu>
             </q-btn>
-
-
           </slot>
         </div>
-
 
         <div
           v-if="title"
@@ -223,7 +224,8 @@ const props = defineProps({
   title: String,
   baseRoute: String,
   tableStore: Object,
-  crudStore: Object
+  crudStore: Object,
+  activation: Boolean
 })
 
 const selectedIds = computed(() => props.tableStore?.selectedRows?.value.map(item => item.id))

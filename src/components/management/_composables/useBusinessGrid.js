@@ -3,7 +3,9 @@ import { useRouter } from "vue-router"
 import { Loading } from "quasar"
 import { useI18n } from "vue-i18n"
 import { fetchWrapper } from "src/helpers"
-import { useComposablesStore } from "src/stores/useComposablesStore"
+import { useComposables } from "src/stores/useComposables"
+import { useCulture } from "src/composables/useCulture"
+import { useFiscalYear } from "src/components/areas/acc/_composables/useFiscalYear"
 
 const rows = ref([])
 
@@ -45,10 +47,11 @@ const columns = ref([
 
 export function useBusinessGrid() {
     const { t } = useI18n()
-    const loadingMessage = t("shared.messages.loading-message")
-    //const loadingMessage = "shared.messages.loading-message"
-    const composablesStore = useComposablesStore()
     const router = useRouter()
+    const loadingMessage = t("shared.messages.loading-message")
+    const composablesStore = useComposables()
+    const cultureStore = useCulture()
+    const fiscalYearSotre = useFiscalYear()
 
     const reset = () => {
         state.firstLoad.value = false
@@ -67,10 +70,12 @@ export function useBusinessGrid() {
         await fetchWrapper
             .post(`business/gotoBusiness/${item.id}`)
             .then((response) => {
-                //alert(`goto business: ${response.data.data.culture}`)
-                // console.log(`goto business: ${response.data.data}`);
+                const userSetting = response.data.data.userSetting
                 // router.push(`/${response.data.data.url}`)
                 //todo: resolve main-route for gotoBusiness
+                //alert(userSetting.currentCulture)
+                //cultureStore.setCulture(userSetting.currentCulture)
+                fiscalYearSotre.setFiscalYear({ id: userSetting.fiscalYearId, title: userSetting.fiscalYear })
                 router.push(`/${item.id}`)
             }).finally(() => {
                 Loading.hide()

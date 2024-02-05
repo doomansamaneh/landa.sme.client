@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 
-export const useComposablesStore = defineStore('composables', {
+export const useComposables = defineStore('composables', {
   state: () => ({
     composables: [],
   }),

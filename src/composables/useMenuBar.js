@@ -1,7 +1,7 @@
 import { ref, computed } from "vue"
 import { useI18n } from "vue-i18n"
 import { fetchWrapper } from "src/helpers"
-import { useComposablesStore } from "src/stores/useComposablesStore"
+import { useComposables } from "src/stores/useComposables"
 
 const state = {
   firstLoad: ref(false),
@@ -12,7 +12,7 @@ const state = {
 const searchText = ref("")
 
 export function useMenuBar() {
-  const composablesStore = useComposablesStore()
+  const composablesStore = useComposables()
   composablesStore.registerComposable({
     reset: () => {
       state.firstLoad.value = false

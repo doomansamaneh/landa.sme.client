@@ -288,7 +288,8 @@
       "print": "چاپ",
       "eportToExcel": "تبدیل به اکسل",
       "activate": "فعال سازی",
-      "deactivate": "غیرفعال سازی"
+      "deactivate": "غیرفعال سازی",
+      "chooseFiscalYear": "انتخاب سال مالی"
     },
     "productType": {
       "main": "اصلی",

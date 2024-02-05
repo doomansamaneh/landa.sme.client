@@ -3,6 +3,7 @@
     :table-store="dataGrid?.tableStore"
     :crud-store="crudStore"
     base-route="/cmn/product"
+    activation
   >
     <template #buttons-batch-action>
       <q-btn

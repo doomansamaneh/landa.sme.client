@@ -3,6 +3,7 @@
     :table-store="dataGrid?.tableStore"
     :crud-store="crudStore"
     base-route="/cmn/productGroup"
+    activation
   >
   </tool-bar>
 

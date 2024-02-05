@@ -1,137 +1,39 @@
 <template>
   <q-btn
-    v-if="$q.screen.gt.xs"
     class="bordered-btn border-radius-xs bg-dark text-on-dark"
-    padding="4px 12px"
-    unelevated
-  >
-    <q-icon
-      name="o_calendar_today"
-      class="q-pr-sm"
-      size="16px"
-    />
-    <span>{{ `سال مالی: ${fiscalYearStore.currentYear.value?.title}` }}</span>
-
-    <q-menu
-      :persistent="false"
-      style="width: 400px;"
-      class="bordered"
-      transition-show="jump-down"
-      transition-hide="jump-up"
-      :offset="[0, 24]"
-    >
-      <div class="fit bg-dark text-white">
-
-        <div class="row justify-between q-px-lg q-pt-md">
-
-          <q-inner-loading
-            :showing="tableStore.showLoader.value"
-            class="transparent z-max"
-          >
-            <q-spinner
-              size="52px"
-              color="primary"
-            />
-          </q-inner-loading>
-
-          <div class="text-on-dark text-body2 text-bold">
-            <q-icon
-              class="q-mr-xs"
-              name="o_playlist_add_check"
-              size="sm"
-            />
-            <span class="text-bold text-on-dark">انتخاب سال مالی</span>
-          </div>
-          <!-- <q-badge
-              rounded
-              outline
-              :label="`تعداد سال‌ها: ${tableStore.pagination.value.totalItems}`"
-              class="q-py-sm q-px-sm bg-dark text-on-dark text-body3"
-            /> -->
-        </div>
-
-        <div class="years-container q-pa-lg text-on-dark">
-          <q-btn
-            v-for="year in tableStore.rows.value"
-            :key="year.id"
-            unelevated
-            :label="year.title"
-            :rounded="true"
-            :class="activeYearStyle(year)"
-            @click="fiscalYearStore.setFiscalYear(year)"
-            v-close-popup
-          >
-            {{ year.Id }}
-          </q-btn>
-        </div>
-
-        <div
-          v-if="tableStore.pagination.value.totalPages > 1"
-          class="q-gutter-sm q-px-lg q-pb-lg"
-        >
-          <q-btn
-            :disable="tableStore.pagination.value.currentPage <= 1"
-            unelevated
-            round
-            dense
-            size="12px"
-            color="primary"
-            text-color="white"
-            icon="chevron_right"
-            @click="previous($event)"
-          >
-            <q-tooltip
-              class="custom-tooltip"
-              :delay="600"
-            >
-              {{ $t("shared.labels.next") }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn
-            :disable="tableStore.pagination.value.currentPage >= tableStore.pagination.value.totalPages"
-            unelevated
-            round
-            dense
-            size="12px"
-            color="primary"
-            text-color="white"
-            icon="chevron_left"
-            @click="next($event)"
-          >
-            <q-tooltip
-              class="custom-tooltip"
-              :delay="600"
-            >
-              {{ $t("shared.labels.previous") }}
-            </q-tooltip>
-          </q-btn>
-        </div>
-      </div>
-    </q-menu>
-  </q-btn>
-
-  <q-btn
-    v-if="$q.screen.xs"
-    class="text-on-dark"
+    padding="6px 12px"
     dense
     unelevated
-    padding="6px 12px"
   >
-    <span class="text-body1 text-bold">{{ `${fiscalYearStore.currentYear.value?.title}` }}</span>
+    <template v-if="$q.screen.gt.sm">
+      <q-icon
+        name="o_calendar_today"
+        class="q-pr-sm"
+        size="16px"
+      />
+      <span>
+        {{ $t("main-menu-items.Acc_FiscalYear_View") }}: {{ fiscalYearStore.currentYear.value?.title }}
+      </span>
+    </template>
+    <span
+      v-else
+      class="text-body1 text-bold"
+    >
+      {{ `${fiscalYearStore.currentYear.value?.title}` }}
+    </span>
 
     <q-menu
-      :persistent="false"
-      anchor="center middle"
-      self="center middle"
+      persistent
       class="bordered"
       transition-show="jump-down"
       transition-hide="jump-up"
+      :offset="$q.screen.gt.sm ? [0, 20] : [0, 10]"
+      :anchor='$q.screen.gt.sm ? "bottom end" : "bottom middle"'
+      :self='$q.screen.gt.sm ? "top end" : "top middle"'
       min-height="500px"
     >
       <div class="fit bg-dark text-white">
-
         <div class="row justify-between q-px-lg q-pt-md">
-
           <q-inner-loading
             :showing="tableStore.showLoader.value"
             class="transparent z-max"
@@ -148,14 +50,10 @@
               name="o_playlist_add_check"
               size="sm"
             />
-            <span class="text-bold text-on-dark">انتخاب سال مالی</span>
+            <span class="text-bold text-on-dark">
+              {{ $t("shared.labels.chooseFiscalYear") }}
+            </span>
           </div>
-          <!-- <q-badge
-              rounded
-              outline
-              :label="`تعداد سال‌ها: ${tableStore.pagination.value.totalItems}`"
-              class="q-py-sm q-px-sm bg-dark text-on-dark text-body3"
-            /> -->
         </div>
 
         <div class="years-container q-pa-lg text-on-dark">
@@ -166,10 +64,10 @@
             :label="year.title"
             :rounded="true"
             :class="activeYearStyle(year)"
-            @click="fiscalYearStore.setFiscalYear(year)"
+            @click="fiscalYearStore.changeFiscalYear(year)"
             v-close-popup
           >
-            {{ year.Id }}
+            {{ year.Title }}
           </q-btn>
         </div>
 
@@ -229,6 +127,7 @@ const fiscalYearStore = useFiscalYear()
 const tableStore = useDataTable("acc/fiscalYear/getLookupData", fiscalYearStore.columns, fiscalYearStore)
 
 const activeYearStyle = (year) => {
+  console.log(year, fiscalYearStore.currentYear.value)
   if (fiscalYearStore.currentYear.value?.id === year.id) {
     return "bg-primary text-white"
   }
@@ -236,7 +135,7 @@ const activeYearStyle = (year) => {
 }
 
 onMounted(() => {
-  reloadData()
+  tableStore.loadData()
 })
 
 async function reloadData() {

@@ -1,5 +1,5 @@
 import { defaultPageSize } from "src/constants"
-import { useComposablesStore } from "src/stores/useComposablesStore"
+import { useComposables } from "src/stores/useComposables"
 
 import { ref } from "vue"
 
@@ -112,7 +112,7 @@ const columns = ref([
 ])
 
 export function useInvoiceGrid(defaultFilters) {
-    const composablesStore = useComposablesStore()
+    const composablesStore = useComposables()
     composablesStore.registerComposable({
         reset: () => {
             state.firstLoad.value = false

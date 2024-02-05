@@ -1,5 +1,5 @@
 import { ref } from "vue"
-import { useComposablesStore } from "src/stores/useComposablesStore"
+import { useComposables } from "src/stores/useComposables"
 
 const rows = ref([])
 
@@ -34,7 +34,7 @@ const columns = ref([
 ])
 
 export function useCustomerGrid() {
-    const composablesStore = useComposablesStore()
+    const composablesStore = useComposables()
     composablesStore.registerComposable({
         reset: () => {
             state.firstLoad.value = false
