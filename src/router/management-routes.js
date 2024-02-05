@@ -62,7 +62,7 @@ export default {
     {
       path: "addPayment/:businessId",
       name: "renew-subscription",
-      component: () => import("pages/management/AddPaymentPage.vue"),
+      component: () => import("pages/management/addPayment/IndexPage.vue"),
       meta: {
         icon: "o_monetization_on"
       }

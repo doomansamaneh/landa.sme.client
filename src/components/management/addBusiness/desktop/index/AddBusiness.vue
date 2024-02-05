@@ -58,7 +58,6 @@
           color="positive"
           no-caps
           padding="8px 16px"
-          class=""
         >
           <q-icon
             name="o_monetization_on"
