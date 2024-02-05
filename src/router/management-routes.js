@@ -54,7 +54,7 @@ export default {
     {
       path: "paymentDetail/:paymentId",
       name: "payment-detail",
-      component: () => import("pages/management/PaymentDetailPage.vue"),
+      component: () => import("pages/management/paymentDetail/IndexPage.vue"),
       meta: {
         icon: "o_info"
       }
