@@ -188,23 +188,23 @@
           </slot>
         </div>
 
+        <div class="q-space" />
+
         <div
           v-if="title"
           class="row items-center"
         >
-          <div class="q-space" />
           <slot name="header">
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">
               <slot name="header-title">
+                <span class="text-h6">{{ title }}</span>
                 <q-badge
                   v-if="tableStore?.pagination.value.totalItems > 0"
                   rounded
                   outline
                   :label="tableStore?.pagination.value.totalItems"
-                  class="q-mr-sm bg-dark text-on-dark text-body2"
+                  class="q-ml-sm bg-dark text-on-dark text-body2"
                 />
-                <span class="text-h6">{{ title }}</span>
-                {{ title }}
               </slot>
             </span>
             <back-button />

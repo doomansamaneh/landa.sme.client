@@ -2,6 +2,7 @@
   <tool-bar
     :table-store="dataGrid?.tableStore"
     :crud-store="crudStore"
+    :title="title"
     base-route="/cmn/product"
     activation
   >
@@ -22,20 +23,20 @@
     </template>
   </tool-bar>
   <!-- ----------------------------------------------- -->
-  Persian tools library tools:
+  <!-- Persian tools library tools:
   <br />
   <a href="https://github.com/persian-tools/persian-tools">persian tools</a>
   <input
     type="number"
     v-model="numbersInput"
   />
-  <p>Result: {{ convertedNumber }}</p>
+  <p>Result: {{ convertedNumber }}</p> -->
   <!-- ---------------------------------------------- -->
-  <q-card class="bordered">
-    <q-card-section class="bg-primary text-white">
+  <div>
+    <!-- <q-card-section class="bg-primary text-white">
       <div class="text-h5">{{ title }}</div>
-    </q-card-section>
-    <q-card-section>
+    </q-card-section> -->
+    <div>
       <data-grid
         ref="dataGrid"
         dataSource="cmn/product/getGridData"
@@ -79,8 +80,8 @@
         </template>
 
       </data-grid>
-    </q-card-section>
-  </q-card>
+    </div>
+  </div>
 </template>
 
 <script setup>

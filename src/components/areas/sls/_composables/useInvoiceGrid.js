@@ -44,7 +44,8 @@ const columns = ref([
     },
     {
         name: "date",
-        field: "dateString",
+        field: "date",
+        template: "{{dateString}}",
         sortable: true,
         label: "تاریخ",
         class: "text-left",
@@ -56,7 +57,7 @@ const columns = ref([
         sortable: true,
         label: "مشتری",
         style: "",
-        template: "<div></div>",
+        template: "{{customerCode}} {{customerName}}",
         showFilter: true,
         class: "text-left",
         value: ""

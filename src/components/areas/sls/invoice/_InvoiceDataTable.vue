@@ -114,7 +114,7 @@ import { ref, computed, onMounted } from "vue"
 import { statusOptions } from "src/constants"
 import { helper } from "src/helpers"
 
-import DataGrid from "src/components/shared/dataTables/Desktop/DataGrid.vue"
+import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue"
 import CustomInput from "src/components/shared/forms/CustomInput.vue"
 import CustomSelect from "src/components/shared/forms/CustomSelect.vue"
 import InvoicePreview from "src/components/areas/sls/invoice/InvoicePreview.vue"

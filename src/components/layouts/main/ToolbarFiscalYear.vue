@@ -127,7 +127,6 @@ const fiscalYearStore = useFiscalYear()
 const tableStore = useDataTable("acc/fiscalYear/getLookupData", fiscalYearStore.columns, fiscalYearStore)
 
 const activeYearStyle = (year) => {
-  console.log(year, fiscalYearStore.currentYear.value)
   if (fiscalYearStore.currentYear.value?.id === year.id) {
     return "bg-primary text-white"
   }

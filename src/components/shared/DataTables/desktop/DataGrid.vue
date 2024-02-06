@@ -96,6 +96,7 @@
             <tr
               @click="setActiveRow(row)"
               @dblclick="goToPreview(row)"
+              class="table-row"
               :class="tableStore.getRowClass(row)"
             >
               <td
@@ -123,7 +124,7 @@
                   :name="`cell-${col.name}`"
                   :item="row"
                 >
-                  {{ row[col.field] }}
+                  <div v-html="getColText(row, col)"></div>
                 </slot>
               </td>
               <td
@@ -264,6 +265,18 @@ const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 onMounted(() => {
   tableStore.loadData()
 })
+
+function getColText(row, col) {
+  if (row && col) {
+    if (col.template) {
+      return col.template.replace(
+        /{{\s*([\w.]+)\s*}}/g,
+        (_, key) => row[key] ?? ""
+      )
+    } else if (col.field) return row[col.field]
+  }
+  return ""
+}
 
 async function reloadData() {
   await tableStore.reloadData()

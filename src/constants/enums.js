@@ -64,7 +64,7 @@ export const productType = {
 }
 
 export const cultures = [
-  { code: "fa", name: "فارسی", calendar: "persian", dir: "rtl", quasarLang: "fa-IR", flag: "" },
+  { code: "fa-IR", name: "فارسی", calendar: "persian", dir: "rtl", quasarLang: "fa-IR", flag: "" },
   { code: "ar", name: "العربیة", calendar: "hijri", dir: "rtl", quasarLang: "ar", flag: "" },
   { code: "en", name: "English", calendar: "gregorian", dir: "ltr", quasarLang: "en-US", flag: "" }
 ]
