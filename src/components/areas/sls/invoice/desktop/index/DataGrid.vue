@@ -1,177 +1,24 @@
 <template>
-  <tool-bar>
-    <template #header>
-      <q-badge
-        v-if="tableStore?.pagination.value.totalItems > 0"
-        rounded
-        outline
-        :label="tableStore?.pagination.value.totalItems"
-        class="q-mr-sm bg-dark text-on-dark text-body2"
-      />
-      <span class="text-h6">فاکتورهای فروش</span>
-    </template>
-    <template #buttons>
-      <q-btn
-        to="/sls/invoice/create"
-        class="bg-primary text-white text-caption"
-        padding="6px 12px"
-        rounded
-        no-caps
-        unelevated
-      >
-        <q-icon
-          name="o_add"
-          class="q-mr-xs"
-        />
-        {{ $t("shared.labels.create") }}
-      </q-btn>
-      <template v-if="invoiceStore.state.activeRow?.value != null">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-          no-caps
-        ><q-icon
-            name="o_edit"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.edit") }} ({{ invoiceStore.state.activeRow?.value?.no }})
-        </q-btn>
-      </template>
-      <template v-if="tableStore?.selectedRows?.value?.length > 0">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-          no-caps
-        >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.delete") }} ({{ tableStore?.selectedRows?.value?.length }} rows)
-        </q-btn>
-      </template>
-      <template v-else-if="tableStore?.activeRow?.value != null">
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-        >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
-          {{ $t("shared.labels.delete") }} ({{ tableStore?.activeRow?.value?.no }})
-        </q-btn>
-      </template>
+  <tool-bar
+    :table-store="tableStore"
+    :crud-store="crudStore"
+    :title="title"
+    base-route="/sls/invoice"
+    activation
+  >
+    <template #buttons-batch-action>
       <q-btn
         class="bordered-btn_bg-dark text-caption"
         rounded
         unelevated
+        no-caps
+        @click="editBatch"
       >
         <q-icon
-          name="more_horiz"
+          name="o_edit"
           class="q-mr-xs"
         />
-        {{ $t("shared.labels.more") }}
-
-        <q-menu
-          fit
-          :offset="[0, 20]"
-        >
-          <q-list
-            dense
-            padding
-            style="width:200px"
-          >
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-              @click="applySearch"
-            >
-              <div class="q-py-sm">
-                <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  >
-                    <q-icon
-                      name="o_refresh"
-                      size="14px"
-                    />
-                  </q-avatar>
-                </q-item-section>
-              </div>
-              <q-item-section>
-                <div class="text-caption">تازه‌سازی</div>
-              </q-item-section>
-            </q-item>
-            <q-separator />
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
-              <div class="q-py-sm">
-                <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_close"
-                      size="14px"
-                    /></q-avatar>
-                </q-item-section>
-              </div>
-              <q-item-section>
-                <div class="text-caption">غیر‌فعال‌سازی</div>
-              </q-item-section>
-            </q-item>
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
-              <div class="q-py-sm">
-                <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_check"
-                      size="14px"
-                    /></q-avatar>
-                </q-item-section>
-              </div>
-              <q-item-section>
-                <div class="text-caption">فعال سازی</div>
-              </q-item-section>
-            </q-item>
-            <q-separator />
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
-              <div class="q-py-sm">
-                <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_download"
-                      size="16px"
-                    /></q-avatar>
-                </q-item-section>
-              </div>
-              <q-item-section>
-                <div class="text-caption">تبدیل به اکسل</div>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-menu>
+        {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} rows)
       </q-btn>
     </template>
   </tool-bar>

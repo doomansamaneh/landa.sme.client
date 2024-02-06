@@ -1,8 +1,5 @@
 <template>
   <slot name="title">
-    <!-- <div class="q-my-md">
-      نام صفحه
-    </div> -->
   </slot>
   <slot name="header">
     <q-input
@@ -53,15 +50,15 @@
       v-for="(row, index) in gridStore?.rows?.value"
       :key="row.id"
     >
-      <div
-        @click="setActiveRow(row)"
-        :class="tableStore.getRowClass(row)"
-      >
+      <div @click="setActiveRow(row)">
         <slot
           name="body"
           :item="row"
         >
-          <q-card class="card-grid-body">
+          <q-card
+            class="grid-body"
+            :class="tableStore.getRowClass(row)"
+          >
             <slot
               name="row-header"
               :item="row"
@@ -88,7 +85,7 @@
                     :item="row"
                   >
                     <template v-if="col.field">
-                      {{ col.label }}: {{ row[col.field] }}
+                      {{ col.label }}: <div v-html="getColText(row, col)"></div>
                     </template>
                   </slot>
                 </div>
@@ -230,6 +227,18 @@ const nextAction = computed(() =>
 
 const previousAction = computed(() => tableStore.pagination.value.currentPage <= 1)
 
+function getColText(row, col) {
+  if (row && col) {
+    if (col.template) {
+      return col.template.replace(
+        /{{\s*([\w.]+)\s*}}/g,
+        (_, key) => row[key] ?? ""
+      )
+    } else if (col.field) return row[col.field]
+  }
+  return ""
+}
+
 async function reloadData() {
   await tableStore.reloadData()
   if (thisGridStore.value.rows)
@@ -310,10 +319,3 @@ defineExpose({
   resetPage
 })
 </script>
-
-<style lang="scss">
-//todo:
-// .row-active {
-//   border: 2px solid;
-// }
-</style>

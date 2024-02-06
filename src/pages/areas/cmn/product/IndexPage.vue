@@ -1,10 +1,10 @@
 <template>
-    <h6 @click="mobileView = !mobileView">mobile view toggle</h6>
+    <!-- <h6 @click="mobileView = !mobileView">mobile view toggle</h6> -->
 
     <!-- v-if="$q.screen.gt.sm" -->
     <!-- v-if="!mobileView" -->
     <desktop
-        v-if="!mobileView"
+        v-if="$q.screen.gt.sm"
         :grid-store="gridSotre"
         :title="$t('main-menu-items.Cmn_Product_View')"
     />

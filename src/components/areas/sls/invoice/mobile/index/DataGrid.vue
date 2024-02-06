@@ -338,22 +338,383 @@
       data-source="sls/invoice/getGridData"
       :grid-store="invoiceStore"
       ref="invoiceTable"
-    />
+    >
+      <template #header>
+        <template></template>
+      </template>
+
+      <template #body="{ item }">
+        <q-card
+          class="bordered"
+          :class="tableStore?.getRowClass(item)"
+          v-touch-hold.mouse="() => selectCard(item)"
+        >
+          <q-card-section class="q-pb-none">
+            <div class="row items-center justify-center">
+              <q-btn
+                v-if="!item.selected"
+                round
+                unelevated
+                class="no-pointer-events"
+              >
+                <q-avatar
+                  v-if="item.avatar"
+                  size="56px"
+                  :style="{ backgroundColor: helper.generateDarkAvatarColor(item.customerName) }"
+                >
+                  <img src="https://cdn.quasar.dev/img/avatar1.jpg">
+                </q-avatar>
+
+                <q-avatar
+                  size="56px"
+                  text-color="white"
+                  :style="{ backgroundColor: helper.generateDarkAvatarColor(item.customerName) }"
+                  v-else
+                >
+                  <div class="char text-body1 text-bold">
+                    {{ helper.getFirstChar(item.customerName) }}
+                  </div>
+                </q-avatar>
+              </q-btn>
+
+              <q-btn
+                round
+                unelevated
+                class="no-pointer-events"
+                v-if="item.selected"
+              >
+                <q-avatar
+                  size="50px"
+                  color="primary"
+                  text-color="white"
+                >
+                  <q-icon
+                    name="o_done"
+                    size="md"
+                  />
+                </q-avatar>
+              </q-btn>
+            </div>
+            <div class="row justify-between items-center">
+
+              <div class="col row items-center">
+                <span class="text-caption text-on-dark">{{ item.dateString }}</span>
+              </div>
+
+              <div class="col row justify-end items-center q-gutter-xs">
+                <span class="text-caption text-on-dark">
+                  شماره
+                </span>
+                <span class="text-caption text-on-dark">{{ item.no }}</span>
+              </div>
+            </div>
+            <q-separator class="q-mt-xs" />
+
+            <div class="column q-gutter-sm q-my-md">
+
+              <div class="row items-center border-radius-sm q-px-sm">
+
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">مشتری</span>
+                </div>
+                <div class="col">
+                  <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.customerName }}</span>
+                </div>
+              </div>
+
+              <div class="row items-center border-radius-sm q-px-sm">
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">شرح</span>
+                </div>
+                <div class="col">
+                  <span class="ellipsis-2-lines text-caption text-on-dark">{{ item.subject }}</span>
+                </div>
+              </div>
+
+              <div class="row items-center border-radius-sm q-px-sm">
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">تخفیف</span>
+                </div>
+                <div class="col">
+                  <span
+                    class="ellipsis-2-lines text-caption text-on-dark">{{ item.discountAmount.toLocaleString() }}</span>
+                </div>
+              </div>
+
+              <div class="row items-center border-radius-sm q-px-sm">
+
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">جمع کل</span>
+                </div>
+                <div class="col">
+                  <span
+                    class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.amount.toLocaleString() }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row q-gutter-sm items-center">
+              <q-btn
+                dense
+                padding="2px 12px"
+                class="border-radius-sm bg-orange-2 no-pointer-events"
+                unelevated
+              >
+                <span class="text-caption text-red">
+                  {{ item.statusTitle }}
+                </span>
+              </q-btn>
+
+              <q-btn
+                dense
+                padding="2px 12px"
+                class="border-radius-sm bg-primary no-pointer-events"
+                unelevated
+              >
+                <span class="text-caption text-white">
+                  {{ item.typeTitle }}
+                </span>
+              </q-btn>
+
+            </div>
+          </q-card-section>
+
+          <q-card-actions
+            class="q-pa-md"
+            align="between"
+          >
+            <q-btn
+              unelevated
+              class="text-on-dark"
+            >
+              <span class="text-body3 text-bold">مشاهده جزئیات</span>
+            </q-btn>
+
+            <q-btn
+              round
+              unelevated
+              dense
+              icon="o_more_vert"
+              @click="onBottomSheetShow"
+            />
+          </q-card-actions>
+
+        </q-card>
+      </template>
+    </data-grid>
   </div>
 
+  <bottom-sheet
+    v-if="bottomSheetStatus"
+    :status="bottomSheetStatus"
+    @hide="onBottomSheetHide"
+  >
+
+    <template #header>
+
+    </template>
+
+    <template #body>
+      <q-list padding>
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_copy"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">کپی</q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_edit"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">ویرایش</q-item-section>
+        </q-item>
+
+        <q-separator size="1px" />
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_email"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">ارسال ایمیل</q-item-section>
+        </q-item>
+
+        <q-separator size="0.5px" />
+
+        <q-item
+          clickable
+          v-ripple
+          @click="showPrintDialog"
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_print"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">چاپ</q-item-section>
+        </q-item>
+
+        <q-separator />
+
+        <q-item
+          clickable
+          v-ripple
+        >
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_delete"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">حذف</q-item-section>
+        </q-item>
+
+      </q-list>
+    </template>
+
+  </bottom-sheet>
+
   <q-dialog
-    v-model="dialog"
-    persistent
     maximized
     transition-show="slide-up"
     transition-hide="slide-down"
+    v-model="printDialog"
   >
+    <q-card class="q-mt-xl">
+      <q-card-section>
+        <div class="row items-center justify-between">
+          <span class="text-body1 no-letter-spacing">چاپ</span>
+          <q-btn
+            round
+            unelevated
+            icon="o_close"
+            v-close-popup
+          />
+        </div>
+      </q-card-section>
 
-    <advanced-search
-      :grid-store="invoiceStore"
-      @apply-search="applySearch"
-      @update-date-range="handleDateRangeUpdate"
-    />
+      <q-card-section class="no-padding">
+
+        <q-list padding>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_print"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">چاپ مستقیم</q-item-section>
+          </q-item>
+
+          <q-separator />
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_portrait"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A4</q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_landscape"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A4 - افقی</q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_portrait"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A5</q-item-section>
+          </q-item>
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_crop_landscape"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A5 - افقی</q-item-section>
+          </q-item>
+
+          <q-separator />
+
+          <q-item
+            clickable
+            v-ripple
+          >
+            <q-item-section avatar>
+              <q-avatar
+                class="bg-on-dark text-on-dark"
+                icon="o_contact_mail"
+              />
+            </q-item-section>
+
+            <q-item-section class="text-body1 no-letter-spacing">چاپ برچسب نشانی</q-item-section>
+          </q-item>
+
+
+        </q-list>
+
+      </q-card-section>
+    </q-card>
 
   </q-dialog>
 </template>
@@ -363,9 +724,10 @@ import { computed, ref, onMounted, onUnmounted } from "vue"
 
 import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid"
 import { sqlOperator } from "src/constants"
+import { helper } from "src/helpers"
 
-import AdvancedSearch from "components/areas/sls/invoice/mobile/_AdvancedSearch.vue"
 import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue"
+import BottomSheet from "src/components/shared/BottomSheet.vue"
 
 const invoiceStore = useInvoiceGrid([{
   fieldName: "d.StatusId",
@@ -385,7 +747,9 @@ const tableStore = computed(() => invoiceTable.value?.tableStore)
 const dialog = ref(false)
 const showCreate = ref(true)
 const advancedSearch = ref(null)
-let previousScrollPosition = 0
+
+const bottomSheetStatus = ref(false)
+const printDialog = ref(false)
 
 const selectedDateRange = ref({ value: "", label: "" });
 
@@ -416,18 +780,6 @@ async function applySearch(model) {
   dialog.value = false
 }
 
-const handleScroll = () => {
-  const currentPosition = window.pageYOffset || document.documentElement.scrollTop;
-  showCreate.value = currentPosition <= 0 || currentPosition < previousScrollPosition;
-  previousScrollPosition = currentPosition;
-};
-
-const handleDateRangeUpdate = ({ value, label }) => {
-  if (label !== 'all' && label !== 0) {
-    selectedDateRange.value = { value, label };
-  }
-};
-
 const shouldDisplaySelectedDateRange = computed(() => {
   return selectedDateRange.value.value !== 'all' && selectedDateRange.value.value !== 0 && selectedDateRange.value.label !== 'shared.labels.0';
 });
@@ -438,13 +790,31 @@ const clearDateRangeFilter = () => {
   applySearch();
 };
 
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll)
-})
+function selectRow(row, checked) {
+  tableStore.value.selectRow(row, checked)
+  emitselectedRows()
+}
 
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
+function emitselectedRows() {
+  // emit("selected-rows-changed", tableStore.selectedRows.value)
+}
+
+function setActiveRow(row) {
+  tableStore.value.setActiveRow(row)
+}
+
+function selectCard(row) {
+  setActiveRow(row)
+  selectRow(row, !row.selected)
+}
+
+const onBottomSheetShow = (row) => {
+  bottomSheetStatus.value = true;
+}
+
+const onBottomSheetHide = () => {
+  bottomSheetStatus.value = false;
+}
 </script>
 
 <style lang="scss" scoped>
