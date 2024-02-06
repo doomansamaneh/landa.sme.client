@@ -1,7 +1,7 @@
 <template>
     <desktop
         action="create"
-        :title="$t('shared.labels.crate') + ' ' + $t('main-menu-items.Cmn_ProductGroup_View')"
+        :title="$t('shared.labels.create') + ' ' + $t('main-menu-items.Cmn_ProductGroup_View')"
     />
 </template>
   

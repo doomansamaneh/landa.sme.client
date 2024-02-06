@@ -216,16 +216,6 @@
     style="margin-top: 46px;"
   >
 
-    <q-inner-loading
-      :showing="tableStore?.showLoader?.value"
-      class="transparent z-max"
-    >
-      <q-spinner
-        size="52px"
-        color="primary"
-      />
-    </q-inner-loading>
-
     <q-card class="bordered bg-primary">
       <q-card-section>
 
