@@ -8,7 +8,7 @@
     position="bottom"
     transition-hide="slide-down"
   >
-    <q-card class="no-border border-radius-xl">
+    <q-card class="no-border border-radius-xl bottom-sheet">
 
       <q-card-section class="no-padding">
         <slot name="header" />

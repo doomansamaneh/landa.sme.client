@@ -101,6 +101,8 @@
                     <div class="col-md-4 col-sm-4 col-xs-6">
                       <q-input
                         v-model="captcha"
+                        inputmode="numeric"
+                        type="number"
                         outlined
                         hide-bottom-space
                         dense
@@ -283,5 +285,4 @@ async function getCaptcha() {
     transform: rotateZ(0);
   }
 }
-
 </style>

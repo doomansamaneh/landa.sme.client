@@ -95,7 +95,7 @@
       </div>
 
       <div class="expire-date-container flex col-2 items-center">
-        <q-item-label caption>
+        <q-item-label class="caption-on-dark text-body2 no-letter-spacing">
           <q-icon
             class="expire-date-clock bg-on-dark2"
             name="history"

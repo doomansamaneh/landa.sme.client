@@ -59,7 +59,7 @@
             </div>
 
             <div class="row">
-              <q-item-label caption>
+              <q-item-label class="caption-on-dark text-body3 no-letter-spacing">
                 <q-icon
                   class="expire-date-clock bg-on-dark2"
                   name="history"

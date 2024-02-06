@@ -11,6 +11,7 @@
   >
     <div class="flex justify-center q-px-md q-py-lg">
       <q-input
+        inputmode="search"
         color="grey-5"
         outlined
         v-model="menuBarStore.searchText.value"
