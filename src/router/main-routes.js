@@ -1,4 +1,5 @@
 import MainLayout from "src/layouts/MainLayout.vue";
+import EmptyLayout from "src/layouts/EmptyLayout.vue";
 import ProfilePage from "src/pages/management/ProfilePage.vue";
 import HomePage from "src/pages/management/HomePage.vue";
 import SettingsPage from "src/pages/management/SettingsPage.vue";
@@ -22,7 +23,7 @@ export default {
     },
     {
       path: "/dashboard",
-      component: HomePage
+      component: HomePage,
     },
     {
       path: "/crm/customer",
@@ -65,32 +66,8 @@ export default {
       component: () => import("src/pages/areas/cmn/productGroup/IndexPage.vue"),
     },
     {
-      path: "cmn/productGroup/create",
-      component: () => import("src/pages/areas/cmn/productGroup/CreatePage.vue"),
-    },
-    {
-      path: "cmn/productGroup/edit/:id",
-      component: () => import("src/pages/areas/cmn/productGroup/EditPage.vue"),
-    },
-    {
-      path: "cmn/productGroup/copy/:id",
-      component: () => import("src/pages/areas/cmn/productGroup/CopyPage.vue"),
-    },
-    {
       path: "cmn/product",
       component: () => import("src/pages/areas/cmn/product/IndexPage.vue"),
-    },
-    {
-      path: "cmn/product/create",
-      component: () => import("src/pages/areas/cmn/product/CreatePage.vue"),
-    },
-    {
-      path: "cmn/product/edit/:id",
-      component: () => import("src/pages/areas/cmn/product/EditPage.vue"),
-    },
-    {
-      path: "cmn/product/copy/:id",
-      component: () => import("src/pages/areas/cmn/product/CopyPage.vue"),
     },
   ]
 }
