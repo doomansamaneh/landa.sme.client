@@ -86,7 +86,7 @@
         </div>
 
         <div class="col-4">
-          <div class="row justify-end items-center q-gutter-xs">
+          <div class="row justify-end items-center q-gutter-sm">
             <renew-subscribtion :business="item" />
             <q-btn
               size="13px"
@@ -133,12 +133,19 @@
     @hide="onBottomSheetHide"
   >
 
+    <template #header>
+      <div class="q-pa-lg text-body2 no-letter-spacing text-center">
+        {{ selectedRow.title }}
+      </div>
+    </template>
+
     <template #body>
       <q-list padding>
 
         <q-item
           clickable
           v-ripple
+          @click="gridStore.gotoBusiness(selectedRow)"
         >
           <q-item-section avatar>
             <q-avatar
