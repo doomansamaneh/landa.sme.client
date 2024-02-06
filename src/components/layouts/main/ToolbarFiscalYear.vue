@@ -1,7 +1,8 @@
 <template>
   <q-btn
-    class="bordered-btn border-radius-xs bg-dark text-on-dark"
-    padding="6px 12px"
+    class="bordered-btn bg-dark text-on-dark"
+    :padding="$q.screen.gt.sm ? '6px 12px' : '4px 12px'"
+    rounded
     dense
     unelevated
   >
@@ -17,7 +18,7 @@
     </template>
     <span
       v-else
-      class="text-body1 text-bold"
+      class="text-body2 no-letter-spacing"
     >
       {{ `${fiscalYearStore.currentYear.value?.title}` }}
     </span>

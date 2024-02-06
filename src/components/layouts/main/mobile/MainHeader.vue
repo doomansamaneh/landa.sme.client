@@ -1,7 +1,7 @@
 <template>
-  <transition
+  <!-- <transition
     enter-active-class="animated slideInDown"
-  >
+  > -->
   <!-- v-show="headerStore.showHeader.value" -->
     <q-header
       bordered
@@ -12,30 +12,28 @@
         class="row justify-between q-py-sm"
       >
 
-        <q-toolbar-title class="text-subtitle2 text-bold row justify-start items-center">
+        <q-toolbar-title class="text-body2 no-letter-spacing row justify-start items-center">
           <div class="column">
             <span
-              style="width:200px"
+              style="width:160px"
               class="ellipsis text-on-dark"
             >{{ selectedBusiness.title }}</span>
-            <today-date />
+
+            <today-date class="q-mt-xs" />
+
           </div>
         </q-toolbar-title>
 
-        <div class="row q-gutter-x-sm">
+        <div class="row items-center q-mr-sm">
           <fiscal-year />
-          <q-btn
-            unelevated
-            round
-            dense
-            icon="o_unfold_more"
-            size="md"
-            class="text-on-dark"
-            @click="showToolbar"
-          />
+        </div>
+
+        <div class="row items-center">
+          <switch-theme />
+          <notification />
         </div>
       </q-toolbar>
-
+<!--
       <q-separator />
 
       <q-slide-transition>
@@ -45,7 +43,6 @@
             class="row items-center q-py-md"
           >
             <div class="col-8 row items-center q-gutter-sm">
-              <switch-theme />
               <q-btn
                 @click="contactDrawerStore.toggle"
                 flat
@@ -56,7 +53,6 @@
                 :class="activeButton"
                 size="14px"
               />
-              <notification />
               <profile />
             </div>
 
@@ -74,12 +70,11 @@
 
           </q-toolbar>
         </div>
-      </q-slide-transition>
+      </q-slide-transition> -->
 
     </q-header>
-  </transition>
+  <!-- </transition> -->
 </template>
-
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue"
