@@ -1,5 +1,7 @@
 @mixin q-dialog-dark {
-  .q-dialog__backdrop {
-    background-color: #{$white}30;
+  @media (max-width: $breakpoint-xs-max) {
+    .q-dialog__backdrop {
+      background-color: #{$white}30;
+    }
   }
 }

@@ -4,13 +4,13 @@
     class="main-layout"
   >
     <q-page-container>
-      <main-header />
-      <bottom-navigation />
-      <menu-bar v-if="menuBarStore.state.visible.value" />
-      <contact-drawer v-if="contactDrawerStore.state.value" />
       <router-view />
     </q-page-container>
 
+    <main-header />
+    <bottom-navigation />
+    <menu-bar v-if="menuBarStore.state.visible.value" />
+    <contact-drawer v-if="contactDrawerStore.state.value" />
     <alert-banner class="fixed-bottom z-max" />
 
   </q-layout>
@@ -92,4 +92,5 @@ if ($q.screen.lt.md) {
 .q-item__section--avatar {
   min-width: 0;
 }
+
 </style>

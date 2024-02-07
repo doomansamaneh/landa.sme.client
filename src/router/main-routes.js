@@ -2,7 +2,7 @@ import MainLayout from "src/layouts/MainLayout.vue";
 import EmptyLayout from "src/layouts/EmptyLayout.vue";
 import ProfilePage from "src/pages/management/ProfilePage.vue";
 import HomePage from "src/pages/management/HomePage.vue";
-import SettingsPage from "src/pages/management/SettingsPage.vue";
+import SettingsPage from "src/pages/management/settings/IndexPage.vue";
 import CreateInvoice from "src/components/areas/sls/invoice/CreateInvoice.vue";
 import SelectProduct from "src/components/areas/sls/invoice/create/mobile/SelectProduct.vue";
 import ProductLookup from "src/components/areas/sls/invoice/create/mobile/ProductLookup.vue";
@@ -10,6 +10,7 @@ import InvoicePreview from "src/components/areas/sls/invoice/InvoicePreview.vue"
 import CreateInvoiceV2 from "src/components/areas/sls/invoice/CreateInvoiceV2.vue";
 
 export default {
+
   path: "/",
   component: MainLayout,
   name: "dashboard",
@@ -70,4 +71,5 @@ export default {
       component: () => import("src/pages/areas/cmn/product/IndexPage.vue"),
     },
   ]
+
 }

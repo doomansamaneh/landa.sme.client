@@ -1,7 +1,7 @@
 <template>
   <q-header
     bordered
-    class="q-pa-md"
+    class="q-py-sm q-px-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between no-padding">
@@ -35,18 +35,35 @@
 
       </q-toolbar-title>
 
-
-
       <div class="row items-center q-gutter-x-md">
         <q-btn
-          :padding="$q.screen.gt.sm ? '6px 12px' : '4px 12px'"
-          unelevated
+          class="bordered-btn bg-dark text-on-dark"
+          :style="$q.screen.gt.sm ? 'width: 120px;' : 'width:80px;'"
+          padding="5px 12px"
           rounded
-          label="دانشنامه"
+          dense
+          unelevated
           href="https://www.landa-sme.ir/LandaKnowledge"
           target="_blank"
-          class="bordered-btn"
-        />
+        >
+          <div class="row items-center">
+            <div
+              v-if="$q.screen.gt.sm"
+              style="width: 26px;"
+            >
+              <q-icon
+                name="o_school"
+                class="q-pr-sm"
+                size="20px"
+              />
+            </div>
+            <div class="text-body2 no-letter-spacing">
+              دانشنامه
+            </div>
+          </div>
+
+        </q-btn>
+
         <fiscal-year />
         <switch-theme />
         <notification />

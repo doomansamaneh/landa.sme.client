@@ -165,5 +165,6 @@ function changePasswordDialog() {
 .q-breadcrumbs__el.items-center {
   display: block;
 }
+
 </style>
 

@@ -1,7 +1,8 @@
 <template>
-  <div style="margin-bottom: 60px;">
+  <div style="margin-bottom: 40px;">
     <q-page-sticky
-      class="z-1 bg-main q-py-md"
+      class="z-1 bg-main"
+      style="padding-top: 12px;padding-bottom: 12px;"
       position="top"
       expand
     >

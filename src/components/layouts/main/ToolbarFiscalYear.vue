@@ -2,7 +2,7 @@
   <q-btn
     class="bordered-btn bg-dark text-on-dark"
     :style="$q.screen.gt.sm ? 'width: 150px;' : 'width:60px;'"
-    :padding="$q.screen.gt.sm ? '6px 12px' : '4px 12px'"
+    padding="5px 12px"
     rounded
     dense
     unelevated

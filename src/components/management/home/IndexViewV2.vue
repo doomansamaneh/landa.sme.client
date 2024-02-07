@@ -1,5 +1,5 @@
 <template>
-  <div :class="marginTop">
+  <div>
     <div class="row gap-24">
       <div class="col-8 col-md-8 col-sm-12 col-xs-12">
         <invoices-widget-v2 />

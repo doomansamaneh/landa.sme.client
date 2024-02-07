@@ -125,7 +125,7 @@ $border-color: #c3c3c372;
 
 .squiggle-container {
   width: 10px;
-  height: 10px;
+  height: 8px;
   display: inline-block;
 }
 
@@ -133,8 +133,8 @@ $border-color: #c3c3c372;
   transform: translateY(10px);
 
   .squiggle {
-    @include moveAndFadeAnimation(10px, 2.5s, .2s);
-    width: 10px;
+    @include moveAndFadeAnimation(10px, 2.7s, .2s);
+    width: 8px;
   }
 }
 
@@ -142,8 +142,8 @@ $border-color: #c3c3c372;
   transform: translateY(0px);
 
   .squiggle {
-    @include moveAndFadeAnimation(20px, 2.5s, 0s);
-    width: 10px;
+    @include moveAndFadeAnimation(20px, 2.7s, 0s);
+    width: 8px;
   }
 }
 
@@ -151,8 +151,8 @@ $border-color: #c3c3c372;
   transform: translateY(15px);
 
   .squiggle {
-    @include moveAndFadeAnimation(15px, 2.5s, .4s);
-    width: 10px;
+    @include moveAndFadeAnimation(15px, 2.7s, .4s);
+    width: 8px;
   }
 }
 

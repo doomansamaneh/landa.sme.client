@@ -73,7 +73,7 @@
   }
 
   .q-border-4 {
-    border: 4px  $primary solid;
+    border: 4px $primary solid;
   }
 
   .border-radius-xs {
@@ -193,6 +193,10 @@
 
   .red-shadow {
     box-shadow: 0 4px 8px -4px orangered;
+  }
+
+  .red-1-shadow {
+    box-shadow: 0 4px 8px -4px #ff000062;
   }
 
   .green-shadow {

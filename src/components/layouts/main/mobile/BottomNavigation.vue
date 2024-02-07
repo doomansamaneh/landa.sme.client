@@ -1,6 +1,6 @@
 <template>
   <q-footer
-    v-if="$q.screen.lt.md"
+    v-if="$q.screen.lt.sm"
     bordered
     class="bottom-navigation text-on-dark"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
@@ -32,15 +32,15 @@
       />
 
       <q-route-tab
-        icon="o_more_horiz"
-        label="بیشتر"
+        icon="o_account_circle"
+        label="پروفایل"
         :ripple="false"
-        @click="onBottomSheetShow"
+        to="/settings"
       />
     </q-tabs>
   </q-footer>
 
-  <bottom-sheet
+  <!-- <bottom-sheet
     v-if="bottomSheetStatus"
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
@@ -92,7 +92,7 @@
       </q-list>
     </template>
 
-  </bottom-sheet>
+  </bottom-sheet> -->
 </template>
 
 <script setup>
@@ -100,20 +100,27 @@ import { ref } from "vue"
 
 import { useContactDrawer } from "src/composables/useContactDrawer"
 import { useMenuBar } from "src/composables/useMenuBar"
+import { useRouter } from "vue-router"
 
-import BottomSheet from "src/components/shared/BottomSheet.vue"
+
+const router = useRouter()
+// import BottomSheet from "src/components/shared/BottomSheet.vue"
 
 const contactDrawerStore = useContactDrawer()
 const menuBarStore = useMenuBar()
 
-const bottomSheetStatus = ref(false)
-
-const onBottomSheetShow = () => {
-  bottomSheetStatus.value = true;
+const gotoSettings = () => {
+  router.push('/settings')
 }
 
-const onBottomSheetHide = () => {
-  bottomSheetStatus.value = false;
-}
+// const bottomSheetStatus = ref(false)
+
+// const onBottomSheetShow = () => {
+//   bottomSheetStatus.value = true;
+// }
+
+// const onBottomSheetHide = () => {
+//   bottomSheetStatus.value = false;
+// }
 
 </script>

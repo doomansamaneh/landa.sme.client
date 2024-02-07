@@ -29,5 +29,9 @@ export default {
       path: "cmn/product/copy/:id",
       component: () => import("src/pages/areas/cmn/product/CopyPage.vue"),
     },
+    {
+      path: "/settings",
+      component: () => import("src/pages/management/settings/IndexPage.vue"),
+    },
   ]
 }
