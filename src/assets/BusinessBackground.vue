@@ -14,13 +14,13 @@
   left: 45vw;
   width: 10px;
   height: 10px;
-  border: solid 1px darken($primary, 8%);
+  border: solid 1px var(--q-primary);
   transform-origin: top left;
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
   animation: cube 12s ease-in forwards infinite;
 
   &:nth-child(2n) {
-    border-color: lighten($primary, 10%);
+    border-color: var(--q-primary);
   }
 
   &:nth-child(2) {
