@@ -39,8 +39,9 @@
 
       <div class="row items-center q-gutter-x-md">
         <q-btn
-          padding="4px 12px"
+          :padding="$q.screen.gt.sm ? '6px 12px' : '4px 12px'"
           unelevated
+          rounded
           label="دانشنامه"
           href="https://www.landa-sme.ir/LandaKnowledge"
           target="_blank"

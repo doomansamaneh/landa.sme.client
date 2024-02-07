@@ -1,21 +1,27 @@
 <template>
   <q-btn
     class="bordered-btn bg-dark text-on-dark"
+    :style="$q.screen.gt.sm ? 'width: 150px;' : 'width:60px;'"
     :padding="$q.screen.gt.sm ? '6px 12px' : '4px 12px'"
     rounded
     dense
     unelevated
   >
-    <template v-if="$q.screen.gt.sm">
-      <q-icon
-        name="o_calendar_today"
-        class="q-pr-sm"
-        size="16px"
-      />
-      <span>
+    <div
+      class="row items-center"
+      v-if="$q.screen.gt.sm"
+    >
+      <div style="width: 20px;">
+        <q-icon
+          name="o_calendar_today"
+          class="q-pr-sm"
+          size="16px"
+        />
+      </div>
+      <div style="width: 100px;">
         {{ $t("main-menu-items.Acc_FiscalYear_View") }}: {{ fiscalYearStore.currentYear.value?.title }}
-      </span>
-    </template>
+      </div>
+    </div>
     <span
       v-else
       class="text-body2 no-letter-spacing"
@@ -24,14 +30,13 @@
     </span>
 
     <q-menu
-      persistent
       class="bordered"
+      style="width: 400px;"
       transition-show="jump-down"
       transition-hide="jump-up"
       :offset="$q.screen.gt.sm ? [0, 20] : [0, 10]"
       :anchor='$q.screen.gt.sm ? "bottom end" : "bottom middle"'
       :self='$q.screen.gt.sm ? "top end" : "top middle"'
-      min-height="500px"
     >
       <div class="fit bg-dark text-white">
         <div class="row justify-between q-px-lg q-pt-md">
