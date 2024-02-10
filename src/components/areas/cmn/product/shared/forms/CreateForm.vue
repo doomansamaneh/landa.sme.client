@@ -1,134 +1,168 @@
 <template>
-    <tool-bar
-        :title="title"
-        :submit-call-back="submitForm"
-    >
-    </tool-bar>
+  <tool-bar
+    :title="title"
+    :submit-call-back="submitForm"
+  >
+  </tool-bar>
 
-    <q-form
-        ref="form"
-        autofocus
-        class="q-gutter-y-md q-px-md"
-    >
-        <div>
-            <q-item-label caption>
+  <div class="row items-center justify-center q-my-xl">
+    <q-card class="bordered full-width">
+      <q-card-section>
+        <q-form
+          ref="form"
+          autofocus
+          class="main-container q-gutter-y-md q-mt-lg"
+        >
+          <div class="row q-col-gutter-md q-mb-md">
+            <div class="col-6">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 گروه کالا
-            </q-item-label>
-            <product-group-lookup
+              </q-item-label>
+              <product-group-lookup
                 v-model:selectedId="formStore.model.value.productGroupId"
                 v-model:selectedText="formStore.model.value.productGroupTitle"
-            />
-        </div>
+              />
+            </div>
+          </div>
 
-        <div>
-            <q-item-label caption>
+          <div class="row q-col-gutter-md q-mb-xl">
+            <div class="col-2">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 کد
-            </q-item-label>
-            <custom-input
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
                 v-model="formStore.model.value.code"
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
-            />
-        </div>
-
-        <div>
-            <q-item-label caption>
+              />
+            </div>
+            <div class="col-2">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 بارکد
-            </q-item-label>
-            <custom-input v-model="formStore.model.value.barcode" />
-        </div>
-
-        <div>
-            <q-item-label caption>
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
+                v-model="formStore.model.value.barcode"
+              />
+            </div>
+            <div class="col-2">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 شناسه مالیاتی
-            </q-item-label>
-            <custom-input v-model="formStore.model.value.taxCode" />
-        </div>
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
+                v-model="formStore.model.value.taxCode"
+              />
+            </div>
+          </div>
 
-        <div>
-            <q-item-label caption>
+          <div class="row q-mb-md">
+            <div class="col-6">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 عنوان
-            </q-item-label>
-            <custom-input
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
                 v-model="formStore.model.value.title"
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
-            />
-        </div>
+              />
+            </div>
+          </div>
 
-        <div>
-            <q-item-label caption>
+          <div class="row q-col-gutter-md q-mb-xl">
+
+            <div class="col-3">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 نوع
-            </q-item-label>
-            <custom-select
+              </q-item-label>
+              <custom-select
+                hide-bottom-space
                 v-model="formStore.model.value.typeId"
                 :options="helper.getEnumOptions(productType, 'productType')"
-            />
-        </div>
-        <div>
-            <q-item-label caption>
+              />
+            </div>
+
+            <div class="col-3">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 واحد سنجش
-            </q-item-label>
-            <product-unit-lookup
+              </q-item-label>
+              <product-unit-lookup
                 v-model:selectedId="formStore.model.value.productUnitId"
                 v-model:selectedText="formStore.model.value.productUnitTitle"
-            />
-        </div>
+              />
+            </div>
 
-        <div>
-            <q-item-label caption>
+          </div>
+
+          <div class="row q-col-gutter-md q-mb-md">
+            <div class="col-3">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 قیمت خرید
-            </q-item-label>
-            <custom-input
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
                 v-model="formStore.model.value.purchasePrice"
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
-            />
-        </div>
-
-        <div>
-            <q-item-label caption>
+              />
+            </div>
+            <div class="col-3">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 قیمت فروش
-            </q-item-label>
-            <custom-input
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
                 v-model="formStore.model.value.price"
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
-            />
-        </div>
+              />
+            </div>
+          </div>
 
-        <div>
-            <q-item-label caption>
+          <div class="row q-mb-md">
+            <div class="col-6">
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 شرح
-            </q-item-label>
-            <custom-input
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
                 v-model="formStore.model.value.comment"
                 type="textarea"
-                autogrow
-            />
-        </div>
+              />
+            </div>
+          </div>
 
-        <div>
-            <q-checkbox
-                v-model="formStore.model.value.isForPurchase"
-                label="برای خرید"
-            />
-        </div>
+          <div class="row q-gutter-md q-mb-md">
 
-        <div>
             <q-checkbox
-                v-model="formStore.model.value.isForSale"
-                label="برای فروش"
+              dense
+              size="48px"
+              v-model="formStore.model.value.isForPurchase"
+              label="برای خرید"
             />
-        </div>
 
-        <div>
             <q-checkbox
-                v-model="formStore.model.value.isActive"
-                label="فعال"
+              dense
+              size="48px"
+              v-model="formStore.model.value.isForSale"
+              label="برای فروش"
             />
-        </div>
-    </q-form>
+
+            <q-checkbox
+              dense
+              size="48px"
+              v-model="formStore.model.value.isActive"
+              label="فعال"
+            />
+
+          </div>
+
+        </q-form>
+      </q-card-section>
+    </q-card>
+  </div>
 </template>
 
 <script setup>
@@ -145,8 +179,8 @@ import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup
 import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue"
 
 const props = defineProps({
-    action: String,
-    title: String,
+  action: String,
+  title: String,
 })
 
 const form = ref(null)
@@ -154,18 +188,18 @@ const route = useRoute()
 const formStore = useProductModel()
 
 onMounted(() => {
-    formStore.crudStore.getById(route.params.id)
+  formStore.crudStore.getById(route.params.id)
 })
 
 async function submitForm() {
-    await form.value.validate().then(async (success) => {
-        if (success) {
-            const response = await formStore.crudStore.createOrEdit(props.action)
-            if (response?.data?.code === 200) router.go(-1)
-        } else {
-            //todo: how to show validation message to user
-            alert("validation error")
-        }
-    })
+  await form.value.validate().then(async (success) => {
+    if (success) {
+      const response = await formStore.crudStore.createOrEdit(props.action)
+      if (response?.data?.code === 200) router.go(-1)
+    } else {
+      //todo: how to show validation message to user
+      alert("validation error")
+    }
+  })
 }
 </script>

@@ -1,14 +1,13 @@
 <template>
-  <!-- <div class="row q-gutter-sm items-center">
-  </div> -->
+  <div class="row q-gutter-sm items-center">
   <q-btn
     round
     class="text-on-dark text-caption"
     :to="`${baseRoute}/edit/${item.id}`"
     unelevated
   >
-    <q-icon name="o_edit" />
-    <q-tooltip>{{ $t("shared.labels.edit") }}</q-tooltip>
+    <q-icon name="o_edit" size="20px" />
+    <q-tooltip class="custom-tooltip">{{ $t("shared.labels.edit") }}</q-tooltip>
   </q-btn>
 
   <q-btn
@@ -17,8 +16,8 @@
     :to="`${baseRoute}/copy/${item.id}`"
     unelevated
   >
-    <q-icon name="o_copy" />
-    <q-tooltip>{{ $t("shared.labels.copy") }}</q-tooltip>
+    <q-icon name="o_copy" size="20px" />
+    <q-tooltip class="custom-tooltip">{{ $t("shared.labels.copy") }}</q-tooltip>
   </q-btn>
 
   <q-btn
@@ -27,11 +26,13 @@
     unelevated
     @click="crudStore.deleteById(item.id, tableStore?.reloadData)"
   >
-    <q-icon name="o_delete" />
+    <q-icon name="o_delete" size="20px" />
     <q-tooltip class="custom-tooltip">{{ $t("shared.labels.delete") }}</q-tooltip>
   </q-btn>
 
   <slot name="more-items"></slot>
+  </div>
+
 </template>
 
 <script setup>

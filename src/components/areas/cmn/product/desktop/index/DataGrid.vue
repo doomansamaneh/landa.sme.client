@@ -8,7 +8,7 @@
   >
     <template #buttons-batch-action>
       <q-btn
-        class="bordered-btn_bg-dark text-caption"
+        class="text-caption"
         rounded
         unelevated
         no-caps
@@ -18,7 +18,7 @@
           name="o_edit"
           class="q-mr-xs"
         />
-        {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} rows)
+        {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} مورد)
       </q-btn>
     </template>
   </tool-bar>
@@ -50,7 +50,6 @@
         dense_
         expandable_
       >
-
         <template #filter-isActive="{ col }">
           <custom-select
             v-model="col.value"
@@ -60,13 +59,25 @@
         </template>
 
         <template #cell-isActive="{ item }">
-          <q-icon
+          <q-btn
             v-if="item.isActive"
-            name="o_done"
+            round
+            dense
+            size="10px"
+            unelevated
+            icon="o_done"
+            color="primary"
+            class="primary-shadow no-pointer-events"
           />
-          <q-icon
+          <q-btn
             v-else
-            name="o_cancel"
+            round
+            dense
+            size="10px"
+            unelevated
+            icon="o_close"
+            color="negative"
+            class="red-shadow no-pointer-events"
           />
         </template>
 
