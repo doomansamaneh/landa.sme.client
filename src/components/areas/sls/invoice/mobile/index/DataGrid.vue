@@ -232,6 +232,7 @@
             </q-btn>
 
           </div>
+
           <div class="col">
             <div class="row q-gutter-sm">
               <div class="text-caption text-bold text-blue-3">جمع کل</div>
@@ -240,9 +241,14 @@
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-blue-3">جمع تخفیف‌ها</div>
+              <div class="text-caption text-bold text-blue-3">دریافت شده</div>
               <div class="text-bold text-white text-caption">{{
-                invoiceStore.state?.summaryData?.value?.discountAmount.toLocaleString() }}</div>
+                invoiceStore.state?.summaryData?.value?.payedAmount.toLocaleString() }}</div>
+            </div>
+            <div class="row q-gutter-sm q-pt-xs">
+              <div class="text-caption text-bold text-blue-3">مانده</div>
+              <div class="text-bold text-white text-caption">{{
+                invoiceStore.state?.summaryData?.value?.remainedAmount.toLocaleString() }}</div>
             </div>
           </div>
         </div>
@@ -339,7 +345,7 @@
           :class="tableStore?.getRowClass(item)"
           v-touch-hold.mouse="() => selectCard(item)"
         >
-          <q-card-section class="q-pb-none">
+          <q-card-section>
             <div class="row items-center justify-center">
               <q-btn
                 v-if="!item.selected"
@@ -347,31 +353,22 @@
                 unelevated
                 class="no-pointer-events"
               >
-                <q-avatar
-                  v-if="item.avatar"
-                  size="56px"
-                  :style="{ backgroundColor: helper.generateDarkAvatarColor(item.customerName) }"
-                >
-                  <img src="https://cdn.quasar.dev/img/avatar1.jpg">
-                </q-avatar>
 
                 <q-avatar
                   size="56px"
                   text-color="white"
                   :style="{ backgroundColor: helper.generateDarkAvatarColor(item.customerName) }"
-                  v-else
                 >
                   <div class="char text-body1 text-bold">
                     {{ helper.getFirstChar(item.customerName) }}
                   </div>
                 </q-avatar>
               </q-btn>
-
               <q-btn
                 round
                 unelevated
                 class="no-pointer-events"
-                v-if="item.selected"
+                v-else
               >
                 <q-avatar
                   size="50px"
@@ -385,25 +382,28 @@
                 </q-avatar>
               </q-btn>
             </div>
+
             <div class="row justify-between items-center">
 
               <div class="col row items-center">
-                <span class="text-caption text-on-dark">{{ item.dateString }}</span>
-              </div>
-
-              <div class="col row justify-end items-center q-gutter-xs">
                 <span class="text-caption text-on-dark">
-                  شماره
+                  شماره:
                 </span>
                 <span class="text-caption text-on-dark">{{ item.no }}</span>
               </div>
+
+              <div class="col row justify-end items-center q-gutter-xs">
+                <span class="text-caption text-on-dark">{{ item.dateString }}</span>
+              </div>
             </div>
-            <q-separator class="q-mt-xs" />
+          </q-card-section>
 
-            <div class="column q-gutter-sm q-my-md">
+          <q-separator />
 
-              <div class="row items-center border-radius-sm q-px-sm">
+          <q-card-section>
+            <div class="column q-gutter-sm">
 
+              <div class="row items-center q-px-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">مشتری</span>
                 </div>
@@ -412,16 +412,22 @@
                 </div>
               </div>
 
-              <div class="row items-center border-radius-sm q-px-sm">
+              <div class="row items-center q-px-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">شرح</span>
                 </div>
                 <div class="col">
                   <span class="ellipsis-2-lines text-caption text-on-dark">{{ item.subject }}</span>
+                  <div
+                    v-if="item.summary"
+                    class="ellipsis-2-lines text-caption-sm text-on-dark"
+                  >
+                    {{ item.summary }}
+                  </div>
                 </div>
               </div>
 
-              <div class="row items-center border-radius-sm q-px-sm">
+              <div class="row items-center q-px-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">تخفیف</span>
                 </div>
@@ -431,8 +437,7 @@
                 </div>
               </div>
 
-              <div class="row items-center border-radius-sm q-px-sm">
-
+              <div class="row items-center q-px-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">جمع کل</span>
                 </div>
@@ -441,33 +446,57 @@
                     class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.amount.toLocaleString() }}</span>
                 </div>
               </div>
+
+              <div class="row items-center q-px-sm">
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">دریافت شده</span>
+                </div>
+                <div class="col">
+                  <span
+                    class="ellipsis-2-lines text-caption text-caption text-on-dark">{{ item.payedAmount.toLocaleString() }}</span>
+                </div>
+              </div>
+
+              <div class="row items-center q-px-sm">
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">مانده</span>
+                </div>
+                <div class="col">
+                  <span
+                    class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.remainedAmount.toLocaleString() }}</span>
+                </div>
+              </div>
             </div>
+          </q-card-section>
 
-            <div class="row q-gutter-sm items-center">
-              <q-btn
-                dense
-                padding="2px 12px"
-                class="border-radius-sm bg-orange-2 no-pointer-events"
-                unelevated
+          <q-card-section class="q-pt-xs">
+            <div class="row items-center q-gutter-sm">
+              <span
+                class="border-radius-sm bg-orange-2 text-caption text-red"
+                style="padding:2px 12px"
               >
-                <span class="text-caption text-red">
-                  {{ item.statusTitle }}
-                </span>
-              </q-btn>
+                {{ item.statusTitle }}
+              </span>
 
-              <q-btn
-                dense
-                padding="2px 12px"
-                class="border-radius-sm bg-primary no-pointer-events"
-                unelevated
+              <span
+                class="border-radius-sm bg-primary text-caption text-white"
+                style="padding:2px 12px"
               >
-                <span class="text-caption text-white">
-                  {{ item.typeTitle }}
-                </span>
-              </q-btn>
+                {{ item.typeTitle }}
+              </span>
+
+              <span
+                v-if="item.contractTitle"
+                class="border-radius-sm bg-primary text-caption text-white"
+                style="padding:2px 12px"
+              >
+                {{ item.contractTitle }}
+              </span>
 
             </div>
           </q-card-section>
+
+          <q-separator />
 
           <q-card-actions
             class="q-pa-md"
@@ -717,17 +746,11 @@ import { sqlOperator } from "src/constants"
 import { helper } from "src/helpers"
 
 import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue"
-import BottomSheet from "src/components/shared/BottomSheet.vue"
+import BottomSheet from "components/shared/BottomSheet.vue"
 
 const invoiceStore = useInvoiceGrid([{
   fieldName: "d.StatusId",
   operator: sqlOperator.notEqual,
-  value: "a36af633-d0bb-4857-a542-364e12658d1c"
-}])
-
-const canceledInvoiceStore = useInvoiceGrid([{
-  fieldName: "d.StatusId",
-  operator: sqlOperator.equal,
   value: "a36af633-d0bb-4857-a542-364e12658d1c"
 }])
 
@@ -752,14 +775,14 @@ const amount = computed(() => {
     invoiceStore.state.allSelectedIds.value.includes(row.id)
   );
   return selectedRows.reduce((total, row) => total + row.amount, 0);
-});
+})
 
 const discountAmount = computed(() => {
   const selectedRows = invoiceStore.state.rows.value.filter(row =>
     invoiceStore.state.allSelectedIds.value.includes(row.id)
-  );
+  )
   return selectedRows.reduce((total, row) => total + row.discountAmount, 0);
-});
+})
 
 const showSearchModal = () => {
   dialog.value = true
@@ -772,7 +795,7 @@ async function applySearch(model) {
 
 const shouldDisplaySelectedDateRange = computed(() => {
   return selectedDateRange.value.value !== 'all' && selectedDateRange.value.value !== 0 && selectedDateRange.value.label !== 'shared.labels.0';
-});
+})
 
 const clearDateRangeFilter = () => {
   selectedDateRange.value = { value: '', label: '' };
