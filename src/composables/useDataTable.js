@@ -109,6 +109,7 @@ export function useDataTable(dataSource
   function setPayload() {
     pagination.value.filterExpression = []
     if (store?.filterExpression != null) pagination.value.filterExpression = [...store.filterExpression]
+    if (state?.value.filterExpression != null) pagination.value.filterExpression = [...state.value.filterExpression]
 
     if (columns.value) {
       let payLoadCols = ""
@@ -229,6 +230,7 @@ export function useDataTable(dataSource
     summaryData: state.value.summaryData,
 
     //loading,
+    state,
     inputInnerLoader,
     showLoader,
     selectedRows,

@@ -1,28 +1,4 @@
 <template>
-  <div class="q-gutter-md q-mb-md">
-    <q-btn
-      class="bg-primary text-white text-caption"
-      unelevated
-      @click="dataTable.tableStore.exportCurrentPage()"
-    >
-      <q-icon
-        name="download"
-        class="q-mr-xs"
-      />
-      {{ $t("shared.labels.exportExcelCurrentPage") }}
-    </q-btn>
-    <q-btn
-      class="bg-primary text-white text-caption"
-      unelevated
-      @click="dataTable.tableStore.exportAll()"
-    >
-      <q-icon
-        name="download"
-        class="q-mr-xs"
-      />
-      {{ $t("shared.labels.exportExcel") }}
-    </q-btn>
-  </div>
   <data-grid
     ref="dataTable"
     :dataSource="dataSource ?? 'sls/invoice/getGridData'"
@@ -33,7 +9,7 @@
     multiSelect
     numbered
     bordered
-    dense_
+    dense
     wrapCells
     expandable
   >
@@ -67,8 +43,27 @@
     <template #cell-amount="{ item }">
       <span>{{ item.amount.toLocaleString() }}</span>
     </template>
+    <template #cell-payedAmount="{ item }">
+      <span>{{ item.payedAmount.toLocaleString() }}</span>
+    </template>
+    <template #cell-remainedAmount="{ item }">
+      <span>{{ item.remainedAmount.toLocaleString() }}</span>
+    </template>
     <template #cell-discountAmount="{ item }">
       <span>{{ item.discountAmount.toLocaleString() }}</span>
+    </template>
+    <template #cell-subject="{ item }">
+      <div>{{ item.subject }}</div>
+      <div
+        v-if="item.summary"
+        class="text-caption-sm"
+      >
+        {{ item.summary }}
+      </div>
+      <div class="q-gutter-x-sm">
+        <q-badge>{{ item.typeTitle }}</q-badge>
+        <q-badge v-if="item.contractTitle">{{ item.contractTitle }}</q-badge>
+      </div>
     </template>
     <template #cell-statusTitle="{ item }">
       <q-badge>{{ item.statusTitle }}</q-badge>
@@ -90,6 +85,8 @@
       <td v-if="showDiscount">
         <b>{{ helper.getSubtotal(selectedRows, "discountAmount").toLocaleString() }}</b>
       </td>
+      <td><b>{{ helper.getSubtotal(selectedRows, "payedAmount").toLocaleString() }}</b></td>
+      <td><b>{{ helper.getSubtotal(selectedRows, "remainedAmount").toLocaleString() }}</b></td>
       <td colspan="100%"></td>
     </template>
 
@@ -101,6 +98,8 @@
         {{ $t("shared.labels.total") }}
       </td>
       <td><b>{{ summary?.amount?.toLocaleString() }}</b></td>
+      <td><b>{{ summary?.payedAmount?.toLocaleString() }}</b></td>
+      <td><b>{{ summary?.remainedAmount?.toLocaleString() }}</b></td>
       <td v-if="showDiscount">
         <b>{{ summary?.discountAmount?.toLocaleString() }}</b>
       </td>
@@ -110,14 +109,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
+import { ref, computed } from "vue"
 import { statusOptions } from "src/constants"
 import { helper } from "src/helpers"
 
-import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue"
-import CustomInput from "src/components/shared/forms/CustomInput.vue"
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue"
-import InvoicePreview from "src/components/areas/sls/invoice/InvoicePreview.vue"
+import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue"
+import CustomSelect from "components/shared/forms/CustomSelect.vue"
+import InvoicePreview from "components/areas/sls/invoice/shared/detail/InvoicePreview.vue"
 
 const props = defineProps({
   dataSource: String,

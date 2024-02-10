@@ -8,8 +8,8 @@
 
 <script setup>
 import { computed, ref } from "vue"
-import { useInvoice } from "../_composables/useInvoice"
-import InvoiceGrid from "src/components/areas/sls/invoice/_InvoiceDataTable.vue"
+import { useInvoiceGrid } from "../_composables/useInvoiceGrid"
+import InvoiceGrid from "components/areas/sls/invoice/desktop/index/DataGrid.vue"
 
 const props = defineProps({
   gridStore: Object

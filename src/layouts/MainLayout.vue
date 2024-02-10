@@ -22,7 +22,7 @@ import { useRoute } from "vue-router"
 import { useQuasar } from "quasar"
 import { fetchWrapper } from "src/helpers"
 import { useSelectedBusinessStore } from "src/stores/selected-business.js"
-import { useTheme } from "src/components/layouts/main/_composables/ThemeStore.js"
+import { useTheme } from "src/components/layouts/main/_composables/useTheme.js"
 import { useContactDrawer } from "src/composables/useContactDrawer"
 import { useMenuBar } from "src/composables/useMenuBar"
 
@@ -92,5 +92,4 @@ if ($q.screen.lt.md) {
 .q-item__section--avatar {
   min-width: 0;
 }
-
 </style>

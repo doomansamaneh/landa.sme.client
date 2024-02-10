@@ -1,7 +1,5 @@
 <template>
-  <q-layout
-    view="hHh Lpr fFf"
-  >
+  <q-layout view="hHh Lpr fFf">
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -12,7 +10,7 @@
 
 <script setup>
 import { onMounted } from "vue"
-import { useTheme } from "src/components/layouts/main/_composables/ThemeStore.js"
+import { useTheme } from "src/components/layouts/main/_composables/useTheme.js"
 
 import AlertBanner from "src/components/shared/AlertBanner.vue"
 

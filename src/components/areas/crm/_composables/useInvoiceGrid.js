@@ -1,7 +1,7 @@
 import { ref } from "vue"
 import { defaultPageSize, sqlOperator } from "src/constants"
 
-export function useInvoice() {
+export function useInvoiceGrid() {
     const state = {
         firstLoad: ref(false),
         rows: ref([]),

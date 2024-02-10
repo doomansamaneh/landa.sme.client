@@ -16,7 +16,6 @@
             </q-item-label>
             <custom-input
                 v-model="formStore.model.value.code"
-                outlined
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
             />
@@ -27,7 +26,6 @@
             </q-item-label>
             <custom-input
                 v-model="formStore.model.value.title"
-                outlined
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
             />

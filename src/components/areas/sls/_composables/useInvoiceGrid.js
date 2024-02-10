@@ -1,4 +1,4 @@
-import { defaultPageSize } from "src/constants"
+import { defaultPageSize, sortOrder, sqlOperator } from "src/constants"
 import { useComposables } from "src/stores/useComposables"
 
 import { ref } from "vue"
@@ -21,7 +21,7 @@ const pagination = ref({
     currentPage: 1,
     pageSize: defaultPageSize,
     sortColumn: "no",
-    sortOrder: 1,
+    sortOrder: sortOrder.descending,
     totalItems: 0,
     searchTerm: "",
     searchModel: "",
@@ -39,7 +39,7 @@ const columns = ref([
         cellStyle: "",
         style: "width:100px;",
         showFilter: true,
-        operator: 1,
+        operator: sqlOperator.equal,
         value: "",
     },
     {
@@ -49,6 +49,7 @@ const columns = ref([
         sortable: true,
         label: "تاریخ",
         class: "text-left",
+        style: "width:120px",
         showFilter: true
     },
     {
@@ -70,7 +71,6 @@ const columns = ref([
         align: "left",
         class: "text-left",
         showFilter: true,
-        style: "width:20%"
     },
     {
         name: "amount",
@@ -79,37 +79,29 @@ const columns = ref([
         label: "جمع کل",
         align: "left",
         class: "text-left",
-        showFilter: true
-    },
-    {
-        name: "discountAmount",
-        field: "discountAmount",
-        sortable: true,
-        label: "تخفیف",
-        align: "left",
-        class: "text-left",
-        showFilter: true
-    },
-    {
-        name: "typeTitle",
-        field: "typeTitle",
-        sortable: true,
-        label: "نوع",
-        align: "left",
-        class: "text-left",
-        showFilter: true
-    },
-    {
-        name: "statusTitle",
-        field: "statusTitle",
-        sortable: true,
-        label: "وضعیت",
-        align: "left",
-        class: "text-left",
         showFilter: true,
-        style: "width:100px;",
-        value: ""
-    }
+        style: "width:120px"
+    },
+    {
+        name: "payedAmount",
+        field: "payedAmount",
+        sortable: true,
+        label: "دریافت شده",
+        align: "left",
+        class: "text-left",
+        style: "width:120px",
+        showFilter: true
+    },
+    {
+        name: "remainedAmount",
+        field: "remainedAmount",
+        sortable: true,
+        label: "مانده",
+        align: "left",
+        class: "text-left",
+        style: "width:120px",
+        showFilter: true
+    },
 ])
 
 export function useInvoiceGrid(defaultFilters) {
@@ -121,8 +113,7 @@ export function useInvoiceGrid(defaultFilters) {
         }
     })
 
-    // if (defaultState != null) Object.assign(state, defaultState)
-    const filterExpression = defaultFilters;
+    const filterExpression = defaultFilters
 
     const setDefaultSearchModel = () => {
         state.searchModel.value = {

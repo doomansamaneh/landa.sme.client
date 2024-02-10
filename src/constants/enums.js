@@ -74,3 +74,5 @@ export const defaultPageSize = 10 //10
 export const dataViewDefaultPageSize = 5
 
 export const guidEmpty = "00000000-0000-0000-0000-000000000000"
+
+export const cancelStatus = "a36af633-d0bb-4857-a542-364e12658d1c"

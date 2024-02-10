@@ -83,7 +83,7 @@
                 <q-list
                   dense
                   padding
-                  style="width:200px"
+                  style="width:220px"
                 >
                   <q-item
                     clickable
@@ -180,6 +180,30 @@
                     <q-item-section>
                       <div class="text-caption">
                         {{ $t("shared.labels.eportToExcel") }}
+                      </div>
+                    </q-item-section>
+                  </q-item>
+
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                    @click="tableStore.exportCurrentPage()"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_download"
+                            size="16px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">
+                        {{ $t("shared.labels.exportExcelCurrentPage") }}
                       </div>
                     </q-item-section>
                   </q-item>

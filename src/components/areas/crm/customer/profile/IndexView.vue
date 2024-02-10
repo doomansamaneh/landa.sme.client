@@ -1087,7 +1087,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue"
 import { useQuasar } from "quasar"
-import { useInvoice } from "src/components/areas/crm/_composables/useInvoice"
+import { useInvoiceGrid } from "src/components/areas/crm/_composables/useInvoiceGrid"
 import "src/helpers/extensions";
 
 import DeleteAlert from "src/components/areas/crm/customer/profile/DeleteAlert.vue"
