@@ -9,7 +9,7 @@
       <q-toolbar
         :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 24px; padding-right: 24px;'"
       >
-        <div class="q-gutter-x-sm">
+        <div class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn
               class="bg-primary primary-shadow text-white text-caption"
@@ -50,7 +50,7 @@
               </slot>
               <slot name="buttons-delete">
                 <q-btn
-                  class="bordered-btn_bg-dark text-caption"
+                  class="text-caption"
                   rounded
                   unelevated
                   no-caps
@@ -60,13 +60,13 @@
                     name="o_delete"
                     class="q-mr-xs"
                   />
-                  {{ $t("shared.labels.delete") }} ({{ selectedIds?.length }} rows)
+                  {{ $t("shared.labels.delete") }} ({{ selectedIds?.length }} مورد)
                 </q-btn>
               </slot>
             </template>
 
             <q-btn
-              class="bordered-btn_bg-dark text-caption"
+              class="text-caption"
               rounded
               unelevated
             >
@@ -208,7 +208,7 @@
                 />
               </slot>
             </span>
-            <back-button />
+            <back-button class="q-ml-md" />
           </slot>
         </div>
       </q-toolbar>

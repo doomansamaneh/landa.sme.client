@@ -402,7 +402,7 @@
 
             <div class="column q-gutter-sm q-my-md">
 
-              <div class="row items-center border-radius-sm q-px-sm">
+              <div class="row items-center border-radius-sm">
 
                 <div class="col-3">
                   <span class="text-caption text-on-dark">مشتری</span>
@@ -412,7 +412,7 @@
                 </div>
               </div>
 
-              <div class="row items-center border-radius-sm q-px-sm">
+              <div class="row items-center border-radius-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">شرح</span>
                 </div>
@@ -421,7 +421,7 @@
                 </div>
               </div>
 
-              <div class="row items-center border-radius-sm q-px-sm">
+              <div class="row items-center border-radius-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">تخفیف</span>
                 </div>
@@ -431,7 +431,7 @@
                 </div>
               </div>
 
-              <div class="row items-center border-radius-sm q-px-sm">
+              <div class="row items-center border-radius-sm">
 
                 <div class="col-3">
                   <span class="text-caption text-on-dark">جمع کل</span>

@@ -1,8 +1,8 @@
-import EmptyLayout from "src/layouts/EmptyLayout.vue";
+import MainLayout from "src/layouts/MainLayout.vue";
 
 export default {
   path: "/",
-  component: EmptyLayout,
+  component: MainLayout,
   name: "empty",
   children: [
     {

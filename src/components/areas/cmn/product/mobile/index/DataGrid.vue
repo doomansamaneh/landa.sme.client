@@ -1,5 +1,187 @@
 <template>
-  <div class="text-h6">
+  <q-page-sticky
+    class="z-1 bg-main"
+    position="top"
+    expand
+  >
+    <q-toolbar
+      class="q-py-md text-on-dark rtl"
+      :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 24px; padding-right: 24px;'"
+    >
+      <div class="col-3">
+        <div class="row items-center justify-between">
+          <q-btn
+            class="no-padding"
+            flat
+            @click="$router.go(-1)"
+          >
+            <q-icon
+              name="arrow_back"
+              size="sm"
+            />
+          </q-btn>
+
+          <!-- <span
+            v-if="selectedRowCount"
+            class="text-on-dark text-body1 text-bold"
+          >
+            {{ selectedRowCount }}
+          </span> -->
+        </div>
+      </div>
+      <div class="col">
+
+        <div class="row justify-end items-center">
+          <!-- v-if="!tableStore.state.activeRow?.value" -->
+          <div class="row items-center">
+            <q-btn
+              rounded
+              outline
+              dense
+              unelevated
+              class="q-px-sm q-py-xs bg-dark text-on-dark text-caption-sm text-bold no-pointer-events"
+            >
+              {{ tableStore?.pagination.value.totalItems }}
+            </q-btn>
+            <span
+              class="q-mr-sm"
+              :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
+            >{{ title }}</span>
+          </div>
+
+          <!-- v-if="tableStore.state.activeRow?.value" -->
+          <!-- <div
+            class="row items-center q-gutter-x-sm"
+          >
+            <q-btn
+              round
+              dense
+              unelevated
+            >
+              <q-icon name="more_horiz" />
+
+              <q-menu cover>
+                <q-list
+                  dense
+                  padding
+                  style="width:200px"
+                >
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_refresh"
+                            size="14px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">تازه‌سازی</div>
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_close"
+                            size="14px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">غیر‌فعال‌سازی</div>
+                    </q-item-section>
+                  </q-item>
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_check"
+                            size="14px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">فعال سازی</div>
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_download"
+                            size="16px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">تبدیل به اکسل</div>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-btn>
+            <q-btn
+              dense
+              round
+              flat
+            >
+              <q-icon
+                name="o_delete"
+                size="sm"
+              />
+            </q-btn>
+
+            <q-btn
+              dense
+              round
+              flat
+            >
+              <q-icon
+                name="o_edit"
+                size="sm"
+              />
+            </q-btn>
+
+          </div> -->
+
+        </div>
+
+      </div>
+
+    </q-toolbar>
+  </q-page-sticky>
+  <!-- <div class="text-body1 no-letter-spacing">
     {{ title }}
     <q-badge
       v-if="tableStore?.pagination.value.totalItems > 0"
@@ -8,78 +190,180 @@
     >
       {{ tableStore?.pagination.value.totalItems }}
     </q-badge>
-  </div>
+  </div> -->
 
-  <data-grid
-    ref="dataGrid"
-    dataSource="cmn/product/getGridData"
-    createUrl="/cmn/product/create"
-    :grid-store="gridStore"
-    multiSelect
-    numbered
-  >
-    <template #body_="{ item }">
-      <q-card class="q-my-md">
-        <q-card-section>
-          <i
-            v-if="item.isActive"
-            class="q-icon text-primary notranslate material-icons-outlined"
-            aria-hidden="true"
-            role="presentation"
-          > done
-          </i>
-          <i
-            v-else
-            class="q-icon notranslate material-icons-outlined"
-            aria-hidden="true"
-            role="presentation"
+  <div style="margin-top: 46px;">
+    <data-grid
+      ref="dataGrid"
+      dataSource="cmn/product/getGridData"
+      createUrl="/cmn/product/create"
+      :grid-store="gridStore"
+      multiSelect
+      numbered
+    >
+      <template #body="{ item }">
+        <q-card class="bordered">
+          <q-card-section>
+            <div class="row justify-between items-center">
+
+              <div class="col-8 row items-center">
+                <span class="text-caption text-on-dark">{{ item.productGroupTitle }}</span>
+              </div>
+
+              <div class="col row justify-end items-center q-gutter-xs">
+                <span class="text-caption text-on-dark">{{ item.code }}</span>
+              </div>
+
+            </div>
+            <q-separator class="q-mt-xs" />
+
+            <div class="column q-gutter-sm q-my-md">
+
+              <div class="row items-center border-radius-sm">
+
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">عنوان</span>
+                </div>
+
+                <div class="col">
+                  <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.title }}</span>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">وضعیت</span>
+                </div>
+
+                <div class="col">
+                  <q-btn
+                    v-if="item.isActive"
+                    round
+                    unelevated
+                    dense
+                    class="no-pointer-events"
+                    size="10px"
+                    color="primary"
+                    icon="o_done"
+                  />
+                  <q-btn
+                    v-else
+                    round
+                    unelevated
+                    dense
+                    class="no-pointer-events"
+                    size="10px"
+                    color="negative"
+                    icon="o_close"
+                  />
+                </div>
+
+              </div>
+
+            </div>
+
+          </q-card-section>
+
+          <q-card-actions
+            class="q-pa-md"
+            align="between"
           >
-            cancel
-          </i>
-
-          {{ item.productGroupTitle }} / {{ item.code }} / {{ item.title }}
-        </q-card-section>
-      </q-card>
-    </template>
-
-    <template #cell-isActive="{ item }">
-      <q-icon
-        v-if="item.isActive"
-        name="o_done"
-      />
-      <q-icon
-        v-else
-        name="o_cancel"
-      />
-    </template>
-
-    <template #row-header="{ item }">
-      <q-card-section class="bg-primary text-white">
-        {{ item.code }} / {{ item.title }}
-      </q-card-section>
-    </template>
-
-    <template #row-actions="{ item }">
-      <row-tool-bar
-        base-route="/cmn/product"
-        :item="item"
-        :table-store="tableStore"
-        :crud-store="crudStore"
-      >
-        <template #more-items="{ item }">
-          <span class="justify-end">
             <q-btn
               unelevated
-              round
-              @click="onBottomSheetShow(item)"
+              class="text-on-dark"
             >
-              <q-icon name="o_more_vert" />
+              <span class="text-body3 text-bold">مشاهده جزئیات</span>
             </q-btn>
-          </span>
-        </template>
-      </row-tool-bar>
-    </template>
-  </data-grid>
+
+            <q-btn
+              round
+              unelevated
+              dense
+              icon="o_more_vert"
+              @click="onBottomSheetShow"
+            />
+          </q-card-actions>
+
+        </q-card>
+      </template>
+
+      <template #cell-isActive="{ item }">
+        <q-btn
+          v-if="item.isActive"
+          round
+          unelevated
+          dense
+          class="no-pointer-events"
+          size="10px"
+          color="primary"
+          icon="o_done"
+        />
+        <q-btn
+          v-else
+          round
+          unelevated
+          dense
+          class="no-pointer-events"
+          size="10px"
+          color="negative"
+          icon="o_close"
+        />
+      </template>
+
+      <template #row-header="{ item }">
+        <q-card-section>
+          <div class="row justify-between items-center">
+
+            <div class="col row items-center">
+              <span class="text-caption text-on-dark">{{ item.code }}</span>
+            </div>
+
+            <div class="col row justify-end items-center q-gutter-xs">
+              <span class="text-caption text-on-dark">{{ item.productGroupTitle }}</span>
+            </div>
+
+          </div>
+          <q-separator class="q-mt-xs" />
+        </q-card-section>
+      </template>
+
+      <template #row-actions>
+        <q-btn
+          unelevated
+          class="text-on-dark"
+        >
+          <span class="text-body3 text-bold">مشاهده جزئیات</span>
+        </q-btn>
+
+        <q-btn
+          round
+          unelevated
+          dense
+          icon="o_more_vert"
+          @click="onBottomSheetShow"
+        />
+        <!-- <row-tool-bar
+          base-route="/cmn/product"
+          :item="item"
+          :table-store="tableStore"
+          :crud-store="crudStore"
+        >
+          <template #more-items="{ item }">
+            <div class="justify-end">
+              <q-btn
+                unelevated
+                round
+                @click="onBottomSheetShow(item)"
+              >
+                <q-icon name="o_more_vert" />
+              </q-btn>
+            </div>
+          </template>
+        </row-tool-bar> -->
+      </template>
+    </data-grid>
+  </div>
 
   <bottom-sheet
     v-if="bottomSheetStatus"
@@ -196,4 +480,9 @@ function editBatch() {
     await reloadData()
   })
 }
+
+// const selectedRowCount = computed(() => {
+//   return tableStore.value.state.allSelectedIds.value.length
+// })
+
 </script>
