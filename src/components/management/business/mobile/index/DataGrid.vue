@@ -132,10 +132,8 @@
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
   >
-    <template #header>
-      <div class="q-pa-lg text-body2 no-letter-spacing text-center">
-        {{ selectedRow.title }}
-      </div>
+    <template #header-title>
+      {{ selectedRow.title }}
     </template>
 
     <template #body>

@@ -8,13 +8,10 @@
     <q-form
         ref="form"
         autofocus
-        class="q-px-sm"
+        class="q-gutter-y-md q-px-md"
     >
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 گروه کالا
             </q-item-label>
             <product-group-lookup
@@ -23,11 +20,8 @@
             />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 کد
             </q-item-label>
             <custom-input
@@ -37,31 +31,22 @@
             />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 بارکد
             </q-item-label>
             <custom-input v-model="formStore.model.value.barcode" />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 شناسه مالیاتی
             </q-item-label>
             <custom-input v-model="formStore.model.value.taxCode" />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 عنوان
             </q-item-label>
             <custom-input
@@ -71,11 +56,8 @@
             />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 نوع
             </q-item-label>
             <custom-select
@@ -83,11 +65,8 @@
                 :options="helper.getEnumOptions(productType, 'productType')"
             />
         </div>
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 واحد سنجش
             </q-item-label>
             <product-unit-lookup
@@ -96,11 +75,8 @@
             />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 قیمت خرید
             </q-item-label>
             <custom-input
@@ -110,11 +86,8 @@
             />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 قیمت فروش
             </q-item-label>
             <custom-input
@@ -124,11 +97,8 @@
             />
         </div>
 
-        <div class="q-mt-md">
-            <q-item-label
-                caption
-                class="q-mb-sm"
-            >
+        <div>
+            <q-item-label caption>
                 شرح
             </q-item-label>
             <custom-input
@@ -138,21 +108,21 @@
             />
         </div>
 
-        <div class="q-mt-md">
+        <div>
             <q-checkbox
                 v-model="formStore.model.value.isForPurchase"
                 label="برای خرید"
             />
         </div>
 
-        <div class="q-mt-md">
+        <div>
             <q-checkbox
                 v-model="formStore.model.value.isForSale"
                 label="برای فروش"
             />
         </div>
 
-        <div class="q-mt-md">
+        <div>
             <q-checkbox
                 v-model="formStore.model.value.isActive"
                 label="فعال"

@@ -10,8 +10,6 @@
 <script setup>
 import { computed } from "vue";
 
-//const props = defineProps(['modelValue', 'placeholder', 'label', 'displayFormat', 'clearable']);
-//const emit = defineEmits(['update:modelValue']);
 const props = defineProps(['displayFormat']);
 const value = defineModel('value')
 

@@ -86,10 +86,8 @@
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
   >
-    <template #header>
-      <div class="text-h6 q-pa-md">
-        {{ tableStore?.activeRow.value?.code }} / {{ tableStore?.activeRow.value?.title }}
-      </div>
+    <template #header-title>
+      {{ tableStore?.activeRow.value?.code }} / {{ tableStore?.activeRow.value?.title }}
     </template>
 
     <template #body>

@@ -500,8 +500,8 @@
     @hide="onBottomSheetHide"
   >
 
-    <template #header>
-
+    <template #header-title>
+      {{ tableStore?.activeRow.value?.no }} / {{ tableStore?.activeRow.value?.subject }}
     </template>
 
     <template #body>
@@ -535,7 +535,7 @@
           <q-item-section class="text-body1 no-letter-spacing">ویرایش</q-item-section>
         </q-item>
 
-        <q-separator size="1px" />
+        <q-separator class="q-my-sm" />
 
         <q-item
           clickable
@@ -551,7 +551,7 @@
           <q-item-section class="text-body1 no-letter-spacing">ارسال ایمیل</q-item-section>
         </q-item>
 
-        <q-separator size="0.5px" />
+        <q-separator class="q-my-sm" />
 
         <q-item
           clickable
@@ -568,7 +568,7 @@
           <q-item-section class="text-body1 no-letter-spacing">چاپ</q-item-section>
         </q-item>
 
-        <q-separator />
+        <q-separator class="q-my-sm" />
 
         <q-item
           clickable
@@ -804,6 +804,10 @@ const onBottomSheetShow = (row) => {
 
 const onBottomSheetHide = () => {
   bottomSheetStatus.value = false;
+}
+
+const showPrintDialog = () => {
+  printDialog.value = true;
 }
 </script>
 
