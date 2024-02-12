@@ -159,6 +159,16 @@
     background-color: $main-color !important;
   }
 
+  @media (max-width: $breakpoint-xs-max) {
+    .bg-main {
+      background-color: $white !important;
+    }
+
+    .bg-light {
+      background-color: $white !important;
+    }
+  }
+
   .no-outline {
     outline: none;
   }

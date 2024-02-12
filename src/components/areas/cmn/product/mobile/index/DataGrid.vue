@@ -192,7 +192,7 @@
     </q-badge>
   </div> -->
 
-  <div style="margin-top: 46px;">
+  <div class="q-mt-xl">
     <data-grid
       ref="dataGrid"
       dataSource="cmn/product/getGridData"

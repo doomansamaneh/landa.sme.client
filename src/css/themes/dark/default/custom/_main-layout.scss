@@ -18,17 +18,13 @@
 
   @media (max-width: $breakpoint-xs-max) {
     .main-layout {
-      padding: 24px;
-      -webkit-transition: padding 0.25s ease-in-out;
-      transition: padding 0.25s ease-in-out;
+      padding: 20px;
     }
   }
 
-  @media (max-width: $breakpoint-sm-max) {
+  @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {
     .main-layout {
       padding: 24px;
-      -webkit-transition: padding 0.25s ease-in-out;
-      transition: padding 0.25s ease-in-out;
     }
   }
 }

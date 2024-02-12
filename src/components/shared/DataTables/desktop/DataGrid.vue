@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow" :class="containerClass">
+  <div :style="$q.screen.sm ? 'margin-top:54px;' : 'margin-top:0;'" class="shadow" :class="containerClass">
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
