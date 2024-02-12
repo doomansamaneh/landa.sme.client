@@ -7,7 +7,8 @@
     emit-value
     map-options
     clear-icon="clear"
-    class="text-caption"
+    class="text-body2"
+    dropdown-icon="o_expand_more"
   />
 </template>
 

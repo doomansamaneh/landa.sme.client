@@ -19,6 +19,10 @@
     color: $black;
   }
 
+  .q-field__control::before {
+    border: 1px solid #00000047 !important;
+  }
+
   .searchbox .q-field__control {
     padding: 0 8px 0 12px !important;
   }

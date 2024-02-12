@@ -31,6 +31,7 @@
     </template>
 
     <q-menu
+      fit
       no-parent-event
       v-model="isPopupOpen"
       @show="onMenuShow"

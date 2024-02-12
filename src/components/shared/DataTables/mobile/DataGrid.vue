@@ -56,7 +56,7 @@
           :item="row"
         >
           <q-card
-            class="grid-body"
+            class="bordered grid-body"
             :class="tableStore.getRowClass(row)"
           >
             <slot

@@ -6,7 +6,7 @@
           <tr>
             <th
               v-if="numbered"
-              class="dense"
+              class="dense_"
             >#</th>
             <th
               v-if="multiSelect"
@@ -101,7 +101,7 @@
             >
               <td
                 v-if="numbered"
-                class="dense"
+                class="dense_"
               >
                 <small class="text-on-dark">{{ tableStore.rowIndex(index) }}</small>
               </td>
@@ -204,12 +204,13 @@
         show-page-count
       >
         <template #reload>
-          <q-icon
-            class="icon-hover dark-3 cursor-pointer q-pr-md"
-            size="sm"
-            name="o_refresh"
+          <q-btn
+            round
+            dense
+            unelevated
+            class="text-on-dark q-mr-md"
+            icon="o_refresh"
             @click="reloadData"
-            clickable
           >
             <q-tooltip
               class="custom-tooltip"
@@ -217,7 +218,7 @@
             >
               {{ $t("page.buttons.reload-data") }}
             </q-tooltip>
-          </q-icon>
+          </q-btn>
         </template>
       </page-bar>
     </div>
@@ -310,7 +311,7 @@ const cardDefaultClass = computed(() =>
 )
 
 const __containerClass = computed(() =>
-  `q-table__container q-table--${props.separator}-separator column no-wrap q-pt-md` +
+  `q-table__container q-table--${props.separator}-separator column no-wrap` +
   (props.grid === true ? " q-table--grid" : cardDefaultClass.value) +
   ($q.dark?.isActive === true ? " q-table--dark" : "") +
   (props.dense === true ? " q-table--dense" : "") +
