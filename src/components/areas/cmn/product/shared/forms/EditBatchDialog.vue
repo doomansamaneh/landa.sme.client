@@ -1,5 +1,7 @@
 <template>
   <q-dialog
+    v-if="$q.screen.xs"
+    maximized
     ref="dialogRef"
     transition-show="scale"
     transition-hide="scale"
@@ -7,7 +9,49 @@
     no-backdrop-dismiss
     @hide="onDialogHide"
   >
-    <q-card style="width: 600px; max-width: 80vw;">
+    <q-card class="no-border no-shadow">
+      <q-card-section class="row items-center q-pl-lg q-pr-md">
+        <div class="text-h6">
+          {{ $t("shared.labels.editBatch") }}
+        </div>
+        <q-space />
+        <q-btn
+          icon="close"
+          class="icon-hover dark-3"
+          flat
+          round
+          dense
+          v-close-popup
+        />
+      </q-card-section>
+
+      <q-card-section>
+        <edit-batch-form
+          ref="form"
+          :selectedIds="selectedIds"
+        />
+      </q-card-section>
+
+      <q-btn
+        @click="submitForm"
+        class="q-px-lg"
+      >
+        submit
+      </q-btn>
+    </q-card>
+
+  </q-dialog>
+
+  <q-dialog
+    v-if="$q.screen.gt.xs"
+    ref="dialogRef"
+    transition-show="scale"
+    transition-hide="scale"
+    transition-duration="600"
+    no-backdrop-dismiss
+    @hide="onDialogHide"
+  >
+    <q-card style="width: 800px; max-width: 80vw;">
       <q-card-section class="row items-center q-pl-lg q-pr-md">
         <div class="text-h6">
           {{ $t("shared.labels.editBatch") }}
@@ -52,6 +96,7 @@ const props = defineProps({
 })
 
 const form = ref(null)
+
 defineEmits([
   ...useDialogPluginComponent.emits
 ])
