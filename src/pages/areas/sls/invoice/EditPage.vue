@@ -12,7 +12,7 @@
 </template>
   
 <script setup>
-import Desktop from "src/components/areas/sls/invioce/desktop/forms/CreateForm.vue"
-import Mobile from "src/components/areas/sls/invioce/mobile/forms/CreateForm.vue"
+import Desktop from "src/components/areas/sls/invoice/desktop/forms/CreateForm.vue"
+import Mobile from "src/components/areas/sls/invoice/mobile/forms/CreateForm.vue"
 </script>
   

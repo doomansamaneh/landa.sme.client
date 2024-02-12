@@ -214,7 +214,7 @@ import { ref, computed, watchEffect } from "vue"
 import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice"
 import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
-import NoProductSelected from "src/components/areas/sls/invoice/create/mobile/NoProductSelected.vue"
+import NoProductSelected from "src/components/areas/sls/invoice/mobile/forms/NoProductSelected.vue"
 
 const createInvoice = useCreateInvoice()
 

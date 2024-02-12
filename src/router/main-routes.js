@@ -24,10 +24,10 @@ export default {
       path: "/crm/customer",
       component: ProfilePage
     },
-    {
-      path: "sls/quote",
-      component: () => import("pages/areas/sls/quote/IndexPage.vue"),
-    },
+    // {
+    //   path: "sls/quote",
+    //   component: () => import("pages/areas/sls/quote/IndexPage.vue"),
+    // },
     {
       path: "sls/invoice",
       component: () => import("pages/areas/sls/invoice/IndexPage.vue"),

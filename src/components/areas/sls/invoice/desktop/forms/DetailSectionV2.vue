@@ -212,9 +212,9 @@
 <script setup>
 import { ref, computed, watchEffect } from "vue"
 import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice"
-import CustomInput from "src/components/shared/Forms/CustomInput.vue"
-import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
-import NoProductSelected from "src/components/areas/sls/invoice/create/desktop/NoProductSelected.vue"
+import CustomInput from "src/components/shared/forms/CustomInput.vue"
+import VatLookup from "src/components/shared/lookups/VatLookup.vue"
+import NoProductSelected from "src/components/areas/sls/invoice/desktop/forms/NoProductSelected.vue"
 
 const createInvoice = useCreateInvoice()
 

@@ -320,9 +320,9 @@
 
 <script setup>
 import { ref, computed } from "vue"
-import ProductLookup from "src/components/shared/Lookups/ProductLookup.vue"
-import ProductUnitLookup from "src/components/shared/Lookups/ProductUnitLookup.vue"
-import VatLookup from "src/components/shared/Lookups/VatLookup.vue"
+import ProductLookup from "src/components/shared/lookups/ProductLookup.vue"
+import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue"
+import VatLookup from "src/components/shared/lookups/VatLookup.vue"
 
 const discountIsCash = ref(true)
 const generalDiscount = ref(true)

@@ -34,19 +34,19 @@ export default {
 
     {
       path: "sls/invoice/create",
-      component: () => import("pages/areas/sls/inoice/CreatePage.vue"),
+      component: () => import("pages/areas/sls/invoice/CreatePage.vue"),
     },
-    {
-      path: "sls/invoice/create/selectproduct",
-      component: () => import("src/components/areas/sls/invoice/create/mobile/SelectProduct.vue"),
-    },
-    {
-      path: "sls/invoice/create/selectproduct/productlookup",
-      component: () => import("src/components/areas/sls/invoice/create/mobile/ProductLookup.vue"),
-    },
+    // {
+    //   path: "sls/invoice/create/selectproduct",
+    //   component: () => import("src/components/areas/sls/invoice/create/mobile/SelectProduct.vue"),
+    // },
+    // {
+    //   path: "sls/invoice/create/selectproduct/productlookup",
+    //   component: () => import("src/components/areas/sls/invoice/create/mobile/ProductLookup.vue"),
+    // },
     {
       path: "sls/invoice/createV2",
-      component: () => import("pages/areas/sls/inoice/CreateV2Page.vue"),
+      component: () => import("pages/areas/sls/invoice/CreateV2Page.vue"),
     },
     {
       path: "sls/invoice/edit/:id",

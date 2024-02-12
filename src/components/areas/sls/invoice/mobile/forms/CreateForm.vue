@@ -8,7 +8,7 @@
         :label="tableStore?.pagination.value.totalItems"
         class="q-mr-sm bg-dark text-on-dark text-body2"
       />
-      <span class="text-h6">ایجاد فاکتور فروش</span>
+      <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">ایجاد فاکتور فروش</span>
       <q-btn
         padding="6px 12px"
         flat
@@ -22,32 +22,24 @@
     </template>
     <template #buttons>
       <q-btn
-        class="bg-primary text-white text-caption"
+        class="bg-primary text-white text-body2"
         padding="6px 12px"
         rounded
         no-caps
         unelevated
       >
-        <q-icon
-          name="o_add"
-          class="q-mr-xs"
-        />
         {{ $t("shared.labels.save") }}
       </q-btn>
       <q-btn
-        class="bordered-btn_bg-dark text-caption"
+        class="bordered-btn_bg-dark text-body2"
         rounded
         unelevated
       >
-        <q-icon
-          name="more_horiz"
-          class="q-mr-xs"
-        />
         {{ $t("shared.labels.more") }}
 
         <q-menu
           fit
-          :offset="[0, 20]"
+          :offset="[0, 10]"
         >
           <q-list
             dense
@@ -143,20 +135,21 @@
     </template>
   </tool-bar>
   <q-card
-    class="bordered q-pa-md fit"
-    style="margin-top: 54px;"
+    class="no-border no-shadow fit bg-transparent"
+    style="margin-top: 62px;"
   >
-    <q-card-section>
-      <master-section style="margin-bottom: 90px;" />
+    <q-card-section class="no-padding">
+      <master-section class="q-mb-lg" />
     </q-card-section>
-    <q-card-section>
+    <q-card-section class="no-padding">
       <detail-section />
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
+import { computed, ref } from "vue"
 import ToolBar from "src/components/shared/ToolBar.vue"
-import MasterSection from "src/components/areas/sls/invoice/desktop/forms/MasterSection.vue"
-import DetailSection from "src/components/areas/sls/invoice/desktop/forms/DetailSection.vue"
+import MasterSection from "src/components/areas/sls/invoice/mobile/forms/MasterSection.vue"
+import DetailSection from "src/components/areas/sls/invoice/mobile/forms/DetailSection.vue"
 </script>

@@ -158,8 +158,10 @@
                 </div>
                 <q-item-section class="q-pl-md">
                   <q-item-label class="text-caption">{{ product.title }}</q-item-label>
-                  <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">موجودی: </span>{{ product.stock }}</q-item-label>
-                  <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">قیمت فروش: </span>{{ product.price.toLocaleString() }}</q-item-label>
+                  <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">موجودی:
+                    </span>{{ product.stock }}</q-item-label>
+                  <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">قیمت فروش:
+                    </span>{{ product.price.toLocaleString() }}</q-item-label>
                 </q-item-section>
 
               </q-item>

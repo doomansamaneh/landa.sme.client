@@ -114,10 +114,10 @@
 
 <script setup>
 import { computed, ref } from "vue"
-import CustomerLookup from "src/components/shared/Lookups/CustomerLookup.vue"
-import ContractLookup from "src/components/shared/Lookups/ContractLookup.vue"
-import SaleTypeLookup from "src/components/shared/Lookups/SaleTypeLookup.vue"
-import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
+import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue"
+import ContractLookup from "src/components/shared/lookups/ContractLookup.vue"
+import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue"
+import dateTime from "src/components/shared/forms/DateTimePicker.vue"
 import DetailSectionV2 from "./DetailSectionV2.vue"
 
 const description = ref('')

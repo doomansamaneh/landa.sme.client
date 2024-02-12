@@ -10,7 +10,7 @@
 </template>
   
 <script setup>
-import Desktop from "src/components/areas/sls/invioce/shared/detail/InvoicePreview.vue"
-import Mobile from "src/components/areas/sls/invioce/shared/detail/InvoicePreview.vue"
+import Desktop from "src/components/areas/sls/invoice/shared/detail/InvoicePreview.vue"
+import Mobile from "src/components/areas/sls/invoice/shared/detail/InvoicePreview.vue"
 </script>
   
