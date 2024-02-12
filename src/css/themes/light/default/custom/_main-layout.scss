@@ -19,4 +19,12 @@
       transition: padding 0.25s ease-in-out;
     }
   }
+
+  @media (max-width: $breakpoint-sm-max) {
+    .main-layout {
+      padding: 24px;
+      -webkit-transition: padding 0.25s ease-in-out;
+      transition: padding 0.25s ease-in-out;
+    }
+  }
 }

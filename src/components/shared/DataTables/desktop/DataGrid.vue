@@ -1,5 +1,5 @@
 <template>
-  <div :class="containerClass">
+  <div class="shadow" :class="containerClass">
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>

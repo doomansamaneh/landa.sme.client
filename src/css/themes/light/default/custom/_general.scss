@@ -60,6 +60,10 @@
     border-radius: 4px;
   }
 
+  .shadow {
+    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important;
+  }
+
   .q-border-1 {
     border: 1px $primary solid;
   }

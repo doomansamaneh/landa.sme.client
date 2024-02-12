@@ -5,16 +5,15 @@
   >
   </tool-bar>
 
-  <div class="row items-center justify-center q-my-xl">
-    <q-card class="bordered full-width">
-      <q-card-section>
+  <div class="row items-center justify-center q-mt-xl">
+    <q-card class="full-width" :class="{ 'bordered': $q.screen.gt.xs, 'no-border no-shadow bg-transparent': $q.screen.lt.sm }">
+      <q-card-section :style="$q.screen.lt.sm ? 'margin-top:10px' : ''" :class="$q.screen.gt.xs ? 'q-pa-xl' : 'no-padding'">
         <q-form
           ref="form"
           autofocus
-          class="main-container q-gutter-y-md q-mt-lg"
         >
           <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12 col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 گروه کالا
               </q-item-label>
@@ -25,8 +24,8 @@
             </div>
           </div>
 
-          <div class="row q-col-gutter-md q-mb-xl">
-            <div class="col-2">
+          <div class="row q-col-gutter-md" :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'">
+            <div class="col-md-2 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 کد
               </q-item-label>
@@ -37,7 +36,7 @@
                 :rules="[(val) => val !== null && val !== '']"
               />
             </div>
-            <div class="col-2">
+            <div class="col-md-2 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 بارکد
               </q-item-label>
@@ -46,7 +45,7 @@
                 v-model="formStore.model.value.barcode"
               />
             </div>
-            <div class="col-2">
+            <div class="col-md-2 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 شناسه مالیاتی
               </q-item-label>
@@ -57,8 +56,8 @@
             </div>
           </div>
 
-          <div class="row q-mb-md">
-            <div class="col-6">
+          <div class="row q-col-gutter-md q-mb-md">
+            <div class="col-md-6 col-sm-12 col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 عنوان
               </q-item-label>
@@ -71,9 +70,9 @@
             </div>
           </div>
 
-          <div class="row q-col-gutter-md q-mb-xl">
+          <div class="row q-col-gutter-md" :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'">
 
-            <div class="col-3">
+            <div class="col-md-3 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 نوع
               </q-item-label>
@@ -84,7 +83,7 @@
               />
             </div>
 
-            <div class="col-3">
+            <div class="col-md-3 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 واحد سنجش
               </q-item-label>
@@ -97,7 +96,7 @@
           </div>
 
           <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-3">
+            <div class="col-md-3 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 قیمت خرید
               </q-item-label>
@@ -108,7 +107,7 @@
                 :rules="[(val) => val !== null && val !== '']"
               />
             </div>
-            <div class="col-3">
+            <div class="col-md-3 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 قیمت فروش
               </q-item-label>
@@ -121,8 +120,8 @@
             </div>
           </div>
 
-          <div class="row q-mb-md">
-            <div class="col-6">
+          <div class="row q-col-gutter-md q-mb-md">
+            <div class="col-md-6 col-sm-12 col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 شرح
               </q-item-label>
@@ -167,7 +166,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue"
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { productType } from "src/constants"
 import { helper } from "src/helpers"
 import { useProductModel } from "../../../_composables/useProductModel"
@@ -185,6 +184,7 @@ const props = defineProps({
 
 const form = ref(null)
 const route = useRoute()
+const router = useRouter()
 const formStore = useProductModel()
 
 onMounted(() => {
