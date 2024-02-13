@@ -62,7 +62,7 @@
 import { computed, onMounted, onUnmounted, ref } from "vue"
 import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid"
 import { sqlOperator, cancelStatus } from "src/constants"
-import { bus } from "src/helpers"
+// import { bus } from "src/helpers"
 
 import InvoiceGrid from "components/areas/sls/invoice/desktop/index/_DataTable.vue"
 import AdvancedSearch from "components/areas/sls/invoice/desktop/index/_AdvancedSearch.vue"
