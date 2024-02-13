@@ -66,7 +66,7 @@
   </q-dialog>
 
   <q-dialog
-    v-if="$q.screen.gt.xs"
+    v-else
     ref="dialogRef"
     transition-show="scale"
     transition-hide="scale"
@@ -74,7 +74,7 @@
     no-backdrop-dismiss
     @hide="onDialogHide"
   >
-    <q-card style="width: 800px; max-width: 80vw;">
+    <q-card style="width: 600px; max-width: 80vw;">
       <q-card-section class="row items-center q-pl-lg q-pr-md">
         <div class="text-h6">
           {{ $t("shared.labels.editBatch") }}

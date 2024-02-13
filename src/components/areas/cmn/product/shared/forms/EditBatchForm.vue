@@ -10,8 +10,11 @@
         گروه کالا
       </q-item-label>
 
-      <div class="row items-center" :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+      <div
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
           <product-group-lookup v-model:selectedId="formStore.editBatchModel.value.productGroup.fieldValue" />
         </div>
 
@@ -23,9 +26,7 @@
             label="اصلاح شود؟"
           />
         </div>
-
       </div>
-
 
     </div>
 
@@ -35,8 +36,11 @@
         شناسه مالیاتی
       </q-item-label>
 
-      <div class="row items-center" :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+      <div
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-input v-model="formStore.editBatchModel.value.taxCode.fieldValue" />
         </div>
 
@@ -60,8 +64,11 @@
         نوع
       </q-item-label>
 
-      <div class="row items-center" :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+      <div
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-select
             v-model="formStore.editBatchModel.value.productType.fieldValue"
             :options="helper.getEnumOptions(productType, 'productType')"
@@ -88,8 +95,11 @@
         واحد سنجش
       </q-item-label>
 
-      <div class="row items-center" :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+      <div
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
           <product-unit-lookup v-model:selectedId="formStore.editBatchModel.value.productUnit.fieldValue" />
         </div>
 
@@ -97,7 +107,7 @@
           <q-checkbox
             dense
             size="46px"
-            v-model="formStore.editBatchModel.value.productGroup.isModified"
+            v-model="formStore.editBatchModel.value.productUnit.isModified"
             label="اصلاح شود؟"
           />
         </div>
@@ -107,63 +117,87 @@
 
     </div>
 
-    <div class="column q-col-gutter-md">
+    <div class="q-mb-lg">
 
-      <div class="row">
-        <q-checkbox
-          class="col-md-2 col-sm-2 col-xs-4"
-          v-model="formStore.editBatchModel.value.isForPurchase.fieldValue"
-          true-value="1"
-          false-value="0"
-          label="برای خرید"
-          dense
-          size="46px"
-        />
-        <q-checkbox
-          class="col-md-2 col-sm-3 col-xs-6"
-          v-model="formStore.editBatchModel.value.isForPurchase.isModified"
-          label="اصلاح شود؟"
-          dense
-          size="46px"
-        />
+      <div
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-2 col-xs-4"
+            v-model="formStore.editBatchModel.value.isForPurchase.fieldValue"
+            true-value="1"
+            false-value="0"
+            label="برای خرید"
+            dense
+            size="46px"
+          />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-3 col-xs-6"
+            v-model="formStore.editBatchModel.value.isForPurchase.isModified"
+            label="اصلاح شود؟"
+            dense
+            size="46px"
+          />
+        </div>
       </div>
+    </div>
 
-      <div class="row">
-        <q-checkbox
-          class="col-md-2 col-sm-2 col-xs-4"
-          v-model="formStore.editBatchModel.value.isForSale.fieldValue"
-          true-value="1"
-          dense
-          size="46px"
-          false-value="0"
-          label="برای فروش"
-        />
-        <q-checkbox
-          class="col-md-2 col-sm-3 col-xs-6"
-          v-model="formStore.editBatchModel.value.isForSale.isModified"
-          label="اصلاح شود؟"
-          dense
-          size="46px"
-        />
+    <div class="q-mb-lg">
+      <div
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-2 col-xs-4"
+            v-model="formStore.editBatchModel.value.isForSale.fieldValue"
+            true-value="1"
+            dense
+            size="46px"
+            false-value="0"
+            label="برای فروش"
+          />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-3 col-xs-6"
+            v-model="formStore.editBatchModel.value.isForSale.isModified"
+            label="اصلاح شود؟"
+            dense
+            size="46px"
+          />
+        </div>
       </div>
-
-      <div class="row">
-        <q-checkbox
-          class="col-md-2 col-sm-2 col-xs-4"
-          v-model="formStore.editBatchModel.value.isActive.fieldValue"
-          true-value="1"
-          false-value="0"
-          label="فعال"
-          dense
-          size="46px"
-        />
-        <q-checkbox
-          class="col-md-2 col-sm-3 col-xs-6"
-          v-model="formStore.editBatchModel.value.isActive.isModified"
-          label="اصلاح شود؟"
-          dense
-          size="46px"
-        />
+    </div>
+    <div class="q-mb-lg">
+      <div
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-2 col-xs-4"
+            v-model="formStore.editBatchModel.value.isActive.fieldValue"
+            true-value="1"
+            false-value="0"
+            label="فعال"
+            dense
+            size="46px"
+          />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-3 col-xs-6"
+            v-model="formStore.editBatchModel.value.isActive.isModified"
+            label="اصلاح شود؟"
+            dense
+            size="46px"
+          />
+        </div>
       </div>
 
     </div>
@@ -175,7 +209,7 @@
 import { ref } from "vue"
 import { productType } from "src/constants"
 import { helper } from "src/helpers"
-import { useProductModel } from "../../../_composables/useProductModel"
+import { useProductModel } from "src/components/areas/cmn/_composables/useProductModel"
 
 import CustomInput from "src/components/shared/Forms/CustomInput.vue"
 import CustomSelect from "src/components/shared/Forms/CustomSelect.vue"
