@@ -1,6 +1,6 @@
 import { computed, ref } from "vue"
 import { sortOrder } from "src/constants/index"
-import { fetchWrapper } from "src/helpers"
+import { fetchWrapper, bus } from "src/helpers"
 import { useComposables } from "src/stores/useComposables"
 
 const state = {
@@ -45,6 +45,7 @@ export function useFiscalYear() {
         await fetchWrapper.post(`scr/userSetting/setFiscalYear/${year.id}`)
         setFiscalYear(year)
         composablesStore.resetAllComposables()
+        bus.emit("render-page")
     }
 
     const setFiscalYear = (year) => {

@@ -1,6 +1,6 @@
 <template>
     <desktop
-        v-if="$q.screen.gt.sm"
+        v-if="$q.screen.gt.xs"
         :grid-store="gridSotre"
         :title="$t('main-menu-items.Sls_Invoice_View')"
     />

@@ -4,7 +4,6 @@ import { defaultPageSize, sqlOperator } from "src/constants"
 export function useInvoiceGrid() {
     const state = {
         firstLoad: ref(false),
-        rows: ref([]),
         allSelectedIds: ref([]),
         activeRow: ref(null),
         summaryData: ref(null),

@@ -427,7 +427,10 @@
                 </div>
               </div>
 
-              <div class="row items-center q-px-sm">
+              <div
+                class="row items-center q-px-sm"
+                v-if="item.discountAmount"
+              >
                 <div class="col-3">
                   <span class="text-caption text-on-dark">تخفیف</span>
                 </div>
@@ -447,7 +450,10 @@
                 </div>
               </div>
 
-              <div class="row items-center q-px-sm">
+              <div
+                class="row items-center q-px-sm"
+                v-if="item.payedAmount"
+              >
                 <div class="col-3">
                   <span class="text-caption text-on-dark">دریافت شده</span>
                 </div>
@@ -457,7 +463,10 @@
                 </div>
               </div>
 
-              <div class="row items-center q-px-sm">
+              <div
+                class="row items-center q-px-sm"
+                v-if="item.remainedAmount"
+              >
                 <div class="col-3">
                   <span class="text-caption text-on-dark">مانده</span>
                 </div>
@@ -471,24 +480,17 @@
 
           <q-card-section class="q-pt-xs">
             <div class="row items-center q-gutter-sm">
-              <span
-                class="border-radius-sm bg-orange-2 text-caption text-red"
-                style="padding:2px 12px"
-              >
+              <span class="border-radius-sm bg-orange-2 text-caption text-red label">
                 {{ item.statusTitle }}
               </span>
 
-              <span
-                class="border-radius-sm bg-primary text-caption text-white"
-                style="padding:2px 12px"
-              >
+              <span class="border-radius-sm bg-primary text-caption text-white label">
                 {{ item.typeTitle }}
               </span>
 
               <span
                 v-if="item.contractTitle"
-                class="border-radius-sm bg-primary text-caption text-white"
-                style="padding:2px 12px"
+                class="border-radius-sm bg-primary text-caption text-white label"
               >
                 {{ item.contractTitle }}
               </span>
@@ -743,7 +745,7 @@ import { computed, ref, onMounted, onUnmounted } from "vue"
 
 import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid"
 import { sqlOperator } from "src/constants"
-import { helper } from "src/helpers"
+import { helper, bus } from "src/helpers"
 
 import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "components/shared/BottomSheet.vue"
@@ -765,6 +767,18 @@ const bottomSheetStatus = ref(false)
 const printDialog = ref(false)
 
 const selectedDateRange = ref({ value: "", label: "" });
+
+onMounted(() => {
+  bus.on('render-page', handleRender);
+})
+
+onUnmounted(() => {
+  bus.off('render-page', handleRender);
+})
+
+async function handleRender() {
+  await invoiceTable.value.loadData()
+}
 
 const selectedRowCount = computed(() => {
   return invoiceStore.state.allSelectedIds.value.length
@@ -788,9 +802,8 @@ const showSearchModal = () => {
   dialog.value = true
 }
 
-async function applySearch(model) {
-  await invoiceTable.value.loadData()
-  dialog.value = false
+async function reloadData(model) {
+  await invoiceTable.value.reloadData()
 }
 
 const shouldDisplaySelectedDateRange = computed(() => {
@@ -800,7 +813,8 @@ const shouldDisplaySelectedDateRange = computed(() => {
 const clearDateRangeFilter = () => {
   selectedDateRange.value = { value: '', label: '' };
   invoiceStore.setDefaultSearchModel();
-  applySearch();
+  dialog.value = false;
+  reloadData();
 };
 
 function selectRow(row, checked) {
@@ -839,5 +853,9 @@ const showPrintDialog = () => {
   font-size: 14px;
   letter-spacing: 0;
   color: #697588;
+}
+
+.label {
+  padding: 2px 12px;
 }
 </style>

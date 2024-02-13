@@ -17,6 +17,7 @@
     "apexcharts": "^3.44.0",
     "axios": "^1.6.2",
     "chart.js": "^4.4.0",
+    "mitt": "^3.0.1",
     "pinia": "^2.0.11",
     "postcss-rtlcss": "^3.7.2",
     "quasar": "^2.14.2",

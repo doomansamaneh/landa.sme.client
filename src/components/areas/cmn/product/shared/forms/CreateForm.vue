@@ -6,8 +6,14 @@
   </tool-bar>
 
   <div class="row items-center justify-center q-mt-xl">
-    <q-card class="full-width" :class="{ 'bordered': $q.screen.gt.xs, 'no-border no-shadow bg-transparent': $q.screen.lt.sm }">
-      <q-card-section :style="$q.screen.lt.sm ? 'margin-top:10px' : ''" :class="$q.screen.gt.xs ? 'q-pa-xl' : 'no-padding'">
+    <q-card
+      class="full-width"
+      :class="{ 'bordered': $q.screen.gt.xs, 'no-border no-shadow bg-transparent': $q.screen.lt.sm }"
+    >
+      <q-card-section
+        :style="$q.screen.lt.sm ? 'margin-top:10px' : ''"
+        :class="$q.screen.gt.xs ? 'q-pa-xl' : 'no-padding'"
+      >
         <q-form
           ref="form"
           autofocus
@@ -24,7 +30,10 @@
             </div>
           </div>
 
-          <div class="row q-col-gutter-md" :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'">
+          <div
+            class="row q-col-gutter-md"
+            :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'"
+          >
             <div class="col-md-2 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
                 کد
@@ -70,7 +79,10 @@
             </div>
           </div>
 
-          <div class="row q-col-gutter-md" :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'">
+          <div
+            class="row q-col-gutter-md"
+            :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'"
+          >
 
             <div class="col-md-3 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">

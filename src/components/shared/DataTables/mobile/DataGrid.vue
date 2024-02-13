@@ -47,7 +47,7 @@
 
   <div class="q-my-lg q-gutter-y-md">
     <template
-      v-for="(row, index) in gridStore?.rows?.value"
+      v-for="(row, index) in rows"
       :key="row.id"
     >
       <div @click="setActiveRow(row)">
@@ -217,9 +217,9 @@ let previousScrollPosition = 0
 
 const tableStore = useDataTable(props.dataSource, null, props.gridStore)
 
-const thisGridStore = computed(() => {
-  return props.gridStore
-})
+const thisGridStore = computed(() => props.gridStore)
+
+const rows = computed(() => thisGridStore.value?.rows?.value ?? tableStore.value?.rows?.value)
 
 const nextAction = computed(() =>
   tableStore.pagination.value.currentPage >= tableStore.pagination.value.totalPages
@@ -239,24 +239,21 @@ function getColText(row, col) {
   return ""
 }
 
-async function reloadData() {
-  await tableStore.reloadData()
-  if (thisGridStore.value.rows)
-    thisGridStore.value.rows.value = tableStore.rows.value
-  //thisGridStore.value.rows.value = [...thisGridStore.value.rows.value, ...tableStore.rows.value]
-}
-
 async function loadData() {
   await tableStore.loadData()
   if (thisGridStore.value.rows)
     thisGridStore.value.rows.value = tableStore.rows.value
 }
 
-async function resetPage() {
-  //tableStore.pagination.value.currentPage = 1
+async function reloadData() {
   await tableStore.reloadData()
   if (thisGridStore.value.rows)
     thisGridStore.value.rows.value = tableStore.rows.value
+}
+
+async function resetPage() {
+  //tableStore.pagination.value.currentPage = 1
+  await reloadData()
 }
 
 const handleScroll = () => {
@@ -306,7 +303,6 @@ async function next(e) {
 
 onMounted(() => {
   loadData()
-  reloadData()
   window.addEventListener('scroll', handleScroll)
 })
 
@@ -316,6 +312,7 @@ onUnmounted(() => {
 
 defineExpose({
   tableStore,
-  resetPage
+  resetPage,
+  loadData
 })
 </script>
