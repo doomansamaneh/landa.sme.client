@@ -3,6 +3,11 @@
   --q-secondary: #{$secondary};
   --q-accent: #{$accent};
   background-color: rgb(244, 245, 250);
+
+  @media (max-width: $breakpoint-xs-max) {
+    background-color: $white;
+  }
+
   @include q-avatar-light();
   @include q-breadcrumbs-light();
   @include q-card-light();

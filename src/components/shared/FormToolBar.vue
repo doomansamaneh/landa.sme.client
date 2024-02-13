@@ -1,12 +1,12 @@
 <template>
   <div>
     <q-page-sticky
-      class="z-1 bg-main q-py-md"
+      class="z-1 bg-main" :class="$q.screen.gt.xs ? 'q-py-md' : 'q-py-sm'"
       position="top"
       expand
     >
       <q-toolbar
-        :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 24px; padding-right: 24px;'"
+        :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 20px; padding-right: 20px;'"
       >
         <div class="q-gutter-x-sm">
           <slot name="buttons">

@@ -1,20 +1,23 @@
 <template>
-    <!-- <h6 @click="mobileView = !mobileView">mobile view toggle</h6> -->
+  <!-- <h6 @click="mobileView = !mobileView">mobile view toggle</h6> -->
 
-    <!-- v-if="$q.screen.gt.sm" -->
-    <!-- v-if="!mobileView" -->
-    <desktop
-        v-if="$q.screen.gt.sm"
-        :grid-store="gridSotre"
-        :title="$t('main-menu-items.Cmn_Product_View')"
-    />
-    <mobile
-        v-else
-        :grid-store="gridSotre"
-        :title="$t('main-menu-items.Cmn_Product_View')"
-    />
-</template>
+  <!-- v-if="$q.screen.gt.sm" -->
+  <!-- v-if="!mobileView" -->
+
+  <mobile
+    v-if="$q.screen.xs"
+    :grid-store="gridSotre"
+    :title="$t('main-menu-items.Cmn_Product_View')"
+  />
+
+  <desktop
+    v-else
+    :grid-store="gridSotre"
+    :title="$t('main-menu-items.Cmn_Product_View')"
+  />
   
+</template>
+
 <script setup>
 import { ref } from "vue"
 
@@ -27,4 +30,3 @@ const mobileView = ref(false)
 
 const gridSotre = useProductGrid()
 </script>
-  

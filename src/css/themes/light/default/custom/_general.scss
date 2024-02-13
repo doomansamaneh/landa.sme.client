@@ -60,6 +60,10 @@
     border-radius: 4px;
   }
 
+  .shadow {
+    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important;
+  }
+
   .q-border-1 {
     border: 1px $primary solid;
   }
@@ -153,6 +157,16 @@
 
   .bg-main {
     background-color: $main-color !important;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    .bg-main {
+      background-color: $white !important;
+    }
+
+    .bg-light {
+      background-color: $white !important;
+    }
   }
 
   .no-outline {
