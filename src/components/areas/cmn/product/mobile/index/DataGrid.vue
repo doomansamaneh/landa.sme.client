@@ -43,40 +43,80 @@
       numbered
     >
       <template #body="{ item }">
-        <q-card class="bordered">
+        <q-card
+          class="bordered"
+          :class="tableStore?.getRowClass(item)"
+          v-touch-hold.mouse="() => selectCard(item)"
+        >
+
           <q-card-section>
+            <div class="row items-center justify-center">
+              <q-btn
+                v-if="!item.selected"
+                round
+                unelevated
+                class="no-pointer-events"
+              >
+
+                <q-avatar
+                  size="56px"
+                  text-color="white"
+                  :style="{ backgroundColor: helper.generateDarkAvatarColor(item.title) }"
+                >
+                  <div class="char text-body1 text-bold">
+                    {{ helper.getFirstChar(item.title) }}
+                  </div>
+                </q-avatar>
+              </q-btn>
+              <q-btn
+                round
+                unelevated
+                class="no-pointer-events"
+                v-else
+              >
+                <q-avatar
+                  size="50px"
+                  color="primary"
+                  text-color="white"
+                >
+                  <q-icon
+                    name="o_done"
+                    size="md"
+                  />
+                </q-avatar>
+              </q-btn>
+            </div>
+
             <div class="row justify-between items-center">
 
-              <div class="col-8 row items-center">
+              <div class="col row items-center">
                 <span class="text-caption text-on-dark">{{ item.productGroupTitle }}</span>
               </div>
 
               <div class="col row justify-end items-center q-gutter-xs">
                 <span class="text-caption text-on-dark">{{ item.code }}</span>
               </div>
-
             </div>
-            <q-separator class="q-mt-xs" />
+          </q-card-section>
 
-            <div class="column q-gutter-sm q-my-md">
+          <q-separator />
 
-              <div class="row items-center border-radius-sm">
+          <q-card-section>
+            <div class="column q-gutter-sm">
 
+              <div class="row items-center q-px-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">عنوان</span>
                 </div>
-
                 <div class="col">
                   <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.title }}</span>
                 </div>
               </div>
 
-              <div class="row">
-
+              <div class="row items-center q-px-sm">
                 <div class="col-3">
                   <span class="text-caption text-on-dark">وضعیت</span>
                 </div>
-
                 <div class="col">
                   <q-btn
                     v-if="item.isActive"
@@ -84,7 +124,7 @@
                     unelevated
                     dense
                     class="no-pointer-events"
-                    size="10px"
+                    size="8px"
                     color="primary"
                     icon="o_done"
                   />
@@ -94,17 +134,17 @@
                     unelevated
                     dense
                     class="no-pointer-events"
-                    size="10px"
+                    size="8px"
                     color="negative"
                     icon="o_close"
                   />
                 </div>
-
               </div>
 
             </div>
-
           </q-card-section>
+
+          <q-separator />
 
           <q-card-actions
             class="q-pa-md"
@@ -228,7 +268,7 @@
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body3 no-letter-spacing">
             {{ $t("shared.labels.edit") }}
           </q-item-section>
         </q-item>
@@ -244,7 +284,7 @@
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body3 no-letter-spacing">
             {{ $t("shared.labels.copy") }}
           </q-item-section>
         </q-item>
@@ -262,7 +302,7 @@
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body3 no-letter-spacing">
             {{ $t("shared.labels.delete") }}
           </q-item-section>
         </q-item>
@@ -275,6 +315,7 @@
 import { ref, computed } from "vue"
 import { useQuasar } from "quasar"
 import { useFormActions } from "src/composables/useFormActions"
+import { helper } from "src/helpers"
 
 import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
@@ -310,6 +351,21 @@ async function loadData() {
 async function reloadData() {
   await tableStore?.value.reloadData()
 }
+
+function setActiveRow(row) {
+  tableStore.value.setActiveRow(row)
+}
+
+function selectCard(row) {
+  setActiveRow(row)
+  selectRow(row, !row.selected)
+}
+
+function selectRow(row, checked) {
+  tableStore.value.selectRow(row, checked)
+  emitselectedRows()
+}
+
 
 function editBatch() {
   $q.dialog({

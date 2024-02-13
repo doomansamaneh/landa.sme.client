@@ -435,8 +435,8 @@
                   <span class="text-caption text-on-dark">تخفیف</span>
                 </div>
                 <div class="col">
-                  <span
-                    class="ellipsis-2-lines text-caption text-on-dark">{{ item.discountAmount.toLocaleString() }}</span>
+                  <span class="ellipsis-2-lines text-caption text-on-dark">{{ item.discountAmount.toLocaleString()
+                  }}</span>
                 </div>
               </div>
 
@@ -445,8 +445,8 @@
                   <span class="text-caption text-on-dark">جمع کل</span>
                 </div>
                 <div class="col">
-                  <span
-                    class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.amount.toLocaleString() }}</span>
+                  <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.amount.toLocaleString()
+                  }}</span>
                 </div>
               </div>
 
@@ -458,8 +458,8 @@
                   <span class="text-caption text-on-dark">دریافت شده</span>
                 </div>
                 <div class="col">
-                  <span
-                    class="ellipsis-2-lines text-caption text-caption text-on-dark">{{ item.payedAmount.toLocaleString() }}</span>
+                  <span class="ellipsis-2-lines text-caption text-caption text-on-dark">{{
+                    item.payedAmount.toLocaleString() }}</span>
                 </div>
               </div>
 
@@ -471,8 +471,8 @@
                   <span class="text-caption text-on-dark">مانده</span>
                 </div>
                 <div class="col">
-                  <span
-                    class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.remainedAmount.toLocaleString() }}</span>
+                  <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{
+                    item.remainedAmount.toLocaleString() }}</span>
                 </div>
               </div>
             </div>
@@ -745,7 +745,8 @@ import { computed, ref, onMounted, onUnmounted } from "vue"
 
 import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid"
 import { sqlOperator } from "src/constants"
-import { helper, bus } from "src/helpers"
+import { helper } from "src/helpers"
+// bus
 
 import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "components/shared/BottomSheet.vue"
@@ -768,13 +769,13 @@ const printDialog = ref(false)
 
 const selectedDateRange = ref({ value: "", label: "" });
 
-onMounted(() => {
-  bus.on('render-page', handleRender);
-})
+// onMounted(() => {
+//   bus.on('render-page', handleRender);
+// })
 
-onUnmounted(() => {
-  bus.off('render-page', handleRender);
-})
+// onUnmounted(() => {
+//   bus.off('render-page', handleRender);
+// })
 
 async function handleRender() {
   await invoiceTable.value.loadData()

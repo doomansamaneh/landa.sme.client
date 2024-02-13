@@ -102,13 +102,13 @@ async function reloadData(model) {
   await tableStore.value?.reloadData()
 }
 
-onMounted(() => {
-  bus.on('render-page', handleRender);
-})
+// onMounted(() => {
+//   bus.on('render-page', handleRender);
+// })
 
-onUnmounted(() => {
-  bus.off('render-page', handleRender);
-})
+// onUnmounted(() => {
+//   bus.off('render-page', handleRender);
+// })
 
 async function handleRender() {
   await tableStore.value?.loadData()
