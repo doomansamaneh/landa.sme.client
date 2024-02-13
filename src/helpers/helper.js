@@ -33,8 +33,10 @@ export const helper = {
   generateDarkAvatarColor(input) {
     // Simple hash function to generate a color based on the input
     let hash = 0;
-    for (let i = 0; i < input.length; i++) {
-      hash = input.charCodeAt(i) + ((hash << 5) - hash);
+    if (input) {
+      for (let i = 0; i < input.length; i++) {
+        hash = input.charCodeAt(i) + ((hash << 5) - hash);
+      }
     }
 
     // Convert the hash to a color in hexadecimal format

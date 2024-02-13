@@ -144,7 +144,7 @@
       @click="previous"
     >
       <span class="text-body2 no-letter-spacing">
-        قبلی
+        {{ $t("shares.labels.previous") }}
       </span>
     </q-btn>
     <q-btn
@@ -158,7 +158,7 @@
       @click="next"
     >
       <span class="text-body2 no-letter-spacing">
-        بعدی
+        {{ $t("shares.labels.next") }}
       </span>
     </q-btn>
   </div>

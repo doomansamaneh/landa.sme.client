@@ -1,5 +1,9 @@
 <template>
-  <div :style="$q.screen.sm ? 'margin-top:54px;' : 'margin-top:0;'" class="shadow" :class="containerClass">
+  <div
+    :style="$q.screen.sm ? 'margin-top:54px;' : 'margin-top:0;'"
+    class="shadow"
+    :class="containerClass"
+  >
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
@@ -216,7 +220,7 @@
               class="custom-tooltip"
               :delay="600"
             >
-              {{ $t("page.buttons.reload-data") }}
+              {{ $t("shared.labels.refresh") }}
             </q-tooltip>
           </q-btn>
         </template>

@@ -70,10 +70,10 @@
 
             <q-avatar
               size="52px"
-              color="primary"
               text-color="white"
               square
               class="primary-shadow border-radius-xs"
+              :style="{ backgroundColor: helper.generateDarkAvatarColor(row.id) }"
               v-else
             >
               <div class="char text-body1 text-bold">
@@ -150,7 +150,7 @@
           class="primary-shadow q-ma-lg bg-primary text-white"
         >
           <span class="text-body3">
-            $t{{ sa }}
+            {{ $t("shared.labels.loadMore") }} ...
           </span>
         </q-btn>
       </div>

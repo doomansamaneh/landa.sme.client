@@ -58,6 +58,15 @@
           />
         </template>
 
+        <template #cell-code="{ item }">
+          {{ item.code }}
+          <div v-if="item.taxCode">
+            <small class="caption-on-dark">
+              tax: {{ item.taxCode }}
+            </small>
+          </div>
+        </template>
+
         <template #cell-isActive="{ item }">
           <q-btn
             v-if="item.isActive"
