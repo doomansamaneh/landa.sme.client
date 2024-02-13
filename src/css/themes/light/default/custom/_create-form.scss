@@ -1,0 +1,31 @@
+@mixin create-form-light {
+  .form-container {
+    margin-top: 48px;
+
+    .q-card {
+      border: 1px solid #00000024 !important;
+      box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important;
+    }
+
+    .q-card__section {
+      padding: 48px !important;
+    }
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    .form-container {
+      margin-top: 56px;
+
+      .q-card {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+      }
+
+      .q-card__section {
+        margin-top: 10px !important;
+        padding: 0 !important;
+      }
+    }
+  }
+}

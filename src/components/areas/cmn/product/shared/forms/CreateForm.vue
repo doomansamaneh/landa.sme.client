@@ -5,15 +5,9 @@
   >
   </tool-bar>
 
-  <div class="form q-mt-xl">
-    <q-card
-      class="full-width"
-      :class="{ 'bordered': $q.screen.gt.xs, 'no-border no-shadow bg-transparent': $q.screen.lt.sm }"
-    >
-      <q-card-section
-        :style="$q.screen.lt.sm ? 'margin-top:10px' : ''"
-        :class="$q.screen.gt.xs ? 'q-pa-xl' : 'no-padding'"
-      >
+  <div class="form-container">
+    <q-card>
+      <q-card-section>
         <q-form
           ref="form"
           autofocus
