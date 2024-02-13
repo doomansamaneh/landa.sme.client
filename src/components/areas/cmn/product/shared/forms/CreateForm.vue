@@ -5,15 +5,9 @@
   >
   </tool-bar>
 
-  <div class="row items-center justify-center q-mt-xl">
-    <q-card
-      class="full-width"
-      :class="{ 'bordered': $q.screen.gt.xs, 'no-border no-shadow bg-transparent': $q.screen.lt.sm }"
-    >
-      <q-card-section
-        :style="$q.screen.lt.sm ? 'margin-top:10px' : ''"
-        :class="$q.screen.gt.xs ? 'q-pa-xl' : 'no-padding'"
-      >
+  <div class="form-container">
+    <q-card>
+      <q-card-section>
         <q-form
           ref="form"
           autofocus
@@ -181,7 +175,7 @@ import { onMounted, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { productType } from "src/constants"
 import { helper } from "src/helpers"
-import { useProductModel } from "../../../_composables/useProductModel"
+import { useProductModel } from "src/components/areas/cmn/_composables/useProductModel"
 
 import ToolBar from "src/components/shared/FormToolBar.vue"
 import CustomInput from "src/components/shared/forms/CustomInput.vue"

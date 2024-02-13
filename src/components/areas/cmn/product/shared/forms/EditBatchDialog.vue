@@ -3,14 +3,17 @@
     v-if="$q.screen.xs"
     maximized
     ref="dialogRef"
-    transition-show="scale"
-    transition-hide="scale"
+    transition-show="slide-up"
+    transition-hide="slide-down"
     transition-duration="600"
     no-backdrop-dismiss
     @hide="onDialogHide"
   >
     <q-card class="no-border no-shadow">
-      <q-card-section class="row items-center q-pl-lg q-pr-md">
+      <q-card-section
+        class="row items-center q-pr-md"
+        :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-md'"
+      >
         <div class="text-h6">
           {{ $t("shared.labels.editBatch") }}
         </div>
@@ -30,14 +33,34 @@
           ref="form"
           :selectedIds="selectedIds"
         />
+
       </q-card-section>
 
-      <q-btn
-        @click="submitForm"
-        class="q-px-lg"
-      >
-        submit
-      </q-btn>
+      <q-card-actions class="q-pa-md bg-on-dark">
+        <div class="q-gutter-sm bg-on-dark">
+          <q-btn
+            @click="submitForm"
+            class="text-body2 no-letter-spacing"
+            color="primary"
+            unelevated
+            no-caps
+            padding="8px 16px"
+          >
+            {{ $t("shared.labels.save") }}
+          </q-btn>
+
+          <q-btn
+            flat
+            size="md"
+            v-close-popup
+            no-caps
+            padding="8px 16px"
+          >
+            {{ $t("shared.labels.cancel") }}
+          </q-btn>
+        </div>
+      </q-card-actions>
+
     </q-card>
 
   </q-dialog>
@@ -67,7 +90,7 @@
         />
       </q-card-section>
 
-      <q-card-section>
+      <q-card-section class="q-pa-lg">
         <edit-batch-form
           ref="form"
           :selectedIds="selectedIds"
