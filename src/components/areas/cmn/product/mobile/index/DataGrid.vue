@@ -1,27 +1,189 @@
 <template>
-  <tool-bar
-    :table-store="dataGrid?.tableStore"
-    :crud-store="crudStore"
-    :title="title"
-    base-route="/cmn/product"
-    activation
+  <q-page-sticky
+    class="z-1 bg-main"
+    position="top"
+    expand
   >
-    <template #buttons-batch-action>
-      <q-btn
-        class="text-caption"
-        rounded
-        unelevated
-        no-caps
-        @click="editBatch"
-      >
-        <q-icon
-          name="o_edit"
-          class="q-mr-xs"
-        />
-        {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} مورد)
-      </q-btn>
-    </template>
-  </tool-bar>
+    <q-toolbar
+      class="q-py-md text-on-dark rtl"
+      :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 24px; padding-right: 24px;'"
+    >
+      <div class="col-3">
+        <div class="row items-center justify-between">
+          <q-btn
+            class="no-padding"
+            flat
+            @click="$router.go(-1)"
+          >
+            <q-icon
+              name="arrow_back"
+              size="sm"
+            />
+          </q-btn>
+
+          <!-- <span
+            v-if="selectedRowCount"
+            class="text-on-dark text-body1 text-bold"
+          >
+            {{ selectedRowCount }}
+          </span> -->
+        </div>
+      </div>
+      <div class="col">
+
+        <div class="row justify-end items-center">
+
+          <div
+            class="row items-center"
+            v-if="!tableStore?.activeRow?.value"
+          >
+            <q-btn
+              rounded
+              outline
+              dense
+              unelevated
+              class="q-px-sm q-py-xs bg-dark text-on-dark text-caption-sm text-bold no-pointer-events"
+            >
+              {{ tableStore?.pagination.value.totalItems }}
+            </q-btn>
+            <span
+              class="q-mr-sm"
+              :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
+            >{{ title }}</span>
+          </div>
+
+          <div
+            v-if="tableStore?.activeRow?.value"
+            class="row items-center q-gutter-x-sm"
+          >
+            <q-btn
+              round
+              dense
+              unelevated
+            >
+              <q-icon name="more_horiz" />
+
+              <q-menu cover>
+                <q-list
+                  dense
+                  padding
+                  style="width:200px"
+                >
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_refresh"
+                            size="14px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">تازه‌سازی</div>
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_close"
+                            size="14px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">غیر‌فعال‌سازی</div>
+                    </q-item-section>
+                  </q-item>
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_check"
+                            size="14px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">فعال سازی</div>
+                    </q-item-section>
+                  </q-item>
+                  <q-separator />
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
+                    <div class="q-py-sm">
+                      <q-item-section avatar>
+                        <q-avatar
+                          class="bg-on-dark"
+                          size="sm"
+                        ><q-icon
+                            name="o_download"
+                            size="16px"
+                          /></q-avatar>
+                      </q-item-section>
+                    </div>
+                    <q-item-section>
+                      <div class="text-caption">تبدیل به اکسل</div>
+                    </q-item-section>
+                  </q-item>
+                </q-list>
+              </q-menu>
+            </q-btn>
+            <q-btn
+              dense
+              round
+              flat
+            >
+              <q-icon
+                name="o_delete"
+                size="sm"
+              />
+            </q-btn>
+
+            <q-btn
+              dense
+              round
+              flat
+            >
+              <q-icon
+                name="o_edit"
+                size="sm"
+              />
+            </q-btn>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </q-toolbar>
+  </q-page-sticky>
   <!-- <div class="text-body1 no-letter-spacing">
     {{ title }}
     <q-badge
@@ -123,9 +285,9 @@
                     round
                     unelevated
                     dense
-                    class="no-pointer-events"
+                    class="green-shadow no-pointer-events"
                     size="8px"
-                    color="primary"
+                    color="green-8"
                     icon="o_done"
                   />
                   <q-btn
@@ -133,9 +295,9 @@
                     round
                     unelevated
                     dense
-                    class="no-pointer-events"
+                    class="green-shadow no-pointer-events"
                     size="8px"
-                    color="negative"
+                    color="green-8"
                     icon="o_close"
                   />
                 </div>
@@ -363,7 +525,7 @@ function selectCard(row) {
 
 function selectRow(row, checked) {
   tableStore.value.selectRow(row, checked)
-  emitselectedRows()
+  // emitselectedRows()
 }
 
 

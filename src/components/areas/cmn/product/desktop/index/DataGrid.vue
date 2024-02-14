@@ -75,8 +75,8 @@
             size="10px"
             unelevated
             icon="o_done"
-            color="primary"
-            class="primary-shadow no-pointer-events"
+            color="green-8"
+            class="green-shadow no-pointer-events"
           />
           <q-btn
             v-else
@@ -85,8 +85,8 @@
             size="10px"
             unelevated
             icon="o_close"
-            color="negative"
-            class="red-shadow no-pointer-events"
+            color="green-8"
+            class="green-shadow no-pointer-events"
           />
         </template>
 
