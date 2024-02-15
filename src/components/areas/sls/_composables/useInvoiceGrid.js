@@ -3,7 +3,7 @@ import { useComposables } from "src/stores/useComposables"
 
 import { ref } from "vue"
 
-const rows = ref([])
+//const rows = ref([])
 
 const state = {
     firstLoad: ref(false),
@@ -123,7 +123,7 @@ export function useInvoiceGrid(defaultFilters) {
     }
 
     return {
-        rows,
+        //rows,
         columns,
         pagination,
         state,

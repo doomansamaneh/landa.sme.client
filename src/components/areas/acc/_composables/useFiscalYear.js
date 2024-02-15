@@ -1,7 +1,6 @@
 import { computed, ref } from "vue"
 import { sortOrder } from "src/constants/index"
-// bus
-import { fetchWrapper} from "src/helpers"
+import { fetchWrapper, bus } from "src/helpers"
 import { useComposables } from "src/stores/useComposables"
 
 const state = {

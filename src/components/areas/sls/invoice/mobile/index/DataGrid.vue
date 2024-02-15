@@ -745,8 +745,7 @@ import { computed, ref, onMounted, onUnmounted } from "vue"
 
 import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid"
 import { sqlOperator } from "src/constants"
-import { helper } from "src/helpers"
-// bus
+import { helper, bus } from "src/helpers"
 
 import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue"
 import BottomSheet from "components/shared/BottomSheet.vue"
@@ -769,13 +768,13 @@ const printDialog = ref(false)
 
 const selectedDateRange = ref({ value: "", label: "" });
 
-// onMounted(() => {
-//   bus.on('render-page', handleRender);
-// })
+onMounted(() => {
+  bus.on('render-page', handleRender);
+})
 
-// onUnmounted(() => {
-//   bus.off('render-page', handleRender);
-// })
+onUnmounted(() => {
+  bus.off('render-page', handleRender);
+})
 
 async function handleRender() {
   await invoiceTable.value.loadData()

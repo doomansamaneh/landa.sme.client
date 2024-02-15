@@ -2,7 +2,7 @@ import { ref } from "vue"
 import { defaultPageSize, sortOrder, sqlOperator } from "src/constants";
 import { useComposables } from "src/stores/useComposables"
 
-const rows = ref([])
+//const rows = ref([])
 
 const state = {
     firstLoad: ref(false),
@@ -87,7 +87,7 @@ export function useProductGrid() {
     })
 
     return {
-        rows,
+        //rows,
         columns,
         pagination,
         state,

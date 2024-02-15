@@ -47,7 +47,7 @@
 
   <div class="q-my-lg q-gutter-y-md">
     <template
-      v-for="(row, index) in rows"
+      v-for="(row, index) in rows?.value"
       :key="row.id"
     >
       <div @click="setActiveRow(row)">
@@ -144,7 +144,7 @@
       @click="previous"
     >
       <span class="text-body2 no-letter-spacing">
-        {{ $t("shares.labels.previous") }}
+        {{ $t("shared.labels.previous") }}
       </span>
     </q-btn>
     <q-btn
@@ -158,7 +158,7 @@
       @click="next"
     >
       <span class="text-body2 no-letter-spacing">
-        {{ $t("shares.labels.next") }}
+        {{ $t("shared.labels.next") }}
       </span>
     </q-btn>
   </div>
@@ -203,6 +203,7 @@ import { dataViewDefaultPageSize } from "src/constants"
 
 const props = defineProps({
   dataSource: String,
+  columns: Array,
   createUrl: String,
   gridStore: Object,
   numbered: Boolean,
@@ -215,11 +216,16 @@ const startIndex = ref(1)
 const showCreate = ref(true)
 let previousScrollPosition = 0
 
-const tableStore = useDataTable(props.dataSource, null, props.gridStore)
+const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
 
 const thisGridStore = computed(() => props.gridStore)
 
-const rows = computed(() => thisGridStore.value?.rows?.value ?? tableStore.value?.rows?.value)
+const rows = computed(() => {
+  if (thisGridStore.value?.rows) {
+    return thisGridStore.value.rows
+  }
+  return tableStore.rows
+})
 
 const nextAction = computed(() =>
   tableStore.pagination.value.currentPage >= tableStore.pagination.value.totalPages
@@ -241,13 +247,14 @@ function getColText(row, col) {
 
 async function loadData() {
   await tableStore.loadData()
-  if (thisGridStore.value.rows)
+  if (thisGridStore.value?.rows) {
     thisGridStore.value.rows.value = tableStore.rows.value
+  }
 }
 
 async function reloadData() {
   await tableStore.reloadData()
-  if (thisGridStore.value.rows)
+  if (thisGridStore.value?.rows)
     thisGridStore.value.rows.value = tableStore.rows.value
 }
 
