@@ -112,6 +112,13 @@
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
               />
+              <q-checkbox
+                class="q-mt-sm"
+                dense
+                size="48px"
+                v-model="formStore.model.value.isForPurchase"
+                label="برای خرید"
+              />
             </div>
             <div class="col-md-3 col-sm col-xs-12">
               <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
@@ -122,6 +129,13 @@
                 v-model="formStore.model.value.price"
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
+              />
+              <q-checkbox
+                class="q-mt-sm"
+                dense
+                size="48px"
+                v-model="formStore.model.value.isForSale"
+                label="برای فروش"
               />
             </div>
           </div>
@@ -141,7 +155,7 @@
 
           <div class="row q-gutter-md q-mb-md">
 
-            <q-checkbox
+            <!-- <q-checkbox
               dense
               size="48px"
               v-model="formStore.model.value.isForPurchase"
@@ -153,7 +167,7 @@
               size="48px"
               v-model="formStore.model.value.isForSale"
               label="برای فروش"
-            />
+            /> -->
 
             <q-checkbox
               dense
@@ -193,6 +207,7 @@ const route = useRoute()
 const router = useRouter()
 const formStore = useProductModel()
 
+const test = 900000
 onMounted(() => {
   formStore.crudStore.getById(route.params.id)
 })
