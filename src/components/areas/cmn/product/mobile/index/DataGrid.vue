@@ -33,7 +33,7 @@
     </template>
   </tool-bar>
 
-  <div class="q-mt-xl">
+  <div style="margin-top: 56px;">
     <data-grid
       ref="dataGrid"
       dataSource="cmn/product/getGridData"
@@ -46,7 +46,7 @@
         <q-card
           class="bordered"
           :class="tableStore?.getRowClass(item)"
-          v-touch-hold.mouse="() => selectCard(item)"
+          v-touch-hold.capture="() => selectCard(item)"
         >
 
           <q-card-section>
@@ -372,5 +372,4 @@ function editBatch() {
     await reloadData()
   })
 }
-
 </script>
