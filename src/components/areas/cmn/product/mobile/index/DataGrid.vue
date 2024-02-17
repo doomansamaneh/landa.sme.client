@@ -361,6 +361,27 @@ function selectRow(row, checked) {
   // emitselectedRows()
 }
 
+// function setActiveRow(row) {
+//   tableStore.value.setActiveRow(row)
+// }
+
+// function selectCard(row) {
+//   if (tableStore.value?.selectedRows.value.length > 1) {
+//     selectCard(row)
+//     selectRow(row, !row.selected)
+//   } else {
+//     setActiveRow(row)
+//   }
+// }
+
+// const handleSelect = (row) => {
+//   if (tableStore.value?.selectedRows?.value.length > 1) {
+//     selectCard(row)
+//     setActiveRow(row)
+//   } else {
+//     setActiveRow(row)
+//   }
+// }
 
 function editBatch() {
   $q.dialog({
