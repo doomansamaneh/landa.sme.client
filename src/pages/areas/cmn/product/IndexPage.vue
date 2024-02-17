@@ -5,6 +5,11 @@
   <!-- v-if="!mobileView" -->
 
   <mobile
+    :grid-store="gridSotre"
+    :title="$t('main-menu-items.Cmn_Product_View')"
+  />
+
+  <!-- <mobile
     v-if="$q.screen.xs"
     :grid-store="gridSotre"
     :title="$t('main-menu-items.Cmn_Product_View')"
@@ -14,8 +19,7 @@
     v-else
     :grid-store="gridSotre"
     :title="$t('main-menu-items.Cmn_Product_View')"
-  />
-  
+  /> -->
 </template>
 
 <script setup>
