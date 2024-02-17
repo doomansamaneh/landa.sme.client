@@ -190,7 +190,7 @@
         </div>
 
         <div
-          v-if="selectedIds?.length > 0"
+          v-if="tableStore?.activeRow?.value != null"
           class="q-space"
         />
 
