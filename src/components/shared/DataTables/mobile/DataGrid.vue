@@ -50,7 +50,10 @@
       v-for="(row, index) in rows?.value"
       :key="row.id"
     >
-      <div @click="setActiveRow(row)">
+      <div
+        @click="setActiveRow(row)"
+        v-touch-hold.capture="() => selectRow(row)"
+      >
         <slot
           name="body"
           :item="row"
@@ -91,7 +94,13 @@
                 </div>
               </slot>
             </q-card-section>
-            <q-card-actions class="dark-1">
+
+            <q-separator />
+
+            <q-card-actions
+              class="dark-1_ q-pa-md"
+              align="between"
+            >
               <slot
                 name="row-actions"
                 :item="row"
@@ -274,8 +283,8 @@ function selectAll(checked) {
   emitselectedRows()
 }
 
-function selectRow(row, checked) {
-  tableStore.selectRow(row, checked)
+function selectRow(row) {
+  tableStore.selectRow(row, !row.selected)
   emitselectedRows()
 }
 
@@ -284,7 +293,16 @@ function emitselectedRows() {
 }
 
 function setActiveRow(row) {
-  tableStore.setActiveRow(row)
+  if (tableStore.selectedRows.value.length > 0) {
+    selectRow(row)
+    tableStore.setActiveRow(row)
+  }
+  else {
+    if (tableStore.activeRow.value === row) {
+      tableStore.setActiveRow(null)
+    }
+    else tableStore.setActiveRow(row)
+  }
   emit("active-row-changed", row)
 }
 

@@ -5,19 +5,19 @@
   <!-- v-if="!mobileView" -->
 
   <!-- <mobile
-    :grid-store="gridSotre"
+    :grid-store="gridStore"
     :title="$t('main-menu-items.Cmn_Product_View')"
   /> -->
 
   <mobile
     v-if="$q.screen.xs"
-    :grid-store="gridSotre"
+    :grid-store="gridStore"
     :title="$t('main-menu-items.Cmn_Product_View')"
   />
 
   <desktop
     v-else
-    :grid-store="gridSotre"
+    :grid-store="gridStore"
     :title="$t('main-menu-items.Cmn_Product_View')"
   />
 </template>
@@ -32,5 +32,5 @@ import { useProductGrid } from "src/components/areas/cmn/_composables/useProduct
 
 const mobileView = ref(false)
 
-const gridSotre = useProductGrid()
+const gridStore = useProductGrid()
 </script>

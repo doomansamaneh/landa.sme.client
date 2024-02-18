@@ -8,15 +8,15 @@
     :legend="legend"
     :title="title"
     :class="direction"
-    type="line"
+    type="area"
     class="line-chart"
   />
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import { useQuasar } from 'quasar'
-import { fetchWrapper } from 'src/helpers'
+import { fetchWrapper, bus } from 'src/helpers'
 
 import Chart from 'vue3-apexcharts'
 //import Chart from 'src/components/shared/charts/ChartView.vue';
@@ -27,77 +27,6 @@ const props = defineProps(['height', 'legend', 'title'])
 const options = ref(null)
 
 const data = ref([])
-
-const series_ = [
-  {
-    "name": "income",
-    "data": [
-      3355333334,
-      2867500000,
-      602800000,
-      4856550000,
-      0,
-      1536232.56,
-      0,
-      0,
-      5605595885,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "name": "expense",
-    "data": [
-      2723758560,
-      2905649738,
-      2751041579,
-      2828569778,
-      2828562578,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "name": "payment",
-    "data": [
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      50650000,
-      0,
-      0,
-      0
-    ]
-  },
-  {
-    "name": "receipt",
-    "data": [
-      1246000000,
-      3953610667,
-      2947890952,
-      1516600000,
-      0,
-      0,
-      0,
-      0,
-      210000,
-      0,
-      0,
-      0
-    ]
-  }
-]
 
 const series = computed(() => {
   return data.value.map(item => ({
@@ -265,8 +194,17 @@ watch(() => $q.lang.rtl, () => {
 onMounted(() => {
   loadData()
   setOptions()
+  bus.off("render-page", handleRender)
+    .on("render-page", handleRender);
 })
 
+onUnmounted(() => {
+  bus.off("render-page", handleRender)
+})
+
+async function handleRender() {
+  await loadData()
+}
 
 async function loadData() {
   const response = await fetchWrapper.get(`acc/report/RevenueExpenseByMonth`)
