@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 55px;">
+  <div style="margin-bottom: 56px;">
     <q-page-sticky
       class="z-1 bg-main"
       style="padding-top: 12px;padding-bottom: 12px;"
@@ -7,7 +7,10 @@
       expand
     >
       <q-toolbar style="padding-left: 20px; padding-right: 20px;">
-        <div class="row items-center q-gutter-sm">
+        <div
+          class="flex items-center"
+          :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''"
+        >
           <slot name="buttons">
             <template v-if="tableStore?.activeRow?.value != null">
               <slot name="bootons-edit">
@@ -48,7 +51,7 @@
                 <q-icon name="more_horiz" />
                 <q-menu
                   fit
-                  :offset="[0, 20]"
+                  cover
                 >
                   <q-list
                     dense
@@ -186,28 +189,31 @@
           </slot>
         </div>
 
-        <div class="q-space" />
+        <div
+          v-if="tableStore?.activeRow?.value != null"
+          class="q-space"
+        />
 
         <template v-if="selectedIds?.length > 0">
-          {{ selectedIds?.length }} selected
+          {{ selectedIds?.length }} مورد
           <q-btn
             round
             unelevated
-            class="text-on-dark"
+            class="q-ml-md text-on-dark"
             icon="close"
             @click="deselect"
           >
           </q-btn>
         </template>
         <template v-else>
-          <div
-            v-if="title"
-            class="row items-center"
-          >
+          <div v-if="title">
             <slot name="header">
-              <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">
+              <div
+                class="flex items-center"
+                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
+              >
                 <slot name="header-title">
-                  <span class="no-letter-spacing">{{ title }}</span>
+                  <span>{{ title }}</span>
                   <q-btn
                     v-if="tableStore?.pagination.value.totalItems > 0"
                     rounded
@@ -219,8 +225,7 @@
                     class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
                   />
                 </slot>
-              </span>
-              <!-- <back-button class="q-ml-md" /> -->
+              </div>
             </slot>
           </div>
         </template>

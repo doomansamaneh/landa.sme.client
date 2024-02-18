@@ -33,7 +33,7 @@
     </template>
   </tool-bar>
 
-  <div class="q-mt-xl">
+  <div style="margin-top: 56px;">
     <data-grid
       ref="dataGrid"
       dataSource="cmn/product/getGridData"
@@ -46,7 +46,8 @@
         <q-card
           class="bordered"
           :class="tableStore?.getRowClass(item)"
-          v-touch-hold.mouse="() => selectCard(item)"
+          v-touch-hold.capture="() => selectCard(item)"
+          @click="checkRow(item)"
         >
 
           <q-card-section>
@@ -389,23 +390,21 @@ const onBottomSheetHide = () => {
 }
 
 async function reloadData() {
-  await tableStore?.value.reloadData()
-}
-
-function setActiveRow(row) {
-  tableStore.value.setActiveRow(row)
+  await tableStore.value.reloadData()
 }
 
 function selectCard(row) {
-  setActiveRow(row)
   selectRow(row, !row.selected)
+}
+
+function checkRow(row) {
+  if (selectedIds.value.length > 0) selectRow(row, !row.selected)
 }
 
 function selectRow(row, checked) {
   tableStore.value.selectRow(row, checked)
   // emitselectedRows()
 }
-
 
 function editBatch() {
   $q.dialog({
@@ -417,5 +416,4 @@ function editBatch() {
     await reloadData()
   })
 }
-
 </script>

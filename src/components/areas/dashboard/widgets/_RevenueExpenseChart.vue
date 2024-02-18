@@ -270,7 +270,6 @@ onMounted(() => {
 
 async function loadData() {
   const response = await fetchWrapper.get(`acc/report/RevenueExpenseByMonth`)
-  alert("chart data loaded...")
   data.value = response.data.data
 }
 

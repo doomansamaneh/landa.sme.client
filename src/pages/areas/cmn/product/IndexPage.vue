@@ -4,6 +4,11 @@
   <!-- v-if="$q.screen.gt.sm" -->
   <!-- v-if="!mobileView" -->
 
+  <!-- <mobile
+    :grid-store="gridSotre"
+    :title="$t('main-menu-items.Cmn_Product_View')"
+  /> -->
+
   <mobile
     v-if="$q.screen.xs"
     :grid-store="gridSotre"

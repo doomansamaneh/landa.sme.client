@@ -144,7 +144,10 @@ export function useDataTable(dataSource
   }
 
   function setActiveRow(row) {
-    state.value.activeRow.value = row
+    if (row === state.value.activeRow?.value) {
+      state.value.activeRow.value = null
+    }
+    else state.value.activeRow.value = row
   }
 
   function selectAll(checked) {
