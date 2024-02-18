@@ -13,6 +13,7 @@
     "build": "quasar build"
   },
   "dependencies": {
+    "@persian-tools/persian-tools": "^3.5.2",
     "@quasar/extras": "^1.16.4",
     "apexcharts": "^3.46.0",
     "axios": "^1.2.1",
