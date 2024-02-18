@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 40px;">
+  <div style="margin-bottom: 55px;">
     <q-page-sticky
       class="z-1 bg-main"
       style="padding-top: 12px;padding-bottom: 12px;"

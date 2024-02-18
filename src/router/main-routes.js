@@ -1,6 +1,6 @@
 import MainLayout from "src/layouts/MainLayout.vue";
 import ProfilePage from "src/pages/management/ProfilePage.vue";
-import HomePage from "src/pages/management/HomePage.vue";
+import HomePage from "src/pages/areas/dashboard/IndexPage.vue";
 
 export default {
 

@@ -1,13 +1,15 @@
-import { ref, reactive, watch } from "vue"
+import { ref, watch } from "vue"
 import { useRouter, onBeforeRouteLeave } from 'vue-router'
-import { fetchWrapper, helper } from "src/helpers"
 import { useQuasar } from "quasar"
+import { useI18n } from 'vue-i18n';
+import { fetchWrapper, helper } from "src/helpers"
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue"
 
 export function useFormActions(baseURL, model) {
     const isDirty = ref(false)
     const $q = useQuasar()
     const router = useRouter()
+    const { t } = useI18n()
 
     async function getById(id) {
         if (id) {
@@ -37,9 +39,10 @@ export function useFormActions(baseURL, model) {
             $q.dialog({
                 component: ConfirmDialog,
                 componentProps: {
-                    title: 'Delete Confirm',
-                    message: `Are you sure to delete this entity...?`,
-                    ok: `Yes, I'm sure`,
+                    title: t("shared.labels.deleteConfirm"),
+                    message: `${t("shared.labels.deleteMessage")}.`,
+                    ok: t("shared.labels.delete"),
+                    okColor: "deep-orange-7"
                 }
             }).onOk(async () => {
                 const response = await fetchWrapper.post(`${baseURL}/delete/${id}`)
@@ -55,9 +58,10 @@ export function useFormActions(baseURL, model) {
             $q.dialog({
                 component: ConfirmDialog,
                 componentProps: {
-                    title: 'Delete Confirm',
-                    message: `Are you sure to delete ${idList.length} rows?`,
-                    ok: `Yes, I'm sure`,
+                    title: t("shared.labels.deleteConfirm"),
+                    message: `${t("shared.labels.deleteMessage")}. ${t("shared.labels.selectedRows")}: ${idList.length}`,
+                    ok: t("shared.labels.delete"),
+                    okColor: "deep-orange-7"
                 }
             }).onOk(async () => {
                 const response = await fetchWrapper.post(`${baseURL}/deleteBatch`, idList)

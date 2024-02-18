@@ -1,53 +1,112 @@
 <template>
-  <q-card
-    class="fit bordered no-padding"
-    flat
-  >
-    <q-card-section class="col q-px-lg">
-      <div class="text-h6 text-bold q-mt-sm q-mb-xs">240,000,000</div>
-      <div class="text-body3">
-        فروش
-      </div>
-    </q-card-section>
-
-      <chart
-      :options="options"
-      :series="series"
-      :legend="legend"
-      :title="title"
-      height="80"
-      class="area-chart"
-      :class="direction"
-    />
-
-  </q-card>
-
+  <!-- <q-btn @click="changeSeries">change series</q-btn> -->
+  <!-- <pre>{{ series }}</pre> -->
+  <chart
+    :options="options"
+    :series="series"
+    :height="height"
+    :legend="legend"
+    :title="title"
+    :class="direction"
+    type="line"
+    class="line-chart"
+  />
 </template>
 
 <script setup>
 import { ref, onMounted, watch, computed } from 'vue'
-import Chart from 'src/components/shared/Charts/ChartView.vue';
 import { useQuasar } from 'quasar'
+import { fetchWrapper } from 'src/helpers'
+
+import Chart from 'vue3-apexcharts'
+//import Chart from 'src/components/shared/charts/ChartView.vue';
 
 const $q = useQuasar()
 const props = defineProps(['height', 'legend', 'title'])
 
 const options = ref(null)
 
-const series = ref([
-  {
-    name: "فروش",
-    data: [
-      2000000, 5000000, 2000000, 8000000,
-      3000000, 4000000, 9000000, 7000000,
-      4000000, 13000000, 7000000, 6000000
-    ],
-  }
+const data = ref([])
 
-])
+const series_ = [
+  {
+    "name": "income",
+    "data": [
+      3355333334,
+      2867500000,
+      602800000,
+      4856550000,
+      0,
+      1536232.56,
+      0,
+      0,
+      5605595885,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "expense",
+    "data": [
+      2723758560,
+      2905649738,
+      2751041579,
+      2828569778,
+      2828562578,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "payment",
+    "data": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      50650000,
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "name": "receipt",
+    "data": [
+      1246000000,
+      3953610667,
+      2947890952,
+      1516600000,
+      0,
+      0,
+      0,
+      0,
+      210000,
+      0,
+      0,
+      0
+    ]
+  }
+]
+
+const series = computed(() => {
+  return data.value.map(item => ({
+    name: item.name,
+    data: item.data.map(subItem => subItem.amount)
+  }))
+})
 
 function setOptions() {
-
   const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
 
   options.value = {
@@ -60,9 +119,9 @@ function setOptions() {
         color: $q.dark.isActive ? 'white' : '#2d2d2d'
       },
     },
+
     chart: {
       fontFamily,
-      type: 'area',
       parentHeightOffset: 0,
       sparkline: {
         enabled: true
@@ -92,21 +151,24 @@ function setOptions() {
     dataLabels: {
       enabled: false
     },
+
     stroke: {
       width: 4,
       curve: 'smooth'
     },
+
     markers: {
       size: 0,
     },
+
     grid: {
       show: false,
       padding: {
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0
-     },
+        top: 100,
+        left: 0,
+        right: 0,
+        bottom: 0
+      },
       lines: {
         show: false
       },
@@ -114,23 +176,14 @@ function setOptions() {
     },
     xaxis: {
       show: false,
-      crosshairs: {
-        width: 1
-      },
-      labels: {
-        show: false
-      },
       axisBorder: {
         show: false
       },
       axisTicks: {
         show: false
       },
-      labels: {
-        show: false
-      },
       categories: [
-        'فروردین', 'اردیبهشت', 'خرداد',
+        'فرودین', 'اردیبهشت', 'خرداد',
         'تیر', 'مرداد', 'شهریور',
         'مهر', 'آبان', 'آذر',
         'دی', 'بهمن', 'اسفند'
@@ -162,10 +215,10 @@ function setOptions() {
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
       },
-      position: 'bottom',
+      position: 'top',
       fontSize: '14px',
       fontWeight: 400,
-      offsetY: 16,
+      // offsetY: 16,
       markers: {
         width: 14,
         height: 14,
@@ -173,11 +226,11 @@ function setOptions() {
         offsetX: $q.lang.rtl ? '-4' : '-4',
       },
       itemMargin: {
-        vertical: 16,
+        // vertical: 16,
         horizontal: 16,
       },
     },
-    colors: ["rgb(36, 183, 160)"],
+    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
     tooltip: {
       enabled: true,
       x: {
@@ -195,8 +248,6 @@ function setOptions() {
       },
     },
   }
-
-
 }
 
 const direction = computed(() => {
@@ -212,8 +263,16 @@ watch(() => $q.lang.rtl, () => {
 })
 
 onMounted(() => {
+  loadData()
   setOptions()
 })
+
+
+async function loadData() {
+  const response = await fetchWrapper.get(`acc/report/RevenueExpenseByMonth`)
+  alert("chart data loaded...")
+  data.value = response.data.data
+}
 
 function formatYAxisLabel(value) {
   const parts = String(value).split('.');
@@ -227,14 +286,4 @@ function formatYAxisLabel(value) {
 
   return formattedValue;
 }
-
 </script>
-
-<style>
-.container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: end;
-  gap: 24px;
-}
-</style>

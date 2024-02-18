@@ -1,9 +1,8 @@
 <template>
     <q-dialog
         ref="dialogRef"
-        transition-show="slide-down"
-        transition-hide="fade"
-        transition-duration="600"
+        transition-show="scale"
+        transition-hide="scale"
         no-backdrop-dismiss
         @hide="onDialogHide"
     >
@@ -33,11 +32,11 @@
                 align="right"
             >
                 <q-btn
-                    color="primary"
+                    :color="okColor ?? 'primary'"
                     unelevated
                     no-caps
                     padding="8px 16px"
-                    :label="okLabel"
+                    :label="ok ?? $t('shared.labels.ok')"
                     @click="onOKClick"
                 />
                 <q-btn
@@ -45,7 +44,7 @@
                     size="md"
                     padding="8px 16px"
                     no-caps
-                    :label="cancelLabel"
+                    :label="cancel ?? $t('shared.labels.cancel')"
                     @click="onDialogCancel"
                 />
             </q-card-actions>
@@ -61,11 +60,9 @@ const props = defineProps({
     title: String,
     message: String,
     ok: String,
-    cancel: String
+    cancel: String,
+    okColor: String
 })
-
-const okLabel = computed(() => props.ok ?? "Ok")
-const cancelLabel = computed(() => props.cancel ?? "Cancel")
 
 defineEmits([
     // REQUIRED; need to specify some events that your

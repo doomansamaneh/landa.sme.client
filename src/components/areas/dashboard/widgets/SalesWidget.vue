@@ -1,33 +1,24 @@
 <template>
-  <q-card class="fit bordered no-padding">
-
-
-    <q-card-section class="q-pa-lg">
-
-      <div class="row full-width">
-        <div class="col column q-gutter-y-sm">
-          <span class="text-body1">درآمد خالص</span>
-          <div class="row q-gutter-x-sm text-body1 text-bold">
-            <span class="text-body1 text-bold">(5,004,002,500)</span>
-            <span class="text-body3 text-bold text-green">+%24</span>
-          </div>
-          <q-item-label caption>رشد نسبت به پارسال سنجیده شده</q-item-label>
-          <q-btn class="q-mt-lg primary-shadow text-body3" rounded unelevated color="primary" style="width: 120px;">جزئیات بیشتر</q-btn>
-        </div>
-        <div class="col-4">
-          <chart
-            :options="options"
-            :series="series"
-            height="140"
-            :legend="legend"
-            :title="title"
-            class="bar-chart"
-            :class="direction"
-          />
-        </div>
+  <q-card
+    class="fit bordered no-padding"
+    flat
+  >
+    <q-card-section class="col q-px-lg">
+      <div class="text-h6 text-bold q-mt-sm q-mb-xs">240,000,000</div>
+      <div class="text-body3">
+        فروش
       </div>
-
     </q-card-section>
+
+    <chart
+      :options="options"
+      :series="series"
+      :legend="legend"
+      :title="title"
+      height="80"
+      class="area-chart"
+      :class="direction"
+    />
 
   </q-card>
 </template>
@@ -38,15 +29,20 @@ import Chart from 'src/components/shared/Charts/ChartView.vue';
 import { useQuasar } from 'quasar'
 
 const $q = useQuasar()
-const props = defineProps(['legend', 'title'])
+const props = defineProps(['height', 'legend', 'title'])
 
 const options = ref(null)
 
 const series = ref([
   {
-    name: "درآمد خالص",
-    data: [2500000000, 5004002500]
+    name: "فروش",
+    data: [
+      2000000, 5000000, 2000000, 8000000,
+      3000000, 4000000, 9000000, 7000000,
+      4000000, 13000000, 7000000, 6000000
+    ],
   }
+
 ])
 
 function setOptions() {
@@ -64,10 +60,12 @@ function setOptions() {
       },
     },
     chart: {
-      offsetY: 0,
-      parentHeightOffset: 0,
       fontFamily,
-      type: 'bar',
+      type: 'area',
+      parentHeightOffset: 0,
+      sparkline: {
+        enabled: true
+      },
       toolbar: {
         show: false
       },
@@ -86,58 +84,69 @@ function setOptions() {
           enabled: true,
           speed: 450
         },
+
       }
     },
-    plotOptions: {
-      bar: {
-        // borderRadius: 5,
-        // horizontal: false,
-        columnWidth: '20%',
-        // distributed: false,
-      },
-    },
+
     dataLabels: {
       enabled: false
     },
-    // stroke: {
-    //   width: 2.5,
-    // },
+    stroke: {
+      width: 4,
+      curve: 'smooth'
+    },
     markers: {
       size: 0,
     },
     grid: {
       show: false,
-      strokeDashArray: 5,
-      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
       padding: {
         top: 0,
+        left: 0,
         right: 0,
-        bottom: 0,
-        left: 0
+        bottom: 0
       },
+      lines: {
+        show: false
+      },
+      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
     },
     xaxis: {
+      show: false,
+      crosshairs: {
+        width: 1
+      },
+      labels: {
+        show: false
+      },
       axisBorder: {
         show: false
       },
       axisTicks: {
         show: false
       },
+      labels: {
+        show: false
+      },
       categories: [
-        'پارسال', 'امسال',
+        'farvardin', 'اردیبهشت', 'خرداد',
+        'تیر', 'مرداد', 'شهریور',
+        'مهر', 'آبان', 'آذر',
+        'دی', 'بهمن', 'اسفند'
       ],
       labels: {
         show: false,
-        offsetY: 12,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
       },
     },
     yaxis: {
+      min: 0,
       show: false,
       opposite: false,
       labels: {
+        show: false,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
@@ -148,15 +157,14 @@ function setOptions() {
     },
     legend: {
       show: props.legend,
-      showForSingleSeries: true,
       inverseOrder: true,
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
       },
-      position: 'top',
+      position: 'bottom',
       fontSize: '14px',
       fontWeight: 400,
-      // offsetY: 16,
+      offsetY: 16,
       markers: {
         width: 14,
         height: 14,
@@ -164,24 +172,18 @@ function setOptions() {
         offsetX: $q.lang.rtl ? '-4' : '-4',
       },
       itemMargin: {
-        // vertical: 16,
-        // horizontal: 16,
+        vertical: 16,
+        horizontal: 16,
       },
     },
-    // colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
-    //   '#f48024', '#69d2e7'
-    // ],
+    colors: ["rgb(36, 183, 160)"],
     tooltip: {
       enabled: true,
       x: {
         show: true,
-
       },
       y: {
         show: true,
-        title: {
-          formatter: seriesName => seriesName == ''
-        }
       },
       style: {
         fontSize: '13px',
@@ -190,15 +192,8 @@ function setOptions() {
         width: 8,
         height: 8,
       },
-      fixed: {
-        enabled: true,
-        position: 'topLeft',
-        offsetX: 0,
-        offsetY: 0,
-      },
     },
   }
-
 }
 
 const direction = computed(() => {
@@ -231,3 +226,12 @@ function formatYAxisLabel(value) {
 }
 
 </script>
+
+<style>
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: end;
+  gap: 24px;
+}
+</style>

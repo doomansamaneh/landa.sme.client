@@ -1,60 +1,74 @@
 <template>
-  <chart
-    :options="options"
-    :series="series"
-    :height="height"
-    :legend="legend"
-    :title="title"
-    class="line-chart"
-    :class="direction"
-  />
+  <q-card class="fit bordered no-padding">
+
+    <q-card-section class="q-pa-lg">
+
+      <div class="row full-width">
+        <div class="col column q-gutter-y-sm">
+          <span class="text-body1">درآمد خالص</span>
+          <div class="row q-gutter-x-sm text-body1 text-bold">
+            <span class="text-body1 text-bold">(5,004,002,500)</span>
+            <span class="text-body3 text-bold text-green">+%24</span>
+          </div>
+          <q-item-label caption>رشد نسبت به پارسال سنجیده شده</q-item-label>
+          <q-btn
+            class="q-mt-lg primary-shadow text-body3"
+            rounded
+            unelevated
+            color="primary"
+            style="width: 120px;"
+          >جزئیات بیشتر</q-btn>
+        </div>
+        <div class="col-4">
+          <q-btn @click="changeSeris">change series</q-btn>
+          <vue-apex-charts
+            ref="incomeChart"
+            :options="options"
+            :series="series"
+            height="140"
+            :legend="legend"
+            :title="title"
+            class="bar-chart"
+            :class="direction"
+          />
+        </div>
+      </div>
+
+    </q-card-section>
+
+  </q-card>
 </template>
 
 <script setup>
 import { ref, onMounted, watch, computed } from 'vue'
 import { useQuasar } from 'quasar'
 
-import Chart from 'src/components/shared/Charts/ChartView.vue';
+//import Chart from 'src/components/shared/charts/ChartView.vue'
+import VueApexCharts from "vue3-apexcharts"
+
+const props = defineProps(['legend', 'title'])
 
 const $q = useQuasar()
-const props = defineProps(['height', 'legend', 'title'])
+const incomeChart = ref(null)
 
 const options = ref(null)
 
+const chartOptions = {
+  chart: {
+    id: "basic-line",
+  },
+  xaxis: {
+    categories: [1991, 1992],
+  },
+};
+
 const series = ref([
   {
-    name: "دریافت",
-    data: [
-      32000000, 89000000, 45000000, 1000000,
-      98000000, 23000000, 56000000, 64000000,
-      12000000, 79000000, 75000000, 42000000
-    ],
-  },
-  {
-    name: "پرداخت",
-    data: [
-      19000000, 56000000, 23000000, 8000000,
-      32000000, 46000000, 98000000, 7600000,
-      42000000, 13000000, 7800000, 6500000
-    ]
-  },
-  {
-    name: "هزینه",
-    data: [
-      90000000, 65000000, 1000000, 5000000,
-      23000000, 97000000, 12300000, 89000000,
-      45000000, 31000000, 76000000, 43000000
-    ],
-  },
-  {
-    name: "income",
-    data: [
-      2000000, 5000000, 2000000, 8000000,
-      3000000, 4000000, 9000000, 7000000,
-      4000000, 13000000, 7000000, 6000000
-    ],
+    name: "درآمد خالص",
+    data: [2500000000, 5004002500]
   }
 ])
+
 
 function setOptions() {
 
@@ -71,12 +85,10 @@ function setOptions() {
       },
     },
     chart: {
-      fontFamily,
-      type: 'area',
+      offsetY: 0,
       parentHeightOffset: 0,
-      sparkline: {
-        enabled: true
-      },
+      fontFamily,
+      type: 'bar',
       toolbar: {
         show: false
       },
@@ -95,41 +107,37 @@ function setOptions() {
           enabled: true,
           speed: 450
         },
-
       }
     },
-
+    plotOptions: {
+      bar: {
+        // borderRadius: 5,
+        // horizontal: false,
+        columnWidth: '20%',
+        // distributed: false,
+      },
+    },
     dataLabels: {
       enabled: false
     },
-    stroke: {
-      width: 4,
-      curve: 'smooth'
-    },
+    // stroke: {
+    //   width: 2.5,
+    // },
     markers: {
       size: 0,
     },
     grid: {
       show: false,
-      padding: {
-        top: 100,
-        left: 0,
-        right: 0,
-        bottom: 0
-      },
-      lines: {
-        show: false
-      },
+      strokeDashArray: 5,
       borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      },
     },
     xaxis: {
-      show: false,
-      // crosshairs: {
-      //   width: 1
-      // },
-      labels: {
-        show: false
-      },
       axisBorder: {
         show: false
       },
@@ -137,24 +145,20 @@ function setOptions() {
         show: false
       },
       categories: [
-        'farvardin', 'اردیبهشت', 'خرداد',
-        'تیر', 'مرداد', 'شهریور',
-        'مهر', 'آبان', 'آذر',
-        'دی', 'بهمن', 'اسفند'
+        'پارسال', 'امسال',
       ],
       labels: {
         show: false,
+        offsetY: 12,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
       },
     },
     yaxis: {
-      min: 0,
       show: false,
       opposite: false,
       labels: {
-        show: false,
         style: {
           colors: $q.dark.isActive ? 'white' : '#2d2d2d',
         },
@@ -165,6 +169,7 @@ function setOptions() {
     },
     legend: {
       show: props.legend,
+      showForSingleSeries: true,
       inverseOrder: true,
       labels: {
         colors: $q.dark.isActive ? 'white' : '#2d2d2d',
@@ -181,17 +186,23 @@ function setOptions() {
       },
       itemMargin: {
         // vertical: 16,
-        horizontal: 16,
+        // horizontal: 16,
       },
     },
-    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
+    // colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
+    //   '#f48024', '#69d2e7'
+    // ],
     tooltip: {
       enabled: true,
       x: {
         show: true,
+
       },
       y: {
         show: true,
+        title: {
+          formatter: seriesName => seriesName == ''
+        }
       },
       style: {
         fontSize: '13px',
@@ -200,23 +211,15 @@ function setOptions() {
         width: 8,
         height: 8,
       },
+      fixed: {
+        enabled: true,
+        position: 'topLeft',
+        offsetX: 0,
+        offsetY: 0,
+      },
     },
   }
 
-  //   // custom: function ({ series, seriesIndex, dataPointIndex, w }) {
-  //   //   let tooltipText = '<div class="apex-custom-tooltip column q-gutter-y-sm q-pa-md">';
-  //   //   series.forEach((singleSeries, index) => {
-  //   //     tooltipText += `<span>
-  //   //       ${w.config.series[index].name}: ${singleSeries[dataPointIndex].toLocaleString()}
-  //   //   </span>`;
-  //   //   });
-  //   //   tooltipText += '</div>';
-  //   //   return tooltipText;
-  //   // }
-
-  // },
-
-  // colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
 }
 
 const direction = computed(() => {
@@ -246,5 +249,10 @@ function formatYAxisLabel(value) {
   }
 
   return formattedValue;
+}
+
+function changeSeris() {
+  series.value[0].data = [1200000000, 500000]
+  //console.log(incomeChart.value)
 }
 </script>

@@ -14,7 +14,7 @@
       v-model="paged.currentPage"
       min="1"
       :max="max"
-      :max-pages="maxPages"
+      :max-pages="maxPages ?? 5"
       ellipses
       boundary-numbers
       direction-links

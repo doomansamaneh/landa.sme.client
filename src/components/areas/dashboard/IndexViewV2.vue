@@ -14,7 +14,7 @@
         <ratios-widget />
       </div>
       <div class="col-8 col-md-8 col-sm-12 col-xs-12">
-        <sales-income-widget />
+        <revenue-expense-by-month />
       </div>
     </div>
 
@@ -44,23 +44,15 @@
 </template>
 
 <script setup>
-import InvoicesWidgetV2 from 'src/components/shared/Widgets/InvoicesWidgetV2.vue'
-import RatiosWidget from 'src/components/shared/Widgets/RatiosWidget.vue'
-import SalesIncomeWidget from 'src/components/shared/Widgets/SalesIncomeWidget.vue'
-import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
-import TopProducts from 'src/components/shared/Widgets/TopProducts.vue'
-import SomeInfo from 'src/components/shared/Widgets/NetIncome.vue'
-import BankBalance from 'src/components/shared/Widgets/BankBalance.vue'
-import FundBalance from 'src/components/shared/Widgets/FundBalance.vue'
+import InvoicesWidgetV2 from 'src/components/areas/dashboard/widgets/InvoicesWidgetV2.vue'
+import RatiosWidget from 'src/components/areas/dashboard/widgets/RatiosWidget.vue'
+import RevenueExpenseByMonth from 'src/components/areas/dashboard/widgets/RevenueExpenseByMonth.vue'
+import IncomeWidget from 'src/components/areas/dashboard/widgets/_IncomeWidget.vue'
+import TopProducts from 'src/components/areas/dashboard/widgets/TopProducts.vue'
+import SomeInfo from 'src/components/areas/dashboard/widgets/NetIncome.vue'
+import BankBalance from 'src/components/areas/dashboard/widgets/BankBalance.vue'
+import FundBalance from 'src/components/areas/dashboard/widgets/FundBalance.vue'
 
-import { useHeader } from "src/composables/mobile/useHeader"
-import { computed } from 'vue'
-
-const headerStore = useHeader()
-
-const marginTop = computed(() => {
-  return headerStore.showHeader.value === false ? 'margin-lg' : ''
-})
 </script>
 
 <style lang="scss">
@@ -75,7 +67,7 @@ const marginTop = computed(() => {
 }
 
 .darkBGImg {
-  background: $dark url("../../../../public/triangle-light.png") repeat-y left top;
+  background: $dark url("src/assets/images/triangle-light.png") repeat-y left top;
 }
 </style>
 

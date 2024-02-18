@@ -54,7 +54,9 @@
               <q-item-label
                 v-if="saleIncome"
                 class="text-body1 q-mb-xs"
-              >فروش و درآمد، هزینه</q-item-label>
+              >
+                فروش و درآمد، هزینه
+              </q-item-label>
               <q-item-label
                 v-if="saleIncomeTable"
                 class="text-body1 q-mb-xs"
@@ -137,7 +139,7 @@
                           size="sm"
                         >
                           <q-icon
-                            name="o_table_chart"
+                            name="o_table_50650000,"
                             size="14px"
                           />
                         </q-avatar>
@@ -309,7 +311,7 @@
       </div>
     </q-card-section>
 
-    <line-chart
+    <revenue-expense-chart
       v-if="saleIncome"
       :height="300"
       legend="true"
@@ -362,11 +364,11 @@
 <script setup>
 import { ref } from "vue"
 
-import LineChart from 'src/components/shared/Charts/LineChart.vue'
-import BarChart from 'src/components/shared/Charts/BarChart.vue'
-import PieChart from 'src/components/shared/Charts/PieChart.vue'
-import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
-import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
+import RevenueExpenseChart from './_RevenueExpenseChart.vue'
+import BarChart from 'src/components/shared/charts/BarChart.vue'
+import PieChart from 'src/components/shared/charts/PieChart.vue'
+import DonutChart from 'src/components/shared/charts/DonutChart.vue'
+import MarkupTable from 'src/components/shared/dataTables/MarkupTable.vue'
 
 const saleIncome = ref(true)
 const saleIncomeTable = ref(false)
@@ -375,7 +377,6 @@ const salePerCustomer = ref(false)
 const salePerProductGroup = ref(false)
 const cost = ref(false)
 const costDetail = ref(false)
-
 
 const showSaleIncome = () => {
   saleIncome.value = true;

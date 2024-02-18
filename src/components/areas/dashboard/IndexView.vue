@@ -19,7 +19,7 @@
             :color="activeColor"
           /></q-btn>
         <q-btn
-          v-if="toggleWidgetsLayout"
+          v-if="togglewidgetsLayout"
           unelevated
           rounded
           dense
@@ -259,23 +259,23 @@
 import { ref, computed, onMounted } from "vue"
 import { useQuasar } from "quasar"
 
-import LineChart from 'src/components/shared/Charts/LineChart.vue'
-import BarChart from 'src/components/shared/Charts/BarChart.vue'
-import PieChart from 'src/components/shared/Charts/PieChart.vue'
-import DonutChart from 'src/components/shared/Charts/DonutChart.vue'
-import InfoCarousel from 'src/components/shared/Widgets/InfoCarousel.vue'
-import InvoicesWidgetV2 from 'src/components/shared/Widgets/InvoicesWidgetV2.vue'
-import SalesWidget from 'src/components/shared/Widgets/SalesWidget.vue'
-import RatiosWidget from 'src/components/shared/Widgets/RatiosWidget.vue'
+import LineChart from 'src/components/shared/charts/LineChart.vue'
+import BarChart from 'src/components/shared/charts/BarChart.vue'
+import PieChart from 'src/components/shared/charts/PieChart.vue'
+import DonutChart from 'src/components/shared/charts/DonutChart.vue'
+import InfoCarousel from 'src/components/areas/dashboard/widgets/InfoCarousel.vue'
+import InvoicesWidgetV2 from 'src/components/areas/dashboard/widgets/InvoicesWidgetV2.vue'
+import SalesWidget from 'src/components/areas/dashboard/widgets/SalesWidget.vue'
+import RatiosWidget from 'src/components/areas/dashboard/widgets/RatiosWidget.vue'
 import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
-import IncomeWidget from 'src/components/shared/Widgets/_IncomeWidget.vue'
-import FinancialRatioWidget from 'src/components/shared/Widgets/FinancialRatioWidget.vue'
+import IncomeWidget from 'src/components/areas/dashboard/widgets/_IncomeWidget.vue'
+import FinancialRatioWidget from 'src/components/areas/dashboard/widgets/FinancialRatioWidget.vue'
 
 const $q = useQuasar()
 
 const tab = ref('sales-income-cost')
 const toggleChartToTable = ref(false)
-const toggleWidgetsLayout = ref(false)
+const togglewidgetsLayout = ref(false)
 const productServiceGroup = ref(false)
 const customer = ref(false)
 const productService = ref(true)
@@ -286,7 +286,7 @@ const chartToTabel = () => {
 const activeButton = ref(false)
 
 const widgetsLayout = () => {
-  toggleWidgetsLayout.value = !toggleWidgetsLayout.value
+  togglewidgetsLayout.value = !togglewidgetsLayout.value
   activeButton.value = !activeButton.value
 }
 
@@ -314,7 +314,7 @@ const goToSaleReview = () => {
 
 const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_window'));
 const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
-const activeColor = computed(() => (toggleWidgetsLayout.value ? 'primary' : ''));
+const activeColor = computed(() => (togglewidgetsLayout.value ? 'primary' : ''));
 
 
 const saleIncome = ref(true)

@@ -3,8 +3,8 @@
     :height="height"
     :series="series"
     :options="options"
-    :class="direction"
-  ></chart>
+  >
+  </chart>
 </template>
 
 <script setup>

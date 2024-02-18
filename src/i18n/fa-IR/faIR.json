@@ -289,7 +289,9 @@
       "eportToExcel": "تبدیل به اکسل",
       "activate": "فعال سازی",
       "deactivate": "غیرفعال سازی",
-      "chooseFiscalYear": "انتخاب سال مالی"
+      "chooseFiscalYear": "انتخاب سال مالی",
+      "deleteConfirm": "حذف اطلاعات",
+      "deleteMessage": "با حذف اطلاعات همه تاریخچه آنها از بین خواهند رفت و قابل بازیابی نیست"
     },
     "productType": {
       "main": "اصلی",

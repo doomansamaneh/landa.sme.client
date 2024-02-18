@@ -109,35 +109,80 @@
                   <span class="text-caption text-on-dark">عنوان</span>
                 </div>
                 <div class="col">
-                  <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.title }}</span>
+                  <span class="q-mr-sm">
+                    <q-btn
+                      v-if="item.isActive"
+                      round
+                      unelevated
+                      dense
+                      class="green-shadow no-pointer-events"
+                      size="8px"
+                      color="green-8"
+                      icon="o_done"
+                    />
+                    <q-btn
+                      v-else
+                      round
+                      unelevated
+                      dense
+                      class="green-shadow no-pointer-events"
+                      size="8px"
+                      color="green-8"
+                      icon="o_close"
+                    />
+                  </span>
+                  <span class="ellipsis-2-lines_ text-caption text-bold text-on-dark">{{ item.title }}</span>
+                  <div class="text-on-dark text-body2">
+                    {{ item.comment }}
+                  </div>
                 </div>
               </div>
 
-              <div class="row items-center q-px-sm">
+              <div
+                class="row items-center q-px-sm"
+                v-if="item.barcode"
+              >
                 <div class="col-3">
-                  <span class="text-caption text-on-dark">وضعیت</span>
+                  <span class="text-caption text-on-dark">بارکد</span>
                 </div>
                 <div class="col">
-                  <q-btn
-                    v-if="item.isActive"
-                    round
-                    unelevated
-                    dense
-                    class="green-shadow no-pointer-events"
-                    size="8px"
-                    color="green-8"
-                    icon="o_done"
-                  />
-                  <q-btn
-                    v-else
-                    round
-                    unelevated
-                    dense
-                    class="green-shadow no-pointer-events"
-                    size="8px"
-                    color="green-8"
-                    icon="o_close"
-                  />
+                  {{ item.barcode }}
+                </div>
+              </div>
+
+              <div
+                class="row items-center q-px-sm"
+                v-if="item.taxCode"
+              >
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">شناسه مالیاتی</span>
+                </div>
+                <div class="col">
+                  {{ item.taxCode }}
+                </div>
+              </div>
+
+              <div
+                class="row items-center q-px-sm"
+                v-if="item.price"
+              >
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">قیمت فروش</span>
+                </div>
+                <div class="col">
+                  {{ item.price.toLocaleString() }}
+                </div>
+              </div>
+
+              <div
+                class="row items-center q-px-sm"
+                v-if="item.purchasePrice"
+              >
+                <div class="col-3">
+                  <span class="text-caption text-on-dark">قیمت خرید</span>
+                </div>
+                <div class="col">
+                  {{ item.purchasePrice.toLocaleString() }}
                 </div>
               </div>
 

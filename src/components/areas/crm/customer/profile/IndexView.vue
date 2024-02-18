@@ -1095,7 +1095,7 @@ import EditProfile from "src/components/areas/crm/customer/profile/EditProfileDi
 import Invoice from "src/components/areas/crm/customer/_InvoiceDataTable.vue"
 import EditCustomerData from "src/components/areas/crm/customer/profile/EditCustomerDataDialog.vue"
 import AddCustomField from "src/components/areas/crm/customer/profile/AddCustomField.vue"
-import SalesWidget from "src/components/shared/widgets/SalesWidget.vue"
+import SalesWidget from "src/components/areas/dashboard/widgets/SalesWidget.vue"
 
 const invoiceStore = useInvoice()
 
