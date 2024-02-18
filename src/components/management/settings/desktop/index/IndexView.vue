@@ -40,7 +40,7 @@
     </q-tab-panel>
 
     <q-tab-panel name="general">
-
+      <SwitchLanguage/>
     </q-tab-panel>
 
     <q-tab-panel name="accountSummary">
@@ -59,6 +59,6 @@ import { ref } from "vue"
 
 import ProfileSection from "src/components/management/settings/desktop/index/ProfileSection.vue"
 import ThemeColor from "src/components/management/settings/desktop/index/ThemeColor.vue"
-
+import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
 const tab = ref('profile')
 </script>
