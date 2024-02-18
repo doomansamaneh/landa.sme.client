@@ -1,64 +1,85 @@
 <template>
-  <q-tabs
-    v-model="tab"
-    class="border-radius-xs bg-primary text-white"
-    indicator-color="white"
-    align="justify"
-    inline-label
-    narrow-indicator
-  >
-    <q-tab
-      name="profile"
-      label="نمایه"
-      icon="o_person"
-    />
-    <q-tab
-      name="quotes"
-      label="امنیت"
-      icon="o_password"
-    />
-    <q-tab
-      name="general"
-      label="تم و زبان"
-      icon="o_palette"
-    />
-    </q-tabs>
+  <div class="flex items-center justify-center">
+    <div>
+      <div class="text-body1 no-letter-spacing q-mb-md">تنظیمات</div>
+      <q-card class="bordered settings-container">
+        <q-card-section class="no-padding">
+          <q-item class="q-py-md" clickable>
+            <q-item-section class="q-mr-sm" top avatar>
+              <q-avatar size="56px">
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
+            </q-item-section>
 
-  <q-tab-panels
-    class="bordered border-radius-xs q-mt-md"
-    v-model="tab"
-    animated
-  >
-    <q-tab-panel name="profile">
+            <q-item-section>
+              <q-item-label class="text-on-dark text-body2 no-letter-spacing">خشایار شمالی</q-item-label>
+              <q-item-label class="caption-on-dark text-body3 no-letter-spacing">shomalikhashayar@gmail.com</q-item-label>
+            </q-item-section>
 
-      <profile-section />
+            <q-item-section side>
+              <q-btn round dense unelevated>
+                <q-icon name="chevron_left" size="24px" />
+              </q-btn>
+            </q-item-section>
+          </q-item>
 
-    </q-tab-panel>
+          <q-separator size="0.5px" />
 
-    <q-tab-panel name="security">
+          <q-item class="q-py-sm" clickable>
 
-    </q-tab-panel>
+            <q-item-section>
+              <q-item-label class="text-on-dark text-body2 no-letter-spacing"> رنگ تم‌ و زبان</q-item-label>
+            </q-item-section>
 
-    <q-tab-panel name="general">
-      <SwitchLanguage/>
-    </q-tab-panel>
+            <q-item-section side>
+              <q-btn round dense unelevated>
+                <q-icon name="chevron_left" size="24px" />
+              </q-btn>
+            </q-item-section>
 
-    <q-tab-panel name="accountSummary">
+          </q-item>
 
-    </q-tab-panel>
+          <q-separator />
 
-    <q-tab-panel name="history">
+          <q-item class="q-py-sm" clickable>
 
-    </q-tab-panel>
-  </q-tab-panels>
+            <q-item-section>
+              <q-item-label class="text-on-dark text-body2 no-letter-spacing">تغییر رمز عبور</q-item-label>
+            </q-item-section>
+
+            <q-item-section side>
+              <q-btn round dense unelevated>
+                <q-icon name="chevron_left" size="24px" />
+              </q-btn>
+            </q-item-section>
+
+          </q-item>
+
+        </q-card-section>
+      </q-card>
+    </div>
+  </div>
 </template>
 
 
 <script setup>
 import { ref } from "vue"
+import { useMeta } from "quasar"
 
 import ProfileSection from "src/components/management/settings/desktop/index/ProfileSection.vue"
 import ThemeColor from "src/components/management/settings/desktop/index/ThemeColor.vue"
 import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
-const tab = ref('profile')
+
+const metaData = {
+  title: 'لاندا',
+  titleTemplate: title => `${title} - تنظیمات`,
+};
+
+useMeta(metaData);
 </script>
+
+<style lang="scss">
+.settings-container {
+  width: 900px;
+}
+</style>
