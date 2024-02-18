@@ -1,6 +1,6 @@
-# landa sme (landa-sme-client)
+# landa-sme (landa-sme-client)
 
-landa sme
+Online Accounting Application
 
 ## Install the dependencies
 ```bash
@@ -39,4 +39,3 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
-"# landa.sme.client" 
