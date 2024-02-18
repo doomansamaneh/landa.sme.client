@@ -194,8 +194,7 @@ watch(() => $q.lang.rtl, () => {
 onMounted(() => {
   loadData()
   setOptions()
-  bus.off("render-page", handleRender)
-    .on("render-page", handleRender);
+  bus.on("render-page", handleRender)
 })
 
 onUnmounted(() => {
