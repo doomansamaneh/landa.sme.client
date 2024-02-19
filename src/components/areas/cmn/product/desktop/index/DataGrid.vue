@@ -85,8 +85,8 @@
             size="10px"
             unelevated
             icon="o_close"
-            color="green-8"
-            class="green-shadow no-pointer-events"
+            color="negative"
+            class="red-shadow no-pointer-events"
           />
         </template>
 

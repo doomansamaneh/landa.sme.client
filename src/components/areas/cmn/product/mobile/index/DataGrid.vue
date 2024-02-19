@@ -1,26 +1,13 @@
 <template>
-  <tool-bar
-    :table-store="dataGrid?.tableStore"
-    :crud-store="crudStore"
-    :title="title"
-    base-route="/cmn/product"
-    activation
-  >
-    <template #bottons-custom>
+  <tool-bar :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title" base-route="/cmn/product"
+    activation>
+    <template #buttons-custom>
       <q-separator class="q-my-sm" />
-      <q-item
-        clickable
-        v-close-popup
-        tabindex="0"
-        @click="editBatch"
-      >
+      <q-item clickable v-close-popup tabindex="0" @click="editBatch">
         <div class="q-py-sm">
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark"
-              size="sm"
-            >
-              <q-icon name="o_edit" /></q-avatar>
+            <q-avatar class="bg-on-dark" size="32px">
+              <q-icon size="16px" name="o_edit" /></q-avatar>
           </q-item-section>
         </div>
         <q-item-section>
@@ -34,49 +21,23 @@
   </tool-bar>
 
   <div style="margin-top: 56px;">
-    <data-grid
-      ref="dataGrid"
-      dataSource="cmn/product/getGridData"
-      createUrl="/cmn/product/create"
-      :grid-store="gridStore"
-      multiSelect
-      numbered
-    >
+    <data-grid ref="dataGrid" dataSource="cmn/product/getGridData" createUrl="/cmn/product/create" :grid-store="gridStore"
+      multiSelect numbered>
       <template #row-header="{ item }">
         <q-card-section>
           <div class="row items-center justify-center">
-            <q-btn
-              v-if="!item.selected"
-              round
-              unelevated
-              class="no-pointer-events"
-            >
+            <q-btn v-if="!item.selected" round unelevated class="no-pointer-events">
 
-              <q-avatar
-                size="56px"
-                text-color="white"
-                :style="{ backgroundColor: helper.generateDarkAvatarColor(item.title) }"
-              >
+              <q-avatar size="56px" text-color="white"
+                :style="{ backgroundColor: helper.generateDarkAvatarColor(item.title) }">
                 <div class="char text-body1 text-bold">
                   {{ helper.getFirstChar(item.title) }}
                 </div>
               </q-avatar>
             </q-btn>
-            <q-btn
-              round
-              unelevated
-              class="no-pointer-events"
-              v-else
-            >
-              <q-avatar
-                size="50px"
-                color="primary"
-                text-color="white"
-              >
-                <q-icon
-                  name="o_done"
-                  size="md"
-                />
+            <q-btn round unelevated class="no-pointer-events" v-else>
+              <q-avatar size="50px" color="primary" text-color="white">
+                <q-icon name="o_done" size="md" />
               </q-avatar>
             </q-btn>
           </div>
@@ -97,35 +58,19 @@
       </template>
 
       <template #row-body="{ item }">
-        <q-card-section>
+        <q-card-section class="q-px-none">
           <div class="column q-gutter-sm">
 
-            <div class="row items-center q-px-sm">
-              <div class="col-3">
+            <div class="row items-center">
+              <div class="col-4">
                 <span class="text-caption text-on-dark">عنوان</span>
               </div>
               <div class="col">
                 <span class="q-mr-sm">
-                  <q-btn
-                    v-if="item.isActive"
-                    round
-                    unelevated
-                    dense
-                    class="green-shadow no-pointer-events"
-                    size="8px"
-                    color="green-8"
-                    icon="o_done"
-                  />
-                  <q-btn
-                    v-else
-                    round
-                    unelevated
-                    dense
-                    class="green-shadow no-pointer-events"
-                    size="8px"
-                    color="green-8"
-                    icon="o_close"
-                  />
+                  <q-btn v-if="item.isActive" round unelevated dense class="green-shadow no-pointer-events" size="6.5px"
+                    color="green-8" icon="o_done" />
+                  <q-btn v-else round unelevated dense class="red-shadow no-pointer-events" size="6.5px" color="negative"
+                    icon="o_close" />
                 </span>
                 <span class="ellipsis-2-lines_ text-caption text-bold text-on-dark">{{ item.title }}</span>
                 <div class="text-on-dark text-body2">
@@ -134,11 +79,8 @@
               </div>
             </div>
 
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.barcode"
-            >
-              <div class="col-3">
+            <div class="row items-center" v-if="item.barcode">
+              <div class="col-4">
                 <span class="text-caption text-on-dark">بارکد</span>
               </div>
               <div class="col">
@@ -146,11 +88,8 @@
               </div>
             </div>
 
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.taxCode"
-            >
-              <div class="col-3">
+            <div class="row items-center" v-if="item.taxCode">
+              <div class="col-4">
                 <span class="text-caption text-on-dark">شناسه مالیاتی</span>
               </div>
               <div class="col">
@@ -158,11 +97,8 @@
               </div>
             </div>
 
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.price"
-            >
-              <div class="col-3">
+            <div class="row items-center" v-if="item.price">
+              <div class="col-4">
                 <span class="text-caption text-on-dark">قیمت فروش</span>
               </div>
               <div class="col">
@@ -170,11 +106,8 @@
               </div>
             </div>
 
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.purchasePrice"
-            >
-              <div class="col-3">
+            <div class="row items-center" v-if="item.purchasePrice">
+              <div class="col-4">
                 <span class="text-caption text-on-dark">قیمت خرید</span>
               </div>
               <div class="col">
@@ -187,43 +120,26 @@
       </template>
 
       <template #row-actions="{ item }">
-        <q-btn
-          unelevated
-          class="text-on-dark"
-        >
+        <q-btn unelevated class="text-on-dark">
           <span class="text-body3 text-bold">مشاهده جزئیات</span>
         </q-btn>
 
-        <q-btn
-          round
-          unelevated
-          dense
-          icon="o_more_vert"
-          @click="onBottomSheetShow(item)"
-        />
+        <q-btn round unelevated dense icon="o_more_vert" @click="onBottomSheetShow(item)" />
       </template>
     </data-grid>
   </div>
 
-  <bottom-sheet
-    v-if="bottomSheetStatus"
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
+  <bottom-sheet v-if="bottomSheetStatus" :status="bottomSheetStatus" @hide="onBottomSheetHide">
     <template #header-title>
       {{ bottomSheetItem.code }} / {{ bottomSheetItem.title }}
     </template>
 
     <template #body>
       <q-list padding>
-        <q-item
-          clickable
-          v-ripple
-          :to="`/cmn/product/edit/${bottomSheetItem.id}`"
-        >
+        <q-item clickable v-ripple :to="`/cmn/product/edit/${bottomSheetItem.id}`">
           <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_edit" />
+            <q-avatar size="32px" class="bg-on-dark text-on-dark">
+              <q-icon size="16px" name="o_edit" />
             </q-avatar>
           </q-item-section>
 
@@ -232,14 +148,10 @@
           </q-item-section>
         </q-item>
 
-        <q-item
-          clickable
-          v-ripple
-          :to="`/cmn/product/copy/${bottomSheetItem.id}`"
-        >
+        <q-item clickable v-ripple :to="`/cmn/product/copy/${bottomSheetItem.id}`">
           <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_copy" />
+            <q-avatar size="32px" class="bg-on-dark text-on-dark">
+              <q-icon size="16px" name="o_copy" />
             </q-avatar>
           </q-item-section>
 
@@ -250,14 +162,10 @@
 
         <q-separator class="q-my-sm" />
 
-        <q-item
-          clickable
-          v-ripple
-          @click="crudStore.deleteById(bottomSheetItem.id, reloadData)"
-        >
+        <q-item clickable v-ripple @click="crudStore.deleteById(bottomSheetItem.id, reloadData)">
           <q-item-section avatar>
-            <q-avatar class="delete-avatar bg-on-dark red-shadow text-on-dark">
-              <q-icon name="o_delete" />
+            <q-avatar size="32px" class="delete-avatar bg-on-dark red-shadow text-on-dark">
+              <q-icon size="16px" name="o_delete" />
             </q-avatar>
           </q-item-section>
 
