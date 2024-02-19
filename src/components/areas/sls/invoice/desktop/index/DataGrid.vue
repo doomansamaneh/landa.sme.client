@@ -20,7 +20,7 @@
   </tool-bar>
 
   <div>
-    <advanced-search :grid-store="invoiceStore" @apply-search="reloadData" />
+    <advanced-search :grid-store="gridStore" @apply-search="reloadData" />
   </div>
 
   <div class="q-py-md">
@@ -36,27 +36,23 @@
       <q-tab name="canceled" label="ابطال شده" icon="o_cancel" />
     </q-tabs>
 
-    <invoice-grid ref="invoiceTable" :grid-store="invoiceStore" />
+    <invoice-grid ref="invoiceTable" :grid-store="gridStore" />
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from "vue";
-import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid";
+import { computed, ref } from "vue";
 import { sqlOperator, cancelStatus } from "src/constants";
-import { bus } from "src/helpers";
 
 import InvoiceGrid from "components/areas/sls/invoice/desktop/index/_DataTable.vue";
 import AdvancedSearch from "components/areas/sls/invoice/desktop/index/_AdvancedSearch.vue";
 import ToolBar from "components/shared/ToolBar.vue";
+import { onMounted } from "vue";
 
-const invoiceStore = useInvoiceGrid([
-  {
-    fieldName: "d.StatusId",
-    operator: sqlOperator.notEqual,
-    value: cancelStatus,
-  },
-]);
+const props = defineProps({
+  gridStore: Object,
+  title: String,
+});
 
 const invoiceTable = ref(null);
 
@@ -87,17 +83,5 @@ async function tabChanged(e) {
 
 async function reloadData(model) {
   await tableStore.value?.reloadData();
-}
-
-onMounted(() => {
-  bus.on("render-page", handleRender);
-});
-
-onUnmounted(() => {
-  bus.off("render-page", handleRender);
-});
-
-async function handleRender() {
-  await tableStore.value?.loadData();
 }
 </script>

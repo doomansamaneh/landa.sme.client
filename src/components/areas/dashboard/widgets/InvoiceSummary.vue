@@ -9,19 +9,17 @@
           rounded
           class="bordered-btn bg-dark q-py-xs"
         >
-          <q-icon
-            name="o_add"
-            size="16px"
-            class="q-mr-xs"
-          />
+          <q-icon name="o_add" size="16px" class="q-mr-xs" />
           ایجاد فاکتور
         </q-btn>
       </div>
       <div
         class="text-body3 text-bold"
         :class="$q.screen.lt.md ? 'q-mt-lg' : 'q-mt-sm'"
-      >تبریک میگم، %47.4 رشد داشته اید. <span class="text-caption">در ماه
-          گذشته</span></div>
+      >
+        تبریک میگم، %47.4 رشد داشته اید.
+        <span class="text-caption">در ماه گذشته</span>
+      </div>
     </q-card-section>
 
     <q-card-section class="row q-gutter-lg q-pt-none q-px-lg q-pt-sm q-pb-lg">
@@ -40,10 +38,9 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">جمع کل</q-item-label>
-            <q-item-label
-              style="font-size: 18px;"
-              class="text-bold"
-            >392,529,180</q-item-label>
+            <q-item-label style="font-size: 18px" class="text-bold">
+              {{ dataStore.data?.value?.amount.toLocaleString() }}
+            </q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -63,10 +60,9 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">دریافت شده</q-item-label>
-            <q-item-label
-              style="font-size: 18px;"
-              class="text-bold"
-            >153,444,310</q-item-label>
+            <q-item-label style="font-size: 18px" class="text-bold">
+              {{ dataStore.data?.value?.payedAmount.toLocaleString() }}
+            </q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -74,13 +70,7 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn
-              push
-              @click="hello"
-              flat
-              dense
-              size="0"
-            >
+            <q-btn push flat dense size="0" to="/sls/invoice/remainedThisYear">
               <q-avatar
                 rounded
                 color="orange"
@@ -94,10 +84,9 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">مانده امسال</q-item-label>
-            <q-item-label
-              style="font-size: 18px;"
-              class="text-bold"
-            >392,529,180</q-item-label>
+            <q-item-label style="font-size: 18px" class="text-bold">
+              {{ dataStore.data?.value?.remainedAmount.toLocaleString() }}
+            </q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -105,13 +94,7 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn
-              push
-              @click="hello"
-              flat
-              dense
-              size="0"
-            >
+            <q-btn push flat dense size="0" to="/sls/invoice/remainedAll">
               <q-avatar
                 rounded
                 color="red"
@@ -125,10 +108,9 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">مانده از قبل</q-item-label>
-            <q-item-label
-              style="font-size: 18px;"
-              class="text-bold"
-            >32,314,300</q-item-label>
+            <q-item-label style="font-size: 18px" class="text-bold">
+              {{ dataStore.data?.value?.remainedAmountAll.toLocaleString() }}
+            </q-item-label>
           </q-item-section>
         </q-item>
       </div>
@@ -137,9 +119,9 @@
 </template>
 
 <script setup>
-const hello = () => {
-  alert("Hello")
-}
+import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/useInvoiceSummary";
+
+const dataStore = useInvoiceSummary();
 </script>
 
 <style>

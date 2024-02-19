@@ -1,10 +1,6 @@
 <template>
-  <q-card
-    class="fit bordered q-pa-none"
-    flat
-  >
+  <q-card class="fit bordered q-pa-none" flat>
     <q-card-section class="col q-pt-lg q-pb-none q-pl-lg q-pr-md">
-
       <div class="row justify-between">
         <div class="col-11">
           <q-item class="no-padding">
@@ -51,42 +47,33 @@
             </q-item-section>
 
             <q-item-section class="q-pl-xs">
-              <q-item-label
-                v-if="saleIncome"
-                class="text-body1 q-mb-xs"
-              >
+              <q-item-label v-if="saleIncome" class="text-body1 q-mb-xs">
                 فروش و درآمد، هزینه
               </q-item-label>
-              <q-item-label
-                v-if="saleIncomeTable"
-                class="text-body1 q-mb-xs"
-              >جدول فروش و درآمد، هزینه</q-item-label>
-              <q-item-label
-                v-if="salePerProduct"
-                class="text-body1 q-mb-xs"
-              >فروش بر اساس کالا و خدمات</q-item-label>
+              <q-item-label v-if="saleIncomeTable" class="text-body1 q-mb-xs">
+                جدول فروش و درآمد، هزینه
+              </q-item-label>
+              <q-item-label v-if="salePerProduct" class="text-body1 q-mb-xs">
+                فروش بر اساس کالا و خدمات
+              </q-item-label>
               <q-item-label
                 v-if="salePerProductGroup"
                 class="text-body1 q-mb-xs"
-              >فروش بر اساس گروه کالا و خدمات</q-item-label>
-              <q-item-label
-                v-if="salePerCustomer"
-                class="text-body1 q-mb-xs"
-              >فروش بر اساس مشتری</q-item-label>
-              <q-item-label
-                v-if="cost"
-                class="text-body1 q-mb-xs"
-              >نمودار هزینه</q-item-label>
-              <q-item-label
-                v-if="costDetail"
-                class="text-body1 q-mb-xs"
-              >ریز هزینه</q-item-label>
+                >فروش بر اساس گروه کالا و خدمات</q-item-label
+              >
+              <q-item-label v-if="salePerCustomer" class="text-body1 q-mb-xs"
+                >فروش بر اساس مشتری</q-item-label
+              >
+              <q-item-label v-if="cost" class="text-body1 q-mb-xs"
+                >نمودار هزینه</q-item-label
+              >
+              <q-item-label v-if="costDetail" class="text-body1 q-mb-xs"
+                >ریز هزینه</q-item-label
+              >
             </q-item-section>
           </q-item>
-
         </div>
         <div class="col">
-
           <div class="row justify-end">
             <q-btn
               unelevated
@@ -96,13 +83,8 @@
               size="md"
               icon="o_more_vert"
             >
-
               <q-menu fit>
-                <q-list
-                  dense
-                  padding
-                  style="width:240px"
-                >
+                <q-list dense padding style="width: 240px">
                   <q-item
                     clickable
                     v-close-popup
@@ -111,14 +93,8 @@
                   >
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar
-                          class="bg-on-dark"
-                          size="sm"
-                        >
-                          <q-icon
-                            name="o_sell"
-                            size="14px"
-                          />
+                        <q-avatar class="bg-on-dark" size="sm">
+                          <q-icon name="o_sell" size="14px" />
                         </q-avatar>
                       </q-item-section>
                     </div>
@@ -134,14 +110,8 @@
                   >
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar
-                          class="bg-on-dark"
-                          size="sm"
-                        >
-                          <q-icon
-                            name="o_table_50650000,"
-                            size="14px"
-                          />
+                        <q-avatar class="bg-on-dark" size="sm">
+                          <q-icon name="o_table_50650000," size="14px" />
                         </q-avatar>
                       </q-item-section>
                     </div>
@@ -152,13 +122,9 @@
                   <q-item clickable>
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar
-                          class="bg-on-dark"
-                          size="sm"
-                        ><q-icon
-                            name="o_close"
-                            size="14px"
-                          /></q-avatar>
+                        <q-avatar class="bg-on-dark" size="sm"
+                          ><q-icon name="o_close" size="14px"
+                        /></q-avatar>
                       </q-item-section>
                     </div>
                     <q-item-section>
@@ -177,13 +143,9 @@
                         >
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar
-                                class="bg-on-dark"
-                                size="sm"
-                              ><q-icon
-                                  name="o_inventory_2"
-                                  size="14px"
-                                /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"
+                                ><q-icon name="o_inventory_2" size="14px"
+                              /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
@@ -198,17 +160,15 @@
                         >
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar
-                                class="bg-on-dark"
-                                size="sm"
-                              ><q-icon
-                                  name="o_inventory_2"
-                                  size="14px"
-                                /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"
+                                ><q-icon name="o_inventory_2" size="14px"
+                              /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
-                            <div class="text-caption">بر اساس گروه کالا و خدمات</div>
+                            <div class="text-caption">
+                              بر اساس گروه کالا و خدمات
+                            </div>
                           </q-item-section>
                         </q-item>
                         <q-item
@@ -219,13 +179,9 @@
                         >
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar
-                                class="bg-on-dark"
-                                size="sm"
-                              ><q-icon
-                                  name="o_person"
-                                  size="14px"
-                                /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"
+                                ><q-icon name="o_person" size="14px"
+                              /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
@@ -238,13 +194,9 @@
                   <q-item clickable>
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar
-                          class="bg-on-dark"
-                          size="sm"
-                        ><q-icon
-                            name="o_attach_money"
-                            size="14px"
-                          /></q-avatar>
+                        <q-avatar class="bg-on-dark" size="sm"
+                          ><q-icon name="o_attach_money" size="14px"
+                        /></q-avatar>
                       </q-item-section>
                     </div>
                     <q-item-section>
@@ -264,13 +216,9 @@
                         >
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar
-                                class="bg-on-dark"
-                                size="sm"
-                              ><q-icon
-                                  name="o_equalizer"
-                                  size="14px"
-                                /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"
+                                ><q-icon name="o_equalizer" size="14px"
+                              /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
@@ -285,13 +233,9 @@
                         >
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar
-                                class="bg-on-dark"
-                                size="sm"
-                              ><q-icon
-                                  name="o_incomplete_circle"
-                                  size="14px"
-                                /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"
+                                ><q-icon name="o_incomplete_circle" size="14px"
+                              /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
@@ -303,27 +247,16 @@
                   </q-item>
                 </q-list>
               </q-menu>
-
             </q-btn>
           </div>
-
         </div>
       </div>
     </q-card-section>
 
-    <revenue-expense-chart
-      v-if="saleIncome"
-      :height="300"
-      legend="true"
-    />
+    <revenue-expense-chart v-if="saleIncome" :height="300" legend="true" />
+    <revenue-expense-table v-if="saleIncomeTable" />
 
-    <markup-table v-if="saleIncomeTable" />
-
-    <bar-chart
-      v-if="sale"
-      :height="300"
-      legend="false"
-    />
+    <bar-chart v-if="sale" :height="300" legend="false" />
 
     <bar-chart
       v-if="salePerProduct"
@@ -332,11 +265,7 @@
       seriesName="کالا و خدمات"
     />
 
-    <pie-chart
-      v-if="salePerProductGroup"
-      :height="300"
-      legend="false"
-    />
+    <pie-chart v-if="salePerProductGroup" :height="300" legend="false" />
 
     <bar-chart
       v-if="salePerCustomer"
@@ -345,106 +274,94 @@
       seriesName="مشتری"
     />
 
-    <bar-chart
-      v-if="cost"
-      :height="300"
-      legend="false"
-      seriesName="هزینه"
-    />
+    <bar-chart v-if="cost" :height="300" legend="false" seriesName="هزینه" />
 
-    <pie-chart
-      v-if="costDetail"
-      :height="300"
-      legend="false"
-    />
-
+    <pie-chart v-if="costDetail" :height="300" legend="false" />
   </q-card>
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref } from "vue";
 
-import RevenueExpenseChart from './_RevenueExpenseChart.vue'
-import BarChart from 'src/components/shared/charts/BarChart.vue'
-import PieChart from 'src/components/shared/charts/PieChart.vue'
-import DonutChart from 'src/components/shared/charts/DonutChart.vue'
-import MarkupTable from 'src/components/shared/dataTables/MarkupTable.vue'
+import BarChart from "src/components/shared/charts/BarChart.vue";
+import PieChart from "src/components/shared/charts/PieChart.vue";
+import DonutChart from "src/components/shared/charts/DonutChart.vue";
+import RevenueExpenseChart from "./_RevenueExpenseChart.vue";
+import RevenueExpenseTable from "./_RevenueExpenseTable.vue";
 
-const saleIncome = ref(true)
-const saleIncomeTable = ref(false)
-const salePerProduct = ref(false)
-const salePerCustomer = ref(false)
-const salePerProductGroup = ref(false)
-const cost = ref(false)
-const costDetail = ref(false)
+const saleIncome = ref(true);
+const saleIncomeTable = ref(false);
+const salePerProduct = ref(false);
+const salePerCustomer = ref(false);
+const salePerProductGroup = ref(false);
+const cost = ref(false);
+const costDetail = ref(false);
 
 const showSaleIncome = () => {
   saleIncome.value = true;
   saleIncomeTable.value = false;
-  salePerProductGroup.value = false
-  salePerProduct.value = false
-  cost.value = false
-  costDetail.value = false
-}
+  salePerProductGroup.value = false;
+  salePerProduct.value = false;
+  cost.value = false;
+  costDetail.value = false;
+};
 
 const showSaleIncomeTable = () => {
   saleIncomeTable.value = true;
   saleIncome.value = false;
-  salePerProductGroup.value = false
-  salePerProduct.value = false
-  cost.value = false
-  costDetail.value = false
-}
+  salePerProductGroup.value = false;
+  salePerProduct.value = false;
+  cost.value = false;
+  costDetail.value = false;
+};
 
 const showSalePerProduct = () => {
   saleIncome.value = false;
   saleIncomeTable.value = false;
-  salePerCustomer.value = false
-  salePerProduct.value = true
-  salePerProductGroup.value = false
-  cost.value = false
-  costDetail.value = false
-}
+  salePerCustomer.value = false;
+  salePerProduct.value = true;
+  salePerProductGroup.value = false;
+  cost.value = false;
+  costDetail.value = false;
+};
 
 const showSalePerProductGroup = () => {
   saleIncome.value = false;
   saleIncomeTable.value = false;
-  salePerCustomer.value = false
-  salePerProduct.value = false
-  cost.value = false
-  costDetail.value = false
-  salePerProductGroup.value = true
-
-}
+  salePerCustomer.value = false;
+  salePerProduct.value = false;
+  cost.value = false;
+  costDetail.value = false;
+  salePerProductGroup.value = true;
+};
 
 const showSalePerCustomer = () => {
   saleIncome.value = false;
   saleIncomeTable.value = false;
-  salePerProduct.value = false
-  salePerProductGroup.value = false
-  salePerCustomer.value = true
-  cost.value = false
-  costDetail.value = false
-}
+  salePerProduct.value = false;
+  salePerProductGroup.value = false;
+  salePerCustomer.value = true;
+  cost.value = false;
+  costDetail.value = false;
+};
 
 const showCost = () => {
   saleIncome.value = false;
   saleIncomeTable.value = false;
-  salePerProduct.value = false
-  salePerProductGroup.value = false
-  salePerCustomer.value = false
-  costDetail.value = false
-  cost.value = true
-}
+  salePerProduct.value = false;
+  salePerProductGroup.value = false;
+  salePerCustomer.value = false;
+  costDetail.value = false;
+  cost.value = true;
+};
 
 const showCostDetail = () => {
   saleIncome.value = false;
   saleIncomeTable.value = false;
-  salePerProduct.value = false
-  salePerProductGroup.value = false
-  salePerCustomer.value = false
-  cost.value = false
-  costDetail.value = true
-}
-
+  salePerProduct.value = false;
+  salePerProductGroup.value = false;
+  salePerCustomer.value = false;
+  cost.value = false;
+  costDetail.value = true;
+};
 </script>

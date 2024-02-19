@@ -1,8 +1,6 @@
 <template>
   <q-card class="fit bordered no-padding">
-
     <q-card-section class="q-pa-lg">
-
       <div class="row full-width">
         <div class="col column q-gutter-y-sm">
           <span class="text-body1">درآمد خالص</span>
@@ -16,11 +14,11 @@
             rounded
             unelevated
             color="primary"
-            style="width: 120px;"
-          >جزئیات بیشتر</q-btn>
+            style="width: 120px"
+            >جزئیات بیشتر</q-btn
+          >
         </div>
         <div class="col-4">
-          <q-btn @click="changeSeris">change series</q-btn>
           <vue-apex-charts
             ref="incomeChart"
             :options="options"
@@ -33,25 +31,23 @@
           />
         </div>
       </div>
-
     </q-card-section>
-
   </q-card>
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue'
-import { useQuasar } from 'quasar'
+import { ref, onMounted, watch, computed } from "vue";
+import { useQuasar } from "quasar";
 
 //import Chart from 'src/components/shared/charts/ChartView.vue'
-import VueApexCharts from "vue3-apexcharts"
+import VueApexCharts from "vue3-apexcharts";
 
-const props = defineProps(['legend', 'title'])
+const props = defineProps(["legend", "title"]);
 
-const $q = useQuasar()
-const incomeChart = ref(null)
+const $q = useQuasar();
+const incomeChart = ref(null);
 
-const options = ref(null)
+const options = ref(null);
 
 const chartOptions = {
   chart: {
@@ -65,60 +61,58 @@ const chartOptions = {
 const series = ref([
   {
     name: "درآمد خالص",
-    data: [2500000000, 5004002500]
-  }
-])
-
+    data: [2500000000, 5004002500],
+  },
+]);
 
 function setOptions() {
-
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? "Vazir FD" : "Roboto";
 
   options.value = {
     title: {
       text: props.title,
-      align: 'center',
+      align: "center",
       style: {
-        fontSize: '14px',
-        fontWeight: 'bold',
-        color: $q.dark.isActive ? 'white' : '#2d2d2d'
+        fontSize: "14px",
+        fontWeight: "bold",
+        color: $q.dark.isActive ? "white" : "#2d2d2d",
       },
     },
     chart: {
       offsetY: 0,
       parentHeightOffset: 0,
       fontFamily,
-      type: 'bar',
+      type: "bar",
       toolbar: {
-        show: false
+        show: false,
       },
       zoom: {
-        enabled: false
+        enabled: false,
       },
       animations: {
         enabled: true,
-        easing: 'easeinout',
+        easing: "easeinout",
         speed: 600,
         animateGradually: {
           enabled: true,
-          delay: 150
+          delay: 150,
         },
         dynamicAnimation: {
           enabled: true,
-          speed: 450
+          speed: 450,
         },
-      }
+      },
     },
     plotOptions: {
       bar: {
         // borderRadius: 5,
         // horizontal: false,
-        columnWidth: '20%',
+        columnWidth: "20%",
         // distributed: false,
       },
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     // stroke: {
     //   width: 2.5,
@@ -129,29 +123,27 @@ function setOptions() {
     grid: {
       show: false,
       strokeDashArray: 5,
-      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
+      borderColor: $q.dark.isActive ? "#ffffff47" : "#2d2d2d2d",
       padding: {
         top: 0,
         right: 0,
         bottom: 0,
-        left: 0
+        left: 0,
       },
     },
     xaxis: {
       axisBorder: {
-        show: false
+        show: false,
       },
       axisTicks: {
-        show: false
+        show: false,
       },
-      categories: [
-        'پارسال', 'امسال',
-      ],
+      categories: ["پارسال", "امسال"],
       labels: {
         show: false,
         offsetY: 12,
         style: {
-          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+          colors: $q.dark.isActive ? "white" : "#2d2d2d",
         },
       },
     },
@@ -160,7 +152,7 @@ function setOptions() {
       opposite: false,
       labels: {
         style: {
-          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+          colors: $q.dark.isActive ? "white" : "#2d2d2d",
         },
         formatter: function (value) {
           return formatYAxisLabel(value);
@@ -172,17 +164,17 @@ function setOptions() {
       showForSingleSeries: true,
       inverseOrder: true,
       labels: {
-        colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+        colors: $q.dark.isActive ? "white" : "#2d2d2d",
       },
-      position: 'top',
-      fontSize: '14px',
+      position: "top",
+      fontSize: "14px",
       fontWeight: 400,
       // offsetY: 16,
       markers: {
         width: 14,
         height: 14,
         radius: 4,
-        offsetX: $q.lang.rtl ? '-4' : '-4',
+        offsetX: $q.lang.rtl ? "-4" : "-4",
       },
       itemMargin: {
         // vertical: 16,
@@ -196,16 +188,15 @@ function setOptions() {
       enabled: true,
       x: {
         show: true,
-
       },
       y: {
         show: true,
         title: {
-          formatter: seriesName => seriesName == ''
-        }
+          formatter: (seriesName) => seriesName == "",
+        },
       },
       style: {
-        fontSize: '13px',
+        fontSize: "13px",
       },
       marker: {
         width: 8,
@@ -213,46 +204,51 @@ function setOptions() {
       },
       fixed: {
         enabled: true,
-        position: 'topLeft',
+        position: "topLeft",
         offsetX: 0,
         offsetY: 0,
       },
     },
-  }
-
+  };
 }
 
 const direction = computed(() => {
-  return $q.lang.rtl ? 'rtl' : 'ltr';
-})
+  return $q.lang.rtl ? "rtl" : "ltr";
+});
 
-watch(() => $q.dark.isActive, () => {
-  setOptions()
-})
+watch(
+  () => $q.dark.isActive,
+  () => {
+    setOptions();
+  }
+);
 
-watch(() => $q.lang.rtl, () => {
-  setOptions()
-})
+watch(
+  () => $q.lang.rtl,
+  () => {
+    setOptions();
+  }
+);
 
 onMounted(() => {
-  setOptions()
-})
+  setOptions();
+});
 
 function formatYAxisLabel(value) {
-  const parts = String(value).split('.');
-  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const parts = String(value).split(".");
+  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   let formattedValue = integerPart;
 
   if (parts.length > 1) {
-    formattedValue += '.' + parts[1];
+    formattedValue += "." + parts[1];
   }
 
   return formattedValue;
 }
 
 function changeSeris() {
-  series.value[0].data = [1200000000, 500000]
+  series.value[0].data = [1200000000, 500000];
   //console.log(incomeChart.value)
 }
 </script>

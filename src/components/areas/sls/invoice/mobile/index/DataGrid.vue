@@ -8,19 +8,12 @@
   >
     <template #bottons-custom>
       <q-separator class="q-my-sm" />
-      <q-item
-        clickable
-        v-close-popup
-        tabindex="0"
-        @click="editBatch"
-      >
+      <q-item clickable v-close-popup tabindex="0" @click="editBatch">
         <div class="q-py-sm">
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark"
-              size="sm"
-            >
-              <q-icon name="o_edit" /></q-avatar>
+            <q-avatar class="bg-on-dark" size="sm">
+              <q-icon name="o_edit"
+            /></q-avatar>
           </q-item-section>
         </div>
         <q-item-section>
@@ -29,21 +22,14 @@
           </div>
         </q-item-section>
       </q-item>
-
     </template>
   </tool-bar>
 
-  <div
-    class="column q-gutter-sm"
-    style="margin-top: 46px;"
-  >
-
+  <div class="column q-gutter-sm" style="margin-top: 46px">
     <q-card class="bordered bg-primary">
       <q-card-section>
-
         <div class="row items-center q-gutter-sm">
           <div class="col-2">
-
             <q-btn
               round
               dense
@@ -52,29 +38,34 @@
             >
               {{ gridStore?.pagination.value.totalItems }}
             </q-btn>
-
           </div>
 
           <div class="col">
             <div class="row q-gutter-sm">
               <div class="text-caption text-bold text-blue-3">جمع کل</div>
-              <div class="text-bold text-white text-caption">{{
-                tableStore?.summaryData?.value?.amount.toLocaleString() }}</div>
+              <div class="text-bold text-white text-caption">
+                {{ tableStore?.summaryData?.value?.amount.toLocaleString() }}
+              </div>
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
               <div class="text-caption text-bold text-blue-3">دریافت شده</div>
-              <div class="text-bold text-white text-caption">{{
-                tableStore?.summaryData?.value?.payedAmount.toLocaleString() }}</div>
+              <div class="text-bold text-white text-caption">
+                {{
+                  tableStore?.summaryData?.value?.payedAmount.toLocaleString()
+                }}
+              </div>
             </div>
             <div class="row q-gutter-sm q-pt-xs">
               <div class="text-caption text-bold text-blue-3">مانده</div>
-              <div class="text-bold text-white text-caption">{{
-                tableStore?.summaryData?.value?.remainedAmount.toLocaleString() }}</div>
+              <div class="text-bold text-white text-caption">
+                {{
+                  tableStore?.summaryData?.value?.remainedAmount.toLocaleString()
+                }}
+              </div>
             </div>
           </div>
         </div>
-
       </q-card-section>
     </q-card>
 
@@ -83,44 +74,46 @@
       v-if="tableStore?.selectedRows?.value.length > 1"
     >
       <q-card-section>
-
         <div class="row items-center q-gutter-sm">
           <div class="col-2">
-
             <q-btn
               round
               dense
               unelevated
               class="bg-white text-primary text-body1 text-bold no-pointer-events"
             >
-              <q-icon
-                size="28px"
-                name="o_done"
-              />
+              <q-icon size="28px" name="o_done" />
             </q-btn>
-
           </div>
           <div class="col">
             <div class="row q-gutter-sm">
               <div class="text-caption text-bold text-grey-7">جمع کل</div>
               <div class="text-bold text-grey-10 text-caption">
-                {{ helper.getSubtotal(tableStore.selectedRows.value, "amount").toLocaleString() }}
+                {{
+                  helper
+                    .getSubtotal(tableStore.selectedRows.value, "amount")
+                    .toLocaleString()
+                }}
               </div>
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
               <div class="text-caption text-bold text-grey-7">مانده</div>
               <div class="text-bold text-grey-10 text-caption">
-                {{ helper.getSubtotal(tableStore.selectedRows.value, "remainedAmount").toLocaleString() }}
+                {{
+                  helper
+                    .getSubtotal(
+                      tableStore.selectedRows.value,
+                      "remainedAmount"
+                    )
+                    .toLocaleString()
+                }}
               </div>
             </div>
           </div>
         </div>
-
       </q-card-section>
-
     </q-card>
-
   </div>
 
   <div class="column q-mt-md q-gutter-lg">
@@ -151,9 +144,7 @@
         icon="o_close"
         color="primary"
       />
-      <span>
-        نتایج جستجو برای: {{ selectedDateRange.label }}
-      </span>
+      <span> نتایج جستجو برای: {{ selectedDateRange.label }} </span>
     </div>
 
     <data-grid
@@ -167,7 +158,6 @@
       </template>
 
       <template #row-header="{ item }">
-
         <q-card-section>
           <div class="row items-center justify-center">
             <q-btn
@@ -176,47 +166,37 @@
               unelevated
               class="no-pointer-events"
             >
-
               <q-avatar
                 size="56px"
                 text-color="white"
-                :style="{ backgroundColor: helper.generateDarkAvatarColor(item.customerName) }"
+                :style="{
+                  backgroundColor: helper.generateDarkAvatarColor(
+                    item.customerName
+                  ),
+                }"
               >
                 <div class="char text-body1 text-bold">
                   {{ helper.getFirstChar(item.customerName) }}
                 </div>
               </q-avatar>
             </q-btn>
-            <q-btn
-              round
-              unelevated
-              class="no-pointer-events"
-              v-else
-            >
-              <q-avatar
-                size="50px"
-                color="primary"
-                text-color="white"
-              >
-                <q-icon
-                  name="o_done"
-                  size="md"
-                />
+            <q-btn round unelevated class="no-pointer-events" v-else>
+              <q-avatar size="50px" color="primary" text-color="white">
+                <q-icon name="o_done" size="md" />
               </q-avatar>
             </q-btn>
           </div>
 
           <div class="row justify-between items-center">
-
             <div class="col row items-center">
-              <span class="text-caption text-on-dark">
-                شماره:
-              </span>
+              <span class="text-caption text-on-dark"> شماره: </span>
               <span class="text-caption text-on-dark">{{ item.no }}</span>
             </div>
 
             <div class="col row justify-end items-center q-gutter-xs">
-              <span class="text-caption text-on-dark">{{ item.dateString }}</span>
+              <span class="text-caption text-on-dark">{{
+                item.dateString
+              }}</span>
             </div>
           </div>
         </q-card-section>
@@ -227,13 +207,15 @@
       <template #row-body="{ item }">
         <q-card-section>
           <div class="column q-gutter-sm">
-
             <div class="row items-center q-px-sm">
               <div class="col-3">
                 <span class="text-caption text-on-dark">مشتری</span>
               </div>
               <div class="col">
-                <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.customerName }}</span>
+                <span
+                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
+                  >{{ item.customerName }}</span
+                >
               </div>
             </div>
 
@@ -242,7 +224,9 @@
                 <span class="text-caption text-on-dark">شرح</span>
               </div>
               <div class="col">
-                <span class="ellipsis-2-lines text-caption text-on-dark">{{ item.subject }}</span>
+                <span class="ellipsis-2-lines text-caption text-on-dark">{{
+                  item.subject
+                }}</span>
                 <div
                   v-if="item.summary"
                   class="ellipsis-2-lines text-caption-sm text-on-dark"
@@ -252,15 +236,13 @@
               </div>
             </div>
 
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.discountAmount"
-            >
+            <div class="row items-center q-px-sm" v-if="item.discountAmount">
               <div class="col-3">
                 <span class="text-caption text-on-dark">تخفیف</span>
               </div>
               <div class="col">
-                <span class="ellipsis-2-lines text-caption text-on-dark">{{ item.discountAmount.toLocaleString()
+                <span class="ellipsis-2-lines text-caption text-on-dark">{{
+                  item.discountAmount.toLocaleString()
                 }}</span>
               </div>
             </div>
@@ -270,34 +252,34 @@
                 <span class="text-caption text-on-dark">جمع کل</span>
               </div>
               <div class="col">
-                <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{ item.amount.toLocaleString()
-                }}</span>
+                <span
+                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
+                  >{{ item.amount.toLocaleString() }}</span
+                >
               </div>
             </div>
 
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.payedAmount"
-            >
+            <div class="row items-center q-px-sm" v-if="item.payedAmount">
               <div class="col-3">
                 <span class="text-caption text-on-dark">دریافت شده</span>
               </div>
               <div class="col">
-                <span class="ellipsis-2-lines text-caption text-caption text-on-dark">{{
-                  item.payedAmount.toLocaleString() }}</span>
+                <span
+                  class="ellipsis-2-lines text-caption text-caption text-on-dark"
+                  >{{ item.payedAmount.toLocaleString() }}</span
+                >
               </div>
             </div>
 
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.remainedAmount"
-            >
+            <div class="row items-center q-px-sm" v-if="item.remainedAmount">
               <div class="col-3">
                 <span class="text-caption text-on-dark">مانده</span>
               </div>
               <div class="col">
-                <span class="ellipsis-2-lines text-caption text-bold text-on-dark">{{
-                  item.remainedAmount.toLocaleString() }}</span>
+                <span
+                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
+                  >{{ item.remainedAmount.toLocaleString() }}</span
+                >
               </div>
             </div>
           </div>
@@ -305,11 +287,15 @@
 
         <q-card-section class="q-pt-xs">
           <div class="row items-center q-gutter-sm">
-            <span class="border-radius-sm bg-orange-2 text-caption text-red label">
+            <span
+              class="border-radius-sm bg-orange-2 text-caption text-red label"
+            >
               {{ item.statusTitle }}
             </span>
 
-            <span class="border-radius-sm bg-primary text-caption text-white label">
+            <span
+              class="border-radius-sm bg-primary text-caption text-white label"
+            >
               {{ item.typeTitle }}
             </span>
 
@@ -319,16 +305,11 @@
             >
               {{ item.contractTitle }}
             </span>
-
           </div>
         </q-card-section>
-
       </template>
       <template #row-actions="{ item }">
-        <q-btn
-          unelevated
-          class="text-on-dark"
-        >
+        <q-btn unelevated class="text-on-dark">
           <span class="text-body3 text-bold">مشاهده جزئیات</span>
         </q-btn>
 
@@ -348,94 +329,69 @@
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
   >
-
     <template #header-title>
       {{ bottomSheetItem.no }} / {{ bottomSheetItem.subject }}
     </template>
 
     <template #body>
       <q-list padding>
-
-        <q-item
-          clickable
-          v-ripple
-        >
+        <q-item clickable v-ripple>
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_copy"
-            />
+            <q-avatar class="bg-on-dark text-on-dark" icon="o_copy" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">کپی</q-item-section>
+          <q-item-section class="text-body1 no-letter-spacing"
+            >کپی</q-item-section
+          >
         </q-item>
 
-        <q-item
-          clickable
-          v-ripple
-        >
+        <q-item clickable v-ripple>
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_edit"
-            />
+            <q-avatar class="bg-on-dark text-on-dark" icon="o_edit" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">ویرایش</q-item-section>
+          <q-item-section class="text-body1 no-letter-spacing"
+            >ویرایش</q-item-section
+          >
         </q-item>
 
         <q-separator class="q-my-sm" />
 
-        <q-item
-          clickable
-          v-ripple
-        >
+        <q-item clickable v-ripple>
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_email"
-            />
+            <q-avatar class="bg-on-dark text-on-dark" icon="o_email" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">ارسال ایمیل</q-item-section>
+          <q-item-section class="text-body1 no-letter-spacing"
+            >ارسال ایمیل</q-item-section
+          >
         </q-item>
 
         <q-separator class="q-my-sm" />
 
-        <q-item
-          clickable
-          v-ripple
-          @click="showPrintDialog"
-        >
+        <q-item clickable v-ripple @click="showPrintDialog">
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_print"
-            />
+            <q-avatar class="bg-on-dark text-on-dark" icon="o_print" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">چاپ</q-item-section>
+          <q-item-section class="text-body1 no-letter-spacing"
+            >چاپ</q-item-section
+          >
         </q-item>
 
         <q-separator class="q-my-sm" />
 
-        <q-item
-          clickable
-          v-ripple
-        >
+        <q-item clickable v-ripple>
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_delete"
-            />
+            <q-avatar class="bg-on-dark text-on-dark" icon="o_delete" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">حذف</q-item-section>
+          <q-item-section class="text-body1 no-letter-spacing"
+            >حذف</q-item-section
+          >
         </q-item>
-
       </q-list>
     </template>
-
   </bottom-sheet>
 
   <q-dialog
@@ -448,39 +404,25 @@
       <q-card-section>
         <div class="row items-center justify-between">
           <span class="text-body1 no-letter-spacing">چاپ</span>
-          <q-btn
-            round
-            unelevated
-            icon="o_close"
-            v-close-popup
-          />
+          <q-btn round unelevated icon="o_close" v-close-popup />
         </div>
       </q-card-section>
 
       <q-card-section class="no-padding">
-
         <q-list padding>
-
-          <q-item
-            clickable
-            v-ripple
-          >
+          <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_print"
-              />
+              <q-avatar class="bg-on-dark text-on-dark" icon="o_print" />
             </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">چاپ مستقیم</q-item-section>
+            <q-item-section class="text-body1 no-letter-spacing"
+              >چاپ مستقیم</q-item-section
+            >
           </q-item>
 
           <q-separator />
 
-          <q-item
-            clickable
-            v-ripple
-          >
+          <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-avatar
                 class="bg-on-dark text-on-dark"
@@ -488,13 +430,12 @@
               />
             </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A4</q-item-section>
+            <q-item-section class="text-body1 no-letter-spacing"
+              >پی دی اف - A4</q-item-section
+            >
           </q-item>
 
-          <q-item
-            clickable
-            v-ripple
-          >
+          <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-avatar
                 class="bg-on-dark text-on-dark"
@@ -502,13 +443,12 @@
               />
             </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A4 - افقی</q-item-section>
+            <q-item-section class="text-body1 no-letter-spacing"
+              >پی دی اف - A4 - افقی</q-item-section
+            >
           </q-item>
 
-          <q-item
-            clickable
-            v-ripple
-          >
+          <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-avatar
                 class="bg-on-dark text-on-dark"
@@ -516,13 +456,12 @@
               />
             </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A5</q-item-section>
+            <q-item-section class="text-body1 no-letter-spacing"
+              >پی دی اف - A5</q-item-section
+            >
           </q-item>
 
-          <q-item
-            clickable
-            v-ripple
-          >
+          <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-avatar
                 class="bg-on-dark text-on-dark"
@@ -530,98 +469,95 @@
               />
             </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">پی دی اف - A5 - افقی</q-item-section>
+            <q-item-section class="text-body1 no-letter-spacing"
+              >پی دی اف - A5 - افقی</q-item-section
+            >
           </q-item>
 
           <q-separator />
 
-          <q-item
-            clickable
-            v-ripple
-          >
+          <q-item clickable v-ripple>
             <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_contact_mail"
-              />
+              <q-avatar class="bg-on-dark text-on-dark" icon="o_contact_mail" />
             </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">چاپ برچسب نشانی</q-item-section>
+            <q-item-section class="text-body1 no-letter-spacing"
+              >چاپ برچسب نشانی</q-item-section
+            >
           </q-item>
-
-
         </q-list>
-
       </q-card-section>
     </q-card>
-
   </q-dialog>
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted } from "vue"
+import { computed, ref, onMounted } from "vue";
 
-import { helper, bus } from "src/helpers"
-import { useFormActions } from "src/composables/useFormActions"
+import { helper } from "src/helpers";
+import { sqlOperator, cancelStatus } from "src/constants";
+import { useFormActions } from "src/composables/useFormActions";
 
-import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue"
-import BottomSheet from "components/shared/BottomSheet.vue"
-import ToolBar from "src/components/shared/ToolBarMobile.vue"
+import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
+import BottomSheet from "components/shared/BottomSheet.vue";
+import ToolBar from "src/components/shared/ToolBarMobile.vue";
 
 const props = defineProps({
   gridStore: Object,
-  title: String
-})
+  title: String,
+});
 
-const crudStore = useFormActions("sls/invoice")
+const crudStore = useFormActions("sls/invoice");
 
-const dataGrid = ref(null)
-const tableStore = computed(() => dataGrid.value?.tableStore)
+const dataGrid = ref(null);
+const tableStore = computed(() => dataGrid.value?.tableStore);
 
-const dialog = ref(false)
-const showCreate = ref(true)
-const advancedSearch = ref(null)
+const dialog = ref(false);
+const showCreate = ref(true);
+const advancedSearch = ref(null);
 
-const bottomSheetStatus = ref(false)
-const bottomSheetItem = ref(null)
-const printDialog = ref(false)
+const bottomSheetStatus = ref(false);
+const bottomSheetItem = ref(null);
+const printDialog = ref(false);
 
 const selectedDateRange = ref({ value: "", label: "" });
 
-onMounted(() => {
-  bus.on("render-page", handleRender)
-})
-
-onUnmounted(() => {
-  bus.off("render-page", handleRender)
-})
-
-async function handleRender() {
-  await dataGrid.value.loadData()
-}
+// onMounted(() => {
+//   tableStore.value.state.value.filterExpression = [
+//     {
+//       fieldName: "d.StatusId",
+//       operator: sqlOperator.notEqual,
+//       value: cancelStatus,
+//     },
+//   ];
+// });
 
 const showSearchModal = () => {
-  dialog.value = true
-}
+  dialog.value = true;
+};
 
 async function reloadData(model) {
-  await dataGrid.value.reloadData()
+  await dataGrid.value.reloadData();
 }
 
 const shouldDisplaySelectedDateRange = computed(() => {
-  return selectedDateRange.value.value !== 'all' && selectedDateRange.value.value !== 0 && selectedDateRange.value.label !== 'shared.labels.0';
-})
+  return (
+    selectedDateRange.value.value !== "all" &&
+    selectedDateRange.value.value !== 0 &&
+    selectedDateRange.value.label !== "shared.labels.0"
+  );
+});
 
 const clearDateRangeFilter = () => {
-  selectedDateRange.value = { value: '', label: '' };
+  selectedDateRange.value = { value: "", label: "" };
   props.gridStore.setDefaultSearchModel();
   dialog.value = false;
   reloadData();
 };
 
 function selectRow(row, checked) {
-  tableStore.value.selectRow(row, checked)
-  emitselectedRows()
+  tableStore.value.selectRow(row, checked);
+  emitselectedRows();
 }
 
 function emitselectedRows() {
@@ -629,17 +565,17 @@ function emitselectedRows() {
 }
 
 const onBottomSheetShow = (row) => {
-  bottomSheetItem.value = row
+  bottomSheetItem.value = row;
   bottomSheetStatus.value = true;
-}
+};
 
 const onBottomSheetHide = () => {
   bottomSheetStatus.value = false;
-}
+};
 
 const showPrintDialog = () => {
   printDialog.value = true;
-}
+};
 </script>
 
 <style lang="scss" scoped>

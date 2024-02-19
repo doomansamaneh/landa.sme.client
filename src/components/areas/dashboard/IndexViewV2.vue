@@ -26,11 +26,9 @@
       <div class="col col-md col-sm-12 col-xs-12 gap-24">
         <top-products />
       </div>
-
     </div>
 
     <div class="row q-mt-lg gap-24">
-
       <div class="col col-md col-sm-12 col-xs-12">
         <fund-balance />
       </div>
@@ -38,21 +36,19 @@
       <div class="col-8 col-md-8 col-sm-12 col-xs-12">
         <bank-balance />
       </div>
-
     </div>
   </div>
 </template>
 
 <script setup>
-import InvoicesWidgetV2 from 'src/components/areas/dashboard/widgets/InvoicesWidgetV2.vue'
-import RatiosWidget from 'src/components/areas/dashboard/widgets/RatiosWidget.vue'
-import RevenueExpenseByMonth from 'src/components/areas/dashboard/widgets/RevenueExpenseByMonth.vue'
-import IncomeWidget from 'src/components/areas/dashboard/widgets/_IncomeWidget.vue'
-import TopProducts from 'src/components/areas/dashboard/widgets/TopProducts.vue'
-import SomeInfo from 'src/components/areas/dashboard/widgets/NetIncome.vue'
-import BankBalance from 'src/components/areas/dashboard/widgets/BankBalance.vue'
-import FundBalance from 'src/components/areas/dashboard/widgets/FundBalance.vue'
-
+import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
+import RatiosWidget from "src/components/areas/dashboard/widgets/RatiosWidget.vue";
+import RevenueExpenseByMonth from "src/components/areas/dashboard/widgets/RevenueExpenseByMonth.vue";
+import IncomeWidget from "src/components/areas/dashboard/widgets/_IncomeWidget.vue";
+import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
+import SomeInfo from "src/components/areas/dashboard/widgets/NetIncome.vue";
+import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
+import FundBalance from "src/components/areas/dashboard/widgets/FundBalance.vue";
 </script>
 
 <style lang="scss">
@@ -67,7 +63,7 @@ import FundBalance from 'src/components/areas/dashboard/widgets/FundBalance.vue'
 }
 
 .darkBGImg {
-  background: $dark url("src/assets/images/triangle-light.png") repeat-y left top;
+  background: $dark url("src/assets/images/triangle-light.png") repeat-y left
+    top;
 }
 </style>
-

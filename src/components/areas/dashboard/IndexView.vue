@@ -1,23 +1,16 @@
 <template>
   <q-page-sticky
     class="z-1 bg-main q-py-md"
-    style="margin: 0 38px;"
+    style="margin: 0 38px"
     position="top"
     expand
   >
     <q-toolbar>
       <div class="row items-center q-gutter-x-sm">
         <span class="text-h6">داشبورد</span>
-        <q-btn
-          @click="widgetsLayout"
-          size="13px"
-          unelevated
-          round
-          dense
-        ><q-icon
-            name="o_widgets"
-            :color="activeColor"
-          /></q-btn>
+        <q-btn @click="widgetsLayout" size="13px" unelevated round dense
+          ><q-icon name="o_widgets" :color="activeColor"
+        /></q-btn>
         <q-btn
           v-if="togglewidgetsLayout"
           unelevated
@@ -25,25 +18,20 @@
           dense
           padding="6px 12px"
         >
-          <q-icon
-            name="o_restart_alt"
-            class="q-pr-xs"
-            size="20px"
-          />
+          <q-icon name="o_restart_alt" class="q-pr-xs" size="20px" />
           <span>حالت اولیه</span>
         </q-btn>
       </div>
       <div class="q-space" />
     </q-toolbar>
   </q-page-sticky>
-  <div style="margin-top: 42px;">
+  <div style="margin-top: 42px">
     <!-- <invoices-widget /> -->
     <div class="row">
       <div class="col-8 col-md-8 col-sm-12">
         <!-- <create-new-invoice /> -->
         <!-- <info-carousel /> -->
         <invoices-widget-v2 />
-
       </div>
       <div class="col col-md col-sm-12">
         <sales-widget />
@@ -52,18 +40,13 @@
   </div>
 
   <div class="row q-my-lg">
-
     <div class="col col-md-4 col-sm-12 container">
       <ratios-widget />
     </div>
 
     <div class="col-8 col-md-8 col-sm-12">
-      <q-card
-        class="bordered q-pa-none"
-        flat
-      >
+      <q-card class="bordered q-pa-none" flat>
         <q-card-section class="col q-pt-lg q-pb-none q-pl-lg q-pr-md">
-
           <div class="row justify-between">
             <div class="col-11">
               <q-item class="no-padding">
@@ -100,24 +83,19 @@
                 </q-item-section>
 
                 <q-item-section class="q-pl-xs">
-                  <q-item-label
-                    v-if="saleIncome"
-                    class="text-body2 q-mb-xs"
-                  >فروش و درآمد، هزینه</q-item-label>
-                  <q-item-label
-                    v-if="sale"
-                    class="text-body2 q-mb-xs"
-                  >فروش</q-item-label>
-                  <q-item-label
-                    v-if="cost"
-                    class="text-body2 q-mb-xs"
-                  >هزینه</q-item-label>
+                  <q-item-label v-if="saleIncome" class="text-body2 q-mb-xs"
+                    >فروش و درآمد، هزینه</q-item-label
+                  >
+                  <q-item-label v-if="sale" class="text-body2 q-mb-xs"
+                    >فروش</q-item-label
+                  >
+                  <q-item-label v-if="cost" class="text-body2 q-mb-xs"
+                    >هزینه</q-item-label
+                  >
                 </q-item-section>
               </q-item>
-
             </div>
             <div class="col">
-
               <div class="row justify-end">
                 <q-btn
                   unelevated
@@ -127,13 +105,8 @@
                   size="md"
                   icon="o_more_vert"
                 >
-
                   <q-menu fit>
-                    <q-list
-                      dense
-                      padding
-                      style="width:200px"
-                    >
+                    <q-list dense padding style="width: 200px">
                       <q-item
                         clickable
                         v-close-popup
@@ -142,14 +115,8 @@
                       >
                         <div class="q-py-sm">
                           <q-item-section avatar>
-                            <q-avatar
-                              class="bg-on-dark"
-                              size="sm"
-                            >
-                              <q-icon
-                                name="o_sell"
-                                size="14px"
-                              />
+                            <q-avatar class="bg-on-dark" size="sm">
+                              <q-icon name="o_sell" size="14px" />
                             </q-avatar>
                           </q-item-section>
                         </div>
@@ -166,13 +133,9 @@
                       >
                         <div class="q-py-sm">
                           <q-item-section avatar>
-                            <q-avatar
-                              class="bg-on-dark"
-                              size="sm"
-                            ><q-icon
-                                name="o_close"
-                                size="14px"
-                              /></q-avatar>
+                            <q-avatar class="bg-on-dark" size="sm"
+                              ><q-icon name="o_close" size="14px"
+                            /></q-avatar>
                           </q-item-section>
                         </div>
                         <q-item-section>
@@ -187,13 +150,9 @@
                       >
                         <div class="q-py-sm">
                           <q-item-section avatar>
-                            <q-avatar
-                              class="bg-on-dark"
-                              size="sm"
-                            ><q-icon
-                                name="o_check"
-                                size="14px"
-                              /></q-avatar>
+                            <q-avatar class="bg-on-dark" size="sm"
+                              ><q-icon name="o_check" size="14px"
+                            /></q-avatar>
                           </q-item-section>
                         </div>
                         <q-item-section>
@@ -202,39 +161,22 @@
                       </q-item>
                     </q-list>
                   </q-menu>
-
                 </q-btn>
               </div>
-
             </div>
           </div>
         </q-card-section>
 
-        <line-chart
-          v-if="saleIncome"
-          :height="300"
-          legend="true"
-        />
+        <line-chart v-if="saleIncome" :height="300" legend="true" />
 
-        <bar-chart
-          v-if="sale"
-          :height="300"
-          legend="false"
-        />
+        <bar-chart v-if="sale" :height="300" legend="false" />
 
-        <bar-chart
-          v-if="cost"
-          :height="300"
-          legend="false"
-        />
-
+        <bar-chart v-if="cost" :height="300" legend="false" />
       </q-card>
     </div>
-
   </div>
 
   <div class="row q-my-lg q-gutter-x-lg">
-
     <div class="col">
       <income-widget />
     </div>
@@ -243,104 +185,103 @@
       <q-card class="no-shadow bordered">
         <q-card-section class="q-pa-lg">
           <div class="text-body1">موجودی بانک</div>
-          <donut-chart
-            :height="350"
-            width="100%"
-            :legend="true"
-          />
+          <donut-chart :height="350" width="100%" :legend="true" />
         </q-card-section>
       </q-card>
     </div>
-
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
-import { useQuasar } from "quasar"
+import { ref, computed, onMounted } from "vue";
+import { useQuasar } from "quasar";
 
-import LineChart from 'src/components/shared/charts/LineChart.vue'
-import BarChart from 'src/components/shared/charts/BarChart.vue'
-import PieChart from 'src/components/shared/charts/PieChart.vue'
-import DonutChart from 'src/components/shared/charts/DonutChart.vue'
-import InfoCarousel from 'src/components/areas/dashboard/widgets/InfoCarousel.vue'
-import InvoicesWidgetV2 from 'src/components/areas/dashboard/widgets/InvoicesWidgetV2.vue'
-import SalesWidget from 'src/components/areas/dashboard/widgets/SalesWidget.vue'
-import RatiosWidget from 'src/components/areas/dashboard/widgets/RatiosWidget.vue'
-import MarkupTable from 'src/components/shared/DataTables/MarkupTable.vue'
-import IncomeWidget from 'src/components/areas/dashboard/widgets/_IncomeWidget.vue'
-import FinancialRatioWidget from 'src/components/areas/dashboard/widgets/FinancialRatioWidget.vue'
+import LineChart from "src/components/shared/charts/LineChart.vue";
+import BarChart from "src/components/shared/charts/BarChart.vue";
+import PieChart from "src/components/shared/charts/PieChart.vue";
+import DonutChart from "src/components/shared/charts/DonutChart.vue";
+import InfoCarousel from "src/components/areas/dashboard/widgets/InfoCarousel.vue";
+import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
+import SalesWidget from "src/components/areas/dashboard/widgets/SalesWidget.vue";
+import RatiosWidget from "src/components/areas/dashboard/widgets/RatiosWidget.vue";
+import MarkupTable from "src/components/shared/DataTables/MarkupTable.vue";
+import IncomeWidget from "src/components/areas/dashboard/widgets/_IncomeWidget.vue";
+import FinancialRatioWidget from "src/components/areas/dashboard/widgets/FinancialRatioWidget.vue";
 
-const $q = useQuasar()
+const $q = useQuasar();
 
-const tab = ref('sales-income-cost')
-const toggleChartToTable = ref(false)
-const togglewidgetsLayout = ref(false)
-const productServiceGroup = ref(false)
-const customer = ref(false)
-const productService = ref(true)
+const tab = ref("sales-income-cost");
+const toggleChartToTable = ref(false);
+const togglewidgetsLayout = ref(false);
+const productServiceGroup = ref(false);
+const customer = ref(false);
+const productService = ref(true);
 
 const chartToTabel = () => {
-  toggleChartToTable.value = !toggleChartToTable.value
-}
-const activeButton = ref(false)
+  toggleChartToTable.value = !toggleChartToTable.value;
+};
+const activeButton = ref(false);
 
 const widgetsLayout = () => {
-  togglewidgetsLayout.value = !togglewidgetsLayout.value
-  activeButton.value = !activeButton.value
-}
+  togglewidgetsLayout.value = !togglewidgetsLayout.value;
+  activeButton.value = !activeButton.value;
+};
 
 const customerReport = () => {
-  productService.value = false
-  productServiceGroup.value = false
-  customer.value = true
-}
+  productService.value = false;
+  productServiceGroup.value = false;
+  customer.value = true;
+};
 
 const productServiceGroupChart = () => {
-  productService.value = false
-  customer.value = false
-  productServiceGroup.value = true
-}
+  productService.value = false;
+  customer.value = false;
+  productServiceGroup.value = true;
+};
 
 const productServiceChart = () => {
-  productService.value = true
-  customer.value = false
-  productServiceGroup.value = false
-}
+  productService.value = true;
+  customer.value = false;
+  productServiceGroup.value = false;
+};
 
 const goToSaleReview = () => {
-  alert("گزارش مرور فروش")
-}
+  alert("گزارش مرور فروش");
+};
 
-const icon = computed(() => (toggleChartToTable.value ? 'o_bar_chart' : 'o_window'));
-const label = computed(() => (toggleChartToTable.value ? 'نمایش به صورت نمودار' : 'نمایش به صورت جدول'));
-const activeColor = computed(() => (togglewidgetsLayout.value ? 'primary' : ''));
+const icon = computed(() =>
+  toggleChartToTable.value ? "o_bar_chart" : "o_window"
+);
+const label = computed(() =>
+  toggleChartToTable.value ? "نمایش به صورت نمودار" : "نمایش به صورت جدول"
+);
+const activeColor = computed(() =>
+  togglewidgetsLayout.value ? "primary" : ""
+);
 
-
-const saleIncome = ref(true)
-const sale = ref(false)
-const cost = ref(false)
+const saleIncome = ref(true);
+const sale = ref(false);
+const cost = ref(false);
 
 const showSaleIncome = () => {
   saleIncome.value = true;
   sale.value = false;
-  cost.value = false
-}
+  cost.value = false;
+};
 
 const showSale = () => {
   saleIncome.value = false;
   cost.value = false;
   sale.value = true;
-}
+};
 
 const showCost = () => {
   saleIncome.value = false;
   sale.value = false;
-  cost.value = true
-}
+  cost.value = true;
+};
 
 // $q.screen.setSizes({ xs: 0, sm: 300, md: 500, lg: 1000, xl: 2000 })
-
 </script>
 
 <style lang="scss" scoped>

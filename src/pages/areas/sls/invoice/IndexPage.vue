@@ -17,18 +17,10 @@
 </template>
 
 <script setup>
-import { sqlOperator } from "src/constants";
+import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid";
 
 import Desktop from "components/areas/sls/invoice/desktop/index/DataGrid.vue";
 import Mobile from "components/areas/sls/invoice/mobile/index/DataGrid.vue";
 
-import { useInvoiceGrid } from "components/areas/sls/_composables/useInvoiceGrid";
-
-const gridStore = useInvoiceGrid([
-  {
-    fieldName: "d.StatusId",
-    operator: sqlOperator.notEqual,
-    value: "a36af633-d0bb-4857-a542-364e12658d1c",
-  },
-]);
+const gridStore = useInvoiceGrid();
 </script>

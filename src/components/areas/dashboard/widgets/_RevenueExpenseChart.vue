@@ -1,51 +1,44 @@
 <template>
-  <!-- <q-btn @click="changeSeries">change series</q-btn> -->
-  <!-- <pre>{{ series }}</pre> -->
-  <chart
-    :options="options"
-    :series="series"
-    :height="height"
-    :legend="legend"
-    :title="title"
-    :class="direction"
-    type="area"
-    class="line-chart"
-  />
+  <template v-if="dataStore.chartSeries?.value">
+    <chart
+      :options="options"
+      :series="dataStore.chartSeries.value"
+      :height="height"
+      :legend="legend"
+      :title="title"
+      :class="direction"
+      type="area"
+      class="line-chart"
+    />
+  </template>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
-import { useQuasar } from 'quasar'
-import { fetchWrapper, bus } from 'src/helpers'
+import { ref, onMounted, watch, computed } from "vue";
+import { useQuasar } from "quasar";
+import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
 
-import Chart from 'vue3-apexcharts'
+import Chart from "vue3-apexcharts";
 //import Chart from 'src/components/shared/charts/ChartView.vue';
 
-const $q = useQuasar()
-const props = defineProps(['height', 'legend', 'title'])
+const props = defineProps(["height", "legend", "title"]);
 
-const options = ref(null)
+const $q = useQuasar();
+const dataStore = useRevenueExpense();
 
-const data = ref([])
-
-const series = computed(() => {
-  return data.value.map(item => ({
-    name: item.name,
-    data: item.data.map(subItem => subItem.amount)
-  }))
-})
+const options = ref(null);
 
 function setOptions() {
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? "Vazir FD" : "Roboto";
 
   options.value = {
     title: {
       text: props.title,
-      align: 'center',
+      align: "center",
       style: {
-        fontSize: '14px',
-        fontWeight: 'bold',
-        color: $q.dark.isActive ? 'white' : '#2d2d2d'
+        fontSize: "14px",
+        fontWeight: "bold",
+        color: $q.dark.isActive ? "white" : "#2d2d2d",
       },
     },
 
@@ -53,37 +46,36 @@ function setOptions() {
       fontFamily,
       parentHeightOffset: 0,
       sparkline: {
-        enabled: true
+        enabled: true,
       },
       toolbar: {
-        show: false
+        show: false,
       },
       zoom: {
-        enabled: false
+        enabled: false,
       },
       animations: {
         enabled: true,
-        easing: 'easeinout',
+        easing: "easeinout",
         speed: 600,
         animateGradually: {
           enabled: true,
-          delay: 150
+          delay: 150,
         },
         dynamicAnimation: {
           enabled: true,
-          speed: 450
+          speed: 450,
         },
-
-      }
+      },
     },
 
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
 
     stroke: {
       width: 4,
-      curve: 'smooth'
+      curve: "smooth",
     },
 
     markers: {
@@ -96,31 +88,39 @@ function setOptions() {
         top: 100,
         left: 0,
         right: 0,
-        bottom: 0
+        bottom: 0,
       },
       lines: {
-        show: false
+        show: false,
       },
-      borderColor: $q.dark.isActive ? '#ffffff47' : '#2d2d2d2d',
+      borderColor: $q.dark.isActive ? "#ffffff47" : "#2d2d2d2d",
     },
     xaxis: {
       show: false,
       axisBorder: {
-        show: false
+        show: false,
       },
       axisTicks: {
-        show: false
+        show: false,
       },
       categories: [
-        'فرودین', 'اردیبهشت', 'خرداد',
-        'تیر', 'مرداد', 'شهریور',
-        'مهر', 'آبان', 'آذر',
-        'دی', 'بهمن', 'اسفند'
+        "فرودین",
+        "اردیبهشت",
+        "خرداد",
+        "تیر",
+        "مرداد",
+        "شهریور",
+        "مهر",
+        "آبان",
+        "آذر",
+        "دی",
+        "بهمن",
+        "اسفند",
       ],
       labels: {
         show: false,
         style: {
-          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+          colors: $q.dark.isActive ? "white" : "#2d2d2d",
         },
       },
     },
@@ -131,7 +131,7 @@ function setOptions() {
       labels: {
         show: false,
         style: {
-          colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+          colors: $q.dark.isActive ? "white" : "#2d2d2d",
         },
         formatter: function (value) {
           return formatYAxisLabel(value);
@@ -142,24 +142,29 @@ function setOptions() {
       show: props.legend,
       inverseOrder: true,
       labels: {
-        colors: $q.dark.isActive ? 'white' : '#2d2d2d',
+        colors: $q.dark.isActive ? "white" : "#2d2d2d",
       },
-      position: 'top',
-      fontSize: '14px',
+      position: "top",
+      fontSize: "14px",
       fontWeight: 400,
       // offsetY: 16,
       markers: {
         width: 14,
         height: 14,
         radius: 4,
-        offsetX: $q.lang.rtl ? '-4' : '-4',
+        offsetX: $q.lang.rtl ? "-4" : "-4",
       },
       itemMargin: {
         // vertical: 16,
         horizontal: 16,
       },
     },
-    colors: ["rgb(0, 255, 0)", "rgb(255, 0, 0)", "rgb(0, 155, 227)", "rgb(36, 183, 160)"],
+    colors: [
+      "rgb(0, 255, 0)",
+      "rgb(255, 0, 0)",
+      "rgb(0, 155, 227)",
+      "rgb(36, 183, 160)",
+    ],
     tooltip: {
       enabled: true,
       x: {
@@ -169,55 +174,46 @@ function setOptions() {
         show: true,
       },
       style: {
-        fontSize: '13px',
+        fontSize: "13px",
       },
       marker: {
         width: 8,
         height: 8,
       },
     },
-  }
+  };
 }
 
 const direction = computed(() => {
-  return $q.lang.rtl ? 'rtl' : 'ltr';
-})
+  return $q.lang.rtl ? "rtl" : "ltr";
+});
 
-watch(() => $q.dark.isActive, () => {
-  setOptions()
-})
+watch(
+  () => $q.dark.isActive,
+  () => {
+    setOptions();
+  }
+);
 
-watch(() => $q.lang.rtl, () => {
-  setOptions()
-})
+watch(
+  () => $q.lang.rtl,
+  () => {
+    setOptions();
+  }
+);
 
 onMounted(() => {
-  loadData()
-  setOptions()
-  bus.on("render-page", handleRender)
-})
-
-onUnmounted(() => {
-  bus.off("render-page", handleRender)
-})
-
-async function handleRender() {
-  await loadData()
-}
-
-async function loadData() {
-  const response = await fetchWrapper.get(`acc/report/RevenueExpenseByMonth`)
-  data.value = response.data.data
-}
+  setOptions();
+});
 
 function formatYAxisLabel(value) {
-  const parts = String(value).split('.');
-  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const parts = String(value).split(".");
+  const integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   let formattedValue = integerPart;
 
   if (parts.length > 1) {
-    formattedValue += '.' + parts[1];
+    formattedValue += "." + parts[1];
   }
 
   return formattedValue;
