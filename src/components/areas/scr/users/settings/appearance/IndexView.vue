@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-center">
+  <!-- <div class="flex flex-center">
     <q-card class="bordered card-width">
       <q-card-section class="q-pa-lg">
         <div class="text-body1">یک رنگ برای تم خود انتخاب کنید</div>
@@ -14,7 +14,8 @@
         </div>
       </q-card-section>
     </q-card>
-  </div>
+  </div> -->
+  <theme-selector/>
 </template>
 
 <script setup>

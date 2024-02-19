@@ -33,7 +33,16 @@ export default {
     },
     {
       path: "/settings",
-      component: () => import("src/pages/management/settings/IndexPage.vue"),
+      children: [
+        {
+          path: "",
+          component: () => import("src/pages/management/users/settings/IndexPage.vue"),
+        },
+        {
+          path: "appearance",
+          component: () => import("src/pages/management/users/settings/appearance/IndexPage.vue"),
+        },
+      ],
     },
     {
       path: "cmn/productGroup",

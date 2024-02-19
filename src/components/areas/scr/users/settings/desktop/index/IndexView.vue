@@ -1,8 +1,8 @@
 <template>
-  <div class="flex items-center justify-center">
+  <div :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''">
     <div>
       <div class="text-body1 no-letter-spacing q-mb-md">تنظیمات</div>
-      <q-card class="bordered settings-container">
+      <q-card class="bordered" :class="$q.screen.gt.sm ? 'settings-card' : 'full-width'">
         <q-card-section class="no-padding">
           <q-item class="q-py-md" clickable>
             <q-item-section class="q-mr-sm" top avatar>
@@ -25,7 +25,7 @@
 
           <q-separator size="0.5px" />
 
-          <q-item class="q-py-sm" clickable>
+          <q-item class="q-py-sm" clickable to="/settings/appearance">
 
             <q-item-section>
               <q-item-label class="text-on-dark text-body2 no-letter-spacing"> رنگ تم‌ و زبان</q-item-label>
@@ -66,9 +66,9 @@
 import { ref } from "vue"
 import { useMeta } from "quasar"
 
-import ProfileSection from "src/components/management/settings/desktop/index/ProfileSection.vue"
-import ThemeColor from "src/components/management/settings/desktop/index/ThemeColor.vue"
-import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
+// import ProfileSection from "src/components/management/settings/desktop/index/ProfileSection.vue"
+// import ThemeColor from "src/components/management/settings/desktop/index/ThemeColor.vue"
+// import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
 
 const metaData = {
   title: 'لاندا',
@@ -79,7 +79,7 @@ useMeta(metaData);
 </script>
 
 <style lang="scss">
-.settings-container {
+.settings-card {
   width: 900px;
 }
 </style>
