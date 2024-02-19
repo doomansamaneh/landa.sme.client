@@ -23,14 +23,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref } from "vue";
 
-import Desktop from "src/components/areas/cmn/product/desktop/index/DataGrid.vue"
-import Mobile from "src/components/areas/cmn/product/mobile/index/DataGrid.vue"
+import Desktop from "src/components/areas/cmn/product/desktop/index/DataGrid.vue";
+import Mobile from "src/components/areas/cmn/product/mobile/index/DataGrid.vue";
 
-import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid"
+import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid";
 
-const mobileView = ref(false)
+const mobileView = ref(false);
 
-const gridStore = useProductGrid()
+const gridStore = useProductGrid();
 </script>
