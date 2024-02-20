@@ -3,6 +3,7 @@
     :table-store="tableStore"
     :crud-store="crudStore"
     :title="title"
+    buttons
     base-route="/sls/invoice"
   >
     <template #buttons-batch-action>

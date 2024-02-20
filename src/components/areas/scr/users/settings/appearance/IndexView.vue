@@ -1,34 +1,26 @@
 <template>
-  <!-- <div class="flex flex-center">
-    <q-card class="bordered card-width">
-      <q-card-section class="q-pa-lg">
-        <div class="text-body1">یک رنگ برای تم خود انتخاب کنید</div>
-        <div class="row items-center q-pt-md">
-          <theme-selector />
-        </div>
-      </q-card-section>
-      <q-card-section class="q-pa-lg">
-        <div class="text-body1">زبان مورد نظر خود را انتخاب کنید</div>
-        <div class="row items-center q-pt-md">
-          <lang-switcher />
-        </div>
-      </q-card-section>
-    </q-card>
-  </div> -->
-  <theme-selector/>
+   <tool-bar
+    title="رنگ تم و زبان"
+    back-button
+  />
+  <q-card class="bordered">
+    <q-card-section class="q-pa-xl">
+      <div class="text-body1 no-letter-spacing q-mb-md">
+        زبانی که دوست دارید با آن کار کنید را انتخاب کنید
+      </div>
+      <lang-switcher />
+      <div class="text-body1 no-letter-spacing q-my-md">
+        یک رنگ به سلیقه خود انتخاب کنید
+      </div>
+      <theme-selector />
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
 import ThemeSelector from "src/components/shared/ThemeSelector.vue"
 import LangSwitcher from "src/components/shared/SwitchLanguage.vue"
-
-
+import ToolBar from "src/components/shared/ToolBar.vue"
 </script>
 
-<style lang="scss" scoped>
-.card-width {
-  width: 970px;
-}
-</style>
 

@@ -5,14 +5,17 @@
 
         <q-card-section :style="{ backgroundColor: getPrimaryColor(themeName) }" class="min-opacity q-py-xl" />
 
-        <q-card-section>
+        <q-card-section class="q-pb-xs">
           <q-btn :style="{ backgroundColor: getPrimaryColor(themeName) }" size="20px" unelevated round class="absolute"
-            style="top: 0; right: 12px; transform: translateY(-50%);">
+            style="top: 0; left: 16px; transform: translateY(-50%);">
             <q-icon v-if="selectedTheme === themeName" name="check" color="white" class="checked-icon" size="md" />
           </q-btn>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
+          <div class="text-body1 no-letter-spacing">
+            {{ theme.name }}
+          </div>
           <div class="no-pointer-events q-py-md">
             <q-skeleton :animation="selectedTheme === themeName ? 'wave' : 'none'"
               :style="{ backgroundColor: getPrimaryColor(themeName) }" class="theme-color min-opacity" type="text" />
@@ -26,18 +29,6 @@
       </q-card>
     </div>
   </div>
-
-  <!-- <div class="row items-center q-gutter-x-md">
-    <q-btn flat padding="16px" v-for="(theme, themeName) in themes" :key="themeName"
-      :style="{ backgroundColor: getPrimaryColor(themeName) }" @click="selectTheme(themeName)"
-      :class="getClass(themeName)">
-      <q-icon v-if="selectedTheme === themeName" name="check" color="white" class="checked-icon" size="md" />
-
-      <q-icon v-else size="xs" />
-
-      <q-tooltip class="z-max" :style="{ background: getPrimaryColor(themeName) }">{{ themeName }}</q-tooltip>
-    </q-btn>
-  </div> -->
 </template>
 
 <script setup>
@@ -45,19 +36,24 @@ import { ref } from 'vue';
 
 const themes = {
   blue: {
-    primary: '#00aeff',
+    primary: '#007acc',
+    name: 'آبی لاندا'
   },
   green: {
     primary: '#00b200',
+    name: 'سبز سیدی'
   },
   orange: {
     primary: '#ff6600',
+    name: 'نارنجی'
   },
   purple: {
     primary: '#c729df',
+    name: 'لوکس'
   },
   red: {
     primary: '#dc143c',
+    name: 'قرمز'
   },
 };
 

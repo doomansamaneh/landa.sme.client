@@ -9,7 +9,7 @@
       <q-toolbar
         :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 20px; padding-right: 20px;'"
       >
-        <div class="row items-center q-gutter-sm">
+        <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn
               class="bg-primary primary-shadow text-white text-caption"
@@ -235,7 +235,7 @@
                 />
               </slot>
             </span>
-            <!-- <back-button class="q-ml-md" /> -->
+            <back-button v-if="backButton" class="q-ml-md" />
           </slot>
         </div>
       </q-toolbar>
@@ -253,7 +253,9 @@ const props = defineProps({
   baseRoute: String,
   tableStore: Object,
   crudStore: Object,
-  activation: Boolean
+  activation: Boolean,
+  backButton: Boolean,
+  buttons: Boolean
 })
 
 const selectedIds = computed(() => props.tableStore?.selectedRows?.value.map(item => item.id))

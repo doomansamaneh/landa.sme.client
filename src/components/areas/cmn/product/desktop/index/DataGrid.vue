@@ -5,6 +5,7 @@
     :title="title"
     base-route="/cmn/product"
     activation
+    buttons
   >
     <template #buttons-batch-action>
       <q-btn
