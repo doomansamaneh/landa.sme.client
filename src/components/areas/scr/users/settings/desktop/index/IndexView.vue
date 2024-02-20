@@ -2,9 +2,9 @@
   <div :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''">
     <div>
       <div class="text-h6 no-letter-spacing q-mb-md">تنظیمات</div>
-      <q-card class="bordered" :class="$q.screen.gt.sm ? 'settings-card' : 'full-width'">
+      <q-card :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width no-border no-shadow', $q.screen.gt.xs ? 'bordered' : '']">
         <q-card-section class="no-padding">
-          <q-item class="q-py-md" clickable>
+          <q-item class="q-py-md" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable>
             <q-item-section class="q-mr-sm" top avatar>
               <q-avatar size="56px">
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png">
@@ -25,7 +25,7 @@
 
           <q-separator size="0.5px" />
 
-          <q-item class="q-py-sm" clickable to="/settings/appearance">
+          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/scr/users/settings/appearance">
 
             <q-item-section>
               <q-item-label class="text-on-dark text-body2 no-letter-spacing"> رنگ تم‌ و زبان</q-item-label>
@@ -41,7 +41,7 @@
 
           <q-separator />
 
-          <q-item class="q-py-sm" clickable>
+          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/scr/users/settings/change-password">
 
             <q-item-section>
               <q-item-label class="text-on-dark text-body2 no-letter-spacing">تغییر رمز عبور</q-item-label>

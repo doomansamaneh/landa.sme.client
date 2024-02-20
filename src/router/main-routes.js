@@ -32,15 +32,26 @@ export default {
       component: () => import("pages/areas/sls/invoice/IndexPage.vue"),
     },
     {
-      path: "/settings",
+      path: "/scr/users/settings",
       children: [
         {
           path: "",
-          component: () => import("src/pages/management/users/settings/IndexPage.vue"),
+          component: () =>
+            import("src/pages/management/users/settings/IndexPage.vue"),
         },
         {
           path: "appearance",
-          component: () => import("src/pages/management/users/settings/appearance/IndexPage.vue"),
+          component: () =>
+            import(
+              "src/pages/management/users/settings/appearance/IndexPage.vue"
+            ),
+        },
+        {
+          path: "change-password",
+          component: () =>
+            import(
+              "src/pages/management/users/settings/changePassword/IndexPage.vue"
+            ),
         },
       ],
     },

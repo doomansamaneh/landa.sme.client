@@ -39,7 +39,7 @@
           v-close-popup
           tabindex="0"
           class="q-py-sm"
-          to="/settings"
+          to="/scr/users/settings"
         >
           <div class="q-py-sm">
             <q-item-section avatar>

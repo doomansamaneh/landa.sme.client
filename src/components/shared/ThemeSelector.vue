@@ -79,12 +79,16 @@ const getPrimaryColor = (themeName) => {
 };
 
 const getClass = (themeName) => {
-  return 'cursor-pointer' + (selectedTheme.value === themeName ? ' active' : '');
+  return 'cursor-pointer' + (selectedTheme.value === themeName ? 'active' : '');
 };
 </script>
 
 <style lang="scss">
 .min-opacity {
   opacity: 0.2;
+}
+
+.q-skeleton--anim-wave {
+  z-index: 0;
 }
 </style>

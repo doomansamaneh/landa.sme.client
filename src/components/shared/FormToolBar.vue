@@ -28,7 +28,7 @@
         <div class="q-space" />
         <div class="row items-center">
           <slot name="header">
-            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">
+            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
               <slot name="header-title">
                 {{ title }}
               </slot>
