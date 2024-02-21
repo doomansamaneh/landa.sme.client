@@ -31,7 +31,6 @@ export default {
       component: () => import("pages/areas/cmn/product/CopyPage.vue"),
     },
 
-
     {
       path: "sls/invoice/create",
       component: () => import("pages/areas/sls/invoice/CreatePage.vue"),
@@ -63,7 +62,7 @@ export default {
 
     {
       path: "/settings",
-      component: () => import("pages/management/settings/IndexPage.vue"),
+      component: () => import("pages/management/users/settings/IndexPage.vue"),
     },
-  ]
-}
+  ],
+};

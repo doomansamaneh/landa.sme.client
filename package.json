@@ -34,7 +34,14 @@
     "eslint-plugin-vue": "^9.0.0",
     "postcss": "^8.4.14",
     "postcss-rtlcss": "^5.1.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "workbox-build": "^7.0.0",
+    "workbox-cacheable-response": "^7.0.0",
+    "workbox-core": "^7.0.0",
+    "workbox-expiration": "^7.0.0",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^7.0.0"
   },
   "engines": {
     "node": "^18 || ^16 || ^14.19",
