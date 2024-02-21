@@ -58,6 +58,26 @@
         </q-card-section>
       </q-card>
     </div>
+
+    <q-card class="q-mt-xl" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width no-border no-shadow', $q.screen.gt.xs ? 'bordered' : '']">
+        <q-card-section class="no-padding">
+
+          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/business">
+
+            <q-item-section>
+              <q-item-label class="text-on-dark text-body2 no-letter-spacing">کسب و کارهای من</q-item-label>
+            </q-item-section>
+
+            <q-item-section side>
+              <q-btn round dense unelevated>
+                <q-icon name="chevron_left" size="24px" />
+              </q-btn>
+            </q-item-section>
+
+          </q-item>
+
+        </q-card-section>
+      </q-card>
   </div>
 </template>
 
