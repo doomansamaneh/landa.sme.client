@@ -67,9 +67,9 @@
               </div>
               <div class="col">
                 <span class="q-mr-sm">
-                  <q-btn v-if="item.isActive" round unelevated dense class="green-shadow no-pointer-events" size="6.5px"
+                  <q-btn v-if="item.isActive" round unelevated dense class="green-shadow no-pointer-events" size="7px"
                     color="green-8" icon="o_done" />
-                  <q-btn v-else round unelevated dense class="red-shadow no-pointer-events" size="6.5px" color="negative"
+                  <q-btn v-else round unelevated dense class="red-shadow no-pointer-events" size="7px" color="negative"
                     icon="o_close" />
                 </span>
                 <span class="ellipsis-2-lines_ text-caption text-bold text-on-dark">{{ item.title }}</span>
