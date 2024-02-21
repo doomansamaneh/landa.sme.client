@@ -1,5 +1,5 @@
 <template>
-  <tool-bar :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title" base-route="/cmn/product"
+  <tool-bar buttons :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title" base-route="/cmn/product"
     activation>
     <template #buttons-custom>
       <q-separator class="q-my-sm" />

@@ -88,7 +88,7 @@
                     </q-item>
                   </template>
 
-                  <slot name="bottons-custom">
+                  <slot name="buttons-custom">
                   </slot>
 
                   <q-separator class="q-my-sm" />
