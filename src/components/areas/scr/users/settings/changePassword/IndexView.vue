@@ -8,12 +8,13 @@
 
         <div class="row q-col-gutter-lg" :class="$q.screen.gt.xs ? 'q-mb-lg' : 'q-mb-md'">
           <div class="col-md-6 col-sm-6 col-xs-12">
-            <q-input hide-bottom-space outlined v-model="oldPassword" :type="isPwdOldPassword ? 'password' : 'text'"
-              :placeholder="$t('change-password-page.placeholders.old-password')" dense class="text-body" required
-              lazy-rules :rules="[(val) => val !== null && val !== '']">
+            <div class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">{{
+              $t('change-password-page.placeholders.old-password') }}</div>
+            <q-input hide-bottom-space outlined v-model="oldPassword" :type="isPwdOldPassword ? 'password' : 'text'" dense
+              class="password text-body1" required lazy-rules :rules="[(val) => val !== null && val !== '']">
               <template v-slot:append>
-                <q-icon :name="isPwdOldPassword ? 'visibility_off' : 'visibility'" size="xs" class="cursor-pointer"
-                  @click="isPwdOldPassword = !isPwdOldPassword" />
+                <q-icon :name="isPwdOldPassword ? 'visibility_off' : 'visibility'" size="sm"
+                  class="cursor-pointer q-ml-sm" @click="isPwdOldPassword = !isPwdOldPassword" />
               </template>
             </q-input>
           </div>
@@ -21,27 +22,50 @@
 
         <div class="row" :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-col-gutter-md'">
           <div class="col-md-6 col-sm-6 col-xs-12">
-            <q-input hide-bottom-space outlined v-model="newPassword" :type="isPwdNewPassword ? 'password' : 'text'"
-              :placeholder="$t('change-password-page.placeholders.new-password')" dense class="text-body" required
-              lazy-rules :rules="[(val) => val !== null && val !== '']">
+            <div class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">{{
+              $t('change-password-page.placeholders.new-password') }}</div>
+            <q-input hide-bottom-space outlined v-model="newPassword" :type="isPwdNewPassword ? 'password' : 'text'" dense
+              class="text-body1 password" required lazy-rules :rules="[(val) => val !== null && val !== '']">
               <template v-slot:append>
-                <q-icon :name="isPwdNewPassword ? 'visibility_off' : 'visibility'" size="xs" class="cursor-pointer"
-                  @click="isPwdNewPassword = !isPwdNewPassword" />
+                <q-icon :name="isPwdNewPassword ? 'visibility_off' : 'visibility'" size="sm"
+                  class="cursor-pointer q-ml-sm" @click="isPwdNewPassword = !isPwdNewPassword" />
               </template>
             </q-input>
           </div>
           <div class="col-md-6 col-md-6 col-xs-12">
-            <q-input hide-bottom-space outlined v-model="confirmNewPassword"
-              :type="isPwdConfirmPassword ? 'password' : 'text'" :placeholder="$t('change-password-page.placeholders.confirm-password')
-                " dense class="text-body" required lazy-rules :rules="[(val) => val !== null && val !== '']">
+            <div class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">{{
+              $t('change-password-page.placeholders.confirm-password') }}</div>
+            <q-input hide-bottom-space outlined v-model="confirmNewPassword" :type="isPwdConfirmPassword ? 'password' : 'text'
+              " dense class="text-body1 password" required lazy-rules :rules="[(val) => val !== null && val !== '']">
               <template v-slot:append>
-                <q-icon :name="isPwdConfirmPassword ? 'visibility_off' : 'visibility'" size="xs" class="cursor-pointer"
-                  @click="isPwdConfirmPassword = !isPwdConfirmPassword" />
+                <q-icon :name="isPwdConfirmPassword ? 'visibility_off' : 'visibility'" size="sm"
+                  class="cursor-pointer q-ml-sm" @click="isPwdConfirmPassword = !isPwdConfirmPassword" />
               </template>
             </q-input>
           </div>
         </div>
       </q-form>
+
+      <div class="text-body1 no-letter-spacing caption-on-dark text-bold q-mt-xl q-mb-sm">
+        الزامات یک رمز عبور مناسب
+      </div>
+
+      <div class="row caption-on-dark">
+        <div style="width:20px" class="q-mt-xs">
+          <q-icon name="circle" size="10px" />
+        </div>
+        <div class="col text-body1 no-letter-spacing">
+          بهتر است از رمزهایی با طول بیش از 6 کاراکتر استفاده کنید.
+        </div>
+      </div>
+      <div class="row caption-on-dark">
+        <div style="width:20px" class="q-mt-xs">
+          <q-icon name="circle" size="10px" />
+        </div>
+        <div class="col text-body1 no-letter-spacing">
+          استفاده از حداقل یک حرف کوچک و یک حرف بزرگ توصیه می‌شود
+        </div>
+      </div>
     </q-card-section>
   </q-card>
   <!-- <div :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''">
@@ -187,3 +211,14 @@ async function changePassword() {
     .finally(() => { })
 }
 </script>
+
+<style lang="scss">
+.password {
+  .q-field__control {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    outline: none;
+  }
+}
+</style>
