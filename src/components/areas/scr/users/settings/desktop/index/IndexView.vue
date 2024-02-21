@@ -2,10 +2,10 @@
   <div :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''">
     <div>
       <div class="text-h6 no-letter-spacing q-mb-md">تنظیمات</div>
-      <q-card :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width no-border no-shadow', $q.screen.gt.xs ? 'bordered' : '']">
+      <q-card class="bordered" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']">
         <q-card-section class="no-padding">
           <q-item class="q-py-md" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable>
-            <q-item-section class="q-mr-sm" top avatar>
+            <q-item-section class="q-mr-sm" top avatar :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
               <q-avatar size="56px">
                 <img src="https://cdn.quasar.dev/img/boy-avatar.png">
               </q-avatar>
@@ -16,7 +16,7 @@
               <q-item-label class="caption-on-dark text-body3 no-letter-spacing">shomalikhashayar@gmail.com</q-item-label>
             </q-item-section>
 
-            <q-item-section side>
+            <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
               <q-btn round dense unelevated>
                 <q-icon name="chevron_left" size="24px" />
               </q-btn>
@@ -25,13 +25,14 @@
 
           <q-separator size="0.5px" />
 
-          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/scr/users/settings/appearance">
+          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable
+            to="/scr/users/settings/appearance">
 
-            <q-item-section>
+            <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
               <q-item-label class="text-on-dark text-body2 no-letter-spacing"> رنگ تم‌ و زبان</q-item-label>
             </q-item-section>
 
-            <q-item-section side>
+            <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
               <q-btn round dense unelevated>
                 <q-icon name="chevron_left" size="24px" />
               </q-btn>
@@ -41,13 +42,14 @@
 
           <q-separator />
 
-          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/scr/users/settings/change-password">
+          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable
+            to="/scr/users/settings/change-password">
 
-            <q-item-section>
+            <q-item-section :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
               <q-item-label class="text-on-dark text-body2 no-letter-spacing">تغییر رمز عبور</q-item-label>
             </q-item-section>
 
-            <q-item-section side>
+            <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
               <q-btn round dense unelevated>
                 <q-icon name="chevron_left" size="24px" />
               </q-btn>
@@ -59,25 +61,41 @@
       </q-card>
     </div>
 
-    <q-card class="q-mt-xl" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width no-border no-shadow', $q.screen.gt.xs ? 'bordered' : '']">
-        <q-card-section class="no-padding">
+    <q-card class="q-mt-xl bordered" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']">
+      <q-card-section class="no-padding">
 
-          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/business">
+        <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/business">
 
-            <q-item-section>
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing">کسب و کارهای من</q-item-label>
-            </q-item-section>
+          <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
+            <q-item-label class="text-on-dark text-body2 no-letter-spacing">کسب و کارهای من</q-item-label>
+          </q-item-section>
 
-            <q-item-section side>
-              <q-btn round dense unelevated>
-                <q-icon name="chevron_left" size="24px" />
-              </q-btn>
-            </q-item-section>
+          <q-item-section :class="$q.screen.lt.sm ? 'q-mx-sm' : ''" side>
+            <q-btn round dense unelevated>
+              <q-icon name="chevron_left" size="24px" />
+            </q-btn>
+          </q-item-section>
 
-          </q-item>
+        </q-item>
 
-        </q-card-section>
-      </q-card>
+        <q-separator size="0.5px" />
+
+        <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/account/login">
+
+          <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
+            <q-item-label class="text-on-dark text-body2 no-letter-spacing">خروج از حساب</q-item-label>
+          </q-item-section>
+
+          <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
+            <q-btn round dense unelevated>
+              <q-icon class="mirror" name="o_logout" size="20px" />
+            </q-btn>
+          </q-item-section>
+
+        </q-item>
+
+      </q-card-section>
+    </q-card>
   </div>
 </template>
 

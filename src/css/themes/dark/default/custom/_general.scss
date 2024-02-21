@@ -12,6 +12,10 @@
     color: $white;
   }
 
+  .mirror {
+    transform: scaleX(-1);
+  }
+
   .caption-on-dark {
     color: $grey-5;
   }

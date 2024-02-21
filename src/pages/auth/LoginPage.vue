@@ -5,13 +5,13 @@
       <login-background v-if="$q.screen.gt.xs" />
 
       <q-card
-        class="no-padding login-card"
-        :class="$q.screen.gt.xs ? 'bordered border-radius-xl' : 'no-shadow no-border'"
+        class="no-padding"
+        :class="[$q.screen.gt.xs ? 'bordered border-radius-xl' : 'no-shadow no-border', $q.screen.gt.sm ? 'login-card' : '']"
       >
         <q-card-section horizontal>
           <q-card-section
             :class="$q.screen.lt.sm ? 'no-padding' : ''"
-            class="login-card col-md-7 col-sm-12 col-xs-12"
+            class="col-md-7 col-sm-12 col-xs-12"
           >
             <div :class="$q.screen.gt.xs ? 'q-pa-lg' : ''">
               <div class="q-mb-sm">
@@ -229,6 +229,10 @@ async function getCaptcha() {
     align-items: center;
     outline: none;
   }
+}
+
+.login-card {
+  width: 970px;
 }
 
 .forgot-password a:hover {
