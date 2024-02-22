@@ -5,7 +5,7 @@
         <div class="flex items-center" :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''">
           <slot name="buttons">
             <template v-if="tableStore?.activeRow?.value != null">
-              <slot name="bootons-edit">
+              <slot name="buttons-edit">
                 <q-btn :to="`${baseRoute}/edit/${tableStore?.activeRow?.value.id}`" class="text-caption" round unelevated
                   no-caps>
                   <q-icon name="o_edit" />
@@ -27,153 +27,22 @@
             <template v-if="selectedIds?.length > 0">
               <q-btn class="text-caption" round unelevated @click="onBottomSheetShow">
                 <q-icon name="more_horiz" />
-                <!-- <q-menu
-                  fit
-                  cover
-                >
-                  <q-list
-                    dense
-                    padding
-                    style="width:220px"
-                  >
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="tableStore.reloadData"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          >
-                            <q-icon name="o_refresh" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-caption">
-                          {{ $t("shared.labels.refresh") }}
-                        </div>
-                      </q-item-section>
-                    </q-item>
-
-                    <template v-if="activation && selectedIds?.length > 0">
-                      <q-separator class="q-my-sm" />
-                      <q-item
-                        clickable
-                        v-close-popup
-                        tabindex="0"
-                        @click="crudStore.activate(selectedIds, tableStore.reloadData)"
-                      >
-                        <div class="q-py-sm">
-                          <q-item-section avatar>
-                            <q-avatar
-                              class="bg-on-dark"
-                              size="sm"
-                            ><q-icon name="o_check" /></q-avatar>
-                          </q-item-section>
-                        </div>
-                        <q-item-section>
-                          <div class="text-caption">
-                            {{ $t("shared.labels.activate") }}
-                          </div>
-                        </q-item-section>
-                      </q-item>
-
-                      <q-item
-                        clickable
-                        v-close-popup
-                        tabindex="0"
-                        @click="crudStore.deactivate(selectedIds, tableStore.reloadData)"
-                      >
-                        <div class="q-py-sm">
-                          <q-item-section avatar>
-                            <q-avatar
-                              class="bg-on-dark"
-                              size="sm"
-                            >
-                              <q-icon name="o_close" />
-                            </q-avatar>
-                          </q-item-section>
-                        </div>
-                        <q-item-section>
-                          <div class="text-caption">
-                            {{ $t("shared.labels.deactivate") }}
-                          </div>
-                        </q-item-section>
-                      </q-item>
-                    </template>
-
-                    <slot name="bottons-custom">
-                    </slot>
-
-                    <q-separator class="q-my-sm" />
-
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="tableStore.exportAll()"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_download"
-                              size="16px"
-                            /></q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-caption">
-                          {{ $t("shared.labels.eportToExcel") }}
-                        </div>
-                      </q-item-section>
-                    </q-item>
-
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="tableStore.exportCurrentPage()"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          >
-                            <q-icon
-                              name="o_download"
-                              size="16px"
-                            />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-caption">
-                          {{ $t("shared.labels.exportExcelCurrentPage") }}
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu> -->
               </q-btn>
             </template>
           </slot>
         </div>
 
-        <div v-if="tableStore?.activeRow?.value != null" class="q-space" />
+        <!-- <div v-if="tableStore?.activeRow?.value != null" class="q-space" /> -->
+
+        <q-space v-if="tableStore?.activeRow?.value != null" />
+        <q-space v-if="selectedIds?.length > 0" />
 
         <template v-if="selectedIds?.length > 0">
           {{ selectedIds?.length }} مورد
           <q-btn round unelevated class="q-ml-md text-on-dark" icon="close" @click="deselect">
           </q-btn>
         </template>
+
         <template v-else>
           <div v-if="title">
             <slot name="header">
@@ -300,7 +169,9 @@ const props = defineProps({
   baseRoute: String,
   tableStore: Object,
   crudStore: Object,
-  activation: Boolean
+  activation: Boolean,
+  buttons: Boolean,
+  backButton: Boolean
 })
 
 const selectedIds = computed(() => props.tableStore?.selectedRows?.value.map(item => item.id))

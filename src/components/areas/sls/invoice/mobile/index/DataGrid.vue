@@ -6,7 +6,7 @@
     base-route="/sls/invoice"
     activation
   >
-    <template #bottons-custom>
+    <template #buttons-custom>
       <q-separator class="q-my-sm" />
       <q-item clickable v-close-popup tabindex="0" @click="editBatch">
         <div class="q-py-sm">
