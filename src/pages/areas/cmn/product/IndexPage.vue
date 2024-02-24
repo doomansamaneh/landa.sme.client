@@ -9,17 +9,9 @@
     :title="$t('main-menu-items.Cmn_Product_View')"
   /> -->
 
-  <mobile
-    v-if="$q.screen.xs"
-    :grid-store="gridStore"
-    :title="$t('main-menu-items.Cmn_Product_View')"
-  />
+  <mobile v-if="$q.screen.xs" :grid-store="gridStore" :title="$t('main-menu-items.Cmn_Product_View')" />
 
-  <desktop
-    v-else
-    :grid-store="gridStore"
-    :title="$t('main-menu-items.Cmn_Product_View')"
-  />
+  <desktop v-else :grid-store="gridStore" toolbar :title="$t('main-menu-items.Cmn_Product_View')" />
 </template>
 
 <script setup>

@@ -45,7 +45,7 @@
           <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable
             to="/scr/users/settings/change-password">
 
-            <q-item-section :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
+            <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
               <q-item-label class="text-on-dark text-body2 no-letter-spacing">تغییر رمز عبور</q-item-label>
             </q-item-section>
 

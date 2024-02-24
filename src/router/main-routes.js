@@ -63,5 +63,9 @@ export default {
       path: "cmn/product",
       component: () => import("src/pages/areas/cmn/product/IndexPage.vue"),
     },
+    {
+      path: "cmn/product/preview",
+      component: () => import("src/pages/areas/cmn/product/PreviewPage.vue"),
+    },
   ],
 };
