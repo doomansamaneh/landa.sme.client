@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 40px;">
+  <div style="margin-bottom: 56px;">
     <q-page-sticky class="z-1 bg-main" style="padding-top: 12px;padding-bottom: 12px;" position="top" expand>
       <q-toolbar
         :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 20px; padding-right: 20px;'">
