@@ -1,24 +1,9 @@
 <template>
-  <tool-bar
-    :table-store="dataGrid?.tableStore"
-    :crud-store="crudStore"
-    :title="title"
-    base-route="/cmn/product"
-    activation
-    buttons
-  >
+  <tool-bar v-if="toolbar" :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title"
+    base-route="/cmn/product" activation buttons>
     <template #buttons-batch-action>
-      <q-btn
-        class="text-caption"
-        rounded
-        unelevated
-        no-caps
-        @click="editBatch"
-      >
-        <q-icon
-          name="o_edit"
-          class="q-mr-xs"
-        />
+      <q-btn class="text-caption" rounded unelevated no-caps @click="editBatch">
+        <q-icon name="o_edit" class="q-mr-xs" />
         {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} مورد)
       </q-btn>
     </template>
@@ -38,25 +23,10 @@
       <div class="text-h5">{{ title }}</div>
     </q-card-section> -->
     <div>
-      <data-grid
-        ref="dataGrid"
-        dataSource="cmn/product/getGridData"
-        :grid-store="gridStore"
-        separator="horizontal"
-        flat
-        multiSelect
-        numbered
-        bordered
-        wrapCells
-        dense_
-        expandable_
-      >
+      <data-grid class="no-border" ref="dataGrid" dataSource="cmn/product/getGridData" :grid-store="gridStore"
+        separator="horizontal" flat multiSelect numbered bordered wrapCells dense_ expandable_>
         <template #filter-isActive="{ col }">
-          <custom-select
-            v-model="col.value"
-            :options="isActiveOptions"
-            @update:model-value="reloadData"
-          />
+          <custom-select v-model="col.value" :options="isActiveOptions" @update:model-value="reloadData" />
         </template>
 
         <template #cell-code="{ item }">
@@ -69,35 +39,14 @@
         </template>
 
         <template #cell-isActive="{ item }">
-          <q-btn
-            v-if="item.isActive"
-            round
-            dense
-            size="10px"
-            unelevated
-            icon="o_done"
-            color="green-8"
-            class="green-shadow no-pointer-events"
-          />
-          <q-btn
-            v-else
-            round
-            dense
-            size="10px"
-            unelevated
-            icon="o_close"
-            color="negative"
-            class="red-shadow no-pointer-events"
-          />
+          <q-btn v-if="item.isActive" round dense size="10px" unelevated icon="o_done" color="green-8"
+            class="green-shadow no-pointer-events" />
+          <q-btn v-else round dense size="10px" unelevated icon="o_close" color="negative"
+            class="red-shadow no-pointer-events" />
         </template>
 
         <template #cell-actions="{ item }">
-          <row-tool-bar
-            base-route="/cmn/product"
-            :item="item"
-            :table-store="tableStore"
-            :crud-store="crudStore"
-          />
+          <row-tool-bar base-route="/cmn/product" :item="item" :table-store="tableStore" :crud-store="crudStore" />
         </template>
 
       </data-grid>
@@ -133,7 +82,8 @@ watchEffect(() => {
 
 const props = defineProps({
   gridStore: Object,
-  title: String
+  title: String,
+  toolbar: Boolean
 })
 
 const dataGrid = ref(null)

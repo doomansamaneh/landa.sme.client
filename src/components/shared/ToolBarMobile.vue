@@ -1,7 +1,9 @@
 <template>
   <div style="margin-bottom: 56px;">
+
     <q-page-sticky class="z-1 bg-main" style="padding-top: 12px;padding-bottom: 12px;" position="top" expand>
       <q-toolbar style="padding-left: 20px; padding-right: 20px;">
+
         <div class="flex items-center" :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''">
           <slot name="buttons">
             <template v-if="tableStore?.activeRow?.value != null">
@@ -12,6 +14,7 @@
                 </q-btn>
               </slot>
             </template>
+
 
             <template v-if="selectedIds?.length > 0">
               <slot name="buttons-batch-action">
@@ -37,6 +40,7 @@
         <q-space v-if="tableStore?.activeRow?.value != null" />
         <q-space v-if="selectedIds?.length > 0" />
 
+
         <template v-if="selectedIds?.length > 0">
           {{ selectedIds?.length }} مورد
           <q-btn round unelevated class="q-ml-md text-on-dark" icon="close" @click="deselect">
@@ -45,18 +49,27 @@
 
         <template v-else>
           <div v-if="title">
+
             <slot name="header">
-              <div class="flex items-center" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">
+              <div class="flex items-center" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
                 <slot name="header-title">
                   <span>{{ title }}</span>
                   <q-btn v-if="tableStore?.pagination.value.totalItems > 0" rounded unelevated dense padding="2px 8px"
                     outline :label="tableStore?.pagination.value.totalItems"
                     class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events" />
                 </slot>
+                <!-- <q-space></q-space>
+                <back-button class="q-ml-md" /> -->
               </div>
             </slot>
           </div>
         </template>
+
+        <template v-if="backButton">
+          <q-space></q-space>
+          <back-button />
+        </template>
+
       </q-toolbar>
     </q-page-sticky>
   </div>
@@ -153,6 +166,7 @@
 <script setup>
 import { ref, computed } from "vue"
 import BottomSheet from "src/components/shared/BottomSheet.vue"
+import BackButton from "src/components/shared/buttons/GoBackLink.vue"
 
 const bottomSheetStatus = ref(false)
 

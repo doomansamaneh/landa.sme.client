@@ -17,7 +17,7 @@
 <script setup>
 import ThemeSelector from "src/components/shared/ThemeSelector.vue"
 import LangSwitcher from "src/components/shared/SwitchLanguage.vue"
-import ToolBar from "src/components/shared/ToolBar.vue"
+import ToolBar from "src/components/shared/ToolBarMobile.vue"
 </script>
 
 
