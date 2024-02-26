@@ -10,6 +10,7 @@ export default {
     icon: "o_dashboard",
   },
   children: [
+    { path: "/", redirect: "/dashboard" },
     {
       path: ":businessId",
       component: HomePage,

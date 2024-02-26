@@ -1,5 +1,8 @@
 <template>
-  <toolbar back-button title="کاردکس کالا" />
+  <toolbar buttons back-button title="کاردکس کالا">
+
+    
+  </toolbar>
 
   <q-card class="bordered">
     <q-card-section class="q-pa-xl">

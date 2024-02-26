@@ -137,7 +137,6 @@
                     class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events" />
                 </slot>
               </span>
-              <q-space></q-space>
               <back-button v-if="backButton" class="q-ml-md" />
             </slot>
           </div>
