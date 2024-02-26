@@ -132,8 +132,6 @@ export function useInvoiceGrid(defaultFilters) {
         operator: sqlOperator.equal,
         value: "butThisYear",
       });
-
-    console.log(filterExpression);
   });
 
   const setDefaultSearchModel = () => {
