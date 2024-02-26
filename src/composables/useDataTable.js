@@ -63,6 +63,7 @@ export function useDataTable(dataSource, dataColumns, store) {
   }
 
   async function loadData() {
+    //alert("load data");
     if (!state.value.firstLoad.value) {
       state.value.firstLoad.value = true;
       await reloadData();
@@ -72,6 +73,7 @@ export function useDataTable(dataSource, dataColumns, store) {
   }
 
   async function reloadData() {
+    //alert("reload data");
     await fetchData(pagination.value, handleDataResponse);
 
     function handleDataResponse(pagedData) {
@@ -109,10 +111,15 @@ export function useDataTable(dataSource, dataColumns, store) {
     }
   }
 
+  function setFilterExpression(filters) {
+    if (state?.value) state.value.filterExpression = filters;
+  }
+
   function setPayload() {
     pagination.value.filterExpression = [];
-    if (store?.filterExpression != null)
+    if (store?.filterExpression != null) {
       pagination.value.filterExpression.push(...store.filterExpression);
+    }
     if (state?.value.filterExpression != null)
       pagination.value.filterExpression.push(...state.value.filterExpression);
 
@@ -258,6 +265,7 @@ export function useDataTable(dataSource, dataColumns, store) {
     checkedAll,
 
     selectAll,
+    setFilterExpression,
     setActiveRow,
     updatedSelectedIds,
     loadData,

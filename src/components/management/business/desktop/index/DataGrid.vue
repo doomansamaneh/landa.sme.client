@@ -27,11 +27,8 @@
               clickable
               @click="reloadData"
             >
-              <q-tooltip
-                class="custom-tooltip"
-                :delay="600"
-              >
-                {{ $t("page.buttons.reload-data") }}
+              <q-tooltip class="custom-tooltip" :delay="600">
+                {{ $t("shared.labels.refresh") }}
               </q-tooltip>
             </q-btn>
           </div>
@@ -44,10 +41,7 @@
               icon="o_help_outline"
               @click="showGuideDialog = true"
             >
-              <q-tooltip
-                class="custom-tooltip"
-                :delay="600"
-              >
+              <q-tooltip class="custom-tooltip" :delay="600">
                 {{ $t("page.buttons.guide-tooltip") }}
               </q-tooltip>
             </q-btn>
@@ -62,7 +56,7 @@
         <q-avatar
           :class="{
             'business-isowner primary-shadow': item.isOwner,
-            'business-isnotowner': !item.isOwner
+            'business-isnotowner': !item.isOwner,
           }"
           icon="o_person"
           size="lg"
@@ -110,20 +104,14 @@
             v-if="item.expired"
           />
           {{ item.toDateString }}
-          <q-tooltip
-            class="custom-tooltip"
-            :delay="600"
-          >{{
+          <q-tooltip class="custom-tooltip" :delay="600">{{
             $t("page.buttons.expire-date-tooltip")
           }}</q-tooltip>
         </q-item-label>
       </div>
 
       <div class="col-3 flex justify-center items-center q-ml-md">
-        <renew-subscribtion
-          class="bg-green text-white"
-          :business="item"
-        />
+        <renew-subscribtion class="bg-green text-white" :business="item" />
       </div>
 
       <div class="more-options col-1 q-pl-md">
@@ -136,18 +124,11 @@
           size="md"
           dense
         >
-          <q-tooltip
-            class="custom-tooltip"
-            :delay="600"
-            :offset="[-60, -70]"
-          >{{
+          <q-tooltip class="custom-tooltip" :delay="600" :offset="[-60, -70]">{{
             $t("page.buttons.more-tooltip")
           }}</q-tooltip>
         </q-btn>
-        <q-menu
-          transition-show="jump-down"
-          transition-hide="jump-up"
-        >
+        <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list padding>
             <q-item
               clickable
@@ -156,31 +137,18 @@
             >
               <q-item-section>
                 <div class="flex items-center q-gutter-x-sm">
-                  <q-avatar
-                    icon="o_login"
-                    size="md"
-                  />
+                  <q-avatar icon="o_login" size="md" />
                   <div class="text-body2">
                     {{ $t("page.buttons.more-button.enter-business") }}
                   </div>
                 </div>
               </q-item-section>
             </q-item>
-            <div
-              class="isNotOwner"
-              v-if="item.isOwner"
-            >
-              <q-item
-                clickable
-                v-close-popup
-                @click="showInviteUser"
-              >
+            <div class="isNotOwner" v-if="item.isOwner">
+              <q-item clickable v-close-popup @click="showInviteUser">
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar
-                      icon="o_person_add"
-                      size="md"
-                    />
+                    <q-avatar icon="o_person_add" size="md" />
                     <div class="text-body2">
                       {{ $t("page.buttons.more-button.invite-user") }}
                     </div>
@@ -194,10 +162,7 @@
               >
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar
-                      icon="o_credit_card"
-                      size="md"
-                    />
+                    <q-avatar icon="o_credit_card" size="md" />
                     <div class="text-body2">
                       {{ $t("page.buttons.more-button.payment-history") }}
                     </div>
@@ -205,11 +170,7 @@
                 </q-item-section>
               </q-item>
               <q-separator spaced />
-              <q-item
-                clickable
-                v-close-popup
-                @click="showDeleteBusiness"
-              >
+              <q-item clickable v-close-popup @click="showDeleteBusiness">
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
                     <q-avatar
@@ -232,38 +193,38 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import { useQuasar } from "quasar"
+import { ref } from "vue";
+import { useQuasar } from "quasar";
 
-import DataView from "src/components/shared/dataTables/desktop/DataView.vue"
-import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
-import AddBusiness from "src/components/management/shared/AddBusinessLink.vue"
-import DesktopViewGuide from "components/management/business/desktop/index/GuideView.vue"
-import InviteUserDialog from "src/components/management/users/InviteUserDialog.vue"
-import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue"
+import DataView from "src/components/shared/dataTables/desktop/DataView.vue";
+import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue";
+import AddBusiness from "src/components/management/shared/AddBusinessLink.vue";
+import DesktopViewGuide from "components/management/business/desktop/index/GuideView.vue";
+import InviteUserDialog from "src/components/management/users/InviteUserDialog.vue";
+import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue";
 
 const props = defineProps({
-  gridStore: Object
-})
+  gridStore: Object,
+});
 
-const $q = useQuasar()
-const businessDataView = ref(null)
-const showGuideDialog = ref(false)
+const $q = useQuasar();
+const businessDataView = ref(null);
+const showGuideDialog = ref(false);
 
 async function reloadData() {
-  businessDataView.value.reloadData()
+  businessDataView.value.reloadData();
 }
 
 function showInviteUser() {
   $q.dialog({
-    component: InviteUserDialog
-  })
+    component: InviteUserDialog,
+  });
 }
 
 function showDeleteBusiness() {
   $q.dialog({
-    component: DeleteBusinessDialog
-  })
+    component: DeleteBusinessDialog,
+  });
 }
 </script>
 

@@ -65,5 +65,6 @@ function getColumnClass(row, column) {
 <style scss>
 .less-than-average {
   background-color: var(--q-secondary) !important;
+  color: #fff;
 }
 </style>

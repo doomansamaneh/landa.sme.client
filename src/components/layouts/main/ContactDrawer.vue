@@ -13,10 +13,7 @@
       :showing="tableStore.showLoader.value"
       class="transparent z-max"
     >
-      <q-spinner
-        size="52px"
-        color="primary"
-      />
+      <q-spinner size="52px" color="primary" />
     </q-inner-loading>
 
     <div class="q-px-md q-py-lg">
@@ -34,22 +31,23 @@
         class="text-caption"
       >
         <template v-slot:prepend>
-          <q-icon
-            name="o_search"
-            color="primary"
-          />
+          <q-icon name="o_search" color="primary" />
         </template>
       </q-input>
     </div>
 
     <q-scroll-area
-      :style="$q.screen.gt.xs ? 'height: calc(100vh - 180px);' : 'height: calc(100vh - 180px);'"
+      :style="
+        $q.screen.gt.xs
+          ? 'height: calc(100vh - 180px);'
+          : 'height: calc(100vh - 180px);'
+      "
       :thumb-style="helper.thumbStyle"
       :bar-style="helper.barStyle"
     >
       <q-item
-        @click="goToCustomer"
         v-for="(row, index) in customerStore.rows.value"
+        :to="`/crm/customer/preview/${row.id}`"
         :key="index"
         clickable
         v-close-popup
@@ -65,7 +63,7 @@
               square
               class="border-radius-xs"
             >
-              <img :src="row.avatar">
+              <img :src="row.avatar" />
             </q-avatar>
 
             <q-avatar
@@ -73,7 +71,9 @@
               text-color="white"
               square
               class="primary-shadow border-radius-xs"
-              :style="{ backgroundColor: helper.generateDarkAvatarColor(row.id) }"
+              :style="{
+                backgroundColor: helper.generateDarkAvatarColor(row.id),
+              }"
               v-else
             >
               <div class="char text-body1 text-bold">
@@ -85,7 +85,7 @@
           <q-item-section>
             <q-item-label
               class="ellipsis text-on-dark text-caption text-bold q-py-xs"
-              style="width:200px"
+              style="width: 200px"
             >
               {{ row.code }} {{ row.name }}
             </q-item-label>
@@ -93,13 +93,9 @@
               v-if="row.locationName"
               caption
               class="ellipsis q-mt-xs"
-              style="width: 200px;"
+              style="width: 200px"
             >
-              <q-icon
-                name="o_location_on"
-                size="13px"
-                color="primary"
-              />
+              <q-icon name="o_location_on" size="13px" color="primary" />
               {{ row.locationName }} {{ row.address }}
             </q-item-label>
             <q-item-label
@@ -133,16 +129,15 @@
       </q-item>
 
       <div
-        v-if="!tableStore.showLoader.value && customerStore.rows.value.length === 0"
+        v-if="
+          !tableStore.showLoader.value && customerStore.rows.value.length === 0
+        "
         class="text-on-dark"
       >
         <no-data-found />
       </div>
 
-      <div
-        class="row justify-center"
-        v-if="hasMoreData"
-      >
+      <div class="row justify-center" v-if="hasMoreData">
         <q-btn
           rounded
           unelevated
@@ -159,45 +154,54 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
-import { useRouter } from "vue-router"
-import { useDataTable } from "src/composables/useDataTable"
-import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid"
-import { useContactDrawer } from "src/composables/useContactDrawer"
-import { helper } from "src/helpers"
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { useDataTable } from "src/composables/useDataTable";
+import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid";
+import { useContactDrawer } from "src/composables/useContactDrawer";
+import { helper } from "src/helpers";
 
-import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
+import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-const customerStore = useCustomerGrid()
-const contactDrawerStore = useContactDrawer()
+const customerStore = useCustomerGrid();
+const contactDrawerStore = useContactDrawer();
 
-const tableStore = useDataTable("crm/customer/getLookupData", customerStore.columns, customerStore)
-const router = useRouter()
+const tableStore = useDataTable(
+  "crm/customer/getLookupData",
+  customerStore.columns,
+  customerStore
+);
+const router = useRouter();
 
 async function gotoNext() {
   if (hasMoreData.value) {
-    tableStore.pagination.value.currentPage += 1
-    await reloadData()
+    tableStore.pagination.value.currentPage += 1;
+    await reloadData();
   }
 }
 
 async function reloadData() {
-  await tableStore.reloadData()
-  customerStore.rows.value = [...customerStore.rows.value, ...tableStore.rows.value]
+  await tableStore.reloadData();
+  customerStore.rows.value = [
+    ...customerStore.rows.value,
+    ...tableStore.rows.value,
+  ];
 }
 
 async function loadData() {
-  tableStore.pagination.value.currentPage = 1
-  await tableStore.reloadData()
-  customerStore.rows.value = tableStore.rows.value
+  tableStore.pagination.value.currentPage = 1;
+  await tableStore.reloadData();
+  customerStore.rows.value = tableStore.rows.value;
 }
 
 const hasMoreData = computed(() => {
-  return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages
-})
+  return (
+    tableStore.pagination.value.currentPage <
+    tableStore.pagination.value.totalPages
+  );
+});
 
 const goToCustomer = () => {
-  router.push("/crm/customer")
-}
-
+  router.push("/crm/customer");
+};
 </script>
