@@ -11,6 +11,5 @@
 </template>
 
 <script setup>
-import EditProfile from "src/components/areas/crm/customer/profile/EditProfile.vue"
-
+import EditProfile from "./EditProfile.vue";
 </script>

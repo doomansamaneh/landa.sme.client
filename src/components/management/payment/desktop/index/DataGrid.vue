@@ -26,7 +26,7 @@
               @click="refreshPayments"
             >
               <q-tooltip class="custom-tooltip">
-                {{ $t("page.buttons.reload-data") }}
+                {{ $t("shared.labels.refresh") }}
               </q-tooltip>
             </q-btn>
           </div>
@@ -45,15 +45,8 @@
     <template #body="{ item }">
       <div class="col-5">
         <div class="flex justify-start">
-          <q-item-label
-            caption
-            class="text-on-dark"
-          >
-            <q-icon
-              class="expire-date-clock"
-              name="history"
-              size="xs"
-            />
+          <q-item-label caption class="text-on-dark">
+            <q-icon class="expire-date-clock" name="history" size="xs" />
             {{ item.fromDateString }} -
             {{ item.toDateString }}
           </q-item-label>
@@ -64,11 +57,9 @@
         <q-item-label caption>
           {{ formatCurrency(item.amount) }}
           <span>{{ $t("page.payment-history.rial") }}</span>
-          <q-tooltip
-            class="custom-tooltip"
-            :delay="600"
+          <q-tooltip class="custom-tooltip" :delay="600">
+            {{ $t("page.payment-history.amount-paid") }}</q-tooltip
           >
-            {{ $t("page.payment-history.amount-paid") }}</q-tooltip>
         </q-item-label>
       </div>
       <div class="expire-date-container col-3 flex items-center justify-start">
@@ -76,22 +67,11 @@
           caption
           v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
         >
-          <q-icon
-            name="circle"
-            color="orange"
-            size="8px"
-          />
+          <q-icon name="circle" color="orange" size="8px" />
           {{ $t("page.payment-history.trial") }}
         </q-item-label>
-        <q-item-label
-          caption
-          v-else
-        >
-          <q-icon
-            name="circle"
-            color="positive"
-            size="8px"
-          />
+        <q-item-label caption v-else>
+          <q-icon name="circle" color="positive" size="8px" />
           {{ $t("page.payment-history.paid") }}
         </q-item-label>
       </div>
@@ -105,22 +85,13 @@
           size="md"
           dense
         >
-          <q-tooltip
-            class="custom-tooltip"
-            :delay="600"
-          >
+          <q-tooltip class="custom-tooltip" :delay="600">
             {{ $t("page.buttons.more-tooltip") }}
           </q-tooltip>
         </q-btn>
-        <q-menu
-          transition-show="jump-down"
-          transition-hide="jump-up"
-        >
+        <q-menu transition-show="jump-down" transition-hide="jump-up">
           <q-list padding>
-            <q-item
-              clickable
-              v-close-popup
-            >
+            <q-item clickable v-close-popup>
               <q-item-section>
                 <router-link :to="getDetailUrl(item)">
                   <div class="flex items-center q-gutter-x-sm">
@@ -144,62 +115,62 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
-import { useRoute } from "vue-router"
-import { fetchWrapper } from "src/helpers"
+import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { fetchWrapper } from "src/helpers";
 
-import BackButton from "src/components/shared/buttons/GoBackLink.vue"
-import DataView from "src/components/shared/dataTables/desktop/DataView.vue"
-import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue"
+import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+import DataView from "src/components/shared/dataTables/desktop/DataView.vue";
+import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue";
 
-const route = useRoute()
+const route = useRoute();
 
-const business = ref(null)
-const paymentGrid = ref(null)
+const business = ref(null);
+const paymentGrid = ref(null);
 
 const props = defineProps({
-  gridStore: Object
-})
+  gridStore: Object,
+});
 
 const paymentDataSource = computed(
   () => `business/getBusinessPaymentGridData/${route.params.businessId}`
-)
+);
 
 //todo: remove this code from here to somewhere more general
 const formatCurrency = (value) => {
-  const language = localStorage.getItem("selectedLanguage")
+  const language = localStorage.getItem("selectedLanguage");
   if (language === "fa-IR") {
     return value.toLocaleString("fa-IR", {
-      minimumFractionDigits: 0
-    })
+      minimumFractionDigits: 0,
+    });
   } else {
-    return value.toLocaleString()
+    return value.toLocaleString();
   }
-}
+};
 
 async function loadData() {
   await fetchWrapper
     .get(`business/GetBusiness/${route.params.businessId}`)
     .then((response) => {
-      business.value = response.data.data
-    })
+      business.value = response.data.data;
+    });
 }
 
 async function refreshPayments() {
-  paymentGrid.value.reloadData()
+  paymentGrid.value.reloadData();
 }
 
 function getDetailUrl(item) {
-  return `/business/PaymentDetail/${item.id}`
+  return `/business/PaymentDetail/${item.id}`;
 }
 
 onMounted(() => {
-  loadData()
-})
+  loadData();
+});
 
 defineExpose({
-  formatCurrency
-})
+  formatCurrency,
+});
 </script>
 
 <style lang="scss">

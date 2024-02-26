@@ -49,8 +49,6 @@ export function useFiscalYear() {
   };
 
   const setFiscalYear = (year) => {
-    alert(year);
-    console.log(year);
     fiscalYear.value = year;
     localStorage.setItem("fiscalYear", JSON.stringify(year));
   };

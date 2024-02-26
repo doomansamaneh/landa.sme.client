@@ -70,7 +70,13 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn push flat dense size="0" to="/sls/invoice/remainedThisYear">
+            <q-btn
+              push
+              flat
+              dense
+              size="0"
+              to="/sls/invoice/remained/remainedThisYear"
+            >
               <q-avatar
                 rounded
                 color="orange"
@@ -94,7 +100,13 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn push flat dense size="0" to="/sls/invoice/remainedAll">
+            <q-btn
+              push
+              flat
+              dense
+              size="0"
+              to="/sls/invoice/remained/remainedAll"
+            >
               <q-avatar
                 rounded
                 color="red"
@@ -109,7 +121,12 @@
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">مانده از قبل</q-item-label>
             <q-item-label style="font-size: 18px" class="text-bold">
-              {{ dataStore.data?.value?.remainedAmountAll.toLocaleString() }}
+              {{
+                (
+                  dataStore.data?.value?.remainedAmountAll -
+                  dataStore.data?.value?.remainedAmount
+                ).toLocaleString()
+              }}
             </q-item-label>
           </q-item-section>
         </q-item>

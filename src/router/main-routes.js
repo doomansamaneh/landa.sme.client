@@ -1,5 +1,4 @@
 import MainLayout from "src/layouts/MainLayout.vue";
-import ProfilePage from "src/pages/management/ProfilePage.vue";
 import HomePage from "src/pages/areas/dashboard/IndexPage.vue";
 
 export default {
@@ -18,18 +17,25 @@ export default {
       path: "/dashboard",
       component: HomePage,
     },
-
     {
       path: "/crm/customer",
-      component: ProfilePage,
+      component: () => import("pages/areas/crm/customer/IndexPage.vue"),
+    },
+    {
+      path: "/crm/customer/preview/:id",
+      component: () => import("pages/areas/crm/customer/PreviewPage.vue"),
     },
     // {
     //   path: "sls/quote",
     //   component: () => import("pages/areas/sls/quote/IndexPage.vue"),
     // },
     {
-      path: "sls/invoice/:remained?",
+      path: "sls/invoice",
       component: () => import("pages/areas/sls/invoice/IndexPage.vue"),
+    },
+    {
+      path: "sls/invoice/remained/:remained",
+      component: () => import("pages/areas/sls/invoice/IndexRemainedPage.vue"),
     },
     {
       path: "/scr/users/settings",
@@ -64,7 +70,7 @@ export default {
       component: () => import("src/pages/areas/cmn/product/IndexPage.vue"),
     },
     {
-      path: "cmn/product/preview",
+      path: "cmn/product/preview/:id",
       component: () => import("src/pages/areas/cmn/product/PreviewPage.vue"),
     },
   ],

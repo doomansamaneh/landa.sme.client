@@ -6,10 +6,7 @@
     transition-duration="600"
     no-backdrop-dismiss
   >
-    <edit-customer-data
-      :title="title"
-      @submitted="submitted"
-    >
+    <edit-customer-data :title="title" @submitted="submitted">
       <template #close-icon>
         <q-btn
           icon="close"
@@ -31,22 +28,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import { useDialogPluginComponent } from "quasar"
-import EditCustomerData from "src/components/areas/crm/customer/profile/EditCustomerData.vue"
-import EditContactData from "src/components/areas/crm/customer/profile/EditContactData.vue"
-import EditAddressData from "src/components/areas/crm/customer/profile/EditAddressData.vue"
-import EditBankData from "src/components/areas/crm/customer/profile/EditBankData.vue"
-import EditBusinessData from "src/components/areas/crm/customer/profile/EditBusinessData.vue"
+import { ref } from "vue";
+import { useDialogPluginComponent } from "quasar";
+import EditCustomerData from "./EditCustomerData.vue";
+import EditContactData from "./EditContactData.vue";
+import EditAddressData from "./EditAddressData.vue";
+import EditBankData from "./EditBankData.vue";
+import EditBusinessData from "./EditBusinessData.vue";
 
-const title = "ویرایش اطلاعات تماس مخاطب"
+const title = "ویرایش اطلاعات تماس مخاطب";
 
 const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent()
+  useDialogPluginComponent();
 
 function submitted(response) {
-  onDialogOK()
+  onDialogOK();
 }
-
 </script>
-

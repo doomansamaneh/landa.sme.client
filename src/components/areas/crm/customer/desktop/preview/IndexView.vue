@@ -1,21 +1,22 @@
 <template>
   <q-page-sticky
     class="z-1 bg-main q-py-sm"
-    style="padding-left: 38px; padding-right: 38px;"
+    style="padding-left: 38px; padding-right: 38px"
     position="top"
     expand
   >
     <q-toolbar class="q-px-none row justify-between q-py-md">
       <div class="row items-center q-gutter-md">
         <q-avatar size="48px">
-          <img
-            class="avatar"
-            src="https://cdn.quasar.dev/img/avatar4.jpg"
-          >
+          <img class="avatar" src="https://cdn.quasar.dev/img/avatar4.jpg" />
         </q-avatar>
         <div class="column q-mt-md">
-          <q-item-label><span class="text-body2">خشایار شمالی</span></q-item-label>
-          <q-item-label caption><span class="text-body2">توسعه دهنده وب</span></q-item-label>
+          <q-item-label
+            ><span class="text-body2">خشایار شمالی</span></q-item-label
+          >
+          <q-item-label caption
+            ><span class="text-body2">توسعه دهنده وب</span></q-item-label
+          >
         </div>
       </div>
       <div class="row q-gutter-sm text-h6">
@@ -26,10 +27,7 @@
           no-caps
           unelevated
         >
-          <q-icon
-            name="o_add"
-            class="q-mr-xs"
-          />
+          <q-icon name="o_add" class="q-mr-xs" />
           {{ $t("shared.labels.create") }}
         </q-btn>
         <q-btn
@@ -40,10 +38,7 @@
           unelevated
           @click="editProfile"
         >
-          <q-icon
-            name="o_edit"
-            class="q-mr-xs"
-          />
+          <q-icon name="o_edit" class="q-mr-xs" />
           {{ $t("shared.labels.edit") }}
         </q-btn>
         <q-btn
@@ -53,45 +48,20 @@
           no-caps
           unelevated
         >
-          <q-icon
-            name="o_delete"
-            class="q-mr-xs"
-          />
+          <q-icon name="o_delete" class="q-mr-xs" />
           {{ $t("shared.labels.delete") }}
         </q-btn>
-        <q-btn
-          class="bordered-btn_bg-dark text-caption"
-          rounded
-          unelevated
-        >
-          <q-icon
-            name="more_horiz"
-            class="q-mr-xs"
-          />
+        <q-btn class="bordered-btn_bg-dark text-caption" rounded unelevated>
+          <q-icon name="more_horiz" class="q-mr-xs" />
           {{ $t("shared.labels.more") }}
-          <q-menu
-            fit
-            :offset="[0, 20]"
-          >
-            <q-list
-              dense
-              padding
-              style="width:200px"
-            >
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
+          <q-menu fit :offset="[0, 20]">
+            <q-list dense padding style="width: 200px">
+              <q-item clickable v-close-popup tabindex="0">
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar
-                      class="bg-on-dark"
-                      size="sm"
-                    ><q-icon
-                        name="o_refresh"
-                        size="14px"
-                      /></q-avatar>
+                    <q-avatar class="bg-on-dark" size="sm"
+                      ><q-icon name="o_refresh" size="14px"
+                    /></q-avatar>
                   </q-item-section>
                 </div>
                 <q-item-section>
@@ -99,40 +69,24 @@
                 </q-item-section>
               </q-item>
               <q-separator />
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
+              <q-item clickable v-close-popup tabindex="0">
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar
-                      class="bg-on-dark"
-                      size="sm"
-                    ><q-icon
-                        name="o_close"
-                        size="14px"
-                      /></q-avatar>
+                    <q-avatar class="bg-on-dark" size="sm"
+                      ><q-icon name="o_close" size="14px"
+                    /></q-avatar>
                   </q-item-section>
                 </div>
                 <q-item-section>
                   <div class="text-caption">غیر‌فعال‌سازی</div>
                 </q-item-section>
               </q-item>
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
+              <q-item clickable v-close-popup tabindex="0">
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar
-                      class="bg-on-dark"
-                      size="sm"
-                    ><q-icon
-                        name="o_check"
-                        size="14px"
-                      /></q-avatar>
+                    <q-avatar class="bg-on-dark" size="sm"
+                      ><q-icon name="o_check" size="14px"
+                    /></q-avatar>
                   </q-item-section>
                 </div>
                 <q-item-section>
@@ -140,20 +94,12 @@
                 </q-item-section>
               </q-item>
               <q-separator />
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-              >
+              <q-item clickable v-close-popup tabindex="0">
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar
-                      class="bg-on-dark"
-                      size="sm"
-                    ><q-icon
-                        name="o_download"
-                        size="16px"
-                      /></q-avatar>
+                    <q-avatar class="bg-on-dark" size="sm"
+                      ><q-icon name="o_download" size="16px"
+                    /></q-avatar>
                   </q-item-section>
                 </div>
                 <q-item-section>
@@ -167,7 +113,6 @@
     </q-toolbar>
   </q-page-sticky>
   <div class="row q-gutter-md q-mt-xl">
-
     <div class="col">
       <sales-widget />
     </div>
@@ -183,8 +128,6 @@
     <div class="col">
       <sales-widget />
     </div>
-
-
   </div>
 
   <div class="row q-mt-lg q-gutter-x-md">
@@ -192,15 +135,15 @@
       <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            ><span class="text-bold text-caption">18</span></q-badge><span
-              class="text-bold text-caption text-on-dark-1">فاکتورها</span>
+            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+              ><span class="text-bold text-caption">18</span></q-badge
+            ><span class="text-bold text-caption text-on-dark-1">فاکتورها</span>
           </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">240,000,000<span
-              class="text-body1 text-bold text-on-dark-1"
-            >ریال</span></div>
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+            240,000,000<span class="text-body1 text-bold text-on-dark-1"
+              >ریال</span
+            >
+          </div>
         </q-card-section>
       </q-card>
     </div>
@@ -209,14 +152,15 @@
       <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            ><span class="text-bold text-caption">0</span></q-badge><span
-              class="text-bold text-caption text-on-dark-1">مانده حساب</span>
+            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+              ><span class="text-bold text-caption">0</span></q-badge
+            ><span class="text-bold text-caption text-on-dark-1"
+              >مانده حساب</span
+            >
           </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">0<span
-              class="text-body1 text-bold text-on-dark-1">ریال</span></div>
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+            0<span class="text-body1 text-bold text-on-dark-1">ریال</span>
+          </div>
         </q-card-section>
       </q-card>
     </div>
@@ -225,15 +169,16 @@
       <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            ><span class="text-bold text-caption">4</span></q-badge><span
-              class="text-bold text-caption text-on-dark-1">بدهکار</span>
+            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+              ><span class="text-bold text-caption">4</span></q-badge
+            ><span class="text-bold text-caption text-on-dark-1">بدهکار</span>
           </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">2,000,000<span
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+            2,000,000<span
               class="text-body1 text-bold text-on-dark-1 q-gutter-xs"
-            >ریال</span></div>
+              >ریال</span
+            >
+          </div>
         </q-card-section>
       </q-card>
     </div>
@@ -242,15 +187,15 @@
       <q-card class="info-box bordered">
         <q-card-section class="q-gutter-md">
           <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            ><span class="text-bold text-caption">9</span></q-badge><span
-              class="text-bold text-caption text-on-dark-1">بستانکار</span>
+            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
+              ><span class="text-bold text-caption">9</span></q-badge
+            ><span class="text-bold text-caption text-on-dark-1">بستانکار</span>
           </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">158,300,020<span
-              class="text-body1 text-bold text-on-dark-1"
-            >ریال</span></div>
+          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+            158,300,020<span class="text-body1 text-bold text-on-dark-1"
+              >ریال</span
+            >
+          </div>
         </q-card-section>
       </q-card>
     </div>
@@ -263,31 +208,11 @@
     inline-label
     narrow-indicator
   >
-    <q-tab
-      name="profile"
-      label="نمایه"
-      icon="o_person"
-    />
-    <q-tab
-      name="quotes"
-      label="پیش‌فاکتورها"
-      icon="o_assignment"
-    />
-    <q-tab
-      name="invoices"
-      label="فاکتورهای فروش"
-      icon="o_receipt"
-    />
-    <q-tab
-      name="accountSummary"
-      label="خلاصه حساب"
-      icon="o_summarize"
-    />
-    <q-tab
-      name="history"
-      label="تاریخچه"
-      icon="o_history"
-    />
+    <q-tab name="profile" label="نمایه" icon="o_person" />
+    <q-tab name="quotes" label="پیش‌فاکتورها" icon="o_assignment" />
+    <q-tab name="invoices" label="فاکتورهای فروش" icon="o_receipt" />
+    <q-tab name="accountSummary" label="خلاصه حساب" icon="o_summarize" />
+    <q-tab name="history" label="تاریخچه" icon="o_history" />
   </q-tabs>
 
   <q-tab-panels
@@ -303,30 +228,24 @@
               <img
                 class="avatar"
                 src="https://cdn.quasar.dev/img/avatar4.jpg"
-              >
+              />
             </q-avatar>
             <div class="column items-center q-mt-md">
-              <q-item-label><span class="text-subtitle1">خشایار شمالی</span></q-item-label>
-              <q-item-label caption><span class="text-body2">توسعه دهنده وب</span></q-item-label>
+              <q-item-label
+                ><span class="text-subtitle1">خشایار شمالی</span></q-item-label
+              >
+              <q-item-label caption
+                ><span class="text-body2">توسعه دهنده وب</span></q-item-label
+              >
             </div>
             <div class="column q-py-lg q-gutter-md">
-              <q-btn
-                flat
-                class="bg-primary text-white"
-              >آپلود تصویر جدید</q-btn>
-              <q-btn
-                outline
-                class="text-on-dark"
-              >حذف</q-btn>
+              <q-btn flat class="bg-primary text-white">آپلود تصویر جدید</q-btn>
+              <q-btn outline class="text-on-dark">حذف</q-btn>
             </div>
           </div>
         </div>
         <div class="row">
-          <q-separator
-            vertical
-            inset
-            class="q-mx-lg"
-          />
+          <q-separator vertical inset class="q-mx-lg" />
         </div>
         <div class="col q-py-lg q-pr-lg q-pl-xl q-pr-xl">
           <div class="row justify-between items-center">
@@ -334,10 +253,7 @@
           </div>
           <q-separator class="q-mt-md" />
           <div class="q-py-md">
-            <q-list
-              bordered
-              class="rounded-borders"
-            >
+            <q-list bordered class="rounded-borders">
               <q-expansion-item
                 expand-separator
                 group="basicInfo"
@@ -345,19 +261,11 @@
                 class="basic-info"
               >
                 <template #header>
-                  <q-item-section
-                    class="q-py-sm"
-                    avatar
-                  >
-                    <q-icon
-                      name="o_headset_mic"
-                      size="xs"
-                    />
+                  <q-item-section class="q-py-sm" avatar>
+                    <q-icon name="o_headset_mic" size="xs" />
                   </q-item-section>
 
-                  <q-item-section class="text-subtitle2">
-                    تماس
-                  </q-item-section>
+                  <q-item-section class="text-subtitle2"> تماس </q-item-section>
                 </template>
                 <q-card class="no-border no-shadow">
                   <q-card-section>
@@ -365,111 +273,64 @@
                       unelevated
                       class="bg-primary text-white full-width q-pa-md"
                     >
-                      <q-icon
-                        name="o_add"
-                        class="q-mr-xs"
-                      />
+                      <q-icon name="o_add" class="q-mr-xs" />
                       <span>افزودن آیتم جدید</span>
                       <q-menu touch-position>
-                        <q-list
-                          dense
-                          padding
-                          style="width:200px"
-                        >
-                          <q-item
-                            clickable
-                            v-close-popup
-                            tabindex="0"
-                          >
+                        <q-list dense padding style="width: 200px">
+                          <q-item clickable v-close-popup tabindex="0">
                             <div class="q-py-sm">
                               <q-item-section avatar>
-                                <q-avatar
-                                  class="bg-on-dark"
-                                  size="sm"
-                                ><q-icon
-                                    name="o_call"
-                                    size="14px"
-                                  /></q-avatar>
+                                <q-avatar class="bg-on-dark" size="sm"
+                                  ><q-icon name="o_call" size="14px"
+                                /></q-avatar>
                               </q-item-section>
                             </div>
                             <q-item-section>
                               <div class="text-caption">تلفن</div>
                             </q-item-section>
                           </q-item>
-                          <q-item
-                            clickable
-                            v-close-popup
-                            tabindex="0"
-                          >
+                          <q-item clickable v-close-popup tabindex="0">
                             <div class="q-py-sm">
                               <q-item-section avatar>
-                                <q-avatar
-                                  class="bg-on-dark"
-                                  size="sm"
-                                ><q-icon
-                                    name="o_mail"
-                                    size="14px"
-                                  /></q-avatar>
+                                <q-avatar class="bg-on-dark" size="sm"
+                                  ><q-icon name="o_mail" size="14px"
+                                /></q-avatar>
                               </q-item-section>
                             </div>
                             <q-item-section>
                               <div class="text-caption">ایمیل</div>
                             </q-item-section>
                           </q-item>
-                          <q-item
-                            clickable
-                            v-close-popup
-                            tabindex="0"
-                          >
+                          <q-item clickable v-close-popup tabindex="0">
                             <div class="q-py-sm">
                               <q-item-section avatar>
-                                <q-avatar
-                                  class="bg-on-dark"
-                                  size="sm"
-                                ><q-icon
-                                    name="o_share"
-                                    size="14px"
-                                  /></q-avatar>
+                                <q-avatar class="bg-on-dark" size="sm"
+                                  ><q-icon name="o_share" size="14px"
+                                /></q-avatar>
                               </q-item-section>
                             </div>
                             <q-item-section>
                               <div class="text-caption">شبکه‌های اجتماعی</div>
                             </q-item-section>
                           </q-item>
-                          <q-item
-                            clickable
-                            v-close-popup
-                            tabindex="0"
-                          >
+                          <q-item clickable v-close-popup tabindex="0">
                             <div class="q-py-sm">
                               <q-item-section avatar>
-                                <q-avatar
-                                  class="bg-on-dark"
-                                  size="sm"
-                                ><q-icon
-                                    name="o_phone_android"
-                                    size="14px"
-                                  /></q-avatar>
+                                <q-avatar class="bg-on-dark" size="sm"
+                                  ><q-icon name="o_phone_android" size="14px"
+                                /></q-avatar>
                               </q-item-section>
                             </div>
                             <q-item-section>
                               <div class="text-caption">موبایل</div>
                             </q-item-section>
                           </q-item>
-                          <q-item
-                            clickable
-                            v-close-popup
-                            tabindex="0"
-                          >
+                          <q-item clickable v-close-popup tabindex="0">
                             <div class="q-py-sm">
                               <q-item-section avatar>
-                                <q-avatar
-                                  class="bg-on-dark"
-                                  size="sm"
-                                ><q-icon
-                                    name="o_public"
-                                    size="16px"
-                                  /></q-avatar>
+                                <q-avatar class="bg-on-dark" size="sm"
+                                  ><q-icon name="o_public" size="16px"
+                                /></q-avatar>
                               </q-item-section>
                             </div>
                             <q-item-section>
@@ -479,10 +340,7 @@
                         </q-list>
                       </q-menu>
                     </q-btn>
-                    <div
-                      v-for="item in phoneItems"
-                      :key="item"
-                    >
+                    <div v-for="item in phoneItems" :key="item">
                       <div class="row bordered-1 q-pa-md q-my-md items-center">
                         <div class="col">
                           <div class="text-caption">
@@ -493,7 +351,9 @@
                               size="sm"
                               color="primary"
                             />
-                            <span class="text-bold q-mr-sm">{{ `${item.name}:` }}</span>
+                            <span class="text-bold q-mr-sm">{{
+                              `${item.name}:`
+                            }}</span>
                             <span class="">{{ item.value }}</span>
                           </div>
                         </div>
@@ -528,14 +388,8 @@
                 class="basic-info"
               >
                 <template #header>
-                  <q-item-section
-                    class="q-py-sm"
-                    avatar
-                  >
-                    <q-icon
-                      name="o_my_location"
-                      size="xs"
-                    />
+                  <q-item-section class="q-py-sm" avatar>
+                    <q-icon name="o_my_location" size="xs" />
                   </q-item-section>
 
                   <q-item-section class="text-subtitle2">
@@ -548,16 +402,10 @@
                       unelevated
                       class="bg-primary text-white full-width q-pa-md"
                     >
-                      <q-icon
-                        name="o_add"
-                        class="q-mr-xs"
-                      />
+                      <q-icon name="o_add" class="q-mr-xs" />
                       <span>افزودن آیتم جدید</span>
                     </q-btn>
-                    <div
-                      v-for="item in addressItems"
-                      :key="item"
-                    >
+                    <div v-for="item in addressItems" :key="item">
                       <div class="row bordered-1 q-pa-md q-my-md items-center">
                         <div class="col">
                           <div class="text-caption">
@@ -568,7 +416,9 @@
                               size="sm"
                               color="primary"
                             />
-                            <span class="text-bold q-mr-sm">{{ `${item.name}:` }}</span>
+                            <span class="text-bold q-mr-sm">{{
+                              `${item.name}:`
+                            }}</span>
                             <span>{{ item.value }}</span>
                           </div>
                         </div>
@@ -602,14 +452,8 @@
                 class="basic-info"
               >
                 <template #header>
-                  <q-item-section
-                    class="q-py-sm"
-                    avatar
-                  >
-                    <q-icon
-                      name="o_credit_card"
-                      size="xs"
-                    />
+                  <q-item-section class="q-py-sm" avatar>
+                    <q-icon name="o_credit_card" size="xs" />
                   </q-item-section>
 
                   <q-item-section class="text-subtitle2">
@@ -622,10 +466,7 @@
                       unelevated
                       class="bg-primary text-white full-width q-pa-md"
                     >
-                      <q-icon
-                        name="o_add"
-                        class="q-mr-xs"
-                      />
+                      <q-icon name="o_add" class="q-mr-xs" />
                       <span>افزودن آیتم جدید</span>
                     </q-btn>
                     <div
@@ -634,14 +475,18 @@
                       class="row bordered-1 q-pa-md q-my-md"
                     >
                       <div class="col q-gutter-y-sm">
-                        <div class="row text-caption items-center justify-between">
+                        <div
+                          class="row text-caption items-center justify-between"
+                        >
                           <div class="row">
                             <q-icon
                               name="o_account_balance"
                               color="primary"
                               size="xs"
                             />
-                            <span class="text-bold q-ml-sm">{{ item.bankName }}</span>
+                            <span class="text-bold q-ml-sm">{{
+                              item.bankName
+                            }}</span>
                           </div>
                           <div class="row items-center">
                             <q-btn
@@ -684,14 +529,8 @@
                 class="basic-info"
               >
                 <template #header>
-                  <q-item-section
-                    class="q-py-sm"
-                    avatar
-                  >
-                    <q-icon
-                      name="o_business"
-                      size="xs"
-                    />
+                  <q-item-section class="q-py-sm" avatar>
+                    <q-icon name="o_business" size="xs" />
                   </q-item-section>
 
                   <q-item-section class="text-subtitle2">
@@ -732,8 +571,10 @@
                       </div>
                       <div class="row">
                         <div class="col-3 text-bold">شرح:</div>
-                        <div class="col">این یک متن آزمایشی است که توسط خشایار شمالی برای آزمایش شرح نوشته شده است و معنای
-                          خاصی ندارد.</div>
+                        <div class="col">
+                          این یک متن آزمایشی است که توسط خشایار شمالی برای
+                          آزمایش شرح نوشته شده است و معنای خاصی ندارد.
+                        </div>
                       </div>
                     </div>
                   </q-card-section>
@@ -745,14 +586,8 @@
                 class="basic-info"
               >
                 <template #header>
-                  <q-item-section
-                    class="q-py-sm"
-                    avatar
-                  >
-                    <q-icon
-                      name="o_star"
-                      size="xs"
-                    />
+                  <q-item-section class="q-py-sm" avatar>
+                    <q-icon name="o_star" size="xs" />
                   </q-item-section>
 
                   <q-item-section class="text-subtitle2">
@@ -766,10 +601,7 @@
                       @click="addCustomField"
                       class="bg-primary text-white full-width q-pa-md"
                     >
-                      <q-icon
-                        name="o_add"
-                        class="q-mr-xs"
-                      />
+                      <q-icon name="o_add" class="q-mr-xs" />
                       <span>افزودن آیتم جدید</span>
                     </q-btn>
                     <div class="row bordered-1 q-pa-md q-mt-md items-center">
@@ -837,20 +669,22 @@
 
     <q-tab-panel name="quotes">
       <div class="q-pa-md">
-        <invoice />
+        <h4>customer quotes</h4>
       </div>
     </q-tab-panel>
 
     <q-tab-panel name="invoices">
       <div class="q-pa-md">
-        <invoice :grid-store="invoiceStore" />
+        <invoice-grid
+          :grid-store="invoiceStore"
+          :data-source="`sls/invoice/GetByCustomerData/${$route.params.id}`"
+        />
       </div>
     </q-tab-panel>
 
     <q-tab-panel name="accountSummary">
       <div class="q-pa-md">
         <div class="row q-gutter-md q-mb-xl">
-
           <div class="col">
             <q-card class="info-box no-shadow bordered-1">
               <q-card-section class="q-gutter-md">
@@ -858,13 +692,16 @@
                   <q-badge
                     rounded
                     class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-                  ><span class="text-bold text-caption">18</span></q-badge><span
-                    class="text-bold text-caption text-on-dark-1"
-                  >فاکتورها</span>
+                    ><span class="text-bold text-caption">18</span></q-badge
+                  ><span class="text-bold text-caption text-on-dark-1"
+                    >فاکتورها</span
+                  >
                 </div>
-                <div class="text-h6 text-bold text-on-dark q-gutter-xs">240,000,000<span
-                    class="text-body1 text-bold text-on-dark-1"
-                  >ریال</span></div>
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+                  240,000,000<span class="text-body1 text-bold text-on-dark-1"
+                    >ریال</span
+                  >
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -876,12 +713,14 @@
                   <q-badge
                     rounded
                     class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-                  ><span class="text-bold text-caption">0</span></q-badge><span
-                    class="text-bold text-caption text-on-dark-1"
-                  >مانده حساب</span>
+                    ><span class="text-bold text-caption">0</span></q-badge
+                  ><span class="text-bold text-caption text-on-dark-1"
+                    >مانده حساب</span
+                  >
                 </div>
-                <div class="text-h6 text-bold text-on-dark q-gutter-xs">0<span
-                    class="text-body1 text-bold text-on-dark-1">ریال</span></div>
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+                  0<span class="text-body1 text-bold text-on-dark-1">ریال</span>
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -893,13 +732,17 @@
                   <q-badge
                     rounded
                     class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-                  ><span class="text-bold text-caption">4</span></q-badge><span
-                    class="text-bold text-caption text-on-dark-1"
-                  >بدهکار</span>
+                    ><span class="text-bold text-caption">4</span></q-badge
+                  ><span class="text-bold text-caption text-on-dark-1"
+                    >بدهکار</span
+                  >
                 </div>
-                <div class="text-h6 text-bold text-on-dark q-gutter-xs">2,000,000<span
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+                  2,000,000<span
                     class="text-body1 text-bold text-on-dark-1 q-gutter-xs"
-                  >ریال</span></div>
+                    >ریال</span
+                  >
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -911,13 +754,16 @@
                   <q-badge
                     rounded
                     class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-                  ><span class="text-bold text-caption">9</span></q-badge><span
-                    class="text-bold text-caption text-on-dark-1"
-                  >بستانکار</span>
+                    ><span class="text-bold text-caption">9</span></q-badge
+                  ><span class="text-bold text-caption text-on-dark-1"
+                    >بستانکار</span
+                  >
                 </div>
-                <div class="text-h6 text-bold text-on-dark q-gutter-xs">158,300,020<span
-                    class="text-body1 text-bold text-on-dark-1"
-                  >ریال</span></div>
+                <div class="text-h6 text-bold text-on-dark q-gutter-xs">
+                  158,300,020<span class="text-body1 text-bold text-on-dark-1"
+                    >ریال</span
+                  >
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -927,42 +773,23 @@
     </q-tab-panel>
 
     <q-tab-panel name="history">
-      <div
-        style="margin: 24px 56px 0 56px;"
-        class="q-gutter-y-md"
-      >
-        <div class="text-body1"><q-icon
-            name="o_comment"
-            size="sm"
-            class="icon q-pr-sm"
-          />یادداشت</div>
+      <div style="margin: 24px 56px 0 56px" class="q-gutter-y-md">
+        <div class="text-body1">
+          <q-icon name="o_comment" size="sm" class="icon q-pr-sm" />یادداشت
+        </div>
         <q-editor
           v-model="editor"
           placeholder="در اینجا می‌توانید یادداشت بگذارید..."
         />
-        <q-btn
-          @click="saveComment"
-          flat
-          rounded
-          class="bg-primary text-white"
-        >
-          <q-icon
-            name="o_comment"
-            size="xs"
-            class="q-mr-sm"
-          />
+        <q-btn @click="saveComment" flat rounded class="bg-primary text-white">
+          <q-icon name="o_comment" size="xs" class="q-mr-sm" />
           <span>ذخیره</span>
         </q-btn>
       </div>
       <div class="q-my-xl q-mx-md">
-        <div
-          class="q-pb-md text-body1"
-          style="margin: 0 38px;"
-        ><q-icon
-            name="o_history"
-            size="sm"
-            class="icon q-pr-sm"
-          />تاریخچه</div>
+        <div class="q-pb-md text-body1" style="margin: 0 38px">
+          <q-icon name="o_history" size="sm" class="icon q-pr-sm" />تاریخچه
+        </div>
         <div class="profile-timeline">
           <q-timeline color="accent">
             <q-timeline-entry
@@ -1008,10 +835,7 @@
                     >
                       {{ item.comment }}
                     </p>
-                    <div
-                      class="q-gutter-y-md"
-                      v-show="editCommentBtn"
-                    >
+                    <div class="q-gutter-y-md" v-show="editCommentBtn">
                       <q-editor v-model="editCommentValue" />
                       <div class="q-gutter-x-sm">
                         <q-btn
@@ -1020,11 +844,7 @@
                           rounded
                           class="bg-primary text-white"
                         >
-                          <q-icon
-                            name="o_comment"
-                            size="xs"
-                            class="q-mr-sm"
-                          />
+                          <q-icon name="o_comment" size="xs" class="q-mr-sm" />
                           <span>ذخیره</span>
                         </q-btn>
                         <q-btn
@@ -1033,30 +853,19 @@
                           rounded
                           class="text-on-dark"
                         >
-                          <q-icon
-                            name="o_close"
-                            size="xs"
-                            class="q-mr-xs"
-                          />
+                          <q-icon name="o_close" size="xs" class="q-mr-xs" />
                           <span>انصراف</span>
                         </q-btn>
                       </div>
                     </div>
-                    <div
-                      v-if="!editCommentBtn"
-                      class="row justify-end"
-                    >
+                    <div v-if="!editCommentBtn" class="row justify-end">
                       <q-btn
                         @click="editComment"
                         unelevated
                         rounded
                         class="text-on-dark"
                       >
-                        <q-icon
-                          name="o_edit"
-                          size="xs"
-                          class="q-mr-sm"
-                        />
+                        <q-icon name="o_edit" size="xs" class="q-mr-sm" />
                         <span>ویرایش</span>
                       </q-btn>
                       <q-btn
@@ -1065,11 +874,7 @@
                         rounded
                         class="text-on-dark"
                       >
-                        <q-icon
-                          name="o_delete"
-                          size="xs"
-                          class="q-mr-sm"
-                        />
+                        <q-icon name="o_delete" size="xs" class="q-mr-sm" />
                         <span>حذف</span>
                       </q-btn>
                     </div>
@@ -1085,53 +890,113 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
-import { useQuasar } from "quasar"
-import { useInvoiceGrid } from "src/components/areas/crm/_composables/useInvoiceGrid"
-import "src/helpers/extensions";
+import { ref } from "vue";
+import { useQuasar } from "quasar";
+import { useInvoiceFilteredGrid } from "components/areas/sls/_composables/useInvoiceFilteredGrid";
 
-import DeleteAlert from "src/components/areas/crm/customer/profile/DeleteAlert.vue"
-import EditProfile from "src/components/areas/crm/customer/profile/EditProfileDialog.vue"
-import Invoice from "src/components/areas/crm/customer/_InvoiceDataTable.vue"
-import EditCustomerData from "src/components/areas/crm/customer/profile/EditCustomerDataDialog.vue"
-import AddCustomField from "src/components/areas/crm/customer/profile/AddCustomField.vue"
-import SalesWidget from "src/components/areas/dashboard/widgets/SalesWidget.vue"
+import DeleteAlert from "components/areas/crm/customer/desktop/preview/DeleteAlert.vue";
+import EditProfile from "components/areas/crm/customer/desktop/preview/EditProfileDialog.vue";
+import InvoiceGrid from "components/areas/sls/invoice/desktop/index/DataGrid.vue";
+import EditCustomerData from "components/areas/crm/customer/desktop/preview/EditCustomerDataDialog.vue";
+import AddCustomField from "components/areas/crm/customer/desktop/preview/AddCustomField.vue";
+import SalesWidget from "components/areas/dashboard/widgets/SalesWidget.vue";
 
-const invoiceStore = useInvoice()
+const invoiceStore = useInvoiceFilteredGrid(null, [
+  "no",
+  "date",
+  "subject",
+  "amount",
+  "payedAmount",
+  "remainedAmount",
+]);
 
-const date = new Date()
-const $q = useQuasar()
+const $q = useQuasar();
 
-const tab = ref('profile')
-const editor = ref('')
-const editCommentBtn = ref(false)
+const tab = ref("profile");
+const editor = ref("");
+const editCommentBtn = ref(false);
 const phoneItems = [
   { name: "تلفن خانه", value: "02155511102", original: true },
   { name: "موبایل", value: "09338603196" },
   { name: "تلفن محل کار", value: "02144990022" },
-]
+];
 const addressItems = [
   { name: "آدرس کارخانه", value: "شابدل عظیم - نزدیکا حرم", original: true },
   { name: "آدرس اداره", value: "پارک دانشجو - تیاتر شهر" },
-  { name: "آدرس خانه", value: "خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید عنایتی - کوچه مهر 2 - پلاک 22" },
-
-]
+  {
+    name: "آدرس خانه",
+    value:
+      "خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید عنایتی - کوچه مهر 2 - پلاک 22",
+  },
+];
 
 const bankAccountDetail = [
-  { bankName: 'تجارت', accountNumber: '0481038280', cardNumber: '5859831129809389', shabaNumber: '0000128550232209' },
-  { bankName: 'تجارت', accountNumber: '0481038280', cardNumber: '5859831129809389', shabaNumber: '0000128550232209' },
-  { bankName: 'تجارت', accountNumber: '0481038280', cardNumber: '5859831129809389', shabaNumber: '0000128550232209' },
-]
+  {
+    bankName: "تجارت",
+    accountNumber: "0481038280",
+    cardNumber: "5859831129809389",
+    shabaNumber: "0000128550232209",
+  },
+  {
+    bankName: "تجارت",
+    accountNumber: "0481038280",
+    cardNumber: "5859831129809389",
+    shabaNumber: "0000128550232209",
+  },
+  {
+    bankName: "تجارت",
+    accountNumber: "0481038280",
+    cardNumber: "5859831129809389",
+    shabaNumber: "0000128550232209",
+  },
+];
 const items = [
-  { name: "خشایار شمالی", icon: "o_add", date: "1402/07/22 - 15:05:30", value: "ایجاد مخاطب", systemInfo: "MacOS 192.188.90.90" },
-  { name: "خشایار شمالی", icon: "o_maps_ugc", date: "1402/07/22 - 15:05:30", value: "ایجاد یادداشت جدید", commentValue: "true", comment: "این یک متن تستی است که توسط خشایار شمالی برای آزمایش کامنت‌ها در تایم لاین سیستم حسابداری آنلاین لاندا ایجاد شده است و فاقد هرگونه اعتباری است.", systemInfo: "MacOS 192.188.90.90" },
-  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/21", value: "ویرایش مخاطب", systemInfo: "MacOS 192.188.90.90" },
-  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/20", value: "ویرایش مخاطب", systemInfo: "MacOS 192.188.70.290" },
-  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/18", value: "ویرایش مخاطب" },
-  { name: "خشایار شمالی", icon: "o_edit", date: "1402/07/10", value: "ویرایش مخاطب" },
-]
+  {
+    name: "خشایار شمالی",
+    icon: "o_add",
+    date: "1402/07/22 - 15:05:30",
+    value: "ایجاد مخاطب",
+    systemInfo: "MacOS 192.188.90.90",
+  },
+  {
+    name: "خشایار شمالی",
+    icon: "o_maps_ugc",
+    date: "1402/07/22 - 15:05:30",
+    value: "ایجاد یادداشت جدید",
+    commentValue: "true",
+    comment:
+      "این یک متن تستی است که توسط خشایار شمالی برای آزمایش کامنت‌ها در تایم لاین سیستم حسابداری آنلاین لاندا ایجاد شده است و فاقد هرگونه اعتباری است.",
+    systemInfo: "MacOS 192.188.90.90",
+  },
+  {
+    name: "خشایار شمالی",
+    icon: "o_edit",
+    date: "1402/07/21",
+    value: "ویرایش مخاطب",
+    systemInfo: "MacOS 192.188.90.90",
+  },
+  {
+    name: "خشایار شمالی",
+    icon: "o_edit",
+    date: "1402/07/20",
+    value: "ویرایش مخاطب",
+    systemInfo: "MacOS 192.188.70.290",
+  },
+  {
+    name: "خشایار شمالی",
+    icon: "o_edit",
+    date: "1402/07/18",
+    value: "ویرایش مخاطب",
+  },
+  {
+    name: "خشایار شمالی",
+    icon: "o_edit",
+    date: "1402/07/10",
+    value: "ویرایش مخاطب",
+  },
+];
 
-const editCommentValue = ref(items[1].comment)
+const editCommentValue = ref(items[1].comment);
 
 const saveComment = () => {
   if (editor.value.trim() !== "") {
@@ -1147,44 +1012,42 @@ const saveComment = () => {
     items.push(newComment);
     editor.value = "";
   }
-}
+};
 
 const deleteComment = (comment) => {
   const index = items.indexOf(comment);
   if (index !== -1) {
     items.splice(index, 1);
   }
-}
+};
 
 const editComment = () => {
-
-  editCommentBtn.value = !editCommentBtn.value
-
-}
+  editCommentBtn.value = !editCommentBtn.value;
+};
 
 const deleteAlert = () => {
   $q.dialog({
-    component: DeleteAlert
-  })
-}
+    component: DeleteAlert,
+  });
+};
 
 const editProfile = () => {
   $q.dialog({
-    component: EditProfile
-  })
-}
+    component: EditProfile,
+  });
+};
 
 const editData = () => {
   $q.dialog({
-    component: EditCustomerData
-  })
-}
+    component: EditCustomerData,
+  });
+};
 
 const addCustomField = () => {
   $q.dialog({
-    component: AddCustomField
-  })
-}
+    component: AddCustomField,
+  });
+};
 </script>
 
 <style lang="scss">
@@ -1197,4 +1060,3 @@ const addCustomField = () => {
   cursor: pointer;
 }
 </style>
-
