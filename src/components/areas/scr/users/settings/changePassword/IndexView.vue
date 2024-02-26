@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <div class="row" :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-col-gutter-md'">
+        <div class="row q-col-gutter-lg" :class="$q.screen.gt.xs ? 'q-mb-lg' : 'q-mb-md'">
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">{{
               $t('change-password-page.placeholders.new-password') }}</div>
@@ -32,6 +32,9 @@
               </template>
             </q-input>
           </div>
+        </div>
+
+        <div class="row q-col-gutter-lg" :class="$q.screen.gt.xs ? 'q-mb-lg' : 'q-mb-md'">
           <div class="col-md-6 col-md-6 col-xs-12">
             <div class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">{{
               $t('change-password-page.placeholders.confirm-password') }}</div>
@@ -44,6 +47,7 @@
             </q-input>
           </div>
         </div>
+
       </q-form>
 
       <div class="text-body1 no-letter-spacing caption-on-dark text-bold q-mt-xl q-mb-sm">
