@@ -1,8 +1,5 @@
 <template>
-  <toolbar buttons back-button title="کاردکس کالا">
-
-    
-  </toolbar>
+  <toolbar buttons back-button title="کاردکس کالا"> </toolbar>
 
   <q-card class="bordered">
     <q-card-section class="q-pa-xl">
@@ -217,7 +214,6 @@ import { useQuasar } from "quasar";
 import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid";
 
 import Toolbar from "src/components/shared/ToolBar.vue";
-import DeleteAlert from "src/components/areas/crm/customer/desktop/preview/DeleteAlert.vue";
 import DataGrid from "src/components/areas/cmn/product/desktop/index/DataGrid.vue";
 
 const gridStore = useProductGrid();

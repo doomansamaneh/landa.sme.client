@@ -598,7 +598,6 @@ import { ref } from "vue";
 import { useQuasar } from "quasar";
 
 import ToolBar from "src/components/shared/ToolBar.vue";
-import DeleteAlert from "src/components/areas/crm/customer/desktop/preview/DeleteAlert.vue";
 
 const $q = useQuasar();
 
