@@ -12,7 +12,7 @@
       content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
     />
 
-    <link rel="stylesheet" href="src/components/splashScreen/splash.css" />
+    <link rel="stylesheet" href="src/components/splashScreen/clouds.css" />
 
     <link
       rel="icon"
@@ -42,21 +42,12 @@
   </head>
   <body>
     <!-- quasar:entry-point -->
-    <div class="splash">
-      <div class="bookshelf_wrapper">
-        <ul class="books_list">
-          <li class="book_item first"></li>
-          <li class="book_item second"></li>
-          <li class="book_item third"></li>
-          <li class="book_item fourth"></li>
-          <li class="book_item fifth"></li>
-          <li class="book_item sixth"></li>
-        </ul>
-        <div class="shelf"></div>
+    <div class="clouds">
+      <div class="clouds-container">
+        <div id="cloud-intro"></div>
       </div>
     </div>
   </body>
 </html>
 
-<script src="src/components/splashScreen/splash.js"></script>
-
+<script src="src/components/splashScreen/clouds.js"></script>
