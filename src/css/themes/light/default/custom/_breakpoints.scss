@@ -1,11 +1,16 @@
 @mixin breakpoints-light {
-
   @media (max-width: $breakpoint-xs-max) {
     .main-container {
       padding-left: 24px;
       padding-right: 24px;
     }
 
+    .line-chart .apexcharts-legend {
+      padding-left: 8px;
+      padding-right: 8px;
+      display: flex;
+      justify-content: end;
+    }
   }
 
   @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {
@@ -14,16 +19,13 @@
       padding-left: 38px;
       padding-right: 38px;
     }
-
   }
 
-  @media (min-width: $breakpoint-md-min)  {
+  @media (min-width: $breakpoint-md-min) {
     .main-container {
       // width: 100% !important;
       padding-left: 38px;
       padding-right: 38px;
     }
-
   }
-
 }

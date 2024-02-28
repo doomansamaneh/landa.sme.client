@@ -1,5 +1,5 @@
 <template>
-  <tool-bar buttons :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title" base-route="/cmn/product"
+  <!-- <tool-bar buttons :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title" base-route="/cmn/product"
     activation>
     <template #buttons-custom>
       <q-separator class="q-my-sm" />
@@ -18,9 +18,9 @@
       </q-item>
 
     </template>
-  </tool-bar>
+  </tool-bar> -->
 
-  <div style="margin-top: 56px;">
+  <div>
     <data-grid ref="dataGrid" dataSource="cmn/product/getGridData" createUrl="/cmn/product/create" :grid-store="gridStore"
       multiSelect numbered>
       <template #row-header="{ item }">
@@ -58,7 +58,7 @@
       </template>
 
       <template #row-body="{ item }">
-        <q-card-section class="q-px-none">
+        <q-card-section class="q-px-none q-py-xs">
           <div class="column q-gutter-sm">
 
             <div class="row items-center">

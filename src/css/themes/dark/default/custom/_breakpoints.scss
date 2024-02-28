@@ -6,6 +6,13 @@
       padding-right: 24px;
     }
 
+    .line-chart .apexcharts-legend {
+      padding-left: 8px;
+      padding-right: 8px;
+      display: flex;
+      justify-content: end;
+  }
+
   }
 
   @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {

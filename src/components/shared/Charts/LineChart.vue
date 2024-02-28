@@ -14,7 +14,7 @@
 import { ref, onMounted, watch, computed } from 'vue'
 import { useQuasar } from 'quasar'
 
-import Chart from 'src/components/shared/Charts/ChartView.vue';
+import Chart from 'src/components/shared/charts/ChartView.vue';
 
 const $q = useQuasar()
 const props = defineProps(['height', 'legend', 'title'])

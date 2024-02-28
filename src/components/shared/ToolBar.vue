@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 40px;">
+  <div :style="toolbarMargin">
     <q-page-sticky class="z-1 bg-main" style="padding-top: 12px;padding-bottom: 12px;" position="top" expand>
       <q-toolbar
         :style="$q.screen.gt.sm ? 'padding-left: 38px; padding-right: 38px;' : 'padding-left: 20px; padding-right: 20px;'">
@@ -164,8 +164,11 @@
 
 <script setup>
 import { computed } from "vue"
+import { useQuasar } from "quasar"
 
 import BackButton from "src/components/shared/buttons/GoBackLink.vue"
+
+const $q = useQuasar()
 
 const props = defineProps({
   title: String,
@@ -178,4 +181,8 @@ const props = defineProps({
 })
 
 const selectedIds = computed(() => props.tableStore?.selectedRows?.value.map(item => item.id))
+
+const toolbarMargin = computed(() => {
+  return $q.screen.lt.md ? 'margin-bottom: 56px' : 'margin-bottom: 40px'
+})
 </script>
