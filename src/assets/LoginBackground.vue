@@ -16,7 +16,6 @@
 </template>
 
 <style lang="scss" scoped>
-
 .circles {
   position: absolute;
   top: 0;
@@ -35,7 +34,6 @@
   background: rgba(255, 255, 255, 0.2);
   animation: animate 25s linear infinite;
   bottom: -150px;
-
 }
 
 .circles li:nth-child(1) {
@@ -44,7 +42,6 @@
   height: 80px;
   animation-delay: 0s;
 }
-
 
 .circles li:nth-child(2) {
   left: 10%;
@@ -114,10 +111,7 @@
   animation-duration: 11s;
 }
 
-
-
 @keyframes animate {
-
   0% {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
@@ -129,9 +123,5 @@
     opacity: 0;
     border-radius: 50%;
   }
-
 }
-
-
-
 </style>

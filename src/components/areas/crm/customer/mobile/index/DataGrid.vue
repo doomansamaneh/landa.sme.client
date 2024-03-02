@@ -250,7 +250,7 @@ import { helper } from "src/helpers";
 
 import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
 import BottomSheet from "src/components/shared/BottomSheet.vue";
-import ToolBar from "src/components/shared/ToolBarMobile.vue";
+import ToolBar from "src/components/shared/ToolBar.vue";
 import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue";
 
 const props = defineProps({

@@ -500,7 +500,7 @@ import { useFormActions } from "src/composables/useFormActions";
 
 import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
 import BottomSheet from "components/shared/BottomSheet.vue";
-import ToolBar from "src/components/shared/ToolBarMobile.vue";
+import ToolBar from "src/components/shared/ToolBar.vue";
 
 const props = defineProps({
   gridStore: Object,

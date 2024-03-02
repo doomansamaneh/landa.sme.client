@@ -8,14 +8,8 @@
       <table class="q-table">
         <thead>
           <tr>
-            <th
-              v-if="numbered"
-              class="dense_"
-            >#</th>
-            <th
-              v-if="multiSelect"
-              class="dense"
-            >
+            <th v-if="numbered" class="dense_">#</th>
+            <th v-if="multiSelect" class="dense">
               <q-checkbox
                 v-model="tableStore.checkedAll.value"
                 @update:model-value="selectAll"
@@ -29,28 +23,15 @@
               @click="tableStore.sortColumn(col)"
             >
               <span class="q-icon q-table__sort-icon">
-                <q-icon
-                  name="arrow_drop_down"
-                  color="primary"
-                  size="20px"
-                />
+                <q-icon name="arrow_drop_down" color="primary" size="20px" />
               </span>
               <span>{{ col.label }}</span>
             </th>
-            <th
-              v-if="expandable"
-              style="width: 1px"
-            ></th>
+            <th v-if="expandable" style="width: 1px"></th>
           </tr>
           <tr class="row-filter">
-            <th
-              v-if="numbered"
-              class="dense"
-            ></th>
-            <th
-              v-if="multiSelect"
-              class="dense"
-            ></th>
+            <th v-if="numbered" class="dense"></th>
+            <th v-if="multiSelect" class="dense"></th>
             <th
               v-for="col in tableStore?.columns.value"
               :key="col.name"
@@ -70,19 +51,10 @@
                 <!-- @keyup.enter="reloadData" -->
               </slot>
             </th>
-            <th
-              v-if="expandable"
-              class="filter"
-            ></th>
+            <th v-if="expandable" class="filter"></th>
           </tr>
-          <tr
-            v-if="tableStore.showLoader.value"
-            class="q-table__progress"
-          >
-            <th
-              colspan="100%"
-              class="relative-position"
-            >
+          <tr v-if="tableStore.showLoader.value" class="q-table__progress">
+            <th colspan="100%" class="relative-position">
               <q-linear-progress
                 indeterminate
                 rounded
@@ -93,26 +65,19 @@
           </tr>
         </thead>
         <tbody>
-          <template
-            v-for="(row, index) in tableStore.rows.value"
-            :key="row.id"
-          >
+          <template v-for="(row, index) in tableStore.rows.value" :key="row.id">
             <tr
               @click="setActiveRow(row)"
               @dblclick="goToPreview(row)"
               class="table-row"
               :class="tableStore.getRowClass(row)"
             >
-              <td
-                v-if="numbered"
-                class="dense_"
-              >
-                <small class="text-on-dark">{{ tableStore.rowIndex(index) }}</small>
+              <td v-if="numbered" class="dense_">
+                <small class="text-on-dark">{{
+                  tableStore.rowIndex(index)
+                }}</small>
               </td>
-              <td
-                v-if="multiSelect"
-                class="dense"
-              >
+              <td v-if="multiSelect" class="dense">
                 <q-checkbox
                   v-model="row.selected"
                   @update:model-value="selectRow(row, $event)"
@@ -124,17 +89,11 @@
                 :class="col.cellClass"
                 :style="col.cellStyle"
               >
-                <slot
-                  :name="`cell-${col.name}`"
-                  :item="row"
-                >
+                <slot :name="`cell-${col.name}`" :item="row">
                   <div v-html="getColText(row, col)"></div>
                 </slot>
               </td>
-              <td
-                v-if="expandable"
-                style="width: 1px"
-              >
+              <td v-if="expandable" style="width: 1px">
                 <q-btn
                   size="md"
                   color="primary"
@@ -152,15 +111,9 @@
               enter-active-class="animated fadeIn"
               leave-active-class="animated fadeOut"
             >
-              <tr
-                class="expand"
-                v-if="row.expanded"
-              >
+              <tr class="expand" v-if="row.expanded">
                 <td colspan="100%">
-                  <slot
-                    name="detail"
-                    :item="row"
-                  > </slot>
+                  <slot name="detail" :item="row"> </slot>
                 </td>
               </tr>
             </transition>
@@ -174,16 +127,17 @@
             <slot
               name="footer-subtotal"
               :selectedRows="tableStore.selectedRows.value"
-            > </slot>
+            >
+            </slot>
           </tr>
           <tr
-            v-if="tableStore.rows.value.length > 1 && tableStore.summaryData != null"
+            v-if="
+              tableStore.rows.value.length > 1 && tableStore.summaryData != null
+            "
             class="grid-total"
           >
-            <slot
-              name="footer-total"
-              :summary="tableStore.summaryData.value"
-            > </slot>
+            <slot name="footer-total" :summary="tableStore.summaryData.value">
+            </slot>
           </tr>
         </tfoot>
       </table>
@@ -196,14 +150,11 @@
         <no-data-found />
       </slot>
     </div>
-    <div
-      v-if="tableStore.showPagebar.value"
-      class="q-table__bottom"
-    >
+    <div v-if="tableStore.showPagebar.value" class="q-table__bottom">
       <page-bar
         :pagination="tableStore.pagination.value"
         @page-changed="reloadData"
-        max-pages=5
+        max-pages="5"
         sizeSeletion
         show-page-count
       >
@@ -216,10 +167,7 @@
             icon="o_refresh"
             @click="reloadData"
           >
-            <q-tooltip
-              class="custom-tooltip"
-              :delay="600"
-            >
+            <q-tooltip class="custom-tooltip" :delay="600">
               {{ $t("shared.labels.refresh") }}
             </q-tooltip>
           </q-btn>
@@ -230,14 +178,14 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from "vue"
-import { useQuasar } from "quasar"
-import { useDataTable } from "src/composables/useDataTable"
-import { useRouter } from "vue-router"
+import { onMounted, computed } from "vue";
+import { useQuasar } from "quasar";
+import { useDataTable } from "src/composables/useDataTable";
+import { useRouter } from "vue-router";
 
-import CustomInput from "src/components/shared/Forms/CustomInput.vue"
-import PageBar from "src/components/shared/dataTables/PageBar.vue"
-import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
+import CustomInput from "src/components/shared/Forms/CustomInput.vue";
+import PageBar from "src/components/shared/dataTables/PageBar.vue";
+import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
 const props = defineProps({
   sortBy: String,
@@ -253,23 +201,22 @@ const props = defineProps({
   dense: Boolean,
   grid: Boolean,
   wrapCells: Boolean,
-  gridStore: Object
-})
+  gridStore: Object,
+});
 
-const $q = useQuasar()
-const router = useRouter()
-const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
+const $q = useQuasar();
+const router = useRouter();
+const tableStore = useDataTable(
+  props.dataSource,
+  props.columns,
+  props.gridStore
+);
 
-const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
-
-// const gridColumns = computed(() => {
-//   if (props.gridStore != null) return props.gridStore.columns.value
-//   return props.columns
-// })
+const emit = defineEmits(["active-row-changed", "selected-rows-changed"]);
 
 onMounted(() => {
-  tableStore.loadData()
-})
+  tableStore.loadData();
+});
 
 function getColText(row, col) {
   if (row && col) {
@@ -277,64 +224,67 @@ function getColText(row, col) {
       return col.template.replace(
         /{{\s*([\w.]+)\s*}}/g,
         (_, key) => row[key] ?? ""
-      )
-    } else if (col.field) return row[col.field]
+      );
+    } else if (col.field) return row[col.field];
   }
-  return ""
+  return "";
 }
 
 async function reloadData() {
-  await tableStore.reloadData()
+  await tableStore.reloadData();
 }
 
 function selectAll(checked) {
-  tableStore.selectAll(checked)
-  emitselectedRows()
+  tableStore.selectAll(checked);
+  emitselectedRows();
 }
 
 function selectRow(row, checked) {
-  tableStore.selectRow(row, checked)
-  emitselectedRows()
+  tableStore.selectRow(row, checked);
+  emitselectedRows();
 }
 
 function emitselectedRows() {
-  emit("selected-rows-changed", tableStore.selectedRows.value)
+  emit("selected-rows-changed", tableStore.selectedRows.value);
 }
 
 function setActiveRow(row) {
-  tableStore.setActiveRow(row)
-  emit("active-row-changed", row)
+  tableStore.setActiveRow(row);
+  emit("active-row-changed", row);
 }
 
-const cardDefaultClass = computed(() =>
-  " q-table__card" +
-  ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "") +
-  (props.square === true ? " q-table--square" : "") +
-  (props.flat === true ? " q-table--flat" : "") +
-  (props.bordered === true ? " q-table--bordered" : "")
-)
+const cardDefaultClass = computed(
+  () =>
+    " q-table__card" +
+    ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "") +
+    (props.square === true ? " q-table--square" : "") +
+    (props.flat === true ? " q-table--flat" : "") +
+    (props.bordered === true ? " q-table--bordered" : "")
+);
 
-const __containerClass = computed(() =>
-  `q-table__container q-table--${props.separator}-separator column no-wrap` +
-  (props.grid === true ? " q-table--grid" : cardDefaultClass.value) +
-  ($q.dark?.isActive === true ? " q-table--dark" : "") +
-  (props.dense === true ? " q-table--dense" : "") +
-  (props.wrapCells === false ? " q-table--no-wrap" : "")
+const __containerClass = computed(
+  () =>
+    `q-table__container q-table--${props.separator}-separator column no-wrap` +
+    (props.grid === true ? " q-table--grid" : cardDefaultClass.value) +
+    ($q.dark?.isActive === true ? " q-table--dark" : "") +
+    (props.dense === true ? " q-table--dense" : "") +
+    (props.wrapCells === false ? " q-table--no-wrap" : "")
   //+ (inFullscreen.value === true ? ' fullscreen scroll' : '')
-)
+);
 
-const containerClass = computed(() =>
-  __containerClass.value + (tableStore.showLoader.value === true ? " q-table--loading" : "")
-)
+const containerClass = computed(
+  () =>
+    __containerClass.value +
+    (tableStore.showLoader.value === true ? " q-table--loading" : "")
+);
 
 const goToPreview = (row) => {
-  router.push(`/sls/invoice/preview/${row.id}`)
-}
+  router.push(`/sls/invoice/preview/${row.id}`);
+};
 
 defineExpose({
-  tableStore
-})
-
+  tableStore,
+});
 </script>
 
 <style lang="scss" scoped>
