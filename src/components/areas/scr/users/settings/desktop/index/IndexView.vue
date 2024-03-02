@@ -1,6 +1,6 @@
 <template>
   <div :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''">
-    <div class="column">
+    <div>
       <div>
         <div class="text-h6 no-letter-spacing q-mb-md">تنظیمات</div>
         <q-card class="bordered" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']">
