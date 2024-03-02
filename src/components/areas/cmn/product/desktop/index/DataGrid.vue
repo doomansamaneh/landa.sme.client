@@ -23,7 +23,7 @@
       <div class="text-h5">{{ title }}</div>
     </q-card-section> -->
     <div>
-      <data-grid class="no-border" ref="dataGrid" dataSource="cmn/product/getGridData" :grid-store="gridStore"
+      <data-grid ref="dataGrid" dataSource="cmn/product/getGridData" :grid-store="gridStore"
         separator="horizontal" flat multiSelect numbered bordered wrapCells dense_ expandable_>
         <template #filter-isActive="{ col }">
           <custom-select v-model="col.value" :options="isActiveOptions" @update:model-value="reloadData" />

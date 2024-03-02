@@ -16,6 +16,7 @@
         <div class="col-md-3 col-sm-4 col-xs-12">
           <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">عنوان</q-item-label>
           <q-field dense outlined>
+
             <template v-slot:control>
               <div>نرم افزار حسابداری</div>
             </template>
@@ -24,6 +25,7 @@
         <div class="col-md-2 col-sm-3 col-xs-12">
           <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">گروه</q-item-label>
           <q-field dense outlined>
+
             <template v-slot:control>
               <div>برق و کامپیوتر</div>
             </template>
@@ -32,6 +34,7 @@
         <div class="col-md-2 col-sm-3 col-xs-12">
           <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">موجودی اول دوره</q-item-label>
           <q-field dense outlined>
+
             <template v-slot:control>
               <div>10.00</div>
             </template>
@@ -107,7 +110,9 @@ const salesPanel = computed(() => {
       ? $q.screen.gt.xs
         ? 'no-border bg-main'
         : ''
-      : 'bordered';
+      : tab.value === 'turnover-detail'
+        ? 'no-border shadow'
+        : 'bordered';
 });
 
 const card = computed(() => {
