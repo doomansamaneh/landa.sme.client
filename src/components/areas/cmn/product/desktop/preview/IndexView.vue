@@ -21,6 +21,7 @@
             >عنوان</q-item-label
           >
           <q-field dense outlined>
+
             <template v-slot:control>
               <div>نرم افزار حسابداری</div>
             </template>
@@ -32,6 +33,7 @@
             >گروه</q-item-label
           >
           <q-field dense outlined>
+
             <template v-slot:control>
               <div>برق و کامپیوتر</div>
             </template>
@@ -43,6 +45,7 @@
             >موجودی اول دوره</q-item-label
           >
           <q-field dense outlined>
+
             <template v-slot:control>
               <div>10.00</div>
             </template>
@@ -119,12 +122,23 @@ const tab = ref("turnover-detail");
 
 const salesPanel = computed(() => {
   return $q.screen.xs
+<<<<<<< HEAD
     ? "no-border no-shadow"
     : tab.value === "sales"
     ? $q.screen.gt.xs
       ? "no-border bg-main"
       : ""
     : "bordered";
+=======
+    ? 'no-border no-shadow'
+    : tab.value === 'sales'
+      ? $q.screen.gt.xs
+        ? 'no-border bg-main'
+        : ''
+      : tab.value === 'turnover-detail'
+        ? 'no-border shadow'
+        : 'bordered';
+>>>>>>> 2a29063bcf42bced16de5a57787ab2f34aef6120
 });
 
 const card = computed(() => {
