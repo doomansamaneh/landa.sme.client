@@ -1,8 +1,8 @@
 <template>
   <toolbar buttons back-button title="کاردکس کالا" />
 
-  <q-card :class="card">
-    <q-card-section :class="cardSection">
+  <!-- <q-card :class="card">
+    <q-card-section :class="cardSection"> -->
       <div class="row q-col-gutter-md">
         <div class="col-md-2 col-sm-2 col-xs-12">
           <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">کد</q-item-label>
@@ -40,8 +40,8 @@
           </q-field>
         </div>
       </div>
-    </q-card-section>
-  </q-card>
+    <!-- </q-card-section>
+  </q-card> -->
 
   <div>
     <q-tabs v-model="tab" class="border-radius-xs bg-primary text-white q-mt-lg" indicator-color="white" align="start"
