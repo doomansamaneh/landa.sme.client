@@ -1,13 +1,6 @@
 <template>
-  <chart
-    :options="options"
-    :series="series"
-    :height="height"
-    :legend="legend"
-    :title="title"
-    class="donut-chart"
-    :class="direction"
-  />
+  <chart :options="options" :series="series" :height="height" :legend="legend" :title="title" class="donut-chart"
+    :class="direction" />
 </template>
 
 <script setup>
@@ -26,7 +19,7 @@ const series = ref([
 
 function setOptions() {
 
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? 'vazir-thin' : 'Roboto';
 
   options.value = {
     labels: ['شماره حساب بانک آینده: 123456789'],

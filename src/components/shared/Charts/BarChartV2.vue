@@ -1,10 +1,5 @@
 <template>
-  <Bar
-    class="bar-chart"
-    :options="chartOptions"
-    :data="chartData"
-    :style="myStyles"
-  />
+  <Bar class="bar-chart" :options="chartOptions" :data="chartData" :style="myStyles" />
 </template>
 
 <script setup>
@@ -69,7 +64,7 @@ const chartOptions = ref({
     x: {
       ticks: {
         font: {
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           size: 12,
         },
       },
@@ -81,7 +76,7 @@ const chartOptions = ref({
       beginAtZero: true,
       ticks: {
         font: {
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           size: 12,
         },
       },
@@ -101,7 +96,7 @@ const chartOptions = ref({
         color: 'black',
         padding: 32,
         font: {
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           size: 14,
         },
       },
@@ -110,7 +105,7 @@ const chartOptions = ref({
         text: `${props.name}`,
         font: {
           size: 14,
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           weight: 'bold'
         },
         padding: 16,
@@ -124,11 +119,11 @@ const chartOptions = ref({
       titleColor: 'black',
       bodyColor: 'black',
       titleFont: {
-        family: 'Vazir FD',
+        family: 'vazir-thin',
         size: 12,
       },
       bodyFont: {
-        family: 'Vazir FD',
+        family: 'vazir-thin',
         size: 11,
       },
     },

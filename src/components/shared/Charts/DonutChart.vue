@@ -1,14 +1,6 @@
 <template>
-  <chart
-    :options="options"
-    :series="series"
-    :height="height"
-    :legend="legend"
-    :title="title"
-    class="donut-chart"
-    :class="direction"
-    @dataPointSelection="dataPointSelection"
-  />
+  <chart :options="options" :series="series" :height="height" :legend="legend" :title="title" class="donut-chart"
+    :class="direction" @dataPointSelection="dataPointSelection" />
 </template>
 
 <script setup>
@@ -27,7 +19,7 @@ const series = ref([
 
 function setOptions() {
 
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? 'vazir-thin' : 'Roboto';
 
   options.value = {
     labels: ['شماره حساب بانک آینده: 123456789'],
@@ -213,4 +205,3 @@ const dataPointSelection = (event, chartContext, config) => {
 }
 
 </script>
-

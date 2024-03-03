@@ -1,10 +1,6 @@
 <template>
   <q-card class="bordered q-pa-xl">
-    <Doughnut
-      class="doughnut-chart"
-      :options="chartOptions"
-      :data="chartData"
-    />
+    <Doughnut class="doughnut-chart" :options="chartOptions" :data="chartData" />
   </q-card>
 </template>
 
@@ -62,7 +58,7 @@ const chartOptions = ref({
         color: 'black',
         padding: 0,
         font: {
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           size: 14,
         },
       },
@@ -71,7 +67,7 @@ const chartOptions = ref({
         text: `${props.name} ${props.number}`,
         font: {
           size: 14,
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           weight: 'bold'
         },
         padding: 24,
@@ -85,11 +81,11 @@ const chartOptions = ref({
       titleColor: 'black',
       bodyColor: 'black',
       titleFont: {
-        family: 'Vazir FD',
+        family: 'vazir-thin',
         size: 12,
       },
       bodyFont: {
-        family: 'Vazir FD',
+        family: 'vazir-thin',
         size: 11,
       },
     },

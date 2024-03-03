@@ -5,7 +5,8 @@
         <div class="col-11">
           <q-item class="no-padding">
             <q-item-section avatar>
-              <q-avatar rounded color="blue" text-color="white" icon="o_shopping_basket" size="md" class="blue-shadow" />
+              <q-avatar rounded color="blue" text-color="white" icon="o_shopping_basket" size="md"
+                class="blue-shadow" />
             </q-item-section>
 
             <q-item-section class="q-pl-xs">
@@ -23,10 +24,10 @@
         </div>
       </div>
     </q-card-section>
-      <template v-if="dataStore.chartSeries?.value">
-        <chart :options="options" :series="dataStore.chartSeries.value" :height="height" :legend="legend" :title="title"
-          :class="direction" type="area" class="line-chart" />
-      </template>
+    <template v-if="dataStore.chartSeries?.value">
+      <chart :options="options" :series="dataStore.chartSeries.value" :height="height" :legend="legend" :title="title"
+        :class="direction" type="area" class="line-chart" />
+    </template>
   </q-card>
 </template>
 
@@ -46,7 +47,7 @@ const dataStore = useRevenueExpense();
 const options = ref(null);
 
 function setOptions() {
-  const fontFamily = $q.lang.rtl ? "Vazir FD" : "Roboto";
+  const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
 
   options.value = {
     title: {

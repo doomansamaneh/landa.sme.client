@@ -1,15 +1,7 @@
 <template>
   <template v-if="dataStore.chartSeries?.value">
-    <chart
-      :options="options"
-      :series="dataStore.chartSeries.value"
-      :height="height"
-      :legend="legend"
-      :title="title"
-      :class="direction"
-      type="area"
-      class="line-chart"
-    />
+    <chart :options="options" :series="dataStore.chartSeries.value" :height="height" :legend="legend" :title="title"
+      :class="direction" type="area" class="line-chart" />
   </template>
 </template>
 
@@ -29,7 +21,7 @@ const dataStore = useRevenueExpense();
 const options = ref(null);
 
 function setOptions() {
-  const fontFamily = $q.lang.rtl ? "Vazir FD" : "Roboto";
+  const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
 
   options.value = {
     title: {

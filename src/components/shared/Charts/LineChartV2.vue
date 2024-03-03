@@ -1,10 +1,5 @@
 <template>
-  <Line
-    class="line-chart"
-    :options="chartOptions"
-    :data="chartData"
-    :style="myStyles"
-  />
+  <Line class="line-chart" :options="chartOptions" :data="chartData" :style="myStyles" />
 </template>
 
 <script setup>
@@ -74,7 +69,7 @@ const chartOptions = computed(() => {
         ticks: {
 
           font: {
-            family: 'Vazir FD',
+            family: 'vazir-thin',
             size: 12,
           },
           color: `${color.value}`
@@ -87,7 +82,7 @@ const chartOptions = computed(() => {
         ticks: {
 
           font: {
-            family: 'Vazir FD',
+            family: 'vazir-thin',
             size: 12,
           },
           color: `${color.value}`
@@ -109,7 +104,7 @@ const chartOptions = computed(() => {
           color: `${color.value}`,
           padding: 32,
           font: {
-            family: 'Vazir FD',
+            family: 'vazir-thin',
             size: 14,
           },
         },
@@ -122,11 +117,11 @@ const chartOptions = computed(() => {
         titleColor: 'black',
         bodyColor: 'black',
         titleFont: {
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           size: 12,
         },
         bodyFont: {
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           size: 11,
         },
       },

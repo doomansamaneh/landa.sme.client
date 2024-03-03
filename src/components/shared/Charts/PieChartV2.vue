@@ -1,10 +1,6 @@
 <template>
   <!-- <q-card class="q-pa-xl bordered"> -->
-  <Pie
-    class="pie-chart"
-    :options="chartOptions"
-    :data="chartData"
-  />
+  <Pie class="pie-chart" :options="chartOptions" :data="chartData" />
   <!-- </q-card> -->
 </template>
 
@@ -49,7 +45,7 @@ const chartOptions = ref({
         color: 'black',
         padding: 4,
         font: {
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           size: 14,
         },
       },
@@ -58,7 +54,7 @@ const chartOptions = ref({
         text: `موجودی بانک ${1717500}`,
         font: {
           size: 16,
-          family: 'Vazir FD',
+          family: 'vazir-thin',
           weight: 'bold'
         },
         padding: 20,
@@ -72,11 +68,11 @@ const chartOptions = ref({
       titleColor: 'black',
       bodyColor: 'black',
       titleFont: {
-        family: 'Vazir FD',
+        family: 'vazir-thin',
         size: 12,
       },
       bodyFont: {
-        family: 'Vazir FD',
+        family: 'vazir-thin',
         size: 11,
       },
     },

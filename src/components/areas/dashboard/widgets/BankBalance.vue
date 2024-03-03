@@ -3,29 +3,15 @@
     <q-card-section class="q-pt-lg q-pb-xl q-px-lg">
       <q-item class="no-padding">
         <q-item-section avatar>
-          <q-avatar
-            rounded
-            color="primary"
-            text-color="white"
-            icon="o_account_balance"
-            size="md"
-            class="primary-shadow"
-          />
+          <q-avatar rounded color="primary" text-color="white" icon="o_account_balance" size="md"
+            class="primary-shadow" />
         </q-item-section>
         <q-item-section class="q-pl-xs">
           <q-item-label class="text-body1 q-mb-xs">موجودی بانک</q-item-label>
         </q-item-section>
       </q-item>
-      <chart
-        :options="options"
-        :series="series"
-        :height="$q.screen.lt.md ? '500': '300' "
-        :legend="true"
-        :title="title"
-        class="donut-chart"
-        :class="direction"
-        @dataPointSelection="dataPointSelection"
-      />
+      <chart :options="options" :series="series" :height="$q.screen.lt.md ? '500' : '300'" :legend="true" :title="title"
+        class="donut-chart" :class="direction" @dataPointSelection="dataPointSelection" />
     </q-card-section>
   </q-card>
 </template>
@@ -47,7 +33,7 @@ const series = ref([
 
 function setOptions() {
 
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? 'vazir-thin' : 'Roboto';
 
   options.value = {
     labels: ['شماره حساب بانک آینده: 123456789', 'شماره حساب بانک تجارت: 5859831129809389', 'شماره حساب بانک ملی: 0102125740006'],

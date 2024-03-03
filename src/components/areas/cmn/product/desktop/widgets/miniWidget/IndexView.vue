@@ -37,7 +37,7 @@ const series = ref([
 
 function setOptions() {
 
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? 'vazir-thin' : 'Roboto';
 
   options.value = {
     title: {

@@ -1,8 +1,5 @@
 <template>
-  <q-card
-    class="fit bordered no-padding"
-    flat
-  >
+  <q-card class="fit bordered no-padding" flat>
     <q-card-section class="col q-px-lg">
       <div class="text-h6 text-bold q-mt-sm q-mb-xs">240,000,000</div>
       <div class="text-body3">
@@ -10,15 +7,8 @@
       </div>
     </q-card-section>
 
-    <chart
-      :options="options"
-      :series="series"
-      :legend="legend"
-      :title="title"
-      height="80"
-      class="area-chart"
-      :class="direction"
-    />
+    <chart :options="options" :series="series" :legend="legend" :title="title" height="80" class="area-chart"
+      :class="direction" />
 
   </q-card>
 </template>
@@ -47,7 +37,7 @@ const series = ref([
 
 function setOptions() {
 
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? 'vazir-thin' : 'Roboto';
 
   options.value = {
     title: {

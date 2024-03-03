@@ -1,14 +1,6 @@
 <template>
-  <chart
-    :options="options"
-    :series="series"
-    :seriesName="seriesName"
-    :height="height"
-    :legend="legend"
-    :title="title"
-    class="bar-chart"
-    :class="direction"
-  />
+  <chart :options="options" :series="series" :seriesName="seriesName" :height="height" :legend="legend" :title="title"
+    class="bar-chart" :class="direction" />
 </template>
 
 <script setup>
@@ -30,7 +22,7 @@ const series = ref([
 
 function setOptions() {
 
-  const fontFamily = $q.lang.rtl ? 'Vazir FD' : 'Roboto';
+  const fontFamily = $q.lang.rtl ? 'vazir-thin' : 'Roboto';
 
   options.value = {
     title: {
