@@ -11,7 +11,6 @@
   <!-- ---------------------------------------------- -->
 
   <data-grid
-    class="no-border"
     ref="dataGrid"
     dataSource="cmn/product/getGridData"
     :grid-store="gridStore"

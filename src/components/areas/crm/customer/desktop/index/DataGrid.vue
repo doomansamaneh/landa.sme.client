@@ -19,7 +19,6 @@
     <div>
       ---
       <data-grid
-        class="no-border"
         ref="dataGrid"
         dataSource="crm/customer/getGridData"
         :grid-store="gridStore"

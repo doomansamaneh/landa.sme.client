@@ -5,10 +5,7 @@
     <q-card-section :class="cardSection">
       <div class="row q-col-gutter-md">
         <div class="col-md-2 col-sm-2 col-xs-12">
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-            >کد</q-item-label
-          >
+          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">کد</q-item-label>
           <q-field dense outlined>
             <template v-slot:control>
               <div>0310c</div>
@@ -16,10 +13,7 @@
           </q-field>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12">
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-            >عنوان</q-item-label
-          >
+          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">عنوان</q-item-label>
           <q-field dense outlined>
 
             <template v-slot:control>
@@ -28,10 +22,7 @@
           </q-field>
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-            >گروه</q-item-label
-          >
+          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">گروه</q-item-label>
           <q-field dense outlined>
 
             <template v-slot:control>
@@ -40,10 +31,7 @@
           </q-field>
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-            >موجودی اول دوره</q-item-label
-          >
+          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">موجودی اول دوره</q-item-label>
           <q-field dense outlined>
 
             <template v-slot:control>
@@ -56,25 +44,14 @@
   </q-card>
 
   <div>
-    <q-tabs
-      v-model="tab"
-      class="border-radius-xs bg-primary text-white q-mt-lg"
-      indicator-color="white"
-      align="start"
-      inline-label
-      narrow-indicator
-    >
+    <q-tabs v-model="tab" class="border-radius-xs bg-primary text-white q-mt-lg" indicator-color="white" align="start"
+      inline-label narrow-indicator>
       <q-tab name="turnover-detail" label="ریز گردش" icon="o_manage_search" />
       <q-tab name="sales" label="آمار فروش" icon="o_assignment" />
       <q-tab name="history" label="تاریخچه" icon="o_history" />
     </q-tabs>
 
-    <q-tab-panels
-      class="rounded-borders q-mt-md"
-      :class="salesPanel"
-      v-model="tab"
-      animated
-    >
+    <q-tab-panels class="rounded-borders q-mt-md" :class="salesPanel" v-model="tab" animated>
       <q-tab-panel class="no-padding" name="turnover-detail">
         <desktop-data-grid v-if="$q.screen.gt.xs" :grid-store="gridStore" />
         <mobile-data-grid v-if="$q.screen.xs" toolbar :grid-store="gridStore" />
@@ -122,14 +99,6 @@ const tab = ref("turnover-detail");
 
 const salesPanel = computed(() => {
   return $q.screen.xs
-<<<<<<< HEAD
-    ? "no-border no-shadow"
-    : tab.value === "sales"
-    ? $q.screen.gt.xs
-      ? "no-border bg-main"
-      : ""
-    : "bordered";
-=======
     ? 'no-border no-shadow'
     : tab.value === 'sales'
       ? $q.screen.gt.xs
@@ -138,7 +107,6 @@ const salesPanel = computed(() => {
       : tab.value === 'turnover-detail'
         ? 'no-border shadow'
         : 'bordered';
->>>>>>> 2a29063bcf42bced16de5a57787ab2f34aef6120
 });
 
 const card = computed(() => {
