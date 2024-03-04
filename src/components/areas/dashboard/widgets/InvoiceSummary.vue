@@ -1,16 +1,16 @@
 <template>
-  <q-card class="bordered no-shadow">
+  <q-card class="border-radius-xl bordered no-shadow">
     <q-card-section class="q-pa-lg">
       <div class="row items-center justify-between">
-        <div class="text-body1">فاکتورهای فروش</div>
+        <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
         <q-btn to="/sls/invoice/create" unelevated rounded class="bordered-btn bg-dark q-py-xs">
           <q-icon name="o_add" size="16px" class="q-mr-xs" />
           ایجاد فاکتور
         </q-btn>
       </div>
-      <div class="text-body3 text-bold" :class="$q.screen.lt.md ? 'q-mt-lg' : 'q-mt-sm'">
+      <div class="text-body2 no-letter-spacing" :class="$q.screen.lt.md ? '      q-mt-lg' : 'q-mt-sm'">
         تبریک میگم، %47.4 رشد داشته اید.
-        <span class="text-caption">در ماه گذشته</span>
+        <span class="text-body3 no-letter-spacing">در ماه گذشته</span>
       </div>
     </q-card-section>
 
@@ -23,7 +23,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">جمع کل</q-item-label>
-            <q-item-label style="font-size: 18px" class="text-bold">
+            <q-item-label class="text-h6 text-weight-700">
               {{ formatNumber(dataStore.data?.value?.amount) }}
 
               <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
@@ -43,7 +43,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">دریافت شده</q-item-label>
-            <q-item-label style="font-size: 18px" class="text-bold">
+            <q-item-label class="text-h6 text-weight-700">
               {{ formatNumber(dataStore.data?.value?.payedAmount) }}
 
               <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
@@ -66,7 +66,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">مانده امسال</q-item-label>
-            <q-item-label style="font-size: 18px" class="text-bold">
+            <q-item-label class="text-h6 text-weight-700">
               {{ formatNumber(dataStore.data?.value?.remainedAmount) }}
 
               <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
@@ -89,19 +89,19 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">مانده از قبل</q-item-label>
-            <q-item-label style="font-size: 18px" class="text-bold">
+            <q-item-label class="text-h6 text-weight-700">
               {{
-                formatNumber(
-                  dataStore.data?.value?.remainedAmountAll -
-                  dataStore.data?.value?.remainedAmount
-                )
-              }}
+        formatNumber(
+          dataStore.data?.value?.remainedAmountAll -
+          dataStore.data?.value?.remainedAmount
+        )
+      }}
 
               <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
                 {{
-                  (dataStore.data?.value?.remainedAmountAll -
-                    dataStore.data?.value?.remainedAmount).toLocaleString()
-                }}
+          (dataStore.data?.value?.remainedAmountAll -
+            dataStore.data?.value?.remainedAmount).toLocaleString()
+        }}
               </q-tooltip>
 
             </q-item-label>

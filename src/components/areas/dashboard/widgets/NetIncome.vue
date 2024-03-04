@@ -1,14 +1,14 @@
 <template>
-  <q-card class="fit bordered no-padding">
+  <q-card class="fit bordered border-radius-xl no-padding">
     <q-card-section class="q-pa-lg">
       <div class="row full-width">
         <div class="col column q-gutter-y-sm">
-          <span class="text-body1">درآمد خالص</span>
+          <span class="text-h6 text-weight-700">درآمد خالص</span>
           <div class="row q-gutter-x-sm text-body1 text-bold">
             <span class="text-body1 text-bold">(5,004,002,500)</span>
             <span class="text-body3 text-bold text-green">+%24</span>
           </div>
-          <q-item-label caption>رشد نسبت به پارسال سنجیده شده</q-item-label>
+          <q-item-label class="text-body2 no-letter-spacing">رشد نسبت به پارسال سنجیده شده</q-item-label>
           <q-btn class="q-mt-lg primary-shadow text-body3" rounded unelevated color="primary"
             style="width: 120px">جزئیات بیشتر</q-btn>
         </div>

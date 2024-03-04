@@ -8,7 +8,7 @@
   >
     <q-item class="card-header q-px-lg q-py-lg" v-if="$q.screen.gt.xs">
       <q-item-section>
-        <q-item-label class="text-h6 text-on-dark">
+        <q-item-label class="text-h6 text-weight-700 text-on-dark">
           {{ $t("pages.payment-detail") }}
         </q-item-label>
         <q-item-label
@@ -67,7 +67,7 @@
     </q-item>
 
     <q-separator
-      :color="$q.dark.isActive ? 'grey-6' : 'grey-6'"
+      :color="$q.dark.isActive ? 'grey-6' : 'grey-4'"
       v-if="$q.screen.gt.xs"
     />
 
@@ -110,7 +110,7 @@
       </div>
     </q-card-section>
 
-    <q-separator :color="$q.dark.isActive ? 'grey-6' : 'grey-6'" />
+    <q-separator :color="$q.dark.isActive ? 'grey-6' : 'grey-4'" />
 
     <q-card-section
       :class="{

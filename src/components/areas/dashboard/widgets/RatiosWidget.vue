@@ -107,7 +107,7 @@
 
         <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
 
-          <div class="text-body2">حاشیه سود</div>
+          <div class="text-h6 text-weight-700">حاشیه سود</div>
           <div class="row items-center q-gutter-x-sm">
             <div class="text-body1 text-bold">(178,015.03) %</div>
             <div class="text-body2 text-bold text-negative">-%4</div>
@@ -224,7 +224,7 @@
 
         <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
 
-          <div class="text-body2">نسبت بدهی</div>
+          <div class="text-h6 text-weight-700">نسبت بدهی</div>
           <div class="row items-center q-gutter-x-sm">
             <div class="text-body1 text-bold">%0</div>
             <!-- <div class="text-body2 text-bold text-green">+%24</div> -->
@@ -343,7 +343,7 @@
 
         <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
 
-          <div class="text-body2">نسبت جاری</div>
+          <div class="text-h6 text-weight-700">نسبت جاری</div>
           <div class="row items-center q-gutter-x-sm">
             <div class="text-body1 text-bold">(30.53)</div>
             <div class="text-body2 text-bold text-green">+%24</div>
@@ -459,7 +459,7 @@
 
         <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
 
-          <div class="text-body2">دوره وصول مطالبات</div>
+          <div class="text-h6 text-weight-700">دوره وصول مطالبات</div>
           <div class="row items-center q-gutter-x-sm">
             <div class="text-body1 text-bold">234 روز</div>
             <div class="text-caption text-bold text-negative">فقط 2 روز مانده</div>

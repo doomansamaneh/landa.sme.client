@@ -47,13 +47,13 @@
             </q-item-section>
 
             <q-item-section class="q-pl-xs">
-              <q-item-label v-if="saleIncome" class="text-body1 q-mb-xs">
+              <q-item-label v-if="saleIncome" class="text-h6 text-weight-700 q-mb-xs">
                 فروش و درآمد، هزینه
               </q-item-label>
-              <q-item-label v-if="saleIncomeTable" class="text-body1 q-mb-xs">
+              <q-item-label v-if="saleIncomeTable" class="text-h6 text-weight-700 q-mb-xs">
                 جدول فروش و درآمد، هزینه
               </q-item-label>
-              <q-item-label v-if="salePerProduct" class="text-body1 q-mb-xs">
+              <q-item-label v-if="salePerProduct" class="text-h6 text-weight-700 q-mb-xs">
                 فروش بر اساس کالا و خدمات
               </q-item-label>
               <q-item-label
@@ -61,13 +61,13 @@
                 class="text-body1 q-mb-xs"
                 >فروش بر اساس گروه کالا و خدمات</q-item-label
               >
-              <q-item-label v-if="salePerCustomer" class="text-body1 q-mb-xs"
+              <q-item-label v-if="salePerCustomer" class="text-h6 text-weight-700 q-mb-xs"
                 >فروش بر اساس مشتری</q-item-label
               >
-              <q-item-label v-if="cost" class="text-body1 q-mb-xs"
+              <q-item-label v-if="cost" class="text-h6 text-weight-700 q-mb-xs"
                 >نمودار هزینه</q-item-label
               >
-              <q-item-label v-if="costDetail" class="text-body1 q-mb-xs"
+              <q-item-label v-if="costDetail" class="text-h6 text-weight-700 q-mb-xs"
                 >ریز هزینه</q-item-label
               >
             </q-item-section>

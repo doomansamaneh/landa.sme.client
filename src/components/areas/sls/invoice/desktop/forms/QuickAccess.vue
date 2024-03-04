@@ -5,7 +5,7 @@
       inline-label
       indicator-color="primary"
       outside-arrows
-      class="text-on-dark"
+      class="border-radius-xl text-on-dark"
     >
       <q-tab
         name="my-products"

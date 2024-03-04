@@ -1,5 +1,6 @@
 @mixin q-tab-panel-dark {
   .q-tab-panel {
     background-color: $dark-page;
+    border-radius: 16px !important;
   }
 }

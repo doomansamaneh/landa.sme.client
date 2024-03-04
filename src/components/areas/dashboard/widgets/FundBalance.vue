@@ -6,7 +6,7 @@
           <q-avatar rounded color="primary" text-color="white" icon="o_inbox" size="md" class="primary-shadow" />
         </q-item-section>
         <q-item-section class="q-pl-xs">
-          <q-item-label class="text-body1 q-mb-xs">موجودی صندوق</q-item-label>
+          <q-item-label class="text-h6 text-weight-700 q-mb-xs">موجودی صندوق</q-item-label>
         </q-item-section>
       </q-item>
       <chart :options="options" :series="series" :legend="true" :height="300" :title="title" class="donut-chart"

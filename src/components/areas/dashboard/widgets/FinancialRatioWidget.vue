@@ -1,10 +1,10 @@
 <template>
   <div class="row q-gutter-md">
     <div class="col">
-      <q-card class="q-pa-sm bordered">
+      <q-card class="border-radius-xl q-pa-sm bordered">
         <q-card-section class="column justify-center items-center q-gutter-sm">
           <div class="q-gutter-x-xs">
-            <span class="text-body1">نسبت جاری</span>
+            <span class="text-h6 text-weight-700">نسبت جاری</span>
             <q-icon
               @mouseover="showTooltip(0)"
               name="o_live_help"

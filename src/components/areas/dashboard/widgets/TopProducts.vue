@@ -14,7 +14,7 @@
             />
           </q-item-section>
           <q-item-section class="q-pl-xs">
-            <q-item-label class="text-body1 q-mb-xs">بیشترین فروش</q-item-label>
+            <q-item-label class="text-h6 text-weight-700 q-mb-xs">بیشترین فروش</q-item-label>
           </q-item-section>
         </q-item>
 

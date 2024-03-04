@@ -170,7 +170,7 @@
           </div>
           <q-tabs
             v-model="tab"
-            class="border-radius-xs bg-primary text-white q-mt-xl"
+            class="border-radius-xl bg-primary text-white q-mt-xl"
             indicator-color="white"
             align="justify"
             inline-label

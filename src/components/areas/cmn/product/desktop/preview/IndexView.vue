@@ -44,14 +44,14 @@
   </q-card> -->
 
   <div>
-    <q-tabs v-model="tab" class="border-radius-xs bg-primary text-white q-mt-lg" indicator-color="white" align="start"
+    <q-tabs v-model="tab" class="border-radius-xl bg-primary text-white q-mt-lg" indicator-color="white" align="start"
       inline-label narrow-indicator>
       <q-tab name="turnover-detail" label="ریز گردش" icon="o_manage_search" />
       <q-tab name="sales" label="آمار فروش" icon="o_assignment" />
       <q-tab name="history" label="تاریخچه" icon="o_history" />
     </q-tabs>
 
-    <q-tab-panels class="rounded-borders q-mt-md" :class="salesPanel" v-model="tab" animated>
+    <q-tab-panels class="border-radius-xl q-mt-md" :class="salesPanel" v-model="tab" animated>
       <q-tab-panel class="no-padding" name="turnover-detail">
         <desktop-data-grid v-if="$q.screen.gt.xs" :grid-store="gridStore" />
         <mobile-data-grid v-if="$q.screen.xs" toolbar :grid-store="gridStore" />

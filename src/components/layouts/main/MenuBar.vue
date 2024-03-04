@@ -78,7 +78,7 @@
                 />
               </q-item-section>
               <q-item-section>
-                <span class="text-caption"> {{ subItem.title }} </span>
+                <span class="text-caption sub no-letter-spacing"> {{ subItem.title }} </span>
               </q-item-section>
             </q-item>
           </q-expansion-item>

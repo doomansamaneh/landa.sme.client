@@ -101,7 +101,7 @@
           <div v-if="title">
             <slot name="header">
               <div
-                class="flex items-center"
+                class="text-weight-700 flex items-center"
                 :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
               >
                 <slot name="header-title">

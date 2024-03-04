@@ -1,7 +1,7 @@
 <template>
   <q-card class="dialog-card no-shadow">
     <q-card-section class="row items-center q-px-lg">
-      <div class="text-h6">
+      <div class="text-h6 text-weight-700">
         {{ $t("change-password-page.title") }}
       </div>
       <q-space />

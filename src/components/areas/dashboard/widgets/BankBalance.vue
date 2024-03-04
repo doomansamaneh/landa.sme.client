@@ -1,5 +1,5 @@
 <template>
-  <q-card class="fit no-shadow bordered">
+  <q-card class="border-radius-xl fit no-shadow bordered">
     <q-card-section class="q-pt-lg q-pb-xl q-px-lg">
       <q-item class="no-padding">
         <q-item-section avatar>
@@ -7,7 +7,7 @@
             class="primary-shadow" />
         </q-item-section>
         <q-item-section class="q-pl-xs">
-          <q-item-label class="text-body1 q-mb-xs">موجودی بانک</q-item-label>
+          <q-item-label class="text-h6 text-weight-700 q-mb-xs">موجودی بانک</q-item-label>
         </q-item-section>
       </q-item>
       <chart :options="options" :series="series" :height="$q.screen.lt.md ? '500' : '300'" :legend="true" :title="title"

@@ -208,7 +208,7 @@
         <template v-if="buttons">
           <div v-if="title">
             <slot name="header">
-              <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
+              <span class="text-weight-700" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
                 <slot name="header-title">
                   <span class="no-letter-spacing">{{ title }}</span>
                   <q-btn
@@ -232,7 +232,7 @@
           <slot name="header">
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
               <slot name="header-title">
-                <span class="no-letter-spacing">{{ title }}</span>
+                <span class="text-weight-700 no-letter-spacing">{{ title }}</span>
                 <q-btn
                   v-if="tableStore?.pagination.value.totalItems > 0"
                   rounded

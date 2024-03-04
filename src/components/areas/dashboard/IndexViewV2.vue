@@ -10,10 +10,10 @@
     </div>
 
     <div class="row gap-24 q-mt-lg">
-      <div class="col col-md col-xs-12">
+      <div class="col-md col-xs-12">
         <ratios-widget />
       </div>
-      <div class="col-8 col-md-8 col-sm-12 col-xs-12">
+      <div class="col-md-7 col-sm-12 col-xs-12">
         <revenue-expense-by-month />
       </div>
     </div>

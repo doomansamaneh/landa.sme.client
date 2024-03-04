@@ -9,7 +9,7 @@
       <DesktopViewGuide v-model="showGuideDialog" />
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
-          <q-item-label class="text-h6">
+          <q-item-label class="text-h6 text-weight-700">
             {{ $t("pages.business") }}
           </q-item-label>
           <q-item-label caption>

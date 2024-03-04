@@ -1,7 +1,7 @@
 <template>
   <div
     :style="$q.screen.sm ? 'margin-top:54px;' : 'margin-top:0;'"
-    class="shadow"
+    class="border-radius-xl shadow"
     :class="containerClass"
   >
     <div class="q-table__middle scroll">

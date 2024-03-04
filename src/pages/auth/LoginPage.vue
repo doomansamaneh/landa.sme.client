@@ -11,7 +11,7 @@
             <div :class="$q.screen.gt.xs ? 'q-pa-lg' : ''">
               <div class="q-mb-sm">
                 <div class="row items-center justify-between q-mb-lg">
-                  <div class="text-h5 no-letter-spacing text-weight-bold">ورود</div>
+                  <div class="text-h5 no-letter-spacing text-weight-700">ورود</div>
                   <q-btn to="https://landa-sme.ir/account/register" color="primary" unelevated padding="8px 16px"
                     class="border-radius-lg text-body1 no-letter-spacing signup">ثبت‌نام</q-btn>
                 </div>

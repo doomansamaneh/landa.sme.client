@@ -5,7 +5,7 @@
     <q-card-section v-if="$q.screen.gt.xs">
       <q-item>
         <q-item-section>
-          <q-item-label class="text-h6">
+          <q-item-label class="text-h6 text-weight-700">
             {{ $t("pages.add-new-business") }}
           </q-item-label>
           <q-item-label class="text-body2 caption-on-dark">
