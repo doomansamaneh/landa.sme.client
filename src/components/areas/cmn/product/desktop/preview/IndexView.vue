@@ -60,7 +60,7 @@
       <q-tab-panel class="no-padding" name="sales">
         <div class="row q-col-gutter-md">
           <div class="col-md-8 col-sm-12 col-xs-12">
-            <mini-widget class="q-mb-md" />
+            <mini-widget class="line-chart q-mb-md" />
             <line-chart height="300" :legend="true" />
           </div>
 

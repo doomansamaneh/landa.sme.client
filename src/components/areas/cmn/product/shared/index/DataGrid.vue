@@ -1,24 +1,17 @@
 <template>
   <template v-if="$q.screen.xs">
-    <toolbar-mobile
-      v-if="toolbar"
-      buttons
-      :table-store="mobileGrid?.tableStore"
-      :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
-      base-route="/cmn/product"
-      activation
-    >
+    <toolbar-mobile v-if="toolbar" buttons :table-store="mobileGrid?.tableStore" :crud-store="crudStore"
+      :title="$t('main-menu-items.Cmn_Product_View')" base-route="/cmn/product" activation>
       <template #buttons-custom>
         <q-separator class="q-my-sm" />
         <q-item clickable v-close-popup tabindex="0" @click="editBatch">
           <q-item-section avatar>
             <q-avatar class="bg-on-dark" size="32px">
-              <q-icon size="16px" name="o_edit" />
+              <q-icon size="20px" name="o_edit" />
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <div class="text-caption">
+            <div class="text-body2 no-letter-spacing">
               {{ $t("shared.labels.editBatch") }}
             </div>
           </q-item-section>
@@ -26,42 +19,28 @@
       </template>
     </toolbar-mobile>
 
-    <mobile
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
-      ref="mobileGrid"
-    />
+    <mobile :grid-store="gridStore" :crud-store="crudStore" :title="$t('main-menu-items.Cmn_Product_View')"
+      ref="mobileGrid" />
   </template>
+
   <template v-else>
-    <toolbar-desktop
-      v-if="toolbar"
-      :table-store="desktpGrid?.tableStore"
-      :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
-      base-route="/cmn/product"
-      activation
-      buttons
-    >
+    <toolbar-desktop v-if="toolbar" :table-store="desktpGrid?.tableStore" :crud-store="crudStore"
+      :title="$t('main-menu-items.Cmn_Product_View')" base-route="/cmn/product" activation buttons>
       <template #buttons-batch-action>
-        <q-btn
-          class="text-caption"
-          rounded
-          unelevated
-          no-caps
-          @click="editBatch"
-        >
-          <q-icon name="o_edit" class="q-mr-xs" />
-          {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} مورد)
+        <q-btn class="text-body2 no-letter-spacing" rounded unelevated no-caps @click="editBatch">
+          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+          {{ $t("shared.labels.editBatch") }}
+
+          <q-btn padding="2px 10px" rounded outline
+            class="text-body2 no-letter-spaicng q-ml-sm bg-dark no-pointer-events">
+            {{ selectedIds?.length }}
+          </q-btn>
+
         </q-btn>
       </template>
     </toolbar-desktop>
-    <desktop
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
-      ref="desktpGrid"
-    />
+    <desktop :grid-store="gridStore" :crud-store="crudStore" :title="$t('main-menu-items.Cmn_Product_View')"
+      ref="desktpGrid" />
   </template>
 </template>
 

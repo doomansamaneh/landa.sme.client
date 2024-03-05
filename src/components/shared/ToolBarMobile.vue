@@ -1,26 +1,13 @@
 <template>
   <div style="margin-bottom: 56px">
-    <q-page-sticky
-      class="z-1 bg-main"
-      style="padding-top: 12px; padding-bottom: 12px"
-      position="top"
-      expand
-    >
+    <q-page-sticky class="z-1 bg-main" style="padding-top: 12px; padding-bottom: 12px" position="top" expand>
       <q-toolbar style="padding-left: 20px; padding-right: 20px">
-        <div
-          class="flex items-center"
-          :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''"
-        >
+        <div class="flex items-center" :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''">
           <slot name="buttons">
             <template v-if="tableStore?.activeRow?.value != null">
               <slot name="buttons-edit">
-                <q-btn
-                  :to="`${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
-                  class="text-caption"
-                  round
-                  unelevated
-                  no-caps
-                >
+                <q-btn :to="`${baseRoute}/edit/${tableStore?.activeRow?.value.id}`" class="text-caption" round
+                  unelevated no-caps>
                   <q-icon name="o_edit" />
                   <q-tooltip class="custom-tooltip">
                     {{ $t("shared.labels.edit") }}
@@ -32,33 +19,22 @@
             <template v-if="selectedIds?.length > 0">
               <slot name="buttons-batch-action"> </slot>
               <slot name="buttons-delete-batch">
-                <q-btn
-                  class="text-caption"
-                  round
-                  unelevated
-                  no-caps
-                  @click="
-                    crudStore.deleteBatch(selectedIds, tableStore.reloadData)
-                  "
-                >
+                <q-btn class="text-caption" round unelevated no-caps @click="
+          crudStore.deleteBatch(selectedIds, tableStore.reloadData)
+          ">
                   <q-icon name="o_delete" />
                 </q-btn>
               </slot>
             </template>
+
             <template v-else-if="tableStore?.activeRow?.value != null">
               <slot name="buttons-delete">
-                <q-btn
-                  class="text-caption"
-                  round
-                  unelevated
-                  no-caps
-                  @click="
-                    crudStore.deleteById(
-                      tableStore.activeRow.value.id,
-                      tableStore.reloadData
-                    )
-                  "
-                >
+                <q-btn class="text-caption" round unelevated no-caps @click="
+          crudStore.deleteById(
+            tableStore.activeRow.value.id,
+            tableStore.reloadData
+          )
+          ">
                   <q-icon name="o_delete" />
                   <q-tooltip class="custom-tooltip">
                     {{ $t("shared.labels.delete") }}
@@ -68,12 +44,7 @@
             </template>
 
             <template v-if="selectedIds?.length > 0">
-              <q-btn
-                class="text-caption"
-                round
-                unelevated
-                @click="onBottomSheetShow"
-              >
+              <q-btn class="text-caption" round unelevated @click="onBottomSheetShow">
                 <q-icon name="more_horiz" />
               </q-btn>
             </template>
@@ -86,36 +57,23 @@
         <q-space v-if="selectedIds?.length > 0" />
 
         <template v-if="selectedIds?.length > 0">
-          {{ selectedIds?.length }} مورد
-          <q-btn
-            round
-            unelevated
-            class="q-ml-md text-on-dark"
-            icon="close"
-            @click="deselect"
-          >
+          <q-btn padding="2px 10px" rounded outline
+            class="text-body2 no-letter-spaicng q-ml-sm bg-dark no-pointer-events">
+            {{ selectedIds?.length }}
+          </q-btn>
+          <q-btn round unelevated class="q-ml-md text-on-dark" icon="close" @click="deselect">
           </q-btn>
         </template>
 
         <template v-else>
           <div v-if="title">
             <slot name="header">
-              <div
-                class="text-weight-700 flex items-center"
-                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
-              >
+              <div class="text-weight-700 flex items-center" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
                 <slot name="header-title">
                   <span>{{ title }}</span>
-                  <q-btn
-                    v-if="tableStore?.pagination.value.totalItems > 0"
-                    rounded
-                    unelevated
-                    dense
-                    padding="2px 8px"
-                    outline
-                    :label="tableStore?.pagination.value.totalItems"
-                    class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
-                  />
+                  <q-btn v-if="tableStore?.pagination.value.totalItems > 0" rounded unelevated dense padding="2px 10px"
+                    outline :label="tableStore?.pagination.value.totalItems"
+                    class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events" />
                 </slot>
                 <!-- <q-space></q-space>
                 <back-button class="q-ml-md" /> -->
@@ -132,23 +90,15 @@
     </q-page-sticky>
   </div>
 
-  <bottom-sheet
-    v-if="bottomSheetStatus"
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
+  <bottom-sheet v-if="bottomSheetStatus" :status="bottomSheetStatus" @hide="onBottomSheetHide">
+
     <template #header-title>
       {{ $t("shared.labels.more") }}
     </template>
 
     <template #body>
       <q-list padding>
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="tableStore.reloadData"
-        >
+        <q-item clickable v-close-popup tabindex="0" @click="tableStore.reloadData">
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark" size="32px">
               <q-icon size="16px" name="o_refresh" />
@@ -164,12 +114,7 @@
         <template v-if="activation && selectedIds?.length > 0">
           <q-separator class="q-my-sm" />
 
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
-            @click="crudStore.activate(selectedIds, tableStore.reloadData)"
-          >
+          <q-item clickable v-close-popup tabindex="0" @click="crudStore.activate(selectedIds, tableStore.reloadData)">
             <q-item-section avatar>
               <q-avatar class="bg-on-dark text-on-dark" size="32px">
                 <q-icon size="16px" name="o_check" />
@@ -182,12 +127,8 @@
             </q-item-section>
           </q-item>
 
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
-            @click="crudStore.deactivate(selectedIds, tableStore.reloadData)"
-          >
+          <q-item clickable v-close-popup tabindex="0"
+            @click="crudStore.deactivate(selectedIds, tableStore.reloadData)">
             <q-item-section avatar>
               <q-avatar class="bg-on-dark text-on-dark" size="32px">
                 <q-icon size="16px" name="o_close" />
@@ -205,12 +146,7 @@
 
         <q-separator class="q-my-sm" />
 
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="tableStore.exportAll()"
-        >
+        <q-item clickable v-close-popup tabindex="0" @click="tableStore.exportAll()">
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark" size="32px">
               <q-icon size="16px" name="o_download" />
@@ -223,12 +159,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="tableStore.exportCurrentPage()"
-        >
+        <q-item clickable v-close-popup tabindex="0" @click="tableStore.exportCurrentPage()">
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark" size="32px">
               <q-icon name="o_download" size="16px" />
