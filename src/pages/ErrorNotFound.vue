@@ -1,5 +1,5 @@
 <template>
-  <div class="fullscreen bg-dark text-white text-center q-pa-md flex flex-center">
+  <div class="bg-dark text-center">
     <div id="notfound">
       <div class="notfound">
         <div class="notfound-404">
@@ -19,7 +19,18 @@
   </div>
 </template>
 
-<style>
+<script setup>
+import { onMounted } from "vue"
+import { useTheme } from "src/components/layouts/main/_composables/useTheme.js"
+
+const theme = useTheme()
+
+onMounted(() => {
+  theme.store()
+})
+</script>
+
+<style lang="scss" scoped>
 #notfound .notfound {
   position: absolute;
   left: 50%;
@@ -78,9 +89,5 @@
   text-align: center;
   height: 40px;
   line-height: 40px;
-}
-
-.notfound a:hover {
-  background-color: #2c2c2c;
 }
 </style>
