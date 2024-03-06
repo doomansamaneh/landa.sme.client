@@ -20,6 +20,7 @@
               <q-icon
                 name="o_save"
                 class="q-mr-xs"
+                size="20px"
               />
               {{ $t("shared.labels.save") }}
             </q-btn>

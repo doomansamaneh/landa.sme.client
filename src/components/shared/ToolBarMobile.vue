@@ -71,7 +71,7 @@
               <div class="text-weight-700 flex items-center" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
                 <slot name="header-title">
                   <span>{{ title }}</span>
-                  <q-btn v-if="tableStore?.pagination.value.totalItems > 0" rounded unelevated dense padding="2px 10px"
+                  <q-btn v-if="tableStore?.pagination.value.totalItems > 0" rounded unelevated dense padding="0px 10px"
                     outline :label="tableStore?.pagination.value.totalItems"
                     class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events" />
                 </slot>

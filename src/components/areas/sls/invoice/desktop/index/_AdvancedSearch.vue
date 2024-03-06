@@ -2,7 +2,7 @@
   <q-card class="bordered">
     <q-card-section class="row items-center justify-between">
       <q-option-group
-        class="row text-caption"
+        class="row text-body2 no-letter-spacing"
         type="radio"
         size="md"
         :options="dateRangeOptions"
@@ -15,12 +15,13 @@
         rounded
         unelevated
         dense
+        class="text-body2 no-letter-spacing"
       >
         <q-icon
           :name="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
           class="q-mr-xs"
         />
-        <span class="text-caption">
+        <span class="text-body2 no-letter-spacing">
           {{ $t("shared.labels.advancedSearch") }}
         </span>
       </q-btn>
@@ -30,7 +31,7 @@
       <q-slide-transition v-show="expanded">
         <div class="q-px-md">
           <q-checkbox
-            class="q-pt-sm text-caption"
+            class="q-pt-sm text-body2 no-letter-spacing"
             v-model="searchModel.waitToSendTax"
             :label='$t("shared.labels.waitToSendTax")'
           />
@@ -42,6 +43,7 @@
                 display-format="n0"
                 :placeholder='$t("shared.labels.amountFrom")'
                 style="width: 195px;"
+                class="text-body2 no-letter-spacing"
               />
 
               <custom-input
@@ -49,6 +51,7 @@
                 display-format="n0"
                 :placeholder='$t("shared.labels.amountTo")'
                 style="width: 195px;"
+                class="text-body2 no-letter-spacing"
               />
             </div>
             <div class="row q-gutter-x-sm items-center">
@@ -56,11 +59,13 @@
                 v-model="searchModel.dateFrom"
                 :placeholder='$t("shared.labels.dateFrom")'
                 style="width: 195px;"
+                class="text-body2 no-letter-spacing"
               />
               <date-time
                 v-model="searchModel.dateTo"
                 :placeholder='$t("shared.labels.dateTo")'
                 style="width: 195px;"
+                class="text-body2 no-letter-spacing"
               />
             </div>
             <div class="row q-gutter-x-sm items-center">
@@ -68,12 +73,13 @@
                 v-model="searchModel.comment"
                 :placeholder='$t("shared.labels.comment")'
                 style="width: 398px;"
+                class="text-body2 no-letter-spacing"
               />
             </div>
           </div>
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
             <q-btn
-              class="text-caption bg-primary text-white"
+              class="text-body2 no-letter-spacing bg-primary text-white"
               rounded
               padding="8px 16px"
               unelevated
@@ -82,10 +88,11 @@
               <q-icon
                 name="search"
                 class="q-mr-xs"
+                size="20px"
               />جستجو
             </q-btn>
             <q-btn
-              class="text-caption"
+              class="text-body2 no-letter-spacing"
               rounded
               unelevated
               padding="8px 16px"
@@ -95,6 +102,7 @@
               <q-icon
                 name="clear"
                 class="q-mr-xs"
+                size="20px"
               />
               حذف فیلتر
             </q-btn>

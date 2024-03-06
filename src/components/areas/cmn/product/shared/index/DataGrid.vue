@@ -27,11 +27,11 @@
     <toolbar-desktop v-if="toolbar" :table-store="desktpGrid?.tableStore" :crud-store="crudStore"
       :title="$t('main-menu-items.Cmn_Product_View')" base-route="/cmn/product" activation buttons>
       <template #buttons-batch-action>
-        <q-btn class="text-body2 no-letter-spacing" rounded unelevated no-caps @click="editBatch">
+        <q-btn padding="6px 12px" class="text-body2 no-letter-spacing" rounded unelevated no-caps @click="editBatch">
           <q-icon size="20px" name="o_edit" class="q-mr-xs" />
           {{ $t("shared.labels.editBatch") }}
 
-          <q-btn padding="2px 10px" rounded outline
+          <q-btn padding="0px 10px" rounded outline
             class="text-body2 no-letter-spaicng q-ml-sm bg-dark no-pointer-events">
             {{ selectedIds?.length }}
           </q-btn>
