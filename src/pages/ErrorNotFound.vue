@@ -1,29 +1,86 @@
 <template>
-  <div
-    class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center"
-  >
-    <div>
-      <div style="font-size: 30vh">404</div>
-
-      <div class="text-h2" style="opacity: 0.4">Oops. Nothing here...</div>
-
-      <q-btn
-        class="q-mt-xl"
-        color="white"
-        text-color="blue"
-        unelevated
-        to="/"
-        label="Go Home"
-        no-caps
-      />
+  <div class="fullscreen bg-dark text-white text-center q-pa-md flex flex-center">
+    <div id="notfound">
+      <div class="notfound">
+        <div class="notfound-404">
+          <div></div>
+          <div class="warning-text no-letter-spacing q-pt-sm text-weight-700">404</div>
+        </div>
+        <div style="width: 330px;">
+          <div class="text-on-dark text-h4 text-weight-700 q-pt-lg">صفحه مورد نظر یافت نشد</div>
+          <div class="text-on-dark text-body1 no-letter-spacing">احتمالا آدرس اشتباهی را جستجو کرده‌اید</div>
+          <q-btn to="/" class="primary-shadow text-on-dark q-mt-lg text-body1 no-letter-spacing" rounded unelevated
+            color="primary">
+            بازگشت به داشبورد
+          </q-btn>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from "vue"
+<style>
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
-export default defineComponent({
-  name: "ErrorNotFound"
-})
-</script>
+
+.notfound .notfound-404 {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0px auto 50px;
+}
+
+.notfound .notfound-404>div:first-child {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #ffa200;
+  box-shadow: 0 0 8px 0 orange, 0 0 24px rgba(255, 166, 0, 0.49);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  border: 5px dashed #000;
+  border-radius: 5px;
+}
+
+.notfound .notfound-404>div:first-child:before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  top: -5px;
+  -webkit-box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.1) inset;
+  border-radius: 5px;
+}
+
+.notfound .notfound-404 .warning-text {
+  color: #2d2d2d;
+  font-weight: 700;
+  margin: 0;
+  font-size: 90px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  left: 50%;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+}
+
+.notfound a:hover {
+  background-color: #2c2c2c;
+}
+</style>

@@ -11,7 +11,7 @@
         <div class="q-gutter-x-sm">
           <slot name="buttons">
             <q-btn
-              class="bg-primary primary-shadow text-white text-caption"
+              class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
               padding="6px 12px"
               rounded
               unelevated
@@ -28,7 +28,7 @@
         <div class="q-space" />
         <div class="row items-center">
           <slot name="header">
-            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
+            <span class="text-weight-700" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
               <slot name="header-title">
                 {{ title }}
               </slot>
