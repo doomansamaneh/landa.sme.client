@@ -7,54 +7,32 @@
     ref="lookup"
   >
     <template #thead>
-      <div
-        class="row q-gutter-x-md items-center"
-        style="width:200px"
-      >
+      <div class="row q-gutter-x-md items-center" style="width: 200px">
         <div class="col-5 q-pr-md">
-          <header-column
-            fieldName="name"
-            title="نام"
-            :lookup="lookup"
-          />
+          <header-column fieldName="name" title="نام" :lookup="lookup" />
         </div>
         <div class="col-4">
-          <header-column
-            fieldName="code"
-            title="کد"
-            :lookup="lookup"
-          />
+          <header-column fieldName="code" title="کد" :lookup="lookup" />
         </div>
         <q-btn
           dense
           unelevated
           color="primary"
           class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
-          style="margin-top: 12px;"
+          style="margin-top: 12px"
           rounded
           size="12px"
         >
-          <q-icon
-            name="o_add"
-            size="14px"
-            style="margin-left: 2px;"
-          />
+          <q-icon name="o_add" size="14px" style="margin-left: 2px" />
           <span class="text-caption">ایجاد</span>
         </q-btn>
       </div>
     </template>
 
     <template #td="{ row }">
-
-      <q-item
-        clickable
-        v-close-popup
-      >
+      <q-item clickable v-close-popup>
         <div class="row q-gutter-x-md items-center q-my-md q-pl-sm">
-          <q-tooltip
-            :delay="700"
-            class="text-body3 custom-tooltip"
-          >
+          <q-tooltip :delay="700" class="text-body3 custom-tooltip">
             {{ row.name }} - {{ row.locationName }} {{ row.address }}
           </q-tooltip>
           <q-item-section avatar>
@@ -66,7 +44,7 @@
               square
               class="border-radius-xs"
             >
-              <img :src="row.avatar">
+              <img :src="row.avatar" />
             </q-avatar>
 
             <q-avatar
@@ -86,7 +64,7 @@
           <q-item-section>
             <q-item-label
               class="ellipsis text-on-dark text-caption text-bold q-py-xs"
-              style="width:200px"
+              style="width: 200px"
             >
               {{ row.code }} {{ row.name }}
             </q-item-label>
@@ -94,13 +72,9 @@
               v-if="row.locationName"
               caption
               class="ellipsis q-mt-xs"
-              style="width: 200px;"
+              style="width: 200px"
             >
-              <q-icon
-                name="o_location_on"
-                size="13px"
-                color="primary"
-              />
+              <q-icon name="o_location_on" size="13px" color="primary" />
               {{ row.locationName }} {{ row.address }}
             </q-item-label>
             <q-item-label
@@ -137,16 +111,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import LookupView from "src/components/shared/DataTables/LookupView.vue"
-import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
-import { helper } from "src/helpers"
+import { ref } from "vue";
+import { helper } from "src/helpers";
 
-const lookup = ref(null)
+import LookupView from "src/components/shared/dataTables/LookupView.vue";
+import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
+
+const lookup = ref(null);
 
 defineExpose({
-  lookup
-})
+  lookup,
+});
 </script>
-
-<style></style>

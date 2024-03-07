@@ -1,11 +1,14 @@
 <template>
   <toolbar buttons back-button title="کاردکس کالا" />
 
-  <!-- <q-card :class="card">
-    <q-card-section :class="cardSection"> -->
+  <q-card :class="card">
+    <q-card-section :class="cardSection">
       <div class="row q-col-gutter-md">
         <div class="col-md-2 col-sm-2 col-xs-12">
-          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">کد</q-item-label>
+          <q-item-label
+            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+            >کد</q-item-label
+          >
           <q-field dense outlined>
             <template v-slot:control>
               <div>0310c</div>
@@ -13,45 +16,62 @@
           </q-field>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12">
-          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">عنوان</q-item-label>
+          <q-item-label
+            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+            >عنوان</q-item-label
+          >
           <q-field dense outlined>
-
             <template v-slot:control>
               <div>نرم افزار حسابداری</div>
             </template>
           </q-field>
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">گروه</q-item-label>
+          <q-item-label
+            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+            >گروه</q-item-label
+          >
           <q-field dense outlined>
-
             <template v-slot:control>
               <div>برق و کامپیوتر</div>
             </template>
           </q-field>
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">موجودی اول دوره</q-item-label>
+          <q-item-label
+            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+            >موجودی اول دوره</q-item-label
+          >
           <q-field dense outlined>
-
             <template v-slot:control>
               <div>10.00</div>
             </template>
           </q-field>
         </div>
       </div>
-    <!-- </q-card-section>
-  </q-card> -->
+    </q-card-section>
+  </q-card>
 
   <div>
-    <q-tabs v-model="tab" class="border-radius-xl bg-primary text-white q-mt-lg" indicator-color="white" align="start"
-      inline-label narrow-indicator>
+    <q-tabs
+      v-model="tab"
+      class="border-radius-xs bg-primary text-white q-mt-lg"
+      indicator-color="white"
+      align="start"
+      inline-label
+      narrow-indicator
+    >
       <q-tab name="turnover-detail" label="ریز گردش" icon="o_manage_search" />
       <q-tab name="sales" label="آمار فروش" icon="o_assignment" />
       <q-tab name="history" label="تاریخچه" icon="o_history" />
     </q-tabs>
 
-    <q-tab-panels class="border-radius-xl q-mt-md" :class="salesPanel" v-model="tab" animated>
+    <q-tab-panels
+      class="rounded-borders q-mt-md"
+      :class="salesPanel"
+      v-model="tab"
+      animated
+    >
       <q-tab-panel class="no-padding" name="turnover-detail">
         <desktop-data-grid v-if="$q.screen.gt.xs" :grid-store="gridStore" />
         <mobile-data-grid v-if="$q.screen.xs" toolbar :grid-store="gridStore" />
@@ -60,7 +80,7 @@
       <q-tab-panel class="no-padding" name="sales">
         <div class="row q-col-gutter-md">
           <div class="col-md-8 col-sm-12 col-xs-12">
-            <mini-widget class="line-chart q-mb-md" />
+            <mini-widget class="q-mb-md" />
             <line-chart height="300" :legend="true" />
           </div>
 
@@ -99,14 +119,14 @@ const tab = ref("turnover-detail");
 
 const salesPanel = computed(() => {
   return $q.screen.xs
-    ? 'no-border no-shadow'
-    : tab.value === 'sales'
-      ? $q.screen.gt.xs
-        ? 'no-border bg-main'
-        : ''
-      : tab.value === 'turnover-detail'
-        ? 'no-border shadow'
-        : 'bordered';
+    ? "no-border no-shadow"
+    : tab.value === "sales"
+    ? $q.screen.gt.xs
+      ? "no-border bg-main"
+      : ""
+    : tab.value === "turnover-detail"
+    ? "no-border shadow"
+    : "bordered";
 });
 
 const card = computed(() => {

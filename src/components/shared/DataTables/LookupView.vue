@@ -105,9 +105,10 @@
 import { ref, computed, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import { useDataTable } from "src/composables/useDataTable";
+import { defaultLookupPageSize, sortOrder } from "src/constants";
+
 import PageBar from "src/components/shared/dataTables/PageBar.vue";
 import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
-// import CustomInput from "src/components/shared/forms/CustomInput.vue"
 
 const props = defineProps({
   dataSource: String,
@@ -118,24 +119,23 @@ const props = defineProps({
   required: Boolean,
   rules: Array,
   placeholder: String,
+  filterExpression: Array,
 });
 
 const selectedId = defineModel("selectedId");
 const selectedText = defineModel("selectedText");
-
 const $q = useQuasar();
-// const selectedId = ref(null)
-// const selectedText = ref("")
 
 const store = {
   pagination: ref({
     currentPage: 1,
-    pageSize: 7,
+    pageSize: defaultLookupPageSize,
     columns: props.columns,
     sortColumn: props.orderByField,
-    sortOrder: 1,
+    sortOrder: sortOrder.ascending,
     searchTerm: selectedText,
   }),
+  filterExpression: props.filterExpression,
 };
 
 const tableStore = useDataTable(props.dataSource, null, store);
@@ -203,7 +203,6 @@ async function handlePopup() {
   if (isPopupOpen.value) hidePopup();
   else {
     showPopup();
-    await tableStore.loadData();
   }
 }
 
@@ -222,7 +221,6 @@ async function selectNext() {
     else selectedRowIndex.value++;
   } else {
     showPopup();
-    await tableStore.loadData();
   }
 }
 

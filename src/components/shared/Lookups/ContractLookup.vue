@@ -8,52 +8,31 @@
     ref="lookup"
   >
     <template #thead>
-      <div
-        class="row q-gutter-x-md items-center"
-        style="width: 300px;"
-      >
+      <div class="row q-gutter-x-md items-center" style="width: 300px">
         <div class="col-1">#</div>
         <div class="col-3 q-pr-md">
-          <header-column
-            fieldName="no"
-            title="شماره"
-            :lookup="lookup"
-          />
+          <header-column fieldName="no" title="شماره" :lookup="lookup" />
         </div>
         <div class="col">
-          <header-column
-            fieldName="title"
-            title="عنوان"
-            :lookup="lookup"
-          />
+          <header-column fieldName="title" title="عنوان" :lookup="lookup" />
         </div>
         <q-btn
           dense
           unelevated
           color="primary"
           class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
-          style="margin-top: 12px;"
+          style="margin-top: 12px"
           rounded
           size="12px"
         >
-          <q-icon
-            name="o_add"
-            size="14px"
-            style="margin-left: 2px;"
-          />
+          <q-icon name="o_add" size="14px" style="margin-left: 2px" />
           <span class="text-caption">ایجاد</span>
         </q-btn>
       </div>
     </template>
     <template #td="{ row, index }">
-      <q-item
-        clickable
-        v-close-popup
-      >
-        <div
-          class="row items-center q-gutter-x-md"
-          style="width: 300px;"
-        >
+      <q-item clickable v-close-popup>
+        <div class="row items-center q-gutter-x-md" style="width: 300px">
           <div class="col-1 text-caption">{{ index }}</div>
           <div class="col-3 text-caption">{{ row.no }}</div>
           <div class="col text-caption">{{ row.title }}</div>
@@ -64,13 +43,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import LookupView from "src/components/shared/DataTables/LookupView.vue"
-import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
+import { ref } from "vue";
 
-const lookup = ref(null)
+import LookupView from "src/components/shared/dataTables/LookupView.vue";
+import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
+
+const lookup = ref(null);
 
 defineExpose({
-  lookup
-})
+  lookup,
+});
 </script>

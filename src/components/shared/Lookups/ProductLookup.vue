@@ -4,51 +4,34 @@
     orderByField="code"
     textTemplate="{{ code }} {{ title }}"
     searchField="title"
+    :filterExpression="filterExpression"
     ref="lookup"
   >
     <template #thead>
-      <div
-        class="row q-gutter-x-md items-center"
-        style="width: 200px;"
-      >
+      <div class="row q-gutter-x-md items-center" style="width: 200px">
         <div class="col-5 q-pr-md">
-          <header-column
-            fieldName="code"
-            title="کد"
-            :lookup="lookup"
-          />
+          <header-column fieldName="code" title="کد" :lookup="lookup" />
         </div>
         <div class="col-4">
-          <header-column
-            fieldName="title"
-            title="عنوان"
-            :lookup="lookup"
-          />
+          <header-column fieldName="title" title="عنوان" :lookup="lookup" />
         </div>
         <q-btn
           dense
           unelevated
           color="primary"
           class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
-          style="margin-top: 12px;"
+          style="margin-top: 12px"
           rounded
           size="12px"
         >
-          <q-icon
-            name="o_add"
-            size="14px"
-            style="margin-left: 2px;"
-          />
+          <q-icon name="o_add" size="14px" style="margin-left: 2px" />
           <span class="text-caption">ایجاد</span>
         </q-btn>
       </div>
     </template>
 
     <template #td="{ row }">
-      <q-item
-        clickable
-        v-close-popup
-      >
+      <q-item clickable v-close-popup>
         <div class="row q-gutter-x-sm items-center q-my-sm">
           <q-avatar
             class="border-radius-xs"
@@ -58,7 +41,7 @@
             text-color="white"
             size="58px"
           >
-            <img :src="row.picture">
+            <img :src="row.picture" />
           </q-avatar>
 
           <q-avatar
@@ -76,26 +59,33 @@
         </div>
         <q-item-section class="q-pl-md">
           <q-item-label class="text-caption">{{ row.title }}</q-item-label>
-          <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">موجودی: </span>{{ row.stock
-          }}</q-item-label>
-          <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">قیمت فروش: </span>{{
-            row.price.toLocaleString() }}</q-item-label>
+          <q-item-label class="text-caption-sm"
+            ><span class="text-caption-sm text-bold">موجودی: </span
+            >{{ row.stock }}</q-item-label
+          >
+          <q-item-label class="text-caption-sm"
+            ><span class="text-caption-sm text-bold">قیمت فروش: </span
+            >{{ row.price.toLocaleString() }}</q-item-label
+          >
         </q-item-section>
-
       </q-item>
     </template>
   </lookup-view>
 </template>
 
 <script setup>
-import { ref } from "vue"
-import LookupView from "src/components/shared/DataTables/LookupView.vue"
-import HeaderColumn from "src/components/shared/Lookups/HeaderColumn.vue"
-import { helper } from "src/helpers"
+import { ref } from "vue";
+import { helper } from "src/helpers";
 
-const lookup = ref(null)
+import LookupView from "src/components/shared/dataTables/LookupView.vue";
+import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
+
+const props = defineProps({
+  filterExpression: Array,
+});
+const lookup = ref(null);
 
 defineExpose({
-  lookup
-})
+  lookup,
+});
 </script>

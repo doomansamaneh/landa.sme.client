@@ -8,16 +8,11 @@
         :label="tableStore?.pagination.value.totalItems"
         class="q-mr-sm bg-dark text-on-dark text-body2"
       />
-      <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'">ایجاد فاکتور فروش</span>
-      <q-btn
-        padding="6px 12px"
-        flat
-        @click="$router.go(-1)"
+      <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
+        >ایجاد فاکتور فروش</span
       >
-        <q-icon
-          name="arrow_back"
-          size="sm"
-        />
+      <q-btn padding="6px 12px" flat @click="$router.go(-1)">
+        <q-icon name="arrow_back" size="sm" />
       </q-btn>
     </template>
     <template #buttons>
@@ -30,36 +25,17 @@
       >
         {{ $t("shared.labels.save") }}
       </q-btn>
-      <q-btn
-        class="bordered-btn_bg-dark text-body2"
-        rounded
-        unelevated
-      >
+      <q-btn class="bordered-btn_bg-dark text-body2" rounded unelevated>
         {{ $t("shared.labels.more") }}
 
-        <q-menu
-          fit
-          :offset="[0, 10]"
-        >
-          <q-list
-            dense
-            padding
-            style="width:200px"
-          >
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+        <q-menu fit :offset="[0, 10]">
+          <q-list dense padding style="width: 200px">
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_refresh"
-                      size="14px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"
+                    ><q-icon name="o_refresh" size="14px"
+                  /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -67,40 +43,24 @@
               </q-item-section>
             </q-item>
             <q-separator />
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_close"
-                      size="14px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"
+                    ><q-icon name="o_close" size="14px"
+                  /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
                 <div class="text-caption">غیر‌فعال‌سازی</div>
               </q-item-section>
             </q-item>
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_check"
-                      size="14px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"
+                    ><q-icon name="o_check" size="14px"
+                  /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -108,20 +68,12 @@
               </q-item-section>
             </q-item>
             <q-separator />
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_download"
-                      size="16px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"
+                    ><q-icon name="o_download" size="16px"
+                  /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -130,7 +82,6 @@
             </q-item>
           </q-list>
         </q-menu>
-
       </q-btn>
     </template>
   </tool-bar>
@@ -149,16 +100,13 @@
           class="full-width text-body2"
         >
           <template v-slot:prepend>
-            <q-icon
-              name="o_search"
-              color="primary"
-            />
+            <q-icon name="o_search" color="primary" />
           </template>
         </q-input>
       </div>
 
       <q-scroll-area
-        style="height:calc(100vh - 325px);"
+        style="height: calc(100vh - 325px)"
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"
         class="q-mt-sm"
@@ -195,11 +143,7 @@
                   size="sm"
                   @click.stop="createInvoice.removeProduct(product)"
                 >
-                  <q-icon
-                    name="o_close"
-                    color="red"
-                    size="20px"
-                  />
+                  <q-icon name="o_close" color="red" size="20px" />
                 </q-btn>
               </template>
               <div class="row q-gutter-x-sm items-center q-my-sm">
@@ -211,7 +155,7 @@
                   text-color="white"
                   size="58px"
                 >
-                  <img :src="product.picture">
+                  <img :src="product.picture" />
                 </q-avatar>
 
                 <q-avatar
@@ -228,13 +172,18 @@
                 </q-avatar>
               </div>
               <q-item-section class="q-pl-md">
-                <q-item-label class="text-caption">{{ product.title }}</q-item-label>
-                <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">موجودی: </span>{{
-                  product.stock }}</q-item-label>
-                <q-item-label class="text-caption-sm"><span class="text-caption-sm text-bold">قیمت فروش: </span>{{
-                  product.price.toLocaleString() }}</q-item-label>
+                <q-item-label class="text-caption">{{
+                  product.title
+                }}</q-item-label>
+                <q-item-label class="text-caption-sm"
+                  ><span class="text-caption-sm text-bold">موجودی: </span
+                  >{{ product.stock }}</q-item-label
+                >
+                <q-item-label class="text-caption-sm"
+                  ><span class="text-caption-sm text-bold">قیمت فروش: </span
+                  >{{ product.price.toLocaleString() }}</q-item-label
+                >
               </q-item-section>
-
             </q-item>
           </q-list>
         </div>
@@ -243,24 +192,22 @@
   </q-card>
 </template>
 
-
 <script setup>
-
-import { ref, computed, onMounted } from "vue"
+import { ref, computed, onMounted } from "vue";
 import { helper } from "src/helpers";
 import { fetchWrapper } from "src/helpers";
-import ToolBar from "src/components/shared/ToolBar.vue"
-import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice"
+import ToolBar from "src/components/shared/ToolBar.vue";
+import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice";
 
-const createInvoice = useCreateInvoice()
-const tab = ref('my-products')
-const products = ref([])
+const createInvoice = useCreateInvoice();
+const tab = ref("my-products");
+const products = ref([]);
 
 function getProducts() {
   fetchWrapper
     .post("cmn/product/getlookupData", {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     })
     .then((response) => {
@@ -273,12 +220,11 @@ function handleResponse(data) {
   products.value = data;
 }
 
-const pulseProduct = computed(() => (createInvoice.rows.value.length < 1 ? 'pulse' : ''));
+const pulseProduct = computed(() =>
+  createInvoice.rows.value.length < 1 ? "pulse" : ""
+);
 
 onMounted(() => {
-  getProducts(),
-    createInvoice
-})
-
-
+  getProducts(), createInvoice;
+});
 </script>
