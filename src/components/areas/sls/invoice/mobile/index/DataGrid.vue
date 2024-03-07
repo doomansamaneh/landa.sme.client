@@ -116,7 +116,7 @@
     </q-card>
   </div>
 
-  <div class="column q-mt-md q-gutter-lg">
+  <div class="q-mt-lg">
     <q-input
       outlined
       readonly

@@ -30,6 +30,7 @@
             <template v-if="tableStore?.activeRow?.value != null">
               <slot name="bootons-edit">
                 <q-btn
+                  padding="6px 12px"
                   :to="`${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
                   class="text-body2 no-letter-spacing"
                   rounded
@@ -47,6 +48,7 @@
               <slot name="buttons-batch-action"> </slot>
               <slot name="buttons-delete-batch">
                 <q-btn
+                  padding="6px 12px"
                   class="text-body2 no-letter-spacing"
                   rounded
                   unelevated
@@ -57,17 +59,9 @@
                 >
                   <q-icon name="o_delete" size="20px" class="q-mr-xs" />
                   {{ $t("shared.labels.delete") }}
-                  <q-badge color="primary" floating>
+                  <q-badge floating>
                     {{ selectedIds?.length }}
                   </q-badge>
-                  <!-- <q-btn
-                    padding="2px 10px"
-                    rounded
-                    outline
-                    class="text-body2 no-letter-spaicng q-ml-sm bg-dark no-pointer-events"
-                  >
-                    {{ selectedIds?.length }}
-                  </q-btn> -->
                 </q-btn>
               </slot>
             </template>
@@ -75,6 +69,7 @@
             <template v-else-if="tableStore?.activeRow?.value != null">
               <slot name="bootons-delete">
                 <q-btn
+                  padding="6px 12px"
                   class="text-body2 no-letter-spacing"
                   rounded
                   unelevated
@@ -86,14 +81,19 @@
                     )
                   "
                 >
-                  <q-icon name="o_delete" class="q-mr-xs" />
+                  <q-icon size="20px" name="o_delete" class="q-mr-xs" />
                   {{ $t("shared.labels.delete") }}
                 </q-btn>
               </slot>
             </template>
 
-            <q-btn class="text-body2 no-letter-spacing" rounded unelevated>
-              <q-icon name="more_horiz" class="q-mr-xs" />
+            <q-btn
+              padding="6px 12px"
+              class="text-body2 no-letter-spacing"
+              rounded
+              unelevated
+            >
+              <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
               {{ $t("shared.labels.more") }}
 
               <q-menu fit :offset="[0, 20]">
@@ -230,7 +230,7 @@
                     rounded
                     unelevated
                     dense
-                    padding="2px 10px"
+                    padding="0px 10px"
                     outline
                     :label="tableStore?.pagination.value.totalItems"
                     class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
@@ -254,7 +254,7 @@
                   rounded
                   unelevated
                   dense
-                  padding="2px 10px"
+                  padding="0px 10px"
                   outline
                   :label="tableStore?.pagination.value.totalItems"
                   class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"

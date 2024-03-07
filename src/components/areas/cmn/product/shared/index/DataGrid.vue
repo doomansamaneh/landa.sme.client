@@ -45,15 +45,16 @@
     >
       <template #buttons-batch-action>
         <q-btn
+          padding="6px 12px"
           class="text-body2 no-letter-spacing"
           rounded
           unelevated
           no-caps
           @click="editBatch"
         >
-          <q-icon name="o_edit" class="q-mr-xs" size="20px" />
+          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
           {{ $t("shared.labels.editBatch") }}
-          <q-badge color="primary" floating>
+          <q-badge floating>
             {{ selectedIds?.length }}
           </q-badge>
         </q-btn>
