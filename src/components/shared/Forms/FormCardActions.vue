@@ -9,6 +9,7 @@
         unelevated
         no-caps
         padding="8px 16px"
+        rounded
       >
         <slot name="ok-label">
           {{ $t("shared.labels.save") }}
@@ -24,6 +25,7 @@
         no-caps
         padding="8px 16px"
         v-close-popup
+        rounded
       >
         <slot name="cancel-label">
           {{ $t("shared.labels.cancel") }}

@@ -16,7 +16,7 @@
           {{ $t(message) }}
         </span>
       </div>
-      <template v-slot:action>
+      <template #action>
         <q-btn
           @click="hideBanner"
           flat
@@ -25,6 +25,7 @@
           icon="close"
           color="black"
           size="sm"
+          round
         />
       </template>
     </q-banner>

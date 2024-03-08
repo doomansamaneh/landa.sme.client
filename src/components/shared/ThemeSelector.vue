@@ -6,8 +6,14 @@
         <q-card-section :style="{ backgroundColor: getPrimaryColor(themeName) }" class="min-opacity q-py-xl" />
 
         <q-card-section class="q-pb-xs">
-          <q-btn :style="{ backgroundColor: getPrimaryColor(themeName) }" size="20px" unelevated round class="absolute"
-            style="top: 0; left: 16px; transform: translateY(-50%);">
+          <q-btn
+            :style="activeBtnStyle(themeName)"
+            size="20px"
+            unelevated
+            round
+            class="absolute"
+            style="top: 0; transform: translateY(-50%);"
+          >
             <q-icon v-if="selectedTheme === themeName" name="check" color="white" class="checked-icon" size="md" />
           </q-btn>
         </q-card-section>
@@ -17,12 +23,24 @@
             {{ theme.name }}
           </div>
           <div class="no-pointer-events q-py-md">
-            <q-skeleton :animation="selectedTheme === themeName ? 'wave' : 'none'"
-              :style="{ backgroundColor: getPrimaryColor(themeName) }" class="theme-color min-opacity" type="text" />
-            <q-skeleton :animation="selectedTheme === themeName ? 'wave' : 'none'"
-              :style="{ backgroundColor: getPrimaryColor(themeName) }" class="theme-color min-opacity" type="text" />
-            <q-skeleton :animation="selectedTheme === themeName ? 'wave' : 'none'"
-              :style="{ backgroundColor: getPrimaryColor(themeName) }" class="theme-color min-opacity" type="text" />
+            <q-skeleton
+              :animation="skeletonAnimation(themeName)"
+              :style="skeletonStyle(themeName)"
+              class="theme-color min-opacity"
+              type="text"
+            />
+            <q-skeleton
+              :animation="skeletonAnimation(themeName)"
+              :style="skeletonStyle(themeName)"
+              class="theme-color min-opacity"
+              type="text"
+            />
+            <q-skeleton
+              :animation="skeletonAnimation(themeName)"
+              :style="skeletonStyle(themeName)"
+              class="theme-color min-opacity"
+              type="text"
+            />
           </div>
         </q-card-section>
 
@@ -33,6 +51,9 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useQuasar } from 'quasar';
+
+const $q = useQuasar();
 
 const themes = {
   blue: {
@@ -57,7 +78,7 @@ const themes = {
   },
 };
 
-const selectedTheme = ref(localStorage.getItem('selectedTheme') || '');
+const selectedTheme = ref(localStorage.getItem('selectedTheme'));
 
 const selectTheme = (theme) => {
   if (selectedTheme.value === theme) {
@@ -79,13 +100,32 @@ const getPrimaryColor = (themeName) => {
 };
 
 const getClass = (themeName) => {
-  return 'cursor-pointer' + (selectedTheme.value === themeName ? 'active' : '');
+  return 'cursor-pointer' + (selectedTheme.value === themeName ? ' active' : '');
+};
+
+const activeBtnStyle = (themeName) => {
+
+  return {
+    backgroundColor: getPrimaryColor(themeName),
+    left: $q.lang.isoName === 'en-US' ? 'auto' : '16px',
+    right: $q.lang.isoName === 'en-US' ? '16px' : 'auto',
+  };
+};
+
+const skeletonAnimation = (themeName) => {
+  return selectedTheme.value === themeName ? 'wave' : 'none';
+};
+
+const skeletonStyle = (themeName) => {
+  return {
+    backgroundColor: getPrimaryColor(themeName),
+  };
 };
 </script>
 
 <style lang="scss">
 .min-opacity {
-  opacity: 0.2;
+  opacity: 0.4;
 }
 
 .q-skeleton--anim-wave {
