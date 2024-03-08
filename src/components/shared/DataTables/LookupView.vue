@@ -4,6 +4,7 @@
     outlined
     :required="required"
     :rules="rules"
+    color="primary"
     dense
     class="input lookup"
     v-model="selectedText"
