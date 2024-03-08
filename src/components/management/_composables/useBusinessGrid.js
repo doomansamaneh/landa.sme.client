@@ -61,7 +61,7 @@ export function useBusinessGrid() {
     const gotoBusiness = async (item) => {
         Loading.show({
             message: loadingMessage,
-            boxClass: 'bg-dark text-on-dark text-bold',
+            boxClass: 'bg-dark border-radius-xl text-on-dark text-bold',
             spinnerColor: 'primary'
         })
 
