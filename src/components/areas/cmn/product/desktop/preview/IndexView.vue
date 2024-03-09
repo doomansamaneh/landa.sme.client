@@ -55,7 +55,7 @@
   <div>
     <q-tabs
       v-model="tab"
-      class="border-radius-xs bg-primary text-white q-mt-lg"
+      class="border-radius-xl bg-primary text-white q-mt-lg"
       indicator-color="white"
       align="start"
       inline-label
@@ -67,7 +67,7 @@
     </q-tabs>
 
     <q-tab-panels
-      class="rounded-borders q-mt-md"
+      class="border-radius-xl q-mt-md"
       :class="salesPanel"
       v-model="tab"
       animated

@@ -1,10 +1,5 @@
 <template>
-  <div class="q-pa-md">
-    <invoice-grid
-      :grid-store="invoiceStore"
-      :data-source="`sls/invoice/GetByCustomerData/${$route.params.id}`"
-    />
-  </div>
+  <invoice-grid :grid-store="invoiceStore" :data-source="`sls/invoice/GetByCustomerData/${$route.params.id}`" />
 </template>
 
 <script setup>

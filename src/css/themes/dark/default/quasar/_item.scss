@@ -45,6 +45,27 @@
     }
   }
 
+  .last {
+    .q-item {
+      border-top-right-radius: 0 !important;
+      border-top-left-radius: 0 !important;
+      border-bottom-right-radius: 16px !important;
+      border-bottom-left-radius: 16px !important;
+    }
+  }
+
+  .q-expansion-item--expanded.last {
+    .q-item {
+      border-radius: 0 !important;
+    }
+  }
+
+  .normal {
+    .q-item {
+      border-radius: 0 !important;
+    }
+  }
+
   .q-item__label--caption {
     color: $grey-6;
 
