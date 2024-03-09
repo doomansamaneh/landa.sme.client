@@ -38,6 +38,7 @@
         {{ $t("shared.labels.more") }}
 
         <q-menu
+        class="border-radius-xl"
           fit
           :offset="[0, 10]"
         >

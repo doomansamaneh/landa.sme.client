@@ -29,6 +29,7 @@
           />
           <div class="text-on-dark">{{ username }}</div>
           <q-menu
+          class="border-radius-xl"
             fit
             transition-show="jump-down"
             transition-hide="jump-up"

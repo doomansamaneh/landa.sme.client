@@ -30,7 +30,7 @@
     </span>
 
     <q-menu
-      class="bordered"
+      class="bordered border-radius-xl"
       style="width: 400px;"
       transition-show="jump-down"
       transition-hide="jump-up"

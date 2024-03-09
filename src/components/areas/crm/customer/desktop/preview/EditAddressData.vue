@@ -46,7 +46,7 @@
     <div class="col-4">
       <div>
         <q-item-label caption class="q-mb-sm">محل جغرافیایی</q-item-label>
-        <organ-unit-lookup />
+        <!-- <organ-unit-lookup /> -->
       </div>
     </div>
     <div class="col"></div>
@@ -103,7 +103,7 @@
 
 <script setup>
 import { ref } from "vue";
-import OrganUnitLookup from "src/components/shared/Lookups/OrganUnitLookup.vue";
+// import OrganUnitLookup from "src/components/shared/Lookups/OrganUnitLookup.vue";
 
 const selectedContactType = ref(null);
 const status = ref(false);

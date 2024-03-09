@@ -1,5 +1,5 @@
 <template>
-  <q-menu transition-show="jump-down" transition-hide="jump-up">
+  <q-menu class="border-radius-xl" transition-show="jump-down" transition-hide="jump-up">
     <q-list padding>
       <q-item clickable v-close-popup>
         <q-item-section>

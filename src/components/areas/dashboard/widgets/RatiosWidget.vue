@@ -1,52 +1,22 @@
 <template>
   <div class="row gap-24">
     <div class="col col-md col-xs-12">
-      <q-card
-        class="fit bordered q-pa-none"
-        flat
-      >
+      <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar
-              round
-              color="blue-grey"
-              text-color="white"
-              icon="o_attach_money"
-              size="xl"
-              class="bluegrey-shadow"
-            />
+            <q-avatar round color="blue-grey" text-color="white" icon="o_attach_money" size="xl"
+              class="bluegrey-shadow" />
             <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
+              <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
+                icon="o_more_vert">
 
-                <q-menu fit>
-                  <q-list
-                    dense
-                    padding
-                    style="width:200px"
-                  >
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
+                <q-menu fit class="border-radius-xl">
+                  <q-list dense padding style="width:200px">
+                    <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          >
-                            <q-icon
-                              name="o_sell"
-                              size="14px"
-                            />
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_sell" size="14px" />
                           </q-avatar>
                         </q-item-section>
                       </div>
@@ -55,42 +25,20 @@
                       </q-item-section>
                     </q-item>
                     <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showSale">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_close"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
                         <div class="text-caption">فروش</div>
                       </q-item-section>
                     </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showCost">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_check"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_check" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
@@ -118,52 +66,21 @@
     </div>
     <div class="col col-md col-xs-12">
 
-      <q-card
-        class="fit bordered q-pa-none"
-        flat
-      >
+      <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar
-              round
-              color="blue"
-              text-color="white"
-              icon="o_group_remove"
-              size="xl"
-              class="blue-shadow"
-            />
+            <q-avatar round color="blue" text-color="white" icon="o_group_remove" size="xl" class="blue-shadow" />
             <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
+              <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
+                icon="o_more_vert">
 
-                <q-menu fit>
-                  <q-list
-                    dense
-                    padding
-                    style="width:200px"
-                  >
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
+                <q-menu fit class="border-radius-xl">
+                  <q-list dense padding style="width:200px">
+                    <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          >
-                            <q-icon
-                              name="o_sell"
-                              size="14px"
-                            />
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_sell" size="14px" />
                           </q-avatar>
                         </q-item-section>
                       </div>
@@ -172,42 +89,20 @@
                       </q-item-section>
                     </q-item>
                     <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showSale">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_close"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
                         <div class="text-caption">فروش</div>
                       </q-item-section>
                     </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showCost">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_check"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_check" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
@@ -237,52 +132,21 @@
   </div>
   <div class="row gap-24 q-mt-lg">
     <div class="col col-md col-xs-12">
-      <q-card
-        class="fit bordered q-pa-none"
-        flat
-      >
+      <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar
-              round
-              color="green"
-              text-color="white"
-              icon="o_exposure_plus_2"
-              size="xl"
-              class="green-shadow"
-            />
+            <q-avatar round color="green" text-color="white" icon="o_exposure_plus_2" size="xl" class="green-shadow" />
             <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
+              <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
+                icon="o_more_vert">
 
-                <q-menu fit>
-                  <q-list
-                    dense
-                    padding
-                    style="width:200px"
-                  >
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
+                <q-menu fit class="border-radius-xl">
+                  <q-list dense padding style="width:200px">
+                    <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          >
-                            <q-icon
-                              name="o_sell"
-                              size="14px"
-                            />
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_sell" size="14px" />
                           </q-avatar>
                         </q-item-section>
                       </div>
@@ -291,42 +155,20 @@
                       </q-item-section>
                     </q-item>
                     <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showSale">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_close"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
                         <div class="text-caption">فروش</div>
                       </q-item-section>
                     </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showCost">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_check"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_check" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
@@ -353,52 +195,21 @@
       </q-card>
     </div>
     <div class="col col-md col-xs-12">
-      <q-card
-        class="fit bordered q-pa-none"
-        flat
-      >
+      <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar
-              round
-              color="pink"
-              text-color="white"
-              icon="o_hourglass_empty"
-              size="xl"
-              class="pink-shadow"
-            />
+            <q-avatar round color="pink" text-color="white" icon="o_hourglass_empty" size="xl" class="pink-shadow" />
             <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
+              <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
+                icon="o_more_vert">
 
-                <q-menu fit>
-                  <q-list
-                    dense
-                    padding
-                    style="width:200px"
-                  >
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
+                <q-menu fit class="border-radius-xl">
+                  <q-list dense padding style="width:200px">
+                    <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          >
-                            <q-icon
-                              name="o_sell"
-                              size="14px"
-                            />
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_sell" size="14px" />
                           </q-avatar>
                         </q-item-section>
                       </div>
@@ -407,42 +218,20 @@
                       </q-item-section>
                     </q-item>
                     <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showSale">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_close"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
                         <div class="text-caption">فروش</div>
                       </q-item-section>
                     </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
+                    <q-item clickable v-close-popup tabindex="0" @click="showCost">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar
-                            class="bg-on-dark"
-                            size="sm"
-                          ><q-icon
-                              name="o_check"
-                              size="14px"
-                            /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_check" size="14px" /></q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>

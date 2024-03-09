@@ -1,42 +1,25 @@
 <template>
   <div class="row q-gutter-sm">
-    <q-btn
-      unelevated
-      color="primary"
-      to="/sls/invoice/create/selectproduct"
-    >
+    <q-btn unelevated color="primary" to="/sls/invoice/create/selectproduct">
       انتخاب کالا و خدمت
     </q-btn>
 
-    <q-btn
-      unelevated
-      color="primary"
-    >
+    <q-btn unelevated color="primary">
       تخفیف
     </q-btn>
 
-    <q-btn
-      unelevated
-      color="primary"
-    >
+    <q-btn unelevated color="primary">
       ارزش افزوده
     </q-btn>
 
-    <q-btn
-      unelevated
-      color="primary"
-    >
+    <q-btn unelevated color="primary">
       شرح
     </q-btn>
   </div>
   <q-separator class="q-mt-md q-mb-md" />
 
   <q-list>
-    <q-item
-      class="q-py-sm q-px-none"
-      v-for="n in 3"
-      :key="n"
-    >
+    <q-item class="q-py-sm q-px-none" v-for="n in 3" :key="n">
       <div class="col-7">
         <span class="text-body3 line-height-sm">
           اشتراک حسابداری آنلاین لاندا نسخه حرفه‌ای
@@ -61,63 +44,29 @@
 
     <div class="row q-mr-md">
       <div class="col row q-gutter-sm items-center">
-        <q-btn
-          outline
-          round
-          icon="o_add"
-          size="xs"
-          @click="generalDiscount = true"
-        >
-          <q-tooltip
-            anchor="center left"
-            self="center right"
-            :offset="[10, 10]"
-            class="text-body2 q-px-sm custom-tooltip"
-            :delay="600"
-          >
+        <q-btn outline round icon="o_add" size="xs" @click="generalDiscount = true">
+          <q-tooltip anchor="center left" self="center right" :offset="[10, 10]"
+            class="text-body2 q-px-sm custom-tooltip" :delay="600">
             ایجاد تخفیف
           </q-tooltip>
 
-          <q-menu
-            anchor="bottom right"
-            self="bottom left"
-            :offset="[10, 8]"
-          >
+          <q-menu class="border-radius-xl" anchor="bottom right" self="bottom left" :offset="[10, 8]">
             <q-card>
               <q-card-section>
-                <q-input
-                  outlined
-                  dense
-                  v-model="generalDiscountValue"
-                  @update:model-value="confirmGeneralDiscount"
-                >
+                <q-input outlined dense v-model="generalDiscountValue" @update:model-value="confirmGeneralDiscount">
 
                   <template #append>
-                    <q-btn
-                      size="xs"
-                      :icon="generalDiscount ? 'attach_money' : 'o_percent'"
-                      class="cursor-pointer"
-                      color="primary"
-                      round
-                      outline
-                      @click="generalDiscount = !generalDiscount"
-                    />
+                    <q-btn size="xs" :icon="generalDiscount ? 'attach_money' : 'o_percent'" class="cursor-pointer"
+                      color="primary" round outline @click="generalDiscount = !generalDiscount" />
                   </template>
 
                 </q-input>
               </q-card-section>
 
               <q-card-actions class="dark-1 q-px-md">
-                <q-btn
-                  @click="confirmGeneralDiscount"
-                  padding="4px 12px"
-                  unelevated
-                  class="bg-primary text-white"
-                >تایید</q-btn>
-                <q-btn
-                  padding="4px 12px"
-                  unelevated
-                >انصراف</q-btn>
+                <q-btn @click="confirmGeneralDiscount" padding="4px 12px" unelevated
+                  class="bg-primary text-white">تایید</q-btn>
+                <q-btn padding="4px 12px" unelevated>انصراف</q-btn>
               </q-card-actions>
             </q-card>
           </q-menu>
@@ -142,10 +91,7 @@
       <div>{{ totalAmount }} <span class="text-caption"> ریال</span></div>
     </div>
 
-    <q-separator
-      color="primary"
-      size="1.5px"
-    />
+    <q-separator color="primary" size="1.5px" />
   </div>
 
 

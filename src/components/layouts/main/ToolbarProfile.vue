@@ -8,7 +8,7 @@
     class="btn-icon text-on-dark"
   >
     <q-menu
-      class="z-max"
+      class="border-radius-xl z-max"
       transition-show="jump-down"
       transition-hide="jump-up"
       :offset="[5, 24]"

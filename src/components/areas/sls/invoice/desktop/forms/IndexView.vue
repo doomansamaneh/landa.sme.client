@@ -48,6 +48,7 @@
         <q-menu
           fit
           :offset="[0, 20]"
+          class="border-radius-xl"
         >
           <q-list
             dense

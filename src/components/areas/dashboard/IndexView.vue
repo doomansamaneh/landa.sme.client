@@ -105,7 +105,7 @@
                   size="md"
                   icon="o_more_vert"
                 >
-                  <q-menu fit>
+                  <q-menu class="border-radius-xl" fit>
                     <q-list dense padding style="width: 200px">
                       <q-item
                         clickable

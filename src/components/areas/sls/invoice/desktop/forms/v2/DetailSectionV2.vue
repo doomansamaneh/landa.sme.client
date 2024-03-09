@@ -131,6 +131,7 @@
             </q-tooltip>
 
             <q-menu
+            class="border-radius-xl"
               ref="discountMenu"
               no-focus
               no-refocus
