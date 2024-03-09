@@ -1,40 +1,151 @@
 <template>
-  <data-grid
-    ref="dataGrid"
-    dataSource="cmn/productGroup/getGridData"
-    :grid-store="gridStore"
-    createUrl="/cmn/productGroup/create"
-    multiSelect
-    numbered
-  >
-    <template #row-header="{ item }">
-      <q-card-section class="bg-primary text-white">
-        {{ item.title }}
-      </q-card-section>
-    </template>
-
-    <template #row-actions="{ item }">
-      <row-tool-bar
-        base-route="/cmn/productGroup"
-        :item="item"
-        :table-store="tableStore"
-        :crud-store="crudStore"
-      >
-        <template #more-items="{ item }">
-          <span class="justify-end">
+  <div>
+    <data-grid
+      ref="dataGrid"
+      dataSource="cmn/productGroup/getGridData"
+      createUrl="/cmn/productGroup/create"
+      :grid-store="gridStore"
+      multiSelect
+      numbered
+    >
+      <template #row-header="{ item }">
+        <q-card-section>
+          <div class="row items-center justify-center">
             <q-btn
-              unelevated
+              v-if="!item.selected"
               round
-              @click="onBottomSheetShow(item)"
+              unelevated
+              class="no-pointer-events"
             >
-              <q-icon name="o_more_vert" />
+              <q-avatar
+                size="56px"
+                text-color="white"
+                :style="{
+                  backgroundColor: helper.generateDarkAvatarColor(item.title),
+                }"
+              >
+                <div class="char text-body1 text-bold">
+                  {{ helper.getFirstChar(item.title) }}
+                </div>
+              </q-avatar>
             </q-btn>
-          </span>
-        </template>
-      </row-tool-bar>
-    </template>
+            <q-btn round unelevated class="no-pointer-events" v-else>
+              <q-avatar size="50px" color="primary" text-color="white">
+                <q-icon name="o_done" size="md" />
+              </q-avatar>
+            </q-btn>
+          </div>
 
-  </data-grid>
+          <div class="row justify-between items-center">
+            <div class="col row items-center">
+              <span class="text-caption text-on-dark">{{
+                item.productGroupTitle
+              }}</span>
+            </div>
+
+            <div class="col row justify-end items-center q-gutter-xs">
+              <span class="text-caption text-on-dark">{{ item.code }}</span>
+            </div>
+          </div>
+        </q-card-section>
+
+        <q-separator />
+      </template>
+
+      <template #row-body="{ item }">
+        <q-card-section class="q-px-none q-py-xs">
+          <div class="column q-gutter-sm">
+            <div class="row items-center">
+              <div class="col-4">
+                <span class="text-caption text-on-dark">عنوان</span>
+              </div>
+              <div class="col">
+                <span class="q-mr-sm">
+                  <q-btn
+                    v-if="item.isActive"
+                    round
+                    unelevated
+                    dense
+                    class="green-shadow no-pointer-events"
+                    size="7px"
+                    color="green-8"
+                    icon="o_done"
+                  />
+                  <q-btn
+                    v-else
+                    round
+                    unelevated
+                    dense
+                    class="red-shadow no-pointer-events"
+                    size="7px"
+                    color="negative"
+                    icon="o_close"
+                  />
+                </span>
+                <span
+                  class="ellipsis-2-lines_ text-caption text-bold text-on-dark"
+                  >{{ item.title }}</span
+                >
+                <div class="text-on-dark text-body2">
+                  {{ item.comment }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row items-center" v-if="item.barcode">
+              <div class="col-4">
+                <span class="text-caption text-on-dark">بارکد</span>
+              </div>
+              <div class="col">
+                {{ item.barcode }}
+              </div>
+            </div>
+
+            <div class="row items-center" v-if="item.taxCode">
+              <div class="col-4">
+                <span class="text-caption text-on-dark">شناسه مالیاتی</span>
+              </div>
+              <div class="col">
+                {{ item.taxCode }}
+              </div>
+            </div>
+
+            <div class="row items-center" v-if="item.price">
+              <div class="col-4">
+                <span class="text-caption text-on-dark">قیمت فروش</span>
+              </div>
+              <div class="col">
+                {{ item.price.toLocaleString() }}
+              </div>
+            </div>
+
+            <div class="row items-center" v-if="item.purchasePrice">
+              <div class="col-4">
+                <span class="text-caption text-on-dark">قیمت خرید</span>
+              </div>
+              <div class="col">
+                {{ item.purchasePrice.toLocaleString() }}
+              </div>
+            </div>
+          </div>
+        </q-card-section>
+      </template>
+
+      <template #row-actions="{ item }">
+        <q-btn unelevated class="text-on-dark">
+          <span class="text-body3 text-bold">مشاهده جزئیات</span>
+        </q-btn>
+
+        <q-btn
+          round
+          unelevated
+          dense
+          icon="o_more_vert"
+          @click="onBottomSheetShow(item)"
+        />
+      </template>
+    </data-grid>
+  </div>
 
   <bottom-sheet
     v-if="bottomSheetStatus"
@@ -42,7 +153,7 @@
     @hide="onBottomSheetHide"
   >
     <template #header-title>
-      {{ tableStore?.activeRow.value?.title }}
+      {{ bottomSheetItem.code }} / {{ bottomSheetItem.title }}
     </template>
 
     <template #body>
@@ -50,15 +161,15 @@
         <q-item
           clickable
           v-ripple
-          :to="`/cmn/productGroup/edit/${tableStore?.activeRow.value?.id}`"
+          :to="`/cmn/productGroup/edit/${bottomSheetItem.id}`"
         >
           <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_edit" />
+            <q-avatar size="32px" class="bg-on-dark text-on-dark">
+              <q-icon size="16px" name="o_edit" />
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body3 no-letter-spacing">
             {{ $t("shared.labels.edit") }}
           </q-item-section>
         </q-item>
@@ -66,15 +177,15 @@
         <q-item
           clickable
           v-ripple
-          :to="`/cmn/productGroup/copy/${tableStore?.activeRow.value?.id}`"
+          :to="`/cmn/productGroup/copy/${bottomSheetItem.id}`"
         >
           <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_copy" />
+            <q-avatar size="32px" class="bg-on-dark text-on-dark">
+              <q-icon size="16px" name="o_copy" />
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body3 no-letter-spacing">
             {{ $t("shared.labels.copy") }}
           </q-item-section>
         </q-item>
@@ -84,15 +195,18 @@
         <q-item
           clickable
           v-ripple
-          @click="crudStore.deleteById(tableStore?.activeRow.value?.id, reloadData)"
+          @click="crudStore.deleteById(bottomSheetItem.id, reloadData)"
         >
           <q-item-section avatar>
-            <q-avatar class="delete-avatar bg-on-dark red-shadow text-on-dark">
-              <q-icon name="o_delete" />
+            <q-avatar
+              size="32px"
+              class="delete-avatar bg-on-dark red-shadow text-on-dark"
+            >
+              <q-icon size="16px" name="o_delete" />
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body3 no-letter-spacing">
             {{ $t("shared.labels.delete") }}
           </q-item-section>
         </q-item>
@@ -102,58 +216,37 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
-import { useQuasar } from "quasar"
-import { useFormActions } from "src/composables/useFormActions"
+import { ref, computed } from "vue";
+import { helper } from "src/helpers";
 
-import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
-import RowToolBar from "src/components/shared/RowToolBar.vue"
-import BottomSheet from "src/components/shared/BottomSheet.vue"
+import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
+import BottomSheet from "src/components/shared/BottomSheet.vue";
 
 const props = defineProps({
   gridStore: Object,
-  title: String
-})
+  crudStore: Object,
+});
 
-const $q = useQuasar()
-const crudStore = useFormActions("cmn/productGroup")
+const dataGrid = ref(null);
+const bottomSheetStatus = ref(false);
+const bottomSheetItem = ref(null);
 
-const dataGrid = ref(null)
-const bottomSheetStatus = ref(false)
-
-const tableStore = computed(() => dataGrid.value?.tableStore)
-const selectedIds = computed(() => tableStore.value?.selectedRows?.value.map(item => item.id))
+const tableStore = computed(() => dataGrid.value?.tableStore);
 
 const onBottomSheetShow = (row) => {
+  bottomSheetItem.value = row;
   bottomSheetStatus.value = true;
-}
+};
 
 const onBottomSheetHide = () => {
   bottomSheetStatus.value = false;
-}
-
-async function loadData() {
-  await dataGrid.value.resetPage()
-}
+};
 
 async function reloadData() {
-  //await tableStore?.value.reloadData()
-  await dataGrid.value.resetPage()
+  await tableStore.value.reloadData();
 }
 
-async function deleteBatch() {
-  await crudStore.deleteBatch(selectedIds?.value, reloadData)
-}
-
-async function activate() {
-  await crudStore.activate(selectedIds?.value, reloadData)
-}
-
-async function deactivate() {
-  await crudStore.deactivate(selectedIds?.value, reloadData)
-}
-
-async function exportAll() {
-  await tableStore.value.exportAll()
-}
+defineExpose({
+  tableStore,
+});
 </script>

@@ -5,8 +5,8 @@
       buttons
       :table-store="mobileGrid?.tableStore"
       :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
-      base-route="/cmn/product"
+      :title="title"
+      :base-route="baseRoute"
       activation
     >
       <template #buttons-custom>
@@ -29,7 +29,7 @@
     <mobile
       :grid-store="gridStore"
       :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
+      :title="title"
       ref="mobileGrid"
     />
   </template>
@@ -38,8 +38,8 @@
       v-if="toolbar"
       :table-store="desktpGrid?.tableStore"
       :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
-      base-route="/cmn/product"
+      :title="title"
+      :base-route="baseRoute"
       activation
       buttons
     >
@@ -63,7 +63,7 @@
     <desktop
       :grid-store="gridStore"
       :crud-store="crudStore"
-      :title="$t('main-menu-items.Cmn_Product_View')"
+      :title="title"
       ref="desktpGrid"
     />
   </template>
@@ -72,6 +72,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useQuasar } from "quasar";
+import { useI18n } from "vue-i18n";
 import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid";
 import { useFormActions } from "src/composables/useFormActions";
 
@@ -86,9 +87,14 @@ const props = defineProps({
   toolbar: Boolean,
 });
 
+const { t } = useI18n();
+
+const title = t("main-menu-items.Cmn_ProductGroup_View");
+const baseRoute = "cmn/product";
+
 const $q = useQuasar();
 const gridStore = useProductGrid();
-const crudStore = useFormActions("cmn/product");
+const crudStore = useFormActions(baseRoute);
 const desktpGrid = ref(null);
 const mobileGrid = ref(null);
 

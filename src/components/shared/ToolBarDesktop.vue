@@ -21,7 +21,7 @@
               rounded
               no-caps
               unelevated
-              :to="`${baseRoute}/create`"
+              :to="`/${baseRoute}/create`"
             >
               <q-icon size="20px" name="o_add" class="q-mr-xs" />
               {{ $t("shared.labels.create") }}
@@ -31,7 +31,7 @@
               <slot name="bootons-edit">
                 <q-btn
                   padding="6px 12px"
-                  :to="`${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
+                  :to="`/${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
                   class="text-body2 no-letter-spacing"
                   rounded
                   unelevated

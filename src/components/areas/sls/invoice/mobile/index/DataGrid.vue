@@ -3,7 +3,7 @@
     :table-store="dataGrid?.tableStore"
     :crud-store="crudStore"
     :title="title"
-    base-route="/sls/invoice"
+    base-route="sls/invoice"
     activation
   >
     <template #buttons-custom>

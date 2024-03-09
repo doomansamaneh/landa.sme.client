@@ -4,7 +4,7 @@
     :crud-store="crudStore"
     :title="title"
     buttons
-    base-route="/sls/invoice"
+    base-route="sls/invoice"
   >
     <template #buttons-batch-action>
       <q-btn
@@ -33,8 +33,18 @@
       narrow-indicator
       @update:model-value="tabChanged"
     >
-      <q-tab name="invoice" class="text-h6 text-weight-700" label="فاکتورهای فروش" icon="check" />
-      <q-tab name="canceled" class="text-h6 text-weight-700" label="ابطال شده" icon="o_cancel" />
+      <q-tab
+        name="invoice"
+        class="text-h6 text-weight-700"
+        label="فاکتورهای فروش"
+        icon="check"
+      />
+      <q-tab
+        name="canceled"
+        class="text-h6 text-weight-700"
+        label="ابطال شده"
+        icon="o_cancel"
+      />
     </q-tabs>
 
     <invoice-grid
