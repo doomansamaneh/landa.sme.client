@@ -96,7 +96,7 @@
               <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
               {{ $t("shared.labels.more") }}
 
-              <q-menu fit :offset="[0, 20]">
+              <q-menu class="border-radius-xl" fit :offset="[0, 20]">
                 <q-list dense padding style="width: 250px">
                   <q-item
                     clickable

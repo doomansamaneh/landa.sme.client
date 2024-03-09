@@ -5,45 +5,17 @@
         <div class="col-11">
           <q-item class="no-padding">
             <q-item-section avatar>
-              <q-avatar
-                v-if="saleIncome"
-                rounded
-                color="blue"
-                text-color="white"
-                icon="o_shopping_basket"
-                size="md"
-                class="blue-shadow"
-              />
+              <q-avatar v-if="saleIncome" rounded color="blue" text-color="white" icon="o_shopping_basket" size="md"
+                class="blue-shadow" />
 
-              <q-avatar
-                v-if="saleIncomeTable"
-                rounded
-                color="blue"
-                text-color="white"
-                icon="o_table_chart"
-                size="md"
-                class="blue-shadow"
-              />
+              <q-avatar v-if="saleIncomeTable" rounded color="blue" text-color="white" icon="o_table_chart" size="md"
+                class="blue-shadow" />
 
-              <q-avatar
-                v-if="salePerProduct || salePerProductGroup || salePerCustomer"
-                rounded
-                color="green"
-                text-color="white"
-                icon="o_sell"
-                size="md"
-                class="green-shadow"
-              />
+              <q-avatar v-if="salePerProduct || salePerProductGroup || salePerCustomer" rounded color="green"
+                text-color="white" icon="o_sell" size="md" class="green-shadow" />
 
-              <q-avatar
-                v-if="cost || costDetail"
-                rounded
-                color="red"
-                text-color="white"
-                icon="o_paid"
-                size="md"
-                class="orange-shadow"
-              />
+              <q-avatar v-if="cost || costDetail" rounded color="red" text-color="white" icon="o_paid" size="md"
+                class="orange-shadow" />
             </q-item-section>
 
             <q-item-section class="q-pl-xs">
@@ -56,41 +28,22 @@
               <q-item-label v-if="salePerProduct" class="text-h6 text-weight-700 q-mb-xs">
                 فروش بر اساس کالا و خدمات
               </q-item-label>
-              <q-item-label
-                v-if="salePerProductGroup"
-                class="text-body1 q-mb-xs"
-                >فروش بر اساس گروه کالا و خدمات</q-item-label
-              >
-              <q-item-label v-if="salePerCustomer" class="text-h6 text-weight-700 q-mb-xs"
-                >فروش بر اساس مشتری</q-item-label
-              >
-              <q-item-label v-if="cost" class="text-h6 text-weight-700 q-mb-xs"
-                >نمودار هزینه</q-item-label
-              >
-              <q-item-label v-if="costDetail" class="text-h6 text-weight-700 q-mb-xs"
-                >ریز هزینه</q-item-label
-              >
+              <q-item-label v-if="salePerProductGroup" class="text-body1 q-mb-xs">فروش بر اساس گروه کالا و
+                خدمات</q-item-label>
+              <q-item-label v-if="salePerCustomer" class="text-h6 text-weight-700 q-mb-xs">فروش بر اساس
+                مشتری</q-item-label>
+              <q-item-label v-if="cost" class="text-h6 text-weight-700 q-mb-xs">نمودار هزینه</q-item-label>
+              <q-item-label v-if="costDetail" class="text-h6 text-weight-700 q-mb-xs">ریز هزینه</q-item-label>
             </q-item-section>
           </q-item>
         </div>
         <div class="col">
           <div class="row justify-end">
-            <q-btn
-              unelevated
-              round
-              dense
-              :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-              size="md"
-              icon="o_more_vert"
-            >
-              <q-menu fit>
+            <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
+              icon="o_more_vert">
+              <q-menu fit class="border-radius-xl">
                 <q-list dense padding style="width: 240px">
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                    @click="showSaleIncome"
-                  >
+                  <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -102,12 +55,7 @@
                       <div class="text-caption">فروش و درآمد، هزینه</div>
                     </q-item-section>
                   </q-item>
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                    @click="showSaleIncomeTable"
-                  >
+                  <q-item clickable v-close-popup tabindex="0" @click="showSaleIncomeTable">
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -122,9 +70,7 @@
                   <q-item clickable>
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm"
-                          ><q-icon name="o_close" size="14px"
-                        /></q-avatar>
+                        <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                       </q-item-section>
                     </div>
                     <q-item-section>
@@ -133,36 +79,24 @@
                     <q-item-section side>
                       <q-icon name="keyboard_arrow_left" />
                     </q-item-section>
-                    <q-menu>
+                    <q-menu class="border-radius-xl">
                       <q-list>
-                        <q-item
-                          clickable
-                          v-close-popup
-                          tabindex="0"
-                          @click="showSalePerProduct"
-                        >
+                        <q-item clickable v-close-popup tabindex="0" @click="showSalePerProduct">
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar class="bg-on-dark" size="sm"
-                                ><q-icon name="o_inventory_2" size="14px"
-                              /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_inventory_2"
+                                  size="14px" /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
                             <div class="text-caption">بر اساس کالا و خدمات</div>
                           </q-item-section>
                         </q-item>
-                        <q-item
-                          clickable
-                          v-close-popup
-                          tabindex="0"
-                          @click="showSalePerProductGroup"
-                        >
+                        <q-item clickable v-close-popup tabindex="0" @click="showSalePerProductGroup">
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar class="bg-on-dark" size="sm"
-                                ><q-icon name="o_inventory_2" size="14px"
-                              /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_inventory_2"
+                                  size="14px" /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
@@ -171,17 +105,10 @@
                             </div>
                           </q-item-section>
                         </q-item>
-                        <q-item
-                          clickable
-                          v-close-popup
-                          tabindex="0"
-                          @click="showSalePerCustomer"
-                        >
+                        <q-item clickable v-close-popup tabindex="0" @click="showSalePerCustomer">
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar class="bg-on-dark" size="sm"
-                                ><q-icon name="o_person" size="14px"
-                              /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_person" size="14px" /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
@@ -194,9 +121,7 @@
                   <q-item clickable>
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm"
-                          ><q-icon name="o_attach_money" size="14px"
-                        /></q-avatar>
+                        <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_attach_money" size="14px" /></q-avatar>
                       </q-item-section>
                     </div>
                     <q-item-section>
@@ -206,36 +131,24 @@
                       <q-icon name="keyboard_arrow_left" />
                     </q-item-section>
 
-                    <q-menu>
+                    <q-menu class="border-radius-xl">
                       <q-list>
-                        <q-item
-                          clickable
-                          v-close-popup
-                          tabindex="0"
-                          @click="showCost"
-                        >
+                        <q-item clickable v-close-popup tabindex="0" @click="showCost">
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar class="bg-on-dark" size="sm"
-                                ><q-icon name="o_equalizer" size="14px"
-                              /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_equalizer"
+                                  size="14px" /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
                             <div class="text-caption">نمودار هزینه</div>
                           </q-item-section>
                         </q-item>
-                        <q-item
-                          clickable
-                          v-close-popup
-                          tabindex="0"
-                          @click="showCostDetail"
-                        >
+                        <q-item clickable v-close-popup tabindex="0" @click="showCostDetail">
                           <div class="row items-center">
                             <q-item-section avatar>
-                              <q-avatar class="bg-on-dark" size="sm"
-                                ><q-icon name="o_incomplete_circle" size="14px"
-                              /></q-avatar>
+                              <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_incomplete_circle"
+                                  size="14px" /></q-avatar>
                             </q-item-section>
                           </div>
                           <q-item-section>
@@ -258,21 +171,11 @@
 
     <bar-chart v-if="sale" :height="300" legend="false" />
 
-    <bar-chart
-      v-if="salePerProduct"
-      :height="300"
-      legend="false"
-      seriesName="کالا و خدمات"
-    />
+    <bar-chart v-if="salePerProduct" :height="300" legend="false" seriesName="کالا و خدمات" />
 
     <pie-chart v-if="salePerProductGroup" :height="300" legend="false" />
 
-    <bar-chart
-      v-if="salePerCustomer"
-      :height="300"
-      legend="false"
-      seriesName="مشتری"
-    />
+    <bar-chart v-if="salePerCustomer" :height="300" legend="false" seriesName="مشتری" />
 
     <bar-chart v-if="cost" :height="300" legend="false" seriesName="هزینه" />
 

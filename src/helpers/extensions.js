@@ -6,7 +6,8 @@ Date.prototype.toDateString = function () {
     const fullDate = {
         year: "numeric",
         month: "numeric",
-        day: "numeric"
+        day: "numeric",
+        numberingSystem: "latn"
     };
     return date.toLocaleDateString(cultureStore.culture.value.quasarLang, fullDate)
 }

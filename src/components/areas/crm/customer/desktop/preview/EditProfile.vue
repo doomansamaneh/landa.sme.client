@@ -102,7 +102,7 @@
                     caption
                     class="q-mb-sm"
                   >واحد سازمانی</q-item-label>
-                  <organ-unit-lookup />
+                  <!-- <organ-unit-lookup /> -->
                 </div>
                 <div>
                   <q-item-label
@@ -563,7 +563,7 @@
                     size="xs"
                     class="q-mr-xs"
                   />افزودن فیلد جدید
-                  <q-menu
+                  <q-menu class="border-radius-xl"
                     :offset="[0, 20]"
                     fit
                   >
@@ -957,10 +957,10 @@
 
 <script setup>
 import { ref } from "vue"
-import OrganUnitLookup from "src/components/shared/Lookups/OrganUnitLookup.vue"
-import Actions from "src/components/shared/Forms/FormCardActions.vue"
-import dateTime from "src/components/shared/Forms/DateTimePicker.vue"
-import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
+// import OrganUnitLookup from "src/com/ponents/shared/lookups/ProductGroupLookup.vue"
+import Actions from "src/components/shared/forms/FormCardActions.vue"
+import dateTime from "src/components/shared/forms/DateTimePicker.vue"
+import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue"
 
 const gender = ref(null)
 const type = ref([])

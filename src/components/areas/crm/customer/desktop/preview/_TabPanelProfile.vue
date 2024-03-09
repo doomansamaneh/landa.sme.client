@@ -49,7 +49,7 @@
                 >
                   <q-icon name="o_add" class="q-mr-xs" />
                   <span>افزودن آیتم جدید</span>
-                  <q-menu touch-position>
+                  <q-menu class="border-radius-xl" touch-position>
                     <q-list dense padding style="width: 200px">
                       <q-item clickable v-close-popup tabindex="0">
                         <div class="q-py-sm">

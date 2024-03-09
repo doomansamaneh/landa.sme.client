@@ -13,7 +13,7 @@
       rounded
     >4</q-badge>
     <q-menu
-      class="z-max"
+      class="border-radius-xl z-max"
       transition-show="jump-down"
       transition-hide="jump-up"
       :offset="[100, 24]"
