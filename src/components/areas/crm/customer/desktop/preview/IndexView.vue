@@ -1,149 +1,66 @@
 <template>
-  <q-page-sticky
-    class="z-1 bg-main q-py-sm"
-    style="padding-left: 38px; padding-right: 38px"
-    position="top"
-    expand
-  >
+  <q-page-sticky v-if="$q.screen.gt.xs" class="z-1 bg-main q-py-sm" style="padding-left: 38px; padding-right: 38px;" position="top" expand>
     <q-toolbar class="q-px-none row justify-between q-py-md">
       <div class="row items-center q-gutter-md">
-        <q-avatar size="48px">
+        <q-avatar size="56px">
           <img class="avatar" src="https://cdn.quasar.dev/img/avatar4.jpg" />
         </q-avatar>
         <div class="column q-mt-md">
-          <q-item-label>
-            <span class="text-body2">خشایار شمالی</span>
-          </q-item-label>
-          <q-item-label caption>
-            <span class="text-body2">توسعه دهنده وب</span>
-          </q-item-label>
+          <q-item-label class="text-body2 text-weight-700 no-letter-spacing">خشایار شمالی</q-item-label>
+          <q-item-label class="caption-on-dark text-body2 no-letter-spacing">توسعه دهنده وب</q-item-label>
         </div>
       </div>
       <div class="row q-gutter-sm text-h6">
-        <q-btn
-          class="bg-primary text-white text-caption"
-          padding="6px 12px"
-          rounded
-          no-caps
-          unelevated
-        >
-          <q-icon name="o_add" class="q-mr-xs" />
+        <q-btn class="bg-primary text-white text-body2 no-letter-spacing" padding="6px 12px" rounded no-caps unelevated>
+          <q-icon name="o_add" class="q-mr-xs" size="20px" />
           {{ $t("shared.labels.create") }}
         </q-btn>
-        <q-btn
-          class="bg-primary text-white text-caption"
-          padding="6px 12px"
-          rounded
-          no-caps
-          unelevated
-          @click="editProfile"
-        >
-          <q-icon name="o_edit" class="q-mr-xs" />
+        <q-btn class="bg-primary text-white text-body2 no-letter-spacing" padding="6px 12px" rounded no-caps unelevated
+          @click="editProfile">
+          <q-icon name="o_edit" class="q-mr-xs" size="20px" />
           {{ $t("shared.labels.edit") }}
         </q-btn>
-        <q-btn
-          class="bg-primary text-white text-caption"
-          padding="6px 12px"
-          rounded
-          no-caps
-          unelevated
-        >
-          <q-icon name="o_delete" class="q-mr-xs" />
+        <q-btn class="bg-primary text-white text-body2 no-letter-spacing" padding="6px 12px" rounded no-caps unelevated>
+          <q-icon name="o_delete" class="q-mr-xs" size="20px" />
           {{ $t("shared.labels.delete") }}
         </q-btn>
       </div>
     </q-toolbar>
   </q-page-sticky>
 
-  <div class="row q-gutter-md q-mt-xl">
-    <div class="col">
+  <q-page-sticky v-else class="z-1 bg-main q-py-sm" style="padding-left: 20px; padding-right: 20px;" position="top" expand>
+    <q-toolbar class="q-px-none row justify-between q-py-md">
+      <div class="row items-center q-gutter-md">
+        <q-avatar size="48px">
+          <img class="avatar" src="https://cdn.quasar.dev/img/avatar4.jpg" />
+        </q-avatar>
+        <div class="column q-mt-md">
+          <q-item-label class="text-body2 text-weight-700 no-letter-spacing">خشایار شمالی</q-item-label>
+          <q-item-label class="caption-on-dark text-body2 no-letter-spacing">توسعه دهنده وب</q-item-label>
+        </div>
+      </div>
+      <div class="row q-gutter-sm text-h6">
+        <q-btn round class="bg-primary text-white text-caption" no-caps unelevated>
+          <q-icon name="o_add" />
+        </q-btn>
+        <q-btn round class="bg-primary text-white text-caption" no-caps unelevated
+          @click="editProfile">
+          <q-icon name="o_edit" />
+        </q-btn>
+        <q-btn round class="bg-primary text-white text-caption" no-caps unelevated>
+          <q-icon name="o_delete" />
+        </q-btn>
+      </div>
+    </q-toolbar>
+  </q-page-sticky>
+
+  <div class="row q-col-gutter-md" :style="marginTop()">
+    <div class="col-md col-sm col-xs-12">
       <sales-widget />
     </div>
 
-    <div class="col">
+    <div class="col-md-8 col-sm-8 col-xs-12">
       <sales-widget />
-    </div>
-
-    <div class="col">
-      <sales-widget />
-    </div>
-
-    <div class="col">
-      <sales-widget />
-    </div>
-  </div>
-
-  <div class="row q-mt-lg q-gutter-x-md">
-    <div class="col">
-      <q-card class="info-box bordered">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-              ><span class="text-bold text-caption">18</span></q-badge
-            ><span class="text-bold text-caption text-on-dark-1">فاکتورها</span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            240,000,000<span class="text-body1 text-bold text-on-dark-1"
-              >ریال</span
-            >
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-
-    <div class="col">
-      <q-card class="info-box bordered">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark">
-              <span class="text-bold text-caption"> 0 </span>
-            </q-badge>
-            <span class="text-bold text-caption text-on-dark-1">
-              مانده حساب
-            </span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            0
-            <span class="text-body1 text-bold text-on-dark-1">ریال</span>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-
-    <div class="col">
-      <q-card class="info-box bordered">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark">
-              <span class="text-bold text-caption">4</span>
-            </q-badge>
-            <span class="text-bold text-caption text-on-dark-1">بدهکار</span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            2,000,000
-            <span class="text-body1 text-bold text-on-dark-1 q-gutter-xs">
-              ریال
-            </span>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-
-    <div class="col">
-      <q-card class="info-box bordered">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark">
-              <span class="text-bold text-caption">9</span>
-            </q-badge>
-            <span class="text-bold text-caption text-on-dark-1">بستانکار</span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            158,300,020
-            <span class="text-body1 text-bold text-on-dark-1"> ریال </span>
-          </div>
-        </q-card-section>
-      </q-card>
     </div>
   </div>
 
@@ -164,6 +81,15 @@ const editProfile = () => {
     component: EditProfile,
   });
 };
+
+const marginTop = () => {
+  return [
+    $q.screen.xs ? 'margin-top:64px' : '',
+    $q.screen.sm ? 'margin-top:64px' : '',
+    $q.screen.gt.sm ? 'margin-top:56px' : ''
+  ];
+};
+
 </script>
 
 <style lang="scss">

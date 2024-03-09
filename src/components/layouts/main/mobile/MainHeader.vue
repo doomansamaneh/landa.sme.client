@@ -24,11 +24,11 @@
           </div>
         </q-toolbar-title>
 
-        <div class="row items-center q-mr-sm">
+        <div class="row items-center q-mr-md">
           <fiscal-year />
         </div>
 
-        <div class="row items-center">
+        <div class="row items-center q-gutter-sm">
           <switch-theme />
           <notification />
         </div>
