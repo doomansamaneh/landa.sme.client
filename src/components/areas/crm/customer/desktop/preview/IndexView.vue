@@ -44,7 +44,7 @@
           <q-icon name="o_add" />
         </q-btn>
         <q-btn round class="bg-primary text-white text-caption" no-caps unelevated
-          @click="editProfile">
+          @click="mobileEditProfile">
           <q-icon name="o_edit" />
         </q-btn>
         <q-btn round class="bg-primary text-white text-caption" no-caps unelevated>
@@ -71,6 +71,7 @@
 import { useQuasar } from "quasar";
 
 import EditProfile from "components/areas/crm/customer/desktop/preview/EditProfileDialog.vue";
+import MobileEditProfile from "src/components/areas/crm/customer/mobile/preview/EditProfileDialog.vue";
 import SalesWidget from "components/areas/dashboard/widgets/SalesWidget.vue";
 import Tabs from "./_PreviewTabs.vue";
 
@@ -79,6 +80,12 @@ const $q = useQuasar();
 const editProfile = () => {
   $q.dialog({
     component: EditProfile,
+  });
+};
+
+const mobileEditProfile = () => {
+  $q.dialog({
+    component: MobileEditProfile,
   });
 };
 
