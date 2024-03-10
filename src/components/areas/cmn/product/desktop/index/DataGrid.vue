@@ -63,7 +63,7 @@
 
     <template #cell-actions="{ item }">
       <row-tool-bar
-        base-route="/cmn/product"
+        base-route="cmn/product"
         :item="item"
         :table-store="tableStore"
         :crud-store="crudStore"

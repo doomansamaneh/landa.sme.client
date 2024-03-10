@@ -1,25 +1,4 @@
 <template>
-  <tool-bar
-    :table-store="tableStore"
-    :crud-store="crudStore"
-    :title="title"
-    buttons
-    base-route="sls/invoice"
-  >
-    <template #buttons-batch-action>
-      <q-btn
-        class="bordered-btn_bg-dark text-caption"
-        rounded
-        unelevated
-        no-caps
-        @click="editBatch"
-      >
-        <q-icon name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.editBatch") }} ({{ selectedIds?.length }} rows)
-      </q-btn>
-    </template>
-  </tool-bar>
-
   <div>
     <advanced-search :grid-store="gridStore" @apply-search="reloadData" />
   </div>
@@ -61,12 +40,12 @@ import { sqlOperator, cancelStatus } from "src/constants";
 
 import InvoiceGrid from "components/areas/sls/invoice/desktop/index/_DataGrid.vue";
 import AdvancedSearch from "components/areas/sls/invoice/desktop/index/_AdvancedSearch.vue";
-import ToolBar from "components/shared/ToolBar.vue";
 
 const props = defineProps({
   gridStore: Object,
   title: String,
   dataSource: String,
+  crudStore: Object,
 });
 
 const invoiceTable = ref(null);
@@ -104,4 +83,8 @@ async function tabChanged(e) {
 async function reloadData() {
   await tableStore.value.reloadData();
 }
+
+defineExpose({
+  tableStore,
+});
 </script>

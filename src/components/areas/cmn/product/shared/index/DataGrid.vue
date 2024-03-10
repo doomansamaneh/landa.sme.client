@@ -89,7 +89,7 @@ const props = defineProps({
 
 const { t } = useI18n();
 
-const title = t("main-menu-items.Cmn_ProductGroup_View");
+const title = t("main-menu-items.Cmn_Product_View");
 const baseRoute = "cmn/product";
 
 const $q = useQuasar();
