@@ -48,7 +48,7 @@ const tabPanels = computed(() => {
 
   return isXs
     ? "no-border no-shadow"
-    : tab.value === "basic-info" || tab.value === "account"
+    : tab.value === "basic-info" || tab.value === "account" || tab.value === "invoice"
     ? $q.screen.gt.xs
       ? "no-border bg-main"
       : "no-border no-shadow"
