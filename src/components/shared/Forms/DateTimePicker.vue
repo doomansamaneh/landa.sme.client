@@ -16,7 +16,7 @@
         class="cursor-pointer"
       >
         <q-popup-proxy
-        class="q-mx-xl"
+        class="q-mx-xl border-radius-xl"
           cover
           transition-show="scale"
           transition-hide="scale"

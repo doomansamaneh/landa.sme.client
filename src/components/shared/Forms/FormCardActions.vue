@@ -10,6 +10,7 @@
         no-caps
         padding="8px 16px"
         rounded
+        class="primary-shadow"
       >
         <slot name="ok-label">
           {{ $t("shared.labels.save") }}

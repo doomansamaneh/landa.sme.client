@@ -11,5 +11,5 @@
 </template>
 
 <script setup>
-import EditProfile from "./EditProfile.vue";
+import EditProfile from "./editProfile/EditProfile.vue";
 </script>
