@@ -1,5 +1,5 @@
 <template>
-  <edit-profile />
+  <edit-profile/>
 </template>
 
 <script setup>
