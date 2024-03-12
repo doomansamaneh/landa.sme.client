@@ -19,12 +19,21 @@ export default {
       component: HomePage,
     },
     {
-      path: "/crm/customer",
-      component: () => import("pages/areas/crm/customer/IndexPage.vue"),
-    },
-    {
-      path: "/crm/customer/preview/:id",
-      component: () => import("pages/areas/crm/customer/PreviewPage.vue"),
+      path: "crm/customer",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/crm/customer/IndexPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () => import("pages/areas/crm/customer/PreviewPage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/crm/customer/EditProfile.vue"),
+        },
+      ],
     },
     // {
     //   path: "sls/quote",

@@ -15,8 +15,7 @@
           <q-icon name="o_add" class="q-mr-xs" size="20px" />
           {{ $t("shared.labels.create") }}
         </q-btn>
-        <q-btn class="bg-primary text-white text-body2 no-letter-spacing" padding="6px 12px" rounded no-caps unelevated
-          @click="editProfile">
+        <q-btn to="/crm/customer/edit/:id" class="bg-primary text-white text-body2 no-letter-spacing" padding="6px 12px" rounded no-caps unelevated>
           <q-icon name="o_edit" class="q-mr-xs" size="20px" />
           {{ $t("shared.labels.edit") }}
         </q-btn>
@@ -81,6 +80,7 @@ const editProfile = () => {
   $q.dialog({
     component: EditProfile,
   });
+
 };
 
 const mobileEditProfile = () => {

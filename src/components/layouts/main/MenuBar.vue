@@ -4,7 +4,7 @@
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
     side="left"
     bordered
-    :width="249"
+    :width="247"
     v-model="menuBarStore.state.visible.value"
     :breakpoint="400"
     :overlay="$q.screen.lt.md"
@@ -20,7 +20,7 @@
         rounded
         clearable
         clear-icon="o_close"
-        class="full-width text-caption"
+        class="full-width text-body2 no-letter-spacing"
       >
         <template v-slot:prepend>
           <q-icon
@@ -48,7 +48,7 @@
             color="primary"
             size="xs"
           ></q-icon>
-          <span class="text-sm">{{ $t("main-menu-items.dashboard") }}</span>
+          <span class="text-body2 no-letter-spacing">{{ $t("main-menu-items.dashboard") }}</span>
         </q-item>
         <div
           v-for="parentItem in menuBarStore.drawerMenuItems.value"
@@ -59,7 +59,7 @@
             group="menu"
             :label="parentItem.title"
             :icon="`o_${parentItem.icon}`"
-            class="text-sm"
+            class="text-body2 no-letter-spacing"
           >
             <q-item
               v-for="subItem in parentItem.subItems"
@@ -78,7 +78,7 @@
                 />
               </q-item-section>
               <q-item-section>
-                <span class="text-caption sub no-letter-spacing"> {{ subItem.title }} </span>
+                <span class="text-body2 sub no-letter-spacing"> {{ subItem.title }} </span>
               </q-item-section>
             </q-item>
           </q-expansion-item>
@@ -90,7 +90,7 @@
             color="orange"
             size="xs"
           ></q-icon>
-          <span class="text-sm">{{ $t("main-menu-items.settings") }}</span>
+          <span class="text-body2 no-letter-spacing">{{ $t("main-menu-items.settings") }}</span>
         </q-item>
       </q-list>
     </q-scroll-area>
