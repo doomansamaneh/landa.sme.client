@@ -31,12 +31,16 @@ export default {
     //   component: () => import("pages/areas/sls/quote/IndexPage.vue"),
     // },
     {
-      path: "sls/invoice",
+      path: "/sls/invoice",
       component: () => import("pages/areas/sls/invoice/IndexPage.vue"),
     },
     {
-      path: "sls/invoice/remained/:remained",
+      path: "/sls/invoice/remained/:remained",
       component: () => import("pages/areas/sls/invoice/IndexRemainedPage.vue"),
+    },
+    {
+      path: "/sls/invoice/preview/:id",
+      component: () => import("pages/areas/sls/invoice/PreviewPage1.vue"),
     },
     {
       path: "/scr/users/settings",
@@ -63,15 +67,15 @@ export default {
       ],
     },
     {
-      path: "cmn/productGroup",
+      path: "/cmn/productGroup",
       component: () => import("src/pages/areas/cmn/productGroup/IndexPage.vue"),
     },
     {
-      path: "cmn/product",
+      path: "/cmn/product",
       component: () => import("src/pages/areas/cmn/product/IndexPage.vue"),
     },
     {
-      path: "cmn/product/preview/:id",
+      path: "/cmn/product/preview/:id",
       component: () => import("src/pages/areas/cmn/product/PreviewPage.vue"),
     },
   ],

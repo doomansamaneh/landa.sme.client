@@ -215,7 +215,6 @@ const route = useRoute();
 const router = useRouter();
 const formStore = useProductModel();
 
-const test = 900000;
 onMounted(() => {
   formStore.crudStore.getById(route.params.id);
 });
@@ -223,8 +222,8 @@ onMounted(() => {
 async function submitForm() {
   await form.value.validate().then(async (success) => {
     if (success) {
-      const response = await formStore.crudStore.createOrEdit(props.action);
-      if (response?.data?.code === 200) router.back();
+      const responseData = await formStore.crudStore.createOrEdit(props.action);
+      if (responseData?.code === 200) router.back();
     } else {
       //todo: how to show validation message to user
       alert("validation error");

@@ -122,7 +122,7 @@ import { helper } from "src/helpers";
 
 import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";
 import CustomSelect from "components/shared/forms/CustomSelect.vue";
-import InvoicePreview from "components/areas/sls/invoice/shared/detail/InvoicePreview.vue";
+import InvoicePreview from "components/areas/sls/invoice/shared/preview/IndexView.vue";
 
 const props = defineProps({
   dataSource: String,

@@ -309,7 +309,11 @@
         </q-card-section>
       </template>
       <template #row-actions="{ item }">
-        <q-btn unelevated class="text-on-dark">
+        <q-btn
+          unelevated
+          class="text-on-dark"
+          :to="`/sls/invoice/preview/${item.id}`"
+        >
           <span class="text-body3 text-bold">مشاهده جزئیات</span>
         </q-btn>
 

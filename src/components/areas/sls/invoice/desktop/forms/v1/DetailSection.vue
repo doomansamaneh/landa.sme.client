@@ -85,7 +85,12 @@
             size="sm"
             icon="o_more_horiz"
           >
-            <q-menu :offset="[0, 20]" fit class="border-radius-xl" style="width: 150px">
+            <q-menu
+              :offset="[0, 20]"
+              fit
+              class="border-radius-xl"
+              style="width: 150px"
+            >
               <q-list dense padding>
                 <q-item
                   clickable
@@ -163,7 +168,7 @@
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>
         <div>
-          {{ formStore.totalPrice.value.toLocaleString() }}
+          {{ formStore.totalNetPrice.value.toLocaleString() }}
           <span class="text-caption"> ریال</span>
         </div>
       </div>
@@ -187,7 +192,12 @@
               ایجاد تخفیف
             </q-tooltip>
 
-            <q-menu class="border-radius-xl" anchor="bottom right" self="bottom left" :offset="[10, 8]">
+            <q-menu
+              class="border-radius-xl"
+              anchor="bottom right"
+              self="bottom left"
+              :offset="[10, 8]"
+            >
               <q-card>
                 <q-card-section>
                   <q-input outlined dense v-model="generalDiscountValue">
@@ -243,7 +253,7 @@
       <div class="row q-mr-md">
         <div class="col text-bold">مبلغ کل</div>
         <div>
-          <strong>{{ formStore.totalAmount.value.toLocaleString() }}</strong>
+          <strong>{{ formStore.totalPrice.value.toLocaleString() }}</strong>
           <span class="text-caption"> ریال</span>
         </div>
       </div>

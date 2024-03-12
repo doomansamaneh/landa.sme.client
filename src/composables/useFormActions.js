@@ -14,12 +14,14 @@ export function useFormActions(baseURL, model) {
   async function getById(id) {
     if (id) {
       const response = await fetchWrapper.get(`${baseURL}/getById/${id}`);
-      model.value = response.data.data;
-      model.value.recordVersion = BigInt(
-        response.data.data.recordVersion
-      ).toString();
+      const responseData = response.data.data;
+      model.value = responseData;
+      model.value.recordVersion = BigInt(responseData.recordVersion).toString();
+
       await resetIsDirty();
+      return responseData;
     }
+    return null;
   }
 
   async function createOrEdit(action) {
@@ -31,7 +33,7 @@ export function useFormActions(baseURL, model) {
     notifyResponse(response.data);
     model.value.id = response.data.data.id;
     await resetIsDirty();
-    return response;
+    return response.data;
   }
 
   async function resetIsDirty() {

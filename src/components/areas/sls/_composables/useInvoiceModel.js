@@ -1,10 +1,15 @@
 import { ref, computed, watch } from "vue";
+import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
 import "src/helpers/extensions";
+import { useQuasar } from "quasar";
+//import { useI18n } from "vue-i18n";
+import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
 export function useInvoiceModel() {
   const dateTime = new Date();
+  const $q = useQuasar();
 
   const defaultItem = {
     quantity: 1,
@@ -57,14 +62,26 @@ export function useInvoiceModel() {
 
   const crudStore = useFormActions("sls/invoice", model);
 
-  watch(model.value.invoiceItems, async () => {
-    model.value.invoiceItems.forEach((item) => {
-      const total = item.quantity * item.price;
-      item.totalPrice = total;
-      item.vatAmount = (total * item.vatPercent) / 100;
-      item.totalAmount = total + item.vatAmount - item.discount;
-    });
-  });
+  async function getById(id) {
+    var responseData = await crudStore.getById(id);
+    if (responseData) addWatch();
+  }
+
+  function addWatch() {
+    watch(
+      model.value.invoiceItems,
+      async () => {
+        model.value.invoiceItems.forEach((item) => {
+          const total = item.quantity * item.price - item.discount;
+          item.vatAmount = (total * item.vatPercent) / 100;
+          item.totalPrice = total + item.vatAmount;
+        });
+      },
+      { deep: true }
+    );
+  }
+
+  addWatch();
 
   const applyDiscountAmount = (discount) => {
     const total = Math.max(totalPrice.value, 1);
@@ -103,9 +120,35 @@ export function useInvoiceModel() {
   const totalVat = computed(() =>
     helper.getSubtotal(model.value.invoiceItems, "vatAmount")
   );
-  const totalAmount = computed(
-    () => totalPrice.value + totalVat.value - totalDiscount.value
+  const totalNetPrice = computed(
+    () => totalPrice.value + totalDiscount.value - totalVat.value
   );
+
+  async function submitForm(form, action) {
+    await form.value.validate().then(async (success) => {
+      if (success) {
+        const responseData = await crudStore.createOrEdit(action);
+        if (responseData?.code === 200) {
+          $q.dialog({
+            component: ResponseDialog,
+            componentProps: {
+              responseData: responseData.data,
+              //title: t("shared.labels.deleteConfirm"),
+              //message: `${t("shared.labels.deleteMessage")}.`,
+              // ok: t("shared.labels.delete"),
+              // okColor: "deep-orange-7",
+            },
+          }).onOk(async () => {
+            const router = useRouter();
+            router.back();
+          });
+        }
+      } else {
+        //todo: how to show validation message to user
+        alert("validation error");
+      }
+    });
+  }
 
   return {
     model,
@@ -114,11 +157,13 @@ export function useInvoiceModel() {
     totalPrice,
     totalDiscount,
     totalVat,
-    totalAmount,
+    totalNetPrice,
 
+    getById,
     addNewRow,
     deleteRow,
     applyDiscountAmount,
     applyDiscountPercent,
+    submitForm,
   };
 }

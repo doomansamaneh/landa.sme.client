@@ -16,7 +16,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
@@ -30,22 +30,13 @@ const props = defineProps({
 
 const form = ref(null);
 const route = useRoute();
-const router = useRouter();
 const formStore = useInvoiceModel();
 
 onMounted(() => {
-  formStore.crudStore.getById(route.params.id);
+  formStore.getById(route.params.id);
 });
 
-async function submitForm() {
-  await form.value.validate().then(async (success) => {
-    if (success) {
-      const response = await formStore.crudStore.createOrEdit(props.action);
-      if (response?.data?.code === 200) router.back();
-    } else {
-      //todo: how to show validation message to user
-      alert("validation error");
-    }
-  });
+function submitForm() {
+  formStore.submitForm(form, props.action);
 }
 </script>
