@@ -70,11 +70,15 @@
 
   .normal {
     .q-item {
-      border-radius: 0 !important;
+      border-radius: 4px !important;
     }
   }
 
   .q-item__label--caption {
     color: $grey-7;
+  }
+
+  .q-item {
+    border-radius: 4px !important;
   }
 }

@@ -43,6 +43,7 @@
             clickable
             v-ripple
             :to="`/sls/invoice/preview/${responseData.id}`"
+            class="normal"
           >
             <q-item-section avatar top>
               <q-avatar icon="print" color="primary" text-color="white" />
@@ -54,7 +55,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item class="normal" clickable v-ripple>
             <q-item-section avatar top>
               <q-avatar icon="payment" color="orange" text-color="white" />
             </q-item-section>
@@ -65,7 +66,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item clickable v-ripple class="normal">
             <q-item-section avatar top>
               <q-avatar icon="mail" color="teal" text-color="white" />
             </q-item-section>
@@ -79,7 +80,7 @@
           </q-item>
           <q-separator class="q-my-sm" />
 
-          <q-item clickable v-ripple>
+          <q-item class="normal" clickable v-ripple>
             <q-item-section avatar top>
               <q-avatar icon="assignment" color="grey" text-color="white" />
             </q-item-section>
