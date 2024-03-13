@@ -10,7 +10,7 @@
           <master-section />
 
           <q-tabs v-model="tab"
-            class="border-radius-xl bg-primary text-white text-weight-700 text-body2 no-letter-spacing q-mt-xl q-mx-lg"
+            class="border-radius-xl bg-primary text-white text-weight-700 text-body2 no-letter-spacing q-mt-xl"
             indicator-color="white" align="start" inline-label narrow-indicator>
             <q-tab name="personal-info" label="اطلاعات شخصی" icon="o_accessibility" />
             <q-tab name="business-info" label="اطلاعات کسب و کار" icon="o_business" />
@@ -18,7 +18,7 @@
             <q-tab name="contact-info" label="تماس" icon="o_headset_mic" />
           </q-tabs>
 
-          <q-tab-panels class="no-border no-shadow border-radius-lg q-mt-lg q-mx-lg" v-model="tab" animated>
+          <q-tab-panels class="no-border no-shadow border-radius-lg q-mt-lg" v-model="tab" animated>
             <q-tab-panel class="no-padding" name="personal-info">
               <personal-info />
             </q-tab-panel>
