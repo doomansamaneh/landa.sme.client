@@ -71,13 +71,13 @@
 
   <template v-else>
 
-    <div class="row q-col-gutter-md">
-      <div class="col">
+    <div class="row q-col-gutter-lg">
+      <div class="col-md col-sm col-xs-12">
         <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">نوع تماس</q-item-label>
         <q-select dropdown-icon="o_expand_more" v-model="select" :options="options" outlined dense />
       </div>
 
-      <div class="col">
+      <div class="col-md col-sm col-xs-12">
         <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm">مقدار</q-item-label>
         <custom-input outlined dense />
       </div>
