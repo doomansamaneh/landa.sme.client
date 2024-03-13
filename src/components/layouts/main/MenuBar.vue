@@ -39,16 +39,15 @@
     >
       <q-list class="menu-list">
         <q-item
-          class="first-item flex items-center cursor-pointer q-mr-md"
+          class="first-item flex text-body2 no-lette-spacing items-center cursor-pointer q-mr-md"
           to="/dashboard"
         >
           <q-icon
             name="o_dashboard"
             class="settings q-mr-sm"
-            color="primary"
             size="xs"
           ></q-icon>
-          <span class="text-body2 no-letter-spacing">{{ $t("main-menu-items.dashboard") }}</span>
+          {{ $t("main-menu-items.dashboard") }}
         </q-item>
         <div
           v-for="parentItem in menuBarStore.drawerMenuItems.value"
@@ -83,14 +82,13 @@
             </q-item>
           </q-expansion-item>
         </div>
-        <q-item class="last-item flex items-center cursor-pointer">
+        <q-item class="last-item flex text-body2 no-letter-spacing items-center cursor-pointer">
           <q-icon
             name="o_settings"
             class="settings q-mr-sm"
-            color="orange"
             size="xs"
-          ></q-icon>
-          <span class="text-body2 no-letter-spacing">{{ $t("main-menu-items.settings") }}</span>
+          />
+          {{ $t("main-menu-items.settings") }}
         </q-item>
       </q-list>
     </q-scroll-area>

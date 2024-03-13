@@ -66,15 +66,15 @@ const themes = {
   },
   orange: {
     primary: '#ff6600',
-    name: 'نارنجی'
+    name: 'نارنجی تابستانی'
   },
   purple: {
     primary: '#c729df',
-    name: 'لوکس'
+    name: 'بنفش ساسانی'
   },
   red: {
     primary: '#dc143c',
-    name: 'قرمز'
+    name: 'رز آمریکایی'
   },
 };
 

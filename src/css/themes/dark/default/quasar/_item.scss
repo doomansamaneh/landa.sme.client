@@ -2,8 +2,8 @@
   .menu-bar .q-item.q-router-link--active {
     background-color: #{$primary}20;
     border-radius: 8px;
-    border-left: 4px solid $primary;
-    color: $primary;
+    border-left: 4px solid $yellow;
+    color: $yellow;
     margin-left: 16px;
     font-weight: 700;
 
@@ -12,7 +12,7 @@
     }
 
     .q-icon {
-      color: $primary;
+      color: $yellow;
     }
   }
 
@@ -23,6 +23,10 @@
 
   .menu-bar .first-item.q-item.q-router-link--active {
     margin-bottom: 8px;
+
+    .q-icon {
+      color: $yellow
+    }
   }
 
   .menu-bar .last-item.q-item.q-router-link--active {
@@ -31,11 +35,11 @@
 
   .q-expansion-item--expanded {
     .q-item__label {
-      color: $primary;
+      color: $yellow;
     }
 
     .q-item__section--avatar {
-        color: $primary;
+        color: $yellow;
     }
   }
 
