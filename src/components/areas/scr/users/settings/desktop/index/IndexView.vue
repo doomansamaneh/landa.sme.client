@@ -5,7 +5,7 @@
         <div class="text-h6 text-weight-700 no-letter-spacing q-mb-md">تنظیمات</div>
         <q-card class="bordered" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']">
           <q-card-section class="no-padding">
-            <q-item class="q-py-md" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable>
+            <q-item class="top-radius-xl q-py-md" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable>
               <q-item-section class="q-mr-sm" top avatar :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
                 <q-avatar size="56px">
                   <img src="https://cdn.quasar.dev/img/boy-avatar.png">
@@ -44,7 +44,7 @@
 
             <q-separator />
 
-            <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable
+            <q-item class="bottom-radius-xl q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable
               to="/scr/users/settings/change-password">
 
               <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
@@ -66,7 +66,7 @@
       <q-card class="q-mt-xl bordered" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']">
         <q-card-section class="no-padding">
 
-          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/business">
+          <q-item class="top-radius-xl q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/business">
 
             <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
               <q-item-label class="text-on-dark text-body2 no-letter-spacing">کسب و کارهای من</q-item-label>
@@ -82,7 +82,7 @@
 
           <q-separator size="0.5px" />
 
-          <q-item class="q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/account/login">
+          <q-item class="bottom-radius-xl q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/account/login">
 
             <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
               <q-item-label class="text-on-dark text-body2 no-letter-spacing">خروج از حساب</q-item-label>
