@@ -7,9 +7,9 @@
       <img style="width: 72px" src="/landa-sme-logo.png" alt="landa-sme" />
     </div>
     <div class="col-md col-sm-5 col-xs-12 items-center justify-center">
-      <span class="text-subtitle1 text-bold">
+      <div class="row items-center justify-center text-subtitle1 text-bold">
         {{ $t("page.payment-detail.invoice-label") }}
-      </span>
+      </div>
     </div>
     <div
       class="col-md col-sm col-xs-12 row items-center"
@@ -37,11 +37,11 @@
     </div>
   </div>
 
-  <q-markup-table separator="cell" flat bordered dense>
+  <q-markup-table class="preview-invoice-table" separator="cell" flat bordered dense>
     <tbody>
-      <tr class="bg-grey-3 text-center">
+      <tr class="bg-on-dark text-center">
         <td colspan="4">
-          <h6>فروشنده</h6>
+          <div class="header text-body1 no-letter-spacing text-weight-700">فروشنده</div>
         </td>
       </tr>
       <tr>
@@ -62,11 +62,11 @@
     </tbody>
   </q-markup-table>
 
-  <q-markup-table separator="cell" flat bordered dense>
+  <q-markup-table class="preview-invoice-table" separator="cell" flat bordered dense>
     <tbody>
-      <tr class="bg-grey-3 text-center">
+      <tr class="bg-on-dark text-center">
         <td colspan="4">
-          <h6>خریدار</h6>
+          <div class="header text-body1 no-letter-spacing text-weight-700">خریدار</div>
         </td>
       </tr>
       <tr>
@@ -98,7 +98,17 @@ const props = defineProps({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
+.preview-invoice-table .header {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+.preview-invoice-table td {
+  padding: 8px !important;
+}
+
 .sme-logo {
   width: 72px;
 }

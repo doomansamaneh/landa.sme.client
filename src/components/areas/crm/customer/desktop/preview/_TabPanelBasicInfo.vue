@@ -124,7 +124,7 @@
                       <span>{{ item.value }}</span>
                     </div>
                   </div>
-                  <div class="col-2 row justify-end items-center">
+                  <div class="col-4 row justify-end items-center">
                     <div class="row items-center">
                       <q-btn unelevated round class="text-on-dark" @click="editData">
                       <q-icon name="o_edit" size="20px" />

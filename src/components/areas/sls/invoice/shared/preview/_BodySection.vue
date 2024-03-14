@@ -1,9 +1,9 @@
 <template>
-  <q-markup-table flat bordered dense separator="cell">
+  <q-markup-table class="preview-invoice-table" flat bordered dense separator="cell">
     <thead>
-      <tr class="bg-grey-3">
+      <tr class="bg-on-dark q-py-xl">
         <th colspan="100%">
-          <h6>مشخصات کالا یا خدمات مورد معامله</h6>
+          <div class="text-body1 no-letter-spacing text-weight-700">مشخصات کالا یا خدمات مورد معامله</div>
         </th>
       </tr>
     </thead>
@@ -80,3 +80,12 @@ const props = defineProps({
   model: Object,
 });
 </script>
+
+<style>
+
+.preview-invoice-table th {
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+
+</style>
