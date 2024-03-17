@@ -14,12 +14,9 @@ export function useFormActions(baseURL, model) {
   async function getById(id) {
     if (id) {
       const response = await fetchWrapper.get(`${baseURL}/getById/${id}`);
-      const responseData = response.data.data;
-      model.value = responseData;
-      model.value.recordVersion = BigInt(responseData.recordVersion).toString();
-
+      model.value = response.data.data;
       await resetIsDirty();
-      return responseData;
+      return model.value;
     }
     return null;
   }
@@ -32,8 +29,15 @@ export function useFormActions(baseURL, model) {
     );
     notifyResponse(response.data);
     model.value.id = response.data.data.id;
+    model.value.recordVersion = getValidRecordVersion(
+      response.data.data.recordVersion
+    );
     await resetIsDirty();
     return response.data;
+  }
+
+  function getValidRecordVersion(recordVersion) {
+    return BigInt(recordVersion).toString();
   }
 
   async function resetIsDirty() {

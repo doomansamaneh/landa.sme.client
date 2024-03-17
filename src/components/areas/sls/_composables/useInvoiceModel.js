@@ -10,6 +10,7 @@ import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/Respon
 export function useInvoiceModel() {
   const dateTime = new Date();
   const $q = useQuasar();
+  const router = useRouter();
 
   const defaultItem = {
     quantity: 1,
@@ -139,7 +140,6 @@ export function useInvoiceModel() {
               // okColor: "deep-orange-7",
             },
           }).onOk(async () => {
-            const router = useRouter();
             router.back();
           });
         }

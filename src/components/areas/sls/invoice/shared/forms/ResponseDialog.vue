@@ -8,7 +8,7 @@
   >
     <q-card class="q-dialog-plugin">
       <q-card-section class="row items-center q-pa-md">
-        <div class="text-h5 text-weight-700">نتیجه تراکنش</div>
+        <div class="text-h5 text-weight-700">نتیجه عملیات</div>
         <!-- <q-space />
         <q-btn
           icon="close"
@@ -104,6 +104,7 @@
           no-caps
           padding="8px 16px"
           :label="ok ?? $t('shared.labels.ok')"
+          icon="check"
           @click="onOKClick"
         />
       </q-card-actions>

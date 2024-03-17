@@ -41,7 +41,7 @@
           />
         </div>
         <div style="width: 7%">
-          <custom-input v-model="row.quantity" placeholder="مقدار" />
+          <custom-input-number v-model="row.quantity" placeholder="مقدار" />
         </div>
         <div style="width: 10%">
           <product-unit-lookup
@@ -51,7 +51,7 @@
           />
         </div>
         <div style="width: 10%">
-          <custom-input v-model="row.price" placeholder="مبلغ" />
+          <custom-input-number v-model="row.price" placeholder="مبلغ" />
         </div>
         <div style="width: 15%">
           <vat-lookup
@@ -63,7 +63,10 @@
           />
         </div>
         <div style="width: 10%">
-          <custom-input v-model="row.vatAmount" placeholder="مبلغ مالیات" />
+          <custom-input-number
+            v-model="row.vatAmount"
+            placeholder="مبلغ مالیات"
+          />
         </div>
         <div class="col row items-center justify-end">
           {{ row.totalPrice?.toLocaleString() }}
@@ -200,7 +203,11 @@
             >
               <q-card>
                 <q-card-section>
-                  <q-input outlined dense v-model="generalDiscountValue">
+                  <custom-input-number
+                    outlined
+                    dense
+                    v-model="generalDiscountValue"
+                  >
                     <template #append>
                       <q-btn
                         size="xs"
@@ -212,7 +219,7 @@
                         @click="discountVisible = !discountVisible"
                       />
                     </template>
-                  </q-input>
+                  </custom-input-number>
                 </q-card-section>
 
                 <q-card-actions class="dark-1 q-px-md">
@@ -266,11 +273,13 @@
 <script setup>
 import { ref, computed } from "vue";
 
+import { sqlOperator } from "src/constants";
+
 import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
 import VatLookup from "src/components/shared/lookups/VatLookup.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import { sqlOperator } from "src/constants";
+import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
 const props = defineProps({
   formStore: Object,
