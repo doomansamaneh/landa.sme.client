@@ -98,18 +98,28 @@ export function useInvoiceModel() {
     });
   };
 
-  const addNewRow = (index, row) => {
+  const addNewRow = (index, currentRow) => {
     const newRow = { ...defaultItem };
-    newRow.vatId = row.vatId;
-    newRow.vatTitle = row.vatTitle;
-    newRow.vatPercent = row.vatPercent;
+    newRow.vatId = currentRow.vatId;
+    newRow.vatTitle = currentRow.vatTitle;
+    newRow.vatPercent = currentRow.vatPercent;
     model.value.invoiceItems.splice(index + 1, 0, newRow);
+  };
+
+  const pushNewRow = () => {
+    const newRow = { ...defaultItem };
+    model.value.invoiceItems.push(newRow);
+    return newRow;
   };
 
   const deleteRow = (index) => {
     if (model.value.invoiceItems.length > 1)
       model.value.invoiceItems.splice(index, 1);
     else model.value.invoiceItems[0] = { ...defaultItem };
+  };
+
+  const removeRow = (index) => {
+    model.value.invoiceItems.splice(index, 1);
   };
 
   const totalPrice = computed(() =>
@@ -152,6 +162,7 @@ export function useInvoiceModel() {
 
   return {
     model,
+    defaultItem,
     editBatchModel,
     crudStore,
     totalPrice,
@@ -161,7 +172,9 @@ export function useInvoiceModel() {
 
     getById,
     addNewRow,
+    pushNewRow,
     deleteRow,
+    removeRow,
     applyDiscountAmount,
     applyDiscountPercent,
     submitForm,

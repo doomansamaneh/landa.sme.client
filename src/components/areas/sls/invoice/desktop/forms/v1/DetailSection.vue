@@ -154,7 +154,7 @@
                 color="primary"
                 round
                 outline
-                @click="discountIsCash = !discountIsCash"
+                @click="toggleDiscountType"
               />
             </template>
           </q-input>
@@ -165,116 +165,15 @@
 
   <q-separator class="q-mt-md" />
 
-  <div class="clear-fix row q-my-xl">
-    <div class="col-8"></div>
-    <div class="col-3 q-gutter-y-md">
-      <div class="row q-mr-md">
-        <div class="col">مبلغ</div>
-        <div>
-          {{ formStore.totalNetPrice.value.toLocaleString() }}
-          <span class="text-caption"> ریال</span>
-        </div>
-      </div>
-
-      <div class="row q-mr-md">
-        <div class="col row q-gutter-sm items-center">
-          <q-btn
-            outline
-            round
-            icon="o_add"
-            size="xs"
-            @click="generalDiscount = true"
-          >
-            <q-tooltip
-              anchor="center left"
-              self="center right"
-              :offset="[10, 10]"
-              class="text-body2 q-px-sm custom-tooltip"
-              :delay="600"
-            >
-              ایجاد تخفیف
-            </q-tooltip>
-
-            <q-menu
-              class="border-radius-xl"
-              anchor="bottom right"
-              self="bottom left"
-              :offset="[10, 8]"
-            >
-              <q-card>
-                <q-card-section>
-                  <custom-input-number
-                    outlined
-                    dense
-                    v-model="generalDiscountValue"
-                  >
-                    <template #append>
-                      <q-btn
-                        size="xs"
-                        :icon="discountVisible ? 'attach_money' : 'o_percent'"
-                        class="cursor-pointer"
-                        color="primary"
-                        round
-                        outline
-                        @click="discountVisible = !discountVisible"
-                      />
-                    </template>
-                  </custom-input-number>
-                </q-card-section>
-
-                <q-card-actions class="dark-1 q-px-md">
-                  <q-btn
-                    @click="confirmGeneralDiscount"
-                    padding="4px 12px"
-                    unelevated
-                    class="bg-primary text-white"
-                  >
-                    تایید
-                  </q-btn>
-                  <q-btn padding="4px 12px" unelevated>انصراف</q-btn>
-                </q-card-actions>
-              </q-card>
-            </q-menu>
-          </q-btn>
-
-          <span>تخفیف</span>
-        </div>
-        <div>
-          <span class="text-red">
-            ({{ formStore.totalDiscount.value.toLocaleString() }})
-          </span>
-          <span class="text-red text-caption"> ریال</span>
-        </div>
-      </div>
-
-      <div class="row q-mr-md">
-        <div class="col">ارزش افزوده</div>
-        <div>
-          {{ formStore.totalVat.value.toLocaleString() }}
-          <span class="text-caption"> ریال</span>
-        </div>
-      </div>
-
-      <q-separator />
-
-      <div class="row q-mr-md">
-        <div class="col text-bold">مبلغ کل</div>
-        <div>
-          <strong>{{ formStore.totalPrice.value.toLocaleString() }}</strong>
-          <span class="text-caption"> ریال</span>
-        </div>
-      </div>
-
-      <q-separator color="primary" size="1.5px" />
-    </div>
-  </div>
+  <footer :form-store="formStore" />
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 import { sqlOperator } from "src/constants";
 
+import Footer from "./FooterSection.vue";
 import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
 import VatLookup from "src/components/shared/lookups/VatLookup.vue";
@@ -294,7 +193,7 @@ const productFilter = [
 ];
 
 const discountIsCash = ref(true);
-const discountVisible = ref(true);
+const discountVisible = ref(false);
 const generalDiscountValue = ref(0);
 
 const vatChanged = (vat, row) => {
@@ -307,9 +206,14 @@ const productChanged = (product, row) => {
   row.productUnitTitle = product?.productUnitTitle ?? null;
 };
 
+const toggleDiscountType = () => {
+  discountIsCash.value = !discountIsCash.value;
+};
+
 const confirmGeneralDiscount = () => {
   if (discountIsCash.value)
     props.formStore.applyDiscountAmount(generalDiscountValue.value);
   else props.formStore.applyDiscountPercent(generalDiscountValue.value);
+  discountVisible.value = false;
 };
 </script>

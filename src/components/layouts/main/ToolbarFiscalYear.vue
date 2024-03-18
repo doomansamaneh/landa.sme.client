@@ -20,15 +20,10 @@
     <span v-else class="text-body2 no-letter-spacing">
       {{ `${fiscalYearStore.currentYear.value?.title}` }}
     </span>
-  </q-btn>
 
-  <div>
     <q-menu
-      v-model="showMenu"
       class="bordered border-radius-xl"
       style="width: 400px"
-      persistent
-      auto-close
       transition-show="jump-down"
       transition-hide="jump-up"
       :offset="$q.screen.gt.sm ? [0, 20] : [0, 10]"
@@ -66,52 +61,64 @@
             {{ year.Title }}
           </q-btn>
         </div>
+        <div class="q-gutter-sm q-px-lg q-pb-lg">
+          <q-btn
+            unelevated
+            round
+            dense
+            size="12px"
+            color="primary"
+            text-color="white"
+            icon="o_refresh"
+            @click="reloadData"
+          >
+            <q-tooltip class="custom-tooltip" :delay="600">
+              {{ $t("shared.labels.refresh") }}
+            </q-tooltip>
+          </q-btn>
 
-        <div
-          v-if="tableStore.pagination.value.totalPages > 1"
-          class="q-gutter-sm q-px-lg q-pb-lg"
-        >
-          <q-btn
-            :disable="tableStore.pagination.value.currentPage <= 1"
-            unelevated
-            round
-            dense
-            size="12px"
-            color="primary"
-            text-color="white"
-            icon="chevron_right"
-            @click="previous($event)"
-          >
-            <q-tooltip class="custom-tooltip" :delay="600">
-              {{ $t("shared.labels.next") }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn
-            :disable="
-              tableStore.pagination.value.currentPage >=
-              tableStore.pagination.value.totalPages
-            "
-            unelevated
-            round
-            dense
-            size="12px"
-            color="primary"
-            text-color="white"
-            icon="chevron_left"
-            @click="next($event)"
-          >
-            <q-tooltip class="custom-tooltip" :delay="600">
-              {{ $t("shared.labels.previous") }}
-            </q-tooltip>
-          </q-btn>
+          <template v-if="tableStore.pagination.value.totalPages > 1">
+            <q-btn
+              :disable="tableStore.pagination.value.currentPage <= 1"
+              unelevated
+              round
+              dense
+              size="12px"
+              color="primary"
+              text-color="white"
+              icon="chevron_right"
+              @click="previous($event)"
+            >
+              <q-tooltip class="custom-tooltip" :delay="600">
+                {{ $t("shared.labels.next") }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn
+              :disable="
+                tableStore.pagination.value.currentPage >=
+                tableStore.pagination.value.totalPages
+              "
+              unelevated
+              round
+              dense
+              size="12px"
+              color="primary"
+              text-color="white"
+              icon="chevron_left"
+              @click="next($event)"
+            >
+              <q-tooltip class="custom-tooltip" :delay="600">
+                {{ $t("shared.labels.previous") }}
+              </q-tooltip>
+            </q-btn>
+          </template>
         </div>
       </div>
     </q-menu>
-  </div>
+  </q-btn>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
 import { useDataTable } from "src/composables/useDataTable";
 import { useFiscalYear } from "src/components/areas/acc/_composables/useFiscalYear";
 
@@ -122,8 +129,6 @@ const tableStore = useDataTable(
   fiscalYearStore
 );
 
-const showMenu = ref(false);
-
 const activeYearStyle = (year) => {
   if (fiscalYearStore.currentYear.value?.id === year.id) {
     return "bg-primary text-white";
@@ -132,12 +137,7 @@ const activeYearStyle = (year) => {
 };
 
 function toggleMenu() {
-  if (showMenu.value) {
-    showMenu.value = false;
-  } else {
-    showMenu.value = true;
-    tableStore.loadData();
-  }
+  tableStore.loadData();
 }
 
 async function reloadData() {

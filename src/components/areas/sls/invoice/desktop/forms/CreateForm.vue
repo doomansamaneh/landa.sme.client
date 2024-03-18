@@ -2,14 +2,15 @@
   <tool-bar :title="title" :submit-call-back="submitForm"> </tool-bar>
   <div class="form-container">
     <q-form ref="form" autofocus>
-      <q-card>
-        <q-card-section>
-          <master-section :form-store="formStore" />
-        </q-card-section>
-        <q-card-section>
-          <detail-section :form-store="formStore" />
-        </q-card-section>
-      </q-card>
+      <!-- <q-card>
+        <q-card-section> </q-card-section>
+      </q-card> -->
+      <!-- <q-card-section>
+      </q-card-section> -->
+      <master-section :form-store="formStore" />
+      <div class="q-mt-md">
+        <detail-section :form-store="formStore" />
+      </div>
     </q-form>
   </div>
 </template>
@@ -21,7 +22,7 @@ import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoic
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
 import MasterSection from "./v1/MasterSection.vue";
-import DetailSection from "./v1/DetailSection.vue";
+import DetailSection from "./v1/DetailSectionTable.vue";
 
 const props = defineProps({
   action: String,
