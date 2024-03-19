@@ -1,7 +1,7 @@
 <template>
   <div class="row q-mt-xl">
-    <div class="col-8"></div>
-    <div class="col-3 q-gutter-y-md">
+    <div class="col-md-8 col-sm-12 col-xs-12"></div>
+    <div class="col-md-3 col-sm-12 col-xs-12 q-gutter-y-md">
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>
         <div>

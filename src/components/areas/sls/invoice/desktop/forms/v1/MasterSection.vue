@@ -1,57 +1,57 @@
 <template>
-  <div class="row justify-between">
-    <div class="col-6">
-      <div class="row q-gutter-md">
-        <div class="col">
-          <div class="q-gutter-md">
-            <div>
-              <q-item-label caption class="q-mb-sm"> مشتری </q-item-label>
-              <customer-lookup
-                v-model:selectedId="localFormStore.model.value.customerId"
-                v-model:selectedText="localFormStore.model.value.customerName"
-              />
-            </div>
-            <div>
-              <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
-              <contract-lookup
-                v-model:selectedId="localFormStore.model.value.contractId"
-                v-model:selectedText="localFormStore.model.value.contractTitle"
-              />
-            </div>
-          </div>
+  <div class="row q-col-gutter-md">
+    <div class="col-md-8 col-sm-12 col-xs-12 q-gutter-y-md">
+      <div class="row q-col-gutter-x-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
+          <customer-lookup
+            v-model:selectedId="localFormStore.model.value.customerId"
+            v-model:selectedText="localFormStore.model.value.customerName"
+          />
         </div>
-        <div class="col">
-          <div class="q-gutter-md">
-            <div>
-              <q-item-label caption class="q-mb-sm">بازایاب</q-item-label>
-              <customer-lookup
-                v-model:selectedId="localFormStore.model.value.contactId"
-                v-model:selectedText="localFormStore.model.value.contactName"
-              />
-            </div>
-            <div>
-              <q-item-label caption class="q-mb-sm">نوع فروش</q-item-label>
-              <sale-type-lookup
-                v-model:selectedId="localFormStore.model.value.typeId"
-                v-model:selectedText="localFormStore.model.value.typeTitle"
-                :filterExpression="filterExpression"
-              />
-            </div>
-          </div>
+
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">نوع فروش</q-item-label>
+          <sale-type-lookup
+            v-model:selectedId="localFormStore.model.value.typeId"
+            v-model:selectedText="localFormStore.model.value.typeTitle"
+            :filterExpression="filterExpression"
+          />
         </div>
       </div>
-      <div class="q-mt-md">
-        <q-item-label caption class="q-mb-sm">شرح</q-item-label>
-        <custom-input
-          hide-bottom-space
-          v-model="localFormStore.model.value.comment"
-          type="textarea"
-        />
+      <div class="row q-col-gutter-x-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
+          <contract-lookup
+            v-model:selectedId="localFormStore.model.value.contractId"
+            v-model:selectedText="localFormStore.model.value.contractTitle"
+          />
+        </div>
+
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">بازایاب</q-item-label>
+          <customer-lookup
+            v-model:selectedId="localFormStore.model.value.contactId"
+            v-model:selectedText="localFormStore.model.value.contactName"
+          />
+        </div>
+      </div>
+
+      <div class="row q-col-gutter-x-md">
+        <div class="col-md-10 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+          <custom-input
+            hide-bottom-space
+            v-model="localFormStore.model.value.comment"
+            type="textarea"
+          />
+        </div>
       </div>
     </div>
-    <div class="col-2">
-      <div class="column items-end q-gutter-md">
-        <div>
+
+    <div class="col-md-4 col-sm-12 col-xs-12 q-gutter-y-md">
+      <div class="row justify-end q-col-gutter-x-md">
+        <div class="col-12 col-md-6">
           <q-item-label caption class="q-mb-sm">شماره فاکتور</q-item-label>
           <q-input
             type="number"
@@ -60,7 +60,6 @@
             outlined
             dense
             :disable="isInputDisabled"
-            style="width: 180px"
           >
             <template #append>
               <q-icon
@@ -72,19 +71,17 @@
             </template>
           </q-input>
         </div>
-        <div>
+      </div>
+      <div class="row justify-end q-col-gutter-x-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-          <date-time
-            v-model="localFormStore.model.value.date"
-            style="width: 180px"
-          />
+          <date-time v-model="localFormStore.model.value.date" />
         </div>
-        <div>
+      </div>
+      <div class="row justify-end q-col-gutter-x-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
-          <date-time
-            v-model="localFormStore.model.value.dueDate"
-            style="width: 180px"
-          />
+          <date-time v-model="localFormStore.model.value.dueDate" />
         </div>
       </div>
     </div>

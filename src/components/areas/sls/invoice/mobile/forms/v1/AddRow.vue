@@ -7,7 +7,7 @@
         v-model:selectedId="row.productId"
         v-model:selectedText="row.productTitle"
         :filterExpression="productFilter"
-        @rowSelected="productChanged($event, row)"
+        @rowSelected="productChanged($event)"
       />
     </div>
   </div>
@@ -66,7 +66,7 @@
         v-model:selectedId="row.vatId"
         v-model:selectedText="row.vatTitle"
         :filterExpression="vatFilter"
-        @rowSelected="vatChanged($event, row)"
+        @rowSelected="vatChanged($event)"
       />
     </div>
   </div>
@@ -95,6 +95,8 @@
 <script setup>
 import { sqlOperator } from "src/constants";
 
+import { useInvoiceItemModel } from "src/components/areas/sls/_composables/useInvoiceItemModel";
+
 import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
 import VatLookup from "src/components/shared/lookups/VatLookup.vue";
@@ -103,11 +105,12 @@ import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue
 import { computed } from "vue";
 
 const props = defineProps({
-  formStore: Object,
   item: Object,
 });
 
-const row = computed(() => props.item);
+const itemStore = useInvoiceItemModel(props.item);
+
+const row = computed(() => itemStore.model.value);
 
 const vatFilter = [
   { fieldName: "isForSale", operator: sqlOperator.in, value: "1,2" },
@@ -117,15 +120,19 @@ const productFilter = [
   { fieldName: "isForSale", operator: sqlOperator.equal, value: "1" },
 ];
 
-const vatChanged = (vat, row) => {
-  row.vatPercent = vat?.rate ?? 0;
+const vatChanged = (vat) => {
+  row.value.vatPercent = vat?.rate ?? 0;
 };
 
-const productChanged = (product, row) => {
-  row.price = product?.price ?? 0;
-  row.productCode = product?.code;
-  row.productTitle = product?.title;
-  row.productUnitId = product?.productUnitId ?? null;
-  row.productUnitTitle = product?.productUnitTitle ?? null;
+const productChanged = (product) => {
+  row.value.price = product?.price ?? 0;
+  row.value.productCode = product?.code;
+  row.value.productTitle = product?.title;
+  row.value.productUnitId = product?.productUnitId ?? null;
+  row.value.productUnitTitle = product?.productUnitTitle ?? null;
 };
+
+defineExpose({
+  model: itemStore.model.value,
+});
 </script>

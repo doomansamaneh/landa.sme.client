@@ -4,7 +4,6 @@ import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
 import "src/helpers/extensions";
 import { useQuasar } from "quasar";
-//import { useI18n } from "vue-i18n";
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
 export function useInvoiceModel() {
@@ -106,16 +105,19 @@ export function useInvoiceModel() {
     model.value.invoiceItems.splice(index + 1, 0, newRow);
   };
 
-  const pushNewRow = () => {
-    const newRow = { ...defaultItem };
-    model.value.invoiceItems.push(newRow);
-    return newRow;
+  const pushNewRow = (item) => {
+    model.value.invoiceItems.push(item);
   };
 
   const deleteRow = (index) => {
     if (model.value.invoiceItems.length > 1)
       model.value.invoiceItems.splice(index, 1);
     else model.value.invoiceItems[0] = { ...defaultItem };
+  };
+
+  const editRow = (index, item) => {
+    const row = model.value.invoiceItems[index];
+    Object.assign(row, item);
   };
 
   const removeRow = (index) => {
@@ -173,6 +175,7 @@ export function useInvoiceModel() {
     getById,
     addNewRow,
     pushNewRow,
+    editRow,
     deleteRow,
     removeRow,
     applyDiscountAmount,
