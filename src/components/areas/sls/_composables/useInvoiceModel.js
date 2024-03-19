@@ -1,29 +1,24 @@
-import { ref, computed, watch } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed, watch, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
+import { useQuasar } from "quasar";
 import { helper } from "src/helpers";
 import "src/helpers/extensions";
-import { useQuasar } from "quasar";
+import { useInvoiceItemModel } from "./useInvoiceItemModel";
+
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
 export function useInvoiceModel() {
   const dateTime = new Date();
   const $q = useQuasar();
   const router = useRouter();
-
-  const defaultItem = {
-    quantity: 1,
-    price: 0,
-    discount: 0,
-    vatPercent: 0,
-    vatAmount: 0,
-    totalPrice: 0,
-  };
+  const route = useRoute();
+  const itemStore = useInvoiceItemModel();
 
   const model = ref({
     no: 1,
     date: dateTime.toDateString(),
-    invoiceItems: [{ ...defaultItem }],
+    invoiceItems: [],
   });
 
   const editBatchModel = ref({
@@ -67,14 +62,16 @@ export function useInvoiceModel() {
     if (responseData) addWatch();
   }
 
+  onMounted(() => {
+    getById(route.params.id);
+  });
+
   function addWatch() {
     watch(
       model.value.invoiceItems,
       async () => {
         model.value.invoiceItems.forEach((item) => {
-          const total = item.quantity * item.price - item.discount;
-          item.vatAmount = (total * item.vatPercent) / 100;
-          item.totalPrice = total + item.vatAmount;
+          itemStore.calculateTotal(item);
         });
       },
       { deep: true }
@@ -98,7 +95,7 @@ export function useInvoiceModel() {
   };
 
   const addNewRow = (index, currentRow) => {
-    const newRow = { ...defaultItem };
+    const newRow = { ...itemStore.model.value };
     newRow.vatId = currentRow.vatId;
     newRow.vatTitle = currentRow.vatTitle;
     newRow.vatPercent = currentRow.vatPercent;
@@ -106,22 +103,20 @@ export function useInvoiceModel() {
   };
 
   const pushNewRow = (item) => {
-    model.value.invoiceItems.push(item);
+    if (item) model.value.invoiceItems.push(item);
+    else model.value.invoiceItems.push(itemStore.model.value);
   };
 
   const deleteRow = (index) => {
-    if (model.value.invoiceItems.length > 1)
-      model.value.invoiceItems.splice(index, 1);
-    else model.value.invoiceItems[0] = { ...defaultItem };
+    model.value.invoiceItems.splice(index, 1);
+    // if (model.value.invoiceItems.length > 1)
+    //   model.value.invoiceItems.splice(index, 1);
+    // else model.value.invoiceItems[0] = { ...itemStore.model.value };
   };
 
   const editRow = (index, item) => {
     const row = model.value.invoiceItems[index];
     Object.assign(row, item);
-  };
-
-  const removeRow = (index) => {
-    model.value.invoiceItems.splice(index, 1);
   };
 
   const totalPrice = computed(() =>
@@ -164,7 +159,6 @@ export function useInvoiceModel() {
 
   return {
     model,
-    defaultItem,
     editBatchModel,
     crudStore,
     totalPrice,
@@ -172,12 +166,10 @@ export function useInvoiceModel() {
     totalVat,
     totalNetPrice,
 
-    getById,
     addNewRow,
     pushNewRow,
     editRow,
     deleteRow,
-    removeRow,
     applyDiscountAmount,
     applyDiscountPercent,
     submitForm,

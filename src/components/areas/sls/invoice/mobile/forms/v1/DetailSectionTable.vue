@@ -78,7 +78,7 @@
                 dense
                 round
                 icon="delete"
-                @click="formStore.removeRow(index)"
+                @click="formStore.deleteRow(index)"
               />
             </div>
           </q-item-section>

@@ -1,4 +1,4 @@
-import { ref, watch } from "vue";
+import { ref, watchEffect } from "vue";
 
 export function useInvoiceItemModel(item) {
   const model = ref({
@@ -12,22 +12,18 @@ export function useInvoiceItemModel(item) {
 
   if (item) model.value = { ...item };
 
-  function addWatch() {
-    watch(
-      model,
-      async () => {
-        const total =
-          model.value.quantity * model.value.price - model.value.discount;
-        model.value.vatAmount = (total * model.value.vatPercent) / 100;
-        model.value.totalPrice = total + model.value.vatAmount;
-      },
-      { deep: true }
-    );
-  }
+  const calculateTotal = (row) => {
+    const total = row.quantity * row.price - row.discount;
+    row.vatAmount = (total * row.vatPercent) / 100;
+    row.totalPrice = total + row.vatAmount;
+  };
 
-  addWatch();
+  watchEffect(() => {
+    calculateTotal(model.value);
+  });
 
   return {
     model,
+    calculateTotal,
   };
 }

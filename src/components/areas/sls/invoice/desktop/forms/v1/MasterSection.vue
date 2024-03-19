@@ -90,13 +90,13 @@
 
 <script setup>
 import { computed, ref } from "vue";
+import { sqlOperator } from "src/constants";
 
 import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
 import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
 import DateTime from "src/components/shared/forms/DateTimePicker.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import { sqlOperator } from "src/constants";
 
 const props = defineProps({
   formStore: Object,

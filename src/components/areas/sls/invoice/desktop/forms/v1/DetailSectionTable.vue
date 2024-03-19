@@ -154,6 +154,15 @@
         </td>
       </tr>
     </tbody>
+    <tbody v-if="formStore.model.value.invoiceItems.length === 0">
+      <tr>
+        <td colspan="100%" class="text-center">
+          <q-btn color="primary" icon="add" @click="formStore.pushNewRow()">
+            افزودن ردیف
+          </q-btn>
+        </td>
+      </tr>
+    </tbody>
   </q-markup-table>
 
   <footer-section :form-store="formStore" />

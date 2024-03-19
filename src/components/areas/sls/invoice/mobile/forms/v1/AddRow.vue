@@ -93,8 +93,8 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { sqlOperator } from "src/constants";
-
 import { useInvoiceItemModel } from "src/components/areas/sls/_composables/useInvoiceItemModel";
 
 import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
@@ -102,7 +102,6 @@ import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.v
 import VatLookup from "src/components/shared/lookups/VatLookup.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
-import { computed } from "vue";
 
 const props = defineProps({
   item: Object,
