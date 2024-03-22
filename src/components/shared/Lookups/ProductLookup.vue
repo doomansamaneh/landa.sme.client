@@ -3,17 +3,24 @@
     dataSource="cmn/product/getlookupData"
     orderByField="code"
     textTemplate="{{ code }} {{ title }}"
-    searchField="title"
     :filterExpression="filterExpression"
     ref="lookup"
   >
     <template #thead>
       <div class="row q-gutter-x-md items-center" style="width: 200px">
         <div class="col-5 q-pr-md">
-          <header-column fieldName="code" title="کد" :lookup="lookup" />
+          <header-column
+            fieldName="code"
+            :title="$t('shared.labels.code')"
+            :lookup="lookup"
+          />
         </div>
         <div class="col-4">
-          <header-column fieldName="title" title="عنوان" :lookup="lookup" />
+          <header-column
+            fieldName="title"
+            :title="$t('shared.labels.title')"
+            :lookup="lookup"
+          />
         </div>
         <q-btn
           dense

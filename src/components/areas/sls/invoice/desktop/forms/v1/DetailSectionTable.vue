@@ -2,6 +2,29 @@
   <q-markup-table flat dense bordered separator="horizontal">
     <thead>
       <tr>
+        <th colspan="100%">
+          <div class="row q-pa-lg">
+            <div class="col-12 col-md-4">
+              <q-input
+                inputmode="search"
+                outlined
+                v-model="productCode"
+                :placeholder="$t('shared.labels.addItemByProductCode')"
+                clearable
+                clear-icon="o_clear"
+                @keydown.enter="addByCode"
+              >
+                <template v-slot:append>
+                  <q-btn flat>
+                    <q-icon @click="addByCode" name="o_add" color="primary" />
+                  </q-btn>
+                </template>
+              </q-input>
+            </div>
+          </div>
+        </th>
+      </tr>
+      <tr>
         <th style="width: 1%">#</th>
         <th style="width: 28%">کالا/خدمت</th>
         <th style="width: 7%">تعداد/مقدار</th>
@@ -42,6 +65,7 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <product-lookup
+            autofocus
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
             v-model:selectedText="row.productTitle"
@@ -169,6 +193,7 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { sqlOperator } from "src/constants";
 
 import FooterSection from "src/components/areas/sls/invoice/desktop/forms/v1/FooterSection.vue";
@@ -181,6 +206,8 @@ import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue
 const props = defineProps({
   formStore: Object,
 });
+
+const productCode = ref("");
 
 const vatFilter = [
   { fieldName: "isForSale", operator: sqlOperator.in, value: "1,2" },
@@ -198,6 +225,10 @@ const productChanged = (product, row) => {
   row.price = product?.price ?? 0;
   row.productUnitId = product?.productUnitId ?? null;
   row.productUnitTitle = product?.productUnitTitle ?? null;
+};
+
+const addByCode = () => {
+  props.formStore.addNewRowByCode(productCode.value);
 };
 </script>
 <style scoped>

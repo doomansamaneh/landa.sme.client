@@ -49,7 +49,7 @@ export default {
     },
     {
       path: "/sls/invoice/preview/:id",
-      component: () => import("pages/areas/sls/invoice/PreviewPage1.vue"),
+      component: () => import("pages/areas/sls/invoice/PreviewPage.vue"),
     },
     {
       path: "/scr/users/settings",

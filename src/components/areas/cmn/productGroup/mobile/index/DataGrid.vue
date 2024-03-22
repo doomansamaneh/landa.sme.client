@@ -164,8 +164,8 @@
           :to="`/cmn/productGroup/edit/${bottomSheetItem.id}`"
         >
           <q-item-section avatar>
-            <q-avatar size="32px" class="bg-on-dark text-on-dark">
-              <q-icon size="16px" name="o_edit" />
+            <q-avatar class="bg-on-dark text-on-dark">
+              <q-icon name="o_edit" />
             </q-avatar>
           </q-item-section>
 
@@ -180,8 +180,8 @@
           :to="`/cmn/productGroup/copy/${bottomSheetItem.id}`"
         >
           <q-item-section avatar>
-            <q-avatar size="32px" class="bg-on-dark text-on-dark">
-              <q-icon size="16px" name="o_copy" />
+            <q-avatar class="bg-on-dark text-on-dark">
+              <q-icon name="o_copy" />
             </q-avatar>
           </q-item-section>
 
@@ -198,11 +198,8 @@
           @click="crudStore.deleteById(bottomSheetItem.id, reloadData)"
         >
           <q-item-section avatar>
-            <q-avatar
-              size="32px"
-              class="delete-avatar bg-on-dark red-shadow text-on-dark"
-            >
-              <q-icon size="16px" name="o_delete" />
+            <q-avatar class="delete-avatar bg-on-dark red-shadow text-on-dark">
+              <q-icon name="o_delete" />
             </q-avatar>
           </q-item-section>
 

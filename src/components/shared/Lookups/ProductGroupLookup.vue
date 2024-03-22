@@ -5,15 +5,26 @@
     v-model:selectedText="selectedText"
     orderByField="code"
     columns="code,title"
-    textTemplate="{{ title }}"
+    textTemplate="{{code}} - {{ title }}"
     searchField="title"
     ref="lookup"
   >
     <template #thead>
-      <div class="row q-gutter-x-md items-center">
+      <div class="row items-center q-gutter-x-md">
         <div class="col-1">#</div>
-        <div class="col q-pr-md">
-          <header-column fieldName="name" title="عنوان" :lookup="lookup" />
+        <div class="col">
+          <header-column
+            fieldName="code"
+            :title="$t('shared.labels.code')"
+            :lookup="lookup"
+          />
+        </div>
+        <div class="col">
+          <header-column
+            fieldName="title"
+            :title="$t('shared.labels.title')"
+            :lookup="lookup"
+          />
         </div>
         <q-btn
           dense
@@ -32,8 +43,9 @@
 
     <template #td="{ row, index }">
       <q-item clickable v-close-popup>
-        <div class="row items-center q-gutter-x-md" style="width: 180px">
+        <div class="row items-center q-gutter-x-md">
           <div class="col-1 text-caption">{{ index }}</div>
+          <div class="col text-caption">{{ row.code }}</div>
           <div class="col text-caption">{{ row.title }}</div>
         </div>
       </q-item>

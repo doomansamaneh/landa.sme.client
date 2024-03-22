@@ -238,6 +238,10 @@ export function useDataTable(dataSource, dataColumns, store) {
     }
   }
 
+  function setSearchTerm(term) {
+    pagination.value.searchTerm = term;
+  }
+
   onMounted(() => {
     bus.on("render-page", loadData);
   });
@@ -271,6 +275,7 @@ export function useDataTable(dataSource, dataColumns, store) {
     loadData,
     reloadData,
     selectRow,
+    setSearchTerm,
     sortColumn,
     toggleExpand,
     getSortableClass,

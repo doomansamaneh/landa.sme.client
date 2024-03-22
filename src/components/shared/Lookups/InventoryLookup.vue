@@ -1,15 +1,23 @@
 <template>
   <lookup-view
-    dataSource="cmn/vat/getlookupData"
-    orderByField="title"
-    textTemplate="{{ title }}"
-    columns="title"
-    :filterExpression="filterExpression"
+    dataSource="inv/inventory/getlookupData"
+    v-model:selectedId="selectedId"
+    v-model:selectedText="selectedText"
+    orderByField="code"
+    columns="code,title"
+    textTemplate="{{code}} - {{ title }}"
     ref="lookup"
   >
     <template #thead>
       <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
+        <div class="col">
+          <header-column
+            fieldName="code"
+            :title="$t('shared.labels.code')"
+            :lookup="lookup"
+          />
+        </div>
         <div class="col q-pr-md">
           <header-column
             fieldName="title"
@@ -34,8 +42,9 @@
 
     <template #td="{ row, index }">
       <q-item clickable v-close-popup>
-        <div class="row items-center q-gutter-x-md" style="width: 300px">
+        <div class="row items-center q-gutter-x-md">
           <div class="col-1 text-caption">{{ index }}</div>
+          <div class="col text-caption">{{ row.code }}</div>
           <div class="col text-caption">{{ row.title }}</div>
         </div>
       </q-item>
@@ -45,12 +54,9 @@
 
 <script setup>
 import { ref } from "vue";
+
 import LookupView from "src/components/shared/dataTables/LookupView.vue";
 import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
-
-const props = defineProps({
-  filterExpression: Array,
-});
 
 const lookup = ref(null);
 

@@ -2,13 +2,13 @@ import { ref, computed, watch, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { useQuasar } from "quasar";
-import { helper } from "src/helpers";
+import { fetchWrapper, helper } from "src/helpers";
 import "src/helpers/extensions";
 import { useInvoiceItemModel } from "./useInvoiceItemModel";
 
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
-export function useInvoiceModel() {
+export function useInvoiceModel(preview = false) {
   const dateTime = new Date();
   const $q = useQuasar();
   const router = useRouter();
@@ -58,7 +58,9 @@ export function useInvoiceModel() {
   const crudStore = useFormActions("sls/invoice", model);
 
   async function getById(id) {
-    var responseData = await crudStore.getById(id);
+    let responseData = null;
+    if (preview) responseData = await crudStore.getPreviewById(id);
+    else responseData = await crudStore.getById(id);
     if (responseData) addWatch();
   }
 
@@ -105,6 +107,32 @@ export function useInvoiceModel() {
   const pushNewRow = (item) => {
     if (item) model.value.invoiceItems.push(item);
     else model.value.invoiceItems.push(itemStore.model.value);
+  };
+
+  const addNewRowByCode = async (code) => {
+    if (code) {
+      const response = await fetchWrapper.get(`cmn/product/getByCode/${code}`);
+      const product = response.data.data;
+      if (product) {
+        const currentItem = model.value.invoiceItems.find(
+          (r) => r.productId === product.id
+        );
+        if (currentItem) currentItem.quantity += 1;
+        else
+          pushNewRow({
+            productId: product.id,
+            productCode: product.code,
+            productTitle: `${product.code} ${product.title}`,
+            productUnitId: product.productUnitId,
+            productUnitTitle: product.productUnitTitle,
+            price: product.price,
+            vatPercent: 0,
+            vatAmounnt: 0,
+            discount: 0,
+            quantity: 1,
+          });
+      }
+    }
   };
 
   const deleteRow = (index) => {
@@ -167,6 +195,7 @@ export function useInvoiceModel() {
     totalNetPrice,
 
     addNewRow,
+    addNewRowByCode,
     pushNewRow,
     editRow,
     deleteRow,

@@ -3,7 +3,7 @@
     dataSource="sls/saleType/getlookupData"
     orderByField="title"
     textTemplate="{{ title }}"
-    searchField="title"
+    columns="title"
     :filterExpression="filterExpression"
     ref="lookup"
   >
@@ -11,7 +11,11 @@
       <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
         <div class="col">
-          <header-column fieldName="title" title="عنوان" :lookup="lookup" />
+          <header-column
+            fieldName="title"
+            :title="$t('shared.labels.title')"
+            :lookup="lookup"
+          />
         </div>
         <q-btn
           dense

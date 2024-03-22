@@ -12,8 +12,16 @@ export function useFormActions(baseURL, model) {
   const { t } = useI18n();
 
   async function getById(id) {
+    return await onGetById("getById", id);
+  }
+
+  async function getPreviewById(id) {
+    return await onGetById("getPreviewById", id);
+  }
+
+  async function onGetById(url, id) {
     if (id) {
-      const response = await fetchWrapper.get(`${baseURL}/getById/${id}`);
+      const response = await fetchWrapper.get(`${baseURL}/${url}/${id}`);
       model.value = response.data.data;
       await resetIsDirty();
       return model.value;
@@ -164,6 +172,7 @@ export function useFormActions(baseURL, model) {
 
   return {
     getById,
+    getPreviewById,
     createOrEdit,
     editBatch,
     deleteById,

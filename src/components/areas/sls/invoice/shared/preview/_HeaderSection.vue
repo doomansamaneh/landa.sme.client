@@ -20,28 +20,38 @@
           class="row items-center"
           :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
         >
-          <span>
-            {{ $t("page.payment-detail.invoice-number") }}
+          <span> {{ $t("shared.labels.no") }}: </span>
+          <span class="q-px-sm text-weight-700">
+            {{ model.value.no }}
           </span>
-          {{ model.value.no }}
         </div>
 
         <div
           class="row items-center"
           :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
         >
-          <span>{{ $t("page.payment-detail.invoice-date") }}</span>
-          {{ model.value.date.substring(0, 10) }}
+          <span> {{ $t("shared.labels.date") }}:</span>
+          <span class="q-px-sm text-weight-700">
+            {{ model.value.date.substring(0, 10) }}
+          </span>
         </div>
       </div>
     </div>
   </div>
 
-  <q-markup-table class="preview-invoice-table" separator="cell" flat bordered dense>
+  <q-markup-table
+    class="preview-invoice-table"
+    separator="cell"
+    flat
+    bordered
+    dense
+  >
     <tbody>
       <tr class="bg-on-dark text-center">
         <td colspan="4">
-          <div class="header text-body1 no-letter-spacing text-weight-700">فروشنده</div>
+          <div class="header text-body1 no-letter-spacing text-weight-700">
+            فروشنده
+          </div>
         </td>
       </tr>
       <tr>
@@ -62,29 +72,49 @@
     </tbody>
   </q-markup-table>
 
-  <q-markup-table class="preview-invoice-table" separator="cell" flat bordered dense>
+  <q-markup-table
+    class="preview-invoice-table"
+    separator="cell"
+    flat
+    bordered
+    dense
+  >
     <tbody>
       <tr class="bg-on-dark text-center">
         <td colspan="4">
-          <div class="header text-body1 no-letter-spacing text-weight-700">خریدار</div>
+          <div class="header text-body1 no-letter-spacing text-weight-700">
+            خریدار
+          </div>
         </td>
       </tr>
       <tr>
         <td>
           نام: <strong>{{ model.value.customerName }}</strong>
         </td>
-        <td style="width: 15%">شماره ثبت: 390303</td>
-        <td style="width: 15%">شماره اقتصادی: 10320412724</td>
-        <td style="width: 15%">شناسه ملی: 10320412724</td>
+        <td style="width: 15%">
+          شماره ثبت: {{ model.value.customerSummary?.business?.regNo }}
+        </td>
+        <td style="width: 15%">
+          شماره اقتصادی: {{ model.value.customerSummary?.business?.taxNo }}
+        </td>
+        <td style="width: 15%">
+          شناسه ملی: {{ model.value.customerSummary?.business?.nationalNo }}
+        </td>
       </tr>
       <tr>
         <td colspan="2">
-          نشانی: <strong>تهران</strong>
-          شهر جدید اندیشه، شهرک صدف، خ دکتر قریب، مجتمع اداری زیتون، طبقه 2،
-          واحد 13
+          نشانی:
+          <strong>{{
+            model.value.customerSummary?.address?.locationTitle
+          }}</strong>
+          {{ model.value.customerSummary?.address?.address }}
         </td>
-        <td style="width: 15%">کد پستی: 390303</td>
-        <td style="width: 15%">تلفن: 88944338</td>
+        <td style="width: 15%">
+          کد پستی: {{ model.value.customerSummary?.address?.postalCode }}
+        </td>
+        <td style="width: 15%">
+          تلفن: {{ model.value.customerSummary?.phone?.value }}
+        </td>
       </tr>
     </tbody>
   </q-markup-table>
@@ -99,7 +129,6 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-
 .preview-invoice-table .header {
   padding-top: 8px !important;
   padding-bottom: 8px !important;

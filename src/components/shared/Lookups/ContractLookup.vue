@@ -11,10 +11,18 @@
       <div class="row q-gutter-x-md items-center" style="width: 300px">
         <div class="col-1">#</div>
         <div class="col-3 q-pr-md">
-          <header-column fieldName="no" title="شماره" :lookup="lookup" />
+          <header-column
+            fieldName="no"
+            :title="$t('shared.labels.no')"
+            :lookup="lookup"
+          />
         </div>
         <div class="col">
-          <header-column fieldName="title" title="عنوان" :lookup="lookup" />
+          <header-column
+            fieldName="title"
+            :title="$t('shared.labels.title')"
+            :lookup="lookup"
+          />
         </div>
         <q-btn
           dense

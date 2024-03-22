@@ -9,10 +9,18 @@
     <template #thead>
       <div class="row q-gutter-x-md items-center" style="width: 200px">
         <div class="col-5 q-pr-md">
-          <header-column fieldName="name" title="نام" :lookup="lookup" />
+          <header-column
+            fieldName="name"
+            :title="$t('shared.labels.name')"
+            :lookup="lookup"
+          />
         </div>
         <div class="col-4">
-          <header-column fieldName="code" title="کد" :lookup="lookup" />
+          <header-column
+            fieldName="code"
+            :title="$t('shared.labels.code')"
+            :lookup="lookup"
+          />
         </div>
         <q-btn
           dense

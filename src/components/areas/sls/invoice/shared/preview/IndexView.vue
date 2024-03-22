@@ -304,7 +304,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
 
@@ -316,7 +316,7 @@ import InvoiceFooter from "./_FooterSection.vue";
 const props = defineProps({
   item: Object,
 });
-const formStore = useInvoiceModel();
+const formStore = useInvoiceModel(true);
 const route = useRoute();
 
 const tab = ref("main-info");
@@ -324,7 +324,7 @@ const editor = ref("");
 const editCommentBtn = ref(false);
 const id = computed(() => props.item?.id ?? route.params.id);
 
-onMounted(() => {
-  formStore.crudStore.getById(id.value);
-});
+// onMounted(() => {
+//   formStore.crudStore.getById(id.value);
+// });
 </script>

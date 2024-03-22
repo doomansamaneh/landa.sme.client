@@ -1,19 +1,19 @@
 <template>
   <q-input
     ref="search"
+    v-model="selectedText"
     outlined
     :required="required"
     :rules="rules"
     color="primary"
-    dense
     class="input lookup"
-    v-model="selectedText"
-    @update:model-value="searchInLookup"
-    @keydown.enter.prevent.stop="selectRow"
-    @keydown="handleKeyDown"
+    dense
     debounce="1000"
     :placeholder="placeholder"
     :loading="tableStore.inputInnerLoader.value"
+    @update:model-value="searchInLookup"
+    @keydown.enter.prevent.stop="selectRow"
+    @keydown="handleKeyDown"
   >
     <template #append>
       <q-icon
@@ -44,7 +44,7 @@
       :self="$q.screen.lt.sm ? 'top middle' : ''"
       no-focus
       no-refocus
-      style="border-radius: 4px;"
+      style="border-radius: 4px"
     >
       <q-inner-loading
         :showing="tableStore.showLoader.value"
@@ -104,7 +104,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, readonly } from "vue";
 import { useQuasar } from "quasar";
 import { useDataTable } from "src/composables/useDataTable";
 import { defaultLookupPageSize, sortOrder } from "src/constants";
@@ -135,7 +135,7 @@ const store = {
     columns: props.columns,
     sortColumn: props.orderByField,
     sortOrder: sortOrder.ascending,
-    searchTerm: selectedText,
+    //searchTerm: selectedText,
   }),
   filterExpression: props.filterExpression,
 };
@@ -148,7 +148,6 @@ const search = ref(null);
 const selectedRowIndex = ref(0);
 const popup = ref(null);
 const isPopupOpen = ref(false);
-const table = ref(null);
 
 onMounted(() => {
   onMenuHide();
@@ -170,6 +169,7 @@ function handleKeyDown(event) {
 
 async function clearSearch() {
   tableStore.setActiveRow(null);
+  tableStore.setSearchTerm(null);
   setIdText(null);
   emitSelectRow(null);
   onMenuHide();
@@ -204,6 +204,7 @@ function setCustomText(displayText) {
 async function handlePopup() {
   if (isPopupOpen.value) hidePopup();
   else {
+    tableStore.setSearchTerm(null);
     showPopup();
   }
 }
@@ -239,6 +240,7 @@ function emitSelectRow(row) {
 }
 
 async function searchInLookup() {
+  tableStore.setSearchTerm(search.value.nativeEl.value);
   await showPopup();
 }
 

@@ -6,14 +6,17 @@
     v-model:selectedId="selectedId"
     v-model:selectedText="selectedText"
     textTemplate="{{ title }}"
-    searchField="title"
     ref="lookup"
   >
     <template #thead>
       <div class="row q-gutter-x-md items-center">
         <div class="col-1">#</div>
         <div class="col q-pr-md">
-          <header-column fieldName="name" title="عنوان" :lookup="lookup" />
+          <header-column
+            fieldName="name"
+            :title="$t('shared.labels.title')"
+            :lookup="lookup"
+          />
         </div>
         <q-btn
           dense
