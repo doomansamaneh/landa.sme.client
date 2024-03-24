@@ -23,23 +23,23 @@
 
       <div class="row q-col-gutter-x-md">
         <div class="col-md-10 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">شرح</q-item-label>
-          <custom-input
-            hide-bottom-space
-            v-model="localFormStore.model.value.comment"
-            type="textarea"
-          />
-        </div>
-      </div>
-
-      <div class="row q-col-gutter-x-md">
-        <div class="col-md-10 col-sm-12 col-xs-12">
           <q-expansion-item
-            header-class="bg-white bordered"
+            header-class="bordered"
             :label="$t('shared.labels.moreData')"
           >
             <q-card flat class="border-radius-xs">
               <q-card-section class="q-gutter-y-md">
+                <div class="row q-col-gutter-x-md">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+                    <custom-input
+                      hide-bottom-space
+                      v-model="localFormStore.model.value.comment"
+                      type="textarea"
+                    />
+                  </div>
+                </div>
+
                 <div class="row q-col-gutter-x-md">
                   <div class="col-md-6 col-sm-12 col-xs-12">
                     <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>

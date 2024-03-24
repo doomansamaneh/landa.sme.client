@@ -19,6 +19,27 @@ export default {
       component: HomePage,
     },
     {
+      path: "acc/fiscalYear",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/acc/fiscalYear/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/acc/fiscalYear/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/acc/fiscalYear/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/acc/fiscalYear/CopyPage.vue"),
+        },
+      ],
+    },
+    {
       path: "crm/customer",
       children: [
         {
