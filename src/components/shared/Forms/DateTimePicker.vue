@@ -46,11 +46,11 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useCulture } from "src/composables/useCulture";
-import customInput from "src/components/shared/Forms/CustomInput.vue";
-const cultureStore = useCulture();
 
 const props = defineProps(["modelValue", "placeholder", "label"]);
 const emit = defineEmits(["update:modelValue"]);
+
+const cultureStore = useCulture();
 
 const value = computed({
   get() {
@@ -73,8 +73,3 @@ const save = () => {
   value.value = proxyDate.value;
 };
 </script>
-<!-- <style>
-.q-date {
-  width: 300px;
-}
-</style> -->

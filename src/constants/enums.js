@@ -24,6 +24,36 @@ export const isActiveOptions = [
   },
 ];
 
+export const precisionCounts = [
+  {
+    label: "0",
+    value: 0,
+  },
+  {
+    label: "1",
+    value: 1,
+  },
+  {
+    label: "2",
+    value: 2,
+  },
+];
+
+export const vatTypes = [
+  {
+    label: "خرید و فروش (هر دو)",
+    value: 2,
+  },
+  {
+    label: "برای فروش",
+    value: 1,
+  },
+  {
+    label: "برای خرید",
+    value: 0,
+  },
+];
+
 export const dateRange = {
   // all: 0,
   // today: 2,

@@ -10,6 +10,9 @@
     <!-- <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
       <slot :name="name" v-bind="slotData" />
     </template> -->
+    <template #prepend>
+      <slot name="prepend"> </slot>
+    </template>
     <template #append>
       <slot name="append"> </slot>
     </template>

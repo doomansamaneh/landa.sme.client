@@ -181,9 +181,8 @@
 import { onMounted, computed } from "vue";
 import { useQuasar } from "quasar";
 import { useDataTable } from "src/composables/useDataTable";
-import { useRouter } from "vue-router";
 
-import CustomInput from "src/components/shared/Forms/CustomInput.vue";
+import CustomInput from "src/components/shared/forms/CustomInput.vue";
 import PageBar from "src/components/shared/dataTables/PageBar.vue";
 import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
@@ -205,14 +204,17 @@ const props = defineProps({
 });
 
 const $q = useQuasar();
-const router = useRouter();
 const tableStore = useDataTable(
   props.dataSource,
   props.columns,
   props.gridStore
 );
 
-const emit = defineEmits(["active-row-changed", "selected-rows-changed"]);
+const emit = defineEmits([
+  "active-row-changed",
+  "selected-rows-changed",
+  "row-dbl-click",
+]);
 
 onMounted(() => {
   tableStore.loadData();
@@ -279,7 +281,7 @@ const containerClass = computed(
 );
 
 const goToPreview = (row) => {
-  router.push(`/sls/invoice/preview/${row.id}`);
+  emit("row-dbl-click", row);
 };
 
 defineExpose({

@@ -193,8 +193,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { productType } from "src/constants";
 import { helper } from "src/helpers";
 import { useProductModel } from "src/components/areas/cmn/_composables/useProductModel";
@@ -210,14 +210,9 @@ const props = defineProps({
   title: String,
 });
 
-const form = ref(null);
-const route = useRoute();
 const router = useRouter();
+const form = ref(null);
 const formStore = useProductModel();
-
-onMounted(() => {
-  formStore.crudStore.getById(route.params.id);
-});
 
 async function submitForm() {
   await form.value.validate().then(async (success) => {

@@ -1,7 +1,10 @@
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 
 export function useProductModel() {
+  const route = useRoute();
+
   const model = ref({
     isActive: true,
     isForSale: true,
@@ -43,6 +46,14 @@ export function useProductModel() {
   });
 
   const crudStore = useFormActions("cmn/product", model);
+
+  async function getById(id) {
+    return await crudStore.getById(id);
+  }
+
+  onMounted(() => {
+    getById(route.params.id);
+  });
 
   return {
     model,

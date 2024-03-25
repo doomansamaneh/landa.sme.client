@@ -1,16 +1,15 @@
 <template>
   <data-grid
     toolbar
-    base-route="acc/fiscalYear"
-    data-source="acc/fiscalYear/getGridData"
-    :title="$t('main-menu-items.Acc_FiscalYear_View')"
+    base-route="cmn/vat"
+    data-source="cmn/vat/getGridData"
+    :title="$t('main-menu-items.Cmn_Vat_View')"
     :columns="columns"
   >
     <template #cell-title="{ item }">
       {{ item.title }}
-      <span class="text-caption">
-        ({{ item.fromDate?.substring(0, 10) }} -
-        {{ item.toDate?.substring(0, 10) }})
+      <span v-if="item.rate" class="text-weight-700">
+        ({{ item.rate?.toLocaleString() }})
       </span>
     </template>
   </data-grid>

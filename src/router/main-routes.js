@@ -108,5 +108,49 @@ export default {
       path: "/cmn/product/preview/:id",
       component: () => import("src/pages/areas/cmn/product/PreviewPage.vue"),
     },
+
+    {
+      path: "cmn/vat",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/vat/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/vat/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/vat/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/vat/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/currency",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/currency/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/currency/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/currency/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/currency/CopyPage.vue"),
+        },
+      ],
+    },
   ],
 };

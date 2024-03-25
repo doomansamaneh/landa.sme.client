@@ -10,33 +10,44 @@
               <q-item-label
                 class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
               >
-                سال مالی
+                عنوان
               </q-item-label>
               <custom-input
-                type="number"
                 hide-bottom-space
-                v-model="formStore.model.value.year"
+                v-model="formStore.model.value.title"
                 :rules="[(val) => val !== null && val !== '']"
               />
             </div>
           </div>
 
           <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-3 col-sm-12 col-xs-12">
-              <q-item-label
-                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-              >
-                از تاریخ
-              </q-item-label>
-              <date-time v-model="formStore.model.value.fromDate" />
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <q-option-group
+                inline
+                :options="vatTypes"
+                type="radio"
+                v-model="formStore.model.value.isForSale"
+              />
             </div>
-            <div class="col-md-3 col-sm-12 col-xs-12">
+          </div>
+
+          <div class="row q-col-gutter-md q-mb-md">
+            <div class="col-md-2 col-sm-6 col-xs-6">
               <q-item-label
                 class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
               >
-                تا تاریخ
+                نرخ
               </q-item-label>
-              <date-time v-model="formStore.model.value.toDate" />
+              <custom-input
+                type="number"
+                hide-bottom-space
+                v-model="formStore.model.value.rate"
+                :rules="[(val) => val !== null && val !== '']"
+              >
+                <template v-slot:append>
+                  <q-icon name="percent" />
+                </template>
+              </custom-input>
             </div>
           </div>
 
@@ -58,10 +69,10 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+import { vatTypes } from "src/constants";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import DateTime from "src/components/shared/forms/DateTimePicker.vue";
 
 const props = defineProps({
   action: String,
@@ -70,7 +81,7 @@ const props = defineProps({
 
 const router = useRouter();
 const form = ref(null);
-const formStore = useBaseInfoModel("acc/fiscalYear");
+const formStore = useBaseInfoModel("cmn/vat");
 
 async function submitForm() {
   await form.value.validate().then(async (success) => {

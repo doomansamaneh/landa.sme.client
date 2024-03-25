@@ -12,17 +12,8 @@
     dense
     wrapCells
     expandable
+    @row-dbl-click="gotoPreview"
   >
-    <!-- <template #filter-amount="{ col }">
-      <custom-input
-        v-model="col.value"
-        display-format="n0"
-        debounce="500"
-        @keyup.enter="reloadData"
-        @update:model-value="reloadData"
-      />
-    </template> -->
-
     <template #filter-statusTitle="{ col }">
       <custom-select
         v-model="col.value"
@@ -117,6 +108,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 import { statusOptions } from "src/constants";
 import { helper } from "src/helpers";
 
@@ -130,6 +122,7 @@ const props = defineProps({
   gridStore: Object,
 });
 
+const router = useRouter();
 const dataTable = ref(null);
 
 const colspan = computed(
@@ -150,6 +143,10 @@ const showDiscount = computed(
 
 async function reloadData() {
   await dataTable.value?.tableStore.reloadData();
+}
+
+function gotoPreview(row) {
+  router.push(`/sls/invoice/preview/${row.id}`);
 }
 
 defineExpose({

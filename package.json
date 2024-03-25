@@ -2,7 +2,7 @@
   "name": "landa-sme-client",
   "version": "0.0.1",
   "description": "Online Accounting Application",
-  "productName": "landa-sme",
+  "productName": "Landa SME",
   "author": "Khashayar Shomali <shomalikhashayar@gmail.com>",
   "private": true,
   "scripts": {

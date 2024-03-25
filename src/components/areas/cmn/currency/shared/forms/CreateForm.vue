@@ -10,33 +10,28 @@
               <q-item-label
                 class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
               >
-                سال مالی
+                عنوان
               </q-item-label>
               <custom-input
-                type="number"
                 hide-bottom-space
-                v-model="formStore.model.value.year"
+                v-model="formStore.model.value.title"
                 :rules="[(val) => val !== null && val !== '']"
               />
             </div>
           </div>
 
           <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-3 col-sm-12 col-xs-12">
+            <div class="col-md-2 col-sm-6 col-xs-6">
               <q-item-label
                 class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
               >
-                از تاریخ
+                تعداد اعشار
               </q-item-label>
-              <date-time v-model="formStore.model.value.fromDate" />
-            </div>
-            <div class="col-md-3 col-sm-12 col-xs-12">
-              <q-item-label
-                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-              >
-                تا تاریخ
-              </q-item-label>
-              <date-time v-model="formStore.model.value.toDate" />
+              <custom-select
+                v-model="formStore.model.value.precisionCount"
+                :options="precisionCounts"
+                :rules="[(val) => val !== null && val !== '']"
+              />
             </div>
           </div>
 
@@ -58,10 +53,11 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+import { precisionCounts } from "src/constants";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
 const props = defineProps({
   action: String,
@@ -70,7 +66,7 @@ const props = defineProps({
 
 const router = useRouter();
 const form = ref(null);
-const formStore = useBaseInfoModel("acc/fiscalYear");
+const formStore = useBaseInfoModel("cmn/currency");
 
 async function submitForm() {
   await form.value.validate().then(async (success) => {
