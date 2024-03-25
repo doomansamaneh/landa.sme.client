@@ -8,7 +8,7 @@
     clear-icon="clear"
     :label="label"
     :placeholder="placeholder"
-    class="text-caption"
+    class="text-body1 no-letter-spacing"
   >
     <template v-slot:append>
       <q-icon name="event" class="cursor-pointer">

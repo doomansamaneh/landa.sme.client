@@ -22,7 +22,7 @@
               unelevated
               @click="callbackSave"
             >
-              <q-icon name="o_save" class="q-mr-xs" />
+              <q-icon name="o_save" size="20px" class="q-mr-sm" />
               {{ $t("shared.labels.save") }}
             </q-btn>
           </slot>
