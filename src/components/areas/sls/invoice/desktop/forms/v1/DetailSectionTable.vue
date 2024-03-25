@@ -1,23 +1,20 @@
 <template>
-  <q-markup-table flat dense bordered separator="horizontal">
+  <q-markup-table flat dense separator="horizontal">
     <thead>
       <tr>
         <th colspan="100%">
-          <div class="row q-pa-lg">
-            <div class="col-12 col-md-4">
-              <q-input
-                inputmode="search"
-                outlined
-                v-model="productCode"
-                :placeholder="$t('shared.labels.addItemByProductCode')"
-                clearable
-                clear-icon="o_clear"
-                @keydown.enter="addByCode"
-              >
-                <template v-slot:append>
-                  <q-btn flat>
-                    <q-icon @click="addByCode" name="o_add" color="primary" />
-                  </q-btn>
+          <div class="row items-center">
+            <div class="col-md-5">
+              <q-input inputmode="search" input-class="text-body2 no-letter-spacing" outlined dense rounded
+                v-model="productCode" :placeholder="$t('shared.labels.addItemByProductCode')" clearable
+                clear-icon="o_clear" @keydown.enter="addByCode">
+                <template #append>
+                  <q-btn padding="0 12px" unelevated label="افزودن کالا" dense color="primary" rounded
+                    @click="addByCode" />
+                </template>
+
+                <template #prepend>
+                  <q-icon name="o_search" color="primary" />
                 </template>
               </q-input>
             </div>
@@ -35,19 +32,8 @@
         <th style="width: 8%">مبلغ مالیات</th>
         <th style="width: 10%">
           مبلغ کل
-          <q-icon
-            name="o_info"
-            size="xs"
-            color="primary"
-            class="cursor-pointer"
-          >
-            <q-tooltip
-              :delay="600"
-              class="custom-tooltip"
-              anchor="top right"
-              self="bottom middle"
-              :offset="[50, 10]"
-            >
+          <q-icon name="o_info" size="xs" color="primary" class="cursor-pointer">
+            <q-tooltip :delay="600" class="custom-tooltip" anchor="top right" self="bottom middle" :offset="[50, 10]">
               <span class="text-body2">
                 مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش افزوده
               </span>
@@ -58,30 +44,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        v-for="(row, index) in formStore.model.value.invoiceItems"
-        :key="index"
-      >
+      <tr v-for="(row, index) in formStore.model.value.invoiceItems" :key="index" class="q-pa-md">
         <td class="text-center">{{ index + 1 }}</td>
         <td>
-          <product-lookup
-            autofocus
-            placeholder="انتخاب کالا/خدمت"
-            v-model:selectedId="row.productId"
-            v-model:selectedText="row.productTitle"
-            :filterExpression="productFilter"
-            @rowSelected="productChanged($event, row)"
-          />
+          <product-lookup autofocus placeholder="انتخاب کالا/خدمت" v-model:selectedId="row.productId"
+            v-model:selectedText="row.productTitle" :filterExpression="productFilter"
+            @rowSelected="productChanged($event, row)" />
         </td>
         <td>
           <custom-input-number v-model="row.quantity" placeholder="مقدار" />
         </td>
         <td>
-          <product-unit-lookup
-            placeholder="واحد سنجش"
-            v-model:selectedId="row.productUnitId"
-            v-model:selectedText="row.productUnitTitle"
-          />
+          <product-unit-lookup placeholder="واحد سنجش" v-model:selectedId="row.productUnitId"
+            v-model:selectedText="row.productUnitTitle" />
         </td>
         <td>
           <custom-input-number v-model="row.price" placeholder="مبلغ واحد" />
@@ -90,19 +65,11 @@
           <custom-input-number v-model="row.discount" placeholder="تخفیف" />
         </td>
         <td>
-          <vat-lookup
-            placeholder="مالیات بر ارزش افزوده"
-            v-model:selectedId="row.vatId"
-            v-model:selectedText="row.vatTitle"
-            :filterExpression="vatFilter"
-            @rowSelected="vatChanged($event, row)"
-          />
+          <vat-lookup placeholder="مالیات بر ارزش افزوده" v-model:selectedId="row.vatId"
+            v-model:selectedText="row.vatTitle" :filterExpression="vatFilter" @rowSelected="vatChanged($event, row)" />
         </td>
         <td>
-          <custom-input-number
-            v-model="row.vatAmount"
-            placeholder="مبلغ مالیات"
-          />
+          <custom-input-number v-model="row.vatAmount" placeholder="مبلغ مالیات" />
         </td>
         <td>
           <q-field outlined dense disable>
@@ -114,37 +81,12 @@
           </q-field>
         </td>
         <td class="text-center q-gutter-x-sm">
-          <q-btn
-            color="primary"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewRow(index, row)"
-          />
-          <q-btn
-            color="red"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_delete"
-            @click="formStore.deleteRow(index)"
-          />
-          <q-btn
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_more_horiz"
-          >
-            <q-menu
-              style="width: 500px"
-              :offset="[0, 20]"
-              fit
-              class="border-radius-xl"
-            >
+          <q-btn color="primary" unelevated round class="text-on-dark" size="sm" icon="o_add"
+            @click="formStore.addNewRow(index, row)" />
+          <q-btn color="red" unelevated round class="text-on-dark" size="sm" icon="o_delete"
+            @click="formStore.deleteRow(index)" />
+          <q-btn unelevated round class="text-on-dark" size="sm" icon="o_more_horiz">
+            <q-menu style="width: 500px" :offset="[0, 20]" fit class="border-radius-xl">
               <q-card>
                 <q-card-section>
                   <h6>اطلاعات تکمیلی</h6>
@@ -152,24 +94,12 @@
                 </q-card-section>
                 <q-card-section>
                   <div class="">
-                    <q-item-label caption class="q-mb-sm"
-                      >شرح ردیف</q-item-label
-                    >
-                    <custom-input
-                      hide-bottom-space
-                      v-model="row.comment"
-                      autogrow
-                    />
+                    <q-item-label caption class="q-mb-sm">شرح ردیف</q-item-label>
+                    <custom-input hide-bottom-space v-model="row.comment" autogrow />
                   </div>
                   <div class="q-mt-md">
-                    <q-item-label caption class="q-mb-sm"
-                      >شرح تخفیف</q-item-label
-                    >
-                    <custom-input
-                      hide-bottom-space
-                      v-model="row.discountComment"
-                      autogrow
-                    />
+                    <q-item-label caption class="q-mb-sm">شرح تخفیف</q-item-label>
+                    <custom-input hide-bottom-space v-model="row.discountComment" autogrow />
                   </div>
                 </q-card-section>
               </q-card>
@@ -181,7 +111,8 @@
     <tbody v-if="formStore.model.value.invoiceItems.length === 0">
       <tr>
         <td colspan="100%" class="text-center">
-          <q-btn color="primary" icon="add" @click="formStore.pushNewRow()">
+          <no-product-selected class="q-mt-md" />
+          <q-btn class="primary-shadow" rounded unelevated color="primary" icon="add" @click="formStore.pushNewRow()">
             افزودن ردیف
           </q-btn>
         </td>
@@ -202,6 +133,7 @@ import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.v
 import VatLookup from "src/components/shared/lookups/VatLookup.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+import NoProductSelected from "src/components/areas/sls/invoice/desktop/forms/NoProductSelected.vue"
 
 const props = defineProps({
   formStore: Object,
@@ -235,5 +167,13 @@ const addByCode = () => {
 td,
 th {
   padding: 8px 2px !important;
+}
+
+.q-markup-table.padding-table {
+  padding: 24px !important;
+}
+
+.q-markup-table th {
+  font-size: 14px !important;
 }
 </style>

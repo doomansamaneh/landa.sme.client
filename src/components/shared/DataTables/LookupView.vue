@@ -2,11 +2,13 @@
   <q-input
     ref="search"
     v-model="selectedText"
+    hide-bottom-space
     outlined
     :required="required"
     :rules="rules"
     color="primary"
     class="input lookup"
+    input-class="text-body2 no-letter-spacing"
     dense
     debounce="1000"
     :placeholder="placeholder"

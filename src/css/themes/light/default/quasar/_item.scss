@@ -60,6 +60,8 @@
   }
 
   .q-item__label--caption {
-    color: $grey-7;
+    color: $grey-9 !important;
+    font-size: 14px !important;
+    letter-spacing: 0 !important;
   }
 }

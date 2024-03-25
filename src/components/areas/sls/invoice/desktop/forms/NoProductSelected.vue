@@ -5,7 +5,7 @@
       style="width: 120px"
       alt=""
     >
-    <div class="text-body1">
+    <div class="text-body1 no-letter-spacing">
       کالا یا خدمتی انتخاب نشده است
     </div>
   </div>
