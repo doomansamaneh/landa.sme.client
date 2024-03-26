@@ -15,8 +15,10 @@
         </div>
 
         <div class="col row items-end">
-          <q-btn :text-color="$q.dark.isActive ? 'white' : 'grey-9'" dense round icon="o_info" unelevated class="text-body2 no-letter-spacing"
+          <q-btn v-if="$q.screen.gt.xs" :text-color="$q.dark.isActive ? 'white' : 'grey-9'" dense round icon="o_info" unelevated class="text-body2 no-letter-spacing"
             @click="toggleMoreInfo" />
+
+            <q-btn padding="4px 12px" v-if="$q.screen.xs" color="primary" rounded unelevated label="جزئیات بیشتر" @click="toggleMoreInfo" />
         </div>
       </div>
 
@@ -62,8 +64,8 @@
     </div>
 
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <div class="row justify-end">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="row justify-end" :class="{'q-mt-md' : $q.screen.xs}">
+        <div class="col-md-6 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">شماره فاکتور</q-item-label>
           <q-input type="number" hide-bottom-space v-model="localFormStore.model.value.no" outlined dense
             :disable="isInputDisabled">

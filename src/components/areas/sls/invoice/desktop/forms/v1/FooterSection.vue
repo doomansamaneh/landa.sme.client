@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-mt-xl">
+  <div class="row" :class="$q.screen.gt.xs ? 'q-mt-xl' : 'q-mt-md'">
     <div class="col-md-8 col-sm-12 col-xs-12"></div>
     <div class="col-md-3 col-sm-12 col-xs-12 q-gutter-y-md">
       <div class="row q-mr-md">

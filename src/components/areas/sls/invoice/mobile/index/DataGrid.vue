@@ -67,7 +67,7 @@
           </div>
         </div>
       </q-card-section>
-    </q-card>
+  </q-card>
 
     <q-card
       class="bordered bg-blue-grey-2"
@@ -205,7 +205,7 @@
       </template>
 
       <template #row-body="{ item }">
-        <q-card-section>
+        <q-card-section class="no-padding">
           <div class="column q-gutter-sm">
             <div class="row items-center q-px-sm">
               <div class="col-3">
@@ -285,7 +285,7 @@
           </div>
         </q-card-section>
 
-        <q-card-section class="q-pt-xs">
+        <q-card-section class="q-pt-md q-pb-none q-px-sm">
           <div class="row items-center q-gutter-sm">
             <span
               class="border-radius-sm bg-orange-2 text-caption text-red label"
