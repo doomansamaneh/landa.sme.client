@@ -4,43 +4,14 @@
     orderByField="code"
     textTemplate="{{ code }} {{ name }}"
     searchField="name"
+    columns="code,name"
     ref="lookup"
   >
-    <template #thead>
-      <div class="row q-gutter-x-md items-center" style="width: 200px">
-        <div class="col-5 q-pr-md">
-          <header-column
-            fieldName="name"
-            :title="$t('shared.labels.name')"
-            :lookup="lookup"
-          />
-        </div>
-        <div class="col-4">
-          <header-column
-            fieldName="code"
-            :title="$t('shared.labels.code')"
-            :lookup="lookup"
-          />
-        </div>
-        <q-btn
-          dense
-          unelevated
-          color="primary"
-          class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
-          style="margin-top: 12px"
-          rounded
-          size="12px"
-        >
-          <q-icon name="o_add" size="14px" style="margin-left: 2px" />
-          <span class="text-caption">ایجاد</span>
-        </q-btn>
-      </div>
-    </template>
-
     <template #td="{ row }">
       <q-item clickable v-close-popup>
         <div class="row q-gutter-x-md items-center q-my-md q-pl-sm">
           <q-tooltip :delay="700" class="text-body3 custom-tooltip">
+            <span v-if="row.code">{{ row.code }} - </span>
             {{ row.name }} - {{ row.locationName }} {{ row.address }}
           </q-tooltip>
           <q-item-section avatar>
@@ -123,7 +94,6 @@ import { ref } from "vue";
 import { helper } from "src/helpers";
 
 import LookupView from "src/components/shared/dataTables/LookupView.vue";
-import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
 
 const lookup = ref(null);
 

@@ -16,17 +16,18 @@ import { computed } from "vue";
 const props = defineProps({
   title: String,
   fieldName: String,
-  lookup: Object,
+  tableStore: Object,
 });
 
 function sortColumn() {
-  props.lookup.tableStore.sortColumn({ name: props.fieldName, sortable: true });
+  props.tableStore.sortColumn({ name: props.fieldName, sortable: true });
 }
 
 const isAscending = computed(
-  () => props.lookup.tableStore.pagination.value.sortOrder === 1
+  () => props.tableStore.pagination.value.sortOrder === 1
 );
+
 const showSortIcon = computed(
-  () => props.lookup.tableStore.pagination.value.sortColumn === props.fieldName
+  () => props.tableStore.pagination.value.sortColumn === props.fieldName
 );
 </script>

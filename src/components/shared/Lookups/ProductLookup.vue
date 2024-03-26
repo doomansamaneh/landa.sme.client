@@ -3,40 +3,10 @@
     dataSource="cmn/product/getlookupData"
     orderByField="code"
     textTemplate="{{ code }} {{ title }}"
+    columns="code,title"
     :filterExpression="filterExpression"
     ref="lookup"
   >
-    <template #thead>
-      <div class="row q-gutter-x-md items-center" style="width: 200px">
-        <div class="col-5 q-pr-md">
-          <header-column
-            fieldName="code"
-            :title="$t('shared.labels.code')"
-            :lookup="lookup"
-          />
-        </div>
-        <div class="col-4">
-          <header-column
-            fieldName="title"
-            :title="$t('shared.labels.title')"
-            :lookup="lookup"
-          />
-        </div>
-        <q-btn
-          dense
-          unelevated
-          color="primary"
-          class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
-          style="margin-top: 12px"
-          rounded
-          size="12px"
-        >
-          <q-icon name="o_add" size="14px" style="margin-left: 2px" />
-          <span class="text-caption">ایجاد</span>
-        </q-btn>
-      </div>
-    </template>
-
     <template #td="{ row }">
       <q-item clickable v-close-popup>
         <div class="row q-gutter-x-sm items-center q-my-sm">
@@ -65,7 +35,9 @@
           </q-avatar>
         </div>
         <q-item-section class="q-pl-md">
-          <q-item-label class="text-caption">{{ row.title }}</q-item-label>
+          <q-item-label class="text-caption">
+            {{ row.code }} - {{ row.title }}
+          </q-item-label>
           <q-item-label class="text-caption-sm"
             ><span class="text-caption-sm text-bold">موجودی: </span
             >{{ row.stock }}</q-item-label
@@ -85,7 +57,7 @@ import { ref } from "vue";
 import { helper } from "src/helpers";
 
 import LookupView from "src/components/shared/dataTables/LookupView.vue";
-import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
+import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
 
 const props = defineProps({
   filterExpression: Array,

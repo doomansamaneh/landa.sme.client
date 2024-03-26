@@ -56,6 +56,51 @@ export default {
         },
       ],
     },
+
+    {
+      path: "crm/job",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/crm/job/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/crm/job/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/crm/job/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/crm/job/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "crm/contactType",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/crm/contactType/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/crm/contactType/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/crm/contactType/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/crm/contactType/CopyPage.vue"),
+        },
+      ],
+    },
+
     // {
     //   path: "sls/quote",
     //   component: () => import("pages/areas/sls/quote/IndexPage.vue"),
@@ -110,23 +155,95 @@ export default {
     },
 
     {
-      path: "cmn/vat",
+      path: "cmn/bankAccountType",
       children: [
         {
           path: "",
-          component: () => import("pages/areas/cmn/vat/IndexPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/bankAccountType/IndexPage.vue"),
         },
         {
           path: "create",
-          component: () => import("pages/areas/cmn/vat/CreatePage.vue"),
+          component: () =>
+            import("pages/areas/cmn/bankAccountType/CreatePage.vue"),
         },
         {
           path: "edit/:id",
-          component: () => import("pages/areas/cmn/vat/EditPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/bankAccountType/EditPage.vue"),
         },
         {
           path: "copy/:id",
-          component: () => import("pages/areas/cmn/vat/CopyPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/bankAccountType/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/bank",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/bank/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/bank/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/bank/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/bank/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/bankBranch",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/bankBranch/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/bankBranch/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/bankBranch/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/bankBranch/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/commonKeyword",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/cmn/commonKeyword/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/cmn/commonKeyword/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/commonKeyword/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/commonKeyword/CopyPage.vue"),
         },
       ],
     },
@@ -149,6 +266,98 @@ export default {
         {
           path: "copy/:id",
           component: () => import("pages/areas/cmn/currency/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/location",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/location/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/location/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/location/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/location/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/productUnit",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/productUnit/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/productUnit/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/productUnit/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/productUnit/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/productUnitRelation",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/cmn/productUnitRelation/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/cmn/productUnitRelation/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/cmn/productUnitRelation/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/cmn/productUnitRelation/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/vat",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/vat/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/vat/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/vat/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/vat/CopyPage.vue"),
         },
       ],
     },

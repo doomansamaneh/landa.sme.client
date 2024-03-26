@@ -13,10 +13,18 @@
       <div class="row items-center q-col-gutter-md_">
         <div style="width: 20px">#</div>
         <div class="col-8">
-          <header-column fieldName="title" title="طرح" :lookup="lookup" />
+          <header-column
+            fieldName="title"
+            :title="$t('shared.labels.plan')"
+            :data-source="lookup.dataSource"
+          />
         </div>
         <div class="col">
-          <header-column fieldName="cost" title="ماهانه" :lookup="lookup" />
+          <header-column
+            fieldName="cost"
+            :title="$t('shared.labels.monthly')"
+            :data-source="lookup.dataSource"
+          />
         </div>
       </div>
     </template>
@@ -35,7 +43,7 @@
 import { ref } from "vue";
 
 import LookupView from "src/components/shared/dataTables/LookupView.vue";
-import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
+import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
 
 const lookup = ref(null);
 

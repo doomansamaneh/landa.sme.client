@@ -59,7 +59,33 @@
         class="header text-caption text-bold q-pa-md bg-dark z-max"
         style="border-bottom: 1px solid var(--q-primary)"
       >
-        <slot name="thead" />
+        <slot name="thead">
+          <div class="row q-gutter-x-md items-center" style="width: 300px">
+            <div class="col-1">#</div>
+            <div v-for="col in lookupColumns" :key="col" class="col-3 q-pr-md">
+              <header-column
+                :fieldName="col"
+                :title="$t(`shared.labels.${col}`)"
+                :table-store="tableStore"
+              />
+            </div>
+
+            <slot name="create">
+              <q-btn
+                dense
+                unelevated
+                color="primary"
+                class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
+                style="margin-top: 12px"
+                rounded
+                size="12px"
+              >
+                <q-icon name="o_add" size="14px" style="margin-left: 2px" />
+                <span class="text-caption">ایجاد</span>
+              </q-btn>
+            </slot>
+          </div>
+        </slot>
       </div>
       <div
         class="cursor-pointer"
@@ -68,7 +94,20 @@
         :class="{ 'row-active': index === selectedRowIndex }"
         @click="onRowClicked(row, index)"
       >
-        <slot name="td" :row="row" :index="tableStore.rowIndex(index)" />
+        <slot name="td" :row="row" :index="tableStore.rowIndex(index)">
+          <q-item clickable v-close-popup>
+            <div class="row items-center q-gutter-x-md" style="width: 300px">
+              <div class="col-1 text-caption">{{ index }}</div>
+              <div
+                v-for="col in lookupColumns"
+                class="col text-caption"
+                :key="col"
+              >
+                {{ row[col] }}
+              </div>
+            </div>
+          </q-item>
+        </slot>
       </div>
 
       <div
@@ -106,13 +145,14 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, readonly } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import { useDataTable } from "src/composables/useDataTable";
 import { defaultLookupPageSize, sortOrder } from "src/constants";
 
 import PageBar from "src/components/shared/dataTables/PageBar.vue";
 import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
+import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
 
 const props = defineProps({
   dataSource: String,
@@ -266,6 +306,8 @@ function hidePopup() {
 }
 
 const isSearchEmpty = computed(() => !selectedId.value);
+
+const lookupColumns = computed(() => props.columns.split(","));
 
 const cardDefaultClass = computed(
   () =>

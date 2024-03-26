@@ -3,22 +3,13 @@
     <q-card-section class="no-padding">
       <div class="row items-center justify-between">
         <span class="text-body1 no-letter-spacing">مخاطبین</span>
-        <q-btn
-          round
-          unelevated
-          dense
-          icon="o_close"
-          v-close-popup
-        />
+        <q-btn round unelevated dense icon="o_close" v-close-popup />
       </div>
       <q-inner-loading
         :showing="tableStore.showLoader.value"
         class="transparent z-max"
       >
-        <q-spinner
-          size="52px"
-          color="primary"
-        />
+        <q-spinner size="52px" color="primary" />
       </q-inner-loading>
       <div class="q-my-lg">
         <q-input
@@ -34,16 +25,13 @@
           class="text-body2"
         >
           <template v-slot:prepend>
-            <q-icon
-              name="o_search"
-              color="primary"
-            />
+            <q-icon name="o_search" color="primary" />
           </template>
         </q-input>
       </div>
 
       <q-scroll-area
-        style="height:calc(100vh - 160px)"
+        style="height: calc(100vh - 160px)"
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
       >
@@ -64,7 +52,7 @@
                 square
                 class="border-radius-sm"
               >
-                <img :src="row.avatar">
+                <img :src="row.avatar" />
               </q-avatar>
 
               <q-avatar
@@ -72,7 +60,9 @@
                 text-color="white"
                 square
                 class="border-radius-sm"
-                :style="{ backgroundColor: helper.generateDarkAvatarColor(row.name) }"
+                :style="{
+                  backgroundColor: helper.generateDarkAvatarColor(row.name),
+                }"
                 v-else
               >
                 <div class="char text-body1 text-bold">
@@ -84,7 +74,7 @@
             <q-item-section>
               <q-item-label
                 class="ellipsis text-on-dark text-caption text-bold"
-                style="width:200px"
+                style="width: 200px"
               >
                 {{ row.code }} {{ row.name }}
               </q-item-label>
@@ -92,21 +82,13 @@
                 v-if="row.locationName"
                 caption
                 class="ellipsis q-mt-xs"
-                style="width: 200px;"
+                style="width: 200px"
               >
-                <q-icon
-                  name="o_location_on"
-                  size="13px"
-                  color="primary"
-                />
+                <q-icon name="o_location_on" size="13px" color="primary" />
                 {{ row.locationName }} {{ row.address }}
               </q-item-label>
               <div class="row items-center">
-                <q-item-label
-                  caption
-                  class="flex rtl"
-                  v-if="row.phoneNo"
-                >
+                <q-item-label caption class="flex rtl" v-if="row.phoneNo">
                   {{ helper.separatePhoneNumbers(row.phoneNo) }}
                   <q-icon
                     name="o_phone"
@@ -134,16 +116,16 @@
         </q-item>
 
         <div
-          v-if="!tableStore.showLoader.value && customerStore.rows.value.length === 0"
+          v-if="
+            !tableStore.showLoader.value &&
+            customerStore.rows.value.length === 0
+          "
           class="text-on-dark"
         >
           <no-data-found />
         </div>
 
-        <div
-          class="row justify-center"
-          v-if="hasMoreData"
-        >
+        <div class="row justify-center" v-if="hasMoreData">
           <q-btn
             rounded
             unelevated
@@ -154,48 +136,57 @@
           </q-btn>
         </div>
       </q-scroll-area>
-
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
-import { useDataTable } from "src/composables/useDataTable"
-import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid"
-import { helper } from "src/helpers"
-import NoDataFound from "src/components/shared/DataTables/NoDataFound.vue"
+import { ref, computed, onMounted } from "vue";
+import { helper } from "src/helpers";
+import { useDataTable } from "src/composables/useDataTable";
 
-const customerStore = useCustomerGrid()
+import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid";
+import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-const tableStore = useDataTable("crm/customer/getLookupData", customerStore.columns, customerStore)
+const customerStore = useCustomerGrid();
+
+const tableStore = useDataTable(
+  "crm/customer/getLookupData",
+  customerStore.columns,
+  customerStore
+);
 
 async function gotoNext() {
   if (hasMoreData.value) {
-    tableStore.pagination.value.currentPage += 1
-    await reloadData()
+    tableStore.pagination.value.currentPage += 1;
+    await reloadData();
   }
 }
 
 async function reloadData() {
-  await tableStore.reloadData()
-  customerStore.rows.value = [...customerStore.rows.value, ...tableStore.rows.value]
+  await tableStore.reloadData();
+  customerStore.rows.value = [
+    ...customerStore.rows.value,
+    ...tableStore.rows.value,
+  ];
 }
 
 async function loadData() {
-  tableStore.pagination.value.currentPage = 1
-  await tableStore.reloadData()
-  customerStore.rows.value = tableStore.rows.value
+  tableStore.pagination.value.currentPage = 1;
+  await tableStore.reloadData();
+  customerStore.rows.value = tableStore.rows.value;
 }
 
 const hasMoreData = computed(() => {
-  return tableStore.pagination.value.currentPage < tableStore.pagination.value.totalPages
+  return (
+    tableStore.pagination.value.currentPage <
+    tableStore.pagination.value.totalPages
+  );
 });
 
 onMounted(() => {
-  loadData()
-})
-
+  loadData();
+});
 </script>
 
 <style>
