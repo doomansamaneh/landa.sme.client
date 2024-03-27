@@ -20,7 +20,7 @@
               padding="6px 12px"
               rounded
               unelevated
-              @click="callbackSave"
+              @click="save"
             >
               <q-icon name="o_save" size="20px" class="q-mr-sm" />
               {{ $t("shared.labels.save") }}
@@ -47,19 +47,14 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
 import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
 const props = defineProps({
   title: String,
-  submitCallBack: Function,
 });
-const router = useRouter();
 
-const callbackSave = async function () {
-  if (props.submitCallBack) {
-    const response = await props.submitCallBack();
-    if (response?.data?.code === 200) router.back();
-  }
+const emit = defineEmits(["submit-call-back"]);
+const save = () => {
+  emit("submit-call-back");
 };
 </script>

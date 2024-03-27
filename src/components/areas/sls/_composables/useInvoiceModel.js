@@ -161,28 +161,23 @@ export function useInvoiceModel(preview = false) {
   );
 
   async function submitForm(form, action) {
-    await form.value.validate().then(async (success) => {
-      if (success) {
-        const responseData = await crudStore.createOrEdit(action);
-        if (responseData?.code === 200) {
-          $q.dialog({
-            component: ResponseDialog,
-            componentProps: {
-              responseData: responseData.data,
-              //title: t("shared.labels.deleteConfirm"),
-              //message: `${t("shared.labels.deleteMessage")}.`,
-              // ok: t("shared.labels.delete"),
-              // okColor: "deep-orange-7",
-            },
-          }).onOk(async () => {
-            router.back();
-          });
-        }
-      } else {
-        //todo: how to show validation message to user
-        alert("validation error");
+    await crudStore.submitForm(form, action, saveCallBack);
+    function saveCallBack(responseData) {
+      if (responseData?.code === 200) {
+        $q.dialog({
+          component: ResponseDialog,
+          componentProps: {
+            responseData: responseData.data,
+            //title: t("shared.labels.deleteConfirm"),
+            //message: `${t("shared.labels.deleteMessage")}.`,
+            // ok: t("shared.labels.delete"),
+            // okColor: "deep-orange-7",
+          },
+        }).onOk(async () => {
+          router.back();
+        });
       }
-    });
+    }
   }
 
   return {

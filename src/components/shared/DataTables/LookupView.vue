@@ -97,7 +97,7 @@
         <slot name="td" :row="row" :index="tableStore.rowIndex(index)">
           <q-item clickable v-close-popup>
             <div class="row items-center q-gutter-x-md" style="width: 300px">
-              <div class="col-1 text-caption">{{ index }}</div>
+              <div class="col-1 text-caption">{{ index + 1 }}</div>
               <div
                 v-for="col in lookupColumns"
                 class="col text-caption"

@@ -37,15 +37,13 @@ export function useFormActions(baseURL, model) {
     );
     notifyResponse(response.data);
     model.value.id = response.data.data.id;
-    model.value.recordVersion = getValidRecordVersion(
-      response.data.data.recordVersion
-    );
+    model.value.recordVersion = response.data.data.recordVersion;
     await resetIsDirty();
     return response.data;
-  }
 
-  function getValidRecordVersion(recordVersion) {
-    return BigInt(recordVersion).toString();
+    function getValidRecordVersion(recordVersion) {
+      return BigInt(recordVersion).toString();
+    }
   }
 
   async function resetIsDirty() {
@@ -123,6 +121,19 @@ export function useFormActions(baseURL, model) {
     } else notify("no row selected", "negative");
   }
 
+  async function submitForm(form, action, callBack) {
+    await form.validate().then(async (success) => {
+      if (success) {
+        const responseData = await createOrEdit(action);
+        if (callBack) callBack(responseData);
+        else if (responseData?.code === 200) router.back();
+      } else {
+        //todo: how to show validation message to user
+        alert("validation error");
+      }
+    });
+  }
+
   function validateIdList(idList) {
     return idList && idList.length > 0;
   }
@@ -179,5 +190,6 @@ export function useFormActions(baseURL, model) {
     deleteBatch,
     activate,
     deactivate,
+    submitForm,
   };
 }

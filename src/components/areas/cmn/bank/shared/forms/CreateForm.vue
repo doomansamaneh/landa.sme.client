@@ -1,5 +1,8 @@
 <template>
-  <tool-bar :title="title" :submit-call-back="submitForm"> </tool-bar>
+  <tool-bar
+    :title="title"
+    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+  />
 
   <div class="form-container">
     <q-card>
@@ -51,7 +54,6 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 import { precisionCounts } from "src/constants";
 
@@ -64,19 +66,6 @@ const props = defineProps({
   title: String,
 });
 
-const router = useRouter();
 const form = ref(null);
 const formStore = useBaseInfoModel("cmn/bank");
-
-async function submitForm() {
-  await form.value.validate().then(async (success) => {
-    if (success) {
-      const responseData = await formStore.crudStore.createOrEdit(props.action);
-      if (responseData?.code === 200) router.back();
-    } else {
-      //todo: how to show validation message to user
-      alert("validation error");
-    }
-  });
-}
 </script>

@@ -1,12 +1,15 @@
 <template>
-  <tool-bar :title="title" :submit-call-back="submitForm"> </tool-bar>
+  <tool-bar
+    :title="title"
+    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+  />
 
   <div class="form-container">
     <q-card>
       <q-card-section>
         <q-form ref="form" autofocus>
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="row q-mb-md">
+            <div class="col-md-3 col-sm-12 col-xs-12">
               <q-item-label
                 class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
               >
@@ -21,7 +24,7 @@
             </div>
           </div>
 
-          <div class="row q-col-gutter-md q-mb-md">
+          <div class="row q-mb-md">
             <div class="col-md-3 col-sm-12 col-xs-12">
               <q-item-label
                 class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
@@ -30,6 +33,8 @@
               </q-item-label>
               <date-time v-model="formStore.model.value.fromDate" />
             </div>
+          </div>
+          <div class="row q-mb-md">
             <div class="col-md-3 col-sm-12 col-xs-12">
               <q-item-label
                 class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
@@ -56,7 +61,6 @@
 
 <script setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
@@ -68,19 +72,6 @@ const props = defineProps({
   title: String,
 });
 
-const router = useRouter();
 const form = ref(null);
 const formStore = useBaseInfoModel("acc/fiscalYear");
-
-async function submitForm() {
-  await form.value.validate().then(async (success) => {
-    if (success) {
-      const responseData = await formStore.crudStore.createOrEdit(props.action);
-      if (responseData?.code === 200) router.back();
-    } else {
-      //todo: how to show validation message to user
-      alert("validation error");
-    }
-  });
-}
 </script>

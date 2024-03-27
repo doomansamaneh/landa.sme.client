@@ -1,5 +1,9 @@
 <template>
-  <tool-bar :title="title" :submit-call-back="submitForm"> </tool-bar>
+  <tool-bar
+    :title="title"
+    @submit-call-back="formStore.submitForm(form, action)"
+  />
+
   <div class="form-container">
     <q-form ref="form" autofocus>
       <desktop v-if="$q.screen.gt.sm" :form-store="formStore" />
@@ -24,8 +28,4 @@ const props = defineProps({
 
 const formStore = useInvoiceModel();
 const form = ref(null);
-
-function submitForm() {
-  formStore.submitForm(form, props.action);
-}
 </script>
