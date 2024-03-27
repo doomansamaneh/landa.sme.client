@@ -15,6 +15,13 @@ export function useFormActions(baseURL, model) {
     return await onGetById("getById", id);
   }
 
+  async function getCreateModel() {
+    const response = await fetchWrapper.get(`${baseURL}/getCreateModel`);
+    model.value = response.data.data;
+    await resetIsDirty();
+    return model.value;
+  }
+
   async function getPreviewById(id) {
     return await onGetById("getPreviewById", id);
   }
@@ -183,6 +190,7 @@ export function useFormActions(baseURL, model) {
 
   return {
     getById,
+    getCreateModel,
     getPreviewById,
     createOrEdit,
     editBatch,

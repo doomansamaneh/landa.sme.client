@@ -8,6 +8,13 @@
     <q-card>
       <q-card-section>
         <q-form ref="form" autofocus>
+          <div class="q-mb-md q-pa-md bordered_border-radius-sm">
+            <h5 class="text-primary">نکته</h5>
+            <p class="q-mt-md">
+              تاریخ آغاز سال مالی، اولین روز سال و تاریخ پایان سال مالی روز
+              پایانی سال است
+            </p>
+          </div>
           <div class="row q-mb-md">
             <div class="col-md-3 col-sm-12 col-xs-12">
               <q-item-label
@@ -73,5 +80,5 @@ const props = defineProps({
 });
 
 const form = ref(null);
-const formStore = useBaseInfoModel("acc/fiscalYear");
+const formStore = useBaseInfoModel("acc/fiscalYear", null, true);
 </script>

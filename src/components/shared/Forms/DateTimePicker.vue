@@ -6,8 +6,6 @@
     mask="date"
     clearable
     clear-icon="clear"
-    :label="label"
-    :placeholder="placeholder"
     class="text-body1 no-letter-spacing"
   >
     <template v-slot:append>
@@ -47,7 +45,7 @@
 import { ref, computed } from "vue";
 import { useCulture } from "src/composables/useCulture";
 
-const props = defineProps(["modelValue", "placeholder", "label"]);
+const props = defineProps(["modelValue"]);
 const emit = defineEmits(["update:modelValue"]);
 
 const cultureStore = useCulture();

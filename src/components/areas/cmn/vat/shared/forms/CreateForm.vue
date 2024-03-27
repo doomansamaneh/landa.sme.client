@@ -8,60 +8,8 @@
     <q-card>
       <q-card-section>
         <q-form ref="form" autofocus>
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-6 col-sm-12 col-xs-12">
-              <q-item-label
-                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-              >
-                عنوان
-              </q-item-label>
-              <custom-input
-                hide-bottom-space
-                v-model="formStore.model.value.title"
-                :rules="[(val) => val !== null && val !== '']"
-              />
-            </div>
-          </div>
-
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <q-option-group
-                inline
-                :options="vatTypes"
-                type="radio"
-                v-model="formStore.model.value.isForSale"
-              />
-            </div>
-          </div>
-
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-2 col-sm-6 col-xs-6">
-              <q-item-label
-                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-              >
-                نرخ
-              </q-item-label>
-              <custom-input
-                type="number"
-                hide-bottom-space
-                v-model="formStore.model.value.rate"
-                :rules="[(val) => val !== null && val !== '']"
-              >
-                <template v-slot:append>
-                  <q-icon name="percent" />
-                </template>
-              </custom-input>
-            </div>
-          </div>
-
-          <div class="row q-gutter-md q-mb-md">
-            <q-checkbox
-              dense
-              size="48px"
-              v-model="formStore.model.value.isActive"
-              label="فعال"
-            />
-          </div>
+          <master-section :form-store="formStore" />
+          <detail-section :form-store="formStore" />
         </q-form>
       </q-card-section>
     </q-card>
@@ -71,10 +19,11 @@
 <script setup>
 import { ref } from "vue";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { vatTypes } from "src/constants";
+import { vatModel } from "src/models/areas/cmn/vatModel";
 
+import MasterSection from "./_MasterSection.vue";
+import DetailSection from "./_DetailSection.vue";
 import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
 const props = defineProps({
   action: String,
@@ -82,5 +31,5 @@ const props = defineProps({
 });
 
 const form = ref(null);
-const formStore = useBaseInfoModel("cmn/vat");
+const formStore = useBaseInfoModel("cmn/vat", vatModel);
 </script>
