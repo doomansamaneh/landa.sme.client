@@ -14,6 +14,9 @@ register(process.env.SERVICE_WORKER_FILE, {
 
   ready(/* registration */) {
     console.log("Service worker is active.");
+    caches.keys().then(function (names) {
+      for (let name of names) caches.delete(name);
+    });
   },
 
   registered(/* registration */) {
@@ -25,33 +28,14 @@ register(process.env.SERVICE_WORKER_FILE, {
   },
 
   updatefound(/* registration */) {
-
-    console.log("New content is downloading...");
-
-    Notify.create({
-      type: "info",
-      progress: true,
-      color: "primary",
-      message:
-        "نسخه جدید به طور خودکار درحال دریافت است، لطفا پس از اتمام بر روی تازه‌سازی کلیک کنید.",
-      position: "top",
-      multiline: true,
-      timeout: 5000,
-    });
-  },
-
-  updated(/* registration */) {
-    console.log("Service worker has been updated.");
-
-    caches.keys().then(function (names) {
-      for (let name of names) caches.delete(name);
-    });
+    console.log("New Update is downloading...");
 
     Notify.create({
       message: "نسخه جدید در دسترس است",
       color: "green",
       icon: "o_sync",
       position: "top",
+      timeout: 0,
       actions: [
         {
           label: "تازه‌سازی",
@@ -67,6 +51,10 @@ register(process.env.SERVICE_WORKER_FILE, {
         },
       ],
     });
+  },
+
+  updated(/* registration */) {
+    console.log("Service worker has been updated.");
   },
 
   offline() {
