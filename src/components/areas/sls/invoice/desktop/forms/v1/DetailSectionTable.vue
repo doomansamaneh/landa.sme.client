@@ -47,7 +47,7 @@
       <tr v-for="(row, index) in formStore.model.value.invoiceItems" :key="index" class="q-pa-md">
         <td class="text-center">{{ index + 1 }}</td>
         <td>
-          <product-lookup autofocus placeholder="انتخاب کالا/خدمت" v-model:selectedId="row.productId"
+          <product-lookup class="first" autofocus placeholder="انتخاب کالا/خدمت" v-model:selectedId="row.productId"
             v-model:selectedText="row.productTitle" :filterExpression="productFilter"
             @rowSelected="productChanged($event, row)" />
         </td>
@@ -112,7 +112,8 @@
       <tr>
         <td colspan="100%" class="text-center">
           <no-product-selected class="q-mt-md" />
-          <q-btn class="primary-shadow" rounded unelevated color="primary" icon="add" @click="formStore.pushNewRow()">
+          <q-btn class="primary-shadow" rounded unelevated color="primary" @click="formStore.pushNewRow()">
+            <q-icon name="o_add" size=20px class="q-mr-xs" />
             افزودن ردیف
           </q-btn>
         </td>

@@ -1,11 +1,10 @@
 <template>
   <q-card flat class="border-radius-sm">
     <q-list bordered class="rounded-borders">
-      <q-btn padding="6px 12px" class="text-body2 no-letter-spacing" rounded unelevated color="primary"
-        @click="addItem">
-        <q-icon name="o_add" size="20px" class="q-mr-xs" />
-        افزودن ردیف
-      </q-btn>
+      <q-btn class="primary-shadow" rounded unelevated color="primary" @click="addItem">
+            <q-icon name="o_add" size=20px class="q-mr-xs" />
+            افزودن ردیف
+          </q-btn>
       <q-separator spaced />
       <div v-if="formStore.model.value.invoiceItems.length === 0">
         <no-product-selected />

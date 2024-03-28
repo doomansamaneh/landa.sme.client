@@ -335,6 +335,13 @@ defineExpose({
   selectedText,
   tableStore,
 });
+
+onMounted(() => {
+  const firstLookup = document.querySelector(".first");
+  if (firstLookup) {
+    firstLookup.focus();
+  }
+});
 </script>
 
 <style>
