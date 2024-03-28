@@ -146,7 +146,12 @@ module.exports = configure(function (/* ctx */) {
       // extendSSRWebserverConf (esbuildConf) {},
       // extendPackageJson (json) {},
 
-      pwa: false,
+      pwa: {
+        extendGenerateSWOptions (cfg) {
+          cfg.skipWaiting = false
+          cfg.clientsClaim = false
+        }
+      },
 
       // manualStoreHydration: true,
       // manualPostHydrationTrigger: true,
