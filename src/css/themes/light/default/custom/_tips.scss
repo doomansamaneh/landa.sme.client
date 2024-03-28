@@ -1,0 +1,33 @@
+@mixin tips-light {
+  .tips.q-card {
+    border: 1px solid $primary !important;
+    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important;
+    background-color: #{$primary}10 !important;
+  }
+
+  .tips .q-card__section {
+    padding: 48px !important;
+  }
+
+  .tips .title {
+    font-weight: 700 !important;
+    font-family: "vazir-bold" !important;
+    color: $primary !important;
+    font-size: 20px !important;
+    letter-spacing: 0 !important;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    .tips .q-card__section {
+      padding: 24px !important;
+    }
+
+    .tips .title {
+      font-weight: 700 !important;
+      font-family: "vazir-bold" !important;
+      color: $primary !important;
+      font-size: 20px !important;
+      letter-spacing: 0 !important;
+    }
+  }
+}

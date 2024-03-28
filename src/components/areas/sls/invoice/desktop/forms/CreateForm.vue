@@ -1,6 +1,6 @@
 <template>
-  <q-card class="form-container bordered border-radius-xl">
-    <q-card-section class="q-pa-xl">
+  <q-card class="form-container">
+    <q-card-section>
       <master-section :form-store="formStore" />
       <div class="q-mt-md">
         <detail-section :form-store="formStore" />
