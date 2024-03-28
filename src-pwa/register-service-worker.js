@@ -13,22 +13,40 @@ register(process.env.SERVICE_WORKER_FILE, {
   // registrationOptions: { scope: './' },
 
   ready(/* registration */) {
-    console.log('Service worker is active.')
+    console.log("Service worker is active.");
   },
 
   registered(/* registration */) {
-    console.log('Service worker has been registered.')
+    console.log("Service worker has been registered.");
   },
 
   cached(/* registration */) {
-    console.log('Content has been cached for offline 00use.')
+    console.log("Content has been cached for offline use.");
   },
 
   updatefound(/* registration */) {
-    alert('New content is downloading.')
+
+    console.log("New content is downloading...");
+
+    Notify.create({
+      type: "info",
+      progress: true,
+      color: "primary",
+      message:
+        "نسخه جدید به طور خودکار درحال دریافت است، لطفا پس از اتمام بر روی تازه‌سازی کلیک کنید.",
+      position: "top",
+      multiline: true,
+      timeout: 5000,
+    });
   },
 
   updated(/* registration */) {
+    console.log("Service worker has been updated.");
+
+    caches.keys().then(function (names) {
+      for (let name of names) caches.delete(name);
+    });
+
     Notify.create({
       message: "نسخه جدید در دسترس است",
       color: "green",
@@ -39,7 +57,7 @@ register(process.env.SERVICE_WORKER_FILE, {
           label: "تازه‌سازی",
           color: "orange-3",
           handler: () => {
-            window.location.reload();
+            location.reload();
           },
         },
         {
@@ -52,10 +70,12 @@ register(process.env.SERVICE_WORKER_FILE, {
   },
 
   offline() {
-    console.log('No internet connection found. App is running in offline mode.')
+    console.log(
+      "No internet connection found. App is running in offline mode."
+    );
   },
 
   error(/* err */) {
-    console.error('Error during service worker registration:', err)
+    console.error("Error during service worker registration:", err);
   },
 });
