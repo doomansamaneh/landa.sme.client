@@ -8,7 +8,7 @@
     clear-icon="clear"
     class="text-body1 no-letter-spacing"
   >
-    <template v-slot:append>
+    <template #append>
       <q-icon name="event" class="cursor-pointer">
         <q-popup-proxy
           class="q-mx-xl border-radius-xl"
@@ -17,7 +17,7 @@
           transition-hide="scale"
           @before-show="updateProxy"
         >
-          <q-date v-model="proxyDate" :calendar="calendar" today-btn bordered>
+          <q-date style="width:300px" v-model="proxyDate" :calendar="calendar" today-btn bordered>
             <div class="row items-center justify-end q-gutter-sm rtl">
               <q-btn
                 :label="$t('shared.labels.cancel')"
