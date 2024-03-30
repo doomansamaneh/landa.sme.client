@@ -1,13 +1,28 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="localFormStore.crudStore.submitForm(form, action)"
   />
 
   <div class="form-container">
     <q-card>
       <q-card-section>
         <q-form ref="form" autofocus>
+          <div v-if="hasCode" class="row q-col-gutter-md q-mb-md">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <q-item-label
+                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+              >
+                کد
+              </q-item-label>
+              <custom-input
+                hide-bottom-space
+                v-model="localFormStore.model.value.code"
+                :rules="[(val) => val !== null && val !== '']"
+              />
+            </div>
+          </div>
+
           <div class="row q-col-gutter-md q-mb-md">
             <div class="col-md-6 col-sm-12 col-xs-12">
               <q-item-label
@@ -17,22 +32,7 @@
               </q-item-label>
               <custom-input
                 hide-bottom-space
-                v-model="formStore.model.value.title"
-                :rules="[(val) => val !== null && val !== '']"
-              />
-            </div>
-          </div>
-
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-2 col-sm-6 col-xs-6">
-              <q-item-label
-                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-              >
-                تعداد اعشار
-              </q-item-label>
-              <custom-select
-                v-model="formStore.model.value.precisionCount"
-                :options="precisionCounts"
+                v-model="localFormStore.model.value.title"
                 :rules="[(val) => val !== null && val !== '']"
               />
             </div>
@@ -42,7 +42,7 @@
             <q-checkbox
               dense
               size="48px"
-              v-model="formStore.model.value.isActive"
+              v-model="localFormStore.model.value.isActive"
               label="فعال"
             />
           </div>
@@ -53,21 +53,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { precisionCounts } from "src/constants";
+import { ref, computed } from "vue";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
 const props = defineProps({
   action: String,
   title: String,
+  formStore: Object,
+  hasCode: Boolean,
 });
 
 const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "cmn/location",
-});
+
+const localFormStore = computed(() => props.formStore);
 </script>

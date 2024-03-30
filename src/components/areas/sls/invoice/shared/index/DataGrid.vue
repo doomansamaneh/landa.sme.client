@@ -27,7 +27,134 @@
       :base-route="baseRoute"
       buttons
     >
+      <template #bootons-edit="{ row }">
+        <q-btn
+          padding="6px 12px"
+          :to="`/${baseRoute}/edit/${row.id}`"
+          class="text-body2 no-letter-spacing"
+          rounded
+          unelevated
+          no-caps
+        >
+          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+          {{ $t("shared.labels.edit") }}
+        </q-btn>
+
+        <q-btn
+          :to="`/${baseRoute}/copy/${row.id}`"
+          class="text-body2 no-letter-spacing"
+          rounded
+          unelevated
+          no-caps
+        >
+          <q-icon size="20px" name="o_copy" class="q-mr-xs" />
+          {{ $t("shared.labels.copy") }}
+        </q-btn>
+      </template>
+      <template #buttons-batch-action>
+        <q-btn
+          padding="6px 12px"
+          class="text-body2 no-letter-spacing"
+          rounded
+          unelevated
+          no-caps
+          @click="editBatch"
+        >
+          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+          {{ $t("shared.labels.editBatch") }}
+          <q-badge floating>
+            {{ selectedIds?.length }}
+          </q-badge>
+        </q-btn>
+      </template>
+
+      <template #buttons-custom="{ row }">
+        <q-item clickable v-close-popup tabindex="0">
+          <q-item-section avatar class="q-py-sm">
+            <q-avatar class="bg-on-dark" size="sm">
+              <q-icon name="o_cached" size="20px" />
+            </q-avatar>
+          </q-item-section>
+          <q-item-section>
+            <div class="text-body2 no-letter-spacing">
+              {{ $t("shared.labels.reorder") }}
+            </div>
+          </q-item-section>
+        </q-item>
+
+        <q-separator class="q-my-sm" />
+
+        <q-item v-if="row" clickable v-close-popup tabindex="0">
+          <q-item-section avatar class="q-py-sm">
+            <q-avatar class="bg-on-dark text-red" size="sm">
+              <q-icon name="o_close" size="20px" />
+            </q-avatar>
+          </q-item-section>
+          <q-item-section>
+            <div class="text-body2 no-letter-spacing">
+              {{ $t("shared.labels.cancelInvoice") }}
+            </div>
+          </q-item-section>
+        </q-item>
+
+        <template v-if="row">
+          <q-item clickable v-close-popup tabindex="0">
+            <q-item-section avatar class="q-py-sm">
+              <q-avatar class="bg-on-dark" size="sm">
+                <q-icon name="o_shopping_cart" size="20px" />
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <div class="text-body2 no-letter-spacing">
+                {{ $t("shared.labels.copyToPurchase") }}
+              </div>
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-close-popup tabindex="0">
+            <q-item-section avatar class="q-py-sm">
+              <q-avatar class="bg-on-dark" size="sm">
+                <q-icon name="o_undo" size="20px" />
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <div class="text-body2 no-letter-spacing">
+                {{ $t("shared.labels.salesReturn") }}
+              </div>
+            </q-item-section>
+          </q-item>
+
+          <q-separator class="q-my-sm" />
+
+          <q-item clickable v-close-popup tabindex="0">
+            <q-item-section avatar class="q-py-sm">
+              <q-avatar class="bg-on-dark" size="sm">
+                <q-icon name="o_print" size="20px" />
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <div class="text-body2 no-letter-spacing">
+                {{ $t("shared.labels.print") }}
+              </div>
+            </q-item-section>
+          </q-item>
+        </template>
+
+        <q-item clickable v-close-popup tabindex="0">
+          <q-item-section class="q-py-sm" avatar>
+            <q-avatar class="bg-on-dark" size="sm">
+              <q-icon name="o_print" size="20px" />
+            </q-avatar>
+          </q-item-section>
+          <q-item-section>
+            <div class="text-body2 no-letter-spacing">
+              {{ $t("shared.labels.printBatch") }}
+            </div>
+          </q-item-section>
+        </q-item>
+      </template>
     </toolbar-desktop>
+
     <desktop
       :grid-store="gridStore"
       :crud-store="crudStore"
@@ -50,7 +177,7 @@ import ToolbarMobile from "components/shared/ToolBarMobile.vue";
 import Desktop from "src/components/areas/sls/invoice/desktop/index/DataGrid.vue";
 import Mobile from "src/components/areas/sls/invoice/mobile/index/DataGrid.vue";
 
-//import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
+import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
 
 const props = defineProps({
   toolbar: Boolean,
@@ -78,14 +205,14 @@ const selectedIds = computed(() => {
     );
 });
 
-// function editBatch() {
-//   $q.dialog({
-//     component: EditBatch,
-//     componentProps: {
-//       selectedIds: selectedIds?.value,
-//     },
-//   }).onOk(async () => {
-//     await reloadData();
-//   });
-// }
+function editBatch() {
+  $q.dialog({
+    component: EditBatch,
+    componentProps: {
+      selectedIds: selectedIds?.value,
+    },
+  }).onOk(async () => {
+    await reloadData();
+  });
+}
 </script>

@@ -1,72 +1,34 @@
-import { ref, computed, watch, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { useFormActions } from "src/composables/useFormActions";
+import { ref, computed, watch } from "vue";
+import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
+import { useFormActions } from "src/composables/useFormActions";
 import { fetchWrapper, helper } from "src/helpers";
-import "src/helpers/extensions";
 import { useInvoiceItemModel } from "./useInvoiceItemModel";
+import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
 export function useInvoiceModel(preview = false) {
-  const dateTime = new Date();
   const $q = useQuasar();
   const router = useRouter();
-  const route = useRoute();
   const itemStore = useInvoiceItemModel();
 
-  const model = ref({
-    no: 1,
-    date: dateTime.toDateString(),
-    invoiceItems: [],
-  });
-
-  const editBatchModel = ref({
-    productGroup: {
-      fieldName: "ProductGroupId",
-      isModified: false,
-    },
-    taxCode: {
-      fieldName: "TaxCode",
-      isModified: false,
-    },
-    productType: {
-      fieldName: "TypeId",
-      isModified: false,
-    },
-    productUnit: {
-      fieldName: "ProductUnitId",
-      isModified: false,
-    },
-    isForPurchase: {
-      fieldName: "IsForPurchase",
-      fieldValue: "0",
-      isModified: false,
-    },
-    isForSale: {
-      fieldName: "IsForSale",
-      fieldValue: "0",
-      isModified: false,
-    },
-    isActive: {
-      fieldName: "IsActive",
-      fieldValue: "0",
-      isModified: false,
-    },
-  });
+  const model = ref(invoiceModel);
 
   const crudStore = useFormActions("sls/invoice", model);
 
   async function getById(id) {
     let responseData = null;
-    if (preview) responseData = await crudStore.getPreviewById(id);
-    else responseData = await crudStore.getById(id);
+    if (id) {
+      if (preview) responseData = await crudStore.getPreviewById(id);
+      else responseData = await crudStore.getById(id);
+    } else responseData = await crudStore.getCreateModel();
     if (responseData) addWatch();
   }
 
-  onMounted(() => {
-    getById(route.params.id);
-  });
+  // onMounted(() => {
+  //   getById(route.params.id);
+  // });
 
   function addWatch() {
     watch(
@@ -182,13 +144,13 @@ export function useInvoiceModel(preview = false) {
 
   return {
     model,
-    editBatchModel,
     crudStore,
     totalPrice,
     totalDiscount,
     totalVat,
     totalNetPrice,
 
+    getById,
     addNewRow,
     addNewRowByCode,
     pushNewRow,

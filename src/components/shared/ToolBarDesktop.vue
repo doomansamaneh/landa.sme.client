@@ -28,7 +28,7 @@
             </q-btn>
 
             <template v-if="tableStore?.activeRow?.value != null">
-              <slot name="bootons-edit">
+              <slot name="bootons-edit" :row="tableStore?.activeRow?.value">
                 <q-btn
                   padding="6px 12px"
                   :to="`/${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
@@ -165,7 +165,11 @@
                     </q-item>
                   </template>
 
-                  <slot name="buttons-custom"> </slot>
+                  <slot
+                    name="buttons-custom"
+                    :row="tableStore?.activeRow?.value"
+                  >
+                  </slot>
 
                   <q-separator class="q-my-sm" />
 

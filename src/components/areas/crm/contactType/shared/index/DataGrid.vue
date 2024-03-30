@@ -1,9 +1,9 @@
 <template>
   <data-grid
     toolbar
-    base-route="cmn/currency"
-    data-source="cmn/currency/getGridData"
-    :title="$t('main-menu-items.Cmn_Currency_View')"
+    base-route="crm/contactType"
+    data-source="crm/contactType/getGridData"
+    :title="$t('main-menu-items.Crm_ContactType_View')"
     :columns="columns"
   >
   </data-grid>

@@ -199,7 +199,8 @@
 import { ref } from "vue";
 import { productType } from "src/constants";
 import { helper } from "src/helpers";
-import { useProductModel } from "src/components/areas/cmn/_composables/useProductModel";
+import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+import { productModel } from "src/models/areas/cmn/productModel";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -213,5 +214,8 @@ const props = defineProps({
 });
 
 const form = ref(null);
-const formStore = useProductModel();
+const formStore = useBaseInfoModel({
+  baseRoute: "cmn/product",
+  model: productModel,
+});
 </script>

@@ -41,5 +41,7 @@ const props = defineProps({
 });
 
 const form = ref(null);
-const formStore = useBaseInfoModel("cmn/commonKeyword");
+const formStore = useBaseInfoModel({
+  baseRoute: "cmn/commonKeyword",
+});
 </script>

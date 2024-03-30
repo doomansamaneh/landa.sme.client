@@ -67,5 +67,7 @@ const props = defineProps({
 });
 
 const form = ref(null);
-const formStore = useBaseInfoModel("cmn/currency");
+const formStore = useBaseInfoModel({
+  baseRoute: "crm/contactType",
+});
 </script>

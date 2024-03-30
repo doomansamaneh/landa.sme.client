@@ -1,9 +1,9 @@
 <template>
   <data-grid
     toolbar
-    base-route="cmn/currency"
-    data-source="cmn/currency/getGridData"
-    :title="$t('main-menu-items.Cmn_Currency_View')"
+    base-route="cmn/productUnit"
+    data-source="cmn/productUnit/getGridData"
+    :title="$t('main-menu-items.Cmn_ProductUnit_View')"
     :columns="columns"
   >
   </data-grid>
@@ -12,5 +12,5 @@
 <script setup>
 import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
 
-const columns = ["title", "isActive", "actions"];
+const columns = ["code", "title", "isActive", "actions"];
 </script>

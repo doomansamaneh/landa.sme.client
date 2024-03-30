@@ -14,7 +14,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
@@ -25,7 +26,11 @@ const props = defineProps({
   title: String,
   action: String,
 });
-
+const route = useRoute();
 const formStore = useInvoiceModel();
 const form = ref(null);
+
+onMounted(() => {
+  formStore.getById(route.params.id);
+});
 </script>

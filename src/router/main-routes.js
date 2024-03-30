@@ -106,19 +106,46 @@ export default {
     //   component: () => import("pages/areas/sls/quote/IndexPage.vue"),
     // },
     {
-      path: "/sls/invoice",
-      component: () => import("pages/areas/sls/invoice/IndexPage.vue"),
+      path: "sls/invoice",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/sls/invoice/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/sls/invoice/CreatePage.vue"),
+        },
+        {
+          path: "createV2",
+          component: () => import("pages/areas/sls/invoice/CreateV2Page.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/sls/invoice/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/sls/invoice/CopyPage.vue"),
+        },
+        {
+          path: "detail/:id",
+          component: () => import("pages/areas/sls/invoice/DetailPage.vue"),
+        },
+        {
+          path: "remained/:remained",
+          component: () =>
+            import("pages/areas/sls/invoice/IndexRemainedPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () => import("pages/areas/sls/invoice/PreviewPage.vue"),
+        },
+      ],
     },
+
     {
-      path: "/sls/invoice/remained/:remained",
-      component: () => import("pages/areas/sls/invoice/IndexRemainedPage.vue"),
-    },
-    {
-      path: "/sls/invoice/preview/:id",
-      component: () => import("pages/areas/sls/invoice/PreviewPage.vue"),
-    },
-    {
-      path: "/scr/users/settings",
+      path: "scr/users/settings",
       children: [
         {
           path: "",
@@ -140,18 +167,6 @@ export default {
             ),
         },
       ],
-    },
-    {
-      path: "/cmn/productGroup",
-      component: () => import("src/pages/areas/cmn/productGroup/IndexPage.vue"),
-    },
-    {
-      path: "/cmn/product",
-      component: () => import("src/pages/areas/cmn/product/IndexPage.vue"),
-    },
-    {
-      path: "/cmn/product/preview/:id",
-      component: () => import("src/pages/areas/cmn/product/PreviewPage.vue"),
     },
 
     {
@@ -293,6 +308,56 @@ export default {
     },
 
     {
+      path: "cmn/productGroup",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/productGroup/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/cmn/productGroup/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/productGroup/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/productGroup/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "cmn/product",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/cmn/product/IndexPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("src/pages/areas/cmn/product/PreviewPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/cmn/product/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/cmn/product/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/cmn/product/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "cmn/productUnit",
       children: [
         {
@@ -358,6 +423,28 @@ export default {
         {
           path: "copy/:id",
           component: () => import("pages/areas/cmn/vat/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "inv/inventory",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/inv/inventory/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/inv/inventory/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/inv/inventory/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/inv/inventory/CopyPage.vue"),
         },
       ],
     },
