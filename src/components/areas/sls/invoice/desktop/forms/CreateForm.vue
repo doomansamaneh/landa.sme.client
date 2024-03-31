@@ -1,12 +1,8 @@
 <template>
-  <q-card class="form-container">
-    <q-card-section>
-      <master-section :form-store="formStore" />
-      <div class="q-mt-md">
-        <detail-section :form-store="formStore" />
-      </div>
-    </q-card-section>
-  </q-card>
+  <master-section :form-store="formStore" />
+  <div class="q-mt-md">
+    <detail-section :form-store="formStore" />
+  </div>
 </template>
 
 <script setup>

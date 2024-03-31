@@ -5,6 +5,7 @@
     dense
     clear-icon="clear"
     input-class="text-right"
+    type="number"
     @update:model-value="updateModel"
   >
     <!-- <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
