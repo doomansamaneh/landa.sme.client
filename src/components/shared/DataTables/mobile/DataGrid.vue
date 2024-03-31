@@ -43,7 +43,7 @@
     </q-input>
   </slot>
 
-  <div class="q-my-sm_ q-gutter-y-sm_">
+  <div class="q-gutter-sm">
     <template v-for="(row, index) in rows?.value" :key="row.id">
       <div
         @click="setActiveRow(row)"

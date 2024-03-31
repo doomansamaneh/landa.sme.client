@@ -6,7 +6,7 @@
     :create-url="createUrl"
   >
     <template #body="{ item }">
-      <q-card :class="tableStore?.getRowClass(item)">
+      <q-card flat bordered :class="tableStore?.getRowClass(item)">
         <q-card-section>
           <span
             class="q-mr-md"
