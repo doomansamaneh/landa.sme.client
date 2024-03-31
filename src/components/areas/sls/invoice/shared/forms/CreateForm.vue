@@ -4,13 +4,11 @@
     @submit-call-back="formStore.submitForm(form, action)"
   />
 
-  <div class="form-container">
-    <q-form ref="form" autofocus>
-      <desktop v-if="$q.screen.gt.sm" :form-store="formStore" />
-      <mobile v-else :form-store="formStore" />
-      <!-- <mobile :form-store="formStore" /> -->
-    </q-form>
-  </div>
+  <q-form ref="form" autofocus>
+    <desktop v-if="$q.screen.gt.sm" :form-store="formStore" />
+    <mobile v-else :form-store="formStore" />
+    <!-- <mobile :form-store="formStore" /> -->
+  </q-form>
 </template>
 
 <script setup>

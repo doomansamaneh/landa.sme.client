@@ -5,6 +5,7 @@
     data-source="cmn/commonKeyword/getGridData"
     :title="$t('main-menu-items.Cmn_CommonKeyword_View')"
     :columns="columns"
+    create-url="/cmn/commonKeyword/create"
   />
 </template>
 

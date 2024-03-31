@@ -4,8 +4,7 @@
     @submit-call-back="formStore.crudStore.submitForm(form, action)"
   />
 
-  <div class="form-container">
-    <q-card>
+    <q-card class="form-container">
       <q-card-section>
         <q-form ref="form" autofocus>
           <div class="row q-col-gutter-md q-mb-md">
@@ -49,7 +48,6 @@
         </q-form>
       </q-card-section>
     </q-card>
-  </div>
 </template>
 
 <script setup>

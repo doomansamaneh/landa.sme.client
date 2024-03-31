@@ -83,7 +83,10 @@
       <q-item-label caption class="q-mb-sm">جمع کل</q-item-label>
       <q-field outlined dense disable>
         <template v-slot:control>
-          <div class="self-center full-width no-outline" tabindex="0">
+          <div
+            class="self-center full-width no-outline text-right"
+            tabindex="0"
+          >
             {{ row.totalPrice?.toLocaleString() }}
           </div>
         </template>

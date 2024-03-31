@@ -1,5 +1,26 @@
 <template>
-  <template v-if="$q.screen.xs">
+  <!-- <toolbar-mobile
+    v-if="toolbar"
+    buttons
+    :title="title"
+    :table-store="mobileGrid?.tableStore"
+    :crud-store="crudStore"
+    :base-route="baseRoute"
+    activation
+  >
+  </toolbar-mobile>
+
+  <mobile
+    :title="title"
+    :grid-store="gridStore"
+    :crud-store="crudStore"
+    :data-source="dataSource"
+    :base-route="baseRoute"
+    :create-url="createUrl"
+    ref="mobileGrid"
+  /> -->
+
+  <template v-if="$q.screen.lt.sm">
     <toolbar-mobile
       v-if="toolbar"
       buttons
@@ -17,6 +38,8 @@
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
+      :create-url="createUrl"
+      :columns="columns"
       ref="mobileGrid"
     />
   </template>
@@ -61,6 +84,7 @@ const props = defineProps({
   title: String,
   baseRoute: String,
   dataSource: String,
+  createUrl: String,
   columns: Array,
 });
 

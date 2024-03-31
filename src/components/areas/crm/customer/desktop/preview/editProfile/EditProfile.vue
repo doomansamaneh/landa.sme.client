@@ -2,9 +2,7 @@
 
   <tool-bar title="ویرایش مخاطب" back-button />
 
-  <div class="form-container">
-    <q-card class="bordered">
-
+    <q-card class=" form-container">
       <q-card-section>
         <q-form ref="form" autofocus>
           <master-section />
@@ -38,9 +36,7 @@
           </q-tab-panels>
         </q-form>
       </q-card-section>
-
     </q-card>
-  </div>
 </template>
 
 <script setup>
