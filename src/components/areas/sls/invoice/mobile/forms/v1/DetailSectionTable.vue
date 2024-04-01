@@ -54,8 +54,8 @@
 
     <q-separator v-if="false" />
 
-    <q-card-section class="q-px-lg_">
-      <div class="column q-gutter-sm_">
+    <q-card-section>
+      <div class="column q-px-md q-py-md">
         <div class="row items-center">
           <div class="col-4">
             <span class="text-caption text-on-dark">کالا/خدمت</span>
