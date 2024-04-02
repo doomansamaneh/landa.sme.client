@@ -48,8 +48,8 @@
   >
     <tbody>
       <tr class="bg-on-dark text-center">
-        <td colspan="4">
-          <div class="header text-body1 no-letter-spacing text-weight-700">
+        <td colspan="100%">
+          <div class="text-body1 no-letter-spacing text-weight-700">
             فروشنده
           </div>
         </td>
@@ -70,21 +70,10 @@
         <td style="width: 15%">تلفن: 88944338</td>
       </tr>
     </tbody>
-  </q-markup-table>
-
-  <q-markup-table
-    class="preview-invoice-table"
-    separator="cell"
-    flat
-    bordered
-    dense
-  >
     <tbody>
       <tr class="bg-on-dark text-center">
-        <td colspan="4">
-          <div class="header text-body1 no-letter-spacing text-weight-700">
-            خریدار
-          </div>
+        <td colspan="100%">
+          <div class="text-body1 no-letter-spacing text-weight-700">خریدار</div>
         </td>
       </tr>
       <tr>

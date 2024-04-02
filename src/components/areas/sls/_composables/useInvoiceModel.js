@@ -8,7 +8,7 @@ import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
-export function useInvoiceModel(preview = false) {
+export function useInvoiceModel(preview) {
   const $q = useQuasar();
   const router = useRouter();
   const itemStore = useInvoiceItemModel();
