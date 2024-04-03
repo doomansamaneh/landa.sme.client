@@ -3,7 +3,7 @@
   <template v-if="!edit">
     <q-btn filled unelevated rounded padding="6px 12px" class="bg-primary text-white text-on-dark"><q-icon name="o_add"
         size="xs" class="q-mr-xs text-body2 no-letter-spacing" />افزودن فیلد جدید
-      <q-menu class="border-radius-xl" :offset="[0, 20]" fit>
+      <q-menu class="border-radius-lg" :offset="[0, 20]" fit>
         <q-list dense padding>
           <q-item clickable v-close-popup tabindex="0">
             <div class="q-py-sm">

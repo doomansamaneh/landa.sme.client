@@ -1,24 +1,11 @@
 <template>
   <tool-bar>
     <template #header>
-      <span
-        v-if="$q.screen.gt.xs"
-        class="q-mr-sm"
-        :class="$q.screen.gt.xs ? 'text-h6' : 'text-body1'"
-      >
+      <span v-if="$q.screen.gt.xs" class="q-mr-sm" :class="$q.screen.gt.xs ? 'text-h6' : 'text-body1'">
         فاکتور #1 برای خشایار شمالی
       </span>
-      <div
-        v-if="$q.screen.lt.sm"
-        :class="$q.screen.lt.sm ? 'text-h6' : 'text-body1'"
-      >
-        <q-btn
-          round
-          dense
-          unelevated
-          icon="o_info"
-          @click="showCustomerDetail"
-        />
+      <div v-if="$q.screen.lt.sm" :class="$q.screen.lt.sm ? 'text-h6' : 'text-body1'">
+        <q-btn round dense unelevated icon="o_info" @click="showCustomerDetail" />
       </div>
       <q-btn padding="6px 12px" flat @click="$router.go(-1)">
         <q-icon name="arrow_back" size="sm" />
@@ -26,14 +13,8 @@
     </template>
 
     <template #buttons>
-      <q-btn
-        to="/sls/invoice/create"
-        class="bg-primary text-white text-caption"
-        padding="6px 12px"
-        rounded
-        no-caps
-        unelevated
-      >
+      <q-btn to="/sls/invoice/create" class="bg-primary text-white text-caption" padding="6px 12px" rounded no-caps
+        unelevated>
         <q-icon name="o_edit" class="q-mr-xs" />
         {{ $t("shared.labels.edit") }}
       </q-btn>
@@ -46,9 +27,7 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_refresh" size="14px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_refresh" size="14px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -59,9 +38,7 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_close" size="14px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -71,9 +48,7 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_check" size="14px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_check" size="14px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -84,9 +59,7 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_download" size="16px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_download" size="16px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -100,42 +73,25 @@
   </tool-bar>
   <div class="row q-col-gutter-lg q-mt-lg">
     <div class="col-md col-sm-12 col-xs-12">
-      <q-card class="border-radius-xl bordered no-shadow">
+      <q-card class="border-radius-lg bordered no-shadow">
         <q-card-section>
           <div class="row q-gutter-y-md q-py-md">
-            <div
-              class="col-md col-sm col-xs-12 row items-center"
-              :class="$q.screen.lt.sm ? 'justify-center' : ''"
-            >
-              <img
-                style="width: 72px"
-                src="/landa-sme-logo.png"
-                alt="landa-sme"
-              />
+            <div class="col-md col-sm col-xs-12 row items-center" :class="$q.screen.lt.sm ? 'justify-center' : ''">
+              <img style="width: 72px" src="/landa-sme-logo.png" alt="landa-sme" />
             </div>
-            <div
-              class="col-md col-sm-5 col-xs-12 row items-center justify-center"
-            >
+            <div class="col-md col-sm-5 col-xs-12 row items-center justify-center">
               <span class="text-subtitle1 text-bold">
                 {{ $t("page.payment-detail.invoice-label") }}
               </span>
             </div>
-            <div
-              class="col-md col-sm col-xs-12 row items-center"
-              :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
-            >
+            <div class="col-md col-sm col-xs-12 row items-center"
+              :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'">
               <div class="column q-gutter-sm text-right text-caption">
-                <div
-                  class="row items-center"
-                  :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
-                >
+                <div class="row items-center" :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'">
                   <span>{{ $t("page.payment-detail.invoice-date") }}</span>
                   {{ item?.dateString }}
                 </div>
-                <div
-                  class="row items-center"
-                  :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
-                >
+                <div class="row items-center" :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'">
                   <span>
                     {{ $t("page.payment-detail.invoice-number") }}
                   </span>
@@ -149,10 +105,7 @@
         <q-card-section class="q-pb-none">
           <div class="column">
             <div class="row q-col-gutter-lg">
-              <div
-                class="col-md col-sm col-xs-12 text-body3"
-                :class="$q.screen.lt.sm ? 'text-center' : ''"
-              >
+              <div class="col-md col-sm col-xs-12 text-body3" :class="$q.screen.lt.sm ? 'text-center' : ''">
                 <div class="text-weight-bold q-mb-sm">
                   {{ $t("page.payment-detail.seller") }}
                   <span class="text-weight-thin"> حسابداری آنلاین لاندا </span>
@@ -168,10 +121,7 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="col-md col-sm col-xs-12 text-body3"
-                :class="$q.screen.lt.sm ? 'text-center' : ''"
-              >
+              <div class="col-md col-sm col-xs-12 text-body3" :class="$q.screen.lt.sm ? 'text-center' : ''">
                 <div class="text-weight-bold q-mb-sm">
                   {{ $t("page.payment-detail.customer") }}
                   <span class="text-weight-light">
@@ -190,12 +140,8 @@
           </div>
         </q-card-section>
         <q-card-section>
-          <q-scroll-area
-            style="height: 100vh"
-            class="full-width"
-            :thumb-style="{ opacity: 0 }"
-            :bar-style="{ opacity: 0 }"
-          >
+          <q-scroll-area style="height: 100vh" class="full-width" :thumb-style="{ opacity: 0 }"
+            :bar-style="{ opacity: 0 }">
             <table class="overflow-hidden invoice-preview-table text-caption">
               <thead class="text-left">
                 <tr>
@@ -225,10 +171,7 @@
                 <tr>
                   <td class=""><span class="">1</span></td>
                   <td>
-                    <div
-                      :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'"
-                      class="ellipsis-2-lines"
-                    >
+                    <div :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'" class="ellipsis-2-lines">
                       <div>
                         <span>
                           {{ item?.subject }}
@@ -310,7 +253,7 @@
       </q-card>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <q-card class="border-radius-xl bordered no-shadow">
+      <q-card class="border-radius-lg bordered no-shadow">
         <q-card-section>
           <div class="column q-gutter-y-sm">
             <div class="column q-gutter-y-xs">
@@ -335,14 +278,7 @@
         </q-card-section>
 
         <q-card-section>
-          <q-tabs
-            v-model="tab"
-            inline-label
-            outside-arrows
-            dense
-            indicator-color="primary"
-            class="text-on-dark"
-          >
+          <q-tabs v-model="tab" inline-label outside-arrows dense indicator-color="primary" class="text-on-dark">
             <q-tab name="main-info" class="q-py-sm">
               <template #default>
                 <q-icon name="o_description" size="xs" class="q-mr-sm" />
@@ -394,16 +330,7 @@
 
               <div class="row text-body3 q-gutter-x-sm q-mt-md">
                 <div class="col-7 row items-center">
-                  <q-btn
-                    size="sm"
-                    dense
-                    round
-                    unelevated
-                    flat
-                    color="red"
-                    icon="o_delete"
-                    class="q-mr-xs"
-                  />
+                  <q-btn size="sm" dense round unelevated flat color="red" icon="o_delete" class="q-mr-xs" />
                   <span class="text-body3">دریافت - تسویه حساب:</span>
                 </div>
                 <div class="col text-body3">27,000,000</div>
@@ -437,12 +364,7 @@
 
             <q-tab-panel name="tax" class="no-padding">
               <div class="row q-py-lg">
-                <q-btn
-                  color="red"
-                  padding="4px 12px"
-                  unelevated
-                  class="red-shadow"
-                >
+                <q-btn color="red" padding="4px 12px" unelevated class="red-shadow">
                   <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
                   <span>ارسال به سامانه مودیان</span>
                 </q-btn>
@@ -453,33 +375,19 @@
               <div class="q-my-lg">
                 <div class="invoice-preview-timeline">
                   <q-timeline color="accent">
-                    <q-timeline-entry
-                      avatar="https://cdn.quasar.dev/img/avatar2.jpg"
-                      v-for="item in items"
-                      :key="item"
-                    >
+                    <q-timeline-entry avatar="https://cdn.quasar.dev/img/avatar2.jpg" v-for="item in items" :key="item">
                       <template #default>
                         <q-card class="bordered-1 no-shadow q-ml-sm">
-                          <q-card-section
-                            class="row justify-between items-center q-gutter-sm"
-                          >
+                          <q-card-section class="row justify-between items-center q-gutter-sm">
                             <div class="row items-center q-gutter-x-sm">
-                              <q-icon
-                                :name="item.icon"
-                                size="sm"
-                                color="accent"
-                              />
+                              <q-icon :name="item.icon" size="sm" color="accent" />
                               <div class="text-caption text-bold">
                                 {{ item.name }}
                               </div>
                               <div class="row items-center">
                                 <span class="text-caption">چند دقیقه پیش</span>
-                                <q-tooltip
-                                  transition-show="scale"
-                                  transition-hide="scale"
-                                  :delay="700"
-                                  class="custom-tooltip text-caption"
-                                >
+                                <q-tooltip transition-show="scale" transition-hide="scale" :delay="700"
+                                  class="custom-tooltip text-caption">
                                   {{ item.date }}
                                 </q-tooltip>
                               </div>
@@ -488,82 +396,34 @@
                               {{ item.systemInfo }}
                             </q-item-label>
                           </q-card-section>
-                          <q-card-section
-                            v-if="item.commentValue"
-                            class="q-pt-none"
-                          >
-                            <p
-                              class="text-caption line-height-xs no-letter-spacing"
-                              contenteditable="true"
-                              v-show="!editCommentBtn"
-                            >
+                          <q-card-section v-if="item.commentValue" class="q-pt-none">
+                            <p class="text-caption line-height-xs no-letter-spacing" contenteditable="true"
+                              v-show="!editCommentBtn">
                               {{ item.comment }}
                             </p>
                             <div class="q-gutter-y-md" v-show="editCommentBtn">
-                              <q-editor
-                                v-model="editCommentValue"
-                                class="text-caption"
-                              />
+                              <q-editor v-model="editCommentValue" class="text-caption" />
                               <div class="q-gutter-x-sm">
-                                <q-btn
-                                  @click="editCommentBtn = false"
-                                  padding="4px 12px"
-                                  flat
-                                  rounded
-                                  class="bg-primary text-white text-body3"
-                                >
-                                  <q-icon
-                                    name="o_comment"
-                                    size="xs"
-                                    class="q-mr-sm"
-                                  />
+                                <q-btn @click="editCommentBtn = false" padding="4px 12px" flat rounded
+                                  class="bg-primary text-white text-body3">
+                                  <q-icon name="o_comment" size="xs" class="q-mr-sm" />
                                   <span>ذخیره</span>
                                 </q-btn>
-                                <q-btn
-                                  @click="editCommentBtn = false"
-                                  unelevated
-                                  rounded
-                                  class="text-on-dark"
-                                >
-                                  <q-icon
-                                    name="o_close"
-                                    size="xs"
-                                    class="q-mr-xs"
-                                  />
+                                <q-btn @click="editCommentBtn = false" unelevated rounded class="text-on-dark">
+                                  <q-icon name="o_close" size="xs" class="q-mr-xs" />
                                   <span>انصراف</span>
                                 </q-btn>
                               </div>
                             </div>
-                            <div
-                              v-if="!editCommentBtn"
-                              class="row justify-start"
-                            >
-                              <q-btn
-                                @click="editComment"
-                                padding="4px 12px"
-                                unelevated
-                                rounded
-                                class="text-on-dark text-body3"
-                              >
-                                <q-icon
-                                  name="o_edit"
-                                  size="xs"
-                                  class="q-mr-sm"
-                                />
+                            <div v-if="!editCommentBtn" class="row justify-start">
+                              <q-btn @click="editComment" padding="4px 12px" unelevated rounded
+                                class="text-on-dark text-body3">
+                                <q-icon name="o_edit" size="xs" class="q-mr-sm" />
                                 <span>ویرایش</span>
                               </q-btn>
-                              <q-btn
-                                @click="deleteAlert"
-                                padding="4px 12px"
-                                unelevated
-                                rounded
-                                class="text-on-dark text-body3"
-                              >
-                                <q-icon
-                                  name="o_delete"
-                                  size="xs"
-                                  class="q-mr-sm"
-                                />
+                              <q-btn @click="deleteAlert" padding="4px 12px" unelevated rounded
+                                class="text-on-dark text-body3">
+                                <q-icon name="o_delete" size="xs" class="q-mr-sm" />
                                 <span>حذف</span>
                               </q-btn>
                             </div>

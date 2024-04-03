@@ -1,32 +1,10 @@
 <template>
-  <q-btn
-    flat
-    round
-    dense
-    icon="o_account_circle"
-    size="14px"
-    class="btn-icon text-on-dark"
-  >
-    <q-menu
-      class="border-radius-xl z-max"
-      transition-show="jump-down"
-      transition-hide="jump-up"
-      :offset="[5, 24]"
-    >
-      <q-list
-        dense
-        padding
-        class="user-profile"
-      >
-        <q-item-label
-          class="text-h6"
-          header
-        >
+  <q-btn flat round dense icon="o_account_circle" size="14px" class="btn-icon text-on-dark">
+    <q-menu class="border-radius-lg z-max" transition-show="jump-down" transition-hide="jump-up" :offset="[5, 24]">
+      <q-list dense padding class="user-profile">
+        <q-item-label class="text-h6" header>
           <div class="column items-center justify-center q-mt-md">
-            <q-avatar
-              class="profile-pic primary-shadow q-mx-sm"
-              text-color="white"
-            >
+            <q-avatar class="profile-pic primary-shadow q-mx-sm" text-color="white">
               <div class="text-bold">{{ helper.getFirstChar(username) }}</div>
             </q-avatar>
             <div class="q-mt-md">
@@ -34,80 +12,40 @@
             </div>
           </div>
         </q-item-label>
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          class="q-py-sm"
-          to="/scr/users/settings"
-        >
+        <q-item clickable v-close-popup tabindex="0" class="q-py-sm" to="/scr/users/settings">
           <div class="q-py-sm">
             <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark"
-                icon="o_settings"
-                size="md"
-              />
+              <q-avatar class="bg-on-dark" icon="o_settings" size="md" />
             </q-item-section>
           </div>
           <q-item-section>
             تنظیمات
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          class="q-py-sm"
-          @click="openPasswordDialog"
-        >
+        <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="openPasswordDialog">
           <div class="q-py-sm">
             <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark"
-                icon="password"
-                size="md"
-              />
+              <q-avatar class="bg-on-dark" icon="password" size="md" />
             </q-item-section>
           </div>
           <q-item-section>
             {{ $t("business-layout.buttons.change-password") }}
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          class="q-py-sm"
-          to="/business"
-        >
+        <q-item clickable v-close-popup tabindex="0" class="q-py-sm" to="/business">
           <div class="q-py-sm">
             <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark"
-                icon="o_business"
-                size="md"
-              />
+              <q-avatar class="bg-on-dark" icon="o_business" size="md" />
             </q-item-section>
           </div>
           <q-item-section>
             {{ $t("pages.business") }}
           </q-item-section>
         </q-item>
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          class="q-py-sm"
-          @click="authStore.logout()"
-        >
+        <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="authStore.logout()">
           <div class="q-py-sm">
             <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark"
-                icon="o_logout"
-                size="md"
-              />
+              <q-avatar class="bg-on-dark" icon="o_logout" size="md" />
             </q-item-section>
           </div>
           <q-item-section>

@@ -1,74 +1,28 @@
 <template>
   <tool-bar>
     <template #header>
-      <q-badge
-        v-if="tableStore?.pagination.value.totalItems > 0"
-        rounded
-        outline
-        :label="tableStore?.pagination.value.totalItems"
-        class="q-mr-sm bg-dark text-on-dark text-body2"
-      />
+      <q-badge v-if="tableStore?.pagination.value.totalItems > 0" rounded outline
+        :label="tableStore?.pagination.value.totalItems" class="q-mr-sm bg-dark text-on-dark text-body2" />
       <span class="text-h6">ایجاد فاکتور فروش</span>
-      <q-btn
-        padding="6px 12px"
-        flat
-        @click="$router.go(-1)"
-      >
-        <q-icon
-          name="arrow_back"
-          size="sm"
-        />
+      <q-btn padding="6px 12px" flat @click="$router.go(-1)">
+        <q-icon name="arrow_back" size="sm" />
       </q-btn>
     </template>
     <template #buttons>
-      <q-btn
-        class="bg-primary text-white text-caption"
-        padding="6px 12px"
-        rounded
-        no-caps
-        unelevated
-      >
-        <q-icon
-          name="o_add"
-          class="q-mr-xs"
-        />
+      <q-btn class="bg-primary text-white text-caption" padding="6px 12px" rounded no-caps unelevated>
+        <q-icon name="o_add" class="q-mr-xs" />
         {{ $t("shared.labels.save") }}
       </q-btn>
-      <q-btn
-        class="bordered-btn_bg-dark text-caption"
-        rounded
-        unelevated
-      >
-        <q-icon
-          name="more_horiz"
-          class="q-mr-xs"
-        />
+      <q-btn class="bordered-btn_bg-dark text-caption" rounded unelevated>
+        <q-icon name="more_horiz" class="q-mr-xs" />
         {{ $t("shared.labels.more") }}
 
-        <q-menu
-          fit
-          :offset="[0, 20]"
-          class="border-radius-xl"
-        >
-          <q-list
-            dense
-            padding
-            style="width:200px"
-          >
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+        <q-menu fit :offset="[0, 20]" class="border-radius-lg">
+          <q-list dense padding style="width:200px">
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_refresh"
-                      size="14px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_refresh" size="14px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -76,40 +30,20 @@
               </q-item-section>
             </q-item>
             <q-separator />
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_close"
-                      size="14px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
                 <div class="text-caption">غیر‌فعال‌سازی</div>
               </q-item-section>
             </q-item>
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_check"
-                      size="14px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_check" size="14px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -117,20 +51,10 @@
               </q-item-section>
             </q-item>
             <q-separator />
-            <q-item
-              clickable
-              v-close-popup
-              tabindex="0"
-            >
+            <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar
-                    class="bg-on-dark"
-                    size="sm"
-                  ><q-icon
-                      name="o_download"
-                      size="16px"
-                    /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_download" size="16px" /></q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -143,10 +67,7 @@
       </q-btn>
     </template>
   </tool-bar>
-  <q-card
-    class="bordered q-pa-md fit"
-    style="margin-top: 54px;"
-  >
+  <q-card class="bordered q-pa-md fit" style="margin-top: 54px;">
     <q-card-section>
       <master-section style="margin-bottom: 90px;" />
     </q-card-section>

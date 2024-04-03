@@ -10,7 +10,7 @@
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">
 
-                <q-menu fit class="border-radius-xl">
+                <q-menu fit class="border-radius-lg">
                   <q-list dense padding style="width:200px">
                     <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">
@@ -74,7 +74,7 @@
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">
 
-                <q-menu fit class="border-radius-xl">
+                <q-menu fit class="border-radius-lg">
                   <q-list dense padding style="width:200px">
                     <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">
@@ -140,7 +140,7 @@
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">
 
-                <q-menu fit class="border-radius-xl">
+                <q-menu fit class="border-radius-lg">
                   <q-list dense padding style="width:200px">
                     <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">
@@ -203,7 +203,7 @@
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">
 
-                <q-menu fit class="border-radius-xl">
+                <q-menu fit class="border-radius-lg">
                   <q-list dense padding style="width:200px">
                     <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                       <div class="q-py-sm">

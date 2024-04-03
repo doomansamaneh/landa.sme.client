@@ -1,7 +1,7 @@
 <template>
   <div class="row">
 
-    <q-card class="col-md-8 col-sm-12 col-xs-12 border-radius-xl bordered">
+    <q-card class="col-md-8 col-sm-12 col-xs-12 border-radius-lg bordered">
       <q-list bordered>
 
         <q-expansion-item expand-separator group="basicInfo" default-opened class="basic-info first">
@@ -16,7 +16,7 @@
               <q-btn unelevated class="bg-primary text-white full-width q-pa-md">
                 <q-icon name="o_add" class="q-mr-xs" />
                 <span>افزودن آیتم جدید</span>
-                <q-menu class="border-radius-xl" touch-position>
+                <q-menu class="border-radius-lg" touch-position>
                   <q-list dense padding style="width: 200px">
                     <q-item clickable v-close-popup tabindex="0">
                       <div class="q-py-sm">
@@ -86,11 +86,11 @@
                   <div class="col-4 row justify-end items-center">
                     <div class="row items-center">
                       <q-btn unelevated round class="text-on-dark" @click="editData">
-                      <q-icon name="o_edit" size="20px" />
-                    </q-btn>
-                    <q-btn unelevated @click="deleteAlert" round class="text-on-dark">
-                      <q-icon name="o_delete" size="20px" />
-                    </q-btn>
+                        <q-icon name="o_edit" size="20px" />
+                      </q-btn>
+                      <q-btn unelevated @click="deleteAlert" round class="text-on-dark">
+                        <q-icon name="o_delete" size="20px" />
+                      </q-btn>
                     </div>
                   </div>
                 </div>
@@ -127,11 +127,11 @@
                   <div class="col-4 row justify-end items-center">
                     <div class="row items-center">
                       <q-btn unelevated round class="text-on-dark" @click="editData">
-                      <q-icon name="o_edit" size="20px" />
-                    </q-btn>
-                    <q-btn unelevated @click="deleteAlert" round class="text-on-dark">
-                      <q-icon name="o_delete" size="20px" />
-                    </q-btn>
+                        <q-icon name="o_edit" size="20px" />
+                      </q-btn>
+                      <q-btn unelevated @click="deleteAlert" round class="text-on-dark">
+                        <q-icon name="o_delete" size="20px" />
+                      </q-btn>
                     </div>
                   </div>
                 </div>
@@ -167,11 +167,11 @@
                     </div>
                     <div class="row items-center">
                       <q-btn unelevated round class="text-on-dark">
-                      <q-icon name="o_edit" size="20px" />
-                    </q-btn>
-                    <q-btn unelevated @click="deleteAlert" round class="text-on-dark">
-                      <q-icon name="o_delete" size="20px" />
-                    </q-btn>
+                        <q-icon name="o_edit" size="20px" />
+                      </q-btn>
+                      <q-btn unelevated @click="deleteAlert" round class="text-on-dark">
+                        <q-icon name="o_delete" size="20px" />
+                      </q-btn>
                     </div>
                   </div>
                   <div>

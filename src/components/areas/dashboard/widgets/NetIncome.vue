@@ -1,5 +1,5 @@
 <template>
-  <q-card class="fit bordered border-radius-xl no-padding">
+  <q-card class="fit bordered border-radius-lg no-padding">
     <q-card-section class="q-pa-lg">
       <div class="row full-width">
         <div class="col column q-gutter-y-sm">

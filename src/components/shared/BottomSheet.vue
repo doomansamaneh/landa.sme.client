@@ -1,14 +1,7 @@
 <template>
-  <q-dialog
-    ref="bottomSheet"
-    :model-value="status"
-    auto-close
-    full-width
-    position="bottom"
-    transition-show="slide-up"
-    transition-hide="slide-down"
-  >
-    <q-card class="no-border border-radius-xl bottom-sheet">
+  <q-dialog ref="bottomSheet" :model-value="status" auto-close full-width position="bottom" transition-show="slide-up"
+    transition-hide="slide-down">
+    <q-card class="no-border border-radius-lg bottom-sheet">
 
       <q-card-section class="no-padding">
         <slot name="header">

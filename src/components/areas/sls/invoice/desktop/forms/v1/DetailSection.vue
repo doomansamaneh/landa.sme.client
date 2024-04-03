@@ -9,13 +9,7 @@
     <div class="col row justify-end items-center q-gutter-x-xs">
       مبلغ کل
       <q-icon name="o_info" size="xs" color="primary" class="cursor-pointer">
-        <q-tooltip
-          :delay="600"
-          class="custom-tooltip"
-          anchor="top right"
-          self="bottom middle"
-          :offset="[50, 10]"
-        >
+        <q-tooltip :delay="600" class="custom-tooltip" anchor="top right" self="bottom middle" :offset="[50, 10]">
           <span class="text-body2">
             مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش افزوده
           </span>
@@ -26,98 +20,50 @@
   </div>
   <q-separator class="q-mb-md" />
   <div class="column q-gutter-y-md">
-    <template
-      v-for="(row, index) in formStore.model.value.invoiceItems"
-      :key="index"
-    >
+    <template v-for="(row, index) in formStore.model.value.invoiceItems" :key="index">
       <div class="row q-gutter-md">
         <div style="width: 25%">
-          <product-lookup
-            placeholder="انتخاب کالا/خدمت"
-            v-model:selectedId="row.productId"
-            v-model:selectedText="row.productTitle"
-            :filterExpression="productFilter"
-            @rowSelected="productChanged($event, row)"
-          />
+          <product-lookup placeholder="انتخاب کالا/خدمت" v-model:selectedId="row.productId"
+            v-model:selectedText="row.productTitle" :filterExpression="productFilter"
+            @rowSelected="productChanged($event, row)" />
         </div>
         <div style="width: 7%">
           <custom-input-number v-model="row.quantity" placeholder="مقدار" />
         </div>
         <div style="width: 10%">
-          <product-unit-lookup
-            placeholder="واحد سنجش"
-            v-model:selectedId="row.productUnitId"
-            v-model:selectedText="row.productUnitTitle"
-          />
+          <product-unit-lookup placeholder="واحد سنجش" v-model:selectedId="row.productUnitId"
+            v-model:selectedText="row.productUnitTitle" />
         </div>
         <div style="width: 10%">
           <custom-input-number v-model="row.price" placeholder="مبلغ" />
         </div>
         <div style="width: 15%">
-          <vat-lookup
-            placeholder="مالیات بر ارزش افزوده"
-            v-model:selectedId="row.vatId"
-            v-model:selectedText="row.vatTitle"
-            :filterExpression="vatFilter"
-            @rowSelected="vatChanged($event, row)"
-          />
+          <vat-lookup placeholder="مالیات بر ارزش افزوده" v-model:selectedId="row.vatId"
+            v-model:selectedText="row.vatTitle" :filterExpression="vatFilter" @rowSelected="vatChanged($event, row)" />
         </div>
         <div style="width: 10%">
-          <custom-input-number
-            v-model="row.vatAmount"
-            placeholder="مبلغ مالیات"
-          />
+          <custom-input-number v-model="row.vatAmount" placeholder="مبلغ مالیات" />
         </div>
         <div class="col row items-center justify-end">
           {{ row.totalPrice?.toLocaleString() }}
         </div>
         <div class="col-1 row items-center justify-end q-gutter-x-sm">
-          <q-btn
-            color="primary"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewRow(index, row)"
-          />
-          <q-btn
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_more_horiz"
-          >
-            <q-menu
-              :offset="[0, 20]"
-              fit
-              class="border-radius-xl"
-              style="width: 150px"
-            >
+          <q-btn color="primary" unelevated round class="text-on-dark" size="sm" icon="o_add"
+            @click="formStore.addNewRow(index, row)" />
+          <q-btn unelevated round class="text-on-dark" size="sm" icon="o_more_horiz">
+            <q-menu :offset="[0, 20]" fit class="border-radius-lg" style="width: 150px">
               <q-list dense padding>
-                <q-item
-                  clickable
-                  v-close-popup
-                  tabindex="0"
-                  @click="row.showDetail = !row.showDetail"
-                >
+                <q-item clickable v-close-popup tabindex="0" @click="row.showDetail = !row.showDetail">
                   <div class="q-py-sm">
                     <q-item-section avatar>
-                      <q-avatar class="bg-on-dark" size="sm"
-                        ><q-icon name="o_percent" size="14px"
-                      /></q-avatar>
+                      <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_percent" size="14px" /></q-avatar>
                     </q-item-section>
                   </div>
                   <q-item-section>
                     <div>تخفیف</div>
                   </q-item-section>
                 </q-item>
-                <q-item
-                  clickable
-                  v-close-popup
-                  tabindex="0"
-                  @click="formStore.deleteRow(index)"
-                >
+                <q-item clickable v-close-popup tabindex="0" @click="formStore.deleteRow(index)">
                   <div class="q-py-sm">
                     <q-item-section avatar>
                       <q-avatar class="bg-on-dark" size="sm">
@@ -147,15 +93,8 @@
           <q-item-label caption class="q-mb-sm">تخفیف</q-item-label>
           <q-input dense outlined v-model="row.discount">
             <template v-slot:append>
-              <q-btn
-                size="xs"
-                :icon="discountIsCash ? 'attach_money' : 'o_percent'"
-                class="cursor-pointer"
-                color="primary"
-                round
-                outline
-                @click="toggleDiscountType"
-              />
+              <q-btn size="xs" :icon="discountIsCash ? 'attach_money' : 'o_percent'" class="cursor-pointer"
+                color="primary" round outline @click="toggleDiscountType" />
             </template>
           </q-input>
         </div>

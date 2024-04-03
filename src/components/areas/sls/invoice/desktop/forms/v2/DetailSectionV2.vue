@@ -8,19 +8,8 @@
     <div style="width: 10%;">مبلغ</div>
     <div style="width: 15%;">مالیات بر ارزش افزوده</div>
     <div class="col row justify-end items-center q-gutter-x-xs">مبلغ کل
-      <q-icon
-        name="o_info"
-        size="xs"
-        color="primary"
-        class="cursor-pointer"
-      >
-        <q-tooltip
-          :delay="600"
-          class="custom-tooltip"
-          anchor="top right"
-          self="bottom middle"
-          :offset="[50, 10]"
-        >
+      <q-icon name="o_info" size="xs" color="primary" class="cursor-pointer">
+        <q-tooltip :delay="600" class="custom-tooltip" anchor="top right" self="bottom middle" :offset="[50, 10]">
           <span class="text-body2">مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش افزوده</span>
         </q-tooltip>
       </q-icon>
@@ -29,38 +18,23 @@
   </div>
   <q-separator />
   <div class="column q-py-md q-gutter-y-md">
-    <no-product-selected
-      v-if="createInvoice.rows.value.length < 1"
-      class="q-my-md"
-    />
-    <div
-      v-for="row in createInvoice.rows.value"
-      :key="row.id"
-    >
+    <no-product-selected v-if="createInvoice.rows.value.length < 1" class="q-my-md" />
+    <div v-for="row in createInvoice.rows.value" :key="row.id">
 
       <div class="row q-gutter-md">
 
         <div style="width: 25%;">
-          <q-field
-            dense
-            outlined
-          >
+          <q-field dense outlined>
             <template v-slot:control>
               <div>{{ row.productTitle }}</div>
             </template>
           </q-field>
         </div>
         <div style="width: 9%;">
-          <custom-input
-            type="number"
-            v-model="row.quantity"
-          />
+          <custom-input type="number" v-model="row.quantity" />
         </div>
         <div style="width: 10%;">
-          <q-field
-            outlined
-            dense
-          >
+          <q-field outlined dense>
             <template v-slot:control>
               <div>{{ row.productUnitTitle }}</div>
             </template>
@@ -68,10 +42,7 @@
           </q-field>
         </div>
         <div style="width: 10%;">
-          <custom-input
-            v-model="row.price"
-            display-format="n0"
-          />
+          <custom-input v-model="row.price" display-format="n0" />
         </div>
         <div style="width: 15%;">
           <vat-lookup placeholder="مالیات بر ارزش افزوده" />
@@ -81,18 +52,9 @@
           <div>{{ rowPrice(row).toLocaleString() }} <span class="text-caption"> ریال</span></div>
         </div>
         <div class="col-1 row items-center justify-end q-gutter-x-sm">
-          <q-btn
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            @click="createInvoice.removeItem(row)"
-          >
+          <q-btn unelevated round class="text-on-dark" size="sm" @click="createInvoice.removeItem(row)">
 
-            <q-icon
-              name="o_delete"
-              size="20px"
-            />
+            <q-icon name="o_delete" size="20px" />
 
           </q-btn>
         </div>
@@ -113,68 +75,29 @@
 
       <div class="row q-mr-md">
         <div class="col row q-gutter-sm items-center">
-          <q-btn
-            outline
-            round
-            icon="o_add"
-            size="xs"
-            @click="generalDiscount = true"
-          >
-            <q-tooltip
-              anchor="center left"
-              self="center right"
-              :offset="[10, 10]"
-              class="text-body2 q-px-sm custom-tooltip"
-              :delay="600"
-            >
+          <q-btn outline round icon="o_add" size="xs" @click="generalDiscount = true">
+            <q-tooltip anchor="center left" self="center right" :offset="[10, 10]"
+              class="text-body2 q-px-sm custom-tooltip" :delay="600">
               ایجاد تخفیف
             </q-tooltip>
 
-            <q-menu
-            class="border-radius-xl"
-              ref="discountMenu"
-              no-focus
-              no-refocus
-              anchor="bottom right"
-              self="bottom left"
-              :offset="[10, 8]"
-            >
+            <q-menu class="border-radius-lg" ref="discountMenu" no-focus no-refocus anchor="bottom right"
+              self="bottom left" :offset="[10, 8]">
               <q-card>
                 <q-card-section>
-                  <q-input
-                    outlined
-                    dense
-                    v-model="generalDiscountValue"
-                    @keydown="validateDiscountInput"
-                    @keydown.enter="applyDiscountOnEnter"
-                  >
+                  <q-input outlined dense v-model="generalDiscountValue" @keydown="validateDiscountInput"
+                    @keydown.enter="applyDiscountOnEnter">
                     <template #append>
-                      <q-btn
-                        size="xs"
-                        :icon="generalDiscount ? 'attach_money' : 'o_percent'"
-                        class="cursor-pointer"
-                        color="primary"
-                        round
-                        outline
-                        @click="switchDiscount"
-                      />
+                      <q-btn size="xs" :icon="generalDiscount ? 'attach_money' : 'o_percent'" class="cursor-pointer"
+                        color="primary" round outline @click="switchDiscount" />
                     </template>
                   </q-input>
                 </q-card-section>
 
                 <q-card-actions class="dark-1 q-px-md">
-                  <q-btn
-                    v-close-popup
-                    @click="applyDiscount"
-                    padding="4px 12px"
-                    unelevated
-                    class="bg-primary text-white"
-                  >تایید</q-btn>
-                  <q-btn
-                    v-close-popup
-                    padding="4px 12px"
-                    unelevated
-                  >انصراف</q-btn>
+                  <q-btn v-close-popup @click="applyDiscount" padding="4px 12px" unelevated
+                    class="bg-primary text-white">تایید</q-btn>
+                  <q-btn v-close-popup padding="4px 12px" unelevated>انصراف</q-btn>
                 </q-card-actions>
               </q-card>
             </q-menu>
@@ -200,10 +123,7 @@
         <div>{{ totalAmount.toLocaleString() }} <span class="text-caption"> ریال</span></div>
       </div>
 
-      <q-separator
-        color="primary"
-        size="1.5px"
-      />
+      <q-separator color="primary" size="1.5px" />
 
     </div>
 

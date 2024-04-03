@@ -1,7 +1,7 @@
 <template>
   <div class="row q-col-gutter-md">
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="info-box bordered border-radius-xl">
+      <q-card class="info-box bordered border-radius-lg">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"><span
@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="info-box bordered border-radius-xl">
+      <q-card class="info-box bordered border-radius-lg">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"><span
@@ -31,7 +31,7 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="info-box bordered border-radius-xl">
+      <q-card class="info-box bordered border-radius-lg">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"><span
@@ -46,7 +46,7 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="info-box bordered border-radius-xl">
+      <q-card class="info-box bordered border-radius-lg">
         <q-card-section class="q-gutter-md">
           <div class="">
             <q-badge rounded class="q-px-sm q-mr-sm text-on-dark bg-on-dark"><span

@@ -1,0 +1,59 @@
+@mixin border-light {
+
+  $colors: (
+    primary: $primary,
+    secondary: $secondary,
+    accent: $accent,
+    red: $red,
+    green: $green,
+    blue: $blue,
+  );
+
+  @each $color, $value in $colors {
+    @for $i from 1 through 4 {
+      .border-#{$color}-#{$i} {
+        border: #{$i}px solid $value;
+      }
+    }
+  }
+
+  $border-radius-sizes: (
+    xs: 4px,
+    sm: 8px,
+    md: 12px,
+    lg: 16px,
+    xl: 24px,
+  );
+
+  @each $size, $value in $border-radius-sizes {
+    .border-radius-#{$size} {
+      border-radius: $value;
+    }
+  }
+
+  .top-radius-xl {
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+  }
+
+  .bottom-radius-xl {
+    border-bottom-left-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
+  }
+
+  .bordered-btn {
+    border: 1px solid #d9dce5;
+    box-shadow: 0 0 2px 0 #dedede;
+  }
+
+  .bordered {
+    border: 1px solid #00000027 !important;
+    box-shadow: 0 2px 10px 0 rgba(58, 53, 65, 0.1),
+      0 0 4px 0 rgba(0, 0, 0, 0.067) !important;
+  }
+
+  .bordered-1 {
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    border-radius: 4px;
+  }
+}

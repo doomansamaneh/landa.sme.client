@@ -1,23 +1,11 @@
 <template>
-  <q-page-sticky
-    class="z-1 bg-main q-py-md"
-    style="margin: 0 38px"
-    position="top"
-    expand
-  >
+  <q-page-sticky class="z-1 bg-main q-py-md" style="margin: 0 38px" position="top" expand>
     <q-toolbar>
       <div class="row items-center q-gutter-x-sm">
         <span class="text-h6">داشبورد</span>
-        <q-btn @click="widgetsLayout" size="13px" unelevated round dense
-          ><q-icon name="o_widgets" :color="activeColor"
-        /></q-btn>
-        <q-btn
-          v-if="togglewidgetsLayout"
-          unelevated
-          rounded
-          dense
-          padding="6px 12px"
-        >
+        <q-btn @click="widgetsLayout" size="13px" unelevated round dense><q-icon name="o_widgets"
+            :color="activeColor" /></q-btn>
+        <q-btn v-if="togglewidgetsLayout" unelevated rounded dense padding="6px 12px">
           <q-icon name="o_restart_alt" class="q-pr-xs" size="20px" />
           <span>حالت اولیه</span>
         </q-btn>
@@ -51,68 +39,30 @@
             <div class="col-11">
               <q-item class="no-padding">
                 <q-item-section avatar>
-                  <q-avatar
-                    v-if="saleIncome"
-                    rounded
-                    color="blue"
-                    text-color="white"
-                    icon="o_shopping_basket"
-                    size="md"
-                    class="blue-shadow"
-                  />
+                  <q-avatar v-if="saleIncome" rounded color="blue" text-color="white" icon="o_shopping_basket" size="md"
+                    class="blue-shadow" />
 
-                  <q-avatar
-                    v-if="sale"
-                    rounded
-                    color="green"
-                    text-color="white"
-                    icon="o_sell"
-                    size="md"
-                    class="green-shadow"
-                  />
+                  <q-avatar v-if="sale" rounded color="green" text-color="white" icon="o_sell" size="md"
+                    class="green-shadow" />
 
-                  <q-avatar
-                    v-if="cost"
-                    rounded
-                    color="red"
-                    text-color="white"
-                    icon="o_paid"
-                    size="md"
-                    class="orange-shadow"
-                  />
+                  <q-avatar v-if="cost" rounded color="red" text-color="white" icon="o_paid" size="md"
+                    class="orange-shadow" />
                 </q-item-section>
 
                 <q-item-section class="q-pl-xs">
-                  <q-item-label v-if="saleIncome" class="text-body2 q-mb-xs"
-                    >فروش و درآمد، هزینه</q-item-label
-                  >
-                  <q-item-label v-if="sale" class="text-body2 q-mb-xs"
-                    >فروش</q-item-label
-                  >
-                  <q-item-label v-if="cost" class="text-body2 q-mb-xs"
-                    >هزینه</q-item-label
-                  >
+                  <q-item-label v-if="saleIncome" class="text-body2 q-mb-xs">فروش و درآمد، هزینه</q-item-label>
+                  <q-item-label v-if="sale" class="text-body2 q-mb-xs">فروش</q-item-label>
+                  <q-item-label v-if="cost" class="text-body2 q-mb-xs">هزینه</q-item-label>
                 </q-item-section>
               </q-item>
             </div>
             <div class="col">
               <div class="row justify-end">
-                <q-btn
-                  unelevated
-                  round
-                  dense
-                  :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                  size="md"
-                  icon="o_more_vert"
-                >
-                  <q-menu class="border-radius-xl" fit>
+                <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
+                  icon="o_more_vert">
+                  <q-menu class="border-radius-lg" fit>
                     <q-list dense padding style="width: 200px">
-                      <q-item
-                        clickable
-                        v-close-popup
-                        tabindex="0"
-                        @click="showSaleIncome"
-                      >
+                      <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                         <div class="q-py-sm">
                           <q-item-section avatar>
                             <q-avatar class="bg-on-dark" size="sm">
@@ -125,34 +75,20 @@
                         </q-item-section>
                       </q-item>
                       <q-separator />
-                      <q-item
-                        clickable
-                        v-close-popup
-                        tabindex="0"
-                        @click="showSale"
-                      >
+                      <q-item clickable v-close-popup tabindex="0" @click="showSale">
                         <div class="q-py-sm">
                           <q-item-section avatar>
-                            <q-avatar class="bg-on-dark" size="sm"
-                              ><q-icon name="o_close" size="14px"
-                            /></q-avatar>
+                            <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_close" size="14px" /></q-avatar>
                           </q-item-section>
                         </div>
                         <q-item-section>
                           <div class="text-caption">فروش</div>
                         </q-item-section>
                       </q-item>
-                      <q-item
-                        clickable
-                        v-close-popup
-                        tabindex="0"
-                        @click="showCost"
-                      >
+                      <q-item clickable v-close-popup tabindex="0" @click="showCost">
                         <div class="q-py-sm">
                           <q-item-section avatar>
-                            <q-avatar class="bg-on-dark" size="sm"
-                              ><q-icon name="o_check" size="14px"
-                            /></q-avatar>
+                            <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_check" size="14px" /></q-avatar>
                           </q-item-section>
                         </div>
                         <q-item-section>
@@ -324,5 +260,4 @@ const showCost = () => {
 
 //   }
 
-// }
-</style>
+// }</style>

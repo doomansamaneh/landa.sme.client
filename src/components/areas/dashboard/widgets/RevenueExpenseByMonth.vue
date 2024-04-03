@@ -41,7 +41,7 @@
           <div class="row justify-end">
             <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
               icon="o_more_vert">
-              <q-menu fit class="border-radius-xl">
+              <q-menu fit class="border-radius-lg">
                 <q-list dense padding style="width: 240px">
                   <q-item clickable v-close-popup tabindex="0" @click="showSaleIncome">
                     <div class="q-py-sm">
@@ -79,7 +79,7 @@
                     <q-item-section side>
                       <q-icon name="keyboard_arrow_left" />
                     </q-item-section>
-                    <q-menu class="border-radius-xl">
+                    <q-menu class="border-radius-lg">
                       <q-list>
                         <q-item clickable v-close-popup tabindex="0" @click="showSalePerProduct">
                           <div class="row items-center">
@@ -131,7 +131,7 @@
                       <q-icon name="keyboard_arrow_left" />
                     </q-item-section>
 
-                    <q-menu class="border-radius-xl">
+                    <q-menu class="border-radius-lg">
                       <q-list>
                         <q-item clickable v-close-popup tabindex="0" @click="showCost">
                           <div class="row items-center">

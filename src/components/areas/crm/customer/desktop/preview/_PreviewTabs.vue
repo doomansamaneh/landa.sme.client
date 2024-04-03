@@ -1,5 +1,5 @@
 <template>
-  <q-tabs v-model="tab" class="border-radius-xl bg-primary text-white q-mt-lg" indicator-color="white" align="start"
+  <q-tabs v-model="tab" class="border-radius-lg bg-primary text-white q-mt-lg" indicator-color="white" align="start"
     inline-label narrow-indicator>
     <q-tab name="basic-info" label="اطلاعات پایه" icon="o_person" />
     <q-tab name="quote" label="پیش‌فاکتورها" icon="o_assignment" />
@@ -49,11 +49,11 @@ const tabPanels = computed(() => {
   return isXs
     ? "no-border no-shadow"
     : tab.value === "basic-info" || tab.value === "account" || tab.value === "invoice"
-    ? $q.screen.gt.xs
-      ? "no-border bg-main"
-      : "no-border no-shadow"
-    : tab.value === "log"
-    ? "bordered border-radius-xl"
-    : "bordered border-radius-xl";
+      ? $q.screen.gt.xs
+        ? "no-border bg-main"
+        : "no-border no-shadow"
+      : tab.value === "log"
+        ? "bordered border-radius-lg"
+        : "bordered border-radius-lg";
 });
 </script>

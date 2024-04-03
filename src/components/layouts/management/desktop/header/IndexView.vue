@@ -1,21 +1,10 @@
 <template>
-  <q-header
-    bordered
-    class="business-header bg-main main-container q-py-sm"
-  >
+  <q-header bordered class="business-header bg-main main-container q-py-sm">
     <q-toolbar class="row items-center no-padding">
       <div class="col-8 row items-center q-gutter-x-sm">
         <div>
-          <a
-            href="https://landa-sme.ir"
-            target="blank"
-            class="row items-center navbar-logo"
-          ><img
-              :class="$q.dark.isActive ? 'logo' : ''"
-              src="/landa-sme-logo.png"
-              alt="landa-sme"
-              width="48"
-            /></a>
+          <a href="https://landa-sme.ir" target="blank" class="row items-center navbar-logo"><img
+              :class="$q.dark.isActive ? 'logo' : ''" src="/landa-sme-logo.png" alt="landa-sme" width="48" /></a>
         </div>
 
         <bread-crumbs class="q-ml-lg" />
@@ -23,32 +12,13 @@
       <div class="col row items-center q-gutter-x-sm justify-end">
         <switch-theme />
         <div class="flex text-on-dark items-center q-gutter-x-xs cursor-pointer">
-          <q-icon
-            size="sm"
-            name="o_account_circle"
-          />
+          <q-icon size="sm" name="o_account_circle" />
           <div class="text-on-dark">{{ username }}</div>
-          <q-menu
-          class="border-radius-xl"
-            fit
-            transition-show="jump-down"
-            transition-hide="jump-up"
-            :offset="[10, 28]"
-          >
-            <q-list
-              dense
-              padding
-              class="user-profile"
-            >
-              <q-item-label
-                class="text-h6"
-                header
-              >
+          <q-menu class="border-radius-lg" fit transition-show="jump-down" transition-hide="jump-up" :offset="[10, 28]">
+            <q-list dense padding class="user-profile">
+              <q-item-label class="text-h6" header>
                 <div class="column items-center justify-center q-mt-md">
-                  <q-avatar
-                    class="profile-pic primary-shadow q-mx-sm"
-                    text-color="white"
-                  >
+                  <q-avatar class="profile-pic primary-shadow q-mx-sm" text-color="white">
                     <div class="text-bold">{{ helper.getFirstChar(username) }}</div>
                   </q-avatar>
                   <div class="q-mt-md">
@@ -56,46 +26,26 @@
                   </div>
                 </div>
               </q-item-label>
-              <q-item
-                clickable
-                v-ripple
-                v-close-popup
-                class="q-mt-md"
-                @click="changePasswordDialog"
-              >
+              <q-item clickable v-ripple v-close-popup class="q-mt-md" @click="changePasswordDialog">
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar
-                      class="bg-on-dark"
-                      icon="o_password"
-                      size="md"
-                    />
+                    <q-avatar class="bg-on-dark" icon="o_password" size="md" />
                   </q-item-section>
                 </div>
 
                 <q-item-section>{{
-                  $t("business-layout.buttons.change-password")
-                }}</q-item-section>
+                $t("business-layout.buttons.change-password")
+              }}</q-item-section>
               </q-item>
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-                @click="authStore.logout()"
-                class="q-py-sm"
-              >
+              <q-item clickable v-close-popup tabindex="0" @click="authStore.logout()" class="q-py-sm">
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar
-                      class="bg-on-dark"
-                      icon="logout"
-                      size="md"
-                    />
+                    <q-avatar class="bg-on-dark" icon="logout" size="md" />
                   </q-item-section>
                 </div>
                 <q-item-section>{{
-                  $t("business-layout.buttons.logout")
-                }}</q-item-section>
+                $t("business-layout.buttons.logout")
+                  }}</q-item-section>
               </q-item>
             </q-list>
           </q-menu>
@@ -166,6 +116,4 @@ function changePasswordDialog() {
 .q-breadcrumbs__el.items-center {
   display: block;
 }
-
 </style>
-

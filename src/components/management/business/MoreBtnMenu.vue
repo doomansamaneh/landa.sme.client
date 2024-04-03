@@ -1,5 +1,5 @@
 <template>
-  <q-menu class="border-radius-xl" transition-show="jump-down" transition-hide="jump-up">
+  <q-menu class="border-radius-lg" transition-show="jump-down" transition-hide="jump-up">
     <q-list padding>
       <q-item clickable v-close-popup>
         <q-item-section>
@@ -36,10 +36,7 @@
         <q-separator spaced />
         <q-item clickable v-close-popup>
           <q-item-section>
-            <div
-              class="flex items-center q-gutter-x-sm"
-              @click="goToPaymentHistory"
-            >
+            <div class="flex items-center q-gutter-x-sm" @click="goToPaymentHistory">
               <q-avatar icon="credit_card" size="sm" class="dark-1" />
               <div class="text-caption">
                 {{ $t("page.buttons.more-button.payment-history") }}

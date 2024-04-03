@@ -1,5 +1,5 @@
 <template>
-  <q-card class="border-radius-xl bordered no-shadow">
+  <q-card class="border-radius-lg bordered no-shadow">
     <q-card-section class="q-pa-lg">
       <div class="row items-center justify-between">
         <div class="text-h6 text-weight-700">فاکتورهای فروش</div>

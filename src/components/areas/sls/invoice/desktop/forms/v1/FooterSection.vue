@@ -13,23 +13,13 @@
       <div class="row q-mr-md">
         <div class="col row q-gutter-sm items-center">
           <q-btn outline round icon="o_add" size="xs">
-            <q-tooltip
-              anchor="center left"
-              self="center right"
-              :offset="[10, 10]"
-              class="text-body2 q-px-sm custom-tooltip"
-              :delay="600"
-            >
+            <q-tooltip anchor="center left" self="center right" :offset="[10, 10]"
+              class="text-body2 q-px-sm custom-tooltip" :delay="600">
               ایجاد تخفیف
             </q-tooltip>
 
-            <q-menu
-              v-model="discountVisible"
-              class="border-radius-xl"
-              anchor="bottom right"
-              self="bottom left"
-              :offset="[10, 8]"
-            >
+            <q-menu v-model="discountVisible" class="border-radius-lg" anchor="bottom right" self="bottom left"
+              :offset="[10, 8]">
               <q-card>
                 <q-card-section>
                   <h6>تخفیف</h6>
@@ -37,25 +27,14 @@
                 <q-card-section>
                   <custom-input-number v-model="generalDiscountValue">
                     <template #append>
-                      <q-btn
-                        size="sm"
-                        :icon="discountIsCash ? 'attach_money' : 'o_percent'"
-                        class="cursor-pointer"
-                        color="primary"
-                        round
-                        outline
-                        @click="toggleDiscountType"
-                      />
+                      <q-btn size="sm" :icon="discountIsCash ? 'attach_money' : 'o_percent'" class="cursor-pointer"
+                        color="primary" round outline @click="toggleDiscountType" />
                     </template>
                   </custom-input-number>
                 </q-card-section>
 
                 <q-card-actions class="dark-1 q-px-md">
-                  <q-btn
-                    unelevated
-                    class="bg-primary text-white"
-                    @click="confirmGeneralDiscount"
-                  >
+                  <q-btn unelevated class="bg-primary text-white" @click="confirmGeneralDiscount">
                     <q-icon name="o_check" class="q-mr-xs" />
                     {{ $t("shared.labels.accept") }}
                   </q-btn>

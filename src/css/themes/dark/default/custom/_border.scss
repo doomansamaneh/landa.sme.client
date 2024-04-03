@@ -1,0 +1,61 @@
+@mixin border-dark {
+
+  $colors: (
+    primary: $primary,
+    secondary: $secondary,
+    accent: $accent,
+    red: $red,
+    green: $green,
+    blue: $blue,
+  );
+
+  @each $color, $value in $colors {
+    @for $i from 1 through 4 {
+      .border-#{$color}-#{$i} {
+        border: #{$i}px solid $value;
+      }
+    }
+  }
+
+  $border-radius-sizes: (
+    xs: 4px,
+    sm: 8px,
+    md: 12px,
+    lg: 16px,
+    xl: 24px,
+  );
+
+  @each $size, $value in $border-radius-sizes {
+    .border-radius-#{$size} {
+      border-radius: $value;
+    }
+  }
+
+  .bordered {
+    border: 1px solid #ffffff47;
+  }
+
+  .bordered-1 {
+    border: 1px solid #ffffff47;
+    border-radius: 4px;
+  }
+
+  .bordered-btn {
+    border: 1px solid #d9dce5;
+    box-shadow: 0 0 2px 0 #dedede;
+  }
+
+  .q-input-border {
+    border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  }
+
+  .top-radius-xl {
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+  }
+
+  .bottom-radius-xl {
+    border-bottom-left-radius: 16px !important;
+    border-bottom-right-radius: 16px !important;
+  }
+}
