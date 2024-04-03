@@ -1,85 +1,34 @@
 <template>
-  <q-input
-    ref="search"
-    v-model="selectedText"
-    hide-bottom-space
-    outlined
-    :required="required"
-    :rules="rules"
-    color="primary"
-    class="input lookup"
-    input-class="text-body2 no-letter-spacing"
-    dense
-    debounce="1000"
-    :placeholder="placeholder"
-    :loading="tableStore.inputInnerLoader.value"
-    @update:model-value="searchInLookup"
-    @keydown.enter.prevent.stop="selectRow"
-    @keydown="handleKeyDown"
-  >
+  <q-input ref="search" v-model="selectedText" hide-bottom-space outlined :required="required" :rules="rules"
+    color="primary" class="input lookup" input-class="text-body2 no-letter-spacing" dense debounce="1000"
+    :placeholder="placeholder" :loading="tableStore.inputInnerLoader.value" @update:model-value="searchInLookup"
+    @keydown.enter.prevent.stop="selectRow" @keydown="handleKeyDown">
     <template #append>
-      <q-icon
-        name="o_close"
-        v-if="!isSearchEmpty"
-        class="cursor-pointer q-field__focusable-action"
-        @click="clearSearch"
-      />
-      <q-icon
-        @click="handlePopup"
-        name="o_expand_more"
-        id="expand-more-icon"
-        class="show-lookup-icon cursor-pointer"
-        size="sm"
-      />
+      <q-icon name="o_close" v-if="!isSearchEmpty" class="cursor-pointer q-field__focusable-action"
+        @click="clearSearch" />
+      <q-icon @click="handlePopup" name="o_expand_more" id="expand-more-icon" class="show-lookup-icon cursor-pointer"
+        size="sm" />
     </template>
 
-    <q-menu
-      fit
-      no-parent-event
-      v-model="isPopupOpen"
-      @show="onMenuShow"
-      @hide="onMenuHide"
-      ref="popup"
-      transition-show="jump-down"
-      transition-hide="jump-up"
-      :anchor="$q.screen.lt.sm ? 'bottom middle' : ''"
-      :self="$q.screen.lt.sm ? 'top middle' : ''"
-      no-focus
-      no-refocus
-      style="border-radius: 4px"
-    >
-      <q-inner-loading
-        :showing="tableStore.showLoader.value"
-        class="inner-loader_ q-mt-xl"
-      >
+    <q-menu fit no-parent-event v-model="isPopupOpen" @show="onMenuShow" @hide="onMenuHide" ref="popup"
+      transition-show="jump-down" transition-hide="jump-up" :anchor="$q.screen.lt.sm ? 'bottom middle' : ''"
+      :self="$q.screen.lt.sm ? 'top middle' : ''" no-focus no-refocus style="border-radius: 4px">
+      <q-inner-loading :showing="tableStore.showLoader.value" class="inner-loader_ q-mt-xl">
         <q-spinner size="52px" color="primary" />
       </q-inner-loading>
 
-      <div
-        class="header text-caption text-bold q-pa-md bg-dark z-max"
-        style="border-bottom: 1px solid var(--q-primary)"
-      >
+      <div class="header text-caption text-bold q-pa-md bg-dark z-max"
+        style="border-bottom: 1px solid var(--q-primary)">
         <slot name="thead">
           <div class="row q-gutter-x-md items-center" style="width: 300px">
             <div class="col-1">#</div>
             <div v-for="col in lookupColumns" :key="col" class="col-3 q-pr-md">
-              <header-column
-                :fieldName="col"
-                :title="$t(`shared.labels.${col}`)"
-                :table-store="tableStore"
-              />
+              <header-column :fieldName="col" :title="$t(`shared.labels.${col}`)" :table-store="tableStore" />
             </div>
 
             <slot name="create">
-              <q-btn
-                dense
-                unelevated
-                color="primary"
-                class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
-                style="margin-top: 12px"
-                rounded
-                size="12px"
-              >
+              <q-btn dense unelevated color="primary" class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
+                style="margin-top: 12px" rounded size="12px">
                 <q-icon name="o_add" size="14px" style="margin-left: 2px" />
                 <span class="text-caption">ایجاد</span>
               </q-btn>
@@ -87,22 +36,13 @@
           </div>
         </slot>
       </div>
-      <div
-        class="cursor-pointer"
-        v-for="(row, index) in tableStore.rows.value"
-        :key="row.id"
-        :class="{ 'row-active': index === selectedRowIndex }"
-        @click="onRowClicked(row, index)"
-      >
+      <div class="cursor-pointer" v-for="(row, index) in tableStore.rows.value" :key="row.id"
+        :class="{ 'row-active': index === selectedRowIndex }" @click="onRowClicked(row, index)">
         <slot name="td" :row="row" :index="tableStore.rowIndex(index)">
           <q-item clickable v-close-popup>
             <div class="row items-center q-gutter-x-md" style="width: 300px">
               <div class="col-1 text-caption">{{ index + 1 }}</div>
-              <div
-                v-for="col in lookupColumns"
-                class="col text-caption"
-                :key="col"
-              >
+              <div v-for="col in lookupColumns" class="col text-caption" :key="col">
                 {{ row[col] }}
               </div>
             </div>
@@ -110,33 +50,17 @@
         </slot>
       </div>
 
-      <div
-        v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0"
-        class="q-table__bottom items-center q-table__bottom--nodata"
-      >
+      <div v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0"
+        class="q-table__bottom items-center q-table__bottom--nodata">
         <slot name="noDataFound">
           <no-data-found />
         </slot>
       </div>
 
-      <div
-        v-if="tableStore.showPagebar.value"
-        class="q-pa-md row items-center footer dark-1"
-      >
-        <page-bar
-          :pagination="tableStore.pagination.value"
-          @page-changed="tableStore.reloadData"
-        >
+      <div v-if="tableStore.showPagebar.value" class="q-pa-md row items-center footer dark-1">
+        <page-bar :pagination="tableStore.pagination.value" @page-changed="tableStore.reloadData">
           <template #reload>
-            <q-btn
-              class="q-mr-md"
-              size="sm"
-              round
-              dense
-              unelevated
-              icon="o_refresh"
-              @click="tableStore.reloadData"
-            />
+            <q-btn class="q-mr-md" size="sm" round dense unelevated icon="o_refresh" @click="tableStore.reloadData" />
           </template>
         </page-bar>
       </div>
@@ -191,9 +115,7 @@ const selectedRowIndex = ref(0);
 const popup = ref(null);
 const isPopupOpen = ref(false);
 
-onMounted(() => {
-  onMenuHide();
-});
+const firstLookup = document.querySelector(".first");
 
 function handleKeyDown(event) {
   switch (event.key) {
@@ -336,12 +258,6 @@ defineExpose({
   tableStore,
 });
 
-onMounted(() => {
-  const firstLookup = document.querySelector(".first");
-  if (firstLookup) {
-    firstLookup.focus();
-  }
-});
 </script>
 
 <style>
