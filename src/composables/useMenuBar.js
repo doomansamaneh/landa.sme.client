@@ -1,4 +1,4 @@
-import { ref, computed } from "vue"
+import { ref, computed, watch } from "vue"
 import { useI18n } from "vue-i18n"
 import { fetchWrapper } from "src/helpers"
 import { useComposables } from "src/stores/useComposables"
@@ -19,11 +19,17 @@ export function useMenuBar() {
     }
   })
 
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
 
   const toggle = () => {
     state.visible.value = !state.visible.value
   }
+
+  // Watch for changes in locale and reload data accordingly
+  watch(locale, () => {
+    state.firstLoad.value = false // Reset firstLoad to trigger data reload
+    loadData()
+  })
 
   async function loadData() {
     if (!state.firstLoad.value) {
