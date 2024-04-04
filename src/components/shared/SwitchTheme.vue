@@ -76,12 +76,12 @@ const selectTheme = (theme) => {
   localStorage.setItem("selectedTheme", theme)
 }
 
-function setDigits() {
-  const savedLanguage = localStorage.getItem("selectedLanguage")
-  if (savedLanguage) {
-    document.body.classList.add(`digits--${savedLanguage}`)
-  }
-}
+// function setDigits() {
+//   const savedLanguage = localStorage.getItem("selectedLanguage")
+//   if (savedLanguage) {
+//     document.body.classList.add(`digits--${savedLanguage}`)
+//   }
+// }
 
 onMounted(() => {
   const darkModeisActive = localStorage.getItem("darkMode")
@@ -94,7 +94,7 @@ onMounted(() => {
     selectTheme(storedTheme)
   }
 
-  setDigits()
+  // setDigits()
 })
 
 // const getPrimaryColor = (themeName) => {

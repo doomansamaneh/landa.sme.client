@@ -1,6 +1,6 @@
-import enUS from "./en-US/enUS.json"
-import faIR from "./fa-IR/faIR.json"
-import ar from "./ar/ar.json"
+import enUS from "./en-US.json"
+import faIR from "./fa-IR.json"
+import ar from "./ar.json"
 
 export default {
   "en-US": enUS,
