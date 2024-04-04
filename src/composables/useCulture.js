@@ -1,43 +1,61 @@
-import { computed } from "vue"
-import { cultures } from "src/constants/enums"
+import { ref, watch, computed, onMounted } from "vue";
+import { useQuasar, Quasar } from "quasar";
+import { useI18n } from "vue-i18n";
+import { cultures } from "src/constants/enums";
 
 export function useCulture() {
-  const storageKey = "selectedLanguage"
-  const cookieKey = ".Landa.SME.Culture"
+  const storageKey = "selectedLanguage";
+  const cookieKey = ".Landa.SME.Culture";
 
-  const getCulture = () => {
-    const currentLanguage = localStorage.getItem(storageKey) || "fa-IR"
-    const defaultCulture = cultures.code = "en"
-    return cultures.find(culture => culture.code === currentLanguage) || defaultCulture
-  }
+  const { locale } = useI18n();
+  const $q = useQuasar();
 
-  const culture = computed(() => getCulture())
+  const qLangList = import.meta.glob(
+    "/node_modules/quasar/lang/(en-US|fa-IR|ar).mjs"
+  );
 
-  const setCulture = (code) => {
-    document.body.classList.remove(`digits--${culture.value.code}`)
-    localStorage.setItem(storageKey, code)
+  const lang = ref(localStorage.getItem(storageKey) || $q.lang.isoName);
 
-    applyCulture()
-  }
+  const culture = computed(() =>
+    cultures.find((culture) => culture.iso === lang.value)
+  );
 
-  const applyCulture = () => {
-    const lang = getCulture()
-    document.documentElement.setAttribute("dir", lang.dir)
-    document.documentElement.lang = lang.code
-    document.body.classList.add(`digits--${lang.code}`)
+  const setCulture = (iso) => {
+    lang.value = iso;
+  };
 
-    // Set cookie for the selected language with a one-year expiration
-    const expirationDate = new Date()
-    expirationDate.setFullYear(expirationDate.getFullYear() + 1)
-    const cookieString = `${cookieKey}=${lang.code}; expires=${expirationDate.toUTCString()}; path=/`
-    document.cookie = cookieString
+  const applyCulture = async () => {
+    try {
+      const iso = culture.value.iso;
+      const langModule = await qLangList[
+        `/node_modules/quasar/lang/${iso}.mjs`
+      ]();
+      Quasar.lang.set(langModule.default);
+      //$t.locale.value = lang.value;
+      locale.value = iso;
+      localStorage.setItem(storageKey, iso);
 
-    //todo: Refresh the page, how to remove refresh
-    window.location.reload()
-  }
+      document.body.classList.remove("persian", "english", "arabic");
+      document.body.classList.add(culture.value.bodyClass);
+
+      // Set cookie for the selected language with a one-year expiration
+      const expirationDate = new Date();
+      expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+      const cookieString = `${cookieKey}=${
+        culture.value.iso
+      }; expires=${expirationDate.toUTCString()}; path=/`;
+      document.cookie = cookieString;
+    } catch (error) {
+      console.log("error setLang", error);
+    }
+  };
+
+  watch(lang, async () => {
+    await applyCulture();
+  });
 
   return {
     culture,
-    setCulture
-  }
+    setCulture,
+  };
 }

@@ -1,40 +1,41 @@
-import { ref, computed, watch } from "vue"
-import { useI18n } from "vue-i18n"
-import { fetchWrapper } from "src/helpers"
-import { useComposables } from "src/stores/useComposables"
+import { ref, computed, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import { fetchWrapper } from "src/helpers";
+import { useComposables } from "src/stores/useComposables";
 
 const state = {
   firstLoad: ref(false),
   visible: ref(true),
-  items: ref([])
-}
+  items: ref([]),
+};
 
-const searchText = ref("")
+const searchText = ref("");
 
 export function useMenuBar() {
-  const composablesStore = useComposables()
+  const composablesStore = useComposables();
   composablesStore.registerComposable({
     reset: () => {
-      state.firstLoad.value = false
-    }
-  })
+      state.firstLoad.value = false;
+    },
+  });
 
-  const { t, locale } = useI18n()
+  const { t, locale } = useI18n();
 
   const toggle = () => {
-    state.visible.value = !state.visible.value
-  }
+    state.visible.value = !state.visible.value;
+  };
 
   // Watch for changes in locale and reload data accordingly
+  //todo: what is this for
   watch(locale, () => {
-    state.firstLoad.value = false // Reset firstLoad to trigger data reload
-    loadData()
-  })
+    //alert("locale changed");
+    setMenuTitle();
+  });
 
   async function loadData() {
     if (!state.firstLoad.value) {
-      await reloadData()
-      state.firstLoad.value = true
+      await reloadData();
+      state.firstLoad.value = true;
     }
   }
 
@@ -42,38 +43,45 @@ export function useMenuBar() {
     await fetchWrapper
       .get("scr/users/getMenuItems")
       .then((response) => {
-        handleMenuItemsData(response.data.data)
+        handleMenuItemsData(response.data.data);
       })
-      .finally(() => { })
+      .finally(() => {});
   }
 
   function handleMenuItemsData(data) {
-    data.forEach((item) => {
-      item.title = t(`main-menu-items.${item.name}`)
-    })
-    state.items.value = data
+    state.items.value = data;
+    setMenuTitle();
+  }
+
+  function setMenuTitle() {
+    state.items.value.forEach((item) => {
+      item.title = t(`main-menu-items.${item.name}`);
+    });
   }
 
   const drawerMenuItems = computed(() => {
     const menuItemsWithSubItems = state.items.value.filter((item) =>
       state.items.value.some((subItem) => subItem.parentName === item.name)
-    )
+    );
 
     const menuItemsIncludingSubItems = menuItemsWithSubItems.map((item) => ({
       ...item,
-      subItems: state.items.value.filter((subItem) => subItem.parentName === item.name)
-    }))
+      subItems: state.items.value.filter(
+        (subItem) => subItem.parentName === item.name
+      ),
+    }));
 
-    if (!searchText.value
-      || searchText.value.trim() === "") {
-      return menuItemsIncludingSubItems
+    if (!searchText.value || searchText.value.trim() === "") {
+      return menuItemsIncludingSubItems;
     } else {
-      const searchLower = searchText.value.toLowerCase()
+      const searchLower = searchText.value.toLowerCase();
       return menuItemsIncludingSubItems
         .map((item) => {
-          const menuItemsWithSubItems = item.subItems.filter((subItem) =>
-            subItem.title.toLowerCase().includes(searchLower) || subItem.name.toLowerCase().includes(searchLower)
-          )
+          const menuItemsWithSubItems = item.subItems.filter(
+            (subItem) =>
+              subItem.title.toLowerCase().includes(searchLower) ||
+              subItem.name.toLowerCase().includes(searchLower)
+          );
 
           if (
             menuItemsWithSubItems.length > 0 ||
@@ -81,16 +89,15 @@ export function useMenuBar() {
           ) {
             return {
               ...item,
-              subItems: menuItemsWithSubItems
-            }
+              subItems: menuItemsWithSubItems,
+            };
           } else {
-            return null
+            return null;
           }
         })
-        .filter(Boolean)
+        .filter(Boolean);
     }
-  })
-
+  });
 
   return {
     state,
@@ -99,6 +106,6 @@ export function useMenuBar() {
 
     toggle,
     loadData,
-    reloadData
-  }
+    reloadData,
+  };
 }

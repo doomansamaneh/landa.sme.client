@@ -94,31 +94,42 @@ export const productType = {
 };
 
 export const cultures = [
+  { name: "فارسی", iso: "fa-IR", calendar: "persian", bodyClass: "persian" },
   {
-    code: "fa-IR",
-    name: "فارسی",
-    calendar: "persian",
-    dir: "rtl",
-    quasarLang: "fa-IR",
-    flag: "",
-  },
-  {
-    code: "ar",
-    name: "العربیة",
-    calendar: "hijri",
-    dir: "rtl",
-    quasarLang: "ar",
-    flag: "",
-  },
-  {
-    code: "en",
     name: "English",
+    iso: "en-US",
     calendar: "gregorian",
-    dir: "ltr",
-    quasarLang: "en-US",
-    flag: "",
+    bodyClass: "english",
   },
+  { name: "عربى", iso: "ar", calendar: "hijri", bodyClass: "arabic" },
 ];
+
+// export const cultures_ = [
+//   {
+//     iso: "fa-IR",
+//     code: "fa-IR",
+//     name: "فارسی",
+//     calendar: "persian",
+//     dir: "rtl",
+//     flag: "",
+//   },
+//   {
+//     iso: "ar",
+//     code: "ar",
+//     name: "العربیة",
+//     calendar: "hijri",
+//     dir: "rtl",
+//     flag: "",
+//   },
+//   {
+//     iso: "en-Us",
+//     code: "en",
+//     name: "English",
+//     calendar: "gregorian",
+//     dir: "ltr",
+//     flag: "",
+//   },
+// ];
 
 export const defaultPageSize = 10; //10
 
