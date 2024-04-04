@@ -3,9 +3,8 @@
     ref="dataTable"
     :dataSource="dataSource ?? 'sls/invoice/getGridData'"
     :grid-store="gridStore"
-    :columns="columns"
     separator="horizontal"
-    flat
+    flat_
     multiSelect
     numbered
     bordered
@@ -48,7 +47,7 @@
     <template #cell-statusTitle="{ item }">
       <q-badge>{{ item.statusTitle }}</q-badge>
     </template>
-    <template #detail="{ item }">
+    <template #expand="{ item }">
       <div class="q-pa-md">
         <invoice-preview :item="item" />
       </div>

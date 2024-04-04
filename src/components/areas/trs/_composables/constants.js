@@ -1,0 +1,32 @@
+export const paymentInvoiceColumns = [
+  {
+    name: "no",
+    field: "no",
+    sortable: true,
+    label: "شماره",
+    style: "",
+    showFilter: true,
+    class: "text-left",
+    value: "",
+  },
+  {
+    name: "date",
+    field: "date",
+    sortable: true,
+    label: "تاریخ",
+    style: "",
+    showFilter: true,
+    class: "text-left",
+    value: "",
+  },
+  {
+    name: "amount",
+    field: "amount",
+    sortable: true,
+    label: "مبلغ",
+    style: "",
+    showFilter: true,
+    class: "text-left",
+    value: "",
+  },
+];

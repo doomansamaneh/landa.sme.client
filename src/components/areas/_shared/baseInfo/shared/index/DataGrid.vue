@@ -88,7 +88,7 @@ const props = defineProps({
   columns: Array,
 });
 
-const gridStore = useBaseInfoGrid(props.columns);
+const gridStore = useBaseInfoGrid({ visibleColumns: props.columns });
 const crudStore = useFormActions(props.baseRoute);
 const desktopGrid = ref(null);
 const mobileGrid = ref(null);

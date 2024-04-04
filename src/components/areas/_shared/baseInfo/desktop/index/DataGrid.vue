@@ -4,7 +4,7 @@
     :data-source="dataSource"
     :grid-store="gridStore"
     separator="horizontal"
-    flat
+    flat_
     multiSelect
     numbered
     bordered

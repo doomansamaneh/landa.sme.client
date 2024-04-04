@@ -3,9 +3,12 @@
     <tbody>
       <tr>
         <td colspan="100%">
-          {{ model.value.contractTitle }}
-          {{ model.value.subject }}
-          {{ model.value.summary }}
+          <div>
+            <strong v-if="model.value.contractTitle">
+              {{ model.value.contractTitle }} /
+            </strong>
+            <div class="text-wrap" v-html="model.value.summary"></div>
+          </div>
         </td>
       </tr>
       <tr>
@@ -23,3 +26,10 @@ const props = defineProps({
   model: Object,
 });
 </script>
+
+<style>
+.text-wrap {
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+</style>

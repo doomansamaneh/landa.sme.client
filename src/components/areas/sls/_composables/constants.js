@@ -75,3 +75,26 @@ export const invoiceColumns = [
     showFilter: true,
   },
 ];
+
+export const taxApiLogColumns = [
+  {
+    name: "logTime",
+    field: "logTime",
+    sortable: true,
+    label: "زمان",
+    style: "",
+    showFilter: true,
+    class: "text-left",
+    value: "",
+  },
+  {
+    name: "status",
+    field: "status",
+    sortable: true,
+    label: "وضعیت",
+    style: "",
+    showFilter: true,
+    class: "text-left",
+    value: "",
+  },
+];

@@ -15,10 +15,10 @@
       class="col-md col-sm col-xs-12 row items-center"
       :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
     >
-      <div class="column q-gutter-sm text-right text-caption">
+      <div class="column q-gutter-sm text-right_text-caption">
         <div
-          class="row items-center"
-          :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
+          class="row"
+          :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
         >
           <span> {{ $t("shared.labels.no") }}: </span>
           <span class="q-px-sm text-weight-700">
@@ -27,12 +27,23 @@
         </div>
 
         <div
-          class="row items-center"
+          class="row"
           :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
         >
           <span> {{ $t("shared.labels.date") }}:</span>
           <span class="q-px-sm text-weight-700">
             {{ model.value.date.substring(0, 10) }}
+          </span>
+        </div>
+
+        <div
+          v-if="model.value.lastApiLogModel?.taxId"
+          class="row"
+          :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
+        >
+          <span> {{ $t("shared.labels.taxId") }}:</span>
+          <span class="q-px-sm">
+            {{ model.value.lastApiLogModel.taxId }}
           </span>
         </div>
       </div>
