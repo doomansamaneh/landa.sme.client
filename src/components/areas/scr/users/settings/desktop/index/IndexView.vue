@@ -20,7 +20,7 @@
 
               <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
                 <q-btn round dense unelevated>
-                  <q-icon name="chevron_left" size="24px" />
+                  <q-icon :name="expandIcon()" size="24px" />
                 </q-btn>
               </q-item-section>
             </q-item>
@@ -36,7 +36,7 @@
 
               <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
                 <q-btn round dense unelevated>
-                  <q-icon name="chevron_left" size="24px" />
+                  <q-icon :name="expandIcon()" size="24px" />
                 </q-btn>
               </q-item-section>
 
@@ -53,7 +53,7 @@
 
               <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
                 <q-btn round dense unelevated>
-                  <q-icon name="chevron_left" size="24px" />
+                  <q-icon :name="expandIcon()" size="24px" />
                 </q-btn>
               </q-item-section>
 
@@ -74,7 +74,7 @@
 
             <q-item-section :class="$q.screen.lt.sm ? 'q-mx-sm' : ''" side>
               <q-btn round dense unelevated>
-                <q-icon name="chevron_left" size="24px" />
+                <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
 
@@ -82,7 +82,8 @@
 
           <q-separator size="0.5px" />
 
-          <q-item class="bottom-radius-xl q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/account/login">
+          <q-item class="bottom-radius-xl q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable
+            to="/account/login">
 
             <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
               <q-item-label class="text-on-dark text-body2 no-letter-spacing">خروج از حساب</q-item-label>
@@ -90,7 +91,7 @@
 
             <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
               <q-btn round dense unelevated>
-                <q-icon class="mirror" name="o_logout" size="20px" />
+                <q-icon class="mirror" :name="logoutIcon()" size="20px" />
               </q-btn>
             </q-item-section>
 
@@ -105,11 +106,13 @@
 
 <script setup>
 import { ref } from "vue"
-import { useMeta } from "quasar"
+import { useMeta, useQuasar } from "quasar"
 
 // import ProfileSection from "src/components/management/settings/desktop/index/ProfileSection.vue"
 // import ThemeColor from "src/components/management/settings/desktop/index/ThemeColor.vue"
 // import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
+
+const $q = useQuasar()
 
 const metaData = {
   title: 'لاندا',
@@ -117,6 +120,23 @@ const metaData = {
 };
 
 useMeta(metaData);
+
+const expandIcon = () => {
+  if ($q.lang.isoName === "en-US") {
+    return "chevron_right"
+  } else {
+    return "chevron_left"
+  }
+}
+
+const logoutIcon = () => {
+  if ($q.lang.isoName === "en-US") {
+    return "o_logout"
+  } else {
+    return "o_logout"
+  }
+}
+
 </script>
 
 <style lang="scss">

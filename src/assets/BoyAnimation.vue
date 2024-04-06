@@ -2,7 +2,7 @@
   <div class="stage">
     <div class="table">
       <div class="row justify-center items-center" style="margin-top: 30px;">
-      <img width="250px" src="./about-us-header.png" alt="">
+        <img width="250px" src="./about-us-header.png" alt="">
       </div>
     </div>
     <div class="pc"></div>
@@ -17,7 +17,7 @@
       <div class="pointer-hour"></div>
       <div class="pointer"></div>
     </div>
-    <div class="guy">
+    <div class="guy" :style="direction()">
       <div class="hat">
         <div class="hat-hair"></div>
         <div class="hat-close"></div>
@@ -42,9 +42,22 @@
   </div>
 </template>
 
+<script setup>
+import { useQuasar } from 'quasar';
+
+const $q = useQuasar()
+
+const direction = () => {
+  if ($q.lang.rtl) {
+    return "left: 50%"
+  } else {
+    return "left: 50%"
+  }
+}
+
+</script>
+
 <style lang="scss" scoped>
-
-
 .stage {
   height: 500px;
   position: relative;
@@ -79,7 +92,7 @@
   border-radius: 5px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .pc:after {
@@ -92,7 +105,7 @@
   top: 51%;
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
 }
 
 .pc:before {
@@ -110,30 +123,35 @@
   width: 174px;
   height: 130px;
   position: absolute;
-  right: 50%;
+  // right: 50%;
   -webkit-transform: translateX(-50%) translateY(0) translateZ(0);
-          transform: translateX(-50%) translateY(0) translateZ(0);
+  transform: translateX(-50%) translateY(0) translateZ(0);
   bottom: 198px;
   -webkit-animation: guyMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
-          animation: guyMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
+  animation: guyMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
 }
 
 @-webkit-keyframes guyMove {
   0% {
     -webkit-transform: translateX(-50%) translateY(45px) translateZ(0);
   }
+
   15% {
     -webkit-transform: translateX(-50%) translateY(50px) translateZ(0);
   }
+
   30% {
     -webkit-transform: translateX(-50%) translateY(45px) translateZ(0);
   }
+
   45% {
     -webkit-transform: translateX(-50%) translateY(50px) translateZ(0);
   }
+
   60% {
     -webkit-transform: translateX(-50%) translateY(0px) translateZ(0);
   }
+
   100% {
     -webkit-transform: translateX(-50%) translateY(0px) translateZ(0);
   }
@@ -144,18 +162,23 @@
   0% {
     transform: translateX(-50%) translateY(45px) translateZ(0);
   }
+
   15% {
     transform: translateX(-50%) translateY(50px) translateZ(0);
   }
+
   30% {
     transform: translateX(-50%) translateY(45px) translateZ(0);
   }
+
   45% {
     transform: translateX(-50%) translateY(50px) translateZ(0);
   }
+
   60% {
     transform: translateX(-50%) translateY(0px) translateZ(0);
   }
+
   100% {
     transform: translateX(-50%) translateY(0px) translateZ(0);
   }
@@ -169,7 +192,7 @@
   z-index: 1;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   border-radius: 50px 50px 0 0;
   background-color: #36508a;
 }
@@ -180,7 +203,7 @@
   width: 60px;
   height: 30px;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   left: 50%;
   border-radius: 50px 50px 0 0;
   background-color: #4563a5;
@@ -197,7 +220,7 @@
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .face {
@@ -209,7 +232,7 @@
   bottom: 26px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .face:after {
@@ -220,7 +243,7 @@
   content: '';
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   position: absolute;
 }
 
@@ -249,25 +272,30 @@
   border-radius: 50%;
   position: absolute;
   -webkit-animation: eyeMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
-          animation: eyeMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
+  animation: eyeMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
 }
 
 @-webkit-keyframes eyeMove {
   0% {
     -webkit-transform: translateY(16px) translateZ(0);
   }
+
   15% {
     -webkit-transform: translateY(16px) translateZ(0);
   }
+
   30% {
     -webkit-transform: translateY(16px) translateZ(0);
   }
+
   45% {
     -webkit-transform: translateY(16px) translateZ(0);
   }
+
   60% {
     -webkit-transform: translateY(4px) translateZ(0);
   }
+
   100% {
     -webkit-transform: translateY(4px) translateZ(0);
   }
@@ -277,18 +305,23 @@
   0% {
     transform: translateY(16px) translateZ(0);
   }
+
   15% {
     transform: translateY(16px) translateZ(0);
   }
+
   30% {
     transform: translateY(16px) translateZ(0);
   }
+
   45% {
     transform: translateY(16px) translateZ(0);
   }
+
   60% {
     transform: translateY(4px) translateZ(0);
   }
+
   100% {
     transform: translateY(4px) translateZ(0);
   }
@@ -300,7 +333,7 @@
   top: 20px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   width: 6px;
   height: 14px;
   z-index: 5;
@@ -314,7 +347,7 @@
   top: 4px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   border-radius: 50px 50px 0 0;
   position: absolute;
   z-index: 5;
@@ -384,21 +417,21 @@
   width: 8px;
   height: 8px;
   background-color: #5e3919;
-  border-radius: 0 0 0 50px ;
+  border-radius: 0 0 0 50px;
 }
 
 .hair-middle {
-    background-color: #5e3919;
-    top: 45px;
-    left: 49%;
-    z-index: 4;
-    width: 14px;
-    height: 6px;
-    border-radius: 0 0 100px 100px;
-    position: absolute;
-    z-index: 4;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%) rotate(-15deg);
+  background-color: #5e3919;
+  top: 45px;
+  left: 49%;
+  z-index: 4;
+  width: 14px;
+  height: 6px;
+  border-radius: 0 0 100px 100px;
+  position: absolute;
+  z-index: 4;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%) rotate(-15deg);
 }
 
 .hair-middle:after {
@@ -464,8 +497,9 @@
   bottom: 11px;
   left: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  z-index: 12;;
+  transform: translateX(-50%);
+  z-index: 12;
+  ;
 }
 
 .ear-left {
@@ -519,17 +553,18 @@
   left: 50%;
   top: calc(50% + 10px);
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-30deg);
-          transform: translateX(-50%) translateY(-50%) rotate(-30deg);
+  transform: translateX(-50%) translateY(-50%) rotate(-30deg);
   z-index: 20;
   transform-origin: top;
   -webkit-animation: min 30s linear infinite;
-          animation: min 30s linear infinite;
+  animation: min 30s linear infinite;
 }
 
 @-webkit-keyframes min {
   0% {
     -webkit-transform: translateX(-50%) translateY(-50%) rotate(-30deg);
   }
+
   100% {
     -webkit-transform: translateX(-50%) translateY(-50%) rotate(330deg);
   }
@@ -539,6 +574,7 @@
   0% {
     transform: translateX(-50%) translateY(-50%) rotate(-30deg);
   }
+
   100% {
     transform: translateX(-50%) translateY(-50%) rotate(330deg);
   }
@@ -552,7 +588,7 @@
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   z-index: 20;
   left: 22px;
 }
@@ -562,7 +598,7 @@
   top: 50%;
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
   width: 10px;
   height: 10px;
   border: 3px solid #e0dddb;
@@ -581,7 +617,7 @@
   z-index: 20;
   border-radius: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .marker-right {
@@ -594,7 +630,7 @@
   z-index: 20;
   border-radius: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .marker-bottom {
@@ -607,7 +643,7 @@
   z-index: 20;
   border-radius: 50%;
   -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .marker-left {
@@ -620,7 +656,7 @@
   z-index: 20;
   border-radius: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .cup {
@@ -715,5 +751,3 @@
   border-radius: 50%;
 }
 </style>
-
-

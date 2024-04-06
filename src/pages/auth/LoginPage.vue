@@ -1,15 +1,15 @@
 <template>
   <q-page :class="$q.screen.gt.xs
-      ? 'flex full-screen items-center justify-center'
-      : 'q-pt-lg'
+    ? 'flex full-screen items-center justify-center'
+    : 'q-pt-lg'
     ">
     <div class="main-container">
       <login-background v-if="$q.screen.gt.xs" />
 
       <q-card class="no-padding" :class="[
-    $q.screen.gt.xs ? 'bordered border-radius-lg' : 'no-shadow no-border',
-    $q.screen.gt.sm ? 'login-card' : '',
-  ]">
+        $q.screen.gt.xs ? 'bordered border-radius-xl' : 'no-shadow no-border',
+        $q.screen.gt.sm ? 'login-card' : '',
+      ]">
         <q-card-section horizontal>
           <q-card-section :class="$q.screen.lt.sm ? 'no-padding' : ''" class="col-md-7 col-sm-12 col-xs-12">
             <div :class="$q.screen.gt.xs ? 'q-pa-lg' : ''">
@@ -18,12 +18,12 @@
                   <div class="text-h5 no-letter-spacing text-weight-700">
                     ورود
                   </div>
-                  <q-btn href="https://landa-sme.ir/account/register" color="primary" unelevated padding="8px 16px"
-                    class="border-radius-lg text-body1 no-letter-spacing signup">
+                  <q-btn rounded href="https://landa-sme.ir/account/register" color="primary" unelevated
+                    padding="8px 16px" class="text-body1 no-letter-spacing signup">
                     ثبت‌نام
                   </q-btn>
                 </div>
-                <div class="q-item__label--caption text-body1 line-height-sm no-letter-spacing q-mb-lg">
+                <div class="text-body1 line-height-sm no-letter-spacing q-mb-lg">
                   نام‌کاربری و رمز عبور خود را وارد کنید، اگر رمز یا نام کاربری
                   خود را فراموش کرده اید بر روی پیوندی به همین نام کلیک کنید.
                 </div>
@@ -32,8 +32,8 @@
                 <div class="column q-gutter-md text-on-dark">
                   <div class="q-gutter-y-sm">
                     <q-item-label caption>{{
-    $t("login-page.placeholders.username")
-  }}</q-item-label>
+                      $t("login-page.placeholders.username")
+                      }}</q-item-label>
                     <q-input class="login" hide-bottom-space v-model="username" dense required lazy-rules outlined
                       :rules="[(val) => val !== null && val !== '']">
                       <template v-slot:prepend>
@@ -44,8 +44,8 @@
                   <div class="col">
                     <div class="q-gutter-y-sm">
                       <q-item-label caption>{{
-    $t("login-page.placeholders.password")
-  }}</q-item-label>
+                        $t("login-page.placeholders.password")
+                        }}</q-item-label>
                       <q-input class="login" v-model="password" hide-bottom-space outlined
                         :type="isPwd ? 'password' : 'text'" dense required lazy-rules
                         :rules="[(val) => val !== null && val !== '']">
@@ -88,7 +88,7 @@
 
                 <div class="row items-center q-mt-xl">
                   <div class="col-md-5 col-sm-5 col-xs-12">
-                    <q-btn unelevated type="submit" color="primary" class="full-width text-body1 border-radius-lg"
+                    <q-btn rounded unelevated type="submit" color="primary" class="full-width text-body1"
                       padding="16px 64px" :label="$t('login-page.buttons.login')" :disable="isLoggingIn">
                       <div class="q-pl-sm" v-if="isLoggingIn">
                         <q-spinner-pie class="white" size="13px" />
@@ -97,9 +97,9 @@
                   </div>
                   <div class="col-md col-sm col-xs-12">
                     <div class="row forgot-password" :class="$q.screen.lt.sm
-      ? 'justify-center q-mt-xl'
-      : 'justify-end'
-    ">
+                      ? 'justify-center q-mt-xl'
+                      : 'justify-end'
+                      ">
                       <a href="https://landa-sme.ir/account/forgetpassword"
                         class="text-primary text-weight-bold no-letter-spacing">
                         {{ $t("login-page.forgot-password") }}
