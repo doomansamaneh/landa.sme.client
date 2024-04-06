@@ -8,13 +8,17 @@
         </div>
 
         <div class="row">
-          <span class="col-1 text-caption text-bold">مشتری:</span>
+          <span class="col-1 text-caption text-bold q-pt-sm">مشتری:</span>
           <span class="text-body3 q-mx-md">
-            <router-link
+            <q-btn
+              color="primary"
+              unelevated
+              flat
               :to="`/crm/customer/preview/${model.value.customerId}`"
             >
-              {{ model.value.customerName }}
-            </router-link>
+              <q-icon name="o_description" size="xs" class="q-mr-xs" />
+              <span>{{ model.value.customerName }}</span>
+            </q-btn>
           </span>
         </div>
 
@@ -63,7 +67,7 @@
         </q-tab>
         <q-tab name="log" class="q-py-sm">
           <template #default>
-            <q-icon name="o_log" size="xs" class="q-mr-sm" />
+            <q-icon name="o_history" size="xs" class="q-mr-sm" />
             <div class="text-body3 text-bold">تاریخچه</div>
           </template>
         </q-tab>

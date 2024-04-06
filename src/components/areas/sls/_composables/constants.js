@@ -1,5 +1,13 @@
 import { sqlOperator } from "src/constants";
 
+export const taxStatus = {
+  success: "SUCCESS",
+  pending: "PENDING",
+  notFound: "NOT_FOUND",
+  inProgress: "IN_PROGRESS",
+  failed: "FAILED",
+};
+
 export const invoiceColumns = [
   {
     name: "no",
@@ -21,7 +29,7 @@ export const invoiceColumns = [
     sortable: true,
     label: "تاریخ",
     class: "text-left",
-    style: "width:120px",
+    style: "width:100px",
     showFilter: true,
   },
   {
@@ -96,5 +104,11 @@ export const taxApiLogColumns = [
     showFilter: true,
     class: "text-left",
     value: "",
+  },
+  {
+    name: "actions",
+    align: "left",
+    class: "text-left",
+    style: "width:5px",
   },
 ];

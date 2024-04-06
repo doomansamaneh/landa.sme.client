@@ -1,8 +1,6 @@
 <template>
-  <div
-    :style="$q.screen.sm ? 'margin-top:54px;' : 'margin-top:0;'"
-    :class="containerClass"
-  >
+  <!-- :style="$q.screen.sm ? 'margin-top:54px;' : ''" -->
+  <div :class="containerClass">
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>

@@ -20,6 +20,23 @@
         @update:model-value="reloadData"
       />
     </template>
+    <template #cell-no="{ item }">
+      <span>{{ item.no }}</span>
+      <span v-if="item.apiLogCount" class="q-pl-xs">
+        <q-icon name="o_check" color="accent" size="xs">
+          <q-tooltip class="accent text-body1 no-letter-spacing">
+            ارسال به سامانه مودیان
+          </q-tooltip>
+        </q-icon>
+      </span>
+      <span v-if="item.notificationCount" class="q-pl-xs">
+        <q-icon name="o_email" color="positive" size="xs">
+          <q-tooltip class="positive text-body1 no-letter-spacing">
+            فرستاده شده: {{ item.notificationCount }}
+          </q-tooltip>
+        </q-icon>
+      </span>
+    </template>
     <template #cell-amount="{ item }">
       <span>{{ item.amount.toLocaleString() }}</span>
     </template>
@@ -39,8 +56,11 @@
       </div>
       <div class="q-gutter-x-sm">
         <q-badge>{{ item.typeTitle }}</q-badge>
-        <q-badge v-if="item.contractTitle">
+        <q-badge color="info" v-if="item.contractTitle">
           {{ item.contractTitle }}
+          <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
+            قرارداد
+          </q-tooltip>
         </q-badge>
       </div>
     </template>

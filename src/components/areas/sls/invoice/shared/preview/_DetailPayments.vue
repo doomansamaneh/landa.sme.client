@@ -18,7 +18,7 @@
     </q-btn>
   </div>
 
-  <div class="bordered">
+  <div class="bordered" v-if="!model.value.invoiceRemained.remained">
     <div class="text-body3 text-bold q-pa-md">
       <q-icon name="o_arrow_downward" color="info" size="xs" />
       دریافتها

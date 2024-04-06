@@ -1,14 +1,4 @@
 <template>
-  <!-- <template v-if="$q.screen.lt.sm">
-    <mobile
-      :title="title"
-      :grid-store="gridStore"
-      :data-source="dataSource"
-      ref="mobileGrid"
-    />
-  </template>
-  <template v-else> -->
-
   <desktop
     :title="title"
     :grid-store="gridStore"
@@ -23,6 +13,25 @@
     <template #cell-status="{ item }">
       <q-badge class="bg-primary">{{ item.status }}</q-badge>
     </template>
+    <template #cell-actions="{ item }">
+      <q-btn
+        v-if="
+          item.status === taxStatus.pending ||
+          item.status === taxStatus.notFound ||
+          item.status === taxStatus.inProgress
+        "
+        @click="taxStore.inquery(item.id, desktopGrid.tableStore.reloadData)"
+        flat
+        size="sm"
+        padding="sm"
+        icon="o_refresh"
+      >
+        <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
+          دریافت دوباره اطلاعات از سامانه مودیان
+        </q-tooltip>
+      </q-btn>
+    </template>
+
     <template #expand="{ item }">
       <div class="q-pa-md">
         <ul style="direction: ltr">
@@ -52,7 +61,9 @@
 import { ref } from "vue";
 import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 import { guidEmpty, sortOrder, sqlOperator } from "src/constants";
+import { taxStatus } from "src/components/areas/sls/_composables/constants";
 import { taxApiLogColumns } from "src/components/areas/sls/_composables/constants";
+import { useTaxApiLogModel } from "src/components/areas/sls/_composables/useTaxApiLogModel";
 
 import Desktop from "src/components/shared/dataTables/desktop/DataGrid.vue";
 // import Mobile from "src/components/shared/dataTables/mobile/DataGrid.vue";
@@ -64,6 +75,7 @@ const props = defineProps({
 });
 
 const dataSource = "sls/InvoiceTaxApiLog/getGridData";
+const taxStore = useTaxApiLogModel();
 
 const gridStore = useBaseInfoGrid({
   columns: taxApiLogColumns,

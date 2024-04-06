@@ -17,16 +17,24 @@
         <td>مقدار</td>
         <td>واحد</td>
         <td>مبلغ واحد</td>
-        <td>مبلغ کل ({{ model.value.currencyTitle }})</td>
+        <td>مبلغ کل</td>
         <td v-if="formStore.totalDiscount.value">تخفیف</td>
         <td v-if="formStore.totalDiscount.value">مبلغ پس از تخفیف</td>
         <td>جمع مالیات و عوارض</td>
-        <td>جمع کل ({{ model.value.currencyTitle }})</td>
+        <td>
+          جمع کل (
+          <span class="text-weight-700">
+            {{ model.value.currencyTitle }}
+          </span>
+          )
+        </td>
       </tr>
       <tr v-for="(item, index) in model.value.invoiceItems" :key="item.id">
         <td>{{ index + 1 }}</td>
         <td>{{ item.productCode }} {{ item.productTaxCode }}</td>
-        <td>{{ item.productTitle }}</td>
+        <td>
+          <div class="text-wrap">{{ item.productTitle }}</div>
+        </td>
         <td>{{ item.quantity.toLocaleString() }}</td>
         <td>{{ item.productUnitTitle }}</td>
         <td>{{ item.price.toLocaleString() }}</td>

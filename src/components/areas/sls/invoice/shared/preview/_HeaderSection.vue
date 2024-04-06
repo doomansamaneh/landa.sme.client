@@ -73,9 +73,11 @@
       </tr>
       <tr>
         <td colspan="2">
-          نشانی: <strong>تهران</strong>
-          شهر جدید اندیشه، شهرک صدف، خ دکتر قریب، مجتمع اداری زیتون، طبقه 2،
-          واحد 13
+          نشانی: <strong>تهران - </strong>
+          <span class="text-wrap">
+            شهر جدید اندیشه، شهرک صدف، خ دکتر قریب، مجتمع اداری زیتون، طبقه 2،
+            واحد 13
+          </span>
         </td>
         <td style="width: 15%">کد پستی: 390303</td>
         <td style="width: 15%">تلفن: 88944338</td>
@@ -104,10 +106,12 @@
       <tr>
         <td colspan="2">
           نشانی:
-          <strong>{{
-            model.value.customerSummary?.address?.locationTitle
-          }}</strong>
-          {{ model.value.customerSummary?.address?.address }}
+          <strong>
+            {{ model.value.customerSummary?.address?.locationTitle }} -
+          </strong>
+          <span class="text-wrap">
+            {{ model.value.customerSummary?.address?.address }}
+          </span>
         </td>
         <td style="width: 15%">
           کد پستی: {{ model.value.customerSummary?.address?.postalCode }}
@@ -121,8 +125,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
 const props = defineProps({
   model: Object,
 });
