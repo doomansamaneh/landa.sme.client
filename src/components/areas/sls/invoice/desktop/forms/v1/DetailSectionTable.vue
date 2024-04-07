@@ -1,9 +1,9 @@
 <template>
-  <q-markup-table bordered flat dense separator="horizontal">
+  <q-markup-table class="q-pa-md" bordered flat dense separator="horizontal">
     <thead>
       <tr>
         <th colspan="100%">
-          <div class="row items-center_ q-px-md">
+          <div class="row items-center">
             <div class="col-md-5">
               <q-input inputmode="search" input-class="text-body2 no-letter-spacing" outlined dense rounded
                 v-model="productCode" :placeholder="$t('shared.labels.addItemByProductCode')" clearable

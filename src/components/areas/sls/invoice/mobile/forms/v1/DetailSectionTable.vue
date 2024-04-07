@@ -12,7 +12,7 @@
     </q-btn>
   </div>
 
-  <q-card v-if="formStore.model.value.invoiceItems.length === 0">
+  <q-card class="bordered" v-if="formStore.model.value.invoiceItems.length === 0">
     <q-card-section>
       <no-product-selected />
     </q-card-section>

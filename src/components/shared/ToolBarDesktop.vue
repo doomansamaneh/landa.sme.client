@@ -1,10 +1,10 @@
 <template>
   <div :style="toolbarMargin">
-    <q-page-sticky class="z-1 bg-main" style="padding-top: 12px; padding-bottom: 12px" position="top" expand>
+    <q-page-sticky class="z-1 bg-main toolbar" style="padding-top: 12px; padding-bottom: 12px" position="top" expand>
       <q-toolbar :style="$q.screen.gt.sm
-      ? 'padding-left: 38px; padding-right: 38px;'
-      : 'padding-left: 20px; padding-right: 20px;'
-    ">
+        ? 'padding-left: 38px; padding-right: 38px;'
+        : 'padding-left: 20px; padding-right: 20px;'
+        ">
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn class="bg-primary primary-shadow text-white text-body2 no-letter-spacing" padding="6px 12px" rounded
@@ -28,8 +28,8 @@
               <slot name="buttons-batch-action"> </slot>
               <slot name="buttons-delete-batch">
                 <q-btn padding="6px 12px" class="text-body2 no-letter-spacing" rounded unelevated no-caps @click="
-    crudStore.deleteBatch(selectedIds, tableStore.reloadData)
-    ">
+                  crudStore.deleteBatch(selectedIds, tableStore.reloadData)
+                  ">
                   <q-icon name="o_delete" size="20px" class="q-mr-xs" />
                   {{ $t("shared.labels.delete") }}
                   <q-badge floating>
@@ -42,11 +42,11 @@
             <template v-else-if="tableStore?.activeRow?.value != null">
               <slot name="bootons-delete">
                 <q-btn padding="6px 12px" class="text-body2 no-letter-spacing" rounded unelevated no-caps @click="
-    crudStore.deleteById(
-      tableStore.activeRow.value.id,
-      tableStore.reloadData
-    )
-    ">
+                  crudStore.deleteById(
+                    tableStore.activeRow.value.id,
+                    tableStore.reloadData
+                  )
+                  ">
                   <q-icon size="20px" name="o_delete" class="q-mr-xs" />
                   {{ $t("shared.labels.delete") }}
                 </q-btn>
@@ -77,8 +77,8 @@
                   <template v-if="activation && selectedIds?.length > 0">
                     <q-separator class="q-my-sm" />
                     <q-item clickable v-close-popup tabindex="0" @click="
-    crudStore.activate(selectedIds, tableStore.reloadData)
-    ">
+                      crudStore.activate(selectedIds, tableStore.reloadData)
+                      ">
                       <div class="q-py-sm">
                         <q-item-section avatar>
                           <q-avatar class="bg-on-dark" size="sm"><q-icon size="20px" name="o_check" /></q-avatar>
@@ -92,8 +92,8 @@
                     </q-item>
 
                     <q-item clickable v-close-popup tabindex="0" @click="
-    crudStore.deactivate(selectedIds, tableStore.reloadData)
-    ">
+                      crudStore.deactivate(selectedIds, tableStore.reloadData)
+                      ">
                       <div class="q-py-sm">
                         <q-item-section avatar>
                           <q-avatar class="bg-on-dark" size="sm">
@@ -168,8 +168,8 @@
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
               <slot name="header-title">
                 <span class="text-weight-700 no-letter-spacing">{{
-    title
-  }}</span>
+                  title
+                }}</span>
                 <q-btn v-if="tableStore?.pagination.value.totalItems > 0" rounded unelevated dense padding="0px 10px"
                   outline :label="tableStore?.pagination.value.totalItems"
                   class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events" />

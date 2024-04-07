@@ -63,6 +63,16 @@ export function useInvoiceModel(preview) {
     newRow.vatId = currentRow.vatId;
     newRow.vatTitle = currentRow.vatTitle;
     newRow.vatPercent = currentRow.vatPercent;
+    if (!currentRow.productUnitId) {
+      $q.notify({
+        type: "negative",
+        message: "<div class='text-body1 text-white no-letter-spacing'>لطفا نام کالا و مقدار آن را تعریف کنید</div>",
+        position: "top-right",
+        html: true,
+        badgeClass: "border-red-1 bg-white text-body3 text-bold red-shadow text-negative",
+        classes: "q-ma-xl border-radius-md q-px-md q-py-xs bg-negative red-shadow"
+      });
+    } else
     model.value.invoiceItems.splice(index + 1, 0, newRow);
   };
 

@@ -109,11 +109,11 @@
           <div v-if="title">
             <slot name="header">
               <div
-                class="text-weight-700 flex items-center"
+                class="text-weight-700 no-letter-spacing flex items-center"
                 :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
               >
                 <slot name="header-title">
-                  <span>{{ title }}</span>
+                  <span class="no-letter-spacing">{{ title }}</span>
                   <q-btn
                     v-if="tableStore?.pagination.value.totalItems > 0"
                     rounded

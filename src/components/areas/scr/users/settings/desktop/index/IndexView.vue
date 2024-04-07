@@ -122,15 +122,15 @@ const metaData = {
 useMeta(metaData);
 
 const expandIcon = () => {
-  if ($q.lang.isoName === "en-US") {
-    return "chevron_right"
-  } else {
+  if ($q.lang.rtl) {
     return "chevron_left"
+  } else {
+    return "chevron_right"
   }
 }
 
 const logoutIcon = () => {
-  if ($q.lang.isoName === "en-US") {
+  if ($q.lang.rtl) {
     return "o_logout"
   } else {
     return "o_logout"
