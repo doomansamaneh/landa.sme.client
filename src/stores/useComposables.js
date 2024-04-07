@@ -1,18 +1,23 @@
-import { defineStore } from "pinia"
+import { ref } from "vue";
 
-export const useComposables = defineStore('composables', {
-  state: () => ({
-    composables: [],
-  }),
-  actions: {
-    registerComposable(composable) {
-      this.composables.push(composable);
-    },
-    unregisterComposable(composable) {
-      this.composables = this.composables.filter(c => c !== composable);
-    },
-    resetAllComposables() {
-      this.composables.forEach(c => c.reset());
-    },
-  },
-})
+const composables = ref([]);
+
+export function useComposables() {
+  const registerComposable = (composable) => {
+    composables.value.push(composable);
+  };
+
+  const resetAllComposables = () => {
+    composables.value.forEach((c) => c.reset());
+  };
+
+  const unregisterComposable = (composable) => {
+    composables.value = composables.value.filter((c) => c !== composable);
+  };
+
+  return {
+    registerComposable,
+    resetAllComposables,
+    unregisterComposable,
+  };
+}

@@ -45,6 +45,7 @@ export function useInvoiceGrid(defaultFilters) {
   composablesStore.registerComposable({
     reset: () => {
       state.firstLoad.value = false;
+      state.rows.value = [];
       setDefaultSearchModel();
     },
   });

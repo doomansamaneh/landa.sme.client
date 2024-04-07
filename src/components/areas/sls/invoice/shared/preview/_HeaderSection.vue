@@ -8,7 +8,10 @@
     </div>
     <div class="col-md col-sm-5 col-xs-12 items-center justify-center">
       <div class="row items-center justify-center text-subtitle1 text-bold">
-        {{ $t("page.payment-detail.invoice-label") }}
+        {{
+          appConfigStore.model.value?.companySetting?.invoiceTitle ??
+          $t("page.payment-detail.invoice-label")
+        }}
       </div>
     </div>
     <div
@@ -57,7 +60,7 @@
     bordered
     dense
   >
-    <tbody>
+    <tbody v-if="appConfigStore.model?.value?.companySetting">
       <tr class="bg-on-dark text-center">
         <td colspan="100%">
           <div class="text-body1 no-letter-spacing text-weight-700">
@@ -66,21 +69,36 @@
         </td>
       </tr>
       <tr>
-        <td>نام: <strong>حسابداری لاندا</strong></td>
-        <td style="width: 15%">شماره ثبت: 390303</td>
-        <td style="width: 15%">شماره اقتصادی: 10320412724</td>
-        <td style="width: 15%">شناسه ملی: 10320412724</td>
+        <td>
+          نام:
+          <strong>{{ appConfigStore.model.value.companySetting.name }}</strong>
+        </td>
+        <td style="width: 15%">
+          شماره ثبت: {{ appConfigStore.model.value.companySetting.regNo }}
+        </td>
+        <td style="width: 15%">
+          شماره اقتصادی: {{ appConfigStore.model.value.companySetting.taxNo }}
+        </td>
+        <td style="width: 15%">
+          شناسه ملی: {{ appConfigStore.model.value.companySetting.nationalNo }}
+        </td>
       </tr>
       <tr>
         <td colspan="2">
-          نشانی: <strong>تهران - </strong>
+          نشانی:
+          <strong>
+            {{ appConfigStore.model.value.companySetting.location }} -
+          </strong>
           <span class="text-wrap">
-            شهر جدید اندیشه، شهرک صدف، خ دکتر قریب، مجتمع اداری زیتون، طبقه 2،
-            واحد 13
+            {{ appConfigStore.model.value.companySetting.address }}
           </span>
         </td>
-        <td style="width: 15%">کد پستی: 390303</td>
-        <td style="width: 15%">تلفن: 88944338</td>
+        <td style="width: 15%">
+          کد پستی: {{ appConfigStore.model.value.companySetting.postalCode }}
+        </td>
+        <td style="width: 15%">
+          تلفن: {{ appConfigStore.model.value.companySetting.phone }}
+        </td>
       </tr>
     </tbody>
     <tbody>
@@ -125,9 +143,12 @@
 </template>
 
 <script setup>
+import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+
 const props = defineProps({
   model: Object,
 });
+const appConfigStore = useAppConfigModel();
 </script>
 
 <style lang="scss">

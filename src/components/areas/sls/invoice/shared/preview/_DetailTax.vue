@@ -10,8 +10,18 @@
       <span>ارسال به سامانه مودیان</span>
     </q-btn>
   </div>
-  <data-grid class="q-mt-md" flat hide-filter-row :invoice-id="model.value.id">
-  </data-grid>
+  <div class="q-mt-md">
+    <div class="text-body1 no-letter-spacing text-weight-700">
+      تاریخچه ارسال به سامانه مودیان
+    </div>
+    <data-grid
+      class="q-mt-md"
+      flat
+      hide-filter-row
+      :invoice-id="model.value.id"
+    >
+    </data-grid>
+  </div>
 </template>
 
 <script setup>

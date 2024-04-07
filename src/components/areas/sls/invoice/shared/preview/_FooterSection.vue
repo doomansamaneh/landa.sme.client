@@ -8,6 +8,13 @@
               {{ model.value.contractTitle }} /
             </strong>
             <div class="text-wrap" v-html="model.value.summary"></div>
+            <div
+              v-if="appConfigStore.model.value?.companySetting?.invoiceComment"
+              class="text-wrap"
+              v-html="
+                appConfigStore.model.value?.companySetting?.invoiceComment
+              "
+            ></div>
           </div>
         </td>
       </tr>
@@ -22,9 +29,12 @@
 </template>
 
 <script setup>
+import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+
 const props = defineProps({
   model: Object,
 });
+const appConfigStore = useAppConfigModel();
 </script>
 
 <style>

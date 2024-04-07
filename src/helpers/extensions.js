@@ -14,7 +14,7 @@ Date.prototype.toDateString = function () {
 
 Date.prototype.toDateTimeString = function () {
   const date = new Date(this.valueOf());
-  const iso = localStorage.getItem("selectedLanguage");
+  const iso = localStorage.getItem("selectedLanguage") ?? "fa-IR";
   const fullDate = {
     year: "numeric",
     month: "numeric",

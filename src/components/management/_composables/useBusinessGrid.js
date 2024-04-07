@@ -6,6 +6,8 @@ import { fetchWrapper } from "src/helpers";
 import { useComposables } from "src/stores/useComposables";
 import { useCulture } from "src/composables/useCulture";
 import { useFiscalYear } from "src/components/areas/acc/_composables/useFiscalYear";
+import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+import { useMenuBar } from "src/composables/useMenuBar";
 
 const rows = ref([]);
 
@@ -52,6 +54,7 @@ export function useBusinessGrid() {
   const composablesStore = useComposables();
   const cultureStore = useCulture();
   const fiscalYearSotre = useFiscalYear();
+  const menuStore = useMenuBar();
 
   const reset = () => {
     state.firstLoad.value = false;
@@ -75,9 +78,13 @@ export function useBusinessGrid() {
         //todo: resolve main-route for gotoBusiness
         //alert(userSetting.currentCulture)
         //cultureStore.setCulture(userSetting.currentCulture)
+        const appConfigStore = useAppConfigModel();
+        appConfigStore.reset();
+        menuStore.reset();
         fiscalYearSotre.setFiscalYear({
           id: userSetting.fiscalYearId,
           title: userSetting.fiscalYear,
+          selected: true,
         });
         router.push(`/${item.id}`);
       })

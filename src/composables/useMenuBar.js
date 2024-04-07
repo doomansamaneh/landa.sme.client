@@ -1,10 +1,9 @@
 import { ref, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { fetchWrapper } from "src/helpers";
-import { useComposables } from "src/stores/useComposables";
 
 const state = {
-  firstLoad: ref(false),
+  firstLoad: ref(true),
   visible: ref(true),
   items: ref([]),
 };
@@ -12,20 +11,17 @@ const state = {
 const searchText = ref("");
 
 export function useMenuBar() {
-  const composablesStore = useComposables();
-  composablesStore.registerComposable({
-    reset: () => {
-      state.firstLoad.value = false;
-    },
-  });
-
   const { t, locale } = useI18n();
+
+  const reset = () => {
+    state.firstLoad.value = true;
+    state.items.value = [];
+  };
 
   const toggle = () => {
     state.visible.value = !state.visible.value;
   };
 
-  // Watch for changes in locale and reload data accordingly
   //todo: what is this for
   watch(locale, () => {
     //alert("locale changed");
@@ -33,9 +29,9 @@ export function useMenuBar() {
   });
 
   async function loadData() {
-    if (!state.firstLoad.value) {
+    if (state.firstLoad.value) {
       await reloadData();
-      state.firstLoad.value = true;
+      state.firstLoad.value = false;
     }
   }
 
@@ -104,6 +100,7 @@ export function useMenuBar() {
     drawerMenuItems,
     searchText,
 
+    reset,
     toggle,
     loadData,
     reloadData,

@@ -50,8 +50,8 @@
         outside-arrows
         dense
         align="left"
-        indicator-color="primary"
-        class="text-on-dark"
+        indicator-color_="white"
+        class="text-on-dark_ bg-blue text-white shadow-2"
       >
         <q-tab name="main-info" class="q-py-sm">
           <template #default>

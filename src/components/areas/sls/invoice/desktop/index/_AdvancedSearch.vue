@@ -67,6 +67,52 @@
                 class="text-body2 no-letter-spacing"
               />
             </div>
+
+            <div class="row q-gutter-x-sm items-center">
+              <sale-type-lookup
+                v-model:selectedId="searchModel.typeId"
+                v-model:selectedText="searchModel.typeTitle"
+                style="width: 398px"
+                :placeholder="$t('shared.labels.typeTitle')"
+              />
+            </div>
+
+            <div class="row q-gutter-x-sm items-center">
+              <inventory-lookup
+                v-model:selectedId="searchModel.inventoryId"
+                v-model:selectedText="searchModel.inventoryTitle"
+                style="width: 398px"
+                :placeholder="$t('shared.labels.inventoryTitle')"
+              />
+            </div>
+
+            <div class="row q-gutter-x-sm items-center">
+              <product-lookup
+                v-model:selectedId="searchModel.productId"
+                v-model:selectedText="searchModel.productTitle"
+                style="width: 398px"
+                :placeholder="$t('shared.labels.productTitle')"
+              />
+            </div>
+
+            <div class="row q-gutter-x-sm items-center">
+              <contract-lookup
+                v-model:selectedId="searchModel.contractId"
+                v-model:selectedText="searchModel.contractTitle"
+                style="width: 398px"
+                :placeholder="$t('shared.labels.contractTitle')"
+              />
+            </div>
+
+            <div class="row q-gutter-x-sm items-center">
+              <customer-lookup
+                v-model:selectedId="searchModel.marketerId"
+                v-model:selectedText="searchModel.marketerName"
+                style="width: 398px"
+                :placeholder="$t('shared.labels.marketerName')"
+              />
+            </div>
+
             <div class="row q-gutter-x-sm items-center">
               <custom-input
                 v-model="searchModel.comment"
@@ -110,9 +156,14 @@ import { computed, ref } from "vue";
 import { dateRange } from "src/constants";
 import { helper } from "src/helpers";
 
-import chip from "src/components/shared/SearchChip.vue";
-import dateTime from "src/components/shared/forms/DateTimePicker.vue";
-import customInput from "src/components/shared/forms/CustomInput.vue";
+import Chip from "src/components/shared/SearchChip.vue";
+import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+import CustomInput from "src/components/shared/forms/CustomInput.vue";
+import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
+import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
+import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
+import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 
 const props = defineProps({
   gridStore: Object,
