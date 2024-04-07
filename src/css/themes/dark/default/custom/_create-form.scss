@@ -27,4 +27,10 @@
       padding: 0 !important;
     }
   }
+
+  @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {
+    .form-container {
+      margin-top: 60px;
+    }
+  }
 }

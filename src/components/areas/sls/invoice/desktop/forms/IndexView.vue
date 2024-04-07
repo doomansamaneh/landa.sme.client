@@ -3,7 +3,7 @@
     <template #header>
       <q-badge v-if="tableStore?.pagination.value.totalItems > 0" rounded outline
         :label="tableStore?.pagination.value.totalItems" class="q-mr-sm bg-dark text-on-dark text-body2" />
-      <span class="text-h6">ایجاد فاکتور فروش</span>
+      <span class="text-h6 no-letter-spacing">ایجاد فاکتور فروش</span>
       <q-btn padding="6px 12px" flat @click="$router.go(-1)">
         <q-icon name="arrow_back" size="sm" />
       </q-btn>

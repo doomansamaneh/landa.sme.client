@@ -8,7 +8,7 @@
         :label="tableStore?.pagination.value.totalItems"
         class="q-mr-sm bg-dark text-on-dark text-body2"
       />
-      <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
+      <span class="no-letter-spacing" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
         >ایجاد فاکتور فروش</span
       >
       <q-btn padding="6px 12px" flat @click="$router.go(-1)">
