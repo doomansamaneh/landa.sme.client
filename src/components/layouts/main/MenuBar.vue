@@ -44,13 +44,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"
+import { onMounted } from "vue"
 import { useRouter } from "vue-router"
-import { useI18n } from "vue-i18n"
 import { helper } from "src/helpers"
 import { useMenuBar } from "src/composables/useMenuBar"
-
-const { t } = useI18n()
 
 const router = useRouter()
 const menuBarStore = useMenuBar()
@@ -59,17 +56,15 @@ const props = defineProps({
   menuBar: Boolean
 })
 
-const expandedItems = ref([])
-
 const shouldHighlight = (subItems) => {
   const currentPath = router.currentRoute.value.path
   return subItems.some(subItem => subItem.url === currentPath)
 }
 
-
 onMounted(() => {
   menuBarStore.loadData()
 })
+
 </script>
 
 <style lang="scss">

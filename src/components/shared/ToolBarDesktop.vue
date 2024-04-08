@@ -1,10 +1,7 @@
 <template>
   <div :style="toolbarMargin">
-    <q-page-sticky class="z-1 bg-main toolbar" style="padding-top: 12px; padding-bottom: 12px" position="top" expand>
-      <q-toolbar :style="$q.screen.gt.sm
-        ? 'padding-left: 38px; padding-right: 38px;'
-        : 'padding-left: 20px; padding-right: 20px;'
-        ">
+    <q-page-sticky class="z-1 bg-main toolbar" :style="inside" position="top" expand>
+      <q-toolbar :style="xPadding">
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn class="bg-primary primary-shadow text-white text-body2 no-letter-spacing" padding="6px 12px" rounded
@@ -200,6 +197,8 @@ const props = defineProps({
   activation: Boolean,
   backButton: Boolean,
   buttons: Boolean,
+  inside: Boolean,
+  margin: Boolean
 });
 
 const selectedIds = computed(() =>
@@ -207,6 +206,23 @@ const selectedIds = computed(() =>
 );
 
 const toolbarMargin = computed(() => {
-    return $q.screen.lt.md ? "margin-bottom: 56px" : "margin-bottom: 40px";
+  const baseMargin = $q.screen.lt.md ? "margin-bottom: 56px" : "margin-bottom: 40px";
+  return props.margin ? baseMargin : '';
 });
+
+
+const inside = computed(() => {
+  return props.inside ? "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative" : 'padding-top: 12px; padding-bottom: 12px;'
+});
+
+const xPadding = computed(() => {
+  return props.inside ? 'padding: 0' : ($q.screen.gt.sm
+    ? 'padding-left: 38px; padding-right: 38px;'
+    : 'padding-left: 20px; padding-right: 20px;');
+});
+
+// const noPadding = computed(() => {
+//   return props.inside ? '' : 'no-padding'
+// });
+
 </script>

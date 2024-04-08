@@ -6,6 +6,7 @@
     :title="title"
     base-route="/crm/customer"
     activation
+    margin
   >
     <template #buttons-custom>
       <q-separator class="q-my-sm" />

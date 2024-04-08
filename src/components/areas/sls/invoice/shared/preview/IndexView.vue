@@ -1,5 +1,5 @@
 <template>
-  <tool-bar title="فاکتور فروش" back-button buttons>
+  <tool-bar class="q-pt-md" inside buttons>
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"
@@ -16,7 +16,7 @@
     </template>
   </tool-bar>
 
-  <div class="row q-col-gutter-lg">
+  <div class="row q-col-gutter-lg q-py-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card class="bordered">
         <q-card-section class="q-gutter-y-sm">
