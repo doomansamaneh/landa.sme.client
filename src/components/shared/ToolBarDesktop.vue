@@ -207,6 +207,6 @@ const selectedIds = computed(() =>
 );
 
 const toolbarMargin = computed(() => {
-  return $q.screen.lt.md ? "margin-bottom: 56px" : "margin-bottom: 40px";
+    return $q.screen.lt.md ? "margin-bottom: 56px" : "margin-bottom: 40px";
 });
 </script>

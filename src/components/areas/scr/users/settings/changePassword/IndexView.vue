@@ -10,8 +10,8 @@
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">{{
               $t('change-password-page.placeholders.old-password') }}</div>
-            <q-input hide-bottom-space outlined v-model="oldPassword" :type="isPwdOldPassword ? 'password' : 'text'" dense
-              class="password text-body1" required lazy-rules :rules="[(val) => val !== null && val !== '']">
+            <q-input hide-bottom-space outlined v-model="oldPassword" :type="isPwdOldPassword ? 'password' : 'text'"
+              dense class="password text-body1" required lazy-rules :rules="[(val) => val !== null && val !== '']">
               <template v-slot:append>
                 <q-icon :name="isPwdOldPassword ? 'visibility_off' : 'visibility'" size="sm"
                   class="cursor-pointer q-ml-sm" @click="isPwdOldPassword = !isPwdOldPassword" />
@@ -24,8 +24,8 @@
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">{{
               $t('change-password-page.placeholders.new-password') }}</div>
-            <q-input hide-bottom-space outlined v-model="newPassword" :type="isPwdNewPassword ? 'password' : 'text'" dense
-              class="text-body1 password" required lazy-rules :rules="[(val) => val !== null && val !== '']">
+            <q-input hide-bottom-space outlined v-model="newPassword" :type="isPwdNewPassword ? 'password' : 'text'"
+              dense class="text-body1 password" required lazy-rules :rules="[(val) => val !== null && val !== '']">
               <template v-slot:append>
                 <q-icon :name="isPwdNewPassword ? 'visibility_off' : 'visibility'" size="sm"
                   class="cursor-pointer q-ml-sm" @click="isPwdNewPassword = !isPwdNewPassword" />

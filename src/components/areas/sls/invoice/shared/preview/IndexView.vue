@@ -18,7 +18,7 @@
 
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card>
+      <q-card class="bordered">
         <q-card-section class="q-gutter-y-sm">
           <invoice-header :model="formStore.model" />
           <invoice-body :model="formStore.model" :form-store="formStore" />

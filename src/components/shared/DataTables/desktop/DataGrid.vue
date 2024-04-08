@@ -1,6 +1,5 @@
 <template>
-  <!-- :style="$q.screen.sm ? 'margin-top:54px;' : ''" -->
-  <div :class="containerClass">
+  <q-card class="bordered">
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
@@ -171,7 +170,7 @@
         </template>
       </page-bar>
     </div>
-  </div>
+  </q-card>
 </template>
 
 <script setup>
@@ -259,14 +258,14 @@ const cardDefaultClass = computed(
     " q-table__card" +
     ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "") +
     (props.square === true ? " q-table--square" : "") +
-    (props.flat === true ? " q-table--flat" : " border-radius-lg shadow") +
+    (props.flat === true ? " q-table--flat" : " border-radius-lg") +
     (props.bordered === true ? " q-table--bordered" : "")
 );
 
 const __containerClass = computed(
   () =>
     `q-table__container q-table--${props.separator}-separator column no-wrap` +
-    (props.grid === true ? " q-table--grid" : cardDefaultClass.value) +
+    (props.grid === true ? "q-table--grid" : cardDefaultClass.value) +
     ($q.dark?.isActive === true ? " q-table--dark" : "") +
     (props.dense === true ? " q-table--dense" : "") +
     (props.wrapCells === false ? " q-table--no-wrap" : "")

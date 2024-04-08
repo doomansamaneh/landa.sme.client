@@ -3,6 +3,7 @@
     <q-btn
       color="primary"
       unelevated
+      rounded
       class="primary-shadow"
       @click="taxStore.sendToTax(model.value.id)"
     >
@@ -11,7 +12,7 @@
     </q-btn>
   </div>
   <div class="q-mt-md">
-    <div class="text-body1 no-letter-spacing text-weight-700">
+    <div class="text-body2 no-letter-spacing text-bold">
       تاریخچه ارسال به سامانه مودیان
     </div>
     <data-grid

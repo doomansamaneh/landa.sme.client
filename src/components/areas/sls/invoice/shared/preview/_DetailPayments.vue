@@ -1,21 +1,21 @@
 <template>
   <div class="row q-py-lg q-gutter-sm">
     <template v-if="model.value.invoiceRemained.remained">
-      <q-btn color="primary" padding="4px 12px" unelevated>
+      <q-btn rounded color="primary" padding="4px 12px" unelevated>
         <q-icon name="o_add" size="xs" class="q-mr-xs" />
         <span>دریافت</span>
       </q-btn>
 
-      <q-btn color="primary" padding="4px 12px" unelevated>
+      <q-btn rounded color="primary" padding="4px 12px" unelevated>
         <q-icon name="o_check" size="xs" class="q-mr-xs" />
         <span>تسویه حساب</span>
       </q-btn>
     </template>
 
-    <q-btn color="primary" padding="4px 12px" unelevated flat>
-      <q-icon name="o_description" size="xs" class="q-mr-xs" />
-      <span>مشاهده سند حسابداری</span>
-    </q-btn>
+    <router-link class="q-mt-lg no-decoration row items-center" to="">
+      <q-icon name="o_description" size="xs" class="q-mr-xs" :class="color()" />
+      <span class="decoration-on-hover" :class="color()">مشاهده سند حسابداری</span>
+    </router-link>
   </div>
 
   <div class="bordered" v-if="model.value.invoiceRemained.payedAmount">
@@ -46,9 +46,18 @@
 </template>
 
 <script setup>
+import { useQuasar } from "quasar"
+
+const $q = useQuasar()
+
 import DataGrid from "src/components/areas/trs/paymentInvoice/shared/index/DataGrid.vue";
+
 const props = defineProps({
   model: Object,
   formStore: Object,
 });
+
+const color = () => {
+  return $q.dark.isActive ? 'text-yellow' : 'text-primary'
+}
 </script>

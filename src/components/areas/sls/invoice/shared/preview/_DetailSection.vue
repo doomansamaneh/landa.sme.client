@@ -1,5 +1,5 @@
 <template>
-  <q-card v-if="model.value.id">
+  <q-card class="bordered" v-if="model.value.id">
     <q-card-section>
       <div class="column q-gutter-y-sm">
         <div class="row">
@@ -7,18 +7,13 @@
           <span class="text-body3 q-mx-md">{{ model.value.no }}</span>
         </div>
 
-        <div class="row">
-          <span class="col-1 text-caption text-bold q-pt-sm">مشتری:</span>
+        <div class="row items-center">
+          <span class="col-1 text-caption text-bold">مشتری:</span>
           <span class="text-body3 q-mx-md">
-            <q-btn
-              color="primary"
-              unelevated
-              flat
-              :to="`/crm/customer/preview/${model.value.customerId}`"
-            >
-              <q-icon name="o_description" size="xs" class="q-mr-xs" />
-              <span>{{ model.value.customerName }}</span>
-            </q-btn>
+            <router-link class="no-decoration" :to="`/crm/customer/preview/${model.value.customerId}`">
+              <q-icon name="o_description" size="xs" class="q-mr-xs" :class="color()" />
+              <span class="decoration-on-hover" :class="color()">{{ model.value.customerName }}</span>
+            </router-link>
           </span>
         </div>
 
@@ -44,15 +39,8 @@
     </q-card-section>
 
     <q-card-section>
-      <q-tabs
-        v-model="tab"
-        inline-label
-        outside-arrows
-        dense
-        align="left"
-        indicator-color_="white"
-        class="text-on-dark_ bg-blue text-white shadow-2"
-      >
+      <q-tabs v-model="tab" inline-label outside-arrows dense align="left" indicator-color="white"
+        class="border-radius-lg bg-primary text-white shadow-2">
         <q-tab name="main-info" class="q-py-sm">
           <template #default>
             <q-icon name="o_description" size="xs" class="q-mr-sm" />
@@ -86,15 +74,24 @@
           <detail-log />
         </q-tab-panel>
       </q-tab-panels>
+
+    </q-card-section>
+
+  </q-card>
+
+  <q-card v-else class="bordered row items-center justify-center">
+    <q-card-section>
+      <q-spinner color="primary" size="3em" />
     </q-card-section>
   </q-card>
-  <q-card v-else>
-    <q-card-section> loading ... </q-card-section>
-  </q-card>
+
+
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { useQuasar } from "quasar"
+
 import { useRoute } from "vue-router";
 
 import DetailMain from "./_DetailMain.vue";
@@ -106,12 +103,20 @@ const props = defineProps({
   formStore: Object,
 });
 
+const $q = useQuasar()
+
 const route = useRoute();
 
 const tab = ref("main-info");
 const editor = ref("");
 const editCommentBtn = ref(false);
 const id = computed(() => props.model?.id ?? route.params.id);
+const loading = computed(() => {
+  return props.model.value.id
+})
+const color = () => {
+  return $q.dark.isActive ? 'text-yellow' : 'text-primary'
+}
 
 onMounted(() => {
   //formStore.getById(id.value);
