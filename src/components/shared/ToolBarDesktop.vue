@@ -1,6 +1,6 @@
 <template>
   <div :style="toolbarMargin">
-    <q-page-sticky class="z-1 bg-main toolbar" :style="inside" position="top" expand>
+    <q-page-sticky class="z-1 bg-main" :style="inside" position="top" expand>
       <q-toolbar :style="xPadding">
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
@@ -183,11 +183,13 @@
 
 <script setup>
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 
 import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
 const $q = useQuasar();
+const router = useRouter()
 
 const props = defineProps({
   title: String,
@@ -201,24 +203,31 @@ const props = defineProps({
   margin: Boolean
 });
 
+const currentPath = router.currentRoute.value.path;
+
 const selectedIds = computed(() =>
   props.tableStore?.selectedRows?.value.map((item) => item.id)
 );
 
 const toolbarMargin = computed(() => {
-  const baseMargin = $q.screen.lt.md ? "margin-bottom: 56px" : "margin-bottom: 40px";
-  return props.margin ? baseMargin : '';
-});
-
-
-const inside = computed(() => {
-  return props.inside ? "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative" : 'padding-top: 12px; padding-bottom: 12px;'
+  const baseMargin = $q.screen.lt.md ? "margin-bottom: 56px;" : "margin-bottom: 40px;";
+  const Margin = $q.screen.lt.sm ? 'margin-bottom: 32px;' : ''
+  return props.margin ? baseMargin : Margin;
 });
 
 const xPadding = computed(() => {
   return props.inside ? 'padding: 0' : ($q.screen.gt.sm
     ? 'padding-left: 38px; padding-right: 38px;'
     : 'padding-left: 20px; padding-right: 20px;');
+});
+
+const inside = computed(() => {
+  const padding = $q.screen.gt.sm ? 'padding: 12px 32px;' : 'padding: 12px 20px;'
+  if (currentPath.startsWith("/sls/invoice/preview/")) {
+    return props.inside ? padding : 'padding-top: 12px; padding-bottom: 12px;';
+  } else {
+    return props.inside ? "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;" : 'padding-top: 12px; padding-bottom: 12px;';
+  }
 });
 
 // const noPadding = computed(() => {
