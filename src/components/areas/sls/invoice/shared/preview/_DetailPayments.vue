@@ -12,19 +12,21 @@
       </q-btn>
     </template>
 
-    <router-link class="q-mt-lg no-decoration row items-center" to="">
+    <!-- <router-link class="q-mt-lg no-decoration row items-center" to="">
       <q-icon name="o_description" size="xs" class="q-mr-xs" :class="color()" />
-      <span class="decoration-on-hover" :class="color()">مشاهده سند حسابداری</span>
-    </router-link>
+      <span class="decoration-on-hover" :class="color()"
+        >مشاهده سند حسابداری</span
+      >
+    </router-link> -->
   </div>
 
-  <div class="bordered" v-if="model.value.invoiceRemained.payedAmount">
-    <div class="text-body3 text-bold q-pa-md">
+  <div class="bordered_" v-if="model.value.invoiceRemained.payedAmount">
+    <!-- <div class="text-body3 text-bold q-pa-md">
       <q-icon name="o_arrow_downward" color="info" size="xs" />
       دریافتها
-    </div>
+    </div> -->
     <data-grid class="q-mt-md" :invoice-id="model?.value.id"></data-grid>
-    <q-separator size="2px" class="q-mt-lg" color="positive"></q-separator>
+    <!-- <q-separator size="2px" class="q-mt-lg" color="positive"></q-separator> -->
     <div class="row text-body3 q-gutter-x-sm q-mt-md">
       <div class="col-7 row items-center justify-end">
         <span class="text-body3">جمع دریافتی:</span>
@@ -46,9 +48,9 @@
 </template>
 
 <script setup>
-import { useQuasar } from "quasar"
+import { useQuasar } from "quasar";
 
-const $q = useQuasar()
+const $q = useQuasar();
 
 import DataGrid from "src/components/areas/trs/paymentInvoice/shared/index/DataGrid.vue";
 
@@ -58,6 +60,6 @@ const props = defineProps({
 });
 
 const color = () => {
-  return $q.dark.isActive ? 'text-yellow' : 'text-primary'
-}
+  return $q.dark.isActive ? "text-yellow" : "text-primary";
+};
 </script>

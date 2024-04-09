@@ -3,11 +3,12 @@ import { fetchWrapper } from "src/helpers";
 
 export function useTaxApiLogModel() {
   const apiResult = ref("");
-  const sendToTax = async (invoiceId) => {
+  const sendToTax = async (invoiceId, callback) => {
     const response = await fetchWrapper.post(
       `sls/InvoiceTaxApiLog/SendToTaxApi/${invoiceId}`
     );
-    console.log(response);
+    if (callback) await callback();
+    //console.log(response);
   };
 
   const isSentApiSuccessfully = async (invoiceId) => {

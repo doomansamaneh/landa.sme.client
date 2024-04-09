@@ -24,6 +24,21 @@ export const isActiveOptions = [
   },
 ];
 
+export const customerTypes = [
+  {
+    label: "شخص حقوقی",
+    value: "171",
+  },
+  {
+    label: "شخص حقیقی",
+    value: "172",
+  },
+  {
+    label: "پرسنل",
+    value: "173",
+  },
+];
+
 export const precisionCounts = [
   {
     label: "0",

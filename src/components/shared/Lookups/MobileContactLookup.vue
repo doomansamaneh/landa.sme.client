@@ -144,11 +144,15 @@
 import { ref, computed, onMounted } from "vue";
 import { helper } from "src/helpers";
 import { useDataTable } from "src/composables/useDataTable";
+import { customerColumns } from "src/components/areas/crm/_composables/constants";
+import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
-import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid";
 import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-const customerStore = useCustomerGrid();
+const customerStore = useBaseInfoGrid({
+  columns: customerColumns,
+  sortColumn: "name",
+});
 
 const tableStore = useDataTable(
   "crm/customer/getLookupData",

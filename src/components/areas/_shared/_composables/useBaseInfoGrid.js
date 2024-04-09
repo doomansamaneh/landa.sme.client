@@ -39,7 +39,6 @@ export function useBaseInfoGrid(config) {
   const filterExpression = config?.filterExpression ?? [];
 
   return {
-    //rows,
     columns,
     pagination,
     state,

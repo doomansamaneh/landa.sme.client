@@ -1,5 +1,5 @@
 <template>
-  <tool-bar inside buttons :title="title">
+  <tool-bar inside buttons :title="title" back-button>
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"

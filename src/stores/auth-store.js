@@ -1,5 +1,5 @@
-import { defineStore } from "pinia"
-import { fetchWrapper, encryptor } from "../helpers"
+import { defineStore } from "pinia";
+import { fetchWrapper, encryptor } from "../helpers";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -12,47 +12,50 @@ export const useAuthStore = defineStore("auth", {
 
   actions: {
     async login(username, password, captchaAnswer) {
-      this.isLoggingIn = true
-      const response = await fetchWrapper.post("account/login", {
-        loginName: encryptor.encrypt(username),
-        password: encryptor.encrypt(password),
-        captcha: captchaAnswer,
-        captchaToken: this.captchaToken.jwt
-      }).finally(() => {
-        this.isLoggingIn = false
-      })
+      this.isLoggingIn = true;
+      const response = await fetchWrapper
+        .post("account/login", {
+          loginName: encryptor.encrypt(username),
+          password: encryptor.encrypt(password),
+          captcha: captchaAnswer,
+          captchaToken: this.captchaToken.jwt,
+        })
+        .finally(() => {
+          this.isLoggingIn = false;
+        });
 
-      this.setUser(response)
-      this.redirect(this.returnUrl || "/business")
+      this.setUser(response);
+      this.redirect("/business");
+      //this.redirect(this.returnUrl || "/business")
     },
 
     async getCaptcha() {
       try {
         const response = await fetchWrapper.get("captcha/getCaptcha");
-        this.captchaToken = response.data
+        this.captchaToken = response.data;
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     },
 
     setUser(response) {
-      this.user = response.data.data
+      this.user = response.data.data;
       // store user details and jwt in local storage to keep user logged in between page refreshes
-      localStorage.setItem("user", JSON.stringify(this.user))
+      localStorage.setItem("user", JSON.stringify(this.user));
     },
 
     clearUser() {
-      this.user = null
-      localStorage.removeItem("user")
+      this.user = null;
+      localStorage.removeItem("user");
     },
 
     logout() {
-      this.clearUser()
-      this.redirect("/account/login")
+      this.clearUser();
+      this.redirect("/account/login");
     },
 
     redirect(url) {
-      this.router.push(url)
+      this.router.push(url);
     },
   },
-})
+});

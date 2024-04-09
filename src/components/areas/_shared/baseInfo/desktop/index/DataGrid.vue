@@ -21,26 +21,7 @@
     </template>
 
     <template #cell-isActive="{ item }">
-      <q-btn
-        v-if="item.isActive"
-        round
-        dense
-        size="10px"
-        unelevated
-        icon="o_done"
-        color="positive"
-        class="no-pointer-events"
-      />
-      <q-btn
-        v-else
-        round
-        dense
-        size="10px"
-        unelevated
-        icon="o_close"
-        color="negative"
-        class="no-pointer-events"
-      />
+      <is-active :is-active="item.isActive" />
     </template>
 
     <template #cell-title="{ item }">
@@ -65,6 +46,7 @@ import { isActiveOptions } from "src/constants";
 import RowToolBar from "src/components/shared/RowToolBar.vue";
 import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+import IsActive from "src/components/shared/IsActive.vue";
 
 const props = defineProps({
   gridStore: Object,

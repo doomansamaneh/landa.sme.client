@@ -39,15 +39,11 @@
           <li><strong>ref no:</strong> {{ item.referenceNumber }}</li>
           <li><strong>uid:</strong> {{ item.uid }}</li>
         </ul>
-        <template v-if="item.data && JSON.parse(item.data)?.error.length">
+        <template v-if="item.errors?.length">
           <h5 class="q-my-md">خطاها</h5>
           <ul>
-            <li
-              class="text-wrap"
-              v-for="er in JSON.parse(item.data).error"
-              :key="er.code"
-            >
-              {{ er.code }}: {{ er.msg }}
+            <li class="text-wrap" v-for="er in item.errors" :key="er.code">
+              {{ er.code }}: {{ er.msg }}{{ er.message }}
             </li>
           </ul>
         </template>
@@ -90,7 +86,10 @@ const gridStore = useBaseInfoGrid({
   ],
 });
 const desktopGrid = ref(null);
-//const mobileGrid = ref(null);
+
+defineExpose({
+  dataGrid: desktopGrid,
+});
 </script>
 <style>
 .text-wrap {

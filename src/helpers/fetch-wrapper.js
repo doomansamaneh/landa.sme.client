@@ -1,12 +1,16 @@
 import axios from "axios";
+import { ref } from "vue";
 import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
+import { Loading } from "quasar";
 
-const BASE_URL = "http://localhost:5188";
-//const BASE_URL = "https://api.landa-sme.ir";
+//const BASE_URL = "http://localhost:5188";
+const BASE_URL = "https://api.landa-sme.ir";
 
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.withCredentials = true;
+
+const requestCount = ref(0);
 
 export const fetchWrapper = {
   get: createRequest("GET"),
@@ -17,7 +21,7 @@ export const fetchWrapper = {
 
 function createRequest(method) {
   return (url, data) => {
-    clearError();
+    onInitRequest();
     const fullUrl = `${BASE_URL}/${url}`;
     const authHeaders = getAuthHeaders(fullUrl);
     return axios({
@@ -26,15 +30,17 @@ function createRequest(method) {
       headers: authHeaders,
       data: data,
     })
-      .then(handleKnownError.bind(null, url))
-      .catch(handleError.bind(null, url));
-
-    // .then((response) => {
-    //   return handleKnownError(url, response)
-    // })
-    // .catch((error) => {
-    //   return handleError(url, error)
-    // })
+      .then((response) => {
+        //handleKnownError.bind(null, url);
+        return handleKnownError(url, response);
+      })
+      .catch((error) => {
+        //handleError.bind(null, url);
+        return handleError(url, error);
+      })
+      .finally(() => {
+        onCompleteRequest();
+      });
   };
 }
 
@@ -103,10 +109,37 @@ function isApiUrl(url) {
   return true;
 }
 
+function onInitRequest() {
+  requestCount.value++;
+  if (requestCount.value === 1) {
+    showLoader();
+    clearError();
+  }
+}
+
+function onCompleteRequest() {
+  requestCount.value--;
+  if (requestCount.value === 0) {
+    hideLoader();
+  }
+}
+
 function clearError() {
   useAlertStore().clear();
 }
 
 function setError(error) {
   useAlertStore().set(error);
+}
+
+function showLoader() {
+  Loading.show({
+    message: "",
+    boxClass: "bg-dark border-radius-lg text-on-dark text-bold",
+    spinnerColor: "primary",
+  });
+}
+
+function hideLoader() {
+  Loading.hide();
 }

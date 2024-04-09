@@ -1,25 +1,4 @@
 <template>
-  <!-- <toolbar-mobile
-    v-if="toolbar"
-    buttons
-    :title="title"
-    :table-store="mobileGrid?.tableStore"
-    :crud-store="crudStore"
-    :base-route="baseRoute"
-    activation
-  >
-  </toolbar-mobile>
-
-  <mobile
-    :title="title"
-    :grid-store="gridStore"
-    :crud-store="crudStore"
-    :data-source="dataSource"
-    :base-route="baseRoute"
-    :create-url="createUrl"
-    ref="mobileGrid"
-  /> -->
-
   <template v-if="$q.screen.lt.sm">
     <toolbar-mobile
       v-if="toolbar"
@@ -34,7 +13,7 @@
 
     <mobile
       :title="title"
-      :grid-store="gridStore"
+      :grid-store="localGridStore"
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
@@ -57,7 +36,7 @@
     </toolbar-desktop>
     <desktop
       :title="title"
-      :grid-store="gridStore"
+      :grid-store="localGridStore"
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
@@ -86,10 +65,12 @@ const props = defineProps({
   baseRoute: String,
   dataSource: String,
   createUrl: String,
+  gridStore: Object,
   columns: Array,
 });
 
-const gridStore = useBaseInfoGrid({ visibleColumns: props.columns });
+const localGridStore =
+  props.gridStore ?? useBaseInfoGrid({ visibleColumns: props.columns });
 const crudStore = useFormActions(props.baseRoute);
 const desktopGrid = ref(null);
 const mobileGrid = ref(null);
