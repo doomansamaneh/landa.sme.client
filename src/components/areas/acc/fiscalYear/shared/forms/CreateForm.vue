@@ -8,8 +8,7 @@
     <q-card-section>
       <div class="title">نکته</div>
       <div class="text-body1 no-letter-spacing q-mt-sm">
-        تاریخ آغاز سال مالی، اولین روز سال و تاریخ پایان سال مالی روز پایانی سال
-        است.
+        تاریخ آغاز سال مالی، یک نوروز و تاریخ پایان سال مالی، پایان اسفند است.
       </div>
     </q-card-section>
   </q-card>

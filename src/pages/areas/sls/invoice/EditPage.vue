@@ -2,7 +2,7 @@
   <desktop
     action="edit"
     :title="
-      $t('shared.labels.create') + ' ' + $t('main-menu-items.Sls_Invoice_View')
+      $t('shared.labels.edit') + ' ' + $t('main-menu-items.Sls_Invoice_View')
     "
   />
 </template>

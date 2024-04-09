@@ -47,12 +47,16 @@ export default {
           component: () => import("pages/areas/crm/customer/IndexPage.vue"),
         },
         {
-          path: "preview/:id",
-          component: () => import("pages/areas/crm/customer/PreviewPage.vue"),
+          path: "create",
+          component: () => import("pages/areas/crm/customer/CreatePage.vue"),
         },
         {
           path: "edit/:id",
-          component: () => import("pages/areas/crm/customer/EditProfile.vue"),
+          component: () => import("pages/areas/crm/customer/EditPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () => import("pages/areas/crm/customer/PreviewPage.vue"),
         },
       ],
     },

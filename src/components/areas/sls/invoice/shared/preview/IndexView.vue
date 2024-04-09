@@ -1,5 +1,5 @@
 <template>
-  <tool-bar title="فاکتور فروش" back-button buttons>
+  <tool-bar :title="title" back-button buttons>
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"
@@ -18,7 +18,7 @@
 
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card>
+      <q-card class="form-container_">
         <q-card-section class="q-gutter-y-sm">
           <invoice-header :model="formStore.model" />
           <invoice-body :model="formStore.model" :form-store="formStore" />
@@ -45,6 +45,7 @@ import InvoiceDetail from "./_DetailSection.vue";
 
 const props = defineProps({
   item: Object,
+  title: String,
 });
 
 const formStore = useInvoiceModel(true);
