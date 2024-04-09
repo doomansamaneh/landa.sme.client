@@ -26,6 +26,7 @@
       :title="title"
       :base-route="baseRoute"
       buttons
+      margin
     >
       <template #bootons-edit="{ row }">
         <q-btn

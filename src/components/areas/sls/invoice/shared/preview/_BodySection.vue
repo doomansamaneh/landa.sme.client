@@ -3,7 +3,7 @@
     <thead>
       <tr class="bg-on-dark">
         <th colspan="100%">
-          <div class="text-body1 no-letter-spacing text-weight-700">
+          <div class="text-body2 no-letter-spacing text-bold">
             مشخصات کالا یا خدمات مورد معامله
           </div>
         </th>

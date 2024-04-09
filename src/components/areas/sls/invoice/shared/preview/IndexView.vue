@@ -1,5 +1,5 @@
 <template>
-  <tool-bar :title="title" back-button buttons>
+  <tool-bar inside buttons :title="title">
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"
@@ -16,9 +16,9 @@
     </template>
   </tool-bar>
 
-  <div class="row q-col-gutter-lg">
+  <div class="row q-col-gutter-lg q-py-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card class="form-container_">
+      <q-card class="bordered">
         <q-card-section class="q-gutter-y-sm">
           <invoice-header :model="formStore.model" />
           <invoice-body :model="formStore.model" :form-store="formStore" />

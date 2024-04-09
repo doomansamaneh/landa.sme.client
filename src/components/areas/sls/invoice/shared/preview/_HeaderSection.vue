@@ -7,7 +7,7 @@
       <img style="width: 72px" src="/landa-sme-logo.png" alt="landa-sme" />
     </div>
     <div class="col-md col-sm-5 col-xs-12 items-center justify-center">
-      <div class="row items-center justify-center text-subtitle1 text-bold">
+      <div class="row items-center justify-center text-body2 text-bold">
         {{
           appConfigStore.model.value?.companySetting?.invoiceTitle ??
           $t("page.payment-detail.invoice-label")
@@ -63,7 +63,7 @@
     <tbody v-if="appConfigStore.model?.value?.companySetting">
       <tr class="bg-on-dark text-center">
         <td colspan="100%">
-          <div class="text-body1 no-letter-spacing text-weight-700">
+          <div class="text-body2 no-letter-spacing text-weight-700">
             فروشنده
           </div>
         </td>
@@ -104,7 +104,7 @@
     <tbody>
       <tr class="bg-on-dark text-center">
         <td colspan="100%">
-          <div class="text-body1 no-letter-spacing text-weight-700">خریدار</div>
+          <div class="text-body2 no-letter-spacing text-bold">خریدار</div>
         </td>
       </tr>
       <tr>

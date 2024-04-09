@@ -36,8 +36,7 @@
     // box-shadow: 0 0 4px 0 #{$primary}20 !important;
     // outline: 1px solid $primary !important;
     td {
-      border-top: 1px solid $primary;
-      border-bottom: 1px solid $primary;
+      box-shadow: 0 0.8px 0 $primary inset, 0 -0.8px 0 $primary inset;
     }
   }
 

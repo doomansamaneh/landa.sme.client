@@ -42,6 +42,7 @@
       :base-route="baseRoute"
       activation
       buttons
+      margin
     >
       <template #buttons-batch-action>
         <q-btn

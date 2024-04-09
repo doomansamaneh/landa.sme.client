@@ -1,5 +1,5 @@
 <template>
-  <tool-bar v-if="toolbar" :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title"
+  <tool-bar margin v-if="toolbar" :table-store="dataGrid?.tableStore" :crud-store="crudStore" :title="title"
     base-route="/crm/customer" activation buttons>
     <template #buttons-batch-action>
       <q-btn class="text-body2 no-letter-spacing" rounded unelevated no-caps @click="editBatch">

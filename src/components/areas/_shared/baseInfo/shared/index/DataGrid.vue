@@ -52,6 +52,7 @@
       :base-route="baseRoute"
       activation
       buttons
+      margin
     >
     </toolbar-desktop>
     <desktop

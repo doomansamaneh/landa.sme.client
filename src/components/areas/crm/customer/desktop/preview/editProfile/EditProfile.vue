@@ -1,6 +1,6 @@
 <template>
 
-  <tool-bar title="ویرایش مخاطب" back-button />
+  <tool-bar margin title="ویرایش مخاطب" back-button />
 
   <q-card class=" form-container">
     <q-card-section>
