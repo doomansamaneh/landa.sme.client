@@ -33,7 +33,10 @@
         <td>{{ index + 1 }}</td>
         <td>{{ item.productCode }} {{ item.productTaxCode }}</td>
         <td>
-          <div class="text-wrap">{{ item.productTitle }}</div>
+          <div class="text-wrap">
+            {{ item.productTitle }}
+            <small v-if="item.comment">({{ item.comment }})</small>
+          </div>
         </td>
         <td>{{ item.quantity.toLocaleString() }}</td>
         <td>{{ item.productUnitTitle }}</td>

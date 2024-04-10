@@ -24,20 +24,25 @@ export const isActiveOptions = [
   },
 ];
 
-export const customerTypes = [
-  {
-    label: "شخص حقوقی",
-    value: "171",
-  },
-  {
-    label: "شخص حقیقی",
-    value: "172",
-  },
-  {
-    label: "پرسنل",
-    value: "173",
-  },
-];
+export const customerType = {
+  legal: 171,
+  person: 172,
+  personnel: 173,
+};
+
+export const militaryStatus = {
+  done: 131,
+  exempt: 132,
+  illnessExemption: 133,
+  educationalExepmtion: 134,
+  temporalExemption: 135,
+};
+
+export const marriageStatus = {
+  single: 121,
+  married: 122,
+  divorced: 123,
+};
 
 export const precisionCounts = [
   {
@@ -54,20 +59,24 @@ export const precisionCounts = [
   },
 ];
 
-export const vatTypes = [
-  {
-    label: "خرید و فروش (هر دو)",
-    value: 2,
-  },
-  {
-    label: "برای فروش",
-    value: 1,
-  },
-  {
-    label: "برای خرید",
-    value: 0,
-  },
-];
+export const vatType = {
+  purchaseAndSale: 2,
+  sale: 1,
+  purchase: 0,
+};
+
+export const gender = {
+  male: 101,
+  female: 102,
+};
+
+export const customerRole = {
+  customer: 301,
+  supplier: 302,
+  marketer: 303,
+  shareHolder: 304,
+  personnel: 305,
+};
 
 export const dateRange = {
   // all: 0,

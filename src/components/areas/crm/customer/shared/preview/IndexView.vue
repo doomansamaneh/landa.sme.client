@@ -54,8 +54,6 @@ import { useFormActions } from "src/composables/useFormActions";
 import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
 import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-import EditProfile from "./EditProfileDialog.vue";
-import MobileEditProfile from "src/components/areas/crm/customer/mobile/preview/EditProfileDialog.vue";
 import SalesWidget from "components/areas/dashboard/widgets/SalesWidget.vue";
 import Tabs from "./_PreviewTabs.vue";
 
@@ -71,18 +69,6 @@ const model = ref(invoiceModel);
 const formStore = useFormActions("crm/customer", model);
 
 const id = computed(() => props.item?.id ?? route.params.id);
-
-const editProfile = () => {
-  $q.dialog({
-    component: EditProfile,
-  });
-};
-
-const mobileEditProfile = () => {
-  $q.dialog({
-    component: MobileEditProfile,
-  });
-};
 
 const marginTop = () => {
   return [

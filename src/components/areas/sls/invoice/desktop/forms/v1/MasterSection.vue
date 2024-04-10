@@ -139,7 +139,7 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import { sqlOperator } from "src/constants";
+import { sqlOperator, vatType } from "src/constants";
 
 import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -156,7 +156,7 @@ const invoiceNo = ref(false);
 const moreInfo = ref(false);
 
 const filterExpression = [
-  { fieldName: "isForSale", operator: sqlOperator.equal, value: "1" },
+  { fieldName: "isForSale", operator: sqlOperator.equal, value: vatType.sale },
 ];
 
 const toggleInvocieNo = () => {

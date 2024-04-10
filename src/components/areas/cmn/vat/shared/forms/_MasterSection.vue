@@ -18,7 +18,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
       <q-option-group
         inline
-        :options="vatTypes"
+        :options="helper.getEnumOptions(vatType, 'vatType')"
         type="radio"
         v-model="model.value.isForSale"
       />
@@ -52,7 +52,8 @@
 
 <script setup>
 import { computed } from "vue";
-import { vatTypes } from "src/constants";
+import { helper } from "src/helpers";
+import { vatType } from "src/constants";
 
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 

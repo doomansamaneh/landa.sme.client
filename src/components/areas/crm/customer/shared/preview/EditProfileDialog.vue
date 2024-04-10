@@ -11,5 +11,5 @@
 </template>
 
 <script setup>
-import EditProfile from "./editProfile/EditProfile.vue";
+import CreateForm from "../forms/CreateForm.vue";
 </script>

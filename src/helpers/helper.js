@@ -13,6 +13,15 @@ export const helper = {
     return list;
   },
 
+  getEnumType(value, enumType) {
+    for (const key in enumType) {
+      if (enumType[key] === value) {
+        return key;
+      }
+    }
+    return enumType[0];
+  },
+
   // newGuid() {
   //   // Generate a random array of 16 bytes (128 bits)
   //   const byteArray = new Uint8Array(16);

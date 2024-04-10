@@ -1,8 +1,15 @@
 import "src/helpers/extensions";
+import { customerType, gender } from "src/constants";
 const dateTime = new Date();
 
 export const customerModel = {
   isActive: true,
+  typeId: customerType.legal,
+  roleIdList: [],
+  person: {
+    genderId: gender.male,
+  },
+  customerBusiness: {},
 };
 
 export const customerBatchModel = {

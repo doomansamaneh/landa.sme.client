@@ -16,7 +16,7 @@
     <template #filter-typeId="{ col }">
       <custom-select
         v-model="col.value"
-        :options="customerTypes"
+        :options="helper.getEnumOptions(customerType, 'customerType')"
         @update:model-value="reloadData"
       />
     </template>
@@ -30,7 +30,11 @@
     </template>
 
     <template #cell-typeId="{ item }">
-      {{ customerTypes.find((t) => t.value == item.typeId)?.label }}
+      {{
+        $t(
+          `shared.customerType.${helper.getEnumType(item.typeId, customerType)}`
+        )
+      }}
     </template>
 
     <template #cell-isActive="{ item }">
@@ -57,7 +61,8 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import { isActiveOptions, customerTypes } from "src/constants";
+import { helper } from "src/helpers";
+import { isActiveOptions, customerType } from "src/constants";
 
 import RowToolBar from "src/components/shared/RowToolBar.vue";
 import CustomSelect from "src/components/shared/forms/CustomSelect.vue";

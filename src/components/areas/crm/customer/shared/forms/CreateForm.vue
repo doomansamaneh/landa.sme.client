@@ -1,29 +1,28 @@
 <template>
-  <tool-bar
-    :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
-  />
+  <tool-bar margin :title="title" back-button />
 
   <q-card class="form-container">
     <q-card-section>
-      <q-form ref="form" autofocus> </q-form>
+      <q-form ref="form" autofocus>
+        <master-section :form-store="formStore" />
+        <detail-section :form-store="formStore" />
+      </q-form>
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { helper } from "src/helpers";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 import { customerModel } from "src/models/areas/crm/customerModel";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+import MasterSection from "./_MasterSection.vue";
+import DetailSection from "./_DetailSection.vue";
 
 const props = defineProps({
-  action: String,
   title: String,
+  action: String,
 });
 
 const form = ref(null);

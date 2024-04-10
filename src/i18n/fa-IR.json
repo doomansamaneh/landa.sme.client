@@ -319,6 +319,39 @@
       "useable": "مصرفی",
       "service": "خدمت/نرم افزار"
     },
+    "customerType": {
+      "legal": "حقوقی",
+      "person": "حقیقی",
+      "personnel": "پرسنل"
+    },
+    "vatType": {
+      "purchaseAndSale": "خرید و فروش (هر دو)",
+      "sale": "برای فروش",
+      "purchase": "برای خرید"
+    },
+    "gender": {
+      "male": "مرد",
+      "female": "زن"
+    },
+    "customerRole": {
+      "customer": "مشتری",
+      "supplier": "تامین کننده",
+      "marketer": "بازاریاب",
+      "shareHolder": "سهامدار",
+      "personnel": "پرسنل"
+    },
+    "militaryStatus": {
+      "done": "انجام داده",
+      "exempt": "معاف دائم",
+      "illnessExemption": "معافیت پزشکی",
+      "educationalExepmtion": "معافیت تحصیلی",
+      "temporalExemption": "معافیت موقت"
+    },
+    "marriageStatus": {
+      "single": "مجرد",
+      "married": "متاهل",
+      "divorced": "متارکه شده"
+    },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",
       "loading-message": "لطفا کمی صبر کنید"

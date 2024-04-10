@@ -70,7 +70,7 @@
         <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-select
             v-model="formStore.editBatchModel.value.type.fieldValue"
-            :options="customerTypes"
+            :options="customerType"
           />
         </div>
 
@@ -89,7 +89,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { customerTypes } from "src/constants";
+import { customerType } from "src/constants";
 import { helper } from "src/helpers";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 import { customerBatchModel } from "src/models/areas/crm/customerModel";

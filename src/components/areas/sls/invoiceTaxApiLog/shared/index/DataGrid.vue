@@ -10,6 +10,10 @@
     ref="desktopGrid"
     expandable
   >
+    <template #cell-logTime="{ item }">
+      <div>{{ item.logTime }}</div>
+      <div>{{ item.taxId }}</div>
+    </template>
     <template #cell-status="{ item }">
       <q-badge class="bg-primary">{{ item.status }}</q-badge>
     </template>
