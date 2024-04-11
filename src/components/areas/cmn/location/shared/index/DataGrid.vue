@@ -4,7 +4,7 @@
     base-route="cmn/location"
     data-source="cmn/location/getGridData"
     :title="$t('main-menu-items.Cmn_Location_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
   </data-grid>
 </template>

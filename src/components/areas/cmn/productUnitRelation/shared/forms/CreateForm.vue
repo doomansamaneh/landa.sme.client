@@ -4,60 +4,59 @@
     @submit-call-back="formStore.crudStore.submitForm(form, action)"
   />
 
-    <q-card class="form-container">
-      <q-card-section>
-        <q-form ref="form" autofocus>
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-6 col-sm-12 col-xs-12">
-              <q-item-label
-                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-              >
-                عنوان
-              </q-item-label>
-              <custom-input
-                hide-bottom-space
-                v-model="formStore.model.value.title"
-                :rules="[(val) => val !== null && val !== '']"
-              />
-            </div>
-          </div>
-
-          <div class="row q-col-gutter-md q-mb-md">
-            <div class="col-md-2 col-sm-6 col-xs-6">
-              <q-item-label
-                class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-              >
-                تعداد اعشار
-              </q-item-label>
-              <custom-select
-                v-model="formStore.model.value.precisionCount"
-                :options="precisionCounts"
-                :rules="[(val) => val !== null && val !== '']"
-              />
-            </div>
-          </div>
-
-          <div class="row q-gutter-md q-mb-md">
-            <q-checkbox
-              dense
-              size="48px"
-              v-model="formStore.model.value.isActive"
-              label="فعال"
+  <q-card class="form-container">
+    <q-card-section>
+      <q-form ref="form" autofocus>
+        <div class="row q-col-gutter-md q-mb-md">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <q-item-label
+              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+            >
+              واحد سنجش اصلی
+            </q-item-label>
+            <product-unit-lookup
+              v-model:selectedId="formStore.model.value.masterUnitId"
+              v-model:selectedText="formStore.model.value.masterUnitTitle"
             />
           </div>
-        </q-form>
-      </q-card-section>
-    </q-card>
+        </div>
+
+        <div class="row q-col-gutter-md q-mb-md">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <q-item-label
+              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+            >
+              واحد سنجش فرعی
+            </q-item-label>
+            <product-unit-lookup
+              v-model:selectedId="formStore.model.value.detailUnitId"
+              v-model:selectedText="formStore.model.value.detailUnitTitle"
+            />
+          </div>
+        </div>
+
+        <div class="row q-gutter-md q-mb-md">
+          <div class="col-md-2 col-sm-6 col-xs-6">
+            <q-item-label
+              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+            >
+              نرخ
+            </q-item-label>
+            <custom-input-number v-model="formStore.model.value.rate" />
+          </div>
+        </div>
+      </q-form>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { precisionCounts } from "src/constants";
 
 import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
 const props = defineProps({
   action: String,
@@ -66,6 +65,6 @@ const props = defineProps({
 
 const form = ref(null);
 const formStore = useBaseInfoModel({
-  baseRoute: "cmn/currency",
+  baseRoute: "cmn/productUnitRelation",
 });
 </script>

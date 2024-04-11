@@ -4,13 +4,16 @@
     base-route="cmn/productUnit"
     data-source="cmn/productUnit/getGridData"
     :title="$t('main-menu-items.Cmn_ProductUnit_View')"
-    :columns="columns"
   >
+    <template #cell-code="{ item }">
+      {{ item.code }}
+      <div v-if="item.taxCode">
+        <small> شناسه مالیاتی: {{ item.taxCode }} </small>
+      </div>
+    </template>
   </data-grid>
 </template>
 
 <script setup>
 import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
-
-const columns = ["code", "title", "isActive", "actions"];
 </script>

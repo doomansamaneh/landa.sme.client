@@ -7,6 +7,7 @@ export const baseInfoColumns = [
     style: "",
     showFilter: true,
     class: "text-left",
+    style: "width:150px;",
     value: "",
   },
   {

@@ -4,7 +4,7 @@
     base-route="cmn/productGroup"
     data-source="cmn/productGroup/getGridData"
     :title="$t('main-menu-items.Cmn_ProductGroup_View')"
-    :columns="columns"
+    :visible-columns="columns"
     create-url="/cmn/productGroup/create"
   >
   </data-grid>

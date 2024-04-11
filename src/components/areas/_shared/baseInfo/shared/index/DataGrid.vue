@@ -42,6 +42,10 @@
       :base-route="baseRoute"
       ref="desktopGrid"
     >
+      <template #cell-code="{ item }">
+        <slot name="cell-code" :item="item"></slot>
+      </template>
+
       <template #cell-title="{ item }">
         <slot name="cell-title" :item="item"></slot>
       </template>
@@ -67,10 +71,15 @@ const props = defineProps({
   createUrl: String,
   gridStore: Object,
   columns: Array,
+  visibleColumns: Array,
 });
 
 const localGridStore =
-  props.gridStore ?? useBaseInfoGrid({ visibleColumns: props.columns });
+  props.gridStore ??
+  useBaseInfoGrid({
+    columns: props.columns,
+    visibleColumns: props.visibleColumns,
+  });
 const crudStore = useFormActions(props.baseRoute);
 const desktopGrid = ref(null);
 const mobileGrid = ref(null);

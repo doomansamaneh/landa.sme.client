@@ -1,10 +1,10 @@
 <template>
   <data-grid
     toolbar
-    base-route="cmn/currency"
-    data-source="cmn/currency/getGridData"
-    :title="$t('main-menu-items.Cmn_Currency_View')"
-    :columns="columns"
+    base-route="doc/contract"
+    data-source="doc/contract/getGridData"
+    :title="$t('main-menu-items.Doc_Contract_View')"
+    :visible-columns="columns"
   >
   </data-grid>
 </template>

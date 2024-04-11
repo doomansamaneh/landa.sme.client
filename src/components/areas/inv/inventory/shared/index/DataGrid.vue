@@ -4,7 +4,7 @@
     base-route="inv/inventory"
     data-source="inv/inventory/getGridData"
     :title="$t('main-menu-items.Inv_Inventory_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
   </data-grid>
 </template>

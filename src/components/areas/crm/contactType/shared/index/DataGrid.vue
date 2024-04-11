@@ -4,7 +4,7 @@
     base-route="crm/contactType"
     data-source="crm/contactType/getGridData"
     :title="$t('main-menu-items.Crm_ContactType_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
   </data-grid>
 </template>

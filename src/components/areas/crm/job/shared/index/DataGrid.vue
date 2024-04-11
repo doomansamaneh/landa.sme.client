@@ -4,7 +4,7 @@
     base-route="crm/job"
     data-source="crm/job/getGridData"
     :title="$t('main-menu-items.Crm_Job_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
   </data-grid>
 </template>

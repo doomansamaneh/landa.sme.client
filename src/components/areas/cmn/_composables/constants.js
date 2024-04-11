@@ -1,0 +1,71 @@
+export const bankBranchColumns = [
+  {
+    name: "bankTitle",
+    field: "bankTitle",
+    sortable: true,
+    label: "بانک",
+    class: "text-left",
+    showFilter: true,
+  },
+  {
+    name: "code",
+    field: "code",
+    sortable: true,
+    label: "کد",
+    class: "text-left",
+    style: "width:120px;",
+    showFilter: true,
+  },
+  {
+    name: "title",
+    field: "title",
+    sortable: true,
+    label: "عنوان",
+    showFilter: true,
+    class: "text-left",
+  },
+  {
+    name: "isActive",
+    field: "isActive",
+    sortable: true,
+    label: "فعال",
+    class: "text-left",
+    style: "width:120px",
+    showFilter: true,
+  },
+  {
+    name: "actions",
+    sortable: false,
+    showFilter: false,
+    class: "text-left",
+    style: "width:170px;",
+  },
+];
+
+export const productUnitRelationColumns = [
+  {
+    name: "masterUnitTitle",
+    field: "masterUnitTitle",
+    label: "واحد سنجش اصلی",
+    sortable: true,
+    showFilter: true,
+    class: "text-left",
+  },
+  {
+    name: "detailUnitTitle",
+    field: "detailUnitTitle",
+    label: "واحد سنجش فرعی",
+    sortable: true,
+    showFilter: true,
+    class: "text-left",
+  },
+  {
+    name: "rate",
+    field: "rate",
+    label: "نرخ",
+    sortable: true,
+    showFilter: false,
+    class: "text-left",
+    style: "width:150px",
+  },
+];

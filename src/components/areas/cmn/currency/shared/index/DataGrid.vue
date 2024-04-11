@@ -4,7 +4,7 @@
     base-route="cmn/currency"
     data-source="cmn/currency/getGridData"
     :title="$t('main-menu-items.Cmn_Currency_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
   </data-grid>
 </template>

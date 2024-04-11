@@ -24,6 +24,10 @@
       <is-active :is-active="item.isActive" />
     </template>
 
+    <template #cell-code="{ item }">
+      <slot name="cell-code" :item="item"></slot>
+    </template>
+
     <template #cell-title="{ item }">
       <slot name="cell-title" :item="item"></slot>
     </template>

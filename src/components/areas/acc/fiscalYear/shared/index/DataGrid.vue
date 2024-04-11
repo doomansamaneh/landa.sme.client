@@ -4,7 +4,7 @@
     base-route="acc/fiscalYear"
     data-source="acc/fiscalYear/getGridData"
     :title="$t('main-menu-items.Acc_FiscalYear_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
     <template #cell-title="{ item }">
       {{ item.title }}

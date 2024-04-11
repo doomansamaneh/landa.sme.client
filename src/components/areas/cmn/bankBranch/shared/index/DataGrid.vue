@@ -4,13 +4,18 @@
     base-route="cmn/bankBranch"
     data-source="cmn/bankBranch/getGridData"
     :title="$t('main-menu-items.Cmn_BankBranch_View')"
-    :columns="columns"
+    :grid-store="gridStore"
   >
   </data-grid>
 </template>
 
 <script setup>
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+import { bankBranchColumns } from "components/areas/cmn/_composables/constants";
+import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
-const columns = ["code", "title", "isActive", "actions"];
+import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+const gridStore = useBaseInfoGrid({
+  columns: bankBranchColumns,
+  sortColumn: "bankTitle",
+});
 </script>

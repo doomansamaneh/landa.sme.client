@@ -18,6 +18,7 @@ export default {
       path: "/dashboard",
       component: HomePage,
     },
+
     {
       path: "acc/fiscalYear",
       children: [
@@ -39,6 +40,7 @@ export default {
         },
       ],
     },
+
     {
       path: "crm/customer",
       children: [
@@ -101,6 +103,28 @@ export default {
         {
           path: "copy/:id",
           component: () => import("pages/areas/crm/contactType/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "doc/contract",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/doc/contract/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/doc/contract/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/doc/contract/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/doc/contract/CopyPage.vue"),
         },
       ],
     },

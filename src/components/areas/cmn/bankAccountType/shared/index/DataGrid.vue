@@ -4,7 +4,7 @@
     base-route="cmn/bankAccountType"
     data-source="cmn/bankAccountType/getGridData"
     :title="$t('main-menu-items.Cmn_BankAccountType_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
   </data-grid>
 </template>

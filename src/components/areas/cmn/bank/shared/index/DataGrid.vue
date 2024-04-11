@@ -4,7 +4,7 @@
     base-route="cmn/bank"
     data-source="cmn/bank/getGridData"
     :title="$t('main-menu-items.Cmn_Bank_View')"
-    :columns="columns"
+    :visible-columns="columns"
     create-url="/cmn/bank/create"
   >
   </data-grid>

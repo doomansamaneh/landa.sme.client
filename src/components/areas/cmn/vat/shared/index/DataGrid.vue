@@ -4,7 +4,7 @@
     base-route="cmn/vat"
     data-source="cmn/vat/getGridData"
     :title="$t('main-menu-items.Cmn_Vat_View')"
-    :columns="columns"
+    :visible-columns="columns"
   >
     <template #cell-title="{ item }">
       {{ item.title }}
