@@ -1,12 +1,12 @@
 <template>
   <div class="row q-py-lg q-gutter-sm">
     <template v-if="model.value.invoiceRemained.remained">
-      <q-btn rounded color="primary" padding="4px 12px" unelevated>
-        <q-icon name="o_add" size="xs" class="q-mr-xs" />
+      <q-btn class="primary-shadow q-mr-xs" rounded color="primary" padding="4px 12px" unelevated>
+        <q-icon name="o_add" size="xs" />
         <span>دریافت</span>
       </q-btn>
 
-      <q-btn rounded color="primary" padding="4px 12px" unelevated>
+      <q-btn class="primary-shadow" rounded color="primary" padding="4px 12px" unelevated>
         <q-icon name="o_check" size="xs" class="q-mr-xs" />
         <span>تسویه حساب</span>
       </q-btn>
