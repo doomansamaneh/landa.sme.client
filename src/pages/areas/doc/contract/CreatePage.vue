@@ -2,11 +2,11 @@
   <desktop
     action="create"
     :title="
-      $t('shared.labels.create') + ' ' + $t('main-menu-items.Cmn_Bank_View')
+      $t('shared.labels.create') + ' ' + $t('main-menu-items.Doc_Contract_View')
     "
   />
 </template>
 
 <script setup>
-import Desktop from "src/components/areas/cmn/bank/shared/forms/CreateForm.vue";
+import Desktop from "src/components/areas/doc/contract/shared/forms/CreateForm.vue";
 </script>

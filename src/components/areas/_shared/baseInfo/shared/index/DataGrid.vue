@@ -40,14 +40,11 @@
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
+      :expandable="expandable"
       ref="desktopGrid"
     >
-      <template #cell-code="{ item }">
-        <slot name="cell-code" :item="item"></slot>
-      </template>
-
-      <template #cell-title="{ item }">
-        <slot name="cell-title" :item="item"></slot>
+      <template v-for="(slot, name) in $slots" :key="slot" #[name]="{ item }">
+        <slot :name="name" :item="item"></slot>
       </template>
     </desktop>
   </template>
@@ -72,6 +69,8 @@ const props = defineProps({
   gridStore: Object,
   columns: Array,
   visibleColumns: Array,
+  sortColumn: String,
+  expandable: Boolean,
 });
 
 const localGridStore =
@@ -79,6 +78,7 @@ const localGridStore =
   useBaseInfoGrid({
     columns: props.columns,
     visibleColumns: props.visibleColumns,
+    sortColumn: props.sortColumn,
   });
 const crudStore = useFormActions(props.baseRoute);
 const desktopGrid = ref(null);

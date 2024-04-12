@@ -10,7 +10,7 @@
     bordered
     wrapCells
     dense_
-    expandable_
+    :expandable="expandable"
   >
     <template #filter-isActive="{ col }">
       <custom-select
@@ -24,12 +24,8 @@
       <is-active :is-active="item.isActive" />
     </template>
 
-    <template #cell-code="{ item }">
-      <slot name="cell-code" :item="item"></slot>
-    </template>
-
-    <template #cell-title="{ item }">
-      <slot name="cell-title" :item="item"></slot>
+    <template v-for="(slot, name) in $slots" :key="slot" #[name]="{ item }">
+      <slot :name="name" :item="item"></slot>
     </template>
 
     <template #cell-actions="{ item }">
@@ -57,6 +53,7 @@ const props = defineProps({
   crudStore: Object,
   dataSource: String,
   baseRoute: String,
+  expandable: Boolean,
 });
 
 const dataGrid = ref(null);

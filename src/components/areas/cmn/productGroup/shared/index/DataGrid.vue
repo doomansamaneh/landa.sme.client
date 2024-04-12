@@ -5,6 +5,7 @@
     data-source="cmn/productGroup/getGridData"
     :title="$t('main-menu-items.Cmn_ProductGroup_View')"
     :visible-columns="columns"
+    sort-column="code"
     create-url="/cmn/productGroup/create"
   >
   </data-grid>

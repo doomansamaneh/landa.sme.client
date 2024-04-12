@@ -88,10 +88,11 @@
             >
               نوع
             </q-item-label>
+
             <custom-select
               hide-bottom-space
               v-model="formStore.model.value.typeId"
-              :options="productType"
+              :options="helper.getEnumOptions(productType, 'productType')"
             />
           </div>
 
@@ -195,8 +196,8 @@
 
 <script setup>
 import { ref } from "vue";
-import { productType } from "src/constants";
 import { helper } from "src/helpers";
+import { productType } from "src/constants";
 import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 import { productModel } from "src/models/areas/cmn/productModel";
 

@@ -6,6 +6,9 @@
     :title="$t('main-menu-items.Cmn_ProductUnitRelation_View')"
     :grid-store="gridStore"
   >
+    <template #cell-rate="{ item }">
+      {{ item.rate.toLocaleString() }}
+    </template>
   </data-grid>
 </template>
 
