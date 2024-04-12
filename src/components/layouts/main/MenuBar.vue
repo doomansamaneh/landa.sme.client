@@ -34,8 +34,8 @@
             </q-item>
           </q-expansion-item>
         </div>
-        <q-item class="last-item flex text-body2 no-letter-spacing items-center cursor-pointer">
-          <q-icon name="o_settings" class="settings q-mr-sm" size="xs" />
+        <q-item to="/cmn/appConfig" class="last-item flex text-body2 no-lette-spacing items-center cursor-pointer q-mr-md">
+          <q-icon name="o_settings" class="settings q-mr-sm" size="xs"></q-icon>
           {{ $t("main-menu-items.settings") }}
         </q-item>
       </q-list>

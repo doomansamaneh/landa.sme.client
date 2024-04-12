@@ -432,6 +432,21 @@ export default {
     },
 
     {
+      path: "cmn/appConfig",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/cmn/appConfig/IndexPage.vue"),
+        },
+        {
+          path: "CompanySetting",
+          component: () => import("pages/areas/cmn/appConfig/CompanySettingPage.vue"),
+        }
+      ],
+    },
+
+    {
       path: "inv/inventory",
       children: [
         {
