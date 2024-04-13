@@ -123,8 +123,6 @@
   
               </q-item>
   
-              <q-separator size="0.5px" />
-  
             </q-card-section>
           </q-card>
         </div>
