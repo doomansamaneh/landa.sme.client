@@ -1,5 +1,5 @@
 <template>
-  <tool-bar buttons :title="title" back-button>
+  <tool-bar inside buttons :title="title" back-button>
     <template #buttons>
       <q-btn
         :to="`/crm/customer/edit/${id}`"

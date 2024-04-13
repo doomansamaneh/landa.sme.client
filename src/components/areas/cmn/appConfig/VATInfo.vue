@@ -1,6 +1,6 @@
 <template>
-  <q-card class="no-border no-shadow border-radius-lg">
-    <q-card-section class="q-pa-lg">
+  <q-card class="form-container">
+    <q-card-section>
 
       <div class="row q-col-gutter-md">
         <div class="col-md col-sm col-xs-12">

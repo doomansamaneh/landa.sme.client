@@ -460,13 +460,36 @@ export default {
       children: [
         {
           path: "",
-          component: () =>
-            import("pages/areas/cmn/appConfig/IndexPage.vue"),
+          component: () => import("pages/areas/cmn/appConfig/IndexPage.vue"),
         },
         {
-          path: "CompanySetting",
-          component: () => import("pages/areas/cmn/appConfig/CompanySettingPage.vue"),
-        }
+          path: "basicInfo",
+          component: () => import("pages/areas/cmn/appConfig/BasicInfoPage.vue"),
+        },
+        {
+          path: "contactInfo",
+          component: () => import("pages/areas/cmn/appConfig/ContactInfoPage.vue"),
+        },
+        {
+          path: "VATInfo",
+          component: () => import("pages/areas/cmn/appConfig/VATInfoPage.vue"),
+        },
+        {
+          path: "insuranceInfo",
+          component: () => import("pages/areas/cmn/appConfig/InsuranceInfoPage.vue"),
+        },
+        {
+          path: "salaryInfo",
+          component: () => import("pages/areas/cmn/appConfig/SalaryInfoPage.vue"),
+        },
+        {
+          path: "salesInfo",
+          component: () => import("pages/areas/cmn/appConfig/SalesInfoPage.vue"),
+        },
+        {
+          path: "logoInfo",
+          component: () => import("pages/areas/cmn/appConfig/LogoInfoPage.vue"),
+        },
       ],
     },
 
