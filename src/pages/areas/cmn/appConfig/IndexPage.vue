@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import IndexView from "src/components/areas/cmn/appConfig/index/IndexView.vue";
+import IndexView from "src/components/areas/cmn/appConfig/IndexView.vue";
 </script>

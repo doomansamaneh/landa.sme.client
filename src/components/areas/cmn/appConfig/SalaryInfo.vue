@@ -1,8 +1,8 @@
 <template>
-  <q-card class="no-border no-shadow">
-    <q-card-section class="no-padding">
+  <q-card class="form-container">
+    <q-card-section>
 
-      <q-markup-table :style="$q.screen.xs ? 'width: 600px' : ''" class="salary-table q-pa-lg border-radius-lg" :separator="separator" flat bordered>
+      <q-markup-table flat :style="$q.screen.xs ? 'width: 540px' : ''" class="salary-table border-radius-lg" :separator="separator">
         <thead>
           <tr>
             <th class="text-left">اقلام حقوق و دستمزد</th>
