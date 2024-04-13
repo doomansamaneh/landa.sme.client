@@ -125,6 +125,16 @@ export const productType = {
   service: 214,
 };
 
+export const accountDLType = {
+  other: 1031,
+  customer: 1032,
+  personnel: 1033,
+  cash: 1034,
+  bankAccount: 1035,
+  costCenter: 1036,
+  product: 1039,
+};
+
 export const cultures = [
   { name: "فارسی", iso: "fa-IR", calendar: "persian", bodyClass: "persian" },
   {

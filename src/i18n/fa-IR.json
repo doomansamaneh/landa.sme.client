@@ -352,6 +352,15 @@
       "married": "متاهل",
       "divorced": "متارکه شده"
     },
+    "accountDLType": {
+      "other": "سایر",
+      "customer": "طرف حساب",
+      "personnel": "پرسنل",
+      "cash": "صندوق",
+      "bankAccount": "حساب بانکی",
+      "costCenter": "مرکز هزینه",
+      "product": "کالا و خدمات"
+    },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",
       "loading-message": "لطفا کمی صبر کنید"
