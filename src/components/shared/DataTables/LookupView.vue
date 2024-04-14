@@ -20,17 +20,17 @@
       <div class="header text-caption text-bold q-pa-md bg-dark z-max"
         style="border-bottom: 1px solid var(--q-primary)">
         <slot name="thead">
-          <div class="row q-gutter-x-md items-center" style="width: 300px">
+          <div class="row q-gutter-x-md items-center" style="width: 300px; margin-left: 120px;">
             <div class="col-1">#</div>
-            <div v-for="col in lookupColumns" :key="col" class="col-3 q-pr-md">
+            <div v-for="col in lookupColumns" :key="col" class="col">
               <header-column :fieldName="col" :title="$t(`shared.labels.${col}`)" :table-store="tableStore" />
             </div>
 
             <slot name="create">
-              <q-btn dense unelevated color="primary" class="absolute-top-right q-py-xs q-px-sm q-mr-sm"
+              <q-btn dense unelevated color="primary" class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
                 style="margin-top: 12px" rounded size="12px">
                 <q-icon name="o_add" size="14px" style="margin-left: 2px" />
-                <span class="text-caption">ایجاد</span>
+                <span class="text-body3 no-letter-spacing">ایجاد</span>
               </q-btn>
             </slot>
           </div>
@@ -40,9 +40,9 @@
         :class="{ 'row-active': index === selectedRowIndex }" @click="onRowClicked(row, index)">
         <slot name="td" :row="row" :index="tableStore.rowIndex(index)">
           <q-item clickable v-close-popup>
-            <div class="row items-center q-gutter-x-md" style="width: 300px">
-              <div class="col-1 text-caption">{{ index + 1 }}</div>
-              <div v-for="col in lookupColumns" class="col text-caption" :key="col">
+            <div class="row items-center q-gutter-x-md" style="width: 300px; margin-left: 120px;">
+              <div class="col-1 text-caption no-letter-spacing">{{ index + 1 }}</div>
+              <div v-for="col in lookupColumns" class="col text-body2 no-letter-spacing" :key="col">
                 {{ row[col] }}
               </div>
             </div>

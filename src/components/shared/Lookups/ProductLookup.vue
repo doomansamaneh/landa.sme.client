@@ -29,21 +29,21 @@
             text-color="white"
             v-else
           >
-            <div class="char text-body1 text-bold">
+            <div class="char text-body2 no-letter-spacing text-bold">
               {{ helper.getFirstChar(row.title) }}
             </div>
           </q-avatar>
         </div>
         <q-item-section class="q-pl-md">
-          <q-item-label class="text-caption">
+          <q-item-label class="text-body3 no-letter-spacing">
             {{ row.code }} - {{ row.title }}
           </q-item-label>
-          <q-item-label class="text-caption-sm"
-            ><span class="text-caption-sm text-bold">موجودی: </span
+          <q-item-label class="text-body2 no-letter-spacing"
+            ><span class="text-body3 no-letter-spacing text-bold">موجودی: </span
             >{{ row.stock }}</q-item-label
           >
-          <q-item-label class="text-caption-sm"
-            ><span class="text-caption-sm text-bold">قیمت فروش: </span
+          <q-item-label class="text-body2 no-letter-spacing"
+            ><span class="text-body3 no-letter-spacing text-bold">قیمت فروش: </span
             >{{ row.price.toLocaleString() }}</q-item-label
           >
         </q-item-section>

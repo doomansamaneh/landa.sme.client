@@ -5,7 +5,7 @@
     size="20px"
     color="primary"
   />
-  <span @click="sortColumn" class="cursor-pointer">
+  <span @click="sortColumn" class="text-body3 no-letter-spacing text-bold cursor-pointer">
     {{ title }}
   </span>
 </template>
