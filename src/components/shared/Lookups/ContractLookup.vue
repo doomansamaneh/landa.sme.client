@@ -1,7 +1,7 @@
 <template>
   <lookup-view
     dataSource="doc/contract/getlookupData"
-    orderByField="no"
+    sortColumn="no"
     textTemplate="{{ no }} {{ title }}"
     columns="no,title"
     searchField="title"

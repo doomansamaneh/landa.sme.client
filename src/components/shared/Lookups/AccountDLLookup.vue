@@ -1,9 +1,9 @@
 <template>
   <lookup-view
     dataSource="acc/accountDL/getlookupData"
-    orderByField="title"
-    textTemplate="{{ title }}"
-    columns="title"
+    sortColumn="code"
+    textTemplate="{{ code }} - {{ title }}"
+    columns="code,title"
     :filterExpression="filterExpression"
     ref="lookup"
   >
@@ -13,7 +13,6 @@
 <script setup>
 import { ref } from "vue";
 import LookupView from "src/components/shared/dataTables/LookupView.vue";
-import HeaderColumn from "src/components/shared/lookups/HeaderColumn.vue";
 
 const props = defineProps({
   filterExpression: Array,

@@ -361,6 +361,16 @@
       "costCenter": "مرکز هزینه",
       "product": "کالا و خدمات"
     },
+    "paymentType": {
+      "cash": "نقد",
+      "trust": "نسیه",
+      "both": "نقد و نسیه"
+    },
+    "accountType": {
+      "debit": "بدهکار",
+      "credit": "بستانکار",
+      "debitCredit": "مهم نیست"
+    },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",
       "loading-message": "لطفا کمی صبر کنید"

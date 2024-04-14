@@ -1,7 +1,7 @@
 <template>
   <lookup-view
     dataSource="business/GetPlanLookupData"
-    orderByField="title"
+    sortColumn="title"
     textTemplate="{{ title }}"
     searchField="title"
     ref="lookup"

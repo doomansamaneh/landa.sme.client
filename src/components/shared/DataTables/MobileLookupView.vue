@@ -46,15 +46,12 @@
         :showing="tableStore.showLoader.value"
         class="inner-loader q-mt-xl"
       >
-        <q-spinner
-          size="52px"
-          color="primary"
-        />
+        <q-spinner size="52px" color="primary" />
       </q-inner-loading>
 
       <div
         class="header text-caption text-bold bg-dark q-pa-md z-max"
-        style="border-bottom: 1px solid var(--q-primary);"
+        style="border-bottom: 1px solid var(--q-primary)"
       >
         <slot name="thead" />
       </div>
@@ -65,11 +62,7 @@
         :class="{ 'row-active': index === selectedRowIndex }"
         @click="onRowClicked(row, index)"
       >
-        <slot
-          name="td"
-          :row="row"
-          :index="tableStore.rowIndex(index)"
-        />
+        <slot name="td" :row="row" :index="tableStore.rowIndex(index)" />
       </div>
 
       <div
@@ -102,151 +95,150 @@
           </template>
         </page-bar>
       </div>
-
     </q-menu>
   </q-input>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
-import { useQuasar } from "quasar"
-import { useDataTable } from "src/composables/useDataTable"
-import PageBar from "./PageBar.vue"
-import NoDataFound from "./NoDataFound.vue"
-import customInput from "src/components/shared/Forms/CustomInput.vue"
+import { ref, computed, onMounted } from "vue";
+import { useQuasar } from "quasar";
+import { useDataTable } from "src/composables/useDataTable";
+
+import PageBar from "./PageBar.vue";
+import NoDataFound from "./NoDataFound.vue";
 
 const props = defineProps({
   dataSource: String,
   textTemplate: String,
-  orderByField: String,
+  sortColumn: String,
   searchField: String,
   columns: String,
   required: Boolean,
   rules: Array,
-  placeholder: String
-})
-const $q = useQuasar()
-const selectedId = ref(null)
-const selectedText = ref("")
+  placeholder: String,
+});
+const $q = useQuasar();
+const selectedId = ref(null);
+const selectedText = ref("");
 
 const store = {
   pagination: ref({
     currentPage: 1,
     pageSize: 7,
     columns: props.columns,
-    sortColumn: props.orderByField,
+    sortColumn: props.sortColumn,
     sortOrder: 1,
-    searchTerm: selectedText
-  })
-}
+    searchTerm: selectedText,
+  }),
+};
 
-const tableStore = useDataTable(props.dataSource, null, store)
+const tableStore = useDataTable(props.dataSource, null, store);
 
-const emit = defineEmits(["row-selected"])
+const emit = defineEmits(["row-selected"]);
 
-const search = ref(null)
-const selectedRowIndex = ref(0)
-const popup = ref(null)
-const isPopupOpen = ref(false)
-const table = ref(null)
+const search = ref(null);
+const selectedRowIndex = ref(0);
+const popup = ref(null);
+const isPopupOpen = ref(false);
+const table = ref(null);
 
 onMounted(() => {
-  onMenuHide()
-})
+  onMenuHide();
+});
 
 function handleKeyDown(event) {
   switch (event.key) {
     case "Delete":
-      clearSearch()
-      break
+      clearSearch();
+      break;
     case "ArrowDown":
-      selectNext()
-      break
+      selectNext();
+      break;
     case "ArrowUp":
-      selectPrevious()
-      break
+      selectPrevious();
+      break;
   }
 }
 
 async function clearSearch() {
-  tableStore.setActiveRow(null)
-  setIdText(null)
-  emitSelectRow(null)
-  onMenuHide()
+  tableStore.setActiveRow(null);
+  setIdText(null);
+  emitSelectRow(null);
+  onMenuHide();
 }
 
 async function onRowClicked(row, index) {
-  selectedRowIndex.value = index
-  selectRow(row)
+  selectedRowIndex.value = index;
+  selectRow(row);
 }
 
 async function setIdText(row) {
-  selectedId.value = row?.id
-  setText(row)
+  selectedId.value = row?.id;
+  setText(row);
 }
 
 function setText(row) {
-  if (row == null) selectedText.value = null
+  if (row == null) selectedText.value = null;
   else {
     if (props.textTemplate) {
       selectedText.value = props.textTemplate.replace(
         /{{\s*([\w.]+)\s*}}/g,
         (_, key) => row[key] ?? ""
-      )
-    } else selectedText.value = row.title
+      );
+    } else selectedText.value = row.title;
   }
 }
 
 function setCustomText(displayText) {
-  selectedText.value = displayText
+  selectedText.value = displayText;
 }
 
 async function handlePopup() {
-  if (isPopupOpen.value) hidePopup()
+  if (isPopupOpen.value) hidePopup();
   else {
-    showPopup()
-    await tableStore.loadData()
+    showPopup();
+    await tableStore.loadData();
   }
 }
 
 function selectPrevious() {
   if (isPopupOpen.value) {
     if (selectedRowIndex.value === 0)
-      selectedRowIndex.value = tableStore.rows.value.length - 1
-    else selectedRowIndex.value--
+      selectedRowIndex.value = tableStore.rows.value.length - 1;
+    else selectedRowIndex.value--;
   }
 }
 
 async function selectNext() {
   if (isPopupOpen.value) {
     if (selectedRowIndex.value === tableStore.rows.value.length - 1)
-      selectedRowIndex.value = 0
-    else selectedRowIndex.value++
+      selectedRowIndex.value = 0;
+    else selectedRowIndex.value++;
   } else {
-    showPopup()
-    await tableStore.loadData()
+    showPopup();
+    await tableStore.loadData();
   }
 }
 
 function selectRow() {
-  const row = tableStore.rows.value[selectedRowIndex.value]
-  tableStore.setActiveRow(row)
-  setIdText(row)
-  hidePopup()
-  emitSelectRow(row)
+  const row = tableStore.rows.value[selectedRowIndex.value];
+  tableStore.setActiveRow(row);
+  setIdText(row);
+  hidePopup();
+  emitSelectRow(row);
 }
 
 function emitSelectRow(row) {
-  emit("row-selected", row)
+  emit("row-selected", row);
 }
 
 async function searchInLookup() {
-  await showPopup()
+  await showPopup();
 }
 
 function onMenuHide() {
-  isPopupOpen.value = false
-  search.value.focus()
+  isPopupOpen.value = false;
+  search.value.focus();
 }
 
 async function showPopup() {
@@ -254,41 +246,43 @@ async function showPopup() {
   popup.value.show();
 }
 
-
 function onMenuShow() {
-  isPopupOpen.value = true
-  search.value.focus()
+  isPopupOpen.value = true;
+  search.value.focus();
 }
 
 function hidePopup() {
-  popup.value.hide()
+  popup.value.hide();
 }
 
-const isSearchEmpty = computed(() => !selectedId.value)
+const isSearchEmpty = computed(() => !selectedId.value);
 
-const cardDefaultClass = computed(() =>
-  " lookup-container q-table__card q-table--bordered_q-table--flat" +
-  ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "")
-)
+const cardDefaultClass = computed(
+  () =>
+    " lookup-container q-table__card q-table--bordered_q-table--flat" +
+    ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "")
+);
 
-const __containerClass = computed(() =>
-  `q-table__container _q-table--horizontal-separator column _no-wrap` +
-  cardDefaultClass.value +
-  ($q.dark?.isActive === true ? " q-table--dark" : "")
-)
+const __containerClass = computed(
+  () =>
+    `q-table__container _q-table--horizontal-separator column _no-wrap` +
+    cardDefaultClass.value +
+    ($q.dark?.isActive === true ? " q-table--dark" : "")
+);
 
-const containerClass = computed(() =>
-  __containerClass.value + (tableStore.showLoader.value === true ? " q-table--loading" : "")
-)
+const containerClass = computed(
+  () =>
+    __containerClass.value +
+    (tableStore.showLoader.value === true ? " q-table--loading" : "")
+);
 
 defineExpose({
   setIdText,
   setCustomText,
   selectedId,
   selectedText,
-  tableStore
-})
-
+  tableStore,
+});
 </script>
 
 <style>

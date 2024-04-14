@@ -2,7 +2,7 @@
   <lookup-view
     ref="lookup"
     dataSource="crm/job/getlookupData"
-    orderByField="code"
+    sortColumn="code"
     textTemplate="{{ code }} {{ title }}"
     searchField="title"
     columns="code,title"

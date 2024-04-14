@@ -1,7 +1,7 @@
 <template>
   <lookup-view
     dataSource="cmn/product/getlookupData"
-    orderByField="code"
+    sortColumn="code"
     textTemplate="{{ code }} {{ title }}"
     columns="code,title"
     :filterExpression="filterExpression"

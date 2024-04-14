@@ -2,7 +2,7 @@
   <lookup-view
     ref="lookup"
     dataSource="org/unit/getlookupData"
-    orderByField="code"
+    sortColumn="code"
     textTemplate="{{ code }} {{ title }}"
     searchField="title"
     columns="code,title"

@@ -1,7 +1,7 @@
 <template>
   <lookup-view
     dataSource="cmn/productUnit/getlookupData"
-    orderByField="title"
+    sortColumn="title"
     columns="code,title"
     textTemplate="{{ title }}"
     ref="lookup"

@@ -3,7 +3,7 @@
     dataSource="inv/inventory/getlookupData"
     v-model:selectedId="selectedId"
     v-model:selectedText="selectedText"
-    orderByField="code"
+    sortColumn="code"
     columns="code,title"
     textTemplate="{{code}} - {{ title }}"
     ref="lookup"

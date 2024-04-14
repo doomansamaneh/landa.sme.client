@@ -1,9 +1,9 @@
 <template>
   <lookup-view
     dataSource="acc/accountSL/getlookupData"
-    orderByField="title"
-    textTemplate="{{ title }}"
-    columns="title"
+    textTemplate="{{code}} - {{ title }}"
+    columns="code,title"
+    sortColumn="code"
     :filterExpression="filterExpression"
     ref="lookup"
   >

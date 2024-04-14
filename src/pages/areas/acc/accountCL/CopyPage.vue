@@ -10,5 +10,5 @@
 </template>
 
 <script setup>
-import Desktop from "src/components/areas/cmn/bank/shared/forms/CreateForm.vue";
+import Desktop from "src/components/areas/acc/accountCL/shared/forms/CreateForm.vue";
 </script>

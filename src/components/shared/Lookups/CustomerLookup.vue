@@ -1,7 +1,7 @@
 <template>
   <lookup-view
     dataSource="crm/customer/getlookupData"
-    orderByField="code"
+    sortColumn="code"
     textTemplate="{{ code }} {{ name }}"
     searchField="name"
     columns="code,name"

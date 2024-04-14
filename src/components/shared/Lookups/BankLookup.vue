@@ -1,7 +1,7 @@
 <template>
   <lookup-view
     dataSource="cmn/bank/getlookupData"
-    orderByField="title"
+    sortColumn="title"
     textTemplate="{{ title }}"
     columns="title"
     :filterExpression="filterExpression"

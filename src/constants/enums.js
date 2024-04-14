@@ -126,13 +126,25 @@ export const productType = {
 };
 
 export const accountDLType = {
-  other: 1031,
   customer: 1032,
   personnel: 1033,
   cash: 1034,
   bankAccount: 1035,
   costCenter: 1036,
   product: 1039,
+  other: 1031,
+};
+
+export const paymentType = {
+  cash: 1,
+  trust: 2,
+  both: 3,
+};
+
+export const accountType = {
+  debit: 1021,
+  credit: 1022,
+  debitCredit: 1023,
 };
 
 export const cultures = [
@@ -182,3 +194,13 @@ export const dataViewDefaultPageSize = 5;
 export const guidEmpty = "00000000-0000-0000-0000-000000000000";
 
 export const cancelStatus = "a36af633-d0bb-4857-a542-364e12658d1c";
+
+export const accountCurrentAsset = "A0E42E83-83B3-4197-A27F-BED2B904D5A6";
+export const accountFixedAsset = "DCA8E9B3-ED6F-4585-8B6B-8B5D84AB25FE";
+export const accountCurrentLiability = "39A38D45-00FA-4434-BF6E-0BAF45DC51C3";
+export const accountLongTermLiability = "99B941D5-A416-4298-8572-E7216A07DAFE";
+export const accountEquity = "C7B540DA-1C4F-445A-A730-E5738D4C6CA8";
+export const accountRevenue = "D562F27E-9AF0-4E14-9E31-0D11C577E556";
+export const accountCGS = "33422E29-2694-4D91-ABD7-90303C0E1966";
+export const accountExpense = "5F4AE9D2-EECA-4CE6-A469-18DB06D70DFF";
+export const accountCntra = "2926F151-1A55-476D-9025-57E0CAEA8561";

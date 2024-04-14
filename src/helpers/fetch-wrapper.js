@@ -4,8 +4,8 @@ import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
 import { Loading } from "quasar";
 
-// const BASE_URL = "http://localhost:5188";
-const BASE_URL = "https://api.landa-sme.ir";
+const BASE_URL = "http://localhost:5188";
+//const BASE_URL = "https://api.landa-sme.ir";
 
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.withCredentials = true;
