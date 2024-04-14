@@ -103,7 +103,9 @@
                 class="col text-caption"
                 :key="col"
               >
-                {{ row[col] }}
+                <slot :name="`cell-${col}`" :item="row">
+                  {{ row[col] }}
+                </slot>
               </div>
             </div>
           </q-item>

@@ -217,6 +217,50 @@ export default {
       ],
     },
 
+    {
+      path: "trs/bankAccount",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/trs/bankAccount/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/trs/bankAccount/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/trs/bankAccount/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/trs/bankAccount/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "trs/cash",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/trs/cash/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/trs/cash/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/trs/cash/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/trs/cash/CopyPage.vue"),
+        },
+      ],
+    },
+
     // {
     //   path: "sls/quote",
     //   component: () => import("pages/areas/sls/quote/IndexPage.vue"),
@@ -597,11 +641,13 @@ export default {
         },
         {
           path: "basicInfo",
-          component: () => import("pages/areas/cmn/appConfig/BasicInfoPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/appConfig/BasicInfoPage.vue"),
         },
         {
           path: "contactInfo",
-          component: () => import("pages/areas/cmn/appConfig/ContactInfoPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/appConfig/ContactInfoPage.vue"),
         },
         {
           path: "VATInfo",
@@ -609,15 +655,18 @@ export default {
         },
         {
           path: "insuranceInfo",
-          component: () => import("pages/areas/cmn/appConfig/InsuranceInfoPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/appConfig/InsuranceInfoPage.vue"),
         },
         {
           path: "salaryInfo",
-          component: () => import("pages/areas/cmn/appConfig/SalaryInfoPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/appConfig/SalaryInfoPage.vue"),
         },
         {
           path: "salesInfo",
-          component: () => import("pages/areas/cmn/appConfig/SalesInfoPage.vue"),
+          component: () =>
+            import("pages/areas/cmn/appConfig/SalesInfoPage.vue"),
         },
         {
           path: "logoInfo",
