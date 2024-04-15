@@ -7,6 +7,9 @@
     :filterExpression="filterExpression"
     ref="lookup"
   >
+    <template #cell-title="{ item }">
+      {{ item.title }} <small>({{ item.glTitle }})</small>
+    </template>
   </lookup-view>
 </template>
 
