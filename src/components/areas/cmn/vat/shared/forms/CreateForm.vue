@@ -16,8 +16,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { vatModel } from "src/models/areas/cmn/vatModel";
+import { useVatModel } from "src/components/areas/_shared/_composables/useVatModel";
 
 import MasterSection from "./_MasterSection.vue";
 import DetailSection from "./_DetailSection.vue";
@@ -29,8 +28,5 @@ const props = defineProps({
 });
 
 const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "cmn/vat",
-  model: vatModel,
-});
+const formStore = useVatModel();
 </script>

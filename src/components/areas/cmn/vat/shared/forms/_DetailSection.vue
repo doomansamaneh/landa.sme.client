@@ -1,44 +1,40 @@
 <template>
-  <q-markup-table flat dense separator="horizontal">
-    <thead>
-      <tr>
-        <th style="width: 1%">#</th>
-        <th style="width: 40%">عنوان</th>
-        <th style="width: 40%">حساب معین</th>
-        <th style="width: 10%">نرخ</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="(row, index) in model.value.vatDeductionItems"
-        :key="index"
-        class="q-pa-md"
-      >
-        <td class="text-center">{{ index + 1 }}</td>
-        <td>
-          <custom-input placeholder="عنوان" v-model="row.title" />
-        </td>
-        <td>
-          <sl-lookup
-            placeholder="حساب معین"
-            v-model:selectedId="row.slId"
-            v-model:selectedText="row.slTitle"
-          />
-        </td>
-        <td>
-          <custom-input
-            type="number"
-            hide-bottom-space
-            v-model="row.rate"
-            :rules="[(val) => val !== null && val !== '']"
-          >
-            <template v-slot:append>
-              <q-icon name="percent" />
-            </template>
-          </custom-input>
-        </td>
-        <td class="text-center_ q-gutter-x-sm">
+  <div class="text-h6 text-weight-600 q-py-lg no-letter-spacing">
+    اقلام ارزش افزوده
+  </div>
+  <q-card
+    class="q-my-sm"
+    flat
+    bordered
+    v-for="(row, index) in model.value.vatDeductionItems"
+    :key="index"
+  >
+    <div class="row q-pa-md q-col-gutter-sm">
+      <div class="col-md-3 col-sm-12 col-xs-12">
+        <custom-input placeholder="عنوان" v-model="row.title" />
+      </div>
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <sl-lookup
+          placeholder="حساب معین"
+          v-model:selectedId="row.slId"
+          v-model:selectedText="row.slTitle"
+          :filter-expression="slFilter"
+        />
+      </div>
+      <div class="col-md-1 col-sm-12 col-xs-12">
+        <custom-input
+          type="number"
+          hide-bottom-space
+          v-model="row.rate"
+          :rules="[(val) => val !== null && val !== '']"
+        >
+          <template v-slot:append>
+            <q-icon name="percent" />
+          </template>
+        </custom-input>
+      </div>
+      <div class="col-md-2 col-sm-12 col-xs-12">
+        <div class="q-pt-xs q-gutter-md">
           <q-btn
             color="primary"
             unelevated
@@ -57,27 +53,31 @@
             icon="o_delete"
             @click="formStore.deleteRow(index)"
           />
-        </td>
-      </tr>
-    </tbody>
-    <tbody v-if="model.value.vatDeductionItems.length === 0">
-      <tr>
-        <td colspan="100%" class="text-center">
-          <no-product-selected class="q-mt-md" />
-          <q-btn
-            class="primary-shadow"
-            rounded
-            unelevated
-            color="primary"
-            @click="formStore.pushNewRow()"
-          >
-            <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
-          </q-btn>
-        </td>
-      </tr>
-    </tbody>
-  </q-markup-table>
+        </div>
+      </div>
+    </div>
+  </q-card>
+
+  <q-card
+    class="q-my-md"
+    flat
+    bordered
+    v-if="model.value.vatDeductionItems.length === 0"
+  >
+    <q-card-section class="text-center">
+      <no-item-selected />
+      <q-btn
+        class="primary-shadow"
+        rounded
+        unelevated
+        color="primary"
+        @click="formStore.pushNewRow()"
+      >
+        <q-icon name="o_add" size="20px" />
+        افزودن ردیف
+      </q-btn>
+    </q-card-section>
+  </q-card>
 
   <q-card class="tips q-my-md">
     <q-card-section>
@@ -97,8 +97,9 @@
           </p>
           <p>
             <strong>نرخ: </strong>
-            نرخ مالیات بر ارزش افزوده به ردیفهای زیر در سند حسابداری که به صورت
-            خودکار از روی فاکتور، خرید، و... ایجاد می‌شود، شکسته می‌شود.
+            نرخ مالیات بر ارزش افزوده براساس اقلام ارزش افزوده، در سند حسابداری
+            که به صورت خودکار از روی فاکتور، خرید، و... ایجاد می‌شود، شکسته
+            می‌شود.
           </p>
         </div>
       </div>
@@ -108,15 +109,23 @@
 
 <script setup>
 import { computed } from "vue";
+import { accountCurrentLiability, sqlOperator } from "src/constants";
 
 import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
-import NoProductSelected from "src/components/areas/sls/invoice/desktop/forms/NoProductSelected.vue";
+import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
 
 const props = defineProps({
   formStore: Object,
 });
 
+const slFilter = [
+  {
+    fieldName: "clId",
+    operator: sqlOperator.equal,
+    value: accountCurrentLiability,
+  },
+];
 const model = computed(() => props.formStore.model);
 </script>
