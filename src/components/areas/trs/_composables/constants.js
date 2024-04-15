@@ -1,3 +1,4 @@
+import { title, isActive, actions } from "src/constants/columns";
 export const paymentInvoiceColumns = [
   {
     name: "no",
@@ -71,38 +72,12 @@ export const bankAccountColumns = [
     class: "text-left",
     value: "",
   },
-  {
-    name: "isActive",
-    field: "isActive",
-    sortable: true,
-    label: "فعال",
-    align: "left",
-    class: "text-left",
-    style: "width:120px;",
-    showFilter: true,
-  },
-  {
-    name: "actions",
-    field: "",
-    sortable: false,
-    label: "",
-    align: "left",
-    class: "text-left",
-    style: "width:170px;",
-    showFilter: false,
-  },
+  isActive,
+  actions,
 ];
 
 export const cashColumns = [
-  {
-    name: "title",
-    field: "title",
-    sortable: true,
-    label: "عنوان",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-  },
+  title,
   {
     name: "debitRemained",
     field: "debitRemained",
@@ -113,24 +88,6 @@ export const cashColumns = [
     class: "text-left",
     value: "",
   },
-  {
-    name: "isActive",
-    field: "isActive",
-    sortable: true,
-    label: "فعال",
-    align: "left",
-    class: "text-left",
-    style: "width:120px;",
-    showFilter: true,
-  },
-  {
-    name: "actions",
-    field: "",
-    sortable: false,
-    label: "",
-    align: "left",
-    class: "text-left",
-    style: "width:170px;",
-    showFilter: false,
-  },
+  isActive,
+  actions,
 ];

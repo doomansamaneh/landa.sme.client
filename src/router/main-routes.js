@@ -696,5 +696,63 @@ export default {
         },
       ],
     },
+
+    {
+      path: "org/org",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/org/org/IndexPage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/org/org/EditPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "org/unit",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/org/unit/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/org/unit/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/org/unit/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/org/unit/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "org/unitType",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/org/unitType/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/org/unitType/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/org/unitType/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/org/unitType/CopyPage.vue"),
+        },
+      ],
+    },
   ],
 };

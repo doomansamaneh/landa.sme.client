@@ -1,3 +1,4 @@
+import { title, isActive, actions } from "src/constants/columns";
 export const contractColumns = [
   {
     name: "no",
@@ -9,15 +10,7 @@ export const contractColumns = [
     class: "text-left",
     style: "width:150px;",
   },
-  {
-    name: "title",
-    field: "title",
-    sortable: true,
-    label: "عنوان",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-  },
+  title,
   {
     name: "income",
     field: "income",
@@ -41,23 +34,6 @@ export const contractColumns = [
     style: "",
     class: "text-left",
   },
-  {
-    name: "isActive",
-    field: "isActive",
-    sortable: true,
-    label: "فعال",
-    align: "left",
-    class: "text-left",
-    style: "width:120px;",
-    showFilter: true,
-  },
-  {
-    name: "actions",
-    field: "",
-    sortable: false,
-    label: "",
-    align: "left",
-    class: "text-left",
-    style: "width:170px;",
-  },
+  isActive,
+  actions,
 ];

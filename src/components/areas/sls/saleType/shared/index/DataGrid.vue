@@ -3,7 +3,7 @@
     toolbar
     base-route="sls/saleType"
     data-source="sls/saleType/getGridData"
-    :title="$t('main-menu-items.Cmn_Bank_View')"
+    :title="$t('main-menu-items.Sls_SaleType_View')"
     :visible-columns="columns"
     create-url="/sls/saleType/create"
   >

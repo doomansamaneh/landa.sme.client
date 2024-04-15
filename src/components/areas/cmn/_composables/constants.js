@@ -1,4 +1,4 @@
-import { sqlOperator } from "src/constants";
+import { code, title, isActive, actions } from "src/constants/columns";
 export const productColumns = [
   {
     name: "productGroupTitle",
@@ -10,29 +10,8 @@ export const productColumns = [
     class: "text-left",
     value: "",
   },
-  {
-    name: "code",
-    field: "code",
-    sortable: true,
-    label: "کد",
-    class: "text-left",
-    cellClass: "text-left",
-    cellStyle: "",
-    style: "width:130px;",
-    showFilter: true,
-    operator: sqlOperator.like,
-    value: "",
-  },
-  {
-    name: "title",
-    field: "title",
-    sortable: true,
-    label: "عنوان",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-    value: "",
-  },
+  code,
+  title,
   {
     name: "typeId",
     field: "typeId",
@@ -73,26 +52,8 @@ export const productColumns = [
     class: "text-left",
     value: "",
   },
-  {
-    name: "isActive",
-    field: "isActive",
-    sortable: true,
-    label: "فعال",
-    align: "left",
-    class: "text-left",
-    style: "width:120px;",
-    showFilter: true,
-  },
-  {
-    name: "actions",
-    field: "",
-    sortable: false,
-    label: "",
-    align: "left",
-    class: "text-left",
-    style: "width:170px;",
-    showFilter: false,
-  },
+  isActive,
+  actions,
 ];
 
 export const bankBranchColumns = [
@@ -104,39 +65,10 @@ export const bankBranchColumns = [
     class: "text-left",
     showFilter: true,
   },
-  {
-    name: "code",
-    field: "code",
-    sortable: true,
-    label: "کد",
-    class: "text-left",
-    style: "width:120px;",
-    showFilter: true,
-  },
-  {
-    name: "title",
-    field: "title",
-    sortable: true,
-    label: "عنوان",
-    showFilter: true,
-    class: "text-left",
-  },
-  {
-    name: "isActive",
-    field: "isActive",
-    sortable: true,
-    label: "فعال",
-    class: "text-left",
-    style: "width:120px",
-    showFilter: true,
-  },
-  {
-    name: "actions",
-    sortable: false,
-    showFilter: false,
-    class: "text-left",
-    style: "width:170px;",
-  },
+  code,
+  title,
+  isActive,
+  actions,
 ];
 
 export const productUnitRelationColumns = [

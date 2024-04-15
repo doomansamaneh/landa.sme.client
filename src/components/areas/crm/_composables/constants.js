@@ -1,3 +1,4 @@
+import { code, isActive } from "src/constants/columns";
 import { sqlOperator } from "src/constants";
 
 export const customerColumns = [
@@ -15,15 +16,7 @@ export const customerColumns = [
     operator: sqlOperator.equal,
     value: "",
   },
-  {
-    name: "code",
-    field: "code",
-    sortable: true,
-    label: "کد",
-    class: "text-left",
-    style: "width:100px",
-    showFilter: true,
-  },
+  code,
   {
     name: "name",
     field: "name",
@@ -52,14 +45,5 @@ export const customerColumns = [
     class: "text-left",
     showFilter: true,
   },
-  {
-    name: "isActive",
-    field: "isActive",
-    sortable: true,
-    label: "فعال",
-    align: "left",
-    class: "text-left",
-    style: "width:120px",
-    showFilter: true,
-  },
+  isActive,
 ];
