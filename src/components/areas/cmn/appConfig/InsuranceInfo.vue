@@ -1,5 +1,5 @@
 <template>
-  <q-card class="form-container border-radius-lg">
+  <q-card :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']" style="margin-top: 0;" class="form-container border-radius-lg">
     <q-card-section>
       <div class="row q-col-gutter-md">
         <div class="col-md col-sm col-xs-12">
@@ -37,3 +37,11 @@
 import { ref } from "vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 </script>
+
+<style>
+
+.settings-card {
+  width: 900px;
+}
+
+</style>

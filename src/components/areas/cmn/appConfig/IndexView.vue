@@ -130,7 +130,7 @@
         <q-card class="q-mt-xl bordered" :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']">
           <q-card-section class="no-padding">
   
-            <q-item class="top-radius-xl q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="/business">
+            <q-item class="top-radius-xl q-py-sm" :class="$q.screen.gt.xs ? '' : 'q-px-none'" clickable to="">
   
               <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
                 <q-item-label class="text-on-dark text-body2 no-letter-spacing">واردات</q-item-label>
@@ -169,21 +169,9 @@
   
   
   <script setup>
-  import { ref } from "vue"
-  import { useMeta, useQuasar } from "quasar"
-  
-  // import ProfileSection from "src/components/management/settings/desktop/index/ProfileSection.vue"
-  // import ThemeColor from "src/components/management/settings/desktop/index/ThemeColor.vue"
-  // import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
+  import { useQuasar } from "quasar"
   
   const $q = useQuasar()
-  
-  const metaData = {
-    title: 'لاندا',
-    titleTemplate: title => `${title} - تنظیمات`,
-  };
-  
-  useMeta(metaData);
   
   const expandIcon = () => {
     if ($q.lang.rtl) {

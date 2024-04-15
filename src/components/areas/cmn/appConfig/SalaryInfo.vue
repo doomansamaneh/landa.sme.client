@@ -1,8 +1,9 @@
 <template>
-  <q-card class="form-container">
+  <q-card :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']" style="margin-top: 0" class="form-container">
     <q-card-section>
 
-      <q-markup-table flat :style="$q.screen.xs ? 'width: 540px' : ''" class="salary-table border-radius-lg" :separator="separator">
+      <q-markup-table flat :style="$q.screen.xs ? 'width: 540px' : ''" class="salary-table border-radius-lg"
+        :separator="separator">
         <thead>
           <tr>
             <th class="text-left">اقلام حقوق و دستمزد</th>
@@ -193,4 +194,9 @@ const separator = ref("cell")
     font-size: 14px !important;
   }
 }
+
+.settings-card {
+  width: 900px;
+}
+
 </style>

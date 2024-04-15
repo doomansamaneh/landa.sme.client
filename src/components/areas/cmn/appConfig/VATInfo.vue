@@ -1,5 +1,5 @@
 <template>
-  <q-card class="form-container">
+  <q-card :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']" style="margin-top: 0" class="form-container">
     <q-card-section>
 
       <div class="row q-col-gutter-md">
@@ -46,32 +46,32 @@
                 <custom-input type="textarea" />
               </div>
             </div>
-            
+
           </div>
         </div>
 
       </div>
 
-     <div class="q-mt-lg">
-      <div class="row q-col-gutter-md items-center">
-        <div class="col-md col-sm col-xs-12">
-          <div>
-            <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
-              نوع
-            </q-item-label>
-            <custom-input />
+      <div class="q-mt-lg">
+        <div class="row q-col-gutter-md items-center">
+          <div class="col-md col-sm col-xs-12">
+            <div>
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
+                نوع
+              </q-item-label>
+              <custom-input />
+            </div>
           </div>
-        </div>
-        <div class="col-md col-sm col-xs-12">
-          <div>
-            <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
-              الگوی صورتحساب
-            </q-item-label>
-            <custom-input />
+          <div class="col-md col-sm col-xs-12">
+            <div>
+              <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
+                الگوی صورتحساب
+              </q-item-label>
+              <custom-input />
+            </div>
           </div>
         </div>
       </div>
-     </div>
 
     </q-card-section>
   </q-card>
@@ -81,3 +81,9 @@
 import { ref } from "vue";
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 </script>
+
+<style lang="scss">
+.settings-card {
+  width: 900px;
+}
+</style>

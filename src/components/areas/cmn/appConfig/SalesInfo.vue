@@ -1,8 +1,8 @@
 <template>
-  <q-card class="form-container border-radius-lg">
+  <q-card :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']" style="margin-top: 0" class="form-container">
     <q-card-section class="q-pa-lg">
       <div class="row q-col-gutter-md">
-        <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="col-md-2 col-sm-2 col-xs-12">
           <div>
             <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
               ارز
@@ -10,7 +10,7 @@
             <custom-input />
           </div>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="col-md-2 col-sm-2 col-xs-12">
           <div>
             <q-item-label class="caption-on-dark no-letter-spacing text-body2 q-mb-sm">
               شروع شماره فاکتور
