@@ -19,7 +19,7 @@
           {{ $t("main-menu-items.dashboard") }}
         </q-item>
         <div v-for="parentItem in menuBarStore.drawerMenuItems.value" :key="parentItem.name">
-          <q-expansion-item ref="expansion" group="menu" :label="parentItem.title"
+          <q-expansion-item ref="expansion" group="menu" :label="parentItem.title" :icon="`o_${parentItem.icon}`"
             class="parent text-body2 no-letter-spacing" :class="{ highlighted: shouldHighlight(parentItem.subItems) }"
             :header-class="{
               'text-yellow text-bold': shouldHighlight(parentItem.subItems) && $q.dark.isActive,
@@ -28,7 +28,7 @@
 
             <div class="sub-item-container q-ml-lg">
               <q-item v-for="subItem in parentItem.subItems" :key="subItem.name" :to="subItem.url" clickable
-                class="border-radius-xl sub-item q-ml-xs q-my-xs">
+                class="border-radius-xl sub-item q-ml-xs q-my-sm">
                 <q-item-section avatar class="">
                   <q-icon :name="`o_${subItem.icon}`" size="xs" />
                 </q-item-section>
@@ -40,7 +40,7 @@
           </q-expansion-item>
         </div>
         <q-item to="/cmn/appConfig"
-          class="last-item border-radius-xl flex text-body2 no-lette-spacing items-center cursor-pointer q-my-xs">
+          class="last-item border-radius-xl flex text-body2 no-lette-spacing items-center cursor-pointer q-my-sm">
           <q-icon name="o_settings" class="settings q-mr-sm" size="xs"></q-icon>
           {{ $t("main-menu-items.settings") }}
         </q-item>
