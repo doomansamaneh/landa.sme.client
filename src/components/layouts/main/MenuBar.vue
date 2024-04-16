@@ -13,16 +13,19 @@
 
     <q-scroll-area style="height: calc(100% - 120px);" :thumb-style="helper.thumbStyle" :bar-style="helper.barStyle">
       <q-list class="menu-list q-px-md">
-        <q-item class="border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer" to="/dashboard">
+        <q-item class="border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
+          to="/dashboard">
           <q-icon name="o_dashboard" class="settings q-mr-sm" size="xs"></q-icon>
           {{ $t("main-menu-items.dashboard") }}
         </q-item>
         <div v-for="parentItem in menuBarStore.drawerMenuItems.value" :key="parentItem.name">
-          <q-expansion-item ref="expansion" group="menu" :label="parentItem.title" :icon="`o_${parentItem.icon}`"
-            class="parent text-body2 no-letter-spacing" :header-class="{
+          <q-expansion-item ref="expansion" group="menu" :label="parentItem.title"
+            class="parent text-body2 no-letter-spacing" :class="{ highlighted: shouldHighlight(parentItem.subItems) }"
+            :header-class="{
               'text-yellow text-bold': shouldHighlight(parentItem.subItems) && $q.dark.isActive,
               'text-primary text-bold': shouldHighlight(parentItem.subItems) && !$q.dark.isActive
             }">
+
             <div class="sub-item-container q-ml-lg">
               <q-item v-for="subItem in parentItem.subItems" :key="subItem.name" :to="subItem.url" clickable
                 class="border-radius-xl sub-item q-ml-xs q-my-xs">
