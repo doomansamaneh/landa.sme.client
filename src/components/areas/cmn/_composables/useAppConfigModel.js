@@ -2,7 +2,13 @@ import { ref } from "vue";
 import { fetchWrapper } from "src/helpers";
 
 const firstLoad = ref(true);
-const model = ref(null);
+const model = ref({
+  companySetting: {
+    taxApiSetting: {},
+    payrollTaxSetting: {},
+    payrollInsurranceSetting: {},
+  },
+});
 
 export function useAppConfigModel() {
   const loadData = async () => {

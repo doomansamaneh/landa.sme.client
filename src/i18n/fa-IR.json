@@ -371,6 +371,27 @@
       "credit": "بستانکار",
       "debitCredit": "مهم نیست"
     },
+    "taxApiInvoiceType": {
+      "b2B": "نوع 1: فروش شرکتی",
+      "b2C": "نوع 2: فروش به اشخاص حقیقی",
+      "posOnline": "نوع 3: فروش از طریق درگاه و دستگاه پوز"
+    },
+    "taxApiInvoicePattern": {
+      "sales": "فروش",
+      "currencySales": "فروش ارزی",
+      "goldAndGem": "صورتحساب طلا، جواهر، پلاتین",
+      "contract": "قرارداد پیمانکاری",
+      "generalService": "قبوض خدماتی",
+      "airplaneTicket": "بلیت هواپیما"
+    },
+    "cogsCalcMethod": {
+      "none": "هیچکدام",
+      "fifo": "FIFO"
+    },
+    "invoicePreviewTemplate": {
+      "standard": "استاندارد دارایی",
+      "simple": "ساده"
+    },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",
       "loading-message": "لطفا کمی صبر کنید"

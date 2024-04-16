@@ -147,6 +147,31 @@ export const accountType = {
   debitCredit: 1023,
 };
 
+export const taxApiInvoiceType = {
+  b2B: 1,
+  b2C: 2,
+  posOnline: 3,
+};
+
+export const taxApiInvoicePattern = {
+  sales: 1,
+  currencySales: 2,
+  goldAndGem: 3,
+  contract: 4,
+  generalService: 5,
+  airplaneTicket: 6,
+};
+
+export const cogsCalcMethod = {
+  none: 0,
+  fifo: 1,
+};
+
+export const invoicePreviewTemplate = {
+  standard: 0,
+  simple: 1,
+};
+
 export const cultures = [
   { name: "فارسی", iso: "fa-IR", calendar: "persian", bodyClass: "persian" },
   {

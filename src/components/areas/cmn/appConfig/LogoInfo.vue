@@ -1,37 +1,56 @@
 <template>
-
-
-  <div :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']" style="margin-top: 0">
+  <div
+    :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
+    style="margin-top: 0"
+  >
     <div class="row q-col-gutter-lg">
-
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <q-checkbox dense class="q-pb-md text-body1 no-letter-spacing" v-model="logo" label="لوگو در چاپ باشد" />
+        <q-checkbox
+          dense
+          class="q-pb-md text-body1 no-letter-spacing"
+          v-model="logo"
+          label="لوگو در چاپ باشد"
+        />
         <q-card class="row items-center justify-center bordered q-pa-lg">
           <q-card-section class="row items-center justify-center">
             <q-avatar square>
               <img :src="logoSource" />
             </q-avatar>
-            <input class="upload-box" type="file" id="logoUpload" @change="handleLogoUpload" accept="image/*">
+            <input
+              class="upload-box"
+              type="file"
+              id="logoUpload"
+              @change="handleLogoUpload"
+              accept="image/*"
+            />
           </q-card-section>
         </q-card>
       </div>
 
       <div class="col-md-4 col-sm-4 col-xs-12">
-        <q-checkbox dense class="q-pb-md text-body1 no-letter-spacing" v-model="signature" label="امضا در چاپ باشد" />
+        <q-checkbox
+          dense
+          class="q-pb-md text-body1 no-letter-spacing"
+          v-model="signature"
+          label="امضا در چاپ باشد"
+        />
         <q-card class="row items-center justify-center bordered q-pa-lg">
           <q-card-section class="row items-center justify-center">
             <q-avatar square>
               <img :src="signatureSource" />
             </q-avatar>
-            <input class="upload-box" type="file" id="signatureUpload" @change="handleSignatureUpload" accept="image/*">
+            <input
+              class="upload-box"
+              type="file"
+              id="signatureUpload"
+              @change="handleSignatureUpload"
+              accept="image/*"
+            />
           </q-card-section>
         </q-card>
       </div>
-
     </div>
   </div>
-
-
 </template>
 
 <script setup>
