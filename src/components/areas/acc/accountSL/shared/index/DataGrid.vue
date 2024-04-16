@@ -17,7 +17,6 @@
 
 <script setup>
 import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-import { accountSLColumns } from "src/components/areas/acc/_composables/constants";
 import { useAccountSLGrid } from "src/components/areas/acc/_composables/useAccountSLGrid";
 
 import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
@@ -25,7 +24,7 @@ import IsBySystem from "src/components/shared/IsBySystem.vue";
 
 const slStore = useAccountSLGrid();
 const gridStore = useBaseInfoGrid({
-  columns: accountSLColumns,
+  columns: slStore.columns,
   state: slStore.state,
   pagination: slStore.pagination,
 });
