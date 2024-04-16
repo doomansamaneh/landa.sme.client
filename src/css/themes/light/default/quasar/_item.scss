@@ -1,50 +1,36 @@
 @mixin q-item-light {
   .menu-bar .q-item.q-router-link--active {
     background-color: #{$primary}20;
-    border-radius: 8px;
-    border-left: 4px solid $primary;
     color: $primary;
-    margin-left: 16px;
     font-weight: 700;
 
     .sub {
       font-weight: 700;
     }
-
-    .q-icon {
-      color: $primary;
-    }
   }
 
-  .sub-item {
-    margin-left: 6px;
+  .menu-bar .sub-item-container {
+    border-left: 1px solid $grey
   }
 
-  .menu-bar .sub-item.q-item.q-router-link--active {
-    margin-top: 8px;
-    margin-bottom: 8px;
+  .menu-bar .q-expansion-item--expanded .q-expansion-item__toggle-icon {
+    color: $primary !important;
   }
 
-  .menu-bar .first-item.q-item.q-router-link--active {
-    margin-bottom: 8px;
+  .menu-bar
+    .q-expansion-item--expanded
+    > div
+    > .q-item
+    > .q-item__section--main {
+    color: $primary !important;
   }
 
-  .menu-bar .last-item.q-item.q-router-link--active {
-    margin-top: 8px;
-  }
-
-  .q-item__section--avatar {
-    // color: #{$black}80;
-  }
-
-  .q-expansion-item--expanded {
-    .q-item__label {
-      color: $primary;
-    }
-
-    .q-item__section--avatar {
-      color: $primary;
-    }
+  .menu-bar
+    .q-expansion-item--expanded
+    > div
+    > .q-item
+    > .q-item__section--side {
+    color: $primary !important;
   }
 
   .basic-info.q-expansion-item--expanded {
@@ -63,5 +49,13 @@
     color: $grey-9 !important;
     font-size: 14px !important;
     letter-spacing: 0 !important;
+  }
+
+  .menu-bar .q-item {
+    border-radius: 32px;
+  }
+
+  .menu-bar .q-item {
+    min-height: 40px !important;
   }
 }

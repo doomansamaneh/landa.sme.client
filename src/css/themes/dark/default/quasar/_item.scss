@@ -1,51 +1,41 @@
 @mixin q-item-dark {
   .menu-bar .q-item.q-router-link--active {
-    background-color: #{$primary}20;
-    border-radius: 8px;
-    border-left: 4px solid $yellow;
+    background-color: #{$yellow}35;
     color: $yellow;
-    margin-left: 16px;
     font-weight: 700;
 
     .sub {
       font-weight: 700;
     }
-
-    .q-icon {
-      color: $yellow;
-    }
   }
 
-  .menu-bar .sub-item.q-item.q-router-link--active {
-    margin-top: 8px;
-    margin-bottom: 8px;
+  .menu-bar .sub-item-container {
+    border-left: 1px solid $white
   }
 
-  .menu-bar .first-item.q-item.q-router-link--active {
-    margin-bottom: 8px;
-
-    .q-icon {
-      color: $yellow
-    }
+  .menu-bar .q-expansion-item--expanded .q-expansion-item__toggle-icon {
+    color: $yellow !important;
   }
 
-  .menu-bar .last-item.q-item.q-router-link--active {
-    margin-top: 8px;
+  .menu-bar
+    .q-expansion-item--expanded
+    > div
+    > .q-item
+    > .q-item__section--main {
+    color: $yellow !important;
   }
 
-  .q-expansion-item--expanded {
-    .q-item__label {
-      color: $yellow;
-    }
-
-    .q-item__section--avatar {
-        color: $yellow;
-    }
+  .menu-bar
+    .q-expansion-item--expanded
+    > div
+    > .q-item
+    > .q-item__section--side {
+    color: $yellow !important;
   }
 
   .basic-info.q-expansion-item--expanded {
     .q-item {
-      background-color: #ffffff20;
+      background-color: #00000020;
     }
   }
 
@@ -59,7 +49,13 @@
     color: $grey-5 !important;
     font-size: 14px !important;
     letter-spacing: 0 !important;
-
   }
 
+  .menu-bar .q-item {
+    border-radius: 32px;
+  }
+
+  .menu-bar .q-item {
+    min-height: 40px !important;
+  }
 }
