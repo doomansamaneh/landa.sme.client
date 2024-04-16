@@ -1,4 +1,7 @@
+import { ref } from "vue";
+import { defaultPageSize } from "src/constants";
 import { code, title, isActive, actions } from "src/constants/columns";
+
 export const accountGLColumns = [
   code,
   {

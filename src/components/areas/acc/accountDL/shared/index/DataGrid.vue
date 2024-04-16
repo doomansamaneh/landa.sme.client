@@ -14,7 +14,10 @@
         @update:model-value="reloadData"
       />
     </template> -->
-
+    <template #cell-code="{ item }">
+      {{ item.code }}
+      <small v-if="item.syncCode">({{ item.syncCode }})</small>
+    </template>
     <template #cell-debitRemained="{ item }">
       {{ item.debitRemained.toLocaleString() }}
     </template>

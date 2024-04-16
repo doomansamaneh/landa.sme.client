@@ -22,7 +22,7 @@
     </template>
     <template #cell-no="{ item }">
       <span>{{ item.no }}</span>
-      <span v-if="item.apiLogCount" class="q-pl-xs">
+      <span v-if="item.taxId" class="q-pl-xs">
         <q-icon name="o_check" color="accent" size="xs">
           <q-tooltip class="accent text-body1 no-letter-spacing">
             ارسال به سامانه مودیان
