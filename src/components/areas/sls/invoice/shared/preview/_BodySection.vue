@@ -1,9 +1,9 @@
 <template>
-  <q-markup-table flat bordered dense separator="cell">
+  <q-markup-table class="invoice-preview-body" flat bordered dense separator="cell">
     <thead>
       <tr class="bg-on-dark">
         <th colspan="100%">
-          <div class="text-body2 no-letter-spacing text-bold">
+          <div class="text-body2 no-letter-spacing text-weight-500">
             مشخصات کالا یا خدمات مورد معامله
           </div>
         </th>
@@ -93,3 +93,22 @@ const props = defineProps({
   model: Object,
 });
 </script>
+
+<style lang="scss">
+
+.invoice-preview-body th {
+  padding: 12px !important;
+  border-color: black !important;
+}
+
+.invoice-preview-body td {
+  padding: 12px !important;
+  border-color: black !important;
+}
+
+
+.invoice-preview-body.q-table--bordered {
+    border: 1.2px solid black;
+}
+
+</style>

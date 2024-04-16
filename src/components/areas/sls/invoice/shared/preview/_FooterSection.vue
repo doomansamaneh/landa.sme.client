@@ -1,5 +1,5 @@
 <template>
-  <q-markup-table flat bordered dense separator="cell">
+  <q-markup-table class="invoice-preview-footer" flat bordered dense separator="cell">
     <tbody>
       <tr>
         <td colspan="100%">
@@ -19,10 +19,10 @@
         </td>
       </tr>
       <tr>
-        <td style="width: 50%; min-height: 90px; height: 90px" class="text-top">
+        <td style="padding: 40px 16px;" class="text-body2 no-letter-spacing">
           مهر و امضا فروشنده
         </td>
-        <td>مهر و امضا خریدار</td>
+        <td style="padding: 40px 16px;" class="text-body2 no-letter-spacing">مهر و امضا خریدار</td>
       </tr>
     </tbody>
   </q-markup-table>
@@ -41,5 +41,18 @@ const appConfigStore = useAppConfigModel();
 .text-wrap {
   white-space: pre-line;
   word-wrap: break-word;
+}
+
+.invoice-preview-footer th {
+  border-color: black;
+}
+
+.invoice-preview-footer td {
+  border-color: black;
+}
+
+
+.invoice-preview-footer.q-table--bordered {
+  border: 1.2px solid black !important;
 }
 </style>

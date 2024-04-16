@@ -54,7 +54,7 @@
   </div>
 
   <q-markup-table
-    class="preview-invoice-table"
+    class="invoice-preview"
     separator="cell"
     flat
     bordered
@@ -63,7 +63,7 @@
     <tbody v-if="appConfigStore.model?.value?.companySetting">
       <tr class="bg-on-dark text-center">
         <td colspan="100%">
-          <div class="text-body2 no-letter-spacing text-weight-700">
+          <div class="text-body2 no-letter-spacing text-weight-500">
             فروشنده
           </div>
         </td>
@@ -103,8 +103,8 @@
     </tbody>
     <tbody>
       <tr class="bg-on-dark text-center">
-        <td colspan="100%">
-          <div class="text-body2 no-letter-spacing text-bold">خریدار</div>
+        <td colspan="100%" style="border-top: 0.5px solid;">
+          <div class="text-body2 no-letter-spacing text-weight-500">خریدار</div>
         </td>
       </tr>
       <tr>
@@ -152,13 +152,19 @@ const appConfigStore = useAppConfigModel();
 </script>
 
 <style lang="scss">
-.preview-invoice-table .header {
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
+
+.invoice-preview th {
+  padding: 12px !important;
+  border-color: black !important;
 }
 
-.preview-invoice-table td {
-  padding: 8px !important;
+.invoice-preview td {
+  padding: 12px !important;
+  border-color: black !important;
+}
+
+.invoice-preview.q-table--bordered {
+    border: 1.2px solid black !important;
 }
 
 .sme-logo {
