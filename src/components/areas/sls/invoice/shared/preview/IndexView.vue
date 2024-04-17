@@ -7,7 +7,7 @@
         {{ $t("shared.labels.edit") }}
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
-      <q-btn @click="helper.print" class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
+      <q-btn @click="helper.print" class="text-body2 no-letter-spacing"
         padding="6px 12px" rounded unelevated no-caps>
         <q-icon size="20px" name="o_print" class="q-mr-xs" />
         چاپ
