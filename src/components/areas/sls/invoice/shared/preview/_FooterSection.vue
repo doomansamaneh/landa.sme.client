@@ -1,31 +1,27 @@
 <template>
-  <q-markup-table class="invoice-preview-footer" flat bordered dense separator="cell">
+  <table style="border: 1px solid #2d2d2d; width: 100%; border-collapse: collapse;">
     <tbody>
       <tr>
-        <td colspan="100%">
+        <td style="border: 1px solid #2d2d2d;" colspan="100%">
           <div>
             <strong v-if="model.value.contractTitle">
               {{ model.value.contractTitle }} /
             </strong>
-            <div class="text-wrap" v-html="model.value.summary"></div>
-            <div
-              v-if="appConfigStore.model.value?.companySetting?.invoiceComment"
-              class="text-wrap"
-              v-html="
-                appConfigStore.model.value?.companySetting?.invoiceComment
-              "
-            ></div>
+            <div class="text-wrap" style="padding: 16px 6px;" v-html="model.value.summary"></div>
+            <div v-if="appConfigStore.model.value?.companySetting?.invoiceComment" class="text-wrap" v-html="appConfigStore.model.value?.companySetting?.invoiceComment
+              "></div>
           </div>
         </td>
       </tr>
       <tr>
-        <td style="padding: 40px 16px;" class="text-body2 no-letter-spacing">
+        <td style="padding: 40px 6px; border: 1px solid #2d2d2d;" class="text-body2 no-letter-spacing">
           مهر و امضا فروشنده
         </td>
-        <td style="padding: 40px 16px;" class="text-body2 no-letter-spacing">مهر و امضا خریدار</td>
+        <td style="padding: 40px 6px; border: 1px solid #2d2d2d;" class="text-body2 no-letter-spacing">مهر و امضا
+          خریدار</td>
       </tr>
     </tbody>
-  </q-markup-table>
+  </table>
 </template>
 
 <script setup>
@@ -41,18 +37,5 @@ const appConfigStore = useAppConfigModel();
 .text-wrap {
   white-space: pre-line;
   word-wrap: break-word;
-}
-
-.invoice-preview-footer th {
-  border-color: black;
-}
-
-.invoice-preview-footer td {
-  border-color: black;
-}
-
-
-.invoice-preview-footer.q-table--bordered {
-  border: 1.2px solid black !important;
 }
 </style>

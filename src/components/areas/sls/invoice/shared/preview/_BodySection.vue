@@ -1,27 +1,27 @@
 <template>
-  <q-markup-table class="invoice-preview-body" flat bordered dense separator="cell">
+    <table style="border: 1px solid #2d2d2d; width: 100%; border-collapse: collapse;">
     <thead>
-      <tr class="bg-on-dark">
-        <th colspan="100%">
+      <tr class="text-center">
+        <td style="border: 1px solid #2d2d2d; padding: 8px;" colspan="100%">
           <div class="text-body2 no-letter-spacing text-weight-500">
             مشخصات کالا یا خدمات مورد معامله
           </div>
-        </th>
+        </td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>ردیف</td>
-        <td>کد</td>
-        <td>کالا/خدمت</td>
-        <td>مقدار</td>
-        <td>واحد</td>
-        <td>مبلغ واحد</td>
-        <td>مبلغ کل</td>
-        <td v-if="formStore.totalDiscount.value">تخفیف</td>
-        <td v-if="formStore.totalDiscount.value">مبلغ پس از تخفیف</td>
-        <td>جمع مالیات و عوارض</td>
-        <td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">ردیف</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">کد</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">کالا/خدمت</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">مقدار</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">واحد</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">مبلغ واحد</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">مبلغ کل</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;" v-if="formStore.totalDiscount.value">تخفیف</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;" v-if="formStore.totalDiscount.value">مبلغ پس از تخفیف</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">جمع مالیات و عوارض</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">
           جمع کل (
           <span class="text-weight-700">
             {{ model.value.currencyTitle }}
@@ -30,59 +30,59 @@
         </td>
       </tr>
       <tr v-for="(item, index) in model.value.invoiceItems" :key="item.id">
-        <td>{{ index + 1 }}</td>
-        <td>{{ item.productCode }} {{ item.productTaxCode }}</td>
-        <td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">{{ index + 1 }}</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">{{ item.productCode }} {{ item.productTaxCode }}</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">
           <div class="text-wrap">
             {{ item.productTitle }}
             <small v-if="item.comment">({{ item.comment }})</small>
           </div>
         </td>
-        <td>{{ item.quantity.toLocaleString() }}</td>
-        <td>{{ item.productUnitTitle }}</td>
-        <td>{{ item.price.toLocaleString() }}</td>
-        <td>{{ (item.quantity * item.price).toLocaleString() }}</td>
-        <td v-if="formStore.totalDiscount.value">
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">{{ item.quantity.toLocaleString() }}</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">{{ item.productUnitTitle }}</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">{{ item.price.toLocaleString() }}</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">{{ (item.quantity * item.price).toLocaleString() }}</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;" v-if="formStore.totalDiscount.value">
           {{ item.discount.toLocaleString() }}
         </td>
-        <td v-if="formStore.totalDiscount.value">
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;" v-if="formStore.totalDiscount.value">
           {{ (item.quantity * item.price - item.discount).toLocaleString() }}
         </td>
-        <td>{{ item.vatAmount.toLocaleString() }}</td>
-        <td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">{{ item.vatAmount.toLocaleString() }}</td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">
           {{ item.totalPrice.toLocaleString() }}
         </td>
       </tr>
       <tr>
-        <td colspan="6" class="text-right">
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;" colspan="6" class="text-right">
           <strong>جمع کل:</strong>
           ({{ numberToWords(formStore.totalPrice.value) }}
           <b>{{ model.value.currencyTitle }})</b>
         </td>
-        <td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">
           <strong>
             {{ formStore.totalNetPrice.value.toLocaleString() }}
           </strong>
         </td>
-        <td v-if="formStore.totalDiscount.value">
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;" v-if="formStore.totalDiscount.value">
           <strong>{{ formStore.totalDiscount.value.toLocaleString() }}</strong>
         </td>
-        <td v-if="formStore.totalDiscount.value">
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;" v-if="formStore.totalDiscount.value">
           <strong>{{
             (
               formStore.totalPrice.value - formStore.totalVat.value
             ).toLocaleString()
           }}</strong>
         </td>
-        <td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">
           <strong>{{ formStore.totalVat.value.toLocaleString() }}</strong>
         </td>
-        <td>
+        <td style="padding: 6px 8px; border: 1px solid #2d2d2d;">
           <strong>{{ formStore.totalPrice.value.toLocaleString() }}</strong>
         </td>
       </tr>
     </tbody>
-  </q-markup-table>
+  </table>
 </template>
 
 <script setup>
@@ -95,20 +95,5 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-
-.invoice-preview-body th {
-  padding: 12px !important;
-  border-color: black !important;
-}
-
-.invoice-preview-body td {
-  padding: 12px !important;
-  border-color: black !important;
-}
-
-
-.invoice-preview-body.q-table--bordered {
-    border: 1.2px solid black;
-}
 
 </style>

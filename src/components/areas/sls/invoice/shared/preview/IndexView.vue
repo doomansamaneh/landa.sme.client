@@ -35,6 +35,7 @@
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
 
 import ToolBar from "src/components/shared/ToolBarDesktop.vue";
@@ -47,6 +48,9 @@ const props = defineProps({
   item: Object,
   title: String,
 });
+
+
+const { t } = useI18n()
 
 const formStore = useInvoiceModel(true);
 const route = useRoute();
@@ -78,7 +82,14 @@ function print() {
 
   const printWindow = window.open('', '_blank');
 
-  printWindow.document.body.appendChild(clonedElement);
+  printWindow.document.write(`<html><head><title>${t("page.payment-detail.invoice-label")}</title>`);
+  printWindow.document.write('</head><body>');
+  printWindow.document.write('<div class="printable"></div>');
+  printWindow.document.write('</body></html>');
+  printWindow.document.close();
+
+  const printableContainer = printWindow.document.querySelector('.printable');
+  printableContainer.appendChild(clonedElement);
 
   const styles = document.querySelectorAll('style, link[rel="stylesheet"]');
   styles.forEach(style => {
@@ -89,4 +100,5 @@ function print() {
     printWindow.print();
   }, 500);
 }
+
 </script>
