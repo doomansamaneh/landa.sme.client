@@ -1,0 +1,33 @@
+@mixin warning-light {
+  .warning.q-card {
+    border: 1px solid $orange !important;
+    box-shadow: 0px 2px 10px 0px #3a35411a !important;
+    background-color: #{$warning}30 !important;
+  }
+
+  .warning .q-card__section {
+    padding: 48px !important;
+  }
+
+  .warning .title {
+    font-weight: 700 !important;
+    font-family: "vazir-bold" !important;
+    color: $red-6 !important;
+    font-size: 20px !important;
+    letter-spacing: 0 !important;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    .warning .q-card__section {
+      padding: 24px !important;
+    }
+
+    .warning .title {
+      font-weight: 700 !important;
+      font-family: "vazir-bold" !important;
+      color: $red-6!important;
+      font-size: 20px !important;
+      letter-spacing: 0 !important;
+    }
+  }
+}
