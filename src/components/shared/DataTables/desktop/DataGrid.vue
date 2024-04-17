@@ -98,7 +98,7 @@
                   dense
                   round
                   @click="tableStore.toggleExpand(row)"
-                  icon="chevron_left"
+                  :icon="chevronIcon()"
                   :class="row.expanded ? 'expand-open' : 'expand-close'"
                 />
               </td>
@@ -281,6 +281,10 @@ const containerClass = computed(
 const goToPreview = (row) => {
   emit("row-dbl-click", row);
 };
+
+const chevronIcon = () => {
+  return $q.lang.rtl ? 'chevron_left' : 'chevron_right'
+}
 
 defineExpose({
   tableStore,
