@@ -7,7 +7,7 @@
         {{ $t("shared.labels.edit") }}
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
-      <q-btn @click="print" class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
+      <q-btn @click="helper.print" class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px" rounded unelevated no-caps>
         <q-icon size="20px" name="o_print" class="q-mr-xs" />
         چاپ
@@ -35,8 +35,8 @@
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
-import { useI18n } from "vue-i18n";
 import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
+import { helper } from "src/helpers";
 
 import ToolBar from "src/components/shared/ToolBarDesktop.vue";
 import InvoiceHeader from "./_HeaderSection.vue";
@@ -48,9 +48,6 @@ const props = defineProps({
   item: Object,
   title: String,
 });
-
-
-const { t } = useI18n()
 
 const formStore = useInvoiceModel(true);
 const route = useRoute();
@@ -72,33 +69,5 @@ onMounted(() => {
   formStore.getById(id.value);
 });
 
-function print() {
-  const printableElement = document.querySelector('.printable');
-  const clonedElement = printableElement.cloneNode(true);
-
-  const direction = window.getComputedStyle(printableElement).direction;
-
-  clonedElement.style.direction = direction;
-
-  const printWindow = window.open('', '_blank');
-
-  printWindow.document.write(`<html><head><title>${t("page.payment-detail.invoice-label")}</title>`);
-  printWindow.document.write('</head><body>');
-  printWindow.document.write('<div class="printable"></div>');
-  printWindow.document.write('</body></html>');
-  printWindow.document.close();
-
-  const printableContainer = printWindow.document.querySelector('.printable');
-  printableContainer.appendChild(clonedElement);
-
-  const styles = document.querySelectorAll('style, link[rel="stylesheet"]');
-  styles.forEach(style => {
-    printWindow.document.head.appendChild(style.cloneNode(true));
-  });
-
-  setTimeout(() => {
-    printWindow.print();
-  }, 500);
-}
 
 </script>
