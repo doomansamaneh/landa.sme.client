@@ -21,7 +21,7 @@
           :filter-expression="slFilter"
         />
       </div>
-      <div class="col-md-1 col-sm-12 col-xs-12">
+      <div class="col-md-2 col-sm-12 col-xs-12">
         <custom-input
           type="number"
           hide-bottom-space

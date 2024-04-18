@@ -25,8 +25,21 @@ export function useAppConfigModel() {
     loadData();
   }
 
+  const uploadFile = async (file, fieldId) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    //formData.append("entityName", "Cmn.AppConfig");
+
+    const response = await fetchWrapper.post(
+      "cmn/UploadMedia/SaveMedia",
+      formData
+    );
+    model.value[fieldId] = response?.data?.data.id;
+  };
+
   return {
     model,
     reset,
+    uploadFile,
   };
 }

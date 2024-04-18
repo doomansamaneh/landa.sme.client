@@ -1,9 +1,11 @@
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { vatModel, vatDeductionItemModel } from "src/models/areas/cmn/vatModel";
 import { useFormActions } from "src/composables/useFormActions";
 
 export function useVatModel() {
   const model = ref(vatModel);
+  const route = useRoute();
 
   const crudStore = useFormActions("cmn/vat", model);
 
@@ -20,6 +22,10 @@ export function useVatModel() {
   const pushNewRow = () => {
     model.value.vatDeductionItems.push({ ...vatDeductionItemModel });
   };
+
+  onMounted(() => {
+    crudStore.getById(route.params.id);
+  });
 
   return {
     model,

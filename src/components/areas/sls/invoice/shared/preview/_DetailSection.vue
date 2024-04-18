@@ -8,7 +8,7 @@
         </div>
 
         <div class="row items-center">
-          <span class="col-3 text-caption text-bold">سند حسابداری:</span>
+          <span class="col-2 text-caption text-bold">سند حسابداری:</span>
           <span class="text-body3 q-mx-md">
             <router-link
               class="no-decoration"

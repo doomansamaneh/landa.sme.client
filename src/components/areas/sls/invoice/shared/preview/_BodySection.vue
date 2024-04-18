@@ -1,5 +1,11 @@
 <template>
-  <q-markup-table class="invoice-preview-body" flat bordered dense separator="cell">
+  <q-markup-table
+    class="invoice-preview-body"
+    flat
+    bordered
+    dense
+    separator="cell"
+  >
     <thead>
       <tr class="bg-on-dark">
         <th colspan="100%">
@@ -22,16 +28,19 @@
         <td v-if="formStore.totalDiscount.value">مبلغ پس از تخفیف</td>
         <td>جمع مالیات و عوارض</td>
         <td>
-          جمع کل (
-          <span class="text-weight-700">
-            {{ model.value.currencyTitle }}
-          </span>
-          )
+          جمع کل (<span class="text-weight-700">
+            {{ model.value.currencyTitle }} </span
+          >)
         </td>
       </tr>
       <tr v-for="(item, index) in model.value.invoiceItems" :key="item.id">
         <td>{{ index + 1 }}</td>
-        <td>{{ item.productCode }} {{ item.productTaxCode }}</td>
+        <td>
+          {{ item.productCode }}
+          <small v-if="item.productTaxCode">
+            ({{ item.productTaxCode }})
+          </small>
+        </td>
         <td>
           <div class="text-wrap">
             {{ item.productTitle }}
@@ -95,20 +104,15 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-
-.invoice-preview-body th {
-  padding: 12px !important;
-  border-color: black !important;
+.invoice-preview-body {
+  th,
+  td {
+    padding: 5px !important;
+    border-color: black !important;
+  }
 }
-
-.invoice-preview-body td {
-  padding: 12px !important;
-  border-color: black !important;
-}
-
 
 .invoice-preview-body.q-table--bordered {
-    border: 1.2px solid black;
+  border: 1.2px solid black;
 }
-
 </style>

@@ -1,6 +1,7 @@
 <template>
-  <div class="q-my-lg" v-if="!taxStore.apiResult.value.data">
+  <div class="q-my-lg">
     <q-btn
+      v-if="!taxStore.apiResult.value.data"
       color="primary"
       unelevated
       rounded
@@ -14,6 +15,11 @@
     >
       <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
       <span>ارسال به سامانه مودیان</span>
+    </q-btn>
+    <!-- v-if="!configStore.model.value.companySetting?.taxApiSetting?.clientId" -->
+    <q-btn to="/cmn/appConfig/VATInfo" flat unelevated>
+      <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
+      <span>پیکربندی سامانه مودیان</span>
     </q-btn>
   </div>
   <div class="q-mt-md">
@@ -34,6 +40,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useTaxApiLogModel } from "src/components/areas/sls/_composables/useTaxApiLogModel";
+import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
 import DataGrid from "src/components/areas/sls/invoiceTaxApiLog/shared/index/DataGrid.vue";
 
@@ -43,6 +50,7 @@ const props = defineProps({
 });
 const taxGrid = ref(null);
 const taxStore = useTaxApiLogModel();
+const configStore = useAppConfigModel();
 onMounted(() => {
   taxStore.isSentApiSuccessfully(props.model.value.id);
 });

@@ -4,8 +4,8 @@ import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
 import { Loading } from "quasar";
 
-//const BASE_URL = "http://localhost:5188";
-const BASE_URL = "https://api.landa-sme.ir";
+const BASE_URL = "http://localhost:5188";
+//const BASE_URL = "https://api.landa-sme.ir";
 
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.withCredentials = true;
@@ -24,6 +24,9 @@ function createRequest(method) {
     onInitRequest();
     const fullUrl = `${BASE_URL}/${url}`;
     const authHeaders = getAuthHeaders(fullUrl);
+    if (data instanceof FormData) {
+      authHeaders["Content-Type"] = "multipart/form-data";
+    }
     return axios({
       method: method,
       url: fullUrl,
