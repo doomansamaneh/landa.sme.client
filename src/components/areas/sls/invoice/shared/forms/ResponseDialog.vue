@@ -42,7 +42,7 @@
           <q-item
             clickable
             v-ripple
-            :to="`/sls/invoice/preview/${responseData.id}`"
+            :to="`/${baseRoute}/preview/${responseData.id}`"
             class="rounded-borders"
           >
             <q-item-section avatar top>
@@ -51,7 +51,7 @@
 
             <q-item-section>
               <q-item-label lines="1">پیش نمایش</q-item-label>
-              <q-item-label caption>پیش نمایش و چاپ فاکتور</q-item-label>
+              <q-item-label caption>پیش نمایش و چاپ</q-item-label>
             </q-item-section>
           </q-item>
 
@@ -117,6 +117,7 @@ import { useDialogPluginComponent } from "quasar";
 
 const props = defineProps({
   responseData: Object,
+  baseRoute: String,
 });
 
 defineEmits([...useDialogPluginComponent.emits]);

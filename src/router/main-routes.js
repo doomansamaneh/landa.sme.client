@@ -261,10 +261,32 @@ export default {
       ],
     },
 
-    // {
-    //   path: "sls/quote",
-    //   component: () => import("pages/areas/sls/quote/IndexPage.vue"),
-    // },
+    {
+      path: "sls/quote",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/sls/quote/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/sls/quote/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/sls/quote/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/sls/quote/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () => import("pages/areas/sls/quote/PreviewPage.vue"),
+        },
+      ],
+    },
+
     {
       path: "sls/invoice",
       children: [
@@ -287,10 +309,6 @@ export default {
         {
           path: "copy/:id",
           component: () => import("pages/areas/sls/invoice/CopyPage.vue"),
-        },
-        {
-          path: "detail/:id",
-          component: () => import("pages/areas/sls/invoice/DetailPage.vue"),
         },
         {
           path: "remained/:remained",

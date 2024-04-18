@@ -11,10 +11,9 @@
         padding="8px 16px"
         rounded
         class="primary-shadow"
+        icon="o_save"
       >
-        <slot name="ok-label">
-          {{ $t("shared.labels.save") }}
-        </slot>
+        <slot name="ok-label"> {{ $t("shared.labels.save") }}</slot>
       </q-btn>
     </slot>
     <slot name="between"></slot>
@@ -38,13 +37,13 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["ok-clicked", "cancel-clicked"])
+const emit = defineEmits(["ok-clicked", "cancel-clicked"]);
 
 function okClicked() {
-  emit("ok-clicked")
+  emit("ok-clicked");
 }
 
 function cancelClicked() {
-  emit("cancel-clicked")
+  emit("cancel-clicked");
 }
 </script>

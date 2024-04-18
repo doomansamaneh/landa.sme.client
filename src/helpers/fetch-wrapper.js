@@ -4,7 +4,7 @@ import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
 import { Loading } from "quasar";
 
-const BASE_URL = "http://localhost:5188";
+const BASE_URL = "http://localhost:9090";
 //const BASE_URL = "https://api.landa-sme.ir";
 
 axios.defaults.baseURL = BASE_URL;
@@ -20,8 +20,8 @@ export const fetchWrapper = {
 };
 
 function createRequest(method) {
-  return (url, data) => {
-    onInitRequest();
+  return (url, data, disableLoader) => {
+    if (!disableLoader) onInitRequest();
     const fullUrl = `${BASE_URL}/${url}`;
     const authHeaders = getAuthHeaders(fullUrl);
     if (data instanceof FormData) {
@@ -42,7 +42,7 @@ function createRequest(method) {
         return handleError(url, error);
       })
       .finally(() => {
-        onCompleteRequest();
+        if (!disableLoader) onCompleteRequest();
       });
   };
 }

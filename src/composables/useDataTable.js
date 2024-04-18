@@ -101,7 +101,7 @@ export function useDataTable(dataSource, dataColumns, store) {
     try {
       setPayload();
 
-      const response = await fetchWrapper.post(dataSource, gridPage);
+      const response = await fetchWrapper.post(dataSource, gridPage, true);
       handleResponse(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);

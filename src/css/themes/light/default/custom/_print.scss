@@ -1,11 +1,2 @@
 @media print {
-    body * {
-      visibility: hidden;
-    }
-    .printable * {
-      visibility: visible;
-    }
-    .printable {
-      z-index: 99;
-    }
-  }
+}

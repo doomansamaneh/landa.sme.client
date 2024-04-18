@@ -27,12 +27,13 @@ import Mobile from "src/components/areas/sls/invoice/mobile/forms/CreateForm.vue
 const props = defineProps({
   title: String,
   action: String,
+  method: String,
 });
 const route = useRoute();
-const formStore = useInvoiceModel();
+const formStore = useInvoiceModel({ baseRoute: "sls/invoice" });
 const form = ref(null);
 
 onMounted(() => {
-  formStore.getById(route.params.id);
+  formStore.getById(route.params.id, props.method);
 });
 </script>

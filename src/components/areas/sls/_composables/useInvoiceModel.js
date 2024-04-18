@@ -8,27 +8,29 @@ import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
-export function useInvoiceModel(preview) {
+export function useInvoiceModel(config) {
   const $q = useQuasar();
   const router = useRouter();
   const itemStore = useInvoiceItemModel();
 
   const model = ref(invoiceModel);
 
-  const crudStore = useFormActions("sls/invoice", model);
+  const crudStore = useFormActions(config.baseRoute, model);
 
-  async function getById(id) {
+  async function getById(id, action) {
     let responseData = null;
     if (id) {
-      if (preview) responseData = await crudStore.getPreviewById(id);
+      if (config.preview) responseData = await crudStore.getPreviewById(id);
       else responseData = await crudStore.getById(id);
     } else responseData = await crudStore.getCreateModel();
-    if (responseData) addWatch();
+    if (responseData) {
+      if (action === "copy") {
+        model.value.quoteId = null;
+        model.value.fiscalYearId = null;
+        addWatch();
+      }
+    }
   }
-
-  // onMounted(() => {
-  //   getById(route.params.id);
-  // });
 
   function addWatch() {
     watch(
@@ -66,14 +68,16 @@ export function useInvoiceModel(preview) {
     if (!currentRow.productUnitId) {
       $q.notify({
         type: "negative",
-        message: "<div class='text-body1 text-white no-letter-spacing'>لطفا نام کالا و مقدار آن را تعریف کنید</div>",
+        message:
+          "<div class='text-body1 text-white no-letter-spacing'>لطفا نام کالا و مقدار آن را تعریف کنید</div>",
         position: "top-right",
         html: true,
-        badgeClass: "border-red-1 bg-white text-body3 text-bold red-shadow text-negative",
-        classes: "q-ma-xl border-radius-md q-px-md q-py-xs bg-negative red-shadow"
+        badgeClass:
+          "border-red-1 bg-white text-body3 text-bold red-shadow text-negative",
+        classes:
+          "q-ma-xl border-radius-md q-px-md q-py-xs bg-negative red-shadow",
       });
-    } else
-    model.value.invoiceItems.splice(index + 1, 0, newRow);
+    } else model.value.invoiceItems.splice(index + 1, 0, newRow);
   };
 
   const pushNewRow = (item) => {
@@ -140,6 +144,7 @@ export function useInvoiceModel(preview) {
           component: ResponseDialog,
           componentProps: {
             responseData: responseData.data,
+            baseRoute: config.baseRoute,
             //title: t("shared.labels.deleteConfirm"),
             //message: `${t("shared.labels.deleteMessage")}.`,
             // ok: t("shared.labels.delete"),

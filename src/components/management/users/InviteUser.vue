@@ -73,70 +73,70 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref } from "vue";
 
-import { useAuthStore } from "src/stores"
-import { fetchWrapper } from "src/helpers"
+import { useAuthStore } from "src/stores";
+import { fetchWrapper } from "src/helpers";
 
-import Actions from "src/components/shared/Forms/FormCardActions.vue"
-import BackButton from "src/components/shared/Buttons/GoBackLink.vue"
+import Actions from "src/components/shared/forms/FormCardActions.vue";
+import BackButton from "src/components/shared/Buttons/GoBackLink.vue";
 
-const authStore = useAuthStore()
+const authStore = useAuthStore();
 
-const emit = defineEmits(["submitted"])
-const form = ref(null)
+const emit = defineEmits(["submitted"]);
+const form = ref(null);
 
-const nameOfUser = ref("")
-const emailOfUser = ref("")
-const multiple = ref(null)
+const nameOfUser = ref("");
+const emailOfUser = ref("");
+const multiple = ref(null);
 const userGroup = [
   {
     label: "گزارشگیری فقط مشاهده",
     value: "گزارشگیری فقط مشاهده",
     description: "گزارشگیری فقط مشاهده",
-    icon: "o_visibility"
+    icon: "o_visibility",
   },
   {
     label: "کارشناس فروش",
     value: "کارشناس فروش",
     description: "کارشناس فروش",
-    icon: "o_payments"
+    icon: "o_payments",
   },
   {
     label: "کارشناس خرید",
     value: "کارشناس خرید",
     description: "کارشناس خرید",
-    icon: "o_shopping_bag"
+    icon: "o_shopping_bag",
   },
   {
     label: "مدیران ارشد",
     value: "مدیران ارشد",
     description: "مدیران ارشد",
-    icon: "o_stars"
+    icon: "o_stars",
   },
   {
     label: "کارشناس دریافت و پرداخت",
     value: "کارشناس دریافت و پرداخت",
     description: "کارشناس دریافت و پرداخت",
-    icon: "o_credit_card"
+    icon: "o_credit_card",
   },
   {
     label: "حسابدار - کارشناس",
     value: "حسابدار - کارشناس",
     description: "حسابدار - کارشناس",
-    icon: "o_badge"
-  }
-]
+    icon: "o_badge",
+  },
+];
 
 async function submitForm() {
   await form.value.validate().then((success) => {
     if (success) {
-      changePassword()
+      changePassword();
     } else {
       //todo: how to show validation message to user
-      alert("validation error")
+      alert("validation error");
     }
-  })
+  });
 }
 
 async function changePassword() {
@@ -145,10 +145,10 @@ async function changePassword() {
       id: authStore.user.id,
       oldPassword: oldPassword.value,
       password: newPassword.value,
-      confirmPassword: confirmNewPassword.value
+      confirmPassword: confirmNewPassword.value,
     })
     .then((response) => {
-      console.log(response)
+      console.log(response);
       //handleResponse(response, data)
     })
     .success(() => {
@@ -156,7 +156,7 @@ async function changePassword() {
     })
     .finally(() => {
       //loading.value = false;
-    })
+    });
 }
 </script>
 

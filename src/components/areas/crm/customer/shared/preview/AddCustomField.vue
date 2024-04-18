@@ -6,14 +6,9 @@
     transition-duration="600"
     no-backdrop-dismiss
   >
-    <q-card
-      class="dialog-card no-shadow"
-      style="width:600px"
-    >
+    <q-card class="dialog-card no-shadow" style="width: 600px">
       <q-card-section class="row items-center q-px-lg">
-        <div class="text-h6">
-          ایجاد ویژگی‌ها
-        </div>
+        <div class="text-h6">ایجاد ویژگی‌ها</div>
         <q-space />
         <q-btn
           icon="close"
@@ -28,28 +23,14 @@
         <div class="row q-gutter-md q-px-sm q-pb-sm">
           <div class="col">
             <div>
-              <q-item-label
-                caption
-                class="q-mb-sm"
-              >عنوان</q-item-label>
-              <q-input
-                v-model="text"
-                outlined
-                dense
-              />
+              <q-item-label caption class="q-mb-sm">عنوان</q-item-label>
+              <q-input v-model="text" outlined dense />
             </div>
           </div>
           <div class="col">
             <div>
-              <q-item-label
-                caption
-                class="q-mb-sm"
-              >مقدار</q-item-label>
-              <q-input
-                v-model="text"
-                outlined
-                dense
-              />
+              <q-item-label caption class="q-mb-sm">مقدار</q-item-label>
+              <q-input v-model="text" outlined dense />
             </div>
           </div>
         </div>
@@ -76,12 +57,7 @@
           >
             ذخیره و جدید
           </q-btn>
-          <q-btn
-            unelevated
-            v-close-popup
-            no-caps
-            padding="8px 16px"
-          >
+          <q-btn unelevated v-close-popup no-caps padding="8px 16px">
             انصراف
           </q-btn>
         </div>
@@ -91,10 +67,8 @@
 </template>
 
 <script setup>
-import Actions from "src/components/shared/Forms/FormCardActions.vue"
-
+import Actions from "src/components/shared/forms/FormCardActions.vue";
 </script>
-
 
 <style scoped>
 .q-item__label--caption {

@@ -14,7 +14,7 @@
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
       <q-btn
-        @click="helper.print"
+        @click="helper.print('ivoicePreview')"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -30,7 +30,7 @@
   <div class="row q-col-gutter-lg" :style="marginTop()">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card class="bordered">
-        <q-card-section class="printable q-gutter-y-sm">
+        <q-card-section class="q-gutter-y-sm" id="ivoicePreview">
           <invoice-header :model="formStore.model" />
           <invoice-body :model="formStore.model" :form-store="formStore" />
           <invoice-footer :model="formStore.model" />
@@ -61,7 +61,7 @@ const props = defineProps({
   title: String,
 });
 
-const formStore = useInvoiceModel(true);
+const formStore = useInvoiceModel({ baseRoute: "sls/invoice", preview: true });
 const route = useRoute();
 const router = useRouter();
 

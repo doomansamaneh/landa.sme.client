@@ -174,35 +174,36 @@ export const helper = {
     return parseFloat(cleanedValue);
   },
 
-  print() {
-
-    const printableElement = document.querySelector('.printable');
+  print(printId) {
+    const printableElement = document.querySelector(`#${printId}`);
     const clonedElement = printableElement.cloneNode(true);
 
     const direction = window.getComputedStyle(printableElement).direction;
 
-    const iframe = document.createElement('iframe');
-    iframe.style.position = 'absolute';
-    iframe.style.width = '0';
-    iframe.style.height = '0';
-    iframe.style.border = '0';
+    const iframe = document.createElement("iframe");
+    iframe.style.position = "absolute";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    iframe.style.border = "0";
 
     document.body.appendChild(iframe);
 
     const printWindow = iframe.contentWindow;
 
     printWindow.document.write(`<html><head><title>landa-SME Print</title>`);
-    printWindow.document.write(`<style>body { direction: ${direction}; }</style>`);
-    printWindow.document.write('</head><body>');
+    printWindow.document.write(
+      `<style>body { direction: ${direction}; }</style>`
+    );
+    printWindow.document.write("</head><body>");
     printWindow.document.write('<div class="printable"></div>');
-    printWindow.document.write('</body></html>');
+    printWindow.document.write("</body></html>");
     printWindow.document.close();
 
-    const printableContainer = printWindow.document.querySelector('.printable');
+    const printableContainer = printWindow.document.querySelector(".printable");
     printableContainer.appendChild(clonedElement);
 
     const styles = document.querySelectorAll('style, link[rel="stylesheet"]');
-    styles.forEach(style => {
+    styles.forEach((style) => {
       printWindow.document.head.appendChild(style.cloneNode(true));
     });
 

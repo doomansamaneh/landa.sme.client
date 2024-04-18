@@ -120,4 +120,9 @@ function editBatch() {
     await reloadData();
   });
 }
+
+const reloadData = async () => {
+  if (desktopGrid?.value) await desktopGrid.value.tableStore.reloadData();
+  else if (mobileGrid?.value) await mobileGrid.value.tableStore.reloadData();
+};
 </script>
