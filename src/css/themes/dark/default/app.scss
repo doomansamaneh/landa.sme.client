@@ -42,5 +42,7 @@
   @include breakpoints-dark();
   @include create-form-dark();
   @include tips-dark();
+  @include danger-dark();
+  @include warning-dark();
   @include border-dark();
 }

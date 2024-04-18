@@ -1,0 +1,35 @@
+@mixin danger-dark {
+
+  .danger.q-card {
+    border: 1px solid $negative !important;
+    box-shadow: 0px 2px 10px 0px rgba(58, 53, 65, 0.1) !important;
+    background-color: #{$negative}45 !important;
+  }
+
+  .danger .q-card__section {
+    padding: 48px !important;
+  }
+
+  .danger .title {
+    font-weight: 700 !important;
+    font-family: "vazir-bold" !important;
+    color: $negative !important;
+    font-size: 20px !important;
+    letter-spacing: 0 !important;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+
+    .danger .q-card__section {
+      padding: 24px !important;
+    }
+
+    .danger .title {
+      font-weight: 700 !important;
+      font-family: "vazir-bold" !important;
+      color: $negative !important;
+      font-size: 20px !important;
+      letter-spacing: 0 !important;
+    }
+  }
+}

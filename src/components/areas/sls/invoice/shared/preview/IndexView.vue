@@ -14,8 +14,8 @@
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
       <q-btn
-        @click="print"
-        class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
+        @click="helper.print"
+        class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
         unelevated
@@ -48,6 +48,7 @@ import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
+import { helper } from "src/helpers";
 
 import ToolBar from "src/components/shared/ToolBarDesktop.vue";
 import InvoiceHeader from "./_HeaderSection.vue";
@@ -79,26 +80,4 @@ const marginTop = () => {
 onMounted(() => {
   formStore.getById(id.value);
 });
-
-function print() {
-  const printableElement = document.querySelector(".printable");
-  const clonedElement = printableElement.cloneNode(true);
-
-  const direction = window.getComputedStyle(printableElement).direction;
-
-  clonedElement.style.direction = direction;
-
-  const printWindow = window.open("", "_blank");
-
-  printWindow.document.body.appendChild(clonedElement);
-
-  const styles = document.querySelectorAll('style, link[rel="stylesheet"]');
-  styles.forEach((style) => {
-    printWindow.document.head.appendChild(style.cloneNode(true));
-  });
-
-  setTimeout(() => {
-    printWindow.print();
-  }, 500);
-}
 </script>

@@ -46,5 +46,7 @@
   @include breakpoints-light();
   @include create-form-light();
   @include tips-light();
+  @include danger-light();
+  @include warning-light();
   @include border-light();
 }

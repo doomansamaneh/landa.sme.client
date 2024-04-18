@@ -22,25 +22,7 @@ export const helper = {
     return enumType[0];
   },
 
-  // newGuid() {
-  //   // Generate a random array of 16 bytes (128 bits)
-  //   const byteArray = new Uint8Array(16);
-  //   crypto.getRandomValues(byteArray);
-
-  //   // Set the version (4) and variant (8-11) bits
-  //   byteArray[6] = (byteArray[6] & 0x0F) | 0x40; // version 4
-  //   byteArray[8] = (byteArray[8] & 0x3F) | 0x80; // variant 10
-
-  //   // Convert the array to a hexadecimal string
-  //   const hexArray = Array.from(byteArray).map(byte => byte.toString(16).padStart(2, '0'));
-  //   const uuid = hexArray.join('');
-
-  //   // Insert dashes at the appropriate positions
-  //   return `${uuid.slice(0, 8)}-${uuid.slice(8, 12)}-${uuid.slice(12, 16)}-${uuid.slice(16, 20)}-${uuid.slice(20)}`;
-  // },
-
   generateDarkAvatarColor(input) {
-    // Simple hash function to generate a color based on the input
     let hash = 0;
     if (input) {
       for (let i = 0; i < input.length; i++) {
@@ -48,30 +30,24 @@ export const helper = {
       }
     }
 
-    // Convert the hash to a color in hexadecimal format
     const color = (hash & 0x00ffffff).toString(16).toUpperCase();
 
-    // Pad the color with zeros if needed
     const darkColor = `#${"00000".substring(0, 6 - color.length)}${color}`;
 
-    // Adjust the darkness, you can experiment with the multiplier
     const darkerColor = this.darkenColor(darkColor, 0.3);
 
     return darkerColor;
   },
 
   darkenColor(hex, factor) {
-    // Convert hex to RGB
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
     const b = parseInt(hex.slice(5, 7), 16);
 
-    // Darken the color by a factor (e.g., 0.3)
     const darkenedR = Math.round(r * (1 - factor));
     const darkenedG = Math.round(g * (1 - factor));
     const darkenedB = Math.round(b * (1 - factor));
 
-    // Convert back to hex
     const darkenedHex = `#${darkenedR.toString(16).padStart(2, "0")}${darkenedG
       .toString(16)
       .padStart(2, "0")}${darkenedB.toString(16).padStart(2, "0")}`;
@@ -93,13 +69,6 @@ export const helper = {
         formatted === void 0 || formatted === null ? "" : String(formatted);
 
       formatted = formatted.split('"').join('""');
-
-      /**
-       * Excel accepts \n and \r in strings, but some other CSV parsers do not
-       * Uncomment the next two lines to escape new lines
-       */
-      // .split('\n').join('\\n')
-      // .split('\r').join('\\r')
 
       return `"${formatted}"`;
     }
@@ -136,7 +105,6 @@ export const helper = {
 
   separatePhoneNumbers(phoneNumber) {
     function faToEnNumbers(input) {
-      // Define a mapping of Persian numerals to English numerals
       const persianToEnglishMap = {
         "۰": "0",
         "۱": "1",
@@ -150,13 +118,10 @@ export const helper = {
         "۹": "9",
       };
 
-      // Use a regular expression to replace Persian numerals with English numerals
       return input.replace(/[۰-۹]/g, (match) => persianToEnglishMap[match]);
     }
-    // Convert Persian numerals to English numerals (as shown in the previous response)
     const convertedPhoneNumber = faToEnNumbers(phoneNumber);
 
-    // Your existing logic to format the phone number based on the number of digits
     if (convertedPhoneNumber.length === 8) {
       return `${convertedPhoneNumber.slice(0, 3)} ${convertedPhoneNumber.slice(
         3,
@@ -205,8 +170,45 @@ export const helper = {
 
   parseNumber(number) {
     if (!number) return "0";
-    // Remove commas from the value
     const cleanedValue = number.toString().replace(/,/g, "");
     return parseFloat(cleanedValue);
+  },
+
+  print() {
+
+    const printableElement = document.querySelector('.printable');
+    const clonedElement = printableElement.cloneNode(true);
+
+    const direction = window.getComputedStyle(printableElement).direction;
+
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'absolute';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+
+    document.body.appendChild(iframe);
+
+    const printWindow = iframe.contentWindow;
+
+    printWindow.document.write(`<html><head><title>landa-SME Print</title>`);
+    printWindow.document.write(`<style>body { direction: ${direction}; }</style>`);
+    printWindow.document.write('</head><body>');
+    printWindow.document.write('<div class="printable"></div>');
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+
+    const printableContainer = printWindow.document.querySelector('.printable');
+    printableContainer.appendChild(clonedElement);
+
+    const styles = document.querySelectorAll('style, link[rel="stylesheet"]');
+    styles.forEach(style => {
+      printWindow.document.head.appendChild(style.cloneNode(true));
+    });
+
+    setTimeout(() => {
+      printWindow.print();
+      document.body.removeChild(iframe);
+    }, 500);
   },
 };
