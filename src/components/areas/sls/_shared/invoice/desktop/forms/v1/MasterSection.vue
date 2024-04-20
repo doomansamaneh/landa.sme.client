@@ -3,7 +3,9 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
       <div class="row q-col-gutter-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            {{ customerTitle }}
+          </q-item-label>
           <customer-lookup
             autofocus
             v-model:selectedId="localFormStore.model.value.customerId"
@@ -12,7 +14,9 @@
         </div>
 
         <div class="col-md-4 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">نوع فروش</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            {{ saleTypeTitle }}
+          </q-item-label>
           <sale-type-lookup
             v-model:selectedId="localFormStore.model.value.typeId"
             v-model:selectedText="localFormStore.model.value.typeTitle"
@@ -139,7 +143,7 @@
 
 <script setup>
 import { computed, ref } from "vue";
-import { sqlOperator, vatType } from "src/constants";
+import { sqlOperator, vatType, invoiceFormType } from "src/constants";
 
 import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -150,13 +154,33 @@ import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
 const props = defineProps({
   formStore: Object,
+  formType: Object,
 });
 
 const moreInfo = ref(false);
 
-const filterExpression = [
-  { fieldName: "isForSale", operator: sqlOperator.equal, value: vatType.sale },
-];
+const customerTitle =
+  props.formType == invoiceFormType.sales ? "مشتری" : "فروشنده";
+
+const saleTypeTitle =
+  props.formType == invoiceFormType.sales ? "نوع فروش" : "نوع خرید";
+
+const filterExpression =
+  props.formType == invoiceFormType.sales
+    ? [
+        {
+          fieldName: "isForSale",
+          operator: sqlOperator.equal,
+          value: vatType.sale,
+        },
+      ]
+    : [
+        {
+          fieldName: "isForSale",
+          operator: sqlOperator.equal,
+          value: vatType.purchase,
+        },
+      ];
 
 const toggleInvocieNo = () => {
   localFormStore.value.model.value.manualNo =

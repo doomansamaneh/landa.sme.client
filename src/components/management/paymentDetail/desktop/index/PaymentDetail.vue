@@ -42,9 +42,9 @@
               icon="o_print"
               @click="print"
             >
-              <q-tooltip class="custom-tooltip">{{
-                $t("page.payment-detail.buttons.print")
-              }}</q-tooltip>
+              <q-tooltip class="custom-tooltip">
+                {{ $t("page.payment-detail.buttons.print") }}
+              </q-tooltip>
             </q-btn>
           </div>
         </div>

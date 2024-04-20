@@ -349,6 +349,33 @@ export default {
     },
 
     {
+      path: "sls/salesReturn",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/sls/salesReturn/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/sls/salesReturn/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/sls/salesReturn/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/sls/salesReturn/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/sls/salesReturn/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "sls/saleType",
       children: [
         {

@@ -118,6 +118,11 @@ export const sortOrder = {
   descending: 2,
 };
 
+export const invoiceFormType = {
+  sales: 1,
+  purchase: 2,
+};
+
 export const productType = {
   main: 211,
   part: 212,

@@ -12,7 +12,10 @@
     </q-btn>
   </div>
 
-  <q-card class="bordered" v-if="formStore.model.value.invoiceItems.length === 0">
+  <q-card
+    class="bordered"
+    v-if="formStore.model.value.invoiceItems.length === 0"
+  >
     <q-card-section>
       <no-product-selected />
     </q-card-section>
@@ -215,8 +218,8 @@
 import { ref } from "vue";
 import { helper } from "src/helpers";
 
-import NoProductSelected from "src/components/areas/sls/invoice/desktop/forms/NoProductSelected.vue";
-import FooterSection from "src/components/areas/sls/invoice/desktop/forms/v1/FooterSection.vue";
+import NoProductSelected from "src/components/areas/sls/_shared/invoice/desktop/forms/NoProductSelected.vue";
+import FooterSection from "src/components/areas/sls/_shared/invoice/desktop/forms/v1/FooterSection.vue";
 import AddRow from "./AddRow.vue";
 
 const props = defineProps({

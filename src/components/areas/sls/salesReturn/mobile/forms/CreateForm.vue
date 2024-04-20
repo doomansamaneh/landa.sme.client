@@ -6,8 +6,8 @@
 </template>
 
 <script setup>
-import MasterSection from "./v1/MasterSection.vue";
-import DetailSection from "./v1/DetailSectionTable.vue";
+import MasterSection from "src/components/areas/sls/_shared/invoice/desktop/forms/v1/MasterSection.vue";
+import DetailSection from "src/components/areas/sls//_shared/invoice/mobile/forms/v1/DetailSectionTable.vue";
 
 const props = defineProps({
   formStore: Object,

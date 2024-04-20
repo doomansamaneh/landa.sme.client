@@ -10,13 +10,14 @@
         <desktop
           v-if="$q.screen.gt.sm"
           :form-store="formStore"
-          :form-type="invoiceFormType.purchase"
+          :form-type="invoiceFormType.sales"
         />
         <mobile
           v-else
           :form-store="formStore"
-          :form-type="invoiceFormType.purchase"
+          :form-type="invoiceFormType.sales"
         />
+        <!-- <mobile :form-store="formStore" /> -->
       </q-form>
     </q-card-section>
   </q-card>
@@ -38,7 +39,7 @@ const props = defineProps({
   method: String,
 });
 const route = useRoute();
-const formStore = useInvoiceModel({ baseRoute: "sls/purchase" });
+const formStore = useInvoiceModel({ baseRoute: "sls/salesReturn" });
 const form = ref(null);
 
 onMounted(() => {

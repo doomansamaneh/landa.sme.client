@@ -1,7 +1,7 @@
 <template>
-  <master-section :form-store="formStore" />
+  <master-section :form-store="formStore" :form-type="formType" />
   <div class="q-mt-md">
-    <detail-section :form-store="formStore" />
+    <detail-section :form-store="formStore" :form-type="formType" />
   </div>
 </template>
 
@@ -11,5 +11,6 @@ import DetailSection from "./v1/DetailSectionTable.vue";
 
 const props = defineProps({
   formStore: Object,
+  formType: Object,
 });
 </script>

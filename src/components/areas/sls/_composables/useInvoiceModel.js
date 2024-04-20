@@ -27,8 +27,8 @@ export function useInvoiceModel(config) {
       if (action === "copy") {
         model.value.quoteId = null;
         model.value.fiscalYearId = null;
-        addWatch();
       }
+      addWatch();
     }
   }
 
