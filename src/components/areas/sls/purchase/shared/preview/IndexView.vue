@@ -2,7 +2,7 @@
   <tool-bar inside buttons :title="title" back-button>
     <template #buttons>
       <q-btn
-        :to="`/sls/invoice/edit/${id}`"
+        :to="`/sls/purchase/edit/${id}`"
         class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -11,7 +11,6 @@
       >
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
         {{ $t("shared.labels.edit") }}
-        <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
       <q-btn
         @click="helper.print('ivoicePreview')"
@@ -33,18 +32,11 @@
         <q-card-section class="q-gutter-y-sm" id="ivoicePreview">
           <invoice-header
             :model="formStore.model"
-            show-logo
-            :title="invoiceTitle ?? $t('page.payment-detail.invoice-label')"
+            :title="$t('shared.labels.purchase')"
           />
-          <invoice-header-sale :model="formStore.model" />
+          <invoice-header-purchase :model="formStore.model" />
           <invoice-body :model="formStore.model" :form-store="formStore" />
-          <invoice-footer
-            show-signature
-            :model="formStore.model"
-            :comment="
-              appConfigStore.model.value?.companySetting?.invoiceComment
-            "
-          />
+          <invoice-footer show-signature :model="formStore.model" />
         </q-card-section>
       </q-card>
     </div>
@@ -64,7 +56,7 @@ import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppC
 
 import ToolBar from "src/components/shared/ToolBarDesktop.vue";
 import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
-import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";
+import InvoiceHeaderPurchase from "components/areas/sls/_shared/invoice/shared/preview/_HeaderPurchase.vue";
 import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";
 import InvoiceFooter from "components/areas/sls/_shared/invoice/shared/preview/_FooterSection.vue";
 import InvoiceDetail from "./_DetailSection.vue";
@@ -74,7 +66,9 @@ const props = defineProps({
   title: String,
 });
 
-const formStore = useInvoiceModel({ baseRoute: "sls/invoice", preview: true });
+const formStore = useInvoiceModel({ baseRoute: "sls/purchase", preview: true });
+const appConfigStore = useAppConfigModel();
+
 const route = useRoute();
 const router = useRouter();
 
@@ -83,16 +77,12 @@ const id = computed(() => props.item?.id ?? route.params.id);
 const currentPath = router.currentRoute.value.path;
 
 const marginTop = () => {
-  if (currentPath.startsWith("/sls/invoice/preview/")) {
+  if (currentPath.startsWith("/sls/purchase/preview/")) {
     return "margin-top: 16px;";
   } else {
     return "margin-top: 0px";
   }
 };
-
-const appConfigStore = useAppConfigModel();
-
-const invoiceTitle = appConfigStore.model.value?.companySetting?.invoiceTitle;
 
 onMounted(() => {
   formStore.getById(id.value);

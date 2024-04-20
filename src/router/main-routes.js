@@ -323,6 +323,32 @@ export default {
     },
 
     {
+      path: "sls/purchase",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/sls/purchase/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/sls/purchase/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/sls/purchase/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/sls/purchase/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () => import("pages/areas/sls/purchase/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "sls/saleType",
       children: [
         {

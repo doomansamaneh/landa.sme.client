@@ -1,7 +1,8 @@
-import { useCulture } from "src/composables/useCulture";
+function getIso() {
+  return localStorage.getItem("selectedLanguage") ?? "fa-IR";
+}
 
 Date.prototype.toDateString = function () {
-  const iso = localStorage.getItem("selectedLanguage");
   const date = new Date(this.valueOf());
   const fullDate = {
     year: "numeric",
@@ -9,12 +10,11 @@ Date.prototype.toDateString = function () {
     day: "2-digit",
     numberingSystem: "latn",
   };
-  return date.toLocaleDateString(iso, fullDate);
+  return date.toLocaleDateString(getIso(), fullDate);
 };
 
 Date.prototype.toDateTimeString = function () {
   const date = new Date(this.valueOf());
-  const iso = localStorage.getItem("selectedLanguage") ?? "fa-IR";
   const fullDate = {
     year: "numeric",
     month: "numeric",
@@ -23,14 +23,13 @@ Date.prototype.toDateTimeString = function () {
     minute: "numeric",
     second: "numeric",
   };
-  return date.toLocaleDateString(iso, fullDate);
+  return date?.toLocaleDateString(getIso(), fullDate);
 };
 
 Date.prototype.toDayString = function () {
   const date = new Date(this.valueOf());
-  const iso = localStorage.getItem("selectedLanguage");
-  const weekday = {
+  const fullDate = {
     weekday: "long",
   };
-  return date.toLocaleDateString(iso, weekday);
+  return date.toLocaleDateString(getIso(), fullDate);
 };

@@ -1,7 +1,7 @@
 <template>
   <data-grid
     ref="dataTable"
-    :dataSource="dataSource ?? 'sls/quote/getGridData'"
+    :dataSource="dataSource"
     :grid-store="gridStore"
     separator="horizontal"
     flat_
@@ -38,16 +38,16 @@
       </span>
     </template>
     <template #cell-amount="{ item }">
-      <span>{{ item.amount.toLocaleString() }}</span>
+      <span>{{ item.amount?.toLocaleString() }}</span>
     </template>
     <template #cell-payedAmount="{ item }">
-      <span>{{ item.payedAmount.toLocaleString() }}</span>
+      <span>{{ item.payedAmount?.toLocaleString() }}</span>
     </template>
     <template #cell-remainedAmount="{ item }">
-      <span>{{ item.remainedAmount.toLocaleString() }}</span>
+      <span>{{ item.remainedAmount?.toLocaleString() }}</span>
     </template>
     <template #cell-discountAmount="{ item }">
-      <span>{{ item.discountAmount.toLocaleString() }}</span>
+      <span>{{ item.discountAmount?.toLocaleString() }}</span>
     </template>
     <template #cell-subject="{ item }">
       <div>{{ item.subject }}</div>
@@ -69,7 +69,7 @@
     </template>
     <template #expand="{ item }">
       <div class="q-pa-md">
-        <invoice-preview :item="item" />
+        <slot name="expand" :item="item"></slot>
       </div>
     </template>
 
@@ -120,6 +120,7 @@
       <td v-if="showRemained">
         <b>{{ summary?.remainedAmount?.toLocaleString() }}</b>
       </td>
+
       <td colspan="100%"></td>
     </template>
   </data-grid>
@@ -139,6 +140,7 @@ const props = defineProps({
   dataSource: String,
   columns: Array,
   gridStore: Object,
+  baseRoute: String,
 });
 
 const router = useRouter();
@@ -179,7 +181,7 @@ async function reloadData() {
 }
 
 function gotoPreview(row) {
-  router.push(`/sls/quote/preview/${row.id}`);
+  router.push(`/${props.baseRoute}/preview/${row.id}`);
 }
 
 defineExpose({

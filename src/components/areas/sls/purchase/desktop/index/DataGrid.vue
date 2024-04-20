@@ -6,7 +6,7 @@
     ref="invoiceTable"
     :grid-store="gridStore"
     :data-source="dataSource"
-    base-route="sls/quote"
+    base-route="sls/purchase"
   >
     <template #expand="{ item }">
       <preview :item="item" />

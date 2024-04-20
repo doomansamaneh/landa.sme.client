@@ -31,20 +31,9 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card class="bordered">
         <q-card-section class="q-gutter-y-sm" id="ivoicePreview">
-          <invoice-header
-            :model="formStore.model"
-            show-logo
-            :title="invoiceTitle ?? $t('page.payment-detail.invoice-label')"
-          />
-          <invoice-header-sale :model="formStore.model" />
+          <invoice-header :model="formStore.model" />
           <invoice-body :model="formStore.model" :form-store="formStore" />
-          <invoice-footer
-            show-signature
-            :model="formStore.model"
-            :comment="
-              appConfigStore.model.value?.companySetting?.invoiceComment
-            "
-          />
+          <invoice-footer :model="formStore.model" />
         </q-card-section>
       </q-card>
     </div>
@@ -58,15 +47,13 @@
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
-import { helper } from "src/helpers";
 import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
-import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+import { helper } from "src/helpers";
 
 import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
-import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";
-import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";
-import InvoiceFooter from "components/areas/sls/_shared/invoice/shared/preview/_FooterSection.vue";
+import InvoiceHeader from "./_HeaderSection.vue";
+import InvoiceBody from "./_BodySection.vue";
+import InvoiceFooter from "./_FooterSection.vue";
 import InvoiceDetail from "./_DetailSection.vue";
 
 const props = defineProps({
@@ -89,10 +76,6 @@ const marginTop = () => {
     return "margin-top: 0px";
   }
 };
-
-const appConfigStore = useAppConfigModel();
-
-const invoiceTitle = appConfigStore.model.value?.companySetting?.invoiceTitle;
 
 onMounted(() => {
   formStore.getById(id.value);

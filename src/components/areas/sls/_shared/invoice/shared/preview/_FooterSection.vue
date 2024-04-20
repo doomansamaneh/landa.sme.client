@@ -17,11 +17,7 @@
             </strong>
             <span class="text-wrap" v-html="model.value.summary"></span>
           </div>
-          <div
-            v-if="appConfigStore.model.value?.companySetting?.invoiceComment"
-            class="text-wrap"
-            v-html="appConfigStore.model.value?.companySetting?.invoiceComment"
-          ></div>
+          <div v-if="comment" class="text-wrap" v-html="comment"></div>
         </td>
       </tr>
       <tr>
@@ -47,6 +43,8 @@ import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppC
 
 const props = defineProps({
   model: Object,
+  comment: String,
+  showSignature: Boolean,
 });
 
 const appConfigStore = useAppConfigModel();
@@ -56,5 +54,10 @@ const appConfigStore = useAppConfigModel();
 .text-wrap {
   white-space: pre-line;
   word-wrap: break-word;
+}
+
+.sign-place {
+  width: 50%;
+  padding-bottom: 120px;
 }
 </style>

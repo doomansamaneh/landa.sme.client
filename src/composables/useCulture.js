@@ -1,4 +1,4 @@
-import { ref, watch, computed, onMounted } from "vue";
+import { ref, watch, computed } from "vue";
 import { useQuasar, Quasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { cultures } from "src/constants/enums";

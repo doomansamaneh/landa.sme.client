@@ -304,6 +304,7 @@
       "name": "نام",
       "no": "شماره",
       "date": "تاریخ",
+      "dueDate": "سررسید",
       "taxId": "tax",
       "addItemByProductCode": "با جستجوی کد، بارکد یک کالا/خدمت را اضافه کنید",
       "moreData": "اطلاعات بیشتر",
@@ -311,7 +312,9 @@
       "inventoryTitle": "انبار",
       "contractTitle": "قرارداد",
       "marketerName": "یازاریاب",
-      "typeTitle": "نوع"
+      "typeTitle": "نوع",
+      "quote": "پیش‌فاکتور",
+      "purchase": "فاکتور خرید کالا و خدمات"
     },
     "productType": {
       "main": "اصلی",

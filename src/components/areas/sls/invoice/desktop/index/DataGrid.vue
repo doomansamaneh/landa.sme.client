@@ -4,13 +4,38 @@
   </div>
 
   <div class="q-py-md">
-    <q-tabs v-model="tab" class="border-radius-lg bg-primary text-white q-mb-md" align="left" inline-label
-      narrow-indicator @update:model-value="tabChanged">
-      <q-tab name="invoice" class="text-h6  text-weight-700" label="فاکتورهای فروش" icon="check" />
-      <q-tab name="canceled" class="text-h6 text-weight-700" label="ابطال شده" icon="o_cancel" />
+    <q-tabs
+      v-model="tab"
+      class="border-radius-lg bg-primary text-white q-mb-md"
+      align="left"
+      inline-label
+      narrow-indicator
+      @update:model-value="tabChanged"
+    >
+      <q-tab
+        name="invoice"
+        class="text-h6 text-weight-700"
+        label="فاکتورهای فروش"
+        icon="check"
+      />
+      <q-tab
+        name="canceled"
+        class="text-h6 text-weight-700"
+        label="ابطال شده"
+        icon="o_cancel"
+      />
     </q-tabs>
 
-    <invoice-grid ref="invoiceTable" :grid-store="gridStore" :data-source="dataSource" />
+    <invoice-grid
+      ref="invoiceTable"
+      :grid-store="gridStore"
+      :data-source="dataSource"
+      base-route="sls/invoice"
+    >
+      <template #expand="{ item }">
+        <preview :item="item" />
+      </template>
+    </invoice-grid>
   </div>
 </template>
 
@@ -18,8 +43,9 @@
 import { computed, ref } from "vue";
 import { sqlOperator, cancelStatus } from "src/constants";
 
-import InvoiceGrid from "components/areas/sls/invoice/desktop/index/_DataGrid.vue";
-import AdvancedSearch from "components/areas/sls/invoice/desktop/index/_AdvancedSearch.vue";
+import InvoiceGrid from "components/areas/sls/_shared/invoice/desktop/index/DataGrid.vue";
+import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
+import Preview from "../../shared/preview/IndexView.vue";
 
 const props = defineProps({
   gridStore: Object,
