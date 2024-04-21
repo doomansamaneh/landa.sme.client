@@ -139,7 +139,7 @@ const styles = () => {
 }
 
 const headerMargin = () => {
-    return $q.screen.gt.xs ? 'q-my-xl' : 'q-my-lg'
+    return $q.screen.gt.xs ? 'q-mt-lg q-pt-md q-pb-md q-mb-xl' : 'q-my-lg'
 }
 
 const titlePadding = () => {
