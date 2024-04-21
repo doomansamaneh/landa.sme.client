@@ -1,10 +1,6 @@
 <template>
-  <q-card
-    :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
-    style="margin-top: 0"
-    class="form-container border-radius-lg"
-  >
-    <q-card-section>
+  <div style="margin-top: 0" :class="styles()">
+    <q-card-section :class="padding()">
       <div class="row q-col-gutter-md">
         <div class="col-md col-sm col-xs-12">
           <div>
@@ -48,15 +44,39 @@
         </div>
       </div>
     </q-card-section>
-  </q-card>
+  </div>
 </template>
 
 <script setup>
+import { useQuasar } from "quasar";
 import { useAppConfigModel } from "../_composables/useAppConfigModel";
+
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
+const $q = useQuasar()
 const configStore = useAppConfigModel();
+
+const props = defineProps({
+  inside: Boolean
+})
+
+const styles = () => {
+  if (!props.inside && $q.screen.gt.sm) {
+    return "q-card form-container settings-card";
+  } else if (!props.inside) {
+    return "q-card form-container";
+  } else {
+    return "";
+  }
+};
+
+const padding = () => {
+  if (props.inside) {
+    return "no-padding"
+  }
+}
 </script>
+
 
 <style>
 .settings-card {

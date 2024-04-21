@@ -12,6 +12,14 @@ export default {
       component: () => import("src/pages/management/business/IndexPage.vue")
     },
     {
+      path: "/business/firstLoginWizard",
+      name: "first-login-wizard",
+      meta: {
+        icon: "waving_hand"
+      },
+      component: () => import("src/pages/management/firstLoginWizard_/IndexPage.vue")
+    },
+    {
       path: "changePassword",
       name: "change-password",
       component: () => import("src/pages/areas/scr/users/ChangePassword.vue"),
@@ -74,6 +82,6 @@ export default {
       meta: {
         icon: "o_monetization_on"
       }
-    }
+    },
   ]
 }

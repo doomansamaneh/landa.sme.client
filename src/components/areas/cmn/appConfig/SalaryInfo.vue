@@ -1,17 +1,8 @@
 <template>
-  <q-card
-    :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
-    style="margin-top: 0"
-    class="form-container"
-  >
-    <q-card-section>
-      <q-markup-table
-        flat
-        bordered
-        :style="$q.screen.xs ? 'width: 540px' : ''"
-        class="salary-table_border-radius-lg"
-        separator="cell"
-      >
+  <div :class="styles()" style="margin-top: 0;">
+    <q-card-section :class="padding()">
+      <q-markup-table flat bordered
+        separator="cell">
         <thead class="bg-grey-4">
           <tr>
             <th class="text-left" style="width: 40%">
@@ -29,199 +20,158 @@
           <tr>
             <td class="text-left">حق مسکن</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .housing
-                "
-              />
+              <q-checkbox />
+              <!-- v-model="configStore.model.value.companySetting.payrollTaxSetting.housing" -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
-                  configStore.model.value.companySetting
-                    .payrollInsurranceSetting.housing
-                "
-              />
+              <q-checkbox />
+              <!-- v-model="configStore.model.value.companySetting.payrollInsurranceSetting.housing" -->
             </td>
           </tr>
           <tr>
             <td class="text-left">بن</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting.food
-                "
-              />
+              <q-checkbox />
+              <!-- v-model="configStore.model.value.companySetting.payrollTaxSetting.food" -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
-                  configStore.model.value.companySetting
-                    .payrollInsurranceSetting.food
-                "
-              />
+              <q-checkbox />
+              <!-- v-model="configStore.model.value.companySetting.payrollInsurranceSetting.food" -->
             </td>
           </tr>
           <tr>
             <td class="text-left">حق اولاد</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting.child
-                "
-              />
+              <q-checkbox />
+              <!-- v-model="configStore.model.value.companySetting.payrollTaxSetting.child" -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
-                  configStore.model.value.companySetting
-                    .payrollInsurranceSetting.child
-                "
-              />
+              <q-checkbox />
+              <!-- v-model="configStore.model.value.companySetting.payrollInsurranceSetting.child" -->
             </td>
           </tr>
           <tr>
             <td class="text-left">ماموریت</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .mission
-                "
-              />
+              <q-checkbox />
+              <!-- v-model="configStore.model.value.companySetting.payrollTaxSetting.mission" -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.mission
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">اضافه کار</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting.payrollTaxSetting
                     .overtime
-                "
-              />
+                " -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.overtime
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">سایر مزایا</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting.payrollTaxSetting
                     .addition
-                "
-              />
+                " -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.addition
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">باز خرید مرخصی</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting.payrollTaxSetting.leave
-                "
-              />
+                " -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.leave
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">پاداش بهره‌وری</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting.payrollTaxSetting
                     .reward
-                "
-              />
+                " -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.reward
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">عیدی و پاداش</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting.payrollTaxSetting.bonus
-                "
-              />
+                " -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.bonus
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">بازخرید سنوات</td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting.payrollTaxSetting
                     .serviceBenefit
-                "
-              />
+                " -->
             </td>
             <td class="text-left">
-              <q-checkbox
-                v-model="
+              <q-checkbox />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.serviceBenefit
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">ضریب معافیت حق بیمه (از بیمه بیکاری)</td>
             <td class="text-left">
-              <custom-input
-                type="number"
-                v-model="
+              <custom-input type="number" />
+              <!-- v-model="
                   configStore.model.value.companySetting.payrollTaxSetting
                     .insurranceEmpRatio
-                "
-              />
+                " -->
             </td>
             <td class="text-left"></td>
           </tr>
@@ -229,67 +179,81 @@
             <td class="text-left">درصد حق بیمه</td>
             <td class="text-left"></td>
             <td class="text-left">
-              <custom-input
-                type="number"
-                v-model="
+              <custom-input type="number" />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.percent
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">بیمه سهم کارفرما</td>
             <td class="text-left"></td>
             <td class="text-left">
-              <custom-input
-                type="number"
-                v-model="
+              <custom-input type="number" />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.companyPercent
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">بیمه سهم کارگر</td>
             <td class="text-left"></td>
             <td class="text-left">
-              <custom-input
-                type="number"
-                v-model="
+              <custom-input type="number" />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.empPercent
-                "
-              />
+                " -->
             </td>
           </tr>
           <tr>
             <td class="text-left">بیمه بیکاری</td>
             <td class="text-left"></td>
             <td class="text-left">
-              <custom-input
-                type="number"
-                v-model="
+              <custom-input type="number" />
+              <!-- v-model="
                   configStore.model.value.companySetting
                     .payrollInsurranceSetting.unemploymentPercent
-                "
-              />
+                " -->
             </td>
           </tr>
         </tbody>
       </q-markup-table>
     </q-card-section>
-  </q-card>
+  </div>
 </template>
 
 <script setup>
+import { useQuasar } from "quasar";
 import { helper } from "src/helpers";
 import { useAppConfigModel } from "../_composables/useAppConfigModel";
 
 import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
+const $q = useQuasar()
 const configStore = useAppConfigModel();
+
+const props = defineProps({
+  inside: Boolean
+})
+
+const styles = () => {
+  if (!props.inside && $q.screen.gt.sm) {
+    return "q-card form-container settings-card";
+  } else if (!props.inside) {
+    return "q-card form-container";
+  } else {
+    return "";
+  }
+};
+
+const padding = () => {
+  if (props.inside) {
+    return "no-padding"
+  }
+}
 </script>
 
 <style lang="scss">

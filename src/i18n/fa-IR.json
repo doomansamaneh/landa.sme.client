@@ -81,7 +81,8 @@
     "payment-detail": "ریز پرداخت",
     "renew-subscription": "تمدید اشتراک",
     "add-new-business": "ایجاد کسب و کار جدید",
-    "dashboard": "پیشخوان"
+    "dashboard": "پیشخوان",
+    "first-login-wizard" : "راه اندازی اولیه کسب و کار"
   },
 
   "login-page": {

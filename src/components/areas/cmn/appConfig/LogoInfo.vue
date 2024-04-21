@@ -1,9 +1,6 @@
 <template>
-  <q-card
-    :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
-    style="margin-top: 0"
-  >
-    <q-card-section>
+  <div style="margin-top: 0" :class="styles()">
+    <q-card-section :class="padding()">
       <q-checkbox
         class="text-body1 no-letter-spacing"
         label="لوگو در چاپ باشد"
@@ -27,6 +24,8 @@
 
     <q-card-section>
       <q-checkbox
+      dense
+      size="46px"
         class="text-body1 no-letter-spacing"
         label="امضا در چاپ باشد"
         v-model="configStore.model.value.companySetting.invoiceShowSignature"
@@ -44,7 +43,7 @@
         accept="image/*"
       />
     </q-card-section>
-  </q-card>
+  </div>
 </template>
 
 <script setup>
@@ -77,6 +76,27 @@ onMounted(() => {
     signatureSource.value =
       configStore.model.value.companySetting.businessSignature.path;
 });
+
+const props = defineProps({
+  inside: Boolean
+})
+
+const styles = () => {
+  if (!props.inside && $q.screen.gt.sm) {
+    return "q-card form-container settings-card";
+  } else if (!props.inside) {
+    return "q-card form-container";
+  } else {
+    return "";
+  }
+};
+
+const padding = () => {
+  if (props.inside) {
+    return "no-padding"
+  }
+}
+
 </script>
 
 <style lang="scss">
