@@ -1,7 +1,7 @@
 <template>
   <q-card class="bordered" :class="containerClass">
     <div class="q-table__middle scroll">
-      <table class="q-table">
+      <div class="q-table">
         <thead>
           <tr v-if="!hideHeader">
             <th v-if="numbered" class="dense_">#</th>
@@ -136,7 +136,7 @@
             </slot>
           </tr>
         </tfoot>
-      </table>
+      </div>
     </div>
     <div
       v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0"
