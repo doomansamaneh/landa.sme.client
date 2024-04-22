@@ -3,4 +3,13 @@
   .q-tab__label {
     font-size: 16px !important;
   }
+
+  .bottom-navigation {
+    .q-tab--active .q-tab__indicator {
+      height: 6px !important;
+      border-radius: 4px;
+      margin-left: 16px;
+      margin-right: 16px;
+    }    
+  }
 }

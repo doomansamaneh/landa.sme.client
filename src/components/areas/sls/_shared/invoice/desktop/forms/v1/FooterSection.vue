@@ -20,9 +20,9 @@
 
             <q-menu v-model="discountVisible" class="border-radius-lg" anchor="bottom right" self="bottom left"
               :offset="[10, 8]">
-              <q-card>
-                <q-card-section>
-                  <h6>تخفیف</h6>
+              <q-card class="bordered">
+                <q-card-section class="q-pb-none">
+                  <div class="text-h6 no-letter-spacing text-weight-700">تخفیف</div>
                 </q-card-section>
                 <q-card-section>
                   <custom-input-number v-model="generalDiscountValue">
@@ -34,11 +34,10 @@
                 </q-card-section>
 
                 <q-card-actions class="dark-1 q-px-md">
-                  <q-btn unelevated class="bg-primary text-white" @click="confirmGeneralDiscount">
-                    <q-icon name="o_check" class="q-mr-xs" />
+                  <q-btn padding="4px 12px" rounded unelevated class="bg-primary text-white" @click="confirmGeneralDiscount">
                     {{ $t("shared.labels.accept") }}
                   </q-btn>
-                  <q-btn unelevated @click="discountVisible = false">
+                  <q-btn padding="4px 12px" rounded unelevated @click="discountVisible = false">
                     {{ $t("shared.labels.cancel") }}
                   </q-btn>
                 </q-card-actions>

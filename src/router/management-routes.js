@@ -15,7 +15,7 @@ export default {
       path: "/business/firstLoginWizard",
       name: "first-login-wizard",
       meta: {
-        icon: "waving_hand"
+        icon: "celebration"
       },
       component: () => import("src/pages/management/firstLoginWizard_/IndexPage.vue")
     },

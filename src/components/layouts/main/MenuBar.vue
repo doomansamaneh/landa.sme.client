@@ -1,14 +1,20 @@
 <template>
   <q-drawer class="menu-bar q-mb-xl z-max" :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'" side="left" bordered
-    :width="285.50" v-model="menuBarStore.state.visible.value" :breakpoint="400" :overlay="$q.screen.lt.md">
-    <div class="flex justify-center q-px-md q-py-lg">
-      <q-input inputmode="search" color="grey-5" outlined v-model="menuBarStore.searchText.value"
+  :width="$q.screen.gt.xs ? 285.50 : deviceWidth" v-model="menuBarStore.state.visible.value" :breakpoint="400" :overlay="$q.screen.lt.md">
+    <div class="row items-center justify-center q-gutter-md q-px-md q-py-lg">
+      <div class="col">
+        <q-input inputmode="search" color="grey-5" outlined v-model="menuBarStore.searchText.value"
         :placeholder="$t('main-menu-items.search')" dense rounded clearable clear-icon="o_close"
         class="full-width text-body2 no-letter-spacing">
         <template v-slot:prepend>
           <q-icon name="o_search" color="primary" size="18px" />
         </template>
       </q-input>
+      </div>
+
+      <div class="col-1">
+        <q-btn icon="o_close" round dense unelevated @click="menuBarStore.toggle" />
+      </div>
     </div>
 
     <q-scroll-area style="height: calc(100% - 120px);" :thumb-style="helper.thumbStyle" :bar-style="helper.barStyle">
@@ -61,6 +67,8 @@ const menuBarStore = useMenuBar()
 const props = defineProps({
   menuBar: Boolean
 })
+
+const deviceWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
 const shouldHighlight = (subItems) => {
   const currentPath = router.currentRoute.value.path

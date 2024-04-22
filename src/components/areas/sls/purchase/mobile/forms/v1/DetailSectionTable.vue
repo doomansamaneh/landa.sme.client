@@ -24,7 +24,7 @@
   <q-card
     v-for="(row, index) in formStore.model.value.invoiceItems"
     :key="index"
-    class="q-mb-md"
+    class="bordered q-mb-lg"
   >
     <q-card-section v-if="false">
       <div class="row items-center justify-center">

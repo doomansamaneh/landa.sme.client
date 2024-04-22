@@ -160,9 +160,9 @@
               fit
               class="border-radius-lg"
             >
-              <q-card>
-                <q-card-section>
-                  <h6>اطلاعات تکمیلی</h6>
+              <q-card class="bordered">
+                <q-card-section class="q-pb-none">
+                  <div class="text-h6 text-weight-700 no-letter-spacing">اطلاعات تکمیلی</div>
                   {{ row.productTitle }}
                 </q-card-section>
                 <q-card-section>

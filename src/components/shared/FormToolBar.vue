@@ -31,7 +31,7 @@
         <div class="row items-center">
           <slot name="header">
             <span
-            :style="$q.screen.gt.xs ? 'width: auto;' : 'width: 150px;'"
+            :style="$q.screen.gt.xs ? 'width: auto;' : 'width: 160px;'"
               class="ellipsis-2-lines text-weight-700 no-letter-spacing"
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
             >

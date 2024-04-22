@@ -8,6 +8,7 @@
     <q-tabs
       indicator-color="primary"
       active-color="primary"
+      class="bottom-navigation"
     >
       <q-route-tab
         class="text-caption"
