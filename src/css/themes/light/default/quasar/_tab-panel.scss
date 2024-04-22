@@ -7,9 +7,9 @@
   .bottom-navigation {
     .q-tab--active .q-tab__indicator {
       height: 6px !important;
-      border-radius: 4px;
-      margin-left: 16px;
-      margin-right: 16px;
+      border-radius: 4px !important;
+      margin-left: 16px !important;
+      margin-right: 16px !important;
     }    
   }
 }
