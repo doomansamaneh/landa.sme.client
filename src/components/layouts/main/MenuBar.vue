@@ -1,7 +1,7 @@
 <template>
   <q-drawer class="menu-bar q-mb-xl z-max" :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'" side="left" bordered
   :width="$q.screen.gt.xs ? 285.50 : deviceWidth" v-model="menuBarStore.state.visible.value" :breakpoint="400" :overlay="$q.screen.lt.md">
-    <div class="row items-center justify-center q-gutter-md q-px-md q-py-lg">
+    <div class="row items-center justify-center q-gutter-md q-pr-lg q-pl-md q-py-lg">
       <div class="col">
         <q-input inputmode="search" color="grey-5" outlined v-model="menuBarStore.searchText.value"
         :placeholder="$t('main-menu-items.search')" dense rounded clearable clear-icon="o_close"
