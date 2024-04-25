@@ -22,7 +22,10 @@ export function useInvoiceModel(config) {
     if (id) {
       if (config.preview) responseData = await crudStore.getPreviewById(id);
       else responseData = await crudStore.getById(id);
-    } else responseData = await crudStore.getCreateModel();
+    } else responseData = await crudStore.getCreateModel(setInvoiceItems);
+
+    setInvoiceItems();
+
     if (responseData) {
       if (action === "copy") {
         model.value.quoteId = null;
@@ -30,6 +33,10 @@ export function useInvoiceModel(config) {
       }
       addWatch();
     }
+  }
+
+  function setInvoiceItems() {
+    if (!model.value.invoiceItems) model.value.invoiceItems = [];
   }
 
   function addWatch() {

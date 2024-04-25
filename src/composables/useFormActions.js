@@ -15,9 +15,10 @@ export function useFormActions(baseURL, model) {
     return await onGetById("getById", id);
   }
 
-  async function getCreateModel() {
+  async function getCreateModel(callBack) {
     const response = await fetchWrapper.get(`${baseURL}/getCreateModel`);
     model.value = response.data.data;
+    if (callBack) callBack();
     await resetIsDirty();
     return model.value;
   }
@@ -47,10 +48,6 @@ export function useFormActions(baseURL, model) {
     model.value.recordVersion = response.data.data.recordVersion;
     await resetIsDirty();
     return response.data;
-
-    function getValidRecordVersion(recordVersion) {
-      return BigInt(recordVersion).toString();
-    }
   }
 
   async function resetIsDirty() {
