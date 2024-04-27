@@ -7,7 +7,7 @@
         :placeholder="$t('main-menu-items.search')" dense rounded clearable clear-icon="o_close"
         class="full-width text-body2 no-letter-spacing">
         <template v-slot:prepend>
-          <q-icon name="o_search" color="primary" size="18px" />
+          <q-icon name="o_search" color="primary" size="24px" />
         </template>
       </q-input>
       </div>
