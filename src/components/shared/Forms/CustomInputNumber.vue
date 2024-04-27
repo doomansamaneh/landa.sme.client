@@ -37,11 +37,12 @@ const updateModel = (value) => {
 </script> -->
 
 <template>
-  <q-input outlined dense input-class="text-right" ref="inputRef" type="text"
-    :model-value="modelValue" @update:model-value="updateModel" />
+  <q-input outlined dense ref="inputRef" :model-value="modelValue"
+    @update:model-value="updateModel" />
 </template>
 
 <script>
+import { ref } from "vue"
 import { useCurrencyInput } from 'vue-currency-input'
 
 export default {
@@ -50,7 +51,8 @@ export default {
     modelValue: Number,
     options: Object
   },
-  setup(props) {
+  setup(props, emit) {
+
     const options = {
       "locale": "fa-IR",
       "currency": "IRR",

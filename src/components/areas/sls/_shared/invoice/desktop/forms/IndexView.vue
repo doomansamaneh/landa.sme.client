@@ -75,10 +75,30 @@
       <detail-section />
     </q-card-section>
   </q-card>
+
+  <QCurrencyInput v-model="value" :currency="currency" :options="options" />
+  
 </template>
 
 <script setup>
 import ToolBar from "src/components/shared/ToolBar.vue"
 import MasterSection from "src/components/areas/sls/invoice/desktop/forms/MasterSection.vue"
 import DetailSection from "src/components/areas/sls/invoice/desktop/forms/DetailSection.vue"
+
+import QCurrencyInput from "src/components/shared/forms/QCurrencyInput.vue";
+
+const value = ref(9000000);
+const currency = ref("IRR")
+
+const options = {
+  "locale": "fa-IR",
+  "currency": "IRR",
+  "currencyDisplay": "hidden",
+  "hideCurrencySymbolOnFocus": true,
+  "hideGroupingSeparatorOnFocus": true,
+  "hideNegligibleDecimalDigitsOnFocus": true,
+  "autoDecimalDigits": false,
+  "useGrouping": true,
+  "accountingSign": false
+}
 </script>
