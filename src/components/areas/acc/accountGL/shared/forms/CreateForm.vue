@@ -75,7 +75,7 @@
 
       <q-card flat class="tips">
         <q-card-section>
-          <div class="title q-mb-lg">راهنما</div>
+          <div class="title q-mb-sm">راهنما</div>
           <div class="text-body1 no-letter-spacing">
             <strong>ماهیت حساب: </strong> معمولا ماهیت حسابهای دارایی و هزینه که
             با کدهای 1-2-7-8 شروع شده‌اند بدهکار و حسابهای بدهی، سرمایه، و فروش

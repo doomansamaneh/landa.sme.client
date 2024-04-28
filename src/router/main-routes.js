@@ -421,6 +421,29 @@ export default {
     },
 
     {
+      path: "sls/report/productStock",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/sls/report/productStock/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/sls/report/productStock/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/sls/report/productStock/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/sls/report/productStock/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "scr/users/settings",
       children: [
         {

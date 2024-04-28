@@ -133,3 +133,58 @@ export const actions = {
   style: "width:170px;",
   showFilter: false,
 };
+
+export const debit = {
+  name: "debit",
+  field: "debit",
+  sortable: false,
+  label: "مانده بدهکار",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const purchaseQuantity = {
+  name: "purchaseQuantity",
+  field: "purchaseQuantity",
+  sortable: false,
+  label: "ورود",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const salesQuantity = {
+  name: "salesQuantity",
+  field: "salesQuantity",
+  sortable: false,
+  label: "خروج",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const stock = {
+  name: "stock",
+  field: "stock",
+  sortable: false,
+  label: "موجودی",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const unitTitle = {
+  name: "unitTitle",
+  field: "unitTitle",
+  sortable: true,
+  label: "واحد سنجش",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: true,
+};

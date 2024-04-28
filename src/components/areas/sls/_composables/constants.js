@@ -8,6 +8,13 @@ import {
   payedAmount,
   remainedAmount,
   discountAmount,
+  code,
+  title,
+  unitTitle,
+  purchaseQuantity,
+  salesQuantity,
+  stock,
+  debit,
 } from "src/constants/columns";
 
 export const taxStatus = {
@@ -64,4 +71,14 @@ export const taxApiLogColumns = [
     class: "text-left",
     style: "width:5px",
   },
+];
+
+export const productStockColumns = [
+  code,
+  title,
+  unitTitle,
+  purchaseQuantity,
+  salesQuantity,
+  stock,
+  debit,
 ];
