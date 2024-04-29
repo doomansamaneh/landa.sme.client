@@ -185,6 +185,6 @@ export const unitTitle = {
   label: "واحد سنجش",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:180px;",
   showFilter: true,
 };
