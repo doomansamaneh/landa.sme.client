@@ -240,6 +240,34 @@ export default {
     },
 
     {
+      path: "trs/transferMoney",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/trs/transferMoney/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/trs/transferMoney/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/trs/transferMoney/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/trs/transferMoney/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () => import("pages/areas/trs/transferMoney/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "trs/cash",
       children: [
         {
@@ -425,7 +453,8 @@ export default {
       children: [
         {
           path: "",
-          component: () => import("pages/areas/sls/report/productStock/IndexPage.vue"),
+          component: () =>
+            import("pages/areas/sls/report/productStock/IndexPage.vue"),
         },
         {
           path: "create",
@@ -434,11 +463,13 @@ export default {
         },
         {
           path: "edit/:id",
-          component: () => import("pages/areas/sls/report/productStock/EditPage.vue"),
+          component: () =>
+            import("pages/areas/sls/report/productStock/EditPage.vue"),
         },
         {
           path: "copy/:id",
-          component: () => import("pages/areas/sls/report/productStock/CopyPage.vue"),
+          component: () =>
+            import("pages/areas/sls/report/productStock/CopyPage.vue"),
         },
       ],
     },

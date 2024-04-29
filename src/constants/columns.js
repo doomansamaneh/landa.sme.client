@@ -57,6 +57,33 @@ export const date = {
   showFilter: true,
 };
 
+export const comment = {
+  name: "comment",
+  field: "comment",
+  sortable: true,
+  label: "شرح",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const rowNo = {
+  name: "rowNo",
+  field: "rowNo",
+  sortable: true,
+  label: "ش پیگیری",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const voucherNo = {
+  name: "voucherNo",
+  field: "voucherNo",
+  sortable: true,
+  label: "ش سند",
+  class: "text-left",
+  showFilter: true,
+};
+
 export const customerName = {
   name: "customerName",
   field: "customerName",

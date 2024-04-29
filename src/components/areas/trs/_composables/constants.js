@@ -1,36 +1,15 @@
-import { title, isActive, actions } from "src/constants/columns";
-export const paymentInvoiceColumns = [
-  {
-    name: "no",
-    field: "no",
-    sortable: true,
-    label: "شماره",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-    value: "",
-  },
-  {
-    name: "date",
-    field: "date",
-    sortable: true,
-    label: "تاریخ",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-    value: "",
-  },
-  {
-    name: "amount",
-    field: "amount",
-    sortable: true,
-    label: "مبلغ",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-    value: "",
-  },
-];
+import {
+  title,
+  isActive,
+  actions,
+  date,
+  comment,
+  rowNo,
+  no,
+  amount,
+} from "src/constants/columns";
+
+export const paymentInvoiceColumns = [no, date, amount];
 
 export const bankAccountColumns = [
   {
@@ -89,5 +68,33 @@ export const cashColumns = [
     value: "",
   },
   isActive,
+  actions,
+];
+
+export const transferMoneyColumns = [
+  rowNo,
+  date,
+  {
+    name: "fromTitle",
+    field: "fromTitle",
+    sortable: true,
+    label: "از",
+    style: "",
+    showFilter: true,
+    class: "text-left",
+    value: "",
+  },
+  {
+    name: "toTitle",
+    field: "toTitle",
+    sortable: true,
+    label: "به",
+    style: "",
+    showFilter: true,
+    class: "text-left",
+    value: "",
+  },
+  comment,
+  amount,
   actions,
 ];
