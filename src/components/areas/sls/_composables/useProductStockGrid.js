@@ -13,10 +13,7 @@ const state = {
   activeRow: ref(null),
   summaryData: ref(null),
   filterExpression: [],
-  searchModel: ref({
-    dateRange: 0,
-    waitToSendTax: false,
-  }),
+  searchModel: ref(),
 };
 
 const pagination = ref({
