@@ -37,41 +37,50 @@ const updateModel = (value) => {
 </script> -->
 
 <template>
-  <q-input outlined dense ref="inputRef" :model-value="modelValue"
-    @update:model-value="updateModel" />
+  <!-- <q-input outlined dense ref="inputRef" :model-value="modelValue"
+    @update:model-value="updateModel" /> -->
+  <q-input outlined dense ref="inputRef" v-model="model">
+    <template v-slot:prepend>
+      <slot name="prepend"></slot>
+    </template>
+    <template v-slot:append>
+      <slot name="append"></slot>
+    </template>
+  </q-input>
 </template>
 
 <script>
-import { ref } from "vue"
-import { useCurrencyInput } from 'vue-currency-input'
+import { ref } from "vue";
+import { useCurrencyInput } from "vue-currency-input";
+
+const model = defineModel("value");
 
 export default {
-  name: 'CurrencyInput',
+  name: "CurrencyInput",
   props: {
     modelValue: Number,
-    options: Object
+    options: Object,
   },
   setup(props, emit) {
-
     const options = {
-      "locale": "fa-IR",
-      "currency": "IRR",
-      "currencyDisplay": "hidden",
-      "hideCurrencySymbolOnFocus": true,
-      "hideGroupingSeparatorOnFocus": true,
-      "hideNegligibleDecimalDigitsOnFocus": true,
-      "autoDecimalDigits": false,
-      "useGrouping": true,
-      "accountingSign": false
-    }
+      locale: "fa-IR",
+      currency: "IRR",
+      currencyDisplay: "hidden",
+      hideCurrencySymbolOnFocus: true,
+      hideGroupingSeparatorOnFocus: true,
+      hideNegligibleDecimalDigitsOnFocus: true,
+      autoDecimalDigits: false,
+      useGrouping: true,
+      accountingSign: false,
+    };
 
-    const { inputRef } = useCurrencyInput(options)
+    const { inputRef } = useCurrencyInput(options);
 
     const updateModel = (value) => {
       emit("update:modelValue");
     };
 
-    return { inputRef, updateModel }
-  }
-}
+    return { inputRef, updateModel };
+  },
+};
 </script>
