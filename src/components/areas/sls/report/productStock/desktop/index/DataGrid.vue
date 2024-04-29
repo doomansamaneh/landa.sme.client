@@ -1,8 +1,8 @@
 <template>
   <q-card flat class="tips q-mb-md">
     <q-card-section>
-      <div class="title q-mb-sm">راهنما</div>
-      <div class="text-body1 no-letter-spacing">
+      <div class="title">راهنما</div>
+      <div class="q-mt-md text-body1 no-letter-spacing">
         موجودی کالاهایی که نوعشان خدمت نباشد براساس خرید و فروشهای نهایی شده. فقط خریدهایی در موجودی تاثیر میگذارند که
         نوعشان شارژ انبار و یا مشابه آن باشد
       </div>
