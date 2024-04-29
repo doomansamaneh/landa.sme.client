@@ -9,67 +9,39 @@
   <template v-else>
     <toolbar-desktop v-if="toolbar" :table-store="desktopGrid?.tableStore" :crud-store="crudStore" :title="title"
       :base-route="baseRoute" buttons margin>
-      <template #bootons-edit="{ row }">
-        <q-btn padding="6px 12px" :to="`/${baseRoute}/edit/${row.id}`" class="text-body2 no-letter-spacing" rounded
-          unelevated no-caps>
-          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-          {{ $t("shared.labels.edit") }}
+
+      <template #buttons>
+        <q-toggle class="text-body2 no-letter-spacing" v-model="value" label="نمایش موجودی صفر" left-label />
+
+        <q-btn padding="6px 12px" class="text-body2 no-letter-spacing" rounded unelevated>
+          <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
+          {{ $t("shared.labels.more") }}
+
+          <q-menu class="border-radius-lg" fit :offset="[0, 20]">
+            <q-list>
+              <q-item clickable v-close-popup tabindex="0" @click="tableStore.exportAll()">
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-avatar class="bg-on-dark" size="sm"><q-icon name="o_download" size="20px" /></q-avatar>
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <div class="text-body2 no-letter-spacing">
+                    {{ $t("shared.labels.eportToExcel") }}
+                  </div>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
         </q-btn>
 
-        <q-btn :to="`/${baseRoute}/copy/${row.id}`" class="text-body2 no-letter-spacing" rounded unelevated no-caps>
-          <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-          {{ $t("shared.labels.copy") }}
-        </q-btn>
       </template>
 
-      <template #buttons-custom="{ row }">
-        <template v-if="row">
-          <q-item clickable v-close-popup tabindex="0">
-            <q-item-section avatar class="q-py-sm">
-              <q-avatar class="bg-on-dark" size="sm">
-                <q-icon name="o_shopping_cart" size="20px" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.copyToPurchase") }}
-              </div>
-            </q-item-section>
-          </q-item>
-
-          <q-separator class="q-my-sm" />
-
-          <q-item clickable v-close-popup tabindex="0">
-            <q-item-section avatar class="q-py-sm">
-              <q-avatar class="bg-on-dark" size="sm">
-                <q-icon name="o_print" size="20px" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.print") }}
-              </div>
-            </q-item-section>
-          </q-item>
-        </template>
-
-        <q-item clickable v-close-popup tabindex="0">
-          <q-item-section class="q-py-sm" avatar>
-            <q-avatar class="bg-on-dark" size="sm">
-              <q-icon name="o_print" size="20px" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.printBatch") }}
-            </div>
-          </q-item-section>
-        </q-item>
-      </template>
     </toolbar-desktop>
 
     <desktop :grid-store="gridStore" :crud-store="crudStore" :title="title" data-source="sls/report/getProductStock"
       ref="desktopGrid" />
+      
   </template>
 </template>
 
@@ -93,6 +65,7 @@ const { t } = useI18n();
 
 const title = t("main-menu-items.Sls_Report_ProductStock");
 const baseRoute = "sls/report/productStock";
+const value = ref(false)
 
 const $q = useQuasar();
 const gridStore = useProductStockGrid();

@@ -9,22 +9,23 @@
     </q-card-section>
   </q-card>
 
-  <invoice-grid
-    ref="invoiceTable"
+  <data-grid
+    ref="dataGrid"
     :grid-store="gridStore"
     :data-source="dataSource"
     base-route="sls/report/productStock"
+    expandable
   >
     <template #expand="{ item }">
       <preview :item="item" />
     </template>
-  </invoice-grid>
+  </data-grid>
 </template>
 
 <script setup>
 import { computed, ref } from "vue";
 
-import InvoiceGrid from "components/areas/sls/_shared/invoice/desktop/index/DataGrid.vue";
+import DataGrid from "components/areas/_shared/report/shared/index/DataGrid.vue";
 import Preview from "../../shared/preview/IndexView.vue";
 
 const props = defineProps({
@@ -34,9 +35,9 @@ const props = defineProps({
   crudStore: Object,
 });
 
-const invoiceTable = ref(null);
+const dataGrid = ref(null);
 
-const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore);
+const tableStore = computed(() => dataGrid.value?.tableStore);
 
 async function reloadData() {
   await tableStore.value.reloadData();
@@ -45,4 +46,5 @@ async function reloadData() {
 defineExpose({
   tableStore,
 });
+
 </script>
