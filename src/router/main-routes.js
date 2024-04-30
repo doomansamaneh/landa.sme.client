@@ -457,19 +457,14 @@ export default {
             import("pages/areas/sls/report/productStock/IndexPage.vue"),
         },
         {
-          path: "create",
+          path: "items/:productId",
           component: () =>
-            import("pages/areas/sls/report/productStock/CreatePage.vue"),
+            import("src/pages/areas/sls/report/productStock/ItemsPage.vue"),
         },
         {
-          path: "edit/:id",
+          path: "items/preview/:productId",
           component: () =>
-            import("pages/areas/sls/report/productStock/EditPage.vue"),
-        },
-        {
-          path: "copy/:id",
-          component: () =>
-            import("pages/areas/sls/report/productStock/CopyPage.vue"),
+            import("pages/areas/sls/report/productStock/InvoicePreviewPage.vue"),
         },
       ],
     },

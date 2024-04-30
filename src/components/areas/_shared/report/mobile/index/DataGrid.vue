@@ -3,66 +3,69 @@
     ref="dataGrid"
     :data-source="dataSource"
     :grid-store="gridStore"
-    :create-url="createUrl"
+    separator="horizontal"
+    flat_
+    multiSelect_
+    numbered
+    bordered
+    wrapCells_
+    dense_
+    :expandable="expandable"
   >
-    <template #body="{ item }">
-      <q-card flat bordered :class="tableStore?.getRowClass(item)">
-        <q-card-section>
-          <span
-            class="q-mr-md"
-            v-if="
-              gridStore.columns.value.some((col) => col.name === 'isActive')
-            "
-          >
-            <q-btn
-              v-if="item.isActive"
-              round
-              dense
-              size="10px"
-              unelevated
-              icon="o_done"
-              color="positive"
-              class="no-pointer-events"
-            />
-            <q-btn
-              v-else
-              round
-              dense
-              size="10px"
-              unelevated
-              icon="o_close"
-              color="negative"
-              class="no-pointer-events"
-            />
-          </span>
-          <span v-if="item.code"> {{ item.code }} - </span>{{ item.title }}
-          <div>
-            <small class="">{{ item.comment }}</small>
-          </div>
-        </q-card-section>
-      </q-card>
+    <template #filter-isActive="{ col }">
+      <custom-select
+        v-model="col.value"
+        :options="isActiveOptions"
+        @update:model-value="reloadData"
+      />
+    </template>
+
+    <template #cell-isActive="{ item }">
+      <is-active :is-active="item.isActive" />
+    </template>
+
+    <template v-for="(slot, name) in $slots" :key="slot" #[name]="{ item }">
+      <slot :name="name" :item="item"></slot>
+    </template>
+
+    <template #cell-actions="{ item }">
+      <row-tool-bar
+        :base-route="baseRoute"
+        :item="item"
+        :table-store="tableStore"
+        :crud-store="crudStore"
+      />
     </template>
   </data-grid>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
+import { isActiveOptions } from "src/constants";
 
-import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
+import RowToolBar from "src/components/shared/RowToolBar.vue";
+import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+import IsActive from "src/components/shared/IsActive.vue";
 
 const props = defineProps({
   gridStore: Object,
   crudStore: Object,
   dataSource: String,
   baseRoute: String,
-  createUrl: String,
+  expandable: Boolean,
 });
 
 const dataGrid = ref(null);
+
+async function reloadData() {
+  await tableStore.value.reloadData();
+}
 
 const tableStore = computed(() => dataGrid?.value?.tableStore);
 
 defineExpose({
   tableStore,
 });
+
 </script>

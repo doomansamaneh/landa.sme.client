@@ -37,18 +37,19 @@
           unelevated
           no-caps
         >
-          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+          <q-icon size="20px" name="o_edit" class="q-mr-sm" />
           {{ $t("shared.labels.edit") }}
         </q-btn>
 
         <q-btn
+          padding="6px 12px"
           :to="`/${baseRoute}/copy/${row.id}`"
           class="text-body2 no-letter-spacing"
           rounded
           unelevated
           no-caps
         >
-          <q-icon size="20px" name="o_copy" class="q-mr-xs" />
+          <q-icon size="20px" name="o_copy" class="q-mr-sm" />
           {{ $t("shared.labels.copy") }}
         </q-btn>
       </template>
@@ -61,7 +62,7 @@
           no-caps
           @click="editBatch"
         >
-          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+          <q-icon size="20px" name="o_edit" class="q-mr-sm" />
           {{ $t("shared.labels.editBatch") }}
           <q-badge floating>
             {{ selectedIds?.length }}

@@ -12,7 +12,7 @@
               unelevated
               :to="`/${baseRoute}/create`"
             >
-              <q-icon size="20px" name="o_add" class="q-mr-xs" />
+              <q-icon size="20px" name="o_add" class="q-mr-sm" />
               {{ $t("shared.labels.create") }}
             </q-btn>
 
@@ -26,7 +26,7 @@
                   unelevated
                   no-caps
                 >
-                  <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+                  <q-icon size="20px" name="o_edit" class="q-mr-sm" />
                   {{ $t("shared.labels.edit") }}
                   <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
                 </q-btn>
@@ -46,7 +46,7 @@
                     crudStore.deleteBatch(selectedIds, tableStore.reloadData)
                   "
                 >
-                  <q-icon name="o_delete" size="20px" class="q-mr-xs" />
+                  <q-icon name="o_delete" size="20px" class="q-mr-sm" />
                   {{ $t("shared.labels.delete") }}
                   <q-badge floating>
                     {{ selectedIds?.length }}
@@ -70,7 +70,7 @@
                     )
                   "
                 >
-                  <q-icon size="20px" name="o_delete" class="q-mr-xs" />
+                  <q-icon size="20px" name="o_delete" class="q-mr-sm" />
                   {{ $t("shared.labels.delete") }}
                 </q-btn>
               </slot>
@@ -82,7 +82,7 @@
               rounded
               unelevated
             >
-              <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
+              <q-icon size="20px" name="more_horiz" class="q-mr-sm" />
               {{ $t("shared.labels.more") }}
 
               <q-menu class="border-radius-lg" fit :offset="[0, 20]">

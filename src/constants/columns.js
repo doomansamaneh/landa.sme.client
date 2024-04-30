@@ -100,7 +100,7 @@ export const subject = {
   name: "subject",
   field: "subject",
   sortable: true,
-  label: "شرح",
+  label: "موضوع",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -214,4 +214,34 @@ export const unitTitle = {
   class: "text-left",
   style: "width:180px;",
   showFilter: true,
+};
+
+export const inlineQuantity = {
+  name: "inlineQuantity",
+  field: "inlineQuantity",
+  sortable: false,
+  label: "موجودی",
+  align: "left",
+  class: "text-left",
+  showFilter: false,
+};
+
+export const price = {
+  name: "price",
+  field: "price",
+  sortable: false,
+  label: "مبلغ",
+  align: "left",
+  class: "text-left",
+  showFilter: false,
+};
+
+export const summary = {
+  name: "summary",
+  field: "summary",
+  sortable: false,
+  label: "خلاصه",
+  align: "left",
+  class: "text-left",
+  showFilter: false,
 };

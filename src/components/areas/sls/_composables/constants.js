@@ -15,6 +15,10 @@ import {
   salesQuantity,
   stock,
   debit,
+  voucherNo,
+  summary,
+  inlineQuantity,
+  price,
 } from "src/constants/columns";
 
 export const taxStatus = {
@@ -81,4 +85,15 @@ export const productStockColumns = [
   salesQuantity,
   stock,
   debit,
+];
+
+export const productStockItemsColumns = [
+  voucherNo,
+  date,
+  subject,
+  // summary,
+  purchaseQuantity,
+  salesQuantity,
+  inlineQuantity,
+  price,
 ];
