@@ -13,7 +13,7 @@
         {{ $t("shared.labels.edit") }}
       </q-btn>
       <q-btn
-        @click="helper.print('ivoicePreview')"
+        @click="helper.print('invoicePreview')"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -26,10 +26,10 @@
     </template>
   </tool-bar>
 
-  <div class="row q-col-gutter-lg" :style="marginTop()">
+  <div class="row q-col-gutter-lg" style="margin-top: -16px;">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card class="bordered">
-        <q-card-section class="q-gutter-y-sm" id="ivoicePreview">
+        <q-card-section class="q-gutter-y-sm" id="invoicePreview">
           <invoice-header
             :model="formStore.model"
             :title="$t('shared.labels.purchase')"
@@ -73,16 +73,6 @@ const route = useRoute();
 const router = useRouter();
 
 const id = computed(() => props.item?.id ?? route.params.id);
-
-const currentPath = router.currentRoute.value.path;
-
-const marginTop = () => {
-  if (currentPath.startsWith("/sls/purchase/preview/")) {
-    return "margin-top: 16px;";
-  } else {
-    return "margin-top: 0px";
-  }
-};
 
 onMounted(() => {
   formStore.getById(id.value);

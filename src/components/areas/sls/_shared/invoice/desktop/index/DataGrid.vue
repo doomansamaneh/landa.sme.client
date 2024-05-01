@@ -68,7 +68,7 @@
       <q-badge>{{ item.statusTitle }}</q-badge>
     </template>
     <template #expand="{ item }">
-      <div class="q-pa-md">
+      <div class="q-pb-md">
         <slot name="expand" :item="item"></slot>
       </div>
     </template>

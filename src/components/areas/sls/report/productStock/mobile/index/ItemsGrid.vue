@@ -32,7 +32,7 @@
     </template>
   </tool-bar>
 
-  <div class="q-pb-lg q-pt-sm row q-col-gutter-md">
+  <div class="q-pb-lg row q-col-gutter-md">
 
     <div class="col-md col-sm-6 col-xs-12">
       <div class="text-body3 no-letter-spacing q-mb-sm">کد</div>

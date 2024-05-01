@@ -7,7 +7,9 @@
     <template #expand="{ item }">
       <items-grid :filter-expersions="getFilterExpersion(item)" :item="item">
         <template #expand="{ item }">
-          <preview :item="item" />
+          <div class="q-pb-md">
+            <preview :item="item" />
+          </div>
         </template>
       </items-grid>
     </template>

@@ -1,8 +1,13 @@
 <template>
-
   <div class="q-pb-lg">
-    <q-input outlined dense rounded placeholder="جستجو در موجودی کالا" v-model="search"
-      @click="showSearchModal">
+    <q-input
+      outlined
+      dense
+      rounded
+      placeholder="جستجو در موجودی کالا"
+      v-model="search"
+      @click="showSearchModal"
+    >
       <template #append>
         <q-btn padding="4px 12px" rounded color="primary" dense unelevated>
           <div class="row items-center">
@@ -14,12 +19,13 @@
     </q-input>
   </div>
 
-  <data-grid ref="dataGrid" :grid-store="gridStore" :data-source="dataSource" base-route="sls/report/productStock"
-    expandable>
-    <template #expand="{  }">
-      
-    </template>
-  </data-grid>
+  <data-grid
+    ref="dataGrid"
+    :grid-store="gridStore"
+    :data-source="dataSource"
+    base-route="sls/report/productStock"
+    expandable
+  />
 </template>
 
 <script setup>
@@ -30,8 +36,8 @@ import DataGrid from "components/areas/_shared/report/shared/index/DataGrid.vue"
 import ItemsGrid from "components/areas/sls/report/productStock/desktop/index/ItemsGrid.vue";
 import Preview from "../../shared/preview/IndexView.vue";
 
-const value = ref(false)
-const search = ref("")
+const value = ref(false);
+const search = ref("");
 
 const props = defineProps({
   gridStore: Object,
@@ -45,8 +51,8 @@ const dataGrid = ref(null);
 const tableStore = computed(() => dataGrid.value?.tableStore);
 
 const getFilterExpersion = (item) => {
-  return [{ fieldName: "ii.productId", operator: sqlOperator.equal, value: item.id }]
-}
+  return [{ fieldName: "ii.productId", operator: sqlOperator.equal, value: item.id }];
+};
 
 async function reloadData() {
   await tableStore.value.reloadData();
@@ -55,5 +61,4 @@ async function reloadData() {
 defineExpose({
   tableStore,
 });
-
 </script>

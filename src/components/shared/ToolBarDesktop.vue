@@ -1,7 +1,7 @@
 <template>
   <div :style="toolbarMargin">
     <q-page-sticky class="z-1 bg-main" :style="inside" position="top" expand>
-      <q-toolbar :style="xPadding">
+      <q-toolbar class="q-my-sm" :style="xPadding">
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn
@@ -42,9 +42,7 @@
                   rounded
                   unelevated
                   no-caps
-                  @click="
-                    crudStore.deleteBatch(selectedIds, tableStore.reloadData)
-                  "
+                  @click="crudStore.deleteBatch(selectedIds, tableStore.reloadData)"
                 >
                   <q-icon name="o_delete" size="20px" class="q-mr-sm" />
                   {{ $t("shared.labels.delete") }}
@@ -113,9 +111,7 @@
                       clickable
                       v-close-popup
                       tabindex="0"
-                      @click="
-                        crudStore.activate(selectedIds, tableStore.reloadData)
-                      "
+                      @click="crudStore.activate(selectedIds, tableStore.reloadData)"
                     >
                       <div class="q-py-sm">
                         <q-item-section avatar>
@@ -135,9 +131,7 @@
                       clickable
                       v-close-popup
                       tabindex="0"
-                      @click="
-                        crudStore.deactivate(selectedIds, tableStore.reloadData)
-                      "
+                      @click="crudStore.deactivate(selectedIds, tableStore.reloadData)"
                     >
                       <div class="q-py-sm">
                         <q-item-section avatar>
@@ -154,11 +148,7 @@
                     </q-item>
                   </template>
 
-                  <slot
-                    name="buttons-custom"
-                    :row="tableStore?.activeRow?.value"
-                  >
-                  </slot>
+                  <slot name="buttons-custom" :row="tableStore?.activeRow?.value"> </slot>
 
                   <q-separator class="q-my-sm" />
 
@@ -239,9 +229,7 @@
           <slot name="header">
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
               <slot name="header-title">
-                <span class="text-weight-700 no-letter-spacing">{{
-                  title
-                }}</span>
+                <span class="text-weight-700 no-letter-spacing">{{ title }}</span>
                 <q-btn
                   v-if="tableStore?.pagination.value.totalItems > 0"
                   rounded
@@ -285,16 +273,12 @@ const props = defineProps({
   margin: Boolean,
 });
 
-const currentPath = router.currentRoute.value.path;
-
 const selectedIds = computed(() =>
   props.tableStore?.selectedRows?.value.map((item) => item.id)
 );
 
 const toolbarMargin = computed(() => {
-  const baseMargin = $q.screen.lt.md
-    ? "margin-bottom: 56px;"
-    : "margin-bottom: 40px;";
+  const baseMargin = $q.screen.lt.md ? "margin-bottom: 56px;" : "margin-bottom: 40px;";
   const margin = $q.screen.lt.sm ? "margin-bottom: 32px;" : "";
   return props.margin ? baseMargin : margin;
 });
@@ -308,19 +292,10 @@ const xPadding = computed(() => {
 });
 
 const inside = computed(() => {
-  const padding = $q.screen.gt.sm
-    ? "padding: 12px 32px;"
-    : "padding: 12px 20px;";
-  if (currentPath.startsWith("/sls/invoice/preview/")) {
-    return props.inside ? padding : "padding-top: 12px; padding-bottom: 12px;";
+  if (props.inside) {
+    return "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;";
   } else {
-    return props.inside
-      ? "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;"
-      : "padding-top: 12px; padding-bottom: 12px;";
+    return "";
   }
 });
-
-// const noPadding = computed(() => {
-//   return props.inside ? '' : 'no-padding'
-// });
 </script>

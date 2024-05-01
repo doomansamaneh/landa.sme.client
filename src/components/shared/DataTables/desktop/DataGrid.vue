@@ -97,7 +97,7 @@
                   flat
                   dense
                   round
-                  @click="tableStore.toggleExpand(row)"
+                  @click="toggleExpand(row)"
                   :icon="chevronIcon()"
                   :class="row.expanded ? 'expand-open' : 'expand-close'"
                 />
@@ -175,6 +175,7 @@
 
 <script setup>
 import { onMounted, computed } from "vue";
+import { useRouter } from "vue-router"
 import { useQuasar } from "quasar";
 import { useDataTable } from "src/composables/useDataTable";
 
@@ -202,6 +203,7 @@ const props = defineProps({
 });
 
 const $q = useQuasar();
+const router = useRouter()
 const tableStore = useDataTable(
   props.dataSource,
   props.columns,
@@ -286,9 +288,19 @@ const chevronIcon = () => {
   return $q.lang.rtl ? 'chevron_left' : 'chevron_right'
 }
 
+//Todo: How move to expand page dynamically
+const toggleExpand = (row) => {
+  if($q.screen.gt.xs) {
+    tableStore.toggleExpand(row)
+  } else {
+    router.push("/Sls/Report/ProductStock/items/123")
+  }
+}
+
 defineExpose({
   tableStore,
 });
+
 </script>
 
 <style lang="scss" scoped>
