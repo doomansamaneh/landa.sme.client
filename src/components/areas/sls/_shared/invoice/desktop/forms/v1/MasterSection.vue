@@ -92,8 +92,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <q-item-label caption class="q-mb-sm">شرح</q-item-label>
               <custom-input
-                hide-bottom-space
-                v-model="localFormStore.model.value.summary"
+              v-model="localFormStore.model.value.summary"
+              hide-bottom-space
                 type="textarea"
               />
             </div>

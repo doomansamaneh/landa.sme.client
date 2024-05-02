@@ -82,7 +82,7 @@
     "renew-subscription": "تمدید اشتراک",
     "add-new-business": "ایجاد کسب و کار جدید",
     "dashboard": "پیشخوان",
-    "first-login-wizard" : "راه اندازی اولیه کسب و کار"
+    "first-login-wizard": "راه اندازی اولیه کسب و کار"
   },
 
   "login-page": {
@@ -395,6 +395,10 @@
     "invoicePreviewTemplate": {
       "standard": "استاندارد دارایی",
       "simple": "ساده"
+    },
+    "transferMoneyType": {
+      "bankAccount": "حساب بانکی",
+      "cash": "صندوق نقدی"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",

@@ -123,6 +123,11 @@ export const invoiceFormType = {
   purchase: 2,
 };
 
+export const transferMoneyType = {
+  bankAccount: 1,
+  cash: 2,
+};
+
 export const productType = {
   main: 211,
   part: 212,

@@ -50,7 +50,7 @@ const updateModel = (value) => {
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, defineModel } from "vue";
 import { useCurrencyInput } from "vue-currency-input";
 
 const model = defineModel("value");
