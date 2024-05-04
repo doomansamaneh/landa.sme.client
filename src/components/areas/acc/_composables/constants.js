@@ -1,6 +1,15 @@
-import { ref } from "vue";
-import { defaultPageSize } from "src/constants";
-import { code, title, isActive, actions } from "src/constants/columns";
+import {
+  rowNo,
+  no,
+  code,
+  date,
+  subject,
+  type,
+  title,
+  isActive,
+  amount,
+  actions,
+} from "src/constants/columns";
 
 export const accountGLColumns = [
   code,
@@ -63,16 +72,26 @@ export const accountDLColumns = [
     style: "width:120px;",
     class: "text-left",
   },
-  {
-    name: "typeId",
-    field: "typeId",
-    sortable: true,
-    label: "نوع",
-    align: "left",
-    class: "text-left",
-    style: "width:120px;",
-    showFilter: true,
-  },
+  type,
   isActive,
   actions,
+];
+
+export const voucherColumns = [
+  rowNo,
+  no,
+  date,
+  subject,
+  amount,
+  type,
+  {
+    name: "systemId",
+    field: "systemId",
+    sortable: true,
+    label: "سیستم",
+    align: "left",
+    class: "text-left",
+    style: "width:160px;",
+    showFilter: true,
+  },
 ];

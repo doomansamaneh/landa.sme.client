@@ -388,6 +388,23 @@
       "generalService": "قبوض خدماتی",
       "airplaneTicket": "بلیت هواپیما"
     },
+    "voucherType": {
+      "general": "عمومی",
+      "closeInterimAccount": "بستن حسابها",
+      "openingVoucher": "افتتاحیه",
+      "closingVoucher": "اختتامیه",
+      "modificationVoucher": "اصلاحیه"
+    },
+    "subSystem": {
+      "accounting": "حسابداری",
+      "receiptAndPayment": "دریافت و پرداخت",
+      "sales": "بازرگانی، خرید و فروش",
+      "afterSalesService": "خدمات پس از فروش",
+      "payroll": "حقوق و دستمزد",
+      "asset": "اموال و داراییهای ثابت",
+      "inventory": "انبارداری",
+      "contract": "پیمانکاری"
+    },
     "cogsCalcMethod": {
       "none": "هیچکدام",
       "fifo": "FIFO"

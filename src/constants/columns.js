@@ -1,3 +1,14 @@
+export const type = {
+  name: "typeId",
+  field: "typeId",
+  sortable: true,
+  label: "نوع",
+  align: "left",
+  class: "text-left",
+  style: "width:120px;",
+  showFilter: true,
+};
+
 export const code = {
   name: "code",
   field: "code",
@@ -72,6 +83,7 @@ export const rowNo = {
   sortable: true,
   label: "ش پیگیری",
   class: "text-left",
+  style: "width:90px",
   showFilter: true,
 };
 

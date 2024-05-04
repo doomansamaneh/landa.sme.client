@@ -128,6 +128,25 @@ export const transferMoneyType = {
   cash: 2,
 };
 
+export const voucherType = {
+  general: 1041,
+  closeInterimAccount: 1043,
+  openingVoucher: 1044,
+  closingVoucher: 1045,
+  modificationVoucher: 1046,
+};
+
+export const subSystem = {
+  accounting: 51,
+  receiptAndPayment: 52,
+  sales: 53,
+  afterSalesService: 54,
+  payroll: 55,
+  asset: 56,
+  inventory: 57,
+  contract: 58,
+};
+
 export const productType = {
   main: 211,
   part: 212,

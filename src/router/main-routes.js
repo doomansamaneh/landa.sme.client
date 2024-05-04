@@ -42,6 +42,32 @@ export default {
     },
 
     {
+      path: "acc/voucher",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/acc/voucher/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () => import("pages/areas/acc/voucher/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () => import("pages/areas/acc/voucher/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () => import("pages/areas/acc/voucher/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () => import("pages/areas/acc/voucher/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "acc/accountCL",
       children: [
         {
@@ -464,7 +490,9 @@ export default {
         {
           path: "items/preview/:productId",
           component: () =>
-            import("pages/areas/sls/report/productStock/InvoicePreviewPage.vue"),
+            import(
+              "pages/areas/sls/report/productStock/InvoicePreviewPage.vue"
+            ),
         },
       ],
     },
