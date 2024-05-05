@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { sortOrder, defaultPageSize } from "src/constants";
-import { accountSLColumns } from "./constants";
+import { accountCLColumns } from "./constants";
 
 const state = {
   firstLoad: ref(false),
@@ -18,12 +18,11 @@ const pagination = ref({
   // filterExpression: [],
 });
 
-export function useAccountSLGrid(defaultFilters) {
-  const columns = accountSLColumns;
+export function useAccountCLGrid() {
+  const columns = accountCLColumns;
   return {
     state,
     columns,
     pagination,
-    // filterExpression
   };
 }

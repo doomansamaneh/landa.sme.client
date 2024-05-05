@@ -1,5 +1,6 @@
 import {
   rowNo,
+  id,
   no,
   code,
   date,
@@ -94,4 +95,11 @@ export const voucherColumns = [
     style: "width:160px;",
     showFilter: true,
   },
+];
+
+export const accountCLColumns = [
+  id,
+  code,
+  title,
+  isActive,
 ];

@@ -130,6 +130,10 @@ export default {
           path: "copy/:id",
           component: () => import("pages/areas/acc/accountSL/CopyPage.vue"),
         },
+        {
+          path: "tree",
+          component: () => import("pages/areas/acc/accountSL/tree/IndexPage.vue"),
+        },
       ],
     },
 

@@ -1,3 +1,14 @@
+export const id = {
+  name: "id",
+  field: "id",
+  sortable: false,
+  label: "نوع",
+  align: "left",
+  class: "text-left",
+  style: "width:120px;",
+  showFilter: false,
+};
+
 export const type = {
   name: "typeId",
   field: "typeId",
