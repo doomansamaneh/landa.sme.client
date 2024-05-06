@@ -3,132 +3,132 @@
 
   <q-card class="form-container">
     <q-card-section class="q-pa-lg">
-      <q-tree
-        :nodes="nodes"
-        node-key="label"
-        node-icon="search"
-        accordion
-        selected-color="primary"
-        icon="o_arrow_forward_ios"
-      >
-        <template #header-first="prop">
-          <div class="row items-center text-body2 no-letter-spacing q-pa-sm">
-            <!-- <q-icon color="blue-10" size="24px" name="o_groups" class="q-mr-sm" /> -->
-            <div class="text-body2 no-letter-spacing">
-              {{ prop.node.label }}
+      <div v-if="true">
+        <q-tree
+          :nodes="nodes"
+          @lazy-load="onLazyLoad"
+          node-key="id"
+          node-icon="search"
+          accordion
+          selected-color="primary"
+          icon="o_arrow_forward_ios"
+        >
+          <template #default-header="prop">
+            <div class="row items-center text-body2 no-letter-spacing q-pa-sm">
+              <div class="text-body2 no-letter-spacing">
+                {{ prop.node.code }} - {{ prop.node.title }}
+              </div>
             </div>
-          </div>
-          <q-space />
-          <div class="row items-center q-gutter-md">
-            <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
-              <q-menu v-show="menu" class="border-radius-lg" fit :offset="[0, 10]">
-                <q-list dense padding style="width: 200px">
-                  <q-item clickable v-close-popup tabindex="0">
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_add" />
-                        </q-avatar>
+            <q-space />
+            <div class="row items-center q-gutter-md">
+              <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
+                <q-menu v-show="menu" class="border-radius-lg" fit :offset="[0, 10]">
+                  <q-list dense padding style="width: 200px">
+                    <q-item clickable v-close-popup tabindex="0">
+                      <div class="q-py-sm">
+                        <q-item-section avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon size="20px" name="o_add" />
+                          </q-avatar>
+                        </q-item-section>
+                      </div>
+                      <q-item-section>
+                        <div class="text-body2 no-letter-spacing">ایجاد حساب کل</div>
                       </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">ایجاد حساب کل</div>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
-          </div>
-        </template>
-        <template #header-second="prop">
-          <div class="row items-center q-gutter-md no-letter-spacing q-pa-sm">
-            <!-- <q-icon color="red-8" size="24px" name="o_subject" /> -->
-            <q-btn size="8px" round unelevated class="no-pointer-events" color="green">
-              <q-icon color="white" name="o_check" size="16px" />
-            </q-btn>
-            <div class="text-body2 no-letter-spacing">
-              {{ prop.node.label }}
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </q-btn>
             </div>
-          </div>
-          <q-space />
-          <div class="row items-center">
-            <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
-              <q-menu v-show="menu" class="border-radius-lg" fit :offset="[0, 10]">
-                <q-list dense padding style="width: 200px">
-                  <q-item clickable v-close-popup tabindex="0">
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_add" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">ایجاد حساب معین</div>
-                    </q-item-section>
-                  </q-item>
-                  <q-item clickable v-close-popup tabindex="0">
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_edit" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">ویرایش</div>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
-          </div>
-        </template>
-        <template #header-third="prop">
-          <div class="row items-center q-gutter-md no-letter-spacing q-pa-sm">
-            <!-- <q-icon size="24px" name="o_menu" /> -->
-            <q-btn size="8px" round unelevated class="no-pointer-events" color="green">
-              <q-icon color="white" name="o_check" size="16px" />
-            </q-btn>
-            <div class="text-body2 no-letter-spacing">
-              {{ prop.node.label }}
+          </template>
+          <template #header-second="prop">
+            <div class="row items-center q-gutter-md no-letter-spacing q-pa-sm">
+              <q-btn size="8px" round unelevated class="no-pointer-events" color="green">
+                <q-icon color="white" name="o_check" size="16px" />
+              </q-btn>
+              <div class="text-body2 no-letter-spacing">
+                {{ prop.node.label }}
+              </div>
             </div>
-          </div>
-          <q-space />
-          <div class="row items-center">
-            <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
-              <q-menu v-show="menu" class="border-radius-lg" fit :offset="[0, 10]">
-                <q-list dense padding style="width: 200px">
-                  <q-item clickable v-close-popup tabindex="0">
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_edit" />
-                        </q-avatar>
+            <q-space />
+            <div class="row items-center">
+              <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
+                <q-menu v-show="menu" class="border-radius-lg" fit :offset="[0, 10]">
+                  <q-list dense padding style="width: 200px">
+                    <q-item clickable v-close-popup tabindex="0">
+                      <div class="q-py-sm">
+                        <q-item-section avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon size="20px" name="o_add" />
+                          </q-avatar>
+                        </q-item-section>
+                      </div>
+                      <q-item-section>
+                        <div class="text-body2 no-letter-spacing">ایجاد حساب معین</div>
                       </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">ویرایش</div>
-                    </q-item-section>
-                  </q-item>
-                  <q-item clickable v-close-popup tabindex="0">
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_delete" />
-                        </q-avatar>
+                    </q-item>
+                    <q-item clickable v-close-popup tabindex="0">
+                      <div class="q-py-sm">
+                        <q-item-section avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon size="20px" name="o_edit" />
+                          </q-avatar>
+                        </q-item-section>
+                      </div>
+                      <q-item-section>
+                        <div class="text-body2 no-letter-spacing">ویرایش</div>
                       </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">حذف</div>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
-          </div>
-        </template>
-      </q-tree>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </q-btn>
+            </div>
+          </template>
+          <template #header-third="prop">
+            <div class="row items-center q-gutter-md no-letter-spacing q-pa-sm">
+              <q-btn size="8px" round unelevated class="no-pointer-events" color="green">
+                <q-icon color="white" name="o_check" size="16px" />
+              </q-btn>
+              <div class="text-body2 no-letter-spacing">
+                {{ prop.node.label }}
+              </div>
+            </div>
+            <q-space />
+            <div class="row items-center">
+              <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
+                <q-menu v-show="menu" class="border-radius-lg" fit :offset="[0, 10]">
+                  <q-list dense padding style="width: 200px">
+                    <q-item clickable v-close-popup tabindex="0">
+                      <div class="q-py-sm">
+                        <q-item-section avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon size="20px" name="o_edit" />
+                          </q-avatar>
+                        </q-item-section>
+                      </div>
+                      <q-item-section>
+                        <div class="text-body2 no-letter-spacing">ویرایش</div>
+                      </q-item-section>
+                    </q-item>
+                    <q-item clickable v-close-popup tabindex="0">
+                      <div class="q-py-sm">
+                        <q-item-section avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon size="20px" name="o_delete" />
+                          </q-avatar>
+                        </q-item-section>
+                      </div>
+                      <q-item-section>
+                        <div class="text-body2 no-letter-spacing">حذف</div>
+                      </q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </q-btn>
+            </div>
+          </template>
+        </q-tree>
+      </div>
     </q-card-section>
 
     <q-card-section
@@ -205,23 +205,61 @@ const secondLevelStore = useDataTable(secondLevelDataSource, null, secondLevelGr
 const thirdLevelStore = useDataTable(thirdLevelDataSource, null, thirdLevelGridStore);
 
 onMounted(() => {
-  firstLevelStore.loadData();
-  secondLevelStore.loadData();
-  thirdLevelStore.loadData();
+  loadClData();
 });
 
-watchEffect(() => {
-  nodes.value = firstLevelStore.rows.value.map((firstLevelRow) => ({
-    label: firstLevelRow.title,
-    header: "first",
-    children: secondLevelStore.rows.value.map((secondLevelRow) => ({
-      label: secondLevelRow.title,
-      header: "second",
-      children: thirdLevelStore.rows.value.map((thirdLevelRow) => ({
-        label: thirdLevelRow.title,
-        header: "third",
-      })),
-    })),
-  }));
-});
+async function loadClData() {
+  firstLevelStore.pagination.value.pageSize = -1;
+  await firstLevelStore.loadData();
+  firstLevelStore.rows.value.forEach((element) => {
+    element.level = "cl";
+    element.filterExpression = [
+      {
+        fieldName: "clId",
+        operator: sqlOperator.equal,
+        value: element.id,
+      },
+    ];
+    //element.children = [];
+    element.lazy = true;
+  });
+  nodes.value = firstLevelStore.rows.value;
+}
+
+async function loadGlData(node) {
+  secondLevelStore.pagination.value.pageSize = -1;
+  secondLevelStore.state.value.filterExpression = node.filterExpression;
+  await secondLevelStore.reloadData();
+  secondLevelStore.rows.value.forEach((element) => {
+    element.level = "gl";
+    element.filterExpression = [
+      {
+        fieldName: "glId",
+        operator: sqlOperator.equal,
+        value: element.id,
+      },
+    ];
+    //element.children = [];
+    element.lazy = true;
+  });
+}
+
+async function loadSlData(node) {
+  thirdLevelStore.pagination.value.pageSize = -1;
+  thirdLevelStore.state.value.filterExpression = node.filterExpression;
+  await thirdLevelStore.reloadData();
+}
+
+const onLazyLoad = async ({ node, key, done, fail }) => {
+  if (node.level === "cl") {
+    await loadGlData(node);
+    alert(1);
+    done(secondLevelStore.rows.value);
+  } else if (node.level === "gl") {
+    await loadSlData(node);
+    done(thirdLevelStore.rows.value);
+  } else {
+    done([]);
+  }
+};
 </script>

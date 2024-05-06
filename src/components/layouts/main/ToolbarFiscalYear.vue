@@ -38,7 +38,7 @@
           </q-btn>
         </div>
         <div class="q-gutter-sm q-px-lg q-pb-lg">
-          <q-btn unelevated round dense size="12px" color="primary" text-color="white" icon="o_refresh"
+          <q-btn unelevated round dense size="12px" text-color="grey-8" icon="o_refresh"
             @click="reloadData">
             <q-tooltip class="custom-tooltip" :delay="600">
               {{ $t("shared.labels.refresh") }}
