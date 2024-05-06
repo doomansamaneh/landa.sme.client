@@ -1,8 +1,8 @@
 <template>
 
-<div class="q-mt-xl">
+<!-- <div class="q-mt-xl">
   <QCurrencyInput v-model="value" :currency="currency" :options="options" />
-</div>
+</div> -->
 
   <data-grid toolbar />
   

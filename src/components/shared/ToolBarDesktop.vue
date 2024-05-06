@@ -1,7 +1,7 @@
 <template>
   <div :style="toolbarMargin">
     <q-page-sticky class="z-1 bg-main" :style="inside" position="top" expand>
-      <q-toolbar class="q-my-sm" :style="xPadding">
+      <q-toolbar class="q-my-md" :style="xPadding">
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn
@@ -278,8 +278,8 @@ const selectedIds = computed(() =>
 );
 
 const toolbarMargin = computed(() => {
-  const baseMargin = $q.screen.lt.md ? "margin-bottom: 56px;" : "margin-bottom: 40px;";
-  const margin = $q.screen.lt.sm ? "margin-bottom: 32px;" : "";
+  const baseMargin = $q.screen.lt.md ? "margin-bottom: 62px;" : "margin-bottom: 48px;";
+  const margin = $q.screen.lt.sm ? "margin-bottom: 36px;" : "";
   return props.margin ? baseMargin : margin;
 });
 

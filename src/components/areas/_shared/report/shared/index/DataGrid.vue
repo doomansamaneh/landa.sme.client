@@ -1,27 +1,35 @@
 <template>
-
   <template v-if="$q.screen.lt.sm">
-
-    <mobile :title="title" :grid-store="localGridStore" :crud-store="crudStore" :data-source="dataSource"
-      :base-route="baseRoute" :expandable="expandable" ref="mobileGrid">
+    <mobile
+      :title="title"
+      :grid-store="localGridStore"
+      :crud-store="crudStore"
+      :data-source="dataSource"
+      :base-route="baseRoute"
+      :expandable="expandable"
+      ref="mobileGrid"
+    >
       <template v-for="(slot, name) in $slots" :key="slot" #[name]="{ item }">
         <slot :name="name" :item="item"></slot>
       </template>
     </mobile>
-
   </template>
 
   <template v-else>
-
-    <desktop :title="title" :grid-store="localGridStore" :crud-store="crudStore" :data-source="dataSource"
-      :base-route="baseRoute" :expandable="expandable" ref="desktopGrid">
+    <desktop
+      :title="title"
+      :grid-store="localGridStore"
+      :crud-store="crudStore"
+      :data-source="dataSource"
+      :base-route="baseRoute"
+      :expandable="expandable"
+      ref="desktopGrid"
+    >
       <template v-for="(slot, name) in $slots" :key="slot" #[name]="{ item }">
         <slot :name="name" :item="item"></slot>
       </template>
     </desktop>
-
   </template>
-
 </template>
 
 <script setup>
@@ -56,10 +64,11 @@ const crudStore = useFormActions(props.baseRoute);
 const desktopGrid = ref(null);
 const mobileGrid = ref(null);
 
-const tableStore = computed(() => desktopGrid?.value?.tableStore ?? mobileGrid?.value?.tableStore);
+const tableStore = computed(
+  () => desktopGrid?.value?.tableStore ?? mobileGrid?.value?.tableStore
+);
 
 defineExpose({
-  tableStore
-})
-
+  tableStore,
+});
 </script>
