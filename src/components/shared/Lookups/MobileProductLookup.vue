@@ -108,11 +108,10 @@ import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
 const productStore = useProductGrid();
 
-const tableStore = useDataTable(
-  "cmn/product/getlookupData",
-  productStore.columns,
-  productStore
-);
+const tableStore = useDataTable({
+  dataSource: "cmn/product/getlookupData",
+  store: productStore
+});
 
 async function gotoNext() {
   if (hasMoreData.value) {

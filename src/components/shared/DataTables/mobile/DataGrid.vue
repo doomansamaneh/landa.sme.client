@@ -182,11 +182,11 @@ const startIndex = ref(1);
 const showCreate = ref(true);
 let previousScrollPosition = 0;
 
-const tableStore = useDataTable(
-  props.dataSource,
-  props.columns,
-  props.gridStore
-);
+const tableStore = useDataTable({
+  dataSource: props.dataSource,
+  dataColumns: props.columns,
+  store: props.gridStore
+});
 
 const thisGridStore = computed(() => props.gridStore);
 

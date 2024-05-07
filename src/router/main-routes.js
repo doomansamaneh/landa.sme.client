@@ -132,7 +132,7 @@ export default {
         },
         {
           path: "tree",
-          component: () => import("pages/areas/acc/accountSL/tree/IndexPage.vue"),
+          component: () => import("pages/areas/acc/accountSL/TreePage.vue"),
         },
       ],
     },

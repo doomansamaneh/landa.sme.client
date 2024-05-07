@@ -94,11 +94,10 @@ const contactDrawerStore = useContactDrawer();
 
 const deviceWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
-const tableStore = useDataTable(
-  "crm/customer/getLookupData",
-  customerStore.columns,
-  customerStore
-);
+const tableStore = useDataTable({
+  dataSource: "crm/customer/getLookupData",
+  store: customerStore
+});
 const router = useRouter();
 
 async function gotoNext() {

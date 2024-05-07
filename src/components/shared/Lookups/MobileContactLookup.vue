@@ -154,11 +154,11 @@ const customerStore = useBaseInfoGrid({
   sortColumn: "name",
 });
 
-const tableStore = useDataTable(
-  "crm/customer/getLookupData",
-  customerStore.columns,
-  customerStore
-);
+const tableStore = useDataTable({
+  dataSource: "crm/customer/getLookupData",
+  dataColumns: customerStore.columns,
+  store: customerStore
+});
 
 async function gotoNext() {
   if (hasMoreData.value) {

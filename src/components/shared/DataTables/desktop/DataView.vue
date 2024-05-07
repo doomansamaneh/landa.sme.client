@@ -90,7 +90,7 @@ const props = defineProps({
   gridStore: Object
 })
 
-const tableStore = useDataTable(props.dataSource, props.columns, props.gridStore)
+const tableStore = useDataTable({dataSource: props.dataSource, dataColumns: props.columns, store: props.gridStore})
 
 const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
 

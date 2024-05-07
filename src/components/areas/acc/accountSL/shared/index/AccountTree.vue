@@ -4,7 +4,8 @@
   <q-card class="form-container">
     <q-card-section>
       <q-tree
-        :nodes="nodes"
+        v-if="!accountStores.cl.showLoader.value"
+        :nodes="accountStores.cl.rows.value"
         @lazy-load="onLazyLoad"
         node-key="id"
         node-icon="search"
@@ -128,118 +129,86 @@
         </template>
       </q-tree>
     </q-card-section>
-
-    <q-card-section v-if="!clStore.showLoader.value && clStore.rows.value.length == 0">
-      <no-data-found />
-    </q-card-section>
-
-    <q-inner-loading color="primary" :showing="clStore.showLoader.value" />
   </q-card>
 </template>
 
 <script setup>
-import { ref, onMounted, watchEffect, computed } from "vue";
-import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-import NoDataFound from "components/shared/dataTables/NoDataFound.vue";
+import { ref, onMounted } from "vue";
+import { sqlOperator } from "src/constants";
 
 import { useDataTable } from "src/composables/useDataTable";
-import { useAccountCLGrid } from "src/components/areas/acc/_composables/useAccountCLGrid";
-import { useAccountGLGrid } from "src/components/areas/acc/_composables/useAccountGLGrid";
-import { useAccountSLGrid } from "src/components/areas/acc/_composables/useAccountSLGrid";
-import {
-  accountCLColumns,
-  accountGLColumns,
-  accountSLColumns,
-} from "src/components/areas/acc/_composables/constants";
-import { sqlOperator } from "src/constants";
-import NoDataFoundVue from "src/components/shared/dataTables/NoDataFound.vue";
+import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
-const clDataSource = "acc/AccountCL/getGridData";
-const glDataSource = "acc/AccountGL/getGridData";
-const slDataSource = "acc/AccountSL/getGridData";
+import ToolBar from "src/components/shared/ToolBarDesktop.vue";
 
-const clGridStore = useAccountCLGrid({
-  columns: accountCLColumns,
-  sortColumn: "code",
-});
-
-const glGridStore = useAccountGLGrid({
-  columns: accountGLColumns,
-  sortColumn: "code",
-});
-
-const slGridStore = useAccountSLGrid({
-  columns: accountSLColumns,
-  sortColumn: "code",
-});
-
-const nodes = ref([]);
 const menu = ref(false);
 
-const clStore = useDataTable(clDataSource, null, clGridStore);
-const glStore = useDataTable(glDataSource, null, glGridStore);
-const slStore = useDataTable(slDataSource, null, slGridStore);
+function creatAccountStore(dataSource) {
+  const gridStore = useBaseInfoGrid({ sortColumn: "code" });
+  const dataTableStore = useDataTable({ dataSource, store: gridStore });
+  return dataTableStore;
+}
+
+const accountLevel = {
+  cl: "cl",
+  gl: "gl",
+  sl: "sl"
+}
+
+const accountStores = {
+  cl: creatAccountStore("acc/AccountCL/getGridData"),
+  gl: creatAccountStore("acc/AccountGL/getGridData"),
+  sl: creatAccountStore("acc/AccountSL/getGridData"),
+};
 
 onMounted(() => {
   loadClData();
 });
 
-async function loadClData() {
-  clStore.pagination.value.pageSize = -1;
-  await clStore.loadData();
-  clStore.rows.value.forEach((element) => {
-    element.header = "cl";
-    element.level = "cl";
+async function loadAccountData({level, lazy, node}) {
+  const accountStore = accountStores[level];
+  accountStore.pagination.value.pageSize = -1;
+  if (node) accountStore.state.value.filterExpression = node.filterExpression;
+  await accountStore.loadData();
+  accountStore.rows.value.forEach((element) => {
+    element.header = level;
+    element.level = level;
     element.filterExpression = [
       {
-        fieldName: "clId",
+        fieldName: `${level}Id`,
         operator: sqlOperator.equal,
         value: element.id,
       },
     ];
-    element.lazy = true;
+    element.lazy = lazy;
   });
-  nodes.value = clStore.rows.value;
+  return accountStore;
+}
+
+async function loadClData() {
+  return await loadAccountData({level: accountLevel.cl, lazy: true});
 }
 
 async function loadGlData(node) {
-  glStore.pagination.value.pageSize = -1;
-  glStore.state.value.filterExpression = node.filterExpression;
-  await glStore.reloadData();
-  glStore.rows.value.forEach((element) => {
-    element.header = "gl";
-    element.level = "gl";
-    element.filterExpression = [
-      {
-        fieldName: "glId",
-        operator: sqlOperator.equal,
-        value: element.id,
-      },
-    ];
-    element.lazy = true;
-  });
+  return await loadAccountData({level: accountLevel.gl, lazy: true, node: node});
 }
 
 async function loadSlData(node) {
-  slStore.pagination.value.pageSize = -1;
-  slStore.state.value.filterExpression = node.filterExpression;
-  await slStore.reloadData();
-  slStore.rows.value.forEach((element) => {
-    element.header = "sl";
-    element.level = "sl";
-  });
+  return await loadAccountData({level: accountLevel.sl, lazy: false, node: node});
+}
+
+const loadFunctions = {
+  cl: loadGlData,
+  gl: loadSlData
 }
 
 const onLazyLoad = async ({ node, key, done, fail }) => {
-  if (node.level === "cl") {
-    await loadGlData(node);
-    done(glStore.rows.value);
-  } else if (node.level === "gl") {
-    await loadSlData(node);
-    done(slStore.rows.value);
+  const loadFunction = loadFunctions[node.level];
+  if (loadFunction) {
+    const accountStore = await loadFunction(node);
+    done(accountStore.rows.value);
   } else {
     done([]);
-  }
+  } 
 };
-
 </script>

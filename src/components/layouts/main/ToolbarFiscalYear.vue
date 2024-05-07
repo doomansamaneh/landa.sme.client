@@ -72,11 +72,10 @@ import { useDataTable } from "src/composables/useDataTable";
 import { useFiscalYear } from "src/components/areas/acc/_composables/useFiscalYear";
 
 const fiscalYearStore = useFiscalYear();
-const tableStore = useDataTable(
-  "acc/fiscalYear/getLookupData",
-  fiscalYearStore.columns,
-  fiscalYearStore
-);
+const tableStore = useDataTable({
+  dataSource:  "acc/fiscalYear/getLookupData",
+  store: fiscalYearStore
+});
 
 const activeYearStyle = (year) => {
   if (fiscalYearStore.currentYear.value?.id === year.id) {

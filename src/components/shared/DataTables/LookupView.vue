@@ -192,7 +192,7 @@ const store = {
   filterExpression: props.filterExpression,
 };
 
-const tableStore = useDataTable(props.dataSource, null, store);
+const tableStore = useDataTable({dataSource: props.dataSource, store: store});
 
 const emit = defineEmits(["row-selected"]);
 
