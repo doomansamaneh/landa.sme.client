@@ -15,7 +15,7 @@
         <template #header-cl="prop">
           <div class="row items-center text-body2 no-letter-spacing q-pa-sm">
             <div class="text-body2 no-letter-spacing">
-              {{ prop.node.label }} - {{ prop.node.title }}
+              {{ prop.node.code }} - {{ prop.node.title}}
             </div>
           </div>
           <q-space />
@@ -46,7 +46,7 @@
               <q-icon color="white" name="o_check" size="16px" />
             </q-btn>
             <div class="text-body2 no-letter-spacing">
-              {{ prop.node.title }}
+              {{ prop.node.code }} - {{ prop.node.title}}
             </div>
           </div>
           <q-space />
@@ -89,7 +89,7 @@
               <q-icon color="white" name="o_check" size="16px" />
             </q-btn>
             <div class="text-body2 no-letter-spacing">
-              {{ prop.node.title }}
+              {{ prop.node.code }} - {{ prop.node.title}}
             </div>
           </div>
           <q-space />
