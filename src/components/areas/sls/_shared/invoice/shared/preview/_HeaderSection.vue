@@ -1,14 +1,14 @@
 <template>
   <div class="row q-gutter-y-md q-py-md">
     <div
-      class="col-md col-sm col-xs-12 items-center"
+      class="row col-md col-sm col-xs-12 items-center"
       :class="$q.screen.lt.sm ? 'justify-center' : ''"
     >
       <img
         v-if="showLogo"
         style="width: 72px"
         src="/landa-sme-logo.png"
-        alt="landa-sme"
+        alt="landa-SME logo"
       />
     </div>
     <div class="col-md col-sm-5 col-xs-12 items-center justify-center">
@@ -21,20 +21,14 @@
       :class="$q.screen.lt.sm ? 'justify-center' : 'justify-end'"
     >
       <div class="column q-gutter-sm text-right_text-caption">
-        <div
-          class="row"
-          :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
-        >
+        <div class="row" :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'">
           <span> {{ $t("shared.labels.no") }}: </span>
           <span class="q-px-sm text-weight-700">
             {{ model.value.no }}
           </span>
         </div>
 
-        <div
-          class="row"
-          :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'"
-        >
+        <div class="row" :class="$q.screen.lt.sm ? 'justify-center' : 'justify-start'">
           <span> {{ $t("shared.labels.date") }}:</span>
           <span class="q-px-sm text-weight-700">
             {{ model.value.date.substring(0, 10) }}

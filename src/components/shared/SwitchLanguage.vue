@@ -1,7 +1,6 @@
 <template>
-  <!-- <h1>locale = {{ $i18n.locale }}</h1> -->
-  <div class="row q-col-gutter-lg">
-    <div class="col" v-for="(language, index) in cultures" :key="index">
+  <div class="row q-col-gutter-lg q-pb-lg">
+    <div class="col-md col-sm col-xs-12" v-for="(language, index) in cultures" :key="index">
       <q-card
         class="bordered cursor-pointer"
         @click="onLanguageChange(language.iso)"
