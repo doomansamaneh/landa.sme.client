@@ -306,7 +306,9 @@ async function showPopup() {
 
 function onMenuShow() {
   isPopupOpen.value = true;
-  search.value.focus();
+  if ($q.screen.gt.xs) {
+    search.value.focus();
+  }
 }
 
 function hidePopup() {

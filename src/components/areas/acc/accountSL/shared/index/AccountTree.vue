@@ -8,15 +8,13 @@
         :nodes="accountStores.cl.rows.value"
         @lazy-load="onLazyLoad"
         node-key="id"
-        node-icon="search"
         accordion
-        selected-color="primary"
         icon="o_arrow_forward_ios"
       >
         <template #header-cl="prop">
           <div class="row items-center text-body2 no-letter-spacing q-pa-sm">
             <div class="text-body2 no-letter-spacing">
-              {{ prop.node.code }} - {{ prop.node.title}}
+              {{ prop.node.code }} - {{ prop.node.title }}
             </div>
           </div>
           <q-space />
@@ -47,7 +45,7 @@
               <q-icon color="white" name="o_check" size="16px" />
             </q-btn>
             <div class="text-body2 no-letter-spacing">
-              {{ prop.node.code }} - {{ prop.node.title}}
+              {{ prop.node.code }} - {{ prop.node.title }}
             </div>
           </div>
           <q-space />
@@ -90,7 +88,7 @@
               <q-icon color="white" name="o_check" size="16px" />
             </q-btn>
             <div class="text-body2 no-letter-spacing">
-              {{ prop.node.code }} - {{ prop.node.title}}
+              {{ prop.node.code }} - {{ prop.node.title }}
             </div>
           </div>
           <q-space />
@@ -129,6 +127,15 @@
         </template>
       </q-tree>
     </q-card-section>
+<<<<<<< HEAD:src/components/areas/acc/accountSL/shared/index/AccountTree.vue
+=======
+
+    <!-- <q-card-section v-if="!clStore.showLoader.value && clStore.rows.value.length == 0">
+      <no-data-found />
+    </q-card-section> -->
+
+    <q-inner-loading color="primary" :showing="clStore.showLoader.value" />
+>>>>>>> ae2c6ed375138f7d5d61e2b1545c0f4f02dd30b6:src/components/areas/acc/accountSL/tree/DataGrid.vue
   </q-card>
 </template>
 
