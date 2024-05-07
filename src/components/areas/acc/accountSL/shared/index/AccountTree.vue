@@ -167,7 +167,7 @@ async function loadAccountData({level, lazy, node}) {
   const accountStore = accountStores[level];
   accountStore.pagination.value.pageSize = -1;
   if (node) accountStore.state.value.filterExpression = node.filterExpression;
-  await accountStore.loadData();
+  await accountStore.reloadData();
   accountStore.rows.value.forEach((element) => {
     element.header = level;
     element.level = level;
