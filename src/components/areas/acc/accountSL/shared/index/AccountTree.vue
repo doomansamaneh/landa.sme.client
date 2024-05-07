@@ -127,15 +127,6 @@
         </template>
       </q-tree>
     </q-card-section>
-<<<<<<< HEAD:src/components/areas/acc/accountSL/shared/index/AccountTree.vue
-=======
-
-    <!-- <q-card-section v-if="!clStore.showLoader.value && clStore.rows.value.length == 0">
-      <no-data-found />
-    </q-card-section> -->
-
-    <q-inner-loading color="primary" :showing="clStore.showLoader.value" />
->>>>>>> ae2c6ed375138f7d5d61e2b1545c0f4f02dd30b6:src/components/areas/acc/accountSL/tree/DataGrid.vue
   </q-card>
 </template>
 
