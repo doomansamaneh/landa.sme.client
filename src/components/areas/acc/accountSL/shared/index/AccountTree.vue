@@ -4,8 +4,8 @@
   <q-card class="form-container">
     <q-card-section>
       <q-tree
-        v-if="!accountStores.cl.showLoader.value"
-        :nodes="accountStores.cl.rows.value"
+        v-if="!clStore.showLoader.value"
+        :nodes="clStore.rows.value"
         @lazy-load="onLazyLoad"
         node-key="id"
         accordion
@@ -131,7 +131,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { sqlOperator } from "src/constants";
 
 import { useDataTable } from "src/composables/useDataTable";
@@ -143,70 +143,55 @@ const menu = ref(false);
 
 function creatAccountStore(dataSource) {
   const gridStore = useBaseInfoGrid({ sortColumn: "code" });
-  const dataTableStore = useDataTable({ dataSource, store: gridStore });
-  return dataTableStore;
+  const tableStore = useDataTable({ dataSource, store: gridStore });
+
+  async function loadData(level, node) {
+    tableStore.pagination.value.pageSize = -1;
+    tableStore.state.value.filterExpression = node?.filterExpression;
+    await tableStore.reloadData();
+
+    const childLevel = getNextLevel(level.key);
+    tableStore.rows.value.forEach((element) => {
+      element.header = level.key;
+      element.level = childLevel;
+      element.filterExpression = [
+        {
+          fieldName: `${level.key}Id`,
+          operator: sqlOperator.equal,
+          value: element.id,
+        },
+      ];
+      element.lazy = level.lazy;
+    });
+  }
+
+  return { tableStore, loadData };
+}
+
+function getNextLevel(currentLevel) {
+  const levelKeys = Object.keys(accountLevel);
+  const currentIndex = levelKeys.indexOf(currentLevel);
+  const nextLevelKey = levelKeys[currentIndex + 1];
+  return accountLevel[nextLevelKey] || null;
 }
 
 const accountLevel = {
-  cl: "cl",
-  gl: "gl",
-  sl: "sl"
+  cl: {key: "cl", lazy: true, store: creatAccountStore("acc/AccountCL/getGridData")},
+  gl: {key: "gl", lazy: true, store:creatAccountStore("acc/AccountGL/getGridData")},
+  sl: {key: "sl", lazy: false, store:creatAccountStore("acc/AccountSL/getGridData")}
 }
 
-const accountStores = {
-  cl: creatAccountStore("acc/AccountCL/getGridData"),
-  gl: creatAccountStore("acc/AccountGL/getGridData"),
-  sl: creatAccountStore("acc/AccountSL/getGridData"),
+const clStore = computed(() => accountLevel.cl.store.tableStore);
+
+const onLazyLoad = async ({ node, key, done, fail }) => {
+  if (node.level) {
+    await node.level.store.loadData(node.level, node)
+    done(node.level.store.tableStore.rows);
+  }
+  else {done ([])}
 };
 
 onMounted(() => {
-  loadClData();
+  accountLevel.cl.store.loadData(accountLevel.cl);
 });
-
-async function loadAccountData({level, lazy, node}) {
-  const accountStore = accountStores[level];
-  accountStore.pagination.value.pageSize = -1;
-  if (node) accountStore.state.value.filterExpression = node.filterExpression;
-  await accountStore.reloadData();
-  accountStore.rows.value.forEach((element) => {
-    element.header = level;
-    element.level = level;
-    element.filterExpression = [
-      {
-        fieldName: `${level}Id`,
-        operator: sqlOperator.equal,
-        value: element.id,
-      },
-    ];
-    element.lazy = lazy;
-  });
-  return accountStore;
-}
-
-async function loadClData() {
-  return await loadAccountData({level: accountLevel.cl, lazy: true});
-}
-
-async function loadGlData(node) {
-  return await loadAccountData({level: accountLevel.gl, lazy: true, node: node});
-}
-
-async function loadSlData(node) {
-  return await loadAccountData({level: accountLevel.sl, lazy: false, node: node});
-}
-
-const loadFunctions = {
-  cl: loadGlData,
-  gl: loadSlData
-}
-
-const onLazyLoad = async ({ node, key, done, fail }) => {
-  const loadFunction = loadFunctions[node.level];
-  if (loadFunction) {
-    const accountStore = await loadFunction(node);
-    done(accountStore.rows.value);
-  } else {
-    done([]);
-  } 
-};
 </script>
