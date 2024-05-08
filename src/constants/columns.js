@@ -32,9 +32,32 @@ export const code = {
   showFilter: true,
 };
 
+export const slCode = {
+  name: "slCode",
+  field: "slCode",
+  sortable: true,
+  label: "کد",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width:130px;",
+  showFilter: true,
+};
+
 export const title = {
   name: "title",
   field: "title",
+  sortable: true,
+  label: "عنوان",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  showFilter: true,
+};
+
+export const slTitle = {
+  name: "slTitle",
+  field: "slTitle",
   sortable: true,
   label: "عنوان",
   class: "text-left",
@@ -105,6 +128,24 @@ export const voucherNo = {
   label: "ش سند",
   class: "text-left",
   style: "width:90px",
+  showFilter: true,
+};
+
+export const voucherDate = {
+  name: "voucherDate",
+  field: "voucherDate",
+  sortable: true,
+  label: "تاریخ",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const voucherSubject = {
+  name: "voucherSubject",
+  field: "voucherSubject",
+  sortable: true,
+  label: "موضوع",
+  class: "text-left",
   showFilter: true,
 };
 
@@ -190,6 +231,50 @@ export const debit = {
   field: "debit",
   sortable: false,
   label: "مانده بدهکار",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const inlineDebit = {
+  name: "inlineDebit",
+  field: "inlineDebit",
+  sortable: false,
+  label: "بدهکار",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const debitRemained = {
+  name: "debitRemained",
+  field: "debitRemained",
+  sortable: false,
+  label: "مانده بدهکار",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const credit = {
+  name: "credit",
+  field: "credit",
+  sortable: false,
+  label: "بستانکار",
+  align: "left",
+  class: "text-left",
+  style: "width:170px;",
+  showFilter: false,
+};
+
+export const creditRemained = {
+  name: "creditRemained",
+  field: "creditRemained",
+  sortable: false,
+  label: "مانده بستانکار",
   align: "left",
   class: "text-left",
   style: "width:170px;",
