@@ -1,6 +1,6 @@
 <template>
   <template v-if="$q.screen.xs">
-    <toolbar-desktop
+    <toolbar-mobile
       v-if="toolbar"
       :table-store="mobileGrid?.tableStore"
       :crud-store="crudStore"
@@ -10,7 +10,12 @@
       margin
     >
       <template #buttons>
-        <q-btn padding="6px 12px" class="text-body2 no-letter-spacing" rounded unelevated>
+        <q-btn
+          padding="6px 12px"
+          class="text-body2 no-letter-spacing"
+          rounded
+          unelevated
+        >
           <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
           {{ $t("shared.labels.more") }}
 
@@ -24,9 +29,9 @@
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar class="bg-on-dark" size="sm"
-                      ><q-icon name="o_download" size="20px"
-                    /></q-avatar>
+                    <q-avatar class="bg-on-dark" size="sm">
+                      <q-icon name="o_download" size="20px" />
+                    </q-avatar>
                   </q-item-section>
                 </div>
                 <q-item-section>
@@ -39,7 +44,7 @@
           </q-menu>
         </q-btn>
       </template>
-    </toolbar-desktop>
+    </toolbar-mobile>
 
     <mobile
       :grid-store="gridStore"
@@ -61,7 +66,12 @@
       margin
     >
       <template #buttons>
-        <q-btn padding="6px 12px" class="text-body2 no-letter-spacing" rounded unelevated>
+        <q-btn
+          padding="6px 12px"
+          class="text-body2 no-letter-spacing"
+          rounded
+          unelevated
+        >
           <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
           {{ $t("shared.labels.more") }}
 
@@ -75,9 +85,9 @@
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
-                    <q-avatar class="bg-on-dark" size="sm"
-                      ><q-icon name="o_download" size="20px"
-                    /></q-avatar>
+                    <q-avatar class="bg-on-dark" size="sm">
+                      <q-icon name="o_download" size="20px" />
+                    </q-avatar>
                   </q-item-section>
                 </div>
                 <q-item-section>
@@ -94,38 +104,46 @@
 
     <desktop
       :grid-store="gridStore"
-      :crud-store="crudStore"
       :title="title"
       data-source="sls/report/getProductStock"
       ref="desktopGrid"
     />
   </template>
+
+  <q-card flat class="tips q-mt-md">
+    <q-card-section>
+      <div class="title">راهنما</div>
+      <div class="q-mt-md text-body1 no-letter-spacing">
+        موجودی کالاهایی که نوعشان خدمت نباشد براساس خرید و فروشهای
+        نهایی شده. فقط خریدهایی در موجودی تاثیر میگذارند که نوعشان
+        شارژ انبار و یا مشابه آن باشد
+      </div>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useQuasar } from "quasar";
-import { useI18n } from "vue-i18n";
-import { useProductStockGrid } from "src/components/areas/sls/_composables/useProductStockGrid.js";
-import { useFormActions } from "src/composables/useFormActions";
+  import { ref } from "vue";
+  import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
+  import { useProductStockGrid } from "src/components/areas/inv/_composables/useProductStockGrid.js";
 
-import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-import Desktop from "../../desktop/index/DataGrid.vue";
-import Mobile from "../../mobile/index/DataGrid.vue";
+  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  import Desktop from "../desktop/ProductStock.vue";
+  import Mobile from "../mobile/ProductStock.vue";
 
-const props = defineProps({
-  toolbar: Boolean,
-});
+  const props = defineProps({
+    toolbar: Boolean,
+  });
 
-const { t } = useI18n();
+  const { t } = useI18n();
 
-const title = t("main-menu-items.Sls_Report_ProductStock");
-const baseRoute = "sls/report/productStock";
+  const title = t("main-menu-items.Sls_Report_ProductStock");
+  const baseRoute = "inv/report/productStock";
 
-const $q = useQuasar();
-const gridStore = useProductStockGrid();
-const crudStore = useFormActions(baseRoute);
-const desktopGrid = ref(null);
-const mobileGrid = ref(null);
+  const $q = useQuasar();
+  const gridStore = useProductStockGrid();
+  const desktopGrid = ref(null);
+  const mobileGrid = ref(null);
 </script>

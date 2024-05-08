@@ -1,0 +1,68 @@
+<template>
+  <advanced-search class="q-my-md" :grid-store="gridStore" />
+
+  <data-grid
+    ref="dataGrid"
+    :grid-store="gridStore"
+    :data-source="dataSource"
+    base-route="sls/report/productStock"
+    expandable
+  >
+    <template #cell-purchaseQuantity="{ item }">
+      {{ item.purchaseQuantity?.toLocaleString() }}
+    </template>
+    <template #cell-salesQuantity="{ item }">
+      {{ item.salesQuantity?.toLocaleString() }}
+    </template>
+    <template #cell-stock="{ item }">
+      {{ item.stock?.toLocaleString() }}
+    </template>
+    <template #cell-debit="{ item }">
+      {{ item.debit?.toLocaleString() }}
+    </template>
+
+    <template #expand="{ item }">
+      <q-card flat bordered>
+        <q-card-section>
+          <product-stock-preview :item="item" inside />
+        </q-card-section>
+      </q-card>
+    </template>
+  </data-grid>
+</template>
+
+<script setup>
+  import { computed, ref, onMounted, onUnmounted } from "vue";
+  import { bus } from "src/helpers";
+
+  import DataGrid from "components/areas/_shared/report/shared/index/DataGrid.vue";
+  import ProductStockPreview from "./ProductStockPreview.vue";
+  import AdvancedSearch from "./ProductStockSearch.vue";
+
+  const props = defineProps({
+    gridStore: Object,
+    title: String,
+    dataSource: String,
+    crudStore: Object,
+  });
+
+  const dataGrid = ref(null);
+
+  const tableStore = computed(() => dataGrid.value?.tableStore);
+
+  async function reloadData() {
+    await tableStore.value.reloadData();
+  }
+
+  onMounted(() => {
+    bus.on("apply-search", reloadData);
+  });
+
+  onUnmounted(() => {
+    bus.off("apply-search", reloadData);
+  });
+
+  defineExpose({
+    tableStore,
+  });
+</script>

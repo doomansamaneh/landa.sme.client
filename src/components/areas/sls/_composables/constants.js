@@ -76,24 +76,3 @@ export const taxApiLogColumns = [
     style: "width:5px",
   },
 ];
-
-export const productStockColumns = [
-  code,
-  title,
-  unitTitle,
-  purchaseQuantity,
-  salesQuantity,
-  stock,
-  debit,
-];
-
-export const productStockItemsColumns = [
-  voucherNo,
-  date,
-  subject,
-  // summary,
-  purchaseQuantity,
-  salesQuantity,
-  inlineQuantity,
-  price,
-];

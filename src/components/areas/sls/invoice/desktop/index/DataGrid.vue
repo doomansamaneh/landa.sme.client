@@ -1,6 +1,9 @@
 <template>
   <div>
-    <advanced-search :grid-store="gridStore" @apply-search="reloadData" />
+    <advanced-search
+      :grid-store="gridStore"
+      @apply-search="reloadData"
+    />
   </div>
 
   <div class="q-py-md">
@@ -40,57 +43,59 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-import { sqlOperator, cancelStatus } from "src/constants";
+  import { computed, ref } from "vue";
+  import { sqlOperator, cancelStatus } from "src/constants";
 
-import InvoiceGrid from "components/areas/sls/_shared/invoice/desktop/index/DataGrid.vue";
-import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
-import Preview from "../../shared/preview/IndexView.vue";
+  import InvoiceGrid from "components/areas/sls/_shared/invoice/desktop/index/DataGrid.vue";
+  import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
+  import Preview from "../../shared/preview/IndexView.vue";
 
-const props = defineProps({
-  gridStore: Object,
-  title: String,
-  dataSource: String,
-  crudStore: Object,
-});
+  const props = defineProps({
+    gridStore: Object,
+    title: String,
+    dataSource: String,
+    crudStore: Object,
+  });
 
-const invoiceTable = ref(null);
+  const invoiceTable = ref(null);
 
-const tab = ref("invoice");
+  const tab = ref("invoice");
 
-const tableStore = computed(() => invoiceTable.value?.dataTable?.tableStore);
+  const tableStore = computed(
+    () => invoiceTable.value?.dataTable?.tableStore
+  );
 
-function setDefaultFilter() {
-  tableStore.value.setFilterExpression([
-    {
-      fieldName: "d.StatusId",
-      operator: sqlOperator.notEqual,
-      value: cancelStatus,
-    },
-  ]);
-}
+  function setDefaultFilter() {
+    tableStore.value.setFilterExpression([
+      {
+        fieldName: "d.StatusId",
+        operator: sqlOperator.notEqual,
+        value: cancelStatus,
+      },
+    ]);
+  }
 
-function setCancelFilter() {
-  tableStore.value.setFilterExpression([
-    {
-      fieldName: "d.StatusId",
-      operator: sqlOperator.equal,
-      value: cancelStatus,
-    },
-  ]);
-}
+  function setCancelFilter() {
+    tableStore.value.setFilterExpression([
+      {
+        fieldName: "d.StatusId",
+        operator: sqlOperator.equal,
+        value: cancelStatus,
+      },
+    ]);
+  }
 
-async function tabChanged(e) {
-  if (e === "canceled") setCancelFilter();
-  else setDefaultFilter();
-  await reloadData();
-}
+  async function tabChanged(e) {
+    if (e === "canceled") setCancelFilter();
+    else setDefaultFilter();
+    await reloadData();
+  }
 
-async function reloadData() {
-  await tableStore.value.reloadData();
-}
+  async function reloadData() {
+    await tableStore.value.reloadData();
+  }
 
-defineExpose({
-  tableStore,
-});
+  defineExpose({
+    tableStore,
+  });
 </script>

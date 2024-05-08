@@ -33,10 +33,7 @@ import { computed, ref } from "vue";
 import { sqlOperator } from "src/constants";
 
 import DataGrid from "components/areas/_shared/report/shared/index/DataGrid.vue";
-import ItemsGrid from "components/areas/sls/report/productStock/desktop/index/ItemsGrid.vue";
-import Preview from "../../shared/preview/IndexView.vue";
 
-const value = ref(false);
 const search = ref("");
 
 const props = defineProps({
@@ -49,14 +46,6 @@ const props = defineProps({
 const dataGrid = ref(null);
 
 const tableStore = computed(() => dataGrid.value?.tableStore);
-
-const getFilterExpersion = (item) => {
-  return [{ fieldName: "ii.productId", operator: sqlOperator.equal, value: item.id }];
-};
-
-async function reloadData() {
-  await tableStore.value.reloadData();
-}
 
 defineExpose({
   tableStore,

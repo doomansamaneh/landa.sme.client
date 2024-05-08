@@ -104,6 +104,7 @@ export const voucherNo = {
   sortable: true,
   label: "ش سند",
   class: "text-left",
+  style: "width:90px",
   showFilter: true,
 };
 

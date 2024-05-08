@@ -1,0 +1,10 @@
+{
+  "printWidth": 70,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": false,
+  "htmlWhitespaceSensitivity": "ignore",
+  "vueIndentScriptAndStyle": true,
+  "wrapAttributes": "force-expand-multiline"
+}

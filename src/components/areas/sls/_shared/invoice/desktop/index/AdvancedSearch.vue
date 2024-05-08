@@ -18,7 +18,9 @@
         class="text-body2 no-letter-spacing"
       >
         <q-icon
-          :name="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+          :name="
+            expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'
+          "
           class="q-mr-xs"
         />
         <span class="text-body2 no-letter-spacing">
@@ -130,7 +132,8 @@
               unelevated
               @click="applySearch"
             >
-              <q-icon name="search" class="q-mr-xs" size="20px" />جستجو
+              <q-icon name="search" class="q-mr-xs" size="20px" />
+              جستجو
             </q-btn>
             <q-btn
               class="text-body2 no-letter-spacing"
@@ -148,56 +151,64 @@
       </q-slide-transition>
     </q-card-section>
   </q-card>
-  <chip class="q-my-md" :search-model="searchModel" :remove-item="removeItem" />
+  <chip
+    class="q-my-md"
+    :search-model="searchModel"
+    :remove-item="removeItem"
+  />
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-import { dateRange } from "src/constants";
-import { helper } from "src/helpers";
+  import { computed, ref } from "vue";
+  import { dateRange } from "src/constants";
+  import { helper } from "src/helpers";
 
-import Chip from "src/components/shared/SearchChip.vue";
-import DateTime from "src/components/shared/forms/DateTimePicker.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
-import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
-import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
-import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
-import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
+  import Chip from "src/components/shared/SearchChip.vue";
+  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
+  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
+  import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
+  import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 
-const props = defineProps({
-  gridStore: Object,
-});
+  const props = defineProps({
+    gridStore: Object,
+  });
 
-const expanded = ref(false);
+  const expanded = ref(false);
 
-const searchModel = computed(() => props.gridStore.state.searchModel.value);
+  const searchModel = computed(
+    () => props.gridStore.state.searchModel.value
+  );
 
-const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange));
+  const dateRangeOptions = computed(() =>
+    helper.getEnumOptions(dateRange)
+  );
 
-const emit = defineEmits(["apply-search"]);
+  const emit = defineEmits(["apply-search"]);
 
-async function applySearch() {
-  emit("apply-search", searchModel.value);
-}
-
-async function clearSearch() {
-  props.gridStore.setDefaultSearchModel();
-  await applySearch();
-}
-
-async function removeItem(item) {
-  //todo: how to find field type and dynamically set to it's default value
-  let value = "";
-  switch (item.name) {
-    case "dateRange":
-      value = 0;
-      break;
-    case "waitToSendTax":
-      value = false;
-      break;
+  async function applySearch() {
+    emit("apply-search", searchModel.value);
   }
-  searchModel.value[item.name] = value;
-  await applySearch();
-}
+
+  async function clearSearch() {
+    props.gridStore.setDefaultSearchModel();
+    await applySearch();
+  }
+
+  async function removeItem(item) {
+    //todo: how to find field type and dynamically set to it's default value
+    let value = "";
+    switch (item.name) {
+      case "dateRange":
+        value = 0;
+        break;
+      case "waitToSendTax":
+        value = false;
+        break;
+    }
+    searchModel.value[item.name] = value;
+    await applySearch();
+  }
 </script>

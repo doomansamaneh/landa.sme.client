@@ -1,7 +1,11 @@
 import { ref } from "vue";
-import { productStockItemsColumns } from "./constants";
+import { productStockColumns } from "./constants";
 
-import { defaultPageSize, sortOrder, sqlOperator } from "src/constants";
+import {
+  defaultPageSize,
+  sortOrder,
+  sqlOperator,
+} from "src/constants";
 import { useComposables } from "src/stores/useComposables";
 
 //const rows = ref([])
@@ -13,19 +17,19 @@ const state = {
   activeRow: ref(null),
   summaryData: ref(null),
   filterExpression: [],
-  searchModel: ref(),
+  searchModel: ref({ showZeroStock: false }),
 };
 
 const pagination = ref({
   currentPage: 1,
   pageSize: defaultPageSize,
-  sortColumn: "voucherNo,rowNo",
+  sortColumn: "code",
   sortOrder: sortOrder.ascending,
 });
 
-const columns = ref(productStockItemsColumns);
+const columns = ref(productStockColumns);
 
-export function useProductStockItemsGrid(defaultFilters) {
+export function useProductStockGrid(defaultFilters) {
   const composablesStore = useComposables();
 
   composablesStore.registerComposable({
@@ -40,7 +44,7 @@ export function useProductStockItemsGrid(defaultFilters) {
 
   const setDefaultSearchModel = () => {
     state.searchModel.value = {
-      // showZeroStock: true,
+      showZeroStock: false,
     };
   };
 

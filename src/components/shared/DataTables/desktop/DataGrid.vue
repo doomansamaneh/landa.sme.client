@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bordered" :class="containerClass">
+  <q-card class="bordered_" :class="containerClass">
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
@@ -69,9 +69,9 @@
               :class="tableStore.getRowClass(row)"
             >
               <td v-if="numbered" class="dense_">
-                <small class="text-on-dark">{{
-                  tableStore.rowIndex(index)
-                }}</small>
+                <small class="text-on-dark">
+                  {{ tableStore.rowIndex(index) }}
+                </small>
               </td>
               <td v-if="multiSelect" class="dense">
                 <q-checkbox
@@ -175,7 +175,7 @@
 
 <script setup>
 import { onMounted, computed } from "vue";
-import { useRouter } from "vue-router"
+import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { useDataTable } from "src/composables/useDataTable";
 
@@ -203,11 +203,11 @@ const props = defineProps({
 });
 
 const $q = useQuasar();
-const router = useRouter()
+const router = useRouter();
 const tableStore = useDataTable({
   dataSource: props.dataSource,
   dataColumns: props.columns,
-  store: props.gridStore
+  store: props.gridStore,
 });
 
 const emit = defineEmits([
@@ -285,22 +285,21 @@ const goToPreview = (row) => {
 };
 
 const chevronIcon = () => {
-  return $q.lang.rtl ? 'chevron_left' : 'chevron_right'
-}
+  return $q.lang.rtl ? "chevron_left" : "chevron_right";
+};
 
 //Todo: How move to expand page dynamically
 const toggleExpand = (row) => {
-  if($q.screen.gt.xs) {
-    tableStore.toggleExpand(row)
+  if ($q.screen.gt.xs) {
+    tableStore.toggleExpand(row);
   } else {
-    router.push("/Sls/Report/ProductStock/items/123")
+    router.push("/Sls/Report/ProductStock/items/123");
   }
-}
+};
 
 defineExpose({
   tableStore,
 });
-
 </script>
 
 <style lang="scss" scoped>

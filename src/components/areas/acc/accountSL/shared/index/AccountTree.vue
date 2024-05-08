@@ -12,11 +12,7 @@
         icon="o_arrow_forward_ios"
       >
         <template #header-cl="prop">
-          <div class="row items-center text-body2 no-letter-spacing q-pa-sm">
-            <div class="text-body2 no-letter-spacing">
-              {{ prop.node.code }} - {{ prop.node.title }}
-            </div>
-          </div>
+          <account-tree-node :node="prop.node"/>
           <q-space />
           <div class="row items-center q-gutter-md">
             <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
@@ -40,14 +36,7 @@
           </div>
         </template>
         <template #header-gl="prop">
-          <div class="row items-center q-gutter-md no-letter-spacing q-pa-sm">
-            <q-btn size="8px" round unelevated class="no-pointer-events" color="green">
-              <q-icon color="white" name="o_check" size="16px" />
-            </q-btn>
-            <div class="text-body2 no-letter-spacing">
-              {{ prop.node.code }} - {{ prop.node.title }}
-            </div>
-          </div>
+          <account-tree-node :node="prop.node"/>
           <q-space />
           <div class="row items-center">
             <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
@@ -83,14 +72,7 @@
           </div>
         </template>
         <template #header-sl="prop">
-          <div class="row items-center q-gutter-md no-letter-spacing q-pa-sm">
-            <q-btn size="8px" round unelevated class="no-pointer-events" color="green">
-              <q-icon color="white" name="o_check" size="16px" />
-            </q-btn>
-            <div class="text-body2 no-letter-spacing">
-              {{ prop.node.code }} - {{ prop.node.title }}
-            </div>
-          </div>
+          <account-tree-node :node="prop.node"/>
           <q-space />
           <div class="row items-center">
             <q-btn @click.stop="menu = true" dense round unelevated icon="o_more_horiz">
@@ -138,6 +120,7 @@ import { useDataTable } from "src/composables/useDataTable";
 import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
 import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+import AccountTreeNode from "./AccountTreeNode.vue";
 
 const menu = ref(false);
 
@@ -150,17 +133,15 @@ function creatAccountStore(dataSource) {
     tableStore.state.value.filterExpression = node?.filterExpression;
     await tableStore.reloadData();
 
-    const childLevel = getNextLevel(level.key);
     tableStore.rows.value.forEach((element) => {
       element.header = level.key;
-      element.level = childLevel;
+      element.level = level;
       element.filterExpression = [
         {
           fieldName: `${level.key}Id`,
           operator: sqlOperator.equal,
           value: element.id,
-        },
-      ];
+        }];
       element.lazy = level.lazy;
     });
   }
@@ -176,17 +157,18 @@ function getNextLevel(currentLevel) {
 }
 
 const accountLevel = {
-  cl: {key: "cl", lazy: true, store: creatAccountStore("acc/AccountCL/getGridData")},
-  gl: {key: "gl", lazy: true, store:creatAccountStore("acc/AccountGL/getGridData")},
-  sl: {key: "sl", lazy: false, store:creatAccountStore("acc/AccountSL/getGridData")}
+  cl: {key: "cl", icon: "", lazy: true, store: creatAccountStore("acc/AccountCL/getGridData")},
+  gl: {key: "gl", icon: "", lazy: true, store:creatAccountStore("acc/AccountGL/getGridData")},
+  sl: {key: "sl", icon: "", lazy: false, store:creatAccountStore("acc/AccountSL/getGridData")}
 }
 
 const clStore = computed(() => accountLevel.cl.store.tableStore);
 
 const onLazyLoad = async ({ node, key, done, fail }) => {
-  if (node.level) {
-    await node.level.store.loadData(node.level, node)
-    done(node.level.store.tableStore.rows);
+  const childLevel = getNextLevel(node.level?.key);
+  if (childLevel) {
+    await childLevel.store.loadData(childLevel, node)
+    done(childLevel.store.tableStore.rows.value);
   }
   else {done ([])}
 };

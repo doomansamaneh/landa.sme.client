@@ -479,29 +479,6 @@ export default {
     },
 
     {
-      path: "sls/report/productStock",
-      children: [
-        {
-          path: "",
-          component: () =>
-            import("pages/areas/sls/report/productStock/IndexPage.vue"),
-        },
-        {
-          path: "items/:productId",
-          component: () =>
-            import("src/pages/areas/sls/report/productStock/ItemsPage.vue"),
-        },
-        {
-          path: "items/preview/:productId",
-          component: () =>
-            import(
-              "pages/areas/sls/report/productStock/InvoicePreviewPage.vue"
-            ),
-        },
-      ],
-    },
-
-    {
       path: "scr/users/settings",
       children: [
         {
@@ -848,6 +825,41 @@ export default {
         },
       ],
     },
+
+    {
+      path: "inv/report/productStock",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/inv/report/ProductStockPage.vue"),
+        },
+        {
+          path: "items/:productId",
+          component: () =>
+            import("src/pages/areas/inv/report/ProductStockItemPage.vue"),
+        },
+        {
+          path: "items/preview/:productId",
+          component: () =>
+            import(
+              "pages/areas/inv/report/ProductStockPreviewPage.vue"
+            ),
+        },
+      ],
+    },
+
+    {
+      path: "sls/report/productStock",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/inv/report/ProductStockPage.vue"),
+        }
+      ],
+    },
+
 
     {
       path: "org/org",

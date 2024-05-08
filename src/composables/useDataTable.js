@@ -6,8 +6,6 @@ import {
 } from "src/constants/enums";
 import { fetchWrapper, helper, bus } from "src/helpers";
 
-const openInPage = ref(false);
-
 export function useDataTable({ dataSource, dataColumns, store }) {
   const localState = {
     firstLoad: ref(false),
@@ -119,10 +117,10 @@ export function useDataTable({ dataSource, dataColumns, store }) {
 
   function setPayload() {
     pagination.value.filterExpression = [];
-    if (store?.filterExpression != null) {
+    if (store?.filterExpression)
       pagination.value.filterExpression.push(...store.filterExpression);
-    }
-    if (state?.value.filterExpression != null)
+
+    if (state?.value.filterExpression)
       pagination.value.filterExpression.push(...state.value.filterExpression);
 
     if (columns.value) {
@@ -198,8 +196,6 @@ export function useDataTable({ dataSource, dataColumns, store }) {
   }
 
   function toggleExpand(row) {
-    openInPage.value = true;
-
     row.expanded = !row.expanded;
     state.value.rows.value.forEach((item) => {
       if (row.id != item.id) item.expanded = false;
@@ -271,7 +267,6 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     rowIndex,
     pagination,
     checkedAll,
-    openInPage,
 
     selectAll,
     setFilterExpression,
