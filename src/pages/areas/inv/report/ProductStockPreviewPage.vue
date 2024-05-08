@@ -1,6 +1,7 @@
 <template>
-    <h4>this page is not ready yet</h4>
+  <report />
 </template>
 
 <script setup>
+  import Report from "src/components/areas/inv/report/shared/ProductStockPreview.vue";
 </script>
