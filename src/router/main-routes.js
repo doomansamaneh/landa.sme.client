@@ -160,6 +160,16 @@ export default {
     },
 
     {
+      path: "acc/report/customer",
+      children: [
+        {
+          path: "",
+          component: () => import("pages/areas/acc/report/CustomerAccount.vue"),
+        }
+      ],
+    },
+
+    {
       path: "crm/customer",
       children: [
         {
