@@ -8,21 +8,21 @@
     :grid-store="gridStore"
     expandable
   >
-    <template #cell-debitRemained="{ item }">
-      {{ item.debitRemained?.toLocaleString() }}
+    <template #cell-amount="{ item }">
+      {{ item.amount?.toLocaleString() }}
     </template>
   </data-grid>
 </template>
 
 <script setup>
-import { sortOrder } from "src/constants";
-import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-import { transferMoneyColumns } from "src/components/areas/trs/_composables/constants";
+  import { sortOrder } from "src/constants";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { transferMoneyColumns } from "src/components/areas/trs/_composables/constants";
 
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
-const gridStore = useBaseInfoGrid({
-  columns: transferMoneyColumns,
-  sortColumn: "date",
-  sortOrder: sortOrder.descending,
-});
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  const gridStore = useBaseInfoGrid({
+    columns: transferMoneyColumns,
+    sortColumn: "date",
+    sortOrder: sortOrder.descending,
+  });
 </script>

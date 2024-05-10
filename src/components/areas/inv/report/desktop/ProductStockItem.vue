@@ -10,7 +10,7 @@
     numbered
     bordered
     wrapCells
-    dense
+    dense_
     :expandable="true"
   >
     <template #cell-purchaseQuantity="{ item }">
@@ -29,19 +29,19 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue'
+  import { ref, computed } from "vue";
 
-  import DataGrid from 'src/components/shared/dataTables/desktop/DataGrid.vue'
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
 
   const props = defineProps({
     dataSource: String,
-    gridStore: Object
-  })
+    gridStore: Object,
+  });
 
-  const dataGrid = ref(null)
-  const tableStore = computed(() => dataGrid?.value?.tableStore)
+  const dataGrid = ref(null);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
   defineExpose({
-    tableStore
-  })
+    tableStore,
+  });
 </script>
