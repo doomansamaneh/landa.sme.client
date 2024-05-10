@@ -15,57 +15,39 @@
   </q-input>
 </template>
 
-<script>
-  import { computed, watch } from "vue";
+<script setup>
+  import { watch } from "vue";
   import { useCurrencyInput } from "vue-currency-input";
 
-  export default {
-    name: "CustomInputNumber",
-    props: {
-      modelValue: Number,
-      options: Object,
+  const props = defineProps({
+    modelValue: Number,
+    options: {
+      type: Object,
+      default: () => ({
+        currency: "EUR",
+        currencyDisplay: "hidden",
+        hideCurrencySymbolOnFocus: true,
+        hideGroupingSeparatorOnFocus: false,
+        hideNegligibleDecimalDigitsOnFocus: true,
+        autoDecimalDigits: false,
+        useGrouping: true,
+        accountingSign: false,
+      }),
     },
-    setup(props) {
-      const {
-        inputRef,
-        formattedValue,
-        numberValue,
-        setValue,
-        setOptions,
-      } = useCurrencyInput(
-        props.options ?? {
-          currency: "EUR",
-          currencyDisplay: "hidden",
-          hideCurrencySymbolOnFocus: true,
-          hideGroupingSeparatorOnFocus: false,
-          hideNegligibleDecimalDigitsOnFocus: true,
-          autoDecimalDigits: false,
-          useGrouping: true,
-          accountingSign: false,
-        }
-      );
+  });
 
-      const errorMessage = computed(() =>
-        numberValue.value <= 100
-          ? "Value must be greater than 100"
-          : undefined
-      );
+  const {
+    inputRef,
+    formattedValue,
+    numberValue,
+    setValue,
+    setOptions,
+  } = useCurrencyInput(props.options);
 
-      watch(
-        () => props.modelValue,
-        (value) => {
-          setValue(value);
-        }
-      );
-
-      // watch(
-      //   () => props.currency,
-      //   (currency) => {
-      //     setOptions({ currency });
-      //   }
-      // );
-
-      return { inputRef, formattedValue, errorMessage };
-    },
-  };
+  watch(
+    () => props.modelValue,
+    (value) => {
+      setValue(value);
+    }
+  );
 </script>

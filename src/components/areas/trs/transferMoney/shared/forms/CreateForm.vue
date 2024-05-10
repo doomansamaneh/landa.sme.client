@@ -97,7 +97,9 @@
             >
               کارمزد
             </q-item-label>
-            <custom-input v-model="formStore.model.value.fromFee" />
+            <custom-input-number
+              v-model="formStore.model.value.fromFee"
+            />
           </div>
         </div>
 

@@ -20,9 +20,11 @@ export function useInvoiceModel(config) {
   async function getById(id, action) {
     let responseData = null;
     if (id) {
-      if (config.preview) responseData = await crudStore.getPreviewById(id);
+      if (config.preview)
+        responseData = await crudStore.getPreviewById(id);
       else responseData = await crudStore.getById(id);
-    } else responseData = await crudStore.getCreateModel(setInvoiceItems);
+    } else
+      responseData = await crudStore.getCreateModel(setInvoiceItems);
 
     setInvoiceItems();
 
@@ -56,7 +58,9 @@ export function useInvoiceModel(config) {
   const applyDiscountAmount = (discount) => {
     const total = Math.max(totalPrice.value, 1);
     model.value.invoiceItems.forEach((item) => {
-      item.discount = Math.round((discount * item.totalPrice) / total);
+      item.discount = Math.round(
+        (discount * item.totalPrice) / total
+      );
     });
   };
 
@@ -72,6 +76,7 @@ export function useInvoiceModel(config) {
     newRow.vatId = currentRow.vatId;
     newRow.vatTitle = currentRow.vatTitle;
     newRow.vatPercent = currentRow.vatPercent;
+    //todo: vavlidate each row???
     if (!currentRow.productUnitId) {
       $q.notify({
         type: "negative",
@@ -94,7 +99,9 @@ export function useInvoiceModel(config) {
 
   const addNewRowByCode = async (code) => {
     if (code) {
-      const response = await fetchWrapper.get(`cmn/product/getByCode/${code}`);
+      const response = await fetchWrapper.get(
+        `cmn/product/getByCode/${code}`
+      );
       const product = response.data.data;
       if (product) {
         const currentItem = model.value.invoiceItems.find(
