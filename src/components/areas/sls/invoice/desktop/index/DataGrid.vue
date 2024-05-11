@@ -36,7 +36,7 @@
       base-route="sls/invoice"
     >
       <template #expand="{ item }">
-        <preview :item="item" />
+        <preview inside margin :item="item" />
       </template>
     </invoice-grid>
   </div>

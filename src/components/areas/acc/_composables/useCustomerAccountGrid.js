@@ -16,7 +16,7 @@ const pagination = ref({
   currentPage: 1,
   pageSize: defaultPageSize,
   sortColumn: "code",
-  sortOrder: sortOrder.descending,
+  sortOrder: sortOrder.ascending,
   // totalItems: 0,
   // filterExpression: [],
 });

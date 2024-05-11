@@ -36,11 +36,11 @@ export const slCode = {
   name: "slCode",
   field: "slCode",
   sortable: true,
-  label: "کد",
+  label: "کد معین",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
-  style: "width:130px;",
+  style: "width: 80px;",
   showFilter: true,
 };
 
@@ -59,7 +59,7 @@ export const slTitle = {
   name: "slTitle",
   field: "slTitle",
   sortable: true,
-  label: "عنوان",
+  label: "حساب معین",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -134,6 +134,7 @@ export const voucherNo = {
 export const voucherDate = {
   name: "voucherDate",
   field: "voucherDate",
+  template: "{{ voucherDateString }}",
   sortable: true,
   label: "تاریخ",
   class: "text-left",
@@ -144,7 +145,7 @@ export const voucherSubject = {
   name: "voucherSubject",
   field: "voucherSubject",
   sortable: true,
-  label: "موضوع",
+  label: "شرح",
   class: "text-left",
   showFilter: true,
 };

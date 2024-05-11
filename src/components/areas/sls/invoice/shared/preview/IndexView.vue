@@ -1,5 +1,5 @@
 <template>
-  <tool-bar inside buttons :title="title" back-button>
+  <tool-bar :inside="inside" :margin="!inside" buttons :title="title" back-button>
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"
@@ -72,6 +72,8 @@ import InvoiceDetail from "./_DetailSection.vue";
 const props = defineProps({
   item: Object,
   title: String,
+  inside: Boolean,
+  margin: Boolean
 });
 
 const formStore = useInvoiceModel({ baseRoute: "sls/invoice", preview: true });

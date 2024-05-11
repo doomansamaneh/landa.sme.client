@@ -18,20 +18,22 @@
     :activation="activation"
     :back-button="backButton"
     :buttons="buttons"
+    :inside="inside"
   />
 </template>
 
 <script setup>
-import desktop from "src/components/shared/ToolBarDesktop.vue";
-import mobile from "src/components/shared/ToolBarMobile.vue";
+  import desktop from "src/components/shared/ToolBarDesktop.vue";
+  import mobile from "src/components/shared/ToolBarMobile.vue";
 
-const props = defineProps({
-  title: String,
-  baseRoute: String,
-  tableStore: Object,
-  crudStore: Object,
-  activation: Boolean,
-  backButton: Boolean,
-  buttons: Boolean,
-});
+  const props = defineProps({
+    title: String,
+    baseRoute: String,
+    tableStore: Object,
+    crudStore: Object,
+    activation: Boolean,
+    backButton: Boolean,
+    buttons: Boolean,
+    inside: Boolean
+  });
 </script>

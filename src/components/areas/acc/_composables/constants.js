@@ -10,6 +10,15 @@ import {
   isActive,
   amount,
   actions,
+  debitRemained,
+  creditRemained,
+  inlineDebit,
+  voucherNo,
+  slCode,
+  slTitle,
+  voucherDate,
+  voucherSubject,
+  comment,
 } from "src/constants/columns";
 
 export const accountGLColumns = [
@@ -102,4 +111,57 @@ export const accountCLColumns = [
   code,
   title,
   isActive,
+];
+
+export const customerAccountColumns = [
+  code,
+  title,
+  {
+    name: "debit",
+    field: "debit",
+    label: "بدهکار",
+    style: "width:120px;",
+    class: "text-left",
+    sortable: true,
+    showFilter: true,
+  },
+  {
+    name: "credit",
+    field: "credit",
+    label: "بستانکار",
+    style: "width:120px;",
+    class: "text-left",
+    sortable: true,
+    showFilter: true,
+  },
+  {
+    name: "debitRemained",
+    field: "debitRemained",
+    label: "مانده بدهکار",
+    style: "width:120px;",
+    class: "text-left",
+    sortable: true,
+    showFilter: true,
+  },
+  {
+    name: "creditRemained",
+    field: "creditRemained",
+    label: "مانده بستانکار",
+    style: "width:120px;",
+    class: "text-left",
+    sortable: true,
+    showFilter: true,
+  },
+];
+
+export const customerAccountDetailsColumns = [
+  voucherNo, 
+  voucherDate,
+  slCode,
+  slTitle,
+  voucherSubject,
+  // comment,
+  debitRemained,
+  creditRemained,
+  inlineDebit
 ];
