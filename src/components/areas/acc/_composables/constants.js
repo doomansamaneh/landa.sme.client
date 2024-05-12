@@ -18,7 +18,6 @@ import {
   slTitle,
   voucherDate,
   voucherSubject,
-  comment,
 } from "src/constants/columns";
 
 export const accountGLColumns = [
@@ -68,20 +67,8 @@ export const accountSLColumns = [
 export const accountDLColumns = [
   code,
   title,
-  {
-    name: "debitRemained",
-    field: "debitRemained",
-    label: "مانده بدهکار",
-    style: "width:120px;",
-    class: "text-left",
-  },
-  {
-    name: "creditRemained",
-    field: "creditRemained",
-    label: "مانده بستانکار",
-    style: "width:120px;",
-    class: "text-left",
-  },
+  debitRemained,
+  creditRemained,
   type,
   isActive,
   actions,
@@ -106,56 +93,19 @@ export const voucherColumns = [
   },
 ];
 
-export const accountCLColumns = [
-  id,
-  code,
-  title,
-  isActive,
-];
+export const accountCLColumns = [id, code, title, isActive];
 
 export const customerAccountColumns = [
   code,
   title,
-  {
-    name: "debit",
-    field: "debit",
-    label: "بدهکار",
-    style: "width:120px;",
-    class: "text-left",
-    sortable: true,
-    showFilter: true,
-  },
-  {
-    name: "credit",
-    field: "credit",
-    label: "بستانکار",
-    style: "width:120px;",
-    class: "text-left",
-    sortable: true,
-    showFilter: true,
-  },
-  {
-    name: "debitRemained",
-    field: "debitRemained",
-    label: "مانده بدهکار",
-    style: "width:120px;",
-    class: "text-left",
-    sortable: true,
-    showFilter: true,
-  },
-  {
-    name: "creditRemained",
-    field: "creditRemained",
-    label: "مانده بستانکار",
-    style: "width:120px;",
-    class: "text-left",
-    sortable: true,
-    showFilter: true,
-  },
+  debit,
+  credit,
+  debitRemained,
+  creditRemained,
 ];
 
-export const customerAccountDetailsColumns = [
-  voucherNo, 
+export const customerAccountItemColumns = [
+  voucherNo,
   voucherDate,
   slCode,
   slTitle,
@@ -163,5 +113,5 @@ export const customerAccountDetailsColumns = [
   // comment,
   debitRemained,
   creditRemained,
-  inlineDebit
+  inlineDebit,
 ];

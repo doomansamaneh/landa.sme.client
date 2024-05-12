@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { customerAccountDetailsColumns } from "./constants";
+import { customerAccountItemColumns } from "./constants";
 
 import { defaultPageSize, sortOrder } from "src/constants";
 
@@ -21,13 +21,12 @@ export function useCustomerAccountItemGrid(defaultFilters) {
     sortOrder: sortOrder.ascending,
   });
 
-  const columns = ref(customerAccountDetailsColumns);
+  const columns = ref(customerAccountItemColumns);
 
   const filterExpression = defaultFilters ?? [];
 
   const setDefaultSearchModel = () => {
-    state.searchModel.value = {
-    };
+    state.searchModel.value = {};
   };
 
   return {

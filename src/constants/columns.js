@@ -138,6 +138,7 @@ export const voucherDate = {
   sortable: true,
   label: "تاریخ",
   class: "text-left",
+  style: "width:90px",
   showFilter: true,
 };
 
@@ -231,7 +232,7 @@ export const debit = {
   name: "debit",
   field: "debit",
   sortable: false,
-  label: "مانده بدهکار",
+  label: "بدهکار",
   align: "left",
   class: "text-left",
   style: "width:170px;",
