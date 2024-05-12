@@ -315,7 +315,9 @@
       "marketerName": "یازاریاب",
       "typeTitle": "نوع",
       "quote": "پیش‌فاکتور",
-      "purchase": "فاکتور خرید کالا و خدمات"
+      "purchase": "فاکتور خرید کالا و خدمات",
+      "amount" : "موجودی",
+      "bankTitle" : "بانک"
     },
     "productType": {
       "main": "اصلی",
