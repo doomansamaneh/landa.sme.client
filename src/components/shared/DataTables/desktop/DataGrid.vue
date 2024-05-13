@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bordered_" :class="containerClass">
+  <q-card class="bordered" :class="containerClass">
     <div class="q-table__middle scroll">
       <table class="q-table">
         <thead>
