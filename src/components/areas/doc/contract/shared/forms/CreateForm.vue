@@ -16,7 +16,7 @@
             </q-item-label>
             <custom-input
               hide-bottom-space
-              v-model="formStore.model.no"
+              v-model="formStore.model.value.no"
               :rules="[(val) => val !== null && val !== '']"
             />
           </div>
@@ -84,20 +84,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "doc/contract",
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "doc/contract",
+  });
 </script>

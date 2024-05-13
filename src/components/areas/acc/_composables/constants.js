@@ -10,6 +10,8 @@ import {
   isActive,
   amount,
   actions,
+  debit,
+  credit,
   debitRemained,
   creditRemained,
   inlineDebit,
@@ -18,6 +20,7 @@ import {
   slTitle,
   voucherDate,
   voucherSubject,
+  comment,
 } from "src/constants/columns";
 
 export const accountGLColumns = [
@@ -104,6 +107,22 @@ export const customerAccountColumns = [
   creditRemained,
 ];
 
+export const debtorColumns = [
+  code,
+  title,
+  debit,
+  credit,
+  debitRemained,
+];
+
+export const creditorColumns = [
+  code,
+  title,
+  debit,
+  credit,
+  creditRemained,
+];
+
 export const customerAccountItemColumns = [
   voucherNo,
   voucherDate,
@@ -111,7 +130,17 @@ export const customerAccountItemColumns = [
   slTitle,
   voucherSubject,
   // comment,
-  debitRemained,
-  creditRemained,
+  { ...debitRemained, label: "بدهکار" },
+  { ...creditRemained, label: "بستانکار" },
   inlineDebit,
+];
+
+export const journalBookColumns = [
+  voucherNo,
+  voucherDate,
+  code,
+  title,
+  subject,
+  debit,
+  credit,
 ];

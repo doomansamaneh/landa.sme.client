@@ -186,12 +186,27 @@ export default {
     },
 
     {
-      path: "acc/report/customer",
+      path: "acc/report",
       children: [
         {
-          path: "",
+          path: "customer",
           component: () =>
-            import("pages/areas/acc/report/CustomerAccount.vue"),
+            import("pages/areas/acc/report/CustomerAccountPage.vue"),
+        },
+        {
+          path: "debtors",
+          component: () =>
+            import("pages/areas/acc/report/DebtorsPage.vue"),
+        },
+        {
+          path: "creditors",
+          component: () =>
+            import("pages/areas/acc/report/CreditorsPage.vue"),
+        },
+        {
+          path: "journal",
+          component: () =>
+            import("pages/areas/acc/report/JournalPage.vue"),
         },
       ],
     },
@@ -964,15 +979,15 @@ export default {
     },
 
     {
-      path: "inv/report/productStock",
+      path: "inv/report",
       children: [
         {
-          path: "",
+          path: "productStock",
           component: () =>
             import("pages/areas/inv/report/ProductStockPage.vue"),
         },
         {
-          path: "preview/:productId",
+          path: "productStock/preview/:productId",
           component: () =>
             import(
               "pages/areas/inv/report/ProductStockPreviewPage.vue"

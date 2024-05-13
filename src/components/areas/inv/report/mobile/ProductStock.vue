@@ -9,7 +9,13 @@
       @click="showSearchModal"
     >
       <template #append>
-        <q-btn padding="4px 12px" rounded color="primary" dense unelevated>
+        <q-btn
+          padding="4px 12px"
+          rounded
+          color="primary"
+          dense
+          unelevated
+        >
           <div class="row items-center">
             <q-icon name="o_search" size="xs" class="q-mr-xs" />
             <div class="text-body2 no-letter-spacing">جستجو</div>
@@ -29,25 +35,25 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-import { sqlOperator } from "src/constants";
+  import { computed, ref } from "vue";
+  import { sqlOperator } from "src/constants";
 
-import DataGrid from "components/areas/_shared/report/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
 
-const search = ref("");
+  const search = ref("");
 
-const props = defineProps({
-  gridStore: Object,
-  title: String,
-  dataSource: String,
-  crudStore: Object,
-});
+  const props = defineProps({
+    gridStore: Object,
+    title: String,
+    dataSource: String,
+    crudStore: Object,
+  });
 
-const dataGrid = ref(null);
+  const dataGrid = ref(null);
 
-const tableStore = computed(() => dataGrid.value?.tableStore);
+  const tableStore = computed(() => dataGrid.value?.tableStore);
 
-defineExpose({
-  tableStore,
-});
+  defineExpose({
+    tableStore,
+  });
 </script>

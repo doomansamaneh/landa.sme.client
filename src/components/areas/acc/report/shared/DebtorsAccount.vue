@@ -1,6 +1,7 @@
 <template>
   <report
-    :title="$t('main-menu-items.Acc_Report_CustomerAccounting')"
+    :title="$t('main-menu-items.Acc_Report_Debtors')"
+    dataSource="acc/report/getDebtorsData"
     :grid-store="gridStore"
   />
 </template>
@@ -9,8 +10,8 @@
   import Report from "./AccountReport.vue";
 
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { useCustomerAcccountState } from "src/components/areas/acc/_composables/useCustomerAcccountState";
+  import { useDebtorsState } from "src/components/areas/acc/_composables/useDebtorsState";
 
-  const accountStore = useCustomerAcccountState();
+  const accountStore = useDebtorsState();
   const gridStore = useBaseInfoGrid(accountStore);
 </script>

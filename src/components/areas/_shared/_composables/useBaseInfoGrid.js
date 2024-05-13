@@ -32,6 +32,7 @@ export function useBaseInfoGrid(config) {
     });
 
   const columns = ref(config?.columns ?? baseInfoColumns);
+  //const columns = config?.columns ?? ref(baseInfoColumns);
 
   if (config?.visibleColumns)
     columns.value = columns.value.filter((column) =>

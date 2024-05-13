@@ -41,11 +41,11 @@
     </template>
   </tool-bar>
 
-  <customer-account-item
+  <account-item
     ref="dataGrid"
     :data-source="dataSource"
     :grid-store="gridStore"
-  ></customer-account-item>
+  ></account-item>
 </template>
 
 <script setup>
@@ -54,7 +54,7 @@
   import { sqlOperator } from "src/constants";
   import { useCustomerAccountItemGrid } from "src/components/areas/acc/_composables/useCustomerAccountItemGrid";
 
-  import CustomerAccountItem from "./CustomerAccountItem.vue";
+  import AccountItem from "./AccountItem.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
 
   const props = defineProps({

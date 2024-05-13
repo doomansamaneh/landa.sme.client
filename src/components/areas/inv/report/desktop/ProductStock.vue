@@ -35,7 +35,7 @@
   import { computed, ref, onMounted, onUnmounted } from "vue";
   import { bus } from "src/helpers";
 
-  import DataGrid from "components/areas/_shared/report/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import ProductStockPreview from "./ProductStockPreview.vue";
   import AdvancedSearch from "./ProductStockSearch.vue";
 

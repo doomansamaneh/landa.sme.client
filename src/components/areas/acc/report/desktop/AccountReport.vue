@@ -34,14 +34,13 @@
   import { computed, ref, onMounted, onUnmounted } from "vue";
   import { bus } from "src/helpers";
 
-  import DataGrid from "components/areas/_shared/report/shared/index/DataGrid.vue";
-  import Preview from "./CustomerAccountPreview.vue";
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import Preview from "./AccountPreview.vue";
 
   const props = defineProps({
     gridStore: Object,
     title: String,
     dataSource: String,
-    crudStore: Object,
   });
 
   const dataGrid = ref(null);
