@@ -7,7 +7,7 @@
     :required="required"
     :rules="rules"
     color="primary"
-    class="input lookup"
+    class="first input lookup"
     input-class="text-body2 no-letter-spacing"
     dense
     debounce="1000"
@@ -159,6 +159,7 @@ import { ref, computed, onMounted } from "vue";
 import { useQuasar } from "quasar";
 import { useDataTable } from "src/composables/useDataTable";
 import { defaultLookupPageSize, sortOrder } from "src/constants";
+import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
 import PageBar from "src/components/shared/dataTables/PageBar.vue";
 import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
@@ -178,6 +179,7 @@ const props = defineProps({
 
 const selectedId = defineModel("selectedId");
 const selectedText = defineModel("selectedText");
+const formStore = useInvoiceModel({ baseRoute: "sls/invoice" });
 const $q = useQuasar();
 
 const store = {
@@ -201,7 +203,7 @@ const selectedRowIndex = ref(0);
 const popup = ref(null);
 const isPopupOpen = ref(false);
 
-const firstLookup = document.querySelector(".first");
+const lookup = document.querySelector(".lookup");
 
 function handleKeyDown(event) {
   switch (event.key) {
@@ -337,6 +339,10 @@ const containerClass = computed(
     __containerClass.value +
     (tableStore.showLoader.value === true ? " q-table--loading" : "")
 );
+
+onMounted(() => {
+    lookup?.focus();
+});
 
 defineExpose({
   setIdText,

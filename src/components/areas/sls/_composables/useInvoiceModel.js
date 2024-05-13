@@ -90,6 +90,15 @@ export function useInvoiceModel(config) {
           "q-ma-xl border-radius-md q-px-md q-py-xs bg-negative red-shadow",
       });
     } else model.value.invoiceItems.splice(index + 1, 0, newRow);
+
+    setTimeout(() => {
+      const productLookupInputs = document.querySelectorAll(".productLookup");
+      const firstLookup = productLookupInputs[productLookupInputs.length - 1];
+      if (firstLookup) {
+        firstLookup.focus();
+      }
+    }, 0);
+
   };
 
   const pushNewRow = (item) => {
