@@ -6,6 +6,7 @@
     columns="code,title"
     :filterExpression="filterExpression"
     ref="lookup"
+    class="productLookup"
   >
     <template #td="{ row }">
       <q-item clickable v-close-popup>
