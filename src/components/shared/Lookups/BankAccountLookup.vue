@@ -12,23 +12,23 @@
         <div style="width: 16px">#</div>
         <div class="col">
           <header-column
-            fieldName="no"
+            field-name="no"
             :title="$t('shared.labels.no')"
-            :data-source="lookup.dataSource"
+            :table-store="lookup.tableStore"
           />
         </div>
         <div class="col-4">
           <header-column
-            fieldName="bankTitle"
+            field-name="bankTitle"
             :title="$t('shared.labels.bankTitle')"
-            :data-source="lookup.dataSource"
+            :table-store="lookup.tableStore"
           />
         </div>
         <div class="col">
           <header-column
-            fieldName="amount"
+            field-name="amount"
             :title="$t('shared.labels.amount')"
-            :data-source="lookup.dataSource"
+            :table-store="lookup.tableStore"
           />
         </div>
       </div>
@@ -71,7 +71,7 @@
           {{ row.bankTitle }} - {{ row.title }}
         </div>
         <div class="col text-body3 no-letter-spacing">
-          {{ row.amount.toLocaleString() }}
+          {{ row.amount?.toLocaleString() }}
         </div>
       </div>
     </template>

@@ -8,7 +8,7 @@
     <q-card-section>
       <q-form ref="form" autofocus>
         <div class="row q-mb-md">
-          <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="col-md-3 col-sm-12 col-xs-12">
             <q-item-label
               class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
             >
@@ -21,7 +21,7 @@
         </div>
 
         <div class="row q-mb-md">
-          <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="col-md-3 col-sm-12 col-xs-12">
             <q-item-label
               class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
             >
@@ -91,7 +91,7 @@
         </div>
 
         <div class="row q-mb-md">
-          <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="col-md-3 col-sm-12 col-xs-12">
             <q-item-label
               class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
             >
