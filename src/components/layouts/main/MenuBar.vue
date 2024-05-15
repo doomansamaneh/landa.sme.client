@@ -10,7 +10,7 @@
     :overlay="$q.screen.lt.md"
   >
     <div
-      class="row items-center justify-center q-gutter-md q-pr-lg q-pl-md q-py-lg"
+      class="row items-center justify-center q-gutter-md q-px-md q-py-lg"
     >
       <div class="col">
         <q-input
