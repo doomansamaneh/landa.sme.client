@@ -13,6 +13,7 @@
           round
           unelevated
           v-close-popup
+          @click="congratsStore.confetti.value = false"
         />
 
         <q-img
