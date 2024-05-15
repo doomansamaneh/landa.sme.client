@@ -20,18 +20,32 @@
           spinner-color="primary"
           width="150px"
           src="celebration.svg"
+          class="sunshine-animation"
+          :style="
+            $q.dark.isActive
+              ? 'filter: drop-shadow(0 0 15px #FFFF0090);'
+              : 'filter: drop-shadow(0 0 15px #FFFF00);'
+          "
         />
         <div
           class="text-center q-mt-xl text-h6 no-letter-spacing text-weight-700"
         >
           به لاندا خوش آمدید
         </div>
+
+        <div class="text-h6 no-letter-spacing q-mt-sm">
+          از حسن انتخاب شما بسیار خشنود و سپاسگذار هستیم
+        </div>
       </q-card-section>
-      <q-card-actions align="center" class="bg-grey-3 q-pa-md">
+      <q-card-actions
+        align="center"
+        class="q-pa-md"
+        :class="$q.dark.isActive ? 'bg-on-dark' : 'bg-grey-3'"
+      >
         <q-btn
           unelevated
           label="برو به داشبورد"
-          class="text-h6 no-letter-spacing"
+          class="go-to-dashboard text-h6 no-letter-spacing"
           color="primary"
           rounded
           dense
@@ -77,5 +91,72 @@
 <style lang="scss">
   .congrats-card {
     width: 700px;
+  }
+
+  .go-to-dashboard {
+    animation: wiggle 2s linear infinite;
+    animation-delay: 1.7s;
+  }
+
+  .go-to-dashboard:hover {
+    animation: none;
+  }
+
+  .sunshine-animation {
+    animation: sunshine 3s infinite;
+  }
+
+  @keyframes wiggle {
+    0%,
+    7% {
+      transform: rotateZ(0);
+    }
+
+    15% {
+      transform: rotateZ(-15deg);
+    }
+
+    20% {
+      transform: rotateZ(10deg);
+    }
+
+    25% {
+      transform: rotateZ(-10deg);
+    }
+
+    30% {
+      transform: rotateZ(6deg);
+    }
+
+    35% {
+      transform: rotateZ(-4deg);
+    }
+
+    40%,
+    100% {
+      transform: rotateZ(0);
+    }
+  }
+
+  @keyframes sunshine {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 15px #FFFF00);
+    }
+    50% {
+      filter: drop-shadow(0 0 30px #FFFF00);
+    }
+  }
+
+  .q-dark .sunshine-animation {
+    @keyframes sunshine {
+      0%,
+      100% {
+        filter: drop-shadow(0 0 15px #ffff00e6);
+      }
+      50% {
+        filter: drop-shadow(0 0 30px #FFFF0090);
+      }
+    }
   }
 </style>

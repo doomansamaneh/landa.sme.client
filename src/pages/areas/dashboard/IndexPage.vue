@@ -15,6 +15,7 @@
   const congratsStore = useCongrats();
 
   onMounted(() => {
+    //todo: if user login for first time should show congrats.
     Dialog.create({
       component: CongratsDialog,
     });
