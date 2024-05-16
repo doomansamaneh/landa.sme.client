@@ -28,7 +28,11 @@
           برای دریافت نسخه جدید بر روی تازه‌سازی کلیک کنید
         </div>
       </q-card-section>
-      <q-card-actions align="center" class="bg-grey-3 q-pa-md">
+      <q-card-actions
+        align="center"
+        class="q-pa-md"
+        :class="$q.dark.isActive ? 'bg-on-dark' : 'bg-grey-3'"
+      >
         <q-btn
           unelevated
           label="تازه‌سازی"
