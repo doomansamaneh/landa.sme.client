@@ -34,7 +34,7 @@
         </div>
 
         <div class="text-h6 no-letter-spacing q-mt-sm">
-          از حسن انتخاب شما بسیار خشنود و سپاسگذار هستیم
+          از حسن انتخاب شما بسیار خشنود و سپاسگزار هستیم
         </div>
       </q-card-section>
     </q-card>
@@ -51,7 +51,6 @@
   const router = useRouter();
 
   const congratsDialog = ref(null);
-
 </script>
 
 <style lang="scss">
@@ -66,10 +65,10 @@
   @keyframes sunshine {
     0%,
     100% {
-      filter: drop-shadow(0 0 15px #FFFF00);
+      filter: drop-shadow(0 0 15px #ffff00);
     }
     50% {
-      filter: drop-shadow(0 0 30px #FFFF00);
+      filter: drop-shadow(0 0 30px #ffff00);
     }
   }
 
@@ -80,9 +79,8 @@
         filter: drop-shadow(0 0 15px #ffff00e6);
       }
       50% {
-        filter: drop-shadow(0 0 30px #FFFF0090);
+        filter: drop-shadow(0 0 30px #ffff0090);
       }
     }
   }
-
 </style>

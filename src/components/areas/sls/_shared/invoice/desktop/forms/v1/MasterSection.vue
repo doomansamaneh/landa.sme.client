@@ -30,7 +30,7 @@
             :text-color="$q.dark.isActive ? 'white' : 'grey-9'"
             dense
             round
-            icon="o_info"
+            icon="o_more_horiz"
             unelevated
             class="text-body2 no-letter-spacing"
             @click="toggleMoreInfo"

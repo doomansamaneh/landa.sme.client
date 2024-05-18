@@ -62,8 +62,9 @@
                 )
               "
               type="radio"
-              v-model="formStore.model.value.fromSource"
+              v-model="formStore.model.value.toSource"
             />
+            
             <bank-account-lookup
               v-if="
                 formStore.model.value.fromSource ===
@@ -119,8 +120,9 @@
                 )
               "
               type="radio"
-              v-model="formStore.model.value.toSource"
+              v-model="formStore.model.value.fromSource"
             />
+            
             <bank-account-lookup
               v-if="
                 formStore.model.value.toSource ===
