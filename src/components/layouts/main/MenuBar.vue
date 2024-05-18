@@ -62,6 +62,7 @@
         <div
           v-for="parentItem in menuBarStore.drawerMenuItems.value"
           :key="parentItem.name"
+          class="q-my-sm"
         >
           <q-expansion-item
             ref="expansion"
@@ -87,7 +88,7 @@
                 :key="subItem.name"
                 :to="subItem.url"
                 clickable
-                class="border-radius-xl sub-item q-ml-xs q-my-sm"
+                class="border-radius-xl sub-item q-ml-xs q-my-md"
               >
                 <q-item-section avatar class="">
                   <q-icon :name="`o_${subItem.icon}`" size="xs" />
