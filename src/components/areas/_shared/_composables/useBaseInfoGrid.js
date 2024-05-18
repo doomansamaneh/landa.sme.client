@@ -4,7 +4,7 @@ import { baseInfoColumns } from "./constants";
 import { useComposables } from "src/stores/useComposables";
 
 export function useBaseInfoGrid(config) {
-  const state = config?.state ?? {
+  const state = config.state ?? {
     firstLoad: ref(false),
     rows: ref([]),
     allSelectedIds: ref([]),
@@ -25,26 +25,21 @@ export function useBaseInfoGrid(config) {
       pageSize: defaultPageSize,
       sortColumn: config?.sortColumn ?? "title",
       sortOrder: config?.sortOrder ?? sortOrder.ascending,
-      totalItems: 0,
-      searchTerm: "",
-      searchModel: config?.sortModel ?? "",
-      filterExpression: [],
+      searchModel: config?.searchModel,
+      filterExpression: config?.filterExpression ?? [],
     });
 
   const columns = ref(config?.columns ?? baseInfoColumns);
-  //const columns = config?.columns ?? ref(baseInfoColumns);
 
   if (config?.visibleColumns)
     columns.value = columns.value.filter((column) =>
       config.visibleColumns.includes(column.name)
     );
 
-  const filterExpression = config?.filterExpression ?? [];
-
   return {
     columns,
     pagination,
     state,
-    filterExpression,
+    filterExpression: config?.filterExpression ?? [],
   };
 }

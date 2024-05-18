@@ -13,7 +13,7 @@
     expandable
     @row-dbl-click="gotoPreview"
   >
-  <template #filter-typeId="{ col }">
+    <template #filter-typeId="{ col }">
       <custom-select
         v-model="col.value"
         :options="helper.getEnumOptions(voucherType, 'voucherType')"
@@ -28,11 +28,11 @@
       />
     </template>
 
-  <template #cell-subject="{ item }">
+    <template #cell-subject="{ item }">
       {{ item.subject }}
       <div>
-      <small>{{ item.summary }}</small>
-    </div>
+        <small>{{ item.summary }}</small>
+      </div>
     </template>
 
     <template #cell-amount="{ item }">
@@ -42,51 +42,61 @@
     <template #cell-typeId="{ item }">
       {{
         $t(
-          `shared.voucherType.${helper.getEnumType(item.typeId, voucherType)}`
+          `shared.voucherType.${helper.getEnumType(
+            item.typeId,
+            voucherType
+          )}`
         )
       }}
     </template>
-    
+
     <template #cell-systemId="{ item }">
       {{
         $t(
-          `shared.subSystem.${helper.getEnumType(item.systemId, subSystem)}`
+          `shared.subSystem.${helper.getEnumType(
+            item.systemId,
+            subSystem
+          )}`
         )
       }}
     </template>
-    
+
+    <template #expand="{ item }">
+      <preview inside margin :item="item" />
+    </template>
   </data-grid>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
-import { helper } from "src/helpers";
-import { subSystem, voucherType } from "src/constants";
+  import { ref, computed } from "vue";
+  import { useRouter } from "vue-router";
+  import { helper } from "src/helpers";
+  import { subSystem, voucherType } from "src/constants";
 
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import Preview from "../../shared/preview/IndexView.vue";
 
-const props = defineProps({
-  gridStore: Object,
-  dataSource: String,
-  baseRoute: String
-})
+  const props = defineProps({
+    gridStore: Object,
+    dataSource: String,
+    baseRoute: String,
+  });
 
-const router = useRouter();
-const dataGrid = ref(null);
+  const router = useRouter();
+  const dataGrid = ref(null);
 
-async function reloadData() {
-  await tableStore.value.reloadData();
-}
+  async function reloadData() {
+    await tableStore.value.reloadData();
+  }
 
-const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
-function gotoPreview(row) {
-  router.push(`/acc/voucher/preview/${row.id}`);
-}
+  function gotoPreview(row) {
+    router.push(`/acc/voucher/preview/${row.id}`);
+  }
 
-defineExpose({
-  tableStore,
-});
+  defineExpose({
+    tableStore,
+  });
 </script>

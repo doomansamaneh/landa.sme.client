@@ -8,7 +8,12 @@
     <div style="width: 10%">مبلغ مالیات</div>
     <div class="col row justify-end items-center q-gutter-x-xs">
       مبلغ کل
-      <q-icon name="o_info" size="xs" color="primary" class="cursor-pointer">
+      <q-icon
+        name="o_info"
+        size="xs"
+        color="primary"
+        class="cursor-pointer"
+      >
         <q-tooltip
           :delay="600"
           class="custom-tooltip"
@@ -41,7 +46,10 @@
           />
         </div>
         <div style="width: 7%">
-          <custom-input-number v-model="row.quantity" placeholder="مقدار" />
+          <custom-input-number
+            v-model="row.quantity"
+            placeholder="مقدار"
+          />
         </div>
         <div style="width: 10%">
           <product-unit-lookup
@@ -51,7 +59,10 @@
           />
         </div>
         <div style="width: 10%">
-          <custom-input-number v-model="row.price" placeholder="مبلغ" />
+          <custom-input-number
+            v-model="row.price"
+            placeholder="مبلغ"
+          />
         </div>
         <div style="width: 15%">
           <vat-lookup
@@ -103,9 +114,9 @@
                 >
                   <div class="q-py-sm">
                     <q-item-section avatar>
-                      <q-avatar class="bg-on-dark" size="sm"
-                        ><q-icon name="o_percent" size="14px"
-                      /></q-avatar>
+                      <q-avatar class="bg-on-dark" size="sm">
+                        <q-icon name="o_percent" size="14px" />
+                      </q-avatar>
                     </q-item-section>
                   </div>
                   <q-item-section>
@@ -136,11 +147,15 @@
       </div>
       <div v-if="row.showDetail" class="row q-gutter-md q-pt-md">
         <div style="width: 32%">
-          <q-item-label caption class="q-mb-sm">شرح تکمیلی کالا</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            شرح تکمیلی کالا
+          </q-item-label>
           <custom-input v-model="row.comment" />
         </div>
         <div style="width: 20%">
-          <q-item-label caption class="q-mb-sm">شرح تخفیف</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            شرح تخفیف
+          </q-item-label>
           <custom-input v-model="row.discountComment" />
         </div>
         <div style="width: 10%">
@@ -169,66 +184,85 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+  import { ref } from "vue";
 
-import { sqlOperator, invoiceFormType, vatType } from "src/constants";
+  import {
+    sqlOperator,
+    invoiceFormType,
+    vatType,
+  } from "src/constants";
 
-import Footer from "./FooterSection.vue";
-import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
-import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
-import VatLookup from "src/components/shared/lookups/VatLookup.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import Footer from "./FooterSection.vue";
+  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
+  import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+  import VatLookup from "src/components/shared/lookups/VatLookup.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
-const props = defineProps({
-  formStore: Object,
-  formType: Object,
-});
+  const props = defineProps({
+    formStore: Object,
+    formType: Object,
+  });
 
-const vatFilter =
-  props.formType == invoiceFormType.sales
-    ? [
-        {
-          fieldName: "isForSale",
-          operator: sqlOperator.in,
-          value: `${vatType.sale},${vatType.purchaseAndSale}`,
-        },
-      ]
-    : [
-        {
-          fieldName: "isForSale",
-          operator: sqlOperator.in,
-          value: `${vatType.purchase},${vatType.purchaseAndSale}`,
-        },
-      ];
+  const vatFilter =
+    props.formType == invoiceFormType.sales
+      ? [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.in,
+            value: `${vatType.sale},${vatType.purchaseAndSale}`,
+          },
+        ]
+      : [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.in,
+            value: `${vatType.purchase},${vatType.purchaseAndSale}`,
+          },
+        ];
 
-const productFilter =
-  props.formType == invoiceFormType.sales
-    ? [{ fieldName: "isForSale", operator: sqlOperator.equal, value: "1" }]
-    : [{ fieldName: "isForPurchase", operator: sqlOperator.equal, value: "1" }];
+  const productFilter =
+    props.formType == invoiceFormType.sales
+      ? [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.equal,
+            value: "1",
+          },
+        ]
+      : [
+          {
+            fieldName: "isForPurchase",
+            operator: sqlOperator.equal,
+            value: "1",
+          },
+        ];
 
-const discountIsCash = ref(true);
-const discountVisible = ref(false);
-const generalDiscountValue = ref(0);
+  const discountIsCash = ref(true);
+  const discountVisible = ref(false);
+  const generalDiscountValue = ref(0);
 
-const vatChanged = (vat, row) => {
-  row.vatPercent = vat?.rate ?? 0;
-};
+  const vatChanged = (vat, row) => {
+    row.vatPercent = vat?.rate ?? 0;
+  };
 
-const productChanged = (product, row) => {
-  row.price = product?.price ?? 0;
-  row.productUnitId = product?.productUnitId ?? null;
-  row.productUnitTitle = product?.productUnitTitle ?? null;
-};
+  const productChanged = (product, row) => {
+    row.price = product?.price ?? 0;
+    row.productUnitId = product?.productUnitId ?? null;
+    row.productUnitTitle = product?.productUnitTitle ?? null;
+  };
 
-const toggleDiscountType = () => {
-  discountIsCash.value = !discountIsCash.value;
-};
+  const toggleDiscountType = () => {
+    discountIsCash.value = !discountIsCash.value;
+  };
 
-const confirmGeneralDiscount = () => {
-  if (discountIsCash.value)
-    props.formStore.applyDiscountAmount(generalDiscountValue.value);
-  else props.formStore.applyDiscountPercent(generalDiscountValue.value);
-  discountVisible.value = false;
-};
+  const confirmGeneralDiscount = () => {
+    if (discountIsCash.value)
+      props.formStore.applyDiscountAmount(generalDiscountValue.value);
+    else
+      props.formStore.applyDiscountPercent(
+        generalDiscountValue.value
+      );
+    discountVisible.value = false;
+  };
 </script>

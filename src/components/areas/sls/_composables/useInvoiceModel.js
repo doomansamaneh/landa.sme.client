@@ -92,13 +92,14 @@ export function useInvoiceModel(config) {
     } else model.value.invoiceItems.splice(index + 1, 0, newRow);
 
     setTimeout(() => {
-      const productLookupInputs = document.querySelectorAll(".productLookup");
-      const firstLookup = productLookupInputs[productLookupInputs.length - 1];
+      const productLookupInputs =
+        document.querySelectorAll(".productLookup");
+      const firstLookup =
+        productLookupInputs[productLookupInputs.length - 1];
       if (firstLookup) {
         firstLookup.focus();
       }
     }, 0);
-
   };
 
   const pushNewRow = (item) => {

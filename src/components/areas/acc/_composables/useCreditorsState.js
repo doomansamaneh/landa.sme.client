@@ -17,6 +17,7 @@ const pagination = ref({
   sortColumn: "code",
   sortOrder: sortOrder.ascending,
 });
+
 export function useCreditorsState() {
   const columns = creditorColumns;
   return {

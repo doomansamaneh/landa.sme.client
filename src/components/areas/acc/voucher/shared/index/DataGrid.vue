@@ -8,8 +8,7 @@
       :title="title"
       :base-route="baseRoute"
       activation
-    >
-    </toolbar-mobile>
+    ></toolbar-mobile>
 
     <mobile
       :grid-store="gridStore"
@@ -169,53 +168,56 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useQuasar } from "quasar";
-import { useI18n } from "vue-i18n";
-import { useFormActions } from "src/composables/useFormActions";
-import { useVoucherGrid } from "../../../_composables/useVoucherGrid";
+  import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
+  import { useFormActions } from "src/composables/useFormActions";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useVoucherState } from "src/components/areas/acc/_composables/useVoucherState";
 
-import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-import Desktop from "../../desktop/index/DataGrid.vue";
-import Mobile from "../../mobile/index/DataGrid.vue";
+  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  import Desktop from "../../desktop/index/DataGrid.vue";
+  import Mobile from "../../mobile/index/DataGrid.vue";
 
-import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
+  import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
 
-const props = defineProps({
-  toolbar: Boolean,
-});
-
-const { t } = useI18n();
-
-const title = t("main-menu-items.Acc_Voucher_View");
-const baseRoute = "acc/voucher";
-
-const $q = useQuasar();
-const gridStore = useVoucherGrid();
-const crudStore = useFormActions(baseRoute);
-const desktopGrid = ref(null);
-const mobileGrid = ref(null);
-
-const selectedIds = computed(() => {
-  if (desktopGrid?.value != null)
-    return desktopGrid.value.tableStore.selectedRows?.value.map(
-      (item) => item.id
-    );
-  else
-    return mobileGrid.value.tableStore.selectedRows?.value.map(
-      (item) => item.id
-    );
-});
-
-function editBatch() {
-  $q.dialog({
-    component: EditBatch,
-    componentProps: {
-      selectedIds: selectedIds?.value,
-    },
-  }).onOk(async () => {
-    await reloadData();
+  const props = defineProps({
+    toolbar: Boolean,
   });
-}
+
+  const { t } = useI18n();
+
+  const title = t("main-menu-items.Acc_Voucher_View");
+  const baseRoute = "acc/voucher";
+
+  const $q = useQuasar();
+
+  const accountStore = useVoucherState();
+  const gridStore = useBaseInfoGrid(accountStore);
+  const crudStore = useFormActions(baseRoute);
+  const desktopGrid = ref(null);
+  const mobileGrid = ref(null);
+
+  const selectedIds = computed(() => {
+    if (desktopGrid?.value != null)
+      return desktopGrid.value.tableStore.selectedRows?.value.map(
+        (item) => item.id
+      );
+    else
+      return mobileGrid.value.tableStore.selectedRows?.value.map(
+        (item) => item.id
+      );
+  });
+
+  function editBatch() {
+    $q.dialog({
+      component: EditBatch,
+      componentProps: {
+        selectedIds: selectedIds?.value,
+      },
+    }).onOk(async () => {
+      await reloadData();
+    });
+  }
 </script>

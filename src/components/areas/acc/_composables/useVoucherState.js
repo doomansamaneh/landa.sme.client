@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { sortOrder, defaultPageSize } from "src/constants";
-import { debtorColumns } from "./constants";
+import { voucherColumns } from "./constants";
 
 const rows = ref([]);
 
@@ -14,12 +14,13 @@ const state = {
 const pagination = ref({
   currentPage: 1,
   pageSize: defaultPageSize,
-  sortColumn: "code",
-  sortOrder: sortOrder.ascending,
+  sortColumn: "no",
+  sortOrder: sortOrder.descending,
 });
 
-export function useDebtorsState() {
-  const columns = debtorColumns;
+export function useVoucherState() {
+  const columns = voucherColumns;
+
   return {
     rows,
     state,
