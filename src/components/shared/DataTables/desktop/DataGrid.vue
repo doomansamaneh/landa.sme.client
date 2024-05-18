@@ -1,7 +1,7 @@
 <template>
   <q-card class="bordered" :class="containerClass">
     <div class="q-table__middle scroll">
-      <table class="q-table">
+      <table class="q-table data-table">
         <thead>
           <tr v-if="!hideHeader">
             <th v-if="numbered" class="dense_">#</th>
@@ -285,7 +285,7 @@ const goToPreview = (row) => {
 };
 
 const chevronIcon = () => {
-  return $q.lang.rtl ? "chevron_left" : "chevron_right";
+  return $q.lang.rtl ? "keyboard_arrow_down" : "keyboard_arrow_up";
 };
 
 //Todo: How move to expand page dynamically
@@ -304,7 +304,7 @@ defineExpose({
 
 <style lang="scss" scoped>
 .expand-open {
-  transform: rotate(-90deg);
+  transform: rotate(-180deg);
   transition-duration: 300ms;
 }
 
@@ -317,5 +317,9 @@ defineExpose({
   width: 1px;
   padding-right: 5px;
   padding-left: 5px;
+}
+
+.data-table th {
+  font-weight: bold;
 }
 </style>
