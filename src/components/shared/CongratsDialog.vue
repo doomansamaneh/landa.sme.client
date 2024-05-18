@@ -37,32 +37,6 @@
           از حسن انتخاب شما بسیار خشنود و سپاسگذار هستیم
         </div>
       </q-card-section>
-      <q-card-actions
-        align="center"
-        class="q-pa-md"
-        :class="$q.dark.isActive ? 'bg-on-dark' : 'bg-grey-3'"
-      >
-        <q-btn
-          unelevated
-          label="برو به داشبورد"
-          class="go-to-dashboard text-h6 no-letter-spacing"
-          color="primary"
-          rounded
-          dense
-          padding="6px 16px"
-          @click="goToDashboard()"
-        />
-        <q-btn
-          label="انصراف"
-          class="text-h6 no-letter-spacing"
-          dense
-          rounded
-          padding="6px 16px"
-          flat
-          v-close-popup
-          @click="congratsStore.confetti.value = false"
-        />
-      </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
@@ -78,14 +52,6 @@
 
   const congratsDialog = ref(null);
 
-  const goToDashboard = () => {
-    congratsStore.confetti.value = false;
-    if (route.path === "dashboard") {
-      congratsDialog.value.hide();
-    } else {
-      router.push("/dashboard");
-    }
-  };
 </script>
 
 <style lang="scss">
@@ -93,49 +59,8 @@
     width: 700px;
   }
 
-  .go-to-dashboard {
-    animation: wiggle 2s linear infinite;
-    animation-delay: 1.7s;
-  }
-
-  .go-to-dashboard:hover {
-    animation: none;
-  }
-
   .sunshine-animation {
     animation: sunshine 3s infinite;
-  }
-
-  @keyframes wiggle {
-    0%,
-    7% {
-      transform: rotateZ(0);
-    }
-
-    15% {
-      transform: rotateZ(-15deg);
-    }
-
-    20% {
-      transform: rotateZ(10deg);
-    }
-
-    25% {
-      transform: rotateZ(-10deg);
-    }
-
-    30% {
-      transform: rotateZ(6deg);
-    }
-
-    35% {
-      transform: rotateZ(-4deg);
-    }
-
-    40%,
-    100% {
-      transform: rotateZ(0);
-    }
   }
 
   @keyframes sunshine {
@@ -148,7 +73,7 @@
     }
   }
 
-  .q-dark .sunshine-animation {
+  .sunshine-animation {
     @keyframes sunshine {
       0%,
       100% {
@@ -159,4 +84,5 @@
       }
     }
   }
+
 </style>

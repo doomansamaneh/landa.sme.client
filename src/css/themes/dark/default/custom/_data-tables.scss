@@ -39,10 +39,7 @@
 
   //dataView
   .row-active {
-    // border-radius: 4px;
     background-color: #{$primary}20 !important;
-    // box-shadow: 0 0 4px 0 #{$primary}20 !important;
-    // outline: 1px solid $primary !important;
     td {
       box-shadow: 0 0.8px 0 $primary inset, 0 -0.8px 0 $primary inset;
     }

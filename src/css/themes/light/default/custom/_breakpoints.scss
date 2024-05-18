@@ -19,6 +19,10 @@
       padding-left: 38px;
       padding-right: 38px;
     }
+    
+    .row-active {
+      border-radius: 50px;
+    }
   }
 
   @media (min-width: $breakpoint-md-min) {
@@ -26,6 +30,10 @@
       // width: 100% !important;
       padding-left: 38px;
       padding-right: 38px;
+    }
+
+    .row-active {
+      border-radius: 50px;
     }
   }
 }
