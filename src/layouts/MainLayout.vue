@@ -9,8 +9,10 @@
 
     <main-header />
     <bottom-navigation />
-    <menu-bar v-if="menuBarStore.state.visible.value" />
-    <contact-drawer v-if="contactDrawerStore.state.value" />
+    <menu-bar />
+     <!-- v-if="menuBarStore.state.visible.value" -->
+    <contact-drawer />
+    <!-- v-if="contactDrawerStore.state.value" -->
     <alert-banner class="fixed-bottom z-max" />
 
   </q-layout>

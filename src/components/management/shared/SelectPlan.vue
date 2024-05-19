@@ -1,5 +1,5 @@
 <template>
-  <div class="row" :class="{ 'q-col-gutter-md' : $q.screen.gt.xs}">
+  <div class="row q-col-gutter-md">
 
     <div class="col-md-8 col-sm-8 col-xs-12">
       <q-item-label class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">

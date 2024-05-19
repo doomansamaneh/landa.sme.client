@@ -11,7 +11,6 @@
         padding="8px 16px"
         rounded
         class="primary-shadow"
-        icon="o_save"
       >
         <slot name="ok-label"> {{ $t("shared.labels.save") }}</slot>
       </q-btn>

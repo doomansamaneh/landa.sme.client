@@ -152,7 +152,7 @@ const authStore = useAuthStore();
 
 const metaData = {
   title: "لاندا",
-  titleTemplate: (title) => `${title} - تنظیمات`,
+  titleTemplate: (title) => `تنظیمات`,
 };
 
 useMeta(metaData);

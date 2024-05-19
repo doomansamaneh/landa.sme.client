@@ -10,7 +10,7 @@
     :rules="[(val) => val && val.length > 0]"
   >
     <template #thead>
-      <div class="row items-center q-col-gutter-md_">
+      <!-- <div class="row items-center q-col-gutter-md_">
         <div style="width: 20px">#</div>
         <div class="col-8">
           <header-column
@@ -26,14 +26,14 @@
             :data-source="lookup.dataSource"
           />
         </div>
-      </div>
+      </div> -->
     </template>
 
     <template #td="{ row, index }">
       <div class="row items-center q-col-gutter-md_ q-pa-md">
-        <div style="width: 20px" class="text-caption">{{ index }}</div>
-        <div class="col-8 text-caption">{{ row.title }}</div>
-        <div class="col text-caption">{{ row.cost.toLocaleString() }}</div>
+        <div style="width: 20px" class="text-body3 no-letter-spacing">{{ index }}</div>
+        <div class="col-8 text-body2 no-letter-spacing">{{ row.title }}</div>
+        <div class="col text-body2 no-letter-spacing">{{ row.cost.toLocaleString() }}</div>
       </div>
     </template>
   </lookup-view>

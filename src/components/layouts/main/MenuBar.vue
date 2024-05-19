@@ -49,15 +49,18 @@
     >
       <q-list class="menu-list q-px-md">
         <q-item
-          class="border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
+          class="z-1 border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
+          :class="{ 'active-shine': isActiveItem('/dashboard') }"
           to="/dashboard"
         >
           <q-icon
             name="o_dashboard"
             class="settings q-mr-sm"
-            size="xs"
+            size="20px"
           ></q-icon>
-          {{ $t("main-menu-items.dashboard") }}
+          <div class="z-1">
+            {{ $t("main-menu-items.dashboard") }}
+          </div>
         </q-item>
         <div
           v-for="parentItem in menuBarStore.drawerMenuItems.value"
@@ -89,12 +92,13 @@
                 :to="subItem.url"
                 clickable
                 class="border-radius-xl sub-item q-ml-xs q-my-md"
+                :class="{ 'active-shine': isActiveItem(subItem.url) }"
               >
-                <q-item-section avatar class="">
-                  <q-icon :name="`o_${subItem.icon}`" size="xs" />
+                <q-item-section avatar>
+                  <q-icon :name="`o_${subItem.icon}`" size="20px" />
                 </q-item-section>
                 <q-item-section>
-                  <span class="text-body2 sub no-letter-spacing">
+                  <span class="z-1 text-body2 sub no-letter-spacing">
                     {{ subItem.title }}
                   </span>
                 </q-item-section>
@@ -105,13 +109,16 @@
         <q-item
           to="/cmn/appConfig"
           class="last-item border-radius-xl flex text-body2 no-lette-spacing items-center cursor-pointer q-my-sm"
+          :class="{ 'active-shine': isActiveItem('/cmn/appConfig') }"
         >
           <q-icon
             name="o_settings"
             class="settings q-mr-sm"
-            size="xs"
+            size="21px"
           ></q-icon>
-          {{ $t("main-menu-items.settings") }}
+          <div class="z-1">
+            {{ $t("main-menu-items.settings") }}
+          </div>
         </q-item>
       </q-list>
     </q-scroll-area>
@@ -141,21 +148,11 @@
     return subItems.some((subItem) => subItem.url === currentPath);
   };
 
+  const isActiveItem = (url) => {
+    return router.currentRoute.value.path === url;
+  };
+
   onMounted(() => {
     menuBarStore.loadData();
   });
 </script>
-
-<style lang="scss">
-  .text-sm {
-    font-size: 13px;
-  }
-
-  .q-item__section--side {
-    // padding-right: 8px;
-
-    .q-icon {
-      font-size: 20px;
-    }
-  }
-</style>
