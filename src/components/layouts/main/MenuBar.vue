@@ -88,7 +88,7 @@
                 :key="subItem.name"
                 :to="subItem.url"
                 clickable
-                class="border-radius-xl sub-item q-ml-xs q-my-md"
+                class="border-radius-xl sub-item q-ml-xs q-my-xs"
               >
                 <q-item-section avatar class="">
                   <q-icon :name="`o_${subItem.icon}`" size="xs" />

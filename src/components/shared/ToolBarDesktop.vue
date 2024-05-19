@@ -1,6 +1,11 @@
 <template>
   <div :style="toolbarMargin">
-    <q-page-sticky class="z-1 bg-main" :style="inside" position="top" expand>
+    <q-page-sticky
+      class="z-1 bg-main"
+      :style="inside"
+      position="top"
+      expand
+    >
       <q-toolbar class="q-my-md" :style="xPadding">
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
@@ -17,7 +22,10 @@
             </q-btn>
 
             <template v-if="tableStore?.activeRow?.value != null">
-              <slot name="bootons-edit" :row="tableStore?.activeRow?.value">
+              <slot
+                name="bootons-edit"
+                :row="tableStore?.activeRow?.value"
+              >
                 <q-btn
                   padding="6px 12px"
                   :to="`/${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
@@ -34,7 +42,7 @@
             </template>
 
             <template v-if="selectedIds?.length > 0">
-              <slot name="buttons-batch-action"> </slot>
+              <slot name="buttons-batch-action"></slot>
               <slot name="buttons-delete-batch">
                 <q-btn
                   padding="6px 12px"
@@ -42,9 +50,18 @@
                   rounded
                   unelevated
                   no-caps
-                  @click="crudStore.deleteBatch(selectedIds, tableStore.reloadData)"
+                  @click="
+                    crudStore.deleteBatch(
+                      selectedIds,
+                      tableStore.reloadData
+                    )
+                  "
                 >
-                  <q-icon name="o_delete" size="20px" class="q-mr-sm" />
+                  <q-icon
+                    name="o_delete"
+                    size="20px"
+                    class="q-mr-sm"
+                  />
                   {{ $t("shared.labels.delete") }}
                   <q-badge floating>
                     {{ selectedIds?.length }}
@@ -53,7 +70,9 @@
               </slot>
             </template>
 
-            <template v-else-if="tableStore?.activeRow?.value != null">
+            <template
+              v-else-if="tableStore?.activeRow?.value != null"
+            >
               <slot name="bootons-delete">
                 <q-btn
                   padding="6px 12px"
@@ -68,7 +87,11 @@
                     )
                   "
                 >
-                  <q-icon size="20px" name="o_delete" class="q-mr-sm" />
+                  <q-icon
+                    size="20px"
+                    name="o_delete"
+                    class="q-mr-sm"
+                  />
                   {{ $t("shared.labels.delete") }}
                 </q-btn>
               </slot>
@@ -105,19 +128,26 @@
                     </q-item-section>
                   </q-item>
 
-                  <template v-if="activation && selectedIds?.length > 0">
+                  <template
+                    v-if="activation && selectedIds?.length > 0"
+                  >
                     <q-separator class="q-my-sm" />
                     <q-item
                       clickable
                       v-close-popup
                       tabindex="0"
-                      @click="crudStore.activate(selectedIds, tableStore.reloadData)"
+                      @click="
+                        crudStore.activate(
+                          selectedIds,
+                          tableStore.reloadData
+                        )
+                      "
                     >
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm"
-                            ><q-icon size="20px" name="o_check"
-                          /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon size="20px" name="o_check" />
+                          </q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
@@ -131,7 +161,12 @@
                       clickable
                       v-close-popup
                       tabindex="0"
-                      @click="crudStore.deactivate(selectedIds, tableStore.reloadData)"
+                      @click="
+                        crudStore.deactivate(
+                          selectedIds,
+                          tableStore.reloadData
+                        )
+                      "
                     >
                       <div class="q-py-sm">
                         <q-item-section avatar>
@@ -148,7 +183,10 @@
                     </q-item>
                   </template>
 
-                  <slot name="buttons-custom" :row="tableStore?.activeRow?.value"> </slot>
+                  <slot
+                    name="buttons-custom"
+                    :row="tableStore?.activeRow?.value"
+                  ></slot>
 
                   <q-separator class="q-my-sm" />
 
@@ -160,9 +198,9 @@
                   >
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm"
-                          ><q-icon name="o_download" size="20px"
-                        /></q-avatar>
+                        <q-avatar class="bg-on-dark" size="sm">
+                          <q-icon name="o_download" size="20px" />
+                        </q-avatar>
                       </q-item-section>
                     </div>
                     <q-item-section>
@@ -180,14 +218,16 @@
                   >
                     <div class="q-py-sm">
                       <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm"
-                          ><q-icon name="o_download" size="20px"
-                        /></q-avatar>
+                        <q-avatar class="bg-on-dark" size="sm">
+                          <q-icon name="o_download" size="20px" />
+                        </q-avatar>
                       </q-item-section>
                     </div>
                     <q-item-section>
                       <div class="text-body2 no-letter-spacing">
-                        {{ $t("shared.labels.exportExcelCurrentPage") }}
+                        {{
+                          $t("shared.labels.exportExcelCurrentPage")
+                        }}
                       </div>
                     </q-item-section>
                   </q-item>
@@ -229,7 +269,9 @@
           <slot name="header">
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
               <slot name="header-title">
-                <span class="text-weight-700 no-letter-spacing">{{ title }}</span>
+                <span class="text-weight-700 no-letter-spacing">
+                  {{ title }}
+                </span>
                 <q-btn
                   v-if="tableStore?.pagination.value.totalItems > 0"
                   rounded
@@ -252,50 +294,52 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useRouter } from "vue-router";
-import { useQuasar } from "quasar";
+  import { computed } from "vue";
+  import { useRouter } from "vue-router";
+  import { useQuasar } from "quasar";
 
-import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-const $q = useQuasar();
-const router = useRouter();
+  const $q = useQuasar();
+  const router = useRouter();
 
-const props = defineProps({
-  title: String,
-  baseRoute: String,
-  tableStore: Object,
-  crudStore: Object,
-  activation: Boolean,
-  backButton: Boolean,
-  buttons: Boolean,
-  inside: Boolean,
-  margin: Boolean,
-});
+  const props = defineProps({
+    title: String,
+    baseRoute: String,
+    tableStore: Object,
+    crudStore: Object,
+    activation: Boolean,
+    backButton: Boolean,
+    buttons: Boolean,
+    inside: Boolean,
+    margin: Boolean,
+  });
 
-const selectedIds = computed(() =>
-  props.tableStore?.selectedRows?.value.map((item) => item.id)
-);
+  const selectedIds = computed(() =>
+    props.tableStore?.selectedRows?.value.map((item) => item.id)
+  );
 
-const toolbarMargin = computed(() => {
-  const baseMargin = $q.screen.lt.md ? "margin-bottom: 62px;" : "margin-bottom: 48px;";
-  const margin = $q.screen.lt.sm ? "margin-bottom: 36px;" : "";
-  return props.margin ? baseMargin : margin;
-});
+  const toolbarMargin = computed(() => {
+    const baseMargin = $q.screen.lt.md
+      ? "margin-bottom: 62px;"
+      : "margin-bottom: 48px;";
+    const margin = $q.screen.lt.sm ? "margin-bottom: 36px;" : "";
+    return props.margin ? baseMargin : margin;
+  });
 
-const xPadding = computed(() => {
-  return props.inside
-    ? "padding: 0"
-    : $q.screen.gt.sm
-    ? "padding-left: 38px; padding-right: 38px;"
-    : "padding-left: 20px; padding-right: 20px;";
-});
+  const xPadding = computed(() => {
+    return props.inside
+      ? "padding: 0"
+      : $q.screen.gt.sm
+      ? "padding-left: 38px; padding-right: 38px;"
+      : "padding-left: 20px; padding-right: 20px;";
+  });
 
-const inside = computed(() => {
-  if (props.inside) {
-    return "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;";
-  } else {
-    return "";
-  }
-});
+  const inside = computed(() => {
+    if (props.inside) {
+      return "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;";
+    } else {
+      return "";
+    }
+  });
 </script>

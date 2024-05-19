@@ -240,7 +240,10 @@
     "placeholders": {
       "password": "رمز عبور"
     },
-    "buttons": { "delete-business": "حذف کسب و کار", "cancel": "بازگشت" }
+    "buttons": {
+      "delete-business": "حذف کسب و کار",
+      "cancel": "بازگشت"
+    }
   },
 
   "shared": {
@@ -283,6 +286,7 @@
       "userGuide": "راهنما",
       "refresh": "تازه سازی",
       "reorder": "شماره‌گذاری دوباره",
+      "reorderMessage": "آیا از شماره گذاری دوباره سندها، اطمینان دارید؟ در اینصورت همه سندها براساس تاریخ و زمان ایجادشان مرتب خواهند شد",
       "back": "بازگشت",
       "print": "چاپ",
       "printBatch": "چاپ دسته‌ای",
@@ -316,8 +320,9 @@
       "typeTitle": "نوع",
       "quote": "پیش‌فاکتور",
       "purchase": "فاکتور خرید کالا و خدمات",
-      "amount" : "موجودی",
-      "bankTitle" : "بانک"
+      "amount": "موجودی",
+      "bankTitle": "بانک",
+      "sendMail": "ارسال ایمیل"
     },
     "productType": {
       "main": "اصلی",

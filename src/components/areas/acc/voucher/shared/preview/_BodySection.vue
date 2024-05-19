@@ -64,7 +64,7 @@
             <div>
               {{ item.slCode }}
             </div>
-            <div class="text-right">
+            <div style="text-align: end" class="text-blue-10">
               {{ item.dlCode }}
             </div>
           </td>
@@ -72,7 +72,7 @@
             <div class="text-wrap">
               {{ item.slTitle }}
             </div>
-            <div class="text-wrap">
+            <div class="text-wrap text-blue-10">
               {{ item.dlTitle }}
             </div>
             <div class="text-wrap">

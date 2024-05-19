@@ -32,7 +32,7 @@
     <div class="col-md-6 col-sm-12 col-xs-12">
       <q-item-label caption class="q-mb-sm">شرح</q-item-label>
       <custom-input
-        v-model="localFormStore.model.value.summary"
+        v-model="localFormStore.model.value.subject"
         hide-bottom-space
         type="textarea"
       />
@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { computed } from "vue";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
@@ -51,8 +51,6 @@
   const props = defineProps({
     formStore: Object,
   });
-
-  const moreInfo = ref(false);
 
   const localFormStore = computed(() => props.formStore);
 </script>

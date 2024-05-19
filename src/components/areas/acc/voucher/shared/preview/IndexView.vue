@@ -1,5 +1,11 @@
 <template>
-  <tool-bar inside buttons :title="title" back-button>
+  <tool-bar
+    :inside="inside"
+    :margin="!inside"
+    buttons
+    :title="title"
+    back-button
+  >
     <template #buttons>
       <q-btn
         :to="`/acc/voucher/edit/${id}`"
@@ -14,6 +20,28 @@
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
       <q-btn
+        :to="`/acc/voucher/copy/${id}`"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
+        {{ $t("shared.labels.copy") }}
+      </q-btn>
+      <q-btn
+        @click="crudStore.deleteById(id, deleteCallBack)"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
+        {{ $t("shared.labels.delete") }}
+      </q-btn>
+      <q-btn
         @click="helper.print('invoicePreview')"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
@@ -22,7 +50,18 @@
         no-caps
       >
         <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        چاپ
+        {{ $t("shared.labels.print") }}
+      </q-btn>
+      <q-btn
+        :to="`/acc/voucher/sendEmail/${id}`"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_mail" class="q-mr-xs" />
+        {{ $t("shared.labels.sendMail") }}
       </q-btn>
     </template>
   </tool-bar>
@@ -51,10 +90,11 @@
 
 <script setup>
   import { computed, onMounted } from "vue";
-  import { useRoute } from "vue-router";
-  import { useRouter } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
   import { useVoucherModel } from "components/areas/acc/_composables/useVoucherModel";
   import { helper } from "src/helpers";
+  import { useFormActions } from "src/composables/useFormActions";
+  import { useVoucherState } from "../../../_composables/useVoucherState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import InvoiceHeader from "./_HeaderSection.vue";
@@ -65,16 +105,27 @@
   const props = defineProps({
     item: Object,
     title: String,
+    inside: Boolean,
   });
 
+  const baseRoute = "acc/voucher";
   const formStore = useVoucherModel({
-    baseRoute: "acc/voucher",
+    baseRoute: baseRoute,
     preview: true,
   });
+
+  const crudStore = useFormActions(baseRoute);
+  const voucherStore = useVoucherState();
+
   const route = useRoute();
   const router = useRouter();
 
   const id = computed(() => props.item?.id ?? route.params.id);
+
+  function deleteCallBack() {
+    voucherStore.state.firstLoad.value = false;
+    router.back();
+  }
 
   onMounted(() => {
     formStore.getById(id.value);

@@ -62,7 +62,7 @@
     </template>
 
     <template #expand="{ item }">
-      <preview inside margin :item="item" />
+      <preview inside :item="item" />
     </template>
   </data-grid>
 </template>

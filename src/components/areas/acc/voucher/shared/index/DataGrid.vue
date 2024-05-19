@@ -70,7 +70,12 @@
       </template>
 
       <template #buttons-custom="{ row }">
-        <q-item clickable v-close-popup tabindex="0">
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          @click="operationStore?.reorder(reloadData)"
+        >
           <q-item-section avatar class="q-py-sm">
             <q-avatar class="bg-on-dark" size="sm">
               <q-icon name="o_cached" size="20px" />
@@ -83,48 +88,7 @@
           </q-item-section>
         </q-item>
 
-        <q-separator class="q-my-sm" />
-
-        <q-item v-if="row" clickable v-close-popup tabindex="0">
-          <q-item-section avatar class="q-py-sm">
-            <q-avatar class="bg-on-dark text-red" size="sm">
-              <q-icon name="o_close" size="20px" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.cancelInvoice") }}
-            </div>
-          </q-item-section>
-        </q-item>
-
         <template v-if="row">
-          <q-item clickable v-close-popup tabindex="0">
-            <q-item-section avatar class="q-py-sm">
-              <q-avatar class="bg-on-dark" size="sm">
-                <q-icon name="o_shopping_cart" size="20px" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.copyToPurchase") }}
-              </div>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable v-close-popup tabindex="0">
-            <q-item-section avatar class="q-py-sm">
-              <q-avatar class="bg-on-dark" size="sm">
-                <q-icon name="o_undo" size="20px" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.salesReturn") }}
-              </div>
-            </q-item-section>
-          </q-item>
-
           <q-separator class="q-my-sm" />
 
           <q-item clickable v-close-popup tabindex="0">
@@ -172,6 +136,7 @@
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useAccountingOperations } from "../../../_composables/useAccountingOperations";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useVoucherState } from "src/components/areas/acc/_composables/useVoucherState";
 
@@ -196,6 +161,7 @@
   const accountStore = useVoucherState();
   const gridStore = useBaseInfoGrid(accountStore);
   const crudStore = useFormActions(baseRoute);
+  const operationStore = useAccountingOperations();
   const desktopGrid = ref(null);
   const mobileGrid = ref(null);
 
@@ -219,5 +185,12 @@
     }).onOk(async () => {
       await reloadData();
     });
+  }
+
+  async function reloadData() {
+    if (desktopGrid?.value)
+      await desktopGrid.value.tableStore.reloadData();
+    else if (mobileGrid?.value)
+      await mobileGrid.value.tableStore.reloadData();
   }
 </script>
