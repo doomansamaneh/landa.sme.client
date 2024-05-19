@@ -22,7 +22,7 @@
             تنظیمات
           </q-item-section>
         </q-item>
-        <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="openPasswordDialog">
+        <!-- <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="openPasswordDialog">
           <div class="q-py-sm">
             <q-item-section avatar>
               <q-avatar class="bg-on-dark" icon="password" size="md" />
@@ -31,7 +31,7 @@
           <q-item-section>
             {{ $t("business-layout.buttons.change-password") }}
           </q-item-section>
-        </q-item>
+        </q-item> -->
         <q-item clickable v-close-popup tabindex="0" class="q-py-sm" to="/business">
           <div class="q-py-sm">
             <q-item-section avatar>

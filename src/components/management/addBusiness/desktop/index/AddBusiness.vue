@@ -13,7 +13,7 @@
           </q-item-label>
         </q-item-section>
         <q-card-actions class="no-padding">
-          <div class="flex items-center ">
+          <div class="flex items-center">
             <back-button />
           </div>
         </q-card-actions>

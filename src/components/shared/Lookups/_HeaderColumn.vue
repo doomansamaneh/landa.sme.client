@@ -27,6 +27,7 @@ const isAscending = computed(
   () => props.tableStore.pagination.value.sortOrder === 1
 );
 
+//todo: this function make bug on some lookups like planLookup,...
 const showSortIcon = computed(
   () => props.tableStore.pagination.value.sortColumn === props.fieldName
 );

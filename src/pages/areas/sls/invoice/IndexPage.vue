@@ -10,6 +10,7 @@
 
 <script setup>
 import { ref } from "vue"
+import { useMeta } from "quasar"
 
 import DataGrid from "src/components/areas/sls/invoice/shared/index/DataGrid.vue";
 import QCurrencyInput from "src/components/shared/forms/QCurrencyInput.vue";
@@ -28,4 +29,11 @@ const options = {
   "useGrouping": true,
   "accountingSign": false
 }
+
+const metaData = {
+  title: "لاندا",
+  titleTemplate: (title) => `فاکتورهای فروش`,
+};
+
+useMeta(metaData);
 </script>

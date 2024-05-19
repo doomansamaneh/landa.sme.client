@@ -59,7 +59,50 @@
     min-height: 40px !important;
   }
 
+  .menu-bar {
+    .q-item__section--side {
+      .q-icon {
+        font-size: 21px;
+      }
+    }
+  }
+
   .parent.highlighted .q-expansion-item__toggle-icon {
     color: $yellow;
+  }
+
+  .menu-bar {
+    .active-shine {
+      position: relative;
+      overflow: hidden;
+  
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          rgba(255, 255, 0, 0.1) 25%,
+          rgba(255, 255, 0, 0.15) 50%,
+          rgba(255, 255, 0, 0.1) 75%,
+          transparent 100%
+        );
+        animation: shine 2s infinite linear;
+      }
+  
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%);
+        }
+  
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    }
   }
 }
