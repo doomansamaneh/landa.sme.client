@@ -1,5 +1,6 @@
 <template>
-  <data-grid
+  <div class="q-mt-sm">
+    <data-grid
     ref="dataGrid"
     :data-source="dataSource"
     :grid-store="gridStore"
@@ -10,7 +11,7 @@
     numbered
     bordered
     wrapCells
-    dense
+    dense_
     :expandable="true"
   >
 
@@ -44,6 +45,7 @@
     </template>
 
   </data-grid>
+  </div>
 </template>
 
 <script setup>

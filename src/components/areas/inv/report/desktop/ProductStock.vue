@@ -22,11 +22,13 @@
     </template>
 
     <template #expand="{ item }">
-      <q-card flat bordered>
-        <q-card-section>
+      <!-- <q-card flat bordered>
+        <q-card-section> -->
+          <div class="q-mb-sm">
           <product-stock-preview :item="item" inside />
-        </q-card-section>
-      </q-card>
+          </div>
+        <!-- </q-card-section>
+      </q-card> -->
     </template>
   </data-grid>
 </template>

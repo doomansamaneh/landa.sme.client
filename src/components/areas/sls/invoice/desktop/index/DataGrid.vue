@@ -9,7 +9,7 @@
   <div class="q-py-md">
     <q-tabs
       v-model="tab"
-      class="border-radius-lg bg-primary text-white q-mb-md"
+      class="border-radius-lg text-white q-mb-md primary-tabs"
       align="left"
       inline-label
       narrow-indicator

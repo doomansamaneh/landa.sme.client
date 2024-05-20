@@ -3,12 +3,14 @@
     <q-card-section>
       <div class="column q-gutter-y-sm">
         <div class="row">
-          <span class="col-2 text-caption text-bold">شماره: </span>
+          <span class="col-2 text-caption text-bold">شماره:</span>
           <span class="text-body3 q-mx-md">{{ model.value.no }}</span>
         </div>
 
         <div class="row items-center">
-          <span class="col-2 text-caption text-bold">سند حسابداری:</span>
+          <span class="col-2 text-caption text-bold">
+            سند حسابداری:
+          </span>
           <span class="text-body3 q-mx-md">
             <router-link
               class="no-decoration"
@@ -49,7 +51,9 @@
 
         <div class="row" v-if="model.value.marketerName">
           <span class="col-1 text-caption text-bold">بازاریاب:</span>
-          <span class="text-body3 q-mx-md">{{ model.value.marketerName }}</span>
+          <span class="text-body3 q-mx-md">
+            {{ model.value.marketerName }}
+          </span>
         </div>
       </div>
     </q-card-section>
@@ -62,11 +66,15 @@
         dense
         align="left"
         indicator-color="white"
-        class="border-radius-lg bg-primary text-white shadow-2"
+        class="border-radius-lg text-white primary-tabs shadow-2"
       >
         <q-tab name="main-info" class="q-py-sm">
           <template #default>
-            <q-icon name="o_arrow_downward" size="xs" class="q-mr-sm" />
+            <q-icon
+              name="o_arrow_downward"
+              size="xs"
+              class="q-mr-sm"
+            />
             <div class="text-body3 text-bold">دریافت و پرداخت</div>
           </template>
         </q-tab>
@@ -84,7 +92,12 @@
         </q-tab>
       </q-tabs>
 
-      <q-tab-panels v-model="tab" animated keep-alive class="transparent">
+      <q-tab-panels
+        v-model="tab"
+        animated
+        keep-alive
+        class="transparent"
+      >
         <q-tab-panel name="main-info" class="no-padding">
           <detail-payments :model="model" :form-store="formStore" />
         </q-tab-panel>
@@ -108,36 +121,36 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useQuasar } from "quasar";
+  import { ref, computed, onMounted } from "vue";
+  import { useQuasar } from "quasar";
 
-import { useRoute } from "vue-router";
+  import { useRoute } from "vue-router";
 
-import DetailPayments from "./_DetailPayments.vue";
-import DetailTax from "./_DetailTax.vue";
-import DetailLog from "./_DetailLog.vue";
+  import DetailPayments from "./_DetailPayments.vue";
+  import DetailTax from "./_DetailTax.vue";
+  import DetailLog from "./_DetailLog.vue";
 
-const props = defineProps({
-  model: Object,
-  formStore: Object,
-});
+  const props = defineProps({
+    model: Object,
+    formStore: Object,
+  });
 
-const $q = useQuasar();
+  const $q = useQuasar();
 
-const route = useRoute();
+  const route = useRoute();
 
-const tab = ref("main-info");
-const editor = ref("");
-const editCommentBtn = ref(false);
-const id = computed(() => props.model?.id ?? route.params.id);
-const loading = computed(() => {
-  return props.model.value.id;
-});
-const color = () => {
-  return $q.dark.isActive ? "text-yellow" : "text-primary";
-};
+  const tab = ref("main-info");
+  const editor = ref("");
+  const editCommentBtn = ref(false);
+  const id = computed(() => props.model?.id ?? route.params.id);
+  const loading = computed(() => {
+    return props.model.value.id;
+  });
+  const color = () => {
+    return $q.dark.isActive ? "text-yellow" : "text-primary";
+  };
 
-onMounted(() => {
-  //formStore.getById(id.value);
-});
+  onMounted(() => {
+    //formStore.getById(id.value);
+  });
 </script>
