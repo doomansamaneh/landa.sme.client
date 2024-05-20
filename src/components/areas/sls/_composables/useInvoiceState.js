@@ -37,18 +37,10 @@ const pagination = ref({
   sortOrder: sortOrder.descending,
 });
 
-const columns = ref(invoiceColumns);
+//const columns = ref(invoiceColumns);
 
-export function useInvoiceGrid(defaultFilters) {
-  const composablesStore = useComposables();
-
-  composablesStore.registerComposable({
-    reset: () => {
-      state.firstLoad.value = false;
-      state.rows.value = [];
-      setDefaultSearchModel();
-    },
-  });
+export function useInvoiceState(defaultFilters) {
+  const columns = invoiceColumns;
 
   const filterExpression = defaultFilters ?? [];
 

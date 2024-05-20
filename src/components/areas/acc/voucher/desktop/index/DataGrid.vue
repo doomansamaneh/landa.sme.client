@@ -1,4 +1,11 @@
 <template>
+  <div class="q-mb-lg">
+    <advanced-search
+      :grid-store="gridStore"
+      @apply-search="reloadData"
+    />
+  </div>
+
   <data-grid
     ref="dataGrid"
     :data-source="dataSource"
@@ -68,14 +75,15 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, onMounted, onUnmounted } from "vue";
   import { useRouter } from "vue-router";
-  import { helper } from "src/helpers";
+  import { helper, bus } from "src/helpers";
   import { subSystem, voucherType } from "src/constants";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../../shared/preview/IndexView.vue";
+  import AdvancedSearch from "./AdvancedSearch.vue";
 
   const props = defineProps({
     gridStore: Object,
@@ -95,6 +103,14 @@
   function gotoPreview(row) {
     router.push(`/acc/voucher/preview/${row.id}`);
   }
+
+  onMounted(() => {
+    bus.on("apply-search", reloadData);
+  });
+
+  onUnmounted(() => {
+    bus.off("apply-search", reloadData);
+  });
 
   defineExpose({
     tableStore,

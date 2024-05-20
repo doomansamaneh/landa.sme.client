@@ -212,6 +212,17 @@ export default {
     },
 
     {
+      path: "acc/operation",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/acc/operation/OperationPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "crm/customer",
       children: [
         {

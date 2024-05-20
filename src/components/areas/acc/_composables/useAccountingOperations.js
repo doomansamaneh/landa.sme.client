@@ -28,7 +28,95 @@ export function useAccountingOperations() {
     });
   }
 
+  async function calculateCogs(callBack) {
+    $q.dialog({
+      component: ConfirmDialog,
+      componentProps: {
+        title: t("shared.labels.calculateCogs"),
+        message: t("shared.labels.calculateCogsMessage"),
+        ok: t("shared.labels.calculateCogs"),
+        okColor: "blue-7",
+      },
+    }).onOk(async () => {
+      const response = await fetchWrapper.post(
+        `acc/operation/calculateCogs`
+      );
+      $q.notify({
+        type: "positive",
+        message: response.data.message,
+      });
+      if (callBack) callBack();
+    });
+  }
+
+  async function openBook(callBack) {
+    $q.dialog({
+      component: ConfirmDialog,
+      componentProps: {
+        title: t("shared.labels.openBook"),
+        message: t("shared.labels.openBookMessage"),
+        ok: t("shared.labels.openBook"),
+        okColor: "blue-7",
+      },
+    }).onOk(async () => {
+      const response = await fetchWrapper.post(
+        `acc/operation/openBook`
+      );
+      $q.notify({
+        type: "positive",
+        message: response.data.message,
+      });
+      if (callBack) callBack();
+    });
+  }
+
+  async function closeBook(callBack) {
+    $q.dialog({
+      component: ConfirmDialog,
+      componentProps: {
+        title: t("shared.labels.closeBook"),
+        message: t("shared.labels.closeBookMessage"),
+        ok: t("shared.labels.closeBook"),
+        okColor: "blue-7",
+      },
+    }).onOk(async () => {
+      const response = await fetchWrapper.post(
+        `acc/operation/closeBook`
+      );
+      $q.notify({
+        type: "positive",
+        message: response.data.message,
+      });
+      if (callBack) callBack();
+    });
+  }
+
+  async function deleteClosingBook(callBack) {
+    $q.dialog({
+      component: ConfirmDialog,
+      componentProps: {
+        title: t("shared.labels.deleteClosingBook"),
+        message: t("shared.labels.deleteMessage"),
+        ok: t("shared.labels.deleteClosingBook"),
+        okColor: "deep-orange-7",
+      },
+    }).onOk(async () => {
+      const response = await fetchWrapper.post(
+        `acc/operation/deleteClosingBook`
+      );
+      $q.notify({
+        type: "negative",
+        message: response.data.message,
+      });
+      if (callBack) callBack();
+    });
+  }
+
   return {
     reorder,
+    calculateCogs,
+    openBook,
+    closeBook,
+    deleteClosingBook,
   };
 }

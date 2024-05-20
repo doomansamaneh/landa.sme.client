@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { fetchWrapper } from "src/helpers";
 
-const firstLoad = ref(true);
+const firstLoad = ref(false);
 const model = ref({
   companySetting: {
     taxApiSetting: {},
@@ -11,19 +11,25 @@ const model = ref({
 });
 
 export function useAppConfigModel() {
-  const loadData = async () => {
-    firstLoad.value = false;
-    const response = await fetchWrapper.get("cmn/AppConfig/GetAppConfig");
+  const reloadData = async () => {
+    firstLoad.value = true;
+    const response = await fetchWrapper.get(
+      "cmn/AppConfig/GetAppConfig"
+    );
     model.value = response?.data?.data;
   };
 
   const reset = () => {
-    firstLoad.value = true;
+    firstLoad.value = false;
   };
 
-  if (firstLoad.value) {
-    loadData();
-  }
+  const loadData = async () => {
+    if (!firstLoad.value) {
+      reloadData();
+    }
+  };
+
+  loadData();
 
   const uploadFile = async (file, fieldId) => {
     const formData = new FormData();

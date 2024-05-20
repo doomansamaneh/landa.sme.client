@@ -36,10 +36,17 @@ export function useBaseInfoGrid(config) {
       config.visibleColumns.includes(column.name)
     );
 
+  const setDefaultSearchModel = () => {
+    if (config) config.setDefaultSearchModel();
+    else if (state.searchModel) state.searchModel.value = {};
+  };
+
   return {
     columns,
     pagination,
     state,
     filterExpression: config?.filterExpression ?? [],
+
+    setDefaultSearchModel,
   };
 }

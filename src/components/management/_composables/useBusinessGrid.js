@@ -53,7 +53,7 @@ export function useBusinessGrid() {
   const loadingMessage = t("shared.messages.loading-message");
   const composablesStore = useComposables();
   const cultureStore = useCulture();
-  const fiscalYearSotre = useFiscalYear();
+  const fiscalYearStore = useFiscalYear();
   const menuStore = useMenuBar();
 
   const reset = () => {
@@ -69,6 +69,8 @@ export function useBusinessGrid() {
     });
 
     composablesStore.resetAllComposables();
+    menuStore.reset();
+    fiscalYearStore.reset();
 
     await fetchWrapper
       .post(`business/gotoBusiness/${item.id}`)
@@ -80,8 +82,7 @@ export function useBusinessGrid() {
         //cultureStore.setCulture(userSetting.currentCulture)
         const appConfigStore = useAppConfigModel();
         appConfigStore.reset();
-        menuStore.reset();
-        fiscalYearSotre.setFiscalYear({
+        fiscalYearStore.setFiscalYear({
           id: userSetting.fiscalYearId,
           title: userSetting.fiscalYear,
           selected: true,

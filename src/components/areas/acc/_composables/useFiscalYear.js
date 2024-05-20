@@ -35,14 +35,20 @@ const columns = ref([
 
 export function useFiscalYear() {
   const composablesStore = useComposables();
-  composablesStore.registerComposable({
-    reset: () => {
-      state.firstLoad.value = false;
-    },
-  });
+  // composablesStore.registerComposable({
+  //   reset: () => {
+  //     state.firstLoad.value = false;
+  //   },
+  // });
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
 
   const changeFiscalYear = async (year) => {
-    await fetchWrapper.post(`scr/userSetting/setFiscalYear/${year.id}`);
+    await fetchWrapper.post(
+      `scr/userSetting/setFiscalYear/${year.id}`
+    );
     setFiscalYear(year);
     composablesStore.resetAllComposables();
     bus.emit("render-page");
@@ -55,7 +61,10 @@ export function useFiscalYear() {
 
   const currentYear = computed(() => {
     try {
-      return fiscalYear.value ?? JSON.parse(localStorage.getItem("fiscalYear"));
+      return (
+        fiscalYear.value ??
+        JSON.parse(localStorage.getItem("fiscalYear"))
+      );
     } catch (error) {
       return null;
     }
@@ -67,6 +76,7 @@ export function useFiscalYear() {
     state,
     currentYear,
 
+    reset,
     setFiscalYear,
     changeFiscalYear,
   };

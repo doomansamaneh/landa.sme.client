@@ -27,7 +27,9 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     filterExpression: [],
   });
 
-  const columns = computed(() => store?.columns?.value ?? dataColumns);
+  const columns = computed(
+    () => store?.columns?.value ?? dataColumns
+  );
   const state = computed(() => store?.state ?? localState);
   const pagination = computed(
     () => store?.pagination.value ?? localPagination.value
@@ -58,7 +60,9 @@ export function useDataTable({ dataSource, dataColumns, store }) {
 
   function rowIndex(index) {
     return (
-      (pagination.value.currentPage - 1) * pagination.value.pageSize + index + 1
+      (pagination.value.currentPage - 1) * pagination.value.pageSize +
+      index +
+      1
     );
   }
 
@@ -80,7 +84,9 @@ export function useDataTable({ dataSource, dataColumns, store }) {
       const items = pagedData.items;
       let clearActiveRow = true;
       items.forEach((item) => {
-        item.selected = state.value.allSelectedIds.value.includes(item.id);
+        item.selected = state.value.allSelectedIds.value.includes(
+          item.id
+        );
         if (clearActiveRow)
           clearActiveRow = state.value.activeRow.value?.id != item.id;
       });
@@ -101,7 +107,11 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     try {
       setPayload();
 
-      const response = await fetchWrapper.post(dataSource, gridPage, true);
+      const response = await fetchWrapper.post(
+        dataSource,
+        gridPage,
+        true
+      );
       handleResponse(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -118,10 +128,14 @@ export function useDataTable({ dataSource, dataColumns, store }) {
   function setPayload() {
     pagination.value.filterExpression = [];
     if (store?.filterExpression)
-      pagination.value.filterExpression.push(...store.filterExpression);
+      pagination.value.filterExpression.push(
+        ...store.filterExpression
+      );
 
     if (state?.value.filterExpression)
-      pagination.value.filterExpression.push(...state.value.filterExpression);
+      pagination.value.filterExpression.push(
+        ...state.value.filterExpression
+      );
 
     if (columns.value) {
       let payLoadCols = "";
@@ -139,7 +153,10 @@ export function useDataTable({ dataSource, dataColumns, store }) {
         }
       });
 
-      if (pagination.value.searchField && pagination.value.searchTerm) {
+      if (
+        pagination.value.searchField &&
+        pagination.value.searchTerm
+      ) {
         pagination.value.filterExpression.push({
           fieldName: pagination.value.searchField,
           operator: sqlOperator.like,
@@ -178,14 +195,16 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     if (checked) {
       if (index < 0) state.value.allSelectedIds.value.push(row.id);
     } else {
-      if (index >= 0) state.value.allSelectedIds.value.splice(index, 1);
+      if (index >= 0)
+        state.value.allSelectedIds.value.splice(index, 1);
     }
   }
 
   async function sortColumn(col) {
     if (col.sortable) {
       if (pagination.value.sortColumn === col.name) {
-        if (pagination.value.sortOrder === 1) pagination.value.sortOrder = 2;
+        if (pagination.value.sortOrder === 1)
+          pagination.value.sortOrder = 2;
         else pagination.value.sortOrder = 1;
       } else {
         pagination.value.sortColumn = col.name;
@@ -219,8 +238,9 @@ export function useDataTable({ dataSource, dataColumns, store }) {
 
   function getRowClass(row) {
     return (
-      (row.id === state.value.activeRow.value?.id ? "row-active" : "") +
-      (row.selected === true ? " row-selected" : "")
+      (row.id === state.value.activeRow.value?.id
+        ? "row-active"
+        : "") + (row.selected === true ? " row-selected" : "")
     );
   }
 

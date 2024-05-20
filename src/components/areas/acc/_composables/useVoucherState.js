@@ -9,6 +9,9 @@ const state = {
   rows,
   allSelectedIds: ref([]),
   activeRow: ref(null),
+  searchModel: ref({
+    dateRange: 0,
+  }),
 };
 
 const pagination = ref({
@@ -21,10 +24,16 @@ const pagination = ref({
 export function useVoucherState() {
   const columns = voucherColumns;
 
+  const setDefaultSearchModel = () => {
+    state.searchModel.value = { dateRange: 0 };
+  };
+
   return {
     rows,
     state,
     pagination,
     columns,
+
+    setDefaultSearchModel,
   };
 }
