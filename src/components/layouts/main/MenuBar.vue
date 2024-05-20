@@ -4,7 +4,7 @@
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
     side="left"
     bordered
-    :width="$q.screen.gt.xs ? 285.5 : deviceWidth"
+    :width="$q.screen.gt.xs ? 288 : deviceWidth"
     v-model="menuBarStore.state.visible.value"
     :breakpoint="400"
     :overlay="$q.screen.lt.md"

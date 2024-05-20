@@ -12,4 +12,12 @@
       margin-right: 16px !important;
     }    
   }
+
+  .primary-tabs {
+    background: linear-gradient(
+      90deg,
+      darken($primary, 5),
+      lighten($primary, 5)
+    );
+  }
 }

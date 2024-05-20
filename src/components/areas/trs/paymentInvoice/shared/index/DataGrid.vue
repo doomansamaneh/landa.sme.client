@@ -18,11 +18,10 @@
           round
           unelevated
           flat
-          color="info"
+          color="accent"
           icon="o_info"
           :to="`/trs/receipt/preview/${item.paymentId}`"
-        >
-        </q-btn>
+        ></q-btn>
         دریافت:
         {{ item.date.substring(0, 10) }}
       </span>
@@ -35,8 +34,7 @@
           flat
           color="negative"
           icon="o_delete"
-        >
-        </q-btn>
+        ></q-btn>
         دریافت: تسویه حساب
       </span>
     </template>
@@ -56,41 +54,41 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-import { guidEmpty, sortOrder, sqlOperator } from "src/constants";
-import { paymentInvoiceColumns } from "src/components/areas/trs/_composables/constants";
+  import { ref } from "vue";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { guidEmpty, sortOrder, sqlOperator } from "src/constants";
+  import { paymentInvoiceColumns } from "src/components/areas/trs/_composables/constants";
 
-import Desktop from "src/components/shared/dataTables/desktop/DataGrid.vue";
-// import Mobile from "src/components/shared/dataTables/mobile/DataGrid.vue";
+  import Desktop from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  // import Mobile from "src/components/shared/dataTables/mobile/DataGrid.vue";
 
-const props = defineProps({
-  toolbar: Boolean,
-  title: String,
-  invoiceId: String,
-});
+  const props = defineProps({
+    toolbar: Boolean,
+    title: String,
+    invoiceId: String,
+  });
 
-const dataSource = "trs/paymentInvoice/getGridData";
+  const dataSource = "trs/paymentInvoice/getGridData";
 
-const gridStore = useBaseInfoGrid({
-  columns: paymentInvoiceColumns,
-  sortColumn: "date",
-  sortOrder: sortOrder.descending,
-  visibleColumns: ["no", "amount"],
-  filterExpression: [
-    {
-      fieldName: "pi.InvoiceId",
-      operator: sqlOperator.equal,
-      value: props.invoiceId ?? guidEmpty,
-    },
-  ],
-});
-const desktopGrid = ref(null);
-//const mobileGrid = ref(null);
+  const gridStore = useBaseInfoGrid({
+    columns: paymentInvoiceColumns,
+    sortColumn: "date",
+    sortOrder: sortOrder.descending,
+    visibleColumns: ["no", "amount"],
+    filterExpression: [
+      {
+        fieldName: "pi.InvoiceId",
+        operator: sqlOperator.equal,
+        value: props.invoiceId ?? guidEmpty,
+      },
+    ],
+  });
+  const desktopGrid = ref(null);
+  //const mobileGrid = ref(null);
 </script>
 <style>
-.text-wrap {
-  white-space: pre-line;
-  word-wrap: break-word;
-}
+  .text-wrap {
+    white-space: pre-line;
+    word-wrap: break-word;
+  }
 </style>

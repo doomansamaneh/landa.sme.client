@@ -56,9 +56,11 @@
       </div>
       <div class="q-gutter-x-sm">
         <q-badge>{{ item.typeTitle }}</q-badge>
-        <q-badge color="info" v-if="item.contractTitle">
+        <q-badge :text-color="$q.dark.isActive ? 'black' : 'white'" :color="$q.dark.isActive ? 'grey-5' : 'grey-8'" v-if="item.contractTitle">
           {{ item.contractTitle }}
-          <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
+          <q-tooltip
+            class="custom-tooltip text-body1 no-letter-spacing"
+          >
             قرارداد
           </q-tooltip>
         </q-badge>
@@ -79,25 +81,37 @@
       </td>
       <td>
         <b>
-          {{ helper.getSubtotal(selectedRows, "amount").toLocaleString() }}
+          {{
+            helper
+              .getSubtotal(selectedRows, "amount")
+              .toLocaleString()
+          }}
         </b>
       </td>
       <td v-if="showDiscount">
         <b>
           {{
-            helper.getSubtotal(selectedRows, "discountAmount").toLocaleString()
+            helper
+              .getSubtotal(selectedRows, "discountAmount")
+              .toLocaleString()
           }}
         </b>
       </td>
       <td v-if="showPayed">
         <b>
-          {{ helper.getSubtotal(selectedRows, "payedAmount").toLocaleString() }}
+          {{
+            helper
+              .getSubtotal(selectedRows, "payedAmount")
+              .toLocaleString()
+          }}
         </b>
       </td>
       <td v-if="showRemained">
         <b>
           {{
-            helper.getSubtotal(selectedRows, "remainedAmount").toLocaleString()
+            helper
+              .getSubtotal(selectedRows, "remainedAmount")
+              .toLocaleString()
           }}
         </b>
       </td>
@@ -127,64 +141,64 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
-import { statusOptions } from "src/constants";
-import { helper } from "src/helpers";
+  import { ref, computed } from "vue";
+  import { useRouter } from "vue-router";
+  import { statusOptions } from "src/constants";
+  import { helper } from "src/helpers";
 
-import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";
-import CustomSelect from "components/shared/forms/CustomSelect.vue";
-import InvoicePreview from "components/areas/sls/invoice/shared/preview/IndexView.vue";
+  import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";
+  import CustomSelect from "components/shared/forms/CustomSelect.vue";
+  import InvoicePreview from "components/areas/sls/invoice/shared/preview/IndexView.vue";
 
-const props = defineProps({
-  dataSource: String,
-  columns: Array,
-  gridStore: Object,
-  baseRoute: String,
-});
+  const props = defineProps({
+    dataSource: String,
+    columns: Array,
+    gridStore: Object,
+    baseRoute: String,
+  });
 
-const router = useRouter();
-const dataTable = ref(null);
+  const router = useRouter();
+  const dataTable = ref(null);
 
-const colspan = computed(
-  () =>
-    dataTable.value?.tableStore?.columns.value.findIndex(
-      (column) => column.name === "amount"
-    ) +
-    1 + //numbered column
-    1 //multi check column
-);
+  const colspan = computed(
+    () =>
+      dataTable.value?.tableStore?.columns.value.findIndex(
+        (column) => column.name === "amount"
+      ) +
+      1 + //numbered column
+      1 //multi check column
+  );
 
-const showDiscount = computed(
-  () =>
-    dataTable.value?.tableStore?.columns.value.findIndex(
-      (column) => column.name === "discountAmount"
-    ) >= 0
-);
+  const showDiscount = computed(
+    () =>
+      dataTable.value?.tableStore?.columns.value.findIndex(
+        (column) => column.name === "discountAmount"
+      ) >= 0
+  );
 
-const showPayed = computed(
-  () =>
-    dataTable.value?.tableStore?.columns.value.findIndex(
-      (column) => column.name === "payedAmount"
-    ) >= 0
-);
+  const showPayed = computed(
+    () =>
+      dataTable.value?.tableStore?.columns.value.findIndex(
+        (column) => column.name === "payedAmount"
+      ) >= 0
+  );
 
-const showRemained = computed(
-  () =>
-    dataTable.value?.tableStore?.columns.value.findIndex(
-      (column) => column.name === "remainedAmount"
-    ) >= 0
-);
+  const showRemained = computed(
+    () =>
+      dataTable.value?.tableStore?.columns.value.findIndex(
+        (column) => column.name === "remainedAmount"
+      ) >= 0
+  );
 
-async function reloadData() {
-  await dataTable.value?.tableStore.reloadData();
-}
+  async function reloadData() {
+    await dataTable.value?.tableStore.reloadData();
+  }
 
-function gotoPreview(row) {
-  router.push(`/${props.baseRoute}/preview/${row.id}`);
-}
+  function gotoPreview(row) {
+    router.push(`/${props.baseRoute}/preview/${row.id}`);
+  }
 
-defineExpose({
-  dataTable,
-});
+  defineExpose({
+    dataTable,
+  });
 </script>
