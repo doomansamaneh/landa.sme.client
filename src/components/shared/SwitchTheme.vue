@@ -1,17 +1,10 @@
 <template>
   <div class="flex justify-between items-center">
     <div class="">
-      <q-btn
-        round
-        dense
-        flat
-        v-ripple
-        :color="darkMode ? 'blue-3' : 'orange'"
-        @click="toggleDarkMode"
-      >
+      <q-btn round dense flat v-ripple @click="toggleDarkMode">
         <q-icon
-          :class="darkMode ? 'moon-animation' : 'sun-animation'"
-          :name="darkMode ? 'dark_mode' : 'light_mode'"
+          :class="darkMode ? 'sun-animation' : 'moon-animation'"
+          :name="darkMode ? 'light_mode' : 'dark_mode'"
         />
       </q-btn>
     </div>
@@ -94,21 +87,22 @@
 
   @keyframes moonAnimation {
     0% {
-      color: $blue-3;
+      color: $blue-4;
     }
     50% {
       color: $white;
     }
     100% {
-      color: $blue-3;
+      color: $blue-4;
     }
   }
 
   .sun-animation {
-    animation: sunAnimation 2s infinite;
+    animation: sunAnimation 7s linear infinite;
   }
 
   .moon-animation {
-    animation: moonAnimation 2s infinite;
+    animation: moonAnimation 3s infinite;
+    animation-play-state: paused;
   }
 </style>
