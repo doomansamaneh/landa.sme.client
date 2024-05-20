@@ -15,8 +15,12 @@
               گروه کالا
             </q-item-label>
             <product-group-lookup
-              v-model:selectedId="formStore.model.value.productGroupId"
-              v-model:selectedText="formStore.model.value.productGroupTitle"
+              v-model:selectedId="
+                formStore.model.value.productGroupId
+              "
+              v-model:selectedText="
+                formStore.model.value.productGroupTitle
+              "
             />
           </div>
         </div>
@@ -92,7 +96,9 @@
             <custom-select
               hide-bottom-space
               v-model="formStore.model.value.typeId"
-              :options="helper.getEnumOptions(productType, 'productType')"
+              :options="
+                helper.getEnumOptions(productType, 'productType')
+              "
             />
           </div>
 
@@ -104,7 +110,9 @@
             </q-item-label>
             <product-unit-lookup
               v-model:selectedId="formStore.model.value.productUnitId"
-              v-model:selectedText="formStore.model.value.productUnitTitle"
+              v-model:selectedText="
+                formStore.model.value.productUnitTitle
+              "
             />
           </div>
         </div>
@@ -195,26 +203,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { helper } from "src/helpers";
-import { productType } from "src/constants";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { productModel } from "src/models/areas/cmn/productModel";
+  import { ref } from "vue";
+  import { helper } from "src/helpers";
+  import { productType } from "src/constants";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { productModel } from "src/models/areas/cmn/productModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
-import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
+  import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "cmn/product",
-  model: productModel,
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "cmn/product",
+    model: productModel,
+  });
 </script>

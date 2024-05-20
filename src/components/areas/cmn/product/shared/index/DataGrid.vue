@@ -11,7 +11,12 @@
     >
       <template #buttons-custom>
         <q-separator class="q-my-sm" />
-        <q-item clickable v-close-popup tabindex="0" @click="editBatch">
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          @click="editBatch"
+        >
           <q-item-section avatar>
             <q-avatar class="bg-on-dark" size="32px">
               <q-icon size="16px" name="o_edit" />
@@ -71,58 +76,60 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useQuasar } from "quasar";
-import { useI18n } from "vue-i18n";
-import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid";
-import { useFormActions } from "src/composables/useFormActions";
+  import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
+  import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid";
+  import { useFormActions } from "src/composables/useFormActions";
 
-import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-import Desktop from "src/components/areas/cmn/product/desktop/index/DataGrid.vue";
-import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-import Mobile from "src/components/areas/cmn/product/mobile/index/DataGrid.vue";
+  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import Desktop from "src/components/areas/cmn/product/desktop/index/DataGrid.vue";
+  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  import Mobile from "src/components/areas/cmn/product/mobile/index/DataGrid.vue";
 
-import EditBatch from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue";
+  import EditBatch from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue";
 
-const props = defineProps({
-  toolbar: Boolean,
-});
-
-const { t } = useI18n();
-
-const title = t("main-menu-items.Cmn_Product_View");
-const baseRoute = "cmn/product";
-
-const $q = useQuasar();
-const gridStore = useProductGrid();
-const crudStore = useFormActions(baseRoute);
-const desktopGrid = ref(null);
-const mobileGrid = ref(null);
-
-const selectedIds = computed(() => {
-  if (desktopGrid?.value != null)
-    return desktopGrid.value.tableStore.selectedRows?.value.map(
-      (item) => item.id
-    );
-  else
-    return mobileGrid.value.tableStore.selectedRows?.value.map(
-      (item) => item.id
-    );
-});
-
-function editBatch() {
-  $q.dialog({
-    component: EditBatch,
-    componentProps: {
-      selectedIds: selectedIds?.value,
-    },
-  }).onOk(async () => {
-    await reloadData();
+  const props = defineProps({
+    toolbar: Boolean,
   });
-}
 
-const reloadData = async () => {
-  if (desktopGrid?.value) await desktopGrid.value.tableStore.reloadData();
-  else if (mobileGrid?.value) await mobileGrid.value.tableStore.reloadData();
-};
+  const { t } = useI18n();
+
+  const title = t("main-menu-items.Cmn_Product_View");
+  const baseRoute = "cmn/product";
+
+  const $q = useQuasar();
+  const gridStore = useProductGrid();
+  const crudStore = useFormActions(baseRoute);
+  const desktopGrid = ref(null);
+  const mobileGrid = ref(null);
+
+  const selectedIds = computed(() => {
+    if (desktopGrid?.value != null)
+      return desktopGrid.value.tableStore.selectedRows?.value.map(
+        (item) => item.id
+      );
+    else
+      return mobileGrid.value.tableStore.selectedRows?.value.map(
+        (item) => item.id
+      );
+  });
+
+  function editBatch() {
+    $q.dialog({
+      component: EditBatch,
+      componentProps: {
+        selectedIds: selectedIds?.value,
+      },
+    }).onOk(async () => {
+      await reloadData();
+    });
+  }
+
+  const reloadData = async () => {
+    if (desktopGrid?.value)
+      await desktopGrid.value.tableStore.reloadData();
+    else if (mobileGrid?.value)
+      await mobileGrid.value.tableStore.reloadData();
+  };
 </script>

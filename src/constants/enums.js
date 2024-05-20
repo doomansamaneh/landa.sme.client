@@ -164,6 +164,12 @@ export const accountDLType = {
   other: 1031,
 };
 
+export const closeAccounts = {
+  revenue: "d562f27e-9af0-4e14-9e31-0d11c577e556",
+  expense: "5f4ae9d2-eeca-4ce6-a469-18db06d70dff",
+  cogs: "33422e29-2694-4d91-abd7-90303c0e1966",
+};
+
 export const paymentType = {
   cash: 1,
   trust: 2,
@@ -202,7 +208,12 @@ export const invoicePreviewTemplate = {
 };
 
 export const cultures = [
-  { name: "فارسی", iso: "fa-IR", calendar: "persian", bodyClass: "persian" },
+  {
+    name: "فارسی",
+    iso: "fa-IR",
+    calendar: "persian",
+    bodyClass: "persian",
+  },
   {
     name: "English",
     iso: "en-US",
@@ -249,10 +260,14 @@ export const guidEmpty = "00000000-0000-0000-0000-000000000000";
 
 export const cancelStatus = "a36af633-d0bb-4857-a542-364e12658d1c";
 
-export const accountCurrentAsset = "A0E42E83-83B3-4197-A27F-BED2B904D5A6";
-export const accountFixedAsset = "DCA8E9B3-ED6F-4585-8B6B-8B5D84AB25FE";
-export const accountCurrentLiability = "39A38D45-00FA-4434-BF6E-0BAF45DC51C3";
-export const accountLongTermLiability = "99B941D5-A416-4298-8572-E7216A07DAFE";
+export const accountCurrentAsset =
+  "A0E42E83-83B3-4197-A27F-BED2B904D5A6";
+export const accountFixedAsset =
+  "DCA8E9B3-ED6F-4585-8B6B-8B5D84AB25FE";
+export const accountCurrentLiability =
+  "39A38D45-00FA-4434-BF6E-0BAF45DC51C3";
+export const accountLongTermLiability =
+  "99B941D5-A416-4298-8572-E7216A07DAFE";
 export const accountEquity = "C7B540DA-1C4F-445A-A730-E5738D4C6CA8";
 export const accountRevenue = "D562F27E-9AF0-4E14-9E31-0D11C577E556";
 export const accountCGS = "33422E29-2694-4D91-ABD7-90303C0E1966";

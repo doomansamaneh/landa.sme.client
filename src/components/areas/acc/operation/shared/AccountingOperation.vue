@@ -86,7 +86,7 @@
             clickable
             v-close-popup
             tabindex="0"
-            @click="operationStore.closeAccount(reloadData)"
+            @click="showCloseAccountForm"
           >
             <q-item-section avatar class="q-py-sm">
               <q-avatar class="bg-on-dark" size="sm">
@@ -155,11 +155,23 @@
   </div>
 </template>
 <script setup>
+  import { useQuasar } from "quasar";
   import { useAccountingOperations } from "../../_composables/useAccountingOperations";
 
-  const operationStore = useAccountingOperations();
+  import CloseAccountDialog from "./CloseAccountDialog.vue";
 
-  const reloadData = () => {
+  const operationStore = useAccountingOperations();
+  const $q = useQuasar();
+
+  const showCloseAccountForm = async () => {
+    $q.dialog({
+      component: CloseAccountDialog,
+    }).onOk(async () => {
+      await reloadData();
+    });
+  };
+
+  const reloadData = async () => {
     alert("operation finished");
   };
 </script>

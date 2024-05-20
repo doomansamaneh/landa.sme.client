@@ -9,7 +9,9 @@
 
       <div
         class="row items-center"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <product-group-lookup
@@ -23,7 +25,9 @@
           <q-checkbox
             dense
             size="46px"
-            v-model="formStore.editBatchModel.value.productGroup.isModified"
+            v-model="
+              formStore.editBatchModel.value.productGroup.isModified
+            "
             label="اصلاح شود؟"
           />
         </div>
@@ -39,11 +43,15 @@
 
       <div
         class="row items-center"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-input
-            v-model="formStore.editBatchModel.value.taxCode.fieldValue"
+            v-model="
+              formStore.editBatchModel.value.taxCode.fieldValue
+            "
           />
         </div>
 
@@ -51,7 +59,9 @@
           <q-checkbox
             dense
             size="46px"
-            v-model="formStore.editBatchModel.value.taxCode.isModified"
+            v-model="
+              formStore.editBatchModel.value.taxCode.isModified
+            "
             label="اصلاح شود؟"
           />
         </div>
@@ -67,12 +77,18 @@
 
       <div
         class="row items-center"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-select
-            v-model="formStore.editBatchModel.value.productType.fieldValue"
-            :options="helper.getEnumOptions(productType, 'productType')"
+            v-model="
+              formStore.editBatchModel.value.productType.fieldValue
+            "
+            :options="
+              helper.getEnumOptions(productType, 'productType')
+            "
           />
         </div>
 
@@ -80,7 +96,9 @@
           <q-checkbox
             dense
             size="46px"
-            v-model="formStore.editBatchModel.value.productType.isModified"
+            v-model="
+              formStore.editBatchModel.value.productType.isModified
+            "
             label="اصلاح شود؟"
           />
         </div>
@@ -96,7 +114,9 @@
 
       <div
         class="row items-center"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <product-unit-lookup
@@ -110,7 +130,9 @@
           <q-checkbox
             dense
             size="46px"
-            v-model="formStore.editBatchModel.value.productUnit.isModified"
+            v-model="
+              formStore.editBatchModel.value.productUnit.isModified
+            "
             label="اصلاح شود؟"
           />
         </div>
@@ -120,12 +142,16 @@
     <div class="q-mb-lg">
       <div
         class="row items-center"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <q-checkbox
             class="col-md-2 col-sm-2 col-xs-4"
-            v-model="formStore.editBatchModel.value.isForPurchase.fieldValue"
+            v-model="
+              formStore.editBatchModel.value.isForPurchase.fieldValue
+            "
             true-value="1"
             false-value="0"
             label="برای خرید"
@@ -136,7 +162,9 @@
         <div class="col-md-3 col-sm-3 col-xs-12">
           <q-checkbox
             class="col-md-2 col-sm-3 col-xs-6"
-            v-model="formStore.editBatchModel.value.isForPurchase.isModified"
+            v-model="
+              formStore.editBatchModel.value.isForPurchase.isModified
+            "
             label="اصلاح شود؟"
             dense
             size="46px"
@@ -148,12 +176,16 @@
     <div class="q-mb-lg">
       <div
         class="row items-center"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <q-checkbox
             class="col-md-2 col-sm-2 col-xs-4"
-            v-model="formStore.editBatchModel.value.isForSale.fieldValue"
+            v-model="
+              formStore.editBatchModel.value.isForSale.fieldValue
+            "
             true-value="1"
             dense
             size="46px"
@@ -164,7 +196,9 @@
         <div class="col-md-3 col-sm-3 col-xs-12">
           <q-checkbox
             class="col-md-2 col-sm-3 col-xs-6"
-            v-model="formStore.editBatchModel.value.isForSale.isModified"
+            v-model="
+              formStore.editBatchModel.value.isForSale.isModified
+            "
             label="اصلاح شود؟"
             dense
             size="46px"
@@ -175,12 +209,16 @@
     <div class="q-mb-lg">
       <div
         class="row items-center"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <q-checkbox
             class="col-md-2 col-sm-2 col-xs-4"
-            v-model="formStore.editBatchModel.value.isActive.fieldValue"
+            v-model="
+              formStore.editBatchModel.value.isActive.fieldValue
+            "
             true-value="1"
             false-value="0"
             label="فعال"
@@ -191,7 +229,9 @@
         <div class="col-md-3 col-sm-3 col-xs-12">
           <q-checkbox
             class="col-md-2 col-sm-3 col-xs-6"
-            v-model="formStore.editBatchModel.value.isActive.isModified"
+            v-model="
+              formStore.editBatchModel.value.isActive.isModified
+            "
             label="اصلاح شود؟"
             dense
             size="46px"
@@ -203,48 +243,48 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { productType } from "src/constants";
-import { helper } from "src/helpers";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { productBatchModel } from "src/models/areas/cmn/productModel";
+  import { ref } from "vue";
+  import { productType } from "src/constants";
+  import { helper } from "src/helpers";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { productBatchModel } from "src/models/areas/cmn/productModel";
 
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
-import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
+  import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
 
-const props = defineProps({
-  selectedIds: Array,
-});
+  const props = defineProps({
+    selectedIds: Array,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "cmn/product",
-  batchModel: productBatchModel,
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "cmn/product",
+    batchModel: productBatchModel,
+  });
 
-async function submitForm() {
-  try {
-    const isValid = await form.value.validate();
+  async function submitForm() {
+    try {
+      const isValid = await form.value.validate();
 
-    if (isValid) {
-      await formStore.crudStore.editBatch(
-        props.selectedIds,
-        formStore.editBatchModel.value
-      );
-      return true;
-    } else {
-      alert("Validation error");
+      if (isValid) {
+        await formStore.crudStore.editBatch(
+          props.selectedIds,
+          formStore.editBatchModel.value
+        );
+        return true;
+      } else {
+        alert("Validation error");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error during form submission:", error);
       return false;
     }
-  } catch (error) {
-    console.error("Error during form submission:", error);
-    return false;
   }
-}
 
-defineExpose({
-  submitForm,
-});
+  defineExpose({
+    submitForm,
+  });
 </script>

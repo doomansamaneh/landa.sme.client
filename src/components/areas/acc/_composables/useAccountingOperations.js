@@ -1,11 +1,15 @@
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
 import { fetchWrapper } from "src/helpers";
+import { closeAccounts } from "src/constants";
+
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 
 export function useAccountingOperations() {
   const $q = useQuasar();
   const { t } = useI18n();
+  const model = ref({});
 
   async function reorder(callBack) {
     $q.dialog({
@@ -112,11 +116,38 @@ export function useAccountingOperations() {
     });
   }
 
+  async function getCloseAccountModel() {
+    const response = await fetchWrapper.get(
+      "acc/operation/getCloseAccountModel"
+    );
+    model.value = response.data.data;
+    model.value.closeAccounts = [
+      closeAccounts.revenue,
+      closeAccounts.expense,
+      closeAccounts.cogs,
+    ];
+  }
+
+  async function closeAccount(callBack) {
+    model.value.accountTypeIdList = model.value.closeAccounts.map(
+      (item) => ({ id: item })
+    );
+    const response = await fetchWrapper.post(
+      `acc/operation/closeAccount`,
+      model.value
+    );
+    if (callBack) callBack();
+  }
+
   return {
+    model,
+
     reorder,
     calculateCogs,
     openBook,
     closeBook,
+    getCloseAccountModel,
+    closeAccount,
     deleteClosingBook,
   };
 }

@@ -8,7 +8,10 @@
     no-backdrop-dismiss
     @hide="onDialogHide"
   >
-    <q-card flat :style="$q.screen.xs ? '' : 'width: 600px; max-width: 80vw'">
+    <q-card
+      flat
+      :style="$q.screen.xs ? '' : 'width: 600px; max-width: 80vw'"
+    >
       <q-card-section
         class="row items-center q-pr-md"
         :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-md'"
@@ -37,19 +40,19 @@
 </template>
 
 <script setup>
-import { useDialogPluginComponent } from "quasar";
+  import { useDialogPluginComponent } from "quasar";
 
-const props = defineProps({
-  title: String,
-  form: Object,
-});
+  const props = defineProps({
+    title: String,
+    form: Object,
+  });
 
-const emit = defineEmits([...useDialogPluginComponent.emits]);
+  const emit = defineEmits([...useDialogPluginComponent.emits]);
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent();
+  const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
+    useDialogPluginComponent();
 
-defineExpose({
-  onDialogOK,
-});
+  defineExpose({
+    onDialogOK,
+  });
 </script>

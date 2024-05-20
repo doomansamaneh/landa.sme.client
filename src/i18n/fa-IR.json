@@ -383,6 +383,11 @@
       "costCenter": "مرکز هزینه",
       "product": "کالا و خدمات"
     },
+    "closeAccounts": {
+      "revenue": "فروش و درآمد",
+      "expense": "هزینه",
+      "cogs": "بهای تمام شده"
+    },
     "paymentType": {
       "cash": "نقد",
       "trust": "نسیه",
