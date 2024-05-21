@@ -1,6 +1,5 @@
 <template>
-  <span></span>
-  <data-grid
+   <data-grid
     ref="dataGrid"
     :data-source="dataSource"
     :grid-store="gridStore"
