@@ -12,6 +12,22 @@ export const contractColumns = [
   },
   title,
   {
+    name: "startDate",
+    field: "startDate",
+    sortable: true,
+    label: "تاریخ شروع",
+    style: "",
+    class: "text-left",
+  },
+  {
+    name: "finishDate",
+    field: "finishDate",
+    sortable: true,
+    label: "تاریخ پایان",
+    style: "",
+    class: "text-left",
+  },
+  {
     name: "income",
     field: "income",
     sortable: true,
@@ -35,5 +51,5 @@ export const contractColumns = [
     class: "text-left",
   },
   isActive,
-  actions,
+  //actions,
 ];

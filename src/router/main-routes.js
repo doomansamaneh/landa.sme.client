@@ -321,9 +321,13 @@ export default {
           component: () =>
             import("pages/areas/doc/contract/CopyPage.vue"),
         },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/doc/contract/PreviewPage.vue"),
+        },
       ],
     },
-
     {
       path: "trs/bankAccount",
       children: [

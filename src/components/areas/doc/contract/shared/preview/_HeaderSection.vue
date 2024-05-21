@@ -1,8 +1,8 @@
 <template>
-  <tool-bar :inside="inside" buttons title="کاردکس کالا">
+  <tool-bar :inside="inside" buttons title="قرارداد">
     <template #buttons>
       <q-btn
-        :to="`/sls/invoice/edit/${id}`"
+        :to="`/doc/contract/edit/${id}`"
         class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -10,7 +10,7 @@
         no-caps
       >
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        اصلاح موجودی
+        ویرایش
       </q-btn>
 
       <q-btn
@@ -56,11 +56,13 @@
     <tbody>
       <tr>
         <td style="width: 90px">
-          <div class="text-body3 no-letter-spacing q-mb-sm">کد</div>
+          <div class="text-body3 no-letter-spacing q-mb-sm">
+            شماره
+          </div>
         </td>
         <td>
           <div class="text-body3 no-letter-spacing">
-            {{ item?.code }}
+            {{ model?.no }}
           </div>
         </td>
       </tr>
@@ -72,75 +74,39 @@
         </td>
         <td>
           <div class="text-body3 no-letter-spacing">
-            {{ item?.title }}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="text-body3 no-letter-spacing q-mb-sm">گروه</div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ item?.productGroupTitle }}
+            {{ model?.title }}
           </div>
         </td>
       </tr>
       <tr>
         <td>
           <div class="text-body3 no-letter-spacing q-mb-sm">
-            موجودی اول دوره
+            تاریخ
           </div>
         </td>
         <td>
           <div class="text-body3 no-letter-spacing">
-            {{ item?.openomgStock?.toLocaleString() }}
+            {{ model?.startDate?.substring(0, 10) }} -
+            {{ model?.finishDate?.substring(0, 10) }}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="text-body3 no-letter-spacing q-mb-sm">شرح</div>
+        </td>
+        <td>
+          <div class="text-body3 no-letter-spacing">
+            {{ model?.comment }}
           </div>
         </td>
       </tr>
     </tbody>
   </q-markup-table>
-
-  <product-stock-item
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
-  ></product-stock-item>
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  import { useRoute } from "vue-router";
-  import { sqlOperator } from "src/constants";
-  import { useProductStockItemGrid } from "src/components/areas/inv/_composables/useProductStockItemGrid";
-
-  import ProductStockItem from "./ProductStockItem.vue";
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-
   const props = defineProps({
-    inside: Boolean,
-    item: Object,
+    model: Object,
   });
-
-  const route = useRoute();
-  const dataGrid = ref(null);
-  const filterExpersions = computed(() => {
-    const productId = route.params.productId;
-    const itemId = props.item?.id ?? productId;
-    if (itemId) {
-      return [
-        {
-          fieldName: "ii.productId",
-          operator: sqlOperator.equal,
-          value: itemId,
-        },
-      ];
-    }
-
-    return null;
-  });
-  const dataSource = "sls/report/getProductStockItems";
-  const gridStore = useProductStockItemGrid(filterExpersions?.value);
-
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
 </script>

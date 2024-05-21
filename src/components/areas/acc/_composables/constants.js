@@ -18,6 +18,8 @@ import {
   voucherNo,
   slCode,
   slTitle,
+  dlCode,
+  dlTitle,
   voucherDate,
   voucherSubject,
   comment,
@@ -133,6 +135,18 @@ export const customerAccountItemColumns = [
   { ...debitRemained, label: "بدهکار" },
   { ...creditRemained, label: "بستانکار" },
   inlineDebit,
+];
+
+export const accountItemColumns = [
+  voucherNo,
+  voucherDate,
+  slCode,
+  slTitle,
+  dlCode,
+  dlTitle,
+  voucherSubject,
+  { ...debitRemained, label: "بدهکار" },
+  { ...creditRemained, label: "بستانکار" },
 ];
 
 export const journalBookColumns = [

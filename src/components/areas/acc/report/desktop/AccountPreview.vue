@@ -43,8 +43,7 @@
 
   <account-item
     ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
+    :filter-expression="filterExpersion"
   ></account-item>
 </template>
 
@@ -52,7 +51,6 @@
   import { ref, computed } from "vue";
   import { useRoute } from "vue-router";
   import { sqlOperator } from "src/constants";
-  import { useCustomerAccountItemGrid } from "src/components/areas/acc/_composables/useCustomerAccountItemGrid";
 
   import AccountItem from "./AccountItem.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
@@ -64,7 +62,8 @@
 
   const route = useRoute();
   const dataGrid = ref(null);
-  const filterExpersions = computed(() => {
+
+  const filterExpersion = computed(() => {
     const dlId = route.params.dlId;
     const itemId = props.item?.id ?? dlId;
     if (itemId) {
@@ -79,10 +78,6 @@
 
     return null;
   });
-  const dataSource = "acc/report/getItemData";
-  const gridStore = useCustomerAccountItemGrid(
-    filterExpersions?.value
-  );
 
   const tableStore = computed(() => dataGrid?.value?.tableStore);
 </script>

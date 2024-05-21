@@ -44,6 +44,18 @@ export const slCode = {
   showFilter: true,
 };
 
+export const dlCode = {
+  name: "dlCode",
+  field: "dlCode",
+  sortable: true,
+  label: "کد تفصیلی",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width: 90px;",
+  showFilter: true,
+};
+
 export const title = {
   name: "title",
   field: "title",
@@ -60,6 +72,17 @@ export const slTitle = {
   field: "slTitle",
   sortable: true,
   label: "حساب معین",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  showFilter: true,
+};
+
+export const dlTitle = {
+  name: "dlTitle",
+  field: "dlTitle",
+  sortable: true,
+  label: "حساب تفصیلی",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -224,7 +247,7 @@ export const actions = {
   label: "",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:150px;",
   showFilter: false,
 };
 

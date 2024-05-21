@@ -1,9 +1,8 @@
 <template>
-  <div class="q-mt-sm">
-    <data-grid
+  <data-grid
     ref="dataGrid"
     :data-source="dataSource"
-    :grid-store="gridStore"
+    :grid-store="localGridStore"
     separator="horizontal"
     flat_
     square_
@@ -14,13 +13,12 @@
     dense_
     :expandable="true"
   >
-
     <template #cell-credit="{ item }">
       {{ item.credit?.toLocaleString() }}
     </template>
 
     <template #cell-debit="{ item }">
-      {{ item.debit?.toLocaleString() }}
+      debit: {{ item.debit?.toLocaleString() }}
     </template>
 
     <template #cell-inlineDebit="{ item }">
@@ -35,34 +33,73 @@
       {{ item.creditRemained?.toLocaleString() }}
     </template>
 
-     <template #cell-voucherSubject="{ item }">
+    <template #cell-voucherSubject="{ item }">
       {{ item.voucherSubject }}
-      
-      <div class="text-caption-sm" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'" v-if="item.comment">
+
+      <div
+        class="text-caption-sm"
+        :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
+        v-if="item.comment"
+      >
         {{ item.comment }}
       </div>
-
     </template>
 
+    <template #footer-total="{ summary }">
+      <td :colspan="colspan" class="text-right">
+        {{ $t("shared.labels.total") }}
+      </td>
+      <td>
+        <b>{{ summary?.debitRemained.toLocaleString() }}</b>
+      </td>
+      <td>
+        <b>{{ summary?.creditRemained.toLocaleString() }}</b>
+      </td>
+      <td colspan="100%"></td>
+    </template>
   </data-grid>
-  </div>
 </template>
 
 <script setup>
   import { ref, computed } from "vue";
 
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { accountItemColumns } from "../../_composables/constants";
+
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
 
   const props = defineProps({
-    dataSource: String,
+    dataSource: {
+      type: String,
+      default: "acc/report/getItemData",
+    },
+    filterExpression: Array,
     gridStore: Object,
+    columns: Array,
   });
+
+  const localGridStore = computed(
+    () =>
+      props.gridStore ||
+      useBaseInfoGrid({
+        filterExpression: props.filterExpression,
+        sortColumn: "voucherNo",
+        columns: props.columns || accountItemColumns,
+      })
+  );
 
   const dataGrid = ref(null);
   const tableStore = computed(() => dataGrid?.value?.tableStore);
 
+  const colspan = computed(
+    () =>
+      tableStore?.value?.columns.value.findIndex(
+        (column) => column.name === "debitRemained"
+      ) + 1 //numbered column
+    //+ 1 //multi check column
+  );
+
   defineExpose({
     tableStore,
   });
-  
 </script>

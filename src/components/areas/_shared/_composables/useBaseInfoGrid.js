@@ -4,17 +4,18 @@ import { baseInfoColumns } from "./constants";
 import { useComposables } from "src/stores/useComposables";
 
 export function useBaseInfoGrid(config) {
-  const state = config.state ?? {
+  const localState = config.state ?? {
     firstLoad: ref(false),
     rows: ref([]),
     allSelectedIds: ref([]),
     activeRow: ref(null),
+    summaryData: ref(null),
   };
 
   const composablesStore = useComposables();
   composablesStore.registerComposable({
     reset: () => {
-      state.firstLoad.value = false;
+      localState.firstLoad.value = false;
     },
   });
 
@@ -44,7 +45,7 @@ export function useBaseInfoGrid(config) {
   return {
     columns,
     pagination,
-    state,
+    state: localState,
     filterExpression: config?.filterExpression ?? [],
 
     setDefaultSearchModel,

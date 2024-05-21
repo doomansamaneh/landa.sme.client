@@ -23,8 +23,7 @@
 </template>
 
 <script setup>
-  import { computed, ref, onMounted, onUnmounted } from "vue";
-  import { bus } from "src/helpers";
+  import { computed, ref } from "vue";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "./AccountPreview.vue";
