@@ -196,6 +196,26 @@ export const subject = {
   showFilter: true,
 };
 
+export const contractTitle = {
+  name: "contractTitle",
+  field: "contractTitle",
+  sortable: true,
+  label: "قرارداد",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const inventoryTitle = {
+  name: "inventoryTitle",
+  field: "inventoryTitle",
+  sortable: true,
+  label: "انبار",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
 export const amount = {
   name: "amount",
   field: "amount",

@@ -994,6 +994,32 @@ export default {
     },
 
     {
+      path: "inv/closeOrder",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/inv/closeOrder/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/inv/closeOrder/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/inv/closeOrder/EditPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/inv/closeOrder/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "inv/report",
       children: [
         {

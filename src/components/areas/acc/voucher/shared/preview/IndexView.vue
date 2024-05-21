@@ -68,19 +68,22 @@
 
   <div class="row q-col-gutter-lg" style="margin-top: -16px">
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card class="bordered">
-        <q-card-section class="q-gutter-y-sm" id="invoicePreview">
-          <invoice-header :model="formStore.model" />
-          <invoice-body
-            :model="formStore.model"
-            :form-store="formStore"
-          />
-          <invoice-footer :model="formStore.model" />
-        </q-card-section>
+      <q-card bordered>
+        <div id="invoicePreview">
+          <header-section :model="formStore.model" />
+
+          <q-card-section class="q-gutter-y-sm_">
+            <body-section
+              :model="formStore.model"
+              :form-store="formStore"
+            />
+            <footer-section :model="formStore.model" />
+          </q-card-section>
+        </div>
       </q-card>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <invoice-detail
+      <detail-section
         :model="formStore.model"
         :form-store="formStore"
       />
@@ -97,10 +100,10 @@
   import { useVoucherState } from "../../../_composables/useVoucherState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import InvoiceHeader from "./_HeaderSection.vue";
-  import InvoiceBody from "./_BodySection.vue";
-  import InvoiceFooter from "./_FooterSection.vue";
-  import InvoiceDetail from "./_DetailSection.vue";
+  import HeaderSection from "./_HeaderSection.vue";
+  import BodySection from "./_BodySection.vue";
+  import FooterSection from "./_FooterSection.vue";
+  import DetailSection from "./_DetailSection.vue";
 
   const props = defineProps({
     item: Object,
