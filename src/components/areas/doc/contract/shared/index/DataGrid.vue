@@ -34,7 +34,6 @@
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
-      :expandable="expandable"
       ref="desktopGrid"
     />
   </template>
