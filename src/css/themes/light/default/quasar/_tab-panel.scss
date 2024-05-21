@@ -10,7 +10,14 @@
       border-radius: 4px !important;
       margin-left: 16px !important;
       margin-right: 16px !important;
-    }    
+    }
+  }
+
+  .primary-tabs {
+    .q-tab--active .q-tab__indicator {
+      height: 4px !important;
+      border-radius: 4px !important;
+    }
   }
 
   .primary-tabs {
@@ -20,4 +27,5 @@
       lighten($primary, 5)
     );
   }
+
 }
