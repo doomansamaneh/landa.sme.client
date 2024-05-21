@@ -107,7 +107,7 @@
         </q-tab-panel>
 
         <q-tab-panel name="log" class="no-padding">
-          <detail-log />
+          <detail-log />--
         </q-tab-panel>
       </q-tab-panels>
     </q-card-section>
@@ -128,7 +128,7 @@
 
   import DetailPayments from "./_DetailPayments.vue";
   import DetailTax from "./_DetailTax.vue";
-  import DetailLog from "./_DetailLog.vue";
+  import DetailLog from "src/components/areas/_shared/log/PreviewLog.vue";
 
   const props = defineProps({
     model: Object,
