@@ -15,11 +15,13 @@
         <q-item clickable v-close-popup tabindex="0" class="q-py-sm" to="/scr/users/settings">
           <div class="q-py-sm">
             <q-item-section avatar>
-              <q-avatar class="bg-on-dark" icon="o_settings" size="md" />
+              <q-avatar class="bg-on-dark" icon="o_settings" size="lg" />
             </q-item-section>
           </div>
           <q-item-section>
-            تنظیمات
+            <div class="text-body2 no-letter-spacing">
+              تنظیمات
+            </div>
           </q-item-section>
         </q-item>
         <!-- <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="openPasswordDialog">
@@ -35,21 +37,25 @@
         <q-item clickable v-close-popup tabindex="0" class="q-py-sm" to="/business">
           <div class="q-py-sm">
             <q-item-section avatar>
-              <q-avatar class="bg-on-dark" icon="o_business" size="md" />
+              <q-avatar class="bg-on-dark" icon="o_business" size="lg" />
             </q-item-section>
           </div>
           <q-item-section>
-            {{ $t("pages.business") }}
+            <div class="text-body2 no-letter-spacing">
+              {{ $t("pages.business") }}
+            </div>
           </q-item-section>
         </q-item>
         <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="authStore.logout()">
           <div class="q-py-sm">
             <q-item-section avatar>
-              <q-avatar class="bg-on-dark" icon="o_logout" size="md" />
+              <q-avatar class="bg-on-dark" icon="o_logout" size="lg" />
             </q-item-section>
           </div>
           <q-item-section>
-            {{ $t("business-layout.buttons.logout") }}
+            <div class="text-body2 no-letter-spacing">
+              {{ $t("business-layout.buttons.logout") }}
+            </div>
           </q-item-section>
         </q-item>
       </q-list>

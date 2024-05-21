@@ -1,12 +1,24 @@
 <template>
   <div class="row q-py-lg q-gutter-sm">
     <template v-if="model.value.invoiceRemained.remained">
-      <q-btn class="primary-shadow q-mr-xs" rounded color="primary" padding="4px 12px" unelevated>
+      <q-btn
+        class="primary-shadow q-mr-xs"
+        rounded
+        color="primary"
+        padding="4px 12px"
+        unelevated
+      >
         <q-icon name="o_add" size="xs" />
         <span>دریافت</span>
       </q-btn>
 
-      <q-btn class="primary-shadow" rounded color="primary" padding="4px 12px" unelevated>
+      <q-btn
+        class="primary-shadow"
+        rounded
+        color="primary"
+        padding="4px 12px"
+        unelevated
+      >
         <q-icon name="o_check" size="xs" class="q-mr-xs" />
         <span>تسویه حساب</span>
       </q-btn>
@@ -20,12 +32,18 @@
     </router-link> -->
   </div>
 
-  <div class="bordered_" v-if="model.value.invoiceRemained.payedAmount">
+  <div
+    class="bordered_"
+    v-if="model.value.invoiceRemained.payedAmount"
+  >
     <!-- <div class="text-body3 text-bold q-pa-md">
-      <q-icon name="o_arrow_downward" color="info" size="xs" />
+      <q-icon name="o_arrow_downward" color="accent" size="xs" />
       دریافتها
     </div> -->
-    <data-grid class="q-mt-md" :invoice-id="model?.value.id"></data-grid>
+    <data-grid
+      class="q-mt-md"
+      :invoice-id="model?.value.id"
+    ></data-grid>
     <!-- <q-separator size="2px" class="q-mt-lg" color="positive"></q-separator> -->
     <div class="row text-body3 q-gutter-x-sm q-mt-md">
       <div class="col-7 row items-center justify-end">
@@ -48,18 +66,18 @@
 </template>
 
 <script setup>
-import { useQuasar } from "quasar";
+  import { useQuasar } from "quasar";
 
-const $q = useQuasar();
+  const $q = useQuasar();
 
-import DataGrid from "src/components/areas/trs/paymentInvoice/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/areas/trs/paymentInvoice/shared/index/DataGrid.vue";
 
-const props = defineProps({
-  model: Object,
-  formStore: Object,
-});
+  const props = defineProps({
+    model: Object,
+    formStore: Object,
+  });
 
-const color = () => {
-  return $q.dark.isActive ? "text-yellow" : "text-primary";
-};
+  const color = () => {
+    return $q.dark.isActive ? "text-yellow" : "text-primary";
+  };
 </script>

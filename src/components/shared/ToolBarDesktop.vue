@@ -6,7 +6,7 @@
       position="top"
       expand
     >
-      <q-toolbar class="q-my-md" :style="xPadding">
+      <q-toolbar :class="inside ? '' : 'q-my-md'" :style="xPadding">
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn

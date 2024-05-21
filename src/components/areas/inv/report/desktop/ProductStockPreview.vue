@@ -49,7 +49,7 @@
     </template>
   </tool-bar>
 
-  <q-markup-table flat class="q-my-md" bordered>
+  <q-markup-table flat class="border-radius-lg bordered q-mt-sm q-mb-md">
     <tbody>
       <tr>
         <td style="width: 90px">
