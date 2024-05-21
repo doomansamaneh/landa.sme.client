@@ -247,7 +247,7 @@ export const actions = {
   label: "",
   align: "left",
   class: "text-left",
-  style: "width:150px;",
+  style: "width:160px;",
   showFilter: false,
 };
 
