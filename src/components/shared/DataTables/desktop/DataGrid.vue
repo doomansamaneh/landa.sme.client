@@ -82,7 +82,7 @@
               style="width: 300px"
               class="border-radius-md"
             >
-              <q-card class="border-radius-md">
+              <q-card class="bordered border-radius-md">
                 <q-card-section>
                   <div
                     class="q-mb-md text-body2 no-letter-spacing text-weight-500"
