@@ -80,7 +80,7 @@
     .active-shine {
       position: relative;
       overflow: hidden;
-  
+
       &:before {
         content: "";
         position: absolute;
@@ -98,16 +98,24 @@
         );
         animation: shine 2s infinite linear;
       }
-  
+
       @keyframes shine {
         0% {
           transform: translateX(-100%);
         }
-  
+
         100% {
           transform: translateX(100%);
         }
       }
     }
+  }
+
+  .menu-bar-background {
+    background: linear-gradient(
+      90deg,
+      lighten($main-color, 12),
+      darken($main-color, 0.5)
+    );
   }
 }

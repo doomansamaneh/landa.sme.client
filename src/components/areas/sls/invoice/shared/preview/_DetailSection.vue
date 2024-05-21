@@ -1,5 +1,8 @@
 <template>
-  <q-card class="bordered">
+  <q-card
+    class="bordered"
+    :class="$q.screen.xs ? 'form-container' : ''"
+  >
     <q-card-section>
       <div class="column q-gutter-y-sm">
         <div class="row">

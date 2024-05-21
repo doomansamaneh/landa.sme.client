@@ -10,10 +10,12 @@
   }
 
   .menu-bar .sub-item-container {
-    border-left: 1px solid $white
+    border-left: 1px solid $white;
   }
 
-  .menu-bar .q-expansion-item--expanded .q-expansion-item__toggle-icon {
+  .menu-bar
+    .q-expansion-item--expanded
+    .q-expansion-item__toggle-icon {
     color: $yellow !important;
   }
 
@@ -75,7 +77,7 @@
     .active-shine {
       position: relative;
       overflow: hidden;
-  
+
       &:before {
         content: "";
         position: absolute;
@@ -93,16 +95,24 @@
         );
         animation: shine 2s infinite linear;
       }
-  
+
       @keyframes shine {
         0% {
           transform: translateX(-100%);
         }
-  
+
         100% {
           transform: translateX(100%);
         }
       }
     }
+  }
+
+  .menu-bar-background {
+    background: linear-gradient(
+      180deg,
+      $dark-page,
+      lighten($dark-page, 5)
+    );
   }
 }

@@ -10,7 +10,7 @@
           <template #default>
             <q-card class="bordered-1 no-shadow q-ml-sm">
               <q-card-section
-                class="row justify-between items-center q-gutter-sm"
+                class="q-pa-sm row justify-between items-center q-gutter-sm"
               >
                 <div class="row items-center">
                   <q-icon
@@ -34,7 +34,7 @@
                     </q-tooltip>
                   </div>
                 </div>
-                <q-item-label class="row text-caption-sm" caption>
+                <q-item-label class="row text-caption">
                   {{ item.systemInfo }}
                 </q-item-label>
               </q-card-section>

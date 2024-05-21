@@ -1,7 +1,7 @@
 <template>
+    <!-- :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'" -->
   <q-drawer
-    class="menu-bar q-mb-xl z-max"
-    :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
+    class="menu-bar menu-bar-background q-mb-xl z-max"
     side="left"
     bordered
     :width="$q.screen.gt.xs ? 288 : deviceWidth"

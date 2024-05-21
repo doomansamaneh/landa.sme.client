@@ -3,7 +3,6 @@
     ref="dataTable"
     :dataSource="dataSource"
     :grid-store="gridStore"
-    separator="horizontal"
     flat_
     multiSelect
     numbered

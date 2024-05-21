@@ -18,6 +18,13 @@
   }
 
   .primary-tabs {
+    .q-tab--active .q-tab__indicator {
+      height: 4px !important;
+      border-radius: 4px !important;
+    }
+  }
+
+  .primary-tabs {
     background: linear-gradient(
       90deg,
       darken($primary, 5),
