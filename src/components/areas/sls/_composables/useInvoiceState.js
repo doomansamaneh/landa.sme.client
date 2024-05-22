@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { invoiceColumns } from "./constants";
+import { useInvoiceSearch } from "./useInvoiceSearch";
 
 import {
   defaultPageSize,
@@ -9,6 +10,7 @@ import {
 } from "src/constants";
 
 //const rows = ref([])
+const searchStore = useInvoiceSearch();
 
 const state = {
   firstLoad: ref(false),
@@ -23,10 +25,7 @@ const state = {
       value: cancelStatus,
     },
   ],
-  searchModel: ref({
-    dateRange: 0,
-    waitToSendTax: false,
-  }),
+  searchModel: searchStore.searchModel,
 };
 
 const pagination = ref({
@@ -43,20 +42,11 @@ export function useInvoiceState(defaultFilters) {
 
   const filterExpression = defaultFilters ?? [];
 
-  const setDefaultSearchModel = () => {
-    state.searchModel.value = {
-      dateRange: 0,
-      waitToSendTax: false,
-    };
-  };
-
   return {
     //rows,
     columns,
     pagination,
     state,
     filterExpression,
-
-    setDefaultSearchModel,
   };
 }

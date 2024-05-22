@@ -1,83 +1,106 @@
 <template>
-  <div class="q-mb-lg">
-    <advanced-search
+  <advanced-search />
+
+  <div class="q-py-md">
+    <data-grid
+      ref="dataGrid"
+      :data-source="dataSource"
       :grid-store="gridStore"
-      @apply-search="reloadData"
-    />
+      separator="horizontal"
+      flat_
+      multiSelect
+      numbered
+      bordered
+      wrapCells
+      dense_
+      expandable
+      @row-dbl-click="gotoPreview"
+    >
+      <template #filter-typeId="{ col }">
+        <custom-select
+          v-model="col.value"
+          :options="helper.getEnumOptions(voucherType, 'voucherType')"
+          @update:model-value="reloadData"
+        />
+      </template>
+      <template #filter-systemId="{ col }">
+        <custom-select
+          v-model="col.value"
+          :options="helper.getEnumOptions(subSystem, 'subSystem')"
+          @update:model-value="reloadData"
+        />
+      </template>
+
+      <template #cell-subject="{ item }">
+        {{ item.subject }}
+        <div>
+          <small>{{ item.summary }}</small>
+        </div>
+      </template>
+
+      <template #cell-amount="{ item }">
+        {{ item.amount.toLocaleString() }}
+      </template>
+
+      <template #cell-typeId="{ item }">
+        {{
+          $t(
+            `shared.voucherType.${helper.getEnumType(
+              item.typeId,
+              voucherType
+            )}`
+          )
+        }}
+      </template>
+
+      <template #cell-systemId="{ item }">
+        {{
+          $t(
+            `shared.subSystem.${helper.getEnumType(
+              item.systemId,
+              subSystem
+            )}`
+          )
+        }}
+      </template>
+
+      <template #footer-subtotal="{ selectedRows }">
+        <td :colspan="colspan" class="text-right">
+          {{ $t("shared.labels.selectedRows") }}
+        </td>
+        <td>
+          <b>
+            {{
+              helper
+                .getSubtotal(selectedRows, "amount")
+                .toLocaleString()
+            }}
+          </b>
+        </td>
+        <td colspan="100%"></td>
+      </template>
+
+      <template #footer-total="{ summary }">
+        <td :colspan="colspan" class="text-right">
+          {{ $t("shared.labels.total") }}
+        </td>
+        <td>
+          <b>{{ summary?.amount?.toLocaleString() }}</b>
+        </td>
+        <td colspan="100%"></td>
+      </template>
+
+      <template #expand="{ item }">
+        <preview inside :item="item" />
+      </template>
+    </data-grid>
   </div>
-
-  <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
-    separator="horizontal"
-    flat_
-    multiSelect
-    numbered
-    bordered
-    wrapCells
-    dense_
-    expandable
-    @row-dbl-click="gotoPreview"
-  >
-    <template #filter-typeId="{ col }">
-      <custom-select
-        v-model="col.value"
-        :options="helper.getEnumOptions(voucherType, 'voucherType')"
-        @update:model-value="reloadData"
-      />
-    </template>
-    <template #filter-systemId="{ col }">
-      <custom-select
-        v-model="col.value"
-        :options="helper.getEnumOptions(subSystem, 'subSystem')"
-        @update:model-value="reloadData"
-      />
-    </template>
-
-    <template #cell-subject="{ item }">
-      {{ item.subject }}
-      <div>
-        <small>{{ item.summary }}</small>
-      </div>
-    </template>
-
-    <template #cell-amount="{ item }">
-      {{ item.amount.toLocaleString() }}
-    </template>
-
-    <template #cell-typeId="{ item }">
-      {{
-        $t(
-          `shared.voucherType.${helper.getEnumType(
-            item.typeId,
-            voucherType
-          )}`
-        )
-      }}
-    </template>
-
-    <template #cell-systemId="{ item }">
-      {{
-        $t(
-          `shared.subSystem.${helper.getEnumType(
-            item.systemId,
-            subSystem
-          )}`
-        )
-      }}
-    </template>
-
-    <template #expand="{ item }">
-      <preview inside :item="item" />
-    </template>
-  </data-grid>
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, onUnmounted } from "vue";
+  import { ref, computed } from "vue";
   import { useRouter } from "vue-router";
-  import { helper, bus } from "src/helpers";
+  import { helper } from "src/helpers";
   import { subSystem, voucherType } from "src/constants";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
@@ -104,13 +127,14 @@
     router.push(`/acc/voucher/preview/${row.id}`);
   }
 
-  onMounted(() => {
-    bus.on("apply-search", reloadData);
-  });
-
-  onUnmounted(() => {
-    bus.off("apply-search", reloadData);
-  });
+  const colspan = computed(
+    () =>
+      tableStore?.value?.columns.value.findIndex(
+        (column) => column.name === "amount"
+      ) +
+      1 + //numbered column
+      1 //multi check column
+  );
 
   defineExpose({
     tableStore,

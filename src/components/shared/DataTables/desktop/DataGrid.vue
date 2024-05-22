@@ -407,9 +407,10 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from "vue";
+  import { ref, onMounted, onUnmounted, computed } from "vue";
   import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
+  import { bus } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -558,6 +559,14 @@
   const toggleDesne = () => {
     dense.value = !dense.value;
   };
+
+  onMounted(() => {
+    bus.on("apply-search", reloadData);
+  });
+
+  onUnmounted(() => {
+    bus.off("apply-search", reloadData);
+  });
 
   defineExpose({
     tableStore,

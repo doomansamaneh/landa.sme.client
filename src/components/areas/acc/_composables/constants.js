@@ -26,7 +26,7 @@ import {
 } from "src/constants/columns";
 
 export const accountGLColumns = [
-  code,
+  { ...code },
   {
     name: "clTitle",
     field: "clTitle",
@@ -37,13 +37,13 @@ export const accountGLColumns = [
     class: "text-left",
     value: "",
   },
-  title,
-  isActive,
-  actions,
+  { ...title },
+  { ...isActive },
+  { ...actions },
 ];
 
 export const accountSLColumns = [
-  code,
+  { ...code },
   {
     name: "clTitle",
     field: "clTitle",
@@ -64,28 +64,28 @@ export const accountSLColumns = [
     class: "text-left",
     value: "",
   },
-  title,
-  isActive,
-  actions,
+  { ...title },
+  { ...isActive },
+  { ...actions },
 ];
 
 export const accountDLColumns = [
-  code,
-  title,
-  debitRemained,
-  creditRemained,
-  type,
-  isActive,
-  actions,
+  { ...code },
+  { ...title },
+  { ...debitRemained },
+  { ...creditRemained },
+  { ...type },
+  { ...isActive },
+  { ...actions },
 ];
 
 export const voucherColumns = [
-  rowNo,
-  no,
-  date,
-  subject,
-  amount,
-  type,
+  { ...rowNo },
+  { ...no },
+  { ...date },
+  { ...subject },
+  { ...amount },
+  { ...type },
   {
     name: "systemId",
     field: "systemId",
@@ -98,63 +98,89 @@ export const voucherColumns = [
   },
 ];
 
-export const accountCLColumns = [id, code, title, isActive];
+export const accountCLColumns = [
+  { ...id },
+  { ...code },
+  { ...title },
+  { ...isActive },
+];
 
 export const customerAccountColumns = [
-  code,
-  title,
-  debit,
-  credit,
-  debitRemained,
-  creditRemained,
+  { ...code },
+  { ...title },
+  { ...debit },
+  { ...credit },
+  { ...debitRemained },
+  { ...creditRemained },
 ];
 
 export const debtorColumns = [
-  code,
-  title,
-  debit,
-  credit,
-  debitRemained,
+  { ...code },
+  { ...title },
+  { ...debit },
+  { ...credit },
+  { ...debitRemained },
 ];
 
 export const creditorColumns = [
-  code,
-  title,
-  debit,
-  credit,
-  creditRemained,
+  { ...code },
+  { ...title },
+  { ...debit },
+  { ...credit },
+  { ...creditRemained },
 ];
 
 export const customerAccountItemColumns = [
-  voucherNo,
-  voucherDate,
-  slCode,
-  slTitle,
-  voucherSubject,
+  { ...voucherNo },
+  { ...voucherDate },
+  { ...slCode },
+  { ...slTitle },
+  { ...voucherSubject },
   // comment,
   { ...debitRemained, label: "بدهکار" },
   { ...creditRemained, label: "بستانکار" },
-  inlineDebit,
+  { ...inlineDebit },
 ];
 
 export const accountItemColumns = [
-  voucherNo,
-  voucherDate,
-  slCode,
-  slTitle,
-  dlCode,
-  dlTitle,
-  voucherSubject,
+  { ...voucherNo },
+  { ...voucherDate },
+  { ...slCode },
+  { ...slTitle },
+  { ...dlCode },
+  { ...dlTitle },
+  { ...voucherSubject },
   { ...debitRemained, label: "بدهکار" },
   { ...creditRemained, label: "بستانکار" },
 ];
 
+export const reviewCLColumns = [
+  { ...code },
+  { ...title },
+  { ...debit },
+  { ...credit },
+  { ...debitRemained },
+  { ...creditRemained },
+];
+
+export const reviewGLColumns = [...reviewCLColumns];
+export const reviewSLColumns = [...reviewCLColumns];
+export const reviewDLColumns = [
+  { ...code },
+  { ...title },
+  { ...type },
+  { ...debit },
+  { ...credit },
+  { ...debitRemained },
+  { ...creditRemained },
+];
+
 export const journalBookColumns = [
-  voucherNo,
-  voucherDate,
-  code,
-  title,
-  subject,
-  debit,
-  credit,
+  { ...voucherNo },
+  { ...voucherDate },
+  { ...code },
+  { ...title },
+  { ...subject },
+  { ...debit },
+  { ...credit },
 ];

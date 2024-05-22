@@ -1,17 +1,18 @@
 import { ref } from "vue";
 import { sortOrder, defaultPageSize } from "src/constants";
 import { voucherColumns } from "./constants";
+import { useVoucherSearch } from "./useVoucherSearch";
 
 const rows = ref([]);
+const searchStore = useVoucherSearch();
 
 const state = {
   firstLoad: ref(false),
   rows,
   allSelectedIds: ref([]),
   activeRow: ref(null),
-  searchModel: ref({
-    dateRange: 0,
-  }),
+  summaryData: ref(null),
+  searchModel: searchStore.searchModel,
 };
 
 const pagination = ref({
@@ -24,16 +25,10 @@ const pagination = ref({
 export function useVoucherState() {
   const columns = voucherColumns;
 
-  const setDefaultSearchModel = () => {
-    state.searchModel.value = { dateRange: 0 };
-  };
-
   return {
     rows,
     state,
     pagination,
     columns,
-
-    setDefaultSearchModel,
   };
 }

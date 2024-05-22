@@ -71,7 +71,9 @@
               ماهیت حساب
             </q-item-label>
             <custom-select
-              :options="helper.getEnumOptions(accountType, 'accountType')"
+              :options="
+                helper.getEnumOptions(accountType, 'accountType')
+              "
               v-model="formStore.model.value.typeId"
             />
           </div>
@@ -87,7 +89,12 @@
             <div class="q-gutter-sm q-pt-xs">
               <q-option-group
                 inline
-                :options="helper.getEnumOptions(accountDLType, 'accountDLType')"
+                :options="
+                  helper.getEnumOptions(
+                    accountDLType,
+                    'accountDLType'
+                  )
+                "
                 type="checkbox"
                 v-model="dlTypes"
               />
@@ -111,14 +118,16 @@
           <div class="q-mt-md text-body1 no-letter-spacing">
             <ul class="q-gutter-y-md">
               <li>
-                <strong>ماهیت حساب: </strong> معمولا ماهیت حسابهای دارایی و
-                هزینه که با کدهای 1-2-7-8 شروع شده‌اند بدهکار و حسابهای بدهی،
-                سرمایه، و فروش که با کدهای 3-4-6 شروع شده‌اند بستانکار است
+                <strong>ماهیت حساب:</strong>
+                معمولا ماهیت حسابهای دارایی و هزینه که با کدهای
+                1-2-7-8 شروع شده‌اند بدهکار و حسابهای بدهی، سرمایه، و
+                فروش که با کدهای 3-4-6 شروع شده‌اند بستانکار است
               </li>
               <li>
                 <strong>تفصیلیهای مرتبط</strong>
-                با انتخاب یک حساب معین در سند حسابداری، فقط تفصیلی‌هایی نشان
-                داده می‌شوند که نوعشان در این بخش تیک خورده باشد
+                با انتخاب یک حساب معین در سند حسابداری، فقط
+                تفصیلی‌هایی نشان داده می‌شوند که نوعشان در این بخش تیک
+                خورده باشد
               </li>
             </ul>
           </div>
@@ -129,31 +138,31 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { helper } from "src/helpers";
-import { accountType, accountDLType } from "src/constants";
-import { accountSLModel } from "src/models/areas/acc/accountSLModel";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref, computed } from "vue";
+  import { helper } from "src/helpers";
+  import { accountType, accountDLType } from "src/constants";
+  import { accountSLModel } from "src/models/areas/acc/accountSLModel";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import GlLookup from "src/components/shared/lookups/AccountGLLookup.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import GlLookup from "src/components/shared/lookups/AccountGLLookup.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
+  const form = ref(null);
 
-const formStore = useBaseInfoModel({
-  model: accountSLModel,
-  baseRoute: "acc/accountSL",
-});
+  const formStore = useBaseInfoModel({
+    model: accountSLModel,
+    baseRoute: "acc/accountSL",
+  });
 
-//todo: modify backend to return desired array of detail type list
-const dlTypes = computed(() =>
-  formStore.model.value.dlTypeIdList.map((c) => parseInt(c.id))
-);
+  //todo: modify backend to return desired array of detail type list
+  const dlTypes = computed(() =>
+    formStore.model.value.dlTypeIdList.map((c) => parseInt(c.id))
+  );
 </script>

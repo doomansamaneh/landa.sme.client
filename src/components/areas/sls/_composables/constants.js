@@ -1,4 +1,3 @@
-import { sqlOperator } from "src/constants";
 import {
   no,
   date,
@@ -8,17 +7,6 @@ import {
   payedAmount,
   remainedAmount,
   discountAmount,
-  code,
-  title,
-  unitTitle,
-  purchaseQuantity,
-  salesQuantity,
-  stock,
-  debit,
-  voucherNo,
-  summary,
-  inlineQuantity,
-  price,
 } from "src/constants/columns";
 
 export const taxStatus = {
@@ -30,22 +18,22 @@ export const taxStatus = {
 };
 
 export const invoiceColumns = [
-  no,
-  date,
-  customerName,
-  subject,
-  amount,
-  payedAmount,
-  remainedAmount,
+  { ...no },
+  { ...date },
+  { ...customerName },
+  { ...subject },
+  { ...amount },
+  { ...payedAmount },
+  { ...remainedAmount },
 ];
 
 export const quoteColumns = [
-  no,
-  date,
-  customerName,
-  subject,
-  amount,
-  discountAmount,
+  { ...no },
+  { ...date },
+  { ...customerName },
+  { ...subject },
+  { ...amount },
+  { ...discountAmount },
 ];
 
 export const taxApiLogColumns = [

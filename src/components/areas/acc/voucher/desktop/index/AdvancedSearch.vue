@@ -1,13 +1,13 @@
 <template>
-  <q-card class="bordered">
+  <q-card bordered>
     <q-card-section class="row items-center justify-between">
       <q-option-group
         class="row text-body2 no-letter-spacing"
         type="radio"
         size="md"
         :options="dateRangeOptions"
-        v-model="searchModel.dateRange"
-        @update:model-value="applySearch"
+        v-model="searchStore.searchModel.value.dateRange"
+        @update:model-value="searchStore.applySearch"
       />
       <q-btn
         @click="expanded = !expanded"
@@ -32,63 +32,80 @@
     <q-card-section class="row q-pa-none">
       <q-slide-transition v-show="expanded">
         <div class="q-px-md">
-          <div class="q-gutter-y-sm q-pl-sm q-my-md">
+          <div class="q-gutter-y-sm">
+            <div class="row">
+              <q-option-group
+                inline
+                :options="
+                  helper.getEnumOptions(voucherType, 'voucherType')
+                "
+                type="checkbox"
+                v-model="searchStore.searchModel.value.voucherTypeIds"
+              />
+            </div>
+
             <div class="row q-gutter-x-sm items-center">
               <custom-input-number
-                v-model="searchModel.amountFrom"
+                v-model="searchStore.searchModel.value.amountFrom"
                 :placeholder="$t('shared.labels.amountFrom')"
-                style="width: 195px"
+                style="width: 200px"
                 class="text-body2 no-letter-spacing"
               />
 
               <custom-input-number
-                v-model="searchModel.amountTo"
+                v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
                 :placeholder="$t('shared.labels.amountTo')"
-                style="width: 195px"
+                style="width: 200px"
                 class="text-body2 no-letter-spacing"
               />
             </div>
+
             <div class="row q-gutter-x-sm items-center">
               <date-time
-                v-model="searchModel.dateFrom"
+                v-model="searchStore.searchModel.value.dateFrom"
                 :placeholder="$t('shared.labels.dateFrom')"
-                style="width: 195px"
+                style="width: 200px"
                 class="text-body2 no-letter-spacing"
               />
               <date-time
-                v-model="searchModel.dateTo"
+                v-model="searchStore.searchModel.value.dateTo"
                 :placeholder="$t('shared.labels.dateTo')"
-                style="width: 195px"
+                style="width: 200px"
                 class="text-body2 no-letter-spacing"
               />
             </div>
 
             <div class="row q-gutter-x-sm items-center">
               <contract-lookup
-                v-model:selectedId="searchModel.contractId"
-                v-model:selectedText="searchModel.contractTitle"
-                style="width: 398px"
+                v-model:selectedId="
+                  searchStore.searchModel.value.contractId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.contractTitle
+                "
+                style="width: 408px"
                 :placeholder="$t('shared.labels.contractTitle')"
               />
             </div>
 
             <div class="row q-gutter-x-sm items-center">
               <custom-input
-                v-model="searchModel.comment"
+                v-model="searchStore.searchModel.value.comment"
                 :placeholder="$t('shared.labels.comment')"
-                style="width: 398px"
+                style="width: 408px"
                 class="text-body2 no-letter-spacing"
               />
             </div>
           </div>
+
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
             <q-btn
               class="text-body2 no-letter-spacing bg-primary text-white"
               rounded
               padding="8px 16px"
               unelevated
-              @click="applySearch"
+              @click="searchStore.applySearch"
             >
               <q-icon name="search" class="q-mr-xs" size="20px" />
               {{ $t("shared.labels.search") }}
@@ -99,7 +116,7 @@
               unelevated
               padding="8px 16px"
               flat
-              @click="clearSearch"
+              @click="searchStore.clearSearch"
             >
               <q-icon name="clear" class="q-mr-xs" size="20px" />
               {{ $t("shared.labels.clearSearch") }}
@@ -111,15 +128,15 @@
   </q-card>
   <chip
     class="q-my-md"
-    :search-model="searchModel"
-    :remove-item="removeItem"
+    :search-model="searchStore.searchModel.value"
+    :remove-item="searchStore.removeItem"
   />
 </template>
 
 <script setup>
   import { computed, ref } from "vue";
-  import { bus } from "src/helpers";
-  import { dateRange } from "src/constants";
+  import { dateRange, voucherType } from "src/constants";
+  import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
   import { helper } from "src/helpers";
 
   import Chip from "src/components/shared/SearchChip.vue";
@@ -127,46 +144,15 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
-  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
-  import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
-  import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
-  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 
   const props = defineProps({
-    gridStore: Object,
+    searchModel: Object,
   });
 
   const expanded = ref(false);
-
-  const searchModel = computed(
-    () => props.gridStore.state.searchModel.value
-  );
+  const searchStore = useVoucherSearch();
 
   const dateRangeOptions = computed(() =>
     helper.getEnumOptions(dateRange)
   );
-
-  //const emit = defineEmits(["apply-search"]);
-
-  async function clearSearch() {
-    props.gridStore.setDefaultSearchModel();
-    await applySearch();
-  }
-
-  const applySearch = async () => {
-    //emit("apply-search", searchModel.value);
-    bus.emit("apply-search");
-  };
-
-  async function removeItem(item) {
-    //todo: how to find field type and dynamically set to it's default value
-    let value = "";
-    switch (item.name) {
-      case "dateRange":
-        value = 0;
-        break;
-    }
-    searchModel.value[item.name] = value;
-    await applySearch();
-  }
 </script>

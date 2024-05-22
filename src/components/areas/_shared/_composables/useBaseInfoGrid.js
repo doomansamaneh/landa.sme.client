@@ -10,6 +10,7 @@ export function useBaseInfoGrid(config) {
     allSelectedIds: ref([]),
     activeRow: ref(null),
     summaryData: ref(null),
+    searchModel: config?.searchModel,
   };
 
   const composablesStore = useComposables();
@@ -26,7 +27,7 @@ export function useBaseInfoGrid(config) {
       pageSize: defaultPageSize,
       sortColumn: config?.sortColumn ?? "title",
       sortOrder: config?.sortOrder ?? sortOrder.ascending,
-      searchModel: config?.searchModel,
+      //searchModel: config?.searchModel,
       filterExpression: config?.filterExpression ?? [],
     });
 
@@ -37,17 +38,10 @@ export function useBaseInfoGrid(config) {
       config.visibleColumns.includes(column.name)
     );
 
-  const setDefaultSearchModel = () => {
-    if (config) config.setDefaultSearchModel();
-    else if (state.searchModel) state.searchModel.value = {};
-  };
-
   return {
     columns,
     pagination,
     state: localState,
     filterExpression: config?.filterExpression ?? [],
-
-    setDefaultSearchModel,
   };
 }

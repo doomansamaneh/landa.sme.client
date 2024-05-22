@@ -6,8 +6,8 @@
         type="radio"
         size="md"
         :options="dateRangeOptions"
-        v-model="searchModel.dateRange"
-        @update:model-value="applySearch"
+        v-model="searchStore.searchModel.value.dateRange"
+        @update:model-value="searchStore.applySearch"
       />
       <q-btn
         @click="expanded = !expanded"
@@ -34,13 +34,13 @@
         <div class="q-px-md">
           <q-checkbox
             class="q-pt-sm text-body2 no-letter-spacing"
-            v-model="searchModel.waitToSendTax"
+            v-model="searchStore.searchModel.value.waitToSendTax"
             :label="$t('shared.labels.waitToSendTax')"
           />
           <div class="q-gutter-y-sm q-pl-sm q-my-md">
             <div class="row q-gutter-x-sm items-center">
               <custom-input
-                v-model="searchModel.amountFrom"
+                v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
                 :placeholder="$t('shared.labels.amountFrom')"
                 style="width: 195px"
@@ -48,7 +48,7 @@
               />
 
               <custom-input
-                v-model="searchModel.amountTo"
+                v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
                 :placeholder="$t('shared.labels.amountTo')"
                 style="width: 195px"
@@ -57,13 +57,13 @@
             </div>
             <div class="row q-gutter-x-sm items-center">
               <date-time
-                v-model="searchModel.dateFrom"
+                v-model="searchStore.searchModel.value.dateFrom"
                 :placeholder="$t('shared.labels.dateFrom')"
                 style="width: 195px"
                 class="text-body2 no-letter-spacing"
               />
               <date-time
-                v-model="searchModel.dateTo"
+                v-model="searchStore.searchModel.value.dateTo"
                 :placeholder="$t('shared.labels.dateTo')"
                 style="width: 195px"
                 class="text-body2 no-letter-spacing"
@@ -72,8 +72,12 @@
 
             <div class="row q-gutter-x-sm items-center">
               <sale-type-lookup
-                v-model:selectedId="searchModel.typeId"
-                v-model:selectedText="searchModel.typeTitle"
+                v-model:selectedId="
+                  searchStore.searchModel.value.typeId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.typeTitle
+                "
                 style="width: 398px"
                 :placeholder="$t('shared.labels.typeTitle')"
               />
@@ -81,8 +85,12 @@
 
             <div class="row q-gutter-x-sm items-center">
               <inventory-lookup
-                v-model:selectedId="searchModel.inventoryId"
-                v-model:selectedText="searchModel.inventoryTitle"
+                v-model:selectedId="
+                  searchStore.searchModel.value.inventoryId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.inventoryTitle
+                "
                 style="width: 398px"
                 :placeholder="$t('shared.labels.inventoryTitle')"
               />
@@ -90,8 +98,12 @@
 
             <div class="row q-gutter-x-sm items-center">
               <product-lookup
-                v-model:selectedId="searchModel.productId"
-                v-model:selectedText="searchModel.productTitle"
+                v-model:selectedId="
+                  searchStore.searchModel.value.productId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.productTitle
+                "
                 style="width: 398px"
                 :placeholder="$t('shared.labels.productTitle')"
               />
@@ -99,8 +111,12 @@
 
             <div class="row q-gutter-x-sm items-center">
               <contract-lookup
-                v-model:selectedId="searchModel.contractId"
-                v-model:selectedText="searchModel.contractTitle"
+                v-model:selectedId="
+                  searchStore.searchModel.value.contractId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.contractTitle
+                "
                 style="width: 398px"
                 :placeholder="$t('shared.labels.contractTitle')"
               />
@@ -108,8 +124,12 @@
 
             <div class="row q-gutter-x-sm items-center">
               <customer-lookup
-                v-model:selectedId="searchModel.marketerId"
-                v-model:selectedText="searchModel.marketerName"
+                v-model:selectedId="
+                  searchStore.searchModel.value.marketerId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.marketerName
+                "
                 style="width: 398px"
                 :placeholder="$t('shared.labels.marketerName')"
               />
@@ -117,7 +137,7 @@
 
             <div class="row q-gutter-x-sm items-center">
               <custom-input
-                v-model="searchModel.comment"
+                v-model="searchStore.searchModel.value.comment"
                 :placeholder="$t('shared.labels.comment')"
                 style="width: 398px"
                 class="text-body2 no-letter-spacing"
@@ -130,7 +150,7 @@
               rounded
               padding="8px 16px"
               unelevated
-              @click="applySearch"
+              @click="searchStore.applySearch"
             >
               <q-icon name="search" class="q-mr-xs" size="20px" />
               جستجو
@@ -141,7 +161,7 @@
               unelevated
               padding="8px 16px"
               flat
-              @click="clearSearch"
+              @click="searchStore.clearSearch"
             >
               <q-icon name="clear" class="q-mr-xs" size="20px" />
               حذف فیلتر
@@ -153,8 +173,8 @@
   </q-card>
   <chip
     class="q-my-md"
-    :search-model="searchModel"
-    :remove-item="removeItem"
+    :search-model="searchStore.searchModel.value"
+    :remove-item="searchStore.removeItem"
   />
 </template>
 
@@ -162,6 +182,7 @@
   import { computed, ref } from "vue";
   import { dateRange } from "src/constants";
   import { helper } from "src/helpers";
+  import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
 
   import Chip from "src/components/shared/SearchChip.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
@@ -177,38 +198,9 @@
   });
 
   const expanded = ref(false);
-
-  const searchModel = computed(
-    () => props.gridStore.state.searchModel.value
-  );
+  const searchStore = useInvoiceSearch();
 
   const dateRangeOptions = computed(() =>
     helper.getEnumOptions(dateRange)
   );
-
-  const emit = defineEmits(["apply-search"]);
-
-  async function applySearch() {
-    emit("apply-search", searchModel.value);
-  }
-
-  async function clearSearch() {
-    props.gridStore.setDefaultSearchModel();
-    await applySearch();
-  }
-
-  async function removeItem(item) {
-    //todo: how to find field type and dynamically set to it's default value
-    let value = "";
-    switch (item.name) {
-      case "dateRange":
-        value = 0;
-        break;
-      case "waitToSendTax":
-        value = false;
-        break;
-    }
-    searchModel.value[item.name] = value;
-    await applySearch();
-  }
 </script>

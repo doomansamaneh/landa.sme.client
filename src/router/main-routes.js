@@ -204,6 +204,11 @@ export default {
             import("pages/areas/acc/report/CreditorsPage.vue"),
         },
         {
+          path: "review",
+          component: () =>
+            import("pages/areas/acc/report/AccountReviewPage.vue"),
+        },
+        {
           path: "journal",
           component: () =>
             import("pages/areas/acc/report/JournalPage.vue"),

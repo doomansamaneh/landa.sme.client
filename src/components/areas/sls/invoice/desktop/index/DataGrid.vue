@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <advanced-search
-      :grid-store="gridStore"
-      @apply-search="reloadData"
-    />
-  </div>
+  <advanced-search />
 
   <div class="q-py-md">
     <q-tabs
