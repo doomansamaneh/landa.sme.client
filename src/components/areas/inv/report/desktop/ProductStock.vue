@@ -6,6 +6,7 @@
     :grid-store="gridStore"
     :data-source="dataSource"
     base-route="sls/report/productStock"
+    numbered
     expandable
   >
     <template #cell-purchaseQuantity="{ item }">
@@ -22,13 +23,9 @@
     </template>
 
     <template #expand="{ item }">
-      <!-- <q-card flat bordered>
-        <q-card-section> -->
-          <div class="q-mb-sm">
-          <product-stock-preview :item="item" inside />
-          </div>
-        <!-- </q-card-section>
-      </q-card> -->
+      <div class="q-mb-sm">
+        <product-stock-preview :item="item" inside />
+      </div>
     </template>
   </data-grid>
 </template>

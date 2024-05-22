@@ -211,8 +211,10 @@
       <table class="q-table data-table">
         <thead>
           <tr v-if="!hideHeader">
-            <th v-if="numbered" class="dense_">#</th>
-            <th v-if="multiSelect" class="dense">
+            <th v-if="numbered" style="width: 1px" class="dense_">
+              #
+            </th>
+            <th v-if="multiSelect" style="width: 5px" class="dense">
               <q-checkbox
                 v-model="tableStore.checkedAll.value"
                 @update:model-value="selectAll"
@@ -238,8 +240,12 @@
           </tr>
           <tr v-if="!hideFilterRow" class="row-filter">
             <!-- <th v-if="numbered" class="dense"></th> -->
-            <th v-if="multiSelect" class="dense"></th>
-            <th>
+            <!-- <th v-if="multiSelect" class="dense"></th> -->
+            <th
+              v-if="multiSelect || numbered"
+              class="dense"
+              :colspan="multiSelect + numbered"
+            >
               <q-icon
                 :color="$q.dark.isActive ? 'white' : 'grey-6'"
                 size="32px"
@@ -368,6 +374,7 @@
         </tfoot>
       </table>
     </div>
+
     <div
       v-if="
         !tableStore.showLoader.value &&

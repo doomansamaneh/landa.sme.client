@@ -6,6 +6,7 @@ import {
   sortOrder,
   sqlOperator,
 } from "src/constants";
+
 import { useComposables } from "src/stores/useComposables";
 
 //const rows = ref([])
@@ -49,7 +50,6 @@ export function useProductStockGrid(defaultFilters) {
   };
 
   return {
-    //rows,
     columns,
     pagination,
     state,
