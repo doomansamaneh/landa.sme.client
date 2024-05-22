@@ -271,6 +271,7 @@
               <q-icon
                 :color="$q.dark.isActive ? 'white' : 'grey-6'"
                 size="32px"
+                :style="dense ? 'margin-right: 16px;' : 'margin-right: 32px;'"
                 name="o_search"
               />
             </th>
