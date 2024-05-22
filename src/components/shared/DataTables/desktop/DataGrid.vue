@@ -190,6 +190,28 @@
               </q-card>
             </q-menu>
           </q-btn>
+
+          <q-btn size="11px" round unelevated @click="toggleFontSize">
+            <q-icon size="20px" name="format_size" />
+            <q-tooltip
+              :delay="700"
+              class="bordered"
+              :anchor="inFullscreen ? 'bottom end' : 'bottom middle'"
+              :self="inFullscreen ? 'top end' : 'top middle'"
+              :class="
+                $q.dark.isActive
+                  ? 'bg-dark text-white'
+                  : 'bg-white text-black'
+              "
+            >
+              <div class="text-body2 no-letter-spacing">
+                <template v-if="fontSize === 15">
+                  فونت معمولی
+                </template>
+                <template v-else>فونت درشت</template>
+              </div>
+            </q-tooltip>
+          </q-btn>
         </div>
 
         <q-select
@@ -223,7 +245,7 @@
             <th
               v-for="col in tableStore?.columns.value"
               :key="col.name"
-              :style="col.style"
+              :style="col.style && `font-size: ${thFontSize}px`"
               :class="tableStore.getSortableClass(col)"
               @click="tableStore.sortColumn(col)"
             >
@@ -315,8 +337,9 @@
                 v-for="col in tableStore?.columns.value"
                 :key="col.name"
                 :class="col.cellClass"
-                :style="col.cellStyle"
+                :style="`font-size: ${tdFontSize}px`"
               >
+                <!-- :style="col.cellStyle" -->
                 <slot :name="`cell-${col.name}`" :item="row">
                   <div v-html="getColText(row, col)"></div>
                 </slot>
@@ -471,6 +494,8 @@
   ];
 
   const dense = ref(true);
+  const thFontSize = ref(12);
+  const tdFontSize = ref(13);
 
   onMounted(() => {
     tableStore.loadData();
@@ -567,6 +592,11 @@
     dense.value = !dense.value;
   };
 
+  const toggleFontSize = () => {
+    thFontSize.value = thFontSize.value === 12 ? 13 : 12;
+    tdFontSize.value = tdFontSize.value === 13 ? 14 : 13;
+  };
+
   onMounted(() => {
     bus.on("apply-search", reloadData);
   });
@@ -597,7 +627,9 @@
     padding-left: 5px;
   }
 
-  .data-table th {
-    font-weight: bold;
+  .data-table {
+    th {
+      font-weight: bold;
+    }
   }
 </style>
