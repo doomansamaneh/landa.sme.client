@@ -321,7 +321,7 @@
 
   const toolbarMargin = computed(() => {
     const baseMargin = $q.screen.lt.md
-      ? "margin-bottom: 62px;"
+      ? "margin-bottom: 65px;"
       : "margin-bottom: 48px;";
     const margin = $q.screen.lt.sm ? "margin-bottom: 36px;" : "";
     return props.margin ? baseMargin : margin;
