@@ -1,5 +1,5 @@
 <template>
-  <tool-bar :inside="inside" buttons title="قرارداد">
+  <!-- <tool-bar :inside="inside" buttons title="قرارداد">
     <template #buttons>
       <q-btn
         :to="`/doc/contract/edit/${id}`"
@@ -47,7 +47,7 @@
         </q-menu>
       </q-btn>
     </template>
-  </tool-bar>
+  </tool-bar> -->
 
   <q-markup-table
     flat

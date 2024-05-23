@@ -16,7 +16,9 @@ export function useFormActions(baseURL, model) {
   }
 
   async function getCreateModel(callBack) {
-    const response = await fetchWrapper.get(`${baseURL}/getCreateModel`);
+    const response = await fetchWrapper.get(
+      `${baseURL}/getCreateModel`
+    );
     model.value = response.data.data;
     if (callBack) callBack();
     await resetIsDirty();
@@ -29,10 +31,11 @@ export function useFormActions(baseURL, model) {
 
   async function onGetById(url, id) {
     if (id) {
-      const response = await fetchWrapper.get(`${baseURL}/${url}/${id}`);
+      const response = await fetchWrapper.get(
+        `${baseURL}/${url}/${id}`
+      );
       model.value = response.data.data;
       await resetIsDirty();
-      return model.value;
     }
     return null;
   }
@@ -66,7 +69,9 @@ export function useFormActions(baseURL, model) {
           okColor: "deep-orange-7",
         },
       }).onOk(async () => {
-        const response = await fetchWrapper.post(`${baseURL}/delete/${id}`);
+        const response = await fetchWrapper.post(
+          `${baseURL}/delete/${id}`
+        );
         notifyResponse(response.data);
         if (callBack) callBack();
       });
@@ -98,7 +103,10 @@ export function useFormActions(baseURL, model) {
 
   async function activate(idList, callBack) {
     if (validateIdList(idList)) {
-      const response = await fetchWrapper.post(`${baseURL}/activate`, idList);
+      const response = await fetchWrapper.post(
+        `${baseURL}/activate`,
+        idList
+      );
       notifyResponse(response.data);
       if (callBack) callBack();
     } else notify("no row selected", "negative");
@@ -106,7 +114,10 @@ export function useFormActions(baseURL, model) {
 
   async function deactivate(idList, callBack) {
     if (validateIdList(idList)) {
-      const response = await fetchWrapper.post(`${baseURL}/deactivate`, idList);
+      const response = await fetchWrapper.post(
+        `${baseURL}/deactivate`,
+        idList
+      );
       notifyResponse(response.data);
       if (callBack) callBack();
     } else notify("no row selected", "negative");
@@ -114,12 +125,15 @@ export function useFormActions(baseURL, model) {
 
   async function editBatch(idList, editBatchModel, callBack) {
     if (validateIdList(idList)) {
-      const response = await fetchWrapper.post(`${baseURL}/editBatch`, {
-        selectedIds: idList,
-        model: Object.values(editBatchModel).filter(
-          (item) => item.isModified === true
-        ),
-      });
+      const response = await fetchWrapper.post(
+        `${baseURL}/editBatch`,
+        {
+          selectedIds: idList,
+          model: Object.values(editBatchModel).filter(
+            (item) => item.isModified === true
+          ),
+        }
+      );
       notifyResponse(response.data);
       if (callBack) callBack();
     } else notify("no row selected", "negative");

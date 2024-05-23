@@ -130,18 +130,6 @@ export const creditorColumns = [
   { ...creditRemained },
 ];
 
-export const customerAccountItemColumns = [
-  { ...voucherNo },
-  { ...voucherDate },
-  { ...slCode },
-  { ...slTitle },
-  { ...voucherSubject },
-  // comment,
-  { ...debitRemained, label: "بدهکار" },
-  { ...creditRemained, label: "بستانکار" },
-  { ...inlineDebit },
-];
-
 export const accountItemColumns = [
   { ...voucherNo },
   { ...voucherDate },
@@ -152,6 +140,17 @@ export const accountItemColumns = [
   { ...voucherSubject },
   { ...debitRemained, label: "بدهکار" },
   { ...creditRemained, label: "بستانکار" },
+];
+
+export const accountItemDLColumns = [
+  { ...voucherNo },
+  { ...voucherDate },
+  { ...slCode },
+  { ...slTitle },
+  { ...voucherSubject },
+  { ...debitRemained, label: "بدهکار" },
+  { ...creditRemained, label: "بستانکار" },
+  { ...inlineDebit },
 ];
 
 export const reviewCLColumns = [

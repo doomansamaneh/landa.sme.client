@@ -28,14 +28,6 @@
       <is-active :is-active="item.isActive" />
     </template>
 
-    <template
-      v-for="(slot, name) in $slots"
-      :key="slot"
-      #[name]="{ item }"
-    >
-      <slot :name="name" :item="item"></slot>
-    </template>
-
     <template #cell-actions="{ item }">
       <row-tool-bar
         :base-route="baseRoute"
@@ -43,6 +35,14 @@
         :table-store="tableStore"
         :crud-store="crudStore"
       />
+    </template>
+
+    <template
+      v-for="(slot, name) in $slots"
+      :key="slot"
+      #[name]="{ item }"
+    >
+      <slot :name="name" :item="item"></slot>
     </template>
   </data-grid>
 </template>

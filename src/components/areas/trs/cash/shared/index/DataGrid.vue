@@ -11,16 +11,22 @@
     <template #cell-debitRemained="{ item }">
       {{ item.debitRemained?.toLocaleString() }}
     </template>
+
+    <template #expand="{ item }">
+      <preview :item="item" inside />
+    </template>
   </data-grid>
 </template>
 
 <script setup>
-import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-import { cashColumns } from "src/components/areas/trs/_composables/constants";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { cashColumns } from "src/components/areas/trs/_composables/constants";
 
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
-const gridStore = useBaseInfoGrid({
-  columns: cashColumns,
-  sortColumn: "title",
-});
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import Preview from "../preview/IndexView.vue";
+
+  const gridStore = useBaseInfoGrid({
+    columns: cashColumns,
+    sortColumn: "title",
+  });
 </script>

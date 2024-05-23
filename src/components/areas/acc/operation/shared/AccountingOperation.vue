@@ -25,8 +25,7 @@
           <div
             class="text-body2 no-letter-spacing line-height-xs q-mt-sm"
           >
-            این یک متن تستی است و نباید بیش از 3 خط باشد زیرا باعث عدم
-            تعادل در طراحی خواهد شد.
+            {{ $t("shared.labels.openBookMessage") }}
           </div>
         </q-card-section>
       </q-card>
@@ -55,8 +54,7 @@
           <div
             class="text-body2 no-letter-spacing line-height-xs q-mt-sm"
           >
-            این یک متن تستی است و نباید بیش از 3 خط باشد زیرا باعث عدم
-            تعادل در طراحی خواهد شد.
+            {{ $t("shared.labels.reorderMessage") }}
           </div>
         </q-card-section>
       </q-card>
@@ -85,8 +83,7 @@
           <div
             class="text-body2 no-letter-spacing line-height-xs q-mt-sm"
           >
-            این یک متن تستی است و نباید بیش از 3 خط باشد زیرا باعث عدم
-            تعادل در طراحی خواهد شد.
+            {{ $t("shared.labels.calculateCogsMessage") }}
           </div>
         </q-card-section>
       </q-card>
@@ -119,8 +116,7 @@
           <div
             class="text-body2 no-letter-spacing line-height-xs q-mt-sm"
           >
-            این یک متن تستی است و نباید بیش از 3 خط باشد زیرا باعث عدم
-            تعادل در طراحی خواهد شد.
+            {{ $t("shared.labels.closeAccountMessage") }}
           </div>
         </q-card-section>
       </q-card>
@@ -151,8 +147,7 @@
           <div
             class="text-body2 no-letter-spacing line-height-xs q-mt-sm"
           >
-            این یک متن تستی است و نباید بیش از 3 خط باشد زیرا باعث عدم
-            تعادل در طراحی خواهد شد.
+            {{ $t("shared.labels.closeBookMessage") }}
           </div>
         </q-card-section>
       </q-card>
@@ -181,17 +176,14 @@
           <div
             class="text-body2 no-letter-spacing line-height-xs q-mt-sm"
           >
-            این یک متن تستی است و نباید بیش از 3 خط باشد زیرا باعث عدم
-            تعادل در طراحی خواهد شد.
+            {{ $t("shared.labels.deleteClosingBookMessage") }}
           </div>
         </q-card-section>
       </q-card>
     </div>
 
-    <div class="col-md col-sm-6 col-xs-12">
-    </div>
-    <div class="col-md col-sm-6 col-xs-12">
-    </div>
+    <div class="col-md col-sm-6 col-xs-12"></div>
+    <div class="col-md col-sm-6 col-xs-12"></div>
   </div>
 </template>
 <script setup>

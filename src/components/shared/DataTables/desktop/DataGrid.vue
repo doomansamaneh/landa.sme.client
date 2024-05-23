@@ -245,7 +245,7 @@
             <th
               v-for="col in tableStore?.columns.value"
               :key="col.name"
-              :style="col.style && `font-size: ${thFontSize}px`"
+              :style="`${col.style}; font-size: ${thFontSize}px`"
               :class="tableStore.getSortableClass(col)"
               @click="tableStore.sortColumn(col)"
             >
@@ -271,7 +271,11 @@
               <q-icon
                 :color="$q.dark.isActive ? 'white' : 'grey-6'"
                 size="32px"
-                :style="dense ? 'margin-right: 16px;' : 'margin-right: 32px;'"
+                :style="
+                  dense
+                    ? 'margin-right: 16px;'
+                    : 'margin-right: 32px;'
+                "
                 name="o_search"
               />
             </th>
