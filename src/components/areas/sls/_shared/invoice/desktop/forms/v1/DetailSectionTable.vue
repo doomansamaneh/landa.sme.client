@@ -1,18 +1,27 @@
 <template>
-  <q-markup-table class="q-pa-md" bordered flat dense separator="horizontal">
+  <q-markup-table
+    class="q-pa-md-"
+    bordered
+    flat
+    dense
+    separator="horizontal"
+  >
     <thead>
       <tr>
         <th colspan="100%">
           <div class="row items-center">
             <div class="col-md-5">
               <q-input
+                class="q-pa-md"
                 inputmode="search"
                 input-class="text-body2 no-letter-spacing"
                 outlined
                 dense
                 rounded
                 v-model="productCode"
-                :placeholder="$t('shared.labels.addItemByProductCode')"
+                :placeholder="
+                  $t('shared.labels.addItemByProductCode')
+                "
                 clearable
                 clear-icon="o_clear"
                 @keydown.enter="addByCode"
@@ -62,7 +71,8 @@
               :offset="[50, 10]"
             >
               <span class="text-body2">
-                مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش افزوده
+                مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش
+                افزوده
               </span>
             </q-tooltip>
           </q-icon>
@@ -89,7 +99,10 @@
           />
         </td>
         <td>
-          <custom-input-number v-model="row.quantity" placeholder="مقدار" />
+          <custom-input-number
+            v-model="row.quantity"
+            placeholder="مقدار"
+          />
         </td>
         <td>
           <product-unit-lookup
@@ -99,10 +112,16 @@
           />
         </td>
         <td>
-          <custom-input-number v-model="row.price" placeholder="مبلغ واحد" />
+          <custom-input-number
+            v-model="row.price"
+            placeholder="مبلغ واحد"
+          />
         </td>
         <td>
-          <custom-input-number v-model="row.discount" placeholder="تخفیف" />
+          <custom-input-number
+            v-model="row.discount"
+            placeholder="تخفیف"
+          />
         </td>
         <td>
           <vat-lookup
@@ -122,7 +141,10 @@
         <td>
           <q-field outlined dense disable>
             <template v-slot:control>
-              <div class="self-center full-width no-outline" tabindex="0">
+              <div
+                class="self-center full-width no-outline"
+                tabindex="0"
+              >
                 {{ row.totalPrice?.toLocaleString() }}
               </div>
             </template>
@@ -162,14 +184,18 @@
             >
               <q-card class="bordered">
                 <q-card-section class="q-pb-none">
-                  <div class="text-h6 text-weight-700 no-letter-spacing">اطلاعات تکمیلی</div>
+                  <div
+                    class="text-h6 text-weight-700 no-letter-spacing"
+                  >
+                    اطلاعات تکمیلی
+                  </div>
                   {{ row.productTitle }}
                 </q-card-section>
                 <q-card-section>
                   <div class="">
-                    <q-item-label caption class="q-mb-sm"
-                      >شرح ردیف</q-item-label
-                    >
+                    <q-item-label caption class="q-mb-sm">
+                      شرح ردیف
+                    </q-item-label>
                     <custom-input
                       hide-bottom-space
                       v-model="row.comment"
@@ -177,9 +203,9 @@
                     />
                   </div>
                   <div class="q-mt-md">
-                    <q-item-label caption class="q-mb-sm"
-                      >شرح تخفیف</q-item-label
-                    >
+                    <q-item-label caption class="q-mb-sm">
+                      شرح تخفیف
+                    </q-item-label>
                     <custom-input
                       hide-bottom-space
                       v-model="row.discountComment"
@@ -216,71 +242,87 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { sqlOperator, vatType, invoiceFormType } from "src/constants";
+  import { ref } from "vue";
+  import {
+    sqlOperator,
+    vatType,
+    invoiceFormType,
+  } from "src/constants";
 
-import FooterSection from "./FooterSection.vue";
-import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
-import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
-import VatLookup from "src/components/shared/lookups/VatLookup.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
-import NoProductSelected from "../NoProductSelected.vue";
+  import FooterSection from "./FooterSection.vue";
+  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
+  import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+  import VatLookup from "src/components/shared/lookups/VatLookup.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import NoProductSelected from "../NoProductSelected.vue";
 
-const props = defineProps({
-  formStore: Object,
-  formType: Object,
-});
+  const props = defineProps({
+    formStore: Object,
+    formType: Object,
+  });
 
-const productCode = ref("");
+  const productCode = ref("");
 
-const productFilter =
-  props.formType == invoiceFormType.sales
-    ? [{ fieldName: "isForSale", operator: sqlOperator.equal, value: "1" }]
-    : [{ fieldName: "isForPurchase", operator: sqlOperator.equal, value: "1" }];
+  const productFilter =
+    props.formType == invoiceFormType.sales
+      ? [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.equal,
+            value: "1",
+          },
+        ]
+      : [
+          {
+            fieldName: "isForPurchase",
+            operator: sqlOperator.equal,
+            value: "1",
+          },
+        ];
 
-const vatFilter =
-  props.formType == invoiceFormType.sales
-    ? [
-        {
-          fieldName: "isForSale",
-          operator: sqlOperator.in,
-          value: `${vatType.sale},${vatType.purchaseAndSale}`,
-        },
-      ]
-    : [
-        {
-          fieldName: "isForSale",
-          operator: sqlOperator.in,
-          value: `${vatType.purchase},${vatType.purchaseAndSale}`,
-        },
-      ];
+  const vatFilter =
+    props.formType == invoiceFormType.sales
+      ? [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.in,
+            value: `${vatType.sale},${vatType.purchaseAndSale}`,
+          },
+        ]
+      : [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.in,
+            value: `${vatType.purchase},${vatType.purchaseAndSale}`,
+          },
+        ];
 
-const vatChanged = (vat, row) => {
-  row.vatPercent = vat?.rate ?? 0;
-};
+  const vatChanged = (vat, row) => {
+    row.vatPercent = vat?.rate ?? 0;
+  };
 
-const productChanged = (product, row) => {
-  row.price = product?.price ?? 0;
-  row.productUnitId = product?.productUnitId ?? null;
-  row.productUnitTitle = product?.productUnitTitle ?? null;
-};
+  const productChanged = (product, row) => {
+    row.price = product?.price ?? 0;
+    row.productUnitId = product?.productUnitId ?? null;
+    row.productUnitTitle = product?.productUnitTitle ?? null;
+  };
 
-const addByCode = () => {
-  props.formStore.addNewRowByCode(productCode.value);
-};
+  const addByCode = () => {
+    props.formStore.addNewRowByCode(productCode.value);
+  };
 </script>
 <style scoped>
-td,
-th {
-  padding: 8px 2px !important;
-}
+  td,
+  th {
+    padding: 8px 2px !important;
+  }
 
-.q-markup-table.padding-table {
-  padding: 24px !important;
-}
+  .q-markup-table.padding-table {
+    padding: 24px !important;
+  }
 
-.q-markup-table th {
-  font-size: 14px !important;
-}
+  .q-markup-table th {
+    font-size: 14px !important;
+  }
 </style>
