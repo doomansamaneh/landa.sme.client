@@ -7,6 +7,10 @@ export const invoiceModel = {
   invoiceItems: [],
 };
 
+export const invoiceReorderModel = {
+  no: 1,
+};
+
 export const invoiceBatchModel = {
   invoiceType: {
     fieldName: "TypeId",

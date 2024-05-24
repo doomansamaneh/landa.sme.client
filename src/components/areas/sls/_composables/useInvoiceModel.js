@@ -13,7 +13,7 @@ export function useInvoiceModel(config) {
   const router = useRouter();
   const itemStore = useInvoiceItemModel();
 
-  const model = ref(invoiceModel);
+  const model = config?.model ?? ref(invoiceModel);
 
   const crudStore = useFormActions(config.baseRoute, model);
 
@@ -39,6 +39,11 @@ export function useInvoiceModel(config) {
 
   function setInvoiceItems() {
     if (!model.value.invoiceItems) model.value.invoiceItems = [];
+  }
+
+  async function reorder(callBack) {
+    await crudStore.customPostAction("reorder", model.value);
+    if (callBack) callBack();
   }
 
   function addWatch() {
@@ -190,6 +195,7 @@ export function useInvoiceModel(config) {
     totalNetPrice,
 
     getById,
+    reorder,
     addNewRow,
     addNewRowByCode,
     pushNewRow,

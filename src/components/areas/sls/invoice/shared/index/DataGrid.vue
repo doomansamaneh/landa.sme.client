@@ -70,7 +70,7 @@
       </template>
 
       <template #buttons-custom="{ row }">
-        <q-item clickable v-close-popup tabindex="0">
+        <q-item clickable v-close-popup tabindex="0" @click="reorder">
           <q-item-section avatar class="q-py-sm">
             <q-avatar class="bg-on-dark" size="sm">
               <q-icon name="o_cached" size="20px" />
@@ -99,7 +99,12 @@
         </q-item>
 
         <template v-if="row">
-          <q-item clickable v-close-popup tabindex="0">
+          <q-item
+            clickable
+            v-close-popup
+            tabindex="0"
+            :to="`/sls/purchase/copy/${row.id}`"
+          >
             <q-item-section avatar class="q-py-sm">
               <q-avatar class="bg-on-dark" size="sm">
                 <q-icon name="o_shopping_cart" size="20px" />
@@ -181,6 +186,7 @@
   import Mobile from "src/components/areas/sls/invoice/mobile/index/DataGrid.vue";
 
   import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
+  import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderDialog.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -215,6 +221,14 @@
       componentProps: {
         selectedIds: selectedIds?.value,
       },
+    }).onOk(async () => {
+      await reloadData();
+    });
+  }
+
+  function reorder() {
+    $q.dialog({
+      component: ReorderInvoice,
     }).onOk(async () => {
       await reloadData();
     });

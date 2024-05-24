@@ -53,6 +53,15 @@ export function useFormActions(baseURL, model) {
     return response.data;
   }
 
+  async function customPostAction(actionUrl, actionModel) {
+    const response = await fetchWrapper.post(
+      `${baseURL}/${actionUrl}`,
+      actionModel
+    );
+    notifyResponse(response.data);
+    return response.data;
+  }
+
   async function resetIsDirty() {
     await helper.sleep(0);
     isDirty.value = false;
@@ -209,6 +218,7 @@ export function useFormActions(baseURL, model) {
     deleteBatch,
     activate,
     deactivate,
+    customPostAction,
     submitForm,
   };
 }

@@ -55,7 +55,11 @@
       </div>
       <div class="q-gutter-x-sm">
         <q-badge>{{ item.typeTitle }}</q-badge>
-        <q-badge :text-color="$q.dark.isActive ? 'black' : 'white'" :color="$q.dark.isActive ? 'grey-5' : 'grey-8'" v-if="item.contractTitle">
+        <q-badge
+          :text-color="$q.dark.isActive ? 'black' : 'white'"
+          :color="$q.dark.isActive ? 'grey-5' : 'grey-8'"
+          v-if="item.contractTitle"
+        >
           {{ item.contractTitle }}
           <q-tooltip
             class="custom-tooltip text-body1 no-letter-spacing"
