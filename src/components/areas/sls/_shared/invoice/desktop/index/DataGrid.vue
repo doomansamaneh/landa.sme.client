@@ -10,6 +10,7 @@
     dense
     wrapCells
     expandable
+    toolbar
     @row-dbl-click="gotoPreview"
   >
     <template #filter-statusTitle="{ col }">

@@ -6,6 +6,12 @@ import {
 } from "src/constants/enums";
 import { fetchWrapper, helper, bus } from "src/helpers";
 
+const inFullscreen = ref(false);
+const separator = ref("horizontal");
+const dense = ref(true);
+const thFontSize = ref(12);
+const tdFontSize = ref(13);
+
 export function useDataTable({ dataSource, dataColumns, store }) {
   const localState = {
     firstLoad: ref(false),
@@ -57,6 +63,24 @@ export function useDataTable({ dataSource, dataColumns, store }) {
       return true;
     return "";
   });
+
+  const toggleFullscreen = () => {
+    inFullscreen.value = !inFullscreen.value;
+  };
+
+  const toggleDense = () => {
+    dense.value = !dense.value;
+  };
+
+  const toggleFontSize = () => {
+    thFontSize.value = thFontSize.value === 12 ? 13 : 12;
+    tdFontSize.value = tdFontSize.value === 13 ? 14 : 13;
+  };
+
+  const toggleSeparator = () => {
+    separator.value =
+      separator.value === "horizontal" ? "none" : "horizontal";
+  };
 
   function rowIndex(index) {
     return (
@@ -287,6 +311,16 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     rowIndex,
     pagination,
     checkedAll,
+
+    inFullscreen,
+    separator,
+    dense,
+    thFontSize,
+    tdFontSize,
+    toggleFullscreen,
+    toggleDense,
+    toggleFontSize,
+    toggleSeparator,
 
     selectAll,
     setFilterExpression,
