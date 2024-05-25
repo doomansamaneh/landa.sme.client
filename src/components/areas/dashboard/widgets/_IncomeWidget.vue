@@ -5,11 +5,10 @@
         <q-item-section avatar>
           <q-avatar
             rounded
-            color="primary"
             text-color="white"
             icon="o_balance"
             size="md"
-            class="primary-shadow"
+            class="primary-gradient primary-shadow"
           />
         </q-item-section>
         <q-item-section class="q-pl-xs">

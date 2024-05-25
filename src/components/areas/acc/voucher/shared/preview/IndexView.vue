@@ -9,7 +9,7 @@
     <template #buttons>
       <q-btn
         :to="`/acc/voucher/edit/${id}`"
-        class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
         unelevated

@@ -61,7 +61,9 @@
                 square
                 class="border-radius-sm"
                 :style="{
-                  backgroundColor: helper.generateDarkAvatarColor(row.name),
+                  backgroundColor: helper.generateDarkAvatarColor(
+                    row.name
+                  ),
                 }"
                 v-else
               >
@@ -84,11 +86,19 @@
                 class="ellipsis q-mt-xs"
                 style="width: 200px"
               >
-                <q-icon name="o_location_on" size="13px" color="primary" />
+                <q-icon
+                  name="o_location_on"
+                  size="13px"
+                  color="primary"
+                />
                 {{ row.locationName }} {{ row.address }}
               </q-item-label>
               <div class="row items-center">
-                <q-item-label caption class="flex rtl" v-if="row.phoneNo">
+                <q-item-label
+                  caption
+                  class="flex rtl"
+                  v-if="row.phoneNo"
+                >
                   {{ helper.separatePhoneNumbers(row.phoneNo) }}
                   <q-icon
                     name="o_phone"
@@ -130,7 +140,7 @@
             rounded
             unelevated
             @click="gotoNext"
-            class="full-width primary-shadow q-ma-lg bg-primary text-white"
+            class="full-width primary-shadow q-ma-lg primary-gradient text-white"
           >
             <span class="text-body3">بارگزاری بیشتر</span>
           </q-btn>
@@ -141,66 +151,66 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { helper } from "src/helpers";
-import { useDataTable } from "src/composables/useDataTable";
-import { customerColumns } from "src/components/areas/crm/_composables/constants";
-import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { ref, computed, onMounted } from "vue";
+  import { helper } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { customerColumns } from "src/components/areas/crm/_composables/constants";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
-import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
+  import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-const customerStore = useBaseInfoGrid({
-  columns: customerColumns,
-  sortColumn: "name",
-});
+  const customerStore = useBaseInfoGrid({
+    columns: customerColumns,
+    sortColumn: "name",
+  });
 
-const tableStore = useDataTable({
-  dataSource: "crm/customer/getLookupData",
-  dataColumns: customerStore.columns,
-  store: customerStore
-});
+  const tableStore = useDataTable({
+    dataSource: "crm/customer/getLookupData",
+    dataColumns: customerStore.columns,
+    store: customerStore,
+  });
 
-async function gotoNext() {
-  if (hasMoreData.value) {
-    tableStore.pagination.value.currentPage += 1;
-    await reloadData();
+  async function gotoNext() {
+    if (hasMoreData.value) {
+      tableStore.pagination.value.currentPage += 1;
+      await reloadData();
+    }
   }
-}
 
-async function reloadData() {
-  await tableStore.reloadData();
-  customerStore.rows.value = [
-    ...customerStore.rows.value,
-    ...tableStore.rows.value,
-  ];
-}
+  async function reloadData() {
+    await tableStore.reloadData();
+    customerStore.rows.value = [
+      ...customerStore.rows.value,
+      ...tableStore.rows.value,
+    ];
+  }
 
-async function loadData() {
-  tableStore.pagination.value.currentPage = 1;
-  await tableStore.reloadData();
-  customerStore.rows.value = tableStore.rows.value;
-}
+  async function loadData() {
+    tableStore.pagination.value.currentPage = 1;
+    await tableStore.reloadData();
+    customerStore.rows.value = tableStore.rows.value;
+  }
 
-const hasMoreData = computed(() => {
-  return (
-    tableStore.pagination.value.currentPage <
-    tableStore.pagination.value.totalPages
-  );
-});
+  const hasMoreData = computed(() => {
+    return (
+      tableStore.pagination.value.currentPage <
+      tableStore.pagination.value.totalPages
+    );
+  });
 
-onMounted(() => {
-  loadData();
-});
+  onMounted(() => {
+    loadData();
+  });
 </script>
 
 <style>
-.header {
-  position: sticky;
-  top: 0;
-}
+  .header {
+    position: sticky;
+    top: 0;
+  }
 
-.footer {
-  position: sticky;
-  bottom: 0;
-}
+  .footer {
+    position: sticky;
+    bottom: 0;
+  }
 </style>

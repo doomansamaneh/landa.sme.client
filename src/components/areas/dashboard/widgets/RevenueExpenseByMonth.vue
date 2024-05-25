@@ -5,17 +5,17 @@
         <div class="col-11">
           <q-item class="no-padding">
             <q-item-section avatar>
-              <q-avatar v-if="saleIncome" rounded color="blue" text-color="white" icon="o_shopping_basket" size="md"
-                class="blue-shadow" />
+              <q-avatar v-if="saleIncome" rounded text-color="white" icon="o_shopping_basket" size="md"
+                class="primary-gradient blue-shadow" />
 
-              <q-avatar v-if="saleIncomeTable" rounded color="blue" text-color="white" icon="o_table_chart" size="md"
-                class="blue-shadow" />
+              <q-avatar v-if="saleIncomeTable" rounded text-color="white" icon="o_table_chart" size="md"
+                class="primary-gradient blue-shadow" />
 
-              <q-avatar v-if="salePerProduct || salePerProductGroup || salePerCustomer" rounded color="green"
-                text-color="white" icon="o_sell" size="md" class="green-shadow" />
+              <q-avatar v-if="salePerProduct || salePerProductGroup || salePerCustomer" rounded
+                text-color="white" icon="o_sell" size="md" class="green-gradient green-shadow" />
 
-              <q-avatar v-if="cost || costDetail" rounded color="red" text-color="white" icon="o_paid" size="md"
-                class="orange-shadow" />
+              <q-avatar v-if="cost || costDetail" rounded text-color="white" icon="o_paid" size="md"
+                class="orange-gradient orange-shadow" />
             </q-item-section>
 
             <q-item-section class="q-pl-xs">

@@ -10,7 +10,7 @@
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn
-              class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
+              class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
               padding="6px 12px"
               rounded
               no-caps

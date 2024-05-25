@@ -8,16 +8,19 @@
         :label="tableStore?.pagination.value.totalItems"
         class="q-mr-sm bg-dark text-on-dark text-body2"
       />
-      <span class="no-letter-spacing" :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
-        >ایجاد فاکتور فروش</span
+      <span
+        class="no-letter-spacing"
+        :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
       >
+        ایجاد فاکتور فروش
+      </span>
       <q-btn padding="6px 12px" flat @click="$router.go(-1)">
         <q-icon name="arrow_back" size="sm" />
       </q-btn>
     </template>
     <template #buttons>
       <q-btn
-        class="bg-primary text-white text-body2"
+        class="primary-gradient text-white text-body2"
         padding="6px 12px"
         rounded
         no-caps
@@ -25,7 +28,11 @@
       >
         {{ $t("shared.labels.save") }}
       </q-btn>
-      <q-btn class="bordered-btn_bg-dark text-body2" rounded unelevated>
+      <q-btn
+        class="bordered-btn_bg-dark text-body2"
+        rounded
+        unelevated
+      >
         {{ $t("shared.labels.more") }}
 
         <q-menu fit :offset="[0, 10]">
@@ -33,9 +40,9 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_refresh" size="14px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm">
+                    <q-icon name="o_refresh" size="14px" />
+                  </q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -46,9 +53,9 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_close" size="14px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm">
+                    <q-icon name="o_close" size="14px" />
+                  </q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -58,9 +65,9 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_check" size="14px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm">
+                    <q-icon name="o_check" size="14px" />
+                  </q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -71,9 +78,9 @@
             <q-item clickable v-close-popup tabindex="0">
               <div class="q-py-sm">
                 <q-item-section avatar>
-                  <q-avatar class="bg-on-dark" size="sm"
-                    ><q-icon name="o_download" size="16px"
-                  /></q-avatar>
+                  <q-avatar class="bg-on-dark" size="sm">
+                    <q-icon name="o_download" size="16px" />
+                  </q-avatar>
                 </q-item-section>
               </div>
               <q-item-section>
@@ -121,14 +128,20 @@
               class="no-padding border-radius-xs text-on-dark"
               @click="createInvoice.incrementQuantity(product)"
             >
-              <template v-if="createInvoice.getProductQuantity(product.id) > 0">
+              <template
+                v-if="
+                  createInvoice.getProductQuantity(product.id) > 0
+                "
+              >
                 <q-btn
                   unelevated
                   round
                   size="sm"
                   color="secondary"
                   class="z-max text-bold q-ma-sm absolute-top-left"
-                  @click.stop="createInvoice.incrementQuantity(product)"
+                  @click.stop="
+                    createInvoice.incrementQuantity(product)
+                  "
                 >
                   <div class="text-body1">
                     {{ createInvoice.getProductQuantity(product.id) }}
@@ -172,17 +185,21 @@
                 </q-avatar>
               </div>
               <q-item-section class="q-pl-md">
-                <q-item-label class="text-caption">{{
-                  product.title
-                }}</q-item-label>
-                <q-item-label class="text-caption-sm"
-                  ><span class="text-caption-sm text-bold">موجودی: </span
-                  >{{ product.stock }}</q-item-label
-                >
-                <q-item-label class="text-caption-sm"
-                  ><span class="text-caption-sm text-bold">قیمت فروش: </span
-                  >{{ product.price.toLocaleString() }}</q-item-label
-                >
+                <q-item-label class="text-caption">
+                  {{ product.title }}
+                </q-item-label>
+                <q-item-label class="text-caption-sm">
+                  <span class="text-caption-sm text-bold">
+                    موجودی:
+                  </span>
+                  {{ product.stock }}
+                </q-item-label>
+                <q-item-label class="text-caption-sm">
+                  <span class="text-caption-sm text-bold">
+                    قیمت فروش:
+                  </span>
+                  {{ product.price.toLocaleString() }}
+                </q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -193,38 +210,38 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { helper } from "src/helpers";
-import { fetchWrapper } from "src/helpers";
-import ToolBar from "src/components/shared/ToolBar.vue";
-import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice";
+  import { ref, computed, onMounted } from "vue";
+  import { helper } from "src/helpers";
+  import { fetchWrapper } from "src/helpers";
+  import ToolBar from "src/components/shared/ToolBar.vue";
+  import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice";
 
-const createInvoice = useCreateInvoice();
-const tab = ref("my-products");
-const products = ref([]);
+  const createInvoice = useCreateInvoice();
+  const tab = ref("my-products");
+  const products = ref([]);
 
-function getProducts() {
-  fetchWrapper
-    .post("cmn/product/getlookupData", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      handleResponse(response.data.data.items);
-    });
-}
+  function getProducts() {
+    fetchWrapper
+      .post("cmn/product/getlookupData", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        handleResponse(response.data.data.items);
+      });
+  }
 
-function handleResponse(data) {
-  console.log(data);
-  products.value = data;
-}
+  function handleResponse(data) {
+    console.log(data);
+    products.value = data;
+  }
 
-const pulseProduct = computed(() =>
-  createInvoice.rows.value.length < 1 ? "pulse" : ""
-);
+  const pulseProduct = computed(() =>
+    createInvoice.rows.value.length < 1 ? "pulse" : ""
+  );
 
-onMounted(() => {
-  getProducts(), createInvoice;
-});
+  onMounted(() => {
+    getProducts(), createInvoice;
+  });
 </script>

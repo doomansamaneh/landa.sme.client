@@ -133,7 +133,7 @@
 
   const activeYearStyle = (year) => {
     if (fiscalYearStore.currentYear.value?.id === year.id) {
-      return "bg-primary text-white";
+      return "primary-gradient text-white";
     }
     return "";
   };

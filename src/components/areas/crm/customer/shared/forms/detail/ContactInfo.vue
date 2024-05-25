@@ -5,20 +5,22 @@
       unelevated
       rounded
       padding="6px 12px"
-      class="bg-primary text-white text-on-dark"
-      ><q-icon
+      class="primary-gradient text-white text-on-dark"
+    >
+      <q-icon
         name="o_add"
         size="xs"
         class="q-mr-xs text-body2 no-letter-spacing"
-      />افزودن فیلد جدید
+      />
+      افزودن فیلد جدید
       <q-menu class="border-radius-lg" :offset="[0, 20]" fit>
         <q-list dense padding>
           <q-item clickable v-close-popup tabindex="0">
             <div class="q-py-sm">
               <q-item-section avatar>
-                <q-avatar class="bg-on-dark" size="sm"
-                  ><q-icon name="o_call" size="16px"
-                /></q-avatar>
+                <q-avatar class="bg-on-dark" size="sm">
+                  <q-icon name="o_call" size="16px" />
+                </q-avatar>
               </q-item-section>
             </div>
             <q-item-section>
@@ -28,9 +30,9 @@
           <q-item clickable v-close-popup tabindex="0">
             <div class="q-py-sm">
               <q-item-section avatar>
-                <q-avatar class="bg-on-dark" size="sm"
-                  ><q-icon name="o_phone_android" size="16px"
-                /></q-avatar>
+                <q-avatar class="bg-on-dark" size="sm">
+                  <q-icon name="o_phone_android" size="16px" />
+                </q-avatar>
               </q-item-section>
             </div>
             <q-item-section>
@@ -40,9 +42,9 @@
           <q-item clickable v-close-popup tabindex="0">
             <div class="q-py-sm">
               <q-item-section avatar>
-                <q-avatar class="bg-on-dark" size="sm"
-                  ><q-icon name="o_mail" size="16px"
-                /></q-avatar>
+                <q-avatar class="bg-on-dark" size="sm">
+                  <q-icon name="o_mail" size="16px" />
+                </q-avatar>
               </q-item-section>
             </div>
             <q-item-section>
@@ -52,9 +54,9 @@
           <q-item clickable v-close-popup tabindex="0">
             <div class="q-py-sm">
               <q-item-section avatar>
-                <q-avatar class="bg-on-dark" size="sm"
-                  ><q-icon name="o_public" size="16px"
-                /></q-avatar>
+                <q-avatar class="bg-on-dark" size="sm">
+                  <q-icon name="o_public" size="16px" />
+                </q-avatar>
               </q-item-section>
             </div>
             <q-item-section>
@@ -70,16 +72,27 @@
         <div class="col">
           <q-item-label
             class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-            >تلفن</q-item-label
           >
+            تلفن
+          </q-item-label>
           <custom-input outlined dense />
         </div>
         <div class="col row items-end justify-end">
           <div class="row items-end">
-            <q-btn unelevated round class="text-on-dark" @click="editRow">
+            <q-btn
+              unelevated
+              round
+              class="text-on-dark"
+              @click="editRow"
+            >
               <q-icon name="o_edit" size="20px" />
             </q-btn>
-            <q-btn unelevated @click="deleteRow" round class="text-on-dark">
+            <q-btn
+              unelevated
+              @click="deleteRow"
+              round
+              class="text-on-dark"
+            >
               <q-icon name="o_delete" size="20px" />
             </q-btn>
           </div>
@@ -93,8 +106,9 @@
       <div class="col-md col-sm col-xs-12">
         <q-item-label
           class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >نوع تماس</q-item-label
         >
+          نوع تماس
+        </q-item-label>
         <q-select
           dropdown-icon="o_expand_more"
           v-model="select"
@@ -107,16 +121,19 @@
       <div class="col-md col-sm col-xs-12">
         <q-item-label
           class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >مقدار</q-item-label
         >
+          مقدار
+        </q-item-label>
         <custom-input outlined dense />
       </div>
     </div>
 
     <div class="q-mt-md">
-      <q-item-label class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-        >شرح</q-item-label
+      <q-item-label
+        class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
       >
+        شرح
+      </q-item-label>
       <q-input type="textarea" outlined dense />
     </div>
 
@@ -152,17 +169,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+  import { ref } from "vue";
 
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import Actions from "src/components/shared/forms/FormCardActions.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import Actions from "src/components/shared/forms/FormCardActions.vue";
 
-const edit = ref(false);
-const main = ref(false);
-const select = ref("تلفن منزل");
-const options = ["تلغن منزل", "تلغن داخلی", "تلغن محل کار", "فکس"];
+  const edit = ref(false);
+  const main = ref(false);
+  const select = ref("تلفن منزل");
+  const options = ["تلغن منزل", "تلغن داخلی", "تلغن محل کار", "فکس"];
 
-const editRow = () => {
-  edit.value = true;
-};
+  const editRow = () => {
+    edit.value = true;
+  };
 </script>

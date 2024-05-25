@@ -4,8 +4,8 @@
       <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar round color="blue-grey" text-color="white" icon="o_attach_money" size="xl"
-              class="bluegrey-shadow" />
+            <q-avatar round text-color="white" icon="o_attach_money" size="xl"
+              class="bluegrey-gradient bluegrey-shadow" />
             <div class="row items-center justify-end">
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">
@@ -69,7 +69,7 @@
       <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar round color="blue" text-color="white" icon="o_group_remove" size="xl" class="blue-shadow" />
+            <q-avatar round text-color="white" icon="o_group_remove" size="xl" class="primary-gradient blue-shadow" />
             <div class="row items-center justify-end">
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">
@@ -135,7 +135,7 @@
       <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar round color="green" text-color="white" icon="o_exposure_plus_2" size="xl" class="green-shadow" />
+            <q-avatar round text-color="white" icon="o_exposure_plus_2" size="xl" class="green-gradient green-shadow" />
             <div class="row items-center justify-end">
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">
@@ -198,7 +198,7 @@
       <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar round color="pink" text-color="white" icon="o_hourglass_empty" size="xl" class="pink-shadow" />
+            <q-avatar round text-color="white" icon="o_hourglass_empty" size="xl" class="pink-gradient pink-shadow" />
             <div class="row items-center justify-end">
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">

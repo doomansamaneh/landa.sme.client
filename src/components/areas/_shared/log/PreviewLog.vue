@@ -60,7 +60,7 @@
                       padding="4px 12px"
                       flat
                       rounded
-                      class="bg-primary text-white text-body3"
+                      class="primary-gradient text-white text-body3"
                     >
                       <q-icon
                         name="o_comment"

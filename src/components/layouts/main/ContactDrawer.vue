@@ -162,7 +162,7 @@
           rounded
           unelevated
           @click="gotoNext"
-          class="primary-shadow q-ma-lg bg-primary text-white"
+          class="primary-shadow q-ma-lg primary-gradient text-white"
         >
           <span class="text-body3">
             {{ $t("shared.labels.loadMore") }} ...

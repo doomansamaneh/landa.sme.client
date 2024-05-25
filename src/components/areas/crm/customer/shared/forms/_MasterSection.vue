@@ -6,7 +6,10 @@
     <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="row justify-center items-center">
         <q-avatar size="200px" class="q-my-md">
-          <img class="avatar" src="https://cdn.quasar.dev/img/avatar4.jpg" />
+          <img
+            class="avatar"
+            src="https://cdn.quasar.dev/img/avatar4.jpg"
+          />
         </q-avatar>
       </div>
       <div class="column items-center q-gutter-y-sm q-mt-sm">
@@ -14,12 +17,18 @@
           style="width: 150px"
           rounded
           flat
-          class="primary-shadow bg-primary text-body2 text-white"
-          >آپلود تصویر جدید</q-btn
+          class="primary-shadow primary-gradient text-body2 text-white"
         >
-        <q-btn style="width: 150px" rounded flat class="text-body2 text-on-dark"
-          >حذف</q-btn
+          آپلود تصویر جدید
+        </q-btn>
+        <q-btn
+          style="width: 150px"
+          rounded
+          flat
+          class="text-body2 text-on-dark"
         >
+          حذف
+        </q-btn>
       </div>
     </div>
     <div class="col-md col-sm col-xs-12">
@@ -42,7 +51,9 @@
           </q-item-label>
           <q-option-group
             inline
-            :options="helper.getEnumOptions(customerType, 'customerType')"
+            :options="
+              helper.getEnumOptions(customerType, 'customerType')
+            "
             type="radio"
             v-model="model.value.typeId"
           />
@@ -59,22 +70,25 @@
           <div class="col-md col-sm col-xs-12">
             <q-item-label
               class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-              >نام
+            >
+              نام
             </q-item-label>
             <custom-input v-model="model.value.person.name" />
           </div>
           <div class="col-md col-sm col-xs-12">
             <q-item-label
               class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-              >نام خانوادگی
+            >
+              نام خانوادگی
             </q-item-label>
             <custom-input v-model="model.value.person.lastName" />
           </div>
           <div class="col-md col-sm col-xs-12">
             <q-item-label
               class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-              >جنسیت</q-item-label
             >
+              جنسیت
+            </q-item-label>
             <div class="row q-pt-xs q-col-gutter-md">
               <q-option-group
                 inline
@@ -89,7 +103,8 @@
         <div>
           <q-item-label
             class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >واحد سازمانی
+          >
+            واحد سازمانی
           </q-item-label>
           <unit-lookup
             v-model:selectedId="model.value.unitId"
@@ -99,12 +114,15 @@
         <div>
           <q-item-label
             class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >نقش
+          >
+            نقش
           </q-item-label>
           <div class="q-gutter-sm q-pt-xs">
             <q-option-group
               inline
-              :options="helper.getEnumOptions(customerRole, 'customerRole')"
+              :options="
+                helper.getEnumOptions(customerRole, 'customerRole')
+              "
               type="checkbox"
               v-model="model.value.roleIdList"
             />
@@ -113,8 +131,9 @@
         <div>
           <q-item-label
             class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >شرح</q-item-label
           >
+            شرح
+          </q-item-label>
           <custom-input
             v-model="model.value.comment"
             type="textarea"
@@ -125,9 +144,12 @@
           <div class="col-md-4 col-sm-4 col-xs-6">
             <q-item-label
               class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-              >درصد بازاریابی</q-item-label
             >
-            <custom-input-number v-model="model.value.marketingPercent" />
+              درصد بازاریابی
+            </q-item-label>
+            <custom-input-number
+              v-model="model.value.marketingPercent"
+            />
           </div>
         </div>
         <div>
@@ -145,17 +167,17 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { helper } from "src/helpers";
-import { customerType, gender, customerRole } from "src/constants";
+  import { computed } from "vue";
+  import { helper } from "src/helpers";
+  import { customerType, gender, customerRole } from "src/constants";
 
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
-import UnitLookup from "src/components/shared/lookups/UnitLookup.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import UnitLookup from "src/components/shared/lookups/UnitLookup.vue";
 
-const props = defineProps({
-  formStore: Object,
-});
+  const props = defineProps({
+    formStore: Object,
+  });
 
-const model = computed(() => props.formStore.model);
+  const model = computed(() => props.formStore.model);
 </script>

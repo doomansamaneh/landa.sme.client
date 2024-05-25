@@ -1,6 +1,8 @@
 <template>
   <div class="row">
-    <q-card class="col-md-8 col-sm-12 col-xs-12 border-radius-lg bordered">
+    <q-card
+      class="col-md-8 col-sm-12 col-xs-12 border-radius-lg bordered"
+    >
       <q-list bordered>
         <q-expansion-item
           expand-separator
@@ -20,7 +22,7 @@
             <q-card-section>
               <q-btn
                 unelevated
-                class="bg-primary text-white full-width q-pa-md"
+                class="primary-gradient text-white full-width q-pa-md"
               >
                 <q-icon name="o_add" class="q-mr-xs" />
                 <span>افزودن آیتم جدید</span>
@@ -29,33 +31,37 @@
                     <q-item clickable v-close-popup tabindex="0">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm"
-                            ><q-icon name="o_call" size="16px"
-                          /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_call" size="16px" />
+                          </q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
-                        <div class="text-body2 no-letter-spacing">تلفن</div>
+                        <div class="text-body2 no-letter-spacing">
+                          تلفن
+                        </div>
                       </q-item-section>
                     </q-item>
                     <q-item clickable v-close-popup tabindex="0">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm"
-                            ><q-icon name="o_mail" size="16px"
-                          /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_mail" size="16px" />
+                          </q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
-                        <div class="text-body2 no-letter-spacing">ایمیل</div>
+                        <div class="text-body2 no-letter-spacing">
+                          ایمیل
+                        </div>
                       </q-item-section>
                     </q-item>
                     <q-item clickable v-close-popup tabindex="0">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm"
-                            ><q-icon name="o_share" size="16px"
-                          /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_share" size="16px" />
+                          </q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
@@ -67,32 +73,41 @@
                     <q-item clickable v-close-popup tabindex="0">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm"
-                            ><q-icon name="o_phone_android" size="16px"
-                          /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon
+                              name="o_phone_android"
+                              size="16px"
+                            />
+                          </q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
-                        <div class="text-body2 no-letter-spacing">موبایل</div>
+                        <div class="text-body2 no-letter-spacing">
+                          موبایل
+                        </div>
                       </q-item-section>
                     </q-item>
                     <q-item clickable v-close-popup tabindex="0">
                       <div class="q-py-sm">
                         <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm"
-                            ><q-icon name="o_public" size="16px"
-                          /></q-avatar>
+                          <q-avatar class="bg-on-dark" size="sm">
+                            <q-icon name="o_public" size="16px" />
+                          </q-avatar>
                         </q-item-section>
                       </div>
                       <q-item-section>
-                        <div class="text-body2 no-letter-spacing">وبسایت</div>
+                        <div class="text-body2 no-letter-spacing">
+                          وبسایت
+                        </div>
                       </q-item-section>
                     </q-item>
                   </q-list>
                 </q-menu>
               </q-btn>
               <div v-for="item in phoneItems" :key="item">
-                <div class="row bordered-1 q-pa-md q-my-md items-center">
+                <div
+                  class="row bordered-1 q-pa-md q-my-md items-center"
+                >
                   <div class="col">
                     <div class="text-caption">
                       <q-icon
@@ -107,9 +122,9 @@
                       >
                         {{ item.name }}:
                       </span>
-                      <span class="text-body2 no-letter-spacing">{{
-                        item.value
-                      }}</span>
+                      <span class="text-body2 no-letter-spacing">
+                        {{ item.value }}
+                      </span>
                     </div>
                   </div>
                   <div class="col-4 row justify-end items-center">
@@ -156,13 +171,15 @@
             <q-card-section>
               <q-btn
                 unelevated
-                class="bg-primary text-white full-width q-pa-md"
+                class="primary-gradient text-white full-width q-pa-md"
               >
                 <q-icon name="o_add" class="q-mr-xs" />
                 <span>افزودن آیتم جدید</span>
               </q-btn>
               <div v-for="item in addressItems" :key="item">
-                <div class="row bordered-1 q-pa-md q-my-md items-center">
+                <div
+                  class="row bordered-1 q-pa-md q-my-md items-center"
+                >
                   <div class="col">
                     <div class="text-body2 no-letter-spacing">
                       <q-icon
@@ -172,9 +189,9 @@
                         size="sm"
                         color="primary"
                       />
-                      <span class="text-weight-700 q-mr-sm">{{
-                        `${item.name}:`
-                      }}</span>
+                      <span class="text-weight-700 q-mr-sm">
+                        {{ `${item.name}:` }}
+                      </span>
                       <span>{{ item.value }}</span>
                     </div>
                   </div>
@@ -222,7 +239,7 @@
             <q-card-section>
               <q-btn
                 unelevated
-                class="bg-primary text-white full-width q-pa-md"
+                class="primary-gradient text-white full-width q-pa-md"
               >
                 <q-icon name="o_add" class="q-mr-xs" />
                 <span>افزودن آیتم جدید</span>
@@ -242,7 +259,9 @@
                         color="primary"
                         size="xs"
                       />
-                      <span class="text-bold q-ml-sm">{{ item.bankName }}</span>
+                      <span class="text-bold q-ml-sm">
+                        {{ item.bankName }}
+                      </span>
                     </div>
                     <div class="row items-center">
                       <q-btn unelevated round class="text-on-dark">
@@ -261,29 +280,32 @@
                   <div>
                     <span
                       class="text-body2 no-letter-spacing text-weight-700 q-mr-sm"
-                      >شماره حساب:</span
                     >
-                    <span class="text-body2 no-letter-spacing">{{
-                      item.accountNumber
-                    }}</span>
+                      شماره حساب:
+                    </span>
+                    <span class="text-body2 no-letter-spacing">
+                      {{ item.accountNumber }}
+                    </span>
                   </div>
                   <div class="text-body2 no-letter-spacing">
                     <span
                       class="text-body2 no-letter-spacing text-weight-700 q-mr-sm"
-                      >شماره کارت:</span
                     >
-                    <span class="text-body2 no-letter-spacing">{{
-                      item.cardNumber
-                    }}</span>
+                      شماره کارت:
+                    </span>
+                    <span class="text-body2 no-letter-spacing">
+                      {{ item.cardNumber }}
+                    </span>
                   </div>
                   <div class="text-body2 no-letter-spacing">
                     <span
                       class="text-body2 no-letter-spacing text-weight-700 q-mr-sm"
-                      >شماره شبا:</span
                     >
-                    <span class="text-body2 no-letter-spacing">{{
-                      item.shabaNumber
-                    }}</span>
+                      شماره شبا:
+                    </span>
+                    <span class="text-body2 no-letter-spacing">
+                      {{ item.shabaNumber }}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -314,7 +336,9 @@
                   >
                     شناسه ملی:
                   </div>
-                  <div class="col text-body2 no-letter-spacing">0481038280</div>
+                  <div class="col text-body2 no-letter-spacing">
+                    0481038280
+                  </div>
                   <div class="row">
                     <q-btn unelevated round class="text-on-dark">
                       <q-icon name="o_edit" size="20px" />
@@ -327,7 +351,9 @@
                   >
                     شناسه اقتصادی:
                   </div>
-                  <div class="col text-body2 no-letter-spacing">0481038280</div>
+                  <div class="col text-body2 no-letter-spacing">
+                    0481038280
+                  </div>
                 </div>
                 <div class="row items-center">
                   <div
@@ -335,7 +361,9 @@
                   >
                     شناسه کارگاه بیمه:
                   </div>
-                  <div class="col text-body2 no-letter-spacing">0481038280</div>
+                  <div class="col text-body2 no-letter-spacing">
+                    0481038280
+                  </div>
                 </div>
                 <div class="row items-center">
                   <div
@@ -343,7 +371,9 @@
                   >
                     شماره ثبت:
                   </div>
-                  <div class="col text-body2 no-letter-spacing">0481038280</div>
+                  <div class="col text-body2 no-letter-spacing">
+                    0481038280
+                  </div>
                 </div>
                 <div class="row items-center">
                   <div
@@ -351,7 +381,9 @@
                   >
                     تاریخ ثبت:
                   </div>
-                  <div class="col text-body2 no-letter-spacing">0481038280</div>
+                  <div class="col text-body2 no-letter-spacing">
+                    0481038280
+                  </div>
                 </div>
                 <div class="row">
                   <div
@@ -360,8 +392,8 @@
                     شرح:
                   </div>
                   <div class="col text-body2 no-letter-spacing">
-                    این یک متن آزمایشی است که توسط خشایار شمالی برای آزمایش شرح
-                    نوشته شده است و معنای خاصی ندارد.
+                    این یک متن آزمایشی است که توسط خشایار شمالی برای
+                    آزمایش شرح نوشته شده است و معنای خاصی ندارد.
                   </div>
                 </div>
               </div>
@@ -388,21 +420,24 @@
               <q-btn
                 unelevated
                 @click="addCustomField"
-                class="bg-primary text-white full-width q-pa-md"
+                class="primary-gradient text-white full-width q-pa-md"
               >
                 <q-icon name="o_add" class="q-mr-xs" />
                 <span>افزودن آیتم جدید</span>
               </q-btn>
-              <div class="row bordered-1 q-pa-md q-mt-md items-center">
+              <div
+                class="row bordered-1 q-pa-md q-mt-md items-center"
+              >
                 <div class="col">
                   <div class="text-caption">
                     <span
                       class="text-body2 text-weight-700 no-letter-spacing q-mr-sm"
-                      >تلفن خانه:</span
                     >
-                    <span class="text-body2 no-letter-spacing"
-                      >02155511102</span
-                    >
+                      تلفن خانه:
+                    </span>
+                    <span class="text-body2 no-letter-spacing">
+                      02155511102
+                    </span>
                   </div>
                 </div>
                 <div class="col-4 row justify-end items-center">
@@ -421,16 +456,19 @@
                   </div>
                 </div>
               </div>
-              <div class="row bordered-1 q-pa-md q-mt-md items-center">
+              <div
+                class="row bordered-1 q-pa-md q-mt-md items-center"
+              >
                 <div class="col">
                   <div class="text-caption">
                     <span
                       class="text-body2 text-weight-700 no-letter-spacing q-mr-sm"
-                      >تلفن خانه:</span
                     >
-                    <span class="text-body2 no-letter-spacing"
-                      >02155511102</span
-                    >
+                      تلفن خانه:
+                    </span>
+                    <span class="text-body2 no-letter-spacing">
+                      02155511102
+                    </span>
                   </div>
                 </div>
                 <div class="col-4 row justify-end items-center">
@@ -458,57 +496,61 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+  import { ref } from "vue";
 
-import AddCustomField from "./AddCustomField.vue";
-import EditCustomerData from "./EditCustomerDataDialog.vue";
+  import AddCustomField from "./AddCustomField.vue";
+  import EditCustomerData from "./EditCustomerDataDialog.vue";
 
-const phoneItems = [
-  { name: "تلفن خانه", value: "02155511102", original: true },
-  { name: "موبایل", value: "09338603196" },
-  { name: "تلفن محل کار", value: "02144990022" },
-];
+  const phoneItems = [
+    { name: "تلفن خانه", value: "02155511102", original: true },
+    { name: "موبایل", value: "09338603196" },
+    { name: "تلفن محل کار", value: "02144990022" },
+  ];
 
-const addressItems = [
-  { name: "آدرس کارخانه", value: "شابدل عظیم - نزدیکا حرم", original: true },
-  { name: "آدرس اداره", value: "پارک دانشجو - تیاتر شهر" },
-  {
-    name: "آدرس خانه",
-    value:
-      "خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید عنایتی - کوچه مهر 2 - پلاک 22",
-  },
-];
+  const addressItems = [
+    {
+      name: "آدرس کارخانه",
+      value: "شابدل عظیم - نزدیکا حرم",
+      original: true,
+    },
+    { name: "آدرس اداره", value: "پارک دانشجو - تیاتر شهر" },
+    {
+      name: "آدرس خانه",
+      value:
+        "خیابان شهید رجایی - شهرک سیزده آبان - خیابان شهید رحیمی - خیابان شهید عنایتی - کوچه مهر 2 - پلاک 22",
+    },
+  ];
 
-const bankAccountDetail = [
-  {
-    bankName: "تجارت",
-    accountNumber: "0481038280",
-    cardNumber: "5859831129809389",
-    shabaNumber: "0000128550232209",
-  },
-  {
-    bankName: "تجارت",
-    accountNumber: "0481038280",
-    cardNumber: "5859831129809389",
-    shabaNumber: "0000128550232209",
-  },
-  {
-    bankName: "تجارت",
-    accountNumber: "0481038280",
-    cardNumber: "5859831129809389",
-    shabaNumber: "0000128550232209",
-  },
-];
+  const bankAccountDetail = [
+    {
+      bankName: "تجارت",
+      accountNumber: "0481038280",
+      cardNumber: "5859831129809389",
+      shabaNumber: "0000128550232209",
+    },
+    {
+      bankName: "تجارت",
+      accountNumber: "0481038280",
+      cardNumber: "5859831129809389",
+      shabaNumber: "0000128550232209",
+    },
+    {
+      bankName: "تجارت",
+      accountNumber: "0481038280",
+      cardNumber: "5859831129809389",
+      shabaNumber: "0000128550232209",
+    },
+  ];
 
-const addCustomField = () => {
-  $q.dialog({
-    component: AddCustomField,
-  });
-};
+  const addCustomField = () => {
+    $q.dialog({
+      component: AddCustomField,
+    });
+  };
 
-const editData = () => {
-  $q.dialog({
-    component: EditCustomerData,
-  });
-};
+  const editData = () => {
+    $q.dialog({
+      component: EditCustomerData,
+    });
+  };
 </script>

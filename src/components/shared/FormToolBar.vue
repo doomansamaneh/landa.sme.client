@@ -16,7 +16,7 @@
         <div class="q-gutter-x-sm">
           <slot name="buttons">
             <q-btn
-              class="bg-primary primary-shadow text-white text-body2 no-letter-spacing"
+              class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
               padding="6px 12px"
               rounded
               unelevated
@@ -31,7 +31,9 @@
         <div class="row items-center">
           <slot name="header">
             <span
-            :style="$q.screen.gt.xs ? 'width: auto;' : 'width: 160px;'"
+              :style="
+                $q.screen.gt.xs ? 'width: auto;' : 'width: 160px;'
+              "
               class="ellipsis-2-lines text-weight-700 no-letter-spacing"
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
             >
@@ -48,14 +50,14 @@
 </template>
 
 <script setup>
-import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-const props = defineProps({
-  title: String,
-});
+  const props = defineProps({
+    title: String,
+  });
 
-const emit = defineEmits(["submit-call-back"]);
-const save = () => {
-  emit("submit-call-back");
-};
+  const emit = defineEmits(["submit-call-back"]);
+  const save = () => {
+    emit("submit-call-back");
+  };
 </script>

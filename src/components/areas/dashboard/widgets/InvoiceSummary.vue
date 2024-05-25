@@ -30,11 +30,10 @@
           <q-item-section avatar>
             <q-avatar
               rounded
-              color="grey"
               text-color="white"
               icon="o_receipt"
               size="xl"
-              class="grey-shadow"
+              class="grey-gradient grey-shadow"
             />
           </q-item-section>
 
@@ -60,11 +59,10 @@
           <q-item-section avatar>
             <q-avatar
               rounded
-              color="green"
               text-color="white"
               icon="o_arrow_downward"
               size="xl"
-              class="green-shadow"
+              class="green-gradient green-shadow"
             />
           </q-item-section>
 
@@ -99,10 +97,9 @@
             >
               <q-avatar
                 rounded
-                color="orange"
                 text-color="white"
                 size="xl"
-                class="orange-shadow"
+                class="orange-gradient orange-shadow"
               >
                 <q-icon
                   color="white"
@@ -146,10 +143,9 @@
             >
               <q-avatar
                 rounded
-                color="red"
                 text-color="white"
                 size="xl"
-                class="red-shadow"
+                class="red-gradient red-shadow"
               >
                 <q-icon
                   color="white"

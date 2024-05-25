@@ -13,7 +13,11 @@
                 class="row justify-between items-center q-gutter-sm"
               >
                 <div class="row items-center q-gutter-x-sm">
-                  <q-icon :name="item.icon" size="sm" color="accent" />
+                  <q-icon
+                    :name="item.icon"
+                    size="sm"
+                    color="accent"
+                  />
                   <div class="text-caption text-bold">
                     {{ item.name }}
                   </div>
@@ -33,7 +37,10 @@
                   {{ item.systemInfo }}
                 </q-item-label>
               </q-card-section>
-              <q-card-section v-if="item.commentValue" class="q-pt-none">
+              <q-card-section
+                v-if="item.commentValue"
+                class="q-pt-none"
+              >
                 <p
                   class="text-caption line-height-xs no-letter-spacing"
                   contenteditable="true"
@@ -42,16 +49,23 @@
                   {{ item.comment }}
                 </p>
                 <div class="q-gutter-y-md" v-show="editCommentBtn">
-                  <q-editor v-model="editCommentValue" class="text-caption" />
+                  <q-editor
+                    v-model="editCommentValue"
+                    class="text-caption"
+                  />
                   <div class="q-gutter-x-sm">
                     <q-btn
                       @click="editCommentBtn = false"
                       padding="4px 12px"
                       flat
                       rounded
-                      class="bg-primary text-white text-body3"
+                      class="primary-gradient text-white text-body3"
                     >
-                      <q-icon name="o_comment" size="xs" class="q-mr-sm" />
+                      <q-icon
+                        name="o_comment"
+                        size="xs"
+                        class="q-mr-sm"
+                      />
                       <span>ذخیره</span>
                     </q-btn>
                     <q-btn
@@ -60,7 +74,11 @@
                       rounded
                       class="text-on-dark"
                     >
-                      <q-icon name="o_close" size="xs" class="q-mr-xs" />
+                      <q-icon
+                        name="o_close"
+                        size="xs"
+                        class="q-mr-xs"
+                      />
                       <span>انصراف</span>
                     </q-btn>
                   </div>
@@ -83,7 +101,11 @@
                     rounded
                     class="text-on-dark text-body3"
                   >
-                    <q-icon name="o_delete" size="xs" class="q-mr-sm" />
+                    <q-icon
+                      name="o_delete"
+                      size="xs"
+                      class="q-mr-sm"
+                    />
                     <span>حذف</span>
                   </q-btn>
                 </div>
@@ -97,21 +119,21 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+  import { ref, computed, onMounted } from "vue";
+  import { useRoute } from "vue-router";
 
-const props = defineProps({
-  item: Object,
-  formStore: Object,
-});
+  const props = defineProps({
+    item: Object,
+    formStore: Object,
+  });
 
-const route = useRoute();
+  const route = useRoute();
 
-const editor = ref("");
-const editCommentBtn = ref(false);
-const id = computed(() => props.item?.id ?? route.params.id);
+  const editor = ref("");
+  const editCommentBtn = ref(false);
+  const id = computed(() => props.item?.id ?? route.params.id);
 
-onMounted(() => {
-  //formStore.getById(id.value);
-});
+  onMounted(() => {
+    //formStore.getById(id.value);
+  });
 </script>

@@ -3,8 +3,8 @@
     <q-card-section class="q-pt-lg q-pb-xl q-px-lg">
       <q-item class="no-padding">
         <q-item-section avatar>
-          <q-avatar rounded color="primary" text-color="white" icon="o_account_balance" size="md"
-            class="primary-shadow" />
+          <q-avatar rounded text-color="white" icon="o_account_balance" size="md"
+            class="primary-gradient primary-shadow" />
         </q-item-section>
         <q-item-section class="q-pl-xs">
           <q-item-label class="text-h6 text-weight-700 q-mb-xs">موجودی بانک</q-item-label>

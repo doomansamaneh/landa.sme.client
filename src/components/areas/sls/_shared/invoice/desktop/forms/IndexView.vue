@@ -9,7 +9,7 @@
       </q-btn>
     </template>
     <template #buttons>
-      <q-btn class="bg-primary text-white text-caption" padding="6px 12px" rounded no-caps unelevated>
+      <q-btn class="primary-gradient text-white text-caption" padding="6px 12px" rounded no-caps unelevated>
         <q-icon name="o_add" class="q-mr-xs" />
         {{ $t("shared.labels.save") }}
       </q-btn>

@@ -61,7 +61,9 @@
               size="56px"
               text-color="white"
               :style="{
-                backgroundColor: helper.generateDarkAvatarColor(row.title),
+                backgroundColor: helper.generateDarkAvatarColor(
+                  row.title
+                ),
               }"
               v-else
             >
@@ -71,15 +73,19 @@
             </q-avatar>
           </div>
           <q-item-section class="q-pl-md">
-            <q-item-label class="text-caption">{{ row.title }}</q-item-label>
-            <q-item-label class="text-caption-sm"
-              ><span class="text-caption-sm text-bold">موجودی: </span
-              >{{ row.stock }}</q-item-label
-            >
-            <q-item-label class="text-caption-sm"
-              ><span class="text-caption-sm text-bold">قیمت فروش: </span
-              >{{ row.price.toLocaleString() }}</q-item-label
-            >
+            <q-item-label class="text-caption">
+              {{ row.title }}
+            </q-item-label>
+            <q-item-label class="text-caption-sm">
+              <span class="text-caption-sm text-bold">موجودی:</span>
+              {{ row.stock }}
+            </q-item-label>
+            <q-item-label class="text-caption-sm">
+              <span class="text-caption-sm text-bold">
+                قیمت فروش:
+              </span>
+              {{ row.price.toLocaleString() }}
+            </q-item-label>
           </q-item-section>
         </q-item>
 
@@ -88,7 +94,7 @@
             rounded
             unelevated
             @click="gotoNext"
-            class="full-width primary-shadow q-ma-lg bg-primary text-white"
+            class="full-width primary-shadow q-ma-lg primary-gradient text-white"
           >
             <span class="text-body3">بارگزاری بیشتر</span>
           </q-btn>
@@ -99,49 +105,49 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { helper } from "src/helpers";
-import { useDataTable } from "src/composables/useDataTable";
-import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid.js";
+  import { ref, computed, onMounted } from "vue";
+  import { helper } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { useProductGrid } from "src/components/areas/cmn/_composables/useProductGrid.js";
 
-import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
+  import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-const productStore = useProductGrid();
+  const productStore = useProductGrid();
 
-const tableStore = useDataTable({
-  dataSource: "cmn/product/getlookupData",
-  store: productStore
-});
+  const tableStore = useDataTable({
+    dataSource: "cmn/product/getlookupData",
+    store: productStore,
+  });
 
-async function gotoNext() {
-  if (hasMoreData.value) {
-    tableStore.pagination.value.currentPage += 1;
-    await reloadData();
+  async function gotoNext() {
+    if (hasMoreData.value) {
+      tableStore.pagination.value.currentPage += 1;
+      await reloadData();
+    }
   }
-}
 
-async function reloadData() {
-  await tableStore.reloadData();
-  productStore.rows.value = [
-    ...productStore.rows.value,
-    ...tableStore.rows.value,
-  ];
-}
+  async function reloadData() {
+    await tableStore.reloadData();
+    productStore.rows.value = [
+      ...productStore.rows.value,
+      ...tableStore.rows.value,
+    ];
+  }
 
-async function loadData() {
-  tableStore.pagination.value.currentPage = 1;
-  await tableStore.reloadData();
-  productStore.rows.value = tableStore.rows.value;
-}
+  async function loadData() {
+    tableStore.pagination.value.currentPage = 1;
+    await tableStore.reloadData();
+    productStore.rows.value = tableStore.rows.value;
+  }
 
-const hasMoreData = computed(() => {
-  return (
-    tableStore.pagination.value.currentPage <
-    tableStore.pagination.value.totalPages
-  );
-});
+  const hasMoreData = computed(() => {
+    return (
+      tableStore.pagination.value.currentPage <
+      tableStore.pagination.value.totalPages
+    );
+  });
 
-onMounted(() => {
-  loadData();
-});
+  onMounted(() => {
+    loadData();
+  });
 </script>

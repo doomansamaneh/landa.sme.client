@@ -7,9 +7,7 @@
     <q-card class="no-shadow no-border">
       <q-card-section>
         <div class="row items-center justify-between">
-          <div class="text-body1 no-letter-spacing">
-            راهنما
-          </div>
+          <div class="text-body1 no-letter-spacing">راهنما</div>
           <q-btn
             round
             icon="o_close"
@@ -20,7 +18,9 @@
           />
         </div>
       </q-card-section>
-      <q-card-section class="q-px-md q-pb-xl absolute-center full-width">
+      <q-card-section
+        class="q-px-md q-pb-xl absolute-center full-width"
+      >
         <div v-show="slide === 1">
           <div class="row items-center justify-center">
             <q-img
@@ -45,7 +45,9 @@
               <span class="text-on-dark">دومان سامانه برای تست</span>
             </div>
 
-            <div class="q-mt-lg text-body1 no-letter-spacing text-center">
+            <div
+              class="q-mt-lg text-body1 no-letter-spacing text-center"
+            >
               {{ $t("page.buttons.guide.slide2") }}
             </div>
           </div>
@@ -57,7 +59,9 @@
               name="more_vert"
               size="lg"
             />
-            <div class="q-mt-lg text-center text-body1 no-letter-spacing">
+            <div
+              class="q-mt-lg text-center text-body1 no-letter-spacing"
+            >
               {{ $t("page.buttons.guide.slide3") }}
             </div>
           </div>
@@ -70,7 +74,9 @@
               icon="o_person"
               size="50px"
             />
-            <div class="q-mt-lg text-center text-body1 no-letter-spacing">
+            <div
+              class="q-mt-lg text-center text-body1 no-letter-spacing"
+            >
               {{ $t("page.buttons.guide.slide4") }}
             </div>
           </div>
@@ -89,7 +95,9 @@
               <span class="text-body2 no-letter-spacing">تمدید</span>
             </q-btn>
 
-            <div class="q-mt-lg text-center text-body1 no-letter-spacing">
+            <div
+              class="q-mt-lg text-center text-body1 no-letter-spacing"
+            >
               {{ $t("page.buttons.guide.slide5") }}
             </div>
           </div>
@@ -101,7 +109,9 @@
               size="lg"
               color="blue-grey-8"
             />
-            <div class="q-mt-lg text-center text-body1 no-letter-spacing">
+            <div
+              class="q-mt-lg text-center text-body1 no-letter-spacing"
+            >
               {{ $t("page.buttons.guide.slide6") }}
             </div>
 
@@ -117,10 +127,7 @@
         </div>
       </q-card-section>
 
-      <q-card-actions
-        class="q-mb-xl absolute-bottom"
-        align="center"
-      >
+      <q-card-actions class="q-mb-xl absolute-bottom" align="center">
         <div class="row items-center q-gutter-sm justify-center">
           <q-btn
             v-for="buttonLabel in [1, 2, 3, 4, 5, 6]"
@@ -128,7 +135,11 @@
             :round="true"
             :dense="true"
             :unelevated="slide !== buttonLabel"
-            :class="slide === buttonLabel ? 'text-white bg-primary primary-shadow' : 'bg-dark text-on-dark'"
+            :class="
+              slide === buttonLabel
+                ? 'text-white primary-gradient primary-shadow'
+                : 'bg-dark text-on-dark'
+            "
             :label="buttonLabel.toString()"
             @click="changeSlide(buttonLabel)"
           />
@@ -139,17 +150,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+  import { ref } from "vue";
 
-const slide = ref(1)
+  const slide = ref(1);
 
-const changeSlide = (newSlide) => {
-  slide.value = newSlide
-}
+  const changeSlide = (newSlide) => {
+    slide.value = newSlide;
+  };
 </script>
 
 <style lang="scss">
-.q-img {
-  width: 80%;
-}
+  .q-img {
+    width: 80%;
+  }
 </style>

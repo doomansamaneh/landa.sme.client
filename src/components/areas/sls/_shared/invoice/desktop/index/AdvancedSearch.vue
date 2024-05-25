@@ -146,7 +146,7 @@
           </div>
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
             <q-btn
-              class="text-body2 no-letter-spacing bg-primary primary-shadow text-white"
+              class="text-body2 no-letter-spacing primary-gradient primary-shadow text-white"
               rounded
               padding="8px 16px"
               unelevated
