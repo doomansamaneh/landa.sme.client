@@ -16,7 +16,7 @@
     />
 
     <q-btn
-      v-if="notifDrawerStore.notif.value"
+      v-if="notifDrawerStore.hasUnreadNotifications.value"
       color="red"
       round
       unelevated
