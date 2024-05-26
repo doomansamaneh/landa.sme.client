@@ -40,7 +40,7 @@
               <q-item class="no-padding">
                 <q-item-section avatar>
                   <q-avatar v-if="saleIncome" rounded color="blue" text-color="white" icon="o_shopping_basket" size="md"
-                    class="blue-shadow" />
+                    class="primary-shadow" />
 
                   <q-avatar v-if="sale" rounded color="green" text-color="white" icon="o_sell" size="md"
                     class="green-shadow" />

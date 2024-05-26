@@ -13,6 +13,7 @@
      <!-- v-if="menuBarStore.state.visible.value" -->
     <contact-drawer />
     <!-- v-if="contactDrawerStore.state.value" -->
+    <notif-drawer />
     <alert-banner class="fixed-bottom z-max" />
 
   </q-layout>
@@ -30,6 +31,7 @@ import { useMenuBar } from "src/composables/useMenuBar"
 
 import MenuBar from "src/components/layouts/main/MenuBar.vue"
 import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue"
+import NotifDrawer from "src/components/layouts/main/NotifDrawer.vue"
 import MainHeader from "src/components/layouts/main/MainHeader.vue"
 import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue"
 import AlertBanner from "src/components/shared/AlertBanner.vue"

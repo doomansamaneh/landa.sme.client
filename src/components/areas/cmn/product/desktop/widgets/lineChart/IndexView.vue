@@ -6,7 +6,7 @@
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-avatar rounded color="blue" text-color="white" icon="o_shopping_basket" size="md"
-                class="blue-shadow" />
+                class="primary-shadow" />
             </q-item-section>
 
             <q-item-section class="q-pl-xs">

@@ -6,10 +6,10 @@
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-avatar v-if="saleIncome" rounded text-color="white" icon="o_shopping_basket" size="md"
-                class="primary-gradient blue-shadow" />
+                class="primary-gradient primary-shadow" />
 
               <q-avatar v-if="saleIncomeTable" rounded text-color="white" icon="o_table_chart" size="md"
-                class="primary-gradient blue-shadow" />
+                class="primary-gradient primary-shadow" />
 
               <q-avatar v-if="salePerProduct || salePerProductGroup || salePerCustomer" rounded
                 text-color="white" icon="o_sell" size="md" class="green-gradient green-shadow" />

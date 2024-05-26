@@ -69,7 +69,7 @@
       <q-card class="fit bordered q-pa-none" flat>
         <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
           <div class="row justify-between">
-            <q-avatar round text-color="white" icon="o_group_remove" size="xl" class="primary-gradient blue-shadow" />
+            <q-avatar round text-color="white" icon="o_group_remove" size="xl" class="primary-gradient primary-shadow" />
             <div class="row items-center justify-end">
               <q-btn unelevated round dense :text-color="$q.dark.isActive ? 'white' : 'grey-8'" size="md"
                 icon="o_more_vert">

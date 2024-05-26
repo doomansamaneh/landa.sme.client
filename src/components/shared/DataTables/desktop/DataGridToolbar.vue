@@ -7,6 +7,19 @@
       @click="tableStore.reloadData"
     >
       <q-icon size="24px" name="o_refresh" />
+      <q-tooltip
+        :delay="700"
+        class="bordered"
+        :class="
+          $q.dark.isActive
+            ? 'bg-dark text-white'
+            : 'bg-white text-black'
+        "
+      >
+        <div class="text-body2 no-letter-spacing">
+          تازه‌سازی
+        </div>
+      </q-tooltip>
     </q-btn>
 
     <q-btn
