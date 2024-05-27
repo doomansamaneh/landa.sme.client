@@ -43,7 +43,7 @@
     </q-input>
   </slot>
 
-  <div class="q-gutter-sm">
+  <div class="q-col-gutter-md">
     <template v-for="(row, index) in rows?.value" :key="row.id">
       <div
         @click="setActiveRow(row)"
@@ -111,8 +111,8 @@
       rounded
       dense
       padding="6px 16px"
-      color="primary"
-      class="primary-shadow"
+      text-color="white"
+      class="primary-gradient primary-shadow"
       @click="previous"
     >
       <span class="text-body2 no-letter-spacing">
@@ -125,8 +125,8 @@
       rounded
       dense
       padding="6px 16px"
-      color="primary"
-      class="primary-shadow"
+      text-color="white"
+      class="primary-gradient primary-shadow"
       @click="next"
     >
       <span class="text-body2 no-letter-spacing">

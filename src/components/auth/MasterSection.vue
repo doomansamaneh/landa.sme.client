@@ -13,10 +13,10 @@
             rounded
             target="_blank"
             href="https://landa-sme.ir/account/register"
-            color="primary"
+            text-color="white"
             unelevated
             padding="8px 16px"
-            class="text-body1 no-letter-spacing signup"
+            class="primary-gradient text-body1 no-letter-spacing signup"
           >
             ثبت‌نام
           </q-btn>
@@ -155,8 +155,8 @@
               rounded
               unelevated
               type="submit"
-              color="primary"
-              class="full-width text-body1"
+              text-color="white"
+              class="primary-gradient full-width text-body1"
               padding="16px 64px"
               :label="$t('login-page.buttons.login')"
               :disable="isLoggingIn"

@@ -1,6 +1,9 @@
 <template>
   <q-card
-    :class="{ 'card-desktop bordered q-my-xl': $q.screen.gt.xs, 'no-border no-shadow bg-transparent': $q.screen.lt.sm }"
+    :class="{
+      'card-desktop bordered q-my-xl': $q.screen.gt.xs,
+      'no-border no-shadow bg-transparent': $q.screen.lt.sm,
+    }"
   >
     <q-card-section v-if="$q.screen.gt.xs">
       <q-item>
@@ -21,14 +24,17 @@
     </q-card-section>
     <q-separator v-if="$q.screen.gt.xs" />
 
-    <q-card-section :class="{ 'q-mx-md': $q.screen.gt.xs, 'no-padding': $q.screen.lt.sm }">
-      <q-form
-        ref="form"
-        autofocus
-        class="q-my-md"
-      >
+    <q-card-section
+      :class="{
+        'q-mx-md': $q.screen.gt.xs,
+        'no-padding': $q.screen.lt.sm,
+      }"
+    >
+      <q-form ref="form" autofocus class="q-my-md">
         <div>
-          <q-item-label class="text-body2 caption-on-dark no-letter-spacing q-mb-sm">
+          <q-item-label
+            class="text-body2 caption-on-dark no-letter-spacing q-mb-sm"
+          >
             {{ $t("page.add-business.business-name-label") }}
           </q-item-label>
           <q-input
@@ -48,14 +54,20 @@
       </q-form>
     </q-card-section>
 
-    <q-card-actions :class="{ 'q-px-none q-pt-none q-pb-lg': $q.screen.xs, 'bg-on-dark q-pa-lg': $q.screen.gt.xs }">
+    <q-card-actions
+      :class="{
+        'q-px-none q-pt-none q-pb-lg': $q.screen.xs,
+        'bg-on-dark q-pa-lg': $q.screen.gt.xs,
+      }"
+    >
       <div class="row q-gutter-md items-center">
         <q-btn
           type="submit"
           @click="submitForm"
           unelevated
+          class="green-shadow green-gradient"
           rounded
-          color="positive"
+          text-color="white"
           no-caps
           padding="8px 16px"
         >
@@ -75,28 +87,28 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import { useQuasar } from "quasar"
+  import { ref } from "vue";
+  import { useQuasar } from "quasar";
 
-import SelectPlan from "src/components/management/shared/SelectPlan.vue"
-import BackButton from "src/components/shared/buttons/GoBackLink.vue"
+  import SelectPlan from "src/components/management/shared/SelectPlan.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-const $q = useQuasar()
+  const $q = useQuasar();
 
-const businessName = ref("")
-const form = ref(null)
+  const businessName = ref("");
+  const form = ref(null);
 
-const submitForm = () => {
-  $q.notify({
-    type: "positive",
-    message: "عملیات با موفقیت انجام شد",
-    timeout: 1500
-  })
-}
+  const submitForm = () => {
+    $q.notify({
+      type: "positive",
+      message: "عملیات با موفقیت انجام شد",
+      timeout: 1500,
+    });
+  };
 </script>
 
 <style lang="scss" scoped>
-.card-desktop {
-  width: 700px !important;
-}
+  .card-desktop {
+    width: 700px !important;
+  }
 </style>

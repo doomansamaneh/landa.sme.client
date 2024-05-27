@@ -35,7 +35,7 @@
         <div v-show="slide === 2">
           <div class="row items-center q-gutter-md justify-center">
             <q-avatar
-              class="business-isowner"
+              class="primary-shadow primary-gradient"
               text-color="white"
               icon="o_person"
               size="lg"
@@ -69,7 +69,7 @@
         <div v-show="slide === 4">
           <div class="row items-center justify-center">
             <q-avatar
-              class="business-isowner"
+              class="primary-shadow primary-gradient"
               text-color="white"
               icon="o_person"
               size="50px"
@@ -84,11 +84,11 @@
         <div v-show="slide === 5">
           <div class="row items-center justify-center">
             <q-btn
-              class="no-pointer-events"
+              class="green-gradient green-shadow no-pointer-events"
               rounded
               padding="8px 12px"
               no-caps
-              color="green"
+              text-color="white"
               dense
               unelevated
             >

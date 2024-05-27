@@ -5,12 +5,12 @@
       <q-btn
         type="submit"
         @click="okClicked"
-        color="primary"
+        text-color="white"
         unelevated
         no-caps
         padding="8px 16px"
         rounded
-        class="primary-shadow"
+        class="primary-gradient primary-shadow"
       >
         <slot name="ok-label"> {{ $t("shared.labels.save") }}</slot>
       </q-btn>
