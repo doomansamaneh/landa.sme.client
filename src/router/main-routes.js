@@ -476,6 +476,11 @@ export default {
             import("pages/areas/sls/invoice/CopyPage.vue"),
         },
         {
+          path: "createFromQuote/:id",
+          component: () =>
+            import("pages/areas/sls/invoice/CreateFromQuotePage.vue"),
+        },
+        {
           path: "remained/:remained",
           component: () =>
             import("pages/areas/sls/invoice/IndexRemainedPage.vue"),
@@ -546,6 +551,13 @@ export default {
           path: "preview/:id",
           component: () =>
             import("pages/areas/sls/salesReturn/PreviewPage.vue"),
+        },
+        {
+          path: "createFromInvoice/:id",
+          component: () =>
+            import(
+              "pages/areas/sls/salesReturn/CreateFromInvoicePage.vue"
+            ),
         },
       ],
     },

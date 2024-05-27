@@ -13,10 +13,10 @@
     toolbar
     @row-dbl-click="gotoPreview"
   >
-    <template #filter-statusTitle="{ col }">
+    <template #filter-statusId="{ col }">
       <custom-select
         v-model="col.value"
-        :options="statusOptions"
+        :options="helper.getEnumOptions(quoteStatus, 'quoteStatus')"
         @update:model-value="reloadData"
       />
     </template>
@@ -70,8 +70,25 @@
         </q-badge>
       </div>
     </template>
-    <template #cell-statusTitle="{ item }">
-      <q-badge>{{ item.statusTitle }}</q-badge>
+    <template #cell-statusId="{ item }">
+      <q-btn
+        v-if="item.statusId === quoteStatus.final"
+        round
+        dense
+        size="10px"
+        unelevated
+        icon="o_done"
+        color="positive"
+        class="no-pointer-events"
+      />
+      {{
+        $t(
+          `shared.quoteStatus.${helper.getEnumType(
+            item.statusId,
+            quoteStatus
+          )}`
+        )
+      }}
     </template>
     <template #expand="{ item }">
       <div>
@@ -147,7 +164,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useRouter } from "vue-router";
-  import { statusOptions } from "src/constants";
+  import { quoteStatus } from "src/constants";
   import { helper } from "src/helpers";
 
   import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";

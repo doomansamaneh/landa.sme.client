@@ -8,8 +8,7 @@
       :title="title"
       :base-route="baseRoute"
       activation
-    >
-    </toolbar-mobile>
+    ></toolbar-mobile>
 
     <mobile
       :grid-store="gridStore"
@@ -110,29 +109,31 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useQuasar } from "quasar";
-import { useI18n } from "vue-i18n";
-import { useQuoteGrid } from "src/components/areas/sls/_composables/useQuoteGrid";
-import { useFormActions } from "src/composables/useFormActions";
+  import { ref } from "vue";
+  import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
+  import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useFormActions } from "src/composables/useFormActions";
 
-import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-import Desktop from "../../desktop/index/DataGrid.vue";
-import Mobile from "../../mobile/index/DataGrid.vue";
+  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  import Desktop from "../../desktop/index/DataGrid.vue";
+  import Mobile from "../../mobile/index/DataGrid.vue";
 
-const props = defineProps({
-  toolbar: Boolean,
-});
+  const props = defineProps({
+    toolbar: Boolean,
+  });
 
-const { t } = useI18n();
+  const { t } = useI18n();
 
-const title = t("main-menu-items.Sls_Quote_View");
-const baseRoute = "sls/quote";
+  const title = t("main-menu-items.Sls_Quote_View");
+  const baseRoute = "sls/quote";
 
-const $q = useQuasar();
-const gridStore = useQuoteGrid();
-const crudStore = useFormActions(baseRoute);
-const desktopGrid = ref(null);
-const mobileGrid = ref(null);
+  const $q = useQuasar();
+  const quoteStore = useQuoteState();
+  const gridStore = useBaseInfoGrid(quoteStore);
+  const crudStore = useFormActions(baseRoute);
+  const desktopGrid = ref(null);
+  const mobileGrid = ref(null);
 </script>

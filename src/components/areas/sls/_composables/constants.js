@@ -7,6 +7,7 @@ import {
   payedAmount,
   remainedAmount,
   discountAmount,
+  statusId,
 } from "src/constants/columns";
 
 export const taxStatus = {
@@ -34,6 +35,7 @@ export const quoteColumns = [
   { ...subject },
   { ...amount },
   { ...discountAmount },
+  { ...statusId },
 ];
 
 export const taxApiLogColumns = [

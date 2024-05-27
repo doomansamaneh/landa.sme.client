@@ -2,8 +2,8 @@
   <tool-bar
     :inside="inside"
     :margin="!inside"
-    buttons
     :title="title"
+    buttons
     back-button
   >
     <template #buttons>
@@ -18,6 +18,28 @@
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
         {{ $t("shared.labels.edit") }}
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
+      </q-btn>
+      <q-btn
+        :to="`/sls/invoice/copy/${id}`"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
+        {{ $t("shared.labels.copy") }}
+      </q-btn>
+      <q-btn
+        @click="formStore.crudStore.deleteById(id, deleteCallBack)"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
+        {{ $t("shared.labels.delete") }}
       </q-btn>
       <q-btn
         @click="helper.print('invoicePreview')"
@@ -77,6 +99,7 @@
   import { useRoute } from "vue-router";
   import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
+  import { useInvoiceState } from "../../../_composables/useInvoiceState";
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
@@ -100,13 +123,15 @@
   });
   const route = useRoute();
   const router = useRouter();
+  const invoiceStore = useInvoiceState();
+
+  function deleteCallBack() {
+    invoiceStore.state.firstLoad.value = false;
+    router.back();
+  }
 
   const id = computed(() => props.item?.id ?? route.params.id);
-
-  const currentPath = router.currentRoute.value.path;
-
   const appConfigStore = useAppConfigModel();
-
   const invoiceTitle =
     appConfigStore.model.value?.companySetting?.invoiceTitle;
 

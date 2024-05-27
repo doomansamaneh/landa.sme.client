@@ -16,9 +16,7 @@
             : 'bg-white text-black'
         "
       >
-        <div class="text-body2 no-letter-spacing">
-          تازه‌سازی
-        </div>
+        <div class="text-body2 no-letter-spacing">تازه‌سازی</div>
       </q-tooltip>
     </q-btn>
 
@@ -154,7 +152,13 @@
       </q-tooltip>
     </q-btn>
 
-    <q-btn padding="6px 16px" size="11px" unelevated rounded>
+    <q-btn
+      v-if="false"
+      padding="6px 16px"
+      size="11px"
+      unelevated
+      rounded
+    >
       <div class="row items-center">
         <q-icon class="q-mr-sm" name="o_visibility_off" />
         <div class="text-body2 no-letter-spacing">خاموش کردن</div>
@@ -365,18 +369,9 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useDataTable } from "src/composables/useDataTable";
 
   const props = defineProps({
-    dataSource: String,
-    columns: Array,
-    store: Object,
-  });
-
-  const tableStore = useDataTable({
-    dataSource: props.dataSource,
-    dataColumns: props.columns,
-    store: props.store,
+    tableStore: Object,
   });
 
   const separatorTypes = [

@@ -1,8 +1,7 @@
 <template>
   <q-card class="bordered" :class="containerClass">
     <div class="q-table__middle scroll">
-
-      <toolbar v-if="toolbar" :data-source="dataSource" :columns="columns" :store="store" />
+      <toolbar v-if="toolbar" :table-store="tableStore" />
 
       <table class="q-table data-table">
         <thead>
@@ -244,7 +243,7 @@
     grid: Boolean,
     wrapCells: Boolean,
     gridStore: Object,
-    toolbar: Boolean
+    toolbar: Boolean,
   });
 
   const $q = useQuasar();
@@ -320,7 +319,9 @@
       ($q.dark?.isActive === true ? " q-table--dark" : "") +
       (tableStore.dense.value === true ? " q-table--dense" : "") +
       (props.wrapCells === false ? " q-table--no-wrap" : "") +
-      (tableStore.inFullscreen.value === true ? " fullscreen scroll" : "")
+      (tableStore.inFullscreen.value === true
+        ? " fullscreen scroll"
+        : "")
   );
 
   const containerClass = computed(

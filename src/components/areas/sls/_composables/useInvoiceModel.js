@@ -1,4 +1,5 @@
 import { ref, computed, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
@@ -6,11 +7,14 @@ import { fetchWrapper, helper } from "src/helpers";
 import { useInvoiceItemModel } from "./useInvoiceItemModel";
 import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
+import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
+import { validMethods } from "workbox-routing/utils/constants";
 
 export function useInvoiceModel(config) {
   const $q = useQuasar();
   const router = useRouter();
+  const { t } = useI18n();
   const itemStore = useInvoiceItemModel();
 
   const model = config?.model ?? ref(invoiceModel);
@@ -22,6 +26,11 @@ export function useInvoiceModel(config) {
     if (id) {
       if (config.preview)
         responseData = await crudStore.getPreviewById(id);
+      else if (action === "createFromQuote")
+        responseData = await crudStore.getById(
+          id,
+          "sls/quote/getById"
+        );
       else responseData = await crudStore.getById(id);
     } else
       responseData = await crudStore.getCreateModel(setInvoiceItems);
@@ -32,6 +41,14 @@ export function useInvoiceModel(config) {
       if (action === "copy") {
         model.value.quoteId = null;
         model.value.fiscalYearId = null;
+      } else if (action === "createFromInvoice") {
+        model.value.originalDocument = {
+          parentId: responseData.id,
+          rowNo: responseData.no,
+          customerName: responseData.customerName,
+        };
+      } else if (action === "createFromQuote") {
+        model.value.quoteId = responseData.id;
       }
       addWatch();
     }
@@ -39,6 +56,54 @@ export function useInvoiceModel(config) {
 
   function setInvoiceItems() {
     if (!model.value.invoiceItems) model.value.invoiceItems = [];
+  }
+
+  async function reorder(callBack) {
+    await crudStore.customPostAction("reorder", model.value);
+    if (callBack) callBack();
+  }
+
+  async function cancelInvoice(id, callBack) {
+    if (id) {
+      $q.dialog({
+        component: ConfirmDialog,
+        componentProps: {
+          title: t("shared.labels.cancelInvoice"),
+          message: `${t("shared.labels.cancelInvoiceMessage")}.`,
+          ok: t("shared.labels.cancelInvoice"),
+          okColor: "deep-orange-7",
+        },
+      }).onOk(async () => {
+        const response = await fetchWrapper.post(
+          `${config.baseRoute}/cancelInvoice/${id}`
+        );
+        notifyResponse(response.data);
+        if (callBack) callBack();
+      });
+    } else notify("no row selected", "negative");
+  }
+
+  async function cancelInvoices(idList, callBack) {
+    if (crudStore.validateIdList(idList)) {
+      $q.dialog({
+        component: ConfirmDialog,
+        componentProps: {
+          title: t("shared.labels.cancelInvoice"),
+          message: `${t("shared.labels.cancelInvoiceMessage")}. ${t(
+            "shared.labels.selectedRows"
+          )}: ${idList.length}`,
+          ok: t("shared.labels.cancelInvoice"),
+          okColor: "deep-orange-7",
+        },
+      }).onOk(async () => {
+        const response = await fetchWrapper.post(
+          `${config.baseRoute}/cancelInvoice`,
+          idList
+        );
+        notifyResponse(response.data);
+        if (callBack) callBack();
+      });
+    } else notify("no row selected", "negative");
   }
 
   async function reorder(callBack) {
@@ -203,6 +268,8 @@ export function useInvoiceModel(config) {
     deleteRow,
     applyDiscountAmount,
     applyDiscountPercent,
+    cancelInvoice,
+    cancelInvoices,
     submitForm,
   };
 }

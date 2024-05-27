@@ -1,18 +1,3 @@
-export const statusOptions = [
-  {
-    label: "دائم",
-    value: "1",
-  },
-  {
-    label: "موقت",
-    value: "2",
-  },
-  {
-    label: "ابطال شده",
-    value: "3",
-  },
-];
-
 export const isActiveOptions = [
   {
     label: "فعال",
@@ -168,6 +153,11 @@ export const closeAccounts = {
   revenue: "d562f27e-9af0-4e14-9e31-0d11c577e556",
   expense: "5f4ae9d2-eeca-4ce6-a469-18db06d70dff",
   cogs: "33422e29-2694-4d91-abd7-90303c0e1966",
+};
+
+export const quoteStatus = {
+  temp: "e84d4f06-29ea-4131-b78e-e36302d37e7c",
+  final: "c84e9c9d-31e6-4f45-9a6d-265d825e3d4c",
 };
 
 export const paymentType = {
