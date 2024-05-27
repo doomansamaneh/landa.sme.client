@@ -3,12 +3,11 @@
 
   <div class="row q-col-gutter-md">
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="bordered q-radius-lg">
+      <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
             size="46px"
-            color="primary"
-            class="primary-shadow"
+            class="text-white primary-gradient primary-shadow"
           >
             <q-icon name="o_article" size="36px" color="white" />
           </q-avatar>
@@ -32,12 +31,11 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="bordered q-radius-lg">
+      <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
             size="46px"
-            color="primary"
-            class="primary-shadow"
+            class="text-white primary-gradient primary-shadow"
           >
             <q-icon name="o_refresh" size="36px" color="white" />
           </q-avatar>
@@ -61,12 +59,11 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="bordered q-radius-lg">
+      <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
             size="46px"
-            color="primary"
-            class="primary-shadow"
+            class="text-white primary-gradient primary-shadow"
           >
             <q-icon name="swap_vert" size="36px" color="white" />
           </q-avatar>
@@ -90,12 +87,11 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="bordered q-radius-lg">
+      <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
             size="46px"
-            color="primary"
-            class="primary-shadow"
+            class="text-white primary-gradient primary-shadow"
           >
             <q-icon
               name="o_playlist_add_check"
@@ -125,12 +121,11 @@
 
   <div class="row q-col-gutter-md q-pt-md">
     <div class="col-md col-sm-6 col-xs-12">
-      <q-card class="bordered q-radius-lg">
+      <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
             size="46px"
-            color="primary"
-            class="primary-shadow"
+            class="text-white primary-gradient primary-shadow"
           >
             <q-icon name="o_done_all" size="36px" color="white" />
           </q-avatar>
@@ -158,8 +153,7 @@
         <q-card-section class="q-pa-lg">
           <q-avatar
             size="46px"
-            color="primary"
-            class="primary-shadow"
+            class="text-white primary-gradient primary-shadow"
           >
             <q-icon name="o_delete" size="36px" color="white" />
           </q-avatar>
