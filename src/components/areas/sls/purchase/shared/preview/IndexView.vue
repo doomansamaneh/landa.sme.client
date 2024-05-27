@@ -1,5 +1,11 @@
 <template>
-  <tool-bar inside buttons :title="title" back-button>
+  <tool-bar
+    :inside="inside"
+    :margin="!inside"
+    buttons
+    :title="title"
+    back-button
+  >
     <template #buttons>
       <q-btn
         :to="`/sls/purchase/edit/${id}`"
@@ -70,6 +76,8 @@
   const props = defineProps({
     item: Object,
     title: String,
+    inside: Boolean,
+    margin: Boolean,
   });
 
   const formStore = useInvoiceModel({

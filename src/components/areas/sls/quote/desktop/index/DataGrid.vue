@@ -1,8 +1,8 @@
 <template>
   <advanced-search :grid-store="gridStore" @apply-search="reloadData" />
 
-  <invoice-grid
-    class="q-mt-lg"
+  <div class="q-mt-lg">
+    <invoice-grid
     ref="invoiceTable"
     :grid-store="gridStore"
     :data-source="dataSource"
@@ -12,6 +12,7 @@
       <preview :item="item" />
     </template>
   </invoice-grid>
+  </div>
 </template>
 
 <script setup>

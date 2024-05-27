@@ -1,11 +1,11 @@
 <template>
-  <div class="q-my-lg">
+  <div class="row q-gutter-sm q-py-lg">
     <q-btn
       v-if="!taxStore.apiResult.value.data"
-      color="primary"
+      text-color="white"
       unelevated
       rounded
-      class="primary-shadow"
+      class="primary-gradient primary-shadow"
       @click="
         taxStore.sendToTax(
           model.value.id,
@@ -17,8 +17,13 @@
       <span>ارسال به سامانه مودیان</span>
     </q-btn>
     <!-- v-if="!configStore.model.value.companySetting?.taxApiSetting?.clientId" -->
-    <q-btn to="/cmn/appConfig/VATInfo" flat unelevated>
-      <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
+    <q-btn
+      rounded
+      to="/cmn/appConfig/VATInfo"
+      flat
+      unelevated
+    >
+      <q-icon name="o_settings" size="xs" class="q-mr-xs" />
       <span>پیکربندی سامانه مودیان</span>
     </q-btn>
   </div>
@@ -32,26 +37,25 @@
       flat
       hide-filter-row
       :invoice-id="model.value.id"
-    >
-    </data-grid>
+    ></data-grid>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useTaxApiLogModel } from "src/components/areas/sls/_composables/useTaxApiLogModel";
-import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+  import { ref, onMounted } from "vue";
+  import { useTaxApiLogModel } from "src/components/areas/sls/_composables/useTaxApiLogModel";
+  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
-import DataGrid from "src/components/areas/sls/invoiceTaxApiLog/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/areas/sls/invoiceTaxApiLog/shared/index/DataGrid.vue";
 
-const props = defineProps({
-  model: Object,
-  formStore: Object,
-});
-const taxGrid = ref(null);
-const taxStore = useTaxApiLogModel();
-const configStore = useAppConfigModel();
-onMounted(() => {
-  taxStore.isSentApiSuccessfully(props.model.value.id);
-});
+  const props = defineProps({
+    model: Object,
+    formStore: Object,
+  });
+  const taxGrid = ref(null);
+  const taxStore = useTaxApiLogModel();
+  const configStore = useAppConfigModel();
+  onMounted(() => {
+    taxStore.isSentApiSuccessfully(props.model.value.id);
+  });
 </script>

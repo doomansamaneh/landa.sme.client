@@ -329,7 +329,7 @@
 
   const xPadding = computed(() => {
     return props.inside
-      ? "padding: 0"
+      ? "padding: 0 0 16px 0"
       : $q.screen.gt.sm
       ? "padding-left: 38px; padding-right: 38px;"
       : "padding-left: 20px; padding-right: 20px;";
