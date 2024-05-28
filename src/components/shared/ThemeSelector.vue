@@ -1,6 +1,6 @@
 <template>
   <div class="row q-col-gutter-lg">
-    <div class="col-md-3 col-sm-6 col-xs-12" v-for="(theme, themeName) in themes" :key="themeName">
+    <div class="col-md-3 col-sm-4 col-xs-12" v-for="(theme, themeName) in themes" :key="themeName">
       <q-card class="bordered" :class="getClass(themeName)" @click="selectTheme(themeName)">
 
         <q-card-section :style="{ backgroundColor: getPrimaryColor(themeName) }" class="min-opacity q-py-xl" />
