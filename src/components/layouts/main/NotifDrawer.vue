@@ -10,7 +10,7 @@
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <div class="row items-center justify-between q-pa-md">
-      <div class="col-3 text-bold text-h6 no-letter-spacing">
+      <div class="col-4 text-bold text-h6 no-letter-spacing">
         اعلانات
       </div>
       <q-select
@@ -22,6 +22,15 @@
         dense
         outlined
       />
+      <div v-if="$q.screen.lt.md" class="q-ml-md col-1">
+        <q-btn
+          round
+          icon="o_close"
+          dense
+          unelevated
+          @click="notifDrawerStore.toggle"
+        />
+      </div>
     </div>
 
     <q-separator />
