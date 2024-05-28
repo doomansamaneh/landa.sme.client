@@ -18,13 +18,12 @@
       padding-left: 38px;
       padding-right: 38px;
     }
-    
+
     .data-view {
       .row-active {
         border-radius: 50px;
       }
     }
-
   }
 
   @media (min-width: $breakpoint-md-min) {
@@ -40,6 +39,9 @@
     }
 
     .theme-settings-container {
+      width: 900px;
+    }
+    .change-password-container {
       width: 900px;
     }
   }
