@@ -115,4 +115,8 @@
       lighten($dark-page, 5)
     );
   }
+
+  .q-item.q-router-link--active, .q-item--active {
+    color: $yellow !important;
+}
 }
