@@ -10,7 +10,7 @@
         </template>
       </q-field>
     </div>
-    <div class="col-md-2 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
       <date-time v-model="localFormStore.model.value.date" />
     </div>

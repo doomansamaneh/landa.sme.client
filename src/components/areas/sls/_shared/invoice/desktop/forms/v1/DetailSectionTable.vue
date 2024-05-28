@@ -10,7 +10,7 @@
       <tr>
         <th colspan="100%">
           <div class="row items-center">
-            <div class="col-md-5">
+            <div class="col-md-6">
               <q-input
                 class="q-pa-md"
                 inputmode="search"

@@ -359,6 +359,16 @@ export const stock = {
   showFilter: false,
 };
 
+export const statusId = {
+  name: "statusId",
+  field: "statusId",
+  label: "وضعیت",
+  align: "left",
+  class: "text-left",
+  style: "width:120px;",
+  showFilter: true,
+};
+
 export const unitTitle = {
   name: "unitTitle",
   field: "unitTitle",

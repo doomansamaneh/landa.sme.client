@@ -292,6 +292,7 @@
       "printBatch": "چاپ دسته‌ای",
       "copyToPurchase": "کپی به فاکتور خرید",
       "cancelInvoice": "ابطال فاکتور",
+      "cancelInvoiceMessage": "با ابطال فاکتور، سند حسابداری مربوط به آن نیز حذف خواهد شد. آیا ابطال انجام شود؟",
       "salesReturn": "برگشت از فروش",
       "eportToExcel": "تبدیل به اکسل",
       "activate": "فعال سازی",
@@ -390,6 +391,10 @@
       "revenue": "فروش و درآمد",
       "expense": "هزینه",
       "cogs": "بهای تمام شده"
+    },
+    "quoteStatus": {
+      "temp": "موقت",
+      "final": "دائم"
     },
     "paymentType": {
       "cash": "نقد",

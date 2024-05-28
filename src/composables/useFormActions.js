@@ -11,8 +11,8 @@ export function useFormActions(baseURL, model) {
   const router = useRouter();
   const { t } = useI18n();
 
-  async function getById(id) {
-    return await onGetById("getById", id);
+  async function getById(id, url) {
+    return await onGetById(url ?? `${baseURL}/getById`, id);
   }
 
   async function getCreateModel(callBack) {
@@ -26,16 +26,15 @@ export function useFormActions(baseURL, model) {
   }
 
   async function getPreviewById(id) {
-    return await onGetById("getPreviewById", id);
+    return await onGetById(`${baseURL}/getPreviewById`, id);
   }
 
   async function onGetById(url, id) {
     if (id) {
-      const response = await fetchWrapper.get(
-        `${baseURL}/${url}/${id}`
-      );
+      const response = await fetchWrapper.get(`${url}/${id}`);
       model.value = response.data.data;
       await resetIsDirty();
+      return response.data.data;
     }
     return null;
   }
@@ -220,5 +219,6 @@ export function useFormActions(baseURL, model) {
     deactivate,
     customPostAction,
     submitForm,
+    validateIdList,
   };
 }

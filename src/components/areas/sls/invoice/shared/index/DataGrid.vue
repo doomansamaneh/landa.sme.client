@@ -85,7 +85,13 @@
 
         <q-separator class="q-my-sm" />
 
-        <q-item v-if="row" clickable v-close-popup tabindex="0">
+        <q-item
+          v-if="row"
+          clickable
+          v-close-popup
+          tabindex="0"
+          @click="formStore.cancelInvoice(row.id, reloadData)"
+        >
           <q-item-section avatar class="q-py-sm">
             <q-avatar class="bg-on-dark text-red" size="sm">
               <q-icon name="o_close" size="20px" />
@@ -117,7 +123,12 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-close-popup tabindex="0">
+          <q-item
+            clickable
+            v-close-popup
+            tabindex="0"
+            :to="`/sls/salesReturn/createFromInvoice/${row.id}`"
+          >
             <q-item-section avatar class="q-py-sm">
               <q-avatar class="bg-on-dark" size="sm">
                 <q-icon name="o_undo" size="20px" />
@@ -177,6 +188,7 @@
   import { useI18n } from "vue-i18n";
   //import { useInvoiceGrid } from "src/components/areas/sls/_composables/useInvoiceGrid";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
   import { useInvoiceState } from "../../../_composables/useInvoiceState";
   import { useFormActions } from "src/composables/useFormActions";
 
@@ -201,6 +213,7 @@
   const invoiceStore = useInvoiceState();
   const gridStore = useBaseInfoGrid(invoiceStore);
   const crudStore = useFormActions(baseRoute);
+  const formStore = useInvoiceModel({ baseRoute: baseRoute });
   const desktopGrid = ref(null);
   const mobileGrid = ref(null);
 
