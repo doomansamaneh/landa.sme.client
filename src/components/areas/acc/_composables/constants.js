@@ -153,6 +153,16 @@ export const accountItemDLColumns = [
   { ...inlineDebit },
 ];
 
+export const accountItemSLColumns = [
+  { ...voucherNo },
+  { ...voucherDate },
+  { ...dlCode },
+  { ...dlTitle },
+  { ...voucherSubject },
+  { ...debitRemained, label: "بدهکار" },
+  { ...creditRemained, label: "بستانکار" },
+];
+
 export const reviewCLColumns = [
   { ...code },
   { ...title },

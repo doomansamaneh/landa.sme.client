@@ -2,7 +2,7 @@
   .q-table__container {
     background-color: $white;
   }
-  .q-table__bottom{
+  .q-table__bottom {
     padding: 15px;
   }
   .q-table th {
@@ -14,15 +14,18 @@
       padding: 0 16px;
     }
     & td {
-
       padding: 0 16px;
-
     }
   }
-  
-  .q-table {
-    .expand td {
-      padding: 24px 36px 36px 36px;
-    }
+
+  // .q-table {
+  //   .expand > td {
+  //     padding: 24px 36px 36px 36px;
+  //   }
+  // }
+
+  div.expand {
+    padding: 24px 36px;
+    margin: -5px -15px;
   }
 }

@@ -122,7 +122,7 @@
                   <div v-html="getColText(row, col)"></div>
                 </slot>
               </td>
-              <td v-if="expandable" style="width: 1px">
+              <td v-if="expandable">
                 <q-btn
                   size="md"
                   class="expand-icon"
@@ -144,7 +144,9 @@
             >
               <tr class="expand" v-if="row.expanded">
                 <td colspan="100%">
-                  <slot name="expand" :item="row"></slot>
+                  <div class="expand">
+                    <slot name="expand" :item="row"></slot>
+                  </div>
                 </td>
               </tr>
             </transition>

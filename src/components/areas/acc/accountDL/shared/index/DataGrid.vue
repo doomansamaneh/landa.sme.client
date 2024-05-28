@@ -64,6 +64,10 @@
         :crud-store="crudStore"
       />
     </template>
+
+    <template #expand="{ item }">
+      <preview :item="item" inside />
+    </template>
   </data-grid>
 </template>
 
@@ -79,6 +83,7 @@
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import Preview from "../preview/IndexView.vue";
   import IsActive from "src/components/shared/IsActive.vue";
 
   const gridStore = useBaseInfoGrid({

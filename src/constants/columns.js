@@ -278,7 +278,7 @@ export const debit = {
   label: "بدهکار",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:110px;",
   showFilter: false,
 };
 
@@ -289,7 +289,7 @@ export const inlineDebit = {
   label: "مانده بدهکار",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:120px;",
   showFilter: false,
 };
 
@@ -300,7 +300,7 @@ export const debitRemained = {
   label: "مانده بدهکار",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:120px;",
   showFilter: false,
 };
 
@@ -311,7 +311,7 @@ export const credit = {
   label: "بستانکار",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:110px;",
   showFilter: false,
 };
 
@@ -322,7 +322,7 @@ export const creditRemained = {
   label: "مانده بستانکار",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:120px;",
   showFilter: false,
 };
 
@@ -333,7 +333,7 @@ export const purchaseQuantity = {
   label: "ورود",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:110px;",
   showFilter: false,
 };
 
@@ -344,7 +344,7 @@ export const salesQuantity = {
   label: "خروج",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:110px;",
   showFilter: false,
 };
 
@@ -355,7 +355,7 @@ export const stock = {
   label: "موجودی",
   align: "left",
   class: "text-left",
-  style: "width:170px;",
+  style: "width:110px;",
   showFilter: false,
 };
 
