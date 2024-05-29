@@ -1,5 +1,5 @@
 <template>
-  <toolbar-desktop margin title="گزارش مرور فروش" />
+  <toolbar-desktop margin title="گزارش مرور خرید" />
 
   <advanced-search />
 
@@ -50,19 +50,25 @@
       class="transparent"
     >
       <q-tab-panel name="pg" class="no-padding">
-        <review-pg />
+        <review-pg
+          data-source="sls/report/getPurchaseByProductGroup"
+        />
       </q-tab-panel>
       <q-tab-panel name="prd" class="no-padding">
-        <review-prd />
+        <review-prd data-source="sls/report/getPurchaseByProduct" />
       </q-tab-panel>
       <q-tab-panel name="crm" class="no-padding">
-        <review-customer />
+        <review-customer
+          data-source="sls/report/getPurchaseByCustomer"
+        />
       </q-tab-panel>
       <q-tab-panel name="prdCrm" class="no-padding">
-        <review-prd-customer />
+        <review-prd-customer
+          data-source="sls/report/getPurchaseByCustomerProduct"
+        />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
-        <review-item />
+        <review-item data-source="sls/report/getPurchaseDetail" />
       </q-tab-panel>
     </q-tab-panels>
   </div>

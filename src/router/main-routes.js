@@ -1067,6 +1067,11 @@ export default {
           component: () =>
             import("pages/areas/sls/report/SalesReviewPage.vue"),
         },
+        {
+          path: "purchaseReview",
+          component: () =>
+            import("pages/areas/sls/report/PurchaseReviewPage.vue"),
+        },
       ],
     },
 
