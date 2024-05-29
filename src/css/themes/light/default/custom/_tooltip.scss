@@ -2,9 +2,11 @@
   .custom-tooltip {
     background-color: $white;
     box-shadow: 0 2px 10px 0 rgba(58, 53, 65, 0.1),
-      0 0 4px 0 rgba(0, 0, 0, 0.067) !important;
+      0 0 4px 0 rgba(0, 0, 0, 0.067);
     border: 1px solid #00000020;
     color: #2d2d2d;
     z-index: 9999;
+    font-size: 14px;
+    letter-spacing: 0;
   }
 }

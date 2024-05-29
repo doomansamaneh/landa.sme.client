@@ -27,7 +27,10 @@
               clickable
               @click="reloadData"
             >
-              <q-tooltip class="custom-tooltip" :delay="600">
+              <q-tooltip
+                class="text-body2 no-letter-spacing custom-tooltip"
+                :delay="600"
+              >
                 {{ $t("shared.labels.refresh") }}
               </q-tooltip>
             </q-btn>
@@ -41,7 +44,10 @@
               icon="o_help_outline"
               @click="showGuideDialog = true"
             >
-              <q-tooltip class="custom-tooltip" :delay="600">
+              <q-tooltip
+                class="text-body2 no-letter-spacing custom-tooltip"
+                :delay="600"
+              >
                 {{ $t("page.buttons.guide-tooltip") }}
               </q-tooltip>
             </q-btn>
@@ -130,7 +136,7 @@
           dense
         >
           <q-tooltip
-            class="custom-tooltip"
+            class="text-body2 no-letter-spacing custom-tooltip"
             :delay="600"
             :offset="[-60, -70]"
           >

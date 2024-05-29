@@ -1,14 +1,14 @@
-import { ref } from "vue"
+import { ref } from "vue";
 
-const state = ref(false)
+const state = ref(false);
 
 export function useContactDrawer() {
-    const toggle = () => {
-        state.value = !state.value
-    }
+  const toggle = () => {
+    state.value = !state.value;
+  };
 
-    return {
-        state,
-        toggle,
-    }
+  return {
+    state,
+    toggle,
+  };
 }

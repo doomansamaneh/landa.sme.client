@@ -49,7 +49,7 @@
         unelevated
         no-caps
       >
-        <q-icon size="20px" name="receipt" class="q-mr-xs" />
+        <q-icon size="20px" name="o_receipt" class="q-mr-xs" />
         تبدیل به فاکتور
       </q-btn>
       <q-btn

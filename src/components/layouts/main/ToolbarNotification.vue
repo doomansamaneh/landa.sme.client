@@ -4,7 +4,8 @@
     unelevated
     dense
     class="text-on-dark"
-    @click="notifDrawerStore.toggle"
+    :class="activeButton"
+    @click="toggleNotifDrawer"
   >
     <q-icon
       :class="
@@ -27,13 +28,22 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { useNotifDrawer } from "src/composables/useNotifDrawer";
+  import { useContactDrawer } from "src/composables/useContactDrawer";
 
   const notifDrawerStore = useNotifDrawer();
+  const contactDrawerStore = useContactDrawer();
+
+  const activeButton = computed(() =>
+    notifDrawerStore.state.value == true ? "btn-active" : ""
+  );
 
   const toggleNotifDrawer = () => {
-    notifDrawerStore.state.value = !notifDrawerStore.state.value;
+    notifDrawerStore.toggle();
+    if (contactDrawerStore.state.value) {
+      contactDrawerStore.state.value = false;
+    }
   };
 </script>
 
