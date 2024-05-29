@@ -50,14 +50,14 @@
         <notification />
 
         <q-btn
-          @click="contactDrawerStore.toggle"
           flat
           dense
           round
           icon="o_person_search"
           class="btn-icon text-on-dark gt-xs"
-          :class="activeButton"
           size="14px"
+          :class="activeButton"
+          @click="toggleContactDrawer"
         />
 
         <profile />
@@ -71,7 +71,9 @@
   import { useQuasar } from "quasar";
   import { useSelectedBusinessStore } from "src/stores/selected-business.js";
   import { useContactDrawer } from "src/composables/useContactDrawer";
+  import { useNotifDrawer } from "src/composables/useNotifDrawer";
   import { useMenuBar } from "src/composables/useMenuBar";
+
   import FiscalYear from "src/components/layouts/main/desktop/ToolbarFiscalYear.vue";
   import Notification from "src/components/layouts/main/ToolbarNotification.vue";
   import Profile from "src/components/layouts/main/ToolbarProfile.vue";
@@ -80,6 +82,7 @@
   import SteamAnimation from "src/assets/SteamAnimation.vue";
 
   const contactDrawerStore = useContactDrawer();
+  const notifDrawerStore = useNotifDrawer();
   const menuBarStore = useMenuBar();
   const $q = useQuasar();
 
@@ -88,4 +91,11 @@
   const activeButton = computed(() =>
     contactDrawerStore.state.value == true ? "btn-active" : ""
   );
+
+  const toggleContactDrawer = () => {
+    contactDrawerStore.toggle();
+    if (notifDrawerStore.state.value) {
+      notifDrawerStore.state.value = false;
+    }
+  };
 </script>

@@ -30,13 +30,18 @@
     <template #cell-code="{ item }">
       {{ item.code }}
       <div v-if="item.taxCode">
-        <small class="caption-on-dark"> tax: {{ item.taxCode }} </small>
+        <small class="caption-on-dark">tax: {{ item.taxCode }}</small>
       </div>
     </template>
 
     <template #cell-typeId="{ item }">
       {{
-        $t(`shared.productType.${helper.getEnumType(item.typeId, productType)}`)
+        $t(
+          `shared.productType.${helper.getEnumType(
+            item.typeId,
+            productType
+          )}`
+        )
       }}
     </template>
 
@@ -55,8 +60,8 @@
         size="10px"
         unelevated
         icon="o_done"
-        color="green-8"
-        class="green-shadow no-pointer-events"
+        text-color="white"
+        class="green-gradient green-shadow no-pointer-events"
       />
       <q-btn
         v-else
@@ -65,8 +70,8 @@
         size="10px"
         unelevated
         icon="o_close"
-        color="negative"
-        class="red-shadow no-pointer-events"
+        text-color="white"
+        class="red-gradient red-shadow no-pointer-events"
       />
     </template>
 
@@ -82,28 +87,28 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { helper } from "src/helpers";
-import { isActiveOptions, productType } from "src/constants";
+  import { ref, computed } from "vue";
+  import { helper } from "src/helpers";
+  import { isActiveOptions, productType } from "src/constants";
 
-import RowToolBar from "src/components/shared/RowToolBar.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import RowToolBar from "src/components/shared/RowToolBar.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
 
-const props = defineProps({
-  gridStore: Object,
-  crudStore: Object,
-});
+  const props = defineProps({
+    gridStore: Object,
+    crudStore: Object,
+  });
 
-const dataGrid = ref(null);
+  const dataGrid = ref(null);
 
-async function reloadData() {
-  await tableStore.value.reloadData();
-}
+  async function reloadData() {
+    await tableStore.value.reloadData();
+  }
 
-const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
-defineExpose({
-  tableStore,
-});
+  defineExpose({
+    tableStore,
+  });
 </script>

@@ -14,8 +14,8 @@
         <div class="q-py-sm">
           <q-item-section avatar>
             <q-avatar class="bg-on-dark" size="32px">
-              <q-icon size="16px" name="o_edit"
-            /></q-avatar>
+              <q-icon size="16px" name="o_edit" />
+            </q-avatar>
           </q-item-section>
         </div>
         <q-item-section>
@@ -49,7 +49,9 @@
                 size="56px"
                 text-color="white"
                 :style="{
-                  backgroundColor: helper.generateDarkAvatarColor(item.title),
+                  backgroundColor: helper.generateDarkAvatarColor(
+                    item.title
+                  ),
                 }"
               >
                 <div class="char text-body1 text-bold">
@@ -58,7 +60,11 @@
               </q-avatar>
             </q-btn>
             <q-btn round unelevated class="no-pointer-events" v-else>
-              <q-avatar size="50px" color="primary" text-color="white">
+              <q-avatar
+                size="50px"
+                color="primary"
+                text-color="white"
+              >
                 <q-icon name="o_done" size="md" />
               </q-avatar>
             </q-btn>
@@ -66,13 +72,15 @@
 
           <div class="row justify-between items-center">
             <div class="col row items-center">
-              <span class="text-caption text-on-dark">{{
-                item.productGroupTitle
-              }}</span>
+              <span class="text-caption text-on-dark">
+                {{ item.productGroupTitle }}
+              </span>
             </div>
 
             <div class="col row justify-end items-center q-gutter-xs">
-              <span class="text-caption text-on-dark">{{ item.code }}</span>
+              <span class="text-caption text-on-dark">
+                {{ item.code }}
+              </span>
             </div>
           </div>
         </q-card-section>
@@ -94,9 +102,9 @@
                     round
                     unelevated
                     dense
-                    class="green-shadow no-pointer-events"
                     size="7px"
-                    color="green-8"
+                    text-color="white"
+                    class="green-gradient green-shadow no-pointer-events"
                     icon="o_done"
                   />
                   <q-btn
@@ -104,16 +112,17 @@
                     round
                     unelevated
                     dense
-                    class="red-shadow no-pointer-events"
                     size="7px"
-                    color="negative"
+                    text-color="white"
+                    class="red-gradient red-shadow no-pointer-events"
                     icon="o_close"
                   />
                 </span>
                 <span
                   class="ellipsis-2-lines_ text-caption text-bold text-on-dark"
-                  >{{ item.title }}</span
                 >
+                  {{ item.title }}
+                </span>
                 <div class="text-on-dark text-body2">
                   {{ item.comment }}
                 </div>
@@ -131,7 +140,9 @@
 
             <div class="row items-center" v-if="item.taxCode">
               <div class="col-4">
-                <span class="text-caption text-on-dark">شناسه مالیاتی</span>
+                <span class="text-caption text-on-dark">
+                  شناسه مالیاتی
+                </span>
               </div>
               <div class="col">
                 {{ item.taxCode }}
@@ -140,7 +151,9 @@
 
             <div class="row items-center" v-if="item.price">
               <div class="col-4">
-                <span class="text-caption text-on-dark">قیمت فروش</span>
+                <span class="text-caption text-on-dark">
+                  قیمت فروش
+                </span>
               </div>
               <div class="col">
                 {{ item.price.toLocaleString() }}
@@ -149,7 +162,9 @@
 
             <div class="row items-center" v-if="item.purchasePrice">
               <div class="col-4">
-                <span class="text-caption text-on-dark">قیمت خرید</span>
+                <span class="text-caption text-on-dark">
+                  قیمت خرید
+                </span>
               </div>
               <div class="col">
                 {{ item.purchasePrice.toLocaleString() }}
@@ -223,7 +238,9 @@
         <q-item
           clickable
           v-ripple
-          @click="crudStore.deleteById(bottomSheetItem.id, reloadData)"
+          @click="
+            crudStore.deleteById(bottomSheetItem.id, reloadData)
+          "
         >
           <q-item-section avatar>
             <q-avatar
@@ -244,53 +261,53 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useQuasar } from "quasar";
-import { useFormActions } from "src/composables/useFormActions";
-import { helper } from "src/helpers";
+  import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
+  import { useFormActions } from "src/composables/useFormActions";
+  import { helper } from "src/helpers";
 
-import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
-import BottomSheet from "src/components/shared/BottomSheet.vue";
-import ToolBar from "src/components/shared/ToolBar.vue";
-import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue";
+  import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
+  import BottomSheet from "src/components/shared/BottomSheet.vue";
+  import ToolBar from "src/components/shared/ToolBar.vue";
+  import EditBatchDialog from "src/components/areas/cmn/product/shared/forms/EditBatchDialog.vue";
 
-const props = defineProps({
-  gridStore: Object,
-  title: String,
-});
-
-const $q = useQuasar();
-const crudStore = useFormActions("crm/customer");
-const dataGrid = ref(null);
-const bottomSheetStatus = ref(false);
-const bottomSheetItem = ref(null);
-
-const tableStore = computed(() => dataGrid.value?.tableStore);
-const selectedIds = computed(() =>
-  tableStore.value?.selectedRows?.value.map((item) => item.id)
-);
-
-const onBottomSheetShow = (row) => {
-  bottomSheetItem.value = row;
-  bottomSheetStatus.value = true;
-};
-
-const onBottomSheetHide = () => {
-  bottomSheetStatus.value = false;
-};
-
-async function reloadData() {
-  await tableStore.value.reloadData();
-}
-
-function editBatch() {
-  $q.dialog({
-    component: EditBatchDialog,
-    componentProps: {
-      selectedIds: selectedIds?.value,
-    },
-  }).onOk(async () => {
-    await reloadData();
+  const props = defineProps({
+    gridStore: Object,
+    title: String,
   });
-}
+
+  const $q = useQuasar();
+  const crudStore = useFormActions("crm/customer");
+  const dataGrid = ref(null);
+  const bottomSheetStatus = ref(false);
+  const bottomSheetItem = ref(null);
+
+  const tableStore = computed(() => dataGrid.value?.tableStore);
+  const selectedIds = computed(() =>
+    tableStore.value?.selectedRows?.value.map((item) => item.id)
+  );
+
+  const onBottomSheetShow = (row) => {
+    bottomSheetItem.value = row;
+    bottomSheetStatus.value = true;
+  };
+
+  const onBottomSheetHide = () => {
+    bottomSheetStatus.value = false;
+  };
+
+  async function reloadData() {
+    await tableStore.value.reloadData();
+  }
+
+  function editBatch() {
+    $q.dialog({
+      component: EditBatchDialog,
+      componentProps: {
+        selectedIds: selectedIds?.value,
+      },
+    }).onOk(async () => {
+      await reloadData();
+    });
+  }
 </script>

@@ -6,8 +6,8 @@
     size="10px"
     unelevated
     icon="o_done"
-    color="positive"
-    class="no-pointer-events"
+    text-color="white"
+    class="green-gradient green-shadow no-pointer-events"
   />
   <q-btn
     v-else
@@ -16,13 +16,13 @@
     size="10px"
     unelevated
     icon="o_close"
-    color="negative"
-    class="no-pointer-events"
+    text-color="white"
+    class="red-gradient red-shadow no-pointer-events"
   />
 </template>
 
 <script setup>
-const props = defineProps({
-  isActive: String,
-});
+  const props = defineProps({
+    isActive: String,
+  });
 </script>

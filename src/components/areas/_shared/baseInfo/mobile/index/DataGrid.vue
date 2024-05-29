@@ -11,7 +11,9 @@
           <span
             class="q-mr-md"
             v-if="
-              gridStore.columns.value.some((col) => col.name === 'isActive')
+              gridStore.columns.value.some(
+                (col) => col.name === 'isActive'
+              )
             "
           >
             <q-btn
@@ -21,8 +23,8 @@
               size="10px"
               unelevated
               icon="o_done"
-              color="positive"
-              class="no-pointer-events"
+              text-color="white"
+              class="green-gradient green-shadow no-pointer-events"
             />
             <q-btn
               v-else
@@ -31,11 +33,12 @@
               size="10px"
               unelevated
               icon="o_close"
-              color="negative"
-              class="no-pointer-events"
+              text-color="white"
+              class="red-gradient red-shadow no-pointer-events"
             />
           </span>
-          <span v-if="item.code"> {{ item.code }} - </span>{{ item.title }}
+          <span v-if="item.code">{{ item.code }} -</span>
+          {{ item.title }}
           <div>
             <small class="">{{ item.comment }}</small>
           </div>
@@ -46,23 +49,23 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+  import { ref, computed } from "vue";
 
-import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
+  import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
 
-const props = defineProps({
-  gridStore: Object,
-  crudStore: Object,
-  dataSource: String,
-  baseRoute: String,
-  createUrl: String,
-});
+  const props = defineProps({
+    gridStore: Object,
+    crudStore: Object,
+    dataSource: String,
+    baseRoute: String,
+    createUrl: String,
+  });
 
-const dataGrid = ref(null);
+  const dataGrid = ref(null);
 
-const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
-defineExpose({
-  tableStore,
-});
+  defineExpose({
+    tableStore,
+  });
 </script>

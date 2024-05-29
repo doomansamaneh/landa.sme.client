@@ -55,10 +55,12 @@
         {{ item.summary }}
       </div>
       <div class="q-gutter-x-sm">
-        <q-badge>{{ item.typeTitle }}</q-badge>
+        <q-badge class="primary-gradient">
+          {{ item.typeTitle }}
+        </q-badge>
         <q-badge
-          :text-color="$q.dark.isActive ? 'black' : 'white'"
-          :color="$q.dark.isActive ? 'grey-5' : 'grey-8'"
+          text-color="white"
+          class="bluegrey-gradient"
           v-if="item.contractTitle"
         >
           {{ item.contractTitle }}
@@ -74,12 +76,12 @@
       <q-btn
         v-if="item.statusId === quoteStatus.final"
         round
+        text-color="white"
         dense
-        size="10px"
+        size="9px"
         unelevated
         icon="o_done"
-        color="positive"
-        class="no-pointer-events"
+        class="q-mr-xs green-gradient green-shadow no-pointer-events"
       />
       {{
         $t(
