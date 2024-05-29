@@ -7,15 +7,7 @@
       @click="tableStore.reloadData"
     >
       <q-icon size="24px" name="o_refresh" />
-      <q-tooltip
-        :delay="700"
-        class="bordered"
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
-        "
-      >
+      <q-tooltip :delay="700" class="custom-tooltip">
         <div class="text-body2 no-letter-spacing">تازه‌سازی</div>
       </q-tooltip>
     </q-btn>
@@ -36,7 +28,7 @@
       />
       <q-tooltip
         :delay="700"
-        class="bordered"
+        class="custom-tooltip"
         :anchor="
           tableStore.inFullscreen.value
             ? 'bottom end'
@@ -44,11 +36,6 @@
         "
         :self="
           tableStore.inFullscreen.value ? 'top end' : 'top middle'
-        "
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
         "
       >
         <div class="text-body2 no-letter-spacing">
@@ -72,16 +59,11 @@
       />
       <q-tooltip
         :delay="700"
-        class="bordered"
+        class="custom-tooltip"
         :anchor="
           tableStore.dense.value ? 'bottom end' : 'bottom middle'
         "
         :self="tableStore.dense.value ? 'top end' : 'top middle'"
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
-        "
       >
         <div class="text-body2 no-letter-spacing">
           <template v-if="tableStore.dense.value">استاندارد</template>
@@ -99,7 +81,7 @@
       <q-icon size="20px" name="format_size" />
       <q-tooltip
         :delay="700"
-        class="bordered"
+        class="custom-tooltip"
         :anchor="
           tableStore.inFullscreen.value
             ? 'bottom end'
@@ -107,11 +89,6 @@
         "
         :self="
           tableStore.inFullscreen.value ? 'top end' : 'top middle'
-        "
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
         "
       >
         <div class="text-body2 no-letter-spacing">
@@ -132,16 +109,11 @@
       <q-icon size="20px" name="format_underlined" />
       <q-tooltip
         :delay="700"
-        class="bordered"
+        class="custom-tooltip"
         :anchor="
           tableStore.separator.value ? 'bottom end' : 'bottom middle'
         "
         :self="tableStore.separator.value ? 'top end' : 'top middle'"
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
-        "
       >
         <div class="text-body2 no-letter-spacing">
           <template v-if="tableStore.separator.value === 'none'">
@@ -164,15 +136,7 @@
         <div class="text-body2 no-letter-spacing">خاموش کردن</div>
       </div>
 
-      <q-tooltip
-        :delay="700"
-        class="bordered"
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
-        "
-      >
+      <q-tooltip :delay="700" class="custom-tooltip">
         <div class="text-body2 no-letter-spacing">
           مخفی کردن ستون‌ها
         </div>
@@ -287,30 +251,14 @@
 
     <q-btn size="11px" round unelevated @click="tableStore.print">
       <q-icon size="21px" name="o_print" />
-      <q-tooltip
-        :delay="700"
-        class="bordered"
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
-        "
-      >
+      <q-tooltip :delay="700" class="custom-tooltip">
         <div class="text-body2 no-letter-spacing">چاپ دسته‌ای</div>
       </q-tooltip>
     </q-btn>
 
     <q-btn size="11px" round unelevated>
       <q-icon size="21px" name="o_download" />
-      <q-tooltip
-        :delay="700"
-        class="bordered"
-        :class="
-          $q.dark.isActive
-            ? 'bg-dark text-white'
-            : 'bg-white text-black'
-        "
-      >
+      <q-tooltip :delay="700" class="custom-tooltip">
         <div class="text-body2 no-letter-spacing">تبدیل به اکسل</div>
       </q-tooltip>
 

@@ -6,8 +6,8 @@
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-tabs
-      indicator-color="primary"
-      active-color="primary"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
       class="bottom-navigation"
     >
       <q-route-tab
@@ -97,31 +97,29 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+  import { ref } from "vue";
 
-import { useContactDrawer } from "src/composables/useContactDrawer"
-import { useMenuBar } from "src/composables/useMenuBar"
-import { useRouter } from "vue-router"
+  import { useContactDrawer } from "src/composables/useContactDrawer";
+  import { useMenuBar } from "src/composables/useMenuBar";
+  import { useRouter } from "vue-router";
 
+  const router = useRouter();
+  // import BottomSheet from "src/components/shared/BottomSheet.vue"
 
-const router = useRouter()
-// import BottomSheet from "src/components/shared/BottomSheet.vue"
+  const contactDrawerStore = useContactDrawer();
+  const menuBarStore = useMenuBar();
 
-const contactDrawerStore = useContactDrawer()
-const menuBarStore = useMenuBar()
+  const gotoSettings = () => {
+    router.push("/settings");
+  };
 
-const gotoSettings = () => {
-  router.push('/settings')
-}
+  // const bottomSheetStatus = ref(false)
 
-// const bottomSheetStatus = ref(false)
+  // const onBottomSheetShow = () => {
+  //   bottomSheetStatus.value = true;
+  // }
 
-// const onBottomSheetShow = () => {
-//   bottomSheetStatus.value = true;
-// }
-
-// const onBottomSheetHide = () => {
-//   bottomSheetStatus.value = false;
-// }
-
+  // const onBottomSheetHide = () => {
+  //   bottomSheetStatus.value = false;
+  // }
 </script>

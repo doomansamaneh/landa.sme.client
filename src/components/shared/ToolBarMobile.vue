@@ -30,7 +30,7 @@
             </template>
 
             <template v-if="selectedIds?.length > 0">
-              <slot name="buttons-batch-action"> </slot>
+              <slot name="buttons-batch-action"></slot>
               <slot name="buttons-delete-batch">
                 <q-btn
                   class="text-caption"
@@ -38,7 +38,10 @@
                   unelevated
                   no-caps
                   @click="
-                    crudStore.deleteBatch(selectedIds, tableStore.reloadData)
+                    crudStore.deleteBatch(
+                      selectedIds,
+                      tableStore.reloadData
+                    )
                   "
                 >
                   <q-icon name="o_delete" />
@@ -46,7 +49,9 @@
               </slot>
             </template>
 
-            <template v-else-if="tableStore?.activeRow?.value != null">
+            <template
+              v-else-if="tableStore?.activeRow?.value != null"
+            >
               <slot name="buttons-delete">
                 <q-btn
                   class="text-caption"
@@ -101,8 +106,7 @@
             class="q-ml-md text-on-dark"
             icon="close"
             @click="deselect"
-          >
-          </q-btn>
+          ></q-btn>
         </template>
 
         <template v-else>
@@ -176,7 +180,9 @@
             clickable
             v-close-popup
             tabindex="0"
-            @click="crudStore.activate(selectedIds, tableStore.reloadData)"
+            @click="
+              crudStore.activate(selectedIds, tableStore.reloadData)
+            "
           >
             <q-item-section avatar>
               <q-avatar class="bg-on-dark text-on-dark" size="32px">
@@ -194,7 +200,9 @@
             clickable
             v-close-popup
             tabindex="0"
-            @click="crudStore.deactivate(selectedIds, tableStore.reloadData)"
+            @click="
+              crudStore.deactivate(selectedIds, tableStore.reloadData)
+            "
           >
             <q-item-section avatar>
               <q-avatar class="bg-on-dark text-on-dark" size="32px">
@@ -254,36 +262,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import BottomSheet from "src/components/shared/BottomSheet.vue";
-import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import { ref, computed } from "vue";
+  import BottomSheet from "src/components/shared/BottomSheet.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-const bottomSheetStatus = ref(false);
+  const bottomSheetStatus = ref(false);
 
-const onBottomSheetShow = () => {
-  bottomSheetStatus.value = true;
-};
+  const onBottomSheetShow = () => {
+    bottomSheetStatus.value = true;
+  };
 
-const onBottomSheetHide = () => {
-  bottomSheetStatus.value = false;
-};
+  const onBottomSheetHide = () => {
+    bottomSheetStatus.value = false;
+  };
 
-const props = defineProps({
-  title: String,
-  baseRoute: String,
-  tableStore: Object,
-  crudStore: Object,
-  activation: Boolean,
-  backButton: Boolean,
-  buttons: Boolean,
-});
+  const props = defineProps({
+    title: String,
+    baseRoute: String,
+    tableStore: Object,
+    crudStore: Object,
+    activation: Boolean,
+    backButton: Boolean,
+    buttons: Boolean,
+  });
 
-const selectedIds = computed(() =>
-  props.tableStore?.selectedRows?.value.map((item) => item.id)
-);
+  const selectedIds = computed(() =>
+    props.tableStore?.selectedRows?.value.map((item) => item.id)
+  );
 
-function deselect() {
-  props.tableStore.selectAll(false);
-  props.tableStore.setActiveRow(null);
-}
+  function deselect() {
+    props.tableStore.selectAll(false);
+    props.tableStore.setActiveRow(null);
+  }
 </script>

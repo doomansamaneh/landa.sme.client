@@ -65,7 +65,7 @@
               </q-item-section>
             </q-item>
 
-            <q-separator />
+            <q-separator size="0.5px" />
 
             <q-item
               class="bottom-radius-xl q-py-sm"

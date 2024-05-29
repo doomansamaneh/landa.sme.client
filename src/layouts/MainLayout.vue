@@ -7,7 +7,9 @@
       <router-view />
     </q-page-container>
 
-    <main-header />
+    <header-mobile v-if="$q.screen.xs" />
+    <header-desktop v-if="$q.screen.gt.xs" />
+
     <bottom-navigation />
     <menu-bar />
      <!-- v-if="menuBarStore.state.visible.value" -->
@@ -32,7 +34,8 @@ import { useMenuBar } from "src/composables/useMenuBar"
 import MenuBar from "src/components/layouts/main/MenuBar.vue"
 import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue"
 import NotifDrawer from "src/components/layouts/main/NotifDrawer.vue"
-import MainHeader from "src/components/layouts/main/MainHeader.vue"
+import HeaderDesktop from "src/components/layouts/main/desktop/MainHeader.vue"
+import HeaderMobile from "src/components/layouts/main/mobile/MainHeader.vue"
 import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue"
 import AlertBanner from "src/components/shared/AlertBanner.vue"
 
