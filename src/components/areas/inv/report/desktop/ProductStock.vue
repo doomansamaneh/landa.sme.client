@@ -23,9 +23,7 @@
     </template>
 
     <template #expand="{ item }">
-      <div class="q-mb-sm">
-        <product-stock-preview :item="item" inside />
-      </div>
+      <product-stock-preview :item="item" inside />
     </template>
   </data-grid>
 </template>

@@ -1055,12 +1055,17 @@ export default {
     },
 
     {
-      path: "sls/report/productStock",
+      path: "sls/report",
       children: [
         {
-          path: "",
+          path: "productStock",
           component: () =>
             import("pages/areas/inv/report/ProductStockPage.vue"),
+        },
+        {
+          path: "salesReview",
+          component: () =>
+            import("pages/areas/sls/report/SalesReviewPage.vue"),
         },
       ],
     },

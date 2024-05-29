@@ -1,8 +1,17 @@
 import {
   no,
+  productGroupCode,
+  productGroupTitle,
+  productCode,
+  productTitle,
+  productUnitTitle,
+  vatAmount,
+  quantity,
   date,
   customerName,
   subject,
+  price,
+  itemComment,
   amount,
   payedAmount,
   remainedAmount,
@@ -36,6 +45,50 @@ export const quoteColumns = [
   { ...amount },
   { ...discountAmount },
   { ...statusId },
+];
+
+export const reviewProductGroupColumns = [
+  { ...productGroupCode },
+  { ...productGroupTitle },
+  { ...quantity },
+  { ...amount },
+];
+
+export const reviewProductColumns = [
+  { ...productCode },
+  { ...productTitle },
+  { ...productUnitTitle },
+  { ...price },
+  { ...quantity },
+  { ...amount },
+];
+
+export const reviewCustomerColumns = [
+  { ...customerName },
+  { ...amount },
+];
+
+export const reviewProductCustomerColumns = [
+  { ...customerName },
+  { ...productCode },
+  { ...productTitle },
+  { ...price },
+  { ...quantity },
+  { ...amount },
+];
+
+export const reviewInvoiceItemColumns = [
+  { ...no },
+  { ...date },
+  { ...customerName },
+  { ...productCode },
+  { ...productTitle },
+  { ...itemComment },
+  { ...productUnitTitle },
+  { ...price },
+  { ...quantity },
+  { ...vatAmount },
+  { ...amount },
 ];
 
 export const taxApiLogColumns = [

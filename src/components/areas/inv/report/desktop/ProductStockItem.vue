@@ -10,8 +10,8 @@
     numbered
     bordered
     wrapCells
-    dense_
-    :expandable="true"
+    dense
+    expandable
   >
     <template #cell-purchaseQuantity="{ item }">
       {{ item.purchaseQuantity?.toLocaleString() }}

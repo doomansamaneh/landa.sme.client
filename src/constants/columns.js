@@ -32,6 +32,64 @@ export const code = {
   showFilter: true,
 };
 
+export const productGroupCode = {
+  name: "productGroupCode",
+  field: "productGroupCode",
+  sortable: true,
+  label: "کد گروه",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width:130px;",
+  showFilter: true,
+};
+
+export const productGroupTitle = {
+  name: "productGroupTitle",
+  field: "productGroupTitle",
+  sortable: true,
+  label: "گروه",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  showFilter: true,
+};
+
+export const productCode = {
+  name: "productCode",
+  field: "productCode",
+  sortable: true,
+  label: "کد کالا",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width:130px;",
+  showFilter: true,
+};
+
+export const productTitle = {
+  name: "productTitle",
+  field: "productTitle",
+  sortable: true,
+  label: "کالا / خدمت",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  showFilter: true,
+};
+
+export const productUnitTitle = {
+  name: "productUnitTitle",
+  field: "productUnitTitle",
+  sortable: true,
+  label: "واحد سنجش",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width:130px;",
+  showFilter: true,
+};
+
 export const slCode = {
   name: "slCode",
   field: "slCode",
@@ -134,6 +192,15 @@ export const comment = {
   showFilter: true,
 };
 
+export const itemComment = {
+  name: "itemComment",
+  field: "itemComment",
+  sortable: true,
+  label: "شرح",
+  class: "text-left",
+  showFilter: true,
+};
+
 export const rowNo = {
   name: "rowNo",
   field: "rowNo",
@@ -221,6 +288,17 @@ export const amount = {
   field: "amount",
   sortable: true,
   label: "جمع کل",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+  style: "width:120px",
+};
+
+export const vatAmount = {
+  name: "vatAmount",
+  field: "vatAmount",
+  sortable: true,
+  label: "ارزش افزوده",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -348,6 +426,17 @@ export const salesQuantity = {
   showFilter: false,
 };
 
+export const quantity = {
+  name: "quantity",
+  field: "quantity",
+  sortable: false,
+  label: "تعداد/مقدار",
+  align: "left",
+  class: "text-left",
+  style: "width:110px;",
+  showFilter: true,
+};
+
 export const stock = {
   name: "stock",
   field: "stock",
@@ -397,7 +486,7 @@ export const price = {
   label: "مبلغ",
   align: "left",
   class: "text-left",
-  showFilter: false,
+  showFilter: true,
 };
 
 export const summary = {
