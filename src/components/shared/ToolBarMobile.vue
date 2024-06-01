@@ -146,6 +146,7 @@
 
   <bottom-sheet
     v-if="bottomSheetStatus"
+    header
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
   >

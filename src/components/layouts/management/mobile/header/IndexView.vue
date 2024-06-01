@@ -2,7 +2,7 @@
   <transition enter-active-class="animated slideInDown">
     <!-- v-show="headerStore.showHeader.value" -->
     <q-header bordered class="business-header bg-main bg-dark">
-      <q-toolbar class="row q-px-lg">
+      <q-toolbar class="row main-container">
         <div class="col-2 row items-center q-gutter-x-sm">
           <div>
             <a
@@ -99,7 +99,7 @@
         </div>
       </q-toolbar>
       <q-separator class="business-header" />
-      <q-toolbar style="min-height: 40px" class="q-px-lg">
+      <q-toolbar style="min-height: 40px" class="main-container">
         <bread-crumbs />
       </q-toolbar>
     </q-header>

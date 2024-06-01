@@ -1,4 +1,15 @@
 <template>
+  <div
+    v-if="$q.screen.xs"
+    class="row q-gutter-x-lg q-py-md items-center justify-between"
+  >
+    <div
+      class="col ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
+    >
+      {{ $t("pages.add-new-business") }}
+    </div>
+    <back-button />
+  </div>
   <q-card
     :class="{
       'card-desktop bordered q-my-xl': $q.screen.gt.xs,
@@ -30,7 +41,11 @@
         'no-padding': $q.screen.lt.sm,
       }"
     >
-      <q-form ref="form" autofocus class="q-my-md">
+      <q-form
+        ref="form"
+        autofocus
+        :class="$q.screen.xs ? 'q-mb-md' : 'q-my-md'"
+      >
         <div>
           <q-item-label
             class="text-body2 caption-on-dark no-letter-spacing q-mb-sm"

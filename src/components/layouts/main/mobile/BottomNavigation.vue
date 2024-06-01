@@ -42,7 +42,7 @@
   </q-footer>
 
   <!-- <bottom-sheet
-    v-if="bottomSheetStatus"
+    v-if="bottomSheetStatus" header
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
   >

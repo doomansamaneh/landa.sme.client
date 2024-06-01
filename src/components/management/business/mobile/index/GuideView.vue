@@ -7,7 +7,9 @@
     <q-card class="no-shadow no-border">
       <q-card-section>
         <div class="row items-center justify-between">
-          <div class="text-body1 no-letter-spacing">راهنما</div>
+          <div class="text-body1 text-weight-700 no-letter-spacing">
+            راهنما
+          </div>
           <q-btn
             round
             icon="o_close"
@@ -107,7 +109,7 @@
             <q-icon
               name="import_contacts"
               size="lg"
-              color="blue-grey-8"
+              :color="$q.dark.isActive ? 'white' : 'blue-grey-8'"
             />
             <div
               class="q-mt-lg text-center text-body1 no-letter-spacing"

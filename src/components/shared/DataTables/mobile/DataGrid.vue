@@ -5,7 +5,7 @@
       outlined
       rounded
       dense
-      class="searchbox text-body2 q-my-md"
+      class="searchbox text-body2"
       v-model="tableStore.pagination.value.searchTerm"
       :placeholder="$t('page.card-searchbar')"
       @keydown.enter="resetPage"
@@ -43,7 +43,7 @@
     </q-input>
   </slot>
 
-  <div class="q-col-gutter-md">
+  <div class="q-pt-md q-col-gutter-md">
     <template v-for="(row, index) in rows?.value" :key="row.id">
       <div
         @click="setActiveRow(row)"

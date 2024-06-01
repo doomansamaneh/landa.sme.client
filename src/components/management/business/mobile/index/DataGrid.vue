@@ -1,4 +1,12 @@
 <template>
+  <div class="row q-py-md items-center justify-between">
+    <div
+      class="ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
+    >
+      {{ $t("pages.business") }}
+    </div>
+  </div>
+
   <data-grid
     ref="businessDataView"
     data-source="business/getBusinessGridData"
@@ -117,6 +125,7 @@
 
   <bottom-sheet
     v-if="bottomSheetStatus"
+    header
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
   >

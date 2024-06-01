@@ -1,30 +1,32 @@
 <template>
+  <div class="row q-gutter-x-lg q-py-md items-center justify-between">
+    <div
+      class="col ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
+    >
+      {{ business?.title }}
+    </div>
+    <back-button />
+  </div>
+
   <data-grid
     ref="businessDataView"
     :data-source="`business/getBusinessPaymentGridData/${businessId}`"
     create-url="/business/addBusiness"
     :grid-store="gridStore"
-    class="q-my-xl"
   >
-    <template #title>
+    <!-- <template #title>
       <div class="text-center line-height-sm text-body2 no-letter-spacing q-my-lg">
         {{ business?.title }}
       </div>
-    </template>
+    </template> -->
 
     <template #body="{ item }">
       <q-card class="bordered row bg-dark rounded-borders q-pa-md">
         <div class="col-6">
           <div class="row">
             <div class="col-4">
-              <q-avatar
-                size="36px"
-                class="bg-on-dark"
-              >
-                <q-icon
-                  name="o_history"
-                  size="20px"
-                />
+              <q-avatar size="36px" class="bg-on-dark">
+                <q-icon name="o_history" size="20px" />
               </q-avatar>
             </div>
             <div class="col">
@@ -49,34 +51,24 @@
             <q-item-label caption>
               {{ item.amount.toLocaleString() }}
               <span>{{ $t("page.payment-history.rial") }}</span>
-              <q-tooltip
-                class="custom-tooltip"
-                :delay="600"
-              >
-                {{ $t("page.payment-history.amount-paid") }}</q-tooltip>
+              <q-tooltip class="custom-tooltip" :delay="600">
+                {{ $t("page.payment-history.amount-paid") }}
+              </q-tooltip>
             </q-item-label>
 
             <div>
               <q-item-label
                 caption
-                v-if="item.statusTitle === 'Enum_BusinessPaymentStatus_Payed'"
+                v-if="
+                  item.statusTitle ===
+                  'Enum_BusinessPaymentStatus_Payed'
+                "
               >
-                <q-icon
-                  name="circle"
-                  color="positive"
-                  size="8px"
-                />
+                <q-icon name="circle" color="positive" size="8px" />
                 {{ $t("page.payment-history.paid") }}
               </q-item-label>
-              <q-item-label
-                caption
-                v-else
-              >
-                <q-icon
-                  name="circle"
-                  color="orange"
-                  size="8px"
-                />
+              <q-item-label caption v-else>
+                <q-icon name="circle" color="orange" size="8px" />
                 {{ $t("page.payment-history.trial") }}
               </q-item-label>
             </div>
@@ -108,10 +100,7 @@
         color="primary"
         class="primary-shadow"
       >
-        <q-icon
-          name="o_business"
-          size="sm"
-        />
+        <q-icon name="o_business" size="sm" />
       </q-btn>
     </template>
   </data-grid>
@@ -121,88 +110,80 @@
     :status="bottomSheetStatus"
     @hide="onBottomSheetHide"
   >
-
     <template #body>
       <q-list padding>
-
         <q-item
           clickable
           v-ripple
           :to="`/business/paymentDetail/${selectedRow.id}`"
         >
           <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              size="36px"
-            >
-              <q-icon
-                size="xs"
-                name="o_visibility"
-              />
+            <q-avatar class="bg-on-dark text-on-dark" size="36px">
+              <q-icon size="xs" name="o_visibility" />
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing"> {{ $t("page.payment-history.buttons.view") }}
+          <q-item-section class="text-body2 no-letter-spacing">
+            {{ $t("page.payment-history.buttons.view") }}
           </q-item-section>
         </q-item>
-
       </q-list>
     </template>
-
   </bottom-sheet>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue"
-import { useRoute, useRouter } from "vue-router"
-import { fetchWrapper } from "src/helpers"
+  import { ref, computed, onMounted } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  import { fetchWrapper } from "src/helpers";
 
-import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue"
-import BottomSheet from "src/components/shared/BottomSheet.vue"
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
+  import BottomSheet from "src/components/shared/BottomSheet.vue";
 
-const route = useRoute()
+  const route = useRoute();
 
-const props = defineProps({
-  gridStore: Object
-})
+  const props = defineProps({
+    gridStore: Object,
+  });
 
-const business = ref(null)
+  const business = ref(null);
 
-async function loadData() {
-  await fetchWrapper
-    .get(`business/GetBusiness/${route.params.businessId}`)
-    .then((response) => {
-      business.value = response.data.data
-    })
-}
+  async function loadData() {
+    await fetchWrapper
+      .get(`business/GetBusiness/${route.params.businessId}`)
+      .then((response) => {
+        business.value = response.data.data;
+      });
+  }
 
-const businessId = computed(() => route.params.businessId)
+  const businessId = computed(() => route.params.businessId);
 
-const bottomSheetStatus = ref(false)
-const selectedRow = ref(null)
+  const bottomSheetStatus = ref(false);
+  const selectedRow = ref(null);
 
-const onBottomSheetShow = (item) => {
-  selectedRow.value = item;
-  bottomSheetStatus.value = true;
-}
+  const onBottomSheetShow = (item) => {
+    selectedRow.value = item;
+    bottomSheetStatus.value = true;
+  };
 
-const onBottomSheetHide = () => {
-  bottomSheetStatus.value = false;
-}
+  const onBottomSheetHide = () => {
+    bottomSheetStatus.value = false;
+  };
 
-onMounted(() => {
-  loadData()
-})
+  onMounted(() => {
+    loadData();
+  });
 </script>
 
 <style lang="scss" scoped>
-.q-item__label--caption {
-  font-size: 13px;
-  letter-spacing: 0;
-  color: #2d2d2d;
-}
+  .q-item__label--caption {
+    font-size: 13px;
+    letter-spacing: 0;
+    color: #2d2d2d;
+  }
 
-.q-item__section--side {
-  padding-right: 12px;
-}
+  .q-item__section--side {
+    padding-right: 12px;
+  }
 </style>

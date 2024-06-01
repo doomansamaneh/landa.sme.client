@@ -1,4 +1,37 @@
 <template>
+  <div
+    v-if="$q.screen.xs"
+    class="row q-py-md items-center justify-between"
+  >
+    <div class="col row items-center">
+      <q-btn
+        text-color="white"
+        class="text-caption primary-gradient primary-shadow"
+        round
+        unelevated
+        no-caps
+      >
+        <q-icon name="o_print" />
+      </q-btn>
+      <q-btn
+        no-caps
+        class="text-caption q-ml-sm"
+        round
+        unelevated
+        @click="onBottomSheetShow"
+      >
+        <q-icon name="o_more_horiz" />
+      </q-btn>
+    </div>
+
+    <div class="row q-gutter-sm items-center">
+      <div class="text-body1 no-letter-spacing text-weight-700">
+        {{ $t("pages.payment-detail") }}
+      </div>
+      <back-button />
+    </div>
+  </div>
+
   <q-card
     :class="{
       'bordered q-my-xl': $q.screen.gt.xs,
@@ -6,7 +39,10 @@
     }"
     :style="$q.screen.gt.sm ? 'width:800px' : 'width:auto'"
   >
-    <q-item class="card-header q-px-lg q-py-lg" v-if="$q.screen.gt.xs">
+    <q-item
+      class="card-header q-px-lg q-py-lg"
+      v-if="$q.screen.gt.xs"
+    >
       <q-item-section>
         <q-item-label class="text-h6 text-weight-700 text-on-dark">
           {{ $t("pages.payment-detail") }}
@@ -29,8 +65,8 @@
               @click="$emit('reload-data')"
             >
               <q-tooltip class="custom-tooltip">
-                {{ $t("page.payment-detail.buttons.excel") }}</q-tooltip
-              >
+                {{ $t("page.payment-detail.buttons.excel") }}
+              </q-tooltip>
             </q-btn>
           </div>
           <div class="">
@@ -80,7 +116,7 @@
       <div
         :class="{
           'row justify-between': $q.screen.gt.xs,
-          'column justify-center items-center q-py-lg q-gutter-y-md':
+          'column justify-center items-center q-pt-sm q-pb-lg q-gutter-y-md':
             $q.screen.xs,
         }"
       >
@@ -98,13 +134,15 @@
 
         <div class="column q-gutter-xs">
           <div class="text-body3">
-            <span>{{ $t("page.payment-detail.invoice-date") }}</span
-            >1401/02/09
+            <span>{{ $t("page.payment-detail.invoice-date") }}</span>
+            1401/02/09
           </div>
 
           <div class="text-body3">
-            <span>{{ $t("page.payment-detail.invoice-number") }}</span
-            >20108
+            <span>
+              {{ $t("page.payment-detail.invoice-number") }}
+            </span>
+            20108
           </div>
         </div>
       </div>
@@ -118,19 +156,24 @@
         'no-padding': $q.screen.lt.sm,
       }"
     >
-      <div class="row" :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-my-md'">
+      <div
+        class="row"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-my-md'"
+      >
         <div
           class="col-md col-sm col-xs-12 text-body3"
           :class="$q.screen.lt.sm ? 'text-center q-mb-md' : ''"
         >
           <div class="text-weight-bold q-mb-sm">
             {{ $t("page.payment-detail.seller") }}
-            <span class="text-weight-thin"> حسابداری آنلاین لاندا </span>
+            <span class="text-weight-thin">
+              حسابداری آنلاین لاندا
+            </span>
           </div>
           <div>
             <span class="line-height-xs">
-              شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری زیتون،
-              واحد 105
+              شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
+              زیتون، واحد 105
             </span>
             <div class="q-pt-xs">
               <q-icon name="phone" class="dark-2 q-pr-xs" />
@@ -144,13 +187,13 @@
         >
           <div class="text-weight-bold q-mb-sm">
             {{ $t("page.payment-detail.customer") }}
-            <span class="text-weight-light"> خشایار شمالی </span>
+            <span class="text-weight-light">خشایار شمالی</span>
           </div>
           <div>
-            <span class="line-height-xs"
-              >شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی، خیابان
-              عنایتی، کوچه محمدی، پلاک 22</span
-            >
+            <span class="line-height-xs">
+              شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
+              خیابان عنایتی، کوچه محمدی، پلاک 22
+            </span>
             <div class="q-pt-xs">
               <q-icon name="phone" class="dark-2 q-pr-xs" />
               09338603196
@@ -167,25 +210,33 @@
       }"
     >
       <q-scroll-area
-        style="height: 100vh"
-        class="full-width"
-        :thumb-style="{ opacity: 0 }"
-        :bar-style="{ opacity: 0 }"
+        class="window-height"
+        :bar-style="helper.barStyle"
+        :thumb-style="helper.thumbStyle"
+        visible
       >
-        <table class="overflow-hidden invoice-preview-table text-caption">
+        <table
+          class="overflow-hidden invoice-preview-table text-caption"
+        >
           <thead class="text-left">
             <tr>
               <th>
-                <div class="">{{ $t("page.payment-detail.row") }}</div>
+                <div class="">
+                  {{ $t("page.payment-detail.row") }}
+                </div>
               </th>
               <th>
                 <span>کالا/خدمت</span>
               </th>
               <th>
-                <div class="">{{ $t("page.payment-detail.amount") }}</div>
+                <div class="">
+                  {{ $t("page.payment-detail.amount") }}
+                </div>
               </th>
               <th>
-                <div class="">{{ $t("page.payment-detail.unit") }}</div>
+                <div class="">
+                  {{ $t("page.payment-detail.unit") }}
+                </div>
               </th>
               <th>
                 <div style="width: 70px">
@@ -193,7 +244,9 @@
                 </div>
               </th>
               <th>
-                <div class="">{{ $t("page.payment-detail.total") }}</div>
+                <div class="">
+                  {{ $t("page.payment-detail.total") }}
+                </div>
               </th>
             </tr>
           </thead>
@@ -203,7 +256,9 @@
                 <td class=""><span class="">1</span></td>
                 <td>
                   <div
-                    :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'"
+                    :style="
+                      $q.screen.lt.sm ? 'width:300px' : 'width:auto'
+                    "
                     class="ellipsis-2-lines"
                   >
                     <div>
@@ -252,7 +307,7 @@
               </tr>
               <tr>
                 <td class="text-right" colspan="5">
-                  <span class="q-pl-xs text-bold"> جمع کل: </span>
+                  <span class="q-pl-xs text-bold">جمع کل:</span>
                   <span class="">
                     <span class="no-letter-spacing">
                       ({{ numberToWords(item.payedAmount) }}
@@ -264,7 +319,9 @@
                   </span>
                 </td>
                 <td>
-                  <span class="">{{ item.payedAmount.toLocaleString() }}</span>
+                  <span class="">
+                    {{ item.payedAmount.toLocaleString() }}
+                  </span>
                 </td>
               </tr>
             </template>
@@ -273,48 +330,94 @@
       </q-scroll-area>
     </q-card-section>
   </q-card>
+
+  <bottom-sheet
+    v-if="bottomSheetStatus"
+    :status="bottomSheetStatus"
+    @hide="onBottomSheetHide"
+  >
+    <template #body>
+      <q-list padding>
+        <q-item clickable v-ripple @click="$emit('reload-data')">
+          <q-item-section avatar>
+            <q-avatar class="bg-on-dark text-on-dark" size="36px">
+              <q-icon size="xs" name="o_refresh" />
+            </q-avatar>
+          </q-item-section>
+
+          <q-item-section class="text-body2 no-letter-spacing">
+            {{ $t("shared.labels.refresh") }}
+          </q-item-section>
+        </q-item>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar class="bg-on-dark text-on-dark" size="36px">
+              <q-icon size="xs" name="o_description" />
+            </q-avatar>
+          </q-item-section>
+
+          <q-item-section class="text-body2 no-letter-spacing">
+            {{ $t("page.payment-detail.buttons.excel") }}
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </template>
+  </bottom-sheet>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-import { numberToWords } from "@persian-tools/persian-tools";
+  import { ref } from "vue";
+  import { helper } from "src/helpers/helper";
+  import { numberToWords } from "@persian-tools/persian-tools";
 
-const items = ref([
-  {
-    subject: "طرح 2 حسابداری آنلاین لاندا ویژه کسب‌وکارهای کوچک",
-    amount: 490000,
-    discountAmount: 150000,
-    payedAmount: 490000,
-  },
-]);
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import BottomSheet from "src/components/shared/BottomSheet.vue";
+
+  const bottomSheetStatus = ref(false);
+
+  const onBottomSheetShow = () => {
+    bottomSheetStatus.value = true;
+  };
+
+  const onBottomSheetHide = () => {
+    bottomSheetStatus.value = false;
+  };
+
+  const items = ref([
+    {
+      subject: "طرح 2 حسابداری آنلاین لاندا ویژه کسب‌وکارهای کوچک",
+      amount: 490000,
+      discountAmount: 150000,
+      payedAmount: 490000,
+    },
+  ]);
 </script>
 
 <style scoped>
-.business-name {
-  max-width: 250px;
-}
+  .business-name {
+    max-width: 250px;
+  }
 
-.sme-logo {
-  width: 72px;
-}
+  .sme-logo {
+    width: 72px;
+  }
 
-table,
-td,
-th {
-  border: none;
-}
+  table,
+  td,
+  th {
+    border: none;
+  }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  overflow: hidden;
-}
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
 
-th,
-td {
-  padding: 24px 8px;
-}
+  th,
+  td {
+    padding: 24px 8px;
+  }
 </style>

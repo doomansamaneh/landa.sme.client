@@ -2,6 +2,7 @@
   <q-dialog :position="position">
     <q-carousel
       navigation
+      class="border-radius-lg"
       arrows
       padding
       control-color="primary"
@@ -76,7 +77,7 @@
         <q-icon
           name="import_contacts"
           size="lg"
-          color="blue-grey-8"
+          :color="$q.dark.isActive ? 'white' : 'blue-grey-8'"
         />
         <div class="q-mt-lg text-center q-px-xl">
           {{ $t("page.buttons.guide.slide6") }}
