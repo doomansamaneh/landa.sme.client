@@ -31,7 +31,7 @@
       props.gridStore ||
       useBaseInfoGrid({
         filterExpression: props.filterExpression,
-        sortColumn: "code",
+        sortColumn: "customerName",
         columns: props.columns || reviewProductCustomerColumns,
         searchModel: searchStore.searchModel,
       })

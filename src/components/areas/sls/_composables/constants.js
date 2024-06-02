@@ -65,6 +65,7 @@ export const reviewProductColumns = [
 
 export const reviewCustomerColumns = [
   { ...customerName },
+  { ...quantity },
   { ...amount },
 ];
 

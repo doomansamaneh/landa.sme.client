@@ -42,6 +42,15 @@
           }}
         </b>
       </td>
+      <td v-if="vatVisible >= 0">
+        <b>
+          {{
+            helper
+              .getSubtotal(selectedRows, "vatAmount")
+              .toLocaleString()
+          }}
+        </b>
+      </td>
       <td>
         <b>
           {{
@@ -51,15 +60,7 @@
           }}
         </b>
       </td>
-      <td>
-        <b>
-          {{
-            helper
-              .getSubtotal(selectedRows, "vatAmount")
-              .toLocaleString()
-          }}
-        </b>
-      </td>
+      <td v-if="expandable"></td>
     </template>
 
     <template #footer-total="{ summary }">
@@ -69,12 +70,13 @@
       <td>
         <b>{{ summary.quantity?.toLocaleString() }}</b>
       </td>
+      <td v-if="vatVisible >= 0">
+        <b>{{ summary.vatAmount?.toLocaleString() }}</b>
+      </td>
       <td>
         <b>{{ summary.amount?.toLocaleString() }}</b>
       </td>
-      <td>
-        <b>{{ summary.vatAmount?.toLocaleString() }}</b>
-      </td>
+      <td v-if="expandable"></td>
     </template>
   </data-grid>
 </template>
@@ -98,10 +100,16 @@
   const colspan = computed(
     () =>
       tableStore?.value?.columns.value.findIndex(
-        (column) => column.name === "debit"
+        (column) => column.name === "quantity"
       ) +
       1 + //numbered column
       1 //multi check column
+  );
+
+  const vatVisible = computed(() =>
+    tableStore?.value?.columns.value.findIndex(
+      (column) => column.name === "vatAmount"
+    )
   );
 
   defineExpose({
