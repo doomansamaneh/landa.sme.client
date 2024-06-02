@@ -83,8 +83,14 @@
                 rounded
                 size="12px"
               >
-                <q-icon name="o_add" size="14px" style="margin-left: 2px" />
-                <span class="text-body3 no-letter-spacing">ایجاد</span>
+                <q-icon
+                  name="o_add"
+                  size="14px"
+                  style="margin-left: 2px"
+                />
+                <span class="text-body3 no-letter-spacing">
+                  ایجاد
+                </span>
               </q-btn>
             </slot>
           </div>
@@ -97,7 +103,11 @@
         :class="{ 'row-active': index === selectedRowIndex }"
         @click="onRowClicked(row, index)"
       >
-        <slot name="td" :row="row" :index="tableStore.rowIndex(index)">
+        <slot
+          name="td"
+          :row="row"
+          :index="tableStore.rowIndex(index)"
+        >
           <q-item clickable v-close-popup>
             <div
               class="row items-center q-gutter-x-md"
@@ -121,7 +131,10 @@
       </div>
 
       <div
-        v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0"
+        v-if="
+          !tableStore.showLoader.value &&
+          tableStore.rows.value.length == 0
+        "
         class="q-table__bottom items-center q-table__bottom--nodata"
       >
         <slot name="noDataFound">
@@ -152,215 +165,363 @@
       </div>
     </q-menu>
   </q-input>
+
+  <q-dialog
+    ref="lookupDialog"
+    maximized
+    transition-duration="600"
+    transition-show="slide-down"
+    transition-hide="slide-up"
+  >
+    <q-card>
+      <q-inner-loading
+        :showing="tableStore.showLoader.value"
+        class="inner-loader_ q-mt-xl"
+      >
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
+
+      <div
+        class="header text-caption text-bold q-pa-md bg-dark z-max"
+        style="border-bottom: 1px solid var(--q-primary)"
+      >
+        <slot name="thead">
+          <div
+            class="row q-gutter-x-md items-center"
+            style="width: 300px; margin-left: 120px"
+          >
+            <div class="col-1">#</div>
+            <div v-for="col in lookupColumns" :key="col" class="col">
+              <header-column
+                :fieldName="col"
+                :title="$t(`shared.labels.${col}`)"
+                :table-store="tableStore"
+              />
+            </div>
+
+            <slot name="create">
+              <q-btn
+                dense
+                unelevated
+                color="primary"
+                class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
+                style="margin-top: 12px; margin-left: 48px"
+                rounded
+                size="12px"
+              >
+                <q-icon
+                  name="o_add"
+                  size="14px"
+                  style="margin-left: 2px"
+                />
+                <span class="text-body3 no-letter-spacing">
+                  ایجاد
+                </span>
+              </q-btn>
+            </slot>
+
+            <q-btn
+              style="margin-top: 10px; margin-left: 4px"
+              class="absolute-top-right"
+              round
+              unelevated
+              dense
+              v-close-popup
+            >
+              <q-icon size="20px" name="o_close" />
+            </q-btn>
+          </div>
+        </slot>
+      </div>
+      <div
+        class="cursor-pointer"
+        v-for="(row, index) in tableStore.rows.value"
+        :key="row.id"
+        :class="{ 'row-active': index === selectedRowIndex }"
+        @click="onRowClicked(row, index)"
+      >
+        <slot
+          name="td"
+          :row="row"
+          :index="tableStore.rowIndex(index)"
+        >
+          <q-item clickable v-close-popup>
+            <div
+              class="row items-center q-gutter-x-md"
+              style="width: 300px; margin-left: 120px"
+            >
+              <div class="col-1 text-caption no-letter-spacing">
+                {{ index + 1 }}
+              </div>
+              <div
+                v-for="col in lookupColumns"
+                class="col text-body2 no-letter-spacing"
+                :key="col"
+              >
+                <slot :name="`cell-${col}`" :item="row">
+                  {{ row[col] }}
+                </slot>
+              </div>
+            </div>
+          </q-item>
+        </slot>
+      </div>
+
+      <div
+        v-if="
+          !tableStore.showLoader.value &&
+          tableStore.rows.value.length == 0
+        "
+        class="q-table__bottom items-center q-table__bottom--nodata"
+      >
+        <slot name="noDataFound">
+          <no-data-found />
+        </slot>
+      </div>
+
+      <div
+        v-if="tableStore.showPagebar.value"
+        class="q-pa-md row items-center footer dark-1"
+      >
+        <page-bar
+          :pagination="tableStore.pagination.value"
+          @page-changed="tableStore.reloadData"
+        >
+          <template #reload>
+            <q-btn
+              class="q-mr-md"
+              size="sm"
+              round
+              dense
+              unelevated
+              icon="o_refresh"
+              @click="tableStore.reloadData"
+            />
+          </template>
+        </page-bar>
+      </div>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useQuasar } from "quasar";
-import { useDataTable } from "src/composables/useDataTable";
-import { defaultLookupPageSize, sortOrder } from "src/constants";
-import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { ref, computed, onMounted } from "vue";
+  import { useQuasar } from "quasar";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { defaultLookupPageSize, sortOrder } from "src/constants";
+  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
-import PageBar from "src/components/shared/dataTables/PageBar.vue";
-import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
-import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
+  import PageBar from "src/components/shared/dataTables/PageBar.vue";
+  import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
+  import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
 
-const props = defineProps({
-  dataSource: String,
-  textTemplate: String,
-  sortColumn: String,
-  searchField: String,
-  columns: String,
-  required: Boolean,
-  rules: Array,
-  placeholder: String,
-  filterExpression: Array,
-});
+  const props = defineProps({
+    dataSource: String,
+    textTemplate: String,
+    sortColumn: String,
+    searchField: String,
+    columns: String,
+    required: Boolean,
+    rules: Array,
+    placeholder: String,
+    filterExpression: Array,
+  });
 
-const selectedId = defineModel("selectedId");
-const selectedText = defineModel("selectedText");
-const formStore = useInvoiceModel({ baseRoute: "sls/invoice" });
-const $q = useQuasar();
+  const selectedId = defineModel("selectedId");
+  const selectedText = defineModel("selectedText");
+  const formStore = useInvoiceModel({ baseRoute: "sls/invoice" });
+  const $q = useQuasar();
 
-const store = {
-  pagination: ref({
-    currentPage: 1,
-    pageSize: defaultLookupPageSize,
-    columns: props.columns,
-    sortColumn: props.sortColumn,
-    sortOrder: sortOrder.ascending,
-    //searchTerm: selectedText,
-  }),
-  filterExpression: props.filterExpression,
-};
+  const store = {
+    pagination: ref({
+      currentPage: 1,
+      pageSize: defaultLookupPageSize,
+      columns: props.columns,
+      sortColumn: props.sortColumn,
+      sortOrder: sortOrder.ascending,
+      //searchTerm: selectedText,
+    }),
+    filterExpression: props.filterExpression,
+  };
 
-const tableStore = useDataTable({dataSource: props.dataSource, store: store});
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    store: store,
+  });
 
-const emit = defineEmits(["row-selected"]);
+  const emit = defineEmits(["row-selected"]);
 
-const search = ref(null);
-const selectedRowIndex = ref(0);
-const popup = ref(null);
-const isPopupOpen = ref(false);
+  const search = ref(null);
+  const selectedRowIndex = ref(0);
+  const popup = ref(null);
+  const isPopupOpen = ref(false);
+  const lookupDialog = ref(null);
 
-const lookup = document.querySelector(".lookup");
+  const lookup = document.querySelector(".lookup");
 
-function handleKeyDown(event) {
-  switch (event.key) {
-    case "Delete":
-      clearSearch();
-      break;
-    case "ArrowDown":
-      selectNext();
-      break;
-    case "ArrowUp":
-      selectPrevious();
-      break;
+  function handleKeyDown(event) {
+    switch (event.key) {
+      case "Delete":
+        clearSearch();
+        break;
+      case "ArrowDown":
+        selectNext();
+        break;
+      case "ArrowUp":
+        selectPrevious();
+        break;
+    }
   }
-}
 
-async function clearSearch() {
-  tableStore.setActiveRow(null);
-  tableStore.setSearchTerm(null);
-  setIdText(null);
-  emitSelectRow(null);
-  onMenuHide();
-}
-
-async function onRowClicked(row, index) {
-  selectedRowIndex.value = index;
-  selectRow(row);
-}
-
-async function setIdText(row) {
-  selectedId.value = row?.id;
-  setText(row);
-}
-
-function setText(row) {
-  if (row == null) selectedText.value = null;
-  else {
-    if (props.textTemplate) {
-      selectedText.value = props.textTemplate.replace(
-        /{{\s*([\w.]+)\s*}}/g,
-        (_, key) => row[key] ?? ""
-      );
-    } else selectedText.value = row.title;
-  }
-}
-
-function setCustomText(displayText) {
-  selectedText.value = displayText;
-}
-
-async function handlePopup() {
-  if (isPopupOpen.value) hidePopup();
-  else {
+  async function clearSearch() {
+    tableStore.setActiveRow(null);
     tableStore.setSearchTerm(null);
-    showPopup();
+    setIdText(null);
+    emitSelectRow(null);
+    onMenuHide();
   }
-}
 
-function selectPrevious() {
-  if (isPopupOpen.value) {
-    if (selectedRowIndex.value === 0)
-      selectedRowIndex.value = tableStore.rows.value.length - 1;
-    else selectedRowIndex.value--;
+  async function onRowClicked(row, index) {
+    selectedRowIndex.value = index;
+    selectRow(row);
   }
-}
 
-async function selectNext() {
-  if (isPopupOpen.value) {
-    if (selectedRowIndex.value === tableStore.rows.value.length - 1)
-      selectedRowIndex.value = 0;
-    else selectedRowIndex.value++;
-  } else {
-    showPopup();
+  async function setIdText(row) {
+    selectedId.value = row?.id;
+    setText(row);
   }
-}
 
-function selectRow() {
-  const row = tableStore.rows.value[selectedRowIndex.value];
-  tableStore.setActiveRow(row);
-  setIdText(row);
-  hidePopup();
-  emitSelectRow(row);
-}
+  function setText(row) {
+    if (row == null) selectedText.value = null;
+    else {
+      if (props.textTemplate) {
+        selectedText.value = props.textTemplate.replace(
+          /{{\s*([\w.]+)\s*}}/g,
+          (_, key) => row[key] ?? ""
+        );
+      } else selectedText.value = row.title;
+    }
+  }
 
-function emitSelectRow(row) {
-  emit("row-selected", row);
-}
+  function setCustomText(displayText) {
+    selectedText.value = displayText;
+  }
 
-async function searchInLookup() {
-  tableStore.setSearchTerm(search.value.nativeEl.value);
-  await showPopup();
-}
+  async function handlePopup() {
+    if ($q.screen.gt.xs) {
+      if (isPopupOpen.value) hidePopup();
+      else {
+        tableStore.setSearchTerm(null);
+        showPopup();
+      }
+    } else {
+      lookupDialog.value.show();
+      await tableStore.reloadData();
+    }
+  }
 
-function onMenuHide() {
-  isPopupOpen.value = false;
-  search.value.focus();
-}
+  function selectPrevious() {
+    if (isPopupOpen.value) {
+      if (selectedRowIndex.value === 0)
+        selectedRowIndex.value = tableStore.rows.value.length - 1;
+      else selectedRowIndex.value--;
+    }
+  }
 
-async function showPopup() {
-  await tableStore.reloadData();
-  popup.value.show();
-}
+  async function selectNext() {
+    if (isPopupOpen.value) {
+      if (selectedRowIndex.value === tableStore.rows.value.length - 1)
+        selectedRowIndex.value = 0;
+      else selectedRowIndex.value++;
+    } else {
+      showPopup();
+    }
+  }
 
-function onMenuShow() {
-  isPopupOpen.value = true;
-  if ($q.screen.gt.xs) {
+  function selectRow() {
+    const row = tableStore.rows.value[selectedRowIndex.value];
+    tableStore.setActiveRow(row);
+    setIdText(row);
+    hidePopup();
+    emitSelectRow(row);
+  }
+
+  function emitSelectRow(row) {
+    emit("row-selected", row);
+  }
+
+  async function searchInLookup() {
+    tableStore.setSearchTerm(search.value.nativeEl.value);
+    await showPopup();
+  }
+
+  function onMenuHide() {
+    isPopupOpen.value = false;
     search.value.focus();
   }
-}
 
-function hidePopup() {
-  popup.value.hide();
-}
+  async function showPopup() {
+    await tableStore.reloadData();
+    popup.value.show();
+  }
 
-const isSearchEmpty = computed(() => !selectedId.value);
+  function onMenuShow() {
+    isPopupOpen.value = true;
+    if ($q.screen.gt.xs) {
+      search.value.focus();
+    }
+  }
 
-const lookupColumns = computed(() => props.columns.split(","));
+  function hidePopup() {
+    popup.value.hide();
+  }
 
-const cardDefaultClass = computed(
-  () =>
-    " lookup-container q-table__card q-table--bordered_q-table--flat" +
-    ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "")
-);
+  const isSearchEmpty = computed(() => !selectedId.value);
 
-const __containerClass = computed(
-  () =>
-    `q-table__container _q-table--horizontal-separator column _no-wrap` +
-    cardDefaultClass.value +
-    ($q.dark?.isActive === true ? " q-table--dark" : "")
-);
+  const lookupColumns = computed(() => props.columns.split(","));
 
-const containerClass = computed(
-  () =>
-    __containerClass.value +
-    (tableStore.showLoader.value === true ? " q-table--loading" : "")
-);
+  const cardDefaultClass = computed(
+    () =>
+      " lookup-container q-table__card q-table--bordered_q-table--flat" +
+      ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "")
+  );
 
-onMounted(() => {
+  const __containerClass = computed(
+    () =>
+      `q-table__container _q-table--horizontal-separator column _no-wrap` +
+      cardDefaultClass.value +
+      ($q.dark?.isActive === true ? " q-table--dark" : "")
+  );
+
+  const containerClass = computed(
+    () =>
+      __containerClass.value +
+      (tableStore.showLoader.value === true
+        ? " q-table--loading"
+        : "")
+  );
+
+  onMounted(() => {
     lookup?.focus();
-});
+  });
 
-defineExpose({
-  setIdText,
-  setCustomText,
-  selectedId,
-  selectedText,
-  tableStore,
-});
+  defineExpose({
+    setIdText,
+    setCustomText,
+    selectedId,
+    selectedText,
+    tableStore,
+  });
 </script>
 
 <style>
-.header {
-  position: sticky;
-  top: 0;
-}
+  .header {
+    position: sticky;
+    top: 0;
+  }
 
-.footer {
-  position: sticky;
-  bottom: 0;
-}
+  .footer {
+    position: sticky;
+    bottom: 0;
+  }
 </style>

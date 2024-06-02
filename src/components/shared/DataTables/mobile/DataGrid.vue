@@ -1,5 +1,5 @@
 <template>
-  <slot name="title"> </slot>
+  <slot name="title"></slot>
   <slot name="header">
     <q-input
       outlined
@@ -38,7 +38,7 @@
           @click="resetPage"
         />
 
-        <slot name="header-guide"> </slot>
+        <slot name="header-guide"></slot>
       </template>
     </q-input>
   </slot>
@@ -54,14 +54,17 @@
             class="bordered grid-body"
             :class="tableStore.getRowClass(row)"
           >
-            <slot name="row-header" :item="row"> </slot>
+            <slot name="row-header" :item="row"></slot>
 
             <q-card-section>
               <slot name="row-body" :item="row">
                 <span v-if="numbered" class="text-on-dark">
                   {{ tableStore.rowIndex(index) }}
                 </span>
-                <div v-for="col in gridStore?.columns.value" :key="col.name">
+                <div
+                  v-for="col in gridStore?.columns.value"
+                  :key="col.name"
+                >
                   <slot :name="`cell-${col.name}`" :item="row">
                     <template v-if="col.field">
                       {{ col.label }}:
@@ -72,12 +75,12 @@
               </slot>
             </q-card-section>
 
-            <q-separator />
+            <q-separator size="0.5px" />
 
             <q-card-actions class="dark-1_ q-pa-md" align="between">
-              <slot name="row-actions" :item="row"> </slot>
+              <slot name="row-actions" :item="row"></slot>
 
-              <slot name="row-more-menus" :item="row"> </slot>
+              <slot name="row-more-menus" :item="row"></slot>
             </q-card-actions>
           </q-card>
         </slot>
@@ -88,7 +91,10 @@
   <slot name="footer"></slot>
 
   <div
-    v-if="!tableStore.showLoader.value && tableStore?.rows.value.length === 0"
+    v-if="
+      !tableStore.showLoader.value &&
+      tableStore?.rows.value.length === 0
+    "
     class="text-on-dark"
   >
     <no-data-found />
@@ -140,16 +146,16 @@
       <slot name="create-label">
         <q-btn
           v-if="showCreate"
+          text-color="white"
           rounded
           unelevated
-          padding="10px 20px"
+          padding="8px 16px"
           :to="createUrl"
           dense
-          color="blue"
-          class="text-body1 no-letter-spacing blue-shadow"
+          class="text-body1 no-letter-spacing primary-gradient primary-shadow"
         >
           <div class="row items-center q-gutter-x-xs">
-            <q-icon name="o_add" size="sm" />
+            <q-icon name="o_add" size="20px" />
             <span>
               {{ $t("shared.labels.create") }}
             </span>
@@ -161,151 +167,157 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from "vue";
-import { useDataTable } from "src/composables/useDataTable";
+  import { ref, onMounted, onUnmounted, computed } from "vue";
+  import { useDataTable } from "src/composables/useDataTable";
 
-import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
-import { dataViewDefaultPageSize } from "src/constants";
+  import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
+  import { dataViewDefaultPageSize } from "src/constants";
 
-const props = defineProps({
-  dataSource: String,
-  columns: Array,
-  createUrl: String,
-  gridStore: Object,
-  numbered: Boolean,
-  multiSelect: Boolean,
-});
+  const props = defineProps({
+    dataSource: String,
+    columns: Array,
+    createUrl: String,
+    gridStore: Object,
+    numbered: Boolean,
+    multiSelect: Boolean,
+  });
 
-const emit = defineEmits(["active-row-changed", "selected-rows-changed"]);
+  const emit = defineEmits([
+    "active-row-changed",
+    "selected-rows-changed",
+  ]);
 
-const startIndex = ref(1);
-const showCreate = ref(true);
-let previousScrollPosition = 0;
+  const startIndex = ref(1);
+  const showCreate = ref(true);
+  let previousScrollPosition = 0;
 
-const tableStore = useDataTable({
-  dataSource: props.dataSource,
-  dataColumns: props.columns,
-  store: props.gridStore
-});
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    dataColumns: props.columns,
+    store: props.gridStore,
+  });
 
-const thisGridStore = computed(() => props.gridStore);
+  const thisGridStore = computed(() => props.gridStore);
 
-const rows = computed(() => {
-  if (thisGridStore.value?.rows) {
-    return thisGridStore.value.rows;
+  const rows = computed(() => {
+    if (thisGridStore.value?.rows) {
+      return thisGridStore.value.rows;
+    }
+    return tableStore.rows;
+  });
+
+  const nextAction = computed(
+    () =>
+      tableStore.pagination.value.currentPage >=
+      tableStore.pagination.value.totalPages
+  );
+
+  const previousAction = computed(
+    () => tableStore.pagination.value.currentPage <= 1
+  );
+
+  function getColText(row, col) {
+    if (row && col) {
+      if (col.template) {
+        return col.template.replace(
+          /{{\s*([\w.]+)\s*}}/g,
+          (_, key) => row[key] ?? ""
+        );
+      } else if (col.field) return row[col.field];
+    }
+    return "";
   }
-  return tableStore.rows;
-});
 
-const nextAction = computed(
-  () =>
-    tableStore.pagination.value.currentPage >=
-    tableStore.pagination.value.totalPages
-);
-
-const previousAction = computed(
-  () => tableStore.pagination.value.currentPage <= 1
-);
-
-function getColText(row, col) {
-  if (row && col) {
-    if (col.template) {
-      return col.template.replace(
-        /{{\s*([\w.]+)\s*}}/g,
-        (_, key) => row[key] ?? ""
-      );
-    } else if (col.field) return row[col.field];
+  async function loadData() {
+    await tableStore.loadData();
+    if (thisGridStore.value?.rows) {
+      thisGridStore.value.rows.value = tableStore.rows.value;
+    }
   }
-  return "";
-}
 
-async function loadData() {
-  await tableStore.loadData();
-  if (thisGridStore.value?.rows) {
-    thisGridStore.value.rows.value = tableStore.rows.value;
+  async function reloadData() {
+    await tableStore.reloadData();
+    if (thisGridStore.value?.rows)
+      thisGridStore.value.rows.value = tableStore.rows.value;
   }
-}
 
-async function reloadData() {
-  await tableStore.reloadData();
-  if (thisGridStore.value?.rows)
-    thisGridStore.value.rows.value = tableStore.rows.value;
-}
-
-async function resetPage() {
-  //tableStore.pagination.value.currentPage = 1
-  await reloadData();
-}
-
-const handleScroll = () => {
-  const currentPosition = window.scrollY || document.documentElement.scrollTop;
-  showCreate.value =
-    currentPosition <= 0 || currentPosition < previousScrollPosition;
-  previousScrollPosition = currentPosition;
-};
-
-function selectAll(checked) {
-  tableStore.selectAll(checked);
-  emitselectedRows();
-}
-
-function selectRow(row) {
-  tableStore.selectRow(row, !row.selected);
-  emitselectedRows();
-}
-
-function emitselectedRows() {
-  emit("selected-rows-changed", tableStore.selectedRows.value);
-}
-
-function setActiveRow(row) {
-  if (tableStore.selectedRows.value.length > 0) {
-    selectRow(row);
-    tableStore.setActiveRow(row);
-  } else {
-    if (tableStore.activeRow.value === row) {
-      tableStore.setActiveRow(null);
-    } else tableStore.setActiveRow(row);
+  async function resetPage() {
+    //tableStore.pagination.value.currentPage = 1
+    await reloadData();
   }
-  emit("active-row-changed", row);
-}
 
-async function clearSearch() {
-  tableStore.pagination.value.searchTerm = "";
-  await reloadData();
-}
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    showCreate.value =
+      currentPosition <= 0 ||
+      currentPosition < previousScrollPosition;
+    previousScrollPosition = currentPosition;
+  };
 
-const isSearchEmpty = computed(
-  () =>
-    !tableStore.pagination.value.searchTerm ||
-    tableStore.pagination.value.searchTerm.trim().length === 0
-);
+  function selectAll(checked) {
+    tableStore.selectAll(checked);
+    emitselectedRows();
+  }
 
-const showPagebar = computed(
-  () => tableStore.pagination.value.totalItems > dataViewDefaultPageSize
-);
+  function selectRow(row) {
+    tableStore.selectRow(row, !row.selected);
+    emitselectedRows();
+  }
 
-async function previous(e) {
-  tableStore.pagination.value.currentPage -= 1;
-  await reloadData();
-}
-async function next(e) {
-  tableStore.pagination.value.currentPage += 1;
-  await reloadData();
-}
+  function emitselectedRows() {
+    emit("selected-rows-changed", tableStore.selectedRows.value);
+  }
 
-onMounted(() => {
-  loadData();
-  window.addEventListener("scroll", handleScroll);
-});
+  function setActiveRow(row) {
+    if (tableStore.selectedRows.value.length > 0) {
+      selectRow(row);
+      tableStore.setActiveRow(row);
+    } else {
+      if (tableStore.activeRow.value === row) {
+        tableStore.setActiveRow(null);
+      } else tableStore.setActiveRow(row);
+    }
+    emit("active-row-changed", row);
+  }
 
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
+  async function clearSearch() {
+    tableStore.pagination.value.searchTerm = "";
+    await reloadData();
+  }
 
-defineExpose({
-  tableStore,
-  resetPage,
-  loadData,
-});
+  const isSearchEmpty = computed(
+    () =>
+      !tableStore.pagination.value.searchTerm ||
+      tableStore.pagination.value.searchTerm.trim().length === 0
+  );
+
+  const showPagebar = computed(
+    () =>
+      tableStore.pagination.value.totalItems > dataViewDefaultPageSize
+  );
+
+  async function previous(e) {
+    tableStore.pagination.value.currentPage -= 1;
+    await reloadData();
+  }
+  async function next(e) {
+    tableStore.pagination.value.currentPage += 1;
+    await reloadData();
+  }
+
+  onMounted(() => {
+    loadData();
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
+
+  defineExpose({
+    tableStore,
+    resetPage,
+    loadData,
+  });
 </script>

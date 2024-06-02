@@ -7,7 +7,7 @@
     activation
   >
     <template #buttons-custom>
-      <q-separator class="q-my-sm" />
+      <q-separator size="0.5px" class="q-my-sm" />
       <q-item clickable v-close-popup tabindex="0" @click="editBatch">
         <div class="q-py-sm">
           <q-item-section avatar>
@@ -26,7 +26,7 @@
   </tool-bar>
 
   <div class="column q-gutter-sm" style="margin-top: 46px">
-    <q-card class="bordered primary-gradient">
+    <q-card class="bordered grid-total">
       <q-card-section>
         <div class="row items-center q-gutter-sm">
           <div class="col-2">
@@ -42,9 +42,7 @@
 
           <div class="col">
             <div class="row q-gutter-sm">
-              <div class="text-caption text-bold text-blue-3">
-                جمع کل
-              </div>
+              <div class="text-caption">جمع کل</div>
               <div class="text-bold text-white text-caption">
                 {{
                   tableStore?.summaryData?.value?.amount.toLocaleString()
@@ -53,9 +51,7 @@
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-blue-3">
-                دریافت شده
-              </div>
+              <div class="text-caption">دریافت شده</div>
               <div class="text-bold text-white text-caption">
                 {{
                   tableStore?.summaryData?.value?.payedAmount.toLocaleString()
@@ -63,9 +59,7 @@
               </div>
             </div>
             <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-blue-3">
-                مانده
-              </div>
+              <div class="text-caption">مانده</div>
               <div class="text-bold text-white text-caption">
                 {{
                   tableStore?.summaryData?.value?.remainedAmount.toLocaleString()
@@ -78,7 +72,7 @@
     </q-card>
 
     <q-card
-      class="bordered bg-blue-grey-2"
+      class="bordered grid-subtotal"
       v-if="tableStore?.selectedRows?.value.length > 1"
     >
       <q-card-section>
@@ -95,10 +89,8 @@
           </div>
           <div class="col">
             <div class="row q-gutter-sm">
-              <div class="text-caption text-bold text-grey-7">
-                جمع کل
-              </div>
-              <div class="text-bold text-grey-10 text-caption">
+              <div class="text-caption">جمع کل</div>
+              <div class="text-bold text-caption">
                 {{
                   helper
                     .getSubtotal(
@@ -111,10 +103,8 @@
             </div>
 
             <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-grey-7">
-                مانده
-              </div>
-              <div class="text-bold text-grey-10 text-caption">
+              <div class="text-caption">مانده</div>
+              <div class="text-bold text-caption">
                 {{
                   helper
                     .getSubtotal(
@@ -197,7 +187,7 @@
             </q-btn>
             <q-btn round unelevated class="no-pointer-events" v-else>
               <q-avatar
-                size="50px"
+                size="56px"
                 color="primary"
                 text-color="white"
               >
@@ -208,7 +198,9 @@
 
           <div class="row justify-between items-center">
             <div class="col row items-center">
-              <span class="text-caption text-on-dark">شماره:</span>
+              <span class="text-caption q-mr-xs text-on-dark">
+                شماره:
+              </span>
               <span class="text-caption text-on-dark">
                 {{ item.no }}
               </span>
@@ -222,7 +214,7 @@
           </div>
         </q-card-section>
 
-        <q-separator />
+        <q-separator size="0.5px" />
       </template>
 
       <template #row-body="{ item }">
@@ -328,7 +320,7 @@
         <q-card-section class="q-pt-md q-pb-none q-px-sm">
           <div class="row items-center q-gutter-sm">
             <span
-              class="border-radius-sm bg-orange-2 text-caption text-red label"
+              class="label text-white border-radius-sm text-caption orange-gradient"
             >
               {{ item.statusTitle }}
             </span>
@@ -341,7 +333,7 @@
 
             <span
               v-if="item.contractTitle"
-              class="border-radius-sm primary-gradient text-caption text-white label"
+              class="border-radius-sm bluegrey-gradient text-caption text-white label"
             >
               {{ item.contractTitle }}
             </span>
@@ -385,7 +377,7 @@
             <q-avatar class="bg-on-dark text-on-dark" icon="o_copy" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
+          <q-item-section class="text-body2 no-letter-spacing">
             کپی
           </q-item-section>
         </q-item>
@@ -395,12 +387,12 @@
             <q-avatar class="bg-on-dark text-on-dark" icon="o_edit" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
+          <q-item-section class="text-body2 no-letter-spacing">
             ویرایش
           </q-item-section>
         </q-item>
 
-        <q-separator class="q-my-sm" />
+        <q-separator size="0.5px" class="q-my-sm" />
 
         <q-item clickable v-ripple>
           <q-item-section avatar>
@@ -410,14 +402,14 @@
             />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
+          <q-item-section class="text-body2 no-letter-spacing">
             ارسال ایمیل
           </q-item-section>
         </q-item>
 
-        <q-separator class="q-my-sm" />
+        <q-separator size="0.5px" class="q-my-sm" />
 
-        <q-item clickable v-ripple @click="showPrintDialog">
+        <q-item clickable v-ripple @click="onPrintSheetShow">
           <q-item-section avatar>
             <q-avatar
               class="bg-on-dark text-on-dark"
@@ -425,12 +417,12 @@
             />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
+          <q-item-section class="text-body2 no-letter-spacing">
             چاپ
           </q-item-section>
         </q-item>
 
-        <q-separator class="q-my-sm" />
+        <q-separator size="0.5px" class="q-my-sm" />
 
         <q-item clickable v-ripple>
           <q-item-section avatar>
@@ -440,7 +432,7 @@
             />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
+          <q-item-section class="text-body2 no-letter-spacing">
             حذف
           </q-item-section>
         </q-item>
@@ -448,107 +440,100 @@
     </template>
   </bottom-sheet>
 
-  <q-dialog
-    maximized
-    transition-show="slide-up"
-    transition-hide="slide-down"
-    v-model="printDialog"
+  <bottom-sheet
+    v-if="printSheetStatus"
+    header
+    :status="printSheetStatus"
+    @hide="onPrintSheetHide"
   >
-    <q-card class="q-mt-xl">
-      <q-card-section>
-        <div class="row items-center justify-between">
-          <span class="text-body1 no-letter-spacing">چاپ</span>
-          <q-btn round unelevated icon="o_close" v-close-popup />
-        </div>
-      </q-card-section>
+    <template #header-title>چاپ</template>
 
-      <q-card-section class="no-padding">
-        <q-list padding>
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_print"
-              />
-            </q-item-section>
+    <template #body>
+      <q-list padding>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_print"
+            />
+          </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">
-              چاپ مستقیم
-            </q-item-section>
-          </q-item>
+          <q-item-section class="text-body2 no-letter-spacing">
+            چاپ مستقیم
+          </q-item-section>
+        </q-item>
 
-          <q-separator />
+        <q-separator size="0.5px" />
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_crop_portrait"
-              />
-            </q-item-section>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_crop_portrait"
+            />
+          </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">
-              پی دی اف - A4
-            </q-item-section>
-          </q-item>
+          <q-item-section class="text-body2 no-letter-spacing">
+            پی دی اف - A4
+          </q-item-section>
+        </q-item>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_crop_landscape"
-              />
-            </q-item-section>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_crop_landscape"
+            />
+          </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">
-              پی دی اف - A4 - افقی
-            </q-item-section>
-          </q-item>
+          <q-item-section class="text-body2 no-letter-spacing">
+            پی دی اف - A4 - افقی
+          </q-item-section>
+        </q-item>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_crop_portrait"
-              />
-            </q-item-section>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_crop_portrait"
+            />
+          </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">
-              پی دی اف - A5
-            </q-item-section>
-          </q-item>
+          <q-item-section class="text-body2 no-letter-spacing">
+            پی دی اف - A5
+          </q-item-section>
+        </q-item>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_crop_landscape"
-              />
-            </q-item-section>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_crop_landscape"
+            />
+          </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">
-              پی دی اف - A5 - افقی
-            </q-item-section>
-          </q-item>
+          <q-item-section class="text-body2 no-letter-spacing">
+            پی دی اف - A5 - افقی
+          </q-item-section>
+        </q-item>
 
-          <q-separator />
+        <q-separator size="0.5px" />
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-avatar
-                class="bg-on-dark text-on-dark"
-                icon="o_contact_mail"
-              />
-            </q-item-section>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_contact_mail"
+            />
+          </q-item-section>
 
-            <q-item-section class="text-body1 no-letter-spacing">
-              چاپ برچسب نشانی
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-card-section>
-    </q-card>
-  </q-dialog>
+          <q-item-section class="text-body2 no-letter-spacing">
+            چاپ برچسب نشانی
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </template>
+  </bottom-sheet>
 </template>
 
 <script setup>
@@ -577,20 +562,10 @@
   const advancedSearch = ref(null);
 
   const bottomSheetStatus = ref(false);
+  const printSheetStatus = ref(false);
   const bottomSheetItem = ref(null);
-  const printDialog = ref(false);
 
   const selectedDateRange = ref({ value: "", label: "" });
-
-  // onMounted(() => {
-  //   tableStore.value.state.value.filterExpression = [
-  //     {
-  //       fieldName: "d.StatusId",
-  //       operator: sqlOperator.notEqual,
-  //       value: cancelStatus,
-  //     },
-  //   ];
-  // });
 
   const showSearchModal = () => {
     dialog.value = true;
@@ -633,18 +608,16 @@
     bottomSheetStatus.value = false;
   };
 
-  const showPrintDialog = () => {
-    printDialog.value = true;
+  const onPrintSheetShow = () => {
+    printSheetStatus.value = true;
+  };
+
+  const onPrintSheetHide = () => {
+    printSheetStatus.value = false;
   };
 </script>
 
 <style lang="scss" scoped>
-  .q-item__label--caption {
-    font-size: 14px;
-    letter-spacing: 0;
-    color: #697588;
-  }
-
   .label {
     padding: 2px 12px;
   }

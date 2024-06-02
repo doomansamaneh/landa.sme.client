@@ -13,7 +13,7 @@
         <slot name="header">
           <div
             v-if="header"
-            class="q-pt-lg q-pb-md q-px-lg text-body2 no-letter-spacing text-center"
+            class="q-pt-lg q-pb-sm q-px-lg text-body2 no-letter-spacing text-center"
           >
             <slot name="header-title" />
           </div>
