@@ -16,8 +16,8 @@
 
   onMounted(() => {
     //todo: if user login for first time should show congrats.
-    Dialog.create({
-      component: CongratsDialog,
-    });
+    // Dialog.create({
+    //   component: CongratsDialog,
+    // });
   });
 </script>

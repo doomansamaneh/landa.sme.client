@@ -76,12 +76,15 @@ export function useBusinessGrid() {
       .post(`business/gotoBusiness/${item.id}`)
       .then((response) => {
         const userSetting = response.data.data.userSetting;
+        console.log(userSetting);
+        alert(1);
         // router.push(`/${response.data.data.url}`)
         //todo: resolve main-route for gotoBusiness
         //alert(userSetting.currentCulture)
         //cultureStore.setCulture(userSetting.currentCulture)
         const appConfigStore = useAppConfigModel();
         appConfigStore.reset();
+        //alert(userSetting.fiscalYear);
         fiscalYearStore.setFiscalYear({
           id: userSetting.fiscalYearId,
           title: userSetting.fiscalYear,
