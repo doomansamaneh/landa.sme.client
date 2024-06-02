@@ -163,19 +163,20 @@
           @click="tableStore.reloadData"
         >
           <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark" size="32px">
-              <q-icon size="16px" name="o_refresh" />
+            <q-avatar class="bg-on-dark text-on-dark">
+              <q-icon name="o_refresh" />
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <div class="text-body3 no-letter-spacing">
+            <div class="text-body2 no-letter-spacing">
               {{ $t("shared.labels.refresh") }}
             </div>
           </q-item-section>
         </q-item>
 
         <template v-if="activation && selectedIds?.length > 0">
-          <q-separator class="q-my-sm" />
+
+          <q-separator size="0.5px" class="q-my-sm" />
 
           <q-item
             clickable
@@ -186,12 +187,12 @@
             "
           >
             <q-item-section avatar>
-              <q-avatar class="bg-on-dark text-on-dark" size="32px">
-                <q-icon size="16px" name="o_check" />
+              <q-avatar class="bg-on-dark text-on-dark">
+                <q-icon name="o_check" />
               </q-avatar>
             </q-item-section>
             <q-item-section>
-              <div class="text-body3 no-letter-spacing">
+              <div class="text-body2 no-letter-spacing">
                 {{ $t("shared.labels.activate") }}
               </div>
             </q-item-section>
@@ -206,12 +207,12 @@
             "
           >
             <q-item-section avatar>
-              <q-avatar class="bg-on-dark text-on-dark" size="32px">
-                <q-icon size="16px" name="o_close" />
+              <q-avatar class="bg-on-dark text-on-dark">
+                <q-icon name="o_close" />
               </q-avatar>
             </q-item-section>
             <q-item-section>
-              <div class="text-body3 no-letter-spacing">
+              <div class="text-body2 no-letter-spacing">
                 {{ $t("shared.labels.deactivate") }}
               </div>
             </q-item-section>
@@ -220,7 +221,7 @@
 
         <slot name="buttons-custom" />
 
-        <q-separator class="q-my-sm" />
+        <q-separator size="0.5px" class="q-my-sm" />
 
         <q-item
           clickable
@@ -229,12 +230,12 @@
           @click="tableStore.exportAll()"
         >
           <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark" size="32px">
-              <q-icon size="16px" name="o_download" />
+            <q-avatar class="bg-on-dark text-on-dark">
+              <q-icon name="o_download" />
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <div class="text-body3 no-letter-spacing">
+            <div class="text-body2 no-letter-spacing">
               {{ $t("shared.labels.eportToExcel") }}
             </div>
           </q-item-section>
@@ -247,12 +248,12 @@
           @click="tableStore.exportCurrentPage()"
         >
           <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark" size="32px">
-              <q-icon name="o_download" size="16px" />
+            <q-avatar class="bg-on-dark text-on-dark">
+              <q-icon name="o_download" />
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <div class="text-body3 no-letter-spacing">
+            <div class="text-body2 no-letter-spacing">
               {{ $t("shared.labels.exportExcelCurrentPage") }}
             </div>
           </q-item-section>

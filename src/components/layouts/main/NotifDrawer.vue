@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <q-separator />
+    <q-separator size="0.5px" />
 
     <div class="flex items-center justify-between q-pa-md">
       <q-checkbox
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <q-separator class="q-mb-sm" />
+    <q-separator size="0.5px" class="q-mb-sm" />
 
     <q-scroll-area
       :style="scrollAreaStyle"
