@@ -1,5 +1,7 @@
 <template>
-  <confetti-animation v-if="congratsStore.confetti.value" />
+  <confetti-animation
+    v-if="showCongrat && congratsStore.confetti.value"
+  />
   <home />
 </template>
 
@@ -12,12 +14,14 @@
   import ConfettiAnimation from "src/assets/ConfettiAnimation.vue";
   import CongratsDialog from "src/components/shared/CongratsDialog.vue";
 
+  const showCongrat = false;
   const congratsStore = useCongrats();
 
   onMounted(() => {
     //todo: if user login for first time should show congrats.
-    // Dialog.create({
-    //   component: CongratsDialog,
-    // });
+    if (showCongrat)
+      Dialog.create({
+        component: CongratsDialog,
+      });
   });
 </script>

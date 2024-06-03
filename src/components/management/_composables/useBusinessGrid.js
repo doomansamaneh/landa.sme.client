@@ -76,8 +76,6 @@ export function useBusinessGrid() {
       .post(`business/gotoBusiness/${item.id}`)
       .then((response) => {
         const userSetting = response.data.data.userSetting;
-        console.log(userSetting);
-        alert(1);
         // router.push(`/${response.data.data.url}`)
         //todo: resolve main-route for gotoBusiness
         //alert(userSetting.currentCulture)
