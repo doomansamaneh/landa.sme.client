@@ -7,21 +7,22 @@
     :filterExpression="filterExpression"
     ref="lookup"
   >
+    <template #title>نوع خرید</template>
   </lookup-view>
 </template>
 
 <script setup>
-import { ref } from "vue";
+  import { ref } from "vue";
 
-import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import LookupView from "src/components/shared/dataTables/LookupView.vue";
 
-const lookup = ref(null);
+  const lookup = ref(null);
 
-const props = defineProps({
-  filterExpression: Array,
-});
+  const props = defineProps({
+    filterExpression: Array,
+  });
 
-defineExpose({
-  lookup,
-});
+  defineExpose({
+    lookup,
+  });
 </script>

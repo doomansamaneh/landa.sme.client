@@ -11,7 +11,7 @@
       <q-item clickable v-close-popup>
         <div class="row q-gutter-x-md items-center q-my-md q-pl-sm">
           <q-tooltip :delay="700" class="text-body3 custom-tooltip">
-            <span v-if="row.code">{{ row.code }} - </span>
+            <span v-if="row.code">{{ row.code }} -</span>
             {{ row.name }} - {{ row.locationName }} {{ row.address }}
           </q-tooltip>
           <q-item-section avatar>
@@ -53,7 +53,11 @@
               class="ellipsis q-mt-xs"
               style="width: 200px"
             >
-              <q-icon name="o_location_on" size="13px" color="primary" />
+              <q-icon
+                name="o_location_on"
+                size="13px"
+                color="primary"
+              />
               {{ row.locationName }} {{ row.address }}
             </q-item-label>
             <q-item-label
@@ -86,18 +90,20 @@
         </div>
       </q-item>
     </template>
+
+    <template #title>فروشنده</template>
   </lookup-view>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { helper } from "src/helpers";
+  import { ref } from "vue";
+  import { helper } from "src/helpers";
 
-import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import LookupView from "src/components/shared/dataTables/LookupView.vue";
 
-const lookup = ref(null);
+  const lookup = ref(null);
 
-defineExpose({
-  lookup,
-});
+  defineExpose({
+    lookup,
+  });
 </script>
