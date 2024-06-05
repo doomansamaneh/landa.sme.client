@@ -360,32 +360,125 @@ export default {
     },
 
     {
-      path: "trs/transferMoney",
+      path: "trs/receipt",
       children: [
         {
           path: "",
           component: () =>
-            import("pages/areas/trs/transferMoney/IndexPage.vue"),
+            import("pages/areas/trs/receipt/IndexPage.vue"),
         },
         {
           path: "create",
           component: () =>
-            import("pages/areas/trs/transferMoney/CreatePage.vue"),
+            import("pages/areas/trs/receipt/CreatePage.vue"),
         },
         {
           path: "edit/:id",
           component: () =>
-            import("pages/areas/trs/transferMoney/EditPage.vue"),
+            import("pages/areas/trs/receipt/EditPage.vue"),
+        },
+        // {
+        //   path: "copy/:id",
+        //   component: () =>
+        //     import("pages/areas/trs/receipt/CopyPage.vue"),
+        // },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/trs/receipt/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "trs/receipt",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/trs/receipt/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/trs/receipt/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/trs/receipt/EditPage.vue"),
+        },
+        // {
+        //   path: "copy/:id",
+        //   component: () =>
+        //     import("pages/areas/trs/receipt/CopyPage.vue"),
+        // },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/trs/receipt/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "trs/payment",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/trs/payment/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/trs/payment/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/trs/payment/EditPage.vue"),
+        },
+        // {
+        //   path: "copy/:id",
+        //   component: () =>
+        //     import("pages/areas/trs/payment/CopyPage.vue"),
+        // },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/trs/payment/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "trs/bill",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/trs/bill/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/trs/bill/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/trs/bill/EditPage.vue"),
         },
         {
           path: "copy/:id",
           component: () =>
-            import("pages/areas/trs/transferMoney/CopyPage.vue"),
+            import("pages/areas/trs/bill/CopyPage.vue"),
         },
         {
           path: "preview/:id",
           component: () =>
-            import("pages/areas/trs/transferMoney/CopyPage.vue"),
+            import("pages/areas/trs/bill/PreviewPage.vue"),
         },
       ],
     },

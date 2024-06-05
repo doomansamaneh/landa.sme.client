@@ -3,10 +3,12 @@ import {
   isActive,
   actions,
   date,
+  subject,
   comment,
   rowNo,
   no,
   amount,
+  customerName,
 } from "src/constants/columns";
 
 export const paymentInvoiceColumns = [no, date, amount];
@@ -97,4 +99,13 @@ export const transferMoneyColumns = [
   comment,
   amount,
   actions,
+];
+
+export const receiptColumns = [
+  rowNo,
+  date,
+  subject,
+  customerName,
+  amount,
+  //actions,
 ];

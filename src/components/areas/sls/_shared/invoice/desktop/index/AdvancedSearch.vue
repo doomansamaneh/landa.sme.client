@@ -37,6 +37,7 @@
             v-model="searchStore.searchModel.value.waitToSendTax"
             :label="$t('shared.labels.waitToSendTax')"
           />
+
           <div class="q-gutter-y-sm q-pl-sm q-my-md">
             <div class="row q-gutter-x-sm items-center">
               <custom-input
@@ -55,6 +56,7 @@
                 class="text-body2 no-letter-spacing"
               />
             </div>
+
             <div class="row q-gutter-x-sm items-center">
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
@@ -78,7 +80,7 @@
                 v-model:selectedText="
                   searchStore.searchModel.value.typeTitle
                 "
-                style="width: 398px"
+                style="width: 100%"
                 :placeholder="$t('shared.labels.typeTitle')"
               />
             </div>
@@ -144,6 +146,7 @@
               />
             </div>
           </div>
+
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
             <q-btn
               class="text-body2 no-letter-spacing primary-gradient primary-shadow text-white"

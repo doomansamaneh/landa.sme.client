@@ -46,7 +46,6 @@
       :self="$q.screen.lt.sm ? 'top middle' : ''"
       no-focus
       no-refocus
-      style="border-radius: 4px"
     >
       <q-inner-loading
         :showing="tableStore.showLoader.value"
