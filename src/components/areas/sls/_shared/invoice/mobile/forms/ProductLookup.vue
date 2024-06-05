@@ -159,7 +159,7 @@
                   <q-icon name="o_close" color="red" size="20px" />
                 </q-btn>
               </template>
-              <div class="row q-gutter-x-sm items-center q-my-sm">
+              <div class="row q-gutter-x-sm items-center">
                 <q-avatar
                   class="border-radius-xs"
                   square
