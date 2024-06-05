@@ -34,6 +34,7 @@
     </template>
 
     <q-menu
+      v-if="$q.screen.gt.xs"
       fit
       no-parent-event
       v-model="isPopupOpen"
@@ -169,10 +170,55 @@
     ref="lookupDialog"
     maximized
     transition-duration="600"
-    transition-show="slide-down"
-    transition-hide="slide-up"
+    transition-show="slide-up"
+    transition-hide="slide-down"
   >
-    <q-card>
+    <q-card class="no-border">
+      <q-card-section>
+        <div class="row items-center q-gutter-md">
+          <div class="col text-body2 no-letter-spacing text-bold">
+            <slot name="title">لوکاپ</slot>
+          </div>
+          <q-btn
+            square
+            class="rounded-borders col-1"
+            outline
+            dense
+            v-close-popup
+          >
+            <q-icon size="20px" name="o_close" />
+          </q-btn>
+        </div>
+
+        <q-input
+          ref="search"
+          v-model="selectedText"
+          hide-bottom-space
+          outlined
+          :required="required"
+          :rules="rules"
+          color="primary"
+          class="q-mt-md first input lookup"
+          input-class="text-body2 no-letter-spacing"
+          dense
+          debounce="1000"
+          :placeholder="placeholder"
+          :loading="tableStore.inputInnerLoader.value"
+          @update:model-value="searchInLookup"
+          @keydown.enter.prevent.stop="selectRow"
+          @keydown="handleKeyDown"
+        >
+          <template #append>
+            <q-icon
+              name="o_close"
+              v-if="!isSearchEmpty"
+              class="cursor-pointer q-field__focusable-action"
+              @click="clearSearch"
+            />
+          </template>
+        </q-input>
+      </q-card-section>
+
       <q-inner-loading
         :showing="tableStore.showLoader.value"
         class="inner-loader_ q-mt-xl"
@@ -204,7 +250,7 @@
                 unelevated
                 color="primary"
                 class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
-                style="margin-top: 12px; margin-left: 48px"
+                style="margin-top: 12px"
                 rounded
                 size="12px"
               >
@@ -218,17 +264,6 @@
                 </span>
               </q-btn>
             </slot>
-
-            <q-btn
-              style="margin-top: 10px; margin-left: 4px"
-              class="absolute-top-right"
-              round
-              unelevated
-              dense
-              v-close-popup
-            >
-              <q-icon size="20px" name="o_close" />
-            </q-btn>
           </div>
         </slot>
       </div>

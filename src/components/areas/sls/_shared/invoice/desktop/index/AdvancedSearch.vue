@@ -72,79 +72,67 @@
               />
             </div>
 
-            <div class="row q-gutter-x-sm items-center">
-              <sale-type-lookup
-                v-model:selectedId="
-                  searchStore.searchModel.value.typeId
-                "
-                v-model:selectedText="
-                  searchStore.searchModel.value.typeTitle
-                "
-                style="width: 100%"
-                :placeholder="$t('shared.labels.typeTitle')"
-              />
-            </div>
+            <sale-type-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.typeId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.typeTitle
+              "
+              style="width: 398px"
+              :placeholder="$t('shared.labels.typeTitle')"
+            />
 
-            <div class="row q-gutter-x-sm items-center">
-              <inventory-lookup
-                v-model:selectedId="
-                  searchStore.searchModel.value.inventoryId
-                "
-                v-model:selectedText="
-                  searchStore.searchModel.value.inventoryTitle
-                "
-                style="width: 398px"
-                :placeholder="$t('shared.labels.inventoryTitle')"
-              />
-            </div>
+            <inventory-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.inventoryId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.inventoryTitle
+              "
+              style="width: 398px"
+              :placeholder="$t('shared.labels.inventoryTitle')"
+            />
 
-            <div class="row q-gutter-x-sm items-center">
-              <product-lookup
-                v-model:selectedId="
-                  searchStore.searchModel.value.productId
-                "
-                v-model:selectedText="
-                  searchStore.searchModel.value.productTitle
-                "
-                style="width: 398px"
-                :placeholder="$t('shared.labels.productTitle')"
-              />
-            </div>
+            <product-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.productId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.productTitle
+              "
+              style="width: 398px"
+              :placeholder="$t('shared.labels.productTitle')"
+            />
 
-            <div class="row q-gutter-x-sm items-center">
-              <contract-lookup
-                v-model:selectedId="
-                  searchStore.searchModel.value.contractId
-                "
-                v-model:selectedText="
-                  searchStore.searchModel.value.contractTitle
-                "
-                style="width: 398px"
-                :placeholder="$t('shared.labels.contractTitle')"
-              />
-            </div>
+            <contract-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.contractId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.contractTitle
+              "
+              style="width: 398px"
+              :placeholder="$t('shared.labels.contractTitle')"
+            />
 
-            <div class="row q-gutter-x-sm items-center">
-              <customer-lookup
-                v-model:selectedId="
-                  searchStore.searchModel.value.marketerId
-                "
-                v-model:selectedText="
-                  searchStore.searchModel.value.marketerName
-                "
-                style="width: 398px"
-                :placeholder="$t('shared.labels.marketerName')"
-              />
-            </div>
+            <customer-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.marketerId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.marketerName
+              "
+              style="width: 398px"
+              :placeholder="$t('shared.labels.marketerName')"
+            />
 
-            <div class="row q-gutter-x-sm items-center">
-              <custom-input
-                v-model="searchStore.searchModel.value.comment"
-                :placeholder="$t('shared.labels.comment')"
-                style="width: 398px"
-                class="text-body2 no-letter-spacing"
-              />
-            </div>
+            <custom-input
+              v-model="searchStore.searchModel.value.comment"
+              :placeholder="$t('shared.labels.comment')"
+              style="width: 398px"
+              class="text-body2 no-letter-spacing"
+            />
           </div>
 
           <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
