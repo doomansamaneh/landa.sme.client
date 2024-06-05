@@ -9,8 +9,8 @@
     class="productLookup"
   >
     <template #td="{ row }">
-      <q-item clickable v-close-popup>
-        <div class="row q-gutter-x-sm items-center q-my-sm">
+      <q-item style="padding: 12px;" clickable v-close-popup>
+        <div class="row items-center">
           <q-avatar
             class="border-radius-xs"
             square
@@ -39,14 +39,18 @@
           <q-item-label class="text-body3 no-letter-spacing">
             {{ row.code }} - {{ row.title }}
           </q-item-label>
-          <q-item-label class="text-body2 no-letter-spacing"
-            ><span class="text-body3 no-letter-spacing text-bold">موجودی: </span
-            >{{ row.stock }}</q-item-label
-          >
-          <q-item-label class="text-body2 no-letter-spacing"
-            ><span class="text-body3 no-letter-spacing text-bold">قیمت فروش: </span
-            >{{ row.price.toLocaleString() }}</q-item-label
-          >
+          <q-item-label class="text-body2 no-letter-spacing">
+            <span class="text-body3 no-letter-spacing text-bold">
+              موجودی:
+            </span>
+            {{ row.stock }}
+          </q-item-label>
+          <q-item-label class="text-body2 no-letter-spacing">
+            <span class="text-body3 no-letter-spacing text-bold">
+              قیمت فروش:
+            </span>
+            {{ row.price.toLocaleString() }}
+          </q-item-label>
         </q-item-section>
       </q-item>
     </template>
@@ -54,18 +58,18 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { helper } from "src/helpers";
+  import { ref } from "vue";
+  import { helper } from "src/helpers";
 
-import LookupView from "src/components/shared/dataTables/LookupView.vue";
-import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
+  import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
 
-const props = defineProps({
-  filterExpression: Array,
-});
-const lookup = ref(null);
+  const props = defineProps({
+    filterExpression: Array,
+  });
+  const lookup = ref(null);
 
-defineExpose({
-  lookup,
-});
+  defineExpose({
+    lookup,
+  });
 </script>

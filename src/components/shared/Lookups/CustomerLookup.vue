@@ -8,8 +8,13 @@
     ref="lookup"
   >
     <template #td="{ row }">
-      <q-item clickable v-close-popup>
-        <div class="row q-gutter-x-md items-center q-my-md q-pl-sm">
+      <q-item
+        class="rounded-borders"
+        style="padding: 12px;"
+        clickable
+        v-close-popup
+      >
+        <div class="row items-center-">
           <q-tooltip :delay="700" class="text-body3 custom-tooltip">
             <span v-if="row.code">{{ row.code }} -</span>
             {{ row.name }} - {{ row.locationName }} {{ row.address }}
@@ -42,7 +47,7 @@
 
           <q-item-section>
             <q-item-label
-              class="ellipsis text-on-dark text-caption text-bold q-py-xs"
+              class="ellipsis text-on-dark text-caption text-bold q-pb-xs"
               style="width: 200px"
             >
               {{ row.code }} {{ row.name }}

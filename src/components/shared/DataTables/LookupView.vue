@@ -34,8 +34,8 @@
     </template>
 
     <q-menu
-      v-if="$q.screen.gt.xs"
       fit
+      v-if="$q.screen.gt.xs"
       no-parent-event
       v-model="isPopupOpen"
       @show="onMenuShow"
@@ -97,7 +97,7 @@
         </slot>
       </div>
       <div
-        class="cursor-pointer"
+        class="cursor-pointer q-ma-sm rounded-borders"
         v-for="(row, index) in tableStore.rows.value"
         :key="row.id"
         :class="{ 'row-active': index === selectedRowIndex }"
@@ -108,7 +108,12 @@
           :row="row"
           :index="tableStore.rowIndex(index)"
         >
-          <q-item clickable v-close-popup>
+          <q-item
+            class="rounded-borders"
+            style="padding: 12px"
+            clickable
+            v-close-popup
+          >
             <div
               class="row items-center q-gutter-x-md"
               style="width: 300px; margin-left: 120px"
@@ -179,15 +184,18 @@
           <div class="col text-body2 no-letter-spacing text-bold">
             <slot name="title">لوکاپ</slot>
           </div>
-          <q-btn
-            square
-            class="rounded-borders col-1"
-            outline
-            dense
-            v-close-popup
-          >
-            <q-icon size="20px" name="o_close" />
-          </q-btn>
+          <div class="flex flex-center">
+            <q-btn
+              round
+              unelevated
+              text-color="white"
+              class="red-gradient red-shadow col-1"
+              padding="5px"
+              v-close-popup
+            >
+              <q-icon size="16px" name="o_close" />
+            </q-btn>
+          </div>
         </div>
 
         <q-input
@@ -219,15 +227,8 @@
         </q-input>
       </q-card-section>
 
-      <q-inner-loading
-        :showing="tableStore.showLoader.value"
-        class="inner-loader_ q-mt-xl"
-      >
-        <q-spinner size="52px" color="primary" />
-      </q-inner-loading>
-
       <div
-        class="header text-caption text-bold q-pa-md bg-dark z-max"
+        class="header q-pa-md text-caption text-bold bg-dark z-max"
         style="border-bottom: 1px solid var(--q-primary)"
       >
         <slot name="thead">
@@ -249,16 +250,12 @@
                 dense
                 unelevated
                 color="primary"
-                class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
+                class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-md"
                 style="margin-top: 12px"
                 rounded
                 size="12px"
               >
-                <q-icon
-                  name="o_add"
-                  size="14px"
-                  style="margin-left: 2px"
-                />
+                <q-icon name="o_add" size="14px" />
                 <span class="text-body3 no-letter-spacing">
                   ایجاد
                 </span>
@@ -267,39 +264,49 @@
           </div>
         </slot>
       </div>
-      <div
-        class="cursor-pointer"
-        v-for="(row, index) in tableStore.rows.value"
-        :key="row.id"
-        :class="{ 'row-active': index === selectedRowIndex }"
-        @click="onRowClicked(row, index)"
-      >
-        <slot
-          name="td"
-          :row="row"
-          :index="tableStore.rowIndex(index)"
+
+      <q-card-section class="q-py-none q-px-sm">
+        <div
+          class="cursor-pointer q-my-sm"
+          v-for="(row, index) in tableStore.rows.value"
+          :key="row.id"
+          :class="{
+            'rounded-borders row-active': index === selectedRowIndex,
+          }"
+          @click="onRowClicked(row, index)"
         >
-          <q-item clickable v-close-popup>
-            <div
-              class="row items-center q-gutter-x-md"
-              style="width: 300px; margin-left: 120px"
+          <slot
+            name="td"
+            :row="row"
+            :index="tableStore.rowIndex(index)"
+          >
+            <q-item
+              class="rounded-borders"
+              style="padding: 12px"
+              clickable
+              v-close-popup
             >
-              <div class="col-1 text-caption no-letter-spacing">
-                {{ index + 1 }}
-              </div>
               <div
-                v-for="col in lookupColumns"
-                class="col text-body2 no-letter-spacing"
-                :key="col"
+                class="row items-center q-gutter-x-md"
+                style="width: 300px; margin-left: 120px"
               >
-                <slot :name="`cell-${col}`" :item="row">
-                  {{ row[col] }}
-                </slot>
+                <div class="col-1 text-caption no-letter-spacing">
+                  {{ index + 1 }}
+                </div>
+                <div
+                  v-for="col in lookupColumns"
+                  class="col text-body2 no-letter-spacing"
+                  :key="col"
+                >
+                  <slot :name="`cell-${col}`" :item="row">
+                    {{ row[col] }}
+                  </slot>
+                </div>
               </div>
-            </div>
-          </q-item>
-        </slot>
-      </div>
+            </q-item>
+          </slot>
+        </div>
+      </q-card-section>
 
       <div
         v-if="
@@ -334,6 +341,13 @@
           </template>
         </page-bar>
       </div>
+
+      <q-inner-loading
+        :showing="tableStore.showLoader.value"
+        class="inner-loader_ q-mt-xl"
+      >
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
     </q-card>
   </q-dialog>
 </template>
