@@ -8,6 +8,16 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
+      <q-item-label caption class="q-mb-sm">مخاطب</q-item-label>
+      <customer-lookup
+        v-model:selectedId="localFormStore.model.value.customerId"
+        v-model:selectedText="localFormStore.model.value.customerName"
+      />
+    </div>
+  </div>
+
+  <div class="row q-mt-md">
+    <div class="col-md-6 col-sm-12 col-xs-12">
       <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
       <contract-lookup
         v-model:selectedId="localFormStore.model.value.contractId"
@@ -28,15 +38,24 @@
       />
     </div>
   </div>
+
+  <div class="row q-mt-md">
+    <div class="col-md-12">
+      <remained-grid
+        customer-id="520b80d3-3edf-4e81-9ac7-8400e4aa9c70"
+      />
+    </div>
+  </div>
 </template>
 
 <script setup>
   import { computed } from "vue";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
-  import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
+  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import RemainedGrid from "./RemainedGrid.vue";
 
   const props = defineProps({
     formStore: Object,

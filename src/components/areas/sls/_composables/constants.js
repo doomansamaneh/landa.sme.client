@@ -37,6 +37,15 @@ export const invoiceColumns = [
   { ...remainedAmount },
 ];
 
+export const invoiceRemainedColumns = [
+  { ...no },
+  { ...date },
+  { ...subject },
+  { ...amount },
+  { ...payedAmount },
+  { ...remainedAmount },
+];
+
 export const quoteColumns = [
   { ...no },
   { ...date },

@@ -1,21 +1,62 @@
 <template>
-  <q-card flat bordered>
-    <q-card-section :class="`bg-${item.color} text-white`">
-      <h6>{{ item.header }}</h6>
-    </q-card-section>
-    <q-separator />
-    <q-card-section></q-card-section>
-  </q-card>
+  <div class="row q-col-gutter-md">
+    <div class="col-md-3 col-sm-12">
+      <q-item-label caption class="q-mb-sm">مبلغ</q-item-label>
+      <custom-input-number
+        v-model="paymentItem.amount"
+        hide-bottom-space
+      />
+    </div>
+
+    <div class="col-md-2 col-sm-12">
+      <q-item-label caption class="q-mb-sm">کارمزد</q-item-label>
+      <custom-input-number
+        v-model="paymentItem.fee"
+        hide-bottom-space
+      />
+    </div>
+  </div>
+
+  <div class="row q-mt-sm q-col-gutter-md">
+    <div class="col-md-6 col-sm-12">
+      <q-item-label caption class="q-mb-sm">بانک</q-item-label>
+      <bank-account-lookup
+        v-model:selectedId="paymentItem.bankAccountId"
+        v-model:selectedText="paymentItem.no"
+        hide-bottom-space
+      />
+    </div>
+  </div>
+
+  <div class="row q-mt-sm q-col-gutter-md">
+    <div class="col-md-6 col-sm-12">
+      <q-item-label caption class="q-mb-sm">ش رسید</q-item-label>
+      <custom-input hide-bottom-space v-model="paymentItem.itemNo" />
+    </div>
+  </div>
+
+  <div class="row q-mt-sm q-col-gutter-md">
+    <div class="col-md-6 col-sm-12">
+      <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+      <custom-input
+        hide-bottom-space
+        type="textarea"
+        v-model="paymentItem.comment"
+      />
+    </div>
+  </div>
 </template>
 
 <script setup>
-  import { helper } from "src/helpers";
+  import { computed } from "vue";
 
-  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import BankAccountLookup from "src/components/shared/lookups/BankAccountLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
   const props = defineProps({
     item: Object,
   });
+
+  const paymentItem = computed(() => props.item);
 </script>
