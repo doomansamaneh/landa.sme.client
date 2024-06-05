@@ -4,13 +4,12 @@
     :data-source="dataSource"
     :grid-store="gridStore"
     separator="horizontal"
-    flat_
     multiSelect
     numbered
     bordered
     wrapCells
-    dense_
     :expandable="expandable"
+    toolbar
   >
     <template #filter-isActive="{ col }">
       <custom-select
@@ -26,6 +25,13 @@
 
     <template #cell-isActive="{ item }">
       <is-active :is-active="item.isActive" />
+    </template>
+
+    <template #cell-subject="{ item }">
+      {{ item.subject }}
+      <div v-if="item.summary" class="text-caption-sm">
+        {{ item.summary }}
+      </div>
     </template>
 
     <template #cell-actions="{ item }">

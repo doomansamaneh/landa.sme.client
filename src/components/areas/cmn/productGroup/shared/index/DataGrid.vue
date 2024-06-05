@@ -7,12 +7,12 @@
     :visible-columns="columns"
     sort-column="code"
     create-url="/cmn/productGroup/create"
-  >
-  </data-grid>
+    activation
+  ></data-grid>
 </template>
 
 <script setup>
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
 
-const columns = ["code", "title", "isActive", "actions"];
+  const columns = ["code", "title", "isActive", "actions"];
 </script>

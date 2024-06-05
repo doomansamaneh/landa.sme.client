@@ -5,12 +5,12 @@
     data-source="cmn/location/getGridData"
     :title="$t('main-menu-items.Cmn_Location_View')"
     :visible-columns="columns"
-  >
-  </data-grid>
+    activation
+  ></data-grid>
 </template>
 
 <script setup>
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
 
-const columns = ["code", "title", "isActive", "actions"];
+  const columns = ["code", "title", "isActive", "actions"];
 </script>

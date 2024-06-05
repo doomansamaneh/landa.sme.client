@@ -345,6 +345,13 @@
       "useable": "مصرفی",
       "service": "خدمت/نرم افزار"
     },
+    "paymentMethod": {
+      "cash": "نقدی",
+      "check": "چک",
+      "bankTransition": "واریز بانکی",
+      "pos": "دستگاه پوز",
+      "customer": "طرف حساب"
+    },
     "customerType": {
       "legal": "حقوقی",
       "person": "حقیقی",

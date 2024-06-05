@@ -1,10 +1,10 @@
 <template>
   <data-grid
     toolbar
-    base-route="trs/transferMoney"
-    data-source="trs/transferMoney/getGridData"
-    :title="$t('main-menu-items.Trs_TransferMoney_View')"
-    create-url="/trs/transferMoney/create"
+    base-route="trs/bill"
+    data-source="trs/bill/getGridData"
+    :title="$t('main-menu-items.Trs_Bill_View')"
+    create-url="/trs/bill/create"
     :grid-store="gridStore"
     expandable
   >
@@ -17,11 +17,11 @@
 <script setup>
   import { sortOrder } from "src/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { transferMoneyColumns } from "src/components/areas/trs/_composables/constants";
+  import { billColumns } from "src/components/areas/trs/_composables/constants";
 
   import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
   const gridStore = useBaseInfoGrid({
-    columns: transferMoneyColumns,
+    columns: billColumns,
     sortColumn: "date",
     sortOrder: sortOrder.descending,
   });

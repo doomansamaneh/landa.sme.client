@@ -7,6 +7,7 @@
     create-url="/trs/bankAccount/create"
     :grid-store="gridStore"
     expandable
+    activation
   >
     <template #cell-debitRemained="{ item }">
       {{ item.debitRemained?.toLocaleString() }}

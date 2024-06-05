@@ -7,6 +7,7 @@
     :grid-store="gridStore"
     create-url="/trs/cash/create"
     expandable
+    activation
   >
     <template #cell-debitRemained="{ item }">
       {{ item.debitRemained?.toLocaleString() }}

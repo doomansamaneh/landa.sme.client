@@ -28,7 +28,7 @@
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
       :base-route="baseRoute"
-      activation
+      :activation="activation"
       buttons
       margin
     />
@@ -74,6 +74,7 @@
     visibleColumns: Array,
     sortColumn: String,
     expandable: Boolean,
+    activation: Boolean,
   });
 
   const localGridStore =

@@ -5,12 +5,12 @@
     data-source="cmn/currency/getGridData"
     :title="$t('main-menu-items.Cmn_Currency_View')"
     :visible-columns="columns"
-  >
-  </data-grid>
+    activation
+  ></data-grid>
 </template>
 
 <script setup>
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
 
-const columns = ["title", "isActive", "actions"];
+  const columns = ["title", "isActive", "actions"];
 </script>

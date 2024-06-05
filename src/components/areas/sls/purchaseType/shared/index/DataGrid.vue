@@ -6,6 +6,7 @@
     :title="$t('main-menu-items.Sls_PurchaseType_View')"
     :visible-columns="columns"
     create-url="/sls/purchaseType/create"
+    activation
   >
     <template #cell-title="{ item }">
       <is-by-system :is-by-system="item.isBySystem" />
@@ -15,8 +16,8 @@
 </template>
 
 <script setup>
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
-import IsBySystem from "src/components/shared/IsBySystem.vue";
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import IsBySystem from "src/components/shared/IsBySystem.vue";
 
-const columns = ["title", "isActive", "actions"];
+  const columns = ["title", "isActive", "actions"];
 </script>

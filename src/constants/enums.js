@@ -132,6 +132,14 @@ export const subSystem = {
   contract: 58,
 };
 
+export const paymentMethod = {
+  cash: { id: 1071, color: "blue" },
+  bankTransition: { id: 1073, color: "green" },
+  check: { id: 1072, color: "red" },
+  //pos: { id: 1074, color: "orange" },
+  customer: { id: 1075, color: "black" },
+};
+
 export const productType = {
   main: 211,
   part: 212,

@@ -102,10 +102,18 @@ export const transferMoneyColumns = [
 ];
 
 export const receiptColumns = [
-  rowNo,
+  no,
   date,
   subject,
   customerName,
+  amount,
+  //actions,
+];
+
+export const billColumns = [
+  no,
+  date,
+  subject,
   amount,
   //actions,
 ];

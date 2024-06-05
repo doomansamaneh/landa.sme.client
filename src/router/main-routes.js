@@ -360,32 +360,32 @@ export default {
     },
 
     {
-      path: "trs/receipt",
+      path: "trs/bill",
       children: [
         {
           path: "",
           component: () =>
-            import("pages/areas/trs/receipt/IndexPage.vue"),
+            import("pages/areas/trs/bill/IndexPage.vue"),
         },
         {
           path: "create",
           component: () =>
-            import("pages/areas/trs/receipt/CreatePage.vue"),
+            import("pages/areas/trs/bill/CreatePage.vue"),
         },
         {
           path: "edit/:id",
           component: () =>
-            import("pages/areas/trs/receipt/EditPage.vue"),
+            import("pages/areas/trs/bill/EditPage.vue"),
         },
         // {
         //   path: "copy/:id",
         //   component: () =>
-        //     import("pages/areas/trs/receipt/CopyPage.vue"),
+        //     import("pages/areas/trs/bill/CopyPage.vue"),
         // },
         {
           path: "preview/:id",
           component: () =>
-            import("pages/areas/trs/receipt/PreviewPage.vue"),
+            import("pages/areas/trs/bill/PreviewPage.vue"),
         },
       ],
     },
@@ -453,32 +453,32 @@ export default {
     },
 
     {
-      path: "trs/bill",
+      path: "trs/transferMoney",
       children: [
         {
           path: "",
           component: () =>
-            import("pages/areas/trs/bill/IndexPage.vue"),
+            import("pages/areas/trs/transferMoney/IndexPage.vue"),
         },
         {
           path: "create",
           component: () =>
-            import("pages/areas/trs/bill/CreatePage.vue"),
+            import("pages/areas/trs/transferMoney/CreatePage.vue"),
         },
         {
           path: "edit/:id",
           component: () =>
-            import("pages/areas/trs/bill/EditPage.vue"),
+            import("pages/areas/trs/transferMoney/EditPage.vue"),
         },
         {
           path: "copy/:id",
           component: () =>
-            import("pages/areas/trs/bill/CopyPage.vue"),
+            import("pages/areas/trs/transferMoney/CopyPage.vue"),
         },
         {
           path: "preview/:id",
           component: () =>
-            import("pages/areas/trs/bill/PreviewPage.vue"),
+            import("pages/areas/trs/transferMoney/PreviewPage.vue"),
         },
       ],
     },

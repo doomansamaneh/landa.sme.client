@@ -6,6 +6,7 @@
     :title="$t('main-menu-items.Acc_AccountSL_View')"
     :grid-store="gridStore"
     create-url="/acc/accountSL/create"
+    activation
     expandable
   >
     <template #cell-code="{ item }">

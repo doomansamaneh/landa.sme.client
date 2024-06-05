@@ -6,12 +6,12 @@
     :title="$t('main-menu-items.Cmn_Bank_View')"
     :visible-columns="columns"
     create-url="/cmn/bank/create"
-  >
-  </data-grid>
+    activation
+  ></data-grid>
 </template>
 
 <script setup>
-import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
 
-const columns = ["title", "isActive", "actions"];
+  const columns = ["title", "isActive", "actions"];
 </script>
