@@ -1,8 +1,6 @@
 <template>
   <master-section :form-store="formStore" :form-type="formType" />
-  <div class="q-mt-md">
-    <payment-section :form-store="formStore" :form-type="formType" />
-  </div>
+  <payment-section :form-store="formStore" :form-type="formType" />
 </template>
 
 <script setup>

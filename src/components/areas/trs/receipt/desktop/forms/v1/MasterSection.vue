@@ -12,6 +12,7 @@
       <customer-lookup
         v-model:selectedId="localFormStore.model.value.customerId"
         v-model:selectedText="localFormStore.model.value.customerName"
+        @row-selected="customerChanged"
       />
     </div>
   </div>
@@ -39,17 +40,15 @@
     </div>
   </div>
 
-  <div class="row q-mt-md">
-    <div class="col-md-12">
-      <remained-grid
-        customer-id="520b80d3-3edf-4e81-9ac7-8400e4aa9c70"
-      />
-    </div>
-  </div>
+  <remained-grid
+    class="q-mt-md"
+    ref="invoiceGrid"
+    :form-store="formStore"
+  />
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref, computed } from "vue";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
@@ -61,5 +60,10 @@
     formStore: Object,
   });
 
+  const invoiceGrid = ref(null);
   const localFormStore = computed(() => props.formStore);
+
+  function customerChanged(row) {
+    //invoiceGrid.value.reloadData(row?.id);
+  }
 </script>

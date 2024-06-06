@@ -1,14 +1,22 @@
 <template>
   <data-grid
     ref="dataGrid"
-    :data-source="dataSource"
     :grid-store="gridStore"
     separator="horizontal"
     multiSelect
     numbered
     bordered
+    flat
     wrapCells
+    @selected-rows-changed="selectedRowChanged"
   >
+    <template #title>
+      <div class="q-pa-lg">
+        <h5>صورتحسابهای دارای مانده</h5>
+        برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید
+      </div>
+    </template>
+
     <template #cell-subject="{ item }">
       <div>{{ item.subject }}</div>
       <div v-if="item.summary" class="text-caption-sm">
@@ -44,11 +52,27 @@
     <template #cell-remainedAmount="{ item }">
       {{ item.remainedAmount?.toLocaleString() }}
     </template>
+
+    <template #footer-subtotal="{ selectedRows }">
+      <td colspan="7" class="text-right">
+        {{ $t("shared.labels.selectedRows") }}
+      </td>
+      <td>
+        <b>
+          {{
+            helper
+              .getSubtotal(selectedRows, "remainedAmount")
+              .toLocaleString()
+          }}
+        </b>
+      </td>
+    </template>
   </data-grid>
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, watch } from "vue";
+  import { helper } from "src/helpers";
   import { sortOrder } from "src/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { invoiceRemainedColumns } from "src/components/areas/sls/_composables/constants";
@@ -56,7 +80,7 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
 
   const props = defineProps({
-    customerId: String,
+    formStore: Object,
   });
 
   const dataGrid = ref(null);
@@ -66,16 +90,51 @@
     sortOrder: sortOrder.descending,
   });
 
-  async function reloadData() {
-    await tableStore.value.reloadData();
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const model = computed(() => props.formStore.model.value);
+  const customerId = computed(
+    () => props.formStore.model.value.customerId
+  );
+
+  const firstLoad = ref(true);
+  async function reloadData(customerId) {
+    if (customerId) {
+      tableStore?.value.setDataSource(
+        `sls/invoice/getRemainedData/${customerId}`
+      );
+      await tableStore?.value.reloadData();
+      if (firstLoad.value && model.value.selectedInvoiceId) {
+        firstLoad.value = false;
+        tableStore.value.selectRowById(
+          model.value.selectedInvoiceId,
+          true
+        );
+        selectedRowChanged();
+      }
+    } else {
+      tableStore?.value.setDataSource(null);
+      tableStore?.value.clearState();
+    }
   }
 
-  const dataSource = computed(
-    () => `sls/invoice/getRemainedData/${props.customerId}`
-  );
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
+  function selectedRowChanged(selectedRows) {
+    model.value.remainedInvoices =
+      tableStore.value.allSelectedIds.value.map((item) => ({
+        id: item,
+      }));
+
+    model.value.remainedAmount = helper.getSubtotal(
+      tableStore.value.selectedRows.value,
+      "remainedAmount"
+    );
+  }
+
+  watch(customerId, async () => {
+    await reloadData(customerId.value);
+  });
 
   defineExpose({
     tableStore,
+    reloadData,
   });
 </script>

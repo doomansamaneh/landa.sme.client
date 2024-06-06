@@ -408,6 +408,13 @@ export default {
           component: () =>
             import("pages/areas/trs/receipt/EditPage.vue"),
         },
+        {
+          path: "createFromInvoice/:id",
+          component: () =>
+            import(
+              "pages/areas/trs/receipt/CreateFromInvoicePage.vue"
+            ),
+        },
         // {
         //   path: "copy/:id",
         //   component: () =>

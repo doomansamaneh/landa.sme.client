@@ -1,5 +1,7 @@
 <template>
-  <q-card class="bordered" :class="containerClass">
+  <q-card :class="containerClass">
+    <slot name="title"></slot>
+
     <div class="q-table__middle scroll">
       <toolbar v-if="toolbar" :table-store="tableStore" />
 
@@ -321,6 +323,7 @@
       ($q.dark?.isActive === true ? " q-table--dark" : "") +
       (tableStore.dense.value === true ? " q-table--dense" : "") +
       (props.wrapCells === false ? " q-table--no-wrap" : "") +
+      (props.flat === false ? " bordered" : "") +
       (tableStore.inFullscreen.value === true
         ? " fullscreen scroll"
         : "")
@@ -344,11 +347,12 @@
 
   //Todo: How move to expand page dynamically
   const toggleExpand = (row) => {
-    if ($q.screen.gt.xs) {
-      tableStore.toggleExpand(row);
-    } else {
-      router.push("/Sls/Report/ProductStock/items/123");
-    }
+    tableStore.toggleExpand(row);
+    // if ($q.screen.gt.xs) {
+    //   tableStore.toggleExpand(row);
+    // } else {
+    //   router.push("/Sls/Report/ProductStock/items/123");
+    // }
   };
 
   onMounted(() => {

@@ -9,7 +9,6 @@ import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
-import { validMethods } from "workbox-routing/utils/constants";
 
 export function useInvoiceModel(config) {
   const $q = useQuasar();

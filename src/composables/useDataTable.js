@@ -13,7 +13,8 @@ const thFontSize = ref(12);
 const tdFontSize = ref(13);
 
 export function useDataTable({ dataSource, dataColumns, store }) {
-  const localState = {
+  const _dataSource = ref(dataSource);
+  const _state = {
     firstLoad: ref(false),
     rows: ref([]),
     searchField: ref(""),
@@ -23,7 +24,7 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     searchModel: ref(null),
   };
 
-  const localPagination = ref({
+  const _pagination = ref({
     currentPage: 1,
     pageSize: defaultPageSize,
     sortOrder: 1,
@@ -36,9 +37,9 @@ export function useDataTable({ dataSource, dataColumns, store }) {
   const columns = computed(
     () => store?.columns?.value ?? dataColumns
   );
-  const state = computed(() => store?.state ?? localState);
+  const state = computed(() => store?.state ?? _state);
   const pagination = computed(
-    () => store?.pagination.value ?? localPagination.value
+    () => store?.pagination.value ?? _pagination.value
   );
 
   // const loading = ref(false)
@@ -91,7 +92,6 @@ export function useDataTable({ dataSource, dataColumns, store }) {
   }
 
   async function loadData() {
-    //alert("load data");
     if (!state.value.firstLoad.value) {
       state.value.firstLoad.value = true;
       await reloadData();
@@ -101,7 +101,8 @@ export function useDataTable({ dataSource, dataColumns, store }) {
   }
 
   async function reloadData() {
-    //alert("reload data");
+    if (!_dataSource.value) return;
+
     await fetchData(pagination.value, handleDataResponse);
 
     function handleDataResponse(pagedData) {
@@ -132,7 +133,7 @@ export function useDataTable({ dataSource, dataColumns, store }) {
       setPayload();
 
       const response = await fetchWrapper.post(
-        dataSource,
+        _dataSource.value,
         gridPage,
         true
       );
@@ -214,6 +215,14 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     updatedSelectedIds(row, checked);
   }
 
+  function selectRowById(id, checked) {
+    const row = state.value.rows.value.find((item) => item.id === id);
+    if (row) {
+      row.selected = checked;
+      updatedSelectedIds(row, checked);
+    }
+  }
+
   function updatedSelectedIds(row, checked) {
     const index = state.value.allSelectedIds.value.indexOf(row.id);
     if (checked) {
@@ -286,6 +295,20 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     pagination.value.searchTerm = term;
   }
 
+  function setDataSource(dataSource) {
+    _dataSource.value = dataSource;
+  }
+
+  function clearState() {
+    state.value.rows.value = [];
+    pagination.value.totalItems = 0;
+    pagination.value.totalPages = 0;
+    pagination.value.currentPage = 1;
+    state.value.allSelectedIds.value = [];
+    state.value.activeRow.value = null;
+    state.value.summaryData.value = null;
+  }
+
   onMounted(() => {
     bus.on("render-page", loadData);
   });
@@ -311,6 +334,8 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     rowIndex,
     pagination,
     checkedAll,
+    clearState,
+    setDataSource,
 
     inFullscreen,
     separator,
@@ -329,6 +354,7 @@ export function useDataTable({ dataSource, dataColumns, store }) {
     loadData,
     reloadData,
     selectRow,
+    selectRowById,
     setSearchTerm,
     sortColumn,
     toggleExpand,

@@ -3,16 +3,15 @@ import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
 import { useReceiptItemModel } from "./useReceiptItemModel";
-import { voucherModel } from "src/models/areas/acc/voucherModel";
+import { receiptModel } from "src/models/areas/trs/receiptModel";
 import { useReceiptState } from "./useReceiptState";
-import { payedAmount } from "src/constants/columns";
 
 export function useReceiptModel({ baseRoute, preview }) {
   const router = useRouter();
   const stateStore = useReceiptState();
   const itemStore = useReceiptItemModel();
 
-  const model = ref(voucherModel);
+  const model = ref(receiptModel);
 
   const crudStore = useFormActions(baseRoute, model);
 
@@ -20,6 +19,11 @@ export function useReceiptModel({ baseRoute, preview }) {
     let responseData = null;
     if (id) {
       if (preview) responseData = await crudStore.getPreviewById(id);
+      else if (action === "createFromInvoice")
+        responseData = await crudStore.getById(
+          id,
+          "trs/receipt/createFromInvoice"
+        );
       else responseData = await crudStore.getById(id);
     } else responseData = await crudStore.getCreateModel(setItems);
 
@@ -41,8 +45,10 @@ export function useReceiptModel({ baseRoute, preview }) {
   }
 
   const addRow = (paymentMehod) => {
+    const amount = model.value.remainedAmount - totalAmount.value;
     model.value.paymentItems.push({
       ...itemStore.model.value,
+      amount: Math.max(amount, 0),
       typeId: paymentMehod.value.id,
       color: paymentMehod.value.color,
       header: paymentMehod.label,
@@ -61,10 +67,6 @@ export function useReceiptModel({ baseRoute, preview }) {
   const totalAmount = computed(() =>
     helper.getSubtotal(model.value.paymentItems, "amount")
   );
-
-  // const totalDif = computed(
-  //   () => totalDebit.value - totalCredit.value
-  // );
 
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
