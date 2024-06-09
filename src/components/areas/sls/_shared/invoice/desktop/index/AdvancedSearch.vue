@@ -1,6 +1,6 @@
 <template>
   <q-card class="bordered">
-    <q-card-section class="row items-center justify-between">
+    <q-card-section class="row justify-between">
       <q-option-group
         class="row text-body2 no-letter-spacing"
         type="radio"
@@ -29,113 +29,139 @@
       </q-btn>
     </q-card-section>
 
-    <q-card-section class="row q-pa-none">
-      <q-slide-transition v-show="expanded">
+    <q-slide-transition>
+      <div v-show="expanded">
         <div class="q-px-md">
-          <q-checkbox
-            class="q-pt-sm text-body2 no-letter-spacing"
-            v-model="searchStore.searchModel.value.waitToSendTax"
-            :label="$t('shared.labels.waitToSendTax')"
-          />
-
-          <div class="q-gutter-y-sm q-pl-sm q-my-md">
-            <div class="row q-gutter-x-sm items-center">
-              <custom-input
-                v-model="searchStore.searchModel.value.amountFrom"
-                display-format="n0"
-                :placeholder="$t('shared.labels.amountFrom')"
-                style="width: 195px"
-                class="text-body2 no-letter-spacing"
+          <div class="row">
+            <div class="col-md-12">
+              <q-checkbox
+                class="q-pt-sm text-body2 no-letter-spacing"
+                v-model="searchStore.searchModel.value.waitToSendTax"
+                :label="$t('shared.labels.waitToSendTax')"
               />
+            </div>
+          </div>
 
-              <custom-input
-                v-model="searchStore.searchModel.value.amountTo"
-                display-format="n0"
-                :placeholder="$t('shared.labels.amountTo')"
-                style="width: 195px"
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-2 col-sm-6 col-xs-12">
+              <custom-input-number
+                v-model="searchStore.searchModel.value.amountFrom"
+                :placeholder="$t('shared.labels.amountFrom')"
                 class="text-body2 no-letter-spacing"
               />
             </div>
 
-            <div class="row q-gutter-x-sm items-center">
+            <div class="col-md-2 col-sm-6 col-xs-12">
+              <custom-input-number
+                v-model="searchStore.searchModel.value.amountTo"
+                :placeholder="$t('shared.labels.amountTo')"
+                class="text-body2 no-letter-spacing"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-2 col-sm-6 col-xs-12">
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
                 :placeholder="$t('shared.labels.dateFrom')"
-                style="width: 195px"
-                class="text-body2 no-letter-spacing"
-              />
-              <date-time
-                v-model="searchStore.searchModel.value.dateTo"
-                :placeholder="$t('shared.labels.dateTo')"
-                style="width: 195px"
                 class="text-body2 no-letter-spacing"
               />
             </div>
-
-            <sale-type-lookup
-              v-model:selectedId="
-                searchStore.searchModel.value.typeId
-              "
-              v-model:selectedText="
-                searchStore.searchModel.value.typeTitle
-              "
-              style="width: 398px"
-              :placeholder="$t('shared.labels.typeTitle')"
-            />
-
-            <inventory-lookup
-              v-model:selectedId="
-                searchStore.searchModel.value.inventoryId
-              "
-              v-model:selectedText="
-                searchStore.searchModel.value.inventoryTitle
-              "
-              style="width: 398px"
-              :placeholder="$t('shared.labels.inventoryTitle')"
-            />
-
-            <product-lookup
-              v-model:selectedId="
-                searchStore.searchModel.value.productId
-              "
-              v-model:selectedText="
-                searchStore.searchModel.value.productTitle
-              "
-              style="width: 398px"
-              :placeholder="$t('shared.labels.productTitle')"
-            />
-
-            <contract-lookup
-              v-model:selectedId="
-                searchStore.searchModel.value.contractId
-              "
-              v-model:selectedText="
-                searchStore.searchModel.value.contractTitle
-              "
-              style="width: 398px"
-              :placeholder="$t('shared.labels.contractTitle')"
-            />
-
-            <customer-lookup
-              v-model:selectedId="
-                searchStore.searchModel.value.marketerId
-              "
-              v-model:selectedText="
-                searchStore.searchModel.value.marketerName
-              "
-              style="width: 398px"
-              :placeholder="$t('shared.labels.marketerName')"
-            />
-
-            <custom-input
-              v-model="searchStore.searchModel.value.comment"
-              :placeholder="$t('shared.labels.comment')"
-              style="width: 398px"
-              class="text-body2 no-letter-spacing"
-            />
+            <div class="col-md-2 col-sm-6 col-xs-12">
+              <date-time
+                v-model="searchStore.searchModel.value.dateTo"
+                :placeholder="$t('shared.labels.dateTo')"
+                class="text-body2 no-letter-spacing"
+              />
+            </div>
           </div>
 
-          <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <sale-type-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.typeId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.typeTitle
+                "
+                :placeholder="$t('shared.labels.typeTitle')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <inventory-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.inventoryId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.inventoryTitle
+                "
+                style="width: 398px"
+                :placeholder="$t('shared.labels.inventoryTitle')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <product-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.productId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.productTitle
+                "
+                style="width: 398px"
+                :placeholder="$t('shared.labels.productTitle')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <contract-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.contractId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.contractTitle
+                "
+                style="width: 398px"
+                :placeholder="$t('shared.labels.contractTitle')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <customer-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.marketerId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.marketerName
+                "
+                style="width: 398px"
+                :placeholder="$t('shared.labels.marketerName')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <custom-input
+                v-model="searchStore.searchModel.value.comment"
+                :placeholder="$t('shared.labels.comment')"
+                class="text-body2 no-letter-spacing"
+              />
+            </div>
+          </div>
+
+          <q-card-actions class="q-pt-md q-pb-lg">
             <q-btn
               class="text-body2 no-letter-spacing primary-gradient primary-shadow text-white"
               rounded
@@ -157,10 +183,10 @@
               <q-icon name="clear" class="q-mr-xs" size="20px" />
               حذف فیلتر
             </q-btn>
-          </div>
+          </q-card-actions>
         </div>
-      </q-slide-transition>
-    </q-card-section>
+      </div>
+    </q-slide-transition>
   </q-card>
   <chip
     class="q-my-md"
@@ -178,6 +204,7 @@
   import Chip from "src/components/shared/SearchChip.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";

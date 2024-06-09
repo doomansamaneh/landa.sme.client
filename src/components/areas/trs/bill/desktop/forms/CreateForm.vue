@@ -1,13 +1,13 @@
 <template>
-  <master-section :form-store="formStore" :form-type="formType" />
-  <div class="q-mt-md">
-    <detail-section :form-store="formStore" :form-type="formType" />
-  </div>
+  <master-section :form-store="formStore" />
+  <bill-items :form-store="formStore" class="q-mt-md" />
+  <payment-section :form-store="formStore" />
 </template>
 
 <script setup>
   import MasterSection from "./v1/MasterSection.vue";
-  import DetailSection from "./v1/DetailSectionTable.vue";
+  import BillItems from "./v1/BillItems.vue";
+  import PaymentSection from "./v1/PaymentSection.vue";
 
   const props = defineProps({
     formStore: Object,

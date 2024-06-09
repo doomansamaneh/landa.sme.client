@@ -124,14 +124,6 @@
     formStore: Object,
   });
 
-  const vatFilter = [
-    {
-      fieldName: "isForSale",
-      operator: sqlOperator.in,
-      value: `${vatType.purchase},${vatType.purchaseAndSale}`,
-    },
-  ];
-
   const slChanged = (sl, row) => {
     // row.price = product?.price ?? 0;
     // row.productUnitId = product?.productUnitId ?? null;

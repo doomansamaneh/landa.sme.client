@@ -1,6 +1,6 @@
 <template>
   <q-card bordered>
-    <q-card-section class="row items-center justify-between">
+    <q-card-section class="row justify-between">
       <q-option-group
         class="row text-body2 no-letter-spacing"
         type="radio"
@@ -29,54 +29,58 @@
       </q-btn>
     </q-card-section>
 
-    <q-card-section class="row q-pa-none">
-      <q-slide-transition v-show="expanded">
+    <q-slide-transition>
+      <div v-show="expanded">
         <div class="q-px-md">
-          <div class="q-gutter-y-sm">
-            <div class="row">
-              <q-option-group
-                inline
-                :options="
-                  helper.getEnumOptions(voucherType, 'voucherType')
-                "
-                type="checkbox"
-                v-model="searchStore.searchModel.value.voucherTypeIds"
-              />
-            </div>
+          <div class="row">
+            <q-option-group
+              inline
+              :options="
+                helper.getEnumOptions(voucherType, 'voucherType')
+              "
+              type="checkbox"
+              v-model="searchStore.searchModel.value.voucherTypeIds"
+            />
+          </div>
 
-            <div class="row q-gutter-x-sm items-center">
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-2 col-sm-6 col-xs-12">
               <custom-input-number
                 v-model="searchStore.searchModel.value.amountFrom"
                 :placeholder="$t('shared.labels.amountFrom')"
-                style="width: 200px"
-                class="text-body2 no-letter-spacing"
-              />
-
-              <custom-input-number
-                v-model="searchStore.searchModel.value.amountTo"
-                display-format="n0"
-                :placeholder="$t('shared.labels.amountTo')"
-                style="width: 200px"
                 class="text-body2 no-letter-spacing"
               />
             </div>
 
-            <div class="row q-gutter-x-sm items-center">
+            <div class="col-md-2 col-sm-6 col-xs-12">
+              <custom-input-number
+                v-model="searchStore.searchModel.value.amountTo"
+                :placeholder="$t('shared.labels.amountTo')"
+                class="text-body2 no-letter-spacing"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-2 col-sm-6 col-xs-12">
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
                 :placeholder="$t('shared.labels.dateFrom')"
-                style="width: 200px"
-                class="text-body2 no-letter-spacing"
-              />
-              <date-time
-                v-model="searchStore.searchModel.value.dateTo"
-                :placeholder="$t('shared.labels.dateTo')"
-                style="width: 200px"
                 class="text-body2 no-letter-spacing"
               />
             </div>
 
-            <div class="row q-gutter-x-sm items-center">
+            <div class="col-md-2 col-sm-6 col-xs-12">
+              <date-time
+                v-model="searchStore.searchModel.value.dateTo"
+                :placeholder="$t('shared.labels.dateTo')"
+                class="text-body2 no-letter-spacing"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-6 col-xs-12">
               <contract-lookup
                 v-model:selectedId="
                   searchStore.searchModel.value.contractId
@@ -84,22 +88,22 @@
                 v-model:selectedText="
                   searchStore.searchModel.value.contractTitle
                 "
-                style="width: 408px"
                 :placeholder="$t('shared.labels.contractTitle')"
               />
             </div>
+          </div>
 
-            <div class="row q-gutter-x-sm items-center">
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-6 col-xs-12">
               <custom-input
                 v-model="searchStore.searchModel.value.comment"
                 :placeholder="$t('shared.labels.comment')"
-                style="width: 408px"
                 class="text-body2 no-letter-spacing"
               />
             </div>
           </div>
 
-          <div class="row justify-end q-gutter-x-sm q-pt-md q-pb-lg">
+          <q-card-actions class="q-pt-md q-pb-lg">
             <q-btn
               class="text-body2 no-letter-spacing primary-gradient text-white"
               rounded
@@ -121,10 +125,10 @@
               <q-icon name="clear" class="q-mr-xs" size="20px" />
               {{ $t("shared.labels.clearSearch") }}
             </q-btn>
-          </div>
+          </q-card-actions>
         </div>
-      </q-slide-transition>
-    </q-card-section>
+      </div>
+    </q-slide-transition>
   </q-card>
   <chip
     class="q-my-md"
