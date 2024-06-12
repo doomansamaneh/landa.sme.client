@@ -8,7 +8,12 @@
           :key="item"
         >
           <template #default>
-            <q-card class="bordered-1 no-shadow q-ml-sm">
+            <q-card
+              class="bordered-1 no-shadow q-ml-sm"
+              :class="
+                $q.screen.gt.xs ? '' : 'q-px-md q-pb-md q-pt-none'
+              "
+            >
               <q-card-section
                 class="q-pa-sm row justify-between items-center q-gutter-sm"
               >
@@ -40,21 +45,23 @@
               </q-card-section>
               <q-card-section
                 v-if="item.commentValue"
-                class="q-pt-none"
+                class="q-py-sm q-px-sm"
               >
                 <p
-                  class="text-caption line-height-xs no-letter-spacing"
+                  class="q-mb-none text-caption line-height-xs no-letter-spacing"
                   contenteditable="true"
                   v-show="!editCommentBtn"
                 >
                   {{ item.comment }}
                 </p>
-                <div class="q-gutter-y-md" v-show="editCommentBtn">
+                <div v-show="editCommentBtn">
                   <q-editor
                     v-model="editCommentValue"
                     class="text-caption"
                   />
-                  <div class="q-gutter-x-sm">
+                  <div
+                    class="q-mt-sm row items-center justify-end q-gutter-x-sm"
+                  >
                     <q-btn
                       @click="editCommentBtn = false"
                       padding="4px 12px"
@@ -73,7 +80,7 @@
                       @click="editCommentBtn = false"
                       unelevated
                       rounded
-                      class="text-on-dark"
+                      class="text-on-dark text-body3"
                     >
                       <q-icon
                         name="o_close"
@@ -84,7 +91,10 @@
                     </q-btn>
                   </div>
                 </div>
-                <div v-if="!editCommentBtn" class="row justify-start">
+                <div
+                  v-if="!editCommentBtn"
+                  class="row q-mt-sm items-center justify-end"
+                >
                   <q-btn
                     @click="editComment"
                     padding="4px 12px"
