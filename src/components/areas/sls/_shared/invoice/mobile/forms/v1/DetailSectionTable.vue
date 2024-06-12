@@ -65,11 +65,11 @@
 
     <div class="q-pa-lg">
       <div class="row items-center q-mb-md">
-        <div class="col-4">
+        <!-- <div class="col-4">
           <span class="text-caption text-on-dark">کالا/خدمت</span>
-        </div>
+        </div> -->
         <div class="col">
-          <span class="text-caption text-bold text-on-dark">
+          <span class="text-body2 text-bold text-on-dark">
             {{ row.productCode }} -
             {{ row.productTitle }}
           </span>

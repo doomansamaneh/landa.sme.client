@@ -7,51 +7,74 @@
     back-button
   >
     <template #buttons>
-      <q-btn
-        :to="`/sls/invoice/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-        <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
-      </q-btn>
-      <q-btn
-        :to="`/sls/invoice/copy/${id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
-      <q-btn
-        @click="formStore.crudStore.deleteById(id, deleteCallBack)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-        {{ $t("shared.labels.delete") }}
-      </q-btn>
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        چاپ
-      </q-btn>
+      <template v-if="$q.screen.gt.xs">
+        <q-btn
+          :to="`/sls/invoice/edit/${id}`"
+          class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          unelevated
+          no-caps
+        >
+          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+          {{ $t("shared.labels.edit") }}
+          <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
+        </q-btn>
+        <q-btn
+          :to="`/sls/invoice/copy/${id}`"
+          class="text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          unelevated
+          no-caps
+        >
+          <q-icon size="20px" name="o_copy" class="q-mr-xs" />
+          {{ $t("shared.labels.copy") }}
+        </q-btn>
+        <q-btn
+          @click="formStore.crudStore.deleteById(id, deleteCallBack)"
+          class="text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          unelevated
+          no-caps
+        >
+          <q-icon size="20px" name="o_delete" class="q-mr-xs" />
+          {{ $t("shared.labels.delete") }}
+        </q-btn>
+        <q-btn
+          @click="helper.print('invoicePreview')"
+          class="text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          unelevated
+          no-caps
+        >
+          <q-icon size="20px" name="o_print" class="q-mr-xs" />
+          چاپ
+        </q-btn>
+      </template>
+
+      <template v-if="$q.screen.xs">
+        <q-btn
+          :to="`/sls/invoice/edit/${id}`"
+          class="text-caption no-letter-spacing"
+          round
+          unelevated
+          no-caps
+        >
+          <q-icon name="o_edit" />
+        </q-btn>
+        <q-btn
+          class="text-caption no-letter-spacing"
+          round
+          unelevated
+          no-caps
+          @click="onBottomSheetShow"
+        >
+          <q-icon name="o_more_horiz" />
+        </q-btn>
+      </template>
     </template>
   </tool-bar>
 
@@ -60,6 +83,7 @@
       <q-card
         class="bordered"
         :class="$q.screen.xs ? 'form-container' : ''"
+        style="margin-top: 0"
       >
         <q-card-section class="q-gutter-y-sm" id="invoicePreview">
           <invoice-header
@@ -92,10 +116,58 @@
       />
     </div>
   </div>
+
+  <bottom-sheet
+    v-if="bottomSheetStatus"
+    :status="bottomSheetStatus"
+    @hide="onBottomSheetHide"
+  >
+    <template #body>
+      <q-list padding>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar class="bg-on-dark text-on-dark" icon="o_copy" />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">
+            کپی
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple @click="showPrintDialog">
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_print"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">
+            چاپ
+          </q-item-section>
+        </q-item>
+
+        <q-separator class="q-my-sm" />
+
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-avatar
+              class="bg-on-dark text-on-dark"
+              icon="o_delete"
+            />
+          </q-item-section>
+
+          <q-item-section class="text-body1 no-letter-spacing">
+            حذف
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </template>
+  </bottom-sheet>
 </template>
 
 <script setup>
-  import { computed, onMounted } from "vue";
+  import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
   import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
@@ -104,6 +176,7 @@
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import BottomSheet from "src/components/shared/BottomSheet.vue";
   import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
   import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";
   import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";
@@ -124,6 +197,16 @@
   const route = useRoute();
   const router = useRouter();
   const invoiceStore = useInvoiceState();
+
+  const bottomSheetStatus = ref(false);
+
+  const onBottomSheetShow = () => {
+    bottomSheetStatus.value = true;
+  };
+
+  const onBottomSheetHide = () => {
+    bottomSheetStatus.value = false;
+  };
 
   function deleteCallBack() {
     invoiceStore.state.firstLoad.value = false;

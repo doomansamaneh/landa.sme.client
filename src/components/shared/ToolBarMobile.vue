@@ -175,7 +175,6 @@
         </q-item>
 
         <template v-if="activation && selectedIds?.length > 0">
-
           <q-separator size="0.5px" class="q-my-sm" />
 
           <q-item

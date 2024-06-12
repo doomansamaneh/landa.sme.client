@@ -2,6 +2,7 @@
   <q-card
     class="bordered"
     :class="$q.screen.xs ? 'form-container' : ''"
+    style="margin-top: 0;"
   >
     <q-card-section>
       <div class="column q-gutter-y-sm">
@@ -70,6 +71,7 @@
         align="left"
         indicator-color="white"
         class="border-radius-lg text-white primary-tabs shadow-2"
+        :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
       >
         <q-tab name="main-info" class="q-py-sm">
           <template #default>
