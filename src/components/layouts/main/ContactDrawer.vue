@@ -41,11 +41,14 @@
       <div v-if="$q.screen.lt.md" class="col-1">
         <q-btn
           round
-          icon="o_close"
-          dense
           unelevated
+          text-color="white"
+          class="red-gradient red-shadow col-1"
+          padding="5px"
           @click="contactDrawerStore.toggle"
-        />
+        >
+          <q-icon size="16px" name="o_close" />
+        </q-btn>
       </div>
     </div>
 

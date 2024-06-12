@@ -1,5 +1,6 @@
 <template>
-  <tool-bar
+  <toolbar-desktop
+    v-if="$q.screen.gt.xs"
     :inside="inside"
     :margin="!inside"
     :title="title"
@@ -7,78 +8,83 @@
     back-button
   >
     <template #buttons>
-      <template v-if="$q.screen.gt.xs">
-        <q-btn
-          :to="`/sls/invoice/edit/${id}`"
-          class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-          padding="6px 12px"
-          rounded
-          unelevated
-          no-caps
-        >
-          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-          {{ $t("shared.labels.edit") }}
-          <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
-        </q-btn>
-        <q-btn
-          :to="`/sls/invoice/copy/${id}`"
-          class="text-body2 no-letter-spacing"
-          padding="6px 12px"
-          rounded
-          unelevated
-          no-caps
-        >
-          <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-          {{ $t("shared.labels.copy") }}
-        </q-btn>
-        <q-btn
-          @click="formStore.crudStore.deleteById(id, deleteCallBack)"
-          class="text-body2 no-letter-spacing"
-          padding="6px 12px"
-          rounded
-          unelevated
-          no-caps
-        >
-          <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-          {{ $t("shared.labels.delete") }}
-        </q-btn>
-        <q-btn
-          @click="helper.print('invoicePreview')"
-          class="text-body2 no-letter-spacing"
-          padding="6px 12px"
-          rounded
-          unelevated
-          no-caps
-        >
-          <q-icon size="20px" name="o_print" class="q-mr-xs" />
-          چاپ
-        </q-btn>
-      </template>
+      <q-btn
+        :to="`/sls/invoice/edit/${id}`"
+        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+        {{ $t("shared.labels.edit") }}
+        <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
+      </q-btn>
+      <q-btn
+        :to="`/sls/invoice/copy/${id}`"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
+        {{ $t("shared.labels.copy") }}
+      </q-btn>
+      <q-btn
+        @click="formStore.crudStore.deleteById(id, deleteCallBack)"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
+        {{ $t("shared.labels.delete") }}
+      </q-btn>
+      <q-btn
+        @click="helper.print('invoicePreview')"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_print" class="q-mr-xs" />
+        چاپ
+      </q-btn>
+    </template>
+  </toolbar-desktop>
 
-      <template v-if="$q.screen.xs">
+  <toolbar-mobile
+    v-if="$q.screen.xs"
+    :title="title"
+    buttons
+    back-button
+  >
+    <template #buttons>
+      <div class="row items-center q-gutter-sm">
         <q-btn
           :to="`/sls/invoice/edit/${id}`"
-          class="text-caption no-letter-spacing"
           round
+          class="text-caption"
           unelevated
-          no-caps
         >
           <q-icon name="o_edit" />
         </q-btn>
         <q-btn
-          class="text-caption no-letter-spacing"
-          round
-          unelevated
-          no-caps
           @click="onBottomSheetShow"
+          round
+          class="text-caption"
+          unelevated
         >
           <q-icon name="o_more_horiz" />
         </q-btn>
-      </template>
+      </div>
     </template>
-  </tool-bar>
+  </toolbar-mobile>
 
-  <div class="row q-col-gutter-lg" style="margin-top: -16px">
+  <div class="row q-col-gutter-lg" style="margin-top: -24px">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card
         class="bordered"
@@ -175,7 +181,8 @@
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/ToolBarMobile.vue";
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
   import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";

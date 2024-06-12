@@ -16,7 +16,7 @@
         </div>
       </q-toolbar-title>
 
-      <div class="row items-center q-gutter-x-md">
+      <div class="row items-center q-gutter-x-sm">
         <fiscal-year />
         <switch-theme />
         <notification />

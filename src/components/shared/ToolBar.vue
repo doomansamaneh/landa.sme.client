@@ -8,7 +8,7 @@
     :activation="activation"
     :back-button="backButton"
     :buttons="buttons"
-  />
+  ></mobile>
   <desktop
     v-else
     :title="title"
@@ -19,7 +19,11 @@
     :back-button="backButton"
     :buttons="buttons"
     :inside="inside"
-  />
+  >
+  <template #buttons>
+
+  </template>
+  </desktop>
 </template>
 
 <script setup>

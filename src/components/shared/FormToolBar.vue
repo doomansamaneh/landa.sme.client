@@ -2,8 +2,11 @@
   <div>
     <q-page-sticky
       class="z-1 bg-main"
-      :class="$q.screen.gt.xs ? 'q-py-md' : 'q-py-sm'"
       position="top"
+      :class="[
+        $q.screen.xs ? 'q-py-xs' : 'q-py-md',
+        !isAtTop && $q.screen.xs ? 'mobile-toolbar-gradient' : '',
+      ]"
       expand
     >
       <q-toolbar
@@ -37,7 +40,7 @@
           <slot name="header">
             <span
               :style="
-                $q.screen.gt.xs ? 'width: auto;' : 'width: 160px;'
+                $q.screen.gt.xs ? 'width: auto;' : 'max-width: 160px;'
               "
               class="ellipsis-2-lines text-weight-700 no-letter-spacing"
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
@@ -55,14 +58,33 @@
 </template>
 
 <script setup>
+  import { ref, computed, onMounted, onUnmounted } from "vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+
+  const isAtTop = ref(true);
+  let previousScrollPosition = 0;
 
   const props = defineProps({
     title: String,
   });
 
   const emit = defineEmits(["submit-call-back"]);
+
   const save = () => {
     emit("submit-call-back");
   };
+
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    isAtTop.value = currentPosition === 0;
+  };
+
+  onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <!-- :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'" -->
+  <!-- :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'" -->
   <q-drawer
     class="menu-bar menu-bar-background q-mb-xl z-max"
     side="left"
@@ -33,12 +33,15 @@
 
       <div v-if="$q.screen.lt.md" class="col-1">
         <q-btn
-          icon="o_close"
           round
-          dense
           unelevated
+          text-color="white"
+          class="red-gradient red-shadow col-1"
+          padding="5px"
           @click="menuBarStore.toggle"
-        />
+        >
+          <q-icon size="16px" name="o_close" />
+        </q-btn>
       </div>
     </div>
 

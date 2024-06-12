@@ -24,4 +24,8 @@
       lighten($primary, 8)
     );
   }
+
+  .mobile-toolbar-gradient {
+    background: linear-gradient(180deg, $white 40%, #{$primary}16);
+  }
 }

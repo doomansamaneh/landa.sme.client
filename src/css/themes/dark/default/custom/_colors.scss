@@ -24,4 +24,11 @@
       lighten($primary, 8)
     );
   }
+  .mobile-toolbar-gradient {
+    background: linear-gradient(
+      180deg,
+      $dark-page 40%,
+      lighten($dark-page, 3)
+    );
+  }
 }

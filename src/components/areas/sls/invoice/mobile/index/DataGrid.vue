@@ -25,7 +25,7 @@
     </template>
   </tool-bar>
 
-  <div class="column q-gutter-sm" style="margin-top: 46px">
+  <div class="column q-gutter-sm">
     <q-card class="bordered grid-total">
       <q-card-section>
         <div class="row items-center q-gutter-sm">

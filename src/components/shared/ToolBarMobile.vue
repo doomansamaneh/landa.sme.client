@@ -1,10 +1,10 @@
 <template>
   <div style="margin-bottom: 48px">
     <q-page-sticky
-      class="z-1 bg-main"
-      style="padding-top: 12px; padding-bottom: 12px"
+      class="z-1 bg-main q-py-xs"
       position="top"
       expand
+      :class="isAtTop ? '' : 'mobile-toolbar-gradient'"
     >
       <q-toolbar style="padding-left: 20px; padding-right: 20px">
         <div
@@ -86,10 +86,9 @@
           </slot>
         </div>
 
-        <!-- <div v-if="tableStore?.activeRow?.value != null" class="q-space" /> -->
+        <q-space v-if="backButton" />
 
         <q-space v-if="tableStore?.activeRow?.value != null" />
-        <q-space v-if="selectedIds?.length > 0" />
 
         <template v-if="selectedIds?.length > 0">
           <q-btn
@@ -106,7 +105,7 @@
             class="q-ml-md text-on-dark"
             icon="close"
             @click="deselect"
-          ></q-btn>
+          />
         </template>
 
         <template v-else>
@@ -129,17 +128,12 @@
                     class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
                   />
                 </slot>
-                <!-- <q-space></q-space>
-                <back-button class="q-ml-md" /> -->
               </div>
             </slot>
           </div>
         </template>
 
-        <template v-if="backButton">
-          <q-space></q-space>
-          <back-button />
-        </template>
+        <back-button class="q-ml-sm" v-if="backButton" />
       </q-toolbar>
     </q-page-sticky>
   </div>
@@ -263,11 +257,13 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, onMounted, onUnmounted } from "vue";
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
   const bottomSheetStatus = ref(false);
+  const isAtTop = ref(true);
+  let previousScrollPosition = 0;
 
   const onBottomSheetShow = () => {
     bottomSheetStatus.value = true;
@@ -295,4 +291,18 @@
     props.tableStore.selectAll(false);
     props.tableStore.setActiveRow(null);
   }
+
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    isAtTop.value = currentPosition === 0;
+  };
+
+  onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
 </script>
