@@ -1,7 +1,7 @@
 <template>
   <tool-bar margin title="سرفصل حسابها" />
 
-  <q-card class="form-container">
+  <q-card style="min-height: 300px" class="form-container">
     <q-card-section>
       <q-tree
         v-if="!clStore.showLoader.value"
@@ -13,21 +13,12 @@
         selected-color="primary"
         control-color="primary"
         v-model:selected="selected"
-        @mouseover="handleMouseOver"
-        @mouseleave="handleMouseLeave"
       >
         <template #header-cl="prop">
           <account-tree-node :node="prop.node" />
           <q-space />
           <div class="row items-center q-gutter-md">
-            <q-btn
-              v-if="moreBtn"
-              @click.stop="menu = true"
-              dense
-              round
-              unelevated
-              icon="o_more_horiz"
-            >
+            <q-btn dense round unelevated icon="o_more_horiz">
               <q-menu
                 v-show="menu"
                 class="border-radius-lg"
@@ -58,14 +49,7 @@
           <account-tree-node :node="prop.node" />
           <q-space />
           <div class="row items-center">
-            <q-btn
-              v-if="moreBtn"
-              @click.stop="menu = true"
-              dense
-              round
-              unelevated
-              icon="o_more_horiz"
-            >
+            <q-btn dense round unelevated icon="o_more_horiz">
               <q-menu
                 v-show="menu"
                 class="border-radius-lg"
@@ -110,14 +94,7 @@
           <account-tree-node :node="prop.node" />
           <q-space />
           <div class="row items-center">
-            <q-btn
-              v-if="moreBtn"
-              @click.stop="menu = true"
-              dense
-              round
-              unelevated
-              icon="o_more_horiz"
-            >
+            <q-btn dense round unelevated icon="o_more_horiz">
               <q-menu
                 v-show="menu"
                 class="border-radius-lg"
@@ -178,9 +155,7 @@
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import AccountTreeNode from "./AccountTreeNode.vue";
 
-  const menu = ref(false);
   const selected = ref("");
-  const moreBtn = ref(false);
 
   function creatAccountStore(dataSource) {
     const gridStore = useBaseInfoGrid({ sortColumn: "code" });
@@ -247,14 +222,6 @@
     } else {
       done([]);
     }
-  };
-
-  const handleMouseOver = () => {
-    moreBtn.value = true;
-  };
-
-  const handleMouseLeave = () => {
-    moreBtn.value = false;
   };
 
   onMounted(() => {

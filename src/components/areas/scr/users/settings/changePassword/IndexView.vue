@@ -4,8 +4,8 @@
       :class="$q.screen.gt.xs ? 'bordered' : 'no-border no-shadow'"
     >
       <q-card-section
+        :style="$q.screen.gt.xs ? 'padding:  32px;' : ''"
         :class="{
-          'q-pa-xl': $q.screen.gt.xs,
           'no-padding': $q.screen.lt.sm,
         }"
       >

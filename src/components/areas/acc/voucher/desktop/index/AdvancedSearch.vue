@@ -1,10 +1,12 @@
 <template>
-  <q-card bordered>
-    <q-card-section class="row justify-between">
+  <q-card class="bordered">
+    <q-card-section class="q-pl-lg row items-center justify-between">
       <q-option-group
+        style="gap: 8px;"
         class="row text-body2 no-letter-spacing"
         type="radio"
-        size="md"
+        size="40px"
+        dense
         :options="dateRangeOptions"
         v-model="searchStore.searchModel.value.dateRange"
         @update:model-value="searchStore.applySearch"
@@ -31,10 +33,14 @@
 
     <q-slide-transition>
       <div v-show="expanded">
-        <div class="q-px-md">
-          <div class="row">
+        <div class="q-px-lg">
+          <div class="row items-center">
             <q-option-group
+              style="gap: 8px;"
+              class="row items-center"
               inline
+              dense
+              size="44px"
               :options="
                 helper.getEnumOptions(voucherType, 'voucherType')
               "
