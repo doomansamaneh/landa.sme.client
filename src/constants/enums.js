@@ -133,11 +133,11 @@ export const subSystem = {
 };
 
 export const paymentMethod = {
-  cash: { id: 1071, color: "blue" },
+  cash: { id: 1071, color: "primary" },
   bankTransition: { id: 1073, color: "green" },
   check: { id: 1072, color: "red" },
-  //pos: { id: 1074, color: "orange" },
-  customer: { id: 1075, color: "black" },
+  // pos: { id: 1074, color: "orange" },
+  customer: { id: 1075, color: "bluegrey" },
 };
 
 export const productType = {

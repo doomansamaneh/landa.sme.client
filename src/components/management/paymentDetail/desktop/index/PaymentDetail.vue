@@ -5,8 +5,7 @@
   >
     <div class="col row items-center">
       <q-btn
-        text-color="white"
-        class="text-caption primary-gradient primary-shadow"
+        class="text-caption"
         round
         unelevated
         no-caps

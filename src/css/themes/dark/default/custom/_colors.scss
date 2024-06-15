@@ -1,18 +1,18 @@
 @mixin colors-dark {
   .grey-gradient {
-    background: linear-gradient(310deg, $grey-7, $grey-6);
+    background: linear-gradient(310deg, $grey-8, $grey-7);
   }
   .green-gradient {
-    background: linear-gradient(310deg, $green-8, $green-6);
+    background: linear-gradient(310deg, $green-9, $green-7);
   }
   .orange-gradient {
-    background: linear-gradient(310deg, $orange-8, $orange-6);
+    background: linear-gradient(310deg, $orange-9, $orange-7);
   }
   .red-gradient {
-    background: linear-gradient(310deg, $negative, $red-6);
+    background: linear-gradient(310deg, $negative, $red-7);
   }
   .bluegrey-gradient {
-    background: linear-gradient(310deg, $blue-grey-8, $blue-grey-5);
+    background: linear-gradient(310deg, $blue-grey-9, $blue-grey-7);
   }
   .pink-gradient {
     background: linear-gradient(310deg, $pink, $pink-4);

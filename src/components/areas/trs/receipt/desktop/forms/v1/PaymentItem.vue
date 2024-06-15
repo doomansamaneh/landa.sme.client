@@ -1,26 +1,41 @@
 <template>
-  <q-card flat bordered>
-    <div :class="`bg-${item.color} text-white q-py-sm q-px-md`">
+  <q-card flat bordered class="form-container" style="margin-top: 0">
+    <div :class="$q.screen.gt.xs ? 'q-py-sm q-px-md' : 'q-py-md'">
       <div class="row items-center no-wrap">
         <div class="col">
-          <div class="text-h6">
-            {{ index + 1 }}- {{ item.header }}
+          <div
+            class="row items-center text-bold text-body1 no-letter-spacing"
+          >
+            <q-btn
+              unelevated
+              size="8px"
+              class="q-mr-sm text-caption-sm no-pointer-events no-letter-spacing"
+              round
+              text-color="white"
+              :class="`${item.color}-gradient`"
+            >
+              <span class="text-body2 no-letter-spacing">
+                {{ index + 1 }}
+              </span>
+            </q-btn>
+            {{ item.header }}
           </div>
         </div>
 
         <div class="col-auto">
           <q-btn
-            color="grey-3"
+            size="11px"
             round
             flat
-            icon="delete"
             @click="formStore.deleteRow(index)"
-          ></q-btn>
+          >
+            <q-icon size="22px" name="o_delete" />
+          </q-btn>
         </div>
       </div>
     </div>
 
-    <q-separator />
+    <q-separator size="0.5px" :class="{ 'q-mb-md': $q.screen.xs }" />
 
     <q-card-section>
       <payment-item-cash

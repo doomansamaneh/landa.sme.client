@@ -1,73 +1,81 @@
 <template>
-  <data-grid
-    ref="dataGrid"
-    :grid-store="gridStore"
-    separator="horizontal"
-    multiSelect
-    numbered
-    bordered
-    flat
-    wrapCells
-    @selected-rows-changed="selectedRowChanged"
-  >
-    <template #title>
-      <div class="q-pa-lg">
-        <h5>صورتحسابهای دارای مانده</h5>
-        برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید
-      </div>
-    </template>
-
-    <template #cell-subject="{ item }">
-      <div>{{ item.subject }}</div>
-      <div v-if="item.summary" class="text-caption-sm">
-        {{ item.summary }}
-      </div>
-      <div class="q-gutter-x-sm">
-        <q-badge class="primary-gradient">
-          {{ item.typeTitle }}
-        </q-badge>
-        <q-badge
-          text-color="white"
-          class="bluegrey-gradient"
-          v-if="item.contractTitle"
-        >
-          {{ item.contractTitle }}
-          <q-tooltip
-            class="custom-tooltip text-body1 no-letter-spacing"
+  <q-card class="bordered">
+    <data-grid
+      ref="dataGrid"
+      :grid-store="gridStore"
+      separator="horizontal"
+      multiSelect
+      numbered
+      bordered
+      flat
+      wrapCells_
+      @selected-rows-changed="selectedRowChanged"
+    >
+      <template #title>
+        <div class="q-pa-lg">
+          <h6 class="text-body1 no-letter-spacing text-weight-700">
+            صورتحسابهای دارای مانده
+          </h6>
+          <div
+            class="text-body2 no-letter-spacing q-mt-xs text-on-caption"
           >
-            قرارداد
-          </q-tooltip>
-        </q-badge>
-      </div>
-    </template>
+            برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید
+          </div>
+        </div>
+      </template>
 
-    <template #cell-amount="{ item }">
-      {{ item.amount?.toLocaleString() }}
-    </template>
+      <template #cell-subject="{ item }">
+        <div>{{ item.subject }}</div>
+        <div v-if="item.summary" class="text-caption-sm">
+          {{ item.summary }}
+        </div>
+        <div class="q-gutter-x-sm">
+          <q-badge class="primary-gradient">
+            {{ item.typeTitle }}
+          </q-badge>
+          <q-badge
+            text-color="white"
+            class="bluegrey-gradient"
+            v-if="item.contractTitle"
+          >
+            {{ item.contractTitle }}
+            <q-tooltip
+              class="custom-tooltip text-body1 no-letter-spacing"
+            >
+              قرارداد
+            </q-tooltip>
+          </q-badge>
+        </div>
+      </template>
 
-    <template #cell-payedAmount="{ item }">
-      {{ item.payedAmount?.toLocaleString() }}
-    </template>
+      <template #cell-amount="{ item }">
+        {{ item.amount?.toLocaleString() }}
+      </template>
 
-    <template #cell-remainedAmount="{ item }">
-      {{ item.remainedAmount?.toLocaleString() }}
-    </template>
+      <template #cell-payedAmount="{ item }">
+        {{ item.payedAmount?.toLocaleString() }}
+      </template>
 
-    <template #footer-subtotal="{ selectedRows }">
-      <td colspan="7" class="text-right">
-        {{ $t("shared.labels.selectedRows") }}
-      </td>
-      <td>
-        <b>
-          {{
-            helper
-              .getSubtotal(selectedRows, "remainedAmount")
-              .toLocaleString()
-          }}
-        </b>
-      </td>
-    </template>
-  </data-grid>
+      <template #cell-remainedAmount="{ item }">
+        {{ item.remainedAmount?.toLocaleString() }}
+      </template>
+
+      <template #footer-subtotal="{ selectedRows }">
+        <td colspan="7" class="text-right">
+          {{ $t("shared.labels.selectedRows") }}
+        </td>
+        <td>
+          <b>
+            {{
+              helper
+                .getSubtotal(selectedRows, "remainedAmount")
+                .toLocaleString()
+            }}
+          </b>
+        </td>
+      </template>
+    </data-grid>
+  </q-card>
 </template>
 
 <script setup>

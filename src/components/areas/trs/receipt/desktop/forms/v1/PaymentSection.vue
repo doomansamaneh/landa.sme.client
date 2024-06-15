@@ -1,15 +1,15 @@
 <template>
-  <div class="q-gutter-x-xs">
+  <div class="row items-center q-gutter-sm q-py-lg">
     <q-btn
       v-for="(item, index) in helper.getEnumOptions(
         paymentMethod,
         'paymentMethod'
       )"
       :key="index"
-      class="q-my-xl primary-shadow"
+      :class="`${item.value.color}-shadow ${item.value.color}-gradient`"
+      text-color="white"
       rounded
       unelevated
-      :color="`${item.value.color}`"
       @click="formStore.addRow(item)"
     >
       <q-icon name="o_add" size="20px" class="q-mr-xs" />
