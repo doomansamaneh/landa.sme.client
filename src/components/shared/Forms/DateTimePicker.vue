@@ -29,9 +29,11 @@
                 :label="$t('shared.labels.cancel')"
                 color="primary"
                 flat
+                rounded
                 v-close-popup
               />
               <q-btn
+                rounded
                 :label="$t('shared.labels.select')"
                 color="primary"
                 text-color="white"
@@ -48,32 +50,34 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useCulture } from "src/composables/useCulture";
+  import { ref, computed } from "vue";
+  import { useCulture } from "src/composables/useCulture";
 
-const props = defineProps(["modelValue"]);
-const emit = defineEmits(["update:modelValue"]);
+  const props = defineProps(["modelValue"]);
+  const emit = defineEmits(["update:modelValue"]);
 
-const cultureStore = useCulture();
+  const cultureStore = useCulture();
 
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(value) {
-    emit("update:modelValue", value);
-  },
-});
+  const value = computed({
+    get() {
+      return props.modelValue;
+    },
+    set(value) {
+      emit("update:modelValue", value);
+    },
+  });
 
-const proxyDate = ref("");
+  const proxyDate = ref("");
 
-const calendar = computed(() => cultureStore.culture.value.calendar);
+  const calendar = computed(
+    () => cultureStore.culture.value.calendar
+  );
 
-const updateProxy = () => {
-  proxyDate.value = value.value;
-};
+  const updateProxy = () => {
+    proxyDate.value = value.value;
+  };
 
-const save = () => {
-  value.value = proxyDate.value;
-};
+  const save = () => {
+    value.value = proxyDate.value;
+  };
 </script>
