@@ -163,6 +163,11 @@ export const closeAccounts = {
   cogs: "33422e29-2694-4d91-abd7-90303c0e1966",
 };
 
+export const insurranceType = {
+  normal: 0,
+  none: 1,
+};
+
 export const quoteStatus = {
   temp: "e84d4f06-29ea-4131-b78e-e36302d37e7c",
   final: "c84e9c9d-31e6-4f45-9a6d-265d825e3d4c",

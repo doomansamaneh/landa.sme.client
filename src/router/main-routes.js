@@ -1241,5 +1241,36 @@ export default {
         },
       ],
     },
+
+    {
+      path: "prl/wage",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/prl/wage/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/prl//wage/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/prl/wage/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/prl/wage/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/prl/wage/PreviewPage.vue"),
+        },
+      ],
+    },
   ],
 };

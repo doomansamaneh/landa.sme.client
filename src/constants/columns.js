@@ -294,48 +294,64 @@ export const amount = {
   style: "width:120px",
 };
 
-export const vatAmount = {
-  name: "vatAmount",
-  field: "vatAmount",
+export const taxAmount = {
+  ...amount,
+  name: "taxAmount",
+  field: "taxAmount",
+  label: "مالیات",
+};
+
+export const year = {
+  name: "year",
+  field: "year",
   sortable: true,
-  label: "ارزش افزوده",
+  label: "سال",
   align: "left",
   class: "text-left",
   showFilter: true,
-  style: "width:120px",
+  style: "width:90px",
+};
+
+export const month = {
+  ...year,
+  name: "month",
+  field: "month",
+  label: "ماه",
+};
+
+export const insurranceAmount = {
+  ...amount,
+  name: "insurranceAmount",
+  field: "insurranceAmount",
+  label: "بیمه",
+};
+
+export const vatAmount = {
+  ...amount,
+  name: "vatAmount",
+  field: "vatAmount",
+  label: "ارزش افزوده",
 };
 
 export const payedAmount = {
+  ...amount,
   name: "payedAmount",
   field: "payedAmount",
-  sortable: true,
   label: "دریافت شده",
-  align: "left",
-  class: "text-left",
-  style: "width:120px",
-  showFilter: true,
 };
 
 export const remainedAmount = {
+  ...amount,
   name: "remainedAmount",
   field: "remainedAmount",
-  sortable: true,
   label: "مانده",
-  align: "left",
-  class: "text-left",
-  style: "width:120px",
-  showFilter: true,
 };
 
 export const discountAmount = {
+  ...amount,
   name: "discountAmount",
   field: "discountAmount",
-  sortable: true,
   label: "تخفیف",
-  align: "left",
-  class: "text-left",
-  style: "width:120px",
-  showFilter: true,
 };
 
 export const actions = {
@@ -493,8 +509,8 @@ export const summary = {
   name: "summary",
   field: "summary",
   sortable: false,
-  label: "خلاصه",
+  label: "شرح",
   align: "left",
   class: "text-left",
-  showFilter: false,
+  showFilter: true,
 };
