@@ -1,14 +1,14 @@
 <template>
   <div class="q-my-md">
     <q-btn
-      class="primary-shadow"
-      rounded
+      size="11px"
+      class="primary-gradient primary-shadow"
+      text-color="white"
+      round
       unelevated
-      color="primary"
       @click="addItem"
     >
-      <q-icon name="o_add" size="20px" class="q-mr-xs" />
-      افزودن ردیف
+      <q-icon name="o_add" size="20px" />
     </q-btn>
   </div>
 

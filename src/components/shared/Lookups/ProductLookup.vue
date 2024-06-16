@@ -9,7 +9,12 @@
     class="productLookup"
   >
     <template #td="{ row }">
-      <q-item style="padding: 12px;" clickable v-close-popup>
+      <q-item
+        class="border-radius-xs"
+        style="padding: 12px"
+        clickable
+        v-close-popup
+      >
         <div class="row items-center">
           <q-avatar
             class="border-radius-xs"

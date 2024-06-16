@@ -41,15 +41,13 @@
           />
 
           <q-btn
-            padding="4px 12px"
             v-if="$q.screen.xs"
-            color="primary"
-            rounded
+            round
+            size="11px"
             unelevated
             @click="toggleMoreInfo"
           >
-            <q-icon class="q-mr-sm" size="20px" name="o_more_horiz" />
-            جزئیات بیشتر
+            <q-icon size="20px" name="o_more_horiz" />
           </q-btn>
         </div>
       </div>
