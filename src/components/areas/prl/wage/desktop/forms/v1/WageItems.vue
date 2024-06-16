@@ -1,14 +1,16 @@
 <template>
   <div v-if="formStore.model?.value?.wageItems?.length === 0">
     <q-btn
-      class="q-my-xl primary-shadow"
-      rounded
+      class="q-my-lg primary-gradient primary-shadow"
+      :rounded="$q.screen.gt.xs"
+      :round="$q.screen.xs"
+      :size="$q.screen.gt.xs ? '' : '11px'"
       unelevated
-      color="primary"
+      text-color="white"
       @click="formStore.pushNewRow()"
     >
-      <q-icon name="o_add" size="20px" class="q-mr-xs" />
-      افزودن ردیف
+      <q-icon name="o_add" size="20px" :class="$q.screen.gt.xs ? 'q-mr-xs' : ''" />
+      <div v-if="$q.screen.gt.xs">افزودن ردیف</div>
     </q-btn>
   </div>
   <template

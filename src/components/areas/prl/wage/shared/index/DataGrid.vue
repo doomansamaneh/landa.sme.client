@@ -85,6 +85,7 @@
     :create-url="`/${baseRoute}/create`"
     :grid-store="gridStore"
     expandable
+    toolbar
   >
     <template #cell-amount="{ item }">
       {{ item.amount?.toLocaleString() }}

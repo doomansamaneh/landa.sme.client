@@ -33,7 +33,9 @@
             size="56px"
             text-color="white"
             :style="{
-              backgroundColor: helper.generateDarkAvatarColor(row.productTitle),
+              backgroundColor: helper.generateDarkAvatarColor(
+                row.productTitle
+              ),
             }"
           >
             <div class="char text-body1 text-bold">
@@ -50,7 +52,9 @@
         </div>
 
         <div class="col row justify-end items-center q-gutter-xs">
-          <span class="text-caption text-on-dark">{{ row.productCode }}</span>
+          <span class="text-caption text-on-dark">
+            {{ row.productCode }}
+          </span>
         </div>
       </div>
     </q-card-section>
@@ -121,7 +125,9 @@
 
         <div class="row items-center" v-if="row.vatAmount">
           <div class="col-4">
-            <span class="text-caption text-on-dark">مالیات بر ارزش افزوده</span>
+            <span class="text-caption text-on-dark">
+              مالیات بر ارزش افزوده
+            </span>
           </div>
           <div class="col text-caption">
             {{ row.vatAmount.toLocaleString() }}
@@ -173,7 +179,9 @@
       <q-card-section
         class="row items-center justify-between_ q-pb-none q-pr-sm"
       >
-        <span class="text-h6 no-letter-spacing"> افزودن/ویرایش کالا </span>
+        <span class="text-bold text-body1 no-letter-spacing">
+          افزودن/ویرایش کالا
+        </span>
         <q-space />
         <q-btn round unelevated icon="o_close" v-close-popup />
       </q-card-section>
@@ -215,43 +223,46 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { helper } from "src/helpers";
+  import { ref } from "vue";
+  import { helper } from "src/helpers";
 
-import NoProductSelected from "src/components/areas/sls/_shared/invoice/desktop/forms/NoProductSelected.vue";
-import FooterSection from "src/components/areas/sls/_shared/invoice/desktop/forms/v1/FooterSection.vue";
-import AddRow from "./AddRow.vue";
+  import NoProductSelected from "src/components/areas/sls/_shared/invoice/desktop/forms/NoProductSelected.vue";
+  import FooterSection from "src/components/areas/sls/_shared/invoice/desktop/forms/v1/FooterSection.vue";
+  import AddRow from "./AddRow.vue";
 
-const props = defineProps({
-  formStore: Object,
-});
+  const props = defineProps({
+    formStore: Object,
+  });
 
-const showDialog = ref(false);
-const add = ref(true);
-const selectedItem = ref(null);
-const selectedIndex = ref(0);
-const addItemElement = ref(null);
+  const showDialog = ref(false);
+  const add = ref(true);
+  const selectedItem = ref(null);
+  const selectedIndex = ref(0);
+  const addItemElement = ref(null);
 
-function addItem() {
-  add.value = true;
-  selectedItem.value = null;
-  showDialog.value = true;
-}
-
-function editItem(index, row) {
-  add.value = false;
-  selectedItem.value = row;
-  selectedIndex.value = index;
-  showDialog.value = true;
-}
-
-function okClicked() {
-  if (add.value) {
-    props.formStore.pushNewRow(addItemElement.value.model);
-  } else {
-    props.formStore.editRow(selectedIndex.value, addItemElement.value.model);
+  function addItem() {
+    add.value = true;
+    selectedItem.value = null;
+    showDialog.value = true;
   }
-}
 
-function cancelClicked() {}
+  function editItem(index, row) {
+    add.value = false;
+    selectedItem.value = row;
+    selectedIndex.value = index;
+    showDialog.value = true;
+  }
+
+  function okClicked() {
+    if (add.value) {
+      props.formStore.pushNewRow(addItemElement.value.model);
+    } else {
+      props.formStore.editRow(
+        selectedIndex.value,
+        addItemElement.value.model
+      );
+    }
+  }
+
+  function cancelClicked() {}
 </script>

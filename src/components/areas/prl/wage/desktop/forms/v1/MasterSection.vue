@@ -30,6 +30,7 @@
       <custom-input
         v-model="localFormStore.model.value.summary"
         hide-bottom-space
+        type="textarea"
       />
     </div>
   </div>

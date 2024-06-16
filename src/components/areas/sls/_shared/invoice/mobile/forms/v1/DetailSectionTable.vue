@@ -182,7 +182,7 @@
       <q-card-section
         class="row items-center justify-between_ q-pb-none q-pr-sm"
       >
-        <span class="text-h6 no-letter-spacing">
+        <span class="text-bold text-body1 no-letter-spacing">
           افزودن/ویرایش کالا
         </span>
         <q-space />
