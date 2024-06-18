@@ -215,7 +215,7 @@
       box-shadow 0.1s ease-in-out;
   }
   .thisyear-clickable-btn:hover {
-    transform: scale(1.5);
+    transform: scale(1.05);
     box-shadow: 0 0 8px 0 $orange-2;
   }
 
@@ -224,7 +224,7 @@
       box-shadow 0.1s ease-in-out;
   }
   .all-clickable-btn:hover {
-    transform: scale(1.5);
+    transform: scale(1.05);
     box-shadow: 0 0 8px 0 $red-2;
   }
 </style>
