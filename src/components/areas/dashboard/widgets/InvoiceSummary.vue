@@ -41,7 +41,10 @@
             <q-item-label class="text-body3 q-mb-xs">
               جمع کل
             </q-item-label>
-            <q-item-label class="text-h6 text-weight-700">
+            <q-item-label
+              v-if="dataStore.isLoading.value"
+              class="text-h6 text-weight-700"
+            >
               {{ formatNumber(dataStore.data?.value?.amount) }}
 
               <q-tooltip
@@ -50,6 +53,8 @@
                 {{ dataStore.data?.value?.amount.toLocaleString() }}
               </q-tooltip>
             </q-item-label>
+
+            <div v-else class="text-regular">درحال محاسبه</div>
           </q-item-section>
         </q-item>
       </div>
@@ -70,7 +75,10 @@
             <q-item-label class="text-body3 q-mb-xs">
               دریافت شده
             </q-item-label>
-            <q-item-label class="text-h6 text-weight-700">
+            <q-item-label
+              v-if="dataStore.isLoading.value"
+              class="text-h6 text-weight-700"
+            >
               {{ formatNumber(dataStore.data?.value?.payedAmount) }}
 
               <q-tooltip
@@ -81,6 +89,7 @@
                 }}
               </q-tooltip>
             </q-item-label>
+            <div v-else class="text-regular">درحال محاسبه</div>
           </q-item-section>
         </q-item>
       </div>
@@ -89,11 +98,11 @@
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn
-              push
               flat
               dense
               size="0"
               to="/sls/invoice/remained/remainedThisYear"
+              class="thisyear-clickable-btn"
             >
               <q-avatar
                 rounded
@@ -114,7 +123,10 @@
             <q-item-label class="text-body3 q-mb-xs">
               مانده امسال
             </q-item-label>
-            <q-item-label class="text-h6 text-weight-700">
+            <q-item-label
+              v-if="dataStore.isLoading.value"
+              class="text-h6 text-weight-700"
+            >
               {{
                 formatNumber(dataStore.data?.value?.remainedAmount)
               }}
@@ -127,6 +139,7 @@
                 }}
               </q-tooltip>
             </q-item-label>
+            <div v-else class="text-regular">درحال محاسبه</div>
           </q-item-section>
         </q-item>
       </div>
@@ -135,11 +148,11 @@
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn
-              push
               flat
               dense
               size="0"
               to="/sls/invoice/remained/remainedAll"
+              class="all-clickable-btn"
             >
               <q-avatar
                 rounded
@@ -160,7 +173,10 @@
             <q-item-label class="text-body3 q-mb-xs">
               مانده از قبل
             </q-item-label>
-            <q-item-label class="text-h6 text-weight-700">
+            <q-item-label
+              v-if="dataStore.isLoading.value"
+              class="text-h6 text-weight-700"
+            >
               {{
                 formatNumber(
                   dataStore.data?.value?.remainedAmountAll -
@@ -179,6 +195,7 @@
                 }}
               </q-tooltip>
             </q-item-label>
+            <div v-else class="text-regular">درحال محاسبه</div>
           </q-item-section>
         </q-item>
       </div>
@@ -191,6 +208,10 @@
   const dataStore = useInvoiceSummary();
 
   const formatNumber = (number) => {
+    if (typeof number !== "number" || isNaN(number)) {
+      return "";
+    }
+
     if (number < 1000) {
       return number.toString();
     } else if (number < 1000000) {
@@ -204,7 +225,23 @@
       return `${billions} میلیارد`;
     } else {
       const trillions = Math.floor(number / 1000000000000);
-      return `${trillions}  همت`;
+      return `${trillions} همت`;
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  .thisyear-clickable-btn {
+    transition: transform 0.2s ease-in-out;
+  }
+  .thisyear-clickable-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .all-clickable-btn {
+    transition: transform 0.2s ease-in-out;
+  }
+  .all-clickable-btn:hover {
+    transform: scale(1.05);
+  }
+</style>
