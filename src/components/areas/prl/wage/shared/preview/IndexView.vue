@@ -8,7 +8,7 @@
   >
     <template #buttons>
       <q-btn
-        :to="`/trs/receipt/edit/${id}`"
+        :to="`/prl/wage/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -20,7 +20,7 @@
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
       <q-btn
-        :to="`/trs/receipt/copy/${id}`"
+        :to="`/prl/wage/copy/${id}`"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -55,44 +55,30 @@
     </template>
   </tool-bar>
 
-  <div class="row q-col-gutter-lg" style="margin-top: -16px">
-    <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card bordered>
-        <div id="invoicePreview">
-          <header-section :model="formStore.model" />
+  <q-card bordered>
+    <div id="invoicePreview">
+      <header-section :model="model" />
 
-          <q-card-section class="q-gutter-y-sm_">
-            <body-section
-              :model="formStore.model"
-              :form-store="formStore"
-            />
-            <footer-section :model="formStore.model" />
-          </q-card-section>
+      <q-card-section class="q-gutter-y-sm_">
+        <div class="row">
+          <div class="col-md-12">
+            <wage-item-data-grid :wage-id="id" />
+          </div>
         </div>
-      </q-card>
+      </q-card-section>
     </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
-      <detail-section
-        :model="formStore.model"
-        :form-store="formStore"
-      />
-    </div>
-  </div>
+  </q-card>
 </template>
 
 <script setup>
-  import { computed, onMounted } from "vue";
+  import { ref, computed, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
-  import { useVoucherModel } from "components/areas/acc/_composables/useVoucherModel";
   import { helper } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
-  //import { useVoucherState } from "../../../_composables/useVoucherState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
-  import BodySection from "./_BodySection.vue";
-  import FooterSection from "./_FooterSection.vue";
-  import DetailSection from "./_DetailSection.vue";
+  import WageItemDataGrid from "../../desktop/index/WageItemDataGrid.vue";
 
   const props = defineProps({
     item: Object,
@@ -100,14 +86,9 @@
     inside: Boolean,
   });
 
-  const baseRoute = "acc/voucher";
-  const formStore = useVoucherModel({
-    baseRoute: baseRoute,
-    preview: true,
-  });
-
-  const crudStore = useFormActions(baseRoute);
-  //const voucherStore = useVoucherState();
+  const model = ref(null);
+  const baseRoute = "prl/wage";
+  const crudStore = useFormActions(baseRoute, model);
 
   const route = useRoute();
   const router = useRouter();
@@ -120,6 +101,6 @@
   }
 
   onMounted(() => {
-    formStore.getById(id.value);
+    crudStore.getById(id.value, `${baseRoute}/getPreviewById`);
   });
 </script>

@@ -4,8 +4,8 @@ import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
 import { Loading } from "quasar";
 
-// const BASE_URL = "http://localhost:5188";
-const BASE_URL = "https://api.landa-sme.ir";
+const BASE_URL = "http://localhost:5188";
+//const BASE_URL = "https://api.landa-sme.ir";
 
 axios.defaults.baseURL = BASE_URL;
 axios.defaults.withCredentials = true;
@@ -17,33 +17,33 @@ export const fetchWrapper = {
   post: createRequest("POST"),
   put: createRequest("PUT"),
   delete: createRequest("DELETE"),
+  download: createRequest("GET", "blob"),
 };
 
-function createRequest(method) {
-  return (url, data, disableLoader) => {
+function createRequest(method, responseType) {
+  return async (url, data, disableLoader) => {
     if (!disableLoader) onInitRequest();
     const fullUrl = `${BASE_URL}/${url}`;
     const authHeaders = getAuthHeaders(fullUrl);
     if (data instanceof FormData) {
       authHeaders["Content-Type"] = "multipart/form-data";
     }
-    return axios({
-      method: method,
-      url: fullUrl,
-      headers: authHeaders,
-      data: data,
-    })
-      .then((response) => {
-        //handleKnownError.bind(null, url);
-        return handleKnownError(url, response);
-      })
-      .catch((error) => {
-        //handleError.bind(null, url);
-        return handleError(url, error);
-      })
-      .finally(() => {
-        if (!disableLoader) onCompleteRequest();
-      });
+    try {
+      try {
+        const response = await axios({
+          method: method,
+          url: fullUrl,
+          headers: authHeaders,
+          data: data,
+          responseType: responseType,
+        });
+        return await handleKnownError(url, response);
+      } catch (error) {
+        return await handleError(url, error);
+      }
+    } finally {
+      if (!disableLoader) onCompleteRequest();
+    }
   };
 }
 

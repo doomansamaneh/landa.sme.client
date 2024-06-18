@@ -250,7 +250,7 @@ export const customerName = {
   template: "{{customerCode}} {{customerName}}",
   showFilter: true,
   class: "text-left",
-  value: "",
+  style: "width:320px",
 };
 
 export const subject = {
@@ -301,6 +301,111 @@ export const taxAmount = {
   label: "مالیات",
 };
 
+export const salary = {
+  ...amount,
+  name: "salary",
+  field: "salary",
+  label: "دستمزد روزانه",
+};
+
+export const baseYear = {
+  ...amount,
+  name: "baseYear",
+  field: "baseYear",
+  label: "پایه سنوات",
+};
+
+export const housing = {
+  ...amount,
+  name: "housing",
+  field: "housing",
+  label: "حق مسکن",
+};
+
+export const food = {
+  ...amount,
+  name: "food",
+  field: "food",
+  label: "بن",
+};
+
+export const child = {
+  ...amount,
+  name: "child",
+  field: "child",
+  label: "حق اولاد",
+};
+
+export const reward = {
+  ...amount,
+  name: "reward",
+  field: "reward",
+  label: "پاداش بهره‌وری",
+};
+
+export const bonus = {
+  ...amount,
+  name: "bonus",
+  field: "bonus",
+  label: "عیدی و پاداش",
+};
+
+export const overtime = {
+  ...amount,
+  name: "overtime",
+  field: "overtime",
+  label: "اضافه کار",
+};
+
+export const mission = {
+  ...amount,
+  name: "mission",
+  field: "mission",
+  label: "دستمزد روزانه",
+};
+
+export const serviceBenefit = {
+  ...amount,
+  name: "serviceBenefit",
+  field: "serviceBenefit",
+  label: "بازخرید سنوات",
+};
+
+export const leave = {
+  ...amount,
+  name: "leave",
+  field: "leave",
+  label: "بازخرید مرخصی",
+};
+
+export const addition = {
+  ...amount,
+  name: "addition",
+  field: "addition",
+  label: "سایر مزایا",
+};
+
+export const deduction = {
+  ...amount,
+  name: "deduction",
+  field: "deduction",
+  label: "سایر کسورات",
+};
+
+export const payable = {
+  ...amount,
+  name: "payable",
+  field: "payable",
+  label: "قابل پرداخت",
+};
+
+export const insurranceEmp = {
+  ...amount,
+  name: "insurranceEmp",
+  field: "insurranceEmp",
+  label: "بیمه کارگر",
+};
+
 export const year = {
   name: "year",
   field: "year",
@@ -309,7 +414,7 @@ export const year = {
   align: "left",
   class: "text-left",
   showFilter: true,
-  style: "width:90px",
+  style: "width:120px",
 };
 
 export const month = {
@@ -317,6 +422,14 @@ export const month = {
   name: "month",
   field: "month",
   label: "ماه",
+  style: "width:90px",
+};
+
+export const day = {
+  ...year,
+  name: "day",
+  field: "day",
+  label: "کارکرد",
 };
 
 export const insurranceAmount = {

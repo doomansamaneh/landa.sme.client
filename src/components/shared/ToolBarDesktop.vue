@@ -53,7 +53,7 @@
                   @click="
                     crudStore.deleteBatch(
                       selectedIds,
-                      tableStore.reloadData
+                      tableStore?.reloadData
                     )
                   "
                 >
@@ -83,7 +83,7 @@
                   @click="
                     crudStore.deleteById(
                       tableStore.activeRow.value.id,
-                      tableStore.reloadData
+                      tableStore?.reloadData
                     )
                   "
                 >
@@ -112,7 +112,7 @@
                     clickable
                     v-close-popup
                     tabindex="0"
-                    @click="tableStore.reloadData"
+                    @click="tableStore?.reloadData"
                   >
                     <div class="q-py-sm">
                       <q-item-section avatar>
@@ -139,7 +139,7 @@
                       @click="
                         crudStore.activate(
                           selectedIds,
-                          tableStore.reloadData
+                          tableStore?.reloadData
                         )
                       "
                     >
@@ -164,7 +164,7 @@
                       @click="
                         crudStore.deactivate(
                           selectedIds,
-                          tableStore.reloadData
+                          tableStore?.reloadData
                         )
                       "
                     >

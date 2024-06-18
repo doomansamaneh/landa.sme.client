@@ -339,7 +339,11 @@
       "closeAccountMessage": "پیش از صدور تراز اختتامیه، بایستی حسابهای سود و زیانی (موقت) بسته شوند. به عبارت دیگر بایستی سود و زیان سال جاری با محاسبه درآمد و هزینه مشخص گردد.",
       "voucherTypeIds": "نوع سند",
       "downloadTax": "دریافت فایل مالیات",
-      "downloadInsurrance": "دریافت فایل بیمه"
+      "downloadInsurrance": "دریافت فایل بیمه",
+      "insuranceNo": "کد کارگاهی",
+      "period": "دوره",
+      "taxAmount": "مالیات",
+      "insuranceAmount": "بیمه"
     },
     "productType": {
       "main": "اصلی",

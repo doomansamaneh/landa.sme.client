@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { fetchWrapper } from "src/helpers";
 import { useFormActions } from "src/composables/useFormActions";
 import { wageModel } from "src/models/areas/prl/wageModel";
 import { useWageState } from "./useWageState";
@@ -27,6 +28,58 @@ export function useWageModel({ baseRoute, preview }) {
         model.value.fiscalYearId = null;
       }
     }
+  }
+
+  async function exportTax(id) {
+    const response = await fetchWrapper.download(
+      `prl/wage/exportTax/${id}`
+    );
+    downloadFile(response);
+  }
+
+  async function exportInsurance(id) {
+    const response = await fetchWrapper.download(
+      `prl/wage/exportInsurance/${id}`
+    );
+    downloadFile(response);
+  }
+
+  function downloadFile(response) {
+    // Get the filename from the Content-Disposition header
+    const contentDisposition =
+      response.headers["Content-Disposition"];
+    let fileName = "downloaded-file.zip"; // Default filename
+
+    console.log(contentDisposition);
+    if (contentDisposition) {
+      const fileNameMatch =
+        contentDisposition.match(/filename="?(.+)"?/);
+      if (fileNameMatch.length === 2) {
+        fileName = fileNameMatch[1];
+      }
+    }
+
+    const link = document.createElement("a");
+    // Create a Blob from the response data
+    const blob = new Blob([response.data], {
+      type: response.data.type,
+    });
+    // Create an object URL from the Blob
+    const url = URL.createObjectURL(blob);
+
+    // Set the download attribute to the filename
+    link.href = url;
+    link.setAttribute("download", fileName);
+
+    // Append the link to the body
+    document.body.appendChild(link);
+
+    // Trigger the click event on the link
+    link.click();
+
+    // Clean up and remove the link
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   }
 
   function setItems() {
@@ -94,6 +147,8 @@ export function useWageModel({ baseRoute, preview }) {
     addRow,
     pushNewRow,
     editRow,
+    exportTax,
+    exportInsurance,
     deleteRow,
     submitForm,
   };
