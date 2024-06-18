@@ -12,11 +12,14 @@
     dense
     debounce="1000"
     :placeholder="placeholder"
-    :loading="tableStore.inputInnerLoader.value"
     @update:model-value="searchInLookup"
     @keydown.enter.prevent.stop="selectRow"
     @keydown="handleKeyDown"
   >
+    <template #loading>
+      <q-spinner size="18px" color="primary" />
+    </template>
+
     <template #append>
       <q-icon
         name="o_close"
@@ -30,6 +33,14 @@
         id="expand-more-icon"
         class="show-lookup-icon cursor-pointer"
         size="sm"
+      />
+    </template>
+
+    <template #prepend>
+      <q-spinner
+        v-if="tableStore.inputInnerLoader.value"
+        size="18px"
+        color="primary"
       />
     </template>
 
@@ -211,7 +222,6 @@
           dense
           debounce="1000"
           :placeholder="placeholder"
-          :loading="tableStore.inputInnerLoader.value"
           @update:model-value="searchInLookup"
           @keydown.enter.prevent.stop="selectRow"
           @keydown="handleKeyDown"
@@ -222,6 +232,13 @@
               v-if="!isSearchEmpty"
               class="cursor-pointer q-field__focusable-action"
               @click="clearSearch"
+            />
+          </template>
+          <template #prepend>
+            <q-spinner
+              v-if="tableStore.inputInnerLoader.value"
+              size="18px"
+              color="primary"
             />
           </template>
         </q-input>
@@ -463,7 +480,8 @@
         showPopup();
       }
     } else {
-      lookupDialog.value.show();
+      tableStore.setSearchTerm(null);
+      showDialog();
       await tableStore.reloadData();
     }
   }
@@ -499,29 +517,38 @@
   }
 
   async function searchInLookup() {
-    tableStore.setSearchTerm(search.value.nativeEl.value);
-    await showPopup();
+    tableStore.setSearchTerm(search.value?.nativeEl?.value);
+    if ($q.screen.gt.xs) {
+      await showPopup();
+    } else {
+      await showDialog();
+    }
   }
 
   function onMenuHide() {
     isPopupOpen.value = false;
-    search.value.focus();
+    search.value?.focus();
   }
 
   async function showPopup() {
     await tableStore.reloadData();
-    popup.value.show();
+    popup.value?.show();
+  }
+
+  async function showDialog() {
+    await tableStore.reloadData();
+    lookupDialog.value?.show();
   }
 
   function onMenuShow() {
     isPopupOpen.value = true;
     if ($q.screen.gt.xs) {
-      search.value.focus();
+      search.value?.focus();
     }
   }
 
   function hidePopup() {
-    popup.value.hide();
+    popup.value?.hide();
   }
 
   const isSearchEmpty = computed(() => !selectedId.value);

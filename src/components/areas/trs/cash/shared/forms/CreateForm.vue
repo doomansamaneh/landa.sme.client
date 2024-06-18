@@ -59,7 +59,7 @@
       </q-form>
       <q-card flat class="tips">
         <q-card-section>
-          <div class="title q-mb-md">راهنما</div>
+          <div class="title q-mb-sm">راهنما</div>
           <div class="text-body1 no-letter-spacing">
             حساب معین را از حسابهای موجودی نزد صندوق با کد 10102، یا موجودی نزد
             تنخواه گردانها با کد 10103 انتخاب کنید

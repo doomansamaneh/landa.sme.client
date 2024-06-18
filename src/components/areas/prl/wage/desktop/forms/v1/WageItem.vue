@@ -53,8 +53,8 @@
       />
 
       <q-card-section>
-        <div class="row q-col-gutter-sm">
-          <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="row q-col-gutter-md">
+          <div class="col-md-4 col-sm-6 col-xs-12">
             <q-item-label caption class="q-mb-sm">پرسنل</q-item-label>
             <customer-lookup
               v-model:selectedId="wageItem.customerId"
@@ -63,7 +63,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-6 col-xs-12">
+          <div class="col-md-2 col-sm-3 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               نوع بیمه
             </q-item-label>
@@ -78,7 +78,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-6 col-xs-12">
+          <div class="col-md-2 col-sm-3 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               روزهای کارکرد
             </q-item-label>
@@ -88,7 +88,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               دستمزد روزانه
             </q-item-label>
@@ -97,7 +97,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               حق مسکن
             </q-item-label>
@@ -106,14 +106,14 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">بن</q-item-label>
             <custom-input-number
               v-model="wageItem.food"
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               حق اولاد
             </q-item-label>
@@ -122,7 +122,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               حق ماموریت
             </q-item-label>
@@ -131,7 +131,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               اضافه کار
             </q-item-label>
@@ -140,7 +140,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               دیگر مزایا
             </q-item-label>
@@ -149,7 +149,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               دیگر کسورات
             </q-item-label>
@@ -158,7 +158,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               بازخرید مرخصی
             </q-item-label>
@@ -167,7 +167,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               پاداش بهره‌وری
             </q-item-label>
@@ -176,7 +176,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               عیدی و پاداش
             </q-item-label>
@@ -185,7 +185,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               بازخرید سنوات
             </q-item-label>
@@ -194,7 +194,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               تاریخ آغاز به کار
             </q-item-label>
@@ -203,7 +203,7 @@
               hide-bottom-space
             />
           </div>
-          <div class="col-md-2 col-sm-12 col-xs-12">
+          <div class="col-md-2 col-sm-4 col-xs-12">
             <q-item-label caption class="q-mb-sm">
               تاریخ ترک کار
             </q-item-label>

@@ -192,16 +192,19 @@
 
   const formatNumber = (number) => {
     if (number < 1000) {
-      return number;
+      return number.toString();
     } else if (number < 1000000) {
       const thousands = Math.floor(number / 1000);
       return `${thousands} هزار`;
     } else if (number < 1000000000) {
       const millions = Math.floor(number / 1000000);
       return `${millions} میلیون`;
-    } else {
+    } else if (number < 1000000000000) {
       const billions = Math.floor(number / 1000000000);
       return `${billions} میلیارد`;
+    } else {
+      const trillions = Math.floor(number / 1000000000000);
+      return `${trillions}  همت`;
     }
   };
 </script>
