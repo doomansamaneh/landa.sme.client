@@ -163,15 +163,15 @@
           <q-input dense outlined v-model="row.discount">
             <template v-slot:append>
               <q-btn
-                size="11px"
+                size="8px"
                 class="cursor-pointer"
-                color="yellow"
+                :color="$q.dark.isActive ? 'yellow' : 'primary'"
                 round
                 outline
                 @click="toggleDiscountType"
               >
                 <q-icon
-                  size="20px"
+                  size="14px"
                   :name="
                     discountIsCash ? 'attach_money' : 'o_percent'
                   "

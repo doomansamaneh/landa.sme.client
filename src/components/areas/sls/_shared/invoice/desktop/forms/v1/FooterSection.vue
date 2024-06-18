@@ -44,7 +44,9 @@
                       <q-btn
                         size="8px"
                         class="cursor-pointer"
-                        color="yellow"
+                        :color="
+                          $q.dark.isActive ? 'yellow' : 'primary'
+                        "
                         round
                         outline
                         @click="toggleDiscountType"

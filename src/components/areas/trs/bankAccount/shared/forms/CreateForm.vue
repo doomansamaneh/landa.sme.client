@@ -94,7 +94,7 @@
       </q-form>
       <q-card flat class="tips">
         <q-card-section>
-          <div class="title q-mb-md">راهنما</div>
+          <div class="title q-mb-sm">راهنما</div>
           <div class="text-body1 no-letter-spacing">
             حساب معین پیشفرض: موجودی نزد بانک با کد 10101
           </div>

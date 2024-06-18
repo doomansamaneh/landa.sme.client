@@ -135,18 +135,24 @@
                   >
                     <template #append>
                       <q-btn
-                        size="xs"
-                        :icon="
-                          generalDiscount
-                            ? 'attach_money'
-                            : 'o_percent'
-                        "
+                        size="8px"
                         class="cursor-pointer"
-                        color="primary"
+                        :color="
+                          $q.dark.isActive ? 'yellow' : 'primary'
+                        "
                         round
                         outline
-                        @click="switchDiscount"
-                      />
+                        @click="toggleDiscountType"
+                      >
+                        <q-icon
+                          size="14px"
+                          :name="
+                            discountIsCash
+                              ? 'attach_money'
+                              : 'o_percent'
+                          "
+                        />
+                      </q-btn>
                     </template>
                   </q-input>
                 </q-card-section>

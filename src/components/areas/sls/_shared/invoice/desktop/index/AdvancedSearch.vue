@@ -35,15 +35,13 @@
       <div v-show="expanded">
         <div class="q-px-lg">
           <div class="row q-mb-md">
-            <div class="col-md-12">
-              <q-checkbox
-                dense
-                size="44px"
-                class="q-pt-sm text-body2 no-letter-spacing"
-                v-model="searchStore.searchModel.value.waitToSendTax"
-                :label="$t('shared.labels.waitToSendTax')"
-              />
-            </div>
+            <q-checkbox
+              dense
+              size="44px"
+              class="q-pt-sm text-body2 no-letter-spacing"
+              v-model="searchStore.searchModel.value.waitToSendTax"
+              :label="$t('shared.labels.waitToSendTax')"
+            />
           </div>
 
           <div
