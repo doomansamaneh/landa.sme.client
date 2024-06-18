@@ -180,13 +180,22 @@
   >
     <q-card>
       <q-card-section
-        class="row items-center justify-between_ q-pb-none q-pr-sm"
+        class="row items-center q-pb-none"
       >
         <span class="text-bold text-body1 no-letter-spacing">
           افزودن/ویرایش کالا
         </span>
         <q-space />
-        <q-btn round unelevated icon="o_close" v-close-popup />
+        <q-btn
+          round
+          unelevated
+          text-color="white"
+          class="red-gradient red-shadow col-1"
+          padding="5px"
+          v-close-popup
+        >
+          <q-icon size="16px" name="o_close" />
+        </q-btn>
       </q-card-section>
 
       <q-card-section>
