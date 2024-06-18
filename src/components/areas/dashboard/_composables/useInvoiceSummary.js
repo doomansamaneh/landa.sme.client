@@ -3,6 +3,7 @@ import { fetchWrapper, bus } from "src/helpers";
 import { useComposables } from "src/stores/useComposables";
 
 const firstLoad = ref(false);
+const isLoading = ref(false)
 const data = ref(null);
 
 export function useInvoiceSummary() {
@@ -26,6 +27,7 @@ export function useInvoiceSummary() {
     if (!firstLoad.value) {
       firstLoad.value = true;
       await reloadData();
+      isLoading.value = true
       return true;
     }
     return false;
@@ -41,5 +43,6 @@ export function useInvoiceSummary() {
 
     loadData,
     reloadData,
+    isLoading
   };
 }
