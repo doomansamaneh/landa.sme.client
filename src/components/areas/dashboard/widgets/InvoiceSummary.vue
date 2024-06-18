@@ -89,11 +89,11 @@
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn
-              push
               flat
               dense
               size="0"
               to="/sls/invoice/remained/remainedThisYear"
+              class="thisyear-clickable-btn"
             >
               <q-avatar
                 rounded
@@ -135,11 +135,11 @@
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn
-              push
               flat
               dense
               size="0"
               to="/sls/invoice/remained/remainedAll"
+              class="all-clickable-btn"
             >
               <q-avatar
                 rounded
@@ -208,3 +208,23 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  .thisyear-clickable-btn {
+    transition: transform 0.1s ease-in-out,
+      box-shadow 0.1s ease-in-out;
+  }
+  .thisyear-clickable-btn:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0 8px 0 $orange-2;
+  }
+
+  .all-clickable-btn {
+    transition: transform 0.1s ease-in-out,
+      box-shadow 0.1s ease-in-out;
+  }
+  .all-clickable-btn:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0 8px 0 $red-2;
+  }
+</style>
