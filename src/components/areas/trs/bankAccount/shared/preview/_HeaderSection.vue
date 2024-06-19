@@ -1,8 +1,5 @@
 <template>
-  <q-markup-table
-    flat
-    class="border-radius-lg bordered q-mt-sm q-mb-md"
-  >
+  <q-markup-table flat>
     <tbody>
       <tr>
         <td style="width: 90px">

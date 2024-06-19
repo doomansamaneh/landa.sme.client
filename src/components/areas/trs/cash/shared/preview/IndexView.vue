@@ -48,13 +48,20 @@
     </template>
   </tool-bar>
 
-  <div id="invoicePreview" v-if="model">
-    <header-section :model="model" />
-    <account-item
-      :columns="accountItemColumns"
-      :filter-expression="filterExpression"
-    />
-  </div>
+  <q-card>
+    <div id="invoicePreview" v-if="model">
+      <q-card-section>
+        <header-section :model="model" />
+      </q-card-section>
+      <q-card-section class="q-px-none">
+        <account-item
+          flat
+          :columns="accountItemColumns"
+          :filter-expression="filterExpression"
+        />
+      </q-card-section>
+    </div>
+  </q-card>
 </template>
 
 <script setup>
