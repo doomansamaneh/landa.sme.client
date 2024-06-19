@@ -20,7 +20,7 @@
         </q-item>
 
         <q-btn
-          class="primary-shadow primary-gradient text-white text-caption"
+          class="primary-shadow no-letter-spacing primary-gradient text-white text-caption"
           padding="6px 12px"
           rounded
           unelevated
@@ -55,10 +55,11 @@
                 </q-avatar>
 
                 <q-avatar
-                  class="border-radius-xs primary-gradient primary-shadow"
+                  class="border-radius-xs"
                   square
                   size="58px"
                   text-color="white"
+                  :style="helper.generateAvatarStyle(product.id)"
                   v-else
                 >
                   <div class="char text-body1 text-bold">
@@ -79,7 +80,10 @@
                   </span>
                 </div>
                 <div class="col row justify-end items-center">
-                  <q-item-label caption class="text-body3 no-letter-spacing">
+                  <q-item-label
+                    caption
+                    class="text-body3 no-letter-spacing"
+                  >
                     86 فروش
                   </q-item-label>
                 </div>

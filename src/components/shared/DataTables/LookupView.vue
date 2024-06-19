@@ -58,6 +58,7 @@
       :self="$q.screen.lt.sm ? 'top middle' : ''"
       no-focus
       no-refocus
+      :style="`width: ${width}`"
     >
       <q-inner-loading
         :showing="tableStore.showLoader.value"
@@ -88,8 +89,8 @@
               <q-btn
                 dense
                 unelevated
-                color="primary"
-                class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
+                text-color="white"
+                class="primary-gradient primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
                 style="margin-top: 12px"
                 rounded
                 size="12px"
@@ -390,6 +391,7 @@
     rules: Array,
     placeholder: String,
     filterExpression: Array,
+    width: String,
   });
 
   const selectedId = defineModel("selectedId");
