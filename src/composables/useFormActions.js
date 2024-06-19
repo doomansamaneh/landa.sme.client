@@ -2,7 +2,7 @@ import { ref, watch } from "vue";
 import { useRouter, onBeforeRouteLeave } from "vue-router";
 import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
-import { fetchWrapper, helper } from "src/helpers";
+import { fetchWrapper, helper, bus } from "src/helpers";
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 
 export function useFormActions(baseURL, model) {
@@ -82,6 +82,7 @@ export function useFormActions(baseURL, model) {
         );
         notifyResponse(response.data);
         if (callBack) callBack();
+        else bus.emit("apply-search");
       });
     } else notify("no row selected", "negative");
   }
@@ -105,6 +106,7 @@ export function useFormActions(baseURL, model) {
         );
         notifyResponse(response.data);
         if (callBack) callBack();
+        else bus.emit("apply-search");
       });
     } else notify("no row selected", "negative");
   }
@@ -117,6 +119,7 @@ export function useFormActions(baseURL, model) {
       );
       notifyResponse(response.data);
       if (callBack) callBack();
+      else bus.emit("apply-search");
     } else notify("no row selected", "negative");
   }
 
@@ -128,6 +131,7 @@ export function useFormActions(baseURL, model) {
       );
       notifyResponse(response.data);
       if (callBack) callBack();
+      else bus.emit("apply-search");
     } else notify("no row selected", "negative");
   }
 
@@ -144,6 +148,7 @@ export function useFormActions(baseURL, model) {
       );
       notifyResponse(response.data);
       if (callBack) callBack();
+      else bus.emit("apply-search");
     } else notify("no row selected", "negative");
   }
 

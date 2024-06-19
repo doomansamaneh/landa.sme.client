@@ -96,7 +96,7 @@ export const transferMoneyColumns = [
     class: "text-left",
     value: "",
   },
-  comment,
+  subject,
   amount,
   actions,
 ];

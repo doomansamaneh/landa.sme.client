@@ -23,7 +23,7 @@
 
     <div class="row">
       <span class="col-1 text-caption text-bold">
-        {{ $t("shared.labels.insuranceNo") }}:
+        {{ $t("shared.labels.workInsuranceNo") }}:
       </span>
       <span class="text-body3 q-mx-md">
         {{ model?.insuranceNo }}

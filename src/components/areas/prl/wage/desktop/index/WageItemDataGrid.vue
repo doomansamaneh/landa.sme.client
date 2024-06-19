@@ -5,6 +5,7 @@
     bordered
     :data-source="dataSource"
     :grid-store="gridStore"
+    @row-dbl-click="rowDblClick"
     expandable
   >
     <template #cell-salary="{ item }">
@@ -60,19 +61,21 @@
     </template>
 
     <template #expand="{ item }">
-      <h4>wage detail</h4>
-      <pre>{{ item }}</pre>
+      <perview :item="item" inside />
     </template>
   </data-grid>
 </template>
 
 <script setup>
   import { ref } from "vue";
+  import { useRouter } from "vue-router";
   import { sqlOperator } from "src/constants";
 
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { wageItemColumns } from "../../../_composables/constants";
+
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import Perview from "../../../wageItem/shared/preview/IndexView.vue";
 
   const props = defineProps({
     wageId: String,
@@ -90,6 +93,10 @@
     ],
   });
   const dataSource = "prl/wageItem/getGridData";
-
   const dataGrid = ref(null);
+  const router = useRouter();
+
+  function rowDblClick(row) {
+    router.push(`/prl/wageItem/preview/${row.id}`);
+  }
 </script>

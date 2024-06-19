@@ -1272,5 +1272,21 @@ export default {
         },
       ],
     },
+
+    {
+      path: "prl/wageItem",
+      children: [
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/prl/wageItem/EditPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/prl/wageItem/PreviewPage.vue"),
+        },
+      ],
+    },
   ],
 };

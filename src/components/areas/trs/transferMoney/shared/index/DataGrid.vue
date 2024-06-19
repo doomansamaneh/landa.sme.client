@@ -9,7 +9,13 @@
     expandable
   >
     <template #cell-amount="{ item }">
-      {{ item.amount?.toLocaleString() }}
+      <span class="text-weight-700">
+        {{ item.amount?.toLocaleString() }}
+      </span>
+    </template>
+
+    <template #expand="{ item }">
+      <preview :item="item" inside />
     </template>
   </data-grid>
 </template>
@@ -18,6 +24,8 @@
   import { sortOrder } from "src/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { transferMoneyColumns } from "src/components/areas/trs/_composables/constants";
+
+  import Preview from "../preview/IndexView.vue";
 
   import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
   const gridStore = useBaseInfoGrid({

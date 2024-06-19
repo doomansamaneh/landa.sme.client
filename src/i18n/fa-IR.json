@@ -340,7 +340,8 @@
       "voucherTypeIds": "نوع سند",
       "downloadTax": "دریافت فایل مالیات",
       "downloadInsurrance": "دریافت فایل بیمه",
-      "insuranceNo": "کد کارگاهی",
+      "insuranceNo": "ش بیمه",
+      "workInsuranceNo": "کد کارگاه بیمه",
       "period": "دوره",
       "taxAmount": "مالیات",
       "insuranceAmount": "بیمه"
