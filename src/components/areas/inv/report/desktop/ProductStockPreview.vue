@@ -1,5 +1,5 @@
 <template>
-  <tool-bar :inside="inside" buttons title="کاردکس کالا">
+  <tool-bar :inside="inside" buttons>
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"
@@ -49,63 +49,52 @@
     </template>
   </tool-bar>
 
-  <q-markup-table
-    flat
-    class="border-radius-lg bordered q-mt-sm q-mb-md"
-  >
-    <tbody>
-      <tr>
-        <td style="width: 90px">
-          <div class="text-body3 no-letter-spacing q-mb-sm">کد</div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ item?.code }}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="text-body3 no-letter-spacing q-mb-sm">
-            عنوان
-          </div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ item?.title }}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="text-body3 no-letter-spacing q-mb-sm">گروه</div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ item?.productGroupTitle }}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="text-body3 no-letter-spacing q-mb-sm">
-            موجودی اول دوره
-          </div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ item?.openomgStock?.toLocaleString() }}
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </q-markup-table>
+  <q-card>
+    <q-card-section class="text-center">
+      <span class="text-weight-700 text-h6 no-letter-spacing">
+        کاردکس کالا
+      </span>
+    </q-card-section>
+    <q-separator />
+    <q-card-section class="q-gutter-y-md">
+      <div class="row">
+        <div class="col-1">
+          <span class="text-body3 no-letter-spacing">کالا:</span>
+        </div>
+        <div class="text-body2 text-bold no-letter-spacing">
+          {{ item?.code }} / {{ item?.title }}
+        </div>
+      </div>
 
-  <product-stock-item
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
-  ></product-stock-item>
+      <div class="row">
+        <div class="col-1">
+          <span class="text-body3 no-letter-spacing">گروه:</span>
+        </div>
+        <div class="text-body3 no-letter-spacing">
+          {{ item?.productGroupTitle }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-1">
+          <span class="text-body3 no-letter-spacing">
+            موجودی اول دوره:
+          </span>
+        </div>
+        <div class="text-body2 text-bold no-letter-spacing">
+          {{ item?.openomgStock?.toLocaleString() }}
+        </div>
+      </div>
+    </q-card-section>
+
+    <q-card-section class="q-px-none">
+      <product-stock-item
+        ref="dataGrid"
+        :data-source="dataSource"
+        :grid-store="gridStore"
+      />
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>

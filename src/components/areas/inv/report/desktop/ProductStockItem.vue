@@ -8,7 +8,7 @@
     square_
     multiSelect_
     numbered
-    bordered
+    bordered_
     wrapCells
     dense
     expandable
