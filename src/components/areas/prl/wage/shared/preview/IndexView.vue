@@ -55,7 +55,7 @@
     </template>
   </tool-bar>
 
-  <q-card bordered>
+  <q-card class="bordered">
     <div id="invoicePreview">
       <header-section :model="model" />
 

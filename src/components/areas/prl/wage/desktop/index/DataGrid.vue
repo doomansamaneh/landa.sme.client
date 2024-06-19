@@ -1,13 +1,16 @@
 <template>
   <data-grid
     ref="dataGrid"
+    class="bordered"
     :base-route="baseRoute"
     :data-source="dataSource"
     :title="$t('main-menu-items.Prl_Wage_View')"
     :create-url="`/${baseRoute}/create`"
     :grid-store="gridStore"
     expandable
+    flat
     toolbar
+    wrapsCells
   >
     <template #cell-amount="{ item }">
       {{ item.amount?.toLocaleString() }}
