@@ -1,16 +1,16 @@
 <template>
   <q-card-section>
     <div class="text-center">
-      <h6>
+      <div class="text-h6 no-letter-spacing">
         {{ appConfigStore.model?.value?.companySetting.name }}
-      </h6>
+      </div>
       <div class="text-body2 text-bold">حقوق و دستمزد ماهانه</div>
     </div>
   </q-card-section>
 
-  <q-separator />
+  <q-separator size="0.5px" />
 
-  <q-card-section class="q-gutter-y-md">
+  <q-card-section class="q-gutter-y-md q-px-lg q-mx-sm">
     <div class="row">
       <span class="col-1 text-caption text-bold">
         {{ $t("shared.labels.period") }}:
