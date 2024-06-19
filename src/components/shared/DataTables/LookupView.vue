@@ -89,8 +89,8 @@
               <q-btn
                 dense
                 unelevated
-                color="primary"
-                class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
+                text-color="white"
+                class="primary-gradient primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
                 style="margin-top: 12px"
                 rounded
                 size="12px"

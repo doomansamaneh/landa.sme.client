@@ -32,11 +32,7 @@
               square
               class="primary-shadow border-radius-xs"
               size="52px"
-              :style="{
-                backgroundColor: helper.generateDarkAvatarColor(
-                  row.id
-                ),
-              }"
+              :style="helper.generateAvatarStyle(row.id)"
               text-color="white"
               v-else
             >

@@ -86,12 +86,8 @@
               size="52px"
               text-color="white"
               square
-              class="primary-shadow border-radius-xs"
-              :style="{
-                backgroundColor: helper.generateDarkAvatarColor(
-                  row.id
-                ),
-              }"
+              class="border-radius-xs"
+              :style="helper.generateAvatarStyle(row.id)"
               v-else
             >
               <div class="char text-body1 text-bold">
@@ -119,32 +115,32 @@
               />
               {{ row.locationName }} {{ row.address }}
             </div>
-           <div class="row items-center q-gutter-xs">
-             <div
-              class="flex text-body3 no-letter-spacing items-center rtl"
-              v-if="row.phoneNo"
-            >
-              {{ helper.separatePhoneNumbers(row.phoneNo) }}
-              <q-icon
-                name="o_phone"
-                class="q-mr-xs"
-                color="primary"
-                size="13px"
-              />
+            <div class="row items-center q-gutter-xs">
+              <div
+                class="flex text-body3 no-letter-spacing items-center rtl"
+                v-if="row.phoneNo"
+              >
+                {{ helper.separatePhoneNumbers(row.phoneNo) }}
+                <q-icon
+                  name="o_phone"
+                  class="q-mr-xs"
+                  color="primary"
+                  size="13px"
+                />
+              </div>
+              <div
+                class="flex text-body3 no-letter-spacing items-center rtl"
+                v-if="row.mobileNo"
+              >
+                {{ helper.separatePhoneNumbers(row.mobileNo) }}
+                <q-icon
+                  name="o_phone_android"
+                  class="q-mr-xs"
+                  color="primary"
+                  size="13px"
+                />
+              </div>
             </div>
-            <div
-              class="flex text-body3 no-letter-spacing items-center rtl"
-              v-if="row.mobileNo"
-            >
-              {{ helper.separatePhoneNumbers(row.mobileNo) }}
-              <q-icon
-                name="o_phone_android"
-                class="q-mr-xs"
-                color="primary"
-                size="13px"
-              />
-            </div>
-           </div>
           </q-item-section>
         </div>
       </q-item>
@@ -230,4 +226,5 @@
   const goToCustomer = () => {
     router.push("/crm/customer");
   };
+
 </script>

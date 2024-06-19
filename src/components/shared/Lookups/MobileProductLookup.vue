@@ -60,11 +60,7 @@
               square
               size="56px"
               text-color="white"
-              :style="{
-                backgroundColor: helper.generateDarkAvatarColor(
-                  row.title
-                ),
-              }"
+              :style="helper.generateAvatarStyle(row.id)"
               v-else
             >
               <div class="char text-body1 text-bold">
