@@ -69,7 +69,7 @@
         v-close-popup
         class="text-on-dark"
       >
-        <div class="row q-gutter-x-md items-center q-my-xs q-pl-sm">
+        <div class="row items-center q-my-xs q-pl-sm">
           <q-item-section avatar>
             <q-avatar
               v-if="row.avatar"
@@ -102,15 +102,14 @@
 
           <q-item-section>
             <q-item-label
-              class="ellipsis text-on-dark text-caption text-bold q-py-xs"
+              class="ellipsis text-on-caption text-caption text-bold q-py-xs"
               style="width: 200px"
             >
               {{ row.code }} {{ row.name }}
             </q-item-label>
-            <q-item-label
+            <div
               v-if="row.locationName"
-              caption
-              class="ellipsis q-mt-xs"
+              class="ellipsis text-body3 no-letter-spacing q-mt-xs"
               style="width: 200px"
             >
               <q-icon
@@ -119,10 +118,10 @@
                 color="primary"
               />
               {{ row.locationName }} {{ row.address }}
-            </q-item-label>
-            <q-item-label
-              caption
-              class="flex justify-end q-gutter-x-xs rtl"
+            </div>
+           <div class="row items-center q-gutter-xs">
+             <div
+              class="flex text-body3 no-letter-spacing items-center rtl"
               v-if="row.phoneNo"
             >
               {{ helper.separatePhoneNumbers(row.phoneNo) }}
@@ -132,10 +131,9 @@
                 color="primary"
                 size="13px"
               />
-            </q-item-label>
-            <q-item-label
-              caption
-              class="flex justify-end q-gutter-x-xs rtl"
+            </div>
+            <div
+              class="flex text-body3 no-letter-spacing items-center rtl"
               v-if="row.mobileNo"
             >
               {{ helper.separatePhoneNumbers(row.mobileNo) }}
@@ -145,7 +143,8 @@
                 color="primary"
                 size="13px"
               />
-            </q-item-label>
+            </div>
+           </div>
           </q-item-section>
         </div>
       </q-item>

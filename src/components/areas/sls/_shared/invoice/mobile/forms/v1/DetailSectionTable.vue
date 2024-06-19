@@ -179,9 +179,7 @@
     v-model="showDialog"
   >
     <q-card>
-      <q-card-section
-        class="row items-center q-pb-none"
-      >
+      <q-card-section class="row items-center q-pb-none">
         <span class="text-bold text-body1 no-letter-spacing">
           افزودن/ویرایش کالا
         </span>
@@ -190,7 +188,7 @@
           round
           unelevated
           text-color="white"
-          class="red-gradient red-shadow col-1"
+          class="red-gradient red-shadow"
           padding="5px"
           v-close-popup
         >

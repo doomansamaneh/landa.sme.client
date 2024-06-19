@@ -6,19 +6,16 @@
     searchField="name"
     columns="code,name"
     ref="lookup"
+    width="450px"
   >
     <template #td="{ row }">
       <q-item
         class="rounded-borders"
-        style="padding: 12px;"
+        style="padding: 12px"
         clickable
         v-close-popup
       >
-        <div class="row items-center-">
-          <q-tooltip :delay="700" class="text-body3 custom-tooltip">
-            <span v-if="row.code">{{ row.code }} -</span>
-            {{ row.name }} - {{ row.locationName }} {{ row.address }}
-          </q-tooltip>
+        <div class="flex">
           <q-item-section avatar>
             <q-avatar
               v-if="row.avatar"
@@ -33,9 +30,13 @@
 
             <q-avatar
               square
-              class="border-radius-xs"
+              class="primary-shadow border-radius-xs"
               size="52px"
-              color="primary"
+              :style="{
+                backgroundColor: helper.generateDarkAvatarColor(
+                  row.id
+                ),
+              }"
               text-color="white"
               v-else
             >
@@ -47,16 +48,13 @@
 
           <q-item-section>
             <q-item-label
-              class="ellipsis text-on-dark text-caption text-bold q-pb-xs"
-              style="width: 200px"
+              class="ellipsis-2-lines text-on-dark text-caption text-bold q-pb-xs"
             >
               {{ row.code }} {{ row.name }}
             </q-item-label>
-            <q-item-label
+            <div
               v-if="row.locationName"
-              caption
-              class="ellipsis q-mt-xs"
-              style="width: 200px"
+              class="text-body3 text-on-caption no-letter-spacing ellipsis-2-lines q-mt-xs"
             >
               <q-icon
                 name="o_location_on"
@@ -64,33 +62,34 @@
                 color="primary"
               />
               {{ row.locationName }} {{ row.address }}
-            </q-item-label>
-            <q-item-label
-              caption
-              class="flex justify-end q-gutter-x-xs rtl"
-              v-if="row.phoneNo"
-            >
-              {{ helper.separatePhoneNumbers(row.phoneNo) }}
-              <q-icon
-                name="o_phone"
-                class="q-mr-xs"
-                color="primary"
-                size="13px"
-              />
-            </q-item-label>
-            <q-item-label
-              caption
-              class="flex justify-end q-gutter-x-xs rtl"
-              v-if="row.mobileNo"
-            >
-              {{ helper.separatePhoneNumbers(row.mobileNo) }}
-              <q-icon
-                name="o_phone_android"
-                class="q-mr-xs"
-                color="primary"
-                size="13px"
-              />
-            </q-item-label>
+            </div>
+            <div class="row items-center q-gutter-xs">
+              <div
+                class="flex text-body3 no-letter-spacing text-on-caption items-center rtl"
+                v-if="row.phoneNo"
+              >
+                {{ helper.separatePhoneNumbers(row.phoneNo) }}
+                <q-icon
+                  name="o_phone"
+                  class="q-mr-xs"
+                  color="primary"
+                  size="13px"
+                />
+              </div>
+
+              <div
+                class="flex text-body3 no-letter-spacing text-on-caption items-center rtl"
+                v-if="row.mobileNo"
+              >
+                {{ helper.separatePhoneNumbers(row.mobileNo) }}
+                <q-icon
+                  name="o_phone_android"
+                  class="q-mr-xs"
+                  color="primary"
+                  size="13px"
+                />
+              </div>
+            </div>
           </q-item-section>
         </div>
       </q-item>

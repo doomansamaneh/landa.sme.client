@@ -58,6 +58,7 @@
       :self="$q.screen.lt.sm ? 'top middle' : ''"
       no-focus
       no-refocus
+      :style="`width: ${width}`"
     >
       <q-inner-loading
         :showing="tableStore.showLoader.value"
@@ -390,6 +391,7 @@
     rules: Array,
     placeholder: String,
     filterExpression: Array,
+    width: String,
   });
 
   const selectedId = defineModel("selectedId");
