@@ -31,8 +31,8 @@
             class="border-radius-xs"
             square
             size="58px"
-            color="primary"
             text-color="white"
+            :style="helper.generateAvatarStyle(row.id)"
             v-else
           >
             <div class="char text-body2 no-letter-spacing text-bold">
