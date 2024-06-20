@@ -1,8 +1,44 @@
 <template>
   <div class="q-table__middle_ scroll">
     <table
-      :style="$q.screen.gt.xs ? 'width:100%;' : 'width: 900px;'"
       style="
+        width: 100%;
+        border: 1px solid #2d2d2d;
+        border-collapse: collapse;
+        font-size: 12px;
+        margin-bottom: 5px;
+      "
+    >
+      <tbody>
+        <tr>
+          <td
+            style="
+              border-bottom: 1px solid #2d2d2d;
+              padding: 5px;
+              width: 120px;
+            "
+          >
+            دریافت از:
+          </td>
+          <td style="border-bottom: 1px solid #2d2d2d; padding: 5px">
+            {{ model?.customerName }}
+            <div v-if="model?.slCode">
+              {{ model?.slCode }} / {{ model?.slTitle }}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 5px">بابت:</td>
+          <td style="padding: 5px">
+            {{ model?.subject }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      style="
+        width: 100%;
         border: 1px solid #2d2d2d;
         border-collapse: collapse;
         font-size: 12px;
@@ -12,115 +48,111 @@
         <tr>
           <th
             style="
-              width: 5px;
-              padding: 5px;
               border: 1px solid #2d2d2d;
+              padding: 5px;
+              width: 1px;
             "
           >
             ردیف
           </th>
           <th
             style="
-              width: 150px;
-              padding: 5px;
-              text-align: start;
               border: 1px solid #2d2d2d;
+              padding: 5px;
+              width: 90px;
             "
           >
-            کد حساب
+            شماره
           </th>
           <th
             style="
-              padding: 5px;
-              text-align: start;
               border: 1px solid #2d2d2d;
+              padding: 5px;
+              width: 75px;
             "
           >
-            شرح
+            تاریخ
           </th>
-          <th style="width: 150px; border: 1px solid #2d2d2d">
-            بدهکار
+          <th
+            style="
+              border: 1px solid #2d2d2d;
+              padding: 5px;
+              width: 200px;
+            "
+          >
+            حساب بانکی / صندوق / طرف حساب
           </th>
-          <th style="width: 150px; border: 1px solid #2d2d2d">
-            بستانکار
+          <th style="border: 1px solid #2d2d2d; padding: 5px">شرح</th>
+          <th
+            style="
+              border: 1px solid #2d2d2d;
+              padding: 5px;
+              width: 130px;
+            "
+          >
+            مبلغ ({{ model?.currencyTitle }})
           </th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="(item, index) in model.value.voucherItems"
-          :key="item.id"
+          v-for="(item, index) in model?.paymentItems"
+          :key="item.Id"
         >
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
+          <td style="border: 1px solid #2d2d2d; padding: 5px">
             {{ index + 1 }}
           </td>
-          <td
-            style="
-              vertical-align: top;
-              padding: 3px;
-              border: 1px solid #2d2d2d;
-            "
-          >
-            <div>
-              {{ item.slCode }}
+          <td style="border: 1px solid #2d2d2d; padding: 5px">
+            {{ item.itemNo }}
+          </td>
+          <td style="border: 1px solid #2d2d2d; padding: 5px">
+            {{ item.date ?? model?.date.substring(0, 10) }}
+          </td>
+          <td style="border: 1px solid #2d2d2d; padding: 5px">
+            <div v-if="item.bankAccountNo">
+              {{ item.bankAccountTitle }} /
+              {{ item.bankAccountTypeTitle }} /
+              {{ item.bankAccountNo }}
             </div>
-            <div style="text-align: end" class="text-blue-10">
-              {{ item.dlCode }}
+            <div v-else>
+              {{ item.cashTitle }}
+              {{ item.customerName }}
             </div>
           </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
-            <div class="text-wrap">
-              {{ item.slTitle }}
-            </div>
-            <div class="text-wrap text-blue-10">
-              {{ item.dlTitle }}
-            </div>
-            <div class="text-wrap">
-              {{ item.comment }}
-            </div>
+          <td style="border: 1px solid #2d2d2d; padding: 5px">
+            {{ item.comment }}
           </td>
-          <td
-            style="
-              vertical-align: top;
-              padding: 3px;
-              border: 1px solid #2d2d2d;
-            "
-          >
-            {{ item.debit.toLocaleString() }}
-          </td>
-          <td
-            style="
-              vertical-align: top;
-              padding: 3px;
-              border: 1px solid #2d2d2d;
-            "
-          >
-            {{ item.credit.toLocaleString() }}
+          <td style="border: 1px solid #2d2d2d; padding: 5px">
+            {{ item.amount?.toLocaleString() }}
           </td>
         </tr>
-      </tbody>
-
-      <tbody>
         <tr>
           <td
             style="
-              padding: 3px;
+              padding: 5px;
               border: 1px solid #2d2d2d;
               text-align: end;
             "
-            colspan="3"
+            colspan="5"
             class="text-right"
           >
             <strong>جمع کل:</strong>
+            (
+            {{
+              numberToWords(
+                helper.getSubtotal(model?.paymentItems, "amount")
+              )
+            }}
+            <strong>{{ model?.currencyTitle }}</strong>
+            )
           </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalDebit.value.toLocaleString() }}
-            </strong>
-          </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
-            <strong>
-              {{ formStore.totalCredit.value.toLocaleString() }}
+              {{
+                helper
+                  .getSubtotal(model?.paymentItems, "amount")
+                  ?.toLocaleString()
+              }}
             </strong>
           </td>
         </tr>
@@ -131,12 +163,9 @@
 
 <script setup>
   import { numberToWords } from "@persian-tools/persian-tools";
-  import { useQuasar } from "quasar";
-
-  const $q = useQuasar();
+  import { helper } from "src/helpers";
 
   const props = defineProps({
-    formStore: Object,
     model: Object,
   });
 </script>

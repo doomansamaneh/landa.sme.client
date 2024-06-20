@@ -19,7 +19,7 @@
             "
             class="text-body2 no-letter-spacing"
           >
-            تهیه کننده
+            <slot name="cell1">تهیه کننده</slot>
           </td>
           <td
             style="
@@ -29,7 +29,7 @@
             "
             class="text-body2 no-letter-spacing"
           >
-            تصویب کننده
+            <slot name="cell2">تصویب کننده</slot>
           </td>
         </tr>
       </tbody>

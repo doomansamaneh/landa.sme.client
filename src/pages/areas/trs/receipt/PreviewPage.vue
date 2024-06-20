@@ -1,5 +1,5 @@
 <template>
-  <desktop />
+  <desktop toolbar :title="$t('main-menu-items.Trs_Receipt_View')" />
 </template>
 
 <script setup>

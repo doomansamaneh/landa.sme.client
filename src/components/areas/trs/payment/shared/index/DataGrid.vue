@@ -11,6 +11,9 @@
     <template #cell-amount="{ item }">
       {{ item.amount?.toLocaleString() }}
     </template>
+    <template #expand="{ item }">
+      <preview :item="item" inside />
+    </template>
   </data-grid>
 </template>
 
@@ -20,6 +23,8 @@
   import { receiptColumns } from "src/components/areas/trs/_composables/constants";
 
   import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import Preview from "../preview/IndexView.vue";
+
   const gridStore = useBaseInfoGrid({
     columns: receiptColumns,
     sortColumn: "date",

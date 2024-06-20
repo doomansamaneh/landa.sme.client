@@ -2,8 +2,8 @@
   <tool-bar
     :inside="inside"
     :margin="!inside"
-    buttons
     :title="title"
+    buttons
     back-button
   >
     <template #buttons>
@@ -59,40 +59,35 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
         <div id="invoicePreview">
-          <header-section :model="formStore.model" />
+          <header-section :model="model" title="دریافت" />
 
           <q-card-section class="q-gutter-y-sm_">
-            <body-section
-              :model="formStore.model"
-              :form-store="formStore"
-            />
-            <footer-section :model="formStore.model" />
+            <body-section :model="model" />
+            <footer-section :model="model">
+              <template #cell1>مهر و امضا دریافت کننده</template>
+              <template #cell2>مهر و امضا پرداخت کننده</template>
+            </footer-section>
           </q-card-section>
         </div>
       </q-card>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <detail-section
-        :model="formStore.model"
-        :form-store="formStore"
-      />
+      <detail-section :model="model" />
     </div>
   </div>
 </template>
 
 <script setup>
-  import { computed, onMounted } from "vue";
+  import { ref, computed, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
-  import { useVoucherModel } from "components/areas/acc/_composables/useVoucherModel";
   import { helper } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
-  //import { useVoucherState } from "../../../_composables/useVoucherState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import HeaderSection from "./_HeaderSection.vue";
+  import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
+  import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
+  import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
   import BodySection from "./_BodySection.vue";
-  import FooterSection from "./_FooterSection.vue";
-  import DetailSection from "./_DetailSection.vue";
 
   const props = defineProps({
     item: Object,
@@ -100,13 +95,10 @@
     inside: Boolean,
   });
 
-  const baseRoute = "acc/voucher";
-  const formStore = useVoucherModel({
-    baseRoute: baseRoute,
-    preview: true,
-  });
+  const baseRoute = "trs/receipt";
+  const model = ref(null);
 
-  const crudStore = useFormActions(baseRoute);
+  const crudStore = useFormActions(baseRoute, model);
   //const voucherStore = useVoucherState();
 
   const route = useRoute();
@@ -120,6 +112,6 @@
   }
 
   onMounted(() => {
-    formStore.getById(id.value);
+    crudStore.getById(id.value);
   });
 </script>
