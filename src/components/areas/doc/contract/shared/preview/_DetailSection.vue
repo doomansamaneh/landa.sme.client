@@ -1,12 +1,12 @@
 <template>
   <q-tabs
     v-model="tab"
-    inline-label
-    outside-arrows
-    dense
+    class="text-h6 text-weight-700 primary-tabs q-mt-lg"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
     align="left"
-    indicator-color="white"
-    class="border-radius-lg text-white primary-tabs shadow-2"
+    inline-label
+    narrow-indicator
   >
     <q-tab name="main-info" class="q-py-sm">
       <template #default>

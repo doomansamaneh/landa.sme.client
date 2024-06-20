@@ -1,40 +1,43 @@
 <template>
   <advanced-search />
 
-  <div class="q-py-md">
-    <q-tabs
-      v-model="tab"
-      class="border-radius-lg text-white q-mb-md primary-tabs"
-      align="left"
-      inline-label
-      narrow-indicator
-      @update:model-value="tabChanged"
-    >
-      <q-tab
-        name="invoice"
-        class="text-h6 text-weight-700"
-        label="فاکتورهای فروش"
-        icon="check"
-      />
-      <q-tab
-        name="canceled"
-        class="text-h6 text-weight-700"
-        label="ابطال شده"
-        icon="o_cancel"
-      />
-    </q-tabs>
+  <q-tabs
+    v-model="tab"
+    class="primary-tabs q-mt-md"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    narrow-indicator
+    align="left"
+    inline-label
+    @update:model-value="tabChanged"
+  >
+    <q-tab
+      name="invoice"
+      class="q-mr-xs text-h6 text-weight-700"
+      label="فاکتورهای فروش"
+      icon="check"
+    />
+    <q-tab
+      name="canceled"
+      class="text-h6 text-weight-700"
+      label="ابطال شده"
+      icon="o_cancel"
+    />
+  </q-tabs>
 
-    <invoice-grid
-      ref="invoiceTable"
-      :grid-store="gridStore"
-      :data-source="dataSource"
-      base-route="sls/invoice"
-    >
-      <template #expand="{ item }">
-        <preview inside :item="item" />
-      </template>
-    </invoice-grid>
-  </div>
+  <q-separator size="1px" />
+
+  <invoice-grid
+    ref="invoiceTable"
+    :grid-store="gridStore"
+    :data-source="dataSource"
+    base-route="sls/invoice"
+    class="q-mt-md"
+  >
+    <template #expand="{ item }">
+      <preview inside :item="item" />
+    </template>
+  </invoice-grid>
 </template>
 
 <script setup>

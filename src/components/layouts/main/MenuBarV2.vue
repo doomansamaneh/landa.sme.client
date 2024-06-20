@@ -7,30 +7,22 @@
     :breakpoint="400"
     bordered
   >
-
     <q-tabs
       v-model="tab"
+      class="text-h6 text-weight-700 primary-tabs q-mt-lg"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      align="left"
       inline-label
-      outside-arrows
-      class="text-on-dark"
+      narrow-indicator
     >
-      <q-tab name="menu">
+      <q-tab class="q-mr-xs" name="menu">
         <template #default>
-          <q-icon
-            name="o_menu"
-            size="xs"
-            class="q-mr-sm"
-          />
-          <div class="text-body3 text-bold">
-            منو
-          </div>
+          <q-icon name="o_menu" size="xs" class="q-mr-sm" />
+          <div class="text-body3 text-bold">منو</div>
         </template>
       </q-tab>
-      <q-tab
-        name="my-products"
-        class="q-py-sm"
-      >
-
+      <q-tab name="my-products" class="q-mr-xs">
         <template #default>
           <q-badge
             transparent
@@ -38,46 +30,24 @@
             floating
             text-color="white"
             color="red"
-          >6</q-badge>
+          >
+            6
+          </q-badge>
 
-          <q-icon
-            name="o_inventory_2"
-            size="xs"
-            class="q-mr-sm"
-          />
-          <div class="text-body3 text-bold">
-            کالاهای من
-          </div>
+          <q-icon name="o_inventory_2" size="xs" class="q-mr-sm" />
+          <div class="text-body3 text-bold">کالاهای من</div>
         </template>
       </q-tab>
-      <q-tab
-        name="test-1"
-        class="q-py-sm"
-      >
+      <q-tab name="test-1" class="q-mr-xs">
         <template #default>
-          <q-icon
-            name="o_question_mark"
-            size="xs"
-            class="q-mr-sm"
-          />
-          <div class="text-body3 text-bold">
-            تست 1
-          </div>
+          <q-icon name="o_question_mark" size="xs" class="q-mr-sm" />
+          <div class="text-body3 text-bold">تست 1</div>
         </template>
       </q-tab>
-      <q-tab
-        name="test-2"
-        class="q-py-sm"
-      >
+      <q-tab name="test-2" class="q-mr-xs">
         <template #default>
-          <q-icon
-            name="o_question_mark"
-            size="xs"
-            class="q-mr-sm"
-          />
-          <div class="text-body3 text-bold">
-            تست 2
-          </div>
+          <q-icon name="o_question_mark" size="xs" class="q-mr-sm" />
+          <div class="text-body3 text-bold">تست 2</div>
         </template>
       </q-tab>
     </q-tabs>
@@ -87,10 +57,7 @@
       keep-alive
       class="transparent"
     >
-      <q-tab-panel
-        name="menu"
-        class="no-padding"
-      >
+      <q-tab-panel name="menu" class="no-padding">
         <div class="flex justify-center q-pa-md">
           <q-input
             color="grey-5"
@@ -104,10 +71,7 @@
             class="full-width text-caption"
           >
             <template v-slot:prepend>
-              <q-icon
-                name="o_search"
-                color="primary"
-              />
+              <q-icon name="o_search" color="primary" />
             </template>
           </q-input>
         </div>
@@ -128,7 +92,9 @@
                 color="primary"
                 size="xs"
               ></q-icon>
-              <span class="text-sm">{{ $t("main-menu-items.dashboard") }}</span>
+              <span class="text-sm">
+                {{ $t("main-menu-items.dashboard") }}
+              </span>
             </q-item>
             <div
               v-for="parentItem in drawerMenuItems"
@@ -148,17 +114,13 @@
                   clickable
                   class="sub-item q-ml-md q-mr-lg q-my-xs"
                 >
-                  <q-item-section
-                    avatar
-                    class="item-section"
-                  >
-                    <q-icon
-                      :name="`o_${subItem.icon}`"
-                      size="xs"
-                    />
+                  <q-item-section avatar class="item-section">
+                    <q-icon :name="`o_${subItem.icon}`" size="xs" />
                   </q-item-section>
                   <q-item-section>
-                    <span class="text-caption"> {{ subItem.title }} </span>
+                    <span class="text-caption">
+                      {{ subItem.title }}
+                    </span>
                   </q-item-section>
                 </q-item>
               </q-expansion-item>
@@ -170,16 +132,15 @@
                 color="orange"
                 size="xs"
               ></q-icon>
-              <span class="text-sm">{{ $t("main-menu-items.settings") }}</span>
+              <span class="text-sm">
+                {{ $t("main-menu-items.settings") }}
+              </span>
             </q-item>
           </q-list>
         </q-scroll-area>
       </q-tab-panel>
 
-      <q-tab-panel
-        name="my-products"
-        class="no-padding"
-      >
+      <q-tab-panel name="my-products" class="no-padding">
         <div class="flex justify-center q-pa-md">
           <q-input
             color="grey-5"
@@ -193,16 +154,13 @@
             class="full-width text-caption"
           >
             <template v-slot:prepend>
-              <q-icon
-                name="o_search"
-                color="primary"
-              />
+              <q-icon name="o_search" color="primary" />
             </template>
           </q-input>
         </div>
 
         <q-scroll-area
-          style="height: 75vh;"
+          style="height: 75vh"
           class="q-pb-sm"
           :thumb-style="helper.thumbStyle"
           :bar-style="helper.barStyle"
@@ -218,10 +176,20 @@
                   <q-badge
                     rounded
                     class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-                  ><span class="text-bold text-caption">{{ product.openingQuantity
-                  }}</span></q-badge><span class="text-bold text-caption text-on-dark-1">موجودی</span>
+                  >
+                    <span class="text-bold text-caption">
+                      {{ product.openingQuantity }}
+                    </span>
+                  </q-badge>
+                  <span class="text-bold text-caption text-on-dark-1">
+                    موجودی
+                  </span>
                 </div>
-                <div class="text-body3 text-bold text-on-dark q-gutter-xs">{{ product.title }}</div>
+                <div
+                  class="text-body3 text-bold text-on-dark q-gutter-xs"
+                >
+                  {{ product.title }}
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -232,127 +200,131 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
-import { fetchWrapper } from "src/helpers"
-import { useRouter } from "vue-router"
-import { useI18n } from "vue-i18n"
-import { helper } from "src/helpers"
+  import { ref, onMounted, computed } from "vue";
+  import { fetchWrapper } from "src/helpers";
+  import { useRouter } from "vue-router";
+  import { useI18n } from "vue-i18n";
+  import { helper } from "src/helpers";
 
-const { t } = useI18n()
+  const { t } = useI18n();
 
-const router = useRouter()
-const props = defineProps({
-  menuBar: Boolean
-})
+  const router = useRouter();
+  const props = defineProps({
+    menuBar: Boolean,
+  });
 
-const items = ref([])
-const products = ref([])
-const searchText = ref("")
-const tab = ref('my-products')
+  const items = ref([]);
+  const products = ref([]);
+  const searchText = ref("");
+  const tab = ref("my-products");
 
-async function getMenuItems() {
-  await fetchWrapper
-    .get("scr/users/getMenuItems")
-    .then((response) => {
-      handleMenuItemsData(response.data.data)
-    })
-    .finally(() => { })
-}
-
-function handleMenuItemsData(data) {
-  data.forEach((item) => {
-    item.title = t(`main-menu-items.${item.title}`)
-  })
-  items.value = data
-}
-
-const drawerMenuItems = computed(() => {
-  const menuItemsWithSubItems = items.value.filter((item) =>
-    items.value.some((subItem) => subItem.parentName === item.name)
-  )
-
-  const menuItemsIncludingSubItems = menuItemsWithSubItems.map((item) => ({
-    ...item,
-    subItems: items.value.filter((subItem) => subItem.parentName === item.name)
-  }))
-
-  if (searchText.value.trim() === "") {
-    return menuItemsIncludingSubItems
-  } else {
-    const searchLower = searchText.value.toLowerCase()
-    return menuItemsIncludingSubItems
-      .map((item) => {
-        const menuItemsWithSubItems = item.subItems.filter((subItem) =>
-          subItem.title.toLowerCase().includes(searchLower) || subItem.name.toLowerCase().includes(searchLower)
-        )
-
-        if (
-          menuItemsWithSubItems.length > 0 ||
-          item.title.toLowerCase().includes(searchLower)
-        ) {
-          return {
-            ...item,
-            subItems: menuItemsWithSubItems
-          }
-        } else {
-          return null
-        }
+  async function getMenuItems() {
+    await fetchWrapper
+      .get("scr/users/getMenuItems")
+      .then((response) => {
+        handleMenuItemsData(response.data.data);
       })
-      .filter(Boolean)
+      .finally(() => {});
   }
-})
 
-function getProducts() {
-  fetchWrapper
-    .post("cmn/product/getlookupData", {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => {
-      handleResponse(response.data.data.items);
+  function handleMenuItemsData(data) {
+    data.forEach((item) => {
+      item.title = t(`main-menu-items.${item.title}`);
     });
-}
+    items.value = data;
+  }
 
-function handleResponse(data) {
-  // console.log(data);
-  products.value = data;
-}
+  const drawerMenuItems = computed(() => {
+    const menuItemsWithSubItems = items.value.filter((item) =>
+      items.value.some((subItem) => subItem.parentName === item.name)
+    );
 
-onMounted(() => {
-  getMenuItems(),
-    getProducts()
-})
+    const menuItemsIncludingSubItems = menuItemsWithSubItems.map(
+      (item) => ({
+        ...item,
+        subItems: items.value.filter(
+          (subItem) => subItem.parentName === item.name
+        ),
+      })
+    );
+
+    if (searchText.value.trim() === "") {
+      return menuItemsIncludingSubItems;
+    } else {
+      const searchLower = searchText.value.toLowerCase();
+      return menuItemsIncludingSubItems
+        .map((item) => {
+          const menuItemsWithSubItems = item.subItems.filter(
+            (subItem) =>
+              subItem.title.toLowerCase().includes(searchLower) ||
+              subItem.name.toLowerCase().includes(searchLower)
+          );
+
+          if (
+            menuItemsWithSubItems.length > 0 ||
+            item.title.toLowerCase().includes(searchLower)
+          ) {
+            return {
+              ...item,
+              subItems: menuItemsWithSubItems,
+            };
+          } else {
+            return null;
+          }
+        })
+        .filter(Boolean);
+    }
+  });
+
+  function getProducts() {
+    fetchWrapper
+      .post("cmn/product/getlookupData", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        handleResponse(response.data.data.items);
+      });
+  }
+
+  function handleResponse(data) {
+    // console.log(data);
+    products.value = data;
+  }
+
+  onMounted(() => {
+    getMenuItems(), getProducts();
+  });
 </script>
 
 <style lang="scss">
-.text-sm {
-  font-size: 13px;
-}
-
-.menu-bar {
-  .q-focus-helper {
-    display: none;
+  .text-sm {
+    font-size: 13px;
   }
-}
 
-.q-item__section--side {
-
-  padding-right: 8px;
-
-  .q-icon {
-    font-size: 18px;
+  .menu-bar {
+    .q-focus-helper {
+      display: none;
+    }
   }
-}
 
-.products-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: end;
-  gap: 0 16px;
-}
+  .q-item__section--side {
+    padding-right: 8px;
 
-.q-tabs__arrow {
-  text-shadow: none;
-}
+    .q-icon {
+      font-size: 18px;
+    }
+  }
+
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: end;
+    gap: 0 16px;
+  }
+
+  .q-tabs__arrow {
+    text-shadow: none;
+  }
 </style>

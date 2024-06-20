@@ -56,61 +56,62 @@
     </q-card-section>
   </q-card>
 
-  <div>
-    <q-tabs
-      v-model="tab"
-      class="border-radius-lg text-white primary-tabs q-mt-lg"
-      indicator-color="white"
-      align="start"
-      inline-label
-      narrow-indicator
-    >
-      <q-tab
-        name="turnover-detail"
-        label="ریز گردش"
-        icon="o_manage_search"
+  <q-tabs
+    v-model="tab"
+    class="text-h6 text-weight-700 primary-tabs q-mt-lg"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    align="left"
+    inline-label
+    narrow-indicator
+  >
+    <q-tab
+      name="turnover-detail"
+      label="ریز گردش"
+      icon="o_manage_search"
+    />
+    <q-tab name="sales" label="آمار فروش" icon="o_assignment" />
+    <q-tab name="history" label="تاریخچه" icon="o_history" />
+  </q-tabs>
+
+  <q-separator size="1px" />
+
+  <q-tab-panels
+    class="border-radius-lg q-mt-md"
+    :class="salesPanel"
+    v-model="tab"
+    animated
+  >
+    <q-tab-panel class="no-padding" name="turnover-detail">
+      <desktop-data-grid
+        v-if="$q.screen.gt.xs"
+        :grid-store="gridStore"
       />
-      <q-tab name="sales" label="آمار فروش" icon="o_assignment" />
-      <q-tab name="history" label="تاریخچه" icon="o_history" />
-    </q-tabs>
+      <mobile-data-grid
+        v-if="$q.screen.xs"
+        toolbar
+        :grid-store="gridStore"
+      />
+    </q-tab-panel>
 
-    <q-tab-panels
-      class="border-radius-lg q-mt-md"
-      :class="salesPanel"
-      v-model="tab"
-      animated
-    >
-      <q-tab-panel class="no-padding" name="turnover-detail">
-        <desktop-data-grid
-          v-if="$q.screen.gt.xs"
-          :grid-store="gridStore"
-        />
-        <mobile-data-grid
-          v-if="$q.screen.xs"
-          toolbar
-          :grid-store="gridStore"
-        />
-      </q-tab-panel>
-
-      <q-tab-panel class="no-padding" name="sales">
-        <div class="row q-col-gutter-md">
-          <div class="col-md-8 col-sm-12 col-xs-12">
-            <mini-widget class="q-mb-md" />
-            <line-chart height="300" :legend="true" />
-          </div>
-
-          <div class="col-md-4 col-sm-12 col-xs-12">
-            <most-sales />
-          </div>
+    <q-tab-panel class="no-padding" name="sales">
+      <div class="row q-col-gutter-md">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+          <mini-widget class="q-mb-md" />
+          <line-chart height="300" :legend="true" />
         </div>
-      </q-tab-panel>
 
-      <q-tab-panel name="history" class="no-padding">
-        <mobile-comments v-if="$q.screen.xs" />
-        <desktop-comments v-else />
-      </q-tab-panel>
-    </q-tab-panels>
-  </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <most-sales />
+        </div>
+      </div>
+    </q-tab-panel>
+
+    <q-tab-panel name="history" class="no-padding">
+      <mobile-comments v-if="$q.screen.xs" />
+      <desktop-comments v-else />
+    </q-tab-panel>
+  </q-tab-panels>
 </template>
 
 <script setup>

@@ -28,6 +28,13 @@
     background: linear-gradient(
       180deg,
       $dark-page 40%,
+      lighten($dark-page, 7)
+    );
+  }
+  .desktop-toolbar-gradient {
+    background: linear-gradient(
+      180deg,
+      $dark-page 40%,
       lighten($dark-page, 5)
     );
   }

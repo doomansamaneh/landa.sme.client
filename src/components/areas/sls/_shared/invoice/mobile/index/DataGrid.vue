@@ -184,11 +184,7 @@
               <q-avatar
                 size="56px"
                 text-color="white"
-                :style="{
-                  backgroundColor: helper.generateDarkAvatarColor(
-                    item.customerName
-                  ),
-                }"
+                :style="helper.generateAvatarStyle(item.id)"
               >
                 <div class="char text-body1 text-bold">
                   {{ helper.getFirstChar(item.customerName) }}

@@ -6,38 +6,40 @@
   <div class="q-mt-md">
     <q-tabs
       v-model="tab"
-      class="border-radius-lg text-white q-mb-md primary-tabs"
+      class="text-h6 text-weight-700 primary-tabs q-mt-lg"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
       align="left"
       inline-label
       narrow-indicator
     >
       <q-tab
         name="pg"
-        class="text-h6 text-weight-700"
+        class="q-mr-xs text-h6 text-weight-700"
         label="گروه کالا و خدمت"
         icon="bubble_chart"
       />
       <q-tab
         name="prd"
-        class="text-h6 text-weight-700"
+        class="q-mr-xs text-h6 text-weight-700"
         label="کالا و خدمت"
         icon="subject"
       />
       <q-tab
         name="crm"
-        class="text-h6 text-weight-700"
+        class="q-mr-xs text-h6 text-weight-700"
         label="طرف حساب"
         icon="menu"
       />
       <q-tab
         name="prdCrm"
-        class="text-h6 text-weight-700"
+        class="q-mr-xs text-h6 text-weight-700"
         label="طرف حساب/کالا و خدمت"
         icon="view_comfy"
       />
       <q-tab
         name="il"
-        class="text-h6 text-weight-700"
+        class="q-mr-xs text-h6 text-weight-700"
         label="ریزگردش"
         icon="receipt"
       />
