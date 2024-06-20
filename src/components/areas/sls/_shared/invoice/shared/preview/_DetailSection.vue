@@ -62,11 +62,11 @@
       <q-tabs
         v-model="tab"
         inline-label
-        outside-arrows
-        dense
         align="left"
-        indicator-color="white"
-        class="border-radius-lg text-white primary-tabs shadow-2"
+        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        class="primary-tabs"
+        narrow-indicator
       >
         <q-tab name="main-info" class="q-py-sm">
           <template #default>
@@ -107,7 +107,8 @@
         </q-tab-panel>
 
         <q-tab-panel name="log" class="no-padding">
-          <detail-log />--
+          <detail-log />
+          --
         </q-tab-panel>
       </q-tab-panels>
     </q-card-section>

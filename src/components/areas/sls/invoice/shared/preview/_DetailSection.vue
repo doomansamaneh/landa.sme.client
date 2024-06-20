@@ -2,7 +2,7 @@
   <q-card
     class="bordered"
     :class="$q.screen.xs ? 'form-container' : ''"
-    style="margin-top: 0;"
+    style="margin-top: 0"
   >
     <q-card-section>
       <div class="column q-gutter-y-sm">
@@ -66,14 +66,14 @@
       <q-tabs
         v-model="tab"
         inline-label
-        outside-arrows
-        dense
         align="left"
-        indicator-color="white"
-        class="border-radius-lg text-white primary-tabs shadow-2"
+        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        class="primary-tabs"
+        narrow-indicator
         :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
       >
-        <q-tab name="main-info" class="q-py-sm">
+        <q-tab name="main-info" class="q-mr-xs">
           <template #default>
             <q-icon
               name="o_arrow_downward"
@@ -83,19 +83,21 @@
             <div class="text-body3 text-bold">دریافت و پرداخت</div>
           </template>
         </q-tab>
-        <q-tab name="tax" class="q-py-sm">
+        <q-tab name="tax" class="q-mr-xs">
           <template #default>
             <q-icon name="o_paid" size="xs" class="q-mr-sm" />
             <div class="text-body3 text-bold">مالیات</div>
           </template>
         </q-tab>
-        <q-tab name="log" class="q-py-sm">
+        <q-tab name="log" class="q-mr-xs">
           <template #default>
             <q-icon name="o_history" size="xs" class="q-mr-sm" />
             <div class="text-body3 text-bold">تاریخچه</div>
           </template>
         </q-tab>
       </q-tabs>
+
+      <q-separator size="1px" />
 
       <q-tab-panels
         v-model="tab"

@@ -1,9 +1,10 @@
 <template>
   <q-tabs
     v-model="tab"
-    class="border-radius-lg text-white primary-tabs text-weight-700 text-body2 no-letter-spacing q-mt-xl"
-    indicator-color="white"
-    align="start"
+    class="text-h6 text-weight-700 primary-tabs q-mt-lg"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    align="left"
     inline-label
     narrow-indicator
   >
@@ -21,6 +22,8 @@
     <q-tab name="location-info" label="نشانی" icon="o_my_location" />
     <q-tab name="contact-info" label="تماس" icon="o_headset_mic" />
   </q-tabs>
+
+  <q-separator size="1px" />
 
   <q-tab-panels
     class="no-border no-shadow border-radius-lg q-mt-lg"

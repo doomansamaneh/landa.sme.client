@@ -1,18 +1,21 @@
 <template>
   <q-tabs
     v-model="tab"
-    class="border-radius-lg text-white primary-tabs q-mt-lg"
-    indicator-color="white"
-    align="start"
+    class="text-h6 text-weight-700 primary-tabs q-mt-lg"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    align="left"
     inline-label
     narrow-indicator
   >
-    <q-tab name="basic-info" label="اطلاعات پایه" icon="o_person" />
-    <q-tab name="quote" label="پیش‌فاکتورها" icon="o_assignment" />
-    <q-tab name="invoice" label="فاکتورهای فروش" icon="o_receipt" />
-    <q-tab name="account" label="خلاصه حساب" icon="o_summarize" />
-    <q-tab name="log" label="تاریخچه" icon="o_history" />
+    <q-tab class="q-mr-xs" name="basic-info" label="اطلاعات پایه" icon="o_person" />
+    <q-tab class="q-mr-xs" name="quote" label="پیش‌فاکتورها" icon="o_assignment" />
+    <q-tab class="q-mr-xs" name="invoice" label="فاکتورهای فروش" icon="o_receipt" />
+    <q-tab class="q-mr-xs" name="account" label="خلاصه حساب" icon="o_summarize" />
+    <q-tab class="q-mr-xs" name="log" label="تاریخچه" icon="o_history" />
   </q-tabs>
+
+  <q-separator size="1px" />
 
   <q-tab-panels
     class="q-mt-md"

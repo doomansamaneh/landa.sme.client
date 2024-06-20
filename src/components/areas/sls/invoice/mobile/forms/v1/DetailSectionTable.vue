@@ -32,11 +32,7 @@
           <q-avatar
             size="56px"
             text-color="white"
-            :style="{
-              backgroundColor: helper.generateDarkAvatarColor(
-                row.productTitle
-              ),
-            }"
+            :style="helper.generateAvatarStyle(row.id)"
           >
             <div class="char text-body1 text-bold">
               {{ helper.getFirstChar(row.productTitle) }}

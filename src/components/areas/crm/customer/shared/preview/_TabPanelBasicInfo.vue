@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <q-card
-      class="col-md-8 col-sm-12 col-xs-12 border-radius-lg bordered"
+      class="col-md col-sm-12 col-xs-12 border-radius-lg bordered"
     >
       <q-list bordered>
         <q-expansion-item
@@ -20,90 +20,107 @@
           </template>
           <q-card class="no-border no-shadow">
             <q-card-section>
-              <q-btn
-                unelevated
-                class="primary-gradient text-white full-width q-pa-md"
+              <div
+                class="row q-gutter-sm items-center justify-between q-py-sm"
               >
-                <q-icon name="o_add" class="q-mr-xs" />
-                <span>افزودن آیتم جدید</span>
-                <q-menu class="border-radius-lg" touch-position>
-                  <q-list dense padding style="width: 200px">
-                    <q-item clickable v-close-popup tabindex="0">
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_call" size="16px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          تلفن
+                <div
+                  class="text-body1 caption-on-dark no-letter-spacing"
+                >
+                  لطفا اطلاعات تماس خود را وارد یا اصلاح کنید
+                </div>
+                <q-btn
+                  unelevated
+                  :rounded="$q.screen.gt.xs"
+                  :round="$q.screen.xs"
+                  class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+                  :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
+                  text-color="white"
+                >
+                  <q-icon
+                    size="20px"
+                    name="o_add"
+                    :class="$q.screen.gt.xs ? 'q-mr-xs' : ''"
+                  />
+                  <span v-if="$q.screen.gt.xs">افزودن آیتم جدید</span>
+                  <q-menu class="border-radius-lg" cover>
+                    <q-list dense padding style="width: 200px">
+                      <q-item clickable v-close-popup tabindex="0">
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar class="bg-on-dark" size="sm">
+                              <q-icon name="o_call" size="16px" />
+                            </q-avatar>
+                          </q-item-section>
                         </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item clickable v-close-popup tabindex="0">
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_mail" size="16px" />
-                          </q-avatar>
+                        <q-item-section>
+                          <div class="text-body2 no-letter-spacing">
+                            تلفن
+                          </div>
                         </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          ایمیل
+                      </q-item>
+                      <q-item clickable v-close-popup tabindex="0">
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar class="bg-on-dark" size="sm">
+                              <q-icon name="o_mail" size="16px" />
+                            </q-avatar>
+                          </q-item-section>
                         </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item clickable v-close-popup tabindex="0">
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_share" size="16px" />
-                          </q-avatar>
+                        <q-item-section>
+                          <div class="text-body2 no-letter-spacing">
+                            ایمیل
+                          </div>
                         </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          شبکه‌های اجتماعی
+                      </q-item>
+                      <q-item clickable v-close-popup tabindex="0">
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar class="bg-on-dark" size="sm">
+                              <q-icon name="o_share" size="16px" />
+                            </q-avatar>
+                          </q-item-section>
                         </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item clickable v-close-popup tabindex="0">
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon
-                              name="o_phone_android"
-                              size="16px"
-                            />
-                          </q-avatar>
+                        <q-item-section>
+                          <div class="text-body2 no-letter-spacing">
+                            شبکه‌های اجتماعی
+                          </div>
                         </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          موبایل
+                      </q-item>
+                      <q-item clickable v-close-popup tabindex="0">
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar class="bg-on-dark" size="sm">
+                              <q-icon
+                                name="o_phone_android"
+                                size="16px"
+                              />
+                            </q-avatar>
+                          </q-item-section>
                         </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item clickable v-close-popup tabindex="0">
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_public" size="16px" />
-                          </q-avatar>
+                        <q-item-section>
+                          <div class="text-body2 no-letter-spacing">
+                            موبایل
+                          </div>
                         </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          وبسایت
+                      </q-item>
+                      <q-item clickable v-close-popup tabindex="0">
+                        <div class="q-py-sm">
+                          <q-item-section avatar>
+                            <q-avatar class="bg-on-dark" size="sm">
+                              <q-icon name="o_public" size="16px" />
+                            </q-avatar>
+                          </q-item-section>
                         </div>
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
+                        <q-item-section>
+                          <div class="text-body2 no-letter-spacing">
+                            وبسایت
+                          </div>
+                        </q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
+                </q-btn>
+              </div>
               <div v-for="item in phoneItems" :key="item">
                 <div
                   class="row bordered-1 q-pa-md q-my-md items-center"
@@ -169,13 +186,30 @@
           </template>
           <q-card class="no-border no-shadow">
             <q-card-section>
-              <q-btn
-                unelevated
-                class="primary-gradient text-white full-width q-pa-md"
+              <div
+                class="row q-gutter-sm items-center justify-between q-py-sm"
               >
-                <q-icon name="o_add" class="q-mr-xs" />
-                <span>افزودن آیتم جدید</span>
-              </q-btn>
+                <div
+                  class="text-body1 caption-on-dark no-letter-spacing"
+                >
+                  لطفا اطلاعات نشانی خود را وارد یا اصلاح کنید
+                </div>
+                <q-btn
+                  unelevated
+                  :rounded="$q.screen.gt.xs"
+                  :round="$q.screen.xs"
+                  class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+                  :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
+                  text-color="white"
+                >
+                  <q-icon
+                    size="20px"
+                    name="o_add"
+                    :class="$q.screen.gt.xs ? 'q-mr-xs' : ''"
+                  />
+                  <span v-if="$q.screen.gt.xs">افزودن آیتم جدید</span>
+                </q-btn>
+              </div>
               <div v-for="item in addressItems" :key="item">
                 <div
                   class="row bordered-1 q-pa-md q-my-md items-center"
@@ -237,13 +271,30 @@
           </template>
           <q-card class="no-border no-shadow">
             <q-card-section>
-              <q-btn
-                unelevated
-                class="primary-gradient text-white full-width q-pa-md"
+              <div
+                class="row q-gutter-sm items-center justify-between q-py-sm"
               >
-                <q-icon name="o_add" class="q-mr-xs" />
-                <span>افزودن آیتم جدید</span>
-              </q-btn>
+                <div
+                  class="text-body1 caption-on-dark no-letter-spacing"
+                >
+                  لطفا اطلاعات حساب بانکی خود را وارد یا اصلاح کنید
+                </div>
+                <q-btn
+                  unelevated
+                  :rounded="$q.screen.gt.xs"
+                  :round="$q.screen.xs"
+                  class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+                  :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
+                  text-color="white"
+                >
+                  <q-icon
+                    name="o_add"
+                    size="20px"
+                    :class="$q.screen.gt.xs ? 'q-mr-xs' : ''"
+                  />
+                  <span v-if="$q.screen.gt.xs">افزودن آیتم جدید</span>
+                </q-btn>
+              </div>
               <div
                 v-for="item in bankAccountDetail"
                 :key="item"
@@ -417,14 +468,30 @@
           </template>
           <q-card class="no-border no-shadow">
             <q-card-section>
-              <q-btn
-                unelevated
-                @click="addCustomField"
-                class="primary-gradient text-white full-width q-pa-md"
+              <div
+                class="row q-gutter-sm items-center justify-between q-py-sm"
               >
-                <q-icon name="o_add" class="q-mr-xs" />
-                <span>افزودن آیتم جدید</span>
-              </q-btn>
+                <div
+                  class="text-body1 caption-on-dark no-letter-spacing"
+                >
+                  فیلدهای سفارشی برای شخصی سازی بیشتر
+                </div>
+                <q-btn
+                  unelevated
+                  :rounded="$q.screen.gt.xs"
+                  :round="$q.screen.xs"
+                  class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+                  :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
+                  text-color="white"
+                >
+                  <q-icon
+                    name="o_add"
+                    size="20px"
+                    :class="$q.screen.gt.xs ? 'q-mr-xs' : ''"
+                  />
+                  <span v-if="$q.screen.gt.xs">افزودن آیتم جدید</span>
+                </q-btn>
+              </div>
               <div
                 class="row bordered-1 q-pa-md q-mt-md items-center"
               >

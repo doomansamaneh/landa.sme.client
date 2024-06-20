@@ -5,8 +5,14 @@
       :style="inside"
       position="top"
       expand
+      :class="isAtTop ? '' : 'desktop-toolbar-gradient'"
     >
-      <q-toolbar :class="inside ? '' : 'q-my-md'" :style="xPadding">
+      <q-toolbar
+        :style="[
+          inside ? '' : 'margin-top: 12px; margin-bottom: 12px;',
+          xPadding,
+        ]"
+      >
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <q-btn
@@ -106,7 +112,7 @@
               <q-icon size="20px" name="more_horiz" class="q-mr-sm" />
               {{ $t("shared.labels.more") }}
 
-              <q-menu class="border-radius-lg" fit :offset="[0, 20]">
+              <q-menu class="border-radius-lg" cover>
                 <q-list dense padding style="width: 250px">
                   <q-item
                     clickable
@@ -294,7 +300,7 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref, computed, onMounted, onUnmounted } from "vue";
   import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
 
@@ -303,6 +309,9 @@
 
   const $q = useQuasar();
   const router = useRouter();
+
+  const isAtTop = ref(true);
+  let previousScrollPosition = 0;
 
   const props = defineProps({
     title: String,
@@ -327,8 +336,8 @@
 
   const toolbarMargin = computed(() => {
     const baseMargin = $q.screen.lt.md
-      ? "margin-bottom: 65px;"
-      : "margin-bottom: 48px;";
+      ? "margin-bottom: 56px;"
+      : "margin-bottom: 42px;";
     const margin = $q.screen.lt.sm ? "margin-bottom: 36px;" : "";
     return props.margin ? baseMargin : margin;
   });
@@ -347,5 +356,19 @@
     } else {
       return "";
     }
+  });
+
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    isAtTop.value = currentPosition === 0;
+  };
+
+  onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
   });
 </script>

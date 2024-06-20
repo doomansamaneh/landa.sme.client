@@ -59,7 +59,7 @@
               />
               {{ row.locationName }} {{ row.address }}
             </div>
-            <div class="row items-center q-gutter-xs">
+            <div class="row items-center q-pt-xs q-gutter-xs">
               <div
                 class="flex text-body3 no-letter-spacing text-on-caption items-center rtl"
                 v-if="row.phoneNo"
