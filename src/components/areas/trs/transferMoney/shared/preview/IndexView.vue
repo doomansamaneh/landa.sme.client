@@ -1,11 +1,19 @@
 <template>
   <tool-bar :inside="inside" :model="model" />
-  <q-card>
-    <div id="invoicePreview">
-      <header-section :model="model" />
-      <body-section :model="model" />
+
+  <div class="row q-col-gutter-lg" style="margin-top: -16px">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+      <q-card>
+        <div id="invoicePreview">
+          <header-section :model="model" />
+          <body-section :model="model" />
+        </div>
+      </q-card>
     </div>
-  </q-card>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <detail-section :model="model" />
+    </div>
+  </div>
 </template>
 <script setup>
   import { ref, computed, onMounted } from "vue";
@@ -15,6 +23,7 @@
   import ToolBar from "./_Toolbar.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import BodySection from "./_BodySection.vue";
+  import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
 
   const props = defineProps({
     item: Object,

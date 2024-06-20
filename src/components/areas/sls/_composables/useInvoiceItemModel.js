@@ -19,6 +19,7 @@ export function useInvoiceItemModel(item) {
   };
 
   watchEffect(() => {
+    return;
     calculateTotal(model.value);
   });
 

@@ -377,11 +377,11 @@ export default {
           component: () =>
             import("pages/areas/trs/bill/EditPage.vue"),
         },
-        // {
-        //   path: "copy/:id",
-        //   component: () =>
-        //     import("pages/areas/trs/bill/CopyPage.vue"),
-        // },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/trs/bill/CopyPage.vue"),
+        },
         {
           path: "preview/:id",
           component: () =>
@@ -445,6 +445,13 @@ export default {
           path: "edit/:id",
           component: () =>
             import("pages/areas/trs/payment/EditPage.vue"),
+        },
+        {
+          path: "createFromInvoice/:id",
+          component: () =>
+            import(
+              "pages/areas/trs/payment/CreateFromInvoicePage.vue"
+            ),
         },
         // {
         //   path: "copy/:id",

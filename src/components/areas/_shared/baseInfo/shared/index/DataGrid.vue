@@ -1,15 +1,14 @@
 <template>
-  <template v-if="$q.screen.lt.sm">
-    <toolbar-mobile
-      v-if="toolbar"
-      buttons
-      :title="title"
-      :table-store="mobileGrid?.tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      activation
-    />
+  <toolbar
+    v-if="toolbar"
+    buttons
+    :title="title"
+    :table-store="mobileGrid?.tableStore ?? desktopGrid?.tableStore"
+    :base-route="baseRoute"
+    activation
+  />
 
+  <template v-if="$q.screen.lt.sm">
     <mobile
       :title="title"
       :grid-store="localGridStore"
@@ -22,17 +21,6 @@
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      v-if="toolbar"
-      :title="title"
-      :table-store="desktopGrid?.tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :activation="activation"
-      buttons
-      margin
-    />
-
     <desktop
       :title="title"
       :grid-store="localGridStore"
@@ -58,10 +46,9 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "src/components/areas/_shared/baseInfo/desktop/index/DataGrid.vue";
   import Mobile from "src/components/areas/_shared/baseInfo/mobile/index/DataGrid.vue";
+  import Toolbar from "./BaseInfoToolbar.vue";
 
   const props = defineProps({
     toolbar: Boolean,

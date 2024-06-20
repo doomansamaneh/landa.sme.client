@@ -126,10 +126,8 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from "vue";
+  import { ref, onMounted } from "vue";
   import { useQuasar } from "quasar";
-
-  import { useRoute } from "vue-router";
 
   import DetailPayments from "./_DetailPayments.vue";
   import DetailTax from "./_DetailTax.vue";
@@ -141,16 +139,8 @@
   });
 
   const $q = useQuasar();
-
-  const route = useRoute();
-
   const tab = ref("main-info");
-  const editor = ref("");
-  const editCommentBtn = ref(false);
-  const id = computed(() => props.model?.id ?? route.params.id);
-  const loading = computed(() => {
-    return props.model.value.id;
-  });
+
   const color = () => {
     return $q.dark.isActive ? "text-yellow" : "text-primary";
   };

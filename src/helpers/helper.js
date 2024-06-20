@@ -98,6 +98,7 @@ export const helper = {
   },
 
   getSubtotal(selectedRows, fieldName) {
+    if (!selectedRows) return 0;
     return selectedRows.reduce((sum, item) => {
       return sum + item[fieldName];
     }, 0);

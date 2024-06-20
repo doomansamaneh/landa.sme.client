@@ -1,14 +1,40 @@
 <template>
-  <q-card class="bordered">
+  <q-card
+    class="bordered"
+    :class="$q.screen.xs ? 'form-container' : ''"
+    style="margin-top: 0"
+  >
     <q-card-section>
       <div class="column q-gutter-y-sm">
         <div class="row">
-          <span class="col-2 text-caption text-bold">شماره: </span>
+          <span class="col-2 text-caption text-bold">شماره:</span>
           <span class="text-body3 q-mx-md">{{ model.value.no }}</span>
         </div>
 
         <div class="row items-center">
-          <span class="col-2 text-caption text-bold">مشتری:</span>
+          <span class="col-2 text-caption text-bold">
+            سند حسابداری:
+          </span>
+          <span class="text-body3 q-mx-md">
+            <router-link
+              class="no-decoration"
+              :to="`/acc/voucher/preview/${model.value.voucherId}`"
+            >
+              <q-icon
+                name="o_description"
+                size="xs"
+                class="q-mr-xs"
+                :class="color()"
+              />
+              <span class="decoration-on-hover" :class="color()">
+                {{ model.value.voucherNo }}
+              </span>
+            </router-link>
+          </span>
+        </div>
+
+        <div class="row items-center">
+          <span class="col-2 text-caption text-bold">فروشنده:</span>
           <span class="text-body3 q-mx-md">
             <router-link
               class="no-decoration"
@@ -29,32 +55,90 @@
 
         <div class="row" v-if="model.value.marketerName">
           <span class="col-1 text-caption text-bold">بازاریاب:</span>
-          <span class="text-body3 q-mx-md">{{ model.value.marketerName }}</span>
+          <span class="text-body3 q-mx-md">
+            {{ model.value.marketerName }}
+          </span>
         </div>
       </div>
     </q-card-section>
 
     <q-card-section v-if="model.value.id">
-      <detail-log />
+      <q-tabs
+        v-model="tab"
+        inline-label
+        outside-arrows
+        dense
+        align="left"
+        indicator-color="white"
+        class="border-radius-lg text-white primary-tabs shadow-2"
+        :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
+      >
+        <q-tab name="main-info" class="q-py-sm">
+          <template #default>
+            <q-icon
+              name="o_arrow_downward"
+              size="xs"
+              class="q-mr-sm"
+            />
+            <div class="text-body3 text-bold">دریافت و پرداخت</div>
+          </template>
+        </q-tab>
+        <q-tab name="log" class="q-py-sm">
+          <template #default>
+            <q-icon name="o_history" size="xs" class="q-mr-sm" />
+            <div class="text-body3 text-bold">تاریخچه</div>
+          </template>
+        </q-tab>
+      </q-tabs>
+
+      <q-tab-panels
+        v-model="tab"
+        animated
+        keep-alive
+        class="transparent"
+      >
+        <q-tab-panel name="main-info" class="no-padding">
+          <detail-payments :model="model" :form-store="formStore" />
+        </q-tab-panel>
+
+        <q-tab-panel name="log" class="no-padding">
+          <detail-log />
+        </q-tab-panel>
+      </q-tab-panels>
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useQuasar } from "quasar";
+  import { ref, computed, onMounted } from "vue";
+  import { useQuasar } from "quasar";
 
-import DetailLog from "components/areas/sls/_shared/invoice/shared/preview/_DetailLog.vue";
+  import { useRoute } from "vue-router";
 
-const props = defineProps({
-  model: Object,
-  formStore: Object,
-});
+  import DetailPayments from "./_DetailPayments.vue";
+  import DetailLog from "src/components/areas/_shared/log/PreviewLog.vue";
 
-const $q = useQuasar();
+  const props = defineProps({
+    model: Object,
+    formStore: Object,
+  });
 
-const tab = ref("log");
-const color = () => {
-  return $q.dark.isActive ? "text-yellow" : "text-primary";
-};
+  const $q = useQuasar();
+
+  const route = useRoute();
+
+  const tab = ref("main-info");
+  const editor = ref("");
+  const editCommentBtn = ref(false);
+  const id = computed(() => props.model?.id ?? route.params.id);
+  const loading = computed(() => {
+    return props.model.value.id;
+  });
+  const color = () => {
+    return $q.dark.isActive ? "text-yellow" : "text-primary";
+  };
+
+  onMounted(() => {
+    //formStore.getById(id.value);
+  });
 </script>

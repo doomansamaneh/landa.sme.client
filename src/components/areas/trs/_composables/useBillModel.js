@@ -1,4 +1,4 @@
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
@@ -22,22 +22,35 @@ export function useBillModel({ baseRoute, preview }) {
       else responseData = await crudStore.getById(id);
     } else responseData = await crudStore.getCreateModel(setItems);
 
-    setItems();
-
     if (responseData) {
       if (action === "copy") {
         model.value.no = 0;
         model.value.fiscalYearId = null;
       }
     }
+
+    setItems();
+    addWatch();
   }
 
   function setItems() {
-    if (!model.value.paymentItems) {
-      model.value.paymentItems = [];
-      model.value.billItems = [];
-    }
+    if (!model.value.paymentItems) model.value.paymentItems = [];
+    if (!model.value.billItems) model.value.billItems = [];
   }
+
+  function addWatch() {
+    watch(
+      model.value.billItems,
+      async () => {
+        model.value.billItems.forEach((item) => {
+          itemStore.calculateTotal(item);
+        });
+      },
+      { deep: true }
+    );
+  }
+
+  addWatch();
 
   const addNewItem = (index, currentRow) => {
     const newRow = { ...itemStore.model.value };
@@ -48,8 +61,8 @@ export function useBillModel({ baseRoute, preview }) {
   };
 
   const pushNewItem = (item) => {
-    if (item) model.value.billItems.push(item);
-    else model.value.billItems.push(itemStore.model.value);
+    const newRow = item ?? { ...itemStore.model.value };
+    model.value.billItems.push(newRow);
   };
 
   const deleteItem = (index) => {
@@ -57,7 +70,7 @@ export function useBillModel({ baseRoute, preview }) {
   };
 
   const addRow = (paymentMehod) => {
-    const amount = model.value.remainedAmount - totalAmount.value;
+    const amount = totalBillAmount.value - totalAmount.value;
     model.value.paymentItems.push({
       ...itemStore.model.value,
       amount: Math.max(amount, 0),
@@ -80,6 +93,10 @@ export function useBillModel({ baseRoute, preview }) {
     helper.getSubtotal(model.value.paymentItems, "amount")
   );
 
+  const totalBillAmount = computed(() =>
+    helper.getSubtotal(model.value.billItems, "total")
+  );
+
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
@@ -92,6 +109,7 @@ export function useBillModel({ baseRoute, preview }) {
     model,
     crudStore,
     totalAmount,
+    totalBillAmount,
 
     getById,
     addRow,

@@ -82,9 +82,9 @@
   import { ref, computed, watch } from "vue";
   import { helper } from "src/helpers";
   import {
+    documentType,
     sortOrder,
     sqlOperator,
-    documentType,
   } from "src/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { invoiceRemainedColumns } from "src/components/areas/sls/_composables/constants";
@@ -100,10 +100,9 @@
     {
       fieldName: "d.TypeId",
       operator: sqlOperator.in,
-      value: `${documentType.invoice},${documentType.purchaseReturn}`,
+      value: `${documentType.purchase},${documentType.salesReturn}`,
     },
   ];
-
   const gridStore = useBaseInfoGrid({
     columns: invoiceRemainedColumns,
     sortColumn: "no",

@@ -22,7 +22,7 @@ export function useReceiptModel({ baseRoute, preview }) {
       else if (action === "createFromInvoice")
         responseData = await crudStore.getById(
           id,
-          "trs/receipt/createFromInvoice"
+          `${baseRoute}/createFromInvoice`
         );
       else responseData = await crudStore.getById(id);
     } else responseData = await crudStore.getCreateModel(setItems);

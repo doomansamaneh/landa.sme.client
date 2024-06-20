@@ -48,7 +48,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="(item, index) in model.value.voucherItems"
+          v-for="(item, index) in model?.voucherItems"
           :key="item.id"
         >
           <td style="padding: 3px; border: 1px solid #2d2d2d">
@@ -112,15 +112,26 @@
             class="text-right"
           >
             <strong>جمع کل:</strong>
+            (
+            <strong>{{ model?.currencyTitle }}</strong>
+            )
           </td>
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalDebit.value.toLocaleString() }}
+              {{
+                helper
+                  .getSubtotal(model?.voucherItems, "debit")
+                  ?.toLocaleString()
+              }}
             </strong>
           </td>
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalCredit.value.toLocaleString() }}
+              {{
+                helper
+                  .getSubtotal(model?.voucherItems, "credit")
+                  ?.toLocaleString()
+              }}
             </strong>
           </td>
         </tr>
@@ -130,13 +141,12 @@
 </template>
 
 <script setup>
-  import { numberToWords } from "@persian-tools/persian-tools";
   import { useQuasar } from "quasar";
+  import { helper } from "src/helpers";
 
   const $q = useQuasar();
 
   const props = defineProps({
-    formStore: Object,
     model: Object,
   });
 </script>

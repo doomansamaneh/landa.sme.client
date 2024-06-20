@@ -51,7 +51,7 @@
                   unelevated
                   no-caps
                   @click="
-                    crudStore.deleteBatch(
+                    localCrudStore.deleteBatch(
                       selectedIds,
                       tableStore?.reloadData
                     )
@@ -81,7 +81,7 @@
                   unelevated
                   no-caps
                   @click="
-                    crudStore.deleteById(
+                    localCrudStore.deleteById(
                       tableStore.activeRow.value.id,
                       tableStore?.reloadData
                     )
@@ -137,7 +137,7 @@
                       v-close-popup
                       tabindex="0"
                       @click="
-                        crudStore.activate(
+                        localCrudStore.activate(
                           selectedIds,
                           tableStore?.reloadData
                         )
@@ -162,7 +162,7 @@
                       v-close-popup
                       tabindex="0"
                       @click="
-                        crudStore.deactivate(
+                        localCrudStore.deactivate(
                           selectedIds,
                           tableStore?.reloadData
                         )
@@ -298,6 +298,7 @@
   import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
 
+  import { useFormActions } from "src/composables/useFormActions";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
   const $q = useQuasar();
@@ -317,6 +318,11 @@
 
   const selectedIds = computed(() =>
     props.tableStore?.selectedRows?.value.map((item) => item.id)
+  );
+
+  const _crudStore = useFormActions(props.baseRoute);
+  const localCrudStore = computed(
+    () => props.crudStore ?? _crudStore
   );
 
   const toolbarMargin = computed(() => {

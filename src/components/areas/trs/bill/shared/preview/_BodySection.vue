@@ -39,18 +39,16 @@
             شرح
           </th>
           <th style="width: 150px; border: 1px solid #2d2d2d">
-            بدهکار
+            مبلغ
           </th>
           <th style="width: 150px; border: 1px solid #2d2d2d">
-            بستانکار
+            ارزش افزوده
           </th>
+          <th style="width: 150px; border: 1px solid #2d2d2d">جمع</th>
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(item, index) in model.value.voucherItems"
-          :key="item.id"
-        >
+        <tr v-for="(item, index) in model?.billItems" :key="item.id">
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             {{ index + 1 }}
           </td>
@@ -86,7 +84,7 @@
               border: 1px solid #2d2d2d;
             "
           >
-            {{ item.debit.toLocaleString() }}
+            {{ item.amount.toLocaleString() }}
           </td>
           <td
             style="
@@ -95,7 +93,16 @@
               border: 1px solid #2d2d2d;
             "
           >
-            {{ item.credit.toLocaleString() }}
+            {{ item.vatAmount.toLocaleString() }}
+          </td>
+          <td
+            style="
+              vertical-align: top;
+              padding: 3px;
+              border: 1px solid #2d2d2d;
+            "
+          >
+            {{ item.total.toLocaleString() }}
           </td>
         </tr>
       </tbody>
@@ -112,15 +119,39 @@
             class="text-right"
           >
             <strong>جمع کل:</strong>
+            ({{
+              numberToWords(
+                helper.getSubtotal(model?.billItems, "total")
+              )
+            }}
+            <strong>{{ model?.currencyTitle }}</strong>
+            )
           </td>
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalDebit.value.toLocaleString() }}
+              {{
+                helper
+                  .getSubtotal(model?.billItems, "amount")
+                  ?.toLocaleString()
+              }}
             </strong>
           </td>
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalCredit.value.toLocaleString() }}
+              {{
+                helper
+                  .getSubtotal(model?.billItems, "vatAmount")
+                  ?.toLocaleString()
+              }}
+            </strong>
+          </td>
+          <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <strong>
+              {{
+                helper
+                  .getSubtotal(model?.billItems, "total")
+                  ?.toLocaleString()
+              }}
             </strong>
           </td>
         </tr>
@@ -132,11 +163,11 @@
 <script setup>
   import { numberToWords } from "@persian-tools/persian-tools";
   import { useQuasar } from "quasar";
+  import { helper } from "src/helpers";
 
   const $q = useQuasar();
 
   const props = defineProps({
-    formStore: Object,
     model: Object,
   });
 </script>

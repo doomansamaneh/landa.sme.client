@@ -22,7 +22,7 @@
     <div class="col-md-6 col-sm-12 col-xs-12">
       <q-item-label caption class="q-mb-sm">شرح</q-item-label>
       <custom-input
-        v-model="localFormStore.model.value.subject"
+        v-model="localFormStore.model.value.summary"
         hide-bottom-space
         type="textarea"
       />

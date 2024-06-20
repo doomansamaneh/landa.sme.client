@@ -9,6 +9,7 @@
         unelevated
         no-caps
       >
+        edit...
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
         {{ $t("shared.labels.edit") }}
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->

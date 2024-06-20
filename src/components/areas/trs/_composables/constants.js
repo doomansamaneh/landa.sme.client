@@ -98,7 +98,7 @@ export const transferMoneyColumns = [
   },
   subject,
   amount,
-  actions,
+  //actions,
 ];
 
 export const receiptColumns = [
@@ -111,7 +111,7 @@ export const receiptColumns = [
 ];
 
 export const billColumns = [
-  no,
+  rowNo,
   date,
   subject,
   amount,

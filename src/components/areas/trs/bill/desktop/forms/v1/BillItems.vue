@@ -116,14 +116,13 @@
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="6" class="text-right">سرجمع:</td>
+        <td colspan="6" class="text-right text-weight-700">سرجمع:</td>
         <td>
           <strong>
-            {{
-              formStore.model.value.totalBillAmount?.toLocaleString()
-            }}
+            {{ formStore.totalBillAmount?.value.toLocaleString() }}
           </strong>
         </td>
+        <td></td>
       </tr>
     </tbody>
   </q-markup-table>

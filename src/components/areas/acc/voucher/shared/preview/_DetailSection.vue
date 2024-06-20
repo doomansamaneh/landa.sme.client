@@ -3,7 +3,7 @@
     <q-card-section class="q-gutter-md">
       <div class="q-gutter-sm">
         <span class="text-caption">شماره:</span>
-        <span class="text-weight-700">{{ model.value.no }}</span>
+        <span class="text-weight-700">{{ model?.no }}</span>
       </div>
       <div v-if="relationModel?.url">
         <q-btn :to="`/${relationModel.url}`" flat_unelevated>
@@ -13,31 +13,32 @@
       </div>
     </q-card-section>
 
-    <q-card-section v-if="model.value.id">
-      <detail-log />
+    <q-card-section v-if="model?.id">
+      <preview-log />
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
   import { ref, watch } from "vue";
+  import { useVoucherModel } from "../../../_composables/useVoucherModel";
 
-  import DetailLog from "./_DetailLog.vue";
+  import PreviewLog from "src/components/areas/_shared/log/PreviewLog.vue";
 
   const props = defineProps({
     model: Object,
-    formStore: Object,
   });
 
   const relationModel = ref(null);
+  const formStore = useVoucherModel({ baseRoute: "acc/voucher" });
 
   const fetchRelation = async (id) => {
-    const responseData = await props.formStore.getRelation(id);
+    const responseData = await formStore.getRelation(id);
     relationModel.value = responseData;
   };
 
   watch(
-    () => props.model.value.id,
+    () => props.model?.id,
     (newId) => {
       if (newId) {
         fetchRelation(newId);

@@ -56,6 +56,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { isActiveOptions } from "src/constants";
+  import { useQuasar } from "quasar";
 
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
@@ -71,6 +72,7 @@
   });
 
   const dataGrid = ref(null);
+  const $q = useQuasar();
 
   async function reloadData() {
     await tableStore.value.reloadData();

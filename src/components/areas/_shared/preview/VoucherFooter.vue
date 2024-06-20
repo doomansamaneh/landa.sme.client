@@ -12,6 +12,7 @@
         <tr>
           <td
             style="
+              width: 50%;
               vertical-align: top;
               padding: 40px 6px;
               border: 1px solid #2d2d2d;
@@ -37,15 +38,9 @@
 </template>
 
 <script setup>
-  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
-
   const props = defineProps({
     model: Object,
-    comment: String,
-    showSignature: Boolean,
   });
-
-  const appConfigStore = useAppConfigModel();
 </script>
 
 <style lang="scss">
