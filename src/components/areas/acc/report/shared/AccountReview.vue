@@ -10,6 +10,7 @@
     :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
     align="left"
     inline-label
+    narrow-indicator
   >
     <q-tab
       name="cl"
