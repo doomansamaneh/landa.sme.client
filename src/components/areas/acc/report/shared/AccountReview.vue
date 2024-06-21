@@ -50,7 +50,7 @@
     v-model="tab"
     animated
     keep-alive
-    class="q-mt-sm transparent"
+    class="q-mt-md transparent"
   >
     <q-tab-panel name="cl" class="no-padding">
       <review-cl />
