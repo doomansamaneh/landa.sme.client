@@ -283,6 +283,16 @@ export const inventoryTitle = {
   showFilter: true,
 };
 
+export const toInventoryTitle = {
+  name: "toInventoryTitle",
+  field: "toInventoryTitle",
+  sortable: true,
+  label: "انبار مقصد",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
 export const amount = {
   name: "amount",
   field: "amount",

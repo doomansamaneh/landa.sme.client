@@ -11,7 +11,7 @@
     bordered_
     wrapCells
     dense_
-    :expandable="true"
+    expandable
   >
     <template #cell-credit="{ item }">
       {{ item.credit?.toLocaleString() }}
@@ -57,6 +57,10 @@
       </td>
       <td colspan="100%"></td>
     </template>
+
+    <template #expand="{ item }">
+      <voucher-preview :voucher-id="item.voucherId" inside />
+    </template>
   </data-grid>
 </template>
 
@@ -67,6 +71,7 @@
   import { accountItemColumns } from "../../_composables/constants";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import VoucherPreview from "../../voucher/shared/preview/IndexView.vue";
 
   const props = defineProps({
     dataSource: {

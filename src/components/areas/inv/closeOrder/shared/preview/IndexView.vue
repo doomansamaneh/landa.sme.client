@@ -1,8 +1,14 @@
 <template>
-  <tool-bar :inside="inside" buttons :title="title" back-button>
+  <tool-bar
+    :inside="inside"
+    :margin="!inside"
+    :title="title"
+    buttons
+    back-button
+  >
     <template #buttons>
       <q-btn
-        :to="`/inv/closeOrder/edit/${id}`"
+        :to="`/${baseRoute}/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -13,6 +19,28 @@
         {{ $t("shared.labels.edit") }}
       </q-btn>
       <q-btn
+        :to="`/${baseRoute}/copy/${id}`"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
+        {{ $t("shared.labels.copy") }}
+      </q-btn>
+      <q-btn
+        @click="crudStore.deleteById(id)"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
+        {{ $t("shared.labels.delete") }}
+      </q-btn>
+      <q-btn
         @click="helper.print('invoicePreview')"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
@@ -21,49 +49,66 @@
         no-caps
       >
         <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        چاپ
+        {{ $t("shared.labels.print") }}
       </q-btn>
     </template>
   </tool-bar>
 
-  <div class="row q-col-gutter-lg">
+  <div class="row q-col-gutter-lg" style="margin-top: -16px">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
         <div id="invoicePreview">
-          <header-section v-if="model" :model="model" />
+          <header-section
+            :model="model"
+            :title="$t('main-menu-items.Inv_CloseOrder_View')"
+          />
+
+          <q-card-section class="q-gutter-y-sm_">
+            <body-section :model="model" />
+          </q-card-section>
         </div>
       </q-card>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <detail-section v-if="model" :model="model" />
+      <detail-section :model="model" />
     </div>
   </div>
 </template>
 
 <script setup>
   import { ref, computed, onMounted } from "vue";
-  import { useRoute } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
   import { helper } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import HeaderSection from "./_HeaderSection.vue";
-  import DetailSection from "./_DetailSection.vue";
+  import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
+  import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
+  import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
+  import BodySection from "./_BodySection.vue";
 
   const props = defineProps({
     item: Object,
     title: String,
     inside: Boolean,
-    margin: Boolean,
   });
 
+  const baseRoute = "inv/closeOrder";
   const model = ref(null);
-  const formStore = useFormActions("inv/closeOrder", model);
+
+  const crudStore = useFormActions(baseRoute, model);
+
   const route = useRoute();
+  const router = useRouter();
 
   const id = computed(() => props.item?.id ?? route.params.id);
 
+  function deleteCallBack() {
+    //voucherStore.state.firstLoad.value = false;
+    router.back();
+  }
+
   onMounted(() => {
-    formStore.getById(id.value);
+    crudStore.getById(id.value);
   });
 </script>

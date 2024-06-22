@@ -123,7 +123,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { computed, ref } from "vue";
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { useProductStockGrid } from "src/components/areas/inv/_composables/useProductStockGrid.js";
@@ -146,4 +146,8 @@
   const gridStore = useProductStockGrid();
   const desktopGrid = ref(null);
   const mobileGrid = ref(null);
+  const tableStore = computed(
+    () =>
+      desktopGrid?.value.tableStore ?? mobileGrid?.value.tableStore
+  );
 </script>

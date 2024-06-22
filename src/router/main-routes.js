@@ -1144,6 +1144,99 @@ export default {
     },
 
     {
+      path: "inv/reposition",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/inv/reposition/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/inv/reposition/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/inv/reposition/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/inv/reposition/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/inv/reposition/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "inv/openingStock",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/inv/openingStock/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/inv/openingStock/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/inv/openingStock/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/inv/openingStock/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/inv/openingStock/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "inv/modifyStock",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/inv/modifyStock/IndexPage.vue"),
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/inv/modifyStock/CreatePage.vue"),
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/inv/modifyStock/EditPage.vue"),
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/inv/modifyStock/CopyPage.vue"),
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/inv/modifyStock/PreviewPage.vue"),
+        },
+      ],
+    },
+
+    {
       path: "inv/report",
       children: [
         {

@@ -8,6 +8,7 @@
     base-route="sls/report/productStock"
     numbered
     expandable
+    toolbar_
   >
     <template #cell-purchaseQuantity="{ item }">
       {{ item.purchaseQuantity?.toLocaleString() }}

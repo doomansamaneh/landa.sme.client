@@ -38,6 +38,7 @@
           {{ model?.subject }}
         </span>
       </div>
+      <slot name="header"></slot>
     </div>
   </q-card-section>
 </template>

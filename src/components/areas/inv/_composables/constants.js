@@ -15,6 +15,7 @@ import {
   amount,
   inventoryTitle,
   contractTitle,
+  toInventoryTitle,
 } from "src/constants/columns";
 
 export const productStockColumns = [
@@ -39,10 +40,27 @@ export const productStockItemColumns = [
 ];
 
 export const closeOrderColumns = [
-  rowNo,
-  date,
-  contractTitle,
-  inventoryTitle,
-  subject,
-  amount,
+  { ...rowNo },
+  { ...date },
+  { ...contractTitle },
+  { ...inventoryTitle },
+  { ...subject },
+  { ...amount },
+];
+
+export const repositionColumns = [
+  { ...rowNo },
+  { ...date },
+  { ...inventoryTitle },
+  { ...toInventoryTitle },
+  { ...subject },
+  { ...amount },
+];
+
+export const openingStockColumns = [
+  { ...rowNo },
+  { ...date },
+  { ...inventoryTitle },
+  { ...subject },
+  { ...amount },
 ];

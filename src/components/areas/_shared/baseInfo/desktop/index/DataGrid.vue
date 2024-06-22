@@ -34,6 +34,10 @@
       </div>
     </template>
 
+    <template #cell-amount="{ item }">
+      {{ item.amount?.toLocaleString() }}
+    </template>
+
     <template #cell-actions="{ item }">
       <row-tool-bar
         :base-route="baseRoute"
