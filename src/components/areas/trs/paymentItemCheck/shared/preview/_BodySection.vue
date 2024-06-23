@@ -24,11 +24,17 @@
     <div class="row">
       <div class="col-2">شرح:</div>
       <div class="col">
-        {{ model?.checkBankTitle }} /
-        {{ model?.checkBankBranchTitle }}
-        <span v-if="model?.checkBankBranchCode">
-          ( کد: {{ model?.checkBankBranchCode }})
-        </span>
+        <div v-if="model?.checkBankTitle">
+          {{ model?.checkBankTitle }} /
+          {{ model?.checkBankBranchTitle }}
+          <span v-if="model?.checkBankBranchCode">
+            ( کد: {{ model?.checkBankBranchCode }})
+          </span>
+        </div>
+        <div v-else>
+          {{ model?.bankTitle }} / (ش حساب:
+          {{ model?.bankAccountNo }})
+        </div>
         <div>{{ model?.subject }}</div>
         <div>{{ model?.comment }}</div>
       </div>
