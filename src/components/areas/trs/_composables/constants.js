@@ -4,14 +4,25 @@ import {
   actions,
   date,
   subject,
-  comment,
   rowNo,
   no,
   amount,
   customerName,
+  itemNo,
+  statusId,
 } from "src/constants/columns";
 
-export const paymentInvoiceColumns = [no, date, amount];
+export const paymentInvoiceColumns = [
+  { ...no },
+  { ...date },
+  { ...amount },
+];
+
+export const paymentItemColumns = [
+  { ...no },
+  { ...date },
+  { ...subject },
+];
 
 export const bankAccountColumns = [
   {
@@ -53,12 +64,12 @@ export const bankAccountColumns = [
     class: "text-left",
     value: "",
   },
-  isActive,
+  { ...isActive },
   actions,
 ];
 
 export const cashColumns = [
-  title,
+  { ...title },
   {
     name: "debitRemained",
     field: "debitRemained",
@@ -69,13 +80,13 @@ export const cashColumns = [
     class: "text-left",
     value: "",
   },
-  isActive,
+  { ...isActive },
   actions,
 ];
 
 export const transferMoneyColumns = [
-  rowNo,
-  date,
+  { ...rowNo },
+  { ...date },
   {
     name: "fromTitle",
     field: "fromTitle",
@@ -96,24 +107,47 @@ export const transferMoneyColumns = [
     class: "text-left",
     value: "",
   },
-  subject,
-  amount,
+  { ...subject },
+  { ...amount },
   //actions,
 ];
 
 export const receiptColumns = [
-  no,
-  date,
-  subject,
-  customerName,
-  amount,
+  { ...no },
+  { ...date },
+  { ...subject },
+  { ...customerName },
+  { ...amount },
   //actions,
 ];
 
 export const billColumns = [
-  rowNo,
-  date,
-  subject,
-  amount,
+  { ...rowNo },
+  { ...date },
+  { ...subject },
+  { ...amount },
+  //actions,
+];
+
+export const checkItemColumns = [
+  { ...no, name: "paymentNo", field: "paymentNo" },
+  {
+    ...date,
+    name: "paymentDate",
+    field: "paymentDate",
+    template: "",
+  },
+  { ...itemNo },
+  {
+    ...date,
+    name: "itemDate",
+    field: "itemDate",
+    template: "",
+    label: "تاریخ چک",
+  },
+  { ...customerName },
+  { ...subject },
+  { ...amount },
+  { ...statusId },
   //actions,
 ];

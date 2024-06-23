@@ -1,5 +1,5 @@
 <template>
-  <q-card :class="containerClass">
+  <div :class="containerClass">
     <slot name="title"></slot>
 
     <div class="q-table__middle scroll">
@@ -62,7 +62,7 @@
               <slot
                 v-if="col.showFilter"
                 :name="`filter-${col.name}`"
-                :col="col"
+                :item="col"
               >
                 <custom-input
                   v-model="col.value"
@@ -125,19 +125,21 @@
                 </slot>
               </td>
               <td v-if="expandable">
-                <q-btn
-                  size="md"
-                  class="expand-icon"
-                  :color="$q.dark.isActive ? 'white' : 'grey-8'"
-                  flat
-                  dense
-                  round
-                  @click="toggleExpand(row)"
-                  :icon="chevronIcon()"
-                  :class="
-                    row.expanded ? 'expand-open' : 'expand-close'
-                  "
-                />
+                <slot name="expandable" :item="row">
+                  <q-btn
+                    size="md"
+                    class="expand-icon"
+                    :color="$q.dark.isActive ? 'white' : 'grey-8'"
+                    flat
+                    dense
+                    round
+                    @click="toggleExpand(row)"
+                    :icon="chevronIcon()"
+                    :class="
+                      row.expanded ? 'expand-open' : 'expand-close'
+                    "
+                  />
+                </slot>
               </td>
             </tr>
             <transition
@@ -215,7 +217,7 @@
         </template>
       </page-bar>
     </div>
-  </q-card>
+  </div>
 </template>
 
 <script setup>

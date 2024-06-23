@@ -344,7 +344,12 @@
       "workInsuranceNo": "کد کارگاه بیمه",
       "period": "دوره",
       "taxAmount": "مالیات",
-      "insuranceAmount": "بیمه"
+      "insuranceAmount": "بیمه",
+      "deleteCheckLog": "حذف تاریخچه چک",
+      "cashTheCheck": "نقد کردن چک",
+      "transferToBank": "واگذاری چک به بانک",
+      "bounceTheCheck": "برگشت چک",
+      "spendTheCheck": "انتقال چک، خرج کردن چک"
     },
     "productType": {
       "main": "اصلی",
@@ -358,6 +363,13 @@
       "bankTransition": "واریز بانکی",
       "pos": "دستگاه پوز",
       "customer": "طرف حساب"
+    },
+    "paymentStatus": {
+      "normal": "دریافت شده",
+      "transferedToBank": "در جریان وصول/واگذاری به بانک",
+      "cashed": "چک نقد شده",
+      "checkBounced": "چک برگشتی",
+      "checkSpent": "انتقال چک/ خرج شده"
     },
     "insurranceType": {
       "normal": "30 درصد",
@@ -453,6 +465,21 @@
       "asset": "اموال و داراییهای ثابت",
       "inventory": "انبارداری",
       "contract": "پیمانکاری"
+    },
+    "contactType": {
+      "phone": "تلفن",
+      "mobile": "موبایل",
+      "email": "ایمیل",
+      "address": "نشانی",
+      "website": "وب سایت",
+      "socialNetwork": "شبکه اجتماعی"
+    },
+    "locationType": {
+      "country": "کشور",
+      "province": "استان",
+      "city": "شهرستان",
+      "section": "بخش",
+      "town": "دهستان"
     },
     "cogsCalcMethod": {
       "none": "هیچکدام",

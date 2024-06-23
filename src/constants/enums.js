@@ -15,6 +15,23 @@ export const customerType = {
   personnel: 173,
 };
 
+export const contactType = {
+  phone: 271,
+  mobile: 272,
+  email: 273,
+  address: 274,
+  website: 275,
+  socialNetwork: 276,
+};
+
+export const locationType = {
+  country: 161,
+  province: 162,
+  city: 163,
+  section: 164,
+  town: 165,
+};
+
 export const militaryStatus = {
   done: 131,
   exempt: 132,
@@ -140,6 +157,14 @@ export const paymentMethod = {
   customer: { id: 1075, color: "bluegrey" },
 };
 
+export const paymentStatus = {
+  normal: 1081,
+  transferedToBank: 1082,
+  cashed: 1083,
+  checkBounced: 1084,
+  checkSpent: 1085,
+};
+
 export const productType = {
   main: 211,
   part: 212,
@@ -174,23 +199,23 @@ export const quoteStatus = {
 };
 
 export const documentType = {
-  voucher: "EE0D0341-14D3-4F30-8162-CA8B530EC229",
-  invoice: "7B1AF164-933C-4B5E-A4F0-0D71F95631B5",
-  salesReturn: "7B1AF164-933C-4B5E-A4F0-0D71F95631B6",
-  purchaseReturn: "7B1AF164-933C-4B5E-A4F0-0D71F95631B7",
-  quote: "0D440906-DB4C-4B8C-9EA4-EAB511B13276",
-  receipt: "94DA37DE-8E95-4945-A076-9B84F6BF6B67",
-  payment: "D57FA724-5907-4C40-8837-2886ED97F5C0",
-  paymentItem: "AB7FA720-A900-AC40-A830-A886ED97F5C0",
-  bill: "D57FF724-5907-4C40-8837-2886ED97F5C0",
-  wage: "65229DF9-5EB9-490D-91DA-ADFA4FA2ED3C",
-  purchase: "07948241-D71F-4ADB-9169-E7BFA84CF8F3",
-  transferMoney: "169918C3-F1C2-4FD1-80B0-BD7A786DF654",
-  invProduction: "109918C3-F1C2-4FD1-80B0-BD7A786DF610",
-  invOpeningStock: "109918C3-F1C2-4FD1-80B0-BD7A786DF611",
-  invModifyStock: "109918C3-F1C2-4FD1-80B0-BD7A786DF612",
-  invCloseOrder: "109918C3-F1C2-4FD1-80B0-BD7A786DF613",
-  invReposition: "3FA58A2F-DAE1-4559-9920-58CFF897822C",
+  voucher: "ee0d0341-14d3-4f30-8162-ca8b530ec229",
+  invoice: "7b1af164-933c-4b5e-a4f0-0d71f95631b5",
+  salesReturn: "7b1af164-933c-4b5e-a4f0-0d71f95631b6",
+  purchaseReturn: "7b1af164-933c-4b5e-a4f0-0d71f95631b7",
+  quote: "0d440906-db4c-4b8c-9ea4-eab511b13276",
+  receipt: "94da37de-8e95-4945-a076-9b84f6bf6b67",
+  payment: "d57fa724-5907-4c40-8837-2886ed97f5c0",
+  paymentItem: "ab7fa720-a900-ac40-a830-a886ed97f5c0",
+  bill: "d57ff724-5907-4c40-8837-2886ed97f5c0",
+  wage: "65229df9-5eb9-490d-91da-adfa4fa2ed3c",
+  purchase: "07948241-d71f-4adb-9169-e7bfa84cf8f3",
+  transferMoney: "169918c3-f1c2-4fd1-80b0-bd7a786df654",
+  invProduction: "109918c3-f1c2-4fd1-80b0-bd7a786df610",
+  invOpeningStock: "109918c3-f1c2-4fd1-80b0-bd7a786df611",
+  invModifyStock: "109918c3-f1c2-4fd1-80b0-bd7a786df612",
+  invCloseOrder: "109918c3-f1c2-4fd1-80b0-bd7a786df613",
+  invReposition: "3fa58a2f-dae1-4559-9920-58cff897822c",
 };
 
 export const paymentType = {

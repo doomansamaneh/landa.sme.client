@@ -73,8 +73,8 @@
       >
         <slot name="thead">
           <div
-            class="row q-gutter-x-md items-center"
-            style="width: 300px; margin-left: 120px"
+            class="row q-gutter-x-lg items-center"
+            style="width: 100%; margin-left: 0px"
           >
             <div class="col-1">#</div>
             <div v-for="col in lookupColumns" :key="col" class="col">
@@ -127,8 +127,8 @@
             v-close-popup
           >
             <div
-              class="row items-center q-gutter-x-md"
-              style="width: 300px; margin-left: 120px"
+              class="row items-center q-gutter-x-lg"
+              style="width: 100%; margin-left_: 50px"
             >
               <div class="col-1 text-caption no-letter-spacing">
                 {{ index + 1 }}
@@ -194,7 +194,7 @@
       <q-card-section>
         <div class="row items-center q-gutter-md">
           <div class="col text-body2 no-letter-spacing text-bold">
-            <slot name="title">لوکاپ</slot>
+            <slot name="title">انتخاب</slot>
           </div>
           <div class="flex flex-center">
             <q-btn
@@ -251,8 +251,8 @@
       >
         <slot name="thead">
           <div
-            class="row q-gutter-x-md items-center"
-            style="width: 300px; margin-left: 120px"
+            class="row q-gutter-x-lg items-center"
+            style="width: 100%; margin-left: 0px"
           >
             <div class="col-1">#</div>
             <div v-for="col in lookupColumns" :key="col" class="col">
@@ -305,8 +305,8 @@
               v-close-popup
             >
               <div
-                class="row items-center q-gutter-x-md"
-                style="width: 300px; margin-left: 120px"
+                class="row items-center q-gutter-x-lg"
+                style="width: 100%; margin-left: 0px"
               >
                 <div class="col-1 text-caption no-letter-spacing">
                   {{ index + 1 }}

@@ -16,16 +16,16 @@
       expandable
       @row-dbl-click="gotoPreview"
     >
-      <template #filter-typeId="{ col }">
+      <template #filter-typeId="{ item }">
         <custom-select
-          v-model="col.value"
+          v-model="item.value"
           :options="helper.getEnumOptions(voucherType, 'voucherType')"
           @update:model-value="reloadData"
         />
       </template>
-      <template #filter-systemId="{ col }">
+      <template #filter-systemId="{ item }">
         <custom-select
-          v-model="col.value"
+          v-model="item.value"
           :options="helper.getEnumOptions(subSystem, 'subSystem')"
           @update:model-value="reloadData"
         />

@@ -1,5 +1,5 @@
 <template>
-   <data-grid
+  <data-grid
     ref="dataGrid"
     :data-source="dataSource"
     :grid-store="gridStore"
@@ -11,9 +11,9 @@
     dense
     expandable
   >
-    <template #filter-isActive="{ col }">
+    <template #filter-isActive="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="isActiveOptions"
         @update:model-value="reloadData"
       />

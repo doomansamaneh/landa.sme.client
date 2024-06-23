@@ -111,9 +111,9 @@
     :expandable="true"
     class="q-mb-md"
   >
-    <template #filter-isActive="{ col }">
+    <template #filter-isActive="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="isActiveOptions"
         @update:model-value="reloadData"
       />

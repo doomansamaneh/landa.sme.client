@@ -333,6 +333,7 @@ export default {
         },
       ],
     },
+
     {
       path: "trs/bankAccount",
       children: [
@@ -519,6 +520,17 @@ export default {
           path: "copy/:id",
           component: () =>
             import("pages/areas/trs/cash/CopyPage.vue"),
+        },
+      ],
+    },
+
+    {
+      path: "trs/report",
+      children: [
+        {
+          path: "checkItem",
+          component: () =>
+            import("pages/areas/trs/report/CheckItemPage.vue"),
         },
       ],
     },

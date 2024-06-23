@@ -1,4 +1,12 @@
-import { code, title, isActive, actions } from "src/constants/columns";
+import {
+  code,
+  title,
+  typeId,
+  parentTitle,
+  isActive,
+  actions,
+} from "src/constants/columns";
+
 export const productColumns = [
   {
     name: "productGroupTitle",
@@ -10,18 +18,9 @@ export const productColumns = [
     class: "text-left",
     value: "",
   },
-  code,
-  title,
-  {
-    name: "typeId",
-    field: "typeId",
-    sortable: true,
-    label: "نوع",
-    style: "width:120px;",
-    showFilter: true,
-    class: "text-left",
-    value: "",
-  },
+  { ...code },
+  { ...title },
+  { ...typeId },
   {
     name: "productUnitTitle",
     field: "productUnitTitle",
@@ -52,7 +51,7 @@ export const productColumns = [
     class: "text-left",
     value: "",
   },
-  isActive,
+  { ...isActive },
   actions,
 ];
 
@@ -65,9 +64,9 @@ export const bankBranchColumns = [
     class: "text-left",
     showFilter: true,
   },
-  code,
-  title,
-  isActive,
+  { ...code },
+  { ...title },
+  { ...isActive },
   actions,
 ];
 
@@ -97,4 +96,12 @@ export const productUnitRelationColumns = [
     class: "text-left",
     style: "width:150px",
   },
+];
+
+export const locationColumns = [
+  { ...code },
+  { ...title },
+  { ...typeId },
+  { ...parentTitle },
+  { ...isActive },
 ];

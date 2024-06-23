@@ -12,16 +12,16 @@
     dense_
     expandable_
   >
-    <template #filter-typeId="{ col }">
+    <template #filter-typeId="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="helper.getEnumOptions(productType, 'productType')"
         @update:model-value="reloadData"
       />
     </template>
-    <template #filter-isActive="{ col }">
+    <template #filter-isActive="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="isActiveOptions"
         @update:model-value="reloadData"
       />

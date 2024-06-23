@@ -13,9 +13,9 @@
     dense_
     expandable_
   >
-    <template #filter-typeId="{ col }">
+    <template #filter-typeId="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="
           helper.getEnumOptions(accountDLType, 'accountDLType')
         "

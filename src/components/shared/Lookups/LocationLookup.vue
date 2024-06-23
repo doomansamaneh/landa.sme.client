@@ -2,25 +2,24 @@
   <lookup-view
     dataSource="cmn/location/getlookupData"
     sortColumn="title"
-    textTemplate="{{ title }}"
-    columns="title"
+    textTemplate="{{code}} - {{ title }}"
+    columns="code,title"
     :filterExpression="filterExpression"
     ref="lookup"
-  >
-  </lookup-view>
+  ></lookup-view>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import { ref } from "vue";
+  import LookupView from "src/components/shared/dataTables/LookupView.vue";
 
-const props = defineProps({
-  filterExpression: Array,
-});
+  const props = defineProps({
+    filterExpression: Array,
+  });
 
-const lookup = ref(null);
+  const lookup = ref(null);
 
-defineExpose({
-  lookup,
-});
+  defineExpose({
+    lookup,
+  });
 </script>

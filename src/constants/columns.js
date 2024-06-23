@@ -1,3 +1,5 @@
+import { sqlOperator } from "./enums";
+
 export const id = {
   name: "id",
   field: "id",
@@ -16,7 +18,7 @@ export const type = {
   label: "نوع",
   align: "left",
   class: "text-left",
-  style: "width:120px;",
+  style: "width:150px;",
   showFilter: true,
 };
 
@@ -114,6 +116,27 @@ export const dlCode = {
   showFilter: true,
 };
 
+export const name = {
+  name: "name",
+  field: "name",
+  sortable: true,
+  label: "نام",
+  style: "",
+  showFilter: true,
+  class: "text-left",
+  value: "",
+};
+
+export const jobTitle = {
+  name: "jobTitle",
+  field: "jobTitle",
+  sortable: true,
+  label: "شغل",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
 export const title = {
   name: "title",
   field: "title",
@@ -123,6 +146,30 @@ export const title = {
   cellClass: "text-left",
   cellStyle: "",
   showFilter: true,
+};
+
+export const parentTitle = {
+  name: "parentTitle",
+  field: "parentTitle",
+  sortable: true,
+  label: "بالادستی",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  showFilter: true,
+};
+
+export const typeId = {
+  name: "typeId",
+  field: "typeId",
+  sortable: true,
+  label: "نوع",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width:120px;",
+  showFilter: true,
+  operator: sqlOperator.equal,
 };
 
 export const slTitle = {
@@ -170,6 +217,17 @@ export const no = {
   showFilter: true,
   //operator: sqlOperator.equal,
   value: "",
+};
+
+export const itemNo = {
+  name: "itemNo",
+  field: "itemNo",
+  sortable: true,
+  label: "شماره چک",
+  class: "text-left",
+  cellClass: "text-left",
+  style: "width:100px;",
+  showFilter: true,
 };
 
 export const date = {

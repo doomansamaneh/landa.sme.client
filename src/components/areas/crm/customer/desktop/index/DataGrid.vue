@@ -13,17 +13,17 @@
     expandable
     @row-dbl-click="gotoPreview"
   >
-    <template #filter-typeId="{ col }">
+    <template #filter-typeId="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="helper.getEnumOptions(customerType, 'customerType')"
         @update:model-value="reloadData"
       />
     </template>
 
-    <template #filter-isActive="{ col }">
+    <template #filter-isActive="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="isActiveOptions"
         @update:model-value="reloadData"
       />
@@ -32,7 +32,10 @@
     <template #cell-typeId="{ item }">
       {{
         $t(
-          `shared.customerType.${helper.getEnumType(item.typeId, customerType)}`
+          `shared.customerType.${helper.getEnumType(
+            item.typeId,
+            customerType
+          )}`
         )
       }}
     </template>
@@ -59,38 +62,38 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useRouter } from "vue-router";
-import { helper } from "src/helpers";
-import { isActiveOptions, customerType } from "src/constants";
+  import { ref, computed } from "vue";
+  import { useRouter } from "vue-router";
+  import { helper } from "src/helpers";
+  import { isActiveOptions, customerType } from "src/constants";
 
-import RowToolBar from "src/components/shared/RowToolBar.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-import CustomerPreview from "components/areas/crm/customer/shared/preview/IndexView.vue";
-import IsActive from "src/components/shared/IsActive.vue";
+  import RowToolBar from "src/components/shared/RowToolBar.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import CustomerPreview from "components/areas/crm/customer/shared/preview/IndexView.vue";
+  import IsActive from "src/components/shared/IsActive.vue";
 
-const props = defineProps({
-  gridStore: Object,
-  crudStore: Object,
-  dataSource: String,
-  baseRoute: String,
-});
+  const props = defineProps({
+    gridStore: Object,
+    crudStore: Object,
+    dataSource: String,
+    baseRoute: String,
+  });
 
-const router = useRouter();
-const dataGrid = ref(null);
+  const router = useRouter();
+  const dataGrid = ref(null);
 
-async function reloadData() {
-  await tableStore.value.reloadData();
-}
+  async function reloadData() {
+    await tableStore.value.reloadData();
+  }
 
-const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
-function gotoPreview(row) {
-  router.push(`/crm/customer/preview/${row.id}`);
-}
+  function gotoPreview(row) {
+    router.push(`/crm/customer/preview/${row.id}`);
+  }
 
-defineExpose({
-  tableStore,
-});
+  defineExpose({
+    tableStore,
+  });
 </script>

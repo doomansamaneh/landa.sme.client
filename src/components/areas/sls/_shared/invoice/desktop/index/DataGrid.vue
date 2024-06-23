@@ -13,9 +13,9 @@
     toolbar
     @row-dbl-click="gotoPreview"
   >
-    <template #filter-statusId="{ col }">
+    <template #filter-statusId="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="helper.getEnumOptions(quoteStatus, 'quoteStatus')"
         @update:model-value="reloadData"
       />

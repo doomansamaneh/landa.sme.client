@@ -18,6 +18,17 @@
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+      <q-item-label caption class="q-mb-sm">حساب بانکی</q-item-label>
+      <bank-account-lookup
+        v-model:selectedId="paymentItem.bankAccountId"
+        v-model:selectedText="paymentItem.no"
+        hide-bottom-space
+      />
+    </div>
+  </div>
+
+  <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-3 col-sm-12 col-xs-12">
       <q-item-label caption class="q-mb-sm">ش چک</q-item-label>
       <custom-input hide-bottom-space v-model="paymentItem.itemNo" />

@@ -11,16 +11,12 @@
     :expandable="expandable"
     toolbar
   >
-    <template #filter-isActive="{ col }">
+    <template #filter-isActive="{ item }">
       <custom-select
-        v-model="col.value"
+        v-model="item.value"
         :options="isActiveOptions"
         @update:model-value="reloadData"
       />
-    </template>
-
-    <template #filter-typeId="{ col }">
-      <slot name="filter-typeId" :col="col" />
     </template>
 
     <template #cell-isActive="{ item }">
@@ -31,6 +27,9 @@
       {{ item.subject }}
       <div v-if="item.summary" class="text-caption-sm">
         {{ item.summary }}
+      </div>
+      <div v-if="item.comment">
+        {{ item.comment }}
       </div>
     </template>
 

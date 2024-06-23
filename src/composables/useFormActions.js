@@ -66,7 +66,7 @@ export function useFormActions(baseURL, model) {
     isDirty.value = false;
   }
 
-  async function deleteById(id, callBack) {
+  async function deleteById(id, callBack, action) {
     if (id) {
       $q.dialog({
         component: ConfirmDialog,
@@ -77,8 +77,10 @@ export function useFormActions(baseURL, model) {
           okColor: "deep-orange-7",
         },
       }).onOk(async () => {
+        alert(action);
+        const deleteAction = action ?? "delete";
         const response = await fetchWrapper.post(
-          `${baseURL}/delete/${id}`
+          `${baseURL}/${deleteAction}/${id}`
         );
         notifyResponse(response.data);
         if (callBack) callBack();

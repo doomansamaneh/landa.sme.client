@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useFormActions } from "src/composables/useFormActions";
 
@@ -74,4 +74,18 @@
   const crudStore = useFormActions(props.baseRoute);
   const desktopGrid = ref(null);
   const mobileGrid = ref(null);
+
+  const tableStore = computed(
+    () =>
+      desktopGrid?.value?.tableStore ?? mobileGrid?.value?.tableStore
+  );
+
+  const reloadData = async () => {
+    tableStore.value.reloadData();
+  };
+
+  defineExpose({
+    reloadData,
+    tableStore,
+  });
 </script>
