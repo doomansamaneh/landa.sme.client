@@ -77,7 +77,6 @@ export function useFormActions(baseURL, model) {
           okColor: "deep-orange-7",
         },
       }).onOk(async () => {
-        alert(action);
         const deleteAction = action ?? "delete";
         const response = await fetchWrapper.post(
           `${baseURL}/${deleteAction}/${id}`

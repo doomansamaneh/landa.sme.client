@@ -5,7 +5,7 @@
       :style="inside"
       position="top"
       expand
-      :class="isAtTop ? '' : 'desktop-toolbar-gradient'"
+      :class="isAtTop || inside ? '' : 'desktop-toolbar-gradient'"
     >
       <q-toolbar
         :style="[

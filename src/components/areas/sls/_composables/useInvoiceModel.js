@@ -251,6 +251,29 @@ export function useInvoiceModel(config) {
     }
   }
 
+  async function downloadPdf(id) {
+    const response = await fetchWrapper.download(
+      `sls/invoice/GeneratePdf/${id}`
+    );
+    downloadFile(response);
+  }
+
+  function downloadFile(response) {
+    const link = document.createElement("a");
+    // Create a Blob from the response data
+    const blob = new Blob([response.data], {
+      type: response.data.type,
+    });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = "Invoice.pdf";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
   return {
     model,
     crudStore,
@@ -271,5 +294,7 @@ export function useInvoiceModel(config) {
     cancelInvoice,
     cancelInvoices,
     submitForm,
+
+    downloadPdf,
   };
 }

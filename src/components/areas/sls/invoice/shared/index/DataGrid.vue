@@ -143,7 +143,12 @@
 
           <q-separator class="q-my-sm" />
 
-          <q-item clickable v-close-popup tabindex="0">
+          <q-item
+            clickable
+            v-close-popup
+            tabindex="0"
+            @click="formStore.downloadPdf(row.id)"
+          >
             <q-item-section avatar class="q-py-sm">
               <q-avatar class="bg-on-dark" size="sm">
                 <q-icon name="o_print" size="20px" />
