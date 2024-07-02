@@ -9,7 +9,11 @@ export default {
     icon: "o_dashboard",
   },
   children: [
-    { path: "/", redirect: "/dashboard" },
+    {
+      path: "/",
+      component: HomePage,
+    },
+    //{ path: "/", redirect: "/dashboard" },
     {
       path: ":businessId",
       component: HomePage,
@@ -739,22 +743,20 @@ export default {
         {
           path: "",
           component: () =>
-            import(
-              "src/pages/management/users/settings/IndexPage.vue"
-            ),
+            import("src/pages/management/users/SettingPage.vue"),
         },
-        {
-          path: "appearance",
-          component: () =>
-            import(
-              "src/pages/management/users/settings/appearance/IndexPage.vue"
-            ),
-        },
+        // {
+        //   path: "appearance",
+        //   component: () =>
+        //     import(
+        //       "src/pages/management/users/settings/appearance/IndexPage.vue"
+        //     ),
+        // },
         {
           path: "change-password",
           component: () =>
             import(
-              "src/pages/management/users/settings/changePassword/IndexPage.vue"
+              "src/pages/areas/scr/users/ChangePasswordPage.vue"
             ),
         },
       ],

@@ -14,7 +14,7 @@ export function useBaseInfoGrid(config) {
   };
 
   const composablesStore = useComposables();
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       localState.firstLoad.value = false;
     },

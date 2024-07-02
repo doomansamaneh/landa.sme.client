@@ -12,7 +12,9 @@ export function useFormActions(baseURL, model) {
   const { t } = useI18n();
 
   async function getById(id, url) {
-    return await onGetById(url ?? `${baseURL}/getById`, id);
+    const response = await onGetById(url ?? `${baseURL}/getById`, id);
+    await resetIsDirty();
+    return response;
   }
 
   async function getCreateModel(callBack) {
@@ -33,7 +35,6 @@ export function useFormActions(baseURL, model) {
     if (id) {
       const response = await fetchWrapper.get(`${url}/${id}`);
       model.value = response.data.data;
-      await resetIsDirty();
       return response.data.data;
     }
     return null;
@@ -64,6 +65,7 @@ export function useFormActions(baseURL, model) {
   async function resetIsDirty() {
     await helper.sleep(0);
     isDirty.value = false;
+    addWatch();
   }
 
   async function deleteById(id, callBack, action) {
@@ -181,7 +183,7 @@ export function useFormActions(baseURL, model) {
     });
   }
 
-  if (model) {
+  const addWatch = () => {
     watch(
       model,
       async () => {
@@ -189,7 +191,7 @@ export function useFormActions(baseURL, model) {
       },
       { deep: true }
     );
-  }
+  };
 
   onBeforeRouteLeave((to, from) => {
     if (isDirty.value) {

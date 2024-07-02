@@ -4,12 +4,7 @@
     class="row q-py-md items-center justify-between"
   >
     <div class="col row items-center">
-      <q-btn
-        class="text-caption"
-        round
-        unelevated
-        no-caps
-      >
+      <q-btn class="text-caption" round unelevated no-caps>
         <q-icon name="o_print" />
       </q-btn>
       <q-btn
@@ -133,13 +128,13 @@
 
         <div class="column q-gutter-xs">
           <div class="text-body3">
-            <span>{{ $t("page.payment-detail.invoice-date") }}</span>
+            <span>{{ $t("shared.labels.date") }}</span>
             1401/02/09
           </div>
 
           <div class="text-body3">
             <span>
-              {{ $t("page.payment-detail.invoice-number") }}
+              {{ $t("shared.labels.no") }}
             </span>
             20108
           </div>

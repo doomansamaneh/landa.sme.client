@@ -35,7 +35,7 @@ const columns = ref([
 
 export function useFiscalYear() {
   const composablesStore = useComposables();
-  // composablesStore.registerComposable({
+  // composablesStore.register({
   //   reset: () => {
   //     state.firstLoad.value = false;
   //   },
@@ -50,7 +50,7 @@ export function useFiscalYear() {
       `scr/userSetting/setFiscalYear/${year.id}`
     );
     setFiscalYear(year);
-    composablesStore.resetAllComposables();
+    composablesStore.reset();
     bus.emit("render-page");
   };
 

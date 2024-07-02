@@ -12,7 +12,7 @@ export function useReportGrid(config) {
   };
 
   const composablesStore = useComposables();
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       state.firstLoad.value = false;
     },

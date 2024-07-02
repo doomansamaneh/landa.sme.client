@@ -5,6 +5,7 @@ export const invoiceModel = {
   no: 1,
   date: dateTime.toDateString(),
   invoiceItems: [],
+  originalDocument: {},
 };
 
 export const invoiceReorderModel = {

@@ -8,7 +8,7 @@ const data = ref(null);
 
 export function useRevenueExpense() {
   const composablesStore = useComposables();
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       firstLoad.value = false;
     },
@@ -33,7 +33,9 @@ export function useRevenueExpense() {
   }
 
   async function reloadData() {
-    const response = await fetchWrapper.get(`acc/report/RevenueExpenseByMonth`);
+    const response = await fetchWrapper.get(
+      `acc/report/RevenueExpenseByMonth`
+    );
     data.value = response.data.data;
   }
 

@@ -28,7 +28,7 @@ const columns = ref(customerColumns);
 
 export function useCustomerGrid() {
   const composablesStore = useComposables();
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       state.firstLoad.value = false;
       setDefaultSearchModel();

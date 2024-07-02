@@ -40,7 +40,6 @@ export const useAuthStore = defineStore("auth", {
 
     setUser(response) {
       this.user = response.data.data;
-      // store user details and jwt in local storage to keep user logged in between page refreshes
       localStorage.setItem("user", JSON.stringify(this.user));
     },
 

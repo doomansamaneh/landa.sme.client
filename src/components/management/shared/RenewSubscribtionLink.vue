@@ -33,20 +33,19 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from "vue";
-  import { useRouter } from "vue-router";
-
-  const router = useRouter();
+  import { ref, computed } from "vue";
 
   const props = defineProps({
     business: Object,
   });
 
+  const currentBusiness = computed(() => props.business);
   const addPaymentUrl = computed(
-    () => `/business/addPayment/${props.business?.id}`
+    () => `/business/addPayment/${currentBusiness?.value?.id}`
   );
   const showLink = computed(
     () =>
-      props.business?.isOwner && props.business?.daysToExpire < 300
+      currentBusiness?.value?.isOwner &&
+      currentBusiness?.value?.daysToExpire < 300
   );
 </script>

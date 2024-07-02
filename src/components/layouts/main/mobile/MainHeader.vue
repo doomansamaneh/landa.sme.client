@@ -10,7 +10,7 @@
       >
         <div class="column">
           <span style="width: 160px" class="ellipsis text-on-dark">
-            {{ selectedBusiness.title }}
+            {{ useBusiness.length()?.title }}
           </span>
           <today-date />
         </div>
@@ -28,7 +28,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useSelectedBusinessStore } from "src/stores/selected-business.js";
+  import { useBusiness } from "src/stores/useBusiness";
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { useMenuBar } from "src/composables/useMenuBar";
   import FiscalYear from "src/components/layouts/main/mobile/ToolbarFiscalYear.vue";
@@ -42,7 +42,7 @@
   const menuBarStore = useMenuBar();
   const $q = useQuasar();
 
-  const selectedBusiness = useSelectedBusinessStore();
+  const businessStore = useBusiness();
 
   const activeButton = computed(() =>
     contactDrawerStore.state.value == true ? "btn-active" : ""

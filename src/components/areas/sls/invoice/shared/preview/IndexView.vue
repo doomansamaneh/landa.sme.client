@@ -52,6 +52,17 @@
         <q-icon size="20px" name="o_print" class="q-mr-xs" />
         چاپ
       </q-btn>
+      <q-btn
+        @click="formStore.downloadPdf(id)"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="download" class="q-mr-xs" />
+        تبدیل به pdf
+      </q-btn>
     </template>
   </toolbar-desktop>
 
@@ -115,7 +126,7 @@
       </q-card>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <invoice-detail
+      <detail-section
         :model="formStore.model"
         :form-store="formStore"
       />
@@ -187,7 +198,7 @@
   import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";
   import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";
   import InvoiceFooter from "components/areas/sls/_shared/invoice/shared/preview/_FooterSection.vue";
-  import InvoiceDetail from "./_DetailSection.vue";
+  import DetailSection from "components/areas/sls/_shared/invoice/shared/preview/_DetailSection.vue";
 
   const props = defineProps({
     item: Object,

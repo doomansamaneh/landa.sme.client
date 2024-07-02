@@ -1,13 +1,9 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { Loading } from "quasar";
-import { useI18n } from "vue-i18n";
 import { fetchWrapper } from "src/helpers";
-import { useComposables } from "src/stores/useComposables";
-import { useCulture } from "src/composables/useCulture";
-import { useFiscalYear } from "src/components/areas/acc/_composables/useFiscalYear";
+import { useBusiness } from "src/stores/useBusiness";
 import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
-import { useMenuBar } from "src/composables/useMenuBar";
+import { HttpStatusCode } from "axios";
 
 const rows = ref([]);
 
@@ -48,13 +44,9 @@ const columns = ref([
 ]);
 
 export function useBusinessGrid() {
-  const { t } = useI18n();
   const router = useRouter();
-  const loadingMessage = t("shared.messages.loading-message");
-  const composablesStore = useComposables();
-  const cultureStore = useCulture();
-  const fiscalYearStore = useFiscalYear();
-  const menuStore = useMenuBar();
+  const appConfigStore = useAppConfigModel(true);
+  const businessStore = useBusiness();
 
   const reset = () => {
     state.firstLoad.value = false;
@@ -62,36 +54,18 @@ export function useBusinessGrid() {
   };
 
   const gotoBusiness = async (item) => {
-    Loading.show({
-      message: loadingMessage,
-      boxClass: "bg-dark border-radius-lg text-on-dark text-bold",
-      spinnerColor: "primary",
-    });
-
-    composablesStore.resetAllComposables();
-    menuStore.reset();
-    fiscalYearStore.reset();
-
     await fetchWrapper
       .post(`business/gotoBusiness/${item.id}`)
       .then((response) => {
-        const userSetting = response.data.data.userSetting;
-        // router.push(`/${response.data.data.url}`)
-        //todo: resolve main-route for gotoBusiness
-        //alert(userSetting.currentCulture)
-        //cultureStore.setCulture(userSetting.currentCulture)
-        const appConfigStore = useAppConfigModel();
-        appConfigStore.reset();
-        //alert(userSetting.fiscalYear);
-        fiscalYearStore.setFiscalYear({
-          id: userSetting.fiscalYearId,
-          title: userSetting.fiscalYear,
-          selected: true,
-        });
-        router.push(`/${item.id}`);
-      })
-      .finally(() => {
-        Loading.hide();
+        const data = response.data.data;
+        if (response.data.code === HttpStatusCode.Ok) {
+          appConfigStore.reset();
+          businessStore.set({ id: item.id, title: data.title });
+        }
+        if (data.url) router.push(data.url);
+        else {
+          alert(`goto business: ${data.message}`);
+        }
       });
   };
 

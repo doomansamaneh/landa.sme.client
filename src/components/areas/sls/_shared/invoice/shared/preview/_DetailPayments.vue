@@ -7,6 +7,7 @@
         color="primary"
         padding="4px 12px"
         unelevated
+        :to="`/trs/receipt/createFromInvoice/${model?.value.id}`"
       >
         <q-icon name="o_add" size="xs" />
         <span>دریافت</span>

@@ -3,12 +3,12 @@ import { fetchWrapper, bus } from "src/helpers";
 import { useComposables } from "src/stores/useComposables";
 
 const firstLoad = ref(false);
-const isLoading = ref(false)
+const isLoading = ref(false);
 const data = ref(null);
 
 export function useInvoiceSummary() {
   const composablesStore = useComposables();
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       firstLoad.value = false;
     },
@@ -27,14 +27,16 @@ export function useInvoiceSummary() {
     if (!firstLoad.value) {
       firstLoad.value = true;
       await reloadData();
-      isLoading.value = true
+      isLoading.value = true;
       return true;
     }
     return false;
   }
 
   async function reloadData() {
-    const response = await fetchWrapper.get(`sls/report/InvoiceSummary`);
+    const response = await fetchWrapper.get(
+      `sls/report/InvoiceSummary`
+    );
     data.value = response.data.data;
   }
 
@@ -43,6 +45,6 @@ export function useInvoiceSummary() {
 
     loadData,
     reloadData,
-    isLoading
+    isLoading,
   };
 }

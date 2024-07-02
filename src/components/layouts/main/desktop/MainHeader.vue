@@ -26,7 +26,7 @@
         >
           <div class="column">
             <span class="text-on-dark">
-              {{ selectedBusiness.title }}
+              {{ businessStore.get()?.title }}
             </span>
             <today-date />
           </div>
@@ -69,7 +69,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useSelectedBusinessStore } from "src/stores/selected-business.js";
+  import { useBusiness } from "src/stores/useBusiness";
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { useNotifDrawer } from "src/composables/useNotifDrawer";
   import { useMenuBar } from "src/composables/useMenuBar";
@@ -86,7 +86,7 @@
   const menuBarStore = useMenuBar();
   const $q = useQuasar();
 
-  const selectedBusiness = useSelectedBusinessStore();
+  const businessStore = useBusiness();
 
   const activeButton = computed(() =>
     contactDrawerStore.state.value == true ? "btn-active" : ""

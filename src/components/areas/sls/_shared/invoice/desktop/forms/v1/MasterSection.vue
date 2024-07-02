@@ -8,10 +8,8 @@
           </q-item-label>
           <customer-lookup
             autofocus
-            v-model:selectedId="localFormStore.model.value.customerId"
-            v-model:selectedText="
-              localFormStore.model.value.customerName
-            "
+            v-model:selectedId="model.value.customerId"
+            v-model:selectedText="model.value.customerName"
           />
         </div>
 
@@ -20,11 +18,9 @@
             {{ saleTypeTitle }}
           </q-item-label>
           <sale-type-lookup
-            v-model:selectedId="localFormStore.model.value.typeId"
-            v-model:selectedText="
-              localFormStore.model.value.typeTitle
-            "
-            :filterExpression="filterExpression"
+            v-model:selectedId="model.value.typeId"
+            v-model:selectedText="model.value.typeTitle"
+            :filter-expression="filterExpression"
           />
         </div>
 
@@ -62,12 +58,8 @@
                     قرارداد
                   </q-item-label>
                   <contract-lookup
-                    v-model:selectedId="
-                      localFormStore.model.value.contractId
-                    "
-                    v-model:selectedText="
-                      localFormStore.model.value.contractTitle
-                    "
+                    v-model:selectedId="model.value.contractId"
+                    v-model:selectedText="model.value.contractTitle"
                   />
                 </div>
 
@@ -76,12 +68,8 @@
                     بازاریاب
                   </q-item-label>
                   <customer-lookup
-                    v-model:selectedId="
-                      localFormStore.model.value.contactId
-                    "
-                    v-model:selectedText="
-                      localFormStore.model.value.contactName
-                    "
+                    v-model:selectedId="model.value.contactId"
+                    v-model:selectedText="model.value.contactName"
                   />
                 </div>
               </div>
@@ -92,12 +80,8 @@
                     انبار
                   </q-item-label>
                   <inventory-lookup
-                    v-model:selectedId="
-                      localFormStore.model.value.inventoryId
-                    "
-                    v-model:selectedText="
-                      localFormStore.model.value.inventoryTitle
-                    "
+                    v-model:selectedId="model.value.inventoryId"
+                    v-model:selectedText="model.value.inventoryTitle"
                   />
                 </div>
               </div>
@@ -108,7 +92,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <q-item-label caption class="q-mb-sm">شرح</q-item-label>
               <custom-input
-                v-model="localFormStore.model.value.summary"
+                v-model="model.value.summary"
                 hide-bottom-space
                 type="textarea"
               />
@@ -130,10 +114,10 @@
           <q-input
             type="number"
             hide-bottom-space
-            v-model="localFormStore.model.value.no"
+            v-model="model.value.no"
             outlined
             dense
-            :disable="!localFormStore.model.value.manualNo"
+            :disable="!model.value.manualNo"
           >
             <template #append>
               <q-icon
@@ -146,16 +130,29 @@
           </q-input>
         </div>
       </div>
+      <div v-if="showOriginalDoc" class="row justify-end q-mt-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">
+            سند مرجع
+          </q-item-label>
+          <pre>{{ model.value.originalDocument }}</pre>
+          <invoice-lookup
+            v-model:selectedId="model.value.originalDocument.parentId"
+            v-model:selectedText="model.value.originalDocument.no"
+            :filter-expression="originalFilterExpression"
+          />
+        </div>
+      </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-          <date-time v-model="localFormStore.model.value.date" />
+          <date-time v-model="model.value.date" />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
-          <date-time v-model="localFormStore.model.value.dueDate" />
+          <date-time v-model="model.value.dueDate" />
         </div>
       </div>
     </div>
@@ -163,17 +160,19 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { computed, onMounted, ref } from "vue";
   import {
     sqlOperator,
     vatType,
     invoiceFormType,
+    documentType,
   } from "src/constants";
 
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+  import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
@@ -189,6 +188,14 @@
 
   const saleTypeTitle =
     props.formType == invoiceFormType.sales ? "نوع فروش" : "نوع خرید";
+
+  const originalFilterExpression = [
+    {
+      fieldName: "d.typeId",
+      operator: sqlOperator.in,
+      value: `${documentType.invoice},${documentType.salesReturn}`,
+    },
+  ];
 
   const filterExpression =
     props.formType == invoiceFormType.sales
@@ -213,6 +220,14 @@
   };
 
   const localFormStore = computed(() => props.formStore);
+  const model = computed(() => props.formStore.model);
+  const showOriginalDoc = computed(
+    () =>
+      //todo: activate original document
+      model?.value.originalDocument &&
+      (props.formType === invoiceFormType.sales ||
+        props.formType === invoiceFormType.salesReturn)
+  );
 
   const toggleMoreInfo = () => {
     moreInfo.value = !moreInfo.value;

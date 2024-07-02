@@ -1,7 +1,11 @@
 import { ref } from "vue";
 import { invoiceColumns } from "./constants";
 
-import { defaultPageSize, sortOrder, sqlOperator } from "src/constants";
+import {
+  defaultPageSize,
+  sortOrder,
+  sqlOperator,
+} from "src/constants";
 import { useComposables } from "src/stores/useComposables";
 
 //const rows = ref([])
@@ -31,7 +35,7 @@ const columns = ref(invoiceColumns);
 export function useSalesReturn(defaultFilters) {
   const composablesStore = useComposables();
 
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       state.firstLoad.value = false;
       state.rows.value = [];

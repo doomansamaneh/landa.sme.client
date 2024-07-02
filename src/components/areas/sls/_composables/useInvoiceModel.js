@@ -54,6 +54,9 @@ export function useInvoiceModel(config) {
   }
 
   function setInvoiceItems() {
+    if (!model.value.originalDocument) {
+      model.value.originalDocument = {};
+    }
     if (!model.value.invoiceItems) model.value.invoiceItems = [];
   }
 
@@ -253,7 +256,7 @@ export function useInvoiceModel(config) {
 
   async function downloadPdf(id) {
     const response = await fetchWrapper.download(
-      `sls/invoice/GeneratePdf/${id}`
+      `${config.baseRoute}/GeneratePdf/${id}`
     );
     downloadFile(response);
   }

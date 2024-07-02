@@ -123,6 +123,8 @@ export const sortOrder = {
 export const invoiceFormType = {
   sales: 1,
   purchase: 2,
+  salesReturn: 3,
+  purchaseReturn: 4,
 };
 
 export const transferMoneyType = {

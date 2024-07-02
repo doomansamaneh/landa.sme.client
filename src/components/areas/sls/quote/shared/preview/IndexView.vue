@@ -63,6 +63,28 @@
         <q-icon size="20px" name="o_print" class="q-mr-xs" />
         چاپ
       </q-btn>
+      <q-btn
+        @click="formStore.downloadPdf(id)"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="download" class="q-mr-xs" />
+        تبدیل به pdf
+      </q-btn>
+      <q-btn
+        @click="sendEmail"
+        class="text-body2 no-letter-spacing"
+        padding="6px 12px"
+        rounded
+        unelevated
+        no-caps
+      >
+        <q-icon size="20px" name="send" class="q-mr-xs" />
+        ارسال ایمیل
+      </q-btn>
     </template>
   </tool-bar>
 
@@ -92,18 +114,23 @@
       </q-card>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <invoice-detail
+      <detail-section
         :model="formStore.model"
         :form-store="formStore"
-      />
+        separator
+      >
+        <template #body>
+          <preview-log :entity-id="formStore.model?.value?.id" />
+        </template>
+      </detail-section>
     </div>
   </div>
 </template>
 
 <script setup>
   import { computed, onMounted } from "vue";
-  import { useRoute } from "vue-router";
-  import { useRouter } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
+  import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
   import { quoteStatus } from "src/constants";
   import { useQuoteState } from "../../../_composables/useQuoteState";
@@ -111,11 +138,13 @@
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import PreviewLog from "src/components/areas/_shared/log/PreviewLog.vue";
   import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
   import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";
   import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";
   import InvoiceFooter from "components/areas/sls/_shared/invoice/shared/preview/_FooterSection.vue";
-  import InvoiceDetail from "./_DetailSection.vue";
+  import DetailSection from "components/areas/sls/_shared/invoice/shared/preview/_DetailSection.vue";
+  import SendEmailDialog from "../forms/SendEmailDialog.vue";
 
   const props = defineProps({
     item: Object,
@@ -131,14 +160,26 @@
 
   const route = useRoute();
   const router = useRouter();
+  const $q = useQuasar();
   const quoteStore = useQuoteState();
+
+  const id = computed(() => props.item?.id ?? route.params.id);
 
   function deleteCallBack() {
     quoteStore.state.firstLoad.value = false;
     router.back();
   }
 
-  const id = computed(() => props.item?.id ?? route.params.id);
+  function sendEmail() {
+    $q.dialog({
+      component: SendEmailDialog,
+      componentProps: {
+        id: id.value,
+      },
+    }).onOk(async () => {
+      await reloadData();
+    });
+  }
 
   onMounted(() => {
     formStore.getById(id.value);

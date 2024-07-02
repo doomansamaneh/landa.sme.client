@@ -3,85 +3,97 @@ export default {
   component: () => import("layouts/ManagementLayout.vue"),
   name: "business",
   meta: {
-    icon: "business"
+    icon: "business",
   },
   children: [
     {
       path: "/business",
       name: "business",
-      component: () => import("src/pages/management/business/IndexPage.vue")
+      component: () =>
+        import("src/pages/management/business/IndexPage.vue"),
     },
     {
       path: "/business/firstLoginWizard",
       name: "first-login-wizard",
       meta: {
-        icon: "celebration"
+        icon: "celebration",
       },
-      component: () => import("src/pages/management/firstLoginWizard_/IndexPage.vue")
+      component: () =>
+        import(
+          "src/pages/management/firstLoginWizard_/IndexPage.vue"
+        ),
     },
     {
       path: "changePassword",
       name: "change-password",
-      component: () => import("src/pages/areas/scr/users/ChangePassword.vue"),
+      component: () =>
+        import("src/pages/areas/scr/users/ChangePasswordPage.vue"),
       meta: {
-        icon: "password"
-      }
+        icon: "password",
+      },
     },
     {
       path: "inviteUser",
       name: "invite-user",
-      component: () => import("pages/management/users/InviteUser.vue"),
+      component: () =>
+        import("pages/management/business/InviteUserPage.vue"),
       meta: {
-        icon: "o_profile"
-      }
+        icon: "o_profile",
+      },
     },
     {
       path: "deleteBusiness",
       name: "delete-business",
-      component: () => import("pages/management/users/DeleteBusiness.vue"),
+      component: () =>
+        import("pages/management/business/DeleteBusinessPage.vue"),
       meta: {
-        icon: "o_delete"
-      }
+        icon: "o_delete",
+      },
     },
     {
       path: "addBusiness",
       name: "add-new-business",
-      component: () => import("pages/management/addBusiness/IndexPage.vue"),
+      component: () =>
+        import("pages/management/business/AddBusinessPage.vue"),
       meta: {
-        icon: "o_add"
-      }
+        icon: "o_add",
+      },
     },
     {
       path: "payments/:businessId",
       name: "payments",
-      component: () => import("src/pages/management/payment/IndexPage.vue"),
+      component: () =>
+        import("src/pages/management/payment/IndexPage.vue"),
       meta: {
-        icon: "payment"
-      }
+        icon: "payment",
+      },
     },
     {
       path: "paymentDetail/:paymentId",
       name: "payment-detail",
-      component: () => import("pages/management/paymentDetail/IndexPage.vue"),
+      component: () =>
+        import("pages/management/payment/DetailPage.vue"),
       meta: {
-        icon: "o_info"
-      }
+        icon: "o_info",
+      },
     },
     {
       path: "addPayment/:businessId",
       name: "renew-subscription",
-      component: () => import("pages/management/addPayment/IndexPage.vue"),
+      component: () =>
+        import("pages/management/payment/AddPaymentPage.vue"),
       meta: {
-        icon: "o_monetization_on"
-      }
+        icon: "o_monetization_on",
+      },
     },
     {
       path: "expired/:businessId",
       name: "business-expired",
-      component: () => import("pages/management/BusinessExpiredPage.vue"),
+      component: () =>
+        import("pages/management/business/BusinessExpiredPage.vue"),
       meta: {
-        icon: "o_monetization_on"
-      }
+        icon: "o_monetization_on",
+      },
     },
-  ]
-}
+  ],
+};

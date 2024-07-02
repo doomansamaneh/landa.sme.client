@@ -33,7 +33,7 @@ const columns = ref(productStockColumns);
 export function useProductStockGrid(defaultFilters) {
   const composablesStore = useComposables();
 
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       state.firstLoad.value = false;
       state.rows.value = [];

@@ -1,116 +1,138 @@
 <template>
-  <q-card class="bordered">
+  <q-card
+    class="bordered"
+    :class="$q.screen.xs ? 'form-container' : ''"
+    style="margin-top: 0"
+  >
     <q-card-section>
-      <div class="column q-gutter-y-sm">
-        <div class="row">
-          <span class="col-2 text-caption text-bold">شماره:</span>
-          <span class="text-body3 q-mx-md">{{ model.value.no }}</span>
-        </div>
+      <slot name="header">
+        <div class="column q-gutter-y-sm">
+          <div class="row items-center">
+            <span class="col-2 text-caption text-bold">شماره:</span>
+            <span class="text-body3 q-mx-md">
+              {{ model.value.no }}
+            </span>
+          </div>
 
-        <div class="row items-center">
-          <span class="col-2 text-caption text-bold">
-            سند حسابداری:
-          </span>
-          <span class="text-body3 q-mx-md">
-            <router-link
-              class="no-decoration"
-              :to="`/acc/voucher/preview/${model.value.voucherId}`"
-            >
-              <q-icon
-                name="o_description"
-                size="xs"
-                class="q-mr-xs"
-                :class="color()"
+          <div
+            v-if="model?.value?.voucherId"
+            class="row items-center"
+          >
+            <span class="col-2 text-caption text-bold">
+              سند حسابداری:
+            </span>
+            <span class="text-body3 q-mx-md">
+              <custom-link
+                :to="`/acc/voucher/preview/${model.value.voucherId}`"
+                :title="model.value.voucherNo"
               />
-              <span class="decoration-on-hover" :class="color()">
-                {{ model.value.voucherNo }}
-              </span>
-            </router-link>
-          </span>
-        </div>
+            </span>
+          </div>
 
-        <div class="row items-center">
-          <span class="col-2 text-caption text-bold">مشتری:</span>
-          <span class="text-body3 q-mx-md">
-            <router-link
-              class="no-decoration"
-              :to="`/crm/customer/preview/${model.value.customerId}`"
-            >
-              <q-icon
-                name="o_description"
-                size="xs"
-                class="q-mr-xs"
-                :class="color()"
+          <div class="row items-center">
+            <span class="col-2 text-caption text-bold">مشتری:</span>
+            <span class="text-body3 q-mx-md">
+              <custom-link
+                :to="`/crm/customer/preview/${model.value.customerId}`"
+                :title="model.value.customerName"
               />
-              <span class="decoration-on-hover" :class="color()">
-                {{ model.value.customerName }}
-              </span>
-            </router-link>
-          </span>
-        </div>
+            </span>
+          </div>
 
-        <div class="row" v-if="model.value.marketerName">
-          <span class="col-1 text-caption text-bold">بازاریاب:</span>
-          <span class="text-body3 q-mx-md">
-            {{ model.value.marketerName }}
-          </span>
+          <div
+            v-if="model.value.marketerName"
+            class="row items-center"
+          >
+            <span class="col-2 text-caption text-bold">
+              بازاریاب:
+            </span>
+            <span class="text-body3 q-mx-md">
+              {{ model.value.marketerName }}
+            </span>
+          </div>
+
+          <div
+            v-if="model.value.contractTitle"
+            class="row items-center"
+          >
+            <span class="col-2 text-caption text-bold">قرارداد:</span>
+            <span class="text-body3 q-mx-md">
+              {{ model.value.contractTitle }}
+            </span>
+          </div>
+
+          <div
+            v-if="model.value.inventoryTitle"
+            class="row items-center"
+          >
+            <span class="col-2 text-caption text-bold">انبار:</span>
+            <span class="text-body3 q-mx-md">
+              {{ model.value.inventoryTitle }}
+            </span>
+          </div>
         </div>
-      </div>
+      </slot>
     </q-card-section>
 
+    <q-separator v-if="separator" />
+
     <q-card-section v-if="model.value.id">
-      <q-tabs
-        v-model="tab"
-        inline-label
-        align="left"
-        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        class="primary-tabs"
-        narrow-indicator
-      >
-        <q-tab name="main-info" class="q-py-sm">
-          <template #default>
-            <q-icon
-              name="o_arrow_downward"
-              size="xs"
-              class="q-mr-sm"
-            />
-            <div class="text-body3 text-bold">دریافت و پرداخت</div>
-          </template>
-        </q-tab>
-        <q-tab name="tax" class="q-py-sm">
-          <template #default>
-            <q-icon name="o_paid" size="xs" class="q-mr-sm" />
-            <div class="text-body3 text-bold">مالیات</div>
-          </template>
-        </q-tab>
-        <q-tab name="log" class="q-py-sm">
-          <template #default>
-            <q-icon name="o_history" size="xs" class="q-mr-sm" />
-            <div class="text-body3 text-bold">تاریخچه</div>
-          </template>
-        </q-tab>
-      </q-tabs>
+      <slot name="body">
+        <q-tabs
+          v-model="tab"
+          inline-label
+          align="left"
+          :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+          :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+          class="primary-tabs"
+          narrow-indicator
+          :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
+        >
+          <q-tab name="main-info" class="q-mr-xs">
+            <template #default>
+              <q-icon
+                name="o_arrow_downward"
+                size="xs"
+                class="q-mr-sm"
+              />
+              <div class="text-body3 text-bold">دریافت و پرداخت</div>
+            </template>
+          </q-tab>
+          <q-tab name="tax" class="q-mr-xs">
+            <template #default>
+              <q-icon name="o_paid" size="xs" class="q-mr-sm" />
+              <div class="text-body3 text-bold">مالیات</div>
+            </template>
+          </q-tab>
+          <q-tab name="log" class="q-mr-xs">
+            <template #default>
+              <q-icon name="o_history" size="xs" class="q-mr-sm" />
+              <div class="text-body3 text-bold">تاریخچه</div>
+            </template>
+          </q-tab>
+        </q-tabs>
 
-      <q-tab-panels
-        v-model="tab"
-        animated
-        keep-alive
-        class="transparent"
-      >
-        <q-tab-panel name="main-info" class="no-padding">
-          <detail-payments :model="model" :form-store="formStore" />
-        </q-tab-panel>
+        <q-separator size="1px" />
 
-        <q-tab-panel name="tax" class="no-padding">
-          <detail-tax :model="model" :form-store="formStore" />
-        </q-tab-panel>
+        <q-tab-panels
+          v-model="tab"
+          animated
+          keep-alive
+          class="transparent"
+        >
+          <q-tab-panel name="main-info" class="no-padding">
+            <detail-payments :model="model" :form-store="formStore" />
+          </q-tab-panel>
 
-        <q-tab-panel name="log" class="no-padding">
-          <detail-log />
-          --
-        </q-tab-panel>
-      </q-tab-panels>
+          <q-tab-panel name="tax" class="no-padding">
+            <detail-tax :model="model" :form-store="formStore" />
+          </q-tab-panel>
+
+          <q-tab-panel name="log" class="no-padding">
+            <detail-log />
+          </q-tab-panel>
+        </q-tab-panels>
+      </slot>
     </q-card-section>
   </q-card>
 
@@ -122,36 +144,20 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from "vue";
+  import { ref } from "vue";
   import { useQuasar } from "quasar";
-
-  import { useRoute } from "vue-router";
 
   import DetailPayments from "./_DetailPayments.vue";
   import DetailTax from "./_DetailTax.vue";
   import DetailLog from "src/components/areas/_shared/log/PreviewLog.vue";
+  import CustomLink from "src/components/shared/buttons/CustomLink.vue";
 
   const props = defineProps({
     model: Object,
     formStore: Object,
+    separator: Boolean,
   });
 
   const $q = useQuasar();
-
-  const route = useRoute();
-
   const tab = ref("main-info");
-  const editor = ref("");
-  const editCommentBtn = ref(false);
-  const id = computed(() => props.model?.id ?? route.params.id);
-  const loading = computed(() => {
-    return props.model.value.id;
-  });
-  const color = () => {
-    return $q.dark.isActive ? "text-yellow" : "text-primary";
-  };
-
-  onMounted(() => {
-    //formStore.getById(id.value);
-  });
 </script>

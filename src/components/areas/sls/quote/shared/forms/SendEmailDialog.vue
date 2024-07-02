@@ -1,15 +1,20 @@
 <template>
   <custom-dialog
     ref="dialog"
-    :title="$t('shared.labels.editBatch')"
+    :title="$t('shared.labels.sendMail')"
     :form="form"
   >
     <template #body>
-      <edit-batch-form ref="form" :selectedIds="selectedIds" />
+      <send-email-form ref="form" :id="id" />
     </template>
 
     <template #actions>
-      <actions @ok-clicked="submitForm" />
+      <action-buttons @ok-clicked="submitForm">
+        <template #ok-label>
+          <q-icon size="20px" name="send" class="q-mx-sm" />
+          {{ $t("shared.labels.send") }}
+        </template>
+      </action-buttons>
     </template>
   </custom-dialog>
 </template>
@@ -17,9 +22,9 @@
 <script setup>
   import { ref } from "vue";
 
+  import SendEmailForm from "./SendEmailForm.vue";
   import CustomDialog from "src/components/shared/CustomDialog.vue";
-  import EditBatchForm from "./EditBatchForm.vue";
-  import Actions from "src/components/shared/forms/FormCardActions.vue";
+  import ActionButtons from "src/components/shared/forms/FormCardActions.vue";
 
   const props = defineProps({
     id: String,

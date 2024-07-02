@@ -137,6 +137,7 @@
   const props = defineProps({
     item: Object,
     formStore: Object,
+    entityId: String,
   });
 
   const route = useRoute();

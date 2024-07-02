@@ -26,15 +26,6 @@
         متاسفانه کسب و کار شما منقضی شده است.
       </span>
 
-      <!-- <q-btn
-        to="/business/addPayment"
-        unelevated
-        outline
-        rounded
-        size="16px"
-        class="primary-gradient text-white"
-        >تمدید اشتراک</q-btn
-      > -->
       <renew-subscribtion
         class="bg-green text-white"
         size="16px"
@@ -57,7 +48,7 @@
 
   async function loadData() {
     await fetchWrapper
-      .get(`business/GetBusiness/${route.params.businessId}`)
+      .get(`business/GetBusiness/${route.params.businessId}`, true)
       .then((response) => {
         business.value = response.data.data;
       });

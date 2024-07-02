@@ -57,15 +57,19 @@ export function useMenuBar() {
 
   const drawerMenuItems = computed(() => {
     const menuItemsWithSubItems = state.items.value.filter((item) =>
-      state.items.value.some((subItem) => subItem.parentName === item.name)
+      state.items.value.some(
+        (subItem) => subItem.parentName === item.name
+      )
     );
 
-    const menuItemsIncludingSubItems = menuItemsWithSubItems.map((item) => ({
-      ...item,
-      subItems: state.items.value.filter(
-        (subItem) => subItem.parentName === item.name
-      ),
-    }));
+    const menuItemsIncludingSubItems = menuItemsWithSubItems.map(
+      (item) => ({
+        ...item,
+        subItems: state.items.value.filter(
+          (subItem) => subItem.parentName === item.name
+        ),
+      })
+    );
 
     if (!searchText.value || searchText.value.trim() === "") {
       return menuItemsIncludingSubItems;

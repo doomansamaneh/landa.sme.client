@@ -25,7 +25,7 @@ const columns = ref(productColumns);
 
 export function useProductGrid() {
   const composablesStore = useComposables();
-  composablesStore.registerComposable({
+  composablesStore.register({
     reset: () => {
       state.firstLoad.value = false;
     },

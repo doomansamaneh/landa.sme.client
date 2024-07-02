@@ -87,6 +87,7 @@
 
             <slot name="create">
               <q-btn
+                v-if="showAdd"
                 dense
                 unelevated
                 text-color="white"
@@ -392,6 +393,7 @@
     placeholder: String,
     filterExpression: Array,
     width: String,
+    showAdd: Boolean,
   });
 
   const selectedId = defineModel("selectedId");

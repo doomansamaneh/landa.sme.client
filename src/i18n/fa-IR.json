@@ -256,6 +256,7 @@
       "cancel": "انصراف",
       "accept": "تایید",
       "save": "ذخیره",
+      "send": "ارسال",
       "new": "جدید",
       "create": "ایجاد",
       "edit": "ویرایش",
@@ -349,7 +350,9 @@
       "cashTheCheck": "نقد کردن چک",
       "transferToBank": "واگذاری چک به بانک",
       "bounceTheCheck": "برگشت چک",
-      "spendTheCheck": "انتقال چک، خرج کردن چک"
+      "spendTheCheck": "انتقال چک، خرج کردن چک",
+      "subject": "شرح",
+      "customerName": "مخاطب"
     },
     "productType": {
       "main": "اصلی",

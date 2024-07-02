@@ -7,7 +7,8 @@ export default {
   children: [
     {
       path: "/settings",
-      component: () => import("pages/management/users/settings/IndexPage.vue"),
+      component: () =>
+        import("src/pages/management/users/SettingPage.vue"),
     },
   ],
 };

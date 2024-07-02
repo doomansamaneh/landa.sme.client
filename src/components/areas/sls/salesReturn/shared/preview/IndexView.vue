@@ -34,7 +34,7 @@
             :model="formStore.model"
             :title="$t('shared.labels.salesReturn')"
           />
-          <invoice-header-purchase :model="formStore.model" />
+          <invoice-header-sale :model="formStore.model" />
           <invoice-body
             :model="formStore.model"
             :form-store="formStore"
@@ -44,7 +44,7 @@
       </q-card>
     </div>
     <div class="col-md-4 col-sm-12 col-xs-12">
-      <invoice-detail
+      <detail-section
         :model="formStore.model"
         :form-store="formStore"
       />
@@ -62,10 +62,10 @@
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
-  import InvoiceHeaderPurchase from "components/areas/sls/_shared/invoice/shared/preview/_HeaderPurchase.vue";
+  import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";
   import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";
   import InvoiceFooter from "components/areas/sls/_shared/invoice/shared/preview/_FooterSection.vue";
-  import InvoiceDetail from "./_DetailSection.vue";
+  import DetailSection from "components/areas/sls/_shared/invoice/shared/preview/_DetailSection.vue";
 
   const props = defineProps({
     item: Object,
