@@ -745,15 +745,13 @@ export default {
           component: () =>
             import("src/pages/management/users/SettingPage.vue"),
         },
-        // {
-        //   path: "appearance",
-        //   component: () =>
-        //     import(
-        //       "src/pages/management/users/settings/appearance/IndexPage.vue"
-        //     ),
-        // },
         {
-          path: "change-password",
+          path: "theme",
+          component: () =>
+            import("src/pages/management/users/ThemePage.vue"),
+        },
+        {
+          path: "changePassword",
           component: () =>
             import(
               "src/pages/areas/scr/users/ChangePasswordPage.vue"

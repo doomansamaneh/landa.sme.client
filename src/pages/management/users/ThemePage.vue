@@ -2,23 +2,19 @@
   <div
     :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''"
   >
-    <div class="theme-settings-container">
+    <div class="theme-settings-container form-container_">
       <div class="row items-center justify-between q-mb-md">
         <div class="text-h6 text-weight-700 no-letter-spacing">
-          {{ $t("change-password-page.title") }}
+          رنگ تم و زبان
         </div>
         <back-button />
       </div>
-      <change-password @submitted="submitted"></change-password>
+      <desktop />
     </div>
   </div>
 </template>
 
 <script setup>
-  import ChangePassword from "src/components/areas/scr/users/ChangePassword.vue";
+  import Desktop from "src/components/areas/scr/users/UserTheme.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-
-  function submitted(response) {
-    $router.go(-1);
-  }
 </script>

@@ -86,7 +86,7 @@
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
-  import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
+  import DetailSection from "./_DetailSection.vue";
   import BodySection from "./_BodySection.vue";
 
   const props = defineProps({

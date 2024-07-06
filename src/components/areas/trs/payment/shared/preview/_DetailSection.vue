@@ -27,6 +27,13 @@
     <q-separator />
 
     <q-card-section v-if="model?.id">
+      <payment-invoice
+        detail-url="sls/invoice"
+        :payment-id="model?.id"
+      />
+    </q-card-section>
+
+    <q-card-section v-if="model?.id">
       <preview-log />
     </q-card-section>
   </q-card>
@@ -35,6 +42,7 @@
 <script setup>
   import PreviewLog from "src/components/areas/_shared/log/PreviewLog.vue";
   import CustomLink from "src/components/shared/buttons/CustomLink.vue";
+  import PaymentInvoice from "../../../paymentInvoice/shared/index/PaymentInvoice.vue";
 
   const props = defineProps({
     model: Object,

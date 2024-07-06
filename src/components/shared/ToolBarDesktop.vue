@@ -246,7 +246,7 @@
         <div v-if="buttons" class="q-space" />
 
         <template v-if="buttons">
-          <div v-if="title">
+          <div v-if="title && !inside">
             <slot name="header">
               <span
                 class="text-weight-700"

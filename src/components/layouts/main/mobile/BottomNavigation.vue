@@ -36,7 +36,7 @@
         icon="o_account_circle"
         label="پروفایل"
         :ripple="false"
-        to="/settings"
+        to="scr/users/settings"
       />
     </q-tabs>
   </q-footer>

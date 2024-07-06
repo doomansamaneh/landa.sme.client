@@ -39,7 +39,7 @@
   import { ref, onMounted } from "vue";
   import { fetchWrapper } from "src/helpers";
   import { useRoute } from "vue-router";
-  import BackButton from "src/components/shared/Buttons/GoBackLink.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
   import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue";
 
   const route = useRoute();

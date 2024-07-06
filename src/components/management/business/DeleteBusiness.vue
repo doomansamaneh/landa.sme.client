@@ -10,7 +10,12 @@
       </slot>
     </q-card-section>
     <q-card-section>
-      <q-form class="q-px-sm" @submit="changePassword" ref="form" autofocus>
+      <q-form
+        class="q-px-sm"
+        @submit="changePassword"
+        ref="form"
+        autofocus
+      >
         <q-input
           outlined
           v-model="password"
@@ -33,69 +38,69 @@
       </q-form>
     </q-card-section>
     <actions @ok-clicked="submitForm" class="q-px-lg">
-      <template #ok-label>{{
-        $t("delete-business-page.buttons.delete-business")
-      }}</template>
+      <template #ok-label>
+        {{ $t("delete-business-page.buttons.delete-business") }}
+      </template>
     </actions>
   </q-card>
 </template>
 
 <script setup>
-import { ref } from "vue";
+  import { ref } from "vue";
 
-import { useAuthStore } from "src/stores";
-import { fetchWrapper } from "src/helpers";
+  import { useAuthStore } from "src/stores";
+  import { fetchWrapper } from "src/helpers";
 
-import Actions from "src/components/shared/forms/FormCardActions.vue";
-import BackButton from "src/components/shared/Buttons/GoBackLink.vue";
+  import Actions from "src/components/shared/forms/FormCardActions.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-const authStore = useAuthStore();
+  const authStore = useAuthStore();
 
-const emit = defineEmits(["submitted"]);
-const form = ref(null);
+  const emit = defineEmits(["submitted"]);
+  const form = ref(null);
 
-const password = ref("");
-const isPwd = ref(true);
+  const password = ref("");
+  const isPwd = ref(true);
 
-async function submitForm() {
-  await form.value.validate().then((success) => {
-    if (success) {
-      changePassword();
-    } else {
-      //todo: how to show validation message to user
-      alert("validation error");
-    }
-  });
-}
-
-async function changePassword() {
-  await fetchWrapper
-    .post("scr/users/changePassword", {
-      id: authStore.user.id,
-      oldPassword: oldPassword.value,
-      password: newPassword.value,
-      confirmPassword: confirmNewPassword.value,
-    })
-    .then((response) => {
-      console.log(response);
-      //handleResponse(response, data)
-    })
-    .success(() => {
-      //todo: close popup if open
-    })
-    .finally(() => {
-      //loading.value = false;
+  async function submitForm() {
+    await form.value.validate().then((success) => {
+      if (success) {
+        changePassword();
+      } else {
+        //todo: how to show validation message to user
+        alert("validation error");
+      }
     });
-}
+  }
+
+  async function changePassword() {
+    await fetchWrapper
+      .post("scr/users/changePassword", {
+        id: authStore.user.id,
+        oldPassword: oldPassword.value,
+        password: newPassword.value,
+        confirmPassword: confirmNewPassword.value,
+      })
+      .then((response) => {
+        console.log(response);
+        //handleResponse(response, data)
+      })
+      .success(() => {
+        //todo: close popup if open
+      })
+      .finally(() => {
+        //loading.value = false;
+      });
+  }
 </script>
 
 <style scoped>
-.dialog-card {
-  width: 400px;
-  border-radius: 8px;
-}
+  .dialog-card {
+    width: 400px;
+    border-radius: 8px;
+  }
 
-/* .change-password-btn {
+  /* .change-password-btn {
   height: 40px;
   width: 60%;
 }

@@ -10,7 +10,7 @@
       >
         <div class="column">
           <span style="width: 160px" class="ellipsis text-on-dark">
-            {{ useBusiness.length()?.title }}
+            {{ businessStore.get()?.title }}
           </span>
           <today-date />
         </div>

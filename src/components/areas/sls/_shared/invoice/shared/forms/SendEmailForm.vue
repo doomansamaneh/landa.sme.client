@@ -9,7 +9,7 @@
       <custom-input
         style="direction: ltr"
         hide-bottom-space
-        v-model="formStore.model.value.receiverEmail"
+        v-model="emailStore.model.value.receiverEmail"
         :rules="[(val) => val !== null && val !== '']"
       />
     </div>
@@ -23,7 +23,7 @@
       <custom-input
         style="direction: ltr"
         hide-bottom-space
-        v-model="formStore.model.value.receivers"
+        v-model="emailStore.model.value.receivers"
       />
     </div>
 
@@ -35,7 +35,7 @@
       </q-item-label>
       <custom-input
         hide-bottom-space
-        v-model="formStore.model.value.subject"
+        v-model="emailStore.model.value.subject"
         :rules="[(val) => val !== null && val !== '']"
       />
     </div>
@@ -49,7 +49,7 @@
       <custom-input
         hide-bottom-space
         type="textarea"
-        v-model="formStore.model.value.content"
+        v-model="emailStore.model.value.content"
       />
     </div>
   </q-form>
@@ -63,9 +63,10 @@
 
   const props = defineProps({
     id: String,
+    baseRoute: String,
   });
 
-  const formStore = useSendEmail({ baseRoute: "sls/quote" });
+  const emailStore = useSendEmail({ baseRoute: props.baseRoute });
   const form = ref(null);
 
   async function submitForm() {
@@ -73,7 +74,7 @@
       const isValid = await form.value.validate();
 
       if (isValid) {
-        await formStore.sendEmail();
+        await emailStore.sendEmail();
         return true;
       } else {
         alert("Validation error");
@@ -86,7 +87,7 @@
   }
 
   onMounted(() => {
-    formStore.getEmail(props.id);
+    emailStore.getEmail(props.id);
   });
 
   defineExpose({

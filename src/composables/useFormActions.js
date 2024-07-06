@@ -156,16 +156,17 @@ export function useFormActions(baseURL, model) {
   }
 
   async function submitForm(form, action, callBack) {
-    await form.validate().then(async (success) => {
-      if (success) {
-        const responseData = await createOrEdit(action);
-        if (callBack) callBack(responseData);
-        else if (responseData?.code === 200) router.back();
-      } else {
-        //todo: how to show validation message to user
-        alert("validation error");
-      }
-    });
+    const success = await form.validate();
+    if (success) {
+      const responseData = await createOrEdit(action);
+      if (callBack) callBack(responseData);
+      return responseData;
+      //else if (responseData?.code === 200) router.back();
+    } else {
+      //todo: how to show validation message to user
+      alert("validation error");
+      return null;
+    }
   }
 
   function validateIdList(idList) {

@@ -40,6 +40,19 @@
           </div>
 
           <div
+            v-if="model?.value?.invoiceId"
+            class="row items-center"
+          >
+            <span class="col-2 text-caption text-bold">فاکتور:</span>
+            <span class="text-body3 q-mx-md">
+              <custom-link
+                :to="`/sls/invoice/preview/${model.value.invoiceId}`"
+                :title="model.value.invoiceNo"
+              />
+            </span>
+          </div>
+
+          <div
             v-if="model.value.marketerName"
             class="row items-center"
           >
@@ -98,7 +111,7 @@
               <div class="text-body3 text-bold">دریافت و پرداخت</div>
             </template>
           </q-tab>
-          <q-tab name="tax" class="q-mr-xs">
+          <q-tab name="tax" v-if="taxApi" class="q-mr-xs">
             <template #default>
               <q-icon name="o_paid" size="xs" class="q-mr-sm" />
               <div class="text-body3 text-bold">مالیات</div>
@@ -121,10 +134,14 @@
           class="transparent"
         >
           <q-tab-panel name="main-info" class="no-padding">
-            <detail-payments :model="model" :form-store="formStore" />
+            <detail-payments
+              :model="model"
+              :form-store="formStore"
+              :detail-url="detailUrl"
+            />
           </q-tab-panel>
 
-          <q-tab-panel name="tax" class="no-padding">
+          <q-tab-panel v-if="taxApi" name="tax" class="no-padding">
             <detail-tax :model="model" :form-store="formStore" />
           </q-tab-panel>
 
@@ -135,12 +152,6 @@
       </slot>
     </q-card-section>
   </q-card>
-
-  <!-- <q-card v-else class="bordered row items-center justify-center">
-    <q-card-section>
-      <q-spinner color="primary" size="3em" />
-    </q-card-section>
-  </q-card> -->
 </template>
 
 <script setup>
@@ -156,6 +167,8 @@
     model: Object,
     formStore: Object,
     separator: Boolean,
+    taxApi: Boolean,
+    detailUrl: String,
   });
 
   const $q = useQuasar();
