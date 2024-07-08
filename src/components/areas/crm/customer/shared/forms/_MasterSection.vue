@@ -31,6 +31,7 @@
         </q-btn>
       </div>
     </div>
+
     <div class="col-md col-sm col-xs-12">
       <div class="q-col-gutter-lg">
         <div class="row">
@@ -124,7 +125,7 @@
                 helper.getEnumOptions(customerRole, 'customerRole')
               "
               type="checkbox"
-              v-model="model.value.roleIdList"
+              v-model="model.value.roleIds"
             />
           </div>
         </div>

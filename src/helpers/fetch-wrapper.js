@@ -4,7 +4,7 @@ import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
 import { Loading } from "quasar";
 
-const BASE_URL = "http://localhost:6060";
+const BASE_URL = "http://localhost:5188";
 //const BASE_URL = "https://api.landa-sme.ir";
 
 axios.defaults.baseURL = BASE_URL;
@@ -20,21 +20,55 @@ export const fetchWrapper = {
   download: createRequest("GET", "blob"),
 };
 
+function removeEmpty(obj) {
+  if (Array.isArray(obj)) {
+    return obj
+      .filter(
+        (item) =>
+          item !== null &&
+          item !== undefined &&
+          removeEmpty(item) !== undefined
+      )
+      .map(removeEmpty);
+  } else if (obj !== null && typeof obj === "object") {
+    const cleanedObj = Object.keys(obj).reduce((acc, key) => {
+      const value = removeEmpty(obj[key]);
+      if (
+        value !== null &&
+        value !== undefined &&
+        (typeof value !== "object" ||
+          (Array.isArray(value)
+            ? value.length
+            : Object.keys(value).length))
+      ) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {});
+    return Object.keys(cleanedObj).length ? cleanedObj : undefined;
+  }
+  return obj;
+}
+
 function createRequest(method, responseType) {
   return async (url, data, disableLoader) => {
     if (!disableLoader) onInitRequest();
     const fullUrl = `${BASE_URL}/${url}`;
     const authHeaders = getAuthHeaders(fullUrl);
+
+    let cleanedData = data;
     if (data instanceof FormData) {
       authHeaders["Content-Type"] = "multipart/form-data";
-    }
+    } else cleanedData = removeEmpty(data);
+
     try {
       try {
         const response = await axios({
           method: method,
           url: fullUrl,
           headers: authHeaders,
-          data: data,
+          //data: data,
+          data: cleanedData,
           responseType: responseType,
         });
         return await handleKnownError(url, response);
@@ -91,16 +125,17 @@ function handleError(url, error) {
       if (user) {
         logout();
       }
-    } else {
-      const data = error.response.data;
-      if (data && data.message) alertData.message = data.message;
+    } else if (error.response.data) {
+      alertData.message =
+        error.response.data.message ?? "validationError"; //error.response.data.title;
+      alertData.errors = error.response.data.errors;
     }
   } else if (error.request) {
     alertData.status = error.request.status;
     if (error.data && error.data.message) {
       alertData.type = "warning";
       alertData.message = error.data.message;
-    } else alertData.message = "login-page.network-error";
+    } else alertData.message = "network-error";
   } else {
     alertData.message = error;
   }

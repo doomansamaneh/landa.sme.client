@@ -4,11 +4,15 @@ import { customerType, gender } from "src/constants";
 export const customerModel = {
   isActive: true,
   typeId: customerType.legal,
-  roleIdList: [],
-  person: {
-    genderId: gender.male,
-  },
+  marketingPercent: 0,
+  roleIds: [],
+  person: {},
   customerBusiness: {},
+  customerAddresses: [],
+  customerContactPhones: [],
+  customerContactMobiles: [],
+  customerContactEmails: [],
+  customerContactWebsites: [],
 };
 
 export const customerBatchModel = {

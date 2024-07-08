@@ -1,5 +1,4 @@
 @mixin border-light {
-
   $colors: (
     primary: $primary,
     secondary: $secondary,
@@ -48,8 +47,8 @@
 
   .bordered {
     border: 1px solid #00000028 !important;
-    box-shadow: 0 2px 10px 0 rgba(58, 53, 65, 0.15),
-      0 0 4px 0 rgba(0, 0, 0, 0.068) !important;
+    // box-shadow: 0 2px 10px 0 rgba(58, 53, 65, 0.15),
+    //   0 0 4px 0 rgba(0, 0, 0, 0.068) !important;
   }
 
   .bordered-1 {

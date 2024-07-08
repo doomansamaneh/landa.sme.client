@@ -24,7 +24,7 @@
   import { ref } from "vue";
 
   import { useAuthStore } from "src/stores";
-  import { fetchWrapper } from "src/helpers";
+  import { fetchWrapper } from "src/helpers/fetch-wrapper";
 
   import Actions from "src/components/shared/forms/FormCardActions.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";

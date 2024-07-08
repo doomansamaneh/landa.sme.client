@@ -1,5 +1,9 @@
 <template>
-  <tool-bar margin :title="title" back-button />
+  <tool-bar
+    :title="title"
+    back-button
+    @submit-call-back="formStore.submitForm(form, action)"
+  />
 
   <q-card class="form-container">
     <q-card-section>
@@ -12,22 +16,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { customerModel } from "src/models/areas/crm/customerModel";
+  import { onMounted, ref } from "vue";
+  import { useRoute } from "vue-router";
+  import { useCustomerModel } from "../../../_composables/useCustomerModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import MasterSection from "./_MasterSection.vue";
-import DetailSection from "./_DetailSection.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import MasterSection from "./_MasterSection.vue";
+  import DetailSection from "./_DetailSection.vue";
 
-const props = defineProps({
-  title: String,
-  action: String,
-});
+  const props = defineProps({
+    title: String,
+    action: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "crm/customer",
-  model: customerModel,
-});
+  const form = ref(null);
+  const route = useRoute();
+  const formStore = useCustomerModel({
+    baseRoute: "crm/customer",
+  });
+
+  onMounted(() => {
+    formStore.getById(route.params.id);
+  });
 </script>

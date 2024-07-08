@@ -1,5 +1,5 @@
-import { useI18n } from "vue-i18n";
 import { exportFile, useQuasar } from "quasar";
+import { useI18n } from "vue-i18n";
 
 export const helper = {
   getEnumOptions(obj, prefix) {
@@ -230,6 +230,20 @@ export const helper = {
     if (!number) return "0";
     const cleanedValue = number.toString().replace(/,/g, "");
     return parseFloat(cleanedValue);
+  },
+
+  downloadFile(response, fileName) {
+    const blob = new Blob([response.data], {
+      type: response.data.type,
+    });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
   },
 
   print(printId) {
