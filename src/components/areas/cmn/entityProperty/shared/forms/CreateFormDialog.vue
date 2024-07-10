@@ -1,13 +1,14 @@
 <template>
   <custom-dialog
     ref="dialog"
-    :title="$t('shared.contactType.address')"
+    :title="$t('shared.labels.entityProperty')"
   >
     <template #body>
       <create-form
         ref="form"
         :id="id"
-        :customer-id="customerId"
+        :entity-id="entityId"
+        :entity-name="entityName"
         :action="action"
       />
     </template>
@@ -27,7 +28,8 @@
 
   const props = defineProps({
     id: String,
-    customerId: String,
+    entityId: String,
+    entityName: String,
     action: String,
   });
 

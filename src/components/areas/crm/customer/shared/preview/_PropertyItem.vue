@@ -3,7 +3,7 @@
     <div class="col">
       <div class="text-body2 no-letter-spacing">
         <span class="text-weight-700 q-mr-sm">{{ item.title }}:</span>
-        <span>{{ item.value }}/span>
+        <span>{{ item.value }}</span>
       </div>
     </div>
     <div class="col-4 row justify-end items-center">
@@ -33,7 +33,8 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { formAction } from "src/constants";
 
-  import CreateFormDialog from "components/areas/cmn/entityProperty/shared/forms/CreateFormDialog.vue";
+  import CreateFor
+  mDialog from "components/areas/cmn/entityProperty/shared/forms/CreateFormDialog.vue";
 
   const props = defineProps({
     item: Object,

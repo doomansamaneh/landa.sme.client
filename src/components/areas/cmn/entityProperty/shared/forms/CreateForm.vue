@@ -12,15 +12,17 @@
 
   const props = defineProps({
     id: String,
-    customerId: String,
+    entityId: String,
+    entityName: String,
     action: String,
   });
 
   const model = ref({
-    customerId: props.customerId,
-    isPrimary: false,
+    entityId: props.entityId,
+    entityName: props.entityName,
   });
-  const formStore = useFormActions("crm/customerAddress", model);
+
+  const formStore = useFormActions("cmn/entityProperty", model);
   const form = ref(null);
 
   async function submitForm() {

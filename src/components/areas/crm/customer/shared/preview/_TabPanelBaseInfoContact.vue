@@ -3,11 +3,11 @@
     <div class="q-gutter-x-sm">
       <q-btn
         unelevated
+        class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+        text-color="white"
         :rounded="$q.screen.gt.xs"
         :round="$q.screen.xs"
-        class="text-body2 no-letter-spacing primary-shadow primary-gradient"
         :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
-        text-color="white"
       >
         <q-icon
           size="20px"

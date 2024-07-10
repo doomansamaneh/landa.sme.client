@@ -1,6 +1,8 @@
 <template>
   <div class="q-pa-md">
     <custom-button
+      class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+      text-color="white"
       icon="o_edit"
       :title="$t('shared.labels.edit')"
       @click="edit"

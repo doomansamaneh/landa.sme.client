@@ -2,6 +2,8 @@
   <div class="q-pa-md">
     <div class="q-gutter-x-sm">
       <custom-button
+        class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+        text-color="white"
         icon="o_add"
         title="افزودن حساب بانکی"
         @click="addBankAccount"

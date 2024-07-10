@@ -3,7 +3,6 @@
     unelevated
     :rounded="$q.screen.gt.xs"
     :round="$q.screen.xs"
-    class="bg-grey-3"
     :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
   >
     <q-icon

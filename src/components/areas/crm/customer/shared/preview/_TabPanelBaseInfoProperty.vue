@@ -2,6 +2,8 @@
   <div class="q-pa-md">
     <div class="q-gutter-x-sm">
       <custom-button
+        class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+        text-color="white"
         icon="o_add"
         title="افزودن فیلد سفارشی"
         @click="add"
@@ -57,11 +59,11 @@
     $q.dialog({
       component: CreateFormDialog,
       componentProps: {
-        customerId: props.item.id,
+        entityId: props.item.id,
+        entityName: "crm.[Customer]",
         action: formAction.create,
       },
     }).onOk(async () => {
-      alert("address added");
       await tableStore.reloadData();
     });
   };
