@@ -27,68 +27,20 @@
     <q-separator size="0.5px" :class="{ 'q-mb-md': $q.screen.xs }" />
 
     <q-card-section>
-      <div class="row q-col-gutter-md q-mb-md">
-        <div class="col-md col-sm col-xs-12">
-          <q-checkbox
-            size="46px"
-            dense
-            v-model="model.isPrimary"
-            val="customer"
-            label="اصلی"
-          />
-        </div>
-      </div>
-
-      <div class="row q-col-gutter-md q-mb-md">
-        <div class="col-md col-sm col-xs-12">
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            نوع
-          </q-item-label>
-          <custom-select options="" v-model="model.contactTypeId" />
-        </div>
-        <div class="col-md col-sm col-xs-12">
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            مقدار
-          </q-item-label>
-          <custom-input v-model="model.value" />
-        </div>
-      </div>
-
-      <div class="row q-col-gutter-md q-mb-md">
-        <div class="col-md col-sm col-xs-12">
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            شرح
-          </q-item-label>
-          <custom-input
-            model="model.address"
-            type="textarea"
-            autogrow
-          />
-        </div>
-      </div>
+      <create-or-edit :item="item" :type-id="typeId" />
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-
-  import CustomInput from "src/components/shared/forms/CustomInput.vue";
-  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import CreateOrEdit from "components/areas/crm/customerContact/shared/forms/_CreateOrEdit.vue";
 
   const props = defineProps({
     item: Object,
     index: Number,
     title: String,
+    typeId: Number,
   });
-
-  const model = computed(() => props.item);
 
   const emit = defineEmits(["item-deleted", "item-added"]);
   const deleteItem = () => {

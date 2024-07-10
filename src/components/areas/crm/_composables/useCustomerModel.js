@@ -1,18 +1,15 @@
-import { ref, computed, watch } from "vue";
+import { ref } from "vue";
 import { fetchWrapper } from "src/helpers";
-import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
 import { customerModel } from "src/models/areas/crm/customerModel";
 
-import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
 
 export function useCustomerModel(config) {
   const $q = useQuasar();
   const router = useRouter();
-  const { t } = useI18n();
   const model = config?.model ?? ref(customerModel);
 
   const crudStore = useFormActions(config.baseRoute, model);

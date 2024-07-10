@@ -376,7 +376,6 @@
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { defaultLookupPageSize, sortOrder } from "src/constants";
-  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
   import PageBar from "src/components/shared/dataTables/PageBar.vue";
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
@@ -398,7 +397,6 @@
 
   const selectedId = defineModel("selectedId");
   const selectedText = defineModel("selectedText");
-  const formStore = useInvoiceModel({ baseRoute: "sls/invoice" });
   const $q = useQuasar();
 
   const store = {

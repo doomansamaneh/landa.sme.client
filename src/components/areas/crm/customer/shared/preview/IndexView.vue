@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  <tabs />
+  <tabs :item="model" />
 </template>
 
 <script setup>
@@ -58,7 +58,6 @@
   import { useRoute } from "vue-router";
   import { useQuasar } from "quasar";
   import { useFormActions } from "src/composables/useFormActions";
-  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import SalesWidget from "components/areas/dashboard/widgets/SalesWidget.vue";
@@ -72,7 +71,7 @@
   });
 
   const route = useRoute();
-  const model = ref(invoiceModel);
+  const model = ref({});
   const formStore = useFormActions("crm/customer", model);
 
   const id = computed(() => props.item?.id ?? route.params.id);

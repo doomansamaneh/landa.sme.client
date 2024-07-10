@@ -101,6 +101,7 @@
         title="تلفن"
         @item-deleted="formStore.deletePhone(index)"
         @item-added="formStore.addPhone(index)"
+        :type-id="contactType.phone"
       >
         <template #header-title>
           <q-icon name="o_call" size="18px" class="q-mx-sm" />
@@ -120,6 +121,7 @@
         title="موبایل"
         @item-deleted="formStore.deleteMobile(index)"
         @item-added="formStore.addMobile(index)"
+        :type-id="contactType.mobile"
       >
         <template #header-title>
           <q-icon
@@ -143,6 +145,7 @@
         title="ایمیل"
         @item-deleted="formStore.deleteEmail(index)"
         @item-added="formStore.addEmail(index)"
+        :type-id="contactType.email"
       >
         <template #header-title>
           <q-icon name="o_email" size="18px" class="q-mx-sm" />
@@ -162,6 +165,7 @@
         title="وب سایت"
         @item-deleted="formStore.deleteWebsite(index)"
         @item-added="formStore.addWebsite(index)"
+        :type-id="contactType.website"
       >
         <template #header-title>
           <q-icon name="o_public" size="18px" class="q-mx-sm" />
@@ -175,6 +179,7 @@
 <script setup>
   import { onMounted } from "vue";
   import { useRoute } from "vue-router";
+  import { contactType } from "src/constants";
 
   import ContactItem from "./_DetailContactItem.vue";
 

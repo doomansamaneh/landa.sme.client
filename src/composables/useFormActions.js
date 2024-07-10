@@ -160,6 +160,7 @@ export function useFormActions(baseURL, model) {
     if (success) {
       const responseData = await createOrEdit(action);
       if (callBack) callBack(responseData);
+      responseData.model = model.value;
       return responseData;
       //else if (responseData?.code === 200) router.back();
     } else {

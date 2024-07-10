@@ -287,6 +287,9 @@
       "exportExcelCurrentPage": "تبدیل به اکسل صفحه جاری",
       "advancedSearch": "جستجوی پیشرفته",
       "contactSearch": "جستجوی مخاطب",
+      "business": "کسب و کار",
+      "entityProperty": "فیلدهای سفارشی",
+      "contact": "تماس",
       "next": "پسین",
       "previous": "پیشین",
       "loadMore": "بارگزاری بیشتر",
@@ -387,7 +390,9 @@
     "customerType": {
       "legal": "حقوقی",
       "person": "حقیقی",
-      "personnel": "پرسنل"
+      "personnel": "پرسنل",
+      "engagement": "مشارکت مدنی",
+      "foreignNational": "اتباع خارجی"
     },
     "vatType": {
       "purchaseAndSale": "خرید و فروش (هر دو)",

@@ -13,6 +13,14 @@ export const helper = {
     return list;
   },
 
+  updateModel(source, target) {
+    if (source && target)
+      Object.keys(source).forEach((key) => {
+        if (target.hasOwnProperty(key) && target[key] !== source[key])
+          source[key] = target[key];
+      });
+  },
+
   getEnumType(value, enumType) {
     for (const key in enumType) {
       if (enumType[key] === value) {

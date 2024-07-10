@@ -13,6 +13,8 @@ export const customerType = {
   legal: 171,
   person: 172,
   personnel: 173,
+  engagement: 174,
+  foreignNational: 175,
 };
 
 export const contactType = {
@@ -22,6 +24,15 @@ export const contactType = {
   address: 274,
   website: 275,
   socialNetwork: 276,
+};
+
+export const contactTypeIcons = {
+  [contactType.phone]: "o_call",
+  [contactType.mobile]: "o_phone_android",
+  [contactType.email]: "o_mail",
+  [contactType.address]: "",
+  [contactType.website]: "o_public",
+  [contactType.socialNetwork]: "o_share",
 };
 
 export const locationType = {
@@ -224,6 +235,12 @@ export const paymentType = {
   cash: 1,
   trust: 2,
   both: 3,
+};
+
+export const formAction = {
+  create: "create",
+  edit: "edit",
+  editBatch: "editBatch",
 };
 
 export const accountType = {
