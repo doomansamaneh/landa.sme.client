@@ -33,8 +33,7 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { formAction } from "src/constants";
 
-  import CreateFor
-  mDialog from "components/areas/cmn/entityProperty/shared/forms/CreateFormDialog.vue";
+  import CreateFormDialog from "components/areas/cmn/entityProperty/shared/forms/CreateFormDialog.vue";
 
   const props = defineProps({
     item: Object,

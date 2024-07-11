@@ -11,7 +11,10 @@ import {
 
 const columns = ref(invoiceColumns);
 
-export function useInvoiceFilteredGrid(defaultFilters, visibleColumns) {
+export function useInvoiceFilteredGrid(
+  defaultFilters,
+  visibleColumns
+) {
   const route = useRoute();
 
   if (visibleColumns)

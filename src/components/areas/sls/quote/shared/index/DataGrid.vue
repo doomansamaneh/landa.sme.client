@@ -8,7 +8,7 @@
       :title="title"
       :base-route="baseRoute"
       activation
-    ></toolbar-mobile>
+    />
 
     <mobile
       :grid-store="gridStore"

@@ -9,10 +9,12 @@
           size="sm"
           color="primary"
         />
-        <span class="text-weight-700 q-mr-sm">{{ item.title }}:</span>
-        <span>{{ item.fullName }} - {{ item.address }}</span>
+        <span class="text-weight-700 q-mr-sm">
+          {{ item.contactTypeTitle }}:
+        </span>
+        <span>{{ item.locationTitle }} - {{ item.address }}</span>
         <copy-clipboard
-          :text="`${item.fullName} - ${item.address}`"
+          :text="`${item.locationTitle} - ${item.address}`"
         />
         <span v-if="item.postalCode">
           / کد پستی:

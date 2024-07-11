@@ -9,7 +9,9 @@
           size="sm"
           color="primary"
         />
-        <span class="text-weight-700 q-mr-sm">{{ item.title }}:</span>
+        <span class="text-weight-700 q-mr-sm">
+          {{ item.contactTypeTitle }}:
+        </span>
         <span>{{ item.value }}</span>
         <small v-if="item.comment" class="q-mx-xs">
           ({{ item.comment }})
