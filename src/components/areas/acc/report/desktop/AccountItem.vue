@@ -6,12 +6,13 @@
     separator="horizontal"
     flat_
     square_
-    multiSelect_
+    multiSelect
     numbered
     bordered_
     wrapCells
     dense_
     expandable
+    toolbar
   >
     <template #cell-credit="{ item }">
       {{ item.credit?.toLocaleString() }}
@@ -45,6 +46,40 @@
       </div>
     </template>
 
+    <template #footer-subtotal="{ selectedRows }">
+      <td :colspan="colspan" class="text-right">
+        {{ $t("shared.labels.selectedRows") }}
+      </td>
+      <td>
+        <b>
+          {{
+            helper
+              .getSubtotal(selectedRows, "debitRemained")
+              .toLocaleString()
+          }}
+        </b>
+      </td>
+      <td>
+        <b>
+          {{
+            helper
+              .getSubtotal(selectedRows, "creditRemained")
+              .toLocaleString()
+          }}
+        </b>
+      </td>
+      <td colspan="100%">
+        <b v-if="showInlineDebit">
+          {{
+            (
+              helper.getSubtotal(selectedRows, "debitRemained") -
+              helper.getSubtotal(selectedRows, "creditRemained")
+            ).toLocaleString()
+          }}
+        </b>
+      </td>
+    </template>
+
     <template #footer-total="{ summary }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.total") }}
@@ -55,11 +90,23 @@
       <td>
         <b>{{ summary?.creditRemained.toLocaleString() }}</b>
       </td>
-      <td colspan="100%"></td>
+      <td colspan="100%">
+        <b v-if="showInlineDebit">
+          {{
+            (
+              summary?.debitRemained - summary?.creditRemained
+            ).toLocaleString()
+          }}
+        </b>
+      </td>
     </template>
 
     <template #expand="{ item }">
-      <voucher-preview :voucher-id="item.voucherId" inside />
+      <voucher-preview
+        :voucher-id="item.voucherId"
+        :voucher-item-id="item.id"
+        inside
+      />
     </template>
   </data-grid>
 </template>
@@ -67,6 +114,7 @@
 <script setup>
   import { ref, computed } from "vue";
 
+  import { helper } from "src/helpers";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { accountItemColumns } from "../../_composables/constants";
 
@@ -100,8 +148,16 @@
     () =>
       tableStore?.value?.columns.value.findIndex(
         (column) => column.name === "debitRemained"
-      ) + 1 //numbered column
-    //+ 1 //multi check column
+      ) +
+      1 + //numbered column
+      1 //multi check column
+  );
+
+  const showInlineDebit = computed(
+    () =>
+      tableStore?.value?.columns.value.findIndex(
+        (column) => column.name === "inlineDebit"
+      ) >= 0
   );
 
   defineExpose({

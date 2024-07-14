@@ -181,6 +181,7 @@
       :grid-store="gridStore"
       :crud-store="crudStore"
       :title="title"
+      advanced-search
       data-source="sls/invoice/getGridData"
       ref="desktopGrid"
     />

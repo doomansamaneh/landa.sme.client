@@ -73,7 +73,10 @@
           <header-section :model="model" title="سند حسابداری" />
 
           <q-card-section class="q-gutter-y-sm_">
-            <body-section :model="model" />
+            <body-section
+              :model="model"
+              :voucher-item-id="voucherItemId"
+            />
             <footer-section :model="model" />
           </q-card-section>
         </div>
@@ -101,6 +104,7 @@
   const props = defineProps({
     item: Object,
     voucherId: String,
+    voucherItemId: String,
     title: String,
     inside: Boolean,
   });

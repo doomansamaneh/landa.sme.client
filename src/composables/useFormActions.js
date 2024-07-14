@@ -5,7 +5,7 @@ import { useI18n } from "vue-i18n";
 import { fetchWrapper, helper, bus } from "src/helpers";
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 
-export function useFormActions(baseURL, model) {
+export function useFormActions(baseURL, model, diableDirtyCheck) {
   const isDirty = ref(false);
   const $q = useQuasar();
   const router = useRouter();
@@ -13,7 +13,7 @@ export function useFormActions(baseURL, model) {
 
   async function getById(id, url) {
     const response = await onGetById(url ?? `${baseURL}/getById`, id);
-    await resetIsDirty();
+    if (!diableDirtyCheck) await resetIsDirty();
     return response;
   }
 

@@ -23,7 +23,7 @@ const pagination = ref({
 });
 
 export function useVoucherState() {
-  const columns = voucherColumns;
+  const columns = ref([...voucherColumns]);
 
   return {
     rows,

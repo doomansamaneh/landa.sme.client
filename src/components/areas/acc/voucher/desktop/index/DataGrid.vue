@@ -1,100 +1,98 @@
 <template>
-  <advanced-search />
+  <advanced-search v-if="advancedSearch" />
 
-  <div class="q-py-md">
-    <data-grid
-      ref="dataGrid"
-      :data-source="dataSource"
-      :grid-store="gridStore"
-      separator="horizontal"
-      flat_
-      multiSelect
-      numbered
-      bordered
-      wrapCells
-      dense_
-      expandable
-      @row-dbl-click="gotoPreview"
-    >
-      <template #filter-typeId="{ item }">
-        <custom-select
-          v-model="item.value"
-          :options="helper.getEnumOptions(voucherType, 'voucherType')"
-          @update:model-value="reloadData"
-        />
-      </template>
-      <template #filter-systemId="{ item }">
-        <custom-select
-          v-model="item.value"
-          :options="helper.getEnumOptions(subSystem, 'subSystem')"
-          @update:model-value="reloadData"
-        />
-      </template>
+  <data-grid
+    ref="dataGrid"
+    :data-source="dataSource"
+    :grid-store="gridStore"
+    separator="horizontal"
+    flat_
+    multiSelect
+    numbered
+    bordered
+    wrapCells
+    dense_
+    expandable
+    @row-dbl-click="gotoPreview"
+  >
+    <template #filter-typeId="{ item }">
+      <custom-select
+        v-model="item.value"
+        :options="helper.getEnumOptions(voucherType, 'voucherType')"
+        @update:model-value="reloadData"
+      />
+    </template>
+    <template #filter-systemId="{ item }">
+      <custom-select
+        v-model="item.value"
+        :options="helper.getEnumOptions(subSystem, 'subSystem')"
+        @update:model-value="reloadData"
+      />
+    </template>
 
-      <template #cell-subject="{ item }">
-        {{ item.subject }}
-        <div>
-          <small>{{ item.summary }}</small>
-        </div>
-      </template>
+    <template #cell-subject="{ item }">
+      {{ item.subject }}
+      <div>
+        <small>{{ item.summary }}</small>
+      </div>
+    </template>
 
-      <template #cell-amount="{ item }">
-        {{ item.amount.toLocaleString() }}
-      </template>
+    <template #cell-amount="{ item }">
+      {{ item.amount.toLocaleString() }}
+    </template>
 
-      <template #cell-typeId="{ item }">
-        {{
-          $t(
-            `shared.voucherType.${helper.getEnumType(
-              item.typeId,
-              voucherType
-            )}`
-          )
-        }}
-      </template>
+    <template #cell-typeId="{ item }">
+      {{
+        $t(
+          `shared.voucherType.${helper.getEnumType(
+            item.typeId,
+            voucherType
+          )}`
+        )
+      }}
+    </template>
 
-      <template #cell-systemId="{ item }">
-        {{
-          $t(
-            `shared.subSystem.${helper.getEnumType(
-              item.systemId,
-              subSystem
-            )}`
-          )
-        }}
-      </template>
+    <template #cell-systemId="{ item }">
+      {{
+        $t(
+          `shared.subSystem.${helper.getEnumType(
+            item.systemId,
+            subSystem
+          )}`
+        )
+      }}
+    </template>
 
-      <template #footer-subtotal="{ selectedRows }">
-        <td :colspan="colspan" class="text-right">
-          {{ $t("shared.labels.selectedRows") }}
-        </td>
-        <td>
-          <b>
-            {{
-              helper
-                .getSubtotal(selectedRows, "amount")
-                .toLocaleString()
-            }}
-          </b>
-        </td>
-        <td colspan="100%"></td>
-      </template>
+    <template #footer-subtotal="{ selectedRows }">
+      <td :colspan="colspan" class="text-right">
+        {{ $t("shared.labels.selectedRows") }}
+      </td>
+      <td>
+        <b>
+          {{
+            helper
+              .getSubtotal(selectedRows, "amount")
+              .toLocaleString()
+          }}
+        </b>
+      </td>
+      <td colspan="100%"></td>
+    </template>
 
-      <template #footer-total="{ summary }">
-        <td :colspan="colspan" class="text-right">
-          {{ $t("shared.labels.total") }}
-        </td>
-        <td>
-          <b>{{ summary?.amount?.toLocaleString() }}</b>
-        </td>
-        <td colspan="100%"></td>
-      </template>
+    <template #footer-total="{ summary }">
+      <td :colspan="colspan" class="text-right">
+        {{ $t("shared.labels.total") }}
+      </td>
+      <td>
+        <b>{{ summary?.amount?.toLocaleString() }}</b>
+      </td>
+      <td colspan="100%"></td>
+    </template>
 
-      <template #expand="{ item }">
-        <preview inside :item="item" />
-      </template>
-    </data-grid>
-  </div>
+    <template #expand="{ item }">
+      <preview inside :item="item" />
+    </template>
+  </data-grid>
 </template>
 
 <script setup>
@@ -112,6 +110,7 @@
     gridStore: Object,
     dataSource: String,
     baseRoute: String,
+    advancedSearch: Boolean,
   });
 
   const router = useRouter();

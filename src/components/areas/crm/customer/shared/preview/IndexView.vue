@@ -94,8 +94,8 @@
     width: 400px;
   }
 
-  .info-box:hover {
-    border: 1px solid var(--q-primary) !important;
-    cursor: pointer;
-  }
+  // .info-box:hover {
+  //   border: 1px solid var(--q-primary) !important;
+  //   cursor: pointer;
+  // }
 </style>

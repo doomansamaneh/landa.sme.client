@@ -1,29 +1,19 @@
 <template>
-  <desktop
-    v-if="$q.screen.gt.xs"
-    :grid-store="invoiceStore"
-    :data-source="`sls/invoice/GetByCustomerData/${$route.params.id}`"
-  />
-  <mobile
-    v-else
-    :grid-store="invoiceStore"
-    :data-source="`sls/invoice/GetByCustomerData/${$route.params.id}`"
+  <data-grid
+    flat_
+    :data-source="`sls/invoice/GetByCustomerData/${item.id}`"
+    :grid-store="gridStore"
   />
 </template>
 
 <script setup>
-  import { useInvoiceFilteredGrid } from "components/areas/sls/_composables/useInvoiceFilteredGrid";
+  import { useCustomerInvoiceState } from "../../../_composables/useCustomerInvoiceState";
 
-  //import Desktop from "components/areas/sls/invoice/desktop/index/DataGrid.vue";
-  import Desktop from "components/areas/sls/_shared/invoice/desktop/index/DataGrid.vue";
-  import Mobile from "components/areas/sls/invoice/mobile/index/DataGrid.vue";
+  import DataGrid from "src/components/areas/sls/invoice/desktop/index/_DataGrid.vue";
 
-  const invoiceStore = useInvoiceFilteredGrid(null, [
-    "no",
-    "date",
-    "subject",
-    "amount",
-    "payedAmount",
-    "remainedAmount",
-  ]);
+  const props = defineProps({
+    item: Object,
+  });
+
+  const gridStore = useCustomerInvoiceState();
 </script>

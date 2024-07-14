@@ -1,21 +1,21 @@
 <template>
-  <advanced-search
-    :grid-store="gridStore"
-    @apply-search="reloadData"
-  />
-
-  <div class="q-mt-lg">
-    <invoice-grid
-      ref="invoiceTable"
+  <div v-if="advancedSearch" class="q-mb-md">
+    <advanced-search
       :grid-store="gridStore"
-      :data-source="dataSource"
-      base-route="sls/quote"
-    >
-      <template #expand="{ item }">
-        <preview :item="item" inside />
-      </template>
-    </invoice-grid>
+      @apply-search="reloadData"
+    />
   </div>
+
+  <invoice-grid
+    ref="invoiceTable"
+    :grid-store="gridStore"
+    :data-source="dataSource"
+    base-route="sls/quote"
+  >
+    <template #expand="{ item }">
+      <preview :item="item" inside />
+    </template>
+  </invoice-grid>
 </template>
 
 <script setup>
@@ -26,8 +26,9 @@
   import Preview from "../../shared/preview/IndexView.vue";
 
   const props = defineProps({
-    gridStore: Object,
     title: String,
+    advancedSearch: Boolean,
+    gridStore: Object,
     dataSource: String,
     crudStore: Object,
   });

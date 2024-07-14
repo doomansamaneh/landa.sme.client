@@ -50,15 +50,25 @@
           <q-item-label
             class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
           >
-            شرح
+            شعبه
           </q-item-label>
-          <custom-input
-            v-model="model.comment"
-            type="textarea"
-            autogrow
-          />
+          <custom-input v-model="model.branchNo" />
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row q-mt-lg">
+    <div class="col-md-12">
+      <q-item-label
+        class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+      >
+        شرح
+      </q-item-label>
+      <custom-input
+        v-model="model.comment"
+        type="textarea"
+        autogrow
+      />
     </div>
   </div>
 </template>

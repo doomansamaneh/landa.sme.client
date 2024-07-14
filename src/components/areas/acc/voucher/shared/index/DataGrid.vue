@@ -125,6 +125,7 @@
       :crud-store="crudStore"
       :base-route="baseRoute"
       :title="title"
+      advanced-search
       data-source="acc/voucher/getGridData"
       ref="desktopGrid"
     />
@@ -137,7 +138,6 @@
   import { useI18n } from "vue-i18n";
   import { useFormActions } from "src/composables/useFormActions";
   import { useAccountingOperations } from "../../../_composables/useAccountingOperations";
-  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useVoucherState } from "src/components/areas/acc/_composables/useVoucherState";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
@@ -158,8 +158,7 @@
 
   const $q = useQuasar();
 
-  const accountStore = useVoucherState();
-  const gridStore = useBaseInfoGrid(accountStore);
+  const gridStore = useVoucherState();
   const crudStore = useFormActions(baseRoute);
   const operationStore = useAccountingOperations();
   const desktopGrid = ref(null);

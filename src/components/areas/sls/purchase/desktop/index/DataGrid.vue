@@ -4,7 +4,7 @@
     @apply-search="reloadData"
   />
 
-  <div class="q-mt-lg">
+  <div class="q-mt-md">
     <invoice-grid
       ref="invoiceTable"
       :grid-store="gridStore"

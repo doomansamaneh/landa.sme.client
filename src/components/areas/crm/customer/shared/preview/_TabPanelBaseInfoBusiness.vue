@@ -25,7 +25,13 @@
         {{ model.taxNo }}
       </div>
     </div>
-    <div class="row items-center">
+    <div class="row items-center" v-if="model.branchNo">
+      <div class="col-2 no-letter-spacing">کد شعبه:</div>
+      <div class="col text-body2 no-letter-spacing">
+        {{ model.branchNo }}
+      </div>
+    </div>
+    <div class="row items-center" v-if="model.insuranceWorkNo">
       <div class="col-2 no-letter-spacing">شناسه کارگاه بیمه:</div>
       <div class="col text-body2 no-letter-spacing">
         {{ model.insuranceWorkNo }}
@@ -69,7 +75,11 @@
 
   const $q = useQuasar();
   const model = ref({});
-  const formStore = useFormActions("crm/customerBusiness", model);
+  const formStore = useFormActions(
+    "crm/customerBusiness",
+    model,
+    true
+  );
 
   const loadData = async () => {
     await formStore.getById(props.item?.id);

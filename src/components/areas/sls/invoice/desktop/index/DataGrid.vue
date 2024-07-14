@@ -1,5 +1,5 @@
 <template>
-  <advanced-search />
+  <advanced-search v-if="advancedSearch" />
 
   <q-tabs
     v-model="tab"
@@ -33,35 +33,29 @@
     :data-source="dataSource"
     base-route="sls/invoice"
     class="q-mt-md"
-  >
-    <template #expand="{ item }">
-      <preview inside :item="item" />
-    </template>
-  </invoice-grid>
+  />
 </template>
 
 <script setup>
   import { computed, ref } from "vue";
   import { sqlOperator, cancelStatus } from "src/constants";
 
-  import InvoiceGrid from "components/areas/sls/_shared/invoice/desktop/index/DataGrid.vue";
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
-  import Preview from "../../shared/preview/IndexView.vue";
+  import InvoiceGrid from "./_DataGrid.vue";
 
   const props = defineProps({
     gridStore: Object,
     title: String,
     dataSource: String,
     crudStore: Object,
+    advancedSearch: Boolean,
   });
 
   const invoiceTable = ref(null);
 
   const tab = ref("invoice");
 
-  const tableStore = computed(
-    () => invoiceTable.value?.dataTable?.tableStore
-  );
+  const tableStore = computed(() => invoiceTable.value?.tableStore);
 
   function setDefaultFilter() {
     tableStore.value.setFilterExpression([

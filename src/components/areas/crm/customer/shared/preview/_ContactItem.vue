@@ -43,6 +43,7 @@
   import { ref } from "vue";
   import { useQuasar } from "quasar";
   import { useFormActions } from "src/composables/useFormActions";
+  import { helper } from "src/helpers";
   import { formAction } from "src/constants";
 
   import CopyClipboard from "src/components/shared/buttons/CopyClipboard.vue";

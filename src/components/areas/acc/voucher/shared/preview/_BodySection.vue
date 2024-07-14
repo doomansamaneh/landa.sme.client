@@ -47,57 +47,63 @@
         </tr>
       </thead>
       <tbody>
-        <tr
+        <template
           v-for="(item, index) in model?.voucherItems"
           :key="item.id"
         >
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
-            {{ index + 1 }}
-          </td>
-          <td
-            style="
-              vertical-align: top;
-              padding: 3px;
-              border: 1px solid #2d2d2d;
+          <tr
+            :class="
+              item.id === voucherItemId ? 'bg-blue-5 text-white' : ''
             "
           >
-            <div>
-              {{ item.slCode }}
-            </div>
-            <div style="text-align: end" class="text-blue-10">
-              {{ item.dlCode }}
-            </div>
-          </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
-            <div class="text-wrap">
-              {{ item.slTitle }}
-            </div>
-            <div class="text-wrap text-blue-10">
-              {{ item.dlTitle }}
-            </div>
-            <div class="text-wrap">
-              {{ item.comment }}
-            </div>
-          </td>
-          <td
-            style="
-              vertical-align: top;
-              padding: 3px;
-              border: 1px solid #2d2d2d;
-            "
-          >
-            {{ item.debit.toLocaleString() }}
-          </td>
-          <td
-            style="
-              vertical-align: top;
-              padding: 3px;
-              border: 1px solid #2d2d2d;
-            "
-          >
-            {{ item.credit.toLocaleString() }}
-          </td>
-        </tr>
+            <td style="padding: 3px; border: 1px solid #2d2d2d">
+              {{ index + 1 }}
+            </td>
+            <td
+              style="
+                vertical-align: top;
+                padding: 3px;
+                border: 1px solid #2d2d2d;
+              "
+            >
+              <div>
+                {{ item.slCode }}
+              </div>
+              <div style="text-align: end" class="text-blue-10">
+                {{ item.dlCode }}
+              </div>
+            </td>
+            <td style="padding: 3px; border: 1px solid #2d2d2d">
+              <div class="text-wrap">
+                {{ item.slTitle }}
+              </div>
+              <div class="text-wrap text-blue-10">
+                {{ item.dlTitle }}
+              </div>
+              <div class="text-wrap">
+                {{ item.comment }}
+              </div>
+            </td>
+            <td
+              style="
+                vertical-align: top;
+                padding: 3px;
+                border: 1px solid #2d2d2d;
+              "
+            >
+              {{ item.debit.toLocaleString() }}
+            </td>
+            <td
+              style="
+                vertical-align: top;
+                padding: 3px;
+                border: 1px solid #2d2d2d;
+              "
+            >
+              {{ item.credit.toLocaleString() }}
+            </td>
+          </tr>
+        </template>
       </tbody>
 
       <tbody>
@@ -148,5 +154,6 @@
 
   const props = defineProps({
     model: Object,
+    voucherItemId: String,
   });
 </script>

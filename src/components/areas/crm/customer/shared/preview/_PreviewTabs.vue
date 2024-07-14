@@ -56,16 +56,16 @@
       <base-info v-if="item.id" :item="item" />
     </q-tab-panel>
     <q-tab-panel class="no-padding bg-main" name="quote">
-      <quote />
+      <quote :item="item" />
     </q-tab-panel>
     <q-tab-panel class="no-padding bg-main" name="invoice">
-      <invoice />
+      <invoice :item="item" />
     </q-tab-panel>
     <q-tab-panel class="no-padding bg-main" name="account">
-      <account />
+      <account :item="item" />
     </q-tab-panel>
     <q-tab-panel class="no-padding" name="log">
-      <log />
+      <log :item="item" />
     </q-tab-panel>
   </q-tab-panels>
 </template>

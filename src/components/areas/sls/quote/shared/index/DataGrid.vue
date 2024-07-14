@@ -102,6 +102,7 @@
       :grid-store="gridStore"
       :crud-store="crudStore"
       :title="title"
+      advanced-search
       data-source="sls/quote/getGridData"
       ref="desktopGrid"
     />
