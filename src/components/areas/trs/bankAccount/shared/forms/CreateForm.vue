@@ -31,7 +31,9 @@
             </q-item-label>
             <bank-branch-lookup
               v-model:selectedId="formStore.model.value.bankBranchId"
-              v-model:selectedText="formStore.model.value.bankBranchTitle"
+              v-model:selectedText="
+                formStore.model.value.bankBranchTitle
+              "
             />
           </div>
         </div>
@@ -44,8 +46,12 @@
               نوع حساب
             </q-item-label>
             <account-type-lookup
-              v-model:selectedId="formStore.model.value.bankAccountTypeId"
-              v-model:selectedText="formStore.model.value.bankAccountTypeTitle"
+              v-model:selectedId="
+                formStore.model.value.bankAccountTypeId
+              "
+              v-model:selectedText="
+                formStore.model.value.bankAccountTypeTitle
+              "
             />
           </div>
         </div>
@@ -105,35 +111,35 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { sqlOperator, accountCurrentAsset } from "src/constants";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { sqlOperator, accountCLType } from "src/constants";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import DateTime from "src/components/shared/forms/DateTimePicker.vue";
-import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
-import BankBranchLookup from "src/components/shared/lookups/BankBranchLookup.vue";
-import AccountTypeLookup from "src/components/shared/lookups/BankAccountTypeLookup.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import BankBranchLookup from "src/components/shared/lookups/BankBranchLookup.vue";
+  import AccountTypeLookup from "src/components/shared/lookups/BankAccountTypeLookup.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "trs/bankAccount",
-  getCreateModel: true,
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "trs/bankAccount",
+    getCreateModel: true,
+  });
 
-const filterSL = [
-  {
-    fieldName: "clId",
-    operator: sqlOperator.equal,
-    value: accountCurrentAsset,
-    // operator: sqlOperator.in,
-    // value: `${accountCurrentAsset},${accountCurrentLiability}`,
-  },
-];
+  const filterSL = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.equal,
+      value: accountCLType.currentAsset,
+      // operator: sqlOperator.in,
+      // value: `${accountCLType.currentAsset},${accountCLType.currentLiability}`,
+    },
+  ];
 </script>

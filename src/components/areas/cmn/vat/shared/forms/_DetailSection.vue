@@ -141,21 +141,22 @@
         <div class="title">راهنما</div>
         <div class="q-mt-md">
           <p>
-            <strong>عنوان: </strong>
-            عنوانی که در سند حسابداری برای این قلم نشان داده می‌شود، مانند
-            مالیات بر ارزش افزوده پرداختنی
+            <strong>عنوان:</strong>
+            عنوانی که در سند حسابداری برای این قلم نشان داده می‌شود،
+            مانند مالیات بر ارزش افزوده پرداختنی
           </p>
           <p>
-            <strong>حساب معین: </strong>
+            <strong>حساب معین:</strong>
             حسابهای معین پیشفرض:
-            <strong> 30501: </strong>
-            مالیات بر ارزش افزوده پرداختنی و 30502: عوارض ارزش افزوده پرداختنی
+            <strong>30501:</strong>
+            مالیات بر ارزش افزوده پرداختنی و 30502: عوارض ارزش افزوده
+            پرداختنی
           </p>
           <p>
-            <strong>نرخ: </strong>
-            نرخ مالیات بر ارزش افزوده براساس اقلام ارزش افزوده، در سند حسابداری
-            که به صورت خودکار از روی فاکتور، خرید، و... ایجاد می‌شود، شکسته
-            می‌شود.
+            <strong>نرخ:</strong>
+            نرخ مالیات بر ارزش افزوده براساس اقلام ارزش افزوده، در سند
+            حسابداری که به صورت خودکار از روی فاکتور، خرید، و... ایجاد
+            می‌شود، شکسته می‌شود.
           </p>
         </div>
       </div>
@@ -164,24 +165,24 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { accountCurrentLiability, sqlOperator } from "src/constants";
+  import { computed } from "vue";
+  import { accountCLType, sqlOperator } from "src/constants";
 
-import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
-import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
+  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
 
-const props = defineProps({
-  formStore: Object,
-});
+  const props = defineProps({
+    formStore: Object,
+  });
 
-const slFilter = [
-  {
-    fieldName: "clId",
-    operator: sqlOperator.equal,
-    value: accountCurrentLiability,
-  },
-];
-const model = computed(() => props.formStore.model);
+  const slFilter = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.equal,
+      value: accountCLType.currentLiability,
+    },
+  ];
+  const model = computed(() => props.formStore.model);
 </script>

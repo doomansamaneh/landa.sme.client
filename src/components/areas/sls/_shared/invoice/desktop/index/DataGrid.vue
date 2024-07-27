@@ -38,6 +38,16 @@
       </span>
     </template>
     <template #cell-amount="{ item }">
+      <q-btn
+        v-if="item.statusId === voucherStatus.canceled"
+        round
+        text-color="white"
+        dense
+        size="9px"
+        unelevated
+        icon="clear"
+        class="q-mr-xs red-gradient red-shadow no-pointer-events"
+      />
       <span>{{ item.amount?.toLocaleString() }}</span>
     </template>
     <template #cell-payedAmount="{ item }">
@@ -166,7 +176,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useRouter } from "vue-router";
-  import { quoteStatus } from "src/constants";
+  import { quoteStatus, voucherStatus } from "src/constants";
   import { helper } from "src/helpers";
 
   import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";

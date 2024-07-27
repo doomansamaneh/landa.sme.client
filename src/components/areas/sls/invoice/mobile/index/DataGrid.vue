@@ -536,7 +536,7 @@
   import { computed, ref, onMounted } from "vue";
 
   import { helper } from "src/helpers";
-  import { sqlOperator, cancelStatus } from "src/constants";
+  import { sqlOperator, voucherStatus } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";

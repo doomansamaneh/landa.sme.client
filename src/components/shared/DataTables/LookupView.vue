@@ -12,6 +12,7 @@
     dense
     debounce="1000"
     :placeholder="placeholder"
+    :autofocus="autofocus"
     @update:model-value="searchInLookup"
     @keydown.enter.prevent.stop="selectRow"
     @keydown="handleKeyDown"
@@ -393,6 +394,7 @@
     filterExpression: Array,
     width: String,
     showAdd: Boolean,
+    autofocus: Boolean,
   });
 
   const selectedId = defineModel("selectedId");
@@ -577,10 +579,6 @@
         ? " q-table--loading"
         : "")
   );
-
-  onMounted(() => {
-    lookup?.focus();
-  });
 
   defineExpose({
     setIdText,

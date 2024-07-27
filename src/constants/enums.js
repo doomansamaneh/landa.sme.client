@@ -151,6 +151,12 @@ export const voucherType = {
   modificationVoucher: 1046,
 };
 
+export const voucherStatus = {
+  init: "e84d4f06-29ea-4131-b78e-e36302d37e7c",
+  final: "c84e9c9d-31e6-4f45-9a6d-265d825e3d4c",
+  canceled: "a36af633-d0bb-4857-a542-364e12658d1c",
+};
+
 export const subSystem = {
   accounting: 51,
   receiptAndPayment: 52,
@@ -325,18 +331,14 @@ export const dataViewDefaultPageSize = 5;
 
 export const guidEmpty = "00000000-0000-0000-0000-000000000000";
 
-export const cancelStatus = "a36af633-d0bb-4857-a542-364e12658d1c";
-
-export const accountCurrentAsset =
-  "A0E42E83-83B3-4197-A27F-BED2B904D5A6";
-export const accountFixedAsset =
-  "DCA8E9B3-ED6F-4585-8B6B-8B5D84AB25FE";
-export const accountCurrentLiability =
-  "39A38D45-00FA-4434-BF6E-0BAF45DC51C3";
-export const accountLongTermLiability =
-  "99B941D5-A416-4298-8572-E7216A07DAFE";
-export const accountEquity = "C7B540DA-1C4F-445A-A730-E5738D4C6CA8";
-export const accountRevenue = "D562F27E-9AF0-4E14-9E31-0D11C577E556";
-export const accountCGS = "33422E29-2694-4D91-ABD7-90303C0E1966";
-export const accountExpense = "5F4AE9D2-EECA-4CE6-A469-18DB06D70DFF";
-export const accountCntra = "2926F151-1A55-476D-9025-57E0CAEA8561";
+export const accountCLType = {
+  currentAsset: "a0e42e83-83b3-4197-a27f-bed2b904d5a6",
+  fixedAsset: "dca8e9b3-ed6f-4585-8b6b-8b5d84ab25fe",
+  currentLiability: "39a38d45-00fa-4434-bf6e-0baf45dc51c3",
+  longTermLiability: "99b941d5-a416-4298-8572-e7216a07dafe",
+  equity: "c7b540da-1c4f-445a-a730-e5738d4c6ca8",
+  revenue: "d562f27e-9af0-4e14-9e31-0d11c577e556",
+  cogs: "33422e29-2694-4d91-abd7-90303c0e1966",
+  expense: "5f4ae9d2-eeca-4ce6-a469-18db06d70dff",
+  contra: "2926f151-1a55-476d-9025-57e0caea8561",
+};

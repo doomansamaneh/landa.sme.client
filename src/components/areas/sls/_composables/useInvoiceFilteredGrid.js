@@ -6,7 +6,7 @@ import {
   defaultPageSize,
   sortOrder,
   sqlOperator,
-  cancelStatus,
+  voucherStatus,
 } from "src/constants";
 
 const columns = ref(invoiceColumns);
@@ -31,7 +31,7 @@ export function useInvoiceFilteredGrid(
       {
         fieldName: "d.StatusId",
         operator: sqlOperator.notEqual,
-        value: cancelStatus,
+        value: voucherStatus.canceled,
       },
     ],
     summaryData: ref(null),

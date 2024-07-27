@@ -138,8 +138,9 @@ export const accountItemColumns = [
   { ...dlCode },
   { ...dlTitle },
   { ...voucherSubject },
-  { ...debitRemained, label: "بدهکار" },
-  { ...creditRemained, label: "بستانکار" },
+  { ...debitRemained, label: "بدهکار", showFilter: true },
+  { ...creditRemained, label: "بستانکار", showFilter: true },
+  { ...inlineDebit },
 ];
 
 export const accountItemDLColumns = [
@@ -166,10 +167,10 @@ export const accountItemSLColumns = [
 export const reviewCLColumns = [
   { ...code },
   { ...title },
-  { ...debit },
-  { ...credit },
-  { ...debitRemained },
-  { ...creditRemained },
+  { ...debit, showFilter: true },
+  { ...credit, showFilter: true },
+  { ...debitRemained, showFilter: true },
+  { ...creditRemained, showFilter: true },
 ];
 
 export const reviewGLColumns = [...reviewCLColumns];
@@ -178,10 +179,10 @@ export const reviewDLColumns = [
   { ...code },
   { ...title },
   { ...type },
-  { ...debit },
-  { ...credit },
-  { ...debitRemained },
-  { ...creditRemained },
+  { ...debit, showFilter: true },
+  { ...credit, showFilter: true },
+  { ...debitRemained, showFilter: true },
+  { ...creditRemained, showFilter: true },
 ];
 
 export const journalBookColumns = [

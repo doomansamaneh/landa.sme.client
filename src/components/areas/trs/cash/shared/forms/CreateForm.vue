@@ -61,8 +61,8 @@
         <q-card-section>
           <div class="title q-mb-sm">راهنما</div>
           <div class="text-body1 no-letter-spacing">
-            حساب معین را از حسابهای موجودی نزد صندوق با کد 10102، یا موجودی نزد
-            تنخواه گردانها با کد 10103 انتخاب کنید
+            حساب معین را از حسابهای موجودی نزد صندوق با کد 10102، یا
+            موجودی نزد تنخواه گردانها با کد 10103 انتخاب کنید
           </div>
         </q-card-section>
       </q-card>
@@ -71,37 +71,33 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import {
-  sqlOperator,
-  accountCurrentAsset,
-  accountCurrentLiability,
-} from "src/constants";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { sqlOperator, accountCLType } from "src/constants";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import DateTime from "src/components/shared/forms/DateTimePicker.vue";
-import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "trs/cash",
-  getCreateModel: true,
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "trs/cash",
+    getCreateModel: true,
+  });
 
-const filterSL = [
-  {
-    fieldName: "clId",
-    operator: sqlOperator.equal,
-    value: accountCurrentAsset,
-    // operator: sqlOperator.in,
-    // value: `${accountCurrentAsset},${accountCurrentLiability}`,
-  },
-];
+  const filterSL = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.equal,
+      value: accountCLType.currentAsset,
+      // operator: sqlOperator.in,
+      // value: `${accountCLType.currentAsset},${accountCLType.currentLiability}`,
+    },
+  ];
 </script>

@@ -30,7 +30,7 @@
             round
             class="text-on-dark"
             @click="
-              formStore.deleteById(item.id, tableStore.reloadData())
+              formStore.deleteById(item.id, tableStore.reloadData)
             "
           >
             <q-icon name="o_delete" size="20px" />

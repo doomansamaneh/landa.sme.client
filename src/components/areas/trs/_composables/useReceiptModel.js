@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
 import { useReceiptItemModel } from "./useReceiptItemModel";
+import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { receiptModel } from "src/models/areas/trs/receiptModel";
 import { useReceiptState } from "./useReceiptState";
 
@@ -14,6 +15,7 @@ export function useReceiptModel({ baseRoute, preview }) {
   const model = ref(receiptModel);
 
   const crudStore = useFormActions(baseRoute, model);
+  const formItemStore = useFormItemsModel();
 
   async function getById(id, action) {
     let responseData = null;
@@ -46,22 +48,22 @@ export function useReceiptModel({ baseRoute, preview }) {
 
   const addRow = (paymentMehod) => {
     const amount = model.value.remainedAmount - totalAmount.value;
-    model.value.paymentItems.push({
+    const item = {
       ...itemStore.model.value,
       amount: Math.max(amount, 0),
       typeId: paymentMehod.value.id,
       color: paymentMehod.value.color,
       header: paymentMehod.label,
-    });
+    };
+    formItemStore.pushNewItem(model.value.paymentItems, item);
   };
 
   const deleteRow = (index) => {
-    model.value.paymentItems.splice(index, 1);
+    formItemStore.deleteItem(model.value.paymentItems, index);
   };
 
   const editRow = (index, item) => {
-    const row = model.value.paymentItems[index];
-    Object.assign(row, item);
+    formItemStore.deleteItem(model.value.paymentItems, item);
   };
 
   const totalAmount = computed(() =>
@@ -80,6 +82,7 @@ export function useReceiptModel({ baseRoute, preview }) {
     model,
     crudStore,
     totalAmount,
+    newAddedItemIndex: formItemStore.newAddedItemIndex,
 
     getById,
     addRow,

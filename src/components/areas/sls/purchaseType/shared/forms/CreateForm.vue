@@ -30,7 +30,9 @@
               روش تسویه
             </q-item-label>
             <custom-select
-              :options="helper.getEnumOptions(paymentType, 'paymentType')"
+              :options="
+                helper.getEnumOptions(paymentType, 'paymentType')
+              "
               v-model="formStore.model.value.paymentTypeId"
             />
           </div>
@@ -60,7 +62,9 @@
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.discountSLId"
-              v-model:selectedText="formStore.model.value.discountSLTitle"
+              v-model:selectedText="
+                formStore.model.value.discountSLTitle
+              "
               :filter-expression="filterDiscount"
             />
           </div>
@@ -75,7 +79,9 @@
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.productSLId"
-              v-model:selectedText="formStore.model.value.productSLTitle"
+              v-model:selectedText="
+                formStore.model.value.productSLTitle
+              "
               :filter-expression="filterProduct"
             />
           </div>
@@ -90,7 +96,9 @@
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.serviceSLId"
-              v-model:selectedText="formStore.model.value.serviceSLTitle"
+              v-model:selectedText="
+                formStore.model.value.serviceSLTitle
+              "
               :filter-expression="filterService"
             />
           </div>
@@ -111,22 +119,26 @@
           <div class="text-body1 no-letter-spacing">
             <ul class="q-gutter-y-sm">
               <li>
-                <strong>روش تسویه: </strong> برای ارسال به سامانه مودیان در صورت
-                نیاز استفاده می‌شود
+                <strong>روش تسویه:</strong>
+                برای ارسال به سامانه مودیان در صورت نیاز استفاده
+                می‌شود
               </li>
               <li>
-                <strong>حساب معین: </strong>حسابهای پرداختنی تجاری با کد 30103
+                <strong>حساب معین:</strong>
+                حسابهای پرداختنی تجاری با کد 30103
               </li>
               <li>
-                <strong>حساب تخفیف: </strong>برگشت از خرید و تخفیفها با کد 81002
+                <strong>حساب تخفیف:</strong>
+                برگشت از خرید و تخفیفها با کد 81002
               </li>
               <li>
-                <strong>حساب کالا: </strong>خرید کالا با کد 81001 یا موجودی مواد
-                اولیه با کد 10501
+                <strong>حساب کالا:</strong>
+                خرید کالا با کد 81001 یا موجودی مواد اولیه با کد 10501
               </li>
               <li>
-                <strong>حساب خدمات: </strong>خرید کالا و خدمات با کد 81001.
-                همچنین می‌توانید یک حساب معین هزینه جداگانه ایجاد کنید
+                <strong>حساب خدمات:</strong>
+                خرید کالا و خدمات با کد 81001. همچنین می‌توانید یک
+                حساب معین هزینه جداگانه ایجاد کنید
               </li>
             </ul>
           </div>
@@ -137,58 +149,59 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { helper } from "src/helpers";
-import {
-  sqlOperator,
-  paymentType,
-  accountCurrentAsset,
-  accountFixedAsset,
-  accountCurrentLiability,
-  accountExpense,
-} from "src/constants";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { helper } from "src/helpers";
+  import {
+    sqlOperator,
+    paymentType,
+    accountCLType,
+  } from "src/constants";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "sls/purchaseType",
-  getCreateModel: true,
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "sls/purchaseType",
+    getCreateModel: true,
+  });
 
-const filterSL = [
-  {
-    fieldName: "clId",
-    operator: sqlOperator.equal,
-    value: accountCurrentLiability,
-  },
-];
-const filterDiscount = [
-  { fieldName: "clId", operator: sqlOperator.equal, value: accountExpense },
-];
+  const filterSL = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.equal,
+      value: accountCLType.currentLiability,
+    },
+  ];
+  const filterDiscount = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.equal,
+      value: accountCLType.expense,
+    },
+  ];
 
-const filterProduct = [
-  {
-    fieldName: "clId",
-    operator: sqlOperator.in,
-    value: `${accountExpense},${accountCurrentAsset},${accountFixedAsset}`,
-  },
-];
+  const filterProduct = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.in,
+      value: `${accountCLType.expense},${accountCLType.currentAsset},${accountCLType.fixedAsset}`,
+    },
+  ];
 
-const filterService = [
-  {
-    fieldName: "clId",
-    operator: sqlOperator.in,
-    value: `${accountExpense},${accountCurrentAsset}`,
-  },
-];
+  const filterService = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.in,
+      value: `${accountCLType.expense},${accountCLType.currentAsset}`,
+    },
+  ];
 </script>

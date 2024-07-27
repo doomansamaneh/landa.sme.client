@@ -37,6 +37,10 @@
       </div>
     </template>
 
+    <template #cell-date="{ item }">
+      {{ item.date?.substring(0, 10) }}
+    </template>
+
     <template #cell-amount="{ item }">
       {{ item.amount.toLocaleString() }}
     </template>

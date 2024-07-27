@@ -6,7 +6,7 @@ import {
   defaultPageSize,
   sortOrder,
   sqlOperator,
-  cancelStatus,
+  voucherStatus,
 } from "src/constants";
 
 //const rows = ref([])
@@ -22,7 +22,7 @@ const state = {
     {
       fieldName: "d.StatusId",
       operator: sqlOperator.notEqual,
-      value: cancelStatus,
+      value: voucherStatus.canceled,
     },
   ],
   searchModel: searchStore.searchModel,

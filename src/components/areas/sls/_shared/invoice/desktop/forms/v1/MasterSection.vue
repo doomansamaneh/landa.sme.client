@@ -7,7 +7,6 @@
             {{ customerTitle }}
           </q-item-label>
           <customer-lookup
-            autofocus
             v-model:selectedId="model.value.customerId"
             v-model:selectedText="model.value.customerName"
           />

@@ -27,8 +27,7 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <sl-lookup
-            class="first"
-            autofocus
+            :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="سرفصل هزینه"
             v-model:selectedId="row.slId"
             v-model:selectedText="row.slTitle"
@@ -161,17 +160,3 @@
     row.vatPercent = vat?.rate ?? 0;
   };
 </script>
-<!-- <style scoped>
-  td,
-  th {
-    padding: 8px 2px !important;
-  }
-
-  .q-markup-table.padding-table {
-    padding: 24px !important;
-  }
-
-  .q-markup-table th {
-    font-size: 14px !important;
-  }
-</style> -->

@@ -38,7 +38,7 @@
 
 <script setup>
   import { computed, ref } from "vue";
-  import { sqlOperator, cancelStatus } from "src/constants";
+  import { sqlOperator, voucherStatus } from "src/constants";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import InvoiceGrid from "./_DataGrid.vue";
@@ -62,7 +62,7 @@
       {
         fieldName: "d.StatusId",
         operator: sqlOperator.notEqual,
-        value: cancelStatus,
+        value: voucherStatus.canceled,
       },
     ]);
   }
@@ -72,7 +72,7 @@
       {
         fieldName: "d.StatusId",
         operator: sqlOperator.equal,
-        value: cancelStatus,
+        value: voucherStatus.canceled,
       },
     ]);
   }

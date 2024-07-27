@@ -3,6 +3,7 @@
     <div class="col-md-3 col-sm-12 col-xs-12">
       <q-item-label caption class="q-mb-sm">مبلغ</q-item-label>
       <custom-input-number
+        :autofocus="autofocus"
         v-model="paymentItem.amount"
         hide-bottom-space
       />
@@ -64,6 +65,7 @@
 
   const props = defineProps({
     item: Object,
+    autofocus: Boolean,
   });
 
   const paymentItem = computed(() => props.item);

@@ -1,22 +1,21 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
 import { fetchWrapper, helper } from "src/helpers";
 import { useVoucherItemModel } from "./useVoucherItemModel";
+import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { voucherModel } from "src/models/areas/acc/voucherModel";
 import { useVoucherState } from "./useVoucherState";
-import { voucherType, subSystem } from "src/constants";
+import { subSystem } from "src/constants";
 
 export function useVoucherModel({ baseRoute, preview }) {
-  const $q = useQuasar();
   const router = useRouter();
   const voucherStore = useVoucherState();
   const itemStore = useVoucherItemModel();
 
   const model = ref(voucherModel);
-
   const crudStore = useFormActions(baseRoute, model);
+  const formItemStore = useFormItemsModel();
 
   async function getById(id, action) {
     let responseData = null;
@@ -52,21 +51,25 @@ export function useVoucherModel({ baseRoute, preview }) {
 
   const addNewRow = (index, currentRow) => {
     const newRow = { ...itemStore.model.value };
-    model.value.voucherItems.splice(index + 1, 0, newRow);
+    formItemStore.addNewItem(model.value.voucherItems, index, newRow);
   };
 
   const pushNewRow = (item) => {
-    if (item) model.value.voucherItems.push(item);
-    else model.value.voucherItems.push(itemStore.model.value);
+    if (item)
+      formItemStore.pushNewItem(model.value.voucherItems, item);
+    else
+      formItemStore.pushNewItem(
+        model.value.voucherItems,
+        itemStore.model.value
+      );
   };
 
   const deleteRow = (index) => {
-    model.value.voucherItems.splice(index, 1);
+    formItemStore.deleteItem(model.value.voucherItems, index);
   };
 
   const editRow = (index, item) => {
-    const row = model.value.voucherItems[index];
-    Object.assign(row, item);
+    formItemStore.editItem(model.value.voucherItems, index, item);
   };
 
   const totalDebit = computed(() =>
@@ -93,6 +96,7 @@ export function useVoucherModel({ baseRoute, preview }) {
     totalDebit,
     totalCredit,
     totalDif,
+    newAddedItemIndex: formItemStore.newAddedItemIndex,
 
     getById,
     getRelation,

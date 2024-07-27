@@ -57,6 +57,7 @@
           <div class="col-md-4 col-sm-6 col-xs-12">
             <q-item-label caption class="q-mb-sm">پرسنل</q-item-label>
             <customer-lookup
+              :autofocus="index === formStore.newAddedItemIndex.value"
               v-model:selectedId="wageItem.customerId"
               v-model:selectedText="wageItem.customerName"
               :filter-expression="personnelFilter"

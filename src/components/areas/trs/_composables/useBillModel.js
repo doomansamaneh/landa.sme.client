@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
 import { useBillItemModel } from "./useBillItemModel";
+import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { billModel } from "src/models/areas/trs/billModel";
 import { useReceiptState } from "./useReceiptState";
 
@@ -14,6 +15,7 @@ export function useBillModel({ baseRoute, preview }) {
   const model = ref(billModel);
 
   const crudStore = useFormActions(baseRoute, model);
+  const formItemStore = useFormItemsModel();
 
   async function getById(id, action) {
     let responseData = null;
@@ -57,21 +59,21 @@ export function useBillModel({ baseRoute, preview }) {
     newRow.vatId = currentRow.vatId;
     newRow.vatTitle = currentRow.vatTitle;
     newRow.vatPercent = currentRow.vatPercent;
-    model.value.billItems.splice(index + 1, 0, newRow);
+    formItemStore.addNewItem(model.value.billItems, index, newRow);
   };
 
   const pushNewItem = (item) => {
     const newRow = item ?? { ...itemStore.model.value };
-    model.value.billItems.push(newRow);
+    formItemStore.pushNewItem(model.value.billItems, newRow);
   };
 
   const deleteItem = (index) => {
-    model.value.billItems.splice(index, 1);
+    formItemStore.deleteItem(model.value.billItems, index);
   };
 
   const addRow = (paymentMehod) => {
     const amount = totalBillAmount.value - totalAmount.value;
-    model.value.paymentItems.push({
+    formItemStore.pushNewItem(model.value.paymentItems, {
       ...itemStore.model.value,
       amount: Math.max(amount, 0),
       typeId: paymentMehod.value.id,
@@ -81,12 +83,11 @@ export function useBillModel({ baseRoute, preview }) {
   };
 
   const deleteRow = (index) => {
-    model.value.paymentItems.splice(index, 1);
+    formItemStore.deleteItem(model.value.paymentItems, index);
   };
 
   const editRow = (index, item) => {
-    const row = model.value.paymentItems[index];
-    Object.assign(row, item);
+    formItemStore.editItem(model.value.paymentItems, index, item);
   };
 
   const totalAmount = computed(() =>
@@ -110,6 +111,7 @@ export function useBillModel({ baseRoute, preview }) {
     crudStore,
     totalAmount,
     totalBillAmount,
+    newAddedItemIndex: formItemStore.newAddedItemIndex,
 
     getById,
     addRow,

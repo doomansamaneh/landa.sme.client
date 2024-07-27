@@ -41,22 +41,27 @@
       <payment-item-cash
         v-if="item.typeId == paymentMethod.cash?.id"
         v-model="paymentMethod"
+        :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-check
         v-if="item.typeId == paymentMethod.check?.id"
+        :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-transfer-bank
         v-if="item.typeId == paymentMethod.bankTransition?.id"
+        :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-pos
         v-if="item.typeId == paymentMethod.pos?.id"
+        :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-customer
         v-if="item.typeId == paymentMethod.customer?.id"
+        :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
     </q-card-section>

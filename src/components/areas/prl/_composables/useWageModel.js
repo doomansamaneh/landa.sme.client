@@ -2,6 +2,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { fetchWrapper } from "src/helpers";
 import { useFormActions } from "src/composables/useFormActions";
+import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { wageModel } from "src/models/areas/prl/wageModel";
 import { useWageState } from "./useWageState";
 import { insurranceType } from "src/constants";
@@ -13,6 +14,7 @@ export function useWageModel({ baseRoute, preview }) {
   const model = ref(wageModel);
 
   const crudStore = useFormActions(baseRoute, model);
+  const formItemStore = useFormItemsModel();
 
   async function getById(id, action) {
     let responseData = null;
@@ -97,13 +99,13 @@ export function useWageModel({ baseRoute, preview }) {
       customerId: null,
       customerName: null,
     };
-    model.value.wageItems.splice(index + 1, 0, newRow);
+    formItemStore.addNewItem(model.value.wageItems, index, newRow);
   };
 
   const pushNewRow = (item) => {
-    if (item) model.value.wageItems.push(item);
+    if (item) formItemStore.pushNewItem(model.value.wageItems, item);
     else
-      model.value.wageItems.push({
+      pushNewRow({
         day: 30,
         salary: 0,
         food: 0,
@@ -123,12 +125,11 @@ export function useWageModel({ baseRoute, preview }) {
   };
 
   const deleteRow = (index) => {
-    model.value.wageItems.splice(index, 1);
+    formItemStore.deleteItem(model.value.wageItems, index);
   };
 
   const editRow = (index, item) => {
-    const row = model.value.wageItems[index];
-    Object.assign(row, item);
+    formItemStore.editItem(model.value.wageItems, index, item);
   };
 
   async function submitForm(form, action) {
@@ -142,6 +143,7 @@ export function useWageModel({ baseRoute, preview }) {
   return {
     model,
     crudStore,
+    newAddedItemIndex: formItemStore.newAddedItemIndex,
 
     getById,
     addRow,

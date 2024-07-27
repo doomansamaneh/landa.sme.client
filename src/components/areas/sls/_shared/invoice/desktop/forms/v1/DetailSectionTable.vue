@@ -89,8 +89,7 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <product-lookup
-            class="first"
-            autofocus
+            :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
             v-model:selectedText="row.productTitle"

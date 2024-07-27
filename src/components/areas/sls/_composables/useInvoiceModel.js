@@ -3,6 +3,7 @@ import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
+import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { fetchWrapper, helper } from "src/helpers";
 import { useInvoiceItemModel } from "./useInvoiceItemModel";
 import { invoiceModel } from "src/models/areas/sls/invoiceModel";
@@ -15,6 +16,7 @@ export function useInvoiceModel(config) {
   const router = useRouter();
   const { t } = useI18n();
   const itemStore = useInvoiceItemModel();
+  const formItemStore = useFormItemsModel();
 
   const model = config?.model ?? ref(invoiceModel);
 
@@ -149,35 +151,30 @@ export function useInvoiceModel(config) {
     newRow.vatId = currentRow.vatId;
     newRow.vatTitle = currentRow.vatTitle;
     newRow.vatPercent = currentRow.vatPercent;
-    //todo: vavlidate each row???
-    if (!currentRow.productUnitId) {
-      $q.notify({
-        type: "negative",
-        message:
-          "<div class='text-body1 text-white no-letter-spacing'>لطفا نام کالا و مقدار آن را تعریف کنید</div>",
-        position: "top-right",
-        html: true,
-        badgeClass:
-          "border-red-1 bg-white text-body3 text-bold red-shadow text-negative",
-        classes:
-          "q-ma-xl border-radius-md q-px-md q-py-xs bg-negative red-shadow",
-      });
-    } else model.value.invoiceItems.splice(index + 1, 0, newRow);
-
-    setTimeout(() => {
-      const productLookupInputs =
-        document.querySelectorAll(".productLookup");
-      const firstLookup =
-        productLookupInputs[productLookupInputs.length - 1];
-      if (firstLookup) {
-        firstLookup.focus();
-      }
-    }, 0);
+    formItemStore.addNewItem(model.value.invoiceItems, index, newRow);
+    // if (!currentRow.productUnitId) {
+    //   $q.notify({
+    //     type: "negative",
+    //     message:
+    //       "<div class='text-body1 text-white no-letter-spacing'>لطفا نام کالا و مقدار آن را تعریف کنید</div>",
+    //     position: "top-right",
+    //     html: true,
+    //     badgeClass:
+    //       "border-red-1 bg-white text-body3 text-bold red-shadow text-negative",
+    //     classes:
+    //       "q-ma-xl border-radius-md q-px-md q-py-xs bg-negative red-shadow",
+    //   });
+    // } else model.value.invoiceItems.splice(index + 1, 0, newRow);
   };
 
   const pushNewRow = (item) => {
-    if (item) model.value.invoiceItems.push(item);
-    else model.value.invoiceItems.push(itemStore.model.value);
+    if (item)
+      formItemStore.pushNewItem(model.value.invoiceItems, item);
+    else
+      formItemStore.pushNewItem(
+        model.value.invoiceItems,
+        itemStore.model.value
+      );
   };
 
   const addNewRowByCode = async (code) => {
@@ -209,15 +206,11 @@ export function useInvoiceModel(config) {
   };
 
   const deleteRow = (index) => {
-    model.value.invoiceItems.splice(index, 1);
-    // if (model.value.invoiceItems.length > 1)
-    //   model.value.invoiceItems.splice(index, 1);
-    // else model.value.invoiceItems[0] = { ...itemStore.model.value };
+    formItemStore.deleteItem(model.value.invoiceItems, index);
   };
 
   const editRow = (index, item) => {
-    const row = model.value.invoiceItems[index];
-    Object.assign(row, item);
+    formItemStore.editItem(model.value.invoiceItems, index, item);
   };
 
   const totalPrice = computed(() =>
@@ -284,6 +277,7 @@ export function useInvoiceModel(config) {
     totalDiscount,
     totalVat,
     totalNetPrice,
+    newAddedItemIndex: formItemStore.newAddedItemIndex,
 
     getById,
     reorder,
