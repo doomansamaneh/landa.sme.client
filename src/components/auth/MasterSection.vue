@@ -161,9 +161,9 @@
               :label="$t('login-page.buttons.login')"
               :disable="isLoggingIn"
             >
-              <div class="q-pl-sm" v-if="isLoggingIn">
+              <!-- <div class="q-pl-sm" v-if="!isLoggingIn">
                 <q-spinner-pie class="white" size="13px" />
-              </div>
+              </div> -->
             </q-btn>
           </div>
           <div class="col-md col-sm col-xs-12">

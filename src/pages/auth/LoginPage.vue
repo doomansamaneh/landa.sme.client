@@ -2,8 +2,8 @@
   <q-page :class="pageStyle">
     <div class="main-container">
       <login-background v-if="$q.screen.gt.xs" />
-      <q-card class="no-padding" :class="cardStyle">
-        <q-card-section horizontal>
+      <q-card class="no-padding_ form-container">
+        <q-card-section horizontal style="padding: 0 !important">
           <master-section />
           <detail-section />
         </q-card-section>
@@ -24,11 +24,4 @@
   const pageStyle = $q.screen.gt.xs
     ? "flex full-screen items-center justify-center"
     : "q-pt-lg";
-
-  const cardStyle = [
-    $q.screen.gt.xs
-      ? "bordered border-radius-xl"
-      : "no-shadow no-border",
-    $q.screen.gt.sm ? "login-card" : "",
-  ];
 </script>

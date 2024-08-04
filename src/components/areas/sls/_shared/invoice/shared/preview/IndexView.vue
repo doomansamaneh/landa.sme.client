@@ -17,7 +17,11 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered class="bordered">
         <q-card-section class="q-gutter-y-sm" id="invoicePreview">
-          <invoice-header :model="formStore.model" :title="title" />
+          <invoice-header
+            show-logo
+            :model="formStore.model"
+            :title="title"
+          />
           <invoice-header-sale :model="formStore.model" />
           <invoice-body
             :model="formStore.model"

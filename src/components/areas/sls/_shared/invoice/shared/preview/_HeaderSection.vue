@@ -8,10 +8,9 @@
       :class="$q.screen.lt.sm ? 'justify-center' : ''"
     >
       <img
-        v-if="showLogo"
-        style="width: 72px"
-        src="/landa-sme-logo.png"
-        alt="landa-SME logo"
+        v-if="showLogo && logoSource"
+        :src="logoSource"
+        alt="logo"
       />
     </div>
     <div
@@ -83,8 +82,10 @@
 </template>
 
 <script setup>
-  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+  import { ref, onMounted } from "vue";
   import { useQuasar } from "quasar";
+  import { mediaType } from "src/constants";
+  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   const $q = useQuasar();
 
@@ -94,11 +95,20 @@
     showLogo: Boolean,
     title: String,
   });
-  const appConfigStore = useAppConfigModel();
+  const logoSource = ref(null);
+  const configStore = useAppConfigModel();
+
+  onMounted(async () => {
+    logoSource.value = await configStore.getAvatar(
+      mediaType.avatar,
+      120,
+      55
+    );
+  });
 </script>
 
 <style lang="scss">
-  .sme-logo {
+  .sme-logo_ {
     width: 72px;
   }
 </style>

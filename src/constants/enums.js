@@ -1,3 +1,6 @@
+export const baseUrl = "http://localhost:9090";
+//export const baseUrl = "https://api.landa-sme.ir";
+
 export const isActiveOptions = [
   {
     label: "فعال",
@@ -15,6 +18,13 @@ export const customerType = {
   personnel: 173,
   engagement: 174,
   foreignNational: 175,
+};
+
+export const mediaType = {
+  avatar: 291,
+  image: 292,
+  signature: 293,
+  file: 294,
 };
 
 export const contactType = {

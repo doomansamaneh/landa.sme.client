@@ -1,4 +1,3 @@
-import { nextTick } from "vue";
 import { exportFile, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 

@@ -172,8 +172,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  import { useRouter } from "vue-router";
+  import { computed } from "vue";
   import { useDataTable } from "src/composables/useDataTable";
   import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid";
   import { useContactDrawer } from "src/composables/useContactDrawer";
@@ -193,7 +192,6 @@
     dataSource: "crm/customer/getLookupData",
     store: customerStore,
   });
-  const router = useRouter();
 
   async function gotoNext() {
     if (hasMoreData.value) {
@@ -222,9 +220,4 @@
       tableStore.pagination.value.totalPages
     );
   });
-
-  const goToCustomer = () => {
-    router.push("/crm/customer");
-  };
-
 </script>

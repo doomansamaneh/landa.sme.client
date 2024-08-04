@@ -23,6 +23,7 @@
   //import { useSelectedBusinessStore } from "src/stores/selected-business.js";
   import { useTheme } from "src/components/layouts/main/_composables/useTheme.js";
   import { useMenuBar } from "src/composables/useMenuBar";
+  import { useContactDrawer } from "src/composables/useContactDrawer";
 
   import MenuBar from "src/components/layouts/main/MenuBar.vue";
   import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue";
@@ -38,6 +39,7 @@
 
   //const selectedBusiness = useSelectedBusinessStore();
   const menuBarStore = useMenuBar();
+  const contactDrawerStore = useContactDrawer();
 
   // async function loadData() {
   //   const businessId = route.params.businessId;

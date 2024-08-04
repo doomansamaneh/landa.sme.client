@@ -50,6 +50,10 @@
       />
       <span>{{ item.amount?.toLocaleString() }}</span>
     </template>
+    <template #cell-customerName="{ item }">
+      <span v-if="item.customerCode">{{ item.customerCode }} -</span>
+      <span>{{ item.customerName }}</span>
+    </template>
     <template #cell-payedAmount="{ item }">
       <span>{{ item.payedAmount?.toLocaleString() }}</span>
     </template>

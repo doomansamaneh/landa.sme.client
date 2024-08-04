@@ -357,13 +357,13 @@
     // }
   };
 
-  onMounted(() => {
-    bus.on("apply-search", reloadData);
-  });
+  // onMounted(() => {
+  //   bus.on("apply-search", reloadData);
+  // });
 
-  onUnmounted(() => {
-    bus.off("apply-search", reloadData);
-  });
+  // onUnmounted(() => {
+  //   bus.off("apply-search", reloadData);
+  // });
 
   defineExpose({
     tableStore,

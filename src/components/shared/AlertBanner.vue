@@ -11,6 +11,9 @@
         <strong class="q-px-lg">{{ status }}</strong>
         <span v-if="message">
           {{ $t(`errors.${message}`) }}
+          <div v-if="comment" class="row items-center text-black">
+            {{ comment }}
+          </div>
         </span>
       </div>
 
@@ -56,6 +59,9 @@
   );
   const message = computed(() =>
     alertStore.alert != null ? alertStore.alert.message : ""
+  );
+  const comment = computed(() =>
+    alertStore.alert != null ? alertStore.alert.comment : ""
   );
 
   const errors = computed(() => alertStore.alert?.errors);

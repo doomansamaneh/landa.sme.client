@@ -6,6 +6,7 @@ export const useAlertStore = defineStore("alert", {
       status: 200,
       showAlert: false,
       message: "",
+      comment: "",
       errors: null,
     },
   }),

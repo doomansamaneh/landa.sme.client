@@ -411,6 +411,13 @@
       //searchTerm: selectedText,
     }),
     filterExpression: props.filterExpression,
+    state: {
+      firstLoad: ref(true),
+      rows: ref([]),
+      searchField: ref(""),
+      allSelectedIds: ref([]),
+      activeRow: ref(null),
+    },
   };
 
   const tableStore = useDataTable({

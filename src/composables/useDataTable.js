@@ -12,7 +12,13 @@ const dense = ref(true);
 const thFontSize = ref(12);
 const tdFontSize = ref(13);
 
-export function useDataTable({ dataSource, dataColumns, store }) {
+export function useDataTable({
+  dataSource,
+  dataColumns,
+  store,
+  beforeLoadData,
+  handleGridDataResponse,
+}) {
   const _dataSource = ref(dataSource);
   const _state = {
     firstLoad: ref(false),
@@ -92,6 +98,7 @@ export function useDataTable({ dataSource, dataColumns, store }) {
   }
 
   async function loadData() {
+    if (beforeLoadData) beforeLoadData();
     if (!state.value.firstLoad.value) {
       state.value.firstLoad.value = true;
       await reloadData();
@@ -102,7 +109,6 @@ export function useDataTable({ dataSource, dataColumns, store }) {
 
   async function reloadData() {
     if (!_dataSource.value) return;
-
     await fetchData(pagination.value, handleDataResponse);
 
     function handleDataResponse(pagedData) {
@@ -123,6 +129,8 @@ export function useDataTable({ dataSource, dataColumns, store }) {
       if (state.value.summaryData != undefined)
         state.value.summaryData.value = pagedData.summaryData;
     }
+
+    if (handleGridDataResponse) handleGridDataResponse();
   }
 
   async function fetchData(gridPage, handleResponse) {
@@ -311,10 +319,12 @@ export function useDataTable({ dataSource, dataColumns, store }) {
 
   onMounted(() => {
     bus.on("render-page", loadData);
+    bus.on("apply-search", reloadData);
   });
 
   onUnmounted(() => {
     bus.off("render-page", loadData);
+    bus.off("apply-search", reloadData);
   });
 
   return {

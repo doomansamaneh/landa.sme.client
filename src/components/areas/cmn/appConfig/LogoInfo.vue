@@ -4,7 +4,9 @@
       <q-checkbox
         class="text-body1 no-letter-spacing"
         label="لوگو در چاپ باشد"
-        v-model="configStore.model.value.companySetting.invoiceShowLogo"
+        v-model="
+          configStore.model.value.companySetting.invoiceShowLogo
+        "
       />
     </q-card-section>
     <q-card-section>
@@ -24,11 +26,13 @@
 
     <q-card-section>
       <q-checkbox
-      dense
-      size="46px"
+        dense
+        size="46px"
         class="text-body1 no-letter-spacing"
         label="امضا در چاپ باشد"
-        v-model="configStore.model.value.companySetting.invoiceShowSignature"
+        v-model="
+          configStore.model.value.companySetting.invoiceShowSignature
+        "
       />
     </q-card-section>
     <q-card-section>
@@ -43,75 +47,82 @@
         accept="image/*"
       />
     </q-card-section>
+
+    <q-separator />
+
+    <q-card-actions class="q-gutter-x-sm">
+      <save-button />
+    </q-card-actions>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { useQuasar } from "quasar";
-import { useAppConfigModel } from "../_composables/useAppConfigModel";
+  import { ref, onMounted } from "vue";
+  import { useQuasar } from "quasar";
+  import { useAppConfigModel } from "../_composables/useAppConfigModel";
+  import { mediaType } from "src/constants";
 
-const $q = useQuasar();
-const configStore = useAppConfigModel();
-const logoSource = ref("");
+  import SaveButton from "./_SaveSettingButton.vue";
 
-const signatureSource = ref("");
+  const props = defineProps({
+    inside: Boolean,
+  });
 
-const handleLogoUpload = (event) => {
-  const file = event.target.files[0];
-  logoSource.value = URL.createObjectURL(file);
-  configStore.uploadFile(file, "logoId");
-};
+  const $q = useQuasar();
+  const logoSource = ref("");
+  const signatureSource = ref("");
+  const configStore = useAppConfigModel();
 
-const handleSignatureUpload = (event) => {
-  const file = event.target.files[0];
-  signatureSource.value = URL.createObjectURL(file);
-  configStore.uploadFile(file, "signatureId");
-};
+  const handleLogoUpload = (event) => {
+    const file = event.target.files[0];
+    logoSource.value = URL.createObjectURL(file);
+    configStore.uploadLogo(file);
+  };
 
-onMounted(() => {
-  if (configStore.model.value.companySetting?.businessLogo?.path)
-    logoSource.value = configStore.model.value.companySetting.businessLogo.path;
-  if (configStore.model.value.companySetting?.businessSignature?.path)
-    signatureSource.value =
-      configStore.model.value.companySetting.businessSignature.path;
-});
+  const handleSignatureUpload = (event) => {
+    const file = event.target.files[0];
+    signatureSource.value = URL.createObjectURL(file);
+    configStore.uploadSignature(file);
+  };
 
-const props = defineProps({
-  inside: Boolean
-})
+  onMounted(async () => {
+    configStore.resetAvatars();
+    logoSource.value = await configStore.getAvatar(mediaType.avatar);
+    signatureSource.value = await configStore.getAvatar(
+      mediaType.signature
+    );
+  });
 
-const styles = () => {
-  if (!props.inside && $q.screen.gt.sm) {
-    return "q-card form-container settings-card";
-  } else if (!props.inside) {
-    return "q-card form-container";
-  } else {
-    return "";
-  }
-};
+  const styles = () => {
+    if (!props.inside && $q.screen.gt.sm) {
+      return "q-card form-container settings-card";
+    } else if (!props.inside) {
+      return "q-card form-container";
+    } else {
+      return "";
+    }
+  };
 
-const padding = () => {
-  if (props.inside) {
-    return "no-padding"
-  }
-}
-
+  const padding = () => {
+    if (props.inside) {
+      return "no-padding";
+    }
+  };
 </script>
 
 <style lang="scss">
-.upload-box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 2;
-}
+  .upload-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+  }
 
-.settings-card {
-  width: 900px;
-}
+  .settings-card {
+    width: 900px;
+  }
 </style>

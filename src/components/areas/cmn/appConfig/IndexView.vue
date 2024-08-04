@@ -1,8 +1,12 @@
 <template>
-  <div :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''">
+  <div
+    :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''"
+  >
     <div>
       <div>
-        <div class="text-h6 text-weight-700 no-letter-spacing q-mb-md">
+        <div
+          class="text-h6 text-weight-700 no-letter-spacing q-mb-md"
+        >
           پیکربندی سامانه
         </div>
 
@@ -17,9 +21,11 @@
             to="/cmn/appConfig/basicInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-                >اطلاعات اصلی</q-item-label
+              <q-item-label
+                class="text-on-dark text-body2 no-letter-spacing"
               >
+                اطلاعات اصلی
+              </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
@@ -38,9 +44,11 @@
             to="/cmn/appConfig/contactInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-                >تماس</q-item-label
+              <q-item-label
+                class="text-on-dark text-body2 no-letter-spacing"
               >
+                تماس
+              </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
@@ -59,9 +67,11 @@
             to="/cmn/appConfig/VATInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-                >مالیات</q-item-label
+              <q-item-label
+                class="text-on-dark text-body2 no-letter-spacing"
               >
+                مالیات
+              </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
@@ -80,9 +90,11 @@
             to="/cmn/appConfig/insuranceInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-                >بیمه</q-item-label
+              <q-item-label
+                class="text-on-dark text-body2 no-letter-spacing"
               >
+                بیمه
+              </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
@@ -101,9 +113,11 @@
             to="/cmn/appConfig/salaryInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-                >حقوق و دستمزد</q-item-label
+              <q-item-label
+                class="text-on-dark text-body2 no-letter-spacing"
               >
+                حقوق و دستمزد
+              </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
@@ -122,9 +136,11 @@
             to="/cmn/appConfig/salesInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-                >بازرگانی، خرید و فروش</q-item-label
+              <q-item-label
+                class="text-on-dark text-body2 no-letter-spacing"
               >
+                بازرگانی، خرید و فروش
+              </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
@@ -143,9 +159,11 @@
             to="/cmn/appConfig/logoInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-                >لوگو</q-item-label
+              <q-item-label
+                class="text-on-dark text-body2 no-letter-spacing"
               >
+                لوگو
+              </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
@@ -165,12 +183,14 @@
           class="top-radius-xl q-py-md"
           :class="$q.screen.gt.xs ? '' : 'q-px-none'"
           clickable
-          to=""
+          to="/cmn/appConfig/import"
         >
           <q-item-section :class="itemClass">
-            <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-              >واردات</q-item-label
+            <q-item-label
+              class="text-on-dark text-body2 no-letter-spacing"
             >
+              import اطلاعات
+            </q-item-label>
           </q-item-section>
 
           <q-item-section :class="itemClass" side>
@@ -189,9 +209,11 @@
           to=""
         >
           <q-item-section :class="itemClass">
-            <q-item-label class="text-on-dark text-body2 no-letter-spacing"
-              >پلاگین‌ها</q-item-label
+            <q-item-label
+              class="text-on-dark text-body2 no-letter-spacing"
             >
+              پلاگین‌ها
+            </q-item-label>
           </q-item-section>
 
           <q-item-section side :class="itemClass">
@@ -206,24 +228,26 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useQuasar } from "quasar";
+  import { computed } from "vue";
+  import { useQuasar } from "quasar";
 
-const $q = useQuasar();
+  const $q = useQuasar();
 
-const expandIcon = () => {
-  if ($q.lang.rtl) {
-    return "chevron_left";
-  } else {
-    return "chevron_right";
-  }
-};
+  const expandIcon = () => {
+    if ($q.lang.rtl) {
+      return "chevron_left";
+    } else {
+      return "chevron_right";
+    }
+  };
 
-const itemClass = computed(() => ($q.screen.lt.sm ? "q-mx-md" : "q-mx-sm"));
+  const itemClass = computed(() =>
+    $q.screen.lt.sm ? "q-mx-md" : "q-mx-sm"
+  );
 </script>
 
 <style lang="scss">
-.settings-card {
-  width: 900px;
-}
+  .settings-card {
+    width: 900px;
+  }
 </style>

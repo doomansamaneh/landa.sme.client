@@ -2,12 +2,10 @@ import axios from "axios";
 import { ref } from "vue";
 import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
+import { baseUrl } from "src/constants";
 import { Loading } from "quasar";
 
-//const BASE_URL = "http://localhost:6060";
-const BASE_URL = "https://api.landa-sme.ir";
-
-axios.defaults.baseURL = BASE_URL;
+axios.defaults.baseURL = baseUrl;
 axios.defaults.withCredentials = true;
 
 const requestCount = ref(0);
@@ -53,7 +51,7 @@ function removeEmpty(obj) {
 function createRequest(method, responseType) {
   return async (url, data, disableLoader) => {
     if (!disableLoader) onInitRequest();
-    const fullUrl = `${BASE_URL}/${url}`;
+    const fullUrl = `${baseUrl}/${url}`;
     const authHeaders = getAuthHeaders(fullUrl);
 
     let cleanedData = data;
@@ -121,10 +119,13 @@ function handleError(url, error) {
   if (error.response) {
     alertData.status = error.response.status;
     const { user, logout } = useAuthStore();
-    if ([401, 403].includes(error.response.status)) {
+    if (error.response.status === 401) {
       if (user) {
         logout();
       }
+    } else if (error.response.status === 403) {
+      alertData.message = "forbidden";
+      alertData.comment = url;
     } else if (error.response.data) {
       alertData.message =
         error.response.data.message ?? "validationError"; //error.response.data.title;

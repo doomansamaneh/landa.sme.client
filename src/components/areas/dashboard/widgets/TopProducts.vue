@@ -14,19 +14,18 @@
           </q-item-section>
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-h6 text-weight-700 q-mb-xs">
-              بیشترین فروش
+              بیشترین فروش کالا و خدمات
             </q-item-label>
           </q-item-section>
         </q-item>
 
         <q-btn
-          class="primary-shadow no-letter-spacing primary-gradient text-white text-caption"
           padding="6px 12px"
           rounded
+          icon="refresh"
           unelevated
-        >
-          ماه جاری
-        </q-btn>
+          @click="grid.loadData()"
+        ></q-btn>
       </div>
     </q-card-section>
 
@@ -36,22 +35,24 @@
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"
       >
-        <div class="q-gutter-y-md q-mx-sm">
-          <q-list>
+        <loadable-data-grid
+          ref="grid"
+          data-source="sls/report/getInvoiceByProduct"
+          :grid-store="gridStore"
+        >
+          <template #item="{ item }">
             <q-item
-              v-for="(product, index) in products"
-              :key="index"
               class="q-pl-none q-pb-md q-pr-lg border-radius-xs text-on-dark"
             >
               <div class="row q-gutter-x-sm items-center">
                 <q-avatar
                   class="primary-gradient primary-shadow border-radius-xs"
                   square
-                  v-if="product.picture"
+                  v-if="item.picture"
                   text-color="white"
                   size="58px"
                 >
-                  <img :src="product.picture" />
+                  <img :src="item.picture" />
                 </q-avatar>
 
                 <q-avatar
@@ -59,11 +60,11 @@
                   square
                   size="58px"
                   text-color="white"
-                  :style="helper.generateAvatarStyle(product.id)"
+                  :style="helper.generateAvatarStyle(item.id)"
                   v-else
                 >
                   <div class="char text-body1 text-bold">
-                    {{ helper.getFirstChar(product.title) }}
+                    {{ helper.getFirstChar(item.productTitle) }}
                   </div>
                 </q-avatar>
               </div>
@@ -73,10 +74,13 @@
               >
                 <div class="col-8 q-pl-lg column">
                   <span class="text-caption no-letter-spacing">
-                    {{ product.title }}
+                    {{ item.productTitle }}
                   </span>
                   <span class="text-caption no-letter-spacing">
-                    قیمت فروش : {{ product.price.toLocaleString() }}
+                    قیمت فروش : {{ item.price?.toLocaleString() }}
+                  </span>
+                  <span class="text-caption no-letter-spacing">
+                    جمع کل : {{ item.amount?.toLocaleString() }}
                   </span>
                 </div>
                 <div class="col row justify-end items-center">
@@ -84,42 +88,28 @@
                     caption
                     class="text-body3 no-letter-spacing"
                   >
-                    86 فروش
+                    تعداد:
+                    <strong>
+                      {{ item.quantity?.toLocaleString() }}
+                    </strong>
                   </q-item-label>
                 </div>
               </div>
             </q-item>
-          </q-list>
-        </div>
+          </template>
+        </loadable-data-grid>
       </q-scroll-area>
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from "vue";
+  import { ref } from "vue";
   import { helper } from "src/helpers";
-  import { fetchWrapper } from "src/helpers";
+  import { useInvoiceProductState } from "../../sls/_composables/useInvoiceProductState";
 
-  const products = ref([]);
+  import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
 
-  function getProducts() {
-    fetchWrapper
-      .post("cmn/product/getlookupData", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        handleResponse(response.data.data.items);
-      });
-  }
-
-  function handleResponse(data) {
-    products.value = data;
-  }
-
-  onMounted(() => {
-    getProducts();
-  });
+  const gridStore = useInvoiceProductState();
+  const grid = ref(null);
 </script>

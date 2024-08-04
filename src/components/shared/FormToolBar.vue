@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, onUnmounted } from "vue";
+  import { ref, onMounted, onUnmounted } from "vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
   const isAtTop = ref(true);

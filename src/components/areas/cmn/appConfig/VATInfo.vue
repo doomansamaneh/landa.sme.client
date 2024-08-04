@@ -10,7 +10,9 @@
               شناسه ملی
             </q-item-label>
             <custom-input
-              v-model="configStore.model.value.companySetting.nationalNo"
+              v-model="
+                configStore.model.value.companySetting.nationalNo
+              "
             />
           </div>
         </div>
@@ -29,7 +31,9 @@
         </div>
       </div>
 
-      <div class="q-mt-lg text-body1 text-weight-600 no-letter-spacing">
+      <div
+        class="q-mt-lg text-body1 text-weight-600 no-letter-spacing"
+      >
         تنظمیات سامانه مودیان مالیاتی
       </div>
 
@@ -43,7 +47,8 @@
         </q-item-label>
         <custom-input
           v-model="
-            configStore.model.value.companySetting.taxApiSetting.clientId
+            configStore.model.value.companySetting.taxApiSetting
+              .clientId
           "
         />
       </div>
@@ -56,7 +61,8 @@
         <custom-input
           type="textarea"
           v-model="
-            configStore.model.value.companySetting.taxApiSetting.privateKey
+            configStore.model.value.companySetting.taxApiSetting
+              .privateKey
           "
         />
       </div>
@@ -69,10 +75,14 @@
         </q-item-label>
         <custom-select
           :options="
-            helper.getEnumOptions(taxApiInvoiceType, 'taxApiInvoiceType')
+            helper.getEnumOptions(
+              taxApiInvoiceType,
+              'taxApiInvoiceType'
+            )
           "
           v-model="
-            configStore.model.value.companySetting.taxApiSetting.invoiceType
+            configStore.model.value.companySetting.taxApiSetting
+              .invoiceType
           "
         />
       </div>
@@ -84,52 +94,66 @@
         </q-item-label>
         <custom-select
           :options="
-            helper.getEnumOptions(taxApiInvoicePattern, 'taxApiInvoicePattern')
+            helper.getEnumOptions(
+              taxApiInvoicePattern,
+              'taxApiInvoicePattern'
+            )
           "
           v-model="
-            configStore.model.value.companySetting.taxApiSetting.invoicePattern
+            configStore.model.value.companySetting.taxApiSetting
+              .invoicePattern
           "
         />
       </div>
     </q-card-section>
+
+    <q-separator />
+
+    <q-card-actions class="q-gutter-x-sm">
+      <save-button />
+    </q-card-actions>
   </div>
 </template>
 
 <script setup>
-import { useQuasar } from "quasar";
-import { useAppConfigModel } from "../_composables/useAppConfigModel";
-import { helper } from "src/helpers";
-import { taxApiInvoicePattern, taxApiInvoiceType } from "src/constants";
+  import { useQuasar } from "quasar";
+  import { useAppConfigModel } from "../_composables/useAppConfigModel";
+  import { helper } from "src/helpers";
+  import {
+    taxApiInvoicePattern,
+    taxApiInvoiceType,
+  } from "src/constants";
 
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import SaveButton from "./_SaveSettingButton.vue";
 
-const $q = useQuasar()
-const configStore = useAppConfigModel();
+  const props = defineProps({
+    inside: Boolean,
+  });
 
-const props = defineProps({
-  inside: Boolean
-})
+  const $q = useQuasar();
+  const configStore = useAppConfigModel();
 
-const styles = () => {
-  if (!props.inside && $q.screen.gt.sm) {
-    return "q-card form-container settings-card";
-  } else if (!props.inside) {
-    return "q-card form-container";
-  } else {
-    return "";
-  }
-};
+  const styles = () => {
+    if (!props.inside && $q.screen.gt.sm) {
+      return "q-card form-container settings-card";
+    } else if (!props.inside) {
+      return "q-card form-container";
+    } else {
+      return "";
+    }
+  };
 
-const padding = () => {
-  if (props.inside) {
-    return "no-padding"
-  }
-}
+  const padding = () => {
+    if (props.inside) {
+      return "no-padding";
+    }
+  };
 </script>
 
 <style lang="scss">
-.settings-card {
-  width: 900px;
-}
+  .settings-card {
+    width: 900px;
+  }
 </style>

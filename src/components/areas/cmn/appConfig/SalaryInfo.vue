@@ -21,8 +21,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .housing
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.housing
                 "
               />
             </td>
@@ -40,7 +40,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting.food
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.food
                 "
               />
             </td>
@@ -58,7 +59,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting.child
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.child
                 "
               />
             </td>
@@ -76,8 +78,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .mission
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.mission
                 "
               />
             </td>
@@ -95,8 +97,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .overtime
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.overtime
                 "
               />
             </td>
@@ -114,8 +116,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .addition
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.addition
                 "
               />
             </td>
@@ -133,7 +135,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting.leave
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.leave
                 "
               />
             </td>
@@ -151,8 +154,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .reward
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.reward
                 "
               />
             </td>
@@ -170,7 +173,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting.bonus
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.bonus
                 "
               />
             </td>
@@ -188,8 +192,8 @@
             <td class="text-left">
               <q-checkbox
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .serviceBenefit
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.serviceBenefit
                 "
               />
             </td>
@@ -203,13 +207,15 @@
             </td>
           </tr>
           <tr>
-            <td class="text-left">ضریب معافیت حق بیمه (از بیمه بیکاری)</td>
+            <td class="text-left">
+              ضریب معافیت حق بیمه (از بیمه بیکاری)
+            </td>
             <td class="text-left">
               <custom-input
                 type="number"
                 v-model="
-                  configStore.model.value.companySetting.payrollTaxSetting
-                    .insurranceEmpRatio
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.insurranceEmpRatio
                 "
               />
             </td>
@@ -270,41 +276,48 @@
         </tbody>
       </q-markup-table>
     </q-card-section>
+
+    <q-separator />
+
+    <q-card-actions class="q-gutter-x-sm">
+      <save-button />
+    </q-card-actions>
   </div>
 </template>
 
 <script setup>
-import { useQuasar } from "quasar";
-import { useAppConfigModel } from "../_composables/useAppConfigModel";
+  import { useQuasar } from "quasar";
+  import { useAppConfigModel } from "../_composables/useAppConfigModel";
 
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import SaveButton from "./_SaveSettingButton.vue";
 
-const $q = useQuasar();
-const configStore = useAppConfigModel();
+  const props = defineProps({
+    inside: Boolean,
+  });
 
-const props = defineProps({
-  inside: Boolean,
-});
+  const $q = useQuasar();
+  const configStore = useAppConfigModel();
 
-const styles = () => {
-  if (!props.inside && $q.screen.gt.sm) {
-    return "q-card form-container settings-card";
-  } else if (!props.inside) {
-    return "q-card form-container";
-  } else {
-    return "";
-  }
-};
+  const styles = () => {
+    if (!props.inside && $q.screen.gt.sm) {
+      return "q-card form-container settings-card";
+    } else if (!props.inside) {
+      return "q-card form-container";
+    } else {
+      return "";
+    }
+  };
 
-const padding = () => {
-  if (props.inside) {
-    return "no-padding";
-  }
-};
+  const padding = () => {
+    if (props.inside) {
+      return "no-padding";
+    }
+  };
 </script>
 
 <style lang="scss">
-.settings-card {
-  width: 900px;
-}
+  .settings-card {
+    width: 900px;
+  }
 </style>
