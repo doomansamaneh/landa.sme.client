@@ -31,6 +31,7 @@
       <div class="q-space" />
     </q-toolbar>
   </q-page-sticky>
+
   <div style="margin-top: 42px">
     <div class="row">
       <div class="col-8 col-md-8 col-sm-12">
@@ -47,7 +48,7 @@
       <ratios-widget />
     </div>
 
-    <div class="col-8 col-md-8 col-sm-12">
+    <div class="col-12 col-md-8 col-sm-12">
       <q-card class="bordered q-pa-none" flat>
         <q-card-section class="col q-pt-lg q-pb-none q-pl-lg q-pr-md">
           <div class="row justify-between">

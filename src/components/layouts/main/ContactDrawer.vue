@@ -172,21 +172,32 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref, computed } from "vue";
   import { useDataTable } from "src/composables/useDataTable";
-  import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid";
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { helper } from "src/helpers";
 
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-  const customerStore = useCustomerGrid();
   const contactDrawerStore = useContactDrawer();
 
   const deviceWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
+
+  const customerStore = {
+    rows: ref([]),
+    pagination: ref({
+      searchTerm: "",
+    }),
+    state: {
+      firstLoad: ref(true),
+      rows: ref([]),
+      allSelectedIds: ref([]),
+      activeRow: ref(null),
+    },
+  };
 
   const tableStore = useDataTable({
     dataSource: "crm/customer/getLookupData",

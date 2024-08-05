@@ -8,8 +8,7 @@
       :crud-store="crudStore"
       :base-route="baseRoute"
       activation
-    >
-    </toolbar-mobile>
+    ></toolbar-mobile>
 
     <mobile
       :title="title"
@@ -57,55 +56,54 @@
       :data-source="dataSource"
       :base-route="baseRoute"
       ref="desktopGrid"
-    >
-    </desktop>
+    ></desktop>
   </template>
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useQuasar } from "quasar";
-import { useCustomerGrid } from "src/components/areas/crm/_composables/useCustomerGrid";
-import { useFormActions } from "src/composables/useFormActions";
+  import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
+  import { useCustomerState } from "src/components/areas/crm/_composables/useCustomerState";
+  import { useFormActions } from "src/composables/useFormActions";
 
-import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-import Desktop from "src/components/areas/crm/customer/desktop/index/DataGrid.vue";
-import Mobile from "src/components/areas/crm/customer/mobile/index/DataGrid.vue";
-import EditBatch from "../forms/EditBatchDialog.vue";
+  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  import Desktop from "src/components/areas/crm/customer/desktop/index/DataGrid.vue";
+  import Mobile from "src/components/areas/crm/customer/mobile/index/DataGrid.vue";
+  import EditBatch from "../forms/EditBatchDialog.vue";
 
-const props = defineProps({
-  toolbar: Boolean,
-  visibleColumns: Array,
-});
-const $q = useQuasar();
-const gridStore = useCustomerGrid();
-
-const dataSource = "crm/customer/GetGridData";
-const baseRoute = "crm/customer";
-const crudStore = useFormActions(baseRoute);
-const desktopGrid = ref(null);
-const mobileGrid = ref(null);
-
-const selectedIds = computed(() => {
-  if (desktopGrid?.value != null)
-    return desktopGrid.value.tableStore.selectedRows?.value.map(
-      (item) => item.id
-    );
-  else
-    return mobileGrid.value.tableStore.selectedRows?.value.map(
-      (item) => item.id
-    );
-});
-
-function editBatch() {
-  $q.dialog({
-    component: EditBatch,
-    componentProps: {
-      selectedIds: selectedIds?.value,
-    },
-  }).onOk(async () => {
-    await reloadData();
+  const props = defineProps({
+    toolbar: Boolean,
+    visibleColumns: Array,
   });
-}
+  const $q = useQuasar();
+  const gridStore = useCustomerState();
+
+  const dataSource = "crm/customer/GetGridData";
+  const baseRoute = "crm/customer";
+  const crudStore = useFormActions(baseRoute);
+  const desktopGrid = ref(null);
+  const mobileGrid = ref(null);
+
+  const selectedIds = computed(() => {
+    if (desktopGrid?.value != null)
+      return desktopGrid.value.tableStore.selectedRows?.value.map(
+        (item) => item.id
+      );
+    else
+      return mobileGrid.value.tableStore.selectedRows?.value.map(
+        (item) => item.id
+      );
+  });
+
+  function editBatch() {
+    $q.dialog({
+      component: EditBatch,
+      componentProps: {
+        selectedIds: selectedIds?.value,
+      },
+    }).onOk(async () => {
+      await reloadData();
+    });
+  }
 </script>

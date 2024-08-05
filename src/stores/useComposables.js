@@ -4,7 +4,8 @@ const composables = ref([]);
 
 export function useComposables() {
   const register = (composable) => {
-    composables.value.push(composable);
+    if (!composables.value.includes(composable))
+      composables.value.push(composable);
   };
 
   const reset = () => {

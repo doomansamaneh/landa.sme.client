@@ -3,13 +3,41 @@
     <q-card-section class="q-pa-lg">
       <div class="row full-width">
         <div class="col column q-gutter-y-sm">
-          <span class="text-h6 text-weight-700">درآمد خالص</span>
-          <div class="row q-gutter-x-sm text-body1 text-bold">
-            <span class="text-body1 text-bold">(5,004,002,500)</span>
-            <span class="text-body3 text-bold text-green">+%24</span>
+          <span class="text-h6 text-weight-700">درآمد</span>
+          <div>
+            <span class="text-body1 text-h5 text-weight-700">
+              {{
+                helper.formatNumber(
+                  netIncomeStore.thisYearRevenue?.value
+                )
+              }}
+            </span>
           </div>
-          <q-item-label class="text-body2 no-letter-spacing">
-            رشد نسبت به پارسال سنجیده شده
+          <q-item-label class="text-body3 no-letter-spacing">
+            <span v-if="netIncomeStore.revenuePercent?.value > 0">
+              <q-icon name="arrow_upward" size="18px" color="green" />
+              رشد
+            </span>
+            <span v-else>
+              <q-icon name="arrow_downward" size="18px" color="red" />
+              کاهش
+            </span>
+            <span
+              class="text-body2 text-bold"
+              :class="
+                netIncomeStore.revenuePercent?.value > 0
+                  ? 'text-green'
+                  : 'text-red'
+              "
+            >
+              {{
+                helper.formatNumber(
+                  netIncomeStore.revenuePercent?.value,
+                  2
+                )
+              }}%
+            </span>
+            به نسبت پارسال
           </q-item-label>
           <q-btn
             class="q-mt-lg primary-gradient primary-shadow text-body3"
@@ -25,7 +53,7 @@
           <vue-apex-charts
             ref="incomeChart"
             :options="options"
-            :series="series"
+            :series="netIncomeStore.chartSeries.value"
             height="140"
             :legend="legend"
             :title="title"
@@ -41,32 +69,18 @@
 <script setup>
   import { ref, onMounted, watch, computed } from "vue";
   import { useQuasar } from "quasar";
+  import { helper } from "src/helpers";
+  import { useNetIncome } from "../../acc/_composables/useNetIncome";
 
-  //import Chart from 'src/components/shared/charts/ChartView.vue'
   import VueApexCharts from "vue3-apexcharts";
 
   const props = defineProps(["legend", "title"]);
 
   const $q = useQuasar();
+  const netIncomeStore = useNetIncome();
   const incomeChart = ref(null);
 
   const options = ref(null);
-
-  const chartOptions = {
-    chart: {
-      id: "basic-line",
-    },
-    xaxis: {
-      categories: [1991, 1992],
-    },
-  };
-
-  const series = ref([
-    {
-      name: "درآمد خالص",
-      data: [2500000000, 5004002500],
-    },
-  ]);
 
   function setOptions() {
     const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
@@ -184,9 +198,6 @@
           // horizontal: 16,
         },
       },
-      // colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
-      //   '#f48024', '#69d2e7'
-      // ],
       tooltip: {
         enabled: true,
         x: {
@@ -251,10 +262,5 @@
     }
 
     return formattedValue;
-  }
-
-  function changeSeris() {
-    series.value[0].data = [1200000000, 500000];
-    //console.log(incomeChart.value)
   }
 </script>

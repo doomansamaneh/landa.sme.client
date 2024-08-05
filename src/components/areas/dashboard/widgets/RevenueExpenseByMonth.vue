@@ -345,7 +345,6 @@
 
   import BarChart from "src/components/shared/charts/BarChart.vue";
   import PieChart from "src/components/shared/charts/PieChart.vue";
-  import DonutChart from "src/components/shared/charts/DonutChart.vue";
   import RevenueExpenseChart from "./_RevenueExpenseChart.vue";
   import RevenueExpenseTable from "./_RevenueExpenseTable.vue";
 

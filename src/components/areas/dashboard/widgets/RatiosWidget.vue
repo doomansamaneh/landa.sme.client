@@ -1,412 +1,123 @@
 <template>
   <div class="row gap-24">
     <div class="col col-md col-xs-12">
-      <q-card class="fit bordered q-pa-none" flat>
-        <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
-          <div class="row justify-between">
-            <q-avatar
-              round
-              text-color="white"
-              icon="o_attach_money"
-              size="xl"
-              class="bluegrey-gradient bluegrey-shadow"
-            />
-            <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
-                <q-menu fit class="border-radius-lg">
-                  <q-list dense padding style="width: 200px">
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_sell" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش و درآمد، هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_close" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_check" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
-          <div class="text-h6 text-weight-700">حاشیه سود</div>
-          <div class="row items-center q-gutter-x-sm">
-            <div class="text-body1 text-bold">(178,015.03) %</div>
-            <div
-              class="text-body2 text-bold"
-              :class="
-                $q.dark.isActive ? 'text-yellow' : 'text-negative'
-              "
-            >
-              -%4
-            </div>
-          </div>
-        </q-card-section>
-      </q-card>
+      <ratio-widget
+        title="حاشیه سود"
+        :ratio="ratioStore.model.value.netMargin"
+        ratio-sign="%"
+      >
+        <template #avatar>
+          <q-avatar
+            round
+            text-color="white"
+            icon="o_attach_money"
+            size="xl"
+            class="bluegrey-gradient bluegrey-shadow"
+          />
+        </template>
+        <template #info>
+          <strong>حاشیه سود خالص</strong>
+          از تقسیم درآمد خالص (سود خالص) بر فروش خالص بدست می آید و
+          این نسبت بیانگر این است كه چند درصد از فروش را سود خالص
+          تشكیل می‌دهد. ضعف این نسبت آنست كه بسیاری از هزینه‌ها همانند
+          هزینه تامین مالی كه در محاسبه سود خالص لحاظ شده‌اند ارتباطی
+          به فعالیت فروش نداشته ولی درنسبت ظاهرمی‌گردد. تغییرات این
+          نسبت تحت تاثیر سه عامل حجم فروش، سیاست قیمت گذاری، و ساختار
+          هزینه دارد. این نسبت هرچه بالاتر باشد بهتر است.
+        </template>
+      </ratio-widget>
     </div>
     <div class="col col-md col-xs-12">
-      <q-card class="fit bordered q-pa-none" flat>
-        <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
-          <div class="row justify-between">
-            <q-avatar
-              round
-              text-color="white"
-              icon="o_group_remove"
-              size="xl"
-              class="primary-gradient primary-shadow"
-            />
-            <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
-                <q-menu fit class="border-radius-lg">
-                  <q-list dense padding style="width: 200px">
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_sell" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش و درآمد، هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_close" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_check" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
-          <div class="text-h6 text-weight-700">نسبت بدهی</div>
-          <div class="row items-center q-gutter-x-sm">
-            <div class="text-body1 text-bold">%0</div>
-            <!-- <div class="text-body2 text-bold text-green">+%24</div> -->
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-  </div>
-  <div class="row gap-24 q-mt-lg">
-    <div class="col col-md col-xs-12">
-      <q-card class="fit bordered q-pa-none" flat>
-        <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
-          <div class="row justify-between">
-            <q-avatar
-              round
-              text-color="white"
-              icon="o_exposure_plus_2"
-              size="xl"
-              class="green-gradient green-shadow"
-            />
-            <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
-                <q-menu fit class="border-radius-lg">
-                  <q-list dense padding style="width: 200px">
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_sell" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش و درآمد، هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_close" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_check" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
-          <div class="text-h6 text-weight-700">نسبت جاری</div>
-          <div class="row items-center q-gutter-x-sm">
-            <div class="text-body1 text-bold">(30.53)</div>
-            <div class="text-body2 text-bold text-green">+%24</div>
-          </div>
-        </q-card-section>
-      </q-card>
+      <ratio-widget
+        title="نسبت بدهی"
+        :ratio="ratioStore.model.value.debtRatio"
+        ratio-sign="%"
+      >
+        <template #avatar>
+          <q-avatar
+            round
+            text-color="white"
+            icon="o_group_remove"
+            size="xl"
+            class="primary-gradient primary-shadow"
+          />
+        </template>
+        <template #info>
+          <strong>نسبت بدهی</strong>
+          نشان می‌دهد چند درصد از داراییها از محل بدهی‌ها تامین شده
+          است. (دارایی = بدهی + سرمایه) هرچه این نسبت افزایش یابد
+          سودآوری شركت افزایش خواهد یافت مشروط بر اینكه نرخ بازده
+          داراییها بیش از نرخ بهره‌ی بدهی‌ها باشد. این نسبت توانایی
+          شركت درتحمل كاهش خالص داراییها براثر زیانهای وارده بدون به
+          مخاطره افتادن منابع اعتبار دهندگان را نشان می‌دهد. عدد قابل
+          قبول برای این نسبت بستگی به ثبات سودآوری در طول سالیان مختلف
+          دارد هرچه ثبات سودآوری تاریخی بیشتر باشد اعتباردهندگان و
+          سرمایه‌گذاران نسبتهای بالاتری را تحمل خواهند كرد.
+        </template>
+      </ratio-widget>
     </div>
     <div class="col col-md col-xs-12">
-      <q-card class="fit bordered q-pa-none" flat>
-        <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
-          <div class="row justify-between">
-            <q-avatar
-              round
-              text-color="white"
-              icon="o_hourglass_empty"
-              size="xl"
-              class="pink-gradient pink-shadow"
-            />
-            <div class="row items-center justify-end">
-              <q-btn
-                unelevated
-                round
-                dense
-                :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-                size="md"
-                icon="o_more_vert"
-              >
-                <q-menu fit class="border-radius-lg">
-                  <q-list dense padding style="width: 200px">
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSaleIncome"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_sell" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش و درآمد، هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-separator />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showSale"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_close" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          فروش
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
-                      @click="showCost"
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon name="o_check" size="20px" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          هزینه
-                        </div>
-                      </q-item-section>
-                    </q-item>
-                  </q-list>
-                </q-menu>
-              </q-btn>
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-section class="column q-gutter-y-sm q-px-lg q-py-lg">
-          <div class="text-h6 text-weight-700">دوره وصول مطالبات</div>
-          <div class="row items-center q-gutter-x-sm">
-            <div class="text-body1 text-bold">234 روز</div>
-            <div
-              class="text-caption text-bold"
-              :class="
-                $q.dark.isActive ? 'text-yellow' : 'text-negative'
-              "
-            >
-              فقط 2 روز مانده
-            </div>
-          </div>
-        </q-card-section>
-      </q-card>
+      <ratio-widget
+        title="نسبت جاری"
+        :ratio="ratioStore.model.value.currentRatio"
+        ratio-sign=""
+        :fraction="2"
+      >
+        <template #avatar>
+          <q-avatar
+            round
+            text-color="white"
+            icon="o_exposure_plus_2"
+            size="xl"
+            class="green-gradient green-shadow"
+          />
+        </template>
+        <template #info>
+          <strong>نسبت جاری</strong>
+          از تقسیم داراییهای جاری بر بدهی‌های جاری حاصل می‌شود دارایی
+          جاری به داراییهایی گفته می‌شود كه به سرعت و به سهولت به وجه
+          نقد تبدیل می‌شود و بدهی جاری به بدهی‌هایی گفته می‌شود كه با
+          سررسید كمتر از یک سال است. نسبت جاری بیشتر می‌تواند بیانگر
+          وضعیت مطلوب نقدینگی باشد. اگر این عدد بزرگتر از 2 باشد مطلوب
+          است و وام دهندگان بزرگ مانند بانکها به این کسب و کار نظر
+          مساعدی خواهند داشت.
+        </template>
+      </ratio-widget>
+    </div>
+    <div class="col col-md col-xs-12">
+      <ratio-widget
+        title="دوره وصول مطالبات"
+        :ratio="ratioStore.model.value.dso"
+        ratio-sign="روز"
+      >
+        <template #avatar>
+          <q-avatar
+            round
+            text-color="white"
+            icon="o_hourglass_empty"
+            size="xl"
+            class="pink-gradient pink-shadow"
+          />
+        </template>
+        <template #info>
+          <strong>دوره وصول مطالبات</strong>
+          بیانگر تعداد روزهایی است كه طول می‌كشد شركت مطالبات خود را
+          وصول كند. هر چه این نسبت كوچكتر باشد بهتر است زیرا به این
+          معناست كه مطالبات شركت سریعتر وصول می‌شود. البته كوچک بودن
+          بیش از حد آن به معنای شرایط اعتباری سخت شركت است که ممکن به
+          ضرر شرکت تمام شود.
+        </template>
+      </ratio-widget>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref, onMounted, watch, computed } from "vue";
-</script>
+  import { useRatios } from "../../acc/_composables/useRatios";
+  import RatioWidget from "./_RatioWidget.vue";
 
+  const ratioStore = useRatios();
+</script>
 <style>
   .container {
     display: grid;

@@ -1,15 +1,29 @@
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
-import { fetchWrapper } from "src/helpers";
+import { fetchWrapper, bus } from "src/helpers";
 import { closeAccounts } from "src/constants";
 
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
+
+const operationStatusModel = ref({
+  hasOpenBook: false,
+  hasCloseBook: false,
+});
 
 export function useAccountingOperations() {
   const $q = useQuasar();
   const { t } = useI18n();
   const model = ref({});
+
+  async function getOperationStatus() {
+    const response = await fetchWrapper.get(
+      `acc/operation/getOperationStatus`,
+      null,
+      true
+    );
+    operationStatusModel.value = response.data.data;
+  }
 
   async function reorder(callBack) {
     $q.dialog({
@@ -139,15 +153,26 @@ export function useAccountingOperations() {
     if (callBack) callBack();
   }
 
+  onMounted(() => {
+    getOperationStatus();
+    bus.on("render-page", getOperationStatus);
+  });
+
+  onUnmounted(() => {
+    bus.off("render-page", getOperationStatus);
+  });
+
   return {
     model,
+    operationStatusModel,
 
     reorder,
     calculateCogs,
     openBook,
     closeBook,
-    getCloseAccountModel,
     closeAccount,
     deleteClosingBook,
+    getCloseAccountModel,
+    getOperationStatus,
   };
 }

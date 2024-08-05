@@ -2,7 +2,13 @@
   <tool-bar margin title="عملیات حسابداری" />
 
   <div class="row q-col-gutter-md">
-    <div class="col-md col-sm-6 col-xs-12">
+    <div
+      v-if="
+        !operationStore.operationStatusModel.value.hasCloseBook &&
+        !operationStore.operationStatusModel.value.hasOpenBook
+      "
+      class="col-md col-sm-6 col-xs-12"
+    >
       <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
@@ -30,7 +36,10 @@
       </q-card>
     </div>
 
-    <div class="col-md col-sm-6 col-xs-12">
+    <div
+      v-if="!operationStore.operationStatusModel.value.hasCloseBook"
+      class="col-md col-sm-6 col-xs-12"
+    >
       <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
@@ -58,7 +67,10 @@
       </q-card>
     </div>
 
-    <div class="col-md col-sm-6 col-xs-12">
+    <div
+      v-if="!operationStore.operationStatusModel.value.hasCloseBook"
+      class="col-md col-sm-6 col-xs-12"
+    >
       <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
@@ -86,7 +98,10 @@
       </q-card>
     </div>
 
-    <div class="col-md col-sm-6 col-xs-12">
+    <div
+      v-if="!operationStore.operationStatusModel.value.hasCloseBook"
+      class="col-md col-sm-6 col-xs-12"
+    >
       <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
@@ -120,12 +135,15 @@
   </div>
 
   <div class="row q-col-gutter-md q-pt-md">
-    <div class="col-md col-sm-6 col-xs-12">
+    <div
+      v-if="!operationStore.operationStatusModel.value.hasCloseBook"
+      class="col-md col-sm-6 col-xs-12"
+    >
       <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
           <q-avatar
             size="46px"
-            class="text-white primary-gradient primary-shadow"
+            class="text-white bg-green primary-shadow"
           >
             <q-icon name="o_done_all" size="36px" color="white" />
           </q-avatar>
@@ -148,13 +166,13 @@
       </q-card>
     </div>
 
-    <div class="col-md col-sm-6 col-xs-12">
+    <div
+      v-if="operationStore.operationStatusModel.value.hasCloseBook"
+      class="col-md col-sm-6 col-xs-12"
+    >
       <q-card class="bordered q-radius-lg">
         <q-card-section class="q-pa-lg">
-          <q-avatar
-            size="46px"
-            class="text-white primary-gradient primary-shadow"
-          >
+          <q-avatar size="46px" class="text-white bg-red shadow">
             <q-icon name="o_delete" size="36px" color="white" />
           </q-avatar>
 
@@ -199,6 +217,6 @@
   };
 
   const reloadData = async () => {
-    alert("operation finished");
+    //alert("operation finished");
   };
 </script>

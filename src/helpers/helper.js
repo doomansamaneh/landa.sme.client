@@ -112,6 +112,17 @@ export const helper = {
     }, 0);
   },
 
+  formatNumber(num, fraction) {
+    const absNum = Math.abs(num || 0).toLocaleString("en-US", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: fraction || 0,
+    });
+    if (num < 0) {
+      return `(${absNum})`;
+    }
+    return absNum;
+  },
+
   exportCsv(rows, columns) {
     function wrapCsvValue(val, formatFn, row) {
       let formatted = formatFn !== void 0 ? formatFn(val, row) : val;

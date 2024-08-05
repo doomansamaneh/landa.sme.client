@@ -26,7 +26,7 @@ const pagination = ref({
 
 const columns = ref(customerColumns);
 
-export function useCustomerGrid() {
+export function useCustomerState() {
   const composablesStore = useComposables();
   composablesStore.register({
     reset: () => {

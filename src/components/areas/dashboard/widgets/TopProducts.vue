@@ -74,13 +74,16 @@
               >
                 <div class="col-8 q-pl-lg column">
                   <span class="text-caption no-letter-spacing">
-                    {{ item.productTitle }}
+                    {{ item.productCode }} - {{ item.productTitle }}
                   </span>
                   <span class="text-caption no-letter-spacing">
                     قیمت فروش : {{ item.price?.toLocaleString() }}
                   </span>
                   <span class="text-caption no-letter-spacing">
-                    جمع کل : {{ item.amount?.toLocaleString() }}
+                    جمع کل :
+                    <strong>
+                      {{ item.amount?.toLocaleString() }}
+                    </strong>
                   </span>
                 </div>
                 <div class="col row justify-end items-center">

@@ -34,7 +34,9 @@ export function useRevenueExpense() {
 
   async function reloadData() {
     const response = await fetchWrapper.get(
-      `acc/report/RevenueExpenseByMonth`
+      `acc/report/RevenueExpenseByMonth`,
+      null,
+      true
     );
     data.value = response.data.data;
   }

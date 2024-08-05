@@ -35,7 +35,9 @@ export function useInvoiceSummary() {
 
   async function reloadData() {
     const response = await fetchWrapper.get(
-      `sls/report/InvoiceSummary`
+      `sls/report/InvoiceSummary`,
+      null,
+      true
     );
     data.value = response.data.data;
   }
