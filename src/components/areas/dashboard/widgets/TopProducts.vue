@@ -29,9 +29,9 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pt-none q-pb-md q-pr-none">
+    <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none">
       <q-scroll-area
-        style="height: 250px"
+        style="height: 350px"
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"
       >

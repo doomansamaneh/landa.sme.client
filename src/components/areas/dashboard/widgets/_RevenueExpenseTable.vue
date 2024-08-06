@@ -8,21 +8,17 @@
     <q-markup-table bordered flat>
       <thead>
         <tr>
-          <th class="text-left text-h5"></th>
-          <th class="text-left" style="width: 7%">
-            <span class="text-caption">فروردین</span>
+          <th class="text-left"></th>
+          <th
+            class="text-center"
+            style="width: 5%"
+            v-for="item in helper.getMonths()"
+            :key="item"
+          >
+            <span class="text-caption">
+              {{ $t(`shared.months.${item}`) }}
+            </span>
           </th>
-          <th class="text-left" style="width: 7%">اردیبهشت</th>
-          <th class="text-left" style="width: 7%">خرداد</th>
-          <th class="text-left" style="width: 7%">تیر</th>
-          <th class="text-left" style="width: 7%">مرداد</th>
-          <th class="text-left" style="width: 7%">شهریور</th>
-          <th class="text-left" style="width: 7%">مهر</th>
-          <th class="text-left" style="width: 7%">آبان</th>
-          <th class="text-left" style="width: 7%">آذر</th>
-          <th class="text-left" style="width: 7%">دی</th>
-          <th class="text-left" style="width: 7%">بهمن</th>
-          <th class="text-left" style="width: 7%">اسفند</th>
           <th class="text-left" style="width: 8%">
             <span class="text-subtitle2 text-weight-500">جمع</span>
           </th>
@@ -33,7 +29,7 @@
           v-for="row in dataStore.tableSeries.value"
           :key="row.name"
         >
-          <td>{{ row.name }}</td>
+          <td>{{ $t(`shared.labels.${row.name}`) }}</td>
           <td
             v-for="(col, index) in row.data"
             :key="index"
@@ -53,6 +49,7 @@
   </div>
 </template>
 <script setup>
+  import { helper } from "src/helpers";
   import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
 
   const dataStore = useRevenueExpense();

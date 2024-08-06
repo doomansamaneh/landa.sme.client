@@ -15,23 +15,23 @@
     toolbar
   >
     <template #cell-credit="{ item }">
-      {{ item.credit?.toLocaleString() }}
+      {{ helper.formatNumber(item.credit) }}
     </template>
 
     <template #cell-debit="{ item }">
-      debit: {{ item.debit?.toLocaleString() }}
+      debit: {{ helper.formatNumber(item.credit) }}
     </template>
 
     <template #cell-inlineDebit="{ item }">
-      {{ item.inlineDebit?.toLocaleString() }}
+      {{ helper.formatNumber(item.inlineDebit) }}
     </template>
 
     <template #cell-debitRemained="{ item }">
-      {{ item.debitRemained?.toLocaleString() }}
+      {{ helper.formatNumber(item.debitRemained) }}
     </template>
 
     <template #cell-creditRemained="{ item }">
-      {{ item.creditRemained?.toLocaleString() }}
+      {{ helper.formatNumber(item.creditRemained) }}
     </template>
 
     <template #cell-voucherSubject="{ item }">
@@ -71,10 +71,10 @@
       <td colspan="100%">
         <b v-if="showInlineDebit">
           {{
-            (
+            helper.formatNumber(
               helper.getSubtotal(selectedRows, "debitRemained") -
-              helper.getSubtotal(selectedRows, "creditRemained")
-            ).toLocaleString()
+                helper.getSubtotal(selectedRows, "creditRemained")
+            )
           }}
         </b>
       </td>
@@ -85,17 +85,17 @@
         {{ $t("shared.labels.total") }}
       </td>
       <td>
-        <b>{{ summary?.debitRemained.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary?.debitRemained) }}</b>
       </td>
       <td>
-        <b>{{ summary?.creditRemained.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary?.creditRemained) }}</b>
       </td>
       <td colspan="100%">
         <b v-if="showInlineDebit">
           {{
-            (
+            helper.formatNumber(
               summary?.debitRemained - summary?.creditRemained
-            ).toLocaleString()
+            )
           }}
         </b>
       </td>

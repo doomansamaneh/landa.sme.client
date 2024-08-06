@@ -27,7 +27,9 @@ export function useAppConfigModel(disableLoad) {
   const reloadData = async () => {
     firstLoad.value = true;
     const response = await fetchWrapper.get(
-      "cmn/AppConfig/GetAppConfig"
+      "cmn/AppConfig/GetAppConfig",
+      undefined,
+      true
     );
     model.value = response?.data?.data.appConfig;
     userSetting.value = response?.data?.data.userSetting;

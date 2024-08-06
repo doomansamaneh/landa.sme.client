@@ -65,6 +65,13 @@
             {{ $t("main-menu-items.dashboard") }}
           </div>
         </q-item>
+
+        <q-inner-loading
+          :showing="menuBarStore.showLoader.value"
+          class="transparent z-max"
+        >
+          <q-spinner-orbit size="52px" color="primary" />
+        </q-inner-loading>
         <div
           v-for="parentItem in menuBarStore.drawerMenuItems.value"
           :key="parentItem.name"
@@ -95,7 +102,9 @@
                 :to="subItem.url"
                 clickable
                 class="border-radius-xl sub-item q-ml-xs q-my-xs"
-                :class="{ 'active-shine': isActiveItem(subItem.url) }"
+                :class="{
+                  'active-shine': isActiveItem(subItem.url),
+                }"
               >
                 <q-item-section avatar>
                   <q-icon :name="`o_${subItem.icon}`" size="20px" />

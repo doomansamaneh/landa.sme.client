@@ -15,7 +15,7 @@
 
   <div class="row q-col-gutter-lg" style="margin-top: -16px">
     <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card bordered class="bordered">
+      <q-card bordered>
         <q-card-section class="q-gutter-y-sm" id="invoicePreview">
           <invoice-header
             show-logo

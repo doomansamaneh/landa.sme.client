@@ -352,3 +352,12 @@ export const accountCLType = {
   expense: "5f4ae9d2-eeca-4ce6-a469-18db06d70dff",
   contra: "2926f151-1a55-476d-9025-57e0caea8561",
 };
+
+export const accountCLTypeIds = {
+  asset: 1011,
+  liablity: 1012,
+  equity: 1013,
+  revenue: 1014,
+  expense: 1015,
+  contra: 1016,
+};

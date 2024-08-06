@@ -8,6 +8,8 @@ const state = {
   items: ref([]),
 };
 
+const showLoader = ref(false);
+
 const searchText = ref("");
 
 export function useMenuBar() {
@@ -36,12 +38,14 @@ export function useMenuBar() {
   }
 
   async function reloadData() {
-    await fetchWrapper
-      .get("scr/users/getMenuItems")
-      .then((response) => {
-        handleMenuItemsData(response.data.data);
-      })
-      .finally(() => {});
+    showLoader.value = true;
+    const response = await fetchWrapper.get(
+      "scr/users/getMenuItems",
+      undefined,
+      true
+    );
+    handleMenuItemsData(response.data.data);
+    showLoader.value = false;
   }
 
   function handleMenuItemsData(data) {
@@ -108,5 +112,6 @@ export function useMenuBar() {
     toggle,
     loadData,
     reloadData,
+    showLoader,
   };
 }

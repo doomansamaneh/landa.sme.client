@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import Desktop from "src/components/areas/acc/accountDL/desktop/preview/IndexView.vue";
+  import Desktop from "src/components/areas/acc/accountDL/shared/preview/IndexView.vue";
 </script>

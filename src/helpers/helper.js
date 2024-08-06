@@ -30,6 +30,10 @@ export const helper = {
     return enumType[0];
   },
 
+  getMonths() {
+    return Array.from({ length: 12 }, (v, i) => i + 1);
+  },
+
   generateGradientColor(input) {
     let hash = 0;
     if (input) {

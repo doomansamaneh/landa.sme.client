@@ -5,6 +5,7 @@ import { useComposables } from "src/stores/useComposables";
 const firstLoad = ref(false);
 const data = ref(null);
 //const tableSeries = ref(null);
+const showLoader = ref(false);
 
 export function useRevenueExpense() {
   const composablesStore = useComposables();
@@ -33,20 +34,22 @@ export function useRevenueExpense() {
   }
 
   async function reloadData() {
+    showLoader.value = true;
     const response = await fetchWrapper.get(
       `acc/report/RevenueExpenseByMonth`,
       null,
       true
     );
+    showLoader.value = false;
     data.value = response.data.data;
   }
 
-  const chartSeries = computed(() => {
-    return data?.value?.map((item) => ({
+  const chartSeries = computed(() =>
+    data?.value?.map((item) => ({
       name: item.name,
       data: item.data.map((subItem) => subItem.amount),
-    }));
-  });
+    }))
+  );
 
   const tableSeries = computed(() => {
     let series = [];
@@ -71,5 +74,6 @@ export function useRevenueExpense() {
 
     loadData,
     reloadData,
+    showLoader,
   };
 }

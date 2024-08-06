@@ -47,7 +47,9 @@ export function useFiscalYear() {
 
   const changeFiscalYear = async (year) => {
     await fetchWrapper.post(
-      `scr/userSetting/setFiscalYear/${year.id}`
+      `scr/userSetting/setFiscalYear/${year.id}`,
+      undefined,
+      true
     );
     setFiscalYear(year);
     composablesStore.reset();

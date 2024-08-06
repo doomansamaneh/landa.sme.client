@@ -1,4 +1,11 @@
 <template>
+  <q-inner-loading
+    :showing="dataStore.showLoader.value"
+    class="transparent z-max"
+  >
+    <q-spinner size="52px" color="primary" />
+  </q-inner-loading>
+
   <template v-if="dataStore.chartSeries?.value">
     <chart
       :options="options"
@@ -20,7 +27,8 @@
   import { helper } from "src/helpers";
   import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
 
-  import Chart from "vue3-apexcharts";
+  import Chart from "src/components/shared/Charts/ChartView.vue";
+  //import Chart from "vue3-apexcharts";
 
   const props = defineProps(["height", "legend", "title"]);
 
@@ -105,20 +113,9 @@
         axisTicks: {
           show: false,
         },
-        categories: [
-          "فرودین",
-          "اردیبهشت",
-          "خرداد",
-          "تیر",
-          "مرداد",
-          "شهریور",
-          "مهر",
-          "آبان",
-          "آذر",
-          "دی",
-          "بهمن",
-          "اسفند",
-        ],
+        categories: helper
+          .getMonths()
+          .map((item) => t(`shared.months.${item}`)),
         labels: {
           show: false,
           style: {

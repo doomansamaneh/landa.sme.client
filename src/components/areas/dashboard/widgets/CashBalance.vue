@@ -1,5 +1,5 @@
 <template>
-  <cash-balance title="موجودی بانک" action="BankAccount" />
+  <cash-balance title="موجودی نقد" action="Cash" />
 </template>
 
 <script setup>

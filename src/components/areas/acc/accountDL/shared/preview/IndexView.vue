@@ -1,17 +1,12 @@
 <template>
-  <tool-bar :inside="inside" buttons :title="title" back-button>
+  <tool-bar
+    :inside="inside"
+    buttons
+    :title="title"
+    back-button
+    style="margin-bottom: 48px"
+  >
     <template #buttons>
-      <!-- <q-btn
-        :to="`/trs/cash/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-      </q-btn> -->
       <q-btn
         @click="helper.print('invoicePreview')"
         class="text-body2 no-letter-spacing"

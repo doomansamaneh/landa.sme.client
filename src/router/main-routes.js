@@ -213,6 +213,12 @@ export default {
             import("pages/areas/acc/accountDL/CopyPage.vue"),
           meta: { title: "حساب تفصیلی - کپی" },
         },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/acc/accountDL/PreviewPage.vue"),
+          meta: { title: "حساب تفصیلی - پیش نمایش" },
+        },
       ],
     },
 
@@ -414,6 +420,12 @@ export default {
           component: () =>
             import("pages/areas/trs/bankAccount/CopyPage.vue"),
           meta: { title: "حساب بانکی - کپی" },
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/trs/bankAccount/PreviewPage.vue"),
+          meta: { title: "حساب بانکی - پیش نمایش" },
         },
       ],
     },
