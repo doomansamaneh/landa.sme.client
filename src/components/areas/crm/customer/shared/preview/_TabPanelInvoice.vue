@@ -1,6 +1,10 @@
 <template>
   <data-grid
-    flat_
+    class="border-radius-lg"
+    flat
+    bordered
+    toolbar
+    multi-select
     :data-source="`sls/invoice/GetByCustomerData/${item.id}`"
     :grid-store="gridStore"
   />

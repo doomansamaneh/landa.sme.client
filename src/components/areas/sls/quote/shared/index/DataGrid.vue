@@ -22,7 +22,7 @@
       v-if="toolbar"
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
-      :title="title"
+      :title_="title"
       :base-route="baseRoute"
       buttons
       margin

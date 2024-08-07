@@ -48,88 +48,21 @@
       </q-btn>
     </template>
   </tool-bar>
-
-  <q-card>
-    <q-card-section class="text-center">
-      <span class="text-weight-700 text-h6 no-letter-spacing">
-        کاردکس کالا
-      </span>
-    </q-card-section>
-    <q-separator />
-    <q-card-section class="q-gutter-y-md">
-      <div class="row">
-        <div class="col-1">
-          <span class="text-body3 no-letter-spacing">کالا:</span>
-        </div>
-        <div class="text-body2 text-bold no-letter-spacing">
-          {{ item?.code }} / {{ item?.title }}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-1">
-          <span class="text-body3 no-letter-spacing">گروه:</span>
-        </div>
-        <div class="text-body3 no-letter-spacing">
-          {{ item?.productGroupTitle }}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-1">
-          <span class="text-body3 no-letter-spacing">
-            موجودی اول دوره:
-          </span>
-        </div>
-        <div class="text-body2 text-bold no-letter-spacing">
-          {{ item?.openomgStock?.toLocaleString() }}
-        </div>
-      </div>
-    </q-card-section>
-
-    <q-card-section class="q-px-none">
-      <product-stock-item
-        ref="dataGrid"
-        :data-source="dataSource"
-        :grid-store="gridStore"
-      />
-    </q-card-section>
-  </q-card>
+  <preview :item="item" ref="dataGrid" v-if="item" />
 </template>
 
 <script setup>
   import { ref, computed } from "vue";
-  import { useRoute } from "vue-router";
-  import { sqlOperator } from "src/constants";
-  import { useProductStockItemGrid } from "src/components/areas/inv/_composables/useProductStockItemGrid";
 
-  import ProductStockItem from "./ProductStockItem.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import Preview from "./_ProductStockPreview.vue";
 
   const props = defineProps({
     inside: Boolean,
     item: Object,
   });
 
-  const route = useRoute();
   const dataGrid = ref(null);
-  const filterExpersions = computed(() => {
-    const productId = route.params.productId;
-    const itemId = props.item?.id ?? productId;
-    if (itemId) {
-      return [
-        {
-          fieldName: "ii.productId",
-          operator: sqlOperator.equal,
-          value: itemId,
-        },
-      ];
-    }
-
-    return null;
-  });
-  const dataSource = "sls/report/getProductStockItems";
-  const gridStore = useProductStockItemGrid(filterExpersions?.value);
 
   const tableStore = computed(() => dataGrid?.value?.tableStore);
 </script>

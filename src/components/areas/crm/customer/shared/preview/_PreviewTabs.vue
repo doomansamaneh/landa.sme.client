@@ -49,10 +49,7 @@
     keep-alive
     animated
   >
-    <q-tab-panel
-      class="no-padding no-border no-shadow bg-main"
-      name="basic-info"
-    >
+    <q-tab-panel class="no-padding bg-main" name="basic-info">
       <base-info v-if="item.id" :item="item" />
     </q-tab-panel>
     <q-tab-panel class="no-padding bg-main" name="quote">
@@ -64,7 +61,7 @@
     <q-tab-panel class="no-padding bg-main" name="account">
       <account :item="item" />
     </q-tab-panel>
-    <q-tab-panel class="no-padding" name="log">
+    <q-tab-panel class="no-padding bg-main" name="log">
       <log :item="item" />
     </q-tab-panel>
   </q-tab-panels>
@@ -88,18 +85,18 @@
   const tab = ref("basic-info");
 
   const tabPanels = computed(() => {
+    return "no-border no-shadow";
     const isXs = $q.screen.xs;
 
-    return isXs
-      ? "no-border no-shadow"
-      : tab.value === "basic-info" ||
-        tab.value === "account" ||
-        tab.value === "invoice"
-      ? $q.screen.gt.xs
-        ? "no-border bg-main"
-        : "no-border no-shadow"
-      : tab.value === "log"
-      ? "bordered border-radius-lg"
-      : "bordered border-radius-lg";
+    return isXs ? "no-border no-shadow" : "bordered border-radius-lg";
+    // : tab.value === "basic-info" ||
+    //   tab.value === "account" ||
+    //   tab.value === "invoice"
+    // ? $q.screen.gt.xs
+    //   ? "no-border bg-main"
+    //   : "no-border no-shadow"
+    // : tab.value === "log"
+    // ? "bordered border-radius-lg"
+    // : "bordered border-radius-lg";
   });
 </script>

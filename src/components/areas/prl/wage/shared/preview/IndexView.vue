@@ -58,13 +58,9 @@
   <q-card class="bordered">
     <div id="invoicePreview">
       <header-section :model="model" />
-
-      <q-card-section class="q-gutter-y-sm_">
-        <div class="row">
-          <div class="col-md-12">
-            <wage-item-data-grid :wage-id="id" />
-          </div>
-        </div>
+      <q-separator></q-separator>
+      <q-card-section class="q-px-none">
+        <wage-item-data-grid :wage-id="id" toolbar />
       </q-card-section>
     </div>
   </q-card>

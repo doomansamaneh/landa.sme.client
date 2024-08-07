@@ -14,7 +14,9 @@
     <template #filter-isActive="{ item }">
       <custom-select
         v-model="item.value"
-        :options="isActiveOptions"
+        :options="
+          helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
+        "
         @update:model-value="reloadData"
       />
     </template>
@@ -58,8 +60,9 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { isActiveOptions } from "src/constants";
   import { useQuasar } from "quasar";
+  import { helper } from "src/helpers";
+  import { isActiveOptions } from "src/constants";
 
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";

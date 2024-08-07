@@ -4,13 +4,13 @@
     :dataSource="dataSource"
     :grid-store="gridStore"
     flat_
+    bordered_
     multiSelect
-    numbered
-    bordered
-    dense
-    wrapCells
-    expandable
+    dense_
     toolbar
+    numbered
+    wrapCells_
+    expandable
     @row-dbl-click="gotoPreview"
   >
     <template #filter-statusId="{ item }">

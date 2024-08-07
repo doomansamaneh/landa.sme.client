@@ -102,7 +102,11 @@
   </div>
 
   <account-item
-    flat_
+    class="border-radius-lg"
+    flat
+    bordered
+    toolbar
+    multi-select
     data-source="acc/report/getItemAllData"
     :columns="accountItemColumns"
     :filter-expression="filterExpression"

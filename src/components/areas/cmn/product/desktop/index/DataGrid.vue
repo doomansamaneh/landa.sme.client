@@ -4,13 +4,14 @@
     dataSource="cmn/product/getGridData"
     :grid-store="gridStore"
     separator="horizontal"
-    flat
+    flat_
     multiSelect
     numbered
-    bordered
+    bordered_
     wrapCells
     dense_
-    expandable_
+    toolbar
+    expandable
   >
     <template #filter-typeId="{ item }">
       <custom-select
@@ -22,7 +23,9 @@
     <template #filter-isActive="{ item }">
       <custom-select
         v-model="item.value"
-        :options="isActiveOptions"
+        :options="
+          helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
+        "
         @update:model-value="reloadData"
       />
     </template>
@@ -83,6 +86,10 @@
         :crud-store="crudStore"
       />
     </template>
+
+    <template #expand="{ item }">
+      <preview :item="item" inside />
+    </template>
   </data-grid>
 </template>
 
@@ -94,6 +101,7 @@
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+  import Preview from "../../shared/preview/IndexView.vue";
 
   const props = defineProps({
     gridStore: Object,

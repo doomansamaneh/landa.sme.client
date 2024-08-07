@@ -7,7 +7,6 @@
 
   <desktop-grid
     ref="desktopGrid"
-    flat
     :base-route="baseRoute"
     data-source="prl/wage/getGridData"
     :create-url="`/${baseRoute}/create`"

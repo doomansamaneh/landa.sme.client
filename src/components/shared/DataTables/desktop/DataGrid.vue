@@ -134,7 +134,7 @@
                     dense
                     round
                     @click="toggleExpand(row)"
-                    :icon="chevronIcon()"
+                    icon="keyboard_arrow_up"
                     :class="
                       row.expanded ? 'expand-open' : 'expand-close'
                     "
@@ -324,8 +324,8 @@
         : cardDefaultClass.value) +
       ($q.dark?.isActive === true ? " q-table--dark" : "") +
       (tableStore.dense.value === true ? " q-table--dense" : "") +
-      (props.wrapCells === false ? " q-table--no-wrap" : "") +
-      (props.flat === false ? " bordered" : "") +
+      (props.wrapCells === false ? " q-table--no-wrap_" : "") +
+      (props.bordered === true ? " bordered" : "") +
       (tableStore.inFullscreen.value === true
         ? " fullscreen scroll"
         : "")
@@ -343,9 +343,9 @@
     emit("row-dbl-click", row);
   };
 
-  const chevronIcon = () => {
-    return $q.lang.rtl ? "keyboard_arrow_down" : "keyboard_arrow_up";
-  };
+  // const chevronIcon = () => {
+  //   return $q.lang.rtl ? "keyboard_arrow_down" : "keyboard_arrow_up";
+  // };
 
   //Todo: How move to expand page dynamically
   const toggleExpand = (row) => {

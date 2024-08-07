@@ -14,7 +14,9 @@
     <template #filter-isActive="{ item }">
       <custom-select
         v-model="item.value"
-        :options="isActiveOptions"
+        :options="
+          helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
+        "
         @update:model-value="reloadData"
       />
     </template>
@@ -63,6 +65,7 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import IsActive from "src/components/shared/IsActive.vue";
   import Preview from "../../shared/preview/IndexView.vue";
+  import { helper } from "src/helpers";
 
   const props = defineProps({
     gridStore: Object,

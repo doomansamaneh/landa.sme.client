@@ -107,6 +107,14 @@ export function useDataTable({
     return false;
   }
 
+  async function applySearch() {
+    if (!state?.value?.disableApplySearch) await reloadData();
+  }
+
+  async function renderPage() {
+    if (!state?.value?.disableApplySearch) await loadData();
+  }
+
   async function reloadData() {
     if (!_dataSource.value) return;
     await fetchData(pagination.value, handleDataResponse);
@@ -318,13 +326,13 @@ export function useDataTable({
   }
 
   onMounted(() => {
-    bus.on("render-page", loadData);
-    bus.on("apply-search", reloadData);
+    bus.on("render-page", renderPage);
+    bus.on("apply-search", applySearch);
   });
 
   onUnmounted(() => {
-    bus.off("render-page", loadData);
-    bus.off("apply-search", reloadData);
+    bus.off("render-page", renderPage);
+    bus.off("apply-search", applySearch);
   });
 
   return {

@@ -89,13 +89,16 @@
                 <div class="col row justify-end items-center">
                   <q-item-label
                     caption
-                    class="text-body3 no-letter-spacing"
+                    class="text-body3 no-letter-spacing q-mx-xs"
                   >
                     تعداد:
                     <strong>
                       {{ item.quantity?.toLocaleString() }}
                     </strong>
                   </q-item-label>
+                  <goto-detail
+                    :to="`/cmn/product/Preview/${item.id}`"
+                  />
                 </div>
               </div>
             </q-item>
@@ -112,6 +115,7 @@
   import { useInvoiceProductState } from "../../sls/_composables/useInvoiceProductState";
 
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
+  import GotoDetail from "src/components/shared/buttons/GotoDetail.vue";
 
   const gridStore = useInvoiceProductState();
   const grid = ref(null);

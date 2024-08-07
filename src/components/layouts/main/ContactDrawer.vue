@@ -192,6 +192,7 @@
       searchTerm: "",
     }),
     state: {
+      disableApplySearch: true,
       firstLoad: ref(true),
       rows: ref([]),
       allSelectedIds: ref([]),

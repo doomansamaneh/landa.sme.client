@@ -16,7 +16,11 @@
       class="q-mr-xs text-h6 text-weight-700"
       label="فاکتورهای فروش"
       icon="check"
-    />
+    >
+      <q-badge>
+        {{ tableStore?.pagination.value.totalItems }}
+      </q-badge>
+    </q-tab>
     <q-tab
       name="canceled"
       class="text-h6 text-weight-700"

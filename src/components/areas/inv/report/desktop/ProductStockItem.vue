@@ -5,10 +5,7 @@
     :grid-store="gridStore"
     separator="horizontal"
     flat
-    square_
-    multiSelect_
     numbered
-    bordered_
     wrapCells
     dense
     expandable

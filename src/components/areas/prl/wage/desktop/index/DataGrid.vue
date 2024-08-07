@@ -1,7 +1,6 @@
 <template>
   <data-grid
     ref="dataGrid"
-    class="bordered"
     :base-route="baseRoute"
     :data-source="dataSource"
     :title="$t('main-menu-items.Prl_Wage_View')"
@@ -9,9 +8,8 @@
     :grid-store="gridStore"
     @row-dbl-click="rowDblClick"
     expandable
-    flat
+    bordered_
     toolbar
-    wrapsCells
   >
     <template #cell-amount="{ item }">
       {{ item.amount?.toLocaleString() }}

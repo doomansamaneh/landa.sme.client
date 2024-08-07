@@ -371,6 +371,10 @@
       "useable": "مصرفی",
       "service": "خدمت/نرم افزار"
     },
+    "isActiveOptions": {
+      "active": "فعال",
+      "inActive": "غیرفعال"
+    },
     "paymentMethod": {
       "cash": "نقدی",
       "check": "چک",

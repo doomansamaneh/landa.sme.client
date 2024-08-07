@@ -114,7 +114,9 @@
     <template #filter-isActive="{ item }">
       <custom-select
         v-model="item.value"
-        :options="isActiveOptions"
+        :options="
+          helper.isActiveOptions(isActiveOptions, 'isActiveOptions')
+        "
         @update:model-value="reloadData"
       />
     </template>

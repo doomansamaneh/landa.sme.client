@@ -100,7 +100,6 @@
   const router = useRouter();
 
   const id = computed(() => props.item?.id ?? route.params.id);
-  alert(id.value);
 
   function deleteCallBack() {
     router.back();

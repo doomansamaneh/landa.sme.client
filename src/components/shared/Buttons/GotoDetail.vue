@@ -5,19 +5,22 @@
     dense
     class="text-on-dark"
     :icon="arrowIcon()"
-    @click="$router.back()"
+    :to="url"
   >
     <q-tooltip class="custom-tooltip">
-      {{ $t("shared.labels.back") }}
+      {{ $t("shared.labels.showDetail") }}
     </q-tooltip>
   </q-btn>
 </template>
 <script setup>
   import { useQuasar } from "quasar";
+  const props = defineProps({ url: String });
 
   const $q = useQuasar();
 
   const arrowIcon = () => {
-    return $q.lang.rtl ? "arrow_back" : "arrow_forward";
+    return $q.lang.rtl
+      ? "keyboard_arrow_left"
+      : "keyboard_arrow_right";
   };
 </script>

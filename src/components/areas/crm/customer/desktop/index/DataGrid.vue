@@ -24,7 +24,9 @@
     <template #filter-isActive="{ item }">
       <custom-select
         v-model="item.value"
-        :options="isActiveOptions"
+        :options="
+          helper.getEnumType(isActiveOptions, 'isActiveOptions')
+        "
         @update:model-value="reloadData"
       />
     </template>

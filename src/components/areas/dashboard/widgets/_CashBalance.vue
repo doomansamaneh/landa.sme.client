@@ -34,22 +34,11 @@
           </span>
 
           <template v-slot:action>
-            <span class="text-weight-600 q-mx-sm">
+            <span class="text-weight-600 q-mx-xs">
               {{ helper.formatNumber(item.amount) }}
             </span>
 
-            <q-btn
-              round
-              unelevated
-              dense
-              class="text-on-dark"
-              :to="`/acc/accountDL/Preview/${item.id}`"
-              icon="keyboard_arrow_left"
-            >
-              <q-tooltip class="custom-tooltip">
-                {{ $t("shared.labels.showDetail") }}
-              </q-tooltip>
-            </q-btn>
+            <goto-detail :to="`/acc/accountDL/Preview/${item.id}`" />
           </template>
         </q-banner>
       </template>
@@ -74,6 +63,7 @@
   import { useBankAccount } from "../../acc/_composables/useBankAccount";
 
   import Chart from "src/components/shared/Charts/ChartView.vue";
+  import GotoDetail from "src/components/shared/buttons/GotoDetail.vue";
 
   const props = defineProps({
     title: String,

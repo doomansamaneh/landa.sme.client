@@ -26,7 +26,9 @@
     <template #filter-isActive="{ item }">
       <custom-select
         v-model="item.value"
-        :options="isActiveOptions"
+        :options="
+          helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
+        "
         @update:model-value="reloadData"
       />
     </template>
@@ -73,10 +75,8 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { isActiveOptions } from "src/constants";
-
   import { helper } from "src/helpers";
-  import { accountDLType } from "src/constants";
+  import { accountDLType, isActiveOptions } from "src/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { accountDLColumns } from "src/components/areas/acc/_composables/constants";
 

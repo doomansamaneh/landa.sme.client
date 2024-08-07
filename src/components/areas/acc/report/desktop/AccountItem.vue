@@ -4,13 +4,9 @@
     :data-source="dataSource"
     :grid-store="localGridStore"
     separator="horizontal"
-    flat_
-    square_
     multiSelect
     numbered
-    bordered_
-    wrapCells
-    dense_
+    wrapCells_
     expandable
     toolbar
   >

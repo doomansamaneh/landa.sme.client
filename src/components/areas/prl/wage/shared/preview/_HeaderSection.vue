@@ -1,10 +1,12 @@
 <template>
   <q-card-section>
     <div class="text-center">
-      <div class="text-h6 no-letter-spacing">
+      <!-- <div class="text-h6 no-letter-spacing">
         {{ appConfigStore.model?.value?.companySetting.name }}
+      </div> -->
+      <div class="text-h6 no-letter-spacing text-weight-700">
+        حقوق و دستمزد ماهانه
       </div>
-      <div class="text-body2 text-bold">حقوق و دستمزد ماهانه</div>
     </div>
   </q-card-section>
 

@@ -1126,7 +1126,7 @@ export default {
         {
           path: "preview/:id",
           component: () =>
-            import("src/pages/areas/cmn/product/PreviewPage.vue"),
+            import("pages/areas/cmn/product/PreviewPage.vue"),
           meta: { title: "کالا - پیش نمایش" },
         },
       ],

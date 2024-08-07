@@ -34,7 +34,7 @@
   import { bus } from "src/helpers";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-  import ProductStockPreview from "./ProductStockPreview.vue";
+  import ProductStockPreview from "../shared/ProductStockPreview.vue";
   import AdvancedSearch from "./ProductStockSearch.vue";
 
   const props = defineProps({

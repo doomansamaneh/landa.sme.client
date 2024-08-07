@@ -4,6 +4,7 @@ import { fetchWrapper, bus } from "src/helpers";
 import { useComposables } from "src/stores/useComposables";
 
 const state = {
+  disableApplySearch: true,
   firstLoad: ref(false),
   rows: ref([]),
   allSelectedIds: ref([]),

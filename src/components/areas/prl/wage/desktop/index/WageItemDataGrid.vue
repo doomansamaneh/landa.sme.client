@@ -2,7 +2,7 @@
   <data-grid
     ref="dataGrid"
     flat
-    bordered
+    bordered_
     :data-source="dataSource"
     :grid-store="gridStore"
     @row-dbl-click="rowDblClick"

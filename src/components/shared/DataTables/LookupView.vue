@@ -412,6 +412,7 @@
     }),
     filterExpression: props.filterExpression,
     state: {
+      disableApplySearch: true,
       firstLoad: ref(true),
       rows: ref([]),
       searchField: ref(""),
