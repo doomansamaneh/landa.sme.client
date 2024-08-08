@@ -8,7 +8,7 @@
       :crud-store="crudStore"
       :base-route="baseRoute"
       activation
-    ></toolbar-mobile>
+    />
 
     <mobile
       :title="title"
@@ -24,7 +24,7 @@
   <template v-else>
     <toolbar-desktop
       v-if="toolbar"
-      :title="title"
+      :title_="title"
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
       :base-route="baseRoute"
@@ -75,6 +75,7 @@
   const props = defineProps({
     toolbar: Boolean,
     visibleColumns: Array,
+    title: String,
   });
   const $q = useQuasar();
   const gridStore = useCustomerState();

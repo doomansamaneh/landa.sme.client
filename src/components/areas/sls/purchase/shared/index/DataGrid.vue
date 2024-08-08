@@ -8,8 +8,7 @@
       :title="title"
       :base-route="baseRoute"
       activation
-    >
-    </toolbar-mobile>
+    ></toolbar-mobile>
 
     <mobile
       :grid-store="gridStore"
@@ -23,7 +22,7 @@
       v-if="toolbar"
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
-      :title="title"
+      :title_="title"
       :base-route="baseRoute"
       buttons
       margin
@@ -110,29 +109,29 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useQuasar } from "quasar";
-import { useI18n } from "vue-i18n";
-import { usePurchaseGrid } from "../../../_composables/usePurchaseGrid";
-import { useFormActions } from "src/composables/useFormActions";
+  import { ref } from "vue";
+  import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
+  import { usePurchaseGrid } from "../../../_composables/usePurchaseGrid";
+  import { useFormActions } from "src/composables/useFormActions";
 
-import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-import Desktop from "../../desktop/index/DataGrid.vue";
-import Mobile from "../../mobile/index/DataGrid.vue";
+  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  import Desktop from "../../desktop/index/DataGrid.vue";
+  import Mobile from "../../mobile/index/DataGrid.vue";
 
-const props = defineProps({
-  toolbar: Boolean,
-});
+  const props = defineProps({
+    toolbar: Boolean,
+  });
 
-const { t } = useI18n();
+  const { t } = useI18n();
 
-const title = t("main-menu-items.Sls_Purchase_View");
-const baseRoute = "sls/purchase";
+  const title = t("main-menu-items.Sls_Purchase_View");
+  const baseRoute = "sls/purchase";
 
-const $q = useQuasar();
-const gridStore = usePurchaseGrid();
-const crudStore = useFormActions(baseRoute);
-const desktopGrid = ref(null);
-const mobileGrid = ref(null);
+  const $q = useQuasar();
+  const gridStore = usePurchaseGrid();
+  const crudStore = useFormActions(baseRoute);
+  const desktopGrid = ref(null);
+  const mobileGrid = ref(null);
 </script>

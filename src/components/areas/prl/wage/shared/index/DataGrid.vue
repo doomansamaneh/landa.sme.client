@@ -1,5 +1,4 @@
 <template>
-  {{ desktopGrid?.tableStore?.colums }}
   <desktop-toolbar
     :table-store="desktopGrid?.tableStore"
     :base-route="baseRoute"
@@ -11,6 +10,7 @@
     data-source="prl/wage/getGridData"
     :create-url="`/${baseRoute}/create`"
     :grid-store="gridStore"
+    :title="title"
   >
     <template #cell-amount="{ item }">
       {{ item.amount?.toLocaleString() }}
@@ -32,6 +32,8 @@
 
   import DesktopGrid from "../../desktop/index/DataGrid.vue";
   import DesktopToolbar from "../../desktop/index/ToolBar.vue";
+
+  const props = defineProps({ title: String });
 
   const gridStore = useBaseInfoGrid({
     columns: wageColumns,

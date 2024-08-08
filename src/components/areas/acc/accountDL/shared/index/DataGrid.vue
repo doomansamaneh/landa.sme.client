@@ -1,76 +1,89 @@
 <template>
-  <data-grid
-    ref="dataGrid"
-    data-source="acc/accountDL/getGridData"
-    :title="$t('main-menu-items.Acc_AccountDL_View')"
-    :grid-store="gridStore"
-    create-url="/acc/accountDL/create"
-    separator="horizontal"
-    flat_
-    multiSelect
-    numbered
-    bordered
-    wrapCells
-    dense_
-    expandable
-  >
-    <template #filter-typeId="{ item }">
-      <custom-select
-        v-model="item.value"
-        :options="
-          helper.getEnumOptions(accountDLType, 'accountDLType')
-        "
-        @update:model-value="reloadData"
-      />
-    </template>
-    <template #filter-isActive="{ item }">
-      <custom-select
-        v-model="item.value"
-        :options="
-          helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
-        "
-        @update:model-value="reloadData"
-      />
-    </template>
+  <q-card bordered>
+    <q-card-section class="text-center">
+      <h6 class="text-weight-700 no-letter-spacing">
+        {{ $t("main-menu-items.Acc_AccountDL_View") }}
+      </h6>
+    </q-card-section>
+    <q-separator />
+    <q-card-section class="q-px-none">
+      <data-grid
+        ref="dataGrid"
+        data-source="acc/accountDL/getGridData"
+        :title="$t('main-menu-items.Acc_AccountDL_View')"
+        :grid-store="gridStore"
+        create-url="/acc/accountDL/create"
+        separator="horizontal"
+        flat
+        toolbar
+        multiSelect
+        numbered
+        bordered_
+        dense
+        expandable
+      >
+        <template #filter-typeId="{ item }">
+          <custom-select
+            v-model="item.value"
+            :options="
+              helper.getEnumOptions(accountDLType, 'accountDLType')
+            "
+            @update:model-value="reloadData"
+          />
+        </template>
+        <template #filter-isActive="{ item }">
+          <custom-select
+            v-model="item.value"
+            :options="
+              helper.getEnumOptions(
+                isActiveOptions,
+                'isActiveOptions'
+              )
+            "
+            @update:model-value="reloadData"
+          />
+        </template>
 
-    <template #cell-isActive="{ item }">
-      <is-active :is-active="item.isActive" />
-    </template>
+        <template #cell-isActive="{ item }">
+          <is-active :is-active="item.isActive" />
+        </template>
 
-    <template #cell-code="{ item }">
-      {{ item.code }}
-      <small v-if="item.syncCode">({{ item.syncCode }})</small>
-    </template>
-    <template #cell-debitRemained="{ item }">
-      {{ item.debitRemained.toLocaleString() }}
-    </template>
-    <template #cell-creditRemained="{ item }">
-      {{ item.creditRemained.toLocaleString() }}
-    </template>
-    <template #cell-typeId="{ item }">
-      {{
-        $t(
-          `shared.accountDLType.${helper.getEnumType(
-            item.typeId,
-            accountDLType
-          )}`
-        )
-      }}
-    </template>
+        <template #cell-code="{ item }">
+          {{ item.code }}
+          <small v-if="item.syncCode">({{ item.syncCode }})</small>
+        </template>
+        <template #cell-debitRemained="{ item }">
+          {{ item.debitRemained.toLocaleString() }}
+        </template>
+        <template #cell-creditRemained="{ item }">
+          {{ item.creditRemained.toLocaleString() }}
+        </template>
+        <template #cell-typeId="{ item }">
+          {{
+            $t(
+              `shared.accountDLType.${helper.getEnumType(
+                item.typeId,
+                accountDLType
+              )}`
+            )
+          }}
+        </template>
 
-    <template #cell-actions="{ item }">
-      <row-tool-bar
-        :base-route="baseRoute"
-        :item="item"
-        :table-store="tableStore"
-        :crud-store="crudStore"
-      />
-    </template>
+        <template #cell-actions="{ item }">
+          <row-tool-bar
+            :base-route="baseRoute"
+            :item="item"
+            :table-store="tableStore"
+            :crud-store="crudStore"
+          />
+        </template>
 
-    <template #expand="{ item }">
-      <preview :item="item" inside />
-    </template>
-  </data-grid>
+        <template #expand="{ item }">
+          <preview :item="item" inside />
+        </template>
+      </data-grid>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>

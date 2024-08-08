@@ -2,7 +2,7 @@
   <template v-if="$q.screen.lt.sm">
     <toolbar-mobile
       buttons
-      :title="title"
+      :title_="title"
       :table-store="mobileGrid?.tableStore"
       :crud-store="crudStore"
       :base-route="baseRoute"
@@ -19,7 +19,7 @@
   </template>
   <template v-else>
     <toolbar-desktop
-      :title="title"
+      :title_="title"
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
       :base-route="baseRoute"
@@ -42,6 +42,10 @@
   import { useBaseInfoGrid } from "components/areas/_shared/_composables/useBaseInfoGrid";
   import { useCloseOrderState } from "../../../_composables/useCloseOrderState";
   import { useFormActions } from "src/composables/useFormActions";
+
+  const props = defineProps({
+    title: String,
+  });
 
   //const closeOrderStore = useCloseOrderState()
   const gridStore = useBaseInfoGrid(useCloseOrderState());

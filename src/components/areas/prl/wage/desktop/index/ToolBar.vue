@@ -3,7 +3,7 @@
     v-if="tableStore"
     :table-store="tableStore"
     :crud-store="crudStore"
-    :title="$t('main-menu-items.Prl_Wage_View')"
+    :title_="$t('main-menu-items.Prl_Wage_View')"
     :base-route="baseRoute"
     buttons
     margin

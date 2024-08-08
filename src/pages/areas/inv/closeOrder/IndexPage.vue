@@ -1,5 +1,8 @@
 <template>
-  <data-grid toolbar />
+  <data-grid
+    toolbar
+    :title="$t('main-menu-items.Inv_CloseOrder_View')"
+  />
 </template>
 
 <script setup>

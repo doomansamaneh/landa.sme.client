@@ -37,7 +37,7 @@
             </q-item-label>
 
             <q-item
-              class="q-px-lg"
+              class="q-px-md"
               clickable
               v-ripple
               v-for="glItem in dataStore.getFilteredItems(

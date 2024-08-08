@@ -1,66 +1,76 @@
 <template>
-  <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
-    separator="horizontal"
-    flat_
-    multiSelect
-    numbered
-    bordered
-    wrapCells
-    dense_
-    expandable
-    @row-dbl-click="gotoPreview"
-  >
-    <template #filter-typeId="{ item }">
-      <custom-select
-        v-model="item.value"
-        :options="helper.getEnumOptions(customerType, 'customerType')"
-        @update:model-value="reloadData"
-      />
-    </template>
+  <q-card bordered>
+    <q-card-section class="text-center">
+      <h6 class="text-weight-700 no-letter-spacing">
+        {{ title }}
+      </h6>
+    </q-card-section>
+    <q-separator />
+    <q-card-section class="q-px-none">
+      <data-grid
+        ref="dataGrid"
+        :data-source="dataSource"
+        :grid-store="gridStore"
+        separator="horizontal"
+        flat
+        multiSelect
+        numbered
+        bordered_
+        expandable
+        @row-dbl-click="gotoPreview"
+      >
+        <template #filter-typeId="{ item }">
+          <custom-select
+            v-model="item.value"
+            :options="
+              helper.getEnumOptions(customerType, 'customerType')
+            "
+            @update:model-value="reloadData"
+          />
+        </template>
 
-    <template #filter-isActive="{ item }">
-      <custom-select
-        v-model="item.value"
-        :options="
-          helper.getEnumType(isActiveOptions, 'isActiveOptions')
-        "
-        @update:model-value="reloadData"
-      />
-    </template>
+        <template #filter-isActive="{ item }">
+          <custom-select
+            v-model="item.value"
+            :options="
+              helper.getEnumType(isActiveOptions, 'isActiveOptions')
+            "
+            @update:model-value="reloadData"
+          />
+        </template>
 
-    <template #cell-typeId="{ item }">
-      {{
-        $t(
-          `shared.customerType.${helper.getEnumType(
-            item.typeId,
-            customerType
-          )}`
-        )
-      }}
-    </template>
+        <template #cell-typeId="{ item }">
+          {{
+            $t(
+              `shared.customerType.${helper.getEnumType(
+                item.typeId,
+                customerType
+              )}`
+            )
+          }}
+        </template>
 
-    <template #cell-isActive="{ item }">
-      <is-active :is-active="item.isActive" />
-    </template>
+        <template #cell-isActive="{ item }">
+          <is-active :is-active="item.isActive" />
+        </template>
 
-    <template #cell-actions="{ item }">
-      <row-tool-bar
-        :base-route="baseRoute"
-        :item="item"
-        :table-store="tableStore"
-        :crud-store="crudStore"
-      />
-    </template>
+        <template #cell-actions="{ item }">
+          <row-tool-bar
+            :base-route="baseRoute"
+            :item="item"
+            :table-store="tableStore"
+            :crud-store="crudStore"
+          />
+        </template>
 
-    <template #expand="{ item }">
-      <div class="q-pa-md">
-        <customer-preview :item="item" />
-      </div>
-    </template>
-  </data-grid>
+        <template #expand="{ item }">
+          <div class="q-pa-md">
+            <customer-preview :item="item" />
+          </div>
+        </template>
+      </data-grid>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
@@ -80,6 +90,7 @@
     crudStore: Object,
     dataSource: String,
     baseRoute: String,
+    title: String,
   });
 
   const router = useRouter();

@@ -43,7 +43,7 @@
       v-if="toolbar"
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
-      :title="title"
+      :title_="title"
       :base-route="baseRoute"
       activation
       buttons
@@ -91,6 +91,7 @@
 
   const props = defineProps({
     toolbar: Boolean,
+    title: String,
   });
 
   const { t } = useI18n();

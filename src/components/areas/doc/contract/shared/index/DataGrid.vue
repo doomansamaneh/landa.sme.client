@@ -20,7 +20,7 @@
   </template>
   <template v-else>
     <toolbar-desktop
-      :title="title"
+      :title_="title"
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
       :base-route="baseRoute"
@@ -44,6 +44,10 @@
   import { useBaseInfoGrid } from "components/areas/_shared/_composables/useBaseInfoGrid";
   import { contractColumns } from "components/areas/doc/_composables/constants";
   import { useFormActions } from "src/composables/useFormActions";
+
+  const props = defineProps({
+    title: String,
+  });
 
   const gridStore = useBaseInfoGrid({ columns: contractColumns });
 

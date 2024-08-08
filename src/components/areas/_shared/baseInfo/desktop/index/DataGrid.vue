@@ -1,61 +1,73 @@
 <template>
-  <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
-    separator="horizontal"
-    multiSelect
-    numbered
-    bordered
-    wrapCells
-    :expandable="expandable"
-    toolbar
-  >
-    <template #filter-isActive="{ item }">
-      <custom-select
-        v-model="item.value"
-        :options="
-          helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
-        "
-        @update:model-value="reloadData"
-      />
-    </template>
+  <q-card bordered>
+    <q-card-section class="text-center">
+      <h6 class="text-weight-700 no-letter-spacing">
+        {{ title }}
+      </h6>
+    </q-card-section>
+    <q-separator />
+    <q-card-section class="q-px-none">
+      <data-grid
+        ref="dataGrid"
+        :data-source="dataSource"
+        :grid-store="gridStore"
+        separator="horizontal"
+        multiSelect
+        numbered
+        flat
+        :expandable="expandable"
+        toolbar
+      >
+        <template #filter-isActive="{ item }">
+          <custom-select
+            v-model="item.value"
+            :options="
+              helper.getEnumOptions(
+                isActiveOptions,
+                'isActiveOptions'
+              )
+            "
+            @update:model-value="reloadData"
+          />
+        </template>
 
-    <template #cell-isActive="{ item }">
-      <is-active :is-active="item.isActive" />
-    </template>
+        <template #cell-isActive="{ item }">
+          <is-active :is-active="item.isActive" />
+        </template>
 
-    <template #cell-subject="{ item }">
-      {{ item.subject }}
-      <div v-if="item.summary" class="text-caption-sm">
-        {{ item.summary }}
-      </div>
-      <div v-if="item.comment">
-        {{ item.comment }}
-      </div>
-    </template>
+        <template #cell-subject="{ item }">
+          {{ item.subject }}
+          <div v-if="item.summary" class="text-caption-sm">
+            {{ item.summary }}
+          </div>
+          <div v-if="item.comment">
+            {{ item.comment }}
+          </div>
+        </template>
 
-    <template #cell-amount="{ item }">
-      {{ item.amount?.toLocaleString() }}
-    </template>
+        <template #cell-amount="{ item }">
+          {{ item.amount?.toLocaleString() }}
+        </template>
 
-    <template #cell-actions="{ item }">
-      <row-tool-bar
-        :base-route="baseRoute"
-        :item="item"
-        :table-store="tableStore"
-        :crud-store="crudStore"
-      />
-    </template>
+        <template #cell-actions="{ item }">
+          <row-tool-bar
+            :base-route="baseRoute"
+            :item="item"
+            :table-store="tableStore"
+            :crud-store="crudStore"
+          />
+        </template>
 
-    <template
-      v-for="(slot, name) in $slots"
-      :key="slot"
-      #[name]="{ item }"
-    >
-      <slot :name="name" :item="item"></slot>
-    </template>
-  </data-grid>
+        <template
+          v-for="(slot, name) in $slots"
+          :key="slot"
+          #[name]="{ item }"
+        >
+          <slot :name="name" :item="item"></slot>
+        </template>
+      </data-grid>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
@@ -75,6 +87,7 @@
     dataSource: String,
     baseRoute: String,
     expandable: Boolean,
+    title: String,
   });
 
   const dataGrid = ref(null);
