@@ -6,12 +6,9 @@
   />
 
   <q-card bordered>
-    <q-card-section class="text-center">
-      <h6 class="text-weight-700 no-letter-spacing">
-        {{ $t("main-menu-items.Trs_TransferMoney_View") }}
-      </h6>
-    </q-card-section>
-    <q-separator />
+    <card-title
+      :title="$t('main-menu-items.Trs_TransferMoney_View')"
+    />
     <q-card-section class="q-px-none">
       <data-grid
         ref="desktopGrid"
@@ -77,6 +74,7 @@
   import Toolbar from "src/components/areas/_shared/baseInfo/shared/index/BaseInfoToolbar.vue";
   import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../preview/IndexView.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const desktopGrid = ref(null);
   const baseRoute = "trs/transferMoney";

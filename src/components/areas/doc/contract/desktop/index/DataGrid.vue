@@ -1,11 +1,6 @@
 <template>
   <q-card bordered>
-    <q-card-section class="text-center">
-      <h6 class="text-weight-700 no-letter-spacing">
-        {{ title }}
-      </h6>
-    </q-card-section>
-    <q-separator />
+    <card-title :title="title" />
     <q-card-section class="q-px-none">
       <data-grid
         ref="dataGrid"
@@ -36,13 +31,21 @@
         </template>
 
         <template #cell-income="{ item }">
-          {{ item.income.toLocaleString() }}
+          {{ helper.formatNumber(item.income) }}
+        </template>
+        <template #cell-no="{ item }">
+          {{ item.no }}
+          <div v-if="item.taxCode">
+            <small class="caption-on-dark">
+              tax: {{ item.taxCode }}
+            </small>
+          </div>
         </template>
         <template #cell-expense="{ item }">
-          {{ item.expense.toLocaleString() }}
+          {{ helper.formatNumber(item.expense) }}
         </template>
         <template #cell-netIncome="{ item }">
-          {{ item.netIncome.toLocaleString() }}
+          {{ helper.formatNumber(item.netIncome) }}
         </template>
         <template #cell-startDate="{ item }">
           {{ item.startDate?.substring(0, 10) }}
@@ -70,6 +73,7 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { helper } from "src/helpers";
   import { isActiveOptions } from "src/constants";
 
   import RowToolBar from "src/components/shared/RowToolBar.vue";
@@ -77,7 +81,7 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import IsActive from "src/components/shared/IsActive.vue";
   import Preview from "../../shared/preview/IndexView.vue";
-  import { helper } from "src/helpers";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     gridStore: Object,

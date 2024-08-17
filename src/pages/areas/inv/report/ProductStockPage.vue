@@ -1,5 +1,8 @@
 <template>
-  <report toolbar />
+  <report
+    toolbar
+    :title="$t('main-menu-items.Sls_Report_ProductStock')"
+  />
 </template>
 
 <script setup>

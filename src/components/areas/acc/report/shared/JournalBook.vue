@@ -57,7 +57,7 @@
     <!-- v-if="toolbar" -->
     <toolbar-desktop
       :table-store="desktopGrid?.tableStore"
-      :title="title"
+      :title_="title"
       :base-route="baseRoute"
       buttons
       margin
@@ -101,7 +101,7 @@
 
     <desktop
       :grid-store="gridStore"
-      :title="$t('main-menu-items.Acc_Report_Journal')"
+      :title="title"
       :data-source="dataSource"
       ref="desktopGrid"
     />
@@ -118,6 +118,8 @@
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "../desktop/JournalBook.vue";
+
+  const props = defineProps({ title: String });
 
   const $q = useQuasar();
   const desktopGrid = ref(null);

@@ -49,60 +49,27 @@
     </template>
   </tool-bar> -->
 
-  <q-markup-table
-    flat
-    class="border-radius-lg bordered q-mt-sm q-mb-md"
-  >
-    <tbody>
-      <tr>
-        <td style="width: 90px">
-          <div class="text-body3 no-letter-spacing q-mb-sm">
-            شماره
-          </div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ model?.no }}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="text-body3 no-letter-spacing q-mb-sm">
-            عنوان
-          </div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ model?.title }}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="text-body3 no-letter-spacing q-mb-sm">
-            تاریخ
-          </div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ model?.startDate?.substring(0, 10) }} -
-            {{ model?.finishDate?.substring(0, 10) }}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="text-body3 no-letter-spacing q-mb-sm">شرح</div>
-        </td>
-        <td>
-          <div class="text-body3 no-letter-spacing">
-            {{ model?.comment }}
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </q-markup-table>
+  <div class="row q-mb-md">
+    <span class="col-1">شماره:</span>
+    <span>{{ model?.no }}</span>
+  </div>
+  <div class="row q-mb-md">
+    <span class="col-1">عنوان:</span>
+    <span>{{ model?.title }}</span>
+  </div>
+  <div class="row q-mb-md">
+    <span class="col-1">تاریخ:</span>
+    <span>
+      {{ model?.startDate?.substring(0, 10) }} -
+      {{ model?.finishDate?.substring(0, 10) }}
+    </span>
+  </div>
+  <div class="row q-mb-md">
+    <span class="col-1">شرح:</span>
+    <span>
+      {{ model?.comment }}
+    </span>
+  </div>
 </template>
 
 <script setup>

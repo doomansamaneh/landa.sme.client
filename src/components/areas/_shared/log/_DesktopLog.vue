@@ -1,0 +1,299 @@
+<template>
+  <div flat>
+    <q-card-section>
+      <div class="text-body1 q-mb-md">
+        <q-icon name="o_comment" size="sm" class="icon q-pr-sm" />
+        {{ $t("shared.labels.note") }}
+      </div>
+      <q-form ref="addNoteForm">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <q-editor
+              v-model="noteModel.comment"
+              placeholder="در اینجا می‌توانید یادداشت بگذارید..."
+            />
+            <q-btn
+              @click="addComment"
+              flat
+              rounded
+              class="primary-gradient text-white q-mt-md"
+            >
+              <q-icon name="o_comment" size="xs" class="q-mr-sm" />
+              <span>ذخیره</span>
+            </q-btn>
+          </div>
+        </div>
+      </q-form>
+    </q-card-section>
+    <q-card-section>
+      <div class="row_item-center_ q-pb-md text-body1">
+        <q-icon name="o_history" size="sm" class="icon q-pr-sm" />
+        تاریخچه
+
+        <q-btn
+          round
+          unelevated
+          dense
+          class="text-on-dark"
+          icon="o_refresh"
+          @click="callBack"
+        >
+          <q-tooltip class="custom-tooltip">
+            {{ $t("shared.labels.refresh") }}
+          </q-tooltip>
+        </q-btn>
+      </div>
+
+      <div class="profile-timeline">
+        <q-timeline color="accent">
+          <q-timeline-entry
+            avatar="https://cdn.quasar.dev/img/avatar4.jpg"
+            v-for="item in items"
+            :key="item.id"
+          >
+            <template #default>
+              <q-card
+                flat
+                class="bordered-1 q-ml-lg"
+                :class="{ 'q-mr-md': $q.screen.gt.sm }"
+              >
+                <q-card-section class="q-pa-sm">
+                  <div
+                    class="row justify-between items-center q-gutter-sm"
+                  >
+                    <div class="row">
+                      <q-icon
+                        :name="getIconName(item)"
+                        size="sm"
+                        color="accent"
+                        class="q-mr-sm"
+                      />
+                      <span class="text-caption text-bold">
+                        {{ JSON.parse(item.logUser).name }}
+                      </span>
+
+                      <span class="q-px-sm text-caption">
+                        {{ getTime(item) }}
+                        <q-tooltip
+                          transition-show="scale"
+                          transition-hide="scale"
+                          anchor="center left"
+                          self="center right"
+                          :offset="[10, 10]"
+                          :delay="700"
+                          class="glass text-on-dark text-caption"
+                        >
+                          {{ item.logTime }}
+                        </q-tooltip>
+                      </span>
+                    </div>
+                    <div class="row">
+                      <span class="text-caption">
+                        {{ JSON.parse(item.logUser).ip }}
+                        {{ JSON.parse(item.logUser).userAgent }}
+                      </span>
+                    </div>
+                  </div>
+                </q-card-section>
+                <q-card-section v-if="item.comment">
+                  <div
+                    v-html="item.comment"
+                    class="line-height-sm"
+                    v-show="editItemId !== item.id"
+                  />
+                  <div
+                    class="q-gutter-y-md"
+                    v-show="editItemId === item.id"
+                  >
+                    <q-editor v-model="item.comment" />
+                    <div class="q-gutter-x-sm">
+                      <q-btn
+                        @click="editComment(item)"
+                        flat
+                        rounded
+                        class="primary-gradient text-white"
+                      >
+                        <q-icon
+                          name="o_comment"
+                          size="xs"
+                          class="q-mr-sm"
+                        />
+                        <span>ذخیره</span>
+                      </q-btn>
+                      <q-btn
+                        @click="disableEdit(item)"
+                        unelevated
+                        rounded
+                        class="text-on-dark"
+                      >
+                        <q-icon
+                          name="o_close"
+                          size="xs"
+                          class="q-mr-xs"
+                        />
+                        <span>انصراف</span>
+                      </q-btn>
+                    </div>
+                  </div>
+                  <div
+                    v-if="editItemId !== item.id"
+                    class="row justify-end"
+                  >
+                    <q-btn
+                      @click="enableEdit(item)"
+                      unelevated
+                      rounded
+                      class="text-on-dark"
+                    >
+                      <q-icon
+                        name="o_edit"
+                        size="xs"
+                        class="q-mr-sm"
+                      />
+                      <span>ویرایش</span>
+                    </q-btn>
+                    <q-btn
+                      @click="deleteComment(item)"
+                      unelevated
+                      rounded
+                      class="text-on-dark"
+                    >
+                      <q-icon
+                        name="o_delete"
+                        size="xs"
+                        class="q-mr-sm"
+                      />
+                      <span>حذف</span>
+                    </q-btn>
+                  </div>
+                </q-card-section>
+              </q-card>
+            </template>
+          </q-timeline-entry>
+        </q-timeline>
+      </div>
+    </q-card-section>
+  </div>
+</template>
+
+<script setup>
+  import { ref } from "vue";
+  import { useQuasar } from "quasar";
+  import { logType } from "src/constants";
+  import { useFormActions } from "src/composables/useFormActions";
+  import { helper } from "src/helpers";
+  import "src/helpers/extensions";
+
+  const props = defineProps({
+    items: Array,
+    entityId: String,
+    entityName: String,
+    callBack: Function,
+  });
+
+  const $q = useQuasar();
+  const addNoteForm = ref(null);
+  const noteModel = ref({
+    entityId: props.entityId,
+    entityName: props.entityName,
+    comment: null,
+  });
+
+  const formStore = useFormActions("cmn/entityNote");
+  const addComment = async () => {
+    const responseData = await formStore.customPostAction(
+      "create",
+      noteModel.value
+    );
+    if (props.callBack) props.callBack();
+  };
+
+  const editComment = async (item) => {
+    const responseData = await formStore.customPostAction("edit", {
+      id: item.id,
+      comment: item.comment,
+    });
+    disableEdit(item);
+  };
+
+  const deleteComment = async (item) => {
+    const responseData = formStore.deleteById(item.id, () => {
+      if (props.callBack) props.callBack();
+    });
+    // const index = items.indexOf(item.id);
+    // if (index !== -1) {
+    //   items.splice(index, 1);
+    // }
+  };
+
+  const editItemId = ref(null);
+  const disableEdit = (item) => {
+    editItemId.value = null;
+  };
+
+  const enableEdit = (item) => {
+    editItemId.value = item.id;
+  };
+
+  const getIconName = (item) => {
+    switch (item.logType) {
+      case logType.create:
+        return "add";
+      case logType.edit:
+        return "edit";
+      case logType.delete:
+        return "delete";
+      case logType.comment:
+        return "comment";
+      default:
+        return "info";
+    }
+  };
+
+  function timeDifference(past, now) {
+    return helper.dateToNumber(now) - helper.dateToNumber(past);
+  }
+
+  const getTime = (item) => {
+    const past = helper.parseDateString(item.logTime);
+    const now = helper.parseDateString(new Date().toDateTimeString());
+
+    const secondsAgo = timeDifference(past, now);
+
+    if (secondsAgo < 60) {
+      return secondsAgo === 1
+        ? "چند لحظه پیش"
+        : `${secondsAgo} ثانیه پیش`;
+    }
+
+    const minutesAgo = Math.floor(secondsAgo / 60);
+    if (minutesAgo < 60) {
+      return minutesAgo === 1
+        ? "یک دقیق پیش"
+        : `${minutesAgo} دقیقه پیش`;
+    }
+
+    const hoursAgo = Math.floor(minutesAgo / 60);
+    if (hoursAgo < 24) {
+      return hoursAgo === 1 ? "یک ساعت پیش" : `${hoursAgo} ساعت پیش`;
+    }
+
+    const daysAgo = Math.floor(hoursAgo / 24);
+    if (daysAgo < 7) {
+      return daysAgo === 1 ? "دیروز" : `${daysAgo} روز پیش`;
+    }
+
+    const weeksAgo = Math.floor(daysAgo / 7);
+    if (weeksAgo < 4) {
+      return weeksAgo === 1 ? "یک هفته پیش" : `${weeksAgo} هفته پیش`;
+    }
+
+    const monthsAgo = Math.floor(daysAgo / 30);
+    if (monthsAgo < 12) {
+      return monthsAgo === 1 ? "یک ماه پیش" : `${monthsAgo} ماه پیش`;
+    }
+
+    const yearsAgo = Math.floor(daysAgo / 365);
+    return yearsAgo === 1 ? "یک سال پیش" : `${yearsAgo} سال پیش`;
+  };
+</script>

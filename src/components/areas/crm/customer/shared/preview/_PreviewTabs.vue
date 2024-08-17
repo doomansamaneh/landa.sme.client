@@ -62,7 +62,7 @@
       <account :item="item" />
     </q-tab-panel>
     <q-tab-panel class="no-padding bg-main" name="log">
-      <log :item="item" />
+      <log :entity-id="item.id" entity-name="Crm.[Customer]" />
     </q-tab-panel>
   </q-tab-panels>
 </template>
@@ -75,7 +75,7 @@
   import Quote from "./_TabPanelQuote.vue";
   import Invoice from "./_TabPanelInvoice.vue";
   import Account from "./_TabPanelAccount.vue";
-  import Log from "./_TabPanelLog.vue";
+  import Log from "src/components/areas/_shared/log/PreviewLog.vue";
 
   const props = defineProps({
     item: Object,

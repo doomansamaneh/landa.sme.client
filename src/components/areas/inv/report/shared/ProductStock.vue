@@ -60,7 +60,7 @@
       v-if="toolbar"
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
-      :title="title"
+      :title_="title"
       :base-route="baseRoute"
       buttons
       margin
@@ -135,11 +135,9 @@
 
   const props = defineProps({
     toolbar: Boolean,
+    title: String,
   });
 
-  const { t } = useI18n();
-
-  const title = t("main-menu-items.Sls_Report_ProductStock");
   const baseRoute = "inv/report/productStock";
 
   const $q = useQuasar();

@@ -34,6 +34,36 @@ export const helper = {
     return Array.from({ length: 12 }, (v, i) => i + 1);
   },
 
+  parseDateString(dateString) {
+    const [datePart, timePart] = dateString
+      .replace(",", "")
+      .split(" ");
+    const [year, month, day] = datePart.split("/").map(Number);
+    const [hours = 0, minutes = 0, seconds = 0] = timePart
+      .split(":")
+      .map(Number);
+
+    return {
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+      seconds,
+    };
+  },
+
+  dateToNumber(date) {
+    const seconds =
+      date.seconds +
+      date.minutes * 60 +
+      date.hours * 3600 +
+      date.day * 86400 +
+      date.month * 2592000 + // Rough estimate for months
+      date.year * 31104000;
+    return seconds;
+  },
+
   generateGradientColor(input) {
     let hash = 0;
     if (input) {

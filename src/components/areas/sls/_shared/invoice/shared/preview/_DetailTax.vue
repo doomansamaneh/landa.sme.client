@@ -17,10 +17,10 @@
       <span>ارسال به سامانه مودیان</span>
     </q-btn>
     <!-- v-if="!configStore.model.value.companySetting?.taxApiSetting?.clientId" -->
-    <q-btn rounded to="/cmn/appConfig/VATInfo" flat unelevated>
+    <!-- <q-btn rounded to="/cmn/appConfig/VATInfo" flat unelevated>
       <q-icon name="o_settings" size="xs" class="q-mr-xs" />
       <span>پیکربندی سامانه مودیان</span>
-    </q-btn>
+    </q-btn> -->
   </div>
   <div class="q-mt-md">
     <div class="text-body2 no-letter-spacing text-bold">
@@ -44,7 +44,6 @@
 
   const props = defineProps({
     model: Object,
-    formStore: Object,
   });
   const taxGrid = ref(null);
   const taxStore = useTaxApiLogModel();

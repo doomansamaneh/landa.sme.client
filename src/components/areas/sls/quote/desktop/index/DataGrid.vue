@@ -7,12 +7,7 @@
   </div>
 
   <q-card bordered>
-    <q-card-section class="text-center">
-      <h6 class="text-weight-700 no-letter-spacing">
-        {{ title }}
-      </h6>
-    </q-card-section>
-    <q-separator />
+    <card-title :title="title" />
     <q-card-section class="q-px-none">
       <data-grid
         flat
@@ -33,6 +28,7 @@
 
   import DataGrid from "./_DataGrid.vue";
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     title: String,

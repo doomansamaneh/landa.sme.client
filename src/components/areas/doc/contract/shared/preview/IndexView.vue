@@ -26,8 +26,15 @@
     </template>
   </tool-bar>
 
-  <header-section :model="model" />
-  <detail-section v-if="model" :model="model" />
+  <q-card>
+    <card-title title="قرارداد" />
+    <q-card-section>
+      <header-section :model="model" />
+    </q-card-section>
+    <q-card-section>
+      <detail-section v-if="model" :model="model" />
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
@@ -39,6 +46,7 @@
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import DetailSection from "./_DetailSection.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     item: Object,

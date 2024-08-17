@@ -1,10 +1,12 @@
 <template>
   <data-grid
     ref="dataGrid"
-    :title="$t('main-menu-items.Trs_Report_CheckItem')"
+    class="border-radius-lg"
     data-source="trs/report/getCheckItemData"
     :grid-store="gridStore"
     expandable
+    flat
+    bordered
   >
     <template #filter-statusId="{ item }">
       <custom-select
@@ -50,12 +52,14 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-  import DataGrid from "src/components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  //import DataGrid from "src/components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import CheckPreview from "../../paymentItemCheck/shared/preview/IndexView.vue";
   //import { useCustomerAcccountState } from "src/components/areas/acc/_composables/useCustomerAcccountState";
 
   const props = defineProps({
     filterExpression: Array,
+    title: String,
   });
 
   //const accountStore = useCustomerAcccountState();

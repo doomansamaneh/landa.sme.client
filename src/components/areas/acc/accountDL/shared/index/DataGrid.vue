@@ -1,11 +1,6 @@
 <template>
   <q-card bordered>
-    <q-card-section class="text-center">
-      <h6 class="text-weight-700 no-letter-spacing">
-        {{ $t("main-menu-items.Acc_AccountDL_View") }}
-      </h6>
-    </q-card-section>
-    <q-separator />
+    <card-title :title="$t('main-menu-items.Acc_AccountDL_View')" />
     <q-card-section class="q-px-none">
       <data-grid
         ref="dataGrid"
@@ -98,6 +93,7 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../preview/IndexView.vue";
   import IsActive from "src/components/shared/IsActive.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const gridStore = useBaseInfoGrid({
     columns: accountDLColumns,

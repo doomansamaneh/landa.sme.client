@@ -48,7 +48,8 @@
     </template>
   </tool-bar>
 
-  <q-card>
+  <q-card flat_ bordered>
+    <card-title title="حساب بانکی" />
     <div id="invoicePreview" v-if="model">
       <q-card-section>
         <header-section :model="model" />
@@ -77,6 +78,7 @@
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     item: Object,

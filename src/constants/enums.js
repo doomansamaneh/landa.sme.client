@@ -1,4 +1,4 @@
-export const baseUrl = "http://localhost:6060";
+export const baseUrl = "http://localhost:9090";
 //export const baseUrl = "https://api.landa-sme.ir";
 
 // export const isActiveOptions = [
@@ -56,6 +56,13 @@ export const locationType = {
   city: 163,
   section: 164,
   town: 165,
+};
+
+export const logType = {
+  create: 1,
+  edit: 2,
+  delete: 3,
+  comment: 4,
 };
 
 export const militaryStatus = {

@@ -1,5 +1,5 @@
 <template>
-  <report />
+  <report :title="$t('main-menu-items.Acc_Report_Journal')" />
 </template>
 
 <script setup>

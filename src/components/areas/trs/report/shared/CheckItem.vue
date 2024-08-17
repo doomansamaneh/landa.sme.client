@@ -43,7 +43,7 @@
   import { ref } from "vue";
   import { sqlOperator, documentType } from "src/constants";
 
-  import DataGrid from "./_CheckItemDataGrid.vue";
+  import DataGrid from "../desktop/_CheckItemDataGrid.vue";
 
   const dataGrid = ref(null);
   const tab = ref("received");

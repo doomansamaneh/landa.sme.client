@@ -134,19 +134,19 @@
           class="transparent"
         >
           <q-tab-panel name="main-info" class="no-padding">
-            <detail-payments
-              :model="model"
-              :form-store="formStore"
-              :detail-url="detailUrl"
-            />
+            <detail-payments :model="model" :detail-url="detailUrl" />
           </q-tab-panel>
 
           <q-tab-panel v-if="taxApi" name="tax" class="no-padding">
-            <detail-tax :model="model" :form-store="formStore" />
+            <detail-tax :model="model" />
           </q-tab-panel>
 
           <q-tab-panel name="log" class="no-padding">
-            <detail-log />
+            <detail-log
+              v-if="model?.value?.id"
+              :entity-id="model.value.id"
+              entity-name="Sls.[Invoice]"
+            />
           </q-tab-panel>
         </q-tab-panels>
       </slot>
@@ -165,7 +165,6 @@
 
   const props = defineProps({
     model: Object,
-    formStore: Object,
     separator: Boolean,
     taxApi: Boolean,
     detailUrl: String,

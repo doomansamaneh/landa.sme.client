@@ -10,7 +10,9 @@
     activation
   >
     <template #cell-debitRemained="{ item }">
-      {{ item.debitRemained?.toLocaleString() }}
+      <span class="text-bold">
+        {{ helper.formatNumber(item.debitRemained) }}
+      </span>
     </template>
 
     <template #expand="{ item }">
@@ -25,6 +27,7 @@
 
   import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
   import Preview from "../preview/IndexView.vue";
+  import { helper } from "src/helpers";
 
   const gridStore = useBaseInfoGrid({
     columns: cashColumns,

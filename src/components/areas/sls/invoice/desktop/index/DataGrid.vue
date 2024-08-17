@@ -17,9 +17,9 @@
       label="فاکتورهای فروش"
       icon="check"
     >
-      <q-badge>
+      <!-- <q-badge>
         {{ tableStore?.pagination.value.totalItems }}
-      </q-badge>
+      </q-badge> -->
     </q-tab>
     <q-tab
       name="canceled"

@@ -60,7 +60,7 @@
     <toolbar-desktop
       :table-store="desktopGrid?.tableStore"
       :crud-store="crudStore"
-      :title="title"
+      :title_="title"
       :base-route="baseRoute"
       buttons
       margin
@@ -103,10 +103,10 @@
     </toolbar-desktop>
 
     <desktop
-      :grid-store="gridStore"
-      :title="title"
-      :data-source="dataSource"
       ref="desktopGrid"
+      :grid-store="gridStore"
+      :data-source="dataSource"
+      :title="title"
     />
   </template>
 </template>

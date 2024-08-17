@@ -22,6 +22,7 @@ Date.prototype.toDateTimeString = function () {
     hour: "numeric",
     minute: "numeric",
     second: "numeric",
+    numberingSystem: "latn",
   };
   return date?.toLocaleDateString(getIso(), fullDate);
 };

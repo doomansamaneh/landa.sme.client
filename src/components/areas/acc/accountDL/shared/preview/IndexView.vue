@@ -4,7 +4,7 @@
     buttons
     :title="title"
     back-button
-    style="margin-bottom: 48px"
+    margin
   >
     <template #buttons>
       <q-btn
@@ -22,6 +22,7 @@
   </tool-bar>
 
   <q-card>
+    <card-title title="ریز گردش حساب" />
     <div id="invoicePreview" v-if="model">
       <q-card-section>
         <header-section :model="model" />
@@ -49,6 +50,7 @@
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     item: Object,

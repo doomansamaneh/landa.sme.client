@@ -131,18 +131,29 @@ export function useInvoiceModel(config) {
   addWatch();
 
   const applyDiscountAmount = (discount) => {
-    const total = Math.max(totalPrice.value, 1);
+    const total = Math.max(
+      totalPrice.value + totalDiscount.value - totalVat.value,
+      1
+    );
+    let subTotal = 0;
+    let lastItem = null;
     model.value.invoiceItems.forEach((item) => {
-      item.discount = Math.round(
-        (discount * item.totalPrice) / total
+      lastItem = item;
+      item.discount = Math.floor(
+        (discount * item.quantity * item.price) / total
       );
+      subTotal += item.discount;
     });
+
+    if (discount != subTotal) {
+      lastItem.discount += discount - subTotal;
+    }
   };
 
   const applyDiscountPercent = (percent) => {
     model.value.invoiceItems.forEach((item) => {
       item.discountPercent = percent;
-      item.discount = (item.totalPrice * percent) / 100;
+      item.discount = (item.quantity * item.price * percent) / 100;
     });
   };
 

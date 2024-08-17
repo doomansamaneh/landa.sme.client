@@ -1,11 +1,7 @@
 <template>
   <q-card bordered>
-    <q-card-section class="text-center">
-      <h6 class="text-weight-700 no-letter-spacing">
-        {{ title }}
-      </h6>
-    </q-card-section>
-    <q-separator />
+    <card-title :title="title" />
+
     <q-card-section class="q-px-none">
       <data-grid
         ref="dataGrid"
@@ -43,6 +39,7 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../../shared/preview/IndexView.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     baseRoute: String,
