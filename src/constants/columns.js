@@ -429,7 +429,7 @@ export const mission = {
   ...amount,
   name: "mission",
   field: "mission",
-  label: "دستمزد روزانه",
+  label: "ماموریت",
 };
 
 export const serviceBenefit = {

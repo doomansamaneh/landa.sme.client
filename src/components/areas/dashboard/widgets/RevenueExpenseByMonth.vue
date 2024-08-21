@@ -2,7 +2,7 @@
   <q-card class="fit bordered q-pa-none" flat>
     <q-card-section class="col q-pt-lg q-pb-none q-pl-lg q-pr-md">
       <div class="row justify-between">
-        <div class="col-11">
+        <div class="col">
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-avatar
@@ -94,7 +94,21 @@
         </div>
         <div class="col">
           <div class="row justify-end">
-            <q-btn
+            <q-btn-toggle
+              v-model="chartType"
+              class="custom-toggle"
+              no-caps
+              rounded
+              unelevated
+              toggle-color="primary"
+              color="white"
+              text-color="primary"
+              :options="[
+                { label: 'چارت', value: 1 },
+                { label: 'جدول', value: 2 },
+              ]"
+            />
+            <!-- <q-btn
               unelevated
               round
               dense
@@ -294,18 +308,23 @@
                   </q-item>
                 </q-list>
               </q-menu>
-            </q-btn>
+            </q-btn> -->
           </div>
         </div>
       </div>
     </q-card-section>
 
     <revenue-expense-chart
-      v-if="saleIncome"
+      v-if="chartType === 1"
       :height="300"
       legend="true"
+      :data-store="revenueExpenseStore"
     />
-    <revenue-expense-table v-if="saleIncomeTable" />
+
+    <revenue-expense-table
+      v-if="chartType === 2"
+      :data-store="revenueExpenseStore"
+    />
 
     <bar-chart v-if="sale" :height="300" legend="false" />
 
@@ -342,12 +361,16 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useRevenueExpenseState } from "../_composables/useRevenueExpenseState";
 
   import BarChart from "src/components/shared/charts/BarChart.vue";
   import PieChart from "src/components/shared/charts/PieChart.vue";
   import RevenueExpenseChart from "./_RevenueExpenseChart.vue";
   import RevenueExpenseTable from "./_RevenueExpenseTable.vue";
 
+  const revenueExpenseStore = useRevenueExpenseState();
+
+  const chartType = ref(1);
   const saleIncome = ref(true);
   const saleIncomeTable = ref(false);
   const salePerProduct = ref(false);
@@ -424,3 +447,9 @@
     costDetail.value = true;
   };
 </script>
+
+<style lang="scss" scoped>
+  .custom-toggle {
+    border: 1px solid var(--q-primary);
+  }
+</style>

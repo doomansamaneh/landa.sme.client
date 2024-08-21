@@ -72,7 +72,6 @@
     dataGridStore.value.reset();
   };
   const handleLoadResponse = () => {
-    console.log(tableStore.rows.value);
     dataGridStore.value.rows.value = tableStore.rows.value;
   };
 

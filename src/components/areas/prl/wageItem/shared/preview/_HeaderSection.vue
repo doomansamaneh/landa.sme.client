@@ -12,7 +12,7 @@
 
   <q-card-section>
     <div class="row">
-      <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="col-md-3 col-sm-3 col-xs-6">
         <span class="text-caption text-bold">
           {{ $t("shared.labels.code") }}:
         </span>
@@ -20,7 +20,7 @@
           {{ model?.customerCode }}
         </span>
       </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="col-md-3 col-sm-3 col-xs-6">
         <span class="text-caption text-bold">
           {{ $t("shared.labels.insuranceNo") }}:
         </span>
@@ -28,7 +28,7 @@
           {{ model?.insurranceNo }}
         </span>
       </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="col-md-3 col-sm-3 col-xs-6">
         <span class="text-caption text-bold">
           {{ $t("shared.labels.name") }}:
         </span>
@@ -36,7 +36,7 @@
           {{ model?.customerName }}
         </span>
       </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="col-md-3 col-sm-3 col-xs-6">
         <span class="text-caption text-bold">
           {{ $t("shared.labels.period") }}:
         </span>

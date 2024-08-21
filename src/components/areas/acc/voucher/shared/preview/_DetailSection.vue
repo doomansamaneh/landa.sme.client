@@ -23,7 +23,7 @@
     <q-separator />
 
     <q-card-section v-if="model?.id">
-      <preview-log />
+      <preview-log :entity-id="model.id" entity-name="Acc.[Voucher]" />
     </q-card-section>
   </q-card>
 </template>

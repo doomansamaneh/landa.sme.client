@@ -1,8 +1,8 @@
 <template>
   <q-card-section>
-    <div class="row q-col-gutter-md">
-      <div class="col-md-6 col-sm-12 col-xs-12">
-        <h5 class="q-my-md">حقوق و دستمزد</h5>
+    <div class="row">
+      <div class="col-6" style="padding: 0 5px">
+        <h6 class="q-my-md">حقوق و دستمزد</h6>
         <table
           style="
             width: 100%;
@@ -36,7 +36,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.salary.toLocaleString() }}
+              {{ helper.formatNumber(model?.salary) }}
             </td>
           </tr>
           <tr>
@@ -49,7 +49,9 @@
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
               {{
-                model?.calculatedModel?.monthSalary.toLocaleString()
+                helper.formatNumber(
+                  model?.calculatedModel?.monthSalary
+                )
               }}
             </td>
           </tr>
@@ -63,7 +65,9 @@
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
               {{
-                model?.calculatedModel?.monthHousing.toLocaleString()
+                helper.formatNumber(
+                  model?.calculatedModel?.monthHousing
+                )
               }}
             </td>
           </tr>
@@ -76,7 +80,9 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.calculatedModel?.monthFodd.toLocaleString() }}
+              {{
+                helper.formatNumber(model?.calculatedModel?.monthFood)
+              }}
             </td>
           </tr>
           <tr>
@@ -88,7 +94,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.child.toLocaleString() }}
+              {{ helper.formatNumber(model?.child) }}
             </td>
           </tr>
           <tr>
@@ -100,7 +106,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.mission.toLocaleString() }}
+              {{ helper.formatNumber(model?.mission) }}
             </td>
           </tr>
           <tr>
@@ -112,7 +118,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.overtime.toLocaleString() }}
+              {{ helper.formatNumber(model?.overtime) }}
             </td>
           </tr>
           <tr v-if="model?.reward">
@@ -124,7 +130,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.reward.toLocaleString() }}
+              {{ helper.formatNumber(model?.reward) }}
             </td>
           </tr>
           <tr v-if="model?.bonus">
@@ -136,7 +142,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.bonus.toLocaleString() }}
+              {{ helper.formatNumber(model?.bonus) }}
             </td>
           </tr>
           <tr v-if="model?.serviceBenefit">
@@ -148,7 +154,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.serviceBenefit.toLocaleString() }}
+              {{ helper.formatNumber(model?.serviceBenefit) }}
             </td>
           </tr>
           <tr v-if="model?.leave">
@@ -160,7 +166,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.leave.toLocaleString() }}
+              {{ helper.formatNumber(model?.leave) }}
             </td>
           </tr>
           <tr v-if="model?.addition">
@@ -172,7 +178,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.addition.toLocaleString() }}
+              {{ helper.formatNumber(model?.addition) }}
             </td>
           </tr>
           <tr>
@@ -185,14 +191,14 @@
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
               <span class="text-weight-800">
-                {{ model?.amount.toLocaleString() }}
+                {{ helper.formatNumber(model?.amount) }}
               </span>
             </td>
           </tr>
         </table>
       </div>
-      <div class="col-md-6 col-sm-12 col-xs-12">
-        <h5 class="q-my-md">کسورات</h5>
+      <div class="col-6" style="padding: 0 5px">
+        <h6 class="q-my-md">کسورات</h6>
         <table
           style="
             width: 100%;
@@ -214,7 +220,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.insurranceEmp.toLocaleString() }}
+              {{ helper.formatNumber(model?.insurranceEmp) }}
             </td>
           </tr>
           <tr>
@@ -226,7 +232,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.taxAmount.toLocaleString() }}
+              {{ helper.formatNumber(model?.taxAmount) }}
             </td>
           </tr>
           <tr>
@@ -238,7 +244,7 @@
             <td
               style="padding: 5px; border-bottom: 1px solid #2d2d2d"
             >
-              {{ model?.deduction.toLocaleString() }}
+              {{ helper.formatNumber(model?.deduction) }}
             </td>
           </tr>
         </table>
@@ -254,7 +260,7 @@
           <tr>
             <td style="width: 150px; padding: 5px">خالص دریافتی:</td>
             <td style="padding: 5px">
-              {{ model?.payable.toLocaleString() }}
+              {{ helper.formatNumber(model?.payable) }}
             </td>
           </tr>
         </table>
@@ -264,6 +270,8 @@
 </template>
 
 <script setup>
+  import { helper } from "src/helpers";
+
   const props = defineProps({
     model: Object,
   });

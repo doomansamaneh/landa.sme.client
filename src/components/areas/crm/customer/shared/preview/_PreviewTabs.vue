@@ -34,6 +34,12 @@
     />
     <q-tab
       class="q-mr-xs"
+      name="check"
+      label="چکهای دریافتی، پرداختی"
+      icon="o_receipt"
+    />
+    <q-tab
+      class="q-mr-xs"
       name="log"
       label="تاریخچه"
       icon="o_history"
@@ -61,6 +67,9 @@
     <q-tab-panel class="no-padding bg-main" name="account">
       <account :item="item" />
     </q-tab-panel>
+    <q-tab-panel class="no-padding bg-main" name="check">
+      <check-item :customer-id="item.id" />
+    </q-tab-panel>
     <q-tab-panel class="no-padding bg-main" name="log">
       <log :entity-id="item.id" entity-name="Crm.[Customer]" />
     </q-tab-panel>
@@ -75,6 +84,7 @@
   import Quote from "./_TabPanelQuote.vue";
   import Invoice from "./_TabPanelInvoice.vue";
   import Account from "./_TabPanelAccount.vue";
+  import CheckItem from "src/components/areas/trs/report/shared/CheckItem.vue";
   import Log from "src/components/areas/_shared/log/PreviewLog.vue";
 
   const props = defineProps({

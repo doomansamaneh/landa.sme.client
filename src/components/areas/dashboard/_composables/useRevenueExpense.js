@@ -2,16 +2,18 @@ import { ref, onMounted, onUnmounted, computed } from "vue";
 import { helper, fetchWrapper, bus } from "src/helpers";
 import { useComposables } from "src/stores/useComposables";
 
-const firstLoad = ref(false);
-const data = ref(null);
-//const tableSeries = ref(null);
-const showLoader = ref(false);
+export function useRevenueExpense({ dataSource, dataStore }) {
+  const _state = {
+    firstLoad: ref(false),
+    data: ref(null),
+  };
+  const showLoader = ref(false);
+  const state = computed(() => dataStore?.state ?? _state);
 
-export function useRevenueExpense() {
   const composablesStore = useComposables();
   composablesStore.register({
     reset: () => {
-      firstLoad.value = false;
+      state.value.firstLoad.value = false;
     },
   });
 
@@ -25,8 +27,8 @@ export function useRevenueExpense() {
   });
 
   async function loadData() {
-    if (!firstLoad.value) {
-      firstLoad.value = true;
+    if (!state.value.firstLoad.value) {
+      state.value.firstLoad.value = true;
       await reloadData();
       return true;
     }
@@ -36,16 +38,16 @@ export function useRevenueExpense() {
   async function reloadData() {
     showLoader.value = true;
     const response = await fetchWrapper.get(
-      `acc/report/RevenueExpenseByMonth`,
+      dataSource ?? `acc/report/RevenueExpenseByMonth`,
       null,
       true
     );
     showLoader.value = false;
-    data.value = response.data.data;
+    state.value.data.value = response.data.data;
   }
 
   const chartSeries = computed(() =>
-    data?.value?.map((item) => ({
+    state.value.data?.value?.map((item) => ({
       name: item.name,
       data: item.data.map((subItem) => subItem.amount),
     }))
@@ -53,7 +55,7 @@ export function useRevenueExpense() {
 
   const tableSeries = computed(() => {
     let series = [];
-    data?.value?.forEach((row) => {
+    state.value.data?.value?.forEach((row) => {
       // Clone the row to avoid modifying the original item
       let newRow = { ...row };
       newRow.data = [...row.data];

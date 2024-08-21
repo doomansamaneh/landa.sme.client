@@ -89,68 +89,76 @@
 
     <q-separator v-if="separator" />
 
-    <q-card-section v-if="model.value.id">
+    <template v-if="model.value.id">
       <slot name="body">
-        <q-tabs
-          v-model="tab"
-          inline-label
-          align="left"
-          :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-          :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-          class="primary-tabs"
-          narrow-indicator
-          :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
-        >
-          <q-tab name="main-info" class="q-mr-xs">
-            <template #default>
-              <q-icon
-                name="o_arrow_downward"
-                size="xs"
-                class="q-mr-sm"
-              />
-              <div class="text-body3 text-bold">دریافت و پرداخت</div>
-            </template>
-          </q-tab>
-          <q-tab name="tax" v-if="taxApi" class="q-mr-xs">
-            <template #default>
-              <q-icon name="o_paid" size="xs" class="q-mr-sm" />
-              <div class="text-body3 text-bold">مالیات</div>
-            </template>
-          </q-tab>
-          <q-tab name="log" class="q-mr-xs">
-            <template #default>
-              <q-icon name="o_history" size="xs" class="q-mr-sm" />
-              <div class="text-body3 text-bold">تاریخچه</div>
-            </template>
-          </q-tab>
-        </q-tabs>
-
+        <q-card-section class="q-pb-none">
+          <q-tabs
+            v-model="tab"
+            inline-label
+            align="left"
+            :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+            :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+            class="primary-tabs"
+            narrow-indicator
+            :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
+          >
+            <q-tab name="main-info" class="q-mr-xs">
+              <template #default>
+                <q-icon
+                  name="o_arrow_downward"
+                  size="xs"
+                  class="q-mr-sm"
+                />
+                <div class="text-body3 text-bold">
+                  دریافت و پرداخت
+                </div>
+              </template>
+            </q-tab>
+            <q-tab name="tax" v-if="taxApi" class="q-mr-xs">
+              <template #default>
+                <q-icon name="o_paid" size="xs" class="q-mr-sm" />
+                <div class="text-body3 text-bold">مالیات</div>
+              </template>
+            </q-tab>
+            <q-tab name="log" class="q-mr-xs">
+              <template #default>
+                <q-icon name="o_history" size="xs" class="q-mr-sm" />
+                <div class="text-body3 text-bold">تاریخچه</div>
+              </template>
+            </q-tab>
+          </q-tabs>
+        </q-card-section>
         <q-separator size="1px" />
 
-        <q-tab-panels
-          v-model="tab"
-          animated
-          keep-alive
-          class="transparent"
-        >
-          <q-tab-panel name="main-info" class="no-padding">
-            <detail-payments :model="model" :detail-url="detailUrl" />
-          </q-tab-panel>
+        <q-card-section>
+          <q-tab-panels
+            v-model="tab"
+            animated
+            keep-alive
+            class="transparent"
+          >
+            <q-tab-panel name="main-info" class="no-padding">
+              <detail-payments
+                :model="model"
+                :detail-url="detailUrl"
+              />
+            </q-tab-panel>
 
-          <q-tab-panel v-if="taxApi" name="tax" class="no-padding">
-            <detail-tax :model="model" />
-          </q-tab-panel>
+            <q-tab-panel v-if="taxApi" name="tax" class="no-padding">
+              <detail-tax :model="model" />
+            </q-tab-panel>
 
-          <q-tab-panel name="log" class="no-padding">
-            <detail-log
-              v-if="model?.value?.id"
-              :entity-id="model.value.id"
-              entity-name="Sls.[Invoice]"
-            />
-          </q-tab-panel>
-        </q-tab-panels>
+            <q-tab-panel name="log" class="no-padding">
+              <detail-log
+                v-if="model?.value?.id"
+                :entity-id="model.value.id"
+                entity-name="Sls.[Invoice]"
+              />
+            </q-tab-panel>
+          </q-tab-panels>
+        </q-card-section>
       </slot>
-    </q-card-section>
+    </template>
   </q-card>
 </template>
 

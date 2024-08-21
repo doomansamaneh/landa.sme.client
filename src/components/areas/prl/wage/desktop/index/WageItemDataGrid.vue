@@ -9,55 +9,57 @@
     expandable
   >
     <template #cell-salary="{ item }">
-      {{ item.salary?.toLocaleString() }}
+      {{ helper.formatNumber(item.salary) }}
     </template>
     <template #cell-baseYear="{ item }">
-      {{ item.baseYear?.toLocaleString() }}
+      {{ helper.formatNumber(item.baseYear) }}
     </template>
     <template #cell-housing="{ item }">
-      {{ item.housing?.toLocaleString() }}
+      {{ helper.formatNumber(item.housing) }}
     </template>
     <template #cell-food="{ item }">
-      {{ item.food?.toLocaleString() }}
+      {{ helper.formatNumber(item.food) }}
     </template>
     <template #cell-child="{ item }">
-      {{ item.child?.toLocaleString() }}
+      {{ helper.formatNumber(item.child) }}
     </template>
     <template #cell-mission="{ item }">
-      {{ item.mission?.toLocaleString() }}
+      {{ helper.formatNumber(item.mission) }}
     </template>
     <template #cell-overtime="{ item }">
-      {{ item.overtime?.toLocaleString() }}
+      {{ helper.formatNumber(item.overtime) }}
     </template>
     <template #cell-reward="{ item }">
-      {{ item.reward?.toLocaleString() }}
+      {{ helper.formatNumber(item.reward) }}
     </template>
     <template #cell-bonus="{ item }">
-      {{ item.bonus?.toLocaleString() }}
+      {{ helper.formatNumber(item.bonus) }}
     </template>
     <template #cell-serviceBenefit="{ item }">
-      {{ item.serviceBenefit?.toLocaleString() }}
+      {{ helper.formatNumber(item.serviceBenefit) }}
     </template>
     <template #cell-leave="{ item }">
-      {{ item.leave?.toLocaleString() }}
+      {{ helper.formatNumber(item.leave) }}
     </template>
     <template #cell-addition="{ item }">
-      {{ item.addition?.toLocaleString() }}
+      {{ helper.formatNumber(item.addition) }}
     </template>
     <template #cell-deduction="{ item }">
-      {{ item.deduction?.toLocaleString() }}
+      {{ helper.formatNumber(item.deduction) }}
     </template>
     <template #cell-insurranceEmp="{ item }">
-      {{ item.insurranceEmp?.toLocaleString() }}
+      {{ helper.formatNumber(item.insurranceEmp) }}
     </template>
     <template #cell-taxAmount="{ item }">
-      {{ item.taxAmount?.toLocaleString() }}
+      {{ helper.formatNumber(item.taxAmount) }}
     </template>
     <template #cell-amount="{ item }">
-      {{ item.amount?.toLocaleString() }}
+      {{ helper.formatNumber(item.amount) }}
     </template>
     <template #cell-payable="{ item }">
-      {{ item.payable?.toLocaleString() }}
+      <span class="text-weight-700">
+        {{ helper.formatNumber(item.payable) }}
+      </span>
     </template>
 
     <template #expand="{ item }">
@@ -70,6 +72,7 @@
   import { ref } from "vue";
   import { useRouter } from "vue-router";
   import { sqlOperator } from "src/constants";
+  import { helper } from "src/helpers";
 
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { wageItemColumns } from "../../../_composables/constants";

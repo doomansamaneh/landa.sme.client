@@ -31,9 +31,7 @@
     <q-card-section>
       <header-section :model="model" />
     </q-card-section>
-    <q-card-section>
-      <detail-section v-if="model" :model="model" />
-    </q-card-section>
+    <detail-section v-if="model" :model="model" />
   </q-card>
 </template>
 

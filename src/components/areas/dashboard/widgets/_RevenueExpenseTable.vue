@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="row in dataStore.tableSeries.value"
+          v-for="row in chartStore.tableSeries.value"
           :key="row.name"
         >
           <td>{{ $t(`shared.labels.${row.name}`) }}</td>
@@ -52,7 +52,12 @@
   import { helper } from "src/helpers";
   import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
 
-  const dataStore = useRevenueExpense();
+  const props = defineProps(["dataSource", "dataStore"]);
+
+  const chartStore = useRevenueExpense({
+    dataSource: props.dataSource,
+    dataStore: props.dataStore,
+  });
 
   function getColumnClass(row, column, index) {
     return (

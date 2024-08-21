@@ -22,7 +22,7 @@
   </tool-bar>
 
   <q-card bordered>
-    <div id="invoicePreview">
+    <div id="invoicePreview" v-if="model">
       <header-section :model="model" />
       <body-section :model="model" />
     </div>

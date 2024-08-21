@@ -139,22 +139,44 @@ export const helper = {
     return darkenedHex;
   },
 
-  getSubtotal(selectedRows, fieldName) {
-    if (!selectedRows) return 0;
-    return selectedRows.reduce((sum, item) => {
+  getSubtotal(items, fieldName) {
+    if (!items) return 0;
+    return items.reduce((sum, item) => {
       return sum + item[fieldName];
     }, 0);
   },
 
-  formatNumber(num, fraction) {
-    const absNum = Math.abs(num || 0).toLocaleString("en-US", {
+  formatNumber(number, fraction) {
+    const absNum = Math.abs(number || 0).toLocaleString("en-US", {
       minimumFractionDigits: 0,
       maximumFractionDigits: fraction || 0,
     });
-    if (num < 0) {
+    if (number < 0) {
       return `(${absNum})`;
     }
     return absNum;
+  },
+
+  formatNumberReadable(number) {
+    if (typeof number !== "number" || isNaN(number)) {
+      return "";
+    }
+
+    if (number < 1000) {
+      return number.toString();
+    } else if (number < 1000000) {
+      const thousands = Math.floor(number / 1000);
+      return `${thousands} هزار`;
+    } else if (number < 1000000000) {
+      const millions = Math.floor(number / 1000000);
+      return `${millions} میلیون`;
+    } else if (number < 1000000000000) {
+      const billions = Math.floor(number / 1000000000);
+      return `${billions} میلیارد`;
+    } else {
+      const trillions = Math.floor(number / 1000000000000);
+      return `${trillions} همت`;
+    }
   },
 
   exportCsv(rows, columns) {

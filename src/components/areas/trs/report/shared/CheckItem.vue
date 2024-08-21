@@ -1,7 +1,7 @@
 <template>
   <q-tabs
     v-model="tab"
-    class="primary-tabs q-mt-md"
+    class="primary-tabs q-mt-md_"
     :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
     :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
     narrow-indicator
@@ -31,10 +31,10 @@
     class="q-mt-md transparent"
   >
     <q-tab-panel name="received">
-      <data-grid :filter-expression="receiveFilter" />
+      <data-grid :filter-expression="receiveFilter" toolbar />
     </q-tab-panel>
     <q-tab-panel name="payed">
-      <data-grid :filter-expression="payedFilter" />
+      <data-grid :filter-expression="payedFilter" toolbar />
     </q-tab-panel>
   </q-tab-panels>
 </template>
@@ -44,6 +44,8 @@
   import { sqlOperator, documentType } from "src/constants";
 
   import DataGrid from "../desktop/_CheckItemDataGrid.vue";
+
+  const props = defineProps({ customerId: String });
 
   const dataGrid = ref(null);
   const tab = ref("received");
@@ -63,4 +65,15 @@
       value: documentType.payment,
     },
   ];
+
+  if (props.customerId) {
+    const customerFilter = {
+      fieldName: "p.CustomerId",
+      operator: sqlOperator.equal,
+      value: props.customerId,
+    };
+
+    payedFilter.push(customerFilter);
+    receiveFilter.push(customerFilter);
+  }
 </script>

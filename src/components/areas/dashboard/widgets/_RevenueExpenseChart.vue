@@ -1,17 +1,17 @@
 <template>
   <q-inner-loading
-    :showing="dataStore.showLoader.value"
+    :showing="chartStore.showLoader.value"
     class="transparent z-max"
   >
     <q-spinner size="52px" color="primary" />
   </q-inner-loading>
 
-  <template v-if="dataStore.chartSeries?.value">
+  <template v-if="chartStore.chartSeries?.value">
     <chart
       :options="options"
-      :series="dataStore.chartSeries.value"
+      :series="chartStore.chartSeries.value"
       :height="height"
-      :legend="legend"
+      :legend="false"
       :title="title"
       :class="direction"
       type="area"
@@ -28,13 +28,21 @@
   import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
 
   import Chart from "src/components/shared/Charts/ChartView.vue";
-  //import Chart from "vue3-apexcharts";
 
-  const props = defineProps(["height", "legend", "title"]);
+  const props = defineProps({
+    height: Number,
+    legend: Boolean,
+    title: String,
+    dataSource: String,
+    dataStore: Object,
+  });
 
   const $q = useQuasar();
   const { t } = useI18n();
-  const dataStore = useRevenueExpense();
+  const chartStore = useRevenueExpense({
+    dataSource: props.dataSource,
+    dataStore: props.dataStore,
+  });
 
   const options = ref(null);
 

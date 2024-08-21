@@ -74,15 +74,12 @@
 
                       <span class="q-px-sm text-caption">
                         {{ getTime(item) }}
-                        <q-tooltip
+                        <q-tooltip class="glass_ custom-tooltip"
                           transition-show="scale"
                           transition-hide="scale"
                           anchor="center left"
                           self="center right"
-                          :offset="[10, 10]"
-                          :delay="700"
-                          class="glass text-on-dark text-caption"
-                        >
+                          :offset="[10, 10]">
                           {{ item.logTime }}
                         </q-tooltip>
                       </span>
@@ -261,21 +258,19 @@
     const secondsAgo = timeDifference(past, now);
 
     if (secondsAgo < 60) {
-      return secondsAgo === 1
+      return secondsAgo <= 5
         ? "چند لحظه پیش"
         : `${secondsAgo} ثانیه پیش`;
     }
 
     const minutesAgo = Math.floor(secondsAgo / 60);
     if (minutesAgo < 60) {
-      return minutesAgo === 1
-        ? "یک دقیق پیش"
-        : `${minutesAgo} دقیقه پیش`;
+      return `${minutesAgo} دقیقه پیش`;
     }
 
     const hoursAgo = Math.floor(minutesAgo / 60);
     if (hoursAgo < 24) {
-      return hoursAgo === 1 ? "یک ساعت پیش" : `${hoursAgo} ساعت پیش`;
+      return `${hoursAgo} ساعت پیش`;
     }
 
     const daysAgo = Math.floor(hoursAgo / 24);
@@ -285,15 +280,15 @@
 
     const weeksAgo = Math.floor(daysAgo / 7);
     if (weeksAgo < 4) {
-      return weeksAgo === 1 ? "یک هفته پیش" : `${weeksAgo} هفته پیش`;
+      return `${weeksAgo} هفته پیش`;
     }
 
     const monthsAgo = Math.floor(daysAgo / 30);
     if (monthsAgo < 12) {
-      return monthsAgo === 1 ? "یک ماه پیش" : `${monthsAgo} ماه پیش`;
+      return `${monthsAgo} ماه پیش`;
     }
 
     const yearsAgo = Math.floor(daysAgo / 365);
-    return yearsAgo === 1 ? "یک سال پیش" : `${yearsAgo} سال پیش`;
+    return `${yearsAgo} سال پیش`;
   };
 </script>

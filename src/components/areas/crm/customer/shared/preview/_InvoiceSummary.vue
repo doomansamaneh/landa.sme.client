@@ -1,25 +1,7 @@
 <template>
-  <q-card class="border-radius-lg bordered no-shadow">
+  <q-card v-if="dataStore.data?.value?.total" flat bordered>
     <q-card-section class="q-pa-lg">
-      <div class="row items-center justify-between">
-        <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
-        <q-btn
-          to="/sls/invoice/create"
-          unelevated
-          rounded
-          class="bordered-btn bg-dark q-py-xs"
-        >
-          <q-icon name="o_add" size="16px" class="q-mr-xs" />
-          ایجاد فاکتور
-        </q-btn>
-      </div>
-      <div
-        class="text-body2 no-letter-spacing"
-        :class="$q.screen.lt.md ? '      q-mt-lg' : 'q-mt-sm'"
-      >
-        تبریک میگم، %47.4 رشد داشته اید.
-        <span class="text-body3 no-letter-spacing">در ماه گذشته</span>
-      </div>
+      <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
     </q-card-section>
 
     <q-card-section
@@ -47,7 +29,7 @@
             >
               {{
                 helper.formatNumberReadable(
-                  dataStore.data?.value?.amount
+                  dataStore.data?.value?.total
                 )
               }}
 
@@ -55,7 +37,7 @@
                 class="custom-tooltip text-body1 no-letter-spacing"
               >
                 {{
-                  helper.formatNumber(dataStore.data?.value?.amount)
+                  helper.formatNumber(dataStore.data?.value?.total)
                 }}
               </q-tooltip>
             </q-item-label>
@@ -81,7 +63,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">
-              دریافت شده
+              امسال
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
@@ -89,7 +71,7 @@
             >
               {{
                 helper.formatNumberReadable(
-                  dataStore.data?.value?.payedAmount
+                  dataStore.data?.value?.thisYearTotal
                 )
               }}
 
@@ -98,7 +80,7 @@
               >
                 {{
                   helper.formatNumber(
-                    dataStore.data?.value?.payedAmount
+                    dataStore.data?.value?.thisYearTotal
                   )
                 }}
               </q-tooltip>
@@ -113,13 +95,7 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn
-              flat
-              dense
-              size="0"
-              to="/sls/invoice/remained/remainedThisYear"
-              class="thisyear-clickable-btn"
-            >
+            <q-btn flat dense size="0">
               <q-avatar
                 rounded
                 text-color="white"
@@ -137,7 +113,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">
-              مانده امسال
+              دریافت شده
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
@@ -145,7 +121,7 @@
             >
               {{
                 helper.formatNumberReadable(
-                  dataStore.data?.value?.remainedAmount
+                  dataStore.data?.value?.payed
                 )
               }}
 
@@ -153,9 +129,7 @@
                 class="custom-tooltip text-body1 no-letter-spacing"
               >
                 {{
-                  helper.formatNumber(
-                    dataStore.data?.value?.remainedAmount
-                  )
+                  helper.formatNumber(dataStore.data?.value?.payed)
                 }}
               </q-tooltip>
             </q-item-label>
@@ -169,13 +143,7 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn
-              flat
-              dense
-              size="0"
-              to="/sls/invoice/remained/remainedAll"
-              class="all-clickable-btn"
-            >
+            <q-btn flat dense size="0">
               <q-avatar
                 rounded
                 text-color="white"
@@ -193,7 +161,7 @@
 
           <q-item-section class="q-pl-xs">
             <q-item-label class="text-body3 q-mb-xs">
-              مانده از قبل
+              مانده
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
@@ -201,8 +169,7 @@
             >
               {{
                 helper.formatNumberReadable(
-                  dataStore.data?.value?.remainedAmountAll -
-                    dataStore.data?.value?.remainedAmount
+                  dataStore.data?.value?.remained
                 )
               }}
 
@@ -210,10 +177,7 @@
                 class="custom-tooltip text-body1 no-letter-spacing"
               >
                 {{
-                  helper.formatNumber(
-                    dataStore.data?.value?.remainedAmountAll -
-                      dataStore.data?.value?.remainedAmount
-                  )
+                  helper.formatNumber(dataStore.data?.value?.remained)
                 }}
               </q-tooltip>
             </q-item-label>
@@ -229,22 +193,13 @@
 
 <script setup>
   import { helper } from "src/helpers";
-  import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/useInvoiceSummary";
-  const dataStore = useInvoiceSummary();
+  import { guidEmpty } from "src/constants";
+  import { useCustomerInvoiceSummary } from "../../../_composables/useCustomerInvoiceSummary";
+
+  const props = defineProps({
+    customerId: String,
+  });
+  const dataStore = useCustomerInvoiceSummary(
+    props.customerId ?? guidEmpty
+  );
 </script>
-
-<style lang="scss" scoped>
-  .thisyear-clickable-btn {
-    transition: transform 0.2s ease-in-out;
-  }
-  .thisyear-clickable-btn:hover {
-    transform: scale(1.05);
-  }
-
-  .all-clickable-btn {
-    transition: transform 0.2s ease-in-out;
-  }
-  .all-clickable-btn:hover {
-    transform: scale(1.05);
-  }
-</style>

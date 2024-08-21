@@ -27,18 +27,19 @@ export function useInvoiceSummary() {
     if (!firstLoad.value) {
       firstLoad.value = true;
       await reloadData();
-      isLoading.value = true;
       return true;
     }
     return false;
   }
 
   async function reloadData() {
+    isLoading.value = true;
     const response = await fetchWrapper.get(
       `sls/report/InvoiceSummary`,
       null,
       true
     );
+    isLoading.value = false;
     data.value = response.data.data;
   }
 
