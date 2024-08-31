@@ -49,7 +49,7 @@
   <q-tab-panels
     v-model="tab"
     animated
-    keep-alive
+    keep-alive_
     class="q-mt-md transparent"
   >
     <q-tab-panel name="cl" class="no-padding">

@@ -8,7 +8,7 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">از انبار</q-item-label>
+      <q-item-label caption class="q-mb-sm">انبار کالا</q-item-label>
       <inventory-lookup
         v-model:selectedId="model.inventoryId"
         v-model:selectedText="model.inventoryTitle"
@@ -18,7 +18,7 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">به انبار</q-item-label>
+      <q-item-label caption class="q-mb-sm">انبار مقصد</q-item-label>
       <inventory-lookup
         v-model:selectedId="model.toInventoryId"
         v-model:selectedText="model.toInventoryTitle"

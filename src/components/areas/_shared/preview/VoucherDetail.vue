@@ -27,7 +27,7 @@
     <q-separator />
 
     <q-card-section v-if="model?.id">
-      <preview-log />
+      <preview-log :entity-id="model.id" :entity-name="entityName" />
     </q-card-section>
   </q-card>
 </template>
@@ -38,5 +38,6 @@
 
   const props = defineProps({
     model: Object,
+    entityName: String,
   });
 </script>

@@ -9,7 +9,7 @@ export function useFormItemsModel() {
         '[data-autofocus="true"]'
       );
       if (autofocusElement) {
-        console.log(autofocusElement);
+        //console.log(autofocusElement);
         autofocusElement.focus();
       }
     });

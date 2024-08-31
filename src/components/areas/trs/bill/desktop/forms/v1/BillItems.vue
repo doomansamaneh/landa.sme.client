@@ -15,7 +15,7 @@
         <th style="width: 12%">مالیات بر ارزش افزوده</th>
         <th style="width: 8%">مبلغ مالیات</th>
         <th style="width: 10%">مبلغ کل</th>
-        <th></th>
+        <th style="width: 1px"></th>
       </tr>
     </thead>
     <tbody>

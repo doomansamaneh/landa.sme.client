@@ -1,19 +1,12 @@
 <template>
   <data-grid
     toolbar
-    base-route="trs/receipt"
-    data-source="trs/receipt/getGridData"
-    :title="$t('main-menu-items.Trs_Receipt_View')"
-    create-url="/trs/receipt/create"
+    :base-route="baseRoute"
+    :data-source="`${baseRoute}/getGridData`"
+    :title="$t('main-menu-items.Inv_Producion_View')"
     :grid-store="gridStore"
     expandable
   >
-    <template #cell-amount="{ item }">
-      <span class="text-weight-700">
-        {{ helper.formatNumber(item.amount) }}
-      </span>
-    </template>
-
     <template #expand="{ item }">
       <preview :item="item" inside />
     </template>
@@ -22,15 +15,15 @@
 
 <script setup>
   import { sortOrder } from "src/constants";
-  import { helper } from "src/helpers";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { receiptColumns } from "src/components/areas/trs/_composables/constants";
+  import { repositionColumns } from "../../../_composables/constants";
 
-  import Preview from "../preview/IndexView.vue";
   import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
+  import Preview from "../preview/IndexView.vue";
 
+  const baseRoute = "inv/production";
   const gridStore = useBaseInfoGrid({
-    columns: receiptColumns,
+    columns: repositionColumns,
     sortColumn: "date",
     sortOrder: sortOrder.descending,
   });

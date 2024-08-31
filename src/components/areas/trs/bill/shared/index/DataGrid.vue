@@ -22,7 +22,9 @@
         expandable
       >
         <template #cell-amount="{ item }">
-          {{ item.amount?.toLocaleString() }}
+          <span class="text-weight-700">
+            {{ helper.formatNumber(item.amount) }}
+          </span>
         </template>
         <template #expand="{ item }">
           <preview :item="item" inside />

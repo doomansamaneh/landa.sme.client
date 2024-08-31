@@ -3,12 +3,13 @@ import { useRouter } from "vue-router";
 import { fetchWrapper } from "src/helpers";
 import { useFormActions } from "src/composables/useFormActions";
 import { repositionModel } from "src/models/areas/inv/repositionModel";
-import { quantity } from "src/constants/columns";
+import { useFormItemsModel } from "src/composables/useFormItemsModel";
 
 export function useRepositionModel({ baseRoute }) {
   const router = useRouter();
 
   const model = ref(repositionModel);
+  const formItemStore = useFormItemsModel();
 
   const crudStore = useFormActions(baseRoute, model);
 
@@ -38,7 +39,7 @@ export function useRepositionModel({ baseRoute }) {
         );
 
         if (!exists) {
-          model.value.repositionItems.push({
+          formItemStore.pushNewItem(model.value.repositionItems, {
             productId: item.productId,
             productCode: item.productCode,
             productTitle: item.productTitle,
@@ -61,16 +62,24 @@ export function useRepositionModel({ baseRoute }) {
 
   const addNewRow = (index) => {
     const newRow = { quantity: 0 };
-    model.value.repositionItems.splice(index + 1, 0, newRow);
+    formItemStore.addNewItem(
+      model.value.repositionItems,
+      index,
+      newRow
+    );
   };
 
   const pushNewRow = (item) => {
-    if (item) model.value.repositionItems.push(item);
-    else model.value.repositionItems.push({ quantity: 0 });
+    if (item)
+      formItemStore.pushNewItem(model.value.repositionItems, item);
+    else
+      formItemStore.pushNewItem(model.value.repositionItems, {
+        quantity: 0,
+      });
   };
 
   const deleteRow = (index) => {
-    model.value.repositionItems.splice(index, 1);
+    formItemStore.deleteItem(model.value.repositionItems, index);
   };
 
   async function submitForm(form, action) {
@@ -86,6 +95,7 @@ export function useRepositionModel({ baseRoute }) {
     crudStore,
 
     getById,
+    newAddedItemIndex: formItemStore.newAddedItemIndex,
     pushNewRow,
     addNewRow,
     deleteRow,

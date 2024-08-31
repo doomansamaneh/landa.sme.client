@@ -1385,6 +1385,42 @@ export default {
     },
 
     {
+      path: "inv/production",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/inv/production/IndexPage.vue"),
+          meta: { title: "فهرست تولید" },
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/inv/production/CreatePage.vue"),
+          meta: { title: "تولید - ایجاد" },
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/inv/production/EditPage.vue"),
+          meta: { title: "تولید - ویرایش" },
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/inv/production/CopyPage.vue"),
+          meta: { title: "تولید - کپی" },
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/inv/production/PreviewPage.vue"),
+          meta: { title: "تولید - پیش نمایش" },
+        },
+      ],
+    },
+
+    {
       path: "inv/openingStock",
       children: [
         {

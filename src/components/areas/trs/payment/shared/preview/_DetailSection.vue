@@ -34,7 +34,10 @@
     </q-card-section>
 
     <q-card-section v-if="model?.id">
-      <preview-log />
+      <preview-log
+        :entity-id="model.id"
+        entity-name="Trs.[Payment]"
+      />
     </q-card-section>
   </q-card>
 </template>

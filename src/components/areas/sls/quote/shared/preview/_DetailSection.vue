@@ -75,7 +75,11 @@
     <q-separator />
 
     <q-card-section>
-      <detail-log />
+      <detail-log
+        v-if="model?.value?.id"
+        :entity-id="model.value.id"
+        entity-name="Sls.[Quote]"
+      />
     </q-card-section>
   </q-card>
 </template>

@@ -1,39 +1,41 @@
 <template>
-  <q-markup-table
-    class="q-pa-md-"
-    bordered
-    flat
-    dense
-    separator="horizontal"
-  >
+  <q-markup-table bordered flat dense separator="horizontal">
     <thead>
       <tr>
+        <th colspan="100%" class="bg-red text-white">
+          <span class="text-h6 text-weight-700">
+            سربار و هزینه تولید
+          </span>
+        </th>
+      </tr>
+      <tr>
         <th style="width: 1px">#</th>
-        <th>کالا</th>
-        <th style="width: 180px">تعداد/مقدار</th>
+        <th>سرفصل هزینه</th>
+        <th style="width: 240px">مبلغ</th>
         <th style="width: 1px"></th>
       </tr>
     </thead>
     <tbody>
       <tr
-        v-for="(row, index) in model?.repositionItems"
+        v-for="(row, index) in model?.costs"
         :key="index"
         class="q-pa-md"
       >
         <td class="text-center">{{ index + 1 }}</td>
         <td>
-          <product-lookup
-            :autofocus="index === formStore.newAddedItemIndex.value"
-            placeholder="کالا"
-            v-model:selectedId="row.productId"
-            v-model:selectedText="row.productTitle"
-            :filterExpression="productFilter"
+          <sl-lookup
+            class="first"
+            autofocus
+            placeholder="سرفصل هزینه"
+            v-model:selectedId="row.slId"
+            v-model:selectedText="row.slTitle"
+            :filterExpression="slFilter"
           />
         </td>
         <td>
           <custom-input-number
-            v-model="row.quantity"
-            placeholder="تعداد/مقدار"
+            v-model="row.amount"
+            placeholder="مبلغ"
           />
         </td>
         <td class="text-center q-gutter-x-sm">
@@ -44,7 +46,7 @@
             class="text-on-dark"
             size="sm"
             icon="o_add"
-            @click="formStore.addNewRow(index, row)"
+            @click="formStore.addNewCost(index, row)"
           />
           <q-btn
             color="red"
@@ -53,12 +55,12 @@
             class="text-on-dark"
             size="sm"
             icon="o_delete"
-            @click="formStore.deleteRow(index)"
+            @click="formStore.deleteCost(index)"
           />
         </td>
       </tr>
     </tbody>
-    <tbody v-if="model?.repositionItems?.length === 0">
+    <tbody v-if="model?.costs?.length === 0">
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
@@ -66,7 +68,7 @@
             rounded
             unelevated
             color="primary"
-            @click="formStore.pushNewRow()"
+            @click="formStore.pushNewCost()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
             افزودن ردیف
@@ -79,8 +81,9 @@
 
 <script setup>
   import { computed } from "vue";
+  import { sqlOperator, closeAccounts } from "src/constants";
 
-  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
+  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
   const props = defineProps({
@@ -89,5 +92,11 @@
 
   const model = computed(() => props.formStore.model.value);
 
-  const productFilter = null;
+  const slFilter = [
+    {
+      fieldName: "clId",
+      operator: sqlOperator.equal,
+      value: closeAccounts.expense,
+    },
+  ];
 </script>

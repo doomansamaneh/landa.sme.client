@@ -48,7 +48,7 @@
     <q-tab-panels
       v-model="tab"
       animated
-      keep-alive
+      keep-alive_
       class="transparent"
     >
       <q-tab-panel name="pg" class="no-padding">
