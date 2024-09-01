@@ -1,6 +1,6 @@
 <template>
-  <q-card flat class="fit bordered">
-    <q-card-section class="q-pa-lg">
+  <q-card flat class="fit- bordered">
+    <q-card-section class="q-pt-lg q-pb-none q-px-lg">
       <q-item class="no-padding">
         <q-item-section avatar>
           <q-avatar
@@ -19,25 +19,29 @@
       </q-item>
     </q-card-section>
 
-    <q-card-section class="q-pt-none_ q-pb-md_ q-px-none">
+    <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none">
       <q-scroll-area
-        style="height: 650px"
+        style="height: 680px"
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"
       >
-        <q-list bordered_ _padding class="rounded-borders">
+        <q-list
+          bordered_
+          _padding
+          class="q-pr-md q-pl-sm rounded-borders"
+        >
           <template
             v-for="item in dataStore.accountClCodes.value"
             :key="item.clTypeId"
           >
-            <q-item-label header class="q-py-xs">
-              <span class="text-h6 text-weight-600">
+            <q-item-label header class="q-pl-none q-py-xs">
+              <span class="text-h6 text-on-dark text-weight-600">
                 {{ item.clCode }} - {{ item.clTitle }}
               </span>
             </q-item-label>
 
             <q-item
-              class="q-px-md"
+              class="border-radius-sm q-px-sm q-py-md q-my-sm"
               clickable
               v-ripple
               v-for="glItem in dataStore.getFilteredItems(
@@ -45,16 +49,18 @@
               )"
               :key="glItem.glCode"
             >
-              <q-item-section avatar top>
-                <q-avatar color="accent" text-color="white">
+              <q-item-section class="q-pr-sm" avatar>
+                <q-badge
+                  rounded
+                  color="accent"
+                  class="text-body2 no-letter-spacing q-py-xs q-px-sm"
+                >
                   {{ glItem.glCode }}
-                </q-avatar>
+                </q-badge>
               </q-item-section>
 
               <q-item-section>
-                <q-item-label lines="1">
-                  {{ glItem.glTitle }}
-                </q-item-label>
+                {{ glItem.glTitle }}
               </q-item-section>
 
               <q-item-section

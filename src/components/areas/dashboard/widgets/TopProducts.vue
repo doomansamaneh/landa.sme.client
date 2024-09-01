@@ -1,6 +1,6 @@
 <template>
   <q-card class="no-shadow bordered">
-    <q-card-section class="row justify-between items-center q-pa-lg">
+    <q-card-section class="q-pb-none q-pt-lg q-px-lg row justify-between items-center">
       <div class="row items-center justify-between full-width">
         <q-item class="no-padding">
           <q-item-section avatar>
@@ -29,7 +29,7 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none">
+    <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none q-pl-lg">
       <q-scroll-area
         style="height: 350px"
         :thumb-style="helper.thumbStyle"
