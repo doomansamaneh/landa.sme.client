@@ -50,7 +50,6 @@
 
   <q-tab-panels
     class="q-mt-md"
-    :class="tabPanels"
     v-model="tab"
     keep-alive
     animated

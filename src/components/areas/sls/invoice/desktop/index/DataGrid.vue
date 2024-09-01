@@ -13,7 +13,7 @@
   >
     <q-tab
       name="invoice"
-      class="q-mr-xs text-h6 text-weight-700"
+      class="q-mr-xs text-h6 text-weight-500"
       label="فاکتورهای فروش"
       icon="check"
     >
@@ -23,7 +23,7 @@
     </q-tab>
     <q-tab
       name="canceled"
-      class="text-h6 text-weight-700"
+      class="text-h6 text-weight-500"
       label="ابطال شده"
       icon="o_cancel"
     />
@@ -36,7 +36,7 @@
     :grid-store="gridStore"
     :data-source="dataSource"
     base-route="sls/invoice"
-    class="q-mt-md"
+    class="shadow bordered q-mt-md"
   />
 </template>
 
