@@ -133,6 +133,23 @@
           </div>
         </template>
 
+        <q-space v-if="!tableStore?.activeRow?.value" />
+
+        <slot name="search-btn">
+          <template v-if="searchBtn">
+            <q-btn
+              size="13px"
+              color="red"
+              round
+              unelevated
+              dense
+              v-if="!tableStore?.activeRow?.value"
+            >
+              <q-icon name="o_search" />
+            </q-btn>
+          </template>
+        </slot>
+
         <back-button class="q-ml-sm" v-if="backButton" />
       </q-toolbar>
     </q-page-sticky>
@@ -281,6 +298,7 @@
     activation: Boolean,
     backButton: Boolean,
     buttons: Boolean,
+    searchBtn: Boolean,
   });
 
   const selectedIds = computed(() =>

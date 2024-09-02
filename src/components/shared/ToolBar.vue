@@ -8,7 +8,10 @@
     :activation="activation"
     :back-button="backButton"
     :buttons="buttons"
-  ></mobile>
+    :searchBtn="searchBtn"
+  >
+    <template #search-btn></template>
+  </mobile>
   <desktop
     v-else
     :title="title"
@@ -20,9 +23,7 @@
     :buttons="buttons"
     :inside="inside"
   >
-  <template #buttons>
-
-  </template>
+    <template #buttons></template>
   </desktop>
 </template>
 
@@ -38,6 +39,7 @@
     activation: Boolean,
     backButton: Boolean,
     buttons: Boolean,
-    inside: Boolean
+    inside: Boolean,
+    searchBtn: Boolean,
   });
 </script>

@@ -5,6 +5,7 @@
     :title="title"
     base-route="sls/invoice"
     activation
+    search-btn
   >
     <template #buttons-custom>
       <q-separator size="0.5px" class="q-my-sm" />
@@ -17,11 +18,23 @@
           </q-item-section>
         </div>
         <q-item-section>
-          <div class="text-caption">
+          <div class="text-body2 no-letter-spacing">
             {{ $t("shared.labels.editBatch") }}
           </div>
         </q-item-section>
       </q-item>
+    </template>
+
+    <template #search-btn>
+      <q-btn
+        round
+        unelevated
+        dense
+        v-if="!tableStore?.activeRow?.value"
+        @click="showSearchModal"
+      >
+        <q-icon name="o_filter_alt" />
+      </q-btn>
     </template>
   </tool-bar>
 
@@ -121,240 +134,221 @@
     </q-card>
   </div>
 
-  <div class="q-mt-lg">
-    <q-input
-      outlined
-      readonly
+  <div
+    class="row items-center justify-center text-body1 no-letter-spacing"
+    v-if="selectedDateRange.label && shouldDisplaySelectedDateRange"
+  >
+    <q-btn
+      @click="clearDateRangeFilter"
+      size="xs"
+      class="q-mr-sm"
+      round
+      unelevated
       dense
-      rounded
-      @click="showSearchModal"
-      placeholder="جستجو در فاکتورها"
-    >
-      <template #prepend>
-        <q-icon name="o_search" />
-      </template>
-    </q-input>
+      icon="o_close"
+      color="primary"
+    />
+    <span>نتایج جستجو برای: {{ selectedDateRange.label }}</span>
+  </div>
 
-    <div
-      class="row items-center justify-center text-body1 no-letter-spacing"
-      v-if="selectedDateRange.label && shouldDisplaySelectedDateRange"
-    >
+  <data-grid
+    data-source="sls/invoice/getGridData"
+    :grid-store="gridStore"
+    createUrl="/sls/invoice/create"
+    ref="dataGrid"
+  >
+    <template #header>
+      <template></template>
+    </template>
+
+    <template #row-header="{ item }">
+      <q-card-section>
+        <div class="row items-center justify-center">
+          <q-btn
+            v-if="!item.selected"
+            round
+            unelevated
+            class="no-pointer-events"
+          >
+            <q-avatar
+              size="56px"
+              text-color="white"
+              :style="helper.generateAvatarStyle(item.id)"
+            >
+              <div class="char text-body1 text-bold">
+                {{ helper.getFirstChar(item.customerName) }}
+              </div>
+            </q-avatar>
+          </q-btn>
+          <q-btn round unelevated class="no-pointer-events" v-else>
+            <q-avatar size="56px" color="primary" text-color="white">
+              <q-icon name="o_done" size="md" />
+            </q-avatar>
+          </q-btn>
+        </div>
+
+        <div class="row justify-between items-center">
+          <div class="col row items-center">
+            <span class="text-caption q-mr-xs text-on-dark">
+              شماره:
+            </span>
+            <span class="text-caption text-on-dark">
+              {{ item.no }}
+            </span>
+          </div>
+
+          <div class="col row justify-end items-center q-gutter-xs">
+            <span class="text-caption text-on-dark">
+              {{ item.dateString }}
+            </span>
+          </div>
+        </div>
+      </q-card-section>
+
+      <q-separator size="0.5px" />
+    </template>
+
+    <template #row-body="{ item }">
+      <q-card-section class="no-padding">
+        <div class="column q-gutter-sm">
+          <div class="row items-center q-px-sm">
+            <div class="col-3">
+              <span class="text-caption text-on-dark">مشتری</span>
+            </div>
+            <div class="col">
+              <span
+                class="ellipsis-2-lines text-caption text-bold text-on-dark"
+              >
+                {{ item.customerName }}
+              </span>
+            </div>
+          </div>
+
+          <div class="row items-center q-px-sm">
+            <div class="col-3">
+              <span class="text-caption text-on-dark">شرح</span>
+            </div>
+            <div class="col">
+              <span
+                class="ellipsis-2-lines text-caption text-on-dark"
+              >
+                {{ item.subject }}
+              </span>
+              <div
+                v-if="item.summary"
+                class="ellipsis-2-lines text-caption-sm text-on-dark"
+              >
+                {{ item.summary }}
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="row items-center q-px-sm"
+            v-if="item.discountAmount"
+          >
+            <div class="col-3">
+              <span class="text-caption text-on-dark">تخفیف</span>
+            </div>
+            <div class="col">
+              <span
+                class="ellipsis-2-lines text-caption text-on-dark"
+              >
+                {{ item.discountAmount.toLocaleString() }}
+              </span>
+            </div>
+          </div>
+
+          <div class="row items-center q-px-sm">
+            <div class="col-3">
+              <span class="text-caption text-on-dark">جمع کل</span>
+            </div>
+            <div class="col">
+              <span
+                class="ellipsis-2-lines text-caption text-bold text-on-dark"
+              >
+                {{ item.amount.toLocaleString() }}
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="row items-center q-px-sm"
+            v-if="item.payedAmount"
+          >
+            <div class="col-3">
+              <span class="text-caption text-on-dark">
+                دریافت شده
+              </span>
+            </div>
+            <div class="col">
+              <span
+                class="ellipsis-2-lines text-caption text-caption text-on-dark"
+              >
+                {{ item.payedAmount.toLocaleString() }}
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="row items-center q-px-sm"
+            v-if="item.remainedAmount"
+          >
+            <div class="col-3">
+              <span class="text-caption text-on-dark">مانده</span>
+            </div>
+            <div class="col">
+              <span
+                class="ellipsis-2-lines text-caption text-bold text-on-dark"
+              >
+                {{ item.remainedAmount.toLocaleString() }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </q-card-section>
+
+      <q-card-section class="q-pt-md q-pb-none q-px-sm">
+        <div class="row items-center q-gutter-sm">
+          <span
+            class="label text-white border-radius-sm text-caption orange-gradient"
+          >
+            {{ item.statusTitle }}
+          </span>
+
+          <span
+            class="border-radius-sm primary-gradient text-caption text-white label"
+          >
+            {{ item.typeTitle }}
+          </span>
+
+          <span
+            v-if="item.contractTitle"
+            class="border-radius-sm bluegrey-gradient text-caption text-white label"
+          >
+            {{ item.contractTitle }}
+          </span>
+        </div>
+      </q-card-section>
+    </template>
+    <template #row-actions="{ item }">
       <q-btn
-        @click="clearDateRangeFilter"
-        size="xs"
-        class="q-mr-sm"
+        unelevated
+        class="text-on-dark"
+        :to="`/sls/invoice/preview/${item.id}`"
+      >
+        <span class="text-body3 text-bold">مشاهده جزئیات</span>
+      </q-btn>
+
+      <q-btn
         round
         unelevated
         dense
-        icon="o_close"
-        color="primary"
+        icon="o_more_vert"
+        @click="onBottomSheetShow(item)"
       />
-      <span>نتایج جستجو برای: {{ selectedDateRange.label }}</span>
-    </div>
-
-    <data-grid
-      data-source="sls/invoice/getGridData"
-      :grid-store="gridStore"
-      createUrl="/sls/invoice/create"
-      ref="dataGrid"
-    >
-      <template #header>
-        <template></template>
-      </template>
-
-      <template #row-header="{ item }">
-        <q-card-section>
-          <div class="row items-center justify-center">
-            <q-btn
-              v-if="!item.selected"
-              round
-              unelevated
-              class="no-pointer-events"
-            >
-              <q-avatar
-                size="56px"
-                text-color="white"
-                :style="helper.generateAvatarStyle(item.id)"
-              >
-                <div class="char text-body1 text-bold">
-                  {{ helper.getFirstChar(item.customerName) }}
-                </div>
-              </q-avatar>
-            </q-btn>
-            <q-btn round unelevated class="no-pointer-events" v-else>
-              <q-avatar
-                size="56px"
-                color="primary"
-                text-color="white"
-              >
-                <q-icon name="o_done" size="md" />
-              </q-avatar>
-            </q-btn>
-          </div>
-
-          <div class="row justify-between items-center">
-            <div class="col row items-center">
-              <span class="text-caption q-mr-xs text-on-dark">
-                شماره:
-              </span>
-              <span class="text-caption text-on-dark">
-                {{ item.no }}
-              </span>
-            </div>
-
-            <div class="col row justify-end items-center q-gutter-xs">
-              <span class="text-caption text-on-dark">
-                {{ item.dateString }}
-              </span>
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-separator size="0.5px" />
-      </template>
-
-      <template #row-body="{ item }">
-        <q-card-section class="no-padding">
-          <div class="column q-gutter-sm">
-            <div class="row items-center q-px-sm">
-              <div class="col-3">
-                <span class="text-caption text-on-dark">مشتری</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
-                >
-                  {{ item.customerName }}
-                </span>
-              </div>
-            </div>
-
-            <div class="row items-center q-px-sm">
-              <div class="col-3">
-                <span class="text-caption text-on-dark">شرح</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-on-dark"
-                >
-                  {{ item.subject }}
-                </span>
-                <div
-                  v-if="item.summary"
-                  class="ellipsis-2-lines text-caption-sm text-on-dark"
-                >
-                  {{ item.summary }}
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.discountAmount"
-            >
-              <div class="col-3">
-                <span class="text-caption text-on-dark">تخفیف</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-on-dark"
-                >
-                  {{ item.discountAmount.toLocaleString() }}
-                </span>
-              </div>
-            </div>
-
-            <div class="row items-center q-px-sm">
-              <div class="col-3">
-                <span class="text-caption text-on-dark">جمع کل</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
-                >
-                  {{ item.amount.toLocaleString() }}
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.payedAmount"
-            >
-              <div class="col-3">
-                <span class="text-caption text-on-dark">
-                  دریافت شده
-                </span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-caption text-on-dark"
-                >
-                  {{ item.payedAmount.toLocaleString() }}
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.remainedAmount"
-            >
-              <div class="col-3">
-                <span class="text-caption text-on-dark">مانده</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
-                >
-                  {{ item.remainedAmount.toLocaleString() }}
-                </span>
-              </div>
-            </div>
-          </div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-md q-pb-none q-px-sm">
-          <div class="row items-center q-gutter-sm">
-            <span
-              class="label text-white border-radius-sm text-caption orange-gradient"
-            >
-              {{ item.statusTitle }}
-            </span>
-
-            <span
-              class="border-radius-sm primary-gradient text-caption text-white label"
-            >
-              {{ item.typeTitle }}
-            </span>
-
-            <span
-              v-if="item.contractTitle"
-              class="border-radius-sm bluegrey-gradient text-caption text-white label"
-            >
-              {{ item.contractTitle }}
-            </span>
-          </div>
-        </q-card-section>
-      </template>
-      <template #row-actions="{ item }">
-        <q-btn
-          unelevated
-          class="text-on-dark"
-          :to="`/sls/invoice/preview/${item.id}`"
-        >
-          <span class="text-body3 text-bold">مشاهده جزئیات</span>
-        </q-btn>
-
-        <q-btn
-          round
-          unelevated
-          dense
-          icon="o_more_vert"
-          @click="onBottomSheetShow(item)"
-        />
-      </template>
-    </data-grid>
-  </div>
+    </template>
+  </data-grid>
 
   <bottom-sheet
     v-if="bottomSheetStatus"
@@ -530,6 +524,16 @@
       </q-list>
     </template>
   </bottom-sheet>
+
+  <q-dialog
+    transition-show="slide-up"
+    transition-hide="slide-down"
+    transition-duration="600"
+    maximized
+    v-model="dialog"
+  >
+    <mobile-advanced-search @apply-search="hideSearchModal" />
+  </q-dialog>
 </template>
 
 <script setup>
@@ -541,7 +545,8 @@
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import BottomSheet from "components/shared/BottomSheet.vue";
-  import ToolBar from "src/components/shared/ToolBar.vue";
+  import ToolBar from "src/components/shared/ToolBarMobile.vue";
+  import MobileAdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue";
 
   const props = defineProps({
     gridStore: Object,
@@ -565,6 +570,10 @@
 
   const showSearchModal = () => {
     dialog.value = true;
+  };
+
+  const hideSearchModal = async () => {
+    dialog.value = false;
   };
 
   async function reloadData(model) {
