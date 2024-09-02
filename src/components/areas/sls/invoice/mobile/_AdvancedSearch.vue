@@ -2,7 +2,9 @@
   <q-card class="no-border q-pt-sm q-px-sm">
     <q-card-section>
       <div class="row justify-between items-center">
-        <span class="text-body1 no-letter-spacing"> جستجو در فاکتورها </span>
+        <span class="text-body1 no-letter-spacing">
+          جستجو در فاکتورها
+        </span>
         <q-btn dense flat icon="close" v-close-popup />
       </div>
     </q-card-section>
@@ -30,7 +32,7 @@
               "
               class="text-on-dark text-body2 bordered-btn"
               :class="{ 'bordered-btn': !isActive(option.value) }"
-              style="min-width: 80px"
+              style="min-width: 82px"
             >
               <span>{{ option.label }}</span>
             </q-btn>
@@ -44,7 +46,11 @@
               @click="openCheckoutModal"
             >
               <span>تسویه</span>
-              <q-icon size="xs" class="q-ml-sm" name="o_expand_more" />
+              <q-icon
+                size="xs"
+                class="q-ml-sm"
+                name="o_expand_more"
+              />
             </q-btn>
           </div>
         </div>
@@ -61,23 +67,27 @@
           <div class="q-pl-none q-ml-md">
             <q-checkbox
               class="text-body2 q-mb-md"
-              v-model="searchModel.waitToSendTax"
+              v-model="searchStore.searchModel.value.waitToSendTax"
               :label="$t('shared.labels.waitToSendTax')"
             />
           </div>
 
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <q-item-label caption class="q-mb-sm"> مبلغ از </q-item-label>
+              <q-item-label caption class="q-mb-sm">
+                مبلغ از
+              </q-item-label>
               <custom-input
-                v-model="searchModel.amountFrom"
+                v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
             </div>
             <div class="col">
-              <q-item-label caption class="q-mb-sm"> مبلغ تا </q-item-label>
+              <q-item-label caption class="q-mb-sm">
+                مبلغ تا
+              </q-item-label>
               <custom-input
-                v-model="searchModel.amountTo"
+                v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
               />
             </div>
@@ -85,73 +95,105 @@
 
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <q-item-label caption class="q-mb-sm"> تاریخ از </q-item-label>
-              <date-time v-model="searchModel.dateFrom" />
+              <q-item-label caption class="q-mb-sm">
+                تاریخ از
+              </q-item-label>
+              <date-time
+                v-model="searchStore.searchModel.value.dateFrom"
+              />
             </div>
             <div class="col">
-              <q-item-label caption class="q-mb-sm"> تاریخ تا </q-item-label>
-              <date-time v-model="searchModel.dateTo" />
+              <q-item-label caption class="q-mb-sm">
+                تاریخ تا
+              </q-item-label>
+              <date-time
+                v-model="searchStore.searchModel.value.dateTo"
+              />
             </div>
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm"> قرارداد </q-item-label>
-            <contract-lookup />
+            <q-item-label caption class="q-mb-sm">
+              قرارداد
+            </q-item-label>
+            <contract-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.contractId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.contractTitle
+              "
+              style="width: 398px"
+            />
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm"> بازاریاب </q-item-label>
+            <q-item-label caption class="q-mb-sm">
+              بازاریاب
+            </q-item-label>
+            <customer-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.marketerId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.marketerName
+              "
+              style="width: 398px"
+            />
+          </div>
+
+          <div>
+            <q-item-label caption class="q-mb-sm">
+              نوع فروش
+            </q-item-label>
+            <sale-type-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.typeId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.typeTitle
+              "
+            />
+          </div>
+
+          <div>
+            <q-item-label caption class="q-mb-sm">
+              کالا و خدمات
+            </q-item-label>
             <q-input
               readonly
               outlined
               dense
-              v-model="searchModel.customerName"
-              @click="showContact = true"
-            >
-              <template #append>
-                <q-icon @click="showContact = true" name="o_expand_more" />
-              </template>
-            </q-input>
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm">نوع فروش</q-item-label>
-            <sale-type-lookup />
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm"> کالا و خدمات </q-item-label>
-            <q-input
-              readonly
-              outlined
-              dense
-              v-model="searchModel.productName"
+              v-model="searchStore.productName"
               @click="showProduct = true"
             >
               <template #append>
-                <q-icon @click="showProduct = true" name="o_expand_more" />
+                <q-icon
+                  @click="showProduct = true"
+                  name="o_expand_more"
+                />
               </template>
             </q-input>
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm"> مشتری </q-item-label>
-            <q-input
-              readonly
-              outlined
-              dense
-              v-model="searchModel.customerName"
-              @click="showContact = true"
-            >
-              <template #append>
-                <q-icon @click="showContact = true" name="o_expand_more" />
-              </template>
-            </q-input>
+            <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
+            <customer-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.marketerId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.marketerName
+              "
+              style="width: 398px"
+            />
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm"> شرح </q-item-label>
-            <custom-input v-model="searchModel.comment" />
+            <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+            <custom-input
+              v-model="searchStore.searchModel.value.comment"
+            />
           </div>
         </div>
       </q-scroll-area>
@@ -164,11 +206,11 @@
         unelevated
         outline
         class="q-mb-sm full-width"
-        @click="clearSearch"
+        @click="searchStore.clearSearch"
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_close" class="q-mr-xs" />
-          <span> حذف فیلتر </span>
+          <span>حذف فیلتر</span>
         </div>
       </q-btn>
 
@@ -178,11 +220,11 @@
         unelevated
         color="primary"
         class="q-mb-sm full-width"
-        @click="applySearch"
+        @click="searchStore.applySearch"
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_search" class="q-mr-xs" />
-          <span> جستجو </span>
+          <span>جستجو</span>
         </div>
       </q-btn>
     </div>
@@ -195,10 +237,16 @@
     transition-show="slide-up"
     transition-hide="slide-down"
   >
-    <q-card class="no-border q-mt-xl" position="bottom" style="height: 100vh">
+    <q-card
+      class="no-border q-mt-xl"
+      position="bottom"
+      style="height: 100vh"
+    >
       <q-card-section>
         <div class="row justify-between items-center">
-          <span class="text-body1 no-letter-spacing"> انتخاب تسویه </span>
+          <span class="text-body1 no-letter-spacing">
+            انتخاب تسویه
+          </span>
           <q-btn dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
@@ -237,101 +285,114 @@
   >
     <q-card>
       <q-card-section>
-        <product-lookup />
+        <product-lookup
+          v-model:selectedId="searchStore.searchModel.value.productId"
+          v-model:selectedText="
+            searchStore.searchModel.value.productTitle
+          "
+          style="width: 398px"
+        />
       </q-card-section>
     </q-card>
   </q-dialog>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
-import { dateRange } from "src/constants";
-import { helper } from "src/helpers";
-import { useI18n } from "vue-i18n";
-import dateTime from "src/components/shared/forms/DateTimePicker.vue";
-import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
-import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
-import customInput from "src/components/shared/forms/CustomInput.vue";
-import ContactLookup from "src/components/shared/lookups/MobileContactLookup.vue";
-import ProductLookup from "src/components/shared/lookups/MobileProductLookup.vue";
+  import { computed, ref } from "vue";
+  import { dateRange } from "src/constants";
+  import { helper } from "src/helpers";
+  import { useI18n } from "vue-i18n";
+  import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
 
-const { t } = useI18n();
+  import dateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
+  import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+  import customInput from "src/components/shared/forms/CustomInput.vue";
+  import ContactLookup from "src/components/shared/lookups/MobileContactLookup.vue";
+  import ProductLookup from "src/components/shared/lookups/MobileProductLookup.vue";
+  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 
-const props = defineProps({
-  gridStore: Object,
-});
+  const { t } = useI18n();
 
-const dateRangeOptions = computed(() => helper.getEnumOptions(dateRange));
-
-const group = ref([]);
-const dialog = ref(false);
-const showContact = ref(false);
-const showProduct = ref(false);
-
-const options = [
-  { label: "دارای مانده", value: "1", color: "warning" },
-  { label: "تسویه ناقص", value: "2", color: "red" },
-  { label: "تسویه کامل", value: "3", color: "green" },
-];
-
-const handleCheckboxChange = () => {
-  if (group.value.length >= 0) {
-    dialog.value = false;
-  }
-};
-
-const emit = defineEmits(["apply-search", "update-date-range"]);
-
-const searchModel = computed(() => props.gridStore.state.searchModel.value);
-
-async function applySearch() {
-  emit("apply-search", searchModel.value);
-}
-
-async function clearSearch() {
-  props.gridStore.setDefaultSearchModel();
-  await applySearch();
-}
-
-async function removeItem(item) {
-  //todo: how to find field type and dynamically set to it's default value
-  let value = "";
-  switch (item.name) {
-    case "dateRange":
-      value = 0;
-      break;
-    case "waitToSendTax":
-      value = false;
-      break;
-  }
-  searchModel.value[item.name] = value;
-  await applySearch();
-}
-
-const openCheckoutModal = () => {
-  dialog.value = true;
-};
-
-const handleDateRangeClick = async (value) => {
-  searchModel.value.dateRange = value;
-  const translatedLabel = t(`shared.labels.${searchModel.value.dateRange}`);
-  emit("update-date-range", {
-    value: searchModel.value.dateRange,
-    label: translatedLabel,
+  const props = defineProps({
+    gridStore: Object,
   });
 
-  await applySearch();
-};
+  const dateRangeOptions = computed(() =>
+    helper.getEnumOptions(dateRange)
+  );
 
-const isActive = (value) => {
-  return searchModel.value.dateRange === value;
-};
+  const group = ref([]);
+  const dialog = ref(false);
+  const showContact = ref(false);
+  const showProduct = ref(false);
+
+  const options = [
+    { label: "دارای مانده", value: "1", color: "warning" },
+    { label: "تسویه ناقص", value: "2", color: "red" },
+    { label: "تسویه کامل", value: "3", color: "green" },
+  ];
+
+  const handleCheckboxChange = () => {
+    if (group.value.length >= 0) {
+      dialog.value = false;
+    }
+  };
+
+  const emit = defineEmits(["apply-search", "update-date-range"]);
+
+  const searchStore = useInvoiceSearch();
+
+  async function applySearch() {
+    emit("apply-search", searchStore.searchModel.value);
+  }
+
+  async function clearSearch() {
+    props.gridStore.setDefaultSearchModel();
+    await applySearch();
+  }
+
+  async function removeItem(item) {
+    //todo: how to find field type and dynamically set to it's default value
+    let value = "";
+    switch (item.name) {
+      case "dateRange":
+        value = 0;
+        break;
+      case "waitToSendTax":
+        value = false;
+        break;
+    }
+    searchStore.value[item.name] = value;
+    await applySearch();
+  }
+
+  const openCheckoutModal = () => {
+    dialog.value = true;
+  };
+
+  const handleDateRangeClick = async (value) => {
+    searchStore.searchModel.value.dateRange = value;
+    const translatedLabel = t(
+      `shared.labels.${searchStore.searchModel.value.dateRange}`
+    );
+    emit("update-date-range", {
+      value: searchStore.searchModel.value.dateRange,
+      label: translatedLabel,
+    });
+
+    await applySearch();
+  };
+
+  const isActive = (value) => {
+    return searchStore.searchModel.value.dateRange === value;
+  };
 </script>
 
 <style lang="scss" scoped>
-.q-item__label--caption {
-  font-size: 14px;
-  letter-spacing: 0;
-  color: #697588;
-}
+  .q-item__label--caption {
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #697588;
+  }
 </style>
