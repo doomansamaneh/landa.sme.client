@@ -5,6 +5,7 @@ export const productionModel = {
   no: 1,
   date: dateTime.toDateString(),
   items: [],
+  scrapItems: [],
   usedItems: [],
   costs: [],
 };

@@ -2,23 +2,17 @@
   <q-markup-table bordered flat dense separator="horizontal">
     <thead>
       <tr>
-        <th colspan="100%" class="bg-blue text-white">
-          <span class="text-h6 text-weight-700">
-            کالاهای استفاده شده
-          </span>
-        </th>
-      </tr>
-      <tr>
         <th style="width: 1px">#</th>
         <th>کالا</th>
         <th>واحد سنجش</th>
         <th style="width: 180px">تعداد/مقدار</th>
+        <th style="width: 180px">قیمت فی</th>
         <th style="width: 1px"></th>
       </tr>
     </thead>
     <tbody>
       <tr
-        v-for="(row, index) in model?.usedItems"
+        v-for="(row, index) in model?.scrapItems"
         :key="index"
         class="q-pa-md"
       >
@@ -47,6 +41,12 @@
             placeholder="تعداد/مقدار"
           />
         </td>
+        <td>
+          <custom-input-number
+            v-model="row.price"
+            placeholder="قیمت فی"
+          />
+        </td>
         <td class="text-center q-gutter-x-sm">
           <q-btn
             color="primary"
@@ -55,7 +55,7 @@
             class="text-on-dark"
             size="sm"
             icon="o_add"
-            @click="formStore.addNewUsedItem(index, row)"
+            @click="formStore.addNewScrapItem(index, row)"
           />
           <q-btn
             color="red"
@@ -64,12 +64,12 @@
             class="text-on-dark"
             size="sm"
             icon="o_delete"
-            @click="formStore.deleteUsedItem(index)"
+            @click="formStore.deleteScrapItem(index)"
           />
         </td>
       </tr>
     </tbody>
-    <tbody v-if="model?.usedItems?.length === 0">
+    <tbody v-if="model?.scrapItems?.length === 0">
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
@@ -77,7 +77,7 @@
             rounded
             unelevated
             color="primary"
-            @click="formStore.pushNewUsedItem()"
+            @click="formStore.pushNewScrapItem()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
             افزودن ردیف

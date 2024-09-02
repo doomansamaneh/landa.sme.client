@@ -1,110 +1,65 @@
 <template>
-  <q-markup-table bordered flat dense separator="horizontal">
-    <thead>
-      <tr>
-        <th colspan="100%" class="bg-green text-white">
-          <span class="text-h6 text-weight-700">
-            کالاهای تولید شده
-          </span>
-        </th>
-      </tr>
-      <tr>
-        <th style="width: 1px">#</th>
-        <th>کالا</th>
-        <th>واحد سنجش</th>
-        <th style="width: 180px">تعداد/مقدار</th>
-        <th style="width: 1px"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        v-for="(row, index) in model?.items"
-        :key="index"
-        class="q-pa-md"
-      >
-        <td class="text-center">{{ index + 1 }}</td>
-        <td>
-          <product-lookup
-            class="first"
-            autofocus
-            placeholder="کالا"
-            v-model:selectedId="row.productId"
-            v-model:selectedText="row.productTitle"
-            :filterExpression="productFilter"
-            @rowSelected="productChanged($event, row)"
-          />
-        </td>
-        <td>
-          <product-unit-lookup
-            placeholder="واحد سنجش"
-            v-model:selectedId="row.productUnitId"
-            v-model:selectedText="row.productUnitTitle"
-          />
-        </td>
-        <td>
-          <custom-input-number
-            v-model="row.quantity"
-            placeholder="تعداد/مقدار"
-          />
-        </td>
-        <td class="text-center q-gutter-x-sm">
-          <q-btn
-            color="primary"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewItem(index, row)"
-          />
-          <q-btn
-            color="red"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_delete"
-            @click="formStore.deleteItem(index)"
-          />
-        </td>
-      </tr>
-    </tbody>
-    <tbody v-if="model?.items?.length === 0">
-      <tr>
-        <td colspan="100%" class="text-center">
-          <q-btn
-            class="q-my-xl primary-shadow"
-            rounded
-            unelevated
-            color="primary"
-            @click="formStore.pushNewItem()"
-          >
-            <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
-          </q-btn>
-        </td>
-      </tr>
-    </tbody>
-  </q-markup-table>
+  <q-tabs
+    v-model="tab"
+    class="text-weight-700 bg-green q-mt-lg"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'white'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'white'"
+    align="left"
+    inline-label
+    narrow-indicator
+  >
+    <q-tab
+      class="q-mr-xs"
+      name="product"
+      label="کالاهای تولید شده"
+      icon="o_keyboard"
+    />
+    <q-tab
+      class="q-mr-xs"
+      name="scrap"
+      label="ضایعات"
+      icon="o_assignment"
+    />
+  </q-tabs>
+
+  <q-tab-panels class="q-mt-md" v-model="tab" keep-alive animated>
+    <q-tab-panel class="no-padding bg-main_" name="product">
+      <product-items :form-store="formStore" />
+    </q-tab-panel>
+
+    <q-tab-panel class="no-padding bg-main" name="scrap">
+      <scrap-items :form-store="formStore" />
+    </q-tab-panel>
+  </q-tab-panels>
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
 
-  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
-  import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
-  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import ProductItems from "./_ProductItems.vue";
+  import ScrapItems from "./_ScrapItems.vue";
 
   const props = defineProps({
     formStore: Object,
   });
 
-  const model = computed(() => props.formStore.model.value);
-  const productChanged = (product, row) => {
-    //row.price = product?.price ?? 0;
-    row.productUnitId = product?.productUnitId ?? null;
-    row.productUnitTitle = product?.productUnitTitle ?? null;
-  };
+  const $q = useQuasar();
+  const tab = ref("product");
 
-  const productFilter = null;
+  const tabPanels = computed(() => {
+    return "no-border no-shadow";
+    const isXs = $q.screen.xs;
+
+    return isXs ? "no-border no-shadow" : "bordered border-radius-lg";
+    // : tab.value === "product" ||
+    //   tab.value === "account" ||
+    //   tab.value === "invoice"
+    // ? $q.screen.gt.xs
+    //   ? "no-border bg-main"
+    //   : "no-border no-shadow"
+    // : tab.value === "log"
+    // ? "bordered border-radius-lg"
+    // : "bordered border-radius-lg";
+  });
 </script>

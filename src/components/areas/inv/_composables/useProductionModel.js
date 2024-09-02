@@ -27,6 +27,7 @@ export function useProductionModel({ baseRoute }) {
 
   function setItems() {
     if (!model.value.items) model.value.items = [];
+    if (!model.value.scrapItems) model.value.scrapItems = [];
     if (!model.value.usedItems) model.value.usedItems = [];
     if (!model.value.costs) model.value.costs = [];
   }
@@ -43,6 +44,20 @@ export function useProductionModel({ baseRoute }) {
 
   const deleteItem = (index) => {
     model.value.items.splice(index, 1);
+  };
+
+  const addNewScrapItem = (index) => {
+    const newRow = { quantity: 0 };
+    model.value.scrapItems.splice(index + 1, 0, newRow);
+  };
+
+  const pushNewScrapItem = (item) => {
+    if (item) model.value.scrapItems.push(item);
+    else model.value.scrapItems.push({ quantity: 0 });
+  };
+
+  const deleteScrapItem = (index) => {
+    model.value.scrapItems.splice(index, 1);
   };
 
   const addNewCost = (index) => {
@@ -90,6 +105,10 @@ export function useProductionModel({ baseRoute }) {
     addNewItem,
     pushNewItem,
     deleteItem,
+
+    addNewScrapItem,
+    pushNewScrapItem,
+    deleteScrapItem,
 
     addNewUsedItem,
     pushNewUsedItem,
