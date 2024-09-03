@@ -109,26 +109,15 @@
         </template>
 
         <template v-else>
-          <div v-if="title">
+          <div class="row items-center">
             <slot name="header">
-              <div
-                class="text-weight-700 no-letter-spacing flex items-center"
+              <span
+                
+                class="title-width ellipsis-2-lines text-weight-700 no-letter-spacing"
                 :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
               >
                 <slot name="header-title">
-                  <span
-                    :style="
-                      $q.screen.gt.xs
-                        ? 'width: auto;'
-                        : 'max-width: 160px;'
-                    "
-                    class="ellipsis-2-lines text-weight-700 no-letter-spacing"
-                    :class="
-                      $q.screen.gt.sm ? 'text-h6' : 'text-body1'
-                    "
-                  >
-                    {{ title }}
-                  </span>
+                  <span>{{ title }}</span>
                   <q-btn
                     v-if="tableStore?.pagination.value.totalItems > 0"
                     rounded
@@ -140,12 +129,16 @@
                     class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
                   />
                 </slot>
-              </div>
+              </span>
+              <back-button v-if="backButton" class="q-ml-md" />
             </slot>
           </div>
+          
         </template>
 
-        <q-space v-if="!tableStore?.activeRow?.value" />
+        <q-space
+          v-if="!backButton && !tableStore?.activeRow?.value"
+        />
 
         <slot name="search-btn">
           <template v-if="searchBtn">
@@ -161,8 +154,6 @@
             </q-btn>
           </template>
         </slot>
-
-        <back-button style="margin-right: -28px" v-if="backButton" />
       </q-toolbar>
     </q-page-sticky>
   </div>
@@ -336,3 +327,23 @@
     window.removeEventListener("scroll", handleScroll);
   });
 </script>
+
+
+<style lang="scss">
+  
+  @media (min-width: 320px) and (max-width: 360px) {
+
+    .title-width {
+      max-width: 160px !important;
+    }
+    
+  }
+
+   @media (min-width: 376px) and (max-width: 599px) {
+
+    .title-width {
+      max-width: auto !important;
+    }
+    
+  }
+</style>

@@ -27,7 +27,11 @@
     </tool-bar-mobile>
   </slot>
 
-  <div class="row q-col-gutter-lg" style="margin-top: -16px">
+  <div
+    v-if="$q.screen.gt.xs"
+    class="row q-col-gutter-lg"
+    style="margin-top: -16px"
+  >
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
         <q-card-section class="q-gutter-y-sm" id="invoicePreview">
@@ -56,12 +60,17 @@
       </slot>
     </div>
   </div>
+
+  <preview-mobile v-else />
 </template>
 
 <script setup>
-  import { computed, onMounted } from "vue";
+  import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
+  import { useRouter } from "vue-router";
+  import { useInvoiceState } from "components/areas/sls/_composables/useInvoiceState";
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
+  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import ToolBar from "./PreviewToolbar.vue";
   import ToolBarMobile from "./PreviewToolbarMobile.vue";
@@ -70,24 +79,31 @@
   import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";
   import InvoiceFooter from "components/areas/sls/_shared/invoice/shared/preview/_FooterSection.vue";
   import DetailSection from "components/areas/sls/_shared/invoice/shared/preview/_DetailSection.vue";
+  import PreviewMobile from "components/areas/sls/_shared/invoice/shared/preview/PreviewMobile.vue";
 
   const props = defineProps({
     item: Object,
     title: String,
-    baseRoute: String,
-    taxApi: Boolean,
     inside: Boolean,
-    detailUrl: String,
+    margin: Boolean,
   });
 
   const formStore = useInvoiceModel({
-    baseRoute: props.baseRoute,
+    baseRoute: "sls/invoice",
     preview: true,
   });
 
   const route = useRoute();
+  const router = useRouter();
+  const invoiceStore = useInvoiceState();
+
+  function deleteCallBack() {
+    invoiceStore.state.firstLoad.value = false;
+    router.back();
+  }
 
   const id = computed(() => props.item?.id ?? route.params.id);
+  const appConfigStore = useAppConfigModel();
 
   onMounted(() => {
     formStore.getById(id.value);
