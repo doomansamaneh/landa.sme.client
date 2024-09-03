@@ -1,6 +1,7 @@
 <template>
   <slot name="toolbar">
     <tool-bar
+      v-if="$q.screen.gt.sm"
       :inside="inside"
       :title="title"
       :id="id"
@@ -11,6 +12,19 @@
         <slot name="toolbar-custom" :form-store="formStore"></slot>
       </template>
     </tool-bar>
+
+    <tool-bar-mobile
+      v-if="$q.screen.lt.md"
+      :inside="inside"
+      :title="title"
+      :id="id"
+      :form-store="formStore"
+      :base-route="baseRoute"
+    >
+      <template #toolbar-custom="{ formStore }">
+        <slot name="toolbar-custom" :form-store="formStore"></slot>
+      </template>
+    </tool-bar-mobile>
   </slot>
 
   <div class="row q-col-gutter-lg" style="margin-top: -16px">
@@ -50,6 +64,7 @@
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
 
   import ToolBar from "./PreviewToolbar.vue";
+  import ToolBarMobile from "./PreviewToolbarMobile.vue";
   import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
   import InvoiceHeaderSale from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSale.vue";
   import InvoiceBody from "components/areas/sls/_shared/invoice/shared/preview/_BodySection.vue";

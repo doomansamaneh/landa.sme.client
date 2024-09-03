@@ -116,7 +116,19 @@
                 :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
               >
                 <slot name="header-title">
-                  <span class="no-letter-spacing">{{ title }}</span>
+                  <span
+                    :style="
+                      $q.screen.gt.xs
+                        ? 'width: auto;'
+                        : 'max-width: 160px;'
+                    "
+                    class="ellipsis-2-lines text-weight-700 no-letter-spacing"
+                    :class="
+                      $q.screen.gt.sm ? 'text-h6' : 'text-body1'
+                    "
+                  >
+                    {{ title }}
+                  </span>
                   <q-btn
                     v-if="tableStore?.pagination.value.totalItems > 0"
                     rounded
@@ -150,7 +162,7 @@
           </template>
         </slot>
 
-        <back-button class="q-ml-sm" v-if="backButton" />
+        <back-button style="margin-right: -28px" v-if="backButton" />
       </q-toolbar>
     </q-page-sticky>
   </div>
