@@ -8,7 +8,7 @@
   />
 
   <mobile class="q-mb-sm" v-if="$q.screen.xs" />
-  <desktop />
+  <desktop :title="title" />
 </template>
 
 <script setup>
