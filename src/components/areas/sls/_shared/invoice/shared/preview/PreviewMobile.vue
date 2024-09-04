@@ -30,18 +30,21 @@
               v-for="item in formStore.model.value.invoiceItems"
               :key="item.id"
             >
-              <div class="row q-gutter-md">
+              <div class="row q-gutter-lg">
                 <div class="col">
-                  <div class="row items-center q-gutter-sm">
+                  <div class="row items-center">
                     <div>
-                      <span>
-                        {{ item.productTitle }}
-                      </span>
-                      <q-badge class="q-ml-sm" color="red" round dense unelevated>
-                        <div class="text-white text-body3">
-                          {{ item.quantity.toLocaleString() }}
+                      <div class="row">
+                        <div class="">
+                          {{ item.productTitle }}
+
+                          <q-badge color="red" round dense unelevated>
+                            <div class="text-white text-body3">
+                              {{ item.quantity.toLocaleString() }}
+                            </div>
+                          </q-badge>
                         </div>
-                      </q-badge>
+                      </div>
                     </div>
                   </div>
                 </div>
