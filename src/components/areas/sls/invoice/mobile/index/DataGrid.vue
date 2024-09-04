@@ -28,6 +28,15 @@
     <template #search-btn>
       <q-btn
         round
+        class="q-mr-sm"
+        unelevated
+        dense
+        v-if="!tableStore?.activeRow?.value"
+      >
+        <q-icon name="swap_vert" />
+      </q-btn>
+      <q-btn
+        round
         unelevated
         dense
         v-if="!tableStore?.activeRow?.value"
