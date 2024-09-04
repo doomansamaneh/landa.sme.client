@@ -114,10 +114,10 @@
               <span
                 
                 class="title-width ellipsis-2-lines text-weight-700 no-letter-spacing"
-                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
+                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
               >
                 <slot name="header-title">
-                  <span>{{ title }}</span>
+                  <span class="text-body2 no-letter-spacing">{{ title }}</span>
                   <q-btn
                     v-if="tableStore?.pagination.value.totalItems > 0"
                     rounded

@@ -27,12 +27,10 @@
     </tool-bar-mobile>
   </slot>
 
-  <div
-    v-if="$q.screen.gt.xs"
-    class="row q-col-gutter-lg"
-    style="margin-top: -16px"
-  >
-    <div class="col-md-8 col-sm-12 col-xs-12">
+    <preview-mobile class="q-mb-sm" v-if="$q.screen.xs" />
+
+  <div class="row q-col-gutter-lg" style="margin-top: -16px">
+    <div v-if="$q.screen.gt.xs" class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
         <q-card-section class="q-gutter-y-sm" id="invoicePreview">
           <invoice-header
@@ -49,6 +47,7 @@
         </q-card-section>
       </q-card>
     </div>
+
     <div class="col-md-4 col-sm-12 col-xs-12">
       <slot name="detail-section" :form-store="formStore">
         <detail-section
@@ -60,8 +59,6 @@
       </slot>
     </div>
   </div>
-
-  <preview-mobile v-else />
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <q-card class="form-container-">
+  <q-card class="bordered shadow form-container_">
     <q-card-section>
       <div class="row items-center justify-between">
         <div>شماره: {{ formStore.model.value.no }}</div>
@@ -24,23 +24,28 @@
         </div>
       </div>
       <div class="q-mt-lg overflow-hidden border-radius-xs">
-        <div class="bg-grey-2 q-pa-md">
+        <div class="bg-grey-1 text-dark q-pa-md">
           <div class="column q-gutter-md">
             <div
               v-for="item in formStore.model.value.invoiceItems"
               :key="item.id"
-              class="row items-center justify-between"
             >
-              <div class="row items-center q-gutter-sm">
-                <div class="">{{ item.productTitle }}</div>
-                <q-badge color="red" round dense unelevated>
-                  <div class="text-white text-body3">
-                    {{ item.quantity.toLocaleString() }}
+              <div class="row q-gutter-md">
+                <div class="col">
+                  <div class="row items-center q-gutter-sm">
+                    <div class="">{{ item.productTitle }}</div>
+                    <q-badge color="red" round dense unelevated>
+                      <div class="text-white text-body3">
+                        {{ item.quantity.toLocaleString() }}
+                      </div>
+                    </q-badge>
                   </div>
-                </q-badge>
-              </div>
-              <div class="text-bold">
-                {{ item.price.toLocaleString() }}
+                </div>
+                <div class="flex justify-end">
+                  <div class="text-bold">
+                    {{ item.price.toLocaleString() }}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -57,7 +62,7 @@
             </div>
           </div>
         </div>
-        <div class="row q-px-md q-py-sm bg-orange-2">
+        <div class="row text-dark q-px-md q-py-sm bg-orange-2">
           <div class="col-xs text-body3">
             {{ numberToWords(formStore.totalPrice.value) }}
             <b>{{ formStore.model.value.currencyTitle }}</b>

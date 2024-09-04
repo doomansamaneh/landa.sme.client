@@ -1,7 +1,7 @@
 <template>
   <q-card
     class="bordered"
-    :class="$q.screen.xs ? 'form-container' : ''"
+    :class="$q.screen.xs ? 'form-container-' : ''"
     style="margin-top: 0"
   >
     <q-card-section>
