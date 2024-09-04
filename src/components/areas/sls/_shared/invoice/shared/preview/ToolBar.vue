@@ -1,14 +1,29 @@
 <template>
-  <tool-bar
+  <tool-bar-desktop
+    v-if="$q.screen.gt.sm"
     :inside="inside"
     :title="title"
     :id="id"
     :form-store="formStore"
     :base-route="baseRoute"
-  />
+  >
+    <template #toolbar-custom="{ formStore }">
+      <slot name="toolbar-custom" :form-store="formStore"></slot>
+    </template>
+  </tool-bar-desktop>
 
-  <mobile class="q-mb-sm" v-if="$q.screen.xs" />
-  <desktop />
+  <tool-bar-mobile
+    v-if="$q.screen.lt.md"
+    :inside="inside"
+    :title="title"
+    :id="id"
+    :form-store="formStore"
+    :base-route="baseRoute"
+  >
+    <template #toolbar-custom="{ formStore }">
+      <slot name="toolbar-custom" :form-store="formStore"></slot>
+    </template>
+  </tool-bar-mobile>
 </template>
 
 <script setup>
@@ -19,8 +34,8 @@
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
-  import ToolBar from "src/components/areas/sls/_shared/invoice/shared/preview/ToolBar.vue";
-
+  import ToolBarDesktop from "src/components/areas/sls/_shared/invoice/desktop/preview/PreviewToolbar.vue";
+  import ToolBarMobile from "src/components/areas/sls/_shared/invoice/mobile/preview/PreviewToolbar.vue";
   import Mobile from "components/areas/sls/_shared/invoice/mobile/preview/IndexView.vue";
   import Desktop from "components/areas/sls/_shared/invoice/desktop/preview/IndexView.vue";
 

@@ -90,7 +90,7 @@
   import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import SendEmailDialog from "../forms/SendEmailDialog.vue";
+  import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
 
   const props = defineProps({
     id: String,
