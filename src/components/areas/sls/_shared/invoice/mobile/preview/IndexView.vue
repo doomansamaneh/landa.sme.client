@@ -1,26 +1,72 @@
 <template>
   <q-card class="bordered shadow form-container_">
     <q-card-section>
-      <div class="row items-center justify-between">
-        <div>شماره: {{ formStore.model.value.no }}</div>
+      <div
+        class="row justify-between items-center text-body3 no-letter-spacing"
+      >
         <div>
-          تاریخ: {{ formStore.model.value.date.substring(0, 10) }}
+          <div>
+            شماره:
+            <span class="text-weight-500">
+              {{ formStore.model.value.no }}
+            </span>
+          </div>
+          <div>
+            تاریخ:
+            <span class="text-weight-500">
+              {{ formStore.model.value.date.substring(0, 10) }}
+            </span>
+          </div>
         </div>
-      </div>
-    </q-card-section>
-    <q-card-section class="q-pt-none">
-      <div class="row justify-center">
         <div>
-          <span class="text-bold q-mr-sm">فروشنده:</span>
-          <span>
-            {{ appConfigStore.model.value.companySetting.name }}
+          <span
+            class="border-radius-sm primary-gradient text-caption text-white label"
+          >
+            {{ formStore.model.value.typeTitle }}
           </span>
         </div>
       </div>
-      <div class="row justify-center q-mt-sm">
+    </q-card-section>
+
+    <q-separator />
+
+    <q-card-section>
+      <div class="row q-mt-sm">
         <div>
-          <span class="text-bold q-mr-sm">خریدار:</span>
-          <span>{{ formStore.model.value.customerName }}</span>
+          <span class="q-mr-sm">فروشنده:</span>
+          <span class="text-weight-500">
+            {{ appConfigStore.model.value.companySetting.name }}
+          </span>
+          <span
+            v-if="appConfigStore.model.value.companySetting.address"
+          >
+            -
+          </span>
+          <span
+            v-if="appConfigStore.model.value.companySetting.address"
+            class="text-grey-6 text-body3 no-letter-spacing"
+          >
+            {{ appConfigStore.model.value.companySetting.address }}
+          </span>
+        </div>
+      </div>
+      <div class="row q-mt-sm">
+        <div>
+          <span class="q-mr-sm">خریدار:</span>
+          <span class="text-weight-500">
+            {{ formStore.model.value.customerName }}
+          </span>
+          <span
+            v-if="appConfigStore.model.value.companySetting.address"
+          >
+            -
+          </span>
+          <span
+            v-if="appConfigStore.model.value.companySetting.address"
+            class="text-grey-6 text-body3 no-letter-spacing"
+          >
+            {{ appConfigStore.model.value.companySetting.address }}
+          </span>
         </div>
       </div>
       <div class="q-mt-lg overflow-hidden border-radius-xs">
@@ -56,7 +102,10 @@
               </div>
             </div>
 
-            <div class="row items-center justify-between">
+            <div
+              v-if="formStore.totalVat.value"
+              class="row items-center justify-between"
+            >
               <div class="row items-center q-gutter-sm">
                 <div class="">جمع مالیات و عوارض</div>
                 <div class="text-green text-bold text-body3">
@@ -65,6 +114,17 @@
               </div>
               <div class="text-bold">
                 {{ formStore.totalVat.value.toLocaleString() }}
+              </div>
+            </div>
+            <div
+              v-if="formStore.totalDiscount.value"
+              class="row items-center justify-between"
+            >
+              <div class="row items-center q-gutter-sm">
+                <div>تخفیف</div>
+              </div>
+              <div class="text-negative text-bold">
+                {{ formStore.totalDiscount.value.toLocaleString() }} -
               </div>
             </div>
           </div>
@@ -134,3 +194,9 @@
     formStore.getById(id.value);
   });
 </script>
+
+<style lang="scss" scoped>
+  .label {
+    padding: 2px 12px;
+  }
+</style>

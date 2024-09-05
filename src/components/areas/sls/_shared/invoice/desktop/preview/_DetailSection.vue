@@ -166,8 +166,8 @@
   import { ref } from "vue";
   import { useQuasar } from "quasar";
 
-  import DetailPayments from "./_DetailPayments.vue";
-  import DetailTax from "./_DetailTax.vue";
+  import DetailPayments from "src/components/areas/sls/_shared/invoice/desktop/preview/_DetailPayments.vue";
+  import DetailTax from "src/components/areas/sls/_shared/invoice/desktop/preview/_DetailTax.vue";
   import DetailLog from "src/components/areas/_shared/log/PreviewLog.vue";
   import CustomLink from "src/components/shared/buttons/CustomLink.vue";
 

@@ -33,7 +33,7 @@
         dense
         v-if="!tableStore?.activeRow?.value"
       >
-        <q-icon name="swap_vert" />
+        <q-icon name="sort" />
       </q-btn>
       <q-btn
         round

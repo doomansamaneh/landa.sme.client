@@ -23,7 +23,7 @@
         <detail-section
           :model="formStore.model"
           :form-store="formStore"
-          :tax-api="taxApi"
+          tax-api
           :detail-url="detailUrl"
         />
       </slot>
