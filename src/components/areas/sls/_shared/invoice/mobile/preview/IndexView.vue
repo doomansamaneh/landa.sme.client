@@ -2,9 +2,9 @@
   <q-card class="bordered shadow form-container_">
     <q-card-section>
       <div
-        class="row justify-between items-center text-body3 no-letter-spacing"
+        class="row q-col-gutter-md justify-between items-center text-body3 no-letter-spacing"
       >
-        <div>
+        <div class="col-5">
           <div>
             شماره:
             <span class="text-weight-500">
@@ -18,12 +18,28 @@
             </span>
           </div>
         </div>
-        <div>
-          <span
-            class="border-radius-sm primary-gradient text-caption text-white label"
-          >
-            {{ formStore.model.value.typeTitle }}
-          </span>
+        <div class="col row justify-end q-gutter-sm">
+          <div v-if="formStore.model.value.typeTitle">
+            <span
+              class="border-radius-sm primary-gradient text-caption text-white label"
+            >
+              {{ formStore.model.value.typeTitle }}
+            </span>
+          </div>
+          <div v-if="formStore.model.value.contractTitle">
+            <span
+              class="border-radius-sm bluegrey-gradient text-caption text-white label"
+            >
+              {{ formStore.model.value.contractTitle }}
+            </span>
+          </div>
+          <div v-if="formStore.model.value.statusTitle">
+            <span
+              class="border-radius-sm orange-gradient text-caption text-white label"
+            >
+              {{ formStore.model.value.statusTitle }}
+            </span>
+          </div>
         </div>
       </div>
     </q-card-section>
@@ -48,6 +64,18 @@
           >
             {{ appConfigStore.model.value.companySetting.address }}
           </span>
+          <span
+            v-if="appConfigStore.model.value.companySetting.phone"
+          >
+            -
+          </span>
+          <span
+            v-if="appConfigStore.model.value.companySetting.phone"
+            class="text-caption text-grey-6"
+          >
+            <q-icon name="o_phone" />
+            {{ appConfigStore.model.value.companySetting.phone }}
+          </span>
         </div>
       </div>
       <div class="row q-mt-sm">
@@ -57,26 +85,61 @@
             {{ formStore.model.value.customerName }}
           </span>
           <span
-            v-if="appConfigStore.model.value.companySetting.address"
+            v-if="
+              formStore.model.value.customerSummary?.address?.address
+            "
           >
             -
           </span>
           <span
-            v-if="appConfigStore.model.value.companySetting.address"
+            v-if="
+              formStore.model.value.customerSummary?.address?.address
+            "
             class="text-grey-6 text-body3 no-letter-spacing"
           >
-            {{ appConfigStore.model.value.companySetting.address }}
+            {{
+              formStore.model.value.customerSummary?.address?.address
+            }}
+            <span
+              v-if="
+                formStore.model.value.customerSummary?.phone?.value
+              "
+            >
+              -
+            </span>
+            <span
+              v-if="
+                formStore.model.value.customerSummary?.phone?.value
+              "
+              class="text-caption text-grey-6"
+            >
+              <q-icon name="o_phone" />
+              {{
+                formStore.model.value.customerSummary?.phone?.value
+              }}
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="row q-mt-lg">
+        <div
+          v-if="formStore.model.value.subject"
+          class="full-width rounded-borders bordered q-pa-sm"
+        >
+          <span class="q-mr-sm">شرح:</span>
+          <span>
+            {{ formStore.model.value.subject }}
           </span>
         </div>
       </div>
       <div class="q-mt-lg overflow-hidden border-radius-xs">
-        <div class="bg-grey-1 text-dark q-pa-md">
+        <div class="bg-grey-2 text-dark q-pa-md">
           <div class="column q-gutter-md">
             <div
               v-for="item in formStore.model.value.invoiceItems"
               :key="item.id"
             >
-              <div class="row q-gutter-lg">
+              <div class="row q-col-gutter-lg">
                 <div class="col">
                   <div class="row items-center">
                     <div>
