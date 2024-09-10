@@ -120,6 +120,24 @@
                 {{ $t("shared.labels.previous") }}
               </q-tooltip>
             </q-btn>
+
+            <q-btn
+              unelevated
+              round
+              dense
+              size="12px"
+              color="primary"
+              text-color="white"
+              icon="add"
+              to="/acc/fiscalYear/create"
+            >
+              <q-tooltip
+                class="text-body2 no-letter-spacing custom-tooltip"
+                :delay="600"
+              >
+                {{ $t("shared.labels.addFiscalYear") }}
+              </q-tooltip>
+            </q-btn>
           </template>
         </div>
       </div>

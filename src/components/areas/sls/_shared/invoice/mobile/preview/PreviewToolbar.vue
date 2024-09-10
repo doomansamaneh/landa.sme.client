@@ -8,7 +8,7 @@
   >
     <template #buttons>
       <q-btn
-        :to="`/${baseRoute}/edit/${id}`"
+        :to="`/${baseRoute}/edit/${model.id}`"
         class="text-caption"
         round
         unelevated
@@ -104,7 +104,7 @@
     <template #body>
       <q-list padding>
         <q-item
-          :to="`/${baseRoute}/copy/${id}`"
+          :to="`/${baseRoute}/copy/${model.id}`"
           clickable
           v-close-popup
           tabindex="0"
@@ -191,7 +191,7 @@
           clickable
           v-close-popup
           tabindex="0"
-          @click="formStore.downloadPdf(id)"
+          @click="formStore.downloadPdf(model.id)"
         >
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark">
@@ -229,7 +229,9 @@
           clickable
           v-close-popup
           tabindex="0"
-          @click="formStore.crudStore.deleteById(id, deleteCallBack)"
+          @click="
+            formStore.crudStore.deleteById(model.id, deleteCallBack)
+          "
         >
           <q-item-section avatar>
             <q-avatar class="bg-on-dark text-on-dark">
@@ -259,7 +261,7 @@
   import BottomSheet from "src/components/shared/BottomSheet.vue";
 
   const props = defineProps({
-    id: String,
+    model: Object,
     title: String,
     inside: Boolean,
     baseRoute: String,

@@ -7,7 +7,7 @@
         color="primary"
         padding="4px 12px"
         unelevated
-        :to="`/trs/receipt/createFromInvoice/${model?.value.id}`"
+        :to="`/trs/receipt/createFromInvoice/${model.id}`"
       >
         <q-icon name="o_add" size="xs" />
         <span>دریافت</span>
@@ -37,7 +37,7 @@
       ref="paymentsGrid"
       class="q-mt-md"
       :detail-url="detailUrl"
-      :invoice-id="model?.value.id"
+      :invoice-id="model.id"
     />
 
     <q-separator class="q-my-sm" />
@@ -47,7 +47,7 @@
         <span class="text-body3">جمع کل:</span>
       </div>
       <div class="col text-body3 text-bold">
-        {{ model.value.amount.toLocaleString() }}
+        {{ helper.formatNumber(model.amount) }}
       </div>
     </div>
 
@@ -56,7 +56,7 @@
         <span class="text-body3">جمع دریافتی:</span>
       </div>
       <div class="col text-body3 text-bold">
-        {{ payedAmount?.toLocaleString() }}
+        {{ helper.formatNumber(payedAmount) }}
       </div>
     </div>
 
@@ -67,7 +67,7 @@
         <span class="text-body3">مانده:</span>
       </div>
       <div class="col text-body2 text-bold">
-        {{ remainedAmount?.toLocaleString() }}
+        {{ helper.formatNumber(remainedAmount) }}
       </div>
     </div>
   </div>
@@ -79,6 +79,7 @@
 
   import InvoicePayment from "src/components/areas/trs/paymentInvoice/shared/index/InvoicePayment.vue";
   import PaymentInvoiceDialog from "src/components/areas/trs/paymentInvoice/shared/forms/PaymentInvoiceDialog.vue";
+  import { helper } from "src/helpers";
 
   const props = defineProps({
     model: Object,
@@ -99,14 +100,14 @@
   );
 
   const remainedAmount = computed(
-    () => props.model?.value?.amount - payedAmount.value
+    () => props.model.amount - payedAmount.value
   );
 
   function settlement() {
     $q.dialog({
       component: PaymentInvoiceDialog,
       componentProps: {
-        invoiceId: props.model?.value?.id,
+        invoiceId: props.model.id,
       },
     }).onOk(async () => {
       await reloadData();

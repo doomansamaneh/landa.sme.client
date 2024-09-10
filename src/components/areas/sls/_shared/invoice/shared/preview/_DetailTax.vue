@@ -8,7 +8,7 @@
       class="primary-gradient primary-shadow"
       @click="
         taxStore.sendToTax(
-          model.value.id,
+          model.id,
           taxGrid.dataGrid.tableStore.reloadData
         )
       "
@@ -16,7 +16,7 @@
       <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
       <span>ارسال به سامانه مودیان</span>
     </q-btn>
-    <!-- v-if="!configStore.model.value.companySetting?.taxApiSetting?.clientId" -->
+    <!-- v-if="!configStore.model.companySetting?.taxApiSetting?.clientId" -->
     <!-- <q-btn rounded to="/cmn/appConfig/VATInfo" flat unelevated>
       <q-icon name="o_settings" size="xs" class="q-mr-xs" />
       <span>پیکربندی سامانه مودیان</span>
@@ -31,7 +31,7 @@
       class="q-mt-md"
       flat
       hide-filter-row
-      :invoice-id="model.value.id"
+      :invoice-id="model.id"
     ></data-grid>
   </div>
 </template>
@@ -49,6 +49,6 @@
   const taxStore = useTaxApiLogModel();
 
   onMounted(() => {
-    taxStore.isSentApiSuccessfully(props.model.value.id);
+    taxStore.isSentApiSuccessfully(props.model.id);
   });
 </script>

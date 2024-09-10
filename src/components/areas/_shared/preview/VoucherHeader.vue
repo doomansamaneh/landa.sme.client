@@ -17,10 +17,12 @@
         <span class="text-weight-700">
           {{ model?.rowNo }}
         </span>
-        <span>{{ $t("shared.labels.no") }}:</span>
-        <span class="text-weight-700">
-          {{ model?.no }}
-        </span>
+        <template v-if="model?.no">
+          <span>{{ $t("shared.labels.no") }}:</span>
+          <span class="text-weight-700">
+            {{ model?.no }}
+          </span>
+        </template>
         <span>{{ $t("shared.labels.date") }}:</span>
         <span class="text-weight-700">
           {{ model?.date.substring(0, 10) }}

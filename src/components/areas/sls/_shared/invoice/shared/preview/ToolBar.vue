@@ -3,7 +3,7 @@
     v-if="$q.screen.gt.sm"
     :inside="inside"
     :title="title"
-    :id="id"
+    :model="model"
     :form-store="formStore"
     :base-route="baseRoute"
   >
@@ -16,7 +16,7 @@
     v-if="$q.screen.lt.md"
     :inside="inside"
     :title="title"
-    :id="id"
+    :model="model"
     :form-store="formStore"
     :base-route="baseRoute"
   >
@@ -27,31 +27,26 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from "vue";
-  import { useRoute } from "vue-router";
   import { useRouter } from "vue-router";
   import { useInvoiceState } from "components/areas/sls/_composables/useInvoiceState";
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
-  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
-  import ToolBarDesktop from "src/components/areas/sls/_shared/invoice/desktop/preview/PreviewToolbar.vue";
-  import ToolBarMobile from "src/components/areas/sls/_shared/invoice/mobile/preview/PreviewToolbar.vue";
-  import Mobile from "components/areas/sls/_shared/invoice/mobile/preview/IndexView.vue";
-  import Desktop from "components/areas/sls/_shared/invoice/desktop/preview/IndexView.vue";
+  import ToolBarDesktop from "../../desktop/preview/PreviewToolbar.vue";
+  import ToolBarMobile from "../../mobile/preview/PreviewToolbar.vue";
 
   const props = defineProps({
-    item: Object,
+    model: Object,
     title: String,
     inside: Boolean,
     margin: Boolean,
+    baseRoute: String,
   });
 
   const formStore = useInvoiceModel({
-    baseRoute: "sls/invoice",
+    baseRoute: props.baseRoute,
     preview: true,
   });
 
-  const route = useRoute();
   const router = useRouter();
   const invoiceStore = useInvoiceState();
 
@@ -59,11 +54,4 @@
     invoiceStore.state.firstLoad.value = false;
     router.back();
   }
-
-  const id = computed(() => props.item?.id ?? route.params.id);
-  const appConfigStore = useAppConfigModel();
-
-  onMounted(() => {
-    formStore.getById(id.value);
-  });
 </script>

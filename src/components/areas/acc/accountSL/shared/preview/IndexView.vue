@@ -28,9 +28,13 @@
 
   <q-card>
     <div id="invoicePreview" v-if="model">
+      <card-title title="گردش حساب" />
       <q-card-section>
         <header-section :model="model" />
       </q-card-section>
+
+      <q-separator />
+
       <q-card-section class="q-px-none">
         <account-item
           flat
@@ -53,6 +57,7 @@
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
 
   const props = defineProps({

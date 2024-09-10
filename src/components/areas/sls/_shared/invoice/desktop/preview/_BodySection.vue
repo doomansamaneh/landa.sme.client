@@ -43,13 +43,13 @@
           </td>
           <td
             style="padding: 5px; border: 1px solid #2d2d2d"
-            v-if="formStore.totalDiscount.value"
+            v-if="totalDiscount"
           >
             تخفیف
           </td>
           <td
             style="padding: 5px; border: 1px solid #2d2d2d"
-            v-if="formStore.totalDiscount.value"
+            v-if="totalDiscount"
           >
             مبلغ پس از تخفیف
           </td>
@@ -65,13 +65,13 @@
           >
             جمع کل (
             <span class="text-weight-700">
-              {{ model.value.currencyTitle }}
+              {{ model.currencyTitle }}
             </span>
             )
           </td>
         </tr>
         <tr
-          v-for="(item, index) in model.value.invoiceItems"
+          v-for="(item, index) in model.invoiceItems"
           :key="item.id"
         >
           <td style="padding: 5px; border: 1px solid #2d2d2d">
@@ -90,39 +90,38 @@
             </div>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item.quantity.toLocaleString() }}
+            {{ helper.formatNumber(item.quantity) }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             {{ item.productUnitTitle }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item.price.toLocaleString() }}
+            {{ helper.formatNumber(item.price) }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ (item.quantity * item.price).toLocaleString() }}
+            {{ helper.formatNumber(item.quantity * item.price) }}
           </td>
           <td
             style="padding: 5px; border: 1px solid #2d2d2d"
-            v-if="formStore.totalDiscount.value"
+            v-if="model.totalDiscount"
           >
-            {{ item.discount.toLocaleString() }}
+            {{ helper.formatNumber(item.discount) }}
           </td>
           <td
             style="padding: 5px; border: 1px solid #2d2d2d"
-            v-if="formStore.totalDiscount.value"
+            v-if="model.totalDiscount"
           >
             {{
-              (
-                item.quantity * item.price -
-                item.discount
-              ).toLocaleString()
+              helper.formatNumber(
+                item.quantity * item.price - item.discount
+              )
             }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item.vatAmount.toLocaleString() }}
+            {{ helper.formatNumber(item.vatAmount) }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item.totalPrice.toLocaleString() }}
+            {{ helper.formatNumber(item.totalPrice) }}
           </td>
         </tr>
         <tr>
@@ -136,43 +135,40 @@
             class="text-right"
           >
             <strong>جمع کل:</strong>
-            ({{ numberToWords(formStore.totalPrice.value) }}
-            <b>{{ model.value.currencyTitle }})</b>
+            ({{ numberToWords(model.totalPrice) }}
+            <b>{{ model.currencyTitle }})</b>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalNetPrice.value.toLocaleString() }}
+              {{ helper.formatNumber(model.totalNetPrice) }}
             </strong>
           </td>
           <td
             style="padding: 5px; border: 1px solid #2d2d2d"
-            v-if="formStore.totalDiscount.value"
+            v-if="model.totalDiscount"
           >
             <strong>
-              {{ formStore.totalDiscount.value.toLocaleString() }}
+              {{ helper.formatNumber(model.totalDiscount) }}
             </strong>
           </td>
           <td
             style="padding: 5px; border: 1px solid #2d2d2d"
-            v-if="formStore.totalDiscount.value"
+            v-if="model.totalDiscount"
           >
             <strong>
               {{
-                (
-                  formStore.totalPrice.value -
-                  formStore.totalVat.value
-                ).toLocaleString()
+                helper.formatNumber(model.totalPrice - model.totalVat)
               }}
             </strong>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalVat.value.toLocaleString() }}
+              {{ helper.formatNumber(model.totalVat) }}
             </strong>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
-              {{ formStore.totalPrice.value.toLocaleString() }}
+              {{ helper.formatNumber(model.totalPrice) }}
             </strong>
           </td>
         </tr>
@@ -184,13 +180,11 @@
 <script setup>
   import { numberToWords } from "@persian-tools/persian-tools";
   import { useQuasar } from "quasar";
+  import { helper } from "src/helpers";
 
   const $q = useQuasar();
 
   const props = defineProps({
-    formStore: Object,
     model: Object,
   });
 </script>
-
-<style lang="scss"></style>

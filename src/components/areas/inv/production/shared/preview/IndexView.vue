@@ -81,7 +81,7 @@
           <q-card-section class="q-gutter-y-sm_">
             <q-tabs
               v-model="tab"
-              class="text-weight-700 bg-green q-mt-lg"
+              class="text-weight-700 bg-green"
               :indicator-color="$q.dark.isActive ? 'yellow' : 'white'"
               :active-color="$q.dark.isActive ? 'yellow' : 'white'"
               align="left"

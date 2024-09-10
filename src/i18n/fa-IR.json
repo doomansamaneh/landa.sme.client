@@ -366,7 +366,8 @@
       "expense": "هزینه",
       "revenue": "فروش و درآمد",
       "income": "درآمد خالص",
-      "showDetail": "مشاهده جزییات"
+      "showDetail": "مشاهده جزییات",
+      "addFiscalYear": "افزودن سال مالی جدید"
     },
     "productType": {
       "main": "اصلی",

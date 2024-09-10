@@ -15,16 +15,13 @@
             colspan="100%"
           >
             <div>
-              <strong v-if="model.value.contractTitle">
-                {{ model.value.contractTitle }}
-                <span v-if="model.value.summary" style="padding: 5px">
+              <strong v-if="model.contractTitle">
+                {{ model.contractTitle }}
+                <span v-if="model.summary" style="padding: 5px">
                   /
                 </span>
               </strong>
-              <span
-                class="text-wrap"
-                v-html="model.value.summary"
-              ></span>
+              <span class="text-wrap" v-html="model.summary"></span>
             </div>
             <div
               v-if="comment"

@@ -67,9 +67,7 @@
           >
             نشانی:
             <strong>
-              {{
-                appConfigStore.model.value.companySetting.location
-              }}
+              {{ appConfigStore.model.value.companySetting.location }}
               -
             </strong>
             <span class="text-wrap">
@@ -103,19 +101,19 @@
         <tr>
           <td style="border: 1px solid #2d2d2d; padding: 3px">
             نام:
-            <strong>{{ model.value.customerName }}</strong>
+            <strong>{{ model.customerName }}</strong>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 3px">
             شماره ثبت:
-            {{ model.value.customerSummary?.business?.regNo }}
+            {{ model.customerSummary?.business?.regNo }}
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 3px">
             شماره اقتصادی:
-            {{ model.value.customerSummary?.business?.taxNo }}
+            {{ model.customerSummary?.business?.taxNo }}
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 3px">
             شناسه ملی:
-            {{ model.value.customerSummary?.business?.nationalNo }}
+            {{ model.customerSummary?.business?.nationalNo }}
           </td>
         </tr>
         <tr>
@@ -125,21 +123,19 @@
           >
             نشانی:
             <strong>
-              {{
-                model.value.customerSummary?.address?.locationTitle
-              }}
+              {{ model.customerSummary?.address?.locationTitle }}
               -
             </strong>
             <span class="text-wrap">
-              {{ model.value.customerSummary?.address?.address }}
+              {{ model.customerSummary?.address?.address }}
             </span>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 3px">
             کد پستی:
-            {{ model.value.customerSummary?.address?.postalCode }}
+            {{ model.customerSummary?.address?.postalCode }}
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 3px">
-            تلفن: {{ model.value.customerSummary?.phone?.value }}
+            تلفن: {{ model.customerSummary?.phone?.value }}
           </td>
         </tr>
       </tbody>

@@ -8,7 +8,7 @@
   >
     <template #buttons>
       <q-btn
-        :to="`/${baseRoute}/edit/${id}`"
+        :to="`/${baseRoute}/edit/${model.id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -19,7 +19,7 @@
         {{ $t("shared.labels.edit") }}
       </q-btn>
       <q-btn
-        :to="`/${baseRoute}/copy/${id}`"
+        :to="`/${baseRoute}/copy/${model.id}`"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -31,7 +31,9 @@
       </q-btn>
 
       <q-btn
-        @click="formStore.crudStore.deleteById(id, deleteCallBack)"
+        @click="
+          formStore.crudStore.deleteById(model.id, deleteCallBack)
+        "
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -57,7 +59,7 @@
       </q-btn>
 
       <q-btn
-        @click="formStore.downloadPdf(id)"
+        @click="formStore.downloadPdf(model.id)"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -93,7 +95,7 @@
   import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
 
   const props = defineProps({
-    id: String,
+    model: Object,
     title: String,
     inside: Boolean,
     baseRoute: String,

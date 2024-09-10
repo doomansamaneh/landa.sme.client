@@ -41,19 +41,47 @@
     </template>
   </tool-bar>
 
-  <account-item
-    ref="dataGrid"
-    :filter-expression="filterExpersion"
-  ></account-item>
+  <q-card>
+    <card-title title="گردش حساب" />
+
+    <q-card-section>
+      <div class="row q-mb-sm">
+        <span class="col-1">کد:</span>
+        <span class="text-body1 q-mx-md">
+          {{ item?.code }}
+        </span>
+      </div>
+
+      <div class="row q-mb-sm">
+        <span class="col-1">عنوان:</span>
+        <span class="text-body1 q-mx-md">
+          {{ item?.title }}
+        </span>
+      </div>
+    </q-card-section>
+
+    <q-separator />
+
+    <q-card-section class="q-px-none">
+      <account-item
+        flat
+        ref="dataGrid"
+        :filter-expression="filterExpersion"
+        :columns="accountItemDLColumns"
+      />
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
   import { ref, computed } from "vue";
   import { useRoute } from "vue-router";
   import { sqlOperator } from "src/constants";
+  import { accountItemDLColumns } from "../../_composables/constants";
 
   import AccountItem from "./AccountItem.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     inside: Boolean,

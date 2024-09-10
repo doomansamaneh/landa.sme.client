@@ -1,16 +1,12 @@
 <template>
-  <q-card
-    class="bordered"
-    :class="$q.screen.xs ? 'form-container-' : ''"
-    style="margin-top: 0"
-  >
+  <q-card bordered>
     <q-card-section>
       <slot name="header">
         <div class="column q-gutter-y-sm">
           <div class="row items-center">
             <span class="col-2 text-caption text-bold">شماره:</span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.no }}
+              {{ model.no }}
             </span>
           </div>
 
@@ -23,8 +19,8 @@
             </span>
             <span class="text-body3 q-mx-md">
               <custom-link
-                :to="`/acc/voucher/preview/${model.value.voucherId}`"
-                :title="model.value.voucherNo"
+                :to="`/acc/voucher/preview/${model.voucherId}`"
+                :title="model.voucherNo"
               />
             </span>
           </div>
@@ -33,8 +29,8 @@
             <span class="col-2 text-caption text-bold">مشتری:</span>
             <span class="text-body3 q-mx-md">
               <custom-link
-                :to="`/crm/customer/preview/${model.value.customerId}`"
-                :title="model.value.customerName"
+                :to="`/crm/customer/preview/${model.customerId}`"
+                :title="model.customerName"
               />
             </span>
           </div>
@@ -46,41 +42,32 @@
             <span class="col-2 text-caption text-bold">فاکتور:</span>
             <span class="text-body3 q-mx-md">
               <custom-link
-                :to="`/sls/invoice/preview/${model.value.invoiceId}`"
-                :title="model.value.invoiceNo"
+                :to="`/sls/invoice/preview/${model.invoiceId}`"
+                :title="model.invoiceNo"
               />
             </span>
           </div>
 
-          <div
-            v-if="model.value.marketerName"
-            class="row items-center"
-          >
+          <div v-if="model.marketerName" class="row items-center">
             <span class="col-2 text-caption text-bold">
               بازاریاب:
             </span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.marketerName }}
+              {{ model.marketerName }}
             </span>
           </div>
 
-          <div
-            v-if="model.value.contractTitle"
-            class="row items-center"
-          >
+          <div v-if="model.contractTitle" class="row items-center">
             <span class="col-2 text-caption text-bold">قرارداد:</span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.contractTitle }}
+              {{ model.contractTitle }}
             </span>
           </div>
 
-          <div
-            v-if="model.value.inventoryTitle"
-            class="row items-center"
-          >
+          <div v-if="model.inventoryTitle" class="row items-center">
             <span class="col-2 text-caption text-bold">انبار:</span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.inventoryTitle }}
+              {{ model.inventoryTitle }}
             </span>
           </div>
         </div>
@@ -89,7 +76,7 @@
 
     <q-separator v-if="separator" />
 
-    <template v-if="model.value.id">
+    <template v-if="model.id">
       <slot name="body">
         <q-card-section class="q-pb-none">
           <q-tabs
@@ -98,9 +85,8 @@
             align="left"
             :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
             :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-            class="primary-tabs"
+            class="primary-tabs q-mt-lg"
             narrow-indicator
-            :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
           >
             <q-tab name="main-info" class="q-mr-xs">
               <template #default>
@@ -150,9 +136,9 @@
 
             <q-tab-panel name="log" class="no-padding">
               <detail-log
-                v-if="model?.value?.id"
-                :entity-id="model.value.id"
-                entity-name="Sls.[Invoice]"
+                v-if="model.id"
+                :entity-id="model.id"
+                :entity-name="model.entityName"
               />
             </q-tab-panel>
           </q-tab-panels>
@@ -166,8 +152,8 @@
   import { ref } from "vue";
   import { useQuasar } from "quasar";
 
-  import DetailPayments from "src/components/areas/sls/_shared/invoice/desktop/preview/_DetailPayments.vue";
-  import DetailTax from "src/components/areas/sls/_shared/invoice/desktop/preview/_DetailTax.vue";
+  import DetailPayments from "./_DetailPayments.vue";
+  import DetailTax from "./_DetailTax.vue";
   import DetailLog from "src/components/areas/_shared/log/PreviewLog.vue";
   import CustomLink from "src/components/shared/buttons/CustomLink.vue";
 

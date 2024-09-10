@@ -149,8 +149,8 @@ export const accountItemDLColumns = [
   { ...slCode },
   { ...slTitle },
   { ...voucherSubject },
-  { ...debitRemained, label: "بدهکار" },
-  { ...creditRemained, label: "بستانکار" },
+  { ...debitRemained, label: "بدهکار", showFilter: true },
+  { ...creditRemained, label: "بستانکار", showFilter: true },
   { ...inlineDebit },
 ];
 
