@@ -2,19 +2,21 @@
   <q-card class="no-border q-pt-sm q-px-sm">
     <q-card-section>
       <div class="row justify-between items-center">
-        <span class="text-body1 no-letter-spacing">
+        <div class="text-body1 no-letter-spacing">
           مرتب‌سازی پیشرفته
-        </span>
-        <q-btn
-          round
-          unelevated
-          text-color="white"
-          class="red-gradient red-shadow col-1"
-          padding="5px"
-          v-close-popup
-        >
-          <q-icon size="16px" name="o_close" />
-        </q-btn>
+        </div>
+        <div>
+          <q-btn
+            size="8px"
+            round
+            unelevated
+            text-color="white"
+            class="red-gradient red-shadow col-1"
+            v-close-popup
+          >
+            <q-icon size="16px" name="o_close" />
+          </q-btn>
+        </div>
       </div>
     </q-card-section>
 
