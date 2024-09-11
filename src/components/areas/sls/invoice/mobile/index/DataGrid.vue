@@ -32,6 +32,7 @@
         unelevated
         dense
         v-if="!tableStore?.activeRow?.value"
+        @click="showSortModal"
       >
         <q-icon name="sort" />
       </q-btn>
@@ -543,6 +544,19 @@
   >
     <mobile-advanced-search @apply-search="hideSearchModal" />
   </q-dialog>
+
+  <q-dialog
+    transition-show="slide-up"
+    transition-hide="slide-down"
+    transition-duration="600"
+    maximized
+    v-model="sortDialog"
+  >
+    <mobile-advanced-sort
+      data-source="sls/invoice/getGridData"
+      data-columns="tableStore"
+    />
+  </q-dialog>
 </template>
 
 <script setup>
@@ -556,6 +570,7 @@
   import BottomSheet from "components/shared/BottomSheet.vue";
   import ToolBar from "src/components/shared/ToolBarMobile.vue";
   import MobileAdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue";
+  import MobileAdvancedSort from "src/components/areas/sls/invoice/mobile/AdvancedSort.vue";
 
   const props = defineProps({
     gridStore: Object,
@@ -568,6 +583,7 @@
   const tableStore = computed(() => dataGrid.value?.tableStore);
 
   const dialog = ref(false);
+  const sortDialog = ref(false);
   const showCreate = ref(true);
   const advancedSearch = ref(null);
 
@@ -581,8 +597,16 @@
     dialog.value = true;
   };
 
-  const hideSearchModal = async () => {
+  const hideSearchModal = () => {
     dialog.value = false;
+  };
+
+  const showSortModal = () => {
+    sortDialog.value = true;
+  };
+
+  const hideSortModal = () => {
+    sortDialog.value = false;
   };
 
   async function reloadData(model) {
@@ -629,6 +653,7 @@
   const onPrintSheetHide = () => {
     printSheetStatus.value = false;
   };
+
 </script>
 
 <style lang="scss" scoped>
