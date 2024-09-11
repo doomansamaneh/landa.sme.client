@@ -5,7 +5,16 @@
         <span class="text-body1 no-letter-spacing">
           جستجو در فاکتورها
         </span>
-        <q-btn dense flat icon="close" v-close-popup />
+        <q-btn
+          round
+          unelevated
+          text-color="white"
+          class="red-gradient red-shadow col-1"
+          padding="5px"
+          v-close-popup
+        >
+          <q-icon size="16px" name="o_close" />
+        </q-btn>
       </div>
     </q-card-section>
 
