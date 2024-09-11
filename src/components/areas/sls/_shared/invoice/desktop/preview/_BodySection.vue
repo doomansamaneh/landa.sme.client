@@ -135,7 +135,7 @@
             class="text-right"
           >
             <strong>جمع کل:</strong>
-            ({{ numberToWords(model.totalPrice) }}
+            ({{ numberToWords(model.totalPrice ?? 0) }}
             <b>{{ model.currencyTitle }})</b>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">

@@ -2,6 +2,7 @@
   <div class="row q-py-lg q-gutter-sm">
     <template v-if="remainedAmount">
       <q-btn
+        v-if="showReceipt"
         class="primary-shadow q-mr-xs"
         rounded
         color="primary"
@@ -11,6 +12,18 @@
       >
         <q-icon name="o_add" size="xs" />
         <span>دریافت</span>
+      </q-btn>
+      <q-btn
+        v-else
+        class="primary-shadow q-mr-xs"
+        rounded
+        color="primary"
+        padding="4px 12px"
+        unelevated
+        :to="`/trs/payment/createFromInvoice/${model.id}`"
+      >
+        <q-icon name="o_add" size="xs" />
+        <span>پرداخت</span>
       </q-btn>
 
       <q-btn
@@ -84,6 +97,7 @@
   const props = defineProps({
     model: Object,
     detailUrl: String,
+    showReceipt: Boolean,
   });
 
   const $q = useQuasar();

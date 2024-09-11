@@ -4,6 +4,8 @@
     base-route="sls/invoice"
     detail-url="trs/receipt"
     tax-api
+    show-sale-header
+    show-receipt
   />
 </template>
 

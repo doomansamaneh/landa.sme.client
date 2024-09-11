@@ -173,7 +173,7 @@
         </div>
         <div class="row text-dark q-px-md q-py-sm bg-orange-2">
           <div class="col-xs text-body3">
-            {{ numberToWords(model.totalPrice) }}
+            {{ numberToWords(model.totalPrice ?? 0) }}
             <b>{{ model.currencyTitle }}</b>
           </div>
 
@@ -190,6 +190,7 @@
     :model="model"
     tax-api
     :detail-url="detailUrl"
+    :show-receipt="showReceipt"
   />
 </template>
 
@@ -202,6 +203,9 @@
 
   const props = defineProps({
     model: Object,
+    showSaleHeader: Boolean,
+    showReceipt: Boolean,
+    taxApi: Boolean,
   });
   const appConfigStore = useAppConfigModel();
 </script>

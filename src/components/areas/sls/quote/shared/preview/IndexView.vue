@@ -2,11 +2,12 @@
   <preview
     :title="title ?? $t('shared.labels.quote')"
     base-route="sls/quote"
+    show-sale-header
   >
-    <template #toolbar-custom="{ formStore }">
+    <template #toolbar-custom="{ model }">
       <q-btn
-        v-if="formStore.model.value.statusId !== quoteStatus.final"
-        :to="`/sls/invoice/createFromQuote/${formStore.model.value.id}`"
+        v-if="model.statusId !== quoteStatus.final"
+        :to="`/sls/invoice/createFromQuote/${model.id}`"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -18,12 +19,8 @@
       </q-btn>
     </template>
 
-    <template #detail-section="{ formStore }">
-      <detail-section
-        :model="formStore.model"
-        :form-store="formStore"
-        :taxApi="taxApi"
-      />
+    <template #detail-section="{ model }">
+      <detail-section :model="model" />
     </template>
   </preview>
 </template>

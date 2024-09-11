@@ -127,6 +127,7 @@
               <detail-payments
                 :model="model"
                 :detail-url="detailUrl"
+                :show-receipt="showReceipt"
               />
             </q-tab-panel>
 
@@ -162,6 +163,7 @@
     separator: Boolean,
     taxApi: Boolean,
     detailUrl: String,
+    showReceipt: Boolean,
   });
 
   const $q = useQuasar();

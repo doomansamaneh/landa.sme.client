@@ -1,16 +1,12 @@
 <template>
-  <q-card
-    class="bordered"
-    :class="$q.screen.xs ? 'form-container' : ''"
-    style="margin-top: 0"
-  >
+  <q-card class="bordered" style="margin-top: 0">
     <q-card-section>
       <slot name="header">
         <div class="column q-gutter-y-sm">
           <div class="row items-center">
             <span class="col-2 text-caption text-bold">شماره:</span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.no }}
+              {{ model.no }}
             </span>
           </div>
 
@@ -18,54 +14,42 @@
             <span class="col-2 text-caption text-bold">مشتری:</span>
             <span class="text-body3 q-mx-md">
               <custom-link
-                :to="`/crm/customer/preview/${model.value.customerId}`"
-                :title="model.value.customerName"
+                :to="`/crm/customer/preview/${model.customerId}`"
+                :title="model.customerName"
               />
             </span>
           </div>
 
-          <div
-            v-if="model?.value?.invoiceId"
-            class="row items-center"
-          >
+          <div v-if="model.invoiceId" class="row items-center">
             <span class="col-2 text-caption text-bold">فاکتور:</span>
             <span class="text-body3 q-mx-md">
               <custom-link
-                :to="`/sls/invoice/preview/${model.value.invoiceId}`"
-                :title="model.value.invoiceNo"
+                :to="`/sls/invoice/preview/${model.invoiceId}`"
+                :title="model.invoiceNo"
               />
             </span>
           </div>
 
-          <div
-            v-if="model.value.marketerName"
-            class="row items-center"
-          >
+          <div v-if="model.marketerName" class="row items-center">
             <span class="col-2 text-caption text-bold">
               بازاریاب:
             </span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.marketerName }}
+              {{ model.marketerName }}
             </span>
           </div>
 
-          <div
-            v-if="model.value.contractTitle"
-            class="row items-center"
-          >
+          <div v-if="model.contractTitle" class="row items-center">
             <span class="col-2 text-caption text-bold">قرارداد:</span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.contractTitle }}
+              {{ model.contractTitle }}
             </span>
           </div>
 
-          <div
-            v-if="model.value.inventoryTitle"
-            class="row items-center"
-          >
+          <div v-if="model.inventoryTitle" class="row items-center">
             <span class="col-2 text-caption text-bold">انبار:</span>
             <span class="text-body3 q-mx-md">
-              {{ model.value.inventoryTitle }}
+              {{ model.inventoryTitle }}
             </span>
           </div>
         </div>
@@ -76,8 +60,8 @@
 
     <q-card-section>
       <detail-log
-        v-if="model?.value?.id"
-        :entity-id="model.value.id"
+        v-if="model.id"
+        :entity-id="model.id"
         entity-name="Sls.[Quote]"
       />
     </q-card-section>
@@ -90,6 +74,5 @@
 
   const props = defineProps({
     model: Object,
-    formStore: Object,
   });
 </script>

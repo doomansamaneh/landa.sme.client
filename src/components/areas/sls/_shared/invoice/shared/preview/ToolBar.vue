@@ -7,21 +7,21 @@
     :form-store="formStore"
     :base-route="baseRoute"
   >
-    <template #toolbar-custom="{ formStore }">
-      <slot name="toolbar-custom" :form-store="formStore"></slot>
+    <template #toolbar-custom>
+      <slot name="toolbar-custom"></slot>
     </template>
   </tool-bar-desktop>
 
   <tool-bar-mobile
-    v-if="$q.screen.lt.md"
+    v-else
     :inside="inside"
     :title="title"
     :model="model"
     :form-store="formStore"
     :base-route="baseRoute"
   >
-    <template #toolbar-custom="{ formStore }">
-      <slot name="toolbar-custom" :form-store="formStore"></slot>
+    <template #toolbar-custom>
+      <slot name="toolbar-custom"></slot>
     </template>
   </tool-bar-mobile>
 </template>

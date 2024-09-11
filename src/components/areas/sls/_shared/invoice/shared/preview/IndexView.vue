@@ -4,10 +4,44 @@
     :title="title"
     :base-route="baseRoute"
     :model="model"
-  />
+  >
+    <template #toolbar-custom>
+      <slot name="toolbar-custom" :model="model"></slot>
+    </template>
+  </tool-bar>
 
-  <mobile v-if="$q.screen.xs" class="q-mb-sm" :model="model" />
-  <desktop v-else :title="title" :model="model" />
+  <mobile
+    v-if="$q.screen.xs"
+    class="q-mb-sm"
+    :model="model"
+    :show-sale-header="showSaleHeader"
+    :tax-api="taxApi"
+  >
+    <template #master-section>
+      <slot name="master-section" :model="model"></slot>
+    </template>
+
+    <template #detail-section>
+      <slot name="detail-section" :model="model"></slot>
+    </template>
+  </mobile>
+
+  <desktop
+    v-else
+    :title="title"
+    :model="model"
+    :show-sale-header="showSaleHeader"
+    :tax-api="taxApi"
+    :show-receipt="showReceipt"
+  >
+    <template #master-section>
+      <slot name="master-section" :model="model"></slot>
+    </template>
+
+    <template #detail-section>
+      <slot name="detail-section" :model="model"></slot>
+    </template>
+  </desktop>
 </template>
 
 <script setup>
@@ -27,6 +61,9 @@
     margin: Boolean,
     baseRoute: String,
     detailUrl: String,
+    showSaleHeader: Boolean,
+    showReceipt: Boolean,
+    taxApi: Boolean,
   });
 
   const route = useRoute();
@@ -34,8 +71,7 @@
   const model = ref({});
   const crudStore = useFormActions(props.baseRoute, model);
 
-  onMounted(async () => {
-    await crudStore.getPreviewById(id.value);
+  const calculateTotals = () => {
     model.value.entityName = "Doc.[Document]";
     model.value.totalPrice = helper.getSubtotal(
       model.value.invoiceItems,
@@ -53,5 +89,10 @@
       model.value.totalPrice +
       model.value.totalDiscount -
       model.value.totalVat;
+  };
+
+  onMounted(async () => {
+    await crudStore.getPreviewById(id.value);
+    calculateTotals();
   });
 </script>
