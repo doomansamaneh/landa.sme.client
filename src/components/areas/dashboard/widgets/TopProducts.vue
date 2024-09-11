@@ -1,31 +1,38 @@
 <template>
   <q-card class="no-shadow bordered">
-    <q-card-section class="q-pb-none q-pt-lg q-px-lg row justify-between items-center">
-      <div class="row items-center justify-between full-width">
-        <q-item class="no-padding">
-          <q-item-section avatar>
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_inventory_2"
-              size="md"
-              class="primary-gradient primary-shadow"
-            />
-          </q-item-section>
-          <q-item-section class="q-pl-xs">
-            <q-item-label class="text-h6 text-weight-700 q-mb-xs">
-              بیشترین فروش کالا و خدمات
-            </q-item-label>
-          </q-item-section>
-        </q-item>
+    <q-card-section
+      class="q-pb-none q-pt-lg row justify-between items-center"
+    >
+      <div
+        class="row items-center q-gutter-sm justify-between full-width"
+      >
+        <div class="col-9">
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_inventory_2"
+                size="md"
+                class="primary-gradient primary-shadow"
+              />
+            </q-item-section>
+            <q-item-section class="q-pl-xs">
+              <q-item-label class="text-h6 text-weight-700 q-mb-xs">
+                بیشترین فروش کالا و خدمات
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
 
-        <q-btn
-          padding="6px 12px"
-          rounded
-          icon="refresh"
-          unelevated
-          @click="grid.loadData()"
-        ></q-btn>
+        <div class="row justify-end col">
+          <q-btn
+            round
+            icon="refresh"
+            unelevated
+            @click="grid.loadData()"
+          />
+        </div>
       </div>
     </q-card-section>
 
@@ -53,6 +60,9 @@
                   size="58px"
                 >
                   <img :src="item.picture" />
+                  <q-badge floating color="negative">
+                    {{ item.quantity?.toLocaleString() }}
+                  </q-badge>
                 </q-avatar>
 
                 <q-avatar
@@ -66,20 +76,27 @@
                   <div class="char text-body1 text-bold">
                     {{ helper.getFirstChar(item.productTitle) }}
                   </div>
+                  <q-badge
+                    class="inset-shadow-down text-body3 text-bold no-letter-spacing q-px-sm q-py-sm"
+                    floating
+                    color="negative"
+                  >
+                    {{ item.quantity?.toLocaleString() }}
+                  </q-badge>
                 </q-avatar>
               </div>
 
               <div
                 class="row items-center justify-between full-width"
               >
-                <div class="col-8 q-pl-lg column">
-                  <span class="text-caption no-letter-spacing">
+                <div class="col-9 q-pl-lg column">
+                  <span class="text-body3 no-letter-spacing">
                     {{ item.productCode }} - {{ item.productTitle }}
                   </span>
-                  <span class="text-caption no-letter-spacing">
+                  <span class="text-body3 no-letter-spacing">
                     قیمت فروش : {{ item.price?.toLocaleString() }}
                   </span>
-                  <span class="text-caption no-letter-spacing">
+                  <span class="text-body3 no-letter-spacing">
                     جمع کل :
                     <strong>
                       {{ item.amount?.toLocaleString() }}
@@ -87,7 +104,7 @@
                   </span>
                 </div>
                 <div class="col row justify-end items-center">
-                  <q-item-label
+                  <!-- <q-item-label
                     caption
                     class="text-body3 no-letter-spacing q-mx-xs"
                   >
@@ -95,7 +112,7 @@
                     <strong>
                       {{ item.quantity?.toLocaleString() }}
                     </strong>
-                  </q-item-label>
+                  </q-item-label> -->
                   <goto-detail
                     :to="`/cmn/product/Preview/${item.id}`"
                   />

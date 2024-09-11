@@ -72,7 +72,7 @@
           :showing="menuBarStore.showLoader.value"
           class="transparent z-max"
         >
-          <q-spinner-orbit size="52px" color="primary" />
+          <q-spinner size="52px" color="primary" />
         </q-inner-loading>
         <div
           v-for="parentItem in menuBarStore.drawerMenuItems.value"

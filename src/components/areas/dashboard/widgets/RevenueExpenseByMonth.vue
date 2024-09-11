@@ -1,8 +1,8 @@
 <template>
-  <q-card class="fit bordered q-pa-none" flat>
+  <q-card class="main-card fit bordered q-pa-none" flat>
     <q-card-section class="col q-pt-lg q-pb-none q-pl-lg q-pr-md">
-      <div class="row justify-between">
-        <div class="col">
+      <div class="row q-gutter-md justify-between">
+        <div class="col-9">
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-avatar
@@ -94,20 +94,33 @@
         </div>
         <div class="col">
           <div class="row justify-end">
-            <q-btn-toggle
-              v-model="chartType"
-              class="custom-toggle"
-              no-caps
-              rounded
-              unelevated
-              toggle-color="primary"
-              color="white"
-              text-color="primary"
-              :options="[
-                { label: 'چارت', value: 1 },
-                { label: 'جدول', value: 2 },
-              ]"
-            />
+            <template v-if="$q.screen.gt.xs">
+              <q-btn-toggle
+                v-model="chartType"
+                class="custom-toggle"
+                no-caps
+                rounded
+                unelevated
+                toggle-color="primary"
+                color="white"
+                text-color="primary"
+                :options="[
+                  { label: 'چارت', value: 1 },
+                  { label: 'جدول', value: 2 },
+                ]"
+              />
+            </template>
+            <template v-if="$q.screen.xs">
+              <q-btn
+                :icon="
+                  chartType === 1 ? 'o_pie_chart' : 'o_table_chart'
+                "
+                unelevated
+                dense
+                round
+                @click="toggleChartType"
+              />
+            </template>
             <!-- <q-btn
               unelevated
               round
@@ -446,10 +459,18 @@
     cost.value = false;
     costDetail.value = true;
   };
+
+  const toggleChartType = () => {
+    chartType.value = chartType.value === 1 ? 2 : 1;
+  };
 </script>
 
 <style lang="scss" scoped>
   .custom-toggle {
     border: 1px solid var(--q-primary);
+  }
+
+  .main-card {
+    min-height: 350px;
   }
 </style>
