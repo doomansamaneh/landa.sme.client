@@ -1,7 +1,7 @@
 <template>
   <q-card class="border-radius-lg bordered no-shadow">
     <q-card-section class="q-pa-lg">
-      <div class="row items-center justify-between">
+      <div class="row items-center q-gutter-md justify-between">
         <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
         <q-btn
           to="/sls/invoice/create"

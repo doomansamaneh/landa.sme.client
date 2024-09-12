@@ -32,16 +32,18 @@
       </div>
 
       <div v-if="$q.screen.lt.md" class="col-1">
-        <q-btn
-          round
-          unelevated
-          text-color="white"
-          class="red-gradient red-shadow col-1"
-          padding="5px"
-          @click="menuBarStore.toggle"
-        >
-          <q-icon size="16px" name="o_close" />
-        </q-btn>
+        <div>
+          <q-btn
+            size="8px"
+            round
+            unelevated
+            text-color="white"
+            class="red-gradient red-shadow col-1"
+            @click="menuBarStore.toggle()"
+          >
+            <q-icon size="16px" name="o_close" />
+          </q-btn>
+        </div>
       </div>
     </div>
 
@@ -70,7 +72,7 @@
           :showing="menuBarStore.showLoader.value"
           class="transparent z-max"
         >
-          <q-spinner-orbit size="52px" color="primary" />
+          <q-spinner size="52px" color="primary" />
         </q-inner-loading>
         <div
           v-for="parentItem in menuBarStore.drawerMenuItems.value"
