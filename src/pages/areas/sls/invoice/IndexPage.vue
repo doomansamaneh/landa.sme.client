@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  import DataGrid from "src/components/areas/sls/invoice/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/areas/sls/invoice/shared/index/DataGridContainer.vue";
 </script>

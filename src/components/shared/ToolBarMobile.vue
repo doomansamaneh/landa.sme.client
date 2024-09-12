@@ -112,12 +112,13 @@
           <div class="row items-center">
             <slot name="header">
               <span
-                
                 class="title-width ellipsis-2-lines text-weight-700 no-letter-spacing"
                 :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
               >
                 <slot name="header-title">
-                  <span class="text-body2 no-letter-spacing">{{ title }}</span>
+                  <span class="text-body2 no-letter-spacing">
+                    {{ title }}
+                  </span>
                   <q-btn
                     v-if="tableStore?.pagination.value.totalItems > 0"
                     rounded
@@ -133,7 +134,6 @@
               <back-button v-if="backButton" class="q-ml-md" />
             </slot>
           </div>
-          
         </template>
 
         <q-space
@@ -283,7 +283,6 @@
 
   const bottomSheetStatus = ref(false);
   const isAtTop = ref(true);
-  let previousScrollPosition = 0;
 
   const onBottomSheetShow = () => {
     bottomSheetStatus.value = true;
@@ -328,22 +327,16 @@
   });
 </script>
 
-
 <style lang="scss">
-  
   @media (min-width: 320px) and (max-width: 360px) {
-
     .title-width {
       max-width: 160px !important;
     }
-    
   }
 
-   @media (min-width: 376px) and (max-width: 599px) {
-
+  @media (min-width: 376px) and (max-width: 599px) {
     .title-width {
       max-width: auto !important;
     }
-    
   }
 </style>

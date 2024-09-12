@@ -316,20 +316,20 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { useDataTable } from "src/composables/useDataTable";
 
   const props = defineProps({
-    tableStore: Object,
+    tableStore: useDataTable,
   });
 
-  const separatorTypes = [
-    {
-      label: "خط دار",
-      value: "horizontal",
-    },
-    {
-      label: "بدون خط",
-      value: "none",
-    },
-  ];
+  // const separatorTypes = [
+  //   {
+  //     label: "خط دار",
+  //     value: "horizontal",
+  //   },
+  //   {
+  //     label: "بدون خط",
+  //     value: "none",
+  //   },
+  // ];
 </script>

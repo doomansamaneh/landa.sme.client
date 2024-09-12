@@ -33,6 +33,7 @@
     title: String,
     inside: Boolean,
     margin: Boolean,
+    detailUrl: String,
     showSaleHeader: Boolean,
     showReceipt: Boolean,
     taxApi: Boolean,

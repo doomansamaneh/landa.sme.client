@@ -1,6 +1,6 @@
 <template>
   <tool-bar
-    :table-store="dataGrid?.tableStore"
+    :table-store="tableStore"
     :crud-store="crudStore"
     :title="title"
     base-route="sls/invoice"
@@ -58,7 +58,7 @@
               unelevated
               class="bg-white text-primary text-body1 text-bold no-pointer-events"
             >
-              {{ gridStore?.pagination.value.totalItems }}
+              {{ tableStore?.pagination.value.totalItems }}
             </q-btn>
           </div>
 
@@ -161,10 +161,8 @@
   </div>
 
   <data-grid
-    data-source="sls/invoice/getGridData"
-    :grid-store="gridStore"
+    :data-table-store="tableStore"
     createUrl="/sls/invoice/create"
-    ref="dataGrid"
   >
     <template #header>
       <template></template>
@@ -541,31 +539,25 @@
     maximized
     v-model="dialog"
   >
-    <mobile-advanced-search @apply-search="hideSearchModal" />
+    <advanced-search @apply-search="hideSearchModal" />
   </q-dialog>
 </template>
 
 <script setup>
-  import { computed, ref, onMounted } from "vue";
+  import { computed, ref } from "vue";
 
   import { helper } from "src/helpers";
-  import { sqlOperator, voucherStatus } from "src/constants";
-  import { useFormActions } from "src/composables/useFormActions";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import BottomSheet from "components/shared/BottomSheet.vue";
   import ToolBar from "src/components/shared/ToolBarMobile.vue";
-  import MobileAdvancedSearch from "src/components/areas/sls/invoice/mobile/_AdvancedSearch.vue";
+  import AdvancedSearch from "./AdvancedSearch.vue";
 
   const props = defineProps({
-    gridStore: Object,
+    tableStore: useDataTable,
     title: String,
   });
-
-  const crudStore = useFormActions("sls/invoice");
-
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid.value?.tableStore);
 
   const dialog = ref(false);
   const showCreate = ref(true);
@@ -586,7 +578,7 @@
   };
 
   async function reloadData(model) {
-    await dataGrid.value.reloadData();
+    await tableStore.value.reloadData();
   }
 
   const shouldDisplaySelectedDateRange = computed(() => {
