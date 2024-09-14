@@ -1,6 +1,6 @@
 <template>
   <q-card class="main-card fit bordered q-pa-none" flat>
-    <q-card-section class="col q-pt-lg q-pb-none q-pl-lg q-pr-md">
+    <q-card-section class="col q-pt-lg q-pb-none q-px-lg">
       <div class="row q-gutter-md justify-between">
         <div class="col-9">
           <q-item class="no-padding">
@@ -92,7 +92,7 @@
             </q-item-section>
           </q-item>
         </div>
-        <div class="col">
+        <div class="col row justify-end items-center">
           <div class="row justify-end">
             <template v-if="$q.screen.gt.xs">
               <q-btn-toggle

@@ -1,5 +1,5 @@
 <template>
-  <chart :height="height" :series="series" :options="options"></chart>
+  <chart  :height="height" :series="series" :options="options"></chart>
 </template>
 
 <script setup>

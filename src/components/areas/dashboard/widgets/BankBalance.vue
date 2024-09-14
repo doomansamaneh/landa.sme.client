@@ -1,5 +1,9 @@
 <template>
-  <cash-balance title="موجودی بانک" action="BankAccount" />
+  <cash-balance
+    title="موجودی بانک"
+    :height="$q.screen.gt.xs ? 450 : 10000"
+    action="BankAccount"
+  />
 </template>
 
 <script setup>
