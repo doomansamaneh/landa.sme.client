@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bordered shadow form-container_">
+  <q-card bordered class="shadow form-container_">
     <q-card-section>
       <div
         class="row q-col-gutter-md justify-between items-center text-body3 no-letter-spacing"
@@ -203,6 +203,8 @@
 
   const props = defineProps({
     model: Object,
+    title: String,
+    detailUrl: String,
     showSaleHeader: Boolean,
     showReceipt: Boolean,
     taxApi: Boolean,

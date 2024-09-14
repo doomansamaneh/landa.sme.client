@@ -269,10 +269,6 @@
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 
-  const props = defineProps({
-    gridStore: Object,
-  });
-
   const expanded = ref(false);
   const searchStore = useInvoiceSearch();
 

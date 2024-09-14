@@ -180,6 +180,7 @@
     gridStore: Object,
     numbered: Boolean,
     multiSelect: Boolean,
+    dataTableStore: useDataTable,
   });
 
   const emit = defineEmits([
@@ -187,33 +188,36 @@
     "selected-rows-changed",
   ]);
 
-  const startIndex = ref(1);
   const showCreate = ref(true);
   let previousScrollPosition = 0;
 
-  const tableStore = useDataTable({
-    dataSource: props.dataSource,
-    dataColumns: props.columns,
-    store: props.gridStore,
-  });
+  const tableStore = computed(
+    () =>
+      props.dataTableStore ??
+      useDataTable({
+        dataSource: props.dataSource,
+        dataColumns: props.columns,
+        store: props.gridStore,
+      })
+  );
 
-  const thisGridStore = computed(() => props.gridStore);
+  const thisGridStore = computed(() => tableStore.value.state);
 
   const rows = computed(() => {
     if (thisGridStore.value?.rows) {
       return thisGridStore.value.rows;
     }
-    return tableStore.rows;
+    return tableStore.value.rows;
   });
 
   const nextAction = computed(
     () =>
-      tableStore.pagination.value.currentPage >=
-      tableStore.pagination.value.totalPages
+      tableStore.value.pagination.value.currentPage >=
+      tableStore.value.pagination.value.totalPages
   );
 
   const previousAction = computed(
-    () => tableStore.pagination.value.currentPage <= 1
+    () => tableStore.value.pagination.value.currentPage <= 1
   );
 
   function getColText(row, col) {
@@ -229,20 +233,20 @@
   }
 
   async function loadData() {
-    await tableStore.loadData();
+    await tableStore.value.loadData();
     if (thisGridStore.value?.rows) {
-      thisGridStore.value.rows.value = tableStore.rows.value;
+      thisGridStore.value.rows.value = tableStore.value.rows.value;
     }
   }
 
   async function reloadData() {
-    await tableStore.reloadData();
+    await tableStore.value.reloadData();
     if (thisGridStore.value?.rows)
-      thisGridStore.value.rows.value = tableStore.rows.value;
+      thisGridStore.value.rows.value = tableStore.value.rows.value;
   }
 
   async function resetPage() {
-    //tableStore.pagination.value.currentPage = 1
+    //tableStore.value.pagination.value.currentPage = 1
     await reloadData();
   }
 
@@ -256,53 +260,57 @@
   };
 
   function selectAll(checked) {
-    tableStore.selectAll(checked);
+    tableStore.value.selectAll(checked);
     emitselectedRows();
   }
 
   function selectRow(row) {
-    tableStore.selectRow(row, !row.selected);
+    tableStore.value.selectRow(row, !row.selected);
     emitselectedRows();
   }
 
   function emitselectedRows() {
-    emit("selected-rows-changed", tableStore.selectedRows.value);
+    emit(
+      "selected-rows-changed",
+      tableStore.value.selectedRows.value
+    );
   }
 
   function setActiveRow(row) {
-    if (tableStore.selectedRows.value.length > 0) {
+    if (tableStore.value.selectedRows.value.length > 0) {
       selectRow(row);
-      tableStore.setActiveRow(row);
+      tableStore.value.setActiveRow(row);
     } else {
-      if (tableStore.activeRow.value === row) {
-        tableStore.setActiveRow(null);
-      } else tableStore.setActiveRow(row);
+      if (tableStore.value.activeRow.value === row) {
+        tableStore.value.setActiveRow(null);
+      } else tableStore.value.setActiveRow(row);
     }
     emit("active-row-changed", row);
   }
 
   async function clearSearch() {
-    tableStore.pagination.value.searchTerm = "";
+    tableStore.value.pagination.value.searchTerm = "";
     await reloadData();
   }
 
   const isSearchEmpty = computed(
     () =>
-      !tableStore.pagination.value.searchTerm ||
-      tableStore.pagination.value.searchTerm.trim().length === 0
+      !tableStore.value.pagination.value.searchTerm ||
+      tableStore.value.pagination.value.searchTerm.trim().length === 0
   );
 
   const showPagebar = computed(
     () =>
-      tableStore.pagination.value.totalItems > dataViewDefaultPageSize
+      tableStore.value.pagination.value.totalItems >
+      dataViewDefaultPageSize
   );
 
   async function previous(e) {
-    tableStore.pagination.value.currentPage -= 1;
+    tableStore.value.pagination.value.currentPage -= 1;
     await reloadData();
   }
   async function next(e) {
-    tableStore.pagination.value.currentPage += 1;
+    tableStore.value.pagination.value.currentPage += 1;
     await reloadData();
   }
 

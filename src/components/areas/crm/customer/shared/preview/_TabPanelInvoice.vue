@@ -6,15 +6,16 @@
     bordered
     toolbar
     multi-select
-    :data-source="`sls/invoice/GetByCustomerData/${item.id}`"
-    :grid-store="gridStore"
+    :table-store="tableStore"
+    :advanced-search="false"
   />
 </template>
 
 <script setup>
   import { useCustomerInvoiceState } from "../../../_composables/useCustomerInvoiceState";
+  import { useDataTable } from "src/composables/useDataTable";
 
-  import DataGrid from "src/components/areas/sls/invoice/desktop/index/_DataGrid.vue";
+  import DataGrid from "src/components/areas/sls/invoice/shared/index/DataGridTable.vue";
   import SalesWidget from "components/areas/dashboard/widgets/SalesWidget.vue";
 
   const props = defineProps({
@@ -22,4 +23,8 @@
   });
 
   const gridStore = useCustomerInvoiceState();
+  const tableStore = useDataTable({
+    dataSource: `sls/invoice/GetByCustomerData/${props.item.id}`,
+    store: gridStore,
+  });
 </script>

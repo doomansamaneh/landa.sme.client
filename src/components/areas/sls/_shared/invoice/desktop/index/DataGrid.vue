@@ -1,8 +1,6 @@
 <template>
   <data-grid
-    ref="dataTable"
-    :dataSource="dataSource"
-    :grid-store="gridStore"
+    :data-table-store="tableStore"
     flat_
     bordered_
     multiSelect
@@ -180,64 +178,66 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { useRouter } from "vue-router";
   import { quoteStatus, voucherStatus } from "src/constants";
   import { helper } from "src/helpers";
 
   import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";
   import CustomSelect from "components/shared/forms/CustomSelect.vue";
-  import InvoicePreview from "components/areas/sls/invoice/shared/preview/IndexView.vue";
 
   const props = defineProps({
-    dataSource: String,
-    columns: Array,
-    gridStore: Object,
+    tableStore: Object,
     baseRoute: String,
   });
 
   const router = useRouter();
-  const dataTable = ref(null);
+
+  //const dataTable = ref(null);
+  // const colspan = computed(
+  //   () =>
+  //     dataTable.value?.tableStore?.columns.value.findIndex(
+  //       (column) => column.name === "amount"
+  //     ) +
+  //     1 + //numbered column
+  //     1 //multi check column
+  // );
 
   const colspan = computed(
     () =>
-      dataTable.value?.tableStore?.columns.value.findIndex(
+      props.tableStore.columns.value.findIndex(
         (column) => column.name === "amount"
       ) +
       1 + //numbered column
       1 //multi check column
   );
 
-  const showDiscount = computed(
+  const showPayed = computed(
     () =>
-      dataTable.value?.tableStore?.columns.value.findIndex(
-        (column) => column.name === "discountAmount"
+      props.tableStore.columns.value.findIndex(
+        (column) => column.name === "payedAmount"
       ) >= 0
   );
 
-  const showPayed = computed(
+  const showDiscount = computed(
     () =>
-      dataTable.value?.tableStore?.columns.value.findIndex(
-        (column) => column.name === "payedAmount"
+      props.tableStore.columns.value.findIndex(
+        (column) => column.name === "discountAmount"
       ) >= 0
   );
 
   const showRemained = computed(
     () =>
-      dataTable.value?.tableStore?.columns.value.findIndex(
+      props.tableStore.columns.value.findIndex(
         (column) => column.name === "remainedAmount"
       ) >= 0
   );
 
   async function reloadData() {
-    await dataTable.value?.tableStore.reloadData();
+    await props.tableStore.reloadData();
   }
 
   function gotoPreview(row) {
     router.push(`/${props.baseRoute}/preview/${row.id}`);
   }
-
-  defineExpose({
-    dataTable,
-  });
 </script>

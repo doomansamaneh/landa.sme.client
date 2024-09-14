@@ -45,7 +45,7 @@ export function useDataTable({
   );
   const state = computed(() => store?.state ?? _state);
   const pagination = computed(
-    () => store?.pagination.value ?? _pagination.value
+    () => store?.pagination?.value ?? _pagination.value
   );
 
   // const loading = ref(false)
@@ -116,7 +116,8 @@ export function useDataTable({
   }
 
   async function reloadData() {
-    if (!_dataSource.value) return;
+    if (!_dataSource.value)
+      console.error("Landa: data table data source is not defined");
     await fetchData(pagination.value, handleDataResponse);
 
     function handleDataResponse(pagedData) {

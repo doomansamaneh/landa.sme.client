@@ -91,7 +91,7 @@
         </thead>
         <tbody>
           <template
-            v-for="(row, index) in tableStore.rows.value"
+            v-for="(row, index) in tableStore?.rows.value"
             :key="row.id"
           >
             <tr
@@ -221,10 +221,8 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted, computed } from "vue";
-  import { useRouter } from "vue-router";
+  import { onMounted, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { bus } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -250,15 +248,20 @@
     wrapCells: Boolean,
     gridStore: Object,
     toolbar: Boolean,
+    dataTableStore: Object,
   });
 
   const $q = useQuasar();
-  const router = useRouter();
-  const tableStore = useDataTable({
-    dataSource: props.dataSource,
-    dataColumns: props.columns,
-    store: props.gridStore,
-  });
+
+  const tableStore = computed(
+    () =>
+      props.dataTableStore ??
+      useDataTable({
+        dataSource: props.dataSource,
+        dataColumns: props.columns,
+        store: props.gridStore,
+      })
+  );
 
   const emit = defineEmits([
     "active-row-changed",
@@ -267,7 +270,7 @@
   ]);
 
   onMounted(() => {
-    tableStore.loadData();
+    tableStore.value.loadData();
   });
 
   function getColText(row, col) {
@@ -283,25 +286,28 @@
   }
 
   async function reloadData() {
-    await tableStore.reloadData();
+    await tableStore.value.reloadData();
   }
 
   function selectAll(checked) {
-    tableStore.selectAll(checked);
+    tableStore.value.selectAll(checked);
     emitselectedRows();
   }
 
   function selectRow(row, checked) {
-    tableStore.selectRow(row, checked);
+    tableStore.value.selectRow(row, checked);
     emitselectedRows();
   }
 
   function emitselectedRows() {
-    emit("selected-rows-changed", tableStore.selectedRows.value);
+    emit(
+      "selected-rows-changed",
+      tableStore.value.selectedRows.value
+    );
   }
 
   function setActiveRow(row) {
-    tableStore.setActiveRow(row);
+    tableStore.value.setActiveRow(row);
     emit("active-row-changed", row);
   }
 
@@ -318,15 +324,17 @@
 
   const __containerClass = computed(
     () =>
-      `q-table__container q-table--${tableStore.separator.value}-separator column no-wrap` +
+      `q-table__container q-table--${tableStore.value.separator.value}-separator column no-wrap` +
       (props.grid === true
         ? "q-table--grid"
         : cardDefaultClass.value) +
       ($q.dark?.isActive === true ? " q-table--dark" : "") +
-      (tableStore.dense.value === true ? " q-table--dense" : "") +
+      (tableStore.value.dense.value === true
+        ? " q-table--dense"
+        : "") +
       (props.wrapCells === false ? " q-table--no-wrap_" : "") +
       (props.bordered === true ? " bordered" : "") +
-      (tableStore.inFullscreen.value === true
+      (tableStore.value.inFullscreen.value === true
         ? " fullscreen scroll"
         : "")
   );
@@ -334,7 +342,7 @@
   const containerClass = computed(
     () =>
       __containerClass.value +
-      (tableStore.showLoader.value === true
+      (tableStore.value.showLoader.value === true
         ? " q-table--loading"
         : "")
   );
@@ -349,7 +357,7 @@
 
   //Todo: How move to expand page dynamically
   const toggleExpand = (row) => {
-    tableStore.toggleExpand(row);
+    tableStore.value.toggleExpand(row);
     // if ($q.screen.gt.xs) {
     //   tableStore.toggleExpand(row);
     // } else {

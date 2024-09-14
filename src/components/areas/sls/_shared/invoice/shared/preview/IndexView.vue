@@ -14,8 +14,10 @@
     v-if="$q.screen.xs"
     class="q-mb-sm"
     :model="model"
+    :detail-url="detailUrl"
     :show-sale-header="showSaleHeader"
     :tax-api="taxApi"
+    :show-receipt="showReceipt"
   >
     <template #master-section>
       <slot name="master-section" :model="model"></slot>
@@ -32,6 +34,7 @@
     :model="model"
     :show-sale-header="showSaleHeader"
     :tax-api="taxApi"
+    :detail-url="detailUrl"
     :show-receipt="showReceipt"
   >
     <template #master-section>

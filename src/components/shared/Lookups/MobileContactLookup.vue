@@ -61,9 +61,7 @@
                 square
                 class="border-radius-sm"
                 :style="{
-                  backgroundColor: helper.generateDarkAvatarColor(
-                    row.name
-                  ),
+                  backgroundColor: helper.generateAvatarStyle(row.id),
                 }"
                 v-else
               >

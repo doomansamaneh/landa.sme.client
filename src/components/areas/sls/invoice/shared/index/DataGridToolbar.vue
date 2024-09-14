@@ -1,28 +1,63 @@
 <template>
   <template v-if="$q.screen.xs">
     <toolbar-mobile
-      v-if="toolbar"
-      buttons
-      :table-store="mobileGrid?.tableStore"
+      :table-store="tableStore"
       :crud-store="crudStore"
       :title="title"
-      :base-route="baseRoute"
+      base-route="sls/invoice"
       activation
-    ></toolbar-mobile>
+      search-btn
+    >
+      <template #buttons-custom>
+        <q-separator size="0.5px" class="q-my-sm" />
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          @click="editBatch"
+        >
+          <div class="q-py-sm">
+            <q-item-section avatar>
+              <q-avatar class="bg-on-dark" size="sm">
+                <q-icon name="o_edit" />
+              </q-avatar>
+            </q-item-section>
+          </div>
+          <q-item-section>
+            <div class="text-body2 no-letter-spacing">
+              {{ $t("shared.labels.editBatch") }}
+            </div>
+          </q-item-section>
+        </q-item>
+      </template>
 
-    <mobile
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :title="title"
-      ref="mobileGrid"
-    />
+      <template #search-btn>
+        <q-btn
+          round
+          class="q-mr-sm"
+          unelevated
+          dense
+          v-if="!tableStore?.activeRow?.value"
+        >
+          <q-icon name="sort" />
+        </q-btn>
+        <q-btn
+          round
+          unelevated
+          dense
+          v-if="!tableStore?.activeRow?.value"
+          @click="showSearchModal"
+        >
+          <q-icon name="o_filter_alt" />
+        </q-btn>
+      </template>
+    </toolbar-mobile>
   </template>
   <template v-else>
     <toolbar-desktop
-      v-if="toolbar"
-      :table-store="desktopGrid?.tableStore"
-      :crud-store="crudStore"
       :title_="title"
+      :table-store="tableStore"
+      :crud-store="crudStore"
       :base-route="baseRoute"
       buttons
       margin
@@ -176,63 +211,38 @@
         </q-item>
       </template>
     </toolbar-desktop>
-
-    <desktop
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :title="title"
-      advanced-search
-      data-source="sls/invoice/getGridData"
-      ref="desktopGrid"
-    />
   </template>
 </template>
 
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useI18n } from "vue-i18n";
-  //import { useInvoiceGrid } from "src/components/areas/sls/_composables/useInvoiceGrid";
-  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
-  import { useInvoiceState } from "../../../_composables/useInvoiceState";
+  import { useDataTable } from "src/composables/useDataTable";
+
   import { useFormActions } from "src/composables/useFormActions";
+  import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-  import Desktop from "src/components/areas/sls/invoice/desktop/index/DataGrid.vue";
-  import Mobile from "src/components/areas/sls/invoice/mobile/index/DataGrid.vue";
 
   import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
   import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderDialog.vue";
 
   const props = defineProps({
     toolbar: Boolean,
+    title: String,
+    tableStore: useDataTable,
   });
 
-  const { t } = useI18n();
-
-  const title = t("main-menu-items.Sls_Invoice_View");
   const baseRoute = "sls/Invoice";
-
   const $q = useQuasar();
-  const invoiceStore = useInvoiceState();
-  const gridStore = useBaseInfoGrid(invoiceStore);
+
   const crudStore = useFormActions(baseRoute);
   const formStore = useInvoiceModel({ baseRoute: baseRoute });
-  const desktopGrid = ref(null);
-  const mobileGrid = ref(null);
 
-  const selectedIds = computed(() => {
-    if (desktopGrid?.value != null)
-      return desktopGrid.value.tableStore.selectedRows?.value.map(
-        (item) => item.id
-      );
-    else
-      return mobileGrid.value.tableStore.selectedRows?.value.map(
-        (item) => item.id
-      );
-  });
+  const selectedIds = computed(() =>
+    props.tableStore.selectedRows?.value.map((item) => item.id)
+  );
 
   function editBatch() {
     $q.dialog({

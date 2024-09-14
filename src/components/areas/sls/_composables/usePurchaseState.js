@@ -32,7 +32,7 @@ const pagination = ref({
 
 const columns = ref(invoiceColumns);
 
-export function useSalesReturn(defaultFilters) {
+export function usePurchaseState(defaultFilters) {
   const composablesStore = useComposables();
 
   composablesStore.register({

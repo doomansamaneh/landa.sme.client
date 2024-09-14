@@ -1,23 +1,19 @@
 <template>
-  <data-grid
-    class="border-radius-lg"
-    flat
-    bordered
-    toolbar
-    multi-select
-    :data-source="`sls/quote/GetByCustomerData/${item.id}`"
-    :grid-store="gridStore"
-  />
+  <data-grid :table-store="tableStore" :advanced-search="false" />
 </template>
 
 <script setup>
+  import { useDataTable } from "src/composables/useDataTable";
   import { useCustomerQuoteState } from "../../../_composables/useCustomerQuoteState";
 
-  import DataGrid from "src/components/areas/sls/quote/desktop/index/_DataGrid.vue";
+  import DataGrid from "src/components/areas/sls/quote/shared/index/DataGridTable.vue";
 
   const props = defineProps({
     item: Object,
   });
 
-  const gridStore = useCustomerQuoteState();
+  const tableStore = useDataTable({
+    dataSource: `sls/quote/GetByCustomerData/${props.item.id}`,
+    store: useCustomerQuoteState(),
+  });
 </script>
