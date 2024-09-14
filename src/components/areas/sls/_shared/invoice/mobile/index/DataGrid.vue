@@ -1,6 +1,6 @@
 <template>
   <tool-bar
-    :table-store="dataGrid?.tableStore"
+    :table-store="tableStore"
     :crud-store="crudStore"
     :title="title"
     base-route="sls/invoice"
@@ -36,7 +36,7 @@
               unelevated
               class="bg-white text-primary text-body1 text-bold no-pointer-events"
             >
-              {{ gridStore?.pagination.value.totalItems }}
+              {{ tableStore?.pagination.value.totalItems }}
             </q-btn>
           </div>
 
@@ -47,7 +47,9 @@
               </div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.amount.toLocaleString()
+                  helper.formatNumber(
+                    tableStore?.summaryData?.value?.amount
+                  )
                 }}
               </div>
             </div>
@@ -58,7 +60,9 @@
               </div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.payedAmount.toLocaleString()
+                  helper.formatNumber(
+                    tableStore?.summaryData?.value?.payedAmount
+                  )
                 }}
               </div>
             </div>
@@ -68,7 +72,9 @@
               </div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.remainedAmount.toLocaleString()
+                  helper.formatNumber(
+                    tableStore?.summaryData?.value?.remainedAmount
+                  )
                 }}
               </div>
             </div>
@@ -100,12 +106,12 @@
               </div>
               <div class="text-bold text-grey-10 text-caption">
                 {{
-                  helper
-                    .getSubtotal(
+                  helper.formatNumber(
+                    helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "amount"
                     )
-                    .toLocaleString()
+                  )
                 }}
               </div>
             </div>
@@ -116,12 +122,12 @@
               </div>
               <div class="text-bold text-grey-10 text-caption">
                 {{
-                  helper
-                    .getSubtotal(
+                  helper.formatNumber(
+                    helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "remainedAmount"
                     )
-                    .toLocaleString()
+                  )
                 }}
               </div>
             </div>
@@ -163,8 +169,7 @@
     </div>
 
     <data-grid
-      data-source="sls/invoice/getGridData"
-      :grid-store="gridStore"
+      :data-table-store="tableStore"
       createUrl="/sls/invoice/create"
       ref="dataGrid"
     >
@@ -548,10 +553,9 @@
 </template>
 
 <script setup>
-  import { computed, ref, onMounted } from "vue";
+  import { computed, ref } from "vue";
 
   import { helper } from "src/helpers";
-  import { sqlOperator, voucherStatus } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
@@ -559,7 +563,7 @@
   import ToolBar from "src/components/shared/ToolBar.vue";
 
   const props = defineProps({
-    gridStore: Object,
+    tableStore: Object,
     title: String,
   });
 

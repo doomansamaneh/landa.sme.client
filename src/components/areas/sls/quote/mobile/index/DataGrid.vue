@@ -1,9 +1,9 @@
 <template>
   <tool-bar
-    :table-store="dataGrid?.tableStore"
+    :table-store="tableStore"
     :crud-store="crudStore"
     :title="title"
-    base-route="sls/invoice"
+    base-route="sls/quote"
     activation
   >
     <template #buttons-custom>
@@ -36,7 +36,7 @@
               unelevated
               class="bg-white text-primary text-body1 text-bold no-pointer-events"
             >
-              {{ gridStore?.pagination.value.totalItems }}
+              {{ tableStore?.pagination.value.totalItems }}
             </q-btn>
           </div>
 
@@ -47,28 +47,9 @@
               </div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.amount.toLocaleString()
-                }}
-              </div>
-            </div>
-
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-blue-3">
-                دریافت شده
-              </div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  tableStore?.summaryData?.value?.payedAmount.toLocaleString()
-                }}
-              </div>
-            </div>
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-blue-3">
-                مانده
-              </div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  tableStore?.summaryData?.value?.remainedAmount.toLocaleString()
+                  helper.formatNumber(
+                    tableStore?.summaryData?.value?.amount
+                  )
                 }}
               </div>
             </div>
@@ -100,28 +81,12 @@
               </div>
               <div class="text-bold text-grey-10 text-caption">
                 {{
-                  helper
-                    .getSubtotal(
+                  helper.formatNumber(
+                    helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "amount"
                     )
-                    .toLocaleString()
-                }}
-              </div>
-            </div>
-
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-grey-7">
-                مانده
-              </div>
-              <div class="text-bold text-grey-10 text-caption">
-                {{
-                  helper
-                    .getSubtotal(
-                      tableStore.selectedRows.value,
-                      "remainedAmount"
-                    )
-                    .toLocaleString()
+                  )
                 }}
               </div>
             </div>
@@ -163,9 +128,8 @@
     </div>
 
     <data-grid
-      data-source="sls/invoice/getGridData"
-      :grid-store="gridStore"
-      createUrl="/sls/invoice/create"
+      :data-table-store="tableStore"
+      createUrl="/sls/quote/create"
       ref="dataGrid"
     >
       <template #header>
@@ -298,23 +262,7 @@
                 <span
                   class="ellipsis-2-lines text-caption text-caption text-on-dark"
                 >
-                  {{ item.payedAmount.toLocaleString() }}
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.remainedAmount"
-            >
-              <div class="col-3">
-                <span class="text-caption text-on-dark">مانده</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
-                >
-                  {{ item.remainedAmount.toLocaleString() }}
+                  {{ helper.formatNumber(item.payedAmount) }}
                 </span>
               </div>
             </div>
@@ -348,7 +296,7 @@
         <q-btn
           unelevated
           class="text-on-dark"
-          :to="`/sls/invoice/preview/${item.id}`"
+          :to="`/sls/quote/preview/${item.id}`"
         >
           <span class="text-body3 text-bold">مشاهده جزئیات</span>
         </q-btn>
@@ -558,14 +506,11 @@
   import ToolBar from "src/components/shared/ToolBar.vue";
 
   const props = defineProps({
-    gridStore: Object,
+    tableStore: Object,
     title: String,
   });
 
   const crudStore = useFormActions("sls/invoice");
-
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid.value?.tableStore);
 
   const dialog = ref(false);
   const showCreate = ref(true);
@@ -592,7 +537,7 @@
   };
 
   async function reloadData(model) {
-    await dataGrid.value.reloadData();
+    await props.tableStore.reloadData();
   }
 
   const shouldDisplaySelectedDateRange = computed(() => {
@@ -609,11 +554,6 @@
     dialog.value = false;
     reloadData();
   };
-
-  function selectRow(row, checked) {
-    tableStore.value.selectRow(row, checked);
-    emitselectedRows();
-  }
 
   function emitselectedRows() {
     // emit("selected-rows-changed", tableStore.selectedRows.value)

@@ -45,7 +45,7 @@ export function useDataTable({
   );
   const state = computed(() => store?.state ?? _state);
   const pagination = computed(
-    () => store?.pagination.value ?? _pagination.value
+    () => store?.pagination?.value ?? _pagination.value
   );
 
   // const loading = ref(false)

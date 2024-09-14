@@ -115,12 +115,12 @@
               <div class="text-caption">جمع کل</div>
               <div class="text-bold text-caption">
                 {{
-                  helper
-                    .getSubtotal(
+                  helper.formatNumber(
+                    helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "amount"
                     )
-                    .toLocaleString()
+                  )
                 }}
               </div>
             </div>
@@ -129,12 +129,12 @@
               <div class="text-caption">مانده</div>
               <div class="text-bold text-caption">
                 {{
-                  helper
-                    .getSubtotal(
+                  helper.formatNumber(
+                    helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "remainedAmount"
                     )
-                    .toLocaleString()
+                  )
                 }}
               </div>
             </div>
