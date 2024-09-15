@@ -216,6 +216,40 @@ export function useInvoiceModel(config) {
     }
   };
 
+  const addProduct = (product) => {
+    const selectedRows = model.value.invoiceItems.find(
+      (r) => r.productId === product.id
+    );
+    if (selectedRows) {
+      selectedRows.quantity += 1;
+    } else {
+      const newRow = { ...itemStore.model.value };
+      (newRow.productId = product.id),
+        (newRow.productTitle = `${product.code} ${product.title}`),
+        (newRow.productUnitId = product.productUnitId),
+        (newRow.productUnitTitle = product.productUnitTitle),
+        (newRow.price = product.price),
+        (newRow.quantity = 1),
+        pushNewRow(newRow);
+    }
+  };
+
+  const removeProduct = (product) => {
+    const selectedRows = model.value.invoiceItems.find(
+      (r) => r.productId === product.id
+    );
+    const index = model.value.invoiceItems.indexOf(selectedRows);
+    deleteRow(index);
+  };
+
+  const getProductQuantity = (productId) => {
+    const selectedRows = model.value.invoiceItems.find(
+      (r) => r.productId === productId
+    );
+    if (selectedRows) return selectedRows.quantity;
+    return 0;
+  };
+
   const deleteRow = (index) => {
     formItemStore.deleteItem(model.value.invoiceItems, index);
   };
@@ -302,6 +336,10 @@ export function useInvoiceModel(config) {
     cancelInvoice,
     cancelInvoices,
     submitForm,
+
+    addProduct,
+    removeProduct,
+    getProductQuantity,
 
     downloadPdf,
   };

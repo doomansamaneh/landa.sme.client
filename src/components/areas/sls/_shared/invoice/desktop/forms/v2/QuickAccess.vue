@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bordered fit no-shadow">
+  <q-card bordered flat>
     <q-tabs
       v-model="tab"
       class="text-h6 text-weight-700 primary-tabs q-mt-lg"
@@ -68,12 +68,10 @@
                 v-close-popup
                 class="q-py-sm border-radius-xs text-on-dark"
                 :class="pulseProduct"
-                @click="createInvoice.incrementQuantity(product)"
+                @click="formStore.addProduct(product)"
               >
                 <template
-                  v-if="
-                    createInvoice.getProductQuantity(product.id) > 0
-                  "
+                  v-if="formStore.getProductQuantity(product.id) > 0"
                 >
                   <q-btn
                     unelevated
@@ -81,14 +79,10 @@
                     size="sm"
                     color="secondary"
                     class="z-max text-bold q-ma-sm absolute-top-left"
-                    @click.stop="
-                      createInvoice.incrementQuantity(product)
-                    "
+                    @click.stop="formStore.addProduct(product)"
                   >
                     <div class="text-body1">
-                      {{
-                        createInvoice.getProductQuantity(product.id)
-                      }}
+                      {{ formStore.getProductQuantity(product.id) }}
                     </div>
                   </q-btn>
                   <q-btn
@@ -98,7 +92,7 @@
                     round
                     color="red"
                     size="sm"
-                    @click.stop="createInvoice.removeProduct(product)"
+                    @click.stop="formStore.removeProduct(product)"
                   >
                     <q-icon name="o_close" color="red" size="20px" />
                   </q-btn>
@@ -142,7 +136,7 @@
                     <span class="text-caption-sm text-bold">
                       قیمت فروش:
                     </span>
-                    {{ product.price.toLocaleString() }}
+                    {{ helper.formatNumber(product.price) }}
                   </q-item-label>
                 </q-item-section>
               </q-item>
@@ -158,9 +152,12 @@
   import { ref, computed, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { fetchWrapper } from "src/helpers";
-  import { useCreateInvoice } from "src/components/areas/sls/_composables/useCreateInvoice";
+  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
-  const createInvoice = useCreateInvoice();
+  const props = defineProps({
+    formStore: useInvoiceModel,
+  });
+
   const tab = ref("my-products");
   const products = ref([]);
 
@@ -177,16 +174,16 @@
   }
 
   function handleResponse(data) {
-    console.log(data);
     products.value = data;
   }
 
-  const pulseProduct = computed(() =>
-    createInvoice.rows.value.length < 1 ? "pulse" : ""
+  const pulseProduct = computed(
+    () => ""
+    //props.formStore.model.value.invoiceItems.length < 1 ? "pulse" : ""
   );
 
   onMounted(() => {
-    getProducts(), createInvoice;
+    getProducts();
   });
 </script>
 

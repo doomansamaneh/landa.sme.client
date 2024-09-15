@@ -28,6 +28,7 @@ export function useFormItemsModel() {
   };
 
   const deleteItem = (items, index) => {
+    if (index < 0) return;
     items.splice(index, 1);
     const newIndex = Math.min(index, items.length - 1);
     newAddedItemIndex.value = newIndex;

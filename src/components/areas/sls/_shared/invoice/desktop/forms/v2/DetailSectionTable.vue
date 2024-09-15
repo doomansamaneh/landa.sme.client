@@ -1,61 +1,14 @@
 <template>
-  <q-markup-table
-    class="q-pa-md-"
-    bordered
-    flat
-    dense
-    separator="horizontal"
-  >
+  <q-markup-table bordered flat dense separator="horizontal">
     <thead>
       <tr>
-        <th colspan="100%">
-          <div class="row items-center">
-            <div class="col-md-6">
-              <q-input
-                class="q-pa-md"
-                inputmode="search"
-                input-class="text-body2 no-letter-spacing"
-                outlined
-                dense
-                rounded
-                v-model="productCode"
-                :placeholder="
-                  $t('shared.labels.addItemByProductCode')
-                "
-                clearable
-                clear-icon="o_clear"
-                @keydown.enter="addByCode"
-              >
-                <template #append>
-                  <q-btn
-                    padding="0 12px"
-                    unelevated
-                    label="افزودن کالا"
-                    dense
-                    color="primary"
-                    rounded
-                    @click="addByCode"
-                  />
-                </template>
-
-                <template #prepend>
-                  <q-icon name="o_search" color="primary" />
-                </template>
-              </q-input>
-            </div>
-          </div>
-        </th>
-      </tr>
-      <tr>
         <th style="width: 1%">#</th>
-        <th style="width: 28%">کالا/خدمت</th>
-        <th style="width: 7%">تعداد/مقدار</th>
-        <th style="width: 10%">واحد سنجش</th>
-        <th style="width: 8%">مبلغ واحد</th>
-        <th style="width: 8%">تخفیف</th>
-        <th style="width: 12%">مالیات بر ارزش افزوده</th>
-        <th style="width: 8%">مبلغ مالیات</th>
-        <th style="width: 10%">
+        <th>کالا/خدمت</th>
+        <th style="width: 10%">تعداد/مقدار</th>
+        <th style="width: 15%">واحد سنجش</th>
+        <th style="width: 15%">مبلغ واحد</th>
+        <th style="width: 12%">ارزش افزوده</th>
+        <th style="width: 15%">
           مبلغ کل
           <q-icon
             name="o_info"
@@ -77,7 +30,7 @@
             </q-tooltip>
           </q-icon>
         </th>
-        <th></th>
+        <th style="width: 1%"></th>
       </tr>
     </thead>
     <tbody>
@@ -117,12 +70,6 @@
           />
         </td>
         <td>
-          <custom-input-number
-            v-model="row.discount"
-            placeholder="تخفیف"
-          />
-        </td>
-        <td>
           <vat-lookup
             placeholder="مالیات بر ارزش افزوده"
             v-model:selectedId="row.vatId"
@@ -132,33 +79,15 @@
           />
         </td>
         <td>
-          <custom-input-number
-            v-model="row.vatAmount"
-            placeholder="مبلغ مالیات"
-          />
-        </td>
-        <td>
           <q-field outlined dense disable>
             <template v-slot:control>
-              <div
-                class="self-center full-width no-outline"
-                tabindex="0"
-              >
-                {{ row.totalPrice?.toLocaleString() }}
+              <div class="text-weight-500" tabindex="0">
+                {{ helper.formatNumber(row.totalPrice) }}
               </div>
             </template>
           </q-field>
         </td>
         <td class="text-center q-gutter-x-sm">
-          <q-btn
-            color="primary"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewRow(index, row)"
-          />
           <q-btn
             color="red"
             unelevated
@@ -218,20 +147,10 @@
         </td>
       </tr>
     </tbody>
-    <tbody v-if="formStore.model.value.invoiceItems.length === 0">
+    <tbody v-if="!formStore.model.value.invoiceItems?.length">
       <tr>
-        <td colspan="100%" class="text-center">
-          <no-product-selected class="q-mt-md" />
-          <q-btn
-            class="q-mb-xl primary-shadow"
-            rounded
-            unelevated
-            color="primary"
-            @click="formStore.pushNewRow()"
-          >
-            <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
-          </q-btn>
+        <td colspan="100%">
+          <no-product-selected />
         </td>
       </tr>
     </tbody>
@@ -241,44 +160,25 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import {
     sqlOperator,
     vatType,
     invoiceFormType,
   } from "src/constants";
 
-  import FooterSection from "./FooterSection.vue";
+  import FooterSection from "../v1/FooterSection.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import NoProductSelected from "../NoProductSelected.vue";
+  import { helper } from "src/helpers";
 
   const props = defineProps({
     formStore: Object,
     formType: invoiceFormType,
   });
-
-  const productCode = ref("");
-
-  const productFilter =
-    props.formType == invoiceFormType.sales
-      ? [
-          {
-            fieldName: "isForSale",
-            operator: sqlOperator.equal,
-            value: "1",
-          },
-        ]
-      : [
-          {
-            fieldName: "isForPurchase",
-            operator: sqlOperator.equal,
-            value: "1",
-          },
-        ];
 
   const vatFilter =
     props.formType == invoiceFormType.sales
@@ -300,17 +200,8 @@
   const vatChanged = (vat, row) => {
     row.vatPercent = vat?.rate ?? 0;
   };
-
-  const productChanged = (product, row) => {
-    row.price = product?.price ?? 0;
-    row.productUnitId = product?.productUnitId ?? null;
-    row.productUnitTitle = product?.productUnitTitle ?? null;
-  };
-
-  const addByCode = () => {
-    props.formStore.addNewRowByCode(productCode.value);
-  };
 </script>
+
 <style scoped>
   td,
   th {

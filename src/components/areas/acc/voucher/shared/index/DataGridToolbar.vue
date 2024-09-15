@@ -1,9 +1,8 @@
 <template>
   <template v-if="$q.screen.xs">
     <toolbar-mobile
-      v-if="toolbar"
       buttons
-      :table-store="mobileGrid?.tableStore"
+      :table-store="tableStore"
       :crud-store="crudStore"
       :title="title"
       :base-route="baseRoute"
@@ -12,10 +11,8 @@
   </template>
   <template v-else>
     <toolbar-desktop
-      v-if="toolbar"
-      :table-store="desktopGrid?.tableStore"
+      :table-store="tableStore"
       :crud-store="crudStore"
-      :title="title"
       :base-route="baseRoute"
       buttons
       margin
@@ -115,7 +112,7 @@
   const props = defineProps({
     toolbar: Boolean,
     title: String,
-    tableStore: useDataTable,
+    tableStore: Object,
   });
 
   const baseRoute = "acc/voucher";

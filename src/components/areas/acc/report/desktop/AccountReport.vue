@@ -17,15 +17,15 @@
         </template>
 
         <template #cell-debit="{ item }">
-          {{ item.debit?.toLocaleString() }}
+          {{ helper.formatNumber(item.debit?) }}
         </template>
 
         <template #cell-debitRemained="{ item }">
-          {{ item.debitRemained?.toLocaleString() }}
+          {{ helper.formatNumber(item.debitRemained?) }}
         </template>
 
         <template #cell-creditRemained="{ item }">
-          {{ item.creditRemained?.toLocaleString() }}
+          {{ helper.formatNumber(item.creditRemained?) }}
         </template>
 
         <template #expand="{ item }">
@@ -40,6 +40,7 @@
 
 <script setup>
   import { computed, ref } from "vue";
+  import { helper } from "src/helpers";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "./AccountPreview.vue";

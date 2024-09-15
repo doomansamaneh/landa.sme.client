@@ -5,8 +5,7 @@
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>
         <div>
-          {{ formStore.totalNetPrice.value.toLocaleString() }}
-          <span class="text-caption">ریال</span>
+          {{ helper.formatNumber(formStore.totalNetPrice.value) }}
         </div>
       </div>
 
@@ -91,29 +90,29 @@
         </div>
         <div>
           <span class="text-red">
-            ({{ formStore.totalDiscount.value.toLocaleString() }})
+            ({{ helper.formatNumber(formStore.totalDiscount.value) }})
           </span>
-          <span class="text-red text-caption">ریال</span>
         </div>
       </div>
 
       <div class="row q-mr-md">
         <div class="col">ارزش افزوده</div>
         <div>
-          {{ formStore.totalVat.value.toLocaleString() }}
-          <span class="text-caption">ریال</span>
+          {{ helper.formatNumber(formStore.totalVat.value) }}
         </div>
       </div>
 
       <q-separator />
 
       <div class="row q-mr-md">
-        <div class="col text-bold">مبلغ کل</div>
+        <div class="col text-bold">جمع کل</div>
         <div>
           <strong>
-            {{ formStore.totalPrice.value.toLocaleString() }}
+            {{ helper.formatNumber(formStore.totalPrice.value) }}
           </strong>
-          <span class="text-caption">ریال</span>
+          <span class="text-caption q-px-xs">
+            {{ formStore.model.value.currencyTitle }}
+          </span>
         </div>
       </div>
 
@@ -124,6 +123,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { helper } from "src/helpers";
 
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 

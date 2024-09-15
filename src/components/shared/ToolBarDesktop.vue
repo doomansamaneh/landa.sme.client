@@ -301,6 +301,8 @@
 
 <script setup>
   import { ref, computed, onMounted, onUnmounted } from "vue";
+  import { useDataTable } from "src/composables/useDataTable";
+
   import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
 
@@ -316,7 +318,7 @@
   const props = defineProps({
     title: String,
     baseRoute: String,
-    tableStore: Object,
+    tableStore: useDataTable,
     crudStore: Object,
     activation: Boolean,
     backButton: Boolean,
