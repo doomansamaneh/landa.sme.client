@@ -84,7 +84,6 @@ export const voucherColumns = [
   { ...no },
   { ...date },
   { ...subject },
-  { ...amount },
   { ...type },
   {
     name: "systemId",
@@ -96,6 +95,7 @@ export const voucherColumns = [
     style: "width:160px;",
     showFilter: true,
   },
+  { ...amount },
 ];
 
 export const accountCLColumns = [

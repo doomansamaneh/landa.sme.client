@@ -1,9 +1,9 @@
 <template>
   <tool-bar
-    :table-store="dataGrid?.tableStore"
+    :table-store="tableStore"
     :crud-store="crudStore"
     :title="title"
-    base-route="sls/invoice"
+    base-route="acc/voucher"
     activation
   >
     <template #buttons-custom>
@@ -36,7 +36,7 @@
               unelevated
               class="bg-white text-primary text-body1 text-bold no-pointer-events"
             >
-              {{ gridStore?.pagination.value.totalItems }}
+              {{ tableStore?.pagination.value.totalItems }}
             </q-btn>
           </div>
 
@@ -47,28 +47,9 @@
               </div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.amount.toLocaleString()
-                }}
-              </div>
-            </div>
-
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-blue-3">
-                دریافت شده
-              </div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  tableStore?.summaryData?.value?.payedAmount.toLocaleString()
-                }}
-              </div>
-            </div>
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-blue-3">
-                مانده
-              </div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  tableStore?.summaryData?.value?.remainedAmount.toLocaleString()
+                  helper.formatNumber(
+                    tableStore?.summaryData?.value?.amount
+                  )
                 }}
               </div>
             </div>
@@ -100,28 +81,12 @@
               </div>
               <div class="text-bold text-grey-10 text-caption">
                 {{
-                  helper
-                    .getSubtotal(
+                  helper.formatNumber(
+                    helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "amount"
                     )
-                    .toLocaleString()
-                }}
-              </div>
-            </div>
-
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption text-bold text-grey-7">
-                مانده
-              </div>
-              <div class="text-bold text-grey-10 text-caption">
-                {{
-                  helper
-                    .getSubtotal(
-                      tableStore.selectedRows.value,
-                      "remainedAmount"
-                    )
-                    .toLocaleString()
+                  )
                 }}
               </div>
             </div>
@@ -163,10 +128,8 @@
     </div>
 
     <data-grid
-      data-source="sls/invoice/getGridData"
-      :grid-store="gridStore"
-      createUrl="/sls/invoice/create"
-      ref="dataGrid"
+      :data-table-store="tableStore"
+      createUrl="/acc/voucher/create"
     >
       <template #header>
         <template></template>
@@ -548,10 +511,9 @@
 </template>
 
 <script setup>
-  import { computed, ref, onMounted } from "vue";
-
+  import { computed, ref } from "vue";
   import { helper } from "src/helpers";
-  import { sqlOperator, voucherStatus } from "src/constants";
+  import { useDataTable } from "src/composables/useDataTable";
   import { useFormActions } from "src/composables/useFormActions";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
@@ -559,18 +521,12 @@
   import ToolBar from "src/components/shared/ToolBar.vue";
 
   const props = defineProps({
-    gridStore: Object,
+    tableStore: useDataTable,
     title: String,
   });
 
-  const crudStore = useFormActions("sls/invoice");
-
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid.value?.tableStore);
-
+  const crudStore = useFormActions("acc/voucher");
   const dialog = ref(false);
-  const showCreate = ref(true);
-  const advancedSearch = ref(null);
 
   const bottomSheetStatus = ref(false);
   const bottomSheetItem = ref(null);
@@ -578,22 +534,12 @@
 
   const selectedDateRange = ref({ value: "", label: "" });
 
-  // onMounted(() => {
-  //   tableStore.value.state.value.filterExpression = [
-  //     {
-  //       fieldName: "d.StatusId",
-  //       operator: sqlOperator.notEqual,
-  //       value: voucherStatus.canceled,
-  //     },
-  //   ];
-  // });
-
   const showSearchModal = () => {
     dialog.value = true;
   };
 
   async function reloadData(model) {
-    await dataGrid.value.reloadData();
+    await props.tableStore.reloadData();
   }
 
   const shouldDisplaySelectedDateRange = computed(() => {
@@ -612,7 +558,7 @@
   };
 
   function selectRow(row, checked) {
-    tableStore.value.selectRow(row, checked);
+    props.tableStore.selectRow(row, checked);
     emitselectedRows();
   }
 

@@ -5,10 +5,7 @@
     <card-title :title="title" />
     <q-card-section class="q-px-none">
       <data-grid
-        ref="dataGrid"
-        :data-source="dataSource"
-        :grid-store="gridStore"
-        separator="horizontal"
+        :data-table-store="tableStore"
         flat
         toolbar
         multiSelect
@@ -80,9 +77,9 @@
           <td>
             <b>
               {{
-                helper
-                  .getSubtotal(selectedRows, "amount")
-                  .toLocaleString()
+                helper.formatNumber(
+                  helper.getSubtotal(selectedRows, "amount")
+                )
               }}
             </b>
           </td>
@@ -94,7 +91,7 @@
             {{ $t("shared.labels.total") }}
           </td>
           <td>
-            <b>{{ summary?.amount?.toLocaleString() }}</b>
+            <b>{{ helper.formatNumber(summary?.amount) }}</b>
           </td>
           <td colspan="100%"></td>
         </template>
@@ -108,10 +105,11 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
   import { subSystem, voucherType } from "src/constants";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
@@ -120,21 +118,17 @@
   import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
-    gridStore: Object,
-    dataSource: String,
+    tableStore: useDataTable,
     baseRoute: String,
     advancedSearch: Boolean,
     title: String,
   });
 
   const router = useRouter();
-  const dataGrid = ref(null);
 
   async function reloadData() {
-    await tableStore.value.reloadData();
+    await props.tableStore.reloadData();
   }
-
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
   function gotoPreview(row) {
     router.push(`/acc/voucher/preview/${row.id}`);
@@ -142,14 +136,10 @@
 
   const colspan = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
+      props.tableStore.columns.value.findIndex(
         (column) => column.name === "amount"
       ) +
       1 + //numbered column
       1 //multi check column
   );
-
-  defineExpose({
-    tableStore,
-  });
 </script>
