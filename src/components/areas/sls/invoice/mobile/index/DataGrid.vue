@@ -32,7 +32,7 @@
         unelevated
         dense
         v-if="!tableStore?.activeRow?.value"
-        @click="showSortModal"
+        @click="onSortSheetShow"
       >
         <q-icon name="sort" />
       </q-btn>
@@ -543,17 +543,57 @@
     <advanced-search @apply-search="hideSearchModal" />
   </q-dialog>
 
+  <bottom-sheet
+    v-if="sortSheetStatus"
+    header
+    :status="sortSheetStatus"
+    @hide="onSortSheetHide"
+  >
+    <template #header-title>مرتب‌ سازی بر اساس</template>
+
+    <template #body>
+      <q-list padding>
+        <div v-for="(item, index) in sortOptions" :key="index">
+          <q-item
+            clickable
+            @click="showSortOptionsDialog"
+            class="text-body2 no-letter-spacing q-pa-md"
+          >
+            <q-item-section>
+              <div class="row">
+                <div>
+                  {{ item }}
+                </div>
+                <div>
+                  <q-icon
+                    size="16px"
+                    color="primary"
+                    name="arrow_drop_down"
+                  />
+                </div>
+              </div>
+            </q-item-section>
+            <q-item-section avatar>
+              <q-icon size="20px" color="primary" name="check" />
+            </q-item-section>
+          </q-item>
+          <q-separator
+            v-if="index !== sortOptions.length - 1"
+            size="0.5px"
+            class="q-mx-sm"
+          />
+        </div>
+      </q-list>
+    </template>
+  </bottom-sheet>
+
   <q-dialog
     transition-show="slide-up"
     transition-hide="slide-down"
     transition-duration="600"
-    maximized
-    v-model="sortDialog"
+    v-model="sortOptionsDialog"
   >
-    <advanced-sort
-      data-source="sls/invoice/getGridData"
-      data-columns="tableStore"
-    />
+    <to-sort />
   </q-dialog>
 </template>
 
@@ -567,7 +607,7 @@
   import BottomSheet from "components/shared/BottomSheet.vue";
   import ToolBar from "src/components/shared/ToolBarMobile.vue";
   import AdvancedSearch from "./AdvancedSearch.vue";
-  import AdvancedSort from "./AdvancedSort.vue";
+  import ToSort from "./ToSort.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -575,12 +615,23 @@
   });
 
   const dialog = ref(false);
-  const sortDialog = ref(false);
   const showCreate = ref(true);
   const advancedSearch = ref(null);
+  const sortOptions = [
+    "شماره",
+    "تاریخ",
+    "مشتری",
+    "شرح",
+    "جمع کل",
+    "دریافت شده",
+    "مانده",
+  ];
+
+  const sortOptionsDialog = ref(null);
 
   const bottomSheetStatus = ref(false);
   const printSheetStatus = ref(false);
+  const sortSheetStatus = ref(false);
   const bottomSheetItem = ref(null);
 
   const selectedDateRange = ref({ value: "", label: "" });
@@ -591,14 +642,6 @@
 
   const hideSearchModal = () => {
     dialog.value = false;
-  };
-
-  const showSortModal = () => {
-    sortDialog.value = true;
-  };
-
-  const hideSortModal = () => {
-    sortDialog.value = false;
   };
 
   async function reloadData(model) {
@@ -644,6 +687,22 @@
 
   const onPrintSheetHide = () => {
     printSheetStatus.value = false;
+  };
+
+  const onSortSheetShow = () => {
+    sortSheetStatus.value = true;
+  };
+
+  const onSortSheetHide = () => {
+    sortSheetStatus.value = false;
+  };
+
+  const showSortOptionsDialog = () => {
+    sortOptionsDialog.value = true;
+  };
+
+  const hideSortOptionsDialog = () => {
+    sortOptionsDialog.value = false;
   };
 </script>
 
