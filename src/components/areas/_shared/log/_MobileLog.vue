@@ -22,11 +22,28 @@
       </div>
     </div>
   </div>
-  <div class="q-my-xl q-mx-lg">
-    <div class="q-pb-md text-body1">
-      <q-icon name="o_history" size="sm" class="icon q-pr-sm" />
-      تاریخچه
+  <div class="q-mt-lg">
+    <div class="row q-pb-md justify-between items-center">
+      <div class="text-body1">
+        <q-icon name="o_history" size="sm" class="icon q-pr-sm" />
+        تاریخچه
+      </div>
+      <div>
+        <q-btn
+          round
+          unelevated
+          dense
+          class="text-on-dark"
+          icon="o_refresh"
+          @click="callBack"
+        >
+          <q-tooltip class="custom-tooltip">
+            {{ $t("shared.labels.refresh") }}
+          </q-tooltip>
+        </q-btn>
+      </div>
     </div>
+
     <div class="profile-timeline">
       <q-timeline color="accent">
         <q-timeline-entry
@@ -38,7 +55,7 @@
             <div class="row">
               <div class="col-md-9 col-sm-12 col-xs-12">
                 <q-card
-                  class="bordered-1 no-shadow q-ml-xl q-pa-md"
+                  class="bordered-1 no-shadow q-ml-sm"
                   :class="{ 'q-mr-md': $q.screen.gt.sm }"
                 >
                   <q-card-section
@@ -249,6 +266,6 @@
   };
 
   const margin = computed(() => {
-    return $q.screen.gt.sm ? "margin: 24px" : "margin: 24px";
+    return $q.screen.gt.sm ? "margin: 24px" : "margin: 0px";
   });
 </script>

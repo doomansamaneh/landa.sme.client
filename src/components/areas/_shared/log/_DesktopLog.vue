@@ -1,6 +1,6 @@
 <template>
   <div flat>
-    <q-card-section>
+    <q-card-section class="no-padding">
       <div class="text-body1 q-mb-md">
         <q-icon name="o_comment" size="sm" class="icon q-pr-sm" />
         {{ $t("shared.labels.note") }}
@@ -25,23 +25,29 @@
         </div>
       </q-form>
     </q-card-section>
-    <q-card-section>
-      <div class="row_item-center_ q-pb-md text-body1">
-        <q-icon name="o_history" size="sm" class="icon q-pr-sm" />
-        تاریخچه
+    <q-card-section class="no-padding q-mt-md">
+      <div
+        class="row items-center justify-between q-pb-sm text-body1"
+      >
+        <div>
+          <q-icon name="o_history" size="sm" class="icon q-pr-sm" />
+          تاریخچه
+        </div>
 
-        <q-btn
-          round
-          unelevated
-          dense
-          class="text-on-dark"
-          icon="o_refresh"
-          @click="callBack"
-        >
-          <q-tooltip class="custom-tooltip">
-            {{ $t("shared.labels.refresh") }}
-          </q-tooltip>
-        </q-btn>
+        <div>
+          <q-btn
+            round
+            unelevated
+            dense
+            class="text-on-dark"
+            icon="o_refresh"
+            @click="callBack"
+          >
+            <q-tooltip class="custom-tooltip">
+              {{ $t("shared.labels.refresh") }}
+            </q-tooltip>
+          </q-btn>
+        </div>
       </div>
 
       <div class="profile-timeline">
@@ -54,8 +60,8 @@
             <template #default>
               <q-card
                 flat
-                class="bordered-1 q-ml-lg"
-                :class="{ 'q-mr-md': $q.screen.gt.sm }"
+                class="bordered-1 q-ml-md"
+                :class="{ 'q-mr-md_': $q.screen.gt.sm }"
               >
                 <q-card-section class="q-pa-sm">
                   <div
@@ -74,12 +80,14 @@
 
                       <span class="q-px-sm text-caption">
                         {{ getTime(item) }}
-                        <q-tooltip class="glass_ custom-tooltip"
+                        <q-tooltip
+                          class="glass_ custom-tooltip"
                           transition-show="scale"
                           transition-hide="scale"
                           anchor="center left"
                           self="center right"
-                          :offset="[10, 10]">
+                          :offset="[10, 10]"
+                        >
                           {{ item.logTime }}
                         </q-tooltip>
                       </span>
