@@ -224,13 +224,14 @@ export function useInvoiceModel(config) {
       selectedRows.quantity += 1;
     } else {
       const newRow = { ...itemStore.model.value };
-      (newRow.productId = product.id),
-        (newRow.productTitle = `${product.code} ${product.title}`),
-        (newRow.productUnitId = product.productUnitId),
-        (newRow.productUnitTitle = product.productUnitTitle),
-        (newRow.price = product.price),
-        (newRow.quantity = 1),
-        pushNewRow(newRow);
+      newRow.productId = product.id;
+      newRow.productTitle = `${product.code} ${product.title}`;
+      newRow.productUnitId = product.productUnitId;
+      newRow.productUnitTitle = product.productUnitTitle;
+      newRow.price =
+        product.price <= 0 ? product.maxPrice ?? 0 : product.price;
+      newRow.quantity = 1;
+      pushNewRow(newRow);
     }
   };
 

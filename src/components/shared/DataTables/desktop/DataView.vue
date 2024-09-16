@@ -1,6 +1,6 @@
 <template>
-  <q-card class="data-view bordered card-desktop">
-    <slot name="header"> </slot>
+  <q-card class="data-view bordered_card-desktop">
+    <slot name="header"></slot>
     <q-separator />
     <q-linear-progress
       class="progress"
@@ -48,19 +48,21 @@
     <q-card-section v-if="tableStore.rows.value.length > 0">
       <div
         class="row justify-between items-center q-py-md q-px-md cursor-pointer"
-        v-for="(row) in tableStore.rows.value"
+        v-for="row in tableStore.rows.value"
         :key="row.id"
         @click="setActiveRow(row)"
         :class="tableStore.getRowClass(row)"
       >
-        <slot
-          name="body"
-          :item="row"
-        ></slot>
+        <slot name="body" :item="row"></slot>
       </div>
     </q-card-section>
 
-    <q-card-section v-if="!tableStore.showLoader.value && tableStore.rows.value.length == 0">
+    <q-card-section
+      v-if="
+        !tableStore.showLoader.value &&
+        tableStore.rows.value.length == 0
+      "
+    >
       <no-data-found />
     </q-card-section>
 
@@ -76,58 +78,66 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue"
-import { useDataTable } from "src/composables/useDataTable"
+  import { computed, onMounted } from "vue";
+  import { useDataTable } from "src/composables/useDataTable";
 
-import PageBar from "components/shared/dataTables/PageBar.vue"
-import NoDataFound from "components/shared/dataTables/NoDataFound.vue"
+  import PageBar from "components/shared/dataTables/PageBar.vue";
+  import NoDataFound from "components/shared/dataTables/NoDataFound.vue";
 
-const props = defineProps({
-  dataSource: String,
-  sortColumn: String,
-  searchField: String,
-  columns: Array,
-  gridStore: Object
-})
+  const props = defineProps({
+    dataSource: String,
+    sortColumn: String,
+    searchField: String,
+    columns: Array,
+    gridStore: Object,
+  });
 
-const tableStore = useDataTable({dataSource: props.dataSource, dataColumns: props.columns, store: props.gridStore})
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    dataColumns: props.columns,
+    store: props.gridStore,
+  });
 
-const emit = defineEmits(["active-row-changed", "selected-rows-changed"])
+  const emit = defineEmits([
+    "active-row-changed",
+    "selected-rows-changed",
+  ]);
 
-async function clearSearch() {
-  tableStore.pagination.value.searchTerm = ""
-  await reloadData()
-}
-
-onMounted(() => {
-  if (!props.gridStore) {
-    tableStore.pagination.value.sortColumn = props.sortColumn
-    tableStore.pagination.value.searchField = props.searchField
+  async function clearSearch() {
+    tableStore.pagination.value.searchTerm = "";
+    await reloadData();
   }
-  tableStore.loadData()
-})
 
-async function reloadData() {
-  await tableStore.reloadData()
-}
+  onMounted(() => {
+    if (!props.gridStore) {
+      tableStore.pagination.value.sortColumn = props.sortColumn;
+      tableStore.pagination.value.searchField = props.searchField;
+    }
+    tableStore.loadData();
+  });
 
-const isSearchEmpty = computed(() =>
-  !tableStore.pagination.value.searchTerm || tableStore.pagination.value.searchTerm.trim().length === 0
-)
+  async function reloadData() {
+    await tableStore.reloadData();
+  }
 
-function setActiveRow(row) {
-  tableStore.setActiveRow(row)
-  emit("active-row-changed", row)
-}
+  const isSearchEmpty = computed(
+    () =>
+      !tableStore.pagination.value.searchTerm ||
+      tableStore.pagination.value.searchTerm.trim().length === 0
+  );
 
-defineExpose({
-  reloadData
-})
+  function setActiveRow(row) {
+    tableStore.setActiveRow(row);
+    emit("active-row-changed", row);
+  }
 
+  defineExpose({
+    reloadData,
+  });
 </script>
 
 <style lang="scss" scoped>
-.card-desktop {
-  width: 700px !important;
-}
+  .card-desktop {
+    width: 700px !important;
+  }
 </style>

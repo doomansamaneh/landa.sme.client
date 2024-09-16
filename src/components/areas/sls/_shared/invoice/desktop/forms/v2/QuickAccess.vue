@@ -163,11 +163,7 @@
 
   function getProducts() {
     fetchWrapper
-      .post("cmn/product/getlookupData", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .post("cmn/product/getlookupData")
       .then((response) => {
         handleResponse(response.data.data.items);
       });

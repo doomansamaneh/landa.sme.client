@@ -62,6 +62,31 @@
       buttons
       margin
     >
+      <template #buttons-create>
+        <q-btn
+          class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
+          :to="`/${baseRoute}/create`"
+        >
+          <q-icon size="20px" name="o_add" class="q-mr-sm" />
+          {{ $t("shared.labels.create") }}
+        </q-btn>
+        <q-btn
+          class="text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
+          :to="`/${baseRoute}/createV2`"
+        >
+          <q-icon size="20px" name="o_add" class="q-mr-sm" />
+          {{ $t("shared.labels.create") }}v2
+        </q-btn>
+      </template>
+
       <template #bootons-edit="{ row }">
         <q-btn
           padding="6px 12px"

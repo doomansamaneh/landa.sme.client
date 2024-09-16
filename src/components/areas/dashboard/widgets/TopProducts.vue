@@ -19,7 +19,7 @@
             </q-item-section>
             <q-item-section class="q-pl-xs">
               <q-item-label class="text-h6 text-weight-700 q-mb-xs">
-                بیشترین فروش کالا و خدمات
+                کالا و خدمات پر فروش
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -36,92 +36,83 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none q-pl-lg">
-      <q-scroll-area
+    <q-card-section class="q-pl-lg q-px-none q-pt-none">
+      <loadable-data-grid
+        ref="grid"
+        data-source="sls/report/getInvoiceByProduct"
+        :data-store="gridStore"
+        first-load
+        :show-search="false"
+        scroll-style="height: 335px;"
+      >
+        <template #item="{ item }">
+          <q-item
+            class="q-pl-none q-pb-md q-pr-lg border-radius-xs text-on-dark"
+          >
+            <div class="row q-gutter-x-sm items-center">
+              <q-avatar
+                class="primary-gradient primary-shadow border-radius-xs"
+                square
+                v-if="item.picture"
+                text-color="white"
+                size="58px"
+              >
+                <img :src="item.picture" />
+                <q-badge floating color="negative">
+                  {{ helper.formatNumber(item.quantity) }}
+                </q-badge>
+              </q-avatar>
+
+              <q-avatar
+                class="border-radius-xs"
+                square
+                size="58px"
+                text-color="white"
+                :style="helper.generateAvatarStyle(item.id)"
+                v-else
+              >
+                <div class="char text-body1 text-bold">
+                  {{ helper.getFirstChar(item.productTitle) }}
+                </div>
+                <q-badge
+                  class="inset-shadow-down text-body3 text-bold no-letter-spacing q-px-sm q-py-sm"
+                  floating
+                  color="negative"
+                >
+                  {{ helper.formatNumber(item.quantity) }}
+                </q-badge>
+              </q-avatar>
+            </div>
+
+            <div class="row items-center justify-between full-width">
+              <div class="col-9 q-pl-lg column">
+                <span class="text-body3 no-letter-spacing">
+                  {{ item.productCode }} - {{ item.productTitle }}
+                </span>
+                <span class="text-body3 no-letter-spacing">
+                  قیمت فروش : {{ helper.formatNumber(item.price) }}
+                </span>
+                <span class="text-body3 no-letter-spacing">
+                  جمع کل :
+                  <strong>
+                    {{ helper.formatNumber(item.amount) }}
+                  </strong>
+                </span>
+              </div>
+              <div class="col row justify-end items-center">
+                <goto-detail
+                  :to="`/cmn/product/Preview/${item.id}`"
+                />
+              </div>
+            </div>
+          </q-item>
+        </template>
+      </loadable-data-grid>
+      <!-- <q-scroll-area
         style="height: 350px"
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"
-      >
-        <loadable-data-grid
-          ref="grid"
-          data-source="sls/report/getInvoiceByProduct"
-          :grid-store="gridStore"
-        >
-          <template #item="{ item }">
-            <q-item
-              class="q-pl-none q-pb-md q-pr-lg border-radius-xs text-on-dark"
-            >
-              <div class="row q-gutter-x-sm items-center">
-                <q-avatar
-                  class="primary-gradient primary-shadow border-radius-xs"
-                  square
-                  v-if="item.picture"
-                  text-color="white"
-                  size="58px"
-                >
-                  <img :src="item.picture" />
-                  <q-badge floating color="negative">
-                    {{ item.quantity?.toLocaleString() }}
-                  </q-badge>
-                </q-avatar>
-
-                <q-avatar
-                  class="border-radius-xs"
-                  square
-                  size="58px"
-                  text-color="white"
-                  :style="helper.generateAvatarStyle(item.id)"
-                  v-else
-                >
-                  <div class="char text-body1 text-bold">
-                    {{ helper.getFirstChar(item.productTitle) }}
-                  </div>
-                  <q-badge
-                    class="inset-shadow-down text-body3 text-bold no-letter-spacing q-px-sm q-py-sm"
-                    floating
-                    color="negative"
-                  >
-                    {{ item.quantity?.toLocaleString() }}
-                  </q-badge>
-                </q-avatar>
-              </div>
-
-              <div
-                class="row items-center justify-between full-width"
-              >
-                <div class="col-9 q-pl-lg column">
-                  <span class="text-body3 no-letter-spacing">
-                    {{ item.productCode }} - {{ item.productTitle }}
-                  </span>
-                  <span class="text-body3 no-letter-spacing">
-                    قیمت فروش : {{ item.price?.toLocaleString() }}
-                  </span>
-                  <span class="text-body3 no-letter-spacing">
-                    جمع کل :
-                    <strong>
-                      {{ item.amount?.toLocaleString() }}
-                    </strong>
-                  </span>
-                </div>
-                <div class="col row justify-end items-center">
-                  <!-- <q-item-label
-                    caption
-                    class="text-body3 no-letter-spacing q-mx-xs"
-                  >
-                    تعداد:
-                    <strong>
-                      {{ item.quantity?.toLocaleString() }}
-                    </strong>
-                  </q-item-label> -->
-                  <goto-detail
-                    :to="`/cmn/product/Preview/${item.id}`"
-                  />
-                </div>
-              </div>
-            </q-item>
-          </template>
-        </loadable-data-grid>
-      </q-scroll-area>
+      </q-scroll-area> -->
     </q-card-section>
   </q-card>
 </template>

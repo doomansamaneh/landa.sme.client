@@ -302,7 +302,7 @@
   };
 
   const productChanged = (product, row) => {
-    row.price = product?.price ?? 0;
+    row.price = product?.price ?? product?.maxPrice ?? 0;
     row.productUnitId = product?.productUnitId ?? null;
     row.productUnitTitle = product?.productUnitTitle ?? null;
   };

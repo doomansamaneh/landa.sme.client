@@ -110,7 +110,7 @@
                 ]"
               />
             </template>
-            <template v-if="$q.screen.xs">
+            <template v-else>
               <q-btn
                 :icon="
                   chartType === 1 ? 'o_pie_chart' : 'o_table_chart'

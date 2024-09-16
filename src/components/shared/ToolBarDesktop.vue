@@ -15,17 +15,19 @@
       >
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
-            <q-btn
-              class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-              padding="6px 12px"
-              rounded
-              no-caps
-              unelevated
-              :to="`/${baseRoute}/create`"
-            >
-              <q-icon size="20px" name="o_add" class="q-mr-sm" />
-              {{ $t("shared.labels.create") }}
-            </q-btn>
+            <slot name="buttons-create">
+              <q-btn
+                class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+                padding="6px 12px"
+                rounded
+                no-caps
+                unelevated
+                :to="`/${baseRoute}/create`"
+              >
+                <q-icon size="20px" name="o_add" class="q-mr-sm" />
+                {{ $t("shared.labels.create") }}
+              </q-btn>
+            </slot>
 
             <template v-if="tableStore?.activeRow?.value != null">
               <slot
