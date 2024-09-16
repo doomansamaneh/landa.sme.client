@@ -118,7 +118,7 @@
               dense
               size="0"
               to="/sls/invoice/remained/remainedThisYear"
-              class="thisyear-clickable-btn"
+              class="clickable-btn"
             >
               <q-avatar
                 rounded
@@ -132,6 +132,7 @@
                   name="o_account_balance_wallet"
                 />
               </q-avatar>
+              <div class="mouse-icon"></div>
             </q-btn>
           </q-item-section>
 
@@ -174,7 +175,7 @@
               dense
               size="0"
               to="/sls/invoice/remained/remainedAll"
-              class="all-clickable-btn"
+              class="clickable-btn"
             >
               <q-avatar
                 rounded
@@ -188,6 +189,7 @@
                   name="o_account_balance_wallet"
                 />
               </q-avatar>
+              <div class="mouse-icon"></div>
             </q-btn>
           </q-item-section>
 
@@ -234,17 +236,36 @@
 </script>
 
 <style lang="scss" scoped>
-  .thisyear-clickable-btn {
+  .clickable-btn {
+    position: relative;
     transition: transform 0.2s ease-in-out;
   }
-  .thisyear-clickable-btn:hover {
+
+  .clickable-btn:hover {
     transform: scale(1.05);
   }
 
-  .all-clickable-btn {
-    transition: transform 0.2s ease-in-out;
+  .mouse-icon {
+    width: 18px;
+    height: 18px;
+    background: url("src/assets/mouse.png") no-repeat center;
+    background-size: contain;
+    position: absolute;
+    right: 4px;
+    top: 80%;
+    transform: translateY(-50%);
+    animation: mouseMovment 4s infinite ease-in-out;
   }
-  .all-clickable-btn:hover {
-    transform: scale(1.05);
+
+  @keyframes mouseMovment {
+    0% {
+      transform: translate(0, -2px);
+    }
+    50% {
+      transform: translate(0, 0px);
+    }
+    100% {
+      transform: translate(0, -2px);
+    }
   }
 </style>
