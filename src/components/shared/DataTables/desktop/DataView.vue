@@ -1,5 +1,5 @@
 <template>
-  <q-card class="data-view bordered_card-desktop">
+  <q-card class="data-view bordered card-desktop">
     <slot name="header"></slot>
     <q-separator />
     <q-linear-progress

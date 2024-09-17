@@ -60,7 +60,7 @@
 
         <template #expand="{ item }">
           <div class="q-pa-md">
-            <customer-preview :item="item" />
+            <customer-preview :item="item" inside />
           </div>
         </template>
       </data-grid>

@@ -200,6 +200,12 @@
   const vatChanged = (vat, row) => {
     row.vatPercent = vat?.rate ?? 0;
   };
+
+  const productChanged = (product, row) => {
+    row.price = product?.price ?? product?.maxPrice ?? 0;
+    row.productUnitId = product?.productUnitId ?? null;
+    row.productUnitTitle = product?.productUnitTitle ?? null;
+  };
 </script>
 
 <style scoped>

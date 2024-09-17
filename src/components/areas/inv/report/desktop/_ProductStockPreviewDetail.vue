@@ -47,7 +47,7 @@
           :grid-store="gridStore"
         />
       </q-tab-panel>
-      <q-tab-panel class="no-padding" name="log">
+      <q-tab-panel class="no-padding_" name="log">
         <preview-log :entity-id="item.id" />
       </q-tab-panel>
     </q-tab-panels>

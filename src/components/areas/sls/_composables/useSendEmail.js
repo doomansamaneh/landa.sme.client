@@ -1,13 +1,13 @@
 import { ref } from "vue";
 import { useFormActions } from "src/composables/useFormActions";
 
-export function useSendEmail(config) {
-  const model = ref({});
+export function useSendEmail({ baseRoute, id }) {
+  const model = ref({ id: id });
 
-  const crudStore = useFormActions(config.baseRoute, model);
+  const crudStore = useFormActions(baseRoute, model);
 
-  async function getEmail(id) {
-    await crudStore.getById(id, `${config.baseRoute}/getEmail`);
+  async function getEmail() {
+    await crudStore.getById(id, `${baseRoute}/getEmailModel`);
   }
 
   async function sendEmail(callBack) {

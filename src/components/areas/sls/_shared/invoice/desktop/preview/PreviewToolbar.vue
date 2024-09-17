@@ -115,7 +115,7 @@
     $q.dialog({
       component: SendEmailDialog,
       componentProps: {
-        id: props.id,
+        id: props.model.id,
         baseRoute: props.baseRoute,
       },
     }).onOk(async () => {

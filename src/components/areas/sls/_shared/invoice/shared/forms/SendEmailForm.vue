@@ -66,7 +66,10 @@
     baseRoute: String,
   });
 
-  const emailStore = useSendEmail({ baseRoute: props.baseRoute });
+  const emailStore = useSendEmail({
+    baseRoute: props.baseRoute,
+    id: props.id,
+  });
   const form = ref(null);
 
   async function submitForm() {
@@ -87,7 +90,7 @@
   }
 
   onMounted(() => {
-    emailStore.getEmail(props.id);
+    emailStore.getEmail();
   });
 
   defineExpose({

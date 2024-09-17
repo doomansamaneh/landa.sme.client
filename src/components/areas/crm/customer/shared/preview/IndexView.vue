@@ -1,5 +1,5 @@
 <template>
-  <tool-bar buttons :title="title" back-button>
+  <tool-bar buttons :title="title" back-button :inside="inside">
     <template #buttons>
       <q-btn
         :to="`/crm/customer/edit/${id}`"
@@ -95,6 +95,7 @@
   const props = defineProps({
     item: Object,
     title: String,
+    inside: Boolean,
   });
 
   const route = useRoute();
