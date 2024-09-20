@@ -2,10 +2,21 @@
   <q-markup-table bordered flat dense separator="horizontal">
     <thead>
       <tr>
-        <th colspan="100%" class="bg-blue text-white">
-          <span class="text-h6 text-weight-700">
-            کالاهای استفاده شده
-          </span>
+        <th colspan="100%">
+          <div
+            class="row q-gutter-sm text-body1 no-letter-spacing text-weight-700"
+          >
+            <div>
+              <q-btn
+                round
+                unelevated
+                dense
+                size="5px"
+                class="primary-gradient"
+              />
+            </div>
+            <div>کالاهای استفاده شده</div>
+          </div>
         </th>
       </tr>
       <tr>

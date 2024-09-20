@@ -2,6 +2,24 @@
   <q-markup-table bordered flat dense separator="horizontal">
     <thead>
       <tr>
+        <th colspan="100%">
+          <div
+            class="row q-gutter-sm text-body1 no-letter-spacing text-weight-700"
+          >
+            <div>
+              <q-btn
+                round
+                unelevated
+                dense
+                size="5px"
+                class="orange-gradient"
+              />
+            </div>
+            <div>ضایعات</div>
+          </div>
+        </th>
+      </tr>
+      <tr>
         <th style="width: 1px">#</th>
         <th>کالا</th>
         <th>واحد سنجش</th>

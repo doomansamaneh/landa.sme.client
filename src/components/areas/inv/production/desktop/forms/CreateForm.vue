@@ -1,7 +1,7 @@
 <template>
   <master-section :form-store="formStore" />
-  <production-used-items :form-store="formStore" class="q-mt-md" />
-  <production-costs :form-store="formStore" class="q-mt-md" />
+  <!-- <production-used-items :form-store="formStore" class="q-mt-md" />
+  <production-costs :form-store="formStore" class="q-mt-md" /> -->
   <production-items :form-store="formStore" class="q-mt-md" />
 </template>
 
