@@ -96,20 +96,7 @@
     </q-card>
   </div>
 
-  <div class="q-mt-lg">
-    <q-input
-      outlined
-      readonly
-      dense
-      rounded
-      @click="showSearchModal"
-      placeholder="جستجو در فاکتورها"
-    >
-      <template #prepend>
-        <q-icon name="o_search" />
-      </template>
-    </q-input>
-
+  <div>
     <div
       class="row items-center justify-center text-body1 no-letter-spacing"
       v-if="selectedDateRange.label && shouldDisplaySelectedDateRange"
@@ -139,22 +126,11 @@
         <q-card-section>
           <div class="row items-center justify-center">
             <q-btn
-              v-if="!item.selected"
               round
               unelevated
               class="no-pointer-events"
+              v-if="item.selected"
             >
-              <q-avatar
-                size="56px"
-                text-color="white"
-                :style="helper.generateAvatarStyle(item.id)"
-              >
-                <div class="char text-body1 text-bold">
-                  {{ helper.getFirstChar(item.customerName) }}
-                </div>
-              </q-avatar>
-            </q-btn>
-            <q-btn round unelevated class="no-pointer-events" v-else>
               <q-avatar
                 size="50px"
                 color="primary"
@@ -167,7 +143,9 @@
 
           <div class="row justify-between items-center">
             <div class="col row items-center">
-              <span class="text-caption text-on-dark">شماره:</span>
+              <span class="text-caption text-on-dark q-mr-xs">
+                شماره:
+              </span>
               <span class="text-caption text-on-dark">
                 {{ item.no }}
               </span>
@@ -188,96 +166,22 @@
         <q-card-section class="no-padding">
           <div class="column q-gutter-sm">
             <div class="row items-center q-px-sm">
-              <div class="col-3">
-                <span class="text-caption text-on-dark">مشتری</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
-                >
-                  {{ item.customerName }}
-                </span>
-              </div>
-            </div>
-
-            <div class="row items-center q-px-sm">
-              <div class="col-3">
-                <span class="text-caption text-on-dark">شرح</span>
-              </div>
-              <div class="col">
+              <div class="col row">
                 <span
                   class="ellipsis-2-lines text-caption text-on-dark"
                 >
                   {{ item.subject }}
                 </span>
-                <div
-                  v-if="item.summary"
-                  class="ellipsis-2-lines text-caption-sm text-on-dark"
-                >
-                  {{ item.summary }}
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.discountAmount"
-            >
-              <div class="col-3">
-                <span class="text-caption text-on-dark">تخفیف</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-on-dark"
-                >
-                  {{ item.discountAmount.toLocaleString() }}
-                </span>
               </div>
             </div>
 
             <div class="row items-center q-px-sm">
-              <div class="col-3">
-                <span class="text-caption text-on-dark">جمع کل</span>
-              </div>
               <div class="col">
                 <span
-                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
+                  class="ellipsis-2-lines text-body1 text-bold text-on-dark"
                 >
                   {{ item.amount.toLocaleString() }}
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.payedAmount"
-            >
-              <div class="col-3">
-                <span class="text-caption text-on-dark">
-                  دریافت شده
-                </span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-caption text-on-dark"
-                >
-                  {{ item.payedAmount.toLocaleString() }}
-                </span>
-              </div>
-            </div>
-
-            <div
-              class="row items-center q-px-sm"
-              v-if="item.remainedAmount"
-            >
-              <div class="col-3">
-                <span class="text-caption text-on-dark">مانده</span>
-              </div>
-              <div class="col">
-                <span
-                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
-                >
-                  {{ item.remainedAmount.toLocaleString() }}
+                  <span class="text-caption">ریال</span>
                 </span>
               </div>
             </div>
@@ -287,22 +191,35 @@
         <q-card-section class="q-pt-md q-pb-none q-px-sm">
           <div class="row items-center q-gutter-sm">
             <span
-              class="border-radius-sm bg-orange-2 text-caption text-red label"
+              class="text-caption label text-white border-radius-sm red-gradient"
             >
-              {{ item.statusTitle }}
+              {{ item.rowNo }}
             </span>
 
             <span
               class="border-radius-sm primary-gradient text-caption text-white label"
             >
-              {{ item.typeTitle }}
+              {{
+                $t(
+                  `shared.subSystem.${helper.getEnumType(
+                    item.systemId,
+                    subSystem
+                  )}`
+                )
+              }}
             </span>
 
             <span
-              v-if="item.contractTitle"
-              class="border-radius-sm primary-gradient text-caption text-white label"
+              class="border-radius-sm bluegrey-gradient text-caption text-white label"
             >
-              {{ item.contractTitle }}
+              {{
+                $t(
+                  `shared.voucherType.${helper.getEnumType(
+                    item.typeId,
+                    voucherType
+                  )}`
+                )
+              }}
             </span>
           </div>
         </q-card-section>
@@ -515,6 +432,7 @@
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
   import { useFormActions } from "src/composables/useFormActions";
+  import { subSystem, voucherType } from "src/constants";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import BottomSheet from "components/shared/BottomSheet.vue";
