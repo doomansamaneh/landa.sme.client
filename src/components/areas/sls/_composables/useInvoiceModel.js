@@ -300,6 +300,13 @@ export function useInvoiceModel(config) {
     downloadFile(response);
   }
 
+  async function downloadBatchPdf() {
+    const response = await fetchWrapper.download(
+      `${config.baseRoute}/GenerateBatchPdf`
+    );
+    downloadFile(response);
+  }
+
   function downloadFile(response) {
     const link = document.createElement("a");
     // Create a Blob from the response data
@@ -343,5 +350,6 @@ export function useInvoiceModel(config) {
     getProductQuantity,
 
     downloadPdf,
+    downloadBatchPdf,
   };
 }

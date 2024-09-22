@@ -222,7 +222,12 @@
           </q-item>
         </template>
 
-        <q-item clickable v-close-popup tabindex="0">
+        <q-item
+          clickable
+          v-close-popup
+          tabindex="0"
+          @click="formStore.downloadBatchPdf()"
+        >
           <q-item-section class="q-py-sm" avatar>
             <q-avatar class="bg-on-dark" size="sm">
               <q-icon name="o_print" size="20px" />
