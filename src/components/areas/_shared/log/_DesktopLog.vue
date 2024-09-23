@@ -172,6 +172,19 @@
                     </q-btn>
                   </div>
                 </q-card-section>
+
+                <q-card-section v-if="item.logInfo">
+                  <span
+                    v-if="JSON.parse(item.logInfo).receiverEmail"
+                    class="q-pr-xs"
+                  >
+                    ارسال ایمیل به:
+                    {{ JSON.parse(item.logInfo).receiverEmail }} -
+                  </span>
+                  <span>
+                    {{ JSON.parse(item.logInfo).subject }}
+                  </span>
+                </q-card-section>
               </q-card>
             </template>
           </q-timeline-entry>
@@ -188,6 +201,7 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { helper } from "src/helpers";
   import "src/helpers/extensions";
+  import { preFetch } from "quasar/wrappers";
 
   const props = defineProps({
     items: Array,

@@ -1,9 +1,12 @@
 <template>
   <q-card class="border-radius-xs" bordered flat>
+    <div>
+      <add-by-code :form-store="formStore" />
+    </div>
     <div class="q-px-md">
       <q-tabs
         v-model="tab"
-        class="text-h6 text-weight-700 primary-tabs_"
+        class="text-h6 text-weight-700 primary-tabs"
         :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
         :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
         align="left"
@@ -156,6 +159,7 @@
   import { productType, sortOrder } from "src/constants";
 
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
+  import AddByCode from "../AddByCode.vue";
 
   const props = defineProps({
     formStore: useInvoiceModel,

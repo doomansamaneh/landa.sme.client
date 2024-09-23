@@ -34,14 +34,35 @@
     <q-slide-transition>
       <div v-show="expanded">
         <div class="q-px-lg">
-          <div class="row q-mb-md">
-            <q-checkbox
+          <div class="row q-mb-md" v-if="false">
+            <!-- <q-checkbox
               dense
               size="44px"
               class="q-pt-sm text-body2 no-letter-spacing"
               v-model="searchStore.searchModel.value.waitToSendTax"
               :label="$t('shared.labels.waitToSendTax')"
-            />
+            /> -->
+          </div>
+
+          <div class="row items-center q-mt-md">
+            <div
+              class="col-md-2 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
+            >
+              {{ $t("shared.labels.taxStatus") }}
+            </div>
+            <div class="col-md col-sm-7 col-xs-12">
+              <q-option-group
+                inline
+                :options="
+                  helper.getEnumOptions(
+                    taxSentStatus,
+                    'taxSentStatus'
+                  )
+                "
+                type="radio"
+                v-model="searchStore.searchModel.value.taxStatus"
+              />
+            </div>
           </div>
 
           <div
@@ -255,7 +276,7 @@
 
 <script setup>
   import { computed, ref } from "vue";
-  import { dateRange } from "src/constants";
+  import { dateRange, taxSentStatus } from "src/constants";
   import { helper } from "src/helpers";
   import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
 

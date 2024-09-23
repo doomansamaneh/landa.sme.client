@@ -115,6 +115,17 @@ export function useInvoiceModel(config) {
     if (callBack) callBack();
   }
 
+  function notifyResponse(data) {
+    notify(data.message);
+  }
+
+  function notify(message, type = "positive") {
+    $q.notify({
+      type: type,
+      message: message,
+    });
+  }
+
   function addWatch() {
     //return;
     watch(
@@ -203,10 +214,11 @@ export function useInvoiceModel(config) {
           pushNewRow({
             productId: product.id,
             productCode: product.code,
-            productTitle: `${product.code} ${product.title}`,
+            productTitle: product.title,
             productUnitId: product.productUnitId,
             productUnitTitle: product.productUnitTitle,
-            price: product.price,
+            price:
+              product.price <= 0 ? product.maxPrice : product.price,
             vatPercent: 0,
             vatAmounnt: 0,
             discount: 0,
@@ -225,7 +237,8 @@ export function useInvoiceModel(config) {
     } else {
       const newRow = { ...itemStore.model.value };
       newRow.productId = product.id;
-      newRow.productTitle = `${product.code} ${product.title}`;
+      newRow.productCode = product.code;
+      newRow.productTitle = product.title;
       newRow.productUnitId = product.productUnitId;
       newRow.productUnitTitle = product.productUnitTitle;
       newRow.price =

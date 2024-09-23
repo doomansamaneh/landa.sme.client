@@ -272,6 +272,12 @@ export const taxApiInvoiceType = {
   posOnline: 3,
 };
 
+export const taxSentStatus = {
+  all: 0,
+  sent: 1,
+  notSent: 2,
+};
+
 export const taxApiInvoicePattern = {
   sales: 1,
   currencySales: 2,

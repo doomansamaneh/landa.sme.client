@@ -273,7 +273,7 @@
       "thisMonth": "این ماه",
       "amountFrom": "مبلغ از",
       "amountTo": "مبلغ تا",
-      "waitToSendTax": "منتظر ارسال به سامانه مودیان",
+      "taxStatus": "سامانه مودیان",
       "comment": "شرح",
       "note": "یادداشت",
       "dateRange": "بازه زمانی",
@@ -478,6 +478,11 @@
       "b2B": "نوع 1: فروش شرکتی",
       "b2C": "نوع 2: فروش به اشخاص حقیقی",
       "posOnline": "نوع 3: فروش از طریق درگاه و دستگاه پوز"
+    },
+    "taxSentStatus": {
+      "all": "همه موارد",
+      "sent": "ارسال شده",
+      "notSent": "ارسال نشده"
     },
     "taxApiInvoicePattern": {
       "sales": "فروش",

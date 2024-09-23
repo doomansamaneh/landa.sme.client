@@ -150,7 +150,9 @@
           clickable
           v-close-popup
           tabindex="0"
-          @click="formStore.cancelInvoice(row.id, reloadData)"
+          @click="
+            formStore.cancelInvoice(row.id, tableStore.reloadData)
+          "
         >
           <q-item-section avatar class="q-py-sm">
             <q-avatar class="bg-on-dark text-red" size="sm">
@@ -281,7 +283,7 @@
         selectedIds: selectedIds?.value,
       },
     }).onOk(async () => {
-      await reloadData();
+      await props.tableStore.reloadData();
     });
   }
 
@@ -289,7 +291,7 @@
     $q.dialog({
       component: ReorderInvoice,
     }).onOk(async () => {
-      await reloadData();
+      await props.tableStore.reloadData();
     });
   }
 </script>

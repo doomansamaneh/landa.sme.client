@@ -41,14 +41,21 @@
       >
         <td class="text-center">{{ index + 1 }}</td>
         <td>
-          <product-lookup
+          <q-field outlined dense auto-grow>
+            <template v-slot:control>
+              <div style="text-wrap: wrap">
+                {{ row.productCode }} - {{ row.productTitle }}
+              </div>
+            </template>
+          </q-field>
+          <!-- <product-lookup
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
             v-model:selectedText="row.productTitle"
             :filterExpression="productFilter"
             @rowSelected="productChanged($event, row)"
-          />
+          /> -->
         </td>
         <td>
           <custom-input-number

@@ -10,38 +10,8 @@
       <tr>
         <th colspan="100%">
           <div class="row items-center">
-            <div class="col-md-6">
-              <q-input
-                class="q-pa-md"
-                inputmode="search"
-                input-class="text-body2 no-letter-spacing"
-                outlined
-                dense
-                rounded
-                v-model="productCode"
-                :placeholder="
-                  $t('shared.labels.addItemByProductCode')
-                "
-                clearable
-                clear-icon="o_clear"
-                @keydown.enter="addByCode"
-              >
-                <template #append>
-                  <q-btn
-                    padding="0 12px"
-                    unelevated
-                    label="افزودن کالا"
-                    dense
-                    color="primary"
-                    rounded
-                    @click="addByCode"
-                  />
-                </template>
-
-                <template #prepend>
-                  <q-icon name="o_search" color="primary" />
-                </template>
-              </q-input>
+            <div class="col-md-6 col-sm-12">
+              <add-by-code :form-store="formStore" />
             </div>
           </div>
         </th>
@@ -255,13 +225,12 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import NoProductSelected from "../NoProductSelected.vue";
+  import AddByCode from "../AddByCode.vue";
 
   const props = defineProps({
     formStore: Object,
     formType: invoiceFormType,
   });
-
-  const productCode = ref("");
 
   const productFilter =
     props.formType == invoiceFormType.sales
@@ -305,10 +274,6 @@
     row.price = product?.price ?? product?.maxPrice ?? 0;
     row.productUnitId = product?.productUnitId ?? null;
     row.productUnitTitle = product?.productUnitTitle ?? null;
-  };
-
-  const addByCode = () => {
-    props.formStore.addNewRowByCode(productCode.value);
   };
 </script>
 <style scoped>

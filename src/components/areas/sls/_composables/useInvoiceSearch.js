@@ -1,17 +1,17 @@
 import { ref } from "vue";
 import { bus } from "src/helpers";
-import { dateRange } from "src/constants";
+import { dateRange, taxSentStatus } from "src/constants";
 
 const searchModel = ref({
   dateRange: 0,
-  waitToSendTax: false,
+  taxStatus: taxSentStatus.all,
 });
 
 export function useInvoiceSearch() {
   const clearSearch = async () => {
     searchModel.value = {
       dateRange: 0,
-      waitToSendTax: false,
+      taxStatus: taxSentStatus.all,
     };
     await applySearch();
   };
@@ -26,8 +26,8 @@ export function useInvoiceSearch() {
       case "dateRange":
         value = dateRange.all;
         break;
-      case "waitToSendTax":
-        value = false;
+      case "taxStatus":
+        value = taxSentStatus.all;
         break;
     }
     searchModel.value[item.name] = value;

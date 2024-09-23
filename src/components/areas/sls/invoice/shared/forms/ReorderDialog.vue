@@ -26,6 +26,8 @@
 
   async function submitForm() {
     const response = await form.value.submitForm();
-    if (response) dialog.value.onDialogOK();
+    if (response) {
+      dialog.value.onDialogOK();
+    }
   }
 </script>
