@@ -39,18 +39,20 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { sqlOperator, voucherStatus } from "src/constants";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import InvoiceDataGrid from "./InvoiceDataGrid.vue";
 
   const props = defineProps({
-    tableStore: Object,
+    tableStore: useDataTable,
     title: String,
     advancedSearch: Boolean,
   });
 
+  //const tab = computed(() => props.tableStore.store.currentTab);
   const tab = ref("invoice");
 
   function setDefaultFilter() {

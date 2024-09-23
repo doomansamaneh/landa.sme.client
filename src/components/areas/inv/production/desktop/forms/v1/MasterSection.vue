@@ -1,49 +1,50 @@
 <template>
-  <div class="row q-col-gutter-md">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-      <date-time v-model="model.date" />
+  <div class="row">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+      <div class="row q-col-gutter-md">
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">
+            انبار کالا
+          </q-item-label>
+          <inventory-lookup
+            v-model:selectedId="model.inventoryId"
+            v-model:selectedText="model.inventoryTitle"
+          />
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">
+            انبار مقصد
+          </q-item-label>
+          <inventory-lookup
+            v-model:selectedId="model.toInventoryId"
+            v-model:selectedText="model.toInventoryTitle"
+          />
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
+          <contract-lookup
+            v-model:selectedId="model.contractId"
+            v-model:selectedText="model.contractTitle"
+          />
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+          <custom-input
+            v-model="model.summary"
+            hide-bottom-space
+            type="textarea"
+          />
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="row q-mt-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">انبار کالا</q-item-label>
-      <inventory-lookup
-        v-model:selectedId="model.inventoryId"
-        v-model:selectedText="model.inventoryTitle"
-      />
-    </div>
-  </div>
-
-  <div class="row q-mt-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">انبار مقصد</q-item-label>
-      <inventory-lookup
-        v-model:selectedId="model.toInventoryId"
-        v-model:selectedText="model.toInventoryTitle"
-      />
-    </div>
-  </div>
-
-  <div class="row q-mt-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
-      <contract-lookup
-        v-model:selectedId="model.contractId"
-        v-model:selectedText="model.contractTitle"
-      />
-    </div>
-  </div>
-
-  <div class="row q-mt-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شرح</q-item-label>
-      <custom-input
-        v-model="model.summary"
-        hide-bottom-space
-        type="textarea"
-      />
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="row justify-end">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
+          <date-time v-model="model.date" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

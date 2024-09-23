@@ -343,6 +343,7 @@ export function useDataTable({
     summaryData: state.value.summaryData,
 
     //loading,
+    store,
     state,
     inputInnerLoader,
     showLoader,

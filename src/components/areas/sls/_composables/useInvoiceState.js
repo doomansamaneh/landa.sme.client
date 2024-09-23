@@ -12,6 +12,8 @@ import {
 //const rows = ref([])
 const searchStore = useInvoiceSearch();
 
+const currentTab = ref("invoice");
+
 const state = {
   firstLoad: ref(false),
   rows: ref([]),
@@ -48,5 +50,6 @@ export function useInvoiceState(defaultFilters) {
     pagination,
     state,
     filterExpression,
+    currentTab,
   };
 }

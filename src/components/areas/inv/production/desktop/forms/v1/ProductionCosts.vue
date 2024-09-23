@@ -2,10 +2,19 @@
   <q-markup-table bordered flat dense separator="horizontal">
     <thead>
       <tr>
-        <th colspan="100%" class="bg-red text-white">
-          <span class="text-h6 text-weight-700">
-            سربار و هزینه تولید
-          </span>
+        <th colspan="100%">
+          <div class="row q-gutter-sm text-body1 no-letter-spacing text-weight-700">
+            <div>
+              <q-btn
+                round
+                unelevated
+                dense
+                size="5px"
+                class="red-gradient"
+              />
+            </div>
+            <div>سربار و هزینه تولید</div>
+          </div>
         </th>
       </tr>
       <tr>

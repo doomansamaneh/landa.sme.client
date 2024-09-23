@@ -7,7 +7,7 @@
         ش شروع
       </q-item-label>
       <custom-input-number
-        v-model="formStore.model.value.no"
+        v-model="formStore.model.value.startNo"
         style="width: 50%"
       />
     </div>

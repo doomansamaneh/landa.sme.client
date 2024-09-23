@@ -130,6 +130,7 @@ function handleError(url, error) {
       alertData.message =
         error.response.data.message ?? "validationError"; //error.response.data.title;
       alertData.errors = error.response.data.errors;
+      alertData.comment = error.response.data.stackTrace;
     }
   } else if (error.request) {
     alertData.status = error.request.status;
