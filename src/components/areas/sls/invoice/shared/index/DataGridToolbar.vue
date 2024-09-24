@@ -69,6 +69,59 @@
           rounded
           no-caps
           unelevated
+        >
+          <q-icon size="20px" name="o_add" class="q-mr-sm" />
+          {{ $t("shared.labels.create") }}
+
+          <q-menu class="border-radius-lg" cover>
+            <q-list dense padding style="width: 200px">
+              <q-item
+                clickable
+                v-close-popup
+                tabindex="0"
+                :to="`/${baseRoute}/create`"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-avatar class="bg-on-dark" size="sm">
+                      <q-icon name="o_add" size="20px" />
+                    </q-avatar>
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <div class="text-body2 no-letter-spacing">
+                    {{ $t("shared.labels.create") }}
+                  </div>
+                </q-item-section>
+              </q-item>
+              <q-item
+                clickable
+                v-close-popup
+                tabindex="0"
+                :to="`/${baseRoute}/createV2`"
+              >
+                <div class="q-py-sm">
+                  <q-item-section avatar>
+                    <q-avatar class="bg-on-dark" size="sm">
+                      <q-icon name="o_bolt" size="20px" />
+                    </q-avatar>
+                  </q-item-section>
+                </div>
+                <q-item-section>
+                  <div class="text-body2 no-letter-spacing">
+                    {{ $t("shared.labels.create") }} سریع
+                  </div>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+        <!-- <q-btn
+          class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
           :to="`/${baseRoute}/create`"
         >
           <q-icon size="20px" name="o_add" class="q-mr-sm" />
@@ -84,7 +137,7 @@
         >
           <q-icon size="20px" name="o_add" class="q-mr-sm" />
           {{ $t("shared.labels.create") }}v2
-        </q-btn>
+        </q-btn> -->
       </template>
 
       <template #bootons-edit="{ row }">
