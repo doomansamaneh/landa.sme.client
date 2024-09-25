@@ -203,6 +203,7 @@
           <div>
             <q-item-label caption class="q-mb-sm">شرح</q-item-label>
             <custom-input
+              type="textarea"
               v-model="searchStore.searchModel.value.comment"
             />
           </div>

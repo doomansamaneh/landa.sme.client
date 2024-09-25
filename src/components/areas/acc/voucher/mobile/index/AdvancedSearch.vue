@@ -2,9 +2,7 @@
   <q-card class="no-border q-pt-sm q-px-sm">
     <q-card-section>
       <div class="row justify-between items-center">
-        <span class="text-body1 no-letter-spacing">
-          جستجو در فاکتورها
-        </span>
+        <div class="text-body1 no-letter-spacing">جستجو در اسناد</div>
         <div>
           <q-btn
             size="8px"
@@ -43,7 +41,7 @@
               "
               class="text-on-dark text-body2 bordered-btn"
               :class="{ 'bordered-btn': !isActive(option.value) }"
-              style="min-width: 80px"
+              style="min-width: 82px"
             >
               <span>{{ option.label }}</span>
             </q-btn>
@@ -53,10 +51,10 @@
               unelevated
               padding="8px 12px"
               class="bordered-btn text-on-dark text-body2"
-              style="min-width: 90px"
+              style="min-width: 105px"
               @click="openCheckoutModal"
             >
-              <span>تسویه</span>
+              <span>نوع سند</span>
               <q-icon
                 size="xs"
                 class="q-ml-sm"
@@ -75,21 +73,13 @@
         style="height: calc(100vh - 340px)"
       >
         <div class="column q-col-gutter-lg">
-          <div class="q-pl-none q-ml-md">
-            <q-checkbox
-              class="text-body2 q-mb-md"
-              v-model="searchModel.waitToSendTax"
-              :label="$t('shared.labels.waitToSendTax')"
-            />
-          </div>
-
           <div class="row q-col-gutter-sm">
             <div class="col">
               <q-item-label caption class="q-mb-sm">
                 مبلغ از
               </q-item-label>
               <custom-input
-                v-model="searchModel.amountFrom"
+                v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
             </div>
@@ -98,7 +88,7 @@
                 مبلغ تا
               </q-item-label>
               <custom-input
-                v-model="searchModel.amountTo"
+                v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
               />
             </div>
@@ -109,13 +99,17 @@
               <q-item-label caption class="q-mb-sm">
                 تاریخ از
               </q-item-label>
-              <date-time v-model="searchModel.dateFrom" />
+              <date-time
+                v-model="searchStore.searchModel.value.dateFrom"
+              />
             </div>
             <div class="col">
               <q-item-label caption class="q-mb-sm">
                 تاریخ تا
               </q-item-label>
-              <date-time v-model="searchModel.dateTo" />
+              <date-time
+                v-model="searchStore.searchModel.value.dateTo"
+              />
             </div>
           </div>
 
@@ -123,77 +117,23 @@
             <q-item-label caption class="q-mb-sm">
               قرارداد
             </q-item-label>
-            <contract-lookup />
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm">
-              بازاریاب
-            </q-item-label>
-            <q-input
-              readonly
-              outlined
-              dense
-              v-model="searchModel.customerName"
-              @click="showContact = true"
-            >
-              <template #append>
-                <q-icon
-                  @click="showContact = true"
-                  name="o_expand_more"
-                />
-              </template>
-            </q-input>
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm">
-              نوع فروش
-            </q-item-label>
-            <sale-type-lookup />
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm">
-              کالا و خدمات
-            </q-item-label>
-            <q-input
-              readonly
-              outlined
-              dense
-              v-model="searchModel.productName"
-              @click="showProduct = true"
-            >
-              <template #append>
-                <q-icon
-                  @click="showProduct = true"
-                  name="o_expand_more"
-                />
-              </template>
-            </q-input>
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
-            <q-input
-              readonly
-              outlined
-              dense
-              v-model="searchModel.customerName"
-              @click="showContact = true"
-            >
-              <template #append>
-                <q-icon
-                  @click="showContact = true"
-                  name="o_expand_more"
-                />
-              </template>
-            </q-input>
+            <contract-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.contractId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.contractTitle
+              "
+              style="width: 398px"
+            />
           </div>
 
           <div>
             <q-item-label caption class="q-mb-sm">شرح</q-item-label>
-            <custom-input v-model="searchModel.comment" />
+            <custom-input
+              type="textarea"
+              v-model="searchStore.searchModel.value.comment"
+            />
           </div>
         </div>
       </q-scroll-area>
@@ -206,7 +146,7 @@
         unelevated
         outline
         class="q-mb-sm full-width"
-        @click="clearSearch"
+        @click="searchStore.clearSearch"
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_close" class="q-mr-xs" />
@@ -220,7 +160,7 @@
         unelevated
         color="primary"
         class="q-mb-sm full-width"
-        @click="applySearch"
+        @click="searchStore.applySearch"
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_search" class="q-mr-xs" />
@@ -245,7 +185,7 @@
       <q-card-section>
         <div class="row justify-between items-center">
           <span class="text-body1 no-letter-spacing">
-            انتخاب تسویه
+            انتخاب نوع سند
           </span>
           <q-btn dense flat icon="close" v-close-popup />
         </div>
@@ -285,7 +225,13 @@
   >
     <q-card>
       <q-card-section>
-        <product-lookup />
+        <product-lookup
+          v-model:selectedId="searchStore.searchModel.value.productId"
+          v-model:selectedText="
+            searchStore.searchModel.value.productTitle
+          "
+          style="width: 398px"
+        />
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -296,12 +242,15 @@
   import { dateRange } from "src/constants";
   import { helper } from "src/helpers";
   import { useI18n } from "vue-i18n";
+  import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
+
   import dateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import customInput from "src/components/shared/forms/CustomInput.vue";
   import ContactLookup from "src/components/shared/lookups/MobileContactLookup.vue";
   import ProductLookup from "src/components/shared/lookups/MobileProductLookup.vue";
+  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 
   const { t } = useI18n();
 
@@ -319,9 +268,11 @@
   const showProduct = ref(false);
 
   const options = [
-    { label: "دارای مانده", value: "1", color: "warning" },
-    { label: "تسویه ناقص", value: "2", color: "red" },
-    { label: "تسویه کامل", value: "3", color: "green" },
+    { label: "عمومی", value: "1041" },
+    { label: "بستن حسابها", value: "1043" },
+    { label: "افتتاحیه", value: "1044" },
+    { label: "اختتامیه", value: "1045" },
+    { label: "اصلاحیه", value: "1046" },
   ];
 
   const handleCheckboxChange = () => {
@@ -332,12 +283,10 @@
 
   const emit = defineEmits(["apply-search", "update-date-range"]);
 
-  const searchModel = computed(
-    () => props.gridStore.state.searchModel.value
-  );
+  const searchStore = useInvoiceSearch();
 
   async function applySearch() {
-    emit("apply-search", searchModel.value);
+    emit("apply-search", searchStore.searchModel.value);
   }
 
   async function clearSearch() {
@@ -356,7 +305,7 @@
         value = false;
         break;
     }
-    searchModel.value[item.name] = value;
+    searchStore.value[item.name] = value;
     await applySearch();
   }
 
@@ -365,12 +314,12 @@
   };
 
   const handleDateRangeClick = async (value) => {
-    searchModel.value.dateRange = value;
+    searchStore.searchModel.value.dateRange = value;
     const translatedLabel = t(
-      `shared.labels.${searchModel.value.dateRange}`
+      `shared.labels.${searchStore.searchModel.value.dateRange}`
     );
     emit("update-date-range", {
-      value: searchModel.value.dateRange,
+      value: searchStore.searchModel.value.dateRange,
       label: translatedLabel,
     });
 
@@ -378,7 +327,7 @@
   };
 
   const isActive = (value) => {
-    return searchModel.value.dateRange === value;
+    return searchStore.searchModel.value.dateRange === value;
   };
 </script>
 
