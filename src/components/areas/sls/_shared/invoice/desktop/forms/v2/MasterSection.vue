@@ -14,11 +14,12 @@
 
         <div class="col-md-5 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">
-            بازاریاب
+            {{ saleTypeTitle }}
           </q-item-label>
-          <customer-lookup
-            v-model:selectedId="model.value.contactId"
-            v-model:selectedText="model.value.contactName"
+          <sale-type-lookup
+            v-model:selectedId="model.value.typeId"
+            v-model:selectedText="model.value.typeTitle"
+            :filter-expression="filterExpression"
           />
         </div>
 
@@ -53,6 +54,15 @@
               <div class="row q-col-gutter-x-md">
                 <div class="col-md col-sm-12 col-xs-12">
                   <q-item-label caption class="q-mb-sm">
+                    بازاریاب
+                  </q-item-label>
+                  <customer-lookup
+                    v-model:selectedId="model.value.contactId"
+                    v-model:selectedText="model.value.contactName"
+                  />
+                </div>
+                <div class="col-md col-sm-12 col-xs-12">
+                  <q-item-label caption class="q-mb-sm">
                     قرارداد
                   </q-item-label>
                   <contract-lookup
@@ -60,30 +70,19 @@
                     v-model:selectedText="model.value.contractTitle"
                   />
                 </div>
-                <div class="col-md col-sm-12 col-xs-12">
-                  <q-item-label caption class="q-mb-sm">
-                    {{ saleTypeTitle }}
-                  </q-item-label>
-                  <sale-type-lookup
-                    v-model:selectedId="model.value.typeId"
-                    v-model:selectedText="model.value.typeTitle"
-                    :filter-expression="filterExpression"
-                  />
-                </div>
+              </div>
+              <div class="q-mt-md col-md-12 col-sm-12 col-xs-12">
+                <q-item-label caption class="q-mb-sm">
+                  شرح
+                </q-item-label>
+                <custom-input
+                  v-model="model.value.summary"
+                  hide-bottom-space
+                  type="textarea"
+                />
               </div>
             </div>
           </q-slide-transition>
-
-          <div class="row q-mt-md">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <q-item-label caption class="q-mb-sm">شرح</q-item-label>
-              <custom-input
-                v-model="model.value.summary"
-                hide-bottom-space
-                type="textarea"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -128,7 +127,10 @@
           />
         </div>
       </div>
-      <div class="row justify-end q-mt-md">
+
+      <q-slide-transition>
+        <div v-show="moreInfo">
+          <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
           <date-time v-model="model.value.date" />
@@ -140,6 +142,20 @@
           <date-time v-model="model.value.dueDate" />
         </div>
       </div>
+        </div>
+      </q-slide-transition>
+      <!-- <div class="row justify-end q-mt-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
+          <date-time v-model="model.value.date" />
+        </div>
+      </div>
+      <div class="row justify-end q-mt-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
+          <date-time v-model="model.value.dueDate" />
+        </div>
+      </div> -->
     </div>
   </div>
 </template>
