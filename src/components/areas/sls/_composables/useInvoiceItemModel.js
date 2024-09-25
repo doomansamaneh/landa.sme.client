@@ -1,4 +1,4 @@
-import { ref, watchEffect } from "vue";
+import { ref, nextTick } from "vue";
 
 export function useInvoiceItemModel(item) {
   const model = ref({
@@ -14,14 +14,29 @@ export function useInvoiceItemModel(item) {
 
   const calculateTotal = (row) => {
     const total = row.quantity * row.price - row.discount;
-    row.vatAmount = (total * row.vatPercent) / 100;
-    row.totalPrice = total + row.vatAmount;
-  };
+    const vatAmount = (total * row.vatPercent) / 100;
+    const totalPrice = total + row.vatAmount;
 
-  watchEffect(() => {
-    return;
-    calculateTotal(model.value);
-  });
+    // if (row.vatAmount !== vatAmount) row.vatAmount = vatAmount;
+    // if (row.totalPrice !== totalPrice) row.totalPrice = totalPrice;
+
+    // Batch updates together
+    nextTick(() => {
+      if (row.vatAmount !== vatAmount) {
+        row.vatAmount = vatAmount;
+      }
+
+      if (row.totalPrice !== totalPrice) {
+        row.totalPrice = totalPrice;
+      }
+    });
+
+    // if (row.vatAmount !== vatAmount || row.totalPrice !== totalPrice)
+    //   Object.assign(row, {
+    //     vatAmount: vatAmount,
+    //     totalPrice: totalPrice,
+    //   });
+  };
 
   return {
     model,

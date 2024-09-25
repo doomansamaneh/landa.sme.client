@@ -62,6 +62,31 @@
       buttons
       margin
     >
+      <template #buttons-create>
+        <q-btn
+          class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
+          :to="`/${baseRoute}/create`"
+        >
+          <q-icon size="20px" name="o_add" class="q-mr-sm" />
+          {{ $t("shared.labels.create") }}
+        </q-btn>
+        <q-btn
+          class="text-body2 no-letter-spacing"
+          padding="6px 12px"
+          rounded
+          no-caps
+          unelevated
+          :to="`/${baseRoute}/createV2`"
+        >
+          <q-icon size="20px" name="o_add" class="q-mr-sm" />
+          {{ $t("shared.labels.create") }}v2
+        </q-btn>
+      </template>
+
       <template #bootons-edit="{ row }">
         <q-btn
           padding="6px 12px"
@@ -104,34 +129,28 @@
         </q-btn>
       </template>
 
-      <template #buttons-custom>
-        <q-item clickable v-close-popup tabindex="0" @click="reorder">
-          <q-item-section avatar class="q-py-sm">
-            <q-avatar class="bg-on-dark" size="sm">
-              <q-icon name="o_cached" size="20px" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.reorder") }}
-            </div>
-          </q-item-section>
-        </q-item>
+      <template #buttons-custom="{ row }">
+        <template v-if="row">
+          <q-separator class="q-my-sm" />
 
-        <q-separator class="q-my-sm" />
-
-        <q-item clickable v-close-popup tabindex="0">
-          <q-item-section class="q-py-sm" avatar>
-            <q-avatar class="bg-on-dark" size="sm">
-              <q-icon name="o_print" size="20px" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.printBatch") }}
-            </div>
-          </q-item-section>
-        </q-item>
+          <q-item
+            clickable
+            v-close-popup
+            tabindex="0"
+            @click="formStore.downloadPdf(row.id)"
+          >
+            <q-item-section class="q-py-sm" avatar>
+              <q-avatar class="bg-on-dark" size="sm">
+                <q-icon name="o_print" size="20px" />
+              </q-avatar>
+            </q-item-section>
+            <q-item-section>
+              <div class="text-body2 no-letter-spacing">
+                {{ $t("shared.labels.print") }}
+              </div>
+            </q-item-section>
+          </q-item>
+        </template>
       </template>
     </toolbar-desktop>
   </template>
@@ -149,7 +168,6 @@
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
 
   import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
-  import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderDialog.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -157,7 +175,7 @@
     tableStore: useDataTable,
   });
 
-  const baseRoute = "sls/Invoice";
+  const baseRoute = "sls/quote";
   const $q = useQuasar();
 
   const crudStore = useFormActions(baseRoute);
@@ -173,14 +191,6 @@
       componentProps: {
         selectedIds: selectedIds?.value,
       },
-    }).onOk(async () => {
-      await reloadData();
-    });
-  }
-
-  function reorder() {
-    $q.dialog({
-      component: ReorderInvoice,
     }).onOk(async () => {
       await reloadData();
     });

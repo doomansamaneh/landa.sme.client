@@ -15,7 +15,8 @@ export const fetchWrapper = {
   post: createRequest("POST"),
   put: createRequest("PUT"),
   delete: createRequest("DELETE"),
-  download: createRequest("GET", "blob"),
+  downloadGet: createRequest("GET", "blob"),
+  downloadPost: createRequest("POST", "blob"),
 };
 
 function removeEmpty(obj) {

@@ -61,6 +61,9 @@
           <custom-input-number
             v-model="row.quantity"
             placeholder="مقدار"
+            type_="number"
+            step_="0.01"
+            min="0"
           />
         </td>
         <td>
@@ -135,6 +138,15 @@
                       hide-bottom-space
                       v-model="row.comment"
                       autogrow
+                    />
+                  </div>
+                  <div class="q-mt-md">
+                    <q-item-label caption class="q-mb-sm">
+                      تخفیف
+                    </q-item-label>
+                    <custom-input-number
+                      hide-bottom-space
+                      v-model="row.discount"
                     />
                   </div>
                   <div class="q-mt-md">

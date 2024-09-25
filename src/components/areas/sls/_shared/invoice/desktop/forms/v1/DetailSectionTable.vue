@@ -207,7 +207,10 @@
     </tbody>
   </q-markup-table>
 
-  <footer-section :form-store="formStore" />
+  <footer-section
+    :form-store="formStore"
+    :invoice-form-type="invoiceFormType"
+  />
 </template>
 
 <script setup>

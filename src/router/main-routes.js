@@ -646,6 +646,12 @@ export default {
           meta: { title: "پیش‌فاکتور - ایجاد" },
         },
         {
+          path: "createV2",
+          component: () =>
+            import("pages/areas/sls/quote/CreateV2Page.vue"),
+          meta: { title: "پیش‌فاکتور - ایجاد" },
+        },
+        {
           path: "edit/:id",
           component: () =>
             import("pages/areas/sls/quote/EditPage.vue"),

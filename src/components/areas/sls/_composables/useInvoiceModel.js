@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
-import { fetchWrapper, helper } from "src/helpers";
+import { fetchWrapper, helper, download } from "src/helpers";
 import { useInvoiceItemModel } from "./useInvoiceItemModel";
 import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
@@ -127,15 +127,31 @@ export function useInvoiceModel(config) {
   }
 
   function addWatch() {
-    //return;
+    // watch(
+    //   model.value.invoiceItems,
+    //   async (newItems) => {
+    //     newItems.forEach((item) => {
+    //       console.log(item);
+    //       itemStore.calculateTotal(item);
+    //     });
+    //     watching = false;
+    //   },
+    //   { deep: true }
+    // );
+
     watch(
-      model.value.invoiceItems,
-      async () => {
-        model.value.invoiceItems.forEach((item) => {
-          itemStore.calculateTotal(item);
+      () =>
+        model.value.invoiceItems.map((item) => [
+          item.quantity,
+          item.price,
+          item.discount,
+          item.vatPercent,
+        ]),
+      (newItems) => {
+        newItems.forEach((item, index) => {
+          itemStore.calculateTotal(model.value.invoiceItems[index]);
         });
-      },
-      { deep: true }
+      }
     );
   }
 
@@ -150,10 +166,12 @@ export function useInvoiceModel(config) {
     let lastItem = null;
     model.value.invoiceItems.forEach((item) => {
       lastItem = item;
-      item.discount = Math.floor(
+      const itemDiscount = Math.floor(
         (discount * item.quantity * item.price) / total
       );
-      subTotal += item.discount;
+      if (item.discount !== itemDiscount)
+        item.discount = itemDiscount;
+      subTotal += itemDiscount;
     });
 
     if (discount != subTotal) {
@@ -168,35 +186,35 @@ export function useInvoiceModel(config) {
     });
   };
 
+  const applyVat = (vat) => {
+    if (vat) {
+      model.value.invoiceItems.forEach((item) => {
+        if (item.vatId !== vat.id) {
+          item.vatId = vat.id;
+          item.vatTitle = vat.title;
+          item.vatPercent = vat.rate;
+        }
+      });
+    }
+  };
+
   const addNewRow = (index, currentRow) => {
     const newRow = { ...itemStore.model.value };
     newRow.vatId = currentRow.vatId;
     newRow.vatTitle = currentRow.vatTitle;
     newRow.vatPercent = currentRow.vatPercent;
     formItemStore.addNewItem(model.value.invoiceItems, index, newRow);
-    // if (!currentRow.productUnitId) {
-    //   $q.notify({
-    //     type: "negative",
-    //     message:
-    //       "<div class='text-body1 text-white no-letter-spacing'>لطفا نام کالا و مقدار آن را تعریف کنید</div>",
-    //     position: "top-right",
-    //     html: true,
-    //     badgeClass:
-    //       "border-red-1 bg-white text-body3 text-bold red-shadow text-negative",
-    //     classes:
-    //       "q-ma-xl border-radius-md q-px-md q-py-xs bg-negative red-shadow",
-    //   });
-    // } else model.value.invoiceItems.splice(index + 1, 0, newRow);
   };
 
   const pushNewRow = (item) => {
-    if (item)
-      formItemStore.pushNewItem(model.value.invoiceItems, item);
-    else
-      formItemStore.pushNewItem(
-        model.value.invoiceItems,
-        itemStore.model.value
-      );
+    const newRow = item ?? { ...itemStore.model.value };
+    if (!newRow.vatId) {
+      newRow.vatId = model.value.defaultItem?.vatId;
+      newRow.vatTitle = model.value.defaultItem?.vatTitle;
+      newRow.vatPercent = model.value.defaultItem?.vatPercent ?? 0;
+    }
+
+    formItemStore.pushNewItem(model.value.invoiceItems, newRow);
   };
 
   const addNewRowByCode = async (code) => {
@@ -219,8 +237,6 @@ export function useInvoiceModel(config) {
             productUnitTitle: product.productUnitTitle,
             price:
               product.price <= 0 ? product.maxPrice : product.price,
-            vatPercent: 0,
-            vatAmounnt: 0,
             discount: 0,
             quantity: 1,
           });
@@ -285,8 +301,12 @@ export function useInvoiceModel(config) {
     () => totalPrice.value + totalDiscount.value - totalVat.value
   );
 
-  async function submitForm(form, action) {
-    await crudStore.submitForm(form, action, saveCallBack);
+  async function submitForm(form, action, callBack) {
+    await crudStore.submitForm(
+      form,
+      action,
+      callBack ?? saveCallBack
+    );
     function saveCallBack(responseData) {
       if (responseData?.code === 200) {
         $q.dialog({
@@ -307,33 +327,18 @@ export function useInvoiceModel(config) {
   }
 
   async function downloadPdf(id) {
-    const response = await fetchWrapper.download(
-      `${config.baseRoute}/GeneratePdf/${id}`
+    download.downloadGet(
+      `${config.baseRoute}/GeneratePdf/${id}`,
+      "landa-invoice.pdf"
     );
-    downloadFile(response);
   }
 
-  async function downloadBatchPdf() {
-    const response = await fetchWrapper.download(
-      `${config.baseRoute}/GenerateBatchPdf`
+  async function downloadBatchPdf(page) {
+    download.downloadPost(
+      `${config.baseRoute}/GenerateBatchPdf`,
+      page,
+      "landa-invoice.pdf"
     );
-    downloadFile(response);
-  }
-
-  function downloadFile(response) {
-    const link = document.createElement("a");
-    // Create a Blob from the response data
-    const blob = new Blob([response.data], {
-      type: response.data.type,
-    });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.download = "Invoice.pdf";
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
   }
 
   return {
@@ -354,6 +359,7 @@ export function useInvoiceModel(config) {
     deleteRow,
     applyDiscountAmount,
     applyDiscountPercent,
+    applyVat,
     cancelInvoice,
     cancelInvoices,
     submitForm,

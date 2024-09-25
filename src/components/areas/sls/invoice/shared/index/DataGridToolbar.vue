@@ -228,7 +228,7 @@
           clickable
           v-close-popup
           tabindex="0"
-          @click="formStore.downloadBatchPdf()"
+          @click="downloadBatchPdf()"
         >
           <q-item-section class="q-py-sm" avatar>
             <q-avatar class="bg-on-dark" size="sm">
@@ -275,6 +275,10 @@
   const selectedIds = computed(() =>
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
+
+  const downloadBatchPdf = () => {
+    formStore.downloadBatchPdf(props.tableStore.pagination.value);
+  };
 
   function editBatch() {
     $q.dialog({
