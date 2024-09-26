@@ -7,26 +7,29 @@
   </q-inner-loading>
 
   <div
-    class="row items-center justify-between q-gutter-md q-px-md q-py-lg"
+    class="row items-center justify-between q-gutter-md q-px-md q-py-md"
   >
     <div v-if="showSearch" class="col">
-      <q-input
-        inputmode="search"
-        color="grey-5"
-        outlined
-        v-model="tableStore.pagination.value.searchTerm"
-        :placeholder="$t('shared.labels.search')"
-        dense
-        clearable
-        clear-icon="o_clear"
-        rounded
-        @keydown.enter="loadData"
-        class="text-body2 no-letter-spacing"
-      >
-        <template v-slot:prepend>
-          <q-icon name="o_search" color="primary" />
-        </template>
-      </q-input>
+      <slot name="search">
+        <q-input
+          ref="searchInput"
+          inputmode="search"
+          color="grey-5"
+          outlined
+          v-model="tableStore.pagination.value.searchTerm"
+          :placeholder="$t('shared.labels.search')"
+          dense
+          clearable
+          clear-icon="o_clear"
+          rounded
+          @keydown.enter="loadData"
+          class="text-body2 no-letter-spacing"
+        >
+          <template v-slot:prepend>
+            <q-icon name="o_search" color="primary" />
+          </template>
+        </q-input>
+      </slot>
     </div>
 
     <slot name="close"></slot>

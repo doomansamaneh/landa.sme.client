@@ -10,6 +10,7 @@
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <loadable-data-grid
+      ref="loadableDataGrid"
       data-source="crm/customer/getLookupData"
       show-search
     >
@@ -117,15 +118,27 @@
 </template>
 
 <script setup>
+  import { onMounted, ref, watch } from "vue";
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { helper } from "src/helpers";
-
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
 
   const contactDrawerStore = useContactDrawer();
-
   const deviceWidth =
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth;
+
+  const loadableDataGrid = ref(null);
+
+  watch(
+    () => contactDrawerStore.state.value,
+    (newVal) => {
+      if (newVal && loadableDataGrid.value) {
+        setTimeout(() => {
+          loadableDataGrid.value.$refs.searchInput?.focus();
+        }, 300);
+      }
+    }
+  );
 </script>

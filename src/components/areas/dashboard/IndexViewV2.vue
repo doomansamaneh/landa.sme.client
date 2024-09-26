@@ -21,7 +21,7 @@
 
     <div class="col-md-5 col-sm-12 col-xs-12">
       <ratios-widget class="q-mb-md" />
-      <top-products />
+      <top-products data-source="sls/report/getInvoiceByProduct" />
     </div>
   </div>
 
