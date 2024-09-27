@@ -54,6 +54,9 @@
   });
 
   const appConfigStore = useAppConfigModel();
+
+  console.log(props.model?.value);
+  
 </script>
 
 <style lang="scss">

@@ -1,91 +1,17 @@
 <template>
   <tool-bar
     :inside="inside"
-    :margin="!inside"
-    buttons
     :title="title"
-    back-button
+    :base-route="baseRoute"
+    :model="model"
   >
-    <template #buttons>
-      <q-btn
-        :to="`/acc/voucher/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-        <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
-      </q-btn>
-      <q-btn
-        :to="`/acc/voucher/copy/${id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
-      <q-btn
-        @click="crudStore.deleteById(id)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-        {{ $t("shared.labels.delete") }}
-      </q-btn>
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        {{ $t("shared.labels.print") }}
-      </q-btn>
-      <q-btn
-        :to="`/acc/voucher/sendEmail/${id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_mail" class="q-mr-xs" />
-        {{ $t("shared.labels.sendMail") }}
-      </q-btn>
+    <template #toolbar-custom>
+      <slot name="toolbar-custom" :model="model"></slot>
     </template>
   </tool-bar>
 
-  <div class="row q-col-gutter-lg" style="margin-top: -16px">
-    <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card bordered>
-        <div id="invoicePreview">
-          <header-section :model="model" title="سند حسابداری" />
-
-          <q-card-section class="q-gutter-y-sm_">
-            <body-section
-              :model="model"
-              :voucher-item-id="voucherItemId"
-            />
-            <footer-section :model="model" />
-          </q-card-section>
-        </div>
-      </q-card>
-    </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
-      <detail-section :model="model" />
-    </div>
-  </div>
+  <mobile v-if="$q.screen.xs" :model="model" />
+  <desktop v-else :model="model" />
 </template>
 
 <script setup>
@@ -95,11 +21,9 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { useVoucherState } from "../../../_composables/useVoucherState";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import BodySection from "./_BodySection.vue";
-  import DetailSection from "./_DetailSection.vue";
-  import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
-  import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
+  import ToolBar from "./ToolBar.vue";
+  import Mobile from "src/components/areas/acc/voucher/mobile/preview/IndexView.vue";
+  import Desktop from "src/components/areas/acc/voucher/desktop/preview/IndexView.vue";
 
   const props = defineProps({
     item: Object,

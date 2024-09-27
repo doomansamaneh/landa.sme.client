@@ -251,7 +251,7 @@
         <q-btn
           unelevated
           class="text-on-dark"
-          :to="`/sls/invoice/preview/${item.id}`"
+          :to="`/acc/voucher/preview/${item.id}`"
         >
           <span class="text-body3 text-bold">مشاهده جزئیات</span>
         </q-btn>
