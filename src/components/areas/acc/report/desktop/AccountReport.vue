@@ -17,15 +17,15 @@
         </template>
 
         <template #cell-debit="{ item }">
-          {{ helper.formatNumber(item.debit?) }}
+          {{ helper.formatNumber(item.debit) }}
         </template>
 
         <template #cell-debitRemained="{ item }">
-          {{ helper.formatNumber(item.debitRemained?) }}
+          {{ helper.formatNumber(item.debitRemained) }}
         </template>
 
         <template #cell-creditRemained="{ item }">
-          {{ helper.formatNumber(item.creditRemained?) }}
+          {{ helper.formatNumber(item.creditRemained) }}
         </template>
 
         <template #expand="{ item }">
