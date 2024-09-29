@@ -38,7 +38,6 @@
         v-for="(row, index) in formStore.model.value.invoiceItems"
         :key="index"
         class="q-pa-md"
-        :class="{ 'blink-animation': row.blink }"
       >
         <td class="text-center">{{ index + 1 }}</td>
         <td>
@@ -60,6 +59,7 @@
         </td>
         <td>
           <custom-input-number
+            ref="quantityInput"
             v-model="row.quantity"
             placeholder="مقدار"
             type_="number"
@@ -220,10 +220,21 @@
           },
         ];
 
+  const quantityInput = ref([]); // Array to hold the refs for each input
+
+  const focusInput = (index) => {
+    if (
+      quantityInput.value[index] &&
+      typeof quantityInput.value[index].focus === "function"
+    ) {
+      quantityInput.value[index].focus(); // Call the focus method defined in custom-input-number
+    }
+  };
+
   watch(
     () => props.formStore.model.value.invoiceItems,
     (newItems) => {
-      newItems.forEach((item) => {
+      newItems.forEach((item, index) => {
         const prevQuantity = prevQuantities.value.get(item.productId);
 
         if (prevQuantity === undefined) {
@@ -232,6 +243,7 @@
         } else {
           if (item.quantity > prevQuantity) {
             item.blink = true;
+            focusInput(index);
             setTimeout(() => {
               item.blink = false;
             }, 300);
@@ -267,35 +279,5 @@
 
   .q-markup-table th {
     font-size: 14px !important;
-  }
-</style>
-<style scoped>
-  /* Existing table styles */
-  td,
-  th {
-    padding: 8px 2px !important;
-  }
-
-  .q-markup-table.padding-table {
-    padding: 24px !important;
-  }
-
-  .q-markup-table th {
-    font-size: 14px !important;
-  }
-
-  /* Blink animation */
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
-
-  .blink-animation {
-    animation: blink 0.2s step-start 0s 2;
   }
 </style>
