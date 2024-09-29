@@ -141,16 +141,28 @@
         />
 
         <slot name="search-btn">
+          <template v-if="sortBtn">
+            <q-btn
+              round
+              class="q-mr-sm"
+              unelevated
+              dense
+              v-if="!tableStore?.activeRow?.value"
+              @click="showSortSheet"
+            >
+              <q-icon name="sort" />
+            </q-btn>
+          </template>
+
           <template v-if="searchBtn">
             <q-btn
-              size="13px"
-              color="red"
               round
               unelevated
               dense
               v-if="!tableStore?.activeRow?.value"
+              @click="showSearchDialog"
             >
-              <q-icon name="o_search" />
+              <q-icon name="o_filter_alt" />
             </q-btn>
           </template>
         </slot>
@@ -274,23 +286,30 @@
       </q-list>
     </template>
   </bottom-sheet>
+
+  <mobile-sort-sheet
+    :status="sortSheetStatus"
+    :table-store="tableStore"
+    @hide="sortSheetStatus = false"
+  />
+
+  <q-dialog
+    transition-show="slide-up"
+    transition-hide="slide-down"
+    transition-duration="600"
+    maximized
+    v-model="serachDialog"
+  >
+    <slot name="advanced-search" />
+  </q-dialog>
 </template>
 
 <script setup>
   import { ref, computed, onMounted, onUnmounted } from "vue";
+
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-
-  const bottomSheetStatus = ref(false);
-  const isAtTop = ref(true);
-
-  const onBottomSheetShow = () => {
-    bottomSheetStatus.value = true;
-  };
-
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
-  };
+  import MobileSortSheet from "./MobileSortSheet.vue";
 
   const props = defineProps({
     title: String,
@@ -301,7 +320,14 @@
     backButton: Boolean,
     buttons: Boolean,
     searchBtn: Boolean,
+    sortBtn: Boolean,
   });
+
+  const bottomSheetStatus = ref(false);
+  const serachDialog = ref(false);
+  const isAtTop = ref(true);
+
+  const sortSheetStatus = ref(false);
 
   const selectedIds = computed(() =>
     props.tableStore?.selectedRows?.value.map((item) => item.id)
@@ -311,6 +337,26 @@
     props.tableStore.selectAll(false);
     props.tableStore.setActiveRow(null);
   }
+
+  const onBottomSheetShow = () => {
+    bottomSheetStatus.value = true;
+  };
+
+  const onBottomSheetHide = () => {
+    bottomSheetStatus.value = false;
+  };
+
+  const showSearchDialog = () => {
+    serachDialog.value = true;
+  };
+
+  const showSortSheet = () => {
+    sortSheetStatus.value = true;
+  };
+
+  const hideSortSheet = () => {
+    sortSheetStatus.value = false;
+  };
 
   const handleScroll = () => {
     const currentPosition =

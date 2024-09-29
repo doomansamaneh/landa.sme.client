@@ -4,8 +4,8 @@
 </template>
 
 <script setup>
-  import MasterSection from "./v1/MasterSection.vue";
-  import VoucherItems from "./v1/VoucherItems.vue";
+  import MasterSection from "./MasterSection.vue";
+  import VoucherItems from "./VoucherItems.vue";
 
   const props = defineProps({
     formStore: Object,

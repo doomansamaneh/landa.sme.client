@@ -51,12 +51,13 @@
       >
         <slot name="body" :item="row">
           <q-card
+            flat
             class="bordered grid-body"
             :class="tableStore.getRowClass(row)"
           >
             <slot name="row-header" :item="row"></slot>
 
-            <q-card-section>
+            <q-card-section class="q-px-none">
               <slot name="row-body" :item="row">
                 <span v-if="numbered" class="text-on-dark">
                   {{ tableStore.rowIndex(index) }}

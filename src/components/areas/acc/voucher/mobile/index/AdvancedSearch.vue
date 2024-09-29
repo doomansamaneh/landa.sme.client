@@ -147,6 +147,7 @@
         outline
         class="q-mb-sm full-width"
         @click="searchStore.clearSearch"
+        v-close-popup
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_close" class="q-mr-xs" />
@@ -160,7 +161,8 @@
         unelevated
         color="primary"
         class="q-mb-sm full-width"
-        @click="searchStore.applySearch"
+        v-close-popup
+        @click="applySearch"
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_search" class="q-mr-xs" />
@@ -194,7 +196,9 @@
       <q-card-section>
         <div class="colunm">
           <q-option-group
-            :options="options"
+            :options="
+              helper.getEnumOptions(voucherType, 'voucherType')
+            "
             type="checkbox"
             v-model="group"
             @update:model-value="handleCheckboxChange"
@@ -203,54 +207,18 @@
       </q-card-section>
     </q-card>
   </q-dialog>
-
-  <q-dialog
-    maximized
-    transition-show="slide-up"
-    transition-hide="slide-down"
-    v-model="showContact"
-  >
-    <q-card>
-      <q-card-section>
-        <contact-lookup />
-      </q-card-section>
-    </q-card>
-  </q-dialog>
-
-  <q-dialog
-    maximized
-    transition-show="slide-up"
-    transition-hide="slide-down"
-    v-model="showProduct"
-  >
-    <q-card>
-      <q-card-section>
-        <product-lookup
-          v-model:selectedId="searchStore.searchModel.value.productId"
-          v-model:selectedText="
-            searchStore.searchModel.value.productTitle
-          "
-          style="width: 398px"
-        />
-      </q-card-section>
-    </q-card>
-  </q-dialog>
 </template>
 
 <script setup>
   import { computed, ref } from "vue";
-  import { dateRange } from "src/constants";
+  import { dateRange, voucherType } from "src/constants";
   import { helper } from "src/helpers";
   import { useI18n } from "vue-i18n";
-  import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
+  import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
 
   import dateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
-  import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import customInput from "src/components/shared/forms/CustomInput.vue";
-  import ContactLookup from "src/components/shared/lookups/MobileContactLookup.vue";
-  import ProductLookup from "src/components/shared/lookups/MobileProductLookup.vue";
-  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 
   const { t } = useI18n();
 
@@ -264,16 +232,6 @@
 
   const group = ref([]);
   const dialog = ref(false);
-  const showContact = ref(false);
-  const showProduct = ref(false);
-
-  const options = [
-    { label: "عمومی", value: "1041" },
-    { label: "بستن حسابها", value: "1043" },
-    { label: "افتتاحیه", value: "1044" },
-    { label: "اختتامیه", value: "1045" },
-    { label: "اصلاحیه", value: "1046" },
-  ];
 
   const handleCheckboxChange = () => {
     if (group.value.length >= 0) {
@@ -283,10 +241,12 @@
 
   const emit = defineEmits(["apply-search", "update-date-range"]);
 
-  const searchStore = useInvoiceSearch();
+  const searchStore = useVoucherSearch();
 
   async function applySearch() {
-    emit("apply-search", searchStore.searchModel.value);
+    alert("emit apply search");
+    searchStore.applySearch();
+    //emit("apply-search", searchStore.searchModel.value);
   }
 
   async function clearSearch() {

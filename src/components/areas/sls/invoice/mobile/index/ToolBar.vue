@@ -1,5 +1,4 @@
 <template>
-  test
   <tool-bar
     :table-store="tableStore"
     :crud-store="crudStore"
@@ -52,7 +51,6 @@
 
 <script setup>
   import { ref } from "vue";
-
   import { useDataTable } from "src/composables/useDataTable";
 
   import ToolBar from "src/components/shared/ToolBarMobile.vue";

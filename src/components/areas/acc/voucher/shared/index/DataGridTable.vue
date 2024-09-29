@@ -9,6 +9,7 @@
   <template v-else>
     <desktop
       :table-store="tableStore"
+      :crud-store="crudStore"
       :title="title"
       advanced-search
     />
@@ -17,7 +18,7 @@
 
 <script setup>
   import Desktop from "../../desktop/index/DataGridContainer.vue";
-  import Mobile from "../../mobile/index/DataGrid.vue";
+  import Mobile from "../../mobile/index/DataGridContainer.vue";
 
   const props = defineProps({
     title: String,

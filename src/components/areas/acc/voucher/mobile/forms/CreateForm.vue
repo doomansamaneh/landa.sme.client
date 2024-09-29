@@ -6,10 +6,10 @@
 </template>
 
 <script setup>
-import MasterSection from "src/components/areas/sls/_shared/invoice/desktop/forms/v1/MasterSection.vue";
-import DetailSection from "src/components/areas/sls/_shared/invoice/mobile/forms/v1/DetailSectionTable.vue";
+  import MasterSection from "../../desktop/forms/MasterSection.vue";
+  import DetailSection from "../../desktop/forms/VoucherItems.vue";
 
-const props = defineProps({
-  formStore: Object,
-});
+  const props = defineProps({
+    formStore: Object,
+  });
 </script>

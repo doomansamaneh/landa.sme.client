@@ -2,7 +2,7 @@
   <q-card class="bordered">
     <q-card-section class="q-pl-lg row items-center justify-between">
       <q-option-group
-        style="gap: 8px;"
+        style="gap: 8px"
         class="row text-body2 no-letter-spacing"
         type="radio"
         size="40px"
@@ -36,7 +36,7 @@
         <div class="q-px-lg">
           <div class="row items-center">
             <q-option-group
-              style="gap: 8px;"
+              style="gap: 8px"
               class="row items-center"
               inline
               dense
@@ -155,9 +155,9 @@
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
 
-  const props = defineProps({
-    searchModel: Object,
-  });
+  // const props = defineProps({
+  //   searchModel: Object,
+  // });
 
   const expanded = ref(false);
   const searchStore = useVoucherSearch();
