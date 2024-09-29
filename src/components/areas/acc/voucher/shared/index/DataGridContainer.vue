@@ -1,5 +1,5 @@
 <template>
-  <data-grid-toolbar
+  <toolbar-container
     v-if="toolbar"
     :title="title"
     :table-store="tableStore"
@@ -12,7 +12,7 @@
   import { useVoucherState } from "src/components/areas/acc/_composables/useVoucherState";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import DataGridToolbar from "./DataGridToolbar.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
   import DataGridTable from "./DataGridTable.vue";
 
   const props = defineProps({

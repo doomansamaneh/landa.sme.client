@@ -1,100 +1,5 @@
 <template>
-  <tool-bar
-    :table-store="tableStore"
-    :crud-store="crudStore"
-    :title="title"
-    base-route="acc/voucher"
-    activation
-  >
-    <template #buttons-custom>
-      <q-separator class="q-my-sm" />
-      <q-item clickable v-close-popup tabindex="0" @click="editBatch">
-        <div class="q-py-sm">
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark" size="sm">
-              <q-icon name="o_edit" />
-            </q-avatar>
-          </q-item-section>
-        </div>
-        <q-item-section>
-          <div class="text-caption">
-            {{ $t("shared.labels.editBatch") }}
-          </div>
-        </q-item-section>
-      </q-item>
-    </template>
-  </tool-bar>
-
-  <div class="column q-gutter-sm" style="margin-top: 46px">
-    <q-card class="bordered primary-gradient">
-      <q-card-section>
-        <div class="row items-center q-gutter-sm">
-          <div class="col-2">
-            <q-btn
-              round
-              dense
-              unelevated
-              class="bg-white text-primary text-body1 text-bold no-pointer-events"
-            >
-              {{ tableStore?.pagination.value.totalItems }}
-            </q-btn>
-          </div>
-
-          <div class="col">
-            <div class="row q-gutter-sm">
-              <div class="text-caption text-bold text-blue-3">
-                جمع کل
-              </div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  helper.formatNumber(
-                    tableStore?.summaryData?.value?.amount
-                  )
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </q-card-section>
-    </q-card>
-
-    <q-card
-      class="bordered bg-blue-grey-2"
-      v-if="tableStore?.selectedRows?.value.length > 1"
-    >
-      <q-card-section>
-        <div class="row items-center q-gutter-sm">
-          <div class="col-2">
-            <q-btn
-              round
-              dense
-              unelevated
-              class="bg-white text-primary text-body1 text-bold no-pointer-events"
-            >
-              <q-icon size="28px" name="o_done" />
-            </q-btn>
-          </div>
-          <div class="col">
-            <div class="row q-gutter-sm">
-              <div class="text-caption text-bold text-grey-7">
-                جمع کل
-              </div>
-              <div class="text-bold text-grey-10 text-caption">
-                {{
-                  helper.formatNumber(
-                    helper.getSubtotal(
-                      tableStore.selectedRows.value,
-                      "amount"
-                    )
-                  )
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </q-card-section>
-    </q-card>
-  </div>
+  <data-grid-summary :table-store="tableStore" />
 
   <div>
     <div
@@ -116,7 +21,7 @@
 
     <data-grid
       :data-table-store="tableStore"
-      createUrl="/acc/voucher/create"
+      create-url="/acc/voucher/create"
     >
       <template #header>
         <template></template>
@@ -153,7 +58,7 @@
 
             <div class="col row justify-end items-center q-gutter-xs">
               <span class="text-caption text-on-dark">
-                {{ item.dateString }}
+                {{ item.date?.substring(0, 10) }}
               </span>
             </div>
           </div>
@@ -181,7 +86,9 @@
                   class="ellipsis-2-lines text-body1 text-bold text-on-dark"
                 >
                   {{ item.amount.toLocaleString() }}
-                  <span class="text-caption">ریال</span>
+                  <span class="text-caption">
+                    {{ item.currencyTitle }}
+                  </span>
                 </span>
               </div>
             </div>
@@ -221,6 +128,13 @@
                 )
               }}
             </span>
+
+            <span
+              v-if="item.contractTitle"
+              class="border-radius-sm bluegrey-gradient text-caption text-white label"
+            >
+              {{ item.contractTitle }}
+            </span>
           </div>
         </q-card-section>
       </template>
@@ -228,7 +142,7 @@
         <q-btn
           unelevated
           class="text-on-dark"
-          :to="`/sls/invoice/preview/${item.id}`"
+          :to="`/acc/voucher/preview/${item.id}`"
         >
           <span class="text-body3 text-bold">مشاهده جزئیات</span>
         </q-btn>
@@ -425,6 +339,59 @@
       </q-card-section>
     </q-card>
   </q-dialog>
+
+  <bottom-sheet
+    v-if="sortSheetStatus"
+    header
+    :status="sortSheetStatus"
+    @hide="onSortSheetHide"
+  >
+    <template #header-title>مرتب‌ سازی بر اساس</template>
+
+    <template #body>
+      <q-list padding>
+        <div v-for="(item, index) in sortOptions" :key="index">
+          <q-item
+            clickable
+            @click="showSortOptionsDialog"
+            class="text-body2 no-letter-spacing q-pa-md"
+          >
+            <q-item-section>
+              <div class="row">
+                <div>
+                  {{ item }}
+                </div>
+                <div>
+                  <q-icon
+                    size="16px"
+                    color="primary"
+                    name="arrow_drop_down"
+                  />
+                </div>
+              </div>
+            </q-item-section>
+            <q-item-section avatar>
+              <q-icon size="20px" color="primary" name="check" />
+            </q-item-section>
+          </q-item>
+          <q-separator
+            v-if="index !== sortOptions.length - 1"
+            size="0.5px"
+            class="q-mx-sm"
+          />
+        </div>
+      </q-list>
+    </template>
+  </bottom-sheet>
+
+  <q-dialog
+    transition-show="slide-up"
+    transition-hide="slide-down"
+    transition-duration="600"
+    v-model="sortOptionsDialog"
+  >
+    <to-sort />
+  </q-dialog>
 </template>
 
 <script setup>
@@ -435,8 +402,10 @@
   import { subSystem, voucherType } from "src/constants";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
+  import DataGridSummary from "./DataGridSummary.vue";
   import BottomSheet from "components/shared/BottomSheet.vue";
-  import ToolBar from "src/components/shared/ToolBar.vue";
+  import AdvancedSearch from "./AdvancedSearch.vue";
+  import ToSort from "./ToSort.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -445,15 +414,48 @@
 
   const crudStore = useFormActions("acc/voucher");
   const dialog = ref(false);
-
   const bottomSheetStatus = ref(false);
   const bottomSheetItem = ref(null);
   const printDialog = ref(false);
+  const printSheetStatus = ref(false);
+  const sortSheetStatus = ref(false);
+
+  const sortOptions = [
+    "شماره پیگیری",
+    "شماره",
+    "تاریخ",
+    "شرح",
+    "نوع",
+    "سیستم",
+    "جمع کل",
+  ];
+
+  const sortOptionsDialog = ref(null);
 
   const selectedDateRange = ref({ value: "", label: "" });
 
   const showSearchModal = () => {
     dialog.value = true;
+  };
+
+  const hideSearchModal = () => {
+    dialog.value = false;
+  };
+
+  const onSortSheetShow = () => {
+    sortSheetStatus.value = true;
+  };
+
+  const onSortSheetHide = () => {
+    sortSheetStatus.value = false;
+  };
+
+  const showSortOptionsDialog = () => {
+    sortOptionsDialog.value = true;
+  };
+
+  const hideSortOptionsDialog = () => {
+    sortOptionsDialog.value = false;
   };
 
   async function reloadData(model) {

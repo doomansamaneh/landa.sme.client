@@ -57,7 +57,9 @@
     </template>
 
     <template #cell-remainedAmount="{ item }">
-      {{ item.remainedAmount?.toLocaleString() }}
+      <span class="text-weight-600">
+        {{ item.remainedAmount?.toLocaleString() }}
+      </span>
     </template>
 
     <template #footer-subtotal="{ selectedRows }">

@@ -31,7 +31,7 @@
 
   <q-separator size="1px" />
 
-  <invoice-data-grid
+  <data-grid
     :table-store="tableStore"
     base-route="sls/invoice"
     class="shadow bordered q-mt-md"
@@ -44,7 +44,7 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
-  import InvoiceDataGrid from "./InvoiceDataGrid.vue";
+  import DataGrid from "./DataGrid.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

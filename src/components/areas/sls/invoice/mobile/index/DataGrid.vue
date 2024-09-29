@@ -1,148 +1,5 @@
 <template>
-  <tool-bar
-    :table-store="tableStore"
-    :crud-store="crudStore"
-    :title="title"
-    base-route="sls/invoice"
-    activation
-    search-btn
-  >
-    <template #buttons-custom>
-      <q-separator size="0.5px" class="q-my-sm" />
-      <q-item clickable v-close-popup tabindex="0" @click="editBatch">
-        <div class="q-py-sm">
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark" size="sm">
-              <q-icon name="o_edit" />
-            </q-avatar>
-          </q-item-section>
-        </div>
-        <q-item-section>
-          <div class="text-body2 no-letter-spacing">
-            {{ $t("shared.labels.editBatch") }}
-          </div>
-        </q-item-section>
-      </q-item>
-    </template>
-
-    <template #search-btn>
-      <q-btn
-        round
-        class="q-mr-sm"
-        unelevated
-        dense
-        v-if="!tableStore?.activeRow?.value"
-        @click="onSortSheetShow"
-      >
-        <q-icon name="sort" />
-      </q-btn>
-      <q-btn
-        round
-        unelevated
-        dense
-        v-if="!tableStore?.activeRow?.value"
-        @click="showSearchModal"
-      >
-        <q-icon name="o_filter_alt" />
-      </q-btn>
-    </template>
-  </tool-bar>
-
-  <div class="column q-gutter-sm">
-    <q-card class="bordered grid-total">
-      <q-card-section>
-        <div class="row items-center q-gutter-sm">
-          <div class="col-2">
-            <q-btn
-              round
-              dense
-              unelevated
-              class="bg-white text-primary text-body1 text-bold no-pointer-events"
-            >
-              {{ tableStore?.pagination.value.totalItems }}
-            </q-btn>
-          </div>
-
-          <div class="col">
-            <div class="row q-gutter-sm">
-              <div class="text-caption">جمع کل</div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  tableStore?.summaryData?.value?.amount.toLocaleString()
-                }}
-              </div>
-            </div>
-
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption">دریافت شده</div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  tableStore?.summaryData?.value?.payedAmount.toLocaleString()
-                }}
-              </div>
-            </div>
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption">مانده</div>
-              <div class="text-bold text-white text-caption">
-                {{
-                  tableStore?.summaryData?.value?.remainedAmount.toLocaleString()
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </q-card-section>
-    </q-card>
-
-    <q-card
-      class="bordered grid-subtotal"
-      v-if="tableStore?.selectedRows?.value.length > 1"
-    >
-      <q-card-section>
-        <div class="row items-center q-gutter-sm">
-          <div class="col-2">
-            <q-btn
-              round
-              dense
-              unelevated
-              class="bg-white text-primary text-body1 text-bold no-pointer-events"
-            >
-              <q-icon size="28px" name="o_done" />
-            </q-btn>
-          </div>
-          <div class="col">
-            <div class="row q-gutter-sm">
-              <div class="text-caption">جمع کل</div>
-              <div class="text-bold text-caption">
-                {{
-                  helper.formatNumber(
-                    helper.getSubtotal(
-                      tableStore.selectedRows.value,
-                      "amount"
-                    )
-                  )
-                }}
-              </div>
-            </div>
-
-            <div class="row q-gutter-sm q-pt-xs">
-              <div class="text-caption">مانده</div>
-              <div class="text-bold text-caption">
-                {{
-                  helper.formatNumber(
-                    helper.getSubtotal(
-                      tableStore.selectedRows.value,
-                      "remainedAmount"
-                    )
-                  )
-                }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </q-card-section>
-    </q-card>
-  </div>
+  <data-grid-summary :table-store="tableStore" />
 
   <div
     class="row items-center justify-center text-body1 no-letter-spacing"
@@ -197,6 +54,15 @@
 
         <div class="row justify-between items-center">
           <div class="col row items-center">
+            <span v-if="item.taxId">
+              <q-icon name="o_check" color="primary" size="xs">
+                <q-tooltip
+                  class="accent text-body1 no-letter-spacing"
+                >
+                  ارسال به سامانه مودیان
+                </q-tooltip>
+              </q-icon>
+            </span>
             <span class="text-caption q-mr-xs text-on-dark">
               شماره:
             </span>
@@ -604,18 +470,19 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
+  import DataGridSummary from "./DataGridSummary.vue";
   import BottomSheet from "components/shared/BottomSheet.vue";
-  import ToolBar from "src/components/shared/ToolBarMobile.vue";
+  import ToolBar from "./ToolBar.vue";
   import AdvancedSearch from "./AdvancedSearch.vue";
   import ToSort from "./ToSort.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
+    crudStore: Object,
     title: String,
   });
 
   const dialog = ref(false);
-  const showCreate = ref(true);
   const advancedSearch = ref(null);
   const sortOptions = [
     "شماره",

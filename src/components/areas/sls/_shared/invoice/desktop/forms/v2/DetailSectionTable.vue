@@ -38,6 +38,7 @@
         v-for="(row, index) in formStore.model.value.invoiceItems"
         :key="index"
         class="q-pa-md"
+        :class="{ 'blink-animation': row.blink }"
       >
         <td class="text-center">{{ index + 1 }}</td>
         <td>
@@ -193,11 +194,14 @@
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import NoProductSelected from "../NoProductSelected.vue";
   import { helper } from "src/helpers";
+  import { ref, watch } from "vue";
 
   const props = defineProps({
     formStore: Object,
     formType: invoiceFormType,
   });
+
+  const prevQuantities = ref(new Map());
 
   const vatFilter =
     props.formType == invoiceFormType.sales
@@ -215,6 +219,30 @@
             value: `${vatType.purchase},${vatType.purchaseAndSale}`,
           },
         ];
+
+  watch(
+    () => props.formStore.model.value.invoiceItems,
+    (newItems) => {
+      newItems.forEach((item) => {
+        const prevQuantity = prevQuantities.value.get(item.productId);
+
+        if (prevQuantity === undefined) {
+          prevQuantities.value.set(item.productId, item.quantity);
+          item.blink = false;
+        } else {
+          if (item.quantity > prevQuantity) {
+            item.blink = true;
+            setTimeout(() => {
+              item.blink = false;
+            }, 300);
+          }
+
+          prevQuantities.value.set(item.productId, item.quantity);
+        }
+      });
+    },
+    { deep: true }
+  );
 
   const vatChanged = (vat, row) => {
     row.vatPercent = vat?.rate ?? 0;
@@ -239,5 +267,35 @@
 
   .q-markup-table th {
     font-size: 14px !important;
+  }
+</style>
+<style scoped>
+  /* Existing table styles */
+  td,
+  th {
+    padding: 8px 2px !important;
+  }
+
+  .q-markup-table.padding-table {
+    padding: 24px !important;
+  }
+
+  .q-markup-table th {
+    font-size: 14px !important;
+  }
+
+  /* Blink animation */
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .blink-animation {
+    animation: blink 0.2s step-start 0s 2;
   }
 </style>

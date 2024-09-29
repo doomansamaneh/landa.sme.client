@@ -145,20 +145,6 @@
             </div>
 
             <div
-              v-if="model.totalVat"
-              class="row items-center justify-between"
-            >
-              <div class="row items-center q-gutter-sm">
-                <div class="">جمع مالیات و عوارض</div>
-                <div class="text-green text-bold text-body3">
-                  (9%)
-                </div>
-              </div>
-              <div class="text-bold">
-                {{ helper.formatNumber(model.totalVat) }}
-              </div>
-            </div>
-            <div
               v-if="model.totalDiscount"
               class="row items-center justify-between"
             >
@@ -166,7 +152,19 @@
                 <div>تخفیف</div>
               </div>
               <div class="text-negative text-bold">
-                {{ helper.formatNumber(model.totalDiscount) }} -
+                ({{ helper.formatNumber(model.totalDiscount) }})
+              </div>
+            </div>
+
+            <div
+              v-if="model.totalVat"
+              class="row items-center justify-between"
+            >
+              <div class="row items-center q-gutter-sm">
+                <div class="">جمع مالیات و عوارض</div>
+              </div>
+              <div class="text-bold">
+                {{ helper.formatNumber(model.totalVat) }}
               </div>
             </div>
           </div>

@@ -201,7 +201,6 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { helper } from "src/helpers";
   import "src/helpers/extensions";
-  import { preFetch } from "quasar/wrappers";
 
   const props = defineProps({
     items: Array,

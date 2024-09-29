@@ -1,7 +1,5 @@
 <template>
-  <mobile-log v-if="$q.screen.xs" :table-store="tableStore" />
   <desktop-log
-    v-else
     bordered
     :items="logItems"
     :entity-id="entityId"
@@ -13,11 +11,10 @@
 <script setup>
   import { ref, onMounted, computed } from "vue";
   import { sqlOperator, sortOrder, logType } from "src/constants";
+  import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DesktopLog from "./_DesktopLog.vue";
-  import MobileLog from "./_MobileLog.vue";
-  import { helper } from "src/helpers";
 
   const props = defineProps({
     entityName: String,

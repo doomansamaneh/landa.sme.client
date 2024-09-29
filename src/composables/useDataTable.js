@@ -116,8 +116,10 @@ export function useDataTable({
   }
 
   async function reloadData() {
-    if (!_dataSource.value)
+    if (!_dataSource.value) {
       console.error("Landa: data table data source is not defined");
+      return;
+    }
     await fetchData(pagination.value, handleDataResponse);
 
     function handleDataResponse(pagedData) {

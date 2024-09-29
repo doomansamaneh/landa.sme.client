@@ -36,7 +36,7 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pl-lg q-px-none q-pt-none">
+    <q-card-section class="q-px-none q-pt-none">
       <loadable-data-grid
         ref="grid"
         data-source="sls/report/getInvoiceByProduct"
@@ -45,9 +45,29 @@
         :show-search="false"
         scroll-style="height: 335px;"
       >
+        <template #search>
+          <q-input
+            ref="searchInput"
+            inputmode="search"
+            color="grey-5"
+            outlined
+            v-model="tableStore.pagination.value.searchTerm"
+            :placeholder="$t('shared.labels.search')"
+            dense
+            clearable
+            clear-icon="o_clear"
+            rounded
+            @keydown.enter="grid.loadData()"
+            class="text-body2 no-letter-spacing q-mx-sm"
+          >
+            <template v-slot:prepend>
+              <q-icon name="o_search" color="primary" />
+            </template>
+          </q-input>
+        </template>
         <template #item="{ item }">
           <q-item
-            class="q-pl-none q-pb-md q-pr-lg border-radius-xs text-on-dark"
+            class="q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
           >
             <div class="row q-gutter-x-sm items-center">
               <q-avatar
@@ -118,13 +138,31 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { helper } from "src/helpers";
   import { useInvoiceProductState } from "../../sls/_composables/useInvoiceProductState";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
   import GotoDetail from "src/components/shared/buttons/GotoDetail.vue";
 
+  const tableStore = useDataTable({
+    dataSource: "sls/report/getInvoiceByProduct",
+  });
   const gridStore = useInvoiceProductState();
   const grid = ref(null);
+
+  async function loadData() {
+    tableStore.pagination.value.currentPage = 1;
+    await tableStore.reloadData();
+    gridStore.value.rows.value = tableStore.rows.value;
+  }
+
+  async function reloadData() {
+    await tableStore.reloadData();
+    gridStore.value.rows.value = [
+      ...gridStore.value.rows.value,
+      ...tableStore.rows.value,
+    ];
+  }
 </script>

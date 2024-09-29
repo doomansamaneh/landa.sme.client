@@ -127,6 +127,7 @@ export function useInvoiceModel(config) {
   }
 
   function addWatch() {
+    if (!model.value.invoiceItems) return;
     // watch(
     //   model.value.invoiceItems,
     //   async (newItems) => {
