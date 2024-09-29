@@ -18,7 +18,7 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pt-sm q-pb-none">
+    <q-card-section class="q-pt-sm q-pb-none hidden">
       <q-scroll-area
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
@@ -29,7 +29,6 @@
             <q-btn
               v-for="option in dateRangeOptions"
               :key="option.value"
-              @click="handleDateRangeClick(option.value)"
               rounded
               unelevated
               padding="8px 12px"
@@ -73,6 +72,34 @@
         style="height: calc(100vh - 340px)"
       >
         <div class="column q-col-gutter-lg">
+          <div class="row q-col-gutter-sm">
+            <div class="col">
+              <q-option-group
+                style="gap: 8px"
+                class="row text-body2 no-letter-spacing"
+                type="radio"
+                inline
+                size="40px"
+                dense
+                :options="helper.getEnumOptions(dateRange)"
+                v-model="searchStore.searchModel.value.dateRange"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-sm">
+            <div class="col">
+              <q-option-group
+                :options="
+                  helper.getEnumOptions(voucherType, 'voucherType')
+                "
+                type="checkbox"
+                inline
+                v-model="searchStore.searchModel.value.voucherTypeIds"
+              />
+            </div>
+          </div>
+
           <div class="row q-col-gutter-sm">
             <div class="col">
               <q-item-label caption class="q-mb-sm">
@@ -226,10 +253,6 @@
     gridStore: Object,
   });
 
-  const dateRangeOptions = computed(() =>
-    helper.getEnumOptions(dateRange)
-  );
-
   const group = ref([]);
   const dialog = ref(false);
 
@@ -239,35 +262,7 @@
     }
   };
 
-  const emit = defineEmits(["apply-search", "update-date-range"]);
-
   const searchStore = useVoucherSearch();
-
-  async function applySearch() {
-    alert("emit apply search");
-    searchStore.applySearch();
-    //emit("apply-search", searchStore.searchModel.value);
-  }
-
-  async function clearSearch() {
-    props.gridStore.setDefaultSearchModel();
-    await applySearch();
-  }
-
-  async function removeItem(item) {
-    //todo: how to find field type and dynamically set to it's default value
-    let value = "";
-    switch (item.name) {
-      case "dateRange":
-        value = 0;
-        break;
-      case "waitToSendTax":
-        value = false;
-        break;
-    }
-    searchStore.value[item.name] = value;
-    await applySearch();
-  }
 
   const openCheckoutModal = () => {
     dialog.value = true;

@@ -1,5 +1,5 @@
 <template>
-  <!-- <template v-if="$q.screen.xs">
+  <template v-if="$q.screen.xs">
     <toolbar-mobile
       :table-store="tableStore"
       :crud-store="crudStore"
@@ -7,7 +7,9 @@
       :base-route="baseRoute"
       :selected-ids="selectedIds"
       @reorder="operationStore.reorder(tableStore.reloadData)"
-    ></toolbar-mobile>
+      @download-pdf="downloadPdf"
+      @download-pdf-batch="downloadBatchPdf"
+    />
   </template>
   <template v-else>
     <toolbar-desktop
@@ -18,19 +20,10 @@
       buttons
       margin
       @reorder="operationStore.reorder(tableStore.reloadData)"
-    ></toolbar-desktop>
-  </template> -->
-
-  <toolbar-mobile
-    :table-store="tableStore"
-    :crud-store="crudStore"
-    :title="title"
-    :base-route="baseRoute"
-    :selected-ids="selectedIds"
-    @reorder="operationStore.reorder(tableStore.reloadData)"
-    @download-pdf="downloadPdf"
-    @download-pdf-batch="downloadBatchPdf"
-  />
+      @download-pdf="downloadPdf"
+      @download-pdf-batch="downloadBatchPdf"
+    />
+  </template>
 </template>
 
 <script setup>
