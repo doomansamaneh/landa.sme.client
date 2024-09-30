@@ -7,84 +7,28 @@
     margin
   >
     <template #bootons-edit="{ row }">
-      <q-btn
-        padding="6px 12px"
-        :to="`/${baseRoute}/edit/${row.id}`"
-        class="text-body2 no-letter-spacing"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-sm" />
-        {{ $t("shared.labels.edit") }}
-      </q-btn>
-
-      <q-btn
-        padding="6px 12px"
-        :to="`/${baseRoute}/copy/${row.id}`"
-        class="text-body2 no-letter-spacing"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-sm" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
+      <menu-button-edit :to="`/${baseRoute}/edit/${row.id}`" />
+      <menu-button-copy :to="`/${baseRoute}/copy/${row.id}`" />
     </template>
 
     <template #buttons-custom="{ row }">
-      <q-item clickable v-close-popup tabindex="0" @click="reorder">
-        <q-item-section avatar class="q-py-sm">
-          <q-avatar class="bg-on-dark" size="sm">
-            <q-icon name="o_cached" size="20px" />
-          </q-avatar>
-        </q-item-section>
-        <q-item-section>
-          <div class="text-body2 no-letter-spacing">
-            {{ $t("shared.labels.reorder") }}
-          </div>
-        </q-item-section>
-      </q-item>
+      <menu-item
+        icon="o_cached"
+        :title="$t('shared.labels.reorder')"
+        @click="reorder"
+      />
 
       <template v-if="row">
         <q-separator class="q-my-sm" />
 
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="downloadPdf(row.id)"
-        >
-          <q-item-section avatar class="q-py-sm">
-            <q-avatar class="bg-on-dark" size="sm">
-              <q-icon name="o_print" size="20px" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.print") }}
-            </div>
-          </q-item-section>
-        </q-item>
+        <menu-item-print @click="downloadPdf(row.id)" />
       </template>
 
-      <q-item
-        clickable
-        v-close-popup
-        tabindex="0"
+      <menu-item
+        icon="o_print"
+        :title="$t('shared.labels.printBatch')"
         @click="downloadBatchPdf"
-      >
-        <q-item-section class="q-py-sm" avatar>
-          <q-avatar class="bg-on-dark" size="sm">
-            <q-icon name="o_print" size="20px" />
-          </q-avatar>
-        </q-item-section>
-        <q-item-section>
-          <div class="text-body2 no-letter-spacing">
-            {{ $t("shared.labels.printBatch") }}
-          </div>
-        </q-item-section>
-      </q-item>
+      />
     </template>
   </toolbar-desktop>
 </template>
@@ -93,6 +37,10 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
+  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
+  import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
 
   const props = defineProps({
     toolbar: Boolean,

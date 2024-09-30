@@ -6,7 +6,8 @@
   />
 </template>
 <script setup>
-  import SheetItem from "./SheetItem.vue";
+  import SheetItem from "./MenuItem.vue";
+
   const props = defineProps({
     to: String,
   });

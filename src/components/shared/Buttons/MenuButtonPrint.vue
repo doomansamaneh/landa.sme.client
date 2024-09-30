@@ -1,5 +1,5 @@
 <template>
-  <sheet-item
+  <menu-button
     icon="o_print"
     :title="$t('shared.labels.print')"
     :to="to"
@@ -7,7 +7,8 @@
   />
 </template>
 <script setup>
-  import SheetItem from "./SheetItem.vue";
+  import MenuButton from "./MenuButton.vue";
+
   const props = defineProps({
     to: String,
   });

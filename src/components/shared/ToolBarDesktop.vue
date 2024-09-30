@@ -16,17 +16,10 @@
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <slot name="buttons-create">
-              <q-btn
-                class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-                padding="6px 12px"
-                rounded
-                no-caps
-                unelevated
+              <menu-button-add
+                class="primary-gradient primary-shadow text-white"
                 :to="`/${baseRoute}/create`"
-              >
-                <q-icon size="20px" name="o_add" class="q-mr-sm" />
-                {{ $t("shared.labels.create") }}
-              </q-btn>
+              />
             </slot>
 
             <template v-if="tableStore?.activeRow?.value != null">
@@ -34,47 +27,24 @@
                 name="bootons-edit"
                 :row="tableStore?.activeRow?.value"
               >
-                <q-btn
-                  padding="6px 12px"
+                <menu-button-edit
                   :to="`/${baseRoute}/edit/${tableStore?.activeRow?.value.id}`"
-                  class="text-body2 no-letter-spacing"
-                  rounded
-                  unelevated
-                  no-caps
-                >
-                  <q-icon size="20px" name="o_edit" class="q-mr-sm" />
-                  {{ $t("shared.labels.edit") }}
-                  <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
-                </q-btn>
+                />
               </slot>
             </template>
 
             <template v-if="selectedIds?.length > 0">
               <slot name="buttons-batch-action"></slot>
               <slot name="buttons-delete-batch">
-                <q-btn
-                  padding="6px 12px"
-                  class="text-body2 no-letter-spacing"
-                  rounded
-                  unelevated
-                  no-caps
+                <menu-button-delete
                   @click="
                     localCrudStore.deleteBatch(
                       selectedIds,
                       tableStore?.reloadData
                     )
                   "
-                >
-                  <q-icon
-                    name="o_delete"
-                    size="20px"
-                    class="q-mr-sm"
-                  />
-                  {{ $t("shared.labels.delete") }}
-                  <q-badge floating>
-                    {{ selectedIds?.length }}
-                  </q-badge>
-                </q-btn>
+                  :badge-count="selectedIds?.length"
+                />
               </slot>
             </template>
 
@@ -82,26 +52,14 @@
               v-else-if="tableStore?.activeRow?.value != null"
             >
               <slot name="bootons-delete">
-                <q-btn
-                  padding="6px 12px"
-                  class="text-body2 no-letter-spacing"
-                  rounded
-                  unelevated
-                  no-caps
+                <menu-button-delete
                   @click="
                     localCrudStore.deleteById(
                       tableStore.activeRow.value.id,
                       tableStore?.reloadData
                     )
                   "
-                >
-                  <q-icon
-                    size="20px"
-                    name="o_delete"
-                    class="q-mr-sm"
-                  />
-                  {{ $t("shared.labels.delete") }}
-                </q-btn>
+                />
               </slot>
             </template>
 
@@ -116,129 +74,60 @@
 
               <q-menu class="border-radius-lg" cover>
                 <q-list dense padding style="width: 250px">
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
+                  <menu-item
+                    icon="o_refresh"
+                    :title="$t('shared.labels.refresh')"
                     @click="tableStore?.reloadData"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_refresh" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        {{ $t("shared.labels.refresh") }}
-                      </div>
-                    </q-item-section>
-                  </q-item>
+                  />
 
                   <template
                     v-if="activation && selectedIds?.length > 0"
                   >
                     <q-separator class="q-my-sm" />
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
+
+                    <menu-item
+                      icon="o_check"
+                      :title="$t('shared.labels.activate')"
                       @click="
                         localCrudStore.activate(
                           selectedIds,
                           tableStore?.reloadData
                         )
                       "
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon size="20px" name="o_check" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          {{ $t("shared.labels.activate") }}
-                        </div>
-                      </q-item-section>
-                    </q-item>
+                    />
 
-                    <q-item
-                      clickable
-                      v-close-popup
-                      tabindex="0"
+                    <menu-item
+                      icon="o_check"
+                      :title="$t('shared.labels.deactivate')"
                       @click="
                         localCrudStore.deactivate(
                           selectedIds,
                           tableStore?.reloadData
                         )
                       "
-                    >
-                      <div class="q-py-sm">
-                        <q-item-section avatar>
-                          <q-avatar class="bg-on-dark" size="sm">
-                            <q-icon size="20px" name="o_close" />
-                          </q-avatar>
-                        </q-item-section>
-                      </div>
-                      <q-item-section>
-                        <div class="text-body2 no-letter-spacing">
-                          {{ $t("shared.labels.deactivate") }}
-                        </div>
-                      </q-item-section>
-                    </q-item>
+                    />
                   </template>
 
                   <slot
                     name="buttons-custom"
                     :row="tableStore?.activeRow?.value"
-                  ></slot>
+                  />
 
                   <q-separator class="q-my-sm" />
 
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
+                  <menu-item
+                    icon="o_download"
+                    :title="$t('shared.labels.eportToExcel')"
                     @click="tableStore.exportAll()"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon name="o_download" size="20px" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        {{ $t("shared.labels.eportToExcel") }}
-                      </div>
-                    </q-item-section>
-                  </q-item>
+                  />
 
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
+                  <menu-item
+                    icon="o_download"
+                    :title="
+                      $t('shared.labels.exportExcelCurrentPage')
+                    "
                     @click="tableStore.exportCurrentPage()"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon name="o_download" size="20px" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        {{
-                          $t("shared.labels.exportExcelCurrentPage")
-                        }}
-                      </div>
-                    </q-item-section>
-                  </q-item>
+                  />
                 </q-list>
               </q-menu>
             </q-btn>
@@ -303,19 +192,21 @@
 
 <script setup>
   import { ref, computed, onMounted, onUnmounted } from "vue";
-  import { useDataTable } from "src/composables/useDataTable";
-
   import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
 
+  import { useDataTable } from "src/composables/useDataTable";
   import { useFormActions } from "src/composables/useFormActions";
+
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import MenuButtonAdd from "./buttons/MenuButtonAdd.vue";
+  import MenuButtonEdit from "./buttons/MenuButtonEdit.vue";
+  import MenuButtonDelete from "./buttons/MenuButtonDelete.vue";
+  import MenuItem from "./buttons/MenuItem.vue";
 
   const $q = useQuasar();
-  const router = useRouter();
 
   const isAtTop = ref(true);
-  let previousScrollPosition = 0;
 
   const props = defineProps({
     title: String,

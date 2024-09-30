@@ -7,80 +7,30 @@
     back-button
   >
     <template #buttons>
-      <q-btn
+      <menu-button-edit
+        class="primary-gradient primary-shadow text-white"
         :to="`/${baseRoute}/edit/${model?.id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-      </q-btn>
-      <q-btn
-      :to="`/${baseRoute}/copy/${model?.id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
+      />
+      <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
 
-      <q-btn
+      <menu-button-delete
         @click="
           formStore.crudStore.deleteById(model.id, deleteCallBack)
         "
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-        {{ $t("shared.labels.delete") }}
-      </q-btn>
+      />
 
-      <slot name="toolbar-custom" :form-store="formStore"></slot>
-
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        چاپ
-      </q-btn>
-
-      <q-btn
+      <menu-button-print @click="helper.print('invoicePreview')" />
+      <menu-button
         @click="formStore.downloadPdf(model.id)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="download" class="q-mr-xs" />
-        تبدیل به pdf
-      </q-btn>
+        icon="download"
+        :title="$t('shared.labels.downloadPdf')"
+      />
 
-      <q-btn
+      <menu-button
         @click="sendEmail"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="send" class="q-mr-xs" />
-        ارسال ایمیل
-      </q-btn>
+        icon="send"
+        :title="$t('shared.labels.sendEmail')"
+      />
     </template>
   </tool-bar>
 </template>
@@ -93,6 +43,11 @@
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
+  import MenuButton from "src/components/shared/buttons/MenuButton.vue";
+  import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
+  import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
+  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     model: Object,
@@ -119,7 +74,7 @@
         baseRoute: props.baseRoute,
       },
     }).onOk(async () => {
-      await reloadData();
+      //await reloadData();
     });
   }
 </script>

@@ -6,18 +6,18 @@
 
     <template #body>
       <q-list padding>
-        <sheet-item-edit :to="`/acc/voucher/edit/${item.id}`" />
-        <sheet-item-copy :to="`/acc/voucher/copy/${item.id}`" />
+        <menu-item-edit :to="`/acc/voucher/edit/${item.id}`" />
+        <menu-item-copy :to="`/acc/voucher/copy/${item.id}`" />
         <q-separator class="q-my-sm" />
-        <sheet-item
+        <menu-item
           :title="$t('shared.labels.sendEmail')"
           icon="send"
           @click="sendEmail"
         />
         <q-separator class="q-my-sm" />
-        <sheet-item-print @click="downloadPdf" />
+        <menu-item-print @click="downloadPdf" />
         <q-separator class="q-my-sm" />
-        <sheet-item-delete @click="deleteItem" />
+        <menu-item-delete @click="deleteItem" />
       </q-list>
     </template>
   </bottom-sheet>
@@ -133,11 +133,11 @@
 
   import BottomSheet from "components/shared/BottomSheet.vue";
   import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
-  import SheetItem from "src/components/shared/buttons/SheetItem.vue";
-  import SheetItemEdit from "src/components/shared/buttons/SheetItemEdit.vue";
-  import SheetItemCopy from "src/components/shared/buttons/SheetItemCopy.vue";
-  import SheetItemPrint from "src/components/shared/buttons/SheetItemPrint.vue";
-  import SheetItemDelete from "src/components/shared/buttons/SheetItemDelete.vue";
+  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
+  import MenuItemEdit from "src/components/shared/buttons/MenuItemEdit.vue";
+  import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
+  import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
+  import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

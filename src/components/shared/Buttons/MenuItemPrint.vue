@@ -1,13 +1,13 @@
 <template>
   <sheet-item
-    icon="o_delete"
-    :title="$t('shared.labels.delete')"
+    icon="o_print"
+    :title="$t('shared.labels.print')"
     :to="to"
     @clik="click"
   />
 </template>
 <script setup>
-  import SheetItem from "./SheetItem.vue";
+  import SheetItem from "./MenuItem.vue";
   const props = defineProps({
     to: String,
   });
