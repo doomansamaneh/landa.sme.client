@@ -105,7 +105,7 @@
               <q-item-label caption class="q-mb-sm">
                 مبلغ از
               </q-item-label>
-              <custom-input
+              <custom-input-number
                 v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
@@ -114,7 +114,7 @@
               <q-item-label caption class="q-mb-sm">
                 مبلغ تا
               </q-item-label>
-              <custom-input
+              <custom-input-number
                 v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
               />
@@ -189,7 +189,7 @@
         color="primary"
         class="q-mb-sm full-width"
         v-close-popup
-        @click="applySearch"
+        @click="searchStore.applySearch()"
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_search" class="q-mr-xs" />
@@ -237,53 +237,21 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { ref } from "vue";
   import { dateRange, voucherType } from "src/constants";
   import { helper } from "src/helpers";
-  import { useI18n } from "vue-i18n";
   import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
 
   import dateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
-  import customInput from "src/components/shared/forms/CustomInput.vue";
-
-  const { t } = useI18n();
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
   const props = defineProps({
     gridStore: Object,
   });
 
-  const group = ref([]);
-  const dialog = ref(false);
-
-  const handleCheckboxChange = () => {
-    if (group.value.length >= 0) {
-      dialog.value = false;
-    }
-  };
-
   const searchStore = useVoucherSearch();
-
-  const openCheckoutModal = () => {
-    dialog.value = true;
-  };
-
-  const handleDateRangeClick = async (value) => {
-    searchStore.searchModel.value.dateRange = value;
-    const translatedLabel = t(
-      `shared.labels.${searchStore.searchModel.value.dateRange}`
-    );
-    emit("update-date-range", {
-      value: searchStore.searchModel.value.dateRange,
-      label: translatedLabel,
-    });
-
-    await applySearch();
-  };
-
-  const isActive = (value) => {
-    return searchStore.searchModel.value.dateRange === value;
-  };
 </script>
 
 <style lang="scss" scoped>

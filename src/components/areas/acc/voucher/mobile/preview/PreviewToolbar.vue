@@ -7,18 +7,18 @@
     back-button
   >
     <template #buttons>
-        <!-- :to="`/${baseRoute}/edit/${model.id}`" -->
       <q-btn
         class="text-caption"
         round
         unelevated
         no-caps
+        :to="`/${baseRoute}/edit/${model?.id}`"
       >
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
       </q-btn>
 
       <q-btn
-        @click="onBottomSheetShow"
+        @click="showItemSheet"
         class="text-caption"
         round
         unelevated
@@ -26,239 +26,25 @@
       >
         <q-icon size="20px" name="o_more_vert" />
       </q-btn>
-
-      <!-- <q-btn
-        :to="`/${baseRoute}/copy/${id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
-
-      <q-btn
-        @click="formStore.crudStore.deleteById(id, deleteCallBack)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-        {{ $t("shared.labels.delete") }}
-      </q-btn>
-
-      <slot name="toolbar-custom" :form-store="formStore"></slot>
-
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        چاپ
-      </q-btn>
-
-      <q-btn
-        @click="formStore.downloadPdf(id)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="download" class="q-mr-xs" />
-        تبدیل به pdf
-      </q-btn>
-
-      <q-btn
-        @click="sendEmail"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="send" class="q-mr-xs" />
-        ارسال ایمیل
-      </q-btn> -->
     </template>
   </tool-bar>
 
-  <bottom-sheet
-    v-if="bottomSheetStatus"
-    header
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
-    <template #header-title>
-      {{ $t("shared.labels.more") }}
-    </template>
-
-    <template #body>
-      <q-list padding>
-        <q-item
-          :to="`/${baseRoute}/copy/${model.id}`"
-          clickable
-          v-close-popup
-          tabindex="0"
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_copy" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.copy") }}
-            </div>
-          </q-item-section>
-        </q-item>
-
-        <!-- <template v-if="activation && selectedIds?.length > 0">
-          <q-separator size="0.5px" class="q-my-sm" />
-
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
-            @click="
-              formStore.crudStore.deleteById(id, deleteCallBack)
-            "
-          >
-            <q-item-section avatar>
-              <q-avatar class="bg-on-dark text-on-dark">
-                <q-icon name="o_check" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.activate") }}
-              </div>
-            </q-item-section>
-          </q-item>
-
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
-            @click="
-              crudStore.deactivate(selectedIds, tableStore.reloadData)
-            "
-          >
-            <q-item-section avatar>
-              <q-avatar class="bg-on-dark text-on-dark">
-                <q-icon name="o_close" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.deactivate") }}
-              </div>
-            </q-item-section>
-          </q-item>
-        </template> -->
-
-        <slot name="buttons-custom" />
-
-        <q-separator size="0.5px" class="q-my-sm" />
-
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="helper.print('invoicePreview')"
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_print" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.print") }}
-            </div>
-          </q-item-section>
-        </q-item>
-
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="formStore.downloadPdf(model.id)"
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_print" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              تبدیل به pdf
-            </div>
-          </q-item-section>
-        </q-item>
-
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="sendEmail"
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_send" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              ارسال ایمیل
-            </div>
-          </q-item-section>
-        </q-item>
-
-        <q-separator size="0.5px" class="q-my-sm" />
-
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
-          @click="
-            formStore.crudStore.deleteById(model.id, deleteCallBack)
-          "
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_delete" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.delete") }}
-            </div>
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </template>
-  </bottom-sheet>
+  <data-grid-item-sheet
+    v-if="itemSheetStatus"
+    :status="itemSheetStatus"
+    :item="model"
+    :delete-call-back="deleteCallBack"
+    @hide="hideItemSheet"
+  />
 </template>
 
 <script setup>
   import { ref } from "vue";
   import { useRouter } from "vue-router";
-  import { useQuasar } from "quasar";
-  import { helper } from "src/helpers";
   import { useVoucherState } from "../../../_composables/useVoucherState";
 
   import ToolBar from "src/components/shared/ToolBarMobile.vue";
-  import SendEmailDialog from "src/components/areas/sls/_shared/invoice/shared/forms/SendEmailDialog.vue";
-  import BottomSheet from "src/components/shared/BottomSheet.vue";
+  import DataGridItemSheet from "../index/DataGridItemSheet.vue";
 
   const props = defineProps({
     model: Object,
@@ -267,35 +53,20 @@
     baseRoute: String,
     formStore: Object,
   });
-
   const router = useRouter();
-  const $q = useQuasar();
   const voucherStore = useVoucherState();
+  const itemSheetStatus = ref(false);
 
-  const bottomSheetStatus = ref(false);
-
-  const onBottomSheetShow = () => {
-    bottomSheetStatus.value = true;
+  const showItemSheet = () => {
+    itemSheetStatus.value = true;
   };
 
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
+  const hideItemSheet = () => {
+    itemSheetStatus.value = false;
   };
 
-  function deleteCallBack() {
+  const deleteCallBack = () => {
     voucherStore.state.firstLoad.value = false;
     router.back();
-  }
-
-  function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
-        id: props.id,
-        baseRoute: props.baseRoute,
-      },
-    }).onOk(async () => {
-      await reloadData();
-    });
-  }
+  };
 </script>

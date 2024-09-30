@@ -128,23 +128,44 @@
         unelevated
         dense
         icon="o_more_vert"
-        @click="onBottomSheetShow(item)"
+        @click="showItemSheet(item)"
       />
     </template>
   </data-grid>
+
+  <item-sheet
+    v-if="itemSheetStatus"
+    :table-store="tableStore"
+    :status="itemSheetStatus"
+    :item="item"
+    @hide="hideItemSheet"
+  />
 </template>
 
 <script setup>
+  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
   import { subSystem, voucherType } from "src/constants";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
+  import ItemSheet from "./DataGridItemSheet.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
     title: String,
   });
+
+  const item = ref(null);
+  const itemSheetStatus = ref(false);
+
+  const showItemSheet = (row) => {
+    item.value = row;
+    itemSheetStatus.value = true;
+  };
+  const hideItemSheet = () => {
+    itemSheetStatus.value = false;
+  };
 </script>
 
 <style lang="scss" scoped>

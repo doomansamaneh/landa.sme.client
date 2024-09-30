@@ -73,10 +73,10 @@
 <script setup>
   import { computed, ref } from "vue";
   import { useDataTable } from "src/composables/useDataTable";
+  import { sortOrder } from "src/constants";
 
   import MobileSortOrder from "./MobileSortOrder.vue";
   import BottomSheet from "src/components/shared/BottomSheet.vue";
-  import { sortOrder } from "src/constants";
 
   const props = defineProps({
     tableStore: useDataTable,

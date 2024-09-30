@@ -70,6 +70,7 @@
 </template>
 
 <script setup>
+  import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
 
   import ToolBar from "components/shared/ToolBarMobile.vue";
@@ -83,6 +84,7 @@
     selectedIds: Array,
     baseRoute: { type: String, default: "acc/voucher" },
   });
+  const $q = useQuasar();
 
   const emits = defineEmits([
     "downloadPdf",
