@@ -1,14 +1,6 @@
 <template>
-  <sheet-item
-    icon="o_copy"
-    :title="$t('shared.labels.copy')"
-    :to="to"
-  />
+  <sheet-item icon="o_copy" :title="$t('shared.labels.copy')" />
 </template>
 <script setup>
   import SheetItem from "./MenuItem.vue";
-
-  const props = defineProps({
-    to: String,
-  });
 </script>

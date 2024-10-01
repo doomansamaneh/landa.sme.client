@@ -21,8 +21,8 @@
       </q-avatar>
     </q-item-section>
 
-    <q-item-section class="text-body2 no-letter-spacing">
-      {{ title }}
+    <q-item-section class="text-body2_ no-letter-spacing">
+      1. {{ title }}
     </q-item-section>
   </q-item>
 </template>

@@ -6,11 +6,7 @@
     :model="model"
     :form-store="formStore"
     :base-route="baseRoute"
-  >
-    <template #toolbar-custom>
-      <slot name="toolbar-custom"></slot>
-    </template>
-  </tool-bar-desktop>
+  ></tool-bar-desktop>
 
   <tool-bar-mobile
     v-else
@@ -19,11 +15,7 @@
     :model="model"
     :form-store="formStore"
     :base-route="baseRoute"
-  >
-    <template #toolbar-custom>
-      <slot name="toolbar-custom"></slot>
-    </template>
-  </tool-bar-mobile>
+  ></tool-bar-mobile>
 </template>
 
 <script setup>

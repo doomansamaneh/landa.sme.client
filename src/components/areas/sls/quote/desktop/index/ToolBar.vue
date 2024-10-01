@@ -43,39 +43,23 @@
 
     <template #buttons-batch-action>
       <menu-button
-        @click="editBatch"
         :title="$t('shared.labels.editBatch')"
         icon="o_edit"
         :badge-count="selectedIds?.length"
+        @click="editBatch"
       />
     </template>
 
     <template #buttons-custom="{ row }">
-      <menu-item
-        :title="$t('shared.labels.reorder')"
-        icon="o_cached"
-        @click="reorder"
-      />
-      <q-separator class="q-my-sm" />
-
       <template v-if="row">
-        <menu-item
-          :title="$t('shared.labels.cancelInvoice')"
-          icon="o_close"
-          @click="cancelInvoice(row.id)"
-        />
-
-        <menu-item
-          :title="$t('shared.labels.copyToPurchase')"
-          icon="o_shopping_cart"
-          :to="`/sls/purchase/copy/${row.id}`"
-        />
-
-        <menu-item
-          :title="$t('shared.labels.salesReturn')"
-          icon="o_undo"
-          :to="`/sls/salesReturn/createFromInvoice/${row.id}`"
-        />
+        <template v-if="row.statusId !== quoteStatus.final">
+          <q-separator class="q-my-sm" />
+          <menu-item
+            :title="$t('shared.labels.convertToInvoice')"
+            icon="o_receipt"
+            :to="`/sls/invoice/createFromQuote/${row.id}`"
+          />
+        </template>
 
         <q-separator class="q-my-sm" />
 
@@ -96,6 +80,8 @@
 </template>
 
 <script setup>
+  import { quoteStatus } from "src/constants";
+
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
@@ -107,15 +93,13 @@
     tableStore: Object,
     crudStore: Object,
     selectedIds: Array,
-    baseRoute: { type: String, default: "sls/invoice" },
+    baseRoute: { type: String, default: "sls/quote" },
   });
 
   const emits = defineEmits([
     "downloadPdf",
     "download-batch-pdf",
-    "reorder",
     "edit-batch",
-    "cancel-invoice",
   ]);
 
   function downloadPdf(id) {
@@ -128,13 +112,5 @@
 
   function editBatch() {
     emits("edit-batch");
-  }
-
-  function reorder() {
-    emits("reorder");
-  }
-
-  function cancelInvoice(id) {
-    emits("cancel-invoice", id);
   }
 </script>

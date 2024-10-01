@@ -2,17 +2,17 @@
   <tool-bar
     :table-store="tableStore"
     :crud-store="crudStore"
-    :base-route="baseRoute"
     :title="title"
-    activation_
+    :base-route="baseRoute"
     search-btn
     sort-btn
   >
     <template #buttons-custom>
+      <q-separator size="0.5px" class="q-my-sm" />
       <menu-item
-        :title="$t('shared.labels.reorder')"
-        icon="cached"
-        @click="reorder"
+        :title="$t('shared.labels.editBatch')"
+        icon="o_edit"
+        @click="editBatch"
       />
 
       <q-separator size="0.5px" class="q-my-sm" />
@@ -35,38 +35,28 @@
 </template>
 
 <script setup>
+  import { ref } from "vue";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import ToolBar from "components/shared/ToolBarMobile.vue";
-  import AdvancedSearch from "./AdvancedSearch.vue";
+  import ToolBar from "src/components/shared/ToolBarMobile.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
-  import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
 
   const props = defineProps({
-    toolbar: Boolean,
-    title: String,
     tableStore: useDataTable,
     crudStore: Object,
-    selectedIds: Array,
-    baseRoute: { type: String, default: "acc/voucher" },
+    title: String,
+    baseRoute: { type: String, default: "sls/quote" },
   });
 
-  const emits = defineEmits([
-    "downloadPdf",
-    "download-batch-pdf",
-    "reorder",
-  ]);
+  const dialog = ref(false);
+  const sortSheetStatus = ref(false);
 
-  function downloadPdf(id) {
-    emits("download-pdf", id);
-  }
+  const showSearchModal = () => {
+    dialog.value = true;
+  };
 
-  function downloadBatchPdf() {
-    emits("download-batch-pdf");
-  }
-
-  function reorder() {
-    emits("reorder");
-  }
+  const onSortSheetShow = () => {
+    sortSheetStatus.value = true;
+  };
 </script>

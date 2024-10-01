@@ -182,107 +182,47 @@
 
     <template #body>
       <q-list padding>
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
+        <menu-item
+          :title="$t('shared.labels.refresh')"
+          icon="o_refresh"
           @click="tableStore.reloadData"
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_refresh" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.refresh") }}
-            </div>
-          </q-item-section>
-        </q-item>
+        />
 
         <template v-if="activation && selectedIds?.length > 0">
           <q-separator size="0.5px" class="q-my-sm" />
 
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
+          <menu-item
+            :title="$t('shared.labels.activate')"
+            icon="o_check"
             @click="
               crudStore.activate(selectedIds, tableStore.reloadData)
             "
-          >
-            <q-item-section avatar>
-              <q-avatar class="bg-on-dark text-on-dark">
-                <q-icon name="o_check" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.activate") }}
-              </div>
-            </q-item-section>
-          </q-item>
+          />
 
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
+          <menu-item
+            :title="$t('shared.labels.deactivate')"
+            icon="o_close"
             @click="
               crudStore.deactivate(selectedIds, tableStore.reloadData)
             "
-          >
-            <q-item-section avatar>
-              <q-avatar class="bg-on-dark text-on-dark">
-                <q-icon name="o_close" />
-              </q-avatar>
-            </q-item-section>
-            <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                {{ $t("shared.labels.deactivate") }}
-              </div>
-            </q-item-section>
-          </q-item>
+          />
         </template>
 
         <slot name="buttons-custom" />
 
         <q-separator size="0.5px" class="q-my-sm" />
 
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
+        <menu-item
+          :title="$t('shared.labels.eportToExcel')"
+          icon="o_download"
           @click="tableStore.exportAll()"
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_download" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.eportToExcel") }}
-            </div>
-          </q-item-section>
-        </q-item>
+        />
 
-        <q-item
-          clickable
-          v-close-popup
-          tabindex="0"
+        <menu-item
+          :title="$t('shared.labels.exportExcelCurrentPage')"
+          icon="o_download"
           @click="tableStore.exportCurrentPage()"
-        >
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark">
-              <q-icon name="o_download" />
-            </q-avatar>
-          </q-item-section>
-          <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              {{ $t("shared.labels.exportExcelCurrentPage") }}
-            </div>
-          </q-item-section>
-        </q-item>
+        />
       </q-list>
     </template>
   </bottom-sheet>
@@ -310,6 +250,7 @@
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
   import MobileSortSheet from "./MobileSortSheet.vue";
+  import MenuItem from "./buttons/MenuItem.vue";
 
   const props = defineProps({
     title: String,

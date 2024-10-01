@@ -1,14 +1,6 @@
 <template>
-  <menu-button
-    icon="o_add"
-    :title="$t('shared.labels.create')"
-    :to="to"
-  />
+  <menu-button icon="o_add" :title="$t('shared.labels.create')" />
 </template>
 <script setup>
   import MenuButton from "./MenuButton.vue";
-
-  const props = defineProps({
-    to: String,
-  });
 </script>

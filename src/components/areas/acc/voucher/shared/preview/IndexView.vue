@@ -4,11 +4,7 @@
     :title="title"
     :base-route="baseRoute"
     :model="model"
-  >
-    <template #toolbar-custom>
-      <slot name="toolbar-custom" :model="model"></slot>
-    </template>
-  </tool-bar>
+  />
 
   <mobile v-if="$q.screen.xs" :model="model" />
   <desktop v-else :model="model" />
@@ -17,7 +13,6 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
-  import { helper } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
   import { useVoucherState } from "../../../_composables/useVoucherState";
 

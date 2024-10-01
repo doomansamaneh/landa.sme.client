@@ -5,8 +5,11 @@
     :base-route="baseRoute"
     :model="model"
   >
-    <template #toolbar-custom>
-      <slot name="toolbar-custom" :model="model"></slot>
+    <template #toolbar-custom-desktop>
+      <slot name="toolbar-custom-desktop" :model="model"></slot>
+    </template>
+    <template #toolbar-custom-mobile>
+      <slot name="toolbar-custom-mobile" :model="model"></slot>
     </template>
   </tool-bar>
 
@@ -53,9 +56,9 @@
   import { helper } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolBar from "./ToolBar.vue";
   import Mobile from "../../mobile/preview/IndexView.vue";
   import Desktop from "../../desktop/preview/IndexView.vue";
+  import ToolBar from "./ToolBar.vue";
 
   const props = defineProps({
     item: Object,
@@ -98,4 +101,6 @@
     await crudStore.getPreviewById(id.value);
     calculateTotals();
   });
+
+  defineExpose({ model });
 </script>

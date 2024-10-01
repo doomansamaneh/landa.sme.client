@@ -7,8 +7,4 @@
 </template>
 <script setup>
   import MenuButton from "./MenuButton.vue";
-
-  const props = defineProps({
-    to: String,
-  });
 </script>

@@ -7,8 +7,8 @@
     :form-store="formStore"
     :base-route="baseRoute"
   >
-    <template #toolbar-custom>
-      <slot name="toolbar-custom"></slot>
+    <template #toolbar-custom-desktop>
+      <slot name="toolbar-custom-desktop"></slot>
     </template>
   </tool-bar-desktop>
 
@@ -20,8 +20,8 @@
     :form-store="formStore"
     :base-route="baseRoute"
   >
-    <template #toolbar-custom>
-      <slot name="toolbar-custom"></slot>
+    <template #toolbar-custom-mobile>
+      <slot name="toolbar-custom-mobile"></slot>
     </template>
   </tool-bar-mobile>
 </template>
