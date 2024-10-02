@@ -1,7 +1,7 @@
 <template>
-  <div class="q-mb-lg">
+  <!-- <div class="q-mb-lg">
     <most-used-operations />
-  </div>
+  </div> -->
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-8 col-md-8 col-sm-12 col-xs-12">
       <invoices-widget-v2 />
@@ -48,7 +48,7 @@
   import SomeInfo from "src/components/areas/dashboard/widgets/NetIncome.vue";
   import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
   import CashBalance from "src/components/areas/dashboard/widgets/CashBalance.vue";
-  import MostUsedOperations from "src/components/areas/dashboard/widgets/MostUsedOperations.vue";
+  // import MostUsedOperations from "src/components/areas/dashboard/widgets/MostUsedOperations.vue";
 </script>
 
 <style lang="scss">
