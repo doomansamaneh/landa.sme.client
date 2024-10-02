@@ -1,19 +1,22 @@
 <template>
   <div>
     <q-page-sticky
-      class="z-1 bg-main"
+      class="z-1"
       position="top"
-      :class="[
-        $q.screen.xs ? 'q-py-xs' : 'q-py-md',
-        !isAtTop && $q.screen.xs ? 'mobile-toolbar-gradient' : '',
-      ]"
+      :class="
+        !isAtTop
+          ? $q.screen.xs
+            ? 'mobile-toolbar-gradient'
+            : 'desktop-toolbar-gradient'
+          : ''
+      "
       expand
     >
       <q-toolbar
         :style="
           $q.screen.gt.sm
-            ? 'padding-left: 38px; padding-right: 38px;'
-            : 'padding-left: 20px; padding-right: 20px;'
+            ? 'margin-top: 8px; margin-bottom: 8px; padding-left: 38px; padding-right: 38px;'
+            : 'margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px;'
         "
       >
         <div class="q-gutter-x-sm">
