@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 48px">
     <q-page-sticky
-      class="z-1 bg-main q-py-xs"
+      class="z-1 q-py-xs"
       position="top"
       expand
       :class="isAtTop ? '' : 'mobile-toolbar-gradient'"

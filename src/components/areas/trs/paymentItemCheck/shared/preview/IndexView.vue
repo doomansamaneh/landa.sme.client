@@ -47,7 +47,7 @@
     </template>
   </tool-bar>
 
-  <div class="row q-col-gutter-lg" style="margin-top: -16px">
+  <div class="row q-col-gutter-lg" style="margin-top: -20px">
     <div class="col-md-5 col-sm-12 col-xs-12">
       <q-card bordered>
         <q-card-section class="bg-green-5 text-white">
