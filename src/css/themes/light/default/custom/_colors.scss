@@ -26,10 +26,12 @@
   }
 
   .mobile-toolbar-gradient {
-    background: linear-gradient(180deg, $white 40%, #{$primary}16);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
   .desktop-toolbar-gradient {
-    background-color: $main-color !important;
     background: linear-gradient(180deg, $main-color, #{$primary}10);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 }

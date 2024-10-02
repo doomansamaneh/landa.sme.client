@@ -1,7 +1,7 @@
 <template>
   <div :style="toolbarMargin">
     <q-page-sticky
-      class="z-1 bg-main"
+      class="z-1"
       :style="inside"
       position="top"
       expand
@@ -9,7 +9,7 @@
     >
       <q-toolbar
         :style="[
-          inside ? '' : 'margin-top: 12px; margin-bottom: 12px;',
+          inside ? '' : 'margin-top: 8px; margin-bottom: 8px;',
           xPadding,
         ]"
       >
@@ -232,7 +232,7 @@
   const toolbarMargin = computed(() => {
     const baseMargin = $q.screen.lt.md
       ? "margin-bottom: 56px;"
-      : "margin-bottom: 42px;";
+      : "margin-bottom: 36px;";
     const margin = $q.screen.lt.sm ? "margin-bottom: 36px;" : "";
     return props.margin ? baseMargin : margin;
   });

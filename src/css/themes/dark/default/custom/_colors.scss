@@ -25,17 +25,11 @@
     );
   }
   .mobile-toolbar-gradient {
-    background: linear-gradient(
-      180deg,
-      $dark-page 40%,
-      lighten($dark-page, 7)
-    );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
   .desktop-toolbar-gradient {
-    background: linear-gradient(
-      180deg,
-      $dark-page 40%,
-      lighten($dark-page, 5)
-    );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
   }
 }
