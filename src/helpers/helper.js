@@ -289,18 +289,29 @@ export const helper = {
   },
 
   thumbStyle: {
-    left: "4px",
-    borderRadius: "5px",
-    width: "6px",
-    opacity: 0.75,
+    borderRadius: "9px",
+    width: "7px",
+    opacity: 1,
   },
 
   barStyle: {
-    left: "2px",
-    width: "8px",
+    borderRadius: "9px",
+    width: "7px",
     opacity: 0.2,
   },
 
+  horizontalThumbStyle: {
+    background: "red",
+    borderRadius: "9px",
+    height: "7px",
+    opacity: 0.2,
+  },
+
+  horizontalBarStyle: {
+    borderRadius: "9px",
+    height: "7px",
+    opacity: 1,
+  },
   parseNumber(number) {
     if (!number) return "0";
     const cleanedValue = number.toString().replace(/,/g, "");

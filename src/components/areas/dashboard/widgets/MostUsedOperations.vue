@@ -5,11 +5,11 @@
     </div> -->
     <div class="col-md">
       <q-scroll-area
-        :thumb-style="helper.thumbStyle"
-        :bar-style="helper.barStyle"
+        :horizontal-bar-style="helper.horizontalThumbStyle"
+        :horizontal-thumb-style="helper.horizontalBarStyle"
         style="height: 34px"
       >
-        <div class="row items-center q-gutter-md no-wrap q-pr-xs">
+        <div class="row items-center q-gutter-sm no-wrap">
           <q-btn
             :to="item.address"
             unelevated
