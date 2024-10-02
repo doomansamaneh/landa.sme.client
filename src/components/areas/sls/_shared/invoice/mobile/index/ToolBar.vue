@@ -3,8 +3,7 @@
     :table-store="tableStore"
     :crud-store="crudStore"
     :title="title"
-    base-route="sls/invoice"
-    activation
+    :base-route="baseRoute"
     search-btn
     sort-btn
   >
@@ -30,7 +29,7 @@
     </template>
 
     <template #advanced-search>
-      <advanced-search show-tax-api />
+      <advanced-search />
     </template>
   </tool-bar>
 </template>
@@ -42,12 +41,13 @@
   import ToolBar from "src/components/shared/ToolBarMobile.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
-  import AdvancedSearch from "../../../_shared/invoice/mobile/index/AdvancedSearch.vue";
+  import AdvancedSearch from "./AdvancedSearch.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
     crudStore: Object,
     title: String,
+    baseRoute: { type: String, default: "sls/quote" },
   });
 
   const dialog = ref(false);

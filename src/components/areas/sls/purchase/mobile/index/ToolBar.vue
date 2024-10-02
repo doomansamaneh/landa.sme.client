@@ -13,6 +13,6 @@
   import ToolBar from "../../../_shared/invoice/mobile/index/ToolBar.vue";
 
   const props = defineProps({
-    baseRoute: { type: String, default: "sls/quote" },
+    baseRoute: { type: String, default: "sls/purchase" },
   });
 </script>

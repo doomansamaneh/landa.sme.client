@@ -21,7 +21,6 @@
 
   const props = defineProps({
     title: String,
-    gridStore: Object,
     tableStore: Object,
     crudStore: Object,
   });

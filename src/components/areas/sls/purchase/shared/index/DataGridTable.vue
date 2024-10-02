@@ -19,10 +19,9 @@
   import Desktop from "../../desktop/index/DataGridContainer.vue";
   import Mobile from "../../mobile/index/DataGrid.vue";
 
-  const props = defineProps({
-    title: String,
-    gridStore: Object,
-    tableStore: Object,
-    crudStore: Object,
-  });
+  // const props = defineProps({
+  //   title: String,
+  //   tableStore: Object,
+  //   crudStore: Object,
+  // });
 </script>

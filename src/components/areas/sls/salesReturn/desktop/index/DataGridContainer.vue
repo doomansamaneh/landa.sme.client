@@ -4,26 +4,28 @@
   </div>
 
   <q-card bordered>
-    <card-title :title="title" />
+    <card-title v-if="title" :title="title" />
     <q-card-section class="q-px-none">
-      <sales-return-data-grid :table-store="tableStore" />
+      <data-grid
+        flat
+        dense
+        multi-select
+        toolbar
+        class="border-none"
+        :table-store="tableStore"
+      />
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-  import { useDataTable } from "src/composables/useDataTable";
-
-  import SalesReturnDataGrid from "./SalesReturnDataGrid.vue";
+  import DataGrid from "./DataGridTable.vue";
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
-    tableStore: useDataTable,
     title: String,
-    advancedSearch: {
-      default: true,
-      type: Boolean,
-    },
+    advancedSearch: Boolean,
+    tableStore: Object,
   });
 </script>

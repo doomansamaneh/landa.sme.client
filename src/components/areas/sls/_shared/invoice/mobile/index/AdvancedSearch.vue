@@ -3,7 +3,7 @@
     <q-card-section>
       <div class="row justify-between items-center">
         <div class="text-body1 no-letter-spacing">
-          جستجو در فاکتورها
+          {{ title ?? $t("shared.labels.search") }}
         </div>
         <div>
           <q-btn
@@ -75,11 +75,11 @@
         style="height: calc(100vh - 340px)"
       >
         <div class="column q-col-gutter-lg">
-          <div class="q-pl-none q-ml-md">
+          <div v-if="showTaxApi" class="q-pl-none q-ml-md">
             <q-checkbox
               class="text-body2 q-mb-md"
               v-model="searchStore.searchModel.value.waitToSendTax"
-              :label="$t('shared.labels.waitToSendTax')"
+              :label="$t('shared.labels.taxApiStatus')"
             />
           </div>
 
@@ -328,6 +328,8 @@
 
   const props = defineProps({
     gridStore: Object,
+    title: String,
+    showTaxApi: Boolean,
   });
 
   const dateRangeOptions = computed(() =>

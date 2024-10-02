@@ -1,5 +1,5 @@
 <template>
-  <data-grid-toolbar
+  <toolbar-container
     v-if="toolbar"
     :title="title"
     :table-store="tableStore"
@@ -15,20 +15,23 @@
   import { usePurchaseState } from "../../../_composables/usePurchaseState";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import DataGridToolbar from "./DataGridToolbar.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
   import DataGridTable from "./DataGridTable.vue";
 
   const props = defineProps({
     toolbar: Boolean,
-    dataSource: { type: String, default: "sls/purchase/getGridData" },
+    dataSource: {
+      type: String,
+      default: "sls/purchase/getGridData",
+    },
   });
 
   const { t } = useI18n();
 
   const title = t("main-menu-items.Sls_Purchase_View");
 
-  const purchaseStore = usePurchaseState();
-  const gridStore = useBaseInfoGrid(purchaseStore);
+  const purchseStore = usePurchaseState();
+  const gridStore = useBaseInfoGrid(purchseStore);
   const tableStore = useDataTable({
     dataSource: props.dataSource,
     store: gridStore,

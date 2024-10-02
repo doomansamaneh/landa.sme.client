@@ -370,7 +370,8 @@
       "revenue": "فروش و درآمد",
       "income": "درآمد خالص",
       "showDetail": "مشاهده جزییات",
-      "addFiscalYear": "افزودن سال مالی جدید"
+      "addFiscalYear": "افزودن سال مالی جدید",
+      "taxApiStatus": "ارسال به سامانه مودیان"
     },
     "productType": {
       "main": "اصلی",

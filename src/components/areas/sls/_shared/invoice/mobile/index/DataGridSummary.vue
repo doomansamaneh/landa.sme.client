@@ -19,12 +19,17 @@
               <div class="text-caption">جمع کل</div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.amount.toLocaleString()
+                  helper.formatNumber(
+                    tableStore?.summaryData?.value?.amount
+                  )
                 }}
               </div>
             </div>
 
-            <div class="row q-gutter-sm q-pt-xs">
+            <div
+              v-if="tableStore?.summaryData?.value?.payedAmount"
+              class="row q-gutter-sm q-pt-xs"
+            >
               <div class="text-caption">دریافت شده</div>
               <div class="text-bold text-white text-caption">
                 {{
@@ -32,11 +37,17 @@
                 }}
               </div>
             </div>
-            <div class="row q-gutter-sm q-pt-xs">
+
+            <div
+              v-if="tableStore?.summaryData?.value?.remainedAmount"
+              class="row q-gutter-sm q-pt-xs"
+            >
               <div class="text-caption">مانده</div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.remainedAmount.toLocaleString()
+                  helper.formatNumber(
+                    tableStore?.summaryData?.value?.remainedAmount
+                  )
                 }}
               </div>
             </div>
@@ -76,7 +87,15 @@
               </div>
             </div>
 
-            <div class="row q-gutter-sm q-pt-xs">
+            <div
+              v-if="
+                helper.getSubtotal(
+                  tableStore.selectedRows.value,
+                  'remainedAmount'
+                )
+              "
+              class="row q-gutter-sm q-pt-xs"
+            >
               <div class="text-caption">مانده</div>
               <div class="text-bold text-caption">
                 {{

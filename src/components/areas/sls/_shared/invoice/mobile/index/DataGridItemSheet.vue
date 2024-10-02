@@ -14,8 +14,10 @@
           icon="send"
           @click="sendEmail"
         />
-        <q-separator class="q-my-sm" />
-        <menu-item-print @click="downloadPdf" />
+        <menu-item-print
+          :title="$t('shared.labels.downloadPdf')"
+          @click="downloadPdf"
+        />
         <q-separator class="q-my-sm" />
         <menu-item-delete @click="deleteItem" />
       </q-list>
@@ -29,8 +31,8 @@
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
 
+  import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
   import BottomSheet from "components/shared/BottomSheet.vue";
-  import SendEmailDialog from "../../../_shared/invoice/shared/forms/SendEmailDialog.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuItemEdit from "src/components/shared/buttons/MenuItemEdit.vue";
   import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";

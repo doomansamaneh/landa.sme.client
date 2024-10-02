@@ -4,7 +4,7 @@ import { baseInfoColumns } from "./constants";
 import { useComposables } from "src/stores/useComposables";
 
 export function useBaseInfoGrid(config) {
-  const localState = config.state ?? {
+  const localState = config?.state ?? {
     firstLoad: ref(false),
     rows: ref([]),
     allSelectedIds: ref([]),

@@ -42,7 +42,7 @@
   import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
 
   import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
-  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  import ToolbarMobile from "../../mobile/index/ToolBar.vue";
 
   import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
   import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderDialog.vue";

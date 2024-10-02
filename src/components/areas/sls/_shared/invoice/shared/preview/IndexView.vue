@@ -45,7 +45,14 @@
     </template>
 
     <template #detail-section>
-      <slot name="detail-section" :model="model"></slot>
+      <slot name="detail-section" :model="model">
+        <detail-section
+          :model="model"
+          :tax-api="taxApi"
+          :detail-url="detailUrl"
+          :show-receipt="showReceipt"
+        />
+      </slot>
     </template>
   </desktop>
 </template>
@@ -59,6 +66,7 @@
   import Mobile from "../../mobile/preview/IndexView.vue";
   import Desktop from "../../desktop/preview/IndexView.vue";
   import ToolBar from "./ToolBar.vue";
+  import DetailSection from "./_DetailSection.vue";
 
   const props = defineProps({
     item: Object,

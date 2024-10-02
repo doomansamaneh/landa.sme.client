@@ -1,7 +1,7 @@
 <template>
   <data-grid-summary :table-store="tableStore" />
 
-  <div
+  <!-- <div
     class="row items-center justify-center text-body1 no-letter-spacing"
     v-if="selectedDateRange.label && shouldDisplaySelectedDateRange"
   >
@@ -16,7 +16,7 @@
       color="primary"
     />
     <span>نتایج جستجو برای: {{ selectedDateRange.label }}</span>
-  </div>
+  </div> -->
 
   <data-grid
     :data-table-store="tableStore"
@@ -205,13 +205,16 @@
         </div>
       </q-card-section>
     </template>
+
     <template #row-actions="{ item }">
       <q-btn
         unelevated
         class="text-on-dark"
         :to="`/sls/invoice/preview/${item.id}`"
       >
-        <span class="text-body3 text-bold">مشاهده جزئیات</span>
+        <span class="text-body3 text-bold">
+          {{ $t("shared.labels.showDetail") }}
+        </span>
       </q-btn>
 
       <q-btn
@@ -219,207 +222,29 @@
         unelevated
         dense
         icon="o_more_vert"
-        @click="onBottomSheetShow(item)"
+        @click="showItemSheet(item)"
       />
     </template>
   </data-grid>
 
-  <bottom-sheet
-    v-if="bottomSheetStatus"
-    header
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
-    <template #header-title>
-      {{ bottomSheetItem.no }} / {{ bottomSheetItem.subject }}
-    </template>
-
-    <template #body>
-      <q-list padding>
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark" icon="o_copy" />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            کپی
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark" icon="o_edit" />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            ویرایش
-          </q-item-section>
-        </q-item>
-
-        <q-separator size="0.5px" class="q-my-sm" />
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_email"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            ارسال ایمیل
-          </q-item-section>
-        </q-item>
-
-        <q-separator size="0.5px" class="q-my-sm" />
-
-        <q-item clickable v-ripple @click="onPrintSheetShow">
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_print"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            چاپ
-          </q-item-section>
-        </q-item>
-
-        <q-separator size="0.5px" class="q-my-sm" />
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_delete"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            حذف
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </template>
-  </bottom-sheet>
-
-  <bottom-sheet
-    v-if="printSheetStatus"
-    header
-    :status="printSheetStatus"
-    @hide="onPrintSheetHide"
-  >
-    <template #header-title>چاپ</template>
-
-    <template #body>
-      <q-list padding>
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_print"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            چاپ مستقیم
-          </q-item-section>
-        </q-item>
-
-        <q-separator size="0.5px" />
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_crop_portrait"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            پی دی اف - A4
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_crop_landscape"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            پی دی اف - A4 - افقی
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_crop_portrait"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            پی دی اف - A5
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_crop_landscape"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            پی دی اف - A5 - افقی
-          </q-item-section>
-        </q-item>
-
-        <q-separator size="0.5px" />
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              icon="o_contact_mail"
-            />
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing">
-            چاپ برچسب نشانی
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </template>
-  </bottom-sheet>
-
-  <q-dialog
-    transition-show="slide-up"
-    transition-hide="slide-down"
-    transition-duration="600"
-    maximized
-    v-model="dialog"
-  >
-    <advanced-search @apply-search="hideSearchModal" />
-  </q-dialog>
+  <item-sheet
+    v-if="itemSheetStatus"
+    :table-store="tableStore"
+    :status="itemSheetStatus"
+    :item="item"
+    @hide="hideItemSheet"
+  />
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { ref } from "vue";
 
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import DataGridSummary from "./DataGridSummary.vue";
-  import BottomSheet from "components/shared/BottomSheet.vue";
-  import AdvancedSearch from "./AdvancedSearch.vue";
+  import ItemSheet from "./DataGridItemSheet.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -427,94 +252,15 @@
     title: String,
   });
 
-  const dialog = ref(false);
-  const advancedSearch = ref(null);
-  const sortOptions = [
-    "شماره",
-    "تاریخ",
-    "مشتری",
-    "شرح",
-    "جمع کل",
-    "دریافت شده",
-    "مانده",
-  ];
+  const item = ref(null);
+  const itemSheetStatus = ref(false);
 
-  const sortOptionsDialog = ref(null);
-
-  const bottomSheetStatus = ref(false);
-  const printSheetStatus = ref(false);
-  const sortSheetStatus = ref(false);
-  const bottomSheetItem = ref(null);
-
-  const selectedDateRange = ref({ value: "", label: "" });
-
-  const showSearchModal = () => {
-    dialog.value = true;
+  const showItemSheet = (row) => {
+    item.value = row;
+    itemSheetStatus.value = true;
   };
-
-  const hideSearchModal = () => {
-    dialog.value = false;
-  };
-
-  async function reloadData(model) {
-    await tableStore.value.reloadData();
-  }
-
-  const shouldDisplaySelectedDateRange = computed(() => {
-    return (
-      selectedDateRange.value.value !== "all" &&
-      selectedDateRange.value.value !== 0 &&
-      selectedDateRange.value.label !== "shared.labels.0"
-    );
-  });
-
-  const clearDateRangeFilter = () => {
-    selectedDateRange.value = { value: "", label: "" };
-    props.gridStore.setDefaultSearchModel();
-    dialog.value = false;
-    reloadData();
-  };
-
-  function selectRow(row, checked) {
-    tableStore.value.selectRow(row, checked);
-    emitselectedRows();
-  }
-
-  function emitselectedRows() {
-    // emit("selected-rows-changed", tableStore.selectedRows.value)
-  }
-
-  const onBottomSheetShow = (row) => {
-    bottomSheetItem.value = row;
-    bottomSheetStatus.value = true;
-  };
-
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
-  };
-
-  const onPrintSheetShow = () => {
-    printSheetStatus.value = true;
-  };
-
-  const onPrintSheetHide = () => {
-    printSheetStatus.value = false;
-  };
-
-  const onSortSheetShow = () => {
-    sortSheetStatus.value = true;
-  };
-
-  const onSortSheetHide = () => {
-    sortSheetStatus.value = false;
-  };
-
-  const showSortOptionsDialog = () => {
-    sortOptionsDialog.value = true;
-  };
-
-  const hideSortOptionsDialog = () => {
-    sortOptionsDialog.value = false;
+  const hideItemSheet = () => {
+    itemSheetStatus.value = false;
   };
 </script>
 
