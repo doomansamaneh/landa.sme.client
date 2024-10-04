@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bordered">
+  <q-card class="shadow bordered">
     <q-card-section class="q-ma-sm">
       <div class="row justify-between">
         <div class="col-11">

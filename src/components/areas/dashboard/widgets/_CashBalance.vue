@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow bordered">
+  <q-card class="shadow bordered">
     <q-card-section class="q-py-lg q-pr-md q-pl-lg">
       <q-item class="q-mb-lg no-padding">
         <q-item-section avatar>
