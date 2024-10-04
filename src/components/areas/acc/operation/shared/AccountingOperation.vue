@@ -137,7 +137,7 @@
   <div class="row q-col-gutter-md q-pt-md">
     <div
       v-if="!operationStore.operationStatusModel.value.hasCloseBook"
-      class="col-md col-sm-6 col-xs-12"
+      class="col-md-3 col-sm-6 col-xs-12"
     >
       <q-card class="fit bordered q-radius-lg">
         <q-card-section class="q-pa-lg">

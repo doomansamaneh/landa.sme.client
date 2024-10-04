@@ -18,7 +18,7 @@ $positive: #21ba45;
 $negative: #c10015;
 $info: #31ccec;
 $warning: #f2c037;
-$main-color: rgb(244, 245, 250);
+$bg-main: #f4f5fa;
 
 $themes: (
   green: (
@@ -26,41 +26,40 @@ $themes: (
     secondary: #2e8b57,
     accent: #5f9ea0,
     dark: #003300,
-    dark-page: #001100
+    dark-page: #001100,
+    bg-main: #f4faf6
+
   ),
   orange: (
     primary: #ff6600,
     secondary: #92673d,
     accent: #fdb46b,
     dark: #37261d,
-    dark-page: #170000
+    dark-page: #170000,
+    bg-main: #fff4ea
   ),
   purple: (
     primary: #c729df,
     secondary: #934593,
     accent: #d08ad0,
     dark: #312846,
-    dark-page: #15152b
+    dark-page: #15152b,
+    bg-main: #f9f4fa
   ),
   blue: (
     primary: #007acc,
     secondary: #586599,
     accent: #a3acd2,
     dark: #141f48,
-    dark-page: #040c2d
+    dark-page: #040c2d,
+    bg-main: #f4f5fa
   ),
-  // golden: (
-  //   primary: #c89002,
-  //   secondary: #ff9900,
-  //   accent: #ffdb4d,
-  //   dark: #613f00,
-  //   dark-page: #3f2600
-  // ),
   red: (
     primary: #dc143c,
     secondary: #770a0a,
     accent: #ab223d,
     dark: #481b1b,
-    dark-page: #220000
+    dark-page: #220000,
+    bg-main: #faf4f4
   ),
 );

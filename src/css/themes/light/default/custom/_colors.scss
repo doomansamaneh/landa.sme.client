@@ -31,7 +31,7 @@
     -webkit-backdrop-filter: blur(7px);
   }
   .desktop-toolbar-gradient {
-    background: linear-gradient(180deg, $main-color, #{$primary}10);
+    background: linear-gradient(180deg, $bg-main, #{$primary}10);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }

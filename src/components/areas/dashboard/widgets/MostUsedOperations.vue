@@ -15,7 +15,7 @@
             unelevated
             v-for="item in items"
             :key="item.id"
-            class="text-on-dark q-py-xs q-px-sm text-center text-body3 no-letter-spacing bordered border-radius-lg"
+            class="desktop-toolbar-gradient text-on-dark q-py-xs q-px-sm text-center text-body3 no-letter-spacing bordered border-radius-lg"
             style="white-space: nowrap"
           >
             {{ item.name }}

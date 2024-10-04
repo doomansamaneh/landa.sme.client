@@ -3,9 +3,7 @@
     transition-show="slide-down"
     transition-hide="slide-up"
     transition-duration="600"
-    class="text-body2 no-letter-spacing text-on-dark"
-    padding="6px 12px"
-    dense
+    class="bordered text-body3 text-weight-500 no-letter-spacing text-on-dark q-py-xs q-px-sm"
     rounded
     no-caps
     unelevated
@@ -15,6 +13,7 @@
     :menu-offset="[0, 10]"
     menu-anchor="bottom middle"
     menu-self="top middle"
+    style="white-space: nowrap"
   >
     <template #label>
       <div v-if="$q.screen.gt.xs">

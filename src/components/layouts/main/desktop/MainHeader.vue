@@ -5,7 +5,6 @@
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <div class="row no-wrap">
-
       <q-toolbar class="col-auto no-padding">
         <div class="row items-center q-gutter-md">
           <div class="column items-center">
@@ -36,8 +35,12 @@
         </div>
       </q-toolbar>
 
-      <q-toolbar class="col q-px-lg">
-        <most-used-operations />
+      <q-toolbar
+        class=" col q-px-lg"
+      >
+        <div class="col">
+          <most-used-operations />
+        </div>
       </q-toolbar>
 
       <q-toolbar class="col-auto text-on-dark no-padding">
@@ -111,3 +114,11 @@
     }
   };
 </script>
+
+<style lang="scss">
+.main {
+  background: linear-gradient(180deg, $bg-main, #{$primary}20);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+</style>
