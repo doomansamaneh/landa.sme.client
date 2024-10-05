@@ -1,5 +1,4 @@
 <template>
-  <!-- :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'" -->
   <q-drawer
     class="menu-bar menu-bar-background q-mb-xl z-max"
     side="left"
@@ -62,10 +61,8 @@
             name="o_dashboard"
             class="settings q-mr-sm"
             size="20px"
-          ></q-icon>
-          <div class="z-1">
-            {{ $t("main-menu-items.dashboard") }}
-          </div>
+          />
+          <div class="z-1">{{ $t("main-menu-items.dashboard") }}</div>
         </q-item>
 
         <q-inner-loading

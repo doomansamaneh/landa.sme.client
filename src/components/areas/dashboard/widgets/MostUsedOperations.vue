@@ -1,21 +1,21 @@
 <template>
-  <div class="row items-center">
-    <div style="width: 150px" class="q-mb-sm text-body2 no-letter-spacing">
+  <div class="full-width">
+    <!-- <div style="width: 150px" class="q-mb-sm text-body2 no-letter-spacing">
       پرکاربردترین عملیات‌ها:
-    </div>
+    </div> -->
     <div class="col-md">
       <q-scroll-area
-        :thumb-style="helper.thumbStyle"
-        :bar-style="helper.barStyle"
-        style="height: 48px;"
+        :horizontal-bar-style="helper.horizontalThumbStyle"
+        :horizontal-thumb-style="helper.horizontalBarStyle"
+        style="height: 34px"
       >
-        <div class="row items-center q-gutter-md no-wrap q-pr-xs">
+        <div class="row items-center q-gutter-sm no-wrap">
           <q-btn
             :to="item.address"
             unelevated
             v-for="item in items"
             :key="item.id"
-            class="q-py-sm q-px-md text-center text-body2 no-letter-spacing bordered border-radius-lg"
+            class="desktop-toolbar-gradient text-on-dark q-py-xs q-px-sm text-center text-body3 no-letter-spacing bordered border-radius-lg"
             style="white-space: nowrap"
           >
             {{ item.name }}

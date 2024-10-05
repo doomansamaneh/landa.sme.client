@@ -9,7 +9,7 @@
     @click="click"
   >
     <q-icon v-if="icon" size="20px" :name="icon" class="q-mr-xs" />
-    1. {{ title }}
+    {{ title }}
     <q-badge v-if="badgeCount" floating>
       {{ badgeCount }}
     </q-badge>

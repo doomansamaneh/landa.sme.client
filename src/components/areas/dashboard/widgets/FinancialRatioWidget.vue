@@ -1,7 +1,7 @@
 <template>
   <div class="row q-gutter-md">
     <div class="col">
-      <q-card class="border-radius-lg q-pa-sm bordered">
+      <q-card class="shadow border-radius-lg q-pa-sm bordered">
         <q-card-section
           class="column justify-center items-center q-gutter-sm"
         >

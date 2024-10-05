@@ -15,7 +15,7 @@
         no-caps
         unelevated
       >
-        <q-icon size="20px" name="o_add" class="q-mr-sm" />
+        <q-icon size="20px" name="o_add" class="q-mr-xs" />
         {{ $t("shared.labels.create") }}
 
         <q-menu class="border-radius-lg" cover>

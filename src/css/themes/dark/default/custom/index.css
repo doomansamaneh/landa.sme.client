@@ -1,1 +1,11 @@
-/*# sourceMappingURL=index.css.map */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable * {
+    visibility: visible;
+  }
+  .printable {
+    z-index: 99;
+  }
+}/*# sourceMappingURL=index.css.map */

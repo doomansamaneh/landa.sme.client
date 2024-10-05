@@ -112,10 +112,6 @@
   }
 
   .menu-bar-background {
-    background: linear-gradient(
-      90deg,
-      lighten($main-color, 12),
-      darken($main-color, 0.5)
-    );
+    background: linear-gradient(90deg, $white, darken($bg-main, 0.5));
   }
 }

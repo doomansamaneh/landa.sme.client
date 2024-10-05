@@ -109,28 +109,34 @@
             </div>
           </div>
 
-          <q-card-actions class="q-pt-md q-pb-lg">
-            <q-btn
-              class="text-body2 no-letter-spacing primary-gradient text-white"
-              rounded
-              padding="8px 16px"
-              unelevated
-              @click="searchStore.applySearch"
+          <q-card-actions
+            class="row q-col-gutter-md items-center q-px-none q-py-lg"
+          >
+            <div
+              class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
-              <q-icon name="search" class="q-mr-xs" size="20px" />
-              {{ $t("shared.labels.search") }}
-            </q-btn>
-            <q-btn
-              class="text-body2 no-letter-spacing"
-              rounded
-              unelevated
-              padding="8px 16px"
-              flat
-              @click="searchStore.clearSearch"
-            >
-              <q-icon name="clear" class="q-mr-xs" size="20px" />
-              {{ $t("shared.labels.clearSearch") }}
-            </q-btn>
+              <q-btn
+                class="q-mr-sm text-body2 no-letter-spacing primary-gradient text-white"
+                rounded
+                padding="8px 16px"
+                unelevated
+                @click="searchStore.applySearch"
+              >
+                <q-icon name="search" class="q-mr-xs" size="20px" />
+                {{ $t("shared.labels.search") }}
+              </q-btn>
+              <q-btn
+                class="text-body2 no-letter-spacing"
+                rounded
+                unelevated
+                padding="8px 16px"
+                flat
+                @click="searchStore.clearSearch"
+              >
+                <q-icon name="clear" class="q-mr-xs" size="20px" />
+                {{ $t("shared.labels.clearSearch") }}
+              </q-btn>
+            </div>
           </q-card-actions>
         </div>
       </div>

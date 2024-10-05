@@ -1,0 +1,165 @@
+html {
+  color: #2d2d2d;
+}
+
+.text-weight-100 {
+  font-family: "vazir-thin";
+  font-weight: 100;
+}
+
+.text-weight-200 {
+  font-family: "vazir-ultralight";
+  font-weight: 200;
+}
+
+.text-weight-300 {
+  font-family: "vazir-light";
+  font-weight: 300;
+}
+
+.text-weight-400 {
+  font-family: "vazir-regular";
+  font-weight: 400;
+}
+
+.text-weight-500 {
+  font-family: "vazir-medium";
+  font-weight: 500;
+}
+
+.text-weight-600 {
+  font-family: "vazir-semibold";
+  font-weight: 600;
+}
+
+.text-weight-700 {
+  font-family: "vazir-bold";
+  font-weight: 700;
+}
+
+.text-weight-800 {
+  font-family: "vazir-extraBold";
+  font-weight: 800;
+}
+
+.text-weight-900 {
+  font-family: "vazir-black";
+  font-weight: 900;
+}
+
+.text-caption-sm {
+  font-size: 10px;
+}
+
+.text-body3 {
+  font-size: 13px;
+}
+
+.text-body2 {
+  font-size: 15px;
+}
+
+.text-body1 {
+  font-size: 16px;
+}
+
+.text-body {
+  font-size: 17px;
+}
+
+.text-h6 {
+  font-size: 18px;
+}
+
+.text-h5 {
+  font-size: 20px;
+}
+
+.text-h4 {
+  font-size: 22px;
+}
+
+.text-h3 {
+  font-size: 24px;
+}
+
+.text-h2 {
+  font-size: 28px;
+}
+
+.text-h1 {
+  font-size: 32px;
+  line-height: 42px;
+}
+
+.text-42 {
+  font-size: 42px;
+}
+
+.line-height-xs {
+  line-height: 24px;
+}
+
+.line-height-sm {
+  line-height: 32px;
+}
+
+.line-height-md {
+  line-height: 42px;
+}
+
+.line-height-lg {
+  line-height: 50px;
+}
+
+.line-height-xl {
+  line-height: 58px;
+}
+
+.no-decoration {
+  text-decoration: none !important;
+}
+
+.decoration-on-hover:hover {
+  text-decoration: underline !important;
+}
+
+.letter-spacing-xs {
+  letter-spacing: 4px !important;
+}
+
+.letter-spacing-sm {
+  letter-spacing: 8px !important;
+}
+
+.letter-spacing-md {
+  letter-spacing: 16px !important;
+}
+
+.letter-spacing-lg {
+  letter-spacing: 24px !important;
+}
+
+.letter-spacing-xl {
+  letter-spacing: 32px !important;
+}
+
+.no-letter-spacing {
+  letter-spacing: 0 !important;
+}
+
+.no-line-height {
+  line-height: 0 !important;
+}
+
+.rtl {
+  direction: rtl !important;
+}
+
+.ltr {
+  direction: ltr !important;
+}
+
+.text-roboto {
+  font-family: "Roboto";
+}/*# sourceMappingURL=index.css.map */

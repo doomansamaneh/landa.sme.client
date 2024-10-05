@@ -1,7 +1,7 @@
 <template>
   <tool-bar :inside="inside" :model="model" />
 
-  <div class="row q-col-gutter-lg" style="margin-top: -16px">
+  <div class="row q-col-gutter-lg" style="margin-top: -20px">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card>
         <div id="invoicePreview">

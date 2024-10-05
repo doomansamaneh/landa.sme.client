@@ -1,5 +1,5 @@
 <template>
-  <q-card class="border-radius-lg bordered no-shadow">
+  <q-card class="shadow border-radius-lg bordered no-shadow">
     <q-card-section class="q-pa-lg">
       <div class="row items-center q-gutter-md justify-between">
         <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
@@ -25,7 +25,7 @@
     <q-card-section
       class="row q-gutter-lg q-pt-none q-px-lg q-pt-sm q-pb-lg"
     >
-      <div class="col col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-avatar
@@ -67,7 +67,7 @@
         </q-item>
       </div>
 
-      <div class="col col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-avatar
@@ -110,7 +110,7 @@
         </q-item>
       </div>
 
-      <div class="col col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn
@@ -167,7 +167,7 @@
         </q-item>
       </div>
 
-      <div class="col col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn

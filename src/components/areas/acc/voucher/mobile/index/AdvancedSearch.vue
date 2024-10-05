@@ -166,13 +166,14 @@
       </q-scroll-area>
     </q-card-section>
 
-    <div class="row q-my-lg q-mx-lg">
-      <q-btn
+    <div class="row q-pa-md q-gutter-sm">
+      <div class="col">
+        <q-btn
         padding="10px 12px"
         rounded
         unelevated
         outline
-        class="q-mb-sm full-width"
+        class="full-width"
         @click="searchStore.clearSearch"
         v-close-popup
       >
@@ -181,21 +182,24 @@
           <span>حذف فیلتر</span>
         </div>
       </q-btn>
-
-      <q-btn
-        padding="10px 12px"
-        rounded
-        unelevated
-        color="primary"
-        class="q-mb-sm full-width"
-        v-close-popup
-        @click="searchStore.applySearch()"
-      >
-        <div class="row items-center">
-          <q-icon size="xs" name="o_search" class="q-mr-xs" />
-          <span>جستجو</span>
-        </div>
-      </q-btn>
+      </div>
+     
+      <div class="col">
+        <q-btn
+          padding="10px 12px"
+          rounded
+          unelevated
+          color="primary"
+          class="full-width"
+          v-close-popup
+          @click="searchStore.applySearch()"
+        >
+          <div class="row items-center">
+            <q-icon size="xs" name="o_search" class="q-mr-xs" />
+            <span>جستجو</span>
+          </div>
+        </q-btn>
+      </div>
     </div>
   </q-card>
 

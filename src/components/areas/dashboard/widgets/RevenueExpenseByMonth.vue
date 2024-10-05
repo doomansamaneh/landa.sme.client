@@ -1,5 +1,5 @@
 <template>
-  <q-card class="main-card fit bordered q-pa-none" flat>
+  <q-card class="shadow main-card fit bordered q-pa-none" flat>
     <q-card-section class="col q-pt-lg q-pb-none q-px-lg">
       <div class="row q-gutter-md justify-between">
         <div class="col-9">

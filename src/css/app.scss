@@ -79,6 +79,7 @@
   $dark: map-get($theme-colors, dark);
   $dark-page: map-get($theme-colors, dark-page);
   $hover-dark: map-get($theme-colors, secondary);
+  $bg-main: map-get($theme-colors, bg-main);
 
   .body--light.theme--#{$theme-name} {
     @include theme-light;

@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-shadow q-pa-md bordered">
+  <q-card class="shadow q-pa-md bordered">
     <!-- <q-card-section> -->
     <div class="text-h6 text-weight-700 q-ml-md">صورت سود و زیان</div>
     <!-- </q-card-section> -->

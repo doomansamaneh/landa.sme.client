@@ -1,37 +1,64 @@
 @font-face {
-  font-family: "Vazir";
-  src: url("../assets//Fonts/Vazir.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Thin.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Medium.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Bold.ttf") format("truetype");
+  font-family: "Roboto";
+  src: url("src/assets/Fonts/Roboto-Regular.ttf") format("truetype"), url("src/assets/Fonts/Roboto-Medium.ttf") format("truetype"), url("src/assets/Fonts/Roboto-Light.ttf") format("truetype"), url("src/assets/Fonts/Roboto-Bold.ttf") format("truetype"), url("src/assets/Fonts/Roboto-Black.ttf") format("truetype");
 }
 @font-face {
   font-family: "vazir-thin";
-  src: url("../assets//Fonts/Vazir-Light-FD-WOL.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Thin-FD-WOL.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Medium-FD-WOL.ttf") format("truetype"),
-    url("../assets//Fonts/Vazir-Bold-FD-WOL.ttf") format("truetype");
+  src: url("/src/assets/Fonts/Vazirmatn-FD-Light.woff2") format("woff2");
+  font-display: swap;
 }
 @font-face {
-  font-family: "Roboto";
-  src: url("../assets//Fonts/Roboto-Regular.ttf") format("truetype"),
-    url("../assets//Fonts/Roboto-Medium.ttf") format("truetype"),
-    url("../assets//Fonts/Roboto-Light.ttf") format("truetype"),
-    url("../assets//Fonts/Roboto-Bold.ttf") format("truetype"),
-    url("../assets//Fonts/Roboto-Black.ttf") format("truetype");
+  font-family: "vazir-extralight";
+  src: url("/src/assets/Fonts/Vazirmatn-FD-ExtraLight.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "vazir-light";
+  src: url("/src/assets/fonts/Vazirmatn-FD-Light.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "vazir-regular";
+  src: url("/src/assets/fonts/Vazirmatn-FD-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "vazir-medium";
+  src: url("/src/assets/fonts/Vazirmatn-FD-Medium.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "vazir-semibold";
+  src: url("/src/assets/fonts/Vazirmatn-FD-SemiBold.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "vazir-bold";
+  src: url("/src/assets/fonts/Vazirmatn-FD-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "vazir-extraBold";
+  src: url("/src/assets/fonts/Vazirmatn-FD-ExtraBold.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "vazir-black";
+  src: url("/src/assets/fonts/Vazirmatn-FD-Black.woff2") format("woff");
+  font-display: swap;
 }
 body {
-  font-family: "vazir-thin", "Vazir", "Roboto", sans-serif;
-}
-
-.digits--en-US {
-  font-family: "Roboto", "Vazir", sans-serif;
-}
-
-.digits--fa-IR {
   font-family: "vazir-thin", "Roboto", sans-serif;
 }
 
-.digits--ar {
+.english {
+  font-family: "Roboto", "vazir-thin", sans-serif;
+}
+
+.persian {
   font-family: "vazir-thin", "Roboto", sans-serif;
-} /*# sourceMappingURL=main.css.map */
+}
+
+.arabic {
+  font-family: "vazir-thin", "Roboto", sans-serif;
+}/*# sourceMappingURL=main.css.map */

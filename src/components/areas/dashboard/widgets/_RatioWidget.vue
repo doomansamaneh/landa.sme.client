@@ -1,5 +1,5 @@
 <template>
-  <q-card class="fit bordered q-pa-none" flat>
+  <q-card class="shadow fit bordered q-pa-none" flat>
     <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
       <div>
         <div class="float-right">
