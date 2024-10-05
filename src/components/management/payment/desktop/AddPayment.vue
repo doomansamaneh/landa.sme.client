@@ -118,7 +118,7 @@
             class="q-pr-xs"
             size="xs"
           />
-          {{ $t("page.renew-subscription.buttons.payment") }}
+          {{ $t("page.add-business.payment") }}
         </q-btn>
         <span class="text-caption no-letter-spacing">
           {{ $t("page.add-business.pay-caption") }}
@@ -129,17 +129,13 @@
 </template>
 
 <script setup>
-  import { ref, watch, onMounted, computed } from "vue";
-  import { useQuasar } from "quasar";
-  import { useRoute, useRouter } from "vue-router";
+  import { ref, onMounted } from "vue";
+  import { useRoute } from "vue-router";
   import { fetchWrapper } from "src/helpers";
   import SelectPlan from "src/components/management/shared/SelectPlan.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-  const router = useRouter();
   const route = useRoute();
-
-  const shape = ref("line");
 
   const planTitle = ref(null);
   const businessTitle = ref(null);

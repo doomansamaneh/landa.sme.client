@@ -18,86 +18,35 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pt-sm q-pb-none hidden">
-      <q-scroll-area
-        :thumb-style="{ opacity: 0 }"
-        :bar-style="{ opacity: 0 }"
-        style="height: 60px"
-      >
-        <div>
-          <div class="row items-center q-gutter-md no-wrap">
-            <q-btn
-              v-for="option in dateRangeOptions"
-              :key="option.value"
-              rounded
-              unelevated
-              padding="8px 12px"
-              :color="isActive(option.value) ? 'primary' : ''"
-              :text-color="
-                !isActive(option.value) && !$q.dark.isActive
-                  ? 'grey-10'
-                  : 'white'
-              "
-              class="text-on-dark text-body2 bordered-btn"
-              :class="{ 'bordered-btn': !isActive(option.value) }"
-              style="min-width: 82px"
-            >
-              <span>{{ option.label }}</span>
-            </q-btn>
-
-            <q-btn
-              rounded
-              unelevated
-              padding="8px 12px"
-              class="bordered-btn text-on-dark text-body2"
-              style="min-width: 105px"
-              @click="openCheckoutModal"
-            >
-              <span>نوع سند</span>
-              <q-icon
-                size="xs"
-                class="q-ml-sm"
-                name="o_expand_more"
-              />
-            </q-btn>
-          </div>
-        </div>
-      </q-scroll-area>
-    </q-card-section>
-
     <q-card-section>
       <q-scroll-area
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
-        style="height: calc(100vh - 340px)"
+        style="height: calc(100vh - 220px)"
       >
         <div class="column q-col-gutter-lg">
-          <div class="row q-col-gutter-sm">
-            <div class="col">
-              <q-option-group
-                style="gap: 8px"
-                class="row text-body2 no-letter-spacing"
-                type="radio"
-                inline
-                size="40px"
-                dense
-                :options="helper.getEnumOptions(dateRange)"
-                v-model="searchStore.searchModel.value.dateRange"
-              />
-            </div>
+          <div>
+            <q-option-group
+              style="gap: 8px"
+              class="row text-body2 no-letter-spacing"
+              type="radio"
+              inline
+              size="40px"
+              dense
+              :options="helper.getEnumOptions(dateRange)"
+              v-model="searchStore.searchModel.value.dateRange"
+            />
           </div>
 
-          <div class="row q-col-gutter-sm">
-            <div class="col">
-              <q-option-group
-                :options="
-                  helper.getEnumOptions(voucherType, 'voucherType')
-                "
-                type="checkbox"
-                inline
-                v-model="searchStore.searchModel.value.voucherTypeIds"
-              />
-            </div>
+          <div>
+            <q-option-group
+              :options="
+                helper.getEnumOptions(voucherType, 'voucherType')
+              "
+              type="checkbox"
+              inline
+              v-model="searchStore.searchModel.value.voucherTypeIds"
+            />
           </div>
 
           <div class="row q-col-gutter-sm">
@@ -166,41 +115,43 @@
       </q-scroll-area>
     </q-card-section>
 
-    <div class="row q-pa-md q-gutter-sm">
-      <div class="col">
-        <q-btn
-        padding="10px 12px"
-        rounded
-        unelevated
-        outline
-        class="full-width"
-        @click="searchStore.clearSearch"
-        v-close-popup
-      >
-        <div class="row items-center">
-          <q-icon size="xs" name="o_close" class="q-mr-xs" />
-          <span>حذف فیلتر</span>
+    <q-card-section>
+      <div class="row q-pa-md q-gutter-sm">
+        <div class="col">
+          <q-btn
+            padding="10px 12px"
+            rounded
+            unelevated
+            outline
+            class="full-width"
+            @click="searchStore.clearSearch"
+            v-close-popup
+          >
+            <div class="row items-center">
+              <q-icon size="xs" name="o_close" class="q-mr-xs" />
+              <span>{{ $t("shared.labels.clearSearch") }}</span>
+            </div>
+          </q-btn>
         </div>
-      </q-btn>
+
+        <div class="col">
+          <q-btn
+            padding="10px 12px"
+            rounded
+            unelevated
+            color="primary"
+            class="full-width"
+            v-close-popup
+            @click="searchStore.applySearch()"
+          >
+            <div class="row items-center">
+              <q-icon size="xs" name="o_search" class="q-mr-xs" />
+              <span>{{ $t("shared.labels.search") }}</span>
+            </div>
+          </q-btn>
+        </div>
       </div>
-     
-      <div class="col">
-        <q-btn
-          padding="10px 12px"
-          rounded
-          unelevated
-          color="primary"
-          class="full-width"
-          v-close-popup
-          @click="searchStore.applySearch()"
-        >
-          <div class="row items-center">
-            <q-icon size="xs" name="o_search" class="q-mr-xs" />
-            <span>جستجو</span>
-          </div>
-        </q-btn>
-      </div>
-    </div>
+    </q-card-section>
   </q-card>
 
   <q-dialog

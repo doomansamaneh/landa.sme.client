@@ -120,7 +120,9 @@
         class="text-on-dark"
         :to="`/acc/voucher/preview/${item.id}`"
       >
-        <span class="text-body3 text-bold">مشاهده جزئیات</span>
+        <span class="text-body3 text-bold">
+          {{ $t("shared.labels.showDetail") }}
+        </span>
       </q-btn>
 
       <q-btn

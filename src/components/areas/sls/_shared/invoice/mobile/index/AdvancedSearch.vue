@@ -20,66 +20,52 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pt-sm q-pb-none">
-      <q-scroll-area
-        :thumb-style="{ opacity: 0 }"
-        :bar-style="{ opacity: 0 }"
-        style="height: 60px"
-      >
-        <div>
-          <div class="row items-center q-gutter-md no-wrap">
-            <q-btn
-              v-for="option in dateRangeOptions"
-              :key="option.value"
-              @click="handleDateRangeClick(option.value)"
-              rounded
-              unelevated
-              padding="8px 12px"
-              :color="isActive(option.value) ? 'primary' : ''"
-              :text-color="
-                !isActive(option.value) && !$q.dark.isActive
-                  ? 'grey-10'
-                  : 'white'
-              "
-              class="text-on-dark text-body2 bordered-btn"
-              :class="{ 'bordered-btn': !isActive(option.value) }"
-              style="min-width: 82px"
-            >
-              <span>{{ option.label }}</span>
-            </q-btn>
-
-            <q-btn
-              rounded
-              unelevated
-              padding="8px 12px"
-              class="bordered-btn text-on-dark text-body2"
-              style="min-width: 90px"
-              @click="openCheckoutModal"
-            >
-              <span>تسویه</span>
-              <q-icon
-                size="xs"
-                class="q-ml-sm"
-                name="o_expand_more"
-              />
-            </q-btn>
-          </div>
-        </div>
-      </q-scroll-area>
-    </q-card-section>
-
     <q-card-section>
       <q-scroll-area
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
-        style="height: calc(100vh - 340px)"
+        style="height: calc(100vh - 180px)"
       >
         <div class="column q-col-gutter-lg">
-          <div v-if="showTaxApi" class="q-pl-none q-ml-md">
-            <q-checkbox
-              class="text-body2 q-mb-md"
-              v-model="searchStore.searchModel.value.waitToSendTax"
-              :label="$t('shared.labels.taxApiStatus')"
+          <div>
+            <q-option-group
+              style="gap: 8px"
+              class="row text-body2 no-letter-spacing"
+              type="radio"
+              inline
+              size="40px"
+              dense
+              :options="helper.getEnumOptions(dateRange)"
+              v-model="searchStore.searchModel.value.dateRange"
+            />
+          </div>
+
+          <div>
+            <q-option-group
+              style="gap: 8px"
+              class="row text-body2 no-letter-spacing"
+              type="radio"
+              inline
+              size="40px"
+              dense
+              :options="
+                helper.getEnumOptions(depositType, 'depositType')
+              "
+              v-model="searchStore.searchModel.value.depositType"
+            />
+          </div>
+
+          <div v-if="showTaxApi">
+            <q-item-label caption class="q-mb-sm">
+              {{ $t("shared.labels.taxStatus") }}
+            </q-item-label>
+            <q-option-group
+              inline
+              :options="
+                helper.getEnumOptions(taxSentStatus, 'taxSentStatus')
+              "
+              type="radio"
+              v-model="searchStore.searchModel.value.taxStatus"
             />
           </div>
 
@@ -171,20 +157,15 @@
             <q-item-label caption class="q-mb-sm">
               کالا و خدمات
             </q-item-label>
-            <q-input
-              readonly
-              outlined
-              dense
-              v-model="searchStore.productName"
-              @click="showProduct = true"
-            >
-              <template #append>
-                <q-icon
-                  @click="showProduct = true"
-                  name="o_expand_more"
-                />
-              </template>
-            </q-input>
+            <product-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.productId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.productTitle
+              "
+              style="width: 398px"
+            />
           </div>
 
           <div>
@@ -211,120 +192,61 @@
       </q-scroll-area>
     </q-card-section>
 
-    <div class="row q-my-lg q-mx-lg">
-      <q-btn
-        padding="10px 12px"
-        rounded
-        unelevated
-        outline
-        class="q-mb-sm full-width"
-        @click="searchStore.clearSearch"
-      >
-        <div class="row items-center">
-          <q-icon size="xs" name="o_close" class="q-mr-xs" />
-          <span>حذف فیلتر</span>
+    <q-card-section>
+      <div class="row q-gutter-sm">
+        <div class="col">
+          <q-btn
+            padding="10px 12px"
+            rounded
+            unelevated
+            outline
+            class="full-width"
+            @click="searchStore.clearSearch"
+            v-close-popup
+          >
+            <div class="row items-center">
+              <q-icon size="xs" name="o_close" class="q-mr-xs" />
+              <span>{{ $t("shared.labels.clearSearch") }}</span>
+            </div>
+          </q-btn>
         </div>
-      </q-btn>
 
-      <q-btn
-        padding="10px 12px"
-        rounded
-        unelevated
-        color="primary"
-        class="q-mb-sm full-width"
-        @click="searchStore.applySearch"
-      >
-        <div class="row items-center">
-          <q-icon size="xs" name="o_search" class="q-mr-xs" />
-          <span>جستجو</span>
+        <div class="col">
+          <q-btn
+            padding="10px 12px"
+            rounded
+            unelevated
+            color="primary"
+            class="full-width"
+            v-close-popup
+            @click="searchStore.applySearch()"
+          >
+            <div class="row items-center">
+              <q-icon size="xs" name="o_search" class="q-mr-xs" />
+              <span>{{ $t("shared.labels.search") }}</span>
+            </div>
+          </q-btn>
         </div>
-      </q-btn>
-    </div>
+      </div>
+    </q-card-section>
   </q-card>
-
-  <q-dialog
-    v-model="dialog"
-    persistent
-    maximized
-    transition-show="slide-up"
-    transition-hide="slide-down"
-  >
-    <q-card
-      class="no-border q-mt-xl"
-      position="bottom"
-      style="height: 100vh"
-    >
-      <q-card-section>
-        <div class="row justify-between items-center">
-          <span class="text-body1 no-letter-spacing">
-            انتخاب تسویه
-          </span>
-          <q-btn dense flat icon="close" v-close-popup />
-        </div>
-      </q-card-section>
-
-      <q-card-section>
-        <div class="colunm">
-          <q-option-group
-            :options="options"
-            type="checkbox"
-            v-model="group"
-            @update:model-value="handleCheckboxChange"
-          />
-        </div>
-      </q-card-section>
-    </q-card>
-  </q-dialog>
-
-  <q-dialog
-    maximized
-    transition-show="slide-up"
-    transition-hide="slide-down"
-    v-model="showContact"
-  >
-    <q-card>
-      <q-card-section>
-        <contact-lookup />
-      </q-card-section>
-    </q-card>
-  </q-dialog>
-
-  <q-dialog
-    maximized
-    transition-show="slide-up"
-    transition-hide="slide-down"
-    v-model="showProduct"
-  >
-    <q-card>
-      <q-card-section>
-        <product-lookup
-          v-model:selectedId="searchStore.searchModel.value.productId"
-          v-model:selectedText="
-            searchStore.searchModel.value.productTitle
-          "
-          style="width: 398px"
-        />
-      </q-card-section>
-    </q-card>
-  </q-dialog>
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
-  import { dateRange } from "src/constants";
+  import {
+    dateRange,
+    depositType,
+    taxSentStatus,
+  } from "src/constants";
   import { helper } from "src/helpers";
-  import { useI18n } from "vue-i18n";
   import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
 
   import dateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import customInput from "src/components/shared/forms/CustomInput.vue";
-  import ContactLookup from "src/components/shared/lookups/MobileContactLookup.vue";
-  import ProductLookup from "src/components/shared/lookups/MobileProductLookup.vue";
+  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     gridStore: Object,
@@ -332,81 +254,15 @@
     showTaxApi: Boolean,
   });
 
-  const dateRangeOptions = computed(() =>
-    helper.getEnumOptions(dateRange)
-  );
-
-  const group = ref([]);
-  const dialog = ref(false);
-  const showContact = ref(false);
-  const showProduct = ref(false);
-
-  const options = [
-    { label: "دارای مانده", value: "1", color: "warning" },
-    { label: "تسویه ناقص", value: "2", color: "red" },
-    { label: "تسویه کامل", value: "3", color: "green" },
-  ];
-
-  const handleCheckboxChange = () => {
-    if (group.value.length >= 0) {
-      dialog.value = false;
-    }
-  };
-
   const emit = defineEmits(["apply-search", "update-date-range"]);
 
   const searchStore = useInvoiceSearch();
-
-  async function applySearch() {
-    emit("apply-search", searchStore.searchModel.value);
-  }
-
-  async function clearSearch() {
-    props.gridStore.setDefaultSearchModel();
-    await applySearch();
-  }
-
-  async function removeItem(item) {
-    //todo: how to find field type and dynamically set to it's default value
-    let value = "";
-    switch (item.name) {
-      case "dateRange":
-        value = 0;
-        break;
-      case "waitToSendTax":
-        value = false;
-        break;
-    }
-    searchStore.value[item.name] = value;
-    await applySearch();
-  }
-
-  const openCheckoutModal = () => {
-    dialog.value = true;
-  };
-
-  const handleDateRangeClick = async (value) => {
-    searchStore.searchModel.value.dateRange = value;
-    const translatedLabel = t(
-      `shared.labels.${searchStore.searchModel.value.dateRange}`
-    );
-    emit("update-date-range", {
-      value: searchStore.searchModel.value.dateRange,
-      label: translatedLabel,
-    });
-
-    await applySearch();
-  };
-
-  const isActive = (value) => {
-    return searchStore.searchModel.value.dateRange === value;
-  };
 </script>
 
-<style lang="scss" scoped>
+<!-- <style lang="scss" scoped>
   .q-item__label--caption {
     font-size: 14px;
     letter-spacing: 0;
     color: #697588;
   }
-</style>
+</style> -->

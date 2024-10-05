@@ -1,5 +1,5 @@
-export const baseUrl = "http://localhost:6060";
-//export const baseUrl = "https://api.landa-sme.ir";
+//export const baseUrl = "http://localhost:6060";
+export const baseUrl = "https://api.landa-sme.ir";
 
 export const isActiveOptions = {
   active: 1,
@@ -119,6 +119,13 @@ export const dateRange = {
   today: "today",
   thisWeek: "thisWeek",
   thisMonth: "thisMonth",
+};
+
+export const depositType = {
+  all: 0,
+  hasRemain: 1,
+  deposited: 2,
+  partialDeposit: 3,
 };
 
 export const sqlOperator = {

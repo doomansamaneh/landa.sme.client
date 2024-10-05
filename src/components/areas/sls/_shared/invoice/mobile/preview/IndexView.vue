@@ -18,29 +18,6 @@
             </span>
           </div>
         </div>
-        <div class="col row justify-end q-gutter-sm">
-          <div v-if="model.typeTitle">
-            <span
-              class="border-radius-sm primary-gradient text-caption text-white label"
-            >
-              {{ model.typeTitle }}
-            </span>
-          </div>
-          <div v-if="model.contractTitle">
-            <span
-              class="border-radius-sm bluegrey-gradient text-caption text-white label"
-            >
-              {{ model.contractTitle }}
-            </span>
-          </div>
-          <div v-if="model.statusTitle">
-            <span
-              class="border-radius-sm orange-gradient text-caption text-white label"
-            >
-              {{ model.statusTitle }}
-            </span>
-          </div>
-        </div>
       </div>
     </q-card-section>
 
@@ -103,14 +80,34 @@
           </span>
         </div>
       </div>
-      <div class="row q-mt-lg">
-        <div
-          v-if="model.comment"
-          class="full-width rounded-borders bordered q-pa-sm"
-        >
+      <div class="row q-mt-lg" v-if="model.comment">
+        <div class="full-width rounded-borders bordered q-pa-sm">
           <span class="q-mr-sm">شرح:</span>
           <span>
             {{ model.comment }}
+          </span>
+        </div>
+      </div>
+      <div class="row q-mt-lg q-gutter-xs">
+        <div v-if="model.typeTitle">
+          <span
+            class="border-radius-sm primary-gradient text-caption text-white label"
+          >
+            {{ model.typeTitle }}
+          </span>
+        </div>
+        <div v-if="model.contractTitle">
+          <span
+            class="border-radius-sm bluegrey-gradient text-caption text-white label"
+          >
+            {{ model.contractTitle }}
+          </span>
+        </div>
+        <div v-if="model.statusTitle">
+          <span
+            class="border-radius-sm orange-gradient text-caption text-white label"
+          >
+            {{ model.statusTitle }}
           </span>
         </div>
       </div>

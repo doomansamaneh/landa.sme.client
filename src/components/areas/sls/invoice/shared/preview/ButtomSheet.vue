@@ -105,9 +105,7 @@
           <invoice-header
             :model="formStore.model"
             show-logo
-            :title="
-              invoiceTitle ?? $t('page.payment-detail.invoice-label')
-            "
+            :title="invoiceTitle ?? $t('shared.labels.invoice')"
           />
           <invoice-header-sale :model="formStore.model" />
           <invoice-body

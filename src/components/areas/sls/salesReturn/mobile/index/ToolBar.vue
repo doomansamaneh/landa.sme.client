@@ -4,8 +4,6 @@
     :crud-store="crudStore"
     :title="title"
     :base-route="baseRoute"
-    search-btn
-    sort-btn
   ></tool-bar>
 </template>
 

@@ -176,6 +176,7 @@
       "discount": "تخفیف:",
       "sum-total": "جمع کل:",
       "pay-message": "پرداخت از همه کارتهای شتاب امکان پذیر است. برای پرداخت باید رمز دوم کارت خود را فعال کرده باشید.",
+      "payment": "پرداخت",
       "plan-lookup": {
         "plan": "طرح",
         "per-month": "ماهانه",
@@ -503,6 +504,12 @@
       "openingVoucher": "افتتاحیه",
       "closingVoucher": "اختتامیه",
       "modificationVoucher": "اصلاحیه"
+    },
+    "depositType": {
+      "all": "همه موارد",
+      "hasRemain": "دارای مانده",
+      "deposited": "تسویه کامل",
+      "partialDeposit": "تسویه ناقص"
     },
     "subSystem": {
       "accounting": "حسابداری",

@@ -1,9 +1,9 @@
 <template>
   <data-grid-summary :table-store="tableStore" />
+
   <data-grid
     :data-table-store="tableStore"
-    :createUrl="`/${baseRoute}/create`"
-    ref="dataGrid"
+    createUrl="/sls/invoice/create"
   >
     <template #header>
       <template></template>
@@ -29,7 +29,7 @@
             </q-avatar>
           </q-btn>
           <q-btn round unelevated class="no-pointer-events" v-else>
-            <q-avatar size="50px" color="primary" text-color="white">
+            <q-avatar size="56px" color="primary" text-color="white">
               <q-icon name="o_done" size="md" />
             </q-avatar>
           </q-btn>
@@ -37,7 +37,18 @@
 
         <div class="row justify-between items-center">
           <div class="col row items-center">
-            <span class="text-caption text-on-dark">شماره:</span>
+            <span v-if="item.taxId">
+              <q-icon name="o_check" color="primary" size="xs">
+                <q-tooltip
+                  class="accent text-body1 no-letter-spacing"
+                >
+                  ارسال به سامانه مودیان
+                </q-tooltip>
+              </q-icon>
+            </span>
+            <span class="text-caption q-mr-xs text-on-dark">
+              شماره:
+            </span>
             <span class="text-caption text-on-dark">
               {{ item.no }}
             </span>
@@ -51,7 +62,7 @@
         </div>
       </q-card-section>
 
-      <q-separator />
+      <q-separator size="0.5px" />
     </template>
 
     <template #row-body="{ item }">
@@ -100,7 +111,7 @@
               <span
                 class="ellipsis-2-lines text-caption text-on-dark"
               >
-                {{ helper.formatNumber(item.discountAmount) }}
+                {{ item.discountAmount.toLocaleString() }}
               </span>
             </div>
           </div>
@@ -113,7 +124,7 @@
               <span
                 class="ellipsis-2-lines text-caption text-bold text-on-dark"
               >
-                {{ helper.formatNumber(item.amount) }}
+                {{ item.amount.toLocaleString() }}
               </span>
             </div>
           </div>
@@ -131,7 +142,23 @@
               <span
                 class="ellipsis-2-lines text-caption text-caption text-on-dark"
               >
-                {{ helper.formatNumber(item.payedAmount) }}
+                {{ item.payedAmount.toLocaleString() }}
+              </span>
+            </div>
+          </div>
+
+          <div
+            class="row items-center q-px-sm"
+            v-if="item.remainedAmount"
+          >
+            <div class="col-3">
+              <span class="text-caption text-on-dark">مانده</span>
+            </div>
+            <div class="col">
+              <span
+                class="ellipsis-2-lines text-caption text-bold text-on-dark"
+              >
+                {{ item.remainedAmount.toLocaleString() }}
               </span>
             </div>
           </div>
@@ -141,20 +168,7 @@
       <q-card-section class="q-pt-md q-pb-none q-px-sm">
         <div class="row items-center q-gutter-sm">
           <span
-            v-if="item.notificationCount"
-            class="border-radius-sm bg-secondary text-white label"
-          >
-            <q-icon name="o_email" color="white" size="xs">
-              <q-tooltip
-                class="positive text-body1 no-letter-spacing"
-              >
-                فرستاده شده: {{ item.notificationCount }}
-              </q-tooltip>
-            </q-icon>
-          </span>
-
-          <span
-            class="border-radius-sm bg-orange-2 text-caption text-red label"
+            class="label text-white border-radius-sm text-caption orange-gradient"
           >
             {{ item.statusTitle }}
           </span>
@@ -167,18 +181,19 @@
 
           <span
             v-if="item.contractTitle"
-            class="border-radius-sm primary-gradient text-caption text-white label"
+            class="border-radius-sm bluegrey-gradient text-caption text-white label"
           >
             {{ item.contractTitle }}
           </span>
         </div>
       </q-card-section>
     </template>
+
     <template #row-actions="{ item }">
       <q-btn
         unelevated
         class="text-on-dark"
-        :to="`/${baseRoute}/preview/${item.id}`"
+        :to="`/sls/invoice/preview/${item.id}`"
       >
         <span class="text-body3 text-bold">
           {{ $t("shared.labels.showDetail") }}
@@ -201,25 +216,22 @@
     :status="itemSheetStatus"
     :item="item"
     @hide="hideItemSheet"
-  >
-    <template #items="item">
-      <slot name="item-sheet-items" :item="item"></slot>
-    </template>
-  </item-sheet>
+  />
 </template>
 
 <script setup>
   import { ref } from "vue";
 
   import { helper } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
-  import ItemSheet from "./DataGridItemSheet.vue";
   import DataGridSummary from "./DataGridSummary.vue";
+  import ItemSheet from "./DataGridItemSheet.vue";
 
   const props = defineProps({
-    tableStore: Object,
-    baseRoute: String,
+    tableStore: useDataTable,
+    crudStore: Object,
     title: String,
   });
 
@@ -233,19 +245,9 @@
   const hideItemSheet = () => {
     itemSheetStatus.value = false;
   };
-
-  defineExpose({
-    hideItemSheet,
-  });
 </script>
 
 <style lang="scss" scoped>
-  .q-item__label--caption {
-    font-size: 14px;
-    letter-spacing: 0;
-    color: #697588;
-  }
-
   .label {
     padding: 2px 12px;
   }

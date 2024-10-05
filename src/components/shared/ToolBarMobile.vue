@@ -140,8 +140,8 @@
           v-if="!backButton && !tableStore?.activeRow?.value"
         />
 
-        <slot name="search-btn">
-          <template v-if="sortBtn">
+        <template v-if="sortBtn">
+          <slot name="sort-btn">
             <q-btn
               round
               class="q-mr-sm"
@@ -152,9 +152,11 @@
             >
               <q-icon name="sort" />
             </q-btn>
-          </template>
+          </slot>
+        </template>
 
-          <template v-if="searchBtn">
+        <template v-if="searchBtn">
+          <slot name="search-btn">
             <q-btn
               round
               unelevated
@@ -162,10 +164,12 @@
               v-if="!tableStore?.activeRow?.value"
               @click="showSearchDialog"
             >
-              <q-icon name="o_filter_alt" />
+              <slot name="search-btn-icon">
+                <q-icon name="o_filter_alt" />
+              </slot>
             </q-btn>
-          </template>
-        </slot>
+          </slot>
+        </template>
       </q-toolbar>
     </q-page-sticky>
   </div>
@@ -293,10 +297,6 @@
 
   const showSortSheet = () => {
     sortSheetStatus.value = true;
-  };
-
-  const hideSortSheet = () => {
-    sortSheetStatus.value = false;
   };
 
   const handleScroll = () => {

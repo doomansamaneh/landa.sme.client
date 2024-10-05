@@ -1,18 +1,18 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { helper } from "src/helpers";
 import { bus } from "src/helpers";
-import { dateRange, taxSentStatus } from "src/constants";
+import { dateRange, depositType, taxSentStatus } from "src/constants";
 
-const searchModel = ref({
-  dateRange: 0,
+const defaultModel = {
+  dateRange: dateRange.all,
+  depositType: depositType.all,
   taxStatus: taxSentStatus.all,
-});
+};
+const searchModel = ref({ ...defaultModel });
 
 export function useInvoiceSearch() {
   const clearSearch = async () => {
-    searchModel.value = {
-      dateRange: 0,
-      taxStatus: taxSentStatus.all,
-    };
+    searchModel.value = { ...defaultModel };
     await applySearch();
   };
 
@@ -29,10 +29,19 @@ export function useInvoiceSearch() {
       case "taxStatus":
         value = taxSentStatus.all;
         break;
+      case "depositType":
+        value = depositType.all;
+        break;
     }
     searchModel.value[item.name] = value;
     await applySearch();
   };
+
+  const isFiltered = computed(
+    () =>
+      searchModel.value &&
+      !helper.deepEqual(searchModel.value, defaultModel)
+  );
 
   return {
     searchModel,
@@ -40,5 +49,6 @@ export function useInvoiceSearch() {
     clearSearch,
     removeItem,
     applySearch,
+    isFiltered,
   };
 }

@@ -123,7 +123,7 @@
         </div>
 
         <div class="text-subtitle1 text-bold">
-          {{ $t("page.payment-detail.invoice-label") }}
+          {{ $t("shared.labels.invoice") }}
         </div>
 
         <div class="column q-gutter-xs">

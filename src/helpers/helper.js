@@ -64,6 +64,23 @@ export const helper = {
     return seconds;
   },
 
+  deepEqual(obj1, obj2) {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+
+    for (let key of keys1) {
+      if (obj1[key] !== obj2[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
   generateGradientColor(input) {
     let hash = 0;
     if (input) {
@@ -318,19 +335,19 @@ export const helper = {
     return parseFloat(cleanedValue);
   },
 
-  downloadFile(response, fileName) {
-    const blob = new Blob([response.data], {
-      type: response.data.type,
-    });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-  },
+  // downloadFile(response, fileName) {
+  //   const blob = new Blob([response.data], {
+  //     type: response.data.type,
+  //   });
+  //   const url = window.URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.style.display = "none";
+  //   a.href = url;
+  //   a.download = fileName;
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   window.URL.revokeObjectURL(url);
+  // },
 
   print(printId) {
     const printableElement = document.querySelector(`#${printId}`);
