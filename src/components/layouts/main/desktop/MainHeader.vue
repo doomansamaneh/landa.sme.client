@@ -1,7 +1,7 @@
 <template>
   <q-header
     bordered
-    class="q-py-sm q-px-md"
+    class="q-py-xs q-px-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <div class="row no-wrap">
@@ -35,20 +35,15 @@
         </div>
       </q-toolbar>
 
-      <q-toolbar
-        class=" col q-px-lg"
-      >
-        <div class="col">
-          <most-used-operations />
-        </div>
+      <q-toolbar class="row items-center justify-center q-gutter-sm">
+        <fiscal-year />
+        <most-used-operations />
       </q-toolbar>
 
       <q-toolbar class="col-auto text-on-dark no-padding">
         <q-space />
 
         <div class="row items-center justify-end q-gutter-x-md">
-          <fiscal-year />
-
           <q-btn
             round
             dense
@@ -114,11 +109,3 @@
     }
   };
 </script>
-
-<style lang="scss">
-.main {
-  background: linear-gradient(180deg, $bg-main, #{$primary}20);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-</style>

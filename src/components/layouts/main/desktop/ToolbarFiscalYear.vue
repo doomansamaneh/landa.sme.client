@@ -3,7 +3,7 @@
     transition-show="slide-down"
     transition-hide="slide-up"
     transition-duration="600"
-    class="bordered text-body3 text-weight-500 no-letter-spacing text-on-dark q-py-xs q-px-sm"
+    class="desktop-toolbar-gradient bordered text-body3 text-weight-500 no-letter-spacing text-on-dark q-py-xs q-px-sm"
     rounded
     no-caps
     unelevated
