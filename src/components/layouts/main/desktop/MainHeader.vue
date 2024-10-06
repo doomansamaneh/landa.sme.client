@@ -22,11 +22,9 @@
             </q-btn>
           </div>
 
-          <div
-            class="text-subtitle2 text-bold row justify-start items-center"
-          >
+          <div class="text-bold row justify-start items-center">
             <div class="column">
-              <span class="text-on-dark">
+              <span class="text-body3 no-letter-spacing text-on-dark">
                 {{ businessStore.get()?.title }}
               </span>
               <today-date />
@@ -37,14 +35,15 @@
 
       <q-toolbar class="row items-center justify-center q-gutter-sm">
         <fiscal-year />
-        <most-used-operations />
       </q-toolbar>
 
       <q-toolbar class="col-auto text-on-dark no-padding">
         <q-space />
 
         <div class="row items-center justify-end q-gutter-x-md">
-          <q-btn
+          <most-used-operations />
+
+          <!-- <q-btn
             round
             dense
             unelevated
@@ -52,7 +51,7 @@
             target="_blank"
           >
             <q-icon name="o_school" size="24px" />
-          </q-btn>
+          </q-btn> -->
 
           <switch-theme />
           <notification />
@@ -89,7 +88,7 @@
   import SwitchTheme from "src/components/shared/SwitchTheme.vue";
   import TodayDate from "src/components/shared/TodayDate.vue";
   import SteamAnimation from "src/assets/SteamAnimation.vue";
-  import MostUsedOperations from "src/components/areas/dashboard/widgets/MostUsedOperations.vue";
+  import MostUsedOperations from "src/components/layouts/main/desktop/MostUsedOperations.vue";
 
   const contactDrawerStore = useContactDrawer();
   const notifDrawerStore = useNotifDrawer();

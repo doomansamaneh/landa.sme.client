@@ -1,8 +1,6 @@
 <template>
   <q-btn
-    class="bordered-btn bg-dark text-on-dark"
-    :style="$q.screen.gt.sm ? 'width: 150px;' : 'width:60px;'"
-    padding="5px 12px"
+    class="q-px-md text-on-dark no-wrap bordered desktop-toolbar-gradient"
     rounded
     dense
     unelevated
@@ -23,7 +21,6 @@
   </q-btn>
 
   <q-dialog
-    transition-duration="600"
     transition-show="slide-down"
     transition-hide="slide-up"
     position="top"
@@ -96,11 +93,11 @@
               @click="previous($event)"
             >
               <q-tooltip
-              class="text-body2 no-letter-spacing custom-tooltip"
-              :delay="600"
-            >
-              {{ $t("shared.labels.next") }}
-            </q-tooltip>
+                class="text-body2 no-letter-spacing custom-tooltip"
+                :delay="600"
+              >
+                {{ $t("shared.labels.next") }}
+              </q-tooltip>
             </q-btn>
             <q-btn
               :disable="
@@ -117,11 +114,11 @@
               @click="next($event)"
             >
               <q-tooltip
-              class="text-body2 no-letter-spacing custom-tooltip"
-              :delay="600"
-            >
-              {{ $t("shared.labels.previous") }}
-            </q-tooltip>
+                class="text-body2 no-letter-spacing custom-tooltip"
+                :delay="600"
+              >
+                {{ $t("shared.labels.previous") }}
+              </q-tooltip>
             </q-btn>
           </template>
         </div>
