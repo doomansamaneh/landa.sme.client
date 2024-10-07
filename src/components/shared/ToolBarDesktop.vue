@@ -9,7 +9,7 @@
     >
       <q-toolbar
         :style="[
-          inside ? '' : 'margin-top: 8px; margin-bottom: 8px;',
+          inside ? '' : 'margin-top: 4px; margin-bottom: 4px;',
           xPadding,
         ]"
       >

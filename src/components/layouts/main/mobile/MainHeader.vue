@@ -4,12 +4,12 @@
     class="q-py-sm q-px-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
-    <q-toolbar class="text-dark row justify-between no-padding">
+    <q-toolbar class="text-dark row justify-between no-padding q-gutter-xs">
       <q-toolbar-title
         class="text-subtitle2 text-bold row justify-start items-center"
       >
         <div class="column">
-          <span style="width: 160px" class="ellipsis text-on-dark">
+          <span style="width: 130px" class="ellipsis text-on-dark">
             {{ businessStore.get()?.title }}
           </span>
           <today-date />
@@ -18,6 +18,7 @@
 
       <div class="row items-center q-gutter-x-sm">
         <fiscal-year />
+        <most-used-operations />
         <switch-theme />
         <notification />
       </div>
@@ -37,6 +38,7 @@
   import SwitchTheme from "src/components/shared/SwitchTheme.vue";
   import TodayDate from "src/components/shared/TodayDate.vue";
   import SteamAnimation from "src/assets/SteamAnimation.vue";
+  import MostUsedOperations from "src/components/layouts/main/mobile/MostUsedOperations.vue";
 
   const contactDrawerStore = useContactDrawer();
   const menuBarStore = useMenuBar();
