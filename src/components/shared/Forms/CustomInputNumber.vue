@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { watch, defineExpose } from "vue";
+import { watch } from "vue";
 import { useCurrencyInput } from "vue-currency-input";
 
 const props = defineProps({

@@ -21,45 +21,44 @@ $warning: #f2c037;
 $bg-main: #f4f5fa;
 
 $themes: (
-  green: (
-    primary: #00b200,
-    secondary: #2e8b57,
-    accent: #5f9ea0,
-    dark: #003300,
-    dark-page: #001100,
-    bg-main: #f4faf6
-
+  "green": (
+    "primary": #00b200,
+    "secondary": #2e8b57,
+    "accent": #5f9ea0,
+    "dark": #003300,
+    "dark-page": #001100,
+    "bg-main": #f4faf6,
   ),
-  orange: (
-    primary: #ff6600,
-    secondary: #92673d,
-    accent: #fdb46b,
-    dark: #37261d,
-    dark-page: #170000,
-    bg-main: #fff4ea
+  "orange": (
+    "primary": #ff6600,
+    "secondary": #92673d,
+    "accent": #fdb46b,
+    "dark": #37261d,
+    "dark-page": #170000,
+    "bg-main": #fff4ea,
   ),
-  purple: (
-    primary: #c729df,
-    secondary: #934593,
-    accent: #d08ad0,
-    dark: #312846,
-    dark-page: #15152b,
-    bg-main: #f9f4fa
+  "purple": (
+    "primary": #c729df,
+    "secondary": #934593,
+    "accent": #d08ad0,
+    "dark": #312846,
+    "dark-page": #15152b,
+    "bg-main": #f9f4fa,
   ),
-  blue: (
-    primary: #007acc,
-    secondary: #586599,
-    accent: #a3acd2,
-    dark: #141f48,
-    dark-page: #040c2d,
-    bg-main: #f4f5fa
+  "blue": (
+    "primary": #007acc,
+    "secondary": #586599,
+    "accent": #a3acd2,
+    "dark": #141f48,
+    "dark-page": #040c2d,
+    "bg-main": #f4f5fa,
   ),
-  red: (
-    primary: #dc143c,
-    secondary: #770a0a,
-    accent: #ab223d,
-    dark: #481b1b,
-    dark-page: #220000,
-    bg-main: #faf4f4
+  "red": (
+    "primary": #dc143c,
+    "secondary": #770a0a,
+    "accent": #ab223d,
+    "dark": #481b1b,
+    "dark-page": #220000,
+    "bg-main": #faf4f4,
   ),
 );
