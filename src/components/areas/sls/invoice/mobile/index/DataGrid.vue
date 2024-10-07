@@ -4,7 +4,7 @@
       <item-sheet
         :table-store="tableStore"
         :item="item"
-        :base-route="sls / invoice"
+        base-route="sls/invoice"
       />
     </template>
   </data-grid>

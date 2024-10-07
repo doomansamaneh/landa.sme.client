@@ -30,7 +30,7 @@
 
   const props = defineProps({
     tableStore: useDataTable,
-    baseRoute: { type: String, default: "sls/quote" },
+    baseRoute: String,
     item: Object,
     deleteCallBack: Function,
   });

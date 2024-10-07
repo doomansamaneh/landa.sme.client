@@ -37,6 +37,15 @@
 
         <div class="row justify-between items-center">
           <div class="col row items-center">
+            <span v-if="item.taxId">
+              <q-icon name="o_check" color="primary" size="xs">
+                <q-tooltip
+                  class="accent text-body1 no-letter-spacing"
+                >
+                  ارسال به سامانه مودیان
+                </q-tooltip>
+              </q-icon>
+            </span>
             <span class="text-caption text-on-dark">شماره:</span>
             <span class="text-caption text-on-dark">
               {{ item.no }}
@@ -134,6 +143,21 @@
                 {{ helper.formatNumber(item.payedAmount) }}
               </span>
             </div>
+            <div
+              class="row items-center q-px-sm"
+              v-if="item.remainedAmount"
+            >
+              <div class="col-3">
+                <span class="text-caption text-on-dark">مانده</span>
+              </div>
+              <div class="col">
+                <span
+                  class="ellipsis-2-lines text-caption text-bold text-on-dark"
+                >
+                  {{ helper.formatNumber(item.remainedAmount) }}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </q-card-section>
@@ -198,11 +222,12 @@
   <item-sheet
     v-if="itemSheetStatus"
     :table-store="tableStore"
+    :base-route="baseRoute"
     :status="itemSheetStatus"
     :item="item"
     @hide="hideItemSheet"
   >
-    <template #items="item">
+    <template #items="{ item }">
       <slot name="item-sheet-items" :item="item"></slot>
     </template>
   </item-sheet>

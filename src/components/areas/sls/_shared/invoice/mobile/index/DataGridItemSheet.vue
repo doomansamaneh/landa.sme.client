@@ -10,10 +10,10 @@
       <q-list padding>
         <slot name="items" :item="item">
           <sheet-items
+            :item="item"
             :base-route="baseRoute"
             :table-store="tableStore"
             :delete-call-back="deleteCallBack"
-            :item="item"
           />
         </slot>
       </q-list>

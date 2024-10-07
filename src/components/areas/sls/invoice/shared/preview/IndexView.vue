@@ -3,6 +3,7 @@
     :title="invoiceTitle ?? title ?? $t('shared.labels.invoice')"
     base-route="sls/invoice"
     detail-url="trs/receipt"
+    entity-name="Sls.[Invoice]"
     tax-api
     show-sale-header
     show-receipt

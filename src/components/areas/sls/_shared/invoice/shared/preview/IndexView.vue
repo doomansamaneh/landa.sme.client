@@ -78,6 +78,7 @@
     showSaleHeader: Boolean,
     showReceipt: Boolean,
     taxApi: Boolean,
+    entityName: { type: String, default: "Doc.[Document]" },
   });
 
   const route = useRoute();
@@ -86,7 +87,7 @@
   const crudStore = useFormActions(props.baseRoute, model);
 
   const calculateTotals = () => {
-    model.value.entityName = "Doc.[Document]";
+    model.value.entityName = props.entityName;
     model.value.totalPrice = helper.getSubtotal(
       model.value.invoiceItems,
       "totalPrice"

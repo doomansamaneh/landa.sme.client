@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+  import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
@@ -43,6 +44,7 @@
   import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
   import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
+  import SendEmailDialog from "src/components/areas/acc/voucher/shared/forms/SendEmailDialog.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -52,7 +54,7 @@
     item: Object,
     deleteCallBack: Function,
   });
-
+  const $q = useQuasar();
   const crudStore = useFormActions(props.baseRoute);
   const formStore = useInvoiceModel(props.baseRoute);
 
@@ -72,4 +74,16 @@
   const cancelInvoice = (id) => {
     formStore.cancelInvoice(id, props.tableStore?.reloadData);
   };
+
+  function sendEmail() {
+    $q.dialog({
+      component: SendEmailDialog,
+      componentProps: {
+        id: props.item.id,
+        baseRoute: props.baseRoute,
+      },
+    }).onOk(async () => {
+      //await props.tableStore.reloadData();
+    });
+  }
 </script>

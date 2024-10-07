@@ -15,9 +15,7 @@
     style="white-space: nowrap"
   >
     <template #label>
-      <span class="text-body3 no-letter-spacing">
-        پرکاربردترین عملیات‌ها
-      </span>
+      <span class="text-body3 no-letter-spacing">دسترسی سریع</span>
     </template>
 
     <template #default>

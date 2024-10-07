@@ -2,6 +2,7 @@
   <preview
     :title="title ?? $t('shared.labels.quote')"
     base-route="sls/quote"
+    entity-name="Sls.[Quote]"
     show-sale-header
   >
     <template #toolbar-custom-desktop="{ model }">
