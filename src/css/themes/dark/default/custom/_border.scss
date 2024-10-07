@@ -1,5 +1,4 @@
 @mixin border-dark {
-
   $colors: (
     primary: $primary,
     secondary: $secondary,
@@ -11,7 +10,7 @@
 
   @each $color, $value in $colors {
     @for $i from 1 through 4 {
-      .border-#{$color}-#{$i} {
+      .border-#{"#{$color}"}-#{$i} {
         border: #{$i}px solid $value;
       }
     }

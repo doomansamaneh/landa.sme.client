@@ -2,14 +2,13 @@
   <q-btn round dense unelevated>
     <q-icon name="o_bolt" size="24px" color="orange-7" />
     <q-menu
-      style="position: absolute"
       transition-show="jump-down"
       transition-hide="jump-up"
-      :offset="[5, 24]"
-      class="border-radius-lg"
+      :offset="[90, 24]"
+      class="q-mx-xs border-radius-lg"
     >
       <q-card
-        style="width: 340px"
+        style="width: 330px"
         class="border-radius-lg text-on-dark"
       >
         <q-card-section class="q-pt-lg q-pb-none">
