@@ -1,5 +1,5 @@
 <template>
-  <q-card bordered class="shadow form-container_">
+  <q-card bordered>
     <q-card-section>
       <div
         class="row q-col-gutter-md justify-between items-center text-body3 no-letter-spacing"
@@ -111,70 +111,84 @@
           </span>
         </div>
       </div>
-      <div class="q-mt-lg overflow-hidden border-radius-xs">
-        <div class="bg-grey-2 text-dark q-pa-md">
-          <div class="column q-gutter-md">
-            <div v-for="item in model.invoiceItems" :key="item.id">
-              <div class="row q-col-gutter-lg">
-                <div class="col">
-                  <div class="row items-center">
-                    <div>
-                      <div class="row">
-                        <div class="">
-                          {{ item.productTitle }}
+    </q-card-section>
 
-                          <q-badge color="red" round dense unelevated>
-                            <div class="text-white text-body3">
-                              {{ helper.formatNumber(item.quantity) }}
-                            </div>
-                          </q-badge>
-                        </div>
+    <q-separator />
+
+    <q-card-section>
+      <div v-for="item in model.invoiceItems" :key="item.id">
+        <div class="row q-mb-md q-col-gutter-lg">
+          <div class="col">
+            <div class="row items-center">
+              <div>
+                <div class="row">
+                  <div class="">
+                    {{ item.productTitle }}
+
+                    <q-badge color="red" round dense unelevated>
+                      <div class="text-white text-body3">
+                        {{ helper.formatNumber(item.quantity) }}
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="flex justify-end">
-                  <div class="text-bold">
-                    {{ helper.formatNumber(item.price) }}
+                    </q-badge>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div
-              v-if="model.totalDiscount"
-              class="row items-center justify-between"
-            >
-              <div class="row items-center q-gutter-sm">
-                <div>تخفیف</div>
-              </div>
-              <div class="text-negative text-bold">
-                ({{ helper.formatNumber(model.totalDiscount) }})
-              </div>
-            </div>
-
-            <div
-              v-if="model.totalVat"
-              class="row items-center justify-between"
-            >
-              <div class="row items-center q-gutter-sm">
-                <div class="">جمع مالیات و عوارض</div>
-              </div>
-              <div class="text-bold">
-                {{ helper.formatNumber(model.totalVat) }}
-              </div>
+          </div>
+          <div class="flex justify-end">
+            <div class="text-bold_">
+              {{ helper.formatNumber(item.price) }}
             </div>
           </div>
         </div>
-        <div class="row text-dark q-px-md q-py-sm bg-orange-2">
-          <div class="col-xs text-body3">
-            {{ numberToWords(model.totalPrice ?? 0) }}
-            <b>{{ model.currencyTitle }}</b>
-          </div>
+      </div>
+    </q-card-section>
 
-          <div class="row justify-end col-xs text-bold">
-            {{ helper.formatNumber(model.totalPrice) }}
+    <q-card-section>
+      <div
+        class="q-gutter-sm border-radius text-dark q-px-md q-py-sm bg-orange-2"
+      >
+        <div class="row items-center justify-between">
+          <div class="">{{ $t("shared.labels.price") }}</div>
+          <div>
+            {{ helper.formatNumber(model.totalNetPrice) }}
           </div>
+        </div>
+        <div
+          v-if="model.totalDiscount"
+          class="row items-center justify-between"
+        >
+          <div class="">
+            <div>{{ $t("shared.labels.discount") }}</div>
+          </div>
+          <div class="text-negative">
+            ({{ helper.formatNumber(model.totalDiscount) }})
+          </div>
+        </div>
+
+        <div
+          v-if="model.totalVat"
+          class="row items-center justify-between"
+        >
+          <span>{{ $t("shared.labels.vat") }}</span>
+          <span>
+            {{ helper.formatNumber(model.totalVat) }}
+          </span>
+        </div>
+
+        <q-separator />
+        <div class="row items-center justify-between">
+          <span class="">{{ $t("shared.labels.total") }}</span>
+
+          <span class="text-weight-600">
+            {{ helper.formatNumber(model.totalPrice) }}
+          </span>
+        </div>
+        <div class="row items-center justify-end">
+          <span class="q-px-xs">
+            {{ numberToWords(model.totalPrice ?? 0) }}
+          </span>
+          <b>({{ model.currencyTitle }})</b>
         </div>
       </div>
     </q-card-section>

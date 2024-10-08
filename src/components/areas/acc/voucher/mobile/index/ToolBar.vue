@@ -28,6 +28,11 @@
       />
     </template>
 
+    <template #search-btn-icon>
+      <q-icon v-if="searchStore.isFiltered.value" name="filter_alt" />
+      <q-icon v-else name="o_filter_alt" />
+    </template>
+
     <template #advanced-search>
       <advanced-search />
     </template>
@@ -36,12 +41,12 @@
 
 <script setup>
   import { useDataTable } from "src/composables/useDataTable";
+  import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
 
   import ToolBar from "components/shared/ToolBarMobile.vue";
   import AdvancedSearch from "./AdvancedSearch.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
-  import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -57,6 +62,8 @@
     "download-batch-pdf",
     "reorder",
   ]);
+
+  const searchStore = useVoucherSearch();
 
   function downloadPdf(id) {
     emits("download-pdf", id);

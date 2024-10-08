@@ -57,8 +57,8 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from "vue";
-  import { mediaType, baseUrl } from "src/constants";
+  import { ref, onMounted } from "vue";
+  import { mediaType } from "src/constants";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   const props = defineProps({

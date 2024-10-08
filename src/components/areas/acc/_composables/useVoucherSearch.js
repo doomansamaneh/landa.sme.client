@@ -1,18 +1,16 @@
-import { ref } from "vue";
-import { bus } from "src/helpers";
+import { ref, computed } from "vue";
+import { helper, bus } from "src/helpers";
 import { dateRange } from "src/constants";
 
-const searchModel = ref({
+const defaultModel = {
   dateRange: dateRange.all,
   voucherTypeIds: [],
-});
+};
+const searchModel = ref({ ...defaultModel });
 
 export function useVoucherSearch() {
   const clearSearch = async () => {
-    searchModel.value = {
-      dateRange: dateRange.all,
-      voucherTypeIds: [],
-    };
+    searchModel.value = { ...defaultModel };
     await applySearch();
   };
 
@@ -34,11 +32,19 @@ export function useVoucherSearch() {
     await applySearch();
   };
 
+  const isFiltered = computed(
+    () =>
+      searchModel.value &&
+      !helper.deepEqual(searchModel.value, defaultModel)
+  );
+
   return {
     searchModel,
 
     clearSearch,
     removeItem,
     applySearch,
+    isFiltered,
+    defaultModel,
   };
 }

@@ -284,6 +284,8 @@
       "dateFrom": "تاریخ از",
       "dateTo": "تاریخ تا",
       "total": "جمع کل",
+      "price": "مبلغ",
+      "vat": "ارزش افزوده",
       "selectedRows": "انتخاب شده‌ها",
       "convertToInvoice": "تبدیل به فاکتور",
       "exportExcel": "تبدیل به اکسل",

@@ -65,20 +65,55 @@ export const helper = {
   },
 
   deepEqual(obj1, obj2) {
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
-
-    if (keys1.length !== keys2.length) {
-      return false;
+    // Check if both are strictly equal (for primitive types)
+    if (obj1 === obj2) {
+      return true;
     }
 
-    for (let key of keys1) {
-      if (obj1[key] !== obj2[key]) {
+    // Check if both are arrays
+    if (Array.isArray(obj1) && Array.isArray(obj2)) {
+      // Compare length
+      if (obj1.length !== obj2.length) {
         return false;
       }
+
+      // Compare items in arrays recursively
+      for (let i = 0; i < obj1.length; i++) {
+        if (!this.deepEqual(obj1[i], obj2[i])) {
+          return false;
+        }
+      }
+
+      return true;
     }
 
-    return true;
+    // Check if both are objects (and not null)
+    if (
+      obj1 !== null &&
+      typeof obj1 === "object" &&
+      obj2 !== null &&
+      typeof obj2 === "object"
+    ) {
+      const keys1 = Object.keys(obj1);
+      const keys2 = Object.keys(obj2);
+
+      // Check if both objects have the same number of keys
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+
+      // Compare each key's value recursively
+      for (let key of keys1) {
+        if (!this.deepEqual(obj1[key], obj2[key])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // If none of the above conditions matched, objects are not equal
+    return false;
   },
 
   generateGradientColor(input) {
