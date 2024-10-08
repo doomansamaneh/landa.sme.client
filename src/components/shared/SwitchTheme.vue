@@ -1,8 +1,16 @@
 <template>
   <div class="flex justify-between items-center">
     <div class="">
-      <q-btn round dense flat v-ripple @click="toggleDarkMode">
+      <q-btn
+        :size="$q.screen.xs ? '8px' : ''"
+        round
+        dense
+        flat
+        v-ripple
+        @click="toggleDarkMode"
+      >
         <q-icon
+          :size="$q.screen.xs ? '24px' : ''"
           :class="darkMode ? 'sun-animation' : 'moon-animation'"
           :name="darkMode ? 'light_mode' : 'dark_mode'"
         />

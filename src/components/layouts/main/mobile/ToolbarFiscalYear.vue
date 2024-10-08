@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    :size="$q.screen.xs ? '10px' : ''"
     class="q-px-md text-on-dark no-wrap bordered desktop-toolbar-gradient"
     rounded
     dense

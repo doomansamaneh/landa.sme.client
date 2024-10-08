@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    :size="$q.screen.xs ? '10px' : ''"
     round
     unelevated
     dense
@@ -8,6 +9,7 @@
     @click="toggleNotifDrawer"
   >
     <q-icon
+      :size="$q.screen.xs ? '24px' : ''"
       :class="
         notifDrawerStore.hasUnreadNotifications.value
           ? 'wiggle-on'
@@ -23,6 +25,7 @@
       unelevated
       size="3px"
       class="absolute-top-right no-pointer-events"
+      style="margin-top: 2px; margin-left: 2px;"
     />
   </q-btn>
 </template>
