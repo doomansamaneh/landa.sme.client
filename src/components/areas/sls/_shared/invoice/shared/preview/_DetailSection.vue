@@ -10,10 +10,7 @@
             </span>
           </div>
 
-          <div
-            v-if="model?.value?.voucherId"
-            class="row items-center"
-          >
+          <div v-if="model?.voucherId" class="row items-center">
             <span class="col-2 text-caption text-bold">
               سند حسابداری:
             </span>

@@ -1,7 +1,7 @@
 <template>
   <data-grid
     :data-table-store="tableStore"
-    create-url="/acc/voucher/create"
+    :create-url="`/${baseRoute}/create`"
   >
     <template #header>
       <template></template>
@@ -51,7 +51,7 @@
               <span
                 class="ellipsis-2-lines text-caption text-on-dark"
               >
-                {{ item.subject }}
+                {{ item.subject }} {{ item.summary }}
               </span>
             </div>
           </div>
@@ -61,7 +61,7 @@
               <span
                 class="ellipsis-2-lines text-body1 text-bold text-on-dark"
               >
-                {{ item.amount.toLocaleString() }}
+                {{ helper.formatNumber(item.amount) }}
                 <span class="text-caption">
                   {{ item.currencyTitle }}
                 </span>
@@ -74,38 +74,16 @@
       <q-card-section class="q-pt-md q-pb-none q-px-sm">
         <div class="row items-center q-gutter-sm">
           <row-no-badge :no="item.rowNo" />
-
-          <type-badge
-            :title="
-              $t(
-                `shared.voucherType.${helper.getEnumType(
-                  item.typeId,
-                  voucherType
-                )}`
-              )
-            "
-          />
-
-          <system-badge
-            :title="
-              $t(
-                `shared.subSystem.${helper.getEnumType(
-                  item.systemId,
-                  subSystem
-                )}`
-              )
-            "
-          />
-
           <contract-badge :title="item.contractTitle" />
         </div>
       </q-card-section>
     </template>
+
     <template #row-actions="{ item }">
       <q-btn
         unelevated
         class="text-on-dark"
-        :to="`/acc/voucher/preview/${item.id}`"
+        :to="`/${baseRoute}/preview/${item.id}`"
       >
         <span class="text-body3 text-bold">
           {{ $t("shared.labels.showDetail") }}
@@ -127,6 +105,7 @@
     :table-store="tableStore"
     :status="itemSheetStatus"
     :item="item"
+    :base-route="baseRoute"
     @hide="hideItemSheet"
   />
 </template>
@@ -135,17 +114,15 @@
   import { ref } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
-  import { subSystem, voucherType } from "src/constants";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import ItemSheet from "./DataGridItemSheet.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
-  import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
-  import SystemBadge from "src/components/areas/_shared/badges/SystemBadge.vue";
   import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
+    baseRoute: String,
     title: String,
   });
 

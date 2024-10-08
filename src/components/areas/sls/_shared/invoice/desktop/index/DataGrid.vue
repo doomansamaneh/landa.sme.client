@@ -20,20 +20,8 @@
     </template>
     <template #cell-no="{ item }">
       <span>{{ item.no }}</span>
-      <span v-if="item.taxId" class="q-pl-xs">
-        <q-icon name="o_check" color="accent" size="xs">
-          <q-tooltip class="accent text-body1 no-letter-spacing">
-            ارسال به سامانه مودیان
-          </q-tooltip>
-        </q-icon>
-      </span>
-      <span v-if="item.notificationCount" class="q-pl-xs">
-        <q-icon name="o_email" color="positive" size="xs">
-          <q-tooltip class="positive text-body1 no-letter-spacing">
-            فرستاده شده: {{ item.notificationCount }}
-          </q-tooltip>
-        </q-icon>
-      </span>
+      <tax-badge :tax-id="item.taxId" />
+      <notification-badge :count="item.notificationCount" />
     </template>
     <template #cell-amount="{ item }">
       <q-btn
@@ -46,7 +34,7 @@
         icon="clear"
         class="q-mr-xs red-gradient red-shadow no-pointer-events"
       />
-      <span>{{ item.amount?.toLocaleString() }}</span>
+      <span>{{ helper.formatNumber(item.amount) }}</span>
     </template>
     <template #cell-customerName="{ item }">
       <span v-if="item.customerCode && item.customerCode !== '-'">
@@ -55,13 +43,13 @@
       <span>{{ item.customerName }}</span>
     </template>
     <template #cell-payedAmount="{ item }">
-      <span>{{ item.payedAmount?.toLocaleString() }}</span>
+      <span>{{ helper.formatNumber(item.payedAmount) }}</span>
     </template>
     <template #cell-remainedAmount="{ item }">
-      <span>{{ item.remainedAmount?.toLocaleString() }}</span>
+      <span>{{ helper.formatNumber(item.remainedAmount) }}</span>
     </template>
     <template #cell-discountAmount="{ item }">
-      <span>{{ item.discountAmount?.toLocaleString() }}</span>
+      <span>{{ helper.formatNumber(item.discountAmount) }}</span>
     </template>
     <template #cell-subject="{ item }">
       <div>{{ item.subject }}</div>
@@ -69,21 +57,11 @@
         {{ item.summary }}
       </div>
       <div class="q-gutter-x-sm">
-        <q-badge class="primary-gradient">
-          {{ item.typeTitle }}
-        </q-badge>
-        <q-badge
-          text-color="white"
-          class="bluegrey-gradient"
-          v-if="item.contractTitle"
-        >
-          {{ item.contractTitle }}
-          <q-tooltip
-            class="custom-tooltip text-body1 no-letter-spacing"
-          >
-            قرارداد
-          </q-tooltip>
-        </q-badge>
+        <type-badge :title="item.typeTitle" />
+        <contract-badge
+          :title="item.contractTitle"
+          :id="item.contractId"
+        />
       </div>
     </template>
     <template #cell-statusId="{ item }">
@@ -119,36 +97,36 @@
       <td>
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "amount")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "amount")
+            )
           }}
         </b>
       </td>
       <td v-if="showDiscount">
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "discountAmount")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "discountAmount")
+            )
           }}
         </b>
       </td>
       <td v-if="showPayed">
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "payedAmount")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "payedAmount")
+            )
           }}
         </b>
       </td>
       <td v-if="showRemained">
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "remainedAmount")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "remainedAmount")
+            )
           }}
         </b>
       </td>
@@ -160,16 +138,16 @@
         {{ $t("shared.labels.total") }}
       </td>
       <td>
-        <b>{{ summary?.amount?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary?.amount) }}</b>
       </td>
       <td v-if="showDiscount">
-        <b>{{ summary?.discountAmount?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary?.discountAmount) }}</b>
       </td>
       <td v-if="showPayed">
-        <b>{{ summary?.payedAmount?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary?.payedAmount) }}</b>
       </td>
       <td v-if="showRemained">
-        <b>{{ summary?.remainedAmount?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary?.remainedAmount) }}</b>
       </td>
 
       <td colspan="100%"></td>
@@ -185,6 +163,10 @@
 
   import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";
   import CustomSelect from "components/shared/forms/CustomSelect.vue";
+  import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
+  import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
+  import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
+  import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
 
   const props = defineProps({
     tableStore: Object,

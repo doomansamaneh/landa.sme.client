@@ -6,8 +6,12 @@
     :model="model"
   />
 
-  <mobile v-if="$q.screen.xs" :model="model" />
-  <desktop v-else :model="model" />
+  <mobile
+    v-if="$q.screen.xs"
+    :model="model"
+    :base-route="baseRoute"
+  />
+  <desktop v-else :model="model" :base-route="baseRoute" />
 </template>
 
 <script setup>
@@ -26,11 +30,11 @@
     voucherItemId: String,
     title: String,
     inside: Boolean,
+    baseRoute: { type: String, default: "acc/voucher" },
   });
 
-  const baseRoute = "acc/voucher";
   const model = ref(null);
-  const crudStore = useFormActions(baseRoute, model);
+  const crudStore = useFormActions(props.baseRoute, model);
   const voucherStore = useVoucherState();
 
   const route = useRoute();

@@ -9,36 +9,23 @@
     expandable
     @row-dbl-click="gotoPreview"
   >
-    <template #cell-no="{ item }">
-      <span>{{ item.no }}</span>
-      <notification-badge :count="item.notificationCount" />
-    </template>
-
-    <template #filter-typeId="{ item }">
-      <custom-select
-        v-model="item.value"
-        :options="helper.getEnumOptions(voucherType, 'voucherType')"
-        @update:model-value="reloadData"
-      />
-    </template>
-
-    <template #filter-systemId="{ item }">
-      <custom-select
-        v-model="item.value"
-        :options="helper.getEnumOptions(subSystem, 'subSystem')"
-        @update:model-value="reloadData"
-      />
-    </template>
-
     <template #cell-subject="{ item }">
       {{ item.subject }}
       <div>
         <small>{{ item.summary }}</small>
       </div>
-      <contract-badge
-        :title="item.contractTitle"
-        :id="item.contractId"
-      />
+      <q-badge
+        text-color="white"
+        class="bluegrey-gradient"
+        v-if="item.contractTitle"
+      >
+        {{ item.contractTitle }}
+        <q-tooltip
+          class="custom-tooltip text-body1 no-letter-spacing"
+        >
+          قرارداد
+        </q-tooltip>
+      </q-badge>
     </template>
 
     <template #cell-date="{ item }">
@@ -49,28 +36,6 @@
       <span class="text-weight-600">
         {{ helper.formatNumber(item.amount) }}
       </span>
-    </template>
-
-    <template #cell-typeId="{ item }">
-      {{
-        $t(
-          `shared.voucherType.${helper.getEnumType(
-            item.typeId,
-            voucherType
-          )}`
-        )
-      }}
-    </template>
-
-    <template #cell-systemId="{ item }">
-      {{
-        $t(
-          `shared.subSystem.${helper.getEnumType(
-            item.systemId,
-            subSystem
-          )}`
-        )
-      }}
     </template>
 
     <template #footer-subtotal="{ selectedRows }">
@@ -108,19 +73,15 @@
 <script setup>
   import { computed } from "vue";
   import { useRouter } from "vue-router";
-  import { voucherType, subSystem } from "src/constants";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import Preview from "../../shared/preview/IndexView.vue";
-  import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
-  import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
-    baseRoute: { type: String, default: "acc/voucher" },
+    baseRoute: String,
   });
 
   const router = useRouter();
@@ -130,7 +91,7 @@
   }
 
   function gotoPreview(row) {
-    router.push(`/acc/voucher/preview/${row.id}`);
+    router.push(`/${props.baseRoute}/preview/${row.id}`);
   }
 
   const colspan = computed(

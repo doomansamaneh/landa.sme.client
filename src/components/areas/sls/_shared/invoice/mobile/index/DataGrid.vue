@@ -37,15 +37,7 @@
 
         <div class="row justify-between items-center">
           <div class="col row items-center">
-            <span v-if="item.taxId">
-              <q-icon name="o_check" color="primary" size="xs">
-                <q-tooltip
-                  class="accent text-body1 no-letter-spacing"
-                >
-                  ارسال به سامانه مودیان
-                </q-tooltip>
-              </q-icon>
-            </span>
+            <tax-badge :taxt-id="item.taxId" />
             <span class="text-caption text-on-dark">شماره:</span>
             <span class="text-caption text-on-dark">
               {{ item.no }}
@@ -164,37 +156,10 @@
 
       <q-card-section class="q-pt-md q-pb-none q-px-sm">
         <div class="row items-center q-gutter-sm">
-          <span
-            v-if="item.notificationCount"
-            class="border-radius-sm bg-secondary text-white label"
-          >
-            <q-icon name="o_email" color="white" size="xs">
-              <q-tooltip
-                class="positive text-body1 no-letter-spacing"
-              >
-                فرستاده شده: {{ item.notificationCount }}
-              </q-tooltip>
-            </q-icon>
-          </span>
-
-          <span
-            class="border-radius-sm bg-orange-2 text-caption text-red label"
-          >
-            {{ item.statusTitle }}
-          </span>
-
-          <span
-            class="border-radius-sm primary-gradient text-caption text-white label"
-          >
-            {{ item.typeTitle }}
-          </span>
-
-          <span
-            v-if="item.contractTitle"
-            class="border-radius-sm primary-gradient text-caption text-white label"
-          >
-            {{ item.contractTitle }}
-          </span>
+          <notification-badge :count="item.notificationCount" />
+          <status-badge :title="item.statusTitle" />
+          <type-badge :title="item.typeTitle" />
+          <contract-badge :title="item.contractTitle" />
         </div>
       </q-card-section>
     </template>
@@ -241,6 +206,11 @@
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import ItemSheet from "./DataGridItemSheet.vue";
   import DataGridSummary from "./DataGridSummary.vue";
+  import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
+  import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
+  import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
+  import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
+  import StatusBadge from "src/components/areas/_shared/badges/StatusBadge.vue";
 
   const props = defineProps({
     tableStore: Object,
@@ -269,9 +239,5 @@
     font-size: 14px;
     letter-spacing: 0;
     color: #697588;
-  }
-
-  .label {
-    padding: 2px 12px;
   }
 </style>

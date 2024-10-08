@@ -22,16 +22,14 @@
 </template>
 
 <script setup>
-  import BodySection from "src/components/areas/acc/voucher/shared/preview/_BodySection.vue";
-  import DetailSection from "src/components/areas/acc/voucher/shared/preview/_DetailSection.vue";
+  import { computed } from "vue";
+  import { useRoute, useRouter } from "vue-router";
+  import { useVoucherState } from "../../../_composables/useVoucherState";
+
+  import BodySection from "../../shared/preview/_BodySection.vue";
+  import DetailSection from "../../shared/preview/_DetailSection.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
-
-  import { ref, computed, onMounted } from "vue";
-  import { useRoute, useRouter } from "vue-router";
-  import { helper } from "src/helpers";
-  import { useFormActions } from "src/composables/useFormActions";
-  import { useVoucherState } from "../../../_composables/useVoucherState";
 
   const props = defineProps({
     item: Object,
@@ -39,11 +37,10 @@
     voucherItemId: String,
     title: String,
     inside: Boolean,
-    model: Object
+    model: Object,
+    baseRoute: String,
   });
 
-  const baseRoute = "acc/voucher";
-  const crudStore = useFormActions(baseRoute, props.model);
   const voucherStore = useVoucherState();
 
   const route = useRoute();
@@ -57,8 +54,4 @@
     voucherStore.state.firstLoad.value = false;
     router.back();
   }
-
-  onMounted(() => {
-    crudStore.getById(id.value);
-  });
 </script>

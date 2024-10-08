@@ -89,27 +89,9 @@
         </div>
       </div>
       <div class="row q-mt-lg q-gutter-xs">
-        <div v-if="model.typeTitle">
-          <span
-            class="border-radius-sm primary-gradient text-caption text-white label"
-          >
-            {{ model.typeTitle }}
-          </span>
-        </div>
-        <div v-if="model.contractTitle">
-          <span
-            class="border-radius-sm bluegrey-gradient text-caption text-white label"
-          >
-            {{ model.contractTitle }}
-          </span>
-        </div>
-        <div v-if="model.statusTitle">
-          <span
-            class="border-radius-sm orange-gradient text-caption text-white label"
-          >
-            {{ model.statusTitle }}
-          </span>
-        </div>
+        <status-badge :title="model.statusTitle" />
+        <type-badge :title="model.typeTitle" />
+        <contract-badge :title="model.contractTitle" />
       </div>
     </q-card-section>
 
@@ -130,6 +112,7 @@
                         {{ helper.formatNumber(item.quantity) }}
                       </div>
                     </q-badge>
+                    ({{ item.productUnitTitle }})
                   </div>
                 </div>
               </div>
@@ -209,6 +192,9 @@
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import DetailSection from "../../shared/preview/_DetailSection.vue";
+  import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
+  import StatusBadge from "src/components/areas/_shared/badges/StatusBadge.vue";
+  import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
 
   const props = defineProps({
     model: Object,

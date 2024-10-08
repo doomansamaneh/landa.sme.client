@@ -8,7 +8,7 @@
   >
     <template #buttons>
       <q-btn
-        :to="`/trs/receipt/edit/${id}`"
+        :to="`/${baseRoute}/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -20,7 +20,7 @@
         <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
       </q-btn>
       <q-btn
-        :to="`/trs/receipt/copy/${id}`"
+        :to="`/${baseRoute}/copy/${id}`"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -93,12 +93,12 @@
     item: Object,
     title: String,
     inside: Boolean,
+    baseRoute: { type: String, default: "trs/payment" },
   });
 
-  const baseRoute = "trs/payment";
   const model = ref(null);
 
-  const crudStore = useFormActions(baseRoute, model);
+  const crudStore = useFormActions(props.baseRoute, model);
 
   const route = useRoute();
   const router = useRouter();

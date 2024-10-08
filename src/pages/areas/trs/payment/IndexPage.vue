@@ -1,7 +1,10 @@
 <template>
-  <data-grid toolbar />
+  <data-grid
+    toolbar
+    :title="$t('main-menu-items.Trs_Payment_View')"
+  />
 </template>
 
 <script setup>
-  import DataGrid from "src/components/areas/trs/payment/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/areas/trs/payment/shared/index/DataGridContainer.vue";
 </script>

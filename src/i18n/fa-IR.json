@@ -286,6 +286,7 @@
       "total": "جمع کل",
       "price": "مبلغ",
       "vat": "ارزش افزوده",
+      "discount": "تخفیف",
       "selectedRows": "انتخاب شده‌ها",
       "convertToInvoice": "تبدیل به فاکتور",
       "exportExcel": "تبدیل به اکسل",

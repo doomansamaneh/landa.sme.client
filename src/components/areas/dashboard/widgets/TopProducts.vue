@@ -110,13 +110,14 @@
                   {{ item.productCode }} - {{ item.productTitle }}
                 </span>
                 <span class="text-body3 no-letter-spacing">
-                  قیمت فروش : {{ helper.formatNumber(item.price) }}
+                  قیمت فروش: {{ helper.formatNumber(item.price) }}
                 </span>
                 <span class="text-body3 no-letter-spacing">
-                  جمع کل :
-                  <strong>
+                  {{ $t("shared.labels.total") }}:
+                  <strong class="q-px-xs">
                     {{ helper.formatNumber(item.amount) }}
                   </strong>
+                  <span>({{ item.productUnitTitle }})</span>
                 </span>
               </div>
               <div class="col row justify-end items-center">

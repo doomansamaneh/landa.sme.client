@@ -19,11 +19,7 @@
           </div>
         </div>
         <div class="row col justify-end q-gutter-sm">
-          <span
-            class="border-radius-sm red-gradient text-caption text-white label"
-          >
-            {{ model?.rowNo }}
-          </span>
+          <row-no-badge :no="model?.rowNo" />
         </div>
       </div>
     </q-card-section>
@@ -37,32 +33,29 @@
         </span>
       </div>
       <div class="row q-gutter-xs">
-        <span
-          v-if="model?.systemId"
-          class="border-radius-sm bluegrey-gradient text-caption text-white label"
-        >
-          {{
-            $t(
-              `shared.subSystem.${helper.getEnumType(
-                model?.systemId,
-                subSystem
-              )}`
-            )
-          }}
-        </span>
-        <span
-          v-if="model?.typeId"
-          class="border-radius-sm primary-gradient text-caption text-white label"
-        >
-          {{
+        <type-badge
+          :title="
             $t(
               `shared.voucherType.${helper.getEnumType(
                 model?.typeId,
                 voucherType
               )}`
             )
-          }}
-        </span>
+          "
+        />
+
+        <system-badge
+          :title="
+            $t(
+              `shared.subSystem.${helper.getEnumType(
+                model?.systemId,
+                subSystem
+              )}`
+            )
+          "
+        />
+
+        <contract-badge :title="model?.contractTitle" />
       </div>
     </q-card-section>
 
@@ -112,7 +105,7 @@
             )
           }}
           <span class="text-caption no-letter-spacing">
-            {{ model.currencyTitle }}
+            {{ model?.currencyTitle }}
           </span>
         </span>
       </div>
@@ -130,10 +123,13 @@
 
 <script setup>
   import { helper } from "src/helpers";
-  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { subSystem, voucherType } from "src/constants";
 
   import DetailSection from "../../shared/preview/_DetailSection.vue";
+  import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
+  import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
+  import SystemBadge from "src/components/areas/_shared/badges/SystemBadge.vue";
+  import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
 
   const props = defineProps({
     model: Object,
@@ -143,12 +139,4 @@
     showReceipt: Boolean,
     taxApi: Boolean,
   });
-
-  const appConfigStore = useAppConfigModel();
 </script>
-
-<style lang="scss" scoped>
-  .label {
-    padding: 2px 12px;
-  }
-</style>
