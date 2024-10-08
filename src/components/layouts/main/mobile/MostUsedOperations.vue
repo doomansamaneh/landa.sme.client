@@ -13,7 +13,7 @@
     transition-hide="slide-down"
   >
     <q-card>
-      <q-card-section class="q-pa-lg">
+      <q-card-section class="q-px-lg q-pt-lg q-pb-md">
         <div class="flex items-center justify-between">
           <div class="text-on-dark text-body2 text-bold">
             <q-icon
