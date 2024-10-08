@@ -17,6 +17,7 @@
     "@quasar/extras": "^1.16.4",
     "apexcharts": "^3.46.0",
     "axios": "^1.2.1",
+    "caniuse-lite": "^1.0.30001667",
     "mitt": "^3.0.1",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",

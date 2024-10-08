@@ -1,7 +1,7 @@
 <template>
   <div :style="toolbarMargin">
     <q-page-sticky
-      class="z-1"
+      class="bg-main z-1"
       :style="inside"
       position="top"
       expand

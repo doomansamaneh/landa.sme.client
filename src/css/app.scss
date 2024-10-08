@@ -81,12 +81,11 @@
   $hover-dark: map-get($theme-colors, secondary);
   $bg-main: map-get($theme-colors, bg-main);
 
-  .body--light.theme--#{$theme-name} {
+  .body--light.theme--#{"#{$theme-name}"} {
     @include theme-light;
   }
 
-  .body--dark.theme--#{$theme-name} {
+  .body--dark.theme--#{"#{$theme-name}"} {
     @include theme-dark;
   }
 }
-
