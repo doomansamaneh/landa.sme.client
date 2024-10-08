@@ -1,7 +1,7 @@
 <template>
   <q-header
     bordered
-    class="q-py-sm q-px-md"
+    class="q-py-xs q-px-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar class="text-dark row justify-between no-padding q-gutter-xs">
@@ -9,7 +9,7 @@
         class="text-subtitle2 text-bold row justify-start items-center"
       >
         <div class="column">
-          <span style="width: 130px" class="ellipsis text-on-dark">
+          <span style="width: 155px" class="ellipsis text-on-dark">
             {{ businessStore.get()?.title }}
           </span>
           <today-date />

@@ -1,10 +1,11 @@
 <template>
-  <div style="margin-bottom: 48px">
+  <q-scroll-observer @scroll="onScroll" />
+  <div style="margin-bottom: 40px">
     <q-page-sticky
-      class="bg-main z-1 q-py-xs"
+      class="bg-main z-1"
       position="top"
       expand
-      :class="isAtTop ? '' : 'mobile-toolbar-gradient'"
+      :class="scroll"
     >
       <q-toolbar style="padding-left: 20px; padding-right: 20px">
         <div
@@ -249,7 +250,8 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, onUnmounted } from "vue";
+  import { ref, computed } from "vue";
+  import { useCheckDialogOpen } from "src/composables/useCheckDialogOpen";
 
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
@@ -270,7 +272,9 @@
 
   const bottomSheetStatus = ref(false);
   const serachDialog = ref(false);
-  const isAtTop = ref(true);
+  const scroll = ref({});
+
+  const checkDialog = useCheckDialogOpen();
 
   const sortSheetStatus = ref(false);
 
@@ -299,19 +303,12 @@
     sortSheetStatus.value = true;
   };
 
-  const handleScroll = () => {
-    const currentPosition =
-      window.scrollY || document.documentElement.scrollTop;
-    isAtTop.value = currentPosition === 0;
+  const onScroll = (details) => {
+    scroll.value =
+      details.position.top || checkDialog.hasScrollbarClass.value
+        ? "desktop-toolbar-gradient"
+        : "bg-main";
   };
-
-  onMounted(() => {
-    window.addEventListener("scroll", handleScroll);
-  });
-
-  onUnmounted(() => {
-    window.removeEventListener("scroll", handleScroll);
-  });
 </script>
 
 <style lang="scss">

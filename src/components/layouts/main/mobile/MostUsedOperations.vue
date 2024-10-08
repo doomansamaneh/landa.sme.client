@@ -1,11 +1,11 @@
 <template>
-  <q-btn round dense unelevated @click="toggleStatus">
+  <q-btn size="10px" round dense unelevated @click="toggleStatus">
     <q-icon name="o_bolt" size="24px" color="orange-7" />
   </q-btn>
 
   <q-dialog
     ref="bottomSheet"
-    :model-value="status"
+    v-model="status"
     auto-close
     full-width
     position="bottom"
@@ -16,11 +16,25 @@
       <q-card-section class="q-pa-lg">
         <div class="flex items-center justify-between">
           <div class="text-on-dark text-body2 text-bold">
-            <q-icon class="q-mr-sm" name="o_bolt" size="sm" color="orange-7" />
+            <q-icon
+              class="q-mr-sm"
+              name="o_bolt"
+              size="sm"
+              color="orange-7"
+            />
             <span class="text-bold text-on-dark">دسترسی سریع</span>
           </div>
 
-          <q-btn unelevated round dense icon="close" v-close-popup />
+          <q-btn
+            size="8px"
+            round
+            unelevated
+            text-color="white"
+            class="red-gradient red-shadow"
+            v-close-popup
+          >
+            <q-icon size="16px" name="o_close" />
+          </q-btn>
         </div>
       </q-card-section>
 
