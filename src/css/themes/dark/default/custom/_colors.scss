@@ -24,22 +24,13 @@
       lighten($primary, 8)
     );
   }
-  .mobile-toolbar-gradient {
-    background: linear-gradient(
-      180deg,
-      #{$dark-page}20,
-      lighten($dark-page, 5)
-    );
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  .desktop-toolbar-gradient {
-    background: linear-gradient(
-      180deg,
-      #{$dark-page}20,
-      lighten($dark-page, 5)
-    );
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
+  // .toolbar-glass-effect {
+  //   background: linear-gradient(
+  //     180deg,
+  //     #{$dark-page}80,
+  //     lighten($dark-page, 5)
+  //   );
+  //   backdrop-filter: blur(10px);
+  //   -webkit-backdrop-filter: blur(10px);
+  // }
 }
