@@ -1,5 +1,11 @@
 @mixin breakpoints-light {
   @media (max-width: $breakpoint-xs-max) {
+    .toolbar-glass-effect {
+      background: linear-gradient(180deg, #{$white}, #{$primary}16);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
     .main-container {
       padding-left: 20px;
       padding-right: 20px;
@@ -24,6 +30,16 @@
         border-radius: 50px;
       }
     }
+
+    .toolbar-glass-effect {
+      background: linear-gradient(
+        180deg,
+        #{$bg-main}95,
+        #{$primary}16
+      );
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
   }
 
   @media (min-width: $breakpoint-md-min) {
@@ -43,6 +59,16 @@
     }
     .change-password-container {
       width: 900px;
+    }
+
+    .toolbar-glass-effect {
+      background: linear-gradient(
+        180deg,
+        #{$bg-main}95,
+        #{$primary}16
+      );
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
   }
 }

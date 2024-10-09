@@ -1,6 +1,15 @@
 @mixin breakpoints-dark {
-
   @media (max-width: $breakpoint-xs-max) {
+    .toolbar-glass-effect {
+      background: linear-gradient(
+        180deg,
+        #{$dark-page}80,
+        lighten($dark-page, 5)
+      );
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
     .main-container {
       padding-left: 20px;
       padding-right: 20px;
@@ -11,8 +20,7 @@
       padding-right: 8px;
       display: flex;
       justify-content: flex-end;
-  }
-
+    }
   }
 
   @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {
@@ -27,9 +35,18 @@
       }
     }
 
+    .toolbar-glass-effect {
+      background: linear-gradient(
+        180deg,
+        #{$dark-page}80,
+        lighten($dark-page, 5)
+      );
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
   }
 
-  @media (min-width: $breakpoint-md-min)  {
+  @media (min-width: $breakpoint-md-min) {
     .main-container {
       padding-left: 38px;
       padding-right: 38px;
@@ -40,7 +57,7 @@
         border-radius: 50px;
       }
     }
-    
+
     .theme-settings-container {
       width: 900px;
     }
@@ -48,6 +65,14 @@
       width: 900px;
     }
 
+    .toolbar-glass-effect {
+      background: linear-gradient(
+        180deg,
+        #{$dark-page}80,
+        lighten($dark-page, 5)
+      );
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
   }
-
 }

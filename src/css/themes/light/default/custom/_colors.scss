@@ -25,14 +25,10 @@
     );
   }
 
-  .mobile-toolbar-gradient {
-    background: linear-gradient(180deg, $white 40%, #{$primary}16);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-  }
-  .desktop-toolbar-gradient {
-    background: linear-gradient(180deg, $bg-main, #{$primary}10);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
+  // .toolbar-glass-effect {
+  //   background: linear-gradient(180deg, #{$bg-main}95, #{$primary}16);
+  //   backdrop-filter: blur(10px);
+  //   -webkit-backdrop-filter: blur(10px);
+  // }
+ 
 }

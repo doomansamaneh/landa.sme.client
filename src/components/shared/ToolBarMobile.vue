@@ -2,10 +2,10 @@
   <q-scroll-observer @scroll="onScroll" />
   <div style="margin-bottom: 40px">
     <q-page-sticky
-      class="bg-main z-1"
+      :class="scroll"
+      class="z-1"
       position="top"
       expand
-      :class="scroll"
     >
       <q-toolbar style="padding-left: 20px; padding-right: 20px">
         <div
@@ -306,7 +306,7 @@
   const onScroll = (details) => {
     scroll.value =
       details.position.top || checkDialog.hasScrollbarClass.value
-        ? "desktop-toolbar-gradient"
+        ? "toolbar-glass-effect"
         : "bg-main";
   };
 </script>
