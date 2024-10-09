@@ -12,7 +12,7 @@
 
     <mobile
       :title="title"
-      :grid-store="localGridStore"
+      :grid-store="gridStore"
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"

@@ -1,7 +1,7 @@
 <template>
   <data-grid
     :data-table-store="tableStore"
-    create-url="/acc/voucher/create"
+    create-url="`/${baseRoute}/create`"
   >
     <template #header>
       <template></template>
@@ -61,7 +61,7 @@
               <span
                 class="ellipsis-2-lines text-body1 text-bold text-on-dark"
               >
-                {{ item.amount.toLocaleString() }}
+                {{ helper.formatNumber(item.amount) }}
                 <span class="text-caption">
                   {{ item.currencyTitle }}
                 </span>
@@ -105,7 +105,7 @@
       <q-btn
         unelevated
         class="text-on-dark"
-        :to="`/acc/voucher/preview/${item.id}`"
+        :to="`/${baseRoute}/preview/${item.id}`"
       >
         <span class="text-body3 text-bold">
           {{ $t("shared.labels.showDetail") }}
@@ -126,6 +126,7 @@
     v-if="itemSheetStatus"
     :table-store="tableStore"
     :status="itemSheetStatus"
+    :base-route="baseRoute"
     :item="item"
     @hide="hideItemSheet"
   />
@@ -147,6 +148,7 @@
   const props = defineProps({
     tableStore: useDataTable,
     title: String,
+    baseRoute: String,
   });
 
   const item = ref(null);

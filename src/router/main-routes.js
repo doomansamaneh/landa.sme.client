@@ -297,6 +297,12 @@ export default {
             import("pages/areas/crm/customer/PreviewPage.vue"),
           meta: { title: "مخاطب - پیش نمایش" },
         },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/crm/customer/CopyPage.vue"),
+          meta: { title: "مخاطب - کپی مخاطب" },
+        },
       ],
     },
 

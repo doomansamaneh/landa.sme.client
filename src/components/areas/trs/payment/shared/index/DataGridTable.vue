@@ -25,6 +25,6 @@
     title: String,
     tableStore: Object,
     crudStore: Object,
+    baseRoute: { type: String, default: "trs/payment" },
   });
-  const baseRoute = "trs/payment";
 </script>

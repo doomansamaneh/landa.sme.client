@@ -1,5 +1,5 @@
 <template>
-  <desktop toolbar :title="$t('main-menu-items.Trs_Payment_View')" />
+  <desktop toolbar :title="$t('shared.labels.payment')" />
 </template>
 
 <script setup>

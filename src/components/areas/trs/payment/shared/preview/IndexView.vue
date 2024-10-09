@@ -1,93 +1,36 @@
 <template>
   <tool-bar
     :inside="inside"
-    :margin="!inside"
     :title="title"
-    buttons
-    back-button
-  >
-    <template #buttons>
-      <q-btn
-        :to="`/${baseRoute}/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-        <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
-      </q-btn>
-      <q-btn
-        :to="`/${baseRoute}/copy/${id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
-      <q-btn
-        @click="crudStore.deleteById(id)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-        {{ $t("shared.labels.delete") }}
-      </q-btn>
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        {{ $t("shared.labels.print") }}
-      </q-btn>
-    </template>
-  </tool-bar>
+    :base-route="baseRoute"
+    :model="model"
+  />
 
-  <div class="row q-col-gutter-lg" style="margin-top: -20px">
-    <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card bordered>
-        <div id="invoicePreview">
-          <header-section :model="model" title="پرداخت" />
-
-          <q-card-section class="q-gutter-y-sm_">
-            <body-section :model="model" />
-            <footer-section :model="model">
-              <template #cell1>مهر و امضا دریافت کننده</template>
-              <template #cell2>مهر و امضا پرداخت کننده</template>
-            </footer-section>
-          </q-card-section>
-        </div>
-      </q-card>
-    </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
-      <detail-section :model="model" />
-    </div>
-  </div>
+  <mobile
+    v-if="$q.screen.xs"
+    :model="model"
+    :base-route="baseRoute"
+    :title="title"
+    :type="documentType.payment"
+  />
+  <desktop
+    v-else
+    :model="model"
+    :base-route="baseRoute"
+    :title="title"
+    :type="documentType.payment"
+  />
 </template>
 
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
-  import { helper } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
+  import { documentType } from "src/constants";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
-  import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
-  import BodySection from "./_BodySection.vue";
-  import DetailSection from "./_DetailSection.vue";
+  import ToolBar from "./ToolBar.vue";
+  import Mobile from "../../mobile/preview/IndexView.vue";
+  import Desktop from "../../desktop/preview/IndexView.vue";
 
   const props = defineProps({
     item: Object,
@@ -97,7 +40,6 @@
   });
 
   const model = ref(null);
-
   const crudStore = useFormActions(props.baseRoute, model);
 
   const route = useRoute();
@@ -106,7 +48,6 @@
   const id = computed(() => props.item?.id ?? route.params.id);
 
   function deleteCallBack() {
-    //voucherStore.state.firstLoad.value = false;
     router.back();
   }
 

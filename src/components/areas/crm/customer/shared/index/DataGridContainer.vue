@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-  import { useVoucherState } from "src/components/areas/acc/_composables/useVoucherState";
+  import { useCustomerState } from "src/components/areas/crm/_composables/useCustomerState";
   import { useDataTable } from "src/composables/useDataTable";
 
   import ToolbarContainer from "./ToolbarContainer.vue";
@@ -23,15 +23,13 @@
   const props = defineProps({
     title: String,
     toolbar: Boolean,
-    dataSource: { type: String, default: "acc/voucher/getGridData" },
+    dataSource: { type: String, default: "crm/customer/getGridData" },
   });
 
-  const baseRoute = "acc/voucher";
-  const voucherStore = useVoucherState();
-  //const gridStore = useBaseInfoGrid(quoteStore);
+  const baseRoute = "crm/customer";
+  const gridStore = useCustomerState();
   const tableStore = useDataTable({
     dataSource: props.dataSource,
-    //store: gridStore,
-    store: voucherStore,
+    store: gridStore,
   });
 </script>

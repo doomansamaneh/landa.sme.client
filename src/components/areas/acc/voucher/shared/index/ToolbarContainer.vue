@@ -42,12 +42,12 @@
     toolbar: Boolean,
     title: String,
     tableStore: useDataTable,
+    baseRoute: String,
   });
 
-  const baseRoute = "acc/voucher";
   const $q = useQuasar();
 
-  const crudStore = useFormActions(baseRoute);
+  const crudStore = useFormActions(props.baseRoute);
   const operationStore = useAccountingOperations();
 
   const selectedIds = computed(() =>
@@ -56,14 +56,14 @@
 
   function downloadPdf() {
     downloadManager.downloadGet(
-      `${baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
+      `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
       "landa-voucher"
     );
   }
 
   function downloadBatchPdf() {
     downloadManager.downloadPost(
-      `${baseRoute}/GenerateBatchPdf`,
+      `${props.baseRoute}/GenerateBatchPdf`,
       props.tableStore.pagination.value,
       "landa-voucher"
     );

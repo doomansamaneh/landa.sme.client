@@ -18,6 +18,7 @@
       :selected-ids="selectedIds"
       buttons
       margin
+      @reorder="operationStore.reorder(tableStore.reloadData)"
       @download-pdf="downloadPdf"
       @download-pdf-batch="downloadBatchPdf"
     />
@@ -39,7 +40,7 @@
     toolbar: Boolean,
     title: String,
     tableStore: useDataTable,
-    baseRoute: { type: String, default: "trs/payment" },
+    baseRoute: String,
   });
 
   const $q = useQuasar();
@@ -53,7 +54,7 @@
   function downloadPdf() {
     downloadManager.downloadGet(
       `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-payment"
+      "landa-voucher"
     );
   }
 
@@ -61,7 +62,7 @@
     downloadManager.downloadPost(
       `${props.baseRoute}/GenerateBatchPdf`,
       props.tableStore.pagination.value,
-      "landa-payment"
+      "landa-voucher"
     );
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <desktop toolbar :title="$t('main-menu-items.Trs_Receipt_View')" />
+  <desktop toolbar :title="$t('shared.labels.receipt')" />
 </template>
 
 <script setup>

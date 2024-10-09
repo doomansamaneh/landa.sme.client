@@ -57,20 +57,24 @@
           >
             <slot name="row-header" :item="row"></slot>
 
-            <q-card-section class="q-px-none">
+            <q-card-section class="q-px-xs">
               <slot name="row-body" :item="row">
                 <span v-if="numbered" class="text-on-dark">
                   {{ tableStore.rowIndex(index) }}
                 </span>
+
                 <div
                   v-for="col in gridStore?.columns.value"
                   :key="col.name"
                 >
                   <slot :name="`cell-${col.name}`" :item="row">
-                    <template v-if="col.field">
+                    <div
+                      v-if="col.field && col.label && row[col.field]"
+                      class="q-pa-xs"
+                    >
                       {{ col.label }}:
-                      <div v-html="getColText(row, col)"></div>
-                    </template>
+                      <span v-html="getColText(row, col)"></span>
+                    </div>
                   </slot>
                 </div>
               </slot>

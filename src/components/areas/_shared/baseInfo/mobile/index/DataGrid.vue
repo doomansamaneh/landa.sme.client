@@ -7,7 +7,7 @@
   >
     <template #body="{ item }">
       <q-card flat bordered :class="tableStore?.getRowClass(item)">
-        <q-card-section>
+        <q-card-section class="">
           <span
             class="q-mr-md"
             v-if="
@@ -37,11 +37,24 @@
               class="red-gradient red-shadow no-pointer-events"
             />
           </span>
-          <span v-if="item.code">{{ item.code }} -</span>
-          {{ item.title }}
-          <div>
-            <small class="">{{ item.comment }}</small>
-          </div>
+          <template v-if="item.title">
+            <span v-if="item.code">{{ item.code }} -</span>
+            {{ item.title }}
+            <div>
+              <small class="">{{ item.comment }}</small>
+            </div>
+          </template>
+          <template v-else>
+            <div
+              v-for="col in gridStore.columns?.value"
+              :key="col.name"
+              class="q-py-xs"
+            >
+              <span v-if="col.field && col.label" class="q-px-sm">
+                {{ col.label }}: {{ item[col.field] }}
+              </span>
+            </div>
+          </template>
         </q-card-section>
       </q-card>
     </template>

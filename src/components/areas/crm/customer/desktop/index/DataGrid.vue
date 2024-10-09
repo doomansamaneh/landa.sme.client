@@ -1,108 +1,85 @@
 <template>
-  <q-card bordered>
-    <card-title :title="title" />
-    <q-card-section class="q-px-none">
-      <data-grid
-        ref="dataGrid"
-        :data-source="dataSource"
-        :grid-store="gridStore"
-        separator="horizontal"
-        flat
-        multiSelect
-        numbered
-        bordered_
-        expandable
-        @row-dbl-click="gotoPreview"
-      >
-        <template #filter-typeId="{ item }">
-          <custom-select
-            v-model="item.value"
-            :options="
-              helper.getEnumOptions(customerType, 'customerType')
-            "
-            @update:model-value="reloadData"
-          />
-        </template>
+  <data-grid
+    :data-table-store="tableStore"
+    flat
+    toolbar
+    multiSelect
+    numbered
+    dense
+    expandable
+    @row-dbl-click="gotoPreview"
+  >
+    <template #filter-typeId="{ item }">
+      <custom-select
+        v-model="item.value"
+        :options="helper.getEnumOptions(customerType, 'customerType')"
+        @update:model-value="reloadData"
+      />
+    </template>
 
-        <template #filter-isActive="{ item }">
-          <custom-select
-            v-model="item.value"
-            :options="
-              helper.getEnumType(isActiveOptions, 'isActiveOptions')
-            "
-            @update:model-value="reloadData"
-          />
-        </template>
+    <template #filter-isActive="{ item }">
+      <custom-select
+        v-model="item.value"
+        :options="
+          helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
+        "
+        @update:model-value="reloadData"
+      />
+    </template>
 
-        <template #cell-typeId="{ item }">
-          {{
-            $t(
-              `shared.customerType.${helper.getEnumType(
-                item.typeId,
-                customerType
-              )}`
-            )
-          }}
-        </template>
+    <template #cell-typeId="{ item }">
+      {{
+        $t(
+          `shared.customerType.${helper.getEnumType(
+            item.typeId,
+            customerType
+          )}`
+        )
+      }}
+    </template>
 
-        <template #cell-isActive="{ item }">
-          <is-active :is-active="item.isActive" />
-        </template>
+    <template #cell-isActive="{ item }">
+      <is-active :is-active="item.isActive" />
+    </template>
 
-        <template #cell-actions="{ item }">
-          <row-tool-bar
-            :base-route="baseRoute"
-            :item="item"
-            :table-store="tableStore"
-            :crud-store="crudStore"
-          />
-        </template>
+    <template #cell-actions="{ item }">
+      <row-tool-bar
+        :base-route="baseRoute"
+        :item="item"
+        :table-store="tableStore"
+        :crud-store="crudStore"
+      />
+    </template>
 
-        <template #expand="{ item }">
-          <div class="q-pa-md">
-            <customer-preview :item="item" inside />
-          </div>
-        </template>
-      </data-grid>
-    </q-card-section>
-  </q-card>
+    <template #expand="{ item }">
+      <preview inside :item="item" :base-route="baseRoute" />
+    </template>
+  </data-grid>
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
   import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
-  import { isActiveOptions, customerType } from "src/constants";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { customerType, isActiveOptions } from "src/constants";
 
-  import RowToolBar from "src/components/shared/RowToolBar.vue";
-  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-  import CustomerPreview from "components/areas/crm/customer/shared/preview/IndexView.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import IsActive from "src/components/shared/IsActive.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
+  import Preview from "../../shared/preview/IndexView.vue";
 
   const props = defineProps({
-    gridStore: Object,
-    crudStore: Object,
-    dataSource: String,
-    baseRoute: String,
-    title: String,
+    tableStore: useDataTable,
+    baseRoute: { type: String, default: "acc/voucher" },
   });
 
   const router = useRouter();
-  const dataGrid = ref(null);
 
   async function reloadData() {
-    await tableStore.value.reloadData();
+    await props.tableStore.reloadData();
   }
-
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
   function gotoPreview(row) {
-    router.push(`/crm/customer/preview/${row.id}`);
+    router.push(`/${props.baseRoute}/preview/${row.id}`);
   }
-
-  defineExpose({
-    tableStore,
-  });
 </script>

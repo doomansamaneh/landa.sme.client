@@ -44,34 +44,24 @@
     </template>
 
     <template #row-body="{ item }">
-      <q-card-section class="no-padding">
-        <div class="column q-gutter-sm">
-          <div class="row items-center q-px-sm">
-            <div class="col row">
-              <span
-                class="ellipsis-2-lines text-caption text-on-dark"
-              >
-                {{ item.subject }} {{ item.summary }}
-              </span>
-            </div>
+      <q-card-section class="q-py-none">
+        <div class="column q-gutter-xs">
+          <div>
+            {{ item.customerName }}
           </div>
-
-          <div class="row items-center q-px-sm">
-            <div class="col">
-              <span
-                class="ellipsis-2-lines text-body1 text-bold text-on-dark"
-              >
-                {{ helper.formatNumber(item.amount) }}
-                <span class="text-caption">
-                  {{ item.currencyTitle }}
-                </span>
-              </span>
-            </div>
+          <div class="ellipsis-2-lines text-caption">
+            {{ item.subject }} {{ item.summary }}
+          </div>
+          <div class="ellipsis-2-lines text-body1 text-bold">
+            {{ helper.formatNumber(item.amount) }}
+            <span class="text-caption">
+              {{ item.currencyTitle }}
+            </span>
           </div>
         </div>
       </q-card-section>
 
-      <q-card-section class="q-pt-md q-pb-none q-px-sm">
+      <q-card-section class="q-py-xs">
         <div class="row items-center q-gutter-sm">
           <row-no-badge :no="item.rowNo" />
           <contract-badge :title="item.contractTitle" />

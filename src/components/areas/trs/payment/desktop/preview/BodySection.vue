@@ -15,10 +15,13 @@
             style="
               border-bottom: 1px solid #2d2d2d;
               padding: 5px;
-              width: 120px;
+              width: 70px;
             "
           >
-            پرداخت به:
+            <span v-if="type === documentType.receipt">
+              دریافت از:
+            </span>
+            <span v-else>پرداخت به:</span>
           </td>
           <td style="border-bottom: 1px solid #2d2d2d; padding: 5px">
             {{ model?.customerName }}
@@ -164,8 +167,10 @@
 <script setup>
   import { numberToWords } from "@persian-tools/persian-tools";
   import { helper } from "src/helpers";
+  import { documentType } from "src/constants";
 
   const props = defineProps({
     model: Object,
+    type: documentType,
   });
 </script>
