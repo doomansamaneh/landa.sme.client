@@ -1,9 +1,13 @@
 @mixin breakpoints-light {
   @media (max-width: $breakpoint-xs-max) {
     .toolbar-glass-effect {
-      background: linear-gradient(180deg, #{$white}, #{$primary}16);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: linear-gradient(
+        180deg,
+        #{$white}99,
+        darken($white, 5)
+      );
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
 
     .main-container {
@@ -34,11 +38,11 @@
     .toolbar-glass-effect {
       background: linear-gradient(
         180deg,
-        #{$bg-main}95,
+        #{$bg-main}99,
         #{$primary}16
       );
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
   }
 
@@ -64,11 +68,11 @@
     .toolbar-glass-effect {
       background: linear-gradient(
         180deg,
-        #{$bg-main}95,
+        #{$bg-main}99,
         #{$primary}16
       );
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
   }
 }

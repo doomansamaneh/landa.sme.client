@@ -53,6 +53,26 @@ export const helper = {
     };
   },
 
+  formatPersianDate(dateString) {
+    const persianMonths = [
+      "فروردین",
+      "اردیبهشت",
+      "خرداد",
+      "تیر",
+      "مرداد",
+      "شهریور",
+      "مهر",
+      "آبان",
+      "آذر",
+      "دی",
+      "بهمن",
+      "اسفند",
+    ];
+    const [year, month, day] = dateString.split("/");
+    const persianMonth = persianMonths[parseInt(month, 10) - 1];
+    return `${parseInt(day)} ${persianMonth}`;
+  },
+
   dateToNumber(date) {
     const seconds =
       date.seconds +

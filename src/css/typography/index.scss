@@ -2,6 +2,15 @@ html {
   color: #2d2d2d;
 }
 
+.ellipsis {
+  overflow: hidden !important;
+  text-wrap: ellipsis !important;
+  -webkit-line-clamp: 1 !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  white-space: unset !important;
+}
+
 .text-weight-100 {
   font-family: "vazir-thin";
   font-weight: 100;
@@ -49,6 +58,10 @@ html {
 
 .text-caption-sm {
   font-size: 10px;
+}
+
+.text-caption-xs {
+  font-size: 9.7px;
 }
 
 .text-body3 {

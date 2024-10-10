@@ -1,6 +1,129 @@
 <template>
-  <data-grid-summary :table-store="tableStore" />
+  <!-- <data-grid-summary :table-store="tableStore" /> -->
+
   <data-grid
+    :data-table-store="tableStore"
+    :createUrl="`/${baseRoute}/create`"
+    ref="dataGrid"
+  >
+    <template #header>
+      <template></template>
+    </template>
+
+    <template #row-body="{ item }">
+      <div class="col-2 q-mr-sm">
+        <transition name="slide" appear mode="out-in">
+          <q-avatar
+            :key="item.selected"
+            size="48px"
+            text-color="white"
+            :style="
+              !item.selected
+                ? helper.generateAvatarStyle(item.id)
+                : ''
+            "
+            :class="item.selected ? 'primary-gradient' : ''"
+          >
+            <div v-if="!item.selected" class="text-body2 text-bold">
+              {{ helper.getFirstChar(item?.customerName) }}
+            </div>
+            <transition
+              apear name="slide-fade"
+            >
+              <q-icon v-if="item.selected" size="24px" name="check" />
+            </transition>
+          </q-avatar>
+        </transition>
+      </div>
+
+      <div class="col">
+        <div class="row justify-between">
+          <div
+            class="col ellipsis text-body3 no-letter-spacing text-weight-500"
+          >
+            {{ item.customerName }} - {{ item.no }}
+          </div>
+          <div
+            class="col-3 row justify-end text-caption text-weight-300"
+          >
+            {{ helper.formatPersianDate(item.dateString) }}
+          </div>
+        </div>
+
+        <div
+          v-if="item.amount"
+          class="row q-gutter-sm text-body3 text-weight-500"
+        >
+          <div>
+            <span class="text-body2 text-green text-weight-900">
+              +
+            </span>
+            <span>
+              {{ helper.formatNumberReadable(item.amount) }}
+            </span>
+          </div>
+          <div v-if="item.remainedAmount">
+            <span class="text-body2 text-negative text-weight-900">
+              -
+            </span>
+            <span>
+              {{ helper.formatNumberReadable(item.remainedAmount) }}
+            </span>
+          </div>
+          <div v-if="item.payedAmount">
+            <span class="text-body2 text-negative text-weight-900">
+              <q-icon color="positive" name="arrow_downward" />
+            </span>
+            <span>
+              {{ helper.formatNumberReadable(item.payedAmount) }}
+            </span>
+          </div>
+        </div>
+        <div
+          v-if="item.subject"
+          class="col ellipsis text-body3 caption-on-dark"
+        >
+          {{ item.subject }}
+        </div>
+        <div class="row no-wrap">
+          <div class="col q-pt-sm no-wrap">
+            <q-scroll-area style="height: 18px">
+              <div class="row q-gutter-xs no-wrap q-pr-xs">
+                <q-btn
+                  v-if="item?.statusTitle"
+                  padding="1px 9px"
+                  unelevated
+                  class="orange-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg"
+                  style="white-space: nowrap"
+                >
+                  {{ item?.statusTitle }}
+                </q-btn>
+                <q-btn
+                  v-if="item?.typeTitle"
+                  padding="1px 9px"
+                  unelevated
+                  class="primary-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg"
+                  style="white-space: nowrap"
+                >
+                  {{ item?.typeTitle }}
+                </q-btn>
+                <q-btn
+                  v-if="item?.contractTitle"
+                  padding="1px 9px"
+                  unelevated
+                  class="bluegrey-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg"
+                  style="white-space: nowrap"
+                >
+                  {{ item?.contractTitle }}
+                </q-btn>
+              </div>
+            </q-scroll-area>
+          </div>
+        </div>
+      </div>
+    </template>
+  </data-grid>
+  <!-- <data-grid
     :data-table-store="tableStore"
     :createUrl="`/${baseRoute}/create`"
     ref="dataGrid"
@@ -182,7 +305,7 @@
         @click="showItemSheet(item)"
       />
     </template>
-  </data-grid>
+  </data-grid> -->
 
   <item-sheet
     v-if="itemSheetStatus"
@@ -233,11 +356,3 @@
     hideItemSheet,
   });
 </script>
-
-<style lang="scss" scoped>
-  .q-item__label--caption {
-    font-size: 14px;
-    letter-spacing: 0;
-    color: #697588;
-  }
-</style>

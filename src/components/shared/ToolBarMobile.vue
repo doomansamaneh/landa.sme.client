@@ -1,12 +1,7 @@
 <template>
   <q-scroll-observer @scroll="onScroll" />
-  <div style="margin-bottom: 40px">
-    <q-page-sticky
-      :class="scroll"
-      class="z-1"
-      position="top"
-      expand
-    >
+  <div style="margin-bottom: 32px">
+    <q-page-sticky :class="scroll" class="z-1" position="top" expand>
       <q-toolbar style="padding-left: 20px; padding-right: 20px">
         <div
           class="flex items-center"

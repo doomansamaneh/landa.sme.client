@@ -43,7 +43,40 @@
     </q-input>
   </slot>
 
-  <div class="q-pt-md q-col-gutter-md">
+  <div class="column q-gutter-y-sm" style="margin: 0 -8px">
+    <template v-for="row in rows?.value" :key="row.id">
+      <slot name="body" :item="row">
+        <q-card
+          v-touch-hold.capture="() => selectRow(row)"
+          class="border-radius-md"
+          :class="tableStore.getRowClass(row)"
+          v-ripple
+          flat
+        >
+          <q-card-section class="row q-pa-sm">
+            <slot name="row-body" :item="row">
+              <div
+                v-for="col in gridStore?.columns.value"
+                :key="col.name"
+              >
+                <slot :name="`cell-${col.name}`" :item="row">
+                  <div
+                    v-if="col.field && col.label && row[col.field]"
+                    class="q-pa-xs"
+                  >
+                    {{ col.label }}:
+                    <span v-html="getColText(row, col)"></span>
+                  </div>
+                </slot>
+              </div>
+            </slot>
+          </q-card-section>
+        </q-card>
+      </slot>
+    </template>
+  </div>
+
+  <!-- <div class="q-pt-md q-col-gutter-md">
     <template v-for="(row, index) in rows?.value" :key="row.id">
       <div
         @click="setActiveRow(row)"
@@ -91,7 +124,7 @@
         </slot>
       </div>
     </template>
-  </div>
+  </div> -->
 
   <slot name="footer"></slot>
 
@@ -177,6 +210,7 @@
 
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
   import { dataViewDefaultPageSize } from "src/constants";
+  import { helper } from "src/helpers";
 
   const props = defineProps({
     dataSource: String,

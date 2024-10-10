@@ -1,0 +1,23 @@
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active {
+  transition: all 0.2s ease;
+}
+
+.slide-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(4px);
+  opacity: 0;
+}
