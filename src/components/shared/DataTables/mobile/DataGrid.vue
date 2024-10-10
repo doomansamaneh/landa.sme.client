@@ -147,19 +147,20 @@
 
   <div
     v-if="showPagebar"
-    class="row items-center justify-center q-gutter-sm q-mt-md q-mb-xl"
+    class="row items-center justify-center q-gutter-sm q-my-lg"
   >
     <q-btn
       :disable="previousAction"
       unelevated
       rounded
       dense
-      padding="6px 16px"
+      padding="3px 9px"
       text-color="white"
-      class="primary-gradient primary-shadow"
+      class="row primary-gradient primary-shadow items-center"
       @click="previous"
     >
-      <span class="text-body2 no-letter-spacing">
+      <q-icon class="q-pr-xs" size="16px" name="east" />
+      <span class="text-body3 no-letter-spacing">
         {{ $t("shared.labels.previous") }}
       </span>
     </q-btn>
@@ -168,14 +169,15 @@
       unelevated
       rounded
       dense
-      padding="6px 16px"
+      padding="3px 9px"
       text-color="white"
-      class="primary-gradient primary-shadow"
+      class="row primary-gradient primary-shadow items-center"
       @click="next"
     >
-      <span class="text-body2 no-letter-spacing">
+      <span class="text-body3 no-letter-spacing">
         {{ $t("shared.labels.next") }}
       </span>
+      <q-icon class="q-pl-xs" size="16px" name="west" />
     </q-btn>
   </div>
 
