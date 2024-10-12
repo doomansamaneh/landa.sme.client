@@ -98,6 +98,8 @@ export function useWageModel({ baseRoute, preview }) {
       ...currentRow,
       customerId: null,
       customerName: null,
+      id: null,
+      recordVersion: null,
     };
     formItemStore.addNewItem(model.value.wageItems, index, newRow);
   };

@@ -130,7 +130,7 @@
   }
 
   function gotoPreview(row) {
-    router.push(`/acc/voucher/preview/${row.id}`);
+    router.push(`/${props.baseRoute}/preview/${row.id}`);
   }
 
   const colspan = computed(

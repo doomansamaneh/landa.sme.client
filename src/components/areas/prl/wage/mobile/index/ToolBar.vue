@@ -1,17 +1,14 @@
 <template>
-  <toolbar-desktop
+  <tool-bar
     :table-store="tableStore"
     :crud-store="crudStore"
     :base-route="baseRoute"
-    buttons
-    margin
+    :title="title"
+    activation_
+    search-btn
+    sort-btn
   >
-    <template #bootons-edit="{ row }">
-      <menu-button-edit :to="`/${baseRoute}/edit/${row.id}`" />
-      <menu-button-copy :to="`/${baseRoute}/copy/${row.id}`" />
-    </template>
-
-    <template #buttons-custom="{ row }">
+    <template #buttons-custom>
       <template v-if="row">
         <menu-item
           icon="o_save"
@@ -24,26 +21,24 @@
           :title="$t('shared.labels.downloadTax')"
           @click="exportTax(row.id)"
         />
-        <q-separator class="q-my-sm" />
+        <q-separator size="0.5px" class="q-my-sm" />
 
         <menu-item-print @click="downloadPdf(row.id)" />
       </template>
 
       <menu-item
-        icon="o_print"
         :title="$t('shared.labels.printBatch')"
+        icon="o_print"
         @click="downloadBatchPdf"
       />
     </template>
-  </toolbar-desktop>
+  </tool-bar>
 </template>
 
 <script setup>
   import { useDataTable } from "src/composables/useDataTable";
 
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
-  import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
+  import ToolBar from "components/shared/ToolBarMobile.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
 
