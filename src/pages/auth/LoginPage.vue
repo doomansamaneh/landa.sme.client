@@ -2,7 +2,7 @@
   <q-page :class="pageStyle">
     <div class="main-container">
       <login-background v-if="$q.screen.gt.xs" />
-      <q-card class="no-padding_ form-container">
+      <q-card class="border-radius-xl form-container">
         <q-card-section horizontal style="padding: 0 !important">
           <master-section />
           <detail-section />

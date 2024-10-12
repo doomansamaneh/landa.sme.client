@@ -22,12 +22,17 @@
   }
 
   .grid-total {
-    background-color: $primary;
+    background: linear-gradient(
+      310deg,
+      $primary,
+      lighten($primary, 8)
+    );
     color: $white;
   }
 
   .grid-subtotal {
-    background-color: #{$accent}50;
+    color: $white;
+    background: linear-gradient(310deg, $blue-grey-9, $blue-grey-7);
   }
 
   .row-active {

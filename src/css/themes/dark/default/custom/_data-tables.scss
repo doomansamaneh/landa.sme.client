@@ -29,11 +29,15 @@
   // }
 
   .grid-total {
-    background-color: darken($secondary, 10%);
+    background: linear-gradient(
+      310deg,
+      $primary,
+      lighten($primary, 8)
+    );
   }
 
   .grid-subtotal {
-    background-color: #{$secondary}20;
+    background: linear-gradient(310deg, $blue-grey-9, $blue-grey-7);
     color: $white;
   }
 

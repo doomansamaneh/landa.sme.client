@@ -21,7 +21,7 @@
     sm: 8px,
     md: 12px,
     lg: 16px,
-    xl: 24px,
+    xl: 20px,
   );
 
   @each $size, $value in $border-radius-sizes {

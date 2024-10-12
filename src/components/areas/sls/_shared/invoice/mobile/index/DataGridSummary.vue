@@ -1,25 +1,30 @@
 <template>
   <div class="column q-gutter-sm">
-    <q-card class="bordered grid-total">
+    <q-card class="text-white bordered primary-gradient">
+      <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
       <q-card-section>
-        <div class="row items-center q-gutter-sm">
+        <div class="row items-center q-gutter-xs">
           <div class="col-2">
             <q-btn
               round
               dense
               unelevated
-              class="bg-white text-primary text-body1 text-bold no-pointer-events"
+              class="bg-white text-dark text-body1 text-bold no-pointer-events"
             >
               {{ tableStore?.pagination.value.totalItems }}
             </q-btn>
           </div>
 
           <div class="col">
-            <div class="row q-gutter-sm">
-              <div class="text-caption">جمع کل</div>
+            <div class="row q-gutter-xs">
+              <div class="text-caption">جمع کل:</div>
               <div class="text-bold text-white text-caption">
                 {{
-                  helper.formatNumber(
+                  helper.formatNumberReadable(
                     tableStore?.summaryData?.value?.amount
                   )
                 }}
@@ -28,24 +33,26 @@
 
             <div
               v-if="tableStore?.summaryData?.value?.payedAmount"
-              class="row q-gutter-sm q-pt-xs"
+              class="row q-gutter-xs q-pt-xs"
             >
-              <div class="text-caption">دریافت شده</div>
+              <div class="text-caption">دریافت شده:</div>
               <div class="text-bold text-white text-caption">
                 {{
-                  tableStore?.summaryData?.value?.payedAmount.toLocaleString()
+                  helper.formatNumberReadable(
+                    tableStore?.summaryData?.value?.payedAmount
+                  )
                 }}
               </div>
             </div>
 
             <div
               v-if="tableStore?.summaryData?.value?.remainedAmount"
-              class="row q-gutter-sm q-pt-xs"
+              class="row q-gutter-xs q-pt-xs"
             >
-              <div class="text-caption">مانده</div>
+              <div class="text-caption">مانده:</div>
               <div class="text-bold text-white text-caption">
                 {{
-                  helper.formatNumber(
+                  helper.formatNumberReadable(
                     tableStore?.summaryData?.value?.remainedAmount
                   )
                 }}
@@ -61,7 +68,7 @@
       v-if="tableStore?.selectedRows?.value.length > 1"
     >
       <q-card-section>
-        <div class="row items-center q-gutter-sm">
+        <div class="row items-center q-gutter-xs">
           <div class="col-2">
             <q-btn
               round
@@ -73,11 +80,11 @@
             </q-btn>
           </div>
           <div class="col">
-            <div class="row q-gutter-sm">
-              <div class="text-caption">جمع کل</div>
+            <div class="row q-gutter-xs">
+              <div class="text-caption">جمع کل:</div>
               <div class="text-bold text-caption">
                 {{
-                  helper.formatNumber(
+                  helper.formatNumberReadable(
                     helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "amount"
@@ -94,12 +101,12 @@
                   'remainedAmount'
                 )
               "
-              class="row q-gutter-sm q-pt-xs"
+              class="row q-gutter-xs q-pt-xs"
             >
-              <div class="text-caption">مانده</div>
+              <div class="text-caption">مانده:</div>
               <div class="text-bold text-caption">
                 {{
-                  helper.formatNumber(
+                  helper.formatNumberReadable(
                     helper.getSubtotal(
                       tableStore.selectedRows.value,
                       "remainedAmount"
