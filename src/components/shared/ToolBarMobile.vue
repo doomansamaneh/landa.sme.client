@@ -2,7 +2,133 @@
   <q-scroll-observer @scroll="onScroll" />
   <div style="margin-bottom: 32px">
     <q-page-sticky :class="scroll" class="z-1" position="top" expand>
-      <q-toolbar style="padding-left: 20px; padding-right: 20px">
+      <q-toolbar style="padding-left: 16px; padding-right: 16px">
+        <template v-if="selectedIds?.length == 0">
+          <div class="row items-center">
+            <q-btn
+              round
+              class="text-caption q-mr-sm"
+              unelevated
+              dense
+              @click="onBottomSheetShow"
+            >
+              <q-icon name="more_vert" />
+            </q-btn>
+
+            <div class="row items-center">
+              <div
+                class="title-width ellipsis-2-lines text-weight-700 no-letter-spacing"
+                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
+              >
+                <slot name="header-title">
+                  <span class="text-body2 no-letter-spacing">
+                    {{ title }}
+                  </span>
+                  <q-btn
+                    v-if="tableStore?.pagination.value.totalItems > 0"
+                    rounded
+                    unelevated
+                    dense
+                    padding="0px 6px"
+                    outline
+                    :label="tableStore?.pagination.value.totalItems"
+                    class="q-ml-sm bg-dark text-on-dark text-body3 no-pointer-events"
+                  />
+                </slot>
+              </div>
+            </div>
+          </div>
+
+          <q-space />
+
+          <div class="row items-center">
+            <template v-if="sortBtn">
+              <slot name="sort-btn">
+                <q-btn
+                  round
+                  class="text-caption q-mr-sm"
+                  unelevated
+                  dense
+                  v-if="!tableStore?.activeRow?.value"
+                  @click="showSortSheet"
+                >
+                  <q-icon name="sort" />
+                </q-btn>
+              </slot>
+            </template>
+
+            <template v-if="searchBtn">
+              <slot name="search-btn">
+                <q-btn
+                  round
+                  unelevated
+                  dense
+                  class="text-caption"
+                  v-if="!tableStore?.activeRow?.value"
+                  @click="showSearchDialog"
+                >
+                  <slot name="search-btn-icon">
+                    <q-icon name="o_filter_alt" />
+                  </slot>
+                </q-btn>
+              </slot>
+            </template>
+          </div>
+        </template>
+
+        <template v-if="selectedIds?.length > 0">
+          <div class="row items-center q-gutter-sm">
+            <q-btn
+              round
+              class="text-caption"
+              unelevated
+              dense
+              @click="onBottomSheetShow"
+            >
+              <q-icon name="more_vert" />
+            </q-btn>
+            <q-btn
+              class="text-caption"
+              round
+              unelevated
+              no-caps
+              @click="
+                crudStore.deleteBatch(
+                  selectedIds,
+                  tableStore.reloadData
+                )
+              "
+            >
+              <q-icon name="o_delete" />
+            </q-btn>
+            <q-btn class="text-caption" round unelevated no-caps>
+              <q-icon name="o_edit" />
+            </q-btn>
+          </div>
+
+          <q-space />
+
+          <div class="row items-center q-gutter-sm">
+            <q-btn
+              padding="0 9px"
+              rounded
+              outline
+              class="text-body2 text-on-dark no-letter-spacing q-ml-sm bg-dark no-pointer-events"
+            >
+              {{ selectedIds?.length }}
+            </q-btn>
+            <q-btn
+              round
+              unelevated
+              class="text-caption text-on-dark"
+              icon="close"
+              @click="deselect"
+            />
+          </div>
+        </template>
+      </q-toolbar>
+
+      <!-- <q-toolbar style="padding-left: 20px; padding-right: 20px">
         <div
           class="flex items-center"
           :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''"
@@ -166,7 +292,7 @@
             </q-btn>
           </slot>
         </template>
-      </q-toolbar>
+      </q-toolbar> -->
     </q-page-sticky>
   </div>
 

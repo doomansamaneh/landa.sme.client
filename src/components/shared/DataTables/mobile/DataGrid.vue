@@ -43,7 +43,7 @@
     </q-input>
   </slot>
 
-  <div class="column q-gutter-y-sm" style="margin: 0 -8px">
+  <div class="_column q-gutter-y-sm" style="margin: 0">
     <template v-for="row in rows?.value" :key="row.id">
       <slot name="body" :item="row">
         <q-card
