@@ -1,0 +1,44 @@
+@mixin boy-light {
+  .clock {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #d40000;
+    position: absolute;
+    right: 16px;
+    top: 24px;
+  }
+
+  .clock:before {
+    background-color: $white;
+  }
+
+  .pointer-min {
+    background-color: #d40000;
+  }
+
+  .pointer-hour {
+    background-color: #2d2d2d;
+  }
+
+  .pointer {
+    background-color: $white;
+    border: 3px solid #2d2d2d;
+  }
+
+  .marker-top {
+    background-color: #2d2d2d;
+  }
+
+  .marker-right {
+    background-color: #2d2d2d;
+  }
+
+  .marker-bottom {
+    background-color: #2d2d2d;
+  }
+
+  .marker-left {
+    background-color: #2d2d2d;
+  }
+}

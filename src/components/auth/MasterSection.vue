@@ -21,13 +21,6 @@
             ثبت‌نام
           </q-btn>
         </div>
-        <div
-          class="text-body1 line-height-sm no-letter-spacing q-mb-lg"
-        >
-          نام‌کاربری و رمز عبور خود را وارد کنید، اگر رمز یا نام
-          کاربری خود را فراموش کرده اید بر روی پیوندی به همین نام کلیک
-          کنید.
-        </div>
       </div>
       <q-form class="login-form" @submit="authenticate">
         <div class="column q-gutter-md text-on-dark">
@@ -43,6 +36,7 @@
               hide-bottom-space
               v-model="userName"
               dense
+              rounded
               lazy-rules
               outlined
               input-class="text-body1 no-letter-spacing"
@@ -73,6 +67,7 @@
                 v-model="password"
                 hide-bottom-space
                 outlined
+                rounded
                 input-class="text-body1 no-letter-spacing"
                 :type="isPwd ? 'password' : 'text'"
                 dense
@@ -115,6 +110,7 @@
             <div class="col-md-4 col-sm-4 col-xs-6">
               <q-input
                 v-model="captcha"
+                rounded
                 inputmode="numeric"
                 type="number"
                 outlined
@@ -143,7 +139,8 @@
                 v-if="authStore.captchaToken?.imageBase64"
                 :src="captchaSource"
                 alt="Captcha Image"
-                class="captcha rounded-borders bordered"
+                class="captcha bordered"
+                style="border-radius: 42px"
               />
             </div>
           </div>

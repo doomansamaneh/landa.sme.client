@@ -1,14 +1,19 @@
 @mixin login-light {
   .login-card {
     background: $white;
+    width: 850px;
+    border-radius: 48px;
   }
 
   .login-card-pic {
-    background-color: $blue-grey-2;
+    background-color: $white;
   }
 
   .boy-animation-filter {
     filter: drop-shadow(0 0 15px #00000012);
+    border: 1px solid #00000047;
+    border-radius: 8px;
+    background-color: whitesmoke;
   }
 
   .logo {
@@ -62,10 +67,6 @@
       align-items: center;
       outline: none;
     }
-  }
-
-  .login-card {
-    width: 970px;
   }
 
   .captcha {

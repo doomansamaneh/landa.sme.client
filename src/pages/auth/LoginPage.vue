@@ -2,10 +2,14 @@
   <q-page :class="pageStyle">
     <div class="main-container">
       <login-background v-if="$q.screen.gt.xs" />
-      <q-card class="border-radius-xl form-container">
+      <q-card
+        class="login-card"
+        :bordered="$q.screen.gt.xs"
+        :flat="$q.screen.xs"
+      >
         <q-card-section horizontal style="padding: 0 !important">
           <master-section />
-          <detail-section />
+          <detail-section v-if="$q.screen.gt.xs" />
         </q-card-section>
       </q-card>
     </div>
@@ -13,6 +17,7 @@
 </template>
 
 <script setup>
+  import { onMounted } from "vue";
   import { useQuasar } from "quasar";
 
   import LoginBackground from "src/assets/LoginBackground.vue";
@@ -24,4 +29,8 @@
   const pageStyle = $q.screen.gt.xs
     ? "flex full-screen items-center justify-center"
     : "q-pt-lg";
+
+  onMounted(() => {
+    $q.dark.set(false);
+  });
 </script>

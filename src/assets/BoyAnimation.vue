@@ -1,10 +1,5 @@
 <template>
   <div class="stage">
-    <div class="table">
-      <div class="row justify-center items-center" style="margin-top: 30px;">
-        <img width="250px" src="./about-us-header.png" alt="">
-      </div>
-    </div>
     <div class="pc"></div>
     <div class="cup"></div>
     <div class="cup-cover"></div>
@@ -59,33 +54,14 @@ const direction = () => {
 
 <style lang="scss" scoped>
 .stage {
-  height: 500px;
+  height: 350px;
   position: relative;
-}
-
-.stage:after {
-  background-color: #eae4df;
-  height: 100px;
-  width: 100%;
-  position: absolute;
-  content: '';
-  bottom: 0;
-}
-
-.table {
-  position: absolute;
-  bottom: 92px;
-  width: 100%;
-  height: 8px;
-  background-color: #caa17f;
-  z-index: 1;
-  border-radius: 20px;
 }
 
 .pc {
   z-index: 2;
   position: absolute;
-  bottom: 100px;
+  bottom: 0px;
   width: 142px;
   height: 98px;
   background-color: #c0c0c2;
@@ -126,7 +102,7 @@ const direction = () => {
   // right: 50%;
   -webkit-transform: translateX(-50%) translateY(0) translateZ(0);
   transform: translateX(-50%) translateY(0) translateZ(0);
-  bottom: 198px;
+  bottom: 90px;
   -webkit-animation: guyMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
   animation: guyMove 3500ms cubic-bezier(0.4, 0, 1, 1) infinite alternate;
 }
@@ -526,7 +502,7 @@ const direction = () => {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #eae4df;
+  background-color: #d40000;
   position: absolute;
   right: 16px;
   top: 24px;
@@ -536,7 +512,7 @@ const direction = () => {
   content: '';
   width: 66px;
   height: 66px;
-  background-color: #f6f7f8;
+  // background-color: #f6f7f8;
   border-radius: 50%;
   position: absolute;
   top: 7px;
@@ -548,7 +524,7 @@ const direction = () => {
   height: 22px;
   width: 4px;
   border-radius: 0 0 50px 50px;
-  background-color: #e0dddb;
+  // background-color: #d40000;
   position: absolute;
   left: 50%;
   top: calc(50% + 10px);
@@ -584,7 +560,7 @@ const direction = () => {
   width: 14px;
   height: 4px;
   border-radius: 50px 0 0 50px;
-  background-color: #e0dddb;
+  // background-color: $white;
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -601,8 +577,8 @@ const direction = () => {
   transform: translateX(-50%) translateY(-50%);
   width: 10px;
   height: 10px;
-  border: 3px solid #e0dddb;
-  background-color: #f6f7f8;
+  // border: 3px solid #2d2d2d;
+  // background-color: $white;
   border-radius: 50%;
   z-index: 30;
 }
@@ -610,7 +586,7 @@ const direction = () => {
 .marker-top {
   width: 6px;
   height: 6px;
-  background-color: #e0dddb;
+  // background-color: #2d2d2d;
   position: absolute;
   top: 10px;
   left: 50%;
@@ -623,7 +599,7 @@ const direction = () => {
 .marker-right {
   width: 6px;
   height: 6px;
-  background-color: #e0dddb;
+  // background-color: #2d2d2d;
   position: absolute;
   right: 10px;
   top: 50%;
@@ -636,7 +612,7 @@ const direction = () => {
 .marker-bottom {
   width: 6px;
   height: 6px;
-  background-color: #e0dddb;
+  // background-color: #2d2d2d;
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -649,7 +625,7 @@ const direction = () => {
 .marker-left {
   width: 6px;
   height: 6px;
-  background-color: #e0dddb;
+  // background-color: #2d2d2d;
   position: absolute;
   left: 10px;
   top: 50%;
@@ -663,7 +639,7 @@ const direction = () => {
   width: 36px;
   height: 60px;
   position: absolute;
-  bottom: 90px;
+  bottom: -10px;
   z-index: 20;
   right: 56px;
   border-top: 50px solid #fff;
@@ -686,7 +662,7 @@ const direction = () => {
   width: 44px;
   right: 52px;
   position: absolute;
-  bottom: 150px;
+  bottom: 50px;
   z-index: 21;
   border-bottom: 6px solid #ce4646;
   border-left: 2px solid transparent;
@@ -707,7 +683,7 @@ const direction = () => {
 
 .book.one {
   position: absolute;
-  bottom: 100px;
+  bottom: 0px;
   width: 64px;
   height: 16px;
   left: 46px;
@@ -716,11 +692,12 @@ const direction = () => {
   border-right: 6px solid #FB904D;
   border-bottom: 3px solid #FB904D;
   border-radius: 0 4px 4px 0;
+  z-index: 2;
 }
 
 .book.two {
   position: absolute;
-  bottom: 116px;
+  bottom: 16px;
   width: 70px;
   height: 20px;
   left: 44px;
@@ -729,15 +706,17 @@ const direction = () => {
   border-right: 11px solid #45a58b;
   border-bottom: 3px solid #45a58b;
   border-radius: 0 7px 8px 0;
+  z-index: 2;
 }
 
 .book.three {
   position: absolute;
-  bottom: 136px;
+  bottom: 36px;
   width: 62px;
   height: 20px;
   left: 48px;
   background-color: #ff443d;
+  z-index: 2;
 }
 
 .book.three:after {

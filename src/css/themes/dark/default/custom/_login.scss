@@ -1,14 +1,19 @@
 @mixin login-dark {
   .login-card {
     background: $dark-page;
+    width: 850px;
+    border-radius: 48px;
   }
 
   .login-card-pic {
-    background-color: lighten($dark-page, 2);
+    background-color: $dark-page;
   }
 
   .boy-animation-filter {
     filter: drop-shadow(0 0 15px #00000012);
+    border: 1px solid #ffffff47;
+    border-radius: 8px;
+    background-color: $dark-page;
   }
 
   .logo {
@@ -62,10 +67,6 @@
       align-items: center;
       outline: none;
     }
-  }
-
-  .login-card {
-    width: 970px;
   }
 
   .captcha {
