@@ -27,13 +27,23 @@
             <div v-if="!item.selected" class="text-body2 text-bold">
               {{ helper.getFirstChar(item?.customerName) }}
             </div>
-            <transition
-              apear name="slide-fade"
-            >
+            <transition apear name="slide-fade">
               <q-icon v-if="item.selected" size="24px" name="check" />
             </transition>
           </q-avatar>
         </transition>
+
+        <div class="text-center q-mt-sm">
+          <q-btn
+            round
+            dense
+            unelevated
+            size="8px"
+            @click.prevent="showItemSheet(item)"
+          >
+            <q-icon name="more_horiz" size="16px" />
+          </q-btn>
+        </div>
       </div>
 
       <div class="col">

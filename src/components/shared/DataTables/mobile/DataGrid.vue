@@ -46,32 +46,40 @@
   <div class="_column q-gutter-y-sm" style="margin: 0">
     <template v-for="row in rows?.value" :key="row.id">
       <slot name="body" :item="row">
-        <q-card
-          v-touch-hold.capture="() => selectRow(row)"
-          class="border-radius-md"
-          :class="tableStore.getRowClass(row)"
-          v-ripple
-          flat
-        >
-          <q-card-section class="row q-pa-sm">
-            <slot name="row-body" :item="row">
-              <div
-                v-for="col in gridStore?.columns.value"
-                :key="col.name"
-              >
-                <slot :name="`cell-${col.name}`" :item="row">
+        <div>
+          <router-link
+            class="no-decoration text-on-dark"
+            :to="`/sls/invoice/preview/${row.id}`"
+          >
+            <q-card
+              v-touch-hold.capture="() => selectRow(row)"
+              class="border-radius-md"
+              :class="tableStore.getRowClass(row)"
+              flat
+            >
+              <q-card-section class="row q-pa-sm">
+                <slot name="row-body" :item="row">
                   <div
-                    v-if="col.field && col.label && row[col.field]"
-                    class="q-pa-xs"
+                    v-for="col in gridStore?.columns.value"
+                    :key="col.name"
                   >
-                    {{ col.label }}:
-                    <span v-html="getColText(row, col)"></span>
+                    <slot :name="`cell-${col.name}`" :item="row">
+                      <div
+                        v-if="
+                          col.field && col.label && row[col.field]
+                        "
+                        class="q-pa-xs"
+                      >
+                        {{ col.label }}:
+                        <span v-html="getColText(row, col)"></span>
+                      </div>
+                    </slot>
                   </div>
                 </slot>
-              </div>
-            </slot>
-          </q-card-section>
-        </q-card>
+              </q-card-section>
+            </q-card>
+          </router-link>
+        </div>
       </slot>
     </template>
   </div>
