@@ -112,7 +112,6 @@
                 v-model="captcha"
                 rounded
                 inputmode="numeric"
-                type="number"
                 outlined
                 hide-bottom-space
                 dense

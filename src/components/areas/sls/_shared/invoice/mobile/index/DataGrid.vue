@@ -11,41 +11,6 @@
     </template>
 
     <template #row-body="{ item }">
-      <div class="col-2 q-mr-sm">
-        <transition name="slide" appear mode="out-in">
-          <q-avatar
-            :key="item.selected"
-            size="48px"
-            text-color="white"
-            :style="
-              !item.selected
-                ? helper.generateAvatarStyle(item.id)
-                : ''
-            "
-            :class="item.selected ? 'primary-gradient' : ''"
-          >
-            <div v-if="!item.selected" class="text-body2 text-bold">
-              {{ helper.getFirstChar(item?.customerName) }}
-            </div>
-            <transition apear name="slide-fade">
-              <q-icon v-if="item.selected" size="24px" name="check" />
-            </transition>
-          </q-avatar>
-        </transition>
-
-        <div class="text-center q-mt-sm">
-          <q-btn
-            round
-            dense
-            unelevated
-            size="8px"
-            @click.prevent="showItemSheet(item)"
-          >
-            <q-icon name="more_horiz" size="16px" />
-          </q-btn>
-        </div>
-      </div>
-
       <div class="col">
         <div class="row justify-between">
           <div
@@ -54,9 +19,18 @@
             {{ item.customerName }} - {{ item.no }}
           </div>
           <div
-            class="col-3 row justify-end text-caption text-weight-300"
+            class="col-2 row justify-end text-caption text-weight-300"
           >
-            {{ helper.formatPersianDate(item.dateString) }}
+            <q-btn
+              class="absolute-top-right q-ma-sm"
+              round
+              dense
+              unelevated
+              size="10px"
+              @click.prevent="showItemSheet(item)"
+            >
+              <q-icon name="more_vert" size="20px" />
+            </q-btn>
           </div>
         </div>
 

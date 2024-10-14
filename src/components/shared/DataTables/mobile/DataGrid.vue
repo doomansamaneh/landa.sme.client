@@ -58,6 +58,41 @@
               flat
             >
               <q-card-section class="row q-pa-sm">
+                <div class="col-2 q-mr-sm">
+                  <transition name="slide" appear mode="out-in">
+                    <q-avatar
+                      :key="row.selected"
+                      size="48px"
+                      text-color="white"
+                      :style="
+                        !row.selected
+                          ? helper.generateAvatarStyle(row.id)
+                          : ''
+                      "
+                      :class="row.selected ? 'primary-gradient' : ''"
+                      @click.prevent="setActiveRow(row)"
+                    >
+                      <div
+                        v-if="!row.selected"
+                        class="text-body2 text-bold"
+                      >
+                        {{ helper.getFirstChar(row?.customerName) }}
+                      </div>
+                      <transition apear name="slide-fade">
+                        <q-icon
+                          v-if="row.selected"
+                          size="24px"
+                          name="check"
+                        />
+                      </transition>
+                    </q-avatar>
+                  </transition>
+
+                  <div class="text-center q-mt-sm text-caption-sm">
+                    {{ helper.formatPersianDate(row.dateString) }}
+                  </div>
+                </div>
+
                 <slot name="row-body" :item="row">
                   <div
                     v-for="col in gridStore?.columns.value"

@@ -1,5 +1,9 @@
 @mixin breakpoints-dark {
   @media (max-width: $breakpoint-xs-max) {
+    .login {
+      width: auto;
+    }
+
     .toolbar-glass-effect {
       background: linear-gradient(
         180deg,
@@ -24,6 +28,9 @@
   }
 
   @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {
+    .login {
+      width: 520px;
+    }
     .main-container {
       padding-left: 38px;
       padding-right: 38px;
@@ -47,6 +54,10 @@
   }
 
   @media (min-width: $breakpoint-md-min) {
+    .login {
+      width: 800px;
+    }
+
     .main-container {
       padding-left: 38px;
       padding-right: 38px;
