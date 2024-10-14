@@ -26,7 +26,7 @@
               round
               dense
               unelevated
-              size="10px"
+              size="11px"
               @click.prevent="showItemSheet(item)"
             >
               <q-icon name="more_vert" size="20px" />

@@ -1,6 +1,6 @@
 <template>
   <q-scroll-observer @scroll="onScroll" />
-  <div style="margin-bottom: 32px">
+  <div style="margin-bottom: 36px">
     <q-page-sticky :class="scroll" class="z-1" position="top" expand>
       <q-toolbar style="padding-left: 16px; padding-right: 16px">
         <template v-if="selectedIds?.length == 0">
