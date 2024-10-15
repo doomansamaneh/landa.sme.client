@@ -14,8 +14,6 @@ export function useCheckDialogOpen() {
     if (currentClassExists !== hasScrollbarClass.value) {
       hasScrollbarClass.value = currentClassExists;
     }
-
-    if (currentClassExists) console.log("True");
   };
 
   let observer;

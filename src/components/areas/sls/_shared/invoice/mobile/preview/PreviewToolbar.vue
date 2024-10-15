@@ -8,19 +8,10 @@
   >
     <template #buttons>
       <q-btn
-        :to="`/${baseRoute}/edit/${model.id}`"
-        class="text-caption"
-        round
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-      </q-btn>
-
-      <q-btn
         @click="onBottomSheetShow"
-        class="text-caption"
+        class="text-caption q-mr-sm"
         round
+        dense
         unelevated
         no-caps
       >
@@ -83,7 +74,7 @@
   import { helper } from "src/helpers";
   import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
-  import ToolBar from "src/components/shared/ToolBarMobile.vue";
+  import ToolBar from "src/components/shared/PreviewToolBarMobile.vue";
   import SendEmailDialog from "src/components/areas/sls/_shared/invoice/shared/forms/SendEmailDialog.vue";
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";

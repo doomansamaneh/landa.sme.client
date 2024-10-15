@@ -1,7 +1,10 @@
 <template>
   <div flat>
     <q-card-section class="no-padding">
-      <div class="text-body1 q-mb-md">
+      <div
+        class="text-body1"
+        :class="$q.screen.gt.xs ? 'q-mb-md' : 'q-my-md'"
+      >
         <q-icon name="o_comment" size="sm" class="icon q-pr-sm" />
         {{ $t("shared.labels.note") }}
       </div>

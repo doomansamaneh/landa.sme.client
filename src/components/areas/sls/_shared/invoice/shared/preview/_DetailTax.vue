@@ -1,5 +1,8 @@
 <template>
-  <div class="row q-gutter-sm q-py-lg">
+  <div
+    class="row q-gutter-sm"
+    :class="$q.screen.gt.xs ? 'q-pb-md' : 'q-py-md'"
+  >
     <q-btn
       v-if="!taxStore.apiResult.value.data"
       unelevated
@@ -22,7 +25,7 @@
       <span>پیکربندی سامانه مودیان</span>
     </q-btn> -->
   </div>
-  <div class="q-mt-md">
+  <div>
     <div class="text-body2 no-letter-spacing text-bold">
       تاریخچه ارسال به سامانه مودیان
     </div>
