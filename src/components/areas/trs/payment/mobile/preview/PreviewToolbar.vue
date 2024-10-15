@@ -42,7 +42,7 @@
   import { ref } from "vue";
   import { useRouter } from "vue-router";
 
-  import ToolBar from "src/components/shared/ToolBarMobile.vue";
+  import ToolBar from "src/components/shared/ToolBarPreviewMobile.vue";
   import DataGridItemSheet from "../index/DataGridItemSheet.vue";
 
   const props = defineProps({

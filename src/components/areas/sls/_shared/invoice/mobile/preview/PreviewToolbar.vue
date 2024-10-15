@@ -83,7 +83,7 @@
   import { helper } from "src/helpers";
   import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
-  import ToolBar from "src/components/shared/ToolBarMobile.vue";
+  import ToolBar from "src/components/shared/ToolBarPreviewMobile.vue";
   import SendEmailDialog from "src/components/areas/sls/_shared/invoice/shared/forms/SendEmailDialog.vue";
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";

@@ -7,10 +7,7 @@
     tax-api
     show-sale-header
     show-receipt
-  >
-    <!-- <template #toolbar-custom-desktop="{ model }"></template>
-    <template #toolbar-custom-mobile="{ model }"></template> -->
-  </preview>
+  ></preview>
 </template>
 
 <script setup>

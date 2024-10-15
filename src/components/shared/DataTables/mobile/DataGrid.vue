@@ -43,13 +43,13 @@
     </q-input>
   </slot>
 
-  <div class="_column q-gutter-y-sm" style="margin: 0">
+  <div class="column_ q-mt-sm q-gutter-y-sm" style="margin: 0">
     <template v-for="row in rows?.value" :key="row.id">
       <slot name="body" :item="row">
         <div>
           <router-link
             class="no-decoration text-on-dark"
-            :to="`/sls/invoice/preview/${row.id}`"
+            :to="baseRoute ? `/${baseRoute}/preview/${row.id}` : ''"
           >
             <q-card
               v-touch-hold.capture="() => selectRow(row)"
@@ -57,60 +57,74 @@
               :class="tableStore.getRowClass(row)"
               flat
             >
-              <q-card-section class="row q-pa-sm">
-                <div class="col-2 q-mr-sm">
-                  <transition name="slide" appear mode="out-in">
-                    <q-avatar
-                      :key="row.selected"
-                      size="48px"
-                      text-color="white"
-                      :style="
-                        !row.selected
-                          ? helper.generateAvatarStyle(row.id)
-                          : ''
-                      "
-                      :class="row.selected ? 'primary-gradient' : ''"
-                      @click.prevent="setActiveRow(row)"
-                    >
-                      <div
-                        v-if="!row.selected"
-                        class="text-body2 text-bold"
-                      >
-                        {{ helper.getFirstChar(row?.customerName) }}
-                      </div>
-                      <transition apear name="slide-fade">
-                        <q-icon
-                          v-if="row.selected"
-                          size="24px"
-                          name="check"
-                        />
-                      </transition>
-                    </q-avatar>
-                  </transition>
-
-                  <div class="text-center q-mt-sm text-caption-sm">
-                    {{ helper.formatPersianDate(row.dateString) }}
-                  </div>
-                </div>
-
-                <slot name="row-body" :item="row">
-                  <div
-                    v-for="col in gridStore?.columns.value"
-                    :key="col.name"
-                  >
-                    <slot :name="`cell-${col.name}`" :item="row">
-                      <div
-                        v-if="
-                          col.field && col.label && row[col.field]
+              <q-card-section class="row q-pa-sm items-center_">
+                <slot v-if="showAvatar" name="row-avatar" :item="row">
+                  <div class="col-2 q-mr-sm">
+                    <transition name="slide" appear mode="out-in">
+                      <q-avatar
+                        :key="row.selected"
+                        size="48px"
+                        text-color="white"
+                        :style="
+                          !row.selected
+                            ? helper.generateAvatarStyle(row.id)
+                            : ''
                         "
-                        class="q-pa-xs"
+                        :class="
+                          row.selected ? 'primary-gradient' : ''
+                        "
+                        @click.prevent="setActiveRow(row)"
                       >
-                        {{ col.label }}:
-                        <span v-html="getColText(row, col)"></span>
-                      </div>
-                    </slot>
+                        <div
+                          v-if="!row.selected"
+                          class="text-body2 text-bold"
+                        >
+                          <slot name="row-avatar-title" :item="row">
+                            {{ helper.getFirstChar(row?.id) }}
+                          </slot>
+                        </div>
+                        <transition apear name="slide-fade">
+                          <q-icon
+                            v-if="row.selected"
+                            size="24px"
+                            name="check"
+                          />
+                        </transition>
+                      </q-avatar>
+                    </transition>
                   </div>
                 </slot>
+
+                <div class="col q-gutter-y-xs">
+                  <slot name="row-body" :item="row">
+                    <div
+                      v-for="col in gridStore?.columns.value"
+                      :key="col.name"
+                    >
+                      <slot :name="`cell-${col.name}`" :item="row">
+                        <div
+                          v-if="
+                            col.field && col.label && row[col.field]
+                          "
+                          class="q-pa-xs"
+                        >
+                          {{ col.label }}:
+                          <span v-html="getColText(row, col)"></span>
+                        </div>
+                      </slot>
+                    </div>
+                  </slot>
+
+                  <div v-if="showBadge" class="row no-wrap">
+                    <div class="col q-pt-sm no-wrap">
+                      <q-scroll-area style="height: 20px">
+                        <div class="row q-gutter-xs no-wrap q-pr-xs">
+                          <slot name="row-badge" :item="row"></slot>
+                        </div>
+                      </q-scroll-area>
+                    </div>
+                  </div>
+                </div>
               </q-card-section>
             </q-card>
           </router-link>
@@ -263,6 +277,9 @@
     createUrl: String,
     gridStore: Object,
     numbered: Boolean,
+    showAvatar: Boolean,
+    showBadge: Boolean,
+    baseRoute: String,
     multiSelect: Boolean,
     dataTableStore: useDataTable,
   });

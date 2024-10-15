@@ -27,34 +27,17 @@
     <q-separator size="0.5px" />
 
     <q-card-section class="q-gutter-y-sm">
+      <div v-if="model?.customerName">
+        <span class="text-body3 no-letter-spacing">
+          {{ model?.customerName }}
+        </span>
+      </div>
       <div>
         <span class="text-body3 no-letter-spacing">
           {{ model?.subject }}
         </span>
       </div>
       <div class="row q-gutter-xs">
-        <type-badge
-          :title="
-            $t(
-              `shared.voucherType.${helper.getEnumType(
-                model?.typeId,
-                voucherType
-              )}`
-            )
-          "
-        />
-
-        <system-badge
-          :title="
-            $t(
-              `shared.subSystem.${helper.getEnumType(
-                model?.systemId,
-                subSystem
-              )}`
-            )
-          "
-        />
-
         <contract-badge :title="model?.contractTitle" />
       </div>
     </q-card-section>
@@ -75,35 +58,16 @@
             </div>
           </div>
           <div class="col">
-            <span class="q-pa-xs_ text-grey_">
-              {{ item.slCode }} {{ item.slTitle }} /
-            </span>
-            <span v-if="item.dlCode" class="q-pa-xs text-blue">
-              {{ item.dlCode }} {{ item.dlTitle }} /
-            </span>
             <span>
               {{ item.comment }}
             </span>
-            <div class="text-h6_ no-letter-spacing">
-              <span class="text-positive">
-                {{ helper.formatNumber(item.debit) }}
-              </span>
-              -
-              <span class="text-negative">
-                {{ helper.formatNumber(item.credit) }}
-              </span>
-            </div>
           </div>
         </div>
       </template>
       <q-separator />
       <div class="text-right">
         <span class="text-weight-600">
-          {{
-            helper.formatNumber(
-              helper.getSubtotal(model?.voucherItems, "debit")
-            )
-          }}
+          {{ helper.formatNumber(model?.amount) }}
           <span class="text-caption no-letter-spacing">
             {{ model?.currencyTitle }}
           </span>

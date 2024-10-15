@@ -43,7 +43,7 @@
   import { useRouter } from "vue-router";
   import { useVoucherState } from "../../../_composables/useVoucherState";
 
-  import ToolBar from "src/components/shared/ToolBarMobile.vue";
+  import ToolBar from "src/components/shared/ToolBarPreviewMobile.vue";
   import DataGridItemSheet from "../index/DataGridItemSheet.vue";
 
   const props = defineProps({
