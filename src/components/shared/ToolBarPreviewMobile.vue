@@ -1,6 +1,6 @@
 <template>
   <tool-bar-observer ref="observer">
-    <q-toolbar style="padding-left: 20px; padding-right: 20px">
+    <q-toolbar>
       <div
         class="flex items-center"
         :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''"

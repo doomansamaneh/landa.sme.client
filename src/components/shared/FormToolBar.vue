@@ -1,21 +1,10 @@
 <template>
-  <q-page-sticky
-    class="z-1"
-    position="top"
-    :class="
-      !isAtTop
-        ? $q.screen.xs
-          ? 'mobile-toolbar-gradient'
-          : 'desktop-toolbar-gradient'
-        : ''
-    "
-    expand
-  >
+  <toolbar-observer ref="observer">
     <q-toolbar
       :style="
         $q.screen.gt.sm
-          ? 'margin-top: 8px; margin-bottom: 8px; padding-left: 38px; padding-right: 38px;'
-          : 'margin-top: 4px; margin-bottom: 4px; padding-left: 20px; padding-right: 20px;'
+          ? 'margin-top: 4px; margin-bottom: 4px; padding-left: 38px; padding-right: 38px;'
+          : ''
       "
     >
       <div class="q-gutter-x-sm">
@@ -55,15 +44,13 @@
         </slot>
       </div>
     </q-toolbar>
-  </q-page-sticky>
+  </toolbar-observer>
 </template>
 
 <script setup>
   import { ref, onMounted, onUnmounted } from "vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-
-  const isAtTop = ref(true);
-  let previousScrollPosition = 0;
+  import ToolbarObserver from "src/components/shared/ToolBarObserver.vue";
 
   const props = defineProps({
     title: String,
@@ -71,21 +58,9 @@
 
   const emit = defineEmits(["submit-call-back"]);
 
+  const observer = ref(null);
+
   const save = () => {
     emit("submit-call-back");
   };
-
-  const handleScroll = () => {
-    const currentPosition =
-      window.scrollY || document.documentElement.scrollTop;
-    isAtTop.value = currentPosition === 0;
-  };
-
-  onMounted(() => {
-    window.addEventListener("scroll", handleScroll);
-  });
-
-  onUnmounted(() => {
-    window.removeEventListener("scroll", handleScroll);
-  });
 </script>

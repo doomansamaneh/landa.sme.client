@@ -1,10 +1,16 @@
 <template>
-  <q-badge v-if="title" text-color="white" class="bluegrey-gradient">
+  <q-btn
+    v-if="title"
+    padding="1px 9px"
+    unelevated
+    class="bluegrey-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg no-pointer-events"
+    style="white-space: nowrap"
+  >
     {{ title }}
     <q-tooltip class="custom-tooltip text-body1 no-letter-spacing">
       قرارداد
     </q-tooltip>
-  </q-badge>
+  </q-btn>
 </template>
 
 <script setup>

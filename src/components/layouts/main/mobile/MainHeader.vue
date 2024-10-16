@@ -2,11 +2,10 @@
   <q-header
     bordered
     class="q-py-xs"
-    style="padding-left: 20px; padding-right: 20px"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <q-toolbar
-      class="text-dark row justify-between no-padding"
+      class="text-dark row justify-between"
     >
       <q-toolbar-title
         class="text-subtitle2 text-bold row justify-start items-center"

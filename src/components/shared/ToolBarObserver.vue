@@ -1,7 +1,6 @@
 <template>
   <q-scroll-observer @scroll="onScroll" />
-
-  <div style="margin-bottom: 36px">
+  <div class="q-mb-xl">
     <q-page-sticky
       :class="toolbarClass"
       class="z-1"

@@ -1,19 +1,17 @@
 <template>
-  <q-scroll-observer @scroll="onScroll" />
-  <div style="margin-bottom: 36px">
-    <q-page-sticky :class="scroll" class="z-1" position="top" expand>
-      <q-toolbar style="padding-left: 16px; padding-right: 16px">
-        <template v-if="selectedIds?.length == 0">
-          <div class="row items-center">
-            <q-btn
-              dense
-              round
-              class="text-caption q-mr-sm"
-              unelevated
-              @click="onBottomSheetShow"
-            >
-              <q-icon name="more_vert" />
-            </q-btn>
+  <tool-bar-observer ref="observer">
+    <q-toolbar>
+      <template v-if="selectedIds?.length == 0">
+        <div class="row items-center">
+          <q-btn
+            dense
+            round
+            class="text-caption q-mr-sm"
+            unelevated
+            @click="onBottomSheetShow"
+          >
+            <q-icon name="more_vert" />
+          </q-btn>
 
           <div class="row items-center">
             <div
@@ -127,8 +125,7 @@
         </div>
       </template>
     </q-toolbar>
-    </q-page-sticky>
-    </div>
+  </tool-bar-observer>
 
   <bottom-sheet
     v-if="bottomSheetStatus"

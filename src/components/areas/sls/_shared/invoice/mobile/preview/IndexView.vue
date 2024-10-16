@@ -2,16 +2,13 @@
   <div
     class="row q-col-gutter-md justify-between items-center text-body3 no-letter-spacing"
   >
-    <div class="col">
+    <div class="row q-gutter-md col">
       <div>
         شماره:
         <span class="text-weight-500">
           {{ model.no }}
         </span>
       </div>
-    </div>
-
-    <div class="col row justify-end">
       <div>
         تاریخ:
         <span class="text-weight-500">
@@ -150,7 +147,7 @@
       </div>
 
       <q-separator size="0.5px" />
-      
+
       <div class="row items-center justify-between">
         <span class="">{{ $t("shared.labels.total") }}</span>
 
