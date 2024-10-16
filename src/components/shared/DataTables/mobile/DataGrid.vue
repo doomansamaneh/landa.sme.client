@@ -43,92 +43,93 @@
     </q-input>
   </slot>
 
-  <div class="column_ q-mt-sm q-gutter-y-sm" style="margin: 0">
+  <div class="column q-mt-sm q-gutter-y-sm" style="margin: 0">
     <template v-for="row in rows?.value" :key="row.id">
       <slot name="body" :item="row">
-        <div>
-          <router-link
-            class="no-decoration text-on-dark"
-            :to="baseRoute ? `/${baseRoute}/preview/${row.id}` : ''"
+        <q-item
+          style="display: inline"
+          class="no-padding no-decoration text-on-dark"
+          :to="baseRoute ? `/${baseRoute}/preview/${row.id}` : ''"
+        >
+          <q-card
+            v-touch-hold.capture="() => selectRow(row)"
+            class="border-radius-md"
+            :class="tableStore.getRowClass(row)"
+            flat
           >
-            <q-card
-              v-touch-hold.capture="() => selectRow(row)"
-              class="border-radius-md"
-              :class="tableStore.getRowClass(row)"
-              flat
-            >
-              <q-card-section class="row q-pa-xs items-center_">
-                <slot v-if="showAvatar" name="row-avatar" :item="row">
-                  <div class="col-2 q-mr-sm">
-                    <transition name="slide" appear mode="out-in">
-                      <q-avatar
-                        :key="row.selected"
-                        size="48px"
-                        text-color="white"
-                        :style="
-                          !row.selected
-                            ? helper.generateAvatarStyle(row.id)
-                            : ''
-                        "
-                        :class="
-                          row.selected ? 'primary-gradient' : ''
-                        "
-                        @click.prevent="setActiveRow(row)"
+            <q-card-section class="row q-pa-sm items-center_">
+              <slot v-if="showAvatar" name="row-avatar" :item="row">
+                <div class="col-2 q-mr-sm">
+                  <transition name="slide" appear mode="out-in">
+                    <q-avatar
+                      :key="row.selected"
+                      size="48px"
+                      text-color="white"
+                      :style="
+                        !row.selected
+                          ? helper.generateAvatarStyle(row.id)
+                          : ''
+                      "
+                      :class="row.selected ? 'primary-gradient' : ''"
+                      @click.prevent="setActiveRow(row)"
+                    >
+                      <div
+                        v-if="!row.selected"
+                        class="text-body2 text-bold"
                       >
-                        <div
-                          v-if="!row.selected"
-                          class="text-body2 text-bold"
-                        >
-                          <slot name="row-avatar-title" :item="row">
-                            {{ helper.getFirstChar(row?.id) }}
-                          </slot>
-                        </div>
-                        <transition apear name="slide-fade">
-                          <q-icon
-                            v-if="row.selected"
-                            size="24px"
-                            name="check"
-                          />
-                        </transition>
-                      </q-avatar>
-                    </transition>
+                        <slot name="row-avatar-title" :item="row">
+                          {{ helper.getFirstChar(row?.id) }}
+                        </slot>
+                      </div>
+                      <transition apear name="slide-fade">
+                        <q-icon
+                          v-if="row.selected"
+                          size="24px"
+                          name="check"
+                        />
+                      </transition>
+                    </q-avatar>
+                  </transition>
+                </div>
+              </slot>
+
+              <div class="col q-col-gutter-xs">
+                <slot name="row-body" :item="row">
+                  <div
+                    v-for="col in gridStore?.columns.value"
+                    :key="col.name"
+                  >
+                    <slot :name="`cell-${col.name}`" :item="row">
+                      <div
+                        v-if="
+                          col.field && col.label && row[col.field]
+                        "
+                        class="q-pa-xs"
+                      >
+                        {{ col.label }}:
+                        <span v-html="getColText(row, col)"></span>
+                      </div>
+                    </slot>
                   </div>
                 </slot>
 
-                <div class="col q-gutter-y-sm">
-                  <slot name="row-body" :item="row">
-                    <div
-                      v-for="col in gridStore?.columns.value"
-                      :key="col.name"
+                <div v-if="showBadge" class="row no-wrap q-mt-xs">
+                  <div class="col no-wrap">
+                    <q-scroll-area
+                      :bar-style="{ opacity: 0 }"
+                      :thumb-style="{ opacity: 0 }"
+                      style="height: 20px"
                     >
-                      <slot :name="`cell-${col.name}`" :item="row">
-                        <div
-                          v-if="
-                            col.field && col.label && row[col.field]
-                          "
-                          class="q-pa-xs"
-                        >
-                          {{ col.label }}:
-                          <span v-html="getColText(row, col)"></span>
-                        </div>
-                      </slot>
-                    </div>
-                  </slot>
-
-                  <div v-if="showBadge" class="row no-wrap">
-                    <div class="col no-wrap">
-                      <q-scroll-area style="height: 20px">
-                        <div class="row q-gutter-x-xs no-wrap">
-                          <slot name="row-badge" :item="row"></slot>
-                        </div>
-                      </q-scroll-area>
-                    </div>
+                      <div class="row q-gutter-x-xs no-wrap">
+                        <slot name="row-badge" :item="row"></slot>
+                      </div>
+                    </q-scroll-area>
                   </div>
                 </div>
-              </q-card-section>
-            </q-card>
-          </router-link>
-        </div>
+              </div>
+            </q-card-section>
+          </q-card>
+        </q-item>
       </slot>
     </template>
   </div>

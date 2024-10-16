@@ -1,6 +1,6 @@
 <template>
-  <span v-if="count" class="q-pl-xs">
-    <q-icon name="o_email" color="positive" size="xs">
+  <span v-if="count">
+    <q-icon name="o_email" color="positive" size="20px">
       <q-tooltip class="positive text-body1 no-letter-spacing">
         فرستاده شده: {{ count }}
       </q-tooltip>
