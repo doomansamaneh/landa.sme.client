@@ -111,36 +111,6 @@
 
           <div>
             <q-item-label caption class="q-mb-sm">
-              قرارداد
-            </q-item-label>
-            <contract-lookup
-              v-model:selectedId="
-                searchStore.searchModel.value.contractId
-              "
-              v-model:selectedText="
-                searchStore.searchModel.value.contractTitle
-              "
-              style="width: 398px"
-            />
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm">
-              بازاریاب
-            </q-item-label>
-            <customer-lookup
-              v-model:selectedId="
-                searchStore.searchModel.value.marketerId
-              "
-              v-model:selectedText="
-                searchStore.searchModel.value.marketerName
-              "
-              style="width: 398px"
-            />
-          </div>
-
-          <div>
-            <q-item-label caption class="q-mb-sm">
               نوع فروش
             </q-item-label>
             <sale-type-lookup
@@ -150,6 +120,19 @@
               v-model:selectedText="
                 searchStore.searchModel.value.typeTitle
               "
+            />
+          </div>
+
+          <div>
+            <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
+            <customer-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.customerId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.customerName
+              "
+              style="width: 398px"
             />
           </div>
 
@@ -169,7 +152,24 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
+            <q-item-label caption class="q-mb-sm">
+              قرارداد
+            </q-item-label>
+            <contract-lookup
+              v-model:selectedId="
+                searchStore.searchModel.value.contractId
+              "
+              v-model:selectedText="
+                searchStore.searchModel.value.contractTitle
+              "
+              style="width: 398px"
+            />
+          </div>
+
+          <div>
+            <q-item-label caption class="q-mb-sm">
+              بازاریاب
+            </q-item-label>
             <customer-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.marketerId

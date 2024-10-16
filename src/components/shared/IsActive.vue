@@ -23,6 +23,6 @@
 
 <script setup>
   const props = defineProps({
-    isActive: String,
+    isActive: Boolean,
   });
 </script>

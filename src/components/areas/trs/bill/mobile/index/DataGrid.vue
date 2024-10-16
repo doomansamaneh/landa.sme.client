@@ -4,7 +4,7 @@
     :create-url="`/${baseRoute}/create`"
     :base-route="baseRoute"
     show-avatar
-    show-badge_
+    show-badge
   >
     <template #header>
       <template></template>
@@ -23,27 +23,32 @@
         <div
           class="col ellipsis text-body3 no-letter-spacing text-weight-500"
         >
-          {{ item.customerName }}
+          {{ item.subject }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />
       </div>
 
-      <div class="ellipsis-2-lines text-caption-sm">
-        {{ item.subject }} {{ item.summary }}
-      </div>
-      <div class="text-center_q-my-sm text-caption-sm">
-        {{ item.no }} - {{ helper.formatPersianDate(item.date) }}
-      </div>
       <div class="ellipsis-2-lines text-body1 text-bold">
         {{ helper.formatNumber(item.amount) }}
         <span class="text-caption">
-          {{ item.currencyTitle }}
+          ({{ item.currencyTitle ?? "ریال" }})
         </span>
+      </div>
+
+      <div class="text-center_q-my-sm text-caption-sm">
+        {{ item.no }} - {{ item.date?.substring(0, 10) }}
+      </div>
+
+      <div class="ellipsis-2-lines text-caption-sm">
+        {{ item.summary }}
       </div>
     </template>
     <template #row-badge="{ item }">
-      <!-- <row-no-badge :no="item.rowNo" /> -->
-      <contract-badge :title="item.contractTitle" />
+      <row-no-badge :no="item.rowNo" />
+      <contract-badge
+        :title="item.contractTitle"
+        :id="item.contractId"
+      />
     </template>
   </data-grid>
 

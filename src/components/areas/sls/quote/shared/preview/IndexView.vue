@@ -4,6 +4,9 @@
     base-route="sls/quote"
     entity-name="Sls.[Quote]"
     show-sale-header
+    :comment="
+      appConfigStore.model.value?.companySetting?.quoteComment
+    "
   >
     <template #toolbar-custom-desktop="{ model }">
       <menu-button
@@ -30,9 +33,12 @@
 
 <script setup>
   import { quoteStatus } from "src/constants";
+  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import Preview from "../../../_shared/invoice/shared/preview/IndexView.vue";
   import DetailSection from "./_DetailSection.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
+
+  const appConfigStore = useAppConfigModel();
 </script>

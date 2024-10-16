@@ -1,124 +1,79 @@
 <template>
   <data-grid
     :data-table-store="tableStore"
-    create-url="`/${baseRoute}/create`"
+    :base-route="baseRoute"
+    :create-url="`/${baseRoute}/create`"
+    show-avatar
+    show-badge
   >
     <template #header>
       <template></template>
     </template>
 
-    <template #row-header="{ item }">
-      <q-card-section>
-        <div class="row items-center justify-center">
-          <q-btn
-            round
-            unelevated
-            class="no-pointer-events"
-            v-if="item.selected"
-          >
-            <q-avatar size="50px" color="primary" text-color="white">
-              <q-icon name="o_done" size="md" />
-            </q-avatar>
-          </q-btn>
-        </div>
-
-        <div class="row justify-between items-center">
-          <div class="col row items-center">
-            <span class="text-caption text-on-dark q-mr-xs">
-              شماره:
-            </span>
-            <span class="text-caption text-on-dark">
-              {{ item.no }}
-            </span>
-          </div>
-
-          <div class="col row justify-end items-center q-gutter-xs">
-            <span class="text-caption text-on-dark">
-              {{ item.date?.substring(0, 10) }}
-            </span>
-          </div>
-        </div>
-      </q-card-section>
-
-      <q-separator />
+    <template #row-avatar-title="{ item }">
+      {{ item.no }}
     </template>
 
     <template #row-body="{ item }">
-      <q-card-section class="no-padding">
-        <div class="column q-gutter-sm">
-          <div class="row items-center q-px-sm">
-            <div class="col row">
-              <span
-                class="ellipsis-2-lines text-caption text-on-dark"
-              >
-                {{ item.subject }}
-              </span>
-            </div>
-          </div>
-
-          <div class="row items-center q-px-sm">
-            <div class="col">
-              <span
-                class="ellipsis-2-lines text-body1 text-bold text-on-dark"
-              >
-                {{ helper.formatNumber(item.amount) }}
-                <span class="text-caption">
-                  {{ item.currencyTitle }}
-                </span>
-              </span>
-            </div>
-          </div>
+      <div class="row">
+        <div
+          class="col ellipsis text-body3 no-letter-spacing text-weight-500"
+        >
+          {{ item.subject }}
         </div>
-      </q-card-section>
+        <menu-item-more @click="showItemSheet(item)" />
+      </div>
 
-      <q-card-section class="q-pt-md q-pb-none q-px-sm">
-        <div class="row items-center q-gutter-sm">
-          <row-no-badge :no="item.rowNo" />
-
-          <type-badge
-            :title="
-              $t(
-                `shared.voucherType.${helper.getEnumType(
-                  item.typeId,
-                  voucherType
-                )}`
-              )
-            "
-          />
-
-          <system-badge
-            :title="
-              $t(
-                `shared.subSystem.${helper.getEnumType(
-                  item.systemId,
-                  subSystem
-                )}`
-              )
-            "
-          />
-
-          <contract-badge :title="item.contractTitle" />
-        </div>
-      </q-card-section>
-    </template>
-    <template #row-actions="{ item }">
-      <q-btn
-        unelevated
-        class="text-on-dark"
-        :to="`/${baseRoute}/preview/${item.id}`"
-      >
-        <span class="text-body3 text-bold">
-          {{ $t("shared.labels.showDetail") }}
+      <div class="row">
+        <span class="text-caption-sm">
+          {{ item.no }} -
+          {{ helper.formatPersianDate(item.date) }}
         </span>
-      </q-btn>
+      </div>
 
-      <q-btn
-        round
-        unelevated
-        dense
-        icon="o_more_vert"
-        @click="showItemSheet(item)"
+      <div v-if="item.amount" class="row q-gutter-x-xs">
+        <span class="text-body3 text-weight-500">
+          {{ helper.formatNumber(item.amount) }}
+        </span>
+        <span>({{ item.currencyTitle ?? "ریال" }})</span>
+      </div>
+
+      <div
+        v-if="item.summary"
+        class="col ellipsis text-caption-sm caption-on-dark"
+      >
+        {{ item.summary }}
+      </div>
+    </template>
+
+    <template #row-badge="{ item }">
+      <notification-badge :count="item.notificationCount" />
+
+      <row-no-badge :no="item.rowNo" />
+
+      <type-badge
+        :title="
+          $t(
+            `shared.voucherType.${helper.getEnumType(
+              item.typeId,
+              voucherType
+            )}`
+          )
+        "
       />
+
+      <system-badge
+        :title="
+          $t(
+            `shared.subSystem.${helper.getEnumType(
+              item.systemId,
+              subSystem
+            )}`
+          )
+        "
+      />
+
+      <contract-badge :title="item.contractTitle" />
     </template>
   </data-grid>
 
@@ -139,6 +94,7 @@
   import { subSystem, voucherType } from "src/constants";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
+  import MenuItemMore from "src/components/shared/buttons/MenuItemMore.vue";
   import ItemSheet from "./DataGridItemSheet.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";

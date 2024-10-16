@@ -373,7 +373,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from "vue";
+  import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { defaultLookupPageSize, sortOrder } from "src/constants";
@@ -434,8 +434,6 @@
   const isPopupOpen = ref(false);
   const lookupDialog = ref(null);
 
-  const lookup = document.querySelector(".lookup");
-
   function handleKeyDown(event) {
     switch (event.key) {
       case "Delete":
@@ -493,8 +491,8 @@
       }
     } else {
       tableStore.setSearchTerm(null);
-      showDialog();
       await tableStore.reloadData();
+      showDialog();
     }
   }
 
@@ -548,7 +546,7 @@
   }
 
   async function showDialog() {
-    await tableStore.reloadData();
+    //await tableStore.reloadData();
     lookupDialog.value?.show();
   }
 

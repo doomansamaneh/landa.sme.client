@@ -65,15 +65,9 @@
       </div>
     </template>
     <template #cell-statusId="{ item }">
-      <q-btn
+      <is-active
         v-if="item.statusId === quoteStatus.final"
-        round
-        text-color="white"
-        dense
-        size="9px"
-        unelevated
-        icon="o_done"
-        class="q-mr-xs green-gradient green-shadow no-pointer-events"
+        is-active
       />
       {{
         $t(
@@ -167,6 +161,7 @@
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
   import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
+  import IsActive from "src/components/shared/IsActive.vue";
 
   const props = defineProps({
     tableStore: Object,

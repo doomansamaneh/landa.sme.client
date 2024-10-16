@@ -8,7 +8,11 @@
         <header-sale v-if="showSaleHeader" :model="model" />
         <header-purchase v-else :model="model" />
         <invoice-body :model="model" />
-        <invoice-footer show-signature :model="model" />
+        <invoice-footer
+          show-signature
+          :model="model"
+          :comment="comment"
+        />
       </q-card-section>
     </div>
   </q-card>
@@ -25,6 +29,7 @@
     model: Object,
     title: String,
     showSaleHeader: Boolean,
+    comment: String,
   });
 
   // const showSaleHeader = computed(
