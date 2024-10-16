@@ -57,7 +57,7 @@
               :class="tableStore.getRowClass(row)"
               flat
             >
-              <q-card-section class="row q-pa-sm items-center_">
+              <q-card-section class="row q-pa-xs items-center_">
                 <slot v-if="showAvatar" name="row-avatar" :item="row">
                   <div class="col-2 q-mr-sm">
                     <transition name="slide" appear mode="out-in">
@@ -95,7 +95,7 @@
                   </div>
                 </slot>
 
-                <div class="col q-gutter-y-xs">
+                <div class="col q-gutter-y-sm">
                   <slot name="row-body" :item="row">
                     <div
                       v-for="col in gridStore?.columns.value"
@@ -116,9 +116,9 @@
                   </slot>
 
                   <div v-if="showBadge" class="row no-wrap">
-                    <div class="col q-pt-sm no-wrap">
+                    <div class="col no-wrap">
                       <q-scroll-area style="height: 20px">
-                        <div class="row q-gutter-xs no-wrap q-pr-xs">
+                        <div class="row q-gutter-x-xs no-wrap">
                           <slot name="row-badge" :item="row"></slot>
                         </div>
                       </q-scroll-area>
@@ -132,56 +132,6 @@
       </slot>
     </template>
   </div>
-
-  <!-- <div class="q-pt-md q-col-gutter-md">
-    <template v-for="(row, index) in rows?.value" :key="row.id">
-      <div
-        @click="setActiveRow(row)"
-        v-touch-hold.capture="() => selectRow(row)"
-      >
-        <slot name="body" :item="row">
-          <q-card
-            flat
-            class="bordered grid-body"
-            :class="tableStore.getRowClass(row)"
-          >
-            <slot name="row-header" :item="row"></slot>
-
-            <q-card-section class="q-px-xs">
-              <slot name="row-body" :item="row">
-                <span v-if="numbered" class="text-on-dark">
-                  {{ tableStore.rowIndex(index) }}
-                </span>
-
-                <div
-                  v-for="col in gridStore?.columns.value"
-                  :key="col.name"
-                >
-                  <slot :name="`cell-${col.name}`" :item="row">
-                    <div
-                      v-if="col.field && col.label && row[col.field]"
-                      class="q-pa-xs"
-                    >
-                      {{ col.label }}:
-                      <span v-html="getColText(row, col)"></span>
-                    </div>
-                  </slot>
-                </div>
-              </slot>
-            </q-card-section>
-
-            <q-separator size="0.5px" />
-
-            <q-card-actions class="dark-1_ q-pa-md" align="between">
-              <slot name="row-actions" :item="row"></slot>
-
-              <slot name="row-more-menus" :item="row"></slot>
-            </q-card-actions>
-          </q-card>
-        </slot>
-      </div>
-    </template>
-  </div> -->
 
   <slot name="footer"></slot>
 

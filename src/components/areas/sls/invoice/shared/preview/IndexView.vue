@@ -1,9 +1,16 @@
 <template>
   <preview
-    :title="invoiceTitle ?? title ?? $t('shared.labels.invoice')"
+    :title="
+      appConfigStore.model.value?.companySetting?.invoiceTitle ??
+      title ??
+      $t('shared.labels.invoice')
+    "
     base-route="sls/invoice"
     detail-url="trs/receipt"
     entity-name="Sls.[Invoice]"
+    :comment="
+      appConfigStore.model.value?.companySetting?.invoiceComment
+    "
     tax-api
     show-sale-header
     show-receipt
@@ -20,6 +27,4 @@
   });
 
   const appConfigStore = useAppConfigModel();
-  const invoiceTitle =
-    appConfigStore.model.value?.companySetting?.invoiceTitle;
 </script>

@@ -59,9 +59,9 @@
         >
           <div class="row q-gutter-x-sm items-center">
             <q-avatar
+              v-if="item.picture"
               class="primary-gradient primary-shadow border-radius-xs"
               square
-              v-if="item.picture"
               text-color="white"
               size="58px"
             >
@@ -96,7 +96,9 @@
 
           <div class="row items-center justify-between full-width">
             <div class="col-9 q-pl-lg column">
-              <span class="text-body3 no-letter-spacing">
+              <span
+                class="text-body3 no-letter-spacing text-weight-600"
+              >
                 {{ item.code }} - {{ item.title }}
               </span>
               <span

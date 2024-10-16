@@ -21,6 +21,7 @@
     :show-sale-header="showSaleHeader"
     :tax-api="taxApi"
     :show-receipt="showReceipt"
+    :comment="comment"
   >
     <template #master-section>
       <slot name="master-section" :model="model"></slot>
@@ -39,6 +40,7 @@
     :tax-api="taxApi"
     :detail-url="detailUrl"
     :show-receipt="showReceipt"
+    :comment="comment"
   >
     <template #master-section>
       <slot name="master-section" :model="model"></slot>
@@ -79,6 +81,7 @@
     showReceipt: Boolean,
     taxApi: Boolean,
     entityName: { type: String, default: "Doc.[Document]" },
+    comment: String,
   });
 
   const route = useRoute();

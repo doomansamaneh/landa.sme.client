@@ -6,6 +6,7 @@
           :model="model"
           :title="title"
           :show-sale-header="showSaleHeader"
+          :comment="comment"
         />
       </slot>
     </div>
@@ -37,6 +38,7 @@
     showSaleHeader: Boolean,
     showReceipt: Boolean,
     taxApi: Boolean,
+    comment: String,
   });
 
   // const invoiceStore = useInvoiceState();

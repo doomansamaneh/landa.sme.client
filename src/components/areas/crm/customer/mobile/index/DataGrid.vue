@@ -17,7 +17,7 @@
     <template #row-body="{ item }">
       <div class="row">
         <div
-          class="col ellipsis text-body3 no-letter-spacing text-weight-500_"
+          class="col ellipsis text-body3 no-letter-spacing text-weight-600"
         >
           <span v-if="item.code">{{ item.code }} /</span>
           {{ item.name }}

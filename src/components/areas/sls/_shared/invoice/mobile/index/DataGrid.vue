@@ -20,14 +20,14 @@
     <template #row-body="{ item }">
       <div class="row justify-between">
         <div
-          class="col ellipsis text-body3 no-letter-spacing text-weight-500"
+          class="col ellipsis text-body3 no-letter-spacing text-weight-600"
         >
           {{ item.customerName }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />
       </div>
 
-      <div class="row q-gutter-sm text-body3 text-weight-500">
+      <div class="row q-gutter-x-sm text-body3 text-weight-500">
         <div v-if="item.amount">
           <span class="text-body2 text-green text-weight-900">+</span>
           <span>
@@ -66,7 +66,7 @@
       </div>
     </template>
     <template #row-badge="{ item }">
-      <tax-badge :taxt-id="item.taxId" />
+      <tax-badge :tax-id="item.taxId" />
 
       <notification-badge :count="item.notificationCount" />
 
@@ -74,7 +74,7 @@
         v-if="item?.statusTitle"
         padding="1px 9px"
         unelevated
-        class="orange-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg"
+        class="orange-gradient text-white text-center text-caption-xs no-letter-spacing border-radius-lg"
         style="white-space: nowrap"
       >
         {{ item?.statusTitle }}
