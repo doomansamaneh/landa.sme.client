@@ -8,7 +8,10 @@
     transition-show="slide-up"
     transition-hide="slide-down"
   >
-    <q-card :style="`min-height: ${minHeight}px`" class="no-border border-radius-lg bottom-sheet">
+    <q-card
+      :style="`min-height: ${minHeight}px`"
+      class="no-border border-radius-lg bottom-sheet"
+    >
       <q-card-section class="no-padding">
         <slot name="header">
           <div
@@ -28,9 +31,27 @@
 </template>
 
 <script setup>
+  import { onBeforeRouteLeave } from "vue-router";
+  import { ref } from "vue";
+
   const props = defineProps({
     status: Boolean,
     header: Boolean,
-    minHeight: String
+    minHeight: String,
+  });
+
+  const bottomSheet = ref(null);
+
+  onBeforeRouteLeave((to, from, next) => {
+    if (props.status) {
+      bottomSheet.value.hide();
+      next(false);
+
+      setTimeout(() => {
+        next();
+      }, 300);
+    } else {
+      next();
+    }
   });
 </script>

@@ -34,7 +34,10 @@
             v-for="item in dataStore.accountClCodes.value"
             :key="item.clTypeId"
           >
-            <q-item-label header class="q-pl-none q-py-xs">
+            <q-item-label
+              header
+              class="bg-on-dark q-pa-sm border-radius-sm q-py-xs"
+            >
               <span class="text-h6 text-on-dark text-weight-600">
                 {{ item.clCode }} - {{ item.clTitle }}
               </span>
@@ -50,13 +53,11 @@
               :key="glItem.glCode"
             >
               <q-item-section class="q-pr-sm" avatar>
-                <q-badge
-                  rounded
-                  color="accent"
-                  class="text-body2 no-letter-spacing q-py-xs q-px-sm"
+                <div
+                  class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
                 >
                   {{ glItem.glCode }}
-                </q-badge>
+                </div>
               </q-item-section>
 
               <q-item-section>
