@@ -1,7 +1,8 @@
 <template>
   <bottom-sheet header :status="status" @hide="hide">
     <template #header-title>
-      {{ item.no }} / {{ item.subject }}
+      {{ item.rowNo }} / از: {{ item.fromTitle }} به:
+      {{ item.toTitle }}
     </template>
 
     <template #body>

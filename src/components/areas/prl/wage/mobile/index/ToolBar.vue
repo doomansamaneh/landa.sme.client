@@ -8,6 +8,12 @@
     search-btn
     sort-btn
   >
+    <template #header-title>
+      <span class="text-body2 no-letter-spacing">
+        {{ title }}
+      </span>
+    </template>
+
     <template #buttons-custom>
       <template v-if="row">
         <menu-item
@@ -26,11 +32,11 @@
         <menu-item-print @click="downloadPdf(row.id)" />
       </template>
 
-      <menu-item
+      <!-- <menu-item
         :title="$t('shared.labels.printBatch')"
         icon="o_print"
         @click="downloadBatchPdf"
-      />
+      /> -->
     </template>
   </tool-bar>
 </template>
@@ -55,7 +61,7 @@
     "downloadPdf",
     "download-batch-pdf",
     "export-tax",
-    "export-insurrance",
+    "export-insurance",
   ]);
 
   function downloadPdf(id) {

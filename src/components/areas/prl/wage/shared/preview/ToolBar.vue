@@ -4,22 +4,23 @@
     :inside="inside"
     :title="title"
     :model="model"
-    :form-store="formStore"
     :base-route="baseRoute"
-  ></tool-bar-desktop>
+    @send-email="sendEmail"
+  />
 
   <tool-bar-mobile
     v-else
     :inside="inside"
     :title="title"
     :model="model"
-    :form-store="formStore"
     :base-route="baseRoute"
-  ></tool-bar-mobile>
+    @send-email="sendEmail"
+  />
 </template>
 
 <script setup>
   import { useRouter } from "vue-router";
+  import { downloadManager } from "src/helpers";
 
   import ToolBarDesktop from "../../desktop/preview/PreviewToolbar.vue";
   import ToolBarMobile from "../../mobile/preview/PreviewToolbar.vue";
@@ -30,14 +31,14 @@
     inside: Boolean,
     margin: Boolean,
     baseRoute: String,
-    formStore: Object,
   });
 
   const router = useRouter();
-  //const invoiceStore = useInvoiceState();
 
-  function deleteCallBack() {
+  function deleteById(id) {
     //invoiceStore.state.firstLoad.value = false;
     router.back();
   }
+
+  function sendEmail(id) {}
 </script>

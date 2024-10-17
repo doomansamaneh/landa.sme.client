@@ -32,7 +32,6 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
 
-  import { useWageModel } from "../../../_composables/useWageModel";
   import { useFormActions } from "src/composables/useFormActions";
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
@@ -46,7 +45,6 @@
   });
 
   const $q = useQuasar();
-  const formStore = useWageModel({ baseRoute: props.baseRoute });
 
   const crudStore = useFormActions(props.baseRoute);
 
@@ -54,9 +52,9 @@
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function downloadPdf() {
+  function downloadPdf(id) {
     downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
+      `${props.baseRoute}/GeneratePdf/${id}`,
       "landa-payroll"
     );
   }
@@ -69,11 +67,17 @@
     );
   }
 
-  function exportTax() {
-    formStore.exportTax(props.tableStore.activeRow.value.id);
+  function exportTax(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/exportTax/${id}`,
+      "landa-tax"
+    );
   }
 
-  function exportInsurance() {
-    formStore.exportInsurance(props.tableStore.activeRow.value.id);
+  function exportInsurance(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/exportInsurance/${id}`,
+      "landa-insurance"
+    );
   }
 </script>

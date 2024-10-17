@@ -10,7 +10,7 @@
     @row-dbl-click="gotoPreview"
   >
     <template #cell-amount="{ item }">
-      {{ helper.formatNumber(item.amount) }}
+      <strong>{{ helper.formatNumber(item.amount) }}</strong>
     </template>
     <template #cell-taxAmount="{ item }">
       {{ helper.formatNumber(item.taxAmount) }}

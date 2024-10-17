@@ -1,13 +1,25 @@
 <template>
   <bottom-sheet header :status="status" @hide="hide">
     <template #header-title>
-      {{ item.no }} / {{ item.subject }}
+      دوره: {{ item.year }} / {{ item.month }}
     </template>
 
     <template #body>
       <q-list padding>
         <menu-item-edit :to="`/${baseRoute}/edit/${item.id}`" />
         <menu-item-copy :to="`/${baseRoute}/copy/${item.id}`" />
+        <q-separator class="q-my-sm" />
+        <menu-item
+          icon="o_save"
+          :title="$t('shared.labels.downloadInsurrance')"
+          @click="exportInsurance(item.id)"
+        />
+
+        <menu-item
+          icon="o_save"
+          :title="$t('shared.labels.downloadTax')"
+          @click="exportTax(item.id)"
+        />
         <q-separator class="q-my-sm" />
         <menu-item-print @click="downloadPdf" />
         <q-separator class="q-my-sm" />
@@ -18,7 +30,6 @@
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
@@ -38,16 +49,9 @@
     deleteCallBack: Function,
     baseRoute: String,
   });
-  const $q = useQuasar();
 
   const emits = defineEmits(["hide"]);
   const crudStore = useFormActions(props.baseRoute);
-
-  const downloadPdf = () => {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/generatePdf/${props.item.id}`
-    );
-  };
 
   const deleteItem = () => {
     crudStore.deleteById(
@@ -56,16 +60,25 @@
     );
   };
 
-  function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
-        id: props.item.id,
-        baseRoute: props.baseRoute,
-      },
-    }).onOk(async () => {
-      //await props.tableStore.reloadData();
-    });
+  function downloadPdf(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/GeneratePdf/${id}`,
+      "landa-payroll"
+    );
+  }
+
+  function exportTax(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/exportTax/${id}`,
+      "landa-tax"
+    );
+  }
+
+  function exportInsurance(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/exportInsurance/${id}`,
+      "landa-insurance"
+    );
   }
 
   const hide = () => {
