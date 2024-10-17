@@ -5,7 +5,11 @@
     :title="title"
     :model="model"
     :base-route="baseRoute"
+    @export-tax="exportTax"
+    @export-insurance="exportInsurance"
+    @download-pdf="downloadPdf"
     @send-email="sendEmail"
+    @delete-by-id="deleteById"
   />
 
   <tool-bar-mobile
@@ -14,7 +18,11 @@
     :title="title"
     :model="model"
     :base-route="baseRoute"
+    @export-tax="exportTax"
+    @export-insurance="exportInsurance"
+    @download-pdf="downloadPdf"
     @send-email="sendEmail"
+    @delete-by-id="deleteById"
   />
 </template>
 
@@ -38,6 +46,27 @@
   function deleteById(id) {
     //invoiceStore.state.firstLoad.value = false;
     router.back();
+  }
+
+  function downloadPdf(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/GeneratePdf/${id}`,
+      "landa-payroll"
+    );
+  }
+
+  function exportTax(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/exportTax/${id}`,
+      "landa-tax"
+    );
+  }
+
+  function exportInsurance(id) {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/exportInsurance/${id}`,
+      "landa-insurance"
+    );
   }
 
   function sendEmail(id) {}
