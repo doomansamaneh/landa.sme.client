@@ -6,9 +6,9 @@
       >
         <div class="col-5">
           <div>
-            شماره:
+            ش سند:
             <span class="text-weight-500">
-              {{ model?.no }}
+              {{ model?.voucherNo }}
             </span>
           </div>
           <div>
@@ -28,6 +28,28 @@
 
     <q-card-section class="q-gutter-y-sm">
       <div>
+        از:
+        <span v-if="model?.fromBankTitle">
+          {{ model?.fromBankTitle }} /
+          {{ model?.fromBankAccountTypeTitle }} /
+          {{ model?.fromBankAccountTitle }}
+        </span>
+        <span v-else>
+          {{ model?.fromCashTitle }}
+        </span>
+      </div>
+      <div>
+        به:
+        <span v-if="model?.toBankTitle">
+          {{ model?.toBankTitle }} /
+          {{ model?.toBankAccountTypeTitle }} /
+          {{ model?.toBankAccountTitle }}
+        </span>
+        <span v-else>
+          {{ model?.toCashTitle }}
+        </span>
+      </div>
+      <div>
         <span class="text-body3 no-letter-spacing">
           {{ model?.subject }}
         </span>
@@ -35,33 +57,13 @@
       <div class="row q-gutter-xs">
         <contract-badge :title="model?.contractTitle" />
       </div>
-    </q-card-section>
-
-    <q-card-section class="q-gutter-md">
-      <template
-        v-for="(item, index) in model?.billItems"
-        :key="item.id"
-      >
-        <div class="row items-start q-gutter-sm no-letter-spacing">
-          <div
-            class="col-1 text-white text-center rounded-borders bg-secondary"
-          >
-            <div>
-              {{ index + 1 }}
-            </div>
-          </div>
-          <div class="col">
-            <div>
-              {{ item.slCode }} / {{ item.slTitle }} /
-              {{ item.comment }}
-            </div>
-            <div>
-              {{ helper.formatNumber(item.amount) }}
-            </div>
-          </div>
-        </div>
-      </template>
       <q-separator />
+      <div v-if="model?.fromFee" class="text-right">
+        کارمزد:
+        <span class="text-weight-500">
+          {{ helper.formatNumber(model?.fromFee) }}
+        </span>
+      </div>
       <div class="text-right">
         <span class="text-weight-600">
           {{ helper.formatNumber(model?.amount) }}
@@ -73,31 +75,19 @@
     </q-card-section>
   </q-card>
 
-  <detail-section
-    class="q-mt-md"
-    :model="model"
-    tax-api
-    :detail-url="detailUrl"
-    :show-receipt="showReceipt"
-  />
+  <detail-section class="q-mt-md" :model="model" />
 </template>
 
 <script setup>
   import { helper } from "src/helpers";
-  import { subSystem, voucherType } from "src/constants";
 
   import DetailSection from "../../shared/preview/_DetailSection.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
-  import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
-  import SystemBadge from "src/components/areas/_shared/badges/SystemBadge.vue";
   import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
 
   const props = defineProps({
     model: Object,
     title: String,
     detailUrl: String,
-    showSaleHeader: Boolean,
-    showReceipt: Boolean,
-    taxApi: Boolean,
   });
 </script>

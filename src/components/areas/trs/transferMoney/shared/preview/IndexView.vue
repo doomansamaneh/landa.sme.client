@@ -1,41 +1,55 @@
 <template>
-  <tool-bar :inside="inside" :model="model" />
+  <tool-bar
+    :inside="inside"
+    :title="title"
+    :base-route="baseRoute"
+    :model="model"
+  />
 
-  <div class="row q-col-gutter-lg" style="margin-top: -20px">
-    <div class="col-md-8 col-sm-12 col-xs-12">
-      <q-card>
-        <div id="invoicePreview">
-          <header-section :model="model" />
-          <body-section :model="model" />
-        </div>
-      </q-card>
-    </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
-      <detail-section :model="model" />
-    </div>
-  </div>
+  <mobile
+    v-if="$q.screen.xs"
+    :model="model"
+    :base-route="baseRoute"
+    :title="title"
+    :type="documentType.bill"
+  />
+  <desktop
+    v-else
+    :model="model"
+    :base-route="baseRoute"
+    :title="title"
+    :type="documentType.bill"
+  />
 </template>
+
 <script setup>
   import { ref, computed, onMounted } from "vue";
-  import { useRoute } from "vue-router";
+  import { useRoute, useRouter } from "vue-router";
   import { useFormActions } from "src/composables/useFormActions";
+  import { documentType } from "src/constants";
 
-  import ToolBar from "./_Toolbar.vue";
-  import HeaderSection from "./_HeaderSection.vue";
-  import BodySection from "./_BodySection.vue";
-  import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
+  import ToolBar from "./ToolBar.vue";
+  import Mobile from "../../mobile/preview/IndexView.vue";
+  import Desktop from "../../desktop/preview/IndexView.vue";
 
   const props = defineProps({
     item: Object,
     title: String,
     inside: Boolean,
+    baseRoute: { type: String, default: "trs/transferMoney" },
   });
 
   const model = ref(null);
+  const crudStore = useFormActions(props.baseRoute, model);
+
   const route = useRoute();
+  const router = useRouter();
 
   const id = computed(() => props.item?.id ?? route.params.id);
-  const crudStore = useFormActions("trs/transferMoney", model);
+
+  function deleteCallBack() {
+    router.back();
+  }
 
   onMounted(() => {
     crudStore.getById(id.value);
