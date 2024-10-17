@@ -42,7 +42,7 @@
               "
               :class="[
                 {
-                  'active-shine primary-gradient': isActive(
+                  'active-shine text-white primary-gradient': isActive(
                     option.value
                   ),
                 },
@@ -62,7 +62,7 @@
               class="text-body2 bordered text-on-dark"
               :class="
                 searchStore.searchModel.value.depositType > 0
-                  ? 'active-shine primary-gradient'
+                  ? 'active-shine text-white primary-gradient'
                   : ''
               "
               no-caps
@@ -96,7 +96,7 @@
               class="text-body2 bordered text-on-dark"
               :class="
                 searchStore.searchModel.value.taxStatus > 0
-                  ? 'active-shine primary-gradient'
+                  ? 'active-shine text-white primary-gradient'
                   : ''
               "
               no-caps
