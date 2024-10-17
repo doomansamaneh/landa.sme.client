@@ -8,19 +8,10 @@
   >
     <template #buttons>
       <q-btn
-        :to="`/${baseRoute}/edit/${model.id}`"
-        class="text-caption"
-        round
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-      </q-btn>
-
-      <q-btn
         @click="onBottomSheetShow"
-        class="text-caption"
+        class="text-caption q-mr-sm"
         round
+        dense
         unelevated
         no-caps
       >

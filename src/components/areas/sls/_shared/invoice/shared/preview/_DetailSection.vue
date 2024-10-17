@@ -1,6 +1,6 @@
 <template>
-  <q-card bordered>
-    <q-card-section>
+  <q-card :flat="$q.screen.xs" :bordered="$q.screen.gt.xs">
+    <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
       <slot name="header">
         <div class="column q-gutter-y-sm">
           <div class="row items-center">
@@ -75,7 +75,7 @@
 
     <template v-if="model.id">
       <slot name="body">
-        <q-card-section class="q-pb-none">
+        <q-card-section :class="$q.screen.xs ? 'no-padding' : 'q-pb-none'">
           <q-tabs
             v-model="tab"
             inline-label
@@ -111,9 +111,10 @@
             </q-tab>
           </q-tabs>
         </q-card-section>
+        
         <q-separator size="1px" />
 
-        <q-card-section>
+        <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
           <q-tab-panels
             v-model="tab"
             animated

@@ -48,6 +48,7 @@
       <slot name="body" :item="row">
         <div>
           <router-link
+            @contextmenu.prevent
             class="no-decoration text-on-dark"
             :to="baseRoute ? `/${baseRoute}/preview/${row.id}` : ''"
           >

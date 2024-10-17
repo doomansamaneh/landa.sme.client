@@ -52,7 +52,13 @@ module.exports = configure(function (/* ctx */) {
     build: {
       publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
       target: {
-        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
+        browser: [
+          "es2019",
+          "edge88",
+          "firefox78",
+          "chrome87",
+          "safari13.1",
+        ],
         node: "node16",
       },
       rtl: true,
@@ -106,6 +112,10 @@ module.exports = configure(function (/* ctx */) {
         screen: {
           bodyClasses: true,
         },
+
+        capacitor: {
+          backButton: true,
+        },
       },
 
       iconSet: "material-icons",
@@ -119,7 +129,13 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["LocalStorage", "Loading", "Notify", "Dialog", "BottomSheet"],
+      plugins: [
+        "LocalStorage",
+        "Loading",
+        "Notify",
+        "Dialog",
+        "BottomSheet",
+      ],
     },
 
     // animations: 'all', // --- includes all animations
@@ -147,10 +163,10 @@ module.exports = configure(function (/* ctx */) {
       // extendPackageJson (json) {},
 
       pwa: {
-        extendGenerateSWOptions (cfg) {
-          cfg.skipWaiting = false
-          cfg.clientsClaim = false
-        }
+        extendGenerateSWOptions(cfg) {
+          cfg.skipWaiting = false;
+          cfg.clientsClaim = false;
+        },
       },
 
       // manualStoreHydration: true,

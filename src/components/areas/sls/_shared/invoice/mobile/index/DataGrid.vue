@@ -53,50 +53,27 @@
       </div>
 
       <div>
-        <div class="text-caption-sm">
-          {{ item.no }} -
-          {{ helper.formatPersianDate(item.date) }}
+        <div class="row q-gutter-x-xs text-caption">
+          <div>{{ item.no }}#</div>
+          <div class="row items-center q-gutter-xs">
+            <q-icon name="o_schedule" />
+            <div>{{ helper.formatPersianDate(item.date) }}</div>
+          </div>
         </div>
       </div>
       <div
         v-if="item.subject"
-        class="col ellipsis text-caption-sm caption-on-dark"
+        class="col ellipsis text-caption caption-on-dark"
       >
         {{ item.subject }}
       </div>
     </template>
     <template #row-badge="{ item }">
       <tax-badge :tax-id="item.taxId" />
-
       <notification-badge :count="item.notificationCount" />
-
-      <q-btn
-        v-if="item?.statusTitle"
-        padding="1px 9px"
-        unelevated
-        class="orange-gradient text-white text-center text-caption-xs no-letter-spacing border-radius-lg"
-        style="white-space: nowrap"
-      >
-        {{ item?.statusTitle }}
-      </q-btn>
-      <q-btn
-        v-if="item?.typeTitle"
-        padding="1px 9px"
-        unelevated
-        class="primary-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg"
-        style="white-space: nowrap"
-      >
-        {{ item?.typeTitle }}
-      </q-btn>
-      <q-btn
-        v-if="item?.contractTitle"
-        padding="1px 9px"
-        unelevated
-        class="bluegrey-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg"
-        style="white-space: nowrap"
-      >
-        {{ item?.contractTitle }}
-      </q-btn>
+      <status-badge :title="item?.statusTitle" />
+      <type-badge :title="item?.typeTitle" />
+      <contract-badge :title="item?.contractTitle" :id="item?.id" />
     </template>
   </data-grid>
 

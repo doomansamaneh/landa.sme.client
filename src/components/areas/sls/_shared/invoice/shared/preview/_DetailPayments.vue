@@ -1,9 +1,12 @@
 <template>
-  <div class="row q-py-lg q-gutter-sm">
+  <div
+    class="row q-gutter-sm"
+    :class="$q.screen.gt.xs ? 'q-pb-md' : 'q-py-md'"
+  >
     <template v-if="remainedAmount">
       <q-btn
         v-if="showReceipt"
-        class="primary-shadow q-mr-xs"
+        class="primary-shadow"
         rounded
         color="primary"
         padding="4px 12px"

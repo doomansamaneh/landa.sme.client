@@ -29,74 +29,76 @@
     </template>
 
     <template #body="{ item }">
-      <q-card class="bordered row bg-dark rounded-borders q-pa-md">
-        <div class="col-2 q-mr-xs">
-          <q-avatar
-            size="36px"
-            text-color="white"
-            class="primary-gradient primary-shadow"
-            v-if="item.isOwner"
-          >
-            <q-icon name="o_person" size="20px" />
-          </q-avatar>
-
-          <q-avatar
-            size="36px"
-            class="text-on-dark bg-on-dark"
-            v-else
-          >
-            <q-icon name="o_person" size="20px" />
-          </q-avatar>
-        </div>
-
-        <div class="col">
-          <div class="q-gutter-sm">
-            <div
-              @click="gridStore.gotoBusiness(item)"
-              class="text-body3 ellipsis-2-lines"
+      <q-card class="bordered bg-dark rounded-borders">
+        <q-card-section class="row">
+          <div class="col-2 q-mr-xs">
+            <q-avatar
+              size="36px"
+              text-color="white"
+              class="primary-gradient primary-shadow"
+              v-if="item.isOwner"
             >
-              {{ item.title }}
-            </div>
+              <q-icon name="o_person" size="20px" />
+            </q-avatar>
 
-            <div class="row">
-              <q-item-label
-                class="caption-on-dark text-body3 no-letter-spacing"
+            <q-avatar
+              size="36px"
+              class="text-on-dark bg-on-dark"
+              v-else
+            >
+              <q-icon name="o_person" size="20px" />
+            </q-avatar>
+          </div>
+
+          <div class="col">
+            <div class="q-gutter-sm">
+              <div
+                @click="gridStore.gotoBusiness(item)"
+                class="text-body3 ellipsis-2-lines"
               >
-                <q-icon
-                  class="expire-date-clock bg-on-dark2"
-                  name="history"
-                  size="16px"
-                  v-if="!item.expired"
-                />
-                <q-icon
-                  class="expire-date-clock bg-on-dark2"
-                  color="warning"
-                  name="warning"
-                  size="16px"
-                  v-if="item.expired"
-                />
-                {{ item.toDateString }}
-                <q-tooltip class="custom-tooltip" :delay="600">
-                  {{ $t("page.buttons.expire-date-tooltip") }}
-                </q-tooltip>
-              </q-item-label>
+                {{ item.title }}
+              </div>
+
+              <div class="row">
+                <q-item-label
+                  class="caption-on-dark text-body3 no-letter-spacing"
+                >
+                  <q-icon
+                    class="expire-date-clock bg-on-dark2"
+                    name="history"
+                    size="16px"
+                    v-if="!item.expired"
+                  />
+                  <q-icon
+                    class="expire-date-clock bg-on-dark2"
+                    color="warning"
+                    name="warning"
+                    size="16px"
+                    v-if="item.expired"
+                  />
+                  {{ item.toDateString }}
+                  <q-tooltip class="custom-tooltip" :delay="600">
+                    {{ $t("page.buttons.expire-date-tooltip") }}
+                  </q-tooltip>
+                </q-item-label>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-4">
-          <div class="row justify-end items-center q-gutter-sm">
-            <renew-subscribtion :business="item" />
-            <q-btn
-              size="13px"
-              unelevated
-              round
-              dense
-              icon="o_more_vert"
-              @click="onBottomSheetShow(item)"
-            />
+          <div class="col-4">
+            <div class="row justify-end items-center q-gutter-sm">
+              <renew-subscribtion :business="item" />
+              <q-btn
+                size="13px"
+                unelevated
+                round
+                dense
+                icon="o_more_vert"
+                @click="onBottomSheetShow(item)"
+              />
+            </div>
           </div>
-        </div>
+        </q-card-section>
       </q-card>
     </template>
 

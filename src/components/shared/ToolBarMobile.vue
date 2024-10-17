@@ -1,13 +1,13 @@
 <template>
   <tool-bar-observer ref="observer">
-    <q-toolbar style="padding-left: 16px; padding-right: 16px">
+    <q-toolbar>
       <template v-if="selectedIds?.length == 0">
         <div class="row items-center">
           <q-btn
+            dense
             round
             class="text-caption q-mr-sm"
             unelevated
-            dense
             @click="onBottomSheetShow"
           >
             <q-icon name="more_vert" />

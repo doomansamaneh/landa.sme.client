@@ -1,5 +1,5 @@
 <template>
-  <q-card class="no-border q-pt-sm q-px-sm">
+  <q-card class="no-border">
     <q-card-section>
       <div class="row justify-between items-center">
         <div class="text-body1 no-letter-spacing">
@@ -20,69 +20,131 @@
       </div>
     </q-card-section>
 
-    <q-card-section>
+    <q-card-section class="q-pt-sm q-pb-none">
+      <q-scroll-area
+        :thumb-style="{ opacity: 0 }"
+        :bar-style="{ opacity: 0 }"
+        style="height: 60px"
+      >
+        <div>
+          <div class="row items-center q-gutter-sm no-wrap">
+            <q-btn
+              v-for="option in dateRangeOptions"
+              :key="option.value"
+              @click="handleDateRangeClick(option.value)"
+              rounded
+              unelevated
+              padding="6px 14px"
+              :text-color="
+                !isActive(option.value) && !$q.dark.isActive
+                  ? 'grey-10'
+                  : 'white'
+              "
+              :class="[
+                {
+                  'active-shine text-white primary-gradient': isActive(
+                    option.value
+                  ),
+                },
+                'text-body2 text-on-dark',
+                { bordered: !isActive(option.value) },
+              ]"
+              style="white-space: nowrap"
+            >
+              {{ option.label }}
+            </q-btn>
+
+            <q-btn
+              no-wrap
+              rounded
+              unelevated
+              padding="6px 14px"
+              class="text-body2 bordered text-on-dark"
+              :class="
+                searchStore.searchModel.value.depositType > 0
+                  ? 'active-shine text-white primary-gradient'
+                  : ''
+              "
+              no-caps
+              @click="openDepositTypeDialog"
+            >
+              <template
+                v-if="searchStore.searchModel.value.depositType > 0"
+              >
+                تسویه:
+              </template>
+              <template v-else>تسویه</template>
+
+              <div
+                class="q-ml-xs"
+                v-if="searchStore.searchModel.value.depositType > 0"
+              >
+                {{
+                  $t(
+                    `shared.depositType.${searchStore.searchModel.value.depositType}`
+                  )
+                }}
+              </div>
+              <q-icon size="xs" name="o_expand_more" />
+            </q-btn>
+
+            <q-btn
+              no-wrap
+              rounded
+              unelevated
+              padding="6px 14px"
+              class="text-body2 bordered text-on-dark"
+              :class="
+                searchStore.searchModel.value.taxStatus > 0
+                  ? 'active-shine text-white primary-gradient'
+                  : ''
+              "
+              no-caps
+              @click="openTaxSentStatusDialog"
+            >
+              <template
+                v-if="searchStore.searchModel.value.taxStatus > 0"
+              >
+                سامانه مودیان:
+              </template>
+              <template v-else>سامانه مودیان</template>
+
+              <div
+                class="q-ml-xs"
+                v-if="searchStore.searchModel.value.taxStatus > 0"
+              >
+                {{
+                  $t(
+                    `shared.taxSentStatus.${searchStore.searchModel.value.taxStatus}`
+                  )
+                }}
+              </div>
+              <q-icon size="xs" name="o_expand_more" />
+            </q-btn>
+          </div>
+        </div>
+      </q-scroll-area>
+
       <q-scroll-area
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
         style="height: calc(100vh - 180px)"
       >
         <div class="column q-col-gutter-lg">
-          <div>
-            <q-option-group
-              style="gap: 8px"
-              class="row text-body2 no-letter-spacing"
-              type="radio"
-              inline
-              size="40px"
-              dense
-              :options="helper.getEnumOptions(dateRange)"
-              v-model="searchStore.searchModel.value.dateRange"
-            />
-          </div>
-
-          <div>
-            <q-option-group
-              style="gap: 8px"
-              class="row text-body2 no-letter-spacing"
-              type="radio"
-              inline
-              size="40px"
-              dense
-              :options="
-                helper.getEnumOptions(depositType, 'depositType')
-              "
-              v-model="searchStore.searchModel.value.depositType"
-            />
-          </div>
-
-          <div v-if="showTaxApi">
-            <q-item-label caption class="q-mb-sm">
-              {{ $t("shared.labels.taxStatus") }}
-            </q-item-label>
-            <q-option-group
-              inline
-              :options="
-                helper.getEnumOptions(taxSentStatus, 'taxSentStatus')
-              "
-              type="radio"
-              v-model="searchStore.searchModel.value.taxStatus"
-            />
-          </div>
-
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <q-item-label caption class="q-mb-sm">
+              <div class="text-body2 q-mb-sm no-letter-spacing">
                 مبلغ از
-              </q-item-label>
+              </div>
               <custom-input
                 v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
             </div>
             <div class="col">
-              <q-item-label caption class="q-mb-sm">
+              <div class="text-body2 q-mb-sm no-letter-spacing">
                 مبلغ تا
-              </q-item-label>
+              </div>
               <custom-input
                 v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
@@ -92,17 +154,17 @@
 
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <q-item-label caption class="q-mb-sm">
+              <div class="text-body2 q-mb-sm no-letter-spacing">
                 تاریخ از
-              </q-item-label>
+              </div>
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
               />
             </div>
             <div class="col">
-              <q-item-label caption class="q-mb-sm">
+              <div class="text-body2 q-mb-sm no-letter-spacing">
                 تاریخ تا
-              </q-item-label>
+              </div>
               <date-time
                 v-model="searchStore.searchModel.value.dateTo"
               />
@@ -110,9 +172,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">
+            <div class="text-body2 q-mb-sm no-letter-spacing">
               نوع فروش
-            </q-item-label>
+            </div>
             <sale-type-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.typeId
@@ -124,7 +186,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
+            <div class="text-body2 q-mb-sm no-letter-spacing">
+              مشتری
+            </div>
             <customer-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.customerId
@@ -137,9 +201,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">
+            <div class="text-body2 q-mb-sm no-letter-spacing">
               کالا و خدمات
-            </q-item-label>
+            </div>
             <product-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.productId
@@ -152,9 +216,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">
+            <div class="text-body2 no-letter-spacing q-mb-sm">
               قرارداد
-            </q-item-label>
+            </div>
             <contract-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.contractId
@@ -167,9 +231,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">
+            <div class="text-body2 no-letter-spacing q-mb-sm">
               بازاریاب
-            </q-item-label>
+            </div>
             <customer-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.marketerId
@@ -182,7 +246,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+            <div class="text-body2 no-letter-spacing q-mb-sm">
+              شرح
+            </div>
             <custom-input
               type="textarea"
               v-model="searchStore.searchModel.value.comment"
@@ -230,9 +296,78 @@
       </div>
     </q-card-section>
   </q-card>
+
+  <q-dialog
+    v-model="depositTypeDialog"
+    persistent
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down"
+  >
+    <q-card
+      class="no-border q-mt-xl"
+      position="bottom"
+      style="height: 100vh"
+    >
+      <q-card-section class="q-pb-none">
+        <div class="row justify-between items-center">
+          <span class="text-body1 no-letter-spacing">
+            انتخاب تسویه
+          </span>
+          <q-btn dense flat icon="close" v-close-popup />
+        </div>
+      </q-card-section>
+
+      <q-card-section>
+        <div class="colunm">
+          <q-option-group
+            :options="
+              helper.getEnumOptions(depositType, 'depositType')
+            "
+            v-model="searchStore.searchModel.value.depositType"
+          />
+        </div>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
+
+  <q-dialog
+    v-model="taxSentStatusDialog"
+    persistent
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down"
+  >
+    <q-card
+      class="no-border q-mt-xl"
+      position="bottom"
+      style="height: 100vh"
+    >
+      <q-card-section class="q-pb-none">
+        <div class="row justify-between items-center">
+          <span class="text-body1 no-letter-spacing">
+            سامانه مودیان
+          </span>
+          <q-btn dense flat icon="close" v-close-popup />
+        </div>
+      </q-card-section>
+
+      <q-card-section>
+        <div class="colunm">
+          <q-option-group
+            :options="
+              helper.getEnumOptions(taxSentStatus, 'taxSentStatus')
+            "
+            v-model="searchStore.searchModel.value.taxStatus"
+          />
+        </div>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
+  import { ref, computed, watch } from "vue";
   import {
     dateRange,
     depositType,
@@ -240,6 +375,7 @@
   } from "src/constants";
   import { helper } from "src/helpers";
   import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
+  import { useI18n } from "vue-i18n";
 
   import dateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -254,15 +390,53 @@
     showTaxApi: Boolean,
   });
 
+  const { t } = useI18n();
+
+  const depositTypeDialog = ref(false);
+  const taxSentStatusDialog = ref(false);
+
+  const dateRangeOptions = computed(() =>
+    helper.getEnumOptions(dateRange)
+  );
+
+  const handleDateRangeClick = async (value) => {
+    searchStore.searchModel.value.dateRange = value;
+    const translatedLabel = t(
+      `shared.labels.${searchStore.searchModel.value.dateRange}`
+    );
+    emit("update-date-range", {
+      value: searchStore.searchModel.value.dateRange,
+      label: translatedLabel,
+    });
+  };
+
+  const isActive = (value) => {
+    return searchStore.searchModel.value.dateRange === value;
+  };
+
   const emit = defineEmits(["apply-search", "update-date-range"]);
 
   const searchStore = useInvoiceSearch();
-</script>
 
-<!-- <style lang="scss" scoped>
-  .q-item__label--caption {
-    font-size: 14px;
-    letter-spacing: 0;
-    color: #697588;
-  }
-</style> -->
+  const openDepositTypeDialog = () => {
+    depositTypeDialog.value = true;
+  };
+
+  const openTaxSentStatusDialog = () => {
+    taxSentStatusDialog.value = true;
+  };
+
+  watch(
+    () => searchStore.searchModel.value.depositType,
+    () => {
+      depositTypeDialog.value = false;
+    }
+  );
+
+  watch(
+    () => searchStore.searchModel.value.taxStatus,
+    () => {
+      taxSentStatusDialog.value = false;
+    }
+  );
+</script>

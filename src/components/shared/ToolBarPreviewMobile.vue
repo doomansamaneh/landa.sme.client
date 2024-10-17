@@ -1,6 +1,6 @@
 <template>
   <tool-bar-observer ref="observer">
-    <q-toolbar style="padding-left: 20px; padding-right: 20px">
+    <q-toolbar>
       <div
         class="flex items-center"
         :class="tableStore?.activeRow?.value ? 'q-gutter-sm' : ''"
@@ -104,7 +104,7 @@
         <div class="row items-center">
           <slot name="header">
             <span
-              class="title-width ellipsis-2-lines text-weight-700 no-letter-spacing"
+              class="ellipsis text-weight-700 no-letter-spacing"
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
             >
               <slot name="header-title">
@@ -208,17 +208,3 @@
     bottomSheetStatus.value = false;
   };
 </script>
-
-<style lang="scss">
-  @media (min-width: 320px) and (max-width: 360px) {
-    .title-width {
-      max-width: 160px !important;
-    }
-  }
-
-  @media (min-width: 376px) and (max-width: 599px) {
-    .title-width {
-      max-width: auto !important;
-    }
-  }
-</style>
