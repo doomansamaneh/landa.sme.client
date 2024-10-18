@@ -19,14 +19,14 @@
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm-12 col-xs-12">
-      <ratios-widget class="q-mb-md" />
       <top-products class="q-mb-md" data-source="sls/report/getInvoiceByProduct" />
+      <bank-balance class="q-mb-md" />
+      <cash-balance class="q-mb-md" />
       <e-charts-bank-balance />
     </div>
 
     <div class="col-md col-sm-12 col-xs-12">
-      <bank-balance class="q-mb-md" />
-      <cash-balance class="q-mb-md" />
+      <ratios-widget class="q-mb-md" />
       <income-statement />
     </div>
   </div>

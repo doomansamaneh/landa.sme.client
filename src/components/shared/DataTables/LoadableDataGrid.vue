@@ -36,7 +36,7 @@
   </div>
 
   <q-scroll-area
-    v-if="scrollArea"
+    v-if="gridStore.rows.value.length > 6"
     :style="scrollAreaStyle"
     :thumb-style="helper.thumbStyle"
     :bar-style="helper.barStyle"

@@ -75,18 +75,18 @@
                 square
                 v-if="item.picture"
                 text-color="white"
-                size="58px"
+                size="72px"
               >
                 <img :src="item.picture" />
                 <q-badge floating color="negative">
-                  {{ helper.formatNumber(item.quantity) }}
+                  {{ helper.formatNumberReadable(item.quantity) }}
                 </q-badge>
               </q-avatar>
 
               <q-avatar
                 class="border-radius-xs"
                 square
-                size="58px"
+                size="72px"
                 text-color="white"
                 :style="helper.generateAvatarStyle(item.id)"
                 v-else
@@ -99,7 +99,7 @@
                   floating
                   color="negative"
                 >
-                  {{ helper.formatNumber(item.quantity) }}
+                  {{ helper.formatNumberReadable(item.quantity) }}
                 </q-badge>
               </q-avatar>
             </div>

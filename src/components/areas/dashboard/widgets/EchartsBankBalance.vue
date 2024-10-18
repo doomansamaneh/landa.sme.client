@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card flat class="bordered shadow">
     <q-card-section class="q-pt-lg q-pb-none q-pr-md q-pl-lg">
       <q-item class="q-mb-lg no-padding">
         <q-item-section avatar>
@@ -44,7 +44,7 @@
     LegendComponent,
   } from "echarts/components";
   import VChart, { THEME_KEY } from "vue-echarts";
-  import { ref, provide } from "vue";
+  import { ref, provide, watch, onMounted, computed } from "vue";
 
   use([
     SVGRenderer,
@@ -59,56 +59,72 @@
 
   const dataSource = useBankAccount(`getBankAccountDebit`);
 
-  console.log(dataSource.chartLabels);
-
   const option = ref(null);
 
-  option.value = {
-    tooltip: {
-      trigger: "item",
-    },
-    legend: {
-      orient: "vertical",
-      left: "left",
-      textStyle: {
-        fontFamily: "vazir-thin",
+  function setOption() {
+    option.value = {
+      tooltip: {
+        trigger: "item",
+        textStyle: {
+          fontFamily: "vazir-thin",
+          fontSize: 14,
+        },
       },
-    },
-    series: [
-      {
-        name: "Access From",
-        type: "pie",
-        radius: ["40%", "70%"],
-        avoidLabelOverlap: false,
-        itemStyle: {
-          borderRadius: 10,
-          borderColor: "#fff",
-          borderWidth: 2,
+      legend: {
+        bottom: "40",
+        padding: [24, 0, 24, 0],
+        left: "center",
+        textStyle: {
+          color: $q.dark.isActive ? "white" : "black", // Change the color here
+          fontFamily: "vazir-thin", // Change the font family here
+          fontSize: 14, // Optionally, change the font size
         },
-        label: {
-          show: false,
-          position: "center",
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: 40,
-            fontWeight: "bold",
+      },
+      series: [
+        {
+          type: "pie",
+          radius: ["40%", "70%"],
+          center: ["50%", "40%"],
+          startAngle: 180,
+          endAngle: 360,
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 10,
+            borderColor: "#fff",
+            borderWidth: 2,
           },
+          label: {
+            show: false,
+            position: "center",
+          },
+          emphasis: {
+            label: {
+              show: false,
+              fontSize: 40,
+              fontWeight: "bold",
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: computed(() =>
+            dataSource.chartLabels.value.map((label, index) => ({
+              value: dataSource.chartSeries.value[index],
+              name: label,
+            }))
+          ),
         },
-        labelLine: {
-          show: false,
-        },
-        data: [
-          { value: 1048, name: "Search Engine" },
-          { value: 735, name: "Direct" },
-          { value: 580, name: "Email" },
-          { value: 484, name: "Union Ads" },
-          { value: 300, name: "Video Ads" },
-        ],
-      },
-    ],
-  };
+      ],
+    };
+  }
+
+  watch(() => {
+    setOption();
+  });
+
+  onMounted(() => {
+    setOption();
+  });
 </script>
 
 <style lang="scss" scoped>

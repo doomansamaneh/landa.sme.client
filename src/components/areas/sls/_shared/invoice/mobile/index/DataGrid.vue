@@ -1,4 +1,4 @@
-<template>
+p<template>
   <data-grid-summary :table-store="tableStore" />
 
   <data-grid

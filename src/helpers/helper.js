@@ -234,21 +234,28 @@ export const helper = {
       return "";
     }
 
-    if (number < 1000) {
-      return number.toString();
-    } else if (number < 1000000) {
-      const thousands = Math.floor(number / 1000);
-      return `${thousands} هزار`;
-    } else if (number < 1000000000) {
-      const millions = Math.floor(number / 1000000);
-      return `${millions} میلیون`;
-    } else if (number < 1000000000000) {
-      const billions = Math.floor(number / 1000000000);
-      return `${billions} میلیارد`;
+    const isNegative = number < 0;
+    const absoluteNumber = Math.abs(number);
+
+    let formattedNumber = "";
+
+    if (absoluteNumber < 1000) {
+      formattedNumber = absoluteNumber.toString();
+    } else if (absoluteNumber < 1000000) {
+      const thousands = Math.floor(absoluteNumber / 1000);
+      formattedNumber = `${thousands} هزار`;
+    } else if (absoluteNumber < 1000000000) {
+      const millions = Math.floor(absoluteNumber / 1000000);
+      formattedNumber = `${millions} میلیون`;
+    } else if (absoluteNumber < 1000000000000) {
+      const billions = Math.floor(absoluteNumber / 1000000000);
+      formattedNumber = `${billions} میلیارد`;
     } else {
-      const trillions = Math.floor(number / 1000000000000);
-      return `${trillions} همت`;
+      const trillions = Math.floor(absoluteNumber / 1000000000000);
+      formattedNumber = `${trillions} همت`;
     }
+
+    return isNegative ? `-${formattedNumber}` : formattedNumber;
   },
 
   exportCsv(rows, columns) {
