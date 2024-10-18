@@ -43,7 +43,7 @@
         :data-store="gridStore"
         first-load
         :show-search="false"
-        scroll-style="height: 335px;"
+        :scrollArea="false"
       >
         <template #search>
           <q-input

@@ -1,5 +1,5 @@
 <template>
-  <q-card flat class="fit- shadow bordered">
+  <q-card flat class="shadow bordered">
     <q-card-section class="q-pt-lg q-pb-none q-px-lg">
       <q-item class="no-padding">
         <q-item-section avatar>
@@ -20,11 +20,11 @@
     </q-card-section>
 
     <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none">
-      <q-scroll-area
+      <!-- <q-scroll-area
         style="height: 680px"
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"
-      >
+      > -->
         <q-list
           bordered_
           _padding
@@ -36,15 +36,16 @@
           >
             <q-item-label
               header
-              class="bg-on-dark q-pa-sm border-radius-sm q-py-xs"
+              class="bg-on-dark border-radius-sm"
+              style="padding: 12px;"
             >
-              <span class="text-h6 text-on-dark text-weight-600">
+              <span class="text-body1 text-on-dark text-weight-600">
                 {{ item.clCode }} - {{ item.clTitle }}
               </span>
             </q-item-label>
 
             <q-item
-              class="border-radius-sm q-px-sm q-py-md q-my-sm"
+              class="border-radius-sm q-px-sm q-py-xs q-my-sm"
               clickable
               v-ripple
               v-for="glItem in dataStore.getFilteredItems(
@@ -91,7 +92,7 @@
             <q-separator spaced v-if="false" />
           </template>
         </q-list>
-      </q-scroll-area>
+      <!-- </q-scroll-area> -->
     </q-card-section>
 
     <q-separator />
@@ -100,8 +101,8 @@
         <q-item-section avatar top>
           <q-avatar
             icon="attach_money"
-            color="primary"
             text-color="white"
+            class="green-gradient"
           />
         </q-item-section>
 
@@ -138,11 +139,6 @@
           <q-space />
           <span>5,922,779</span>
         </template>
-        <!-- <template #default-body="prop">
-
-          {{ prop.node.label }}
-
-        </template> -->
       </q-tree>
     </div>
   </q-card>
@@ -154,103 +150,4 @@
   import { accountCLTypeIds } from "src/constants";
 
   const dataStore = useIncomeStatement();
-  const nodes = [
-    {
-      label: "6- فروش و درآمد",
-      // header: 'root',
-      children: [
-        {
-          label: "601- فروش",
-          header: "root",
-          children: [
-            {
-              label: "60101- فروش کالا",
-              children: [
-                { label: "گردش بدهکار: 0" },
-                { label: "گردش بستانکار: 21,360,000" },
-              ],
-            },
-            {
-              label: "60103- برگشت از فروش و تخفیفها",
-              children: [
-                { label: "گردش بدهکار: 5,734,000" },
-                { label: "گردش بستانکار: 0" },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      label: "7- بهای تمام شده کالای فروش رفته و خدمات ارائه شده",
-      // header: 'root',
-      children: [
-        {
-          label: "701- بهای تمام شده کالای فروش رفته",
-          header: "root",
-          children: [
-            {
-              label: "70103- بهای تمام شده کالای فروش رفته",
-              children: [
-                { label: "گردش بدهکار: 46,400,000" },
-                { label: "گردش بستانکار: 0" },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    {
-      label: "8- هزینه‌ها",
-      // header: 'root',
-      children: [
-        {
-          label: "805- هزینه‌های توزیع و فروش",
-          header: "root",
-          children: [
-            {
-              label: "80502- هزینه های بازاریابی و پورسانت",
-              children: [
-                { label: "گردش بدهکار: 757,500" },
-                { label: "گردش بستانکار: 0" },
-              ],
-            },
-            {
-              label: "80599- هزینه متفرقه توزیع و فروش",
-              children: [
-                { label: "گردش بدهکار: 5,734,000" },
-                { label: "گردش بستانکار: 21,350,000" },
-              ],
-            },
-          ],
-        },
-        {
-          label: "807- هزینه‌های مالی",
-          header: "root",
-          children: [
-            {
-              label: "80703- هزینه کارمزد وامها و خدمات بانکی",
-              children: [
-                { label: "گردش بدهکار: 11,000" },
-                { label: "گردش بستانکار: 0" },
-              ],
-            },
-          ],
-        },
-        {
-          label: "809- سایر هزینه‌های عملیاتی",
-          header: "root",
-          children: [
-            {
-              label: "80920- هزینه کسری کالا",
-              children: [
-                { label: "گردش بدهکار: 5,000,000,000" },
-                { label: "گردش بستانکار: 0" },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ];
 </script>

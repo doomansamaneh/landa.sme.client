@@ -6,7 +6,7 @@
     <div class="col-8 col-md-8 col-sm-12 col-xs-12">
       <invoices-widget-v2 />
     </div>
-    <div class="col col-md col-xs-12">
+    <div class="col-md col-xs-12">
       <some-info />
     </div>
   </div>
@@ -18,23 +18,15 @@
   </div>
 
   <div class="row q-col-gutter-md q-mb-md">
-    <div class="col-md-7 col-sm-12 col-xs-12">
-      <income-statement />
-    </div>
-
-    <div class="col-md-5 col-sm-12 col-xs-12">
+    <div class="col-md col-sm-12 col-xs-12">
       <ratios-widget class="q-mb-md" />
       <top-products data-source="sls/report/getInvoiceByProduct" />
     </div>
-  </div>
 
-  <div class="row q-col-gutter-md q-mb-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
-      <cash-balance />
-    </div>
-
-    <div class="col-md-6 col-sm-12 col-xs-12">
-      <bank-balance />
+    <div class="col-md col-sm-12 col-xs-12">
+      <bank-balance class="q-mb-md" />
+      <cash-balance class="q-mb-md" />
+      <income-statement />
     </div>
   </div>
 </template>

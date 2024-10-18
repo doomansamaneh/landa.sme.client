@@ -36,6 +36,7 @@
   </div>
 
   <q-scroll-area
+    v-if="scrollArea"
     :style="scrollAreaStyle"
     :thumb-style="helper.thumbStyle"
     :bar-style="helper.barStyle"
@@ -70,6 +71,38 @@
       </q-btn>
     </div>
   </q-scroll-area>
+
+  <div v-else>
+    <template
+      v-for="(item, index) in gridStore.rows.value"
+      :key="item.Id"
+    >
+      <slot name="item" :item="item" :index="index"></slot>
+    </template>
+
+    <div
+      v-if="
+        !tableStore.showLoader.value &&
+        gridStore.rows.value.length === 0
+      "
+      class="text-on-dark"
+    >
+      <no-data-found />
+    </div>
+
+    <div class="row justify-center" v-if="hasMoreData">
+      <q-btn
+        rounded
+        unelevated
+        @click="gotoNext"
+        class="primary-shadow q-ma-lg primary-gradient text-white"
+      >
+        <span class="text-body3">
+          {{ $t("shared.labels.loadMore") }} ...
+        </span>
+      </q-btn>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -90,6 +123,7 @@
     sortColumnOrder: sortOrder,
     dataSource: String,
     dataStore: Object,
+    scrollArea: { type: Boolean, default: true },
   });
   const $q = useQuasar();
 
