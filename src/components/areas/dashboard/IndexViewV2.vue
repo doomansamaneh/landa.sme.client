@@ -20,7 +20,8 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm-12 col-xs-12">
       <ratios-widget class="q-mb-md" />
-      <top-products data-source="sls/report/getInvoiceByProduct" />
+      <top-products class="q-mb-md" data-source="sls/report/getInvoiceByProduct" />
+      <e-charts-bank-balance />
     </div>
 
     <div class="col-md col-sm-12 col-xs-12">
@@ -40,6 +41,8 @@
   import SomeInfo from "src/components/areas/dashboard/widgets/NetIncome.vue";
   import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
   import CashBalance from "src/components/areas/dashboard/widgets/CashBalance.vue";
+  import EChartsBankBalance from "src/components/areas/dashboard/widgets/EchartsBankBalance.vue";
+  
   // import MostUsedOperations from "src/components/areas/dashboard/widgets/MostUsedOperations.vue";
 </script>
 

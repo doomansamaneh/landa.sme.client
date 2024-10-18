@@ -18,11 +18,13 @@
     "apexcharts": "^3.46.0",
     "axios": "^1.2.1",
     "caniuse-lite": "^1.0.30001667",
+    "echarts": "^5.5.1",
     "mitt": "^3.0.1",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
     "vue-currency-input": "^3.1.0",
+    "vue-echarts": "^7.0.3",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.0",
     "vue3-apexcharts": "^1.5.2"
