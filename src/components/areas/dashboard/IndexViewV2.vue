@@ -1,7 +1,4 @@
 <template>
-  <!-- <div class="q-mb-lg">
-    <most-used-operations />
-  </div> -->
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-8 col-md-8 col-sm-12 col-xs-12">
       <invoices-widget-v2 />
@@ -29,10 +26,10 @@
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md">
-      <cheque-report />
+      <top-products data-source="sls/report/getInvoiceByProduct" />
     </div>
     <div class="col-md-8">
-      <q-card>
+      <q-card flat class="fit bordered shadow">
         <q-card-section class="q-pt-lg q-px-lg q-pb-none">
           <div class="row justify-between items-center">
             <div>
@@ -55,13 +52,13 @@
             </div>
           </div>
         </q-card-section>
-        <q-card-section class="q-pa-lg">
+        <q-card-section class="q-pt-none q-pb-lg q-px-lg">
           <div class="row q-col-gutter-md">
             <div class="col">
-              <bar-chart />
+              <bar-chart :height="300" />
             </div>
             <div class="col">
-              <bar-chart />
+              <bar-chart :height="300" />
             </div>
           </div>
         </q-card-section>
@@ -69,15 +66,57 @@
     </div>
   </div>
 
+  <div class="row q-col-gutter-md q-mb-md">
+    <div class="col-md-8">
+      <q-card flat class="fit bordered shadow">
+        <q-card-section class="q-pt-lg q-px-lg q-pb-none">
+          <div class="row justify-between items-center">
+            <div>
+              <q-item class="no-padding">
+                <q-item-section avatar>
+                  <q-avatar
+                    rounded
+                    text-color="white"
+                    icon="o_receipt_long"
+                    size="md"
+                    class="primary-gradient primary-shadow"
+                  />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label class="text-h6 text-weight-700">
+                    هزینه
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-section class="q-pt-none q-px-lg q-pb-lg">
+          <div class="row q-col-gutter-md">
+            <div class="col">
+              <bar-chart :height="300" />
+            </div>
+            <div class="col">
+              <bar-chart :height="300" />
+            </div>
+          </div>
+        </q-card-section>
+      </q-card>
+    </div>
+
+    <div class="col-md">
+      <cheque-report />
+    </div>
+  </div>
+
   <div class="row q-col-gutter-md">
     <div class="col-md">
-      <income-statement />
+      <bank-balance />
     </div>
     <div class="col-md">
-      <top-products data-source="sls/report/getInvoiceByProduct" />
+      <cash-balance />
     </div>
     <div class="col-md">
-      <top-products data-source="sls/report/getInvoiceByProduct" />
     </div>
   </div>
 </template>

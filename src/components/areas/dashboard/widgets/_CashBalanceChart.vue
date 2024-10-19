@@ -75,7 +75,7 @@
           donut: {
             size: "100%",
             labels: {
-              show: true,
+              show: false,
               total: {
                 show: false,
                 label: $q.lang.rtl ? "مجموع" : "Total",
@@ -113,10 +113,10 @@
         enabled: false,
       },
       fill: {
-        type: "gradient",
+        type: "solid",
       },
       stroke: {
-        width: 4,
+        width: 0,
         colors: $q.dark.isActive ? "var(--q-dark)" : "white",
       },
       markers: {

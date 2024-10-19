@@ -139,7 +139,7 @@
                 rounded
                 text-color="white"
                 size="xl"
-                class="orange-gradient orange-shadow"
+                class="active-shine orange-gradient orange-shadow"
               >
                 <q-icon
                   color="white"
@@ -196,7 +196,7 @@
                 rounded
                 text-color="white"
                 size="xl"
-                class="red-gradient red-shadow"
+                class="active-shine red-gradient red-shadow"
               >
                 <q-icon
                   color="white"

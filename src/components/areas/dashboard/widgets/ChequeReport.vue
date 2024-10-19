@@ -1,5 +1,5 @@
 <template>
-  <q-card flat class="fit bordered shadow">
+  <q-card flat class="fit_ bordered shadow">
     <q-card-section class="q-pt-lg q-px-lg q-pb-none">
       <div class="row justify-between items-center">
         <div>
@@ -28,32 +28,51 @@
         </div>
       </div>
     </q-card-section>
-    <q-card-section>
+    <q-card-section class="q-pt-md q-pb-lg q-px-lg">
       <chart
-        :height="180"
+        :height="150"
         :series="series"
         :options="options"
         legend
         :class="direction"
         @dataPointSelection="dataPointSelection"
       />
+      <q-scroll-area style="height: 150px">
+        <q-list class="q-mt-sm">
+        <q-item class="border-radius-sm" clickable v-for="n in 3" :key="n">آقای هاشمی</q-item>
+      </q-list>
+      </q-scroll-area>
     </q-card-section>
-    <q-card-section class="q-pa-lg">
+    <!-- <q-card-section class="q-pa-lg">
       <div class="row items-center q-gutter-lg justify-center">
         <div class="row items-center cursor-pointer" unelevated>
-          <q-icon size="14px" color="green" name="circle" />
-          <span class="text-body2 no-letter-spacing q-ml-xs">
-            نقد شده
-          </span>
+          <div>
+            <span class="text-body2 no-letter-spacing q-mr-xs">
+              نقد شده
+            </span>
+            <q-btn
+              unelevated
+              class="no-pointer-events border-radius-xs"
+              padding="6.5px 7px"
+              color="green"
+            />
+          </div>
         </div>
         <div class="row items-center cursor-pointer" unelevated>
-          <q-icon size="14px" color="blue" name="circle" />
-          <span class="text-body2 no-letter-spacing q-ml-xs">
+          <div>
+            <span class="text-body2 no-letter-spacing q-mr-xs">
             نقد نشده
           </span>
+          <q-btn
+            unelevated
+            class="no-pointer-events border-radius-xs"
+            padding="6.5px 7px"
+            color="blue"
+          />
+          </div>
         </div>
       </div>
-    </q-card-section>
+    </q-card-section> -->
   </q-card>
 </template>
 
@@ -114,7 +133,6 @@
         pie: {
           expandOnClick: true,
           donut: {
-            borderRadius: 8,
             size: "100%",
             labels: {
               show: false,
