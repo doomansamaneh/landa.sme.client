@@ -52,18 +52,49 @@
       :bar-style="helper.barStyle"
     >
       <q-list class="menu-list q-px-md">
-        <q-item
-          class="z-1 border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
-          :class="{ 'active-shine': isActiveItem('/dashboard') }"
-          to="/dashboard"
+        <div
+          v-if="$route.path == '/dashboard'"
+          class="row items-center q-gutter-xs"
         >
-          <q-icon
-            name="o_dashboard"
-            class="settings q-mr-sm"
-            size="20px"
-          />
-          <div class="z-1">{{ $t("main-menu-items.dashboard") }}</div>
-        </q-item>
+          <div class="col">
+            <q-item
+              class="z-1 border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
+              :class="{ 'active-shine': isActiveItem('/dashboard') }"
+              to="/dashboard"
+            >
+              <q-icon
+                name="o_dashboard"
+                class="settings q-mr-sm"
+                size="20px"
+              />
+              <div class="z-1">
+                {{ $t("main-menu-items.dashboard") }}
+              </div>
+            </q-item>
+          </div>
+          <div class="col-1 q-mr-md">
+            <q-btn unelevated round dense size="12px" @click="t">
+              <q-icon size="20px" name="o_refresh" />
+            </q-btn>
+          </div>
+        </div>
+
+        <div v-else>
+          <q-item
+            class="z-1 border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
+            :class="{ 'active-shine': isActiveItem('/dashboard') }"
+            to="/dashboard"
+          >
+            <q-icon
+              name="o_dashboard"
+              class="settings q-mr-sm"
+              size="20px"
+            />
+            <div class="z-1">
+              {{ $t("main-menu-items.dashboard") }}
+            </div>
+          </q-item>
+        </div>
 
         <q-inner-loading
           :showing="menuBarStore.showLoader.value"

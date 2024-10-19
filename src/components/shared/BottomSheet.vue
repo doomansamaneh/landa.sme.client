@@ -42,16 +42,17 @@
 
   const bottomSheet = ref(null);
 
-  onBeforeRouteLeave((to, from, next) => {
-    if (props.status) {
-      bottomSheet.value.hide();
-      next(false);
+  // Todo: How to prevent backButton from router
+  // onBeforeRouteLeave((to, from, next) => {
+  //   if (props.status) {
+  //     bottomSheet.value.hide();
+  //     next(false);
 
-      setTimeout(() => {
-        next();
-      }, 300);
-    } else {
-      next();
-    }
-  });
+  //     setTimeout(() => {
+  //       next();
+  //     }, 300);
+  //   } else {
+  //     next();
+  //   }
+  // });
 </script>

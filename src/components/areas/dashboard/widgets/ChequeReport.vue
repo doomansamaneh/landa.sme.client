@@ -1,38 +1,80 @@
 <template>
-  <chart
-    :series="dataSource.chartSeries.value"
-    :options="options"
-    legend
-    :height="height"
-    :class="direction"
-    @dataPointSelection="dataPointSelection"
-  />
+  <q-card flat class="fit bordered shadow">
+    <q-card-section class="q-pt-lg q-px-lg q-pb-none">
+      <div class="row justify-between items-center">
+        <div>
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_receipt_long"
+                size="md"
+                class="primary-gradient primary-shadow"
+              />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label class="text-h6 text-weight-700">
+                گزارش چک
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+        </div>
+
+        <div>
+          <q-btn rounded padding="6px 12px" unelevated dense>
+            ماهانه
+          </q-btn>
+        </div>
+      </div>
+    </q-card-section>
+    <q-card-section>
+      <chart
+        :height="180"
+        :series="series"
+        :options="options"
+        legend
+        :class="direction"
+        @dataPointSelection="dataPointSelection"
+      />
+    </q-card-section>
+    <q-card-section class="q-pa-lg">
+      <div class="row items-center q-gutter-lg justify-center">
+        <div class="row items-center cursor-pointer" unelevated>
+          <q-icon size="14px" color="green" name="circle" />
+          <span class="text-body2 no-letter-spacing q-ml-xs">
+            نقد شده
+          </span>
+        </div>
+        <div class="row items-center cursor-pointer" unelevated>
+          <q-icon size="14px" color="blue" name="circle" />
+          <span class="text-body2 no-letter-spacing q-ml-xs">
+            نقد نشده
+          </span>
+        </div>
+      </div>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
   import { ref, onMounted, watch, computed } from "vue";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
-  import { useBankAccount } from "../../acc/_composables/useBankAccount";
-
   import Chart from "src/components/shared/Charts/ChartView.vue";
-
-  const props = defineProps({
-    height: String,
-    dataSource: useBankAccount,
-    chartType: { default: "pie", type: String },
-  });
 
   const $q = useQuasar();
   const options = ref(null);
+
+  // Add the data for your pie chart
+  const series = ref([30, 70]); // 30% نقده شده, 70% نقد نشده
 
   function setOptions() {
     const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
 
     options.value = {
-      labels: props.dataSource.chartLabels,
+      labels: ["نقده شده", "نقد نشده"],
       title: {
-        // text: props.title,
         align: "top",
         margin: 0,
         offsetX: 0,
@@ -47,7 +89,7 @@
       chart: {
         offsetY: 4,
         fontFamily,
-        type: props.chartType,
+        type: "pie",
         toolbar: {
           show: false,
         },
@@ -70,27 +112,17 @@
       },
       plotOptions: {
         pie: {
-          customScale: 1,
           expandOnClick: true,
           donut: {
+            borderRadius: 8,
             size: "100%",
             labels: {
-              show: true,
+              show: false,
               total: {
                 show: false,
                 label: $q.lang.rtl ? "مجموع" : "Total",
                 color: $q.dark.isActive ? "white" : "#2d2d2d",
                 fontSize: "16px",
-                // formatter: function (w) {
-                //   const totalSum = w.globals.seriesTotals.reduce(
-                //     (a, b) => {
-                //       return a + b;
-                //     },
-                //     0
-                //   );
-
-                //   return totalSum.toLocaleString();
-                // },
               },
               value: {
                 show: true,
@@ -113,18 +145,14 @@
         enabled: false,
       },
       fill: {
-        type: "gradient",
+        type: "solid",
       },
       stroke: {
-        width: 4,
+        width: 0,
         colors: $q.dark.isActive ? "var(--q-dark)" : "white",
       },
-      markers: {
-        size: 0,
-      },
       legend: {
-        show: true,
-        showForSingleSeries: true,
+        show: false,
         inverseOrder: true,
         labels: {
           colors: $q.dark.isActive ? "white" : "#2d2d2d",
@@ -132,7 +160,6 @@
         position: $q.screen.lt.md ? "bottom" : "bottom",
         horizontalAlign: "left",
         fontSize: "14px",
-        fontWeight: 400,
         offsetY: 16,
         markers: {
           width: 14,
@@ -194,11 +221,13 @@
   });
 
   const dataPointSelection = (event, chartContext, config) => {
-    //alert(config.w.config.labels[config.dataPointIndex]);
-    // console.log('Event:', event);
-    // console.log('Chart Context:', chartContext);
-    // console.log('Config:', config);
-    // console.log('Labels:', config.w.config.labels);
-    // console.log('Data Point Index:', config.dataPointIndex);
+    console.log(
+      "Selected Label:",
+      config.w.config.labels[config.dataPointIndex]
+    );
+    console.log(
+      "Selected Value:",
+      series.value[config.dataPointIndex]
+    );
   };
 </script>

@@ -255,7 +255,7 @@ export const helper = {
       formattedNumber = `${trillions} همت`;
     }
 
-    return isNegative ? `-${formattedNumber}` : formattedNumber;
+    return isNegative ? `(${formattedNumber})` : formattedNumber;
   },
 
   exportCsv(rows, columns) {

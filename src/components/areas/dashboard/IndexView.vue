@@ -86,7 +86,7 @@
                   />
                 </q-item-section>
 
-                <q-item-section class="q-pl-xs">
+                <q-item-section>
                   <q-item-label
                     v-if="saleIncome"
                     class="text-body2 q-mb-xs"

@@ -11,8 +11,8 @@
             class="primary-gradient primary-shadow"
           />
         </q-item-section>
-        <q-item-section class="q-pl-xs">
-          <q-item-label class="text-h6 text-weight-700 q-mb-xs">
+        <q-item-section>
+          <q-item-label class="text-h6 text-weight-700">
             موجودی بانک
           </q-item-label>
           <q-item-label class="text-subtitle2 text-weight-700">

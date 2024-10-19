@@ -46,22 +46,22 @@
               />
             </q-item-section>
 
-            <q-item-section class="q-pl-xs">
+            <q-item-section>
               <q-item-label
                 v-if="saleIncome"
-                class="text-h6 text-weight-700 q-mb-xs"
+                class="text-h6 text-weight-700"
               >
                 فروش و درآمد، هزینه
               </q-item-label>
               <q-item-label
                 v-if="saleIncomeTable"
-                class="text-h6 text-weight-700 q-mb-xs"
+                class="text-h6 text-weight-700"
               >
                 جدول فروش و درآمد، هزینه
               </q-item-label>
               <q-item-label
                 v-if="salePerProduct"
-                class="text-h6 text-weight-700 q-mb-xs"
+                class="text-h6 text-weight-700"
               >
                 فروش بر اساس کالا و خدمات
               </q-item-label>
@@ -73,19 +73,19 @@
               </q-item-label>
               <q-item-label
                 v-if="salePerCustomer"
-                class="text-h6 text-weight-700 q-mb-xs"
+                class="text-h6 text-weight-700"
               >
                 فروش بر اساس مشتری
               </q-item-label>
               <q-item-label
                 v-if="cost"
-                class="text-h6 text-weight-700 q-mb-xs"
+                class="text-h6 text-weight-700"
               >
                 نمودار هزینه
               </q-item-label>
               <q-item-label
                 v-if="costDetail"
-                class="text-h6 text-weight-700 q-mb-xs"
+                class="text-h6 text-weight-700"
               >
                 ریز هزینه
               </q-item-label>
@@ -102,7 +102,7 @@
                 rounded
                 unelevated
                 toggle-color="primary"
-                color="white"
+                :color="$q.dark.isActive ? 'dark' : 'white'"
                 text-color="primary"
                 :options="[
                   { label: 'چارت', value: 1 },

@@ -19,7 +19,7 @@
             />
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               جمع کل
             </q-item-label>
@@ -61,7 +61,7 @@
             />
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               امسال
             </q-item-label>
@@ -111,7 +111,7 @@
             </q-btn>
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               دریافت شده
             </q-item-label>
@@ -159,7 +159,7 @@
             </q-btn>
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               مانده
             </q-item-label>

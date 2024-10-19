@@ -11,8 +11,8 @@
             class="primary-gradient primary-shadow"
           />
         </q-item-section>
-        <q-item-section class="q-pl-xs">
-          <q-item-label class="text-h6 text-weight-700 q-mb-xs">
+        <q-item-section>
+          <q-item-label class="text-h6 text-weight-700">
             صورت سود و زیان
           </q-item-label>
         </q-item-section>
@@ -20,11 +20,11 @@
     </q-card-section>
 
     <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none">
-      <!-- <q-scroll-area
-        style="height: 680px"
+      <q-scroll-area
+        style="height: 210px"
         :thumb-style="helper.thumbStyle"
         :bar-style="helper.barStyle"
-      > -->
+      >
         <q-list
           bordered_
           _padding
@@ -37,7 +37,7 @@
             <q-item-label
               header
               class="bg-on-dark border-radius-sm"
-              style="padding: 12px;"
+              style="padding: 12px"
             >
               <span class="text-body1 text-on-dark text-weight-600">
                 {{ item.clCode }} - {{ item.clTitle }}
@@ -92,7 +92,7 @@
             <q-separator spaced v-if="false" />
           </template>
         </q-list>
-      <!-- </q-scroll-area> -->
+      </q-scroll-area>
     </q-card-section>
 
     <q-separator />

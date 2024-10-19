@@ -2,12 +2,27 @@
   <q-card class="shadow border-radius-lg bordered no-shadow">
     <q-card-section class="q-pa-lg">
       <div class="row items-center q-gutter-md justify-between">
-        <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
+        <q-item class="no-padding">
+          <q-item-section avatar>
+            <q-avatar
+              rounded
+              text-color="white"
+              icon="o_receipt"
+              size="md"
+              class="primary-gradient primary-shadow"
+            />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label class="text-h6 text-weight-700">
+              فاکتورهای فروش
+            </q-item-label>
+          </q-item-section>
+        </q-item>
         <q-btn
           to="/sls/invoice/create"
           unelevated
           rounded
-          class="bordered-btn bg-dark q-py-xs"
+          class="bordered bg-dark q-py-xs"
         >
           <q-icon name="o_add" size="16px" class="q-mr-xs" />
           ایجاد فاکتور
@@ -37,7 +52,7 @@
             />
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               جمع کل
             </q-item-label>
@@ -79,7 +94,7 @@
             />
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               دریافت شده
             </q-item-label>
@@ -136,7 +151,7 @@
             </q-btn>
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               مانده امسال
             </q-item-label>
@@ -193,7 +208,7 @@
             </q-btn>
           </q-item-section>
 
-          <q-item-section class="q-pl-xs">
+          <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
               مانده از قبل
             </q-item-label>

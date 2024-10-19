@@ -3,14 +3,39 @@
     <q-card-section class="q-pa-lg">
       <div class="row full-width">
         <div class="col column q-gutter-y-sm">
-          <span class="text-h6 text-weight-700">درآمد</span>
-          <div>
-            <span class="text-body1 text-h5 text-weight-700">
-              {{
+          <div class="text-h6 text-weight-700">
+            <q-item class="no-padding">
+              <q-item-section avatar>
+                <q-avatar
+                  rounded
+                  text-color="white"
+                  icon="o_arrow_downward"
+                  size="md"
+                  class="primary-gradient primary-shadow"
+                />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label class="text-h6 text-weight-700">
+                  درآمد
+                </q-item-label>
+              </q-item-section>
+            </q-item>
+          </div>
+
+          <div class="text-body1 no-letter-spacing text-weight-700">
+            {{
+              helper.formatNumberReadable(
+                netIncomeStore.thisYearRevenue?.value
+              )
+            }}
+            <span
+              class="text-body2 text-weight-300 no-letter-spacing caption-on-dark"
+            >
+              ({{
                 helper.formatNumber(
                   netIncomeStore.thisYearRevenue?.value
                 )
-              }}
+              }})
             </span>
           </div>
           <q-item-label class="text-body3 no-letter-spacing">
@@ -40,7 +65,7 @@
             به نسبت پارسال
           </q-item-label>
           <q-btn
-            class="q-mt-lg primary-gradient primary-shadow text-body3"
+            class="q-mt-md primary-gradient primary-shadow text-body3"
             rounded
             text-color="white"
             unelevated

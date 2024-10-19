@@ -1,7 +1,7 @@
 <template>
   <q-btn
     v-if="title"
-    padding="1px 9px"
+    padding="0 4px"
     unelevated
     class="bluegrey-gradient text-center text-caption-xs no-letter-spacing text-white border-radius-lg no-pointer-events"
     style="white-space: nowrap"
