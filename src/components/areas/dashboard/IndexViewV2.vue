@@ -117,6 +117,7 @@
       <cash-balance />
     </div>
     <div class="col-md">
+      <cash-balance />
     </div>
   </div>
 </template>

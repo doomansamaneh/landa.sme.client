@@ -73,8 +73,8 @@
             </q-item>
           </div>
           <div class="col-1 q-mr-md">
-            <q-btn unelevated round dense size="12px" @click="t">
-              <q-icon size="20px" name="o_refresh" />
+            <q-btn unelevated round dense size="11px" @click="t">
+              <q-icon size="18px" name="o_refresh" />
             </q-btn>
           </div>
         </div>

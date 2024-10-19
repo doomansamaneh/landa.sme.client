@@ -21,16 +21,17 @@
         </q-item-section>
       </q-item>
 
-      <template v-if="dataSource.chartSeries.value.length > 5">
+      <q-scroll-area style="height: 300px">
         <balance-list :data-source="dataSource" />
-      </template>
-      <template v-else-if="dataSource.chartSeries.value.length">
+      </q-scroll-area>
+
+      <!-- <template v-else-if="dataSource.chartSeries.value.length">
         <balance-chart
           :data-source="dataSource"
           :chart-type="chartType"
           :height="height"
         />
-      </template>
+      </template> -->
     </q-card-section>
   </q-card>
 </template>
