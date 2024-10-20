@@ -59,7 +59,7 @@
         >
           {{ item.shaba }}
         </span>
-        <copy-clipboard v-if="item.shaba" :text="item.shab" />
+        <copy-clipboard v-if="item.shaba" :text="item.shaba" />
       </div>
     </div>
   </div>

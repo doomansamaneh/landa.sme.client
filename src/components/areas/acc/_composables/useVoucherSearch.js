@@ -29,6 +29,8 @@ export function useVoucherSearch() {
         break;
     }
     searchModel.value[item.name] = value;
+    searchModel.value[item.name.replace("Title", "Id")] = value;
+    searchModel.value[item.name.replace("Name", "Id")] = value;
     await applySearch();
   };
 

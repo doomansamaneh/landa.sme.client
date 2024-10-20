@@ -70,7 +70,7 @@
                 class="self-center full-width no-outline"
                 tabindex="0"
               >
-                {{ row.total?.toLocaleString() }}
+                {{ helper.formatNumber(row.total) }}
               </div>
             </template>
           </q-field>
@@ -118,7 +118,9 @@
         <td colspan="6" class="text-right text-weight-700">سرجمع:</td>
         <td>
           <strong>
-            {{ formStore.totalBillAmount?.value.toLocaleString() }}
+            {{
+              helper.formatNumber(formStore.totalBillAmount?.value)
+            }}
           </strong>
         </td>
         <td></td>
@@ -128,7 +130,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { helper } from "src/helpers";
   import { sqlOperator, vatType, closeAccounts } from "src/constants";
 
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";

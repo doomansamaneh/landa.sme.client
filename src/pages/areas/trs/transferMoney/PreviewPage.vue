@@ -1,5 +1,5 @@
 <template>
-  <desktop />
+  <desktop :title="$t('main-menu-items.Trs_TransferMoney_View')" />
 </template>
 
 <script setup>
