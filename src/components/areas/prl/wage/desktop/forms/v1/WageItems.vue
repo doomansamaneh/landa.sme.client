@@ -1,16 +1,17 @@
 <template>
-  <div v-if="formStore.model?.value?.wageItems?.length === 0">
+  <div
+    v-if="formStore.model?.value?.wageItems?.length === 0"
+    class="text-center_"
+  >
     <q-btn
-      class="q-my-lg primary-gradient primary-shadow"
-      :rounded="$q.screen.gt.xs"
-      :round="$q.screen.xs"
-      :size="$q.screen.gt.xs ? '' : '11px'"
+      class="q-my-xl primary-shadow"
+      rounded
       unelevated
-      text-color="white"
+      color="primary"
       @click="formStore.pushNewRow()"
     >
-      <q-icon name="o_add" size="20px" :class="$q.screen.gt.xs ? 'q-mr-xs' : ''" />
-      <div v-if="$q.screen.gt.xs">افزودن ردیف</div>
+      <q-icon name="o_add" size="20px" class="q-mr-xs" />
+      افزودن پرسنل
     </q-btn>
   </div>
   <template
@@ -18,12 +19,7 @@
     v-for="(item, index) in formStore.model.value.wageItems"
     :key="index"
   >
-    <wage-item
-      class="q-my-md"
-      :index="index"
-      :item="item"
-      :form-store="formStore"
-    />
+    <wage-item :index="index" :item="item" :form-store="formStore" />
   </template>
 </template>
 

@@ -8,9 +8,8 @@
     sort-btn
   >
     <template #buttons-custom>
-      <q-separator size="0.5px" class="q-my-sm" />
-
       <template v-if="tableStore.activeRow?.value">
+        <q-separator size="0.5px" class="q-my-sm" />
         <menu-item-print @click="downloadPdf" />
       </template>
     </template>

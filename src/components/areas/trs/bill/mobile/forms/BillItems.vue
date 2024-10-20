@@ -30,6 +30,7 @@
 
 <script setup>
   import { useBillModel } from "../../../_composables/useBillModel";
+
   import BillItem from "./BillItem.vue";
 
   const props = defineProps({
