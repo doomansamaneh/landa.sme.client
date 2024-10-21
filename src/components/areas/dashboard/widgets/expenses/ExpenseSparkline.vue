@@ -2,17 +2,17 @@
   <chart
     :options="options"
     :series="series"
-    :height="height"
     :legend="legend"
     :title="title"
-    class="donut-chart"
+    height="80"
+    class="area-chart"
     :class="direction"
   />
 </template>
 
 <script setup>
   import { ref, onMounted, watch, computed } from "vue";
-  import Chart from "src/components/shared/Charts/ChartView.vue";
+  import Chart from "src/components/shared/charts/ChartView.vue";
   import { useQuasar } from "quasar";
 
   const $q = useQuasar();
@@ -20,20 +20,23 @@
 
   const options = ref(null);
 
-  const series = ref([200000000, 40000000, 800000000]);
+  const series = ref([
+    {
+      name: "فروش",
+      data: [
+        2000000, 5000000, 2000000, 8000000, 3000000, 4000000, 9000000,
+        7000000, 4000000, 13000000, 7000000, 6000000,
+      ],
+    },
+  ]);
 
   function setOptions() {
     const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
 
     options.value = {
-      labels: ["شماره حساب بانک آینده: 123456789"],
       title: {
         text: props.title,
-        align: "top",
-        margin: 0,
-        offsetX: 0,
-        offsetY: 0,
-        floating: true,
+        align: "center",
         style: {
           fontSize: "14px",
           fontWeight: "bold",
@@ -41,9 +44,12 @@
         },
       },
       chart: {
-        offsetY: 4,
         fontFamily,
-        type: "pie",
+        type: "area",
+        parentHeightOffset: 0,
+        sparkline: {
+          enabled: true,
+        },
         toolbar: {
           show: false,
         },
@@ -64,60 +70,84 @@
           },
         },
       },
-      plotOptions: {
-        pie: {
-          // customScale: 1,
-          // expandOnClick: false,
-          // donut: {
-          //   size: '75%',
-          //   labels: {
-          //     show: true,
-          //     total: {
-          //       show: true,
-          //       label: $q.lang.rtl ? 'مجموع' : 'Total',
-          //       color: $q.dark.isActive ? 'white' : '#2d2d2d',
-          //       fontSize: '16px',
-          //       formatter: function (w) {
-          //         const totalSum = w.globals.seriesTotals.reduce((a, b) => {
-          //           return a + b;
-          //         }, 0);
-          //         return totalSum.toLocaleString();
-          //       }
-          //     },
-          //     value: {
-          //       show: true,
-          //       fontSize: '16px',
-          //       fontWeight: 600,
-          //       color: $q.dark.isActive ? 'white' : '#2d2d2d',
-          //       offsetY: 4,
-          //       formatter: function (value) {
-          //         return formatLabel(value);
-          //       },
-          //     },
-          //     name: {
-          //       show: false,
-          //     }
-          //   }
-          // }
-        },
-      },
+
       dataLabels: {
-        enabled: true,
-      },
-      fill: {
-        type: "gradient",
+        enabled: false,
       },
       stroke: {
-        show: false,
-        width: 6,
-        colors: $q.dark.isActive ? "red" : "white",
+        width: 4,
+        curve: "smooth",
       },
       markers: {
         size: 0,
       },
+      grid: {
+        show: false,
+        padding: {
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        },
+        lines: {
+          show: false,
+        },
+        borderColor: $q.dark.isActive ? "#ffffff47" : "#2d2d2d2d",
+      },
+      xaxis: {
+        show: false,
+        crosshairs: {
+          width: 1,
+        },
+        labels: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+        categories: [
+          "farvardin",
+          "اردیبهشت",
+          "خرداد",
+          "تیر",
+          "مرداد",
+          "شهریور",
+          "مهر",
+          "آبان",
+          "آذر",
+          "دی",
+          "بهمن",
+          "اسفند",
+        ],
+        labels: {
+          show: false,
+          style: {
+            colors: $q.dark.isActive ? "white" : "#2d2d2d",
+          },
+        },
+      },
+      yaxis: {
+        min: 0,
+        show: false,
+        opposite: false,
+        labels: {
+          show: false,
+          style: {
+            colors: $q.dark.isActive ? "white" : "#2d2d2d",
+          },
+          formatter: function (value) {
+            return formatYAxisLabel(value);
+          },
+        },
+      },
       legend: {
         show: props.legend,
-        showForSingleSeries: true,
         inverseOrder: true,
         labels: {
           colors: $q.dark.isActive ? "white" : "#2d2d2d",
@@ -137,6 +167,7 @@
           horizontal: 16,
         },
       },
+      colors: ["rgb(36, 183, 160)"],
       tooltip: {
         enabled: true,
         x: {
@@ -151,18 +182,6 @@
         marker: {
           width: 8,
           height: 8,
-        },
-      },
-      states: {
-        hover: {
-          filter: {
-            type: "none",
-          },
-        },
-        active: {
-          filter: {
-            type: "none",
-          },
         },
       },
     };
@@ -190,7 +209,7 @@
     setOptions();
   });
 
-  function formatLabel(value) {
+  function formatYAxisLabel(value) {
     const parts = String(value).split(".");
     const integerPart = parts[0].replace(
       /\B(?=(\d{3})+(?!\d))/g,
@@ -207,4 +226,11 @@
   }
 </script>
 
-<style></style>
+<style>
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: end;
+    gap: 24px;
+  }
+</style>
