@@ -11,11 +11,7 @@
     </template>
 
     <template #row-avatar-title="{ item }">
-      {{
-        helper.getFirstChar(
-          item.customerName ?? item.amount.toString()
-        )
-      }}
+      {{ helper.getFirstChar(item.inventoryTitle) }}
     </template>
 
     <template #row-body="{ item }">
@@ -23,7 +19,7 @@
         <div
           class="col ellipsis text-body3 no-letter-spacing text-weight-500"
         >
-          {{ item.subject }}
+          {{ item.inventoryTitle }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />
       </div>
@@ -36,7 +32,7 @@
       </div>
 
       <div class="row q-gutter-x-xs text-caption">
-        <div>{{ item.no }}#</div>
+        <div>{{ item.rowNo }}#</div>
         <div class="row items-center q-gutter-xs">
           <q-icon name="o_schedule" />
           <div>{{ helper.formatPersianDate(item.date) }}</div>
@@ -48,7 +44,6 @@
       </div>
     </template>
     <template #row-badge="{ item }">
-      <row-no-badge :no="item.rowNo" />
       <contract-badge
         :title="item.contractTitle"
         :id="item.contractId"

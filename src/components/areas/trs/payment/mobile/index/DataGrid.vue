@@ -4,6 +4,7 @@
     :create-url="`/${baseRoute}/create`"
     :base-route="baseRoute"
     show-avatar
+    avatar-field="customerId"
     show-badge_
   >
     <template #header>
@@ -31,13 +32,19 @@
       <div class="ellipsis-2-lines text-caption-sm">
         {{ item.subject }} {{ item.summary }}
       </div>
-      <div class="text-center_q-my-sm text-caption-sm">
-        {{ item.no }} - {{ helper.formatPersianDate(item.date) }}
+
+      <div class="row q-gutter-x-xs text-caption">
+        <div>{{ item.no }}#</div>
+        <div class="row items-center q-gutter-xs">
+          <q-icon name="o_schedule" />
+          <div>{{ helper.formatPersianDate(item.date) }}</div>
+        </div>
       </div>
+
       <div class="ellipsis-2-lines text-body1 text-bold">
         {{ helper.formatNumber(item.amount) }}
         <span class="text-caption">
-          {{ item.currencyTitle }}
+          {{ item.currencyTitle ?? "ریال" }}
         </span>
       </div>
     </template>

@@ -68,7 +68,9 @@
                         text-color="white"
                         :style="
                           !row.selected
-                            ? helper.generateAvatarStyle(row.id)
+                            ? helper.generateAvatarStyle(
+                                row[avatarField]
+                              )
                             : ''
                         "
                         :class="
@@ -229,6 +231,7 @@
     gridStore: Object,
     numbered: Boolean,
     showAvatar: Boolean,
+    avatarField: { type: String, default: "id" },
     showBadge: Boolean,
     baseRoute: String,
     multiSelect: Boolean,

@@ -4,6 +4,7 @@
     :create-url="`/${baseRoute}/create`"
     :base-route="baseRoute"
     show-avatar
+    avatar-field="fromTitle"
     show-badge_
   >
     <template #header>
@@ -40,13 +41,18 @@
         </span>
       </div>
 
-      <div class="ellipsis-2-lines text-caption-sm">
-        {{ item.rowNo }} - {{ helper.formatPersianDate(item.date) }} /
-        {{ item.subject }} {{ item.summary }}
+      <div class="row q-gutter-x-xs text-caption">
+        <div>{{ item.rowNo }}#</div>
+        <div class="row items-center q-gutter-xs">
+          <q-icon name="o_schedule" />
+          <div>{{ helper.formatPersianDate(item.date) }}</div>
+          <div class="ellipsis-2-lines text-caption-sm_">
+            / {{ item.subject }} {{ item.summary }}
+          </div>
+        </div>
       </div>
     </template>
     <template #row-badge="{ item }">
-      <!-- <row-no-badge :no="item.rowNo" /> -->
       <contract-badge :title="item.contractTitle" />
     </template>
   </data-grid>

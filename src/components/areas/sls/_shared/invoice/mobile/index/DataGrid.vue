@@ -1,4 +1,5 @@
-p<template>
+p
+<template>
   <data-grid-summary :table-store="tableStore" />
 
   <data-grid
@@ -6,6 +7,7 @@ p<template>
     :createUrl="`/${baseRoute}/create`"
     :base-route="baseRoute"
     show-avatar
+    avatar-field="customerId"
     show-badge
     ref="dataGrid"
   >
@@ -61,6 +63,7 @@ p<template>
           </div>
         </div>
       </div>
+
       <div
         v-if="item.subject"
         class="col ellipsis text-caption caption-on-dark"

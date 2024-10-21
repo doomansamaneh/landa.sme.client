@@ -36,6 +36,42 @@
       />
     </div>
   </div>
+
+  <div class="q-py-md q-gutter-md">
+    <q-btn
+      class="primary-shadow"
+      rounded
+      unelevated
+      color="primary"
+      @click="formStore.addAllProducts()"
+    >
+      <q-icon name="o_add" size="20px" class="q-mr-xs" />
+      افزودن همه کالاها
+    </q-btn>
+
+    <q-btn
+      v-if="model?.repositionItems?.length"
+      color="red"
+      class="text-on-dark"
+      rounded
+      unelevated
+      @click="formStore.deleteAllProducts()"
+    >
+      <q-icon name="o_delete" size="20px" class="q-mr-xs" />
+      حذف همه
+    </q-btn>
+    <q-btn
+      v-else
+      class="primary-shadow"
+      rounded
+      unelevated
+      color="primary"
+      @click="formStore.pushNewRow()"
+    >
+      <q-icon name="o_add" size="20px" class="q-mr-xs" />
+      افزودن ردیف
+    </q-btn>
+  </div>
 </template>
 
 <script setup>

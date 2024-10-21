@@ -7,11 +7,7 @@
   <q-card class="form-container">
     <q-card-section>
       <q-form ref="form" autofocus>
-        <desktop-form
-          v-if="$q.screen.gt.sm"
-          :form-store="formStore"
-        />
-        <mobile-form v-else :form-store="formStore" />
+        <create-form :form-store="formStore" />
       </q-form>
     </q-card-section>
   </q-card>
@@ -23,21 +19,20 @@
   import { useRepositionModel } from "../../../_composables/useRepositionModel";
 
   import ToolBar from "src/components/shared/FormToolBar.vue";
-  import DesktopForm from "../../desktop/forms/CreateForm.vue";
-  import MobileForm from "../../mobile/forms/CreateForm.vue";
+  import CreateForm from "../../desktop/forms/CreateForm.vue";
 
   const props = defineProps({
-    title: String,
     action: String,
+    title: String,
     method: String,
   });
 
+  const form = ref(null);
   const route = useRoute();
+
   const formStore = useRepositionModel({
     baseRoute: "inv/openingStock",
   });
-
-  const form = ref(null);
 
   onMounted(() => {
     formStore.getById(route.params.id, props.method);

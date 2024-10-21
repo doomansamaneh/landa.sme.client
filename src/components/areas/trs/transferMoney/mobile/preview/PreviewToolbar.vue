@@ -33,6 +33,7 @@
     v-if="itemSheetStatus"
     :status="itemSheetStatus"
     :item="model"
+    :base-route="baseRoute"
     :delete-call-back="deleteCallBack"
     @hide="hideItemSheet"
   />

@@ -1,6 +1,7 @@
 <template>
   <master-section :form-store="formStore" />
   <reposition-items :form-store="formStore" class="q-mt-md" />
+  <payment-items :form-store="formStore" />
 </template>
 
 <script setup>

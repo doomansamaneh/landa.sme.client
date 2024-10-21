@@ -1,29 +1,4 @@
 <template>
-  <div class="q-py-md q-gutter-md">
-    <q-btn
-      class="primary-shadow"
-      rounded
-      unelevated
-      color="primary"
-      @click="formStore.addAllProducts()"
-    >
-      <q-icon name="o_add" size="20px" class="q-mr-xs" />
-      افزودن همه کالاها
-    </q-btn>
-
-    <q-btn
-      v-if="model?.repositionItems?.length"
-      color="red"
-      class="text-on-dark"
-      rounded
-      unelevated
-      @click="formStore.deleteAllProducts()"
-    >
-      <q-icon name="o_delete" size="20px" class="q-mr-xs" />
-      حذف همه
-    </q-btn>
-  </div>
-
   <q-markup-table
     class="q-pa-md-"
     bordered
@@ -94,16 +69,7 @@
     <tbody v-if="model?.repositionItems?.length === 0">
       <tr>
         <td colspan="100%" class="text-center">
-          <q-btn
-            class="q-my-xl primary-shadow"
-            rounded
-            unelevated
-            color="primary"
-            @click="formStore.pushNewRow()"
-          >
-            <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
-          </q-btn>
+          <no-data-found />
         </td>
       </tr>
     </tbody>
@@ -113,6 +79,7 @@
 <script setup>
   import { computed } from "vue";
 
+  import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
