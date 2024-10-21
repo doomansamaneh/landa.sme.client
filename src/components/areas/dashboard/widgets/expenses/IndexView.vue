@@ -14,7 +14,9 @@
               />
             </q-item-section>
             <q-item-section>
-              <q-item-label class="text-h6 text-weight-700"> هزینه‌ها </q-item-label>
+              <q-item-label class="text-h6 text-weight-700">
+                هزینه‌ها
+              </q-item-label>
             </q-item-section>
           </q-item>
         </div>
@@ -24,16 +26,20 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="row q-col-gutter-lg q-pt-md q-px-lg">
-      <div class="col-8 col-xs-12">
-        <h2 class="text-body1">هزینه های 30 روز پیش</h2>
-        <h1 class="text-h3 text-weight-700">200 میلیون</h1>
-        <div class="row no-wrap">
-          <q-icon color="green-8" size="20px" name="arrow_downward" />
-          <h2 class="text-body1 q-mb-md">
-            <span class="text-weight-500 text-green-8">50% کاهش</span>
-            نسبت به 30 روز پیش
-          </h2>
+    <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
+      <div class="col-md-8 col-xs-12">
+        <div class="text-body1">هزینه های 30 روز پیش</div>
+        <div class="text-h3 text-weight-700">200 میلیون</div>
+        <div class="row text-body1 no-letter-spacing q-mb-md">
+          <div class="ellipsis-3-lines text-weight-500 text-green-8">
+            <q-icon
+              color="green-8"
+              size="20px"
+              name="arrow_downward"
+            />
+            50% کاهش
+          </div>
+          نسبت به 30 روز پیش
         </div>
       </div>
       <div
@@ -54,105 +60,114 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
-import { useQuasar } from "quasar";
+  import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
 
-import ApexChart from "vue3-apexcharts";
-import ExpenseSparkline from "src/components/areas/dashboard/widgets/expenses/ExpenseSparkline.vue";
+  import ApexChart from "vue3-apexcharts";
+  import ExpenseSparkline from "src/components/areas/dashboard/widgets/expenses/ExpenseSparkline.vue";
 
-const $q = useQuasar();
+  const $q = useQuasar();
 
-const chartData = ref([47, 5, 13, 4, 3]);
+  const chartData = ref([47, 5, 13, 4, 3]);
 
-const chartOptions = computed(() => {
-  const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
-  const total = chartData.value.reduce((a, b) => a + b, 0);
+  const chartOptions = computed(() => {
+    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const total = chartData.value.reduce((a, b) => a + b, 0);
 
-  return {
-    colors: ["#FF4560", "#00E396", "#775DD0"],
-    plotOptions: {
-      pie: {
-        customScale: 1,
-        expandOnClick: true,
-        donut: {
-          size: "65%",
-          background: "transparent",
-          labels: {
-            show: true,
-            name: {
-              show: false,
-              fontSize: "22px",
-              fontFamily: "Helvetica, Arial, sans-serif",
-              fontWeight: 600,
-              color: undefined,
-              offsetY: 0,
-              //   formatter: function (val) {
-              //     return val * 100 / total;
-              //   },
-            },
-            value: {
+    return {
+      colors: ["#FF4560", "#00E396", "#775DD0"],
+      plotOptions: {
+        pie: {
+          customScale: 1,
+          expandOnClick: true,
+          donut: {
+            size: "65%",
+            background: "transparent",
+            labels: {
               show: true,
-              fontSize: "20px",
-              fontFamily,
-              fontWeight: 600,
-              color: undefined,
-              offsetY: 6,
-              formatter: function (val) {
-                const value = ((val * 100) / total).toFixed(0);
-                return `${value}%`;
+              name: {
+                show: false,
+                fontSize: "22px",
+                fontFamily: "Helvetica, Arial, sans-serif",
+                fontWeight: 600,
+                color: undefined,
+                offsetY: 0,
+                //   formatter: function (val) {
+                //     return val * 100 / total;
+                //   },
               },
-            },
-            total: {
-              show: false,
-              showAlways: false,
-              label: "Total",
-              fontSize: "22px",
-              fontFamily: "Helvetica, Arial, sans-serif",
-              fontWeight: 600,
-              color: "#373d3f",
-              //   formatter: () => {
-              //     const compute = total / 100;
-              //     return `${compute}%e`;
-              //   },
+              value: {
+                show: true,
+                fontSize: "20px",
+                fontFamily,
+                fontWeight: 600,
+                color: undefined,
+                offsetY: 6,
+                formatter: function (val) {
+                  const value = ((val * 100) / total).toFixed(0);
+                  return `${value}%`;
+                },
+              },
+              total: {
+                show: false,
+                showAlways: false,
+                label: "Total",
+                fontSize: "22px",
+                fontFamily: "Helvetica, Arial, sans-serif",
+                fontWeight: 600,
+                color: "#373d3f",
+                //   formatter: () => {
+                //     const compute = total / 100;
+                //     return `${compute}%e`;
+                //   },
+              },
             },
           },
         },
       },
-    },
-    chart: {
-      fontFamily,
-      type: "donut",
-      offsetX: $q.lang.rtl ? $q.screen.xs ? 40 : 0 : 0,
-      offsetY: $q.screen.xs ? -32 : -24,
-    },
-    labels: [
-      "هزینه کسری کالا",
-      "هزینه های بازاریابی و پورسانت",
-      "هزینه کارمزد وام ها و خدمات بانکی",
-      "هزینه نوسازی مسکن",
-      "هزینه راه سازی",
-    ],
-    dataLabels: {
-      enabled: false,
-      enabledOnSeries: undefined,
-      textAnchor: "middle",
-      distributed: false,
-      offsetX: 0,
-      offsetY: 0,
-      style: {
-        fontSize: "16px",
+      chart: {
         fontFamily,
-        fontWeight: "normal",
-        colors: undefined,
+        type: "donut",
+        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : 0) : 0,
+        offsetY: $q.screen.xs ? -32 : -24,
       },
-      background: {
-        enabled: true,
-        foreColor: "#fff",
-        padding: 4,
-        borderRadius: 4,
-        borderWidth: 1,
-        borderColor: "#fff",
-        opacity: 1,
+      labels: [
+        "هزینه کسری کالا",
+        "هزینه های بازاریابی و پورسانت",
+        "هزینه کارمزد وام ها و خدمات بانکی",
+        "هزینه نوسازی مسکن",
+        "هزینه راه سازی",
+      ],
+      dataLabels: {
+        enabled: false,
+        enabledOnSeries: undefined,
+        textAnchor: "middle",
+        distributed: false,
+        offsetX: 0,
+        offsetY: 0,
+        style: {
+          fontSize: "16px",
+          fontFamily,
+          fontWeight: "normal",
+          colors: undefined,
+        },
+        background: {
+          enabled: true,
+          foreColor: "#fff",
+          padding: 4,
+          borderRadius: 4,
+          borderWidth: 1,
+          borderColor: "#fff",
+          opacity: 1,
+          dropShadow: {
+            enabled: true,
+            top: 1,
+            left: 1,
+            blur: 1,
+            color: "#000",
+            opacity: 0.45,
+          },
+        },
         dropShadow: {
           enabled: true,
           top: 1,
@@ -162,30 +177,24 @@ const chartOptions = computed(() => {
           opacity: 0.45,
         },
       },
-      dropShadow: {
-        enabled: true,
-        top: 1,
-        left: 1,
-        blur: 1,
-        color: "#000",
-        opacity: 0.45,
+      stroke: {
+        show: true,
+        width: 6,
+        colors: $q.dark.isActive ? "var(--q-dark-page)" : "white",
       },
-    },
-    stroke: {
-      show: true,
-      width: 6,
-      colors: $q.dark.isActive ? "var(--q-dark-page)" : "white",
-    },
-    legend: {
-      show: false,
-    },
-    tooltip: {
-      enabled: true,
-      custom: function ({ series, seriesIndex, w }) {
-        const color = w.config.colors[seriesIndex];
-        const percentage = ((series[seriesIndex] / total) * 100).toFixed(2);
+      legend: {
+        show: false,
+      },
+      tooltip: {
+        enabled: true,
+        custom: function ({ series, seriesIndex, w }) {
+          const color = w.config.colors[seriesIndex];
+          const percentage = (
+            (series[seriesIndex] / total) *
+            100
+          ).toFixed(2);
 
-        return `
+          return `
       <div class="q-ml-md">
         <div class="row no-wrap items-center row-reverse">
           <div class="q-mr-sm" style="width: 12px; height: 12px; background-color: ${color}; border-radius: 50px;"></div>
@@ -195,16 +204,16 @@ const chartOptions = computed(() => {
         <div class="text-h3 q-pa-lg no-line-height text-center text-weight-900">${percentage}%</div>
       </div>
     `;
+        },
+        style: {
+          fontFamily,
+          fontSize: "13px",
+        },
+        marker: {
+          width: 8,
+          height: 8,
+        },
       },
-      style: {
-        fontFamily,
-        fontSize: "13px",
-      },
-      marker: {
-        width: 8,
-        height: 8,
-      },
-    },
-  };
-});
+    };
+  });
 </script>
