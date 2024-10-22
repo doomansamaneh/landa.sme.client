@@ -4,6 +4,7 @@
     :title="title"
     :base-route="baseRoute"
     :model="model"
+    :crud-store="crudStore"
   />
 
   <mobile

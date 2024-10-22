@@ -5,6 +5,7 @@
     :title="title"
     :model="model"
     :base-route="baseRoute"
+    :crud-store="crudStore"
   ></tool-bar-desktop>
 
   <tool-bar-mobile
@@ -13,6 +14,7 @@
     :title="title"
     :model="model"
     :base-route="baseRoute"
+    :crud-store="crudStore"
   ></tool-bar-mobile>
 </template>
 
@@ -28,6 +30,7 @@
     inside: Boolean,
     margin: Boolean,
     baseRoute: String,
+    crudStore: Object,
   });
 
   const router = useRouter();

@@ -4,7 +4,7 @@
     :inside="inside"
     :title="title"
     :model="model"
-    :form-store="formStore"
+    :crud-store="crudStore"
     :base-route="baseRoute"
   ></tool-bar-desktop>
 
@@ -13,7 +13,7 @@
     :inside="inside"
     :title="title"
     :model="model"
-    :form-store="formStore"
+    :crud-store="crudStore"
     :base-route="baseRoute"
   ></tool-bar-mobile>
 </template>
@@ -30,7 +30,7 @@
     inside: Boolean,
     margin: Boolean,
     baseRoute: String,
-    formStore: Object,
+    crudStore: Object,
   });
 
   const router = useRouter();

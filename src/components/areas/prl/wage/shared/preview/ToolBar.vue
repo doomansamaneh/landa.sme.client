@@ -5,6 +5,7 @@
     :title="title"
     :model="model"
     :base-route="baseRoute"
+    :crud-store="crudStore"
     @export-tax="exportTax"
     @export-insurance="exportInsurance"
     @download-pdf="downloadPdf"
@@ -18,6 +19,7 @@
     :title="title"
     :model="model"
     :base-route="baseRoute"
+    :crud-store="crudStore"
     @export-tax="exportTax"
     @export-insurance="exportInsurance"
     @download-pdf="downloadPdf"
@@ -39,11 +41,13 @@
     inside: Boolean,
     margin: Boolean,
     baseRoute: String,
+    crudStore: Object,
   });
 
   const router = useRouter();
 
   function deleteById(id) {
+    crudStore.deleteById(id);
     //invoiceStore.state.firstLoad.value = false;
     router.back();
   }

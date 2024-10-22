@@ -4,6 +4,7 @@
     :title="title"
     :base-route="baseRoute"
     :model="model"
+    :crud-store="crudStore"
   />
 
   <mobile
@@ -24,7 +25,7 @@
 
 <script setup>
   import { ref, computed, onMounted } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+  import { useRoute } from "vue-router";
   import { useFormActions } from "src/composables/useFormActions";
   import { documentType } from "src/constants";
 
@@ -43,13 +44,8 @@
   const crudStore = useFormActions(props.baseRoute, model);
 
   const route = useRoute();
-  const router = useRouter();
 
   const id = computed(() => props.item?.id ?? route.params.id);
-
-  function deleteCallBack() {
-    router.back();
-  }
 
   onMounted(() => {
     crudStore.getById(id.value);

@@ -51,7 +51,7 @@
     title: String,
     inside: Boolean,
     baseRoute: String,
-    formStore: Object,
+    crudStore: Object,
   });
   const router = useRouter();
   const itemSheetStatus = ref(false);

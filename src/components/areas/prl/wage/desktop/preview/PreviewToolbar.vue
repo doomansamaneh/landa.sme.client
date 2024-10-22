@@ -14,14 +14,12 @@
       <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
 
       <menu-button-delete
-        @click="
-          formStore.crudStore.deleteById(model.id, deleteCallBack)
-        "
+        @click="crudStore.deleteById(model.id, deleteCallBack)"
       />
 
       <menu-button-print @click="helper.print('invoicePreview')" />
       <menu-button
-        @click="formStore.downloadPdf(model.id)"
+        @click="downloadPdf(model.id)"
         icon="download"
         :title="$t('shared.labels.downloadPdf')"
       />
@@ -38,6 +36,7 @@
 <script setup>
   import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
+  import { downloadManager } from "src/helpers";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
@@ -51,7 +50,7 @@
     title: String,
     inside: Boolean,
     baseRoute: String,
-    formStore: Object,
+    crudStore: Object,
   });
 
   const router = useRouter();
@@ -60,4 +59,10 @@
     //voucherStore.state.firstLoad.value = false;
     router.back();
   }
+
+  const downloadPdf = (id) => {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/generatePdf/${id}`
+    );
+  };
 </script>
