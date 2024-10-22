@@ -95,7 +95,7 @@
       grid: {
         show: false,
         padding: {
-          top: 100,
+          top: 60,
           left: 0,
           right: 0,
           bottom: 0,

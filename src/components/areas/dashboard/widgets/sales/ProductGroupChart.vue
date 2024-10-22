@@ -1,7 +1,7 @@
 <template>
   <div
-    :class="$q.screen.gt.sm ? 'absolute-top-left q-mt-xl' : ''"
-    :style="$q.screen.gt.xs ? 'width: 280px' : 'width: 250px'"
+    :class="$q.screen.gt.sm ? 'absolute-top-left' : ''"
+    :style="$q.screen.gt.xs ? 'width: 320px' : 'width: 250px'"
   >
     <apex-chart
       class="pie-chart"
