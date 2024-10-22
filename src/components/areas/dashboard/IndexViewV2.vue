@@ -28,7 +28,7 @@
     <div class="col-md col-sm-6 col-xs-12">
       <top-products data-source="sls/report/getInvoiceByProduct" />
     </div>
-    <div class="col-md-9 col-sm-12 col-xs-12">
+    <div class="col-md-8 col-sm-12 col-xs-12">
       <sales-widget />
     </div>
   </div>

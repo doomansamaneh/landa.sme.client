@@ -29,10 +29,7 @@
   const series = ref([
     {
       name: props.seriesName,
-      data: [
-        20000000, 40000000, 60000000, 8000000, 10000000, 12000000,
-        14000000, 16000000, 18000000,
-      ],
+      data: [200, 400, 200],
     },
   ]);
 
@@ -50,7 +47,7 @@
         },
       },
       chart: {
-        offsetY: 0,
+        offsetY: -64,
         parentHeightOffset: 0,
         fontFamily,
         type: "bar",
@@ -77,8 +74,8 @@
       plotOptions: {
         bar: {
           // borderRadius: 5,
-          // horizontal: false,
-          columnWidth: "45%",
+          horizontal: true,
+          columnWidth: "65%",
           // distributed: false,
         },
       },
@@ -122,7 +119,7 @@
         ],
         labels: {
           show: false,
-          offsetY: 12,
+          offsetY: 0,
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
           },

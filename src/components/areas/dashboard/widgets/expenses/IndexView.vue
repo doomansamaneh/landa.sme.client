@@ -137,7 +137,7 @@
       chart: {
         fontFamily,
         type: "donut",
-        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : 0) : 0,
+        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : -20) : 0,
         offsetY: $q.screen.xs ? -32 : -24,
       },
       labels: [
