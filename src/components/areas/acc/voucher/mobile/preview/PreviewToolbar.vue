@@ -42,6 +42,7 @@
   import { ref } from "vue";
   import { useRouter } from "vue-router";
   import { useVoucherState } from "../../../_composables/useVoucherState";
+  import { useFormActions } from "src/composables/useFormActions";
 
   import ToolBar from "src/components/shared/ToolBarPreviewMobile.vue";
   import DataGridItemSheet from "../index/DataGridItemSheet.vue";
@@ -51,7 +52,7 @@
     title: String,
     inside: Boolean,
     baseRoute: String,
-    formStore: Object,
+    crudStore: useFormActions,
   });
   const router = useRouter();
   const voucherStore = useVoucherState();

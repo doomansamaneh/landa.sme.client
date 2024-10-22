@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
-import { fetchWrapper, helper, downloadManager } from "src/helpers";
+import { fetchWrapper, helper } from "src/helpers";
 import { useInvoiceItemModel } from "./useInvoiceItemModel";
 import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
@@ -327,21 +327,6 @@ export function useInvoiceModel(config) {
     }
   }
 
-  async function downloadPdf(id) {
-    downloadManager.downloadGet(
-      `${config.baseRoute}/GeneratePdf/${id}`,
-      "landa-invoice.pdf"
-    );
-  }
-
-  async function downloadBatchPdf(page) {
-    downloadManager.downloadPost(
-      `${config.baseRoute}/GenerateBatchPdf`,
-      page,
-      "landa-invoice.pdf"
-    );
-  }
-
   return {
     model,
     crudStore,
@@ -368,8 +353,5 @@ export function useInvoiceModel(config) {
     addProduct,
     removeProduct,
     getProductQuantity,
-
-    downloadPdf,
-    downloadBatchPdf,
   };
 }

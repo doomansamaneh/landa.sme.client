@@ -39,7 +39,7 @@
     toolbar: Boolean,
     title: String,
     tableStore: useDataTable,
-    baseRoute: { type: String, default: "trs/openingStock" },
+    baseRoute: { type: String, default: "inv/openingStock" },
   });
 
   const $q = useQuasar();

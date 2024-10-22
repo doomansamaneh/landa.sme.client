@@ -14,9 +14,7 @@
       <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
 
       <menu-button-delete
-        @click="
-          formStore.crudStore.deleteById(model.id, deleteCallBack)
-        "
+        @click="crudStore.deleteById(model.id, deleteCallBack)"
       />
 
       <menu-button-print @click="helper.print('invoicePreview')" />
@@ -32,6 +30,7 @@
 <script setup>
   import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
+  import { useFormActions } from "src/composables/useFormActions";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
@@ -45,10 +44,10 @@
     title: String,
     inside: Boolean,
     baseRoute: String,
-    formStore: Object,
   });
 
   const router = useRouter();
+  const crudStore = useFormActions(props.baseRoute);
 
   function deleteCallBack() {
     //voucherStore.state.firstLoad.value = false;

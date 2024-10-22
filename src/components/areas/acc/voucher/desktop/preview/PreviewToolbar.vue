@@ -14,20 +14,18 @@
       <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
 
       <menu-button-delete
-        @click="
-          formStore.crudStore.deleteById(model.id, deleteCallBack)
-        "
+        @click="crudStore.deleteById(model.id, deleteCallBack)"
       />
 
       <menu-button-print @click="helper.print('invoicePreview')" />
       <menu-button
-        @click="formStore.downloadPdf(model.id)"
+        @click="downloadPdf(model.id)"
         icon="download"
         :title="$t('shared.labels.downloadPdf')"
       />
 
       <menu-button
-        @click="sendEmail"
+        @click="sendEmail(model.id)"
         icon="send"
         :title="$t('shared.labels.sendEmail')"
       />
@@ -39,7 +37,9 @@
   import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
+  import { useFormActions } from "src/composables/useFormActions";
   import { useVoucherState } from "../../../_composables/useVoucherState";
+  import { downloadManager } from "src/helpers";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
@@ -54,7 +54,7 @@
     title: String,
     inside: Boolean,
     baseRoute: String,
-    formStore: Object,
+    crudStore: useFormActions,
   });
 
   const router = useRouter();
@@ -66,15 +66,21 @@
     router.back();
   }
 
-  function sendEmail() {
+  function sendEmail(id) {
     $q.dialog({
       component: SendEmailDialog,
       componentProps: {
-        id: props.model.id,
+        id: id,
         baseRoute: props.baseRoute,
       },
     }).onOk(async () => {
       //await reloadData();
     });
   }
+
+  const downloadPdf = (id) => {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/generatePdf/${id}`
+    );
+  };
 </script>
