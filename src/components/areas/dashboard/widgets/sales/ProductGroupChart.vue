@@ -1,69 +1,15 @@
 <template>
-  <q-card class="bordered shadow fit">
-    <q-card-section class="q-pt-lg q-px-lg q-pb-none">
-      <div class="row justify-between items-center">
-        <div>
-          <q-item class="no-padding">
-            <q-item-section avatar>
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt_long"
-                size="md"
-                class="primary-gradient primary-shadow"
-              />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label class="text-h6 text-weight-700">
-                هزینه‌ها
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-        </div>
-        <div class="col-5">
-          <q-select
-            dropdown-icon="o_expand_more"
-            class="select"
-            outlined
-            dense
-            v-model="filter"
-            :options="filterOptions"
-          />
-        </div>
-      </div>
-    </q-card-section>
-
-    <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
-      <div class="col-md-8 col-xs-12">
-        <div class="text-body1">هزینه های 30 روز پیش</div>
-        <div class="text-h3 text-weight-700">200 میلیون</div>
-        <div class="row text-body1 no-letter-spacing q-mb-md">
-          <div class="ellipsis-3-lines text-weight-500 text-green-8">
-            <q-icon
-              color="green-8"
-              size="20px"
-              name="arrow_downward"
-            />
-            50% کاهش
-          </div>
-          <span class="q-ml-xs">نسبت به 30 روز پیش</span>
-        </div>
-      </div>
-      <div
-        :class="$q.screen.gt.sm ? 'absolute-top-right q-mt-xl' : ''"
-        :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
-      >
-        <apex-chart
-          class="pie-chart"
-          type="donut"
-          :options="chartOptions"
-          :series="chartData"
-        />
-      </div>
-    </q-card-section>
-
-    <expense-sparkline />
-  </q-card>
+  <div
+    :class="$q.screen.gt.sm ? 'absolute-top-left q-mt-xl' : ''"
+    :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
+  >
+    <apex-chart
+      class="pie-chart"
+      type="donut"
+      :options="chartOptions"
+      :series="chartData"
+    />
+  </div>
 </template>
 
 <script setup>

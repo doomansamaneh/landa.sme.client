@@ -1,5 +1,5 @@
 <template>
-  <q-card class="shadow bordered">
+  <q-card class="fit- shadow bordered">
     <q-card-section
       class="q-pb-none q-pt-lg row justify-between items-center"
     >
@@ -67,9 +67,11 @@
         </template>
         <template #item="{ item }">
           <q-item
-            class="q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
+            :to="`/cmn/product/Preview/${item.id}`"
+            clickable
+            class="row no-decoration q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
           >
-            <div class="row q-gutter-x-sm items-center">
+            <div class="col-2 q-mr-sm">
               <q-avatar
                 class="primary-gradient primary-shadow border-radius-xs"
                 square
@@ -104,26 +106,21 @@
               </q-avatar>
             </div>
 
-            <div class="row items-center justify-between full-width">
-              <div class="col-9 q-pl-lg column">
-                <span class="text-body3 no-letter-spacing">
+            <div class="col row items-center justify-between">
+              <div class="q-pl-lg column">
+                <span class="text-body3 no-letter-spacing ellipsis">
                   {{ item.productCode }} - {{ item.productTitle }}
                 </span>
-                <span class="text-body3 no-letter-spacing">
+                <span class="text-body3 no-letter-spacing ellipsis">
                   قیمت فروش: {{ helper.formatNumber(item.price) }}
                 </span>
-                <span class="text-body3 no-letter-spacing">
+                <span class="text-body3 no-letter-spacing ellipsis">
                   {{ $t("shared.labels.total") }}:
                   <strong class="q-px-xs">
                     {{ helper.formatNumber(item.amount) }}
                   </strong>
                   <span>({{ item.productUnitTitle }})</span>
                 </span>
-              </div>
-              <div class="col row justify-end items-center">
-                <goto-detail
-                  :to="`/cmn/product/Preview/${item.id}`"
-                />
               </div>
             </div>
           </q-item>
@@ -145,7 +142,6 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
-  import GotoDetail from "src/components/shared/buttons/GotoDetail.vue";
 
   const tableStore = useDataTable({
     dataSource: "sls/report/getInvoiceByProduct",
