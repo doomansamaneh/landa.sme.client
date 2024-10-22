@@ -2,30 +2,36 @@
   <chart
     :options="options"
     :series="series"
+    :seriesName="seriesName"
+    :height="height"
     :legend="legend"
     :title="title"
-    height="150"
-    class="area-chart"
+    class="bar-chart"
     :class="direction"
   />
 </template>
 
 <script setup>
   import { ref, onMounted, watch, computed } from "vue";
-  import Chart from "src/components/shared/charts/ChartView.vue";
+  import Chart from "src/components/shared/Charts/ChartView.vue";
   import { useQuasar } from "quasar";
 
   const $q = useQuasar();
-  const props = defineProps(["height", "legend", "title"]);
+  const props = defineProps([
+    "height",
+    "legend",
+    "title",
+    "seriesName",
+  ]);
 
   const options = ref(null);
 
   const series = ref([
     {
-      name: "فروش",
+      name: props.seriesName,
       data: [
-        2000000, 5000000, 2000000, 8000000, 3000000, 4000000, 9000000,
-        7000000, 4000000, 13000000, 7000000, 6000000,
+        20000000, 40000000, 60000000, 8000000, 10000000, 12000000,
+        14000000, 16000000, 18000000,
       ],
     },
   ]);
@@ -44,12 +50,10 @@
         },
       },
       chart: {
-        fontFamily,
-        type: "area",
+        offsetY: 0,
         parentHeightOffset: 0,
-        sparkline: {
-          enabled: true,
-        },
+        fontFamily,
+        type: "bar",
         toolbar: {
           show: false,
         },
@@ -70,74 +74,64 @@
           },
         },
       },
-
+      plotOptions: {
+        bar: {
+          // borderRadius: 5,
+          // horizontal: false,
+          columnWidth: "45%",
+          // distributed: false,
+        },
+      },
       dataLabels: {
         enabled: false,
       },
-      stroke: {
-        width: 4,
-        curve: "smooth",
-      },
+      // stroke: {
+      //   width: 2.5,
+      // },
       markers: {
         size: 0,
       },
       grid: {
         show: false,
+        strokeDashArray: 5,
+        borderColor: $q.dark.isActive ? "#ffffff47" : "#2d2d2d2d",
         padding: {
           top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
+          right: 32,
+          bottom: 8,
+          left: 32,
         },
-        lines: {
-          show: false,
-        },
-        borderColor: $q.dark.isActive ? "#ffffff47" : "#2d2d2d2d",
       },
       xaxis: {
-        show: false,
-        crosshairs: {
-          width: 1,
-        },
-        labels: {
-          show: false,
-        },
         axisBorder: {
           show: false,
         },
         axisTicks: {
           show: false,
         },
-        labels: {
-          show: false,
-        },
         categories: [
-          "farvardin",
-          "اردیبهشت",
-          "خرداد",
-          "تیر",
-          "مرداد",
-          "شهریور",
-          "مهر",
-          "آبان",
-          "آذر",
-          "دی",
-          "بهمن",
-          "اسفند",
+          "موز",
+          "استیل البرز",
+          "عایق رطوبتی نانو",
+          "اشتراک لاندا نسخه حرفه ای",
+          "تجهیزات شبکه",
+          "طراحی لوگو",
+          "ادکلن مردانه",
+          "کفی ساینا",
+          "تلفن ماهواره ای",
         ],
         labels: {
           show: false,
+          offsetY: 12,
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
           },
         },
       },
       yaxis: {
-        min: 0,
         show: false,
         opposite: false,
         labels: {
-          show: false,
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
           },
@@ -148,14 +142,15 @@
       },
       legend: {
         show: props.legend,
+        showForSingleSeries: true,
         inverseOrder: true,
         labels: {
           colors: $q.dark.isActive ? "white" : "#2d2d2d",
         },
-        position: "bottom",
+        position: "top",
         fontSize: "14px",
         fontWeight: 400,
-        offsetY: 16,
+        // offsetY: 16,
         markers: {
           width: 14,
           height: 14,
@@ -163,11 +158,13 @@
           offsetX: $q.lang.rtl ? "-4" : "-4",
         },
         itemMargin: {
-          vertical: 16,
+          // vertical: 16,
           horizontal: 16,
         },
       },
-      colors: ["rgb(36, 183, 160)"],
+      // colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
+      //   '#f48024', '#69d2e7'
+      // ],
       tooltip: {
         enabled: true,
         x: {
@@ -175,6 +172,9 @@
         },
         y: {
           show: true,
+          title: {
+            formatter: (seriesName) => seriesName == "",
+          },
         },
         style: {
           fontSize: "13px",
@@ -225,12 +225,3 @@
     return formattedValue;
   }
 </script>
-
-<style>
-  .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: end;
-    gap: 24px;
-  }
-</style>
