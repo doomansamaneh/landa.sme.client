@@ -1,7 +1,7 @@
 <template>
   <div
     :class="$q.screen.gt.sm ? 'absolute-top-left q-mt-xl' : ''"
-    :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
+    :style="$q.screen.gt.xs ? 'width: 280px' : 'width: 250px'"
   >
     <apex-chart
       class="pie-chart"
@@ -30,7 +30,7 @@
     const total = chartData.value.reduce((a, b) => a + b, 0);
 
     return {
-      colors: ["#FF4560", "#00E396", "#775DD0"],
+      colors: ["bluegray", "#00E396", "#775DD0"],
       plotOptions: {
         pie: {
           customScale: 1,
@@ -83,8 +83,8 @@
       chart: {
         fontFamily,
         type: "donut",
-        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : 0) : 0,
-        offsetY: $q.screen.xs ? -32 : -24,
+        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : 10) : 0,
+        offsetY: $q.screen.xs ? -32 : -32,
       },
       labels: [
         "هزینه کسری کالا",

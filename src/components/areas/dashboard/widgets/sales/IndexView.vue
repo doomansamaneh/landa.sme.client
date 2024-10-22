@@ -22,27 +22,20 @@
         </div>
       </div>
     </q-card-section>
-
-    <q-card-section class="q-pt-none q-pb-lg q-px-lg">
-      <div class="row q-col-gutter-md">
-        <div class="col-3">
-          <product-group-chart :height="300" />
-        </div>
-
-        <div class="col">
-          <customer-chart :height="300" />
-        </div>
-
-        <div class="col">
-          <product-chart :height="300" />
-        </div>
-      </div>
+    <q-card-section>
+      <product-chart :height="220" class="absolute-top-right z-max" />
+    </q-card-section>
+    <q-card-section>
+      <product-group-chart class="absolute-top-left z-1" />
+    </q-card-section>
+    <q-card-section class="q-pa-none">
+      <customer-chart :height="220" />
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-  import ProductChart from "src/components/areas/dashboard/widgets/sales/ProductChart.vue";
   import ProductGroupChart from "src/components/areas/dashboard/widgets/sales/ProductGroupChart.vue";
+  import ProductChart from "src/components/areas/dashboard/widgets/sales/ProductChart.vue";
   import CustomerChart from "src/components/areas/dashboard/widgets/sales/CustomerChart.vue";
 </script>

@@ -36,7 +36,7 @@
   </div>
 
   <q-scroll-area
-    v-if="gridStore.rows.value.length > 6"
+    v-if="gridStore.rows.value.length > 3"
     :style="scrollAreaStyle"
     :thumb-style="helper.thumbStyle"
     :bar-style="helper.barStyle"
@@ -174,7 +174,7 @@
     () =>
       props.scrollStyle ??
       ($q.screen.gt.xs
-        ? "height: 300px;"
+        ? "height: 250px;"
         : "height: calc(100vh - 120px);")
   );
 
