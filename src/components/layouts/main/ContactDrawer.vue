@@ -13,6 +13,7 @@
       ref="loadableDataGrid"
       data-source="crm/customer/getLookupData"
       show-search
+      scrollBarStyle="height: calc(100vh - 160px);"
     >
       <template #close>
         <div v-if="$q.screen.lt.md" class="col-1">

@@ -37,7 +37,7 @@
 
   <q-scroll-area
     v-if="gridStore.rows.value.length > 3"
-    :style="scrollAreaStyle"
+    :style="props.scrollBarStyle"
     :thumb-style="helper.thumbStyle"
     :bar-style="helper.barStyle"
   >
@@ -98,7 +98,7 @@
         class="primary-shadow q-ma-lg primary-gradient text-white"
       >
         <span class="text-body3">
-          {{ $t("shared.labels.loadMore") }} ...
+          {{ $t("shared.labels.loadMore") }} ...dddddd
         </span>
       </q-btn>
     </div>
@@ -124,6 +124,7 @@
     dataSource: String,
     dataStore: Object,
     scrollArea: { type: Boolean, default: true },
+    scrollBarStyle: String,
   });
   const $q = useQuasar();
 
@@ -174,7 +175,7 @@
     () =>
       props.scrollStyle ??
       ($q.screen.gt.xs
-        ? "height: 250px;"
+        ? "height: 358px;"
         : "height: calc(100vh - 120px);")
   );
 

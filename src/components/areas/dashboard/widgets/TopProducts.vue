@@ -44,6 +44,7 @@
         first-load
         :show-search="false"
         :scrollArea="false"
+        scroll-bar-style="height: 358px;"
       >
         <template #search>
           <q-input
