@@ -1,6 +1,6 @@
 <template>
   <div class="row q-col-gutter-md">
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
         title="حاشیه سود"
         :ratio="ratioStore.model.value.netMargin"
@@ -27,7 +27,7 @@
         </template>
       </ratio-widget>
     </div>
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
         title="نسبت بدهی"
         :ratio="ratioStore.model.value.debtRatio"
@@ -56,7 +56,7 @@
         </template>
       </ratio-widget>
     </div>
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
         title="نسبت جاری"
         :ratio="ratioStore.model.value.currentRatio"
@@ -84,7 +84,7 @@
         </template>
       </ratio-widget>
     </div>
-    <div class="col-md-6 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
         title="دوره وصول مطالبات"
         :ratio="ratioStore.model.value.dso"

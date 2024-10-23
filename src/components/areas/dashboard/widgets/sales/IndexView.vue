@@ -2,7 +2,7 @@
   <q-card flat class="fit- bordered shadow">
     <q-card-section class="q-pt-lg q-px-lg q-pb-none">
       <div class="row justify-between items-center">
-        <div>
+        <div class="col">
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-avatar
@@ -20,7 +20,7 @@
             </q-item-section>
           </q-item>
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-6">
+        <div class="col-md-3 col-sm-3 col-xs-6">
           <q-select
             dropdown-icon="o_expand_more"
             class="select"
