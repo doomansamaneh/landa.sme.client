@@ -258,7 +258,7 @@ export default {
         {
           path: "incomeStatement",
           component: () =>
-            import("pages/areas/acc/report/IcomeStatementPage.vue"),
+            import("pages/areas/acc/report/IncomeStatementPage.vue"),
           meta: { title: "گزارش صورت سود و زیان" },
         },
         {

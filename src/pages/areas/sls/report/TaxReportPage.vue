@@ -1,6 +1,6 @@
 <template>
   <income-statement
-    :title="$t('main-menu-items.Acc_Report_IncomeStatement')"
+    :title="$t('main-menu-items.Acc_Report_TaxReport')"
   />
 </template>
 
