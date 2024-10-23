@@ -255,6 +255,18 @@ export default {
             import("pages/areas/acc/report/JournalPage.vue"),
           meta: { title: "گزارش دفتر روزنامه" },
         },
+        {
+          path: "incomeStatement",
+          component: () =>
+            import("pages/areas/acc/report/IcomeStatementPage.vue"),
+          meta: { title: "گزارش صورت سود و زیان" },
+        },
+        {
+          path: "balanceSheet",
+          component: () =>
+            import("pages/areas/acc/report/BalanceSheetPage.vue"),
+          meta: { title: "گزارش ترازنامه" },
+        },
       ],
     },
 
@@ -1544,6 +1556,12 @@ export default {
           component: () =>
             import("pages/areas/sls/report/PurchaseReviewPage.vue"),
           meta: { title: "گزارش مرور خرید" },
+        },
+        {
+          path: "taxReport",
+          component: () =>
+            import("pages/areas/sls/report/TaxReportPage.vue"),
+          meta: { title: "گزارش خرید و فروش فصلی" },
         },
       ],
     },

@@ -118,29 +118,6 @@
         </q-item-section>
       </q-item>
     </q-card-section>
-
-    <div class="q-px-lg" v-if="false">
-      <q-tree
-        :nodes="nodes"
-        node-key="label"
-        node-icon="search"
-        accordion
-        selected-color="primary"
-        no-connectors
-        icon="o_arrow_forward_ios"
-      >
-        <template #default-header="prop">
-          <div class="q-pa-sm">{{ prop.node.label }}</div>
-        </template>
-        <template #header-root="prop">
-          <div class="q-pa-sm">
-            {{ prop.node.label }}
-          </div>
-          <q-space />
-          <span>5,922,779</span>
-        </template>
-      </q-tree>
-    </div>
   </q-card>
 </template>
 
