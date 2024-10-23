@@ -50,7 +50,7 @@
         </div>
       </div>
       <div
-        :class="$q.screen.gt.sm ? 'absolute-top-right q-mt-xl' : ''"
+        :class="$q.screen.gt.xs ? 'absolute-top-right q-mt-xl' : ''"
         :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
       >
         <apex-chart
@@ -137,7 +137,7 @@
       chart: {
         fontFamily,
         type: "donut",
-        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : -20) : 0,
+        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : 0) : 0,
         offsetY: $q.screen.xs ? -32 : -24,
       },
       labels: [

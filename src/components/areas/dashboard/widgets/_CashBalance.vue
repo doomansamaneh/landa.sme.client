@@ -1,6 +1,6 @@
 <template>
   <q-card class="shadow bordered">
-    <q-card-section class="q-py-lg q-pr-md q-pl-lg">
+    <q-card-section class="q-pt-lg q-pb-none q-pr-md q-pl-lg">
       <q-item class="q-mb-lg no-padding">
         <q-item-section avatar>
           <q-avatar
@@ -21,10 +21,6 @@
         </q-item-section>
       </q-item>
 
-      <q-scroll-area style="height: 300px">
-        <balance-list :data-source="dataSource" />
-      </q-scroll-area>
-
       <!-- <template v-else-if="dataSource.chartSeries.value.length">
         <balance-chart
           :data-source="dataSource"
@@ -32,6 +28,16 @@
           :height="height"
         />
       </template> -->
+    </q-card-section>
+
+    <q-card-section class="q-pt-none q-px-none">
+      <q-scroll-area
+        :bar-style="helper.barStyle"
+        :thumb-style="helper.thumbStyle"
+        :style="$q.screen.xs ? 'height: 280px' : 'height: 300px'"
+      >
+        <balance-list :data-source="dataSource" />
+      </q-scroll-area>
     </q-card-section>
   </q-card>
 </template>

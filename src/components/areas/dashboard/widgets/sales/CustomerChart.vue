@@ -95,7 +95,7 @@
       grid: {
         show: false,
         padding: {
-          top: 60,
+          top: $q.screen.xs ? 100 : 40,
           left: 0,
           right: 0,
           bottom: 0,

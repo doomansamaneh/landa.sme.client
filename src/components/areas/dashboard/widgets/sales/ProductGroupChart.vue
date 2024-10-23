@@ -1,7 +1,7 @@
 <template>
   <div
-    :class="$q.screen.gt.sm ? 'absolute-top-left' : ''"
-    :style="$q.screen.gt.xs ? 'width: 320px' : 'width: 250px'"
+    :class="$q.screen.gt.sm ? 'absolute-top-left' : 'absolute-top-left'"
+    :style="$q.screen.gt.xs ? 'width: 320px' : 'width: 280px'"
   >
     <apex-chart
       class="pie-chart"
@@ -53,7 +53,7 @@
               },
               value: {
                 show: true,
-                fontSize: "20px",
+                fontSize: "32px",
                 fontFamily,
                 fontWeight: 600,
                 color: $q.dark.isActive ? "white" : "#222",
@@ -67,7 +67,7 @@
                 show: false,
                 showAlways: false,
                 label: "Total",
-                fontSize: "22px",
+                fontSize: "28px",
                 fontFamily: "Helvetica, Arial, sans-serif",
                 fontWeight: 600,
                 color: "#373d3f",
@@ -83,8 +83,8 @@
       chart: {
         fontFamily,
         type: "donut",
-        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : 10) : 0,
-        offsetY: $q.screen.xs ? -32 : -32,
+        offsetX: $q.lang.rtl ? ($q.screen.xs ? 20 : 10) : 0,
+        offsetY: $q.screen.xs ? 40 : -32,
       },
       labels: [
         "هزینه کسری کالا",

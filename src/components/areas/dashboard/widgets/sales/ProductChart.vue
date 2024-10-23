@@ -29,7 +29,7 @@
   const series = ref([
     {
       name: props.seriesName,
-      data: [200, 400, 200, 301],
+      data: [200, 400, 200, 301, 500, 90, 120, 180, 230, 109, 600, 900],
     },
   ]);
 
@@ -47,7 +47,8 @@
         },
       },
       chart: {
-        offsetY: -150,
+        offsetY: $q.screen.xs ? 0 : -150,
+        offsetX: $q.screen.xs ? -20 : -20,
         parentHeightOffset: 0,
         fontFamily,
         type: "bar",
@@ -75,7 +76,7 @@
         bar: {
           // borderRadius: 5,
           horizontal: true,
-          columnWidth: "65%",
+          columnWidth: "80%",
           distributed: true,
         },
       },

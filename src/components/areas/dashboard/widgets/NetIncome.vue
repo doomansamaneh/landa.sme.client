@@ -149,7 +149,7 @@
         bar: {
           // borderRadius: 5,
           // horizontal: false,
-          columnWidth: "20%",
+          columnWidth: $q.screen.gt.xs ? '15%' : '20%',
           // distributed: false,
         },
       },

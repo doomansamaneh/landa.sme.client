@@ -69,9 +69,9 @@
           <q-item
             :to="`/cmn/product/Preview/${item.id}`"
             clickable
-            class="row no-decoration q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
+            class="no-decoration q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
           >
-            <div class="col-2 q-mr-sm">
+            <q-item-section avatar>
               <q-avatar
                 class="primary-gradient primary-shadow border-radius-xs"
                 square
@@ -104,10 +104,10 @@
                   {{ helper.formatNumberReadable(item.quantity) }}
                 </q-badge>
               </q-avatar>
-            </div>
+            </q-item-section>
 
-            <div class="col row items-center justify-between">
-              <div class="q-pl-lg column">
+            <q-item-section>
+              <div>
                 <span class="text-body3 no-letter-spacing ellipsis">
                   {{ item.productCode }} - {{ item.productTitle }}
                 </span>
@@ -122,7 +122,7 @@
                   <span>({{ item.productUnitTitle }})</span>
                 </span>
               </div>
-            </div>
+            </q-item-section>
           </q-item>
         </template>
       </loadable-data-grid>

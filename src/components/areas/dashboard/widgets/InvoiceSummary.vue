@@ -40,7 +40,7 @@
     <q-card-section
       class="row q-gutter-lg q-pt-none q-px-lg q-pt-sm q-pb-lg"
     >
-      <div class="col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-5 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-avatar
@@ -82,7 +82,7 @@
         </q-item>
       </div>
 
-      <div class="col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-5 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-avatar
@@ -125,7 +125,7 @@
         </q-item>
       </div>
 
-      <div class="col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-5 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn
@@ -182,7 +182,7 @@
         </q-item>
       </div>
 
-      <div class="col-md col-sm-12 col-xs-12">
+      <div class="col-md col-sm-5 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
             <q-btn

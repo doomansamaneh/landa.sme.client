@@ -1,10 +1,12 @@
 <template>
   <q-item
+    clickable
     v-for="item in dataSource.model.value"
     :key="item.id"
-    class="q-pr-sm q-pl-none q-pb-md border-radius-xs text-on-dark"
+    :to="`/acc/accountDL/Preview/${item.id}`"
+    class="no-decoration q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
   >
-    <div class="row q-gutter-x-sm items-center">
+    <q-item-section avatar >
       <q-btn
         v-if="getBankLogo(item.label)"
         class="bordered no-pointer-events border-radius-xs"
@@ -36,10 +38,9 @@
           />
         </div>
       </q-btn>
-    </div>
+    </q-item-section>
 
-    <div class="row items-center justify-between full-width">
-      <div class="col-9 q-pl-lg column">
+      <q-item-section>
         <span class="text-body3 no-letter-spacing">
           {{ item.label }}
         </span>
@@ -49,11 +50,7 @@
             {{ helper.formatNumber(item.amount) }}
           </span>
         </span>
-      </div>
-      <div class="col row justify-end items-center">
-        <goto-detail :to="`/acc/accountDL/Preview/${item.id}`" />
-      </div>
-    </div>
+      </q-item-section>
   </q-item>
 </template>
 
@@ -61,7 +58,7 @@
   import { helper } from "src/helpers";
   import { useBankAccount } from "../../acc/_composables/useBankAccount";
   import { getBankNameFromCardNumber } from "@persian-tools/persian-tools"; // Import Persian Tools method
-  import GotoDetail from "src/components/shared/buttons/GotoDetail.vue";
+  // import GotoDetail from "src/components/shared/buttons/GotoDetail.vue";
 
   const props = defineProps({
     dataSource: useBankAccount,

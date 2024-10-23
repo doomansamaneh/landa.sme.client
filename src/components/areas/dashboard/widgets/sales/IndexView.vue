@@ -1,5 +1,5 @@
 <template>
-  <q-card flat class="fit bordered shadow">
+  <q-card flat class="fit- bordered shadow">
     <q-card-section class="q-pt-lg q-px-lg q-pb-none">
       <div class="row justify-between items-center">
         <div>
@@ -20,7 +20,7 @@
             </q-item-section>
           </q-item>
         </div>
-        <div class="col-2">
+        <div class="col-md-2 col-sm-3 col-xs-6">
           <q-select
             dropdown-icon="o_expand_more"
             class="select"
@@ -44,14 +44,18 @@
         <span class="q-ml-xs">نسبت به 30 روز پیش</span>
       </div>
     </q-card-section>
-    <q-card-section>
-      <product-chart :height="250" class="absolute-top-right z-max" />
+    <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
+      <product-chart
+        :height="250"
+        class="z-1"
+        :class="$q.screen.xs ? '' : 'absolute-top-right'"
+      />
     </q-card-section>
-    <q-card-section>
-      <product-group-chart class="absolute-top-left z-1" />
+    <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
+      <product-group-chart class="z-1" />
     </q-card-section>
     <q-card-section class="q-pa-none">
-      <customer-chart :height="220" />
+      <customer-chart :height="$q.screen.gt.xs ? '220' : '300'" />
     </q-card-section>
   </q-card>
 </template>
