@@ -34,7 +34,7 @@
     </q-card-section>
 
     <q-card-section class="q-pt-lg q-px-lg q-pb-none">
-      <div class="text-body1">فروش 30 روز پیش</div>
+      <div class="text-body1">فروش های 30 روز پیش</div>
       <div class="text-h3 text-weight-700">16 همت</div>
       <div class="row text-body1 no-letter-spacing q-mb-md">
         <div class="ellipsis-3-lines text-weight-500 text-green-8">
