@@ -50,6 +50,9 @@
       sort-column="quantity"
       :sort-column-order="sortOrder.descending"
       first-load
+      :show-search="false"
+      :scrollArea="false"
+      scroll-bar-style="height: 370px;"
     >
       <template #item="{ item }">
         <q-item
