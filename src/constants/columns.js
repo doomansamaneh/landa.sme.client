@@ -303,7 +303,7 @@ export const customerName = {
   name: "customerName",
   field: "customerName",
   sortable: true,
-  label: "مشتری",
+  label: "طرف حساب",
   style: "",
   template: "{{customerCode}} {{customerName}}",
   showFilter: true,

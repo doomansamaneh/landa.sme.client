@@ -760,6 +760,12 @@ export default {
           meta: { title: "فاکتور خرید - ایجاد" },
         },
         {
+          path: "createV2",
+          component: () =>
+            import("pages/areas/sls/purchase/CreateV2Page.vue"),
+          meta: { title: "فاکتور خرید - ایجاد" },
+        },
+        {
           path: "edit/:id",
           component: () =>
             import("pages/areas/sls/purchase/EditPage.vue"),
@@ -793,6 +799,12 @@ export default {
           path: "create",
           component: () =>
             import("pages/areas/sls/salesReturn/CreatePage.vue"),
+          meta: { title: "برگشت از فروش - ایجاد" },
+        },
+        {
+          path: "createV2",
+          component: () =>
+            import("pages/areas/sls/salesReturn/CreateV2Page.vue"),
           meta: { title: "برگشت از فروش - ایجاد" },
         },
         {
