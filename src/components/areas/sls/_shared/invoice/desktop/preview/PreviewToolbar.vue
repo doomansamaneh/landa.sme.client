@@ -24,7 +24,7 @@
       <menu-button
         :title="$t('shared.labels.downloadPdf')"
         icon="download"
-        @click="formStore.downloadPdf(model.id)"
+        @click="downloadPdf(model.id)"
       />
       <menu-button
         :title="$t('shared.labels.sendEmail')"
@@ -38,7 +38,7 @@
 <script setup>
   import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
-  import { helper } from "src/helpers";
+  import { helper, downloadManager } from "src/helpers";
   import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
@@ -77,4 +77,10 @@
       await reloadData();
     });
   }
+
+  const downloadPdf = (id) => {
+    downloadManager.downloadGet(
+      `${props.baseRoute}/generatePdf/${id}`
+    );
+  };
 </script>
