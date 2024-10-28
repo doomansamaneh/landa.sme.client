@@ -29,36 +29,44 @@
         <div>
           <div class="row items-center q-gutter-sm no-wrap">
             <q-btn
-              v-for="option in dateRangeOptions"
-              :key="option.value"
-              @click="handleDateRangeClick(option.value)"
+              no-wrap
               rounded
               unelevated
-              padding="6px 14px"
-              :text-color="
-                !isActive(option.value) && !$q.dark.isActive
-                  ? 'grey-10'
-                  : 'white'
+              padding="6px 12px"
+              class="text-body2 bordered text-on-dark"
+              :class="
+                searchStore.searchModel.value.dateRange > 0
+                  ? 'active-shine text-white primary-gradient'
+                  : ''
               "
-              :class="[
-                {
-                  'active-shine text-white primary-gradient': isActive(
-                    option.value
-                  ),
-                },
-                'text-body2 text-on-dark',
-                { bordered: !isActive(option.value) },
-              ]"
-              style="white-space: nowrap"
+              no-caps
+              @click="openDateRangeDialog"
             >
-              {{ option.label }}
+              <template
+                v-if="searchStore.searchModel.value.dateRange > 0"
+              >
+                زمان:
+              </template>
+              <template v-else>زمان</template>
+
+              <div
+                class="q-ml-xs"
+                v-if="searchStore.searchModel.value.dateRange > 0"
+              >
+                {{
+                  $t(
+                    `shared.dateRange.${searchStore.searchModel.value.dateRange}`
+                  )
+                }}
+              </div>
+              <q-icon size="xs" name="o_expand_more" />
             </q-btn>
 
             <q-btn
               no-wrap
               rounded
               unelevated
-              padding="6px 14px"
+              padding="6px 12px"
               class="text-body2 bordered text-on-dark"
               :class="
                 searchStore.searchModel.value.depositType > 0
@@ -92,7 +100,7 @@
               no-wrap
               rounded
               unelevated
-              padding="6px 14px"
+              padding="6px 12px"
               class="text-body2 bordered text-on-dark"
               :class="
                 searchStore.searchModel.value.taxStatus > 0
@@ -319,14 +327,42 @@
       </q-card-section>
 
       <q-card-section>
-        <div class="colunm">
-          <q-option-group
-            :options="
-              helper.getEnumOptions(depositType, 'depositType')
-            "
-            v-model="searchStore.searchModel.value.depositType"
-          />
+        <q-option-group
+          class="text-body2 no-letter-spacing"
+          :options="helper.getEnumOptions(depositType, 'depositType')"
+          v-model="searchStore.searchModel.value.depositType"
+        />
+      </q-card-section>
+    </q-card>
+  </q-dialog>
+
+  <q-dialog
+    v-model="dateRangeDialog"
+    persistent
+    maximized
+    transition-show="slide-up"
+    transition-hide="slide-down"
+  >
+    <q-card
+      class="no-border q-mt-xl"
+      position="bottom"
+      style="height: 100vh"
+    >
+      <q-card-section class="q-pb-none">
+        <div class="row justify-between items-center">
+          <span class="text-body1 no-letter-spacing">
+            انتخاب زمان
+          </span>
+          <q-btn dense flat icon="close" v-close-popup />
         </div>
+      </q-card-section>
+
+      <q-card-section>
+        <q-option-group
+          class="text-body2 no-letter-spacing"
+          :options="helper.getEnumOptions(dateRange, 'dateRange')"
+          v-model="searchStore.searchModel.value.dateRange"
+        />
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -353,14 +389,13 @@
       </q-card-section>
 
       <q-card-section>
-        <div class="colunm">
-          <q-option-group
-            :options="
-              helper.getEnumOptions(taxSentStatus, 'taxSentStatus')
-            "
-            v-model="searchStore.searchModel.value.taxStatus"
-          />
-        </div>
+        <q-option-group
+          class="text-body2 no-letter-spacing"
+          :options="
+            helper.getEnumOptions(taxSentStatus, 'taxSentStatus')
+          "
+          v-model="searchStore.searchModel.value.taxStatus"
+        />
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -375,7 +410,6 @@
   } from "src/constants";
   import { helper } from "src/helpers";
   import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
-  import { useI18n } from "vue-i18n";
 
   import dateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -390,29 +424,9 @@
     showTaxApi: Boolean,
   });
 
-  const { t } = useI18n();
-
   const depositTypeDialog = ref(false);
   const taxSentStatusDialog = ref(false);
-
-  const dateRangeOptions = computed(() =>
-    helper.getEnumOptions(dateRange)
-  );
-
-  const handleDateRangeClick = async (value) => {
-    searchStore.searchModel.value.dateRange = value;
-    const translatedLabel = t(
-      `shared.labels.${searchStore.searchModel.value.dateRange}`
-    );
-    emit("update-date-range", {
-      value: searchStore.searchModel.value.dateRange,
-      label: translatedLabel,
-    });
-  };
-
-  const isActive = (value) => {
-    return searchStore.searchModel.value.dateRange === value;
-  };
+  const dateRangeDialog = ref(false);
 
   const emit = defineEmits(["apply-search", "update-date-range"]);
 
@@ -420,6 +434,10 @@
 
   const openDepositTypeDialog = () => {
     depositTypeDialog.value = true;
+  };
+
+  const openDateRangeDialog = () => {
+    dateRangeDialog.value = true;
   };
 
   const openTaxSentStatusDialog = () => {
@@ -437,6 +455,13 @@
     () => searchStore.searchModel.value.taxStatus,
     () => {
       taxSentStatusDialog.value = false;
+    }
+  );
+
+  watch(
+    () => searchStore.searchModel.value.dateRange,
+    () => {
+      dateRangeDialog.value = false;
     }
   );
 </script>

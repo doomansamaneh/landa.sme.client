@@ -43,7 +43,7 @@
     </q-input>
   </slot>
 
-  <div class="column_ q-mt-sm q-gutter-y-sm" style="margin: 0">
+  <div class="q-mt-sm q-gutter-y-sm" style="margin: 0">
     <template v-for="row in rows?.value" :key="row.id">
       <slot name="body" :item="row">
         <div>
@@ -68,9 +68,7 @@
                         text-color="white"
                         :style="
                           !row.selected
-                            ? helper.generateAvatarStyle(
-                                row[avatarField]
-                              )
+                            ? helper.generateAvatarStyle(row.id)
                             : ''
                         "
                         :class="
@@ -98,7 +96,7 @@
                   </div>
                 </slot>
 
-                <div class="col q-gutter-y-sm">
+                <div class="col q-gutter-y-xs">
                   <slot name="row-body" :item="row">
                     <div
                       v-for="col in gridStore?.columns.value"

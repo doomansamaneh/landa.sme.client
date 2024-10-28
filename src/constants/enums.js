@@ -111,14 +111,13 @@ export const customerRole = {
 };
 
 export const dateRange = {
-  // all: 0,
-  // today: 2,
-  // thisWeek: 3,
-  // thisMonth: 4
   all: 0,
-  today: "today",
-  thisWeek: "thisWeek",
-  thisMonth: "thisMonth",
+  today: 2,
+  thisWeek: 3,
+  thisMonth: 4,
+  // today: "today",
+  // thisWeek: "thisWeek",
+  // thisMonth: "thisMonth",
 };
 
 export const depositType = {
