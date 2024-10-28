@@ -1,4 +1,3 @@
-p
 <template>
   <data-grid-summary :table-store="tableStore" />
 

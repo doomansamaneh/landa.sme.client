@@ -1,7 +1,13 @@
 <template>
-  <q-badge v-if="title" text-color="white" class="bluegrey-gradient">
+  <q-btn
+    v-if="title"
+    padding="0 8px"
+    unelevated
+    class="bluegrey-gradient text-white text-center text-caption-xs no-letter-spacing border-radius-lg no-pointer-events"
+    style="white-space: nowrap"
+  >
     {{ title }}
-  </q-badge>
+  </q-btn>
 </template>
 
 <script setup>

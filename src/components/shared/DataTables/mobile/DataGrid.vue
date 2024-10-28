@@ -118,7 +118,11 @@
 
                   <div v-if="showBadge" class="row no-wrap">
                     <div class="col no-wrap">
-                      <q-scroll-area style="height: 20px">
+                      <q-scroll-area
+                        :bar-style="{ opacity: 0 }"
+                        :thumb-style="{ opacity: 0 }"
+                        style="height: 21px"
+                      >
                         <div class="row q-gutter-x-xs no-wrap">
                           <slot name="row-badge" :item="row"></slot>
                         </div>

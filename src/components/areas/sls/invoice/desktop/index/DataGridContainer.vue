@@ -1,41 +1,35 @@
 <template>
   <advanced-search v-if="advancedSearch" />
 
-  <q-tabs
-    v-model="tab"
-    class="primary-tabs q-mt-md"
-    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-    narrow-indicator
-    align="left"
-    inline-label
-    @update:model-value="tabChanged"
-  >
-    <q-tab
-      name="invoice"
-      class="q-mr-xs text-h6 text-weight-500"
-      label="فاکتورهای فروش"
-      icon="check"
+  <q-card flat class="bordered shadow q-mt-md">
+    <q-tabs
+      v-model="tab"
+      class="primary-tabs"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      align="left"
+      inline-label
+      narrow-indicator
+      @update:model-value="tabChanged"
     >
-      <!-- <q-badge>
-        {{ tableStore?.pagination.value.totalItems }}
-      </q-badge> -->
-    </q-tab>
-    <q-tab
-      name="canceled"
-      class="text-h6 text-weight-500"
-      label="ابطال شده"
-      icon="o_cancel"
-    />
-  </q-tabs>
+      <q-tab name="invoice" class="q-mr-xs text-weight-500">
+        <template #default>
+          <q-icon class="q-mr-sm" size="24px" name="o_check" />
+          <div class="text-h6 no-letter-spacing">فاکتورهای فروش</div>
+        </template>
+      </q-tab>
+      <q-tab name="canceled" class="text-weight-500">
+        <template #default>
+          <q-icon class="q-mr-sm" size="24px" name="cancel" />
+          <div class="text-h6 no-letter-spacing">ابطال شده</div>
+        </template>
+      </q-tab>
+    </q-tabs>
 
-  <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
-  <data-grid
-    :table-store="tableStore"
-    base-route="sls/invoice"
-    class="shadow bordered q-mt-md"
-  />
+    <data-grid :table-store="tableStore" base-route="sls/invoice" />
+  </q-card>
 </template>
 
 <script setup>

@@ -1,7 +1,7 @@
 <template>
   <q-card :flat="$q.screen.xs" :bordered="$q.screen.gt.xs">
     <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
-      <slot name="header">
+      <slot v-if="$q.screen.gt.xs" name="header">
         <div class="column q-gutter-y-sm">
           <div class="row items-center">
             <span class="col-2 text-caption text-bold">شماره:</span>
@@ -75,17 +75,17 @@
 
     <template v-if="model.id">
       <slot name="body">
-        <q-card-section :class="$q.screen.xs ? 'no-padding' : 'q-pb-none'">
+        <q-card-section
+          :class="$q.screen.xs ? 'no-padding' : 'q-pb-none'"
+        >
           <q-tabs
             v-model="tab"
             inline-label
-            align="left"
+            align="center"
             :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
             :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-            class="primary-tabs q-mt-lg"
-            narrow-indicator
           >
-            <q-tab name="main-info" class="q-mr-xs">
+            <q-tab name="main-info">
               <template #default>
                 <q-icon
                   name="o_arrow_downward"
@@ -97,13 +97,13 @@
                 </div>
               </template>
             </q-tab>
-            <q-tab name="tax" v-if="taxApi" class="q-mr-xs">
+            <q-tab name="tax" v-if="taxApi">
               <template #default>
                 <q-icon name="o_paid" size="xs" class="q-mr-sm" />
                 <div class="text-body3 text-bold">مالیات</div>
               </template>
             </q-tab>
-            <q-tab name="log" class="q-mr-xs">
+            <q-tab name="log">
               <template #default>
                 <q-icon name="o_history" size="xs" class="q-mr-sm" />
                 <div class="text-body3 text-bold">تاریخچه</div>
@@ -111,7 +111,7 @@
             </q-tab>
           </q-tabs>
         </q-card-section>
-        
+
         <q-separator size="1px" />
 
         <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
