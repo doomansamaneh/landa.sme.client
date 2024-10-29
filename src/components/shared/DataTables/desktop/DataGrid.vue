@@ -5,6 +5,12 @@
     <div class="q-table__middle scroll">
       <toolbar v-if="toolbar" :table-store="tableStore" />
 
+      <toolbar
+        class="q-pa-md"
+        v-if="tableStore.inFullscreen.value"
+        :table-store="tableStore"
+      />
+
       <table class="q-table data-table">
         <thead>
           <tr v-if="!hideHeader">

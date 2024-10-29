@@ -24,6 +24,11 @@
       lighten($primary, 8)
     );
   }
+
+  .primary-gradient-1 {
+    background: linear-gradient(310deg, #{$primary}10, #{$primary}10);
+  }
+
   // .toolbar-glass-effect {
   //   background: linear-gradient(
   //     180deg,

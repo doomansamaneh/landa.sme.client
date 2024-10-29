@@ -31,7 +31,7 @@
       </q-btn>
     </q-card-section>
 
-    <q-slide-transition>
+    <q-slide-transition duration="500">
       <div v-show="expanded">
         <div class="q-px-lg">
           <div class="row q-mb-md" v-if="false">
@@ -44,27 +44,6 @@
             /> -->
           </div>
 
-          <div class="row items-center q-mt-md">
-            <div
-              class="col-md-2 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
-            >
-              {{ $t("shared.labels.taxStatus") }}
-            </div>
-            <div class="col-md col-sm-7 col-xs-12">
-              <q-option-group
-                inline
-                :options="
-                  helper.getEnumOptions(
-                    taxSentStatus,
-                    'taxSentStatus'
-                  )
-                "
-                type="radio"
-                v-model="searchStore.searchModel.value.taxStatus"
-              />
-            </div>
-          </div>
-
           <div
             :style="$q.screen.gt.sm ? 'width: 1024px;' : ''"
             class="row"
@@ -74,6 +53,31 @@
               class="col-md col-sm-12"
               :class="$q.screen.gt.sm ? 'q-mr-xl' : ''"
             >
+              <div class="row items-center q-mt-md">
+                <div
+                  class="col-md-3 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
+                >
+                  {{ $t("shared.labels.taxStatus") }}
+                </div>
+                <div class="col-md col-sm-7 col-xs-12">
+                  <q-option-group
+                    inline
+                    :options="
+                      helper.getEnumOptions(
+                        taxSentStatus,
+                        'taxSentStatus'
+                      )
+                    "
+                    style="gap: 8px"
+                    class="overflow-hidden row text-body2 no-letter-spacing"
+                    type="radio"
+                    dense
+                    size="40px"
+                    v-model="searchStore.searchModel.value.taxStatus"
+                  />
+                </div>
+              </div>
+
               <div class="row items-center q-mt-md">
                 <div
                   class="col-md-3 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
@@ -188,7 +192,7 @@
                 <div class="col-md-3 col-sm-2 text-bold text-body2">
                   {{ $t("shared.labels.amountFrom") }}
                 </div>
-                <div class="col-md-6 col-sm-4 col-xs-12">
+                <div class="col-md-6 col-sm-7 col-xs-12">
                   <custom-input-number
                     v-model="searchStore.searchModel.value.amountFrom"
                     class="text-body2 no-letter-spacing"
@@ -200,7 +204,7 @@
                 <div class="col-md-3 col-sm-2 text-bold text-body2">
                   {{ $t("shared.labels.amountTo") }}
                 </div>
-                <div class="col-md-6 col-sm-4 col-xs-12">
+                <div class="col-md-6 col-sm-7 col-xs-12">
                   <custom-input-number
                     v-model="searchStore.searchModel.value.amountTo"
                     class="text-body2 no-letter-spacing"
@@ -212,7 +216,7 @@
                 <div class="col-md-3 col-sm-2 text-bold text-body2">
                   {{ $t("shared.labels.dateFrom") }}
                 </div>
-                <div class="col-md-6 col-sm-4 col-xs-12">
+                <div class="col-md-6 col-sm-7 col-xs-12">
                   <date-time
                     v-model="searchStore.searchModel.value.dateFrom"
                     class="text-body2 no-letter-spacing"
@@ -224,7 +228,7 @@
                 <div class="col-md-3 col-sm-2 text-bold text-body2">
                   {{ $t("shared.labels.dateTo") }}
                 </div>
-                <div class="col-md-6 col-sm-4 col-xs-12">
+                <div class="col-md-6 col-sm-7 col-xs-12">
                   <date-time
                     v-model="searchStore.searchModel.value.dateTo"
                     class="text-body2 no-letter-spacing"
@@ -236,6 +240,7 @@
 
           <q-card-actions
             class="row q-col-gutter-md items-center q-px-none q-py-lg"
+            :class="$q.screen.sm ? 'q-pt-xl' : ''"
           >
             <div
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
