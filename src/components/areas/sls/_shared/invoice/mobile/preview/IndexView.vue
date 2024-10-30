@@ -2,167 +2,166 @@
   <div
     class="row q-col-gutter-md justify-between items-center text-body3 no-letter-spacing"
   >
-    <div class="row q-gutter-md col">
+    <div>
       <div>
-        شماره:
-        <span class="text-weight-500">
+        <span class="text-body3 q-mr-xs caption-on-dark">
+          خریدار:
+        </span>
+        <span class="text-body3 text-weight-500">
+          {{ model.customerName }}
+        </span>
+      </div>
+      <div>
+        <span class="text-body3 q-mr-xs caption-on-dark">
+          فروشنده:
+        </span>
+        <span class="text-body3 text-weight-500">
+          {{ appConfigStore.model.value.companySetting.name }}
+        </span>
+      </div>
+    </div>
+
+    <div>
+      <div class="row justify-end">
+        <span class="caption-on-dark text-weight-500">
           {{ model.no }}
+          <span class="caption-on-dark">#</span>
         </span>
       </div>
       <div>
-        تاریخ:
-        <span class="text-weight-500">
+        <span class="caption-on-dark text-weight-500">
           {{ model.date?.substring(0, 10) }}
+          <q-icon size="10px" name="o_calendar_today" />
         </span>
       </div>
     </div>
   </div>
 
-  <q-separator class="q-my-sm" />
-
-  <div class="row q-mt-sm">
-    <div>
-      <span class="q-mr-sm">فروشنده:</span>
-      <span class="text-weight-500">
-        {{ appConfigStore.model.value.companySetting.name }}
-      </span>
-      <span v-if="appConfigStore.model.value.companySetting.address">
-        -
-      </span>
-      <span
-        v-if="appConfigStore.model.value.companySetting.address"
-        class="text-grey-6 text-body3 no-letter-spacing"
-      >
-        {{ appConfigStore.model.value.companySetting.address }}
-      </span>
-      <span v-if="appConfigStore.model.value.companySetting.phone">
-        -
-      </span>
-      <span
-        v-if="appConfigStore.model.value.companySetting.phone"
-        class="text-caption text-grey-6"
-      >
-        <q-icon name="o_phone" />
-        {{ appConfigStore.model.value.companySetting.phone }}
-      </span>
-    </div>
-  </div>
-  <div class="row q-mt-sm">
-    <div>
-      <span class="q-mr-sm">خریدار:</span>
-      <span class="text-weight-500">
-        {{ model.customerName }}
-      </span>
-      <span v-if="model.customerSummary?.address?.address">-</span>
-      <span
-        v-if="model.customerSummary?.address?.address"
-        class="text-grey-6 text-body3 no-letter-spacing"
-      >
-        {{ model.customerSummary?.address?.address }}
-        <span v-if="model.customerSummary?.phone?.value">-</span>
-        <span
-          v-if="model.customerSummary?.phone?.value"
-          class="text-caption text-grey-6"
-        >
-          <q-icon name="o_phone" />
-          {{ model.customerSummary?.phone?.value }}
-        </span>
-      </span>
-    </div>
-  </div>
-  <div class="row q-mt-lg" v-if="model.comment">
+  <div class="row q-my-lg" v-if="model.comment">
     <div class="full-width rounded-borders bordered q-pa-sm">
-      <span class="q-mr-sm">شرح:</span>
-      <span>
+      <span class="text-body3 q-mr-sm">شرح:</span>
+      <span class="text-body3">
         {{ model.comment }}
       </span>
     </div>
   </div>
-  <div class="row q-pt-md q-gutter-xs">
-    <status-badge :title="model.statusTitle" />
-    <type-badge :title="model.typeTitle" />
-    <contract-badge :title="model.contractTitle" />
+
+  <div class="row q-py-sm q-gutter-xs">
+    <status-badge
+      class="text-weight-500 text-caption"
+      padding="0 8px"
+      :title="model.statusTitle"
+    />
+    <type-badge
+      class="text-weight-500 text-caption"
+      padding="0 8px"
+      :title="model.typeTitle"
+    />
+    <contract-badge
+      class="text-weight-500 text-caption"
+      padding="0 8px"
+      :title="model.contractTitle"
+    />
   </div>
 
-  <q-separator class="q-my-sm" />
+  <q-separator class="q-my-sm" size="0.5px" />
 
-  <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
-    <div v-for="item in model.invoiceItems" :key="item.id">
-      <div class="row q-mb-md q-col-gutter-lg">
-        <div class="col">
-          <div class="row items-center">
-            <div>
-              <div class="row">
-                <div class="">
-                  {{ item.productTitle }}
+  <div class="row items-center q-gutter-sm q-pb-md q-pt-sm">
+    <q-avatar
+      text-color="white"
+      size="sm"
+      class="primary-shadow primary-gradient border-radius-xs"
+    >
+      <q-icon size="16px" name="list" />
+    </q-avatar>
+    <div class="text-weight-500 text-body2 no-letter-spacing">
+      اقلام
+    </div>
+  </div>
 
-                  <q-badge color="red" round dense unelevated>
-                    <div class="text-white text-body3">
-                      {{ helper.formatNumber(item.quantity) }}
-                    </div>
-                  </q-badge>
-                  ({{ item.productUnitTitle }})
-                </div>
-              </div>
+  <div v-for="item in model.invoiceItems" :key="item.id">
+    <div class="row q-mb-md q-col-gutter-lg">
+      <div class="col">
+        <div class="row items-center q-gutter-sm">
+          <div class="text-body3 no-letter-spacing">
+            {{ item.productTitle }}
+          </div>
+          <q-btn
+            size="11px"
+            rounded
+            padding="0 6px"
+            class="red-gradient"
+            dense
+            unelevated
+          >
+            <div
+              class="text-white text-weight-500 text-caption-sm no-letter-spacing"
+            >
+              {{ helper.formatNumber(item.quantity) }}
+              {{ item.productUnitTitle }}
             </div>
-          </div>
+          </q-btn>
         </div>
-        <div class="flex justify-end">
-          <div class="text-bold_">
-            {{ helper.formatNumber(item.price) }}
-          </div>
+      </div>
+      <div class="flex justify-end">
+        <div class="text-bold_">
+          {{ helper.formatNumber(item.price) }}
         </div>
       </div>
     </div>
-  </q-card-section>
+  </div>
 
-  <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
-    <div class="q-gutter-y-sm border-radius text-dark">
+  <div class="q-gutter-y-sm border-radius text-on-dark">
+    <div class="row items-center justify-between">
+      <div class="text-body3">{{ $t("shared.labels.price") }}</div>
+      <div>
+        {{ helper.formatNumber(model.totalNetPrice) }}
+      </div>
+    </div>
+    <div
+      v-if="model.totalDiscount"
+      class="row items-center justify-between"
+    >
+      <div class="">
+        <div class="text-body3">
+          {{ $t("shared.labels.discount") }}
+        </div>
+      </div>
+      <div :class="$q.dark.isActive ? 'text-red-5' : 'text-negative'">
+        ({{ helper.formatNumber(model.totalDiscount) }})
+      </div>
+    </div>
+
+    <div
+      v-if="model.totalVat"
+      class="row items-center justify-between"
+    >
+      <span class="text-body3">{{ $t("shared.labels.vat") }}</span>
+      <span>
+        {{ helper.formatNumber(model.totalVat) }}
+      </span>
+    </div>
+
+    <div class="q-mt-md bg-on-dark q-pa-sm border-radius-sm">
       <div class="row items-center justify-between">
-        <div class="">{{ $t("shared.labels.price") }}</div>
-        <div>
-          {{ helper.formatNumber(model.totalNetPrice) }}
-        </div>
-      </div>
-      <div
-        v-if="model.totalDiscount"
-        class="row items-center justify-between"
-      >
-        <div class="">
-          <div>{{ $t("shared.labels.discount") }}</div>
-        </div>
-        <div class="text-negative">
-          ({{ helper.formatNumber(model.totalDiscount) }})
-        </div>
-      </div>
-
-      <div
-        v-if="model.totalVat"
-        class="row items-center justify-between"
-      >
-        <span>{{ $t("shared.labels.vat") }}</span>
-        <span>
-          {{ helper.formatNumber(model.totalVat) }}
+        <span class="text-body3">
+          {{ $t("shared.labels.total") }}
         </span>
-      </div>
-
-      <q-separator size="0.5px" />
-
-      <div class="row items-center justify-between">
-        <span class="">{{ $t("shared.labels.total") }}</span>
 
         <span class="text-weight-600">
+          <span class="text-caption text-weight-500">
+            ({{ model.currencyTitle }})
+          </span>
           {{ helper.formatNumber(model.totalPrice) }}
         </span>
       </div>
-      <div class="row items-center justify-end">
-        <span class="q-px-xs">
+      <div class="row items-center">
+        <span class="text-body3 no-letter-spacing no-letter-spacing">
           {{ numberToWords(model.totalPrice ?? 0) }}
         </span>
-        <b>({{ model.currencyTitle }})</b>
       </div>
     </div>
-  </q-card-section>
+  </div>
 
   <detail-section
     class="q-mt-md"

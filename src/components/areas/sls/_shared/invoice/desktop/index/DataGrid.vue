@@ -5,7 +5,7 @@
     bordered_
     multiSelect
     dense_
-    toolbar
+    toolbar_
     numbered
     wrapCells_
     expandable

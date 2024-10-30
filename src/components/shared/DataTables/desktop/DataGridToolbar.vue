@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md row items-center q-gutter-xs">
+  <div class="row items-center q-gutter-xs">
     <q-btn
       size="11px"
       round

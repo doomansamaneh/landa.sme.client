@@ -1,7 +1,13 @@
 <template>
-  <q-badge v-if="no" text-color="white" class="red-gradient">
+  <q-btn
+    v-if="no"
+    padding="0 8px"
+    unelevated
+    class="red-gradient text-white text-center text-caption-xs no-letter-spacing border-radius-lg no-pointer-events"
+    style="white-space: nowrap"
+  >
     {{ no }}
-  </q-badge>
+  </q-btn>
 </template>
 
 <script setup>

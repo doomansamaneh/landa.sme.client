@@ -5,7 +5,12 @@
   }
 
   .q-tab__label {
-    font-size: 16px !important;
+    // font-size: 16px !important;
+  }
+
+  .q-tab__indicator {
+    height: 4px !important;
+    border-radius: 4px !important;
   }
 
   .bottom-navigation {
@@ -17,21 +22,21 @@
     }
   }
 
-  .primary-tabs {
-    .q-tab--active {
-      background-color: #{$yellow}35;
-    }
+  // .primary-tabs {
+  //   .q-tab--active {
+  //     background-color: #{$yellow}35;
+  //   }
 
-    .q-tab--active .q-tab__indicator {
-      height: 4px !important;
-      border-radius: 4px !important;
-    }
+  //   .q-tab--active .q-tab__indicator {
+  //     height: 4px !important;
+  //     border-radius: 4px !important;
+  //   }
 
-    .q-tab {
-      border-top-left-radius: 16px !important;
-      border-top-right-radius: 16px !important;
-    }
-  }
+  //   .q-tab {
+  //     border-top-left-radius: 16px !important;
+  //     border-top-right-radius: 16px !important;
+  //   }
+  // }
 
   // .primary-tabs {
   //   background: linear-gradient(

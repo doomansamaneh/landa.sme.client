@@ -1,4 +1,3 @@
-p
 <template>
   <data-grid-summary :table-store="tableStore" />
 
@@ -58,7 +57,7 @@ p
         <div class="row q-gutter-x-xs text-caption">
           <div>{{ item.no }}#</div>
           <div class="row items-center q-gutter-xs">
-            <q-icon name="o_schedule" />
+            <q-icon size="10px" name="o_calendar_today" />
             <div>{{ helper.formatPersianDate(item.date) }}</div>
           </div>
         </div>

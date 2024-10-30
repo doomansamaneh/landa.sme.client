@@ -25,10 +25,13 @@
     );
   }
 
+  .primary-gradient-1 {
+    background: linear-gradient(310deg, #{$primary}10, #{$primary}10);
+  }
+
   // .toolbar-glass-effect {
   //   background: linear-gradient(180deg, #{$bg-main}95, #{$primary}16);
   //   backdrop-filter: blur(10px);
   //   -webkit-backdrop-filter: blur(10px);
   // }
- 
 }
