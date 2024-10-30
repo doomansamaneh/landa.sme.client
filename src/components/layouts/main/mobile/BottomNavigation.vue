@@ -11,7 +11,7 @@
           <q-btn
             dense
             unelevated
-            padding="1px 10px"
+            padding="2px 14px"
             rounded
             :class="
               menuBarStore.state.visible.value
@@ -20,7 +20,7 @@
             "
           >
             <q-icon
-              size="20px"
+              size="18px"
               :name="
                 menuBarStore.state.visible.value ? 'menu' : 'o_menu'
               "
@@ -39,7 +39,7 @@
           <q-btn
             dense
             unelevated
-            padding="1px 10px"
+            padding="2px 14px"
             rounded
             :class="
               isActiveDashboard
@@ -48,7 +48,7 @@
             "
           >
             <q-icon
-              size="20px"
+              size="18px"
               :name="isActiveDashboard ? 'dashboard' : 'o_dashboard'"
             />
           </q-btn>
@@ -65,7 +65,7 @@
           <q-btn
             dense
             unelevated
-            padding="1px 10px"
+            padding="2px 14px"
             rounded
             :class="
               contactDrawerStore.state.value
@@ -74,7 +74,7 @@
             "
           >
             <q-icon
-              size="20px"
+              size="18px"
               :name="
                 contactDrawerStore.state.value
                   ? 'person_search'
@@ -95,7 +95,7 @@
           <q-btn
             dense
             unelevated
-            padding="1px 10px"
+            padding="2px 14px"
             rounded
             class="no-pointer-events"
             :class="
@@ -105,7 +105,7 @@
             "
           >
             <q-icon
-              size="20px"
+              size="18px"
               :name="
                 isActiveProfile
                   ? 'account_circle'
