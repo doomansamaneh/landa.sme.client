@@ -5,121 +5,150 @@
     class="bottom-navigation text-on-dark"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
-    <q-tabs
-      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      class="bottom-navigation"
-    >
-      <q-route-tab
-        class="text-caption"
-        icon="o_menu"
-        label="منو"
-        :ripple="false"
-        @click="menuBarStore.toggle"
-      />
+    <div class="row items-center q-py-sm">
+      <div class="col text-center">
+        <div @click="menuBarStore.toggle()">
+          <q-btn
+            dense
+            unelevated
+            padding="1px 10px"
+            rounded
+            :class="
+              menuBarStore.state.visible.value
+                ? 'primary-gradient active-shine text-white'
+                : ''
+            "
+          >
+            <q-icon
+              size="20px"
+              :name="
+                menuBarStore.state.visible.value ? 'menu' : 'o_menu'
+              "
+            />
+          </q-btn>
+          <div
+            class="q-mt-xs text-center text-caption text-weight-500 no-letter-spacing"
+          >
+            منو
+          </div>
+        </div>
+      </div>
 
-      <q-route-tab
-        icon="o_dashboard"
-        label="داشبورد"
-        to="/dashboard"
-        :ripple="false"
-      />
+      <div class="col text-center">
+        <div @click="goToDashboard">
+          <q-btn
+            dense
+            unelevated
+            padding="1px 10px"
+            rounded
+            :class="
+              isActiveDashboard
+                ? 'primary-gradient active-shine text-white'
+                : ''
+            "
+          >
+            <q-icon
+              size="20px"
+              :name="isActiveDashboard ? 'dashboard' : 'o_dashboard'"
+            />
+          </q-btn>
+          <div
+            class="q-mt-xs text-center text-caption text-weight-500 no-letter-spacing"
+          >
+            پیشخوان
+          </div>
+        </div>
+      </div>
 
-      <q-route-tab
-        icon="o_person_search"
-        label="مخاطبین"
-        :ripple="false"
-        @click="contactDrawerStore.toggle"
-      />
+      <div class="col text-center">
+        <div @click="contactDrawerStore.toggle()">
+          <q-btn
+            dense
+            unelevated
+            padding="1px 10px"
+            rounded
+            :class="
+              contactDrawerStore.state.value
+                ? 'primary-gradient active-shine text-white'
+                : ''
+            "
+          >
+            <q-icon
+              size="20px"
+              :name="
+                contactDrawerStore.state.value
+                  ? 'person_search'
+                  : 'o_person_search'
+              "
+            />
+          </q-btn>
+          <div
+            class="q-mt-xs text-center text-caption text-weight-500 no-letter-spacing"
+          >
+            مخاطبین
+          </div>
+        </div>
+      </div>
 
-      <q-route-tab
-        icon="o_account_circle"
-        label="پروفایل"
-        :ripple="false"
-        to="/scr/users/settings"
-      />
-    </q-tabs>
+      <div class="col text-center">
+        <div @click="goToProfile">
+          <q-btn
+            dense
+            unelevated
+            padding="1px 10px"
+            rounded
+            class="no-pointer-events"
+            :class="
+              isActiveProfile
+                ? 'primary-gradient active-shine text-white'
+                : ''
+            "
+          >
+            <q-icon
+              size="20px"
+              :name="
+                isActiveProfile
+                  ? 'account_circle'
+                  : 'o_account_circle'
+              "
+            />
+          </q-btn>
+          <div
+            class="q-mt-xs text-center text-caption text-weight-500 no-letter-spacing"
+          >
+            نمایه
+          </div>
+        </div>
+      </div>
+    </div>
   </q-footer>
-
-  <!-- <bottom-sheet
-    v-if="bottomSheetStatus" header
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
-
-    <template #body>
-      <q-list padding>
-
-        <q-item
-          clickable
-          v-ripple
-        >
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              size="36px"
-            >
-              <q-icon
-                size="xs"
-                name="o_account_circle"
-              />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing"> حساب کاربری
-          </q-item-section>
-        </q-item>
-
-         <q-item
-          clickable
-          v-ripple
-        >
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              size="36px"
-            >
-              <q-icon
-                size="xs"
-                name="o_school"
-              />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing"> دانشنامه
-          </q-item-section>
-        </q-item>
-
-      </q-list>
-    </template>
-
-  </bottom-sheet> -->
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { computed } from "vue";
+  import { useRouter, useRoute } from "vue-router";
 
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { useMenuBar } from "src/composables/useMenuBar";
-  import { useRouter } from "vue-router";
 
   const router = useRouter();
-  // import BottomSheet from "src/components/shared/BottomSheet.vue"
+  const route = useRoute();
 
   const contactDrawerStore = useContactDrawer();
   const menuBarStore = useMenuBar();
 
-  const gotoSettings = () => {
-    router.push("/settings");
+  const goToDashboard = () => {
+    router.push("/dashboard");
   };
 
-  // const bottomSheetStatus = ref(false)
+  const goToProfile = () => {
+    router.push("/scr/users/settings");
+  };
 
-  // const onBottomSheetShow = () => {
-  //   bottomSheetStatus.value = true;
-  // }
-
-  // const onBottomSheetHide = () => {
-  //   bottomSheetStatus.value = false;
-  // }
+  const isActiveDashboard = computed(
+    () => route.path === "/dashboard"
+  );
+  const isActiveProfile = computed(
+    () => route.path === "/scr/users/settings"
+  );
 </script>

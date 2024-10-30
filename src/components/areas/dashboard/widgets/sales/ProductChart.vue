@@ -48,7 +48,7 @@
       },
       chart: {
         offsetY: $q.screen.xs ? 0 : -150,
-        offsetX: $q.screen.xs ? -20 : -20,
+        offsetX: $q.screen.xs ? 0 : -20,
         parentHeightOffset: 0,
         fontFamily,
         type: "bar",
@@ -97,7 +97,7 @@
           top: 0,
           right: 32,
           bottom: 8,
-          left: 32,
+          left: 12,
         },
       },
       xaxis: {
