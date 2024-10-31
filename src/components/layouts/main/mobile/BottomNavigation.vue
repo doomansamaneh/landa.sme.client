@@ -2,124 +2,59 @@
   <q-footer
     v-if="$q.screen.lt.sm"
     bordered
-    class="bottom-navigation text-on-dark"
+    class="bottom-navigation-background text-on-dark"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
-    <q-tabs
-      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      class="bottom-navigation"
-    >
-      <q-route-tab
-        class="text-caption"
-        icon="o_menu"
+    <div class="row items-center q-py-sm">
+      <navigation-item
         label="منو"
-        :ripple="false"
+        icon="menu"
+        :isActive="menuBarStore.state.visible.value"
         @click="menuBarStore.toggle"
       />
-
-      <q-route-tab
-        icon="o_dashboard"
-        label="داشبورد"
-        to="/dashboard"
-        :ripple="false"
+      <navigation-item
+        label="پیشخوان"
+        icon="dashboard"
+        :isActive="isActiveDashboard"
+        @click="goToDashboard"
       />
-
-      <q-route-tab
-        icon="o_person_search"
+      <navigation-item
         label="مخاطبین"
-        :ripple="false"
+        icon="person_search"
+        :isActive="contactDrawerStore.state.value"
         @click="contactDrawerStore.toggle"
       />
-
-      <q-route-tab
-        icon="o_account_circle"
-        label="پروفایل"
-        :ripple="false"
-        to="/scr/users/settings"
+      <navigation-item
+        label="نمایه"
+        icon="account_circle"
+        :isActive="isActiveProfile"
+        @click="goToProfile"
       />
-    </q-tabs>
+    </div>
   </q-footer>
-
-  <!-- <bottom-sheet
-    v-if="bottomSheetStatus" header
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
-
-    <template #body>
-      <q-list padding>
-
-        <q-item
-          clickable
-          v-ripple
-        >
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              size="36px"
-            >
-              <q-icon
-                size="xs"
-                name="o_account_circle"
-              />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing"> حساب کاربری
-          </q-item-section>
-        </q-item>
-
-         <q-item
-          clickable
-          v-ripple
-        >
-          <q-item-section avatar>
-            <q-avatar
-              class="bg-on-dark text-on-dark"
-              size="36px"
-            >
-              <q-icon
-                size="xs"
-                name="o_school"
-              />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section class="text-body2 no-letter-spacing"> دانشنامه
-          </q-item-section>
-        </q-item>
-
-      </q-list>
-    </template>
-
-  </bottom-sheet> -->
 </template>
 
 <script setup>
-  import { ref } from "vue";
-
+  import { computed } from "vue";
+  import { useRouter, useRoute } from "vue-router";
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { useMenuBar } from "src/composables/useMenuBar";
-  import { useRouter } from "vue-router";
+
+  import NavigationItem from "src/components/layouts/main/mobile/NavigationItem.vue";
 
   const router = useRouter();
-  // import BottomSheet from "src/components/shared/BottomSheet.vue"
+  const route = useRoute();
 
   const contactDrawerStore = useContactDrawer();
   const menuBarStore = useMenuBar();
 
-  const gotoSettings = () => {
-    router.push("/settings");
-  };
+  const goToDashboard = () => router.push("/dashboard");
+  const goToProfile = () => router.push("/scr/users/settings");
 
-  // const bottomSheetStatus = ref(false)
-
-  // const onBottomSheetShow = () => {
-  //   bottomSheetStatus.value = true;
-  // }
-
-  // const onBottomSheetHide = () => {
-  //   bottomSheetStatus.value = false;
-  // }
+  const isActiveDashboard = computed(
+    () => route.path === "/dashboard"
+  );
+  const isActiveProfile = computed(
+    () => route.path === "/scr/users/settings"
+  );
 </script>
