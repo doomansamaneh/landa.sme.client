@@ -57,7 +57,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref } from "vue";
   import { sqlOperator, voucherStatus } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
 

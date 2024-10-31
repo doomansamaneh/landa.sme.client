@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
 

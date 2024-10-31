@@ -18,7 +18,6 @@
 <script setup>
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
-  import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
 
   import BottomSheet from "components/shared/BottomSheet.vue";
@@ -39,30 +38,12 @@
   const emits = defineEmits(["hide"]);
   const crudStore = useFormActions(props.baseRoute);
 
-  const downloadPdf = () => {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/generatePdf/${props.item.id}`
-    );
-  };
-
   const deleteItem = () => {
     crudStore.deleteById(
       props.item.id,
       props.deleteCallBack ?? props.tableStore?.reloadData
     );
   };
-
-  function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
-        id: props.item.id,
-        baseRoute: props.baseRoute,
-      },
-    }).onOk(async () => {
-      //await props.tableStore.reloadData();
-    });
-  }
 
   const hide = () => {
     emits("hide");

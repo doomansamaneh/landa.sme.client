@@ -23,6 +23,7 @@
 
   const props = defineProps({
     id: String,
+    selectedIds: Array,
   });
 
   const form = ref(null);

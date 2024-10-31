@@ -6,5 +6,5 @@
 </template>
 
 <script setup>
-  import DataGrid from "src/components/areas/cmn/product/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/areas/cmn/product/shared/index/DataGridContainer.vue";
 </script>
