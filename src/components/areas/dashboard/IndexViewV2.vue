@@ -7,13 +7,13 @@
       expand
     >
       <q-toolbar class="no-padding">
-        <div class="row items-center q-gutter-sm">
+        <div class="row items-center">
           <div
-            class="text-h6 text-weight-700 no-letter-spacing text-on-dark"
+            class="q-mr-sm text-h6 text-weight-700 no-letter-spacing text-on-dark"
           >
             {{ $t("main-menu-items.dashboard") }}
           </div>
-          <div>
+          <div class="row items-center q-gutter-sm">
             <q-btn
               dense
               class="text-body2 no-letter-spacing"
@@ -27,10 +27,12 @@
             </q-btn>
 
             <q-btn
+              v-if="isDefaultChanged"
               class="text-body2 no-letter-spacing"
               rounded
               unelevated
               no-caps
+              @click="resetToDefault"
             >
               <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
               <div class="text-body2 no-letter-spacing">
@@ -142,6 +144,17 @@
   const activeButton = computed(() =>
     draggable.isShaking.value ? "btn-active" : ""
   );
+
+  const isDefaultChanged = computed(() => {
+    return (
+      JSON.stringify(draggable.widgets.value) !==
+      JSON.stringify(initialWidgets)
+    );
+  });
+
+  const resetToDefault = () => {
+    draggable.widgets.value = [...initialWidgets];
+  };
 </script>
 
 <style scoped>
