@@ -1,5 +1,5 @@
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { baseInfoModel } from "src/models/shared/baseInfoModel";
 
@@ -10,6 +10,7 @@ export function useBaseInfoModel({
   getCreateModel,
 }) {
   const route = useRoute();
+  const router = useRouter();
   const localModel = ref(model ?? baseInfoModel);
   const editBatchModel = ref(batchModel);
 
@@ -20,6 +21,13 @@ export function useBaseInfoModel({
     else if (getCreateModel) await crudStore.getCreateModel();
   }
 
+  async function submitForm(form, action) {
+    await crudStore.submitForm(form, action, saveCallBack);
+    function saveCallBack(responseData) {
+      router.back();
+    }
+  }
+
   onMounted(() => {
     getById(route.params.id);
   });
@@ -27,6 +35,7 @@ export function useBaseInfoModel({
   return {
     model: localModel,
     editBatchModel,
+    submitForm,
     crudStore,
   };
 }

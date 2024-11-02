@@ -1,7 +1,7 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="formStore.submitForm(form, action)"
   />
 
   <q-card class="form-container">
@@ -79,21 +79,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-import { precisionCounts } from "src/constants";
+  import { ref } from "vue";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { precisionCounts } from "src/constants";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "cmn/productUnit",
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "cmn/productUnit",
+  });
 </script>

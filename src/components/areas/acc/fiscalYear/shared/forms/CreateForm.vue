@@ -1,14 +1,15 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="formStore.submitForm(form, action)"
   />
 
   <q-card class="q-mt-xl tips">
     <q-card-section>
       <div class="title">نکته</div>
       <div class="text-body1 no-letter-spacing q-mt-sm">
-        تاریخ آغاز سال مالی، یک نوروز و تاریخ پایان سال مالی، پایان اسفند است.
+        تاریخ آغاز سال مالی، یک نوروز و تاریخ پایان سال مالی، پایان
+        اسفند است.
       </div>
     </q-card-section>
   </q-card>
@@ -66,21 +67,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "acc/fiscalYear",
-  getCreateModel: true,
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "acc/fiscalYear",
+    getCreateModel: true,
+  });
 </script>

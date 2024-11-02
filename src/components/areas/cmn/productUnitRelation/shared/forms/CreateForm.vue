@@ -1,7 +1,7 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="formStore.submitForm(form, action)"
   />
 
   <q-card class="form-container">
@@ -16,7 +16,9 @@
             </q-item-label>
             <product-unit-lookup
               v-model:selectedId="formStore.model.value.masterUnitId"
-              v-model:selectedText="formStore.model.value.masterUnitTitle"
+              v-model:selectedText="
+                formStore.model.value.masterUnitTitle
+              "
             />
           </div>
         </div>
@@ -30,7 +32,9 @@
             </q-item-label>
             <product-unit-lookup
               v-model:selectedId="formStore.model.value.detailUnitId"
-              v-model:selectedText="formStore.model.value.detailUnitTitle"
+              v-model:selectedText="
+                formStore.model.value.detailUnitTitle
+              "
             />
           </div>
         </div>
@@ -42,7 +46,9 @@
             >
               نرخ
             </q-item-label>
-            <custom-input-number v-model="formStore.model.value.rate" />
+            <custom-input-number
+              v-model="formStore.model.value.rate"
+            />
           </div>
         </div>
       </q-form>
@@ -51,20 +57,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
-import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "cmn/productUnitRelation",
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "cmn/productUnitRelation",
+  });
 </script>

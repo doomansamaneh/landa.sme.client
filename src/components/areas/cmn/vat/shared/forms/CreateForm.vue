@@ -1,7 +1,7 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="formStore.submitForm(form, action)"
   />
 
   <q-card class="form-container">
@@ -15,18 +15,18 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useVatModel } from "src/components/areas/_shared/_composables/useVatModel";
+  import { ref } from "vue";
+  import { useVatModel } from "src/components/areas/_shared/_composables/useVatModel";
 
-import MasterSection from "./_MasterSection.vue";
-import DetailSection from "./_DetailSection.vue";
-import ToolBar from "src/components/shared/FormToolBar.vue";
+  import MasterSection from "./_MasterSection.vue";
+  import DetailSection from "./_DetailSection.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useVatModel();
+  const form = ref(null);
+  const formStore = useVatModel();
 </script>

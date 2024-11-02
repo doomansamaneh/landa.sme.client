@@ -1,7 +1,9 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="
+      formStore.submitForm(form, action, router.back)
+    "
   />
 
   <q-card class="form-container">
@@ -112,6 +114,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useRouter } from "vue-router";
   import { sqlOperator, accountCLType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
@@ -127,6 +130,7 @@
     title: String,
   });
 
+  const router = useRouter();
   const form = ref(null);
   const formStore = useBaseInfoModel({
     baseRoute: "trs/bankAccount",

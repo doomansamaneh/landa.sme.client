@@ -1,7 +1,7 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="formStore.submitForm(form, action)"
   />
 
   <q-card class="form-container">
@@ -72,6 +72,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useRouter } from "vue-router";
   import { sqlOperator, accountCLType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
@@ -79,11 +80,13 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import { route } from "quasar/wrappers";
 
   const props = defineProps({
     action: String,
     title: String,
   });
+  const router = useRouter();
 
   const form = ref(null);
   const formStore = useBaseInfoModel({

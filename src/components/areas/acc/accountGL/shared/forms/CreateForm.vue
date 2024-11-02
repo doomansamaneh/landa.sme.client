@@ -1,7 +1,7 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="formStore.submitForm(form, action)"
   />
 
   <q-card class="form-container">
@@ -42,7 +42,9 @@
               ماهیت حساب
             </q-item-label>
             <custom-select
-              :options="helper.getEnumOptions(accountType, 'accountType')"
+              :options="
+                helper.getEnumOptions(accountType, 'accountType')
+              "
               v-model="formStore.model.value.typeId"
             />
           </div>
@@ -77,9 +79,10 @@
         <q-card-section>
           <div class="title">راهنما</div>
           <div class="q-mt-md text-body1 no-letter-spacing">
-            <strong>ماهیت حساب: </strong> معمولا ماهیت حسابهای دارایی و هزینه که
-            با کدهای 1-2-7-8 شروع شده‌اند بدهکار و حسابهای بدهی، سرمایه، و فروش
-            که با کدهای 3-4-6 شروع شده‌اند بستانکار است
+            <strong>ماهیت حساب:</strong>
+            معمولا ماهیت حسابهای دارایی و هزینه که با کدهای 1-2-7-8
+            شروع شده‌اند بدهکار و حسابهای بدهی، سرمایه، و فروش که با
+            کدهای 3-4-6 شروع شده‌اند بستانکار است
           </div>
         </q-card-section>
       </q-card>
@@ -88,24 +91,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { helper } from "src/helpers";
-import { accountType } from "src/constants";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { helper } from "src/helpers";
+  import { accountType } from "src/constants";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-import ClLookup from "src/components/shared/lookups/AccountCLLookup.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import ClLookup from "src/components/shared/lookups/AccountCLLookup.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
+  const form = ref(null);
 
-const formStore = useBaseInfoModel({
-  baseRoute: "acc/accountGL",
-});
+  const formStore = useBaseInfoModel({
+    baseRoute: "acc/accountGL",
+  });
 </script>

@@ -1,7 +1,7 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="formStore.crudStore.submitForm(form, action)"
+    @submit-call-back="formStore.submitForm(form, action)"
   />
 
   <q-card class="form-container">
@@ -48,7 +48,9 @@
             <unit-type-lookup
               hide-bottom-space
               v-model:selectedId="formStore.model.value.unitTypeId"
-              v-model:selectedText="formStore.model.value.unitTypeTitle"
+              v-model:selectedText="
+                formStore.model.value.unitTypeTitle
+              "
               :rules="[(val) => val !== null && val !== '']"
             />
           </div>
@@ -79,7 +81,9 @@
             <location-lookup
               hide-bottom-space
               v-model:selectedId="formStore.model.value.locationId"
-              v-model:selectedText="formStore.model.value.locationTitle"
+              v-model:selectedText="
+                formStore.model.value.locationTitle
+              "
               :rules="[(val) => val !== null && val !== '']"
             />
           </div>
@@ -114,24 +118,24 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref } from "vue";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
-import OrgLookup from "src/components/shared/lookups/OrgLookup.vue";
-import UnitTypeLookup from "src/components/shared/lookups/UnitTypeLookup.vue";
-import UnitLookup from "src/components/shared/lookups/UnitLookup.vue";
-import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
+  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import OrgLookup from "src/components/shared/lookups/OrgLookup.vue";
+  import UnitTypeLookup from "src/components/shared/lookups/UnitTypeLookup.vue";
+  import UnitLookup from "src/components/shared/lookups/UnitLookup.vue";
+  import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
 
-const props = defineProps({
-  action: String,
-  title: String,
-});
+  const props = defineProps({
+    action: String,
+    title: String,
+  });
 
-const form = ref(null);
-const formStore = useBaseInfoModel({
-  baseRoute: "org/unit",
-  getCreateModel: true,
-});
+  const form = ref(null);
+  const formStore = useBaseInfoModel({
+    baseRoute: "org/unit",
+    getCreateModel: true,
+  });
 </script>
