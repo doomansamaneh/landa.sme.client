@@ -47,7 +47,6 @@
     <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
       <product-chart
         :height="250"
-        class="z-1"
         :class="$q.screen.xs ? '' : 'absolute-top-right'"
       />
     </q-card-section>

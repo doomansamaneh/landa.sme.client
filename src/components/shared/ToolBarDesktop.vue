@@ -5,7 +5,7 @@
       :style="inside"
       position="top"
       expand
-      :class="isAtTop || inside ? '' : 'toolbar-glass-effect'"
+      :class="isAtTop || inside ? '' : 'toolbar-glass-effect_'"
     >
       <q-toolbar
         :style="[
@@ -231,8 +231,8 @@
   const toolbarMargin = computed(() => {
     const baseMargin = $q.screen.lt.md
       ? "margin-bottom: 56px;"
-      : "margin-bottom: 36px;";
-    const margin = $q.screen.lt.sm ? "margin-bottom: 36px;" : "";
+      : "margin-bottom: 30px;;";
+    const margin = $q.screen.lt.sm ? "margin-bottom: 30px;;" : "";
     return props.margin ? baseMargin : margin;
   });
 

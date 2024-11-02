@@ -25,7 +25,7 @@
       unelevated
       size="3px"
       class="absolute-top-right no-pointer-events"
-      style="margin-top: 2px; margin-left: 2px;"
+      style="margin-top: 2px; margin-left: 2px"
     />
   </q-btn>
 </template>
