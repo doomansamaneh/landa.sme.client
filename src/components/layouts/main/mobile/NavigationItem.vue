@@ -11,7 +11,7 @@
     </q-btn>
     <div
       :class="labelClass"
-      class="q-mt-xs text-center text-caption text-weight-500 no-letter-spacing"
+      class="q-mt-xs text-center text-weight-500 no-letter-spacing"
     >
       {{ label }}
     </div>
@@ -57,5 +57,5 @@
     props.isActive ? props.icon : `o_${props.icon}`
   );
 
-  const iconSize = "18px";
+  const iconSize = "22px";
 </script>

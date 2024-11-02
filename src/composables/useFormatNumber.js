@@ -1,4 +1,4 @@
-import { computed, defineProps } from "vue"
+import { computed } from "vue"
 
 export function useFormatNumber() {
 

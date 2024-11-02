@@ -1,21 +1,74 @@
 <template>
-  <div class="row q-col-gutter-md q-mb-md">
-    <div
-      v-for="(widget, index) in widgets"
-      :key="widget.id"
-      :class="widget.class"
-      draggable="true"
-      @dragstart="onDragStart(index)"
-      @dragover.prevent
-      @drop="onDrop(index)"
+  <div class="q-mb-lg">
+    <q-page-sticky
+      :style="xPadding"
+      class="bg-main q-py-xs"
+      position="top"
+      expand
     >
-      <component :is="widget.component" />
+      <q-toolbar class="no-padding">
+        <div class="row items-center">
+          <div
+            class="q-mr-sm text-h6 text-weight-700 no-letter-spacing text-on-dark"
+          >
+            {{ $t("main-menu-items.dashboard") }}
+          </div>
+          <div class="row items-center q-gutter-sm">
+            <q-btn
+              dense
+              class="text-body2 no-letter-spacing"
+              round
+              unelevated
+              :class="activeButton"
+              no-caps
+              @click="draggable.toggleShake"
+            >
+              <q-icon size="20px" name="o_tune" />
+            </q-btn>
+
+            <q-btn
+              v-if="isDefaultChanged"
+              class="text-body2 no-letter-spacing"
+              rounded
+              unelevated
+              no-caps
+              @click="resetToDefault"
+            >
+              <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
+              <div class="text-body2 no-letter-spacing">
+                حالت پیشفرض
+              </div>
+            </q-btn>
+          </div>
+        </div>
+      </q-toolbar>
+    </q-page-sticky>
+
+    <div class="row q-col-gutter-md q-mb-md">
+      <div
+        v-for="(widget, index) in draggable.widgets.value"
+        :key="widget.id"
+        :class="[widget.class]"
+      >
+        <component
+          :is="widget.component"
+          :draggable="draggable.isShaking.value"
+          @dragstart="draggable.onDragStart(index)"
+          @dragover.prevent
+          @drop="draggable.onDrop(index)"
+          @dragend="resetCursor"
+          :class="[
+            { shake: draggable.isShaking.value },
+            { grabbable: draggable.isShaking.value },
+          ]"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
   import SomeInfo from "src/components/areas/dashboard/widgets/NetIncome.vue";
   import RevenueExpenseByMonth from "src/components/areas/dashboard/widgets/RevenueExpenseByMonth.vue";
@@ -27,7 +80,9 @@
   import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
   import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/IndexView.vue";
 
-  const widgets = ref([
+  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+
+  const initialWidgets = [
     {
       id: 1,
       component: SomeInfo,
@@ -78,20 +133,78 @@
       component: BankBalance,
       class: "col-md-4 col-sm-6 col-xs-12",
     },
-  ]);
+  ];
 
-  const draggedIndex = ref(null);
+  const draggable = useDraggableWidgets(initialWidgets);
 
-  const onDragStart = (index) => {
-    draggedIndex.value = index;
-  };
+  const xPadding = computed(
+    () => "z-index: 2; padding-left: 38px; padding-right: 38px;"
+  );
 
-  const onDrop = (index) => {
-    if (draggedIndex.value !== null) {
-      const draggedItem = widgets.value[draggedIndex.value];
-      widgets.value.splice(draggedIndex.value, 1);
-      widgets.value.splice(index, 0, draggedItem);
-      draggedIndex.value = null;
-    }
+  const activeButton = computed(() =>
+    draggable.isShaking.value ? "btn-active" : ""
+  );
+
+  const isDefaultChanged = computed(() => {
+    return (
+      JSON.stringify(draggable.widgets.value) !==
+      JSON.stringify(initialWidgets)
+    );
+  });
+
+  const resetToDefault = () => {
+    draggable.widgets.value = [...initialWidgets];
   };
 </script>
+
+<style scoped>
+  .shake {
+    animation: shake 3s infinite;
+  }
+
+  .grabbable {
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+  }
+
+  .grabbable:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+    10% {
+      transform: translate(-1px, -1px) rotate(-1deg);
+    }
+    20% {
+      transform: translate(-1px, 0px) rotate(1deg);
+    }
+    30% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+    40% {
+      transform: translate(1px, -1px) rotate(1deg);
+    }
+    50% {
+      transform: translate(-1px, 1px) rotate(0deg);
+    }
+    60% {
+      transform: translate(-1px, 1px) rotate(0deg);
+    }
+    70% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+    80% {
+      transform: translate(-1px, -1px) rotate(0deg);
+    }
+    90% {
+      transform: translate(1px, 1px) rotate(0deg);
+    }
+  }
+</style>
