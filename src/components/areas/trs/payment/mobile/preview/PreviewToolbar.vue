@@ -7,7 +7,7 @@
     back-button
   >
     <template #buttons>
-      <q-btn
+      <!-- <q-btn
         class="text-caption"
         round
         unelevated
@@ -15,7 +15,7 @@
         :to="`/${baseRoute}/edit/${model?.id}`"
       >
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-      </q-btn>
+      </q-btn> -->
 
       <q-btn
         @click="showItemSheet"

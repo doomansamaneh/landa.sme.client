@@ -8,7 +8,7 @@
   >
     <template #buttons>
       <q-btn
-        @click="onBottomSheetShow"
+        @click="showItemSheet"
         class="text-caption q-mr-sm"
         round
         dense
@@ -20,67 +20,24 @@
     </template>
   </tool-bar>
 
-  <bottom-sheet
-    v-if="bottomSheetStatus"
-    header
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
-    <template #header-title>
-      {{ $t("shared.labels.more") }}
-    </template>
-
-    <template #body>
-      <q-list padding>
-        <menu-item-copy :to="`/${baseRoute}/copy/${model.id}`" />
-
-        <slot
-          name="toolbar-custom-mobile"
-          :form-store="formStore"
-          :model="model"
-        ></slot>
-
-        <q-separator size="0.5px" class="q-my-sm" />
-
-        <menu-item-print @click="helper.print('invoicePreview')" />
-        <menu-item-print
-          icon="o_download"
-          :title="$t('shared.labels.downloadPdf')"
-          @click="formStore.downloadPdf(model.id)"
-        />
-
-        <menu-item
-          icon="o_send"
-          :title="$t('shared.labels.sendEmail')"
-          @click="sendEmail"
-        />
-
-        <q-separator size="0.5px" class="q-my-sm" />
-
-        <menu-item-delete
-          @click="
-            formStore.crudStore.deleteById(model.id, deleteCallBack)
-          "
-        />
-      </q-list>
-    </template>
-  </bottom-sheet>
+  <data-grid-item-sheet
+    v-if="itemSheetStatus"
+    :status="itemSheetStatus"
+    :item="model"
+    :base-route="baseRoute"
+    :delete-call-back="deleteCallBack"
+    @hide="hideItemSheet"
+  />
 </template>
 
 <script setup>
   import { ref } from "vue";
   import { useRouter } from "vue-router";
-  import { useQuasar } from "quasar";
-  import { helper } from "src/helpers";
   import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
   import ToolBar from "src/components/shared/ToolBarPreviewMobile.vue";
-  import SendEmailDialog from "src/components/areas/sls/_shared/invoice/shared/forms/SendEmailDialog.vue";
-  import BottomSheet from "src/components/shared/BottomSheet.vue";
-  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
-  import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
-  import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
-  import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
+  import DataGridItemSheet from "../index/DataGridItemSheet.vue";
+  import { computed } from "vue";
 
   const props = defineProps({
     model: Object,
@@ -91,31 +48,20 @@
   });
 
   const router = useRouter();
-  const $q = useQuasar();
-  const quoteStore = useQuoteState();
+  const invoiceStore = computed(() => props.formStore);
+  const itemSheetStatus = ref(false);
 
-  const bottomSheetStatus = ref(false);
-
-  const onBottomSheetShow = () => {
-    bottomSheetStatus.value = true;
+  const showItemSheet = () => {
+    itemSheetStatus.value = true;
   };
 
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
+  const hideItemSheet = () => {
+    itemSheetStatus.value = false;
   };
 
   function deleteCallBack() {
-    quoteStore.state.firstLoad.value = false;
+    if (invoiceStore.value.state?.firstLoad?.value)
+      invoiceStore.value.state.firstLoad.value = false;
     router.back();
-  }
-
-  function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
-        id: props.model.id,
-        baseRoute: props.baseRoute,
-      },
-    }).onOk(async () => {});
   }
 </script>

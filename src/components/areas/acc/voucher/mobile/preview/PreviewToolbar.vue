@@ -7,15 +7,15 @@
     back-button
   >
     <template #buttons>
-      <q-btn
-        class="text-caption"
-        round
-        unelevated
-        no-caps
-        :to="`/${baseRoute}/edit/${model?.id}`"
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-      </q-btn>
+      <!-- <q-btn
+          class="text-caption"
+          round
+          unelevated
+          no-caps
+          :to="`/${baseRoute}/edit/${model?.id}`"
+        >
+          <q-icon size="20px" name="o_edit" class="q-mr-xs" />
+        </q-btn> -->
 
       <q-btn
         @click="showItemSheet"
@@ -33,6 +33,7 @@
     v-if="itemSheetStatus"
     :status="itemSheetStatus"
     :item="model"
+    :base-route="baseRoute"
     :delete-call-back="deleteCallBack"
     @hide="hideItemSheet"
   />
