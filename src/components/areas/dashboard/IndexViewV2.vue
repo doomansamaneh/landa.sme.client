@@ -27,12 +27,12 @@
             </q-btn>
 
             <q-btn
-              v-if="isDefaultChanged"
+              v-if="draggable.isDefaultChanged.value"
               class="text-body2 no-letter-spacing"
               rounded
               unelevated
               no-caps
-              @click="resetToDefault"
+              @click="draggable.resetToDefault"
             >
               <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
               <div class="text-body2 no-letter-spacing">
@@ -69,6 +69,8 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+
   import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
   import SomeInfo from "src/components/areas/dashboard/widgets/NetIncome.vue";
   import RevenueExpenseByMonth from "src/components/areas/dashboard/widgets/RevenueExpenseByMonth.vue";
@@ -79,8 +81,6 @@
   import CashBalance from "src/components/areas/dashboard/widgets/CashBalance.vue";
   import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
   import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/IndexView.vue";
-
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
   const initialWidgets = [
     {
@@ -144,17 +144,6 @@
   const activeButton = computed(() =>
     draggable.isShaking.value ? "btn-active" : ""
   );
-
-  const isDefaultChanged = computed(() => {
-    return (
-      JSON.stringify(draggable.widgets.value) !==
-      JSON.stringify(initialWidgets)
-    );
-  });
-
-  const resetToDefault = () => {
-    draggable.widgets.value = [...initialWidgets];
-  };
 </script>
 
 <style scoped>

@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 export function useDraggableWidgets(initialWidgets) {
   const widgets = ref([...initialWidgets]);
@@ -19,8 +19,17 @@ export function useDraggableWidgets(initialWidgets) {
   };
 
   const toggleShake = () => {
-    isShaking.value = !isShaking.value;
-  };
+      isShaking.value = !isShaking.value;
+    },
+    isDefaultChanged = computed(() => {
+      return (
+        JSON.stringify(widgets.value) !==
+        JSON.stringify(initialWidgets)
+      );
+    }),
+    resetToDefault = () => {
+      widgets.value = [...initialWidgets];
+    };
 
   return {
     widgets,
@@ -28,5 +37,7 @@ export function useDraggableWidgets(initialWidgets) {
     onDrop,
     isShaking,
     toggleShake,
+    resetToDefault,
+    isDefaultChanged,
   };
 }
