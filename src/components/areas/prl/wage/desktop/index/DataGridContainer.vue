@@ -9,9 +9,7 @@
           :icon="`o_${icon}`"
           class="primary-gradient primary-shadow"
         />
-        <card-title
-          :title="$t('main-menu-items.Acc_AccountDL_View')"
-        />
+        <card-title :title="$t('main-menu-items.Prl_Wage_View')" />
       </div>
       <data-grid-toolbar :table-store="tableStore" class="q-pa-md" />
     </div>

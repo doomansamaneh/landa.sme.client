@@ -9,13 +9,15 @@
           icon="o_line_style"
           class="primary-gradient primary-shadow"
         />
-        <card-title title="سرفصل حسابها" />
+        <card-title
+          :title="$t('main-menu-items.Acc_AccountSL_Tree')"
+        />
       </div>
-      <data-grid-toolbar
+      <!-- <data-grid-toolbar
         class="q-pa-md"
         :table-store="tableStore"
         :baseRoute="baseRoute"
-      />
+      /> -->
     </div>
 
     <q-separator size="1px" />
