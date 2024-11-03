@@ -1,6 +1,6 @@
 <template>
   <q-scroll-observer @scroll="onScroll" />
-  <div class="q-mb-xl">
+  <div style="margin-bottom: 30px">
     <q-page-sticky
       :class="toolbarClass"
       class="z-1"
@@ -14,15 +14,19 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useQuasar } from "quasar";
   import { useCheckDialogOpen } from "src/composables/useCheckDialogOpen";
 
+  const $q = useQuasar();
   const checkDialog = useCheckDialogOpen();
   const toolbarClass = ref(null);
 
   const onScroll = (details) => {
     toolbarClass.value =
       details.position.top || checkDialog.hasScrollbarClass.value
-        ? "toolbar-glass-effect"
+        ? $q.screen.xs
+          ? "toolbar-glass-effect"
+          : "bg-main"
         : "bg-main";
   };
 
