@@ -2,6 +2,7 @@
   <data-grid
     toolbar
     :title="$t('main-menu-items.Inv_OpeningStock_View')"
+    icon="subject"
   />
 </template>
 
