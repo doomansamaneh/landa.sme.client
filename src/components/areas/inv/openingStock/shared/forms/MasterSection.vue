@@ -49,6 +49,39 @@
       افزودن همه کالاها
     </q-btn>
 
+    <a
+      class="no-decoration"
+      :href="`${baseUrl}/excelTemplate/import/openingStockTemplate.xlsx`"
+    >
+      <q-icon
+        name="file_download"
+        class="q-pr-xs"
+        size="xs"
+        :class="hrefColor"
+      />
+      <span class="decoration-on-hover" :class="hrefColor">
+        دانلود الگوی بارگزاری
+      </span>
+    </a>
+    <q-file outlined clearable v-model="file">
+      <template v-slot:prepend>
+        <q-icon name="attach_file" />
+      </template>
+      <template v-slot:append>
+        <q-btn
+          :disabled="!file"
+          color="primary"
+          class="text-lowercase primary-shadow q-ml-xs"
+          rounded
+          unelevated
+          @click="upload"
+        >
+          <q-icon name="arrow_upward" class="q-px-xs" size="xs" />
+          import
+        </q-btn>
+      </template>
+    </q-file>
+
     <q-btn
       v-if="model?.repositionItems?.length"
       color="red"
@@ -76,14 +109,22 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { baseUrl } from "src/constants";
+  import { useRepositionModel } from "../../../_composables/useRepositionModel";
 
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomLink from "src/components/shared/buttons/CustomLink.vue";
 
   const props = defineProps({
-    formStore: Object,
+    formStore: useRepositionModel,
   });
 
+  const file = ref(null);
+
   const model = computed(() => props.formStore.model.value);
+  const upload = async () => {
+    await props.formStore.importProduct("ImportProduct", file);
+  };
 </script>

@@ -32,6 +32,10 @@ export function useRepositionModel({ baseRoute }) {
     const responseData = await fetchWrapper.get(
       "inv/openingStock/getAllProducts"
     );
+    addItemsFromResponse(responseData);
+  }
+
+  function addItemsFromResponse(responseData) {
     if (responseData?.data?.data) {
       responseData.data.data.forEach((item) => {
         const exists = model.value.repositionItems.some(
@@ -49,6 +53,20 @@ export function useRepositionModel({ baseRoute }) {
         }
       });
     }
+  }
+
+  async function importProduct(action, file) {
+    if (!file?.value) {
+      alert("pls select a file");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("ImportFile", file.value);
+    const responseData = await fetchWrapper.post(
+      `{baseRoute}/${action}`,
+      formData
+    );
+    addItemsFromResponse(responseData);
   }
 
   function deleteAllProducts() {
@@ -101,6 +119,7 @@ export function useRepositionModel({ baseRoute }) {
     deleteRow,
     addAllProducts,
     deleteAllProducts,
+    importProduct,
 
     submitForm,
   };
