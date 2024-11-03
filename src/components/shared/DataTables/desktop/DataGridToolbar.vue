@@ -321,15 +321,4 @@
   const props = defineProps({
     tableStore: useDataTable,
   });
-
-  // const separatorTypes = [
-  //   {
-  //     label: "خط دار",
-  //     value: "horizontal",
-  //   },
-  //   {
-  //     label: "بدون خط",
-  //     value: "none",
-  //   },
-  // ];
 </script>

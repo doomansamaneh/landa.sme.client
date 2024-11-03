@@ -1,7 +1,25 @@
 <template>
-  <tool-bar margin title="سرفصل حسابها" />
+  <q-card flat class="bordered shadow">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          size="md"
+          icon="o_line_style"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title title="سرفصل حسابها" />
+      </div>
+      <data-grid-toolbar
+        class="q-pa-md"
+        :table-store="tableStore"
+        :baseRoute="baseRoute"
+      />
+    </div>
 
-  <q-card style="min-height: 300px" class="form-container">
+    <q-separator size="1px" />
+
     <q-card-section>
       <q-tree
         v-if="!clStore.showLoader.value"
@@ -152,8 +170,9 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import AccountTreeNode from "./AccountTreeNode.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const selected = ref("");
 
@@ -213,6 +232,11 @@
   };
 
   const clStore = computed(() => accountLevel.cl.store.tableStore);
+
+  const tableStore = useDataTable({
+    dataSource: "acc/accountSL/tree",
+    store: clStore,
+  });
 
   const onLazyLoad = async ({ node, key, done, fail }) => {
     const childLevel = getNextLevel(node.level?.key);

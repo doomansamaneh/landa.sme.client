@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid icon="access_time" toolbar />
 </template>
 
 <script setup>

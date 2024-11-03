@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid icon="format_list_numbered" toolbar />
 </template>
 
 <script setup>

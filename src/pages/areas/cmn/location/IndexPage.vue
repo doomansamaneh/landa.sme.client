@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid icon="place" toolbar />
 </template>
 
 <script setup>

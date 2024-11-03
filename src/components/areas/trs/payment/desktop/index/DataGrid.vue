@@ -2,7 +2,7 @@
   <data-grid
     :data-table-store="tableStore"
     flat
-    toolbar
+    toolbar_
     multiSelect
     numbered
     dense
@@ -82,6 +82,7 @@
   const props = defineProps({
     tableStore: useDataTable,
     baseRoute: String,
+    toolbar: Boolean
   });
 
   const router = useRouter();

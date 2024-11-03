@@ -2,6 +2,7 @@
   <data-grid
     toolbar
     :title="$t('main-menu-items.Trs_Payment_View')"
+    icon="arrow_upward"
   />
 </template>
 

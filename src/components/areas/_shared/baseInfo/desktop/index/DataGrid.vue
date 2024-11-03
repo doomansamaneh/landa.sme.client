@@ -5,7 +5,7 @@
         <q-avatar
           rounded
           text-color="white"
-          icon="o_subject"
+          :icon="`o_${icon}`"
           size="md"
           class="primary-gradient primary-shadow"
         />
@@ -13,7 +13,7 @@
       </div>
       <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
-    
+
     <q-separator size="1px" />
 
     <data-grid
@@ -96,6 +96,7 @@
     baseRoute: String,
     expandable: Boolean,
     title: String,
+    icon: String,
   });
 
   const dataGrid = ref(null);

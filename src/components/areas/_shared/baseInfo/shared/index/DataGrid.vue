@@ -23,6 +23,7 @@
   <template v-else>
     <desktop
       :title="title"
+      :icon="icon"
       :grid-store="localGridStore"
       :crud-store="crudStore"
       :data-source="dataSource"
@@ -53,6 +54,7 @@
   const props = defineProps({
     toolbar: Boolean,
     title: String,
+    icon: String,
     baseRoute: String,
     dataSource: String,
     createUrl: String,

@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid icon="inbox" toolbar />
 </template>
 
 <script setup>

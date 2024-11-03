@@ -8,6 +8,7 @@
 
   <data-grid-table
     :title="title"
+    :icon="icon"
     :table-store="tableStore"
     :base-route="baseRoute"
   />
@@ -25,6 +26,7 @@
 
   const props = defineProps({
     title: String,
+    icon: String,
     toolbar: Boolean,
     dataSource: { type: String, default: "trs/receipt/getGridData" },
   });

@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid icon="attach_money" toolbar />
 </template>
 
 <script setup>

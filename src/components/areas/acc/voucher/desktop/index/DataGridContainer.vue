@@ -1,14 +1,31 @@
 <template>
   <advanced-search v-if="advancedSearch" />
 
-  <q-card bordered>
-    <card-title :title="title" />
-    <q-card-section class="q-px-none">
-      <voucher-data-grid
+  <q-card flat class="bordered shadow">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          size="md"
+          :icon="`o_${icon}`"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title v-if="title" :title="title" />
+      </div>
+      <data-grid-toolbar
+        class="q-pa-md"
         :table-store="tableStore"
-        :base-route="baseRoute"
+        :baseRoute="baseRoute"
       />
-    </q-card-section>
+    </div>
+
+    <q-separator size="1px" />
+    
+    <voucher-data-grid
+      :table-store="tableStore"
+      :base-route="baseRoute"
+    />
   </q-card>
 </template>
 
@@ -18,11 +35,13 @@
   import AdvancedSearch from "./AdvancedSearch.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
   import VoucherDataGrid from "./DataGrid.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
     baseRoute: String,
     advancedSearch: Boolean,
     title: String,
+    icon: String,
   });
 </script>

@@ -1,5 +1,6 @@
 <template>
   <data-grid
+    icon="subject"
     toolbar
     :title="$t('main-menu-items.Inv_Production_View')"
   />

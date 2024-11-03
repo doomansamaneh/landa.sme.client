@@ -20,7 +20,7 @@
       </div>
     </q-card-section>
 
-    <q-card-section class="q-pt-sm q-pb-none">
+    <q-card-section class="q-pt-sm">
       <q-scroll-area
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
@@ -138,7 +138,7 @@
         :bar-style="{ opacity: 0 }"
         style="height: calc(100vh - 180px)"
       >
-        <div class="column q-col-gutter-lg">
+        <div class="column q-pb-lg q-col-gutter-lg">
           <div class="row q-col-gutter-sm">
             <div class="col">
               <div class="text-body2 q-mb-sm no-letter-spacing">
@@ -266,7 +266,7 @@
       </q-scroll-area>
     </q-card-section>
 
-    <q-card-section>
+    <q-card-section class="bg-main absolute-bottom">
       <div class="row q-gutter-sm">
         <div class="col">
           <q-btn

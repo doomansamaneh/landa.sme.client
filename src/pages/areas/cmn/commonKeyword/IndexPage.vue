@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid icon="library_books" toolbar />
 </template>
 
 <script setup>

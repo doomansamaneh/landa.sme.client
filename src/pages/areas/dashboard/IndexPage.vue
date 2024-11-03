@@ -2,7 +2,7 @@
   <confetti-animation
     v-if="showCongrat && congratsStore.confetti.value"
   />
-  <toolbar-container />
+  <!-- <toolbar-container /> -->
   <home />
 </template>
 

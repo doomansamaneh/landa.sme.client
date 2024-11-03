@@ -2,6 +2,7 @@
   <data-grid
     toolbar
     :title="$t('main-menu-items.Trs_TransferMoney_View')"
+    icon="swap_horiz"
   />
 </template>
 

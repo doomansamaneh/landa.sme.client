@@ -1,9 +1,24 @@
 <template>
-  <q-card bordered>
-    <card-title :title="title" />
-    <q-card-section class="q-px-none">
-      <data-grid :table-store="tableStore" :base-route="baseRoute" />
-    </q-card-section>
+  <q-card flat class="bordered shadow">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          size="md"
+          :icon="`o_${icon}`"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title
+          :title="$t('main-menu-items.Acc_AccountDL_View')"
+        />
+      </div>
+      <data-grid-toolbar :table-store="tableStore" class="q-pa-md" />
+    </div>
+
+    <q-separator size="1px" />
+
+    <data-grid :table-store="tableStore" :base-route="baseRoute" />
   </q-card>
 </template>
 
@@ -18,5 +33,6 @@
     baseRoute: String,
     advancedSearch: Boolean,
     title: String,
+    icon: String,
   });
 </script>

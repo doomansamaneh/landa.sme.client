@@ -2,6 +2,7 @@
   <data-grid
     toolbar
     :title="$t('main-menu-items.Trs_Receipt_View')"
+    icon="arrow_downward"
   />
 </template>
 

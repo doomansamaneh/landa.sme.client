@@ -1,5 +1,9 @@
 <template>
-  <data-grid toolbar :title="$t('main-menu-items.Prl_Wage_View')" />
+  <data-grid
+    toolbar
+    :title="$t('main-menu-items.Prl_Wage_View')"
+    icon="account_box"
+  />
 </template>
 
 <script setup>

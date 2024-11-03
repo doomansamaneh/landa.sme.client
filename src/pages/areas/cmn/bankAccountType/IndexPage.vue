@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid icon="credit_card" toolbar />
 </template>
 
 <script setup>

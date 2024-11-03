@@ -2,7 +2,7 @@
   <data-grid
     :data-table-store="tableStore"
     flat
-    toolbar
+    toolbar_
     multiSelect
     numbered
     dense

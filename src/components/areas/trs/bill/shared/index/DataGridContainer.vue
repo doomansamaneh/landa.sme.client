@@ -5,7 +5,11 @@
     :table-store="tableStore"
   />
 
-  <data-grid-table :title="title" :table-store="tableStore" />
+  <data-grid-table
+    :title="title"
+    :icon="icon"
+    :table-store="tableStore"
+  />
 </template>
 
 <script setup>
@@ -20,6 +24,7 @@
 
   const props = defineProps({
     title: String,
+    icon: String,
     toolbar: Boolean,
     dataSource: { type: String, default: "trs/bill/getGridData" },
   });

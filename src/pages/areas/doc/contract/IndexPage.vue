@@ -2,6 +2,7 @@
   <data-grid
     toolbar
     :title="$t('main-menu-items.Doc_Contract_View')"
+    icon="subject"
   />
 </template>
 

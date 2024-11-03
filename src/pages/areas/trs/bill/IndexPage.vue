@@ -1,5 +1,9 @@
 <template>
-  <data-grid toolbar :title="$t('main-menu-items.Trs_Bill_View')" />
+  <data-grid
+    toolbar
+    :title="$t('main-menu-items.Trs_Bill_View')"
+    icon="attach_money"
+  />
 </template>
 
 <script setup>
