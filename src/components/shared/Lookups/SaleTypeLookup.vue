@@ -7,7 +7,7 @@
     :filterExpression="filterExpression"
     ref="lookup"
   >
-    <template #title>نوع خرید</template>
+    <template #title>نوع</template>
   </lookup-view>
 </template>
 

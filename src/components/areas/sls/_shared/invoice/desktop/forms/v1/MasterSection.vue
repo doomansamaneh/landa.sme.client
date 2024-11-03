@@ -83,6 +83,24 @@
                     v-model:selectedText="model.value.inventoryTitle"
                   />
                 </div>
+
+                <div
+                  v-if="showOriginalDoc"
+                  class="col-md-6 col-sm-12 col-xs-12 q-mt-md"
+                >
+                  <q-item-label caption class="q-mb-sm">
+                    سند مرجع
+                  </q-item-label>
+                  <invoice-lookup
+                    v-model:selectedId="
+                      model.value.originalDocument.parentId
+                    "
+                    v-model:selectedText="
+                      model.value.originalDocument.no
+                    "
+                    :filter-expression="originalFilterExpression"
+                  />
+                </div>
               </div>
             </div>
           </q-slide-transition>
@@ -127,19 +145,6 @@
               />
             </template>
           </q-input>
-        </div>
-      </div>
-      <div v-if="showOriginalDoc" class="row justify-end q-mt-md">
-        <div class="col-md-6 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            سند مرجع
-          </q-item-label>
-          <pre>{{ model.value.originalDocument }}</pre>
-          <invoice-lookup
-            v-model:selectedId="model.value.originalDocument.parentId"
-            v-model:selectedText="model.value.originalDocument.no"
-            :filter-expression="originalFilterExpression"
-          />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
@@ -197,7 +202,8 @@
   ];
 
   const filterExpression =
-    props.formType == invoiceFormType.sales
+    props.formType == invoiceFormType.sales ||
+    props.formType == invoiceFormType.salesReturn
       ? [
           {
             fieldName: "isForSale",
@@ -223,9 +229,9 @@
   const showOriginalDoc = computed(
     () =>
       //todo: activate original document
-      model?.value.originalDocument &&
-      (props.formType === invoiceFormType.sales ||
-        props.formType === invoiceFormType.salesReturn)
+      //model?.value.originalDocument &&
+      props.formType === invoiceFormType.sales ||
+      props.formType === invoiceFormType.salesReturn
   );
 
   const toggleMoreInfo = () => {

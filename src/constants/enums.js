@@ -1,5 +1,5 @@
-//export const baseUrl = "http://localhost:6060";
-export const baseUrl = "https://api.landa-sme.ir";
+export const baseUrl = "http://localhost:6060";
+//export const baseUrl = "https://api.landa-sme.ir";
 
 export const isActiveOptions = {
   active: 1,

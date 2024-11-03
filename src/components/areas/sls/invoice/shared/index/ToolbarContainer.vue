@@ -44,8 +44,9 @@
   import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
 
-  import EditBatch from "src/components/areas/sls/invoice/shared/forms/EditBatchDialog.vue";
+  import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchDialog.vue";
   import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderDialog.vue";
+  import { invoiceFormType } from "src/constants";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -80,6 +81,7 @@
       component: EditBatch,
       componentProps: {
         selectedIds: selectedIds?.value,
+        formType: invoiceFormType.sales,
       },
     }).onOk(async () => {
       await props.tableStore.reloadData();

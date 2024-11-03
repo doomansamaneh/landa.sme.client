@@ -74,6 +74,13 @@
 
   <q-slide-transition>
     <div v-show="moreInfo">
+      <div class="row q-mt-md">
+        <div class="col-md-2 col-sm-12 col-xs-12">
+          <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
+          <date-time v-model="model.value.dueDate" />
+        </div>
+      </div>
+
       <div class="row q-mt-sm q-col-gutter-md">
         <div class="col-md-4 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">انبار</q-item-label>
@@ -89,6 +96,9 @@
             v-model:selectedText="model.value.contractTitle"
           />
         </div>
+      </div>
+
+      <div class="row q-mt-sm q-col-gutter-md">
         <div class="col-md-4 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">
             بازاریاب
@@ -98,21 +108,13 @@
             v-model:selectedText="model.value.contactName"
           />
         </div>
-      </div>
-
-      <div class="row q-mt-md">
-        <div class="col-md-2 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
-          <date-time v-model="model.value.dueDate" />
-        </div>
-      </div>
-
-      <div v-if="showOriginalDoc" class="row q-mt-md">
-        <div class="col-md-6 col-sm-12 col-xs-12">
+        <div
+          v-if="showOriginalDoc"
+          class="col-md-3 col-sm-12 col-xs-12"
+        >
           <q-item-label caption class="q-mb-sm">
             سند مرجع
           </q-item-label>
-          <pre>{{ model.value.originalDocument }}</pre>
           <invoice-lookup
             v-model:selectedId="model.value.originalDocument.parentId"
             v-model:selectedText="model.value.originalDocument.no"
@@ -141,9 +143,9 @@
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+  import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
-  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
   import {
     sqlOperator,
@@ -183,7 +185,8 @@
   ];
 
   const filterExpression =
-    props.formType == invoiceFormType.sales
+    props.formType == invoiceFormType.sales ||
+    props.formType == invoiceFormType.salesReturn
       ? [
           {
             fieldName: "isForSale",
@@ -208,10 +211,8 @@
   const model = computed(() => props.formStore.model);
   const showOriginalDoc = computed(
     () =>
-      //todo: activate original document
-      model?.value.originalDocument &&
-      (props.formType === invoiceFormType.sales ||
-        props.formType === invoiceFormType.salesReturn)
+      props.formType === invoiceFormType.sales ||
+      props.formType === invoiceFormType.salesReturn
   );
 
   const toggleMoreInfo = () => {

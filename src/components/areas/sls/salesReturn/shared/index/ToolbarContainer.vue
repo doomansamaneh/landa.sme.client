@@ -6,6 +6,7 @@
       :title="title"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
+      @edit-batch="editBatch"
       @download-pdf="downloadPdf"
       @download-pdf-batch="downloadBatchPdf"
     />
@@ -18,6 +19,7 @@
       :selected-ids="selectedIds"
       buttons
       margin
+      @edit-batch="editBatch"
       @download-pdf="downloadPdf"
       @download-pdf-batch="downloadBatchPdf"
     />
@@ -29,11 +31,13 @@
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
+  import { invoiceFormType } from "src/constants";
 
   import { useFormActions } from "src/composables/useFormActions";
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
   import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
+  import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchDialog.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -53,7 +57,7 @@
   function downloadPdf() {
     downloadManager.downloadGet(
       `${baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-quote"
+      "landa-sales-return"
     );
   }
 
@@ -61,7 +65,19 @@
     downloadManager.downloadPost(
       `${baseRoute}/GenerateBatchPdf`,
       props.tableStore.pagination.value,
-      "landa-quote"
+      "landa-sales-return"
     );
+  }
+
+  function editBatch() {
+    $q.dialog({
+      component: EditBatch,
+      componentProps: {
+        selectedIds: selectedIds?.value,
+        formType: invoiceFormType.salesReturn,
+      },
+    }).onOk(async () => {
+      await props.tableStore.reloadData();
+    });
   }
 </script>
