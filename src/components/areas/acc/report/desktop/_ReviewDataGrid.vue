@@ -4,11 +4,11 @@
     :data-source="dataSource"
     :grid-store="gridStore"
     separator="horizontal"
-    flat_
+    flat
     square_
     multiSelect
     numbered
-    bordered
+    bordered_
     wrapCells
     dense_
     expandable_

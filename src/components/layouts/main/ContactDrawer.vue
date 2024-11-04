@@ -15,7 +15,7 @@
       show-search
       :scrollBarStyle="
         $q.screen.xs
-          ? 'height: calc(100vh - 100px);'
+          ? 'height: calc(100vh - 140px);'
           : 'height: calc(100vh - 160px);'
       "
     >

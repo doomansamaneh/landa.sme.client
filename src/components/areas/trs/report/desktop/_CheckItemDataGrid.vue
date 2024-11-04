@@ -6,7 +6,7 @@
     :grid-store="gridStore"
     expandable
     flat
-    bordered
+    bordered_
   >
     <template #filter-statusId="{ item }">
       <custom-select

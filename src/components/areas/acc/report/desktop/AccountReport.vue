@@ -20,39 +20,37 @@
 
     <q-separator size="1px" />
 
-    <q-card-section class="q-px-none">
-      <data-grid
-        ref="dataGrid"
-        :grid-store="gridStore"
-        separator="horizontal"
-        :data-source="dataSource"
-        flat
-        toolbar_
-        expandable
-      >
-        <template #cell-credit="{ item }">
-          {{ item.credit?.toLocaleString() }}
-        </template>
+    <data-grid
+      ref="dataGrid"
+      :grid-store="gridStore"
+      separator="horizontal"
+      :data-source="dataSource"
+      flat
+      toolbar_
+      expandable
+    >
+      <template #cell-credit="{ item }">
+        {{ item.credit?.toLocaleString() }}
+      </template>
 
-        <template #cell-debit="{ item }">
-          {{ helper.formatNumber(item.debit) }}
-        </template>
+      <template #cell-debit="{ item }">
+        {{ helper.formatNumber(item.debit) }}
+      </template>
 
-        <template #cell-debitRemained="{ item }">
-          {{ helper.formatNumber(item.debitRemained) }}
-        </template>
+      <template #cell-debitRemained="{ item }">
+        {{ helper.formatNumber(item.debitRemained) }}
+      </template>
 
-        <template #cell-creditRemained="{ item }">
-          {{ helper.formatNumber(item.creditRemained) }}
-        </template>
+      <template #cell-creditRemained="{ item }">
+        {{ helper.formatNumber(item.creditRemained) }}
+      </template>
 
-        <template #expand="{ item }">
-          <div class="q-mb-sm">
-            <preview :item="item" inside />
-          </div>
-        </template>
-      </data-grid>
-    </q-card-section>
+      <template #expand="{ item }">
+        <div class="q-mb-sm">
+          <preview :item="item" inside />
+        </div>
+      </template>
+    </data-grid>
   </q-card>
 </template>
 

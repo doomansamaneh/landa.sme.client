@@ -20,48 +20,46 @@
 
     <q-separator size="1px" />
 
-    <q-card-section class="q-px-none">
-      <data-grid
-        ref="dataGrid"
-        :data-source="dataSource"
-        :grid-store="gridStore"
-        separator="horizontal"
-        multiSelect
-        numbered
-        flat
-        bordered_
-        wrapCells
-        dense
-        expandable
-      >
-        <template #cell-amount="{ item }">
-          {{ helper.formatNumber(item.amount) }}
-        </template>
-        <template #cell-date="{ item }">
-          {{ item.date?.substring(0, 10) }}
-        </template>
+    <data-grid
+      ref="dataGrid"
+      :data-source="dataSource"
+      :grid-store="gridStore"
+      separator="horizontal"
+      multiSelect
+      numbered
+      flat
+      bordered_
+      wrapCells
+      dense
+      expandable
+    >
+      <template #cell-amount="{ item }">
+        {{ helper.formatNumber(item.amount) }}
+      </template>
+      <template #cell-date="{ item }">
+        {{ item.date?.substring(0, 10) }}
+      </template>
 
-        <template #expand="{ item }">
-          <preview inside :item="item" />
-        </template>
+      <template #expand="{ item }">
+        <preview inside :item="item" />
+      </template>
 
-        <template #footer-subtotal="{ selectedRows }">
-          <td :colspan="colspan" class="text-right">
-            {{ $t("shared.labels.selectedRows") }}
-          </td>
-          <td>
-            <b>
-              {{
-                helper.formatNumber(
-                  helper.getSubtotal(selectedRows, "amount")
-                )
-              }}
-            </b>
-          </td>
-          <td colspan="100%"></td>
-        </template>
-      </data-grid>
-    </q-card-section>
+      <template #footer-subtotal="{ selectedRows }">
+        <td :colspan="colspan" class="text-right">
+          {{ $t("shared.labels.selectedRows") }}
+        </td>
+        <td>
+          <b>
+            {{
+              helper.formatNumber(
+                helper.getSubtotal(selectedRows, "amount")
+              )
+            }}
+          </b>
+        </td>
+        <td colspan="100%"></td>
+      </template>
+    </data-grid>
   </q-card>
 </template>
 

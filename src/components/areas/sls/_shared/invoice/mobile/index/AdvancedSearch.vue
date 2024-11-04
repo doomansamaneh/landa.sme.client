@@ -136,7 +136,7 @@
       <q-scroll-area
         :thumb-style="{ opacity: 0 }"
         :bar-style="{ opacity: 0 }"
-        style="height: calc(100vh - 180px)"
+        style="height: calc(100vh - 220px)"
       >
         <div class="column q-pb-lg q-col-gutter-lg">
           <div class="row q-col-gutter-sm">

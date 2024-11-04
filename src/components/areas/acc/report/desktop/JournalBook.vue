@@ -19,7 +19,6 @@
     </div>
     <q-separator size="1px" />
 
-    <q-card-section class="q-px-none">
       <data-grid
         ref="dataGrid"
         :grid-store="gridStore"
@@ -40,7 +39,6 @@
           <preview :item="item" inside />
         </template>
       </data-grid>
-    </q-card-section>
   </q-card>
 </template>
 

@@ -5,10 +5,11 @@
     :grid-store="localGridStore"
     separator="horizontal"
     multiSelect
+    flat
     numbered
     wrapCells_
     expandable
-    toolbar
+    toolbar_
   >
     <template #cell-credit="{ item }">
       {{ helper.formatNumber(item.credit) }}

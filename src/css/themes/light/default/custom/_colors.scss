@@ -26,7 +26,7 @@
   }
 
   .primary-gradient-1 {
-    background: linear-gradient(310deg, #{$primary}10, #{$primary}10);
+    background: linear-gradient(180deg, $white, $primary 2000%);
   }
 
   // .toolbar-glass-effect {
