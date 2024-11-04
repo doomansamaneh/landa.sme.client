@@ -1,6 +1,25 @@
 <template>
   <q-card bordered>
-    <card-title :title="title" />
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          size="md"
+          icon="o_subject"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title v-if="title" :title="title" />
+      </div>
+      <data-grid-toolbar
+        class="q-pa-md"
+        :table-store="tableStore"
+        :baseRoute="baseRoute"
+      />
+    </div>
+
+    <q-separator size="1px" />
+
     <q-card-section class="q-px-none">
       <data-grid
         ref="dataGrid"
@@ -16,7 +35,7 @@
         expandable
       >
         <template #cell-amount="{ item }">
-          {{ item.amount?.toLocaleString() }}
+          {{ helper.formatNumber(item.amount) }}
         </template>
         <template #cell-date="{ item }">
           {{ item.date?.substring(0, 10) }}
@@ -33,9 +52,9 @@
           <td>
             <b>
               {{
-                helper
-                  .getSubtotal(selectedRows, "amount")
-                  .toLocaleString()
+                helper.formatNumber(
+                  helper.getSubtotal(selectedRows, "amount")
+                )
               }}
             </b>
           </td>
@@ -53,6 +72,7 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../../shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     gridStore: Object,

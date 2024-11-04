@@ -4,7 +4,7 @@
       size="11px"
       round
       unelevated
-      @click="tableStore.reloadData"
+      @click="tableStore?.reloadData"
     >
       <q-icon size="24px" name="o_refresh" />
       <q-tooltip :delay="700" class="custom-tooltip">
@@ -16,12 +16,12 @@
       size="11px"
       round
       unelevated
-      @click="tableStore.toggleFullscreen"
+      @click="tableStore?.toggleFullscreen"
     >
       <q-icon
         size="24px"
         :name="
-          tableStore.inFullscreen.value
+          tableStore?.inFullscreen.value
             ? 'fullscreen_exit'
             : 'fullscreen'
         "
@@ -30,16 +30,16 @@
         :delay="700"
         class="custom-tooltip"
         :anchor="
-          tableStore.inFullscreen.value
+          tableStore?.inFullscreen.value
             ? 'bottom end'
             : 'bottom middle'
         "
         :self="
-          tableStore.inFullscreen.value ? 'top end' : 'top middle'
+          tableStore?.inFullscreen.value ? 'top end' : 'top middle'
         "
       >
         <div class="text-body2 no-letter-spacing">
-          <template v-if="tableStore.inFullscreen.value">
+          <template v-if="tableStore?.inFullscreen.value">
             خروج از تمام صفحه
           </template>
           <template v-else>تمام صفحه</template>
@@ -51,22 +51,24 @@
       size="11px"
       round
       unelevated
-      @click="tableStore.toggleDense"
+      @click="tableStore?.toggleDense"
     >
       <q-icon
         size="21px"
-        :name="tableStore.dense.value ? 'o_height' : 'o_zoom_in_map'"
+        :name="tableStore?.dense.value ? 'o_height' : 'o_zoom_in_map'"
       />
       <q-tooltip
         :delay="700"
         class="custom-tooltip"
         :anchor="
-          tableStore.dense.value ? 'bottom end' : 'bottom middle'
+          tableStore?.dense.value ? 'bottom end' : 'bottom middle'
         "
-        :self="tableStore.dense.value ? 'top end' : 'top middle'"
+        :self="tableStore?.dense.value ? 'top end' : 'top middle'"
       >
         <div class="text-body2 no-letter-spacing">
-          <template v-if="tableStore.dense.value">استاندارد</template>
+          <template v-if="tableStore?.dense.value">
+            استاندارد
+          </template>
           <template v-else>فشرده</template>
         </div>
       </q-tooltip>
@@ -76,23 +78,23 @@
       size="11px"
       round
       unelevated
-      @click="tableStore.toggleFontSize"
+      @click="tableStore?.toggleFontSize"
     >
       <q-icon size="20px" name="format_size" />
       <q-tooltip
         :delay="700"
         class="custom-tooltip"
         :anchor="
-          tableStore.inFullscreen.value
+          tableStore?.inFullscreen.value
             ? 'bottom end'
             : 'bottom middle'
         "
         :self="
-          tableStore.inFullscreen.value ? 'top end' : 'top middle'
+          tableStore?.inFullscreen.value ? 'top end' : 'top middle'
         "
       >
         <div class="text-body2 no-letter-spacing">
-          <template v-if="tableStore.tdFontSize.value === 13">
+          <template v-if="tableStore?.tdFontSize.value === 13">
             فونت معمولی
           </template>
           <template v-else>فونت درشت</template>
@@ -104,19 +106,19 @@
       size="11px"
       round
       unelevated
-      @click="tableStore.toggleSeparator"
+      @click="tableStore?.toggleSeparator"
     >
       <q-icon size="20px" name="format_underlined" />
       <q-tooltip
         :delay="700"
         class="custom-tooltip"
         :anchor="
-          tableStore.separator.value ? 'bottom end' : 'bottom middle'
+          tableStore?.separator.value ? 'bottom end' : 'bottom middle'
         "
-        :self="tableStore.separator.value ? 'top end' : 'top middle'"
+        :self="tableStore?.separator.value ? 'top end' : 'top middle'"
       >
         <div class="text-body2 no-letter-spacing">
-          <template v-if="tableStore.separator.value === 'none'">
+          <template v-if="tableStore?.separator.value === 'none'">
             خط‌ دار
           </template>
           <template v-else>بدون خط</template>
@@ -249,7 +251,7 @@
       </q-menu>
     </q-btn>
 
-    <q-btn size="11px" round unelevated @click="tableStore.print">
+    <q-btn size="11px" round unelevated @click="tableStore?.print">
       <q-icon size="21px" name="o_print" />
       <q-tooltip :delay="700" class="custom-tooltip">
         <div class="text-body2 no-letter-spacing">چاپ دسته‌ای</div>
@@ -273,7 +275,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="tableStore.exportAll()"
+              @click="tableStore?.exportAll()"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>
@@ -293,7 +295,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="tableStore.exportCurrentPage()"
+              @click="tableStore?.exportCurrentPage()"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>

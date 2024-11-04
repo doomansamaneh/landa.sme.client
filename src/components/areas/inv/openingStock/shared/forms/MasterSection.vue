@@ -75,43 +75,23 @@
           <q-icon name="o_add" size="20px" class="q-mr-xs" />
           افزودن ردیف
         </q-btn>
-
-        <q-btn
-          rounded
-          unelevated
-          :href="`${baseUrl}/excelTemplate/import/openingStockTemplate.xlsx`"
-        >
-          <q-icon
-            name="file_download"
-            class="q-pr-xs"
-            size="xs"
-            :class="hrefColor"
-          />
-          <span>دانلود الگوی بارگزاری</span>
-        </q-btn>
-        
       </div>
     </div>
-    <div class="col">
+    <div class="col q-gutter-y-md">
+      <q-btn
+        rounded
+        unelevated
+        :href="`${baseUrl}/excelTemplate/import/openingStockTemplate.xlsx`"
+      >
+        <q-icon
+          name="file_download"
+          class="q-pr-xs"
+          size="xs"
+          :class="hrefColor"
+        />
+        <span>دانلود الگوی بارگزاری</span>
+      </q-btn>
       <upload-area />
-      <!-- <q-file outlined clearable v-model="file">
-        <template v-slot:prepend>
-          <q-icon name="attach_file" />
-        </template>
-        <template v-slot:append>
-          <q-btn
-            :disabled="!file"
-            color="primary"
-            class="text-lowercase primary-shadow q-ml-xs"
-            rounded
-            unelevated
-            @click="upload"
-          >
-            <q-icon name="arrow_upward" class="q-px-xs" size="xs" />
-            import
-          </q-btn>
-        </template>
-      </q-file> -->
     </div>
   </div>
 </template>

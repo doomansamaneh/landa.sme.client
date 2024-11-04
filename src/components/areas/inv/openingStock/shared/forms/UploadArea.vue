@@ -6,11 +6,11 @@
     @click="triggerFileInput"
   >
     <input
-      type="file"
       id="fileInput"
+      type="file"
       class="input-upload"
       @change="handleFileUpload"
-      accept="file/*"
+      accept="file/*.xlsx"
     />
     <div class="column items-center">
       <q-icon
@@ -21,7 +21,9 @@
       />
       <q-btn unelevated padding="12px 24px" rounded color="primary">
         <q-icon size="20px" class="q-mr-xs" name="arrow_upward" />
-        <span class="text-body1 no-letter-spacing">بارگذاری</span>
+        <span class="text-body1 no-letter-spacing">
+          بارگزاری از فایل اکسل
+        </span>
       </q-btn>
     </div>
   </div>
@@ -51,10 +53,18 @@
           unelevated
           dense
         >
-          <span class="text-body2 no-letter-spacing">درون ریزی</span>
+          <span class="text-body2 no-letter-spacing">
+            ارسال اطلاعات
+          </span>
         </q-btn>
 
-        <q-btn unelevated dense round icon="o_close" />
+        <q-btn
+          unelevated
+          dense
+          round
+          icon="o_close"
+          @click="clearFile"
+        />
       </div>
     </q-item-section>
   </q-item>
@@ -72,6 +82,10 @@
       fileName.value = file.name;
       fileFormat.value = file.type || "Unknown format";
     }
+  };
+
+  const clearFile = () => {
+    fileName.value = null;
   };
 
   const handleDragOver = (event) => {
