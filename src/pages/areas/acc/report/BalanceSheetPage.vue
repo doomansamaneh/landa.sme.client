@@ -1,7 +1,10 @@
 <template>
-  <report :title="$t('main-menu-items.Acc_Report_BalanceSheet')" />
+  <toolbar-desktop margin title="ترازنامه" />
+
+  <sheet />
 </template>
 
 <script setup>
-  import report from "src/components/areas/acc/report/shared/IncomeStatement.vue";
+  import sheet from "src/components/areas/acc/report/desktop/BalanceSheet.vue";
+  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
 </script>
