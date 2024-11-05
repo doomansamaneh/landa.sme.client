@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-  import { computed, defineProps, defineEmits } from "vue";
+  import { computed } from "vue";
   import { useQuasar } from "quasar";
 
   const props = defineProps({
