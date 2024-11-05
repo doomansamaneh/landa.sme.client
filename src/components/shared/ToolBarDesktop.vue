@@ -13,6 +13,64 @@
           xPadding,
         ]"
       >
+        
+      <template v-if="buttons">
+          <div v-if="title && !inside">
+            <slot name="header">
+              <span
+                class="text-weight-700"
+                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
+              >
+                <slot name="header-title">
+                  <span class="no-letter-spacing">{{ title }}</span>
+                  <q-btn
+                    v-if="tableStore?.pagination.value.totalItems > 0"
+                    rounded
+                    unelevated
+                    dense
+                    padding="0px 10px"
+                    outline
+                    :label="tableStore?.pagination.value.totalItems"
+                    class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
+                  />
+                </slot>
+              </span>
+              <back-button v-if="backButton" class="q-ml-md" />
+            </slot>
+          </div>
+        </template>
+
+        <template v-else>
+          <slot name="header">
+            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
+              <slot name="header-title">
+                <span class="text-weight-700 no-letter-spacing">
+                  {{ title }}
+                </span>
+                <q-btn
+                  v-if="tableStore?.pagination.value.totalItems > 0"
+                  rounded
+                  unelevated
+                  dense
+                  padding="0px 10px"
+                  outline
+                  :label="tableStore?.pagination.value.totalItems"
+                  class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
+                />
+              </slot>
+            </span>
+            <q-space></q-space>
+            <back-button v-if="backButton" class="q-ml-md" />
+          </slot>
+        </template>
+
+        
+
+        <div v-if="buttons" class="q-space" />
+
+       
+
+
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
             <slot name="buttons-create">
@@ -133,58 +191,6 @@
             </q-btn>
           </slot>
         </div>
-
-        <div v-if="buttons" class="q-space" />
-
-        <template v-if="buttons">
-          <div v-if="title && !inside">
-            <slot name="header">
-              <span
-                class="text-weight-700"
-                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
-              >
-                <slot name="header-title">
-                  <span class="no-letter-spacing">{{ title }}</span>
-                  <q-btn
-                    v-if="tableStore?.pagination.value.totalItems > 0"
-                    rounded
-                    unelevated
-                    dense
-                    padding="0px 10px"
-                    outline
-                    :label="tableStore?.pagination.value.totalItems"
-                    class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
-                  />
-                </slot>
-              </span>
-              <back-button v-if="backButton" class="q-ml-md" />
-            </slot>
-          </div>
-        </template>
-
-        <template v-else>
-          <slot name="header">
-            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
-              <slot name="header-title">
-                <span class="text-weight-700 no-letter-spacing">
-                  {{ title }}
-                </span>
-                <q-btn
-                  v-if="tableStore?.pagination.value.totalItems > 0"
-                  rounded
-                  unelevated
-                  dense
-                  padding="0px 10px"
-                  outline
-                  :label="tableStore?.pagination.value.totalItems"
-                  class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
-                />
-              </slot>
-            </span>
-            <q-space></q-space>
-            <back-button v-if="backButton" class="q-ml-md" />
-          </slot>
-        </template>
       </q-toolbar>
     </q-page-sticky>
   </div>
