@@ -20,7 +20,13 @@
 
     <q-separator size="1px" />
 
-    <data-grid flat dense multi-select :table-store="tableStore" />
+    <data-grid
+      flat
+      dense
+      multi-select
+      :table-store="tableStore"
+      :base-route="baseRoute"
+    />
   </q-card>
 </template>
 
