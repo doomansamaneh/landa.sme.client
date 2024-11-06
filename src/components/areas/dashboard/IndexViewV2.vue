@@ -1,8 +1,8 @@
 <template>
-  <div v-if="$q.screen.gt.xs" class="q-mb-lg">
+  <div v-if="$q.screen.gt.xs" style="margin-bottom: 34px">
     <q-page-sticky
-      :style="xPadding"
-      class="bg-main q-py-xs"
+      :style="toolbarStyle"
+      class="bg-main"
       position="top"
       expand
     >
@@ -141,8 +141,8 @@
 
   const draggable = useDraggableWidgets(initialWidgets);
 
-  const xPadding = computed(
-    () => "z-index: 2; padding-left: 38px; padding-right: 38px;"
+  const toolbarStyle = computed(
+    () => "z-index: 2; padding: 10px 38px;"
   );
 
   const activeButton = computed(() =>

@@ -9,7 +9,7 @@
     <template #buttons>
       <q-btn
         @click="showItemSheet"
-        class="text-caption q-mr-sm"
+        class="text-caption"
         round
         dense
         unelevated

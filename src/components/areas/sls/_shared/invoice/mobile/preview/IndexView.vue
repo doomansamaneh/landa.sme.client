@@ -1,120 +1,152 @@
 <template>
-  <div
-    class="row q-col-gutter-md justify-between items-center text-body3 no-letter-spacing"
-  >
-    <div>
-      <div>
-        <span class="text-body3 q-mr-xs caption-on-dark">
-          خریدار:
-        </span>
-        <span class="text-body3 text-weight-500">
-          {{ model.customerName }}
-        </span>
-      </div>
-      <div>
-        <span class="text-body3 q-mr-xs caption-on-dark">
-          فروشنده:
-        </span>
-        <span class="text-body3 text-weight-500">
-          {{ appConfigStore.model.value.companySetting.name }}
-        </span>
-      </div>
-    </div>
-
-    <div>
-      <div class="row justify-end">
-        <span class="caption-on-dark text-weight-500">
-          {{ model.no }}
-          <span class="caption-on-dark">#</span>
-        </span>
-      </div>
-      <div>
-        <span class="caption-on-dark text-weight-500">
-          {{ model.date?.substring(0, 10) }}
-          <q-icon size="10px" name="o_calendar_today" />
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <div class="row q-my-lg" v-if="model.comment">
-    <div class="full-width rounded-borders bordered q-pa-sm">
-      <span class="text-body3 q-mr-sm">شرح:</span>
-      <span class="text-body3">
-        {{ model.comment }}
-      </span>
-    </div>
-  </div>
-
-  <div class="row q-py-sm q-gutter-xs">
-    <status-badge
-      class="text-weight-500 text-caption"
-      padding="0 8px"
-      :title="model.statusTitle"
-    />
-    <type-badge
-      class="text-weight-500 text-caption"
-      padding="0 8px"
-      :title="model.typeTitle"
-    />
-    <contract-badge
-      class="text-weight-500 text-caption"
-      padding="0 8px"
-      :title="model.contractTitle"
-    />
-  </div>
-
-  <q-separator class="q-my-sm" size="0.5px" />
-
-  <div class="row items-center q-gutter-sm q-pb-md q-pt-sm">
-    <q-avatar
-      text-color="white"
-      size="sm"
-      class="primary-shadow primary-gradient border-radius-xs"
+  <div class="row items-center justify-between">
+    <div
+      class="text-body2 caption-on-dark text-weight-500 no-letter-spacing"
     >
-      <q-icon size="16px" name="list" />
-    </q-avatar>
-    <div class="text-weight-500 text-body2 no-letter-spacing">
-      اقلام
+      جزییات فاکتور
+    </div>
+    <div>
+      <router-link class="no-decoration text-primary" to="/">
+        <div class="row items-center">
+          <div class="text-body2 no-letter-spacing">ویرایش</div>
+          <q-icon size="20px" name="o_chevron_left" />
+        </div>
+      </router-link>
     </div>
   </div>
 
-  <div v-for="item in model.invoiceItems" :key="item.id">
-    <div class="row q-mb-md q-col-gutter-lg">
-      <div class="col">
-        <div class="row items-center q-gutter-sm">
-          <div class="text-body3 no-letter-spacing">
+  <div class="q-mt-lg">
+    <div class="row items-center no-wrap q-gutter-md">
+      <div class="row no-wrap items-center col">
+        <q-avatar size="42px" class="primary-gradient text-white">
+          <div class="text-body2 no-letter-spacing text-bold">
+            {{ helper.getFirstChar(model?.customerName) }}
+          </div>
+        </q-avatar>
+
+        <div class="q-ml-md">
+          <div
+            class="ellipsis text-body2 text-weight-500 no-letter-spacing"
+          >
+            {{ model?.customerName }}
+          </div>
+          <div
+            class="text-body3 caption-on-dark ellipsis no-letter-spacing"
+          >
+            {{ model?.customerSummary?.address?.address }}
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <span
+            class="flex justify-end text-body3 no-letter-spacing caption-on-dark text-weight-500"
+          >
+            {{ model.no }}
+            <span class="caption-on-dark">#</span>
+          </span>
+        </div>
+
+        <div>
+          <span
+            class="text-body3 no-letter-spacing caption-on-dark text-weight-500"
+          >
+            {{ model.date?.substring(0, 10) }}
+            <q-icon size="10px" name="o_calendar_today" />
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <q-separator size="0.5px" class="q-my-sm" />
+
+    <div class="col no-wrap">
+      <q-scroll-area
+        :bar-style="{ opacity: 0 }"
+        :thumb-style="{ opacity: 0 }"
+        style="height: 21px"
+      >
+        <div class="row no-wrap q-pr-xs items-center q-gutter-xs">
+          <status-badge
+            class="text-weight-500 text-caption"
+            padding="0 8px"
+            :title="model.statusTitle"
+          />
+
+          <type-badge
+            class="text-weight-500 text-caption"
+            padding="0 8px"
+            :title="model.typeTitle"
+          />
+
+          <contract-badge
+            class="text-weight-500 text-caption"
+            padding="0 8px"
+            :title="model.contractTitle"
+          />
+        </div>
+      </q-scroll-area>
+    </div>
+  </div>
+
+  <div class="row items-center q-gutter-sm q-pt-lg q-pb-sm">
+    <div
+      class="caption-on-dark text-weight-500 text-body2 no-letter-spacing"
+    >
+      جزییات اقلام
+    </div>
+  </div>
+
+  <div v-for="(item, index) in model.invoiceItems" :key="item.id">
+    <div class="row q-col-gutter-xl items-center q-py-sm">
+      <div class="row col no-wrap items-center q-gutter-md">
+        <q-avatar
+          size="32px"
+          text-color="white"
+          :style="helper.generateAvatarStyle(item.id)"
+        >
+          <div class="text-caption-sm text-bold">
+            {{ helper.getFirstChar(item.productTitle) }}
+          </div>
+        </q-avatar>
+
+        <div>
+          <div
+            class="text-body3 ellipsis text-weight-500 no-letter-spacing"
+          >
             {{ item.productTitle }}
           </div>
-          <q-btn
-            size="11px"
-            rounded
-            padding="0 6px"
-            class="red-gradient"
-            dense
-            unelevated
-          >
-            <div
-              class="text-white text-weight-500 text-caption-sm no-letter-spacing"
-            >
-              {{ helper.formatNumber(item.quantity) }}
-              {{ item.productUnitTitle }}
-            </div>
-          </q-btn>
+
+          <div class="caption-on-dark q-mt-xs">
+            {{ helper.formatNumber(item.quantity) }} ×
+            {{ helper.formatNumber(item.price) }}
+            <span class="no-letter-spacing text-caption">ريال</span>
+          </div>
         </div>
       </div>
       <div class="flex justify-end">
-        <div class="text-bold_">
+        <div class="text-weight-500">
           {{ helper.formatNumber(item.price) }}
         </div>
       </div>
     </div>
+    <q-separator
+      v-if="index < model.invoiceItems.length - 1"
+      size="0.5px"
+    />
   </div>
 
-  <div class="q-gutter-y-sm border-radius text-on-dark">
+  <div
+    class="q-pt-sm caption-on-dark text-body2 text-weight-500 no-letter-spacing"
+  >
+    خلاصه کل
+  </div>
+
+  <div class="q-pt-md q-gutter-y-sm border-radius text-on-dark">
     <div class="row items-center justify-between">
       <div class="text-body3">{{ $t("shared.labels.price") }}</div>
-      <div>
+      <div class="text-weight-500">
         {{ helper.formatNumber(model.totalNetPrice) }}
       </div>
     </div>
@@ -137,7 +169,7 @@
       class="row items-center justify-between"
     >
       <span class="text-body3">{{ $t("shared.labels.vat") }}</span>
-      <span>
+      <span class="text-weight-500">
         {{ helper.formatNumber(model.totalVat) }}
       </span>
     </div>
@@ -191,6 +223,8 @@
     taxApi: Boolean,
   });
   const appConfigStore = useAppConfigModel();
+
+  console.log(props.model);
 </script>
 
 <style lang="scss" scoped>

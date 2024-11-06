@@ -1,6 +1,6 @@
 <template>
   <toolbar-desktop
-    :title_="title"
+    :title="title"
     :table-store="tableStore"
     :crud-store="crudStore"
     :base-route="baseRoute"
@@ -10,7 +10,7 @@
     <template #buttons-create>
       <q-btn
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
+        padding="10px 16x"
         rounded
         no-caps
         unelevated

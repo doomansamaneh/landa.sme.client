@@ -45,9 +45,9 @@
               <template
                 v-if="searchStore.searchModel.value.dateRange > 0"
               >
-                زمان:
+                بازه زمانی:
               </template>
-              <template v-else>زمان</template>
+              <template v-else>بازه زمانی</template>
 
               <div
                 class="q-ml-xs"

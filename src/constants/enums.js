@@ -115,9 +115,9 @@ export const dateRange = {
   today: 2,
   thisWeek: 3,
   thisMonth: 4,
-  today: "today",
-  thisWeek: "thisWeek",
-  thisMonth: "thisMonth",
+  // today: "today",
+  // thisWeek: "thisWeek",
+  // thisMonth: "thisMonth",
 };
 
 export const depositType = {

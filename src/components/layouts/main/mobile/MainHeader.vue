@@ -1,12 +1,9 @@
 <template>
   <q-header
     bordered
-    class="q-py-xs"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
-    <q-toolbar
-      class="text-dark row justify-between"
-    >
+    <q-toolbar class="text-dark row justify-between">
       <q-toolbar-title
         class="text-subtitle2 text-bold row justify-start items-center"
       >

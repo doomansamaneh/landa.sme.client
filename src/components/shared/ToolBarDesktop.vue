@@ -9,12 +9,11 @@
     >
       <q-toolbar
         :style="[
-          inside ? '' : 'margin-top: 4px; margin-bottom: 4px;',
+          inside ? '' : 'margin-top: 10px; margin-bottom: 10px;',
           xPadding,
         ]"
       >
-        
-      <template v-if="buttons">
+        <template v-if="buttons">
           <div v-if="title && !inside">
             <slot name="header">
               <span
@@ -22,9 +21,17 @@
                 :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
               >
                 <slot name="header-title">
-                  <span class="no-letter-spacing">{{ title }}</span>
+                  <back-button v-if="backButton" class="q-mr-sm" />
+
+                  <span
+                    @mouseover="showItemsNumebr"
+                    @mouseout="hideItemsNumebr"
+                    class="no-letter-spacing"
+                  >
+                    {{ title }}
+                  </span>
                   <q-btn
-                    v-if="tableStore?.pagination.value.totalItems > 0"
+                    v-if="tableStore?.pagination.value.totalItems > 0 && itemsNumber"
                     rounded
                     unelevated
                     dense
@@ -35,7 +42,6 @@
                   />
                 </slot>
               </span>
-              <back-button v-if="backButton" class="q-ml-md" />
             </slot>
           </div>
         </template>
@@ -64,12 +70,7 @@
           </slot>
         </template>
 
-        
-
         <div v-if="buttons" class="q-space" />
-
-       
-
 
         <div v-if="buttons" class="row items-center q-gutter-sm">
           <slot name="buttons">
@@ -212,6 +213,7 @@
   const $q = useQuasar();
 
   const isAtTop = ref(true);
+  const itemsNumber = ref(false);
 
   const props = defineProps({
     title: String,
@@ -237,8 +239,8 @@
   const toolbarMargin = computed(() => {
     const baseMargin = $q.screen.lt.md
       ? "margin-bottom: 56px;"
-      : "margin-bottom: 24px;";
-    const margin = $q.screen.lt.sm ? "margin-bottom: 24px;" : "";
+      : "margin-bottom: 34px;";
+    const margin = $q.screen.lt.sm ? "margin-bottom: 34px;" : "";
     return props.margin ? baseMargin : margin;
   });
 
@@ -262,6 +264,14 @@
     const currentPosition =
       window.scrollY || document.documentElement.scrollTop;
     isAtTop.value = currentPosition === 0;
+  };
+
+  const showItemsNumebr = () => {
+    itemsNumber.value = true;
+  };
+
+  const hideItemsNumebr = () => {
+    itemsNumber.value = false;
   };
 
   onMounted(() => {

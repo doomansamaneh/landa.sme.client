@@ -1,12 +1,12 @@
 <template>
   <q-header
     bordered
-    class="q-py-xs q-px-md"
+    class="q-px-md"
     :class="$q.dark.isActive ? 'bg-dark' : 'bg-light'"
   >
     <div class="row no-wrap">
       <q-toolbar class="col-auto no-padding">
-        <div class="row items-center q-gutter-md">
+        <div class="row items-center q-gutter-sm">
           <div class="column items-center">
             <steam-animation />
 

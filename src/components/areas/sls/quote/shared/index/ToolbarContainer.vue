@@ -12,6 +12,7 @@
   </template>
   <template v-else>
     <toolbar-desktop
+      :title="title"
       :table-store="tableStore"
       :crud-store="crudStore"
       :base-route="baseRoute"

@@ -2,7 +2,7 @@
   <q-scroll-observer @scroll="onScroll" />
   <div
     :style="
-      $q.screen.xs ? 'margin-bottom: 42px' : 'margin-bottom: 30px'
+      $q.screen.xs ? 'margin-bottom: 48px' : 'margin-bottom: 30px'
     "
   >
     <q-page-sticky
