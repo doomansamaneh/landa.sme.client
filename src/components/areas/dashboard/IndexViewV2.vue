@@ -53,26 +53,28 @@
     <div
       v-for="(widget, index) in draggable.widgets.value"
       :key="widget.id"
-      :class="[widget.class]"
+      :class="[
+        widget.class,
+        {
+          shake: draggable.isShaking.value,
+          grabbable: draggable.isShaking.value,
+        },
+      ]"
     >
       <component
-        :is="widget.component"
+        :is="getComponentById(widget.id)"
         :draggable="draggable.isShaking.value"
         @dragstart="draggable.onDragStart(index)"
         @dragover.prevent
         @drop="draggable.onDrop(index)"
         @dragend="resetCursor"
-        :class="[
-          { shake: draggable.isShaking.value },
-          { grabbable: draggable.isShaking.value },
-        ]"
       />
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
   import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
@@ -86,66 +88,41 @@
   import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
   import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/IndexView.vue";
 
-  const initialWidgets = [
-    {
-      id: 1,
-      component: SomeInfo,
-      class: "col-md-4 col-sm-12 col-xs-12",
-    },
-    {
-      id: 2,
-      component: InvoicesWidgetV2,
-      class: "col-md-8 col-sm-12 col-xs-12",
-    },
-    {
-      id: 3,
-      component: RevenueExpenseByMonth,
-      class: "col-md-12 col-sm-12 col-xs-12",
-    },
-    {
-      id: 4,
-      component: IncomeStatement,
-      class: "col-md-6 col-sm-12 col-xs-12",
-    },
-    {
-      id: 5,
-      component: RatiosWidget,
-      class: "col-md-6 col-sm-12 col-xs-12",
-    },
-    {
-      id: 6,
-      component: SalesWidget,
-      class: "col-md-8 col-sm-12 col-xs-12",
-    },
-    {
-      id: 7,
-      component: TopProducts,
-      class: "col-md-4 col-sm-12 col-xs-12",
-    },
-    {
-      id: 8,
-      component: CashBalance,
-      class: "col-md-4 col-sm-6 col-xs-12",
-    },
-    {
-      id: 9,
-      component: ExpensesWidget,
-      class: "col-md-4 col-sm-12 col-xs-12",
-    },
-    {
-      id: 10,
-      component: BankBalance,
-      class: "col-md-4 col-sm-6 col-xs-12",
-    },
+  const metaData = [
+    { id: 1, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 2, class: "col-md-8 col-sm-12 col-xs-12" },
+    { id: 3, class: "col-md-12 col-sm-12 col-xs-12" },
+    { id: 4, class: "col-md-6 col-sm-12 col-xs-12" },
+    { id: 5, class: "col-md-6 col-sm-12 col-xs-12" },
+    { id: 6, class: "col-md-8 col-sm-12 col-xs-12" },
+    { id: 7, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 8, class: "col-md-4 col-sm-6 col-xs-12" },
+    { id: 9, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 10, class: "col-md-4 col-sm-6 col-xs-12" },
   ];
 
-  const draggable = useDraggableWidgets(initialWidgets);
+  const widgets = [
+    { id: 1, component: SomeInfo },
+    { id: 2, component: InvoicesWidgetV2 },
+    { id: 3, component: RevenueExpenseByMonth },
+    { id: 4, component: IncomeStatement },
+    { id: 5, component: RatiosWidget },
+    { id: 6, component: SalesWidget },
+    { id: 7, component: TopProducts },
+    { id: 8, component: CashBalance },
+    { id: 9, component: ExpensesWidget },
+    { id: 10, component: BankBalance },
+  ];
+
+  const draggable = useDraggableWidgets(metaData);
 
   const toolbarStyle = computed(
     () => "z-index: 2; padding: 10px 38px;"
   );
-
   const activeButton = computed(() =>
     draggable.isShaking.value ? "btn-active" : ""
   );
+
+  const getComponentById = (id) =>
+    widgets.find((widget) => widget.id === id)?.component;
 </script>
