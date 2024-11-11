@@ -1,93 +1,123 @@
 <template>
-  <q-card flat class="shadow bordered fit">
-    <q-card-section class="q-pa-lg">
-      <div class="row full-width">
-        <div class="col column q-gutter-y-sm">
-          <div class="text-h6 text-weight-700">
-            <q-item class="no-padding">
-              <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_arrow_downward"
-                  size="md"
-                  class="primary-gradient primary-shadow"
-                />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="text-h6 text-weight-700">
-                  درآمد
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-          </div>
+  <q-card
+    :class="[isShakingComputed ? 'widget' : '']"
+    flat
+    class="shadow bordered fit"
+  >
 
-          <div class="text-body1 no-letter-spacing text-weight-700">
-            {{
-              helper.formatNumberReadable(
-                netIncomeStore.thisYearRevenue?.value
-              )
-            }}
-            <span
-              class="text-body2 text-weight-300 no-letter-spacing caption-on-dark"
-            >
-              ({{
-                helper.formatNumber(
+  <template v-if="isShakingComputed">
+      <q-btn
+        class="off-btn bordered absolute-top-right q-ma-sm z-top"
+        round
+        dense
+        unelevated
+      >
+        <q-icon name="o_visibility_off" />
+      </q-btn>
+    </template>
+
+    <div
+      :class="
+        isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
+      "
+    >
+      <q-card-section class="q-pa-lg">
+        <div class="row full-width">
+          <div class="col column q-gutter-y-sm">
+            <div class="text-h6 text-weight-700">
+              <q-item class="no-padding">
+                <q-item-section avatar>
+                  <q-avatar
+                    rounded
+                    text-color="white"
+                    icon="o_arrow_downward"
+                    size="md"
+                    class="primary-gradient primary-shadow"
+                  />
+                </q-item-section>
+                <q-item-section>
+                  <q-item-label class="text-h6 text-weight-700">
+                    درآمد
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </div>
+
+            <div class="text-body1 no-letter-spacing text-weight-700">
+              {{
+                helper.formatNumberReadable(
                   netIncomeStore.thisYearRevenue?.value
                 )
-              }})
-            </span>
-          </div>
-          <q-item-label class="text-body3 no-letter-spacing">
-            <span v-if="netIncomeStore.revenuePercent?.value > 0">
-              <q-icon name="arrow_upward" size="18px" color="green" />
-              رشد
-            </span>
-            <span v-else>
-              <q-icon name="arrow_downward" size="18px" color="red" />
-              کاهش
-            </span>
-            <span
-              class="text-body2 text-bold"
-              :class="
-                netIncomeStore.revenuePercent?.value > 0
-                  ? 'text-green'
-                  : 'text-red'
-              "
+              }}
+              <span
+                class="text-body2 text-weight-300 no-letter-spacing caption-on-dark"
+              >
+                ({{
+                  helper.formatNumber(
+                    netIncomeStore.thisYearRevenue?.value
+                  )
+                }})
+              </span>
+            </div>
+            <q-item-label class="text-body3 no-letter-spacing">
+              <span v-if="netIncomeStore.revenuePercent?.value > 0">
+                <q-icon
+                  name="arrow_upward"
+                  size="18px"
+                  color="green"
+                />
+                رشد
+              </span>
+              <span v-else>
+                <q-icon
+                  name="arrow_downward"
+                  size="18px"
+                  color="red"
+                />
+                کاهش
+              </span>
+              <span
+                class="text-body2 text-bold"
+                :class="
+                  netIncomeStore.revenuePercent?.value > 0
+                    ? 'text-green'
+                    : 'text-red'
+                "
+              >
+                {{
+                  helper.formatNumber(
+                    netIncomeStore.revenuePercent?.value,
+                    2
+                  )
+                }}%
+              </span>
+              به نسبت پارسال
+            </q-item-label>
+            <q-btn
+              class="q-mt-md primary-gradient primary-shadow text-body3"
+              rounded
+              text-color="white"
+              unelevated
+              style="width: 120px"
             >
-              {{
-                helper.formatNumber(
-                  netIncomeStore.revenuePercent?.value,
-                  2
-                )
-              }}%
-            </span>
-            به نسبت پارسال
-          </q-item-label>
-          <q-btn
-            class="q-mt-md primary-gradient primary-shadow text-body3"
-            rounded
-            text-color="white"
-            unelevated
-            style="width: 120px"
-          >
-            جزئیات بیشتر
-          </q-btn>
+              جزئیات بیشتر
+            </q-btn>
+          </div>
+          <div class="col-4">
+            <vue-apex-charts
+              ref="incomeChart"
+              :options="options"
+              :series="netIncomeStore.chartSeries.value"
+              height="140"
+              :legend="legend"
+              :title="title"
+              class="bar-chart"
+              :class="direction"
+            />
+          </div>
         </div>
-        <div class="col-4">
-          <vue-apex-charts
-            ref="incomeChart"
-            :options="options"
-            :series="netIncomeStore.chartSeries.value"
-            height="140"
-            :legend="legend"
-            :title="title"
-            class="bar-chart"
-            :class="direction"
-          />
-        </div>
-      </div>
-    </q-card-section>
+      </q-card-section>
+    </div>
   </q-card>
 </template>
 
@@ -96,13 +126,16 @@
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
   import { useNetIncome } from "../../acc/_composables/useNetIncome";
+  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
   import VueApexCharts from "vue3-apexcharts";
 
   const props = defineProps(["legend", "title"]);
 
   const $q = useQuasar();
+  const draggable = useDraggableWidgets();
   const netIncomeStore = useNetIncome();
+  
   const incomeChart = ref(null);
 
   const options = ref(null);
@@ -149,7 +182,7 @@
         bar: {
           // borderRadius: 5,
           // horizontal: false,
-          columnWidth: $q.screen.gt.xs ? '15%' : '20%',
+          columnWidth: $q.screen.gt.xs ? "15%" : "20%",
           // distributed: false,
         },
       },
@@ -288,4 +321,6 @@
 
     return formattedValue;
   }
+
+  const isShakingComputed = computed(() => draggable.isShaking.value);
 </script>

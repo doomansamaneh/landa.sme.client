@@ -1,5 +1,8 @@
 import { ref, computed, watch } from "vue";
 
+const isShaking = ref(false);
+const isHovered = ref(false);
+
 export function useDraggableWidgets(metaData) {
   const storageKey = "widgetsLayout";
 
@@ -8,7 +11,6 @@ export function useDraggableWidgets(metaData) {
   );
 
   const draggedIndex = ref(null);
-  const isShaking = ref(false);
 
   const onDragStart = (index) => {
     draggedIndex.value = index;
@@ -48,6 +50,7 @@ export function useDraggableWidgets(metaData) {
     onDragStart,
     onDrop,
     isShaking,
+    isHovered,
     toggleShake,
     resetToDefault,
     isDefaultChanged,

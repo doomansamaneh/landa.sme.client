@@ -49,6 +49,7 @@
       </q-toolbar>
     </q-page-sticky>
   </div>
+
   <div class="row q-col-gutter-md q-mb-md">
     <div
       v-for="(widget, index) in draggable.widgets.value"
@@ -56,12 +57,19 @@
       :class="[
         widget.class,
         {
-          shake: draggable.isShaking.value,
-          grabbable: draggable.isShaking.value,
+          shake: draggable.isShaking.value && !widget.isHovered,
         },
       ]"
+      @mouseover="widget.isHovered = true"
+      @mouseleave="widget.isHovered = false"
     >
       <component
+        :class="[
+          widget.class,
+          {
+            grabbable: draggable.isShaking.value,
+          },
+        ]"
         :is="getComponentById(widget.id)"
         :draggable="draggable.isShaking.value"
         @dragstart="draggable.onDragStart(index)"
