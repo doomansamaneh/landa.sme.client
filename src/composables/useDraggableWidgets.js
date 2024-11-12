@@ -9,7 +9,6 @@ export function useDraggableWidgets(metaData) {
   const widgets = ref(
     JSON.parse(localStorage.getItem(storageKey)) || [...metaData]
   );
-
   const hiddenWidgets = ref(
     JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || []
   );
@@ -73,29 +72,18 @@ export function useDraggableWidgets(metaData) {
     return hiddenWidgets.value.some((widget) => widget.id === id);
   };
 
-  const restoreHiddenWidget = (id) => {
-    const widgetToRestore = hiddenWidgets.value.find(
-      (widget) => widget.id === id
-    );
-    if (widgetToRestore) {
-      hiddenWidgets.value = hiddenWidgets.value.filter(
-        (widget) => widget.id !== id
-      );
-      widgets.value.push(widgetToRestore);
-      saveHiddenWidgetsToLocalStorage();
-      saveLayoutToLocalStorage();
-    }
-  };
-
   const isDefaultChanged = computed(() => {
-    return JSON.stringify(widgets.value) !== JSON.stringify(metaData);
+    const widgetIds = widgets.value.map((w) => w.id);
+    const defaultIds = metaData.map((m) => m.id);
+    return !widgetIds.every((id, index) => id === defaultIds[index]);
   });
 
   watch(
-    widgets,
-    saveLayoutToLocalStorage,
-    hiddenWidgets,
-    saveHiddenWidgetsToLocalStorage,
+    [widgets, hiddenWidgets],
+    () => {
+      saveLayoutToLocalStorage();
+      saveHiddenWidgetsToLocalStorage();
+    },
     { deep: true }
   );
 
@@ -110,7 +98,6 @@ export function useDraggableWidgets(metaData) {
     isDefaultChanged,
     hideWidget,
     isWidgetHidden,
-    restoreHiddenWidget,
     resetCursor,
   };
 }
