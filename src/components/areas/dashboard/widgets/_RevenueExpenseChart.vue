@@ -27,7 +27,7 @@
   import { helper } from "src/helpers";
   import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
 
-  import Chart from "src/components/shared/Charts/ChartView.vue";
+  import Chart from "src/components/shared/charts/ChartView.vue";
 
   const props = defineProps({
     height: Number,

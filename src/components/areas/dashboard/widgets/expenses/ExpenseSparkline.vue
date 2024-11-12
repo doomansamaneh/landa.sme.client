@@ -1,34 +1,34 @@
 <template>
-  <chart
-    :options="options"
-    :series="series"
-    :legend="legend"
-    :title="title"
-    height="150"
-    class="area-chart"
-    :class="direction"
-  />
+  <template v-if="chartStore.chartExpenseSeries.value">
+    <chart
+      :options="options"
+      :series="chartStore.chartExpenseSeries.value"
+      :legend="legend"
+      :title="title"
+      height="150"
+      class="area-chart"
+      :class="direction"
+    />
+  </template>
 </template>
 
 <script setup>
   import { ref, onMounted, watch, computed } from "vue";
-  import Chart from "src/components/shared/charts/ChartView.vue";
   import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
+  import { helper } from "src/helpers";
+  import { useRevenueExpenseState } from "../../_composables/useRevenueExpenseState";
+  import { useRevenueExpense } from "../../_composables/useRevenueExpense";
 
-  const $q = useQuasar();
+  import Chart from "src/components/shared/charts/ChartView.vue";
+
   const props = defineProps(["height", "legend", "title"]);
 
-  const options = ref(null);
+  const $q = useQuasar();
+  const { t } = useI18n();
+  const chartStore = useRevenueExpense(useRevenueExpenseState());
 
-  const series = ref([
-    {
-      name: "فروش",
-      data: [
-        2000000, 5000000, 2000000, 8000000, 3000000, 4000000, 9000000,
-        7000000, 4000000, 13000000, 7000000, 6000000,
-      ],
-    },
-  ]);
+  const options = ref(null);
 
   function setOptions() {
     const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
@@ -111,20 +111,9 @@
         labels: {
           show: false,
         },
-        categories: [
-          "farvardin",
-          "اردیبهشت",
-          "خرداد",
-          "تیر",
-          "مرداد",
-          "شهریور",
-          "مهر",
-          "آبان",
-          "آذر",
-          "دی",
-          "بهمن",
-          "اسفند",
-        ],
+        categories: helper
+          .getMonths()
+          .map((item) => t(`shared.months.${item}`)),
         labels: {
           show: false,
           style: {
@@ -142,7 +131,7 @@
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
           },
           formatter: function (value) {
-            return formatYAxisLabel(value);
+            return helper.formatNumber(value);
           },
         },
       },
@@ -174,7 +163,13 @@
           show: true,
         },
         y: {
-          show: true,
+          show: false,
+          title: {
+            formatter: function (value) {
+              //return t(`shared.labels.${value}`) + ": ";
+              return "";
+            },
+          },
         },
         style: {
           fontSize: "13px",
@@ -208,22 +203,6 @@
   onMounted(() => {
     setOptions();
   });
-
-  function formatYAxisLabel(value) {
-    const parts = String(value).split(".");
-    const integerPart = parts[0].replace(
-      /\B(?=(\d{3})+(?!\d))/g,
-      ","
-    );
-
-    let formattedValue = integerPart;
-
-    if (parts.length > 1) {
-      formattedValue += "." + parts[1];
-    }
-
-    return formattedValue;
-  }
 </script>
 
 <style>

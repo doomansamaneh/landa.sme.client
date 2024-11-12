@@ -53,6 +53,15 @@ export function useRevenueExpense({ dataSource, dataStore }) {
     }))
   );
 
+  const chartExpenseSeries = computed(() => [
+    chartSeries.value?.find((series) => series.name === "expense"),
+  ]);
+
+  const chartRevenueSeries = computed(() => [
+    chartSeries.value?.find((series) => series.name === "revenue"),
+  ]);
+  //const chartExpenseSeries = computed(() => chartSeries.value[1]);
+
   const tableSeries = computed(() => {
     let series = [];
     state.value.data?.value?.forEach((row) => {
@@ -73,6 +82,8 @@ export function useRevenueExpense({ dataSource, dataStore }) {
   return {
     tableSeries,
     chartSeries,
+    chartExpenseSeries,
+    chartRevenueSeries,
 
     loadData,
     reloadData,

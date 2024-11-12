@@ -20,7 +20,7 @@
             </q-item-section>
           </q-item>
         </div>
-        <div class="col-5">
+        <div class="col-5" v-if="false">
           <q-select
             dropdown-icon="o_expand_more"
             class="select"
@@ -35,9 +35,11 @@
 
     <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
       <div class="col-md-8 col-xs-12">
-        <div class="text-body1">هزینه های 30 روز پیش</div>
-        <div class="text-h3 text-weight-700">200 میلیون</div>
-        <div class="row text-body1 no-letter-spacing q-mb-md">
+        <!-- <div class="text-body1">هزینه های 30 روز پیش</div> -->
+        <div class="text-h3 text-weight-700">
+          {{ helper.formatNumber(chartSource.total.value) }}
+        </div>
+        <!-- <div class="row text-body1 no-letter-spacing q-mb-md">
           <div class="ellipsis-3-lines text-weight-500 text-green-8">
             <q-icon
               color="green-8"
@@ -47,18 +49,20 @@
             50% کاهش
           </div>
           <span class="q-ml-xs">نسبت به 30 روز پیش</span>
-        </div>
+        </div> -->
       </div>
       <div
         :class="$q.screen.gt.xs ? 'absolute-top-right q-mt-xl' : ''"
         :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
       >
-        <apex-chart
-          class="pie-chart"
-          type="donut"
-          :options="chartOptions"
-          :series="chartData"
-        />
+        <template v-if="chartSource.chartSeries?.value">
+          <apex-chart
+            class="pie-chart"
+            type="donut"
+            :options="chartOptions"
+            :series="chartSource.chartSeries.value"
+          />
+        </template>
       </div>
     </q-card-section>
 
@@ -70,18 +74,21 @@
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
 
+  import { helper } from "src/helpers";
+  import { useBankAccount } from "src/components/areas/acc/_composables/useBankAccount";
+
   import ApexChart from "vue3-apexcharts";
-  import ExpenseSparkline from "src/components/areas/dashboard/widgets/expenses/ExpenseSparkline.vue";
+  import ExpenseSparkline from "./ExpenseSparkline.vue";
 
   const $q = useQuasar();
+  const chartSource = useBankAccount("TopExpenseByCL");
 
-  const chartData = ref([47, 5, 13, 4, 3]);
   const filter = ref("30 روز پیش");
   const filterOptions = ["30 روز پیش", "این فصل", "امسال", "سال پیش"];
 
   const chartOptions = computed(() => {
     const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
-    const total = chartData.value.reduce((a, b) => a + b, 0);
+    const total = chartSource.total.value;
 
     return {
       colors: ["#FF4560", "#00E396", "#775DD0"],
@@ -140,13 +147,7 @@
         offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : -16) : 0,
         offsetY: $q.screen.xs ? -32 : -24,
       },
-      labels: [
-        "هزینه کسری کالا",
-        "هزینه های بازاریابی و پورسانت",
-        "هزینه کارمزد وام ها و خدمات بانکی",
-        "هزینه نوسازی مسکن",
-        "هزینه راه سازی",
-      ],
+      labels: chartSource.chartLabels.value,
       dataLabels: {
         enabled: false,
         enabledOnSeries: undefined,
@@ -197,7 +198,8 @@
       tooltip: {
         enabled: true,
         custom: function ({ series, seriesIndex, w }) {
-          const color = w.config.colors[seriesIndex];
+          //const color = w.config.colors[seriesIndex];
+          const color = "#FF4560";
           const percentage = (
             (series[seriesIndex] / total) *
             100
@@ -208,7 +210,9 @@
         <div class="row no-wrap items-center row-reverse">
           <div class="q-mr-sm" style="width: 12px; height: 12px; background-color: ${color}; border-radius: 50px;"></div>
         <div>${w.globals.labels[seriesIndex]}:</div>
-        <div class="text-bold q-ml-xs">${series[seriesIndex]}</div>
+        <div class="text-bold q-ml-xs">${helper.formatNumber(
+          series[seriesIndex]
+        )}</div>
         </div>
         <div class="text-h3 q-pa-lg no-line-height text-center text-weight-900">${percentage}%</div>
       </div>
