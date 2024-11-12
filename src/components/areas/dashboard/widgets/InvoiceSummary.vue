@@ -5,10 +5,11 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
-        class="off-btn bordered absolute-top-right q-ma-sm z-top"
+        class="off-btn bordered absolute-top-right q-ma-sm z-2"
         round
         dense
         unelevated
+        @click="hideWidget"
       >
         <q-icon name="o_visibility_off" />
       </q-btn>
@@ -271,6 +272,12 @@
   import { helper } from "src/helpers";
   import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/useInvoiceSummary";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+
+  const emit = defineEmits(["hideWidget"]);
+
+  const hideWidget = () => {
+    emit("hideWidget");
+  };
 
   const draggable = useDraggableWidgets();
   const dataStore = useInvoiceSummary();

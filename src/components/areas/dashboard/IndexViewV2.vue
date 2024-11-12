@@ -2,7 +2,7 @@
   <div v-if="$q.screen.gt.xs" style="margin-bottom: 34px">
     <q-page-sticky
       :style="toolbarStyle"
-      class="bg-main"
+      class="bg-main z-top"
       position="top"
       expand
     >
@@ -56,9 +56,7 @@
       :key="widget.id"
       :class="[
         widget.class,
-        {
-          shake: draggable.isShaking.value && !widget.isHovered,
-        },
+        { shake: draggable.isShaking.value && !widget.isHovered },
       ]"
       @mouseover="widget.isHovered = true"
       @mouseleave="widget.isHovered = false"
@@ -66,23 +64,46 @@
       <component
         :class="[
           widget.class,
-          {
-            grabbable: draggable.isShaking.value,
-          },
+          { grabbable: draggable.isShaking.value },
         ]"
         :is="getComponentById(widget.id)"
         :draggable="draggable.isShaking.value"
         @dragstart="draggable.onDragStart(index)"
         @dragover.prevent
         @drop="draggable.onDrop(index)"
-        @dragend="resetCursor"
+        @dragend="draggable.resetCursor"
+        @hideWidget="draggable.hideWidget(widget.id)"
       />
+    </div>
+  </div>
+
+  <div
+    v-if="
+      draggable.hiddenWidgets.value.length > 0 &&
+      draggable.isShaking.value
+    "
+    class="q-mt-xl"
+  >
+    <div class="text-h6 text-center no-letter-spacing q-pb-lg">
+      ابزارک‌های مخفی شده
+    </div>
+    <div class="row q-col-gutter-md">
+      <div
+        v-for="widget in draggable.hiddenWidgets.value"
+        :key="'hidden-' + widget.id"
+        :class="widget.class"
+      >
+        <component
+          class="overflow-hidden no-pointer-events disabled non-selectable"
+          :is="getComponentById(widget.id)"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { computed, ref } from "vue";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
   import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
@@ -109,6 +130,8 @@
     { id: 10, class: "col-md-4 col-sm-6 col-xs-12" },
   ];
 
+  const draggable = useDraggableWidgets(metaData);
+
   const widgets = [
     { id: 1, component: SomeInfo },
     { id: 2, component: InvoicesWidgetV2 },
@@ -122,11 +145,10 @@
     { id: 10, component: BankBalance },
   ];
 
-  const draggable = useDraggableWidgets(metaData);
-
   const toolbarStyle = computed(
     () => "z-index: 2; padding: 10px 38px;"
   );
+
   const activeButton = computed(() =>
     draggable.isShaking.value ? "btn-active" : ""
   );

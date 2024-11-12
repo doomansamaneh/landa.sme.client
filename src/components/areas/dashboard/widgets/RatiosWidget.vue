@@ -5,6 +5,7 @@
         title="حاشیه سود"
         :ratio="ratioStore.model.value.netMargin"
         ratio-sign="%"
+        @hide-widget="hideWidget"
       >
         <template #avatar>
           <q-avatar
@@ -32,6 +33,7 @@
         title="نسبت بدهی"
         :ratio="ratioStore.model.value.debtRatio"
         ratio-sign="%"
+        @hide-widget="hideWidget"
       >
         <template #avatar>
           <q-avatar
@@ -62,6 +64,7 @@
         :ratio="ratioStore.model.value.currentRatio"
         ratio-sign=""
         :fraction="2"
+        @hide-widget="hideWidget"
       >
         <template #avatar>
           <q-avatar
@@ -89,6 +92,7 @@
         title="دوره وصول مطالبات"
         :ratio="ratioStore.model.value.dso"
         ratio-sign="روز"
+        @hide-widget="hideWidget"
       >
         <template #avatar>
           <q-avatar
@@ -117,6 +121,12 @@
   import RatioWidget from "./_RatioWidget.vue";
 
   const ratioStore = useRatios();
+
+  const emit = defineEmits(["hideWidget"]);
+
+  const hideWidget = () => {
+    emit("hideWidget");
+  };
 </script>
 <style>
   .container {

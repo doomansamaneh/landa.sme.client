@@ -4,13 +4,13 @@
     flat
     class="shadow bordered fit"
   >
-
-  <template v-if="isShakingComputed">
+    <template v-if="isShakingComputed">
       <q-btn
-        class="off-btn bordered absolute-top-right q-ma-sm z-top"
+        class="off-btn bordered absolute-top-right q-ma-sm z-2"
         round
         dense
         unelevated
+        @click="hideWidget"
       >
         <q-icon name="o_visibility_off" />
       </q-btn>
@@ -131,11 +131,16 @@
   import VueApexCharts from "vue3-apexcharts";
 
   const props = defineProps(["legend", "title"]);
+  const emit = defineEmits(["hideWidget"]);
 
   const $q = useQuasar();
   const draggable = useDraggableWidgets();
   const netIncomeStore = useNetIncome();
-  
+
+  const hideWidget = () =>{
+    emit("hideWidget");
+  }
+
   const incomeChart = ref(null);
 
   const options = ref(null);

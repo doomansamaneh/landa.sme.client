@@ -1,17 +1,18 @@
 import { ref, computed, watch } from "vue";
 
 const isShaking = ref(false);
-const isHovered = ref(false);
+const draggedIndex = ref(null);
+const storageKey = "widgetsLayout";
+const hiddenWidgetsKey = "hiddenWidgets";
 
 export function useDraggableWidgets(metaData) {
-  const storageKey = "widgetsLayout";
-
   const widgets = ref(
-    //JSON.parse(localStorage.getItem(storageKey)) || [...metaData]
-    JSON.parse(localStorage.getItem(storageKey)) || []
+    JSON.parse(localStorage.getItem(storageKey)) || [...metaData]
   );
 
-  const draggedIndex = ref(null);
+  const hiddenWidgets = ref(
+    JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || []
+  );
 
   const onDragStart = (index) => {
     draggedIndex.value = index;
@@ -23,37 +24,93 @@ export function useDraggableWidgets(metaData) {
       widgets.value.splice(draggedIndex.value, 1);
       widgets.value.splice(index, 0, draggedItem);
       draggedIndex.value = null;
-      saveToLocalStorage();
+      saveLayoutToLocalStorage();
     }
+  };
+
+  const resetCursor = () => {
+    document.body.style.cursor = "default";
   };
 
   const toggleShake = () => {
     isShaking.value = !isShaking.value;
   };
 
+  const resetToDefault = () => {
+    widgets.value = [...metaData];
+    hiddenWidgets.value = [];
+    localStorage.removeItem(hiddenWidgetsKey);
+    saveLayoutToLocalStorage();
+    saveHiddenWidgetsToLocalStorage();
+  };
+
+  const saveLayoutToLocalStorage = () => {
+    localStorage.setItem(storageKey, JSON.stringify(widgets.value));
+  };
+
+  const saveHiddenWidgetsToLocalStorage = () => {
+    localStorage.setItem(
+      hiddenWidgetsKey,
+      JSON.stringify(hiddenWidgets.value)
+    );
+  };
+
+  const hideWidget = (id) => {
+    const widgetToHide = widgets.value.find(
+      (widget) => widget.id === id
+    );
+    if (widgetToHide && !isWidgetHidden(id)) {
+      hiddenWidgets.value.push(widgetToHide);
+      saveHiddenWidgetsToLocalStorage();
+      widgets.value = widgets.value.filter(
+        (widget) => widget.id !== id
+      );
+      saveLayoutToLocalStorage();
+    }
+  };
+
+  const isWidgetHidden = (id) => {
+    return hiddenWidgets.value.some((widget) => widget.id === id);
+  };
+
+  const restoreHiddenWidget = (id) => {
+    const widgetToRestore = hiddenWidgets.value.find(
+      (widget) => widget.id === id
+    );
+    if (widgetToRestore) {
+      hiddenWidgets.value = hiddenWidgets.value.filter(
+        (widget) => widget.id !== id
+      );
+      widgets.value.push(widgetToRestore);
+      saveHiddenWidgetsToLocalStorage();
+      saveLayoutToLocalStorage();
+    }
+  };
+
   const isDefaultChanged = computed(() => {
     return JSON.stringify(widgets.value) !== JSON.stringify(metaData);
   });
 
-  const resetToDefault = () => {
-    widgets.value = [...metaData];
-    saveToLocalStorage();
-  };
-
-  const saveToLocalStorage = () => {
-    localStorage.setItem(storageKey, JSON.stringify(widgets.value));
-  };
-
-  watch(widgets, saveToLocalStorage, { deep: true });
+  watch(
+    widgets,
+    saveLayoutToLocalStorage,
+    hiddenWidgets,
+    saveHiddenWidgetsToLocalStorage,
+    { deep: true }
+  );
 
   return {
     widgets,
+    hiddenWidgets,
     onDragStart,
     onDrop,
     isShaking,
-    isHovered,
     toggleShake,
     resetToDefault,
     isDefaultChanged,
+    hideWidget,
+    isWidgetHidden,
+    restoreHiddenWidget,
+    resetCursor,
   };
 }

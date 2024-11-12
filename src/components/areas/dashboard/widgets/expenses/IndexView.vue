@@ -1,45 +1,65 @@
 <template>
-  <q-card class="bordered shadow fit">
-    <q-card-section class="q-pt-lg q-px-lg q-pb-none">
-      <div class="row justify-between items-center">
-        <div>
-          <q-item class="no-padding">
-            <q-item-section avatar>
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt_long"
-                size="md"
-                class="primary-gradient primary-shadow"
-              />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label class="text-h6 text-weight-700">
-                هزینه‌ها
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-        </div>
-        <div class="col-5" v-if="false">
-          <q-select
-            dropdown-icon="o_expand_more"
-            class="select"
-            outlined
-            dense
-            v-model="filter"
-            :options="filterOptions"
-          />
-        </div>
-      </div>
-    </q-card-section>
+  <q-card
+    :class="[isShakingComputed ? 'widget' : '']"
+    class="shadow border-radius-lg bordered"
+  >
+    <template v-if="isShakingComputed">
+      <q-btn
+        class="off-btn bordered absolute-top-right q-ma-sm z-2"
+        round
+        dense
+        unelevated
+        @click="hideWidget"
+      >
+        <q-icon name="o_visibility_off" />
+      </q-btn>
+    </template>
 
-    <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
-      <div class="col-md-8 col-xs-12">
-        <!-- <div class="text-body1">هزینه های 30 روز پیش</div> -->
-        <div class="text-h3 text-weight-700">
-          {{ helper.formatNumber(chartSource.total.value) }}
+    <div
+      :class="
+        isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
+      "
+    >
+      <q-card-section class="q-pt-lg q-px-lg q-pb-none">
+        <div class="row justify-between items-center">
+          <div>
+            <q-item class="no-padding">
+              <q-item-section avatar>
+                <q-avatar
+                  rounded
+                  text-color="white"
+                  icon="o_receipt_long"
+                  size="md"
+                  class="primary-gradient primary-shadow"
+                />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label class="text-h6 text-weight-700">
+                  هزینه‌ها
+                </q-item-label>
+              </q-item-section>
+            </q-item>
+          </div>
+          <div class="col-5" v-if="false">
+            <q-select
+              dropdown-icon="o_expand_more"
+              class="select"
+              outlined
+              dense
+              v-model="filter"
+              :options="filterOptions"
+            />
+          </div>
         </div>
-        <!-- <div class="row text-body1 no-letter-spacing q-mb-md">
+      </q-card-section>
+
+      <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
+        <div class="col-md-8 col-xs-12">
+          <!-- <div class="text-body1">هزینه های 30 روز پیش</div> -->
+          <div class="text-h3 text-weight-700">
+            {{ helper.formatNumber(chartSource.total.value) }}
+          </div>
+          <!-- <div class="row text-body1 no-letter-spacing q-mb-md">
           <div class="ellipsis-3-lines text-weight-500 text-green-8">
             <q-icon
               color="green-8"
@@ -50,23 +70,24 @@
           </div>
           <span class="q-ml-xs">نسبت به 30 روز پیش</span>
         </div> -->
-      </div>
-      <div
-        :class="$q.screen.gt.xs ? 'absolute-top-right q-mt-xl' : ''"
-        :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
-      >
-        <template v-if="chartSource.chartSeries?.value">
-          <apex-chart
-            class="pie-chart"
-            type="donut"
-            :options="chartOptions"
-            :series="chartSource.chartSeries.value"
-          />
-        </template>
-      </div>
-    </q-card-section>
+        </div>
+        <div
+          :class="$q.screen.gt.xs ? 'absolute-top-right q-mt-xl' : ''"
+          :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
+        >
+          <template v-if="chartSource.chartSeries?.value">
+            <apex-chart
+              class="pie-chart"
+              type="donut"
+              :options="chartOptions"
+              :series="chartSource.chartSeries.value"
+            />
+          </template>
+        </div>
+      </q-card-section>
 
-    <expense-sparkline />
+      <expense-sparkline />
+    </div>
   </q-card>
 </template>
 
@@ -76,11 +97,13 @@
 
   import { helper } from "src/helpers";
   import { useBankAccount } from "src/components/areas/acc/_composables/useBankAccount";
+  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
   import ApexChart from "vue3-apexcharts";
   import ExpenseSparkline from "./ExpenseSparkline.vue";
 
   const $q = useQuasar();
+  const draggable = useDraggableWidgets();
   const chartSource = useBankAccount("TopExpenseByCL");
 
   const filter = ref("30 روز پیش");
@@ -229,4 +252,12 @@
       },
     };
   });
+
+  const emit = defineEmits(["hideWidget"]);
+
+  const hideWidget = () => {
+    emit("hideWidget");
+  };
+
+  const isShakingComputed = computed(() => draggable.isShaking.value);
 </script>

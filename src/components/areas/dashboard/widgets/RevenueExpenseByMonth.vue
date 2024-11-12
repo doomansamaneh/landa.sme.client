@@ -10,6 +10,7 @@
         round
         dense
         unelevated
+        @click="hideWidget"
       >
         <q-icon name="o_visibility_off" />
       </q-btn>
@@ -202,6 +203,12 @@
 
   const revenueExpenseStore = useRevenueExpenseState();
   const draggable = useDraggableWidgets();
+
+  const emit = defineEmits(["hideWidget"]);
+
+  const hideWidget = () => {
+    emit("hideWidget");
+  };
 
   const chartType = ref(1);
   const toggleChartType = () => {

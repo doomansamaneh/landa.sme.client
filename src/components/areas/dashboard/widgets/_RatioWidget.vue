@@ -6,10 +6,11 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
-        class="off-btn bordered absolute-top-right q-ma-sm z-top"
+        class="off-btn bordered absolute-top-right q-ma-sm z-2"
         round
         dense
         unelevated
+        @click="hideWidget"
       >
         <q-icon name="o_visibility_off" />
       </q-btn>
@@ -77,6 +78,12 @@
       default: 0,
     },
   });
+
+  const emit = defineEmits(["hideWidget"]);
+
+  const hideWidget = () => {
+    emit("hideWidget");
+  };
 
   const showInfo = ref(false);
 

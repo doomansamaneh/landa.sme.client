@@ -5,7 +5,7 @@
       :series="chartStore.chartExpenseSeries.value"
       :legend="legend"
       :title="title"
-      height="150"
+      :height="$q.screen.xs ? 150 : 260"
       class="area-chart"
       :class="direction"
     />
@@ -84,7 +84,7 @@
       grid: {
         show: false,
         padding: {
-          top: 0,
+          top: $q.screen.xs ? 0 : 120,
           left: 0,
           right: 0,
           bottom: 0,
