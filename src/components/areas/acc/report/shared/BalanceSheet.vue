@@ -1,17 +1,12 @@
 <template>
-  <pre>{{ dataStore.model }}</pre>
-
   <div class="row q-col-gutter-md">
     <div class="col-6">
-      <asset />
+      <asset :model="dataStore.model.value" />
     </div>
 
-    <div class="col-6">
-      <liability />
-    </div>
-    <div class="col-6"></div>
-    <div class="col-6">
-      <equity />
+    <div class="col-6 q-gutter-md">
+      <liability :model="dataStore.model.value" />
+      <equity :model="dataStore.model.value" />
     </div>
   </div>
 </template>

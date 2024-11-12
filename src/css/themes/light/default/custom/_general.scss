@@ -82,6 +82,10 @@
     z-index: 1;
   }
 
+  .z-2 {
+    z-index: 2;
+  }
+
   .glass {
     background-color: #{$white}80;
     backdrop-filter: blur(42px);

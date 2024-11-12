@@ -1,253 +1,282 @@
 <template>
-  <q-card class="shadow border-radius-lg bordered no-shadow">
-    <q-card-section class="q-pa-lg">
-      <div class="row items-center q-gutter-md justify-between">
-        <q-item class="no-padding">
-          <q-item-section avatar>
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_receipt"
-              size="md"
-              class="primary-gradient primary-shadow"
-            />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label class="text-h6 text-weight-700">
-              فاکتورهای فروش
-            </q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-btn
-          to="/sls/invoice/create"
-          unelevated
-          rounded
-          class="bordered bg-dark q-py-xs"
-        >
-          <q-icon name="o_add" size="16px" class="q-mr-xs" />
-          ایجاد فاکتور
-        </q-btn>
-      </div>
-      <div
-        class="text-body2 no-letter-spacing"
-        :class="$q.screen.lt.md ? '      q-mt-lg' : 'q-mt-sm'"
+  <q-card
+    :class="[isShakingComputed ? 'widget' : '']"
+    class="shadow border-radius-lg bordered"
+  >
+    <template v-if="isShakingComputed">
+      <q-btn
+        class="off-btn bordered absolute-top-right q-ma-sm z-top"
+        round
+        dense
+        unelevated
       >
-        تبریک میگم، %47.4 رشد داشته اید.
-        <span class="text-body3 no-letter-spacing">در ماه گذشته</span>
-      </div>
-    </q-card-section>
+        <q-icon name="o_visibility_off" />
+      </q-btn>
+    </template>
 
-    <q-card-section
-      class="row q-gutter-lg q-pt-none q-px-lg q-pt-sm q-pb-lg"
+    <div
+      :class="
+        isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
+      "
     >
-      <div class="col-md col-sm-5 col-xs-12">
-        <q-item class="no-padding">
-          <q-item-section avatar>
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_receipt"
-              size="xl"
-              class="grey-gradient grey-shadow"
-            />
-          </q-item-section>
+      <q-card-section class="q-pa-lg">
+        <div class="row items-center q-gutter-md justify-between">
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_receipt"
+                size="md"
+                class="primary-gradient primary-shadow"
+              />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label class="text-h6 text-weight-700">
+                فاکتورهای فروش
+              </q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-btn
+            to="/sls/invoice/create"
+            unelevated
+            rounded
+            class="bordered bg-dark q-py-xs"
+          >
+            <q-icon name="o_add" size="16px" class="q-mr-xs" />
+            ایجاد فاکتور
+          </q-btn>
+        </div>
+        <div
+          class="text-body2 no-letter-spacing"
+          :class="$q.screen.lt.md ? '      q-mt-lg' : 'q-mt-sm'"
+        >
+          تبریک میگم، %47.4 رشد داشته اید.
+          <span class="text-body3 no-letter-spacing">
+            در ماه گذشته
+          </span>
+        </div>
+      </q-card-section>
 
-          <q-item-section>
-            <q-item-label class="text-body3 q-mb-xs">
-              جمع کل
-            </q-item-label>
-            <q-item-label
-              v-if="!dataStore.isLoading.value"
-              class="text-h6 text-weight-700"
-            >
-              {{
-                helper.formatNumberReadable(
-                  dataStore.data?.value?.amount
-                )
-              }}
+      <q-card-section
+        class="row q-gutter-lg q-pt-none q-px-lg q-pt-sm q-pb-lg"
+      >
+        <div class="col-md col-sm-5 col-xs-12">
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_receipt"
+                size="xl"
+                class="grey-gradient grey-shadow"
+              />
+            </q-item-section>
 
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
+            <q-item-section>
+              <q-item-label class="text-body3 q-mb-xs">
+                جمع کل
+              </q-item-label>
+              <q-item-label
+                v-if="!dataStore.isLoading.value"
+                class="text-h6 text-weight-700"
               >
                 {{
-                  helper.formatNumber(dataStore.data?.value?.amount)
+                  helper.formatNumberReadable(
+                    dataStore.data?.value?.amount
+                  )
                 }}
-              </q-tooltip>
-            </q-item-label>
 
-            <div v-else class="text-regular">
-              {{ $t("shared.labels.calculating") }}
-            </div>
-          </q-item-section>
-        </q-item>
-      </div>
+                <q-tooltip
+                  class="custom-tooltip text-body1 no-letter-spacing"
+                >
+                  {{
+                    helper.formatNumber(dataStore.data?.value?.amount)
+                  }}
+                </q-tooltip>
+              </q-item-label>
 
-      <div class="col-md col-sm-5 col-xs-12">
-        <q-item class="no-padding">
-          <q-item-section avatar>
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_arrow_downward"
-              size="xl"
-              class="green-gradient green-shadow"
-            />
-          </q-item-section>
+              <div v-else class="text-regular">
+                {{ $t("shared.labels.calculating") }}
+              </div>
+            </q-item-section>
+          </q-item>
+        </div>
 
-          <q-item-section>
-            <q-item-label class="text-body3 q-mb-xs">
-              دریافت شده
-            </q-item-label>
-            <q-item-label
-              v-if="!dataStore.isLoading.value"
-              class="text-h6 text-weight-700"
-            >
-              {{
-                helper.formatNumberReadable(
-                  dataStore.data?.value?.payedAmount
-                )
-              }}
+        <div class="col-md col-sm-5 col-xs-12">
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_arrow_downward"
+                size="xl"
+                class="green-gradient green-shadow"
+              />
+            </q-item-section>
 
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
+            <q-item-section>
+              <q-item-label class="text-body3 q-mb-xs">
+                دریافت شده
+              </q-item-label>
+              <q-item-label
+                v-if="!dataStore.isLoading.value"
+                class="text-h6 text-weight-700"
               >
                 {{
-                  helper.formatNumber(
+                  helper.formatNumberReadable(
                     dataStore.data?.value?.payedAmount
                   )
                 }}
-              </q-tooltip>
-            </q-item-label>
-            <div v-else class="text-regular">
-              {{ $t("shared.labels.calculating") }}
-            </div>
-          </q-item-section>
-        </q-item>
-      </div>
 
-      <div class="col-md col-sm-5 col-xs-12">
-        <q-item class="no-padding">
-          <q-item-section avatar>
-            <q-btn
-              flat
-              dense
-              size="0"
-              to="/sls/invoice/remained/remainedThisYear"
-              class="clickable-btn"
-            >
-              <q-avatar
-                rounded
-                text-color="white"
-                size="xl"
-                class="active-shine orange-gradient orange-shadow"
+                <q-tooltip
+                  class="custom-tooltip text-body1 no-letter-spacing"
+                >
+                  {{
+                    helper.formatNumber(
+                      dataStore.data?.value?.payedAmount
+                    )
+                  }}
+                </q-tooltip>
+              </q-item-label>
+              <div v-else class="text-regular">
+                {{ $t("shared.labels.calculating") }}
+              </div>
+            </q-item-section>
+          </q-item>
+        </div>
+
+        <div class="col-md col-sm-5 col-xs-12">
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-btn
+                flat
+                dense
+                size="0"
+                to="/sls/invoice/remained/remainedThisYear"
+                class="clickable-btn"
               >
-                <q-icon
-                  color="white"
-                  size="23px"
-                  name="o_account_balance_wallet"
-                />
-              </q-avatar>
-              <div class="mouse-icon"></div>
-            </q-btn>
-          </q-item-section>
+                <q-avatar
+                  rounded
+                  text-color="white"
+                  size="xl"
+                  class="active-shine orange-gradient orange-shadow"
+                >
+                  <q-icon
+                    color="white"
+                    size="23px"
+                    name="o_account_balance_wallet"
+                  />
+                </q-avatar>
+                <div class="mouse-icon"></div>
+              </q-btn>
+            </q-item-section>
 
-          <q-item-section>
-            <q-item-label class="text-body3 q-mb-xs">
-              مانده امسال
-            </q-item-label>
-            <q-item-label
-              v-if="!dataStore.isLoading.value"
-              class="text-h6 text-weight-700"
-            >
-              {{
-                helper.formatNumberReadable(
-                  dataStore.data?.value?.remainedAmount
-                )
-              }}
-
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
+            <q-item-section>
+              <q-item-label class="text-body3 q-mb-xs">
+                مانده امسال
+              </q-item-label>
+              <q-item-label
+                v-if="!dataStore.isLoading.value"
+                class="text-h6 text-weight-700"
               >
                 {{
-                  helper.formatNumber(
+                  helper.formatNumberReadable(
                     dataStore.data?.value?.remainedAmount
                   )
                 }}
-              </q-tooltip>
-            </q-item-label>
-            <div v-else class="text-regular">
-              {{ $t("shared.labels.calculating") }}
-            </div>
-          </q-item-section>
-        </q-item>
-      </div>
 
-      <div class="col-md col-sm-5 col-xs-12">
-        <q-item class="no-padding">
-          <q-item-section avatar>
-            <q-btn
-              flat
-              dense
-              size="0"
-              to="/sls/invoice/remained/remainedAll"
-              class="clickable-btn"
-            >
-              <q-avatar
-                rounded
-                text-color="white"
-                size="xl"
-                class="active-shine red-gradient red-shadow"
+                <q-tooltip
+                  class="custom-tooltip text-body1 no-letter-spacing"
+                >
+                  {{
+                    helper.formatNumber(
+                      dataStore.data?.value?.remainedAmount
+                    )
+                  }}
+                </q-tooltip>
+              </q-item-label>
+              <div v-else class="text-regular">
+                {{ $t("shared.labels.calculating") }}
+              </div>
+            </q-item-section>
+          </q-item>
+        </div>
+
+        <div class="col-md col-sm-5 col-xs-12">
+          <q-item class="no-padding">
+            <q-item-section avatar>
+              <q-btn
+                flat
+                dense
+                size="0"
+                to="/sls/invoice/remained/remainedAll"
+                class="clickable-btn"
               >
-                <q-icon
-                  color="white"
-                  size="23px"
-                  name="o_account_balance_wallet"
-                />
-              </q-avatar>
-              <div class="mouse-icon"></div>
-            </q-btn>
-          </q-item-section>
+                <q-avatar
+                  rounded
+                  text-color="white"
+                  size="xl"
+                  class="active-shine red-gradient red-shadow"
+                >
+                  <q-icon
+                    color="white"
+                    size="23px"
+                    name="o_account_balance_wallet"
+                  />
+                </q-avatar>
+                <div class="mouse-icon"></div>
+              </q-btn>
+            </q-item-section>
 
-          <q-item-section>
-            <q-item-label class="text-body3 q-mb-xs">
-              مانده از قبل
-            </q-item-label>
-            <q-item-label
-              v-if="!dataStore.isLoading.value"
-              class="text-h6 text-weight-700"
-            >
-              {{
-                helper.formatNumberReadable(
-                  dataStore.data?.value?.remainedAmountAll -
-                    dataStore.data?.value?.remainedAmount
-                )
-              }}
-
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
+            <q-item-section>
+              <q-item-label class="text-body3 q-mb-xs">
+                مانده از قبل
+              </q-item-label>
+              <q-item-label
+                v-if="!dataStore.isLoading.value"
+                class="text-h6 text-weight-700"
               >
                 {{
-                  helper.formatNumber(
+                  helper.formatNumberReadable(
                     dataStore.data?.value?.remainedAmountAll -
                       dataStore.data?.value?.remainedAmount
                   )
                 }}
-              </q-tooltip>
-            </q-item-label>
-            <div v-else class="text-regular">
-              {{ $t("shared.labels.calculating") }}
-            </div>
-          </q-item-section>
-        </q-item>
-      </div>
-    </q-card-section>
+
+                <q-tooltip
+                  class="custom-tooltip text-body1 no-letter-spacing"
+                >
+                  {{
+                    helper.formatNumber(
+                      dataStore.data?.value?.remainedAmountAll -
+                        dataStore.data?.value?.remainedAmount
+                    )
+                  }}
+                </q-tooltip>
+              </q-item-label>
+              <div v-else class="text-regular">
+                {{ $t("shared.labels.calculating") }}
+              </div>
+            </q-item-section>
+          </q-item>
+        </div>
+      </q-card-section>
+    </div>
   </q-card>
 </template>
 
 <script setup>
+  import { ref, computed } from "vue";
   import { helper } from "src/helpers";
   import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/useInvoiceSummary";
+  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+
+  const draggable = useDraggableWidgets();
   const dataStore = useInvoiceSummary();
+
+  const isShakingComputed = computed(() => draggable.isShaking.value);
+  const isHoveredComputed = computed(() => draggable.isHovered.value);
 </script>
 
 <style lang="scss" scoped>

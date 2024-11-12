@@ -1,0 +1,36 @@
+@mixin widget-dark {
+  .widget:hover::before {
+    opacity: 1;
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    width: 100%;
+    border-radius: inherit;
+    height: 100%;
+    background: linear-gradient(
+      to left bottom,
+      $dark-page,
+      #{$dark-page}99,
+      transparent 60%
+    );
+    transform-origin: right top;
+    pointer-events: none;
+    transition-property: opacity, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+  }
+
+  .widget {
+    .off-btn {
+      display: none;
+    }
+  }
+
+  .widget:hover {
+    .off-btn {
+      display: block;
+    }
+  }
+}

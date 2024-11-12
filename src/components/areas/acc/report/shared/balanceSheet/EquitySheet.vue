@@ -1,68 +1,46 @@
 <template>
   <q-card flat class="shadow bordered">
     <q-card-section class="q-px-lg">
-      <q-item class="no-padding">
-        <q-item-section avatar>
-          <q-avatar
-            rounded
-            text-color="white"
-            icon="o_attach_money"
-            size="md"
-            class="green-gradient green-shadow"
-          />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label class="text-h6 text-weight-700">
-            سرمایه
-          </q-item-label>
-        </q-item-section>
-      </q-item>
+      <balance-sheet-card-header
+        icon="o_attach_money"
+        icon-class="green-gradient green-shadow"
+        title="سرمایه"
+      />
     </q-card-section>
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
       <q-list class="q-pr-md q-pl-sm rounded-borders">
-        <template
-          v-for="item in dataStore.accountClCodes"
-          :key="item.clTypeId"
+        <balance-sheet-item-header title="سرمایه" />
+
+        <balance-sheet-item
+          v-for="item in equityList"
+          :key="item.id"
+          :item="item"
+          use-credit
+        />
+
+        <q-item
+          v-if="netIncome"
+          class="border-radius-sm q-px-sm q-py-xs q-my-sm"
+          clickable
+          v-ripple
         >
-          <q-item-label
-            header
-            class="bg-on-dark border-radius-sm"
-            style="padding: 12px"
-          >
-            <span class="text-body1 text-on-dark text-weight-600">
-              {{ item.clTitle }}
+          <q-item-section class="q-pr-sm" avatar>
+            <div
+              class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
+            >
+              *
+            </div>
+          </q-item-section>
+
+          <q-item-section>سود و زیان سال جاری</q-item-section>
+
+          <q-item-section side>
+            <span>
+              {{ helper.formatNumber(netIncome) }}
             </span>
-          </q-item-label>
-
-          <q-item
-            class="border-radius-sm q-px-sm q-py-xs q-my-sm"
-            clickable
-            v-ripple
-            v-for="glItem in item.glItems"
-            :key="glItem.glCode"
-          >
-            <q-item-section class="q-pr-sm" avatar>
-              <div
-                class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
-              >
-                {{ glItem.glCode }}
-              </div>
-            </q-item-section>
-
-            <q-item-section>
-              {{ glItem.glTitle }}
-            </q-item-section>
-
-            <q-item-section side>
-              <span>
-                {{ helper.formatNumber(glItem.debit) }}
-              </span>
-            </q-item-section>
-          </q-item>
-
-          <q-separator spaced v-if="false" />
-        </template>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-card-section>
 
@@ -77,7 +55,7 @@
         </q-item-section>
 
         <q-item-section side class="ext-subtitle1 text-weight-700">
-          {{ helper.formatNumber(sum) }}
+          {{ helper.formatNumber(total + netIncome) }}
         </q-item-section>
       </q-item>
     </q-card-section>
@@ -85,36 +63,35 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers/helper";
+  import { accountCLType } from "src/constants";
 
-  import Assets from "src/components/areas/acc/report/shared/balanceSheet/AssetSheet.vue";
+  import BalanceSheetItem from "./BalanceSheetItem.vue";
+  import BalanceSheetItemHeader from "./BalanceSheetItemHeader.vue";
+  import BalanceSheetCardHeader from "./BalanceSheetCardHeader.vue";
 
-  const sum = ref(90000);
+  const props = defineProps({
+    model: Object,
+  });
 
-  const dataStore = {
-    accountClCodes: [
-      {
-        clTypeId: 2,
-        clTitle: "حقوق صاحبان سهام",
-        glItems: [
-          {
-            glCode: "101",
-            glTitle: "موجودی نقد و بانک",
-            debit: 1135521270,
-          },
-          {
-            glCode: "103",
-            glTitle: "حسابها و اسناد دریافتنی تجاری",
-            debit: 120000,
-          },
-          {
-            glCode: "105",
-            glTitle: "موجودی مواد و کالا",
-            debit: 4890285000,
-          },
-        ],
-      },
-    ],
-  };
+  const equityList = computed(() =>
+    props.model.reviewItems.filter(
+      (item) => item.clId === accountCLType.equity
+    )
+  );
+
+  const total = computed(() =>
+    equityList.value.reduce(
+      (sum, item) => sum + item.creditRemained - item.debitRemained,
+      0
+    )
+  );
+
+  const netIncome = computed(() =>
+    props.model.reviewItems.reduce(
+      (sum, item) => sum + item.debitRemained - item.creditRemained,
+      0
+    )
+  );
 </script>

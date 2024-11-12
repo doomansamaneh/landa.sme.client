@@ -1,68 +1,28 @@
 <template>
   <q-card flat class="shadow bordered">
     <q-card-section class="q-px-lg">
-      <q-item class="no-padding">
-        <q-item-section avatar>
-          <q-avatar
-            rounded
-            text-color="white"
-            icon="o_attach_money"
-            size="md"
-            class="primary-gradient primary-shadow"
-          />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label class="text-h6 text-weight-700">
-            دارائی
-          </q-item-label>
-        </q-item-section>
-      </q-item>
+      <balance-sheet-card-header
+        title="دارایی"
+        icon="o_attach_money"
+        icon-class="primary-gradient primary-shadow"
+      />
     </q-card-section>
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
       <q-list class="q-pr-md q-pl-sm rounded-borders">
-        <template
-          v-for="item in dataStore.accountClCodes"
-          :key="item.clTypeId"
-        >
-          <q-item-label
-            header
-            class="bg-on-dark border-radius-sm"
-            style="padding: 12px"
-          >
-            <span class="text-body1 text-on-dark text-weight-600">
-              {{ item.clTitle }}
-            </span>
-          </q-item-label>
+        <balance-sheet-item-header title="داراییهای جاری" />
+        <balance-sheet-item
+          v-for="item in currentAssets"
+          :key="item.id"
+          :item="item"
+        />
 
-          <q-item
-            class="border-radius-sm q-px-sm q-py-xs q-my-sm"
-            clickable
-            v-ripple
-            v-for="glItem in item.glItems"
-            :key="glItem.glCode"
-          >
-            <q-item-section class="q-pr-sm" avatar>
-              <div
-                class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
-              >
-                {{ glItem.glCode }}
-              </div>
-            </q-item-section>
-
-            <q-item-section>
-              {{ glItem.glTitle }}
-            </q-item-section>
-
-            <q-item-section side>
-              <span>
-                {{ helper.formatNumber(glItem.debit) }}
-              </span>
-            </q-item-section>
-          </q-item>
-
-          <q-separator spaced v-if="false" />
-        </template>
+        <balance-sheet-item-header title="داراییهای ثابت" />
+        <balance-sheet-item
+          v-for="item in fixedAssets"
+          :key="item.id"
+          :item="item"
+        />
       </q-list>
     </q-card-section>
 
@@ -77,7 +37,7 @@
         </q-item-section>
 
         <q-item-section side class="ext-subtitle1 text-weight-700">
-          {{ helper.formatNumber(sum) }}
+          {{ helper.formatNumber(totalCA + totalFA) }}
         </q-item-section>
       </q-item>
     </q-card-section>
@@ -85,36 +45,41 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { computed, ref } from "vue";
   import { helper } from "src/helpers/helper";
+  import { accountCLType } from "src/constants";
 
-  import Assets from "src/components/areas/acc/report/shared/balanceSheet/AssetSheet.vue";
+  import BalanceSheetItem from "./BalanceSheetItem.vue";
+  import BalanceSheetItemHeader from "./BalanceSheetItemHeader.vue";
+  import BalanceSheetCardHeader from "./BalanceSheetCardHeader.vue";
 
-  const sum = ref(3717680321);
+  const props = defineProps({
+    model: Object,
+  });
 
-  const dataStore = {
-    accountClCodes: [
-      {
-        clTypeId: 2,
-        clTitle: "دارایی های جاری",
-        glItems: [
-          {
-            glCode: "101",
-            glTitle: "موجودی نقد و بانک",
-            debit: 1135521270,
-          },
-          {
-            glCode: "103",
-            glTitle: "حسابها و اسناد دریافتنی تجاری",
-            debit: 120000,
-          },
-          {
-            glCode: "105",
-            glTitle: "موجودی مواد و کالا",
-            debit: 4890285000,
-          },
-        ],
-      },
-    ],
-  };
+  const currentAssets = computed(() =>
+    props.model.reviewItems.filter(
+      (item) => item.clId === accountCLType.currentAsset
+    )
+  );
+
+  const fixedAssets = computed(() =>
+    props.model.reviewItems.filter(
+      (item) => item.clId === accountCLType.fixedAsset
+    )
+  );
+
+  const totalCA = computed(() =>
+    currentAssets.value.reduce(
+      (sum, item) => sum + item.debitRemained - item.creditRemained,
+      0
+    )
+  );
+
+  const totalFA = computed(() =>
+    fixedAssets.value.reduce(
+      (sum, item) => sum + item.debitRemained - item.creditRemained,
+      0
+    )
+  );
 </script>
