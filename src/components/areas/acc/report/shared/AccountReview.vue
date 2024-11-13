@@ -4,91 +4,90 @@
   <advanced-search :search-model="searchModel" />
 
   <q-card flat class="bordered shadow">
-    <div class="row justify-between primary-gradient-1">
-      <div class="scroll">
-        <q-tabs
-          v-model="tab"
-          class="text-h6 text-weight-700 primary-tabs"
-          :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-          :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-          align="left"
-          inline-label
-          narrow-indicator
-        >
-          <q-tab name="cl" class="text-h6 text-weight-700">
-            <template #default>
-              <div class="row items-center">
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_bubble_chart"
-                  size="md"
-                  class="primary-gradient primary-shadow q-mr-md"
-                />
-                <div class="text-h6 no-letter-spacing">گروه حساب</div>
-              </div>
-            </template>
-          </q-tab>
-          <q-tab name="gl" class="text-h6 text-weight-700">
-            <template #default>
-              <div class="row items-center">
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_subject"
-                  size="md"
-                  class="primary-gradient primary-shadow q-mr-md"
-                />
-                <div class="text-h6 no-letter-spacing">حساب کل</div>
-              </div>
-            </template>
-          </q-tab>
-          <q-tab name="sl" class="text-h6 text-weight-700">
-            <template #default>
-              <div class="row items-center">
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_menu"
-                  size="md"
-                  class="primary-gradient primary-shadow q-mr-md"
-                />
-                <div class="text-h6 no-letter-spacing">حساب معین</div>
-              </div>
-            </template>
-          </q-tab>
-          <q-tab name="dl" class="text-h6 text-weight-700">
-            <template #default>
-              <div class="row items-center">
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_view_comfy"
-                  size="md"
-                  class="primary-gradient primary-shadow q-mr-md"
-                />
-                <div class="text-h6 no-letter-spacing">
-                  حساب تفصیلی
-                </div>
-              </div>
-            </template>
-          </q-tab>
-          <q-tab name="il" class="text-h6 text-weight-700">
-            <template #default>
-              <div class="row items-center">
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_receipt"
-                  size="md"
-                  class="primary-gradient primary-shadow q-mr-md"
-                />
-                <div class="text-h6 no-letter-spacing">ریزگردش</div>
-              </div>
-            </template>
-          </q-tab>
-        </q-tabs>
-      </div>
+    <div
+      class="row justify-between overflow-hidden primary-gradient-1"
+    >
+      <q-tabs
+        v-model="tab"
+        class="scroll text-h6 text-weight-700 primary-tabs"
+        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        align="left"
+        inline-label
+        narrow-indicator
+      >
+        <q-tab name="cl" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_bubble_chart"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">گروه حساب</div>
+            </div>
+          </template>
+        </q-tab>
+        <q-tab name="gl" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_subject"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">حساب کل</div>
+            </div>
+          </template>
+        </q-tab>
+        <q-tab name="sl" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_menu"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">حساب معین</div>
+            </div>
+          </template>
+        </q-tab>
+        <q-tab name="dl" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_view_comfy"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">حساب تفصیلی</div>
+            </div>
+          </template>
+        </q-tab>
+        <q-tab name="il" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_receipt"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">ریزگردش</div>
+            </div>
+          </template>
+        </q-tab>
+      </q-tabs>
+
       <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
 
