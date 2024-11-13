@@ -41,11 +41,14 @@
           <q-btn
             to="/sls/invoice/create"
             unelevated
-            rounded
+            :round="$q.screen.xs"
+            :rounded="$q.screen.gt.xs"
             class="bordered bg-dark q-py-xs"
           >
-            <q-icon name="o_add" size="16px" class="q-mr-xs" />
-            ایجاد فاکتور
+            <q-icon name="o_add" size="20px" />
+            <span class="q-ml-xs" v-if="$q.screen.gt.xs">
+              ایجاد فاکتور
+            </span>
           </q-btn>
         </div>
         <div

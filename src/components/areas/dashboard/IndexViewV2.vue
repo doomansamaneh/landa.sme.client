@@ -28,10 +28,7 @@
             </q-btn>
 
             <q-btn
-              v-if="
-                draggable.isDefaultChanged.value &&
-                draggable.isShaking.value
-              "
+              v-if="draggable.isShaking.value"
               class="bordered text-body2 no-letter-spacing"
               rounded
               unelevated

@@ -1,20 +1,4 @@
 <template>
-  <div class="row items-center justify-between">
-    <div
-      class="text-body2 caption-on-dark text-weight-500 no-letter-spacing"
-    >
-      جزییات فاکتور
-    </div>
-    <div>
-      <router-link class="no-decoration text-primary" to="/">
-        <div class="row items-center">
-          <div class="text-body2 no-letter-spacing">ویرایش</div>
-          <q-icon size="20px" name="o_chevron_left" />
-        </div>
-      </router-link>
-    </div>
-  </div>
-
   <div class="q-mt-lg">
     <div class="row items-center no-wrap q-gutter-md">
       <div class="row no-wrap items-center col">
@@ -119,9 +103,14 @@
           </div>
 
           <div class="caption-on-dark q-mt-xs">
-            {{ helper.formatNumber(item.quantity) }} ×
-            {{ helper.formatNumber(item.price) }}
-            <span class="no-letter-spacing text-caption">ريال</span>
+            <span>
+              {{ helper.formatNumber(item.quantity) }}
+              {{ item.productUnitTitle }}
+            </span>
+            ×
+            <span>
+              {{ helper.formatNumber(item.price) }}
+            </span>
           </div>
         </div>
       </div>
@@ -181,30 +170,47 @@
         </span>
 
         <span class="text-weight-600">
-          <span class="text-caption text-weight-500">
-            ({{ model.currencyTitle }})
-          </span>
           {{ helper.formatNumber(model.totalPrice) }}
         </span>
       </div>
-      <div class="row items-center">
+      <div class="row q-gutter-xs items-center">
         <span class="text-body3 no-letter-spacing no-letter-spacing">
           {{ numberToWords(model.totalPrice ?? 0) }}
+        </span>
+        <span class="text-caption text-weight-500">
+          ({{ model.currencyTitle }})
         </span>
       </div>
     </div>
   </div>
+  <div class="row q-gutter-sm items-center justify-center q-my-md">
+    <hr class="col" />
+    <q-btn
+      class="bordered"
+      round
+      dense
+      unelevated
+      @click="toggleDetailSection"
+    >
+      <q-icon size="24px" name="o_expand_more" />
+    </q-btn>
+    <hr class="col" />
+  </div>
 
-  <detail-section
-    class="q-mt-md"
-    :model="model"
-    tax-api
-    :detail-url="detailUrl"
-    :show-receipt="showReceipt"
-  />
+  <q-slide-transition>
+    <div v-show="detailSection">
+      <detail-section
+        :model="model"
+        tax-api
+        :detail-url="detailUrl"
+        :show-receipt="showReceipt"
+      />
+    </div>
+  </q-slide-transition>
 </template>
 
 <script setup>
+  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { numberToWords } from "@persian-tools/persian-tools";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
@@ -222,9 +228,13 @@
     showReceipt: Boolean,
     taxApi: Boolean,
   });
-  const appConfigStore = useAppConfigModel();
 
-  console.log(props.model);
+  const appConfigStore = useAppConfigModel();
+  const detailSection = ref(true);
+
+  const toggleDetailSection = () => {
+    detailSection.value = !detailSection.value;
+  };
 </script>
 
 <style lang="scss" scoped>

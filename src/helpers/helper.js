@@ -230,32 +230,29 @@ export const helper = {
   },
 
   formatNumberReadable(number) {
-    if (typeof number !== "number" || isNaN(number)) {
-      return "";
-    }
+    if (typeof number !== "number" || isNaN(number)) return "";
 
-    const isNegative = number < 0;
-    const absoluteNumber = Math.abs(number);
+    const absNum = Math.abs(number);
+    const suffix = number < 0 ? "(" : "";
+    const postfix = number < 0 ? ")" : "";
 
-    let formattedNumber = "";
+    const format = (num, unit) => {
+      const rounded = num % 1 === 0 ? num.toFixed(0) : num.toFixed(1);
+      return rounded.replace(/\.0$/, "") + " " + unit;
+    };
 
-    if (absoluteNumber < 1000) {
-      formattedNumber = absoluteNumber.toString();
-    } else if (absoluteNumber < 1000000) {
-      const thousands = Math.floor(absoluteNumber / 1000);
-      formattedNumber = `${thousands} هزار`;
-    } else if (absoluteNumber < 1000000000) {
-      const millions = Math.floor(absoluteNumber / 1000000);
-      formattedNumber = `${millions} میلیون`;
-    } else if (absoluteNumber < 1000000000000) {
-      const billions = Math.floor(absoluteNumber / 1000000000);
-      formattedNumber = `${billions} میلیارد`;
-    } else {
-      const trillions = Math.floor(absoluteNumber / 1000000000000);
-      formattedNumber = `${trillions} همت`;
-    }
+    const formattedNumber =
+      absNum < 1e3
+        ? absNum.toString()
+        : absNum < 1e6
+        ? format(absNum / 1e3, "هزار")
+        : absNum < 1e9
+        ? format(absNum / 1e6, "میلیون")
+        : absNum < 1e12
+        ? format(absNum / 1e9, "میلیارد")
+        : format(absNum / 1e12, "همت");
 
-    return isNegative ? `(${formattedNumber})` : formattedNumber;
+    return suffix + formattedNumber + postfix;
   },
 
   exportCsv(rows, columns) {
