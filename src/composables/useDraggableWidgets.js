@@ -7,7 +7,7 @@ const hiddenWidgetsKey = "hiddenWidgets";
 
 export function useDraggableWidgets(metaData) {
   const widgets = ref(
-    JSON.parse(localStorage.getItem(storageKey)) || [...metaData]
+    JSON.parse(localStorage.getItem(storageKey)) || [] //[...metaData]
   );
   const hiddenWidgets = ref(
     JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || []

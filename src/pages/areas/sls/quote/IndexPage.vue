@@ -1,5 +1,5 @@
 <template>
-  <data-grid toolbar />
+  <data-grid toolbar :title="$t('main-menu-items.Sls_Quote_View')" />
 </template>
 
 <script setup>

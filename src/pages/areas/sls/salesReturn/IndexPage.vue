@@ -1,5 +1,8 @@
 <template>
-  <data-grid toolbar />
+  <data-grid
+    toolbar
+    :title="$t('main-menu-items.Sls_SalesReturn_View')"
+  />
 </template>
 
 <script setup>

@@ -10,10 +10,9 @@
     <template #buttons-create>
       <q-btn
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="8px 16px"
         rounded
-        no-caps
         unelevated
+        no-caps
       >
         <q-icon size="20px" name="o_add" class="q-mr-xs" />
         {{ $t("shared.labels.create") }}

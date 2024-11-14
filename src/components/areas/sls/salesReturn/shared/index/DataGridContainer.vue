@@ -1,16 +1,10 @@
 <template>
-  <toolbar-container
-    v-if="toolbar"
-    :title="title"
-    :table-store="tableStore"
-  />
+  <toolbar-container v-if="toolbar" :table-store="tableStore" />
 
   <data-grid-table :title="title" :table-store="tableStore" />
 </template>
 
 <script setup>
-  import { useI18n } from "vue-i18n";
-
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useSalesReturnState } from "../../../_composables/useSalesReturnState";
   //import { useQuoteState } from "../../../_composables/useQuoteState";
@@ -25,11 +19,8 @@
       type: String,
       default: "sls/salesReturn/getGridData",
     },
+    title: String,
   });
-
-  const { t } = useI18n();
-
-  const title = t("main-menu-items.Sls_SalesReturn_View");
 
   const salesReturnStore = useSalesReturnState();
   const gridStore = useBaseInfoGrid(salesReturnStore);
