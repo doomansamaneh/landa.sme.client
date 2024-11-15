@@ -46,13 +46,13 @@
       </template>
     </toolbar-mobile>
 
-    <mobile
+    <!-- <mobile
       :grid-store="gridStore"
-      :crud-store="crudStore"
+      :data-source="dataSource"
       :title="title"
-      data-source="sls/report/getProductStock"
+      :crud-store="crudStore"
       ref="mobileGrid"
-    />
+    /> -->
   </template>
 
   <template v-else>
@@ -101,14 +101,14 @@
         </q-btn>
       </template>
     </toolbar-desktop>
-
-    <desktop
-      ref="desktopGrid"
-      :grid-store="gridStore"
-      :data-source="dataSource"
-      :title="title"
-    />
   </template>
+
+  <desktop
+    ref="desktopGrid"
+    :grid-store="gridStore"
+    :data-source="dataSource"
+    :title="title"
+  />
 </template>
 
 <script setup>
