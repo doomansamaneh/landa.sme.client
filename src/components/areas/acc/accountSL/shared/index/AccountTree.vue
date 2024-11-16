@@ -46,7 +46,12 @@
                 :offset="[0, 10]"
               >
                 <q-list dense padding style="width: 200px">
-                  <q-item clickable v-close-popup tabindex="0">
+                  <q-item
+                    @click="createAccountGL(prop.node)"
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -69,7 +74,13 @@
           <account-tree-node :node="prop.node" />
           <q-space />
           <div class="row items-center">
-            <q-btn dense round unelevated icon="o_more_horiz">
+            <q-btn
+              @click="createAccountSL(prop.node)"
+              dense
+              round
+              unelevated
+              icon="o_more_horiz"
+            >
               <q-menu
                 v-show="menu"
                 class="border-radius-lg"
@@ -167,6 +178,7 @@
 
 <script setup>
   import { ref, onMounted, computed } from "vue";
+  import { useQuasar } from "quasar";
   import { sqlOperator } from "src/constants";
 
   import { useDataTable } from "src/composables/useDataTable";
@@ -176,7 +188,11 @@
   import CardTitle from "src/components/shared/CardTitle.vue";
   import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
+  import GLFormCreateDialog from "components/areas/acc/accountGL/shared/forms/CreateFormDialog.vue";
+  import SLFormCreateDialog from "components/areas/acc/accountSL/shared/forms/CreateFormDialog.vue";
+
   const selected = ref("");
+  const $q = useQuasar();
 
   function creatAccountStore(dataSource) {
     const gridStore = useBaseInfoGrid({ sortColumn: "code" });
@@ -248,6 +264,26 @@
     } else {
       done([]);
     }
+  };
+
+  const createAccountGL = (gl) => {
+    $q.dialog({
+      component: GLFormCreateDialog,
+    }).onOk(async () => {
+      await reloadData();
+    });
+
+    alert(gl.title);
+  };
+
+  const createAccountSL = (sl) => {
+    $q.dialog({
+      component: SLFormCreateDialog,
+    }).onOk(async () => {
+      await reloadData();
+    });
+
+    alert(sl.title);
   };
 
   onMounted(() => {

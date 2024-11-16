@@ -16,9 +16,10 @@
         class="row items-center q-pr-md"
         :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-md'"
       >
-        <div class="text-h6">
-          {{ title }}
-        </div>
+        <slot name="title">
+          <div class="text-h6">{{ title }}</div>
+        </slot>
+
         <q-space />
         <q-btn
           icon="close"
