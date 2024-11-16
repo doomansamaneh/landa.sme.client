@@ -6,6 +6,7 @@
       :legend="legend"
       :title="title"
       :height="$q.screen.xs ? 150 : 260"
+      type="area"
       class="area-chart"
       :class="direction"
     />

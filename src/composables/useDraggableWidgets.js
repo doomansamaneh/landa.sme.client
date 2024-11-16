@@ -1,17 +1,21 @@
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 
 const isShaking = ref(false);
 const draggedIndex = ref(null);
 const storageKey = "widgetsLayout";
 const hiddenWidgetsKey = "hiddenWidgets";
 
-export function useDraggableWidgets(metaData) {
-  const widgets = ref(
-    JSON.parse(localStorage.getItem(storageKey)) || [] //[...metaData]
-  );
-  const hiddenWidgets = ref(
-    JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || []
-  );
+export function useDraggableWidgets(metaData = []) {
+  const widgets = ref([]);
+  const hiddenWidgets = ref([]);
+
+  const loadWidgets = () => {
+    widgets.value = JSON.parse(localStorage.getItem(storageKey)) || [
+      ...metaData,
+    ];
+    hiddenWidgets.value =
+      JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || [];
+  };
 
   const onDragStart = (index) => {
     draggedIndex.value = index;
@@ -38,9 +42,7 @@ export function useDraggableWidgets(metaData) {
   const resetToDefault = () => {
     widgets.value = [...metaData];
     hiddenWidgets.value = [];
-    localStorage.removeItem(hiddenWidgetsKey);
-    saveLayoutToLocalStorage();
-    saveHiddenWidgetsToLocalStorage();
+    clearLocalStorage();
   };
 
   const saveLayoutToLocalStorage = () => {
@@ -54,23 +56,27 @@ export function useDraggableWidgets(metaData) {
     );
   };
 
+  const clearLocalStorage = () => {
+    localStorage.removeItem(storageKey);
+    localStorage.removeItem(hiddenWidgetsKey);
+  };
+
   const hideWidget = (id) => {
     const widgetToHide = widgets.value.find(
       (widget) => widget.id === id
     );
     if (widgetToHide && !isWidgetHidden(id)) {
       hiddenWidgets.value.push(widgetToHide);
-      saveHiddenWidgetsToLocalStorage();
       widgets.value = widgets.value.filter(
         (widget) => widget.id !== id
       );
       saveLayoutToLocalStorage();
+      saveHiddenWidgetsToLocalStorage();
     }
   };
 
-  const isWidgetHidden = (id) => {
-    return hiddenWidgets.value.some((widget) => widget.id === id);
-  };
+  const isWidgetHidden = (id) =>
+    hiddenWidgets.value.some((widget) => widget.id === id);
 
   const isDefaultChanged = computed(() => {
     const widgetIds = widgets.value.map((w) => w.id);
@@ -87,6 +93,10 @@ export function useDraggableWidgets(metaData) {
     { deep: true }
   );
 
+  onMounted(() => {
+    loadWidgets();
+  });
+
   return {
     widgets,
     hiddenWidgets,
@@ -99,5 +109,6 @@ export function useDraggableWidgets(metaData) {
     hideWidget,
     isWidgetHidden,
     resetCursor,
+    loadWidgets,
   };
 }
