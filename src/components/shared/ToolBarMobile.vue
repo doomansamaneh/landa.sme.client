@@ -140,6 +140,13 @@
     <template #body>
       <q-list padding>
         <menu-item
+          :title="$t('shared.labels.create')"
+          icon="o_add"
+          :to="`/${baseRoute}/create`"
+        />
+        <q-separator size="0.5px" class="q-my-sm" />
+
+        <menu-item
           :title="$t('shared.labels.refresh')"
           icon="o_refresh"
           @click="tableStore.reloadData"

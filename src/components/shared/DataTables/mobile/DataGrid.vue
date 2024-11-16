@@ -68,7 +68,9 @@
                         text-color="white"
                         :style="
                           !row.selected
-                            ? helper.generateAvatarStyle(row.id)
+                            ? helper.generateAvatarStyle(
+                                row[avatarField ?? id]
+                              )
                             : ''
                         "
                         :class="
