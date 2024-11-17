@@ -39,12 +39,7 @@
           <q-space />
           <div class="row items-center q-gutter-md">
             <q-btn dense round unelevated icon="o_more_horiz">
-              <q-menu
-                v-show="menu"
-                class="border-radius-lg"
-                fit
-                :offset="[0, 10]"
-              >
+              <q-menu class="border-radius-lg" fit :offset="[0, 10]">
                 <q-list dense padding style="width: 200px">
                   <q-item
                     @click="createAccountGL(prop.node)"
@@ -74,21 +69,15 @@
           <account-tree-node :node="prop.node" />
           <q-space />
           <div class="row items-center">
-            <q-btn
-              @click="createAccountSL(prop.node)"
-              dense
-              round
-              unelevated
-              icon="o_more_horiz"
-            >
-              <q-menu
-                v-show="menu"
-                class="border-radius-lg"
-                fit
-                :offset="[0, 10]"
-              >
+            <q-btn dense round unelevated icon="o_more_horiz">
+              <q-menu class="border-radius-lg" fit :offset="[0, 10]">
                 <q-list dense padding style="width: 200px">
-                  <q-item clickable v-close-popup tabindex="0">
+                  <q-item
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                    @click="createAccountSL(prop.node)"
+                  >
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -102,7 +91,12 @@
                       </div>
                     </q-item-section>
                   </q-item>
-                  <q-item clickable v-close-popup tabindex="0">
+                  <q-item
+                    @click="createAccountSL(prop.node)"
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -126,14 +120,14 @@
           <q-space />
           <div class="row items-center">
             <q-btn dense round unelevated icon="o_more_horiz">
-              <q-menu
-                v-show="menu"
-                class="border-radius-lg"
-                fit
-                :offset="[0, 10]"
-              >
+              <q-menu class="border-radius-lg" fit :offset="[0, 10]">
                 <q-list dense padding style="width: 200px">
-                  <q-item clickable v-close-popup tabindex="0">
+                  <q-item
+                    @click="createAccountSL(prop.node)"
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -147,7 +141,12 @@
                       </div>
                     </q-item-section>
                   </q-item>
-                  <q-item clickable v-close-popup tabindex="0">
+                  <q-item
+                    @click="deleteDialog"
+                    clickable
+                    v-close-popup
+                    tabindex="0"
+                  >
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -178,9 +177,11 @@
 
 <script setup>
   import { ref, onMounted, computed } from "vue";
+  import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
-  import { sqlOperator } from "src/constants";
+  import { useI18n } from "vue-i18n";
 
+  import { sqlOperator } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
@@ -190,9 +191,13 @@
 
   import GLFormCreateDialog from "components/areas/acc/accountGL/shared/forms/CreateFormDialog.vue";
   import SLFormCreateDialog from "components/areas/acc/accountSL/shared/forms/CreateFormDialog.vue";
+  import ConfirmDialog from "components/shared/ConfirmDialog.vue";
+
+  const $q = useQuasar();
+  const { t } = useI18n();
+  const router = useRouter();
 
   const selected = ref("");
-  const $q = useQuasar();
 
   function creatAccountStore(dataSource) {
     const gridStore = useBaseInfoGrid({ sortColumn: "code" });
@@ -273,7 +278,7 @@
       await reloadData();
     });
 
-    alert(gl.title);
+    alert(gl.id);
   };
 
   const createAccountSL = (sl) => {
@@ -283,7 +288,19 @@
       await reloadData();
     });
 
-    alert(sl.title);
+    alert(sl.id);
+  };
+
+  const deleteDialog = () => {
+    $q.dialog({
+      component: ConfirmDialog,
+      componentProps: {
+        title: t("shared.labels.deleteConfirm"),
+        message: `${t("shared.labels.deleteMessage")}.`,
+        ok: t("shared.labels.delete"),
+        okColor: "deep-orange-7",
+      },
+    }).onOk(async () => {});
   };
 
   onMounted(() => {

@@ -1,15 +1,12 @@
 <template>
   <form-tool-bar
-    :title="
-      $t('shared.labels.create') +
-      ' ' +
-      $t('main-menu-items.Acc_AccountSL_View')
-    "
+    :title="title"
     :onSubmit="() => formStore.submitForm(form, action)"
   />
   <q-card class="form-container">
     <q-card-section>
       <create-form />
+      <form-guide />
     </q-card-section>
   </q-card>
 </template>
@@ -20,5 +17,9 @@
 
   import FormToolBar from "./FormToolbar.vue";
   import CreateForm from "./CreateForm.vue";
+  import FormGuide from "./FormGuide.vue";
 
+  const props = defineProps({
+    title: String,
+  });
 </script>

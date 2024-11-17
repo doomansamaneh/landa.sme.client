@@ -2,11 +2,13 @@
   <desktop
     action="edit"
     :title="
-      $t('shared.labels.edit') + ' ' + $t('main-menu-items.Acc_AccountSL_View')
+      $t('shared.labels.edit') +
+      ' ' +
+      $t('main-menu-items.Acc_AccountSL_View')
     "
   />
 </template>
 
 <script setup>
-import Desktop from "src/components/areas/acc/accountSL/shared/forms/CreateForm.vue";
+import Desktop from "src/components/areas/acc/accountSL/shared/forms/FormContainer.vue";
 </script>
