@@ -8,6 +8,7 @@ export function useBaseInfoModel({
   batchModel,
   baseRoute,
   getCreateModel,
+  id,
 }) {
   const route = useRoute();
   const router = useRouter();
@@ -17,6 +18,8 @@ export function useBaseInfoModel({
   const crudStore = useFormActions(baseRoute, localModel);
 
   async function getById(id) {
+    alert(id);
+
     if (id) await crudStore.getById(id);
     else if (getCreateModel) await crudStore.getCreateModel();
   }
@@ -29,7 +32,8 @@ export function useBaseInfoModel({
   }
 
   onMounted(() => {
-    getById(route.params.id);
+    const selectedId = id ?? route.params.id;
+    getById(selectedId);
   });
 
   return {

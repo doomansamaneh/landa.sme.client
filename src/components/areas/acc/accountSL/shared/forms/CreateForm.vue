@@ -116,6 +116,7 @@
   const props = defineProps({
     action: String,
     title: String,
+    id: String,
   });
 
   const form = ref(null);
@@ -123,10 +124,19 @@
   const formStore = useBaseInfoModel({
     model: accountSLModel,
     baseRoute: "acc/accountSL",
+    id: props.id,
   });
+
+  const submitForm = () => {
+    formStore.submitForm();
+  };
 
   //todo: modify backend to return desired array of detail type list
   const dlTypes = computed(() =>
     formStore.model.value.dlTypeIdList.map((c) => parseInt(c.id))
   );
+
+  defineExpose({
+    submitForm,
+  });
 </script>

@@ -76,7 +76,7 @@
                     clickable
                     v-close-popup
                     tabindex="0"
-                    @click="createAccountSL(prop.node)"
+                    @click="createAccountL(prop.node)"
                   >
                     <div class="q-py-sm">
                       <q-item-section avatar>
@@ -92,7 +92,7 @@
                     </q-item-section>
                   </q-item>
                   <q-item
-                    @click="createAccountSL(prop.node)"
+                    @click="createAccountGL(prop.node)"
                     clickable
                     v-close-popup
                     tabindex="0"
@@ -272,23 +272,29 @@
   };
 
   const createAccountGL = (gl) => {
+    alert(gl.title);
+
     $q.dialog({
       component: GLFormCreateDialog,
+      componentProps: {
+        id: gl.id,
+      },
     }).onOk(async () => {
       await reloadData();
     });
-
-    alert(gl.id);
   };
 
   const createAccountSL = (sl) => {
+    alert(sl.title);
+
     $q.dialog({
       component: SLFormCreateDialog,
+      componentProps: {
+        id: sl.id,
+      },
     }).onOk(async () => {
       await reloadData();
     });
-
-    alert(sl.id);
   };
 
   const deleteDialog = () => {

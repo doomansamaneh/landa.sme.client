@@ -5,7 +5,7 @@
   />
   <q-card class="form-container">
     <q-card-section>
-      <create-form />
+      <create-form :id="id" />
       <form-guide />
     </q-card-section>
   </q-card>

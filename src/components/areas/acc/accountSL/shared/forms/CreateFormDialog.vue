@@ -1,8 +1,5 @@
 <template>
-  <custom-dialog
-    ref="dialog"
-    :form="form"
-  >
+  <custom-dialog ref="dialog" :form="form">
     <template #title>
       <div class="row items-center q-gutter-sm">
         <div class="text-h6">
@@ -23,7 +20,7 @@
       </div>
     </template>
     <template #body>
-      <create-form />
+      <create-form :id="id" />
     </template>
 
     <template #actions>
@@ -38,10 +35,14 @@
   import CustomDialog from "src/components/shared/CustomDialog.vue";
   import CreateForm from "./CreateForm.vue";
   import Actions from "src/components/shared/forms/FormCardActions.vue";
-  import FormGuide from "./FormGuide.vue"
+  import FormGuide from "./FormGuide.vue";
 
   const form = ref(null);
   const dialog = ref(null);
+
+  const props = defineProps({
+    id: String,
+  });
 
   async function submitForm() {
     const response = await form.value.submitForm();

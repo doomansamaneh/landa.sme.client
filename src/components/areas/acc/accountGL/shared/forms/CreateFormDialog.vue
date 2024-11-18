@@ -21,7 +21,7 @@
     </template>
 
     <template #body>
-      <create-form />
+      <create-form :id="id" />
     </template>
 
     <template #actions>
@@ -38,6 +38,10 @@
   import Actions from "src/components/shared/forms/FormCardActions.vue";
   import FormGuide from "./FormGuide.vue";
 
+  const props = defineProps({
+    id: String
+  })
+  
   const form = ref(null);
   const dialog = ref(null);
 

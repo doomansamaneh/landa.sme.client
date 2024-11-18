@@ -76,12 +76,15 @@
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import ClLookup from "src/components/shared/lookups/AccountCLLookup.vue";
 
+  const props = defineProps({
+    id: String,
+  });
+
   const form = ref(null);
 
   const formStore = useBaseInfoModel({
     baseRoute: "acc/accountGL",
+    id: props.id,
   });
 
-  console.log(formStore.model.value.clId);
-  
 </script>
