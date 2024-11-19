@@ -17,14 +17,15 @@
     </div>
 
     <q-separator size="1px" />
-    
+
     <data-grid
       ref="dataGrid"
-      data-source="acc/accountDL/getGridData"
+      :data-source="`${baseRoute}/getGridData`"
       :title="$t('main-menu-items.Acc_AccountDL_View')"
       icon="view_comfy"
       :grid-store="gridStore"
-      create-url="/acc/accountDL/create"
+      :base-route="baseRoute"
+      :create-url="`/${baseRoute}/create`"
       separator="horizontal"
       flat
       toolbar_
@@ -95,12 +96,13 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { accountDLType, isActiveOptions } from "src/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { accountDLColumns } from "src/components/areas/acc/_composables/constants";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useFormActions } from "src/composables/useFormActions";
 
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
@@ -115,6 +117,7 @@
     sortColumn: "code",
   });
 
+  const baseRoute = "acc/accountDL";
   const dataGrid = ref(null);
 
   async function reloadData() {
@@ -122,9 +125,11 @@
   }
 
   const tableStore = useDataTable({
-    dataSource: "acc/accountDL/getGridData",
+    dataSource: `${baseRoute}/getGridData`,
     store: gridStore,
   });
+
+  const crudStore = useFormActions(baseRoute);
 
   defineExpose({
     tableStore,
