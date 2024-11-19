@@ -15,10 +15,11 @@
         align="left"
         inline-label
         narrow-indicator
+        mobile-arrows
       >
         <q-tab name="cl" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row items-center no-wrap q-py-sm">
               <q-avatar
                 rounded
                 text-color="white"
@@ -32,7 +33,7 @@
         </q-tab>
         <q-tab name="gl" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row items-center no-wrap q-py-sm">
               <q-avatar
                 rounded
                 text-color="white"
@@ -46,7 +47,7 @@
         </q-tab>
         <q-tab name="sl" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row items-center no-wrap q-py-sm">
               <q-avatar
                 rounded
                 text-color="white"
@@ -60,7 +61,7 @@
         </q-tab>
         <q-tab name="dl" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row items-center no-wrap q-py-sm">
               <q-avatar
                 rounded
                 text-color="white"
@@ -74,7 +75,7 @@
         </q-tab>
         <q-tab name="il" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row items-center no-wrap q-py-sm">
               <q-avatar
                 rounded
                 text-color="white"

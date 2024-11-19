@@ -5,11 +5,24 @@
   >
     <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="row justify-center items-center">
-        <q-avatar size="200px" class="q-my-md">
-          <img
-            class="avatar"
-            src="https://cdn.quasar.dev/img/avatar4.jpg"
-          />
+        <q-avatar
+          v-if="model.value.avatar"
+          color="primary"
+          text-color="white"
+          size="200px"
+        >
+          <img :src="model.value.avatar" />
+        </q-avatar>
+
+        <q-avatar
+          size="200px"
+          text-color="white"
+          :style="helper.generateAvatarStyle(model.value.id)"
+          v-else
+        >
+          <div class="char text-bold">
+            {{ helper.getFirstChar(model.value.name) }}
+          </div>
         </q-avatar>
       </div>
       <div class="column items-center q-gutter-y-sm q-mt-sm">

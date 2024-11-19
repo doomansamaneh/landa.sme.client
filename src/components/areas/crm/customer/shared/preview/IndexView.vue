@@ -18,11 +18,24 @@
 
   <div :style="marginTop()">
     <div class="row items-center q-gutter-md">
-      <q-avatar size="56px">
-        <img
-          class="avatar"
-          src="https://cdn.quasar.dev/img/avatar4.jpg"
-        />
+      <q-avatar
+        v-if="model.avatar"
+        color="primary"
+        text-color="white"
+        size="56px"
+      >
+        <img :src="model.avatar" />
+      </q-avatar>
+
+      <q-avatar
+        size="56px"
+        text-color="white"
+        :style="helper.generateAvatarStyle(model.id)"
+        v-else
+      >
+        <div class="char text-body1 text-bold">
+          {{ helper.getFirstChar(model.name) }}
+        </div>
       </q-avatar>
       <div class="column q-mt-md">
         <q-item-label
@@ -80,6 +93,7 @@
 <script setup>
   import { ref, computed, watch, onMounted } from "vue";
   import { useRoute } from "vue-router";
+  import { helper } from "src/helpers";
   import { useQuasar } from "quasar";
   import { guidEmpty } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
