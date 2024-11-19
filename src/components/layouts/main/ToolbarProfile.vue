@@ -16,14 +16,14 @@
       <q-list dense padding class="user-profile">
         <q-item-label class="text-h6" header>
           <div class="column items-center justify-center q-mt-md">
-            <q-avatar
-              class="profile-pic primary-gradient primary-shadow q-mx-sm"
+            <customer-avatar
+              size="72px"
               text-color="white"
-            >
-              <div class="text-bold">
-                {{ helper.getFirstChar(username) }}
-              </div>
-            </q-avatar>
+              :item="authStore.user.id"
+              :text-holder="authStore.user.fullName"
+              text-holder-class="text-h5 text-bold no-letter-spacing"
+              :avatar="avatar"
+            />
             <div class="q-mt-md">
               <span class="text-on-dark">{{ username }}</span>
             </div>
@@ -115,6 +115,7 @@
   import { useQuasar } from "quasar";
 
   import ChangePasswordDialog from "src/components/areas/scr/users/ChangePasswordDialog.vue";
+  import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const authStore = useAuthStore();
   const $q = useQuasar();

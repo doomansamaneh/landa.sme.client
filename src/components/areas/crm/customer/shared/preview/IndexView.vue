@@ -18,25 +18,14 @@
 
   <div :style="marginTop()">
     <div class="row items-center q-gutter-md">
-      <q-avatar
-        v-if="model.avatar"
-        color="primary"
-        text-color="white"
-        size="56px"
-      >
-        <img :src="model.avatar" />
-      </q-avatar>
-
-      <q-avatar
+      <customer-avatar
         size="56px"
         text-color="white"
-        :style="helper.generateAvatarStyle(model.id)"
-        v-else
-      >
-        <div class="char text-body1 text-bold">
-          {{ helper.getFirstChar(model.name) }}
-        </div>
-      </q-avatar>
+        :text-holder="model.name"
+        text-holder-class="text-h6 text-bold no-letter-spacing"
+        :avatar="model.avatar"
+        :item="model.id"
+      />
       <div class="column q-mt-md">
         <q-item-label
           class="text-body2 text-weight-700 no-letter-spacing"
@@ -103,6 +92,7 @@
   import InvoiceSummary from "./_InvoiceSummary.vue";
   import NumberWidget from "src/components/areas/dashboard/widgets/NumberWidget.vue";
   import Tabs from "./_PreviewTabs.vue";
+  import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const $q = useQuasar();
 
