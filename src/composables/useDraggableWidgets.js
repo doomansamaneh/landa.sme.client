@@ -27,7 +27,6 @@ export function useDraggableWidgets(metaData = []) {
       widgets.value.splice(draggedIndex.value, 1);
       widgets.value.splice(index, 0, draggedItem);
       draggedIndex.value = null;
-      saveLayoutToLocalStorage();
     }
   };
 
@@ -84,14 +83,11 @@ export function useDraggableWidgets(metaData = []) {
     return !widgetIds.every((id, index) => id === defaultIds[index]);
   });
 
-  watch(
-    [widgets, hiddenWidgets],
-    () => {
-      saveLayoutToLocalStorage();
-      saveHiddenWidgetsToLocalStorage();
-    },
-    { deep: true }
-  );
+  const saveLayoutChanges = () => {
+    saveLayoutToLocalStorage();
+    saveHiddenWidgetsToLocalStorage();
+    isShaking.value = false;
+  };
 
   onMounted(() => {
     loadWidgets();
@@ -109,6 +105,7 @@ export function useDraggableWidgets(metaData = []) {
     hideWidget,
     isWidgetHidden,
     resetCursor,
+    saveLayoutChanges,
     loadWidgets,
   };
 }
