@@ -44,29 +44,13 @@
         >
           <div class="row items-center q-my-xs q-pl-sm">
             <q-item-section avatar>
-              <q-avatar
-                v-if="item.avatar"
-                color="primary"
+              <customer-avatar
                 text-color="white"
                 size="52px"
                 square
-                class="border-radius-xs"
-              >
-                <img :src="item.avatar" />
-              </q-avatar>
-
-              <q-avatar
-                size="52px"
-                text-color="white"
-                square
-                class="border-radius-xs"
-                :style="helper.generateAvatarStyle(item.id)"
-                v-else
-              >
-                <div class="char text-body1 text-bold">
-                  {{ helper.getFirstChar(item.name) }}
-                </div>
-              </q-avatar>
+                :item="item.id"
+                :text-holder="item.name"
+              />
             </q-item-section>
 
             <q-item-section>
@@ -126,7 +110,9 @@
   import { onMounted, ref, watch } from "vue";
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { helper } from "src/helpers";
+
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
+  import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const contactDrawerStore = useContactDrawer();
   const deviceWidth =

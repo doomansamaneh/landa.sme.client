@@ -2,7 +2,7 @@
   <div v-if="$q.screen.gt.xs" style="margin-bottom: 34px">
     <q-page-sticky
       :style="toolbarStyle"
-      class="bg-main z-top"
+      class="bg-main z-1"
       position="top"
       expand
     >
@@ -16,7 +16,7 @@
           <div class="row items-center q-gutter-sm">
             <q-btn
               dense
-              class="bordered text-body2 no-letter-spacing"
+              class="bordered_ text-body2 no-letter-spacing"
               size="14px"
               round
               unelevated
@@ -24,24 +24,40 @@
               no-caps
               @click="draggable.toggleShake"
             >
-              <q-icon size="18px" name="o_tune" />
-            </q-btn>
-
-            <q-btn
-              v-if="draggable.isShaking.value"
-              class="bordered text-body2 no-letter-spacing"
-              rounded
-              unelevated
-              no-caps
-              size="14px"
-              @click="draggable.resetToDefault"
-            >
-              <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
-              <div class="text-body2 no-letter-spacing">
-                حالت پیشفرض
-              </div>
+              <q-icon size="24px" name="o_tune" />
             </q-btn>
           </div>
+        </div>
+
+        <q-space />
+
+        <div class="flex q-gutter-sm items-center">
+          <q-btn
+            v-if="draggable.isShaking.value"
+            class="text-body2 no-letter-spacing primary-gradient text-white primary-shadow"
+            rounded
+            unelevated
+            no-caps
+            @click="draggable.saveLayoutChanges"
+          >
+            <q-icon class="q-mr-xs" size="20px" name="o_save" />
+            <div class="text-body2 no-letter-spacing">ذخیره</div>
+          </q-btn>
+
+          <q-btn
+            v-if="draggable.isShaking.value"
+            class="bordered text-body2 no-letter-spacing"
+            rounded
+            unelevated
+            no-caps
+            size="14px"
+            @click="draggable.resetToDefault"
+          >
+            <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
+            <div class="text-body2 no-letter-spacing">
+              حالت پیشفرض
+            </div>
+          </q-btn>
         </div>
       </q-toolbar>
     </q-page-sticky>

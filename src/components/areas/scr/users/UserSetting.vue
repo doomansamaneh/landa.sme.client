@@ -25,11 +25,14 @@
                 avatar
                 :class="$q.screen.lt.sm ? 'q-mx-md' : ''"
               >
-                <q-avatar size="56px">
-                  <img
-                    src="https://cdn.quasar.dev/img/boy-avatar.png"
-                  />
-                </q-avatar>
+                <customer-avatar
+                  size="56px"
+                  text-color="white"
+                  :item="authStore.user.id"
+                  :text-holder="authStore.user.fullName"
+                  :avatar="avatar"
+                />
+
               </q-item-section>
 
               <q-item-section>
@@ -179,8 +182,12 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useMeta, useQuasar } from "quasar";
   import { useAuthStore } from "src/stores";
+
+  import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
+  import { helper } from "src/helpers/helper";
 
   const $q = useQuasar();
   const authStore = useAuthStore();
@@ -207,6 +214,13 @@
       return "o_logout";
     }
   };
+
+  const username = computed(() => {
+    if (authStore.user) return authStore.user.fullName;
+    return "";
+  });
+
+  const avatar = "https://cdn.quasar.dev/img/boy-avatar.png"
 </script>
 
 <style lang="scss">

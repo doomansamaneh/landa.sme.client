@@ -5,25 +5,14 @@
   >
     <div class="col-md-4 col-sm-4 col-xs-12">
       <div class="row justify-center items-center">
-        <q-avatar
-          v-if="model.value.avatar"
-          color="primary"
-          text-color="white"
-          size="200px"
-        >
-          <img :src="model.value.avatar" />
-        </q-avatar>
-
-        <q-avatar
+        <customer-avatar
           size="200px"
           text-color="white"
-          :style="helper.generateAvatarStyle(model.value.id)"
-          v-else
-        >
-          <div class="char text-bold">
-            {{ helper.getFirstChar(model.value.name) }}
-          </div>
-        </q-avatar>
+          :item="model.value.id"
+          :text-holder="model.value.name"
+          text-holder-class="text-bold"
+          :avatar="model.value.avatar"
+        />
       </div>
       <div class="column items-center q-gutter-y-sm q-mt-sm">
         <q-btn
@@ -188,6 +177,7 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import UnitLookup from "src/components/shared/lookups/UnitLookup.vue";
+  import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const props = defineProps({
     formStore: Object,

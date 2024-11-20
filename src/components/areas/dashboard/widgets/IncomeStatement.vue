@@ -5,7 +5,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
-        class="off-btn bordered absolute-top-right q-ma-sm z-2"
+        class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
         unelevated
