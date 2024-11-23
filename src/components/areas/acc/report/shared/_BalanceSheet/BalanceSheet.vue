@@ -26,8 +26,10 @@
     </q-card-section>
   </q-card>
 
-  <div class="row q-col-gutter-md q-mt-xs_">
-    <div class="col-md-6 col-sm-12 col-xs-12">
+  <div class="top-border q-mt-lg" />
+
+  <div class="row q-col-gutter-md q-py-md">
+    <div class="left-border col-md-6 col-sm-12 col-xs-12 q-pr-md">
       <asset :model="dataStore.model.value" />
     </div>
 

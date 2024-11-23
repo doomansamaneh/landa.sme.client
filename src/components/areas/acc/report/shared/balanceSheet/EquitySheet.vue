@@ -10,7 +10,7 @@
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
       <q-list class="q-pr-md q-pl-sm rounded-borders">
-        <balance-sheet-item-header title="سرمایه" />
+        <balance-sheet-item-header title="حقوق صاحبان سرمایه" />
 
         <balance-sheet-item
           v-for="item in equityList"
