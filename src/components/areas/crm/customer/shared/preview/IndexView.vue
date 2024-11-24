@@ -16,24 +16,25 @@
     </template>
   </tool-bar>
 
-  <div :style="marginTop()">
-    <div class="row items-center q-gutter-md">
+  <div class="q-mt-xl">
+    <div class="row items-center justify-between">
+      <div class="row items-center q-gutter-lg">
       <customer-avatar
-        size="56px"
+        size="120px"
         text-color="white"
         :text-holder="model.name"
-        text-holder-class="text-h6 text-bold no-letter-spacing"
+        text-holder-class="text-bold no-letter-spacing"
         :avatar="model.avatar"
         :item="model.id"
       />
       <div class="column q-mt-md">
         <q-item-label
-          class="text-body2 text-weight-700 no-letter-spacing"
+          class="text-h3 text-weight-700 no-letter-spacing"
         >
           {{ model.name }}
         </q-item-label>
         <q-item-label
-          class="caption-on-dark text-body2 no-letter-spacing"
+          class="caption-on-dark text-h6 no-letter-spacing"
         >
           {{ model.unitTitle }}
           <span v-if="model.jobTitle">/ {{ model.jobTitle }}</span>
@@ -41,23 +42,22 @@
       </div>
     </div>
 
-    <div class="row q-col-gutter-md q-mt-lg">
-      <!-- <div class="col"></div> -->
-      <div class="col-md-2 col-sm col-xs-12">
+    <div class="row q-col-gutter-sm">
+      <div class="col-md col-sm col-xs-12">
         <number-widget
           :value="balanceModel.debit"
           title="گردش بدهکار"
         />
       </div>
 
-      <div class="col-md-2 col-sm col-xs-12">
+      <div class="col-md col-sm col-xs-12">
         <number-widget
           :value="balanceModel.credit"
           title="گردش بستانکار"
         />
       </div>
 
-      <div class="col-md-2 col-sm col-xs-12">
+      <div class="col-md col-sm col-xs-12">
         <number-widget
           v-if="balanceModel.creditRemained"
           :value="balanceModel.creditRemained"
@@ -69,14 +69,18 @@
           title="مانده بدهکار"
         />
       </div>
+    </div>
+    </div>
 
-      <div class="col-md-6 col-sm-8 col-xs-12">
+
+    <div class="row q-col-gutter-md q-mt-lg">
+      <div class="col-md-12 col-sm-8 col-xs-12">
         <invoice-summary :customer-id="id" />
       </div>
     </div>
-  </div>
 
-  <tabs :item="model" />
+    <tabs :item="model" />
+  </div>
 </template>
 
 <script setup>
@@ -110,14 +114,6 @@
 
   const id = computed(() => props.item?.id ?? route.params.id);
 
-  const marginTop = () => {
-    return [
-      $q.screen.xs ? "margin-top:64px" : "",
-      $q.screen.sm ? "margin-top:64px" : "",
-      $q.screen.gt.sm ? "margin-top:56px" : "",
-    ];
-  };
-
   const loadData = async () => {
     await formStore.getById(id.value);
     balanceModel.value = await accountDLStore.getDlBalance(
@@ -136,14 +132,3 @@
     }
   );
 </script>
-
-<style lang="scss">
-  .profile-section {
-    width: 400px;
-  }
-
-  // .info-box:hover {
-  //   border: 1px solid var(--q-primary) !important;
-  //   cursor: pointer;
-  // }
-</style>

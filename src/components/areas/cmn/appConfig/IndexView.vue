@@ -11,11 +11,11 @@
         </div>
 
         <q-card
-          class="bordered"
+          class="bordered overflow-hidden"
           :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
         >
           <q-item
-            class="top-radius-xl q-py-md"
+            class="q-py-md"
             :class="$q.screen.gt.xs ? '' : 'q-px-none'"
             clickable
             to="/cmn/appConfig/basicInfo"
@@ -153,7 +153,7 @@
           <q-separator size="0.5px" />
 
           <q-item
-            class="bottom-radius-xl q-py-md"
+            class="q-py-md"
             :class="$q.screen.gt.xs ? '' : 'q-px-none'"
             clickable
             to="/cmn/appConfig/logoInfo"
@@ -176,11 +176,11 @@
       </div>
 
       <q-card
-        class="q-mt-xl bordered"
+        class="q-mt-xl bordered overflow-hidden"
         :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
       >
         <q-item
-          class="top-radius-xl q-py-md"
+          class="q-py-md"
           :class="$q.screen.gt.xs ? '' : 'q-px-none'"
           clickable
           to="/cmn/appConfig/import"
@@ -203,7 +203,7 @@
         <q-separator size="0.5px" />
 
         <q-item
-          class="bottom-radius-xl q-py-md"
+          class="q-py-md"
           :class="$q.screen.gt.xs ? '' : 'q-px-none'"
           clickable
           to=""
