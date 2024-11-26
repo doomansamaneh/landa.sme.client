@@ -27,14 +27,21 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach(async (to, from) => {
+  Router.beforeEach(async (to, from, next) => {
     setDocumentTitle(to);
 
-    // clear alert on route change
+    // Redirect to /dashboard if path === /
+    if (to.path === "/") {
+      next("/dashboard");
+    } else {
+      next();
+    }
+
+    // Clear alert on route change
     const alertStore = useAlertStore();
     alertStore.clear();
 
-    // redirect to login page if not logged in and trying to access a restricted page
+    // Redirect to login page if not logged in and trying to access a restricted page
     const publicPages = ["/account/login", "/account/register"];
     const authRequired = !publicPages.includes(to.path);
     const authStore = useAuthStore();
