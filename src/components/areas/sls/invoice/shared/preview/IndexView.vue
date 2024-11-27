@@ -14,7 +14,7 @@
     tax-api
     show-sale-header
     show-receipt
-  ></preview>
+  />
 </template>
 
 <script setup>
