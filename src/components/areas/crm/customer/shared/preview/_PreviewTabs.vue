@@ -1,78 +1,133 @@
 <template>
-  <q-tabs
-    v-model="tab"
-    class="text-h6_ text-weight-700_ primary-tabs q-mt-lg"
-    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-    align="left"
-    inline-label
-    narrow-indicator
-  >
-    <q-tab
-      class="q-mr-xs"
-      name="basic-info"
-      label="اطلاعات پایه"
-      icon="o_person"
-    />
-    <q-tab
-      class="q-mr-xs"
-      name="quote"
-      label="پیش‌فاکتورها"
-      icon="o_assignment"
-    />
-    <q-tab
-      class="q-mr-xs"
-      name="invoice"
-      label="فاکتورهای فروش"
-      icon="o_receipt"
-    />
-    <q-tab
-      class="q-mr-xs"
-      name="account"
-      label="خلاصه حساب"
-      icon="o_summarize"
-    />
-    <q-tab
-      class="q-mr-xs"
-      name="check"
-      label="چکهای دریافتی، پرداختی"
-      icon="o_receipt"
-    />
-    <q-tab
-      class="q-mr-xs"
-      name="log"
-      label="تاریخچه"
-      icon="o_history"
-    />
-  </q-tabs>
+  <q-card>
+    <div
+      class="row justify-between overflow-hidden primary-gradient-1 q-mt-lg"
+    >
+      <q-tabs
+        v-model="tab"
+        class="wrap-tab scroll text-h6 text-weight-700"
+        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        align="left"
+        inline-label
+        narrow-indicator
+        mobile-arrows
+      >
+        <q-tab name="basic-info" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center no-wrap q-py-sm q-my-xs">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_person"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">
+                اطلاعات پایه
+              </div>
+            </div>
+          </template>
+        </q-tab>
 
-  <q-separator size="1px" />
+        <q-tab name="quote" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center no-wrap q-py-sm q-my-xs">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_assignment"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">
+                پیش‌فاکتورها
+              </div>
+            </div>
+          </template>
+        </q-tab>
 
-  <q-tab-panels
-    class="q-mt-md"
-    v-model="tab"
-    keep-alive
-    animated
-  >
-    <q-tab-panel class="no-padding bg-main" name="basic-info">
-      <base-info v-if="item.id" :item="item" />
-    </q-tab-panel>
-    <q-tab-panel class="no-padding bg-main" name="quote">
-      <quote :item="item" />
-    </q-tab-panel>
-    <q-tab-panel class="no-padding bg-main" name="invoice">
-      <invoice :item="item" />
-    </q-tab-panel>
-    <q-tab-panel class="no-padding bg-main" name="account">
-      <account :item="item" />
-    </q-tab-panel>
-    <q-tab-panel class="no-padding bg-main" name="check">
-      <check-item :customer-id="item.id" />
-    </q-tab-panel>
-    <q-tab-panel class="no-padding bg-main" name="log">
-      <log :entity-id="item.id" entity-name="Crm.[Customer]" />
-    </q-tab-panel>
-  </q-tab-panels>
+        <q-tab name="invoice" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center no-wrap q-py-sm q-my-xs">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_receipt"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">
+                فاکتورهای فروش
+              </div>
+            </div>
+          </template>
+        </q-tab>
+
+        <q-tab name="account" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center no-wrap q-py-sm q-my-xs">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_summarize"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">خلاصه حساب</div>
+            </div>
+          </template>
+        </q-tab>
+
+        <q-tab name="check" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center no-wrap q-py-sm q-my-xs">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_receipt"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">
+                چکهای دریافتی، پرداختی
+              </div>
+            </div>
+          </template>
+        </q-tab>
+
+        <q-tab name="log" class="text-h6 text-weight-700">
+          <template #default>
+            <div class="row items-center no-wrap q-py-sm q-my-xs">
+              <q-avatar
+                rounded
+                text-color="white"
+                icon="o_history"
+                size="md"
+                class="primary-gradient primary-shadow q-mr-md"
+              />
+              <div class="text-h6 no-letter-spacing">تاریخچه</div>
+            </div>
+          </template>
+        </q-tab>
+      </q-tabs>
+    </div>
+
+    <q-separator size="1px" />
+
+    <q-card-section class="q-pa-lg">
+      <base-info v-if="tab === 'basic-info'" :item="item" />
+      <quote v-if="tab === 'quote'" :item="item" />
+      <invoice v-if="tab === 'invoice'" :item="item" />
+      <account v-if="tab === 'account'" :item="item" />
+      <check-item v-if="tab === 'check'" :customer-id="item.id" />
+      <log
+        v-if="tab === 'log'"
+        :entity-id="item.id"
+        entity-name="Crm.[Customer]"
+      />
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
@@ -92,20 +147,4 @@
 
   const $q = useQuasar();
   const tab = ref("basic-info");
-
-  const tabPanels = computed(() => {
-    return "no-border no-shadow";
-    const isXs = $q.screen.xs;
-
-    return isXs ? "no-border no-shadow" : "bordered border-radius-lg";
-    // : tab.value === "basic-info" ||
-    //   tab.value === "account" ||
-    //   tab.value === "invoice"
-    // ? $q.screen.gt.xs
-    //   ? "no-border bg-main"
-    //   : "no-border no-shadow"
-    // : tab.value === "log"
-    // ? "bordered border-radius-lg"
-    // : "bordered border-radius-lg";
-  });
 </script>

@@ -21,13 +21,31 @@
     </template>
   </tool-bar>
 
-  <q-card>
-    <card-title title="ریز گردش حساب" />
+  <q-card flat class="bordered shadow overflow-hidden">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          icon="o_repeat"
+          size="md"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title title="گردش حساب" />
+      </div>
+      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+    </div>
+
+    <q-separator size="1px" />
+
     <div id="invoicePreview" v-if="model">
       <q-card-section>
         <header-section :model="model" />
       </q-card-section>
-      <q-card-section class="q-px-none">
+      
+      <q-separator size="1px" />
+
+      <q-card-section class="q-pa-none">
         <account-item
           flat
           :columns="accountItemColumns"
@@ -46,11 +64,13 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
   import { sqlOperator } from "src/constants";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     item: Object,
@@ -72,6 +92,11 @@
 
   const route = useRoute();
   const id = computed(() => props.item?.id ?? route.params.id);
+
+  const tableStore = useDataTable({
+    dataSource: "",
+    store: null,
+  });
 
   onMounted(() => {
     crudStore.getById(id.value);

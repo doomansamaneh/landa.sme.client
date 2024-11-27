@@ -10,12 +10,12 @@
           تنظیمات
         </div>
         <q-card
-          class="bordered"
+          class="bordered overflow-hidden"
           :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
         >
           <q-card-section class="no-padding">
             <q-item
-              class="top-radius-xl q-py-md"
+              class="q-py-md"
               :class="$q.screen.gt.xs ? '' : 'q-px-none'"
               clickable
             >
@@ -89,7 +89,7 @@
             <q-separator size="0.5px" />
 
             <q-item
-              class="bottom-radius-xl q-py-sm"
+              class="q-py-sm"
               :class="$q.screen.gt.xs ? '' : 'q-px-none'"
               clickable
               to="/scr/users/settings/changePassword"
@@ -118,12 +118,12 @@
       </div>
 
       <q-card
-        class="q-mt-xl bordered"
+        class="q-mt-xl bordered overflow-hidden"
         :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
       >
         <q-card-section class="no-padding">
           <q-item
-            class="top-radius-xl q-py-sm"
+            class="q-py-sm"
             :class="$q.screen.gt.xs ? '' : 'q-px-none'"
             clickable
             to="/business"
@@ -149,7 +149,7 @@
           <q-separator size="0.5px" />
 
           <q-item
-            class="bottom-radius-xl q-py-sm"
+            class="q-py-sm"
             :class="$q.screen.gt.xs ? '' : 'q-px-none'"
             clickable
             to="/account/login"

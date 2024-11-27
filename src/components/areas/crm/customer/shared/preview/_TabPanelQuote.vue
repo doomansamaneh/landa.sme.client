@@ -1,5 +1,5 @@
 <template>
-  <data-grid :table-store="tableStore" :advanced-search="false" />
+  <data-grid :title="$t('main-menu-items.Sls_Quote_View')" :table-store="tableStore" :advanced-search="false" />
 </template>
 
 <script setup>
@@ -10,6 +10,7 @@
 
   const props = defineProps({
     item: Object,
+    title: String,
   });
 
   const tableStore = useDataTable({

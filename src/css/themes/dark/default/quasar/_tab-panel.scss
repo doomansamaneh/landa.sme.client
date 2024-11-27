@@ -45,4 +45,10 @@
   //     lighten($primary, 5)
   //   );
   // }
+
+  .wrap-tab {
+    .q-tabs__content {
+      flex-wrap: wrap !important;
+    }
+  }
 }

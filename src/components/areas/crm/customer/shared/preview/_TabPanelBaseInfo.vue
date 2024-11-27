@@ -1,14 +1,14 @@
 <template>
   <q-card
     flat
-    class="col-md col-sm-12 col-xs-12 border-radius-lg bordered"
+    class="col-md col-sm-12 col-xs-12 border-radius-lg bordered overflow-hidden"
   >
     <q-list bordered>
       <q-expansion-item
         expand-separator
         default-opened
         group="basicInfo"
-        class="basic-info first"
+        class="basic-info"
       >
         <template #header>
           <q-item-section class="q-py-sm" avatar>
@@ -76,7 +76,7 @@
       <q-expansion-item
         expand-separator
         group="basicInfo"
-        class="basic-info last"
+        class="basic-info"
       >
         <template #header>
           <q-item-section class="q-py-sm" avatar>

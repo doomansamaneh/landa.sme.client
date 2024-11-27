@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  import Sheet from "src/components/areas/acc/report/shared/BalanceSheet.vue";
+  import Sheet from "src/components/areas/acc/report/shared/_BalanceSheet/BalanceSheet.vue";
 </script>

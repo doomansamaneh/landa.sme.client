@@ -8,7 +8,7 @@
           rounded
           text-color="white"
           size="md"
-          icon="o_line_style"
+          icon="o_group"
           class="primary-gradient primary-shadow"
         />
         <card-title :title="title" />
@@ -22,9 +22,7 @@
 
     <q-separator size="1px" />
 
-    <q-card-section class="q-px-none">
-      <data-grid :table-store="tableStore" :base-route="baseRoute" />
-    </q-card-section>
+    <data-grid :table-store="tableStore" :base-route="baseRoute" />
   </q-card>
 </template>
 

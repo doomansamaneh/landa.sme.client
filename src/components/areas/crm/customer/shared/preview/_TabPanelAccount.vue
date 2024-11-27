@@ -105,7 +105,7 @@
     class="border-radius-lg"
     flat
     bordered
-    toolbar
+    toolbar_
     multi-select
     data-source="acc/report/getItemAllData"
     :columns="accountItemColumns"
