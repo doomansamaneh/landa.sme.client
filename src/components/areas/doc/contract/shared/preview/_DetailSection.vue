@@ -1,36 +1,54 @@
 <template>
-  <q-card-section class="q-pb-none">
+  <div class="row justify-between overflow-hidden primary-gradient-1">
     <q-tabs
       v-model="tab"
-      class="text-h6 text-weight-700 primary-tabs"
+      class="text-h6 no-letter-spacing text-weight-700"
       :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
       :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
       align="left"
       inline-label
       narrow-indicator
     >
-      <q-tab name="main-info" class="q-mx-xs">
+      <q-tab name="main-info">
         <template #default>
-          <q-icon name="o_arrow_downward" size="xs" class="q-mr-sm" />
-          <div class="text-body3 text-bold">ریز گردش حساب</div>
+          <div class="row q-py-sm q-my-xs items-center">
+            <q-avatar
+              rounded
+              text-color="white"
+              icon="o_arrow_downward"
+              size="md"
+              class="primary-gradient primary-shadow q-mr-md"
+            />
+            <div class="text-h6 no-letter-spacing">ریز گردش حساب</div>
+          </div>
         </template>
       </q-tab>
-      <q-tab name="log" class="q-mx-xs">
+      <q-tab name="log">
         <template #default>
-          <q-icon name="o_history" size="xs" class="q-mr-sm" />
-          <div class="text-body3 text-bold">تاریخچه</div>
+          <div class="row q-py-sm q-my-xs items-center">
+            <q-avatar
+              rounded
+              text-color="white"
+              icon="o_history"
+              size="md"
+              class="primary-gradient primary-shadow q-mr-md"
+            />
+            <div class="text-h6 no-letter-spacing">تاریخچه</div>
+          </div>
         </template>
       </q-tab>
     </q-tabs>
-  </q-card-section>
+  </div>
 
-  <q-separator></q-separator>
+  <q-separator />
 
-  <q-tab-panels v-model="tab" animated keep-alive class="transparent">
-    <q-tab-panel
-      name="main-info"
-      class="no-padding_ q-mx-none q-px-none"
-    >
+  <q-tab-panels
+    class="transparent q-pa-lg"
+    v-model="tab"
+    animated
+    keep-alive
+  >
+    <q-tab-panel name="main-info" class="no-padding">
       <account-item flat :filter-expression="filterExpression" />
     </q-tab-panel>
 

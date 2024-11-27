@@ -26,11 +26,29 @@
     </template>
   </tool-bar>
 
-  <q-card>
-    <card-title title="قرارداد" />
-    <q-card-section>
+  <q-card flat class="bordered shadow overflow-hidden">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          icon="o_subject"
+          size="md"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title :title="title" />
+      </div>
+      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+    </div>
+
+    <q-separator size="1px" />
+
+    <q-card-section class="q-pb-none q-px-md">
       <header-section :model="model" />
     </q-card-section>
+
+    <q-separator />
+
     <detail-section v-if="model" :model="model" />
   </q-card>
 </template>
@@ -45,6 +63,7 @@
   import HeaderSection from "./_HeaderSection.vue";
   import DetailSection from "./_DetailSection.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     item: Object,

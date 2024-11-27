@@ -116,7 +116,9 @@
     <q-separator size="1px" />
 
     <q-card-section class="q-pa-lg">
-      <base-info v-if="tab === 'basic-info'" :item="item" />
+      <template v-if="tab === 'basic-info'">
+        <base-info v-if="item.id" :item="item" />
+      </template>
       <quote v-if="tab === 'quote'" :item="item" />
       <invoice v-if="tab === 'invoice'" :item="item" />
       <account v-if="tab === 'account'" :item="item" />

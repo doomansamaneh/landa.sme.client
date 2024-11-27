@@ -72,7 +72,7 @@
     <q-tab-panel class="no-padding" name="quote">
       <product-stock-item
         ref="dataGrid"
-        toolbar
+        toolbar_
         :data-source="dataSource"
         :grid-store="gridStore"
       />

@@ -1,5 +1,5 @@
 <template>
-  <q-card v-if="dataStore.data?.value?.total" flat bordered>
+  <q-card flat class="bordered shadow" v-if="dataStore.data?.value?.total">
     <q-card-section class="q-pa-lg">
       <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
     </q-card-section>

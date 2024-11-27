@@ -1,83 +1,63 @@
 <template>
-  <tool-bar buttons :title="title" back-button :inside="inside">
-    <template #buttons>
-      <q-btn
-        :to="`/crm/customer/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-        <!-- ({{ tableStore?.activeRow?.value?.code }}) -->
-      </q-btn>
-    </template>
-  </tool-bar>
+  <toolbar-container :inside="inside" :table-store="tableStore" />
 
-  <div class="q-mt-xl">
-    <div class="row items-center justify-between">
-      <div class="row items-center q-gutter-lg">
-      <customer-avatar
-        size="120px"
-        text-color="white"
-        :text-holder="model.name"
-        text-holder-class="text-bold no-letter-spacing"
-        :avatar="model.avatar"
-        :item="model.id"
-      />
-      <div class="column q-mt-md">
-        <q-item-label
-          class="text-h3 text-weight-700 no-letter-spacing"
-        >
-          {{ model.name }}
-        </q-item-label>
-        <q-item-label
-          class="caption-on-dark text-h6 no-letter-spacing"
-        >
-          {{ model.unitTitle }}
-          <span v-if="model.jobTitle">/ {{ model.jobTitle }}</span>
-        </q-item-label>
+  <div class="q-pt-md">
+    <div class="row q-col-gutter-lg">
+      <div class="col-md row items-center q-gutter-md no-wrap">
+        <customer-avatar
+          size="120px"
+          text-color="white"
+          :text-holder="model.name"
+          text-holder-class="text-bold no-letter-spacing"
+          :avatar="model.avatar"
+          :item="model.id"
+        />
+        <div>
+          <div
+            class="ellipsis-2-lines text-h4 line-height-lg text-weight-700 no-letter-spacing"
+          >
+            {{ model.name }}
+          </div>
+          <div
+            class="ellipsis caption-on-dark text-h5 no-letter-spacing"
+          >
+            {{ model.unitTitle }}
+            <span v-if="model.jobTitle">/ {{ model.jobTitle }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="row q-col-gutter-lg">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <number-widget
+              :value="balanceModel.debit"
+              title="گردش بدهکار"
+            />
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <number-widget
+              :value="balanceModel.credit"
+              title="گردش بستانکار"
+            />
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <number-widget
+              v-if="balanceModel.creditRemained"
+              :value="balanceModel.creditRemained"
+              title="مانده بستانکار"
+            />
+            <number-widget
+              v-else
+              :value="balanceModel.debitRemained"
+              title="مانده بدهکار"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="row q-col-gutter-sm">
-      <div class="col-md col-sm col-xs-12">
-        <number-widget
-          :value="balanceModel.debit"
-          title="گردش بدهکار"
-        />
-      </div>
-
-      <div class="col-md col-sm col-xs-12">
-        <number-widget
-          :value="balanceModel.credit"
-          title="گردش بستانکار"
-        />
-      </div>
-
-      <div class="col-md col-sm col-xs-12">
-        <number-widget
-          v-if="balanceModel.creditRemained"
-          :value="balanceModel.creditRemained"
-          title="مانده بستانکار"
-        />
-        <number-widget
-          v-else
-          :value="balanceModel.debitRemained"
-          title="مانده بدهکار"
-        />
-      </div>
-    </div>
-    </div>
-
-
-    <div class="row q-col-gutter-md q-mt-lg">
-      <div class="col-md-12 col-sm-8 col-xs-12">
-        <invoice-summary :customer-id="id" />
-      </div>
-    </div>
+    <invoice-summary class="q-mt-lg" :customer-id="id" />
 
     <tabs :item="model" />
   </div>
@@ -92,7 +72,7 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { useAccountDL } from "src/components/areas/acc/_composables/useAccountDL";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
   import InvoiceSummary from "./_InvoiceSummary.vue";
   import NumberWidget from "src/components/areas/dashboard/widgets/NumberWidget.vue";
   import Tabs from "./_PreviewTabs.vue";

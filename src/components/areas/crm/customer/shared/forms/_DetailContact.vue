@@ -5,7 +5,7 @@
       unelevated
       rounded
       padding="6px 12px"
-      class="primary-gradient text-white text-on-dark"
+      class="primary-gradient text-white text-on-dark q-mb-lg"
     >
       <q-icon
         name="o_add"
@@ -90,88 +90,90 @@
       </q-menu>
     </q-btn>
 
-    <div
-      v-for="(item, index) in formStore.model.value
-        .customerContactPhones"
-      :key="index"
-    >
-      <contact-item
-        :item="item"
-        :index="index"
-        title="تلفن"
-        @item-deleted="formStore.deletePhone(index)"
-        @item-added="formStore.addPhone(index)"
-        :type-id="contactType.phone"
+    <div class="q-col-gutter-lg">
+      <div
+        v-for="(item, index) in formStore.model.value
+          .customerContactPhones"
+        :key="index"
       >
-        <template #header-title>
-          <q-icon name="o_call" size="18px" class="q-mx-sm" />
-          <span>تلفن</span>
-        </template>
-      </contact-item>
-    </div>
+        <contact-item
+          :item="item"
+          :index="index"
+          title="تلفن"
+          @item-deleted="formStore.deletePhone(index)"
+          @item-added="formStore.addPhone(index)"
+          :type-id="contactType.phone"
+        >
+          <template #header-title>
+            <q-icon name="o_call" size="18px" class="q-mx-sm" />
+            <span>تلفن</span>
+          </template>
+        </contact-item>
+      </div>
 
-    <div
-      v-for="(item, index) in formStore.model.value
-        .customerContactMobiles"
-      :key="index"
-    >
-      <contact-item
-        :item="item"
-        :index="index"
-        title="موبایل"
-        @item-deleted="formStore.deleteMobile(index)"
-        @item-added="formStore.addMobile(index)"
-        :type-id="contactType.mobile"
+      <div
+        v-for="(item, index) in formStore.model.value
+          .customerContactMobiles"
+        :key="index"
       >
-        <template #header-title>
-          <q-icon
-            name="o_phone_android"
-            size="18px"
-            class="q-mx-sm"
-          />
-          <span>موبایل</span>
-        </template>
-      </contact-item>
-    </div>
+        <contact-item
+          :item="item"
+          :index="index"
+          title="موبایل"
+          @item-deleted="formStore.deleteMobile(index)"
+          @item-added="formStore.addMobile(index)"
+          :type-id="contactType.mobile"
+        >
+          <template #header-title>
+            <q-icon
+              name="o_phone_android"
+              size="18px"
+              class="q-mx-sm"
+            />
+            <span>موبایل</span>
+          </template>
+        </contact-item>
+      </div>
 
-    <div
-      v-for="(item, index) in formStore.model.value
-        .customerContactEmails"
-      :key="index"
-    >
-      <contact-item
-        :item="item"
-        :index="index"
-        title="ایمیل"
-        @item-deleted="formStore.deleteEmail(index)"
-        @item-added="formStore.addEmail(index)"
-        :type-id="contactType.email"
+      <div
+        v-for="(item, index) in formStore.model.value
+          .customerContactEmails"
+        :key="index"
       >
-        <template #header-title>
-          <q-icon name="o_email" size="18px" class="q-mx-sm" />
-          <span>ایمیل</span>
-        </template>
-      </contact-item>
-    </div>
+        <contact-item
+          :item="item"
+          :index="index"
+          title="ایمیل"
+          @item-deleted="formStore.deleteEmail(index)"
+          @item-added="formStore.addEmail(index)"
+          :type-id="contactType.email"
+        >
+          <template #header-title>
+            <q-icon name="o_email" size="18px" class="q-mx-sm" />
+            <span>ایمیل</span>
+          </template>
+        </contact-item>
+      </div>
 
-    <div
-      v-for="(item, index) in formStore.model.value
-        .customerContactWebsites"
-      :key="index"
-    >
-      <contact-item
-        :item="item"
-        :index="index"
-        title="وب سایت"
-        @item-deleted="formStore.deleteWebsite(index)"
-        @item-added="formStore.addWebsite(index)"
-        :type-id="contactType.website"
+      <div
+        v-for="(item, index) in formStore.model.value
+          .customerContactWebsites"
+        :key="index"
       >
-        <template #header-title>
-          <q-icon name="o_public" size="18px" class="q-mx-sm" />
-          <span>وب سایت</span>
-        </template>
-      </contact-item>
+        <contact-item
+          :item="item"
+          :index="index"
+          title="وب سایت"
+          @item-deleted="formStore.deleteWebsite(index)"
+          @item-added="formStore.addWebsite(index)"
+          :type-id="contactType.website"
+        >
+          <template #header-title>
+            <q-icon name="o_public" size="18px" class="q-mx-sm" />
+            <span>وب سایت</span>
+          </template>
+        </contact-item>
+      </div>
     </div>
   </template>
 </template>

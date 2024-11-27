@@ -1,6 +1,6 @@
 <template>
-  <q-card class="fit bordered no-padding" flat>
-    <q-card-section class="col q-px-lg">
+  <q-card class="fit shadow bordered no-padding" flat>
+    <q-card-section class="q-px-lg">
       <div class="text-h6 text-bold q-mt-sm q-mb-xs">
         {{ helper.formatNumber(value) }}
       </div>
