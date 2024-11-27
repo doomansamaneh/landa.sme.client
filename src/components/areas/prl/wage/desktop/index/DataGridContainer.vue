@@ -11,7 +11,6 @@
         />
         <card-title :title="$t('main-menu-items.Prl_Wage_View')" />
       </div>
-      <data-grid-toolbar :table-store="tableStore" class="q-pa-md" />
     </div>
 
     <q-separator size="1px" />
