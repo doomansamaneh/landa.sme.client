@@ -62,7 +62,7 @@
   <q-separator size="1px" />
 
   <q-tab-panels v-model="tab" keep-alive animated>
-    <q-tab-panel class="no-padding" name="basic-info">
+    <q-tab-panel class="q-pa-lg" name="basic-info">
       <account-item
         flat
         :columns="accountItemColumns"
@@ -72,7 +72,7 @@
     <q-tab-panel class="no-padding" name="quote">
       <product-stock-item
         ref="dataGrid"
-        toolbar
+        toolbar_
         :data-source="dataSource"
         :grid-store="gridStore"
       />

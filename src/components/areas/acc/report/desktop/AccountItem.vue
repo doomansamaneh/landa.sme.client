@@ -1,111 +1,129 @@
 <template>
-  <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="localGridStore"
-    separator="horizontal"
-    multiSelect
-    flat
-    numbered
-    wrapCells_
-    expandable
-    toolbar_
-  >
-    <template #cell-credit="{ item }">
-      {{ helper.formatNumber(item.credit) }}
-    </template>
-
-    <template #cell-debit="{ item }">
-      debit: {{ helper.formatNumber(item.credit) }}
-    </template>
-
-    <template #cell-inlineDebit="{ item }">
-      {{ helper.formatNumber(item.inlineDebit) }}
-    </template>
-
-    <template #cell-debitRemained="{ item }">
-      {{ helper.formatNumber(item.debitRemained) }}
-    </template>
-
-    <template #cell-creditRemained="{ item }">
-      {{ helper.formatNumber(item.creditRemained) }}
-    </template>
-
-    <template #cell-voucherSubject="{ item }">
-      {{ item.voucherSubject }}
-
-      <div
-        class="text-caption-sm"
-        :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
-        v-if="item.comment"
-      >
-        {{ item.comment }}
+  <q-card flat class="bordered shadow overflow-hidden">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          icon="o_repeat"
+          size="md"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title title="گردش حساب" />
       </div>
-    </template>
+      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+    </div>
 
-    <template #footer-subtotal="{ selectedRows }">
-      <td :colspan="colspan" class="text-right">
-        {{ $t("shared.labels.selectedRows") }}
-      </td>
-      <td>
-        <b>
-          {{
-            helper
-              .getSubtotal(selectedRows, "debitRemained")
-              .toLocaleString()
-          }}
-        </b>
-      </td>
-      <td>
-        <b>
-          {{
-            helper
-              .getSubtotal(selectedRows, "creditRemained")
-              .toLocaleString()
-          }}
-        </b>
-      </td>
-      <td colspan="100%">
-        <b v-if="showInlineDebit">
-          {{
-            helper.formatNumber(
-              helper.getSubtotal(selectedRows, "debitRemained") -
-                helper.getSubtotal(selectedRows, "creditRemained")
-            )
-          }}
-        </b>
-      </td>
-    </template>
+    <q-separator size="1px" />
 
-    <template #footer-total="{ summary }">
-      <td :colspan="colspan" class="text-right">
-        {{ $t("shared.labels.total") }}
-      </td>
-      <td>
-        <b>{{ helper.formatNumber(summary?.debitRemained) }}</b>
-      </td>
-      <td>
-        <b>{{ helper.formatNumber(summary?.creditRemained) }}</b>
-      </td>
-      <td colspan="100%">
-        <b v-if="showInlineDebit">
-          {{
-            helper.formatNumber(
-              summary?.debitRemained - summary?.creditRemained
-            )
-          }}
-        </b>
-      </td>
-    </template>
+    <data-grid
+      ref="dataGrid"
+      :data-source="dataSource"
+      :grid-store="localGridStore"
+      separator="horizontal"
+      multiSelect
+      flat
+      numbered
+      wrapCells_
+      expandable
+      toolbar_
+    >
+      <template #cell-credit="{ item }">
+        {{ helper.formatNumber(item.credit) }}
+      </template>
 
-    <template #expand="{ item }">
-      <voucher-preview
-        :voucher-id="item.voucherId"
-        :voucher-item-id="item.id"
-        inside
-      />
-    </template>
-  </data-grid>
+      <template #cell-debit="{ item }">
+        debit: {{ helper.formatNumber(item.credit) }}
+      </template>
+
+      <template #cell-inlineDebit="{ item }">
+        {{ helper.formatNumber(item.inlineDebit) }}
+      </template>
+
+      <template #cell-debitRemained="{ item }">
+        {{ helper.formatNumber(item.debitRemained) }}
+      </template>
+
+      <template #cell-creditRemained="{ item }">
+        {{ helper.formatNumber(item.creditRemained) }}
+      </template>
+
+      <template #cell-voucherSubject="{ item }">
+        {{ item.voucherSubject }}
+
+        <div
+          class="text-caption-sm"
+          :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
+          v-if="item.comment"
+        >
+          {{ item.comment }}
+        </div>
+      </template>
+
+      <template #footer-subtotal="{ selectedRows }">
+        <td :colspan="colspan" class="text-right">
+          {{ $t("shared.labels.selectedRows") }}
+        </td>
+        <td>
+          <b>
+            {{
+              helper
+                .getSubtotal(selectedRows, "debitRemained")
+                .toLocaleString()
+            }}
+          </b>
+        </td>
+        <td>
+          <b>
+            {{
+              helper
+                .getSubtotal(selectedRows, "creditRemained")
+                .toLocaleString()
+            }}
+          </b>
+        </td>
+        <td colspan="100%">
+          <b v-if="showInlineDebit">
+            {{
+              helper.formatNumber(
+                helper.getSubtotal(selectedRows, "debitRemained") -
+                  helper.getSubtotal(selectedRows, "creditRemained")
+              )
+            }}
+          </b>
+        </td>
+      </template>
+
+      <template #footer-total="{ summary }">
+        <td :colspan="colspan" class="text-right">
+          {{ $t("shared.labels.total") }}
+        </td>
+        <td>
+          <b>{{ helper.formatNumber(summary?.debitRemained) }}</b>
+        </td>
+        <td>
+          <b>{{ helper.formatNumber(summary?.creditRemained) }}</b>
+        </td>
+        <td colspan="100%">
+          <b v-if="showInlineDebit">
+            {{
+              helper.formatNumber(
+                summary?.debitRemained - summary?.creditRemained
+              )
+            }}
+          </b>
+        </td>
+      </template>
+
+      <template #expand="{ item }">
+        <voucher-preview
+          :voucher-id="item.voucherId"
+          :voucher-item-id="item.id"
+          inside
+        />
+      </template>
+    </data-grid>
+  </q-card>
 </template>
 
 <script setup>
@@ -117,6 +135,8 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import VoucherPreview from "../../voucher/shared/preview/IndexView.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     dataSource: {

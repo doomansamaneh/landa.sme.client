@@ -54,16 +54,15 @@
             </q-item-section>
 
             <q-item-section>
-              <q-item-label
-                class="ellipsis text-on-caption text-caption text-bold q-py-xs"
+              <div
+                class="ellipsis text-on-caption text-caption text-bold"
                 style="width: 200px"
               >
                 {{ item.code }} {{ item.name }}
-              </q-item-label>
+              </div>
               <div
                 v-if="item.locationName"
                 class="ellipsis text-body3 no-letter-spacing q-mt-xs"
-                style="width: 200px"
               >
                 <q-icon
                   name="o_location_on"

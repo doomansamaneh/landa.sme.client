@@ -1,73 +1,83 @@
 <template>
-  <q-card bordered>
-    <card-title :title="title" />
-    <q-card-section class="q-px-none">
-      <data-grid
-        ref="dataGrid"
-        :data-source="dataSource"
-        :grid-store="gridStore"
-        separator="horizontal"
-        flat
-        multiSelect
-        numbered
-        bordered_
-        expandable
-      >
-        <template #filter-isActive="{ item }">
-          <custom-select
-            v-model="item.value"
-            :options="
-              helper.getEnumOptions(
-                isActiveOptions,
-                'isActiveOptions'
-              )
-            "
-            @update:model-value="reloadData"
-          />
-        </template>
+  <q-card flat class="bordered shadow overflow-hidden">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          icon="o_subject"
+          size="md"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title :title="title" />
+      </div>
+      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+    </div>
 
-        <template #cell-isActive="{ item }">
-          <is-active :is-active="item.isActive" />
-        </template>
+    <q-separator size="1px" />
 
-        <template #cell-income="{ item }">
-          {{ helper.formatNumber(item.income) }}
-        </template>
-        <template #cell-no="{ item }">
-          {{ item.no }}
-          <div v-if="item.taxCode">
-            <small class="caption-on-dark">
-              tax: {{ item.taxCode }}
-            </small>
-          </div>
-        </template>
-        <template #cell-expense="{ item }">
-          {{ helper.formatNumber(item.expense) }}
-        </template>
-        <template #cell-netIncome="{ item }">
-          {{ helper.formatNumber(item.netIncome) }}
-        </template>
-        <template #cell-startDate="{ item }">
-          {{ item.startDate?.substring(0, 10) }}
-        </template>
-        <template #cell-finishDate="{ item }">
-          {{ item.finishDate?.substring(0, 10) }}
-        </template>
+    <data-grid
+      ref="dataGrid"
+      :data-source="dataSource"
+      :grid-store="gridStore"
+      separator="horizontal"
+      flat
+      multiSelect
+      numbered
+      bordered_
+      expandable
+    >
+      <template #filter-isActive="{ item }">
+        <custom-select
+          v-model="item.value"
+          :options="
+            helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
+          "
+          @update:model-value="reloadData"
+        />
+      </template>
 
-        <template #expand="{ item }">
-          <preview inside :item="item" />
-        </template>
+      <template #cell-isActive="{ item }">
+        <is-active :is-active="item.isActive" />
+      </template>
 
-        <template #cell-actions="{ item }">
-          <row-tool-bar
-            :base-route="baseRoute"
-            :item="item"
-            :table-store="tableStore"
-            :crud-store="crudStore"
-          />
-        </template>
-      </data-grid>
-    </q-card-section>
+      <template #cell-income="{ item }">
+        {{ helper.formatNumber(item.income) }}
+      </template>
+      <template #cell-no="{ item }">
+        {{ item.no }}
+        <div v-if="item.taxCode">
+          <small class="caption-on-dark">
+            tax: {{ item.taxCode }}
+          </small>
+        </div>
+      </template>
+      <template #cell-expense="{ item }">
+        {{ helper.formatNumber(item.expense) }}
+      </template>
+      <template #cell-netIncome="{ item }">
+        {{ helper.formatNumber(item.netIncome) }}
+      </template>
+      <template #cell-startDate="{ item }">
+        {{ item.startDate?.substring(0, 10) }}
+      </template>
+      <template #cell-finishDate="{ item }">
+        {{ item.finishDate?.substring(0, 10) }}
+      </template>
+
+      <template #expand="{ item }">
+        <preview inside :item="item" :title="title" />
+      </template>
+
+      <template #cell-actions="{ item }">
+        <row-tool-bar
+          :base-route="baseRoute"
+          :item="item"
+          :table-store="tableStore"
+          :crud-store="crudStore"
+        />
+      </template>
+    </data-grid>
   </q-card>
 </template>
 
@@ -82,6 +92,7 @@
   import IsActive from "src/components/shared/IsActive.vue";
   import Preview from "../../shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     gridStore: Object,

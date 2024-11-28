@@ -9,7 +9,7 @@
     >
       <q-tabs
         v-model="tab"
-        class="text-h6 text-weight-700 primary-tabs"
+        class="col text-h6 text-weight-700 primary-tabs"
         :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
         :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
         align="left"
@@ -18,7 +18,7 @@
       >
         <q-tab name="pg" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row no-wrap items-center">
               <q-avatar
                 rounded
                 text-color="white"
@@ -34,7 +34,7 @@
         </q-tab>
         <q-tab name="prd" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row no-wrap items-center">
               <q-avatar
                 rounded
                 text-color="white"
@@ -50,7 +50,7 @@
         </q-tab>
         <q-tab name="crm" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row no-wrap items-center">
               <q-avatar
                 rounded
                 text-color="white"
@@ -64,7 +64,7 @@
         </q-tab>
         <q-tab name="prdCrm" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row no-wrap items-center">
               <q-avatar
                 rounded
                 text-color="white"
@@ -80,7 +80,7 @@
         </q-tab>
         <q-tab name="il" class="text-h6 text-weight-700">
           <template #default>
-            <div class="row items-center">
+            <div class="row no-wrap items-center">
               <q-avatar
                 rounded
                 text-color="white"
@@ -94,7 +94,11 @@
         </q-tab>
       </q-tabs>
 
-      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+      <data-grid-toolbar
+        dense
+        class="col-1 flex justify-end q-pa-md"
+        :table-store="tableStore"
+      />
     </div>
 
     <q-separator size="1px" />

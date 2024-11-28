@@ -36,7 +36,7 @@
             {{ $t("shared.labels.contact") }}
           </q-item-section>
         </template>
-        <contact-info :item="item"></contact-info>
+        <contact-info :item="item" />
       </q-expansion-item>
 
       <q-expansion-item
@@ -53,7 +53,7 @@
             {{ $t("shared.contactType.address") }}
           </q-item-section>
         </template>
-        <address-info :item="item"></address-info>
+        <address-info :item="item" />
       </q-expansion-item>
 
       <q-expansion-item

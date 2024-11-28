@@ -1,17 +1,5 @@
 <template>
-  <q-card-section>
-    <div class="text-center">
-      <!-- <div class="text-h6 no-letter-spacing">
-        {{ appConfigStore.model?.value?.companySetting.name }}
-      </div> -->
-      <div class="text-h6 no-letter-spacing text-weight-700">
-        حقوق و دستمزد ماهانه
-      </div>
-    </div>
-  </q-card-section>
-
-  <q-separator size="0.5px" />
-
+  
   <q-card-section class="q-gutter-y-md q-px-lg q-mx-sm">
     <div class="row">
       <span class="col-1 text-caption text-bold">

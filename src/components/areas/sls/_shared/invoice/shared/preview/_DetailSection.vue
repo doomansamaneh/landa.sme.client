@@ -75,38 +75,50 @@
 
     <template v-if="model.id">
       <slot name="body">
-        <q-card-section
-          :class="$q.screen.xs ? 'no-padding' : 'q-pb-none'"
-        >
+        <q-card-section class="no-padding">
           <q-tabs
+            align="left"
             v-model="tab"
             inline-label
-            align="center"
+            narrow-indicator
+            mobile-arrows
             :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
             :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
           >
             <q-tab name="main-info">
               <template #default>
-                <q-icon
-                  name="o_arrow_downward"
-                  size="xs"
-                  class="q-mr-sm"
-                />
-                <div class="text-body3 text-bold">
-                  دریافت و پرداخت
+                <div class="row items-center no-wrap q-gutter-xs">
+                  <q-icon size="20px" name="o_arrow_downward" />
+                  <div
+                    class="text-body2 text-weight-700 no-letter-spacing"
+                  >
+                    دریافت و پرداخت
+                  </div>
                 </div>
               </template>
             </q-tab>
             <q-tab name="tax" v-if="taxApi">
               <template #default>
-                <q-icon name="o_paid" size="xs" class="q-mr-sm" />
-                <div class="text-body3 text-bold">مالیات</div>
+                <div class="row items-center no-wrap q-gutter-xs">
+                  <q-icon size="20px" name="o_paid" />
+                  <div
+                    class="text-body2 text-weight-700 no-letter-spacing"
+                  >
+                    مالیات
+                  </div>
+                </div>
               </template>
             </q-tab>
             <q-tab name="log">
               <template #default>
-                <q-icon name="o_history" size="xs" class="q-mr-sm" />
-                <div class="text-body3 text-bold">تاریخچه</div>
+                <div class="row items-center no-wrap q-gutter-xs">
+                  <q-icon size="20px" name="o_history" />
+                  <div
+                    class="text-body2 text-weight-700 no-letter-spacing"
+                  >
+                    تاریخچه
+                  </div>
+                </div>
               </template>
             </q-tab>
           </q-tabs>

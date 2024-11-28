@@ -41,8 +41,22 @@
     </template>
   </tool-bar>
 
-  <q-card>
-    <card-title title="گردش حساب" />
+  <q-card flat class="bordered shadow overflow-hidden">
+    <div class="row justify-between primary-gradient-1">
+      <div class="row items-center q-px-md">
+        <q-avatar
+          rounded
+          text-color="white"
+          icon="o_repeat"
+          size="md"
+          class="primary-gradient primary-shadow"
+        />
+        <card-title title="گردش حساب" />
+      </div>
+      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+    </div>
+
+    <q-separator size="1px" />
 
     <q-card-section>
       <div class="row q-mb-sm">
@@ -82,6 +96,7 @@
   import AccountItem from "./AccountItem.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     inside: Boolean,
