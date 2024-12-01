@@ -167,7 +167,7 @@
       >
         <page-bar
           :pagination="tableStore.pagination.value"
-          @page-changed="tableStore.reloadData"
+          @page-changed="reloadData"
         >
           <template #reload>
             <q-btn
@@ -177,7 +177,7 @@
               dense
               unelevated
               icon="o_refresh"
-              @click="tableStore.reloadData"
+              @click="reloadData"
             />
           </template>
         </page-bar>
@@ -346,7 +346,7 @@
       >
         <page-bar
           :pagination="tableStore.pagination.value"
-          @page-changed="tableStore.reloadData"
+          @page-changed="reloadData"
         >
           <template #reload>
             <q-btn
@@ -356,7 +356,7 @@
               dense
               unelevated
               icon="o_refresh"
-              @click="tableStore.reloadData"
+              @click="reloadData"
             />
           </template>
         </page-bar>
@@ -491,7 +491,7 @@
       }
     } else {
       tableStore.setSearchTerm(null);
-      await tableStore.reloadData();
+      reloadData();
       showDialog();
     }
   }
@@ -541,12 +541,12 @@
   }
 
   async function showPopup() {
-    await tableStore.reloadData();
+    reloadData();
     popup.value?.show();
   }
 
   async function showDialog() {
-    await tableStore.reloadData();
+    reloadData();
     lookupDialog.value?.show();
   }
 
@@ -565,26 +565,9 @@
 
   const lookupColumns = computed(() => props.columns.split(","));
 
-  const cardDefaultClass = computed(
-    () =>
-      " lookup-container q-table__card q-table--bordered_q-table--flat" +
-      ($q.dark.isActive === true ? " q-table__card--dark q-dark" : "")
-  );
-
-  const __containerClass = computed(
-    () =>
-      `q-table__container _q-table--horizontal-separator column _no-wrap` +
-      cardDefaultClass.value +
-      ($q.dark?.isActive === true ? " q-table--dark" : "")
-  );
-
-  const containerClass = computed(
-    () =>
-      __containerClass.value +
-      (tableStore.showLoader.value === true
-        ? " q-table--loading"
-        : "")
-  );
+  const reloadData = async () => {
+    await tableStore.reloadData();
+  };
 
   defineExpose({
     setIdText,
