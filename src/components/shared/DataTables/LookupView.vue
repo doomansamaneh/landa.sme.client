@@ -546,7 +546,7 @@
   }
 
   async function showDialog() {
-    //await tableStore.reloadData();
+    await tableStore.reloadData();
     lookupDialog.value?.show();
   }
 

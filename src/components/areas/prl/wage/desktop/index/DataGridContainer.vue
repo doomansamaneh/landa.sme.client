@@ -10,7 +10,10 @@
           class="primary-gradient primary-shadow"
         />
         <card-title :title="$t('main-menu-items.Prl_Wage_View')" />
+        
       </div>
+
+      <data-grid-toolbar />
     </div>
 
     <q-separator size="1px" />
@@ -23,6 +26,7 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import DataGridToolbar from "src/components/shared/dataTables/desktop/DataGridToolbar.vue";
   import DataGrid from "./DataGrid.vue";
 
   const props = defineProps({

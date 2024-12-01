@@ -299,6 +299,10 @@
     transform: scale(1.05);
   }
 
+  .clickable-btn.q-btn--dense {
+      padding: 0 !important;
+    }
+
   .mouse-icon {
     width: 18px;
     height: 18px;
