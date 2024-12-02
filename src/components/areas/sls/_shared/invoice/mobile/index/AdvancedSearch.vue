@@ -144,7 +144,7 @@
               <div class="text-body2 q-mb-sm no-letter-spacing">
                 مبلغ از
               </div>
-              <custom-input
+              <custom-input-number
                 v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
@@ -153,7 +153,7 @@
               <div class="text-body2 q-mb-sm no-letter-spacing">
                 مبلغ تا
               </div>
-              <custom-input
+              <custom-input-number
                 v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
               />
@@ -257,7 +257,7 @@
             <div class="text-body2 no-letter-spacing q-mb-sm">
               شرح
             </div>
-            <custom-input
+            <custom-input-number
               type="textarea"
               v-model="searchStore.searchModel.value.comment"
             />
@@ -414,7 +414,7 @@
   import dateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
-  import customInput from "src/components/shared/forms/CustomInput.vue";
+  import customInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 

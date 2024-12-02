@@ -251,7 +251,7 @@ import { useI18n } from "vue-i18n";
 import dateTime from "src/components/shared/forms/DateTimePicker.vue";
 import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
 import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
-import customInput from "src/components/shared/forms/CustomInput.vue";
+import CustomInput from "src/components/shared/forms/CustomInput.vue";
 import ContactLookup from "src/components/shared/lookups/MobileContactLookup.vue";
 import ProductLookup from "src/components/shared/lookups/MobileProductLookup.vue";
 
