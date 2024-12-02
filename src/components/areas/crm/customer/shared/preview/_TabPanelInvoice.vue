@@ -1,7 +1,10 @@
 <template>
-  <sales-widget :customer-id="item.id" style="height: 80px" />
+  <sales-widget
+    class="q-mb-md"
+    v-if="hasRevenueExpense"
+    :customer-id="item.id"
+  />
   <data-grid
-    class="border-radius-lg q-mt-md"
     flat
     bordered
     toolbar
@@ -12,6 +15,8 @@
 </template>
 
 <script setup>
+  import { computed, onMounted } from "vue";
+  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
   import { useCustomerInvoiceState } from "../../../_composables/useCustomerInvoiceState";
   import { useDataTable } from "src/composables/useDataTable";
 
@@ -26,5 +31,17 @@
   const tableStore = useDataTable({
     dataSource: `sls/invoice/GetByCustomerData/${props.item.id}`,
     store: gridStore,
+  });
+
+  const revenueExpenseStore = useRevenueExpense({
+    dataSource: `acc/report/revenueByCustomerMonth/${props.item.id}`,
+  });
+
+  const hasRevenueExpense = computed(() => {
+    return (
+      revenueExpenseStore.chartSeries?.value?.some((series) =>
+        series.data.some((amount) => amount > 0)
+      ) ?? false
+    );
   });
 </script>
