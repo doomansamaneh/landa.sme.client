@@ -1,6 +1,5 @@
 <template>
   <data-grid
-    toolbar
     base-route="sls/saleType"
     data-source="sls/saleType/getGridData"
     :title="$t('main-menu-items.Sls_SaleType_View')"

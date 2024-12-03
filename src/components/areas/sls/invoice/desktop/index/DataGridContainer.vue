@@ -7,63 +7,48 @@
     >
       <q-tabs
         v-model="tab"
-        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        :indicator-color="tabColor"
+        :active-color="tabColor"
         align="left"
         inline-label
         narrow-indicator
         @update:model-value="tabChanged"
         content-class="text-on-dark"
       >
-        <q-tab name="invoice" class="q-mr-xs text-weight-700">
-          <template #default>
-            <div class="row items-center">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                فاکتورهای فروش
-              </div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="canceled" class="text-weight-700">
-          <template #default>
-            <div class="row items-center">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_cancel"
-                size="md"
-                class="red-gradient red-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">ابطال شده</div>
-            </div>
-          </template>
-        </q-tab>
-      </q-tabs>
+        <custom-tab
+          name="invoice"
+          title="فاکتورهای فروش"
+          icon="o_receipt"
+        />
 
-      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+        <custom-tab
+          name="canceled"
+          title="ابطال شده"
+          icon="o_cancel"
+          avatar-class="red-gradient red-shadow"
+        />
+      </q-tabs>
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
-    <data-grid :table-store="tableStore" base-route="sls/invoice" />
+    <data-grid
+      toolbar
+      :table-store="tableStore"
+      base-route="sls/invoice"
+    />
   </q-card>
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { sqlOperator, voucherStatus } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useQuasar } from "quasar";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import DataGrid from "./DataGrid.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
+  import CustomTab from "src/components/shared/CustomTab.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -71,7 +56,7 @@
     advancedSearch: Boolean,
   });
 
-  //const tab = computed(() => props.tableStore.store.currentTab);
+  const $q = useQuasar();
   const tab = ref("invoice");
 
   function setDefaultFilter() {
@@ -103,4 +88,12 @@
   async function reloadData() {
     await props.tableStore.reloadData();
   }
+
+  const tabColor = computed(() =>
+    $q.dark.isActive
+      ? "yellow"
+      : tab.value == "canceled"
+      ? "negative"
+      : "primary"
+  );
 </script>

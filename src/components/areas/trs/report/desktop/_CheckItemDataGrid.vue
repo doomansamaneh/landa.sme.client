@@ -7,6 +7,7 @@
     expandable
     flat
     bordered_
+    toolbar
   >
     <template #filter-statusId="{ item }">
       <custom-select

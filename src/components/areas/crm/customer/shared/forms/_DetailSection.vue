@@ -35,7 +35,7 @@
     />
   </q-tabs>
 
-  <q-separator size="1px" />
+  <q-separator size="0.5px" />
 
   <q-tab-panels
     class="no-border no-shadow border-radius-lg q-mt-lg"

@@ -36,14 +36,14 @@
       <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <div id="invoicePreview" v-if="model">
       <q-card-section>
         <header-section :model="model" />
       </q-card-section>
-      
-      <q-separator size="1px" />
+
+      <q-separator size="0.5px" />
 
       <q-card-section class="q-pa-none">
         <account-item

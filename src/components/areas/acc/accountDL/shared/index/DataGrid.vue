@@ -13,11 +13,10 @@
           :title="$t('main-menu-items.Acc_AccountDL_View')"
         />
       </div>
-      <data-grid-toolbar :table-store="tableStore" class="q-pa-md" />
     </div>
 
-    <q-separator size="1px" />
-    
+    <q-separator size="0.5px" />
+
     <data-grid
       ref="dataGrid"
       data-source="acc/accountDL/getGridData"
@@ -27,7 +26,7 @@
       create-url="/acc/accountDL/create"
       separator="horizontal"
       flat
-      toolbar_
+      toolbar
       multiSelect
       numbered
       bordered_
@@ -108,7 +107,6 @@
   import Preview from "../preview/IndexView.vue";
   import IsActive from "src/components/shared/IsActive.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const gridStore = useBaseInfoGrid({
     columns: accountDLColumns,

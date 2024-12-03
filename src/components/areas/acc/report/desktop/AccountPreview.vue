@@ -56,7 +56,7 @@
       <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <q-card-section>
       <div class="row q-mb-sm">

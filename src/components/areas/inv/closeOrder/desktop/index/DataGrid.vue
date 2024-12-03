@@ -11,14 +11,9 @@
         />
         <card-title v-if="title" :title="title" />
       </div>
-      <data-grid-toolbar
-        class="q-pa-md"
-        :table-store="tableStore"
-        :baseRoute="baseRoute"
-      />
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <data-grid
       ref="dataGrid"
@@ -29,6 +24,7 @@
       numbered
       flat
       bordered_
+      toolbar
       wrapCells
       dense
       expandable
@@ -70,7 +66,6 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../../shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     gridStore: Object,

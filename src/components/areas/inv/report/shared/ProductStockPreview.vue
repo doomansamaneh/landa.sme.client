@@ -13,6 +13,7 @@
     inside: Boolean,
     item: Object,
   });
+  
   const route = useRoute();
   const model = ref(null);
   const formStore = useFormActions("cmn/product", model);

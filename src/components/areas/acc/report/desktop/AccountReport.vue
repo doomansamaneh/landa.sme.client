@@ -11,11 +11,6 @@
         />
         <card-title v-if="title" :title="title" />
       </div>
-      <data-grid-toolbar
-        class="q-pa-md"
-        :table-store="tableStore"
-        :baseRoute="baseRoute"
-      />
     </div>
 
     <q-separator size="1px" />
@@ -26,7 +21,7 @@
       separator="horizontal"
       :data-source="dataSource"
       flat
-      toolbar_
+      toolbar
       expandable
     >
       <template #cell-credit="{ item }">
@@ -61,7 +56,6 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "./AccountPreview.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     gridStore: Object,

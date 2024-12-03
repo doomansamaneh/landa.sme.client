@@ -11,34 +11,32 @@
         />
         <card-title v-if="title" :title="title" />
       </div>
-      <data-grid-toolbar
-        class="q-pa-md"
-        :table-store="tableStore"
-        :baseRoute="baseRoute"
-      />
     </div>
+
     <q-separator size="1px" />
 
-      <data-grid
-        ref="dataGrid"
-        :grid-store="gridStore"
-        :data-source="dataSource"
-        flat
-        expandable
-        toolbar_
-      >
-        <template #cell-debit="{ item }">
-          {{ item.debit?.toLocaleString() }}
-        </template>
 
-        <template #cell-credit="{ item }">
-          {{ item.credit?.toLocaleString() }}
-        </template>
 
-        <template #expand="{ item }">
-          <preview :item="item" inside />
-        </template>
-      </data-grid>
+    <data-grid
+      ref="dataGrid"
+      :grid-store="gridStore"
+      :data-source="dataSource"
+      flat
+      expandable
+      toolbar
+    >
+      <template #cell-debit="{ item }">
+        {{ item.debit?.toLocaleString() }}
+      </template>
+
+      <template #cell-credit="{ item }">
+        {{ item.credit?.toLocaleString() }}
+      </template>
+
+      <template #expand="{ item }">
+        <preview :item="item" inside />
+      </template>
+    </data-grid>
   </q-card>
 </template>
 

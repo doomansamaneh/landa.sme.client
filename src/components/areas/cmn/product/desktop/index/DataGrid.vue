@@ -11,15 +11,14 @@
         />
         <card-title :title="title" />
       </div>
-      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <data-grid
       :data-table-store="tableStore"
       flat
-      toolbar_
+      toolbar
       multiSelect
       numbered
       dense

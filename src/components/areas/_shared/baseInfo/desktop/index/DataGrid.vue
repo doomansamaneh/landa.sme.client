@@ -2,19 +2,15 @@
   <q-card flat class="bordered shadow">
     <div class="row justify-between primary-gradient-1">
       <div class="row items-center q-px-md">
-        <q-avatar
-          rounded
-          text-color="white"
+        <custom-tab
+          behavior="heading"
           :icon="`o_${icon}`"
-          size="md"
-          class="primary-gradient primary-shadow"
+          :title="title"
         />
-        <card-title v-if="title" :title="title" />
       </div>
-      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <data-grid
       ref="dataGrid"
@@ -25,7 +21,7 @@
       numbered
       flat
       :expandable="expandable"
-      toolbar-
+      toolbar
     >
       <template #filter-isActive="{ item }">
         <custom-select
@@ -86,8 +82,7 @@
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import IsActive from "src/components/shared/IsActive.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
+  import CustomTab from "src/components/shared/CustomTab.vue";
 
   const props = defineProps({
     gridStore: Object,

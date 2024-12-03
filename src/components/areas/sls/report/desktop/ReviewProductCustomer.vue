@@ -3,6 +3,7 @@
     ref="dataGrid"
     :data-source="dataSource"
     :grid-store="localGridStore"
+    toolbar
   />
 </template>
 

@@ -88,16 +88,14 @@
           </template>
         </q-tab>
       </q-tabs>
-
-      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <q-tab-panels
       v-model="tab"
       animated
-      keep-alive_
+      keep-alive
       class="transparent"
     >
       <q-tab-panel name="cl" class="no-padding">
@@ -121,7 +119,6 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useDataTable } from "src/composables/useDataTable";
 
   import ReviewCl from "../desktop/ReviewCL.vue";
   import ReviewGl from "../desktop/ReviewGL.vue";
@@ -131,12 +128,6 @@
 
   import AdvancedSearch from "../../voucher/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const tab = ref("cl");
-
-  const tableStore = useDataTable({
-    dataSource: "",
-    gridStore: "",
-  });
 </script>
