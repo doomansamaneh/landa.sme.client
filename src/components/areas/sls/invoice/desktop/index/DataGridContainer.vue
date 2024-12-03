@@ -1,7 +1,7 @@
 <template>
   <advanced-search v-if="advancedSearch" />
 
-  <q-card flat class="bordered shadow q-mt-md">
+  <q-card flat class="bordered shadow">
     <div
       class="row justify-between overflow-hidden primary-gradient-1"
     >

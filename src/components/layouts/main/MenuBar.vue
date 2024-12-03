@@ -73,7 +73,13 @@
             </q-item>
           </div>
           <div class="col-1 q-mr-md">
-            <q-btn unelevated round dense size="11px" @click="t">
+            <q-btn
+              unelevated
+              round
+              dense
+              size="11px"
+              @click="reloadData"
+            >
               <q-icon size="18px" name="o_refresh" />
             </q-btn>
           </div>
@@ -170,8 +176,9 @@
 <script setup>
   import { onMounted } from "vue";
   import { useRouter } from "vue-router";
-  import { helper } from "src/helpers";
+  import { helper, fetchWrapper, bus } from "src/helpers";
   import { useMenuBar } from "src/composables/useMenuBar";
+  import { useComposables } from "src/stores/useComposables";
 
   const router = useRouter();
   const menuBarStore = useMenuBar();
@@ -192,6 +199,12 @@
 
   const isActiveItem = (url) => {
     return router.currentRoute.value.path === url;
+  };
+
+  const reloadData = () => {
+    const composablesStore = useComposables();
+    composablesStore.reset();
+    bus.emit("render-page");
   };
 
   onMounted(() => {

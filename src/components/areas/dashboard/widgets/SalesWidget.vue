@@ -20,7 +20,11 @@
       </q-item>
     </q-card-section>
 
-    <chart :data-source="dataSource" :height="170"></chart>
+    <chart
+      style="min-height: 200px"
+      :data-source="dataSource"
+      :height="200"
+    />
   </q-card>
 </template>
 

@@ -70,11 +70,11 @@
               <q-avatar
                 rounded
                 text-color="white"
-                icon="o_summarize"
+                icon="o_repeat"
                 size="md"
                 class="primary-gradient primary-shadow q-mr-md"
               />
-              <div class="text-h6 no-letter-spacing">خلاصه حساب</div>
+              <div class="text-h6 no-letter-spacing">گردش حساب</div>
             </div>
           </template>
         </q-tab>
