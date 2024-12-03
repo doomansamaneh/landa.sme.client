@@ -3,7 +3,7 @@
     <toolbar-mobile :title="title" @download-pdf="downloadPdf" />
   </template>
   <template v-else>
-    <toolbar-desktop buttons margin @download-pdf="downloadPdf" />
+    <toolbar-desktop :title="title" buttons margin @download-pdf="downloadPdf" />
   </template>
 </template>
 

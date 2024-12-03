@@ -16,97 +16,36 @@
         inline-label
         narrow-indicator
       >
-        <q-tab name="pg" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row no-wrap items-center">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_bubble_chart"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                گروه کالا و خدمات
-              </div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="prd" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row no-wrap items-center">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_subject"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                کالا و خدمات
-              </div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="crm" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row no-wrap items-center">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_menu"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">طرف حساب</div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="prdCrm" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row no-wrap items-center">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_view_comfy"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                طرف حساب/کالا و خدمت
-              </div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="il" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row no-wrap items-center">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">ریزگردش</div>
-            </div>
-          </template>
-        </q-tab>
-      </q-tabs>
+        <custom-tab
+          name="pg"
+          icon="o_bubble_chart"
+          title="گروه کالا و خدمات"
+        />
 
-      <data-grid-toolbar
-        dense
-        class="col-1 flex justify-end q-pa-md"
-        :table-store="tableStore"
-      />
+        <custom-tab
+          name="prd"
+          icon="o_subject"
+          title="کالا و خدمات"
+        />
+
+        <custom-tab name="crm" icon="o_menu" title="طرف حساب" />
+
+        <custom-tab
+          name="prdCrm"
+          icon="o_view_comfy"
+          title="طرف حساب/کالا و خدمت"
+        />
+
+        <custom-tab name="il" icon="o_receipt" title="ریز گردش" />
+      </q-tabs>
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <q-tab-panels
       v-model="tab"
       animated
-      keep-alive_
+      keep-alive
       class="transparent"
     >
       <q-tab-panel name="pg" class="no-padding">
@@ -130,7 +69,6 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useDataTable } from "src/composables/useDataTable";
 
   import ReviewPg from "../desktop/ReviewProductGroup.vue";
   import ReviewPrd from "../desktop/ReviewProduct.vue";
@@ -140,12 +78,7 @@
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
-
-  const tableStore = useDataTable({
-    dataSource: "",
-    gridStore: "",
-  });
+  import CustomTab from "src/components/shared/CustomTab.vue";
 
   const tab = ref("pg");
 </script>

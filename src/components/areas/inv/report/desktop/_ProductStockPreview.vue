@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <preview-master :item="item" v-if="item" />
     <preview-detail :item="item" ref="dataGrid" v-if="item" />

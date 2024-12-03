@@ -1,5 +1,5 @@
 <template>
-  <q-card flat_ bordered>
+  <q-card class="q-mb-md" flat_ bordered>
     <q-card-section class="q-ml-sm row items-center justify-between">
       <q-option-group
         style="gap: 8px"

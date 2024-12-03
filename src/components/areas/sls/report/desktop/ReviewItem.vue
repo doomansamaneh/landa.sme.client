@@ -4,6 +4,7 @@
     :data-source="dataSource"
     :grid-store="localGridStore"
     expandable
+    toolbar
   />
 </template>
 

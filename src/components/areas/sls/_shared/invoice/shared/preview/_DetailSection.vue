@@ -124,7 +124,7 @@
           </q-tabs>
         </q-card-section>
 
-        <q-separator size="1px" />
+        <q-separator size="0.5px" />
 
         <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
           <q-tab-panels

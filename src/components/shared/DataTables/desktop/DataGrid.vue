@@ -3,11 +3,9 @@
     <slot name="title"></slot>
 
     <div class="q-table__middle scroll">
-      <toolbar v-if="toolbar" :table-store="tableStore" />
-
       <toolbar
+        v-if="toolbar"
         class="q-pa-md"
-        v-if="tableStore.inFullscreen.value"
         :table-store="tableStore"
       />
 

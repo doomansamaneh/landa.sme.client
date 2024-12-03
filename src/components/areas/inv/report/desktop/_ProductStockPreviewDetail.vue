@@ -1,5 +1,5 @@
 <template>
-  <q-separator size="1px" />
+  <q-separator size="0.5px" />
   <div class="row justify-between overflow-hidden primary-gradient-1">
     <q-tabs
       v-model="tab"
@@ -20,7 +20,9 @@
               size="md"
               class="primary-gradient primary-shadow q-mr-md"
             />
-            <div class="text-h6 no-letter-spacing">ریز گردش حساب</div>
+            <div class="text-h6 no-letter-spacing q-py-sm q-my-xs">
+              ریز گردش حساب
+            </div>
           </div>
         </template>
       </q-tab>
@@ -56,14 +58,15 @@
       </q-tab>
     </q-tabs>
 
-    <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
+    <!-- <data-grid-toolbar class="q-pa-md" :table-store="tableStore" /> -->
   </div>
 
-  <q-separator size="1px" />
+  <q-separator size="0.5px" />
 
   <q-tab-panels v-model="tab" keep-alive animated>
-    <q-tab-panel class="q-pa-lg" name="basic-info">
+    <q-tab-panel class="no-padding" name="basic-info">
       <account-item
+        toolbar
         flat
         :columns="accountItemColumns"
         :filter-expression="accountItemfilter"
@@ -72,7 +75,7 @@
     <q-tab-panel class="no-padding" name="quote">
       <product-stock-item
         ref="dataGrid"
-        toolbar_
+        toolbar
         :data-source="dataSource"
         :grid-store="gridStore"
       />

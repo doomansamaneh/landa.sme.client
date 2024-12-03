@@ -113,7 +113,7 @@
       </q-tabs>
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <q-card-section class="q-pa-lg">
       <template v-if="tab === 'main'">

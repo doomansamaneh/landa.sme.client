@@ -15,10 +15,9 @@
           :title="$t('main-menu-items.Sls_Report_ProductStock')"
         />
       </div>
-      <data-grid-toolbar :table-store="tableStore" class="q-pa-md" />
     </div>
 
-    <q-separator size="1px" />
+    <q-separator size="0.5px" />
 
     <data-grid
       ref="dataGrid"
@@ -28,7 +27,7 @@
       flat
       numbered
       expandable
-      toolbar_
+      toolbar
     >
       <template #cell-purchaseQuantity="{ item }">
         {{ item.purchaseQuantity?.toLocaleString() }}
@@ -59,7 +58,6 @@
   import ProductStockPreview from "../shared/ProductStockPreview.vue";
   import AdvancedSearch from "./ProductStockSearch.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     gridStore: Object,
