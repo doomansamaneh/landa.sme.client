@@ -18,8 +18,6 @@ export function useBaseInfoModel({
   const crudStore = useFormActions(baseRoute, localModel);
 
   async function getById(id) {
-    alert(id);
-
     if (id) await crudStore.getById(id);
     else if (getCreateModel) await crudStore.getCreateModel();
   }
