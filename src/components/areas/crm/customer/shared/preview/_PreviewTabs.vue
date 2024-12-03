@@ -13,7 +13,7 @@
         narrow-indicator
         mobile-arrows
       >
-        <q-tab name="basic-info" class="text-h6 text-weight-700">
+        <q-tab name="main" class="text-h6 text-weight-700">
           <template #default>
             <div class="row items-center no-wrap q-py-sm q-my-xs">
               <q-avatar
@@ -64,7 +64,7 @@
           </template>
         </q-tab>
 
-        <q-tab name="account" class="text-h6 text-weight-700">
+        <q-tab name="review" class="text-h6 text-weight-700">
           <template #default>
             <div class="row items-center no-wrap q-py-sm q-my-xs">
               <q-avatar
@@ -116,12 +116,12 @@
     <q-separator size="1px" />
 
     <q-card-section class="q-pa-lg">
-      <template v-if="tab === 'basic-info'">
+      <template v-if="tab === 'main'">
         <base-info v-if="item.id" :item="item" />
       </template>
-      <quote v-if="tab === 'quote'" :item="item" />
-      <invoice v-if="tab === 'invoice'" :item="item" />
-      <account v-if="tab === 'account'" :item="item" />
+      <quote-review v-if="tab === 'quote'" :item="item" />
+      <invoice-review v-if="tab === 'invoice'" :item="item" />
+      <account-review v-if="tab === 'review'" :item="item" />
       <check-item v-if="tab === 'check'" :customer-id="item.id" />
       <log
         v-if="tab === 'log'"
@@ -133,13 +133,13 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref } from "vue";
   import { useQuasar } from "quasar";
 
   import BaseInfo from "./_TabPanelBaseInfo.vue";
-  import Quote from "./_TabPanelQuote.vue";
-  import Invoice from "./_TabPanelInvoice.vue";
-  import Account from "./_TabPanelAccount.vue";
+  import QuoteReview from "./_TabPanelQuote.vue";
+  import InvoiceReview from "./_TabPanelInvoice.vue";
+  import AccountReview from "./_TabPanelAccount.vue";
   import CheckItem from "src/components/areas/trs/report/shared/CheckItem.vue";
   import Log from "src/components/areas/_shared/log/PreviewLog.vue";
 
@@ -148,5 +148,5 @@
   });
 
   const $q = useQuasar();
-  const tab = ref("basic-info");
+  const tab = ref("main");
 </script>

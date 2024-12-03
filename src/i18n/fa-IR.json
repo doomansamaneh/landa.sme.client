@@ -541,6 +541,10 @@
       "inventory": "انبارداری",
       "contract": "پیمانکاری"
     },
+    "modifyStockType": {
+      "add": "افزایش",
+      "reduce": "کاهش"
+    },
     "contactType": {
       "phone": "تلفن",
       "mobile": "موبایل",

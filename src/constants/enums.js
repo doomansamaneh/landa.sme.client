@@ -14,6 +14,11 @@ export const customerType = {
   foreignNational: 175,
 };
 
+export const modifyStockType = {
+  add: 0,
+  reduce: 1,
+};
+
 export const mediaType = {
   avatar: 291,
   image: 292,

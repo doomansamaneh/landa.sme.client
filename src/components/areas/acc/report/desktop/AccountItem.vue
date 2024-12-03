@@ -17,9 +17,7 @@
     <q-separator size="1px" />
 
     <data-grid
-      ref="dataGrid"
-      :data-source="dataSource"
-      :grid-store="localGridStore"
+      :data-table-store="tableStore"
       separator="horizontal"
       multiSelect
       flat
@@ -28,6 +26,8 @@
       expandable
       toolbar_
     >
+      <!-- :data-source="dataSource"
+      :grid-store="localGridStore" -->
       <template #cell-credit="{ item }">
         {{ helper.formatNumber(item.credit) }}
       </template>
@@ -130,6 +130,7 @@
   import { ref, computed } from "vue";
 
   import { helper } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { accountItemColumns } from "../../_composables/constants";
 
@@ -148,22 +149,22 @@
     columns: Array,
   });
 
-  const localGridStore = computed(
-    () =>
-      props.gridStore ||
-      useBaseInfoGrid({
-        filterExpression: props.filterExpression,
-        sortColumn: "voucherNo",
-        columns: props.columns || accountItemColumns,
-      })
-  );
+  const dataGridStore =
+    props.gridStore ||
+    useBaseInfoGrid({
+      filterExpression: props.filterExpression,
+      sortColumn: "voucherNo",
+      columns: props.columns || accountItemColumns,
+    });
 
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    store: dataGridStore,
+  });
 
   const colspan = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
+      tableStore.columns.value.findIndex(
         (column) => column.name === "debitRemained"
       ) +
       1 + //numbered column
@@ -172,7 +173,7 @@
 
   const showInlineDebit = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
+      tableStore.columns.value.findIndex(
         (column) => column.name === "inlineDebit"
       ) >= 0
   );

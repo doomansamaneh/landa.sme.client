@@ -1,5 +1,7 @@
 <template>
-  <advanced-search v-if="advancedSearch" />
+  <div v-if="advancedSearch" class="q-mb-md">
+    <advanced-search />
+  </div>
 
   <q-card flat class="bordered shadow">
     <div

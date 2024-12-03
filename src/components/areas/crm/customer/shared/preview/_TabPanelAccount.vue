@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-col-gutter-md" v-if="false">
+  <!-- <div class="row q-col-gutter-md" v-if="false">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <q-card flat bordered class="info-box_">
         <q-card-section class="q-gutter-md">
@@ -99,7 +99,7 @@
         </q-card-section>
       </q-card>
     </div>
-  </div>
+  </div> -->
 
   <account-item
     class="border-radius-lg"

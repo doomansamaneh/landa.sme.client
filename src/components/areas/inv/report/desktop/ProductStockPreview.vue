@@ -2,12 +2,12 @@
   <tool-bar :inside="inside" buttons>
     <template #buttons>
       <q-btn
-        :to="`/sls/invoice/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
         unelevated
         no-caps
+        @click="modifyStock"
       >
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
         اصلاح موجودی
@@ -53,16 +53,30 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import Preview from "./_ProductStockPreview.vue";
+  import ModifyStockDialog from "../../modifyStock/shared/forms/ModifyStockDialog.vue";
 
   const props = defineProps({
     inside: Boolean,
     item: Object,
   });
 
+  const $q = useQuasar();
   const dataGrid = ref(null);
 
   const tableStore = computed(() => dataGrid?.value?.tableStore);
+
+  const modifyStock = () => {
+    $q.dialog({
+      component: ModifyStockDialog,
+      componentProps: {
+        id: props.item.id,
+      },
+    }).onOk(async (response) => {
+      await props.tableStore.reloadData();
+    });
+  };
 </script>

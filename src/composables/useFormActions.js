@@ -47,8 +47,10 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
       model.value
     );
     notifyResponse(response.data);
-    model.value.id = response.data.data.id;
-    model.value.recordVersion = response.data.data.recordVersion;
+    if (response.data.data) {
+      model.value.id = response.data.data.id;
+      model.value.recordVersion = response.data.data.recordVersion;
+    }
     await resetIsDirty();
     return response.data;
   }
