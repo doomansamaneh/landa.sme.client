@@ -2,25 +2,15 @@
   <q-card flat class="bordered shadow">
     <div class="row justify-between primary-gradient-1">
       <div class="row items-center q-px-md">
-        <q-avatar
-          rounded
-          text-color="white"
-          size="md"
-          icon="o_line_style"
-          class="primary-gradient primary-shadow"
-        />
-        <card-title
+        <custom-tab
+          behavior="heading"
           :title="$t('main-menu-items.Acc_AccountSL_Tree')"
+          icon="o_line_style"
         />
       </div>
-      <!-- <data-grid-toolbar
-        class="q-pa-md"
-        :table-store="tableStore"
-        :baseRoute="baseRoute"
-      /> -->
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <q-card-section>
       <q-tree
@@ -186,7 +176,7 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
   import AccountTreeNode from "./AccountTreeNode.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
+  import CustomTab from "src/components/shared/CustomTab.vue";
   import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   import GLFormCreateDialog from "components/areas/acc/accountGL/shared/forms/CreateFormDialog.vue";

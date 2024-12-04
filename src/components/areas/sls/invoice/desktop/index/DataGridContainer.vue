@@ -32,12 +32,13 @@
       </q-tabs>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <data-grid
       toolbar
       :table-store="tableStore"
       base-route="sls/invoice"
+      :no-fullscreen="noFullscreen"
     />
   </q-card>
 </template>
@@ -56,6 +57,7 @@
     tableStore: useDataTable,
     title: String,
     advancedSearch: Boolean,
+    noFullscreen: Boolean,
   });
 
   const $q = useQuasar();

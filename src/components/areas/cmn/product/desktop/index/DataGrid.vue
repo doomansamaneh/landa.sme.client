@@ -2,18 +2,15 @@
   <q-card flat class="bordered shadow">
     <div class="row justify-between primary-gradient-1">
       <div class="row items-center q-px-md">
-        <q-avatar
-          rounded
-          text-color="white"
+        <custom-tab
+          behavior="heading"
+          title="کالا و خدمات"
           icon="o_desktop_mac"
-          size="md"
-          class="primary-gradient primary-shadow"
         />
-        <card-title :title="title" />
       </div>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <data-grid
       :data-table-store="tableStore"
@@ -102,7 +99,11 @@
       </template>
 
       <template #expand="{ item }">
-        <preview inside :item="item" :base-route="baseRoute" />
+        <preview
+          inside
+          :item="item"
+          :base-route="baseRoute"
+        />
       </template>
     </data-grid>
   </q-card>
@@ -118,7 +119,7 @@
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import Preview from "../../shared/preview/IndexView.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
+  import CustomTab from "src/components/shared/CustomTab.vue";
   import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({

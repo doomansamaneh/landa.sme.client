@@ -74,7 +74,7 @@
     <q-tab name="history" label="تاریخچه" icon="o_history" />
   </q-tabs>
 
-  <q-separator size="0.5px" />
+  <q-separator size="1px" />
 
   <q-tab-panels
     class="border-radius-lg q-mt-md"

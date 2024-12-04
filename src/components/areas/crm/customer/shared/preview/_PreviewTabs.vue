@@ -13,121 +13,64 @@
         narrow-indicator
         mobile-arrows
       >
-        <q-tab name="main" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm q-my-xs">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_person"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                اطلاعات پایه
-              </div>
-            </div>
-          </template>
-        </q-tab>
+        <custom-tab
+          name="main"
+          title="اطلاعات پایه"
+          icon="o_person"
+        />
 
-        <q-tab name="quote" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm q-my-xs">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_assignment"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                پیش‌فاکتورها
-              </div>
-            </div>
-          </template>
-        </q-tab>
+        <custom-tab
+          name="quote"
+          title="پیش فاکتورها"
+          icon="o_assignment"
+        />
 
-        <q-tab name="invoice" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm q-my-xs">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                فاکتورهای فروش
-              </div>
-            </div>
-          </template>
-        </q-tab>
+        <custom-tab
+          name="invoice"
+          title="فاکتورها"
+          icon="o_receipt"
+        />
 
-        <q-tab name="review" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm q-my-xs">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_repeat"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">گردش حساب</div>
-            </div>
-          </template>
-        </q-tab>
+        <custom-tab name="review" title="گردش حساب" icon="o_repeat" />
 
-        <q-tab name="check" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm q-my-xs">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">
-                چکهای دریافتی، پرداختی
-              </div>
-            </div>
-          </template>
-        </q-tab>
+        <custom-tab
+          name="check"
+          title="چکهای دریافتی، پرداختی"
+          icon="o_receipt"
+        />
 
-        <q-tab name="log" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm q-my-xs">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_history"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">تاریخچه</div>
-            </div>
-          </template>
-        </q-tab>
+        <custom-tab name="log" title="تاریخچه" icon="o_history" />
       </q-tabs>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <q-card-section class="q-pa-lg">
-      <template v-if="tab === 'main'">
-        <base-info v-if="item.id" :item="item" />
-      </template>
-      <quote-review v-if="tab === 'quote'" :item="item" />
-      <invoice-review v-if="tab === 'invoice'" :item="item" />
-      <account-review v-if="tab === 'review'" :item="item" />
-      <check-item v-if="tab === 'check'" :customer-id="item.id" />
-      <log
-        v-if="tab === 'log'"
-        :entity-id="item.id"
-        entity-name="Crm.[Customer]"
-      />
+      <q-tab-panels
+        v-model="tab"
+        animated
+        keep-alive
+        class="transparent"
+      >
+        <q-tab-panel name="main" class="no-padding">
+          <base-info v-if="item.id" :item="item" />
+        </q-tab-panel>
+        <q-tab-panel name="quote" class="no-padding">
+          <quote-review :item="item" />
+        </q-tab-panel>
+        <q-tab-panel name="invoice" class="no-padding">
+          <invoice-review :item="item" />
+        </q-tab-panel>
+        <q-tab-panel name="review" class="no-padding">
+          <account-review :item="item" />
+        </q-tab-panel>
+        <q-tab-panel name="check" class="no-padding">
+          <check-item :customer-id="item.id" />
+        </q-tab-panel>
+        <q-tab-panel name="log" class="no-padding">
+          <log :entity-id="item.id" entity-name="Crm.[Customer]" />
+        </q-tab-panel>
+      </q-tab-panels>
     </q-card-section>
   </q-card>
 </template>
@@ -142,6 +85,7 @@
   import AccountReview from "./_TabPanelAccount.vue";
   import CheckItem from "src/components/areas/trs/report/shared/CheckItem.vue";
   import Log from "src/components/areas/_shared/log/PreviewLog.vue";
+  import CustomTab from "src/components/shared/CustomTab.vue";
 
   const props = defineProps({
     item: Object,

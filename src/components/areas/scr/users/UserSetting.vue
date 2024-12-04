@@ -32,7 +32,6 @@
                   :text-holder="authStore.user.fullName"
                   :avatar="avatar"
                 />
-
               </q-item-section>
 
               <q-item-section>
@@ -58,7 +57,7 @@
               </q-item-section>
             </q-item>
 
-            <q-separator size="0.5px" />
+            <q-separator size="1px" />
 
             <q-item
               class="q-py-sm"
@@ -86,7 +85,7 @@
               </q-item-section>
             </q-item>
 
-            <q-separator size="0.5px" />
+            <q-separator size="1px" />
 
             <q-item
               class="q-py-sm"
@@ -146,7 +145,7 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator size="1px" />
 
           <q-item
             class="q-py-sm"
@@ -220,7 +219,7 @@
     return "";
   });
 
-  const avatar = "https://cdn.quasar.dev/img/boy-avatar.png"
+  const avatar = "https://cdn.quasar.dev/img/boy-avatar.png";
 </script>
 
 <style lang="scss">

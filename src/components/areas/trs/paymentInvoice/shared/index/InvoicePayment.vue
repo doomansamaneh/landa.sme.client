@@ -2,7 +2,6 @@
   <desktop
     :grid-store="gridStore"
     :data-source="dataSource"
-    :filte
     hide-filter-row
     hide-header
     flat
@@ -10,6 +9,7 @@
     separator="horizontal_"
     ref="desktopGrid"
     expandable_
+    no-fullscreen
   >
     <template #cell-no="{ item }">
       <span v-if="item.paymentId">

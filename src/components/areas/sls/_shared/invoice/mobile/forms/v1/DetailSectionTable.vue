@@ -144,7 +144,7 @@
       </div>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <q-card-actions class="q-pa-md" align="between">
       <q-btn

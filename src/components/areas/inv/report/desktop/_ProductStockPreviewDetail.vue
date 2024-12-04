@@ -1,5 +1,5 @@
 <template>
-  <q-separator size="0.5px" />
+  <q-separator size="1px" />
   <div class="row justify-between overflow-hidden primary-gradient-1">
     <q-tabs
       v-model="tab"
@@ -10,74 +10,39 @@
       inline-label
       narrow-indicator
     >
-      <q-tab name="basic-info" class="text-weight-700">
-        <template #default>
-          <div class="row items-center">
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_receipt"
-              size="md"
-              class="primary-gradient primary-shadow q-mr-md"
-            />
-            <div class="text-h6 no-letter-spacing q-py-sm q-my-xs">
-              ریز گردش حساب
-            </div>
-          </div>
-        </template>
-      </q-tab>
-      <q-tab name="quote" class="text-weight-700">
-        <template #default>
-          <div class="row items-center">
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="swap_vert"
-              size="md"
-              class="primary-gradient primary-shadow q-mr-md"
-            />
-            <div class="text-h6 no-letter-spacing">
-              ورود و خروج کالا
-            </div>
-          </div>
-        </template>
-      </q-tab>
-      <q-tab name="log" class="text-weight-700">
-        <template #default>
-          <div class="row items-center">
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_history"
-              size="md"
-              class="primary-gradient primary-shadow q-mr-md"
-            />
-            <div class="text-h6 no-letter-spacing">تاریخچه</div>
-          </div>
-        </template>
-      </q-tab>
-    </q-tabs>
+      <custom-tab
+        name="basic-info"
+        title="ریز گردش حساب"
+        icon="o_receipt"
+      />
 
-    <!-- <data-grid-toolbar class="q-pa-md" :table-store="tableStore" /> -->
+      <custom-tab
+        name="quote"
+        title="ورود و خروج کالا"
+        icon="swap_vert"
+      />
+
+      <custom-tab name="log" title="تاریخچه" icon="o_history" />
+    </q-tabs>
   </div>
 
-  <q-separator size="0.5px" />
+  <q-separator size="1px" />
 
   <q-tab-panels v-model="tab" keep-alive animated>
     <q-tab-panel class="no-padding" name="basic-info">
       <account-item
-        toolbar
         flat
         :columns="accountItemColumns"
         :filter-expression="accountItemfilter"
+        :no-fullscreen="true"
       />
     </q-tab-panel>
     <q-tab-panel class="no-padding" name="quote">
       <product-stock-item
         ref="dataGrid"
-        toolbar
         :data-source="dataSource"
         :grid-store="gridStore"
+        :no-fullscreen="true"
       />
     </q-tab-panel>
     <q-tab-panel class="no-padding_" name="log">
@@ -93,6 +58,7 @@
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
   import { useDataTable } from "src/composables/useDataTable";
 
+  import CustomTab from "src/components/shared/CustomTab.vue";
   import ProductStockItem from "./ProductStockItem.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import PreviewLog from "src/components/areas/_shared/log/PreviewLog.vue";

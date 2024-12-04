@@ -35,7 +35,8 @@
       flat
       hide-filter-row
       :invoice-id="model.id"
-    ></data-grid>
+      no-fullscreen
+    />
   </div>
 </template>
 

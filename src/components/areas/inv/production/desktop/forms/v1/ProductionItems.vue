@@ -36,7 +36,7 @@
     />
   </q-tabs>
 
-  <q-separator size="0.5px" />
+  <q-separator size="1px" />
 
   <q-tab-panels class="q-mt-md" v-model="tab" keep-alive animated>
     <q-tab-panel

@@ -41,7 +41,7 @@
       <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <q-card-section class="q-pb-none q-px-md">
       <header-section :model="model" />

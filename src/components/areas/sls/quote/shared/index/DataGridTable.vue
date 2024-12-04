@@ -9,6 +9,7 @@
   <template v-else>
     <desktop
       :table-store="tableStore"
+      :no-fullscreen="noFullscreen"
       :title="title"
       advanced-search
     />
@@ -22,6 +23,7 @@
   const props = defineProps({
     title: String,
     tableStore: Object,
+    noFullscreen: Boolean,
     crudStore: Object,
   });
 </script>

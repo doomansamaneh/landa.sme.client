@@ -253,6 +253,7 @@
     gridStore: Object,
     toolbar: Boolean,
     dataTableStore: Object,
+    noFullscreen: Boolean
   });
 
   const $q = useQuasar();
@@ -338,7 +339,9 @@
         : "") +
       (props.wrapCells === false ? " q-table--no-wrap_" : "") +
       (props.bordered === true ? " bordered" : "") +
-      (tableStore.value.inFullscreen.value === true
+      (props.noFullscreen
+        ? " scroll"
+        : tableStore.value.inFullscreen.value === true
         ? " fullscreen scroll"
         : "")
   );

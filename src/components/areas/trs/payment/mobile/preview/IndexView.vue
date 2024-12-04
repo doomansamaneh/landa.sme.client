@@ -24,7 +24,7 @@
       </div>
     </q-card-section>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <q-card-section class="q-gutter-y-sm">
       <div v-if="model?.customerName">

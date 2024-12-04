@@ -41,7 +41,7 @@
       </div>
     </q-card-section>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <q-card-section>
       <div class="row q-col-gutter-md">

@@ -11,6 +11,7 @@
     multi-select
     :table-store="tableStore"
     :advanced-search="false"
+    :no-fullscreen="true"
   />
 </template>
 

@@ -10,6 +10,7 @@
     wrapCells_
     expandable
     @row-dbl-click="gotoPreview"
+    :no-fullscreen="noFullscreen"
   >
     <template #filter-statusId="{ item }">
       <custom-select
@@ -166,6 +167,7 @@
   const props = defineProps({
     tableStore: Object,
     baseRoute: String,
+    noFullscreen: Boolean
   });
 
   const router = useRouter();

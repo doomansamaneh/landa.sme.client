@@ -1,5 +1,8 @@
 <template>
-  <stock-preview :item="model" :inside="inside" />
+  <stock-preview
+    :item="model"
+    :inside="inside"
+  />
 </template>
 
 <script setup>
@@ -13,7 +16,7 @@
     inside: Boolean,
     item: Object,
   });
-  
+
   const route = useRoute();
   const model = ref(null);
   const formStore = useFormActions("cmn/product", model);

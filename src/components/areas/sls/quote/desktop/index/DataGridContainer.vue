@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <data-grid
       flat
@@ -23,6 +23,7 @@
       toolbar
       class="border-none"
       :table-store="tableStore"
+      :no-fullscreen="noFullscreen"
     />
   </q-card>
 </template>
@@ -36,5 +37,6 @@
     title: String,
     advancedSearch: Boolean,
     tableStore: Object,
+    noFullscreen: Boolean
   });
 </script>

@@ -10,6 +10,7 @@
     flat
     wrapCells_
     @selected-rows-changed="selectedRowChanged"
+    no-fullscreen
   >
     <template #title>
       <div class="q-pa-lg">

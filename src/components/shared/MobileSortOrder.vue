@@ -25,7 +25,7 @@
           <q-icon size="20px" color="primary" name="check" />
         </q-item-section>
       </q-item>
-      <q-separator size="0.5px" />
+      <q-separator size="1px" />
       <q-item clickable class="text-body2 no-letter-spacing q-pa-md">
         <q-item-section>نزولی</q-item-section>
         <q-item-section avatar>

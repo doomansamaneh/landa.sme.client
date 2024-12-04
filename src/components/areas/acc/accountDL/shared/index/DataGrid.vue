@@ -2,15 +2,10 @@
   <q-card flat class="bordered shadow">
     <div class="row justify-between primary-gradient-1">
       <div class="row items-center q-px-md">
-        <q-avatar
-          rounded
-          text-color="white"
-          size="md"
-          icon="o_view_comfy"
-          class="primary-gradient primary-shadow"
-        />
-        <card-title
+        <custom-tab
+          behavior="heading"
           :title="$t('main-menu-items.Acc_AccountDL_View')"
+          icon="o_view_comfy"
         />
       </div>
     </div>
@@ -108,7 +103,7 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../preview/IndexView.vue";
   import IsActive from "src/components/shared/IsActive.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
+  import CustomTab from "src/components/shared/CustomTab.vue";
 
   const gridStore = useBaseInfoGrid({
     columns: accountDLColumns,

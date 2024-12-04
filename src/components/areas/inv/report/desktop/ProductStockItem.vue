@@ -9,6 +9,7 @@
     wrapCells
     dense
     expandable
+    :no-fullscreen="noFullscreen"
   >
     <template #cell-purchaseQuantity="{ item }">
       {{ item.purchaseQuantity?.toLocaleString() }}
@@ -33,6 +34,7 @@
   const props = defineProps({
     dataSource: String,
     gridStore: Object,
+    noFullscreen: Boolean
   });
 
   const dataGrid = ref(null);

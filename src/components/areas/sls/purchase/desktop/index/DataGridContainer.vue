@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <data-grid
       flat
@@ -31,7 +31,7 @@
   import DataGrid from "./DataGridTable.vue";
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import CustomTab from "src/components/shared/CustomTab.vue";
-  
+
   const props = defineProps({
     title: String,
     advancedSearch: Boolean,

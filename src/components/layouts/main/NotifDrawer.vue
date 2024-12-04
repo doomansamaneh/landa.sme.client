@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <div class="flex items-center justify-between q-pa-md">
       <q-checkbox

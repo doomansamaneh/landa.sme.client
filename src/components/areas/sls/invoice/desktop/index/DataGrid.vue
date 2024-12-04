@@ -1,5 +1,5 @@
 <template>
-  <invoice-grid :table-store="tableStore" base-route="sls/invoice">
+  <invoice-grid :no-fullscreen="noFullscreen" :table-store="tableStore" base-route="sls/invoice">
     <template #expand="{ item }">
       <preview :item="item" inside />
     </template>
@@ -12,5 +12,6 @@
 
   const props = defineProps({
     tableStore: Object,
+    noFullscreen: Boolean
   });
 </script>

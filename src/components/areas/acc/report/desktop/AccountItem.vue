@@ -1,21 +1,4 @@
 <template>
-  <!-- <q-card flat class="bordered shadow overflow-hidden"> -->
-  <!-- <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <q-avatar
-          rounded
-          text-color="white"
-          icon="o_repeat"
-          size="md"
-          class="primary-gradient primary-shadow"
-        />
-        <card-title title="گردش حساب" />
-      </div>
-      <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
-    </div>
-
-    <q-separator size="0.5px" /> -->
-
   <data-grid
     ref="dataGrid"
     :data-source="dataSource"
@@ -27,30 +10,26 @@
     wrapCells_
     expandable
     toolbar
+    :no-fullscreen="true"
+
   >
     <template #cell-credit="{ item }">
       {{ helper.formatNumber(item.credit) }}
     </template>
-
     <template #cell-debit="{ item }">
       debit: {{ helper.formatNumber(item.credit) }}
     </template>
-
     <template #cell-inlineDebit="{ item }">
       {{ helper.formatNumber(item.inlineDebit) }}
     </template>
-
     <template #cell-debitRemained="{ item }">
       {{ helper.formatNumber(item.debitRemained) }}
     </template>
-
     <template #cell-creditRemained="{ item }">
       {{ helper.formatNumber(item.creditRemained) }}
     </template>
-
     <template #cell-voucherSubject="{ item }">
       {{ item.voucherSubject }}
-
       <div
         class="text-caption-sm"
         :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
@@ -59,7 +38,6 @@
         {{ item.comment }}
       </div>
     </template>
-
     <template #footer-subtotal="{ selectedRows }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}
@@ -93,7 +71,6 @@
         </b>
       </td>
     </template>
-
     <template #footer-total="{ summary }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.total") }}
@@ -114,7 +91,6 @@
         </b>
       </td>
     </template>
-
     <template #expand="{ item }">
       <voucher-preview
         :voucher-id="item.voucherId"
@@ -123,21 +99,19 @@
       />
     </template>
   </data-grid>
-  <!-- </q-card> -->
 </template>
 
 <script setup>
   import { ref, computed } from "vue";
-
   import { helper } from "src/helpers";
-  import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { accountItemColumns } from "../../_composables/constants";
-
+  
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import VoucherPreview from "../../voucher/shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-
+  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
+  
   const props = defineProps({
     dataSource: {
       type: String,
@@ -146,24 +120,24 @@
     filterExpression: Array,
     gridStore: Object,
     columns: Array,
+    noFullscreen: Boolean
   });
 
-  const dataGridStore =
-    props.gridStore ||
-    useBaseInfoGrid({
-      filterExpression: props.filterExpression,
-      sortColumn: "voucherNo",
-      columns: props.columns || accountItemColumns,
-    });
-
-  const tableStore = useDataTable({
-    dataSource: props.dataSource,
-    store: dataGridStore,
-  });
-
+  const localGridStore = computed(
+    () =>
+      props.gridStore ||
+      useBaseInfoGrid({
+        filterExpression: props.filterExpression,
+        sortColumn: "voucherNo",
+        columns: props.columns || accountItemColumns,
+      })
+  );
+  
+  const dataGrid = ref(null);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
   const colspan = computed(
     () =>
-      tableStore.columns.value.findIndex(
+      tableStore?.value?.columns.value.findIndex(
         (column) => column.name === "debitRemained"
       ) +
       1 + //numbered column
@@ -172,7 +146,7 @@
 
   const showInlineDebit = computed(
     () =>
-      tableStore.columns.value.findIndex(
+      tableStore?.value?.columns.value.findIndex(
         (column) => column.name === "inlineDebit"
       ) >= 0
   );

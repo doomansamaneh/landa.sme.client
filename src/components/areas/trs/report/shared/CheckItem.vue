@@ -25,14 +25,15 @@
       </q-tabs>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <data-grid
       v-if="tab === 'received'"
       :filter-expression="receiveFilter"
       toolbar_
+      :no-fullscreen="true"
     />
-    <data-grid v-else :filter-expression="payedFilter" toolbar_ />
+    <data-grid :no-fullscreen="true" v-else :filter-expression="payedFilter" toolbar_ />
   </q-card>
 </template>
 

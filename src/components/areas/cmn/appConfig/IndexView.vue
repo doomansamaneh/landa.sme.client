@@ -35,7 +35,7 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator size="1px" />
 
           <q-item
             class="q-py-md"
@@ -58,7 +58,7 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator size="1px" />
 
           <q-item
             class="q-py-md"
@@ -81,7 +81,7 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator size="1px" />
 
           <q-item
             class="q-py-md"
@@ -104,7 +104,7 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator size="1px" />
 
           <q-item
             class="q-py-md"
@@ -127,7 +127,7 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator size="1px" />
 
           <q-item
             class="q-py-md"
@@ -150,7 +150,7 @@
             </q-item-section>
           </q-item>
 
-          <q-separator size="0.5px" />
+          <q-separator size="1px" />
 
           <q-item
             class="q-py-md"
@@ -200,7 +200,7 @@
           </q-item-section>
         </q-item>
 
-        <q-separator size="0.5px" />
+        <q-separator size="1px" />
 
         <q-item
           class="q-py-md"

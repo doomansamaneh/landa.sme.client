@@ -9,7 +9,7 @@
     >
       <q-tabs
         v-model="tab"
-        class="scroll text-h6 text-weight-700 primary-tabs"
+        class="text-h6 text-weight-700 primary-tabs"
         :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
         :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
         align="left"
@@ -17,80 +17,27 @@
         narrow-indicator
         mobile-arrows
       >
-        <q-tab name="cl" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_bubble_chart"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">گروه حساب</div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="gl" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_subject"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">حساب کل</div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="sl" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_menu"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">حساب معین</div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="dl" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_view_comfy"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">حساب تفصیلی</div>
-            </div>
-          </template>
-        </q-tab>
-        <q-tab name="il" class="text-h6 text-weight-700">
-          <template #default>
-            <div class="row items-center no-wrap q-py-sm">
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt"
-                size="md"
-                class="primary-gradient primary-shadow q-mr-md"
-              />
-              <div class="text-h6 no-letter-spacing">ریزگردش</div>
-            </div>
-          </template>
-        </q-tab>
+        <custom-tab
+          name="cl"
+          title="گروه حساب"
+          icon="o_bubble_chart"
+        />
+
+        <custom-tab name="gl" title="حساب کل" icon="o_subject" />
+
+        <custom-tab name="sl" title="حساب معین" icon="o_menu" />
+
+        <custom-tab
+          name="dl"
+          title="حساب تفصیلی"
+          icon="o_view_comfy"
+        />
+
+        <custom-tab name="il" title="ریزگردش" icon="o_receipt" />
       </q-tabs>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <q-tab-panels
       v-model="tab"
@@ -126,6 +73,7 @@
   import ReviewDl from "../desktop/ReviewDL.vue";
   import ReviewItem from "../desktop/AccountItem.vue";
 
+  import CustomTab from "src/components/shared/CustomTab.vue";
   import AdvancedSearch from "../../voucher/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
 

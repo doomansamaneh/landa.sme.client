@@ -11,6 +11,7 @@
       :table-store="tableStore"
       :title="title"
       advanced-search
+      :no-fullscreen="noFullscreen"
     />
   </template>
 </template>
@@ -24,5 +25,6 @@
     gridStore: Object,
     tableStore: Object,
     crudStore: Object,
+    noFullscreen: Boolean
   });
 </script>

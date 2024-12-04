@@ -2,18 +2,15 @@
   <q-card flat bordered>
     <div class="row justify-between primary-gradient-1">
       <div class="row items-center q-px-md">
-        <q-avatar
-          rounded
-          text-color="white"
+        <custom-tab
+          behavior="heading"
+          title="کاردکس کالا"
           icon="o_inventory_2"
-          size="md"
-          class="primary-gradient primary-shadow"
         />
-        <card-title title="کاردکس کالا" />
       </div>
     </div>
 
-    <q-separator size="0.5px" />
+    <q-separator size="1px" />
 
     <preview-master :item="item" v-if="item" />
     <preview-detail :item="item" ref="dataGrid" v-if="item" />
@@ -25,7 +22,7 @@
 
   import PreviewMaster from "./_ProductStockPreviewMaster.vue";
   import PreviewDetail from "./_ProductStockPreviewDetail.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
+  import CustomTab from "src/components/shared/CustomTab.vue";
 
   const props = defineProps({
     item: Object,

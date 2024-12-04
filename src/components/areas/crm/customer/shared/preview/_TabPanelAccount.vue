@@ -110,6 +110,7 @@
     data-source="acc/report/getItemAllData"
     :columns="accountItemColumns"
     :filter-expression="filterExpression"
+    :no-fullscreen="true"
   />
 </template>
 
