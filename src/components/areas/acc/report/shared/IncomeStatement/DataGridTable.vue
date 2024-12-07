@@ -1,5 +1,7 @@
 <template>
   <q-card flat :class="$q.screen.gt.xs ? 'shadow bordered' : ''">
+    <card-title :title="title" icon="o_reorder"></card-title>
+
     <q-card-section
       :class="$q.screen.gt.xs ? 'q-py-none q-pa-lg' : 'no-padding'"
     >
@@ -93,9 +95,14 @@
 </template>
 
 <script setup>
+  import CardTitle from "src/components/shared/CardTitle.vue";
+
   import { helper } from "src/helpers";
   import { useIncomeStatement } from "src/components/areas/acc/_composables/useIncomeStatement";
   import { accountCLTypeIds } from "src/constants";
 
+  const props = defineProps({
+    title: String,
+  });
   const dataStore = useIncomeStatement();
 </script>
