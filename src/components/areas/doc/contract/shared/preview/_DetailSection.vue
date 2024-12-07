@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-between overflow-hidden primary-gradient-1">
-    <q-tabs
+    <card-tabs
       v-model="tab"
       class="text-h6 no-letter-spacing text-weight-700"
       :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
@@ -9,39 +9,14 @@
       inline-label
       narrow-indicator
     >
-      <q-tab name="main-info">
-        <template #default>
-          <div class="row q-py-sm q-my-xs items-center">
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_arrow_downward"
-              size="md"
-              class="primary-gradient primary-shadow q-mr-md"
-            />
-            <div class="text-h6 no-letter-spacing">ریز گردش حساب</div>
-          </div>
-        </template>
-      </q-tab>
-      <q-tab name="log">
-        <template #default>
-          <div class="row q-py-sm q-my-xs items-center">
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_history"
-              size="md"
-              class="primary-gradient primary-shadow q-mr-md"
-            />
-            <div class="text-h6 no-letter-spacing">تاریخچه</div>
-          </div>
-        </template>
-      </q-tab>
-    </q-tabs>
+      <card-tab
+        name="main-info"
+        title="ریز گردش حساب"
+        icon="o_arrow_downward"
+      />
+      <card-tab name="log" title="تاریخچه" icon="o_history" />
+    </card-tabs>
   </div>
-
-  <q-separator />
-
   <q-tab-panels
     class="transparent q-pa-lg"
     v-model="tab"
@@ -62,6 +37,8 @@
   import { ref } from "vue";
   import { sqlOperator } from "src/constants";
 
+  import CardTab from "src/components/shared/CardTab.vue";
+  import CardTabs from "src/components/shared/CardTabs.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import Log from "src/components/areas/_shared/log/PreviewLog.vue";
 

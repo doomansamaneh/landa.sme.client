@@ -1,6 +1,6 @@
 <template>
   <q-card bordered>
-    <card-title :title="title" icon="o_group"></card-title>
+    <card-title :title="title" icon="o_group" />
 
     <data-grid
       ref="dataGrid"
@@ -40,10 +40,9 @@
   import { computed, ref } from "vue";
   import { helper } from "src/helpers";
 
+  import CardTitle from "src/components/shared/CardTitle.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "./AccountPreview.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
 
   const props = defineProps({
     gridStore: Object,
@@ -52,7 +51,6 @@
   });
 
   const dataGrid = ref(null);
-
   const tableStore = computed(() => dataGrid.value?.tableStore);
 
   async function reloadData() {

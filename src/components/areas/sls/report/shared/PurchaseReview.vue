@@ -4,43 +4,33 @@
   <advanced-search />
 
   <q-card flat class="bordered shadow q-mt-md">
-    <div
-      class="row justify-between overflow-hidden primary-gradient-1"
+    <card-tabs
+      v-model="tab"
+      class="col-md text-h6 text-weight-700 primary-tabs"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      align="left"
+      inline-label
+      narrow-indicator
     >
-      <q-tabs
-        v-model="tab"
-        class="col-md text-h6 text-weight-700 primary-tabs"
-        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        align="left"
-        inline-label
-        narrow-indicator
-      >
-        <custom-tab
-          name="pg"
-          icon="o_bubble_chart"
-          title="گروه کالا و خدمات"
-        />
+      <card-tab
+        name="pg"
+        icon="o_bubble_chart"
+        title="گروه کالا و خدمات"
+      />
 
-        <custom-tab
-          name="prd"
-          icon="o_subject"
-          title="کالا و خدمات"
-        />
+      <card-tab name="prd" icon="o_subject" title="کالا و خدمات" />
 
-        <custom-tab name="crm" icon="o_menu" title="طرف حساب" />
+      <card-tab name="crm" icon="o_menu" title="طرف حساب" />
 
-        <custom-tab
-          name="prdCrm"
-          icon="o_view_comfy"
-          title="طرف حساب/کالا و خدمت"
-        />
+      <card-tab
+        name="prdCrm"
+        icon="o_view_comfy"
+        title="طرف حساب/کالا و خدمت"
+      />
 
-        <custom-tab name="il" icon="o_receipt" title="ریز گردش" />
-      </q-tabs>
-    </div>
-
-    <q-separator size="1px" />
+      <card-tab name="il" icon="o_receipt" title="ریز گردش" />
+    </card-tabs>
 
     <q-tab-panels
       v-model="tab"
@@ -84,7 +74,8 @@
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTabs from "src/components/shared/CardTabs.vue";
+  import CardTab from "src/components/shared/CardTab.vue";
 
   const tab = ref("pg");
 </script>

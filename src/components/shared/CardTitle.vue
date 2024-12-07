@@ -17,7 +17,7 @@
     </div>
     <slot name="header-toolbar"></slot>
   </div>
-  <q-separator size="0.5px" />
+  <q-separator size="1px" />
 </template>
 
 <script setup>

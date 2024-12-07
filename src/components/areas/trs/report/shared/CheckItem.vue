@@ -3,7 +3,7 @@
     <div
       class="row justify-between overflow-hidden primary-gradient-1"
     >
-      <q-tabs
+      <card-tabs
         v-model="tab"
         :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
         :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
@@ -12,17 +12,17 @@
         narrow-indicator
         content-class="text-on-dark"
       >
-        <custom-tab
+        <card-tab
           name="received"
           icon="o_arrow_downward"
           title="چکهای دریافتی"
         />
-        <custom-tab
+        <card-tab
           name="payed"
           icon="o_arrow_upward"
           title="چکهای پرداختی"
         />
-      </q-tabs>
+      </card-tabs>
     </div>
 
     <q-separator size="1px" />
@@ -45,7 +45,8 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
   import DataGrid from "../desktop/_CheckItemDataGrid.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTabs from "src/components/shared/CardTabs.vue";
+  import CardTab from "src/components/shared/CardTab.vue";
 
   const props = defineProps({ customerId: String });
 

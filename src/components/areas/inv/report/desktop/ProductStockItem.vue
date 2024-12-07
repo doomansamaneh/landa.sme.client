@@ -8,6 +8,7 @@
     numbered
     wrapCells
     dense
+    toolbar
     expandable
     :no-fullscreen="noFullscreen"
   >
@@ -34,7 +35,7 @@
   const props = defineProps({
     dataSource: String,
     gridStore: Object,
-    noFullscreen: Boolean
+    noFullscreen: Boolean,
   });
 
   const dataGrid = ref(null);

@@ -11,7 +11,6 @@
     expandable
     toolbar
     :no-fullscreen="true"
-
   >
     <template #cell-credit="{ item }">
       {{ helper.formatNumber(item.credit) }}
@@ -106,12 +105,10 @@
   import { helper } from "src/helpers";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { accountItemColumns } from "../../_composables/constants";
-  
+
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import VoucherPreview from "../../voucher/shared/preview/IndexView.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
-  
+
   const props = defineProps({
     dataSource: {
       type: String,
@@ -120,7 +117,7 @@
     filterExpression: Array,
     gridStore: Object,
     columns: Array,
-    noFullscreen: Boolean
+    noFullscreen: Boolean,
   });
 
   const localGridStore = computed(
@@ -132,7 +129,7 @@
         columns: props.columns || accountItemColumns,
       })
   );
-  
+
   const dataGrid = ref(null);
   const tableStore = computed(() => dataGrid?.value?.tableStore);
   const colspan = computed(

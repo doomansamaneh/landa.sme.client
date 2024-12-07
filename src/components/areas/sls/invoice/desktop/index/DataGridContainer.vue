@@ -4,35 +4,25 @@
   </div>
 
   <q-card flat class="bordered shadow">
-    <div
-      class="row justify-between overflow-hidden primary-gradient-1"
+    <card-tabs
+      v-model="tab"
+      :indicator-color="tabColor"
+      :active-color="tabColor"
+      @tabChanged="tabChanged"
     >
-      <q-tabs
-        v-model="tab"
-        :indicator-color="tabColor"
-        :active-color="tabColor"
-        align="left"
-        inline-label
-        narrow-indicator
-        @update:model-value="tabChanged"
-        content-class="text-on-dark"
-      >
-        <custom-tab
-          name="invoice"
-          title="فاکتورهای فروش"
-          icon="o_receipt"
-        />
+      <card-tab
+        name="invoice"
+        title="فاکتورهای فروش"
+        icon="o_receipt"
+      />
 
-        <custom-tab
-          name="canceled"
-          title="ابطال شده"
-          icon="o_cancel"
-          avatar-class="red-gradient red-shadow"
-        />
-      </q-tabs>
-    </div>
-
-    <q-separator size="1px" />
+      <card-tab
+        name="canceled"
+        title="ابطال شده"
+        icon="o_cancel"
+        avatar-class="red-gradient red-shadow"
+      />
+    </card-tabs>
 
     <data-grid
       toolbar
@@ -51,7 +41,8 @@
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import DataGrid from "./DataGrid.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTabs from "src/components/shared/CardTabs.vue";
+  import CardTab from "src/components/shared/CardTab.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
