@@ -4,32 +4,26 @@
   <advanced-search :search-model="searchModel" />
 
   <q-card flat class="bordered shadow">
-    <div
-      class="row justify-between overflow-hidden primary-gradient-1"
+    <card-tabs
+      v-model="tab"
+      class="text-h6 text-weight-700 primary-tabs"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      align="left"
+      inline-label
+      narrow-indicator
+      mobile-arrows
     >
-      <card-tabs
-        v-model="tab"
-        class="text-h6 text-weight-700 primary-tabs"
-        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        align="left"
-        inline-label
-        narrow-indicator
-        mobile-arrows
-      >
-        <card-tab name="cl" title="گروه حساب" icon="o_bubble_chart" />
+      <card-tab name="cl" title="گروه حساب" icon="o_bubble_chart" />
 
-        <card-tab name="gl" title="حساب کل" icon="o_subject" />
+      <card-tab name="gl" title="حساب کل" icon="o_subject" />
 
-        <card-tab name="sl" title="حساب معین" icon="o_menu" />
+      <card-tab name="sl" title="حساب معین" icon="o_menu" />
 
-        <card-tab name="dl" title="حساب تفصیلی" icon="o_view_comfy" />
+      <card-tab name="dl" title="حساب تفصیلی" icon="o_view_comfy" />
 
-        <card-tab name="il" title="ریزگردش" icon="o_receipt" />
-      </card-tabs>
-    </div>
-
-    <q-separator size="1px" />
+      <card-tab name="il" title="ریزگردش" icon="o_receipt" />
+    </card-tabs>
 
     <q-tab-panels
       v-model="tab"

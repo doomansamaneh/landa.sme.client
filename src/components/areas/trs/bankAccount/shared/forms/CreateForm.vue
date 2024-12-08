@@ -118,7 +118,7 @@
   import { sqlOperator, accountCLType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";

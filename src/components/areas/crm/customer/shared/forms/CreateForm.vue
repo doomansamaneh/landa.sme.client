@@ -1,5 +1,5 @@
 <template>
-  <tool-bar
+  <form-toolbar-container
     :title="title"
     back-button
     @submit-call-back="formStore.submitForm(form, action)"
@@ -20,7 +20,7 @@
   import { useRoute } from "vue-router";
   import { useCustomerModel } from "../../../_composables/useCustomerModel";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import MasterSection from "./_MasterSection.vue";
   import DetailSection from "./_DetailSection.vue";
 

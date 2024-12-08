@@ -158,7 +158,7 @@
   import { transferMoneyType } from "src/constants";
   import { transferMoneyModel } from "src/models/areas/trs/transferMoneyModel";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";

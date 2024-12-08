@@ -23,25 +23,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import { invoiceFormType } from "src/constants";
-import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { ref, onMounted } from "vue";
+  import { useRoute } from "vue-router";
+  import { invoiceFormType } from "src/constants";
+  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
-import ToolBar from "src/components/shared/FormToolBar.vue";
-import Desktop from "src/components/areas/sls/_shared/invoice/desktop/forms/CreateForm.vue";
-import Mobile from "src/components/areas/sls/_shared/invoice/mobile/forms/CreateForm.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import Desktop from "src/components/areas/sls/_shared/invoice/desktop/forms/CreateForm.vue";
+  import Mobile from "src/components/areas/sls/_shared/invoice/mobile/forms/CreateForm.vue";
 
-const props = defineProps({
-  title: String,
-  action: String,
-  method: String,
-});
-const route = useRoute();
-const formStore = useInvoiceModel({ baseRoute: "sls/purchase" });
-const form = ref(null);
+  const props = defineProps({
+    title: String,
+    action: String,
+    method: String,
+  });
+  const route = useRoute();
+  const formStore = useInvoiceModel({ baseRoute: "sls/purchase" });
+  const form = ref(null);
 
-onMounted(() => {
-  formStore.getById(route.params.id, props.method);
-});
+  onMounted(() => {
+    formStore.getById(route.params.id, props.method);
+  });
 </script>

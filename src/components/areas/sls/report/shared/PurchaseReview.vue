@@ -6,7 +6,6 @@
   <q-card flat class="bordered shadow q-mt-md">
     <card-tabs
       v-model="tab"
-      class="col-md text-h6 text-weight-700 primary-tabs"
       :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
       :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
       align="left"

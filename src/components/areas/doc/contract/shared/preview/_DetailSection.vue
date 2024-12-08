@@ -1,33 +1,26 @@
 <template>
-  <div class="row justify-between overflow-hidden primary-gradient-1">
-    <card-tabs
-      v-model="tab"
-      class="text-h6 no-letter-spacing text-weight-700"
-      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      align="left"
-      inline-label
-      narrow-indicator
-    >
-      <card-tab
-        name="main-info"
-        title="ریز گردش حساب"
-        icon="o_arrow_downward"
-      />
-      <card-tab name="log" title="تاریخچه" icon="o_history" />
-    </card-tabs>
-  </div>
-  <q-tab-panels
-    class="transparent q-pa-lg"
+  <card-tabs
     v-model="tab"
-    animated
-    keep-alive
+    class="text-h6 no-letter-spacing text-weight-700"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    align="left"
+    inline-label
+    narrow-indicator
   >
+    <card-tab
+      name="main-info"
+      title="ریز گردش حساب"
+      icon="o_arrow_downward"
+    />
+    <card-tab name="log" title="تاریخچه" icon="o_history" />
+  </card-tabs>
+  <q-tab-panels class="transparent" v-model="tab" animated keep-alive>
     <q-tab-panel name="main-info" class="no-padding">
       <account-item flat :filter-expression="filterExpression" />
     </q-tab-panel>
 
-    <q-tab-panel name="log" class="no-padding_ q-mx-none q-px-none">
+    <q-tab-panel name="log">
       <log :entity-id="model.id" />
     </q-tab-panel>
   </q-tab-panels>

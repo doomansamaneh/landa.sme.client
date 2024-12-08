@@ -40,7 +40,9 @@
               {{ title }}
             </slot>
           </span>
-          <back-button class="q-ml-md" />
+          <back-button
+            :class="$q.screen.xs ? 'q-mr-sm' : 'q-ml-sm'"
+          />
         </slot>
       </div>
     </q-toolbar>

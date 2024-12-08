@@ -1,5 +1,5 @@
 <template>
-  <div class="row justify-between overflow-hidden primary-gradient-1">
+  <div class="primary-gradient-1 overflow-hidden">
     <q-tabs
       v-model="currentTab"
       :indicator-color="indicatorColor"
@@ -7,6 +7,7 @@
       align="left"
       inline-label
       narrow-indicator
+      mobile-arrows
       @update:model-value="onTabChanged"
       :content-class="contentClass"
     >
@@ -35,7 +36,7 @@
     },
     contentClass: {
       type: String,
-      default: "text-on-dark",
+      default: null,
     },
   });
 

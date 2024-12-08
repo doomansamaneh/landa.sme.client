@@ -88,7 +88,7 @@
   import { helper } from "src/helpers";
   import { locationType } from "src/constants";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
