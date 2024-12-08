@@ -253,7 +253,7 @@
     gridStore: Object,
     toolbar: Boolean,
     dataTableStore: Object,
-    noFullscreen: Boolean
+    noFullscreen: Boolean,
   });
 
   const $q = useQuasar();
@@ -362,14 +362,9 @@
   //   return $q.lang.rtl ? "keyboard_arrow_down" : "keyboard_arrow_up";
   // };
 
-  //Todo: How move to expand page dynamically
+  //Todo: How to move to expand page dynamically
   const toggleExpand = (row) => {
     tableStore.value.toggleExpand(row);
-    // if ($q.screen.gt.xs) {
-    //   tableStore.toggleExpand(row);
-    // } else {
-    //   router.push("/Sls/Report/ProductStock/items/123");
-    // }
   };
 
   // onMounted(() => {

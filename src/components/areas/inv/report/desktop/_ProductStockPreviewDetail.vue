@@ -62,7 +62,6 @@
   import ProductStockItem from "./ProductStockItem.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import PreviewLog from "src/components/areas/_shared/log/PreviewLog.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     item: Object,

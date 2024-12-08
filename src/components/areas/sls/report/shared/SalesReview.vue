@@ -1,5 +1,5 @@
 <template>
-  <toolbar-desktop margin title="گزارش مرور فروش" />
+  <toolbar-desktop margin :title="title" />
 
   <advanced-search />
 
@@ -79,6 +79,10 @@
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import CustomTab from "src/components/shared/CustomTab.vue";
+
+  const props = defineProps({
+    title: String,
+  });
 
   const tab = ref("pg");
 </script>
