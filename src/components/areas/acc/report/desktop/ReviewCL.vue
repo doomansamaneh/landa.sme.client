@@ -1,17 +1,12 @@
 <template>
-  <review-data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="localGridStore"
-    toolbar
-  />
+  <review-data-grid :table-store="tableStore" toolbar />
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
   import { useVoucherSearch } from "../../_composables/useVoucherSearch";
   import { reviewCLColumns } from "../../_composables/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
@@ -27,19 +22,18 @@
     columns: Array,
   });
 
-  const localGridStore = computed(
-    () =>
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    dataColumns: props.columns || reviewCLColumns,
+    store:
       props.gridStore ||
       useBaseInfoGrid({
         filterExpression: props.filterExpression,
         sortColumn: "code",
         columns: props.columns || reviewCLColumns,
         searchModel: searchStore.searchModel,
-      })
-  );
-
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
+      }),
+  });
 
   defineExpose({
     tableStore,

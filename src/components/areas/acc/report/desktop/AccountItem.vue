@@ -1,8 +1,6 @@
 <template>
   <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="localGridStore"
+    :data-table-store="tableStore"
     separator="horizontal"
     multiSelect
     flat
@@ -12,14 +10,14 @@
     toolbar
     :no-fullscreen="true"
   >
+    <template #cell-debit="{ item }">
+      {{ helper.formatNumber(item.credit) }}
+    </template>
     <template #cell-credit="{ item }">
       {{ helper.formatNumber(item.credit) }}
     </template>
-    <template #cell-debit="{ item }">
-      debit: {{ helper.formatNumber(item.credit) }}
-    </template>
     <template #cell-inlineDebit="{ item }">
-      {{ helper.formatNumber(item.inlineDebit) }}
+      <strong>{{ helper.formatNumber(item.inlineDebit) }}</strong>
     </template>
     <template #cell-debitRemained="{ item }">
       {{ helper.formatNumber(item.debitRemained) }}
@@ -101,9 +99,10 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useDataTable } from "src/composables/useDataTable";
   import { accountItemColumns } from "../../_composables/constants";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
@@ -120,21 +119,21 @@
     noFullscreen: Boolean,
   });
 
-  const localGridStore = computed(
-    () =>
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    dataColumns: props.columns || accountItemColumns,
+    store:
       props.gridStore ||
       useBaseInfoGrid({
         filterExpression: props.filterExpression,
         sortColumn: "voucherNo",
         columns: props.columns || accountItemColumns,
-      })
-  );
+      }),
+  });
 
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
   const colspan = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
+      tableStore.columns.value.findIndex(
         (column) => column.name === "debitRemained"
       ) +
       1 + //numbered column

@@ -11,6 +11,7 @@ export function useBaseInfoGrid(config) {
     activeRow: ref(null),
     summaryData: ref(null),
     searchModel: config?.searchModel,
+    filterExpression: config?.filterExpression ?? [],
   };
 
   const composablesStore = useComposables();

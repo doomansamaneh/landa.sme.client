@@ -1,5 +1,5 @@
 <template>
-  <toolbar-desktop margin title="گزارش مرور خرید" />
+  <toolbar-desktop margin :title="title" />
 
   <advanced-search />
 
@@ -77,5 +77,8 @@
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
 
+  const props = defineProps({
+    title: String,
+  });
   const tab = ref("pg");
 </script>

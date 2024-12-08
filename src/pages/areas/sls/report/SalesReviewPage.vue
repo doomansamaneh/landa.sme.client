@@ -1,5 +1,5 @@
 <template>
-  <report />
+  <report :title="$t('main-menu-items.Sls_Report_SalesReview')" />
 </template>
 
 <script setup>

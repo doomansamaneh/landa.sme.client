@@ -1,5 +1,5 @@
 <template>
-  <toolbar-desktop margin title="گزارش مرور حساب" />
+  <toolbar-desktop margin :title="title" />
 
   <advanced-search :search-model="searchModel" />
 
@@ -70,5 +70,8 @@
   import AdvancedSearch from "../../voucher/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
 
+  const props = defineProps({
+    title: String,
+  });
   const tab = ref("cl");
 </script>

@@ -66,8 +66,6 @@
 <script setup>
   import { ref, computed, watch, onMounted } from "vue";
   import { useRoute } from "vue-router";
-  import { helper } from "src/helpers";
-  import { useQuasar } from "quasar";
   import { guidEmpty } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
   import { useAccountDL } from "src/components/areas/acc/_composables/useAccountDL";
@@ -77,8 +75,6 @@
   import NumberWidget from "src/components/areas/dashboard/widgets/NumberWidget.vue";
   import Tabs from "./_PreviewTabs.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
-
-  const $q = useQuasar();
 
   const props = defineProps({
     item: Object,

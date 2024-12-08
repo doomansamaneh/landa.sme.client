@@ -1,8 +1,6 @@
 <template>
   <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
+    :data-table-store="tableStore"
     separator="horizontal"
     flat
     square_
@@ -82,24 +80,20 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
   const props = defineProps({
-    dataSource: String,
-    gridStore: Object,
+    tableStore: useDataTable,
     expandable: Boolean,
   });
 
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
-
   const colspan = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
+      props.tableStore.columns.value.findIndex(
         (column) => column.name === "quantity"
       ) +
       1 + //numbered column
@@ -107,12 +101,8 @@
   );
 
   const vatVisible = computed(() =>
-    tableStore?.value?.columns.value.findIndex(
+    props.tableStore.columns.value.findIndex(
       (column) => column.name === "vatAmount"
     )
   );
-
-  defineExpose({
-    tableStore,
-  });
 </script>

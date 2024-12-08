@@ -1,8 +1,6 @@
 <template>
   <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
+    :data-table-store="tableStore"
     separator="horizontal"
     flat
     square_
@@ -115,7 +113,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers";
   import { accountDLType } from "src/constants";
 
@@ -123,23 +121,15 @@
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
   const props = defineProps({
-    dataSource: String,
-    gridStore: Object,
+    tableStore: Object,
   });
-
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
   const colspan = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
+      props.tableStore.columns.value.findIndex(
         (column) => column.name === "debit"
       ) +
       1 + //numbered column
       1 //multi check column
   );
-
-  defineExpose({
-    tableStore,
-  });
 </script>
