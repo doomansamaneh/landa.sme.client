@@ -1,16 +1,6 @@
 <template>
   <q-card flat class="bordered shadow">
-    <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <custom-tab
-          behavior="heading"
-          title="کالا و خدمات"
-          icon="o_desktop_mac"
-        />
-      </div>
-    </div>
-
-    <q-separator size="1px" />
+    <card-title title="کالا و خدمات" icon="o_desktop_mac" />
 
     <data-grid
       :data-table-store="tableStore"
@@ -99,11 +89,7 @@
       </template>
 
       <template #expand="{ item }">
-        <preview
-          inside
-          :item="item"
-          :base-route="baseRoute"
-        />
+        <preview inside :item="item" :base-route="baseRoute" />
       </template>
     </data-grid>
   </q-card>
@@ -119,8 +105,7 @@
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import Preview from "../../shared/preview/IndexView.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     title: String,

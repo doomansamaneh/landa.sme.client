@@ -1,32 +1,27 @@
 <template>
-  <q-separator size="1px" />
-  <div class="row justify-between overflow-hidden primary-gradient-1">
-    <q-tabs
-      v-model="tab"
-      class="primary-tabs"
-      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-      align="left"
-      inline-label
-      narrow-indicator
-    >
-      <custom-tab
-        name="basic-info"
-        title="ریز گردش حساب"
-        icon="o_receipt"
-      />
+  <card-tabs
+    v-model="tab"
+    class="primary-tabs"
+    :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+    align="left"
+    inline-label
+    narrow-indicator
+  >
+    <card-tab
+      name="basic-info"
+      title="ریز گردش حساب"
+      icon="o_receipt"
+    />
 
-      <custom-tab
-        name="quote"
-        title="ورود و خروج کالا"
-        icon="swap_vert"
-      />
+    <card-tab
+      name="quote"
+      title="ورود و خروج کالا"
+      icon="swap_vert"
+    />
 
-      <custom-tab name="log" title="تاریخچه" icon="o_history" />
-    </q-tabs>
-  </div>
-
-  <q-separator size="1px" />
+    <card-tab name="log" title="تاریخچه" icon="o_history" />
+  </card-tabs>
 
   <q-tab-panels v-model="tab" keep-alive animated>
     <q-tab-panel class="no-padding" name="basic-info">
@@ -58,7 +53,8 @@
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTabs from "src/components/shared/CardTabs.vue";
+  import CardTab from "src/components/shared/CardTab.vue";
   import ProductStockItem from "./ProductStockItem.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import PreviewLog from "src/components/areas/_shared/log/PreviewLog.vue";
@@ -79,12 +75,12 @@
 
   const dataSource = "sls/report/getProductStockItems";
   const gridStore = useProductStockItemGrid(filterExpersions?.value);
-  // const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
-  const tableStore = useDataTable({
-    dataSource: dataSource,
-    store: gridStore,
-  });
+  // const tableStore = useDataTable({
+  //   dataSource: dataSource,
+  //   store: gridStore,
+  // });
   const accountItemColumns = accountItemDLColumns;
   const accountItemfilter = computed(() => [
     {

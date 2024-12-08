@@ -1,16 +1,6 @@
 <template>
-  <q-card flat class="bordered shadow overflow-hidden">
-    <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <custom-tab
-          behavior="heading"
-          :title="title"
-          icon="o_subject"
-        />
-      </div>
-    </div>
-
-    <q-separator size="1px" />
+  <q-card flat class="bordered shadow">
+    <card-title :title="title" icon="o_subject" />
 
     <data-grid
       ref="dataGrid"
@@ -88,8 +78,8 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import IsActive from "src/components/shared/IsActive.vue";
   import Preview from "../../shared/preview/IndexView.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
-  
+  import CardTitle from "src/components/shared/CardTitle.vue";
+
   const props = defineProps({
     gridStore: Object,
     crudStore: Object,

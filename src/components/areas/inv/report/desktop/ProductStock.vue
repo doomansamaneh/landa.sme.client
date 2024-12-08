@@ -2,17 +2,10 @@
   <advanced-search class="q-my-md" :grid-store="gridStore" />
 
   <q-card flat class="bordered shadow">
-    <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <custom-tab
-          behavior="heading"
-          :title="$t('main-menu-items.Sls_Report_ProductStock')"
-          icon="import_export"
-        />
-      </div>
-    </div>
-
-    <q-separator size="1px" />
+    <card-title
+      :title="$t('main-menu-items.Sls_Report_ProductStock')"
+      icon="import_export"
+    />
 
     <data-grid
       ref="dataGrid"
@@ -38,10 +31,7 @@
       </template>
 
       <template #expand="{ item }">
-        <product-stock-preview
-          :item="item"
-          inside
-        />
+        <product-stock-preview :item="item" inside />
       </template>
     </data-grid>
   </q-card>
@@ -55,7 +45,7 @@
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import ProductStockPreview from "../shared/ProductStockPreview.vue";
   import AdvancedSearch from "./ProductStockSearch.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     gridStore: Object,

@@ -1,16 +1,6 @@
 <template>
   <q-card bordered>
-    <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <custom-tab
-          behavior="heading"
-          :title="title"
-          icon="o_reorder"
-        />
-      </div>
-    </div>
-
-    <q-separator size="1px" />
+    <card-title :title="title" icon="o_reorder" />
 
     <data-grid
       ref="dataGrid"
@@ -40,7 +30,7 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "./AccountPreview.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     gridStore: Object,

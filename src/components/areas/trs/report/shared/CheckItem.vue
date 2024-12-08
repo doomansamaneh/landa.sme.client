@@ -1,31 +1,25 @@
 <template>
   <q-card flat class="bordered shadow">
-    <div
-      class="row justify-between overflow-hidden primary-gradient-1"
+    <card-tabs
+      v-model="tab"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      align="left"
+      inline-label
+      narrow-indicator
+      content-class="text-on-dark"
     >
-      <q-tabs
-        v-model="tab"
-        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        align="left"
-        inline-label
-        narrow-indicator
-        content-class="text-on-dark"
-      >
-        <custom-tab
-          name="received"
-          icon="o_arrow_downward"
-          title="چکهای دریافتی"
-        />
-        <custom-tab
-          name="payed"
-          icon="o_arrow_upward"
-          title="چکهای پرداختی"
-        />
-      </q-tabs>
-    </div>
-
-    <q-separator size="1px" />
+      <card-tab
+        name="received"
+        icon="o_arrow_downward"
+        title="چکهای دریافتی"
+      />
+      <card-tab
+        name="payed"
+        icon="o_arrow_upward"
+        title="چکهای پرداختی"
+      />
+    </card-tabs>
 
     <data-grid
       v-if="tab === 'received'"
@@ -33,7 +27,12 @@
       toolbar_
       :no-fullscreen="true"
     />
-    <data-grid :no-fullscreen="true" v-else :filter-expression="payedFilter" toolbar_ />
+    <data-grid
+      :no-fullscreen="true"
+      v-else
+      :filter-expression="payedFilter"
+      toolbar_
+    />
   </q-card>
 </template>
 
@@ -45,7 +44,8 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
   import DataGrid from "../desktop/_CheckItemDataGrid.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTabs from "src/components/shared/CardTabs.vue";
+  import CardTab from "src/components/shared/CardTab.vue";
 
   const props = defineProps({ customerId: String });
 

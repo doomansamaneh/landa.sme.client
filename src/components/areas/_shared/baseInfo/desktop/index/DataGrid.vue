@@ -1,16 +1,6 @@
 <template>
   <q-card flat class="bordered shadow">
-    <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <custom-tab
-          behavior="heading"
-          :icon="`o_${icon}`"
-          :title="title"
-        />
-      </div>
-    </div>
-
-    <q-separator size="1px" />
+    <card-title :icon="`o_${icon}`" :title="title" />
 
     <data-grid
       ref="dataGrid"
@@ -82,7 +72,7 @@
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import IsActive from "src/components/shared/IsActive.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     gridStore: Object,

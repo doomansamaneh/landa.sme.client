@@ -1,6 +1,6 @@
 <template>
   <q-card flat :class="$q.screen.gt.xs ? 'shadow bordered' : ''">
-    <card-title :title="title" icon="o_reorder"></card-title>
+    <card-title :title="title" icon="o_reorder" />
 
     <q-card-section
       :class="$q.screen.gt.xs ? 'q-py-none q-pa-lg' : 'no-padding'"

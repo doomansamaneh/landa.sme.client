@@ -108,7 +108,7 @@
   import { accountSLModel } from "src/models/areas/acc/accountSLModel";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import GlLookup from "src/components/shared/lookups/AccountGLLookup.vue";

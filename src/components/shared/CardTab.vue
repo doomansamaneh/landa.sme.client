@@ -1,8 +1,7 @@
 <template>
-  <div class="row justify-between primary-gradient-1">
-    <div class="row items-center q-px-md">
+  <q-tab :name="name">
+    <template #default>
       <q-avatar
-        v-if="icon"
         rounded
         text-color="white"
         :icon="icon"
@@ -10,20 +9,19 @@
         :class="avatarClass"
       />
       <div
-        class="text-h6 text-weight-700 no-letter-spacing q-ml-md q-my-sm q-py-xs"
+        class="text-h6 text-weight-700 no-letter-spacing q-ml-md q-my-sm"
       >
         {{ title }}
       </div>
-    </div>
-    <slot name="header-toolbar"></slot>
-  </div>
-  <q-separator size="1px" />
+    </template>
+  </q-tab>
 </template>
 
 <script setup>
   const props = defineProps({
-    title: String,
+    name: String,
     icon: String,
+    title: String,
     avatarClass: {
       type: String,
       default: "primary-gradient primary-shadow",

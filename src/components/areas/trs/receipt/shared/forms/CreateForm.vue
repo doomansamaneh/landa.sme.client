@@ -20,7 +20,7 @@
   import { useRoute } from "vue-router";
   import { useReceiptModel } from "../../../_composables/useReceiptModel";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import DesktopForm from "../../desktop/forms/CreateForm.vue";
   //import MobileForm from "../../mobile/forms/CreateForm.vue";
 

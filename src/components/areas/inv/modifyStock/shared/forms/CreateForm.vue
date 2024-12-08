@@ -18,7 +18,7 @@
   import { useRoute } from "vue-router";
   import { useRepositionModel } from "../../../_composables/useRepositionModel";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import CreateForm from "../../desktop/forms/CreateForm.vue";
 
   const props = defineProps({

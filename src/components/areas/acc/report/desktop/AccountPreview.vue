@@ -42,17 +42,7 @@
   </tool-bar>
 
   <q-card flat class="bordered shadow overflow-hidden">
-    <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <custom-tab
-          behavior="heading"
-          title="گردش حساب"
-          icon="o_repeat"
-        />
-      </div>
-    </div>
-
-    <q-separator size="1px" />
+    <card-title title="گردش حساب" icon="o_repeat" />
 
     <q-card-section>
       <div class="row q-mb-sm">
@@ -91,7 +81,7 @@
 
   import AccountItem from "./AccountItem.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     inside: Boolean,

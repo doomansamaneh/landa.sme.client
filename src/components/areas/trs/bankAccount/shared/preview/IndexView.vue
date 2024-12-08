@@ -48,20 +48,18 @@
     </template>
   </tool-bar>
 
-  <q-card flat_ bordered>
+  <q-card flat_ bordered class="overflow-hidden">
     <card-title title="حساب بانکی" />
     <div id="invoicePreview" v-if="model">
       <q-card-section>
         <header-section :model="model" />
       </q-card-section>
       <q-separator />
-      <q-card-section class="q-px-none">
-        <account-item
-          flat
-          :columns="accountItemColumns"
-          :filter-expression="filterExpression"
-        />
-      </q-card-section>
+      <account-item
+        flat
+        :columns="accountItemColumns"
+        :filter-expression="filterExpression"
+      />
     </div>
   </q-card>
 </template>

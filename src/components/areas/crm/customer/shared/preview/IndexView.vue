@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <invoice-summary class="q-mt-lg" :customer-id="id" />
+    <invoice-summary class="q-my-lg" :customer-id="id" />
 
     <tabs :item="model" />
   </div>

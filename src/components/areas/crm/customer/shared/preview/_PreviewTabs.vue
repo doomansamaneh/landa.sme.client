@@ -1,49 +1,34 @@
 <template>
-  <q-card>
-    <div
-      class="row justify-between overflow-hidden primary-gradient-1 q-mt-lg"
+  <q-card class="bordered shadow">
+    <card-tabs
+      v-model="tab"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      align="left"
+      inline-label
+      narrow-indicator
+      mobile-arrows
     >
-      <q-tabs
-        v-model="tab"
-        class="wrap-tab scroll text-h6 text-weight-700"
-        :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-        align="left"
-        inline-label
-        narrow-indicator
-        mobile-arrows
-      >
-        <custom-tab
-          name="main"
-          title="اطلاعات پایه"
-          icon="o_person"
-        />
+      <card-tab name="main" title="اطلاعات پایه" icon="o_person" />
 
-        <custom-tab
-          name="quote"
-          title="پیش فاکتورها"
-          icon="o_assignment"
-        />
+      <card-tab
+        name="quote"
+        title="پیش فاکتورها"
+        icon="o_assignment"
+      />
 
-        <custom-tab
-          name="invoice"
-          title="فاکتورها"
-          icon="o_receipt"
-        />
+      <card-tab name="invoice" title="فاکتورها" icon="o_receipt" />
 
-        <custom-tab name="review" title="گردش حساب" icon="o_repeat" />
+      <card-tab name="review" title="گردش حساب" icon="o_repeat" />
 
-        <custom-tab
-          name="check"
-          title="چکهای دریافتی، پرداختی"
-          icon="o_receipt"
-        />
+      <card-tab
+        name="check"
+        title="چکهای دریافتی، پرداختی"
+        icon="o_receipt"
+      />
 
-        <custom-tab name="log" title="تاریخچه" icon="o_history" />
-      </q-tabs>
-    </div>
-
-    <q-separator size="1px" />
+      <card-tab name="log" title="تاریخچه" icon="o_history" />
+    </card-tabs>
 
     <q-card-section class="q-pa-lg">
       <q-tab-panels
@@ -85,7 +70,8 @@
   import AccountReview from "./_TabPanelAccount.vue";
   import CheckItem from "src/components/areas/trs/report/shared/CheckItem.vue";
   import Log from "src/components/areas/_shared/log/PreviewLog.vue";
-  import CustomTab from "src/components/shared/CustomTab.vue";
+  import CardTabs from "src/components/shared/CardTabs.vue";
+  import CardTab from "src/components/shared/CardTab.vue";
 
   const props = defineProps({
     item: Object,

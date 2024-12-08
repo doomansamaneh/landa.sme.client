@@ -22,7 +22,7 @@
   import { useRoute } from "vue-router";
   import { useBillModel } from "../../../_composables/useBillModel";
 
-  import ToolBar from "src/components/shared/FormToolBar.vue";
+  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import DesktopForm from "../../desktop/forms/CreateForm.vue";
   import MobileForm from "../../mobile/forms/CreateForm.vue";
 
