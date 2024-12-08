@@ -38,10 +38,24 @@
       <span>{{ helper.formatNumber(item.amount) }}</span>
     </template>
     <template #cell-customerName="{ item }">
-      <span v-if="item.customerCode && item.customerCode !== '-'">
-        {{ item.customerCode }} -
-      </span>
-      <span>{{ item.customerName }}</span>
+      <div class="column items-center justify-center q-py-xs">
+        <customer-avatar
+          size="36px"
+          text-color="white"
+          :item="item.customerId"
+          :text-holder="item.customerName"
+          text-holder-class="text-h6 text-bold no-letter-spacing"
+          :avatar="avatar"
+        />
+
+        <div class="q-mt-sm">
+          <span v-if="item.customerCode && item.customerCode !== '-'">
+            {{ item.customerCode }} -
+          </span>
+
+          <span>{{ item.customerName }}</span>
+        </div>
+      </div>
     </template>
     <template #cell-payedAmount="{ item }">
       <span>{{ helper.formatNumber(item.payedAmount) }}</span>
@@ -163,11 +177,12 @@
   import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
   import IsActive from "src/components/shared/IsActive.vue";
+  import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const props = defineProps({
     tableStore: Object,
     baseRoute: String,
-    noFullscreen: Boolean
+    noFullscreen: Boolean,
   });
 
   const router = useRouter();

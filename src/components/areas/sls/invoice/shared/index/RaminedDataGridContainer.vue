@@ -1,5 +1,10 @@
 <template>
-  <h4>مانده: {{ title }}</h4>
+  <toolbar
+    :title="`مانده ${title}`"
+    back-button
+    margin
+  />
+
   <data-grid-table
     :title="title"
     :table-store="tableStore"
@@ -10,6 +15,7 @@
 <script setup>
   import { useInvoiceFilteredGrid } from "components/areas/sls/_composables/useInvoiceFilteredGrid";
   import { useDataTable } from "src/composables/useDataTable";
+  import Toolbar from "components/shared/ToolBarDesktop.vue";
 
   import DataGridTable from "./DataGridTable.vue";
 
