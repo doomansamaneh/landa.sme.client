@@ -1,5 +1,5 @@
 <template>
-  <tool-bar
+  <form-toolbar-container
     :title="title"
     @submit-call-back="formStore.submitForm(form, action)"
   />

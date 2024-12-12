@@ -8,20 +8,10 @@
   />
 
   <q-card flat class="bordered shadow">
-    <div class="row justify-between primary-gradient-1">
-      <div class="row items-center q-px-md">
-        <q-avatar
-          rounded
-          text-color="white"
-          size="md"
-          icon="o_account_box"
-          class="primary-gradient primary-shadow"
-        />
-        <card-title :title="$t('main-menu-items.Prl_Wage_View')" />
-      </div>
-    </div>
-
-    <q-separator size="1px" />
+    <card-title
+      :title="$t('main-menu-items.Prl_Wage_View')"
+      icon="o_account_box"
+    />
 
     <div id="invoicePreview">
       <header-section :model="model" />

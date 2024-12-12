@@ -50,6 +50,10 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
     build: {
+      extendViteConf(config) {
+        config.build.chunkSizeWarningLimit = 1600;
+      },
+
       publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
       target: {
         browser: [
