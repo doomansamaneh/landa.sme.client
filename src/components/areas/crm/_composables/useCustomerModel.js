@@ -5,7 +5,7 @@ import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
 import { customerModel } from "src/models/areas/crm/customerModel";
 
-import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
+import ResponseDialog from "src/components/areas/crm/customer/shared/forms/ResponseDialog.vue";
 
 export function useCustomerModel(config) {
   const $q = useQuasar();
@@ -84,6 +84,8 @@ export function useCustomerModel(config) {
     deleteItem("customerContactWebsites", index);
 
   async function submitForm(form, action) {
+    if (!model.value.name && model.value.person)
+      model.value.name = `${model.value.person.name} ${model.value.person.lastName}`;
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
       if (responseData?.code === 200) {
