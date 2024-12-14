@@ -54,32 +54,24 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
-
-  const items = ref([
+  const items = [
     {
       id: 1,
       name: "Sls_Invoice_View",
       icon: "receipt",
-      to: "/sls/invoice",
+      to: "/sls/invoice/createV2",
     },
     {
       id: 2,
       name: "Trs_Receipt_View",
       icon: "arrow_downward",
-      to: "/trs/receipt",
+      to: "/trs/receipt/create",
     },
     {
       id: 3,
       name: "Trs_Payment_View",
       icon: "arrow_upward",
-      to: "/trs/payment",
-    },
-    {
-      id: 4,
-      name: "Sls_Quote_View",
-      icon: "assignment",
-      to: "/sls/quote",
+      to: "/trs/payment/create",
     },
     {
       id: 5,
@@ -87,11 +79,5 @@
       icon: "receipt",
       to: "/acc/voucher",
     },
-    {
-      id: 6,
-      name: "Acc_Report_IncomeStatement",
-      icon: "reorder",
-      to: "Acc/Report/IncomeStatement",
-    },
-  ]);
+  ];
 </script>

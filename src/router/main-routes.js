@@ -1,6 +1,6 @@
-import { title } from "src/constants/columns";
 import MainLayout from "src/layouts/MainLayout.vue";
 import HomePage from "src/pages/areas/dashboard/IndexPage.vue";
+
 export default {
   path: "/",
   component: MainLayout,
@@ -837,6 +837,56 @@ export default {
     },
 
     {
+      path: "sls/purchaseReturn",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/sls/purchaseReturn/IndexPage.vue"),
+          meta: { title: "فهرست برگشت از خریدها" },
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/sls/purchaseReturn/CreatePage.vue"),
+          meta: { title: "برگشت از خرید - ایجاد" },
+        },
+        {
+          path: "createV2",
+          component: () =>
+            import("pages/areas/sls/purchaseReturn/CreateV2Page.vue"),
+          meta: { title: "برگشت از خرید - ایجاد" },
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/sls/purchaseReturn/EditPage.vue"),
+          meta: { title: "برگشت از خرید - ویرایش" },
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/sls/purchaseReturn/CopyPage.vue"),
+          meta: { title: "برگشت از خرید - کپی" },
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/sls/purchaseReturn/PreviewPage.vue"),
+          meta: { title: "برگشت از خرید - پیش نمایش" },
+        },
+        {
+          path: "createFromInvoice/:id",
+          component: () =>
+            import(
+              "pages/areas/sls/purchaseReturn/CreateFromInvoicePage.vue"
+            ),
+          meta: { title: "برگشت از خرید - ایجاد از فاکتور خرید" },
+        },
+      ],
+    },
+
+    {
       path: "sls/saleType",
       children: [
         {
@@ -903,7 +953,7 @@ export default {
           path: "",
           component: () =>
             import("src/pages/management/users/SettingPage.vue"),
-          meta: { title: "پیکربندی" },
+          meta: { title: "تنظیمات شخصی" },
         },
         {
           path: "theme",

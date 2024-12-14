@@ -51,15 +51,15 @@
             </span>
           </q-btn>
         </div>
-        <div
+        <!-- <div
           class="text-body2 no-letter-spacing"
-          :class="$q.screen.lt.md ? '      q-mt-lg' : 'q-mt-sm'"
+          :class="$q.screen.lt.md ? 'q-mt-lg' : 'q-mt-sm'"
         >
           تبریک میگم، %47.4 رشد داشته اید.
           <span class="text-body3 no-letter-spacing">
             در ماه گذشته
           </span>
-        </div>
+        </div> -->
       </q-card-section>
 
       <q-card-section
@@ -300,8 +300,8 @@
   }
 
   .clickable-btn.q-btn--dense {
-      padding: 0 !important;
-    }
+    padding: 0 !important;
+  }
 
   .mouse-icon {
     width: 18px;

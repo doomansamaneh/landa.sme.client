@@ -46,7 +46,9 @@
             </q-item-section>
           </div>
           <q-item-section>
-            <div class="text-body2 no-letter-spacing">تنظیمات</div>
+            <div class="text-body2 no-letter-spacing">
+              تنظیمات شخصی
+            </div>
           </q-item-section>
         </q-item>
         <!-- <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="openPasswordDialog">

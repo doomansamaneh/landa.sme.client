@@ -124,7 +124,7 @@
             >
               قیمت خرید
             </q-item-label>
-            <custom-input
+            <custom-input-number
               hide-bottom-space
               v-model="formStore.model.value.purchasePrice"
               lazy-rules
@@ -144,7 +144,7 @@
             >
               قیمت فروش
             </q-item-label>
-            <custom-input
+            <custom-input-number
               hide-bottom-space
               v-model="formStore.model.value.price"
               lazy-rules
@@ -211,6 +211,7 @@
 
   import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";

@@ -49,7 +49,7 @@
                   netIncomeStore.thisYearRevenue?.value
                 )
               }}
-              <span
+              <!-- <span
                 class="text-body2 text-weight-300 no-letter-spacing caption-on-dark"
               >
                 ({{
@@ -57,7 +57,7 @@
                     netIncomeStore.thisYearRevenue?.value
                   )
                 }})
-              </span>
+              </span> -->
             </div>
             <q-item-label class="text-body3 no-letter-spacing">
               <span v-if="netIncomeStore.revenuePercent?.value > 0">
@@ -93,7 +93,7 @@
               </span>
               به نسبت پارسال
             </q-item-label>
-            <q-btn
+            <!-- <q-btn
               class="q-mt-md primary-gradient primary-shadow text-body3"
               rounded
               text-color="white"
@@ -101,7 +101,7 @@
               style="width: 120px"
             >
               جزئیات بیشتر
-            </q-btn>
+            </q-btn> -->
           </div>
           <div class="col-4">
             <vue-apex-charts
@@ -137,9 +137,9 @@
   const draggable = useDraggableWidgets();
   const netIncomeStore = useNetIncome();
 
-  const hideWidget = () =>{
+  const hideWidget = () => {
     emit("hideWidget");
-  }
+  };
 
   const incomeChart = ref(null);
 

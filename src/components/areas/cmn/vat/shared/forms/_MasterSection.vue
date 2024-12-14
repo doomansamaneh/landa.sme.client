@@ -46,20 +46,25 @@
   </div>
 
   <div class="row q-gutter-md q-mb-md">
-    <q-checkbox dense size="48px" v-model="model.value.isActive" label="فعال" />
+    <q-checkbox
+      dense
+      size="48px"
+      v-model="model.value.isActive"
+      label="فعال"
+    />
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { helper } from "src/helpers";
-import { vatType } from "src/constants";
+  import { computed } from "vue";
+  import { helper } from "src/helpers";
+  import { vatType } from "src/constants";
 
-import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
-const props = defineProps({
-  formStore: Object,
-});
+  const props = defineProps({
+    formStore: Object,
+  });
 
-const model = computed(() => props.formStore.model);
+  const model = computed(() => props.formStore.model);
 </script>

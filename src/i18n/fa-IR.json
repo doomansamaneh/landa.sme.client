@@ -44,6 +44,7 @@
     "Sls_Invoice_View": "فاکتورهای فروش",
     "Sls_Purchase_View": "فاکتورهای خرید",
     "Sls_SalesReturn_View": "برگشت از فروش",
+    "Sls_PurchaseReturn_View": "برگشت از خرید",
     "Sls_SaleType_View": "انواع فروش",
     "Sls_PurchaseType_View": "انواع خرید",
     "Sls_Report_ProductStock": "گزارش موجودی کالا",

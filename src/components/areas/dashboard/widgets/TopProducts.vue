@@ -134,24 +134,19 @@
                   </span>
                   <span class="text-body3 no-letter-spacing ellipsis">
                     قیمت فروش: {{ helper.formatNumber(item.price) }}
+                    <span>({{ item.productUnitTitle }})</span>
                   </span>
                   <span class="text-body3 no-letter-spacing ellipsis">
                     {{ $t("shared.labels.total") }}:
                     <strong class="q-px-xs">
                       {{ helper.formatNumber(item.amount) }}
                     </strong>
-                    <span>({{ item.productUnitTitle }})</span>
                   </span>
                 </div>
               </q-item-section>
             </q-item>
           </template>
         </loadable-data-grid>
-        <!-- <q-scroll-area
-        style="height: 350px"
-        :thumb-style="helper.thumbStyle"
-        :bar-style="helper.barStyle"
-      </q-scroll-area> -->
       </q-card-section>
     </div>
   </q-card>
