@@ -6,7 +6,7 @@
 
 <script setup>
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { useSalesReturnState } from "../../../_composables/useSalesReturnState";
+  import { usePurchaseReturnState } from "../../../_composables/usePurchaseReturnState";
   //import { useQuoteState } from "../../../_composables/useQuoteState";
   import { useDataTable } from "src/composables/useDataTable";
 
@@ -17,12 +17,12 @@
     toolbar: Boolean,
     dataSource: {
       type: String,
-      default: "sls/salesReturn/getGridData",
+      default: "sls/purchaseReturn/getGridData",
     },
     title: String,
   });
 
-  const salesReturnStore = useSalesReturnState();
+  const salesReturnStore = usePurchaseReturnState();
   const gridStore = useBaseInfoGrid(salesReturnStore);
   const tableStore = useDataTable({
     dataSource: props.dataSource,
