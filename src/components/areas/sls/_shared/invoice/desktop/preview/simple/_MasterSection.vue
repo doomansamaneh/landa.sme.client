@@ -31,17 +31,4 @@
     showSaleHeader: Boolean,
     comment: String,
   });
-
-  // const showSaleHeader = computed(
-  //   () =>
-  //     props.model.docTypeId === documentType.salesReturn ||
-  //     props.model.docTypeId === documentType.invoice ||
-  //     props.model.docTypeId === documentType.quote
-  // );
-  // const invoiceStore = useInvoiceState();
-
-  // function deleteCallBack() {
-  //   invoiceStore.state.firstLoad.value = false;
-  //   router.back();
-  // }
 </script>

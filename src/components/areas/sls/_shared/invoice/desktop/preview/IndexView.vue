@@ -2,7 +2,14 @@
   <div class="row q-col-gutter-lg" style="margin-top: -20px">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <slot name="master-section">
-        <master-section
+        <!-- <master-section-standard
+          :model="model"
+          :title="title"
+          :show-sale-header="showSaleHeader"
+          :comment="comment"
+        /> -->
+
+        <master-section-simple
           :model="model"
           :title="title"
           :show-sale-header="showSaleHeader"
@@ -25,7 +32,8 @@
 </template>
 
 <script setup>
-  import MasterSection from "./_MasterSection.vue";
+  import MasterSectionStandard from "./standard/_MasterSection.vue";
+  import MasterSectionSimple from "./simple/_MasterSection.vue";
   import DetailSection from "../../shared/preview/_DetailSection.vue";
 
   const props = defineProps({
