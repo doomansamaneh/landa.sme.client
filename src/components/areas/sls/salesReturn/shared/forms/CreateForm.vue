@@ -10,12 +10,12 @@
         <desktop
           v-if="$q.screen.gt.sm"
           :form-store="formStore"
-          :form-type="invoiceFormType.sales"
+          :form-type="invoiceFormType.salesReturn"
         />
         <mobile
           v-else
           :form-store="formStore"
-          :form-type="invoiceFormType.sales"
+          :form-type="invoiceFormType.salesReturn"
         />
         <!-- <mobile :form-store="formStore" /> -->
       </q-form>

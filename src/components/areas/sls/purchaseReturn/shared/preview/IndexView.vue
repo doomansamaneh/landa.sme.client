@@ -1,9 +1,9 @@
 <template>
   <preview
-    :title="title ?? $t('shared.labels.salesReturn')"
-    base-route="sls/salesReturn"
-    entity-name="Sls.[SalesReturn]"
-    detail-url="trs/payment"
+    :title="title ?? $t('shared.labels.purchaseReturn')"
+    base-route="sls/purchaseReturn"
+    entity-name="Sls.[PurchaseReturn]"
+    detail-url="trs/receipt"
     show-sale-header
     tax-api
   />

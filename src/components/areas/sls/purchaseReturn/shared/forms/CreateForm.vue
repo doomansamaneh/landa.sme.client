@@ -10,12 +10,12 @@
         <desktop
           v-if="$q.screen.gt.sm"
           :form-store="formStore"
-          :form-type="invoiceFormType.sales"
+          :form-type="invoiceFormType.purchaseReturn"
         />
         <mobile
           v-else
           :form-store="formStore"
-          :form-type="invoiceFormType.sales"
+          :form-type="invoiceFormType.purchaseReturn"
         />
         <!-- <mobile :form-store="formStore" /> -->
       </q-form>
@@ -40,7 +40,7 @@
   });
   const route = useRoute();
   const formStore = useInvoiceModel({
-    baseRoute: "sls/salesReturn",
+    baseRoute: "sls/purchaseReturn",
     createFromInvoice: true,
   });
   const form = ref(null);

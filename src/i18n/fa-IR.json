@@ -312,6 +312,7 @@
       "cancelInvoice": "ابطال فاکتور",
       "cancelInvoiceMessage": "با ابطال فاکتور، سند حسابداری مربوط به آن نیز حذف خواهد شد. آیا ابطال انجام شود؟",
       "salesReturn": "برگشت از فروش",
+      "purchaseReturn": "برگشت از خرید",
       "eportToExcel": "تبدیل به اکسل",
       "activate": "فعال سازی",
       "deactivate": "غیرفعال سازی",

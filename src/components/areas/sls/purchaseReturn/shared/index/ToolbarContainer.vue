@@ -45,7 +45,7 @@
     tableStore: useDataTable,
   });
 
-  const baseRoute = "sls/salesReturn";
+  const baseRoute = "sls/purchaseReturn";
   const $q = useQuasar();
 
   const crudStore = useFormActions(baseRoute);
