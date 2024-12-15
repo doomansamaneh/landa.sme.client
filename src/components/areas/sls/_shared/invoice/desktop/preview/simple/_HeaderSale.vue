@@ -76,13 +76,15 @@
               شناسه ملی:
               {{ model.customerSummary?.business?.nationalNo }}
             </div>
-            <div v-else>
+            <div v-if="model.customerSummary?.business?.taxNo">
               شماره اقتصادی:
               {{ model.customerSummary?.business?.taxNo }}
             </div>
-            <div>
+            <div v-if="model.customerSummary?.address?.address">
               نشانی:
-              <strong>
+              <strong
+                v-if="model.customerSummary?.address?.locationTitle"
+              >
                 {{ model.customerSummary?.address?.locationTitle }}
                 -
               </strong>

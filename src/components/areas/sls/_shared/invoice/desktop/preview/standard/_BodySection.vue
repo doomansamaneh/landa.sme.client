@@ -86,7 +86,16 @@
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <div class="text-wrap">
               {{ item.productTitle }}
-              <small v-if="item.comment">({{ item.comment }})</small>
+              <small v-if="item.comment || item.productComment">
+                (
+                <span v-if="item.productComment">
+                  {{ item.productComment }}
+                </span>
+                <span v-if="item.comment" class="q-px-sm">
+                  {{ item.comment }}
+                </span>
+                )
+              </small>
             </div>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">

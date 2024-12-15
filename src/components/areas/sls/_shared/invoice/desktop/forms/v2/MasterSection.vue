@@ -43,6 +43,7 @@
         </template>
       </q-input>
     </div>
+
     <div class="col-md-2 col-sm-12 col-xs-12">
       <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
       <date-time v-model="model.value.date" />
@@ -69,6 +70,14 @@
       >
         <q-icon size="20px" name="o_more_horiz" />
       </q-btn>
+    </div>
+
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <q-item-label caption class="q-mb-sm">صندوق</q-item-label>
+      <cash-lookup
+        v-model:selectedId="model.value.cashId"
+        v-model:selectedText="model.value.cashTitle"
+      />
     </div>
   </div>
 
@@ -143,6 +152,7 @@
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+  import CashLookup from "src/components/shared/lookups/CashLookup.vue";
   import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -162,11 +172,7 @@
 
   const contractLookup = ref(null);
   const invoiceNo = ref(false);
-  const invoiceNoField = ref("1");
-  const date = ref("");
-  const dueDate = ref("");
   const customerLookup = ref(null);
-  const detailSection = ref(false);
 
   const moreInfo = ref(false);
 

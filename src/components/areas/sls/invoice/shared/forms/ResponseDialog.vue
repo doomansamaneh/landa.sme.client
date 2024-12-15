@@ -27,9 +27,9 @@
               فاکتور فروش (صورتحساب) با موفقیت ثبت شد.
               <div>
                 شماره:
-                <span class="text-h6 text-weight-700">{{
-                  responseData.no
-                }}</span>
+                <span class="text-h6 text-weight-700">
+                  {{ responseData.no }}
+                </span>
               </div>
               <div>گام بعدی را انتخاب کنید:</div>
             </div>
@@ -46,7 +46,11 @@
             class="rounded-borders"
           >
             <q-item-section avatar top>
-              <q-avatar icon="print" color="primary" text-color="white" />
+              <q-avatar
+                icon="print"
+                color="primary"
+                text-color="white"
+              />
             </q-item-section>
 
             <q-item-section>
@@ -55,18 +59,32 @@
             </q-item-section>
           </q-item>
 
-          <q-item class="rounded-borders" clickable v-ripple>
+          <q-item
+            v-if="responseData.amount > responseData.receivedAmount"
+            class="rounded-borders"
+            clickable
+            v-ripple
+          >
             <q-item-section avatar top>
-              <q-avatar icon="payment" color="orange" text-color="white" />
+              <q-avatar
+                icon="payment"
+                color="orange"
+                text-color="white"
+              />
             </q-item-section>
 
             <q-item-section>
               <q-item-label lines="1">دریافت</q-item-label>
-              <q-item-label caption> دریافت مانده حساب </q-item-label>
+              <q-item-label caption>دریافت مانده حساب</q-item-label>
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple class="rounded-borders">
+          <q-item
+            v-if="false"
+            clickable
+            v-ripple
+            class="rounded-borders"
+          >
             <q-item-section avatar top>
               <q-avatar icon="mail" color="teal" text-color="white" />
             </q-item-section>
@@ -78,18 +96,28 @@
               </q-item-label>
             </q-item-section>
           </q-item>
-          <q-separator class="q-my-sm" />
 
-          <q-item class="rounded-borders" clickable v-ripple>
+          <q-separator v-if="false" class="q-my-sm" />
+
+          <q-item
+            v-if="false"
+            class="rounded-borders"
+            clickable
+            v-ripple
+          >
             <q-item-section avatar top>
-              <q-avatar icon="assignment" color="grey" text-color="white" />
+              <q-avatar
+                icon="assignment"
+                color="grey"
+                text-color="white"
+              />
             </q-item-section>
 
             <q-item-section>
               <q-item-label lines="1">سند حسابداری</q-item-label>
               <q-item-label caption>
-                مشاهده سند حسابداری. سند حسابداری به صورت خودکار توسط سامانه
-                صادر می‌شود
+                مشاهده سند حسابداری. سند حسابداری به صورت خودکار توسط
+                سامانه صادر می‌شود
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -113,19 +141,19 @@
 </template>
 
 <script setup>
-import { useDialogPluginComponent } from "quasar";
+  import { useDialogPluginComponent } from "quasar";
 
-const props = defineProps({
-  responseData: Object,
-  baseRoute: String,
-});
+  const props = defineProps({
+    responseData: Object,
+    baseRoute: String,
+  });
 
-defineEmits([...useDialogPluginComponent.emits]);
+  defineEmits([...useDialogPluginComponent.emits]);
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent();
+  const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
+    useDialogPluginComponent();
 
-function onOKClick() {
-  onDialogOK();
-}
+  function onOKClick() {
+    onDialogOK();
+  }
 </script>

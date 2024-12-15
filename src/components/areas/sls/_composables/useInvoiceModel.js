@@ -303,6 +303,14 @@ export function useInvoiceModel(config) {
   );
 
   async function submitForm(form, action, callBack) {
+    if (model.value.cashId) {
+      model.value.paymentItems = [
+        {
+          cashId: model.value.cashId,
+          amount: totalPrice.value,
+        },
+      ];
+    }
     await crudStore.submitForm(
       form,
       action,

@@ -32,7 +32,9 @@
         </tr>
         <tr>
           <td
+            colspan="100%"
             style="
+              width: 50%;
               padding: 5px;
               border: 1px solid #2d2d2d;
               height: 90px;
@@ -44,12 +46,12 @@
               <img :src="signatureSource" alt="signature" />
             </div>
           </td>
-          <td
+          <!-- <td
             style="padding: 5px; border: 1px solid #2d2d2d"
             class="text-body2 no-letter-spacing vertical-top"
           >
             مهر و امضا خریدار
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
