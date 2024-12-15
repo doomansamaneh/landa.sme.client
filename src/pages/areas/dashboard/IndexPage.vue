@@ -16,11 +16,18 @@
   import ConfettiAnimation from "src/assets/ConfettiAnimation.vue";
   import CongratsDialog from "src/components/shared/CongratsDialog.vue";
   import ToolbarContainer from "src/components/areas/dashboard/toolbar/ToolbarContainer.vue";
+  import { useMeta } from "quasar";
 
   const { t } = useI18n();
   const congratsStore = useCongrats();
 
   const showCongrat = false;
+
+  const metaData = {
+    title: t("pages.dashboard"),
+  };
+
+  useMeta(metaData);
 
   onMounted(() => {
     //todo: if user login for first time should show congrats.

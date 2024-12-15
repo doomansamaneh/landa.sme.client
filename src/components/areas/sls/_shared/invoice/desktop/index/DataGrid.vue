@@ -38,13 +38,13 @@
       <span>{{ helper.formatNumber(item.amount) }}</span>
     </template>
     <template #cell-customerName="{ item }">
-      <div class="column items-center justify-center q-py-xs">
+      <div class="row items-center no-wrap q-gutter-sm">
         <customer-avatar
-          size="36px"
+          size="32px"
           text-color="white"
           :item="item.customerId"
           :text-holder="item.customerName"
-          text-holder-class="text-h6 text-bold no-letter-spacing"
+          text-holder-class="text-body2 text-bold no-letter-spacing"
           :avatar="avatar"
         />
 

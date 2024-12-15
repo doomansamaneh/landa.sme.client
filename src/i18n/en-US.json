@@ -5,7 +5,8 @@
     "payments": "Payments",
     "payment-detail": "Payment Details",
     "renew-subscription": "Renew Subscription",
-    "add-new-business": "Add New Business"
+    "add-new-business": "Add New Business",
+    "dashboard": "Dashboard"
   },
 
   "login-page": {

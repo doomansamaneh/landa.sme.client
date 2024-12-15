@@ -27,7 +27,6 @@
             <q-item class="no-padding">
               <q-item-section avatar>
                 <q-avatar
-                  v-if="saleIncome"
                   rounded
                   text-color="white"
                   icon="o_shopping_basket"
@@ -35,7 +34,7 @@
                   class="primary-gradient primary-shadow"
                 />
 
-                <q-avatar
+                <!-- <q-avatar
                   v-if="saleIncomeTable"
                   rounded
                   text-color="white"
@@ -64,17 +63,16 @@
                   icon="o_paid"
                   size="md"
                   class="orange-gradient orange-shadow"
-                />
+                /> -->
               </q-item-section>
 
               <q-item-section>
                 <q-item-label
-                  v-if="saleIncome"
                   class="text-h6 text-weight-700"
                 >
                   فروش و درآمد، هزینه
                 </q-item-label>
-                <q-item-label
+                <!-- <q-item-label
                   v-if="saleIncomeTable"
                   class="text-h6 text-weight-700"
                 >
@@ -109,7 +107,7 @@
                   class="text-h6 text-weight-700"
                 >
                   ریز هزینه
-                </q-item-label>
+                </q-item-label> -->
               </q-item-section>
             </q-item>
           </div>

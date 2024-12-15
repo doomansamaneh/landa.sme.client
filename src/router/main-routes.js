@@ -21,7 +21,7 @@ export default {
     {
       path: "/dashboard",
       component: HomePage,
-      meta: { title: "پیشخوان" },
+      // meta: { title: "پیشخوان" },
     },
 
     {
