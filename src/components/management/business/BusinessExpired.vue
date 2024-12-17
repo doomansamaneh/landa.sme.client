@@ -1,5 +1,5 @@
 <template>
-  <q-card class="card-desktop no-shadow q-my-xl">
+  <q-card class="card-desktop bordered q-my-xl">
     <q-card-section>
       <q-item class="">
         <q-item-section>
