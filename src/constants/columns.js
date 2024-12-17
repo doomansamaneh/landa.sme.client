@@ -127,6 +127,17 @@ export const name = {
   value: "",
 };
 
+export const loginName = {
+  name: "loginName",
+  field: "loginName",
+  sortable: true,
+  label: "نام کاربری",
+  style: "",
+  showFilter: true,
+  class: "text-left",
+  value: "",
+};
+
 export const jobTitle = {
   name: "jobTitle",
   field: "jobTitle",

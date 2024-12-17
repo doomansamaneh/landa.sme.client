@@ -947,10 +947,16 @@ export default {
     },
 
     {
-      path: "scr/users/settings",
+      path: "scr/users",
       children: [
         {
           path: "",
+          component: () =>
+            import("pages/areas/scr/users/IndexPage.vue"),
+          meta: { title: "فهرست کاربران" },
+        },
+        {
+          path: "settings",
           component: () =>
             import("src/pages/management/users/SettingPage.vue"),
           meta: { title: "تنظیمات شخصی" },

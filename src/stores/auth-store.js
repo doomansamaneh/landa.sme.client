@@ -21,6 +21,7 @@ export const useAuthStore = defineStore("auth", {
           captchaToken: this.captchaToken.jwt,
         })
         .finally(() => {
+          //this.getCaptcha();
           this.isLoggingIn = false;
         });
 

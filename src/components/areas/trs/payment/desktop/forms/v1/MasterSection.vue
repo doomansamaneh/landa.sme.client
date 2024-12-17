@@ -98,7 +98,7 @@
   const invoiceGrid = ref(null);
   const localFormStore = computed(() => props.formStore);
 
-  const formTypeChanged = (e) => {
+  const formTypeChanged = async (e) => {
     if (e === paymentFormType.purhcase)
       localFormStore.value.resetSL();
     else localFormStore.value.resetRemainedInvoices();

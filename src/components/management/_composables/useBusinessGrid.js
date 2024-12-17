@@ -58,9 +58,9 @@ export function useBusinessGrid() {
       .post(`business/gotoBusiness/${item.id}`, null, true)
       .then(async (response) => {
         if (response.data.code === HttpStatusCode.Ok) {
-          appConfigStore.reset();
           await initBusiness(item);
-        }
+        } else if (response.data.data.url)
+          router.push(response.data.data.url);
       });
   };
 
@@ -70,6 +70,7 @@ export function useBusinessGrid() {
       .then((response) => {
         const data = response.data.data;
         if (response.data.code === HttpStatusCode.Ok) {
+          appConfigStore.reset();
           businessStore.set({ id: item.id, title: data.title });
         }
         if (data.url) router.push(data.url);
