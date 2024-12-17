@@ -1,8 +1,8 @@
 <template>
   <data-grid
     :data-table-store="tableStore"
-    flat
-    toolbar
+    flat_
+    toolbar_
     multiSelect_
     numbered
     dense_

@@ -11,7 +11,7 @@
     </template>
 
     <template #row-avatar-title="{ item }">
-      {{ item.name }}
+      {{ helper.getFirstChar(item.name) }}
     </template>
 
     <template #row-body="{ item }">
@@ -19,9 +19,14 @@
         <div
           class="col ellipsis text-body3 no-letter-spacing text-weight-500"
         >
-          {{ item.name }} {{ item.loginName }}
+          {{ item.name }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />
+      </div>
+      <div class="row">
+        <div class="col ellipsis text-caption-sm no-letter-spacing">
+          {{ item.loginName }}
+        </div>
       </div>
     </template>
   </data-grid>
@@ -38,6 +43,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";

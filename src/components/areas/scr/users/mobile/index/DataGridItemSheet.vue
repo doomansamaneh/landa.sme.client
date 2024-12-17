@@ -1,13 +1,11 @@
 <template>
   <bottom-sheet header :status="status" @hide="hide">
     <template #header-title>
-      {{ item.no }} / {{ item.subject }}
+      {{ item.name }}
     </template>
 
     <template #body>
       <q-list padding>
-        <menu-item-edit :to="`/${baseRoute}/edit/${item.id}`" />
-        <q-separator class="q-my-sm" />
         <menu-item-delete @click="deleteItem" />
       </q-list>
     </template>
@@ -20,7 +18,6 @@
   import { useFormActions } from "src/composables/useFormActions";
 
   import BottomSheet from "components/shared/BottomSheet.vue";
-  import MenuItemEdit from "src/components/shared/buttons/MenuItemEdit.vue";
   import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
 
   const props = defineProps({

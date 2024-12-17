@@ -6,8 +6,17 @@
     buttons
     margin
   >
-    <template #bootons-edit="{ row }">
-      <menu-button-edit :to="`/${baseRoute}/edit/${row.id}`" />
+    <template #buttons-create>
+      <menu-button
+        class="primary-gradient primary-shadow text-white"
+        :to="`/${baseRoute}/create`"
+        title="دعوت از کاربر"
+        icon="person_add"
+      />
+    </template>
+
+    <template #bootons-edit>
+      <span></span>
     </template>
   </toolbar-desktop>
 </template>
@@ -16,6 +25,7 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
 
   const props = defineProps({
