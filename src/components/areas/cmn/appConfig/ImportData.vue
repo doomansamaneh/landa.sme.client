@@ -1,12 +1,9 @@
 <template>
   <div style="margin-top: 0" :class="styles()">
     <q-card-section class="q-gutter-y-md">
-      <div
-        v-for="(item, index) in importList"
-        :key="item.importAction"
-      >
+      <div v-for="item in importList" :key="item.importAction">
         <import-file
-          :title="`${index + 1}. ${item.title}`"
+          :title="item.title"
           :import-action="item.importAction"
           :file-template="item.fileTemplate"
         />

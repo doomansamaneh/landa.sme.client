@@ -1,41 +1,45 @@
 <template>
-  <h6 class="q-mb-md">
-    <slot name="header">
-      {{ title }}
-    </slot>
-  </h6>
-  <a
-    v-if="fileTemplate"
-    class="no-decoration"
-    :href="`${baseUrl}/excelTemplate/import/${fileTemplate}`"
-  >
-    <q-icon
-      name="file_download"
-      class="q-pr-xs"
-      size="xs"
-      :class="hrefColor"
-    />
-    <span class="decoration-on-hover" :class="hrefColor">
-      دانلود الگوی بارگزاری
-    </span>
-  </a>
+  <div class="flex items-center q-gutter-sm q-pb-sm">
+    <div class="no-letter-spacing caption-on-dark">
+      <slot name="header">
+        {{ title }}
+      </slot>
+    </div>
 
-  <q-file outlined clearable v-model="file">
-    <template v-slot:prepend>
+    <q-btn
+      size="4px"
+      round
+      unelevated
+      outline
+      v-if="fileTemplate"
+      class="no-decoration"
+      :href="`${baseUrl}/excelTemplate/import/${fileTemplate}`"
+    >
+      <q-icon name="o_question_mark" size="16px" />
+      <q-tooltip class="custom-tooltip">
+        الگوی درون‌ریزی {{ title }}
+      </q-tooltip>
+    </q-btn>
+  </div>
+
+  <q-file outlined clearable clear-icon="o_close" v-model="file">
+    <template #prepend>
       <q-icon name="attach_file" />
     </template>
-    <template v-slot:append>
+    <template #append>
       <q-btn
         :disabled="!file"
         color="primary"
-        class="text-lowercase primary-shadow q-ml-xs"
+        class="primary-shadow"
         rounded
         unelevated
+        padding="4px 12px"
         use
+        no-caps
         @click="upload"
       >
         <q-icon name="arrow_upward" class="q-px-xs" size="xs" />
-        import
+        درون‌ریزی
       </q-btn>
     </template>
   </q-file>
@@ -62,7 +66,4 @@
   };
 
   const $q = useQuasar();
-  const hrefColor = computed(() =>
-    $q.dark.isActive ? "text-yellow" : "text-primary"
-  );
 </script>

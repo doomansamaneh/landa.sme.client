@@ -189,7 +189,7 @@
             <q-item-label
               class="text-on-dark text-body2 no-letter-spacing"
             >
-              import اطلاعات
+              درون‌ریزی اطلاعات
             </q-item-label>
           </q-item-section>
 

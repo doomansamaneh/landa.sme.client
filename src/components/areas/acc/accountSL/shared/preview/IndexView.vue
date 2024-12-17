@@ -28,7 +28,6 @@
 
   <q-card flat class="bordered shadow overflow-hidden">
     <card-title title="گردش حساب" icon="o_repeat" />
-    <data-grid-toolbar class="q-pa-md" :table-store="tableStore" />
 
     <q-separator size="1px" />
 
@@ -37,6 +36,8 @@
         <header-section :model="model" />
       </q-card-section>
 
+      <q-separator size="1px" />
+      
       <account-item
         flat
         :columns="accountItemColumns"

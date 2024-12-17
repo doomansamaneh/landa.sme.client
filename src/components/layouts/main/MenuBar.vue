@@ -141,6 +141,7 @@
                 :class="{
                   'active-shine': isActiveItem(subItem.url),
                 }"
+                exact
               >
                 <q-item-section avatar>
                   <q-icon :name="`o_${subItem.icon}`" size="20px" />
@@ -163,7 +164,7 @@
             name="o_settings"
             class="settings q-mr-sm"
             size="21px"
-          ></q-icon>
+          />
           <div class="z-1">
             {{ $t("main-menu-items.settings") }}
           </div>
