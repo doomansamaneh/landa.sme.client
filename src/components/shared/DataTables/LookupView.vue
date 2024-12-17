@@ -1,4 +1,8 @@
 <template>
+  <div v-if="label" class="q-mb-sm no-letter-spacing caption-on-dark">
+    {{ label }}
+  </div>
+
   <q-input
     ref="search"
     v-model="selectedText"
@@ -395,6 +399,7 @@
     width: String,
     showAdd: Boolean,
     autofocus: Boolean,
+    label: String,
   });
 
   const selectedId = defineModel("selectedId");
