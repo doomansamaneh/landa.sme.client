@@ -1,5 +1,5 @@
-//export const baseUrl = "http://localhost:9090";
-export const baseUrl = "https://api.landa-sme.ir";
+export const baseUrl = "http://localhost:9090";
+//export const baseUrl = "https://api.landa-sme.ir";
 
 export const isActiveOptions = {
   active: 1,
@@ -263,6 +263,16 @@ export const paymentType = {
   cash: 1,
   trust: 2,
   both: 3,
+};
+
+export const receiptFormType = {
+  sales: 1,
+  other: 2,
+};
+
+export const paymentFormType = {
+  purhcase: 1,
+  other: 2,
 };
 
 export const formAction = {

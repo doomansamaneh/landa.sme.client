@@ -481,6 +481,14 @@
       "trust": "نسیه",
       "both": "نقد و نسیه"
     },
+    "receiptFormType": {
+      "sales": "فروش، برگشت از خرید",
+      "other": "سایر"
+    },
+    "paymentFormType": {
+      "purhcase": "خرید، برگشت از فروش",
+      "other": "سایر"
+    },
     "accountType": {
       "debit": "بدهکار",
       "credit": "بستانکار",

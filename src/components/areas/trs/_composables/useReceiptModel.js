@@ -78,6 +78,15 @@ export function useReceiptModel({ baseRoute, preview }) {
     }
   }
 
+  function resetSL() {
+    model.value.slId = null;
+    model.value.slTitle = null;
+  }
+
+  function resetRemainedInvoices() {
+    model.value.remainedInvoices = [];
+  }
+
   return {
     model,
     crudStore,
@@ -88,6 +97,8 @@ export function useReceiptModel({ baseRoute, preview }) {
     addRow,
     editRow,
     deleteRow,
+    resetSL,
+    resetRemainedInvoices,
     submitForm,
   };
 }

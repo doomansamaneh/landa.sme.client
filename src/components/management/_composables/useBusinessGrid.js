@@ -55,11 +55,21 @@ export function useBusinessGrid() {
 
   const gotoBusiness = async (item) => {
     await fetchWrapper
-      .post(`business/gotoBusiness/${item.id}`)
+      .post(`business/gotoBusiness/${item.id}`, null, true)
+      .then(async (response) => {
+        if (response.data.code === HttpStatusCode.Ok) {
+          appConfigStore.reset();
+          await initBusiness(item);
+        }
+      });
+  };
+
+  const initBusiness = async (item) => {
+    await fetchWrapper
+      .post(`business/InitBusiness/${item.id}`)
       .then((response) => {
         const data = response.data.data;
         if (response.data.code === HttpStatusCode.Ok) {
-          appConfigStore.reset();
           businessStore.set({ id: item.id, title: data.title });
         }
         if (data.url) router.push(data.url);
