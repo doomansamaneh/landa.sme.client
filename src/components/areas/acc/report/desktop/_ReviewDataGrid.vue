@@ -10,6 +10,7 @@
     wrapCells
     dense_
     expandable_
+    @row-dbl-click="alertRow"
   >
     <template #filter-typeId="{ item }">
       <custom-select
@@ -132,4 +133,8 @@
       1 + //numbered column
       1 //multi check column
   );
+
+  const alertRow = (row) => {
+    alert(`${row.title} - ${row.id}`);
+  };
 </script>
