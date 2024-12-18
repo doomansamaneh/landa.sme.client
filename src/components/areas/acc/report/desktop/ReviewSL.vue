@@ -1,5 +1,9 @@
 <template>
-  <review-data-grid :table-store="tableStore" toolbar />
+  <review-data-grid
+    :table-store="tableStore"
+    toolbar
+    @row-dbl-click="filterRow"
+  />
 </template>
 
 <script setup>
@@ -7,12 +11,14 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
   import { reviewSLColumns } from "../../_composables/constants";
+  import { useAccountReview } from "../../_composables/useAccountReview";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
   const searchStore = useVoucherSearch();
 
   const props = defineProps({
+    reportStore: useAccountReview,
     dataSource: {
       type: String,
       default: "acc/report/getSLData",
@@ -34,6 +40,10 @@
         searchModel: searchStore.searchModel,
       }),
   });
+
+  const filterRow = (row) => {
+    props.reportStore?.setSelected("SL", row.id, row.title);
+  };
 
   defineExpose({
     tableStore,
