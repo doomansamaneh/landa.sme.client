@@ -154,18 +154,6 @@
         </q-item>
 
         <template v-if="selectedRow.isOwner">
-          <q-item clickable v-ripple @click="showInviteUser">
-            <q-item-section avatar>
-              <q-avatar class="bg-on-dark text-on-dark" size="36px">
-                <q-icon size="xs" name="o_person_add" />
-              </q-avatar>
-            </q-item-section>
-
-            <q-item-section class="text-body2 no-letter-spacing">
-              {{ $t("page.buttons.more-button.invite-user") }}
-            </q-item-section>
-          </q-item>
-
           <q-item
             clickable
             v-ripple
@@ -212,7 +200,6 @@
 
   import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue";
   import BottomSheet from "src/components/shared/BottomSheet.vue";
-  import InviteUserDialog from "src/components/management/users/InviteUserDialog.vue";
   import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue";
   import UserGuide from "src/components/management/business/mobile/index/GuideView.vue";
 
@@ -234,12 +221,6 @@
   const onBottomSheetHide = () => {
     bottomSheetStatus.value = false;
   };
-
-  function showInviteUser() {
-    $q.dialog({
-      component: InviteUserDialog,
-    });
-  }
 
   function showDeleteBusiness() {
     $q.dialog({

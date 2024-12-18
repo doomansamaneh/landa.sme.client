@@ -19,8 +19,8 @@
             <customer-avatar
               size="72px"
               text-color="white"
-              :item="authStore.user.id"
-              :text-holder="authStore.user.fullName"
+              :item="authStore.user?.id"
+              :text-holder="authStore.user?.fullName"
               text-holder-class="text-h5 text-bold no-letter-spacing"
               :avatar="avatar"
             />
