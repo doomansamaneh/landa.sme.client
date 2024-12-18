@@ -1,5 +1,9 @@
 <template>
-  <div v-if="label" class="q-mb-sm no-letter-spacing caption-on-dark">
+  <div
+    style="line-height: 1.2em"
+    v-if="label"
+    class="q-mb-sm no-letter-spacing caption-on-dark"
+  >
     {{ label }}
   </div>
 

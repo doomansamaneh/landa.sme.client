@@ -1,9 +1,9 @@
 <template>
-  <q-card class="border-radius-xs" bordered flat>
+  <q-card bordered class="border-radius-xl">
     <div>
       <add-by-code :form-store="formStore" />
     </div>
-    <div class="q-px-md">
+    <div class="q-px-sm">
       <q-tabs
         v-model="tab"
         class="text-h6 text-weight-700 primary-tabs"
@@ -52,7 +52,7 @@
       first-load
       :show-search="true"
       :scroll-area="false"
-      scroll-bar-style="height: 370px;"
+      scroll-bar-style="height: calc(100vh);"
     >
       <template #item="{ item }">
         <q-item

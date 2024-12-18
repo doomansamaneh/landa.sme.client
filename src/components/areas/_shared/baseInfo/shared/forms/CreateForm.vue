@@ -53,7 +53,7 @@
 <script setup>
   import { ref, computed } from "vue";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import ToolBar from "src/components/shared/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
   const props = defineProps({
