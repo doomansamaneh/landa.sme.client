@@ -29,7 +29,7 @@
     },
     sortColumn: {
       type: String,
-      default: "voucherNo,code",
+      default: "month,code,credit",
     },
   });
 

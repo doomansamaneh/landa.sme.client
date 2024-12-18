@@ -49,7 +49,7 @@
         <journal-book-total sort-column="month,code,credit" />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
-        <journal-book-total sort-column="code,voucherNo" />
+        <journal-book-total sort-column="code,month,credit" />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
