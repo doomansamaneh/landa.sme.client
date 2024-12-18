@@ -9,7 +9,7 @@
     <q-card class="q-dialog-plugin">
       <q-card-section class="row items-center q-pa-md">
         <div class="text-h5 text-weight-700">
-          نتیجه import اطلاعات
+          نتیجه درون‌ریزی اطلاعات
         </div>
       </q-card-section>
 

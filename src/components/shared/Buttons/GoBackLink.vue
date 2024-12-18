@@ -8,7 +8,7 @@
   >
     <q-icon
       size="20px"
-      :name="$q.screen.xs ? mobileArrowIcon : desktopArrowIcon"
+      :name="$q.screen.lt.md ? mobileArrowIcon : desktopArrowIcon"
     />
     <q-tooltip class="custom-tooltip">
       {{ $t("shared.labels.back") }}

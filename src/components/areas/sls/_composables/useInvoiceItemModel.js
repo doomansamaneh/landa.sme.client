@@ -13,7 +13,7 @@ export function useInvoiceItemModel(item) {
   if (item) model.value = { ...item };
 
   const calculateTotal = (row) => {
-    console.log(row);
+    // console.log(row);
     const total =
       (row.quantity ?? 0) * (row.price ?? 0) - (row.discount ?? 0);
     const vatAmount = (total * row.vatPercent) / 100;

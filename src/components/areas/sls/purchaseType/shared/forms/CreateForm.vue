@@ -1,5 +1,6 @@
 <template>
   <form-toolbar-container
+    buttons
     :title="title"
     @submit-call-back="formStore.submitForm(form, action)"
   />

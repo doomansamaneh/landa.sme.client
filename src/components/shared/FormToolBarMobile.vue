@@ -8,7 +8,7 @@
       "
     >
       <div class="row items-center">
-        <back-button :class="$q.screen.xs ? 'q-mr-sm' : 'q-ml-sm'" />
+        <back-button :class="$q.screen.xs ? 'q-mr-xs' : 'q-ml-sm'" />
 
         <slot name="header">
           <span
@@ -27,7 +27,7 @@
 
       <q-space />
 
-      <div class="q-gutter-x-sm">
+      <div v-if="buttons" class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn
             v-if="$q.screen.gt.xs"
@@ -57,6 +57,7 @@
 
   const props = defineProps({
     title: String,
+    buttons: Boolean,
   });
 
   const emit = defineEmits(["submit-call-back"]);
