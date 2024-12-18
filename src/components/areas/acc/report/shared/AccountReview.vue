@@ -3,6 +3,10 @@
 
   <advanced-search :search-model="searchModel" />
 
+  <pre>
+    {{ accountReviewStore.state.value }}
+  </pre>
+
   <q-card flat class="bordered shadow">
     <card-tabs
       v-model="tab"
@@ -32,7 +36,7 @@
       class="transparent"
     >
       <q-tab-panel name="cl" class="no-padding">
-        <review-cl />
+        <review-cl :report-store="accountReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
         <review-gl />
@@ -52,7 +56,7 @@
 
 <script setup>
   import { ref } from "vue";
-
+  import { useAccountReview } from "src/components/areas/acc/_composables/useAccountReview";
   import ReviewCl from "../desktop/ReviewCL.vue";
   import ReviewGl from "../desktop/ReviewGL.vue";
   import ReviewSl from "../desktop/ReviewSL.vue";
@@ -68,4 +72,6 @@
     title: String,
   });
   const tab = ref("cl");
+
+  const accountReviewStore = useAccountReview();
 </script>

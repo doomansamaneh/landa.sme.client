@@ -134,7 +134,7 @@
       1 //multi check column
   );
 
-  const alertRow = (row) => {
-    alert(`${row.title} - ${row.id}`);
-  };
+  // const alertRow = (row) => {
+  //   alert(`${row.title} - ${row.id}`);
+  // };
 </script>

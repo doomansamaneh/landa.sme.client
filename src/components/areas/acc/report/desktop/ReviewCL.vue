@@ -1,5 +1,9 @@
 <template>
-  <review-data-grid :table-store="tableStore" toolbar />
+  <review-data-grid
+    :table-store="tableStore"
+    toolbar
+    @row-dbl-click="alertRow"
+  />
 </template>
 
 <script setup>
@@ -9,10 +13,12 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
+  import { useAccountReview } from "../../_composables/useAccountReview";
 
   const searchStore = useVoucherSearch();
 
   const props = defineProps({
+    reportStore: useAccountReview,
     dataSource: {
       type: String,
       default: "acc/report/getCLData",
@@ -34,6 +40,10 @@
         searchModel: searchStore.searchModel,
       }),
   });
+
+  const alertRow = (row) => {
+    props.reportStore?.setSelectedCL(row.id, row.title);
+  };
 
   defineExpose({
     tableStore,
