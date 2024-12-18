@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  import report from "src/components/areas/acc/report/shared/IncomeStatement/DataGridContainer.vue";
+  import Report from "src/components/areas/acc/report/shared/IncomeStatement/DataGridContainer.vue";
 </script>

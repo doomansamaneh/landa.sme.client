@@ -12,19 +12,19 @@
     :expandable="expandable"
   >
     <template #cell-quantity="{ item }">
-      {{ item.quantity?.toLocaleString() }}
+      {{ helper.formatNumber(item.quantity) }}
     </template>
 
     <template #cell-amount="{ item }">
-      {{ item.amount?.toLocaleString() }}
+      {{ helper.formatNumber(item.amount) }}
     </template>
 
     <template #cell-vatAmount="{ item }">
-      {{ item.vatAmount?.toLocaleString() }}
+      {{ helper.formatNumber(item.vatAmount) }}
     </template>
 
     <template #cell-price="{ item }">
-      {{ item.price?.toLocaleString() }}
+      {{ helper.formatNumber(item.price) }}
     </template>
 
     <template #footer-subtotal="{ selectedRows }">
@@ -34,27 +34,27 @@
       <td>
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "quantity")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "quantity")
+            )
           }}
         </b>
       </td>
       <td v-if="vatVisible >= 0">
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "vatAmount")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "vatAmount")
+            )
           }}
         </b>
       </td>
       <td>
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "amount")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "amount")
+            )
           }}
         </b>
       </td>
@@ -66,13 +66,13 @@
         {{ $t("shared.labels.total") }}
       </td>
       <td>
-        <b>{{ summary.quantity?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary.quantity) }}</b>
       </td>
       <td v-if="vatVisible >= 0">
-        <b>{{ summary.vatAmount?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary.vatAmount) }}</b>
       </td>
       <td>
-        <b>{{ summary.amount?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary.amount) }}</b>
       </td>
       <td v-if="expandable"></td>
     </template>
