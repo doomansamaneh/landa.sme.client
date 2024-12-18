@@ -30,7 +30,10 @@
   });
   const baseRoute = "scr/users";
 
-  const gridStore = useBaseInfoGrid({ columns: userColumns });
+  const gridStore = useBaseInfoGrid({
+    columns: userColumns,
+    sortColumn: "name",
+  });
   const tableStore = useDataTable({
     dataSource: props.dataSource,
     store: gridStore,

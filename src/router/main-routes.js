@@ -956,6 +956,12 @@ export default {
           meta: { title: "فهرست کاربران" },
         },
         {
+          path: "create",
+          component: () =>
+            import("pages/areas/scr/users/CreatePage.vue"),
+          meta: { title: "دعوت از کاربر" },
+        },
+        {
           path: "settings",
           component: () =>
             import("src/pages/management/users/SettingPage.vue"),

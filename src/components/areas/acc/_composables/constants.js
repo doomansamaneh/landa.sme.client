@@ -186,11 +186,19 @@ export const reviewDLColumns = [
 ];
 
 export const journalBookColumns = [
-  { ...voucherNo },
-  { ...voucherDate },
-  { ...code },
-  { ...title },
-  { ...subject },
-  { ...debit },
-  { ...credit },
+  { ...voucherNo, sortable: false },
+  { ...voucherDate, sortable: false },
+  { ...code, sortable: false },
+  { ...title, sortable: false },
+  { ...subject, sortable: false },
+  { ...debit, sortable: false },
+  { ...credit, sortable: false },
+];
+
+export const journalBookTotalColumns = [
+  { ...month, sortable: false, showFilter: false },
+  { ...code, sortable: false },
+  { ...title, sortable: false },
+  { ...debit, sortable: false },
+  { ...credit, sortable: false },
 ];

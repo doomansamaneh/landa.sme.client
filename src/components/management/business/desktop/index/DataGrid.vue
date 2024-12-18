@@ -165,17 +165,8 @@
                 </div>
               </q-item-section>
             </q-item>
+
             <div class="isNotOwner" v-if="item.isOwner">
-              <q-item clickable v-close-popup @click="showInviteUser">
-                <q-item-section>
-                  <div class="flex items-center q-gutter-x-sm">
-                    <q-avatar icon="o_person_add" size="md" />
-                    <div class="text-body2">
-                      {{ $t("page.buttons.more-button.invite-user") }}
-                    </div>
-                  </div>
-                </q-item-section>
-              </q-item>
               <q-item
                 :to="`/business/payments/${item.id}`"
                 clickable
@@ -227,7 +218,6 @@
   import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue";
   import AddBusiness from "src/components/management/shared/AddBusinessLink.vue";
   import DesktopViewGuide from "components/management/business/desktop/index/GuideView.vue";
-  import InviteUserDialog from "src/components/management/users/InviteUserDialog.vue";
   import DeleteBusinessDialog from "src/components/management/business/DeleteBusinessDialog.vue";
 
   const props = defineProps({
@@ -240,12 +230,6 @@
 
   async function reloadData() {
     businessDataView.value.reloadData();
-  }
-
-  function showInviteUser() {
-    $q.dialog({
-      component: InviteUserDialog,
-    });
   }
 
   function showDeleteBusiness() {

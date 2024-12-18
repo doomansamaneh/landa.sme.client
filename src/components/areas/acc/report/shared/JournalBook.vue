@@ -1,131 +1,73 @@
 <template>
-  <template v-if="$q.screen.xs">
-    <toolbar-mobile
-      v-if="toolbar"
-      :table-store="mobileGrid?.tableStore"
-      :title="$t('main-menu-items.Acc_Report_Journal')"
-      buttons
-      margin
+  <toolbar-desktop margin :title="title" />
+
+  <q-card flat class="bordered shadow">
+    <card-tabs
+      v-model="tab"
+      class="text-h6 text-weight-700 primary-tabs"
+      :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      align="left"
+      inline-label
+      narrow-indicator
+      mobile-arrows
     >
-      <template #buttons>
-        <q-btn
-          padding="6px 12px"
-          class="text-body2 no-letter-spacing"
-          rounded
-          unelevated
-        >
-          <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
-          {{ $t("shared.labels.more") }}
+      <card-tab
+        name="cl"
+        title="گزارش دفتر روزنامه"
+        icon="o_bubble_chart"
+      />
 
-          <q-menu class="border-radius-lg" fit :offset="[0, 10]">
-            <q-list>
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-                @click="tableStore.exportAll()"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar class="bg-on-dark" size="sm">
-                      <q-icon name="o_download" size="20px" />
-                    </q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-body2 no-letter-spacing">
-                    {{ $t("shared.labels.eportToExcel") }}
-                  </div>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-      </template>
-    </toolbar-mobile>
+      <card-tab name="gl" title="گزارش دفتر کل" icon="o_subject" />
 
-    <mobile
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :title="title"
-      data-source="sls/report/getProductStock"
-      ref="mobileGrid"
-    />
-  </template>
+      <card-tab
+        name="sl"
+        title="Total: گزارش دفتر روزنامه"
+        icon="o_menu"
+      />
 
-  <template v-else>
-    <!-- v-if="toolbar" -->
-    <toolbar-desktop
-      :table-store="desktopGrid?.tableStore"
-      :title_="title"
-      :base-route="baseRoute"
-      buttons
-      margin
+      <card-tab
+        name="dl"
+        title="Total: گزارش دفتر کل"
+        icon="o_view_comfy"
+      />
+    </card-tabs>
+
+    <q-tab-panels
+      v-model="tab"
+      animated
+      keep-alive
+      class="transparent"
     >
-      <template #buttons>
-        <q-btn
-          padding="6px 12px"
-          class="text-body2 no-letter-spacing"
-          rounded
-          unelevated
-        >
-          <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
-          {{ $t("shared.labels.more") }}
-
-          <q-menu class="border-radius-lg" fit :offset="[0, 10]">
-            <q-list>
-              <q-item
-                clickable
-                v-close-popup
-                tabindex="0"
-                @click="tableStore.exportAll()"
-              >
-                <div class="q-py-sm">
-                  <q-item-section avatar>
-                    <q-avatar class="bg-on-dark" size="sm">
-                      <q-icon name="o_download" size="20px" />
-                    </q-avatar>
-                  </q-item-section>
-                </div>
-                <q-item-section>
-                  <div class="text-body2 no-letter-spacing">
-                    {{ $t("shared.labels.eportToExcel") }}
-                  </div>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-      </template>
-    </toolbar-desktop>
-
-    <desktop
-      :grid-store="gridStore"
-      :title="title"
-      :data-source="dataSource"
-      ref="desktopGrid"
-    />
-  </template>
+      <q-tab-panel name="cl" class="no-padding">
+        <journal-book-default sort-column="voucherNo,code" />
+      </q-tab-panel>
+      <q-tab-panel name="gl" class="no-padding">
+        <journal-book-default sort-column="code,voucherNo" />
+      </q-tab-panel>
+      <q-tab-panel name="sl" class="no-padding">
+        <journal-book-total sort-column="month,code,credit" />
+      </q-tab-panel>
+      <q-tab-panel name="dl" class="no-padding">
+        <journal-book-total sort-column="code,voucherNo" />
+      </q-tab-panel>
+    </q-tab-panels>
+  </q-card>
 </template>
 
 <script setup>
   import { ref } from "vue";
-  import { useQuasar } from "quasar";
 
-  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { userJournalBookState } from "src/components/areas/acc/_composables/userJournalBookState";
+  import JournalBookDefault from "../desktop/JournalBookDefault.vue";
+  import JournalBookTotal from "../desktop/JournalBookTotal.vue";
 
+  import CardTabs from "src/components/shared/CardTabs.vue";
+  import CardTab from "src/components/shared/CardTab.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-  import Desktop from "../desktop/JournalBook.vue";
 
-  const props = defineProps({ title: String });
+  const props = defineProps({
+    title: String,
+  });
 
-  const $q = useQuasar();
-  const desktopGrid = ref(null);
-  const mobileGrid = ref(null);
-
-  const dataSource = "acc/report/getJournalData";
-  const accountStore = userJournalBookState();
-  const gridStore = useBaseInfoGrid(accountStore);
+  const tab = ref("cl");
 </script>

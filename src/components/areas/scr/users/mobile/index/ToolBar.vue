@@ -5,7 +5,7 @@
     :base-route="baseRoute"
     :title="title"
     activation_
-    search-btn
+    search-btn_
     sort-btn
   ></tool-bar>
 </template>

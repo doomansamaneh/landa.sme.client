@@ -31,7 +31,7 @@
           </span>
           {{ item.address }}
         </div>
-        <menu-item-more @click="showItemSheet(item)" />
+        <!-- <menu-item-more @click="showItemSheet(item)" /> -->
       </div>
     </template>
 
