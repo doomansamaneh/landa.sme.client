@@ -9,8 +9,8 @@
     >
       <div class="q-gutter-x-sm">
         <slot name="buttons">
+          <!-- v-if="$q.screen.gt.xs" -->
           <q-btn
-            v-if="$q.screen.gt.xs"
             class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
             padding="6px 12px"
             rounded
@@ -20,10 +20,10 @@
             <q-icon name="o_save" size="20px" class="q-mr-sm" />
             {{ $t("shared.labels.save") }}
           </q-btn>
-
+          <!-- 
           <q-btn v-if="$q.screen.xs" round unelevated @click="save">
             <q-icon name="o_save" />
-          </q-btn>
+          </q-btn> -->
         </slot>
       </div>
       <div class="q-space" />

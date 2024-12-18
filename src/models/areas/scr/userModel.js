@@ -1,3 +1,5 @@
 export const userModel = {
-  roleIds: [],
+  name: null,
+  email: null,
+  roles: [],
 };
