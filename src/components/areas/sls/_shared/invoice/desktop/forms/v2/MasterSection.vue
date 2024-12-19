@@ -1,27 +1,14 @@
 <template>
-  <div class="row q-col-gutter-md">
-    <div class="col-md-4 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">
-        {{ customerTitle }}
-      </q-item-label>
+  <div class="row q-col-gutter-sm">
+    <div class="col-md-5 col-sm-12 col-xs-12">
       <customer-lookup
+        :label="customerTitle"
         v-model:selectedId="model.value.customerId"
         v-model:selectedText="model.value.customerName"
       />
     </div>
 
-    <div class="col-md-3 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">
-        {{ saleTypeTitle }}
-      </q-item-label>
-      <sale-type-lookup
-        v-model:selectedId="model.value.typeId"
-        v-model:selectedText="model.value.typeTitle"
-        :filter-expression="filterExpression"
-      />
-    </div>
-
-    <div class="col-md-2 col-sm-12 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <q-item-label caption class="q-mb-sm">
         شماره فاکتور
       </q-item-label>
@@ -44,22 +31,23 @@
       </q-input>
     </div>
 
-    <div class="col-md-2 col-sm-12 col-xs-12">
+    <div class="col-md-3 col-sm-6 col-xs-12">
       <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
       <date-time v-model="model.value.date" />
     </div>
 
-    <div class="col row items-end">
+    <div class="flex q-mt-lg items-center justify-center col">
       <q-btn
         v-if="$q.screen.gt.xs"
         :text-color="$q.dark.isActive ? 'white' : 'grey-9'"
-        dense
         round
-        icon="o_more_horiz"
+        padding="4px"
         unelevated
         class="text-body2 no-letter-spacing"
         @click="toggleMoreInfo"
-      />
+      >
+        <q-icon size="24px" name="keyboard_arrow_down" />
+      </q-btn>
 
       <q-btn
         v-if="$q.screen.xs"
@@ -71,69 +59,68 @@
         <q-icon size="20px" name="o_more_horiz" />
       </q-btn>
     </div>
-
-    <div class="col-md-4 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">صندوق</q-item-label>
-      <cash-lookup
-        v-model:selectedId="model.value.cashId"
-        v-model:selectedText="model.value.cashTitle"
-      />
-    </div>
   </div>
 
   <q-slide-transition>
     <div v-show="moreInfo">
-      <div class="row q-mt-md">
-        <div class="col-md-2 col-sm-12 col-xs-12">
+      <div class="row q-col-gutter-sm q-pt-sm">
+        <div class="col-md-3 col-sm-6 col-xs-12">
           <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
           <date-time v-model="model.value.dueDate" />
         </div>
-      </div>
 
-      <div class="row q-mt-sm q-col-gutter-md">
-        <div class="col-md-4 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">انبار</q-item-label>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <cash-lookup
+            label="صندوق"
+            v-model:selectedId="model.value.cashId"
+            v-model:selectedText="model.value.cashTitle"
+          />
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <sale-type-lookup
+            :label="saleTypeTitle"
+            v-model:selectedId="model.value.typeId"
+            v-model:selectedText="model.value.typeTitle"
+            :filter-expression="filterExpression"
+          />
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
           <inventory-lookup
+            label="انبار"
             v-model:selectedId="model.value.inventoryId"
             v-model:selectedText="model.value.inventoryTitle"
           />
         </div>
-        <div class="col-md-3 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
           <contract-lookup
+            label="قرارداد"
             v-model:selectedId="model.value.contractId"
             v-model:selectedText="model.value.contractTitle"
           />
         </div>
-      </div>
 
-      <div class="row q-mt-sm q-col-gutter-md">
-        <div class="col-md-4 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            بازاریاب
-          </q-item-label>
+        <div class="col-md-6 col-sm-12 col-xs-12">
           <customer-lookup
+            label="بازاریاب"
             v-model:selectedId="model.value.contactId"
             v-model:selectedText="model.value.contactName"
           />
         </div>
         <div
           v-if="showOriginalDoc"
-          class="col-md-3 col-sm-12 col-xs-12"
+          class="col-md-6 col-sm-12 col-xs-12"
         >
-          <q-item-label caption class="q-mb-sm">
-            سند مرجع
-          </q-item-label>
           <invoice-lookup
+            label="سند مرجع"
             v-model:selectedId="model.value.originalDocument.parentId"
             v-model:selectedText="model.value.originalDocument.no"
             :filter-expression="originalFilterExpression"
           />
         </div>
-      </div>
 
-      <div class="row q-col-gutter-md q-mt-sm">
-        <div class="col-md-7 col-sm-12 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">شرح</q-item-label>
           <custom-input
             v-model="model.value.summary"

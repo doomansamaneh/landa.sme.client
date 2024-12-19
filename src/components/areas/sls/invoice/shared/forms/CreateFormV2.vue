@@ -5,8 +5,8 @@
     @submit-call-back="formStore.submitForm(form, action)"
   />
 
-  <q-card class="form-container">
-    <q-card-section>
+  <!-- <q-card class="form-container"> -->
+    <!-- <q-card-section style="padding: 16px !important"> -->
       <q-form ref="form" autofocus>
         <desktop
           v-if="$q.screen.gt.sm"
@@ -20,8 +20,8 @@
         />
         <!-- <mobile :form-store="formStore" /> -->
       </q-form>
-    </q-card-section>
-  </q-card>
+    <!-- </q-card-section> -->
+  <!-- </q-card> -->
 </template>
 
 <script setup>

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import ToolBar from "src/components/shared/FormToolbarContainer.vue";
 
   const props = defineProps({
     title: String,
