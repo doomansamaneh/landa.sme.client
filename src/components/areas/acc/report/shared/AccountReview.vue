@@ -3,9 +3,14 @@
 
   <advanced-search :search-model="searchModel" />
 
-  <pre>
-    {{ accountReviewStore.state.value }}
-  </pre>
+  <chip
+    :search-model="accountReviewStore.filteredItems.value"
+    :remove-item="accountReviewStore.removeItem"
+    icon="filter_alt"
+    icon-remove="o_close"
+    color="primary"
+    class="q-mb-sm"
+  />
 
   <q-card flat class="bordered shadow">
     <card-tabs
@@ -39,16 +44,16 @@
         <review-cl :report-store="accountReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
-        <review-gl />
+        <review-gl :report-store="accountReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
-        <review-sl />
+        <review-sl :report-store="accountReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
-        <review-dl />
+        <review-dl :report-store="accountReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
-        <review-item />
+        <review-item :report-store="accountReviewStore" />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -62,6 +67,7 @@
   import ReviewSl from "../desktop/ReviewSL.vue";
   import ReviewDl from "../desktop/ReviewDL.vue";
   import ReviewItem from "../desktop/AccountItem.vue";
+  import Chip from "src/components/shared/CustomChip.vue";
 
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";

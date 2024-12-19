@@ -2,7 +2,7 @@
   <review-data-grid
     :table-store="tableStore"
     toolbar
-    @row-dbl-click="alertRow"
+    @row-dbl-click="filterRow"
   />
 </template>
 
@@ -41,8 +41,8 @@
       }),
   });
 
-  const alertRow = (row) => {
-    props.reportStore?.setSelectedCL(row.id, row.title);
+  const filterRow = (row) => {
+    props.reportStore?.setSelected("CL", row.id, row.title);
   };
 
   defineExpose({

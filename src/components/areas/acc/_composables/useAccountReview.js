@@ -1,32 +1,32 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 export function useAccountReview() {
   const state = ref({
-    selectedCL: {
-      id: null,
-      title: null,
-    },
-    selectedGL: {
-      id: null,
-      title: null,
-    },
-    selectedDL: {
-      id: null,
-      title: null,
-    },
-    selectedSL: {
-      id: null,
-      title: null,
-    },
+    CL: { id: null, title: null },
+    GL: { id: null, title: null },
+    SL: { id: null, title: null },
+    DL: { id: null, title: null },
   });
 
-  const setSelectedCL = (id, title) => {
-    state.value.selectedCL.id = id;
-    state.value.selectedCL.title = title;
+  const setSelected = (type, id, title) => {
+    if (state.value[type]) {
+      state.value[type].id = id;
+      state.value[type].title = title;
+    }
   };
+
+  const removeItem = () => {};
+
+  const filteredItems = computed(() => {
+    return Object.values(state.value)
+      .filter((item) => item.id)
+      .map((item) => item.title);
+  });
 
   return {
     state,
-    setSelectedCL,
+    setSelected,
+    filteredItems,
+    removeItem,
   };
 }
