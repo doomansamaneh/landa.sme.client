@@ -1,11 +1,5 @@
 <template>
-  <q-markup-table
-    class="q-pa-md-"
-    bordered
-    flat
-    dense
-    separator="horizontal"
-  >
+  <q-markup-table bordered flat separator="horizontal">
     <thead>
       <tr>
         <th colspan="100%">
@@ -59,6 +53,7 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <product-lookup
+            input-class="text-body3 no-letter-spacing"
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
@@ -69,12 +64,14 @@
         </td>
         <td>
           <custom-input-number
+            input-class="text-body3 no-letter-spacing"
             v-model="row.quantity"
             placeholder="مقدار"
           />
         </td>
         <td>
           <product-unit-lookup
+            input-class="text-body3 no-letter-spacing"
             placeholder="واحد سنجش"
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
@@ -82,18 +79,21 @@
         </td>
         <td>
           <custom-input-number
+            input-class="text-body3 no-letter-spacing"
             v-model="row.price"
             placeholder="مبلغ واحد"
           />
         </td>
         <td>
           <custom-input-number
+            input-class="text-body3 no-letter-spacing"
             v-model="row.discount"
             placeholder="تخفیف"
           />
         </td>
         <td>
           <vat-lookup
+            input-class="text-body3 no-letter-spacing"
             placeholder="مالیات بر ارزش افزوده"
             v-model:selectedId="row.vatId"
             v-model:selectedText="row.vatTitle"
@@ -103,15 +103,16 @@
         </td>
         <td>
           <custom-input-number
+            input-class="text-body3 no-letter-spacing"
             v-model="row.vatAmount"
             placeholder="مبلغ مالیات"
           />
         </td>
         <td>
           <q-field outlined dense disable>
-            <template v-slot:control>
+            <template #control>
               <div
-                class="self-center full-width no-outline"
+                class="text-body3 no-letter-spacing self-center full-width no-outline"
                 tabindex="0"
               >
                 {{ row.totalPrice?.toLocaleString() }}
@@ -119,7 +120,7 @@
             </template>
           </q-field>
         </td>
-        <td class="text-center q-gutter-x-sm">
+        <td class="text-center q-gutter-x-xs">
           <q-btn
             color="primary"
             unelevated
@@ -138,13 +139,8 @@
             icon="o_delete"
             @click="formStore.deleteRow(index)"
           />
-          <q-btn
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_more_horiz"
-          >
+          <q-btn unelevated round class="text-on-dark" size="sm">
+            <q-icon size="20px" name="o_more_horiz" />
             <q-menu
               style="width: 500px"
               :offset="[0, 20]"
@@ -282,7 +278,7 @@
 <style scoped>
   td,
   th {
-    padding: 8px 2px !important;
+    padding: 6px 2px !important;
   }
 
   .q-markup-table.padding-table {
@@ -290,6 +286,7 @@
   }
 
   .q-markup-table th {
-    font-size: 14px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
   }
 </style>

@@ -1,7 +1,6 @@
 <template>
-  <div class="row" :class="$q.screen.gt.xs ? 'q-mt-xl' : 'q-mt-md'">
-    <div class="col-md-8 col-sm-12 col-xs-12"></div>
-    <div class="col-md-3 col-sm-12 col-xs-12 q-gutter-y-md">
+  <div class="flex justify-end q-px-xl" :class="$q.screen.gt.xs ? 'q-mt-xl' : 'q-mt-md'">
+    <div class="q-gutter-y-md" style="width: 280px">
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>
         <div>

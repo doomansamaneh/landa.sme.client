@@ -1,14 +1,14 @@
 <template>
-  <q-markup-table bordered flat dense separator="horizontal">
+  <q-markup-table bordered flat separator="horizontal">
     <thead>
       <tr>
         <th style="width: 1%">#</th>
-        <th>کالا/خدمت</th>
-        <th style="width: 10%">تعداد/مقدار</th>
-        <th style="width: 15%">واحد سنجش</th>
-        <th style="width: 15%">مبلغ واحد</th>
-        <th style="width: 12%">ارزش افزوده</th>
-        <th style="width: 15%">
+        <th style="width: 45%">کالا/خدمت</th>
+        <th style="width: 1%">تعداد/مقدار</th>
+        <th style="width: 20%">واحد سنجش</th>
+        <th style="width: 12%">مبلغ واحد</th>
+        <th style="width: 20%">ارزش افزوده</th>
+        <th style="width: 12%">
           مبلغ کل
           <q-icon
             name="o_info"
@@ -18,7 +18,7 @@
           >
             <q-tooltip
               :delay="600"
-              class="custom-tooltip"
+              class="absolute custom-tooltip"
               anchor="top right"
               self="bottom middle"
               :offset="[50, 10]"
@@ -41,13 +41,12 @@
       >
         <td class="text-center">{{ index + 1 }}</td>
         <td>
-          <q-field outlined dense auto-grow>
-            <template v-slot:control>
-              <div style="text-wrap: wrap">
-                {{ row.productCode }} - {{ row.productTitle }}
-              </div>
-            </template>
-          </q-field>
+          <q-input
+            input-class="text-body3 no-letter-spacing"
+            outlined
+            dense
+            v-model="productCodeAndTitle"
+          />
           <!-- <product-lookup
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
@@ -60,6 +59,7 @@
         <td>
           <custom-input-number
             ref="quantityInput"
+            input-class="text-body3 no-letter-spacing"
             v-model="row.quantity"
             placeholder="مقدار"
             type_="number"
@@ -70,18 +70,21 @@
         <td>
           <product-unit-lookup
             placeholder="واحد سنجش"
+            input-class="text-body3 no-letter-spacing"
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
           />
         </td>
         <td>
           <custom-input-number
+            input-class="text-body3 no-letter-spacing"
             v-model="row.price"
             placeholder="مبلغ واحد"
           />
         </td>
         <td>
           <vat-lookup
+            input-class="text-body3 no-letter-spacing"
             placeholder="مالیات بر ارزش افزوده"
             v-model:selectedId="row.vatId"
             v-model:selectedText="row.vatTitle"
@@ -91,14 +94,17 @@
         </td>
         <td>
           <q-field outlined dense disable>
-            <template v-slot:control>
-              <div class="text-weight-500" tabindex="0">
+            <template #control>
+              <div
+                class="text-body3 no-letter-spacing text-weight-500"
+                tabindex="0"
+              >
                 {{ helper.formatNumber(row.totalPrice) }}
               </div>
             </template>
           </q-field>
         </td>
-        <td class="text-center q-gutter-x-sm">
+        <td class="text-center q-gutter-x-xs">
           <q-btn
             color="red"
             unelevated
@@ -108,13 +114,8 @@
             icon="o_delete"
             @click="formStore.deleteRow(index)"
           />
-          <q-btn
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_more_horiz"
-          >
+          <q-btn unelevated round class="text-on-dark" size="sm">
+            <q-icon size="20px" name="o_more_horiz" />
             <q-menu
               style="width: 500px"
               :offset="[0, 20]"
@@ -180,6 +181,9 @@
 </template>
 
 <script setup>
+  import { helper } from "src/helpers";
+  import { ref, watch, computed } from "vue";
+
   import {
     sqlOperator,
     vatType,
@@ -193,8 +197,6 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import NoProductSelected from "../NoProductSelected.vue";
-  import { helper } from "src/helpers";
-  import { ref, watch } from "vue";
 
   const props = defineProps({
     formStore: Object,
@@ -265,12 +267,18 @@
     row.productUnitId = product?.productUnitId ?? null;
     row.productUnitTitle = product?.productUnitTitle ?? null;
   };
+
+  const productCodeAndTitle = computed(() =>
+    props.formStore.model.value.invoiceItems.map((row) => {
+      return `${row.productCode} - ${row.productTitle}`;
+    })
+  );
 </script>
 
 <style scoped>
   td,
   th {
-    padding: 8px 2px !important;
+    padding: 6px 2px !important;
   }
 
   .q-markup-table.padding-table {
@@ -278,6 +286,7 @@
   }
 
   .q-markup-table th {
-    font-size: 14px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
   }
 </style>
