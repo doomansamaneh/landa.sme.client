@@ -1,15 +1,11 @@
 <template>
-  <data-grid :data-table-store="tableStore" flat expandable toolbar>
+  <data-grid :data-table-store="tableStore" flat expandable_ toolbar>
     <template #cell-debit="{ item }">
       {{ item.debit?.toLocaleString() }}
     </template>
 
     <template #cell-credit="{ item }">
       {{ item.credit?.toLocaleString() }}
-    </template>
-
-    <template #expand="{ item }">
-      <preview :item="item" inside />
     </template>
   </data-grid>
 </template>
@@ -20,7 +16,6 @@
   import { journalBookTotalColumns } from "../../_composables/constants";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-  import Preview from "./AccountPreview.vue";
 
   const props = defineProps({
     dataSource: {

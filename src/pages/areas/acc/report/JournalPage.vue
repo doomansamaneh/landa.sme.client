@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  import report from "src/components/areas/acc/report/shared/JournalBook.vue";
+  import Report from "src/components/areas/acc/report/shared/JournalBook.vue";
 </script>

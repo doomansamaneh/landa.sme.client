@@ -6,8 +6,14 @@ import {
   productTitle,
   productUnitTitle,
   vatAmount,
+  currencyTitle,
   quantity,
   date,
+  voucherNo,
+  taxNo,
+  nationalNo,
+  provinceTitle,
+  address,
   customerName,
   subject,
   price,
@@ -16,6 +22,7 @@ import {
   payedAmount,
   remainedAmount,
   discountAmount,
+  netAmount,
   statusId,
 } from "src/constants/columns";
 
@@ -99,6 +106,23 @@ export const reviewInvoiceItemColumns = [
   { ...quantity },
   { ...vatAmount },
   { ...amount },
+];
+
+export const taxReportColumns = [
+  { ...no },
+  { ...date },
+  { ...voucherNo },
+  { ...customerName },
+  { ...amount },
+  { ...discountAmount },
+  { ...netAmount },
+  { ...vatAmount },
+  { ...taxNo },
+  { ...nationalNo },
+  { ...provinceTitle },
+  { ...address },
+  { ...currencyTitle },
+  { ...subject },
 ];
 
 export const taxApiLogColumns = [

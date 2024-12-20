@@ -525,6 +525,13 @@ export const vatAmount = {
   label: "ارزش افزوده",
 };
 
+export const netAmount = {
+  ...amount,
+  name: "netAmount",
+  field: "netAmount",
+  label: "مبلغ پس از تخفیف",
+};
+
 export const payedAmount = {
   ...amount,
   name: "payedAmount",
@@ -702,6 +709,56 @@ export const summary = {
   field: "summary",
   sortable: false,
   label: "شرح",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const address = {
+  name: "address",
+  field: "address",
+  sortable: true,
+  label: "نشانی",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const provinceTitle = {
+  name: "provinceTitle",
+  field: "provinceTitle",
+  sortable: true,
+  label: "استان",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const taxNo = {
+  name: "taxNo",
+  field: "taxNo",
+  sortable: true,
+  label: "شماره اقتصادی",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const nationalNo = {
+  name: "nationalNo",
+  field: "nationalNo",
+  sortable: true,
+  label: "شناسه ملی",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const currencyTitle = {
+  name: "currencyTitle",
+  field: "currencyTitle",
+  sortable: true,
+  label: "ارز",
   align: "left",
   class: "text-left",
   showFilter: true,

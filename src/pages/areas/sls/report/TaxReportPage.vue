@@ -1,9 +1,7 @@
 <template>
-  <income-statement
-    :title="$t('main-menu-items.Acc_Report_TaxReport')"
-  />
+  <report :title="$t('main-menu-items.Sls_Report_TaxReport')" />
 </template>
 
 <script setup>
-  import IncomeStatement from "src/components/areas/dashboard/widgets/IncomeStatement.vue";
+  import Report from "src/components/areas/sls/report/shared/TaxReport.vue";
 </script>

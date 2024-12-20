@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  import report from "src/components/areas/sls/report/shared/SalesReview.vue";
+  import Report from "src/components/areas/sls/report/shared/SalesReview.vue";
 </script>
