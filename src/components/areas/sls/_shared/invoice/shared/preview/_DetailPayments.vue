@@ -61,7 +61,7 @@
     <q-separator class="q-my-sm" />
 
     <div class="row text-body3 q-gutter-x-sm">
-      <div class="col-7 row items-center justify-end">
+      <div class="col-9 row items-center justify-end">
         <span class="text-body3">جمع کل:</span>
       </div>
       <div class="col text-body3 text-bold">
@@ -70,7 +70,7 @@
     </div>
 
     <div class="row text-body3 q-gutter-x-sm q-mt-md">
-      <div class="col-7 row items-center justify-end">
+      <div class="col-9 row items-center justify-end">
         <span class="text-body3">جمع دریافتی:</span>
       </div>
       <div class="col text-body3 text-bold">
@@ -81,7 +81,7 @@
     <q-separator class="q-my-sm" size="2px" />
 
     <div class="row text-body3 q-gutter-x-sm q-mb-md">
-      <div class="col-7 row items-center justify-end">
+      <div class="col-9 row items-center justify-end">
         <span class="text-body3">مانده:</span>
       </div>
       <div class="col text-body2 text-bold">
