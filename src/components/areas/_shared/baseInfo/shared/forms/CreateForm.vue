@@ -1,7 +1,7 @@
 <template>
   <tool-bar
     :title="title"
-    @submit-call-back="localformStore.submitForm(form, action)"
+    @submit-call-back="localFormStore.submitForm(form, action)"
   />
 
   <q-card class="form-container">

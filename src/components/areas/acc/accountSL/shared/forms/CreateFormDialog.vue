@@ -20,7 +20,7 @@
       </div>
     </template>
     <template #body>
-      <create-form :id="id" />
+      <create-form :id="id" disable-toolbar />
     </template>
 
     <template #actions>

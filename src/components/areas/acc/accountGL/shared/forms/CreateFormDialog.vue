@@ -21,7 +21,7 @@
     </template>
 
     <template #body>
-      <create-form :id="id" />
+      <create-form :id="id" disable-toolbar />
     </template>
 
     <template #actions>
@@ -39,9 +39,9 @@
   import FormGuide from "./FormGuide.vue";
 
   const props = defineProps({
-    id: String
-  })
-  
+    id: String,
+  });
+
   const form = ref(null);
   const dialog = ref(null);
 
