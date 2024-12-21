@@ -1,4 +1,6 @@
 <template>
+  <toolbar-desktop margin :title="title" />
+
   <q-card flat class="bordered shadow">
     <card-tabs
       v-model="tab"
@@ -46,8 +48,9 @@
   import DataGrid from "../desktop/_CheckItemDataGrid.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
+  import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
 
-  const props = defineProps({ customerId: String });
+  const props = defineProps({ customerId: String, title: String });
 
   const dataGrid = ref(null);
   const tab = ref("received");

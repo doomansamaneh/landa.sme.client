@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Online Accounting Application",
   "productName": "Landa SME",
-  "author": "Khashayar Shomali <shomalikhashayar@gmail.com>",
+  "author": "Dooman Samane ltd. (landa-sme.ir)",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",

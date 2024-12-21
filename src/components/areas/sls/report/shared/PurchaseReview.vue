@@ -14,13 +14,17 @@
     >
       <card-tab
         name="pg"
-        icon="o_bubble_chart"
+        icon="o_view_module"
         title="گروه کالا و خدمات"
       />
 
-      <card-tab name="prd" icon="o_subject" title="کالا و خدمات" />
+      <card-tab
+        name="prd"
+        icon="o_desktop_mac"
+        title="کالا و خدمات"
+      />
 
-      <card-tab name="crm" icon="o_menu" title="طرف حساب" />
+      <card-tab name="crm" icon="o_group" title="طرف حساب" />
 
       <card-tab
         name="prdCrm"

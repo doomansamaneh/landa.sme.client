@@ -53,6 +53,22 @@
         />
       </div>
       <div>
+        <q-item-label
+          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+        >
+          ارز
+        </q-item-label>
+        <currency-lookup
+          v-model:selectedId="
+            configStore.model.value.companySetting.defaultCurrencyId
+          "
+          v-model:selectedText="
+            configStore.model.value.companySetting
+              .defaultCurrencyTitle
+          "
+        />
+      </div>
+      <div>
         <q-checkbox
           class="text-body2 no-letter-spacing"
           dense
@@ -77,8 +93,9 @@
   import { useQuasar } from "quasar";
   import { useAppConfigModel } from "../_composables/useAppConfigModel";
 
-  import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import SaveButton from "./_SaveSettingButton.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CurrencyLookup from "src/components/shared/lookups/CurrencyLookup.vue";
 
   const $q = useQuasar();
   const configStore = useAppConfigModel();

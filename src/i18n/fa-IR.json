@@ -573,7 +573,8 @@
     },
     "cogsCalcMethod": {
       "none": "هیچکدام",
-      "fifo": "FIFO"
+      "fifo": "FIFO",
+      "average": "میانگین موزون"
     },
     "invoicePreviewTemplate": {
       "standard": "استاندارد دارایی",

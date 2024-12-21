@@ -87,29 +87,6 @@
             class="q-py-md"
             :class="$q.screen.gt.xs ? '' : 'q-px-none'"
             clickable
-            to="/cmn/appConfig/insuranceInfo"
-          >
-            <q-item-section :class="itemClass">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
-                بیمه
-              </q-item-label>
-            </q-item-section>
-
-            <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
-                <q-icon :name="expandIcon()" size="24px" />
-              </q-btn>
-            </q-item-section>
-          </q-item>
-
-          <q-separator size="1px" />
-
-          <q-item
-            class="q-py-md"
-            :class="$q.screen.gt.xs ? '' : 'q-px-none'"
-            clickable
             to="/cmn/appConfig/salaryInfo"
           >
             <q-item-section :class="itemClass">
