@@ -32,15 +32,7 @@ export default {
         icon: "password",
       },
     },
-    {
-      path: "inviteUser",
-      name: "invite-user",
-      component: () =>
-        import("pages/management/business/InviteUserPage.vue"),
-      meta: {
-        icon: "o_profile",
-      },
-    },
+
     {
       path: "deleteBusiness",
       name: "delete-business",
