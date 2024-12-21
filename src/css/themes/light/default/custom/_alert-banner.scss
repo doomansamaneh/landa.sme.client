@@ -1,0 +1,27 @@
+@mixin alert-banner-light {
+
+  .alert-banner {
+    padding: 12px 12px;
+    margin: 20px;
+    border-radius: 12px;
+  }
+
+  .alert-banner-warning {
+    border-left: 6px solid $orange-8;
+    background: linear-gradient(90deg, $warning, #ffffffff);
+    box-shadow: 0 0 2px 0 $orange-8;
+  }
+
+  .alert-banner-error {
+    border-left: 6px solid $negative;
+    background: linear-gradient(90deg, $red-2, #ffffffff);
+    box-shadow: 0 0 2px 0 $negative;
+  }
+
+  .alert-banner-info {
+    border-left: 6px solid $blue;
+    background: linear-gradient(90deg, $blue-2, #ffffffff);
+    box-shadow: 0 0 2px 0 $blue;
+  }
+
+}
