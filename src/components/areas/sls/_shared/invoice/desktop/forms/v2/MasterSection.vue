@@ -9,26 +9,11 @@
     </div>
 
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">
-        شماره فاکتور
-      </q-item-label>
-      <q-input
-        type="number"
-        hide-bottom-space
-        v-model="model.value.no"
-        outlined
-        dense
-        :disable="!model.value.manualNo"
-      >
-        <template #append>
-          <q-icon
-            size="sm"
-            :name="invoiceNo ? 'o_no_encryption' : 'o_lock'"
-            class="cursor-pointer all-pointer-events"
-            @click="toggleInvocieNo"
-          />
-        </template>
-      </q-input>
+      <cash-lookup
+        label="صندوق"
+        v-model:selectedId="model.value.cashId"
+        v-model:selectedText="model.value.cashTitle"
+      />
     </div>
 
     <div class="col-md-3 col-sm-6 col-xs-12">
@@ -56,7 +41,7 @@
         unelevated
         @click="toggleMoreInfo"
       >
-        <q-icon size="20px" name="o_more_horiz" />
+        <q-icon size="20px" name="keyboard_arrow_down" />
       </q-btn>
     </div>
   </div>
@@ -70,11 +55,26 @@
         </div>
 
         <div class="col-md-3 col-sm-6 col-xs-12">
-          <cash-lookup
-            label="صندوق"
-            v-model:selectedId="model.value.cashId"
-            v-model:selectedText="model.value.cashTitle"
-          />
+          <q-item-label caption class="q-mb-sm">
+            شماره فاکتور
+          </q-item-label>
+          <q-input
+            type="number"
+            hide-bottom-space
+            v-model="model.value.no"
+            outlined
+            dense
+            :disable="!model.value.manualNo"
+          >
+            <template #append>
+              <q-icon
+                size="sm"
+                :name="invoiceNo ? 'o_no_encryption' : 'o_lock'"
+                class="cursor-pointer all-pointer-events"
+                @click="toggleInvocieNo"
+              />
+            </template>
+          </q-input>
         </div>
 
         <div class="col-md-6 col-sm-12 col-xs-12">

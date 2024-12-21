@@ -16,7 +16,7 @@
     :rules="rules"
     color="primary"
     class="first input lookup"
-    input-class="text-body2 no-letter-spacing"
+    :input-class="inputClass"
     dense
     debounce="1000"
     :placeholder="placeholder"
@@ -404,6 +404,10 @@
     showAdd: Boolean,
     autofocus: Boolean,
     label: String,
+    inputClass: {
+      type: String,
+      default: "text-body2 no-letter-spacing",
+    },
   });
 
   const selectedId = defineModel("selectedId");
