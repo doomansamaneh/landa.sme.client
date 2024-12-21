@@ -141,7 +141,6 @@
                 :class="{
                   'active-shine': isActiveItem(subItem.url),
                 }"
-                exact
               >
                 <q-item-section avatar>
                   <q-icon :name="`o_${subItem.icon}`" size="20px" />

@@ -2,70 +2,72 @@
   <q-card :flat="$q.screen.xs" :bordered="$q.screen.gt.xs">
     <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
       <slot v-if="$q.screen.gt.xs" name="header">
-        <div class="column q-gutter-y-sm">
-          <div class="row items-center">
-            <span class="col-2 text-caption text-bold">شماره:</span>
-            <span class="text-body3 q-mx-md">
-              {{ model.no }}
-            </span>
+        <div class="column q-gutter-y-md">
+          <div class="text-body1 text-weight-700 no-letter-spacing">
+            #{{ model.no }}
           </div>
 
-          <div v-if="model?.voucherId" class="row items-center">
-            <span class="col-2 text-caption text-bold">
-              سند حسابداری:
-            </span>
-            <span class="text-body3 q-mx-md">
+          <div v-if="model?.voucherId">
+            <div class="text-body3 text-weight-700 no-letter-spacing">
+              سند حسابداری
+            </div>
+            <div class="q-mt-sm text-body3 no-letter-spacing">
               <custom-link
+                class="text-body3 no-letter-spacing"
                 :to="`/acc/voucher/preview/${model.voucherId}`"
                 :title="model.voucherNo"
               />
-            </span>
+            </div>
           </div>
 
-          <div class="row items-center">
-            <span class="col-2 text-caption text-bold">مشتری:</span>
-            <span class="text-body3 q-mx-md">
+          <div>
+            <div class="text-caption text-bold">مشتری</div>
+            <div class="q-mt-sm text-body3 no-letter-spacing">
               <custom-link
+                class="text-body3 no-letter-spacing"
                 :to="`/crm/customer/preview/${model.customerId}`"
                 :title="model.customerName"
               />
-            </span>
+            </div>
           </div>
 
-          <div
-            v-if="model?.value?.invoiceId"
-            class="row items-center"
-          >
-            <span class="col-2 text-caption text-bold">فاکتور:</span>
-            <span class="text-body3 q-mx-md">
+          <div v-if="model?.value?.invoiceId">
+            <div class="text-body3 no-letter-spacing text-weight-700">
+              فاکتور
+            </div>
+            <div class="q-mt-sm text-body3 no-letter-spacing">
               <custom-link
                 :to="`/sls/invoice/preview/${model.invoiceId}`"
                 :title="model.invoiceNo"
               />
-            </span>
+            </div>
           </div>
 
-          <div v-if="model.marketerName" class="row items-center">
-            <span class="col-2 text-caption text-bold">
-              بازاریاب:
-            </span>
-            <span class="text-body3 q-mx-md">
+          <div v-if="model.marketerName">
+            <div class="text-body3 no-letter-spacing text-weight-700">
+              بازاریاب
+            </div>
+            <div class="q-mt-sm text-body3 no-letter-spacing">
               {{ model.marketerName }}
-            </span>
+            </div>
           </div>
 
-          <div v-if="model.contractTitle" class="row items-center">
-            <span class="col-2 text-caption text-bold">قرارداد:</span>
-            <span class="text-body3 q-mx-md">
+          <div v-if="model.contractTitle">
+            <div class="text-body3 no-letter-spacing text-weight-700">
+              قرارداد
+            </div>
+            <div class="q-mt-sm text-body3 no-letter-spacing">
               {{ model.contractTitle }}
-            </span>
+            </div>
           </div>
 
-          <div v-if="model.inventoryTitle" class="row items-center">
-            <span class="col-2 text-caption text-bold">انبار:</span>
-            <span class="text-body3 q-mx-md">
+          <div v-if="model.inventoryTitle">
+            <div class="text-body3 no-letter-spacing text-weight-700">
+              انبار
+            </div>
+            <div class="q-mt-sm text-body3 no-letter-spacing">
               {{ model.inventoryTitle }}
-            </span>
+            </div>
           </div>
         </div>
       </slot>

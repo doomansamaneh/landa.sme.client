@@ -1,14 +1,28 @@
 <template>
   <div v-if="showBanner">
-    <q-banner inline-actions class="z-max bg-warning">
-      <div class="row items-center text-black">
-        <q-icon
-          name="public"
-          size="22px"
-          class="q-icon-banner q-mx-xs"
-          color="black"
+    <q-banner
+      inline-actions
+      :class="`alert-banner alert-banner-${bannerStatus} fixed-bottom z-max`"
+    >
+      <div class="flex items-center q-gutter-sm text-black">
+        <q-btn
+          round
+          unelevated
+          padding="0px"
+          :text-color="iconColor"
+          color="white"
+          :icon="icon"
+          size="20px"
+          class="no-pointer-events q-mr-md"
         />
-        <strong class="q-px-lg">{{ status }}</strong>
+
+        <q-badge
+          color="negative"
+          class="border-radius-sm text-body1 text-weight-500 no-letter-spacing q-px-sm"
+        >
+          {{ status }}
+        </q-badge>
+
         <span v-if="message">
           {{ $t(`errors.${message}`) }}
           <div v-if="comment" class="row items-center text-black">
@@ -31,6 +45,7 @@
           </li>
         </ul>
       </div>
+
       <template #action>
         <q-btn
           @click="hideBanner"
@@ -54,17 +69,28 @@
   const alertStore = useAlertStore();
 
   const showBanner = computed(() => alertStore.showAlert());
-  const status = computed(() =>
-    alertStore.alert != null ? alertStore.alert.status : 0
-  );
-  const message = computed(() =>
-    alertStore.alert != null ? alertStore.alert.message : ""
-  );
-  const comment = computed(() =>
-    alertStore.alert != null ? alertStore.alert.comment : ""
+  const alert = computed(() => alertStore.alert);
+
+  const status = computed(() => alert.value?.status);
+  const message = computed(() => alert.value?.message);
+  const comment = computed(() => alert.value?.comment);
+  const errors = computed(() => alert.value?.errors);
+
+  const bannerStatus = ref("warning");
+
+  const icon = computed(
+    () =>
+      ({ warning: "o_report", error: "o_dangerous", info: "info" }[
+        bannerStatus.value
+      ])
   );
 
-  const errors = computed(() => alertStore.alert?.errors);
+  const iconColor = computed(
+    () =>
+      ({ warning: "orange-10", error: "negative", info: "blue" }[
+        bannerStatus.value
+      ])
+  );
 
   function hideBanner() {
     alertStore.hide();
