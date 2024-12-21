@@ -12,6 +12,7 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <q-editor
+              class="border-radius-sm"
               v-model="noteModel.comment"
               placeholder="در اینجا می‌توانید یادداشت بگذارید..."
             />

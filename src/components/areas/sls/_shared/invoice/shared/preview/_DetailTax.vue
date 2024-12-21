@@ -31,7 +31,7 @@
     </div>
     <data-grid
       ref="taxGrid"
-      class="q-mt-md"
+      class="border-radius-sm q-mt-md"
       flat
       hide-filter-row
       :invoice-id="model.id"

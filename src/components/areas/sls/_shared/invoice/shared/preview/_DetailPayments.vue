@@ -45,8 +45,10 @@
     </template>
   </div>
 
-  <div class="bordered">
-    <div class="text-body1 text-weight-500 text-center q-pa-md">
+  <div class="border-radius-sm bordered">
+    <div
+      class="text-body1 no-letter-spacing text-weight-500 text-center q-pa-md"
+    >
       فهرست دریافت، پرداخت
     </div>
     <invoice-payment
