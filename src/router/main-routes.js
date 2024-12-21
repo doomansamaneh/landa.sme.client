@@ -1354,12 +1354,6 @@ export default {
           meta: { title: "پیکربندی سامانه - مالیات" },
         },
         {
-          path: "insuranceInfo",
-          component: () =>
-            import("pages/areas/cmn/appConfig/InsuranceInfoPage.vue"),
-          meta: { title: "پیکربندی سامانه - بیمه" },
-        },
-        {
           path: "salaryInfo",
           component: () =>
             import("pages/areas/cmn/appConfig/SalaryInfoPage.vue"),

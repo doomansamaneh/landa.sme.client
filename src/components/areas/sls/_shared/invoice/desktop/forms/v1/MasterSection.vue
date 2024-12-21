@@ -25,11 +25,12 @@
             :text-color="$q.dark.isActive ? 'white' : 'grey-9'"
             dense
             round
-            icon="o_more_horiz"
             unelevated
             class="text-body2 no-letter-spacing"
             @click="toggleMoreInfo"
-          />
+          >
+            <q-icon size="24px" name="keyboard_arrow_down" />
+          </q-btn>
 
           <q-btn
             v-if="$q.screen.xs"
@@ -38,7 +39,7 @@
             unelevated
             @click="toggleMoreInfo"
           >
-            <q-icon size="20px" name="o_more_horiz" />
+            <q-icon size="20px" name="keyboard_arrow_down" />
           </q-btn>
         </div>
       </div>

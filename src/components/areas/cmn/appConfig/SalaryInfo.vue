@@ -1,6 +1,58 @@
 <template>
   <div :class="styles()" style="margin-top: 0">
     <q-card-section :class="padding()">
+      <div class="row q-col-gutter-md">
+        <div class="col-md col-sm col-xs-12">
+          <div>
+            <q-item-label
+              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+            >
+              کد کارگاه
+            </q-item-label>
+            <custom-input
+              v-model="
+                configStore.model.value.companySetting.insuranceNo
+              "
+            />
+          </div>
+        </div>
+        <div class="col-md col-sm col-xs-12">
+          <div>
+            <q-item-label
+              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+            >
+              شعبه تامین اجتماعی
+            </q-item-label>
+            <custom-input
+              v-model="
+                configStore.model.value.companySetting
+                  .insuranceBranchName
+              "
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="q-mt-lg">
+        <div>
+          <q-item-label
+            class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+          >
+            شرح
+          </q-item-label>
+          <custom-input
+            type="textarea"
+            v-model="
+              configStore.model.value.companySetting.insuranceComment
+            "
+          />
+        </div>
+      </div>
+    </q-card-section>
+
+    <q-separator />
+
+    <q-card-section :class="padding()">
       <q-markup-table flat bordered separator="cell">
         <thead class="bg-grey-4">
           <tr>

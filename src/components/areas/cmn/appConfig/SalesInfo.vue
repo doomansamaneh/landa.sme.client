@@ -1,23 +1,6 @@
 <template>
   <div :class="styles()" style="margin-top: 0">
     <q-card-section :class="padding()">
-      <div>
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          ارز
-        </q-item-label>
-        <currency-lookup
-          v-model:selectedId="
-            configStore.model.value.companySetting.defaultCurrencyId
-          "
-          v-model:selectedText="
-            configStore.model.value.companySetting
-              .defaultCurrencyTitle
-          "
-        />
-      </div>
-
       <div class="q-mt-lg">
         <q-item-label
           class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
@@ -220,7 +203,6 @@
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-  import CurrencyLookup from "src/components/shared/lookups/CurrencyLookup.vue";
   import SaveButton from "./_SaveSettingButton.vue";
 
   const props = defineProps({

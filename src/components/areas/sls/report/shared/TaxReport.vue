@@ -16,15 +16,27 @@
     >
       <card-tab
         name="cl"
-        title="فاکتورهای فروش"
-        icon="o_bubble_chart"
+        :title="$t('main-menu-items.Sls_Invoice_View')"
+        icon="o_receipt"
       />
 
-      <card-tab name="gl" title="فاکتورهای خرید" icon="o_subject" />
+      <card-tab
+        name="gl"
+        :title="$t('main-menu-items.Sls_Purchase_View')"
+        icon="o_shopping_cart"
+      />
 
-      <card-tab name="sl" title="برگشت از فروش" icon="o_menu" />
+      <card-tab
+        name="sl"
+        :title="$t('main-menu-items.Sls_SalesReturn_View')"
+        icon="o_undo"
+      />
 
-      <card-tab name="dl" title="برگشت از خرید" icon="o_view_comfy" />
+      <card-tab
+        name="dl"
+        :title="$t('main-menu-items.Sls_PurchaseReturn_View')"
+        icon="o_undo"
+      />
     </card-tabs>
 
     <q-tab-panels
@@ -40,10 +52,10 @@
         <tax-report data-source="sls/report/GetTaxPurchases" />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
-        <tax-report data-source="sls/report/GetTaxSales" />
+        <tax-report data-source="sls/report/GetTaxSalesReturn" />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
-        <tax-report data-source="sls/report/GetTaxPurchases" />
+        <tax-report data-source="sls/report/GetTaxPurchaseReturn" />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>

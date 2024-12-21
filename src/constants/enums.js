@@ -1,5 +1,7 @@
-// export const baseUrl = "http://localhost:9090";
-export const baseUrl = "https://api.landa-sme.ir";
+import config from "../../app-setting.json";
+//export const baseUrl = "http://localhost:6060";
+//export const baseUrl = "https://api.landa-sme.ir";
+export const baseUrl = config.baseUrl;
 
 export const isActiveOptions = {
   active: 1,
@@ -316,6 +318,7 @@ export const taxApiInvoicePattern = {
 export const cogsCalcMethod = {
   none: 0,
   fifo: 1,
+  average: 2,
 };
 
 export const invoicePreviewTemplate = {

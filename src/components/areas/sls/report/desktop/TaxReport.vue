@@ -2,6 +2,7 @@
   <data-grid
     :data-table-store="tableStore"
     separator="horizontal"
+    toolbar
     flat
     square_
     multiSelect
