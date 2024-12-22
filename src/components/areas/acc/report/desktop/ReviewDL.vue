@@ -12,6 +12,7 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { reviewDLColumns } from "../../_composables/constants";
   import { useAccountReview } from "../../_composables/useAccountReview";
+  import { accountTreeType } from "src/constants";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
@@ -42,7 +43,11 @@
   });
 
   const filterRow = (row) => {
-    props.reportStore?.setSelected("DL", row.id, row.title);
+    props.reportStore?.setItem({
+      id: row.id,
+      title: row.title,
+      type: accountTreeType.dl,
+    });
   };
 
   defineExpose({

@@ -1,32 +1,28 @@
-import { ref, computed } from "vue";
+import { ref } from "vue";
+import { helper } from "src/helpers";
 
 export function useAccountReview() {
-  const state = ref({
-    CL: { id: null, title: null },
-    GL: { id: null, title: null },
-    SL: { id: null, title: null },
-    DL: { id: null, title: null },
-  });
+  const state = ref([]);
 
-  const setSelected = (type, id, title) => {
-    if (state.value[type]) {
-      state.value[type].id = id;
-      state.value[type].title = title;
+  const setItem = ({ type, id, title }) => {
+    const index = helper.findIndex(state.value, "type", type);
+    if (index !== -1) {
+      state.value[index] = { type, id, title };
+    } else {
+      state.value.push({ type, id, title });
     }
   };
 
-  const removeItem = () => {};
-
-  const filteredItems = computed(() => {
-    return Object.values(state.value)
-      .filter((item) => item.id)
-      .map((item) => item.title);
-  });
+  const removeItem = ({ type }) => {
+    const index = helper.findIndex(state.value, "type", type);
+    if (index !== -1) {
+      state.value.splice(index, 1);
+    }
+  };
 
   return {
     state,
-    setSelected,
-    filteredItems,
+    setItem,
     removeItem,
   };
 }

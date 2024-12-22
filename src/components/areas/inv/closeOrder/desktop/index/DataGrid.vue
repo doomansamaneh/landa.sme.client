@@ -68,8 +68,10 @@
 
   const colspan = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
-        (column) => column.name === "amount"
+      helper.findIndex(
+        tableStore?.value?.columns.value,
+        "name",
+        "amount"
       ) +
       1 + //numbered column
       1 //multi check column

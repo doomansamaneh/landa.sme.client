@@ -12,7 +12,8 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { reviewGLColumns } from "../../_composables/constants";
   import { useAccountReview } from "../../_composables/useAccountReview";
-
+  import { accountTreeType } from "src/constants";
+  
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
   const searchStore = useVoucherSearch();
@@ -42,7 +43,11 @@
   });
 
   const filterRow = (row) => {
-    props.reportStore?.setSelected("GL", row.id, row.title);
+    props.reportStore?.setItem({
+      id: row.id,
+      title: row.title,
+      type: accountTreeType.gl,
+    });
   };
 
   defineExpose({

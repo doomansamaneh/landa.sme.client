@@ -218,6 +218,12 @@ export const helper = {
     }, 0);
   },
 
+  findIndex(items, fieldName, fieldValue) {
+    if (!items) return -1;
+    if (!fieldValue) return items.findIndex((obj) => obj[fieldName]);
+    return items.findIndex((obj) => obj[fieldName] === fieldValue);
+  },
+
   formatNumber(number, fraction) {
     const absNum = Math.abs(number || 0).toLocaleString("en-US", {
       minimumFractionDigits: 0,

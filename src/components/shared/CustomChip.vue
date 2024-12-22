@@ -1,44 +1,25 @@
 <template>
-  <div class="q-gutter-xs" v-if="searchItems?.length > 0">
-    <template v-for="item in searchItems" :key="item.name">
+  <div v-if="reviewStore.state.value?.length > 0" class="q-gutter-xs">
+    <template v-for="item in reviewStore.state.value" :key="item.id">
       <q-chip
-        v-if="showChip(item)"
         removable
-        @remove="removeItem(item)"
+        @remove="reviewStore.removeItem(item)"
         color="primary"
         text-color="white"
         :icon="icon"
       >
-        {{ $t(`shared.labels.${item.label}`) }}: {{ item.value }}
+        {{ $t(`shared.accountTreeType.${item.type}`) }}:
+        {{ item.title }}
       </q-chip>
     </template>
   </div>
 </template>
 
 <script setup>
-  import { computed } from "vue";
-  import { helper } from "src/helpers";
+  import { useAccountReview } from "src/components/areas/acc/_composables/useAccountReview";
 
   const props = defineProps({
-    searchModel: Object,
-    removeItem: Function,
-    icon: String
+    icon: String,
+    reviewStore: useAccountReview,
   });
-
-  const searchItems = computed(() => {
-    const list = [];
-    if (props.searchModel != null)
-      Object.keys(props.searchModel).forEach((key) => {
-        const value = props.searchModel[key];
-        if (key && value)
-          list.push({ name: key, label: key, value: value });
-      });
-    return list;
-  });
-
-  const showChip = (item) => {
-    if (Array.isArray(item.value)) {
-      return item.value.length;
-    } else return !helper.isGuid(item.value);
-  };
 </script>

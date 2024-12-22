@@ -1,5 +1,5 @@
 <template>
-  <toolbar-desktop margin :title="title" />
+  <!-- <toolbar-desktop margin :title="title" /> -->
 
   <q-card flat class="bordered shadow">
     <card-tabs

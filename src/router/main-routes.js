@@ -178,7 +178,7 @@ export default {
           meta: { title: "حساب معین - کپی" },
         },
         {
-          path: "accountSLTree",
+          path: "tree",
           component: () =>
             import("pages/areas/acc/accountSL/TreePage.vue"),
           meta: { title: "سرفصل حسابها" },

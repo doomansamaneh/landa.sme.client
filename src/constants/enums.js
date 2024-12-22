@@ -8,6 +8,19 @@ export const isActiveOptions = {
   inActive: 0,
 };
 
+export const alertStatus = {
+  info: "info",
+  warning: "warning",
+  error: "error",
+};
+
+export const accountTreeType = {
+  cl: "cl",
+  gl: "gl",
+  sl: "sl",
+  dl: "dl",
+};
+
 export const customerType = {
   legal: 171,
   person: 172,

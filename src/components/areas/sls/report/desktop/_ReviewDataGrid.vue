@@ -93,16 +93,20 @@
 
   const colspan = computed(
     () =>
-      props.tableStore.columns.value.findIndex(
-        (column) => column.name === "quantity"
+      helper.findIndex(
+        props.tableStore.columns.value,
+        "name",
+        "quantity"
       ) +
       1 + //numbered column
       1 //multi check column
   );
 
   const vatVisible = computed(() =>
-    props.tableStore.columns.value.findIndex(
-      (column) => column.name === "vatAmount"
+    helper.findIndex(
+      props.tableStore.columns.value,
+      "name",
+      "vatAmount"
     )
   );
 </script>

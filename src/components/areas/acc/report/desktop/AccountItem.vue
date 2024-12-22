@@ -133,8 +133,10 @@
 
   const colspan = computed(
     () =>
-      tableStore.columns.value.findIndex(
-        (column) => column.name === "debitRemained"
+      helper.findIndex(
+        tableStore.columns.value,
+        "name",
+        "debitRemained"
       ) +
       1 + //numbered column
       1 //multi check column
@@ -142,8 +144,10 @@
 
   const showInlineDebit = computed(
     () =>
-      tableStore?.value?.columns.value.findIndex(
-        (column) => column.name === "inlineDebit"
+      helper.findIndex(
+        tableStore.columns.value,
+        "name",
+        "inlineDebit"
       ) >= 0
   );
 

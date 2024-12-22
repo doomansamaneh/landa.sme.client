@@ -11,9 +11,10 @@
   import { reviewCLColumns } from "../../_composables/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useAccountReview } from "../../_composables/useAccountReview";
+  import { accountTreeType } from "src/constants";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
-  import { useAccountReview } from "../../_composables/useAccountReview";
 
   const searchStore = useVoucherSearch();
 
@@ -42,7 +43,11 @@
   });
 
   const filterRow = (row) => {
-    props.reportStore?.setSelected("CL", row.id, row.title);
+    props.reportStore?.setItem({
+      id: row.id,
+      title: row.title,
+      type: accountTreeType.cl,
+    });
   };
 
   defineExpose({

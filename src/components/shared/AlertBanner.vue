@@ -65,6 +65,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useAlertStore } from "stores";
+  import { alertStatus } from "src/constants/enums";
 
   const alertStore = useAlertStore();
 
@@ -76,7 +77,7 @@
   const comment = computed(() => alert.value?.comment);
   const errors = computed(() => alert.value?.errors);
 
-  const bannerStatus = ref("warning");
+  const bannerStatus = ref(alertStatus.info);
 
   const icon = computed(
     () =>

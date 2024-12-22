@@ -82,7 +82,7 @@
   const props = defineProps({
     tableStore: useDataTable,
     baseRoute: String,
-    toolbar: Boolean
+    toolbar: Boolean,
   });
 
   const router = useRouter();
@@ -97,8 +97,10 @@
 
   const colspan = computed(
     () =>
-      props.tableStore.columns.value.findIndex(
-        (column) => column.name === "amount"
+      helper.findIndex(
+        props.tableStore.columns.value,
+        "name",
+        "amount"
       ) +
       1 + //numbered column
       1 //multi check column

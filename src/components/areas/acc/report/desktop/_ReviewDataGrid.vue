@@ -127,14 +127,12 @@
 
   const colspan = computed(
     () =>
-      props.tableStore.columns.value.findIndex(
-        (column) => column.name === "debit"
+      helper.findIndex(
+        props.tableStore.columns.value,
+        "name",
+        "debit"
       ) +
       1 + //numbered column
       1 //multi check column
   );
-
-  // const alertRow = (row) => {
-  //   alert(`${row.title} - ${row.id}`);
-  // };
 </script>

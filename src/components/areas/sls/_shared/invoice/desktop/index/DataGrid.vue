@@ -187,20 +187,12 @@
 
   const router = useRouter();
 
-  //const dataTable = ref(null);
-  // const colspan = computed(
-  //   () =>
-  //     dataTable.value?.tableStore?.columns.value.findIndex(
-  //       (column) => column.name === "amount"
-  //     ) +
-  //     1 + //numbered column
-  //     1 //multi check column
-  // );
-
   const colspan = computed(
     () =>
-      props.tableStore.columns.value.findIndex(
-        (column) => column.name === "amount"
+      helper.findIndex(
+        props.tableStore.columns.value,
+        "name",
+        "amount"
       ) +
       1 + //numbered column
       1 //multi check column
@@ -208,9 +200,15 @@
 
   const showPayed = computed(
     () =>
-      props.tableStore.columns.value.findIndex(
-        (column) => column.name === "payedAmount"
+      helper.findIndex(
+        props.tableStore.columns.value,
+        "name",
+        "payedAmount"
       ) >= 0
+
+    // props.tableStore.columns.value.findIndex(
+    //   (column) => column.name === "payedAmount"
+    // ) >= 0
   );
 
   const showDiscount = computed(
