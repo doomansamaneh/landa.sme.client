@@ -190,7 +190,8 @@
       "save": "Save",
       "new": "New",
       "edit": "Edit",
-      "delete": "Delete"
+      "delete": "Delete",
+      "required" : "Fill out this field"
     },
     "messages": {
       "deleted-successfully": "Deleted successfully"

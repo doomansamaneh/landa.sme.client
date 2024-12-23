@@ -52,7 +52,7 @@
         changePassword();
       } else {
         //todo: how to show validation message to user
-        alert("validation error");
+        // alert("Validation error");
       }
     });
   }

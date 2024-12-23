@@ -1,5 +1,5 @@
 import config from "../../app-setting.json";
-export const baseUrl = config.baseUrl;
+export const baseUrl = config.baseUrl_;
 
 export const isActiveOptions = {
   active: 1,

@@ -13,7 +13,7 @@
           color="white"
           :icon="icon"
           size="20px"
-          class="no-pointer-events q-mr-md"
+          class="no-pointer-events"
         />
 
         <q-badge
@@ -56,6 +56,7 @@
           color="black"
           size="sm"
           round
+          class="absolute-top-right q-ma-sm"
         />
       </template>
     </q-banner>
@@ -77,7 +78,7 @@
   const comment = computed(() => alert.value?.comment);
   const errors = computed(() => alert.value?.errors);
 
-  const bannerStatus = ref(alertStatus.info);
+  const bannerStatus = ref(alertStatus.warning);
 
   const icon = computed(
     () =>

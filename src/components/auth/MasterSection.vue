@@ -42,7 +42,7 @@
               input-class="text-body1 no-letter-spacing"
               :rules="[(val) => val !== null && val !== '']"
             >
-              <template v-slot:prepend>
+              <template #prepend>
                 <q-icon
                   name="o_person"
                   :color="
@@ -74,7 +74,7 @@
                 lazy-rules
                 :rules="[(val) => val !== null && val !== '']"
               >
-                <template v-slot:append>
+                <template #append>
                   <q-icon
                     :name="isPwd ? 'visibility_off' : 'visibility'"
                     size="xs"
@@ -83,7 +83,7 @@
                   />
                 </template>
 
-                <template v-slot:prepend>
+                <template #prepend>
                   <q-icon
                     name="o_lock"
                     :color="
