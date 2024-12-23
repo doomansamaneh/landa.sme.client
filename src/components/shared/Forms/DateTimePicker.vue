@@ -1,12 +1,10 @@
 <template>
-  <q-input
-    v-model="value"
-    outlined
-    dense
-    mask="date"
+  <custom-input
+    v-model="modelValue"
+    :label="label"
+    :required="required"
     clearable
-    clear-icon="clear"
-    class="text-body1 no-letter-spacing"
+    mask="date"
   >
     <template #append>
       <q-icon name="event" class="cursor-pointer">
@@ -46,26 +44,21 @@
         </q-popup-proxy>
       </q-icon>
     </template>
-  </q-input>
+  </custom-input>
 </template>
 
 <script setup>
   import { ref, computed } from "vue";
   import { useCulture } from "src/composables/useCulture";
+  import CustomInput from "./CustomInput.vue";
 
-  const props = defineProps(["modelValue"]);
-  const emit = defineEmits(["update:modelValue"]);
+  const props = defineProps({
+    label: String,
+    required: Boolean,
+  });
+  const modelValue = defineModel("modelValue");
 
   const cultureStore = useCulture();
-
-  const value = computed({
-    get() {
-      return props.modelValue;
-    },
-    set(value) {
-      emit("update:modelValue", value);
-    },
-  });
 
   const proxyDate = ref("");
 
@@ -74,10 +67,10 @@
   );
 
   const updateProxy = () => {
-    proxyDate.value = value.value;
+    proxyDate.value = modelValue.value;
   };
 
   const save = () => {
-    value.value = proxyDate.value;
+    modelValue.value = proxyDate.value;
   };
 </script>

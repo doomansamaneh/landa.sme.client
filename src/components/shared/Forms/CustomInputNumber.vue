@@ -1,9 +1,11 @@
 <template>
+  <custom-label :label="label" />
   <q-input
     ref="inputRef"
     v-model="formattedValue"
     outlined
     dense
+    hide-buttom-space
     clear-icon="clear"
   >
     <template v-slot:prepend>
@@ -19,7 +21,11 @@
   import { watch } from "vue";
   import { useCurrencyInput } from "vue-currency-input";
 
+  import CustomLabel from "./CustomLabel.vue";
+
   const props = defineProps({
+    label: String,
+    required: Boolean,
     modelValue: {
       type: Number,
       default: 0,

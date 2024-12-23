@@ -1,12 +1,7 @@
 <template>
   <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        گروه کالا
-      </q-item-label>
-
+      <custom-label label="گروه کالا" />
       <div
         class="row items-center"
         :class="
@@ -35,12 +30,7 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        شناسه مالیاتی
-      </q-item-label>
-
+      <custom-label label="شناسه مالیاتی" />
       <div
         class="row items-center"
         :class="
@@ -69,12 +59,7 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        نوع
-      </q-item-label>
-
+      <custom-label label="نوع" />
       <div
         class="row items-center"
         :class="
@@ -106,11 +91,7 @@
     </div>
 
     <div class="q-mb-lg">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        واحد سنجش
-      </q-item-label>
+      <custom-label label="واحد سنجش" />
 
       <div
         class="row items-center"
@@ -250,6 +231,7 @@
   import { productBatchModel } from "src/models/areas/cmn/productModel";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";

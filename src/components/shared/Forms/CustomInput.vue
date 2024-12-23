@@ -1,51 +1,17 @@
 <template>
-  <div v-if="label" class="q-mb-sm caption-on-dark no-letter-spacing">
-    {{ label }}
-  </div>
-
+  <custom-label :label="label" />
   <q-input
     v-model="modelValue"
     outlined
     dense
     clear-icon="clear"
+    hide-buttom-space
+    :mask="mask"
     :type="type"
+    :clearable="clearable"
+    :debounce="debounce"
+    :rules="required ? [(val) => val !== null && val !== ''] : []"
   >
-    <template #prepend>
-      <slot name="prepend" />
-    </template>
-    <template #append>
-      <slot name="append" />
-    </template>
-  </q-input>
-</template>
-
-<script setup>
-  import { ref, watch } from "vue";
-
-  // Props
-  const props = defineProps({
-    label: {
-      type: String,
-      default: "",
-    },
-    type: {
-      type: String,
-      default: "text", // Default to 'text' for input type
-    },
-  });
-
-  // Emit modelValue
-  const emit = defineEmits(["update:modelValue"]);
-  const modelValue = ref();
-
-  // Watch for changes in modelValue and emit them
-  watch(modelValue, (newValue) => {
-    emit("update:modelValue", newValue);
-  });
-</script>
-
-<!-- <template>
-  <q-input v-model="model" outlined dense clear-icon="clear">
     <template v-slot:prepend>
       <slot name="prepend"></slot>
     </template>
@@ -56,5 +22,15 @@
 </template>
 
 <script setup>
-  const model = defineModel("value");
-</script> -->
+  import CustomLabel from "./CustomLabel.vue";
+
+  const props = defineProps({
+    label: String,
+    type: { type: String, default: "text" },
+    required: Boolean,
+    mask: String,
+    clearable: Boolean,
+    debounce: Number,
+  });
+  const modelValue = defineModel("modelValue");
+</script>

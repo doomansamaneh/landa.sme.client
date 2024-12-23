@@ -1,19 +1,10 @@
 <template>
-  <div
-    style="line-height: 1.2em"
-    v-if="label"
-    class="q-mb-sm no-letter-spacing caption-on-dark"
-  >
-    {{ label }}
-  </div>
-
+  <custom-label :label="label" />
   <q-input
     ref="search"
     v-model="selectedText"
     hide-bottom-space
     outlined
-    :required="required"
-    :rules="rules"
     color="primary"
     class="first input lookup"
     :input-class="inputClass"
@@ -21,6 +12,8 @@
     debounce="1000"
     :placeholder="placeholder"
     :autofocus="autofocus"
+    hide-buttom-space
+    :rules="required ? [(val) => val !== null && val !== ''] : []"
     @update:model-value="searchInLookup"
     @keydown.enter.prevent.stop="selectRow"
     @keydown="handleKeyDown"
@@ -389,6 +382,7 @@
   import PageBar from "src/components/shared/dataTables/PageBar.vue";
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
+  import CustomLabel from "../forms/CustomLabel.vue";
 
   const props = defineProps({
     dataSource: String,

@@ -10,97 +10,77 @@
       <q-form ref="form" autofocus>
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              عنوان
-            </q-item-label>
             <custom-input
-              hide-bottom-space
+              label="عنوان"
               v-model="formStore.model.value.title"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              روش تسویه
-            </q-item-label>
             <custom-select
+              v-model="formStore.model.value.paymentTypeId"
               :options="
                 helper.getEnumOptions(paymentType, 'paymentType')
               "
-              v-model="formStore.model.value.paymentTypeId"
+              label="روش تسویه"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              حساب معین
-            </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.slId"
               v-model:selectedText="formStore.model.value.slTitle"
               :filter-expression="filterSL"
+              label="حساب معین"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              حساب تخفیف
-            </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.discountSLId"
               v-model:selectedText="
                 formStore.model.value.discountSLTitle
               "
               :filter-expression="filterProduct"
+              label="حساب تخفیف"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              حساب کالا
-            </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.productSLId"
               v-model:selectedText="
                 formStore.model.value.productSLTitle
               "
               :filter-expression="filterProduct"
+              label="حساب کالا"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              حساب خدمات
-            </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.serviceSLId"
               v-model:selectedText="
                 formStore.model.value.serviceSLTitle
               "
               :filter-expression="filterProduct"
+              label="حساب خدمات"
+              required
             />
           </div>
         </div>

@@ -1,6 +1,8 @@
 <template>
+  <custom-label :label="label" />
   <q-select
-    v-model="value"
+    v-model="modelValue"
+    :options="options"
     outlined
     dense
     clearable
@@ -9,9 +11,18 @@
     clear-icon="clear"
     class="text-body2"
     dropdown-icon="o_expand_more"
+    hide-buttom-space
+    :rules="required ? [(val) => val !== null && val !== ''] : []"
   />
 </template>
 
 <script setup>
-const value = defineModel('value')
+  import CustomLabel from "./CustomLabel.vue";
+
+  const props = defineProps({
+    label: String,
+    required: Boolean,
+    options: Array,
+  });
+  const modelValue = defineModel("modelValue");
 </script>
