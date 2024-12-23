@@ -3,6 +3,7 @@
     v-model="modelValue"
     :label="label"
     :required="required"
+    :placeholder="placeholder"
     clearable
     mask="date"
   >
@@ -54,6 +55,7 @@
 
   const props = defineProps({
     label: String,
+    placeholder: String,
     required: Boolean,
   });
   const modelValue = defineModel("modelValue");

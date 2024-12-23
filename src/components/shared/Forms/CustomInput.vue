@@ -12,7 +12,7 @@
     :clearable="clearable"
     :debounce="debounce"
     :maxlength="maxlength"
-    :placeholer="placeholder"
+    :placeholder="placeholder"
     lazy-rules
     :rules="
       required
