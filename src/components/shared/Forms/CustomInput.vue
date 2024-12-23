@@ -10,6 +10,7 @@
     :type="type"
     :clearable="clearable"
     :debounce="debounce"
+    :placeholer="placeholder"
     :rules="required ? [(val) => val !== null && val !== ''] : []"
   >
     <template v-slot:prepend>
@@ -26,6 +27,7 @@
 
   const props = defineProps({
     label: String,
+    placeholder: String,
     type: { type: String, default: "text" },
     required: Boolean,
     mask: String,

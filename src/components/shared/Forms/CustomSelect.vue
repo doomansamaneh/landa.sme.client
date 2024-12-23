@@ -12,6 +12,7 @@
     class="text-body2"
     dropdown-icon="o_expand_more"
     hide-buttom-space
+    :placeholder="placeholder"
     :rules="required ? [(val) => val !== null && val !== ''] : []"
   />
 </template>
@@ -21,6 +22,7 @@
 
   const props = defineProps({
     label: String,
+    placeholder: String,
     required: Boolean,
     options: Array,
   });

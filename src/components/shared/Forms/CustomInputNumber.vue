@@ -5,6 +5,7 @@
     v-model="formattedValue"
     outlined
     dense
+    :placeholder="placeholder"
     hide-buttom-space
     clear-icon="clear"
   >
@@ -25,6 +26,7 @@
 
   const props = defineProps({
     label: String,
+    placeholder: String,
     required: Boolean,
     modelValue: {
       type: Number,

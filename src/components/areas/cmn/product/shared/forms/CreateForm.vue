@@ -36,14 +36,9 @@
             />
           </div>
           <div class="col-md-2 col-sm col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              بارکد
-            </q-item-label>
             <custom-input
               v-model="formStore.model.value.barcode"
-              label="کد"
+              label="بارکد"
             />
           </div>
           <div class="col-md-2 col-sm col-xs-12">
