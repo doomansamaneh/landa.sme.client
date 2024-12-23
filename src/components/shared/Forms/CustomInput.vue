@@ -5,17 +5,27 @@
     outlined
     dense
     clear-icon="clear"
-    hide-buttom-space
+    hide-bottom-space
+    :required="required"
     :mask="mask"
     :type="type"
     :clearable="clearable"
     :debounce="debounce"
-    :rules="required ? [(val) => val !== null && val !== ''] : []"
+    :maxlength="maxlength"
+    lazy-rules
+    :rules="
+      required
+        ? [
+            (val) =>
+              (val && val.length > 0) || $t('shared.labels.required'),
+          ]
+        : []
+    "
   >
-    <template v-slot:prepend>
+    <template #prepend>
       <slot name="prepend"></slot>
     </template>
-    <template v-slot:append>
+    <template #append>
       <slot name="append"></slot>
     </template>
   </q-input>
@@ -26,11 +36,12 @@
 
   const props = defineProps({
     label: String,
-    type: { type: String, default: "text" },
+    type: { type: String, default: "text" }, //Accepted values 'text''password''textarea''email''search''tel''file''number''url''time''date''datetime-local'
     required: Boolean,
     mask: String,
     clearable: Boolean,
     debounce: Number,
+    maxlength: Number,
   });
   const modelValue = defineModel("modelValue");
 </script>

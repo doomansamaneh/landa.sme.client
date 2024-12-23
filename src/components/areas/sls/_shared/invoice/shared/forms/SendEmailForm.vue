@@ -80,7 +80,7 @@
         await emailStore.sendEmail();
         return true;
       } else {
-        alert("Validation error");
+        // alert("Validation error");
         return false;
       }
     } catch (error) {

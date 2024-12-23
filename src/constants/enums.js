@@ -1,7 +1,7 @@
 import config from "../../app-setting.json";
 //export const baseUrl = "http://localhost:6060";
 //export const baseUrl = "https://api.landa-sme.ir";
-export const baseUrl = config.baseUrl;
+export const baseUrl = config.baseUrl_;
 
 export const isActiveOptions = {
   active: 1,

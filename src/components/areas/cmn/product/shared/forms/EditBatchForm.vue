@@ -257,7 +257,7 @@
         );
         return true;
       } else {
-        alert("Validation error");
+        // alert("Validation error");
         return false;
       }
     } catch (error) {

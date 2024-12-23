@@ -1,6 +1,5 @@
-@mixin q-field-control-dark{
-
-  .q-field__control{
+@mixin q-field-control-dark {
+  .q-field__control {
     color: $primary;
   }
   .q-field--outlined .q-field__control:before {
@@ -21,5 +20,11 @@
 
   .searchbox .q-field__control {
     padding: 0 8px 0 12px !important;
+  }
+
+  .q-field__bottom {
+    padding: 12px 0 !important;
+    font-size: 14px !important;
+    letter-spacing: 0 !important;
   }
 }
