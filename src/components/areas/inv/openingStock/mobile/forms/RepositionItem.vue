@@ -46,8 +46,8 @@
     <q-card-section>
       <div class="row q-col-gutter-md">
         <div class="col-md-4 col-sm-6 col-xs-12">
-          <q-item-label caption class="q-mb-sm">کالا</q-item-label>
           <product-lookup
+            label="کالا"
             v-model:selectedId="billItem.productId"
             v-model:selectedText="billItem.productTitle"
             :filterExpression="productFilter"
@@ -55,16 +55,14 @@
           />
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            تعداد/مقدار
-          </q-item-label>
-          <custom-input-number v-model="billItem.quantity" />
+          <custom-input-number
+            label="تعداد/مقدار"
+            v-model="billItem.quantity"
+          />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            مبلغ واحد (ارزش خرید)
-          </q-item-label>
           <custom-input-number
+            label="مبلغ واحد (ارزش خرید)"
             v-model="billItem.price"
             hide-bottom-space
           />

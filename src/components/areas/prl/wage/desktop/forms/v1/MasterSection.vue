@@ -1,23 +1,23 @@
 <template>
   <div class="row q-col-gutter-md">
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">ماه</q-item-label>
       <custom-select
+        label="ماه"
         v-model="localFormStore.model.value.month"
         :options="months"
         hide-bottom-space
       />
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
       <date-time
+        label="تاریخ"
         v-model="localFormStore.model.value.date"
         hide-bottom-space
       />
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">کد کارگاه</q-item-label>
       <custom-input
+        label="کد کارگاه"
         v-model="localFormStore.model.value.insuranceNo"
         hide-bottom-space
       />
@@ -26,8 +26,8 @@
 
   <div class="row q-mt-md">
     <div class="col-md-9 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شرح</q-item-label>
       <custom-input
+        label="شرح"
         v-model="localFormStore.model.value.summary"
         hide-bottom-space
         type="textarea"

@@ -1,15 +1,14 @@
 <template>
   <div class="row q-col-gutter-md">
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-      <date-time v-model="model.date" />
+      <date-time label="تاریخ" v-model="model.date" />
     </div>
   </div>
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">انبار</q-item-label>
       <inventory-lookup
+        label="انبار"
         v-model:selectedId="model.inventoryId"
         v-model:selectedText="model.inventoryTitle"
       />
@@ -18,8 +17,8 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شرح</q-item-label>
       <custom-input
+        label="شرح"
         v-model="model.summary"
         hide-bottom-space
         type="textarea"

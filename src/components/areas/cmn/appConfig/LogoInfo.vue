@@ -48,9 +48,7 @@
       />
     </q-card-section>
 
-    <q-separator />
-
-    <q-card-actions class="q-gutter-x-sm">
+    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
       <save-button />
     </q-card-actions>
   </div>

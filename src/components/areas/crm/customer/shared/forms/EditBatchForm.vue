@@ -1,12 +1,6 @@
 <template>
   <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        واحد سازمانی
-      </q-item-label>
-
       <div
         class="row items-center"
         :class="
@@ -15,6 +9,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <unit-lookup
+            label="واحد سازمانی"
             v-model:selectedId="
               formStore.editBatchModel.value.unit.fieldValue
             "
@@ -33,12 +28,6 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        شغل
-      </q-item-label>
-
       <div
         class="row items-center"
         :class="
@@ -47,6 +36,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <job-lookup
+            label="شغل"
             v-model:selectedId="
               formStore.editBatchModel.value.job.fieldValue
             "
@@ -65,12 +55,6 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        نوع
-      </q-item-label>
-
       <div
         class="row items-center"
         :class="
@@ -79,6 +63,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-select
+            label="نوع"
             v-model="formStore.editBatchModel.value.type.fieldValue"
             :options="customerType"
           />

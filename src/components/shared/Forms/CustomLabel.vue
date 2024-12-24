@@ -1,7 +1,10 @@
 <template>
-  <div v-if="label" class="q-mb-sm caption-on-dark no-letter-spacing">
+  <q-item-label
+    v-if="label"
+    class="q-mb-sm caption-on-dark no-letter-spacing"
+  >
     {{ label }}
-  </div>
+  </q-item-label>
 </template>
 
 <script setup>

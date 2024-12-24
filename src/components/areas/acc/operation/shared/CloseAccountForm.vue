@@ -2,22 +2,16 @@
   <q-form ref="form" autofocus>
     <div class="row q-mb-md">
       <div class="col-md-4 col-sm-12 col-xs-12">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          تاریخ
-        </q-item-label>
-        <date-time v-model="formStore.model.value.date" />
+        <date-time
+          label="تاریخ"
+          v-model="formStore.model.value.date"
+        />
       </div>
     </div>
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          حساب مقصد
-        </q-item-label>
         <sl-lookup
+          label="حساب مقصد"
           v-model:selectedId="formStore.model.value.destinationSLId"
           v-model:selectedText="
             formStore.model.value.destinationSLTitle
@@ -28,24 +22,20 @@
 
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          شرح
-        </q-item-label>
-        <custom-input v-model="formStore.model.value.subject" />
+        <custom-input
+          label="شرح"
+          v-model="formStore.model.value.subject"
+        />
       </div>
     </div>
 
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          نوع حساب
-        </q-item-label>
         <q-option-group
-          inline
+          label="نوع حساب"
+          class="q-pt-sm flex q-gutter-md"
+          size="46px"
+          dense
           :options="
             helper.getEnumOptions(closeAccounts, 'closeAccounts')
           "

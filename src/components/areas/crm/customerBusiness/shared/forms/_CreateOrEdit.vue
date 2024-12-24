@@ -3,68 +3,40 @@
     <div class="col-md col-sm col-xs-12">
       <div class="q-gutter-lg">
         <div>
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            شناسه ملی
-          </q-item-label>
-          <custom-input v-model="model.nationalNo" />
+          <custom-input
+            label="شناسه ملی"
+            v-model="model.nationalNo"
+          />
         </div>
         <div>
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            شماره ثبت
-          </q-item-label>
-          <custom-input v-model="model.regNo" />
+          <custom-input label="شماره ثبت" v-model="model.regNo" />
         </div>
         <div>
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            شماره کارگاه بیمه
-          </q-item-label>
-          <custom-input v-model="model.insuranceWorkNo" />
+          <custom-input
+            label="شماره کارگاه بیمه"
+            v-model="model.insuranceWorkNo"
+          />
         </div>
       </div>
     </div>
     <div class="col-md col-sm col-xs-12">
       <div class="q-gutter-lg">
         <div>
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            کد اقتصادی
-          </q-item-label>
-          <custom-input v-model="model.taxNo" />
+          <custom-input label="کد اقتصادی" v-model="model.taxNo" />
         </div>
         <div>
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            تاریخ ثبت
-          </q-item-label>
-          <date-time v-model="model.regDate" />
+          <date-time label="تاریخ ثبت" v-model="model.regDate" />
         </div>
         <div>
-          <q-item-label
-            class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-          >
-            شعبه
-          </q-item-label>
-          <custom-input v-model="model.branchNo" />
+          <custom-input label="شعبه" v-model="model.branchNo" />
         </div>
       </div>
     </div>
   </div>
   <div class="row q-mt-lg">
     <div class="col-md-12">
-      <q-item-label
-        class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-      >
-        شرح
-      </q-item-label>
       <custom-input
+        label="شرح"
         v-model="model.comment"
         type="textarea"
         autogrow

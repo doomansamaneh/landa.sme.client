@@ -13,35 +13,22 @@
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
-      <q-item-label
-        class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-      >
-        نوع
-      </q-item-label>
       <contact-type-lookup
+        label="نوع"
         v-model:selectedId="model.contactTypeId"
         v-model:selectedText="model.contactTypeTitle"
         :filter-expression="contactTypeFilter"
       />
     </div>
     <div class="col-md col-sm col-xs-12">
-      <q-item-label
-        class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-      >
-        مقدار
-      </q-item-label>
-      <custom-input v-model="model.value" />
+      <custom-input label="مقدار" v-model="model.value" />
     </div>
   </div>
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
-      <q-item-label
-        class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
-      >
-        شرح
-      </q-item-label>
       <custom-input
+        label="شرح"
         v-model="model.comment"
         type="textarea"
         autogrow

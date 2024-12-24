@@ -38,21 +38,12 @@
       <div class="q-col-gutter-lg">
         <div class="row">
           <div class="col-md-4 col-sm-8 col-xs-12">
-            <q-item-label
-              class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >
-              کد
-            </q-item-label>
-            <custom-input v-model="model.value.code" />
+            <custom-input label="کد" v-model="model.value.code" />
           </div>
         </div>
         <div>
-          <q-item-label
-            class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-          >
-            نوع
-          </q-item-label>
           <q-option-group
+            label="نوع"
             inline
             :options="
               helper.getEnumOptions(customerType, 'customerType')
@@ -62,29 +53,20 @@
           />
         </div>
         <div v-if="model.value?.typeId == customerType.legal">
-          <q-item-label
-            class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-          >
-            نام
-          </q-item-label>
-          <custom-input v-model="model.value.name" />
+          <custom-input label="نام" v-model="model.value.name" />
         </div>
         <div v-else class="row q-col-gutter-lg">
           <div class="col-md col-sm col-xs-12">
-            <q-item-label
-              class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >
-              نام
-            </q-item-label>
-            <custom-input v-model="model.value.person.name" />
+            <custom-input
+              label="نام"
+              v-model="model.value.person.name"
+            />
           </div>
           <div class="col-md col-sm col-xs-12">
-            <q-item-label
-              class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >
-              نام خانوادگی
-            </q-item-label>
-            <custom-input v-model="model.value.person.lastName" />
+            <custom-input
+              label="نام خانوادگی"
+              v-model="model.value.person.lastName"
+            />
           </div>
           <div class="col-md col-sm col-xs-12">
             <q-item-label
@@ -104,12 +86,8 @@
         </div>
 
         <div>
-          <q-item-label
-            class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-          >
-            واحد سازمانی
-          </q-item-label>
           <unit-lookup
+            label="واحد سازمانی"
             v-model:selectedId="model.value.unitId"
             v-model:selectedText="model.value.unitTitle"
           />
@@ -132,12 +110,8 @@
           </div>
         </div>
         <div>
-          <q-item-label
-            class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-          >
-            شرح
-          </q-item-label>
           <custom-input
+            label="شرح"
             v-model="model.value.comment"
             type="textarea"
             autogrow
@@ -145,12 +119,8 @@
         </div>
         <div class="row q-col-gutter-lg">
           <div class="col-md-4 col-sm-4 col-xs-6">
-            <q-item-label
-              class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >
-              درصد بازاریابی
-            </q-item-label>
             <custom-input-number
+              label="درصد بازاریابی"
               v-model="model.value.marketingPercent"
             />
           </div>

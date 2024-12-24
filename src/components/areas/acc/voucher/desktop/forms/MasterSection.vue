@@ -1,25 +1,26 @@
 <template>
   <div class="row q-col-gutter-md">
     <div class="col-md-2 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شماره</q-item-label>
-      <q-field dense readonly disable outlined filled>
-        <template v-slot:control>
-          <div class="self-center full-width no-outline">
-            {{ localFormStore.model.value.no }}
-          </div>
-        </template>
-      </q-field>
+      <custom-input
+        label="شماره"
+        v-model="localFormStore.model.value.no"
+        dense
+        readonly
+        disable
+      />
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-      <date-time v-model="localFormStore.model.value.date" />
+      <date-time
+        label="تاریخ"
+        v-model="localFormStore.model.value.date"
+      />
     </div>
   </div>
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
       <contract-lookup
+        label="قرارداد"
         v-model:selectedId="localFormStore.model.value.contractId"
         v-model:selectedText="
           localFormStore.model.value.contractTitle
@@ -30,8 +31,8 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شرح</q-item-label>
       <custom-input
+        label="شرح"
         v-model="localFormStore.model.value.subject"
         hide-bottom-space
         type="textarea"

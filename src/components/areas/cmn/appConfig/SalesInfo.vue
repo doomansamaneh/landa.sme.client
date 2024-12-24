@@ -2,12 +2,8 @@
   <div :class="styles()" style="margin-top: 0">
     <q-card-section :class="padding()">
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          عنوان فاکتور در چاپ
-        </q-item-label>
         <custom-input
+          label="عنوان فاکتور در چاپ"
           v-model="
             configStore.model.value.companySetting.invoiceTitle
           "
@@ -15,12 +11,8 @@
       </div>
 
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          الگوی چاپ فاکتور، پیش‌فاکتور
-        </q-item-label>
         <custom-select
+          label="الگوی چاپ فاکتور، پیش‌فاکتور"
           :options="
             helper.getEnumOptions(
               invoicePreviewTemplate,
@@ -34,12 +26,8 @@
       </div>
 
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          روش محاسبه بهای تمام شده
-        </q-item-label>
         <custom-select
+          label="روش محاسبه بهای تمام شده"
           :options="
             helper.getEnumOptions(cogsCalcMethod, 'cogsCalcMethod')
           "
@@ -139,12 +127,8 @@
           />
 
           <div>
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              درصد بازاریابی
-            </q-item-label>
             <custom-input
+              label="درصد بازاریابی"
               type="number"
               v-model="
                 configStore.model.value.companySetting
@@ -156,12 +140,8 @@
       </div>
 
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          شرح فاکتور
-        </q-item-label>
         <custom-input
+          label="شرح فاکتور"
           type="textarea"
           v-model="
             configStore.model.value.companySetting.invoiceComment
@@ -170,12 +150,8 @@
       </div>
 
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          شرح پیش فاکتور
-        </q-item-label>
         <custom-input
+          label="شرح پیش فاکتور"
           type="textarea"
           v-model="
             configStore.model.value.companySetting.quoteComment
@@ -184,9 +160,7 @@
       </div>
     </q-card-section>
 
-    <q-separator />
-
-    <q-card-actions class="q-gutter-x-sm">
+    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
       <save-button />
     </q-card-actions>
   </div>

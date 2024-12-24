@@ -9,73 +9,55 @@
     <q-card-section>
       <q-form ref="form" autofocus>
         <div class="row q-gutter-md q-mb-md">
-          <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              بانک
-            </q-item-label>
-            <bank-lookup
-              hide-bottom-space
-              v-model:selectedId="formStore.model.value.bankId"
-              v-model:selectedText="formStore.model.value.bankTitle"
-              :rules="[(val) => val !== null && val !== '']"
-            />
-          </div>
+          <bank-lookup
+            label="بانک"
+            hide-bottom-space
+            v-model:selectedId="formStore.model.value.bankId"
+            v-model:selectedText="formStore.model.value.bankTitle"
+            required
+          />
         </div>
 
         <div class="row q-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              کد
-            </q-item-label>
             <custom-input
+              label="کد"
               hide-bottom-space
               v-model="formStore.model.value.code"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              عنوان
-            </q-item-label>
             <custom-input
+              label="عنوان"
               hide-bottom-space
               v-model="formStore.model.value.title"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              محل جغرافیایی
-            </q-item-label>
             <location-lookup
+              label="محل جغرافیایی"
               hide-bottom-space
               v-model:selectedId="formStore.model.value.locationId"
               v-model:selectedText="
                 formStore.model.value.locationTitle
               "
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label caption class="q-mb-sm">شرح</q-item-label>
             <custom-input
+              label="شرح"
               hide-bottom-space
               v-model="formStore.model.value.comment"
               type="textarea"

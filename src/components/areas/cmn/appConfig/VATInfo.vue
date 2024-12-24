@@ -4,12 +4,8 @@
       <div class="row q-col-gutter-md">
         <div class="col-md col-sm col-xs-12">
           <div>
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              شناسه ملی
-            </q-item-label>
             <custom-input
+              label="شناسه ملی"
               v-model="
                 configStore.model.value.companySetting.nationalNo
               "
@@ -19,12 +15,8 @@
 
         <div class="col-md col-sm col-xs-12">
           <div>
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              شناسه اقتصادی
-            </q-item-label>
             <custom-input
+              label="شناسه اقتصادی"
               v-model="configStore.model.value.companySetting.taxNo"
             />
           </div>
@@ -40,12 +32,8 @@
       <q-separator spaced />
 
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          شناسه حافظه مالیاتی
-        </q-item-label>
         <custom-input
+          label="شناسه حافظه مالیاتی"
           v-model="
             configStore.model.value.companySetting.taxApiSetting
               .clientId
@@ -53,12 +41,8 @@
         />
       </div>
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          کلید خصوصی
-        </q-item-label>
         <custom-input
+          label="کلید خصوصی"
           type="textarea"
           v-model="
             configStore.model.value.companySetting.taxApiSetting
@@ -68,12 +52,8 @@
       </div>
 
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          نوع
-        </q-item-label>
         <custom-select
+          label="نوع"
           :options="
             helper.getEnumOptions(
               taxApiInvoiceType,
@@ -87,12 +67,8 @@
         />
       </div>
       <div class="q-mt-lg">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
-          الگوی صورتحساب
-        </q-item-label>
         <custom-select
+          label="الگوی صورتحساب"
           :options="
             helper.getEnumOptions(
               taxApiInvoicePattern,
@@ -107,9 +83,7 @@
       </div>
     </q-card-section>
 
-    <q-separator />
-
-    <q-card-actions class="q-gutter-x-sm">
+    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
       <save-button />
     </q-card-actions>
   </div>

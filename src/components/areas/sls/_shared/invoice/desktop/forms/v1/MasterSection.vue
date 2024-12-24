@@ -114,10 +114,8 @@
         :class="{ 'q-mt-md': $q.screen.xs }"
       >
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            شماره فاکتور
-          </q-item-label>
-          <q-input
+          <custom-input
+            label="شماره فاکتور"
             type="number"
             hide-bottom-space
             v-model="model.value.no"
@@ -133,19 +131,17 @@
                 @click="toggleInvocieNo"
               />
             </template>
-          </q-input>
+          </custom-input>
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-          <date-time v-model="model.value.date" />
+          <date-time label="تاریخ" v-model="model.value.date" />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
-          <date-time v-model="model.value.dueDate" />
+          <date-time label="سررسید" v-model="model.value.dueDate" />
         </div>
       </div>
     </div>

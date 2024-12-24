@@ -10,39 +10,27 @@
       <q-form ref="form" autofocus>
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              حساب کل
-            </q-item-label>
             <gl-lookup
+              label="حساب کل"
               v-model:selectedId="formStore.model.value.glId"
               v-model:selectedText="formStore.model.value.glTitle"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              کد
-            </q-item-label>
             <custom-input
+              label="کد"
               hide-bottom-space
               v-model="formStore.model.value.code"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              کد معادل
-            </q-item-label>
             <custom-input
+              label="کد معادل"
               hide-bottom-space
               v-model="formStore.model.value.syncCode"
             />
@@ -51,27 +39,19 @@
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              عنوان
-            </q-item-label>
             <custom-input
+              label="عنوان"
               hide-bottom-space
               v-model="formStore.model.value.title"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              ماهیت حساب
-            </q-item-label>
             <custom-select
+              label="ماهیت حساب"
               :options="
                 helper.getEnumOptions(accountType, 'accountType')
               "
@@ -87,9 +67,11 @@
             >
               تفصیلیهای مرتبط
             </q-item-label>
-            <div class="q-gutter-sm q-pt-xs">
+            <div class="q-pt-xs">
               <q-option-group
-                inline
+                dense
+                class="flex q-gutter-md"
+                size="46px"
                 :options="
                   helper.getEnumOptions(
                     accountDLType,

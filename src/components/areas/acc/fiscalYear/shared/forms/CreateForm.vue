@@ -20,38 +20,30 @@
       <q-form ref="form" autofocus>
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              سال مالی
-            </q-item-label>
             <custom-input
+              label="سال مالی"
               type="number"
               hide-bottom-space
               v-model="formStore.model.value.year"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              از تاریخ
-            </q-item-label>
-            <date-time v-model="formStore.model.value.fromDate" />
+            <date-time
+              label="از تاریخ"
+              v-model="formStore.model.value.fromDate"
+            />
           </div>
         </div>
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              تا تاریخ
-            </q-item-label>
-            <date-time v-model="formStore.model.value.toDate" />
+            <date-time
+              label="تا تاریخ"
+              v-model="formStore.model.value.toDate"
+            />
           </div>
         </div>
 

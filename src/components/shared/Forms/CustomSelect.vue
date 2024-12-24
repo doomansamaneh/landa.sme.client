@@ -13,7 +13,14 @@
     dropdown-icon="o_expand_more"
     hide-buttom-space
     :placeholder="placeholder"
-    :rules="required ? [(val) => val !== null && val !== ''] : []"
+    :rules="
+      required
+        ? [
+            (val) =>
+              (val && val.length > 0) || $t('shared.labels.required'),
+          ]
+        : []
+    "
   />
 </template>
 

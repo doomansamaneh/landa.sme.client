@@ -13,7 +13,14 @@
     :placeholder="placeholder"
     :autofocus="autofocus"
     hide-buttom-space
-    :rules="required ? [(val) => val !== null && val !== ''] : []"
+    :rules="
+      required
+        ? [
+            (val) =>
+              (val && val.length > 0) || $t('shared.labels.required'),
+          ]
+        : []
+    "
     @update:model-value="searchInLookup"
     @keydown.enter.prevent.stop="selectRow"
     @keydown="handleKeyDown"

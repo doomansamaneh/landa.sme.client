@@ -10,12 +10,8 @@
       <q-form ref="form" autofocus>
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              واحد سنجش اصلی
-            </q-item-label>
             <product-unit-lookup
+              label="واحد سنجش اصلی"
               v-model:selectedId="formStore.model.value.masterUnitId"
               v-model:selectedText="
                 formStore.model.value.masterUnitTitle
@@ -26,12 +22,8 @@
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              واحد سنجش فرعی
-            </q-item-label>
             <product-unit-lookup
+              label="واحد سنجش فرعی"
               v-model:selectedId="formStore.model.value.detailUnitId"
               v-model:selectedText="
                 formStore.model.value.detailUnitTitle
@@ -42,12 +34,8 @@
 
         <div class="row q-gutter-md q-mb-md">
           <div class="col-md-2 col-sm-6 col-xs-6">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              نرخ
-            </q-item-label>
             <custom-input-number
+              label="نرخ"
               v-model="formStore.model.value.rate"
             />
           </div>

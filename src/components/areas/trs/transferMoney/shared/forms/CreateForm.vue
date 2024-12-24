@@ -10,12 +10,8 @@
       <q-form ref="form" autofocus>
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              مبلغ
-            </q-item-label>
             <custom-input-number
+              label="مبلغ"
               v-model="formStore.model.value.amount"
             />
           </div>
@@ -23,23 +19,17 @@
 
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              تاریخ
-            </q-item-label>
-            <date-time v-model="formStore.model.value.date" />
+            <date-time
+              label="تاریخ"
+              v-model="formStore.model.value.date"
+            />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              شرح
-            </q-item-label>
             <custom-input
+              label="شرح"
               v-model="formStore.model.value.subject"
               hide-bottom-space
               type="textarea"
@@ -94,12 +84,8 @@
 
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              کارمزد
-            </q-item-label>
             <custom-input-number
+              lable="کارمزد"
               v-model="formStore.model.value.fromFee"
             />
           </div>

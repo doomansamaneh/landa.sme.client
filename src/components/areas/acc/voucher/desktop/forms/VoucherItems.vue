@@ -39,7 +39,6 @@
         <td>
           <custom-input
             v-model="row.comment"
-            type="textarea"
             autogrow
             placeholder="شرح"
           />

@@ -10,63 +10,47 @@
       <q-form ref="form" autofocus>
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-2 col-sm-6 col-xs-6">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              تاریخ
-            </q-item-label>
             <date-time
+              label="تاریخ"
               v-model="formStore.model.value.date"
               hide-bottom-space
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              انبار
-            </q-item-label>
             <inventory-lookup
+              label="انبار"
               v-model:selectedId="formStore.model.value.iventoryId"
               v-model:selectedText="
                 formStore.model.value.iventoryTitle
               "
               hide-bottom-space
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              قرارداد
-            </q-item-label>
             <contract-lookup
+              label="قرارداد"
               v-model:selectedId="formStore.model.value.contractId"
               v-model:selectedText="
                 formStore.model.value.contractTitle
               "
               hide-bottom-space
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              شرح
-            </q-item-label>
             <custom-input
+              label="شرح"
               type="textarea"
               v-model="formStore.model.value.summary"
             />

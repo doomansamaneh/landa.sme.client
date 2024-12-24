@@ -3,73 +3,47 @@
     <q-card-section :class="padding()">
       <div class="q-gutter-y-lg">
         <div>
-          <q-item-label
-            class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-          >
-            کشور
-          </q-item-label>
           <custom-input
+            label="کشور"
             v-model="configStore.model.value.companySetting.country"
           />
         </div>
         <div>
-          <q-item-label
-            class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-          >
-            نشانی
-          </q-item-label>
           <custom-input
+            label="نشانی"
             v-model="configStore.model.value.companySetting.address"
           />
         </div>
         <div>
-          <q-item-label
-            class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-          >
-            کد پستی
-          </q-item-label>
           <custom-input
+            label="کد پستی"
             v-model="
               configStore.model.value.companySetting.postalCode
             "
           />
         </div>
         <div>
-          <q-item-label
-            class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-          >
-            تلفن
-          </q-item-label>
           <custom-input
+            label="تلفن"
             v-model="configStore.model.value.companySetting.phone"
           />
         </div>
         <div>
-          <q-item-label
-            class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-          >
-            نمابر
-          </q-item-label>
           <custom-input
+            label="نمابر"
             v-model="configStore.model.value.companySetting.fax"
           />
         </div>
         <div>
-          <q-item-label
-            class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-          >
-            ایمیل
-          </q-item-label>
           <custom-input
+            label="ایمیل"
             v-model="configStore.model.value.companySetting.email"
           />
         </div>
       </div>
     </q-card-section>
 
-    <q-separator />
-
-    <q-card-actions class="q-gutter-x-sm">
+    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
       <save-button />
     </q-card-actions>
   </div>

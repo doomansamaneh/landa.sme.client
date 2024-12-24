@@ -3,33 +3,29 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
       <div class="row q-col-gutter-md">
         <div class="col-md-4 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            انبار کالا
-          </q-item-label>
           <inventory-lookup
+            label="انبار کالا"
             v-model:selectedId="model.inventoryId"
             v-model:selectedText="model.inventoryTitle"
           />
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            انبار مقصد
-          </q-item-label>
           <inventory-lookup
+            label="انبار مقصد"
             v-model:selectedId="model.toInventoryId"
             v-model:selectedText="model.toInventoryTitle"
           />
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">قرارداد</q-item-label>
           <contract-lookup
+            label="قرارداد"
             v-model:selectedId="model.contractId"
             v-model:selectedText="model.contractTitle"
           />
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">شرح</q-item-label>
           <custom-input
+            label="شرح"
             v-model="model.summary"
             hide-bottom-space
             type="textarea"
@@ -41,8 +37,7 @@
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="row justify-end">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-          <date-time v-model="model.date" />
+          <date-time label="تاریخ" v-model="model.date" />
         </div>
       </div>
     </div>

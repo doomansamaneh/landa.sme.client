@@ -7,6 +7,7 @@
     clear-icon="clear"
     hide-bottom-space
     :required="required"
+    :disable="disable"
     :mask="mask"
     :type="type"
     :clearable="clearable"
@@ -44,6 +45,7 @@
     clearable: Boolean,
     debounce: Number,
     maxlength: Number,
+    disable: Boolean,
   });
   const modelValue = defineModel("modelValue");
 </script>

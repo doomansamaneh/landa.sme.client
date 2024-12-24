@@ -51,19 +51,15 @@
 
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <q-item-label caption class="q-mb-sm">
-                مبلغ از
-              </q-item-label>
               <custom-input-number
+                label="مبلغ از"
                 v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
             </div>
             <div class="col">
-              <q-item-label caption class="q-mb-sm">
-                مبلغ تا
-              </q-item-label>
               <custom-input-number
+                label="مبلغ تا"
                 v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
               />

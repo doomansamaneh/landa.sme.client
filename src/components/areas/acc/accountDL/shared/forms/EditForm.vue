@@ -10,24 +10,16 @@
       <q-form ref="form" autofocus>
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              کد
-            </q-item-label>
             <custom-input
+              label="کد"
               hide-bottom-space
               v-model="formStore.model.value.code"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              کد معادل
-            </q-item-label>
             <custom-input
+              label="کد معادل"
               hide-bottom-space
               v-model="formStore.model.value.syncCode"
             />
@@ -36,15 +28,11 @@
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              عنوان
-            </q-item-label>
             <custom-input
+              label="عنوان"
               hide-bottom-space
               v-model="formStore.model.value.title"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>

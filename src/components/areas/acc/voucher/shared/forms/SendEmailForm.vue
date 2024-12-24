@@ -1,52 +1,34 @@
 <template>
   <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
-        گیرنده
-      </q-item-label>
       <custom-input
-        style="direction: ltr"
+        label="گیرنده"
         hide-bottom-space
         v-model="emailStore.model.value.receiverEmail"
-        :rules="[(val) => val !== null && val !== '']"
+        required
       />
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
-        سایر گیرندگان
-      </q-item-label>
       <custom-input
-        style="direction: ltr"
+        label="سایر گیرندگان"
         hide-bottom-space
         v-model="emailStore.model.value.receivers"
       />
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
-        موضوع
-      </q-item-label>
       <custom-input
+        label="موضوع"
         hide-bottom-space
         v-model="emailStore.model.value.subject"
-        :rules="[(val) => val !== null && val !== '']"
+        required
       />
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
-        متن
-      </q-item-label>
       <custom-input
+        label="متن"
         hide-bottom-space
         type="textarea"
         v-model="emailStore.model.value.content"
