@@ -35,7 +35,9 @@
         icon="clear"
         class="q-mr-xs red-gradient red-shadow no-pointer-events"
       />
-      <span>{{ helper.formatNumber(item.amount) }}</span>
+      <span class="text-weight-600">
+        {{ helper.formatNumber(item.amount) }}
+      </span>
     </template>
     <template #cell-customerName="{ item }">
       <div class="row items-center no-wrap q-gutter-sm">

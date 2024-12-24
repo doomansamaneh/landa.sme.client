@@ -1,13 +1,10 @@
 import { ref } from "vue";
 import { invoiceColumns } from "./constants";
-
-import {
-  defaultPageSize,
-  sortOrder,
-  sqlOperator,
-} from "src/constants";
+import { useInvoiceSearch } from "./useInvoiceSearch";
 import { useComposables } from "src/stores/useComposables";
+import { defaultPageSize, sortOrder } from "src/constants";
 
+const searchStore = useInvoiceSearch();
 //const rows = ref([])
 
 const state = {
@@ -17,10 +14,7 @@ const state = {
   activeRow: ref(null),
   summaryData: ref(null),
   filterExpression: [],
-  searchModel: ref({
-    dateRange: 0,
-    waitToSendTax: false,
-  }),
+  searchModel: searchStore.searchModel,
 };
 
 const pagination = ref({

@@ -12,7 +12,7 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
   import { useAccountReview } from "../../_composables/useAccountReview";
-  import { accountTreeType } from "src/constants";
+  import { accountTreeType, sqlOperator } from "src/constants";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
@@ -45,7 +45,7 @@
   const filterRow = (row) => {
     props.reportStore?.setItem({
       id: row.id,
-      title: row.title,
+      title: `${row.code} - ${row.title}`,
       type: accountTreeType.cl,
     });
   };

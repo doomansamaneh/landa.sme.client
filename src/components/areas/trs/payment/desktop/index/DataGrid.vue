@@ -14,18 +14,10 @@
       <div>
         <small>{{ item.summary }}</small>
       </div>
-      <q-badge
-        text-color="white"
-        class="bluegrey-gradient"
-        v-if="item.contractTitle"
-      >
-        {{ item.contractTitle }}
-        <q-tooltip
-          class="custom-tooltip text-body1 no-letter-spacing"
-        >
-          قرارداد
-        </q-tooltip>
-      </q-badge>
+      <contract-badge
+        :title="item.contractTitle"
+        :id="item.contractId"
+      />
     </template>
 
     <template #cell-date="{ item }">
@@ -78,6 +70,7 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "../../shared/preview/IndexView.vue";
+  import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

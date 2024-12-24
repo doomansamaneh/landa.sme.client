@@ -18,16 +18,18 @@
       toolbar
     >
       <template #cell-purchaseQuantity="{ item }">
-        {{ item.purchaseQuantity?.toLocaleString() }}
+        {{ helper.formatNumber(item.purchaseQuantity) }}
       </template>
       <template #cell-salesQuantity="{ item }">
-        {{ item.salesQuantity?.toLocaleString() }}
+        {{ helper.formatNumber(item.salesQuantity) }}
       </template>
       <template #cell-stock="{ item }">
-        {{ item.stock?.toLocaleString() }}
+        <span class="text-weight-600">
+          {{ helper.formatNumber(item.stock) }}
+        </span>
       </template>
       <template #cell-debit="{ item }">
-        {{ item.debit?.toLocaleString() }}
+        {{ helper.formatNumber(item.debit) }}
       </template>
 
       <template #expand="{ item }">
@@ -38,8 +40,8 @@
 </template>
 
 <script setup>
-  import { computed, ref, onMounted, onUnmounted } from "vue";
-  import { bus } from "src/helpers";
+  import { ref, onMounted, onUnmounted } from "vue";
+  import { helper, bus } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";

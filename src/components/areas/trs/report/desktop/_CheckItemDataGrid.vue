@@ -38,6 +38,12 @@
       {{ item.itemDate?.substring(0, 10) }}
     </template>
 
+    <template #cell-amount="{ item }">
+      <span class="text-weight-600">
+        {{ helper.formatNumber(item.amount) }}
+      </span>
+    </template>
+
     <template #expand="{ item }">
       <check-preview :item="item" inside />
     </template>
