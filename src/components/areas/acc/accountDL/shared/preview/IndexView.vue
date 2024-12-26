@@ -1,13 +1,8 @@
 <template>
-  <tool-bar
-    :inside="inside"
-    buttons
-    :title="title"
-    back-button
-  >
+  <tool-bar :inside="inside" buttons :title="title" back-button>
     <template #buttons>
       <q-btn
-        @click="helper.print('invoicePreview')"
+        @click="helper.print('')"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded

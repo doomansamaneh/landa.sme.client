@@ -1,6 +1,6 @@
 <template>
   <q-card bordered>
-    <div id="invoicePreview">
+    <div :ref="printStore.printRef">
       <q-card-section>
         <invoice-header show-logo :model="model" :title="title" />
       </q-card-section>
@@ -19,6 +19,8 @@
 </template>
 
 <script setup>
+  import { usePrint } from "src/composables/usePrint";
+
   import InvoiceHeader from "./_HeaderSection.vue";
   import HeaderSale from "./_HeaderSale.vue";
   import HeaderPurchase from "./_HeaderPurchase.vue";
@@ -31,4 +33,6 @@
     showSaleHeader: Boolean,
     comment: String,
   });
+
+  const printStore = usePrint();
 </script>

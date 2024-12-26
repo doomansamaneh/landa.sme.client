@@ -20,7 +20,7 @@
 
       <slot name="toolbar-custom-desktop"></slot>
 
-      <menu-button-print @click="helper.print('invoicePreview')" />
+      <menu-button-print @click="printStore.handlePrint" />
       <menu-button
         :title="$t('shared.labels.downloadPdf')"
         icon="download"
@@ -49,6 +49,8 @@
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
+  import { usePrint } from "src/composables/usePrint";
+
   const props = defineProps({
     model: Object,
     title: String,
@@ -57,6 +59,7 @@
     formStore: Object,
   });
 
+  const printStore = usePrint();
   const router = useRouter();
   const $q = useQuasar();
   const quoteStore = useQuoteState();
