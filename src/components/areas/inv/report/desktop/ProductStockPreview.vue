@@ -53,30 +53,30 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { useQuasar } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import Preview from "./_ProductStockPreview.vue";
-  import ModifyStockDialog from "../../modifyStock/shared/forms/ModifyStockDialog.vue";
+  import ModifyStockForm from "src/components/areas/inv/modifyStock/shared/forms/ModifyStockForm.vue";
 
   const props = defineProps({
     inside: Boolean,
     item: Object,
   });
 
-  const $q = useQuasar();
+  const dialogSore = useDialog();
   const dataGrid = ref(null);
 
   const tableStore = computed(() => dataGrid?.value?.tableStore);
 
   const modifyStock = () => {
-    $q.dialog({
-      component: ModifyStockDialog,
-      componentProps: {
-        id: props.item.id,
+    dialogSore.openDialog({
+      title: "main-menu-items.Inv_ModifyStock_View",
+      component: ModifyStockForm,
+      props: { id: props.item.id },
+      okCallback: async (response) => {
+        await tableStore.value.reloadData();
       },
-    }).onOk(async (response) => {
-      await props.tableStore.reloadData();
     });
   };
 </script>

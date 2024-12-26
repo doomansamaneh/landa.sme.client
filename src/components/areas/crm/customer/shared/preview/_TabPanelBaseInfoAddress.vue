@@ -6,7 +6,7 @@
         text-color="white"
         icon="o_add"
         title="افزودن نشانی"
-        @click="addAddress"
+        @click="add"
       />
 
       <q-btn
@@ -26,19 +26,19 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
-  import { useQuasar } from "quasar";
+  import { onMounted } from "vue";
   import { formAction, sqlOperator } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useDialog } from "src/composables/useDialog";
 
   import CustomButton from "src/components/shared/buttons/CustomButton.vue";
   import AddressItem from "./_AddressItem.vue";
-  import CreateFormDialog from "../../../customerAddress/shared/forms/CreateFormDialog.vue";
+  import CreateForm from "../../../customerAddress/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     item: Object,
   });
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const tableStore = useDataTable({
     dataSource: "crm/customerAddress/getGridData",
   });
@@ -55,15 +55,14 @@
     await tableStore.loadData();
   };
 
-  const addAddress = () => {
-    $q.dialog({
-      component: CreateFormDialog,
-      componentProps: {
-        customerId: props.item.id,
-        action: formAction.create,
+  const add = () => {
+    dialogStore.openDialog({
+      title: "shared.contactType.address",
+      component: CreateForm,
+      props: { customerId: props.item.id, action: formAction.create },
+      okCallback: async (response) => {
+        await tableStore.reloadData();
       },
-    }).onOk(async () => {
-      await tableStore.reloadData();
     });
   };
 

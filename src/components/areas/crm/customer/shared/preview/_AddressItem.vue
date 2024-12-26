@@ -45,35 +45,34 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
+  import { useDialog } from "src/composables/useDialog";
   import { useFormActions } from "src/composables/useFormActions";
   import { formAction } from "src/constants";
 
   import CopyClipboard from "src/components/shared/buttons/CopyClipboard.vue";
-  import CreateFormDialog from "../../../customerAddress/shared/forms/CreateFormDialog.vue";
+  import CreateForm from "../../../customerAddress/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     item: Object,
     tableStore: Object,
   });
 
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const model = ref(props.item);
 
   const formStore = useFormActions("crm/customerAddress");
 
   const edit = () => {
-    $q.dialog({
-      component: CreateFormDialog,
-      componentProps: {
-        id: props.item.id,
-        action: formAction.edit,
+    dialogStore.openDialog({
+      title: "shared.contactType.address",
+      component: CreateForm,
+      props: { id: props.item.id, action: formAction.edit },
+      okCallback: async (response) => {
+        if (response?.model) {
+          helper.updateModel(model.value, response.model);
+        } else await props.tableStore.reloadData();
       },
-    }).onOk(async (response) => {
-      if (response?.model) {
-        helper.updateModel(model.value, response.model);
-      } else await props.tableStore.reloadData();
     });
   };
 </script>

@@ -91,7 +91,7 @@
             class="q-pr-xs"
             size="xs"
           />
-          {{ $t("page.renew-subscription.buttons.payment") }}
+          {{ $t("page.add-business.payment") }}
         </q-btn>
         <span class="text-caption no-letter-spacing">
           {{ $t("page.add-business.pay-caption") }}
