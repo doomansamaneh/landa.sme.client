@@ -35,18 +35,17 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useQuasar } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
+  import { invoiceFormType } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
-
   import { useFormActions } from "src/composables/useFormActions";
   import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
 
   import ToolbarDesktop from "../../desktop/index/ToolbarView.vue";
   import ToolbarMobile from "../../mobile/index/_ToolBar.vue";
 
-  import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchDialog.vue";
-  import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderDialog.vue";
-  import { invoiceFormType } from "src/constants";
+  import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
+  import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -54,8 +53,8 @@
     tableStore: useDataTable,
   });
 
+  const dialogStore = useDialog();
   const baseRoute = "sls/Invoice";
-  const $q = useQuasar();
 
   const crudStore = useFormActions(baseRoute);
   const formStore = useInvoiceModel({ baseRoute: baseRoute });
@@ -77,22 +76,26 @@
   }
 
   function editBatch() {
-    $q.dialog({
+    dialogStore.openDialog({
+      title: `shared.labels.editBatch`,
       component: EditBatch,
-      componentProps: {
+      props: {
         selectedIds: selectedIds?.value,
         formType: invoiceFormType.sales,
       },
-    }).onOk(async () => {
-      await props.tableStore.reloadData();
+      okCallback: async (response) => {
+        await props.tableStore.reloadData();
+      },
     });
   }
 
   function reorder() {
-    $q.dialog({
+    dialogStore.openDialog({
+      title: `shared.labels.reorder`,
       component: ReorderInvoice,
-    }).onOk(async () => {
-      await props.tableStore.reloadData();
+      okCallback: async (response) => {
+        await props.tableStore.reloadData();
+      },
     });
   }
 

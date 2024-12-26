@@ -6,6 +6,7 @@
       :title="title"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
+      @edit-batch="editBatch"
       @download-pdf="downloadPdf"
       @download-pdf-batch="downloadBatchPdf"
     />
@@ -19,6 +20,7 @@
       :selected-ids="selectedIds"
       buttons
       margin
+      @edit-batch="editBatch"
       @download-pdf="downloadPdf"
       @download-pdf-batch="downloadBatchPdf"
     />
@@ -27,14 +29,15 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
-
+  import { invoiceFormType } from "src/constants";
+  import { useDialog } from "src/composables/useDialog";
   import { useFormActions } from "src/composables/useFormActions";
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
   import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
+  import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -43,8 +46,7 @@
   });
 
   const baseRoute = "sls/quote";
-  const $q = useQuasar();
-
+  const dialogStore = useDialog();
   const crudStore = useFormActions(baseRoute);
 
   const selectedIds = computed(() =>
@@ -64,5 +66,19 @@
       props.tableStore.pagination.value,
       "landa-quote"
     );
+  }
+
+  function editBatch() {
+    dialogStore.openDialog({
+      title: `shared.labels.editBatch`,
+      component: EditBatch,
+      props: {
+        selectedIds: selectedIds?.value,
+        formType: invoiceFormType.sales,
+      },
+      okCallback: async (response) => {
+        await props.tableStore.reloadData();
+      },
+    });
   }
 </script>

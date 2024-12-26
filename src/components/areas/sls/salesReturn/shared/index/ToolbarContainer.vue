@@ -28,16 +28,15 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { invoiceFormType } from "src/constants";
-
   import { useFormActions } from "src/composables/useFormActions";
+  import { useDialog } from "src/composables/useDialog";
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
   import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
-  import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchDialog.vue";
+  import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -46,8 +45,7 @@
   });
 
   const baseRoute = "sls/salesReturn";
-  const $q = useQuasar();
-
+  const dialogStore = useDialog();
   const crudStore = useFormActions(baseRoute);
 
   const selectedIds = computed(() =>
@@ -70,14 +68,16 @@
   }
 
   function editBatch() {
-    $q.dialog({
+    dialogStore.openDialog({
+      title: `shared.labels.editBatch`,
       component: EditBatch,
-      componentProps: {
+      props: {
         selectedIds: selectedIds?.value,
         formType: invoiceFormType.salesReturn,
       },
-    }).onOk(async () => {
-      await props.tableStore.reloadData();
+      okCallback: async (response) => {
+        await props.tableStore.reloadData();
+      },
     });
   }
 </script>

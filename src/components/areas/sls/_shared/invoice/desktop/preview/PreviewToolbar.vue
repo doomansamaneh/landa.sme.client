@@ -37,19 +37,18 @@
 
 <script setup>
   import { useRouter } from "vue-router";
-  import { useQuasar } from "quasar";
-  import { helper, downloadManager } from "src/helpers";
+  import { downloadManager } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
+  import { useDialog } from "src/composables/useDialog";
   import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
+  import SendEmail from "../../shared/forms/SendEmailForm.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
-
-  import { usePrint } from "src/composables/usePrint";
 
   const props = defineProps({
     model: Object,
@@ -61,7 +60,7 @@
 
   const printStore = usePrint();
   const router = useRouter();
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const quoteStore = useQuoteState();
 
   function deleteCallBack() {
@@ -70,14 +69,16 @@
   }
 
   function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: `shared.labels.sendMail`,
+      component: SendEmail,
+      props: {
         id: props.model.id,
         baseRoute: props.baseRoute,
       },
-    }).onOk(async () => {
-      await reloadData();
+      okCallback: async (response) => {
+        await reloadData();
+      },
     });
   }
 

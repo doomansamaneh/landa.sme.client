@@ -24,13 +24,13 @@
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
 
   import BottomSheet from "components/shared/BottomSheet.vue";
-  import SendEmailDialog from "../../shared/forms/SendEmailDialog.vue";
+  import SendEmail from "../../shared/forms/SendEmailForm.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuItemEdit from "src/components/shared/buttons/MenuItemEdit.vue";
   import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
@@ -45,9 +45,9 @@
     deleteCallBack: Function,
     baseRoute: String,
   });
-  const $q = useQuasar();
 
   const emits = defineEmits(["hide"]);
+  const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
 
   const downloadPdf = () => {
@@ -64,14 +64,16 @@
   };
 
   function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: `shared.labels.sendMail`,
+      component: SendEmail,
+      props: {
         id: props.item.id,
         baseRoute: props.baseRoute,
       },
-    }).onOk(async () => {
-      //await props.tableStore.reloadData();
+      okCallback: async (response) => {
+        //await reloadData();
+      },
     });
   }
 

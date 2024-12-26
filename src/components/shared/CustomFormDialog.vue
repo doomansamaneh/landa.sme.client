@@ -17,7 +17,7 @@
         :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-md'"
       >
         <slot name="title">
-          <div class="text-h6">{{ $t(title) }}</div>
+          <div class="text-h6">title: {{ $t(title) }}</div>
         </slot>
 
         <q-space />

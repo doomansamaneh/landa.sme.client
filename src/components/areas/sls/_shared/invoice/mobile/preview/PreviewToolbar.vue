@@ -31,13 +31,11 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { useRouter } from "vue-router";
-  import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
   import ToolBar from "src/components/shared/ToolBarPreviewMobile.vue";
   import DataGridItemSheet from "../index/DataGridItemSheet.vue";
-  import { computed } from "vue";
 
   const props = defineProps({
     model: Object,

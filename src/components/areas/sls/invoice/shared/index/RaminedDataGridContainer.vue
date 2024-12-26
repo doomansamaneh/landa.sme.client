@@ -1,9 +1,5 @@
 <template>
-  <toolbar
-    :title="`مانده ${title}`"
-    back-button
-    margin
-  />
+  <toolbar :title="`مانده ${title}`" back-button margin />
 
   <data-grid-table
     :title="title"
@@ -15,9 +11,9 @@
 <script setup>
   import { useInvoiceFilteredGrid } from "components/areas/sls/_composables/useInvoiceFilteredGrid";
   import { useDataTable } from "src/composables/useDataTable";
-  import Toolbar from "components/shared/ToolBarDesktop.vue";
 
   import DataGridTable from "./DataGridTable.vue";
+  import Toolbar from "components/shared/ToolBarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,

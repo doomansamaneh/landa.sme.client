@@ -90,9 +90,10 @@
 </template>
 
 <script setup>
-  import { useQuasar, useDialogPluginComponent } from "quasar";
+  import { useDialogPluginComponent } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
 
-  import SendEmailDialog from "../../../_shared/invoice/shared/forms/SendEmailDialog.vue";
+  import SendEmail from "../../../_shared/invoice/shared/forms/SendEmailForm.vue";
 
   const props = defineProps({
     responseData: Object,
@@ -100,8 +101,8 @@
   });
 
   defineEmits([...useDialogPluginComponent.emits]);
-  const $q = useQuasar();
 
+  const dialogStore = useDialog();
   const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
     useDialogPluginComponent();
 
@@ -110,15 +111,16 @@
   }
 
   function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: `shared.labels.sendMail`,
+      component: SendEmail,
+      props: {
         id: props.responseData.id,
         baseRoute: props.baseRoute,
       },
+      okCallback: async (response) => {
+        //await reloadData();
+      },
     });
-    // .onOk(async () => {
-    //   await reloadData();
-    // });
   }
 </script>

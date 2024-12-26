@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
@@ -44,7 +44,7 @@
   import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
   import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
-  import SendEmailDialog from "src/components/areas/acc/voucher/shared/forms/SendEmailDialog.vue";
+  import SendEmail from "src/components/areas/acc/voucher/shared/forms/SendEmailForm.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -54,7 +54,8 @@
     item: Object,
     deleteCallBack: Function,
   });
-  const $q = useQuasar();
+
+  const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
   const formStore = useInvoiceModel(props.baseRoute);
 
@@ -76,14 +77,16 @@
   };
 
   function sendEmail() {
-    $q.dialog({
-      component: SendEmailDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: `shared.labels.sendMail`,
+      component: SendEmail,
+      props: {
         id: props.item.id,
         baseRoute: props.baseRoute,
       },
-    }).onOk(async () => {
-      //await props.tableStore.reloadData();
+      okCallback: async (response) => {
+        //await reloadData();
+      },
     });
   }
 </script>
