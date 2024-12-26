@@ -41,13 +41,13 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useQuasar } from "quasar";
   import { useFormActions } from "src/composables/useFormActions";
   import { helper } from "src/helpers";
-  import { formAction } from "src/constants";
+  import { formAction, contactType } from "src/constants";
+  import { useDialog } from "src/composables/useDialog";
 
   import CopyClipboard from "src/components/shared/buttons/CopyClipboard.vue";
-  import CreateFormDialog from "../../../customerContact/shared/forms/CreateFormDialog.vue";
+  import CreateForm from "../../../customerContact/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     item: Object,
@@ -55,23 +55,28 @@
     typeId: Number,
   });
 
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const model = ref(props.item);
-
   const formStore = useFormActions("crm/customerContact");
 
   const edit = () => {
-    $q.dialog({
-      component: CreateFormDialog,
-      componentProps: {
+    const contactTypeTitle = helper.getEnumType(
+      props.item.typeId,
+      contactType
+    );
+    dialogStore.openDialog({
+      title: `shared.contactType.${contactTypeTitle}`,
+      component: CreateForm,
+      props: {
         id: props.item.id,
         action: formAction.edit,
         typeId: props.item.typeId,
       },
-    }).onOk(async (response) => {
-      if (response?.model) {
-        helper.updateModel(model.value, response.model);
-      } else await props.tableStore.reloadData();
+      okCallback: async (response) => {
+        if (response?.model) {
+          helper.updateModel(model.value, response.model);
+        } else await props.tableStore.reloadData();
+      },
     });
   };
 </script>

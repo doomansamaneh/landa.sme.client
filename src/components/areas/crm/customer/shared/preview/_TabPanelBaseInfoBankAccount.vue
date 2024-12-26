@@ -32,21 +32,20 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
-  import { useQuasar } from "quasar";
-  import { helper } from "src/helpers";
+  import { onMounted } from "vue";
   import { formAction, sqlOperator } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useDialog } from "src/composables/useDialog";
 
   import CustomButton from "src/components/shared/buttons/CustomButton.vue";
   import BankAccountItem from "./_BankAccountItem.vue";
-  import CreateFormDialog from "../../../customerBankAccount/shared/forms/CreateFormDialog.vue";
+  import CreateForm from "../../../customerBankAccount/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     item: Object,
   });
 
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const tableStore = useDataTable({
     dataSource: "crm/customerBankAccount/getGridData",
   });
@@ -64,14 +63,13 @@
   };
 
   const addBankAccount = () => {
-    $q.dialog({
-      component: CreateFormDialog,
-      componentProps: {
-        customerId: props.item.id,
-        action: formAction.create,
+    dialogStore.openDialog({
+      title: "افزودن حساب بانکی",
+      component: CreateForm,
+      props: { customerId: props.item.id, action: formAction.create },
+      okCallback: async (response) => {
+        await tableStore.reloadData();
       },
-    }).onOk(async () => {
-      await tableStore.reloadData();
     });
   };
 

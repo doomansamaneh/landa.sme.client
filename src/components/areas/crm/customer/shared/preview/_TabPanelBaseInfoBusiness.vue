@@ -60,20 +60,19 @@
 
 <script setup>
   import { onMounted, ref } from "vue";
-  import { useQuasar } from "quasar";
-  import { helper } from "src/helpers";
   import { formAction } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useDialog } from "src/composables/useDialog";
 
   import CopyClipboard from "src/components/shared/buttons/CopyClipboard.vue";
   import CustomButton from "src/components/shared/buttons/CustomButton.vue";
-  import CreateFormDialog from "../../../customerBusiness/shared/forms/CreateFormDialog.vue";
+  import CreateForm from "../../../customerBusiness/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     item: Object,
   });
 
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const model = ref({});
   const formStore = useFormActions(
     "crm/customerBusiness",
@@ -86,18 +85,16 @@
   };
 
   const edit = () => {
-    $q.dialog({
-      component: CreateFormDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: "shared.labels.business",
+      component: CreateForm,
+      props: {
         id: props.item.id,
         action: formAction.edit,
       },
-    }).onOk(async (response) => {
-      if (response?.model) {
-        helper.updateModel(model.value, response.model);
-      } else {
+      okCallback: async (response) => {
         await loadData();
-      }
+      },
     });
   };
 

@@ -26,19 +26,19 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
-  import { useQuasar } from "quasar";
+  import { onMounted } from "vue";
   import { formAction, sqlOperator } from "src/constants";
+  import { useDialog } from "src/composables/useDialog";
   import { useDataTable } from "src/composables/useDataTable";
 
   import CustomButton from "src/components/shared/buttons/CustomButton.vue";
   import PropertyItem from "./_PropertyItem.vue";
-  import CreateFormDialog from "components/areas/cmn/entityProperty/shared/forms/CreateFormDialog.vue";
+  import CreateForm from "components/areas/cmn/entityProperty/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     item: Object,
   });
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const tableStore = useDataTable({
     dataSource: "cmn/entityProperty/getGridData",
   });
@@ -56,15 +56,17 @@
   };
 
   const add = () => {
-    $q.dialog({
-      component: CreateFormDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: "افزودن فیلد سفارشی",
+      component: CreateForm,
+      props: {
         entityId: props.item.id,
         entityName: "crm.[Customer]",
         action: formAction.create,
       },
-    }).onOk(async () => {
-      await tableStore.reloadData();
+      okCallback: async (response) => {
+        await tableStore.reloadData();
+      },
     });
   };
 

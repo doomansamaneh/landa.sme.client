@@ -69,8 +69,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
-  import { useQuasar } from "quasar";
+  import { onMounted } from "vue";
   import { helper } from "src/helpers";
   import {
     contactType,
@@ -78,16 +77,17 @@
     formAction,
     sqlOperator,
   } from "src/constants";
+  import { useDialog } from "src/composables/useDialog";
   import { useDataTable } from "src/composables/useDataTable";
 
   import ContactItem from "./_ContactItem.vue";
-  import CreateFormDialog from "../../../customerContact/shared/forms/CreateFormDialog.vue";
+  import CreateForm from "../../../customerContact/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     item: Object,
   });
 
-  const $q = useQuasar();
+  const dialogStore = useDialog();
   const tableStore = useDataTable({
     dataSource: "crm/customerContact/getGridData",
   });
@@ -105,15 +105,17 @@
   };
 
   const addContact = (typeId) => {
-    $q.dialog({
-      component: CreateFormDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: "افزودن تماس",
+      component: CreateForm,
+      props: {
         customerId: props.item.id,
         action: formAction.create,
         typeId: typeId,
       },
-    }).onOk(async () => {
-      await tableStore.reloadData();
+      okCallback: async (response) => {
+        await tableStore.reloadData();
+      },
     });
   };
 
