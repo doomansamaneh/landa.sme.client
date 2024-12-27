@@ -1,28 +1,26 @@
 <template>
-  <div
-    v-if="$q.screen.xs"
-    class="row q-py-md items-center justify-between"
-  >
-    <div class="col row items-center">
-      <q-btn class="text-caption" round unelevated no-caps>
+  <div v-if="$q.screen.xs" class="row q-py-md items-center justify-between">
+    <div class="row q-gutter-sm items-center">
+      <back-button />
+      <div class="text-body1 no-letter-spacing text-weight-700">
+        {{ $t("pages.payment-detail") }}
+      </div>
+    </div>
+
+    <div class="flex items-center">
+      <q-btn dense class="text-caption" round unelevated no-caps>
         <q-icon name="o_print" />
       </q-btn>
       <q-btn
         no-caps
+        dense
         class="text-caption q-ml-sm"
         round
         unelevated
         @click="onBottomSheetShow"
       >
-        <q-icon name="o_more_horiz" />
+        <q-icon name="o_more_vert" />
       </q-btn>
-    </div>
-
-    <div class="row q-gutter-sm items-center">
-      <div class="text-body1 no-letter-spacing text-weight-700">
-        {{ $t("pages.payment-detail") }}
-      </div>
-      <back-button />
     </div>
   </div>
 
@@ -33,10 +31,7 @@
     }"
     :style="$q.screen.gt.sm ? 'width:800px' : 'width:auto'"
   >
-    <q-item
-      class="card-header q-px-lg q-py-lg"
-      v-if="$q.screen.gt.xs"
-    >
+    <q-item class="card-header q-px-lg q-py-lg" v-if="$q.screen.gt.xs">
       <q-item-section>
         <q-item-label class="text-h6 text-weight-700 text-on-dark">
           {{ $t("pages.payment-detail") }}
@@ -48,45 +43,39 @@
         </q-item-label>
       </q-item-section>
       <q-card-actions class="no-padding">
-        <div class="row items-center q-mr-md">
-          <div class="q-mr-xs">
+        <div class="row items-center">
+          <div>
             <q-btn
               round
               unelevated
               dense
               class="text-on-dark"
-              icon="o_description"
               @click="$emit('reload-data')"
             >
+              <q-icon size="20px" name="o_description" />
               <q-tooltip class="custom-tooltip">
                 {{ $t("page.payment-detail.buttons.excel") }}
               </q-tooltip>
             </q-btn>
           </div>
-          <div class="">
-            <q-btn
-              class="text-on-dark"
-              dense
-              unelevated
-              round
-              icon="o_print"
-              @click="print"
-            >
+          <div>
+            <q-btn class="text-on-dark" dense unelevated round @click="print">
+              <q-icon size="20px" name="o_print" />
               <q-tooltip class="custom-tooltip">
                 {{ $t("page.payment-detail.buttons.print") }}
               </q-tooltip>
             </q-btn>
           </div>
         </div>
-        <div class="row items-center q-mr-xs">
+        <div class="row items-center">
           <q-btn
             round
             unelevated
             dense
             class="text-on-dark"
-            icon="o_refresh"
             @click="$emit('reload-data')"
           >
+            <q-icon size="20px" name="o_refresh" />
             <q-tooltip class="custom-tooltip">
               {{ $t("shared.labels.refresh") }}
             </q-tooltip>
@@ -150,24 +139,19 @@
         'no-padding': $q.screen.lt.sm,
       }"
     >
-      <div
-        class="row"
-        :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-my-md'"
-      >
+      <div class="row" :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-my-md'">
         <div
           class="col-md col-sm col-xs-12 text-body3"
           :class="$q.screen.lt.sm ? 'text-center q-mb-md' : ''"
         >
           <div class="text-weight-bold q-mb-sm">
             {{ $t("page.payment-detail.seller") }}
-            <span class="text-weight-thin">
-              حسابداری آنلاین لاندا
-            </span>
+            <span class="text-weight-thin"> حسابداری آنلاین لاندا </span>
           </div>
           <div>
             <span class="line-height-xs">
-              شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری
-              زیتون، واحد 105
+              شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری زیتون،
+              واحد 105
             </span>
             <div class="q-pt-xs">
               <q-icon name="phone" class="dark-2 q-pr-xs" />
@@ -185,8 +169,8 @@
           </div>
           <div>
             <span class="line-height-xs">
-              شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی،
-              خیابان عنایتی، کوچه محمدی، پلاک 22
+              شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی، خیابان
+              عنایتی، کوچه محمدی، پلاک 22
             </span>
             <div class="q-pt-xs">
               <q-icon name="phone" class="dark-2 q-pr-xs" />
@@ -209,9 +193,7 @@
         :thumb-style="helper.thumbStyle"
         visible
       >
-        <table
-          class="overflow-hidden invoice-preview-table text-caption"
-        >
+        <table class="overflow-hidden invoice-preview-table text-caption">
           <thead class="text-left">
             <tr>
               <th>
@@ -250,9 +232,7 @@
                 <td class=""><span class="">1</span></td>
                 <td>
                   <div
-                    :style="
-                      $q.screen.lt.sm ? 'width:300px' : 'width:auto'
-                    "
+                    :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'"
                     class="ellipsis-2-lines"
                   >
                     <div>
@@ -360,58 +340,58 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import { helper } from "src/helpers/helper";
-  import { numberToWords } from "@persian-tools/persian-tools";
+import { ref } from "vue";
+import { helper } from "src/helpers/helper";
+import { numberToWords } from "@persian-tools/persian-tools";
 
-  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-  import BottomSheet from "src/components/shared/BottomSheet.vue";
+import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+import BottomSheet from "src/components/shared/BottomSheet.vue";
 
-  const bottomSheetStatus = ref(false);
+const bottomSheetStatus = ref(false);
 
-  const onBottomSheetShow = () => {
-    bottomSheetStatus.value = true;
-  };
+const onBottomSheetShow = () => {
+  bottomSheetStatus.value = true;
+};
 
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
-  };
+const onBottomSheetHide = () => {
+  bottomSheetStatus.value = false;
+};
 
-  const items = ref([
-    {
-      subject: "طرح 2 حسابداری آنلاین لاندا ویژه کسب‌وکارهای کوچک",
-      amount: 490000,
-      discountAmount: 150000,
-      payedAmount: 490000,
-    },
-  ]);
+const items = ref([
+  {
+    subject: "طرح 2 حسابداری آنلاین لاندا ویژه کسب‌وکارهای کوچک",
+    amount: 490000,
+    discountAmount: 150000,
+    payedAmount: 490000,
+  },
+]);
 </script>
 
 <style scoped>
-  .business-name {
-    max-width: 250px;
-  }
+.business-name {
+  max-width: 250px;
+}
 
-  .sme-logo {
-    width: 72px;
-  }
+.sme-logo {
+  width: 72px;
+}
 
-  table,
-  td,
-  th {
-    border: none;
-  }
+table,
+td,
+th {
+  border: none;
+}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    overflow: hidden;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+}
 
-  th,
-  td {
-    padding: 24px 8px;
-  }
+th,
+td {
+  padding: 24px 8px;
+}
 </style>

@@ -1,14 +1,15 @@
 <template>
   <div
     v-if="$q.screen.xs"
-    class="row q-gutter-x-lg q-py-md items-center justify-between"
+    class="row q-gutter-x-sm q-py-md items-center justify-between"
   >
+    <back-button />
+
     <div
       class="col ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
     >
       {{ $t("pages.add-new-business") }}
     </div>
-    <back-button />
   </div>
   <q-card
     :class="{
@@ -86,11 +87,7 @@
           no-caps
           padding="8px 16px"
         >
-          <q-icon
-            name="o_monetization_on"
-            class="q-pr-xs"
-            size="xs"
-          />
+          <q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
           {{ $t("page.add-business.payment") }}
         </q-btn>
         <span class="text-caption no-letter-spacing">
@@ -102,28 +99,28 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import { useQuasar } from "quasar";
+import { ref } from "vue";
+import { useQuasar } from "quasar";
 
-  import SelectPlan from "src/components/management/shared/SelectPlan.vue";
-  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+import SelectPlan from "src/components/management/shared/SelectPlan.vue";
+import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-  const $q = useQuasar();
+const $q = useQuasar();
 
-  const businessName = ref("");
-  const form = ref(null);
+const businessName = ref("");
+const form = ref(null);
 
-  const submitForm = () => {
-    $q.notify({
-      type: "positive",
-      message: "عملیات با موفقیت انجام شد",
-      timeout: 1500,
-    });
-  };
+const submitForm = () => {
+  $q.notify({
+    type: "positive",
+    message: "عملیات با موفقیت انجام شد",
+    timeout: 1500,
+  });
+};
 </script>
 
 <style lang="scss" scoped>
-  .card-desktop {
-    width: 700px !important;
-  }
+.card-desktop {
+  width: 700px !important;
+}
 </style>

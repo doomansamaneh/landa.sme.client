@@ -1,14 +1,14 @@
 <template>
   <div
     v-if="$q.screen.xs"
-    class="row q-gutter-x-lg q-py-md items-center justify-between"
+    class="row q-gutter-x-sm q-py-md items-center justify-between"
   >
+    <back-button />
     <div
       class="col ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
     >
       {{ $t("pages.renew-subscription") }}
     </div>
-    <back-button />
   </div>
   <q-card
     :class="{
@@ -113,11 +113,7 @@
           no-caps
           padding="8px 16px"
         >
-          <q-icon
-            name="o_monetization_on"
-            class="q-pr-xs"
-            size="xs"
-          />
+          <q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
           {{ $t("page.add-business.payment") }}
         </q-btn>
         <span class="text-caption no-letter-spacing">
@@ -129,52 +125,52 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
-  import { useRoute } from "vue-router";
-  import { fetchWrapper } from "src/helpers";
-  import SelectPlan from "src/components/management/shared/SelectPlan.vue";
-  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { fetchWrapper } from "src/helpers";
+import SelectPlan from "src/components/management/shared/SelectPlan.vue";
+import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
-  const route = useRoute();
+const route = useRoute();
 
-  const planTitle = ref(null);
-  const businessTitle = ref(null);
-  const toDate = ref(null);
+const planTitle = ref(null);
+const businessTitle = ref(null);
+const toDate = ref(null);
 
-  const form = ref(null);
+const form = ref(null);
 
-  async function loadData() {
-    const businessId = route.params.businessId;
-    await fetchWrapper
-      .get(`business/GetBusiness/${businessId}`)
-      .then((response) => {
-        handleBusinessData(response.data.data);
-      });
-  }
-
-  function handleBusinessData(data) {
-    planTitle.value = data.lastPayment.planTitle;
-    businessTitle.value = data.title;
-    toDate.value = data.lastPayment.toDateString;
-  }
-
-  onMounted(() => {
-    loadData();
-  });
-
-  function submitForm() {
-    form.value.validate().then((success) => {
-      if (success) {
-        alert("validation successfull");
-      } else {
-        // alert("Validation error");
-      }
+async function loadData() {
+  const businessId = route.params.businessId;
+  await fetchWrapper
+    .get(`business/GetBusiness/${businessId}`)
+    .then((response) => {
+      handleBusinessData(response.data.data);
     });
-  }
+}
+
+function handleBusinessData(data) {
+  planTitle.value = data.lastPayment.planTitle;
+  businessTitle.value = data.title;
+  toDate.value = data.lastPayment.toDateString;
+}
+
+onMounted(() => {
+  loadData();
+});
+
+function submitForm() {
+  form.value.validate().then((success) => {
+    if (success) {
+      alert("validation successfull");
+    } else {
+      // alert("Validation error");
+    }
+  });
+}
 </script>
 
 <style lang="scss" scoped>
-  .card-desktop {
-    width: 700px !important;
-  }
+.card-desktop {
+  width: 700px !important;
+}
 </style>

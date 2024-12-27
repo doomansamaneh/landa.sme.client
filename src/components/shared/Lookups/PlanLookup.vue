@@ -4,6 +4,7 @@
     sortColumn="title"
     textTemplate="{{ title }}"
     searchField="title"
+    columns="code,title"
     ref="lookup"
     :placeholder="$t('page.add-business.plan-lookup.placeholder')"
     :required="true"

@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-gutter-y-md">
+  <div class="row items-center q-gutter-y-md">
     <div class="row col-md col-sm col-xs-12 items-center">
       <img
         v-if="showLogo && logoSource"
@@ -10,8 +10,8 @@
     <div
       class="col-md col-sm-5 col-xs-12 items-center justify-center"
     >
-      <div
-        class="row items-center justify-center text-body2 text-bold"
+    <div
+        class="text-center no-letter-spacing text-body2 text-bold"
       >
         {{ title }}
       </div>

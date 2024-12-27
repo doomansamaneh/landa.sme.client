@@ -16,15 +16,15 @@
           </q-item-label>
         </q-item-section>
         <q-card-actions class="no-padding">
-          <div class="flex items-center q-mx-xs">
+          <div class="flex items-center">
             <q-btn
               round
               unelevated
               class="text-on-dark"
               dense
-              icon="o_refresh"
               @click="refreshPayments"
             >
+              <q-icon size="20px" name="o_refresh" />
               <q-tooltip class="custom-tooltip">
                 {{ $t("shared.labels.refresh") }}
               </q-tooltip>

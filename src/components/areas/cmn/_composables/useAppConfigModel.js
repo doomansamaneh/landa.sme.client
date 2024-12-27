@@ -5,7 +5,6 @@ import { useComposables } from "src/stores/useComposables";
 import { useMenuBar } from "src/composables/useMenuBar";
 import { useCulture } from "src/composables/useCulture";
 import { mediaType } from "src/constants";
-import { registerRoute } from "workbox-routing";
 
 const firstLoad = ref(false);
 const model = ref({

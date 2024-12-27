@@ -51,7 +51,7 @@
                 {{ $t("page.buttons.guide-tooltip") }}
               </q-tooltip>
             </q-btn>
-            <add-business />
+            <Add-business />
           </div>
         </q-card-actions>
       </q-item>

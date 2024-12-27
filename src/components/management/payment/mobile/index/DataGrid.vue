@@ -1,11 +1,12 @@
 <template>
-  <div class="row q-gutter-x-lg q-py-md items-center justify-between">
+  <div class="row q-gutter-x-sm q-py-md items-center justify-between">
+    <back-button />
+
     <div
       class="col ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
     >
       {{ business?.title }}
     </div>
-    <back-button />
   </div>
 
   <data-grid
@@ -59,10 +60,7 @@
             <div>
               <q-item-label
                 caption
-                v-if="
-                  item.statusTitle ===
-                  'Enum_BusinessPaymentStatus_Payed'
-                "
+                v-if="item.statusTitle === 'Enum_BusinessPaymentStatus_Payed'"
               >
                 <q-icon name="circle" color="positive" size="8px" />
                 {{ $t("page.payment-history.paid") }}
@@ -133,57 +131,57 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from "vue";
-  import { useRoute, useRouter } from "vue-router";
-  import { fetchWrapper } from "src/helpers";
+import { ref, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { fetchWrapper } from "src/helpers";
 
-  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-  import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
-  import BottomSheet from "src/components/shared/BottomSheet.vue";
+import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
+import BottomSheet from "src/components/shared/BottomSheet.vue";
 
-  const route = useRoute();
+const route = useRoute();
 
-  const props = defineProps({
-    gridStore: Object,
-  });
+const props = defineProps({
+  gridStore: Object,
+});
 
-  const business = ref(null);
+const business = ref(null);
 
-  async function loadData() {
-    await fetchWrapper
-      .get(`business/GetBusiness/${route.params.businessId}`)
-      .then((response) => {
-        business.value = response.data.data;
-      });
-  }
+async function loadData() {
+  await fetchWrapper
+    .get(`business/GetBusiness/${route.params.businessId}`)
+    .then((response) => {
+      business.value = response.data.data;
+    });
+}
 
-  const businessId = computed(() => route.params.businessId);
+const businessId = computed(() => route.params.businessId);
 
-  const bottomSheetStatus = ref(false);
-  const selectedRow = ref(null);
+const bottomSheetStatus = ref(false);
+const selectedRow = ref(null);
 
-  const onBottomSheetShow = (item) => {
-    selectedRow.value = item;
-    bottomSheetStatus.value = true;
-  };
+const onBottomSheetShow = (item) => {
+  selectedRow.value = item;
+  bottomSheetStatus.value = true;
+};
 
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
-  };
+const onBottomSheetHide = () => {
+  bottomSheetStatus.value = false;
+};
 
-  onMounted(() => {
-    loadData();
-  });
+onMounted(() => {
+  loadData();
+});
 </script>
 
 <style lang="scss" scoped>
-  .q-item__label--caption {
-    font-size: 13px;
-    letter-spacing: 0;
-    color: #2d2d2d;
-  }
+.q-item__label--caption {
+  font-size: 13px;
+  letter-spacing: 0;
+  color: #2d2d2d;
+}
 
-  .q-item__section--side {
-    padding-right: 12px;
-  }
+.q-item__section--side {
+  padding-right: 12px;
+}
 </style>

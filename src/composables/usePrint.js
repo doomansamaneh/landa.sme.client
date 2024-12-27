@@ -1,6 +1,7 @@
 import { ref, defineExpose } from "vue";
 import { useVueToPrint } from "vue-to-print";
-import { useQuasar } from "quasar"; // Import Quasar for RTL checks
+import { useQuasar } from "quasar";
+import html2pdf from "html2pdf.js";
 
 const printRef = ref(null);
 
@@ -15,13 +16,12 @@ export function usePrint() {
     onAfterPrint: () => {
       if (printRef.value) {
         printRef.value.classList.remove("printable");
-        printRef.value.style.direction = ""; // Reset the direction
+        printRef.value.style.direction = "";
       }
     },
     onBeforeGetContent: async () => {
       if (printRef.value) {
         printRef.value.classList.add("printable");
-        // Set direction based on RTL or LTR
         printRef.value.style.direction = $q.lang.rtl ? "rtl" : "ltr";
       }
     },
@@ -37,12 +37,35 @@ export function usePrint() {
 
   const { handlePrint } = useVueToPrint(options);
 
+  const downloadPdf = () => {
+    const printElement = printRef.value;
+
+    html2pdf()
+      .set({
+        margin: 8,
+        filename: `${document.title}.pdf`,
+        image: { type: "jpeg", quality: 3 },
+        html2canvas: { scale: 2 },
+        jsPDF: {
+          unit: "mm",
+          format: "a4",
+          orientation: "l",
+          compress: true,
+        },
+      })
+      .from(printElement)
+      .save()
+      .catch((error) => console.error("PDF generation error:", error));
+  };
+
   defineExpose({
     handlePrint,
+    downloadPdf,
   });
 
   return {
     printRef,
     handlePrint,
+    downloadPdf,
   };
 }

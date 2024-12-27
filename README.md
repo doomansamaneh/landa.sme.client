@@ -1,6 +1,6 @@
-# landa-sme (landa-sme-client)
+# Landa SME (landa-sme.client)
 
-Online Accounting Application
+Online Accounting Software.
 
 ## Install the dependencies
 ```bash
