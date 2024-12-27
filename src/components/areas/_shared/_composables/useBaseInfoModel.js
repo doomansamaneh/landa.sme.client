@@ -22,10 +22,11 @@ export function useBaseInfoModel({
     else if (getCreateModel) await crudStore.getCreateModel();
   }
 
-  async function submitForm(form, action) {
+  async function submitForm(form, action, callBack) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
-      router.back();
+      if (callBack) callBack(responseData);
+      else router.back();
     }
   }
 

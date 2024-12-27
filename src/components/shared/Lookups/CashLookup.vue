@@ -5,6 +5,8 @@
     textTemplate="{{ title }}"
     columns="title,amount"
     :filterExpression="filterExpression"
+    show-add
+    :create-form="CreateForm"
     ref="lookup"
   >
     <template #cell-amount="{ item }">
@@ -15,7 +17,9 @@
 
 <script setup>
   import { ref } from "vue";
+
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import CreateForm from "src/components/areas/trs/cash/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     filterExpression: Array,

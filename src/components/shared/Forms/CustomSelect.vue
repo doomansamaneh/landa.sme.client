@@ -14,12 +14,7 @@
     hide-buttom-space
     :placeholder="placeholder"
     :rules="
-      required
-        ? [
-            (val) =>
-              (val && val.length > 0) || $t('shared.labels.required'),
-          ]
-        : []
+      required ? [(val) => val || $t('shared.labels.required')] : []
     "
   />
 </template>

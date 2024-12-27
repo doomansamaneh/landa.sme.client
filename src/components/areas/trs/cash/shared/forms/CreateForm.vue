@@ -2,7 +2,7 @@
   <form-toolbar-container
     buttons
     :title="title"
-    @submit-call-back="formStore.submitForm(form, action)"
+    @submit-call-back="submitForm"
   />
 
   <q-card class="form-container">
@@ -101,4 +101,16 @@
       // value: `${accountCLType.currentAsset},${accountCLType.currentLiability}`,
     },
   ];
+
+  async function submitForm(callBack) {
+    return await formStore.submitForm(
+      form.value,
+      props.action,
+      callBack
+    );
+  }
+
+  defineExpose({
+    submitForm,
+  });
 </script>

@@ -6,7 +6,10 @@
     searchField="name"
     columns="code,name"
     ref="lookup"
+    show-add
+    :create-form="CreateForm"
     width="450px"
+    @add="add"
   >
     <template #td="{ row }">
       <q-item
@@ -98,8 +101,8 @@
 <script setup>
   import { ref } from "vue";
   import { helper } from "src/helpers";
-
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import CreateForm from "src/components/areas/crm/customer/shared/forms/CreateForm.vue";
 
   const lookup = ref(null);
 

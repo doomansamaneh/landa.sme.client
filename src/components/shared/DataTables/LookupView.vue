@@ -95,25 +95,10 @@
             </div>
 
             <slot name="create">
-              <q-btn
-                v-if="showAdd"
-                dense
-                unelevated
-                text-color="white"
-                class="primary-gradient primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
-                style="margin-top: 12px"
-                rounded
-                size="12px"
-              >
-                <q-icon
-                  name="o_add"
-                  size="14px"
-                  style="margin-left: 2px"
-                />
-                <span class="text-body3 no-letter-spacing">
-                  ایجاد
-                </span>
-              </q-btn>
+              <lookup-add-button
+                v-if="showAdd && createForm"
+                @click="handleAdd"
+              />
             </slot>
           </div>
         </slot>
@@ -384,11 +369,17 @@
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
-  import { defaultLookupPageSize, sortOrder } from "src/constants";
+  import {
+    defaultLookupPageSize,
+    sortOrder,
+    formAction,
+  } from "src/constants";
+  import { useDialog } from "src/composables/useDialog";
 
   import PageBar from "src/components/shared/dataTables/PageBar.vue";
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
+  import LookupAddButton from "src/components/shared/lookups/LookupAddButton.vue";
   import CustomLabel from "../forms/CustomLabel.vue";
 
   const props = defineProps({
@@ -404,6 +395,7 @@
     width: String,
     showAdd: Boolean,
     autofocus: Boolean,
+    createForm: Object,
     label: String,
     inputClass: {
       type: String,
@@ -414,6 +406,7 @@
   const selectedId = defineModel("selectedId");
   const selectedText = defineModel("selectedText");
   const $q = useQuasar();
+  const dialogStore = useDialog();
 
   const store = {
     pagination: ref({
@@ -447,6 +440,17 @@
   const popup = ref(null);
   const isPopupOpen = ref(false);
   const lookupDialog = ref(null);
+
+  function handleAdd(event) {
+    dialogStore.openDialog({
+      title: "shared.labels.create",
+      component: props.createForm,
+      props: { action: formAction.create },
+      okCallback: (responseData) => {
+        alert(1);
+      },
+    });
+  }
 
   function handleKeyDown(event) {
     switch (event.key) {
