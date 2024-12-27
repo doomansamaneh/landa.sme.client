@@ -1,6 +1,8 @@
 <template>
   <div
-    :class="$q.screen.gt.sm ? 'absolute-top-left' : 'absolute-top-left'"
+    :class="
+      $q.screen.gt.sm ? 'absolute-top-left' : 'absolute-top-left'
+    "
     :style="$q.screen.gt.xs ? 'width: 320px' : 'width: 280px'"
   >
     <apex-chart
@@ -17,20 +19,17 @@
   import { useQuasar } from "quasar";
 
   import ApexChart from "vue3-apexcharts";
-  import ExpenseSparkline from "src/components/areas/dashboard/widgets/expenses/ExpenseSparkline.vue";
 
   const $q = useQuasar();
 
   const chartData = ref([47, 5, 13, 4, 3]);
-  const filter = ref("30 روز پیش");
-  const filterOptions = ["30 روز پیش", "این فصل", "امسال", "سال پیش"];
 
   const chartOptions = computed(() => {
     const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
     const total = chartData.value.reduce((a, b) => a + b, 0);
 
     return {
-      colors: ["bluegray", "#00E396", "#775DD0"],
+      colors: ["#607d8b", "#00E396", "#775DD0"],
       plotOptions: {
         pie: {
           customScale: 1,

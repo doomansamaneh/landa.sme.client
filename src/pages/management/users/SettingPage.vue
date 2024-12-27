@@ -1,7 +1,5 @@
 <template>
   <desktop />
-  <!-- <q-page style="min-height: unset">
-  </q-page> -->
 </template>
 
 <script setup>

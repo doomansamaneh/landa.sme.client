@@ -1,6 +1,7 @@
 @mixin q-scrollarea-dark {
   .q-scrollarea__thumb {
     background-color: $primary !important;
+    left: unset !important;
   }
 
   .q-scrollarea__bar {

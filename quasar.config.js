@@ -56,10 +56,15 @@ module.exports = configure(function (/* ctx */) {
 
       publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
       target: {
-        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
+        browser: [
+          "es2019",
+          "edge88",
+          "firefox78",
+          "chrome87",
+          "safari13.1",
+        ],
         node: "node16",
       },
-      rtl: true,
       vueRouterMode: "history",
 
       // vueRouterBase,
@@ -127,7 +132,13 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["LocalStorage", "Loading", "Notify", "Dialog", "BottomSheet"],
+      plugins: [
+        "LocalStorage",
+        "Loading",
+        "Notify",
+        "Dialog",
+        "BottomSheet",
+      ],
     },
 
     // animations: 'all', // --- includes all animations

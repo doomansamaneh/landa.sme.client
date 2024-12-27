@@ -11,10 +11,12 @@ export function useCulture() {
   const $q = useQuasar();
 
   const qLangList = import.meta.glob(
-    "/node_modules/quasar/lang/(en-US|fa-IR|ar).mjs"
+    "/node_modules/quasar/lang/(en-US|fa-IR|ar).js"
   );
 
-  const lang = ref(localStorage.getItem(storageKey) || $q.lang.isoName);
+  const lang = ref(
+    localStorage.getItem(storageKey) || $q.lang.isoName
+  );
 
   const culture = computed(() =>
     cultures.find((culture) => culture.iso === lang.value)
@@ -28,7 +30,7 @@ export function useCulture() {
     try {
       const iso = culture.value.iso;
       const langModule = await qLangList[
-        `/node_modules/quasar/lang/${iso}.mjs`
+        `/node_modules/quasar/lang/${iso}.js`
       ]();
       Quasar.lang.set(langModule.default);
       //$t.locale.value = lang.value;

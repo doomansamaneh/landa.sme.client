@@ -963,23 +963,28 @@ export default {
         },
         {
           path: "settings",
-          component: () =>
-            import("src/pages/management/users/SettingPage.vue"),
-          meta: { title: "تنظیمات شخصی" },
-        },
-        {
-          path: "theme",
-          component: () =>
-            import("src/pages/management/users/ThemePage.vue"),
-          meta: { title: "تنظیمات - انتخاب تم" },
-        },
-        {
-          path: "changePassword",
-          component: () =>
-            import(
-              "src/pages/areas/scr/users/ChangePasswordPage.vue"
-            ),
-          meta: { title: "تغییر گذر واژه" },
+          children: [
+            {
+              path: "",
+              component: () =>
+                import("src/pages/management/users/SettingPage.vue"),
+              meta: { title: "تنظیمات شخصی" },
+            },
+            {
+              path: "theme",
+              component: () =>
+                import("src/pages/management/users/ThemePage.vue"),
+              meta: { title: "تنظیمات - انتخاب تم" },
+            },
+            {
+              path: "changePassword",
+              component: () =>
+                import(
+                  "src/pages/areas/scr/users/ChangePasswordPage.vue"
+                ),
+              meta: { title: "تغییر گذر واژه" },
+            },
+          ],
         },
       ],
     },
