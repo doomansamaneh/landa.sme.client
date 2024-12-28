@@ -1,9 +1,9 @@
 import config from "../../app-setting.json";
 //localhost
-export const baseUrl = config.baseUrl;
+//export const baseUrl = config.baseUrl;
 
 // api.landa-sme.ir
-//export const baseUrl = config.baseUrl_;
+export const baseUrl = config.baseUrl_;
 
 export const isActiveOptions = {
   active: 1,

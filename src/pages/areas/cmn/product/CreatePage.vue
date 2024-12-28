@@ -2,11 +2,13 @@
   <desktop
     action="create"
     :title="
-      $t('shared.labels.create') + ' ' + $t('main-menu-items.Cmn_Product_View')
+      $t('shared.labels.create') +
+      ' ' +
+      $t('main-menu-items.Cmn_Product_View')
     "
   />
 </template>
 
 <script setup>
-import Desktop from "src/components/areas/cmn/product/shared/forms/CreateForm.vue";
+  import Desktop from "src/components/areas/cmn/product/shared/forms/CreateFormContainer.vue";
 </script>

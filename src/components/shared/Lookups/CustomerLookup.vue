@@ -1,14 +1,14 @@
 <template>
   <lookup-view
+    ref="lookup"
     dataSource="crm/customer/getlookupData"
     sortColumn="code"
     textTemplate="{{ code }} {{ name }}"
     searchField="name"
     columns="code,name"
-    ref="lookup"
+    width="450px"
     show-add
     :create-form="CreateForm"
-    width="450px"
     @add="add"
   >
     <template #td="{ row }">
@@ -101,6 +101,7 @@
 <script setup>
   import { ref } from "vue";
   import { helper } from "src/helpers";
+
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import CreateForm from "src/components/areas/crm/customer/shared/forms/CreateForm.vue";
 

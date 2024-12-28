@@ -1,12 +1,14 @@
 <template>
   <lookup-view
+    ref="lookup"
     dataSource="cmn/product/getlookupData"
     sortColumn="code"
     textTemplate="{{ code }} {{ title }}"
     columns="code,title"
     :filterExpression="filterExpression"
-    ref="lookup"
     class="productLookup"
+    show-add
+    :create-form="CreateForm"
   >
     <template #td="{ row }">
       <q-item
@@ -68,6 +70,7 @@
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
+  import CreateForm from "src/components/areas/cmn/product/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     filterExpression: Array,

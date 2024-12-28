@@ -86,13 +86,19 @@
             style="width: 100%; margin-left: 0px"
           >
             <div class="col-1">#</div>
-            <div v-for="col in lookupColumns" :key="col" class="col">
-              <header-column
-                :fieldName="col"
-                :title="$t(`shared.labels.${col}`)"
-                :table-store="tableStore"
-              />
-            </div>
+            <slot name="thead-cols">
+              <div
+                v-for="col in lookupColumns"
+                :key="col"
+                class="col"
+              >
+                <header-column
+                  :fieldName="col"
+                  :title="$t(`shared.labels.${col}`)"
+                  :table-store="tableStore"
+                />
+              </div>
+            </slot>
 
             <slot name="create">
               <lookup-add-button
