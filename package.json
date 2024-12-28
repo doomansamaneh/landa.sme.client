@@ -22,6 +22,7 @@
     "mitt": "^3.0.1",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
+    "register-service-worker": "^1.7.2",
     "vue": "^3.0.0",
     "vue-currency-input": "^3.1.0",
     "vue-i18n": "^9.0.0",
@@ -39,7 +40,14 @@
     "eslint-plugin-vue": "^9.0.0",
     "postcss": "^8.4.14",
     "postcss-rtlcss": "^5.6.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "workbox-build": "^7.3.0",
+    "workbox-cacheable-response": "^7.3.0",
+    "workbox-core": "^7.3.0",
+    "workbox-expiration": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0"
   },
   "engines": {
     "node": "^18 || ^16 || ^14.19",

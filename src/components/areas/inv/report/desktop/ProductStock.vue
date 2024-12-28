@@ -29,7 +29,9 @@
         </span>
       </template>
       <template #cell-debit="{ item }">
-        {{ helper.formatNumber(item.debit) }}
+        <span class="text-weight-600">
+          {{ helper.formatNumber(item.debit) }}
+        </span>
       </template>
 
       <template #expand="{ item }">

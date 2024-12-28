@@ -24,14 +24,13 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
-
   import { useFormActions } from "src/composables/useFormActions";
+  import { useDialog } from "src/composables/useDialog";
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
   import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
-  import EditBatch from "../forms/EditBatchDialog.vue";
+  import EditBatch from "../forms/EditBatchForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -40,8 +39,7 @@
     baseRoute: String,
   });
 
-  const $q = useQuasar();
-
+  const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
 
   const selectedIds = computed(() =>
@@ -49,13 +47,15 @@
   );
 
   function editBatch() {
-    $q.dialog({
+    dialogStore.openDialog({
+      title: `shared.labels.editBatch`,
       component: EditBatch,
-      componentProps: {
+      props: {
         selectedIds: selectedIds?.value,
       },
-    }).onOk(async () => {
-      await props.tableStore.reloadData();
+      okCallback: async (response) => {
+        await props.tableStore.reloadData();
+      },
     });
   }
 </script>

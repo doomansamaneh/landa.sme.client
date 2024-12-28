@@ -1,4 +1,4 @@
 {
-  "baseUrl": "http://localhost:6060",
-  "baseUrl_": "https://api.landa-sme.ir"
+  "baseUrl_": "http://localhost:6060",
+  "baseUrl": "https://api.landa-sme.ir"
 }

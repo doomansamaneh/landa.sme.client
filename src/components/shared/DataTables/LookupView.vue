@@ -102,18 +102,13 @@
 
             <slot name="create">
               <lookup-add-button
-                v-if="showAdd && createForm"
-                @click="handleAdd"
-              />
-
-              <!-- <lookup-add-button
                 v-if="
                   showAdd &&
                   createForm &&
                   tableStore.state.value.isAuthorizeToCreate
                 "
                 @click="handleAdd"
-              /> -->
+              />
             </slot>
           </div>
         </slot>
@@ -457,12 +452,13 @@
   const lookupDialog = ref(null);
 
   function handleAdd(event) {
+    hidePopup();
     dialogStore.openDialog({
       title: "shared.labels.create",
       component: props.createForm,
       props: { action: formAction.create },
       okCallback: (responseData) => {
-        alert(1);
+        if (responseData.data) setIdText(responseData.data);
       },
     });
   }

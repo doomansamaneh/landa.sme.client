@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import { sortOrder } from "src/constants";
 import { useComposables } from "src/stores/useComposables";
 import { customerColumns } from "./constants";
 
@@ -16,8 +17,8 @@ const state = {
 const pagination = ref({
   currentPage: 1,
   pageSize: 10,
-  sortColumn: "name",
-  sortOrder: 1,
+  sortColumn: "DateModified",
+  sortOrder: sortOrder.descending,
   totalItems: 0,
   searchTerm: "",
   searchModel: "",

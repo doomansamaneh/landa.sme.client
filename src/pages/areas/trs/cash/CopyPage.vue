@@ -2,7 +2,9 @@
   <desktop
     action="create"
     :title="
-      $t('shared.labels.copy') + ' ' + $t('main-menu-items.Trs_Cash_View')
+      $t('shared.labels.copy') +
+      ' ' +
+      $t('main-menu-items.Trs_Cash_View')
     "
   />
   <!-- <desktop v-if="$q.screen.gt.sm" />
@@ -10,5 +12,5 @@
 </template>
 
 <script setup>
-import Desktop from "src/components/areas/trs/cash/shared/forms/CreateForm.vue";
+  import Desktop from "src/components/areas/trs/cash/shared/forms/CreateFormContainer.vue";
 </script>
