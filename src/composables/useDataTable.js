@@ -135,6 +135,7 @@ export function useDataTable({
       });
       if (clearActiveRow) setActiveRow(null);
       state.value.rows.value = items;
+      state.value.isAuthorizeToCreate = pagedData.isAuthorizeToCreate;
       pagination.value.totalItems = pagedData.page.totalItems;
       pagination.value.totalPages = pagedData.page.totalPages;
       pagination.value.currentPage = pagedData.page.currentPage;

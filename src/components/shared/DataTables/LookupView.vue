@@ -99,6 +99,15 @@
                 v-if="showAdd && createForm"
                 @click="handleAdd"
               />
+
+              <!-- <lookup-add-button
+                v-if="
+                  showAdd &&
+                  createForm &&
+                  tableStore.state.value.isAuthorizeToCreate
+                "
+                @click="handleAdd"
+              /> -->
             </slot>
           </div>
         </slot>
