@@ -40,7 +40,6 @@ export function useCulture() {
       document.body.classList.remove("persian", "english", "arabic");
       document.body.classList.add(culture.value.bodyClass);
 
-      // Set cookie for the selected language with a one-year expiration
       const expirationDate = new Date();
       expirationDate.setFullYear(expirationDate.getFullYear() + 1);
       const cookieString = `${cookieKey}=${
@@ -52,13 +51,9 @@ export function useCulture() {
     }
   };
 
-  // Watch for changes in `lang` and apply the culture
   watch(lang, async () => {
     await applyCulture();
   });
-
-  // Apply culture on initialization
-  applyCulture();
 
   return {
     culture,

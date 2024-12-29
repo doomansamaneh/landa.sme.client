@@ -55,7 +55,9 @@ export function usePrint() {
       })
       .from(printElement)
       .save()
-      .catch((error) => console.error("PDF generation error:", error));
+      .catch((error) =>
+        console.error("PDF generation error:", error)
+      );
   };
 
   defineExpose({
