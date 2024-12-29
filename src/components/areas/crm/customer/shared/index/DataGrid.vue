@@ -62,7 +62,7 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { useQuasar } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
   import { useCustomerState } from "src/components/areas/crm/_composables/useCustomerState";
   import { useFormActions } from "src/composables/useFormActions";
 
@@ -70,14 +70,15 @@
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "src/components/areas/crm/customer/desktop/index/DataGrid.vue";
   import Mobile from "src/components/areas/crm/customer/mobile/index/DataGrid.vue";
-  import EditBatch from "../forms/EditBatchDialog.vue";
+  import EditBatch from "../forms/EditBatch.vue";
 
   const props = defineProps({
     toolbar: Boolean,
     visibleColumns: Array,
     title: String,
   });
-  const $q = useQuasar();
+
+  const dialogStore = useDialog();
   const gridStore = useCustomerState();
 
   const dataSource = "crm/customer/GetGridData";
@@ -98,13 +99,15 @@
   });
 
   function editBatch() {
-    $q.dialog({
+    dialogStore.openDialog({
+      title: `shared.labels.editBatch`,
       component: EditBatch,
-      componentProps: {
+      props: {
         selectedIds: selectedIds?.value,
       },
-    }).onOk(async () => {
-      await reloadData();
+      okCallback: async (response) => {
+        await reloadData();
+      },
     });
   }
 </script>

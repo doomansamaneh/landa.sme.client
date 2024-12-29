@@ -1,13 +1,16 @@
 <template>
-    <desktop
-        action="create"
-        :title="$t('shared.labels.copy') + ' ' + $t('main-menu-items.Cmn_Product_View')"
-    />
-    <!-- <desktop v-if="$q.screen.gt.sm" />
+  <desktop
+    action="create"
+    :title="
+      $t('shared.labels.copy') +
+      ' ' +
+      $t('main-menu-items.Cmn_Product_View')
+    "
+  />
+  <!-- <desktop v-if="$q.screen.gt.sm" />
     <mobile v-if="$q.screen.xs" /> -->
 </template>
-  
+
 <script setup>
-import Desktop from "src/components/areas/cmn/product/shared/forms/CreateForm.vue"
+  import Desktop from "src/components/areas/cmn/product/shared/forms/CreateFormContainer.vue";
 </script>
-  

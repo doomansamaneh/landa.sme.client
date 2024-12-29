@@ -21,7 +21,9 @@
     </template>
 
     <template #cell-netAmount="{ item }">
-      {{ helper.formatNumber(item.netAmount) }}
+      <span class="text-weight-600">
+        {{ helper.formatNumber(item.netAmount) }}
+      </span>
     </template>
 
     <template #footer-subtotal="{ selectedRows }">

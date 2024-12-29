@@ -35,7 +35,7 @@
               </q-item-section>
               <q-item-section>
                 <q-item-label class="text-h6 text-weight-700">
-                  هزینه‌ها
+                  فروش و درآمد
                 </q-item-label>
               </q-item-section>
             </q-item>
@@ -55,38 +55,30 @@
 
       <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
         <div class="col-md-8 col-xs-12">
-          <!-- <div class="text-body1">هزینه های 30 روز پیش</div> -->
           <div class="text-h3 text-weight-700">
-            {{ helper.formatNumber(chartSource.total.value) }}
+            {{
+              helper.formatNumber(
+                revenueExpenseStore.revenueTotal?.value
+              )
+            }}
           </div>
-          <!-- <div class="row text-body1 no-letter-spacing q-mb-md">
-          <div class="ellipsis-3-lines text-weight-500 text-green-8">
-            <q-icon
-              color="green-8"
-              size="20px"
-              name="arrow_downward"
-            />
-            50% کاهش
-          </div>
-          <span class="q-ml-xs">نسبت به 30 روز پیش</span>
-        </div> -->
         </div>
         <div
           :class="$q.screen.gt.xs ? 'absolute-top-right q-mt-xl' : ''"
           :style="$q.screen.gt.xs ? 'width: 250px' : 'width: 250px'"
         >
-          <template v-if="chartSource.chartSeries?.value">
+          <template v-if="reportStore.chartSeries?.value">
             <apex-chart
               class="pie-chart"
-              type="donut"
+              type="pie"
               :options="chartOptions"
-              :series="chartSource.chartSeries.value"
+              :series="reportStore.chartSeries.value"
             />
           </template>
         </div>
       </q-card-section>
 
-      <expense-sparkline />
+      <sales-sparkline />
     </div>
   </q-card>
 </template>
@@ -96,22 +88,27 @@
   import { useQuasar } from "quasar";
 
   import { helper } from "src/helpers";
-  import { useBankAccount } from "src/components/areas/acc/_composables/useBankAccount";
+  import { useReport } from "src/components/areas/sls/_composables/useReport";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useRevenueExpenseState } from "../../_composables/useRevenueExpenseState";
+  import { useRevenueExpense } from "../../_composables/useRevenueExpense";
 
   import ApexChart from "vue3-apexcharts";
-  import ExpenseSparkline from "./ExpenseSparkline.vue";
+  import SalesSparkline from "./SalesSparkline.vue";
 
   const $q = useQuasar();
   const draggable = useDraggableWidgets();
-  const chartSource = useBankAccount("TopExpenseByCL");
+  const reportStore = useReport("invoiceByProduct");
+  const revenueExpenseStore = useRevenueExpense(
+    useRevenueExpenseState()
+  );
 
   const filter = ref("30 روز پیش");
   const filterOptions = ["30 روز پیش", "این فصل", "امسال", "سال پیش"];
 
   const chartOptions = computed(() => {
     const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
-    const total = chartSource.total.value;
+    const total = reportStore.total.value;
 
     return {
       colors: ["#FF4560", "#00E396", "#775DD0"],
@@ -170,7 +167,7 @@
         offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : -16) : 0,
         offsetY: $q.screen.xs ? -32 : -24,
       },
-      labels: chartSource.chartLabels.value,
+      labels: reportStore.chartLabels.value,
       dataLabels: {
         enabled: false,
         enabledOnSeries: undefined,

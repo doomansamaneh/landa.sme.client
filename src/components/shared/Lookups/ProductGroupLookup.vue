@@ -1,5 +1,6 @@
 <template>
   <lookup-view
+    ref="lookup"
     dataSource="cmn/productGroup/getlookupData"
     v-model:selectedId="selectedId"
     v-model:selectedText="selectedText"
@@ -7,22 +8,17 @@
     columns="code,title"
     textTemplate="{{code}} - {{ title }}"
     searchField="title"
-    ref="lookup"
-  >
-  </lookup-view>
+  ></lookup-view>
 </template>
 
 <script setup>
-import { ref } from "vue";
+  import { ref } from "vue";
 
-import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import LookupView from "src/components/shared/dataTables/LookupView.vue";
 
-const lookup = ref(null);
+  const lookup = ref(null);
 
-// const selectedId = defineModel("selectedId");
-// const selectedText = defineModel("selectedText");
-
-defineExpose({
-  lookup,
-});
+  defineExpose({
+    lookup,
+  });
 </script>

@@ -125,7 +125,6 @@
 <script setup>
   import { computed, ref } from "vue";
   import { useQuasar } from "quasar";
-  import { useI18n } from "vue-i18n";
   import { useProductStockGrid } from "src/components/areas/inv/_composables/useProductStockGrid.js";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";

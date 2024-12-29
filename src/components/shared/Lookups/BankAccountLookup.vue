@@ -1,51 +1,35 @@
 <template>
   <lookup-view
+    ref="lookup"
     dataSource="trs/bankAccount/getlookupData"
     sortColumn="no"
     textTemplate="{{ bankTitle }} / {{ title }} / {{ no }}"
     columns="no,bankTitle,amount"
     :filterExpression="filterExpression"
-    ref="lookup"
+    show-add
+    :create-form="CreateForm"
   >
-    <template #thead>
-      <div class="row items-center q-gutter-x-md">
-        <div style="width: 16px">#</div>
-        <div class="col">
-          <header-column
-            field-name="no"
-            :title="$t('shared.labels.no')"
-            :table-store="lookup.tableStore"
-          />
-        </div>
-        <div class="col-4">
-          <header-column
-            field-name="bankTitle"
-            :title="$t('shared.labels.bankTitle')"
-            :table-store="lookup.tableStore"
-          />
-        </div>
-        <div class="col">
-          <header-column
-            field-name="amount"
-            :title="$t('shared.labels.amount')"
-            :table-store="lookup.tableStore"
-          />
-        </div>
+    <template #thead-cols>
+      <div class="col">
+        <header-column
+          field-name="no"
+          :title="$t('shared.labels.no')"
+          :table-store="lookup.tableStore"
+        />
       </div>
-
-      <div class="row items-center">
-        <q-btn
-          dense
-          unelevated
-          color="primary"
-          class="primary-shadow absolute-top-right q-py-xs q-px-sm q-mr-sm"
-          style="margin-top: 12px"
-          rounded
-          size="12px"
-        >
-          <q-icon name="o_add" size="14px" style="margin-left: 2px" />
-          <span class="text-body3 no-letter-spacing">ایجاد</span>
-        </q-btn>
+      <div class="col-4">
+        <header-column
+          field-name="bankTitle"
+          :title="$t('shared.labels.bankTitle')"
+          :table-store="lookup.tableStore"
+        />
+      </div>
+      <div class="col">
+        <header-column
+          field-name="amount"
+          :title="$t('shared.labels.amount')"
+          :table-store="lookup.tableStore"
+        />
       </div>
     </template>
 
@@ -71,7 +55,7 @@
           {{ row.bankTitle }} - {{ row.title }}
         </div>
         <div class="col text-body3 no-letter-spacing">
-          {{ row.amount?.toLocaleString() }}
+          {{ helper.formatNumber(row.amount) }}
         </div>
       </div>
     </template>
@@ -80,9 +64,11 @@
 
 <script setup>
   import { ref } from "vue";
+  import { helper } from "src/helpers";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
+  import CreateForm from "src/components/areas/trs/bankAccount/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     filterExpression: Array,

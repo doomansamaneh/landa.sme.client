@@ -16,10 +16,12 @@ import {
   inventoryTitle,
   contractTitle,
   toInventoryTitle,
+  dlCode,
 } from "src/constants/columns";
 
 export const productStockColumns = [
   code,
+  dlCode,
   title,
   unitTitle,
   purchaseQuantity,

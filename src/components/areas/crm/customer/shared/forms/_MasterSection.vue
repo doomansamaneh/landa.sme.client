@@ -53,19 +53,25 @@
           />
         </div>
         <div v-if="model.value?.typeId == customerType.legal">
-          <custom-input label="نام" v-model="model.value.name" />
+          <custom-input
+            v-model="model.value.name"
+            label="نام"
+            rquired
+          />
         </div>
         <div v-else class="row q-col-gutter-lg">
           <div class="col-md col-sm col-xs-12">
             <custom-input
-              label="نام"
               v-model="model.value.person.name"
+              label="نام"
+              rquired
             />
           </div>
           <div class="col-md col-sm col-xs-12">
             <custom-input
-              label="نام خانوادگی"
               v-model="model.value.person.lastName"
+              label="نام خانوادگی"
+              rquired
             />
           </div>
           <div class="col-md col-sm col-xs-12">
@@ -87,9 +93,10 @@
 
         <div>
           <unit-lookup
-            label="واحد سازمانی"
             v-model:selectedId="model.value.unitId"
             v-model:selectedText="model.value.unitTitle"
+            label="واحد سازمانی"
+            required
           />
         </div>
         <div>
@@ -111,17 +118,17 @@
         </div>
         <div>
           <custom-input
-            label="شرح"
             v-model="model.value.comment"
             type="textarea"
+            label="شرح"
             autogrow
           />
         </div>
         <div class="row q-col-gutter-lg">
           <div class="col-md-4 col-sm-4 col-xs-6">
             <custom-input-number
-              label="درصد بازاریابی"
               v-model="model.value.marketingPercent"
+              label="درصد بازاریابی"
             />
           </div>
         </div>

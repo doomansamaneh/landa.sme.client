@@ -86,17 +86,27 @@
             style="width: 100%; margin-left: 0px"
           >
             <div class="col-1">#</div>
-            <div v-for="col in lookupColumns" :key="col" class="col">
-              <header-column
-                :fieldName="col"
-                :title="$t(`shared.labels.${col}`)"
-                :table-store="tableStore"
-              />
-            </div>
+            <slot name="thead-cols">
+              <div
+                v-for="col in lookupColumns"
+                :key="col"
+                class="col"
+              >
+                <header-column
+                  :fieldName="col"
+                  :title="$t(`shared.labels.${col}`)"
+                  :table-store="tableStore"
+                />
+              </div>
+            </slot>
 
             <slot name="create">
               <lookup-add-button
-                v-if="showAdd && createForm"
+                v-if="
+                  showAdd &&
+                  createForm &&
+                  tableStore.state.value.isAuthorizeToCreate
+                "
                 @click="handleAdd"
               />
             </slot>
@@ -442,12 +452,13 @@
   const lookupDialog = ref(null);
 
   function handleAdd(event) {
+    hidePopup();
     dialogStore.openDialog({
       title: "shared.labels.create",
       component: props.createForm,
       props: { action: formAction.create },
       okCallback: (responseData) => {
-        alert(1);
+        if (responseData.data) setIdText(responseData.data);
       },
     });
   }

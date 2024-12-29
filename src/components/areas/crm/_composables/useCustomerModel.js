@@ -83,10 +83,14 @@ export function useCustomerModel(config) {
   const deleteWebsite = (index) =>
     deleteItem("customerContactWebsites", index);
 
-  async function submitForm(form, action) {
+  async function submitForm(form, action, callBack) {
     if (!model.value.name && model.value.person)
       model.value.name = `${model.value.person.name} ${model.value.person.lastName}`;
-    await crudStore.submitForm(form, action, saveCallBack);
+    await crudStore.submitForm(
+      form,
+      action,
+      callBack || saveCallBack
+    );
     function saveCallBack(responseData) {
       if (responseData?.code === 200) {
         $q.dialog({
