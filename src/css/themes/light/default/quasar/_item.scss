@@ -114,4 +114,12 @@
   .menu-bar-background {
     background: linear-gradient(90deg, $white, darken($bg-main, 0.5));
   }
+
+  .q-item__section--avatar {
+    min-width: 0;
+  }
+
+  .menu-bar .q-item .q-item__section--side {
+    padding-right: 8px !important;
+  }
 }

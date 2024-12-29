@@ -1,6 +1,6 @@
-# Landa SME (landa-sme.client)
+# Landa SME (landa-sme-client)
 
-Online Accounting Software.
+Online Accounting Software
 
 ## Install the dependencies
 ```bash
@@ -13,23 +13,6 @@ npm install
 ```bash
 quasar dev
 ```
-
-
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
 
 
 ### Build the app for production

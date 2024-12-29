@@ -1,5 +1,5 @@
 import { ref, watch, computed } from "vue";
-import { useQuasar, Quasar } from "quasar";
+import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { cultures } from "src/constants/enums";
 
@@ -7,7 +7,7 @@ export function useCulture() {
   const storageKey = "selectedLanguage";
   const cookieKey = ".Landa.SME.Culture";
 
-  const { locale } = useI18n();
+  const $t = useI18n();
   const $q = useQuasar();
 
   const qLangList = import.meta.glob(
@@ -32,9 +32,9 @@ export function useCulture() {
       const langModule = await qLangList[
         `/node_modules/quasar/lang/${iso}.js`
       ]();
-      Quasar.lang.set(langModule.default);
-      //$t.locale.value = lang.value;
-      locale.value = iso;
+      $q.lang.set(langModule.default);
+      $t.locale.value = lang.value;
+
       localStorage.setItem(storageKey, iso);
 
       document.body.classList.remove("persian", "english", "arabic");
@@ -52,9 +52,13 @@ export function useCulture() {
     }
   };
 
+  // Watch for changes in `lang` and apply the culture
   watch(lang, async () => {
     await applyCulture();
   });
+
+  // Apply culture on initialization
+  applyCulture();
 
   return {
     culture,

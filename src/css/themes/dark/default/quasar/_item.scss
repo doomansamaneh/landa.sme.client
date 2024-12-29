@@ -116,7 +116,16 @@
     );
   }
 
-  .q-item.q-router-link--active, .q-item--active {
+  .q-item.q-router-link--active,
+  .q-item--active {
     color: $yellow !important;
-}
+  }
+
+  .q-item__section--avatar {
+    min-width: 0;
+  }
+
+  .menu-bar .q-item .q-item__section--side {
+    padding-right: 8px !important;
+  }
 }

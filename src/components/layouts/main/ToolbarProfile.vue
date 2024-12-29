@@ -13,7 +13,7 @@
       transition-hide="jump-up"
       :offset="[5, 24]"
     >
-      <q-list dense padding class="user-profile">
+      <q-list dense padding style="min-width: 240px">
         <q-item-label class="text-h6" header>
           <div class="column items-center justify-center q-mt-md">
             <customer-avatar
