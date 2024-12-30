@@ -26,9 +26,9 @@
           type="number"
           hide-bottom-space
           v-model="row.rate"
-          :rules="[(val) => val !== null && val !== '']"
+          required
         >
-          <template v-slot:append>
+          <template #append>
             <q-icon name="percent" />
           </template>
         </custom-input>

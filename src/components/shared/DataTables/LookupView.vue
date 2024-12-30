@@ -9,6 +9,7 @@
     class="first input lookup"
     :input-class="inputClass"
     dense
+    autogrow
     debounce="1000"
     :placeholder="placeholder"
     :autofocus="autofocus"

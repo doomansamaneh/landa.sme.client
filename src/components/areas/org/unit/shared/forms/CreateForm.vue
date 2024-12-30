@@ -19,7 +19,7 @@
               hide-bottom-space
               v-model:selectedId="formStore.model.value.orgId"
               v-model:selectedText="formStore.model.value.orgTitle"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
@@ -34,7 +34,7 @@
             <custom-input
               hide-bottom-space
               v-model="formStore.model.value.code"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
@@ -52,7 +52,7 @@
               v-model:selectedText="
                 formStore.model.value.unitTypeTitle
               "
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
@@ -67,7 +67,7 @@
             <custom-input
               hide-bottom-space
               v-model="formStore.model.value.title"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
@@ -85,7 +85,7 @@
               v-model:selectedText="
                 formStore.model.value.locationTitle
               "
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>

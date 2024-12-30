@@ -31,7 +31,7 @@
             >
               {{ $t("login-page.placeholders.username") }}
             </div>
-            <q-input
+            <custom-input
               class="login"
               hide-bottom-space
               v-model="userName"
@@ -40,7 +40,7 @@
               lazy-rules
               outlined
               input-class="text-body1 no-letter-spacing"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             >
               <template #prepend>
                 <q-icon
@@ -50,7 +50,7 @@
                   "
                 />
               </template>
-            </q-input>
+            </custom-input>
           </div>
           <div class="col">
             <div class="q-gutter-y-sm">
@@ -62,7 +62,7 @@
               >
                 {{ $t("login-page.placeholders.password") }}
               </div>
-              <q-input
+              <custom-input
                 class="login"
                 v-model="password"
                 hide-bottom-space
@@ -72,7 +72,7 @@
                 :type="isPwd ? 'password' : 'text'"
                 dense
                 lazy-rules
-                :rules="[(val) => val !== null && val !== '']"
+                required
               >
                 <template #append>
                   <q-icon
@@ -91,7 +91,7 @@
                     "
                   />
                 </template>
-              </q-input>
+              </custom-input>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@
 
           <div class="row items-center q-col-gutter-md">
             <div class="col-md-4 col-sm-4 col-xs-6">
-              <q-input
+              <custom-input
                 v-model="captcha"
                 rounded
                 inputmode="numeric"
@@ -118,7 +118,7 @@
                 input-class="text-body1 text-bold"
                 class="login"
                 lazy-rules
-                :rules="[(val) => val !== null && val !== '']"
+                required
               >
                 <template #append>
                   <q-btn
@@ -131,7 +131,7 @@
                     @click="getCaptcha"
                   />
                 </template>
-              </q-input>
+              </custom-input>
             </div>
             <div class="col-md col-sm-6 col-xs row items-center">
               <img
@@ -156,11 +156,7 @@
               padding="16px 64px"
               :label="$t('login-page.buttons.login')"
               :disable="isLoggingIn"
-            >
-              <!-- <div class="q-pl-sm" v-if="!isLoggingIn">
-                <q-spinner-pie class="white" size="13px" />
-              </div> -->
-            </q-btn>
+            />
           </div>
           <div class="col-md col-sm col-xs-12">
             <div
@@ -188,6 +184,8 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useAuthStore } from "../../stores";
+
+  import CustomInput from "components/shared/forms/CustomInput.vue";
 
   const authStore = useAuthStore();
 

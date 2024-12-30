@@ -15,14 +15,8 @@
     :maxlength="maxlength"
     :placeholder="placeholder"
     lazy-rules
-    :rules="
-      required
-        ? [
-            (val) =>
-              (val && val.length > 0) || $t('shared.labels.required'),
-          ]
-        : []
-    "
+    :rounded="rounded"
+    :rules="rules"
   >
     <template #prepend>
       <slot name="prepend"></slot>
@@ -34,18 +28,34 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
+  import { useI18n } from "vue-i18n";
+
   import CustomLabel from "./CustomLabel.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     label: String,
     placeholder: String,
-    type: { type: String, default: "text" }, //Accepted values 'text''password''textarea''email''search''tel''file''number''url''time''date''datetime-local'
+    type: { type: String, default: "text" }, // Accepted values: 'text', 'password', 'textarea', 'email', 'search', 'tel', 'file', 'number', 'url', 'time', 'date', 'datetime-local'
     required: Boolean,
     mask: String,
     clearable: Boolean,
     debounce: Number,
     maxlength: Number,
     disable: Boolean,
+    rounded: Boolean,
   });
+
   const modelValue = defineModel("modelValue");
+  
+  const rules = computed(() => {
+    return props.required
+      ? [
+          (val) =>
+            (val && val.length > 0) || t("shared.labels.required"),
+        ]
+      : [];
+  });
 </script>
