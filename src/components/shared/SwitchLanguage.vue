@@ -1,6 +1,10 @@
 <template>
   <div class="row q-col-gutter-lg q-pb-lg">
-    <div class="col-md col-sm col-xs-12" v-for="(language, index) in cultures" :key="index">
+    <div
+      class="col-md col-sm col-xs-12"
+      v-for="(language, index) in cultures"
+      :key="index"
+    >
       <q-card
         class="bordered cursor-pointer"
         @click="onLanguageChange(language.iso)"
@@ -24,12 +28,12 @@
 </template>
 
 <script setup>
-import { cultures } from "src/constants/enums";
-import { useCulture } from "src/composables/useCulture";
+  import { cultures } from "src/constants/enums";
+  import { useCulture } from "src/composables/useCulture";
 
-const cultureStore = useCulture();
+  const cultureStore = useCulture();
 
-const onLanguageChange = (iso) => {
-  cultureStore.setCulture(iso);
-};
+  const onLanguageChange = (iso) => {
+    cultureStore.setCulture(iso);
+  };
 </script>

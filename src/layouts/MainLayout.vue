@@ -12,6 +12,10 @@
     <contact-drawer />
     <notif-drawer />
     <alert-banner class="fixed-bottom z-max" />
+
+    <!-- todo: How to remove switch-language from layouts
+        Find a way to load switch-language in layout -->
+    <switch-language style="visibility: hidden" />
   </q-layout>
 </template>
 
@@ -27,6 +31,7 @@
   import HeaderMobile from "src/components/layouts/main/mobile/MainHeader.vue";
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
+  import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
