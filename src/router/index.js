@@ -1,4 +1,5 @@
 //import { useI18n } from "vue-i18n";
+import { useQuasar } from "quasar";
 import { route } from "quasar/wrappers";
 import {
   createRouter,
@@ -28,6 +29,8 @@ export default route(function (/* { store, ssrContext } */) {
   });
 
   Router.beforeEach(async (to, from, next) => {
+    const $q = useQuasar();
+
     setDocumentTitle(to);
 
     // Redirect to /dashboard if path === /
@@ -49,6 +52,17 @@ export default route(function (/* { store, ssrContext } */) {
       authStore.returnUrl = to.fullPath;
       return "/account/login";
     }
+
+    $q.loading.show({
+      message: "",
+      boxClass: "bg-dark border-radius-lg text-on-dark text-bold",
+      spinnerColor: "primary",
+    });
+  });
+
+  Router.afterEach(() => {
+    const $q = useQuasar();
+    $q.loading.hide();
   });
 
   const setDocumentTitle = (to) => {

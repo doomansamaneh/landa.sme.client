@@ -1,7 +1,7 @@
 <template>
   <q-drawer
     class="menu-bar menu-bar-background q-mb-xl z-max"
-    side="left"
+    :side="$q.lang.rtl ? 'left' : 'right'"
     bordered
     :width="$q.screen.gt.xs ? 288 : deviceWidth"
     v-model="menuBarStore.state.visible.value"
