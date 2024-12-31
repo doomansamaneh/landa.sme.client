@@ -62,8 +62,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  import { useQuasar } from "quasar";
+  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { isActiveOptions } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
@@ -85,18 +84,14 @@
   });
 
   const dataGrid = ref(null);
-  const $q = useQuasar();
-
-  async function reloadData() {
-    await tableStore.value.reloadData();
-  }
-
-  // const tableStore = computed(() => dataGrid?.value?.tableStore);
-
   const tableStore = useDataTable({
     dataSource: props.dataSource,
     store: props.gridStore,
   });
+
+  async function reloadData() {
+    await tableStore.reloadData();
+  }
 
   defineExpose({
     tableStore,

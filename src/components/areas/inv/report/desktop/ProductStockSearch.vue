@@ -7,44 +7,105 @@
         class="text-body2 no-letter-spacing"
         label="نمایش موجودی صفر"
         left-label
-        v-model="searchModel.showZeroStock"
-        @update:model-value="applySearch"
+        v-model="searchStore.searchModel.value.showZeroStock"
+        @update:model-value="searchStore.applySearch"
       />
+
       <q-btn
         @click="expanded = !expanded"
         padding="6px 12px"
         rounded
         unelevated
         dense
-        class="no-pointer-events text-body2 no-letter-spacing"
+        class="text-body2 no-letter-spacing"
       >
+        <q-icon
+          :name="
+            expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'
+          "
+          class="q-mr-xs"
+        />
         <span class="text-body2 no-letter-spacing">
           {{ $t("shared.labels.advancedSearch") }}
         </span>
       </q-btn>
     </q-card-section>
 
-    <q-card-section class="row q-pa-none">
-      <q-slide-transition v-show="expanded"></q-slide-transition>
-    </q-card-section>
+    <q-slide-transition>
+      <div v-show="expanded">
+        <div class="q-px-lg">
+          <div class="row items-center">
+            <q-option-group
+              style="gap: 8px"
+              class="row items-center"
+              inline
+              dense
+              size="44px"
+              :options="
+                helper.getEnumOptions(productType, 'productType')
+              "
+              type="checkbox"
+              v-model="searchStore.searchModel.value.productTypeIds"
+            />
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <product-group-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.productGroupId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.productGroupTitle
+                "
+                :placeholder="$t('shared.labels.productGroup')"
+              />
+            </div>
+          </div>
+
+          <q-card-actions
+            class="row q-col-gutter-md items-center q-px-none q-py-lg"
+          >
+            <div
+              class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
+            >
+              <q-btn
+                class="q-mr-sm text-body2 no-letter-spacing primary-gradient text-white"
+                rounded
+                padding="8px 16px"
+                unelevated
+                @click="searchStore.applySearch"
+              >
+                <q-icon name="search" class="q-mr-xs" size="20px" />
+                {{ $t("shared.labels.search") }}
+              </q-btn>
+              <q-btn
+                class="text-body2 no-letter-spacing"
+                rounded
+                unelevated
+                padding="8px 16px"
+                flat
+                @click="searchStore.clearSearch"
+              >
+                <q-icon name="clear" class="q-mr-xs" size="20px" />
+                {{ $t("shared.labels.clearSearch") }}
+              </q-btn>
+            </div>
+          </q-card-actions>
+        </div>
+      </div>
+    </q-slide-transition>
   </q-card>
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
-  import { bus } from "src/helpers";
+  import { ref } from "vue";
+  import { helper } from "src/helpers";
+  import { productType } from "src/constants";
+  import { useProductStockSearch } from "../../_composables/useProductStockSearch";
 
-  const props = defineProps({
-    gridStore: Object,
-  });
+  import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
 
   const expanded = ref(false);
-
-  const searchModel = computed(
-    () => props.gridStore.state.searchModel.value
-  );
-
-  const applySearch = async () => {
-    bus.emit("apply-search");
-  };
+  const searchStore = useProductStockSearch();
 </script>

@@ -16,7 +16,9 @@
     </template>
 
     <template #cell-amount="{ item }">
-      {{ helper.formatNumber(item.amount) }}
+      <span class="text-weight-600">
+        {{ helper.formatNumber(item.amount) }}
+      </span>
     </template>
 
     <template #cell-vatAmount="{ item }">

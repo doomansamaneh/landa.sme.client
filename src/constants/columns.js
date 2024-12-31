@@ -213,6 +213,7 @@ export const isActive = {
   align: "left",
   class: "text-left",
   style: "width:120px;",
+  operator: sqlOperator.equal,
   showFilter: true,
 };
 

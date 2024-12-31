@@ -65,8 +65,9 @@
 
   async function submitForm() {
     if (form.value) {
-      await form.value.submitForm(onDialogOK);
+      await form.value.submitForm();
     }
+    onDialogOK();
   }
 
   function closeDialog() {

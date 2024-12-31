@@ -103,9 +103,10 @@
 
   import { bus } from "src/helpers";
   import { helper } from "src/helpers";
-  import { sqlOperator, accountTreeType } from "src/constants";
-  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
+  import { sqlOperator, accountTreeType } from "src/constants";
+  import { useVoucherSearch } from "../../_composables/useVoucherSearch";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { accountItemColumns } from "../../_composables/constants";
   import { useAccountReview } from "../../_composables/useAccountReview";
 
@@ -124,6 +125,7 @@
     noFullscreen: Boolean,
   });
 
+  const searchStore = useVoucherSearch();
   const tableStore = useDataTable({
     dataSource: props.dataSource,
     dataColumns: props.columns || accountItemColumns,
@@ -132,6 +134,7 @@
       useBaseInfoGrid({
         sortColumn: "voucherNo",
         columns: props.columns || accountItemColumns,
+        searchModel: searchStore.searchModel,
       }),
   });
 

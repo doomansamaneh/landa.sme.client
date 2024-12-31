@@ -12,11 +12,9 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
   import { useAccountReview } from "../../_composables/useAccountReview";
-  import { accountTreeType, sqlOperator } from "src/constants";
+  import { accountTreeType } from "src/constants";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
-
-  const searchStore = useVoucherSearch();
 
   const props = defineProps({
     reportStore: useAccountReview,
@@ -29,6 +27,7 @@
     columns: Array,
   });
 
+  const searchStore = useVoucherSearch();
   const tableStore = useDataTable({
     dataSource: props.dataSource,
     dataColumns: props.columns || reviewCLColumns,

@@ -2,6 +2,15 @@
   <q-card-section class="q-gutter-y-md">
     <div class="row">
       <div class="col-1">
+        <span class="text-body3 no-letter-spacing">گروه:</span>
+      </div>
+      <div class="text-body3 no-letter-spacing">
+        {{ item?.productGroupTitle }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-1">
         <span class="text-body3 no-letter-spacing">کالا:</span>
       </div>
       <div class="text-body2 text-bold no-letter-spacing">
@@ -9,12 +18,14 @@
       </div>
     </div>
 
-    <div class="row">
+    <div v-if="item?.taxCode" class="row">
       <div class="col-1">
-        <span class="text-body3 no-letter-spacing">گروه:</span>
+        <span class="text-body3 no-letter-spacing">
+          شناسه مالیاتی:
+        </span>
       </div>
-      <div class="text-body3 no-letter-spacing">
-        {{ item?.productGroupTitle }}
+      <div class="text-body2 no-letter-spacing">
+        {{ item?.taxCode }}
       </div>
     </div>
 

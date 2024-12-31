@@ -50,10 +50,10 @@
         <small v-if="item.syncCode">({{ item.syncCode }})</small>
       </template>
       <template #cell-debitRemained="{ item }">
-        {{ item.debitRemained.toLocaleString() }}
+        {{ helper.formatNumber(item.debitRemained) }}
       </template>
       <template #cell-creditRemained="{ item }">
-        {{ item.creditRemained.toLocaleString() }}
+        {{ helper.formatNumber(item.creditRemained) }}
       </template>
       <template #cell-typeId="{ item }">
         {{
@@ -103,19 +103,18 @@
     sortColumn: "code",
   });
 
-  const baseRoute = "acc/accountDL";
   const dataGrid = ref(null);
-
-  async function reloadData() {
-    await tableStore.value.reloadData();
-  }
+  const baseRoute = "acc/accountDL";
+  const crudStore = useFormActions(baseRoute);
 
   const tableStore = useDataTable({
     dataSource: `${baseRoute}/getGridData`,
     store: gridStore,
   });
 
-  const crudStore = useFormActions(baseRoute);
+  async function reloadData() {
+    await tableStore.reloadData();
+  }
 
   defineExpose({
     tableStore,

@@ -69,7 +69,6 @@
   import { helper } from "src/helpers";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
-  import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
   import CreateForm from "src/components/areas/cmn/product/shared/forms/CreateForm.vue";
 
   const props = defineProps({
