@@ -1,9 +1,6 @@
-import MainLayout from "src/layouts/MainLayout.vue";
-import HomePage from "src/pages/areas/dashboard/IndexPage.vue";
-
 export default {
   path: "/",
-  component: MainLayout,
+  component: () => import("src/layouts/MainLayout.vue"),
   name: "dashboard",
   meta: {
     icon: "o_dashboard",
@@ -11,16 +8,19 @@ export default {
   children: [
     {
       path: "/",
-      component: HomePage,
+      component: () =>
+        import("src/pages/areas/dashboard/IndexPage.vue"),
     },
     //{ path: "/", redirect: "/dashboard" },
     {
       path: ":businessId",
-      component: HomePage,
+      component: () =>
+        import("src/pages/areas/dashboard/IndexPage.vue"),
     },
     {
       path: "/dashboard",
-      component: HomePage,
+      component: () =>
+        import("src/pages/areas/dashboard/IndexPage.vue"),
       // meta: { title: "پیشخوان" },
     },
 
