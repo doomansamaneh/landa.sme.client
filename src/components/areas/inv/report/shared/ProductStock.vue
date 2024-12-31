@@ -2,10 +2,8 @@
   <template v-if="$q.screen.xs">
     <toolbar-mobile
       v-if="toolbar"
-      :table-store="mobileGrid?.tableStore"
-      :crud-store="crudStore"
+      :table-store="tableStore"
       :title="title"
-      :base-route="baseRoute"
       buttons
       margin
     >
@@ -46,22 +44,14 @@
       </template>
     </toolbar-mobile>
 
-    <mobile
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :title="title"
-      data-source="sls/report/getProductStock"
-      ref="mobileGrid"
-    />
+    <mobile :table-store="tableStore" :title="title" />
   </template>
 
   <template v-else>
     <toolbar-desktop
       v-if="toolbar"
-      :table-store="desktopGrid?.tableStore"
-      :crud-store="crudStore"
+      :table-store="tableStore"
       :title_="title"
-      :base-route="baseRoute"
       buttons
       margin
     >
@@ -102,12 +92,7 @@
       </template>
     </toolbar-desktop>
 
-    <desktop
-      :grid-store="gridStore"
-      :title="title"
-      data-source="sls/report/getProductStock"
-      ref="desktopGrid"
-    />
+    <desktop :table-store="tableStore" :title="title" />
   </template>
 
   <q-card flat class="tips q-mt-md">
@@ -123,9 +108,9 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
-  import { useQuasar } from "quasar";
-  import { useProductStockGrid } from "src/components/areas/inv/_composables/useProductStockGrid.js";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useProductStockState } from "../../_composables/useProductStockState";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
@@ -137,14 +122,12 @@
     title: String,
   });
 
-  const baseRoute = "inv/report/productStock";
+  const dataSource = "sls/report/getProductStock";
 
-  const $q = useQuasar();
-  const gridStore = useProductStockGrid();
-  const desktopGrid = ref(null);
-  const mobileGrid = ref(null);
-  const tableStore = computed(
-    () =>
-      desktopGrid?.value.tableStore ?? mobileGrid?.value.tableStore
-  );
+  const stockStore = useProductStockState();
+  const gridStore = useBaseInfoGrid(stockStore);
+  const tableStore = useDataTable({
+    dataSource: dataSource,
+    store: gridStore,
+  });
 </script>

@@ -1,17 +1,11 @@
 <template>
-  <advanced-search class="q-my-md" :grid-store="gridStore" />
+  <advanced-search class="q-my-md" />
 
   <q-card flat class="bordered shadow">
-    <card-title
-      :title="$t('main-menu-items.Sls_Report_ProductStock')"
-      icon="import_export"
-    />
+    <card-title :title="title" icon="import_export" />
 
     <data-grid
-      ref="dataGrid"
-      :grid-store="gridStore"
-      :data-source="dataSource"
-      base-route="sls/report/productStock"
+      :data-table-store="tableStore"
       flat
       numbered
       expandable
@@ -42,8 +36,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted } from "vue";
-  import { helper, bus } from "src/helpers";
+  import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
@@ -52,32 +45,7 @@
   import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
-    gridStore: Object,
-    dataSource: String,
-    crudStore: Object,
+    tableStore: useDataTable,
     title: String,
-  });
-
-  const dataGrid = ref(null);
-
-  const tableStore = useDataTable({
-    dataSource: props.dataSource,
-    store: props.gridStore,
-  });
-
-  async function reloadData() {
-    await tableStore.value.reloadData();
-  }
-
-  onMounted(() => {
-    bus.on("apply-search", reloadData);
-  });
-
-  onUnmounted(() => {
-    bus.off("apply-search", reloadData);
-  });
-
-  defineExpose({
-    tableStore,
   });
 </script>

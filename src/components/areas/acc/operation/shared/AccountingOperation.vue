@@ -191,25 +191,27 @@
         </q-card-section>
       </q-card>
     </div>
-
   </div>
-
 </template>
 <script setup>
   import { useQuasar } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
   import { useAccountingOperations } from "../../_composables/useAccountingOperations";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import CloseAccountDialog from "./CloseAccountDialog.vue";
+  import CloseAccountForm from "./CloseAccountForm.vue";
 
-  const operationStore = useAccountingOperations();
   const $q = useQuasar();
+  const dialogStore = useDialog();
+  const operationStore = useAccountingOperations();
 
   const showCloseAccountForm = async () => {
-    $q.dialog({
-      component: CloseAccountDialog,
-    }).onOk(async () => {
-      await reloadData();
+    dialogStore.openDialog({
+      title: "shared.labels.closeAccount",
+      component: CloseAccountForm,
+      okCallback: async () => {
+        reloadData;
+      },
     });
   };
 

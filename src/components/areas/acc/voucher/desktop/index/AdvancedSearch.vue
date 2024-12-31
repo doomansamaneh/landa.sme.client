@@ -161,10 +161,6 @@
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
 
-  // const props = defineProps({
-  //   searchModel: Object,
-  // });
-
   const expanded = ref(false);
   const searchStore = useVoucherSearch();
 

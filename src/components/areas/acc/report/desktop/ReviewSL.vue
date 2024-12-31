@@ -19,8 +19,6 @@
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
-  const searchStore = useVoucherSearch();
-
   const props = defineProps({
     reportStore: useAccountReview,
     dataSource: {
@@ -32,10 +30,11 @@
     columns: Array,
   });
 
+  const searchStore = useVoucherSearch();
   const tableStore = useDataTable({
     dataSource: props.dataSource,
     dataColumns: props.columns || reviewSLColumns,
-    gridStore:
+    store:
       props.gridStore ||
       useBaseInfoGrid({
         sortColumn: "code",
