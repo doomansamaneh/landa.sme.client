@@ -46,6 +46,22 @@
         </ul>
       </div>
 
+      <div v-if="authErrors">
+        <div class="flex q-gutter-xs q-pt-md">
+          <q-btn
+            to="/account/login"
+            rounded
+            unelevated
+            class="signup text-white primary-gradient primary-shadow"
+          >
+            ورود از نو
+          </q-btn>
+          <q-btn to="/business" class="text-dark" unelevated rounded>
+            بازگشت به کسب و کارها
+          </q-btn>
+        </div>
+      </div>
+
       <template #action>
         <q-btn
           @click="hideBanner"
@@ -77,6 +93,9 @@
   const message = computed(() => alert.value?.message);
   const comment = computed(() => alert.value?.comment);
   const errors = computed(() => alert.value?.errors);
+  const authErrors = computed(
+    () => status.value === 401 || status.value === 403
+  );
 
   const bannerStatus = ref(alertStatus.warning);
 
