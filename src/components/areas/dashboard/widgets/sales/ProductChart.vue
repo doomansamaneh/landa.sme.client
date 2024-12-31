@@ -29,12 +29,14 @@
   const series = ref([
     {
       name: props.seriesName,
-      data: [200, 400, 200, 301, 500, 90, 120, 180, 230, 109, 600, 900],
+      data: [
+        200, 400, 200, 301, 500, 90, 120, 180, 230, 109, 600, 900,
+      ],
     },
   ]);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
 
     options.value = {
       title: {

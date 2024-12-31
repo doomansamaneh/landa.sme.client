@@ -39,8 +39,15 @@
       />
       <q-scroll-area style="height: 150px">
         <q-list class="q-mt-sm">
-        <q-item class="border-radius-sm" clickable v-for="n in 3" :key="n">آقای هاشمی</q-item>
-      </q-list>
+          <q-item
+            class="border-radius-sm"
+            clickable
+            v-for="n in 3"
+            :key="n"
+          >
+            آقای هاشمی
+          </q-item>
+        </q-list>
       </q-scroll-area>
     </q-card-section>
     <!-- <q-card-section class="q-pa-lg">
@@ -89,7 +96,7 @@
   const series = ref([30, 70]); // 30% نقده شده, 70% نقد نشده
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
 
     options.value = {
       labels: ["نقده شده", "نقد نشده"],

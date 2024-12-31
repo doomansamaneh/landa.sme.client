@@ -32,7 +32,7 @@
   ]);
 
   const chartOptions = computed(() => {
-    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
 
     return {
       chart: {

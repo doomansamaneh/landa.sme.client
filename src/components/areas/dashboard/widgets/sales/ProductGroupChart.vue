@@ -25,7 +25,7 @@
   const chartData = ref([47, 5, 13, 4, 3]);
 
   const chartOptions = computed(() => {
-    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
     const total = chartData.value.reduce((a, b) => a + b, 0);
 
     return {

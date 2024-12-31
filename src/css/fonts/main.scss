@@ -1,79 +1,19 @@
-
-@font-face {
-  font-family: "Roboto";
-  src: url("src/assets/Fonts/Roboto-Regular.ttf") format("truetype"),
-    url("src/assets/Fonts/Roboto-Medium.ttf") format("truetype"),
-    url("src/assets/Fonts/Roboto-Light.ttf") format("truetype"),
-    url("src/assets/Fonts/Roboto-Bold.ttf") format("truetype"),
-    url("src/assets/Fonts/Roboto-Black.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "vazir-thin";
-  src: url("/src/assets/Fonts/Vazirmatn-FD-Light.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-extralight";
-  src: url("/src/assets/Fonts/Vazirmatn-FD-ExtraLight.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-light";
-  src: url("/src/assets/fonts/Vazirmatn-FD-Light.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-regular";
-  src: url("/src/assets/fonts/Vazirmatn-FD-Regular.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-medium";
-  src: url("/src/assets/fonts/Vazirmatn-FD-Medium.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-semibold";
-  src: url("/src/assets/fonts/Vazirmatn-FD-SemiBold.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-bold";
-  src: url("/src/assets/fonts/Vazirmatn-FD-Bold.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-extraBold";
-  src: url("/src/assets/fonts/Vazirmatn-FD-ExtraBold.woff2") format("woff2");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "vazir-black";
-  src: url("/src/assets/fonts/Vazirmatn-FD-Black.woff2") format("woff");
-  font-display: swap;
-}
+@import "./vazir.scss";
+@import "./roboto.scss";
 
 body {
-  font-family: "vazir-thin", "Roboto", sans-serif;
+  font-family: "vazir", "Roboto", sans-serif;
+  font-weight: 300;
 }
 
 .english {
-  font-family: "Roboto", "vazir-thin", sans-serif;
+  font-family: "Roboto", "vazir", sans-serif;
 }
 
 .persian {
-  font-family: "vazir-thin", "Roboto", sans-serif;
+  font-family: "vazir", "Roboto", sans-serif;
 }
 
 .arabic {
-  font-family: "vazir-thin", "Roboto", sans-serif;
+  font-family: "vazir", "Roboto", sans-serif;
 }

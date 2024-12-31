@@ -23,7 +23,7 @@
   const series = ref([200000000, 40000000, 800000000]);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
 
     options.value = {
       labels: ["شماره حساب بانک آینده: 123456789"],

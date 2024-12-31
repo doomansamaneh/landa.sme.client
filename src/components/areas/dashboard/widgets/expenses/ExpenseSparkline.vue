@@ -32,7 +32,7 @@
   const options = ref(null);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
 
     options.value = {
       title: {

@@ -66,7 +66,7 @@
       tooltip: {
         trigger: "item",
         textStyle: {
-          fontFamily: "vazir-thin",
+          fontFamily: "vazir",
           fontSize: 14,
         },
       },
@@ -76,7 +76,7 @@
         left: "center",
         textStyle: {
           color: $q.dark.isActive ? "white" : "black", // Change the color here
-          fontFamily: "vazir-thin", // Change the font family here
+          fontFamily: "vazir", // Change the font family here
           fontSize: 14, // Optionally, change the font size
         },
       },

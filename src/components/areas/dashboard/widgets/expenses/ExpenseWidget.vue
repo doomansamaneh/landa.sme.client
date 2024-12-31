@@ -119,7 +119,7 @@
   const filterOptions = ["30 روز پیش", "این فصل", "امسال", "سال پیش"];
 
   const chartOptions = computed(() => {
-    const fontFamily = $q.lang.rtl ? "vazir-thin" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
     const total = reportStore.total.value;
 
     return {
