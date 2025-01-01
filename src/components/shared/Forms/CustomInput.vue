@@ -6,7 +6,6 @@
     dense
     clear-icon="clear"
     hide-bottom-space
-    :required="required"
     :disable="disable"
     :mask="mask"
     :type="type"
@@ -18,6 +17,11 @@
     :rounded="rounded"
     :rules="rules"
   >
+    <validation-alert
+      v-if="validationMessage"
+      :message="validationMessage"
+    />
+
     <template #prepend>
       <slot name="prepend"></slot>
     </template>
@@ -28,17 +32,18 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { computed, ref } from "vue";
   import { useI18n } from "vue-i18n";
 
   import CustomLabel from "./CustomLabel.vue";
+  import ValidationAlert from "./ValidationAlert.vue";
 
   const { t } = useI18n();
 
   const props = defineProps({
     label: String,
     placeholder: String,
-    type: { type: String, default: "text" }, // Accepted values: 'text', 'password', 'textarea', 'email', 'search', 'tel', 'file', 'number', 'url', 'time', 'date', 'datetime-local'
+    type: { type: String, default: "text" },
     required: Boolean,
     mask: String,
     clearable: Boolean,
@@ -49,12 +54,18 @@
   });
 
   const modelValue = defineModel("modelValue");
-  
+  const validationMessage = ref("");
+
   const rules = computed(() => {
     return props.required
       ? [
-          (val) =>
-            (val && val.length > 0) || t("shared.labels.required"),
+          (val) => {
+            const valid = !!val;
+            validationMessage.value = valid
+              ? ""
+              : t("shared.labels.required");
+            return valid;
+          },
         ]
       : [];
   });

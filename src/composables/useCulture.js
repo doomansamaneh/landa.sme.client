@@ -14,8 +14,9 @@ export function useCulture() {
     "/node_modules/quasar/lang/(en-US|fa-IR|ar).js"
   );
 
+  const defaultLanguage = "fa-IR";
   const lang = ref(
-    localStorage.getItem(storageKey) || $q.lang.isoName
+    localStorage.getItem(storageKey) || defaultLanguage
   );
 
   const culture = computed(() =>
@@ -40,6 +41,8 @@ export function useCulture() {
       document.body.classList.remove("persian", "english", "arabic");
       document.body.classList.add(culture.value.bodyClass);
 
+      localStorage.setItem("Digits", culture.value.bodyClass);
+
       const expirationDate = new Date();
       expirationDate.setFullYear(expirationDate.getFullYear() + 1);
       const cookieString = `${cookieKey}=${
@@ -50,6 +53,14 @@ export function useCulture() {
       console.log("error setLang", error);
     }
   };
+
+  if (!localStorage.getItem(storageKey)) {
+    document.body.classList.add("persian");
+  }
+
+  (async () => {
+    await applyCulture();
+  })();
 
   watch(lang, async () => {
     await applyCulture();

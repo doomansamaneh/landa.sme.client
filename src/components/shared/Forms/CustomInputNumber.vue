@@ -9,10 +9,10 @@
     hide-buttom-space
     clear-icon="clear"
   >
-    <template v-slot:prepend>
+    <template #prepend>
       <slot name="prepend"></slot>
     </template>
-    <template v-slot:append>
+    <template #append>
       <slot name="append"></slot>
     </template>
   </q-input>

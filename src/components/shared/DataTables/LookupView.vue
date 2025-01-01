@@ -14,14 +14,7 @@
     :placeholder="placeholder"
     :autofocus="autofocus"
     hide-buttom-space
-    :rules="
-      required
-        ? [
-            (val) =>
-              (val && val.length > 0) || $t('shared.labels.required'),
-          ]
-        : []
-    "
+    :rules="rules"
     @update:model-value="searchInLookup"
     @keydown.enter.prevent.stop="selectRow"
     @keydown="handleKeyDown"
@@ -53,6 +46,11 @@
         color="primary"
       />
     </template>
+
+    <validation-alert
+      v-if="validationMessage"
+      :message="validationMessage"
+    />
 
     <q-menu
       fit
@@ -221,7 +219,6 @@
           v-model="selectedText"
           hide-bottom-space
           outlined
-          :required="required"
           :rules="rules"
           color="primary"
           class="q-mt-md first input lookup"
@@ -378,6 +375,7 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import {
@@ -392,6 +390,7 @@
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
   import LookupAddButton from "src/components/shared/lookups/LookupAddButton.vue";
   import CustomLabel from "../forms/CustomLabel.vue";
+  import ValidationAlert from "src/components/shared/Forms/ValidationAlert.vue";
 
   const props = defineProps({
     dataSource: String,
@@ -418,6 +417,8 @@
   const selectedText = defineModel("selectedText");
   const $q = useQuasar();
   const dialogStore = useDialog();
+
+  const { t } = useI18n();
 
   const store = {
     pagination: ref({
@@ -451,6 +452,7 @@
   const popup = ref(null);
   const isPopupOpen = ref(false);
   const lookupDialog = ref(null);
+  const validationMessage = ref("");
 
   function handleAdd(event) {
     hidePopup();
@@ -598,6 +600,20 @@
   const reloadData = async () => {
     await tableStore.reloadData();
   };
+
+  const rules = computed(() => {
+    return props.required
+      ? [
+          (val) => {
+            const valid = !!val;
+            validationMessage.value = valid
+              ? ""
+              : t("shared.labels.required");
+            return valid;
+          },
+        ]
+      : [];
+  });
 
   defineExpose({
     setIdText,
