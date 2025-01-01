@@ -177,7 +177,11 @@
     </tbody>
   </q-markup-table>
 
-  <footer-section :form-store="formStore" />
+  <footer-section
+    class="q-pt-xl"
+    v-if="formStore.model.value.invoiceItems?.length"
+    :form-store="formStore"
+  />
 </template>
 
 <script setup>
@@ -191,7 +195,6 @@
   } from "src/constants";
 
   import FooterSection from "../v1/FooterSection.vue";
-  import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
