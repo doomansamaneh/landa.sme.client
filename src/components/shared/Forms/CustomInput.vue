@@ -1,5 +1,5 @@
 <template>
-  <custom-label :label="label" />
+  <custom-label class="q-mb-sm" :label="label" />
   <q-input
     v-model="modelValue"
     outlined

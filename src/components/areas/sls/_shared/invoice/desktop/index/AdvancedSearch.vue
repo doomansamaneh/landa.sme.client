@@ -34,15 +34,7 @@
     <q-slide-transition duration="500">
       <div v-show="expanded">
         <div class="q-px-lg">
-          <div class="row q-mb-md" v-if="false">
-            <!-- <q-checkbox
-              dense
-              size="44px"
-              class="q-pt-sm text-body2 no-letter-spacing"
-              v-model="searchStore.searchModel.value.waitToSendTax"
-              :label="$t('shared.labels.waitToSendTax')"
-            /> -->
-          </div>
+          <div class="row q-mb-md" v-if="false"></div>
 
           <div
             :style="$q.screen.gt.sm ? 'width: 1024px;' : ''"
@@ -54,10 +46,11 @@
               :class="$q.screen.gt.sm ? 'q-mr-xl' : ''"
             >
               <div class="row items-center q-mt-md">
-                <div
-                  class="col-md-3 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
-                >
-                  {{ $t("shared.labels.taxStatus") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.taxStatus')"
+                  />
                 </div>
                 <div class="col-md col-sm-7 col-xs-12">
                   <q-option-group
@@ -79,10 +72,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div
-                  class="col-md-3 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
-                >
-                  {{ $t("shared.labels.typeTitle") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.typeTitle')"
+                  />
                 </div>
                 <div class="col-md col-sm-7 col-xs-12">
                   <sale-type-lookup
@@ -97,10 +91,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div
-                  class="col-md-3 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
-                >
-                  {{ $t("shared.labels.inventoryTitle") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.inventoryTitle')"
+                  />
                 </div>
                 <div class="col-md col-sm-7 col-xs-12">
                   <inventory-lookup
@@ -116,10 +111,31 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div
-                  class="col-md-3 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
-                >
-                  {{ $t("shared.labels.productTitle") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.productGroupTitle')"
+                  />
+                </div>
+                <div class="col-md col-sm-7 col-xs-12">
+                  <product-group-lookup
+                    v-model:selectedId="
+                      searchStore.searchModel.value.productGroupId
+                    "
+                    v-model:selectedText="
+                      searchStore.searchModel.value.productGroupTitle
+                    "
+                    style="width: 398px"
+                  />
+                </div>
+              </div>
+
+              <div class="row items-center q-mt-md">
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.productTitle')"
+                  />
                 </div>
                 <div class="col-md col-sm-7 col-xs-12">
                   <product-lookup
@@ -135,10 +151,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div
-                  class="text-bold col-md-3 col-sm-2 text-body2no-letter-spacing text-on-caption"
-                >
-                  {{ $t("shared.labels.contractTitle") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.contractTitle')"
+                  />
                 </div>
                 <div class="col-md col-sm-7 col-xs-12">
                   <contract-lookup
@@ -154,10 +171,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div
-                  class="col-md-3 col-sm-2 text-bold text-body2 no-letter-spacing text-on-caption"
-                >
-                  {{ $t("shared.labels.marketerName") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.marketerName')"
+                  />
                 </div>
                 <div class="col-md col-sm-7 col-xs-12">
                   <customer-lookup
@@ -173,10 +191,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div
-                  class="text-bold col-md-3 col-sm-2 text-body2 no-letter-spacing text-on-caption"
-                >
-                  {{ $t("shared.labels.comment") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.comment')"
+                  />
                 </div>
                 <div class="col-md col-sm-7 col-xs-12">
                   <custom-input
@@ -189,8 +208,11 @@
 
             <div class="col-md col-sm-12">
               <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2 text-bold text-body2">
-                  {{ $t("shared.labels.amountFrom") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.amountFrom')"
+                  />
                 </div>
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <custom-input-number
@@ -201,8 +223,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2 text-bold text-body2">
-                  {{ $t("shared.labels.amountTo") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.amountTo')"
+                  />
                 </div>
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <custom-input-number
@@ -213,8 +238,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2 text-bold text-body2">
-                  {{ $t("shared.labels.dateFrom") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.dateFrom')"
+                  />
                 </div>
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <date-time
@@ -225,8 +253,11 @@
               </div>
 
               <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2 text-bold text-body2">
-                  {{ $t("shared.labels.dateTo") }}
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
+                    :label="$t('shared.labels.dateTo')"
+                  />
                 </div>
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <date-time
@@ -288,11 +319,13 @@
   import Chip from "src/components/shared/SearchChip.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+  import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
 
   const expanded = ref(false);

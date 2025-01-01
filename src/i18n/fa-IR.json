@@ -382,7 +382,7 @@
       "showDetail": "مشاهده جزییات",
       "addFiscalYear": "افزودن سال مالی جدید",
       "taxApiStatus": "ارسال به سامانه مودیان",
-      "productGroup": "گروه کالا"
+      "productGroupTitle": "گروه کالا"
     },
     "productType": {
       "main": "اصلی",

@@ -58,7 +58,7 @@
                 v-model:selectedText="
                   searchStore.searchModel.value.productGroupTitle
                 "
-                :placeholder="$t('shared.labels.productGroup')"
+                :placeholder="$t('shared.labels.productGroupTitle')"
               />
             </div>
           </div>
