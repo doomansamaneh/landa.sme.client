@@ -1,14 +1,20 @@
 <template>
-  <div class="flex justify-end q-pb-xl q-px-xl">
-    <div class="q-gutter-y-md" style="width: 280px">
-      <div class="row q-mr-md">
+  <div
+    class="flex justify-end q-py-lg"
+    :class="$q.screen.xs ? 'q-px-sm' : 'q-px-xl'"
+  >
+    <div
+      class="q-gutter-y-md"
+      :style="$q.screen.xs ? 'width: 100%' : 'width: 280px'"
+    >
+      <div class="row">
         <div class="col">مبلغ</div>
         <div>
           {{ helper.formatNumber(formStore.totalNetPrice.value) }}
         </div>
       </div>
 
-      <div class="row q-mr-md">
+      <div class="row">
         <div class="col row q-gutter-sm items-center">
           <q-btn outline round icon="o_add" size="xs">
             <q-tooltip
@@ -94,7 +100,7 @@
         </div>
       </div>
 
-      <div class="row q-mr-md">
+      <div class="row">
         <div class="col row q-gutter-sm items-center">
           <q-btn outline round icon="o_add" size="xs">
             <q-tooltip
@@ -165,7 +171,7 @@
 
       <q-separator />
 
-      <div class="row q-mr-md">
+      <div class="row">
         <div class="col text-bold">جمع کل</div>
         <div>
           <strong>
