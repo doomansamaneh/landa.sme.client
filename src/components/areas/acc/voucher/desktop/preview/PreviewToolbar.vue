@@ -70,6 +70,7 @@
     dialogStore.openDialog({
       title: `shared.labels.sendMail`,
       component: SendEmail,
+      actions: true,
       props: {
         id: id,
         baseRoute: props.baseRoute,

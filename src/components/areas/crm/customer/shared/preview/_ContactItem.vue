@@ -67,6 +67,7 @@
     dialogStore.openDialog({
       title: `shared.contactType.${contactTypeTitle}`,
       component: CreateForm,
+      actions: true,
       props: {
         id: props.item.id,
         action: formAction.edit,

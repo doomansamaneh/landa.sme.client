@@ -13,11 +13,11 @@
       :style="$q.screen.xs ? '' : 'width: 600px; max-width: 80vw'"
     >
       <q-card-section
-        class="row items-center q-pr-md"
+        class="row items-center q-pb-none q-pr-md"
         :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-md'"
       >
         <slot name="title">
-          <div class="text-h6">title: {{ $t(title) }}</div>
+          <div class="text-h6">{{ $t(title) }}</div>
         </slot>
 
         <q-space />
@@ -31,14 +31,19 @@
         />
       </q-card-section>
 
-      <q-card-section>
+      <q-card-section class="q-pa-lg">
         <slot name="body">
-          <component :is="component" v-bind="formProps" ref="form" />
+          <component
+            :is="component"
+            :item="item"
+            v-bind="formProps"
+            ref="form"
+          />
         </slot>
       </q-card-section>
 
       <slot name="actions">
-        <action-buttons @ok-clicked="submitForm" />
+        <action-buttons v-if="actions" @ok-clicked="submitForm" />
       </slot>
     </q-card>
   </q-dialog>
@@ -54,6 +59,8 @@
     title: String,
     component: Object,
     formProps: Object,
+    item: Object,
+    actions: Boolean,
   });
 
   const emit = defineEmits([...useDialogPluginComponent.emits]);

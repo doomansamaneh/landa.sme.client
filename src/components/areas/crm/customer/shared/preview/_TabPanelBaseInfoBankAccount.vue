@@ -66,6 +66,7 @@
     dialogStore.openDialog({
       title: "افزودن حساب بانکی",
       component: CreateForm,
+      actions: true,
       props: { customerId: props.item.id, action: formAction.create },
       okCallback: async (response) => {
         await tableStore.reloadData();

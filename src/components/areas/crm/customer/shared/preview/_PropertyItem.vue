@@ -48,6 +48,7 @@
     dialogStore.openDialog({
       title: `shared.labels.entityProperty`,
       component: CreateForm,
+      actions: true,
       props: { id: props.item.id, action: formAction.edit },
       okCallback: async (response) => {
         if (response?.model) {

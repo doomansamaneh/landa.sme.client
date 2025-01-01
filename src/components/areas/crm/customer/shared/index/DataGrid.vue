@@ -102,6 +102,7 @@
     dialogStore.openDialog({
       title: `shared.labels.editBatch`,
       component: EditBatch,
+      actions: true,
       props: {
         selectedIds: selectedIds?.value,
       },

@@ -14,12 +14,9 @@
         <th style="width: 1%">#</th>
         <th style="width: 28%">کالا/خدمت</th>
         <th style="width: 7%">تعداد/مقدار</th>
-        <th style="width: 10%">واحد سنجش</th>
-        <th style="width: 8%">مبلغ واحد</th>
-        <th style="width: 8%">تخفیف</th>
-        <th style="width: 12%">مالیات بر ارزش افزوده</th>
-        <th style="width: 8%">مبلغ مالیات</th>
-        <th style="width: 10%">
+        <th style="width: 15%">واحد سنجش</th>
+        <th style="width: 15%">مبلغ واحد</th>
+        <th style="width: 15%">
           مبلغ کل
           <q-icon
             name="o_info"
@@ -41,7 +38,7 @@
             </q-tooltip>
           </q-icon>
         </th>
-        <th></th>
+        <th style="width: 10%"></th>
       </tr>
     </thead>
     <tbody>
@@ -53,7 +50,7 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <product-lookup
-            input-class="text-body3 no-letter-spacing"
+            input-class="text-body2 no-letter-spacing"
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
@@ -64,14 +61,14 @@
         </td>
         <td>
           <custom-input-number
-            input-class="text-body3 no-letter-spacing"
+            input-class="text-body2 no-letter-spacing"
             v-model="row.quantity"
             placeholder="مقدار"
           />
         </td>
         <td>
           <product-unit-lookup
-            input-class="text-body3 no-letter-spacing"
+            input-class="text-body2 no-letter-spacing"
             placeholder="واحد سنجش"
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
@@ -79,40 +76,16 @@
         </td>
         <td>
           <custom-input-number
-            input-class="text-body3 no-letter-spacing"
+            input-class="text-body2 no-letter-spacing"
             v-model="row.price"
             placeholder="مبلغ واحد"
-          />
-        </td>
-        <td>
-          <custom-input-number
-            input-class="text-body3 no-letter-spacing"
-            v-model="row.discount"
-            placeholder="تخفیف"
-          />
-        </td>
-        <td>
-          <vat-lookup
-            input-class="text-body3 no-letter-spacing"
-            placeholder="مالیات بر ارزش افزوده"
-            v-model:selectedId="row.vatId"
-            v-model:selectedText="row.vatTitle"
-            :filterExpression="vatFilter"
-            @rowSelected="vatChanged($event, row)"
-          />
-        </td>
-        <td>
-          <custom-input-number
-            input-class="text-body3 no-letter-spacing"
-            v-model="row.vatAmount"
-            placeholder="مبلغ مالیات"
           />
         </td>
         <td>
           <q-field outlined dense disable>
             <template #control>
               <div
-                class="text-body3 no-letter-spacing self-center full-width no-outline"
+                class="text-body2 no-letter-spacing self-center full-width no-outline"
                 tabindex="0"
               >
                 {{ row.totalPrice?.toLocaleString() }}
@@ -120,66 +93,26 @@
             </template>
           </q-field>
         </td>
-        <td class="text-center q-gutter-x-xs">
+        <td class="flex items-center justify-center">
           <q-btn
-            color="primary"
             unelevated
             round
+            dense
             class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewRow(index, row)"
-          />
-          <q-btn
-            color="red"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_delete"
+            size="14px"
             @click="formStore.deleteRow(index)"
-          />
-          <q-btn unelevated round class="text-on-dark" size="sm">
-            <q-icon size="20px" name="o_more_horiz" />
-            <q-menu
-              style="width: 500px"
-              :offset="[0, 20]"
-              fit
-              class="border-radius-lg"
-            >
-              <q-card class="bordered">
-                <q-card-section class="q-pb-none">
-                  <div
-                    class="text-h6 text-weight-700 no-letter-spacing"
-                  >
-                    اطلاعات تکمیلی
-                  </div>
-                  {{ row.productTitle }}
-                </q-card-section>
-                <q-card-section>
-                  <div class="">
-                    <q-item-label caption class="q-mb-sm">
-                      شرح ردیف
-                    </q-item-label>
-                    <custom-input
-                      hide-bottom-space
-                      v-model="row.comment"
-                      autogrow
-                    />
-                  </div>
-                  <div class="q-mt-md">
-                    <q-item-label caption class="q-mb-sm">
-                      شرح تخفیف
-                    </q-item-label>
-                    <custom-input
-                      hide-bottom-space
-                      v-model="row.discountComment"
-                      autogrow
-                    />
-                  </div>
-                </q-card-section>
-              </q-card>
-            </q-menu>
+          >
+            <q-icon size="24px" name="o_delete" />
+          </q-btn>
+          <q-btn
+            @click="openRowDetailSheet(row)"
+            unelevated
+            dense
+            round
+            class="text-on-dark"
+            size="14px"
+          >
+            <q-icon size="24px" name="o_more_horiz" />
           </q-btn>
         </td>
       </tr>
@@ -203,33 +136,54 @@
     </tbody>
   </q-markup-table>
 
+  <q-btn
+    v-if="formStore.model.value.invoiceItems.length > 0"
+    padding="4px 12px"
+    unelevated
+    rounded
+    dense
+    class="bg-primary primary-shadow text-white q-mt-md"
+    @click="formStore.pushNewRow()"
+  >
+    <q-icon size="20px" name="o_add" class="q-mr-xs" />
+    <div class="no-letter-spacing">افزودن ردیف</div>
+  </q-btn>
+
   <footer-section
+    v-if="formStore.model.value.invoiceItems.length > 0"
     :form-store="formStore"
     :invoice-form-type="invoiceFormType"
   />
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import {
-    sqlOperator,
-    vatType,
-    invoiceFormType,
-  } from "src/constants";
+  import { sqlOperator, invoiceFormType } from "src/constants";
+  import { useDialog } from "src/composables/useDialog";
 
   import FooterSection from "./FooterSection.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
-  import VatLookup from "src/components/shared/lookups/VatLookup.vue";
-  import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import NoProductSelected from "../NoProductSelected.vue";
   import AddByCode from "../AddByCode.vue";
+  import RowDetailSheet from "./RowDetailSheet.vue";
 
   const props = defineProps({
     formStore: Object,
     formType: invoiceFormType,
   });
+
+  const dialogStore = useDialog();
+
+  const openRowDetailSheet = (item) => {
+    console.log(item);
+
+    dialogStore.openDialog({
+      title: "shared.labels.additionalInformation",
+      component: RowDetailSheet,
+      item: item,
+    });
+  };
 
   const productFilter =
     props.formType == invoiceFormType.sales
@@ -248,27 +202,6 @@
           },
         ];
 
-  const vatFilter =
-    props.formType == invoiceFormType.sales
-      ? [
-          {
-            fieldName: "isForSale",
-            operator: sqlOperator.in,
-            value: `${vatType.sale},${vatType.purchaseAndSale}`,
-          },
-        ]
-      : [
-          {
-            fieldName: "isForSale",
-            operator: sqlOperator.in,
-            value: `${vatType.purchase},${vatType.purchaseAndSale}`,
-          },
-        ];
-
-  const vatChanged = (vat, row) => {
-    row.vatPercent = vat?.rate ?? 0;
-  };
-
   const productChanged = (product, row) => {
     row.price = product?.price ?? product?.maxPrice ?? 0;
     row.productUnitId = product?.productUnitId ?? null;
@@ -286,7 +219,7 @@
   }
 
   .q-markup-table th {
-    font-size: 12px !important;
+    font-size: 14px !important;
     font-weight: 600 !important;
   }
 </style>

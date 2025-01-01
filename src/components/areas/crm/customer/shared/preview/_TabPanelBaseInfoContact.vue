@@ -108,6 +108,7 @@
     dialogStore.openDialog({
       title: "افزودن تماس",
       component: CreateForm,
+      actions: true,
       props: {
         customerId: props.item.id,
         action: formAction.create,

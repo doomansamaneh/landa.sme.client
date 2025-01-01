@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-end q-px-xl" :class="$q.screen.gt.xs ? 'q-mt-xl' : 'q-mt-md'">
+  <div class="flex justify-end q-pb-xl q-px-xl">
     <div class="q-gutter-y-md" style="width: 280px">
       <div class="row q-mr-md">
         <div class="col">مبلغ</div>

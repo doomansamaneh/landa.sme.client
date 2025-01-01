@@ -191,7 +191,8 @@
       "new": "New",
       "edit": "Edit",
       "delete": "Delete",
-      "required" : "Fill out this field"
+      "required" : "Fill out this field",
+      "additionalInformation" : "Additional Information"
     },
     "messages": {
       "deleted-successfully": "Deleted successfully"
