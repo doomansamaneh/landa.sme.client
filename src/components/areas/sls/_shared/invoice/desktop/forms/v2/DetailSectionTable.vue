@@ -45,16 +45,8 @@
             input-class="text-body3 no-letter-spacing"
             outlined
             dense
-            v-model="productCodeAndTitle"
+            v-model="row.productCodeTitle"
           />
-          <!-- <product-lookup
-            :autofocus="index === formStore.newAddedItemIndex.value"
-            placeholder="انتخاب کالا/خدمت"
-            v-model:selectedId="row.productId"
-            v-model:selectedText="row.productTitle"
-            :filterExpression="productFilter"
-            @rowSelected="productChanged($event, row)"
-          /> -->
         </td>
         <td>
           <custom-input-number
@@ -185,9 +177,8 @@
 </template>
 
 <script setup>
+  import { ref, watch } from "vue";
   import { helper } from "src/helpers";
-  import { ref, watch, computed } from "vue";
-
   import {
     sqlOperator,
     vatType,
@@ -264,18 +255,6 @@
   const vatChanged = (vat, row) => {
     row.vatPercent = vat?.rate ?? 0;
   };
-
-  const productChanged = (product, row) => {
-    row.price = product?.price ?? product?.maxPrice ?? 0;
-    row.productUnitId = product?.productUnitId ?? null;
-    row.productUnitTitle = product?.productUnitTitle ?? null;
-  };
-
-  const productCodeAndTitle = computed(() =>
-    props.formStore.model.value.invoiceItems.map((row) => {
-      return `${row.productCode} - ${row.productTitle}`;
-    })
-  );
 </script>
 
 <style scoped>
