@@ -459,6 +459,7 @@
     dialogStore.openDialog({
       title: "shared.labels.create",
       component: props.createForm,
+      actions: true,
       props: { action: formAction.create },
       okCallback: (responseData) => {
         if (responseData.data) setIdText(responseData.data);
@@ -551,6 +552,7 @@
     tableStore.setActiveRow(row);
     setIdText(row);
     hidePopup();
+    hideDialog();
     emitSelectRow(row);
   }
 
@@ -591,6 +593,10 @@
 
   function hidePopup() {
     popup.value?.hide();
+  }
+
+  function hideDialog() {
+    lookupDialog.value?.hide();
   }
 
   const isSearchEmpty = computed(() => !selectedId.value);

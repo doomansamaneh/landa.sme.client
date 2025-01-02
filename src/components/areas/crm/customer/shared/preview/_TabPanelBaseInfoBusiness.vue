@@ -88,6 +88,7 @@
     dialogStore.openDialog({
       title: "shared.labels.business",
       component: CreateForm,
+      actions: true,
       props: {
         id: props.item.id,
         action: formAction.edit,

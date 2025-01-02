@@ -5,7 +5,7 @@
       <q-item-label class="q-mb-sm text-body2 caption-on-dark no-letter-spacing">
         {{ $t("page.renew-subscription.plan") }}
       </q-item-label>
-      <plan-lookup @row-selected="onPlanSelected" />
+      <plan-lookup  />
     </div>
 
     <div class="col-md col-sm col-xs-12">

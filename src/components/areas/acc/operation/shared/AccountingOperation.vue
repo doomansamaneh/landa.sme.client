@@ -209,6 +209,7 @@
     dialogStore.openDialog({
       title: "shared.labels.closeAccount",
       component: CloseAccountForm,
+      actions: true,
       okCallback: async () => {
         reloadData;
       },

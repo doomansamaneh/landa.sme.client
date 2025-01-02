@@ -9,39 +9,26 @@
       <q-form ref="form" autofocus>
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              نام
-            </q-item-label>
             <custom-input
-              hide-bottom-space
+              label="نام"
               v-model="formStore.model.value.name"
-              :rules="[(val) => val !== null && val !== '']"
+              required
             />
           </div>
         </div>
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              ایمیل
-            </q-item-label>
             <custom-input
-              hide-bottom-space
+              label="ایمیل"
               v-model="formStore.model.value.email"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-12 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
-              گروه‌های دسترسی کاربر
-            </q-item-label>
+            <custom-label label="گروه‌های دسترسی کاربر" />
             <div class="q-gutter-sm q-pt-xs">
               <q-option-group
                 type="checkbox"
@@ -62,6 +49,7 @@
   import { useUserModel } from "../../../_composables/useUserModel";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
   import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
 
   const props = defineProps({

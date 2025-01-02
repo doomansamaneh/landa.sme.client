@@ -5,6 +5,7 @@
         :label="customerTitle"
         v-model:selectedId="model.value.customerId"
         v-model:selectedText="model.value.customerName"
+        required
       />
     </div>
 
@@ -17,8 +18,7 @@
     </div>
 
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-item-label caption class="q-mb-sm">تاریخ</q-item-label>
-      <date-time v-model="model.value.date" />
+      <date-time label="تاریخ" v-model="model.value.date" required />
     </div>
 
     <div class="flex q-mt-lg items-center justify-center col">
@@ -50,14 +50,7 @@
     <div v-show="moreInfo">
       <div class="row q-col-gutter-sm q-pt-sm">
         <div class="col-md-3 col-sm-6 col-xs-12">
-          <q-item-label caption class="q-mb-sm">سررسید</q-item-label>
-          <date-time v-model="model.value.dueDate" />
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            شماره فاکتور
-          </q-item-label>
+          <custom-label label="شماره فاکتور" class="q-mb-sm" />
           <q-input
             type="number"
             hide-bottom-space
@@ -77,6 +70,10 @@
           </q-input>
         </div>
 
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <date-time label="سررسید" v-model="model.value.dueDate" />
+        </div>
+
         <div class="col-md-6 col-sm-12 col-xs-12">
           <sale-type-lookup
             :label="saleTypeTitle"
@@ -91,6 +88,7 @@
             label="انبار"
             v-model:selectedId="model.value.inventoryId"
             v-model:selectedText="model.value.inventoryTitle"
+            required
           />
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -143,6 +141,7 @@
   import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
 
   import {
     sqlOperator,

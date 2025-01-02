@@ -100,11 +100,7 @@
           />
         </div>
         <div>
-          <q-item-label
-            class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-          >
-            نقش
-          </q-item-label>
+          <custom-label label="نقش" />
           <div class="q-gutter-sm q-pt-xs">
             <q-option-group
               inline
@@ -152,6 +148,7 @@
   import { customerType, gender, customerRole } from "src/constants";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import UnitLookup from "src/components/shared/lookups/UnitLookup.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";

@@ -36,6 +36,7 @@
 <script setup>
   import { computed } from "vue";
   import { useDialog } from "src/composables/useDialog";
+  import { downloadManager } from "src/helpers";
   import { invoiceFormType } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
   import { useFormActions } from "src/composables/useFormActions";
@@ -68,17 +69,25 @@
   }
 
   function downloadPdf(id) {
-    formStore.downloadPdf(id);
+    downloadManager.downloadGet(
+      `${baseRoute}/generatePdf/${id}`,
+      "landa-invoice"
+    );
   }
 
   function downloadBatchPdf() {
-    formStore.downloadBatchPdf(props.tableStore.pagination.value);
+    downloadManager.downloadPost(
+      `${baseRoute}/GenerateBatchPdf`,
+      props.tableStore.pagination.value,
+      "landa-invoice"
+    );
   }
 
   function editBatch() {
     dialogStore.openDialog({
       title: `shared.labels.editBatch`,
       component: EditBatch,
+      actions: true,
       props: {
         selectedIds: selectedIds?.value,
         formType: invoiceFormType.sales,
@@ -93,6 +102,7 @@
     dialogStore.openDialog({
       title: `shared.labels.reorder`,
       component: ReorderInvoice,
+      actions: true,
       okCallback: async (response) => {
         await props.tableStore.reloadData();
       },

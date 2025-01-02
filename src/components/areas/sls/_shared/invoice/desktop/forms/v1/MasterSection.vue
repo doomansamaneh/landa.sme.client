@@ -7,6 +7,7 @@
             :label="customerTitle"
             v-model:selectedId="model.value.customerId"
             v-model:selectedText="model.value.customerName"
+            required
           />
         </div>
 
@@ -16,6 +17,7 @@
             v-model:selectedId="model.value.typeId"
             v-model:selectedText="model.value.typeTitle"
             :filter-expression="filterExpression"
+            required
           />
         </div>
 
@@ -72,6 +74,7 @@
                     label="انبار"
                     v-model:selectedId="model.value.inventoryId"
                     v-model:selectedText="model.value.inventoryTitle"
+                    required
                   />
                 </div>
 
@@ -136,12 +139,20 @@
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <date-time label="تاریخ" v-model="model.value.date" />
+          <date-time
+            label="تاریخ"
+            v-model="model.value.date"
+            required
+          />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <date-time label="سررسید" v-model="model.value.dueDate" />
+          <date-time
+            label="سررسید"
+            v-model="model.value.dueDate"
+            required
+          />
         </div>
       </div>
     </div>
@@ -149,13 +160,14 @@
 </template>
 
 <script setup>
-  import { computed, onMounted, ref } from "vue";
+  import { computed, ref } from "vue";
   import {
     sqlOperator,
     vatType,
     invoiceFormType,
     documentType,
   } from "src/constants";
+  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -166,8 +178,8 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
   const props = defineProps({
-    formStore: Object,
-    formType: Object,
+    formStore: useInvoiceModel,
+    formType: invoiceFormType,
   });
 
   const moreInfo = ref(false);
