@@ -110,7 +110,7 @@
           <span class="text-caption text-on-dark">قیمت واحد</span>
         </div>
         <div class="col text-caption">
-          {{ row.price.toLocaleString() }}
+          {{ helper.fromatNumber(row.price) }}
         </div>
       </div>
 
@@ -119,7 +119,7 @@
           <span class="text-caption text-on-dark">تخفیف</span>
         </div>
         <div class="col text-caption">
-          {{ row.discount.toLocaleString() }}
+          {{ helper.fromatNumber(row.discount) }}
         </div>
       </div>
 
@@ -130,7 +130,7 @@
           </span>
         </div>
         <div class="col text-caption">
-          {{ row.vatAmount.toLocaleString() }}
+          {{ helper.fromatNumber(row.vatAmount) }}
         </div>
       </div>
 
@@ -139,7 +139,7 @@
           <span class="text-caption text-on-dark">جمع کل</span>
         </div>
         <div class="col text-caption text-bold">
-          {{ row.totalPrice.toLocaleString() }}
+          {{ helper.fromatNumber(row.totalPrice) }}
         </div>
       </div>
     </div>

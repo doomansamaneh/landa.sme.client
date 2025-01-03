@@ -50,7 +50,6 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <product-lookup
-            input-class="text-body2 no-letter-spacing"
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
@@ -62,7 +61,6 @@
         </td>
         <td>
           <custom-input-number
-            input-class="text-body2 no-letter-spacing"
             v-model="row.quantity"
             placeholder="مقدار"
             required
@@ -70,7 +68,6 @@
         </td>
         <td>
           <product-unit-lookup
-            input-class="text-body2 no-letter-spacing"
             placeholder="واحد سنجش"
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
@@ -79,7 +76,6 @@
         </td>
         <td>
           <custom-input-number
-            input-class="text-body2 no-letter-spacing"
             v-model="row.price"
             placeholder="مبلغ واحد"
             required
@@ -97,7 +93,7 @@
             </template>
           </q-field>
         </td>
-        <td class="flex items-center justify-center">
+        <td class="flex_items-center_justify-center">
           <q-btn
             unelevated
             round
