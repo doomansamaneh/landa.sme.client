@@ -9,7 +9,7 @@
     class="first input lookup"
     :input-class="inputClass"
     dense
-    autogrow
+    :autogrow="autogrow"
     debounce="1000"
     :placeholder="placeholder"
     :autofocus="autofocus"
@@ -407,6 +407,7 @@
     autofocus: Boolean,
     createForm: Object,
     label: String,
+    autogrow: Boolean,
     inputClass: {
       type: String,
       default: "text-body2 no-letter-spacing",

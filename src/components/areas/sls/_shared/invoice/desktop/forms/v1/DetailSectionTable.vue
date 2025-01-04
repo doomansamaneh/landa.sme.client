@@ -50,6 +50,7 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <product-lookup
+            autogrow
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
@@ -93,7 +94,7 @@
             </template>
           </q-field>
         </td>
-        <td class="flex_items-center_justify-center">
+        <td class="text-center">
           <q-btn
             unelevated
             round
@@ -178,8 +179,6 @@
   const dialogStore = useDialog();
 
   const openRowDetailSheet = (item) => {
-    console.log(item);
-
     dialogStore.openDialog({
       title: "shared.labels.additionalInformation",
       component: RowDetailSheet,

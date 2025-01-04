@@ -7,7 +7,6 @@
         <th style="width: 1%">تعداد/مقدار</th>
         <th style="width: 20%">واحد سنجش</th>
         <th style="width: 12%">مبلغ واحد</th>
-        <th style="width: 20%">ارزش افزوده</th>
         <th style="width: 12%">
           مبلغ کل
           <q-icon
@@ -41,8 +40,8 @@
       >
         <td class="text-center">{{ index + 1 }}</td>
         <td>
-          <q-input
-            input-class="text-body3 no-letter-spacing"
+          <custom-input
+            autogrow
             outlined
             dense
             v-model="row.productCodeTitle"
@@ -51,7 +50,6 @@
         <td>
           <custom-input-number
             ref="quantityInput"
-            input-class="text-body3 no-letter-spacing"
             v-model="row.quantity"
             placeholder="مقدار"
             type_="number"
@@ -62,100 +60,45 @@
         <td>
           <product-unit-lookup
             placeholder="واحد سنجش"
-            input-class="text-body3 no-letter-spacing"
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
           />
         </td>
         <td>
           <custom-input-number
-            input-class="text-body3 no-letter-spacing"
             v-model="row.price"
             placeholder="مبلغ واحد"
           />
         </td>
+
         <td>
-          <vat-lookup
-            input-class="text-body3 no-letter-spacing"
-            placeholder="مالیات بر ارزش افزوده"
-            v-model:selectedId="row.vatId"
-            v-model:selectedText="row.vatTitle"
-            :filterExpression="vatFilter"
-            @rowSelected="vatChanged($event, row)"
+          <custom-input-number
+            v-model="row.totalPrice"
+            outlined
+            dense
+            disable
           />
         </td>
-        <td>
-          <q-field outlined dense disable>
-            <template #control>
-              <div
-                class="text-body3 no-letter-spacing text-weight-500"
-                tabindex="0"
-              >
-                {{ helper.formatNumber(row.totalPrice) }}
-              </div>
-            </template>
-          </q-field>
-        </td>
-        <td class="text-center q-gutter-x-xs">
+        <td class="text-center">
           <q-btn
-            color="red"
             unelevated
             round
+            dense
             class="text-on-dark"
-            size="sm"
-            icon="o_delete"
+            size="14px"
             @click="formStore.deleteRow(index)"
-          />
-          <q-btn unelevated round class="text-on-dark" size="sm">
-            <q-icon size="20px" name="o_more_horiz" />
-            <q-menu
-              style="width: 500px"
-              :offset="[0, 20]"
-              fit
-              class="border-radius-lg"
-            >
-              <q-card class="bordered">
-                <q-card-section class="q-pb-none">
-                  <div
-                    class="text-h6 text-weight-700 no-letter-spacing"
-                  >
-                    اطلاعات تکمیلی
-                  </div>
-                  {{ row.productTitle }}
-                </q-card-section>
-                <q-card-section>
-                  <div class="">
-                    <q-item-label caption class="q-mb-sm">
-                      شرح ردیف
-                    </q-item-label>
-                    <custom-input
-                      hide-bottom-space
-                      v-model="row.comment"
-                      autogrow
-                    />
-                  </div>
-                  <div class="q-mt-md">
-                    <q-item-label caption class="q-mb-sm">
-                      تخفیف
-                    </q-item-label>
-                    <custom-input-number
-                      hide-bottom-space
-                      v-model="row.discount"
-                    />
-                  </div>
-                  <div class="q-mt-md">
-                    <q-item-label caption class="q-mb-sm">
-                      شرح تخفیف
-                    </q-item-label>
-                    <custom-input
-                      hide-bottom-space
-                      v-model="row.discountComment"
-                      autogrow
-                    />
-                  </div>
-                </q-card-section>
-              </q-card>
-            </q-menu>
+          >
+            <q-icon size="24px" name="o_delete" />
+          </q-btn>
+          <q-btn
+            @click="openRowDetailSheet(row)"
+            unelevated
+            dense
+            round
+            class="text-on-dark"
+            size="14px"
+          >
+            <q-icon size="24px" name="o_more_horiz" />
           </q-btn>
         </td>
       </tr>
@@ -179,6 +122,7 @@
 <script setup>
   import { ref, watch } from "vue";
   import { helper } from "src/helpers";
+  import { useDialog } from "src/composables/useDialog";
   import {
     sqlOperator,
     vatType,
@@ -187,15 +131,17 @@
 
   import FooterSection from "../v1/FooterSection.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
-  import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import NoProductSelected from "../NoProductSelected.vue";
+  import RowDetailSheet from "src/components/areas/sls/_shared/invoice/desktop/forms/v1/RowDetailSheet.vue";
 
   const props = defineProps({
     formStore: Object,
     formType: invoiceFormType,
   });
+
+  const dialogStore = useDialog();
 
   const prevQuantities = ref(new Map());
 
@@ -225,6 +171,14 @@
     ) {
       quantityInput.value[index].focus(); // Call the focus method defined in custom-input-number
     }
+  };
+
+  const openRowDetailSheet = (item) => {
+    dialogStore.openDialog({
+      title: "shared.labels.additionalInformation",
+      component: RowDetailSheet,
+      item: item,
+    });
   };
 
   watch(
@@ -268,7 +222,7 @@
   }
 
   .q-markup-table th {
-    font-size: 12px !important;
+    font-size: 14px !important;
     font-weight: 600 !important;
   }
 </style>

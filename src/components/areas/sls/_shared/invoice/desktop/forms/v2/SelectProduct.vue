@@ -98,7 +98,7 @@
           </div>
 
           <div class="row items-center justify-between full-width">
-            <div class="col-9 q-pl-lg column">
+            <div class="col-10 q-pl-lg column">
               <span
                 class="text-body3 no-letter-spacing text-weight-600"
               >
@@ -137,7 +137,7 @@
             </div>
             <div
               v-if="formStore.getProductQuantity(item.id)"
-              class="col row justify-end items-center"
+              class="absolute-top-right q-pa-sm"
             >
               <q-btn
                 flat

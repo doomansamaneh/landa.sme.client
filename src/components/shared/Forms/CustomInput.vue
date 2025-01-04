@@ -16,6 +16,7 @@
     lazy-rules
     :rounded="rounded"
     :rules="rules"
+    :autogrow="autogrow"
   >
     <validation-alert
       v-if="validationMessage"
@@ -51,6 +52,7 @@
     maxlength: Number,
     disable: Boolean,
     rounded: Boolean,
+    autogrow: Boolean,
   });
 
   const modelValue = defineModel("modelValue");
