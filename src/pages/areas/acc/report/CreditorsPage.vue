@@ -1,5 +1,7 @@
 <template>
-  <customer-account />
+  <customer-account
+    :title="$t('main-menu-items.Acc_Report_Creditors')"
+  />
 </template>
 
 <script setup>

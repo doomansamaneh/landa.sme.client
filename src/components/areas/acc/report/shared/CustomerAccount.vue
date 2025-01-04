@@ -1,8 +1,5 @@
 <template>
-  <report
-    :title="$t('main-menu-items.Acc_Report_CustomerAccounting')"
-    :grid-store="gridStore"
-  />
+  <report :title="title" :grid-store="gridStore" />
 </template>
 
 <script setup>
@@ -10,6 +7,10 @@
 
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useCustomerAcccountState } from "src/components/areas/acc/_composables/useCustomerAcccountState";
+
+  const props = defineProps({
+    title: String,
+  });
 
   const accountStore = useCustomerAcccountState();
   const gridStore = useBaseInfoGrid(accountStore);

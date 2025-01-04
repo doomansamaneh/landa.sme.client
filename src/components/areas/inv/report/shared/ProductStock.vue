@@ -123,7 +123,6 @@
   });
 
   const dataSource = "sls/report/getProductStock";
-
   const stockStore = useProductStockState();
   const gridStore = useBaseInfoGrid(stockStore);
   const tableStore = useDataTable({
