@@ -3,11 +3,11 @@
     <thead>
       <tr>
         <th style="width: 1%">#</th>
-        <th style="width: 45%">کالا/خدمت</th>
-        <th style="width: 1%">تعداد/مقدار</th>
-        <th style="width: 20%">واحد سنجش</th>
-        <th style="width: 12%">مبلغ واحد</th>
-        <th style="width: 12%">
+        <th style="width: 40%">کالا/خدمت</th>
+        <th style="width: 10%">تعداد/مقدار</th>
+        <th style="width: 15%">واحد سنجش</th>
+        <th style="width: 16%">مبلغ واحد</th>
+        <th style="width: 17%">
           مبلغ کل
           <q-icon
             name="o_info"
@@ -121,7 +121,6 @@
 
 <script setup>
   import { ref, watch } from "vue";
-  import { helper } from "src/helpers";
   import { useDialog } from "src/composables/useDialog";
   import {
     sqlOperator,
@@ -145,22 +144,22 @@
 
   const prevQuantities = ref(new Map());
 
-  const vatFilter =
-    props.formType == invoiceFormType.sales
-      ? [
-          {
-            fieldName: "isForSale",
-            operator: sqlOperator.in,
-            value: `${vatType.sale},${vatType.purchaseAndSale}`,
-          },
-        ]
-      : [
-          {
-            fieldName: "isForSale",
-            operator: sqlOperator.in,
-            value: `${vatType.purchase},${vatType.purchaseAndSale}`,
-          },
-        ];
+  // const vatFilter =
+  //   props.formType == invoiceFormType.sales
+  //     ? [
+  //         {
+  //           fieldName: "isForSale",
+  //           operator: sqlOperator.in,
+  //           value: `${vatType.sale},${vatType.purchaseAndSale}`,
+  //         },
+  //       ]
+  //     : [
+  //         {
+  //           fieldName: "isForSale",
+  //           operator: sqlOperator.in,
+  //           value: `${vatType.purchase},${vatType.purchaseAndSale}`,
+  //         },
+  //       ];
 
   const quantityInput = ref([]); // Array to hold the refs for each input
 
@@ -206,9 +205,9 @@
     { deep: true }
   );
 
-  const vatChanged = (vat, row) => {
-    row.vatPercent = vat?.rate ?? 0;
-  };
+  // const vatChanged = (vat, row) => {
+  //   row.vatPercent = vat?.rate ?? 0;
+  // };
 </script>
 
 <style scoped>
