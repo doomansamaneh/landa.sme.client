@@ -9,20 +9,28 @@
     </q-card-section>
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
-      <q-list class="q-pr-md q-pl-sm rounded-borders">
+      <q-list class="statement-bar q-pr-md q-pl-sm">
         <balance-sheet-item-header title="داراییهای جاری" />
-        <balance-sheet-item
-          v-for="item in currentAssets"
-          :key="item.id"
-          :item="item"
-        />
+
+        <div class="q-pl-xs q-ml-md sub-item-container">
+          <balance-sheet-item
+            v-for="item in currentAssets"
+            :key="item.id"
+            :item="item"
+            class="q-my-sm"
+          />
+        </div>
 
         <balance-sheet-item-header title="داراییهای ثابت" />
-        <balance-sheet-item
-          v-for="item in fixedAssets"
-          :key="item.id"
-          :item="item"
-        />
+
+        <div class="q-pl-xs q-ml-md border-right">
+          <balance-sheet-item
+            v-for="item in fixedAssets"
+            :key="item.id"
+            :item="item"
+            class="q-my-sm"
+          />
+        </div>
       </q-list>
     </q-card-section>
 

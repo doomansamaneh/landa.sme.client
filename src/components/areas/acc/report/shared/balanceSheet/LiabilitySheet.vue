@@ -9,27 +9,33 @@
     </q-card-section>
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
-      <q-list class="q-pr-md q-pl-sm rounded-borders">
+      <q-list class="statement-bar q-pr-md q-pl-sm">
         <template v-if="totalCL.value !== 0">
           <balance-sheet-item-header title="بدهی جاری" />
 
-          <balance-sheet-item
-            v-for="item in currentList"
-            :key="item.id"
-            :item="item"
-            use-credit
-          />
+          <div class="q-pl-xs q-ml-md sub-item-container">
+            <balance-sheet-item
+              v-for="item in currentList"
+              :key="item.id"
+              :item="item"
+              use-credit
+              class="q-my-sm"
+            />
+          </div>
         </template>
 
         <template v-if="totalFL.value && totalFL.value !== 0">
           <balance-sheet-item-header title="بدهی بلند مدت" />
 
-          <balance-sheet-item
-            v-for="item in longTermList"
-            :key="item.id"
-            :item="item"
-            use-credit
-          />
+          <div class="q-pl-xs q-ml-md sub-item-container">
+            <balance-sheet-item
+              v-for="item in longTermList"
+              :key="item.id"
+              :item="item"
+              use-credit
+              class="q-my-sm"
+            />
+          </div>
         </template>
       </q-list>
     </q-card-section>

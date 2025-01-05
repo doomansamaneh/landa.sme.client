@@ -2,7 +2,7 @@
   <q-list>
     <q-expansion-item
       header-class="border-radius-sm"
-      group="statement"
+      :group="`${item.glTitle}-statement`"
     >
       <template #header>
         <q-item-section avatar style="padding-left: 0">
