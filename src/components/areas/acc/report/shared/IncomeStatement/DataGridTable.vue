@@ -3,10 +3,10 @@
     <card-title :title="title" icon="o_reorder" />
 
     <q-card-section
-      :class="$q.screen.gt.xs ? 'q-py-none q-pa-lg' : 'no-padding'"
+      :class="$q.screen.gt.xs ? 'q-pa-md' : 'no-padding'"
     >
-      <q-list class="rounded-borders">
-        <template
+      <q-list class="statement-bar">
+        <div
           v-for="item in dataStore.accountClCodes.value"
           :key="item.clTypeId"
         >
@@ -20,51 +20,92 @@
             </span>
           </q-item-label>
 
-          <q-item
-            class="border-radius-sm q-px-sm q-py-xs q-my-sm"
-            clickable
-            v-ripple
-            v-for="glItem in dataStore.getFilteredItems(item.clCode)"
-            :key="glItem.glCode"
+          <q-card-section
+            :class="
+              $q.screen.gt.xs
+                ? 'q-py-md q-pr-none q-pl-md'
+                : 'no-padding'
+            "
           >
-            <q-item-section class="q-pr-sm" avatar>
+            <q-list class="sub-item-container q-pl-xs">
               <div
-                class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
+                v-for="item in dataStore.accountClCodes.value"
+                :key="item.clTypeId"
               >
-                {{ glItem.glCode }}
+                <template
+                  v-for="glItem in dataStore.getFilteredItems(
+                    item.clCode
+                  )"
+                  :key="glItem.glCode"
+                >
+                  <q-expansion-item
+                    header-class="border-radius-sm"
+                    group="statement"
+                  >
+                    <template #header>
+                      <q-item-section avatar style="padding-left: 0">
+                        <q-icon
+                          class="q-mr-sm"
+                          size="20px"
+                          name="o_folder"
+                        />
+                      </q-item-section>
+
+                      <q-item-section class="q-pr-sm" avatar>
+                        <div
+                          class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
+                        >
+                          {{ glItem.glCode }}
+                        </div>
+                      </q-item-section>
+
+                      <q-item-section>
+                        {{ glItem.glTitle }}
+                      </q-item-section>
+
+                      <q-item-section
+                        side
+                        v-if="
+                          item.clTypeId === accountCLTypeIds.revenue
+                        "
+                      >
+                        <span v-if="glItem.credit">
+                          {{ helper.formatNumber(glItem.credit) }}
+                        </span>
+                        <span v-if="glItem.debit" class="text-red">
+                          ({{ helper.formatNumber(glItem.debit) }})
+                        </span>
+                      </q-item-section>
+                      <q-item-section
+                        side
+                        v-else-if="
+                          item.clTypeId === accountCLTypeIds.expense
+                        "
+                      >
+                        <span v-if="glItem.debit">
+                          {{ helper.formatNumber(glItem.debit) }}
+                        </span>
+                        <span v-if="glItem.credit" class="text-red">
+                          ({{ helper.formatNumber(glItem.credit) }})
+                        </span>
+                      </q-item-section>
+                    </template>
+
+                    <q-item>
+                      Lorem ipsum dolor sit amet consectetur
+                      adipisicing elit. Unde accusamus autem rem quae
+                      similique, expedita beatae cum excepturi id
+                      doloremque dolorum aperiam pariatur dolor culpa
+                      officiis officia laborum tempora ipsa.
+                    </q-item>
+                  </q-expansion-item>
+                </template>
               </div>
-            </q-item-section>
-
-            <q-item-section>
-              {{ glItem.glTitle }}
-            </q-item-section>
-
-            <q-item-section
-              side
-              v-if="item.clTypeId === accountCLTypeIds.revenue"
-            >
-              <span v-if="glItem.credit">
-                {{ helper.formatNumber(glItem.credit) }}
-              </span>
-              <span v-if="glItem.debit" class="text-red">
-                ({{ helper.formatNumber(glItem.debit) }})
-              </span>
-            </q-item-section>
-            <q-item-section
-              side
-              v-else-if="item.clTypeId === accountCLTypeIds.expense"
-            >
-              <span v-if="glItem.debit">
-                {{ helper.formatNumber(glItem.debit) }}
-              </span>
-              <span v-if="glItem.credit" class="text-red">
-                ({{ helper.formatNumber(glItem.credit) }})
-              </span>
-            </q-item-section>
-          </q-item>
+            </q-list>
+          </q-card-section>
 
           <q-separator spaced v-if="false" />
-        </template>
+        </div>
       </q-list>
     </q-card-section>
 
