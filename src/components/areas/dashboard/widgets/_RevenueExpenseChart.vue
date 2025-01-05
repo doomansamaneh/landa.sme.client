@@ -159,6 +159,7 @@
         fontWeight: 400,
         // offsetY: 16,
         markers: {
+          strokeWidth: 0,
           width: 14,
           height: 14,
           radius: 4,
