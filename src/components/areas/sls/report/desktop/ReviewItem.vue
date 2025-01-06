@@ -7,12 +7,14 @@
   import { reviewInvoiceItemColumns } from "../../_composables/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useSalesReview } from "src/components/areas/acc/_composables/useSalesReview";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
   const searchStore = useInvoiceSearch();
 
   const props = defineProps({
+    reportStore: useSalesReview,
     dataSource: {
       type: String,
       default: "sls/report/getInvoiceDetail",
