@@ -46,6 +46,6 @@
   const showLink = computed(
     () =>
       currentBusiness?.value?.isOwner &&
-      currentBusiness?.value?.daysToExpire < 300
+      currentBusiness?.value?.daysToExpire < 30
   );
 </script>
