@@ -1,7 +1,7 @@
 @mixin create-form-light {
-  .form-container {
-    margin-top: -8px;
-  }
+  // .form-container {
+  //   margin-top: -8px;
+  // }
 
   .form-container.q-card {
     border: 1px solid #00000024 !important;
@@ -15,7 +15,7 @@
 
   @media (max-width: $breakpoint-xs-max) {
     .form-container {
-      margin-top: 46px;
+      // margin-top: 46px;
     }
 
     .form-container.q-card {
@@ -25,14 +25,14 @@
     }
 
     .form-container .q-card__section {
-      margin-top: 10px !important;
+      // margin-top: 10px !important;
       padding: 0 !important;
     }
   }
 
   @media (min-width: $breakpoint-xs-max) and (max-width: $breakpoint-sm-max) {
     .form-container {
-      margin-top: 38px;
+      // margin-top: 38px;
     }
   }
 }

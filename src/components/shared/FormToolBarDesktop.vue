@@ -1,12 +1,6 @@
 <template>
   <toolbar-observer ref="observer">
-    <q-toolbar
-      :style="
-        $q.screen.gt.sm
-          ? 'margin-top: 4px; margin-bottom: 4px; padding-left: 38px; padding-right: 38px;'
-          : ''
-      "
-    >
+    <q-toolbar :style="customStyles">
       <div class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn
@@ -45,7 +39,8 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted } from "vue";
+  import { ref, computed } from "vue";
+  import { useQuasar } from "quasar";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
   import ToolbarObserver from "src/components/shared/ToolBarObserver.vue";
 
@@ -55,9 +50,24 @@
 
   const emit = defineEmits(["submit-call-back"]);
 
+  const $q = useQuasar();
   const observer = ref(null);
 
   const save = () => {
     emit("submit-call-back");
   };
+
+  const customStyles = computed(() => {
+    const padding = $q.screen.sm
+      ? "24px"
+      : $q.screen.gt.sm
+      ? "38px"
+      : "";
+    return {
+      "margin-top": "4px",
+      "margin-bottom": "4px",
+      "padding-left": padding,
+      "padding-right": padding,
+    };
+  });
 </script>

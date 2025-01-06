@@ -1,11 +1,10 @@
 <template>
   <template v-if="!edit">
     <q-btn
-      filled
       unelevated
       rounded
       padding="6px 12px"
-      class="primary-gradient text-white text-on-dark q-mb-lg"
+      class="primary-gradient primary-shadow text-white text-on-dark"
     >
       <q-icon
         name="o_add"
@@ -90,7 +89,7 @@
       </q-menu>
     </q-btn>
 
-    <div class="q-col-gutter-lg">
+    <div class="q-pt-md q-col-gutter-md">
       <div
         v-for="(item, index) in formStore.model.value
           .customerContactPhones"
