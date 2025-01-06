@@ -13,9 +13,7 @@
         <q-icon name="o_close" />
       </q-btn>
 
-      <div class="title">
-        <strong>دارایی = بدهی + سرمایه</strong>
-      </div>
+      <div class="title">دارایی = بدهی + سرمایه</div>
       <div class="q-mt-md text-body1 no-letter-spacing">
         وضعیت مالی هر کسب و کار، کوچک یا بزرگ، بر اساس دو جزء اصلی
         ترازنامه ارزیابی می شود: دارایی ها و بدهی ها. حقوق صاحبان
@@ -29,7 +27,7 @@
   <div class="top-border q-mt-lg" />
 
   <div class="row q-col-gutter-md q-py-md">
-    <div class="left-border col-md-6 col-sm-12 col-xs-12 q-pr-md">
+    <div class="col-md-6 col-sm-12 col-xs-12 q-pr-md">
       <asset :model="dataStore.model.value" />
     </div>
 
