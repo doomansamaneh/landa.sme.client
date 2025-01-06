@@ -1,9 +1,9 @@
 <template>
   <q-card-section>
     <div class="text-center">
-      <h6>
+      <div class="text-h6">
         {{ appConfigStore.model.value.companySetting.name }}
-      </h6>
+      </div>
       <div class="text-body2 text-bold">{{ title }}</div>
     </div>
   </q-card-section>
@@ -56,7 +56,6 @@
   const appConfigStore = useAppConfigModel();
 
   console.log(props.model?.value);
-  
 </script>
 
 <style lang="scss">

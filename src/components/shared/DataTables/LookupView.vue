@@ -13,7 +13,6 @@
     debounce="1000"
     :placeholder="placeholder"
     :autofocus="autofocus"
-    hide-buttom-space
     :rules="rules"
     @update:model-value="searchInLookup"
     @keydown.enter.prevent.stop="selectRow"
@@ -24,12 +23,14 @@
     </template>
 
     <template #append>
-      <q-icon
-        name="o_close"
-        v-if="!isSearchEmpty"
-        class="cursor-pointer q-field__focusable-action"
-        @click="clearSearch"
-      />
+      <template v-if="clearable">
+        <q-icon
+          name="o_close"
+          v-if="!isSearchEmpty"
+          class="cursor-pointer q-field__focusable-action"
+          @click="clearSearch"
+        />
+      </template>
       <q-icon
         @click="handlePopup"
         name="o_expand_more"
@@ -225,6 +226,7 @@
           input-class="text-body2 no-letter-spacing"
           dense
           debounce="1000"
+          :clearable="clearable"
           :placeholder="placeholder"
           @update:model-value="searchInLookup"
           @keydown.enter.prevent.stop="selectRow"
@@ -408,6 +410,7 @@
     createForm: Object,
     label: String,
     autogrow: Boolean,
+    clearable: Boolean,
     inputClass: {
       type: String,
       default: "text-body2 no-letter-spacing",

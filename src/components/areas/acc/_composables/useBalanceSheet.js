@@ -1,5 +1,5 @@
-import { ref, onMounted, onUnmounted, computed } from "vue";
-import { fetchWrapper, bus, helper } from "src/helpers";
+import { ref, onMounted, onUnmounted } from "vue";
+import { fetchWrapper, bus } from "src/helpers";
 
 export function useBalanceSheet() {
   const model = ref({ reviewItems: [] });
@@ -13,6 +13,17 @@ export function useBalanceSheet() {
     model.value = response.data.data;
   }
 
+  async function loadSLData(item) {
+    if (!item.items) {
+      const response = await fetchWrapper.get(
+        `acc/report/balanceSLByGL/${item.glId}`,
+        [],
+        true
+      );
+      item.items = response.data.data;
+    }
+  }
+
   onMounted(() => {
     loadData();
     bus.on("render-page", loadData);
@@ -24,5 +35,6 @@ export function useBalanceSheet() {
 
   return {
     model,
+    loadSLData,
   };
 }

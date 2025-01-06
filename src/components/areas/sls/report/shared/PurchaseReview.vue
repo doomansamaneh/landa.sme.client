@@ -3,6 +3,17 @@
 
   <advanced-search />
 
+  <filter-tip />
+
+  <chip
+    icon="filter_alt"
+    icon-remove="o_close"
+    color="primary"
+    class="q-mb-sm"
+    :store="purchaseReviewStore"
+    key-type="purchaseReviewType"
+  />
+
   <q-card flat class="bordered shadow q-mt-md">
     <card-tabs
       v-model="tab"
@@ -15,21 +26,25 @@
       <card-tab
         name="pg"
         icon="o_view_module"
-        title="گروه کالا و خدمات"
+        :title="$t('shared.purchaseReviewType.pg')"
       />
 
       <card-tab
         name="prd"
         icon="o_desktop_mac"
-        title="کالا و خدمات"
+        :title="$t('shared.purchaseReviewType.prd')"
       />
 
-      <card-tab name="crm" icon="o_group" title="طرف حساب" />
+      <card-tab
+        name="crm"
+        icon="o_group"
+        :title="$t('shared.purchaseReviewType.crm')"
+      />
 
       <card-tab
         name="prdCrm"
         icon="o_view_comfy"
-        title="طرف حساب/کالا و خدمت"
+        :title="$t('shared.purchaseReviewType.prdCrm')"
       />
 
       <card-tab name="il" icon="o_receipt" title="ریز گردش" />
@@ -44,23 +59,32 @@
       <q-tab-panel name="pg" class="no-padding">
         <review-pg
           data-source="sls/report/getPurchaseByProductGroup"
+          :report-store="purchaseReviewStore"
         />
       </q-tab-panel>
       <q-tab-panel name="prd" class="no-padding">
-        <review-prd data-source="sls/report/getPurchaseByProduct" />
+        <review-prd
+          data-source="sls/report/getPurchaseByProduct"
+          :report-store="purchaseReviewStore"
+        />
       </q-tab-panel>
       <q-tab-panel name="crm" class="no-padding">
         <review-customer
           data-source="sls/report/getPurchaseByCustomer"
+          :report-store="purchaseReviewStore"
         />
       </q-tab-panel>
       <q-tab-panel name="prdCrm" class="no-padding">
         <review-prd-customer
           data-source="sls/report/getPurchaseByCustomerProduct"
+          :report-store="purchaseReviewStore"
         />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
-        <review-item data-source="sls/report/getPurchaseDetail" />
+        <review-item
+          data-source="sls/report/getPurchaseDetail"
+          :report-store="purchaseReviewStore"
+        />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -68,6 +92,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { usePurchaseReview } from "src/components/areas/acc/_composables/usePurchaseReview";
 
   import ReviewPg from "../desktop/ReviewProductGroup.vue";
   import ReviewPrd from "../desktop/ReviewProduct.vue";
@@ -79,9 +104,13 @@
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
+  import Chip from "src/components/shared/CustomChip.vue";
+  import FilterTip from "src/components/areas/sls/report/shared/FilterTip.vue";
 
   const props = defineProps({
     title: String,
   });
   const tab = ref("pg");
+
+  const purchaseReviewStore = usePurchaseReview();
 </script>

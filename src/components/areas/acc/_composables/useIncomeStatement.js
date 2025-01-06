@@ -13,6 +13,17 @@ export function useIncomeStatement() {
     model.value = response.data.data;
   }
 
+  async function loadSLData(item) {
+    if (!item.items) {
+      const response = await fetchWrapper.get(
+        `acc/report/incomeStatementSLByGL/${item.id}`,
+        [],
+        true
+      );
+      item.items = response.data.data;
+    }
+  }
+
   const accountClCodes = computed(() => {
     // Step 1: Map to the desired properties
     let items = model.value.reviewItems.map((c) => ({
@@ -72,7 +83,8 @@ export function useIncomeStatement() {
   return {
     model,
     accountClCodes,
-    getFilteredItems,
     totalIcome,
+    getFilteredItems,
+    loadSLData,
   };
 }

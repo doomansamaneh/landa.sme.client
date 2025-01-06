@@ -3,12 +3,32 @@
 
   <advanced-search :search-model="searchModel" />
 
+  <q-card v-if="guideStatus" flat class="tips q-mb-md">
+    <q-card-section>
+      <q-btn
+        dense
+        unelevated
+        round
+        class="absolute-top-right q-ma-sm"
+        @click="toggleGuide"
+      >
+        <q-icon name="o_close" />
+      </q-btn>
+      <div class="title">راهنما</div>
+      <div class="q-mt-md text-body1 no-letter-spacing">
+        بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در
+        تب‌های پس از آن مشاهده کنید
+      </div>
+    </q-card-section>
+  </q-card>
+
   <chip
     icon="filter_alt"
     icon-remove="o_close"
     color="primary"
     class="q-mb-sm"
-    :review-store="accountReviewStore"
+    :store="accountReviewStore"
+    key-type="accountTreeType"
   />
 
   <q-card flat class="bordered shadow">
@@ -92,7 +112,13 @@
   const props = defineProps({
     title: String,
   });
-  const tab = ref("cl");
 
   const accountReviewStore = useAccountReview();
+
+  const tab = ref("cl");
+  const guideStatus = ref(true);
+
+  const toggleGuide = () => {
+    guideStatus.value = !guideStatus.value;
+  };
 </script>
