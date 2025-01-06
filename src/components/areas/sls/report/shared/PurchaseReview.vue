@@ -38,13 +38,13 @@
       <card-tab
         name="crm"
         icon="o_group"
-        :title="$t('shared.purchaseReviewType.rc')"
+        :title="$t('shared.purchaseReviewType.crm')"
       />
 
       <card-tab
         name="prdCrm"
         icon="o_view_comfy"
-        :title="$t('shared.purchaseReviewType.rcprd')"
+        :title="$t('shared.purchaseReviewType.prdCrm')"
       />
 
       <card-tab name="il" icon="o_receipt" title="ریز گردش" />

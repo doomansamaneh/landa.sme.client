@@ -38,7 +38,7 @@
       <card-tab
         name="crm"
         icon="o_group"
-        :title="$t('shared.salesReviewType.rc')"
+        :title="$t('shared.salesReviewType.crm')"
       />
 
       <card-tab
