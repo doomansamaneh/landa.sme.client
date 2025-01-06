@@ -23,6 +23,18 @@ export const accountTreeType = {
   dl: "dl",
 };
 
+export const salesReviewType = {
+  pg: "pg",
+  prd: "prd",
+  rc: "rc",
+};
+
+export const purchaseReviewType = {
+  pg: "pg",
+  prd: "prd",
+  rc: "rc",
+};
+
 export const customerType = {
   legal: 171,
   person: 172,

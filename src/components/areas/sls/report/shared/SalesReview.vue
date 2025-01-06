@@ -3,6 +3,17 @@
 
   <advanced-search />
 
+  <filter-tip />
+
+  <chip
+    icon="filter_alt"
+    icon-remove="o_close"
+    color="primary"
+    class="q-mb-sm"
+    :store="salesReviewStore"
+    key-type="salesReviewType"
+  />
+
   <q-card flat class="bordered shadow q-mt-md">
     <card-tabs
       v-model="tab"
@@ -15,16 +26,20 @@
       <card-tab
         name="pg"
         icon="o_view_module"
-        title="گروه کالا و خدمات"
+        :title="$t('shared.salesReviewType.pg')"
       />
 
       <card-tab
         name="prd"
         icon="o_desktop_mac"
-        title="کالا و خدمات"
+        :title="$t('shared.salesReviewType.prd')"
       />
 
-      <card-tab name="crm" icon="o_group" title="طرف حساب" />
+      <card-tab
+        name="crm"
+        icon="o_group"
+        :title="$t('shared.salesReviewType.rc')"
+      />
 
       <card-tab
         name="prdCrm"
@@ -42,19 +57,19 @@
       class="transparent"
     >
       <q-tab-panel name="pg" class="no-padding">
-        <review-pg />
+        <review-pg :report-store="salesReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="prd" class="no-padding">
-        <review-prd />
+        <review-prd :report-store="salesReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="crm" class="no-padding">
-        <review-customer />
+        <review-customer :report-store="salesReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="prdCrm" class="no-padding">
-        <review-prd-customer />
+        <review-prd-customer :report-store="salesReviewStore" />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
-        <review-item />
+        <review-item :report-store="salesReviewStore" />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -62,6 +77,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useSalesReview } from "src/components/areas/acc/_composables/useSalesReview";
 
   import ReviewPg from "../desktop/ReviewProductGroup.vue";
   import ReviewPrd from "../desktop/ReviewProduct.vue";
@@ -73,10 +89,14 @@
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import CardTab from "src/components/shared/CardTab.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
+  import Chip from "src/components/shared/CustomChip.vue";
+  import FilterTip from "src/components/areas/sls/report/shared/FilterTip.vue";
 
   const props = defineProps({
     title: String,
   });
+
+  const salesReviewStore = useSalesReview();
 
   const tab = ref("pg");
 </script>
