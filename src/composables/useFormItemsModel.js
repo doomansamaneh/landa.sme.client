@@ -22,6 +22,9 @@ export function useFormItemsModel() {
   };
 
   const pushNewItem = (items, newItem) => {
+    if (newItem) {
+      newItem.productCodeTitle = `${newItem.productCode} - ${newItem.productTitle}`;
+    }
     items.push(newItem ?? defaultItem);
     newAddedItemIndex.value = items.length - 1;
     handleFocus(items.length - 1);

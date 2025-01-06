@@ -256,7 +256,6 @@ export function useInvoiceModel(config) {
       newRow.productId = product.id;
       newRow.productCode = product.code;
       newRow.productTitle = product.title;
-      newRow.productCodeTitle = `${product.code} - ${product.title}`;
       newRow.productUnitId = product.productUnitId;
       newRow.productUnitTitle = product.productUnitTitle;
       newRow.price =

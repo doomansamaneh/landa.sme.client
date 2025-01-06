@@ -39,7 +39,9 @@
   });
 
   const productCode = ref(null);
-  const addByCode = () => {
-    props.formStore.addNewRowByCode(productCode.value);
+  const addByCode = async () => {
+    await props.formStore.addNewRowByCode(productCode.value);
+    productCode.value = null;
+    //todo: focus on code
   };
 </script>
