@@ -2,10 +2,9 @@
   <template v-if="$q.screen.xs">
     <toolbar-mobile
       v-if="toolbar"
-      :table-store="mobileGrid?.tableStore"
+      :table-store="tableStore"
       :crud-store="crudStore"
       :title="title"
-      :base-route="baseRoute"
       buttons
       margin
     >
@@ -58,10 +57,9 @@
   <template v-else>
     <!-- v-if="toolbar" -->
     <toolbar-desktop
-      :table-store="desktopGrid?.tableStore"
+      :table-store="tableStore"
       :crud-store="crudStore"
       :title_="title"
-      :base-route="baseRoute"
       buttons
       margin
     >
@@ -103,17 +101,11 @@
     </toolbar-desktop>
   </template>
 
-  <desktop
-    ref="desktopGrid"
-    :grid-store="gridStore"
-    :data-source="dataSource"
-    :title="title"
-  />
+  <desktop :table-store="tableStore" :title="title" />
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import { useQuasar } from "quasar";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
@@ -129,7 +121,8 @@
     gridStore: Object,
   });
 
-  const $q = useQuasar();
-  const desktopGrid = ref(null);
-  const mobileGrid = ref(null);
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    store: props.gridStore,
+  });
 </script>

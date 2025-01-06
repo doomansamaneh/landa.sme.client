@@ -3,28 +3,30 @@
     <card-title :title="title" icon="o_group" />
 
     <data-grid
-      ref="dataGrid"
-      :grid-store="gridStore"
+      :data-table-store="tableStore"
       separator="horizontal"
-      :data-source="dataSource"
       flat
       toolbar
       expandable
     >
-      <template #cell-credit="{ item }">
-        {{ item.credit?.toLocaleString() }}
-      </template>
-
       <template #cell-debit="{ item }">
         {{ helper.formatNumber(item.debit) }}
       </template>
 
+      <template #cell-credit="{ item }">
+        {{ helper.formatNumber(item.credit) }}
+      </template>
+
       <template #cell-debitRemained="{ item }">
-        {{ helper.formatNumber(item.debitRemained) }}
+        <span class="text-weight-600">
+          {{ helper.formatNumber(item.debitRemained) }}
+        </span>
       </template>
 
       <template #cell-creditRemained="{ item }">
-        {{ helper.formatNumber(item.creditRemained) }}
+        <span class="text-weight-600">
+          {{ helper.formatNumber(item.creditRemained) }}
+        </span>
       </template>
 
       <template #expand="{ item }">
@@ -37,27 +39,15 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
   import { helper } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import CardTitle from "src/components/shared/CardTitle.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import Preview from "./AccountPreview.vue";
 
   const props = defineProps({
-    gridStore: Object,
     title: String,
-    dataSource: String,
-  });
-
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid.value?.tableStore);
-
-  async function reloadData() {
-    await tableStore.value.reloadData();
-  }
-
-  defineExpose({
-    tableStore,
+    tableStore: useDataTable,
   });
 </script>

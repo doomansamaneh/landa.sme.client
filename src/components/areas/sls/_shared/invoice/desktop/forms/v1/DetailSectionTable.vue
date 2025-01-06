@@ -182,6 +182,7 @@
     dialogStore.openDialog({
       title: "shared.labels.additionalInformation",
       component: RowDetailSheet,
+      props: { formType: props.formType },
       item: item,
     });
   };
