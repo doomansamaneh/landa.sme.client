@@ -1,18 +1,16 @@
 <template>
-  <review-data-grid
-    :table-store="tableStore"
-    toolbar
-    @row-dbl-click="filterRow"
-  />
+  <review-data-grid :table-store="tableStore" toolbar />
 </template>
 
 <script setup>
+  import { onMounted, onUnmounted } from "vue";
+  import { bus } from "src/helpers";
   import { useInvoiceSearch } from "../../_composables/useInvoiceSearch";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
   import { reviewProductCustomerColumns } from "../../_composables/constants";
   import { useSalesReview } from "src/components/areas/acc/_composables/useSalesReview";
-  import { salesReviewType } from "src/constants";
+  import { salesReviewType, sqlOperator } from "src/constants";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
@@ -42,11 +40,38 @@
       }),
   });
 
-  const filterRow = (row) => {
-    props.reportStore?.setItem({
-      id: row.id,
-      title: `${row.productGroupCode} - ${row.productGroupTitle}`,
-      type: salesReviewType.rc,
-    });
+  const setSelectedAccount = () => {
+    let currentFilters = props.filterExpression || [];
+    const selectedPg = props.reportStore?.getItemByType(
+      salesReviewType.pg
+    );
+
+    if (selectedPg) {
+      currentFilters.push({
+        fieldName: "p.productGroupId",
+        operator: sqlOperator.equal,
+        value: selectedPg.id,
+      });
+    }
+    tableStore.setFilterExpression(currentFilters);
   };
+
+  setSelectedAccount();
+
+  const reloadData = async () => {
+    setSelectedAccount();
+    await tableStore.reloadData();
+  };
+
+  onMounted(() => {
+    bus.on("apply-selected-account", reloadData);
+  });
+
+  onUnmounted(() => {
+    bus.off("apply-selected-account", reloadData);
+  });
+
+  defineExpose({
+    tableStore,
+  });
 </script>

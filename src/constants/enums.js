@@ -26,13 +26,13 @@ export const accountTreeType = {
 export const salesReviewType = {
   pg: "pg",
   prd: "prd",
-  rc: "rc",
+  crm: "crm",
 };
 
 export const purchaseReviewType = {
   pg: "pg",
   prd: "prd",
-  rc: "rc",
+  crm: "crm",
 };
 
 export const customerType = {
