@@ -8,6 +8,7 @@
     :filterExpression="filterExpression"
     class="productLookup"
     show-add
+    clearable
     :create-form="CreateForm"
   >
     <template #td="{ row }">
