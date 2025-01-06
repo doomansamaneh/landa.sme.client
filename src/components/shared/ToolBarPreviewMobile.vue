@@ -1,7 +1,6 @@
 <template>
   <tool-bar-observer ref="observer">
-    <q-toolbar>
-
+    <q-toolbar :class="$q.screen.sm ? 'q-px-md' : ''">
       <template v-if="selectedIds?.length > 0">
         <q-btn
           padding="2px 10px"
@@ -23,14 +22,21 @@
       <template v-else>
         <div class="row items-center">
           <slot name="header">
-            <back-button v-if="backButton" class="q-mr-xs" />
+            <back-button
+              icon="arrow_forward"
+              v-if="backButton"
+              class="q-mr-xs"
+            />
 
             <span
               class="ellipsis text-weight-700 no-letter-spacing"
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
             >
               <slot name="header-title">
-                <span class="text-body2 no-letter-spacing">
+                <span
+                  :class="$q.screen.sm ? 'text-weight-700' : ''"
+                  class="text-body2 no-letter-spacing"
+                >
                   {{ title }}
                 </span>
                 <q-btn
@@ -162,7 +168,6 @@
           </template>
         </slot>
       </div>
-      
     </q-toolbar>
   </tool-bar-observer>
 

@@ -22,7 +22,7 @@
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
             >
               <slot name="header-title">
-                <span class="text-body2 no-letter-spacing">
+                <span class="text-body2 no-letter-spacing text-weight-700">
                   {{ title }}
                 </span>
                 <q-btn

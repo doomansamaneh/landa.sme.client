@@ -1,10 +1,9 @@
 <template>
   <q-btn
-    filled
     unelevated
     rounded
     padding="6px 12px"
-    class="primary-gradient text-white text-on-dark"
+    class="primary-gradient primary-shadow text-white text-on-dark"
     @click="formStore.addAddress()"
   >
     <q-icon
@@ -15,10 +14,10 @@
     افزودن نشانی
   </q-btn>
 
-  <div
+  <div class="q-pt-md q-col-gutter-md">
+    <div
     v-for="(item, index) in formStore.model.value.customerAddresses"
     :key="index"
-    class="q-my-md"
   >
     <address-item
       :index="index"
@@ -26,6 +25,7 @@
       @item-deleted="formStore.deleteAddress(index)"
       @item-added="formStore.addAddress(index)"
     />
+  </div>
   </div>
 </template>
 

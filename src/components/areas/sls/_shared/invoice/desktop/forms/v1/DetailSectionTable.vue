@@ -1,7 +1,7 @@
 <template>
   <q-markup-table bordered flat separator="horizontal">
     <thead>
-      <tr>
+      <!-- <tr>
         <th colspan="100%">
           <div class="row items-center">
             <div class="col-md-6 col-sm-12">
@@ -9,7 +9,7 @@
             </div>
           </div>
         </th>
-      </tr>
+      </tr> -->
       <tr>
         <th style="width: 1%">#</th>
         <th style="width: 28%">کالا/خدمت</th>

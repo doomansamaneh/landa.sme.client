@@ -8,6 +8,7 @@
     columns="code,name"
     width="450px"
     show-add
+    clearable
     :create-form="CreateForm"
     @add="add"
   >

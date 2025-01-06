@@ -1,9 +1,13 @@
 <template>
   <q-scroll-observer @scroll="onScroll" />
   <div
-    :style="
-      $q.screen.xs ? 'margin-bottom: 48px' : 'margin-bottom: 30px'
-    "
+    :style="{
+      'margin-bottom': $q.screen.xs
+        ? '48px'
+        : $q.screen.sm
+        ? '38px'
+        : '30px',
+    }"
   >
     <q-page-sticky
       :class="toolbarClass"

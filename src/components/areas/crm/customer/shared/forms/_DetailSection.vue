@@ -38,7 +38,7 @@
   <q-separator size="1px" />
 
   <q-tab-panels
-    class="no-border no-shadow border-radius-lg q-mt-lg"
+    class="no-border no-shadow border-radius-lg"
     v-model="tab"
     keep-alive
     animated
