@@ -5,18 +5,19 @@
     textTemplate="{{ title }}"
     columns="title,amount"
     :filterExpression="filterExpression"
-    show-add
+    show-add_
     :create-form="CreateForm"
     ref="lookup"
   >
     <template #cell-amount="{ item }">
-      {{ item.amount?.toLocaleString() }}
+      {{ helper.formatNumber(item.amount) }}
     </template>
   </lookup-view>
 </template>
 
 <script setup>
   import { ref } from "vue";
+  import { helper } from "src/helpers";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import CreateForm from "src/components/areas/trs/cash/shared/forms/CreateForm.vue";

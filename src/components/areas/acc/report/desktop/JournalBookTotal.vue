@@ -1,16 +1,21 @@
 <template>
   <data-grid :data-table-store="tableStore" flat expandable_ toolbar>
     <template #cell-debit="{ item }">
-      {{ item.debit?.toLocaleString() }}
+      <span class="text-weight-600">
+        {{ helper.formatNumber(item.debit) }}
+      </span>
     </template>
 
     <template #cell-credit="{ item }">
-      {{ item.credit?.toLocaleString() }}
+      <span class="text-weight-600">
+        {{ helper.formatNumber(item.credit) }}
+      </span>
     </template>
   </data-grid>
 </template>
 
 <script setup>
+  import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { journalBookTotalColumns } from "../../_composables/constants";

@@ -16,8 +16,6 @@
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
-  const searchStore = useInvoiceSearch();
-
   const props = defineProps({
     reportStore: useSalesReview,
     dataSource: {
@@ -28,6 +26,8 @@
     gridStore: Object,
     columns: Array,
   });
+
+  const searchStore = useInvoiceSearch();
 
   const tableStore = useDataTable({
     dataSource: props.dataSource,
@@ -45,7 +45,9 @@
   const filterRow = (row) => {
     props.reportStore?.setItem({
       id: row.id,
-      title: `${row.productGroupCode} - ${row.productGroupTitle}`,
+      title: `${row.productGroupCode ?? ""} - ${
+        row.productGroupTitle
+      }`,
       type: salesReviewType.pg,
     });
   };
