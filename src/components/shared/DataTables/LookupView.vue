@@ -82,10 +82,12 @@
       >
         <slot name="thead">
           <div
-            class="row q-gutter-x-lg items-center"
+            class="row q-col-gutter-lg items-center"
             style="width: 100%; margin-left: 0px"
           >
-            <div class="col-1">#</div>
+            <slot name="thead-index">
+              <div class="col-1">#</div>
+            </slot>
             <slot name="thead-cols">
               <div
                 v-for="col in lookupColumns"
@@ -132,21 +134,25 @@
             v-close-popup
           >
             <div
-              class="row items-center q-gutter-x-lg"
-              style="width: 100%; margin-left_: 50px"
+              class="row items-center q-col-gutter-lg"
+              style="width: 100%"
             >
-              <div class="col-1 text-caption no-letter-spacing">
-                {{ index + 1 }}
-              </div>
-              <div
-                v-for="col in lookupColumns"
-                class="col text-body2 no-letter-spacing"
-                :key="col"
-              >
-                <slot :name="`cell-${col}`" :item="row">
-                  {{ row[col] }}
-                </slot>
-              </div>
+              <slot name="tbody-index" :index="index">
+                <div class="col-1 text-caption no-letter-spacing">
+                  {{ index + 1 }}
+                </div>
+              </slot>
+              <slot name="tbody-cols" :item="row">
+                <div
+                  v-for="col in lookupColumns"
+                  class="col text-body2 no-letter-spacing"
+                  :key="col"
+                >
+                  <slot :name="`cell-${col}`" :item="row">
+                    {{ row[col] }}
+                  </slot>
+                </div>
+              </slot>
             </div>
           </q-item>
         </slot>
@@ -197,7 +203,7 @@
   >
     <q-card class="no-border">
       <q-card-section>
-        <div class="row items-center q-gutter-md">
+        <div class="row items-center q-col-gutter-lg">
           <div class="col text-body2 no-letter-spacing text-bold">
             <slot name="title">انتخاب</slot>
           </div>
@@ -256,17 +262,25 @@
       >
         <slot name="thead">
           <div
-            class="row q-gutter-x-lg items-center"
+            class="row q-col-gutter-lg items-center"
             style="width: 100%; margin-left: 0px"
           >
-            <div class="col-1">#</div>
-            <div v-for="col in lookupColumns" :key="col" class="col">
-              <header-column
-                :fieldName="col"
-                :title="$t(`shared.labels.${col}`)"
-                :table-store="tableStore"
-              />
-            </div>
+            <slot name="thead-index">
+              <div class="col-1">#</div>
+            </slot>
+            <slot name="thead-cols">
+              <div
+                v-for="col in lookupColumns"
+                :key="col"
+                class="col"
+              >
+                <header-column
+                  :fieldName="col"
+                  :title="$t(`shared.labels.${col}`)"
+                  :table-store="tableStore"
+                />
+              </div>
+            </slot>
 
             <slot name="create">
               <q-btn
@@ -310,21 +324,25 @@
               v-close-popup
             >
               <div
-                class="row items-center q-gutter-x-lg"
+                class="row items-center q-gutter-lg"
                 style="width: 100%; margin-left: 0px"
               >
-                <div class="col-1 text-caption no-letter-spacing">
-                  {{ index + 1 }}
-                </div>
-                <div
-                  v-for="col in lookupColumns"
-                  class="col text-body2 no-letter-spacing"
-                  :key="col"
-                >
-                  <slot :name="`cell-${col}`" :item="row">
-                    {{ row[col] }}
-                  </slot>
-                </div>
+                <slot name="tbody-index" :index="index">
+                  <div class="col-1 text-caption no-letter-spacing">
+                    {{ index + 1 }}
+                  </div>
+                </slot>
+                <slot name="tbody-cols" :item="row">
+                  <div
+                    v-for="col in lookupColumns"
+                    class="col text-body2 no-letter-spacing"
+                    :key="col"
+                  >
+                    <slot :name="`cell-${col}`" :item="row">
+                      {{ row[col] }}
+                    </slot>
+                  </div>
+                </slot>
               </div>
             </q-item>
           </slot>
