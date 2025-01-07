@@ -1,5 +1,9 @@
 <template>
-  <review-data-grid :table-store="tableStore" toolbar />
+  <review-data-grid
+    :table-store="tableStore"
+    toolbar
+    @row-dbl-click="filterRow"
+  />
 </template>
 
 <script setup>
@@ -40,19 +44,50 @@
       }),
   });
 
+  const filterRow = (row) => {
+    props.reportStore?.setItem({
+      id: { productId: row.productId, customerId: row.customerId },
+      title: `${row.customerName} / ${row.productTitle}`,
+      type: salesReviewType.prdCrm,
+    });
+  };
+
   const setSelectedAccount = () => {
     let currentFilters = props.filterExpression || [];
     const selectedPg = props.reportStore?.getItemByType(
       salesReviewType.pg
     );
 
-    if (selectedPg) {
+    const selectedPrd = props.reportStore?.getItemByType(
+      salesReviewType.prd
+    );
+
+    const selectedCrm = props.reportStore?.getItemByType(
+      salesReviewType.crm
+    );
+
+    if (selectedPrd) {
+      currentFilters.push({
+        fieldName: "ii.productId",
+        operator: sqlOperator.equal,
+        value: selectedPrd.id,
+      });
+    } else if (selectedPg) {
       currentFilters.push({
         fieldName: "p.productGroupId",
         operator: sqlOperator.equal,
         value: selectedPg.id,
       });
     }
+
+    if (selectedCrm) {
+      currentFilters.push({
+        fieldName: "i.customerId",
+        operator: sqlOperator.equal,
+        value: selectedCrm.id,
+      });
+    }
+
     tableStore.setFilterExpression(currentFilters);
   };
 

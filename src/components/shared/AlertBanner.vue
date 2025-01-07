@@ -24,7 +24,7 @@
         </q-badge>
 
         <span v-if="message">
-          {{ $t(`errors.${message}`) }}
+          {{ $t(`messages.${message}`) }}
           <div v-if="comment" class="row items-center text-black">
             {{ comment }}
           </div>
@@ -40,7 +40,7 @@
           >
             {{ key }}:
             <span v-for="error in errors[key]" :key="error">
-              {{ $t(`errors.${error}`) }}
+              {{ $t(`messages.${error}`) }}
             </span>
           </li>
         </ul>

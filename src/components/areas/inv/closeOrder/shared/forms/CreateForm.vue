@@ -23,9 +23,9 @@
           <div class="col-md-6 col-sm-12 col-xs-12">
             <inventory-lookup
               label="انبار"
-              v-model:selectedId="formStore.model.value.iventoryId"
+              v-model:selectedId="formStore.model.value.inventoryId"
               v-model:selectedText="
-                formStore.model.value.iventoryTitle
+                formStore.model.value.inventoryTitle
               "
               hide-bottom-space
               required

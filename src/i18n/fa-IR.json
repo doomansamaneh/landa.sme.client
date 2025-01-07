@@ -241,11 +241,15 @@
     }
   },
 
-  "errors": {
+  "messages": {
     "Val_Required": "ورود این فیلد اجباری است",
+    "Msg_DatabaseUniqueKeyError": "اطلاعات وارد شده تکراری است",
     "validationError": "یک یا چند خطای اعتباری سنجی رخ داد",
     "network-error": "از اتصال اینترنت خود اطمینان حاصل کنید",
     "forbidden": "شما به این بخش از سامانه دسترسی ندارید",
+    "dataCreatedSuccessfully": "ایجاد اطلاعات جدید با موفقیت انجام شد",
+    "dataEditedSuccessfully": "ویرایش اطلاعات با موفقیت انجام شد",
+    "dataDeletedSuccessfully": "اطلاعات با موفقیت حذف شد",
     "invalid-username-password": "نام کاربری یا رمز عبور به درستی وارد نشده اند"
   },
 
@@ -553,11 +557,6 @@
       "dl": "حساب تفصیلی"
     },
     "salesReviewType": {
-      "pg": "گروه کالا و خدمات",
-      "prd": "کالا و خدمات",
-      "crm": "طرف حساب"
-    },
-    "purchaseReviewType": {
       "pg": "گروه کالا و خدمات",
       "prd": "کالا و خدمات",
       "crm": "طرف حساب",

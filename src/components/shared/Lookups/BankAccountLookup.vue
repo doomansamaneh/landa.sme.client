@@ -6,7 +6,7 @@
     textTemplate="{{ bankTitle }} / {{ title }} / {{ no }}"
     columns="no,bankTitle,amount"
     :filterExpression="filterExpression"
-    show-add
+    show-add_
     :create-form="CreateForm"
   >
     <template #thead-cols>

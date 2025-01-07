@@ -58,7 +58,17 @@
       salesReviewType.pg
     );
 
-    if (selectedPg) {
+    const selectedPrd = props.reportStore?.getItemByType(
+      salesReviewType.prd
+    );
+
+    if (selectedPrd) {
+      currentFilters.push({
+        fieldName: "ii.productId",
+        operator: sqlOperator.equal,
+        value: selectedPrd.id,
+      });
+    } else if (selectedPg) {
       currentFilters.push({
         fieldName: "p.productGroupId",
         operator: sqlOperator.equal,

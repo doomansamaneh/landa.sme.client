@@ -18,8 +18,6 @@
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
-  const searchStore = useInvoiceSearch();
-
   const props = defineProps({
     reportStore: useSalesReview,
     dataSource: {
@@ -30,6 +28,8 @@
     gridStore: Object,
     columns: Array,
   });
+
+  const searchStore = useInvoiceSearch();
 
   const tableStore = useDataTable({
     dataSource: props.dataSource,
