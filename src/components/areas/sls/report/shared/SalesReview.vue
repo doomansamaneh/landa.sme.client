@@ -44,7 +44,7 @@
       <card-tab
         name="prdCrm"
         icon="o_view_comfy"
-        title="طرف حساب/کالا و خدمت"
+        :title="$t('shared.salesReviewType.prdCrm')"
       />
 
       <card-tab name="il" icon="o_receipt" title="ریز گردش" />
@@ -57,19 +57,34 @@
       class="transparent"
     >
       <q-tab-panel name="pg" class="no-padding">
-        <review-pg :report-store="salesReviewStore" />
+        <review-pg
+          :report-store="salesReviewStore"
+          :data-source="`sls/report/get${actionName}ByProductGroup`"
+        />
       </q-tab-panel>
       <q-tab-panel name="prd" class="no-padding">
-        <review-prd :report-store="salesReviewStore" />
+        <review-prd
+          :report-store="salesReviewStore"
+          :data-source="`sls/report/get${actionName}ByProduct`"
+        />
       </q-tab-panel>
       <q-tab-panel name="crm" class="no-padding">
-        <review-customer :report-store="salesReviewStore" />
+        <review-customer
+          :report-store="salesReviewStore"
+          :data-source="`sls/report/get${actionName}ByCustomer`"
+        />
       </q-tab-panel>
       <q-tab-panel name="prdCrm" class="no-padding">
-        <review-prd-customer :report-store="salesReviewStore" />
+        <review-prd-customer
+          :report-store="salesReviewStore"
+          :data-source="`sls/report/get${actionName}ByCustomerProduct`"
+        />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
-        <review-item :report-store="salesReviewStore" />
+        <review-item
+          :report-store="salesReviewStore"
+          :data-source="`sls/report/get${actionName}Detail`"
+        />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -94,6 +109,7 @@
 
   const props = defineProps({
     title: String,
+    actionName: { type: String, default: "Invoice" },
   });
 
   const salesReviewStore = useSalesReview();
