@@ -6,7 +6,7 @@ export const customerModel = {
   typeId: customerType.legal,
   marketingPercent: 0,
   roleIds: [],
-  person: {},
+  person: { gender: gender.male },
   customerBusiness: {},
   customerAddresses: [],
   customerContactPhones: [],

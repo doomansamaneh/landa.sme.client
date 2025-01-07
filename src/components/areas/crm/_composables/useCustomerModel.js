@@ -84,8 +84,14 @@ export function useCustomerModel(config) {
     deleteItem("customerContactWebsites", index);
 
   async function submitForm(form, action, callBack) {
-    if (!model.value.name && model.value.person)
-      model.value.name = `${model.value.person.name} ${model.value.person.lastName}`;
+    if (
+      !model.value.name &&
+      (model.value.person?.name || model.value.person?.lastName)
+    )
+      model.value.name = `${model.value.person.name ?? ""} ${
+        model.value.person.lastName ?? ""
+      }`;
+
     await crudStore.submitForm(
       form,
       action,

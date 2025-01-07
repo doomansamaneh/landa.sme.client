@@ -183,7 +183,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
   function notify(message, type = "positive") {
     $q.notify({
       type: type,
-      message: message,
+      message: t(`messages.${message}`),
     });
   }
 
