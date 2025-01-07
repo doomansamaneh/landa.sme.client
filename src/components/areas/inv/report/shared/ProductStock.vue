@@ -94,17 +94,6 @@
 
     <desktop :table-store="tableStore" :title="title" />
   </template>
-
-  <q-card flat class="tips q-mt-md">
-    <q-card-section>
-      <div class="title">راهنما</div>
-      <div class="q-mt-md text-body1 no-letter-spacing">
-        موجودی کالاهایی که نوعشان خدمت نباشد براساس خرید و فروشهای
-        نهایی شده. فقط خریدهایی در موجودی تاثیر میگذارند که نوعشان
-        شارژ انبار و یا مشابه آن باشد
-      </div>
-    </q-card-section>
-  </q-card>
 </template>
 
 <script setup>
@@ -116,6 +105,7 @@
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "../desktop/ProductStock.vue";
   import Mobile from "../mobile/ProductStock.vue";
+  import TipBanner from "src/components/shared/TipBanner.vue";
 
   const props = defineProps({
     toolbar: Boolean,

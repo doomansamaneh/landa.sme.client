@@ -1,5 +1,6 @@
 <template>
   <advanced-search class="q-my-md" />
+  <tip-banner />
 
   <q-card flat class="bordered shadow">
     <card-title :title="title" icon="import_export" />
@@ -43,6 +44,7 @@
   import ProductStockPreview from "../shared/ProductStockPreview.vue";
   import AdvancedSearch from "./ProductStockSearch.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import TipBanner from "../shared/TipBanner.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

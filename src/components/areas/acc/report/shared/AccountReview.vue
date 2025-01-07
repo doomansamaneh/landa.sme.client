@@ -3,24 +3,7 @@
 
   <advanced-search :search-model="searchModel" />
 
-  <q-card v-if="guideStatus" flat class="tips q-mb-md">
-    <q-card-section>
-      <q-btn
-        dense
-        unelevated
-        round
-        class="absolute-top-right q-ma-sm"
-        @click="toggleGuide"
-      >
-        <q-icon name="o_close" />
-      </q-btn>
-      <div class="title">راهنما</div>
-      <div class="q-mt-md text-body1 no-letter-spacing">
-        بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در
-        تب‌های پس از آن مشاهده کنید
-      </div>
-    </q-card-section>
-  </q-card>
+  <tip-banner :tip="tip" closeable />
 
   <chip
     icon="filter_alt"
@@ -108,6 +91,7 @@
   import CardTab from "src/components/shared/CardTab.vue";
   import AdvancedSearch from "../../voucher/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import TipBanner from "src/components/shared/TipBanner.vue";
 
   const props = defineProps({
     title: String,
@@ -116,9 +100,7 @@
   const accountReviewStore = useAccountReview();
 
   const tab = ref("cl");
-  const guideStatus = ref(true);
 
-  const toggleGuide = () => {
-    guideStatus.value = !guideStatus.value;
-  };
+  const tip =
+    "بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در  تب‌های پس از آن مشاهده کنید";
 </script>
