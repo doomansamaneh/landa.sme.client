@@ -1,0 +1,38 @@
+<template>
+  <q-card v-if="status" flat class="tips">
+    <q-card-section>
+      <div class="title">راهنما</div>
+      <slot name="body">
+        <div class="text-body1 no-letter-spacing">{{ tip }}</div>
+      </slot>
+    </q-card-section>
+
+    <slot name="close-btn">
+      <q-btn
+        v-if="closeable"
+        dense
+        unelevated
+        round
+        class="absolute-top-right q-ma-sm"
+        @click="toggle"
+      >
+        <q-icon name="o_close" />
+      </q-btn>
+    </slot>
+  </q-card>
+</template>
+
+<script setup>
+  import { ref } from "vue";
+
+  const props = defineProps({
+    tip: String,
+    closeable: Boolean,
+  });
+
+  const status = ref(true);
+
+  const toggle = () => {
+    status.value = !status.value;
+  };
+</script>

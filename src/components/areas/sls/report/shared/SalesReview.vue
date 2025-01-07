@@ -3,7 +3,7 @@
 
   <advanced-search />
 
-  <filter-tip />
+  <tip-banner :tip="tip" closeable class="q-mb-md" />
 
   <chip
     icon="filter_alt"
@@ -105,7 +105,7 @@
   import CardTab from "src/components/shared/CardTab.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import Chip from "src/components/shared/CustomChip.vue";
-  import FilterTip from "src/components/areas/sls/report/shared/FilterTip.vue";
+  import TipBanner from "src/components/shared/TipBanner.vue";
 
   const props = defineProps({
     title: String,
@@ -115,4 +115,7 @@
   const salesReviewStore = useSalesReview();
 
   const tab = ref("pg");
+
+  const tip =
+    "بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در تب‌های پس از آن مشاهده کنید";
 </script>

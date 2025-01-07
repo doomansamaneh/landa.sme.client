@@ -25,6 +25,8 @@
     </q-input>
   </div>
 
+  <tip-banner />
+
   <data-grid
     ref="dataGrid"
     :grid-store="gridStore"
@@ -39,7 +41,8 @@
   import { sqlOperator } from "src/constants";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-
+  import TipBanner from "../shared/TipBanner.vue";
+  
   const search = ref("");
 
   const props = defineProps({
