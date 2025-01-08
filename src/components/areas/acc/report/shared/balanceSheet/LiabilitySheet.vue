@@ -13,7 +13,7 @@
         <template v-if="totalCL.value !== 0">
           <balance-sheet-item-header title="بدهی جاری" />
 
-          <div class="q-pl-xs q-ml-md sub-item-container">
+          <div class="q-pl-xs sub-item-container_">
             <balance-sheet-item
               v-for="item in currentList"
               :key="item.id"
@@ -27,7 +27,7 @@
         <template v-if="totalFL.value && totalFL.value !== 0">
           <balance-sheet-item-header title="بدهی بلند مدت" />
 
-          <div class="q-pl-xs q-ml-md sub-item-container">
+          <div class="q-pl-xs sub-item-container">
             <balance-sheet-item
               v-for="item in longTermList"
               :key="item.id"

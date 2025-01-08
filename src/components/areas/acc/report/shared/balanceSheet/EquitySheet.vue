@@ -12,7 +12,7 @@
       <q-list class="statement-bar q-pr-md q-pl-sm">
         <balance-sheet-item-header title="حقوق صاحبان سرمایه" />
 
-        <div class="q-pl-xs q-ml-md sub-item-container">
+        <div class="q-pl-xs sub-item-container_">
           <balance-sheet-item
             v-for="item in equityList"
             :key="item.id"

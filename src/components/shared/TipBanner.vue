@@ -1,7 +1,11 @@
 <template>
   <q-card v-if="status" flat class="tips">
     <q-card-section>
-      <div class="title">راهنما</div>
+      <slot name="title">
+        <div class="title">
+          {{ title }}
+        </div>
+      </slot>
       <slot name="body">
         <div class="text-body1 no-letter-spacing">{{ tip }}</div>
       </slot>
@@ -26,6 +30,7 @@
   import { ref } from "vue";
 
   const props = defineProps({
+    title: String,
     tip: String,
     closeable: Boolean,
   });

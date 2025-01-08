@@ -10,7 +10,7 @@ import { fetchWrapper, helper, bus } from "src/helpers";
 
 const inFullscreen = ref(false);
 const separator = ref("horizontal");
-const dense = ref(true);
+const dense = ref(false);
 const thFontSize = ref(12);
 const tdFontSize = ref(13);
 

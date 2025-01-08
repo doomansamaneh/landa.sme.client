@@ -42,13 +42,13 @@
         </q-item-section>
       </template>
 
-      <q-item
+      <div class="border-right q-ml-lg">
+        <q-item
         v-for="slItem in item.items"
         :key="slItem.slId"
-        class="q-ml-lg"
         clickable
-        style="border-right: 1px solid blue"
         :group="`${item.glCode}-statement-child`"
+        class="q-my-sm q-ml-xs border-radius-sm"
       >
         <q-item-section avatar style="padding-left: 0">
           <q-icon class="q-mr-sm" size="20px" name="o_folder" />
@@ -84,6 +84,7 @@
           </span>
         </q-item-section>
       </q-item>
+      </div>
 
       <!-- <q-expansion-item
         v-for="slItem in item.items"
