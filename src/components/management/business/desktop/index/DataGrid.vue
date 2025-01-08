@@ -6,7 +6,7 @@
     class="q-my-xl"
   >
     <template #header>
-      <DesktopViewGuide v-model="showGuideDialog" />
+      <dekstop-view-guide v-model="showGuideDialog" />
       <q-item class="card-header q-px-lg q-py-lg">
         <q-item-section>
           <q-item-label class="text-h6 text-weight-700">
@@ -51,14 +51,16 @@
                 {{ $t("page.buttons.guide-tooltip") }}
               </q-tooltip>
             </q-btn>
-            <Add-business />
+            <add-business />
           </div>
         </q-card-actions>
       </q-item>
     </template>
 
     <template #body="{ item }">
-      <div class="col-5">
+      <div
+        class="col-5 flex no-wrap items-center q-gutter-md text-weight-medium"
+      >
         <q-avatar
           :class="{
             'primary-gradient primary-shadow text-white':
@@ -66,23 +68,10 @@
             'business-isnotowner': !item.isOwner,
           }"
           icon="o_person"
-          size="lg"
+          size="42px"
         />
-        <q-btn
-          class="business-name-btn"
-          no-caps
-          flat
-          text-color="dark"
-          :ripple="false"
-          @click="gridStore.gotoBusiness(item)"
-        >
-          <div class="flex no-wrap q-gutter-sm">
-            <div
-              class="business-name text-on-dark flex text-weight-regular"
-            >
-              <span class="ellipsis">{{ item.title }}</span>
-            </div>
-          </div>
+        <div @click="gridStore.gotoBusiness(item)">
+          <div class="ellipsis">{{ item.title }}</div>
           <q-tooltip
             class="custom-tooltip text-body2"
             transition-show="scale"
@@ -90,11 +79,11 @@
             :delay="600"
             anchor="top left"
             self="top right"
-            :offset="[-5, -2]"
+            :offset="[5, 5]"
           >
             {{ item.title }}
           </q-tooltip>
-        </q-btn>
+        </div>
       </div>
 
       <div class="expire-date-container flex col-2 items-center">
@@ -254,11 +243,5 @@
   a {
     text-decoration: none;
     color: inherit;
-  }
-
-  .business-name-btn {
-    .q-focus-helper {
-      display: none;
-    }
   }
 </style>
