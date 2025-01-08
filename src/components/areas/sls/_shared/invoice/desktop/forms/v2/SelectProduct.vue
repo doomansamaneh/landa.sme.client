@@ -162,19 +162,21 @@
   import { helper } from "src/helpers";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
   import { productType, sortOrder } from "src/constants";
+  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
   import AddByCode from "../AddByCode.vue";
 
   const props = defineProps({
     formStore: useInvoiceModel,
+    model: invoiceModel,
   });
 
   const grid = ref(null);
   const tab = ref("mostSold");
   const pulseProduct = computed(
     () => ""
-    //props.formStore.model.value.invoiceItems.length < 1 ? "pulse" : ""
+    //props.model.invoiceItems.length < 1 ? "pulse" : ""
   );
 
   async function tabChanged(e) {

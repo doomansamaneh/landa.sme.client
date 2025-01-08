@@ -250,6 +250,12 @@ export default {
           meta: { title: "گزارش مرور حساب" },
         },
         {
+          path: "trialBalance",
+          component: () =>
+            import("pages/areas/acc/report/TrialBalancePage.vue"),
+          meta: { title: "تراز آزمایشی" },
+        },
+        {
           path: "journal",
           component: () =>
             import("pages/areas/acc/report/JournalPage.vue"),

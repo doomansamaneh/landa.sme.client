@@ -36,8 +36,6 @@ export function useInvoiceModel(config) {
     } else
       responseData = await crudStore.getCreateModel(setInvoiceItems);
 
-    setInvoiceItems();
-
     if (responseData) {
       if (action === "copy") {
         model.value.quoteId = null;
@@ -53,12 +51,13 @@ export function useInvoiceModel(config) {
       }
       addWatch();
     }
+
+    setInvoiceItems();
   }
 
   function setInvoiceItems() {
-    if (!model.value.originalDocument) {
+    if (!model.value.originalDocument)
       model.value.originalDocument = {};
-    }
     if (!model.value.invoiceItems) model.value.invoiceItems = [];
   }
 

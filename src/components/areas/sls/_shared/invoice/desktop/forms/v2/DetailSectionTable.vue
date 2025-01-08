@@ -34,7 +34,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="(row, index) in formStore.model.value.invoiceItems"
+        v-for="(row, index) in model.invoiceItems"
         :key="index"
         class="q-pa-md"
       >
@@ -103,7 +103,7 @@
         </td>
       </tr>
     </tbody>
-    <tbody v-if="!formStore.model.value.invoiceItems?.length">
+    <tbody v-if="!model.invoiceItems?.length">
       <tr>
         <td colspan="100%">
           <no-product-selected />
@@ -114,7 +114,7 @@
 
   <footer-section
     class="q-pt-xl"
-    v-if="formStore.model.value.invoiceItems?.length"
+    v-if="model.invoiceItems?.length"
     :form-store="formStore"
   />
 </template>
@@ -122,11 +122,8 @@
 <script setup>
   import { ref, watch } from "vue";
   import { useDialog } from "src/composables/useDialog";
-  import {
-    sqlOperator,
-    vatType,
-    invoiceFormType,
-  } from "src/constants";
+  import { invoiceFormType } from "src/constants";
+  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import FooterSection from "../v1/FooterSection.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
@@ -138,10 +135,10 @@
   const props = defineProps({
     formStore: Object,
     formType: invoiceFormType,
+    model: invoiceModel,
   });
 
   const dialogStore = useDialog();
-
   const prevQuantities = ref(new Map());
 
   // const vatFilter =
@@ -181,7 +178,7 @@
   };
 
   watch(
-    () => props.formStore.model.value.invoiceItems,
+    () => props.model.invoiceItems,
     (newItems) => {
       newItems.forEach((item, index) => {
         const prevQuantity = prevQuantities.value.get(item.productId);

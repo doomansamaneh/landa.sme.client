@@ -1,7 +1,7 @@
 <template>
   <toolbar-desktop margin :title="title" />
 
-  <advanced-search :search-model="searchModel" />
+  <advanced-search />
 
   <tip-banner :tip="tip" closeable />
 

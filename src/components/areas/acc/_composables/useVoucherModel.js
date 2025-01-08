@@ -14,6 +14,7 @@ export function useVoucherModel({ baseRoute, preview }) {
   const itemStore = useVoucherItemModel();
 
   const model = ref(voucherModel);
+
   const crudStore = useFormActions(baseRoute, model);
   const formItemStore = useFormItemsModel();
 

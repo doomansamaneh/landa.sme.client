@@ -5,8 +5,8 @@
         <div class="col-md-6 col-sm-12 col-xs-12">
           <customer-lookup
             :label="customerTitle"
-            v-model:selectedId="model.value.customerId"
-            v-model:selectedText="model.value.customerName"
+            v-model:selectedId="model.customerId"
+            v-model:selectedText="model.customerName"
             required
           />
         </div>
@@ -14,8 +14,8 @@
         <div class="col-md-4 col-sm-12 col-xs-12">
           <sale-type-lookup
             :label="saleTypeTitle"
-            v-model:selectedId="model.value.typeId"
-            v-model:selectedText="model.value.typeTitle"
+            v-model:selectedId="model.typeId"
+            v-model:selectedText="model.typeTitle"
             :filter-expression="filterExpression"
             required
           />
@@ -54,16 +54,16 @@
                 <div class="col-md-6 col-sm-12 col-xs-12 q-mt-md">
                   <contract-lookup
                     label="قرارداد"
-                    v-model:selectedId="model.value.contractId"
-                    v-model:selectedText="model.value.contractTitle"
+                    v-model:selectedId="model.contractId"
+                    v-model:selectedText="model.contractTitle"
                   />
                 </div>
 
                 <div class="col-md-6 col-sm-12 col-xs-12 q-mt-md">
                   <customer-lookup
                     label="بازاریاب"
-                    v-model:selectedId="model.value.contactId"
-                    v-model:selectedText="model.value.contactName"
+                    v-model:selectedId="model.contactId"
+                    v-model:selectedText="model.contactName"
                   />
                 </div>
               </div>
@@ -72,26 +72,30 @@
                 <div class="col-md-6 col-sm-12 col-xs-12 q-mt-md">
                   <inventory-lookup
                     label="انبار"
-                    v-model:selectedId="model.value.inventoryId"
-                    v-model:selectedText="model.value.inventoryTitle"
+                    v-model:selectedId="model.inventoryId"
+                    v-model:selectedText="model.inventoryTitle"
                     required
                   />
                 </div>
 
                 <div
-                  v-if="showOriginalDoc"
+                  v-if="model.originalDocument"
                   class="col-md-6 col-sm-12 col-xs-12 q-mt-md"
                 >
                   <invoice-lookup
                     label="سند مرجع"
                     v-model:selectedId="
-                      model.value.originalDocument.parentId
+                      model.originalDocument.parentId
                     "
-                    v-model:selectedText="
-                      model.value.originalDocument.no
-                    "
+                    v-model:selectedText="model.originalDocument.no"
                     :filter-expression="originalFilterExpression"
                   />
+                  <!-- <invoice-lookup
+                    label="سند مرجع"
+                    v-model:selectedId="parentId"
+                    v-model:selectedText="no"
+                    :filter-expression="originalFilterExpression"
+                  /> -->
                 </div>
               </div>
             </div>
@@ -101,7 +105,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <custom-input
                 label="شرح"
-                v-model="model.value.summary"
+                v-model="model.summary"
                 hide-bottom-space
                 type="textarea"
               />
@@ -121,10 +125,10 @@
             label="شماره فاکتور"
             type="number"
             hide-bottom-space
-            v-model="model.value.no"
+            v-model="model.no"
             outlined
             dense
-            :disable="!model.value.manualNo"
+            :disable="!model.manualNo"
           >
             <template #append>
               <q-icon
@@ -139,18 +143,14 @@
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <date-time
-            label="تاریخ"
-            v-model="model.value.date"
-            required
-          />
+          <date-time label="تاریخ" v-model="model.date" required />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <date-time
             label="سررسید"
-            v-model="model.value.dueDate"
+            v-model="model.dueDate"
             required
           />
         </div>
@@ -168,6 +168,7 @@
     documentType,
   } from "src/constants";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -180,15 +181,22 @@
   const props = defineProps({
     formStore: useInvoiceModel,
     formType: invoiceFormType,
+    model: invoiceModel,
   });
 
   const moreInfo = ref(false);
 
   const customerTitle =
-    props.formType == invoiceFormType.sales ? "مشتری" : "فروشنده";
+    props.formType === invoiceFormType.sales ||
+    invoiceFormType.salesReturn
+      ? "مشتری"
+      : "فروشنده";
 
   const saleTypeTitle =
-    props.formType == invoiceFormType.sales ? "نوع فروش" : "نوع خرید";
+    props.formType === invoiceFormType.sales ||
+    invoiceFormType.salesReturn
+      ? "نوع فروش"
+      : "نوع خرید";
 
   const originalFilterExpression = [
     {
@@ -199,8 +207,8 @@
   ];
 
   const filterExpression =
-    props.formType == invoiceFormType.sales ||
-    props.formType == invoiceFormType.salesReturn
+    props.formType === invoiceFormType.sales ||
+    invoiceFormType.salesReturn
       ? [
           {
             fieldName: "isForSale",
@@ -217,19 +225,8 @@
         ];
 
   const toggleInvocieNo = () => {
-    localFormStore.value.model.value.manualNo =
-      !localFormStore.value.model.value.manualNo;
+    props.model.manualNo = !props.model.manualNo;
   };
-
-  const localFormStore = computed(() => props.formStore);
-  const model = computed(() => props.formStore.model);
-  const showOriginalDoc = computed(
-    () =>
-      //todo: activate original document
-      //model?.value.originalDocument &&
-      props.formType === invoiceFormType.sales ||
-      props.formType === invoiceFormType.salesReturn
-  );
 
   const toggleMoreInfo = () => {
     moreInfo.value = !moreInfo.value;

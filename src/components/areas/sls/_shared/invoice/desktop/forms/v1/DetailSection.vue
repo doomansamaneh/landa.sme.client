@@ -31,10 +31,7 @@
   </div>
   <q-separator class="q-mb-md" />
   <div class="column q-gutter-y-md">
-    <template
-      v-for="(row, index) in formStore.model.value.invoiceItems"
-      :key="index"
-    >
+    <template v-for="(row, index) in model.invoiceItems" :key="index">
       <div class="row q-gutter-md">
         <div style="width: 25%">
           <product-lookup
@@ -197,6 +194,7 @@
     invoiceFormType,
     vatType,
   } from "src/constants";
+  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import Footer from "./FooterSection.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
@@ -208,6 +206,7 @@
   const props = defineProps({
     formStore: Object,
     formType: Object,
+    model: invoiceModel,
   });
 
   const vatFilter =
