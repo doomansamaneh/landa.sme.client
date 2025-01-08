@@ -31,11 +31,15 @@ export function usePurchaseState(defaultFilters) {
 
   composablesStore.register({
     reset: () => {
-      state.firstLoad.value = false;
+      reset();
       state.rows.value = [];
       setDefaultSearchModel();
     },
   });
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
 
   const filterExpression = defaultFilters ?? [];
 
@@ -53,6 +57,7 @@ export function usePurchaseState(defaultFilters) {
     state,
     filterExpression,
 
+    reset,
     setDefaultSearchModel,
   };
 }

@@ -138,6 +138,7 @@
   import { productType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { productModel } from "src/models/areas/cmn/productModel";
+  import { useProductGrid } from "../../../_composables/useProductGrid";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
@@ -151,17 +152,15 @@
   });
 
   const form = ref(null);
+  const productGridStore = useProductGrid();
   const formStore = useBaseInfoModel({
     baseRoute: "cmn/product",
     model: productModel,
+    resetCallback: productGridStore.reset,
   });
 
   async function submitForm(callBack) {
-    return await formStore.submitForm(
-      form.value,
-      props.action,
-      callBack
-    );
+    await formStore.submitForm(form.value, props.action, callBack);
   }
 
   defineExpose({

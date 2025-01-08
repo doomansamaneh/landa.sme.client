@@ -29,6 +29,7 @@
   import { useRoute } from "vue-router";
   import { invoiceFormType } from "src/constants";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { useInvoiceState } from "../../../_composables/useInvoiceState";
 
   import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import Desktop from "src/components/areas/sls/_shared/invoice/desktop/forms/CreateForm.vue";
@@ -39,8 +40,13 @@
     action: String,
     method: String,
   });
+
   const route = useRoute();
-  const formStore = useInvoiceModel({ baseRoute: "sls/invoice" });
+  const invoiceStore = useInvoiceState();
+  const formStore = useInvoiceModel({
+    baseRoute: "sls/invoice",
+    resetCallback: invoiceStore.reset,
+  });
   const form = ref(null);
 
   onMounted(() => {

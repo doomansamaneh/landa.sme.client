@@ -37,11 +37,15 @@ export function useSalesReturnState(defaultFilters) {
 
   composablesStore.register({
     reset: () => {
-      state.firstLoad.value = false;
+      reset();
       state.rows.value = [];
       setDefaultSearchModel();
     },
   });
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
 
   const filterExpression = defaultFilters ?? [];
 
@@ -59,6 +63,7 @@ export function useSalesReturnState(defaultFilters) {
     state,
     filterExpression,
 
+    reset,
     setDefaultSearchModel,
   };
 }

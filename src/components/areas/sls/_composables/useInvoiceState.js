@@ -41,8 +41,11 @@ const pagination = ref({
 
 export function useInvoiceState(defaultFilters) {
   const columns = invoiceColumns;
-
   const filterExpression = defaultFilters ?? [];
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
 
   return {
     //rows,
@@ -51,5 +54,6 @@ export function useInvoiceState(defaultFilters) {
     state,
     filterExpression,
     currentTab,
+    reset,
   };
 }

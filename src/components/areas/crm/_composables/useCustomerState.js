@@ -31,10 +31,14 @@ export function useCustomerState() {
   const composablesStore = useComposables();
   composablesStore.register({
     reset: () => {
-      state.firstLoad.value = false;
+      reset();
       setDefaultSearchModel();
     },
   });
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
 
   const setDefaultSearchModel = () => {};
 
@@ -44,6 +48,7 @@ export function useCustomerState() {
     pagination,
     state,
 
+    reset,
     setDefaultSearchModel,
   };
 }

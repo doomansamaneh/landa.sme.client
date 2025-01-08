@@ -6,21 +6,21 @@
   />
 
   <!-- <q-card class="form-container"> -->
-    <!-- <q-card-section style="padding: 16px !important"> -->
-      <q-form ref="form" autofocus>
-        <desktop
-          v-if="$q.screen.gt.sm"
-          :form-store="formStore"
-          :form-type="invoiceFormType.sales"
-        />
-        <mobile
-          v-else
-          :form-store="formStore"
-          :form-type="invoiceFormType.sales"
-        />
-        <!-- <mobile :form-store="formStore" /> -->
-      </q-form>
-    <!-- </q-card-section> -->
+  <!-- <q-card-section style="padding: 16px !important"> -->
+  <q-form ref="form" autofocus>
+    <desktop
+      v-if="$q.screen.gt.sm"
+      :form-store="formStore"
+      :form-type="invoiceFormType.sales"
+    />
+    <mobile
+      v-else
+      :form-store="formStore"
+      :form-type="invoiceFormType.sales"
+    />
+    <!-- <mobile :form-store="formStore" /> -->
+  </q-form>
+  <!-- </q-card-section> -->
   <!-- </q-card> -->
 </template>
 
@@ -29,6 +29,7 @@
   import { useRoute } from "vue-router";
   import { invoiceFormType } from "src/constants";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { useInvoiceState } from "../../../_composables/useInvoiceState";
 
   import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import Desktop from "src/components/areas/sls/_shared/invoice/desktop/forms/CreateFormV2.vue";
@@ -40,7 +41,11 @@
     method: String,
   });
   const route = useRoute();
-  const formStore = useInvoiceModel({ baseRoute: "sls/invoice" });
+  const invoiceStore = useInvoiceState();
+  const formStore = useInvoiceModel({
+    baseRoute: "sls/invoice",
+    resetCallback: invoiceStore.reset,
+  });
   const form = ref(null);
 
   onMounted(() => {

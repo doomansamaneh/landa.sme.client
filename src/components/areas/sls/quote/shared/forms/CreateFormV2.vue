@@ -45,7 +45,11 @@
   const route = useRoute();
   const router = useRouter();
   const $q = useQuasar();
-  const formStore = useInvoiceModel({ baseRoute: "sls/quote" });
+  const quoteStore = useQuoteState();
+  const formStore = useInvoiceModel({
+    baseRoute: "sls/quote",
+    resetCallback: quoteStore.reset,
+  });
   const form = ref(null);
 
   function saveCallBack(responseData) {

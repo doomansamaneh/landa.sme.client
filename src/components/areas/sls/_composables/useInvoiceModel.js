@@ -311,13 +311,14 @@ export function useInvoiceModel(config) {
         },
       ];
     }
-    await crudStore.submitForm(
-      form,
-      action,
-      callBack ?? saveCallBack
-    );
+    await crudStore.submitForm(form, action, saveCallBack);
+
     function saveCallBack(responseData) {
-      if (responseData?.code === 200) {
+      if (responseData?.code === 200 && config?.resetCallback)
+        config.resetCallback();
+
+      if (callBack) callBack(responseData);
+      else if (responseData?.code === 200) {
         $q.dialog({
           component: ResponseDialog,
           componentProps: {

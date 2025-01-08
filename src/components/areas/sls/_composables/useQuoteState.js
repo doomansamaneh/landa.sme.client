@@ -24,8 +24,11 @@ const pagination = ref({
 
 export function useQuoteState(defaultFilters) {
   const columns = quoteColumns;
-
   const filterExpression = defaultFilters ?? [];
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
 
   return {
     //rows,
@@ -33,5 +36,6 @@ export function useQuoteState(defaultFilters) {
     pagination,
     state,
     filterExpression,
+    reset,
   };
 }
