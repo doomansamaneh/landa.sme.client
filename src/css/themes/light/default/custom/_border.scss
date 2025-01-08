@@ -61,4 +61,12 @@
   .left-border {
     border-right: 2px solid #00000042 !important;
   }
+
+  .border-left {
+    border-right: 1px solid #00000042 !important;
+  }
+
+  .border-right {
+    border-left: 1px solid #00000042 !important;
+  }
 }

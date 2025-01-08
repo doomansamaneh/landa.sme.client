@@ -51,7 +51,7 @@
                 :color="$q.dark.isActive ? 'white' : 'grey-6'"
                 size="32px"
                 :style="
-                  dense
+                  tableStore.dense.value
                     ? 'margin-right: 16px;'
                     : 'margin-right: 32px;'
                 "
