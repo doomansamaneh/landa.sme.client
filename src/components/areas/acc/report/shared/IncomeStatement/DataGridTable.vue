@@ -25,7 +25,7 @@
             :key="glItem.glCode"
           >
             <q-expansion-item
-              header-class="border-radius-sm"
+              header-class="border-radius-sm q-my-sm"
               :group="glItem.glCode"
               @show="expandGL(glItem)"
             >
@@ -76,61 +76,62 @@
                 </q-item-section>
               </template>
 
-              <q-item
-                v-for="slItem in glItem.items"
-                :key="slItem.slId"
-                class="q-ml-lg"
-                clickable
-                style="border-right: 1px solid blue"
-                :group="`${glItem.glCode}-child`"
-              >
-                <q-item-section avatar style="padding-left: 0">
-                  <q-icon
-                    class="q-mr-sm"
-                    size="20px"
-                    name="o_folder"
-                  />
-                </q-item-section>
+              <div class="border-right q-ml-lg">
+                <q-item
+                  v-for="slItem in glItem.items"
+                  :key="slItem.slId"
+                  class="q-my-sm q-ml-xs border-radius-sm"
+                  clickable
+                  :group="`${glItem.glCode}-child`"
+                >
+                  <q-item-section avatar style="padding-left: 0">
+                    <q-icon
+                      class="q-mr-sm"
+                      size="20px"
+                      name="o_folder"
+                    />
+                  </q-item-section>
 
-                <q-item-section class="q-pr-sm" avatar>
-                  <div
-                    class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
+                  <q-item-section class="q-pr-sm" avatar>
+                    <div
+                      class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
+                    >
+                      {{ slItem.slCode }}
+                    </div>
+                  </q-item-section>
+
+                  <q-item-section>
+                    {{ slItem.slTitle }}
+                  </q-item-section>
+
+                  <q-item-section
+                    v-if="item.clTypeId === accountCLTypeIds.revenue"
+                    side
+                    class="q-mr-lg"
                   >
-                    {{ slItem.slCode }}
-                  </div>
-                </q-item-section>
-
-                <q-item-section>
-                  {{ slItem.slTitle }}
-                </q-item-section>
-
-                <q-item-section
-                  v-if="item.clTypeId === accountCLTypeIds.revenue"
-                  side
-                  class="q-mr-lg"
-                >
-                  <span v-if="slItem.credit">
-                    {{ helper.formatNumber(slItem.credit) }}
-                  </span>
-                  <span v-if="slItem.debit" class="text-red">
-                    ({{ helper.formatNumber(slItem.debit) }})
-                  </span>
-                </q-item-section>
-                <q-item-section
-                  v-else-if="
-                    item.clTypeId === accountCLTypeIds.expense
-                  "
-                  side
-                  class="q-mr-lg"
-                >
-                  <span v-if="slItem.debit">
-                    {{ helper.formatNumber(slItem.debit) }}
-                  </span>
-                  <span v-if="slItem.credit" class="text-red">
-                    ({{ helper.formatNumber(slItem.credit) }})
-                  </span>
-                </q-item-section>
-              </q-item>
+                    <span v-if="slItem.credit">
+                      {{ helper.formatNumber(slItem.credit) }}
+                    </span>
+                    <span v-if="slItem.debit" class="text-red">
+                      ({{ helper.formatNumber(slItem.debit) }})
+                    </span>
+                  </q-item-section>
+                  <q-item-section
+                    v-else-if="
+                      item.clTypeId === accountCLTypeIds.expense
+                    "
+                    side
+                    class="q-mr-lg"
+                  >
+                    <span v-if="slItem.debit">
+                      {{ helper.formatNumber(slItem.debit) }}
+                    </span>
+                    <span v-if="slItem.credit" class="text-red">
+                      ({{ helper.formatNumber(slItem.credit) }})
+                    </span>
+                  </q-item-section>
+                </q-item>
+              </div>
             </q-expansion-item>
           </template>
 

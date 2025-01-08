@@ -12,7 +12,7 @@
       <q-list class="statement-bar q-pr-md q-pl-sm">
         <balance-sheet-item-header title="داراییهای جاری" />
 
-        <div class="q-pl-xs q-ml-md sub-item-container">
+        <div class="q-pl-xs sub-item-container_">
           <balance-sheet-item
             v-for="item in currentAssets"
             :key="item.id"
@@ -23,7 +23,7 @@
 
         <balance-sheet-item-header title="داراییهای ثابت" />
 
-        <div class="q-pl-xs q-ml-md border-right">
+        <div class="q-pl-xs">
           <balance-sheet-item
             v-for="item in fixedAssets"
             :key="item.id"
