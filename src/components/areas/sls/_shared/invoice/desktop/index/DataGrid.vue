@@ -4,7 +4,7 @@
     flat_
     bordered_
     multiSelect
-    dense_
+    dense
     toolbar_
     numbered
     wrapCells_

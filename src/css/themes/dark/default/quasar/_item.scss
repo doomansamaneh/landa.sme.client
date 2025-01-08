@@ -17,6 +17,18 @@
     border-left: 1px solid $white;
   }
 
+  .balance-sheet-expansion-item {
+    .q-item {
+      padding: 12px;
+    }
+  }
+
+  .income-statement-expansion-item {
+    .q-item {
+      padding: 12px;
+    }
+  }
+
   .menu-bar
     .q-expansion-item--expanded
     .q-expansion-item__toggle-icon {

@@ -82,13 +82,13 @@
       >
         <slot name="thead">
           <div
-            class="row q-col-gutter-lg items-center"
+            class="row q-col-gutter-md items-center"
             style="width: 100%; margin-left: 0px"
           >
             <slot name="thead-index">
               <div class="col-1">#</div>
             </slot>
-            <slot name="thead-cols">
+            <slot name="thead-cols" :tableStore="tableStore">
               <div
                 v-for="col in lookupColumns"
                 :key="col"
@@ -134,7 +134,7 @@
             v-close-popup
           >
             <div
-              class="row items-center q-col-gutter-lg"
+              class="row items-center q-col-gutter-md"
               style="width: 100%"
             >
               <slot name="tbody-index" :index="index">
@@ -203,7 +203,7 @@
   >
     <q-card class="no-border">
       <q-card-section>
-        <div class="row items-center q-col-gutter-lg">
+        <div class="row items-center q-col-gutter-md">
           <div class="col text-body2 no-letter-spacing text-bold">
             <slot name="title">انتخاب</slot>
           </div>
@@ -262,7 +262,7 @@
       >
         <slot name="thead">
           <div
-            class="row q-col-gutter-lg items-center"
+            class="row q-col-gutter-md items-center"
             style="width: 100%; margin-left: 0px"
           >
             <slot name="thead-index">

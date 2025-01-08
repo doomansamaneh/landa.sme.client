@@ -11,9 +11,21 @@
       <div>#</div>
     </template>
 
-    <template #thead-cols>
-      <div class="col-1">کد</div>
-      <div class="col">عنوان</div>
+    <template #thead-cols="{ tableStore }">
+      <div style="width: 16%">
+        <header-column
+          fieldName="code"
+          title="کد"
+          :table-store="tableStore"
+        />
+      </div>
+      <div class="col">
+        <header-column
+          fieldName="title"
+          title="عنوان"
+          :table-store="tableStore"
+        />
+      </div>
     </template>
 
     <template #tbody-index="{ index }">
@@ -21,7 +33,7 @@
     </template>
 
     <template #tbody-cols="{ item }">
-      <div class="col-1">{{ item.code }}</div>
+      <div style="width: 16%">{{ item.code }}</div>
       <div class="col">
         <span class="q-mr-sm text-body2 no-letter-spacing">
           {{ item.title }}
@@ -36,7 +48,9 @@
 
 <script setup>
   import { ref } from "vue";
+
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
 
   const props = defineProps({
     filterExpression: Array,

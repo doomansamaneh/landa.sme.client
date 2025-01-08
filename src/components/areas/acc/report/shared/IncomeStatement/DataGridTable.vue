@@ -25,19 +25,13 @@
             :key="glItem.glCode"
           >
             <q-expansion-item
+              class="income-statement-expansion-item"
               header-class="border-radius-sm q-my-sm"
+              switch-toggle-side
               :group="glItem.glCode"
               @show="expandGL(glItem)"
             >
               <template #header>
-                <q-item-section avatar style="padding-left: 0">
-                  <q-icon
-                    class="q-mr-sm"
-                    size="20px"
-                    name="o_folder"
-                  />
-                </q-item-section>
-
                 <q-item-section class="q-pr-sm" avatar>
                   <div
                     class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
@@ -84,14 +78,6 @@
                   clickable
                   :group="`${glItem.glCode}-child`"
                 >
-                  <q-item-section avatar style="padding-left: 0">
-                    <q-icon
-                      class="q-mr-sm"
-                      size="20px"
-                      name="o_folder"
-                    />
-                  </q-item-section>
-
                   <q-item-section class="q-pr-sm" avatar>
                     <div
                       class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
@@ -107,7 +93,6 @@
                   <q-item-section
                     v-if="item.clTypeId === accountCLTypeIds.revenue"
                     side
-                    class="q-mr-lg"
                   >
                     <span v-if="slItem.credit">
                       {{ helper.formatNumber(slItem.credit) }}
@@ -121,7 +106,6 @@
                       item.clTypeId === accountCLTypeIds.expense
                     "
                     side
-                    class="q-mr-lg"
                   >
                     <span v-if="slItem.debit">
                       {{ helper.formatNumber(slItem.debit) }}

@@ -3,7 +3,7 @@
 
   <advanced-search />
 
-  <tip-banner :tip="tip" closeable />
+  <tip-banner :tip="tip" closeable class="q-mb-md" />
 
   <chip
     icon="filter_alt"

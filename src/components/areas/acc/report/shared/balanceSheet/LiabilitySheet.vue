@@ -13,7 +13,7 @@
         <template v-if="totalCL.value !== 0">
           <balance-sheet-item-header title="بدهی جاری" />
 
-          <div class="q-pl-xs sub-item-container_">
+          <div>
             <balance-sheet-item
               v-for="item in currentList"
               :key="item.id"
