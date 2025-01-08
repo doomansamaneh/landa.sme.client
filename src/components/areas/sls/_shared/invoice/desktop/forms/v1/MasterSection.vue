@@ -90,12 +90,6 @@
                     v-model:selectedText="model.originalDocument.no"
                     :filter-expression="originalFilterExpression"
                   />
-                  <!-- <invoice-lookup
-                    label="سند مرجع"
-                    v-model:selectedId="parentId"
-                    v-model:selectedText="no"
-                    :filter-expression="originalFilterExpression"
-                  /> -->
                 </div>
               </div>
             </div>
