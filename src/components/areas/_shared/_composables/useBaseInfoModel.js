@@ -9,6 +9,7 @@ export function useBaseInfoModel({
   baseRoute,
   getCreateModel,
   id,
+  resetCallback,
 }) {
   const route = useRoute();
   const router = useRouter();
@@ -25,6 +26,7 @@ export function useBaseInfoModel({
   async function submitForm(form, action, callBack) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
+      if (resetCallback) resetCallback();
       if (callBack) callBack(responseData);
       else router.back();
     }

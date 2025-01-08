@@ -27,14 +27,19 @@ export function useProductGrid() {
   const composablesStore = useComposables();
   composablesStore.register({
     reset: () => {
-      state.firstLoad.value = false;
+      reset();
     },
   });
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
 
   return {
     //rows,
     columns,
     pagination,
     state,
+    reset,
   };
 }

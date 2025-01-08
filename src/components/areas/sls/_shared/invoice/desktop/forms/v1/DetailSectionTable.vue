@@ -43,7 +43,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="(row, index) in formStore.model.value.invoiceItems"
+        v-for="(row, index) in model.invoiceItems"
         :key="index"
         class="q-pa-md"
       >
@@ -118,7 +118,7 @@
         </td>
       </tr>
     </tbody>
-    <tbody v-if="formStore.model.value.invoiceItems.length === 0">
+    <tbody v-if="model.invoiceItems.length === 0">
       <tr>
         <td colspan="100%" class="text-center">
           <no-product-selected class="q-mt-md" />
@@ -138,7 +138,7 @@
   </q-markup-table>
 
   <q-btn
-    v-if="formStore.model.value.invoiceItems.length > 0"
+    v-if="model.invoiceItems.length > 0"
     padding="4px 12px"
     unelevated
     rounded
@@ -151,7 +151,7 @@
   </q-btn>
 
   <footer-section
-    v-if="formStore.model.value.invoiceItems.length > 0"
+    v-if="model.invoiceItems.length > 0"
     :form-store="formStore"
     :invoice-form-type="invoiceFormType"
   />
@@ -162,6 +162,7 @@
   import { helper } from "src/helpers";
   import { useDialog } from "src/composables/useDialog";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import FooterSection from "./FooterSection.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
@@ -174,6 +175,7 @@
   const props = defineProps({
     formStore: useInvoiceModel,
     formType: invoiceFormType,
+    model: invoiceModel,
   });
 
   const dialogStore = useDialog();

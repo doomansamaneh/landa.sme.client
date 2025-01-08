@@ -14,6 +14,7 @@ export function useVoucherModel({ baseRoute, preview }) {
   const itemStore = useVoucherItemModel();
 
   const model = ref(voucherModel);
+
   const crudStore = useFormActions(baseRoute, model);
   const formItemStore = useFormItemsModel();
 
@@ -85,7 +86,7 @@ export function useVoucherModel({ baseRoute, preview }) {
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
-      voucherStore.state.firstLoad.value = false;
+      voucherStore.reset();
       router.back();
     }
   }

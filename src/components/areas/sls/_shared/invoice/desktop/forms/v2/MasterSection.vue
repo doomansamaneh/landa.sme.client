@@ -3,8 +3,8 @@
     <div class="col-md-5 col-sm-12 col-xs-12">
       <customer-lookup
         :label="customerTitle"
-        v-model:selectedId="model.value.customerId"
-        v-model:selectedText="model.value.customerName"
+        v-model:selectedId="model.customerId"
+        v-model:selectedText="model.customerName"
         required
       />
     </div>
@@ -12,13 +12,13 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
       <cash-lookup
         label="صندوق"
-        v-model:selectedId="model.value.cashId"
-        v-model:selectedText="model.value.cashTitle"
+        v-model:selectedId="model.cashId"
+        v-model:selectedText="model.cashTitle"
       />
     </div>
 
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <date-time label="تاریخ" v-model="model.value.date" required />
+      <date-time label="تاریخ" v-model="model.date" required />
     </div>
 
     <div class="flex q-mt-lg items-center justify-center col">
@@ -54,10 +54,10 @@
           <q-input
             type="number"
             hide-bottom-space
-            v-model="model.value.no"
+            v-model="model.no"
             outlined
             dense
-            :disable="!model.value.manualNo"
+            :disable="!model.manualNo"
           >
             <template #append>
               <q-icon
@@ -71,14 +71,14 @@
         </div>
 
         <div class="col-md-3 col-sm-6 col-xs-12">
-          <date-time label="سررسید" v-model="model.value.dueDate" />
+          <date-time label="سررسید" v-model="model.dueDate" />
         </div>
 
         <div class="col-md-6 col-sm-12 col-xs-12">
           <sale-type-lookup
             :label="saleTypeTitle"
-            v-model:selectedId="model.value.typeId"
-            v-model:selectedText="model.value.typeTitle"
+            v-model:selectedId="model.typeId"
+            v-model:selectedText="model.typeTitle"
             :filter-expression="filterExpression"
           />
         </div>
@@ -86,24 +86,24 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
           <inventory-lookup
             label="انبار"
-            v-model:selectedId="model.value.inventoryId"
-            v-model:selectedText="model.value.inventoryTitle"
+            v-model:selectedId="model.inventoryId"
+            v-model:selectedText="model.inventoryTitle"
             required
           />
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <contract-lookup
             label="قرارداد"
-            v-model:selectedId="model.value.contractId"
-            v-model:selectedText="model.value.contractTitle"
+            v-model:selectedId="model.contractId"
+            v-model:selectedText="model.contractTitle"
           />
         </div>
 
         <div class="col-md-6 col-sm-12 col-xs-12">
           <customer-lookup
             label="بازاریاب"
-            v-model:selectedId="model.value.contactId"
-            v-model:selectedText="model.value.contactName"
+            v-model:selectedId="model.contactId"
+            v-model:selectedText="model.contactName"
           />
         </div>
         <div
@@ -112,8 +112,8 @@
         >
           <invoice-lookup
             label="سند مرجع"
-            v-model:selectedId="model.value.originalDocument.parentId"
-            v-model:selectedText="model.value.originalDocument.no"
+            v-model:selectedId="model.originalDocument.parentId"
+            v-model:selectedText="model.originalDocument.no"
             :filter-expression="originalFilterExpression"
           />
         </div>
@@ -121,7 +121,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
           <q-item-label caption class="q-mb-sm">شرح</q-item-label>
           <custom-input
-            v-model="model.value.summary"
+            v-model="model.summary"
             hide-bottom-space
             type="textarea"
           />
@@ -139,21 +139,23 @@
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import CashLookup from "src/components/shared/lookups/CashLookup.vue";
   import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
-  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
-  import CustomInput from "src/components/shared/forms/CustomInput.vue";
-  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
-
   import {
     sqlOperator,
     vatType,
     invoiceFormType,
     documentType,
   } from "src/constants";
+  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
+
+  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
 
   const props = defineProps({
     formStore: Object,
     formType: Object,
+    model: invoiceModel,
   });
 
   const contractLookup = ref(null);
@@ -195,12 +197,9 @@
         ];
 
   const toggleInvocieNo = () => {
-    localFormStore.value.model.value.manualNo =
-      !localFormStore.value.model.value.manualNo;
+    props.model.manualNo = !props.model.manualNo;
   };
 
-  const localFormStore = computed(() => props.formStore);
-  const model = computed(() => props.formStore.model);
   const showOriginalDoc = computed(
     () =>
       props.formType === invoiceFormType.sales ||

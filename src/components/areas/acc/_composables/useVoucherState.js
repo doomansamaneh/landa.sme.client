@@ -25,10 +25,15 @@ const pagination = ref({
 export function useVoucherState() {
   const columns = ref([...voucherColumns]);
 
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
+
   return {
     rows,
     state,
     pagination,
     columns,
+    reset,
   };
 }

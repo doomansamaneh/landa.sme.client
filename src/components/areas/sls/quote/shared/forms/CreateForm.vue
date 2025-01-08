@@ -1,53 +1,53 @@
 <template>
-  <form-toolbar-container
-    buttons
+  <create-form
     :title="title"
-    @submit-call-back="formStore.submitForm(form, action)"
+    :action="action"
+    :method="method"
+    :form-store="formStore"
+    :model="model"
+    :form-type="invoiceFormType.sales"
+    :save-call-back="saveCallBack"
   />
-
-  <q-card class="form-container">
-    <q-card-section>
-      <q-form ref="form" autofocus>
-        <desktop
-          v-if="$q.screen.gt.sm"
-          :form-store="formStore"
-          :form-type="invoiceFormType.sales"
-        >
-          <template #headerTitle>
-            <h4>پیش فاکتور</h4>
-          </template>
-        </desktop>
-        <mobile
-          v-else
-          :form-store="formStore"
-          :form-type="invoiceFormType.sales"
-        />
-        <!-- <mobile :form-store="formStore" /> -->
-      </q-form>
-    </q-card-section>
-  </q-card>
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
-  import { useRoute } from "vue-router";
+  import { ref } from "vue";
+  import { useRouter } from "vue-router";
+  import { useQuasar } from "quasar";
   import { invoiceFormType } from "src/constants";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { invoiceModel } from "src/models/areas/sls/invoiceModel";
+  import { useQuoteState } from "../../../_composables/useQuoteState";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
-  import Desktop from "src/components/areas/sls/_shared/invoice/desktop/forms/CreateForm.vue";
-  import Mobile from "src/components/areas/sls/_shared/invoice/mobile/forms/CreateForm.vue";
+  import CreateForm from "src/components/areas/sls/_shared/invoice/shared/forms/CreateForm.vue";
 
   const props = defineProps({
     title: String,
     action: String,
     method: String,
   });
-  const route = useRoute();
-  const formStore = useInvoiceModel({ baseRoute: "sls/quote" });
-  const form = ref(null);
 
-  onMounted(() => {
-    formStore.getById(route.params.id, props.method);
+  const router = useRouter();
+  const $q = useQuasar();
+  const model = ref(invoiceModel);
+  const quoteStore = useQuoteState();
+  const formStore = useInvoiceModel({
+    baseRoute: "sls/quote",
+    resetCallback: quoteStore.reset,
+    model: model,
   });
+
+  function saveCallBack(responseData) {
+    if (responseData?.code === 200) {
+      $q.dialog({
+        component: ResponseDialog,
+        componentProps: {
+          responseData: responseData.data,
+          baseRoute: "sls/quote",
+        },
+      }).onOk(async () => {
+        router.back();
+      });
+    }
+  }
 </script>

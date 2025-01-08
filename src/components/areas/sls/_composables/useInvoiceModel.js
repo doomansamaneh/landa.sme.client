@@ -36,8 +36,6 @@ export function useInvoiceModel(config) {
     } else
       responseData = await crudStore.getCreateModel(setInvoiceItems);
 
-    setInvoiceItems();
-
     if (responseData) {
       if (action === "copy") {
         model.value.quoteId = null;
@@ -53,12 +51,13 @@ export function useInvoiceModel(config) {
       }
       addWatch();
     }
+
+    setInvoiceItems();
   }
 
   function setInvoiceItems() {
-    if (!model.value.originalDocument) {
+    if (!model.value.originalDocument)
       model.value.originalDocument = {};
-    }
     if (!model.value.invoiceItems) model.value.invoiceItems = [];
   }
 
@@ -311,13 +310,14 @@ export function useInvoiceModel(config) {
         },
       ];
     }
-    await crudStore.submitForm(
-      form,
-      action,
-      callBack ?? saveCallBack
-    );
+    await crudStore.submitForm(form, action, saveCallBack);
+
     function saveCallBack(responseData) {
-      if (responseData?.code === 200) {
+      if (responseData?.code === 200 && config?.resetCallback)
+        config.resetCallback();
+
+      if (callBack) callBack(responseData);
+      else if (responseData?.code === 200) {
         $q.dialog({
           component: ResponseDialog,
           componentProps: {

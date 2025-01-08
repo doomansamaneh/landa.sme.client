@@ -9,6 +9,7 @@
   import { onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
   import { useCustomerModel } from "../../../_composables/useCustomerModel";
+  import { useCustomerState } from "../../../_composables/useCustomerState";
 
   import MasterSection from "./_MasterSection.vue";
   import DetailSection from "./_DetailSection.vue";
@@ -20,8 +21,10 @@
 
   const form = ref(null);
   const route = useRoute();
+  const customerStore = useCustomerState();
   const formStore = useCustomerModel({
     baseRoute: "crm/customer",
+    resetCallback: customerStore.reset,
   });
 
   async function submitForm(callBack) {

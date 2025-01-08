@@ -1,7 +1,11 @@
 <template>
   <div class="row q-col-gutter-sm">
     <div class="col-md-4">
-      <select-product :form-store="formStore" :form-type="formType" />
+      <select-product
+        :form-store="formStore"
+        :model="model"
+        :form-type="formType"
+      />
     </div>
     <div class="col-md-8">
       <q-card bordered class="fit">
@@ -10,6 +14,7 @@
             <div>
               <master-section
                 :form-store="formStore"
+                :model="model"
                 :form-type="formType"
               />
             </div>
@@ -21,6 +26,7 @@
             <div>
               <detail-section
                 :form-store="formStore"
+                :model="model"
                 :form-type="formType"
               />
             </div>
@@ -39,5 +45,6 @@
   const props = defineProps({
     formStore: Object,
     formType: Object,
+    model: Object,
   });
 </script>
