@@ -25,7 +25,10 @@
     </template>
 
     <template #prepend>
-      <q-icon name="o_search" color="primary" />
+      <q-icon
+        name="qr_code"
+        :color="$q.dark.isActive ? 'white' : 'black'"
+      />
     </template>
   </q-input>
 </template>
