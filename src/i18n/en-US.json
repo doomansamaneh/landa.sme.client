@@ -26,7 +26,6 @@
     },
 
     "forgot-password": "Forgot your password?",
-    "invalid-username-password": "Invalid username or password",
     "network-error": "Make sure you're connected to the internet",
     "invalid-username-password": "Invalid username or password"
   },
@@ -191,8 +190,8 @@
       "new": "New",
       "edit": "Edit",
       "delete": "Delete",
-      "required" : "Fill out this field",
-      "additionalInformation" : "Additional Information"
+      "required": "Fill out this field",
+      "additionalInformation": "Additional Information"
     },
     "messages": {
       "deleted-successfully": "Deleted successfully"

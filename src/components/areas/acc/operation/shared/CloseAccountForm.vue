@@ -66,19 +66,9 @@
   const formStore = useAccountingOperations();
 
   async function submitForm() {
-    try {
-      const isValid = await form.value.validate();
-
-      if (isValid) {
-        await formStore.closeAccount();
-        return true;
-      } else {
-        // alert("Validation error");
-        return false;
-      }
-    } catch (error) {
-      console.error("Error during form submission:", error);
-      return false;
+    const isValid = await form.value.validate();
+    if (isValid) {
+      await formStore.closeAccount();
     }
   }
 

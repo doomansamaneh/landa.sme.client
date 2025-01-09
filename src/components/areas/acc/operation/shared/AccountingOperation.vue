@@ -194,14 +194,12 @@
   </div>
 </template>
 <script setup>
-  import { useQuasar } from "quasar";
   import { useDialog } from "src/composables/useDialog";
   import { useAccountingOperations } from "../../_composables/useAccountingOperations";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import CloseAccountForm from "./CloseAccountForm.vue";
 
-  const $q = useQuasar();
   const dialogStore = useDialog();
   const operationStore = useAccountingOperations();
 
@@ -210,13 +208,7 @@
       title: "shared.labels.closeAccount",
       component: CloseAccountForm,
       actions: true,
-      okCallback: async () => {
-        reloadData;
-      },
+      okCallback: async () => {},
     });
-  };
-
-  const reloadData = async () => {
-    //alert("operation finished");
   };
 </script>
