@@ -13,9 +13,21 @@
       <div>#</div>
     </template>
 
-    <template #thead-cols>
-      <div class="col">عنوان</div>
-      <div class="col-1">هزینه</div>
+    <template #thead-cols="{ tableStore }">
+      <div class="col">
+        <header-column
+          fieldName="title"
+          title="عنوان"
+          :table-store="tableStore"
+        />
+      </div>
+      <div class="col-2">
+        <header-column
+          fieldName="cost"
+          title="هزینه"
+          :table-store="tableStore"
+        />
+      </div>
     </template>
 
     <template #tbody-index="{ index }">
@@ -28,7 +40,7 @@
           {{ item.title }}
         </span>
       </div>
-      <div class="col-1">
+      <div class="col-2">
         <span class="text-body2 no-letter-spacing">
           {{ item.cost.toLocaleString() }}
         </span>
@@ -41,6 +53,7 @@
   import { ref } from "vue";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
 
   const lookup = ref(null);
 

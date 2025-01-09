@@ -2,7 +2,7 @@
   <q-card v-if="status" flat class="tips">
     <q-card-section>
       <slot name="title">
-        <div class="title">
+        <div class="q-mb-xs title">
           {{ title }}
         </div>
       </slot>
@@ -30,7 +30,10 @@
   import { ref } from "vue";
 
   const props = defineProps({
-    title: String,
+    title: {
+      type: String,
+      default: "راهنما",
+    },
     tip: String,
     closeable: Boolean,
   });

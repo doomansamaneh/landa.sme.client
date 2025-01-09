@@ -5,30 +5,37 @@
     size="20px"
     color="primary"
   />
-  <span @click="sortColumn" class="text-body3 no-letter-spacing text-bold cursor-pointer">
+  <span
+    @click="sortColumn"
+    class="text-body3 no-letter-spacing text-bold cursor-pointer"
+  >
     {{ title }}
   </span>
 </template>
 
 <script setup>
-import { computed } from "vue";
+  import { computed } from "vue";
 
-const props = defineProps({
-  title: String,
-  fieldName: String,
-  tableStore: Object,
-});
+  const props = defineProps({
+    title: String,
+    fieldName: String,
+    tableStore: Object,
+  });
 
-function sortColumn() {
-  props.tableStore.sortColumn({ name: props.fieldName, sortable: true });
-}
+  function sortColumn() {
+    props.tableStore.sortColumn({
+      name: props.fieldName,
+      sortable: true,
+    });
+  }
 
-const isAscending = computed(
-  () => props.tableStore.pagination.value.sortOrder === 1
-);
+  const isAscending = computed(
+    () => props.tableStore.pagination.value.sortOrder === 1
+  );
 
-//todo: this function make bug on some lookups like planLookup,...
-const showSortIcon = computed(
-  () => props.tableStore.pagination.value.sortColumn === props.fieldName
-);
+  //todo: this function make bug on some lookups like planLookup,...
+  const showSortIcon = computed(
+    () =>
+      props.tableStore.pagination.value.sortColumn === props.fieldName
+  );
 </script>

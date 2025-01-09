@@ -13,7 +13,7 @@
         </q-tooltip>
       </q-btn>
 
-      <q-btn
+      <!-- <q-btn
         size="11px"
         round
         unelevated
@@ -68,7 +68,7 @@
             <template v-else>فونت درشت</template>
           </div>
         </q-tooltip>
-      </q-btn>
+      </q-btn> -->
 
       <q-btn
         size="11px"

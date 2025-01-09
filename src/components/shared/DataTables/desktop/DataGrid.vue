@@ -51,7 +51,7 @@
                 :color="$q.dark.isActive ? 'white' : 'grey-6'"
                 size="32px"
                 :style="
-                  tableStore.dense.value
+                  dense
                     ? 'margin-right: 16px;'
                     : 'margin-right: 32px;'
                 "
@@ -247,7 +247,7 @@
     square: Boolean,
     bordered: Boolean,
     flat: Boolean,
-    // dense: Boolean,
+    dense: Boolean,
     grid: Boolean,
     wrapCells: Boolean,
     gridStore: Object,
@@ -334,9 +334,7 @@
         ? "q-table--grid"
         : cardDefaultClass.value) +
       ($q.dark?.isActive === true ? " q-table--dark" : "") +
-      (tableStore.value.dense.value === true
-        ? " q-table--dense"
-        : "") +
+      (props.dense ? " q-table--dense" : "") +
       (props.wrapCells === false ? " q-table--no-wrap_" : "") +
       (props.bordered === true ? " bordered" : "") +
       (props.noFullscreen
@@ -399,7 +397,13 @@
 
   .data-table {
     th {
-      font-weight: bold;
+      font-weight: bold !important;
+      font-size: 13px !important;
+    }
+
+    td {
+      letter-spacing: 0 !important;
+      font-size: 14px !important;
     }
   }
 </style>
