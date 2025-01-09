@@ -160,14 +160,14 @@
 
   const quantityInput = ref([]); // Array to hold the refs for each input
 
-  const focusInput = (index) => {
-    if (
-      quantityInput.value[index] &&
-      typeof quantityInput.value[index].focus === "function"
-    ) {
-      quantityInput.value[index].focus(); // Call the focus method defined in custom-input-number
-    }
-  };
+  // const focusInput = (index) => {
+  //   if (
+  //     quantityInput.value[index] &&
+  //     typeof quantityInput.value[index].focus === "function"
+  //   ) {
+  //     quantityInput.value[index].focus(); // Call the focus method defined in custom-input-number
+  //   }
+  // };
 
   const openRowDetailSheet = (item) => {
     dialogStore.openDialog({
@@ -189,7 +189,7 @@
         } else {
           if (item.quantity > prevQuantity) {
             item.blink = true;
-            focusInput(index);
+            // focusInput(index);
             setTimeout(() => {
               item.blink = false;
             }, 300);
