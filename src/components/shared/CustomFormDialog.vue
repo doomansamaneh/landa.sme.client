@@ -9,7 +9,9 @@
     @hide="onDialogHide"
   >
     <q-card
-      :style="$q.screen.xs ? '' : 'width: 900px; max-width: 80vw'"
+      :style="
+        $q.screen.xs ? '' : `width: ${width}; max-width: 80vw`
+      "
       flat
     >
       <q-card-section
@@ -61,6 +63,10 @@
     formProps: Object,
     item: Object,
     actions: Boolean,
+    width: {
+      type: String,
+      default: "700px",
+    },
   });
 
   const emit = defineEmits([...useDialogPluginComponent.emits]);
@@ -73,11 +79,11 @@
   async function submitForm() {
     if (form.value) {
       await form.value.submitForm(onDialogOK);
+      closeDialog();
     }
   }
 
   function closeDialog() {
-    // Logic to close dialog (e.g., reset or handle closing behavior)
     onDialogCancel();
   }
 

@@ -1,198 +1,200 @@
 <template>
-  <custom-label class="q-mb-sm" :label="label" />
-  <q-input
-    ref="search"
-    v-model="selectedText"
-    hide-bottom-space
-    outlined
-    color="primary"
-    class="first input lookup"
-    :input-class="inputClass"
-    dense
-    :autogrow="autogrow"
-    debounce="1000"
-    :placeholder="placeholder"
-    :autofocus="autofocus"
-    :rules="rules"
-    @update:model-value="searchInLookup"
-    @keydown.enter.prevent.stop="selectRow"
-    @keydown="handleKeyDown"
-  >
-    <template #loading>
-      <q-spinner size="18px" color="primary" />
-    </template>
+  <div>
+    <custom-label class="q-mb-sm" :label="label" />
+    <q-input
+      ref="search"
+      v-model="selectedText"
+      hide-bottom-space
+      outlined
+      color="primary"
+      class="first input lookup"
+      :input-class="inputClass"
+      dense
+      :autogrow="autogrow"
+      debounce="1000"
+      :placeholder="placeholder"
+      :autofocus="autofocus"
+      :rules="rules"
+      @update:model-value="searchInLookup"
+      @keydown.enter.prevent.stop="selectRow"
+      @keydown="handleKeyDown"
+    >
+      <template #loading>
+        <q-spinner size="18px" color="primary" />
+      </template>
 
-    <template #append>
-      <template v-if="clearable || !required">
+      <template #append>
+        <template v-if="clearable || !required">
+          <q-icon
+            name="o_close"
+            v-if="!isSearchEmpty"
+            class="cursor-pointer q-field__focusable-action"
+            @click="clearSearch"
+          />
+        </template>
         <q-icon
-          name="o_close"
-          v-if="!isSearchEmpty"
-          class="cursor-pointer q-field__focusable-action"
-          @click="clearSearch"
+          @click="handlePopup"
+          name="o_expand_more"
+          id="expand-more-icon"
+          class="show-lookup-icon cursor-pointer"
+          size="sm"
         />
       </template>
-      <q-icon
-        @click="handlePopup"
-        name="o_expand_more"
-        id="expand-more-icon"
-        class="show-lookup-icon cursor-pointer"
-        size="sm"
+
+      <template #prepend>
+        <q-spinner
+          v-if="tableStore.inputInnerLoader.value"
+          size="18px"
+          color="primary"
+        />
+      </template>
+
+      <validation-alert
+        v-if="validationMessage"
+        :message="validationMessage"
       />
-    </template>
 
-    <template #prepend>
-      <q-spinner
-        v-if="tableStore.inputInnerLoader.value"
-        size="18px"
-        color="primary"
-      />
-    </template>
-
-    <validation-alert
-      v-if="validationMessage"
-      :message="validationMessage"
-    />
-
-    <q-menu
-      fit
-      v-if="$q.screen.gt.xs"
-      no-parent-event
-      v-model="isPopupOpen"
-      @show="onMenuShow"
-      @hide="onMenuHide"
-      ref="popup"
-      transition-show="jump-down"
-      transition-hide="jump-up"
-      :anchor="$q.screen.lt.sm ? 'bottom middle' : ''"
-      :self="$q.screen.lt.sm ? 'top middle' : ''"
-      no-focus
-      no-refocus
-      :style="`width: ${width}`"
-    >
-      <q-inner-loading
-        :showing="tableStore.showLoader.value"
-        class="inner-loader_ q-mt-xl"
+      <q-menu
+        fit
+        v-if="$q.screen.gt.xs"
+        no-parent-event
+        v-model="isPopupOpen"
+        @show="onMenuShow"
+        @hide="onMenuHide"
+        ref="popup"
+        transition-show="jump-down"
+        transition-hide="jump-up"
+        :anchor="$q.screen.lt.sm ? 'bottom middle' : ''"
+        :self="$q.screen.lt.sm ? 'top middle' : ''"
+        no-focus
+        no-refocus
+        :style="`width: ${width}`"
       >
-        <q-spinner size="52px" color="primary" />
-      </q-inner-loading>
-
-      <div
-        class="header text-caption text-bold q-pa-md bg-dark z-max"
-        style="border-bottom: 1px solid var(--q-primary)"
-      >
-        <slot name="thead">
-          <div
-            class="row q-col-gutter-md items-center"
-            style="width: 100%; margin-left: 0px"
-          >
-            <slot name="thead-index">
-              <div class="col-1">#</div>
-            </slot>
-            <slot name="thead-cols" :tableStore="tableStore">
-              <div
-                v-for="col in lookupColumns"
-                :key="col"
-                class="col"
-              >
-                <header-column
-                  :fieldName="col"
-                  :title="$t(`shared.labels.${col}`)"
-                  :table-store="tableStore"
-                />
-              </div>
-            </slot>
-
-            <slot name="create">
-              <lookup-add-button
-                v-if="
-                  showAdd &&
-                  createForm &&
-                  tableStore.state.value.isAuthorizeToCreate
-                "
-                @click="handleAdd"
-              />
-            </slot>
-          </div>
-        </slot>
-      </div>
-      <div
-        class="cursor-pointer q-ma-sm rounded-borders"
-        v-for="(row, index) in tableStore.rows.value"
-        :key="row.id"
-        :class="{ 'row-active': index === selectedRowIndex }"
-        @click="onRowClicked(row, index)"
-      >
-        <slot
-          name="td"
-          :row="row"
-          :index="tableStore.rowIndex(index)"
+        <q-inner-loading
+          :showing="tableStore.showLoader.value"
+          class="inner-loader_ q-mt-xl"
         >
-          <q-item
-            class="rounded-borders"
-            style="padding: 12px"
-            clickable
-            v-close-popup
-          >
+          <q-spinner size="52px" color="primary" />
+        </q-inner-loading>
+
+        <div
+          class="header text-caption text-bold q-pa-md bg-dark z-max"
+          style="border-bottom: 1px solid var(--q-primary)"
+        >
+          <slot name="thead">
             <div
-              class="row items-center q-col-gutter-md"
-              style="width: 100%"
+              class="row q-col-gutter-md items-center"
+              style="width: 100%; margin-left: 0px"
             >
-              <slot name="tbody-index" :index="index">
-                <div class="col-1 text-caption no-letter-spacing">
-                  {{ index + 1 }}
-                </div>
+              <slot name="thead-index">
+                <div class="col-1">#</div>
               </slot>
-              <slot name="tbody-cols" :item="row">
+              <slot name="thead-cols" :tableStore="tableStore">
                 <div
                   v-for="col in lookupColumns"
-                  class="col text-body2 no-letter-spacing"
                   :key="col"
+                  class="col"
                 >
-                  <slot :name="`cell-${col}`" :item="row">
-                    {{ row[col] }}
-                  </slot>
+                  <header-column
+                    :fieldName="col"
+                    :title="$t(`shared.labels.${col}`)"
+                    :table-store="tableStore"
+                  />
                 </div>
               </slot>
+
+              <slot name="create">
+                <lookup-add-button
+                  v-if="
+                    showAdd &&
+                    createForm &&
+                    tableStore.state.value.isAuthorizeToCreate
+                  "
+                  @click="handleAdd"
+                />
+              </slot>
             </div>
-          </q-item>
-        </slot>
-      </div>
-
-      <div
-        v-if="
-          !tableStore.showLoader.value &&
-          tableStore.rows.value.length == 0
-        "
-        class="q-table__bottom items-center q-table__bottom--nodata"
-      >
-        <slot name="noDataFound">
-          <no-data-found />
-        </slot>
-      </div>
-
-      <div
-        v-if="tableStore.showPagebar.value"
-        class="q-pa-md row items-center footer dark-1"
-      >
-        <page-bar
-          :pagination="tableStore.pagination.value"
-          @page-changed="reloadData"
+          </slot>
+        </div>
+        <div
+          class="cursor-pointer q-ma-sm rounded-borders"
+          v-for="(row, index) in tableStore.rows.value"
+          :key="row.id"
+          :class="{ 'row-active': index === selectedRowIndex }"
+          @click="onRowClicked(row, index)"
         >
-          <template #reload>
-            <q-btn
-              class="q-mr-md"
-              size="sm"
-              round
-              dense
-              unelevated
-              icon="o_refresh"
-              @click="reloadData"
-            />
-          </template>
-        </page-bar>
-      </div>
-    </q-menu>
-  </q-input>
+          <slot
+            name="td"
+            :row="row"
+            :index="tableStore.rowIndex(index)"
+          >
+            <q-item
+              class="rounded-borders"
+              style="padding: 12px"
+              clickable
+              v-close-popup
+            >
+              <div
+                class="row items-center q-col-gutter-md"
+                style="width: 100%"
+              >
+                <slot name="tbody-index" :index="index">
+                  <div class="col-1 text-caption no-letter-spacing">
+                    {{ index + 1 }}
+                  </div>
+                </slot>
+                <slot name="tbody-cols" :item="row">
+                  <div
+                    v-for="col in lookupColumns"
+                    class="col text-body2 no-letter-spacing"
+                    :key="col"
+                  >
+                    <slot :name="`cell-${col}`" :item="row">
+                      {{ row[col] }}
+                    </slot>
+                  </div>
+                </slot>
+              </div>
+            </q-item>
+          </slot>
+        </div>
+
+        <div
+          v-if="
+            !tableStore.showLoader.value &&
+            tableStore.rows.value.length == 0
+          "
+          class="q-table__bottom items-center q-table__bottom--nodata"
+        >
+          <slot name="noDataFound">
+            <no-data-found />
+          </slot>
+        </div>
+
+        <div
+          v-if="tableStore.showPagebar.value"
+          class="q-pa-md row items-center footer dark-1"
+        >
+          <page-bar
+            :pagination="tableStore.pagination.value"
+            @page-changed="reloadData"
+          >
+            <template #reload>
+              <q-btn
+                class="q-mr-md"
+                size="sm"
+                round
+                dense
+                unelevated
+                icon="o_refresh"
+                @click="reloadData"
+              />
+            </template>
+          </page-bar>
+        </div>
+      </q-menu>
+    </q-input>
+  </div>
 
   <q-dialog
     ref="lookupDialog"
@@ -481,6 +483,7 @@
     dialogStore.openDialog({
       title: "shared.labels.create",
       component: props.createForm,
+      width: '900px',
       actions: true,
       props: { action: formAction.create },
       okCallback: (responseData) => {

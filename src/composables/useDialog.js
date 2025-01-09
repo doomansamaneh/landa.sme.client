@@ -8,6 +8,7 @@ export function useDialog() {
     title,
     component,
     item,
+    width,
     props,
     actions,
     okCallback,
@@ -19,6 +20,7 @@ export function useDialog() {
         component: component,
         formProps: props,
         item: item,
+        width: width,
         actions: actions,
       },
     }).onOk(async (response) => {
