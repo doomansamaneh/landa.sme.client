@@ -1,9 +1,9 @@
 <template>
   <q-card-section>
     <div class="text-center">
-      <h6>
+      <div class="text-h6">
         {{ appConfigStore.model?.value?.companySetting.name }}
-      </h6>
+      </div>
       <div class="text-body2 text-bold">فیش حقوق و دستمزد</div>
     </div>
   </q-card-section>

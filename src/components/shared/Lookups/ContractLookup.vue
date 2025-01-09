@@ -7,22 +7,22 @@
     searchField="title"
     ref="lookup"
   >
-  <template #thead-index>
+    <template #thead-index>
       <div>#</div>
     </template>
 
     <template #thead-cols="{ tableStore }">
-      <div style="width: 16%">
+      <div style="width: 25%">
         <header-column
           fieldName="no"
-          title="شماره"
+          :title="t('shared.labels.no')"
           :table-store="tableStore"
         />
       </div>
       <div class="col">
         <header-column
           fieldName="title"
-          title="عنوان"
+          :title="t('shared.labels.title')"
           :table-store="tableStore"
         />
       </div>
@@ -33,7 +33,7 @@
     </template>
 
     <template #tbody-cols="{ item }">
-      <div style="width: 16%">{{ item.no }}</div>
+      <div style="width: 25%">{{ item.no }}</div>
       <div class="col">
         <span class="q-mr-sm text-body2 no-letter-spacing">
           {{ item.title }}
