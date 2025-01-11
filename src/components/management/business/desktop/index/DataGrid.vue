@@ -42,7 +42,7 @@
               dense
               class="text-on-dark"
               icon="o_help_outline"
-              @click="showGuideDialog = true"
+              @click="showGuideDialog"
             >
               <q-tooltip
                 class="text-body2 no-letter-spacing custom-tooltip"
@@ -215,11 +215,16 @@
 
   const $q = useQuasar();
   const businessDataView = ref(null);
-  const showGuideDialog = ref(false);
 
   async function reloadData() {
     businessDataView.value.reloadData();
   }
+
+  const showGuideDialog = () => {
+    $q.dialog({
+      component: DesktopViewGuide,
+    });
+  };
 
   function showDeleteBusiness() {
     $q.dialog({
@@ -227,21 +232,3 @@
     });
   }
 </script>
-
-<style lang="scss">
-  .business-name {
-    max-width: 160px;
-  }
-
-  .q-item__label--caption {
-    font-size: 14px;
-    letter-spacing: 0;
-    color: #2d2d2d;
-  }
-
-  /* //todo: add class for this kind of a */
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-</style>

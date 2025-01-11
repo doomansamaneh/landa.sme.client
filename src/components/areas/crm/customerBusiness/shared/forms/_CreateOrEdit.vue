@@ -39,7 +39,6 @@
         label="شرح"
         v-model="model.comment"
         type="textarea"
-        autogrow
       />
     </div>
   </div>
