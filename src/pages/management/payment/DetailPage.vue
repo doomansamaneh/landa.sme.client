@@ -1,5 +1,11 @@
 <template>
-  <q-page :class="$q.screen.gt.xs ? 'row items-center justify-center overflow-hidden' : ''">
+  <q-page
+    :class="
+      $q.screen.gt.xs
+        ? 'row items-center justify-center overflow-hidden'
+        : ''
+    "
+  >
     <div class="main-container">
       <background v-if="$q.screen.gt.xs" />
       <desktop />
@@ -8,9 +14,8 @@
 </template>
 
 <script setup>
-import Desktop from "src/components/management/paymentDetail/desktop/index/PaymentDetail.vue"
+  import Desktop from "src/components/management/payment/desktop/PaymentDetail.vue";
 
-//todo: remove this file to the business components folder
-import Background from "src/assets/BusinessBackground.vue"
-
+  //todo: remove this file to the business components folder
+  import Background from "src/assets/BusinessBackground.vue";
 </script>

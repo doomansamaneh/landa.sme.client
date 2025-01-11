@@ -12,13 +12,13 @@
               class="q-mr-sm text-caption-sm no-pointer-events no-letter-spacing"
               round
               text-color="white"
-              :class="`${item.color}-gradient`"
+              :class="`${itemPaymentType?.color}-gradient`"
             >
               <span class="text-body2 no-letter-spacing">
                 {{ index + 1 }}
               </span>
             </q-btn>
-            {{ item.header }}
+            {{ $t(`shared.paymentMethod.${itemPaymentType.name}`) }}
           </div>
         </div>
 
@@ -39,28 +39,28 @@
 
     <q-card-section>
       <payment-item-cash
-        v-if="item.typeId == paymentMethod.cash?.id"
+        v-if="item.typeId === paymentMethod.cash?.id"
         v-model="paymentMethod"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-check
-        v-if="item.typeId == paymentMethod.check?.id"
+        v-if="item.typeId === paymentMethod.check?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-transfer-bank
-        v-if="item.typeId == paymentMethod.bankTransition?.id"
+        v-if="item.typeId === paymentMethod.bankTransition?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-pos
-        v-if="item.typeId == paymentMethod.pos?.id"
+        v-if="item.typeId === paymentMethod.pos?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
       <payment-item-customer
-        v-if="item.typeId == paymentMethod.customer?.id"
+        v-if="item.typeId === paymentMethod.customer?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
@@ -69,7 +69,9 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { paymentMethod } from "src/constants";
+  import { useReceiptModel } from "../../../_composables/useReceiptModel";
 
   import PaymentItemCash from "./PaymentItemCash.vue";
   import PaymentItemCheck from "./PaymentItemCheck.vue";
@@ -80,6 +82,19 @@
   const props = defineProps({
     item: Object,
     index: Number,
-    formStore: Object,
+    formStore: useReceiptModel,
+  });
+
+  const itemPaymentType = computed(() => {
+    const entry = Object.entries(paymentMethod).find(
+      ([key, value]) => value.id === props.item.typeId
+    );
+
+    if (entry) {
+      const [name, details] = entry;
+      return { name, ...details };
+    }
+
+    return null;
   });
 </script>

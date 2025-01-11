@@ -46,7 +46,11 @@
       <div class="col-5">
         <div class="flex justify-start">
           <q-item-label caption class="text-on-dark">
-            <q-icon class="expire-date-clock" name="history" size="xs" />
+            <q-icon
+              class="expire-date-clock"
+              name="history"
+              size="xs"
+            />
             {{ item.fromDateString }} -
             {{ item.toDateString }}
           </q-item-label>
@@ -55,17 +59,21 @@
 
       <div class="col-2 flex items-center justify-start">
         <q-item-label caption>
-          {{ formatCurrency(item.amount) }}
+          {{ helper.formatNumber(item.amount) }}
           <span>{{ $t("page.payment-history.rial") }}</span>
           <q-tooltip class="custom-tooltip" :delay="600">
-            {{ $t("page.payment-history.amount-paid") }}</q-tooltip
-          >
+            {{ $t("page.payment-history.amount-paid") }}
+          </q-tooltip>
         </q-item-label>
       </div>
-      <div class="expire-date-container col-3 flex items-center justify-start">
+      <div
+        class="expire-date-container col-3 flex items-center justify-start"
+      >
         <q-item-label
           caption
-          v-if="item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'"
+          v-if="
+            item.statusTitle == 'Enum_BusinessPaymentStatus_Trial'
+          "
         >
           <q-icon name="circle" color="orange" size="8px" />
           {{ $t("page.payment-history.trial") }}
@@ -115,84 +123,70 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import { fetchWrapper } from "src/helpers";
+  import { ref, computed, onMounted } from "vue";
+  import { useRoute } from "vue-router";
+  import { fetchWrapper, helper } from "src/helpers";
 
-import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-import DataView from "src/components/shared/dataTables/desktop/DataView.vue";
-import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import DataView from "src/components/shared/dataTables/desktop/DataView.vue";
+  import RenewSubscribtion from "src/components/management/shared/RenewSubscribtionLink.vue";
 
-const route = useRoute();
+  const route = useRoute();
 
-const business = ref(null);
-const paymentGrid = ref(null);
+  const business = ref(null);
+  const paymentGrid = ref(null);
 
-const props = defineProps({
-  gridStore: Object,
-});
+  const props = defineProps({
+    gridStore: Object,
+  });
 
-const paymentDataSource = computed(
-  () => `business/getBusinessPaymentGridData/${route.params.businessId}`
-);
+  const businessId = route.params.businessId;
 
-//todo: remove this code from here to somewhere more general
-const formatCurrency = (value) => {
-  const language = localStorage.getItem("selectedLanguage");
-  if (language === "fa-IR") {
-    return value.toLocaleString("fa-IR", {
-      minimumFractionDigits: 0,
-    });
-  } else {
-    return value.toLocaleString();
+  const paymentDataSource = computed(
+    () => `business/getBusinessPaymentGridData/${businessId}`
+  );
+
+  async function loadData() {
+    await fetchWrapper
+      .get(`business/GetBusiness/${businessId}`)
+      .then((response) => {
+        business.value = response.data.data;
+      });
   }
-};
 
-async function loadData() {
-  await fetchWrapper
-    .get(`business/GetBusiness/${route.params.businessId}`)
-    .then((response) => {
-      business.value = response.data.data;
-    });
-}
+  async function refreshPayments() {
+    paymentGrid.value.reloadData();
+  }
 
-async function refreshPayments() {
-  paymentGrid.value.reloadData();
-}
+  function getDetailUrl(item) {
+    return `/business/PaymentDetail/${item.id}`;
+  }
 
-function getDetailUrl(item) {
-  return `/business/PaymentDetail/${item.id}`;
-}
-
-onMounted(() => {
-  loadData();
-});
-
-defineExpose({
-  formatCurrency,
-});
+  onMounted(() => {
+    loadData();
+  });
 </script>
 
 <style lang="scss">
-.business-name {
-  max-width: 160px;
-}
-
-.q-item__label--caption {
-  font-size: 14px;
-  letter-spacing: 0;
-  color: #2d2d2d;
-}
-
-/* //todo: add class for this kind of a */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.business-name-btn {
-  .q-focus-helper {
-    display: none;
+  .business-name {
+    max-width: 160px;
   }
-}
+
+  .q-item__label--caption {
+    font-size: 14px;
+    letter-spacing: 0;
+    color: #2d2d2d;
+  }
+
+  /* //todo: add class for this kind of a */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .business-name-btn {
+    .q-focus-helper {
+      display: none;
+    }
+  }
 </style>

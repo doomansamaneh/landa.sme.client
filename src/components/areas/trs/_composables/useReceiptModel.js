@@ -52,8 +52,6 @@ export function useReceiptModel({ baseRoute, preview }) {
       ...itemStore.model.value,
       amount: Math.max(amount, 0),
       typeId: paymentMehod.value.id,
-      color: paymentMehod.value.color,
-      header: paymentMehod.label,
     };
     formItemStore.pushNewItem(model.value.paymentItems, item);
   };

@@ -3,9 +3,7 @@
     <card-title :icon="`o_${icon}`" :title="title" />
 
     <data-grid
-      ref="dataGrid"
-      :data-source="dataSource"
-      :grid-store="gridStore"
+      :data-table-store="tableStore"
       separator="horizontal"
       multiSelect
       numbered
@@ -38,7 +36,7 @@
       </template>
 
       <template #cell-amount="{ item }">
-        {{ item.amount?.toLocaleString() }}
+        {{ helper.formatNumber(item.amount) }}
       </template>
 
       <template #cell-actions="{ item }">
@@ -62,7 +60,6 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { isActiveOptions } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
@@ -74,26 +71,11 @@
   import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
-    gridStore: Object,
+    tableStore: useDataTable,
     crudStore: Object,
-    dataSource: String,
     baseRoute: String,
     expandable: Boolean,
     title: String,
     icon: String,
-  });
-
-  const dataGrid = ref(null);
-  const tableStore = useDataTable({
-    dataSource: props.dataSource,
-    store: props.gridStore,
-  });
-
-  async function reloadData() {
-    await tableStore.reloadData();
-  }
-
-  defineExpose({
-    tableStore,
   });
 </script>

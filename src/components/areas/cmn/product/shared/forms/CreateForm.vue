@@ -3,12 +3,11 @@
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
         <product-group-lookup
-          v-model:selectedId="formStore.model.value.productGroupId"
-          v-model:selectedText="
-            formStore.model.value.productGroupTitle
-          "
+          v-model:selectedId="model.productGroupId"
+          v-model:selectedText="model.productGroupTitle"
           label="گروه کالا"
           required
+          @rowSelected="pgChanged"
         />
       </div>
     </div>
@@ -18,35 +17,19 @@
       :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'"
     >
       <div class="col-md-2 col-sm col-xs-12">
-        <custom-input
-          v-model="formStore.model.value.code"
-          lazy-rules
-          label="کد"
-          required
-        />
+        <custom-input v-model="model.code" label="کد" required />
       </div>
       <div class="col-md-2 col-sm col-xs-12">
-        <custom-input
-          v-model="formStore.model.value.barcode"
-          label="بارکد"
-        />
+        <custom-input v-model="model.barcode" label="بارکد" />
       </div>
       <div class="col-md-2 col-sm col-xs-12">
-        <custom-input
-          v-model="formStore.model.value.taxCode"
-          label="شناسه مالیاتی"
-        />
+        <custom-input v-model="model.taxCode" label="شناسه مالیاتی" />
       </div>
     </div>
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <custom-input
-          v-model="formStore.model.value.title"
-          lazy-rules
-          label="عنوان"
-          required
-        />
+        <custom-input v-model="model.title" label="عنوان" required />
       </div>
     </div>
 
@@ -56,7 +39,7 @@
     >
       <div class="col-md-3 col-sm col-xs-12">
         <custom-select
-          v-model="formStore.model.value.typeId"
+          v-model="model.typeId"
           :options="helper.getEnumOptions(productType, 'productType')"
           label="نوع"
           required
@@ -65,10 +48,8 @@
 
       <div class="col-md-3 col-sm col-xs-12">
         <product-unit-lookup
-          v-model:selectedId="formStore.model.value.productUnitId"
-          v-model:selectedText="
-            formStore.model.value.productUnitTitle
-          "
+          v-model:selectedId="model.productUnitId"
+          v-model:selectedText="model.productUnitTitle"
           label="واحد سنجش"
           required
         />
@@ -78,9 +59,7 @@
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-3 col-sm col-xs-12">
         <custom-input-number
-          hide-bottom-space
-          v-model="formStore.model.value.purchasePrice"
-          lazy-rules
+          v-model="model.purchasePrice"
           label="قیمت خرید"
           required
         />
@@ -88,15 +67,13 @@
           class="q-mt-sm"
           dense
           size="48px"
-          v-model="formStore.model.value.isForPurchase"
+          v-model="model.isForPurchase"
           label="برای خرید"
         />
       </div>
       <div class="col-md-3 col-sm col-xs-12">
         <custom-input-number
-          hide-bottom-space
-          v-model="formStore.model.value.price"
-          lazy-rules
+          v-model="model.price"
           label="قیمت فروش"
           required
         />
@@ -104,7 +81,7 @@
           class="q-mt-sm"
           dense
           size="48px"
-          v-model="formStore.model.value.isForSale"
+          v-model="model.isForSale"
           label="برای فروش"
         />
       </div>
@@ -113,8 +90,7 @@
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input
-          hide-bottom-space
-          v-model="formStore.model.value.comment"
+          v-model="model.comment"
           type="textarea"
           label="شرح"
         />
@@ -125,7 +101,7 @@
       <q-checkbox
         dense
         size="48px"
-        v-model="formStore.model.value.isActive"
+        v-model="model.isActive"
         label="فعال"
       />
     </div>
@@ -139,6 +115,7 @@
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { productModel } from "src/models/areas/cmn/productModel";
   import { useProductGrid } from "../../../_composables/useProductGrid";
+  import { useFormActions } from "src/composables/useFormActions";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
@@ -152,12 +129,25 @@
   });
 
   const form = ref(null);
+  const baseRoute = "cmn/product";
   const productGridStore = useProductGrid();
+  const actionStore = useFormActions(baseRoute);
+  const model = ref({ ...productModel });
+
   const formStore = useBaseInfoModel({
-    baseRoute: "cmn/product",
-    model: productModel,
+    baseRoute: baseRoute,
+    model: model,
     resetCallback: productGridStore.reset,
   });
+
+  const pgChanged = async (pg) => {
+    if (pg) {
+      var response = await actionStore.customPostAction(
+        `getNewCode/${pg.id}`
+      );
+      model.value.code = response.data;
+    }
+  };
 
   async function submitForm(callBack) {
     await formStore.submitForm(form.value, props.action, callBack);

@@ -1,5 +1,5 @@
 <template>
-  <data-grid icon="bubble_chart" toolbar />
+  <data-grid icon="bubble_chart" toolbar_ />
 </template>
 
 <script setup>

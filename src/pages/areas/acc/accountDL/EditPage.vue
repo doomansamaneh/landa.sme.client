@@ -10,5 +10,5 @@
 </template>
 
 <script setup>
-  import Desktop from "src/components/areas/acc/accountDL/shared/forms/EditForm.vue";
+  import Desktop from "src/components/areas/acc/accountDL/shared/forms/CreateForm.vue";
 </script>

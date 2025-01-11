@@ -15,7 +15,7 @@
     action: String,
   });
 
-  const model = ref({});
+  const model = ref({ customerId: props.id });
   const formStore = useFormActions("crm/customerBusiness", model);
   const form = ref(null);
 

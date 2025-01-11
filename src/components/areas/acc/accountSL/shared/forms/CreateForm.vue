@@ -12,28 +12,20 @@
           <div class="col-md-6 col-sm-12 col-xs-12">
             <gl-lookup
               label="حساب کل"
-              v-model:selectedId="formStore.model.value.glId"
-              v-model:selectedText="formStore.model.value.glTitle"
+              v-model:selectedId="model.glId"
+              v-model:selectedText="model.glTitle"
               required
+              @rowSelected="glChanged"
             />
           </div>
         </div>
 
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <custom-input
-              label="کد"
-              hide-bottom-space
-              v-model="formStore.model.value.code"
-              required
-            />
+            <custom-input label="کد" v-model="model.code" required />
           </div>
           <div class="col-md-3 col-sm-6 col-xs-12">
-            <custom-input
-              label="کد معادل"
-              hide-bottom-space
-              v-model="formStore.model.value.syncCode"
-            />
+            <custom-input label="کد معادل" v-model="model.syncCode" />
           </div>
         </div>
 
@@ -41,8 +33,7 @@
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
               label="عنوان"
-              hide-bottom-space
-              v-model="formStore.model.value.title"
+              v-model="model.title"
               required
             />
           </div>
@@ -55,7 +46,7 @@
               :options="
                 helper.getEnumOptions(accountType, 'accountType')
               "
-              v-model="formStore.model.value.typeId"
+              v-model="model.typeId"
             />
           </div>
         </div>
@@ -89,7 +80,7 @@
           <q-checkbox
             dense
             size="48px"
-            v-model="formStore.model.value.isActive"
+            v-model="model.isActive"
             label="فعال"
           />
         </div>
@@ -103,6 +94,7 @@
   import { helper } from "src/helpers";
   import { accountType, accountDLType } from "src/constants";
   import { accountSLModel } from "src/models/areas/acc/accountSLModel";
+  import { useFormActions } from "src/composables/useFormActions";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import ToolBar from "src/components/shared/FormToolbarContainer.vue";
@@ -118,10 +110,13 @@
   });
 
   const form = ref(null);
+  const baseRoute = "acc/accountSL";
+  const actionStore = useFormActions(baseRoute);
+  const model = ref({ ...accountSLModel });
 
   const formStore = useBaseInfoModel({
-    model: accountSLModel,
-    baseRoute: "acc/accountSL",
+    model: model,
+    baseRoute: baseRoute,
     id: props.id,
   });
 
@@ -131,8 +126,17 @@
 
   //todo: modify backend to return desired array of detail type list
   const dlTypes = computed(() =>
-    formStore.model.value.dlTypeIdList.map((c) => parseInt(c.id))
+    model.value.dlTypeIdList.map((c) => parseInt(c.id))
   );
+
+  const glChanged = async (gl) => {
+    if (gl) {
+      var response = await actionStore.customPostAction(
+        `getNewCode/${gl.id}`
+      );
+      model.value.code = response.data;
+    }
+  };
 
   defineExpose({
     submitForm,

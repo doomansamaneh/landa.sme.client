@@ -30,10 +30,11 @@
 <script setup>
   import { helper } from "src/helpers";
   import { paymentMethod } from "src/constants";
+  import { useReceiptModel } from "../../../_composables/useReceiptModel";
 
   import PaymentItem from "./PaymentItem.vue";
 
   const props = defineProps({
-    formStore: Object,
+    formStore: useReceiptModel,
   });
 </script>

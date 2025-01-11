@@ -9,9 +9,7 @@
     @hide="onDialogHide"
   >
     <q-card
-      :style="
-        $q.screen.xs ? '' : `width: ${width}; max-width: 80vw`
-      "
+      :style="$q.screen.xs ? '' : `width: ${width}; max-width: 80vw`"
       flat
     >
       <q-card-section
@@ -78,8 +76,8 @@
 
   async function submitForm() {
     if (form.value) {
-      await form.value.submitForm(onDialogOK);
-      closeDialog();
+      await form.value.submitForm();
+      onDialogOK();
     }
   }
 

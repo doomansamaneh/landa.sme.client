@@ -1,9 +1,9 @@
 <template>
-  <toolbar
+  <base-info-toolbar
     v-if="toolbar"
     buttons
     :title="title"
-    :table-store="mobileGrid?.tableStore ?? desktopGrid?.tableStore"
+    :table-store="tableStore"
     :base-route="baseRoute"
     activation
   />
@@ -11,7 +11,7 @@
   <template v-if="$q.screen.lt.sm">
     <mobile
       :title="title"
-      :grid-store="localGridStore"
+      :table-store="tableStore"
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
@@ -24,7 +24,7 @@
     <desktop
       :title="title"
       :icon="icon"
-      :grid-store="localGridStore"
+      :table-store="tableStore"
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
@@ -43,16 +43,15 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useFormActions } from "src/composables/useFormActions";
 
   import Desktop from "src/components/areas/_shared/baseInfo/desktop/index/DataGrid.vue";
   import Mobile from "src/components/areas/_shared/baseInfo/mobile/index/DataGrid.vue";
-  import Toolbar from "./BaseInfoToolbar.vue";
+  import BaseInfoToolbar from "./BaseInfoToolbar.vue";
 
   const props = defineProps({
-    toolbar: Boolean,
     title: String,
     icon: String,
     baseRoute: String,
@@ -62,28 +61,26 @@
     columns: Array,
     visibleColumns: Array,
     sortColumn: String,
+    toolbar: Boolean,
     expandable: Boolean,
     activation: Boolean,
   });
 
-  const localGridStore =
-    props.gridStore ??
-    useBaseInfoGrid({
-      columns: props.columns,
-      visibleColumns: props.visibleColumns,
-      sortColumn: props.sortColumn,
-    });
   const crudStore = useFormActions(props.baseRoute);
-  const desktopGrid = ref(null);
-  const mobileGrid = ref(null);
 
-  const tableStore = computed(
-    () =>
-      desktopGrid?.value?.tableStore ?? mobileGrid?.value?.tableStore
-  );
+  const tableStore = useDataTable({
+    dataSource: props.dataSource,
+    store:
+      props.gridStore ||
+      useBaseInfoGrid({
+        columns: props.columns,
+        visibleColumns: props.visibleColumns,
+        sortColumn: props.sortColumn,
+      }),
+  });
 
   const reloadData = async () => {
-    tableStore.value.reloadData();
+    tableStore.reloadData();
   };
 
   defineExpose({

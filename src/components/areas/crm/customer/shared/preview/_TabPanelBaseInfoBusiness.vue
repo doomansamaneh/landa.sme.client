@@ -8,6 +8,7 @@
       @click="edit"
     />
   </div>
+
   <div class="q-pa-md q-col-gutter-md">
     <div class="row items-center">
       <div class="col-2 no-letter-spacing">شناسه ملی:</div>
@@ -80,8 +81,10 @@
     true
   );
 
+  const action = ref(formAction.create);
   const loadData = async () => {
-    await formStore.getById(props.item?.id);
+    const responseData = await formStore.getById(props.item?.id);
+    if (responseData) action.value = formAction.edit;
   };
 
   const edit = () => {
@@ -91,7 +94,7 @@
       actions: true,
       props: {
         id: props.item.id,
-        action: formAction.edit,
+        action: action.value,
       },
       okCallback: async (response) => {
         await loadData();

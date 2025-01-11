@@ -1,8 +1,7 @@
 <template>
   <data-grid
     ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
+    :data-table-store="tableStore"
     :create-url="createUrl"
   >
     <template #body="{ item }">
@@ -67,18 +66,10 @@
   import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
 
   const props = defineProps({
-    gridStore: Object,
+    tableStore: Object,
     crudStore: Object,
     dataSource: String,
     baseRoute: String,
     createUrl: String,
-  });
-
-  const dataGrid = ref(null);
-
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
-
-  defineExpose({
-    tableStore,
   });
 </script>

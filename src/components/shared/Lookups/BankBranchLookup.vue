@@ -6,6 +6,8 @@
     columns="code,title"
     :filterExpression="filterExpression"
     ref="lookup"
+    show-add
+    :create-form="CreateForm"
   >
     <template #cell-title="{ item }">
       {{ item.bankTitle }} / {{ item.title }}
@@ -14,16 +16,17 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import { ref } from "vue";
+  import LookupView from "src/components/shared/dataTables/LookupView.vue";
+  import CreateForm from "src/components/areas/cmn/bankBranch/shared/forms/CreateForm.vue";
 
-const props = defineProps({
-  filterExpression: Array,
-});
+  const props = defineProps({
+    filterExpression: Array,
+  });
 
-const lookup = ref(null);
+  const lookup = ref(null);
 
-defineExpose({
-  lookup,
-});
+  defineExpose({
+    lookup,
+  });
 </script>

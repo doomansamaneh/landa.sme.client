@@ -1,5 +1,8 @@
 <template>
-  <div v-if="$q.screen.xs" class="row q-py-md items-center justify-between">
+  <div
+    v-if="$q.screen.xs"
+    class="row q-py-md items-center justify-between"
+  >
     <div class="row q-gutter-sm items-center">
       <back-button />
       <div class="text-body1 no-letter-spacing text-weight-700">
@@ -31,7 +34,10 @@
     }"
     :style="$q.screen.gt.sm ? 'width:800px' : 'width:auto'"
   >
-    <q-item class="card-header q-px-lg q-py-lg" v-if="$q.screen.gt.xs">
+    <q-item
+      class="card-header q-px-lg q-py-lg"
+      v-if="$q.screen.gt.xs"
+    >
       <q-item-section>
         <q-item-label class="text-h6 text-weight-700 text-on-dark">
           {{ $t("pages.payment-detail") }}
@@ -59,7 +65,13 @@
             </q-btn>
           </div>
           <div>
-            <q-btn class="text-on-dark" dense unelevated round @click="print">
+            <q-btn
+              class="text-on-dark"
+              dense
+              unelevated
+              round
+              @click="print"
+            >
               <q-icon size="20px" name="o_print" />
               <q-tooltip class="custom-tooltip">
                 {{ $t("page.payment-detail.buttons.print") }}
@@ -73,7 +85,7 @@
             unelevated
             dense
             class="text-on-dark"
-            @click="$emit('reload-data')"
+            @click="loadData"
           >
             <q-icon size="20px" name="o_refresh" />
             <q-tooltip class="custom-tooltip">
@@ -117,15 +129,14 @@
 
         <div class="column q-gutter-xs">
           <div class="text-body3">
-            <span>{{ $t("shared.labels.date") }}</span>
-            1401/02/09
+            <span>{{ $t("shared.labels.no") }}:</span>
+            {{ model.orderId }}
           </div>
 
           <div class="text-body3">
-            <span>
-              {{ $t("shared.labels.no") }}
-            </span>
-            20108
+            <span>{{ $t("shared.labels.date") }}</span>
+            :
+            {{ model.fromDateString }}
           </div>
         </div>
       </div>
@@ -139,20 +150,20 @@
         'no-padding': $q.screen.lt.sm,
       }"
     >
-      <div class="row" :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-my-md'">
+      <div
+        class="row"
+        :class="$q.screen.gt.xs ? 'q-col-gutter-lg' : 'q-my-md'"
+      >
         <div
           class="col-md col-sm col-xs-12 text-body3"
           :class="$q.screen.lt.sm ? 'text-center q-mb-md' : ''"
         >
-          <div class="text-weight-bold q-mb-sm">
-            {{ $t("page.payment-detail.seller") }}
-            <span class="text-weight-thin"> حسابداری آنلاین لاندا </span>
+          <div class="q-mb-sm">
+            {{ $t("page.payment-detail.seller") }}:
+            <span class="text-weight-600">حسابداری آنلاین لاندا</span>
           </div>
           <div>
-            <span class="line-height-xs">
-              شهر جدید اندیشه، شهرک صدف، بلوار دکتر قریب، مجتمع اداری زیتون،
-              واحد 105
-            </span>
+            <span class="line-height-xs"></span>
             <div class="q-pt-xs">
               <q-icon name="phone" class="dark-2 q-pr-xs" />
               88944338
@@ -163,19 +174,15 @@
           class="col-md col-sm col-xs-12 text-body3"
           :class="$q.screen.lt.sm ? 'text-center' : ''"
         >
-          <div class="text-weight-bold q-mb-sm">
-            {{ $t("page.payment-detail.customer") }}
-            <span class="text-weight-light">خشایار شمالی</span>
+          <div class="q-mb-sm">
+            {{ $t("page.payment-detail.customer") }}:
+            <span class="text-weight-600">
+              {{ model.businessTitle }}
+            </span>
           </div>
           <div>
-            <span class="line-height-xs">
-              شهرری، خیابان شهید رجایی، شهرک سیزده آبان، خیابان رحیمی، خیابان
-              عنایتی، کوچه محمدی، پلاک 22
-            </span>
-            <div class="q-pt-xs">
-              <q-icon name="phone" class="dark-2 q-pr-xs" />
-              09338603196
-            </div>
+            <span class="line-height-xs"></span>
+            <div class="q-pt-xs"></div>
           </div>
         </div>
       </div>
@@ -193,7 +200,9 @@
         :thumb-style="helper.thumbStyle"
         visible
       >
-        <table class="overflow-hidden invoice-preview-table text-caption">
+        <table
+          class="overflow-hidden invoice-preview-table text-caption"
+        >
           <thead class="text-left">
             <tr>
               <th>
@@ -202,7 +211,7 @@
                 </div>
               </th>
               <th>
-                <span>کالا/خدمت</span>
+                <span>عنوان</span>
               </th>
               <th>
                 <div class="">
@@ -227,78 +236,94 @@
             </tr>
           </thead>
           <tbody class="text-body3 no-letter-spacing">
-            <template v-for="(item, index) in items" :key="index">
-              <tr>
-                <td class=""><span class="">1</span></td>
-                <td>
-                  <div
-                    :style="$q.screen.lt.sm ? 'width:300px' : 'width:auto'"
-                    class="ellipsis-2-lines"
-                  >
-                    <div>
-                      <span class="no-letter-spacing">
-                        {{ item.subject }}
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div>{{ item.amount }}</div>
-                </td>
-                <td>
-                  <div>عدد</div>
-                </td>
-                <td>
+            <tr>
+              <td class=""><span class="">1</span></td>
+              <td>
+                <div
+                  :style="
+                    $q.screen.lt.sm ? 'width:300px' : 'width:auto'
+                  "
+                  class="ellipsis-2-lines"
+                >
                   <div>
-                    {{ item.amount.toLocaleString() }}
-                  </div>
-                </td>
-                <td>
-                  <div>
-                    {{ item.payedAmount.toLocaleString() }}
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right" colspan="5">
-                  <span class="text-bold">
-                    {{ $t("page.payment-detail.sub-total") }}
-                  </span>
-                </td>
-                <td class="">
-                  <span class="">10,750,000</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right" colspan="5">
-                  <span class="text-bold">تخفیف:</span>
-                </td>
-                <td>
-                  <span class="">
-                    {{ item?.discountAmount.toLocaleString() }}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right" colspan="5">
-                  <span class="q-pl-xs text-bold">جمع کل:</span>
-                  <span class="">
                     <span class="no-letter-spacing">
-                      ({{ numberToWords(item.payedAmount) }}
-                      <span class="text-bold">
-                        {{ $t("shared.labels.rial") }}
-                      </span>
-                      )
+                      {{ model.planTitle }}
                     </span>
+                  </div>
+                  <div>
+                    <span class="no-letter-spacing">
+                      دوره: ({{ model.fromDateString }} -
+                      {{ model.toDateString }})
+                    </span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div>{{ model.month }}</div>
+              </td>
+              <td>
+                <div>ماه</div>
+              </td>
+              <td>
+                <div>
+                  {{ helper.formatNumber(model.planCost) }}
+                </div>
+              </td>
+              <td>
+                <div>
+                  {{
+                    helper.formatNumber(model.month * model.planCost)
+                  }}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right" colspan="5">
+                <span class="text-bold">
+                  {{ $t("page.payment-detail.sub-total") }}
+                </span>
+              </td>
+              <td class="">
+                <span class="">
+                  {{
+                    helper.formatNumber(model.planCost * model.month)
+                  }}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right" colspan="5">
+                <span class="text-bold">تخفیف:</span>
+              </td>
+              <td>
+                <span class="">
+                  {{
+                    helper.formatNumber(
+                      model.planCost * model.month - model.amount
+                    )
+                  }}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right" colspan="5">
+                <span class="q-pl-xs text-bold">جمع کل:</span>
+                <span class="">
+                  <span class="no-letter-spacing">
+                    ({{ numberToWords(model.amount) }}
+                    <span class="text-bold">
+                      {{ $t("shared.labels.rial") }}
+                    </span>
+                    )
                   </span>
-                </td>
-                <td>
-                  <span class="">
-                    {{ item.payedAmount.toLocaleString() }}
-                  </span>
-                </td>
-              </tr>
-            </template>
+                </span>
+              </td>
+              <td>
+                <span class="">
+                  {{ helper.formatNumber(model.amount) }}
+                </span>
+              </td>
+            </tr>
           </tbody>
         </table>
       </q-scroll-area>
@@ -340,58 +365,67 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { helper } from "src/helpers/helper";
-import { numberToWords } from "@persian-tools/persian-tools";
+  import { onMounted, ref } from "vue";
+  import { useRoute } from "vue-router";
+  import { helper } from "src/helpers";
+  import { numberToWords } from "@persian-tools/persian-tools";
+  import { useFormActions } from "src/composables/useFormActions";
 
-import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-import BottomSheet from "src/components/shared/BottomSheet.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import BottomSheet from "src/components/shared/BottomSheet.vue";
 
-const bottomSheetStatus = ref(false);
+  const bottomSheetStatus = ref(false);
 
-const onBottomSheetShow = () => {
-  bottomSheetStatus.value = true;
-};
+  const onBottomSheetShow = () => {
+    bottomSheetStatus.value = true;
+  };
 
-const onBottomSheetHide = () => {
-  bottomSheetStatus.value = false;
-};
+  const onBottomSheetHide = () => {
+    bottomSheetStatus.value = false;
+  };
 
-const items = ref([
-  {
-    subject: "طرح 2 حسابداری آنلاین لاندا ویژه کسب‌وکارهای کوچک",
-    amount: 490000,
-    discountAmount: 150000,
-    payedAmount: 490000,
-  },
-]);
+  const model = ref({});
+  const route = useRoute();
+  const actionStore = useFormActions("business", model, true);
+  const loadData = async () => {
+    const id = route.params.paymentId;
+    const responseData = await actionStore.getById(
+      id,
+      "business/GetPayment",
+      false
+    );
+  };
+
+  onMounted(() => {
+    loadData();
+  });
 </script>
 
 <style scoped>
-.business-name {
-  max-width: 250px;
-}
+  .business-name {
+    max-width: 250px;
+  }
 
-.sme-logo {
-  width: 72px;
-}
+  .sme-logo {
+    width: 72px;
+  }
 
-table,
-td,
-th {
-  border: none;
-}
+  table,
+  td,
+  th {
+    border: none;
+  }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  overflow: hidden;
-}
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
 
-th,
-td {
-  padding: 24px 8px;
-}
+  th,
+  td {
+    padding: 24px 8px;
+  }
 </style>

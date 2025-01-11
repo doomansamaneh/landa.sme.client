@@ -15,6 +15,7 @@
               v-model:selectedId="formStore.model.value.clId"
               v-model:selectedText="formStore.model.value.clTitle"
               required
+              @rowSelected="clChanged"
             />
           </div>
         </div>
@@ -67,6 +68,7 @@
   import { ref } from "vue";
   import { helper } from "src/helpers";
   import { accountType } from "src/constants";
+  import { useFormActions } from "src/composables/useFormActions";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -82,9 +84,20 @@
   });
 
   const form = ref(null);
+  const baseRoute = "acc/accountGL";
+  const actionStore = useFormActions(baseRoute);
 
   const formStore = useBaseInfoModel({
-    baseRoute: "acc/accountGL",
+    baseRoute: baseRoute,
     id: props.id,
   });
+
+  const clChanged = async (cl) => {
+    if (cl) {
+      var response = await actionStore.customPostAction(
+        `getNewCode/${cl.id}`
+      );
+      formStore.model.value.code = response.data;
+    }
+  };
 </script>

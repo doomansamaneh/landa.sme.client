@@ -13,7 +13,7 @@ export function useBaseInfoModel({
 }) {
   const route = useRoute();
   const router = useRouter();
-  const localModel = ref(model ?? baseInfoModel);
+  const localModel = model ?? ref({ ...baseInfoModel });
   const editBatchModel = ref(batchModel);
 
   const crudStore = useFormActions(baseRoute, localModel);

@@ -6,6 +6,7 @@ import { useFormActions } from "src/composables/useFormActions";
 import { customerModel } from "src/models/areas/crm/customerModel";
 
 import ResponseDialog from "src/components/areas/crm/customer/shared/forms/ResponseDialog.vue";
+import { customerType } from "src/constants";
 
 export function useCustomerModel(config) {
   const $q = useQuasar();
@@ -84,13 +85,19 @@ export function useCustomerModel(config) {
     deleteItem("customerContactWebsites", index);
 
   async function submitForm(form, action, callBack) {
-    if (
-      !model.value.name &&
-      (model.value.person?.name || model.value.person?.lastName)
-    )
-      model.value.name = `${model.value.person.name ?? ""} ${
-        model.value.person.lastName ?? ""
-      }`;
+    //set default values to prevent bacnkend model validation
+    if (model.value.typeId === customerType.legal) {
+      model.value.person = null;
+    } else {
+      if (
+        !model.value.name &&
+        (model.value.person?.name || model.value.person?.lastName)
+      ) {
+        model.value.name = `${model.value.person.name ?? ""} ${
+          model.value.person.lastName ?? ""
+        }`;
+      }
+    }
 
     await crudStore.submitForm(form, action, saveCallBack);
 

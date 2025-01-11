@@ -91,7 +91,7 @@
                 border: 1px solid #2d2d2d;
               "
             >
-              {{ item.debit.toLocaleString() }}
+              {{ helper.formatNumber(item.debit) }}
             </td>
             <td
               style="
@@ -100,7 +100,7 @@
                 border: 1px solid #2d2d2d;
               "
             >
-              {{ item.credit.toLocaleString() }}
+              {{ helper.formatNumber(item.credit) }}
             </td>
           </tr>
         </template>
@@ -119,24 +119,29 @@
           >
             <strong>جمع کل:</strong>
             (
+            {{
+              numberToWords(
+                helper.getSubtotal(model?.voucherItems, "debit") ?? 0
+              )
+            }}
             <strong>{{ model?.currencyTitle }}</strong>
             )
           </td>
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             <strong>
               {{
-                helper
-                  .getSubtotal(model?.voucherItems, "debit")
-                  ?.toLocaleString()
+                helper.formatNumber(
+                  helper.getSubtotal(model?.voucherItems, "debit")
+                )
               }}
             </strong>
           </td>
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             <strong>
               {{
-                helper
-                  .getSubtotal(model?.voucherItems, "credit")
-                  ?.toLocaleString()
+                helper.formatNumber(
+                  helper.getSubtotal(model?.voucherItems, "credit")
+                )
               }}
             </strong>
           </td>
@@ -148,6 +153,7 @@
 
 <script setup>
   import { useQuasar } from "quasar";
+  import { numberToWords } from "@persian-tools/persian-tools";
   import { helper } from "src/helpers";
 
   const $q = useQuasar();

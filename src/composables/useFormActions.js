@@ -11,6 +11,8 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
   const router = useRouter();
   const { t } = useI18n();
 
+  if (!diableDirtyCheck && model) resetIsDirty();
+
   async function getById(id, url) {
     const response = await onGetById(url ?? `${baseURL}/getById`, id);
     if (!diableDirtyCheck) await resetIsDirty();
@@ -34,7 +36,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
   async function onGetById(url, id) {
     if (id) {
       const response = await fetchWrapper.get(`${url}/${id}`);
-      model.value = response.data.data;
+      if (response.data.data) model.value = response.data.data;
       return response.data.data;
     }
     return null;
@@ -181,10 +183,11 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
   }
 
   function notify(message, type = "positive") {
-    $q.notify({
-      type: type,
-      message: t(`messages.${message}`),
-    });
+    if (message)
+      $q.notify({
+        type: type,
+        message: t(`messages.${message}`),
+      });
   }
 
   const addWatch = () => {
