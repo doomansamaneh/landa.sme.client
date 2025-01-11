@@ -3,6 +3,9 @@
 
   <advanced-search />
 
+  <cl-preview-pdf class="q-mb-md" />
+  <item-preview-pdf class="q-mb-md" />
+
   <tip-banner :tip="tip" closeable class="q-mb-md" />
 
   <chip
@@ -86,6 +89,8 @@
   import ReviewDl from "../desktop/ReviewDL.vue";
   import ReviewItem from "../desktop/AccountItem.vue";
   import Chip from "src/components/shared/CustomChip.vue";
+  import ClPreviewPdf from "./CLPreviewPdf.vue";
+  import ItemPreviewPdf from "./ItemPreviewPdf.vue";
 
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";

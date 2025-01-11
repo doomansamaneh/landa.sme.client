@@ -1,6 +1,5 @@
 @mixin q-field-control-light {
-
-  .q-field__control{
+  .q-field__control {
     color: $primary;
   }
   .q-field--outlined .q-field__control:before {
@@ -33,4 +32,7 @@
     letter-spacing: 0 !important;
   }
 
+  .q-field__control::before {
+    border: 1px solid rgba(0, 0, 0, 0.47) !important;
+  }
 }
