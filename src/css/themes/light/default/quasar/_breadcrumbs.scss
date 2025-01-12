@@ -12,6 +12,7 @@
   }
 
   .q-breadcrumbs__el:hover {
-    color: lighten($primary, 10);
+    color: scale-color($primary, $lightness: 10%);
+
   }
 }

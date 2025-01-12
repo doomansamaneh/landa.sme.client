@@ -21,21 +21,11 @@
     background: linear-gradient(
       310deg,
       $primary,
-      lighten($primary, 8)
+      scale-color($primary, $lightness: 8%)
     );
   }
 
   .primary-gradient-1 {
     background: linear-gradient(180deg, $dark-page, $primary 1000%);
   }
-
-  // .toolbar-glass-effect {
-  //   background: linear-gradient(
-  //     180deg,
-  //     #{$dark-page}80,
-  //     lighten($dark-page, 5)
-  //   );
-  //   backdrop-filter: blur(10px);
-  //   -webkit-backdrop-filter: blur(10px);
-  // }
 }
