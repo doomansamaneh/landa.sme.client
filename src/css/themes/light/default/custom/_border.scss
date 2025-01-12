@@ -46,27 +46,27 @@
   }
 
   .bordered {
-    border: 1px solid #00000047 !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
   }
 
   .bordered-1 {
-    border: 1px solid rgba(0, 0, 0, 0.24);
+    border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;
   }
 
   .top-border {
-    border-top: 2px solid #00000042 !important;
+    border-top: 2px solid rgba(0, 0, 0, 0.12) !important;
   }
 
   .left-border {
-    border-right: 2px solid #00000042 !important;
+    border-right: 2px solid rgba(0, 0, 0, 0.12) !important;
   }
 
   .border-left {
-    border-right: 1px solid #00000042 !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
   }
 
   .border-right {
-    border-left: 1px solid #00000042 !important;
+    border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
   }
 }
