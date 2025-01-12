@@ -17,7 +17,7 @@
           :options="
             helper.getEnumOptions(isActiveOptions, 'isActiveOptions')
           "
-          @update:model-value="reloadData"
+          @update:model-value="tableStore.reloadData"
         />
       </template>
 

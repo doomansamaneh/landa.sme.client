@@ -51,7 +51,7 @@
     <div class="col-md-5 col-sm-12 col-xs-12">
       <q-card bordered>
         <q-card-section class="bg-green-5 text-white">
-          <h5>مشخصات چک</h5>
+          <span class="text-h5">مشخصات چک</span>
         </q-card-section>
         <q-separator></q-separator>
         <q-card-section class="q-gutter-y-sm_">
@@ -64,7 +64,7 @@
     <div class="col-md-7 col-sm-12 col-xs-12">
       <q-card bordered>
         <q-card-section class="bg-blue-12 text-white">
-          <h5>تاریخچه سند</h5>
+          <span class="text-h5">تاریخچه سند</span>
         </q-card-section>
         <q-separator />
         <q-card-section class="q-px-none">

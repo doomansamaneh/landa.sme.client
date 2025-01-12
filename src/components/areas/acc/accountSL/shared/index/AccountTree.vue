@@ -160,24 +160,23 @@
 
 <script setup>
   import { ref, onMounted, computed } from "vue";
-  import { useRouter } from "vue-router";
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
-
   import { sqlOperator } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useDialog } from "src/composables/useDialog";
 
   import AccountTreeNode from "./AccountTreeNode.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import GLCreateForm from "../../../accountGL/shared/forms/CreateForm.vue";
+  import SLCreateForm from "../../../accountSL/shared/forms/CreateForm.vue";
 
-  import GLFormCreateDialog from "components/areas/acc/accountGL/shared/forms/CreateFormDialog.vue";
-  import SLFormCreateDialog from "components/areas/acc/accountSL/shared/forms/CreateFormDialog.vue";
   import ConfirmDialog from "components/shared/ConfirmDialog.vue";
 
   const $q = useQuasar();
   const { t } = useI18n();
-  const router = useRouter();
+  const dialogStore = useDialog();
 
   const selected = ref("");
 
@@ -254,28 +253,30 @@
   };
 
   const createAccountGL = (gl) => {
-    alert(gl.title);
-
-    $q.dialog({
-      component: GLFormCreateDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: "create",
+      component: GLCreateForm,
+      actions: true,
+      props: {
         id: gl.id,
       },
-    }).onOk(async () => {
-      await reloadData();
+      okCallback: async () => {
+        await reloadData();
+      },
     });
   };
 
   const createAccountSL = (sl) => {
-    alert(sl.title);
-
-    $q.dialog({
-      component: SLFormCreateDialog,
-      componentProps: {
+    dialogStore.openDialog({
+      title: "create",
+      component: SLCreateForm,
+      actions: true,
+      props: {
         id: sl.id,
       },
-    }).onOk(async () => {
-      await reloadData();
+      okCallback: async () => {
+        await reloadData();
+      },
     });
   };
 
