@@ -25,6 +25,10 @@ const pagination = ref({
 export function useCloseOrderState(defaultFilters) {
   const filterExpression = defaultFilters ?? [];
 
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
+
   const setDefaultSearchModel = () => {
     state.searchModel.value = {};
   };
@@ -36,5 +40,6 @@ export function useCloseOrderState(defaultFilters) {
     columns: closeOrderColumns,
 
     setDefaultSearchModel,
+    reset,
   };
 }

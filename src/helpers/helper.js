@@ -227,7 +227,7 @@ export const helper = {
   formatNumber(number, fraction) {
     const absNum = Math.abs(number || 0).toLocaleString("en-US", {
       minimumFractionDigits: 0,
-      maximumFractionDigits: fraction || 0,
+      maximumFractionDigits: fraction || 2,
     });
     if (number < 0) {
       return `(${absNum})`;
