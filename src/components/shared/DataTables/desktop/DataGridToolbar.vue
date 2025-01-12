@@ -227,12 +227,16 @@
         </q-menu>
       </q-btn>
 
-      <q-btn size="11px" round unelevated @click="downloadBatchPdf">
-        <q-icon size="21px" name="o_print" />
-        <q-tooltip :delay="700" class="custom-tooltip">
-          <div class="text-body2 no-letter-spacing">چاپ دسته‌ای</div>
-        </q-tooltip>
-      </q-btn>
+      <slot name="print-button">
+        <q-btn size="11px" round unelevated @click="downloadBatchPdf">
+          <q-icon size="21px" name="o_print" />
+          <q-tooltip :delay="700" class="custom-tooltip">
+            <div class="text-body2 no-letter-spacing">
+              چاپ دسته‌ای
+            </div>
+          </q-tooltip>
+        </q-btn>
+      </slot>
 
       <q-btn size="11px" round unelevated>
         <q-icon size="21px" name="o_download" />

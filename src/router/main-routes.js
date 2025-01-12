@@ -250,6 +250,12 @@ export default {
           meta: { title: "گزارش مرور حساب" },
         },
         {
+          path: "ClPreview",
+          component: () =>
+            import("pages/areas/acc/report/CLPreviewPage.vue"),
+          meta: { title: "تراز آزمایشی - گروه حساب" },
+        },
+        {
           path: "trialBalance",
           component: () =>
             import("pages/areas/acc/report/TrialBalancePage.vue"),

@@ -12,6 +12,24 @@
     expandable_
     @row-dbl-click="alertRow"
   >
+    <template #toolbar="{ tableStore }">
+      <toolbar class="q-pa-md" :table-store="tableStore">
+        <template #print-button>
+          <q-btn
+            size="11px"
+            round
+            unelevated
+            to="/Acc/Report/ClPreview"
+          >
+            <q-icon size="21px" name="o_print" />
+            <q-tooltip :delay="700" class="custom-tooltip">
+              <div class="text-body2 no-letter-spacing">چاپ</div>
+            </q-tooltip>
+          </q-btn>
+        </template>
+      </toolbar>
+    </template>
+
     <template #filter-typeId="{ item }">
       <custom-select
         v-model="item.value"
@@ -120,6 +138,7 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import Toolbar from "src/components/shared/DataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     tableStore: Object,
