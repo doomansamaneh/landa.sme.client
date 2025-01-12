@@ -3,8 +3,8 @@
 
   <advanced-search />
 
-  <cl-preview-pdf class="q-mb-md" />
-  <item-preview-pdf class="q-mb-md" />
+  <!-- <cl-preview-pdf class="q-mb-md" />
+  <item-preview-pdf class="q-mb-md" /> -->
 
   <tip-banner :tip="tip" closeable class="q-mb-md" />
 

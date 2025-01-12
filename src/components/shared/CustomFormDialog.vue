@@ -31,7 +31,7 @@
         />
       </q-card-section>
 
-      <q-card-section class="q-pa-lg scroll" style="max-height: 70vh">
+      <q-card-section class="q-pa-lg">
         <slot name="body">
           <component
             :is="component"
