@@ -20,10 +20,16 @@ const pagination = ref({
 
 export function useAccountSLGrid(defaultFilters) {
   const columns = accountSLColumns;
+
+  const reset = () => {
+    state.firstLoad.value = false;
+  };
+
   return {
     state,
     columns,
     pagination,
     // filterExpression
+    reset,
   };
 }

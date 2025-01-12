@@ -87,7 +87,7 @@
   const route = useRoute();
   const id = computed(() => props.item?.id ?? route.params.id);
   const model = ref({});
-  const crudStore = useFormActions(props.baseRoute, model);
+  const crudStore = useFormActions(props.baseRoute, model, true);
 
   const calculateTotals = () => {
     model.value.entityName = props.entityName;

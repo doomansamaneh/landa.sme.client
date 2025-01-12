@@ -77,6 +77,7 @@
   import { accountSLModel } from "src/models/areas/acc/accountSLModel";
   import { useFormActions } from "src/composables/useFormActions";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { useAccountSLGrid } from "../../../_composables/useAccountSLGrid";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
@@ -91,6 +92,7 @@
 
   const form = ref(null);
   const baseRoute = "acc/accountSL";
+  const slGridStore = useAccountSLGrid();
   const actionStore = useFormActions(baseRoute);
   const model = ref({ ...accountSLModel });
 
@@ -98,6 +100,7 @@
     model: model,
     baseRoute: baseRoute,
     id: props.id,
+    resetCallback: slGridStore.reset,
   });
 
   //todo: modify backend to return desired array of detail type list
