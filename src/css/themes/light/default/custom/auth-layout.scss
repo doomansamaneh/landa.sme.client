@@ -1,7 +1,5 @@
 @mixin auth-layout-light {
   .auth-layout {
-    background-color: darken($primary,10);
+    background-color: scale-color($primary, $lightness: -10%);
   }
-
-
 }

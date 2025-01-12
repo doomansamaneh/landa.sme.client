@@ -8,7 +8,7 @@
       background: linear-gradient(
         180deg,
         #{$dark-page}80,
-        lighten($dark-page, 5)
+        scale-color($dark-page, $lightness: 5%)
       );
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
@@ -46,7 +46,7 @@
       background: linear-gradient(
         180deg,
         #{$dark-page}80,
-        lighten($dark-page, 5)
+        scale-color($dark-page, $lightness: 5%)
       );
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
@@ -80,7 +80,7 @@
       background: linear-gradient(
         180deg,
         #{$dark-page}80,
-        lighten($dark-page, 5)
+        scale-color($dark-page, $lightness: 5%)
       );
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);

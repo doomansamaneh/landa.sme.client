@@ -1,5 +1,4 @@
 @mixin data-tables-light {
-  //lookup
   .lookup-table-body tr:hover {
     background-color: #{$black}10;
   }
@@ -25,7 +24,7 @@
     background: linear-gradient(
       310deg,
       $primary,
-      lighten($primary, 8)
+      scale-color($primary, $lightness: 8%)
     );
     color: $white;
   }
@@ -64,13 +63,5 @@
       border-bottom: 1px solid $grey-6;
       border-top: 1px solid $grey-6;
     }
-
-    // td {
-    //   border-bottom: 2px solid #39393920;
-    // }
   }
-
-  // .invoice-preview td, th {
-  //   padding: 12px !important;
-  // }
 }

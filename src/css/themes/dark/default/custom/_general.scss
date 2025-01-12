@@ -34,11 +34,11 @@
   }
 
   .bg-on-dark {
-    background-color: lighten($dark, 5);
+    background-color: scale-color($dark, $lightness: 5%);
   }
 
   .text-on-dark-1 {
-    color: darken($white, 40);
+    color: scale-color($white, $lightness: -40%);
   }
 
   .icon {
@@ -91,11 +91,6 @@
     background-color: #{$warning}10;
   }
 
-  // .theme-place {
-  //   border-left: 1px solid #ffffff47;
-  //   border-right: 1px solid #ffffff47;
-  // }
-
   .dark-1 {
     background-color: $dark;
   }
@@ -105,7 +100,6 @@
     color: $accent;
   }
 
-  //for change color of drawer and header of main layout at dark mode
   .bg-dark {
     background-color: $dark-page !important;
   }
@@ -136,11 +130,6 @@
   .btn-active {
     background-color: #ffffff40;
     border-radius: 100%;
-  }
-
-  .active-on-select {
-    background-color: lighten($dark, 5);
-    border: 1px solid $primary !important;
   }
 
   .important-row {

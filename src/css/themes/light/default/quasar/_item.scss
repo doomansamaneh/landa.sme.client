@@ -128,7 +128,11 @@
   }
 
   .menu-bar-background {
-    background: linear-gradient(90deg, $white, darken($bg-main, 0.5));
+    background: linear-gradient(
+      90deg,
+      $white,
+      scale-color($bg-main, $lightness: -0.7%)
+    );
   }
 
   .q-item__section--avatar {

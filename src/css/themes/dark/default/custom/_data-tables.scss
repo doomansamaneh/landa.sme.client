@@ -1,5 +1,4 @@
 @mixin data-tables-dark {
-  //lookup
   .lookup-table-body tr:hover {
     background-color: #{$white}10;
   }
@@ -22,17 +21,11 @@
     border: 1px solid $primary;
   }
 
-  // //Grid
-  // .selected {
-  //   background-color: #{$dark};
-  //   border-radius: 4px;
-  // }
-
   .grid-total {
     background: linear-gradient(
       310deg,
       $primary,
-      lighten($primary, 8)
+      scale-color($primary, $lightness: 8%)
     );
   }
 
@@ -41,7 +34,6 @@
     color: $white;
   }
 
-  //dataView
   .row-active {
     background-color: #{$primary}20 !important;
     td {
@@ -50,7 +42,7 @@
   }
 
   .row-selected {
-    background-color: lighten($dark-page, 5);
+    background-color: scale-color($dark-page, $lightness: 5%);
   }
 
   .div-table-container {
@@ -71,13 +63,5 @@
       border-bottom: 1px solid $grey-6;
       border-top: 1px solid $grey-6;
     }
-
-    // td {
-    //   border-bottom: 2px solid rgba(255, 255, 255, 0.28);
-    // }
   }
-
-  // .invoice-preview td, th {
-  //   padding: 12px !important;
-  // }
 }

@@ -128,7 +128,7 @@
     background: linear-gradient(
       180deg,
       $dark-page,
-      lighten($dark-page, 5)
+      scale-color($dark-page, $lightness: 5%)
     );
   }
 
