@@ -48,19 +48,10 @@
         :class="$q.screen.xs ? 'q-mb-md' : 'q-my-md'"
       >
         <div>
-          <q-item-label
-            class="text-body2 caption-on-dark no-letter-spacing q-mb-sm"
-          >
-            {{ $t("page.add-business.business-name-label") }}
-          </q-item-label>
-          <q-input
-            dense
-            hide-bottom-space
-            outlined
-            required
-            lazy-rules
-            :rules="[(val) => val && val.length > 0]"
+          <custom-input
             v-model="businessName"
+            :label="$t('page.add-business.business-name-label')"
+            required
           />
         </div>
 
@@ -87,7 +78,11 @@
           no-caps
           padding="8px 16px"
         >
-          <q-icon name="o_monetization_on" class="q-pr-xs" size="xs" />
+          <q-icon
+            name="o_monetization_on"
+            class="q-pr-xs"
+            size="xs"
+          />
           {{ $t("page.add-business.payment") }}
         </q-btn>
         <span class="text-caption no-letter-spacing">
@@ -99,28 +94,29 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useQuasar } from "quasar";
+  import { ref } from "vue";
+  import { useQuasar } from "quasar";
 
-import SelectPlan from "src/components/management/shared/SelectPlan.vue";
-import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import SelectPlan from "src/components/management/shared/SelectPlan.vue";
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
-const $q = useQuasar();
+  const $q = useQuasar();
 
-const businessName = ref("");
-const form = ref(null);
+  const businessName = ref("");
+  const form = ref(null);
 
-const submitForm = () => {
-  $q.notify({
-    type: "positive",
-    message: "عملیات با موفقیت انجام شد",
-    timeout: 1500,
-  });
-};
+  const submitForm = () => {
+    $q.notify({
+      type: "positive",
+      message: "عملیات با موفقیت انجام شد",
+      timeout: 1500,
+    });
+  };
 </script>
 
 <style lang="scss" scoped>
-.card-desktop {
-  width: 700px !important;
-}
+  .card-desktop {
+    width: 700px !important;
+  }
 </style>
