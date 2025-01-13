@@ -9,15 +9,6 @@
     <q-card class="q-dialog-plugin">
       <q-card-section class="row items-center q-pa-md">
         <div class="text-h5 text-weight-700">نتیجه عملیات</div>
-        <!-- <q-space />
-        <q-btn
-          icon="close"
-          class="icon-hover dark-3"
-          flat
-          round
-          dense
-          v-close-popup
-        /> -->
       </q-card-section>
 
       <q-card-section>
@@ -34,10 +25,6 @@
               <div>گام بعدی را انتخاب کنید:</div>
             </div>
           </q-item-label>
-          <!-- padding
-          bordered
-          class="rounded-borders"
-          style="max-width: 350px" -->
 
           <q-item
             clickable
@@ -61,9 +48,10 @@
 
           <q-item
             v-if="responseData.amount > responseData.receivedAmount"
-            class="rounded-borders"
             clickable
             v-ripple
+            :to="`/trs/receipt/createFromInvoice/${responseData.id}`"
+            class="rounded-borders"
           >
             <q-item-section avatar top>
               <q-avatar

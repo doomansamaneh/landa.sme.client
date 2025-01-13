@@ -24,7 +24,7 @@
       <menu-button
         :title="$t('shared.labels.downloadPdf')"
         icon="download"
-        @click="printStore.downloadPdf"
+        @click="downloadPdf"
       />
       <menu-button
         :title="$t('shared.labels.sendEmail')"
@@ -83,9 +83,10 @@
     });
   }
 
-  const downloadPdf = (id) => {
+  const downloadPdf = () => {
+    //printStore.downloadPdf()
     downloadManager.downloadGet(
-      `${props.baseRoute}/generatePdf/${id}`
+      `${props.baseRoute}/generatePdf/${props.model.id}`
     );
   };
 </script>
