@@ -46,157 +46,113 @@
     <q-card-section>
       <div class="row q-col-gutter-md">
         <div class="col-md-4 col-sm-6 col-xs-12">
-          <q-item-label caption class="q-mb-sm">پرسنل</q-item-label>
           <customer-lookup
             :autofocus="index === formStore.newAddedItemIndex.value"
             v-model:selectedId="wageItem.customerId"
             v-model:selectedText="wageItem.customerName"
             :filter-expression="personnelFilter"
-            hide-bottom-space
+            label="پرسنل"
+            required
           />
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            نوع بیمه
-          </q-item-label>
           <custom-select
             v-model="wageItem.insurranceTypeId"
             :options="
               helper.getEnumOptions(insurranceType, 'insurranceType')
             "
-            hide-bottom-space
+            label="نوع بیمه"
+            required
           />
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            روزهای کارکرد
-          </q-item-label>
           <custom-select
             v-model="wageItem.day"
             :options="days"
-            hide-bottom-space
+            label="روزهای کارکرد"
+            required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            دستمزد روزانه
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.salary"
-            hide-bottom-space
+            label="دستمزد روزانه"
+            required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">حق مسکن</q-item-label>
           <custom-input-number
             v-model="wageItem.housing"
-            hide-bottom-space
+            label="حق مسکن"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">بن</q-item-label>
-          <custom-input-number
-            v-model="wageItem.food"
-            hide-bottom-space
-          />
+          <custom-input-number v-model="wageItem.food" label="بن" />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            حق اولاد
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.child"
-            hide-bottom-space
+            label="حق اولاد"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            حق ماموریت
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.mission"
-            hide-bottom-space
+            label="حق ماموریت"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            اضافه کار
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.overtime"
-            hide-bottom-space
+            label="اضافه کار"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            دیگر مزایا
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.addition"
-            hide-bottom-space
+            label="دیگر مزایا"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            دیگر کسورات
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.deduction"
-            hide-bottom-space
+            label="دیگر کسورات"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            بازخرید مرخصی
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.leave"
-            hide-bottom-space
+            label="بازخرید مرخصی"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            پاداش بهره‌وری
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.reward"
-            hide-bottom-space
+            label="پاداش بهره‌وری"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            عیدی و پاداش
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.bonus"
-            hide-bottom-space
+            label="عیدی و پاداش"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            بازخرید سنوات
-          </q-item-label>
           <custom-input-number
             v-model="wageItem.serviceBenefit"
-            hide-bottom-space
+            label="بازخرید سنوات"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            تاریخ آغاز به کار
-          </q-item-label>
           <date-time-picker
             v-model="wageItem.dateEnter"
-            hide-bottom-space
+            label="تاریخ آغاز به کار"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">
-            تاریخ ترک کار
-          </q-item-label>
           <date-time-picker
             v-model="wageItem.dateExit"
-            hide-bottom-space
+            label="تاریخ ترک کار"
           />
         </div>
       </div>
@@ -205,7 +161,7 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers";
   import {
     customerType,

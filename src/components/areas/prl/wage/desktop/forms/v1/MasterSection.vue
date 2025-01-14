@@ -2,24 +2,24 @@
   <div class="row q-col-gutter-md">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <custom-select
-        label="ماه"
         v-model="localFormStore.model.value.month"
+        label="ماه"
         :options="months"
-        hide-bottom-space
+        required
       />
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
       <date-time
-        label="تاریخ"
         v-model="localFormStore.model.value.date"
-        hide-bottom-space
+        label="تاریخ"
+        required
       />
     </div>
     <div class="col-md-3 col-sm-6 col-xs-12">
       <custom-input
-        label="کد کارگاه"
         v-model="localFormStore.model.value.insuranceNo"
-        hide-bottom-space
+        label="کد کارگاه"
+        required
       />
     </div>
   </div>
@@ -27,9 +27,8 @@
   <div class="row q-mt-md">
     <div class="col-md-9 col-sm-12 col-xs-12">
       <custom-input
-        label="شرح"
         v-model="localFormStore.model.value.summary"
-        hide-bottom-space
+        label="شرح"
         type="textarea"
       />
     </div>
@@ -37,7 +36,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
 
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
