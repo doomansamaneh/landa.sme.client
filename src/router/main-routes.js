@@ -250,10 +250,44 @@ export default {
           meta: { title: "گزارش مرور حساب" },
         },
         {
-          path: "ClPreview",
+          path: "CLPreview",
           component: () =>
-            import("pages/areas/acc/report/CLPreviewPage.vue"),
+            import(
+              "pages/areas/acc/report/preview/CLPreviewPage.vue"
+            ),
           meta: { title: "تراز آزمایشی - گروه حساب" },
+        },
+        {
+          path: "GLPreview",
+          component: () =>
+            import(
+              "pages/areas/acc/report/preview/GLPreviewPage.vue"
+            ),
+          meta: { title: "تراز آزمایشی - حساب کل" },
+        },
+        {
+          path: "SLPreview",
+          component: () =>
+            import(
+              "pages/areas/acc/report/preview/SLPreviewPage.vue"
+            ),
+          meta: { title: "تراز آزمایشی - حساب معین" },
+        },
+        {
+          path: "DLPreview",
+          component: () =>
+            import(
+              "pages/areas/acc/report/preview/DLPreviewPage.vue"
+            ),
+          meta: { title: "تراز آزمایشی - حساب تفصیلی" },
+        },
+        {
+          path: "ItemPreview",
+          component: () =>
+            import(
+              "pages/areas/acc/report/preview/ItemPreviewPage.vue"
+            ),
+          meta: { title: "تراز آزمایشی - ریز گردش" },
         },
         {
           path: "trialBalance",
