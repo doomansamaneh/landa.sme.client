@@ -9,10 +9,10 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <product-group-lookup
-            label="گروه کالا"
             v-model:selectedId="
               formStore.editBatchModel.value.productGroup.fieldValue
             "
+            label="گروه کالا"
           />
         </div>
 
@@ -123,108 +123,104 @@
       </div>
     </div>
 
-    <div class="q-col-gutter-y-sm">
-      <div>
-        <div
-          class="row items-center"
-          :class="
-            $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
-          "
-        >
-          <div class="col-md-9 col-sm-9 col-xs-12">
-            <q-checkbox
-              class="col-md-2 col-sm-2 col-xs-4"
-              v-model="
-                formStore.editBatchModel.value.isForPurchase
-                  .fieldValue
-              "
-              true-value="1"
-              false-value="0"
-              label="برای خرید"
-              dense
-              size="46px"
-            />
-          </div>
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <q-checkbox
-              class="col-md-2 col-sm-3 col-xs-6"
-              v-model="
-                formStore.editBatchModel.value.isForPurchase
-                  .isModified
-              "
-              label="اصلاح شود؟"
-              dense
-              size="46px"
-            />
-          </div>
+    <div class="q-mb-lg">
+      <div
+        class="row items-center"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-2 col-xs-4"
+            v-model="
+              formStore.editBatchModel.value.isForPurchase.fieldValue
+            "
+            true-value="1"
+            false-value="0"
+            label="برای خرید"
+            dense
+            size="46px"
+          />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-3 col-xs-6"
+            v-model="
+              formStore.editBatchModel.value.isForPurchase.isModified
+            "
+            label="اصلاح شود؟"
+            dense
+            size="46px"
+          />
         </div>
       </div>
+    </div>
 
-      <div>
-        <div
-          class="row items-center"
-          :class="
-            $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
-          "
-        >
-          <div class="col-md-9 col-sm-9 col-xs-12">
-            <q-checkbox
-              class="col-md-2 col-sm-2 col-xs-4"
-              v-model="
-                formStore.editBatchModel.value.isForSale.fieldValue
-              "
-              true-value="1"
-              dense
-              size="46px"
-              false-value="0"
-              label="برای فروش"
-            />
-          </div>
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <q-checkbox
-              class="col-md-2 col-sm-3 col-xs-6"
-              v-model="
-                formStore.editBatchModel.value.isForSale.isModified
-              "
-              label="اصلاح شود؟"
-              dense
-              size="46px"
-            />
-          </div>
+    <div class="q-mb-lg">
+      <div
+        class="row items-center"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-2 col-xs-4"
+            v-model="
+              formStore.editBatchModel.value.isForSale.fieldValue
+            "
+            true-value="1"
+            dense
+            size="46px"
+            false-value="0"
+            label="برای فروش"
+          />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-3 col-xs-6"
+            v-model="
+              formStore.editBatchModel.value.isForSale.isModified
+            "
+            label="اصلاح شود؟"
+            dense
+            size="46px"
+          />
         </div>
       </div>
+    </div>
 
-      <div>
-        <div
-          class="row items-center"
-          :class="
-            $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
-          "
-        >
-          <div class="col-md-9 col-sm-9 col-xs-12">
-            <q-checkbox
-              class="col-md-2 col-sm-2 col-xs-4"
-              v-model="
-                formStore.editBatchModel.value.isActive.fieldValue
-              "
-              true-value="1"
-              false-value="0"
-              label="فعال"
-              dense
-              size="46px"
-            />
-          </div>
-          <div class="col-md-3 col-sm-3 col-xs-12">
-            <q-checkbox
-              class="col-md-2 col-sm-3 col-xs-6"
-              v-model="
-                formStore.editBatchModel.value.isActive.isModified
-              "
-              label="اصلاح شود؟"
-              dense
-              size="46px"
-            />
-          </div>
+    <div class="q-mb-lg">
+      <div
+        class="row items-center"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-2 col-xs-4"
+            v-model="
+              formStore.editBatchModel.value.isActive.fieldValue
+            "
+            true-value="1"
+            false-value="0"
+            label="فعال"
+            dense
+            size="46px"
+          />
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <q-checkbox
+            class="col-md-2 col-sm-3 col-xs-6"
+            v-model="
+              formStore.editBatchModel.value.isActive.isModified
+            "
+            label="اصلاح شود؟"
+            dense
+            size="46px"
+          />
         </div>
       </div>
     </div>
@@ -255,21 +251,16 @@
   });
 
   async function submitForm() {
-    try {
-      const isValid = await form.value.validate();
+    const isValid = await form.value.validate();
 
-      if (isValid) {
-        await formStore.crudStore.editBatch(
-          props.selectedIds,
-          formStore.editBatchModel.value
-        );
-        return true;
-      } else {
-        // alert("Validation error");
-        return false;
-      }
-    } catch (error) {
-      console.error("Error during form submission:", error);
+    if (isValid) {
+      await formStore.crudStore.editBatch(
+        props.selectedIds,
+        formStore.editBatchModel.value
+      );
+      return true;
+    } else {
+      // alert("Validation error");
       return false;
     }
   }

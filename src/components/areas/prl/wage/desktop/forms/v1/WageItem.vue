@@ -82,12 +82,25 @@
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
+            v-model="wageItem.baseYear"
+            label="مزد پایه سنوات روزانه"
+            required
+          />
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-12">
+          <custom-input-number
             v-model="wageItem.housing"
             label="حق مسکن"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number v-model="wageItem.food" label="بن" />
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-12">
+          <custom-input-number
+            v-model="wageItem.spouse"
+            label="حق تاهل"
+          />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
@@ -155,6 +168,9 @@
             label="تاریخ ترک کار"
           />
         </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+          <custom-input v-model="wageItem.comment" label="شرح" />
+        </div>
       </div>
     </q-card-section>
   </q-card>
@@ -172,6 +188,7 @@
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DateTimePicker from "src/components/shared/forms/DateTimePicker.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
   const props = defineProps({

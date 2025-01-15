@@ -1,12 +1,6 @@
 <template>
   <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        نوع
-      </q-item-label>
-
       <div
         class="row items-center"
         :class="
@@ -19,6 +13,7 @@
               formStore.editBatchModel.value.invoiceType.fieldValue
             "
             :filterExpression="filterExpression"
+            label="نوع"
           />
         </div>
 
@@ -36,12 +31,6 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        قرارداد
-      </q-item-label>
-
       <div
         class="row items-center"
         :class="
@@ -53,6 +42,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.contract.fieldValue
             "
+            label="قرارداد"
           />
         </div>
 
@@ -70,12 +60,6 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
-        مشتری
-      </q-item-label>
-
       <div
         class="row items-center"
         :class="
@@ -87,6 +71,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.customer.fieldValue
             "
+            label="مشتری"
           />
         </div>
 
@@ -149,21 +134,16 @@
         ];
 
   async function submitForm() {
-    try {
-      const isValid = await form.value.validate();
+    const isValid = await form.value.validate();
 
-      if (isValid) {
-        await formStore.crudStore.editBatch(
-          props.selectedIds,
-          formStore.editBatchModel.value
-        );
-        return true;
-      } else {
-        // alert("Validation error");
-        return false;
-      }
-    } catch (error) {
-      console.error("Error during form submission:", error);
+    if (isValid) {
+      await formStore.crudStore.editBatch(
+        props.selectedIds,
+        formStore.editBatchModel.value
+      );
+      return true;
+    } else {
+      // alert("Validation error");
       return false;
     }
   }

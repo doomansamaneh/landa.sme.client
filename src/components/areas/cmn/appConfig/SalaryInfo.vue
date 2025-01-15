@@ -95,6 +95,25 @@
             </td>
           </tr>
           <tr>
+            <td class="text-left">حق تاهل</td>
+            <td class="text-left">
+              <q-checkbox
+                v-model="
+                  configStore.model.value.companySetting
+                    .payrollTaxSetting.spouse
+                "
+              />
+            </td>
+            <td class="text-left">
+              <q-checkbox
+                v-model="
+                  configStore.model.value.companySetting
+                    .payrollInsurranceSetting.spouse
+                "
+              />
+            </td>
+          </tr>
+          <tr>
             <td class="text-left">حق اولاد</td>
             <td class="text-left">
               <q-checkbox
