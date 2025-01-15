@@ -1,7 +1,10 @@
 import { ref } from "vue";
 import { helper, bus } from "src/helpers";
 
+const tab = ref("cl");
+
 export function useAccountReview() {
+
   const state = ref([]);
 
   const applySearch = async () => {
@@ -32,6 +35,7 @@ export function useAccountReview() {
 
   return {
     state,
+    tab,
     setItem,
     removeItem,
     getItemByType,
