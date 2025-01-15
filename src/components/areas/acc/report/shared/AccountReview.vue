@@ -3,9 +3,6 @@
 
   <advanced-search />
 
-  <!-- <cl-preview-pdf class="q-mb-md" />
-  <item-preview-pdf class="q-mb-md" /> -->
-
   <tip-banner :tip="tip" closeable class="q-mb-md" />
 
   <chip
@@ -19,7 +16,7 @@
 
   <q-card flat class="bordered shadow">
     <card-tabs
-      v-model="tab"
+      v-model="accountReviewStore.tab.value"
       class="text-h6 text-weight-700 primary-tabs"
       :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
       :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
@@ -56,25 +53,40 @@
     </card-tabs>
 
     <q-tab-panels
-      v-model="tab"
+      v-model="accountReviewStore.tab.value"
       animated
       keep-alive
       class="transparent"
     >
       <q-tab-panel name="cl" class="no-padding">
-        <review-cl :report-store="accountReviewStore" />
+        <review-cl
+          :report-store="accountReviewStore"
+          preview-route="/Acc/Report/CLPreview"
+        />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
-        <review-gl :report-store="accountReviewStore" />
+        <review-gl
+          :report-store="accountReviewStore"
+          preview-route="/Acc/Report/GLPreview"
+        />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
-        <review-sl :report-store="accountReviewStore" />
+        <review-sl
+          :report-store="accountReviewStore"
+          preview-route="/Acc/Report/SLPreview"
+        />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
-        <review-dl :report-store="accountReviewStore" />
+        <review-dl
+          :report-store="accountReviewStore"
+          preview-route="/Acc/Report/DLPreview"
+        />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
-        <review-item :report-store="accountReviewStore" />
+        <review-item
+          :report-store="accountReviewStore"
+          preview-route="/Acc/Report/ItemPreview"
+        />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -89,8 +101,6 @@
   import ReviewDl from "../desktop/ReviewDL.vue";
   import ReviewItem from "../desktop/AccountItem.vue";
   import Chip from "src/components/shared/CustomChip.vue";
-  import ClPreviewPdf from "./CLPreviewPdf.vue";
-  import ItemPreviewPdf from "./ItemPreviewPdf.vue";
 
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
@@ -103,8 +113,6 @@
   });
 
   const accountReviewStore = useAccountReview();
-
-  const tab = ref("cl");
 
   const tip =
     "بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در  تب‌های پس از آن مشاهده کنید";
