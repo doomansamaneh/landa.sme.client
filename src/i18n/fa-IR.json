@@ -409,7 +409,8 @@
       "check": "چک",
       "bankTransition": "واریز بانکی",
       "pos": "دستگاه پوز",
-      "customer": "طرف حساب"
+      "customer": "طرف حساب",
+      "checkSpent": "خرج چک"
     },
     "paymentStatus": {
       "normal": "دریافت شده",

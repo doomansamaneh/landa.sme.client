@@ -220,6 +220,7 @@ export const paymentMethod = {
   check: { id: 1072, color: "red" },
   // pos: { id: 1074, color: "orange" },
   customer: { id: 1075, color: "bluegrey" },
+  checkSpent: { id: 1076, color: "bluegrey" },
 };
 
 export const paymentStatus = {
