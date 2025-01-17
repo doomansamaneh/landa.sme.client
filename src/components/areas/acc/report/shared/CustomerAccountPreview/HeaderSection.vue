@@ -4,9 +4,7 @@
       {{ appConfigStore.model.value?.companySetting.name }}
     </div>
     <div class="text-body1 no-letter-spacing">
-      تراز آزمایشی - حساب تفصیلی ({{
-        fiscalYearStore.currentYear.value?.title
-      }})
+      گزارش حساب شخص ({{ fiscalYearStore.currentYear.value?.title }})
     </div>
   </q-card-section>
 </template>

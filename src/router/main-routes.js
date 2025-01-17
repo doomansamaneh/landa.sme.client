@@ -232,6 +232,14 @@ export default {
           meta: { title: "گزارش حساب شخص" },
         },
         {
+          path: "customer/preview",
+          component: () =>
+            import(
+              "pages/areas/acc/report/Preview/CustomerAccountPreviewPage.vue"
+            ),
+          meta: { title: "گزارش حساب شخص" },
+        },
+        {
           path: "debtors",
           component: () =>
             import("pages/areas/acc/report/DebtorsPage.vue"),
