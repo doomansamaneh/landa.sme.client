@@ -203,6 +203,11 @@ export const voucherStatus = {
   canceled: "a36af633-d0bb-4857-a542-364e12658d1c",
 };
 
+export const paymentOrReceipt = {
+  payment: 1,
+  receipt: 2,
+};
+
 export const subSystem = {
   accounting: 51,
   receiptAndPayment: 52,
@@ -220,7 +225,7 @@ export const paymentMethod = {
   check: { id: 1072, color: "red" },
   // pos: { id: 1074, color: "orange" },
   customer: { id: 1075, color: "bluegrey" },
-  checkSpent: { id: 1076, color: "bluegrey" },
+  checkSpent: { id: 1076, color: "orange" },
 };
 
 export const paymentStatus = {

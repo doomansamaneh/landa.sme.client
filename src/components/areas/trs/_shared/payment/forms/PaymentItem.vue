@@ -1,4 +1,5 @@
 <template>
+  <pre>{{ item }}</pre>
   <q-card flat bordered class="form-container" style="margin-top: 0">
     <div :class="$q.screen.gt.xs ? 'q-py-sm q-px-md' : 'q-pb-sm'">
       <div class="row items-center no-wrap">
@@ -49,6 +50,12 @@
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
       />
+      <payment-item-check-spent
+        v-if="item.typeId === paymentMethod.checkSpent?.id"
+        v-model="paymentMethod"
+        :autofocus="index === formStore.newAddedItemIndex.value"
+        :item="item"
+      />
       <payment-item-transfer-bank
         v-if="item.typeId === paymentMethod.bankTransition?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
@@ -75,6 +82,7 @@
 
   import PaymentItemCash from "./PaymentItemCash.vue";
   import PaymentItemCheck from "./PaymentItemCheck.vue";
+  import PaymentItemCheckSpent from "./PaymentItemCheckSpent.vue";
   import PaymentItemCustomer from "./PaymentItemCustomer.vue";
   import PaymentItemTransferBank from "./PaymentItemTransferBank.vue";
   import PaymentItemPos from "./PaymentItemPos.vue";

@@ -1,6 +1,10 @@
 <template>
   <master-section :form-store="formStore" :form-type="formType" />
-  <payment-items :form-store="formStore" :form-type="formType" />
+  <payment-items
+    :form-store="formStore"
+    :form-type="formType"
+    :payment-receipt-type="paymentReceiptType"
+  />
 </template>
 
 <script setup>
@@ -9,5 +13,6 @@
 
   const props = defineProps({
     formStore: Object,
+    paymentReceiptType: Object,
   });
 </script>

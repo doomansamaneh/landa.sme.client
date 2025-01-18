@@ -8,7 +8,10 @@
   <q-card class="form-container">
     <q-card-section>
       <q-form ref="form" autofocus>
-        <desktop-form :form-store="formStore" />
+        <desktop-form
+          :form-store="formStore"
+          :payment-receipt-type="paymentOrReceipt.receipt"
+        />
         <!-- <desktop-form v-if="$q.screen.gt.sm" :form-store="formStore" />
         <mobile-form v-else :form-store="formStore" /> -->
       </q-form>
@@ -19,6 +22,7 @@
 <script setup>
   import { ref, onMounted } from "vue";
   import { useRoute } from "vue-router";
+  import { paymentOrReceipt } from "src/constants";
   import { useReceiptModel } from "../../../_composables/useReceiptModel";
 
   import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
