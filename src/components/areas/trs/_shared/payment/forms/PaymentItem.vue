@@ -1,5 +1,4 @@
 <template>
-  <pre>{{ item }}</pre>
   <q-card flat bordered class="form-container" style="margin-top: 0">
     <div :class="$q.screen.gt.xs ? 'q-py-sm q-px-md' : 'q-pb-sm'">
       <div class="row items-center no-wrap">

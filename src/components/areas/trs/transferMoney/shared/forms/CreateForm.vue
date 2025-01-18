@@ -11,28 +11,26 @@
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
             <custom-input-number
+              v-model="model.amount"
               label="مبلغ"
-              v-model="formStore.model.value.amount"
+              required
             />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <date-time
-              label="تاریخ"
-              v-model="formStore.model.value.date"
-            />
+            <date-time v-model="model.date" label="تاریخ" required />
           </div>
         </div>
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="شرح"
-              v-model="formStore.model.value.subject"
-              hide-bottom-space
+              v-model="model.subject"
               type="textarea"
+              label="شرح"
+              required
             />
           </div>
         </div>
@@ -53,31 +51,21 @@
                 )
               "
               type="radio"
-              v-model="formStore.model.value.fromSource"
+              v-model="model.fromSource"
             />
 
             <bank-account-lookup
               v-if="
-                formStore.model.value.fromSource ===
-                transferMoneyType.bankAccount
+                model.fromSource === transferMoneyType.bankAccount
               "
-              v-model:selectedId="
-                formStore.model.value.fromBankAccountId
-              "
-              v-model:selectedText="
-                formStore.model.value.fromBankAccountTitle
-              "
+              v-model:selectedId="model.fromBankAccountId"
+              v-model:selectedText="model.fromBankAccountTitle"
             />
 
             <cash-lookup
-              v-if="
-                formStore.model.value.fromSource ===
-                transferMoneyType.cash
-              "
-              v-model:selectedId="formStore.model.value.fromCashId"
-              v-model:selectedText="
-                formStore.model.value.fromCashTitle
-              "
+              v-if="model.fromSource === transferMoneyType.cash"
+              v-model:selectedId="model.fromCashId"
+              v-model:selectedText="model.fromCashTitle"
             />
           </div>
         </div>
@@ -85,8 +73,8 @@
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
             <custom-input-number
-              lable="کارمزد"
-              v-model="formStore.model.value.fromFee"
+              v-model="model.fromFee"
+              label="کارمزد"
             />
           </div>
         </div>
@@ -107,29 +95,19 @@
                 )
               "
               type="radio"
-              v-model="formStore.model.value.toSource"
+              v-model="model.toSource"
             />
 
             <bank-account-lookup
-              v-if="
-                formStore.model.value.toSource ===
-                transferMoneyType.bankAccount
-              "
-              v-model:selectedId="
-                formStore.model.value.toBankAccountId
-              "
-              v-model:selectedText="
-                formStore.model.value.toBankAccountTitle
-              "
+              v-if="model.toSource === transferMoneyType.bankAccount"
+              v-model:selectedId="model.toBankAccountId"
+              v-model:selectedText="model.toBankAccountTitle"
             />
 
             <cash-lookup
-              v-if="
-                formStore.model.value.toSource ===
-                transferMoneyType.cash
-              "
-              v-model:selectedId="formStore.model.value.toCashId"
-              v-model:selectedText="formStore.model.value.toCashTitle"
+              v-if="model.toSource === transferMoneyType.cash"
+              v-model:selectedId="model.toCashId"
+              v-model:selectedText="model.toCashTitle"
             />
           </div>
         </div>
@@ -139,11 +117,11 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { ref, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { transferMoneyType } from "src/constants";
   import { transferMoneyModel } from "src/models/areas/trs/transferMoneyModel";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -158,8 +136,9 @@
   });
 
   const form = ref(null);
+  const model = ref(transferMoneyModel);
   const formStore = useBaseInfoModel({
-    model: transferMoneyModel,
+    model: model,
     baseRoute: "trs/transferMoney",
   });
 </script>
