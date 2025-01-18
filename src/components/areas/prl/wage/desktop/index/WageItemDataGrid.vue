@@ -20,6 +20,9 @@
     <template #cell-food="{ item }">
       {{ helper.formatNumber(item.food) }}
     </template>
+    <template #cell-spouse="{ item }">
+      {{ helper.formatNumber(item.spouse) }}
+    </template>
     <template #cell-child="{ item }">
       {{ helper.formatNumber(item.child) }}
     </template>

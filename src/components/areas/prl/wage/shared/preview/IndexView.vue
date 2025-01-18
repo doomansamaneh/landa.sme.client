@@ -32,7 +32,6 @@
   import HeaderSection from "./_HeaderSection.vue";
   import WageItemDataGrid from "../../desktop/index/WageItemDataGrid.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     item: Object,

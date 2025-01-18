@@ -44,6 +44,18 @@
               <td
                 style="padding: 5px; border-bottom: 1px solid #2d2d2d"
               >
+                دستمزد پایه سنوات:
+              </td>
+              <td
+                style="padding: 5px; border-bottom: 1px solid #2d2d2d"
+              >
+                {{ helper.formatNumber(model?.baseYear) }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="padding: 5px; border-bottom: 1px solid #2d2d2d"
+              >
                 حقوق پایه:
               </td>
               <td
@@ -86,6 +98,18 @@
                     model?.calculatedModel?.monthFood
                   )
                 }}
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="padding: 5px; border-bottom: 1px solid #2d2d2d"
+              >
+                حق تاهل:
+              </td>
+              <td
+                style="padding: 5px; border-bottom: 1px solid #2d2d2d"
+              >
+                {{ helper.formatNumber(model?.spouse) }}
               </td>
             </tr>
             <tr>
