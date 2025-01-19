@@ -19,7 +19,7 @@
       <q-item-label caption class="q-mb-sm">بانک</q-item-label>
       <bank-account-lookup
         v-model:selectedId="paymentItem.bankAccountId"
-        v-model:selectedText="paymentItem.title"
+        v-model:selectedText="paymentItem.bankAccountDisplay"
       />
     </div>
   </div>
@@ -52,9 +52,4 @@
   });
 
   const paymentItem = computed(() => props.item);
-
-  onMounted(() => {
-    if (props.item?.bankAccountTitle)
-      props.item.title = `${props.item.bankAccountTitle} / ${props.item.bankAccountTypeTitle} / ${props.item.bankAccountNo} `;
-  });
 </script>

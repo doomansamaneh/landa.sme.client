@@ -416,6 +416,13 @@ export const child = {
   label: "حق اولاد",
 };
 
+export const spouse = {
+  ...amount,
+  name: "spouse",
+  field: "spouse",
+  label: "حق تاهل",
+};
+
 export const reward = {
   ...amount,
   name: "reward",
