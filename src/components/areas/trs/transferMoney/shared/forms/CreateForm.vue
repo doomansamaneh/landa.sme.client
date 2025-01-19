@@ -59,7 +59,7 @@
                 model.fromSource === transferMoneyType.bankAccount
               "
               v-model:selectedId="model.fromBankAccountId"
-              v-model:selectedText="model.fromBankAccountTitle"
+              v-model:selectedText="model.fromBankAccountDisplay"
             />
 
             <cash-lookup
@@ -101,7 +101,7 @@
             <bank-account-lookup
               v-if="model.toSource === transferMoneyType.bankAccount"
               v-model:selectedId="model.toBankAccountId"
-              v-model:selectedText="model.toBankAccountTitle"
+              v-model:selectedText="model.toBankAccountDisplay"
             />
 
             <cash-lookup
