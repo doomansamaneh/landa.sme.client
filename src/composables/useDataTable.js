@@ -7,6 +7,9 @@ import {
 } from "src/constants/enums";
 
 import { fetchWrapper, helper, bus } from "src/helpers";
+// import { usePreview } from "./usePreview";
+
+// import PreviewPage from "src/pages/areas/acc/report/preview/PreviewPage.vue";
 
 const inFullscreen = ref(false);
 const separator = ref("horizontal");
@@ -49,6 +52,8 @@ export function useDataTable({
   const pagination = computed(
     () => store?.pagination?.value ?? _pagination.value
   );
+
+  // const previewStore = usePreview();
 
   // const loading = ref(false)
   const showLoader = ref(false);
@@ -313,6 +318,23 @@ export function useDataTable({
     }
   }
 
+  // const openPreview = async () => {
+  //   const allPage = { ...pagination.value };
+  //   allPage.pageSize = -1;
+  //   await fetchData(allPage, handleResponse);
+
+  //   function handleResponse(pagedData) {
+  //     console.log(pagedData.items);
+  //     console.log(columns.value);
+
+  //     previewStore.openDialog({
+  //       title: "پیش نمایش",
+  //       component: PreviewPage,
+
+  //     });
+  //   }
+  // };
+
   function setSearchTerm(term) {
     pagination.value.searchTerm = term;
   }
@@ -387,5 +409,6 @@ export function useDataTable({
     getRowClass,
     exportCurrentPage,
     exportAll,
+    // openPreview,
   };
 }

@@ -1,11 +1,14 @@
 <template>
-  <toolbar :title="title" />
   <index-view />
 </template>
 
 <script setup>
-  import IndexView from "src/components/areas/acc/report/shared/CLPreview/IndexView.vue";
-  import Toolbar from "./PreviewToolbar.vue";
+import IndexView from "src/components/areas/acc/report/shared/CLPreview/IndexView.vue";
 
-  const title = "تراز آزمایشی - گروه حساب";
+
+const props = defineProps({
+  dataSource: String,
+  columns: Array,
+  title: String
+})
 </script>

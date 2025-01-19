@@ -1,6 +1,6 @@
 <template>
   <q-card-section>
-    <table class="styled-table">
+    <table class="print-preview-table">
       <thead>
         <tr>
           <th>ردیف</th>
@@ -103,17 +103,17 @@
 </script>
 
 <style scoped>
-  .styled-table {
+  .print-preview-table {
     width: 100%;
     border-collapse: collapse;
   }
-  .styled-table th,
-  .styled-table td {
+  .print-preview-table th,
+  .print-preview-table td {
     border: 1px solid black;
     padding: 5px;
     text-align: start;
   }
-  .styled-table th {
+  .print-preview-table th {
     background-color: #f2f2f2;
   }
 </style>

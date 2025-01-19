@@ -2,6 +2,7 @@
   <data-grid
     :table-store="tableStore"
     :base-route="baseRoute"
+    :title="title"
   />
 </template>
 

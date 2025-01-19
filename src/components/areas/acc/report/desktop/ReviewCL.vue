@@ -1,5 +1,6 @@
 <template>
   <review-data-grid
+    :title="title"
     :table-store="tableStore"
     toolbar
     @row-dbl-click="filterRow"
@@ -27,6 +28,7 @@
     filterExpression: Array,
     gridStore: Object,
     columns: Array,
+    title: String,
   });
 
   const searchStore = useVoucherSearch();

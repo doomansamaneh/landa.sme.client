@@ -1,9 +1,10 @@
 <template>
   <q-card flat class="bordered shadow">
-    <card-title title="کالا و خدمات" icon="o_desktop_mac" />
+    <card-title :title="title" icon="o_desktop_mac" />
 
     <data-grid
       :data-table-store="tableStore"
+      :title="title"
       flat
       toolbar
       multiSelect

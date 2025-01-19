@@ -10,12 +10,18 @@
     wrapCells
     dense_
     expandable_
+    :title="title"
     @row-dbl-click="alertRow"
   >
-    <template #toolbar="{ tableStore }">
+    <!-- <template #toolbar="{ tableStore }">
       <toolbar class="q-pa-md" :table-store="tableStore">
         <template #print-button>
-          <q-btn size="11px" round unelevated :to="previewRoute">
+          <q-btn
+            size="11px"
+            round
+            unelevated
+            @click="openPreview(tableStore)"
+          >
             <q-icon size="21px" name="o_print" />
             <q-tooltip :delay="700" class="custom-tooltip">
               <div class="text-body2 no-letter-spacing">چاپ</div>
@@ -23,7 +29,7 @@
           </q-btn>
         </template>
       </toolbar>
-    </template>
+    </template> -->
 
     <template #filter-typeId="{ item }">
       <custom-select
@@ -133,11 +139,11 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-  import Toolbar from "src/components/shared/DataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     tableStore: Object,
     previewRoute: String,
+    title: String,
   });
 
   const colspan = computed(

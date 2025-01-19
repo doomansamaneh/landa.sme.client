@@ -60,30 +60,35 @@
     >
       <q-tab-panel name="cl" class="no-padding">
         <review-cl
+          :title="$t('shared.accountTreeType.cl')"
           :report-store="accountReviewStore"
           preview-route="/Acc/Report/CLPreview"
         />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
         <review-gl
+          :title="$t('shared.accountTreeType.gl')"
           :report-store="accountReviewStore"
           preview-route="/Acc/Report/GLPreview"
         />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
         <review-sl
+          :title="$t('shared.accountTreeType.sl')"
           :report-store="accountReviewStore"
           preview-route="/Acc/Report/SLPreview"
         />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
         <review-dl
+          :title="$t('shared.accountTreeType.dl')"
           :report-store="accountReviewStore"
           preview-route="/Acc/Report/DLPreview"
         />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
         <review-item
+          title="ریز گردش"
           :report-store="accountReviewStore"
           preview-route="/Acc/Report/ItemPreview"
         />
