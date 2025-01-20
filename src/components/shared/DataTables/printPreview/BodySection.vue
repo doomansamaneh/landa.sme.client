@@ -4,7 +4,6 @@
       <thead>
         <tr>
           <th>ردیف</th>
-
           <template
             v-for="(column, index) in tableStore.columns.value"
             :key="index"
@@ -16,24 +15,32 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="(row, index) in tableStore.rows.value"
-          :key="index"
+        <template
+          v-for="(row, index) in tableStore?.rows.value"
+          :key="row.id"
         >
-          <td>{{ index + 1 }}</td>
-          <template
-            v-for="(column, index) in tableStore.columns.value"
-            :key="index"
-          >
-            <td v-if="column.field">
-              {{
-                isNumber(row[column.field])
-                  ? helper.formatNumber(row[column.field])
-                  : row[column.field]
-              }}
+          <tr class="table-row" :class="tableStore.getRowClass(row)">
+            <td>
+              <div
+                class="text-caption no-letter-spacing text-on-dark"
+              >
+                {{ tableStore.rowIndex(index) }}
+              </div>
             </td>
-          </template>
-        </tr>
+
+            <td
+              v-for="col in tableStore?.columns.value"
+              :key="col.name"
+              :class="col.cellClass"
+              :style="`${col.cellStyle}; font-size: ${tableStore.tdFontSize.value}px`"
+            >
+              <!-- :style="col.cellStyle" -->
+              <slot :name="`cell-${col.name}`" :item="row">
+                <div v-html="getColText(row, col)"></div>
+              </slot>
+            </td>
+          </tr>
+        </template>
       </tbody>
       <tfoot v-if="tableStore?.summaryData?.value">
         <tr>
@@ -45,7 +52,9 @@
             :key="index"
           >
             <td class="text-bold">
-              {{ helper.formatNumber(summary) }}
+              <slot name="td-summary" :summary="summary">
+                {{ helper.formatNumber(summary) }}
+              </slot>
             </td>
           </template>
         </tr>
@@ -55,7 +64,6 @@
 </template>
 
 <script setup>
-  import { computed, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
@@ -65,6 +73,18 @@
 
   const isNumber = (value) =>
     typeof value === "number" && !isNaN(value);
+
+  function getColText(row, col) {
+    if (row && col) {
+      if (col.template) {
+        return col.template.replace(
+          /{{\s*([\w.]+)\s*}}/g,
+          (_, key) => row[key] ?? ""
+        );
+      } else if (col.field) return row[col.field];
+    }
+    return "";
+  }
 </script>
 
 <style lang="scss">
