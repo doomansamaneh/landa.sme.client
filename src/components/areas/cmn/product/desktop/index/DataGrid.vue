@@ -13,6 +13,23 @@
       expandable
       @row-dbl-click="gotoPreview"
     >
+      <template #toolbar="{ tableStore }">
+        <toolbar class="q-pa-md" :table-store="tableStore">
+          <template #print-button>
+            <q-btn
+              size="11px"
+              round
+              unelevated
+              @click="openPreview(tableStore)"
+            >
+              <q-icon size="21px" name="o_print" />
+              <q-tooltip :delay="700" class="custom-tooltip">
+                <div class="text-body2 no-letter-spacing">چاپ</div>
+              </q-tooltip>
+            </q-btn>
+          </template>
+        </toolbar>
+      </template>
       <template #filter-typeId="{ item }">
         <custom-select
           v-model="item.value"
@@ -101,12 +118,15 @@
   import { helper } from "src/helpers";
   import { isActiveOptions, productType } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
+  import { usePreview } from "src/composables/usePreview";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import Preview from "../../shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import Toolbar from "src/components/shared/DataTables/Desktop/DataGridToolbar.vue";
+  import DataGridDefualtPreview from "../printPreview/DataGridDefualtPreview.vue";
 
   const props = defineProps({
     title: String,
@@ -115,6 +135,7 @@
   });
 
   const router = useRouter();
+  const previewStore = usePreview();
 
   async function reloadData() {
     await props.tableStore.reloadData();
@@ -123,4 +144,15 @@
   function gotoPreview(row) {
     router.push(`/${props.baseRoute}/preview/${row.id}`);
   }
+
+  const openPreview = async () => {
+    previewStore.openDialog({
+      title: props.title,
+      component: DataGridDefualtPreview,
+      previewProps: {
+        tableStore: props.tableStore,
+        title: props.title,
+      },
+    });
+  };
 </script>
