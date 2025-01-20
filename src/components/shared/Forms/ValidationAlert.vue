@@ -8,6 +8,7 @@
     :offset="offset"
     :class="tooltipClass"
   >
+    <slot />
     <div class="text-body2 no-letter-spacing">
       {{ message }}
     </div>
