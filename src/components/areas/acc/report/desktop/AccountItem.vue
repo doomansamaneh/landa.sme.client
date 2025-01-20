@@ -10,19 +10,6 @@
     toolbar
     :no-fullscreen="true"
   >
-    <template #toolbar="{ tableStore }">
-      <toolbar class="q-pa-md" :table-store="tableStore">
-        <template #print-button>
-          <q-btn size="11px" round unelevated :to="previewRoute">
-            <q-icon size="21px" name="o_print" />
-            <q-tooltip :delay="700" class="custom-tooltip">
-              <div class="text-body2 no-letter-spacing">چاپ</div>
-            </q-tooltip>
-          </q-btn>
-        </template>
-      </toolbar>
-    </template>
-
     <template #cell-debit="{ item }">
       {{ helper.formatNumber(item.credit) }}
     </template>

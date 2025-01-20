@@ -8,7 +8,13 @@
     :placeholder="placeholder"
     hide-buttom-space
     clear-icon="clear"
+    :rules="rules"
   >
+    <validation-alert
+      v-if="validationMessage"
+      :message="validationMessage"
+    />
+
     <template #prepend>
       <slot name="prepend"></slot>
     </template>
@@ -19,10 +25,12 @@
 </template>
 
 <script setup>
-  import { watch } from "vue";
+  import { ref, computed, watch } from "vue";
   import { useCurrencyInput } from "vue-currency-input";
+  import { useI18n } from "vue-i18n";
 
   import CustomLabel from "./CustomLabel.vue";
+  import ValidationAlert from "./ValidationAlert.vue";
 
   const props = defineProps({
     label: String,
@@ -47,6 +55,9 @@
     },
   });
 
+  const { t } = useI18n();
+  const validationMessage = ref("");
+
   const {
     inputRef,
     formattedValue,
@@ -61,6 +72,20 @@
       setValue(value);
     }
   );
+
+  const rules = computed(() => {
+    return props.required
+      ? [
+          (val) => {
+            const valid = !!val;
+            validationMessage.value = valid
+              ? ""
+              : t("shared.labels.required");
+            return valid;
+          },
+        ]
+      : [];
+  });
 
   defineExpose({
     focus: () => {
