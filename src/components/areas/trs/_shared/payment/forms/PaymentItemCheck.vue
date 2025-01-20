@@ -1,68 +1,79 @@
 <template>
   <div class="row q-col-gutter-md">
     <div class="col-md-3 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">مبلغ</q-item-label>
       <custom-input-number
-        :autofocus="autofocus"
         v-model="paymentItem.amount"
+        label="مبلغ"
+        required
       />
     </div>
 
     <div class="col-md-2 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">کارمزد</q-item-label>
-      <custom-input-number v-model="paymentItem.fee" />
+      <custom-input-number v-model="paymentItem.fee" label="کارمزد" />
     </div>
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">حساب بانکی</q-item-label>
       <bank-account-lookup
         v-model:selectedId="paymentItem.bankAccountId"
         v-model:selectedText="paymentItem.bankAccountDisplay"
+        label="حساب بانکی"
       />
     </div>
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-3 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">ش چک</q-item-label>
-      <custom-input v-model="paymentItem.itemNo" />
+      <custom-input
+        v-model="paymentItem.itemNo"
+        label="ش چک"
+        required
+      />
     </div>
 
     <div class="col-md-3 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">تاریخ چک</q-item-label>
-      <date-time-picker v-model="paymentItem.itemDate" />
+      <date-time-picker
+        v-model="paymentItem.itemDate"
+        label="تاریخ چک"
+        required
+      />
     </div>
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شماره حساب</q-item-label>
-      <custom-input v-model="paymentItem.accountNo" />
+      <custom-input
+        v-model="paymentItem.accountNo"
+        label="شماره حساب"
+      />
     </div>
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شعبه بانک</q-item-label>
       <bank-branch-lookup
         v-model:selectedId="paymentItem.bankBranchId"
         v-model:selectedText="paymentItem.bankTitle"
+        label="شعبه بانک"
+        rquired
       />
     </div>
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">شرح</q-item-label>
-      <custom-input type="textarea" v-model="paymentItem.comment" />
+      <custom-input
+        v-model="paymentItem.comment"
+        type="textarea"
+        label="شرح"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-  import { computed, onMounted } from "vue";
+  import { computed } from "vue";
 
   import BankAccountLookup from "src/components/shared/lookups/BankAccountLookup.vue";
   import BankBranchLookup from "src/components/shared/lookups/BankBranchLookup.vue";

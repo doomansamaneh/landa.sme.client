@@ -1,17 +1,31 @@
 <template>
   <lookup-view
     ref="lookup"
-    dataSource="trs/bankAccount/getlookupData"
-    sortColumn="no"
-    textTemplate="{{ bankTitle }} / {{ title }} / {{ no }}"
-    columns="no,bankTitle,amount"
+    dataSource="trs/payment/getChecklookupData"
+    sortColumn="itemDate"
+    textTemplate="{{ bankTitle }} / {{ accountNo }}"
+    columns="itemNo,itemDate,customerName,bankTitle,amount"
     :filterExpression="filterExpression"
   >
     <template #thead-cols>
       <div class="col">
         <header-column
-          field-name="no"
+          field-name="itemNo"
           :title="$t('shared.labels.no')"
+          :table-store="lookup.tableStore"
+        />
+      </div>
+      <div class="col">
+        <header-column
+          field-name="itemDate"
+          :title="$t('shared.labels.date')"
+          :table-store="lookup.tableStore"
+        />
+      </div>
+      <div class="col-4">
+        <header-column
+          field-name="customerName"
+          :title="$t('shared.labels.customerName')"
           :table-store="lookup.tableStore"
         />
       </div>
@@ -25,7 +39,7 @@
       <div class="col">
         <header-column
           field-name="amount"
-          :title="$t('shared.labels.amount')"
+          :title="$t('shared.labels.price')"
           :table-store="lookup.tableStore"
         />
       </div>
@@ -36,21 +50,17 @@
         <div style="width: 16px" class="text-body3 no-letter-spacing">
           {{ index }}
         </div>
-        <div class="col-3 text-body3 no-letter-spacing">
-          <div class="ellipsis">
-            {{ row.no }}
-            <q-tooltip
-              transition-show="scale"
-              transition-hide="scale"
-              :delay="700"
-              class="custom-tooltip text-body3 no-letter-spacing"
-            >
-              {{ row.no }}
-            </q-tooltip>
-          </div>
+        <div class="col-4 text-body3 no-letter-spacing">
+          {{ row.itemNo }}
+        </div>
+        <div class="col text-body3 no-letter-spacing">
+          {{ row.itemDate?.substring(0, 10) }}
         </div>
         <div class="col-4 text-body3 no-letter-spacing">
-          {{ row.bankTitle }} - {{ row.title }}
+          {{ row.customerName }}
+        </div>
+        <div class="col-4 text-body3 no-letter-spacing">
+          {{ row.bankTitle }}
         </div>
         <div class="col text-body3 no-letter-spacing">
           {{ helper.formatNumber(row.amount) }}

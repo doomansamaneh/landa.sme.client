@@ -179,7 +179,7 @@ export function useDataTable({
 
   function setPayload() {
     pagination.value.filterExpression = [];
-    if (store?.filterExpression)
+    if (!store?.state && store?.filterExpression)
       pagination.value.filterExpression.push(
         ...store.filterExpression
       );

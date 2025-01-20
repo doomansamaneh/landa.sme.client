@@ -25,14 +25,14 @@
 
     <data-grid
       v-if="tab === 'received'"
-      :filter-expression="receiveFilter"
+      :filter-expression="receiptFilter"
+      :no-fullscreen
       toolbar_
-      :no-fullscreen="true"
     />
     <data-grid
-      :no-fullscreen="true"
       v-else
       :filter-expression="payedFilter"
+      :no-fullscreen
       toolbar_
     />
   </q-card>
@@ -42,19 +42,15 @@
   import { ref } from "vue";
   import { sqlOperator, documentType } from "src/constants";
 
-  import { checkItemColumns } from "../../_composables/constants";
-  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-
   import DataGrid from "../desktop/_CheckItemDataGrid.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
 
   const props = defineProps({ customerId: String, title: String });
 
-  const dataGrid = ref(null);
   const tab = ref("received");
 
-  const receiveFilter = [
+  const receiptFilter = [
     {
       fieldName: "d.TypeId",
       operator: sqlOperator.equal,
@@ -78,12 +74,6 @@
     };
 
     payedFilter.push(customerFilter);
-    receiveFilter.push(customerFilter);
+    receiptFilter.push(customerFilter);
   }
-
-  const gridStore = useBaseInfoGrid({
-    columns: checkItemColumns,
-    sortColumn: "itemDate",
-    filterExpression: receiveFilter,
-  });
 </script>
