@@ -3,6 +3,8 @@
   <q-select
     v-model="modelValue"
     :options="options"
+    :disable="disable"
+    :readonly="readonly"
     outlined
     dense
     clearable
@@ -35,6 +37,8 @@
     label: String,
     placeholder: String,
     required: Boolean,
+    disable: Boolean,
+    readonly: Boolean,
     options: Array,
     rules: Array,
   });

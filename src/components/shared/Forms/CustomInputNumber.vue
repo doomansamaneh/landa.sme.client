@@ -3,11 +3,13 @@
   <q-input
     ref="inputRef"
     v-model="formattedValue"
+    :placeholder="placeholder"
+    clear-icon="clear"
+    :disable="disable"
+    :readonly="readonly"
     outlined
     dense
-    :placeholder="placeholder"
     hide-buttom-space
-    clear-icon="clear"
     :rules="rules"
   >
     <validation-alert
@@ -36,6 +38,8 @@
     label: String,
     placeholder: String,
     required: Boolean,
+    disable: Boolean,
+    readonly: Boolean,
     modelValue: {
       type: Number,
       default: 0,

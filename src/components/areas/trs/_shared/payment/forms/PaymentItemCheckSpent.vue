@@ -3,7 +3,7 @@
     <div class="col-md-6 col-sm-12 col-xs-12">
       <check-lookup
         v-model:selectedId="paymentItem.checkId"
-        v-model:selectedText="paymentItem.checkDisplay"
+        v-model:selectedText="paymentItem.checkSpentDisplay"
         label="چک"
         required
         @row-selected="checkSelected"
@@ -15,7 +15,8 @@
     <div class="col-md-3 col-sm-12 col-xs-12">
       <custom-input-number
         v-model="paymentItem.amount"
-        disabled
+        disable
+        readonly
         label="مبلغ"
       />
     </div>
@@ -54,7 +55,7 @@
   const paymentItem = computed(() => props.item);
 
   const checkSelected = (row) => {
-    payedAmount.value.amount = 0;
+    paymentItem.value.amount = 0;
     if (row) paymentItem.value.amount = row.amount;
   };
 </script>
