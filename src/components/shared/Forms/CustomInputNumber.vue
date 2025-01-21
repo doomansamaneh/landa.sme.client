@@ -6,7 +6,7 @@
     outlined
     dense
     :placeholder="placeholder"
-    hide-buttom-space
+    hide-bottom-space
     clear-icon="clear"
     :rules="rules"
   >

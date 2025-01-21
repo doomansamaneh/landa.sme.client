@@ -4,7 +4,6 @@
       <reload-button :table-store="tableStore" />
       <slot name="print-button">
         <print-button :table-store="tableStore" :title="title" />
-        <batch-print-button :table-store="tableStore" />
       </slot>
       <separator-toggle-button :table-store="tableStore" />
       <export-button :table-store="tableStore" />
@@ -18,8 +17,7 @@
 <script setup>
   import ReloadButton from "../../Buttons/ReloadButton.vue";
   import SeparatorToggleButton from "../../Buttons/SeparatorToggleButton.vue";
-  import PrintButton from "../../Buttons/PrintButton.vue";
-  import BatchPrintButton from "../../Buttons/BatchPrintButton.vue";
+  import PrintButton from "../../Buttons/PrintButtonMaster.vue";
   import ExportButton from "../../Buttons/ExportButton.vue";
   import FullscreenButton from "../../Buttons/FullscreenButton.vue";
 
