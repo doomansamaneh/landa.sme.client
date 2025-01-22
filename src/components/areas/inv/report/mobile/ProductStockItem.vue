@@ -28,7 +28,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="tableStore.exportAll()"
+              @click="exportAll()"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>
@@ -146,8 +146,8 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { isActiveOptions, sqlOperator } from "src/constants";
-  import { useRoute } from "vue-router";
+  import { isActiveOptions } from "src/constants";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import RowToolBar from "src/components/shared/RowToolBar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
@@ -155,7 +155,6 @@
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import IsActive from "src/components/shared/IsActive.vue";
 
-  const route = useRoute();
   const props = defineProps({
     filterExpersions: Array,
     item: Array,
@@ -171,6 +170,7 @@
   }
 
   const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const { exportAll } = useDataTableExport(tableStore.value);
 
   defineExpose({
     tableStore,

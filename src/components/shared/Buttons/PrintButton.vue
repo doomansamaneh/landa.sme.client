@@ -1,6 +1,6 @@
 <template>
   <q-btn size="11px" round unelevated @click="openPreview">
-    <q-icon size="21px" name="print" />
+    <q-icon size="21px" name="o_print" />
     <q-tooltip :delay="700" class="custom-tooltip">
       <div class="text-body2 no-letter-spacing">پیش نمایش و چاپ</div>
     </q-tooltip>
@@ -9,7 +9,8 @@
 
 <script setup>
   import { usePreview } from "src/composables/usePreview";
-  import DataGridDefualtPreview from "src/components/shared/DataTables/printPreview/DataGridDefualtPreview.vue";
+
+  import DataGridDefualtPreview from "src/components/shared/dataTables/printPreview/DataGridDefualtPreview.vue";
 
   const props = defineProps({
     tableStore: Object,

@@ -24,7 +24,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="tableStore.exportAll()"
+                @click="exportAll()"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -79,7 +79,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="tableStore.exportAll()"
+                @click="exportAll()"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -106,6 +106,7 @@
 
 <script setup>
   import { useDataTable } from "src/composables/useDataTable";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
@@ -125,4 +126,6 @@
     dataSource: props.dataSource,
     store: props.gridStore,
   });
+
+  const { exportAll } = useDataTableExport(tableStore);
 </script>

@@ -11,10 +11,9 @@
     dense_
     expandable_
     :title="title"
-    @row-dbl-click="alertRow"
   >
-    <!-- <template #toolbar="{ tableStore }">
-      <toolbar class="q-pa-md" :table-store="tableStore">
+    <template #toolbar="{ tableStore }">
+      <data-grid-toolbar :table-store="tableStore">
         <template #print-button>
           <q-btn
             size="11px"
@@ -28,8 +27,8 @@
             </q-tooltip>
           </q-btn>
         </template>
-      </toolbar>
-    </template> -->
+      </data-grid-toolbar>
+    </template>
 
     <template #filter-typeId="{ item }">
       <custom-select
@@ -53,23 +52,23 @@
     </template>
 
     <template #cell-credit="{ item }">
-      {{ item.credit?.toLocaleString() }}
+      {{ helper.formatNumber(item.credit) }}
     </template>
 
     <template #cell-debit="{ item }">
-      {{ item.debit?.toLocaleString() }}
+      {{ helper.formatNumber(item.debit) }}
     </template>
 
     <template #cell-inlineDebit="{ item }">
-      {{ item.inlineDebit?.toLocaleString() }}
+      {{ helper.formatNumber(item.inlineDebit) }}
     </template>
 
     <template #cell-debitRemained="{ item }">
-      {{ item.debitRemained?.toLocaleString() }}
+      {{ helper.formatNumber(item.debitRemained) }}
     </template>
 
     <template #cell-creditRemained="{ item }">
-      {{ item.creditRemained?.toLocaleString() }}
+      {{ helper.formatNumber(item.creditRemained) }}
     </template>
 
     <template #footer-subtotal="{ selectedRows }">
@@ -79,34 +78,36 @@
       <td>
         <b>
           {{
-            helper.getSubtotal(selectedRows, "debit").toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "debit")
+            )
           }}
         </b>
       </td>
       <td>
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "credit")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "credit")
+            )
           }}
         </b>
       </td>
       <td>
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "debitRemained")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "debitRemained")
+            )
           }}
         </b>
       </td>
       <td>
         <b>
           {{
-            helper
-              .getSubtotal(selectedRows, "creditRemained")
-              .toLocaleString()
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "creditRemained")
+            )
           }}
         </b>
       </td>
@@ -117,16 +118,16 @@
         {{ $t("shared.labels.total") }}
       </td>
       <td>
-        <b>{{ summary.debit?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary.debit) }}</b>
       </td>
       <td>
-        <b>{{ summary.credit?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary.credit) }}</b>
       </td>
       <td>
-        <b>{{ summary.debitRemained?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary.debitRemained) }}</b>
       </td>
       <td>
-        <b>{{ summary.creditRemained?.toLocaleString() }}</b>
+        <b>{{ helper.formatNumber(summary.creditRemained) }}</b>
       </td>
     </template>
   </data-grid>
@@ -139,10 +140,10 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import DataGridToolbar from "src/components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     tableStore: Object,
-    previewRoute: String,
     title: String,
   });
 

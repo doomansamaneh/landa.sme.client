@@ -20,7 +20,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="tableStore.exportAll()"
+              @click="exportAll()"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>
@@ -78,6 +78,7 @@
   import { useRoute } from "vue-router";
   import { sqlOperator } from "src/constants";
   import { accountItemDLColumns } from "../../_composables/constants";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import AccountItem from "./AccountItem.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
@@ -107,5 +108,7 @@
     return null;
   });
 
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
+  const { exportAll } = useDataTableExport(
+    dataGrid?.value?.tableStore
+  );
 </script>

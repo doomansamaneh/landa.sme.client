@@ -3,13 +3,9 @@ import {
   defaultPageSize,
   dataViewDefaultPageSize,
   sqlOperator,
-  guidEmpty,
 } from "src/constants/enums";
 
-import { fetchWrapper, helper, bus } from "src/helpers";
-// import { usePreview } from "./usePreview";
-
-// import PreviewPage from "src/pages/areas/acc/report/preview/PreviewPage.vue";
+import { fetchWrapper, bus } from "src/helpers";
 
 const inFullscreen = ref(false);
 const separator = ref("horizontal");
@@ -53,9 +49,6 @@ export function useDataTable({
     () => store?.pagination?.value ?? _pagination.value
   );
 
-  // const previewStore = usePreview();
-
-  // const loading = ref(false)
   const showLoader = ref(false);
   const inputInnerLoader = ref(false);
 
@@ -164,7 +157,9 @@ export function useDataTable({
         gridPage,
         true
       );
-      handleResponse(response.data.data);
+
+      if (handleResponse) handleResponse(response.data.data);
+      return response.data;
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -304,36 +299,12 @@ export function useDataTable({
     );
   }
 
-  function exportCurrentPage() {
-    helper.exportCsv(state.value.rows.value, columns.value);
-  }
-
-  async function exportAll() {
+  async function getAll() {
     const allPage = { ...pagination.value };
     allPage.pageSize = -1;
-    await fetchData(allPage, handleResponse);
-
-    function handleResponse(pagedData) {
-      helper.exportCsv(pagedData.items, columns.value);
-    }
+    const responseData = await fetchData(allPage);
+    return responseData.data.items;
   }
-
-  // const openPreview = async () => {
-  //   const allPage = { ...pagination.value };
-  //   allPage.pageSize = -1;
-  //   await fetchData(allPage, handleResponse);
-
-  //   function handleResponse(pagedData) {
-  //     console.log(pagedData.items);
-  //     console.log(columns.value);
-
-  //     previewStore.openDialog({
-  //       title: "پیش نمایش",
-  //       component: PreviewPage,
-
-  //     });
-  //   }
-  // };
 
   function setSearchTerm(term) {
     pagination.value.searchTerm = term;
@@ -394,6 +365,7 @@ export function useDataTable({
     toggleFontSize,
     toggleSeparator,
 
+    getAll,
     selectAll,
     setFilterExpression,
     setActiveRow,
@@ -407,8 +379,6 @@ export function useDataTable({
     toggleExpand,
     getSortableClass,
     getRowClass,
-    exportCurrentPage,
-    exportAll,
     // openPreview,
   };
 }
