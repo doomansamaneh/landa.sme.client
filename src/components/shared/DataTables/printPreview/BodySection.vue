@@ -3,7 +3,7 @@
     <table class="print-preview-table">
       <thead>
         <tr>
-          <th style="width: 1%">ردیف</th>
+          <th style="width: 1px">ردیف</th>
           <template
             v-for="col in tableStore.columns.value"
             :key="col.name"

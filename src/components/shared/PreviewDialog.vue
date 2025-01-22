@@ -21,7 +21,7 @@
           <menu-button
             :title="$t('shared.labels.downloadPdf')"
             icon="download"
-            @click="printStore.downloadPdf"
+            @click="openPrintSettings"
           />
         </div>
 
@@ -57,9 +57,11 @@
   import { ref } from "vue";
   import { useDialogPluginComponent } from "quasar";
   import { usePrint } from "src/composables/usePrint";
+  import { useDialog } from "src/composables/usePrintSetting";
 
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import PrintSetting from "src/components/shared/dialogs/PrintSettingDialog.vue";
 
   const props = defineProps({
     title: String,
@@ -73,10 +75,23 @@
     useDialogPluginComponent();
 
   const printStore = usePrint();
+  const dialogStore = useDialog();
 
   function closeDialog() {
     onDialogCancel();
   }
+
+  const openPrintSettings = () => {
+    dialogStore.openDialog({
+      title: "تنظیمات چاپ",
+      component: PrintSetting,
+      props: {
+        tableStore: props.previewProps.tableStore,
+        title: props.title,
+        actions: true
+      },
+    });
+  };
 
   defineExpose({
     onDialogOK,
