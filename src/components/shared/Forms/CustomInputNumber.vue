@@ -10,6 +10,7 @@
     outlined
     dense
     hide-buttom-space
+    hide-bottom-space
     :rules="rules"
   >
     <validation-alert
