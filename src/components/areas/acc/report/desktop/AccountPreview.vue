@@ -1,5 +1,6 @@
 <template>
   <tool-bar
+    v-if="false"
     :inside="inside"
     buttons
     :title="`${item.title} - ${item.code}`"
@@ -68,6 +69,7 @@
         ref="dataGrid"
         :filter-expression="filterExpersion"
         :columns="accountItemDLColumns"
+        :title="`${title} / ${item.title} - ${item.code}`"
       />
     </q-card-section>
   </q-card>
@@ -87,6 +89,7 @@
   const props = defineProps({
     inside: Boolean,
     item: Object,
+    title: { type: String, default: "" },
   });
 
   const route = useRoute();

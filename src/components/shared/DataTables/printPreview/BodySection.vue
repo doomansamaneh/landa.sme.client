@@ -3,28 +3,25 @@
     <table class="print-preview-table">
       <thead>
         <tr>
-          <th>ردیف</th>
+          <th style="width: 1%">ردیف</th>
           <template
-            v-for="(column, index) in tableStore.columns.value"
-            :key="index"
+            v-for="col in tableStore.columns.value"
+            :key="col.name"
           >
-            <th v-if="column.field">
-              {{ column.label }}
+            <th v-if="col.field">
+              {{ col.label }}
             </th>
           </template>
         </tr>
       </thead>
       <tbody>
-        <template
-          v-for="(row, index) in tableStore?.rows.value"
-          :key="row.id"
-        >
+        <template v-for="(row, index) in rows" :key="row.id">
           <tr class="table-row" :class="tableStore.getRowClass(row)">
             <td>
               <div
                 class="text-caption no-letter-spacing text-on-dark"
               >
-                {{ tableStore.rowIndex(index) }}
+                {{ index + 1 }}
               </div>
             </td>
 
@@ -48,19 +45,20 @@
       </tbody>
       <tfoot v-if="tableStore?.summaryData?.value">
         <tr>
-          <td class="text-bold" colspan="3" style="text-align: end">
-            جمع کل
-          </td>
-          <template
-            v-for="(summary, index) in tableStore?.summaryData?.value"
-            :key="index"
+          <td
+            class="text-bold"
+            :colspan="getColspan()"
+            style="text-align: end"
           >
-            <td class="text-bold">
-              <slot name="td-summary" :summary="summary">
-                {{ helper.formatNumber(summary) }}
-              </slot>
-            </td>
-          </template>
+            {{ $t("shared.labels.total") }}
+          </td>
+          <td
+            v-for="summary in tableStore?.summaryData?.value"
+            :key="index"
+            class="text-bold"
+          >
+            {{ helper.formatNumber(summary) }}
+          </td>
         </tr>
       </tfoot>
     </table>
@@ -68,6 +66,7 @@
 </template>
 
 <script setup>
+  import { ref, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
@@ -75,6 +74,7 @@
     tableStore: useDataTable,
   });
 
+  const rows = ref([]);
   const isNumber = (value) =>
     typeof value === "number" && !isNaN(value);
 
@@ -92,6 +92,24 @@
     }
     return "";
   }
+
+  const getColspan = () => {
+    if (!props.tableStore?.summaryData?.value) return 1;
+    const firstFieldName = Object.keys(
+      props.tableStore.summaryData.value
+    )[0];
+    return (
+      helper.findIndex(
+        props.tableStore.columns.value,
+        "name",
+        firstFieldName
+      ) + 1
+    ); //row no column
+  };
+
+  onMounted(async () => {
+    rows.value = await props.tableStore.getAll();
+  });
 </script>
 
 <style lang="scss">

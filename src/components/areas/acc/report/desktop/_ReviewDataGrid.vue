@@ -12,7 +12,7 @@
     expandable_
     :title="title"
   >
-    <template #toolbar="{ tableStore }">
+    <template #toolbar_="{ tableStore }">
       <data-grid-toolbar :table-store="tableStore">
         <template #print-button>
           <q-btn
@@ -157,4 +157,8 @@
       1 + //numbered column
       1 //multi check column
   );
+
+  const openPreview = () => {
+    alert(1);
+  };
 </script>
