@@ -109,7 +109,7 @@
             {{ item.itemNo }}
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
-            {{ item.date ?? model?.date.substring(0, 10) }}
+            {{ model?.date?.substring(0, 10) }}
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
             <div v-if="item.bankAccountNo">
@@ -123,10 +123,17 @@
             </div>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
-            {{ item.comment }}
+            {{
+              $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
+            }}
+
+            <span v-if="item.comment">
+              /
+              {{ item.comment }}
+            </span>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
-            {{ item.amount?.toLocaleString() }}
+            {{ helper.formatNumber(item.amount) }}
           </td>
         </tr>
         <tr>
@@ -152,9 +159,9 @@
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
               {{
-                helper
-                  .getSubtotal(model?.paymentItems, "amount")
-                  ?.toLocaleString()
+                helper.formatNumber(
+                  helper.getSubtotal(model?.paymentItems, "amount")
+                )
               }}
             </strong>
           </td>
@@ -167,10 +174,19 @@
 <script setup>
   import { numberToWords } from "@persian-tools/persian-tools";
   import { helper } from "src/helpers";
-  import { documentType } from "src/constants";
+  import { documentType, paymentMethod } from "src/constants";
 
   const props = defineProps({
     model: Object,
     type: documentType,
   });
+
+  const getItemType = (typeId) => {
+    for (const key in paymentMethod) {
+      if (paymentMethod[key].id === typeId) {
+        return key;
+      }
+    }
+    return paymentMethod[0];
+  };
 </script>

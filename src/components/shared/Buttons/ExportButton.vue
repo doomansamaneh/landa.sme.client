@@ -16,7 +16,7 @@
             clickable
             v-close-popup
             tabindex="0"
-            @click="tableStore?.exportAll()"
+            @click="exportAll()"
           >
             <div class="q-py-sm">
               <q-item-section avatar>
@@ -36,7 +36,7 @@
             clickable
             v-close-popup
             tabindex="0"
-            @click="tableStore?.exportCurrentPage()"
+            @click="exportCurrentPage()"
           >
             <div class="q-py-sm">
               <q-item-section avatar>
@@ -58,7 +58,14 @@
 </template>
 
 <script setup>
+  import { useDataTable } from "src/composables/useDataTable";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
+
   const props = defineProps({
-    tableStore: Object,
+    tableStore: useDataTable,
   });
+
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
 </script>

@@ -50,7 +50,6 @@
               />
             </svg>
           </div>
-          <!-- end .squiggle-->
         </div>
         <div class="squiggle-container squiggle-container-3">
           <div class="squiggle">
@@ -84,23 +83,21 @@
 
 <style lang="scss" scoped>
   @mixin moveAndFadeAnimation($distance, $duration, $delay) {
-    animation: move-and-fade $duration linear infinite;
-    animation-delay: $delay;
-
+    & {
+      animation: move-and-fade $duration linear infinite;
+      animation-delay: $delay;
+    }
     @keyframes move-and-fade {
       0% {
         opacity: 0;
         transform: translateY(0);
       }
-
       50% {
         opacity: 1;
       }
-
       75% {
         opacity: 0;
       }
-
       100% {
         transform: translateY(-$distance);
         opacity: 0;
@@ -109,7 +106,6 @@
   }
 
   $border-color: #c3c3c372;
-
   .aligner {
     display: flex;
     align-items: center;
@@ -123,42 +119,43 @@
   }
 
   .squiggle-container {
-    width: 10px;
+    width: 9px;
     height: 8px;
     display: inline-block;
+  }
 
-    &-1 {
-      transform: translateY(10px);
-    }
-
-    &-2 {
-      transform: translateY(0px);
-    }
-
-    &-3 {
-      transform: translateY(15px);
-    }
-
+  .squiggle-container-1 {
+    transform: translateY(10px);
     .squiggle {
-      width: 8px;
-
-      &.squiggle-1 {
-        @include moveAndFadeAnimation(10px, 2.7s, 0.2s);
+      @include moveAndFadeAnimation(10px, 2.7s, 0.2s);
+      & {
+        width: 8px;
       }
+    }
+  }
 
-      &.squiggle-2 {
-        @include moveAndFadeAnimation(20px, 2.7s, 0s);
+  .squiggle-container-2 {
+    transform: translateY(0px);
+    .squiggle {
+      @include moveAndFadeAnimation(20px, 2.7s, 0s);
+      & {
+        width: 8px;
       }
+    }
+  }
 
-      &.squiggle-3 {
-        @include moveAndFadeAnimation(15px, 2.7s, 0.4s);
+  .squiggle-container-3 {
+    transform: translateY(15px);
+    .squiggle {
+      @include moveAndFadeAnimation(15px, 2.7s, 0.4s);
+      & {
+        width: 8px;
       }
     }
   }
 
   .squiggle {
     stroke-dasharray: 100;
-
     path {
       stroke: $border-color;
     }
@@ -168,11 +165,9 @@
     0% {
       stroke-dashoffset: 1000;
     }
-
     50% {
       stroke-dashoffset: 500;
     }
-
     100% {
       stroke-dashoffset: 0;
     }

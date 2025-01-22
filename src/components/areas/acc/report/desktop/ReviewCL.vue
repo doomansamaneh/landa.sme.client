@@ -4,7 +4,6 @@
     :table-store="tableStore"
     toolbar
     @row-dbl-click="filterRow"
-    :preview-route="previewRoute"
   />
 </template>
 
@@ -20,7 +19,6 @@
 
   const props = defineProps({
     reportStore: useAccountReview,
-    previewRoute: String,
     dataSource: {
       type: String,
       default: "acc/report/getCLData",

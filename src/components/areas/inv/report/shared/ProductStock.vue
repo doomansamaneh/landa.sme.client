@@ -23,7 +23,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="tableStore.exportAll()"
+                @click="exportAll()"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -71,7 +71,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="tableStore.exportAll()"
+                @click="exportAll()"
               >
                 <div class="q-py-sm">
                   <q-item-section avatar>
@@ -98,6 +98,7 @@
 
 <script setup>
   import { useDataTable } from "src/composables/useDataTable";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useProductStockState } from "../../_composables/useProductStockState";
 
@@ -105,7 +106,6 @@
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "../desktop/ProductStock.vue";
   import Mobile from "../mobile/ProductStock.vue";
-  import TipBanner from "src/components/shared/TipBanner.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -119,4 +119,5 @@
     dataSource: dataSource,
     store: gridStore,
   });
+  const { exportAll } = useDataTableExport(tableStore);
 </script>

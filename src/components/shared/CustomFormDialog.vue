@@ -9,7 +9,7 @@
     @hide="onDialogHide"
   >
     <q-card
-      :style="$q.screen.xs ? '' : `width: ${width}; max-width: 80vw`"
+      :style="$q.screen.xs ? '' : `width: ${width}; max-width: 80vw;`"
       flat
     >
       <q-card-section
@@ -31,7 +31,7 @@
         />
       </q-card-section>
 
-      <q-card-section class="q-pa-lg">
+      <q-card-section style="max-height: 70vh" class="q-pa-lg scroll">
         <slot name="body">
           <component
             :is="component"

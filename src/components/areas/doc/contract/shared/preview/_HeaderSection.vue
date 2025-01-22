@@ -28,7 +28,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="tableStore.exportAll()"
+              @click="exportAll()"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>

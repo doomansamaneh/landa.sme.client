@@ -3,12 +3,9 @@
     <slot name="title"></slot>
 
     <div class="q-table__middle scroll">
-     
       <slot name="toolbar" :tableStore="tableStore">
-
         <toolbar
           v-if="toolbar"
-          class="q-pa-md"
           :table-store="tableStore"
           :title="title"
         />

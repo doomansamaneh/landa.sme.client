@@ -52,6 +52,12 @@
 
   <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
+      <custom-input v-model="paymentItem.sayad" label="شماره صیاد" />
+    </div>
+  </div>
+
+  <div class="row q-mt-sm q-col-gutter-md">
+    <div class="col-md-6 col-sm-12 col-xs-12">
       <bank-branch-lookup
         v-model:selectedId="paymentItem.bankBranchId"
         v-model:selectedText="paymentItem.bankTitle"

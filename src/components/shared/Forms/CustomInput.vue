@@ -7,6 +7,7 @@
     clear-icon="clear"
     hide-bottom-space
     :disable="disable"
+    :readonly="readonly"
     :mask="mask"
     :type="type"
     :clearable="clearable"
@@ -51,6 +52,7 @@
     debounce: Number,
     maxlength: Number,
     disable: Boolean,
+    readonly: Boolean,
     rounded: Boolean,
     autogrow: Boolean,
   });

@@ -28,7 +28,7 @@
               clickable
               v-close-popup
               tabindex="0"
-              @click="tableStore.exportAll()"
+              @click="exportAll()"
             >
               <div class="q-py-sm">
                 <q-item-section avatar>
@@ -54,6 +54,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useDialog } from "src/composables/useDialog";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import Preview from "./_ProductStockPreview.vue";
@@ -79,4 +80,6 @@
       },
     });
   };
+
+  const { exportAll } = useDataTableExport(tableStore.value);
 </script>

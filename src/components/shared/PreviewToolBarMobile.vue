@@ -2,7 +2,7 @@
   <q-scroll-observer @scroll="onScroll" />
   <div style="margin-bottom: 36px">
     <q-page-sticky :class="scroll" class="z-1" position="top" expand>
-      <q-toolbar style="padding-left: 16px; padding-right: 16px;">
+      <q-toolbar style="padding-left: 16px; padding-right: 16px">
         <div class="row items-center">
           <slot name="buttons">
             <q-btn
@@ -22,7 +22,9 @@
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
             >
               <slot name="header-title">
-                <span class="text-body2 no-letter-spacing text-weight-700">
+                <span
+                  class="text-body2 no-letter-spacing text-weight-700"
+                >
                   {{ title }}
                 </span>
                 <q-btn
@@ -94,13 +96,13 @@
         <menu-item
           :title="$t('shared.labels.eportToExcel')"
           icon="o_download"
-          @click="tableStore.exportAll()"
+          @click="exportAll()"
         />
 
         <menu-item
           :title="$t('shared.labels.exportExcelCurrentPage')"
           icon="o_download"
-          @click="tableStore.exportCurrentPage()"
+          @click="exportCurrentPage()"
         />
       </q-list>
     </template>
@@ -110,6 +112,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useCheckDialogOpen } from "src/composables/useCheckDialogOpen";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
@@ -130,6 +133,9 @@
   const scroll = ref({});
 
   const checkDialog = useCheckDialogOpen();
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
 
   const sortSheetStatus = ref(false);
 

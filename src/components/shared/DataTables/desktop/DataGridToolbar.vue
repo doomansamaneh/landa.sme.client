@@ -1,10 +1,9 @@
 <template>
-  <div class="flex items-center justify-between">
+  <div class="flex items-center justify-between q-pa-md">
     <div class="flex items-center q-gutter-xs">
       <reload-button :table-store="tableStore" />
       <slot name="print-button">
         <print-button :table-store="tableStore" :title="title" />
-        <batch-print-button :table-store="tableStore" />
       </slot>
       <separator-toggle-button :table-store="tableStore" />
       <export-button :table-store="tableStore" />
@@ -16,12 +15,11 @@
 </template>
 
 <script setup>
-  import ReloadButton from "../../Buttons/ReloadButton.vue";
-  import SeparatorToggleButton from "../../Buttons/SeparatorToggleButton.vue";
-  import PrintButton from "../../Buttons/PrintButton.vue";
-  import BatchPrintButton from "../../Buttons/BatchPrintButton.vue";
-  import ExportButton from "../../Buttons/ExportButton.vue";
-  import FullscreenButton from "../../Buttons/FullscreenButton.vue";
+  import ReloadButton from "../../buttons/ReloadButton.vue";
+  import SeparatorToggleButton from "../../buttons/SeparatorToggleButton.vue";
+  import PrintButton from "../../buttons/PrintButton.vue";
+  import ExportButton from "../../buttons/ExportButton.vue";
+  import FullscreenButton from "../../buttons/FullscreenButton.vue";
 
   const props = defineProps({
     tableStore: Object,

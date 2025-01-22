@@ -15,10 +15,9 @@
               round
               unelevated
               dense
-              size="16px"
               class="text-on-dark"
             >
-              <q-icon size="sm" name="o_lunch_dining" />
+              <q-icon size="26px" name="o_lunch_dining" />
             </q-btn>
           </div>
 

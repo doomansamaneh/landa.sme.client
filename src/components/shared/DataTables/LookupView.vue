@@ -14,6 +14,8 @@
       debounce="1000"
       :placeholder="placeholder"
       :autofocus="autofocus"
+      :disable="disable"
+      :readonly="readonly"
       :rules="rules"
       @update:model-value="searchInLookup"
       @keydown.enter.prevent.stop="selectRow"
@@ -427,6 +429,8 @@
     width: String,
     showAdd: Boolean,
     autofocus: Boolean,
+    disable: Boolean,
+    readonly: Boolean,
     createForm: Object,
     label: String,
     autogrow: Boolean,
@@ -483,7 +487,7 @@
     dialogStore.openDialog({
       title: "shared.labels.create",
       component: props.createForm,
-      width: '900px',
+      width: "900px",
       actions: true,
       props: { action: formAction.create },
       okCallback: (responseData) => {

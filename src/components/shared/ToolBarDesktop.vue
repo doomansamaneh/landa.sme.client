@@ -118,7 +118,7 @@
                   <menu-item
                     icon="o_download"
                     :title="$t('shared.labels.eportToExcel')"
-                    @click="tableStore.exportAll()"
+                    @click="exportAll()"
                   />
 
                   <menu-item
@@ -126,7 +126,7 @@
                     :title="
                       $t('shared.labels.exportExcelCurrentPage')
                     "
-                    @click="tableStore.exportCurrentPage()"
+                    @click="exportCurrentPage()"
                   />
                 </q-list>
               </q-menu>
@@ -206,8 +206,8 @@
 <script setup>
   import { ref, computed, onMounted, onUnmounted } from "vue";
   import { useQuasar } from "quasar";
-
   import { useDataTable } from "src/composables/useDataTable";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
   import { useFormActions } from "src/composables/useFormActions";
 
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
@@ -235,6 +235,9 @@
 
   const selectedIds = computed(() =>
     props.tableStore?.selectedRows?.value.map((item) => item.id)
+  );
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
   );
 
   const _crudStore = useFormActions(props.baseRoute);

@@ -181,13 +181,13 @@
         <menu-item
           :title="$t('shared.labels.eportToExcel')"
           icon="o_download"
-          @click="tableStore.exportAll()"
+          @click="exportAll()"
         />
 
         <menu-item
           :title="$t('shared.labels.exportExcelCurrentPage')"
           icon="o_download"
-          @click="tableStore.exportCurrentPage()"
+          @click="exportCurrentPage()"
         />
       </q-list>
     </template>
@@ -212,6 +212,7 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import MobileSortSheet from "./MobileSortSheet.vue";
@@ -235,6 +236,9 @@
   const observer = ref(null);
 
   const sortSheetStatus = ref(false);
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
 
   const selectedIds = computed(() =>
     props.tableStore?.selectedRows?.value.map((item) => item.id)
