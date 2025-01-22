@@ -1,5 +1,5 @@
 <template>
-  <data-grid :tableStore="tableStore">
+  <body-section :tableStore="tableStore">
     <template #cell-isActive="{ item }">
       <q-btn
         v-if="item.isActive"
@@ -22,14 +22,14 @@
         class="red-gradient red-shadow no-pointer-events"
       />
     </template>
-  </data-grid>
+  </body-section>
 </template>
 
 <script setup>
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import DataGrid from "src/components/shared/DataTables/printPreview/BodySection.vue";
+  import BodySection from "src/components/shared/DataTables/printPreview/BodySection.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

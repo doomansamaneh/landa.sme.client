@@ -8,7 +8,6 @@
 
         <toolbar
           v-if="toolbar"
-          class="q-pa-md"
           :table-store="tableStore"
           :title="title"
         />

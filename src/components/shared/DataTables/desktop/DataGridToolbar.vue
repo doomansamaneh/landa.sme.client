@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between">
+  <div class="flex items-center justify-between q-pa-md">
     <div class="flex items-center q-gutter-xs">
       <reload-button :table-store="tableStore" />
       <slot name="print-button">

@@ -83,8 +83,10 @@
 
 <style lang="scss" scoped>
   @mixin moveAndFadeAnimation($distance, $duration, $delay) {
-    animation: move-and-fade $duration linear infinite;
-    animation-delay: $delay;
+    & {
+      animation: move-and-fade $duration linear infinite;
+      animation-delay: $delay;
+    }
     @keyframes move-and-fade {
       0% {
         opacity: 0;
@@ -102,6 +104,7 @@
       }
     }
   }
+
   $border-color: #c3c3c372;
   .aligner {
     display: flex;
@@ -110,42 +113,54 @@
     height: 100%;
     width: 100%;
   }
+
   .coffee-container {
     position: absolute;
   }
+
   .squiggle-container {
     width: 9px;
     height: 8px;
     display: inline-block;
   }
+
   .squiggle-container-1 {
     transform: translateY(10px);
     .squiggle {
       @include moveAndFadeAnimation(10px, 2.7s, 0.2s);
-      width: 8px;
+      & {
+        width: 8px;
+      }
     }
   }
+
   .squiggle-container-2 {
     transform: translateY(0px);
     .squiggle {
       @include moveAndFadeAnimation(20px, 2.7s, 0s);
-      width: 8px;
+      & {
+        width: 8px;
+      }
     }
   }
+
   .squiggle-container-3 {
     transform: translateY(15px);
     .squiggle {
       @include moveAndFadeAnimation(15px, 2.7s, 0.4s);
-      width: 8px;
+      & {
+        width: 8px;
+      }
     }
   }
+
   .squiggle {
     stroke-dasharray: 100;
-    //animation: dash 10s linear infinite;
     path {
       stroke: $border-color;
     }
   }
+
   @keyframes dash {
     0% {
       stroke-dashoffset: 1000;
