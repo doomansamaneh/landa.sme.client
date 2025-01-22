@@ -28,17 +28,21 @@
               </div>
             </td>
 
-            <td
+            <template
               v-for="col in tableStore?.columns.value"
               :key="col.name"
-              :class="col.cellClass"
-              :style="`${col.cellStyle}; font-size: ${tableStore.tdFontSize.value}px`"
             >
-              <!-- :style="col.cellStyle" -->
-              <slot :name="`cell-${col.name}`" :item="row">
-                <div v-html="getColText(row, col)"></div>
-              </slot>
-            </td>
+              <td
+                v-if="col.field"
+                :class="col.cellClass"
+                :style="`${col.cellStyle}; font-size: ${tableStore.tdFontSize.value}px`"
+              >
+                <!-- :style="col.cellStyle" -->
+                <slot :name="`cell-${col.name}`" :item="row">
+                  <div v-html="getColText(row, col)"></div>
+                </slot>
+              </td>
+            </template>
           </tr>
         </template>
       </tbody>
@@ -81,7 +85,10 @@
           /{{\s*([\w.]+)\s*}}/g,
           (_, key) => row[key] ?? ""
         );
-      } else if (col.field) return row[col.field];
+      } else if (col.field) {
+        const value = row[col.field];
+        return isNumber(value) ? helper.formatNumber(value) : value;
+      }
     }
     return "";
   }

@@ -3,11 +3,13 @@
     <slot name="title"></slot>
 
     <div class="q-table__middle scroll">
-      <template v-if="toolbar">
-        <slot name="toolbar" :tableStore="tableStore">
-          <toolbar :table-store="tableStore" :title="title" />
-        </slot>
-      </template>
+      <slot name="toolbar" :tableStore="tableStore">
+        <toolbar
+          v-if="toolbar"
+          :table-store="tableStore"
+          :title="title"
+        />
+      </slot>
 
       <table class="q-table data-table">
         <thead>
