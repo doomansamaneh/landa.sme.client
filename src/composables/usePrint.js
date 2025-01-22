@@ -5,6 +5,9 @@ import html2pdf from "html2pdf.js";
 
 const printRef = ref(null);
 
+const format = ref("a4");
+const orientation = ref("p");
+
 export function usePrint() {
   const $q = useQuasar();
 
@@ -48,8 +51,8 @@ export function usePrint() {
         html2canvas: { scale: 2 },
         jsPDF: {
           unit: "mm",
-          format: "a4",
-          orientation: "l",
+          format: format.value,
+          orientation: orientation.value,
           compress: true,
         },
       })
@@ -69,5 +72,7 @@ export function usePrint() {
     printRef,
     handlePrint,
     downloadPdf,
+    format,
+    orientation,
   };
 }
