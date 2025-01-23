@@ -9,6 +9,7 @@
     numbered
     wrapCells_
     expandable
+    :title="title"
     @row-dbl-click="gotoPreview"
     :no-fullscreen="noFullscreen"
   >
@@ -184,6 +185,7 @@
   const props = defineProps({
     tableStore: Object,
     baseRoute: String,
+    title: String,
     noFullscreen: Boolean,
   });
 

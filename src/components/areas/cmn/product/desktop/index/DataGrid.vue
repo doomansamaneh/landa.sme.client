@@ -125,7 +125,7 @@
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import Preview from "../../shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import Toolbar from "src/components/shared/DataTables/Desktop/DataGridToolbar.vue";
+  import Toolbar from "src/components/shared/dataTables/desktop/DataGridToolbar.vue";
   import DataGridDefualtPreview from "../printPreview/DataGridDefualtPreview.vue";
 
   const props = defineProps({

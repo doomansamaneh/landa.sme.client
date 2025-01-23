@@ -11,6 +11,7 @@
       numbered
       expandable
       toolbar
+      :title="title"
     >
       <template #cell-purchaseQuantity="{ item }">
         {{ helper.formatNumber(item.purchaseQuantity) }}
@@ -30,7 +31,7 @@
       </template>
 
       <template #expand="{ item }">
-        <product-stock-preview :item="item" inside />
+        <product-stock-preview :item="item" :title="title" inside />
       </template>
     </data-grid>
   </q-card>

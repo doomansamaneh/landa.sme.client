@@ -9,6 +9,7 @@
       numbered
       flat
       :expandable="expandable"
+      :title="title"
       toolbar
     >
       <template #filter-isActive="{ item }">

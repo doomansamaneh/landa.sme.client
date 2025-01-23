@@ -1,19 +1,17 @@
 <template>
-  <stock-preview
-    :item="model"
-    :inside="inside"
-  />
+  <stock-preview :item="model" :title="title" :inside="inside" />
 </template>
 
 <script setup>
   import { computed, onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
+  import { useFormActions } from "src/composables/useFormActions";
 
   import StockPreview from "../desktop/ProductStockPreview.vue";
-  import { useFormActions } from "src/composables/useFormActions";
 
   const props = defineProps({
     inside: Boolean,
+    title: String,
     item: Object,
   });
 

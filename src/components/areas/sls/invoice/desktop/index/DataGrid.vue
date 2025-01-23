@@ -2,6 +2,7 @@
   <invoice-grid
     :no-fullscreen="noFullscreen"
     :table-store="tableStore"
+    :title="title"
     base-route="sls/invoice"
   >
     <template #expand="{ item }">
@@ -17,5 +18,6 @@
   const props = defineProps({
     tableStore: Object,
     noFullscreen: Boolean,
+    title: String,
   });
 </script>

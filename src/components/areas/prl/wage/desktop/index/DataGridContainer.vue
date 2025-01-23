@@ -5,7 +5,11 @@
       :icon="`o_${icon}`"
     />
 
-    <data-grid :table-store="tableStore" :base-route="baseRoute" />
+    <data-grid
+      :table-store="tableStore"
+      :base-route="baseRoute"
+      :title="title"
+    />
   </q-card>
 </template>
 

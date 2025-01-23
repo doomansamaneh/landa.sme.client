@@ -7,6 +7,7 @@
     numbered
     dense
     expandable
+    :title="title"
     @row-dbl-click="gotoPreview"
   >
     <template #cell-no="{ item }">

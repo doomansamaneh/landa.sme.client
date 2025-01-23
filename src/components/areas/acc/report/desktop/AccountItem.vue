@@ -9,6 +9,7 @@
     expandable
     toolbar
     :no-fullscreen="true"
+    :title="title"
   >
     <template #cell-debit="{ item }">
       {{ helper.formatNumber(item.credit) }}
@@ -112,7 +113,6 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import VoucherPreview from "../../voucher/shared/preview/IndexView.vue";
-  import Toolbar from "src/components/shared/DataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
     reportStore: useAccountReview,
@@ -125,6 +125,7 @@
     gridStore: Object,
     columns: Array,
     noFullscreen: Boolean,
+    title: String,
   });
 
   const searchStore = useVoucherSearch();

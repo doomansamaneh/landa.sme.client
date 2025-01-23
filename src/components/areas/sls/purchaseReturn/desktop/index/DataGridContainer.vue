@@ -17,6 +17,7 @@
       toolbar
       class="border-none"
       :table-store="tableStore"
+      :title="title"
     />
   </q-card>
 </template>

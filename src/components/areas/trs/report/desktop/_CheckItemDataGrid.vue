@@ -4,8 +4,8 @@
     class="border-radius-lg"
     expandable
     flat
-    bordered_
     toolbar
+    :title="title"
   >
     <template #filter-statusId="{ item }">
       <custom-select

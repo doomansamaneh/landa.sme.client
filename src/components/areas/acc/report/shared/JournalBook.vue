@@ -40,16 +40,28 @@
       class="transparent"
     >
       <q-tab-panel name="cl" class="no-padding">
-        <journal-book-default sort-column="voucherNo,code" />
+        <journal-book-default
+          sort-column="voucherNo,code"
+          title="گزارش دفتر روزنامه"
+        />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
-        <journal-book-default sort-column="code,voucherNo" />
+        <journal-book-default
+          sort-column="code,voucherNo"
+          title="گزارش دفتر کل"
+        />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
-        <journal-book-total sort-column="month,code,credit" />
+        <journal-book-total
+          sort-column="month,code,credit"
+          title="Total: گزارش دفتر روزنامه"
+        />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
-        <journal-book-total sort-column="code,month,credit" />
+        <journal-book-total
+          sort-column="code,month,credit"
+          title="Total: گزارش دفتر کل"
+        />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>

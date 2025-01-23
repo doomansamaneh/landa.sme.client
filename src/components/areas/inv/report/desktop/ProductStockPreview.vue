@@ -48,7 +48,7 @@
       </q-btn>
     </template>
   </tool-bar>
-  <preview :item="item" ref="dataGrid" v-if="item" />
+  <preview :item="item" :title="title" ref="dataGrid" v-if="item" />
 </template>
 
 <script setup>
@@ -63,6 +63,7 @@
   const props = defineProps({
     inside: Boolean,
     item: Object,
+    title: String,
   });
 
   const dialogSore = useDialog();

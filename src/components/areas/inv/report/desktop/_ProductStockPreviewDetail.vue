@@ -30,6 +30,7 @@
         :columns="accountItemColumns"
         :filter-expression="accountItemfilter"
         :no-fullscreen="true"
+        :title="title"
       />
     </q-tab-panel>
     <q-tab-panel class="no-padding" name="quote">
@@ -38,9 +39,10 @@
         :data-source="dataSource"
         :grid-store="gridStore"
         :no-fullscreen="true"
+        :title="title"
       />
     </q-tab-panel>
-    <q-tab-panel class="no-padding_" name="log">
+    <q-tab-panel name="log">
       <preview-log :entity-id="item.id" />
     </q-tab-panel>
   </q-tab-panels>
@@ -51,7 +53,6 @@
   import { guidEmpty, sqlOperator } from "src/constants";
   import { useProductStockItemGrid } from "src/components/areas/inv/_composables/useProductStockItemGrid";
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
-  import { useDataTable } from "src/composables/useDataTable";
 
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
@@ -61,6 +62,7 @@
 
   const props = defineProps({
     item: Object,
+    title: String,
   });
 
   const tab = ref("basic-info");
@@ -81,6 +83,7 @@
   //   dataSource: dataSource,
   //   store: gridStore,
   // });
+
   const accountItemColumns = accountItemDLColumns;
   const accountItemfilter = computed(() => [
     {

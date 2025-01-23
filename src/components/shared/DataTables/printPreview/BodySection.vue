@@ -52,13 +52,20 @@
           >
             {{ $t("shared.labels.total") }}
           </td>
-          <td
-            v-for="summary in tableStore?.summaryData?.value"
+          <template
+            v-for="fieldName in Object.keys(
+              tableStore.summaryData.value
+            )"
             :key="index"
-            class="text-bold"
           >
-            {{ helper.formatNumber(summary) }}
-          </td>
+            <td v-if="showSummaryColumn(fieldName)" class="text-bold">
+              {{
+                helper.formatNumber(
+                  tableStore.summaryData.value[fieldName]
+                )
+              }}
+            </td>
+          </template>
         </tr>
       </tfoot>
     </table>
@@ -93,11 +100,22 @@
     return "";
   }
 
+  const showSummaryColumn = (fieldName) => {
+    return (
+      helper.findIndex(
+        props.tableStore.columns.value,
+        "field",
+        fieldName
+      ) >= 0
+    );
+  };
+
   const getColspan = () => {
     if (!props.tableStore?.summaryData?.value) return 1;
     const firstFieldName = Object.keys(
       props.tableStore.summaryData.value
     )[0];
+
     return (
       helper.findIndex(
         props.tableStore.columns.value,

@@ -219,7 +219,7 @@
   import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
   import SalesWidget from "src/components/areas/dashboard/widgets/SalesWidget.vue";
   import RatiosWidget from "src/components/areas/dashboard/widgets/RatiosWidget.vue";
-  import MarkupTable from "src/components/shared/DataTables/MarkupTable.vue";
+  import MarkupTable from "src/components/shared/dataTables/MarkupTable.vue";
   import IncomeWidget from "src/components/areas/dashboard/widgets/_IncomeWidget.vue";
   import FinancialRatioWidget from "src/components/areas/dashboard/widgets/FinancialRatioWidget.vue";
 

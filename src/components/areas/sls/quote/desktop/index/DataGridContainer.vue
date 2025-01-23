@@ -13,6 +13,7 @@
       toolbar
       class="border-none"
       :table-store="tableStore"
+      :title="title"
       :no-fullscreen="noFullscreen"
     />
   </q-card>

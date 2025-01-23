@@ -11,6 +11,7 @@
     toolbar
     expandable
     :no-fullscreen="noFullscreen"
+    :title="title"
   >
     <template #cell-purchaseQuantity="{ item }">
       {{ helper.formatNumber(item.purchaseQuantity) }}

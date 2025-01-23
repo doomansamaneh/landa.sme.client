@@ -9,7 +9,7 @@
   import { usePrint } from "src/composables/usePrint";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import HeaderSection from "src/components/shared/DataTables/printPreview/HeaderSection.vue";
+  import HeaderSection from "src/components/shared/dataTables/printPreview/HeaderSection.vue";
   import BodySection from "./BodySection.vue";
 
   const props = defineProps({

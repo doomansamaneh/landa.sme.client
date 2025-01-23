@@ -25,8 +25,9 @@
     </card-tabs>
 
     <data-grid
-      toolbar
       :table-store="tableStore"
+      toolbar
+      :title="`${title}`"
       base-route="sls/invoice"
       :no-fullscreen="noFullscreen"
     />

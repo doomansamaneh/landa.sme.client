@@ -2,8 +2,13 @@
   <q-card flat bordered>
     <card-title title="کاردکس کالا" icon="o_inventory_2" />
 
-    <preview-master :item="item" v-if="item" />
-    <preview-detail :item="item" ref="dataGrid" v-if="item" />
+    <preview-master :item="item" :title="title" v-if="item" />
+    <preview-detail
+      :item="item"
+      :title="title"
+      ref="dataGrid"
+      v-if="item"
+    />
   </q-card>
 </template>
 
@@ -16,6 +21,7 @@
 
   const props = defineProps({
     item: Object,
+    title: String,
   });
 
   const dataGrid = ref(null);

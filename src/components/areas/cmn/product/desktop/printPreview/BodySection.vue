@@ -29,7 +29,7 @@
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import BodySection from "src/components/shared/DataTables/printPreview/BodySection.vue";
+  import BodySection from "src/components/shared/dataTables/printPreview/BodySection.vue";
 
   const props = defineProps({
     tableStore: useDataTable,

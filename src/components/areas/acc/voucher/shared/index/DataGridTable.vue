@@ -3,7 +3,7 @@
     <mobile />
   </template>
   <template v-else>
-    <desktop advanced-search />
+    <desktop advanced-search :title="title" />
   </template>
 </template>
 

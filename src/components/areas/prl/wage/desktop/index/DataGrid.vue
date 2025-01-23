@@ -8,6 +8,7 @@
     dense
     expandable
     wrap-cells
+    :title="title"
     @row-dbl-click="gotoPreview"
   >
     <template #cell-amount="{ item }">
