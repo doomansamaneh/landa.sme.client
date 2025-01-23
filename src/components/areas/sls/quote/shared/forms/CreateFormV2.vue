@@ -17,6 +17,7 @@
   import { invoiceFormType } from "src/constants";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
+  import { useQuoteState } from "../../../_composables/useQuoteState";
 
   import CreateForm from "src/components/areas/sls/_shared/invoice/shared/forms/CreateFormV2.vue";
   import ResponseDialog from "./ResponseDialog.vue";
