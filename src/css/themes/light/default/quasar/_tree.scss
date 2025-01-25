@@ -1,0 +1,6 @@
+@mixin q-tree-light {
+    .q-tree__node--selected {
+      background-color: #{$primary}20 !important;
+    }
+  }
+  

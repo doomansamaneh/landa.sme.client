@@ -4,7 +4,8 @@
     :title="$t('main-menu-items.Acc_AccountCL_View')"
     :visible-columns="columns"
     sort-column="code"
-  ></data-grid>
+    base-route="Acc/AccountCL"
+  />
 </template>
 
 <script setup>

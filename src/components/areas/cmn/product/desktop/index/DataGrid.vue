@@ -126,7 +126,7 @@
   import Preview from "../../shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
   import Toolbar from "src/components/shared/dataTables/desktop/DataGridToolbar.vue";
-  import DataGridDefualtPreview from "../printPreview/DataGridDefualtPreview.vue";
+  import DataGridDefualtPreview from "../printPreview/DataGridPreview.vue";
 
   const props = defineProps({
     title: String,

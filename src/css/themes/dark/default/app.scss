@@ -5,6 +5,7 @@
   --q-dark: #{$dark-page};
   background-color: $dark-page;
   @include q-avatar-dark();
+  @include q-tree-dark(); 
   @include q-breadcrumbs-dark();
   @include q-card-dark();
   @include q-carousel-dark();

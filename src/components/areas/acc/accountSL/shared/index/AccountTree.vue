@@ -13,16 +13,21 @@
         node-key="id"
         accordion
         icon="o_arrow_forward_ios"
-        selected-color="primary"
-        control-color="primary"
-        v-model:selected="selected"
+        selected-color="black"
+        :selected="selected"
+        @update:selected="setActiveRow"
       >
         <template #header-cl="prop">
           <account-tree-node :node="prop.node" />
           <q-space />
           <div class="row items-center q-gutter-md">
             <q-btn dense round unelevated icon="o_more_horiz">
-              <q-menu class="border-radius-lg" fit :offset="[0, 10]">
+              <q-menu
+                ref="accountTreeNodeMenu"
+                class="border-radius-lg"
+                fit
+                :offset="[0, 10]"
+              >
                 <q-list dense padding style="width: 200px">
                   <q-item
                     @click="createAccountGL(prop.node)"
@@ -59,7 +64,7 @@
                     clickable
                     v-close-popup
                     tabindex="0"
-                    @click="createAccountL(prop.node)"
+                    @click="createAccountGL(prop.node)"
                   >
                     <div class="q-py-sm">
                       <q-item-section avatar>
@@ -159,7 +164,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from "vue";
+  import { ref, onMounted, computed, watch } from "vue";
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { sqlOperator } from "src/constants";
@@ -178,9 +183,15 @@
   const { t } = useI18n();
   const dialogStore = useDialog();
 
-  const selected = ref("");
+  const selected = ref(null);
 
-  function creatAccountStore(dataSource) {
+  function setActiveRow(row) {
+    if (row) {
+      selected.value = row;
+    }
+  }
+
+  function createAccountStore(dataSource) {
     const gridStore = useBaseInfoGrid({ sortColumn: "code" });
     const tableStore = useDataTable({ dataSource, store: gridStore });
 
@@ -219,19 +230,19 @@
       key: "cl",
       icon: "",
       lazy: true,
-      store: creatAccountStore("acc/AccountCL/getGridData"),
+      store: createAccountStore("acc/AccountCL/getGridData"),
     },
     gl: {
       key: "gl",
       icon: "",
       lazy: true,
-      store: creatAccountStore("acc/AccountGL/getGridData"),
+      store: createAccountStore("acc/AccountGL/getGridData"),
     },
     sl: {
       key: "sl",
       icon: "",
       lazy: false,
-      store: creatAccountStore("acc/AccountSL/getGridData"),
+      store: createAccountStore("acc/AccountSL/getGridData"),
     },
   };
 
@@ -254,14 +265,20 @@
 
   const createAccountGL = (gl) => {
     dialogStore.openDialog({
-      title: "create",
+      title: "ایجاد حساب کل",
       component: GLCreateForm,
       actions: true,
       props: {
         id: gl.id,
       },
       okCallback: async () => {
-        await reloadData();
+        // const glStore = createAccountStore("acc/AccountGL/create");
+        // await glStore.tableStore.reloadData();
+
+        // console.log(
+        //   "AccountGL created and data reloaded:",
+        //   glStore.tableStore.rows.value
+        // );
       },
     });
   };
@@ -275,7 +292,7 @@
         id: sl.id,
       },
       okCallback: async () => {
-        await reloadData();
+        await tableStore.reloadData();
       },
     });
   };

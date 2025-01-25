@@ -1,0 +1,5 @@
+@mixin q-tree-dark {
+  .q-tree__node--selected {
+    background-color: #{$primary}20 !important;
+  }
+}

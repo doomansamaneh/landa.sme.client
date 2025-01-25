@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <template v-for="(row, index) in rows" :key="row.id">
-          <tr class="table-row" :class="tableStore.getRowClass(row)">
+          <tr class="table-row">
             <td>
               <div
                 class="text-caption no-letter-spacing text-on-dark"
@@ -56,7 +56,7 @@
             v-for="fieldName in Object.keys(
               tableStore.summaryData.value
             )"
-            :key="index"
+            :key="fieldName"
           >
             <td v-if="showSummaryColumn(fieldName)" class="text-bold">
               {{

@@ -7,7 +7,7 @@
     :grid-store="gridStore"
     create-url="/acc/accountGL/create"
     activation
-  ></data-grid>
+  />
 </template>
 
 <script setup>
