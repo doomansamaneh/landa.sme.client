@@ -15,7 +15,7 @@ export function usePrint() {
     content: () => printRef.value,
     bodyClass: "",
     copyStyles: true,
-    pageStyle: ``,
+    pageStyle: "",
     onAfterPrint: () => {
       if (printRef.value) {
         printRef.value.classList.remove("printable");
