@@ -76,14 +76,13 @@
   import { ref, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
+  import { dataType } from "src/constants";
 
   const props = defineProps({
     tableStore: useDataTable,
   });
 
   const rows = ref([]);
-  const isNumber = (value) =>
-    typeof value === "number" && !isNaN(value);
 
   function getColText(row, col) {
     if (row && col) {
@@ -94,7 +93,11 @@
         );
       } else if (col.field) {
         const value = row[col.field];
-        return isNumber(value) ? helper.formatNumber(value) : value;
+        if (col.type === dataType.date)
+          return value?.substring(0, 10);
+        else if (col.type === dataType.number)
+          return helper.formatNumber(value);
+        return value;
       }
     }
     return "";

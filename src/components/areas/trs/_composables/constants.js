@@ -108,7 +108,7 @@ export const transferMoneyColumns = [
     value: "",
   },
   { ...subject },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
   //actions,
 ];
 
@@ -117,7 +117,7 @@ export const receiptColumns = [
   { ...date },
   { ...subject },
   { ...customerName },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
   //actions,
 ];
 
@@ -125,7 +125,7 @@ export const billColumns = [
   { ...rowNo },
   { ...date },
   { ...subject },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
   //actions,
 ];
 

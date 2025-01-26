@@ -20,16 +20,6 @@
       />
     </template>
 
-    <template #cell-date="{ item }">
-      {{ item.date?.substring(0, 10) }}
-    </template>
-
-    <template #cell-amount="{ item }">
-      <span class="text-weight-600">
-        {{ helper.formatNumber(item.amount) }}
-      </span>
-    </template>
-
     <template #footer-subtotal="{ selectedRows }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}
@@ -78,10 +68,6 @@
   });
 
   const router = useRouter();
-
-  async function reloadData() {
-    await props.tableStore.reloadData();
-  }
 
   function gotoPreview(row) {
     router.push(`/${props.baseRoute}/preview/${row.id}`);

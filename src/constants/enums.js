@@ -5,6 +5,13 @@ import config from "../../app-setting.json";
 //api.landa-sme.ir
 export const baseUrl = config.baseUrl;
 
+export const dataType = {
+  string: 0,
+  number: 1,
+  date: 2,
+  dateTime: 3,
+};
+
 export const isActiveOptions = {
   active: "1",
   inActive: "0",

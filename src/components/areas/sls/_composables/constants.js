@@ -50,7 +50,7 @@ export const invoiceRemainedColumns = [
   { ...subject },
   { ...amount },
   { ...payedAmount },
-  { ...remainedAmount },
+  { ...remainedAmount, class: "text-weight-600" },
 ];
 
 export const quoteColumns = [
@@ -58,7 +58,7 @@ export const quoteColumns = [
   { ...date },
   { ...customerName },
   { ...subject },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
   { ...discountAmount },
   { ...statusId },
 ];

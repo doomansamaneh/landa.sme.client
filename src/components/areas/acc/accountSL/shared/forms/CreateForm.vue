@@ -3,9 +3,9 @@
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
         <gl-lookup
-          label="حساب کل"
           v-model:selectedId="model.glId"
           v-model:selectedText="model.glTitle"
+          label="حساب کل"
           required
           @rowSelected="glChanged"
         />
@@ -14,25 +14,25 @@
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <custom-input label="کد" v-model="model.code" required />
+        <custom-input v-model="model.code" label="کد" required />
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <custom-input label="کد معادل" v-model="model.syncCode" />
+        <custom-input v-model="model.syncCode" label="کد معادل" />
       </div>
     </div>
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <custom-input label="عنوان" v-model="model.title" required />
+        <custom-input v-model="model.title" label="عنوان" required />
       </div>
     </div>
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-3 col-sm-6 col-xs-12">
         <custom-select
-          label="ماهیت حساب"
-          :options="helper.getEnumOptions(accountType, 'accountType')"
           v-model="model.typeId"
+          :options="helper.getEnumOptions(accountType, 'accountType')"
+          label="ماهیت حساب"
         />
       </div>
     </div>
@@ -46,14 +46,14 @@
         </q-item-label>
         <div class="q-pt-xs">
           <q-option-group
-            dense
-            class="flex q-gutter-md"
-            size="46px"
+            v-model="dlTypes"
             :options="
               helper.getEnumOptions(accountDLType, 'accountDLType')
             "
             type="checkbox"
-            v-model="dlTypes"
+            dense
+            class="flex q-gutter-md"
+            size="46px"
           />
         </div>
       </div>
@@ -61,9 +61,9 @@
 
     <div class="row q-gutter-md q-mb-md">
       <q-checkbox
+        v-model="model.isActive"
         dense
         size="48px"
-        v-model="model.isActive"
         label="فعال"
       />
     </div>

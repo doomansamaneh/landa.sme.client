@@ -31,7 +31,7 @@ export const wageColumns = [
   month,
   date,
   summary,
-  amount,
+  { ...amount, class: "text-weight-600" },
   taxAmount,
   insurranceAmount,
 ];
