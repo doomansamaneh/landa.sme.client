@@ -1,5 +1,9 @@
 @mixin q-dialog-light {
   .q-dialog__backdrop {
-    
+  }
+
+  .preview-dialog .q-dialog__inner--maximized > div {
+    border-top-right-radius: 24px !important;
+    border-top-left-radius: 24px !important;
   }
 }

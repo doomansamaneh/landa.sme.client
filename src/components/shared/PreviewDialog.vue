@@ -7,10 +7,18 @@
     transition-duration="600"
     no-backdrop-dismiss
     @hide="onDialogHide"
+    class="preview-dialog"
   >
     <q-card class="q-mt-xl" flat>
+      <q-inner-loading
+        :showing="showLoader"
+        class="transparent z-max"
+      >
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
+
       <q-card-section
-        class="row items-center q-pb-none q-pr-lg"
+        class="row items-center q-pr-lg"
         :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-lg'"
       >
         <div class="flex q-gutter-sm">
@@ -30,7 +38,6 @@
         <slot name="title">
           <div class="text-h6 no-letter-spacing q-mr-md">
             {{ title }}
-            <!-- {{ $t(title) }} -->
           </div>
         </slot>
 
@@ -44,7 +51,10 @@
         />
       </q-card-section>
 
-      <q-card-section class="q-pt-none q-pb-lg q-px-lg">
+      <q-card-section
+        class="q-pt-none q-pb-xl q-px-lg scroll"
+        style="max-height: 80vh"
+      >
         <slot name="body">
           <component :is="component" v-bind="previewProps" />
         </slot>
@@ -54,7 +64,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { computed } from "vue";
   import { useDialogPluginComponent } from "quasar";
   import { usePrint } from "src/composables/usePrint";
   import { useDialog } from "src/composables/usePrintSetting";
@@ -81,6 +91,10 @@
     onDialogCancel();
   }
 
+  const showLoader = computed(
+    () => props.previewProps.tableStore.showLoader.value
+  );
+
   const openPrintSettings = () => {
     dialogStore.openDialog({
       title: "تنظیمات چاپ",
@@ -88,7 +102,7 @@
       props: {
         tableStore: props.previewProps.tableStore,
         title: props.title,
-        actions: true
+        actionBar: true,
       },
     });
   };
@@ -97,9 +111,3 @@
     onDialogOK,
   });
 </script>
-
-<style lang="scss">
-  .q-dialog__inner--maximized > div {
-    border-radius: 24px !important;
-  }
-</style>

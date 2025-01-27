@@ -71,7 +71,7 @@
     dialogStore.openDialog({
       title: `shared.labels.editBatch`,
       component: EditBatch,
-      actions: true,
+      actionBar: true,
       props: {
         selectedIds: selectedIds?.value,
         formType: invoiceFormType.purchaseReturn,

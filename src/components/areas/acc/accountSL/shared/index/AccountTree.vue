@@ -1,9 +1,6 @@
 <template>
   <q-card flat class="bordered shadow">
-    <card-title
-      :title="$t('main-menu-items.Acc_AccountSL_Tree')"
-      icon="o_line_style"
-    />
+    <card-title :title="$t('main-menu-items.Acc_AccountSL_Tree')" icon="o_line_style" />
 
     <q-card-section>
       <q-tree
@@ -18,6 +15,8 @@
         @update:selected="setActiveRow"
       >
         <template #header-cl="prop">
+          <!-- best practice -->
+          <!-- <account-cl-node :node="prop.node" /> -->
           <account-tree-node :node="prop.node" />
           <q-space />
           <div class="row items-center q-gutter-md">
@@ -74,13 +73,11 @@
                       </q-item-section>
                     </div>
                     <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        ایجاد حساب معین
-                      </div>
+                      <div class="text-body2 no-letter-spacing">ایجاد حساب معین</div>
                     </q-item-section>
                   </q-item>
                   <q-item
-                    @click="createAccountGL(prop.node)"
+                    @click="editAccountGL(prop.node)"
                     clickable
                     v-close-popup
                     tabindex="0"
@@ -93,9 +90,7 @@
                       </q-item-section>
                     </div>
                     <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        ویرایش
-                      </div>
+                      <div class="text-body2 no-letter-spacing">ویرایش</div>
                     </q-item-section>
                   </q-item>
                 </q-list>
@@ -124,17 +119,10 @@
                       </q-item-section>
                     </div>
                     <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        ویرایش
-                      </div>
+                      <div class="text-body2 no-letter-spacing">ویرایش</div>
                     </q-item-section>
                   </q-item>
-                  <q-item
-                    @click="deleteDialog"
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                  >
+                  <q-item @click="deleteDialog" clickable v-close-popup tabindex="0">
                     <div class="q-py-sm">
                       <q-item-section avatar>
                         <q-avatar class="bg-on-dark" size="sm">
@@ -143,9 +131,7 @@
                       </q-item-section>
                     </div>
                     <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        حذف
-                      </div>
+                      <div class="text-body2 no-letter-spacing">حذف</div>
                     </q-item-section>
                   </q-item>
                 </q-list>
@@ -156,160 +142,165 @@
       </q-tree>
     </q-card-section>
 
-    <q-inner-loading
-      :showing="clStore.showLoader.value"
-      color="primary"
-    />
+    <q-inner-loading :showing="clStore.showLoader.value" color="primary" />
   </q-card>
 </template>
 
 <script setup>
-  import { ref, onMounted, computed, watch } from "vue";
-  import { useQuasar } from "quasar";
-  import { useI18n } from "vue-i18n";
-  import { sqlOperator } from "src/constants";
-  import { useDataTable } from "src/composables/useDataTable";
-  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { useDialog } from "src/composables/useDialog";
+import { ref, onMounted, computed, watch } from "vue";
+import { useQuasar } from "quasar";
+import { useI18n } from "vue-i18n";
+import { sqlOperator } from "src/constants";
+import { useDataTable } from "src/composables/useDataTable";
+import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+import { useDialog } from "src/composables/useDialog";
 
-  import AccountTreeNode from "./AccountTreeNode.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
-  import GLCreateForm from "../../../accountGL/shared/forms/CreateForm.vue";
-  import SLCreateForm from "../../../accountSL/shared/forms/CreateForm.vue";
+import AccountTreeNode from "./AccountTreeNode.vue";
+import CardTitle from "src/components/shared/CardTitle.vue";
+import GLCreateForm from "../../../accountGL/shared/forms/CreateForm.vue";
+import SLCreateForm from "../../../accountSL/shared/forms/CreateForm.vue";
 
-  import ConfirmDialog from "components/shared/ConfirmDialog.vue";
+import ConfirmDialog from "components/shared/ConfirmDialog.vue";
 
-  const $q = useQuasar();
-  const { t } = useI18n();
-  const dialogStore = useDialog();
+const $q = useQuasar();
+const { t } = useI18n();
+const dialogStore = useDialog();
 
-  const selected = ref(null);
+const selected = ref(null);
 
-  function setActiveRow(row) {
-    if (row) {
-      selected.value = row;
-    }
+function setActiveRow(row) {
+  if (row) {
+    selected.value = row;
+  }
+}
+
+function createAccountStore(dataSource) {
+  const gridStore = useBaseInfoGrid({ sortColumn: "code" });
+  const tableStore = useDataTable({ dataSource, store: gridStore });
+
+  async function loadData(level, node) {
+    tableStore.pagination.value.pageSize = -1;
+    tableStore.state.value.filterExpression = node?.filterExpression;
+    await tableStore.reloadData();
+
+    tableStore.rows.value.forEach((element) => {
+      element.header = level.key;
+      element.level = level;
+      element.filterExpression = [
+        {
+          fieldName: `${level.key}Id`,
+          operator: sqlOperator.equal,
+          value: element.id,
+        },
+      ];
+      element.lazy = level.lazy;
+    });
   }
 
-  function createAccountStore(dataSource) {
-    const gridStore = useBaseInfoGrid({ sortColumn: "code" });
-    const tableStore = useDataTable({ dataSource, store: gridStore });
+  return { tableStore, loadData };
+}
 
-    async function loadData(level, node) {
-      tableStore.pagination.value.pageSize = -1;
-      tableStore.state.value.filterExpression =
-        node?.filterExpression;
+function getNextLevel(currentLevel) {
+  const levelKeys = Object.keys(accountLevel);
+  const currentIndex = levelKeys.indexOf(currentLevel);
+  const nextLevelKey = levelKeys[currentIndex + 1];
+  return accountLevel[nextLevelKey] || null;
+}
+
+const accountLevel = {
+  cl: {
+    key: "cl",
+    icon: "",
+    lazy: true,
+    store: createAccountStore("acc/AccountCL/getGridData"),
+  },
+  gl: {
+    key: "gl",
+    icon: "",
+    lazy: true,
+    store: createAccountStore("acc/AccountGL/getGridData"),
+  },
+  sl: {
+    key: "sl",
+    icon: "",
+    lazy: false,
+    store: createAccountStore("acc/AccountSL/getGridData"),
+  },
+};
+
+const clStore = computed(() => accountLevel.cl.store.tableStore);
+
+const tableStore = useDataTable({
+  dataSource: "acc/accountSL/tree",
+  store: clStore,
+});
+
+const onLazyLoad = async ({ node, key, done, fail }) => {
+  const childLevel = getNextLevel(node.level?.key);
+  if (childLevel) {
+    await childLevel.store.loadData(childLevel, node);
+    done(childLevel.store.tableStore.rows.value);
+  } else {
+    done([]);
+  }
+};
+
+const createAccountGL = (cl) => {
+  dialogStore.openDialog({
+    title: "ایجاد حساب کل",
+    component: GLCreateForm,
+    actionBar: true,
+    props: {
+      action: "create",
+    },
+    okCallback: async () => {
+      alert("create successfully");
+    },
+  });
+};
+
+const editAccountGL = (gl) => {
+  dialogStore.openDialog({
+    title: "ویرایش حساب کل",
+    component: GLCreateForm,
+    actionBar: true,
+    props: {
+      id: gl.id,
+      action: "edit",
+    },
+    okCallback: async () => {
+      alert("edit successfully");
+    },
+  });
+};
+
+const createAccountSL = (sl) => {
+  dialogStore.openDialog({
+    title: "create",
+    component: SLCreateForm,
+    actionBar: true,
+    props: {
+      id: sl.id,
+    },
+    okCallback: async () => {
       await tableStore.reloadData();
-
-      tableStore.rows.value.forEach((element) => {
-        element.header = level.key;
-        element.level = level;
-        element.filterExpression = [
-          {
-            fieldName: `${level.key}Id`,
-            operator: sqlOperator.equal,
-            value: element.id,
-          },
-        ];
-        element.lazy = level.lazy;
-      });
-    }
-
-    return { tableStore, loadData };
-  }
-
-  function getNextLevel(currentLevel) {
-    const levelKeys = Object.keys(accountLevel);
-    const currentIndex = levelKeys.indexOf(currentLevel);
-    const nextLevelKey = levelKeys[currentIndex + 1];
-    return accountLevel[nextLevelKey] || null;
-  }
-
-  const accountLevel = {
-    cl: {
-      key: "cl",
-      icon: "",
-      lazy: true,
-      store: createAccountStore("acc/AccountCL/getGridData"),
     },
-    gl: {
-      key: "gl",
-      icon: "",
-      lazy: true,
-      store: createAccountStore("acc/AccountGL/getGridData"),
-    },
-    sl: {
-      key: "sl",
-      icon: "",
-      lazy: false,
-      store: createAccountStore("acc/AccountSL/getGridData"),
-    },
-  };
-
-  const clStore = computed(() => accountLevel.cl.store.tableStore);
-
-  const tableStore = useDataTable({
-    dataSource: "acc/accountSL/tree",
-    store: clStore,
   });
+};
 
-  const onLazyLoad = async ({ node, key, done, fail }) => {
-    const childLevel = getNextLevel(node.level?.key);
-    if (childLevel) {
-      await childLevel.store.loadData(childLevel, node);
-      done(childLevel.store.tableStore.rows.value);
-    } else {
-      done([]);
-    }
-  };
+const deleteDialog = () => {
+  $q.dialog({
+    component: ConfirmDialog,
+    componentProps: {
+      title: t("shared.labels.deleteConfirm"),
+      message: `${t("shared.labels.deleteMessage")}.`,
+      ok: t("shared.labels.delete"),
+      okColor: "deep-orange-7",
+    },
+  }).onOk(async () => {});
+};
 
-  const createAccountGL = (gl) => {
-    dialogStore.openDialog({
-      title: "ایجاد حساب کل",
-      component: GLCreateForm,
-      actions: true,
-      props: {
-        id: gl.id,
-      },
-      okCallback: async () => {
-        // const glStore = createAccountStore("acc/AccountGL/create");
-        // await glStore.tableStore.reloadData();
-
-        // console.log(
-        //   "AccountGL created and data reloaded:",
-        //   glStore.tableStore.rows.value
-        // );
-      },
-    });
-  };
-
-  const createAccountSL = (sl) => {
-    dialogStore.openDialog({
-      title: "create",
-      component: SLCreateForm,
-      actions: true,
-      props: {
-        id: sl.id,
-      },
-      okCallback: async () => {
-        await tableStore.reloadData();
-      },
-    });
-  };
-
-  const deleteDialog = () => {
-    $q.dialog({
-      component: ConfirmDialog,
-      componentProps: {
-        title: t("shared.labels.deleteConfirm"),
-        message: `${t("shared.labels.deleteMessage")}.`,
-        ok: t("shared.labels.delete"),
-        okColor: "deep-orange-7",
-      },
-    }).onOk(async () => {});
-  };
-
-  onMounted(() => {
-    accountLevel.cl.store.loadData(accountLevel.cl);
-  });
+onMounted(() => {
+  accountLevel.cl.store.loadData(accountLevel.cl);
+});
 </script>

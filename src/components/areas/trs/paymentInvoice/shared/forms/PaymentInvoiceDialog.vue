@@ -8,7 +8,7 @@
       <create-form ref="form" :invoice-id="invoiceId" />
     </template>
 
-    <template #actions>
+    <template #action-bar>
       <action-buttons @ok-clicked="submitForm">
         <template #ok-label>
           <q-icon size="20px" name="save" class="q-mx-sm" />
