@@ -11,16 +11,6 @@
     :title="title"
     @row-dbl-click="gotoPreview"
   >
-    <template #cell-amount="{ item }">
-      <strong>{{ helper.formatNumber(item.amount) }}</strong>
-    </template>
-    <template #cell-taxAmount="{ item }">
-      {{ helper.formatNumber(item.taxAmount) }}
-    </template>
-    <template #cell-insurranceAmount="{ item }">
-      {{ helper.formatNumber(item.insurranceAmount) }}
-    </template>
-
     <template #expand="{ item }">
       <preview inside :item="item" :base-route="baseRoute" />
     </template>

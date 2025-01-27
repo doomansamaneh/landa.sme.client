@@ -1,4 +1,4 @@
-import { sqlOperator } from "./enums";
+import { sqlOperator, dataType } from "./enums";
 
 export const id = {
   name: "id",
@@ -245,12 +245,13 @@ export const itemNo = {
 export const date = {
   name: "date",
   field: "date",
-  template: "{{dateString}}",
+  //template: "{{dateString}}",
   sortable: true,
   label: "تاریخ",
   class: "text-left",
   style: "width:100px",
   showFilter: true,
+  type: dataType.date,
 };
 
 export const comment = {
@@ -300,6 +301,7 @@ export const voucherDate = {
   class: "text-left",
   style: "width:90px",
   showFilter: true,
+  type: dataType.number,
 };
 
 export const voucherSubject = {
@@ -372,6 +374,7 @@ export const amount = {
   class: "text-left",
   showFilter: true,
   style: "width:120px",
+  type: dataType.number,
 };
 
 export const taxAmount = {
@@ -483,6 +486,7 @@ export const payable = {
   ...amount,
   name: "payable",
   field: "payable",
+  class: "text-weight-700",
   label: "قابل پرداخت",
 };
 
@@ -581,6 +585,7 @@ export const debit = {
   class: "text-left",
   style: "width:110px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const inlineDebit = {
@@ -592,6 +597,7 @@ export const inlineDebit = {
   class: "text-left",
   style: "width:120px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const debitRemained = {
@@ -603,6 +609,7 @@ export const debitRemained = {
   class: "text-left",
   style: "width:120px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const credit = {
@@ -614,6 +621,7 @@ export const credit = {
   class: "text-left",
   style: "width:110px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const creditRemained = {
@@ -625,6 +633,7 @@ export const creditRemained = {
   class: "text-left",
   style: "width:120px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const purchaseQuantity = {
@@ -636,6 +645,7 @@ export const purchaseQuantity = {
   class: "text-left",
   style: "width:110px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const salesQuantity = {
@@ -647,6 +657,7 @@ export const salesQuantity = {
   class: "text-left",
   style: "width:110px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const quantity = {
@@ -658,6 +669,7 @@ export const quantity = {
   class: "text-left",
   style: "width:110px;",
   showFilter: true,
+  type: dataType.number,
 };
 
 export const stock = {
@@ -669,6 +681,7 @@ export const stock = {
   class: "text-left",
   style: "width:110px;",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const statusId = {
@@ -700,6 +713,7 @@ export const inlineQuantity = {
   align: "left",
   class: "text-left",
   showFilter: false,
+  type: dataType.number,
 };
 
 export const price = {
@@ -710,6 +724,7 @@ export const price = {
   align: "left",
   class: "text-left",
   showFilter: true,
+  type: dataType.number,
 };
 
 export const summary = {

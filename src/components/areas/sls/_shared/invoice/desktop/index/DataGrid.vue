@@ -20,11 +20,13 @@
         @update:model-value="reloadData"
       />
     </template>
+
     <template #cell-no="{ item }">
       <span>{{ item.no }}</span>
       <tax-badge :tax-id="item.taxId" />
       <notification-badge :count="item.notificationCount" />
     </template>
+
     <template #cell-amount="{ item }">
       <q-btn
         v-if="item.statusId === voucherStatus.canceled"
@@ -40,6 +42,7 @@
         {{ helper.formatNumber(item.amount) }}
       </span>
     </template>
+
     <template #cell-customerName="{ item }">
       <div class="row items-center no-wrap q-gutter-sm">
         <customer-avatar
@@ -60,15 +63,7 @@
         </div>
       </div>
     </template>
-    <template #cell-payedAmount="{ item }">
-      <span>{{ helper.formatNumber(item.payedAmount) }}</span>
-    </template>
-    <template #cell-remainedAmount="{ item }">
-      <span>{{ helper.formatNumber(item.remainedAmount) }}</span>
-    </template>
-    <template #cell-discountAmount="{ item }">
-      <span>{{ helper.formatNumber(item.discountAmount) }}</span>
-    </template>
+
     <template #cell-subject="{ item }">
       <div>{{ item.subject }}</div>
       <div v-if="item.summary" class="text-caption-sm">
@@ -82,6 +77,7 @@
         />
       </div>
     </template>
+
     <template #cell-statusId="{ item }">
       <is-active
         v-if="item.statusId === quoteStatus.final"

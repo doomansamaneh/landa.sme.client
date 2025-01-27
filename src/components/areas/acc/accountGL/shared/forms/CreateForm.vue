@@ -3,9 +3,9 @@
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
         <cl-lookup
-          label="گروه حساب"
           v-model:selectedId="formStore.model.value.clId"
           v-model:selectedText="formStore.model.value.clTitle"
+          label="گروه حساب"
           required
           @rowSelected="clChanged"
         />
@@ -15,17 +15,17 @@
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-3 col-sm-6 col-xs-12">
         <custom-input
-          label="کد"
-          hide-bottom-space
           v-model="formStore.model.value.code"
+          label="کد"
           required
         />
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12">
         <custom-select
-          label="ماهیت حساب"
-          :options="helper.getEnumOptions(accountType, 'accountType')"
           v-model="formStore.model.value.typeId"
+          :options="helper.getEnumOptions(accountType, 'accountType')"
+          label="ماهیت حساب"
+          required
         />
       </div>
     </div>
@@ -33,9 +33,8 @@
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input
-          label="عنوان"
-          hide-bottom-space
           v-model="formStore.model.value.title"
+          label="عنوان"
           required
         />
       </div>
@@ -43,9 +42,9 @@
 
     <div class="row q-gutter-md q-mb-md">
       <q-checkbox
+        v-model="formStore.model.value.isActive"
         dense
         size="48px"
-        v-model="formStore.model.value.isActive"
         label="فعال"
       />
     </div>

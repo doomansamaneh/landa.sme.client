@@ -127,7 +127,10 @@
               >
                 <!-- :style="col.cellStyle" -->
                 <slot :name="`cell-${col.name}`" :item="row">
-                  <div v-html="getColText(row, col)"></div>
+                  <div
+                    :class="col.class"
+                    v-html="getColText(row, col)"
+                  ></div>
                 </slot>
               </td>
               <td v-if="expandable">
@@ -229,6 +232,8 @@
 <script setup>
   import { onMounted, computed } from "vue";
   import { useQuasar } from "quasar";
+  import { helper } from "src/helpers";
+  import { dataType } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -288,7 +293,14 @@
           /{{\s*([\w.]+)\s*}}/g,
           (_, key) => row[key] ?? ""
         );
-      } else if (col.field) return row[col.field];
+      } else if (col.field) {
+        const value = row[col.field];
+        if (col.type === dataType.date)
+          return value?.substring(0, 10);
+        else if (col.type === dataType.number)
+          return helper.formatNumber(value);
+        return value;
+      }
     }
     return "";
   }
