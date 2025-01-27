@@ -53,7 +53,6 @@
 
 <script setup>
 import { useDialogPluginComponent } from "quasar";
-import { computed } from "vue";
 
 const props = defineProps({
   title: String,
