@@ -188,26 +188,28 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
       return null; // Validation failed
     });
 
-  onBeforeRouteLeave((to, from) => {
-    if (isDirty.value) {
-      $q.dialog({
-        component: ConfirmDialog,
-        componentProps: {
-          title: t("shared.labels.warning"),
-          message: t("shared.labels.dirtyMessage"),
-          ok: t("shared.labels.discard"),
-          cancel: t("shared.labels.stayInForm"),
-          okColor: "deep-orange-7",
-        },
-      }).onOk(() => {
-        isDirty.value = false;
-        router.push(to);
-      });
+  if (!diableDirtyCheck) {
+    onBeforeRouteLeave((to, from) => {
+      if (isDirty.value) {
+        $q.dialog({
+          component: ConfirmDialog,
+          componentProps: {
+            title: t("shared.labels.warning"),
+            message: t("shared.labels.dirtyMessage"),
+            ok: t("shared.labels.discard"),
+            cancel: t("shared.labels.stayInForm"),
+            okColor: "deep-orange-7",
+          },
+        }).onOk(() => {
+          isDirty.value = false;
+          router.push(to);
+        });
 
-      return false;
-    }
-    return true;
-  });
+        return false;
+      }
+      return true;
+    });
+  }
 
   return {
     getById,
