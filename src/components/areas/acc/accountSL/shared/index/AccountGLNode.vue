@@ -9,7 +9,7 @@
             clickable
             v-close-popup
             tabindex="0"
-            @click="createAccountSL(node)"
+            @click="createAccountSL"
           >
             <div class="q-py-sm">
               <q-item-section avatar>
@@ -25,7 +25,7 @@
             </q-item-section>
           </q-item>
           <q-item
-            @click="editAccountSL(node)"
+            @click="editAccountGL"
             clickable
             v-close-popup
             tabindex="0"
@@ -54,35 +54,42 @@
   import GLCreateForm from "../../../accountGL/shared/forms/CreateForm.vue";
   import SLCreateForm from "../../../accountSL/shared/forms/CreateForm.vue";
 
-  const dialogStore = useDialog();
-
   const props = defineProps({
     node: Object,
   });
 
-  const createAccountSL = (cl) => {
+  const dialogStore = useDialog();
+
+  const createAccountSL = () => {
     dialogStore.openDialog({
       title: "ایجاد حساب معین",
       component: SLCreateForm,
       actionBar: true,
       props: {
         action: "create",
+        accountGl: props.node,
       },
-      okCallback: async () => {},
+      okCallback: async (responseData) => {
+        //console.log(responseData);
+      },
     });
   };
 
-  const editAccountSL = (gl) => {
+  const editAccountGL = () => {
     dialogStore.openDialog({
       title: "ویرایش حساب کل",
       component: GLCreateForm,
       actionBar: true,
       props: {
-        id: gl.id,
+        id: props.node.id,
         action: "edit",
       },
-      okCallback: async () => {
-        alert("edit successfully");
+      okCallback: async (responseData) => {
+        if (responseData?.model) {
+          props.node.code = responseData.model.code;
+          props.node.title = responseData.model.title;
+          props.node.isActive = responseData.model.isActive;
+        }
       },
     });
   };

@@ -68,8 +68,12 @@
         id: node.id,
         action: "edit",
       },
-      okCallback: async () => {
-        alert("edit successfully");
+      okCallback: async (responseData) => {
+        if (responseData?.model) {
+          props.node.code = responseData.model.code;
+          props.node.title = responseData.model.title;
+          props.node.isActive = responseData.model.isActive;
+        }
       },
     });
   };

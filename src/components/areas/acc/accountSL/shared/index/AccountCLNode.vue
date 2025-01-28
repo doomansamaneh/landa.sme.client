@@ -11,7 +11,7 @@
       >
         <q-list dense padding style="width: 200px">
           <q-item
-            @click="createAccountGL(node)"
+            @click="createAccountGL"
             clickable
             v-close-popup
             tabindex="0"
@@ -47,13 +47,14 @@
     node: Object,
   });
 
-  const createAccountGL = (cl) => {
+  const createAccountGL = () => {
     dialogStore.openDialog({
       title: "ایجاد حساب کل",
       component: GLCreateForm,
       actionBar: true,
       props: {
         action: "create",
+        accountCl: props.node,
       },
       okCallback: async () => {},
     });

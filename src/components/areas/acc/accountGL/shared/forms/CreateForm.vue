@@ -52,10 +52,11 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { onMounted, ref } from "vue";
   import { helper } from "src/helpers";
   import { accountType } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
+  import { baseInfoModel } from "src/models/shared/baseInfoModel";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -66,14 +67,22 @@
     id: String,
     action: String,
     title: String,
+    accountCl: Object,
     disableToolbar: Boolean,
   });
 
   const form = ref(null);
   const baseRoute = "acc/accountGL";
   const actionStore = useFormActions(baseRoute);
+  const model = ref({
+    ...baseInfoModel,
+    clId: props.accountCl?.id,
+    clCode: props.accountCl?.code,
+    clTitle: props.accountCl?.title,
+  });
 
   const formStore = useBaseInfoModel({
+    model: model,
     baseRoute: baseRoute,
     id: props.id,
   });
@@ -90,6 +99,10 @@
   async function submitForm(callBack) {
     await formStore.submitForm(form.value, props.action, callBack);
   }
+
+  onMounted(async () => {
+    await clChanged(props.accountCl);
+  });
 
   defineExpose({
     submitForm,
