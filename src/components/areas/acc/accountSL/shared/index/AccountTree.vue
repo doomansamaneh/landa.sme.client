@@ -8,9 +8,13 @@
     <card-title
       :title="$t('main-menu-items.Acc_AccountSL_Tree')"
       icon="o_line_style"
-    />
+    >
+      <template #header-toolbar>
+        <reload-button @click="loadData" />
+      </template>
+    </card-title>
 
-    <q-card-section>
+    <q-card-section style="min-height: 300px">
       <q-tree
         v-if="!clStore.showLoader.value"
         :nodes="clStore.rows.value"
@@ -46,6 +50,7 @@
   import AccountGLNode from "./AccountGLNode.vue";
   import AccountSLNode from "./AccountSLNode.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import ReloadButton from "src/components/shared/buttons/ReloadButton.vue";
 
   const selected = ref(null);
 
@@ -122,7 +127,11 @@
     }
   };
 
-  onMounted(() => {
+  const loadData = () => {
     accountLevel.cl.store.loadData(accountLevel.cl);
+  };
+
+  onMounted(() => {
+    loadData();
   });
 </script>

@@ -60,6 +60,7 @@
 
   const dialogStore = useDialog();
 
+  
   const createAccountSL = () => {
     dialogStore.openDialog({
       title: "ایجاد حساب معین",
@@ -70,7 +71,20 @@
         accountGl: props.node,
       },
       okCallback: async (responseData) => {
-        //console.log(responseData);
+        if (responseData?.model) {
+          props.node.children.push({
+            code: responseData.model.code,
+            title: responseData.model.title,
+            isActive: responseData.model.isActive,
+            typeId: responseData.model.typeId,
+            checkBalance: responseData.model.checkBalance,
+            hasDL: responseData.model.hasDL,
+            isBySystem: responseData.model.isBySystem,
+          });
+        }
+
+        console.log(responseData);
+        
       },
     });
   };
