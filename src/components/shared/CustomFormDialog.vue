@@ -42,8 +42,8 @@
         </slot>
       </q-card-section>
 
-      <slot name="actions">
-        <action-buttons v-if="actions" @ok-clicked="submitForm" />
+      <slot name="action-bar">
+        <action-buttons v-if="actionBar" @ok-clicked="submitForm" />
       </slot>
     </q-card>
   </q-dialog>
@@ -60,7 +60,7 @@
     component: Object,
     formProps: Object,
     item: Object,
-    actions: Boolean,
+    actionBar: Boolean,
     width: {
       type: String,
       default: "700px",
@@ -76,8 +76,8 @@
 
   async function submitForm() {
     if (form.value) {
-      await form.value.submitForm(onDialogOK);
-      onDialogOK();
+      const responseData = await form.value.submitForm(onDialogOK);
+      if (responseData) onDialogOK();
     }
   }
 

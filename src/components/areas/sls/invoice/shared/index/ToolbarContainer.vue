@@ -87,7 +87,7 @@
     dialogStore.openDialog({
       title: `shared.labels.editBatch`,
       component: EditBatch,
-      actions: true,
+      actionBar: true,
       props: {
         selectedIds: selectedIds?.value,
         formType: invoiceFormType.sales,
@@ -102,7 +102,7 @@
     dialogStore.openDialog({
       title: `shared.labels.reorder`,
       component: ReorderInvoice,
-      actions: true,
+      actionBar: true,
       okCallback: async (response) => {
         await props.tableStore.reloadData();
       },

@@ -59,7 +59,7 @@
     dialogStore.openDialog({
       title: "shared.contactType.address",
       component: CreateForm,
-      actions: true,
+      actionBar: true,
       props: { customerId: props.item.id, action: formAction.create },
       okCallback: async (response) => {
         await tableStore.reloadData();

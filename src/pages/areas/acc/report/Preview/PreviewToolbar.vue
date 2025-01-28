@@ -7,7 +7,6 @@
     back-button
   >
     <template #buttons>
-
       <slot name="toolbar-custom-desktop"></slot>
 
       <menu-button-print @click="printStore.handlePrint" />
@@ -62,7 +61,7 @@
     dialogStore.openDialog({
       title: `shared.labels.sendMail`,
       component: SendEmail,
-      actions: true,
+      actionBar: true,
       props: {
         id: props.model.id,
         baseRoute: props.baseRoute,

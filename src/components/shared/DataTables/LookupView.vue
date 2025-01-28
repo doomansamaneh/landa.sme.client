@@ -488,7 +488,7 @@
       title: "shared.labels.create",
       component: props.createForm,
       width: "900px",
-      actions: true,
+      actionBar: true,
       props: { action: formAction.create },
       okCallback: (responseData) => {
         if (responseData.data) setIdText(responseData.data);

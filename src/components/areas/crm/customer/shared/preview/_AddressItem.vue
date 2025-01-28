@@ -67,7 +67,7 @@
     dialogStore.openDialog({
       title: "shared.contactType.address",
       component: CreateForm,
-      actions: true,
+      actionBar: true,
       props: { id: props.item.id, action: formAction.edit },
       okCallback: async (response) => {
         if (response?.model) {
