@@ -49,7 +49,8 @@
     return props.required
       ? [
           (val) => {
-            const valid = val !== null;
+            const valid =
+              val !== null && val !== undefined && val !== "";
             validationMessage.value = valid
               ? ""
               : t("shared.labels.required");

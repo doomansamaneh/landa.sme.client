@@ -79,8 +79,6 @@
   };
 
   const deleteAccountSL = (node) => {
-    formStore.deleteById(node.id, () => {
-      alert("deleted successfully");
-    });
+    formStore.deleteById(node.id, () => {});
   };
 </script>

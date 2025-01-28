@@ -15,7 +15,9 @@
         {{ title }}
       </div>
     </div>
-    <slot name="header-toolbar"></slot>
+    <div class="flex items-center q-px-md">
+      <slot name="header-toolbar" />
+    </div>
   </div>
   <q-separator size="1px" />
 </template>
