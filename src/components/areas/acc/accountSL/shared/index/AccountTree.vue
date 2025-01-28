@@ -4,10 +4,12 @@
       :showing="clStore.showLoader.value"
       color="primary"
     />
+
     <card-title
       :title="$t('main-menu-items.Acc_AccountSL_Tree')"
       icon="o_line_style"
     />
+
     <q-card-section>
       <q-tree
         v-if="!clStore.showLoader.value"

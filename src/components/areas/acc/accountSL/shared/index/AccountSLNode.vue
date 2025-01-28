@@ -46,29 +46,26 @@
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
-  import { useI18n } from "vue-i18n";
   import { useDialog } from "src/composables/useDialog";
+  import { useFormActions } from "src/composables/useFormActions";
 
-  import ConfirmDialog from "components/shared/ConfirmDialog.vue";
   import AccountTreeNode from "./AccountTreeNode.vue";
   import SLCreateForm from "../forms/CreateForm.vue";
-
-  const $q = useQuasar();
-  const { t } = useI18n();
-  const dialogStore = useDialog();
 
   const props = defineProps({
     node: Object,
   });
 
-  const editAccountSL = (gl) => {
+  const dialogStore = useDialog();
+  const formStore = useFormActions("acc/accountSL");
+
+  const editAccountSL = (node) => {
     dialogStore.openDialog({
       title: "ویرایش حساب معین",
       component: SLCreateForm,
       actionBar: true,
       props: {
-        id: gl.id,
+        id: node.id,
         action: "edit",
       },
       okCallback: async () => {
@@ -77,21 +74,9 @@
     });
   };
 
-  const deleteAccountSL = (gl) => {
-    $q.dialog({
-      component: ConfirmDialog,
-      componentProps: {
-        title: t("shared.labels.deleteConfirm"),
-        message: `${t("shared.labels.deleteMessage")}.`,
-        ok: t("shared.labels.delete"),
-        okColor: "deep-orange-7",
-        props: {
-          id: gl.id,
-          action: "delete",
-        },
-      },
-    }).onOk(async () => {
-      console.log(gl.glId);
+  const deleteAccountSL = (node) => {
+    formStore.deleteById(node.id, () => {
+      alert("deleted successfully");
     });
   };
 </script>
