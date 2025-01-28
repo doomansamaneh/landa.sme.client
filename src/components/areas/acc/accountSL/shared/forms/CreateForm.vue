@@ -33,6 +33,7 @@
           v-model="model.typeId"
           :options="helper.getEnumOptions(accountType, 'accountType')"
           label="ماهیت حساب"
+          required
         />
       </div>
     </div>
@@ -71,7 +72,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { accountType, accountDLType } from "src/constants";
   import { accountSLModel } from "src/models/areas/acc/accountSLModel";
@@ -88,13 +89,19 @@
     disableToolbar: Boolean,
     title: String,
     id: String,
+    accountGl: Object,
   });
 
   const form = ref(null);
   const baseRoute = "acc/accountSL";
   const slGridStore = useAccountSLGrid();
   const actionStore = useFormActions(baseRoute);
-  const model = ref({ ...accountSLModel });
+  const model = ref({
+    ...accountSLModel,
+    glId: props.accountGl?.id,
+    glCode: props.accountGl?.code,
+    glTitle: props.accountGl?.title,
+  });
 
   const formStore = useBaseInfoModel({
     model: model,
@@ -120,6 +127,10 @@
   async function submitForm(callBack) {
     await formStore.submitForm(form.value, props.action, callBack);
   }
+
+  onMounted(async () => {
+    await glChanged(props.accountGl);
+  });
 
   defineExpose({
     submitForm,

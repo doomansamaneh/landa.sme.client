@@ -10,7 +10,7 @@ export function useDialog() {
     item,
     width,
     props,
-    actions,
+    actionBar,
     okCallback,
   }) => {
     $q.dialog({
@@ -21,7 +21,7 @@ export function useDialog() {
         formProps: props,
         item: item,
         width: width,
-        actions: actions,
+        actionBar: actionBar,
       },
     }).onOk(async (response) => {
       if (okCallback) okCallback(response);

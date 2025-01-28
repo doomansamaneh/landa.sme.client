@@ -53,7 +53,7 @@
             rounded
             class="primary-gradient primary-shadow"
           >
-            {{ $t("shared.labels.print") }}
+            {{ $t("shared.labels.downloadPdf") }}
           </q-btn>
         </q-card-actions>
       </slot>

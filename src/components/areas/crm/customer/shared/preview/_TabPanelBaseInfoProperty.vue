@@ -59,7 +59,7 @@
     dialogStore.openDialog({
       title: "افزودن فیلد سفارشی",
       component: CreateForm,
-      actions: true,
+      actionBar: true,
       props: {
         entityId: props.item.id,
         entityName: "crm.[Customer]",

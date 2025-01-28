@@ -19,6 +19,7 @@
 
         <div class="col-md-3 col-sm-3 col-xs-12">
           <q-checkbox
+            class="q-mt-lg"
             dense
             size="46px"
             v-model="
@@ -48,6 +49,7 @@
 
         <div class="col-md-3 col-sm-3 col-xs-12">
           <q-checkbox
+            class="q-mt-lg"
             dense
             size="46px"
             v-model="
@@ -77,6 +79,7 @@
 
         <div class="col-md-3 col-sm-3 col-xs-12">
           <q-checkbox
+            class="q-mt-lg"
             dense
             size="46px"
             v-model="

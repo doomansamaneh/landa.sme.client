@@ -9,7 +9,7 @@
       />
     </template>
 
-    <template #actions>
+    <template #action-bar>
       <action-buttons @ok-clicked="submitForm" />
     </template>
   </custom-dialog>

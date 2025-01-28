@@ -1,5 +1,10 @@
 <template>
   <q-card flat class="bordered shadow">
+    <q-inner-loading
+      :showing="clStore.showLoader.value"
+      color="primary"
+    />
+
     <card-title
       :title="$t('main-menu-items.Acc_AccountSL_Tree')"
       icon="o_line_style"
@@ -18,170 +23,29 @@
         @update:selected="setActiveRow"
       >
         <template #header-cl="prop">
-          <account-tree-node :node="prop.node" />
-          <q-space />
-          <div class="row items-center q-gutter-md">
-            <q-btn dense round unelevated icon="o_more_horiz">
-              <q-menu
-                ref="accountTreeNodeMenu"
-                class="border-radius-lg"
-                fit
-                :offset="[0, 10]"
-              >
-                <q-list dense padding style="width: 200px">
-                  <q-item
-                    @click="createAccountGL(prop.node)"
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_add" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        ایجاد حساب کل
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
-          </div>
+          <Account-CL-Node :node="prop.node" />
         </template>
         <template #header-gl="prop">
-          <account-tree-node :node="prop.node" />
-          <q-space />
-          <div class="row items-center">
-            <q-btn dense round unelevated icon="o_more_horiz">
-              <q-menu class="border-radius-lg" fit :offset="[0, 10]">
-                <q-list dense padding style="width: 200px">
-                  <q-item
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                    @click="createAccountGL(prop.node)"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_add" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        ایجاد حساب معین
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                  <q-item
-                    @click="createAccountGL(prop.node)"
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_edit" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        ویرایش
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
-          </div>
+          <Account-GL-Node :node="prop.node" />
         </template>
         <template #header-sl="prop">
-          <account-tree-node :node="prop.node" />
-          <q-space />
-          <div class="row items-center">
-            <q-btn dense round unelevated icon="o_more_horiz">
-              <q-menu class="border-radius-lg" fit :offset="[0, 10]">
-                <q-list dense padding style="width: 200px">
-                  <q-item
-                    @click="createAccountSL(prop.node)"
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_edit" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        ویرایش
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                  <q-item
-                    @click="deleteDialog"
-                    clickable
-                    v-close-popup
-                    tabindex="0"
-                  >
-                    <div class="q-py-sm">
-                      <q-item-section avatar>
-                        <q-avatar class="bg-on-dark" size="sm">
-                          <q-icon size="20px" name="o_delete" />
-                        </q-avatar>
-                      </q-item-section>
-                    </div>
-                    <q-item-section>
-                      <div class="text-body2 no-letter-spacing">
-                        حذف
-                      </div>
-                    </q-item-section>
-                  </q-item>
-                </q-list>
-              </q-menu>
-            </q-btn>
-          </div>
+          <Account-SL-Node :node="prop.node" />
         </template>
       </q-tree>
     </q-card-section>
-
-    <q-inner-loading
-      :showing="clStore.showLoader.value"
-      color="primary"
-    />
   </q-card>
 </template>
 
 <script setup>
-  import { ref, onMounted, computed, watch } from "vue";
-  import { useQuasar } from "quasar";
-  import { useI18n } from "vue-i18n";
+  import { ref, onMounted, computed } from "vue";
   import { sqlOperator } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { useDialog } from "src/composables/useDialog";
 
-  import AccountTreeNode from "./AccountTreeNode.vue";
+  import AccountCLNode from "./AccountCLNode.vue";
+  import AccountGLNode from "./AccountGLNode.vue";
+  import AccountSLNode from "./AccountSLNode.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import GLCreateForm from "../../../accountGL/shared/forms/CreateForm.vue";
-  import SLCreateForm from "../../../accountSL/shared/forms/CreateForm.vue";
-
-  import ConfirmDialog from "components/shared/ConfirmDialog.vue";
-
-  const $q = useQuasar();
-  const { t } = useI18n();
-  const dialogStore = useDialog();
 
   const selected = ref(null);
 
@@ -248,11 +112,6 @@
 
   const clStore = computed(() => accountLevel.cl.store.tableStore);
 
-  const tableStore = useDataTable({
-    dataSource: "acc/accountSL/tree",
-    store: clStore,
-  });
-
   const onLazyLoad = async ({ node, key, done, fail }) => {
     const childLevel = getNextLevel(node.level?.key);
     if (childLevel) {
@@ -261,52 +120,6 @@
     } else {
       done([]);
     }
-  };
-
-  const createAccountGL = (gl) => {
-    dialogStore.openDialog({
-      title: "ایجاد حساب کل",
-      component: GLCreateForm,
-      actions: true,
-      props: {
-        id: gl.id,
-      },
-      okCallback: async () => {
-        // const glStore = createAccountStore("acc/AccountGL/create");
-        // await glStore.tableStore.reloadData();
-
-        // console.log(
-        //   "AccountGL created and data reloaded:",
-        //   glStore.tableStore.rows.value
-        // );
-      },
-    });
-  };
-
-  const createAccountSL = (sl) => {
-    dialogStore.openDialog({
-      title: "create",
-      component: SLCreateForm,
-      actions: true,
-      props: {
-        id: sl.id,
-      },
-      okCallback: async () => {
-        await tableStore.reloadData();
-      },
-    });
-  };
-
-  const deleteDialog = () => {
-    $q.dialog({
-      component: ConfirmDialog,
-      componentProps: {
-        title: t("shared.labels.deleteConfirm"),
-        message: `${t("shared.labels.deleteMessage")}.`,
-        ok: t("shared.labels.delete"),
-        okColor: "deep-orange-7",
-      },
-    }).onOk(async () => {});
   };
 
   onMounted(() => {

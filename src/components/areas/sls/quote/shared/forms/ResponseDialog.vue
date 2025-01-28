@@ -114,7 +114,7 @@
     dialogStore.openDialog({
       title: `shared.labels.sendMail`,
       component: SendEmail,
-      actions: true,
+      actionBar: true,
       props: {
         id: props.responseData.id,
         baseRoute: props.baseRoute,

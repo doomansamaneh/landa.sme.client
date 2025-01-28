@@ -48,12 +48,24 @@ export function usePrint() {
         margin: 8,
         filename: `${document.title}.pdf`,
         image: { type: "jpeg", quality: 3 },
-        html2canvas: { scale: 2 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          dpi: 192,
+          letterRendering: true,
+        },
+        pagebreak: {
+          avoid: "tr",
+          mode: "css",
+          before: "",
+          after: "",
+        },
         jsPDF: {
           unit: "mm",
           format: format.value,
           orientation: orientation.value,
           compress: true,
+          putTotalPages: true,
         },
       })
       .from(printElement)

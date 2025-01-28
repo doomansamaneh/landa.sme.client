@@ -35,7 +35,7 @@
         <slot name="body"></slot>
       </q-card-section>
 
-      <slot name="actions"></slot>
+      <slot name="action-bar"></slot>
     </q-card>
   </q-dialog>
 </template>
