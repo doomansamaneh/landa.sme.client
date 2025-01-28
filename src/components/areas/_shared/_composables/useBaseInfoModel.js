@@ -26,7 +26,7 @@ export function useBaseInfoModel({
   async function submitForm(form, action, callBack) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
-      if (responseData) responseData.model = model.value;
+      //if (responseData && model) responseData.model = model.value;
       if (resetCallback) resetCallback();
       if (callBack) callBack(responseData);
       else router.back();
