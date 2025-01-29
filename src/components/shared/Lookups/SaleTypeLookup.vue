@@ -4,7 +4,6 @@
     sortColumn="title"
     textTemplate="{{ title }}"
     columns="title"
-    :filterExpression="filterExpression"
     ref="lookup"
   >
     <template #title>نوع</template>
@@ -17,10 +16,6 @@
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
 
   const lookup = ref(null);
-
-  const props = defineProps({
-    filterExpression: Array,
-  });
 
   defineExpose({
     lookup,

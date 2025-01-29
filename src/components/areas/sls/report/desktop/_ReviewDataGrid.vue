@@ -11,24 +11,6 @@
     dense_
     :expandable="expandable"
   >
-    <template #cell-quantity="{ item }">
-      {{ helper.formatNumber(item.quantity) }}
-    </template>
-
-    <template #cell-amount="{ item }">
-      <span class="text-weight-600">
-        {{ helper.formatNumber(item.amount) }}
-      </span>
-    </template>
-
-    <template #cell-vatAmount="{ item }">
-      {{ helper.formatNumber(item.vatAmount) }}
-    </template>
-
-    <template #cell-price="{ item }">
-      {{ helper.formatNumber(item.price) }}
-    </template>
-
     <template #footer-subtotal="{ selectedRows }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}

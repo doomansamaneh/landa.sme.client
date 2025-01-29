@@ -28,9 +28,6 @@
         <is-active :is-active="item.isActive" />
       </template>
 
-      <template #cell-income="{ item }">
-        {{ helper.formatNumber(item.income) }}
-      </template>
       <template #cell-no="{ item }">
         {{ item.no }}
         <div v-if="item.taxCode">
@@ -38,18 +35,6 @@
             tax: {{ item.taxCode }}
           </small>
         </div>
-      </template>
-      <template #cell-expense="{ item }">
-        {{ helper.formatNumber(item.expense) }}
-      </template>
-      <template #cell-netIncome="{ item }">
-        {{ helper.formatNumber(item.netIncome) }}
-      </template>
-      <template #cell-startDate="{ item }">
-        {{ item.startDate?.substring(0, 10) }}
-      </template>
-      <template #cell-finishDate="{ item }">
-        {{ item.finishDate?.substring(0, 10) }}
       </template>
 
       <template #expand="{ item }">

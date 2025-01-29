@@ -52,9 +52,12 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
   };
 
   const getById = (id, url) =>
-    onGetById(url ?? `${baseURL}/getById`, id).then(() => {
-      if (!diableDirtyCheck) return resetIsDirty();
-    });
+    onGetById(url ?? `${baseURL}/getById`, id).then(
+      (responseData) => {
+        if (!diableDirtyCheck) resetIsDirty();
+        return responseData;
+      }
+    );
 
   const getCreateModel = (callBack) =>
     fetchWrapper

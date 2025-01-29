@@ -4,19 +4,19 @@
       <div class="row q-col-gutter-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <customer-lookup
-            :label="customerTitle"
             v-model:selectedId="model.customerId"
             v-model:selectedText="model.customerName"
+            :label="customerTitle"
             required
           />
         </div>
 
         <div class="col-md-4 col-sm-12 col-xs-12">
           <sale-type-lookup
-            :label="saleTypeTitle"
             v-model:selectedId="model.typeId"
             v-model:selectedText="model.typeTitle"
-            :filter-expression="filterExpression"
+            :filter-expression="saleTypeFilterExpression"
+            :label="saleTypeTitle"
             required
           />
         </div>
@@ -53,17 +53,17 @@
               <div class="row q-col-gutter-x-md">
                 <div class="col-md-6 col-sm-12 col-xs-12 q-mt-md">
                   <contract-lookup
-                    label="قرارداد"
                     v-model:selectedId="model.contractId"
                     v-model:selectedText="model.contractTitle"
+                    label="قرارداد"
                   />
                 </div>
 
                 <div class="col-md-6 col-sm-12 col-xs-12 q-mt-md">
                   <customer-lookup
-                    label="بازاریاب"
                     v-model:selectedId="model.contactId"
                     v-model:selectedText="model.contactName"
+                    label="بازاریاب"
                   />
                 </div>
               </div>
@@ -71,24 +71,27 @@
               <div class="row q-col-gutter-md">
                 <div class="col-md-6 col-sm-12 col-xs-12 q-mt-md">
                   <inventory-lookup
-                    label="انبار"
                     v-model:selectedId="model.inventoryId"
                     v-model:selectedText="model.inventoryTitle"
+                    label="انبار"
                     required
                   />
                 </div>
 
                 <div
-                  v-if="model.originalDocument"
+                  v-if="
+                    model.originalDocument &&
+                    model.originalDocument.parentId
+                  "
                   class="col-md-6 col-sm-12 col-xs-12 q-mt-md"
                 >
                   <invoice-lookup
-                    label="سند مرجع"
                     v-model:selectedId="
                       model.originalDocument.parentId
                     "
                     v-model:selectedText="model.originalDocument.no"
                     :filter-expression="originalFilterExpression"
+                    label="سند مرجع"
                   />
                 </div>
               </div>
@@ -98,10 +101,9 @@
           <div class="row q-mt-md">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <custom-input
-                label="شرح"
                 v-model="model.summary"
-                hide-bottom-space
                 type="textarea"
+                label="شرح"
               />
             </div>
           </div>
@@ -116,12 +118,9 @@
       >
         <div class="col-md-6 col-sm-12 col-xs-12">
           <custom-input
+            v-model="model.no"
             label="شماره فاکتور"
             type="number"
-            hide-bottom-space
-            v-model="model.no"
-            outlined
-            dense
             :disable="!model.manualNo"
           >
             <template #append>
@@ -129,7 +128,7 @@
                 size="sm"
                 :name="invoiceNo ? 'o_no_encryption' : 'o_lock'"
                 class="cursor-pointer all-pointer-events"
-                @click="toggleInvocieNo"
+                @click="toggleInvoiceNo"
               />
             </template>
           </custom-input>
@@ -137,14 +136,14 @@
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <date-time label="تاریخ" v-model="model.date" required />
+          <date-time v-model="model.date" label="تاریخ" required />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <date-time
-            label="سررسید"
             v-model="model.dueDate"
+            label="سررسید"
             required
           />
         </div>
@@ -154,7 +153,7 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { ref, computed } from "vue";
   import {
     sqlOperator,
     vatType,
@@ -180,17 +179,19 @@
 
   const moreInfo = ref(false);
 
-  const customerTitle =
+  const customerTitle = computed(() =>
     props.formType === invoiceFormType.sales ||
-    invoiceFormType.salesReturn
+    props.formType === invoiceFormType.salesReturn
       ? "مشتری"
-      : "فروشنده";
+      : "فروشنده"
+  );
 
-  const saleTypeTitle =
+  const saleTypeTitle = computed(() =>
     props.formType === invoiceFormType.sales ||
-    invoiceFormType.salesReturn
+    props.formType === invoiceFormType.salesReturn
       ? "نوع فروش"
-      : "نوع خرید";
+      : "نوع خرید"
+  );
 
   const originalFilterExpression = [
     {
@@ -200,9 +201,9 @@
     },
   ];
 
-  const filterExpression =
-    props.formType === invoiceFormType.sales ||
-    invoiceFormType.salesReturn
+  const saleTypeFilterExpression = computed(() => {
+    return props.formType === invoiceFormType.sales ||
+      props.formType === invoiceFormType.salesReturn
       ? [
           {
             fieldName: "isForSale",
@@ -217,8 +218,9 @@
             value: vatType.purchase,
           },
         ];
+  });
 
-  const toggleInvocieNo = () => {
+  const toggleInvoiceNo = () => {
     props.model.manualNo = !props.model.manualNo;
   };
 

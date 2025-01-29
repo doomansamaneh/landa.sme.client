@@ -26,7 +26,7 @@ export const productStockColumns = [
   unitTitle,
   purchaseQuantity,
   salesQuantity,
-  stock,
+  { ...stock, class: "text-weight-600" },
   debit,
 ];
 
@@ -38,7 +38,7 @@ export const productStockItemColumns = [
   purchaseQuantity,
   salesQuantity,
   inlineQuantity,
-  price,
+  { ...price, label: "فی", showFilter: false },
 ];
 
 export const closeOrderColumns = [

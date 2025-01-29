@@ -13,23 +13,6 @@
       toolbar
       :title="title"
     >
-      <template #cell-purchaseQuantity="{ item }">
-        {{ helper.formatNumber(item.purchaseQuantity) }}
-      </template>
-      <template #cell-salesQuantity="{ item }">
-        {{ helper.formatNumber(item.salesQuantity) }}
-      </template>
-      <template #cell-stock="{ item }">
-        <span class="text-weight-600">
-          {{ helper.formatNumber(item.stock) }}
-        </span>
-      </template>
-      <template #cell-debit="{ item }">
-        <span class="text-weight-600">
-          {{ helper.formatNumber(item.debit) }}
-        </span>
-      </template>
-
       <template #expand="{ item }">
         <product-stock-preview :item="item" :title="title" inside />
       </template>
@@ -38,7 +21,6 @@
 </template>
 
 <script setup>
-  import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";

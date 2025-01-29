@@ -399,7 +399,6 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { useI18n } from "vue-i18n";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import {
@@ -414,7 +413,7 @@
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
   import LookupAddButton from "src/components/shared/lookups/LookupAddButton.vue";
   import CustomLabel from "../forms/CustomLabel.vue";
-  import ValidationAlert from "src/components/shared/Forms/ValidationAlert.vue";
+  import ValidationAlert from "src/components/shared/forms/ValidationAlert.vue";
 
   const props = defineProps({
     dataSource: String,
@@ -446,8 +445,6 @@
   const $q = useQuasar();
   const dialogStore = useDialog();
 
-  const { t } = useI18n();
-
   const store = {
     pagination: ref({
       currentPage: 1,
@@ -457,8 +454,8 @@
       sortOrder: sortOrder.ascending,
       //searchTerm: selectedText,
     }),
-    filterExpression: props.filterExpression,
     state: {
+      filterExpression: props.filterExpression,
       disableApplySearch: true,
       firstLoad: ref(true),
       rows: ref([]),

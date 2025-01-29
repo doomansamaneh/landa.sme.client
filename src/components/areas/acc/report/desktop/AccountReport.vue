@@ -10,26 +10,6 @@
       toolbar
       expandable
     >
-      <template #cell-debit="{ item }">
-        {{ helper.formatNumber(item.debit) }}
-      </template>
-
-      <template #cell-credit="{ item }">
-        {{ helper.formatNumber(item.credit) }}
-      </template>
-
-      <template #cell-debitRemained="{ item }">
-        <span class="text-weight-600">
-          {{ helper.formatNumber(item.debitRemained) }}
-        </span>
-      </template>
-
-      <template #cell-creditRemained="{ item }">
-        <span class="text-weight-600">
-          {{ helper.formatNumber(item.creditRemained) }}
-        </span>
-      </template>
-
       <template #expand="{ item }">
         <div class="q-mb-sm">
           <preview :item="item" :title="title" inside />
@@ -40,7 +20,6 @@
 </template>
 
 <script setup>
-  import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import CardTitle from "src/components/shared/CardTitle.vue";
