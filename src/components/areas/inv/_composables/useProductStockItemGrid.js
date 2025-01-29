@@ -10,7 +10,7 @@ export function useProductStockItemGrid(defaultFilters) {
     allSelectedIds: ref([]),
     activeRow: ref(null),
     summaryData: ref(null),
-    filterExpression: [],
+    filterExpression: defaultFilters ?? [],
     searchModel: ref(),
   };
 
@@ -23,7 +23,7 @@ export function useProductStockItemGrid(defaultFilters) {
 
   const columns = ref(productStockItemColumns);
 
-  const filterExpression = defaultFilters ?? [];
+  //const filterExpression = defaultFilters ?? [];
 
   const setDefaultSearchModel = () => {
     state.searchModel.value = {
@@ -36,7 +36,7 @@ export function useProductStockItemGrid(defaultFilters) {
     columns,
     pagination,
     state,
-    filterExpression,
+    //filterExpression,
 
     setDefaultSearchModel,
   };
