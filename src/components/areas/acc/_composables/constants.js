@@ -23,7 +23,6 @@ import {
   dlTitle,
   voucherDate,
   voucherSubject,
-  comment,
 } from "src/constants/columns";
 
 export const accountGLColumns = [
@@ -73,8 +72,8 @@ export const accountSLColumns = [
 export const accountDLColumns = [
   { ...code },
   { ...title },
-  { ...debitRemained },
-  { ...creditRemained },
+  { ...debitRemained, class: "text-weight-700" },
+  { ...creditRemained, class: "text-weight-700" },
   { ...type },
   { ...isActive },
   { ...actions },
@@ -111,8 +110,8 @@ export const customerAccountColumns = [
   { ...title },
   { ...debit },
   { ...credit },
-  { ...debitRemained },
-  { ...creditRemained },
+  { ...debitRemained, sortable: true, class: "text-weight-600" },
+  { ...creditRemained, sortable: true, class: "text-weight-600" },
 ];
 
 export const debtorColumns = [
@@ -120,7 +119,7 @@ export const debtorColumns = [
   { ...title },
   { ...debit },
   { ...credit },
-  { ...debitRemained },
+  { ...debitRemained, class: "text-weight-600" },
 ];
 
 export const creditorColumns = [
@@ -128,7 +127,7 @@ export const creditorColumns = [
   { ...title },
   { ...debit },
   { ...credit },
-  { ...creditRemained },
+  { ...creditRemained, class: "text-weight-600" },
 ];
 
 export const accountItemColumns = [
@@ -192,14 +191,14 @@ export const journalBookColumns = [
   { ...code, sortable: false },
   { ...title, sortable: false },
   { ...subject, sortable: false },
-  { ...debit, sortable: false },
-  { ...credit, sortable: false },
+  { ...debit, sortable: false, class: "text-weight-600" },
+  { ...credit, sortable: false, class: "text-weight-600" },
 ];
 
 export const journalBookTotalColumns = [
   { ...month, sortable: false, showFilter: false },
   { ...code, sortable: false },
   { ...title, sortable: false },
-  { ...debit, sortable: false },
-  { ...credit, sortable: false },
+  { ...debit, sortable: false, class: "text-weight-600" },
+  { ...credit, sortable: false, class: "text-weight-600" },
 ];

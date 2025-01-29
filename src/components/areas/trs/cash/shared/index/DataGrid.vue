@@ -9,12 +9,6 @@
     expandable
     activation
   >
-    <template #cell-debitRemained="{ item }">
-      <span class="text-bold">
-        {{ helper.formatNumber(item.debitRemained) }}
-      </span>
-    </template>
-
     <template #expand="{ item }">
       <preview :item="item" inside />
     </template>

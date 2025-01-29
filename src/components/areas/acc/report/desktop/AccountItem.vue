@@ -11,21 +11,6 @@
     :no-fullscreen="true"
     :title="title"
   >
-    <template #cell-debit="{ item }">
-      {{ helper.formatNumber(item.credit) }}
-    </template>
-    <template #cell-credit="{ item }">
-      {{ helper.formatNumber(item.credit) }}
-    </template>
-    <template #cell-inlineDebit="{ item }">
-      <strong>{{ helper.formatNumber(item.inlineDebit) }}</strong>
-    </template>
-    <template #cell-debitRemained="{ item }">
-      {{ helper.formatNumber(item.debitRemained) }}
-    </template>
-    <template #cell-creditRemained="{ item }">
-      {{ helper.formatNumber(item.creditRemained) }}
-    </template>
     <template #cell-voucherSubject="{ item }">
       {{ item.voucherSubject }}
       <div

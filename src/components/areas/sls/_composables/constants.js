@@ -67,7 +67,7 @@ export const reviewProductGroupColumns = [
   { ...productGroupCode },
   { ...productGroupTitle },
   { ...quantity },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
 ];
 
 export const reviewProductColumns = [
@@ -76,22 +76,22 @@ export const reviewProductColumns = [
   { ...productUnitTitle },
   { ...price },
   { ...quantity },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
 ];
 
 export const reviewCustomerColumns = [
-  { ...customerName },
+  { ...customerName, style: "" },
   { ...quantity },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
 ];
 
 export const reviewProductCustomerColumns = [
-  { ...customerName },
+  { ...customerName, style: "" },
   { ...productCode },
   { ...productTitle },
   { ...price },
   { ...quantity },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
 ];
 
 export const reviewInvoiceItemColumns = [
@@ -105,7 +105,7 @@ export const reviewInvoiceItemColumns = [
   { ...price },
   { ...quantity },
   { ...vatAmount },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
 ];
 
 export const taxReportColumns = [
@@ -115,7 +115,7 @@ export const taxReportColumns = [
   { ...customerName },
   { ...amount },
   { ...discountAmount },
-  { ...netAmount },
+  { ...netAmount, class: "text-weight-600" },
   { ...vatAmount },
   { ...taxNo },
   { ...nationalNo },

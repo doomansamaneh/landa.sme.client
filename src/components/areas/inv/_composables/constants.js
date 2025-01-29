@@ -26,7 +26,7 @@ export const productStockColumns = [
   unitTitle,
   purchaseQuantity,
   salesQuantity,
-  stock,
+  { ...stock, class: "text-weight-600" },
   debit,
 ];
 

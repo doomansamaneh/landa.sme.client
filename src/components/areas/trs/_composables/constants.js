@@ -10,6 +10,7 @@ import {
   customerName,
   itemNo,
   statusId,
+  debitRemained,
 } from "src/constants/columns";
 
 export const paymentInvoiceColumns = [
@@ -54,32 +55,14 @@ export const bankAccountColumns = [
     class: "text-left",
     value: "",
   },
-  {
-    name: "debitRemained",
-    field: "debitRemained",
-    sortable: true,
-    label: "موجودی",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-    value: "",
-  },
+  { ...debitRemained, label: "موجودی", class: "text-weight-600" },
   { ...isActive },
   actions,
 ];
 
 export const cashColumns = [
   { ...title },
-  {
-    name: "debitRemained",
-    field: "debitRemained",
-    sortable: true,
-    label: "موجودی",
-    style: "",
-    showFilter: true,
-    class: "text-left",
-    value: "",
-  },
+  { ...debitRemained, label: "موجودی", class: "text-weight-600" },
   { ...isActive },
   actions,
 ];
@@ -147,7 +130,7 @@ export const checkItemColumns = [
   },
   { ...customerName },
   { ...subject },
-  { ...amount },
+  { ...amount, class: "text-weight-600" },
   { ...statusId },
   //actions,
 ];

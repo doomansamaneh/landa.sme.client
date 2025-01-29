@@ -2,7 +2,11 @@
   <div class="row items-center q-gutter-y-md">
     <div class="row col-md col-sm col-xs-12 items-center">
       <img
-        v-if="showLogo && logoSource"
+        v-if="
+          showLogo &&
+          configStore.model?.value?.companySetting?.invoiceShowLogo &&
+          logoSource
+        "
         :src="logoSource"
         alt="logo"
       />
@@ -10,9 +14,7 @@
     <div
       class="col-md col-sm-5 col-xs-12 items-center justify-center"
     >
-      <div
-        class="text-center no-letter-spacing text-body2 text-bold"
-      >
+      <div class="text-center no-letter-spacing text-body2 text-bold">
         {{ title }}
       </div>
     </div>

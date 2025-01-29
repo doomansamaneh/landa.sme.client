@@ -25,14 +25,6 @@
       <small v-if="item.syncCode">({{ item.syncCode }})</small>
     </template>
 
-    <template #cell-debitRemained="{ item }">
-      {{ helper.formatNumber(item.debitRemained) }}
-    </template>
-
-    <template #cell-creditRemained="{ item }">
-      {{ helper.formatNumber(item.creditRemained) }}
-    </template>
-
     <template #cell-typeId="{ item }">
       {{
         $t(

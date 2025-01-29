@@ -51,26 +51,6 @@
       }}
     </template>
 
-    <template #cell-credit="{ item }">
-      {{ helper.formatNumber(item.credit) }}
-    </template>
-
-    <template #cell-debit="{ item }">
-      {{ helper.formatNumber(item.debit) }}
-    </template>
-
-    <template #cell-inlineDebit="{ item }">
-      {{ helper.formatNumber(item.inlineDebit) }}
-    </template>
-
-    <template #cell-debitRemained="{ item }">
-      {{ helper.formatNumber(item.debitRemained) }}
-    </template>
-
-    <template #cell-creditRemained="{ item }">
-      {{ helper.formatNumber(item.creditRemained) }}
-    </template>
-
     <template #footer-subtotal="{ selectedRows }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}

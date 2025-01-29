@@ -2,7 +2,7 @@
   <tool-bar :title="title" :inside="inside">
     <template #buttons>
       <menu-button-edit
-        :to="`/crm/customer/edit/${id}`"
+        :to="`/crm/customer/edit/${item?.id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
         rounded
         unelevated
@@ -13,13 +13,10 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
-  import { useRoute } from "vue-router";
-  
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
 
-  const route = useRoute();
-
-  const id = computed(() => route.params.id);
+  const props = defineProps({
+    item: Object,
+  });
 </script>

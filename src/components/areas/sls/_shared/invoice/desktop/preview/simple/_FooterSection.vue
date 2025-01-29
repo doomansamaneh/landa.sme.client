@@ -42,7 +42,14 @@
             class="text-body2 no-letter-spacing vertical-top"
           >
             مهر و امضا فروشنده
-            <div v-if="showSignature && signatureSource">
+            <div
+              v-if="
+                showSignature &&
+                configStore.model?.value?.companySetting
+                  .invoiceShowSignature &&
+                signatureSource
+              "
+            >
               <img :src="signatureSource" alt="signature" />
             </div>
           </td>
@@ -71,6 +78,7 @@
 
   const signatureSource = ref(null);
   const configStore = useAppConfigModel();
+
   onMounted(async () => {
     signatureSource.value = await configStore.getAvatar(
       mediaType.signature,

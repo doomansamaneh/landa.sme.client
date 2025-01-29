@@ -254,6 +254,20 @@ export const date = {
   type: dataType.date,
 };
 
+export const startDate = {
+  ...date,
+  name: "startDate",
+  field: "startDate",
+  label: "تاریخ شروع",
+};
+
+export const finishDate = {
+  ...date,
+  name: "finishDate",
+  field: "finishDate",
+  label: "تاریخ پایان",
+};
+
 export const comment = {
   name: "comment",
   field: "comment",
@@ -497,6 +511,28 @@ export const insurranceEmp = {
   label: "بیمه کارگر",
 };
 
+export const income = {
+  ...amount,
+  name: "income",
+  field: "income",
+  label: "درآمد",
+};
+
+export const expense = {
+  ...amount,
+  name: "expense",
+  field: "expense",
+  label: "هزینه",
+};
+
+export const netIncome = {
+  ...amount,
+  name: "netIncome",
+  field: "netIncome",
+  label: "درآمد خالص",
+  class: "text-weight-600",
+};
+
 export const year = {
   name: "year",
   field: "year",
@@ -598,6 +634,7 @@ export const inlineDebit = {
   style: "width:120px;",
   showFilter: false,
   type: dataType.number,
+  class: "text-weight-600",
 };
 
 export const debitRemained = {

@@ -1,6 +1,6 @@
 <template>
-  <toolbar-container :inside="inside" :table-store="tableStore" />
-
+  <toolbar-container :inside="inside" :item="model" :title="title" />
+  <!-- title = t("main-menu-items.Crm_Customer_View"); -->
   <div class="q-pt-md">
     <div class="column q-gutter-md">
       <div>

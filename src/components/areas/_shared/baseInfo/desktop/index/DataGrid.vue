@@ -36,10 +36,6 @@
         </div>
       </template>
 
-      <template #cell-amount="{ item }">
-        {{ helper.formatNumber(item.amount) }}
-      </template>
-
       <template #cell-actions="{ item }">
         <row-tool-bar
           :base-route="baseRoute"
