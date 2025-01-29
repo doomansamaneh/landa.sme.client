@@ -27,11 +27,11 @@
   import VoucherPreview from "src/components/areas/acc/voucher/shared/preview/IndexView.vue";
 
   const props = defineProps({
-    filterExpersion: Array,
+    filterExperssion: Array,
   });
 
   const tableStore = useDataTable({
     dataSource: "sls/report/getProductStockItems",
-    store: useProductStockItemGrid(props.filterExpersion),
+    store: useProductStockItemGrid(props.filterExperssion),
   });
 </script>
