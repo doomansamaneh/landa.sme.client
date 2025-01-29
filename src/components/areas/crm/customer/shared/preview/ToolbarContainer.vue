@@ -3,7 +3,12 @@
     <toolbar-mobile :title="title" buttons margin />
   </template>
   <template v-else>
-    <toolbar-desktop :title="title" buttons margin />
+    <toolbar-desktop
+      :inside="inside"
+      :margin="!inside"
+      :title="title"
+      buttons
+    />
   </template>
 </template>
 
@@ -15,6 +20,7 @@
 
   const props = defineProps({
     toolbar: Boolean,
+    inside: Boolean,
   });
 
   const { t } = useI18n();
