@@ -59,6 +59,13 @@
     const selectedGl = props.reportStore?.getItemByType(
       accountTreeType.gl
     );
+    const selectedSl = props.reportStore?.getItemByType(
+      accountTreeType.sl
+    );
+    const selectedDl = props.reportStore?.getItemByType(
+      accountTreeType.dl
+    );
+
     if (selectedGl) {
       currentFilters.push({
         fieldName: "sl.glId",
@@ -72,6 +79,17 @@
         value: selectedCl.id,
       });
     }
+
+    if (!selectedSl) {
+      if (selectedDl) {
+        currentFilters.push({
+          fieldName: "vi.dlId",
+          operator: sqlOperator.equal,
+          value: selectedDl.id,
+        });
+      }
+    }
+
     tableStore.setFilterExpression(currentFilters);
   };
 

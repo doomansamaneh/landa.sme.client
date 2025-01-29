@@ -1,8 +1,6 @@
 <template>
   <data-grid
-    ref="dataGrid"
-    :data-source="dataSource"
-    :grid-store="gridStore"
+    :data-table-store="tableStore"
     separator="horizontal"
     flat
     numbered
@@ -10,24 +8,7 @@
     dense
     toolbar
     expandable
-    :no-fullscreen="noFullscreen"
-    :title="title"
   >
-    <template #cell-purchaseQuantity="{ item }">
-      {{ helper.formatNumber(item.purchaseQuantity) }}
-    </template>
-    <template #cell-salesQuantity="{ item }">
-      {{ helper.formatNumber(item.salesQuantity) }}
-    </template>
-    <template #cell-inlineQuantity="{ item }">
-      <span class="text-weight-600">
-        {{ helper.formatNumber(item.inlineQuantity) }}
-      </span>
-    </template>
-    <template #cell-price="{ item }">
-      {{ helper.formatNumber(item.price) }}
-    </template>
-
     <template #expand="{ item }">
       <voucher-preview
         :voucher-id="item.voucherId"
@@ -39,22 +20,18 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  import { helper } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { useProductStockItemGrid } from "src/components/areas/inv/_composables/useProductStockItemGrid";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import VoucherPreview from "src/components/areas/acc/voucher/shared/preview/IndexView.vue";
 
   const props = defineProps({
-    dataSource: String,
-    gridStore: Object,
-    noFullscreen: Boolean,
+    filterExpersion: Array,
   });
 
-  const dataGrid = ref(null);
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
-
-  defineExpose({
-    tableStore,
+  const tableStore = useDataTable({
+    dataSource: "sls/report/getProductStockItems",
+    store: useProductStockItemGrid(props.filterExpersion),
   });
 </script>

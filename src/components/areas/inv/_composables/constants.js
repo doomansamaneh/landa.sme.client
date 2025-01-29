@@ -38,7 +38,7 @@ export const productStockItemColumns = [
   purchaseQuantity,
   salesQuantity,
   inlineQuantity,
-  price,
+  { ...price, label: "فی", showFilter: false },
 ];
 
 export const closeOrderColumns = [

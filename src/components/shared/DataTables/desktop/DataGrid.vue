@@ -260,7 +260,7 @@
     gridStore: Object,
     toolbar: Boolean,
     title: String,
-    dataTableStore: Object,
+    dataTableStore: useDataTable,
     noFullscreen: Boolean,
   });
 

@@ -26,20 +26,17 @@
   <q-tab-panels v-model="tab" keep-alive animated>
     <q-tab-panel class="no-padding" name="basic-info">
       <account-item
-        flat
-        :columns="accountItemColumns"
+        :columns="accountItemDLColumns"
         :filter-expression="accountItemfilter"
-        :no-fullscreen="true"
-        :title="title"
+        no-fullscreen
+        :title="`ریز گردش حساب / ${item.code} - ${item.title}`"
       />
     </q-tab-panel>
     <q-tab-panel class="no-padding" name="quote">
       <product-stock-item
-        ref="dataGrid"
-        :data-source="dataSource"
-        :grid-store="gridStore"
-        :no-fullscreen="true"
-        :title="title"
+        :filter-expression="stockFilter"
+        no-fullscreen
+        :title="`کاردکس کالا / ${item.code} - ${item.title}`"
       />
     </q-tab-panel>
     <q-tab-panel name="log">
@@ -51,7 +48,6 @@
 <script setup>
   import { ref, computed } from "vue";
   import { guidEmpty, sqlOperator } from "src/constants";
-  import { useProductStockItemGrid } from "src/components/areas/inv/_composables/useProductStockItemGrid";
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
 
   import CardTabs from "src/components/shared/CardTabs.vue";
@@ -66,8 +62,7 @@
   });
 
   const tab = ref("basic-info");
-  const dataGrid = ref(null);
-  const filterExpersions = computed(() => [
+  const stockFilter = computed(() => [
     {
       fieldName: "ii.productId",
       operator: sqlOperator.equal,
@@ -75,16 +70,6 @@
     },
   ]);
 
-  const dataSource = "sls/report/getProductStockItems";
-  const gridStore = useProductStockItemGrid(filterExpersions?.value);
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
-
-  // const tableStore = useDataTable({
-  //   dataSource: dataSource,
-  //   store: gridStore,
-  // });
-
-  const accountItemColumns = accountItemDLColumns;
   const accountItemfilter = computed(() => [
     {
       fieldName: "vi.dlId",
@@ -92,8 +77,4 @@
       value: props.item.dlId ?? guidEmpty,
     },
   ]);
-
-  defineExpose({
-    tableStore,
-  });
 </script>

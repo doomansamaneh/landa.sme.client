@@ -748,7 +748,8 @@ export const inlineQuantity = {
   sortable: false,
   label: "موجودی",
   align: "left",
-  class: "text-left",
+  style: "width:130px;",
+  class: "text-left text-weight-600",
   showFilter: false,
   type: dataType.number,
 };
