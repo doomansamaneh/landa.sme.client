@@ -3,7 +3,12 @@
     <toolbar-mobile :title="title" :item="item" buttons margin />
   </template>
   <template v-else>
-    <toolbar-desktop :title="title" :item="item" buttons margin />
+    <toolbar-desktop
+      :inside="inside"
+      :margin="!inside"
+      :title="title"
+      buttons
+    />
   </template>
 </template>
 
@@ -13,7 +18,7 @@
 
   const props = defineProps({
     toolbar: Boolean,
-    item: Object,
+    inside: Boolean,
     title: String,
   });
 </script>

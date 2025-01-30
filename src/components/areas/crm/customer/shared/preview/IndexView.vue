@@ -1,72 +1,64 @@
 <template>
-  <toolbar-container :inside="inside" :item="model" :title="title" />
-  <!-- title = t("main-menu-items.Crm_Customer_View"); -->
-  <div class="q-pt-md">
-    <div class="column q-gutter-md">
-      <div>
-        <div class="row q-col-gutter-lg">
-          <div class="col-md row items-center q-gutter-md no-wrap">
-            <customer-avatar
-              size="120px"
-              text-color="white"
-              :text-holder="model.name"
-              text-holder-class="text-bold no-letter-spacing"
-              :avatar="model.avatar"
-              :item="model.id"
-            />
-            <div>
-              <div
-                class="ellipsis-2-lines text-h4 line-height-lg text-weight-700 no-letter-spacing"
-              >
-                {{ model.name }}
-              </div>
-              <div
-                class="ellipsis caption-on-dark text-h5 no-letter-spacing"
-              >
-                {{ model.unitTitle }}
-                <span v-if="model.jobTitle">
-                  / {{ model.jobTitle }}
-                </span>
-              </div>
-            </div>
-          </div>
+  <toolbar-container :inside="inside" :table-store="tableStore" :title="title"/>
 
-          <div class="col-md-8">
-            <div class="row q-col-gutter-lg">
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <number-widget
-                  :value="balanceModel.debit"
-                  title="گردش بدهکار"
-                />
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <number-widget
-                  :value="balanceModel.credit"
-                  title="گردش بستانکار"
-                />
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <number-widget
-                  v-if="balanceModel.creditRemained"
-                  :value="balanceModel.creditRemained"
-                  title="مانده بستانکار"
-                />
-                <number-widget
-                  v-else
-                  :value="balanceModel.debitRemained"
-                  title="مانده بدهکار"
-                />
-              </div>
-            </div>
-          </div>
+  <div class="row items-center q-col-gutter-lg q-pb-lg">
+    <div class="col-md row items-center q-gutter-md no-wrap">
+      <customer-avatar
+        size="120px"
+        text-color="white"
+        :text-holder="model.name"
+        text-holder-class="text-bold no-letter-spacing"
+        :avatar="model.avatar"
+        :item="model.id"
+      />
+      <div>
+        <div
+          class="ellipsis-2-lines text-h4 line-height-lg text-weight-700 no-letter-spacing"
+        >
+          {{ model.name }}
+        </div>
+        <div
+          class="ellipsis caption-on-dark text-h5 no-letter-spacing"
+        >
+          {{ model.unitTitle }}
+          <span v-if="model.jobTitle">/ {{ model.jobTitle }}</span>
         </div>
       </div>
+    </div>
 
-      <invoice-summary :customer-id="id" />
-
-      <tabs :item="model" />
+    <div class="col-md-8">
+      <div class="row q-col-gutter-lg">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <number-widget
+            :value="balanceModel.debit"
+            title="گردش بدهکار"
+          />
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <number-widget
+            :value="balanceModel.credit"
+            title="گردش بستانکار"
+          />
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <number-widget
+            v-if="balanceModel.creditRemained"
+            :value="balanceModel.creditRemained"
+            title="مانده بستانکار"
+          />
+          <number-widget
+            v-else
+            :value="balanceModel.debitRemained"
+            title="مانده بدهکار"
+          />
+        </div>
+      </div>
     </div>
   </div>
+
+  <invoice-summary :customer-id="id" class="q-mb-lg" />
+
+  <tabs :item="model" />
 </template>
 
 <script setup>

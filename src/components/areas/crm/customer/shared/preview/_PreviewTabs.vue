@@ -11,21 +11,90 @@
     >
       <card-tab name="main" title="اطلاعات پایه" icon="o_person" />
 
-      <card-tab
+      <q-btn-dropdown
+        dropdown-icon="o_expand_more"
+        auto-close
+        :class="
+          tab === 'quote' || tab === 'invoice'
+            ? 'q-tab--active'
+            : 'q-tab--inactive'
+        "
+        stretch
+        unelevated
+      >
+        <template #label>
+          <div
+            v-if="tab === 'quote' || tab === 'invoice'"
+            class="q-mx-md q-tab--active q-tab__indicator absolute-bottom bg-primary"
+            style="opacity: 1"
+          />
+
+          <q-avatar
+            rounded
+            text-color="white"
+            size="md"
+            class="q-mr-md primary-gradient primary-shadow"
+          >
+            <q-icon
+              size="16px"
+              :name="tab === 'quote' ? 'o_assignment' : 'o_receipt'"
+            />
+          </q-avatar>
+
+          <div class="text-h6 text-weight-700 no-letter-spacing">
+            {{ tab === "quote" ? "پیش فاکتورها" : "فاکتورهای فروش" }}
+          </div>
+        </template>
+
+        <q-list>
+          <q-item clickable @click="tab = 'quote'">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                text-color="white"
+                color="primary"
+                icon="o_assignment"
+                size="md"
+              />
+            </q-item-section>
+            <q-item-section
+              class="text-h6 text-weight-700 no-letter-spacing"
+            >
+              پیش فاکتورها
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable @click="tab = 'invoice'">
+            <q-item-section avatar>
+              <q-avatar
+                rounded
+                text-color="white"
+                color="primary"
+                icon="o_receipt"
+                size="md"
+              />
+            </q-item-section>
+            <q-item-section
+              class="text-h6 text-weight-700 no-letter-spacing"
+            >
+              فاکتورهای فروش
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-btn-dropdown>
+
+      <!-- <card-tab
         name="quote"
         title="پیش فاکتورها"
         icon="o_assignment"
-      />
+      >
+      </card-tab>
 
-      <card-tab name="invoice" title="فاکتورها" icon="o_receipt" />
+      <card-tab name="invoice" title="فاکتورها" icon="o_receipt" /> -->
 
       <card-tab name="review" title="گردش حساب" icon="o_repeat" />
 
-      <card-tab
-        name="check"
-        title="چکهای دریافتی، پرداختی"
-        icon="o_receipt"
-      />
+      <card-tab name="check" title="چکها" icon="o_receipt" />
 
       <card-tab name="log" title="تاریخچه" icon="o_history" />
     </card-tabs>
