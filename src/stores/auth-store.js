@@ -57,5 +57,13 @@ export const useAuthStore = defineStore("auth", {
     redirect(url) {
       this.router.push(url);
     },
+
+    checkUser() {
+      const user = localStorage.getItem("user");
+
+      if (!user) {
+        this.redirect("/account/login");
+      }
+    },
   },
 });

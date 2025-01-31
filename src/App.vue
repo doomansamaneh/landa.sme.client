@@ -4,6 +4,9 @@
 
 <script setup>
   import { getCurrentInstance, onMounted } from "vue";
+  import { useAuthStore } from "src/stores/auth-store";
+
+  const authStore = useAuthStore();
 
   console.log(
     "%cSUPPORT: %cLANDA-SME.COM",
@@ -21,32 +24,6 @@
         // console.warn(`Warning: ${msg}\nTrace: ${trace}`);
       };
     }
+    authStore.checkUser();
   });
 </script>
-
-<style lang="scss">
-  ::-webkit-scrollbar {
-    height: 12px;
-    width: 14px;
-    background: #00000010;
-    z-index: 12;
-    overflow: visible;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    width: 10px;
-    background-color: var(--q-primary);
-    border-radius: 10px;
-    z-index: 12;
-    border: 4px solid rgba(0, 0, 0, 0);
-    background-clip: padding-box;
-    transition: background-color 0.32s ease-in-out;
-    margin: 8px;
-    min-height: 32px;
-    min-width: 32px;
-
-    &:hover {
-      background: var(--q-primary);
-    }
-  }
-</style>
