@@ -14,9 +14,9 @@
   >
     <template #title>
       <div class="q-pa-lg">
-        <h6 class="text-body1 no-letter-spacing text-weight-700">
+        <div class="text-h6 no-letter-spacing">
           صورتحسابهای دارای مانده
-        </h6>
+        </div>
         <div
           class="text-body2 no-letter-spacing q-mt-xs text-on-caption"
         >
