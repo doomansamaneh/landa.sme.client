@@ -392,8 +392,10 @@
       "addFiscalYear": "افزودن سال مالی جدید",
       "taxApiStatus": "ارسال به سامانه مودیان",
       "productGroupTitle": "گروه کالا",
-      "additionalInformation": "اطلاعات تکمیلی"
+      "additionalInformation": "اطلاعات تکمیلی",
+      "accountItem": "ریز گردش"
     },
+
     "productType": {
       "main": "اصلی",
       "part": "قطعه",
@@ -560,7 +562,8 @@
       "cl": "گروه حساب",
       "gl": "حساب کل",
       "sl": "حساب معین",
-      "dl": "حساب تفصیلی"
+      "dl": "حساب تفصیلی",
+      "slDl": "حساب معین / تفصیلی"
     },
     "salesReviewType": {
       "pg": "گروه کالا و خدمات",
