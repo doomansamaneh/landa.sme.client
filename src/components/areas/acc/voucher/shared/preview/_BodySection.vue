@@ -5,7 +5,7 @@
       style="
         border: 1px solid #2d2d2d;
         border-collapse: collapse;
-        font-size: 12px;
+        font-size: 13px;
       "
     >
       <thead>

@@ -4,7 +4,7 @@
       width: 100%;
       border-collapse: collapse;
       border: 1px solid #2d2d2d;
-      font-size: 12px;
+      font-size: 13px;
     "
   >
     <tbody>
