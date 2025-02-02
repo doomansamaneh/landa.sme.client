@@ -232,14 +232,6 @@ export default {
           meta: { title: "گزارش حساب شخص" },
         },
         {
-          path: "customer/preview",
-          component: () =>
-            import(
-              "pages/areas/acc/report/Preview/CustomerAccountPreviewPage.vue"
-            ),
-          meta: { title: "گزارش حساب شخص" },
-        },
-        {
           path: "debtors",
           component: () =>
             import("pages/areas/acc/report/DebtorsPage.vue"),
@@ -256,46 +248,6 @@ export default {
           component: () =>
             import("pages/areas/acc/report/AccountReviewPage.vue"),
           meta: { title: "گزارش مرور حساب" },
-        },
-        {
-          path: "CLPreview",
-          component: () =>
-            import(
-              "pages/areas/acc/report/preview/CLPreviewPage.vue"
-            ),
-          meta: { title: "تراز آزمایشی - گروه حساب" },
-        },
-        {
-          path: "GLPreview",
-          component: () =>
-            import(
-              "pages/areas/acc/report/preview/GLPreviewPage.vue"
-            ),
-          meta: { title: "تراز آزمایشی - حساب کل" },
-        },
-        {
-          path: "SLPreview",
-          component: () =>
-            import(
-              "pages/areas/acc/report/preview/SLPreviewPage.vue"
-            ),
-          meta: { title: "تراز آزمایشی - حساب معین" },
-        },
-        {
-          path: "DLPreview",
-          component: () =>
-            import(
-              "pages/areas/acc/report/preview/DLPreviewPage.vue"
-            ),
-          meta: { title: "تراز آزمایشی - حساب تفصیلی" },
-        },
-        {
-          path: "ItemPreview",
-          component: () =>
-            import(
-              "pages/areas/acc/report/preview/ItemPreviewPage.vue"
-            ),
-          meta: { title: "تراز آزمایشی - ریز گردش" },
         },
         {
           path: "trialBalance",
