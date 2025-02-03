@@ -2,7 +2,7 @@
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
-        <div id="invoicePreview">
+        <div :ref="printStore.printRef">
           <header-section :model="model" :title="title" />
 
           <q-card-section class="q-gutter-y-sm_">
@@ -27,6 +27,7 @@
 
 <script setup>
   import { documentType } from "src/constants";
+  import { usePrint } from "src/composables/usePrint";
 
   import BodySection from "./BodySection.vue";
   import DetailSection from "../../shared/preview/_DetailSection.vue";
@@ -41,4 +42,6 @@
     baseRoute: String,
     type: documentType,
   });
+
+  const printStore = usePrint();
 </script>

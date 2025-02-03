@@ -425,50 +425,50 @@ export const helper = {
   //   window.URL.revokeObjectURL(url);
   // },
 
-  // print(printId) {
-  //   const printableElement = document.querySelector(`#${printId}`);
-  //   const clonedElement = printableElement.cloneNode(true);
+  print(printId) {
+    const printableElement = document.querySelector(`#${printId}`);
+    const clonedElement = printableElement.cloneNode(true);
 
-  //   const direction =
-  //     window.getComputedStyle(printableElement).direction;
+    const direction =
+      window.getComputedStyle(printableElement).direction;
 
-  //   const iframe = document.createElement("iframe");
-  //   iframe.style.position = "absolute";
-  //   iframe.style.width = "0";
-  //   iframe.style.height = "0";
-  //   iframe.style.border = "0";
+    const iframe = document.createElement("iframe");
+    iframe.style.position = "absolute";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    iframe.style.border = "0";
 
-  //   document.body.appendChild(iframe);
+    document.body.appendChild(iframe);
 
-  //   const printWindow = iframe.contentWindow;
+    const printWindow = iframe.contentWindow;
 
-  //   printWindow.document.write(
-  //     `<html><head><title>landa-SME Print</title>`
-  //   );
-  //   printWindow.document.write(
-  //     `<style>body { direction: ${direction}; }</style>`
-  //   );
-  //   printWindow.document.write("</head><body>");
-  //   printWindow.document.write('<div class="printable"></div>');
-  //   printWindow.document.write("</body></html>");
-  //   printWindow.document.close();
+    printWindow.document.write(
+      `<html><head><title>landa-SME Print</title>`
+    );
+    printWindow.document.write(
+      `<style>body { direction: ${direction}; }</style>`
+    );
+    printWindow.document.write("</head><body>");
+    printWindow.document.write('<div class="printable"></div>');
+    printWindow.document.write("</body></html>");
+    printWindow.document.close();
 
-  //   const printableContainer =
-  //     printWindow.document.querySelector(".printable");
-  //   printableContainer.appendChild(clonedElement);
+    const printableContainer =
+      printWindow.document.querySelector(".printable");
+    printableContainer.appendChild(clonedElement);
 
-  //   const styles = document.querySelectorAll(
-  //     'style, link[rel="stylesheet"]'
-  //   );
-  //   styles.forEach((style) => {
-  //     printWindow.document.head.appendChild(style.cloneNode(true));
-  //   });
+    const styles = document.querySelectorAll(
+      'style, link[rel="stylesheet"]'
+    );
+    styles.forEach((style) => {
+      printWindow.document.head.appendChild(style.cloneNode(true));
+    });
 
-  //   setTimeout(() => {
-  //     printWindow.print();
-  //     document.body.removeChild(iframe);
-  //   }, 500);
-  // },
+    setTimeout(() => {
+      printWindow.print();
+      document.body.removeChild(iframe);
+    }, 500);
+  },
 
   bankLogos: {
     "بانک صادرات ایران": "src/assets/mellat-logo.png",

@@ -1,28 +1,7 @@
 <template>
   <tool-bar :inside="inside" buttons :title="title" back-button>
     <template #buttons>
-      <!-- <q-btn
-        :to="`/trs/cash/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-      </q-btn> -->
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        {{ $t("shared.labels.print") }}
-      </q-btn>
+      <menu-button-print @click="printStore.handlePrint()" />
     </template>
   </tool-bar>
 
@@ -31,13 +10,13 @@
 
     <q-separator size="1px" />
 
-    <div id="invoicePreview" v-if="model">
+    <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
       </q-card-section>
 
       <q-separator size="1px" />
-      
+
       <account-item
         flat
         :columns="accountItemColumns"
@@ -53,7 +32,7 @@
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
 
-  import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
   import { accountItemSLColumns } from "src/components/areas/acc/_composables/constants";
   import { sqlOperator } from "src/constants";
@@ -63,6 +42,7 @@
   import HeaderSection from "./_HeaderSection.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
+  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
   import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
 
   const props = defineProps({
@@ -74,6 +54,7 @@
   const model = ref(null);
   const baseRoute = "acc/accountSL";
   const crudStore = useFormActions(baseRoute, model);
+  const printStore = usePrint();
   const accountItemColumns = accountItemSLColumns;
   const filterExpression = computed(() => [
     {

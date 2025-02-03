@@ -1,28 +1,11 @@
 <template>
   <tool-bar :inside="inside" buttons :title="title" back-button>
     <template #buttons>
-      <q-btn
+      <menu-button-edit
+        class="primary-gradient primary-shadow text-white"
         :to="`/doc/contract/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-      </q-btn>
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        چاپ
-      </q-btn>
+      />
+      <menu-button-print @click="printStore.handlePrint()" />
     </template>
   </tool-bar>
 
@@ -42,7 +25,7 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
-  import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
@@ -50,6 +33,8 @@
   import DetailSection from "./_DetailSection.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
   import DataGridToolbar from "components/shared/dataTables/desktop/DataGridToolbar.vue";
+  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
 
   const props = defineProps({
     item: Object,
@@ -60,6 +45,7 @@
 
   const model = ref(null);
   const formStore = useFormActions("doc/contract", model);
+  const printStore = usePrint();
   const route = useRoute();
 
   const id = computed(() => props.item?.id ?? route.params.id);

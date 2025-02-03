@@ -42,7 +42,7 @@
         {{ $t("shared.labels.delete") }}
       </q-btn>
       <q-btn
-        @click="helper.print('invoicePreview')"
+        @click="printStore.handlePrint()"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -53,7 +53,7 @@
         چاپ
       </q-btn>
       <q-btn
-        @click="formStore.downloadPdf(id)"
+        @click="printStore.downloadPdf()"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -185,7 +185,7 @@
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
   import { useRouter } from "vue-router";
-  import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
   import { useInvoiceState } from "../../../_composables/useInvoiceState";
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
@@ -213,7 +213,7 @@
   const route = useRoute();
   const router = useRouter();
   const invoiceStore = useInvoiceState();
-
+  const printStore = usePrint();
   const bottomSheetStatus = ref(false);
 
   const onBottomSheetShow = () => {

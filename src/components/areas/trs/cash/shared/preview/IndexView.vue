@@ -1,56 +1,21 @@
 <template>
   <tool-bar :inside="inside" buttons :title="title" back-button>
     <template #buttons>
-      <q-btn
+      <menu-button-edit
         :to="`/trs/cash/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-      </q-btn>
-      <q-btn
-        :to="`/trs/cash/copy/${id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
-      <q-btn
+      />
+      <menu-button-copy :to="`/trs/cash/copy/${id}`" />
+      <menu-button-delete
         @click="crudStore.deleteById(id, deleteCallBack)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-        {{ $t("shared.labels.delete") }}
-      </q-btn>
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        {{ $t("shared.labels.print") }}
-      </q-btn>
+      />
+      <menu-button-print @click="printStore.handlePrint()" />
     </template>
   </tool-bar>
 
   <q-card>
     <card-title title="صندوق نقدی" />
-    <div id="invoicePreview" v-if="model">
+    <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
       </q-card-section>
@@ -69,7 +34,7 @@
   import { ref, computed, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
 
-  import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
   import { sqlOperator } from "src/constants";
@@ -78,6 +43,10 @@
   import HeaderSection from "./_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
+  import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
+  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -89,6 +58,7 @@
   const baseRoute = "trs/cash";
   const crudStore = useFormActions(baseRoute, model);
   const accountItemColumns = accountItemDLColumns;
+  const printStore = usePrint();
   const filterExpression = computed(() => [
     {
       fieldName: "vi.dlId",

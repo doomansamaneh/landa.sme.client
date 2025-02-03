@@ -13,7 +13,7 @@
       icon="o_account_box"
     />
 
-    <div id="invoicePreview">
+    <div :ref="printStore.printRef">
       <header-section :model="model" />
       <q-separator />
       <q-card-section class="q-px-none">
@@ -27,6 +27,7 @@
   import { ref, computed, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
   import { useFormActions } from "src/composables/useFormActions";
+  import { usePrint } from "src/composables/usePrint";
 
   import ToolBar from "./ToolBar.vue";
   import HeaderSection from "./_HeaderSection.vue";
@@ -42,7 +43,7 @@
   const model = ref(null);
   const baseRoute = "prl/wage";
   const crudStore = useFormActions(baseRoute, model);
-
+  const printStore = usePrint();
   const route = useRoute();
   const router = useRouter();
 

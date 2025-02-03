@@ -34,7 +34,7 @@
       </q-btn>
 
       <!-- <q-btn
-        @click="helper.print('invoicePreview')"
+        @click="printStore.handlePrint()"
         class="text-body2 no-letter-spacing"
         padding="6px 12px"
         rounded
@@ -78,7 +78,7 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
-  import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
   import { documentType, paymentStatus } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
 
@@ -97,6 +97,7 @@
   const model = ref(null);
   const menuItems = ref([]);
   const crudStore = useFormActions(baseRoute, model);
+  const printStore = usePrint();
 
   const id = computed(() => props.item?.id ?? route.params.id);
 

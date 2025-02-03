@@ -7,57 +7,20 @@
     back-button
   >
     <template #buttons>
-      <q-btn
+      <menu-button-edit
         :to="`/${baseRoute}/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        {{ $t("shared.labels.edit") }}
-      </q-btn>
-      <q-btn
-        :to="`/${baseRoute}/copy/${id}`"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_copy" class="q-mr-xs" />
-        {{ $t("shared.labels.copy") }}
-      </q-btn>
-      <q-btn
-        @click="crudStore.deleteById(id)"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_delete" class="q-mr-xs" />
-        {{ $t("shared.labels.delete") }}
-      </q-btn>
-      <q-btn
-        @click="helper.print('invoicePreview')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        {{ $t("shared.labels.print") }}
-      </q-btn>
+      />
+      <menu-button-copy :to="`/${baseRoute}/copy/${id}`" />
+      <menu-button-delete @click="crudStore.deleteById(id)" />
+      <menu-button-print @click="printStore.handlePrint()" />
     </template>
   </tool-bar>
 
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
-        <div id="invoicePreview">
+        <div :ref="printStore.printRef">
           <header-section
             :model="model"
             :title="$t('main-menu-items.Inv_Production_View')"
@@ -150,7 +113,7 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute, useRouter } from "vue-router";
-  import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
@@ -160,6 +123,10 @@
   import CostItems from "./_CostItems.vue";
   import ScarpItems from "./_ScarpItems.vue";
   import DetailSection from "./_DetailSection.vue";
+  import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
+  import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
+  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -172,7 +139,7 @@
   const tab = ref("usedItem");
 
   const crudStore = useFormActions(baseRoute, model);
-
+  const printStore = usePrint();
   const route = useRoute();
   const router = useRouter();
 

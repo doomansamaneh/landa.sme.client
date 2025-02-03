@@ -2,7 +2,7 @@
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
-        <div id="invoicePreview">
+        <div :ref="printStore.printRef">
           <header-section :model="model" title="سند حسابداری" />
 
           <q-card-section class="q-gutter-y-sm_">
@@ -25,6 +25,7 @@
   import { computed } from "vue";
   import { useRoute, useRouter } from "vue-router";
   import { useVoucherState } from "../../../_composables/useVoucherState";
+  import { usePrint } from "src/composables/usePrint.js";
 
   import BodySection from "../../shared/preview/_BodySection.vue";
   import DetailSection from "../../shared/preview/_DetailSection.vue";
@@ -42,7 +43,7 @@
   });
 
   const voucherStore = useVoucherState();
-
+  const printStore = usePrint();
   const route = useRoute();
   const router = useRouter();
 

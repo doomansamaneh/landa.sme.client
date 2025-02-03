@@ -19,9 +19,9 @@
         "
       />
 
-      <menu-button-print @click="helper.print('invoicePreview')" />
+      <menu-button-print @click="printStore.handlePrint()" />
       <menu-button
-        @click="formStore.downloadPdf(model.id)"
+        @click="printStore.downloadPdf()"
         icon="download"
         :title="$t('shared.labels.downloadPdf')"
       />
@@ -38,6 +38,7 @@
 <script setup>
   import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint.js";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
@@ -55,7 +56,8 @@
   });
 
   const router = useRouter();
-
+  const printStore = usePrint();
+  
   function deleteCallBack() {
     //voucherStore.state.firstLoad.value = false;
     router.back();

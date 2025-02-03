@@ -1,24 +1,14 @@
 <template>
   <tool-bar :inside="inside" buttons :title="title" back-button>
     <template #buttons>
-      <q-btn
-        @click="helper.print('')"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        {{ $t("shared.labels.print") }}
-      </q-btn>
+      <menu-button-print @click="printStore.handlePrint()" />
     </template>
   </tool-bar>
 
   <q-card flat class="bordered shadow overflow-hidden">
     <card-title title="گردش حساب" icon="o_repeat" />
 
-    <div id="invoicePreview" v-if="model">
+    <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
       </q-card-section>
@@ -40,7 +30,7 @@
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
 
-  import { helper } from "src/helpers";
+  import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
   import { sqlOperator } from "src/constants";
@@ -50,6 +40,7 @@
   import HeaderSection from "./_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
+  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -60,6 +51,7 @@
   const model = ref(null);
   const baseRoute = "acc/accountDL";
   const crudStore = useFormActions(baseRoute, model);
+  const printStore = usePrint();
   const accountItemColumns = accountItemDLColumns;
   const filterExpression = computed(() => [
     {
