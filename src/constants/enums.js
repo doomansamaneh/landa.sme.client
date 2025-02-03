@@ -28,6 +28,7 @@ export const accountTreeType = {
   gl: "gl",
   sl: "sl",
   dl: "dl",
+  slDl: "slDl",
 };
 
 export const salesReviewType = {

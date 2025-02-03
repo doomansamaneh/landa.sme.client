@@ -49,7 +49,17 @@
         icon="o_view_comfy"
       />
 
-      <card-tab name="il" title="ریزگردش" icon="o_receipt" />
+      <card-tab
+        name="slDl"
+        :title="$t('shared.accountTreeType.slDl')"
+        icon="o_view_comfy"
+      />
+
+      <card-tab
+        name="il"
+        :title="$t('shared.labels.accountItem')"
+        icon="o_receipt"
+      />
     </card-tabs>
 
     <q-tab-panels
@@ -82,9 +92,15 @@
           :report-store="accountReviewStore"
         />
       </q-tab-panel>
+      <q-tab-panel name="slDl" class="no-padding">
+        <review-sl-dl
+          :title="$t('shared.accountTreeType.slDl')"
+          :report-store="accountReviewStore"
+        />
+      </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
         <review-item
-          title="ریز گردش"
+          :title="$t('shared.labels.accountItem')"
           :report-store="accountReviewStore"
         />
       </q-tab-panel>
@@ -99,6 +115,7 @@
   import ReviewGl from "../desktop/ReviewGL.vue";
   import ReviewSl from "../desktop/ReviewSL.vue";
   import ReviewDl from "../desktop/ReviewDL.vue";
+  import ReviewSlDl from "../desktop/ReviewSLDL.vue";
   import ReviewItem from "../desktop/AccountItem.vue";
   import Chip from "src/components/shared/CustomChip.vue";
 

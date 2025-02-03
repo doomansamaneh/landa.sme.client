@@ -160,34 +160,53 @@
     const selectedSl = props.reportStore?.getItemByType(
       accountTreeType.sl
     );
+    const selectedSlDl = props.reportStore?.getItemByType(
+      accountTreeType.slDl
+    );
 
-    if (selectedDl) {
-      currentFilters.push({
-        fieldName: "vi.dlId",
-        operator: sqlOperator.equal,
-        value: selectedDl.id,
-      });
-    }
-
-    if (selectedSl) {
+    if (selectedSlDl) {
+      const slDlId = selectedSlDl.id.split("|");
       currentFilters.push({
         fieldName: "vi.slId",
         operator: sqlOperator.equal,
-        value: selectedSl.id,
+        value: slDlId[0],
       });
-    } else if (selectedGl) {
+
       currentFilters.push({
-        fieldName: "sl.glId",
+        fieldName: "vi.dlId",
         operator: sqlOperator.equal,
-        value: selectedGl.id,
+        value: slDlId[1],
       });
-    } else if (selectedCl) {
-      currentFilters.push({
-        fieldName: "gl.clId",
-        operator: sqlOperator.equal,
-        value: selectedCl.id,
-      });
+    } else {
+      if (selectedDl) {
+        currentFilters.push({
+          fieldName: "vi.dlId",
+          operator: sqlOperator.equal,
+          value: selectedDl.id,
+        });
+      }
+
+      if (selectedSl) {
+        currentFilters.push({
+          fieldName: "vi.slId",
+          operator: sqlOperator.equal,
+          value: selectedSl.id,
+        });
+      } else if (selectedGl) {
+        currentFilters.push({
+          fieldName: "sl.glId",
+          operator: sqlOperator.equal,
+          value: selectedGl.id,
+        });
+      } else if (selectedCl) {
+        currentFilters.push({
+          fieldName: "gl.clId",
+          operator: sqlOperator.equal,
+          value: selectedCl.id,
+        });
+      }
     }
+
     tableStore.setFilterExpression(currentFilters);
   };
 

@@ -22,21 +22,21 @@
       <div class="column q-gutter-sm">
         <div class="row">
           <span>{{ $t("shared.labels.no") }}:</span>
-          <span class="q-px-sm text-weight-700">
+          <span class="q-px-sm text-weight-600">
             {{ model.no }}
           </span>
         </div>
 
         <div class="row justify-start">
           <span>{{ $t("shared.labels.date") }}:</span>
-          <span class="q-px-sm text-weight-700">
+          <span class="q-px-sm text-weight-600">
             {{ model.date?.substring(0, 10) }}
           </span>
         </div>
 
         <div v-if="showDueDate" class="row justify-start">
           <span>{{ $t("shared.labels.dueDate") }}:</span>
-          <span class="q-px-sm text-weight-700">
+          <span class="q-px-sm text-weight-600">
             {{ model.dueDate?.substring(0, 10) }}
           </span>
         </div>
@@ -46,7 +46,7 @@
           class="row justify-start"
         >
           <span>{{ $t("shared.labels.taxId") }}:</span>
-          <span class="q-px-sm">
+          <span class="q-px-sm text-roboto text-weight-500">
             {{ model.lastApiLogModel.taxId }}
           </span>
         </div>

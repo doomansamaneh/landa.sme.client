@@ -13,7 +13,7 @@
   import { useVoucherSearch } from "../../_composables/useVoucherSearch";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
-  import { reviewSLColumns } from "../../_composables/constants";
+  import { reviewSLDLColumns } from "../../_composables/constants";
   import { useAccountReview } from "../../_composables/useAccountReview";
   import { accountTreeType, sqlOperator } from "src/constants";
 
@@ -23,7 +23,7 @@
     reportStore: useAccountReview,
     dataSource: {
       type: String,
-      default: "acc/report/getSLData",
+      default: "acc/report/getSLDLData",
     },
     filterExpression: Array,
     store: Object,
@@ -33,21 +33,21 @@
   const searchStore = useVoucherSearch();
   const tableStore = useDataTable({
     dataSource: props.dataSource,
-    dataColumns: props.columns || reviewSLColumns,
+    dataColumns: props.columns || reviewSLDLColumns,
     store:
       props.gridStore ||
       useBaseInfoGrid({
-        sortColumn: "code",
-        columns: props.columns || reviewSLColumns,
+        sortColumn: "slCode,dlCode",
+        columns: props.columns || reviewSLDLColumns,
         searchModel: searchStore.searchModel,
       }),
   });
 
   const filterRow = (row) => {
     props.reportStore?.setItem({
-      id: row.id,
-      title: `${row.code} - ${row.title}`,
-      type: accountTreeType.sl,
+      id: `${row.slId}|${row.dlId}`,
+      title: `${row.slCode} - ${row.slTitle} / ${row.dlTitle}`,
+      type: accountTreeType.slDl,
     });
   };
 
@@ -59,14 +59,20 @@
     const selectedGl = props.reportStore?.getItemByType(
       accountTreeType.gl
     );
-    // const selectedSl = props.reportStore?.getItemByType(
-    //   accountTreeType.sl
-    // );
-    // const selectedDl = props.reportStore?.getItemByType(
-    //   accountTreeType.dl
-    // );
+    const selectedSl = props.reportStore?.getItemByType(
+      accountTreeType.sl
+    );
+    const selectedDl = props.reportStore?.getItemByType(
+      accountTreeType.dl
+    );
 
-    if (selectedGl) {
+    if (selectedSl) {
+      currentFilters.push({
+        fieldName: "vi.slId",
+        operator: sqlOperator.equal,
+        value: selectedSl.id,
+      });
+    } else if (selectedGl) {
       currentFilters.push({
         fieldName: "sl.glId",
         operator: sqlOperator.equal,
@@ -80,15 +86,13 @@
       });
     }
 
-    // if (!selectedSl) {
-    //   if (selectedDl) {
-    //     currentFilters.push({
-    //       fieldName: "vi.dlId",
-    //       operator: sqlOperator.equal,
-    //       value: selectedDl.id,
-    //     });
-    //   }
-    // }
+    if (selectedDl) {
+      currentFilters.push({
+        fieldName: "vi.dlId",
+        operator: sqlOperator.equal,
+        value: selectedDl.id,
+      });
+    }
 
     tableStore.setFilterExpression(currentFilters);
   };

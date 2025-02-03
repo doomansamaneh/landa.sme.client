@@ -184,6 +184,17 @@ export const reviewDLColumns = [
   { ...debitRemained, showFilter: true },
   { ...creditRemained, showFilter: true },
 ];
+export const reviewSLDLColumns = [
+  { ...slCode },
+  { ...slTitle },
+  { ...dlCode },
+  { ...dlTitle },
+  { ...type },
+  { ...debit, showFilter: true },
+  { ...credit, showFilter: true },
+  { ...debitRemained, showFilter: true },
+  { ...creditRemained, showFilter: true },
+];
 
 export const journalBookColumns = [
   { ...voucherNo, sortable: false },
