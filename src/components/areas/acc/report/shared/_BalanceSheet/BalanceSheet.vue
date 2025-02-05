@@ -1,5 +1,5 @@
 <template>
-  <toolbar-container :title="title" :table-store="tableStore" />
+  <toolbar-container :title="title" />
 
   <tip-banner closeable :title="tip.title" :tip="tip.message" />
 

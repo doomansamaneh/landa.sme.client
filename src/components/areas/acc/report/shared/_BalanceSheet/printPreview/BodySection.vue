@@ -1,5 +1,5 @@
 <template>
-  <div class="column q-gutter-md">
+  <div v-if="!dataStore.showLoader.value" class="column q-gutter-md">
     <div>
       <asset-table
         :model="dataStore.model.value"
