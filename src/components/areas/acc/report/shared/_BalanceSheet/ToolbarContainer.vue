@@ -16,28 +16,24 @@
       margin
     >
       <template #buttons>
-        <q-btn
-          class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
-          rounded
-          unelevated
-          no-caps
-        >
-          <q-icon size="20px" name="o_print" class="q-mr-xs" />
-          {{ $t("shared.labels.print") }}
-
-        </q-btn>
+        <menu-button-print
+          class="primary-gradient primary-shadow text-white"
+          @click="openPreview(tableStore)"
+        />
       </template>
     </toolbar-desktop>
   </template>
 </template>
 
 <script setup>
-  import { computed } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
+  import { usePreview } from "src/composables/usePreview";
 
   import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/ToolBarMobile.vue";
+  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import DataGridPreview from "./printPreview/DataGridPreview.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -46,5 +42,17 @@
   });
 
   const baseRoute = "sls/Invoice";
+  const previewStore = usePreview();
   const $q = useQuasar();
+
+  const openPreview = async () => {
+    previewStore.openDialog({
+      title: props.title,
+      component: DataGridPreview,
+      previewProps: {
+        tableStore: props.tableStore,
+        title: props.title,
+      },
+    });
+  };
 </script>

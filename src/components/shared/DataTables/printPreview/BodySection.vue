@@ -1,6 +1,5 @@
 <template>
   <q-card-section
-    v-if="!tableStore.showLoader.value"
     class="q-py-none q-px-xs"
   >
     <table class="print-preview-table">
