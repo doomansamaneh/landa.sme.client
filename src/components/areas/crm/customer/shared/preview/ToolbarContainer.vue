@@ -7,6 +7,7 @@
       :inside="inside"
       :margin="!inside"
       :title="title"
+      :item="item"
       buttons
     />
   </template>
@@ -20,5 +21,6 @@
     toolbar: Boolean,
     inside: Boolean,
     title: String,
+    item: Object,
   });
 </script>

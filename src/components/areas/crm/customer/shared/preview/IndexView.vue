@@ -1,5 +1,10 @@
 <template>
-  <toolbar-container :inside="inside" :table-store="tableStore" :title="title"/>
+  <toolbar-container
+    :inside="inside"
+    :table-store="tableStore"
+    :title="title"
+    :item="model"
+  />
 
   <div class="row items-center q-col-gutter-lg q-pb-lg">
     <div class="col-md row items-center q-gutter-md no-wrap">
@@ -16,6 +21,12 @@
           class="ellipsis-2-lines text-h4 line-height-lg text-weight-700 no-letter-spacing"
         >
           {{ model.name }}
+        </div>
+        <div
+          v-if="model.code && model.code !== '-'"
+          class="ellipsis_ caption-on-dark text-h6_ no-letter-spacing"
+        >
+          کد: {{ model.code }}
         </div>
         <div
           class="ellipsis caption-on-dark text-h5 no-letter-spacing"

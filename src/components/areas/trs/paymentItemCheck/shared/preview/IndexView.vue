@@ -16,6 +16,7 @@
         rounded
         unelevated
         no-caps
+        @click="openForm(menu)"
       >
         <q-icon size="20px" :name="menu.icon" class="q-mr-xs" />
         {{ $t(`shared.labels.${menu.title}`) }}
@@ -78,13 +79,19 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
-  import { usePrint } from "src/composables/usePrint";
   import { documentType, paymentStatus } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useDialog } from "src/composables/useDialog";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import BodySection from "./_BodySection.vue";
-  import ItemLog from "./_ItemLog.vue";
+  import BodySection from "./BodySection.vue";
+  import ItemLog from "./ItemLog.vue";
+
+  import TransferToBankForm from "../forms/TransferToBankForm.vue";
+  import CashCheckPayedForm from "../forms/CashCheckPayedForm.vue";
+  import CashCheckReceiptForm from "../forms/CashCheckReceiptForm.vue";
+  import BounceCheckPayedForm from "../forms/BounceCheckPayedForm.vue";
+  import BounceCheckReceiptForm from "../forms/BounceCheckReceiptForm.vue";
 
   const props = defineProps({
     item: Object,
@@ -97,7 +104,7 @@
   const model = ref(null);
   const menuItems = ref([]);
   const crudStore = useFormActions(baseRoute, model);
-  const printStore = usePrint();
+  const dialogStore = useDialog();
 
   const id = computed(() => props.item?.id ?? route.params.id);
 
@@ -113,32 +120,34 @@
         "transferToBank",
         "bg-red-5_primary-shadow_text-white",
         "account_balance",
-        `/trs/paymentItemCheck/TransferToBank/${model?.value.Id}`
+        TransferToBankForm
       );
       addMenuItem(
         "cashTheCheck",
         "bg-red-5_primary-shadow_text-white",
         "attach_money",
-        `/trs/paymentItemCheck/CashReceiptCheck/${model?.value.Id}`
+        CashCheckReceiptForm
       );
       addMenuItem(
         "bounceTheCheck",
         "bg-red-5_primary-shadow_text-white",
         "undo",
-        `/trs/paymentItemCheck/BounceReceiptCheck/${model?.value.Id}`
+        BounceCheckReceiptForm
       );
-    } else if (statusId === paymentStatus.transferedToBank) {
+    } else if (
+      model?.value.statusId === paymentStatus.transferedToBank
+    ) {
       addMenuItem(
         "cashTheCheck",
         "bg-red-5_primary-shadow_text-white",
         "attach_money",
-        `/trs/paymentItemCheck/CashReceiptCheck/${model?.value.Id}`
+        CashCheckReceiptForm
       );
       addMenuItem(
         "bounceTheCheck",
         "bg-red-5_primary-shadow_text-white",
         "undo",
-        `/trs/paymentItemCheck/BounceReceiptCheck/${model?.value.Id}`
+        BounceCheckReceiptForm
       );
     }
   }
@@ -149,25 +158,38 @@
         "cashTheCheck",
         "bg-red-5_primary-shadow_text-white",
         "attach_money",
-        `/trs/paymentItemCheck/CashPayedCheck/${model?.value.Id}`
+        CashCheckPayedForm
       );
       addMenuItem(
         "bounceTheCheck",
         "bg-red-5_primary-shadow_text-white",
         "undo",
-        `/trs/paymentItemCheck/BouncePayedCheck/${model?.value.Id}`
+        BounceCheckPayedForm
       );
     }
   }
 
-  function addMenuItem(title, cssClass, icon, url) {
+  function addMenuItem(title, cssClass, icon, component) {
     menuItems.value.push({
       title: title,
       cssClass: cssClass,
       icon: icon,
-      url: url,
+      component: component,
     });
   }
+
+  const openForm = (menuItem) => {
+    dialogStore.openDialog({
+      title: `shared.labels.${menuItem.title}`,
+      component: menuItem.component,
+      actionBar: true,
+      props: {
+        id: id.value,
+        item: model,
+      },
+      okCallback: async (responseData) => {},
+    });
+  };
 
   onMounted(async () => {
     await crudStore.getById(id.value);

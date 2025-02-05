@@ -1,12 +1,18 @@
 <template>
   <div class="q-gutter-y-md">
     <div class="row">
-      <div class="col-2">مخاطب:</div>
+      <div class="col-2">طرف حساب:</div>
       <div class="col">{{ model?.customerName }}</div>
     </div>
     <div class="row">
       <div class="col-2">شماره چک:</div>
       <div class="col">{{ model?.itemNo }}</div>
+    </div>
+    <div v-if="model?.sayad" class="row">
+      <div class="col-2">ش صیادی:</div>
+      <div class="col">
+        {{ model?.sayad }}
+      </div>
     </div>
     <div class="row">
       <div class="col-2">تاریخ چک:</div>
@@ -17,7 +23,7 @@
     <div class="row">
       <div class="col-2">مبلغ چک:</div>
       <div class="col text-weight-700">
-        {{ model?.amount?.toLocaleString() }}
+        {{ helper.formatNumber(model?.amount) }}
       </div>
     </div>
 
@@ -43,7 +49,6 @@
 </template>
 
 <script setup>
-  import { numberToWords } from "@persian-tools/persian-tools";
   import { helper } from "src/helpers";
 
   const props = defineProps({

@@ -1,6 +1,5 @@
 import { ref } from "vue";
 import { useFormActions } from "src/composables/useFormActions";
-import { repositionColumns } from "../../inv/_composables/constants";
 
 export function usePaymentInvoiceModel() {
   const baseRoute = "trs/paymentInvoice";
