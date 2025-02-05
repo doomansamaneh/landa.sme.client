@@ -33,18 +33,6 @@
         <q-icon size="20px" name="o_delete" class="q-mr-xs" />
         {{ $t("shared.labels.deleteCheckLog") }}
       </q-btn>
-
-      <!-- <q-btn
-        @click="printStore.handlePrint()"
-        class="text-body2 no-letter-spacing"
-        padding="6px 12px"
-        rounded
-        unelevated
-        no-caps
-      >
-        <q-icon size="20px" name="o_print" class="q-mr-xs" />
-        {{ $t("shared.labels.print") }}
-      </q-btn> -->
     </template>
   </tool-bar>
 

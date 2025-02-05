@@ -384,6 +384,7 @@
       "subject": "شرح",
       "customerName": "مخاطب",
       "payment": "پرداخت",
+      "paymentItemCheck": "گردش حساب چک",
       "receipt": "دریافت",
       "expense": "هزینه",
       "revenue": "فروش و درآمد",

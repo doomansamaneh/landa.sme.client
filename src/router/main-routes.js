@@ -577,6 +577,20 @@ export default {
     },
 
     {
+      path: "trs/paymentItemCheck",
+      children: [
+        {
+          path: "preview/:id",
+          component: () =>
+            import(
+              "pages/areas/trs/paymentItemCheck/PreviewPage.vue"
+            ),
+          meta: { title: "گردش حساب چک" },
+        },
+      ],
+    },
+
+    {
       path: "trs/transferMoney",
       children: [
         {
