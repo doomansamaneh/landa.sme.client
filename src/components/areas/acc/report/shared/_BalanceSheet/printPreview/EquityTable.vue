@@ -13,7 +13,7 @@
       <template v-for="item in equityList" :key="item.id">
         <tr>
           <td>{{ item.glCode }} - {{ item.glTitle }}</td>
-          <td>
+          <td style="width: 20%">
             {{
               helper.formatNumber(
                 item.debitRemained - item.creditRemained
@@ -25,7 +25,7 @@
 
       <tr>
         <td class="text-bold">جمع سرمایه</td>
-        <td class="text-bold">
+        <td class="text-bold" style="width: 20%">
           {{ helper.formatNumber(total) }}
         </td>
       </tr>
