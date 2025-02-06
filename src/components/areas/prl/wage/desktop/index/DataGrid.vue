@@ -12,14 +12,18 @@
     @row-dbl-click="gotoPreview"
   >
     <template #expand="{ item }">
-      <preview inside :item="item" :base-route="baseRoute" />
+      <preview
+        inside
+        :item="item"
+        :title="title"
+        :base-route="baseRoute"
+      />
     </template>
   </data-grid>
 </template>
 
 <script setup>
   import { useRouter } from "vue-router";
-  import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
@@ -28,6 +32,7 @@
   const props = defineProps({
     tableStore: useDataTable,
     baseRoute: String,
+    title: String,
   });
 
   const router = useRouter();

@@ -17,7 +17,7 @@
         @click="crudStore.deleteById(model.id, deleteCallBack)"
       />
 
-      <menu-button-print @click="printStore.handlePrint()" />
+      <menu-button-print @click="openPreview" />
       <menu-button
         @click="printStore.downloadPdf()"
         icon="download"
@@ -37,6 +37,7 @@
   import { useRouter } from "vue-router";
   import { usePrint } from "src/composables/usePrint";
   import { downloadManager } from "src/helpers";
+  import { usePreview } from "src/composables/usePreview";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
@@ -44,6 +45,7 @@
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import DataGridPreview from "./printPreview/DataGridPreview.vue";
 
   const props = defineProps({
     model: Object,
@@ -55,7 +57,8 @@
 
   const router = useRouter();
   const printStore = usePrint();
-  
+  const previewStore = usePreview();
+
   function deleteCallBack() {
     //voucherStore.state.firstLoad.value = false;
     router.back();
@@ -65,5 +68,17 @@
     downloadManager.downloadGet(
       `${props.baseRoute}/generatePdf/${id}`
     );
+  };
+
+  const openPreview = async () => {
+    previewStore.openDialog({
+      title: props.title,
+      component: DataGridPreview,
+      previewProps: {
+        tableStore: props.crudStore,
+        title: props.title,
+        wageId: props.model?.id,
+      },
+    });
   };
 </script>
