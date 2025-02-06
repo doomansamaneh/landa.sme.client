@@ -72,19 +72,3 @@
     )
   );
 </script>
-
-<style lang="scss">
-  .print-preview-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .print-preview-table th,
-  .print-preview-table td {
-    border: 1px solid black;
-    padding: 5px;
-    text-align: start;
-  }
-  .print-preview-table th {
-    background-color: #f2f2f2;
-  }
-</style>
