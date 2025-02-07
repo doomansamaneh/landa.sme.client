@@ -39,13 +39,13 @@
     <div class="col-5">
       <div
         v-if="printStore.orientation.value === 'p'"
-        class="rectangle vertical-rectangle"
+        class="rectangle vertical-rectangle text-black"
       >
         عمودی
       </div>
       <div
         v-if="printStore.orientation.value === 'l'"
-        class="rectangle horizontal-rectangle"
+        class="rectangle horizontal-rectangle text-black"
       >
         افقی
       </div>

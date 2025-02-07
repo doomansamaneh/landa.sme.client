@@ -1,5 +1,11 @@
 <template>
-  <q-markup-table bordered flat dense separator="horizontal">
+  <q-markup-table
+    bordered
+    flat
+    dense
+    separator="horizontal"
+    class="q-mt-md create-form-table"
+  >
     <thead>
       <tr>
         <th style="width: 1px">#</th>
@@ -15,7 +21,7 @@
       <tr
         v-for="(row, index) in formStore.model.value.voucherItems"
         :key="index"
-        class="q-pa-md vertical-top"
+        class="q-pa-md"
       >
         <td class="text-center">{{ index + 1 }}</td>
         <td>
@@ -55,25 +61,17 @@
             placeholder="بستانکار"
           />
         </td>
-        <td class="text-center q-gutter-x-sm">
+        <td class="text-center">
           <q-btn
-            color="primary"
             unelevated
             round
+            dense
             class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewRow(index, row)"
-          />
-          <q-btn
-            color="red"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_delete"
+            size="14px"
             @click="formStore.deleteRow(index)"
-          />
+          >
+            <q-icon size="24px" name="o_delete" />
+          </q-btn>
         </td>
       </tr>
     </tbody>
@@ -110,6 +108,19 @@
       </tr>
     </tfoot>
   </q-markup-table>
+
+  <q-btn
+    v-if="formStore.model.value.voucherItems.length > 0"
+    padding="4px 12px"
+    unelevated
+    rounded
+    dense
+    class="bg-primary primary-shadow text-white q-mt-md"
+    @click="formStore.addNewRow(index, row)"
+  >
+    <q-icon size="20px" name="o_add" class="q-mr-xs" />
+    <div class="no-letter-spacing">افزودن ردیف</div>
+  </q-btn>
 </template>
 
 <script setup>

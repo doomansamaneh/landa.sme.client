@@ -42,4 +42,38 @@
   .print-preview-table th {
     background-color: $dark;
   }
+
+  @media print {
+    .print-preview-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .print-preview-table th,
+    .print-preview-table td {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: start;
+    }
+    .print-preview-table th {
+      background-color: #f2f2f2;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+
+  .create-form-table {
+    td,
+    th {
+      padding: 6px 2px !important;
+    }
+  }
+
+  .create-form-table.padding-table {
+    padding: 24px !important;
+  }
+
+  .create-form-table th {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
 }

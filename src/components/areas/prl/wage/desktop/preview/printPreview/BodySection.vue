@@ -1,9 +1,7 @@
 <template>
   <table
+    class="print-preview-table"
     v-if="!tableStore.showLoader.value"
-    border="1"
-    cellspacing="0"
-    cellpadding="5"
   >
     <thead>
       <tr>
@@ -82,17 +80,21 @@
 </script>
 
 <style lang="scss">
-  .print-preview-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .print-preview-table th,
-  .print-preview-table td {
-    border: 1px solid black;
-    padding: 5px;
-    text-align: start;
-  }
-  .print-preview-table th {
-    background-color: #f2f2f2;
+  @media print {
+    .print-preview-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .print-preview-table th,
+    .print-preview-table td {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: start;
+    }
+    .print-preview-table th {
+      background-color: #f2f2f2;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
   }
 </style>
