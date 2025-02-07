@@ -60,4 +60,20 @@
       print-color-adjust: exact;
     }
   }
+
+  .create-form-table {
+    td,
+    th {
+      padding: 6px 2px !important;
+    }
+  }
+
+  .create-form-table.padding-table {
+    padding: 24px !important;
+  }
+
+  .create-form-table th {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
 }

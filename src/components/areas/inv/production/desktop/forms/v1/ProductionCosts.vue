@@ -1,9 +1,17 @@
 <template>
-  <q-markup-table bordered flat dense separator="horizontal">
+  <q-markup-table
+    class="create-form-table"
+    bordered
+    flat
+    dense
+    separator="horizontal"
+  >
     <thead>
       <tr>
         <th colspan="100%">
-          <div class="row q-gutter-sm text-body1 no-letter-spacing text-weight-700">
+          <div
+            class="row q-gutter-sm text-body1 no-letter-spacing text-weight-700"
+          >
             <div>
               <q-btn
                 round
@@ -19,9 +27,9 @@
       </tr>
       <tr>
         <th style="width: 1px">#</th>
-        <th>سرفصل هزینه</th>
-        <th style="width: 240px">مبلغ</th>
-        <th style="width: 1px"></th>
+        <th style="width: 65%">سرفصل هزینه</th>
+        <th style="width: 25%">مبلغ</th>
+        <th style="width: 10%"></th>
       </tr>
     </thead>
     <tbody>
@@ -47,25 +55,17 @@
             placeholder="مبلغ"
           />
         </td>
-        <td class="text-center q-gutter-x-sm">
+        <td class="text-center">
           <q-btn
-            color="primary"
             unelevated
             round
+            dense
             class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewCost(index, row)"
-          />
-          <q-btn
-            color="red"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_delete"
+            size="14px"
             @click="formStore.deleteCost(index)"
-          />
+          >
+            <q-icon size="24px" name="o_delete" />
+          </q-btn>
         </td>
       </tr>
     </tbody>
@@ -86,6 +86,19 @@
       </tr>
     </tbody>
   </q-markup-table>
+
+  <q-btn
+    v-if="model?.costs?.length > 0"
+    padding="4px 12px"
+    unelevated
+    rounded
+    dense
+    class="bg-primary primary-shadow text-white q-my-md"
+    @click="formStore.addNewCost(index, row)"
+  >
+    <q-icon size="20px" name="o_add" class="q-mr-xs" />
+    <div class="no-letter-spacing">افزودن ردیف</div>
+  </q-btn>
 </template>
 
 <script setup>
