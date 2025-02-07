@@ -18,17 +18,17 @@
       :message="validationMessage"
     />
 
-    <template #prepend>
+    <template v-if="hasPrepend" #prepend>
       <slot name="prepend"></slot>
     </template>
-    <template #append>
+    <template v-if="hasAppend" #append>
       <slot name="append"></slot>
     </template>
   </q-input>
 </template>
 
 <script setup>
-  import { ref, computed, watch } from "vue";
+  import { ref, computed, watch, useSlots } from "vue";
   import { useCurrencyInput } from "vue-currency-input";
   import { useI18n } from "vue-i18n";
 
@@ -61,6 +61,8 @@
   });
 
   const { t } = useI18n();
+  const slots = useSlots();
+
   const validationMessage = ref("");
 
   const {
@@ -92,6 +94,9 @@
         ]
       : [];
   });
+
+  const hasPrepend = computed(() => !!slots.prepend);
+  const hasAppend = computed(() => !!slots.append);
 
   defineExpose({
     focus: () => {
