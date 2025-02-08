@@ -1,16 +1,24 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { fetchWrapper, bus } from "src/helpers";
 
+const showLoader = ref(false);
+
 export function useBalanceSheet() {
   const model = ref({ reviewItems: [] });
 
   async function loadData() {
-    const response = await fetchWrapper.get(
-      `acc/report/balanceSheet`,
-      [],
-      true
-    );
-    model.value = response.data.data;
+    showLoader.value = true;
+
+    try {
+      const response = await fetchWrapper.get(
+        `acc/report/balanceSheet`,
+        [],
+        true
+      );
+      model.value = response.data.data;
+    } finally {
+      showLoader.value = false;
+    }
   }
 
   async function loadSLData(item) {
@@ -35,6 +43,7 @@ export function useBalanceSheet() {
 
   return {
     model,
+    showLoader,
     loadSLData,
   };
 }

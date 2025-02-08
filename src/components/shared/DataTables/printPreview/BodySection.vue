@@ -1,7 +1,5 @@
 <template>
-  <q-card-section
-    class="q-py-none q-px-xs"
-  >
+  <q-card-section class="q-py-none q-px-xs">
     <table class="print-preview-table">
       <thead>
         <tr>
@@ -20,9 +18,7 @@
         <template v-for="(row, index) in rows" :key="row.id">
           <tr class="table-row">
             <td>
-              <div
-                class="text-caption no-letter-spacing text-on-dark"
-              >
+              <div class="text-caption no-letter-spacing">
                 {{ index + 1 }}
               </div>
             </td>

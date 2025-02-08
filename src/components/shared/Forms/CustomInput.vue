@@ -24,23 +24,24 @@
       :message="validationMessage"
     />
 
-    <template #prepend>
+    <template v-if="hasPrepend" #prepend>
       <slot name="prepend"></slot>
     </template>
-    <template #append>
+    <template v-if="hasAppend" #append>
       <slot name="append"></slot>
     </template>
   </q-input>
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { computed, ref, useSlots } from "vue";
   import { useI18n } from "vue-i18n";
 
   import CustomLabel from "./CustomLabel.vue";
   import ValidationAlert from "./ValidationAlert.vue";
 
   const { t } = useI18n();
+  const slots = useSlots();
 
   const props = defineProps({
     label: String,
@@ -74,4 +75,7 @@
         ]
       : [];
   });
+
+  const hasPrepend = computed(() => !!slots.prepend);
+  const hasAppend = computed(() => !!slots.append);
 </script>

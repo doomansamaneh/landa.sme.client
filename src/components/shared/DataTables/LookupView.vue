@@ -43,7 +43,7 @@
         />
       </template>
 
-      <template #prepend>
+      <template v-if="tableStore.inputInnerLoader.value" #prepend>
         <q-spinner
           v-if="tableStore.inputInnerLoader.value"
           size="18px"

@@ -1,5 +1,10 @@
 <template>
-  <q-markup-table bordered flat separator="horizontal">
+  <q-markup-table
+    bordered
+    flat
+    separator="horizontal"
+    class="create-form-table"
+  >
     <thead>
       <!-- <tr>
         <th colspan="100%">
@@ -212,18 +217,3 @@
     row.productUnitTitle = product?.productUnitTitle ?? null;
   };
 </script>
-<style scoped>
-  td,
-  th {
-    padding: 6px 2px !important;
-  }
-
-  .q-markup-table.padding-table {
-    padding: 24px !important;
-  }
-
-  .q-markup-table th {
-    font-size: 14px !important;
-    font-weight: 600 !important;
-  }
-</style>

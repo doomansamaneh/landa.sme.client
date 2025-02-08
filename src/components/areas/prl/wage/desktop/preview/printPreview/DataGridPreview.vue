@@ -1,7 +1,7 @@
 <template>
   <div :ref="printStore.printRef">
     <header-section :title="title" />
-    <body-section />
+    <body-section :wage-id="wageId" />
   </div>
 </template>
 
@@ -13,6 +13,8 @@
 
   const props = defineProps({
     title: String,
+    wageId: String,
+    tableStore: Object,
   });
 
   const printStore = usePrint();

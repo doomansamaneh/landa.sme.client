@@ -27,7 +27,7 @@
 
 <script setup>
   import { useQuasar } from "quasar";
-  import { useDataTable } from "src/composables/useDataTable";
+  import { useBalanceSheet } from "src/components/areas/acc/_composables/useBalanceSheet";
   import { usePreview } from "src/composables/usePreview";
 
   import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
@@ -38,8 +38,9 @@
   const props = defineProps({
     toolbar: Boolean,
     title: String,
-    tableStore: useDataTable,
   });
+
+  const dataStore = useBalanceSheet();
 
   const baseRoute = "sls/Invoice";
   const previewStore = usePreview();
@@ -50,7 +51,7 @@
       title: props.title,
       component: DataGridPreview,
       previewProps: {
-        tableStore: props.tableStore,
+        tableStore: dataStore,
         title: props.title,
       },
     });

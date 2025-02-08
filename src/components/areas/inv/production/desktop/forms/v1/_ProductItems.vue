@@ -1,5 +1,11 @@
 <template>
-  <q-markup-table bordered flat dense separator="horizontal">
+  <q-markup-table
+    class="create-form-table"
+    bordered
+    flat
+    dense
+    separator="horizontal"
+  >
     <thead>
       <tr>
         <th colspan="100%">
@@ -23,9 +29,9 @@
         <th style="width: 1px">#</th>
         <th>کالا</th>
         <th>واحد سنجش</th>
-        <th style="width: 180px">تعداد/مقدار</th>
-        <th style="width: 180px">قیمت نسبی فی</th>
-        <th style="width: 1px"></th>
+        <th style="width: 20%">تعداد/مقدار</th>
+        <th style="width: 20%">قیمت نسبی فی</th>
+        <th style="width: 10%"></th>
       </tr>
     </thead>
     <tbody>
@@ -65,25 +71,17 @@
             placeholder="قیمت فی"
           />
         </td>
-        <td class="text-center q-gutter-x-sm">
+        <td class="text-center">
           <q-btn
-            color="primary"
             unelevated
             round
+            dense
             class="text-on-dark"
-            size="sm"
-            icon="o_add"
-            @click="formStore.addNewItem(index, row)"
-          />
-          <q-btn
-            color="red"
-            unelevated
-            round
-            class="text-on-dark"
-            size="sm"
-            icon="o_delete"
+            size="14px"
             @click="formStore.deleteItem(index)"
-          />
+          >
+            <q-icon size="24px" name="o_delete" />
+          </q-btn>
         </td>
       </tr>
     </tbody>
@@ -104,6 +102,19 @@
       </tr>
     </tbody>
   </q-markup-table>
+
+  <q-btn
+    v-if="model?.items?.length > 0"
+    padding="4px 12px"
+    unelevated
+    rounded
+    dense
+    class="bg-primary primary-shadow text-white q-my-md"
+    @click="formStore.addNewItem(index, row)"
+  >
+    <q-icon size="20px" name="o_add" class="q-mr-xs" />
+    <div class="no-letter-spacing">افزودن ردیف</div>
+  </q-btn>
 </template>
 
 <script setup>

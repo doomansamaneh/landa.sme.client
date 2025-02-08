@@ -25,6 +25,6 @@
     gridStore: Object,
     tableStore: Object,
     crudStore: Object,
-    noFullscreen: Boolean
+    noFullscreen: Boolean,
   });
 </script>

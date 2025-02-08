@@ -14,7 +14,7 @@
       <template v-for="item in currentList" :key="item.id">
         <tr>
           <td>{{ item.glCode }} - {{ item.glTitle }}</td>
-          <td>
+          <td style="width: 20%">
             {{
               helper.formatNumber(
                 item.debitRemained - item.creditRemained
@@ -26,7 +26,7 @@
 
       <tr>
         <td class="text-bold">جمع بدهی</td>
-        <td class="text-bold">
+        <td class="text-bold" style="width: 20%">
           {{ helper.formatNumber(totalCL + totalFL) }}
         </td>
       </tr>
@@ -72,19 +72,3 @@
     )
   );
 </script>
-
-<style lang="scss">
-  .print-preview-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .print-preview-table th,
-  .print-preview-table td {
-    border: 1px solid black;
-    padding: 5px;
-    text-align: start;
-  }
-  .print-preview-table th {
-    background-color: #f2f2f2;
-  }
-</style>

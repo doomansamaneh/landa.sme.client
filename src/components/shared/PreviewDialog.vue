@@ -91,9 +91,9 @@
     onDialogCancel();
   }
 
-  // const showLoader = computed(
-  //   () => props.previewProps.tableStore.showLoader.value
-  // );
+  const showLoader = computed(
+    () => props.previewProps.tableStore.showLoader.value
+  );
 
   const openPrintSettings = () => {
     dialogStore.openDialog({

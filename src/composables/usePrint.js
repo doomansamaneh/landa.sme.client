@@ -4,7 +4,6 @@ import { useQuasar } from "quasar";
 import html2pdf from "html2pdf.js";
 
 const printRef = ref(null);
-
 const format = ref("a4");
 const orientation = ref("p");
 
@@ -40,8 +39,54 @@ export function usePrint() {
 
   const { handlePrint } = useVueToPrint(options);
 
+  const injectPrintPreviewTableStyles = () => {
+    document.body.dataset.bgColor =
+      document.body.style.backgroundColor;
+    document.body.dataset.textColor = document.body.style.color;
+
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#000";
+
+    const tables = document.querySelectorAll(".print-preview-table");
+    tables.forEach((table) => {
+      table.style.backgroundColor = "#fff";
+      table.style.borderCollapse = "collapse";
+
+      table.querySelectorAll("th, td").forEach((cell) => {
+        cell.style.border = "1px solid black";
+        cell.style.color = "black";
+      });
+
+      table.querySelectorAll("th").forEach((th) => {
+        th.style.backgroundColor = "#f2f2f2";
+      });
+    });
+  };
+
+  const removePrintPreviewTableStyles = () => {
+    document.body.style.backgroundColor =
+      document.body.dataset.bgColor || "";
+    document.body.style.color = document.body.dataset.textColor || "";
+
+    document
+      .querySelectorAll(".print-preview-table")
+      .forEach((table) => {
+        table.style.backgroundColor = "";
+        table.style.borderCollapse = "";
+
+        table.querySelectorAll("th, td").forEach((cell) => {
+          cell.style.border = "";
+          cell.style.color = "";
+        });
+
+        table.querySelectorAll("th").forEach((th) => {
+          th.style.backgroundColor = "";
+        });
+      });
+  };
+
   const downloadPdf = () => {
-    const printElement = printRef.value;
+    injectPrintPreviewTableStyles();
 
     html2pdf()
       .set({
@@ -68,11 +113,12 @@ export function usePrint() {
           putTotalPages: true,
         },
       })
-      .from(printElement)
+      .from(printRef.value)
       .save()
-      .catch((error) =>
-        console.error("PDF generation error:", error)
-      );
+      .catch((error) => console.error("PDF generation error:", error))
+      .finally(() => {
+        removePrintPreviewTableStyles();
+      });
   };
 
   defineExpose({

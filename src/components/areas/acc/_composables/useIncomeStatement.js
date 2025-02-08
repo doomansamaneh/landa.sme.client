@@ -1,16 +1,23 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { fetchWrapper, bus, helper } from "src/helpers";
 
+const showLoader = ref(false);
+
 export function useIncomeStatement() {
   const model = ref({ reviewItems: [] });
 
   async function loadData() {
-    const response = await fetchWrapper.get(
-      `acc/report/incomeStatement`,
-      [],
-      true
-    );
-    model.value = response.data.data;
+    showLoader.value = true;
+    try {
+      const response = await fetchWrapper.get(
+        `acc/report/incomeStatement`,
+        [],
+        true
+      );
+      model.value = response.data.data;
+    } finally {
+      showLoader.value = false;
+    }
   }
 
   async function loadSLData(item) {
@@ -82,6 +89,7 @@ export function useIncomeStatement() {
 
   return {
     model,
+    showLoader,
     accountClCodes,
     totalIcome,
     getFilteredItems,

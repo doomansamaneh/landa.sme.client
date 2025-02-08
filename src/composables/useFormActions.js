@@ -6,6 +6,8 @@ import { fetchWrapper, helper, bus } from "src/helpers";
 
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 
+const showLoader = ref(false);
+
 export function useFormActions(baseURL, model, diableDirtyCheck) {
   const isDirty = ref(false);
   const $q = useQuasar();
@@ -51,13 +53,27 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     return response.data.data;
   };
 
-  const getById = (id, url) =>
-    onGetById(url ?? `${baseURL}/getById`, id).then(
-      (responseData) => {
-        if (!diableDirtyCheck) resetIsDirty();
-        return responseData;
-      }
-    );
+  // const getById = (id, url) =>
+  //   onGetById(url ?? `${baseURL}/getById`, id).then(
+  //     (responseData) => {
+  //       if (!diableDirtyCheck) resetIsDirty();
+  //       return responseData;
+  //     }
+  //   );
+
+  const getById = async (id, url) => {
+    showLoader.value = true;
+    try {
+      const responseData = await onGetById(
+        url ?? `${baseURL}/getById`,
+        id
+      );
+      if (!diableDirtyCheck) resetIsDirty();
+      return responseData;
+    } finally {
+      showLoader.value = false;
+    }
+  };
 
   const getCreateModel = (callBack) =>
     fetchWrapper
@@ -216,6 +232,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
 
   return {
     getById,
+    showLoader,
     getCreateModel,
     getPreviewById,
     createOrEdit,

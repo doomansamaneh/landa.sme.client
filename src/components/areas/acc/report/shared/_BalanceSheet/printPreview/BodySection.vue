@@ -1,5 +1,5 @@
 <template>
-  <div class="column q-gutter-md">
+  <div v-if="!dataStore.showLoader.value" class="column q-gutter-md">
     <div>
       <asset-table
         :model="dataStore.model.value"
@@ -38,3 +38,23 @@
 
   const dataStore = useBalanceSheet();
 </script>
+
+<style lang="scss">
+  @media print {
+    .print-preview-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .print-preview-table th,
+    .print-preview-table td {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: start;
+    }
+    .print-preview-table th {
+      background-color: #f2f2f2;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
