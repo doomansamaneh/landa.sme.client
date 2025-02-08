@@ -45,7 +45,7 @@
     </template>
   </div>
 
-  <div class="border-radius-sm bordered">
+  <div class="border-radius-sm bordered overflow-hidden">
     <div
       class="text-body1 no-letter-spacing text-weight-500 text-center q-pa-md"
     >
@@ -53,41 +53,42 @@
     </div>
     <invoice-payment
       ref="paymentsGrid"
-      class="q-mt-md"
       :detail-url="detailUrl"
       :invoice-id="model.id"
     />
 
-    <q-separator class="q-my-sm" />
+    <q-separator size="2px" />
 
-    <div class="row text-body3 q-gutter-x-sm">
-      <div class="col-9 row items-center justify-end">
-        <span class="text-body3">جمع کل:</span>
-      </div>
-      <div class="col text-body3 text-bold">
-        {{ helper.formatNumber(model.amount) }}
-      </div>
-    </div>
+    <table class="q-table data-table">
+      <tbody>
+        <tr>
+          <td><span class="text-body3">جمع کل:</span></td>
+          <td>
+            <div class="text-body3 text-bold" style="text-align: end">
+              {{ helper.formatNumber(model.amount) }}
+            </div>
+          </td>
+        </tr>
 
-    <div class="row text-body3 q-gutter-x-sm q-mt-md">
-      <div class="col-9 row items-center justify-end">
-        <span class="text-body3">جمع دریافتی:</span>
-      </div>
-      <div class="col text-body3 text-bold">
-        {{ helper.formatNumber(payedAmount) }}
-      </div>
-    </div>
+        <tr>
+          <td><span class="text-body3">جمع دریافتی:</span></td>
+          <td>
+            <div class="text-body3 text-bold" style="text-align: end">
+              {{ helper.formatNumber(payedAmount) }}
+            </div>
+          </td>
+        </tr>
 
-    <q-separator class="q-my-sm" size="2px" />
-
-    <div class="row text-body3 q-gutter-x-sm q-mb-md">
-      <div class="col-9 row items-center justify-end">
-        <span class="text-body3">مانده:</span>
-      </div>
-      <div class="col text-body2 text-bold">
-        {{ helper.formatNumber(remainedAmount) }}
-      </div>
-    </div>
+        <tr>
+          <td><span class="text-body3 text-bold">مانده:</span></td>
+          <td>
+            <div class="text-body2 text-bold" style="text-align: end">
+              {{ helper.formatNumber(remainedAmount) }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
