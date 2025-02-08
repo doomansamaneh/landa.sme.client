@@ -13,37 +13,51 @@
   <q-separator />
 
   <q-card-section>
-    <div class="q-gutter-sm">
-      <div class="q-gutter-sm">
-        <span>{{ $t("shared.labels.rowNo") }}:</span>
+    <div style="display: flex; gap: 8px">
+      <div>
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.rowNo") }}:
+        </span>
         <span class="text-weight-700">
           {{ model?.rowNo }}
         </span>
-        <template v-if="model?.no">
-          <span>{{ $t("shared.labels.no") }}:</span>
+      </div>
+      <template v-if="model?.no">
+        <div>
+          <span style="padding-left: 2px">
+            {{ $t("shared.labels.no") }}:
+          </span>
           <span class="text-weight-700">
             {{ model?.no }}
           </span>
-        </template>
-        <span>{{ $t("shared.labels.date") }}:</span>
+        </div>
+      </template>
+      <div>
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.date") }}:
+        </span>
         <span class="text-weight-700">
           {{ model?.date.substring(0, 10) }}
         </span>
-        <template v-if="model?.contractTitle">
-          <span>{{ $t("shared.labels.contractTitle") }}:</span>
+      </div>
+      <template v-if="model?.contractTitle">
+        <div>
+          <span style="padding-left: 2px">
+            {{ $t("shared.labels.contractTitle") }}:
+          </span>
           <span class="text-weight-700">
             {{ model?.contractTitle }}
           </span>
-        </template>
-      </div>
-      <div class="q-gutter-sm">
-        <span>{{ $t("shared.labels.comment") }}:</span>
-        <span class="q-px-sm">
-          {{ model?.subject }}
-        </span>
-      </div>
-      <slot name="header"></slot>
+        </div>
+      </template>
     </div>
+    <div class="q-mt-xs">
+      <span style="padding-left: 2px">
+        {{ $t("shared.labels.comment") }}:
+      </span>
+      {{ model?.subject }}
+    </div>
+    <slot name="header"></slot>
   </q-card-section>
 </template>
 
