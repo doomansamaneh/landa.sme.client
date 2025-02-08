@@ -9,7 +9,7 @@
     expandable
     toolbar
     :no-fullscreen="true"
-    :title="title"
+    :title="`${title} / ${subTitle}`"
   >
     <template #cell-voucherSubject="{ item }">
       {{ item.voucherSubject }}
@@ -111,6 +111,7 @@
     columns: Array,
     noFullscreen: Boolean,
     title: String,
+    subTitle: String,
   });
 
   const searchStore = useVoucherSearch();

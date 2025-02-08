@@ -31,8 +31,6 @@
   import CustomLabel from "./CustomLabel.vue";
   import ValidationAlert from "./ValidationAlert.vue";
 
-  const { t } = useI18n();
-
   const props = defineProps({
     label: String,
     placeholder: String,
@@ -42,7 +40,9 @@
     options: Array,
     rules: Array,
   });
+
   const modelValue = defineModel("modelValue");
+  const { t } = useI18n();
   const validationMessage = ref("");
 
   const rules = computed(() => {

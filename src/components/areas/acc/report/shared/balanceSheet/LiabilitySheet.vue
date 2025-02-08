@@ -24,7 +24,7 @@
           </div>
         </template>
 
-        <template v-if="totalFL.value && totalFL.value !== 0">
+        <template v-if="totalFL.value !== 0">
           <balance-sheet-item-header title="بدهی بلند مدت" />
 
           <div class="q-pl-xs sub-item-container">

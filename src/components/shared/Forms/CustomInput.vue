@@ -40,9 +40,6 @@
   import CustomLabel from "./CustomLabel.vue";
   import ValidationAlert from "./ValidationAlert.vue";
 
-  const { t } = useI18n();
-  const slots = useSlots();
-
   const props = defineProps({
     label: String,
     placeholder: String,
@@ -59,6 +56,8 @@
   });
 
   const modelValue = defineModel("modelValue");
+  const { t } = useI18n();
+  const slots = useSlots();
   const validationMessage = ref("");
 
   const rules = computed(() => {

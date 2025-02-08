@@ -235,6 +235,7 @@ export function useInvoiceModel(config) {
             productTitle: product.title,
             productUnitId: product.productUnitId,
             productUnitTitle: product.productUnitTitle,
+            productCodeTitle: `${product.code} - ${product.title}`,
             price:
               product.price <= 0 ? product.maxPrice : product.price,
             discount: 0,
@@ -255,6 +256,7 @@ export function useInvoiceModel(config) {
       newRow.productId = product.id;
       newRow.productCode = product.code;
       newRow.productTitle = product.title;
+      newRow.productCodeTitle = `${product.code} - ${product.title}`;
       newRow.productUnitId = product.productUnitId;
       newRow.productUnitTitle = product.productUnitTitle;
       newRow.price =

@@ -43,25 +43,27 @@
         <td>
           <product-lookup
             class="first"
-            autofocus
-            placeholder="کالا"
             v-model:selectedId="row.productId"
             v-model:selectedText="row.productTitle"
             :filterExpression="productFilter"
+            placeholder="کالا"
+            required
             @rowSelected="productChanged($event, row)"
           />
         </td>
         <td>
           <product-unit-lookup
-            placeholder="واحد سنجش"
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
+            placeholder="واحد سنجش"
+            required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.quantity"
             placeholder="تعداد/مقدار"
+            required
           />
         </td>
         <td class="text-center">

@@ -70,38 +70,44 @@
     >
       <q-tab-panel name="cl" class="no-padding">
         <review-cl
-          :title="$t('shared.accountTreeType.cl')"
           :report-store="accountReviewStore"
+          :title="title"
+          :sub-title="$t('shared.accountTreeType.cl')"
         />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
         <review-gl
-          :title="$t('shared.accountTreeType.gl')"
           :report-store="accountReviewStore"
+          :title="title"
+          :sub-title="$t('shared.accountTreeType.gl')"
         />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
         <review-sl
-          :title="$t('shared.accountTreeType.sl')"
           :report-store="accountReviewStore"
+          :title="title"
+          :sub-title="$t('shared.accountTreeType.sl')"
         />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
         <review-dl
-          :title="$t('shared.accountTreeType.dl')"
           :report-store="accountReviewStore"
+          :title="title"
+          :sub-title="$t('shared.accountTreeType.dl')"
         />
       </q-tab-panel>
       <q-tab-panel name="slDl" class="no-padding">
         <review-sl-dl
-          :title="$t('shared.accountTreeType.slDl')"
           :report-store="accountReviewStore"
+          :title="title"
+          :sub-title="$t('shared.accountTreeType.slDl')"
         />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
         <review-item
-          :title="$t('shared.labels.accountItem')"
           :report-store="accountReviewStore"
+          :title="title"
+          :sub-title="$t('shared.labels.accountItem')"
         />
       </q-tab-panel>
     </q-tab-panels>

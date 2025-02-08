@@ -253,7 +253,8 @@
     "dataDeletedSuccessfully": "اطلاعات با موفقیت حذف شد",
     "accountClosedSuccessfully": "سند اختتامیه با موفقیت صادر شد",
     "interimAccountClosedBefore": "سند سود و زیانی با موفقیت صادر شد",
-    "interimAccountClosedSuccessfully": "سند سود و زیانی پیشتر صادر شده است"
+    "interimAccountClosedSuccessfully": "سند سود و زیانی پیشتر صادر شده است",
+    "captcha": "کد امنیتی درست نیست"
   },
 
   "shared": {

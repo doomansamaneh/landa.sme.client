@@ -10,7 +10,7 @@
     wrapCells
     dense_
     expandable_
-    :title="title"
+    :title="`${title} / ${subTitle}`"
   >
     <template #toolbar_="{ tableStore }">
       <data-grid-toolbar :table-store="tableStore">
@@ -125,6 +125,7 @@
   const props = defineProps({
     tableStore: Object,
     title: String,
+    subTitle: String,
   });
 
   const colspan = computed(

@@ -52,20 +52,6 @@
         <div class="row items-center">
           <div>
             <q-btn
-              round
-              unelevated
-              dense
-              class="text-on-dark"
-              @click="$emit('reload-data')"
-            >
-              <q-icon size="20px" name="o_description" />
-              <q-tooltip class="custom-tooltip">
-                {{ $t("page.payment-detail.buttons.excel") }}
-              </q-tooltip>
-            </q-btn>
-          </div>
-          <div>
-            <q-btn
               class="text-on-dark"
               dense
               unelevated

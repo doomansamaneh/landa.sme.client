@@ -4,31 +4,33 @@
       <div class="row q-col-gutter-md">
         <div class="col-md-4 col-sm-12 col-xs-12">
           <inventory-lookup
-            label="انبار کالا"
             v-model:selectedId="model.inventoryId"
             v-model:selectedText="model.inventoryTitle"
+            label="انبار کالا"
+            required
           />
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
           <inventory-lookup
-            label="انبار مقصد"
             v-model:selectedId="model.toInventoryId"
             v-model:selectedText="model.toInventoryTitle"
+            label="انبار مقصد"
+            required
           />
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
           <contract-lookup
-            label="قرارداد"
             v-model:selectedId="model.contractId"
             v-model:selectedText="model.contractTitle"
+            label="قرارداد"
           />
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
           <custom-input
-            label="شرح"
             v-model="model.summary"
-            hide-bottom-space
             type="textarea"
+            label="شرح"
+            required
           />
         </div>
       </div>
@@ -37,7 +39,7 @@
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="row justify-end">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <date-time label="تاریخ" v-model="model.date" />
+          <date-time v-model="model.date" label="تاریخ" required />
         </div>
       </div>
     </div>
@@ -45,7 +47,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
 
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";

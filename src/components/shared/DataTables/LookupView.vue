@@ -400,6 +400,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
   import { useDataTable } from "src/composables/useDataTable";
   import {
     defaultLookupPageSize,
@@ -442,6 +443,7 @@
 
   const selectedId = defineModel("selectedId");
   const selectedText = defineModel("selectedText");
+  const { t } = useI18n();
   const $q = useQuasar();
   const dialogStore = useDialog();
 

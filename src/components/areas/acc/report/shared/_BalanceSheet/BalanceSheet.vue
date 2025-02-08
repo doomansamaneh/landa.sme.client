@@ -24,7 +24,6 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { useBalanceSheet } from "../../../_composables/useBalanceSheet";
 
   import Asset from "../balanceSheet/AssetSheet.vue";
