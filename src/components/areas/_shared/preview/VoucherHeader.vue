@@ -15,10 +15,18 @@
   <q-card-section>
     <div class="q-gutter-sm">
       <div class="q-gutter-sm">
-        <span>{{ $t("shared.labels.rowNo") }}:</span>
-        <span class="text-weight-700">
-          {{ model?.rowNo }}
-        </span>
+        <template
+          v-if="
+            appConfigStore.model.value.companySetting
+              .showDocNoInVoucher
+          "
+        >
+          <span>{{ $t("shared.labels.rowNo") }}:</span>
+          <span class="text-weight-700">
+            {{ model?.rowNo }}
+          </span>
+        </template>
+
         <template v-if="model?.no">
           <span>{{ $t("shared.labels.no") }}:</span>
           <span class="text-weight-700">
