@@ -14,7 +14,11 @@
 
   <q-card-section>
     <div style="display: flex; gap: 8px">
-      <div>
+      <div
+        v-if="
+          appConfigStore.model.value.companySetting.showDocNoInVoucher
+        "
+      >
         <span style="padding-left: 2px">
           {{ $t("shared.labels.rowNo") }}:
         </span>
@@ -22,16 +26,16 @@
           {{ model?.rowNo }}
         </span>
       </div>
-      <template v-if="model?.no">
-        <div>
-          <span style="padding-left: 2px">
-            {{ $t("shared.labels.no") }}:
-          </span>
-          <span class="text-weight-700">
-            {{ model?.no }}
-          </span>
-        </div>
-      </template>
+
+      <div v-if="model?.no">
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.no") }}:
+        </span>
+        <span class="text-weight-700">
+          {{ model?.no }}
+        </span>
+      </div>
+
       <div>
         <span style="padding-left: 2px">
           {{ $t("shared.labels.date") }}:
@@ -40,17 +44,16 @@
           {{ model?.date.substring(0, 10) }}
         </span>
       </div>
-      <template v-if="model?.contractTitle">
-        <div>
-          <span style="padding-left: 2px">
-            {{ $t("shared.labels.contractTitle") }}:
-          </span>
-          <span class="text-weight-700">
-            {{ model?.contractTitle }}
-          </span>
-        </div>
-      </template>
+      <div v-if="model?.contractTitle">
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.contractTitle") }}:
+        </span>
+        <span class="text-weight-700">
+          {{ model?.contractTitle }}
+        </span>
+      </div>
     </div>
+
     <div class="q-mt-xs">
       <span style="padding-left: 2px">
         {{ $t("shared.labels.comment") }}:

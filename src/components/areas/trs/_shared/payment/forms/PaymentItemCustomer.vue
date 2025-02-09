@@ -9,7 +9,11 @@
     </div>
 
     <div class="col-md-2 col-sm-12 col-xs-12">
-      <custom-input-number v-model="paymentItem.fee" label="کارمزد" />
+      <custom-input-number
+        v-model="paymentItem.fee"
+        label="کارمزد"
+        required
+      />
     </div>
   </div>
 
@@ -19,7 +23,7 @@
         v-model:selectedId="paymentItem.slId"
         v-model:selectedText="paymentItem.slTitle"
         label="حساب معین"
-        rquired
+        required
       />
     </div>
   </div>
@@ -30,7 +34,7 @@
         v-model:selectedId="paymentItem.customerId"
         v-model:selectedText="paymentItem.customerName"
         label="طرف حساب، مخاطب"
-        rquired
+        required
       />
     </div>
   </div>

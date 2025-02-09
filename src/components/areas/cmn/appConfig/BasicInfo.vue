@@ -49,7 +49,7 @@
           class="text-body2 no-letter-spacing"
           dense
           size="46px"
-          label="شماره عطف را در چاپ سند حسابداری نشان بده"
+          label="ش پیگیری را در چاپ سند حسابداری نشان بده"
           v-model="
             configStore.model.value.companySetting.showDocNoInVoucher
           "
