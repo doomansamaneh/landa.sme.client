@@ -13,45 +13,54 @@
   <q-separator />
 
   <q-card-section>
-    <div class="q-gutter-sm">
-      <div class="q-gutter-sm">
-        <template
-          v-if="
-            appConfigStore.model.value.companySetting
-              .showDocNoInVoucher
-          "
-        >
-          <span>{{ $t("shared.labels.rowNo") }}:</span>
-          <span class="text-weight-700">
-            {{ model?.rowNo }}
-          </span>
-        </template>
+    <div style="display: flex; gap: 8px">
+      <div
+        v-if="
+          appConfigStore.model.value.companySetting.showDocNoInVoucher
+        "
+      >
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.rowNo") }}:
+        </span>
+        <span class="text-weight-700">
+          {{ model?.rowNo }}
+        </span>
+      </div>
 
-        <template v-if="model?.no">
-          <span>{{ $t("shared.labels.no") }}:</span>
-          <span class="text-weight-700">
-            {{ model?.no }}
-          </span>
-        </template>
-        <span>{{ $t("shared.labels.date") }}:</span>
+      <div v-if="model?.no">
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.no") }}:
+        </span>
+        <span class="text-weight-700">
+          {{ model?.no }}
+        </span>
+      </div>
+
+      <div>
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.date") }}:
+        </span>
         <span class="text-weight-700">
           {{ model?.date.substring(0, 10) }}
         </span>
-        <template v-if="model?.contractTitle">
-          <span>{{ $t("shared.labels.contractTitle") }}:</span>
-          <span class="text-weight-700">
-            {{ model?.contractTitle }}
-          </span>
-        </template>
       </div>
-      <div class="q-gutter-sm">
-        <span>{{ $t("shared.labels.comment") }}:</span>
-        <span class="q-px-sm">
-          {{ model?.subject }}
+      <div v-if="model?.contractTitle">
+        <span style="padding-left: 2px">
+          {{ $t("shared.labels.contractTitle") }}:
+        </span>
+        <span class="text-weight-700">
+          {{ model?.contractTitle }}
         </span>
       </div>
-      <slot name="header"></slot>
     </div>
+
+    <div class="q-mt-xs">
+      <span style="padding-left: 2px">
+        {{ $t("shared.labels.comment") }}:
+      </span>
+      {{ model?.subject }}
+    </div>
+    <slot name="header"></slot>
   </q-card-section>
 </template>
 
