@@ -336,7 +336,7 @@ export const customerName = {
   template: "{{customerCode}} {{customerName}}",
   showFilter: true,
   class: "text-left",
-  style: "width:320px",
+  style: "min-width:180px",
 };
 
 export const subject = {

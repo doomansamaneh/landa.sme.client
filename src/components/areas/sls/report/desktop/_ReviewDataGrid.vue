@@ -12,6 +12,11 @@
     :expandable="expandable"
     :title="`${title} / ${subTitle}`"
   >
+    <template #cell-productTitle="{ item }">
+      {{ item.productTitle }}
+      <small v-if="item.itemComment">({{ item.itemComment }})</small>
+    </template>
+
     <template #footer-subtotal="{ selectedRows }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}
