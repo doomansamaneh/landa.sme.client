@@ -47,7 +47,11 @@
         :title="$t('shared.salesReviewType.prdCrm')"
       />
 
-      <card-tab name="il" icon="o_receipt" title="ریز گردش" />
+      <card-tab
+        name="il"
+        icon="o_receipt"
+        :title="$t('shared.labels.accountItem')"
+      />
     </card-tabs>
 
     <q-tab-panels
@@ -60,30 +64,40 @@
         <review-pg
           :report-store="salesReviewStore"
           :data-source="`sls/report/get${actionName}ByProductGroup`"
+          :title="title"
+          :sub-title="$t('shared.salesReviewType.pg')"
         />
       </q-tab-panel>
       <q-tab-panel name="prd" class="no-padding">
         <review-prd
           :report-store="salesReviewStore"
           :data-source="`sls/report/get${actionName}ByProduct`"
+          :title="title"
+          :sub-title="$t('shared.salesReviewType.prd')"
         />
       </q-tab-panel>
       <q-tab-panel name="crm" class="no-padding">
         <review-customer
           :report-store="salesReviewStore"
           :data-source="`sls/report/get${actionName}ByCustomer`"
+          :title="title"
+          :sub-title="$t('shared.salesReviewType.crm')"
         />
       </q-tab-panel>
       <q-tab-panel name="prdCrm" class="no-padding">
         <review-prd-customer
           :report-store="salesReviewStore"
           :data-source="`sls/report/get${actionName}ByCustomerProduct`"
+          :title="title"
+          :sub-title="$t('shared.salesReviewType.prdCrm')"
         />
       </q-tab-panel>
       <q-tab-panel name="il" class="no-padding">
         <review-item
           :report-store="salesReviewStore"
           :data-source="`sls/report/get${actionName}Detail`"
+          :title="title"
+          :sub-title="$t('shared.labels.accountItem')"
         />
       </q-tab-panel>
     </q-tab-panels>

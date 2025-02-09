@@ -26,19 +26,21 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <sl-lookup
-            :autofocus="index === formStore.newAddedItemIndex.value"
-            placeholder="حساب معین"
             v-model:selectedId="row.slId"
             v-model:selectedText="row.slTitle"
+            :autofocus="index === formStore.newAddedItemIndex.value"
+            placeholder="حساب معین"
+            required
+            clearable
             @rowSelected="slChanged($event, row, index)"
           />
         </td>
         <td>
           <dl-lookup
             ref="dl"
-            placeholder="تفصیلی"
             v-model:selectedId="row.dlId"
             v-model:selectedText="row.dlTitle"
+            placeholder="تفصیلی"
           />
           <!-- :filter-expression="getDlFilters(row)" -->
         </td>
@@ -47,18 +49,21 @@
             v-model="row.comment"
             autogrow
             placeholder="شرح"
+            required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.debit"
             placeholder="بدهکار"
+            required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.credit"
             placeholder="بستانکار"
+            required
           />
         </td>
         <td class="text-center">
@@ -78,7 +83,8 @@
     <tbody v-if="formStore.model.value.voucherItems.length === 0">
       <tr>
         <td colspan="100%" class="text-center">
-          <q-btn
+          <no-item-selected />
+          <!-- <q-btn
             class="q-my-xl primary-shadow"
             rounded
             unelevated
@@ -87,7 +93,7 @@
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
             افزودن ردیف
-          </q-btn>
+          </q-btn> -->
         </td>
       </tr>
     </tbody>
@@ -97,27 +103,30 @@
           <strong>سرجمع:</strong>
         </td>
         <td>
-          <b>{{ formStore.totalDebit.value?.toLocaleString() }}</b>
+          <b>{{ helper.formatNumber(formStore.totalDebit.value) }}</b>
         </td>
         <td>
-          <b>{{ formStore.totalCredit.value?.toLocaleString() }}</b>
+          <b>
+            {{ helper.formatNumber(formStore.totalCredit.value) }}
+          </b>
         </td>
         <td>
-          <b>{{ formStore.totalDif.value?.toLocaleString() }}</b>
+          <b>{{ helper.formatNumber(formStore.totalDif.value) }}</b>
         </td>
       </tr>
     </tfoot>
   </q-markup-table>
 
   <q-btn
-    v-if="formStore.model.value.voucherItems.length > 0"
     padding="4px 12px"
     unelevated
     rounded
     dense
     class="bg-primary primary-shadow text-white q-mt-md"
-    @click="formStore.addNewRow(index, row)"
+    @click="formStore.pushNewRow()"
   >
+    <!-- v-if="formStore.model.value.voucherItems.length > 0" -->
+    <!-- @click="formStore.addNewRow(index, row)" -->
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
     <div class="no-letter-spacing">افزودن ردیف</div>
   </q-btn>
@@ -126,7 +135,9 @@
 <script setup>
   import { ref } from "vue";
   import { sqlOperator } from "src/constants";
+  import { helper } from "src/helpers";
 
+  import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import DlLookup from "src/components/shared/lookups/AccountDLLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -135,6 +146,7 @@
   const props = defineProps({
     formStore: Object,
   });
+
   const dl = ref([]);
 
   const slChanged = (sl, row, index) => {

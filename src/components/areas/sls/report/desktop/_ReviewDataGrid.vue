@@ -10,6 +10,7 @@
     wrapCells
     dense_
     :expandable="expandable"
+    :title="`${title} / ${subTitle}`"
   >
     <template #footer-subtotal="{ selectedRows }">
       <td :colspan="colspan" class="text-right">
@@ -73,6 +74,8 @@
   const props = defineProps({
     tableStore: useDataTable,
     expandable: Boolean,
+    title: String,
+    subTitle: String,
   });
 
   const colspan = computed(

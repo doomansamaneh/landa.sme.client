@@ -41,18 +41,18 @@
         <td class="text-center">{{ index + 1 }}</td>
         <td>
           <sl-lookup
-            class="first"
-            autofocus
-            placeholder="سرفصل هزینه"
             v-model:selectedId="row.slId"
             v-model:selectedText="row.slTitle"
             :filterExpression="slFilter"
+            placeholder="سرفصل هزینه"
+            required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.amount"
             placeholder="مبلغ"
+            required
           />
         </td>
         <td class="text-center">

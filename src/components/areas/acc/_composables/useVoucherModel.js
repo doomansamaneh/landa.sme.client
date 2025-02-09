@@ -58,11 +58,12 @@ export function useVoucherModel({ baseRoute, preview }) {
   const pushNewRow = (item) => {
     if (item)
       formItemStore.pushNewItem(model.value.voucherItems, item);
-    else
+    else {
       formItemStore.pushNewItem(
         model.value.voucherItems,
         itemStore.model.value
       );
+    }
   };
 
   const deleteRow = (index) => {
