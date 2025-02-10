@@ -46,16 +46,32 @@
       class="transparent"
     >
       <q-tab-panel name="cl" class="no-padding">
-        <tax-report data-source="sls/report/GetTaxSales" />
+        <tax-report
+          :title="title"
+          :sub-title="$t('main-menu-items.Sls_Invoice_View')"
+          data-source="sls/report/GetTaxSales"
+        />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
-        <tax-report data-source="sls/report/GetTaxPurchases" />
+        <tax-report
+          :title="title"
+          :sub-title="$t('main-menu-items.Sls_Purchase_View')"
+          data-source="sls/report/GetTaxPurchases"
+        />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
-        <tax-report data-source="sls/report/GetTaxSalesReturn" />
+        <tax-report
+          :title="title"
+          :sub-title="$t('main-menu-items.Sls_SalesReturn_View')"
+          data-source="sls/report/GetTaxSalesReturn"
+        />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
-        <tax-report data-source="sls/report/GetTaxPurchaseReturn" />
+        <tax-report
+          :title="title"
+          :sub-title="$t('main-menu-items.Sls_PurchaseReturn_View')"
+          data-source="sls/report/GetTaxPurchaseReturn"
+        />
       </q-tab-panel>
     </q-tab-panels>
   </q-card>

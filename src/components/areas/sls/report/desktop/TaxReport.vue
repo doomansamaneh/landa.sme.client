@@ -11,6 +11,7 @@
     wrapCells
     dense_
     expandable
+    :title="`${title} / ${subTitle}`"
   >
     <template #footer-subtotal="{ selectedRows }">
       <td :colspan="colspan" class="text-right">
@@ -102,6 +103,8 @@
     filterExpression: Array,
     gridStore: Object,
     columns: Array,
+    title: String,
+    subTitle: String,
   });
 
   const searchStore = useInvoiceSearch();

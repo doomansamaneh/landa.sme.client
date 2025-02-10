@@ -14,11 +14,11 @@ export function useBankAccount(action) {
   }
 
   const chartSeries = computed(() =>
-    model.value.map((item) => item.amount)
+    model.value?.map((item) => item.amount)
   );
 
   const chartLabels = computed(() =>
-    model.value.map((item) => item.label)
+    model.value?.map((item) => item.label)
   );
 
   const total = computed(() =>
