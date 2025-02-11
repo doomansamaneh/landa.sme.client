@@ -5,7 +5,7 @@ import { useFormActions } from "src/composables/useFormActions";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { wageModel } from "src/models/areas/prl/wageModel";
 import { useWageState } from "./useWageState";
-import { insurranceType } from "src/constants";
+import { insuranceType } from "src/constants";
 
 export function useWageModel({ baseRoute, preview }) {
   const router = useRouter();
@@ -113,7 +113,7 @@ export function useWageModel({ baseRoute, preview }) {
         food: 0,
         housing: 0,
         mission: 0,
-        insurranceTypeId: insurranceType.normal,
+        insurranceTypeId: insuranceType.normal,
         child: 0,
         leave: 0,
         bonus: 0,

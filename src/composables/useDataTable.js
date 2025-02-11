@@ -215,7 +215,7 @@ export function useDataTable({
     }
     //else console.warn("[landa]: columns are not defined")
 
-    if (state.value.searchModel != null)
+    if (state.value.searchModel?.value)
       pagination.value.searchModel = JSON.stringify(
         state.value.searchModel.value
       );

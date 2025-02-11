@@ -267,9 +267,10 @@ export const closeAccounts = {
   cogs: "33422e29-2694-4d91-abd7-90303c0e1966",
 };
 
-export const insurranceType = {
+export const insuranceType = {
   normal: 0,
   none: 1,
+  ceo: 2,
 };
 
 export const quoteStatus = {

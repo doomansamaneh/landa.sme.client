@@ -11,7 +11,7 @@
         />
       </slot>
 
-      <table class="q-table data-table">
+      <table class="q-table data-table_ create-form-table">
         <thead>
           <tr v-if="!hideHeader">
             <th v-if="numbered" style="width: 1px" class="dense_">
