@@ -1,6 +1,6 @@
 <template>
   <q-markup-table
-    class="create-form-table"
+    class="q-markup-table--impacted"
     bordered
     flat
     dense

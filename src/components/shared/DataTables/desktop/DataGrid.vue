@@ -2,7 +2,12 @@
   <div :class="containerClass">
     <slot name="title"></slot>
 
-    <div class="q-table__middle scroll">
+    <div
+      class="q-table__middle"
+      :class="
+        tableStore.showLoader.value ? 'overflow-hidden' : 'scroll'
+      "
+    >
       <slot name="toolbar" :tableStore="tableStore">
         <toolbar
           v-if="toolbar"
@@ -11,7 +16,7 @@
         />
       </slot>
 
-      <table class="q-table data-table">
+      <table class="q-table">
         <thead>
           <tr v-if="!hideHeader">
             <th v-if="numbered" style="width: 1px" class="dense_">
@@ -402,23 +407,5 @@
   .expand-close {
     transform: rotate(0);
     transition-duration: 300ms;
-  }
-
-  .dense {
-    width: 1px;
-    padding-right: 5px;
-    padding-left: 5px;
-  }
-
-  .data-table {
-    th {
-      font-weight: bold !important;
-      font-size: 13px !important;
-    }
-
-    td {
-      letter-spacing: 0 !important;
-      font-size: 14px !important;
-    }
   }
 </style>

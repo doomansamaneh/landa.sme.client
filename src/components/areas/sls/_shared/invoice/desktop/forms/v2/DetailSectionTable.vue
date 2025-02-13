@@ -207,18 +207,3 @@
   // };
 </script>
 
-<style scoped>
-  td,
-  th {
-    padding: 6px 2px !important;
-  }
-
-  .q-markup-table.padding-table {
-    padding: 24px !important;
-  }
-
-  .q-markup-table th {
-    font-size: 14px !important;
-    font-weight: 600 !important;
-  }
-</style>

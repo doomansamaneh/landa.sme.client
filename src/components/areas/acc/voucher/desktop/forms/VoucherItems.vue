@@ -2,9 +2,8 @@
   <q-markup-table
     bordered
     flat
-    dense
     separator="horizontal"
-    class="q-mt-md create-form-table"
+    class="q-mt-md q-markup-table--impacted"
   >
     <thead>
       <tr>

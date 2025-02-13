@@ -3,7 +3,7 @@
     bordered
     flat
     separator="horizontal"
-    class="create-form-table"
+    class="q-markup-table--impacted"
   >
     <thead>
       <!-- <tr>
