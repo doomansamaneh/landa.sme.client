@@ -59,7 +59,7 @@
           <custom-select
             v-model="wageItem.insurranceTypeId"
             :options="
-              helper.getEnumOptions(insurranceType, 'insurranceType')
+              helper.getEnumOptions(insuranceType, 'insuranceType')
             "
             label="نوع بیمه"
             required
@@ -182,7 +182,7 @@
   import {
     customerType,
     sqlOperator,
-    insurranceType,
+    insuranceType,
   } from "src/constants";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";

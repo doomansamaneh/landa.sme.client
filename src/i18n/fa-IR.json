@@ -423,9 +423,10 @@
       "checkBounced": "چک برگشتی",
       "checkSpent": "انتقال چک/ خرج شده"
     },
-    "insurranceType": {
+    "insuranceType": {
       "normal": "30 درصد",
-      "none": "فاقد بیمه"
+      "none": "فاقد بیمه",
+      "ceo": "هیات مدیره"
     },
     "customerType": {
       "legal": "حقوقی",

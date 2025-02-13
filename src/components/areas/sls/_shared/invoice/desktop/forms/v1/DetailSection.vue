@@ -227,7 +227,8 @@
         ];
 
   const productFilter =
-    props.formType == invoiceFormType.sales
+    props.formType === invoiceFormType.sales ||
+    props.formType === invoiceFormType.salesReturn
       ? [
           {
             fieldName: "isForSale",
@@ -259,15 +260,5 @@
 
   const toggleDiscountType = () => {
     discountIsCash.value = !discountIsCash.value;
-  };
-
-  const confirmGeneralDiscount = () => {
-    if (discountIsCash.value)
-      props.formStore.applyDiscountAmount(generalDiscountValue.value);
-    else
-      props.formStore.applyDiscountPercent(
-        generalDiscountValue.value
-      );
-    discountVisible.value = false;
   };
 </script>
