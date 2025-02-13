@@ -15,9 +15,7 @@
 
     <header-section :model="model" />
     <q-separator />
-    <q-card-section class="q-px-none">
-      <wage-item-data-grid :wage-id="id" toolbar_ />
-    </q-card-section>
+    <wage-item-data-grid :wage-id="id" toolbar_ />
   </q-card>
 </template>
 
