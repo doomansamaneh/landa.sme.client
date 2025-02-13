@@ -2,7 +2,7 @@
   <q-card class="no-border">
     <q-card-section>
       <div class="row justify-between items-center">
-        <div class="text-body1 no-letter-spacing">
+        <div class="text-body1">
           {{ title ?? $t("shared.labels.search") }}
         </div>
         <div>
@@ -141,18 +141,14 @@
         <div class="column q-pb-lg q-col-gutter-lg">
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <div class="text-body2 q-mb-sm no-letter-spacing">
-                مبلغ از
-              </div>
+              <div class="text-body2 q-mb-sm">مبلغ از</div>
               <custom-input-number
                 v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
             </div>
             <div class="col">
-              <div class="text-body2 q-mb-sm no-letter-spacing">
-                مبلغ تا
-              </div>
+              <div class="text-body2 q-mb-sm">مبلغ تا</div>
               <custom-input-number
                 v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
@@ -162,17 +158,13 @@
 
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <div class="text-body2 q-mb-sm no-letter-spacing">
-                تاریخ از
-              </div>
+              <div class="text-body2 q-mb-sm">تاریخ از</div>
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
               />
             </div>
             <div class="col">
-              <div class="text-body2 q-mb-sm no-letter-spacing">
-                تاریخ تا
-              </div>
+              <div class="text-body2 q-mb-sm">تاریخ تا</div>
               <date-time
                 v-model="searchStore.searchModel.value.dateTo"
               />
@@ -180,9 +172,7 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm no-letter-spacing">
-              نوع فروش
-            </div>
+            <div class="text-body2 q-mb-sm">نوع فروش</div>
             <sale-type-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.typeId
@@ -194,9 +184,7 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm no-letter-spacing">
-              مشتری
-            </div>
+            <div class="text-body2 q-mb-sm">مشتری</div>
             <customer-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.customerId
@@ -209,9 +197,7 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm no-letter-spacing">
-              کالا و خدمات
-            </div>
+            <div class="text-body2 q-mb-sm">کالا و خدمات</div>
             <product-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.productId
@@ -224,9 +210,7 @@
           </div>
 
           <div>
-            <div class="text-body2 no-letter-spacing q-mb-sm">
-              قرارداد
-            </div>
+            <div class="text-body2 q-mb-sm">قرارداد</div>
             <contract-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.contractId
@@ -239,9 +223,7 @@
           </div>
 
           <div>
-            <div class="text-body2 no-letter-spacing q-mb-sm">
-              بازاریاب
-            </div>
+            <div class="text-body2 q-mb-sm">بازاریاب</div>
             <customer-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.marketerId
@@ -254,9 +236,7 @@
           </div>
 
           <div>
-            <div class="text-body2 no-letter-spacing q-mb-sm">
-              شرح
-            </div>
+            <div class="text-body2 q-mb-sm">شرح</div>
             <custom-input-number
               type="textarea"
               v-model="searchStore.searchModel.value.comment"
@@ -319,16 +299,14 @@
     >
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
-          <span class="text-body1 no-letter-spacing">
-            انتخاب تسویه
-          </span>
+          <span class="text-body1">انتخاب تسویه</span>
           <q-btn dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 
       <q-card-section>
         <q-option-group
-          class="text-body2 no-letter-spacing"
+          class="text-body2"
           :options="helper.getEnumOptions(depositType, 'depositType')"
           v-model="searchStore.searchModel.value.depositType"
         />
@@ -350,16 +328,14 @@
     >
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
-          <span class="text-body1 no-letter-spacing">
-            انتخاب زمان
-          </span>
+          <span class="text-body1">انتخاب زمان</span>
           <q-btn dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 
       <q-card-section>
         <q-option-group
-          class="text-body2 no-letter-spacing"
+          class="text-body2"
           :options="helper.getEnumOptions(dateRange, 'dateRange')"
           v-model="searchStore.searchModel.value.dateRange"
         />
@@ -381,16 +357,14 @@
     >
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
-          <span class="text-body1 no-letter-spacing">
-            سامانه مودیان
-          </span>
+          <span class="text-body1">سامانه مودیان</span>
           <q-btn dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 
       <q-card-section>
         <q-option-group
-          class="text-body2 no-letter-spacing"
+          class="text-body2"
           :options="
             helper.getEnumOptions(taxSentStatus, 'taxSentStatus')
           "

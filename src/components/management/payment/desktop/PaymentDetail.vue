@@ -5,7 +5,7 @@
   >
     <div class="row q-gutter-sm items-center">
       <back-button />
-      <div class="text-body1 no-letter-spacing text-weight-700">
+      <div class="text-body1 text-weight-700">
         {{ $t("pages.payment-detail") }}
       </div>
     </div>
@@ -42,9 +42,7 @@
         <q-item-label class="text-h6 text-weight-700 text-on-dark">
           {{ $t("pages.payment-detail") }}
         </q-item-label>
-        <q-item-label
-          class="caption-on-dark text-body2 no-letter-spacing q-mt-sm"
-        >
+        <q-item-label class="caption-on-dark text-body2 q-mt-sm">
           {{ $t("page.payment-detail.caption") }}
         </q-item-label>
       </q-item-section>
@@ -110,9 +108,7 @@
             />
           </div>
 
-          <div
-            class="text-center no-letter-spacing text-body2 text-bold"
-          >
+          <div class="text-center text-body2 text-bold">
             {{ $t("shared.labels.invoice") }}
           </div>
 
@@ -197,36 +193,36 @@
             <thead class="text-left">
               <tr>
                 <th>
-                  <div class="no-letter-spacing">
+                  <div class="">
                     {{ $t("page.payment-detail.row") }}
                   </div>
                 </th>
                 <th>
-                  <span class="no-letter-spacing">عنوان</span>
+                  <span class="">عنوان</span>
                 </th>
                 <th>
-                  <div class="no-letter-spacing">
+                  <div class="">
                     {{ $t("page.payment-detail.amount") }}
                   </div>
                 </th>
                 <th>
-                  <div class="no-letter-spacing">
+                  <div class="">
                     {{ $t("page.payment-detail.unit") }}
                   </div>
                 </th>
                 <th>
-                  <div style="width: 70px" class="no-letter-spacing">
+                  <div style="width: 70px" class="">
                     {{ $t("page.payment-detail.unit-price") }}
                   </div>
                 </th>
                 <th>
-                  <div class="no-letter-spacing">
+                  <div class="">
                     {{ $t("page.payment-detail.total") }}
                   </div>
                 </th>
               </tr>
             </thead>
-            <tbody class="text-body3 no-letter-spacing">
+            <tbody class="text-body3">
               <tr>
                 <td class=""><span class="">1</span></td>
                 <td>
@@ -237,12 +233,12 @@
                     class="ellipsis-2-lines"
                   >
                     <div>
-                      <span class="no-letter-spacing">
+                      <span class="">
                         {{ model.planTitle }}
                       </span>
                     </div>
                     <div>
-                      <span class="no-letter-spacing">
+                      <span class="">
                         دوره: ({{ model.fromDateString }} -
                         {{ model.toDateString }})
                       </span>
@@ -250,20 +246,20 @@
                   </div>
                 </td>
                 <td>
-                  <div class="no-letter-spacing">
+                  <div class="">
                     {{ model.month }}
                   </div>
                 </td>
                 <td>
-                  <div class="no-letter-spacing">ماه</div>
+                  <div class="">ماه</div>
                 </td>
                 <td>
-                  <div class="no-letter-spacing">
+                  <div class="">
                     {{ helper.formatNumber(model.planCost) }}
                   </div>
                 </td>
                 <td>
-                  <div class="no-letter-spacing">
+                  <div class="">
                     {{
                       helper.formatNumber(
                         model.month * model.planCost
@@ -274,12 +270,12 @@
               </tr>
               <tr>
                 <td class="text-right" colspan="5">
-                  <span class="no-letter-spacing text-bold">
+                  <span class="text-bold">
                     {{ $t("page.payment-detail.sub-total") }}
                   </span>
                 </td>
                 <td class="">
-                  <span class="no-letter-spacing">
+                  <span class="">
                     {{
                       helper.formatNumber(
                         model.planCost * model.month
@@ -290,12 +286,10 @@
               </tr>
               <tr>
                 <td class="text-right" colspan="5">
-                  <span class="no-letter-spacing text-bold">
-                    تخفیف:
-                  </span>
+                  <span class="text-bold">تخفیف:</span>
                 </td>
                 <td>
-                  <span class="no-letter-spacing">
+                  <span class="">
                     {{
                       helper.formatNumber(
                         model.planCost * model.month - model.amount
@@ -306,11 +300,9 @@
               </tr>
               <tr>
                 <td class="text-right" colspan="5">
-                  <span class="q-pl-xs text-bold no-letter-spacing">
-                    جمع کل:
-                  </span>
+                  <span class="q-pl-xs text-bold">جمع کل:</span>
                   <span class="">
-                    <span class="no-letter-spacing">
+                    <span class="">
                       ({{ numberToWords(model.amount) }}
                       <span class="text-bold">
                         {{ $t("shared.labels.rial") }}
@@ -320,7 +312,7 @@
                   </span>
                 </td>
                 <td>
-                  <span class="no-letter-spacing">
+                  <span class="">
                     {{ helper.formatNumber(model.amount) }}
                   </span>
                 </td>
@@ -346,7 +338,7 @@
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("shared.labels.refresh") }}
           </q-item-section>
         </q-item>
@@ -357,7 +349,7 @@
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("page.payment-detail.buttons.excel") }}
           </q-item-section>
         </q-item>

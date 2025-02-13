@@ -4,9 +4,7 @@
   >
     <div>
       <div>
-        <div
-          class="text-h6 text-weight-700 no-letter-spacing q-mb-md"
-        >
+        <div class="text-h6 text-weight-700 q-mb-md">
           پیکربندی سامانه
         </div>
 
@@ -21,9 +19,7 @@
             to="/cmn/appConfig/basicInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 اطلاعات اصلی
               </q-item-label>
             </q-item-section>
@@ -44,9 +40,7 @@
             to="/cmn/appConfig/contactInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 تماس
               </q-item-label>
             </q-item-section>
@@ -67,9 +61,7 @@
             to="/cmn/appConfig/VATInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 مالیات
               </q-item-label>
             </q-item-section>
@@ -90,9 +82,7 @@
             to="/cmn/appConfig/salaryInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 حقوق و دستمزد
               </q-item-label>
             </q-item-section>
@@ -113,9 +103,7 @@
             to="/cmn/appConfig/salesInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 بازرگانی، خرید و فروش
               </q-item-label>
             </q-item-section>
@@ -136,9 +124,7 @@
             to="/cmn/appConfig/logoInfo"
           >
             <q-item-section :class="itemClass">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 لوگو
               </q-item-label>
             </q-item-section>
@@ -163,9 +149,7 @@
           to="/cmn/appConfig/import"
         >
           <q-item-section :class="itemClass">
-            <q-item-label
-              class="text-on-dark text-body2 no-letter-spacing"
-            >
+            <q-item-label class="text-on-dark text-body2">
               درون‌ریزی اطلاعات
             </q-item-label>
           </q-item-section>
@@ -186,9 +170,7 @@
           to=""
         >
           <q-item-section :class="itemClass">
-            <q-item-label
-              class="text-on-dark text-body2 no-letter-spacing"
-            >
+            <q-item-label class="text-on-dark text-body2">
               پلاگین‌ها
             </q-item-label>
           </q-item-section>

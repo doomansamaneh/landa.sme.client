@@ -2,7 +2,7 @@
   <div style="margin-top: 0" :class="styles()">
     <q-card-section :class="padding()">
       <q-checkbox
-        class="text-body1 no-letter-spacing"
+        class="text-body1"
         label="لوگو در چاپ باشد"
         v-model="
           configStore.model.value.companySetting.invoiceShowLogo
@@ -28,7 +28,7 @@
       <q-checkbox
         dense
         size="46px"
-        class="text-body1 no-letter-spacing"
+        class="text-body1"
         label="امضا در چاپ باشد"
         v-model="
           configStore.model.value.companySetting.invoiceShowSignature

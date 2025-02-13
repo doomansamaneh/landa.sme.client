@@ -4,7 +4,7 @@
   >
     <div class="theme-settings-container">
       <div class="row items-center justify-between q-mb-md">
-        <div class="text-h6 text-weight-700 no-letter-spacing">
+        <div class="text-h6 text-weight-700">
           {{ $t("change-password-page.title") }}
         </div>
         <back-button />

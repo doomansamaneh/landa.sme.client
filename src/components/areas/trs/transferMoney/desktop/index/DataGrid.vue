@@ -20,9 +20,7 @@
         v-if="item.contractTitle"
       >
         {{ item.contractTitle }}
-        <q-tooltip
-          class="custom-tooltip text-body1 no-letter-spacing"
-        >
+        <q-tooltip class="custom-tooltip text-body1">
           قرارداد
         </q-tooltip>
       </q-badge>

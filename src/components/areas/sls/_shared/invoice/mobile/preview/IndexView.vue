@@ -3,20 +3,16 @@
     <div class="row items-center no-wrap q-gutter-md">
       <div class="row no-wrap items-center col">
         <q-avatar size="42px" class="primary-gradient text-white">
-          <div class="text-body2 no-letter-spacing text-bold">
+          <div class="text-body2 text-bold">
             {{ helper.getFirstChar(model?.customerName) }}
           </div>
         </q-avatar>
 
         <div class="q-ml-md">
-          <div
-            class="ellipsis text-body2 text-weight-500 no-letter-spacing"
-          >
+          <div class="ellipsis text-body2 text-weight-500">
             {{ model?.customerName }}
           </div>
-          <div
-            class="text-body3 caption-on-dark ellipsis no-letter-spacing"
-          >
+          <div class="text-body3 caption-on-dark ellipsis">
             {{ model?.customerSummary?.address?.address }}
           </div>
         </div>
@@ -25,7 +21,7 @@
       <div>
         <div>
           <span
-            class="flex justify-end text-body3 no-letter-spacing caption-on-dark text-weight-500"
+            class="flex justify-end text-body3 caption-on-dark text-weight-500"
           >
             {{ model.no }}
             <span class="caption-on-dark">#</span>
@@ -33,9 +29,7 @@
         </div>
 
         <div>
-          <span
-            class="text-body3 no-letter-spacing caption-on-dark text-weight-500"
-          >
+          <span class="text-body3 caption-on-dark text-weight-500">
             {{ model.date?.substring(0, 10) }}
             <q-icon size="10px" name="o_calendar_today" />
           </span>
@@ -75,9 +69,7 @@
   </div>
 
   <div class="row items-center q-gutter-sm q-pt-lg q-pb-sm">
-    <div
-      class="caption-on-dark text-weight-500 text-body2 no-letter-spacing"
-    >
+    <div class="caption-on-dark text-weight-500 text-body2">
       جزییات اقلام
     </div>
   </div>
@@ -96,9 +88,7 @@
         </q-avatar>
 
         <div>
-          <div
-            class="text-body3 ellipsis text-weight-500 no-letter-spacing"
-          >
+          <div class="text-body3 ellipsis text-weight-500">
             {{ item.productTitle }}
           </div>
 
@@ -126,9 +116,7 @@
     />
   </div>
 
-  <div
-    class="q-pt-sm caption-on-dark text-body2 text-weight-500 no-letter-spacing"
-  >
+  <div class="q-pt-sm caption-on-dark text-body2 text-weight-500">
     خلاصه کل
   </div>
 
@@ -174,7 +162,7 @@
         </span>
       </div>
       <div class="row q-gutter-xs items-center">
-        <span class="text-body3 no-letter-spacing no-letter-spacing">
+        <span class="text-body3">
           {{ numberToWords(model.totalPrice ?? 0) }}
         </span>
         <span class="text-caption text-weight-500">

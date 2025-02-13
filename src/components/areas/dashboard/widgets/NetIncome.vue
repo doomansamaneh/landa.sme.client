@@ -43,14 +43,14 @@
               </q-item>
             </div>
 
-            <div class="text-body1 no-letter-spacing text-weight-700">
+            <div class="text-body1 text-weight-700">
               {{
                 helper.formatNumberReadable(
                   netIncomeStore.thisYearRevenue?.value
                 )
               }}
               <!-- <span
-                class="text-body2 text-weight-300 no-letter-spacing caption-on-dark"
+                class="text-body2 text-weight-300  caption-on-dark"
               >
                 ({{
                   helper.formatNumber(
@@ -59,7 +59,7 @@
                 }})
               </span> -->
             </div>
-            <q-item-label class="text-body3 no-letter-spacing">
+            <q-item-label class="text-body3">
               <span v-if="netIncomeStore.revenuePercent?.value > 0">
                 <q-icon
                   name="arrow_upward"

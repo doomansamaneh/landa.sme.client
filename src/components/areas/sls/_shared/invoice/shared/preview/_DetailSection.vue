@@ -3,17 +3,15 @@
     <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
       <slot v-if="$q.screen.gt.xs" name="header">
         <div class="column q-gutter-y-md">
-          <div class="text-body1 text-weight-700 no-letter-spacing">
+          <div class="text-body1 text-weight-700">
             #{{ model.no }}
           </div>
 
           <div v-if="model?.voucherId">
-            <div class="text-body3 text-weight-700 no-letter-spacing">
-              سند حسابداری
-            </div>
-            <div class="q-mt-sm text-body3 no-letter-spacing">
+            <div class="text-body3 text-weight-700">سند حسابداری</div>
+            <div class="q-mt-sm text-body3">
               <custom-link
-                class="text-body3 no-letter-spacing"
+                class="text-body3"
                 :to="`/acc/voucher/preview/${model.voucherId}`"
                 :title="model.voucherNo"
               />
@@ -22,9 +20,9 @@
 
           <div>
             <div class="text-caption text-bold">مشتری</div>
-            <div class="q-mt-sm text-body3 no-letter-spacing">
+            <div class="q-mt-sm text-body3">
               <custom-link
-                class="text-body3 no-letter-spacing"
+                class="text-body3"
                 :to="`/crm/customer/preview/${model.customerId}`"
                 :title="model.customerName"
               />
@@ -32,10 +30,8 @@
           </div>
 
           <div v-if="model?.value?.invoiceId">
-            <div class="text-body3 no-letter-spacing text-weight-700">
-              فاکتور
-            </div>
-            <div class="q-mt-sm text-body3 no-letter-spacing">
+            <div class="text-body3 text-weight-700">فاکتور</div>
+            <div class="q-mt-sm text-body3">
               <custom-link
                 :to="`/sls/invoice/preview/${model.invoiceId}`"
                 :title="model.invoiceNo"
@@ -44,28 +40,22 @@
           </div>
 
           <div v-if="model.marketerName">
-            <div class="text-body3 no-letter-spacing text-weight-700">
-              بازاریاب
-            </div>
-            <div class="q-mt-sm text-body3 no-letter-spacing">
+            <div class="text-body3 text-weight-700">بازاریاب</div>
+            <div class="q-mt-sm text-body3">
               {{ model.marketerName }}
             </div>
           </div>
 
           <div v-if="model.contractTitle">
-            <div class="text-body3 no-letter-spacing text-weight-700">
-              قرارداد
-            </div>
-            <div class="q-mt-sm text-body3 no-letter-spacing">
+            <div class="text-body3 text-weight-700">قرارداد</div>
+            <div class="q-mt-sm text-body3">
               {{ model.contractTitle }}
             </div>
           </div>
 
           <div v-if="model.inventoryTitle">
-            <div class="text-body3 no-letter-spacing text-weight-700">
-              انبار
-            </div>
-            <div class="q-mt-sm text-body3 no-letter-spacing">
+            <div class="text-body3 text-weight-700">انبار</div>
+            <div class="q-mt-sm text-body3">
               {{ model.inventoryTitle }}
             </div>
           </div>
@@ -91,9 +81,7 @@
               <template #default>
                 <div class="row items-center no-wrap q-gutter-xs">
                   <q-icon size="20px" name="o_arrow_downward" />
-                  <div
-                    class="text-body2 text-weight-700 no-letter-spacing"
-                  >
+                  <div class="text-body2 text-weight-700">
                     دریافت و پرداخت
                   </div>
                 </div>
@@ -103,11 +91,7 @@
               <template #default>
                 <div class="row items-center no-wrap q-gutter-xs">
                   <q-icon size="20px" name="o_paid" />
-                  <div
-                    class="text-body2 text-weight-700 no-letter-spacing"
-                  >
-                    مالیات
-                  </div>
+                  <div class="text-body2 text-weight-700">مالیات</div>
                 </div>
               </template>
             </q-tab>
@@ -115,9 +99,7 @@
               <template #default>
                 <div class="row items-center no-wrap q-gutter-xs">
                   <q-icon size="20px" name="o_history" />
-                  <div
-                    class="text-body2 text-weight-700 no-letter-spacing"
-                  >
+                  <div class="text-body2 text-weight-700">
                     تاریخچه
                   </div>
                 </div>

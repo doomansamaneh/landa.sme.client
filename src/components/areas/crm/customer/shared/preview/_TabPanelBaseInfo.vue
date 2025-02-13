@@ -15,7 +15,7 @@
             <q-icon name="o_business" size="xs" />
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("shared.labels.business") }}
           </q-item-section>
         </template>
@@ -32,7 +32,7 @@
           <q-item-section class="q-py-sm" avatar>
             <q-icon name="o_headset_mic" size="xs" />
           </q-item-section>
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("shared.labels.contact") }}
           </q-item-section>
         </template>
@@ -49,7 +49,7 @@
             <q-icon name="o_my_location" size="xs" />
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("shared.contactType.address") }}
           </q-item-section>
         </template>
@@ -66,7 +66,7 @@
             <q-icon name="o_credit_card" size="xs" />
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("shared.accountDLType.bankAccount") }}
           </q-item-section>
         </template>
@@ -83,7 +83,7 @@
             <q-icon name="o_star" size="xs" />
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("shared.labels.entityProperty") }}
           </q-item-section>
         </template>

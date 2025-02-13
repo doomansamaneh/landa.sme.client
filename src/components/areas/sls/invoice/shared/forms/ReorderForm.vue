@@ -1,9 +1,7 @@
 <template>
   <q-form ref="form" autofocus>
     <div>
-      <q-item-label
-        class="caption-on-dark text-body2 no-letter-spacing q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         ش شروع
       </q-item-label>
       <custom-input-number

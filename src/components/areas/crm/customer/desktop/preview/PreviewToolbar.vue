@@ -3,7 +3,7 @@
     <template #buttons>
       <menu-button-edit
         :to="`/crm/customer/edit/${item?.id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
         rounded
         unelevated
         no-caps

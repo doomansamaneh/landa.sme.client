@@ -91,7 +91,7 @@
           <q-field outlined dense disable>
             <template #control>
               <div
-                class="text-body2 no-letter-spacing self-center full-width no-outline"
+                class="text-body2 self-center full-width no-outline"
                 tabindex="0"
               >
                 {{ helper.formatNumber(row.totalPrice) }}
@@ -152,7 +152,7 @@
     @click="formStore.pushNewRow()"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="no-letter-spacing">افزودن ردیف</div>
+    <div class="">افزودن ردیف</div>
   </q-btn>
 
   <footer-section

@@ -79,7 +79,7 @@
               clear-icon="o_clear"
               rounded
               @keydown.enter="grid.loadData()"
-              class="text-body2 no-letter-spacing q-mx-sm"
+              class="text-body2 q-mx-sm"
             >
               <template v-slot:prepend>
                 <q-icon name="o_search" color="primary" />
@@ -118,7 +118,7 @@
                     {{ helper.getFirstChar(item.productTitle) }}
                   </div>
                   <q-badge
-                    class="inset-shadow-down text-body3 text-bold no-letter-spacing q-px-sm q-py-sm"
+                    class="inset-shadow-down text-body3 text-bold q-px-sm q-py-sm"
                     floating
                     color="negative"
                   >
@@ -129,14 +129,14 @@
 
               <q-item-section>
                 <div>
-                  <span class="text-body3 no-letter-spacing ellipsis">
+                  <span class="text-body3 ellipsis">
                     {{ item.productCode }} - {{ item.productTitle }}
                   </span>
-                  <span class="text-body3 no-letter-spacing ellipsis">
+                  <span class="text-body3 ellipsis">
                     قیمت فروش: {{ helper.formatNumber(item.price) }}
                     <span>({{ item.productUnitTitle }})</span>
                   </span>
-                  <span class="text-body3 no-letter-spacing ellipsis">
+                  <span class="text-body3 ellipsis">
                     {{ $t("shared.labels.total") }}:
                     <strong class="q-px-xs">
                       {{ helper.formatNumber(item.amount) }}

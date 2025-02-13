@@ -127,7 +127,7 @@
     <!-- v-if="formStore.model.value.voucherItems.length > 0" -->
     <!-- @click="formStore.addNewRow(index, row)" -->
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="no-letter-spacing">افزودن ردیف</div>
+    <div class="">افزودن ردیف</div>
   </q-btn>
 </template>
 

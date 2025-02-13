@@ -11,7 +11,7 @@
     </q-btn>
     <div
       :class="labelClass"
-      class="q-mt-xs text-center text-weight-500 no-letter-spacing"
+      class="q-mt-xs text-center text-weight-500"
     >
       {{ label }}
     </div>

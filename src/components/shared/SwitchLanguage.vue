@@ -11,7 +11,7 @@
       >
         <q-card-section>
           <div class="row items-center justify-between">
-            <div class="text-body1 no-letter-spacing">
+            <div class="text-body1">
               {{ language.name }}
             </div>
             <q-icon

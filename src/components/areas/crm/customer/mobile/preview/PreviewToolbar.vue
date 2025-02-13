@@ -2,11 +2,11 @@
   <tool-bar>
     <template #default>
       <div
-        class="ellipsis-2-lines text-weight-700 no-letter-spacing"
+        class="ellipsis-2-lines text-weight-700"
         :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
       >
         <slot name="header-title">
-          <span class="text-body2 no-letter-spacing">
+          <span class="text-body2">
             {{ title }}
           </span>
         </slot>
@@ -16,7 +16,7 @@
 
       <menu-button-edit
         :to="`/crm/customer/edit/${id}`"
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         round
         dense
         unelevated

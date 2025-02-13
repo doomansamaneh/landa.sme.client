@@ -2,7 +2,7 @@
   <q-card bordered>
     <q-card-section>
       <div
-        class="row q-col-gutter-md justify-between items-center text-body3 no-letter-spacing"
+        class="row q-col-gutter-md justify-between items-center text-body3"
       >
         <div class="col-5">
           <div>
@@ -28,12 +28,12 @@
 
     <q-card-section class="q-gutter-y-sm">
       <div v-if="model?.customerName">
-        <span class="text-body3 no-letter-spacing">
+        <span class="text-body3">
           {{ model?.customerName }}
         </span>
       </div>
       <div>
-        <span class="text-body3 no-letter-spacing">
+        <span class="text-body3">
           {{ model?.subject }}
         </span>
       </div>
@@ -47,9 +47,7 @@
         v-for="(item, index) in model?.voucherItems"
         :key="item.id"
       >
-        <div
-          class="row items-start q-gutter-sm text-body_ no-letter-spacing"
-        >
+        <div class="row items-start q-gutter-sm text-body_">
           <div
             class="col-1 text-white text-center rounded-borders bg-secondary"
           >
@@ -68,7 +66,7 @@
       <div class="text-right">
         <span class="text-weight-600">
           {{ helper.formatNumber(model?.amount) }}
-          <span class="text-caption no-letter-spacing">
+          <span class="text-caption">
             {{ model?.currencyTitle }}
           </span>
         </span>

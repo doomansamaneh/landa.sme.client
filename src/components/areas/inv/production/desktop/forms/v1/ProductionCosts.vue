@@ -9,9 +9,7 @@
     <thead>
       <tr>
         <th colspan="100%">
-          <div
-            class="row q-gutter-sm text-body1 no-letter-spacing text-weight-700"
-          >
+          <div class="row q-gutter-sm text-body1 text-weight-700">
             <div>
               <q-btn
                 round
@@ -97,7 +95,7 @@
     @click="formStore.addNewCost(index, row)"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="no-letter-spacing">افزودن ردیف</div>
+    <div class="">افزودن ردیف</div>
   </q-btn>
 </template>
 

@@ -4,9 +4,7 @@
   >
     <div class="theme-settings-container form-container_">
       <div class="row items-center justify-between q-mb-md">
-        <div class="text-h6 text-weight-700 no-letter-spacing">
-          رنگ تم و زبان
-        </div>
+        <div class="text-h6 text-weight-700">رنگ تم و زبان</div>
         <back-button />
       </div>
       <desktop />

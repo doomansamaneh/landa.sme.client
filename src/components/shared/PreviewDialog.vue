@@ -36,7 +36,7 @@
         <q-space />
 
         <slot name="title">
-          <div class="text-h6 no-letter-spacing q-mr-md">
+          <div class="text-h6 q-mr-md">
             {{ title }}
           </div>
         </slot>

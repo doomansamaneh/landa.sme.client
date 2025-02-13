@@ -5,9 +5,7 @@
     <div>
       <div>
         <div class="row items-center justify-between q-mb-md">
-          <div class="text-h6 text-weight-700 no-letter-spacing">
-            مالیات
-          </div>
+          <div class="text-h6 text-weight-700">مالیات</div>
           <back-button />
         </div>
         <index-view />

@@ -7,7 +7,7 @@
   />
   <span
     @click="sortColumn"
-    class="text-body3 no-letter-spacing text-bold cursor-pointer"
+    class="text-body3 text-bold cursor-pointer"
   >
     {{ title }}
   </span>

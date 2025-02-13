@@ -62,7 +62,7 @@
               </div>
               <div
                 v-if="item.locationName"
-                class="ellipsis text-body3 no-letter-spacing q-mt-xs"
+                class="ellipsis text-body3 q-mt-xs"
               >
                 <q-icon
                   name="o_location_on"
@@ -73,7 +73,7 @@
               </div>
               <div class="row items-center q-gutter-xs">
                 <div
-                  class="flex text-body3 no-letter-spacing items-center rtl"
+                  class="flex text-body3 items-center rtl"
                   v-if="item.phoneNo"
                 >
                   {{ helper.separatePhoneNumbers(item.phoneNo) }}
@@ -85,7 +85,7 @@
                   />
                 </div>
                 <div
-                  class="flex text-body3 no-letter-spacing items-center rtl"
+                  class="flex text-body3 items-center rtl"
                   v-if="item.mobileNo"
                 >
                   {{ helper.separatePhoneNumbers(item.mobileNo) }}

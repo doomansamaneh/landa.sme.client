@@ -42,7 +42,7 @@
                 class="q-pt-none"
               >
                 <p
-                  class="text-caption line-height-xs no-letter-spacing"
+                  class="text-caption line-height-xs"
                   contenteditable="true"
                   v-show="!editCommentBtn"
                 >

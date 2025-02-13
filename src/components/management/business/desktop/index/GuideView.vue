@@ -27,7 +27,7 @@
             size="lg"
           />
 
-          <div class="text-body1 no-letter-spacing">
+          <div class="text-body1">
             <span class="text-on-dark">دومان سامانه برای تست</span>
           </div>
         </div>
@@ -59,7 +59,7 @@
       </q-carousel-slide>
       <q-carousel-slide :name="5" class="column no-wrap flex-center">
         <q-btn
-          class="green-shadow green-gradient no-pointer-events text-body3 no-letter-spacing"
+          class="green-shadow green-gradient no-pointer-events text-body3"
           rounded
           no-caps
           text-color="white"

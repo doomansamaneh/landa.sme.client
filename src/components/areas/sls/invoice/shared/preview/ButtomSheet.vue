@@ -10,7 +10,7 @@
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -21,7 +21,7 @@
       </q-btn>
       <q-btn
         :to="`/sls/invoice/copy/${id}`"
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -32,7 +32,7 @@
       </q-btn>
       <q-btn
         @click="formStore.crudStore.deleteById(id)"
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -43,7 +43,7 @@
       </q-btn>
       <q-btn
         @click="printStore.handlePrint()"
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -54,7 +54,7 @@
       </q-btn>
       <q-btn
         @click="printStore.downloadPdf()"
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -144,9 +144,7 @@
             <q-avatar class="bg-on-dark text-on-dark" icon="o_copy" />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
-            کپی
-          </q-item-section>
+          <q-item-section class="text-body1">کپی</q-item-section>
         </q-item>
 
         <q-item clickable v-ripple @click="showPrintDialog">
@@ -157,9 +155,7 @@
             />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
-            چاپ
-          </q-item-section>
+          <q-item-section class="text-body1">چاپ</q-item-section>
         </q-item>
 
         <q-separator class="q-my-sm" />
@@ -172,9 +168,7 @@
             />
           </q-item-section>
 
-          <q-item-section class="text-body1 no-letter-spacing">
-            حذف
-          </q-item-section>
+          <q-item-section class="text-body1">حذف</q-item-section>
         </q-item>
       </q-list>
     </template>

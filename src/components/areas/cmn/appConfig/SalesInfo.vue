@@ -37,7 +37,7 @@
 
       <!-- <div class="q-mt-lg">
         <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+          class="caption-on-dark  text-body2 q-mb-sm"
         >
           حاشیه بالای کاغذ در چاپ
         </q-item-label>
@@ -48,7 +48,7 @@
 
       <div class="q-mt-lg">
         <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
+          class="caption-on-dark  text-body2 q-mb-sm"
         >
           حاشیه پایین کاغذ در چاپ
         </q-item-label>
@@ -61,7 +61,7 @@
         <div class="column q-col-gutter-md">
           <q-checkbox
             dense
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             size="46px"
             label="امکان تعیین مبلغ مالیات بر ارزش افزوده در ثبت فاکتور فروش"
             v-model="
@@ -70,7 +70,7 @@
           />
           <q-checkbox
             dense
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             size="46px"
             label="ستون تخفیف را در هنگام چاپ نشان نده"
             v-model="
@@ -80,7 +80,7 @@
           />
           <q-checkbox
             dense
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             size="46px"
             label="مانده فاکتورهای مشتری را در چاپ فاکتور نشان بده"
             v-model="
@@ -90,7 +90,7 @@
           />
           <q-checkbox
             dense
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             size="46px"
             label="فیلد قرارداد را در فرمهای فروش و سند نشان بده"
             v-model="
@@ -99,7 +99,7 @@
           />
           <q-checkbox
             dense
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             size="46px"
             label="این کسب و کار دارای چندین انبار است"
             v-model="
@@ -108,7 +108,7 @@
           />
           <q-checkbox
             dense
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             size="46px"
             label="از فروش کالاهای با موجودی منفی جلوگیری کن"
             v-model="
@@ -118,7 +118,7 @@
           />
           <q-checkbox
             dense
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             size="46px"
             label="بازاریاب را در فرمهای فروش نشان بده"
             v-model="

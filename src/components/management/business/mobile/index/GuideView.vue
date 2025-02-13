@@ -7,9 +7,7 @@
     <q-card class="no-shadow no-border">
       <q-card-section>
         <div class="row items-center justify-between">
-          <div class="text-body1 text-weight-700 no-letter-spacing">
-            راهنما
-          </div>
+          <div class="text-body1 text-weight-700">راهنما</div>
           <q-btn
             round
             icon="o_close"
@@ -29,7 +27,7 @@
               class="q-mb-md"
               src="src/assets/about-us-header.png"
             />
-            <div class="text-center text-body1 no-letter-spacing">
+            <div class="text-center text-body1">
               {{ $t("page.buttons.guide.slide1") }}
             </div>
           </div>
@@ -43,13 +41,11 @@
               size="lg"
             />
 
-            <div class="text-body1 no-letter-spacing">
+            <div class="text-body1">
               <span class="text-on-dark">دومان سامانه برای تست</span>
             </div>
 
-            <div
-              class="q-mt-lg text-body1 no-letter-spacing text-center"
-            >
+            <div class="q-mt-lg text-body1 text-center">
               {{ $t("page.buttons.guide.slide2") }}
             </div>
           </div>
@@ -61,9 +57,7 @@
               name="more_vert"
               size="lg"
             />
-            <div
-              class="q-mt-lg text-center text-body1 no-letter-spacing"
-            >
+            <div class="q-mt-lg text-center text-body1">
               {{ $t("page.buttons.guide.slide3") }}
             </div>
           </div>
@@ -76,9 +70,7 @@
               icon="o_person"
               size="50px"
             />
-            <div
-              class="q-mt-lg text-center text-body1 no-letter-spacing"
-            >
+            <div class="q-mt-lg text-center text-body1">
               {{ $t("page.buttons.guide.slide4") }}
             </div>
           </div>
@@ -94,12 +86,10 @@
               dense
               unelevated
             >
-              <span class="text-body2 no-letter-spacing">تمدید</span>
+              <span class="text-body2">تمدید</span>
             </q-btn>
 
-            <div
-              class="q-mt-lg text-center text-body1 no-letter-spacing"
-            >
+            <div class="q-mt-lg text-center text-body1">
               {{ $t("page.buttons.guide.slide5") }}
             </div>
           </div>
@@ -111,9 +101,7 @@
               size="lg"
               :color="$q.dark.isActive ? 'white' : 'blue-grey-8'"
             />
-            <div
-              class="q-mt-lg text-center text-body1 no-letter-spacing"
-            >
+            <div class="q-mt-lg text-center text-body1">
               {{ $t("page.buttons.guide.slide6") }}
             </div>
 

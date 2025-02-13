@@ -5,9 +5,7 @@
     <div>
       <div>
         <div class="row items-center justify-between q-mb-md">
-          <div class="text-h6 text-weight-700 no-letter-spacing">
-            اطلاعات اصلی
-          </div>
+          <div class="text-h6 text-weight-700">اطلاعات اصلی</div>
           <back-button />
         </div>
         <index-view />

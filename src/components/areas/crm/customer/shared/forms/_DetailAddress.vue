@@ -6,26 +6,22 @@
     class="primary-gradient primary-shadow text-white text-on-dark"
     @click="formStore.addAddress()"
   >
-    <q-icon
-      name="o_add"
-      size="xs"
-      class="q-mr-xs text-body2 no-letter-spacing"
-    />
+    <q-icon name="o_add" size="xs" class="q-mr-xs text-body2" />
     افزودن نشانی
   </q-btn>
 
   <div class="q-pt-md q-col-gutter-md">
     <div
-    v-for="(item, index) in formStore.model.value.customerAddresses"
-    :key="index"
-  >
-    <address-item
-      :index="index"
-      :item="item"
-      @item-deleted="formStore.deleteAddress(index)"
-      @item-added="formStore.addAddress(index)"
-    />
-  </div>
+      v-for="(item, index) in formStore.model.value.customerAddresses"
+      :key="index"
+    >
+      <address-item
+        :index="index"
+        :item="item"
+        @item-deleted="formStore.deleteAddress(index)"
+        @item-added="formStore.addAddress(index)"
+      />
+    </div>
   </div>
 </template>
 

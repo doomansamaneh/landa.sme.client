@@ -46,7 +46,7 @@
       </div>
       <div>
         <q-checkbox
-          class="text-body2 no-letter-spacing"
+          class="text-body2"
           dense
           size="46px"
           label="ش پیگیری را در چاپ سند حسابداری نشان بده"

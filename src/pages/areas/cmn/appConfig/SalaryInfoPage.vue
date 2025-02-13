@@ -5,9 +5,7 @@
     <div>
       <div>
         <div class="row items-center justify-between q-mb-md">
-          <div class="text-h6 text-weight-700 no-letter-spacing">
-            حقوق و دستمزد
-          </div>
+          <div class="text-h6 text-weight-700">حقوق و دستمزد</div>
           <back-button />
         </div>
         <index-view />

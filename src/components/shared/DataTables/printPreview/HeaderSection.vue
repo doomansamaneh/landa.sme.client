@@ -1,7 +1,7 @@
 <template>
   <q-card-section class="q-pt-none q-pb-lg text-center">
     <div>
-      <span class="text-h6 no-letter-spacing">
+      <span class="text-h6">
         {{ appConfigStore.model.value?.companySetting.name }}
       </span>
       <span class="q-px-sm">
@@ -9,7 +9,7 @@
       </span>
     </div>
     <div>
-      <span class="text-body1 no-letter-spacing">
+      <span class="text-body1">
         {{ title }}
       </span>
     </div>

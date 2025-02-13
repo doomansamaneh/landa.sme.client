@@ -112,9 +112,7 @@
               :class="tableStore.getRowClass(row)"
             >
               <td v-if="numbered" class="dense_">
-                <div
-                  class="text-caption no-letter-spacing text-on-dark"
-                >
+                <div class="text-caption text-on-dark">
                   {{ tableStore.rowIndex(index) }}
                 </div>
               </td>

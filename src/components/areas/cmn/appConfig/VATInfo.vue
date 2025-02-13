@@ -23,9 +23,7 @@
         </div>
       </div>
 
-      <div
-        class="q-mt-lg text-body1 text-weight-600 no-letter-spacing"
-      >
+      <div class="q-mt-lg text-body1 text-weight-600">
         تنظمیات سامانه مودیان مالیاتی
       </div>
 

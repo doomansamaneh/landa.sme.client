@@ -4,11 +4,7 @@
   >
     <div>
       <div>
-        <div
-          class="text-h6 text-weight-700 no-letter-spacing q-mb-md"
-        >
-          تنظیمات
-        </div>
+        <div class="text-h6 text-weight-700 q-mb-md">تنظیمات</div>
         <q-card
           class="bordered overflow-hidden"
           :class="[$q.screen.gt.sm ? 'settings-card' : 'full-width']"
@@ -35,14 +31,10 @@
               </q-item-section>
 
               <q-item-section>
-                <q-item-label
-                  class="text-on-dark text-body2 no-letter-spacing"
-                >
+                <q-item-label class="text-on-dark text-body2">
                   {{ authStore.user.fullName }}
                 </q-item-label>
-                <q-item-label
-                  class="caption-on-dark text-body3 no-letter-spacing"
-                >
+                <q-item-label class="caption-on-dark text-body3">
                   {{ authStore.user.loginName }}
                 </q-item-label>
               </q-item-section>
@@ -68,9 +60,7 @@
               <q-item-section
                 :class="$q.screen.lt.sm ? 'q-mx-md' : ''"
               >
-                <q-item-label
-                  class="text-on-dark text-body2 no-letter-spacing"
-                >
+                <q-item-label class="text-on-dark text-body2">
                   رنگ تم‌ و زبان
                 </q-item-label>
               </q-item-section>
@@ -96,9 +86,7 @@
               <q-item-section
                 :class="$q.screen.lt.sm ? 'q-mx-md' : ''"
               >
-                <q-item-label
-                  class="text-on-dark text-body2 no-letter-spacing"
-                >
+                <q-item-label class="text-on-dark text-body2">
                   تغییر رمز عبور
                 </q-item-label>
               </q-item-section>
@@ -128,9 +116,7 @@
             to="/business"
           >
             <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 کسب و کارهای من
               </q-item-label>
             </q-item-section>
@@ -154,9 +140,7 @@
             to="/account/login"
           >
             <q-item-section :class="$q.screen.lt.sm ? 'q-mx-md' : ''">
-              <q-item-label
-                class="text-on-dark text-body2 no-letter-spacing"
-              >
+              <q-item-label class="text-on-dark text-body2">
                 خروج از حساب
               </q-item-label>
             </q-item-section>

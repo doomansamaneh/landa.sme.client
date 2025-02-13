@@ -54,7 +54,7 @@
       <div class="row items-center q-gutter-lg justify-center">
         <div class="row items-center cursor-pointer" unelevated>
           <div>
-            <span class="text-body2 no-letter-spacing q-mr-xs">
+            <span class="text-body2  q-mr-xs">
               نقد شده
             </span>
             <q-btn
@@ -67,7 +67,7 @@
         </div>
         <div class="row items-center cursor-pointer" unelevated>
           <div>
-            <span class="text-body2 no-letter-spacing q-mr-xs">
+            <span class="text-body2  q-mr-xs">
             نقد نشده
           </span>
           <q-btn

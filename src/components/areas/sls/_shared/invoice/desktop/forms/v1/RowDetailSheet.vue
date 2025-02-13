@@ -14,7 +14,7 @@
       <div class="col-md-6 col-sm-6 col-xs-6">
         <custom-input-number
           label="مبلغ مالیات"
-          input-class="text-body2 no-letter-spacing"
+          input-class="text-body2 "
           v-model="item.vatAmount"
           placeholder="مبلغ مالیات"
         />
@@ -25,7 +25,7 @@
       <div class="col-md-6 col-sm-6 col-xs-12">
         <custom-input-number
           label="تخفیف"
-          input-class="text-body2 no-letter-spacing"
+          input-class="text-body2 "
           v-model="item.discount"
           placeholder="تخفیف"
         />

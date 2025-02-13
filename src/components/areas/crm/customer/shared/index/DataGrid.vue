@@ -35,7 +35,7 @@
       <template #buttons-batch-action>
         <q-btn
           padding="6px 12px"
-          class="text-body2 no-letter-spacing"
+          class="text-body2"
           rounded
           unelevated
           no-caps

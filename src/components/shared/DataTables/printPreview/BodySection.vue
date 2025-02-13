@@ -18,7 +18,7 @@
         <template v-for="(row, index) in rows" :key="row.id">
           <tr class="table-row">
             <td>
-              <div class="text-caption no-letter-spacing">
+              <div class="text-caption">
                 {{ index + 1 }}
               </div>
             </td>

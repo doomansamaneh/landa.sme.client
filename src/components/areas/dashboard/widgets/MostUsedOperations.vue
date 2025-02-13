@@ -3,7 +3,7 @@
     transition-show="slide-down"
     transition-hide="slide-up"
     transition-duration="600"
-    class="desktop-toolbar-gradient bordered text-body3 text-weight-500 no-letter-spacing text-on-dark q-py-xs q-px-sm"
+    class="desktop-toolbar-gradient bordered text-body3 text-weight-500 text-on-dark q-py-xs q-px-sm"
     rounded
     no-caps
     unelevated
@@ -15,7 +15,7 @@
     style="white-space: nowrap"
   >
     <template #label>
-      <span class="text-body3 no-letter-spacing">دسترسی سریع</span>
+      <span class="text-body3">دسترسی سریع</span>
     </template>
 
     <template #default>

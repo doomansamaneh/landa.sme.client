@@ -1,9 +1,7 @@
 <template>
   <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         گیرنده
       </q-item-label>
       <custom-input
@@ -15,9 +13,7 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         سایر گیرندگان
       </q-item-label>
       <custom-input
@@ -28,9 +24,7 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         موضوع
       </q-item-label>
       <custom-input
@@ -41,9 +35,7 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         متن
       </q-item-label>
       <custom-input

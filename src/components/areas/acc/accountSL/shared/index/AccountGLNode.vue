@@ -19,9 +19,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                ایجاد حساب معین
-              </div>
+              <div class="text-body2">ایجاد حساب معین</div>
             </q-item-section>
           </q-item>
           <q-item
@@ -38,7 +36,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">ویرایش</div>
+              <div class="text-body2">ویرایش</div>
             </q-item-section>
           </q-item>
         </q-list>
@@ -60,7 +58,6 @@
 
   const dialogStore = useDialog();
 
-  
   const createAccountSL = () => {
     dialogStore.openDialog({
       title: "ایجاد حساب معین",
@@ -84,7 +81,6 @@
         }
 
         console.log(responseData);
-        
       },
     });
   };

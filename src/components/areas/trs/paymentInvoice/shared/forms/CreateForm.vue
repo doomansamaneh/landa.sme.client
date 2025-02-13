@@ -2,7 +2,7 @@
   <q-card flat class="tips">
     <q-card-section>
       <div class="title q-mb-sm">راهنما</div>
-      <div class="text-body1 no-letter-spacing">
+      <div class="text-body1">
         <p>
           با ثبت این فرم، مانده صورتحساب انتخاب شده تسویه می‌شود، اما
           هیچ تراکنش مالی در اسناد حسابداری ثبت نمی‌شود.
@@ -14,9 +14,7 @@
 
   <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-my-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         مبلغ
       </q-item-label>
       <custom-input-number
@@ -27,9 +25,7 @@
     </div>
 
     <div class="q-mb-md">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         شرح
       </q-item-label>
       <custom-input

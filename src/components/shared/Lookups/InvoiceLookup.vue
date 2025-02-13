@@ -42,17 +42,17 @@
 
     <template #tbody-cols="{ item }">
       <div class="col-2">
-        <span class="q-mr-sm text-body2 no-letter-spacing">
+        <span class="q-mr-sm text-body2">
           {{ item.no }}
         </span>
       </div>
       <div class="col-3">
-        <span class="text-body2 no-letter-spacing">
+        <span class="text-body2">
           {{ item.customerName }}
         </span>
       </div>
       <div class="col">
-        <span class="text-body2 no-letter-spacing">
+        <span class="text-body2">
           {{ item.subject }}
         </span>
       </div>

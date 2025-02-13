@@ -21,16 +21,12 @@
 
     <template #row-body="{ item }">
       <div class="row justify-between">
-        <div
-          class="col ellipsis text-body3 no-letter-spacing text-weight-500"
-        >
+        <div class="col ellipsis text-body3 text-weight-500">
           از: {{ item.fromTitle }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />
       </div>
-      <div
-        class="col ellipsis text-body3 no-letter-spacing text-weight-500_"
-      >
+      <div class="col ellipsis text-body3 text-weight-500_">
         به: {{ item.toTitle }}
       </div>
 

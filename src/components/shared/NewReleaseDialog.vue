@@ -19,12 +19,10 @@
           src="/favicon.png"
           class="animated-img pulse"
         />
-        <div
-          class="q-mt-lg text-dark text-h6 text-weight-700 no-letter-spacing"
-        >
+        <div class="q-mt-lg text-dark text-h6 text-weight-700">
           درود بر شما، نسخه جدید در دسترس است
         </div>
-        <div class="q-mt-sm text-body1 no-letter-spacing text-grey-7">
+        <div class="q-mt-sm text-body1 text-grey-7">
           برای دریافت نسخه جدید بر روی تازه‌سازی کلیک کنید
         </div>
       </q-card-section>
@@ -36,7 +34,7 @@
         <q-btn
           unelevated
           label="تازه‌سازی"
-          class="text-h6 no-letter-spacing"
+          class="text-h6"
           color="primary"
           rounded
           dense
@@ -45,7 +43,7 @@
         />
         <q-btn
           label="انصراف"
-          class="text-h6 no-letter-spacing"
+          class="text-h6"
           dense
           rounded
           padding="6px 16px"

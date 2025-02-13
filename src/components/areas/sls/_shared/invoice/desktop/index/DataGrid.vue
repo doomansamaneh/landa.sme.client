@@ -50,7 +50,7 @@
           text-color="white"
           :item="item.customerId"
           :text-holder="item.customerName"
-          text-holder-class="text-body2 text-bold no-letter-spacing"
+          text-holder-class="text-body2 text-bold "
           :avatar="avatar"
         />
 

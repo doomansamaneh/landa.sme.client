@@ -2,7 +2,7 @@
   <q-btn size="11px" round unelevated @click="downloadBatchPdf">
     <q-icon size="21px" name="o_print" />
     <q-tooltip :delay="700" class="custom-tooltip">
-      <div class="text-body2 no-letter-spacing">چاپ دسته‌ای</div>
+      <div class="text-body2">چاپ دسته‌ای</div>
     </q-tooltip>
   </q-btn>
 </template>

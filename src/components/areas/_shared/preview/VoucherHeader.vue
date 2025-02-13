@@ -1,10 +1,10 @@
 <template>
   <q-card-section>
     <div class="text-center">
-      <div class="text-h6 no-letter-spacing">
+      <div class="text-h6">
         {{ appConfigStore.model.value.companySetting.name }}
       </div>
-      <div class="text-body2 text-bold no-letter-spacing">
+      <div class="text-body2 text-bold">
         {{ title }}
       </div>
     </div>

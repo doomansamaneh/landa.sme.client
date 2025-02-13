@@ -17,7 +17,7 @@
               padding: 40px 6px;
               border: 1px solid #2d2d2d;
             "
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
           >
             <slot name="cell1">تهیه کننده</slot>
           </td>
@@ -27,7 +27,7 @@
               padding: 40px 6px;
               border: 1px solid #2d2d2d;
             "
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
           >
             <slot name="cell2">تصویب کننده</slot>
           </td>

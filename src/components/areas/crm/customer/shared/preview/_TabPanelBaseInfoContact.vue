@@ -3,7 +3,7 @@
     <div class="q-gutter-x-sm">
       <q-btn
         unelevated
-        class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+        class="text-body2 primary-shadow primary-gradient"
         text-color="white"
         :rounded="$q.screen.gt.xs"
         :round="$q.screen.xs"
@@ -42,7 +42,7 @@
                   </q-item-section>
                 </div>
                 <q-item-section>
-                  <div class="text-body2 no-letter-spacing">
+                  <div class="text-body2">
                     {{ ct.label }}
                   </div>
                 </q-item-section>

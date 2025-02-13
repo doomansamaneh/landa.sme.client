@@ -1,6 +1,6 @@
 <template>
   <q-btn
-    class="text-body2 no-letter-spacing"
+    class="text-body2"
     rounded
     unelevated
     no-caps

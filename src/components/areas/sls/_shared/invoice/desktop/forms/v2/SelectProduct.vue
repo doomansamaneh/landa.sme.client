@@ -84,7 +84,7 @@
               </div>
               <q-badge
                 v-if="formStore.getProductQuantity(item.id)"
-                class="inset-shadow-down text-body3 text-bold no-letter-spacing q-px-sm q-py-sm"
+                class="inset-shadow-down text-body3 text-bold q-px-sm q-py-sm"
                 floating
                 color="negative"
               >
@@ -99,32 +99,24 @@
 
           <div class="row items-center justify-between full-width">
             <div class="col-10 q-pl-lg column">
-              <span
-                class="text-body3 no-letter-spacing text-weight-600"
-              >
+              <span class="text-body3 text-weight-600">
                 {{ item.code }} - {{ item.title }}
               </span>
-              <span
-                v-if="item.purchasePrice"
-                class="text-body3 no-letter-spacing"
-              >
+              <span v-if="item.purchasePrice" class="text-body3">
                 قیمت خرید:
                 {{ helper.formatNumber(item.purchasePrice) }}
               </span>
-              <span class="text-body3 no-letter-spacing">
+              <span class="text-body3">
                 قیمت فروش:
                 {{ helper.formatNumber(item.price) }}
               </span>
-              <span
-                v-if="item.maxPrice"
-                class="text-body3 no-letter-spacing"
-              >
+              <span v-if="item.maxPrice" class="text-body3">
                 بیشترین قیمت فروش:
                 {{ helper.formatNumber(item.maxPrice) }}
               </span>
               <span
                 v-if="item.typeId !== productType.service"
-                class="text-body3 no-letter-spacing"
+                class="text-body3"
               >
                 موجودی:
                 <q-icon

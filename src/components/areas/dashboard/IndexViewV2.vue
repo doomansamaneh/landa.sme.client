@@ -8,15 +8,13 @@
     >
       <q-toolbar class="no-padding">
         <div class="row items-center">
-          <div
-            class="q-mr-sm text-h6 text-weight-700 no-letter-spacing text-on-dark"
-          >
+          <div class="q-mr-sm text-h6 text-weight-700 text-on-dark">
             {{ $t("main-menu-items.dashboard") }}
           </div>
           <div class="row items-center q-gutter-sm">
             <q-btn
               dense
-              class="bordered_ text-body2 no-letter-spacing"
+              class="bordered_ text-body2"
               size="14px"
               round
               unelevated
@@ -34,19 +32,19 @@
         <div class="flex q-gutter-sm items-center">
           <q-btn
             v-if="draggable.isShaking.value"
-            class="text-body2 no-letter-spacing primary-gradient text-white primary-shadow"
+            class="text-body2 primary-gradient text-white primary-shadow"
             rounded
             unelevated
             no-caps
             @click="draggable.saveLayoutChanges"
           >
             <q-icon class="q-mr-xs" size="20px" name="o_save" />
-            <div class="text-body2 no-letter-spacing">ذخیره</div>
+            <div class="text-body2">ذخیره</div>
           </q-btn>
 
           <q-btn
             v-if="draggable.isShaking.value"
-            class="bordered text-body2 no-letter-spacing"
+            class="bordered text-body2"
             rounded
             unelevated
             no-caps
@@ -54,9 +52,7 @@
             @click="draggable.resetToDefault"
           >
             <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
-            <div class="text-body2 no-letter-spacing">
-              حالت پیشفرض
-            </div>
+            <div class="text-body2">حالت پیشفرض</div>
           </q-btn>
         </div>
       </q-toolbar>
@@ -97,9 +93,7 @@
     "
     class="q-mt-xl"
   >
-    <div class="text-h6 text-center no-letter-spacing q-pb-lg">
-      ابزارک‌های مخفی شده
-    </div>
+    <div class="text-h6 text-center q-pb-lg">ابزارک‌های مخفی شده</div>
     <div class="row q-col-gutter-md">
       <div
         v-for="widget in draggable.hiddenWidgets.value"

@@ -3,7 +3,7 @@
     <template #buttons>
       <q-btn
         :to="`/sls/invoice/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -13,12 +13,7 @@
         اصلاح موجودی
       </q-btn>
 
-      <q-btn
-        padding="6px 12px"
-        class="text-body2 no-letter-spacing"
-        rounded
-        unelevated
-      >
+      <q-btn padding="6px 12px" class="text-body2" rounded unelevated>
         <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
         {{ $t("shared.labels.more") }}
 
@@ -38,7 +33,7 @@
                 </q-item-section>
               </div>
               <q-item-section>
-                <div class="text-body2 no-letter-spacing">
+                <div class="text-body2">
                   {{ $t("shared.labels.eportToExcel") }}
                 </div>
               </q-item-section>
@@ -51,10 +46,10 @@
 
   <div class="q-pb-lg row q-col-gutter-md">
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 no-letter-spacing q-mb-sm">کد</div>
+      <div class="text-body3 q-mb-sm">کد</div>
       <q-field dense outlined>
         <template v-slot:control>
-          <div class="text-body3 no-letter-spacing">
+          <div class="text-body3">
             {{ item.code }}
           </div>
         </template>
@@ -62,10 +57,10 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 no-letter-spacing q-mb-sm">عنوان</div>
+      <div class="text-body3 q-mb-sm">عنوان</div>
       <q-field dense outlined>
         <template v-slot:control>
-          <div class="text-body3 no-letter-spacing">
+          <div class="text-body3">
             {{ item.title }}
           </div>
         </template>
@@ -73,23 +68,19 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 no-letter-spacing q-mb-sm">گروه</div>
+      <div class="text-body3 q-mb-sm">گروه</div>
       <q-field dense outlined>
         <template v-slot:control>
-          <div class="text-body3 no-letter-spacing">
-            گروه لوازم اداری و مصرفی
-          </div>
+          <div class="text-body3">گروه لوازم اداری و مصرفی</div>
         </template>
       </q-field>
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 no-letter-spacing q-mb-sm">
-        موجودی اول دوره
-      </div>
+      <div class="text-body3 q-mb-sm">موجودی اول دوره</div>
       <q-field dense outlined>
         <template v-slot:control>
-          <div class="text-body3 no-letter-spacing">
+          <div class="text-body3">
             {{ item.salesQuantity }}
           </div>
         </template>

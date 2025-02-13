@@ -14,7 +14,7 @@
             style="border: 1px solid #2d2d2d; padding: 5px"
             colspan="100%"
           >
-            <div class="text-body2 no-letter-spacing text-weight-500">
+            <div class="text-body2 text-weight-500">
               مشخصات کالا یا خدمات مورد معامله
             </div>
           </td>

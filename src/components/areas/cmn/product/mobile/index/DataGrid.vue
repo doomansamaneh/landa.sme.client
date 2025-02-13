@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col ellipsis q-gutter-x-xs">
           <is-active :is-active="item.isActive" />
-          <span class="text-body3 no-letter-spacing text-weight-500_">
+          <span class="text-body3 text-weight-500_">
             {{ item.code }} - {{ item.title }}
           </span>
         </div>

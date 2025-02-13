@@ -10,7 +10,7 @@
       >
         <tr>
           <td
-            class="text-bold text-body1 no-letter-spacing"
+            class="text-bold text-body1"
             style="padding: 12px"
             colspan="2"
           >
@@ -22,15 +22,12 @@
           v-for="glItem in dataStore.getFilteredItems(item.clCode)"
           :key="glItem.glCode"
         >
-          <td
-            class="text-body2 no-letter-spacing"
-            style="padding: 12px 24px"
-          >
+          <td class="text-body2" style="padding: 12px 24px">
             {{ glItem.glCode }} - {{ glItem.glTitle }}
           </td>
 
           <td
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             style="padding: 12px; width: 25%"
             v-if="item.clTypeId === accountCLTypeIds.revenue"
           >
@@ -42,7 +39,7 @@
             </div>
           </td>
           <td
-            class="text-body2 no-letter-spacing"
+            class="text-body2"
             style="padding: 12px; width: 25%"
             v-else-if="item.clTypeId === accountCLTypeIds.expense"
           >
@@ -58,15 +55,13 @@
 
       <tr>
         <td style="padding: 12px">
-          <div class="text-bold text-body1 no-letter-spacing">
-            درآمد خالص
-          </div>
-          <div class="text-body2 no-letter-spacing caption-on-dark">
+          <div class="text-bold text-body1">درآمد خالص</div>
+          <div class="text-body2 caption-on-dark">
             سود پیش از کسر مالیات
           </div>
         </td>
         <td style="padding: 12px; width: 25%">
-          <div class="text-bold text-body2 no-letter-spacing">
+          <div class="text-bold text-body2">
             {{ helper.formatNumber(dataStore.totalIcome.value) }}
           </div>
         </td>

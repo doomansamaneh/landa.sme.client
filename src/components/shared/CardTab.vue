@@ -8,9 +8,7 @@
         size="md"
         :class="avatarClass"
       />
-      <div
-        class="text-h6 text-weight-700 no-letter-spacing q-ml-md q-my-sm"
-      >
+      <div class="text-h6 text-weight-700 q-ml-md q-my-sm">
         {{ title }}
       </div>
     </template>

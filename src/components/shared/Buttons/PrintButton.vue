@@ -2,7 +2,7 @@
   <q-btn size="11px" round unelevated @click="openPreview">
     <q-icon size="21px" name="o_print" />
     <q-tooltip :delay="700" class="custom-tooltip">
-      <div class="text-body2 no-letter-spacing">پیش نمایش و چاپ</div>
+      <div class="text-body2">پیش نمایش و چاپ</div>
     </q-tooltip>
   </q-btn>
 </template>

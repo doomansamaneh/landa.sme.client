@@ -26,7 +26,7 @@
     </q-btn> -->
   </div>
   <div>
-    <div class="text-body2 no-letter-spacing text-bold">
+    <div class="text-body2 text-bold">
       تاریخچه ارسال به سامانه مودیان
     </div>
     <data-grid

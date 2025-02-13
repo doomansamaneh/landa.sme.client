@@ -52,11 +52,11 @@
           </q-btn>
         </div>
         <!-- <div
-          class="text-body2 no-letter-spacing"
+          class="text-body2 "
           :class="$q.screen.lt.md ? 'q-mt-lg' : 'q-mt-sm'"
         >
           تبریک میگم، %47.4 رشد داشته اید.
-          <span class="text-body3 no-letter-spacing">
+          <span class="text-body3 ">
             در ماه گذشته
           </span>
         </div> -->
@@ -91,9 +91,7 @@
                   )
                 }}
 
-                <q-tooltip
-                  class="custom-tooltip text-body1 no-letter-spacing"
-                >
+                <q-tooltip class="custom-tooltip text-body1">
                   {{
                     helper.formatNumber(dataStore.data?.value?.amount)
                   }}
@@ -133,9 +131,7 @@
                   )
                 }}
 
-                <q-tooltip
-                  class="custom-tooltip text-body1 no-letter-spacing"
-                >
+                <q-tooltip class="custom-tooltip text-body1">
                   {{
                     helper.formatNumber(
                       dataStore.data?.value?.payedAmount
@@ -190,9 +186,7 @@
                   )
                 }}
 
-                <q-tooltip
-                  class="custom-tooltip text-body1 no-letter-spacing"
-                >
+                <q-tooltip class="custom-tooltip text-body1">
                   {{
                     helper.formatNumber(
                       dataStore.data?.value?.remainedAmount
@@ -248,9 +242,7 @@
                   )
                 }}
 
-                <q-tooltip
-                  class="custom-tooltip text-body1 no-letter-spacing"
-                >
+                <q-tooltip class="custom-tooltip text-body1">
                   {{
                     helper.formatNumber(
                       dataStore.data?.value?.remainedAmountAll -

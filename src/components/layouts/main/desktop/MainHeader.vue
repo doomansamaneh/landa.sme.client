@@ -23,7 +23,7 @@
 
           <div class="text-bold row justify-start items-center">
             <div class="column">
-              <span class="text-body3 no-letter-spacing text-on-dark">
+              <span class="text-body3 text-on-dark">
                 {{ businessStore.get()?.title }}
               </span>
               <today-date />

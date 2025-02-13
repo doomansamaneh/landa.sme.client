@@ -1,6 +1,6 @@
 <template>
   <span class="text-bold">حساب معین:</span>
-  <span class="text-body1 no-letter-spacing q-mx-md">
+  <span class="text-body1 q-mx-md">
     {{ model.code }} / {{ model.title }}
   </span>
 </template>

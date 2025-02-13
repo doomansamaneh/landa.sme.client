@@ -3,7 +3,7 @@
     v-if="no"
     padding="0 8px"
     unelevated
-    class="red-gradient text-white text-center text-caption-xs no-letter-spacing border-radius-lg no-pointer-events"
+    class="red-gradient text-white text-center text-caption-xs border-radius-lg no-pointer-events"
     style="white-space: nowrap"
   >
     {{ no }}

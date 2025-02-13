@@ -1,7 +1,7 @@
 <template>
   <div class="q-pa-md">
     <custom-button
-      class="text-body2 no-letter-spacing primary-shadow primary-gradient"
+      class="text-body2 primary-shadow primary-gradient"
       text-color="white"
       icon="o_edit"
       :title="$t('shared.labels.edit')"
@@ -11,8 +11,8 @@
 
   <div class="q-pa-md q-col-gutter-md">
     <div class="row items-center">
-      <div class="col-2 no-letter-spacing">شناسه ملی:</div>
-      <div class="col text-body2 text-weight-700 no-letter-spacing">
+      <div class="col-2">شناسه ملی:</div>
+      <div class="col text-body2 text-weight-700">
         {{ model.nationalNo }}
         <copy-clipboard
           v-if="model.nationalNo"
@@ -21,38 +21,38 @@
       </div>
     </div>
     <div class="row items-center">
-      <div class="col-2 no-letter-spacing">کد اقتصادی:</div>
-      <div class="col text-body2 no-letter-spacing">
+      <div class="col-2">کد اقتصادی:</div>
+      <div class="col text-body2">
         {{ model.taxNo }}
       </div>
     </div>
     <div class="row items-center" v-if="model.branchNo">
-      <div class="col-2 no-letter-spacing">کد شعبه:</div>
-      <div class="col text-body2 no-letter-spacing">
+      <div class="col-2">کد شعبه:</div>
+      <div class="col text-body2">
         {{ model.branchNo }}
       </div>
     </div>
     <div class="row items-center" v-if="model.insuranceWorkNo">
-      <div class="col-2 no-letter-spacing">شناسه کارگاه بیمه:</div>
-      <div class="col text-body2 no-letter-spacing">
+      <div class="col-2">شناسه کارگاه بیمه:</div>
+      <div class="col text-body2">
         {{ model.insuranceWorkNo }}
       </div>
     </div>
     <div class="row items-center">
-      <div class="col-2 no-letter-spacing">شماره ثبت:</div>
-      <div class="col text-body2 no-letter-spacing">
+      <div class="col-2">شماره ثبت:</div>
+      <div class="col text-body2">
         {{ model.regNo }}
       </div>
     </div>
     <div class="row items-center">
-      <div class="col-2 no-letter-spacing">تاریخ ثبت:</div>
-      <div class="col text-body2 no-letter-spacing">
+      <div class="col-2">تاریخ ثبت:</div>
+      <div class="col text-body2">
         {{ model.regDate?.substring(0, 10) }}
       </div>
     </div>
     <div class="row">
-      <div class="col-2 no-letter-spacing">شرح:</div>
-      <div class="col no-letter-spacing">
+      <div class="col-2">شرح:</div>
+      <div class="col">
         {{ model.comment }}
       </div>
     </div>

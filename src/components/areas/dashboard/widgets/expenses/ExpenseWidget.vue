@@ -63,7 +63,7 @@
               )
             }}
           </div>
-          <!-- <div class="row text-body1 no-letter-spacing q-mb-md">
+          <!-- <div class="row text-body1  q-mb-md">
           <div class="ellipsis-3-lines text-weight-500 text-green-8">
             <q-icon
               color="green-8"

@@ -3,7 +3,7 @@
     transition-show="slide-down"
     transition-hide="slide-up"
     transition-duration="600"
-    class="desktop-toolbar-gradient bordered text-body3 text-weight-500 no-letter-spacing text-on-dark q-py-xs q-px-sm"
+    class="desktop-toolbar-gradient bordered text-body3 text-weight-500 text-on-dark q-py-xs q-px-sm"
     rounded
     no-caps
     unelevated
@@ -20,7 +20,7 @@
         {{ $t("main-menu-items.Acc_FiscalYear_View") }}:
         {{ fiscalYearStore.currentYear.value?.title }}
       </div>
-      <span v-else class="text-body2 no-letter-spacing">
+      <span v-else class="text-body2">
         {{ `${fiscalYearStore.currentYear.value?.title}` }}
       </span>
     </template>
@@ -54,7 +54,7 @@
             v-close-popup
           >
             <div
-              class="text-body1 no-letter-spacing"
+              class="text-body1"
               :class="activeYearStyle(year) ? 'text-bold' : ''"
             >
               {{ year.title }}
@@ -71,10 +71,7 @@
             icon="o_refresh"
             @click="reloadData"
           >
-            <q-tooltip
-              class="text-body2 no-letter-spacing custom-tooltip"
-              :delay="600"
-            >
+            <q-tooltip class="text-body2 custom-tooltip" :delay="600">
               {{ $t("shared.labels.refresh") }}
             </q-tooltip>
           </q-btn>
@@ -92,7 +89,7 @@
               @click="previous($event)"
             >
               <q-tooltip
-                class="text-body2 no-letter-spacing custom-tooltip"
+                class="text-body2 custom-tooltip"
                 :delay="600"
               >
                 {{ $t("shared.labels.next") }}
@@ -113,7 +110,7 @@
               @click="next($event)"
             >
               <q-tooltip
-                class="text-body2 no-letter-spacing custom-tooltip"
+                class="text-body2 custom-tooltip"
                 :delay="600"
               >
                 {{ $t("shared.labels.previous") }}
@@ -130,10 +127,7 @@
             icon="add"
             to="/acc/fiscalYear/create"
           >
-            <q-tooltip
-              class="text-body2 no-letter-spacing custom-tooltip"
-              :delay="600"
-            >
+            <q-tooltip class="text-body2 custom-tooltip" :delay="600">
               {{ $t("shared.labels.addFiscalYear") }}
             </q-tooltip>
           </q-btn>
@@ -155,7 +149,7 @@
 
   const activeYearStyle = (year) => {
     if (fiscalYearStore.currentYear.value?.id === year.id) {
-      return "active-shine primary-gradient text-white text-body1 text-bold no-letter-spacing";
+      return "active-shine primary-gradient text-white text-body1 text-bold ";
     }
     return "";
   };

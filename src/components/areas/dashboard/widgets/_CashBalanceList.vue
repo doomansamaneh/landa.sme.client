@@ -6,7 +6,7 @@
     :to="`/acc/accountDL/Preview/${item.id}`"
     class="no-decoration q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
   >
-    <q-item-section avatar >
+    <q-item-section avatar>
       <q-btn
         v-if="getBankLogo(item.label)"
         class="bordered no-pointer-events border-radius-xs"
@@ -40,17 +40,17 @@
       </q-btn>
     </q-item-section>
 
-      <q-item-section>
-        <span class="text-body3 no-letter-spacing">
-          {{ item.label }}
+    <q-item-section>
+      <span class="text-body3">
+        {{ item.label }}
+      </span>
+      <span class="text-body3">
+        <span>موجودی:</span>
+        <span class="text-weight-600 q-px-xs">
+          {{ helper.formatNumber(item.amount) }}
         </span>
-        <span class="text-body3 no-letter-spacing">
-          <span>موجودی:</span>
-          <span class="text-weight-600 q-px-xs">
-            {{ helper.formatNumber(item.amount) }}
-          </span>
-        </span>
-      </q-item-section>
+      </span>
+    </q-item-section>
   </q-item>
 </template>
 

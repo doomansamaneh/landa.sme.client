@@ -43,9 +43,7 @@
 
       <div class="row justify-between items-center">
         <div class="col row items-center">
-          <div class="text-caption q-mr-xs no-letter-spacing">
-            شماره:
-          </div>
+          <div class="text-caption q-mr-xs">شماره:</div>
           <div class="text-caption text-on-dark">{{ index + 1 }}</div>
         </div>
 
@@ -98,7 +96,7 @@
           <span class="text-caption text-on-dark">مقدار</span>
         </div>
         <div class="col">
-          <span class="text-caption text-bold no-letter-spacing">
+          <span class="text-caption text-bold">
             {{ row.quantity.toLocaleString() }}
           </span>
           <span class="q-pl-xs">({{ row.productUnitTitle }})</span>
@@ -149,7 +147,7 @@
     <q-card-actions class="q-pa-md" align="between">
       <q-btn
         label="ویرایش"
-        class="text-body3 text-bold no-letter-spacing"
+        class="text-body3 text-bold"
         flat
         rounded
         @click="editItem(index, row)"
@@ -176,9 +174,7 @@
   >
     <q-card>
       <q-card-section class="row items-center q-pb-none">
-        <span class="text-bold text-body1 no-letter-spacing">
-          افزودن/ویرایش کالا
-        </span>
+        <span class="text-bold text-body1">افزودن/ویرایش کالا</span>
         <q-space />
         <q-btn
           round
@@ -205,7 +201,7 @@
           no-caps
           padding="8px 16px"
           rounded
-          class="text-body2 no-letter-spacing primary-shadow"
+          class="text-body2 primary-shadow"
           v-close-popup
         >
           <q-icon name="o_save" size="20px" class="q-mr-sm" />

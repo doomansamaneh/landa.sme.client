@@ -21,9 +21,7 @@
       />
       <q-btn unelevated padding="12px 24px" rounded color="primary">
         <q-icon size="20px" class="q-mr-xs" name="arrow_upward" />
-        <span class="text-body1 no-letter-spacing">
-          بارگزاری از فایل اکسل
-        </span>
+        <span class="text-body1">بارگزاری از فایل اکسل</span>
       </q-btn>
     </div>
   </div>
@@ -39,7 +37,7 @@
     </q-item-section>
 
     <q-item-section>
-      <div class="text-body2 no-letter-spacing ellipsis">
+      <div class="text-body2 ellipsis">
         {{ fileName }}
       </div>
     </q-item-section>
@@ -53,9 +51,7 @@
           unelevated
           dense
         >
-          <span class="text-body2 no-letter-spacing">
-            ارسال اطلاعات
-          </span>
+          <span class="text-body2">ارسال اطلاعات</span>
         </q-btn>
 
         <q-btn

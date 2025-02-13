@@ -8,9 +8,7 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label
-        class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-      >
+      <q-item-label class="caption-on-dark text-body2 q-mb-sm">
         بابت
       </q-item-label>
       <q-option-group

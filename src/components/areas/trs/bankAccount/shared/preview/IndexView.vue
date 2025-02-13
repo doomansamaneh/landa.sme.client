@@ -3,7 +3,7 @@
     <template #buttons>
       <menu-button-edit
         :to="`/trs/bankAccount/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
       />
       <menu-button-copy :to="`/trs/bankAccount/copy/${id}`" />
       <menu-button-delete

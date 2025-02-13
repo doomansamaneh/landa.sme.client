@@ -14,7 +14,7 @@
       "
       :self="tableStore?.separator.value ? 'top end' : 'top middle'"
     >
-      <div class="text-body2 no-letter-spacing">
+      <div class="text-body2">
         <template v-if="tableStore?.separator.value === 'none'">
           خط‌ دار
         </template>

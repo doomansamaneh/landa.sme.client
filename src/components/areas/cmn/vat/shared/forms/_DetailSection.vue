@@ -1,7 +1,5 @@
 <template>
-  <div class="text-h6 text-weight-600 q-py-lg no-letter-spacing">
-    اقلام ارزش افزوده
-  </div>
+  <div class="text-h6 text-weight-600 q-py-lg">اقلام ارزش افزوده</div>
   <q-card
     class="q-my-sm"
     flat

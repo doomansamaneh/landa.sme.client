@@ -19,7 +19,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">ویرایش</div>
+              <div class="text-body2">ویرایش</div>
             </q-item-section>
           </q-item>
           <q-item
@@ -36,7 +36,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">حذف</div>
+              <div class="text-body2">حذف</div>
             </q-item-section>
           </q-item>
         </q-list>

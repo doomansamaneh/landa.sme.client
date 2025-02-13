@@ -16,9 +16,7 @@
           style="padding: 5px; border: 1px solid #2d2d2d"
           colspan="100%"
         >
-          <div class="text-body2 no-letter-spacing text-weight-500">
-            فروشنده
-          </div>
+          <div class="text-body2 text-weight-500">فروشنده</div>
         </td>
       </tr>
       <tr>
@@ -67,9 +65,7 @@
           style="padding: 5px; border: 1px solid #2d2d2d"
           colspan="100%"
         >
-          <div class="text-body2 no-letter-spacing text-weight-500">
-            خریدار
-          </div>
+          <div class="text-body2 text-weight-500">خریدار</div>
         </td>
       </tr>
       <tr>

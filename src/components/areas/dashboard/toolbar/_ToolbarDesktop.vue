@@ -8,30 +8,17 @@
     >
       <q-toolbar class="no-padding">
         <div class="row items-center q-gutter-sm">
-          <div
-            class="text-h6 text-weight-700 no-letter-spacing text-on-dark"
-          >
+          <div class="text-h6 text-weight-700 text-on-dark">
             {{ $t("main-menu-items.dashboard") }}
           </div>
           <div>
-            <q-btn
-              dense
-              class="text-body2 no-letter-spacing"
-              round
-              unelevated
-              no-caps
-            >
+            <q-btn dense class="text-body2" round unelevated no-caps>
               <q-icon size="20px" name="o_tune" />
             </q-btn>
 
-            <q-btn
-              class="text-body2 no-letter-spacing"
-              rounded
-              unelevated
-              no-caps
-            >
+            <q-btn class="text-body2" rounded unelevated no-caps>
               <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
-              <div class="text-body2 no-letter-spacing">حالت پیشفرض</div>
+              <div class="text-body2">حالت پیشفرض</div>
             </q-btn>
           </div>
         </div>

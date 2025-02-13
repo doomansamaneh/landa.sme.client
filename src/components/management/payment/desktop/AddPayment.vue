@@ -4,9 +4,7 @@
     class="row q-gutter-x-sm q-py-md items-center justify-between"
   >
     <back-button />
-    <div
-      class="col ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
-    >
+    <div class="col ellipsis-2-lines text-body1 text-weight-700">
       {{ $t("pages.renew-subscription") }}
     </div>
   </div>
@@ -49,9 +47,7 @@
       >
         <div class="q-mb-lg">
           <div class="col-md col-sm-12 col-xs-12">
-            <q-item-label
-              class="text-body2 caption-on-dark no-letter-spacing q-mb-sm"
-            >
+            <q-item-label class="text-body2 caption-on-dark q-mb-sm">
               {{ $t("page.renew-subscription.business-name-label") }}
             </q-item-label>
             <q-field dense outlined>
@@ -64,9 +60,7 @@
 
         <div class="row items-center_ q-mb-lg q-col-gutter-md">
           <div class="col-md col-sm col-xs-12">
-            <q-item-label
-              class="text-body2 caption-on-dark no-letter-spacing q-mb-sm"
-            >
+            <q-item-label class="text-body2 caption-on-dark q-mb-sm">
               {{ $t("page.renew-subscription.current-plan") }}
             </q-item-label>
             <q-field dense outlined>
@@ -79,9 +73,7 @@
           </div>
 
           <div class="col-md-4 col-sm-4 col-xs-12">
-            <q-item-label
-              class="text-body2 caption-on-dark no-letter-spacing q-mb-sm"
-            >
+            <q-item-label class="text-body2 caption-on-dark q-mb-sm">
               {{ $t("page.renew-subscription.to-date") }}
             </q-item-label>
             <q-field dense outlined>
@@ -120,7 +112,7 @@
           />
           {{ $t("page.add-business.payment") }}
         </q-btn>
-        <span class="text-caption no-letter-spacing">
+        <span class="text-caption">
           {{ $t("page.add-business.pay-caption") }}
         </span>
       </div>

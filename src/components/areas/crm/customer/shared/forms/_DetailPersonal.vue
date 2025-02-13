@@ -4,7 +4,7 @@
       <div class="q-gutter-lg">
         <!-- <div>
             <q-item-label
-              class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+              class="text-body2  caption-on-dark q-mb-sm"
               >شرکت وابسته</q-item-label
             >
             <custom-input outlined dense />

@@ -41,7 +41,7 @@
             />
           </q-avatar>
 
-          <div class="text-h6 text-weight-700 no-letter-spacing">
+          <div class="text-h6 text-weight-700">
             {{ tab === "quote" ? "پیش فاکتورها" : "فاکتورهای فروش" }}
           </div>
         </template>
@@ -57,9 +57,7 @@
                 size="md"
               />
             </q-item-section>
-            <q-item-section
-              class="text-h6 text-weight-700 no-letter-spacing"
-            >
+            <q-item-section class="text-h6 text-weight-700">
               پیش فاکتورها
             </q-item-section>
           </q-item>
@@ -74,9 +72,7 @@
                 size="md"
               />
             </q-item-section>
-            <q-item-section
-              class="text-h6 text-weight-700 no-letter-spacing"
-            >
+            <q-item-section class="text-h6 text-weight-700">
               فاکتورهای فروش
             </q-item-section>
           </q-item>

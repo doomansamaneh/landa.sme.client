@@ -40,9 +40,7 @@
 
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <q-item-label
-          class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-        >
+        <q-item-label class="caption-on-dark text-body2 q-mb-sm">
           تفصیلیهای مرتبط
         </q-item-label>
         <div class="q-pt-xs">

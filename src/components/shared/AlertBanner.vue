@@ -18,7 +18,7 @@
 
         <q-badge
           color="negative"
-          class="border-radius-sm text-body1 text-weight-500 no-letter-spacing q-px-sm"
+          class="border-radius-sm text-body1 text-weight-500 q-px-sm"
         >
           {{ status }}
         </q-badge>

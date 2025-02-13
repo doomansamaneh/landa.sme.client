@@ -24,9 +24,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">
-                ایجاد حساب کل
-              </div>
+              <div class="text-body2">ایجاد حساب کل</div>
             </q-item-section>
           </q-item>
         </q-list>

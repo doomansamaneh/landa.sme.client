@@ -10,7 +10,7 @@
       size="12px"
     >
       <q-icon name="o_add" size="14px" style="margin-left: 2px" />
-      <span class="text-body3 no-letter-spacing">
+      <span class="text-body3">
         {{ $t("shared.labels.create") }}
       </span>
     </q-btn>

@@ -174,7 +174,7 @@
       @click="previous"
     >
       <q-icon class="q-pr-xs" size="16px" name="east" />
-      <span class="text-body3 no-letter-spacing">
+      <span class="text-body3">
         {{ $t("shared.labels.previous") }}
       </span>
     </q-btn>
@@ -188,7 +188,7 @@
       class="row primary-gradient primary-shadow items-center"
       @click="next"
     >
-      <span class="text-body3 no-letter-spacing">
+      <span class="text-body3">
         {{ $t("shared.labels.next") }}
       </span>
       <q-icon class="q-pl-xs" size="16px" name="west" />
@@ -206,7 +206,7 @@
           padding="8px 16px"
           :to="createUrl"
           dense
-          class="text-body1 no-letter-spacing primary-gradient primary-shadow"
+          class="text-body1 primary-gradient primary-shadow"
         >
           <div class="row items-center q-gutter-x-xs">
             <q-icon name="o_add" size="20px" />

@@ -8,7 +8,7 @@
   >
     <template #buttons>
       <menu-button-edit
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
         :to="`/${baseRoute}/edit/${id}`"
       />
       <menu-button-copy :to="`/${baseRoute}/copy/${id}`" />

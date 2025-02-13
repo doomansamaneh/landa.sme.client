@@ -6,11 +6,7 @@
       padding="6px 12px"
       class="primary-gradient primary-shadow text-white text-on-dark"
     >
-      <q-icon
-        name="o_add"
-        size="xs"
-        class="q-mr-xs text-body2 no-letter-spacing"
-      />
+      <q-icon name="o_add" size="xs" class="q-mr-xs text-body2" />
       افزودن تماس
       <q-menu class="border-radius-lg" :offset="[0, 20]" fit>
         <q-list dense padding>
@@ -28,7 +24,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">تلفن</div>
+              <div class="text-body2">تلفن</div>
             </q-item-section>
           </q-item>
 
@@ -46,7 +42,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">موبایل</div>
+              <div class="text-body2">موبایل</div>
             </q-item-section>
           </q-item>
 
@@ -64,7 +60,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">ایمیل</div>
+              <div class="text-body2">ایمیل</div>
             </q-item-section>
           </q-item>
 
@@ -82,7 +78,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">وبسایت</div>
+              <div class="text-body2">وبسایت</div>
             </q-item-section>
           </q-item>
         </q-list>

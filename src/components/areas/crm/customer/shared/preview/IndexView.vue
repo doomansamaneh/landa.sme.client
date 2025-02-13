@@ -12,25 +12,23 @@
         size="120px"
         text-color="white"
         :text-holder="model.name"
-        text-holder-class="text-bold no-letter-spacing"
+        text-holder-class="text-bold "
         :avatar="model.avatar"
         :item="model.id"
       />
       <div>
         <div
-          class="ellipsis-2-lines text-h4 line-height-lg text-weight-700 no-letter-spacing"
+          class="ellipsis-2-lines text-h4 line-height-lg text-weight-700"
         >
           {{ model.name }}
         </div>
         <div
           v-if="model.code && model.code !== '-'"
-          class="ellipsis_ caption-on-dark text-h6_ no-letter-spacing"
+          class="ellipsis_ caption-on-dark text-h6_"
         >
           کد: {{ model.code }}
         </div>
-        <div
-          class="ellipsis caption-on-dark text-h5 no-letter-spacing"
-        >
+        <div class="ellipsis caption-on-dark text-h5">
           {{ model.unitTitle }}
           <span v-if="model.jobTitle">/ {{ model.jobTitle }}</span>
         </div>

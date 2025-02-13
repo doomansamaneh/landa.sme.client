@@ -16,9 +16,7 @@
 
     <template #row-body="{ item }">
       <div class="row">
-        <div
-          class="col ellipsis text-body3 no-letter-spacing text-weight-500"
-        >
+        <div class="col ellipsis text-body3 text-weight-500">
           {{ item.subject }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />

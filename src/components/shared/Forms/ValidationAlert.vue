@@ -9,7 +9,7 @@
     :class="tooltipClass"
   >
     <slot />
-    <div class="text-body2 no-letter-spacing">
+    <div class="text-body2">
       {{ message }}
     </div>
   </q-tooltip>

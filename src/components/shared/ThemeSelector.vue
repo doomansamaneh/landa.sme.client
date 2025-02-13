@@ -35,7 +35,7 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <div class="text-body1 no-letter-spacing">
+          <div class="text-body1">
             {{ theme.name }}
           </div>
           <div class="no-pointer-events q-py-md">

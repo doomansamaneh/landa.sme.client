@@ -7,7 +7,7 @@
         </div>
       </slot>
       <slot name="body">
-        <div class="text-body1 no-letter-spacing">{{ tip }}</div>
+        <div class="text-body1">{{ tip }}</div>
       </slot>
     </q-card-section>
 

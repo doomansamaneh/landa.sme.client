@@ -9,7 +9,7 @@
     <template #buttons>
       <menu-button-edit
         :to="`/${baseRoute}/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
       />
       <menu-button-copy :to="`/${baseRoute}/copy/${id}`" />
       <menu-button-delete @click="crudStore.deleteById(id)" />

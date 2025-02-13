@@ -141,14 +141,14 @@
                 style="width: 100%"
               >
                 <slot name="tbody-index" :index="index">
-                  <div class="col-1 text-caption no-letter-spacing">
+                  <div class="col-1 text-caption">
                     {{ index + 1 }}
                   </div>
                 </slot>
                 <slot name="tbody-cols" :item="row">
                   <div
                     v-for="col in lookupColumns"
-                    class="col text-body2 no-letter-spacing"
+                    class="col text-body2"
                     :key="col"
                   >
                     <slot :name="`cell-${col}`" :item="row">
@@ -208,7 +208,7 @@
     <q-card class="no-border">
       <q-card-section>
         <div class="row items-center q-col-gutter-md">
-          <div class="col text-body2 no-letter-spacing text-bold">
+          <div class="col text-body2 text-bold">
             <slot name="title">انتخاب</slot>
           </div>
           <div class="flex flex-center">
@@ -233,7 +233,7 @@
           :rules="rules"
           color="primary"
           class="q-mt-md first input lookup"
-          input-class="text-body2 no-letter-spacing"
+          input-class="text-body2 "
           dense
           debounce="1000"
           :clearable="clearable"
@@ -297,9 +297,7 @@
                 size="12px"
               >
                 <q-icon name="o_add" size="14px" />
-                <span class="text-body3 no-letter-spacing">
-                  ایجاد
-                </span>
+                <span class="text-body3">ایجاد</span>
               </q-btn>
             </slot>
           </div>
@@ -332,14 +330,14 @@
                 style="width: 100%; margin-left: 0px"
               >
                 <slot name="tbody-index" :index="index">
-                  <div class="col-1 text-caption no-letter-spacing">
+                  <div class="col-1 text-caption">
                     {{ index + 1 }}
                   </div>
                 </slot>
                 <slot name="tbody-cols" :item="row">
                   <div
                     v-for="col in lookupColumns"
-                    class="col text-body2 no-letter-spacing"
+                    class="col text-body2"
                     :key="col"
                   >
                     <slot :name="`cell-${col}`" :item="row">
@@ -437,7 +435,7 @@
     clearable: Boolean,
     inputClass: {
       type: String,
-      default: "text-body2 no-letter-spacing",
+      default: "text-body2 ",
     },
   });
 

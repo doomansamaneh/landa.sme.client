@@ -10,7 +10,7 @@
       <template #header>
         <q-item-section class="q-pr-sm" avatar>
           <div
-            class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
+            class="bordered border-radius-sm text-body2 q-py-xs q-px-sm"
           >
             {{ item.glCode }}
           </div>
@@ -51,7 +51,7 @@
         >
           <q-item-section class="q-pr-sm" avatar>
             <div
-              class="bordered border-radius-sm text-body2 no-letter-spacing q-py-xs q-px-sm"
+              class="bordered border-radius-sm text-body2 q-py-xs q-px-sm"
             >
               {{ slItem.slCode }}
             </div>

@@ -21,7 +21,7 @@
               text-color="white"
               :item="authStore.user?.id"
               :text-holder="authStore.user?.fullName"
-              text-holder-class="text-h5 text-bold no-letter-spacing"
+              text-holder-class="text-h5 text-bold "
               :avatar="avatar"
             />
             <div class="q-mt-md">
@@ -46,9 +46,7 @@
             </q-item-section>
           </div>
           <q-item-section>
-            <div class="text-body2 no-letter-spacing">
-              تنظیمات شخصی
-            </div>
+            <div class="text-body2">تنظیمات شخصی</div>
           </q-item-section>
         </q-item>
         <!-- <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="openPasswordDialog">
@@ -78,7 +76,7 @@
             </q-item-section>
           </div>
           <q-item-section>
-            <div class="text-body2 no-letter-spacing">
+            <div class="text-body2">
               {{ $t("pages.business") }}
             </div>
           </q-item-section>
@@ -100,7 +98,7 @@
             </q-item-section>
           </div>
           <q-item-section>
-            <div class="text-body2 no-letter-spacing">
+            <div class="text-body2">
               {{ $t("business-layout.buttons.logout") }}
             </div>
           </q-item-section>

@@ -37,7 +37,7 @@
               border: 1px solid #2d2d2d;
               height: 90px;
             "
-            class="text-body2 no-letter-spacing vertical-top"
+            class="text-body2 vertical-top"
           >
             مهر و امضا فروشنده
             <div v-if="showSignature && signatureSource">
@@ -46,7 +46,7 @@
           </td>
           <td
             style="padding: 5px; border: 1px solid #2d2d2d"
-            class="text-body2 no-letter-spacing vertical-top"
+            class="text-body2 vertical-top"
           >
             مهر و امضا خریدار
           </td>

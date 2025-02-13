@@ -19,9 +19,7 @@
               color="orange-7"
               class="q-mr-xs"
             />
-            <div
-              class="text-body2 no-letter-spacing text-bold text-on-dark"
-            >
+            <div class="text-body2 text-bold text-on-dark">
               دسترسی سریع
             </div>
           </div>

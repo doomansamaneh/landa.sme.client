@@ -3,7 +3,7 @@
     v-if="$q.screen.gt.xs"
     class="row items-center justify-between q-mb-md"
   >
-    <div class="text-h6 text-weight-700 no-letter-spacing">
+    <div class="text-h6 text-weight-700">
       {{ title }}
     </div>
     <back-button />

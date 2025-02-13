@@ -3,7 +3,7 @@
     <q-card-section class="q-ml-sm row items-center justify-between">
       <q-option-group
         style="gap: 8px"
-        class="row text-body2 no-letter-spacing"
+        class="row text-body2"
         type="radio"
         dense
         size="40px"
@@ -17,7 +17,7 @@
         rounded
         unelevated
         dense
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
       >
         <q-icon
           :name="
@@ -25,7 +25,7 @@
           "
           class="q-mr-xs"
         />
-        <span class="text-body2 no-letter-spacing">
+        <span class="text-body2">
           {{ $t("shared.labels.advancedSearch") }}
         </span>
       </q-btn>
@@ -62,7 +62,7 @@
                       )
                     "
                     style="gap: 8px"
-                    class="overflow-hidden row text-body2 no-letter-spacing"
+                    class="overflow-hidden row text-body2"
                     type="radio"
                     dense
                     size="40px"
@@ -200,7 +200,7 @@
                 <div class="col-md col-sm-7 col-xs-12">
                   <custom-input
                     v-model="searchStore.searchModel.value.comment"
-                    class="text-body2 no-letter-spacing"
+                    class="text-body2"
                   />
                 </div>
               </div>
@@ -217,7 +217,7 @@
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <custom-input-number
                     v-model="searchStore.searchModel.value.amountFrom"
-                    class="text-body2 no-letter-spacing"
+                    class="text-body2"
                   />
                 </div>
               </div>
@@ -232,7 +232,7 @@
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <custom-input-number
                     v-model="searchStore.searchModel.value.amountTo"
-                    class="text-body2 no-letter-spacing"
+                    class="text-body2"
                   />
                 </div>
               </div>
@@ -247,7 +247,7 @@
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <date-time
                     v-model="searchStore.searchModel.value.dateFrom"
-                    class="text-body2 no-letter-spacing"
+                    class="text-body2"
                   />
                 </div>
               </div>
@@ -262,7 +262,7 @@
                 <div class="col-md-6 col-sm-7 col-xs-12">
                   <date-time
                     v-model="searchStore.searchModel.value.dateTo"
-                    class="text-body2 no-letter-spacing"
+                    class="text-body2"
                   />
                 </div>
               </div>
@@ -277,7 +277,7 @@
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
               <q-btn
-                class="q-mr-sm text-body2 no-letter-spacing primary-gradient primary-shadow text-white"
+                class="q-mr-sm text-body2 primary-gradient primary-shadow text-white"
                 rounded
                 padding="8px 16px"
                 unelevated
@@ -287,7 +287,7 @@
                 جستجو
               </q-btn>
               <q-btn
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
                 rounded
                 unelevated
                 padding="8px 16px"

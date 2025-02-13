@@ -32,9 +32,7 @@
         padding="sm"
         icon="o_refresh"
       >
-        <q-tooltip
-          class="custom-tooltip text-body1 no-letter-spacing"
-        >
+        <q-tooltip class="custom-tooltip text-body1">
           دریافت دوباره اطلاعات از سامانه مودیان
         </q-tooltip>
       </q-btn>

@@ -75,9 +75,7 @@
             />
           </div>
           <div class="col-md col-sm col-xs-12">
-            <q-item-label
-              class="q-mb-sm text-body2 caption-on-dark no-letter-spacing"
-            >
+            <q-item-label class="q-mb-sm text-body2 caption-on-dark">
               جنسیت
             </q-item-label>
             <div class="row q-pt-xs q-col-gutter-md">
@@ -131,7 +129,7 @@
         <div>
           <q-checkbox
             size="46px"
-            class="q-mb-sm text-body2 no-letter-spacing"
+            class="q-mb-sm text-body2"
             dense
             v-model="model.value.isActive"
             label="فعال"

@@ -22,7 +22,7 @@
           rounded
           clearable
           clear-icon="o_close"
-          class="full-width text-body2 no-letter-spacing"
+          class="full-width text-body2"
         >
           <template v-slot:prepend>
             <q-icon name="o_search" color="primary" size="24px" />
@@ -118,7 +118,7 @@
             group="menu"
             :label="parentItem.title"
             :icon="`o_${parentItem.icon}`"
-            class="parent text-body2 no-letter-spacing"
+            class="parent text-body2"
             :class="{
               highlighted: shouldHighlight(parentItem.subItems),
             }"
@@ -146,7 +146,7 @@
                   <q-icon :name="`o_${subItem.icon}`" size="20px" />
                 </q-item-section>
                 <q-item-section>
-                  <span class="z-1 text-body2 sub no-letter-spacing">
+                  <span class="z-1 text-body2 sub">
                     {{ subItem.title }}
                   </span>
                 </q-item-section>

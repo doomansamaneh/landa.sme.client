@@ -1,9 +1,6 @@
 <template>
   <div :class="headerMargin()">
-    <div
-      :class="titlePadding()"
-      class="text-h6 text-weight-700 no-letter-spacing"
-    >
+    <div :class="titlePadding()" class="text-h6 text-weight-700">
       راه اندازی اولیه کسب و کار
     </div>
 
@@ -103,9 +100,7 @@
           <q-banner class="bg-on-dark" v-if="step === 1">
             <div class="row items-center q-gutter-sm">
               <q-icon size="24px" name="o_info" />
-              <div
-                class="text-body1 text-weight-700 no-letter-spacing"
-              >
+              <div class="text-body1 text-weight-700">
                 اطلاعات اصلی
               </div>
             </div>
@@ -114,42 +109,28 @@
           <q-banner class="bg-on-dark" v-if="step === 2">
             <div class="row items-center q-gutter-sm">
               <q-icon size="24px" name="o_phone" />
-              <div
-                class="text-body1 text-weight-700 no-letter-spacing"
-              >
-                تماس
-              </div>
+              <div class="text-body1 text-weight-700">تماس</div>
             </div>
           </q-banner>
 
           <q-banner class="bg-on-dark" v-if="step === 3">
             <div class="row items-center q-gutter-sm">
               <q-icon size="24px" name="o_paid" />
-              <div
-                class="text-body1 text-weight-700 no-letter-spacing"
-              >
-                مالیات
-              </div>
+              <div class="text-body1 text-weight-700">مالیات</div>
             </div>
           </q-banner>
 
           <q-banner class="bg-on-dark" v-if="step === 4">
             <div class="row items-center q-gutter-sm">
               <q-icon size="24px" name="o_local_hospital" />
-              <div
-                class="text-body1 text-weight-700 no-letter-spacing"
-              >
-                بیمه
-              </div>
+              <div class="text-body1 text-weight-700">بیمه</div>
             </div>
           </q-banner>
 
           <q-banner class="bg-on-dark" v-if="step === 5">
             <div class="row items-center q-gutter-sm">
               <q-icon size="24px" name="o_payments" />
-              <div
-                class="text-body1 text-weight-700 no-letter-spacing"
-              >
+              <div class="text-body1 text-weight-700">
                 حقوق و دستمزد
               </div>
             </div>
@@ -158,9 +139,7 @@
           <q-banner class="bg-on-dark" v-if="step === 6">
             <div class="row items-center q-gutter-sm">
               <q-icon size="24px" name="storefront" />
-              <div
-                class="text-body1 text-weight-700 no-letter-spacing"
-              >
+              <div class="text-body1 text-weight-700">
                 بازرگانی، خرید و فروش
               </div>
             </div>
@@ -169,9 +148,7 @@
           <q-banner class="bg-on-dark" v-if="step === 7">
             <div class="row items-center q-gutter-sm">
               <q-icon size="24px" name="o_diamond" />
-              <div
-                class="text-body1 text-weight-700 no-letter-spacing"
-              >
+              <div class="text-body1 text-weight-700">
                 لوگو و امضا
               </div>
             </div>

@@ -4,7 +4,7 @@
       <q-toggle
         dense
         size="40px"
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         label="نمایش موجودی صفر"
         left-label
         v-model="searchStore.searchModel.value.showZeroStock"
@@ -17,7 +17,7 @@
         rounded
         unelevated
         dense
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
       >
         <q-icon
           :name="
@@ -25,7 +25,7 @@
           "
           class="q-mr-xs"
         />
-        <span class="text-body2 no-letter-spacing">
+        <span class="text-body2">
           {{ $t("shared.labels.advancedSearch") }}
         </span>
       </q-btn>
@@ -70,7 +70,7 @@
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
               <q-btn
-                class="q-mr-sm text-body2 no-letter-spacing primary-gradient text-white"
+                class="q-mr-sm text-body2 primary-gradient text-white"
                 rounded
                 padding="8px 16px"
                 unelevated
@@ -80,7 +80,7 @@
                 {{ $t("shared.labels.search") }}
               </q-btn>
               <q-btn
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
                 rounded
                 unelevated
                 padding="8px 16px"

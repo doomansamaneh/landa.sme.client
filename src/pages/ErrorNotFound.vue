@@ -4,22 +4,18 @@
       <div class="notfound">
         <div class="notfound-404">
           <div></div>
-          <div
-            class="warning-text no-letter-spacing q-pt-sm text-weight-700"
-          >
-            404
-          </div>
+          <div class="warning-text q-pt-sm text-weight-700">404</div>
         </div>
         <div style="width: 330px">
           <div class="text-on-dark text-h4 text-weight-700 q-pt-lg">
             صفحه مورد نظر یافت نشد
           </div>
-          <div class="text-on-dark text-body1 no-letter-spacing">
+          <div class="text-on-dark text-body1">
             احتمالا آدرس اشتباهی را جستجو کرده‌اید
           </div>
           <q-btn
             to="/"
-            class="primary-gradient primary-shadow text-on-dark q-mt-lg text-body1 no-letter-spacing"
+            class="primary-gradient primary-shadow text-on-dark q-mt-lg text-body1"
             rounded
             unelevated
             text-color="white"

@@ -1,5 +1,5 @@
 <template>
-  <div class="text-h6 no-letter-spacing text-center q-mb-sm">
+  <div class="text-h6 text-center q-mb-sm">
     {{ title }}
   </div>
 

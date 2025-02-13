@@ -26,7 +26,7 @@
           tableStore?.inFullscreen.value ? 'top end' : 'top middle'
         "
       >
-        <div class="text-body2 no-letter-spacing">
+        <div class="text-body2">
           <template v-if="tableStore?.inFullscreen.value">
             خروج از تمام صفحه
           </template>

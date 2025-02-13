@@ -16,16 +16,14 @@
 
     <template #row-body="{ item }">
       <div class="row">
-        <div
-          class="col ellipsis text-body3 no-letter-spacing text-weight-600"
-        >
+        <div class="col ellipsis text-body3 text-weight-600">
           <span v-if="item.code">{{ item.code }} /</span>
           {{ item.name }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />
       </div>
       <div class="row">
-        <div class="col ellipsis text-caption-sm no-letter-spacing">
+        <div class="col ellipsis text-caption-sm">
           <span v-if="item.locationName">
             {{ item.locationName }} /
           </span>

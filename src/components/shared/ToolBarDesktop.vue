@@ -65,7 +65,7 @@
 
             <q-btn
               padding="6px 12px"
-              class="text-body2 no-letter-spacing"
+              class="text-body2"
               rounded
               unelevated
             >
@@ -147,7 +147,7 @@
                   <span
                     @mouseover="showItemsNumebr"
                     @mouseout="hideItemsNumebr"
-                    class="no-letter-spacing"
+                    class=""
                   >
                     {{ title }}
                   </span>
@@ -179,7 +179,7 @@
           <slot name="header">
             <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
               <slot name="header-title">
-                <span class="text-weight-700 no-letter-spacing">
+                <span class="text-weight-700">
                   {{ title }}
                 </span>
                 <q-btn

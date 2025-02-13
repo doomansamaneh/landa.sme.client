@@ -8,27 +8,29 @@
         square
         size="100px"
       >
-        <div class="text-h4 no-letter-spacing text-bold">{{ helper.getFirstChar(username) }}</div>
+        <div class="text-h4 text-bold">
+          {{ helper.getFirstChar(username) }}
+        </div>
       </q-avatar>
 
       <div class="column">
-
         <div class="row items-center q-mb-lg q-gutter-x-xs">
-          <div class="text-on-dark text-body1 no-letter-spacing text-bold">{{ username }}</div>
-          <div class="text-body1 caption-on-dark no-letter-spacing">
-            حداکثر حجم قابل قبول برای آپلود تصاویر، 800 کیلوبایت می‌باشد.
+          <div class="text-on-dark text-body1 text-bold">
+            {{ username }}
+          </div>
+          <div class="text-body1 caption-on-dark">
+            حداکثر حجم قابل قبول برای آپلود تصاویر، 800 کیلوبایت
+            می‌باشد.
           </div>
         </div>
 
-
         <div class="row items-center q-gutter-md">
-
           <q-btn
             padding="10px 24px"
             rounded
             unelevated
             color="primary"
-            class="text-body2 no-letter-spacing primary-shadow"
+            class="text-body2 primary-shadow"
             label="آپلود تصویر نمایه"
           />
           <q-btn
@@ -41,22 +43,20 @@
           />
         </div>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue"
+  import { ref, onMounted, computed } from "vue";
 
-import { useAuthStore } from "src/stores"
-import { helper } from "src/helpers"
+  import { useAuthStore } from "src/stores";
+  import { helper } from "src/helpers";
 
-const authStore = useAuthStore()
+  const authStore = useAuthStore();
 
-const username = computed(() => {
-  if (authStore.user) return authStore.user.fullName
-  return ""
-})
+  const username = computed(() => {
+    if (authStore.user) return authStore.user.fullName;
+    return "";
+  });
 </script>

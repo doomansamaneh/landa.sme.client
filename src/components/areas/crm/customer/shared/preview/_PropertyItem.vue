@@ -1,7 +1,7 @@
 <template>
   <div class="row bordered-1 q-pa-md q-my-md items-center">
     <div class="col">
-      <div class="text-body2 no-letter-spacing">
+      <div class="text-body2">
         <span class="text-weight-700 q-mr-sm">{{ item.title }}:</span>
         <span>{{ item.value }}</span>
       </div>

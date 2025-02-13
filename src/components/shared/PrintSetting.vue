@@ -3,25 +3,19 @@
     <div class="col">
       <div class="column q-gutter-lg">
         <div>
-          <div
-            class="text-weight-500 text-body1 no-letter-spacing q-mb-md"
-          >
-            جهت
-          </div>
+          <div class="text-weight-500 text-body1 q-mb-md">جهت</div>
           <q-option-group
             :options="orientationOptions"
             type="radio"
             dense
             size="40px"
-            class="text-body2 no-letter-spacing q-gutter-md"
+            class="text-body2 q-gutter-md"
             inline
             v-model="printStore.orientation.value"
           />
         </div>
         <div>
-          <div
-            class="text-weight-500 text-body1 no-letter-spacing q-mb-md"
-          >
+          <div class="text-weight-500 text-body1 q-mb-md">
             ابعاد صفحه
           </div>
           <q-option-group
@@ -29,7 +23,7 @@
             type="radio"
             dense
             size="40px"
-            class="text-body2 no-letter-spacing q-gutter-md"
+            class="text-body2 q-gutter-md"
             inline
             v-model="printStore.format.value"
           />

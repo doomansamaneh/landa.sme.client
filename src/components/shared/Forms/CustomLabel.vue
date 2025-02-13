@@ -1,8 +1,5 @@
 <template>
-  <q-item-label
-    v-if="label"
-    class="caption-on-dark no-letter-spacing"
-  >
+  <q-item-label v-if="label" class="caption-on-dark">
     {{ label }}
   </q-item-label>
 </template>

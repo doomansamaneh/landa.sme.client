@@ -16,11 +16,11 @@
 
             <div class="row items-center">
               <div
-                class="title-width ellipsis-2-lines text-weight-700 no-letter-spacing"
+                class="title-width ellipsis-2-lines text-weight-700"
                 :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
               >
                 <slot name="header-title">
-                  <span class="text-body2 no-letter-spacing">
+                  <span class="text-body2">
                     {{ title }}
                   </span>
                   <q-btn
@@ -112,7 +112,7 @@
               padding="0 9px"
               rounded
               outline
-              class="text-body2 text-on-dark no-letter-spacing q-ml-sm bg-dark no-pointer-events"
+              class="text-body2 text-on-dark q-ml-sm bg-dark no-pointer-events"
             >
               {{ selectedIds?.length }}
             </q-btn>

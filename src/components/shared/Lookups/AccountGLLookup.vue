@@ -23,7 +23,7 @@
     <template #tbody-cols="{ item }">
       <div class="col-1">{{ item.code }}</div>
       <div class="col">
-        <span class="q-mr-sm text-body2 no-letter-spacing">
+        <span class="q-mr-sm text-body2">
           {{ item.title }}
         </span>
       </div>

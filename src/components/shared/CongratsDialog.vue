@@ -27,13 +27,11 @@
               : 'filter: drop-shadow(0 0 15px #FFFF00);'
           "
         />
-        <div
-          class="text-center q-mt-xl text-h6 no-letter-spacing text-weight-700"
-        >
+        <div class="text-center q-mt-xl text-h6 text-weight-700">
           به لاندا خوش آمدید
         </div>
 
-        <div class="text-h6 no-letter-spacing q-mt-sm">
+        <div class="text-h6 q-mt-sm">
           از حسن انتخاب شما بسیار خشنود و سپاسگزار هستیم
         </div>
       </q-card-section>

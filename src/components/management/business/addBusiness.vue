@@ -5,9 +5,7 @@
   >
     <back-button />
 
-    <div
-      class="col ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
-    >
+    <div class="col ellipsis-2-lines text-body1 text-weight-700">
       {{ $t("pages.add-new-business") }}
     </div>
   </div>
@@ -85,7 +83,7 @@
           />
           {{ $t("page.add-business.payment") }}
         </q-btn>
-        <span class="text-caption no-letter-spacing">
+        <span class="text-caption">
           {{ $t("page.add-business.pay-caption") }}
         </span>
       </div>

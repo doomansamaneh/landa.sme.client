@@ -2,7 +2,7 @@
   <q-input
     class="q-pa-md"
     inputmode="search"
-    input-class="text-body2 no-letter-spacing"
+    input-class="text-body2 "
     outlined
     dense
     rounded

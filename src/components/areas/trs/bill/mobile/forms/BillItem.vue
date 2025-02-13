@@ -3,16 +3,14 @@
     <q-card-section>
       <div class="row items-center no-wrap">
         <div class="col">
-          <div
-            class="row items-center text-bold text-body1 no-letter-spacing"
-          >
+          <div class="row items-center text-bold text-body1">
             <q-btn
               unelevated
               size="8px"
-              class="bg-primary text-white q-mr-sm text-caption-sm no-pointer-events no-letter-spacing"
+              class="bg-primary text-white q-mr-sm text-caption-sm no-pointer-events"
               round
             >
-              <span class="text-body2 no-letter-spacing">
+              <span class="text-body2">
                 {{ index + 1 }}
               </span>
             </q-btn>

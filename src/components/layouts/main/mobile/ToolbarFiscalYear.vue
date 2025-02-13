@@ -16,7 +16,7 @@
         {{ fiscalYearStore.currentYear.value?.title }}
       </div>
     </div>
-    <span v-else class="text-body2 no-letter-spacing">
+    <span v-else class="text-body2">
       {{ `${fiscalYearStore.currentYear.value?.title}` }}
     </span>
   </q-btn>
@@ -56,7 +56,7 @@
             v-close-popup
           >
             <div
-              class="text-body1 no-letter-spacing"
+              class="text-body1"
               :class="activeYearStyle(year) ? 'text-bold' : ''"
             >
               {{ year.title }}
@@ -73,10 +73,7 @@
             icon="o_refresh"
             @click="reloadData"
           >
-            <q-tooltip
-              class="text-body2 no-letter-spacing custom-tooltip"
-              :delay="600"
-            >
+            <q-tooltip class="text-body2 custom-tooltip" :delay="600">
               {{ $t("shared.labels.refresh") }}
             </q-tooltip>
           </q-btn>
@@ -94,7 +91,7 @@
               @click="previous($event)"
             >
               <q-tooltip
-                class="text-body2 no-letter-spacing custom-tooltip"
+                class="text-body2 custom-tooltip"
                 :delay="600"
               >
                 {{ $t("shared.labels.next") }}
@@ -115,7 +112,7 @@
               @click="next($event)"
             >
               <q-tooltip
-                class="text-body2 no-letter-spacing custom-tooltip"
+                class="text-body2 custom-tooltip"
                 :delay="600"
               >
                 {{ $t("shared.labels.previous") }}

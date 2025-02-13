@@ -3,7 +3,7 @@
     v-if="title"
     padding="0 8px"
     unelevated
-    class="bluegrey-gradient text-white text-center text-caption-xs no-letter-spacing border-radius-lg no-pointer-events"
+    class="bluegrey-gradient text-white text-center text-caption-xs border-radius-lg no-pointer-events"
     style="white-space: nowrap"
   >
     {{ title }}

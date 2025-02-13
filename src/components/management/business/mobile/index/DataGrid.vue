@@ -1,8 +1,6 @@
 <template>
   <div class="row q-py-md items-center justify-between">
-    <div
-      class="ellipsis-2-lines text-body1 no-letter-spacing text-weight-700"
-    >
+    <div class="ellipsis-2-lines text-body1 text-weight-700">
       {{ $t("pages.business") }}
     </div>
   </div>
@@ -60,9 +58,7 @@
               </div>
 
               <div class="row">
-                <q-item-label
-                  class="caption-on-dark text-body3 no-letter-spacing"
-                >
+                <q-item-label class="caption-on-dark text-body3">
                   <q-icon
                     class="expire-date-clock bg-on-dark2"
                     name="history"
@@ -111,7 +107,7 @@
         to="/business/addBusiness"
         dense
         color="primary"
-        class="text-body1 no-letter-spacing primary-shadow"
+        class="text-body1 primary-shadow"
       >
         <div class="row items-center q-gutter-x-xs">
           <q-icon name="o_add" size="sm" />
@@ -148,7 +144,7 @@
             </q-avatar>
           </q-item-section>
 
-          <q-item-section class="text-body2 no-letter-spacing">
+          <q-item-section class="text-body2">
             {{ $t("page.buttons.more-button.enter-business") }}
           </q-item-section>
         </q-item>
@@ -165,7 +161,7 @@
               </q-avatar>
             </q-item-section>
 
-            <q-item-section class="text-body2 no-letter-spacing">
+            <q-item-section class="text-body2">
               {{ $t("page.buttons.more-button.payment-history") }}
             </q-item-section>
           </q-item>
@@ -182,7 +178,7 @@
               </q-avatar>
             </q-item-section>
 
-            <q-item-section class="text-body2 no-letter-spacing">
+            <q-item-section class="text-body2">
               {{ $t("page.buttons.more-button.delete") }}
             </q-item-section>
           </q-item>

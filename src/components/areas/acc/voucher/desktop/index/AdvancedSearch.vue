@@ -3,7 +3,7 @@
     <q-card-section class="q-pl-lg row items-center justify-between">
       <q-option-group
         style="gap: 8px"
-        class="row text-body2 no-letter-spacing"
+        class="row text-body2"
         type="radio"
         size="40px"
         dense
@@ -17,7 +17,7 @@
         rounded
         unelevated
         dense
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
       >
         <q-icon
           :name="
@@ -25,7 +25,7 @@
           "
           class="q-mr-xs"
         />
-        <span class="text-body2 no-letter-spacing">
+        <span class="text-body2">
           {{ $t("shared.labels.advancedSearch") }}
         </span>
       </q-btn>
@@ -54,7 +54,7 @@
               <custom-input-number
                 v-model="searchStore.searchModel.value.amountFrom"
                 :placeholder="$t('shared.labels.amountFrom')"
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
               />
             </div>
 
@@ -62,7 +62,7 @@
               <custom-input-number
                 v-model="searchStore.searchModel.value.amountTo"
                 :placeholder="$t('shared.labels.amountTo')"
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
               />
             </div>
           </div>
@@ -72,7 +72,7 @@
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
                 :placeholder="$t('shared.labels.dateFrom')"
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
               />
             </div>
 
@@ -80,7 +80,7 @@
               <date-time
                 v-model="searchStore.searchModel.value.dateTo"
                 :placeholder="$t('shared.labels.dateTo')"
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
               />
             </div>
           </div>
@@ -104,7 +104,7 @@
               <custom-input
                 v-model="searchStore.searchModel.value.comment"
                 :placeholder="$t('shared.labels.comment')"
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
               />
             </div>
           </div>
@@ -116,7 +116,7 @@
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
               <q-btn
-                class="q-mr-sm text-body2 no-letter-spacing primary-gradient text-white"
+                class="q-mr-sm text-body2 primary-gradient text-white"
                 rounded
                 padding="8px 16px"
                 unelevated
@@ -126,7 +126,7 @@
                 {{ $t("shared.labels.search") }}
               </q-btn>
               <q-btn
-                class="text-body2 no-letter-spacing"
+                class="text-body2"
                 rounded
                 unelevated
                 padding="8px 16px"

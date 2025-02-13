@@ -47,25 +47,22 @@
 
     <template #td="{ row, index }">
       <div class="row items-center q-pa-md q-gutter-x-md">
-        <div
-          style="width: 16px"
-          class="col_ text-body3 no-letter-spacing"
-        >
+        <div style="width: 16px" class="col_ text-body3">
           {{ index }}
         </div>
-        <div class="col-3_ text-body3 no-letter-spacing">
+        <div class="col-3_ text-body3">
           {{ row.itemNo }}
         </div>
-        <div class="col-3_ text-body3 no-letter-spacing">
+        <div class="col-3_ text-body3">
           {{ row.itemDate?.substring(0, 10) }}
         </div>
-        <div class="col-4_ text-body3 no-letter-spacing">
+        <div class="col-4_ text-body3">
           {{ row.customerName }}
         </div>
-        <div class="col-4_ text-body3 no-letter-spacing">
+        <div class="col-4_ text-body3">
           {{ row.bankTitle }}
         </div>
-        <div class="col_ text-body3 no-letter-spacing">
+        <div class="col_ text-body3">
           {{ helper.formatNumber(row.amount) }}
         </div>
       </div>

@@ -36,11 +36,7 @@
             >
               <q-card class="bordered">
                 <q-card-section class="q-pb-none">
-                  <div
-                    class="text-h6 no-letter-spacing text-weight-700"
-                  >
-                    تخفیف
-                  </div>
+                  <div class="text-h6 text-weight-700">تخفیف</div>
                 </q-card-section>
                 <q-card-section>
                   <custom-input-number v-model="generalDiscountValue">
@@ -122,9 +118,7 @@
             >
               <q-card class="bordered">
                 <q-card-section class="q-pb-none">
-                  <div
-                    class="text-h6 no-letter-spacing text-weight-700"
-                  >
+                  <div class="text-h6 text-weight-700">
                     ارزش افزوده
                   </div>
                 </q-card-section>

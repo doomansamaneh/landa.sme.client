@@ -23,7 +23,7 @@
           clear-icon="o_clear"
           rounded
           @keydown.enter="loadData"
-          class="text-body2 no-letter-spacing"
+          class="text-body2"
         >
           <template v-slot:prepend>
             <q-icon name="o_search" color="primary" />

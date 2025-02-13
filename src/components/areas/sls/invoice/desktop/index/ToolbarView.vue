@@ -9,7 +9,7 @@
   >
     <template #buttons-create>
       <q-btn
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
         rounded
         unelevated
         no-caps

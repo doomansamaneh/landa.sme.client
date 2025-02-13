@@ -18,7 +18,7 @@
         >
           <div class="row items-center">
             <q-icon name="o_search" size="xs" class="q-mr-xs" />
-            <div class="text-body2 no-letter-spacing">جستجو</div>
+            <div class="text-body2">جستجو</div>
           </div>
         </q-btn>
       </template>
@@ -42,7 +42,7 @@
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import TipBanner from "../shared/TipBanner.vue";
-  
+
   const search = ref("");
 
   const props = defineProps({

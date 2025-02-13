@@ -20,9 +20,7 @@
 
     <template #row-body="{ item }">
       <div class="row justify-between">
-        <div
-          class="col ellipsis text-body3 no-letter-spacing text-weight-600"
-        >
+        <div class="col ellipsis text-body3 text-weight-600">
           {{ item.customerName }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />

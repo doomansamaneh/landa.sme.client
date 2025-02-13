@@ -8,7 +8,7 @@
           <q-item
             clickable
             @click="showSortOptionsDialog(item)"
-            class="text-body2 no-letter-spacing q-pa-md"
+            class="text-body2 q-pa-md"
           >
             <q-item-section>
               <div class="row">

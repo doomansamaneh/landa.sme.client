@@ -1,5 +1,9 @@
 <template>
-  <q-card flat class="bordered shadow" v-if="dataStore.data?.value?.total">
+  <q-card
+    flat
+    class="bordered shadow"
+    v-if="dataStore.data?.value?.total"
+  >
     <q-card-section class="q-pa-lg">
       <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
     </q-card-section>
@@ -33,9 +37,7 @@
                 )
               }}
 
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
-              >
+              <q-tooltip class="custom-tooltip text-body1">
                 {{
                   helper.formatNumber(dataStore.data?.value?.total)
                 }}
@@ -75,9 +77,7 @@
                 )
               }}
 
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
-              >
+              <q-tooltip class="custom-tooltip text-body1">
                 {{
                   helper.formatNumber(
                     dataStore.data?.value?.thisYearTotal
@@ -125,9 +125,7 @@
                 )
               }}
 
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
-              >
+              <q-tooltip class="custom-tooltip text-body1">
                 {{
                   helper.formatNumber(dataStore.data?.value?.payed)
                 }}
@@ -173,9 +171,7 @@
                 )
               }}
 
-              <q-tooltip
-                class="custom-tooltip text-body1 no-letter-spacing"
-              >
+              <q-tooltip class="custom-tooltip text-body1">
                 {{
                   helper.formatNumber(dataStore.data?.value?.remained)
                 }}

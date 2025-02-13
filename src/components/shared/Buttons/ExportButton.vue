@@ -2,7 +2,7 @@
   <q-btn size="11px" round unelevated>
     <q-icon size="21px" name="o_download" />
     <q-tooltip :delay="700" class="custom-tooltip">
-      <div class="text-body2 no-letter-spacing">تبدیل به اکسل</div>
+      <div class="text-body2">تبدیل به اکسل</div>
     </q-tooltip>
 
     <q-menu
@@ -26,7 +26,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">
+              <div class="text-body2">
                 {{ $t("shared.labels.eportToExcel") }}
               </div>
             </q-item-section>
@@ -46,7 +46,7 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2 no-letter-spacing">
+              <div class="text-body2">
                 {{ $t("shared.labels.exportExcelCurrentPage") }}
               </div>
             </q-item-section>

@@ -43,7 +43,7 @@
   <!-- <div class="row q-gutter-lg q-mb-md">
       <div class="col-md col-sm col-xs-12">
         <q-item-label
-          class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+          class="text-body2  caption-on-dark q-mb-sm"
         >
           طبقه
         </q-item-label>
@@ -51,7 +51,7 @@
       </div>
       <div class="col-md col-sm col-xs-12">
         <q-item-label
-          class="text-body2 no-letter-spacing caption-on-dark q-mb-sm"
+          class="text-body2  caption-on-dark q-mb-sm"
         >
           اتاق
         </q-item-label>

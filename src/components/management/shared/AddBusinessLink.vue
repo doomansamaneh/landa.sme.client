@@ -1,7 +1,7 @@
 <template>
   <q-btn
     rounded
-    class="text-body1 no-letter-spacing"
+    class="text-body1"
     no-caps
     outline
     :color="$q.dark.isActive ? 'yellow' : 'primary'"

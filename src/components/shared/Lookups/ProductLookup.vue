@@ -38,25 +38,21 @@
             :style="helper.generateAvatarStyle(row.id)"
             v-else
           >
-            <div class="char text-body2 no-letter-spacing text-bold">
+            <div class="char text-body2 text-bold">
               {{ helper.getFirstChar(row.title) }}
             </div>
           </q-avatar>
         </div>
         <q-item-section class="q-pl-md">
-          <q-item-label class="text-body3 no-letter-spacing">
+          <q-item-label class="text-body3">
             {{ row.code }} - {{ row.title }}
           </q-item-label>
-          <q-item-label class="text-body2 no-letter-spacing">
-            <span class="text-body3 no-letter-spacing text-bold">
-              موجودی:
-            </span>
+          <q-item-label class="text-body2">
+            <span class="text-body3 text-bold">موجودی:</span>
             {{ row.stock }}
           </q-item-label>
-          <q-item-label class="text-body2 no-letter-spacing">
-            <span class="text-body3 no-letter-spacing text-bold">
-              قیمت فروش:
-            </span>
+          <q-item-label class="text-body2">
+            <span class="text-body3 text-bold">قیمت فروش:</span>
             {{ row.price.toLocaleString() }}
           </q-item-label>
         </q-item-section>

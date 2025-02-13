@@ -2,40 +2,36 @@
   <q-card-section class="q-gutter-y-md">
     <div class="row">
       <div class="col-1">
-        <span class="text-body3 no-letter-spacing">گروه:</span>
+        <span class="text-body3">گروه:</span>
       </div>
-      <div class="text-body3 no-letter-spacing">
+      <div class="text-body3">
         {{ item?.productGroupTitle }}
       </div>
     </div>
 
     <div class="row">
       <div class="col-1">
-        <span class="text-body3 no-letter-spacing">کالا:</span>
+        <span class="text-body3">کالا:</span>
       </div>
-      <div class="text-body2 text-bold no-letter-spacing">
+      <div class="text-body2 text-bold">
         {{ item?.code }} / {{ item?.title }}
       </div>
     </div>
 
     <div v-if="item?.taxCode" class="row">
       <div class="col-1">
-        <span class="text-body3 no-letter-spacing">
-          شناسه مالیاتی:
-        </span>
+        <span class="text-body3">شناسه مالیاتی:</span>
       </div>
-      <div class="text-body2 no-letter-spacing">
+      <div class="text-body2">
         {{ item?.taxCode }}
       </div>
     </div>
 
     <div class="row">
       <div class="col-1">
-        <span class="text-body3 no-letter-spacing">
-          موجودی اول دوره:
-        </span>
+        <span class="text-body3">موجودی اول دوره:</span>
       </div>
-      <div class="text-body2 text-bold no-letter-spacing">
+      <div class="text-body2 text-bold">
         {{ item?.openomgStock?.toLocaleString() }}
       </div>
     </div>

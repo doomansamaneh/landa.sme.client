@@ -3,18 +3,16 @@
     <div :class="$q.screen.gt.xs ? 'q-py-sm q-px-md' : 'q-pb-sm'">
       <div class="row items-center no-wrap">
         <div class="col">
-          <div
-            class="row items-center text-bold text-body1 no-letter-spacing"
-          >
+          <div class="row items-center text-bold text-body1">
             <q-btn
               unelevated
               size="8px"
-              class="q-mr-sm text-caption-sm no-pointer-events no-letter-spacing"
+              class="q-mr-sm text-caption-sm no-pointer-events"
               round
               text-color="white"
               :class="`${itemPaymentType?.color}-gradient`"
             >
-              <span class="text-body2 no-letter-spacing">
+              <span class="text-body2">
                 {{ index + 1 }}
               </span>
             </q-btn>

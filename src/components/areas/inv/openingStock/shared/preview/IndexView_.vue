@@ -9,7 +9,7 @@
     <template #buttons>
       <menu-button-edit
         :to="`/${baseRoute}/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
       />
       <menu-button-copy :to="`/${baseRoute}/copy/${id}`" />
       <menu-button-delete @click="crudStore.deleteById(id)" />
@@ -17,7 +17,7 @@
 
       <!-- <q-btn
         :to="`/${baseRoute}/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2 "
         padding="6px 12px"
         rounded
         unelevated
@@ -28,7 +28,7 @@
       </q-btn>
       <q-btn
         :to="`/${baseRoute}/copy/${id}`"
-        class="text-body2 no-letter-spacing"
+        class="text-body2 "
         padding="6px 12px"
         rounded
         unelevated
@@ -39,7 +39,7 @@
       </q-btn>
       <q-btn
         @click="crudStore.deleteById(id)"
-        class="text-body2 no-letter-spacing"
+        class="text-body2 "
         padding="6px 12px"
         rounded
         unelevated
@@ -50,7 +50,7 @@
       </q-btn>
       <q-btn
         @click="printStore.handlePrint()"
-        class="text-body2 no-letter-spacing"
+        class="text-body2 "
         padding="6px 12px"
         rounded
         unelevated

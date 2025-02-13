@@ -4,7 +4,7 @@
       <div class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn
-            class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+            class="primary-gradient primary-shadow text-white text-body2"
             padding="6px 12px"
             rounded
             unelevated
@@ -22,7 +22,7 @@
             :style="
               $q.screen.gt.xs ? 'width: auto;' : 'max-width: 160px;'
             "
-            class="ellipsis-2-lines text-weight-700 no-letter-spacing"
+            class="ellipsis-2-lines text-weight-700"
             :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
           >
             <slot name="header-title">

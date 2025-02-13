@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center q-gutter-sm q-pb-sm">
-    <div class="no-letter-spacing caption-on-dark">
+    <div class="caption-on-dark">
       <slot name="header">
         {{ title }}
       </slot>

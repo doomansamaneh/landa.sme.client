@@ -3,7 +3,7 @@
     <template #buttons>
       <q-btn
         :to="`/doc/contract/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2 "
         padding="6px 12px"
         rounded
         unelevated
@@ -15,7 +15,7 @@
 
       <q-btn
         padding="6px 12px"
-        class="text-body2 no-letter-spacing"
+        class="text-body2 "
         rounded
         unelevated
       >
@@ -38,7 +38,7 @@
                 </q-item-section>
               </div>
               <q-item-section>
-                <div class="text-body2 no-letter-spacing">
+                <div class="text-body2 ">
                   {{ $t("shared.labels.eportToExcel") }}
                 </div>
               </q-item-section>

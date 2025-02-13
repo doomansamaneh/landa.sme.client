@@ -14,12 +14,8 @@
   >
     <template #title>
       <div class="q-pa-lg">
-        <div class="text-h6 no-letter-spacing">
-          صورتحسابهای دارای مانده
-        </div>
-        <div
-          class="text-body2 no-letter-spacing q-mt-xs text-on-caption"
-        >
+        <div class="text-h6">صورتحسابهای دارای مانده</div>
+        <div class="text-body2 q-mt-xs text-on-caption">
           برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید
         </div>
       </div>
@@ -40,9 +36,7 @@
           v-if="item.contractTitle"
         >
           {{ item.contractTitle }}
-          <q-tooltip
-            class="custom-tooltip text-body1 no-letter-spacing"
-          >
+          <q-tooltip class="custom-tooltip text-body1">
             قرارداد
           </q-tooltip>
         </q-badge>

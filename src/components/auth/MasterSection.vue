@@ -6,9 +6,7 @@
     <div :class="$q.screen.gt.xs ? 'q-pa-lg' : ''">
       <div class="q-mb-sm">
         <div class="row items-center justify-between q-mb-lg">
-          <div class="text-h5 no-letter-spacing text-weight-700">
-            ورود
-          </div>
+          <div class="text-h5 text-weight-700">ورود</div>
           <q-btn
             rounded
             target="_blank"
@@ -16,7 +14,7 @@
             text-color="white"
             unelevated
             padding="8px 16px"
-            class="primary-gradient text-body1 no-letter-spacing signup"
+            class="primary-gradient text-body1 signup"
           >
             ثبت‌نام
           </q-btn>
@@ -26,7 +24,7 @@
         <div class="column q-gutter-md text-on-dark">
           <div class="q-gutter-y-sm">
             <div
-              class="text-body1 no-letter-spacing"
+              class="text-body1"
               :class="$q.dark.isActive ? 'text-white' : 'text-grey-8'"
             >
               {{ $t("login-page.placeholders.username") }}
@@ -39,7 +37,7 @@
               rounded
               lazy-rules
               outlined
-              input-class="text-body1 no-letter-spacing"
+              input-class="text-body1 "
               required
             >
               <template #prepend>
@@ -55,7 +53,7 @@
           <div class="col">
             <div class="q-gutter-y-sm">
               <div
-                class="text-body1 no-letter-spacing"
+                class="text-body1"
                 :class="
                   $q.dark.isActive ? 'text-white' : 'text-grey-8'
                 "
@@ -68,7 +66,7 @@
                 hide-bottom-space
                 outlined
                 rounded
-                input-class="text-body1 no-letter-spacing"
+                input-class="text-body1 "
                 :type="isPwd ? 'password' : 'text'"
                 dense
                 lazy-rules
@@ -99,7 +97,7 @@
         <div class="column">
           <div class="row q-mt-lg items-center">
             <div
-              class="q-mb-sm text-body1 no-letter-spacing"
+              class="q-mb-sm text-body1"
               :class="$q.dark.isActive ? 'text-white' : 'text-grey-8'"
             >
               کد صحت سنجی
@@ -169,7 +167,7 @@
             >
               <a
                 href="https://landa-sme.ir/account/forgetpassword"
-                class="no-decoration decoration-on-hover text-primary text-body1 no-letter-spacing text-bold no-letter-spacing"
+                class="no-decoration decoration-on-hover text-primary text-body1 text-bold"
               >
                 {{ $t("login-page.forgot-password") }}
               </a>

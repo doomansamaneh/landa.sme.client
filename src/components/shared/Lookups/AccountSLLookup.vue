@@ -35,12 +35,10 @@
     <template #tbody-cols="{ item }">
       <div style="width: 16%">{{ item.code }}</div>
       <div class="col">
-        <span class="q-mr-sm text-body2 no-letter-spacing">
+        <span class="q-mr-sm text-body2">
           {{ item.title }}
         </span>
-        <small class="text-body3 no-letter-spacing">
-          ({{ item.glTitle }})
-        </small>
+        <small class="text-body3">({{ item.glTitle }})</small>
       </div>
     </template>
   </lookup-view>

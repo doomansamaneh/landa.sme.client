@@ -1,7 +1,7 @@
 <template>
   <card-tabs
     v-model="tab"
-    class="text-h6 no-letter-spacing text-weight-700"
+    class="text-h6 text-weight-700"
     :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
     :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
     align="left"

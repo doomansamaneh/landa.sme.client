@@ -28,7 +28,7 @@
         round
         padding="4px"
         unelevated
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         @click="toggleMoreInfo"
       >
         <q-icon size="24px" name="keyboard_arrow_down" />

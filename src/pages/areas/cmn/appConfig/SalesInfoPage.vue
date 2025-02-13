@@ -5,7 +5,7 @@
     <div>
       <div>
         <div class="row items-center justify-between q-mb-md">
-          <div class="text-h6 text-weight-700 no-letter-spacing">
+          <div class="text-h6 text-weight-700">
             بازرگانی، خرید و فروش
           </div>
           <back-button />

@@ -4,9 +4,7 @@
     <div class="q-py-sm q-px-md">
       <div class="row items-center no-wrap">
         <div class="col">
-          <div
-            class="row items-center text-bold text-body1 no-letter-spacing"
-          >
+          <div class="row items-center text-bold text-body1">
             <slot name="header-title">
               {{ title }}
             </slot>

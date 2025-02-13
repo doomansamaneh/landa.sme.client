@@ -1,12 +1,15 @@
 <template>
-  <q-card-actions class="fit row justify-start items-center q-pa-none">
+  <q-card-actions
+    class="fit row justify-start items-center q-pa-none"
+  >
     <slot name="reload"></slot>
 
     <span
       v-if="showPageCount"
-      class="text-body3 no-letter-spacing text-on-dark q-pr-lg"
+      class="text-body3 text-on-dark q-pr-lg"
     >
-      {{ indexRange }} {{ $t("shared.labels.from") }} {{ paged.totalItems }}
+      {{ indexRange }} {{ $t("shared.labels.from") }}
+      {{ paged.totalItems }}
     </span>
     <!-- //todo: use css class instead of styling size and padding -->
     <q-pagination
@@ -37,7 +40,7 @@
     <q-select
       v-if="sizeSeletion"
       dense
-      style="width: 70px;"
+      style="width: 70px"
       dropdown-icon="expand_more"
       outlined
       v-model="paged.pageSize"
@@ -45,50 +48,53 @@
       @update:model-value="handlePageChange"
       transition-show="flip-up"
       transition-hide="flip-down"
-      class="select text-on-dark text-body3 no-letter-spacing"
-      popup-content-class="text-body3 no-letter-spacing text-weight-medium text-grey-8"
+      class="select text-on-dark text-body3"
+      popup-content-class="text-body3  text-weight-medium text-grey-8"
     />
   </q-card-actions>
 </template>
 
 <script setup>
-import { computed } from "vue"
+  import { computed } from "vue";
 
-const props = defineProps({
-  pagination: Object,
-  sizeSeletion: Boolean,
-  showPageCount: Boolean,
-  maxPages: Number
-})
+  const props = defineProps({
+    pagination: Object,
+    sizeSeletion: Boolean,
+    showPageCount: Boolean,
+    maxPages: Number,
+  });
 
-const paged = computed(() => props.pagination)
+  const paged = computed(() => props.pagination);
 
-const showPaging = computed(() => paged.value.totalItems > paged.value.pageSize)
+  const showPaging = computed(
+    () => paged.value.totalItems > paged.value.pageSize
+  );
 
-const max = computed(() =>
-  Math.ceil(paged.value.totalItems / paged.value.pageSize)
-)
+  const max = computed(() =>
+    Math.ceil(paged.value.totalItems / paged.value.pageSize)
+  );
 
-const pageSizeOptions = computed(() => {
-  let options = [5]
-  if (paged.value.totalItems > 5) options.push(10)
-  if (paged.value.totalItems > 10) options.push(25)
-  if (paged.value.totalItems > 25) options.push(50)
-  if (paged.value.totalItems > 50) options.push(100)
-  return options
-})
+  const pageSizeOptions = computed(() => {
+    let options = [5];
+    if (paged.value.totalItems > 5) options.push(10);
+    if (paged.value.totalItems > 10) options.push(25);
+    if (paged.value.totalItems > 25) options.push(50);
+    if (paged.value.totalItems > 50) options.push(100);
+    return options;
+  });
 
-const indexRange = computed(() => {
-  const startIdx = (paged.value.currentPage - 1) * paged.value.pageSize + 1
-  const endIdx = Math.min(
-    startIdx + paged.value.pageSize - 1,
-    paged.value.totalItems
-  )
-  return `${startIdx} - ${endIdx}`
-})
+  const indexRange = computed(() => {
+    const startIdx =
+      (paged.value.currentPage - 1) * paged.value.pageSize + 1;
+    const endIdx = Math.min(
+      startIdx + paged.value.pageSize - 1,
+      paged.value.totalItems
+    );
+    return `${startIdx} - ${endIdx}`;
+  });
 
-const emit = defineEmits(["page-changed"])
-function handlePageChange(val) {
-  emit("page-changed")
-}
+  const emit = defineEmits(["page-changed"]);
+  function handlePageChange(val) {
+    emit("page-changed");
+  }
 </script>

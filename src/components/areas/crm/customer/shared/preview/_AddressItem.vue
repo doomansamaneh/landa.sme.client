@@ -1,7 +1,7 @@
 <template>
   <div class="row bordered-1 q-pa-md q-my-md items-center">
     <div class="col">
-      <div class="text-body2 no-letter-spacing">
+      <div class="text-body2">
         <q-icon
           v-if="item.isPrimary"
           name="o_check_circle"

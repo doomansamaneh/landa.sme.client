@@ -2,7 +2,7 @@
   <q-card class="no-border q-pt-sm q-px-sm">
     <q-card-section>
       <div class="row justify-between items-center">
-        <div class="text-body1 no-letter-spacing">جستجو در اسناد</div>
+        <div class="text-body1">جستجو در اسناد</div>
         <div>
           <q-btn
             size="8px"
@@ -28,7 +28,7 @@
           <div>
             <q-option-group
               style="gap: 8px"
-              class="row text-body2 no-letter-spacing"
+              class="row text-body2"
               type="radio"
               inline
               size="40px"
@@ -164,9 +164,7 @@
     >
       <q-card-section>
         <div class="row justify-between items-center">
-          <span class="text-body1 no-letter-spacing">
-            انتخاب نوع سند
-          </span>
+          <span class="text-body1">انتخاب نوع سند</span>
           <q-btn dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>

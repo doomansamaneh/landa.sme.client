@@ -54,7 +54,7 @@
             </q-item-label>
             <div
               v-if="row.locationName"
-              class="text-body3 text-on-caption no-letter-spacing ellipsis-2-lines q-mt-xs"
+              class="text-body3 text-on-caption ellipsis-2-lines q-mt-xs"
             >
               <q-icon
                 name="o_location_on"
@@ -65,7 +65,7 @@
             </div>
             <div class="row items-center q-pt-xs q-gutter-xs">
               <div
-                class="flex text-body3 no-letter-spacing text-on-caption items-center rtl"
+                class="flex text-body3 text-on-caption items-center rtl"
                 v-if="row.phoneNo"
               >
                 {{ helper.separatePhoneNumbers(row.phoneNo) }}
@@ -78,7 +78,7 @@
               </div>
 
               <div
-                class="flex text-body3 no-letter-spacing text-on-caption items-center rtl"
+                class="flex text-body3 text-on-caption items-center rtl"
                 v-if="row.mobileNo"
               >
                 {{ helper.separatePhoneNumbers(row.mobileNo) }}

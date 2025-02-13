@@ -9,7 +9,7 @@
     sort-btn
   >
     <template #header-title>
-      <span class="text-body2 no-letter-spacing">
+      <span class="text-body2">
         {{ title }}
       </span>
     </template>

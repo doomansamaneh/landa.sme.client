@@ -10,9 +10,7 @@
       <q-form ref="form" autofocus>
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
+            <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               عنوان
             </q-item-label>
             <custom-input
@@ -25,9 +23,7 @@
 
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
+            <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               روش تسویه
             </q-item-label>
             <custom-select
@@ -41,9 +37,7 @@
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
+            <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               حساب معین
             </q-item-label>
             <sl-lookup
@@ -56,9 +50,7 @@
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
+            <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               حساب تخفیف
             </q-item-label>
             <sl-lookup
@@ -73,9 +65,7 @@
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
+            <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               حساب کالا
             </q-item-label>
             <sl-lookup
@@ -90,9 +80,7 @@
 
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
-            <q-item-label
-              class="caption-on-dark no-letter-spacing text-body2 q-mb-sm"
-            >
+            <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               حساب خدمات
             </q-item-label>
             <sl-lookup
@@ -117,7 +105,7 @@
       <q-card flat class="tips">
         <q-card-section>
           <div class="title q-mb-sm">راهنما</div>
-          <div class="text-body1 no-letter-spacing">
+          <div class="text-body1">
             <ul class="q-gutter-y-sm">
               <li>
                 <strong>روش تسویه:</strong>

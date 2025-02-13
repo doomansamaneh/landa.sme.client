@@ -2,7 +2,7 @@
   <tool-bar :inside="inside" buttons>
     <template #buttons>
       <q-btn
-        class="primary-gradient primary-shadow text-white text-body2 no-letter-spacing"
+        class="primary-gradient primary-shadow text-white text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -13,12 +13,7 @@
         اصلاح موجودی
       </q-btn>
 
-      <q-btn
-        padding="6px 12px"
-        class="text-body2 no-letter-spacing"
-        rounded
-        unelevated
-      >
+      <q-btn padding="6px 12px" class="text-body2" rounded unelevated>
         <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
         {{ $t("shared.labels.more") }}
 
@@ -38,7 +33,7 @@
                 </q-item-section>
               </div>
               <q-item-section>
-                <div class="text-body2 no-letter-spacing">
+                <div class="text-body2">
                   {{ $t("shared.labels.eportToExcel") }}
                 </div>
               </q-item-section>

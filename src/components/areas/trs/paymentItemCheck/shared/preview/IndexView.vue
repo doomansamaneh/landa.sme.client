@@ -11,7 +11,7 @@
         v-for="(menu, index) in menuItems"
         :key="index"
         :class="menu.cssClass"
-        class="text-body2 no-letter-spacing"
+        class="text-body2"
         padding="6px 12px"
         rounded
         unelevated
@@ -23,7 +23,7 @@
       </q-btn>
 
       <q-btn
-        class="bg-red-5 primary-shadow_ text-white text-body2 no-letter-spacing"
+        class="bg-red-5 primary-shadow_ text-white text-body2"
         padding="6px 12px"
         rounded
         unelevated

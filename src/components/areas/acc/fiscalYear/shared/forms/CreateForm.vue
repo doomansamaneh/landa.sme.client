@@ -8,7 +8,7 @@
   <q-card class="q-mt-xl tips">
     <q-card-section>
       <div class="title">نکته</div>
-      <div class="text-body1 no-letter-spacing q-mt-sm">
+      <div class="text-body1 q-mt-sm">
         تاریخ آغاز سال مالی، یک نوروز و تاریخ پایان سال مالی، پایان
         اسفند است.
       </div>

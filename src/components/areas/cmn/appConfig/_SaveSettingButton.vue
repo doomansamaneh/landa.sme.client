@@ -10,7 +10,7 @@
   >
     <div class="flex q-gutter-sm">
       <q-icon name="save" size="sm" />
-      <div class="text-body1 no-letter-spacing">
+      <div class="text-body1">
         {{ $t("shared.labels.save") }}
       </div>
     </div>
@@ -25,7 +25,7 @@
   >
     <div class="flex q-gutter-sm">
       <q-icon name="refresh" size="sm" />
-      <div class="text-body1 no-letter-spacing">
+      <div class="text-body1">
         {{ $t("shared.labels.reloadDefault") }}
       </div>
     </div>

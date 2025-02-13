@@ -29,13 +29,13 @@
             />
 
             <span
-              class="ellipsis text-weight-700 no-letter-spacing"
+              class="ellipsis text-weight-700"
               :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
             >
               <slot name="header-title">
                 <span
                   :class="$q.screen.sm ? 'text-weight-700' : ''"
-                  class="text-body2 no-letter-spacing"
+                  class="text-body2"
                 >
                   {{ title }}
                 </span>
