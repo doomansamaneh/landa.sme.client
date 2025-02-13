@@ -10,7 +10,7 @@
           <span
             class="q-mr-md"
             v-if="
-              gridStore.columns.value.some(
+              tableStore.columns.value.some(
                 (col) => col.name === 'isActive'
               )
             "

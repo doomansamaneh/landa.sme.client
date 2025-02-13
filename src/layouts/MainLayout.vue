@@ -8,7 +8,7 @@
     <header-desktop v-if="$q.screen.gt.xs" />
 
     <bottom-navigation />
-    <menu-bar />
+    <menu-bar v-if="MenuBarStore.state.visible.value" />
     <contact-drawer />
     <notif-drawer />
     <alert-banner class="fixed-bottom z-max" />
@@ -19,6 +19,7 @@
   import { onMounted } from "vue";
   import { useQuasar } from "quasar";
   import { useTheme } from "src/components/layouts/main/_composables/useTheme.js";
+  import { useMenuBar } from "src/composables/useMenuBar";
 
   import MenuBar from "src/components/layouts/main/MenuBar.vue";
   import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue";
@@ -30,6 +31,11 @@
 
   const theme = useTheme();
   const $q = useQuasar();
+  const MenuBarStore = useMenuBar();
+
+  if ($q.screen.lt.md) {
+    MenuBarStore.state.visible.value = false;
+  }
 
   onMounted(() => {
     theme.store();
