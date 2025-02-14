@@ -303,7 +303,7 @@ export function useDataTable({
     const allPage = { ...pagination.value };
     allPage.pageSize = -1;
     const responseData = await fetchData(allPage);
-    return responseData.data.items;
+    return responseData.data;
   }
 
   function setSearchTerm(term) {

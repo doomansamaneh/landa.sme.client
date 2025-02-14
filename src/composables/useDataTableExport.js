@@ -2,7 +2,7 @@ import { helper } from "src/helpers";
 
 export function useDataTableExport(tableStore) {
   async function exportAll() {
-    const rows = await tableStore.getAll();
+    const rows = await tableStore.getAll().items;
     helper.exportCsv(rows, tableStore.columns.value);
   }
 

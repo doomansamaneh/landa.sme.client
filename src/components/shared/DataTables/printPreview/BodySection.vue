@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="(row, index) in rows" :key="row.id">
+        <template v-for="(row, index) in data.items" :key="row.id">
           <tr class="table-row">
             <td>
               <div class="text-caption">
@@ -41,7 +41,7 @@
           </tr>
         </template>
       </tbody>
-      <tfoot v-if="tableStore?.summaryData?.value">
+      <tfoot v-if="data.summaryData">
         <tr>
           <td
             class="text-bold"
@@ -51,17 +51,11 @@
             {{ $t("shared.labels.total") }}
           </td>
           <template
-            v-for="fieldName in Object.keys(
-              tableStore.summaryData.value
-            )"
+            v-for="fieldName in Object.keys(data.summaryData)"
             :key="fieldName"
           >
             <td v-if="showSummaryColumn(fieldName)" class="text-bold">
-              {{
-                helper.formatNumber(
-                  tableStore.summaryData.value[fieldName]
-                )
-              }}
+              {{ helper.formatNumber(data.summaryData[fieldName]) }}
             </td>
           </template>
         </tr>
@@ -80,7 +74,7 @@
     tableStore: useDataTable,
   });
 
-  const rows = ref([]);
+  const data = ref({});
 
   function getColText(row, col) {
     if (row && col) {
@@ -112,10 +106,8 @@
   };
 
   const getColspan = () => {
-    if (!props.tableStore?.summaryData?.value) return 1;
-    const firstFieldName = Object.keys(
-      props.tableStore.summaryData.value
-    )[0];
+    if (!data.value.summaryData) return 1;
+    const firstFieldName = Object.keys(data.value.summaryData)[0];
 
     return (
       helper.findIndex(
@@ -127,7 +119,7 @@
   };
 
   onMounted(async () => {
-    rows.value = await props.tableStore.getAll();
+    data.value = await props.tableStore.getAll();
   });
 </script>
 

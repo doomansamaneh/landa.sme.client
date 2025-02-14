@@ -1,41 +1,40 @@
 <template>
   <table class="print-preview-table">
-    <tr>
-      <td rowspan="2" style="width: 5px">#</td>
-      <td>پرسنل</td>
-      <td>شروع کار</td>
-      <td>کارکرد</td>
-      <td>دستمزد روزانه</td>
-      <td>پایه سنوات</td>
-      <td>حق مسکن</td>
-      <td>بن</td>
-      <td>حق اولاد + حق تعهل</td>
-      <td>ماموریت</td>
-      <td>بیمه کارگر</td>
-      <td>جمع کل</td>
-    </tr>
-    <tr>
-      <td>ش بیمه</td>
-      <td>ترک کار</td>
-      <td>اضافه کار</td>
-      <td>پاداش بهره‌وری</td>
-      <td>عیدی و پاداش</td>
-      <td>بازخرید سنوات</td>
-      <td>بازخرید مرخصی</td>
-      <td>سایر مزایا</td>
-      <td>سایر کسورات</td>
-      <td>مالیات</td>
-      <td>قابل پرداخت</td>
-    </tr>
+    <thead>
+      <tr>
+        <th rowspan="2" style="width: 5px">#</th>
+        <th>پرسنل</th>
+        <th>شروع کار</th>
+        <th>کارکرد</th>
+        <th>دستمزد روزانه</th>
+        <th>پایه سنوات</th>
+        <th>حق مسکن</th>
+        <th>بن</th>
+        <th>حق اولاد + حق تاهل</th>
+        <th>ماموریت</th>
+        <th>بیمه کارگر</th>
+        <th>جمع کل</th>
+      </tr>
+      <tr>
+        <th>ش بیمه</th>
+        <th>ترک کار</th>
+        <th>اضافه کار</th>
+        <th>پاداش بهره‌وری</th>
+        <th>عیدی و پاداش</th>
+        <th>بازخرید سنوات</th>
+        <th>بازخرید مرخصی</th>
+        <th>سایر مزایا</th>
+        <th>سایر کسورات</th>
+        <th>مالیات</th>
+        <th>قابل پرداخت</th>
+      </tr>
+    </thead>
     <tbody>
-      <template
-        v-for="(row, rowIndex) in tableStore.rows.value"
-        :key="rowIndex"
-      >
+      <template v-for="(row, rowIndex) in data.items" :key="rowIndex">
         <tr>
           <td rowspan="2" style="width: 1px">{{ rowIndex + 1 }}</td>
           <td>{{ row.customerCode }} - {{ row.customerName }}</td>
-          <td>{{ row.dateEnter }}</td>
+          <td>{{ row.dateEnter?.substring(0, 10) }}</td>
           <td>{{ row.day }}</td>
           <td>{{ helper.formatNumber(row.salary) }}</td>
           <td>{{ helper.formatNumber(row.baseYear) }}</td>
@@ -49,7 +48,7 @@
 
         <tr>
           <td>{{ row.insurranceNo }}</td>
-          <td>{{ row.dateExit }}</td>
+          <td>{{ row.dateExit?.substring(0, 10) }}</td>
           <td>{{ helper.formatNumber(row.overtime) }}</td>
           <td>{{ helper.formatNumber(row.reward) }}</td>
           <td>{{ helper.formatNumber(row.bonus) }}</td>
@@ -66,42 +65,34 @@
     <tfoot>
       <tr>
         <td colspan="10" rowspan="2" style="text-align: left">
-          <strong>جمع کل</strong>
+          {{ $t("shared.labels.total") }}
         </td>
         <td>
           <b>
             {{
-              helper.formatNumber(
-                tableStore?.summaryData?.value?.amount
-              )
+              helper.formatNumber(data.summaryData?.insurranceAmount)
             }}
           </b>
         </td>
         <td>
           <b>
-            {{
-              helper.formatNumber(
-                tableStore?.summaryData?.value?.taxAmount
-              )
-            }}
+            {{ helper.formatNumber(data.summaryData?.amount) }}
           </b>
         </td>
       </tr>
       <tr>
         <td>
           <b>
-            {{
-              helper.formatNumber(
-                tableStore?.summaryData?.value?.amount
-              )
-            }}
+            {{ helper.formatNumber(data.summaryData?.taxAmount) }}
           </b>
         </td>
         <td>
           <b>
             {{
               helper.formatNumber(
-                tableStore?.summaryData?.value?.taxAmount
+                data.summaryData?.amount -
+                  data.summaryData?.taxAmount -
+                  data.summaryData?.insurranceAmount
               )
             }}
           </b>
@@ -112,6 +103,7 @@
 </template>
 
 <script setup>
+  import { ref } from "vue";
   import { sqlOperator } from "src/constants";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { wageItemColumns } from "../../../../_composables/constants";
@@ -140,8 +132,10 @@
     store: gridStore,
   });
 
-  onMounted(() => {
-    tableStore.loadData();
+  const data = ref({});
+
+  onMounted(async () => {
+    data.value = await tableStore.getAll();
   });
 </script>
 

@@ -7,23 +7,22 @@
     back-button
   >
     <template #buttons>
-      {{ model?.id }}
-
       <menu-button-edit
         class="primary-gradient primary-shadow text-white"
         :to="`/${baseRoute}/edit/${model?.id}`"
       />
       <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
-      <menu-button
-        :title="$t('shared.labels.exportExcel')"
-        icon="o_download"
-        @click="exportAll()"
-      />
+
       <menu-button-delete
         @click="crudStore.deleteById(model.id, deleteCallBack)"
       />
       <menu-button-print @click="openPreview" />
       <menu-button
+        :title="$t('shared.labels.exportExcel')"
+        icon="o_download"
+        @click="exportAll()"
+      />
+      <!-- <menu-button
         @click="printStore.downloadPdf()"
         icon="download"
         :title="$t('shared.labels.downloadPdf')"
@@ -32,7 +31,7 @@
         @click="sendEmail"
         icon="send"
         :title="$t('shared.labels.sendEmail')"
-      />
+      /> -->
     </template>
   </tool-bar>
 </template>
