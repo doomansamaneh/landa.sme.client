@@ -1,24 +1,26 @@
 <template>
   <table>
-    <tr>
-      <td>
-        {{ $t("shared.labels.workInsuranceNo") }}:
-        <strong>{{ model.insuranceNo }}</strong>
-      </td>
-      <td>
-        {{ $t("shared.labels.period") }}:
-        <strong>
-          {{ model.month }} /
-          {{ model.year }}
-        </strong>
-      </td>
-      <td>
-        {{ $t("shared.labels.date") }}:
-        <strong>
-          {{ model.date.substring(0, 10) }}
-        </strong>
-      </td>
-    </tr>
+    <tbody>
+      <tr>
+        <td>
+          {{ $t("shared.labels.workInsuranceNo") }}:
+          <strong>{{ model.insuranceNo }}</strong>
+        </td>
+        <td>
+          {{ $t("shared.labels.period") }}:
+          <strong>
+            {{ model.month }} /
+            {{ model.year }}
+          </strong>
+        </td>
+        <td>
+          {{ $t("shared.labels.date") }}:
+          <strong>
+            {{ model.date.substring(0, 10) }}
+          </strong>
+        </td>
+      </tr>
+    </tbody>
   </table>
 
   <table class="print-preview-table">

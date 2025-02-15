@@ -6,6 +6,7 @@
       ref="dataGrid"
       :data-source="dataSource"
       :grid-store="gridStore"
+      :title="title"
       separator="horizontal"
       flat
       multiSelect

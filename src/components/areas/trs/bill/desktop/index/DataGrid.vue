@@ -1,6 +1,7 @@
 <template>
   <data-grid
     :data-table-store="tableStore"
+    :title="title"
     flat
     toolbar
     multiSelect
