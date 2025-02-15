@@ -1,8 +1,5 @@
 <template>
-  <table
-    v-if="!dataStore.showLoader.value"
-    class="print-preview-table"
-  >
+  <table v-if="!dataStore.showLoader.value" class="striped-table">
     <tbody>
       <template
         v-for="item in dataStore.accountClCodes.value"
@@ -78,22 +75,28 @@
   const dataStore = useIncomeStatement();
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @media print {
-    .print-preview-table {
+    .striped-table {
       width: 100%;
       border-collapse: collapse;
     }
-    .print-preview-table th,
-    .print-preview-table td {
-      border: 1px solid black;
-      padding: 5px;
-      text-align: start;
+
+    .striped-table th,
+    .striped-table td {
+      border: none;
+      padding: 8px;
     }
-    .print-preview-table th {
+
+    .striped-table th {
+      background-color: #f8f9fa;
+      -webkit-print-color-adjust: exact;
+      text-align: left;
+    }
+
+    .striped-table tr:nth-child(even) {
       background-color: #f2f2f2;
       -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
     }
   }
 </style>

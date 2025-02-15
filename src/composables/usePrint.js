@@ -63,6 +63,60 @@ export function usePrint() {
     });
   };
 
+  const injectBalanceSheetPreviewTableStyles = () => {
+    document.body.dataset.bgColor =
+      document.body.style.backgroundColor;
+    document.body.dataset.textColor = document.body.style.color;
+
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#000";
+
+    const tables = document.querySelectorAll(
+      ".balance-sheet-preview-table"
+    );
+    tables.forEach((table) => {
+      table.style.backgroundColor = "#fff";
+      table.style.borderCollapse = "collapse";
+
+      table.querySelectorAll("th, td").forEach((cell) => {
+        cell.style.border = "none";
+        cell.style.color = "black";
+      });
+
+      table.querySelectorAll("th").forEach((th) => {
+        th.style.backgroundColor = "#f2f2f2";
+      });
+    });
+  };
+
+  const injectStripedTableStyles = () => {
+    document.body.dataset.bgColor =
+      document.body.style.backgroundColor;
+    document.body.dataset.textColor = document.body.style.color;
+
+    document.body.style.backgroundColor = "#fff";
+    document.body.style.color = "#000";
+
+    const tables = document.querySelectorAll(".striped-table");
+    tables.forEach((table) => {
+      table.style.backgroundColor = "#fff";
+      table.style.borderCollapse = "collapse";
+
+      table.querySelectorAll("th, td").forEach((cell) => {
+        cell.style.border = "none";
+        cell.style.color = "black";
+      });
+
+      table.querySelectorAll("th").forEach((th) => {
+        th.style.backgroundColor = "#f2f2f2";
+      });
+
+      table.querySelectorAll("tr:nth-child(even)").forEach((row) => {
+        row.style.backgroundColor = "#f2f2f2";
+      });
+    });
+  };
+
   const removePrintPreviewTableStyles = () => {
     document.body.style.backgroundColor =
       document.body.dataset.bgColor || "";
@@ -85,8 +139,59 @@ export function usePrint() {
       });
   };
 
+  const removeBalanceSheetPreviewTableStyles = () => {
+    document.body.style.backgroundColor = "";
+    document.body.style.color = document.body.dataset.textColor || "";
+
+    document
+      .querySelectorAll(".balance-sheet-preview-table")
+      .forEach((table) => {
+        table.style.backgroundColor = "";
+        table.style.borderCollapse = "";
+
+        table.querySelectorAll("th, td").forEach((cell) => {
+          cell.style.border = "";
+          cell.style.color = "";
+        });
+
+        table.querySelectorAll("th").forEach((th) => {
+          th.style.backgroundColor = "";
+        });
+      });
+  };
+
+  const removeStripedTableStyles = () => {
+    document.body.style.backgroundColor = "";
+
+    if (document.body.dataset.textColor) {
+      document.body.style.color = document.body.dataset.textColor;
+      delete document.body.dataset.textColor;
+    }
+
+    const tables = document.querySelectorAll(".striped-table");
+    tables.forEach((table) => {
+      table.style.removeProperty("background-color");
+      table.style.removeProperty("border-collapse");
+
+      table.querySelectorAll("th, td").forEach((cell) => {
+        cell.style.removeProperty("border");
+        cell.style.removeProperty("color");
+      });
+
+      table.querySelectorAll("th").forEach((th) => {
+        th.style.removeProperty("background-color");
+      });
+
+      table.querySelectorAll("tr").forEach((row) => {
+        row.style.removeProperty("background-color");
+      });
+    });
+  };
+
   const downloadPdf = () => {
     injectPrintPreviewTableStyles();
+    injectBalanceSheetPreviewTableStyles();
+    injectStripedTableStyles();
 
     html2pdf()
       .set({
@@ -118,6 +223,8 @@ export function usePrint() {
       .catch((error) => console.error("PDF generation error:", error))
       .finally(() => {
         removePrintPreviewTableStyles();
+        removeBalanceSheetPreviewTableStyles();
+        removeStripedTableStyles();
       });
   };
 

@@ -5,7 +5,6 @@
         :model="dataStore.model.value"
         assetType="currentAsset"
         title="دارایی"
-        sectionTitle="دارایی های جاری"
       />
     </div>
 
@@ -14,7 +13,6 @@
         :model="dataStore.model.value"
         assetType="liability"
         title="بدهی"
-        sectionTitle="بدهی جاری"
       />
     </div>
 

@@ -1,12 +1,12 @@
 <template>
-  <div class="text-h6 text-center q-mb-sm">
+  <div class="text-body1 text-center text-bold q-mb-sm">
     {{ title }}
   </div>
 
-  <table class="print-preview-table">
+  <table v-if="totalCL !== 0" class="balance-sheet-preview-table">
     <thead>
       <tr>
-        <th colspan="2">{{ sectionTitle }}</th>
+        <th colspan="2">بدهی جاری</th>
       </tr>
     </thead>
 
@@ -23,7 +23,34 @@
           </td>
         </tr>
       </template>
+    </tbody>
+  </table>
 
+  <table v-if="totalFL !== 0" class="balance-sheet-preview-table">
+    <thead>
+      <tr>
+        <th colspan="2">بدهی بلند مدت</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <template v-for="item in longTermList" :key="item.id">
+        <tr>
+          <td>{{ item.glCode }} - {{ item.glTitle }}</td>
+          <td style="width: 20%">
+            {{
+              helper.formatNumber(
+                item.debitRemained - item.creditRemained
+              )
+            }}
+          </td>
+        </tr>
+      </template>
+    </tbody>
+  </table>
+
+  <table class="balance-sheet-preview-table">
+    <tbody>
       <tr>
         <td class="text-bold">جمع بدهی</td>
         <td class="text-bold" style="width: 20%">
@@ -72,3 +99,21 @@
     )
   );
 </script>
+
+<style lang="scss">
+  .balance-sheet-preview-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .balance-sheet-preview-table th,
+  .balance-sheet-preview-table td {
+    border: none;
+    padding: 5px;
+    text-align: start;
+  }
+  .balance-sheet-preview-table th {
+    background-color: #f2f2f2;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>

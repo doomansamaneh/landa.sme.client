@@ -54,22 +54,20 @@
     background-color: $dark;
   }
 
-  @media print {
-    .print-preview-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .print-preview-table th,
-    .print-preview-table td {
-      border: 1px solid black;
-      padding: 5px;
-      text-align: start;
-    }
-    .print-preview-table th {
-      background-color: #f2f2f2;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
+  .balance-sheet-preview-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .balance-sheet-preview-table th,
+  .balance-sheet-preview-table td {
+    border: none;
+    padding: 5px;
+    text-align: start;
+  }
+  .balance-sheet-preview-table th {
+    background-color: $dark;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   .q-markup-table--impacted {
@@ -100,6 +98,82 @@
       td:last-child {
         padding-right: 8px !important;
       }
+    }
+  }
+
+  .striped-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .striped-table th,
+  .striped-table td {
+    border: none;
+    padding: 8px;
+  }
+
+  .striped-table th {
+    background-color: #f8f9fa;
+    text-align: left;
+  }
+
+  .striped-table tr:nth-child(even) {
+    background-color: $dark;
+  }
+
+  @media print {
+    .balance-sheet-preview-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .balance-sheet-preview-table th,
+    .balance-sheet-preview-table td {
+      border: none;
+      padding: 5px;
+      text-align: start;
+    }
+    .balance-sheet-preview-table th {
+      background-color: #f2f2f2;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .print-preview-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .print-preview-table th,
+    .print-preview-table td {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: start;
+    }
+    .print-preview-table th {
+      background-color: #f2f2f2;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .striped-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .striped-table th,
+    .striped-table td {
+      border: none;
+      padding: 8px;
+    }
+
+    .striped-table th {
+      background-color: #f2f2f2;
+      -webkit-print-color-adjust: exact;
+      text-align: left;
+    }
+
+    .striped-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+      -webkit-print-color-adjust: exact;
     }
   }
 }
