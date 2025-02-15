@@ -5,7 +5,11 @@
     :table-store="tableStore"
   />
 
-  <data-grid-table :title="title" :icon="icon" :table-store="tableStore" />
+  <data-grid-table
+    :title="title"
+    :icon="icon"
+    :table-store="tableStore"
+  />
 </template>
 
 <script setup>

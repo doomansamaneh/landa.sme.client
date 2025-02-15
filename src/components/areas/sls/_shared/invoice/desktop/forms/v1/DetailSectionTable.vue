@@ -174,7 +174,6 @@
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import NoProductSelected from "../NoProductSelected.vue";
-  import AddByCode from "../AddByCode.vue";
   import RowDetailSheet from "./RowDetailSheet.vue";
 
   const props = defineProps({
@@ -195,7 +194,8 @@
   };
 
   const productFilter =
-    props.formType == invoiceFormType.sales
+    props.formType === invoiceFormType.sales ||
+    props.formType === invoiceFormType.salesReturn
       ? [
           {
             fieldName: "isForSale",

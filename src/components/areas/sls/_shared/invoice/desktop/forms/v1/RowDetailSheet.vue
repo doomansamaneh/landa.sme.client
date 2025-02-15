@@ -73,7 +73,8 @@
   });
 
   const vatFilter =
-    props.formType == invoiceFormType.sales
+    props.formType === invoiceFormType.sales ||
+    props.formType === invoiceFormType.salesReturn
       ? [
           {
             fieldName: "isForSale",

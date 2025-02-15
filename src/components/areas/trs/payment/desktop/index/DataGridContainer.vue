@@ -8,6 +8,7 @@
       multi-select
       :table-store="tableStore"
       :base-route="baseRoute"
+      :title="title"
     />
   </q-card>
 </template>
