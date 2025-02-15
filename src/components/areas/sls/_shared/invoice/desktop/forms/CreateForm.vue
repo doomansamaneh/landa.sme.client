@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-  import { onMounted } from "vue";
-
   import MasterSection from "./v1/MasterSection.vue";
   import DetailSection from "./v1/DetailSectionTable.vue";
 
@@ -24,6 +22,4 @@
     model: Object,
     formType: Object,
   });
-
-  onMounted(() => {});
 </script>

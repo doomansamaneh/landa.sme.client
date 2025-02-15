@@ -46,29 +46,20 @@
 
   const router = useRouter();
 
-  function deleteById(id) {
-    crudStore.deleteById(id);
-    //invoiceStore.state.firstLoad.value = false;
-    router.back();
+  function deleteById() {
+    props.crudStore.deleteById(props.model.id, router.back);
   }
 
-  function downloadPdf(id) {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${id}`,
-      "landa-payroll"
-    );
-  }
-
-  function exportTax(id) {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/exportTax/${id}`,
+  async function exportTax() {
+    await downloadManager.downloadGet(
+      `${props.baseRoute}/exportTax/${props.model.id}`,
       "landa-tax"
     );
   }
 
-  function exportInsurance(id) {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/exportInsurance/${id}`,
+  async function exportInsurance() {
+    await downloadManager.downloadGet(
+      `${props.baseRoute}/exportInsurance/${props.model.id}`,
       "landa-insurance"
     );
   }

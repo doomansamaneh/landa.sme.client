@@ -13,15 +13,26 @@
       />
       <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
 
-      <menu-button-delete
-        @click="crudStore.deleteById(model.id, deleteCallBack)"
-      />
+      <menu-button-delete @click="emits('delete-by-id')" />
       <menu-button-print @click="openPreview" />
       <menu-button
         :title="$t('shared.labels.exportExcel')"
         icon="o_download"
         @click="exportAll()"
       />
+
+      <menu-button
+        icon="o_save"
+        :title="$t('shared.labels.downloadInsurrance')"
+        @click="emits('export-insurance')"
+      />
+
+      <menu-button
+        icon="o_save"
+        :title="$t('shared.labels.downloadTax')"
+        @click="emits('export-tax')"
+      />
+
       <!-- <menu-button
         @click="printStore.downloadPdf()"
         icon="download"
@@ -37,10 +48,7 @@
 </template>
 
 <script setup>
-  import { computed, onMounted } from "vue";
-  import { useRoute, useRouter } from "vue-router";
   import { sqlOperator } from "src/constants";
-  import { usePrint } from "src/composables/usePrint";
   import { usePreview } from "src/composables/usePreview";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { wageItemColumns } from "../../../_composables/constants";
@@ -60,15 +68,15 @@
     title: String,
     inside: Boolean,
     baseRoute: String,
-    crudStore: Object,
   });
 
-  const router = useRouter();
-  const route = useRoute();
-  const printStore = usePrint();
-  const previewStore = usePreview();
+  const emits = defineEmits([
+    "delete-by-id",
+    "export-tax",
+    "export-insurance",
+  ]);
 
-  const id = computed(() => props.model?.id ?? route.params.id);
+  const previewStore = usePreview();
 
   const gridStore = useBaseInfoGrid({
     columns: wageItemColumns,
@@ -77,7 +85,7 @@
       {
         fieldName: "i.wageId",
         operator: sqlOperator.equal,
-        value: id?.value,
+        value: props.model?.id,
       },
     ],
   });
@@ -87,22 +95,16 @@
     store: gridStore,
   });
 
-  const { exportAll, exportCurrentPage } =
-    useDataTableExport(tableStore);
-
-  function deleteCallBack() {
-    //voucherStore.state.firstLoad.value = false;
-    router.back();
-  }
+  const { exportAll } = useDataTableExport(tableStore);
 
   const openPreview = async () => {
     previewStore.openDialog({
       title: props.title,
       component: DataGridPreview,
       previewProps: {
-        tableStore: props.crudStore,
         title: props.title,
-        wageId: id?.value,
+        model: props.model,
+        tableStore: tableStore,
       },
     });
   };
