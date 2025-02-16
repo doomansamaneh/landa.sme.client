@@ -30,26 +30,28 @@
   </table>
 
   <table class="balance-sheet-preview-table">
-    <tr>
-      <td class="text-bold">جمع سرمایه</td>
-      <td class="text-bold" style="width: 20%">
-        {{ helper.formatNumber(total) }}
-      </td>
-    </tr>
+    <tbody>
+      <tr>
+        <td class="text-bold">جمع سرمایه</td>
+        <td class="text-bold" style="width: 20%">
+          {{ helper.formatNumber(total) }}
+        </td>
+      </tr>
 
-    <tr>
-      <td>سود و زیان سال جاری</td>
-      <td>
-        {{ helper.formatNumber(netIncome) }}
-      </td>
-    </tr>
+      <tr>
+        <td>سود و زیان سال جاری</td>
+        <td>
+          {{ helper.formatNumber(netIncome) }}
+        </td>
+      </tr>
 
-    <tr>
-      <td class="text-bold">جمع کل</td>
-      <td class="text-bold">
-        {{ helper.formatNumber(netIncome + total) }}
-      </td>
-    </tr>
+      <tr>
+        <td class="text-bold">جمع کل</td>
+        <td class="text-bold">
+          {{ helper.formatNumber(netIncome + total) }}
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>
 
