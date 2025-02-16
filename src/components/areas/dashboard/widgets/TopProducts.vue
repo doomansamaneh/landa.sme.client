@@ -61,6 +61,7 @@
           ref="grid"
           data-source="sls/report/getInvoiceByProduct"
           :data-store="gridStore"
+          sort-column="quantity"
           first-load
           :show-search="false"
           :scrollArea="false"
@@ -161,10 +162,11 @@
 
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
 
+  const gridStore = useInvoiceProductState();
   const tableStore = useDataTable({
     dataSource: "sls/report/getInvoiceByProduct",
+    store: gridStore,
   });
-  const gridStore = useInvoiceProductState();
   const draggable = useDraggableWidgets();
 
   const grid = ref(null);
