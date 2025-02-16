@@ -1,5 +1,8 @@
 <template>
-  <div :class="containerClass">
+  <div
+    :style="tableStore.showLoader.value ? 'min-height: 250px' : ''"
+    :class="containerClass"
+  >
     <slot name="title"></slot>
 
     <div
@@ -205,6 +208,7 @@
         <no-data-found />
       </slot>
     </div>
+
     <div v-if="tableStore.showPagebar.value" class="q-table__bottom">
       <page-bar
         :pagination="tableStore.pagination.value"

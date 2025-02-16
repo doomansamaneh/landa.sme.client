@@ -21,7 +21,6 @@
         :model="dataStore.model.value"
         assetType="equity"
         title="سرمایه"
-        sectionTitle="حقوق صاحبان سهام"
       />
     </div>
   </div>
