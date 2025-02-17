@@ -49,10 +49,10 @@ export function useInvoiceModel(config) {
       } else if (action === "createFromQuote") {
         model.value.quoteId = responseData.id;
       }
-      addWatch();
     }
 
     setInvoiceItems();
+    addWatch();
   }
 
   function setInvoiceItems() {
