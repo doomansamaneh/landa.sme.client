@@ -136,7 +136,7 @@
               name: {
                 show: false,
                 fontSize: "22px",
-                fontFamily: "Helvetica, Arial, sans-serif",
+                fontFamily,
                 fontWeight: 600,
                 color: undefined,
                 offsetY: 0,
@@ -161,7 +161,7 @@
                 showAlways: false,
                 label: "Total",
                 fontSize: "22px",
-                fontFamily: "Helvetica, Arial, sans-serif",
+                fontFamily,
                 fontWeight: 600,
                 color: "#373d3f",
                 //   formatter: () => {
@@ -229,8 +229,11 @@
       },
       tooltip: {
         enabled: true,
+        style: {
+          fontFamily: fontFamily,
+          fontSize: "13px",
+        },
         custom: function ({ series, seriesIndex, w }) {
-          //const color = w.config.colors[seriesIndex];
           const color = "#FF4560";
           const percentage = (
             (series[seriesIndex] / total) *
@@ -238,25 +241,17 @@
           ).toFixed(2);
 
           return `
-      <div class="q-ml-md">
+      <div class="q-ml-md" style="font-family: ${fontFamily}; font-size: 13px;">
         <div class="row no-wrap items-center row-reverse">
           <div class="q-mr-sm" style="width: 12px; height: 12px; background-color: ${color}; border-radius: 50px;"></div>
-        <div>${w.globals.labels[seriesIndex]}:</div>
-        <div class="text-bold q-ml-xs">${helper.formatNumber(
-          series[seriesIndex]
-        )}</div>
+          <div>${w.globals.labels[seriesIndex]}:</div>
+          <div class="text-bold q-ml-xs">${helper.formatNumber(
+            series[seriesIndex]
+          )}</div>
         </div>
-        <div class="text-h3 q-pa-lg no-line-height text-center text-weight-900">${percentage}%</div>
+        <div class="text-weight-900 text-h3 q-pa-lg no-line-height text-center">${percentage}%</div>
       </div>
     `;
-        },
-        style: {
-          fontFamily,
-          fontSize: "13px",
-        },
-        marker: {
-          width: 8,
-          height: 8,
         },
       },
     };
