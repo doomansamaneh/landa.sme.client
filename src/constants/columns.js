@@ -685,6 +685,19 @@ export const purchaseQuantity = {
   type: dataType.number,
 };
 
+export const inQuantity = {
+  ...purchaseQuantity,
+  name: "inQuantity",
+  field: "inQuantity",
+};
+
+export const openingQuantity = {
+  ...purchaseQuantity,
+  name: "inQuantity",
+  field: "openingQuantity",
+  label: "موجودی اول دوره",
+};
+
 export const salesQuantity = {
   name: "salesQuantity",
   field: "salesQuantity",
@@ -695,6 +708,12 @@ export const salesQuantity = {
   style: "width:110px;",
   showFilter: false,
   type: dataType.number,
+};
+
+export const outQuantity = {
+  ...salesQuantity,
+  name: "outQuantity",
+  field: "outQuantity",
 };
 
 export const quantity = {
@@ -763,6 +782,62 @@ export const price = {
   class: "text-left",
   showFilter: true,
   type: dataType.number,
+};
+
+export const openingPrice = {
+  ...price,
+  name: "inQuantity",
+  field: "openingPrice",
+  label: "فی اول دوره",
+  showFilter: false,
+};
+
+export const openingTotalPrice = {
+  ...price,
+  name: "openingTotalPrice",
+  field: "openingTotalPrice",
+  label: "جمع کل اول دوره",
+  showFilter: false,
+};
+
+export const inTotalPrice = {
+  ...price,
+  name: "inTotalPrice",
+  field: "inTotalPrice",
+  label: "جمع کل ورود",
+  showFilter: false,
+};
+
+export const inPrice = {
+  ...price,
+  name: "inPrice",
+  field: "inPrice",
+  label: "فی ورود",
+  showFilter: false,
+};
+
+export const outPrice = {
+  ...price,
+  name: "outPrice",
+  field: "outPrice",
+  label: "فی خروج",
+  showFilter: false,
+};
+
+export const outTotalPrice = {
+  ...price,
+  name: "inPrice",
+  field: "outTotalPrice",
+  label: "جمع کل خروج",
+  showFilter: false,
+};
+
+export const cogs = {
+  ...price,
+  name: "cogs",
+  field: "outTotalPrice",
+  label: "بهای تمام شده",
+  showFilter: false,
 };
 
 export const summary = {

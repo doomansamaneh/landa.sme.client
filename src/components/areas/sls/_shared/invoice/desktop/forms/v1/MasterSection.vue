@@ -82,7 +82,13 @@
                     model.originalDocument &&
                     model.originalDocument.parentId
                   " -->
-                <div class="col-md-6 col-sm-12 col-xs-12 q-mt-md">
+                <div
+                  v-if="
+                    model.originalDocument &&
+                    model.originalDocument.parentId
+                  "
+                  class="col-md-6 col-sm-12 col-xs-12 q-mt-md"
+                >
                   <invoice-lookup
                     v-model:selectedId="
                       model.originalDocument.parentId

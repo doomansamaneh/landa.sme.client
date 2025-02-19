@@ -92,11 +92,7 @@
       </template>
     </toolbar-desktop>
 
-    <desktop
-      :table-store="tableStore"
-      :title="title"
-      show-advanced-search
-    />
+    <desktop :table-store="tableStore" :title="title" />
   </template>
 </template>
 
@@ -104,7 +100,7 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { useDataTableExport } from "src/composables/useDataTableExport";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { useProductStockState } from "../../_composables/useProductStockState";
+  import { useProductFlowState } from "../../_composables/useProductFlowState";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
@@ -116,8 +112,8 @@
     title: String,
   });
 
-  const dataSource = "sls/report/getProductStock";
-  const stockStore = useProductStockState();
+  const dataSource = "inv/report/getProductFlow";
+  const stockStore = useProductFlowState();
   const gridStore = useBaseInfoGrid(stockStore);
   const tableStore = useDataTable({
     dataSource: dataSource,

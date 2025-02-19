@@ -24,10 +24,7 @@
             <q-icon name="o_article" size="36px" color="white" />
           </q-avatar>
 
-          <div
-            @click="operationStore.openBook(reloadData)"
-            class="q-mt-md text-subtitle1 text-weight-700"
-          >
+          <div class="q-mt-md text-subtitle1 text-weight-700">
             {{ $t("shared.labels.openBook") }}
           </div>
 
@@ -56,10 +53,7 @@
             <q-icon name="o_refresh" size="36px" color="white" />
           </q-avatar>
 
-          <div
-            @click="operationStore.reorder(reloadData)"
-            class="q-mt-md text-subtitle1 text-weight-700"
-          >
+          <div class="q-mt-md text-subtitle1 text-weight-700">
             {{ $t("shared.labels.reorder") }}
           </div>
 
@@ -88,10 +82,7 @@
             <q-icon name="swap_vert" size="36px" color="white" />
           </q-avatar>
 
-          <div
-            @click="operationStore.calculateCogs(reloadData)"
-            class="q-mt-md text-subtitle1 text-weight-700"
-          >
+          <div class="q-mt-md text-subtitle1 text-weight-700">
             {{ $t("shared.labels.calculateCogs") }}
           </div>
 
@@ -124,10 +115,7 @@
             />
           </q-avatar>
 
-          <div
-            @click="showCloseAccountForm"
-            class="q-mt-md text-subtitle1 text-weight-700"
-          >
+          <div class="q-mt-md text-subtitle1 text-weight-700">
             {{ $t("shared.labels.closeAccount") }}
           </div>
 

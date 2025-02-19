@@ -1,6 +1,8 @@
 <template>
-  <advanced-search class="q-my-md" />
-  <tip-banner />
+  <template v-if="showAdvancedSearch">
+    <advanced-search class="q-my-md" />
+    <tip-banner />
+  </template>
 
   <q-card flat class="bordered shadow">
     <card-title :title="title" icon="import_export" />
@@ -32,5 +34,6 @@
   const props = defineProps({
     tableStore: useDataTable,
     title: String,
+    showAdvancedSearch: Boolean,
   });
 </script>

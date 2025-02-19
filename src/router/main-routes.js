@@ -1626,6 +1626,13 @@ export default {
             ),
           meta: { title: "گزارش موجودی کالا - پیش نمایش" },
         },
+
+        {
+          path: "productFlow",
+          component: () =>
+            import("pages/areas/inv/report/ProductFlowPage.vue"),
+          meta: { title: "گزارش گردش کالا" },
+        },
       ],
     },
 

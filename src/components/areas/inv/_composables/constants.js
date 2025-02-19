@@ -17,6 +17,16 @@ import {
   contractTitle,
   toInventoryTitle,
   dlCode,
+  openingPrice,
+  openingQuantity,
+  openingTotalPrice,
+  inQuantity,
+  inPrice,
+  inTotalPrice,
+  outQuantity,
+  outPrice,
+  outTotalPrice,
+  cogs,
 } from "src/constants/columns";
 
 export const productStockColumns = [
@@ -28,6 +38,22 @@ export const productStockColumns = [
   salesQuantity,
   { ...stock, class: "text-weight-600" },
   debit,
+];
+
+export const productFlowColumns = [
+  code,
+  dlCode,
+  title,
+  //unitTitle,
+  openingQuantity,
+  openingPrice,
+  openingTotalPrice,
+  inQuantity,
+  inPrice,
+  inTotalPrice,
+  outQuantity,
+  outPrice,
+  outTotalPrice,
 ];
 
 export const productStockItemColumns = [
