@@ -49,10 +49,10 @@
     </tbody>
   </table>
 
-  <table class="balance-sheet-preview-table">
+  <table class="balance-sheet-preview-table q-mt-md">
     <tbody>
       <tr>
-        <td class="text-bold">جمع کل</td>
+        <td class="text-bold">جمع دارایی</td>
         <td class="text-bold" style="width: 20%">
           {{ helper.formatNumber(totalCA + totalFA) }}
         </td>

@@ -24,13 +24,11 @@
             <q-icon name="o_article" size="36px" color="white" />
           </q-avatar>
 
-          <div class="q-mt-md">
-            <q-router-link
-              @click="operationStore.openBook(reloadData)"
-              class="cursor-pointer no-decoration decoration-on-hover text-subtitle1 text-weight-700"
-            >
-              {{ $t("shared.labels.openBook") }}
-            </q-router-link>
+          <div
+            @click="operationStore.openBook(reloadData)"
+            class="q-mt-md text-subtitle1 text-weight-700"
+          >
+            {{ $t("shared.labels.openBook") }}
           </div>
 
           <div class="text-body2 line-height-xs q-mt-sm">
@@ -58,13 +56,11 @@
             <q-icon name="o_refresh" size="36px" color="white" />
           </q-avatar>
 
-          <div class="q-mt-md">
-            <q-router-link
-              @click="operationStore.reorder(reloadData)"
-              class="cursor-pointer no-decoration decoration-on-hover text-subtitle1 text-weight-700"
-            >
-              {{ $t("shared.labels.reorder") }}
-            </q-router-link>
+          <div
+            @click="operationStore.reorder(reloadData)"
+            class="q-mt-md text-subtitle1 text-weight-700"
+          >
+            {{ $t("shared.labels.reorder") }}
           </div>
 
           <div class="text-body2 line-height-xs q-mt-sm">
@@ -92,13 +88,11 @@
             <q-icon name="swap_vert" size="36px" color="white" />
           </q-avatar>
 
-          <div class="q-mt-md">
-            <q-router-link
-              @click="operationStore.calculateCogs(reloadData)"
-              class="cursor-pointer no-decoration decoration-on-hover text-subtitle1 text-weight-700"
-            >
-              {{ $t("shared.labels.calculateCogs") }}
-            </q-router-link>
+          <div
+            @click="operationStore.calculateCogs(reloadData)"
+            class="q-mt-md text-subtitle1 text-weight-700"
+          >
+            {{ $t("shared.labels.calculateCogs") }}
           </div>
 
           <div class="text-body2 line-height-xs q-mt-sm">
@@ -130,13 +124,11 @@
             />
           </q-avatar>
 
-          <div class="q-mt-md">
-            <q-router-link
-              @click="showCloseAccountForm"
-              class="cursor-pointer no-decoration decoration-on-hover text-subtitle1 text-weight-700"
-            >
-              {{ $t("shared.labels.closeAccount") }}
-            </q-router-link>
+          <div
+            @click="showCloseAccountForm"
+            class="q-mt-md text-subtitle1 text-weight-700"
+          >
+            {{ $t("shared.labels.closeAccount") }}
           </div>
 
           <div class="text-body2 line-height-xs q-mt-sm">
@@ -164,13 +156,8 @@
             <q-icon name="o_done_all" size="36px" color="white" />
           </q-avatar>
 
-          <div class="q-mt-md">
-            <q-router-link
-              @click="operationStore.closeBook(reloadData)"
-              class="cursor-pointer no-decoration decoration-on-hover text-subtitle1 text-weight-700"
-            >
-              {{ $t("shared.labels.closeBook") }}
-            </q-router-link>
+          <div class="q-mt-md text-subtitle1 text-weight-700">
+            {{ $t("shared.labels.closeBook") }}
           </div>
 
           <div class="text-body2 line-height-xs q-mt-sm">
@@ -195,13 +182,8 @@
             <q-icon name="o_delete" size="36px" color="white" />
           </q-avatar>
 
-          <div class="q-mt-md">
-            <q-router-link
-              @click="operationStore.deleteClosingBook(reloadData)"
-              class="cursor-pointer no-decoration decoration-on-hover text-subtitle1 text-weight-700"
-            >
-              {{ $t("shared.labels.deleteClosingBook") }}
-            </q-router-link>
+          <div class="q-mt-md text-subtitle1 text-weight-700">
+            {{ $t("shared.labels.deleteClosingBook") }}
           </div>
 
           <div class="text-body2 line-height-xs q-mt-sm">

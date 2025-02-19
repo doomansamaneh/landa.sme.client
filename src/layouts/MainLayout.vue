@@ -8,7 +8,7 @@
     <header-desktop v-if="$q.screen.gt.xs" />
 
     <bottom-navigation />
-    <menu-bar v-if="MenuBarStore.state.visible.value" />
+    <menu-bar />
     <contact-drawer />
     <notif-drawer />
     <alert-banner class="fixed-bottom z-max" />

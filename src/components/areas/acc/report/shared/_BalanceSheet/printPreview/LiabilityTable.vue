@@ -49,7 +49,7 @@
     </tbody>
   </table>
 
-  <table class="balance-sheet-preview-table">
+  <table class="balance-sheet-preview-table q-mt-md">
     <tbody>
       <tr>
         <td class="text-bold">جمع بدهی</td>
