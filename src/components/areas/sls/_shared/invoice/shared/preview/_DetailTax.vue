@@ -1,34 +1,32 @@
 <template>
-  <div
-    class="row q-gutter-sm"
-    :class="$q.screen.gt.xs ? 'q-pb-md' : 'q-py-md'"
-  >
-    <q-btn
-      v-if="!taxStore.apiResult.value.data"
-      unelevated
-      rounded
-      text-color="white"
-      class="primary-gradient primary-shadow"
-      @click="
-        taxStore.sendToTax(
-          model.id,
-          taxGrid.dataGrid.tableStore.reloadData
-        )
-      "
-    >
-      <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
-      <span>ارسال به سامانه مودیان</span>
-    </q-btn>
-    <!-- v-if="!configStore.model.companySetting?.taxApiSetting?.clientId" -->
-    <!-- <q-btn rounded to="/cmn/appConfig/VATInfo" flat unelevated>
+  <div>
+    <div class="flex q-gutter-md justify-between items-center">
+      <div class="text-body2 text-bold">
+        تاریخچه ارسال به سامانه مودیان
+      </div>
+      <q-btn
+        v-if="!taxStore.apiResult.value.data"
+        unelevated
+        rounded
+        text-color="white"
+        class="primary-gradient primary-shadow"
+        @click="
+          taxStore.sendToTax(
+            model.id,
+            taxGrid.dataGrid.tableStore.reloadData
+          )
+        "
+      >
+        <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
+        <span>ارسال به سامانه مودیان</span>
+      </q-btn>
+      <!-- v-if="!configStore.model.companySetting?.taxApiSetting?.clientId" -->
+      <!-- <q-btn rounded to="/cmn/appConfig/VATInfo" flat unelevated>
       <q-icon name="o_settings" size="xs" class="q-mr-xs" />
       <span>پیکربندی سامانه مودیان</span>
     </q-btn> -->
-  </div>
-  <div>
-    <div class="text-body2 text-bold">
-      تاریخچه ارسال به سامانه مودیان
     </div>
+
     <data-grid
       ref="taxGrid"
       class="border-radius-sm q-mt-md"

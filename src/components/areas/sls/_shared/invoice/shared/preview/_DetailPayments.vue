@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="row q-gutter-sm"
-    :class="$q.screen.gt.xs ? 'q-pb-md' : 'q-py-md'"
-  >
+  <div class="row q-gutter-sm q-pb-md">
     <template v-if="remainedAmount">
       <q-btn
         v-if="showReceipt"

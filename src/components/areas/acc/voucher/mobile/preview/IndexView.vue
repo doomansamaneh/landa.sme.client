@@ -64,14 +64,11 @@
         v-for="(item, index) in model?.voucherItems"
         :key="item.id"
       >
-        <div class="row items-start q-gutter-sm text-body_">
-          <div
-            class="col-1 text-white text-center rounded-borders bg-secondary"
-          >
-            <div>
-              {{ index + 1 }}
-            </div>
-          </div>
+        <div class="row items-start q-gutter-sm">
+          <span class="text-bold caption-on-dark text-body3">
+            #{{ index + 1 }}
+          </span>
+
           <div class="col">
             <span class="q-pa-xs_ text-grey_">
               {{ item.slCode }} {{ item.slTitle }} /

@@ -1,7 +1,10 @@
 <template>
-  <q-card :flat="$q.screen.xs" :bordered="$q.screen.gt.xs">
-    <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
-      <slot v-if="$q.screen.gt.xs" name="header">
+  <q-card>
+    <q-card-section
+      v-if="$q.screen.gt.xs"
+      :class="$q.screen.xs ? 'q-pt-none' : ''"
+    >
+      <slot name="header">
         <div class="column q-gutter-y-md">
           <div class="text-body1 text-weight-700">
             #{{ model.no }}
@@ -67,50 +70,46 @@
 
     <template v-if="model.id">
       <slot name="body">
-        <q-card-section class="no-padding">
-          <q-tabs
-            align="left"
-            v-model="tab"
-            inline-label
-            narrow-indicator
-            mobile-arrows
-            :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
-            :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
-          >
-            <q-tab name="main-info">
-              <template #default>
-                <div class="row items-center no-wrap q-gutter-xs">
-                  <q-icon size="20px" name="o_arrow_downward" />
-                  <div class="text-body2 text-weight-700">
-                    دریافت و پرداخت
-                  </div>
+        <q-tabs
+          align="left"
+          v-model="tab"
+          inline-label
+          narrow-indicator
+          mobile-arrows
+          :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
+          :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+        >
+          <q-tab name="main-info">
+            <template #default>
+              <div class="row items-center no-wrap q-gutter-xs">
+                <q-icon size="20px" name="o_arrow_downward" />
+                <div class="text-body2 text-weight-700">
+                  دریافت و پرداخت
                 </div>
-              </template>
-            </q-tab>
-            <q-tab name="tax" v-if="taxApi">
-              <template #default>
-                <div class="row items-center no-wrap q-gutter-xs">
-                  <q-icon size="20px" name="o_paid" />
-                  <div class="text-body2 text-weight-700">مالیات</div>
-                </div>
-              </template>
-            </q-tab>
-            <q-tab name="log">
-              <template #default>
-                <div class="row items-center no-wrap q-gutter-xs">
-                  <q-icon size="20px" name="o_history" />
-                  <div class="text-body2 text-weight-700">
-                    تاریخچه
-                  </div>
-                </div>
-              </template>
-            </q-tab>
-          </q-tabs>
-        </q-card-section>
+              </div>
+            </template>
+          </q-tab>
+          <q-tab name="tax" v-if="taxApi">
+            <template #default>
+              <div class="row items-center no-wrap q-gutter-xs">
+                <q-icon size="20px" name="o_paid" />
+                <div class="text-body2 text-weight-700">مالیات</div>
+              </div>
+            </template>
+          </q-tab>
+          <q-tab name="log">
+            <template #default>
+              <div class="row items-center no-wrap q-gutter-xs">
+                <q-icon size="20px" name="o_history" />
+                <div class="text-body2 text-weight-700">تاریخچه</div>
+              </div>
+            </template>
+          </q-tab>
+        </q-tabs>
 
-        <q-separator size="0.5px" />
+        <q-separator size="1px" />
 
-        <q-card-section :class="$q.screen.xs ? 'no-padding' : ''">
+        <q-card-section>
           <q-tab-panels
             v-model="tab"
             animated
