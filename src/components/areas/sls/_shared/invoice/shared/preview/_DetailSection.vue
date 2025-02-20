@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card bordered>
     <q-card-section
       v-if="$q.screen.gt.xs"
       :class="$q.screen.xs ? 'q-pt-none' : ''"
