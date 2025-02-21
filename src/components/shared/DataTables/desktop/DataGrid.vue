@@ -38,7 +38,10 @@
               :class="tableStore.getSortableClass(col)"
               @click="tableStore.sortColumn(col)"
             >
-              <span class="q-icon q-table__sort-icon">
+              <span
+                v-if="col.sortable"
+                class="q-icon q-table__sort-icon"
+              >
                 <q-icon
                   name="arrow_drop_down"
                   color="primary"

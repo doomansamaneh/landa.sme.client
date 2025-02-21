@@ -27,6 +27,7 @@ import {
   outPrice,
   outTotalPrice,
   cogs,
+  closingQuantity,
 } from "src/constants/columns";
 
 export const productStockColumns = [
@@ -54,6 +55,8 @@ export const productFlowColumns = [
   outQuantity,
   outPrice,
   outTotalPrice,
+  cogs,
+  closingQuantity,
 ];
 
 export const productStockItemColumns = [

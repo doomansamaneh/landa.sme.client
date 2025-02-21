@@ -740,6 +740,13 @@ export const stock = {
   type: dataType.number,
 };
 
+export const closingQuantity = {
+  ...quantity,
+  label: "موجودی",
+  showFilter: false,
+  class: "text-weight-600",
+};
+
 export const statusId = {
   name: "statusId",
   field: "statusId",
