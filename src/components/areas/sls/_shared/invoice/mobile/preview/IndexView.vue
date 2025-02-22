@@ -78,7 +78,7 @@
       <div v-for="(item, index) in model.invoiceItems" :key="item.id">
         <div class="row q-col-gutter-xl items-center q-py-sm">
           <div class="row col no-wrap items-center q-gutter-md">
-            <q-avatar
+            <!-- <q-avatar
               size="32px"
               text-color="white"
               :style="helper.generateAvatarStyle(item.id)"
@@ -86,14 +86,25 @@
               <div class="text-caption-sm text-bold">
                 {{ helper.getFirstChar(item.productTitle) }}
               </div>
-            </q-avatar>
+            </q-avatar> -->
 
             <div>
-              <div class="text-body3 ellipsis text-weight-500">
+              <div
+                class="text-body3 ellipsis-2-lines text-weight-500"
+              >
+                <span
+                  class="text-bold text-body3"
+                  :class="
+                    $q.dark.isActive ? 'text-grey-6' : 'text-grey-7'
+                  "
+                >
+                  #{{ index + 1 }}
+                </span>
+
                 {{ item.productTitle }}
               </div>
 
-              <div class="caption-on-dark q-mt-xs">
+              <div class="caption-on-dark q-mt-xs text-body3">
                 <span>
                   {{ helper.formatNumber(item.quantity) }}
                   {{ item.productUnitTitle }}
@@ -106,8 +117,8 @@
             </div>
           </div>
           <div class="flex justify-end">
-            <div class="text-weight-500">
-              {{ helper.formatNumber(item.price) }}
+            <div>
+              {{ helper.formatNumber(item.quantity * item.price) }}
             </div>
           </div>
         </div>
@@ -119,7 +130,7 @@
 
       <div
         :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'"
-        class="q-pt-sm text-body3 text-weight-500"
+        class="q-pt-md text-body3 text-weight-500"
       >
         خلاصه کل
       </div>
@@ -129,7 +140,7 @@
           <div class="text-body3">
             {{ $t("shared.labels.price") }}
           </div>
-          <div class="text-weight-500">
+          <div class="text-weight-500_">
             {{ helper.formatNumber(model.totalNetPrice) }}
           </div>
         </div>
@@ -156,7 +167,7 @@
           <span class="text-body3">
             {{ $t("shared.labels.vat") }}
           </span>
-          <span class="text-weight-500">
+          <span class="text-weight-500_">
             {{ helper.formatNumber(model.totalVat) }}
           </span>
         </div>
