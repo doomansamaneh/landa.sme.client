@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bordered">
+  <q-card>
     <data-grid
       ref="dataGrid"
       :grid-store="gridStore"
@@ -14,10 +14,10 @@
     >
       <template #title>
         <div class="q-pa-lg">
-          <h6 class="text-body1 text-weight-700">
+          <div class="text-body1 text-weight-700">
             صورتحسابهای دارای مانده
-          </h6>
-          <div class="text-body2 q-mt-xs text-on-caption">
+          </div>
+          <div class="text-body2 q-mt-xs caption-on-dark">
             برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید
           </div>
         </div>

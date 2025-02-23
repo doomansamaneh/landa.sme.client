@@ -7,66 +7,68 @@
     columns="itemNo,itemDate,customerName,bankTitle,amount"
     :filterExpression="filterExpression"
   >
-    <template #thead-cols>
-      <div class="col-3_">
+    <template #thead-index>
+      <div>#</div>
+    </template>
+
+    <template #thead-cols="{ tableStore }">
+      <div class="col">
         <header-column
-          field-name="itemNo"
+          fieldName="itemNo"
           :title="$t('shared.labels.no')"
-          :table-store="lookup.tableStore"
+          :table-store="tableStore"
         />
       </div>
-      <div class="col-3_">
+      <div class="col">
         <header-column
-          field-name="itemDate"
+          fieldName="itemDate"
           :title="$t('shared.labels.date')"
-          :table-store="lookup.tableStore"
+          :table-store="tableStore"
         />
       </div>
-      <div class="col-4_">
+      <div class="col">
         <header-column
-          field-name="customerName"
+          fieldName="customerName"
           :title="$t('shared.labels.customerName')"
-          :table-store="lookup.tableStore"
+          :table-store="tableStore"
         />
       </div>
-      <div class="col-4_">
+      <div class="col">
         <header-column
-          field-name="bankTitle"
+          fieldName="bankTitle"
           :title="$t('shared.labels.bankTitle')"
-          :table-store="lookup.tableStore"
+          :table-store="tableStore"
         />
       </div>
-      <div class="col_">
+      <div class="col">
         <header-column
-          field-name="amount"
+          fieldName="amount"
           :title="$t('shared.labels.price')"
-          :table-store="lookup.tableStore"
+          :table-store="tableStore"
         />
       </div>
     </template>
 
-    <template #td="{ row, index }">
-      <div class="row items-center q-pa-md q-gutter-x-md">
-        <div style="width: 16px" class="col_ text-body3">
-          {{ index }}
-        </div>
-        <div class="col-3_ text-body3">
-          {{ row.itemNo }}
-        </div>
-        <div class="col-3_ text-body3">
-          {{ row.itemDate?.substring(0, 10) }}
-        </div>
-        <div class="col-4_ text-body3">
-          {{ row.customerName }}
-        </div>
-        <div class="col-4_ text-body3">
-          {{ row.bankTitle }}
-        </div>
-        <div class="col_ text-body3">
-          {{ helper.formatNumber(row.amount) }}
-        </div>
+    <template #tbody-index="{ index }">
+      <div>{{ index + 1 }}</div>
+    </template>
+
+    <template #tbody-cols="{ item }">
+      <div class="col">{{ item.itemNo }}</div>
+      <div class="col">
+        {{ item.itemDate?.substring(0, 10) }}
+      </div>
+      <div class="col">
+        {{ item.customerName }}
+      </div>
+      <div class="col">
+        {{ item.bankTitle }}
+      </div>
+      <div class="col">
+        {{ helper.formatNumber(item.amount) }}
       </div>
     </template>
+    
   </lookup-view>
 </template>
 
