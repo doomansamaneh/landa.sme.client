@@ -1,7 +1,9 @@
 <template>
   <q-card bordered>
-    <q-card-section class="q-pt-none">
-      <div class="row items-center no-wrap q-pt-md">
+    <q-card-section>
+      <div
+        class="row items-center q-gutter-md justify-between no-wrap"
+      >
         <div class="row no-wrap items-center col">
           <q-avatar size="42px" class="primary-gradient text-white">
             <div class="text-body2 text-bold">
@@ -69,78 +71,42 @@
       </q-scroll-area>
     </q-card-section>
 
-    <q-card-section>
-      <!-- <div
-        :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'"
-        class="text-body3 text-weight-500 q-pt-lg q-pb-sm"
+    <q-card-section class="q-gutter-md">
+      <template
+        v-for="(item, index) in model.invoiceItems"
+        :key="item.id"
       >
-        اقلام
-      </div> -->
+        <div class="row items-start q-gutter-sm">
+          <span class="text-bold caption-on-dark text-body3">
+            #{{ index + 1 }}
+          </span>
 
-      <div v-for="(item, index) in model.invoiceItems" :key="item.id">
-        <div class="row q-col-gutter-xl items-center q-py-sm">
-          <div class="row col no-wrap items-center q-gutter-md">
-            <!-- <q-avatar
-              size="32px"
-              text-color="white"
-              :style="helper.generateAvatarStyle(item.id)"
-            >
-              <div class="text-caption-sm text-bold">
-                {{ helper.getFirstChar(item.productTitle) }}
-              </div>
-            </q-avatar> -->
+          <div class="col">
+            <span class="q-pa-xs_ text-grey_">
+              {{ item.productCode }} - {{ item.productTitle }}
+            </span>
 
-            <div>
-              <div
-                class="text-body3 ellipsis-2-lines text-weight-500"
-              >
-                <span
-                  class="text-bold text-body3"
-                  :class="
-                    $q.dark.isActive ? 'text-grey-6' : 'text-grey-7'
-                  "
-                >
-                  #{{ index + 1 }}
-                </span>
-
-                {{ item.productCode }} - {{ item.productTitle }}
-              </div>
-
-              <div class="caption-on-dark q-mt-xs text-body3">
-                <span>
-                  {{ helper.formatNumber(item.quantity) }}
-                  {{ item.productUnitTitle }}
-                </span>
-                ×
-                <span>
-                  {{ helper.formatNumber(item.price) }}
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-end">
-            <div>
-              {{ helper.formatNumber(item.quantity * item.price) }}
+            <div class="text-body3">
+              <span>
+                {{ helper.formatNumber(item.quantity) }}
+                {{ item.productUnitTitle }}
+              </span>
+              <span class="text-body2 q-mx-xs">×</span>
+              <span>
+                {{ helper.formatNumber(item.price) }}
+              </span>
+              =
+              <span>
+                {{ helper.formatNumber(item.quantity * item.price) }}
+              </span>
             </div>
           </div>
         </div>
-        <!-- <q-separator
-          v-if="index < model.invoiceItems.length - 1"
-          size="0.5px"
-        /> -->
-      </div>
-
-      <!-- <div
-        :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'"
-        class="q-pt-md text-body3 text-weight-500"
-      >
-        خلاصه کل
-      </div> -->
+      </template>
     </q-card-section>
 
-    <q-separator size="0.5px" class="q-my-sm" />
-
     <q-card-section>
+      <q-separator class="q-mb-lg" />
       <div class="q-gutter-y-sm border-radius text-on-dark">
         <div class="row items-center justify-between">
           <div class="text-body3">
@@ -179,25 +145,19 @@
         </div>
 
         <div class="row items-center justify-between">
-          <span class="text-weight-600">
-            {{ $t("shared.labels.total") }} ({{
-              model.currencyTitle
-            }})
-          </span>
+          <div>
+            <span class="text-weight-600">
+              {{ $t("shared.labels.total") }}
+            </span>
+            <span class="text-caption">
+              ({{ model.currencyTitle }})
+            </span>
+          </div>
 
-          <span class="text-weight-600">
+          <div class="text-weight-600">
             {{ helper.formatNumber(model.totalPrice) }}
-          </span>
+          </div>
         </div>
-
-        <!-- <div class="row q-gutter-xs items-center">
-          <span class="text-body3">
-            {{ numberToWords(model.totalPrice ?? 0) }}
-          </span>
-          <span class="text-caption text-weight-500">
-            ({{ model.currencyTitle }})
-          </span>
-        </div> -->
       </div>
     </q-card-section>
   </q-card>
