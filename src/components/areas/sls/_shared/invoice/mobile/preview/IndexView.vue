@@ -37,43 +37,45 @@
           </div>
         </div>
       </div>
+    </q-card-section>
 
-      <q-separator size="0.5px" class="q-my-sm" />
+    <q-separator size="0.5px" class="q-my-sm" />
 
-      <div class="col no-wrap">
-        <q-scroll-area
-          :bar-style="{ opacity: 0 }"
-          :thumb-style="{ opacity: 0 }"
-          style="height: 21px"
-        >
-          <div class="row no-wrap q-pr-xs items-center q-gutter-xs">
-            <status-badge
-              class="text-weight-500 text-caption"
-              padding="0 8px"
-              :title="model.statusTitle"
-            />
+    <q-card-section>
+      <q-scroll-area
+        :bar-style="{ opacity: 0 }"
+        :thumb-style="{ opacity: 0 }"
+        style="height: 21px"
+      >
+        <div class="row no-wrap q-pr-xs items-center q-gutter-xs">
+          <status-badge
+            class="text-weight-500 text-caption"
+            padding="0 8px"
+            :title="model.statusTitle"
+          />
 
-            <type-badge
-              class="text-weight-500 text-caption"
-              padding="0 8px"
-              :title="model.typeTitle"
-            />
+          <type-badge
+            class="text-weight-500 text-caption"
+            padding="0 8px"
+            :title="model.typeTitle"
+          />
 
-            <contract-badge
-              class="text-weight-500 text-caption"
-              padding="0 8px"
-              :title="model.contractTitle"
-            />
-          </div>
-        </q-scroll-area>
-      </div>
+          <contract-badge
+            class="text-weight-500 text-caption"
+            padding="0 8px"
+            :title="model.contractTitle"
+          />
+        </div>
+      </q-scroll-area>
+    </q-card-section>
 
-      <div
+    <q-card-section>
+      <!-- <div
         :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'"
         class="text-body3 text-weight-500 q-pt-lg q-pb-sm"
       >
-        جزییات اقلام
-      </div>
+        اقلام
+      </div> -->
 
       <div v-for="(item, index) in model.invoiceItems" :key="item.id">
         <div class="row q-col-gutter-xl items-center q-py-sm">
@@ -101,7 +103,7 @@
                   #{{ index + 1 }}
                 </span>
 
-                {{ item.productTitle }}
+                {{ item.productCode }} - {{ item.productTitle }}
               </div>
 
               <div class="caption-on-dark q-mt-xs text-body3">
@@ -122,20 +124,24 @@
             </div>
           </div>
         </div>
-        <q-separator
+        <!-- <q-separator
           v-if="index < model.invoiceItems.length - 1"
           size="0.5px"
-        />
+        /> -->
       </div>
 
-      <div
+      <!-- <div
         :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'"
         class="q-pt-md text-body3 text-weight-500"
       >
         خلاصه کل
-      </div>
+      </div> -->
+    </q-card-section>
 
-      <div class="q-pt-md q-gutter-y-sm border-radius text-on-dark">
+    <q-separator size="0.5px" class="q-my-sm" />
+
+    <q-card-section>
+      <div class="q-gutter-y-sm border-radius text-on-dark">
         <div class="row items-center justify-between">
           <div class="text-body3">
             {{ $t("shared.labels.price") }}
@@ -172,25 +178,26 @@
           </span>
         </div>
 
-        <div class="q-mt-md bg-on-dark q-pa-sm border-radius-sm">
-          <div class="row items-center justify-between">
-            <span class="text-body3">
-              {{ $t("shared.labels.total") }}
-            </span>
+        <div class="row items-center justify-between">
+          <span class="text-weight-600">
+            {{ $t("shared.labels.total") }} ({{
+              model.currencyTitle
+            }})
+          </span>
 
-            <span class="text-weight-600">
-              {{ helper.formatNumber(model.totalPrice) }}
-            </span>
-          </div>
-          <div class="row q-gutter-xs items-center">
-            <span class="text-body3">
-              {{ numberToWords(model.totalPrice ?? 0) }}
-            </span>
-            <span class="text-caption text-weight-500">
-              ({{ model.currencyTitle }})
-            </span>
-          </div>
+          <span class="text-weight-600">
+            {{ helper.formatNumber(model.totalPrice) }}
+          </span>
         </div>
+
+        <!-- <div class="row q-gutter-xs items-center">
+          <span class="text-body3">
+            {{ numberToWords(model.totalPrice ?? 0) }}
+          </span>
+          <span class="text-caption text-weight-500">
+            ({{ model.currencyTitle }})
+          </span>
+        </div> -->
       </div>
     </q-card-section>
   </q-card>
