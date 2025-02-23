@@ -842,7 +842,7 @@ export const outTotalPrice = {
 export const cogs = {
   ...price,
   name: "cogs",
-  field: "outTotalPrice",
+  field: "cogs",
   label: "بهای تمام شده",
   showFilter: false,
 };
