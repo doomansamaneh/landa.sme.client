@@ -37,7 +37,7 @@
             :key="index"
             :class="getColumnClass(row, col, index)"
           >
-            {{ col.amount.toLocaleString() }}
+            {{ helper.formatNumber(col.amount) }}
             <q-badge
               v-if="showWarning(row, col, index)"
               color="warning"
@@ -57,7 +57,7 @@
             :class="getColumnClass(row, col, index)"
             class="bg-lime text-black"
           >
-            {{ col.toLocaleString() }}
+            {{ helper.formatNumber(col) }}
           </td>
         </tr>
       </tbody>
