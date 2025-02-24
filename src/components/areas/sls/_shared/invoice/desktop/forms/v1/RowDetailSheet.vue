@@ -28,7 +28,23 @@
           input-class="text-body2 "
           v-model="item.discount"
           placeholder="تخفیف"
-        />
+        >
+          <template #append>
+            <q-btn
+              size="8px"
+              class="cursor-pointer"
+              :color="$q.dark.isActive ? 'yellow' : 'primary'"
+              round
+              outline
+              @click="toggleDiscountType"
+            >
+              <q-icon
+                size="14px"
+                :name="discountIsCash ? 'attach_money' : 'o_percent'"
+              />
+            </q-btn>
+          </template>
+        </custom-input-number>
       </div>
     </div>
 
@@ -57,6 +73,7 @@
 </template>
 
 <script setup>
+  import { ref } from "vue";
   import {
     sqlOperator,
     vatType,
@@ -92,5 +109,10 @@
 
   const vatChanged = (vat, item) => {
     item.vatPercent = vat?.rate ?? 0;
+  };
+
+  const discountIsCash = ref(true);
+  const toggleDiscountType = () => {
+    discountIsCash.value = !discountIsCash.value;
   };
 </script>

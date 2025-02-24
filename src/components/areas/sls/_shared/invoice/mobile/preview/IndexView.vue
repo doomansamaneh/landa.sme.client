@@ -109,7 +109,7 @@
       <q-separator class="q-mb-lg" />
       <div class="q-gutter-y-sm border-radius text-on-dark">
         <div class="row items-center justify-between">
-          <div class="text-body3">
+          <div clenuass="text-body3">
             {{ $t("shared.labels.price") }}
           </div>
           <div class="text-weight-500_">
