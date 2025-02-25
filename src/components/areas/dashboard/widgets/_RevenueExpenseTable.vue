@@ -11,7 +11,7 @@
           <th class="text-left"></th>
           <th
             class="text-center"
-            style="width: 5%"
+            style="width: 6.2%"
             v-for="item in helper.getMonths()"
             :key="item"
           >
