@@ -20,7 +20,7 @@
 
     <template #row-body="{ item }">
       <div class="row justify-between">
-        <div class="col ellipsis text-body3 text-weight-600">
+        <div class="col text-body3 text-weight-600">
           {{ item.customerName }}
         </div>
         <menu-item-more @click="showItemSheet(item)" />
@@ -63,7 +63,7 @@
 
       <div
         v-if="item.subject"
-        class="col ellipsis text-caption caption-on-dark"
+        class="col text-caption caption-on-dark"
       >
         {{ item.subject }}
       </div>

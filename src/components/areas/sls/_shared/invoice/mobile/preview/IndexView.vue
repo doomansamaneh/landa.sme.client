@@ -4,18 +4,18 @@
       <div
         class="row items-center q-gutter-md justify-between no-wrap"
       >
-        <div class="row no-wrap items-center col">
+        <div class="row no-wrap col">
           <q-avatar size="42px" class="primary-gradient text-white">
             <div class="text-body2 text-bold">
               {{ helper.getFirstChar(model?.customerName) }}
             </div>
           </q-avatar>
 
-          <div class="q-ml-md">
-            <div class="ellipsis text-body2 text-weight-500">
+          <div class="column justify-center q-ml-md">
+            <div class="text-body2 text-weight-500">
               {{ model?.customerName }}
             </div>
-            <div class="text-body3 caption-on-dark ellipsis">
+            <div class="text-body3 caption-on-dark">
               {{ model?.customerSummary?.address?.address }}
             </div>
           </div>
@@ -83,22 +83,17 @@
 
           <div class="col">
             <span class="q-pa-xs_ text-grey_">
-              {{ item.productCode }} - {{ item.productTitle }}
-            </span>
-
-            <div class="text-body3">
-              <span>
+              <q-badge>
                 {{ helper.formatNumber(item.quantity) }}
                 {{ item.productUnitTitle }}
-              </span>
-              <span class="text-body2 q-mx-xs">×</span>
-              <span>
-                {{ helper.formatNumber(item.price) }}
-              </span>
-              =
-              <span>
-                {{ helper.formatNumber(item.quantity * item.price) }}
-              </span>
+              </q-badge>
+              {{ item.productCode }} - {{ item.productTitle }} /
+              {{ helper.formatNumber(item.price) }}
+            </span>
+
+            <div class="text-right text-weight-500">
+              {{ helper.formatNumber(item.quantity * item.price) }}
+              <span class="text-weight-300 text-body3">ریال</span>
             </div>
           </div>
         </div>
@@ -120,10 +115,8 @@
           v-if="model.totalDiscount"
           class="row items-center justify-between"
         >
-          <div class="">
-            <div class="text-body3">
-              {{ $t("shared.labels.discount") }}
-            </div>
+          <div>
+            {{ $t("shared.labels.discount") }}
           </div>
           <div
             :class="$q.dark.isActive ? 'text-red-5' : 'text-negative'"

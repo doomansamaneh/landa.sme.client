@@ -10,7 +10,7 @@
       :placeholder="$t('page.card-searchbar')"
       @keydown.enter="resetPage"
     >
-      <template v-slot:prepend>
+      <template #prepend>
         <q-icon
           name="search"
           class="search-icon cursor-pointer"
@@ -19,7 +19,7 @@
         />
       </template>
 
-      <template v-slot:append>
+      <template #append>
         <q-icon
           name="clear"
           class="cursor-pointer"
