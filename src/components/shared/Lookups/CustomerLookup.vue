@@ -101,7 +101,7 @@
     <template #title>فروشنده</template>
   </lookup-view>
 
-  <div v-if="rowSelected" class="q-pt-sm q-gutter-xs">
+  <div v-if="dlBalance" class="q-pt-sm q-gutter-xs">
     <q-badge
       :color="getBadgeColor(key)"
       text-color="white"
@@ -125,6 +125,7 @@
 
   const props = defineProps({
     label: String,
+    dlBalance: Boolean,
   });
 
   const accountDLStore = useAccountDL();
