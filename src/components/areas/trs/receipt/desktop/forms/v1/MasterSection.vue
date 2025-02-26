@@ -28,10 +28,10 @@
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <customer-lookup
-        label="مخاطب"
         v-model:selectedId="localFormStore.model.value.customerId"
         v-model:selectedText="localFormStore.model.value.customerName"
-        @row-selected="customerChanged"
+        label="مخاطب"
+        dl-balance
       />
     </div>
   </div>

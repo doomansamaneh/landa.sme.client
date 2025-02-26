@@ -98,27 +98,29 @@
     </template>
 
     <template #title>فروشنده</template>
-  </lookup-view>
 
-  <div
-    v-if="
-      dlBalance &&
-      balanceModel.debitRemained + balanceModel.creditRemained > 0
-    "
-    class="q-pt-sm q-gutter-xs"
-  >
-    <template v-for="(value, key) in balanceModel" :key="key">
-      <q-badge
-        v-if="value > 0"
-        :color="getBadgeColor(key)"
-        text-color="white"
-        class="text-body3"
+    <template #footer>
+      <div
+        v-if="
+          dlBalance &&
+          balanceModel.debitRemained + balanceModel.creditRemained > 0
+        "
+        class="q-pt-sm q-gutter-xs"
       >
-        {{ $t(`shared.accountType.${key}`) }}:
-        {{ helper.formatNumber(value) }}
-      </q-badge>
+        <template v-for="(value, key) in balanceModel" :key="key">
+          <q-badge
+            v-if="value > 0"
+            :color="getBadgeColor(key)"
+            text-color="white"
+            class="text-body3"
+          >
+            {{ $t(`shared.accountType.${key}`) }}:
+            {{ helper.formatNumber(value) }}
+          </q-badge>
+        </template>
+      </div>
     </template>
-  </div>
+  </lookup-view>
 </template>
 
 <script setup>
@@ -134,18 +136,23 @@
     dlBalance: Boolean,
   });
 
+  const emit = defineEmits(["row-selected"]);
+
   const accountDLStore = useAccountDL();
   const lookup = ref(null);
   const balanceModel = ref({});
 
   const loadDlBalance = async (row) => {
-    if (row?.dlId) {
-      balanceModel.value = await accountDLStore.getDlBalance(
-        row.dlId
-      );
-    } else {
-      balanceModel.value = {};
+    if (props.dlBalance) {
+      if (row?.dlId) {
+        balanceModel.value = await accountDLStore.getDlBalance(
+          row.dlId
+        );
+      } else {
+        balanceModel.value = {};
+      }
     }
+    emit("row-selected", row);
   };
 
   const getBadgeColor = (key) => {

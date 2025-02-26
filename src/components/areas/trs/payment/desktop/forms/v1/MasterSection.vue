@@ -25,11 +25,11 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">مخاطب</q-item-label>
       <customer-lookup
         v-model:selectedId="localFormStore.model.value.customerId"
         v-model:selectedText="localFormStore.model.value.customerName"
-        @row-selected="customerChanged"
+        label="مخاطب"
+        dl-balance
       />
     </div>
   </div>

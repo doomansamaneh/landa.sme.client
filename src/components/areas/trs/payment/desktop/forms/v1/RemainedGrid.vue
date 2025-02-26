@@ -46,16 +46,16 @@
       </template>
 
       <template #cell-amount="{ item }">
-        {{ item.amount?.toLocaleString() }}
+        {{ helper.formatNumber(item.amount) }}
       </template>
 
       <template #cell-payedAmount="{ item }">
-        {{ item.payedAmount?.toLocaleString() }}
+        {{ helper.formatNumber(item.payedAmount) }}
       </template>
 
       <template #cell-remainedAmount="{ item }">
         <span class="text-weight-600">
-          {{ item.remainedAmount?.toLocaleString() }}
+          {{ helper.formatNumber(item.remainedAmount) }}
         </span>
       </template>
 
@@ -66,9 +66,9 @@
         <td>
           <b>
             {{
-              helper
-                .getSubtotal(selectedRows, "remainedAmount")
-                .toLocaleString()
+              helper.formatNumber(
+                helper.getSubtotal(selectedRows, "remainedAmount")
+              )
             }}
           </b>
         </td>

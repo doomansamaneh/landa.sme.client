@@ -393,6 +393,8 @@
       </q-inner-loading>
     </q-card>
   </q-dialog>
+
+  <slot name="footer"></slot>
 </template>
 
 <script setup>
