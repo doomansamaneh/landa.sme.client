@@ -8,6 +8,7 @@
             v-model:selectedText="model.customerName"
             :label="customerTitle"
             required
+            dl-balance
           />
         </div>
 

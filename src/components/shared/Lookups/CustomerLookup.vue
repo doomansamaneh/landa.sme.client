@@ -101,16 +101,17 @@
     <template #title>فروشنده</template>
   </lookup-view>
 
-  <div v-if="rowSelected" class="q-pt-sm q-gutter-xs">
-    <q-chip
-      color="primary"
+  <div v-if="dlBalance" class="q-pt-sm q-gutter-xs">
+    <q-badge
+      :color="getBadgeColor(key)"
       text-color="white"
+      class="text-body3"
       v-for="(value, key) in balanceModel"
       :key="key"
     >
       {{ $t(`shared.accountType.${key}`) }}:
       {{ value.toLocaleString() }}
-    </q-chip>
+    </q-badge>
   </div>
 </template>
 
@@ -124,6 +125,7 @@
 
   const props = defineProps({
     label: String,
+    dlBalance: Boolean,
   });
 
   const accountDLStore = useAccountDL();
@@ -141,6 +143,12 @@
 
   const hideDlBalance = () => {
     rowSelected.value = false;
+  };
+
+  const getBadgeColor = (key) => {
+    if (key === "debit") return "red";
+    if (key === "credit") return "green";
+    return "grey-2 text-black";
   };
 
   defineExpose({
