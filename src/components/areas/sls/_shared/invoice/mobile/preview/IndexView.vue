@@ -2,7 +2,7 @@
   <q-card bordered>
     <q-card-section>
       <div
-        class="row items-center q-gutter-md justify-between no-wrap"
+        class="row q-gutter-md justify-between no-wrap"
       >
         <div class="row no-wrap col">
           <q-avatar size="42px" class="primary-gradient text-white">
