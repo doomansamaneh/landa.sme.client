@@ -470,7 +470,7 @@
     store: store,
   });
 
-  const emit = defineEmits(["row-selected"]);
+  const emit = defineEmits(["row-selected", "clear"]);
 
   const search = ref(null);
   const selectedRowIndex = ref(0);
@@ -512,6 +512,7 @@
     tableStore.setSearchTerm(null);
     setIdText(null);
     emitSelectRow(null);
+    emit("clear");
     onMenuHide();
   }
 

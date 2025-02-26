@@ -512,7 +512,9 @@
     "accountType": {
       "debit": "بدهکار",
       "credit": "بستانکار",
-      "debitCredit": "مهم نیست"
+      "debitCredit": "مهم نیست",
+      "debitRemained": "مانده بدهکار",
+      "creditRemained": "مانده بستانکار"
     },
     "taxApiInvoiceType": {
       "b2B": "نوع 1: فروش شرکتی",

@@ -11,6 +11,9 @@
     clearable
     :create-form="CreateForm"
     @add="add"
+    @row-selected="loadDlBalance"
+    @clear="hideDlBalance"
+    :label="label"
   >
     <template #td="{ row }">
       <q-item
@@ -97,16 +100,48 @@
 
     <template #title>فروشنده</template>
   </lookup-view>
+
+  <div v-if="rowSelected" class="q-pt-sm q-gutter-xs">
+    <q-chip
+      color="primary"
+      text-color="white"
+      v-for="(value, key) in balanceModel"
+      :key="key"
+    >
+      {{ $t(`shared.accountType.${key}`) }}:
+      {{ value.toLocaleString() }}
+    </q-chip>
+  </div>
 </template>
 
 <script setup>
   import { ref } from "vue";
   import { helper } from "src/helpers";
+  import { useAccountDL } from "src/components/areas/acc/_composables/useAccountDL";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import CreateForm from "src/components/areas/crm/customer/shared/forms/CreateForm.vue";
 
+  const props = defineProps({
+    label: String,
+  });
+
+  const accountDLStore = useAccountDL();
+
   const lookup = ref(null);
+  const rowSelected = ref(false);
+  const balanceModel = ref({});
+
+  const loadDlBalance = async () => {
+    rowSelected.value = true;
+    balanceModel.value = await accountDLStore.getDlBalance(
+      "a393f349-38d9-4f26-bcd9-2f2e52bd3515"
+    );
+  };
+
+  const hideDlBalance = () => {
+    rowSelected.value = false;
+  };
 
   defineExpose({
     lookup,

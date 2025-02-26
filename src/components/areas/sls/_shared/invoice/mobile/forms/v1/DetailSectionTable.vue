@@ -108,7 +108,7 @@
           <span class="text-caption text-on-dark">قیمت واحد</span>
         </div>
         <div class="col text-caption">
-          {{ helper.fromatNumber(row.price) }}
+          {{ helper.formatNumber(row.price) }}
         </div>
       </div>
 
@@ -117,7 +117,7 @@
           <span class="text-caption text-on-dark">تخفیف</span>
         </div>
         <div class="col text-caption">
-          {{ helper.fromatNumber(row.discount) }}
+          {{ helper.formatNumber(row.discount) }}
         </div>
       </div>
 
@@ -128,7 +128,7 @@
           </span>
         </div>
         <div class="col text-caption">
-          {{ helper.fromatNumber(row.vatAmount) }}
+          {{ helper.formatNumber(row.vatAmount) }}
         </div>
       </div>
 
@@ -137,7 +137,7 @@
           <span class="text-caption text-on-dark">جمع کل</span>
         </div>
         <div class="col text-caption text-bold">
-          {{ helper.fromatNumber(row.totalPrice) }}
+          {{ helper.formatNumber(row.totalPrice) }}
         </div>
       </div>
     </div>
