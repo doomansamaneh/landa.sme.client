@@ -12,7 +12,6 @@
     :create-form="CreateForm"
     @add="add"
     @row-selected="loadDlBalance"
-    @clear="hideDlBalance"
     :label="label"
   >
     <template #td="{ row }">
@@ -102,16 +101,17 @@
   </lookup-view>
 
   <div v-if="dlBalance" class="q-pt-sm q-gutter-xs">
-    <q-badge
-      :color="getBadgeColor(key)"
-      text-color="white"
-      class="text-body3"
-      v-for="(value, key) in balanceModel"
-      :key="key"
-    >
-      {{ $t(`shared.accountType.${key}`) }}:
-      {{ value.toLocaleString() }}
-    </q-badge>
+    <template v-for="(value, key) in balanceModel" :key="key">
+      <q-badge
+        v-if="value > 0"
+        :color="getBadgeColor(key)"
+        text-color="white"
+        class="text-body3"
+      >
+        {{ $t(`shared.accountType.${key}`) }}:
+        {{ helper.formatNumber(value) }}
+      </q-badge>
+    </template>
   </div>
 </template>
 
@@ -129,20 +129,17 @@
   });
 
   const accountDLStore = useAccountDL();
-
   const lookup = ref(null);
-  const rowSelected = ref(false);
   const balanceModel = ref({});
 
-  const loadDlBalance = async () => {
-    rowSelected.value = true;
-    balanceModel.value = await accountDLStore.getDlBalance(
-      "a393f349-38d9-4f26-bcd9-2f2e52bd3515"
-    );
-  };
-
-  const hideDlBalance = () => {
-    rowSelected.value = false;
+  const loadDlBalance = async (row) => {
+    if (row) {
+      balanceModel.value = await accountDLStore.getDlBalance(
+        row.dlId
+      );
+    } else {
+      balanceModel.value = null;
+    }
   };
 
   const getBadgeColor = (key) => {
