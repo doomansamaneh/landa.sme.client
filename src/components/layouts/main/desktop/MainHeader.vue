@@ -23,9 +23,15 @@
 
           <div class="text-bold row justify-start items-center">
             <div class="column">
-              <span class="text-body3 text-on-dark">
+              <q-btn
+                to="/dashboard"
+                round_
+                unelevated
+                dense
+                class="text-body3 text-on-dark"
+              >
                 {{ businessStore.get()?.title }}
-              </span>
+              </q-btn>
               <today-date />
             </div>
           </div>
