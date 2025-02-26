@@ -100,7 +100,13 @@
     <template #title>فروشنده</template>
   </lookup-view>
 
-  <div v-if="dlBalance" class="q-pt-sm q-gutter-xs">
+  <div
+    v-if="
+      dlBalance &&
+      balanceModel.debitRemained + balanceModel.creditRemained > 0
+    "
+    class="q-pt-sm q-gutter-xs"
+  >
     <template v-for="(value, key) in balanceModel" :key="key">
       <q-badge
         v-if="value > 0"
@@ -133,12 +139,12 @@
   const balanceModel = ref({});
 
   const loadDlBalance = async (row) => {
-    if (row) {
+    if (row?.dlId) {
       balanceModel.value = await accountDLStore.getDlBalance(
         row.dlId
       );
     } else {
-      balanceModel.value = null;
+      balanceModel.value = {};
     }
   };
 
