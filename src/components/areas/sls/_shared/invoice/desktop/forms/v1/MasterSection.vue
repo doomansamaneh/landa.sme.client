@@ -8,6 +8,7 @@
             v-model:selectedText="model.customerName"
             :label="customerTitle"
             required
+            dl-balance
           />
         </div>
 
@@ -21,28 +22,31 @@
           />
         </div>
 
-        <div class="col row items-end">
-          <q-btn
-            v-if="$q.screen.gt.xs"
-            :text-color="$q.dark.isActive ? 'white' : 'grey-9'"
-            dense
-            round
-            unelevated
-            class="text-body2"
-            @click="toggleMoreInfo"
-          >
-            <q-icon size="24px" name="keyboard_arrow_down" />
-          </q-btn>
+        <div class="col">
+          <div v-if="$q.screen.gt.sm" class="q-pb-xs q-mb-lg"></div>
+          <div>
+            <q-btn
+              v-if="$q.screen.gt.xs"
+              :text-color="$q.dark.isActive ? 'white' : 'grey-9'"
+              dense
+              round
+              unelevated
+              class="text-body2"
+              @click="toggleMoreInfo"
+            >
+              <q-icon size="24px" name="keyboard_arrow_down" />
+            </q-btn>
 
-          <q-btn
-            v-if="$q.screen.xs"
-            round
-            size="11px"
-            unelevated
-            @click="toggleMoreInfo"
-          >
-            <q-icon size="20px" name="keyboard_arrow_down" />
-          </q-btn>
+            <q-btn
+              v-if="$q.screen.xs"
+              round
+              size="11px"
+              unelevated
+              @click="toggleMoreInfo"
+            >
+              <q-icon size="20px" name="keyboard_arrow_down" />
+            </q-btn>
+          </div>
         </div>
       </div>
 
@@ -118,7 +122,7 @@
     <div class="col-md-4 col-sm-12 col-xs-12">
       <div
         class="row justify-end"
-        :class="{ 'q-mt-md': $q.screen.xs }"
+        :class="{ 'q-mt-md': $q.screen.lt.md }"
       >
         <div class="col-md-6 col-sm-12 col-xs-12">
           <custom-input

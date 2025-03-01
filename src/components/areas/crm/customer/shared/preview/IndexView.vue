@@ -18,7 +18,7 @@
       />
       <div>
         <div
-          class="ellipsis-2-lines text-h4 line-height-lg text-weight-700"
+          class="text-h4 line-height-lg text-weight-700"
         >
           {{ model.name }}
         </div>

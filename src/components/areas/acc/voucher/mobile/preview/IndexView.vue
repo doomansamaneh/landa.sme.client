@@ -79,7 +79,7 @@
             <span>
               {{ item.comment }}
             </span>
-            <div class="text-h6_">
+            <div class="text-right">
               <span class="text-positive">
                 {{ helper.formatNumber(item.debit) }}
               </span>

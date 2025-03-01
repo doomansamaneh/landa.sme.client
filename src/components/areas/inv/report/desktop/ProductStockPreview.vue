@@ -71,6 +71,7 @@
       title: "main-menu-items.Inv_ModifyStock_View",
       component: ModifyStockForm,
       props: { id: props.item.id },
+      actionBar: true,
       okCallback: async (response) => {
         await tableStore.value.reloadData();
       },

@@ -393,6 +393,8 @@
       </q-inner-loading>
     </q-card>
   </q-dialog>
+
+  <slot name="footer"></slot>
 </template>
 
 <script setup>
@@ -470,7 +472,7 @@
     store: store,
   });
 
-  const emit = defineEmits(["row-selected"]);
+  const emit = defineEmits(["row-selected", "clear"]);
 
   const search = ref(null);
   const selectedRowIndex = ref(0);
@@ -512,6 +514,7 @@
     tableStore.setSearchTerm(null);
     setIdText(null);
     emitSelectRow(null);
+    emit("clear");
     onMenuHide();
   }
 
