@@ -21,7 +21,7 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pr-md q-pl-lg q-pt-lg q-pb-none">
+      <q-card-section class="q-pr-md q-pl-md q-pt-lg q-pb-none">
         <div>
           <div class="float-right">
             <q-btn
@@ -48,7 +48,7 @@
         </div>
       </q-card-section>
 
-      <q-card-section class="q-px-lg q-pt-none">
+      <q-card-section class="q-px-md q-pt-none">
         <div class="row items-center q-gutter-x-sm">
           <div class="text-h2 text-weight-700">
             {{ helper.formatNumber(ratio, fraction) }}

@@ -10,8 +10,7 @@
         <tr>
           <th class="text-left"></th>
           <th
-            class="text-center"
-            style="width: 5%"
+            class="text-left"
             v-for="item in helper.getMonths()"
             :key="item"
           >

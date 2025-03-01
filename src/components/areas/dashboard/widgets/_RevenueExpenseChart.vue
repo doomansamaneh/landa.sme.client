@@ -1,7 +1,7 @@
 <template>
   <q-inner-loading
     :showing="chartStore.showLoader.value"
-    class="transparent z-max"
+    class="transparent z-1"
   >
     <q-spinner size="52px" color="primary" />
   </q-inner-loading>
