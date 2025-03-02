@@ -21,7 +21,7 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pr-md q-pl-md q-pt-lg q-pb-none">
+      <q-card-section class="q-pb-none">
         <div>
           <div class="float-right">
             <q-btn
@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
@@ -84,8 +84,6 @@
   const hideWidget = () => {
     emit("hideWidget");
   };
-
-  const showInfo = ref(false);
 
   const isShakingComputed = computed(() => draggable.isShaking.value);
 </script>

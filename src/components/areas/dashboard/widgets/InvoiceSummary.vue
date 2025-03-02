@@ -1,7 +1,7 @@
 <template>
   <q-card
     :class="[isShakingComputed ? 'widget' : '']"
-    class="shadow border-radius-lg bordered"
+    class="shadow border-radius-lg bordered fit"
   >
     <template v-if="isShakingComputed">
       <q-btn
