@@ -20,26 +20,8 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pt-lg q-pb-none q-pr-md q-pl-lg">
-        <q-item class="q-mb-lg no-padding">
-          <q-item-section avatar>
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_inbox"
-              size="md"
-              class="primary-gradient primary-shadow"
-            />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label class="text-h6 text-weight-700">
-              {{ title }}
-            </q-item-label>
-            <q-item-label class="text-subtitle2 text-weight-700">
-              {{ helper.formatNumber(dataSource.total.value) }}
-            </q-item-label>
-          </q-item-section>
-        </q-item>
+      <q-card-section>
+        <widget-title :label="title" icon="o_inbox" />
 
         <!-- <template v-else-if="dataSource.chartSeries.value.length">
         <balance-chart
@@ -73,6 +55,7 @@
 
   import BalanceChart from "./_CashBalanceChart.vue";
   import BalanceList from "./_CashBalanceList.vue";
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const props = defineProps({
     title: String,

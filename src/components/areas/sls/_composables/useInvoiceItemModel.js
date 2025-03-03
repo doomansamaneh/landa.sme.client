@@ -5,6 +5,7 @@ export function useInvoiceItemModel(item) {
     quantity: 1,
     price: 0,
     discount: 0,
+    discountPercent: 0,
     vatPercent: 0,
     vatAmount: 0,
     totalPrice: 0,

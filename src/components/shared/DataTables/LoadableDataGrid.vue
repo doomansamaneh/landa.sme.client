@@ -7,9 +7,10 @@
   </q-inner-loading>
 
   <div
-    class="row items-center justify-between q-gutter-md q-px-md q-py-md"
+    v-if="showSearch"
+    class="row items-center justify-between q-px-sm q-py-md"
   >
-    <div v-if="showSearch" class="col">
+    <div class="col">
       <slot name="search">
         <q-input
           ref="searchInput"

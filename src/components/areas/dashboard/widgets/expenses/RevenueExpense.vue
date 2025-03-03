@@ -20,30 +20,14 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pt-lg q-px-lg q-pb-none">
-        <div class="row justify-between items-center">
-          <div>
-            <q-item class="no-padding">
-              <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_receipt_long"
-                  size="md"
-                  class="primary-gradient primary-shadow"
-                />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="text-h6 text-weight-700">
-                  مخارج و درآمد عملیاتی
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-          </div>
-        </div>
+      <q-card-section>
+        <widget-title
+          label="مخارج و درآمد عملیاتی"
+          icon="o_receipt_long"
+        />
       </q-card-section>
 
-      <q-card-section class="q-pt-md q-px-lg q-pb-lg">
+      <q-card-section class="q-pt-none">
         <q-markup-table
           dir="ltr"
           flat
@@ -93,6 +77,8 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const emit = defineEmits(["hideWidget"]);
   const draggable = useDraggableWidgets();

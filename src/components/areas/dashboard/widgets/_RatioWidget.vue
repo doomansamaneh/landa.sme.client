@@ -42,7 +42,7 @@
             </q-btn>
           </div>
           <slot name="avatar"></slot>
-          <div class="q-mt-md text-h6 text-weight-700">
+          <div class="q-mt-md text-body1">
             {{ title }}
           </div>
         </div>
@@ -50,7 +50,7 @@
 
       <q-card-section class="q-px-md q-pt-none">
         <div class="row items-center q-gutter-x-sm">
-          <div class="text-h2 text-weight-700">
+          <div class="text-h3 line-height-xl text-weight-700">
             {{ helper.formatNumber(ratio, fraction) }}
           </div>
           <div class="text-h6 text-weight-700">

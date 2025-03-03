@@ -21,95 +21,13 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="col q-pt-lg q-pb-none q-px-lg">
+      <q-card-section class="col">
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
-            <q-item class="no-padding">
-              <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_shopping_basket"
-                  size="md"
-                  class="primary-gradient primary-shadow"
-                />
-
-                <!-- <q-avatar
-                  v-if="saleIncomeTable"
-                  rounded
-                  text-color="white"
-                  icon="o_table_chart"
-                  size="md"
-                  class="primary-gradient primary-shadow"
-                />
-
-                <q-avatar
-                  v-if="
-                    salePerProduct ||
-                    salePerProductGroup ||
-                    salePerCustomer
-                  "
-                  rounded
-                  text-color="white"
-                  icon="o_sell"
-                  size="md"
-                  class="green-gradient green-shadow"
-                />
-
-                <q-avatar
-                  v-if="cost || costDetail"
-                  rounded
-                  text-color="white"
-                  icon="o_paid"
-                  size="md"
-                  class="orange-gradient orange-shadow"
-                /> -->
-              </q-item-section>
-
-              <q-item-section>
-                <q-item-label
-                  class="text-h6 text-weight-700"
-                >
-                  فروش و درآمد، هزینه
-                </q-item-label>
-                <!-- <q-item-label
-                  v-if="saleIncomeTable"
-                  class="text-h6 text-weight-700"
-                >
-                  جدول فروش و درآمد، هزینه
-                </q-item-label>
-                <q-item-label
-                  v-if="salePerProduct"
-                  class="text-h6 text-weight-700"
-                >
-                  فروش بر اساس کالا و خدمات
-                </q-item-label>
-                <q-item-label
-                  v-if="salePerProductGroup"
-                  class="text-body1 q-mb-xs"
-                >
-                  فروش بر اساس گروه کالا و خدمات
-                </q-item-label>
-                <q-item-label
-                  v-if="salePerCustomer"
-                  class="text-h6 text-weight-700"
-                >
-                  فروش بر اساس مشتری
-                </q-item-label>
-                <q-item-label
-                  v-if="cost"
-                  class="text-h6 text-weight-700"
-                >
-                  نمودار هزینه
-                </q-item-label>
-                <q-item-label
-                  v-if="costDetail"
-                  class="text-h6 text-weight-700"
-                >
-                  ریز هزینه
-                </q-item-label> -->
-              </q-item-section>
-            </q-item>
+            <widget-title
+              label="فروش و درآمد، هزینه"
+              icon="o_shopping_basket"
+            />
           </div>
           <div class="col row justify-end items-center">
             <div class="row justify-end">
@@ -198,6 +116,7 @@
 
   import RevenueExpenseChart from "./_RevenueExpenseChart.vue";
   import RevenueExpenseTable from "./_RevenueExpenseTable.vue";
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const revenueExpenseStore = useRevenueExpenseState();
   const draggable = useDraggableWidgets();
