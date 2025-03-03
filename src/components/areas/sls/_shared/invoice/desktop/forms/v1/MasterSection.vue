@@ -144,6 +144,15 @@
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
+          <custom-input
+            v-model="model.docNo"
+            type="number"
+            label="ش رهگیری"
+          />
+        </div>
+      </div>
+      <div class="row justify-end q-mt-md">
+        <div class="col-md-6 col-sm-12 col-xs-12">
           <date-time v-model="model.date" label="تاریخ" required />
         </div>
       </div>

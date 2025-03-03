@@ -56,7 +56,10 @@
         </div>
       </q-card-section>
 
-      <q-card-section class="q-px-none q-pt-none">
+      <q-card-section
+        class="q-px-none q-pt-none"
+        style="min-height: 300px"
+      >
         <loadable-data-grid
           ref="grid"
           data-source="sls/report/getInvoiceByProduct"
@@ -65,7 +68,7 @@
           first-load
           :show-search="false"
           :scrollArea="false"
-          scroll-bar-style="height: 370px;"
+          scroll-bar-style="height: 300px;"
         >
           <template #search>
             <q-input
