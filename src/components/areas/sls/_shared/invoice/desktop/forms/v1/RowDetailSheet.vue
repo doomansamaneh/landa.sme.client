@@ -23,7 +23,8 @@
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <custom-input-number
+        <discount-field v-model="item.rowDiscount" />
+        <!-- <custom-input-number
           label="تخفیف"
           input-class="text-body2 "
           v-model="item.discount"
@@ -44,7 +45,7 @@
               />
             </q-btn>
           </template>
-        </custom-input-number>
+        </custom-input-number> -->
       </div>
     </div>
 
@@ -83,6 +84,7 @@
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import DiscountField from "src/components/areas/sls/invoice/shared/DiscountField.vue";
 
   const props = defineProps({
     item: Object,
@@ -111,8 +113,8 @@
     item.vatPercent = vat?.rate ?? 0;
   };
 
-  const discountIsCash = ref(true);
-  const toggleDiscountType = () => {
-    discountIsCash.value = !discountIsCash.value;
-  };
+  // const discountIsCash = ref(true);
+  // const toggleDiscountType = () => {
+  //   discountIsCash.value = !discountIsCash.value;
+  // };
 </script>

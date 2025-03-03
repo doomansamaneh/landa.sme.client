@@ -1,7 +1,7 @@
 <template>
   <q-card
     :class="[isShakingComputed ? 'widget' : '']"
-    class="shadow border-radius-lg bordered"
+    class="shadow border-radius-lg bordered fit"
   >
     <template v-if="isShakingComputed">
       <q-btn
@@ -41,7 +41,7 @@
 
       <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none">
         <q-scroll-area
-          style="height: 210px"
+          style="height: 218px"
           :thumb-style="helper.thumbStyle"
           :bar-style="helper.barStyle"
         >

@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-between">
-    <q-card class="row justify-between q-pa-lg q-mb-lg bordered full-width">
+    <q-card class="row justify-between q-pa-lg q-mb-lg bordered fit">
       <div class="row items-center q-gutter-x-md">
         <div class="row items-center q-gutter-x-xs q-mr-md">
           <span class="text-h6">فاکتورهای فروش</span>
