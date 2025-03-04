@@ -144,11 +144,7 @@
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <custom-input
-            v-model="model.docNo"
-            type="number"
-            label="ش رهگیری"
-          />
+          <custom-input v-model="model.docNo" label="ش رهگیری" />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
