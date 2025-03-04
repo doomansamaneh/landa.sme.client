@@ -9,6 +9,7 @@
 
 <script setup>
   import CashBalance from "./_CashBalance.vue";
+  
   const emit = defineEmits(["hideWidget"]);
 
   const hideWidget = () => {

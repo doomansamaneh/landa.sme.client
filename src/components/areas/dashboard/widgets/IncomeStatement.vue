@@ -20,36 +20,17 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pt-lg q-pb-none q-px-lg">
-        <q-item class="no-padding">
-          <q-item-section avatar>
-            <q-avatar
-              rounded
-              text-color="white"
-              icon="o_balance"
-              size="md"
-              class="primary-gradient primary-shadow"
-            />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label class="text-h6 text-weight-700">
-              صورت سود و زیان
-            </q-item-label>
-          </q-item-section>
-        </q-item>
+      <q-card-section class="q-pb-none">
+        <widget-title label="صورت سود و زیان" icon="o_balance" />
       </q-card-section>
 
-      <q-card-section class="q-pt-none_ q-pb-md_ q-pr-none">
+      <q-card-section class="q-pr-none">
         <q-scroll-area
-          style="height: 218px"
+          style="height: 228px"
           :thumb-style="helper.thumbStyle"
           :bar-style="helper.barStyle"
         >
-          <q-list
-            bordered_
-            _padding
-            class="q-pr-md q-pl-sm rounded-borders"
-          >
+          <q-list bordered_ _padding class="q-pr-md rounded-borders">
             <template
               v-for="item in dataStore.accountClCodes.value"
               :key="item.clTypeId"
@@ -119,7 +100,7 @@
 
       <q-separator />
       <q-card-section>
-        <q-item>
+        <q-item class="no-padding">
           <q-item-section avatar top>
             <q-avatar
               icon="attach_money"
@@ -152,6 +133,8 @@
   import { useIncomeStatement } from "../../acc/_composables/useIncomeStatement";
   import { accountCLTypeIds } from "src/constants";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const dataStore = useIncomeStatement();
   const draggable = useDraggableWidgets();

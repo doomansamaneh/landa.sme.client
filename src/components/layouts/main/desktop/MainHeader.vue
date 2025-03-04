@@ -23,15 +23,12 @@
 
           <div class="text-bold row justify-start items-center">
             <div class="column">
-              <q-btn
+              <router-link
                 to="/dashboard"
-                round_
-                unelevated
-                dense
-                class="text-body3 text-on-dark"
+                class="text-body3 text-on-dark no-decoration"
               >
                 {{ businessStore.get()?.title }}
-              </q-btn>
+              </router-link>
               <today-date />
             </div>
           </div>

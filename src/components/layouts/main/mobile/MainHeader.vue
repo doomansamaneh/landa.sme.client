@@ -8,9 +8,13 @@
         class="text-subtitle2 text-bold row justify-start items-center"
       >
         <div class="column">
-          <span style="width: 155px" class="ellipsis text-on-dark">
+          <router-link
+            style="min-width: 155px"
+            to="/dashboard"
+            class="ellipsis text-on-dark no-decoration"
+          >
             {{ businessStore.get()?.title }}
-          </span>
+          </router-link>
           <today-date />
         </div>
       </q-toolbar-title>

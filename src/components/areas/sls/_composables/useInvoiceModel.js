@@ -145,6 +145,7 @@ export function useInvoiceModel(config) {
           item.quantity,
           item.price,
           item.discount,
+          item.discountPercent,
           item.vatPercent,
         ]),
       (newItems) => {

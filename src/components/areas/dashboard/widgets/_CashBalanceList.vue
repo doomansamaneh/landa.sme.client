@@ -4,7 +4,7 @@
     v-for="item in dataSource.model.value"
     :key="item.id"
     :to="`/acc/accountDL/Preview/${item.id}`"
-    class="no-decoration q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
+    class="no-decoration border-radius-xs text-on-dark"
   >
     <q-item-section avatar>
       <q-btn
