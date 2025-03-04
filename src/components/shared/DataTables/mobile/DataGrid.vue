@@ -125,7 +125,7 @@
                         :thumb-style="{ opacity: 0 }"
                         style="height: 21px"
                       >
-                        <div class="row q-gutter-x-xs no-wrap">
+                        <div class="row q-gutter-x-xs no-wrap q-pr-xs">
                           <slot name="row-badge" :item="row"></slot>
                         </div>
                       </q-scroll-area>

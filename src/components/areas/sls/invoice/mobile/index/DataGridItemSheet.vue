@@ -73,7 +73,6 @@
   };
 
   const cancelInvoice = (id) => {
-    formStore.cancelInvoice(id, props.tableStore?.reloadData);
   };
 
   function sendEmail() {
