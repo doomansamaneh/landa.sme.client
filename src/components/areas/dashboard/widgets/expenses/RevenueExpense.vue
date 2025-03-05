@@ -39,7 +39,7 @@
             <tr>
               <th class="text-left">%</th>
               <th class="text-left">سال پیش</th>
-              <th class="text-left">سال مالی ۱۴۰۱</th>
+              <th class="text-left">امسال</th>
               <th class="text-left"></th>
             </tr>
           </thead>
@@ -63,8 +63,11 @@
                 />
                 {{ row.percentage }}%
               </td>
-              <td class="text-left">{{ row.lastYear }}</td>
+              <!-- <td class="text-left">{{ row.lastYear }}</td>
               <td class="text-left">{{ row.thisYear }}</td>
+              <td class="text-left">{{ row.title }}</td> -->
+              <td class="text-left">بزودی ...</td>
+              <td class="text-left">بزودی ...</td>
               <td class="text-left">{{ row.title }}</td>
             </tr>
           </tbody>
