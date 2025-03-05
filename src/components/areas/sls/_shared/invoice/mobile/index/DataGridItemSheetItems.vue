@@ -1,6 +1,11 @@
 <template>
   <menu-item-edit :to="`/${baseRoute}/edit/${item.id}`" />
   <menu-item-copy :to="`/${baseRoute}/copy/${item.id}`" />
+  <menu-item
+    :title="$t('shared.labels.cancelInvoice')"
+    icon="o_close"
+    @click="cancelInvoice(item.id)"
+  />
   <q-separator class="q-my-sm" />
   <menu-item
     :title="$t('shared.labels.sendEmail')"
@@ -20,6 +25,7 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
   import SendEmail from "../../shared/forms/SendEmailForm.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
@@ -38,6 +44,11 @@
 
   const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
+  const formStore = useInvoiceModel({ baseRoute: props.baseRoute });
+
+  function cancelInvoice(id) {
+    formStore.cancelInvoice(id, reloadData);
+  }
 
   const downloadPdf = () => {
     downloadManager.downloadGet(
@@ -65,5 +76,9 @@
         //await reloadData();
       },
     });
+  }
+
+  function reloadData() {
+    props.tableStore?.reloadData();
   }
 </script>

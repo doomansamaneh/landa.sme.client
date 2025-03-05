@@ -54,143 +54,141 @@
         </div>
       </div>
 
-      <div class="profile-timeline">
-        <q-timeline color="accent">
+      <div class="q-px-sm">
+        <q-timeline>
           <q-timeline-entry
-            avatar="https://cdn.quasar.dev/img/avatar4.jpg"
             v-for="item in items"
             :key="item.id"
+            :color="$q.dark.isActive ? 'yellow' : 'primary'"
+            avatar="https://cdn.quasar.dev/img/avatar4.jpg"
+            
           >
-            <template #default>
-              <q-card
-                flat
-                class="bordered-1 q-ml-md"
-                :class="{ 'q-mr-md_': $q.screen.gt.sm }"
-              >
-                <q-card-section class="q-pa-sm">
-                  <div
-                    class="row justify-between items-center q-gutter-sm"
-                  >
-                    <div class="row">
-                      <q-icon
-                        :name="getIconName(item)"
-                        size="sm"
-                        color="accent"
-                        class="q-mr-sm"
-                      />
-                      <span class="text-caption text-bold">
-                        {{ JSON.parse(item.logUser).name }}
-                      </span>
+            <q-card bordered class="border-radius-sm">
+              <q-card-section>
+                <div
+                  class="row justify-between items-center q-gutter-sm"
+                >
+                  <div class="row">
+                    <q-icon
+                      :name="getIconName(item)"
+                      size="16px"
+                      color="accent"
+                      class="q-mr-sm"
+                    />
+                    <span class="text-caption text-bold">
+                      {{ JSON.parse(item.logUser).name }}
+                    </span>
 
-                      <span class="q-px-sm text-caption">
-                        {{ getTime(item) }}
-                        <q-tooltip
-                          class="glass_ custom-tooltip"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          anchor="center left"
-                          self="center right"
-                          :offset="[10, 10]"
-                        >
-                          {{ item.logTime }}
-                        </q-tooltip>
-                      </span>
-                    </div>
-                    <div class="row">
-                      <span class="text-caption">
+                    <span class="q-px-sm text-caption">
+                      {{ getTime(item) }}
+                      <q-tooltip
+                        class="glass_ custom-tooltip"
+                        transition-show="scale"
+                        transition-hide="scale"
+                        anchor="center left"
+                        self="center right"
+                        :offset="[10, 10]"
+                      >
+                        {{ item.logTime }}
+                      </q-tooltip>
+                    </span>
+                  </div>
+                  <div>
+                    <div class="flex q-gutter-sm text-caption">
+                      <div>
                         {{ JSON.parse(item.logUser).ip }}
+                      </div>
+                      <div>
                         {{ JSON.parse(item.logUser).userAgent }}
-                      </span>
+                      </div>
                     </div>
                   </div>
-                </q-card-section>
-                <q-card-section v-if="item.comment">
-                  <div
-                    v-html="item.comment"
-                    class="line-height-sm"
-                    v-show="editItemId !== item.id"
-                  />
-                  <div
-                    class="q-gutter-y-md"
-                    v-show="editItemId === item.id"
-                  >
-                    <q-editor v-model="item.comment" />
-                    <div class="q-gutter-x-sm">
-                      <q-btn
-                        @click="editComment(item)"
-                        flat
-                        rounded
-                        class="primary-gradient text-white"
-                      >
-                        <q-icon
-                          name="o_comment"
-                          size="xs"
-                          class="q-mr-sm"
-                        />
-                        <span>ذخیره</span>
-                      </q-btn>
-                      <q-btn
-                        @click="disableEdit(item)"
-                        unelevated
-                        rounded
-                        class="text-on-dark"
-                      >
-                        <q-icon
-                          name="o_close"
-                          size="xs"
-                          class="q-mr-xs"
-                        />
-                        <span>انصراف</span>
-                      </q-btn>
-                    </div>
-                  </div>
-                  <div
-                    v-if="editItemId !== item.id"
-                    class="row justify-end"
-                  >
+                </div>
+              </q-card-section>
+              <q-card-section v-if="item.comment">
+                <div
+                  v-html="item.comment"
+                  class="line-height-sm"
+                  v-show="editItemId !== item.id"
+                />
+                <div
+                  class="q-gutter-y-md"
+                  v-show="editItemId === item.id"
+                >
+                  <q-editor v-model="item.comment" />
+                  <div class="q-gutter-x-sm">
                     <q-btn
-                      @click="enableEdit(item)"
+                      @click="editComment(item)"
+                      flat
+                      rounded
+                      class="primary-gradient text-white"
+                    >
+                      <q-icon
+                        name="o_comment"
+                        size="xs"
+                        class="q-mr-sm"
+                      />
+                      <span>ذخیره</span>
+                    </q-btn>
+                    <q-btn
+                      @click="disableEdit(item)"
                       unelevated
                       rounded
                       class="text-on-dark"
                     >
                       <q-icon
-                        name="o_edit"
+                        name="o_close"
                         size="xs"
-                        class="q-mr-sm"
+                        class="q-mr-xs"
                       />
-                      <span>ویرایش</span>
-                    </q-btn>
-                    <q-btn
-                      @click="deleteComment(item)"
-                      unelevated
-                      rounded
-                      class="text-on-dark"
-                    >
-                      <q-icon
-                        name="o_delete"
-                        size="xs"
-                        class="q-mr-sm"
-                      />
-                      <span>حذف</span>
+                      <span>انصراف</span>
                     </q-btn>
                   </div>
-                </q-card-section>
+                </div>
+                <div
+                  v-if="editItemId !== item.id"
+                  class="row justify-end"
+                >
+                  <q-btn
+                    @click="enableEdit(item)"
+                    unelevated
+                    rounded
+                    class="text-on-dark"
+                  >
+                    <q-icon name="o_edit" size="xs" class="q-mr-sm" />
+                    <span>ویرایش</span>
+                  </q-btn>
+                  <q-btn
+                    @click="deleteComment(item)"
+                    unelevated
+                    rounded
+                    class="text-on-dark"
+                  >
+                    <q-icon
+                      name="o_delete"
+                      size="xs"
+                      class="q-mr-sm"
+                    />
+                    <span>حذف</span>
+                  </q-btn>
+                </div>
+              </q-card-section>
 
-                <q-card-section v-if="item.logInfo">
-                  <span
-                    v-if="JSON.parse(item.logInfo).receiverEmail"
-                    class="q-pr-xs"
-                  >
-                    ارسال ایمیل به:
-                    {{ JSON.parse(item.logInfo).receiverEmail }} -
-                  </span>
-                  <span>
-                    {{ JSON.parse(item.logInfo).subject }}
-                  </span>
-                </q-card-section>
-              </q-card>
-            </template>
+              <!-- <q-card-section v-if="item?.logInfo">
+
+                {{ item.logInfo }}
+                <span
+                  v-if="JSON.parse(item.logInfo).receiverEmail"
+                  class="q-pr-xs"
+                >
+                  ارسال ایمیل به:
+                  {{ JSON.parse(item.logInfo).receiverEmail }} -
+                </span>
+                <span>
+                  {{ JSON.parse(item.logInfo).subject }}
+                </span>
+              </q-card-section> -->
+            </q-card>
           </q-timeline-entry>
         </q-timeline>
       </div>

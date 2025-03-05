@@ -37,8 +37,16 @@
           {{ model?.subject }}
         </span>
       </div>
-      <div class="row q-gutter-xs">
-        <contract-badge :title="model?.contractTitle" />
+      <div class="col no-wrap">
+        <q-scroll-area
+          :bar-style="{ opacity: 0 }"
+          :thumb-style="{ opacity: 0 }"
+          style="height: 21px"
+        >
+          <div class="row q-gutter-x-xs no-wrap">
+            <contract-badge :title="model?.contractTitle" />
+          </div>
+        </q-scroll-area>
       </div>
     </q-card-section>
 
