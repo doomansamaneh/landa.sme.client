@@ -22,15 +22,42 @@
         :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-lg'"
       >
         <div class="flex q-gutter-sm">
-          <menu-button-print
-            class="primary-gradient text-white primary-shadow"
-            @click="printStore.handlePrint"
-          />
-          <menu-button
-            :title="$t('shared.labels.downloadPdf')"
-            icon="download"
-            @click="openPrintSettings"
-          />
+          <template v-if="$q.screen.xs">
+            <q-btn
+              dense
+              round
+              class="text-caption q-mr-sm"
+              unelevated
+            >
+              <q-icon name="more_vert" />
+              <q-menu>
+                <q-list style="min-width: 200px">
+                  <menu-item
+                    icon="o_print"
+                    :title="$t('shared.labels.print')"
+                    @click="printStore.handlePrint"
+                  />
+                  <menu-item
+                    icon="o_download"
+                    :title="$t('shared.labels.downloadPdf')"
+                    @click="openPrintSettings"
+                  />
+                </q-list>
+              </q-menu>
+            </q-btn>
+          </template>
+
+          <template v-else>
+            <menu-button-print
+              class="primary-gradient text-white primary-shadow"
+              @click="printStore.handlePrint"
+            />
+            <menu-button
+              :title="$t('shared.labels.downloadPdf')"
+              icon="download"
+              @click="openPrintSettings"
+            />
+          </template>
         </div>
 
         <q-space />
@@ -72,6 +99,7 @@
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
   import PrintSetting from "src/components/shared/dialogs/PrintSettingDialog.vue";
+  import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
 
   const props = defineProps({
     title: String,

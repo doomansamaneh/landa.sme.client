@@ -6,7 +6,14 @@
       :base-route="baseRoute"
       buttons
       margin
-    />
+    >
+      <template #default>
+        <menu-button-print
+          class="primary-gradient primary-shadow text-white"
+          @click="openPreview(tableStore)"
+        />
+      </template>
+    </toolbar-mobile>
   </template>
   <template v-else>
     <toolbar-desktop

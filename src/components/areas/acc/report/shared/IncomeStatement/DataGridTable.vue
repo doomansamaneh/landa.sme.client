@@ -2,7 +2,7 @@
   <q-card
     style="min-height: 400px"
     flat
-    :class="$q.screen.gt.xs ? 'shadow bordered' : ''"
+    :class="$q.screen.gt.xs ? 'shadow bordered' : 'bordered'"
   >
     <card-title :title="title" icon="o_reorder" />
 
@@ -15,7 +15,7 @@
 
     <q-card-section
       v-if="!dataStore.showLoader.value"
-      :class="$q.screen.gt.xs ? 'q-pa-md' : 'no-padding'"
+      :class="$q.screen.gt.xs ? 'q-pa-md' : 'q-pa-md'"
     >
       <q-list class="statement-bar">
         <div
@@ -140,7 +140,6 @@
 
     <q-card-section
       v-if="!dataStore.showLoader.value"
-      :class="$q.screen.gt.xs ? '' : 'q-px-none'"
     >
       <q-item :class="$q.screen.gt.xs ? '' : 'no-padding'">
         <q-item-section avatar top>

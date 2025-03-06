@@ -41,7 +41,10 @@
       </q-card-section>
 
       <slot name="actions">
-        <q-card-actions class="q-pa-md dark-1">
+        <q-card-actions
+          class="q-pa-md dark-1"
+          :class="$q.screen.xs ? 'absolute-bottom' : ''"
+        >
           <q-space />
           <q-btn
             type="submit"
