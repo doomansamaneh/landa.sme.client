@@ -44,7 +44,11 @@
       </template>
     </toolbar-mobile>
 
-    <mobile :table-store="tableStore" :title="title" />
+    <mobile
+      :title="title"
+      :grid-store="gridStore"
+      :data-source="dataSource"
+    />
   </template>
 
   <template v-else>
@@ -119,6 +123,7 @@
   const dataSource = "sls/report/getProductStock";
   const stockStore = useProductStockState();
   const gridStore = useBaseInfoGrid(stockStore);
+
   const tableStore = useDataTable({
     dataSource: dataSource,
     store: gridStore,
