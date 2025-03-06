@@ -1,7 +1,12 @@
 <template>
   <toolbar-container :title="title" />
 
-  <tip-banner closeable :title="tip.title" :tip="tip.message" />
+  <tip-banner
+    closeable
+    :title="tip.title"
+    :tip="tip.message"
+    class="q-mb-md"
+  />
 
   <div
     :class="{
@@ -16,9 +21,9 @@
     }"
   >
     <div
-      class="col-md-6 col-sm-12 col-xs-12 q-pr-md"
+      class="col-md-6 col-sm-12 col-xs-12"
       :class="{
-        'left-border': $q.screen.gt.sm,
+        'left-border q-pr-md': $q.screen.gt.sm,
       }"
     >
       <asset :model="dataStore.model.value" />
