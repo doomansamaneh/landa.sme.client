@@ -9,12 +9,12 @@
     <thead>
       <tr>
         <th style="width: 1%">#</th>
-        <th style="width: 28%">هزینه</th>
+        <th style="width: 25%">هزینه</th>
         <th>شرح</th>
-        <th style="width: 8%">مبلغ</th>
-        <th style="width: 12%">مالیات بر ارزش افزوده</th>
-        <th style="width: 8%">مبلغ مالیات</th>
-        <th style="width: 10%">مبلغ کل</th>
+        <th style="width: 12%">مبلغ</th>
+        <th style="width: 10%">مالیات بر ارزش افزوده</th>
+        <th style="width: 9%">مبلغ مالیات</th>
+        <th style="width: 12%">مبلغ کل</th>
         <th style="width: 1px"></th>
       </tr>
     </thead>

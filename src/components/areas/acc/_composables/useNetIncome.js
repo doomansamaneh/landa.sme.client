@@ -66,7 +66,11 @@ export function useNetIncome() {
       getData(accountCLType.expense),
       accountCLType.expense
     );
-    return revenue - expense;
+    const cogs = calculateAmount(
+      getData(accountCLType.cogs),
+      accountCLType.cogs
+    );
+    return revenue - expense - cogs;
   };
 
   const thisYearNetIncome = computed(() =>

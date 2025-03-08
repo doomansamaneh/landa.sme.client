@@ -69,6 +69,7 @@
       class="col-md-4 col-sm-6 col-xs-12"
     >
       <q-card
+        v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
         @click="operationStore.calculateCogs(reloadData)"
       >
@@ -98,6 +99,7 @@
       class="col-md-4 col-sm-6 col-xs-12"
     >
       <q-card
+        v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
         @click="showCloseAccountForm"
       >
@@ -131,6 +133,7 @@
       class="col-md-4 col-sm-6 col-xs-12"
     >
       <q-card
+        v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
         @click="operationStore.closeBook(reloadData)"
       >
@@ -160,7 +163,8 @@
       class="col-md col-sm-6 col-xs-12"
     >
       <q-card
-        class="bordered q-radius-lg q-hoverable cursor-pointer"
+        v-ripple
+        class="fit bordered q-radius-lg q-hoverable cursor-pointer"
         @click="operationStore.deleteClosingBook(reloadData)"
       >
         <span class="q-focus-helper" />
