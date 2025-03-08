@@ -18,8 +18,8 @@
       </q-inner-loading>
 
       <q-card-section
-        class="row items-center q-pr-lg"
-        :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-lg'"
+        class="row items-center"
+        :class="$q.screen.gt.xs ? 'q-px-lg' : 'q-px-md'"
       >
         <div class="flex q-gutter-sm">
           <template v-if="$q.screen.xs">
@@ -63,14 +63,13 @@
         <q-space />
 
         <slot name="title">
-          <div class="text-h6 q-mr-md">
+          <div class="text-h6 q-mr-sm">
             {{ title }}
           </div>
         </slot>
 
         <q-btn
           icon="close"
-          class="icon-hover dark-3"
           flat
           round
           dense
@@ -79,7 +78,8 @@
       </q-card-section>
 
       <q-card-section
-        class="q-pt-none q-pb-xl q-px-lg scroll"
+        class="q-pt-none scroll"
+        :class="$q.screen.gt.xs ? 'q-px-lg' : 'q-px-md'"
         style="max-height: 80vh"
       >
         <slot name="body">

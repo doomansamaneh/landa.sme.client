@@ -57,7 +57,7 @@
 
   const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
-  const formStore = useInvoiceModel(props.baseRoute);
+  const formStore = useInvoiceModel({ baseRoute: props.baseRoute });
 
   const downloadPdf = () => {
     downloadManager.downloadGet(
@@ -72,7 +72,8 @@
     );
   };
 
-  const cancelInvoice = (id) => {
+  const cancelInvoice = async (id) => {
+    await formStore.cancelInvoice(id, reloadData);
   };
 
   function sendEmail() {
@@ -89,4 +90,8 @@
       },
     });
   }
+
+  const reloadData = async () => {
+    await props.tableStore?.reloadData();
+  };
 </script>

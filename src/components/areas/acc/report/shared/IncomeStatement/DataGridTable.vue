@@ -1,9 +1,5 @@
 <template>
-  <q-card
-    style="min-height: 400px"
-    flat
-    :class="$q.screen.gt.xs ? 'shadow bordered' : 'bordered'"
-  >
+  <q-card class="shadow bordered" style="min-height: 400px" flat>
     <card-title :title="title" icon="o_reorder" />
 
     <q-inner-loading
@@ -138,9 +134,7 @@
 
     <q-separator />
 
-    <q-card-section
-      v-if="!dataStore.showLoader.value"
-    >
+    <q-card-section v-if="!dataStore.showLoader.value">
       <q-item :class="$q.screen.gt.xs ? '' : 'no-padding'">
         <q-item-section avatar top>
           <q-avatar
