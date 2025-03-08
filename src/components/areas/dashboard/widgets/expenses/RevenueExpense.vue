@@ -39,7 +39,7 @@
             <tr>
               <th class="text-left"></th>
               <th class="text-left">امسال</th>
-              <th class="text-left">سال پیش</th>
+              <th class="text-left">پارسال</th>
               <th class="text-left">%</th>
             </tr>
           </thead>
@@ -83,7 +83,7 @@
                     helper.formatNumber(
                       netIncomeStore.getPercentAmount(row.clId)
                     )
-                  }}%
+                  }}
                 </span>
               </td>
             </tr>
@@ -92,7 +92,7 @@
               <td>
                 {{
                   helper.formatNumber(
-                    netIncomeStore.thisYearRevenue.value
+                    netIncomeStore.thisYearNetIncome.value
                   )
                 }}
               </td>
@@ -121,7 +121,7 @@
                     helper.formatNumber(
                       netIncomeStore.netIncomePercent.value
                     )
-                  }}%
+                  }}
                 </span>
               </td>
             </tr>

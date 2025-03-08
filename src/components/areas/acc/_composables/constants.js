@@ -138,8 +138,18 @@ export const accountItemColumns = [
   { ...dlCode },
   { ...dlTitle },
   { ...voucherSubject },
-  { ...debitRemained, label: "بدهکار", showFilter: true },
-  { ...creditRemained, label: "بستانکار", showFilter: true },
+  {
+    ...debitRemained,
+    label: "بدهکار",
+    showFilter: true,
+    sortable: true,
+  },
+  {
+    ...creditRemained,
+    label: "بستانکار",
+    showFilter: true,
+    sortable: true,
+  },
   { ...inlineDebit },
 ];
 
@@ -167,10 +177,10 @@ export const accountItemSLColumns = [
 export const reviewCLColumns = [
   { ...code },
   { ...title },
-  { ...debit, showFilter: true },
-  { ...credit, showFilter: true },
-  { ...debitRemained, showFilter: true },
-  { ...creditRemained, showFilter: true },
+  { ...debit, showFilter: true, sortable: true },
+  { ...credit, showFilter: true, sortable: true },
+  { ...debitRemained, showFilter: true, sortable: true },
+  { ...creditRemained, showFilter: true, sortable: true },
 ];
 
 export const reviewGLColumns = [...reviewCLColumns];
@@ -179,10 +189,10 @@ export const reviewDLColumns = [
   { ...code },
   { ...title },
   { ...type },
-  { ...debit, showFilter: true },
-  { ...credit, showFilter: true },
-  { ...debitRemained, showFilter: true },
-  { ...creditRemained, showFilter: true },
+  { ...debit, showFilter: true, sortable: true },
+  { ...credit, showFilter: true, sortable: true },
+  { ...debitRemained, showFilter: true, sortable: true },
+  { ...creditRemained, showFilter: true, sortable: true },
 ];
 export const reviewSLDLColumns = [
   { ...slCode },
@@ -190,10 +200,10 @@ export const reviewSLDLColumns = [
   { ...dlCode },
   { ...dlTitle },
   { ...type },
-  { ...debit, showFilter: true },
-  { ...credit, showFilter: true },
-  { ...debitRemained, showFilter: true },
-  { ...creditRemained, showFilter: true },
+  { ...debit, showFilter: true, sortable: true },
+  { ...credit, showFilter: true, sortable: true },
+  { ...debitRemained, showFilter: true, sortable: true },
+  { ...creditRemained, showFilter: true, sortable: true },
 ];
 
 export const journalBookColumns = [
