@@ -47,14 +47,14 @@
       >
         <div>
           <custom-input
-            v-model="businessName"
+            v-model="model.businessTitle"
             :label="$t('page.add-business.business-name-label')"
             required
           />
         </div>
 
         <div class="q-mt-lg">
-          <select-plan />
+          <select-plan :model="model" />
         </div>
       </q-form>
     </q-card-section>
@@ -100,8 +100,7 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
   const $q = useQuasar();
-
-  const businessName = ref("");
+  const model = ref({});
   const form = ref(null);
 
   const submitForm = () => {

@@ -24,10 +24,14 @@
           <header-section
             :model="model"
             :title="$t('main-menu-items.Inv_CloseOrder_View')"
-          />
+          >
+            <template #header>
+              انبار: {{ model.inventoryTitle }}
+            </template>
+          </header-section>
 
           <q-card-section class="q-gutter-y-sm_">
-            <body-section :model="model" />
+            <body-section v-if="model" :model="model" />
           </q-card-section>
         </div>
       </q-card>
@@ -48,7 +52,7 @@
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
   import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
-  import BodySection from "./_BodySection.vue";
+  import BodySection from "./BodySection.vue";
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";

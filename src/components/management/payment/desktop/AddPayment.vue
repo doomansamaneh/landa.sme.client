@@ -52,7 +52,7 @@
             </q-item-label>
             <q-field dense outlined>
               <template v-slot:control>
-                <div>{{ businessTitle }}</div>
+                <div>{{ currentPlan?.businessTitle }}</div>
               </template>
             </q-field>
           </div>
@@ -66,7 +66,7 @@
             <q-field dense outlined>
               <template v-slot:control>
                 <div class="q-py-xs line-height-xs">
-                  {{ planTitle }}
+                  {{ currentPlan?.planTitle }}
                 </div>
               </template>
             </q-field>
@@ -78,13 +78,13 @@
             </q-item-label>
             <q-field dense outlined>
               <template v-slot:control>
-                <div>{{ toDate }}</div>
+                <div>{{ currentPlan?.toDate }}</div>
               </template>
             </q-field>
           </div>
         </div>
 
-        <select-plan />
+        <select-plan :model="model" />
       </q-form>
     </q-card-section>
 
@@ -124,44 +124,53 @@
   import { ref, onMounted } from "vue";
   import { useRoute } from "vue-router";
   import { fetchWrapper } from "src/helpers";
+
   import SelectPlan from "src/components/management/shared/SelectPlan.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
   const route = useRoute();
 
-  const planTitle = ref(null);
-  const businessTitle = ref(null);
-  const toDate = ref(null);
-
   const form = ref(null);
+  const currentPlan = ref({});
+  const model = ref({});
 
   async function loadData() {
     const businessId = route.params.businessId;
     await fetchWrapper
-      .get(`business/GetBusiness/${businessId}`)
+      .get(`business/getBusiness/${businessId}`)
       .then((response) => {
-        handleBusinessData(response.data.data);
+        handleBusinessData(response.data.data, businessId);
       });
   }
 
-  function handleBusinessData(data) {
-    planTitle.value = data.lastPayment.planTitle;
-    businessTitle.value = data.title;
-    toDate.value = data.lastPayment.toDateString;
+  function handleBusinessData(data, businessId) {
+    currentPlan.value.businessTitle = data.title;
+    if (data.lastPayment) {
+      currentPlan.value.lastPlanTitle = data.lastPayment.planTitle;
+      currentPlan.value.fromDate = data.lastPayment.fromDateString;
+      currentPlan.value.toDate = data.lastPayment.toDateString;
+    }
+    model.value.businessId = businessId;
   }
 
   onMounted(() => {
     loadData();
   });
 
-  function submitForm() {
-    form.value.validate().then((success) => {
-      if (success) {
-        alert("validation successfull");
-      } else {
-        // alert("Validation error");
-      }
-    });
+  async function submitForm() {
+    const success = await form.value.validate();
+    if (!success) return;
+
+    const response = await fetchWrapper.post(
+      "business/addPayment",
+      model.value
+    );
+
+    if (response?.data?.data?.url) {
+      window.location.href = response.data.data.url;
+    } else {
+      console.warn("No URL returned from server");
+    }
   }
 </script>
 

@@ -100,15 +100,12 @@
             class="text-body2 vertical-top"
           >
             مهر و امضا فروشنده
-            <div
-              v-if="
-                showSignature &&
-                configStore.model?.value?.companySetting
-                  .invoiceShowSignature &&
-                signatureSource
-              "
-            >
-              <img :src="signatureSource" alt="signature" />
+            <div v-if="showSignature && signatureSource">
+              <img
+                :src="signatureSource"
+                alt="signature"
+                style="width: 120px"
+              />
             </div>
           </td>
           <!-- <td

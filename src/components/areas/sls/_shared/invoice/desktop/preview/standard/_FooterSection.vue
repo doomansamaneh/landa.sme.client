@@ -100,7 +100,11 @@
           >
             مهر و امضا فروشنده
             <div v-if="showSignature && signatureSource">
-              <img :src="signatureSource" alt="signature" />
+              <img
+                :src="signatureSource"
+                alt="signature"
+                style="width: 120px"
+              />
             </div>
           </td>
           <td
