@@ -82,15 +82,8 @@
                   />
                 </div>
 
-                <!-- v-if="
-                    model.originalDocument &&
-                    model.originalDocument.parentId
-                  " -->
                 <div
-                  v-if="
-                    model.originalDocument &&
-                    model.originalDocument.parentId
-                  "
+                  v-if="showOriginalDoc"
                   class="col-md-6 col-sm-12 col-xs-12 q-mt-md"
                 >
                   <invoice-lookup
@@ -204,6 +197,12 @@
     props.formType === invoiceFormType.salesReturn
       ? "نوع فروش"
       : "نوع خرید"
+  );
+
+  const showOriginalDoc = computed(
+    () =>
+      props.formType === invoiceFormType.sales ||
+      props.formType === invoiceFormType.salesReturn
   );
 
   const originalFilterExpression = [

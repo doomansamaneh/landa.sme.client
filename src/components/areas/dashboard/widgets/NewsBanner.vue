@@ -56,8 +56,9 @@
                   padding="4px 16px"
                   label="ادامه مطلب"
                   class="q-mt-md"
+                  href="https://landa-sme.ir/LandaKnowledge/b2b39ffb-51cb-4781-8e20-b44ca1e46d0c"
                   target="_blank"
-                  to="https://landa-sme.ir/LandaKnowledge/b2b39ffb-51cb-4781-8e20-b44ca1e46d0c"
+                  rel="noopener noreferrer"
                 />
               </div>
             </div>
@@ -66,7 +67,7 @@
       </q-card>
     </q-carousel-slide>
 
-    <q-carousel-slide class="no-padding" :name="2">
+    <q-carousel-slide v-if="false" class="no-padding" :name="2">
       <q-card
         flat
         class="full-height border-radius-lg"

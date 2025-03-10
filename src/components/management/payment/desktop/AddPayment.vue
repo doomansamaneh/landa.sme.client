@@ -146,7 +146,7 @@
   function handleBusinessData(data, businessId) {
     currentPlan.value.businessTitle = data.title;
     if (data.lastPayment) {
-      currentPlan.value.lastPlanTitle = data.lastPayment.planTitle;
+      currentPlan.value.planTitle = data.lastPayment.planTitle;
       currentPlan.value.fromDate = data.lastPayment.fromDateString;
       currentPlan.value.toDate = data.lastPayment.toDateString;
     }
