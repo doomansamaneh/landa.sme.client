@@ -10,19 +10,26 @@
       </div>
     </div>
 
-    <div class="flex items-center">
-      <q-btn dense class="text-caption" round unelevated no-caps>
+    <div class="flex items-center q-gutter-sm">
+      <q-btn
+        dense
+        class="text-caption"
+        round
+        unelevated
+        no-caps
+        @click="printStore.downloadPdf()"
+      >
         <q-icon name="o_print" />
       </q-btn>
       <q-btn
-        no-caps
         dense
-        class="text-caption q-ml-sm"
+        class="text-caption"
         round
         unelevated
-        @click="onBottomSheetShow"
+        no-caps
+        @click="loadData"
       >
-        <q-icon name="o_more_vert" />
+        <q-icon name="o_refresh" />
       </q-btn>
     </div>
   </div>
@@ -89,13 +96,13 @@
     <div :ref="printStore.printRef">
       <q-card-section
         :class="{
-          'q-mx-md q-my-lg': $q.screen.gt.xs,
+          'q-pa-lg': $q.screen.gt.xs,
           'no-padding': $q.screen.lt.sm,
         }"
       >
         <div
           :class="{
-            'row justify-between': $q.screen.gt.xs,
+            'row justify-between items-center': $q.screen.gt.xs,
             'column justify-center items-center q-pt-sm q-pb-lg q-gutter-y-md':
               $q.screen.xs,
           }"
@@ -131,7 +138,7 @@
 
       <q-card-section
         :class="{
-          'q-mx-md q-my-lg': $q.screen.gt.xs,
+          'q-pt-lg q-px-lg q-pb-none': $q.screen.gt.xs,
           'no-padding': $q.screen.lt.sm,
         }"
       >
@@ -177,185 +184,104 @@
 
       <q-card-section
         :class="{
-          'no-padding q-mx-md': $q.screen.gt.xs,
+          'q-pa-lg': $q.screen.gt.xs,
           'no-padding': $q.screen.lt.sm,
         }"
       >
-        <q-scroll-area
-          class="window-height"
-          :bar-style="helper.barStyle"
-          :thumb-style="helper.thumbStyle"
-          visible
-        >
-          <table
-            class="overflow-hidden invoice-preview-table text-caption"
-          >
-            <thead class="text-left">
-              <tr>
-                <th>
-                  <div class="">
-                    {{ $t("page.payment-detail.row") }}
+        <q-markup-table flat class="invoice-preview-table">
+          <thead class="text-left">
+            <tr>
+              <th>
+                {{ $t("page.payment-detail.row") }}
+              </th>
+              <th>عنوان</th>
+              <th>
+                {{ $t("page.payment-detail.amount") }}
+              </th>
+              <th>
+                {{ $t("page.payment-detail.unit") }}
+              </th>
+              <th>
+                {{ $t("page.payment-detail.unit-price") }}
+              </th>
+              <th>
+                {{ $t("page.payment-detail.total") }}
+              </th>
+            </tr>
+          </thead>
+          <tbody class="text-body3">
+            <tr>
+              <td>1</td>
+              <td>
+                <div>
+                  <div>
+                    {{ model.planTitle }}
                   </div>
-                </th>
-                <th>
-                  <span class="">عنوان</span>
-                </th>
-                <th>
-                  <div class="">
-                    {{ $t("page.payment-detail.amount") }}
-                  </div>
-                </th>
-                <th>
-                  <div class="">
-                    {{ $t("page.payment-detail.unit") }}
-                  </div>
-                </th>
-                <th>
-                  <div style="width: 70px" class="">
-                    {{ $t("page.payment-detail.unit-price") }}
-                  </div>
-                </th>
-                <th>
-                  <div class="">
-                    {{ $t("page.payment-detail.total") }}
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="text-body3">
-              <tr>
-                <td class=""><span class="">1</span></td>
-                <td>
-                  <div
-                    :style="
-                      $q.screen.lt.sm ? 'width:300px' : 'width:auto'
-                    "
-                    class="ellipsis-2-lines"
-                  >
-                    <div>
-                      <span class="">
-                        {{ model.planTitle }}
-                      </span>
-                    </div>
-                    <div>
-                      <span class="">
-                        دوره: ({{ model.fromDateString }} -
-                        {{ model.toDateString }})
-                      </span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div class="">
-                    {{ model.month }}
-                  </div>
-                </td>
-                <td>
-                  <div class="">ماه</div>
-                </td>
-                <td>
-                  <div class="">
-                    {{ helper.formatNumber(model.planCost) }}
-                  </div>
-                </td>
-                <td>
-                  <div class="">
-                    {{
-                      helper.formatNumber(
-                        model.month * model.planCost
-                      )
-                    }}
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right" colspan="5">
-                  <span class="text-bold">
-                    {{ $t("page.payment-detail.sub-total") }}
-                  </span>
-                </td>
-                <td class="">
-                  <span class="">
-                    {{
-                      helper.formatNumber(
-                        model.planCost * model.month
-                      )
-                    }}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right" colspan="5">
-                  <span class="text-bold">تخفیف:</span>
-                </td>
-                <td>
-                  <span class="">
-                    {{
-                      helper.formatNumber(
-                        model.planCost * model.month - model.amount
-                      )
-                    }}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-right" colspan="5">
-                  <span class="q-pl-xs text-bold">جمع کل:</span>
-                  <span class="">
+                  <div>
                     <span class="">
-                      ({{ numberToWords(model.amount) }}
-                      <span class="text-bold">
-                        {{ $t("shared.labels.rial") }}
-                      </span>
-                      )
+                      دوره: ({{ model.fromDateString }} -
+                      {{ model.toDateString }})
                     </span>
+                  </div>
+                </div>
+              </td>
+              <td>
+                {{ model.month }}
+              </td>
+              <td>ماه</td>
+              <td>
+                {{ helper.formatNumber(model.planCost) }}
+              </td>
+              <td>
+                {{
+                  helper.formatNumber(model.month * model.planCost)
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right" colspan="5">
+                <span class="text-bold">
+                  {{ $t("page.payment-detail.sub-total") }}
+                </span>
+              </td>
+              <td>
+                {{
+                  helper.formatNumber(model.planCost * model.month)
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right" colspan="5">
+                <span class="text-bold">تخفیف:</span>
+              </td>
+              <td>
+                {{
+                  helper.formatNumber(
+                    model.planCost * model.month - model.amount
+                  )
+                }}
+              </td>
+            </tr>
+            <tr>
+              <td class="text-right" colspan="5">
+                <span class="q-pl-xs text-bold">جمع کل:</span>
+                <span class="">
+                  ({{ numberToWords(model.amount) }}
+                  <span class="text-bold">
+                    {{ $t("shared.labels.rial") }}
                   </span>
-                </td>
-                <td>
-                  <span class="">
-                    {{ helper.formatNumber(model.amount) }}
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </q-scroll-area>
+                  )
+                </span>
+              </td>
+              <td>
+                {{ helper.formatNumber(model.amount) }}
+              </td>
+            </tr>
+          </tbody>
+        </q-markup-table>
       </q-card-section>
     </div>
   </q-card>
-
-  <bottom-sheet
-    v-if="bottomSheetStatus"
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
-    <template #body>
-      <q-list padding>
-        <q-item clickable v-ripple @click="$emit('reload-data')">
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark" size="36px">
-              <q-icon size="xs" name="o_refresh" />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section class="text-body2">
-            {{ $t("shared.labels.refresh") }}
-          </q-item-section>
-        </q-item>
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar class="bg-on-dark text-on-dark" size="36px">
-              <q-icon size="xs" name="o_description" />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section class="text-body2">
-            {{ $t("page.payment-detail.buttons.excel") }}
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </template>
-  </bottom-sheet>
 </template>
 
 <script setup>
@@ -367,19 +293,8 @@
   import { usePrint } from "src/composables/usePrint";
 
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-  import BottomSheet from "src/components/shared/BottomSheet.vue";
 
   const printStore = usePrint();
-
-  const bottomSheetStatus = ref(false);
-
-  const onBottomSheetShow = () => {
-    bottomSheetStatus.value = true;
-  };
-
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
-  };
 
   const model = ref({});
   const route = useRoute();

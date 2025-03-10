@@ -1,33 +1,58 @@
 <template>
-  <q-card class="card-desktop bordered q-my-xl">
-    <q-card-section>
-      <q-item class="">
-        <q-item-section>
-          <q-item-label class="text-h6">
-            {{ $t("pages.business-expired") }}
-          </q-item-label>
-          <q-item-label class="dark-2 q-pt-xs text-subtitle2" caption>
-            {{ business?.title }}
-          </q-item-label>
-        </q-item-section>
-        <q-card-actions>
+  <div
+    v-if="$q.screen.xs"
+    class="row q-py-md items-center justify-between"
+  >
+    <div class="row q-gutter-sm items-center">
+      <back-button />
+      <div>
+        <div class="text-body1 text-weight-700">
+          {{ $t("pages.business-expired") }}
+        </div>
+        <div class="dark-2 q-pt-xs text-subtitle2">
+          {{ business?.title }}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center"></div>
+  </div>
+
+  <q-card
+    :class="{
+      'bordered q-my-xl card-desktop': $q.screen.gt.xs,
+      'no-border no-shadow bg-transparent': $q.screen.lt.sm,
+    }"
+  >
+    <template v-if="$q.screen.gt.xs">
+      <q-card-section class="q-pa-lg">
+        <div class="flex items-center q-gutter-md justify-between">
+          <div>
+            <div class="text-h6">
+              {{ $t("pages.business-expired") }}
+            </div>
+            <div
+              class="q-item__label q-item__label--caption text-caption"
+            >
+              {{ business?.title }}
+            </div>
+          </div>
           <div class="flex items-center q-gutter-x-md">
             <back-button />
           </div>
-        </q-card-actions>
-      </q-item>
-    </q-card-section>
-    <q-separator />
-    <q-card-section
-      class="flex items-center justify-start q-gutter-lg"
-    >
-      <img src="/sad.svg" alt="expired" class="q-pt-md" />
-      <span class="text-subtitle1">
+        </div>
+      </q-card-section>
+      <q-separator />
+    </template>
+
+    <q-card-section class="flex items-center justify-center">
+      <img src="/sad.svg" alt="expired" class="q-mt-md" />
+      <span class="text-subtitle1 text-center q-mt-md">
         متاسفانه کسب و کار شما منقضی شده است.
       </span>
 
       <renew-subscribtion
-        class="bg-green text-white"
+        class="bg-green text-white q-mt-md"
         size="16px"
         :business="business"
       />
