@@ -88,7 +88,7 @@
           <div class="text-h6">
             آیا یک کاربر می‌تواند بیش از یک کسب و کار داشته باشد؟
           </div>
-          <div class="tex-body2">
+          <div class="text-body2">
             بله. هر کاربر می‌تواند چندین کسب و کار با اشتراک و طرح
             جداگانه ایجاد کند. کسی که مالک چندین شرکت است با یک نام
             کاربری می‌تواند به همه کسب و کارهای خود دسترسی داشته باشد.
@@ -119,7 +119,7 @@
   const autoplay = ref(10000);
   const slide = ref(1);
   const computedStyle = computed(() => ({
-    backgroundImage: "url(public/panjere.png)",
+    backgroundImage: "url(/panjere.png)",
     backgroundSize: "300px",
     backgroundPosition: "top left",
     backgroundRepeat: "no-repeat",

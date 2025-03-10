@@ -108,6 +108,29 @@ export function usePrint() {
     });
   };
 
+  const injectInvoicePreviewTableStyles = () => {
+    document.body.dataset.bgColor =
+      document.body.style.backgroundColor;
+    document.body.dataset.textColor = document.body.style.color;
+
+    const tables = document.querySelectorAll(
+      ".invoice-preview-table"
+    );
+    tables.forEach((table) => {
+      table.style.backgroundColor = "#fff";
+      table.style.borderCollapse = "collapse";
+
+      table.querySelectorAll("th, td").forEach((cell) => {
+        cell.style.border = "";
+        cell.style.color = "black";
+      });
+
+      table.querySelectorAll("th").forEach((th) => {
+        th.style.backgroundColor = "";
+      });
+    });
+  };
+
   const removePrintPreviewTableStyles = () => {
     document.body.style.backgroundColor =
       document.body.dataset.bgColor || "";
@@ -179,12 +202,35 @@ export function usePrint() {
     });
   };
 
+  const removeInvoicePreviewTableStyles = () => {
+    document.body.style.backgroundColor =
+      document.body.dataset.bgColor || "";
+    document.body.style.color = document.body.dataset.textColor || "";
+
+    document
+      .querySelectorAll(".invoice-preview-table")
+      .forEach((table) => {
+        table.style.backgroundColor = "";
+        table.style.borderCollapse = "";
+
+        table.querySelectorAll("th, td").forEach((cell) => {
+          cell.style.border = "";
+          cell.style.color = "";
+        });
+
+        table.querySelectorAll("th").forEach((th) => {
+          th.style.backgroundColor = "";
+        });
+      });
+  };
+
   const downloadPdf = () => {
     document.body.style.color = "#000";
-    
+
     injectPrintPreviewTableStyles();
     injectBalanceSheetPreviewTableStyles();
     injectStripedTableStyles();
+    injectInvoicePreviewTableStyles();
 
     html2pdf()
       .set({
@@ -218,6 +264,7 @@ export function usePrint() {
         removePrintPreviewTableStyles();
         removeBalanceSheetPreviewTableStyles();
         removeStripedTableStyles();
+        removeInvoicePreviewTableStyles();
       });
   };
 
