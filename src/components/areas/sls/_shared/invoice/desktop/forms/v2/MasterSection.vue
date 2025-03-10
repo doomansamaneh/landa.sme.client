@@ -111,10 +111,10 @@
           class="col-md-6 col-sm-12 col-xs-12"
         >
           <invoice-lookup
-            label="سند مرجع"
             v-model:selectedId="model.originalDocument.parentId"
             v-model:selectedText="model.originalDocument.no"
             :filter-expression="originalFilterExpression"
+            label="سند مرجع"
           />
         </div>
 

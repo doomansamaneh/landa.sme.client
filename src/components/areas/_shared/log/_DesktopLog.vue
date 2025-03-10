@@ -61,7 +61,6 @@
             :key="item.id"
             :color="$q.dark.isActive ? 'yellow' : 'primary'"
             avatar="https://cdn.quasar.dev/img/avatar4.jpg"
-            
           >
             <q-card bordered class="border-radius-sm">
               <q-card-section>
@@ -174,20 +173,20 @@
                 </div>
               </q-card-section>
 
-              <!-- <q-card-section v-if="item?.logInfo">
-
-                {{ item.logInfo }}
-                <span
-                  v-if="JSON.parse(item.logInfo).receiverEmail"
-                  class="q-pr-xs"
-                >
+              <q-card-section
+                v-if="
+                  item?.logInfo &&
+                  JSON.parse(item.logInfo).receiverEmail
+                "
+              >
+                <span class="q-pr-xs">
                   ارسال ایمیل به:
                   {{ JSON.parse(item.logInfo).receiverEmail }} -
                 </span>
                 <span>
                   {{ JSON.parse(item.logInfo).subject }}
                 </span>
-              </q-card-section> -->
+              </q-card-section>
             </q-card>
           </q-timeline-entry>
         </q-timeline>
