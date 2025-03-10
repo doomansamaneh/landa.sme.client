@@ -32,7 +32,7 @@
         <q-markup-table
           flat
           bordered
-          wrap-cells
+          wrap-cells_
           class="fit border-radius-xs"
         >
           <thead>
