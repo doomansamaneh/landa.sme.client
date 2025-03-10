@@ -20,46 +20,25 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section
-        class="q-pb-none q-pt-lg row justify-between items-center"
-      >
-        <div
-          class="row items-center q-gutter-sm justify-between full-width"
-        >
-          <div class="col-9">
-            <q-item class="no-padding">
-              <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_inventory_2"
-                  size="md"
-                  class="primary-gradient primary-shadow"
-                />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="text-h6 text-weight-700">
-                  کالا و خدمات پر فروش
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-          </div>
+      <q-card-section class="q-pb-none">
+        <div class="row items-center justify-between">
+          <widget-title
+            label="کالا و خدمات پرفروش"
+            icon="o_inventory_2"
+          />
 
-          <div class="row justify-end col">
-            <q-btn
-              round
-              icon="refresh"
-              unelevated
-              @click="grid.loadData()"
-            />
-          </div>
+          <q-btn
+            round
+            size="10px"
+            unelevated
+            @click="grid.loadData()"
+          >
+            <q-icon name="refresh" size="24px" />
+          </q-btn>
         </div>
       </q-card-section>
 
-      <q-card-section
-        class="q-px-none q-pt-none"
-        style="min-height: 300px"
-      >
+      <q-card-section class="q-px-none" style="min-height: 300px">
         <loadable-data-grid
           ref="grid"
           data-source="sls/report/getInvoiceByProduct"
@@ -85,7 +64,7 @@
               @keydown.enter="grid.loadData()"
               class="text-body2 q-mx-sm"
             >
-              <template v-slot:prepend>
+              <template #prepend>
                 <q-icon name="o_search" color="primary" />
               </template>
             </q-input>
@@ -94,7 +73,7 @@
             <q-item
               :to="`/cmn/product/Preview/${item.id}`"
               clickable
-              class="no-decoration q-pl-lg q-pb-md q-pr-lg border-radius-xs text-on-dark"
+              class="no-decoration q-pl-md q-pb-md q-pr-md border-radius-xs text-on-dark"
             >
               <q-item-section avatar>
                 <q-avatar
@@ -122,9 +101,8 @@
                     {{ helper.getFirstChar(item.productTitle) }}
                   </div>
                   <q-badge
-                    class="inset-shadow-down text-body3 text-bold q-px-sm q-py-sm"
+                    class="inset-shadow-down text-caption line-height-xs"
                     floating
-                    color="negative"
                   >
                     {{ helper.formatNumberReadable(item.quantity) }}
                   </q-badge>
@@ -132,20 +110,18 @@
               </q-item-section>
 
               <q-item-section>
-                <div>
-                  <span class="text-body3 ellipsis">
-                    {{ item.productCode }} - {{ item.productTitle }}
-                  </span>
-                  <span class="text-body3 ellipsis">
-                    قیمت فروش: {{ helper.formatNumber(item.price) }}
-                    <span>({{ item.productUnitTitle }})</span>
-                  </span>
-                  <span class="text-body3 ellipsis">
-                    {{ $t("shared.labels.total") }}:
-                    <strong class="q-px-xs">
-                      {{ helper.formatNumber(item.amount) }}
-                    </strong>
-                  </span>
+                <span class="text-body3">
+                  {{ item.productCode }} - {{ item.productTitle }}
+                </span>
+                <div class="text-body3">
+                  قیمت فروش: {{ helper.formatNumber(item.price) }}
+                  <span>({{ item.productUnitTitle }})</span>
+                </div>
+                <div class="text-body3">
+                  {{ $t("shared.labels.total") }}:
+                  <strong class="q-px-xs">
+                    {{ helper.formatNumber(item.amount) }}
+                  </strong>
                 </div>
               </q-item-section>
             </q-item>
@@ -163,6 +139,7 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
 
   const gridStore = useInvoiceProductState();

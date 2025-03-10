@@ -1,12 +1,31 @@
 <template>
   <toolbar-container :title="title" />
 
-  <tip-banner closeable :title="tip.title" :tip="tip.message" />
+  <tip-banner
+    closeable
+    :title="tip.title"
+    :tip="tip.message"
+    class="q-mb-md"
+  />
 
-  <div class="top-border q-mt-lg" />
+  <div
+    :class="{
+      'top-border q-mt-lg': $q.screen.gt.sm,
+    }"
+  />
 
-  <div class="row q-col-gutter-md q-py-md">
-    <div class="col-md-6 col-sm-12 col-xs-12 q-pr-md left-border">
+  <div
+    class="row q-col-gutter-md"
+    :class="{
+      'q-py-md': $q.screen.gt.sm,
+    }"
+  >
+    <div
+      class="col-md-6 col-sm-12 col-xs-12"
+      :class="{
+        'left-border q-pr-md': $q.screen.gt.sm,
+      }"
+    >
       <asset :model="dataStore.model.value" />
     </div>
 

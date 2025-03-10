@@ -20,32 +20,16 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pt-lg q-px-lg q-pb-none">
-        <div class="row justify-between items-center">
-          <div>
-            <q-item class="no-padding">
-              <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_receipt_long"
-                  size="md"
-                  class="primary-gradient primary-shadow"
-                />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="text-h6 text-weight-700">
-                  مخارج و درآمد عملیاتی
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-          </div>
-        </div>
+      <q-card-section>
+        <widget-title
+          label="مقایسه سود و زیان"
+          icon="o_receipt_long"
+        />
       </q-card-section>
 
-      <q-card-section class="q-pt-md q-px-lg q-pb-lg">
+      <q-card-section class="q-pt-none">
+        <!-- <pre>{{ netIncomeStore.clItems }}</pre> -->
         <q-markup-table
-          dir="ltr"
           flat
           bordered
           wrap-cells
@@ -53,35 +37,93 @@
         >
           <thead>
             <tr>
-              <th class="text-left">%</th>
-              <th class="text-left">سال پیش</th>
-              <th class="text-left">سال مالی ۱۴۰۱</th>
               <th class="text-left"></th>
+              <th class="text-left">امسال</th>
+              <th class="text-left">پارسال</th>
+              <th class="text-left">%</th>
             </tr>
           </thead>
           <tbody>
             <tr
-              v-for="(row, index) in rows"
-              :key="row.title"
-              :class="{
-                'green-gradient text-white text-weight-600':
-                  index === rows.length - 1,
-              }"
+              v-for="row in netIncomeStore.clItems.value"
+              :key="row.clId"
             >
               <td class="text-left">
+                {{ row.clCode }} - {{ row.clTitle }}
+              </td>
+              <td class="text-left">
+                {{
+                  helper.formatNumber(
+                    netIncomeStore.getThisYearAmount(row.clId)
+                  )
+                }}
+              </td>
+              <td class="text-left">
+                {{
+                  helper.formatNumber(
+                    netIncomeStore.getLastYearAmount(row.clId)
+                  )
+                }}
+              </td>
+              <td>
                 <q-icon
                   :name="
-                    row.percentage > 0
+                    netIncomeStore.getPercentAmount(row.clId) > 0
                       ? 'arrow_upward'
                       : 'arrow_downward'
                   "
-                  :color="row.percentage > 0 ? 'green' : 'red'"
+                  :color="
+                    netIncomeStore.getPercentAmount(row.clId) > 0
+                      ? 'green'
+                      : 'red'
+                  "
                 />
-                {{ row.percentage }}%
+                <span class="text-weight-500">
+                  {{
+                    helper.formatNumber(
+                      netIncomeStore.getPercentAmount(row.clId)
+                    )
+                  }}
+                </span>
               </td>
-              <td class="text-left">{{ row.lastYear }}</td>
-              <td class="text-left">{{ row.thisYear }}</td>
-              <td class="text-left">{{ row.title }}</td>
+            </tr>
+            <tr class="green-gradient text-white text-weight-600">
+              <td>درآمد خالص</td>
+              <td>
+                {{
+                  helper.formatNumber(
+                    netIncomeStore.thisYearNetIncome.value
+                  )
+                }}
+              </td>
+              <td>
+                {{
+                  helper.formatNumber(
+                    netIncomeStore.lastYearNetIncome.value
+                  )
+                }}
+              </td>
+              <td>
+                <q-icon
+                  :name="
+                    netIncomeStore.netIncomePercent.value > 0
+                      ? 'arrow_upward'
+                      : 'arrow_downward'
+                  "
+                  :color="
+                    netIncomeStore.netIncomePercent.value > 0
+                      ? 'green'
+                      : 'red'
+                  "
+                />
+                <span class="text-weight-500">
+                  {{
+                    helper.formatNumber(
+                      netIncomeStore.netIncomePercent.value
+                    )
+                  }}
+                </span>
+              </td>
             </tr>
           </tbody>
         </q-markup-table>
@@ -91,44 +133,22 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useNetIncome } from "src/components/areas/acc/_composables/useNetIncome";
+
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
+  import { helper } from "src/helpers";
 
   const emit = defineEmits(["hideWidget"]);
   const draggable = useDraggableWidgets();
 
+  const netIncomeStore = useNetIncome({});
   const hideWidget = () => {
     emit("hideWidget");
   };
 
   const isShakingComputed = computed(() => draggable.isShaking.value);
-
-  const rows = ref([
-    {
-      title: "فروش و درآمد",
-      thisYear: "(۹۹,۲۶۶,۰۰۰)",
-      lastYear: "۲,۸۹۰,۰۰۰",
-      percentage: -53.81,
-    },
-    {
-      title: "بهای تمام شده کالای فروش رفته و خدمات ارائه شده",
-      thisYear: "۹,۶۰۰,۰۰۰",
-      lastYear: "۰",
-      percentage: 0,
-    },
-    {
-      title: "هزینه‌ها",
-      thisYear: "۲۵۷,۸۵۰,۰۰۰",
-      lastYear: "۱۲۶,۴۶۰,۰۰۰",
-      percentage: 102.9,
-    },
-    {
-      title: "درآمد خالص",
-      thisYear: "(۳۶۶,۷۱۶,۰۰۰)",
-      lastYear: "(۱۳۳,۵۷۰,۰۰۰)",
-      percentage: 196.77,
-    },
-  ]);
 </script>
 
 <style lang="scss" scoped>

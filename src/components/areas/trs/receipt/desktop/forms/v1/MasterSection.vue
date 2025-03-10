@@ -2,8 +2,9 @@
   <div class="row q-col-gutter-md">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <date-time
-        label="تاریخ"
         v-model="localFormStore.model.value.date"
+        label="تاریخ"
+        required
       />
     </div>
   </div>
@@ -39,9 +40,9 @@
   <div v-if="formType === receiptFormType.other" class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <sl-lookup
-        label="حساب معین"
         v-model:selectedId="localFormStore.model.value.slId"
         v-model:selectedText="localFormStore.model.value.slTitle"
+        label="حساب معین"
       />
     </div>
   </div>
@@ -49,11 +50,11 @@
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <contract-lookup
-        label="قرارداد"
         v-model:selectedId="localFormStore.model.value.contractId"
         v-model:selectedText="
           localFormStore.model.value.contractTitle
         "
+        label="قرارداد"
       />
     </div>
   </div>
@@ -61,10 +62,9 @@
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <custom-input
-        label="شرح"
         v-model="localFormStore.model.value.summary"
-        hide-bottom-space
         type="textarea"
+        label="شرح"
       />
     </div>
   </div>

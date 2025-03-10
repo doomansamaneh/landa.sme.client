@@ -1,9 +1,7 @@
 <template>
   <q-card bordered>
     <q-card-section>
-      <div
-        class="row q-gutter-md justify-between no-wrap"
-      >
+      <div class="row q-gutter-md justify-between no-wrap">
         <div class="row no-wrap col">
           <q-avatar size="42px" class="primary-gradient text-white">
             <div class="text-body2 text-bold">

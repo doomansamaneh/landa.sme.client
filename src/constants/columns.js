@@ -112,7 +112,7 @@ export const dlCode = {
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
-  style: "width: 90px;",
+  style: "width: 100px;",
   showFilter: true,
 };
 
@@ -302,7 +302,7 @@ export const voucherNo = {
   sortable: true,
   label: "ش سند",
   class: "text-left",
-  style: "width:80px",
+  style: "width:100px",
   showFilter: true,
 };
 
@@ -313,7 +313,7 @@ export const voucherDate = {
   sortable: true,
   label: "تاریخ",
   class: "text-left",
-  style: "width:90px",
+  style: "width:120px",
   showFilter: true,
   type: dataType.number,
 };

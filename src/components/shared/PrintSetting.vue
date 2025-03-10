@@ -1,6 +1,6 @@
 <template>
-  <div class="row">
-    <div class="col">
+  <div class="column reverse q-col-gutter-lg">
+    <div class="col-md col-sm-5 col-xs-12">
       <div class="column q-gutter-lg">
         <div>
           <div class="text-weight-500 text-body1 q-mb-md">جهت</div>
@@ -30,8 +30,11 @@
         </div>
       </div>
     </div>
-    <div class="col-5">
-      <div
+    <div
+      class="col-md col-sm-5 col-xs-12 flex justify-center"
+    >
+     <div class="column items-center justify-center" style="height: 180px">
+     <div
         v-if="printStore.orientation.value === 'p'"
         class="rectangle vertical-rectangle text-black"
       >
@@ -43,6 +46,7 @@
       >
         افقی
       </div>
+     </div>
     </div>
   </div>
 </template>
@@ -82,12 +86,12 @@
   }
 
   .vertical-rectangle {
-    width: 100px;
+    width: 120px;
     height: 200px;
   }
 
   .horizontal-rectangle {
     width: 200px;
-    height: 100px;
+    height: 120px;
   }
 </style>

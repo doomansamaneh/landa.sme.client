@@ -44,9 +44,6 @@ export function usePrint() {
       document.body.style.backgroundColor;
     document.body.dataset.textColor = document.body.style.color;
 
-    document.body.style.backgroundColor = "#fff";
-    document.body.style.color = "#000";
-
     const tables = document.querySelectorAll(".print-preview-table");
     tables.forEach((table) => {
       table.style.backgroundColor = "#fff";
@@ -67,9 +64,6 @@ export function usePrint() {
     document.body.dataset.bgColor =
       document.body.style.backgroundColor;
     document.body.dataset.textColor = document.body.style.color;
-
-    document.body.style.backgroundColor = "#fff";
-    document.body.style.color = "#000";
 
     const tables = document.querySelectorAll(
       ".balance-sheet-preview-table"
@@ -93,9 +87,6 @@ export function usePrint() {
     document.body.dataset.bgColor =
       document.body.style.backgroundColor;
     document.body.dataset.textColor = document.body.style.color;
-
-    document.body.style.backgroundColor = "#fff";
-    document.body.style.color = "#000";
 
     const tables = document.querySelectorAll(".striped-table");
     tables.forEach((table) => {
@@ -189,6 +180,8 @@ export function usePrint() {
   };
 
   const downloadPdf = () => {
+    document.body.style.color = "#000";
+    
     injectPrintPreviewTableStyles();
     injectBalanceSheetPreviewTableStyles();
     injectStripedTableStyles();

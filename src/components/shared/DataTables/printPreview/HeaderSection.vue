@@ -1,5 +1,5 @@
 <template>
-  <q-card-section class="q-pt-none q-pb-lg text-center">
+  <q-card-section class="q-px-none q-pt-none q-pb-lg text-center">
     <div>
       <span class="text-h6">
         {{ appConfigStore.model.value?.companySetting.name }}

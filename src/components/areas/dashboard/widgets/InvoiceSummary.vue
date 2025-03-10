@@ -20,24 +20,9 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pa-lg">
+      <q-card-section>
         <div class="row items-center q-gutter-md justify-between">
-          <q-item class="no-padding">
-            <q-item-section avatar>
-              <q-avatar
-                rounded
-                text-color="white"
-                icon="o_receipt"
-                size="md"
-                class="primary-gradient primary-shadow"
-              />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label class="text-h6 text-weight-700">
-                فاکتورهای فروش
-              </q-item-label>
-            </q-item-section>
-          </q-item>
+          <widget-title label="فاکتورهای فروش" icon="o_receipt" />
           <q-btn
             to="/sls/invoice/create"
             unelevated
@@ -46,25 +31,14 @@
             class="bordered bg-dark q-py-xs"
           >
             <q-icon name="o_add" size="20px" />
-            <span class="q-ml-xs" v-if="$q.screen.gt.xs">
+            <span class="text-weight-300 q-ml-xs" v-if="$q.screen.gt.xs">
               ایجاد فاکتور
             </span>
           </q-btn>
         </div>
-        <!-- <div
-          class="text-body2 "
-          :class="$q.screen.lt.md ? 'q-mt-lg' : 'q-mt-sm'"
-        >
-          تبریک میگم، %47.4 رشد داشته اید.
-          <span class="text-body3 ">
-            در ماه گذشته
-          </span>
-        </div> -->
       </q-card-section>
 
-      <q-card-section
-        class="row q-gutter-lg q-pt-none q-px-lg q-pt-sm q-pb-lg"
-      >
+      <q-card-section class="row q-gutter-lg">
         <div class="col-md col-sm-5 col-xs-12">
           <q-item class="no-padding">
             <q-item-section avatar>
@@ -267,6 +241,8 @@
   import { helper } from "src/helpers";
   import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/useInvoiceSummary";
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const emit = defineEmits(["hideWidget"]);
 

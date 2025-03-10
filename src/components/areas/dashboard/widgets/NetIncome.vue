@@ -21,87 +21,54 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pa-lg">
-        <div class="row full-width">
-          <div class="col column q-gutter-y-sm">
-            <div class="text-h6 text-weight-700">
-              <q-item class="no-padding">
-                <q-item-section avatar>
-                  <q-avatar
-                    rounded
-                    text-color="white"
-                    icon="o_arrow_downward"
-                    size="md"
-                    class="primary-gradient primary-shadow"
-                  />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label class="text-h6 text-weight-700">
-                    درآمد
-                  </q-item-label>
-                </q-item-section>
-              </q-item>
-            </div>
+      <q-card-section>
+        <div class="row">
+          <div class="col">
+            <widget-title label="درآمد" icon="arrow_downward" />
 
-            <div class="text-body1 text-weight-700">
-              {{
-                helper.formatNumberReadable(
-                  netIncomeStore.thisYearRevenue?.value
-                )
-              }}
-              <!-- <span
-                class="text-body2 text-weight-300  caption-on-dark"
-              >
-                ({{
-                  helper.formatNumber(
+            <div class="q-mt-md">
+              <div class="text-body1 text-weight-700">
+                {{
+                  helper.formatNumberReadable(
                     netIncomeStore.thisYearRevenue?.value
                   )
-                }})
-              </span> -->
+                }}
+              </div>
+              <q-item-label class="text-body3">
+                <span v-if="netIncomeStore.revenuePercent?.value > 0">
+                  <q-icon
+                    name="arrow_upward"
+                    size="18px"
+                    color="green"
+                  />
+                  رشد
+                </span>
+                <span v-else>
+                  <q-icon
+                    name="arrow_downward"
+                    size="18px"
+                    color="red"
+                  />
+                  کاهش
+                </span>
+                <span
+                  class="text-body2 text-bold"
+                  :class="
+                    netIncomeStore.revenuePercent?.value > 0
+                      ? 'text-green'
+                      : 'text-red'
+                  "
+                >
+                  {{
+                    helper.formatNumber(
+                      netIncomeStore.revenuePercent?.value,
+                      2
+                    )
+                  }}%
+                </span>
+                به نسبت پارسال
+              </q-item-label>
             </div>
-            <q-item-label class="text-body3">
-              <span v-if="netIncomeStore.revenuePercent?.value > 0">
-                <q-icon
-                  name="arrow_upward"
-                  size="18px"
-                  color="green"
-                />
-                رشد
-              </span>
-              <span v-else>
-                <q-icon
-                  name="arrow_downward"
-                  size="18px"
-                  color="red"
-                />
-                کاهش
-              </span>
-              <span
-                class="text-body2 text-bold"
-                :class="
-                  netIncomeStore.revenuePercent?.value > 0
-                    ? 'text-green'
-                    : 'text-red'
-                "
-              >
-                {{
-                  helper.formatNumber(
-                    netIncomeStore.revenuePercent?.value,
-                    2
-                  )
-                }}%
-              </span>
-              به نسبت پارسال
-            </q-item-label>
-            <!-- <q-btn
-              class="q-mt-md primary-gradient primary-shadow text-body3"
-              rounded
-              text-color="white"
-              unelevated
-              style="width: 120px"
-            >
-              جزئیات بیشتر
-            </q-btn> -->
           </div>
           <div class="col-4">
             <vue-apex-charts
@@ -129,6 +96,7 @@
   import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
 
   import VueApexCharts from "vue3-apexcharts";
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const props = defineProps(["legend", "title"]);
   const emit = defineEmits(["hideWidget"]);

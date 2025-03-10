@@ -29,8 +29,8 @@
 
   <data-grid
     ref="dataGrid"
-    :grid-store="gridStore"
     :data-source="dataSource"
+    :grid-store="gridStore"
     base-route="sls/report/productStock"
     expandable
   />
@@ -38,23 +38,20 @@
 
 <script setup>
   import { computed, ref } from "vue";
-  import { sqlOperator } from "src/constants";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import TipBanner from "../shared/TipBanner.vue";
 
-  const search = ref("");
-
   const props = defineProps({
     gridStore: Object,
-    title: String,
     dataSource: String,
-    crudStore: Object,
+    title: String,
   });
 
   const dataGrid = ref(null);
+  const search = ref("");
 
-  const tableStore = computed(() => dataGrid.value?.tableStore);
+  const tableStore = computed(() => dataGrid?.value?.tableStore);
 
   defineExpose({
     tableStore,

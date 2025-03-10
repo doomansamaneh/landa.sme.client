@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-lg">
+  <div class="q-pb-md q-px-md">
     <div class="q-mb-md">
       <q-badge color="warning" rounded class="q-mr-sm" />
       کمتر از میانگین سالانه (میانگین از تقسیم جمع هر ردیف بر تعداد 12
@@ -10,7 +10,8 @@
         <tr>
           <th class="text-left"></th>
           <th
-            class="text-left"
+            class="text-center"
+            style="width: 6.2%"
             v-for="item in helper.getMonths()"
             :key="item"
           >

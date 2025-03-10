@@ -9,12 +9,12 @@
     <thead>
       <tr>
         <th style="width: 1%">#</th>
-        <th style="width: 28%">هزینه</th>
+        <th style="width: 25%">هزینه</th>
         <th>شرح</th>
-        <th style="width: 8%">مبلغ</th>
-        <th style="width: 12%">مالیات بر ارزش افزوده</th>
-        <th style="width: 8%">مبلغ مالیات</th>
-        <th style="width: 10%">مبلغ کل</th>
+        <th style="width: 12%">مبلغ</th>
+        <th style="width: 10%">مالیات بر ارزش افزوده</th>
+        <th style="width: 9%">مبلغ مالیات</th>
+        <th style="width: 12%">مبلغ کل</th>
         <th style="width: 1px"></th>
       </tr>
     </thead>
@@ -32,6 +32,7 @@
             v-model:selectedId="row.slId"
             v-model:selectedText="row.slTitle"
             :filterExpression="slFilter"
+            required
           />
         </td>
         <td>
@@ -40,12 +41,14 @@
             type="textarea"
             autogrow
             placeholder="شرح"
+            required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.amount"
             placeholder="مبلغ"
+            required
           />
         </td>
         <td>
@@ -54,6 +57,7 @@
             v-model:selectedId="row.vatId"
             v-model:selectedText="row.vatTitle"
             :filterExpression="vatFilter"
+            required
             @rowSelected="vatChanged($event, row)"
           />
         </td>

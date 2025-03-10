@@ -188,7 +188,7 @@
     dialogStore.openDialog({
       title: "shared.labels.additionalInformation",
       component: RowDetailSheet,
-      props: { formType: props.formType },
+      props: { formType: props.formType, formStore: props.formStore },
       item: item,
     });
   };

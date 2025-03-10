@@ -21,31 +21,29 @@
       </div>
     </div>
 
+    <div class="flex q-gutter-md items-center q-py-md">
+      <div class="text-body2">تخفیف بر حسب مبلغ</div>
+      <q-toggle v-model="isCash" dense size="46px" />
+      <div class="text-body2">تخفیف بر حسب درصد</div>
+    </div>
+
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-6 col-xs-12">
-        <discount-field v-model="item.rowDiscount" />
-        <!-- <custom-input-number
-          label="تخفیف"
-          input-class="text-body2 "
+        <custom-input-number
+          :disable="isCash"
+          label="مبلغ تخفیف"
           v-model="item.discount"
-          placeholder="تخفیف"
-        >
-          <template #append>
-            <q-btn
-              size="8px"
-              class="cursor-pointer"
-              :color="$q.dark.isActive ? 'yellow' : 'primary'"
-              round
-              outline
-              @click="toggleDiscountType"
-            >
-              <q-icon
-                size="14px"
-                :name="discountIsCash ? 'attach_money' : 'o_percent'"
-              />
-            </q-btn>
-          </template>
-        </custom-input-number> -->
+          placeholder="مبلغ تخفیف"
+        />
+      </div>
+
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <custom-input-number
+          :disable="!isCash"
+          label="درصد تخفیف"
+          v-model="item.discountPercent"
+          placeholder="درصد تخفیف"
+        />
       </div>
     </div>
 
@@ -74,7 +72,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, watch } from "vue";
   import {
     sqlOperator,
     vatType,
@@ -84,12 +82,14 @@
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
-  import DiscountField from "src/components/areas/sls/invoice/shared/DiscountField.vue";
 
   const props = defineProps({
     item: Object,
     formType: invoiceFormType,
+    formStore: Object,
   });
+
+  const isCash = ref(false);
 
   const vatFilter =
     props.formType === invoiceFormType.sales ||
@@ -113,8 +113,23 @@
     item.vatPercent = vat?.rate ?? 0;
   };
 
-  // const discountIsCash = ref(true);
-  // const toggleDiscountType = () => {
-  //   discountIsCash.value = !discountIsCash.value;
-  // };
+  watch(
+    () => isCash.value,
+    async (newVal) => {
+      if (newVal) {
+        props.item.discount = 0;
+      } else {
+        props.item.discountPercent = 0;
+      }
+    }
+  );
+
+  watch(
+    () => [props.item.discountPercent],
+    ([discountPercent]) => {
+      if (discountPercent) {
+        props.formStore.applyDiscountPercent(discountPercent);
+      }
+    }
+  );
 </script>

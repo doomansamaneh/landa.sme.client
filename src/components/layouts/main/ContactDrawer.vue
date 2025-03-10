@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-  import { onMounted, ref, watch } from "vue";
+  import { ref, watch } from "vue";
   import { useContactDrawer } from "src/composables/useContactDrawer";
   import { helper } from "src/helpers";
 

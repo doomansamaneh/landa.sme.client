@@ -39,8 +39,7 @@
                   <div class="text-h6 text-weight-700">تخفیف</div>
                 </q-card-section>
                 <q-card-section>
-                  <discount-field v-model="generalDiscountValue" />
-                  <!-- <custom-input-number v-model="generalDiscountValue">
+                  <custom-input-number v-model="generalDiscountValue">
                     <template #append>
                       <q-btn
                         size="8px"
@@ -62,7 +61,7 @@
                         />
                       </q-btn>
                     </template>
-                  </custom-input-number> -->
+                  </custom-input-number>
                 </q-card-section>
 
                 <q-card-actions class="dark-1 q-px-md">
@@ -194,7 +193,6 @@
 
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
-  import DiscountField from "src/components/areas/sls/invoice/shared/DiscountField.vue";
 
   const props = defineProps({
     formStore: Object,

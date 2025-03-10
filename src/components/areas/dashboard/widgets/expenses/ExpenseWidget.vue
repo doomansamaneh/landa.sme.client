@@ -20,26 +20,9 @@
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
     >
-      <q-card-section class="q-pt-lg q-px-lg q-pb-none">
+      <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
-          <div>
-            <q-item class="no-padding">
-              <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  text-color="white"
-                  icon="o_receipt_long"
-                  size="md"
-                  class="primary-gradient primary-shadow"
-                />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label class="text-h6 text-weight-700">
-                  هزینه‌ها
-                </q-item-label>
-              </q-item-section>
-            </q-item>
-          </div>
+          <widget-title label="هزینه ها" icon="o_receipt_long" />
           <div class="col-5" v-if="false">
             <q-select
               dropdown-icon="o_expand_more"
@@ -58,7 +41,7 @@
           <!-- <div class="text-body1">هزینه های 30 روز پیش</div> -->
           <div class="text-h3 text-weight-700">
             {{
-              helper.formatNumber(
+              helper.formatNumberReadable(
                 revenueExpenseStore.expenseTotal?.value
               )
             }}
@@ -107,6 +90,7 @@
 
   import ApexChart from "vue3-apexcharts";
   import ExpenseSparkline from "./ExpenseSparkline.vue";
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const $q = useQuasar();
   const draggable = useDraggableWidgets();

@@ -1,6 +1,6 @@
 <template>
   <div class="row q-col-gutter-md">
-    <div class="col-md-2 col-sm-6 col-xs-12">
+    <div class="col-md-2 col-sm-4 col-xs-12">
       <custom-input
         v-model="localFormStore.model.value.no"
         label="شماره"
@@ -8,7 +8,7 @@
         disable
       />
     </div>
-    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="col-md-3 col-sm-4 col-xs-12">
       <date-time
         v-model="localFormStore.model.value.date"
         label="تاریخ"

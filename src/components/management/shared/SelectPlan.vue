@@ -2,6 +2,8 @@
   <div class="row q-col-gutter-md">
     <div class="col-md-8 col-sm-8 col-xs-12">
       <plan-lookup
+        v-model:selectedId="model.planId"
+        v-model:selectedText="model.planTitle"
         :label="$t('page.renew-subscription.plan')"
         required
         @row-selected="onPlanSelected"
@@ -35,7 +37,7 @@
           </span>
         </div>
         <div class="col-md col-sm col-xs">
-          <span>{{ loyaltyDiscountTotal.toLocaleString() }}</span>
+          <span>{{ helper.formatNumber(loyaltyDiscountTotal) }}</span>
         </div>
       </div>
       <div class="row">
@@ -43,7 +45,7 @@
           <span>{{ $t("page.renew-subscription.total") }}</span>
         </div>
         <div class="col-md col-sm col-xs">
-          <span>{{ subTotal.toLocaleString() }}</span>
+          <span>{{ helper.formatNumber(subTotal) }}</span>
         </div>
       </div>
       <div class="row">
@@ -51,7 +53,7 @@
           <span>{{ $t("page.renew-subscription.discount") }}</span>
         </div>
         <div class="col-md col-sm col-xs">
-          <span>{{ discount.toLocaleString() }}</span>
+          <span>{{ helper.formatNumber(discount) }}</span>
         </div>
       </div>
       <div class="row">
@@ -60,7 +62,7 @@
         </div>
         <div class="col-md-5 col-sm col-xs">
           <span class="underline">
-            <b>{{ total.toLocaleString() }}</b>
+            <b>{{ helper.formatNumber(total) }}</b>
             {{ $t("page.add-business.rial") }}
           </span>
         </div>
@@ -96,13 +98,15 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
+  import { ref, onMounted, computed } from "vue";
   import { useRoute } from "vue-router";
-  import { fetchWrapper } from "src/helpers";
+  import { fetchWrapper, helper } from "src/helpers";
   import { guidEmpty } from "src/constants/enums";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import PlanLookup from "src/components/shared/lookups/PlanLookup.vue";
+
+  const props = defineProps({ model: Object });
 
   const route = useRoute();
   const shape = ref("line");
@@ -139,13 +143,15 @@
   function handleMonthResponse(data) {
     periodItems.value = data.map((item) => ({
       id: item.id,
+      //value: item.month,
       label: `${item.month} ماه${
         item.percent !== 0 ? ` (${item.percent} درصد تخفیف)` : ""
       }`,
-      month: `${item.month}`,
+      month: item.month,
       discountPercent: item.percent,
     }));
     selectedPeriod.value = periodItems.value[0];
+    props.model.month = periodItems.value[0]?.month;
   }
 
   function handleDiscountResponse(data) {
@@ -159,12 +165,14 @@
   }
 
   async function selectPeriod(item) {
+    props.model.month = item?.month;
+
     selectedPeriod.value = item;
     computeValues();
   }
 
   function computeValues() {
-    if (selectedPlan.value == null) resetValues();
+    if (!selectedPlan.value) resetValues();
     else {
       loyaltyDiscountTotal.value =
         loyaltyDiscount.value * selectedPeriod.value.month;

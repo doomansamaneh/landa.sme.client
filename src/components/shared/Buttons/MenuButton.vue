@@ -4,6 +4,7 @@
     rounded
     unelevated
     no-caps
+    padding="8px 16px"
     :to="to"
     @click="click"
   >
