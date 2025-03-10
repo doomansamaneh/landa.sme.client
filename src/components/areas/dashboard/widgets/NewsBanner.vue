@@ -8,7 +8,7 @@
     swipeable
     keep-alive
     class="bordered shadow border-radius-lg"
-    :style="$q.screen.gt.xs ? 'height: 142px' : 'height: 220px'"
+    :style="$q.screen.gt.xs ? 'height: 142px' : 'height: 200px'"
     v-model="slide"
   >
     <q-carousel-slide class="no-padding" :name="1">
