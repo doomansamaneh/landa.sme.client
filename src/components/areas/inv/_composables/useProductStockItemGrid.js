@@ -3,7 +3,7 @@ import { productStockItemColumns } from "./constants";
 
 import { defaultPageSize, sortOrder } from "src/constants";
 
-export function useProductStockItemGrid(defaultFilters) {
+export function useProductStockItemGrid(defaultFilters, searchModel) {
   const state = {
     firstLoad: ref(false),
     rows: ref([]),
@@ -11,13 +11,13 @@ export function useProductStockItemGrid(defaultFilters) {
     activeRow: ref(null),
     summaryData: ref(null),
     filterExpression: defaultFilters ?? [],
-    searchModel: ref(),
+    searchModel: searchModel,
   };
 
   const pagination = ref({
     currentPage: 1,
     pageSize: defaultPageSize,
-    sortColumn: "voucherNo,rowNo",
+    sortColumn: "productCode,voucherNo,rowNo",
     sortOrder: sortOrder.ascending,
   });
 

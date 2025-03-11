@@ -43,7 +43,7 @@ export function useInvoiceModel(config) {
       } else if (action === "createFromInvoice") {
         model.value.originalDocument = {
           parentId: responseData.id,
-          rowNo: responseData.no,
+          no: responseData.no,
           customerName: responseData.customerName,
         };
       } else if (action === "createFromQuote") {

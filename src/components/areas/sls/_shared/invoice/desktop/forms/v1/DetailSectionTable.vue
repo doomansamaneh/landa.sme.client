@@ -158,7 +158,7 @@
   <footer-section
     v-if="model.invoiceItems.length > 0"
     :form-store="formStore"
-    :invoice-form-type="invoiceFormType"
+    :form-type="formType"
   />
 </template>
 

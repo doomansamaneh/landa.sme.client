@@ -577,6 +577,11 @@
       "crm": "طرف حساب",
       "prdCrm": "طرف حساب / کالا و خدمات"
     },
+    "stockReviewType": {
+      "pg": "گروه کالا",
+      "prd": "کالا",
+      "stockItem": "ریز ورود و خروج"
+    },
     "subSystem": {
       "accounting": "حسابداری",
       "receiptAndPayment": "دریافت و پرداخت",

@@ -104,22 +104,23 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     return response.data;
   };
 
-  const customPostAction = (actionUrl, actionModel) =>
-    fetchWrapper
+  const customPostAction = async (actionUrl, actionModel) => {
+    return fetchWrapper
       .post(`${baseURL}/${actionUrl}`, actionModel)
       .then((response) => {
         notifyResponse(response.data);
         return response.data;
       });
+  };
 
-  const customGetAction = (actionUrl) => {
+  const customGetAction = async (actionUrl) => {
     const url = baseURL ? `${baseURL}/${actionUrl}` : actionUrl;
     return fetchWrapper.get(url).then((response) => {
       return response.data;
     });
   };
 
-  const deleteById = (id, callBack, action) => {
+  const deleteById = async (id, callBack, action) => {
     if (!id) return notify("no row selected", "negative");
 
     $q.dialog({

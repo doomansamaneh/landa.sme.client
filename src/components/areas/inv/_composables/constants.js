@@ -28,6 +28,8 @@ import {
   outTotalPrice,
   cogs,
   closingQuantity,
+  productCode,
+  productTitle,
 } from "src/constants/columns";
 
 export const productStockColumns = [
@@ -37,7 +39,16 @@ export const productStockColumns = [
   unitTitle,
   purchaseQuantity,
   salesQuantity,
-  { ...stock, class: "text-weight-600" },
+  { ...stock, class: "text-weight-600", sortable: true },
+  debit,
+];
+
+export const productGroupStockColumns = [
+  code,
+  title,
+  purchaseQuantity,
+  salesQuantity,
+  { ...stock, class: "text-weight-600", sortable: true },
   debit,
 ];
 
@@ -60,6 +71,8 @@ export const productFlowColumns = [
 ];
 
 export const productStockItemColumns = [
+  productCode,
+  productTitle,
   voucherNo,
   date,
   subject,

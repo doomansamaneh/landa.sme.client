@@ -201,8 +201,9 @@
 
   const showOriginalDoc = computed(
     () =>
-      props.formType === invoiceFormType.sales ||
-      props.formType === invoiceFormType.salesReturn
+      props.model?.originalDocument &&
+      (props.formType === invoiceFormType.sales ||
+        props.formType === invoiceFormType.salesReturn)
   );
 
   const originalFilterExpression = [

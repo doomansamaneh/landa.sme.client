@@ -22,6 +22,7 @@
 <script setup>
   import { useDataTable } from "src/composables/useDataTable";
   import { useProductStockItemGrid } from "src/components/areas/inv/_composables/useProductStockItemGrid";
+  import { useProductStockSearch } from "../../_composables/useProductStockSearch";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import VoucherPreview from "src/components/areas/acc/voucher/shared/preview/IndexView.vue";
@@ -30,8 +31,12 @@
     filterExpression: Array,
   });
 
+  const searchStore = useProductStockSearch();
   const tableStore = useDataTable({
     dataSource: "sls/report/getProductStockItems",
-    store: useProductStockItemGrid(props.filterExpression),
+    store: useProductStockItemGrid(
+      props.filterExpression,
+      searchStore.searchModel
+    ),
   });
 </script>

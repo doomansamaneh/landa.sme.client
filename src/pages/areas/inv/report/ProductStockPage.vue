@@ -6,5 +6,5 @@
 </template>
 
 <script setup>
-  import Report from "src/components/areas/inv/report/shared/ProductStock.vue";
+  import Report from "src/components/areas/inv/report/shared/ProductStockReview.vue";
 </script>

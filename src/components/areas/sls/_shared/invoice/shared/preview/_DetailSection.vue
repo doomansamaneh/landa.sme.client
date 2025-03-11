@@ -10,13 +10,31 @@
             #{{ model.no }}
           </div>
 
+          <div class="text-body3 text-weight-700">سند حسابداری</div>
           <div v-if="model?.voucherId">
-            <div class="text-body3 text-weight-700">سند حسابداری</div>
             <div class="q-mt-sm text-body3">
               <custom-link
                 class="text-body3"
                 :to="`/acc/voucher/preview/${model.voucherId}`"
                 :title="model.voucherNo"
+              />
+
+              <menu-button
+                icon="o_delete"
+                title="حذف سند"
+                class="text-warning q-mx-sm"
+                @click="deleteVoucher"
+              />
+            </div>
+          </div>
+
+          <div v-else>
+            <div class="q-mt-sm text-body3">
+              <menu-button
+                icon="o_add"
+                title="ایجاد سند"
+                class="primary-gradient primary-shadow text-white text-body3"
+                @click="createVoucher"
               />
             </div>
           </div>
@@ -145,11 +163,13 @@
 <script setup>
   import { ref } from "vue";
   import { useQuasar } from "quasar";
+  import { useFormActions } from "src/composables/useFormActions";
 
   import DetailPayments from "./_DetailPayments.vue";
   import DetailTax from "./_DetailTax.vue";
   import DetailLog from "src/components/areas/_shared/log/PreviewLog.vue";
   import CustomLink from "src/components/shared/buttons/CustomLink.vue";
+  import MenuButton from "src/components/shared/buttons/MenuButton.vue";
 
   const props = defineProps({
     model: Object,
@@ -161,4 +181,24 @@
 
   const $q = useQuasar();
   const tab = ref("main-info");
+  const formStore = useFormActions("sls/invoice");
+
+  const deleteVoucher = async () => {
+    await formStore.deleteById(
+      props.model.id,
+      () => {
+        props.model.voucherId = null;
+      },
+      "deleteVoucher"
+    );
+  };
+
+  const createVoucher = async () => {
+    var responseData = await formStore.customPostAction(
+      `createVoucher/${props.model.id}`
+    );
+
+    props.model.voucherId = responseData.data?.id;
+    props.model.voucherNo = responseData.data?.no;
+  };
 </script>
