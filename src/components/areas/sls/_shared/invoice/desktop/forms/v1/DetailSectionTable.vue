@@ -59,7 +59,7 @@
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="انتخاب کالا/خدمت"
             v-model:selectedId="row.productId"
-            v-model:selectedText="row.productTitle"
+            v-model:selectedText="row.productDisplay"
             :filterExpression="productFilter"
             required
             @rowSelected="productChanged($event, row)"

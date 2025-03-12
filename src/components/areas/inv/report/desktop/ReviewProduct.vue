@@ -14,7 +14,7 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useDataTable } from "src/composables/useDataTable";
   import { productStockColumns } from "../../_composables/constants";
-  import { salesReviewType, sqlOperator } from "src/constants";
+  import { stockReviewType, sqlOperator } from "src/constants";
 
   import ReviewDataGrid from "./_ReviewDataGrid.vue";
 
@@ -47,19 +47,19 @@
   const filterRow = (row) => {
     props.reportStore?.setItem({
       id: row.id,
-      title: `${row.productCode} - ${row.productTitle}`,
-      type: salesReviewType.prd,
+      title: `${row.code} - ${row.title}`,
+      type: stockReviewType.prd,
     });
   };
 
   const setSelectedAccount = () => {
     let currentFilters = props.filterExpression || [];
     const selectedPg = props.reportStore?.getItemByType(
-      salesReviewType.pg
+      stockReviewType.pg
     );
     if (selectedPg) {
       currentFilters.push({
-        fieldName: "p.productGroupId",
+        fieldName: "prd.productGroupId",
         operator: sqlOperator.equal,
         value: selectedPg.id,
       });

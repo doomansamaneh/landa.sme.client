@@ -1,6 +1,6 @@
 <template>
   <q-card class="bordered">
-    <q-card-section class="row items-center justify-between">
+    <q-card-section class="q-pl-lg row items-center justify-between">
       <q-toggle
         dense
         size="40px"

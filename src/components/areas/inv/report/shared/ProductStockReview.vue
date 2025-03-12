@@ -1,7 +1,7 @@
 <template>
   <toolbar-desktop margin :title="title" />
 
-  <advanced-search />
+  <advanced-search class="q-mb-lg" />
 
   <chip
     icon="filter_alt"
@@ -9,7 +9,7 @@
     color="primary"
     class="q-mb-sm"
     :store="reviewStore"
-    key-type="salesReviewType"
+    key-type="stockReviewType"
   />
 
   <q-card flat class="bordered shadow q-mt-md">

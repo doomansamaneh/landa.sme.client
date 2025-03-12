@@ -66,7 +66,7 @@ export const quoteColumns = [
 export const reviewProductGroupColumns = [
   { ...productGroupCode },
   { ...productGroupTitle },
-  { ...quantity },
+  { ...quantity, sortable: true },
   { ...amount, class: "text-weight-600" },
 ];
 
@@ -75,13 +75,13 @@ export const reviewProductColumns = [
   { ...productTitle },
   { ...productUnitTitle },
   { ...price },
-  { ...quantity },
+  { ...quantity, sortable: true },
   { ...amount, class: "text-weight-600" },
 ];
 
 export const reviewCustomerColumns = [
   { ...customerName, style: "" },
-  { ...quantity },
+  { ...quantity, sortable: true },
   { ...amount, class: "text-weight-600" },
 ];
 
@@ -90,7 +90,7 @@ export const reviewProductCustomerColumns = [
   { ...productCode },
   { ...productTitle },
   { ...price },
-  { ...quantity },
+  { ...quantity, sortable: true },
   { ...amount, class: "text-weight-600" },
 ];
 

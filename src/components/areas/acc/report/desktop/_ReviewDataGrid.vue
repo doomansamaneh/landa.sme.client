@@ -140,6 +140,5 @@
   );
 
   const openPreview = () => {
-    alert(1);
   };
 </script>
