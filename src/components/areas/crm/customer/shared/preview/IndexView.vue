@@ -17,9 +17,7 @@
         :item="model.id"
       />
       <div>
-        <div
-          class="text-h4 line-height-lg text-weight-700"
-        >
+        <div class="text-h4 line-height-lg text-weight-700">
           {{ model.name }}
         </div>
         <div

@@ -60,7 +60,7 @@
 </template>
 
 <script setup>
-  import { onMounted, ref } from "vue";
+  import { onMounted, ref, watch } from "vue";
   import { formAction } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
   import { useDialog } from "src/composables/useDialog";
@@ -105,4 +105,14 @@
   onMounted(() => {
     loadData();
   });
+
+  watch(
+    () => props.item.id,
+    async (newId) => {
+      if (newId) {
+        await loadData();
+      }
+    },
+    { immediate: true }
+  );
 </script>

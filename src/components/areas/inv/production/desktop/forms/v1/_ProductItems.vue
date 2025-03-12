@@ -110,7 +110,7 @@
     rounded
     dense
     class="bg-primary primary-shadow text-white q-my-md"
-    @click="formStore.addNewItem(index, row)"
+    @click="formStore.addNewItem(index)"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
     <div class="">افزودن ردیف</div>

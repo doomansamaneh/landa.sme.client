@@ -123,4 +123,14 @@
   onMounted(() => {
     loadData();
   });
+
+  watch(
+    () => props.item.id,
+    async (newId) => {
+      if (newId) {
+        await loadData();
+      }
+    },
+    { immediate: true }
+  );
 </script>

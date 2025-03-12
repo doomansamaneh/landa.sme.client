@@ -32,9 +32,14 @@ export function useProductionModel({ baseRoute }) {
     if (!model.value.costs) model.value.costs = [];
   }
 
-  const addNewItem = (index) => {
+  // const addNewItem = (index) => {
+  //   const newRow = { quantity: 0 };
+  //   model.value.items.splice(index + 1, 0, newRow);
+  // };
+
+  const addNewItem = () => {
     const newRow = { quantity: 0 };
-    model.value.items.splice(index + 1, 0, newRow);
+    model.value.items.push(newRow);
   };
 
   const pushNewItem = (item) => {
@@ -46,9 +51,14 @@ export function useProductionModel({ baseRoute }) {
     model.value.items.splice(index, 1);
   };
 
-  const addNewScrapItem = (index) => {
+  // const addNewScrapItem = (index) => {
+  //   const newRow = { quantity: 0 };
+  //   model.value.scrapItems.splice(index + 1, 0, newRow);
+  // };
+
+  const addNewScrapItem = () => {
     const newRow = { quantity: 0 };
-    model.value.scrapItems.splice(index + 1, 0, newRow);
+    model.value.scrapItems.push(newRow);
   };
 
   const pushNewScrapItem = (item) => {
@@ -60,9 +70,14 @@ export function useProductionModel({ baseRoute }) {
     model.value.scrapItems.splice(index, 1);
   };
 
-  const addNewCost = (index) => {
+  // const addNewCost = (index) => {
+  //   const newRow = { amount: 0 };
+  //   model.value.costs.splice(index + 1, 0, newRow);
+  // };
+
+  const addNewCost = () => {
     const newRow = { amount: 0 };
-    model.value.costs.splice(index + 1, 0, newRow);
+    model.value.costs.push(newRow);
   };
 
   const pushNewCost = (item) => {
@@ -74,9 +89,14 @@ export function useProductionModel({ baseRoute }) {
     model.value.costs.splice(index, 1);
   };
 
-  const addNewUsedItem = (index) => {
+  // const addNewUsedItem = (index) => {
+  //   const newRow = { quantity: 0 };
+  //   model.value.usedItems.splice(index + 1, 0, newRow);
+  // };
+
+  const addNewUsedItem = () => {
     const newRow = { quantity: 0 };
-    model.value.usedItems.splice(index + 1, 0, newRow);
+    model.value.usedItems.push(newRow);
   };
 
   const pushNewUsedItem = (item) => {

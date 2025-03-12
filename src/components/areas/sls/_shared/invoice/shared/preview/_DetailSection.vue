@@ -1,13 +1,19 @@
 <template>
   <q-card bordered>
-    <q-card-section
-      v-if="$q.screen.gt.xs"
-      :class="$q.screen.xs ? 'q-pt-none' : ''"
-    >
+    <q-card-section>
       <slot name="header">
-        <div class="column q-gutter-y-md">
-          <div class="text-body1 text-weight-700">
-            #{{ model.no }}
+        <div class="q-gutter-y-md">
+          <div class="flex items-center justify-between">
+            <div class="text-body1 text-weight-700">
+              #{{ model.no }}
+            </div>
+            <menu-button
+              icon="o_delete"
+              padding="6px 12px"
+              title="حذف سند"
+              class="text-negative"
+              @click="deleteVoucher"
+            />
           </div>
 
           <div class="text-body3 text-weight-700">سند حسابداری</div>
@@ -17,13 +23,6 @@
                 class="text-body3"
                 :to="`/acc/voucher/preview/${model.voucherId}`"
                 :title="model.voucherNo"
-              />
-
-              <menu-button
-                icon="o_delete"
-                title="حذف سند"
-                class="text-warning q-mx-sm"
-                @click="deleteVoucher"
               />
             </div>
           </div>

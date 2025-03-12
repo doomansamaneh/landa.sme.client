@@ -38,6 +38,7 @@
   const props = defineProps({
     item: Object,
   });
+
   const dialogStore = useDialog();
   const tableStore = useDataTable({
     dataSource: "crm/customerAddress/getGridData",
@@ -70,4 +71,14 @@
   onMounted(() => {
     loadData();
   });
+
+  watch(
+    () => props.item.id,
+    async (newId) => {
+      if (newId) {
+        await loadData();
+      }
+    },
+    { immediate: true }
+  );
 </script>

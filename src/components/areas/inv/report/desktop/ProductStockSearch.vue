@@ -31,9 +31,9 @@
       </q-btn>
     </q-card-section>
 
-    <q-slide-transition>
-      <div v-show="expanded">
-        <div class="q-px-lg">
+    <div>
+      <q-slide-transition duration="500">
+        <div class="q-px-lg" v-show="expanded">
           <div class="row items-center">
             <q-option-group
               style="gap: 8px"
@@ -70,7 +70,7 @@
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
               <q-btn
-                class="q-mr-sm text-body2 primary-gradient text-white"
+                class="q-mr-sm text-body2 primary-shadow primary-gradient text-white"
                 rounded
                 padding="8px 16px"
                 unelevated
@@ -93,8 +93,8 @@
             </div>
           </q-card-actions>
         </div>
-      </div>
-    </q-slide-transition>
+      </q-slide-transition>
+    </div>
   </q-card>
 </template>
 
