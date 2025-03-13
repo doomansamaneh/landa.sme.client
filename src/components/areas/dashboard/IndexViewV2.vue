@@ -1,7 +1,11 @@
 <template>
   <div
     :style="
-      $q.screen.gt.xs ? 'margin-bottom: 200px' : 'margin-bottom: 56px'
+      $q.screen.xs
+        ? 'margin-top: 48px'
+        : $q.screen.sm
+        ? 'margin-top: 48px'
+        : 'margin-top: 8px'
     "
   >
     <q-page-sticky
@@ -25,11 +29,7 @@
     </q-page-sticky>
 
     <keep-alive>
-      <div
-        :style="
-          $q.screen.gt.xs ? 'margin-top: 24px' : 'margin-top: 48px'
-        "
-      >
+      <div>
         <template v-if="tab === 'general'">
           <general-tab />
         </template>
@@ -54,11 +54,11 @@
 
   const toolbarStyle = computed(() => {
     if ($q.screen.xs) {
-      return "z-index: 2; padding: 5px 16px 0 16px;";
+      return "z-index: 2; padding: 0 16px 0 16px;";
     } else if ($q.screen.sm) {
-      return "z-index: 2; padding: 10px 24px 0 24px;";
+      return "z-index: 2; padding: 0 24px 0 24px;";
     } else {
-      return "z-index: 2; padding: 10px 38px 0 38px;";
+      return "z-index: 2; padding: 0 38px 0 38px;";
     }
   });
 </script>
