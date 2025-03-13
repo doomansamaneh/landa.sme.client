@@ -65,9 +65,9 @@
 <script setup>
   import { computed } from "vue";
   import { helper } from "src/helpers";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   const props = defineProps({
     title: String,

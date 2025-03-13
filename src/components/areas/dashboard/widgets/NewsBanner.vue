@@ -105,10 +105,10 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
   const $q = useQuasar();
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   const emit = defineEmits(["hideWidget"]);
 

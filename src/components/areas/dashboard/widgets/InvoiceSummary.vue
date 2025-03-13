@@ -31,7 +31,10 @@
             class="bordered bg-dark q-py-xs"
           >
             <q-icon name="o_add" size="20px" />
-            <span class="text-weight-300 q-ml-xs" v-if="$q.screen.gt.xs">
+            <span
+              class="text-weight-300 q-ml-xs"
+              v-if="$q.screen.gt.xs"
+            >
               ایجاد فاکتور
             </span>
           </q-btn>
@@ -240,7 +243,7 @@
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
   import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/useInvoiceSummary";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
@@ -250,7 +253,7 @@
     emit("hideWidget");
   };
 
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
   const dataStore = useInvoiceSummary();
 
   const isShakingComputed = computed(() => draggable.isShaking.value);

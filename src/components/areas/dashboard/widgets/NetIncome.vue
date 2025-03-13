@@ -93,7 +93,7 @@
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
   import { useNetIncome } from "../../acc/_composables/useNetIncome";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
   import VueApexCharts from "vue3-apexcharts";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
@@ -102,7 +102,7 @@
   const emit = defineEmits(["hideWidget"]);
 
   const $q = useQuasar();
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
   const netIncomeStore = useNetIncome();
 
   const hideWidget = () => {

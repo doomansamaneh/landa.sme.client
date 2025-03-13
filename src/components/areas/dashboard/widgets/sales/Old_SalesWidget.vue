@@ -82,13 +82,13 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
   import ProductGroupChart from "src/components/areas/dashboard/widgets/sales/ProductGroupChart.vue";
   import ProductChart from "src/components/areas/dashboard/widgets/sales/ProductChart.vue";
   import CustomerChart from "src/components/areas/dashboard/widgets/sales/CustomerChart.vue";
 
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   const filter = ref("30 روز پیش");
   const filterOptions = ["30 روز پیش", "این فصل", "امسال", "سال پیش"];

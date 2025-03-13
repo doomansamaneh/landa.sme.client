@@ -132,12 +132,12 @@
   import { helper } from "src/helpers";
   import { useIncomeStatement } from "../../acc/_composables/useIncomeStatement";
   import { accountCLTypeIds } from "src/constants";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const dataStore = useIncomeStatement();
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   const emit = defineEmits(["hideWidget"]);
 

@@ -49,9 +49,9 @@
   import { computed } from "vue";
   import { helper } from "src/helpers";
   import { useBankAccount } from "../../acc/_composables/useBankAccount";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   import BalanceChart from "./_CashBalanceChart.vue";
   import BalanceList from "./_CashBalanceList.vue";

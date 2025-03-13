@@ -84,7 +84,7 @@
 
   import { helper } from "src/helpers";
   import { useBankAccount } from "src/components/areas/acc/_composables/useBankAccount";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
   import { useRevenueExpenseState } from "../../_composables/useRevenueExpenseState";
   import { useRevenueExpense } from "../../_composables/useRevenueExpense";
 
@@ -93,7 +93,7 @@
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const $q = useQuasar();
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
   const reportStore = useBankAccount("TopExpenseByCL");
   const revenueExpenseStore = useRevenueExpense(
     useRevenueExpenseState()

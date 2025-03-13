@@ -261,6 +261,7 @@
   "shared": {
     "labels": {
       "rial": "ریال",
+      "settings": "تنظیمات",
       "from": "از",
       "per-month": "ماهانه",
       "cost": "هزینه",

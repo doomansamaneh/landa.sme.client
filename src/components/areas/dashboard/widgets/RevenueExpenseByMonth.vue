@@ -112,14 +112,14 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useRevenueExpenseState } from "../_composables/useRevenueExpenseState";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
   import RevenueExpenseChart from "./_RevenueExpenseChart.vue";
   import RevenueExpenseTable from "./_RevenueExpenseTable.vue";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const revenueExpenseStore = useRevenueExpenseState();
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   const emit = defineEmits(["hideWidget"]);
 

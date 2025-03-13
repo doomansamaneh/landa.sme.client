@@ -134,14 +134,14 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
   import { useNetIncome } from "src/components/areas/acc/_composables/useNetIncome";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
   import { helper } from "src/helpers";
 
   const emit = defineEmits(["hideWidget"]);
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   const netIncomeStore = useNetIncome({});
   const hideWidget = () => {

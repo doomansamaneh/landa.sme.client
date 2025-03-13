@@ -2,19 +2,19 @@ import { ref, computed, watch, onMounted } from "vue";
 
 const isShaking = ref(false);
 const draggedIndex = ref(null);
-const storageKey = "widgetsLayout";
-const hiddenWidgetsKey = "hiddenWidgets";
+const salesStorageKey = "salesWidgetsLayout";
+const salesHiddenWidgetsKey = "salesHiddenWidgetsKey";
 
-export function useDraggableWidgets(metaData = []) {
+export function useSalesTab(metaData = []) {
   const widgets = ref([]);
   const hiddenWidgets = ref([]);
 
   const loadWidgets = () => {
-    widgets.value = JSON.parse(localStorage.getItem(storageKey)) || [
-      ...metaData,
-    ];
+    widgets.value = JSON.parse(
+      localStorage.getItem(salesStorageKey)
+    ) || [...metaData];
     hiddenWidgets.value =
-      JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || [];
+      JSON.parse(localStorage.getItem(salesHiddenWidgetsKey)) || [];
   };
 
   const onDragStart = (index) => {
@@ -45,19 +45,22 @@ export function useDraggableWidgets(metaData = []) {
   };
 
   const saveLayoutToLocalStorage = () => {
-    localStorage.setItem(storageKey, JSON.stringify(widgets.value));
+    localStorage.setItem(
+      salesStorageKey,
+      JSON.stringify(widgets.value)
+    );
   };
 
   const saveHiddenWidgetsToLocalStorage = () => {
     localStorage.setItem(
-      hiddenWidgetsKey,
+      salesHiddenWidgetsKey,
       JSON.stringify(hiddenWidgets.value)
     );
   };
 
   const clearLocalStorage = () => {
-    localStorage.removeItem(storageKey);
-    localStorage.removeItem(hiddenWidgetsKey);
+    localStorage.removeItem(salesStorageKey);
+    localStorage.removeItem(salesHiddenWidgetsKey);
   };
 
   const hideWidget = (id) => {

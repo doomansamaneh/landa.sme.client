@@ -72,7 +72,7 @@
 
   import { helper } from "src/helpers";
   import { useReport } from "src/components/areas/sls/_composables/useReport";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
   import { useRevenueExpenseState } from "../../_composables/useRevenueExpenseState";
   import { useRevenueExpense } from "../../_composables/useRevenueExpense";
 
@@ -81,7 +81,7 @@
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const $q = useQuasar();
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
   const reportStore = useReport("invoiceByProduct");
   const revenueExpenseStore = useRevenueExpense(
     useRevenueExpenseState()

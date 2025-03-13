@@ -4,7 +4,7 @@ import { useI18n } from "vue-i18n";
 import { cultures } from "src/constants/enums";
 
 export function useCulture() {
-  const storageKey = "selectedLanguage";
+  const GeneralStorageKey = "selectedLanguage";
   const cookieKey = ".Landa.SME.Culture";
 
   const $t = useI18n();
@@ -16,7 +16,7 @@ export function useCulture() {
 
   const defaultLanguage = "fa-IR";
   const lang = ref(
-    localStorage.getItem(storageKey) || defaultLanguage
+    localStorage.getItem(GeneralStorageKey) || defaultLanguage
   );
 
   const culture = computed(() =>
@@ -36,7 +36,7 @@ export function useCulture() {
       $q.lang.set(langModule.default);
       $t.locale.value = lang.value;
 
-      localStorage.setItem(storageKey, iso);
+      localStorage.setItem(GeneralStorageKey, iso);
 
       document.body.classList.remove("persian", "english", "arabic");
       document.body.classList.add(culture.value.bodyClass);
@@ -54,7 +54,7 @@ export function useCulture() {
     }
   };
 
-  if (!localStorage.getItem(storageKey)) {
+  if (!localStorage.getItem(GeneralStorageKey)) {
     document.body.classList.add("persian");
   }
 

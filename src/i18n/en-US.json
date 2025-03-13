@@ -184,6 +184,7 @@
 
   "shared": {
     "labels": {
+      "settings": "Settings",
       "ok": "OK",
       "cancel": "Cancel",
       "save": "Save",

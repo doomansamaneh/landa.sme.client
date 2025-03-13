@@ -137,7 +137,7 @@
   import { helper } from "src/helpers";
   import { useInvoiceProductState } from "../../sls/_composables/useInvoiceProductState";
   import { useDataTable } from "src/composables/useDataTable";
-  import { useDraggableWidgets } from "src/composables/useDraggableWidgets";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
@@ -147,7 +147,7 @@
     dataSource: "sls/report/getInvoiceByProduct",
     store: gridStore,
   });
-  const draggable = useDraggableWidgets();
+  const draggable = useGeneralTab();
 
   const grid = ref(null);
   const emit = defineEmits(["hideWidget"]);
