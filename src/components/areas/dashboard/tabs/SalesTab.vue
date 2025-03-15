@@ -1,9 +1,6 @@
 <template>
   <q-toolbar v-if="$q.screen.gt.sm" class="no-padding">
     <div class="row items-center q-py-lg">
-      <div class="q-mr-sm text-h6 text-weight-700 text-on-dark">
-        {{ $t("shared.labels.settings") }}
-      </div>
       <div class="row items-center q-gutter-sm">
         <q-btn
           dense
@@ -17,6 +14,9 @@
         >
           <q-icon size="24px" name="o_tune" />
         </q-btn>
+      </div>
+      <div class="q-ml-sm text-h6 text-weight-700 text-on-dark">
+        پیشخوان فروش
       </div>
     </div>
 

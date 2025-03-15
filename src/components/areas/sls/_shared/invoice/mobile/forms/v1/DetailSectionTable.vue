@@ -173,26 +173,32 @@
     v-model="showDialog"
   >
     <q-card>
-      <q-card-section class="row items-center q-pb-none">
-        <span class="text-bold text-body1">افزودن/ویرایش کالا</span>
-        <q-space />
-        <q-btn
-          round
-          unelevated
-          text-color="white"
-          class="red-gradient red-shadow"
-          padding="5px"
-          v-close-popup
-        >
-          <q-icon size="16px" name="o_close" />
-        </q-btn>
-      </q-card-section>
+      <q-scroll-area
+        :thumb-style="helper.thumbStyle"
+        :bar-style="helper.barStyle"
+        style="height: calc(100vh - 10%)"
+      >
+        <q-card-section class="row items-center q-pb-none">
+          <span class="text-bold text-body1">افزودن/ویرایش کالا</span>
+          <q-space />
+          <q-btn
+            round
+            unelevated
+            text-color="white"
+            class="red-gradient red-shadow"
+            padding="5px"
+            v-close-popup
+          >
+            <q-icon size="16px" name="o_close" />
+          </q-btn>
+        </q-card-section>
 
-      <q-card-section>
-        <add-row ref="addItemElement" :item="selectedItem" />
-      </q-card-section>
+        <q-card-section>
+          <add-row ref="addItemElement" :item="selectedItem" />
+        </q-card-section>
+      </q-scroll-area>
 
-      <q-card-actions class="q-pa-md dark-1">
+      <q-card-actions class="absolute-bottom q-pa-md dark-1">
         <q-btn
           type="submit"
           @click="okClicked"

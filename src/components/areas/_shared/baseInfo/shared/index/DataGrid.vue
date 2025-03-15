@@ -16,7 +16,6 @@
       :data-source="dataSource"
       :base-route="baseRoute"
       :create-url="createUrl"
-      :columns="columns"
       ref="mobileGrid"
     />
   </template>

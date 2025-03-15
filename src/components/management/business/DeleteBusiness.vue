@@ -1,7 +1,7 @@
 <template>
   <q-card class="dialog-card no-shadow">
-    <q-card-section class="row items-center q-px-lg">
-      <div class="text-h6">
+    <q-card-section class="flex items-center justify-between">
+      <div class="text-body2 text-bold">
         {{ $t("delete-business-page.title") }}
       </div>
       <q-space />
@@ -10,13 +10,8 @@
       </slot>
     </q-card-section>
     <q-card-section>
-      <q-form
-        class="q-px-sm"
-        @submit="changePassword"
-        ref="form"
-        autofocus
-      >
-        <q-input
+      <q-form @submit="changePassword" ref="form" autofocus>
+        <custom-input
           outlined
           v-model="password"
           :type="isPwd ? 'password' : 'text'"
@@ -26,7 +21,7 @@
           lazy-rules
           :rules="[(val) => val !== null && val !== '']"
         >
-          <template v-slot:append>
+          <template #append>
             <q-icon
               :name="isPwd ? 'visibility_off' : 'visibility'"
               size="xs"
@@ -34,10 +29,10 @@
               @click="isPwd = !isPwd"
             />
           </template>
-        </q-input>
+        </custom-input>
       </q-form>
     </q-card-section>
-    <actions @ok-clicked="submitForm" class="q-px-lg">
+    <actions @ok-clicked="submitForm">
       <template #ok-label>
         {{ $t("delete-business-page.buttons.delete-business") }}
       </template>
@@ -53,6 +48,7 @@
 
   import Actions from "src/components/shared/forms/FormCardActions.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
   const authStore = useAuthStore();
 

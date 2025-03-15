@@ -7,7 +7,7 @@
     animated
     swipeable
     keep-alive
-    class="bordered shadow border-radius-lg"
+    class="bordered shadow border-radius-lg overflow-hidden"
     :style="$q.screen.gt.xs ? 'height: 142px' : 'height: 200px'"
     v-model="slide"
   >

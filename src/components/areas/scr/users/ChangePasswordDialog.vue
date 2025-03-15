@@ -1,36 +1,26 @@
 <template>
   <q-dialog
     ref="dialogRef"
-    transition-show="slide-down"
-    transition-hide="fade"
+    transition-show="slide-up"
+    transition-hide="slide-down"
     transition-duration="600"
     no-backdrop-dismiss
+    maximized
   >
-    <change-password @submitted="submitted">
-      <template #close-icon>
-        <q-btn
-          icon="close"
-          class="icon-hover dark-3"
-          flat
-          round
-          dense
-          v-close-popup
-        />
-      </template>
-    </change-password>
+    <change-password @submitted="submitted" />
   </q-dialog>
 </template>
 
 <script setup>
-import { ref } from "vue"
-import { useDialogPluginComponent } from "quasar"
+  import { ref } from "vue";
+  import { useDialogPluginComponent } from "quasar";
 
-import ChangePassword from "./ChangePassword.vue"
+  import ChangePassword from "./ChangePassword.vue";
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent()
+  const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
+    useDialogPluginComponent();
 
-function submitted(response) {
-  onDialogOK()
-}
+  function submitted(response) {
+    onDialogOK();
+  }
 </script>

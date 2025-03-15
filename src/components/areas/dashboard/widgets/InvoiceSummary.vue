@@ -26,6 +26,7 @@
           <q-btn
             to="/sls/invoice/create"
             unelevated
+            :dense="$q.screen.xs"
             :round="$q.screen.xs"
             :rounded="$q.screen.gt.xs"
             class="bordered bg-dark q-py-xs"

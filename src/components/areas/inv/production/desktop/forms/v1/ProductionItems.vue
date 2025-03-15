@@ -72,7 +72,7 @@
 
   const $q = useQuasar();
 
-  const tab = ref("product");
+  const tab = ref("production-used-items");
 
   const tabColor = computed(() => {
     if ($q.dark.isActive) {

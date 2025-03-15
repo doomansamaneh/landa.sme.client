@@ -1,21 +1,14 @@
 <template>
   <div
-    :style="
-      $q.screen.xs
-        ? 'margin-top: 48px'
-        : $q.screen.sm
-        ? 'margin-top: 48px'
-        : 'margin-top: 8px'
-    "
+    :style="`margin-top: ${
+      $q.screen.xs ? 40 : $q.screen.sm ? 36 : 0
+    }px`"
   >
-    <q-page-sticky
-      :style="toolbarStyle"
-      class="block bg-main z-1"
-      position="top"
-      expand
-    >
+    <q-page-sticky class="block bg-main z-1" position="top" expand>
       <q-tabs
         inline-label
+        narrow-indicator
+        dense
         active-color="primary"
         align="left"
         v-model="tab"
@@ -42,7 +35,7 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { ref } from "vue";
   import { useQuasar } from "quasar";
 
   import GeneralTab from "./tabs/GeneralTab.vue";
@@ -51,14 +44,4 @@
   const $q = useQuasar();
 
   const tab = ref("general");
-
-  const toolbarStyle = computed(() => {
-    if ($q.screen.xs) {
-      return "z-index: 2; padding: 0 16px 0 16px;";
-    } else if ($q.screen.sm) {
-      return "z-index: 2; padding: 0 24px 0 24px;";
-    } else {
-      return "z-index: 2; padding: 0 38px 0 38px;";
-    }
-  });
 </script>

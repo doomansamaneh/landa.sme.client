@@ -1,7 +1,13 @@
 <template>
   <q-card bordered>
+    <q-card-section class="q-pb-none">
+      <div class="flex justify-between items-center">
+        <div class="text-body2 text-bold">تغییر رمز عبور</div>
+        <close-button v-close-popup />
+      </div>
+    </q-card-section>
     <q-card-section>
-      <q-form ref="form" autofocus class="q-mt-lg q-px-sm">
+      <q-form ref="form" autofocus class="q-mt-lg">
         <div class="q-gutter-md">
           <custom-input
             outlined
@@ -80,7 +86,7 @@
       </q-form>
     </q-card-section>
 
-    <actions @ok-clicked="submitForm" class="q-px-lg">
+    <actions @ok-clicked="submitForm">
       <template #ok-label>
         {{ $t("change-password-page.buttons.change-password") }}
       </template>
@@ -96,6 +102,7 @@
 
   import CustomInput from "components/shared/forms/CustomInput.vue";
   import Actions from "src/components/shared/forms/FormCardActions.vue";
+  import CloseButton from "src/components/shared/buttons/CloseButton.vue";
 
   const emit = defineEmits(["submitted"]);
   const authStore = useAuthStore();

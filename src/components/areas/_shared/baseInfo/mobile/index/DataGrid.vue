@@ -45,7 +45,7 @@
           </template>
           <template v-else>
             <div
-              v-for="col in gridStore.columns?.value"
+              v-for="col in tableStore.columns?.value"
               :key="col.name"
               class="q-py-xs"
             >
@@ -61,8 +61,6 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-
   import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
 
   const props = defineProps({
