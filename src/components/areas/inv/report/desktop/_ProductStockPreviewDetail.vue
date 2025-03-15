@@ -64,7 +64,7 @@
   const tab = ref("basic-info");
   const stockFilter = computed(() => [
     {
-      fieldName: "ii.productId",
+      fieldName: "sl.productId",
       operator: sqlOperator.equal,
       value: props.item.id,
     },

@@ -11,7 +11,7 @@
   <menu-item
     :title="$t('shared.labels.copyToPurchase')"
     icon="o_shopping_cart"
-    :to="`/sls/purchase/copy/${item.id}`"
+    :to="`/sls/purchase/createFromInvoice/${item.id}`"
   />
 
   <menu-item
