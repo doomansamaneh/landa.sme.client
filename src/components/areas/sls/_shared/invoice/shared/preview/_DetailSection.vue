@@ -8,6 +8,7 @@
               #{{ model.no }}
             </div>
             <menu-button
+              v-if="model?.voucherId"
               icon="o_delete"
               padding="6px 12px"
               title="حذف سند"

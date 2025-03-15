@@ -798,6 +798,14 @@ export default {
           meta: { title: "فاکتور خرید - کپی" },
         },
         {
+          path: "createFromInvoice/:id",
+          component: () =>
+            import(
+              "pages/areas/sls/purchase/CreateFromInvoicePage.vue"
+            ),
+          meta: { title: "فاکتور خرید - ایجاد از فاکتور فروش" },
+        },
+        {
           path: "preview/:id",
           component: () =>
             import("pages/areas/sls/purchase/PreviewPage.vue"),
