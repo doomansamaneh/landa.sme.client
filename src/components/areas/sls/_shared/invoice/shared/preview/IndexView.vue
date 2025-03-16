@@ -72,6 +72,7 @@
 
   const props = defineProps({
     item: Object,
+    id: String,
     title: String,
     inside: Boolean,
     margin: Boolean,
@@ -85,7 +86,9 @@
   });
 
   const route = useRoute();
-  const id = computed(() => props.item?.id ?? route.params.id);
+  const id = computed(
+    () => props.item?.id ?? props.id ?? route.params.id
+  );
   const model = ref({});
   const crudStore = useFormActions(props.baseRoute, model, true);
 

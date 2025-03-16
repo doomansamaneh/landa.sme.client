@@ -17,7 +17,10 @@
     <q-separator />
 
     <q-card-section v-if="model?.id">
-      <preview-log :entity-id="model.id" entity-name="Trs.[Bill]" />
+      <preview-log
+        :entity-id="model.id"
+        entity-name="Trs.[Payment]"
+      />
     </q-card-section>
   </q-card>
 </template>

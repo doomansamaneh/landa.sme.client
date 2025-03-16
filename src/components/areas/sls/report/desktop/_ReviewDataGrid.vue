@@ -66,6 +66,10 @@
       </td>
       <td v-if="expandable"></td>
     </template>
+
+    <template #expand="{ item }">
+      <slot name="expand" :item="item" />
+    </template>
   </data-grid>
 </template>
 

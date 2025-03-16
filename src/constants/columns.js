@@ -30,7 +30,7 @@ export const code = {
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
-  style: "width:130px;",
+  style: "width:120px;",
   showFilter: true,
 };
 
@@ -112,7 +112,7 @@ export const dlCode = {
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
-  style: "width: 100px;",
+  style: "width: 120px;",
   showFilter: true,
 };
 

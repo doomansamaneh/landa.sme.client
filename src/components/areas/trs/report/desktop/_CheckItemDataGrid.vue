@@ -26,6 +26,12 @@
           )}`
         )
       }}
+      <q-icon
+        v-if="item.notifyCheck"
+        size="24px"
+        name="o_warning"
+        color="warning"
+      />
     </template>
 
     <template #expand="{ item }">

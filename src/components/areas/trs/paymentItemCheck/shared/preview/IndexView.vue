@@ -53,7 +53,7 @@
     <div class="col-md-7 col-sm-12 col-xs-12">
       <q-card bordered>
         <q-card-section class="bg-blue-12 text-white">
-          <span class="text-h5">تاریخچه سند</span>
+          <span class="text-h5">گردش چک</span>
         </q-card-section>
         <q-separator />
         <q-card-section class="q-px-none">

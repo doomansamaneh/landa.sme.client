@@ -1,5 +1,9 @@
 <template>
-  <review-data-grid :table-store="tableStore" expandable toolbar />
+  <review-data-grid :table-store="tableStore" expandable toolbar>
+    <template #expand="{ item }">
+      <slot name="expand" :item="item" />
+    </template>
+  </review-data-grid>
 </template>
 
 <script setup>

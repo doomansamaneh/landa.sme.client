@@ -98,7 +98,13 @@
           :data-source="`sls/report/get${actionName}Detail`"
           :title="title"
           :sub-title="$t('shared.labels.accountItem')"
-        />
+        >
+          <template #expand="{ item }">
+            <slot name="item-preview" :item="item">
+              <invoice-preview :id="item.invoiceId" inside />
+            </slot>
+          </template>
+        </review-item>
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -113,6 +119,7 @@
   import ReviewCustomer from "../desktop/ReviewCustomer.vue";
   import ReviewPrdCustomer from "../desktop/ReviewProductCustomer.vue";
   import ReviewItem from "../desktop/ReviewItem.vue";
+  import InvoicePreview from "../../invoice/shared/preview/IndexView.vue";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";

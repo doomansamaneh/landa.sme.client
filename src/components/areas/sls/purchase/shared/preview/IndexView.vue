@@ -2,8 +2,8 @@
   <preview
     :title="title ?? $t('shared.labels.purchase')"
     base-route="sls/purchase"
-    entity-name="Sls.[Purchase]"
     detail-url="trs/payment"
+    entity-name="Sls.[Invoice]"
   />
 </template>
 
