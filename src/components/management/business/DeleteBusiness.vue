@@ -9,8 +9,14 @@
         <back-button />
       </slot>
     </q-card-section>
+
     <q-card-section>
-      <q-form @submit="changePassword" ref="form" autofocus>
+      با حذف کسب و کار، تاریخچه و داده‌های آن از بین رفته و قابل
+      بازیابی نخواهد بود.
+    </q-card-section>
+
+    <q-card-section>
+      <q-form @submit="submitForm" ref="form" autofocus>
         <custom-input
           outlined
           v-model="password"
@@ -42,15 +48,15 @@
 
 <script setup>
   import { ref } from "vue";
-
-  import { useAuthStore } from "src/stores";
   import { fetchWrapper } from "src/helpers";
 
   import Actions from "src/components/shared/forms/FormCardActions.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
-  const authStore = useAuthStore();
+  const props = defineProps({
+    id: string,
+  });
 
   const emit = defineEmits(["submitted"]);
   const form = ref(null);
@@ -59,34 +65,17 @@
   const isPwd = ref(true);
 
   async function submitForm() {
-    await form.value.validate().then((success) => {
-      if (success) {
-        changePassword();
-      } else {
-        //todo: how to show validation message to user
-        // alert("Validation error");
-      }
-    });
+    const success = await form.value.validate();
+    if (success) {
+      deleteBusiness();
+    }
   }
 
-  async function changePassword() {
-    await fetchWrapper
-      .post("scr/users/changePassword", {
-        id: authStore.user.id,
-        oldPassword: oldPassword.value,
-        password: newPassword.value,
-        confirmPassword: confirmNewPassword.value,
-      })
-      .then((response) => {
-        console.log(response);
-        //handleResponse(response, data)
-      })
-      .success(() => {
-        //todo: close popup if open
-      })
-      .finally(() => {
-        //loading.value = false;
-      });
+  async function deleteBusiness() {
+    await fetchWrapper.post("Business/RemoveBusiness", {
+      id: props.id,
+      password: password.value,
+    });
   }
 </script>
 
@@ -95,13 +84,4 @@
     width: 400px;
     border-radius: 8px;
   }
-
-  /* .change-password-btn {
-  height: 40px;
-  width: 60%;
-}
-
-.cancel-btn {
-  width: 36%;
-} */
 </style>

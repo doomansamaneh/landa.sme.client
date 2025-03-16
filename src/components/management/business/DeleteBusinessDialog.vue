@@ -7,7 +7,7 @@
     no-backdrop-dismiss
     maximized
   >
-    <delete-business @submitted="submitted">
+    <delete-business :id="id" @submitted="submitted">
       <template #close-icon>
         <close-button v-close-popup />
       </template>
@@ -16,12 +16,11 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { useDialogPluginComponent } from "quasar";
 
-  import deleteBusiness from "src/components/management/business/DeleteBusiness.vue";
-  import CloseButton from "src/components/shared/Buttons/CloseButton.vue";
-  
+  import DeleteBusiness from "src/components/management/business/DeleteBusiness.vue";
+  import CloseButton from "src/components/shared/buttons/CloseButton.vue";
+
   const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
     useDialogPluginComponent();
 
@@ -29,5 +28,3 @@
     onDialogOK();
   }
 </script>
-
-<style lang="scss" scoped></style>

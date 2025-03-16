@@ -168,7 +168,11 @@
 
           <q-separator class="q-my-sm" size="0.5px" />
 
-          <q-item clickable v-ripple @click="showDeleteBusiness">
+          <q-item
+            clickable
+            v-ripple
+            @click="showDeleteBusiness(selectedRow)"
+          >
             <q-item-section avatar>
               <q-avatar
                 class="text-white red-shadow red-gradient"
@@ -218,9 +222,12 @@
     bottomSheetStatus.value = false;
   };
 
-  function showDeleteBusiness() {
+  function showDeleteBusiness(item) {
     $q.dialog({
       component: DeleteBusinessDialog,
+      componentProps: {
+        id: item.id,
+      },
     });
   }
 </script>

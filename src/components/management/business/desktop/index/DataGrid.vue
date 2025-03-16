@@ -174,7 +174,7 @@
               <q-item
                 clickable
                 v-close-popup
-                @click="showDeleteBusiness"
+                @click="showDeleteBusiness(item)"
               >
                 <q-item-section>
                   <div class="flex items-center q-gutter-x-sm">
@@ -224,9 +224,12 @@
     });
   };
 
-  function showDeleteBusiness() {
+  function showDeleteBusiness(item) {
     $q.dialog({
       component: DeleteBusinessDialog,
+      componentProps: {
+        id: item.id,
+      },
     });
   }
 </script>
