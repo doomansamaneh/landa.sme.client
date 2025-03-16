@@ -21,6 +21,10 @@
   import DeleteBusiness from "src/components/management/business/DeleteBusiness.vue";
   import CloseButton from "src/components/shared/buttons/CloseButton.vue";
 
+  const props = defineProps({
+    id: String,
+  });
+
   const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
     useDialogPluginComponent();
 

@@ -55,7 +55,7 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
   const props = defineProps({
-    id: string,
+    id: String,
   });
 
   const emit = defineEmits(["submitted"]);
