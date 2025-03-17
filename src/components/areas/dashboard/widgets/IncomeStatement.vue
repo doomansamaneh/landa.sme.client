@@ -26,7 +26,7 @@
 
       <q-card-section class="q-pr-none">
         <q-scroll-area
-          style="height: 228px"
+          style="height: 350px"
           :thumb-style="helper.thumbStyle"
           :bar-style="helper.barStyle"
         >

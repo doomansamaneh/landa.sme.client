@@ -109,11 +109,11 @@
   import RevenueExpenseByMonth from "src/components/areas/dashboard/widgets/RevenueExpenseByMonth.vue";
   import IncomeStatement from "src/components/areas/dashboard/widgets/IncomeStatement.vue";
   import RatiosWidget from "src/components/areas/dashboard/widgets/RatiosWidget.vue";
-  import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
-  import SalesWidget from "src/components/areas/dashboard/widgets/sales/SalesWidget.vue";
+  // import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
+  // import SalesWidget from "src/components/areas/dashboard/widgets/sales/SalesWidget.vue";
   import CashBalance from "src/components/areas/dashboard/widgets/CashBalance.vue";
   import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
-  import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/ExpenseWidget.vue";
+  // import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/ExpenseWidget.vue";
   import RevenueExpense from "src/components/areas/dashboard/widgets/expenses/RevenueExpense.vue";
   import NewsCarousel from "src/components/areas/dashboard/widgets/NewsBanner.vue";
 
@@ -124,12 +124,12 @@
     { id: 4, class: "col-md-12 col-sm-12 col-xs-12" },
     { id: 5, class: "col-md-4 col-sm-12 col-xs-12" },
     { id: 6, class: "col-md-8 col-sm-12 col-xs-12" },
-    { id: 7, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 7, class: "col-md-12 col-sm-12 col-xs-12" },
+    // { id: 8, class: "col-md-4 col-sm-12 col-xs-12" },
+    // { id: 9, class: "col-md-4 col-sm-12 col-xs-12" },
+    // { id: 10, class: "col-md-4 col-sm-6 col-xs-12" },
     { id: 8, class: "col-md-4 col-sm-12 col-xs-12" },
-    { id: 9, class: "col-md-4 col-sm-12 col-xs-12" },
-    { id: 10, class: "col-md-4 col-sm-6 col-xs-12" },
-    { id: 11, class: "col-md-4 col-sm-12 col-xs-12" },
-    { id: 12, class: "col-md-4 col-sm-6 col-xs-12" },
+    { id: 9, class: "col-md-4 col-sm-6 col-xs-12" },
   ];
 
   const draggable = useGeneralTab(metaData);
@@ -142,11 +142,11 @@
     { id: 5, component: RatiosWidget },
     { id: 6, component: RevenueExpense },
     { id: 7, component: IncomeStatement },
-    { id: 8, component: SalesWidget },
-    { id: 9, component: ExpensesWidget },
-    { id: 10, component: TopProducts },
-    { id: 11, component: CashBalance },
-    { id: 12, component: BankBalance },
+    // { id: 8, component: SalesWidget },
+    // { id: 9, component: ExpensesWidget },
+    // { id: 10, component: TopProducts },
+    { id: 8, component: CashBalance },
+    { id: 9, component: BankBalance },
   ];
 
   const activeButton = computed(() =>

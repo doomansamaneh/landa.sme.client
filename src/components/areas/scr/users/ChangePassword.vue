@@ -1,96 +1,117 @@
 <template>
   <q-card bordered>
-    <q-card-section class="q-pb-none">
-      <div class="flex justify-between items-center">
-        <div class="text-body2 text-bold">تغییر رمز عبور</div>
-        <close-button v-close-popup />
-      </div>
-    </q-card-section>
-    <q-card-section>
-      <q-form ref="form" autofocus class="q-mt-lg">
-        <div class="q-gutter-md">
-          <custom-input
-            outlined
-            v-model="oldPassword"
-            :type="isPwdOldPassword ? 'password' : 'text'"
-            :placeholder="
-              $t('change-password-page.placeholders.old-password')
-            "
-            dense
-            class="text-body"
-            required
-            lazy-rules
-          >
-            <template #append>
-              <q-icon
-                :name="
-                  isPwdOldPassword ? 'visibility_off' : 'visibility'
-                "
-                size="xs"
-                class="cursor-pointer"
-                @click="isPwdOldPassword = !isPwdOldPassword"
-              />
-            </template>
-          </custom-input>
+    <slot name="header"></slot>
+    <slot name="body">
+      <q-card-section>
+        <q-form ref="form">
+          <div class="q-gutter-md">
+            <custom-input
+              outlined
+              v-model="oldPassword"
+              :type="isPwdOldPassword ? 'password' : 'text'"
+              :placeholder="
+                $t('change-password-page.placeholders.old-password')
+              "
+              dense
+              class="text-body"
+              required
+              lazy-rules
+            >
+              <template #append>
+                <q-icon
+                  :name="
+                    isPwdOldPassword ? 'visibility_off' : 'visibility'
+                  "
+                  size="xs"
+                  class="cursor-pointer"
+                  @click="isPwdOldPassword = !isPwdOldPassword"
+                />
+              </template>
+            </custom-input>
 
-          <custom-input
-            outlined
-            v-model="newPassword"
-            :type="isPwdNewPassword ? 'password' : 'text'"
-            :placeholder="
-              $t('change-password-page.placeholders.new-password')
-            "
-            dense
-            class="text-body"
-            required
-            lazy-rules
-          >
-            <template #append>
-              <q-icon
-                :name="
-                  isPwdNewPassword ? 'visibility_off' : 'visibility'
-                "
-                size="xs"
-                class="cursor-pointer"
-                @click="isPwdNewPassword = !isPwdNewPassword"
-              />
-            </template>
-          </custom-input>
+            <custom-input
+              outlined
+              v-model="newPassword"
+              :type="isPwdNewPassword ? 'password' : 'text'"
+              :placeholder="
+                $t('change-password-page.placeholders.new-password')
+              "
+              dense
+              class="text-body"
+              required
+              lazy-rules
+            >
+              <template #append>
+                <q-icon
+                  :name="
+                    isPwdNewPassword ? 'visibility_off' : 'visibility'
+                  "
+                  size="xs"
+                  class="cursor-pointer"
+                  @click="isPwdNewPassword = !isPwdNewPassword"
+                />
+              </template>
+            </custom-input>
 
-          <custom-input
-            outlined
-            v-model="confirmNewPassword"
-            :type="isPwdConfirmPassword ? 'password' : 'text'"
-            :placeholder="
-              $t('change-password-page.placeholders.confirm-password')
-            "
-            dense
-            class="text-body"
-            required
-            lazy-rules
-          >
-            <template #append>
-              <q-icon
-                :name="
-                  isPwdConfirmPassword
-                    ? 'visibility_off'
-                    : 'visibility'
-                "
-                size="xs"
-                class="cursor-pointer"
-                @click="isPwdConfirmPassword = !isPwdConfirmPassword"
-              />
-            </template>
-          </custom-input>
-        </div>
-      </q-form>
-    </q-card-section>
+            <custom-input
+              outlined
+              v-model="confirmNewPassword"
+              :type="isPwdConfirmPassword ? 'password' : 'text'"
+              :placeholder="
+                $t(
+                  'change-password-page.placeholders.confirm-password'
+                )
+              "
+              dense
+              class="text-body"
+              required
+              lazy-rules
+            >
+              <template #append>
+                <q-icon
+                  :name="
+                    isPwdConfirmPassword
+                      ? 'visibility_off'
+                      : 'visibility'
+                  "
+                  size="xs"
+                  class="cursor-pointer"
+                  @click="
+                    isPwdConfirmPassword = !isPwdConfirmPassword
+                  "
+                />
+              </template>
+            </custom-input>
+          </div>
+        </q-form>
+      </q-card-section>
+    </slot>
 
-    <actions @ok-clicked="submitForm">
-      <template #ok-label>
+    <q-card-actions class="q-pa-md dark-1">
+      <q-btn
+        type="submit"
+        @click="submitForm"
+        text-color="white"
+        unelevated
+        no-caps
+        padding="8px 16px"
+        rounded
+        class="primary-gradient primary-shadow"
+      >
         {{ $t("change-password-page.buttons.change-password") }}
-      </template>
-    </actions>
+      </q-btn>
+      <q-btn
+        flat
+        size="md"
+        @click="$router.go(-1)"
+        no-caps
+        padding="8px 16px"
+        v-close-popup
+        rounded
+      >
+        {{ $t("shared.labels.cancel") }}
+      </q-btn>
+    </q-card-actions>
   </q-card>
 </template>
 
@@ -101,8 +122,6 @@
   import { fetchWrapper } from "src/helpers";
 
   import CustomInput from "components/shared/forms/CustomInput.vue";
-  import Actions from "src/components/shared/forms/FormCardActions.vue";
-  import CloseButton from "src/components/shared/buttons/CloseButton.vue";
 
   const emit = defineEmits(["submitted"]);
   const authStore = useAuthStore();

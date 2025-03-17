@@ -106,26 +106,17 @@
 
   import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
   import SalesWidget from "src/components/areas/dashboard/widgets/sales/SalesWidget.vue";
-  import CashBalance from "src/components/areas/dashboard/widgets/CashBalance.vue";
-  import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
-  import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/ExpenseWidget.vue";
 
   const metaData = [
     { id: 1, class: "col-md-4 col-sm-12 col-xs-12" },
     { id: 2, class: "col-md-4 col-sm-12 col-xs-12" },
-    { id: 3, class: "col-md-4 col-sm-6 col-xs-12" },
-    { id: 4, class: "col-md-4 col-sm-12 col-xs-12" },
-    { id: 5, class: "col-md-4 col-sm-6 col-xs-12" },
   ];
 
   const draggable = useSalesTab(metaData);
 
   const widgets = [
     { id: 1, component: SalesWidget },
-    { id: 2, component: ExpensesWidget },
-    { id: 3, component: TopProducts },
-    { id: 4, component: CashBalance },
-    { id: 5, component: BankBalance },
+    { id: 2, component: TopProducts },
   ];
 
   const activeButton = computed(() =>

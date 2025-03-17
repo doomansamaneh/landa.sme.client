@@ -1,38 +1,41 @@
 <template>
-  <div style="margin-top: 0" :class="styles()">
-    <q-card-section class="q-gutter-y-lg" :class="padding()">
-      <div>
-        <custom-input
-          label="نام"
-          v-model="configStore.model.value.companySetting.name"
-        />
-      </div>
+  <q-card>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
+      <custom-input
+        label="نام"
+        v-model="configStore.model.value.companySetting.name"
+      />
 
-      <div>
+      <div class="q-mt-lg">
         <custom-input
           label="نام مسئول یا مدیر"
           v-model="configStore.model.value.companySetting.managerName"
         />
       </div>
-      <div>
+
+      <div class="q-mt-lg">
         <custom-input
           label="موضوع"
           v-model="configStore.model.value.companySetting.subject"
         />
       </div>
+
       <div class="q-mt-lg">
         <custom-input
           label="شماره ثبت"
           v-model="configStore.model.value.companySetting.regNo"
         />
       </div>
-      <div>
+
+      <div class="q-mt-lg">
         <custom-input
+          class="q-mt-lg"
           label="محل ثبت"
           v-model="configStore.model.value.companySetting.location"
         />
       </div>
-      <div>
+
+      <div class="q-mt-lg">
         <currency-lookup
           label="ارز"
           v-model:selectedId="
@@ -44,7 +47,7 @@
           "
         />
       </div>
-      <div>
+      <div class="q-mt-lg">
         <q-checkbox
           class="text-body2"
           dense
@@ -57,10 +60,8 @@
       </div>
     </q-card-section>
 
-    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
-      <save-button />
-    </q-card-actions>
-  </div>
+    <save-button />
+  </q-card>
 </template>
 
 <script setup>
@@ -77,26 +78,4 @@
   const props = defineProps({
     inside: Boolean,
   });
-
-  const styles = () => {
-    if (!props.inside && $q.screen.gt.sm) {
-      return "q-card form-container settings-card";
-    } else if (!props.inside) {
-      return "q-card form-container";
-    } else {
-      return "";
-    }
-  };
-
-  const padding = () => {
-    if (props.inside) {
-      return "no-padding";
-    }
-  };
 </script>
-
-<style>
-  .settings-card {
-    width: 900px;
-  }
-</style>

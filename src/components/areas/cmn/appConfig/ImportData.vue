@@ -1,15 +1,17 @@
 <template>
-  <div style="margin-top: 0" :class="styles()">
-    <q-card-section class="q-gutter-y-md">
-      <div v-for="item in importList" :key="item.importAction">
-        <import-file
-          :title="item.title"
-          :import-action="item.importAction"
-          :file-template="item.fileTemplate"
-        />
+  <q-card>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
+      <div class="q-gutter-y-lg">
+        <div v-for="item in importList" :key="item.importAction">
+          <import-file
+            :title="item.title"
+            :import-action="item.importAction"
+            :file-template="item.fileTemplate"
+          />
+        </div>
       </div>
     </q-card-section>
-  </div>
+  </q-card>
 </template>
 
 <script setup>
@@ -49,19 +51,4 @@
       fileTemplate: "purchaseTemplate.xlsx",
     },
   ];
-
-  const styles = () => {
-    if (!props.inside && $q.screen.gt.sm) {
-      return "q-card form-container settings-card";
-    } else if (!props.inside) {
-      return "q-card form-container";
-    } else {
-      return "";
-    }
-  };
 </script>
-<style>
-  .settings-card {
-    width: 900px;
-  }
-</style>

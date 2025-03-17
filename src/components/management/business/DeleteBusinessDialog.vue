@@ -5,7 +5,7 @@
     transition-hide="slide-down"
     transition-duration="600"
     no-backdrop-dismiss
-    maximized
+    :maximized="$q.screen.xs"
   >
     <delete-business :id="id" @submitted="submitted">
       <template #close-icon>

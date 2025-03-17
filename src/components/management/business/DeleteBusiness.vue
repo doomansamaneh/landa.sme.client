@@ -1,5 +1,9 @@
 <template>
-  <q-card class="dialog-card no-shadow">
+  <q-card
+    flat
+    class="border-radius-lg"
+    :style="$q.screen.gt.xs ? 'width: 400px' : ''"
+  >
     <q-card-section class="flex items-center justify-between">
       <div class="text-body2 text-bold">
         {{ $t("delete-business-page.title") }}
@@ -78,10 +82,3 @@
     });
   }
 </script>
-
-<style scoped>
-  .dialog-card {
-    width: 400px;
-    border-radius: 8px;
-  }
-</style>

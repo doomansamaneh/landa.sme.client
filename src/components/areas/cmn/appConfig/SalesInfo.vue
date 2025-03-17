@@ -1,14 +1,10 @@
 <template>
-  <div :class="styles()" style="margin-top: 0">
-    <q-card-section :class="padding()">
-      <div class="q-mt-lg">
-        <custom-input
-          label="عنوان فاکتور در چاپ"
-          v-model="
-            configStore.model.value.companySetting.invoiceTitle
-          "
-        />
-      </div>
+  <q-card>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
+      <custom-input
+        label="عنوان فاکتور در چاپ"
+        v-model="configStore.model.value.companySetting.invoiceTitle"
+      />
 
       <div class="q-mt-lg">
         <custom-select
@@ -160,10 +156,8 @@
       </div>
     </q-card-section>
 
-    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
-      <save-button />
-    </q-card-actions>
-  </div>
+    <save-button />
+  </q-card>
 </template>
 
 <script setup>
@@ -186,25 +180,5 @@
   const $q = useQuasar();
   const configStore = useAppConfigModel();
 
-  const styles = () => {
-    if (!props.inside && $q.screen.gt.sm) {
-      return "q-card form-container settings-card";
-    } else if (!props.inside) {
-      return "q-card form-container";
-    } else {
-      return "";
-    }
-  };
-
-  const padding = () => {
-    if (props.inside) {
-      return "no-padding";
-    }
-  };
   // console.log(configStore.model.value);
 </script>
-<style>
-  .settings-card {
-    width: 900px;
-  }
-</style>

@@ -1,7 +1,9 @@
 <template>
-  <div style="margin-top: 0" :class="styles()">
-    <q-card-section :class="padding()">
+  <q-card>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
       <q-checkbox
+        dense
+        size="46px"
         class="text-body1"
         label="لوگو در چاپ باشد"
         v-model="
@@ -9,7 +11,7 @@
         "
       />
     </q-card-section>
-    <q-card-section>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
       <q-avatar square>
         <img :src="logoSource" />
       </q-avatar>
@@ -24,7 +26,7 @@
 
     <q-separator class="q-my-md" />
 
-    <q-card-section>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
       <q-checkbox
         dense
         size="46px"
@@ -35,7 +37,7 @@
         "
       />
     </q-card-section>
-    <q-card-section>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
       <q-avatar square>
         <img :src="signatureSource" />
       </q-avatar>
@@ -48,10 +50,8 @@
       />
     </q-card-section>
 
-    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
-      <save-button />
-    </q-card-actions>
-  </div>
+    <save-button />
+  </q-card>
 </template>
 
 <script setup>
@@ -90,22 +90,6 @@
       mediaType.signature
     );
   });
-
-  const styles = () => {
-    if (!props.inside && $q.screen.gt.sm) {
-      return "q-card form-container settings-card";
-    } else if (!props.inside) {
-      return "q-card form-container";
-    } else {
-      return "";
-    }
-  };
-
-  const padding = () => {
-    if (props.inside) {
-      return "no-padding";
-    }
-  };
 </script>
 
 <style lang="scss">

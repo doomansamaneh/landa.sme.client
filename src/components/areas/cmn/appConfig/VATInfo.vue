@@ -1,6 +1,6 @@
 <template>
-  <div style="margin-top: 0" :class="styles()">
-    <q-card-section :class="padding()">
+  <q-card>
+    <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
       <div class="row q-col-gutter-md">
         <div class="col-md col-sm col-xs-12">
           <div>
@@ -81,14 +81,11 @@
       </div>
     </q-card-section>
 
-    <q-card-actions class="q-pb-lg q-px-lg q-mx-sm" align="right">
-      <save-button />
-    </q-card-actions>
-  </div>
+    <save-button />
+  </q-card>
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
   import { useAppConfigModel } from "../_composables/useAppConfigModel";
   import { helper } from "src/helpers";
   import {
@@ -104,28 +101,5 @@
     inside: Boolean,
   });
 
-  const $q = useQuasar();
   const configStore = useAppConfigModel();
-
-  const styles = () => {
-    if (!props.inside && $q.screen.gt.sm) {
-      return "q-card form-container settings-card";
-    } else if (!props.inside) {
-      return "q-card form-container";
-    } else {
-      return "";
-    }
-  };
-
-  const padding = () => {
-    if (props.inside) {
-      return "no-padding";
-    }
-  };
 </script>
-
-<style lang="scss">
-  .settings-card {
-    width: 900px;
-  }
-</style>

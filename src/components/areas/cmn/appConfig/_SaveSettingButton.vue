@@ -1,35 +1,37 @@
 <template>
-  <q-btn
-    color="primary"
-    class="primary-shadow"
-    rounded
-    no-caps
-    padding="8px 16px"
-    unelevated
-    @click="configStore.saveAppConfig()"
-  >
-    <div class="flex q-gutter-sm">
-      <q-icon name="save" size="sm" />
-      <div class="text-body1">
-        {{ $t("shared.labels.save") }}
+  <q-card-actions align="right" class="q-pa-md dark-1">
+    <q-btn
+      color="primary"
+      class="primary-shadow"
+      rounded
+      no-caps
+      padding="8px 16px"
+      unelevated
+      @click="configStore.saveAppConfig()"
+    >
+      <div class="flex q-gutter-sm">
+        <q-icon name="save" size="sm" />
+        <div class="text-body1">
+          {{ $t("shared.labels.save") }}
+        </div>
       </div>
-    </div>
-  </q-btn>
-  <q-btn
-    class="q-ml-xs"
-    no-cpas
-    rounded
-    padding="8px 16px"
-    unelevated
-    @click="configStore.reloadData()"
-  >
-    <div class="flex q-gutter-sm">
-      <q-icon name="refresh" size="sm" />
-      <div class="text-body1">
-        {{ $t("shared.labels.reloadDefault") }}
+    </q-btn>
+    <q-btn
+      class="q-ml-xs"
+      no-cpas
+      rounded
+      padding="8px 16px"
+      unelevated
+      @click="configStore.reloadData()"
+    >
+      <div class="flex q-gutter-sm">
+        <q-icon name="refresh" size="sm" />
+        <div class="text-body1">
+          {{ $t("shared.labels.reloadDefault") }}
+        </div>
       </div>
-    </div>
-  </q-btn>
+    </q-btn>
+  </q-card-actions>
 </template>
 
 <script setup>

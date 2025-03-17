@@ -8,7 +8,6 @@
     wrapCells_
     expandable
     toolbar
-    :no-fullscreen="true"
     :title="`${title} / ${subTitle}`"
   >
     <template #cell-voucherSubject="{ item }">

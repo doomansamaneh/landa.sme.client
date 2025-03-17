@@ -135,7 +135,7 @@
           transition-show="jump-down"
           transition-hide="jump-up"
         >
-          <q-list padding>
+          <q-list style="min-width: 200px" padding>
             <q-item
               clickable
               v-close-popup
