@@ -1,4 +1,9 @@
 @mixin q-table-dark {
+  .q-table thead tr,
+  .q-table tbody td {
+    height: 0;
+  }
+
   .q-table__container {
     background-color: $dark-page;
   }
