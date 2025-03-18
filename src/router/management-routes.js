@@ -10,16 +10,8 @@ export default {
       path: "",
       name: "business-index",
 
-      component: () => import("src/pages/management/business/IndexPage.vue"),
-    },
-    {
-      path: "/business/firstLoginWizard",
-      name: "first-login-wizard",
-      meta: {
-        icon: "celebration",
-      },
       component: () =>
-        import("src/pages/management/firstLoginWizard_/IndexPage.vue"),
+        import("src/pages/management/business/IndexPage.vue"),
     },
     {
       path: "changePassword",
@@ -43,7 +35,8 @@ export default {
     {
       path: "addBusiness",
       name: "add-new-business",
-      component: () => import("pages/management/business/AddBusinessPage.vue"),
+      component: () =>
+        import("pages/management/business/AddBusinessPage.vue"),
       meta: {
         icon: "o_add",
       },
@@ -51,7 +44,8 @@ export default {
     {
       path: "payments/:businessId",
       name: "payments",
-      component: () => import("src/pages/management/payment/IndexPage.vue"),
+      component: () =>
+        import("src/pages/management/payment/IndexPage.vue"),
       meta: {
         icon: "payment",
       },
@@ -59,7 +53,8 @@ export default {
     {
       path: "paymentDetail/:paymentId",
       name: "payment-detail",
-      component: () => import("pages/management/payment/DetailPage.vue"),
+      component: () =>
+        import("pages/management/payment/DetailPage.vue"),
       meta: {
         icon: "o_info",
       },
@@ -67,7 +62,8 @@ export default {
     {
       path: "addPayment/:businessId",
       name: "renew-subscription",
-      component: () => import("pages/management/payment/AddPaymentPage.vue"),
+      component: () =>
+        import("pages/management/payment/AddPaymentPage.vue"),
       meta: {
         icon: "o_monetization_on",
       },

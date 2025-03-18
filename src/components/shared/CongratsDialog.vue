@@ -7,14 +7,14 @@
   >
     <q-card class="congrats-card border-radius-xl">
       <q-card-section class="text-center q-pa-xl">
-        <q-btn
+        <!-- <q-btn
           class="absolute-top-right q-ma-md"
           icon="o_close"
           round
           unelevated
           v-close-popup
           @click="congratsStore.confetti.value = false"
-        />
+        /> -->
 
         <q-img
           spinner-color="primary"
@@ -34,6 +34,18 @@
         <div class="text-h6 q-mt-sm">
           از حسن انتخاب شما بسیار خشنود و سپاسگزار هستیم
         </div>
+
+        <div class="q-pa-lg">
+          <q-btn
+            class="primary-shadow"
+            color="primary"
+            unelevated
+            rounded
+            label="بسیار خوب"
+            icon="o_check"
+            @click="handleOk"
+          />
+        </div>
       </q-card-section>
     </q-card>
   </q-dialog>
@@ -41,14 +53,17 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useRouter, useRoute } from "vue-router";
+  import { useRouter } from "vue-router";
   import { useCongrats } from "src/composables/useCongrats";
 
+  const congratsDialog = ref(null);
   const congratsStore = useCongrats();
-  const route = useRouter();
   const router = useRouter();
 
-  const congratsDialog = ref(null);
+  const handleOk = () => {
+    congratsStore.confetti.value = false;
+    router.push("/");
+  };
 </script>
 
 <style lang="scss">

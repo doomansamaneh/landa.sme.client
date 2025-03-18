@@ -54,30 +54,35 @@ export function useBusinessGrid() {
   };
 
   const gotoBusiness = async (item) => {
-    await fetchWrapper
-      .post(`business/gotoBusiness/${item.id}`, null, true)
-      .then(async (response) => {
-        if (response.data.code === HttpStatusCode.Ok) {
-          await initBusiness(item);
-        } else if (response.data.data.url)
-          router.push(response.data.data.url);
-      });
+    const response = await fetchWrapper.post(
+      `business/gotoBusiness/${item.id}`,
+      null,
+      true
+    );
+    if (response.data?.code === HttpStatusCode.Ok) {
+      await initBusiness(item);
+    } else if (response.data.data.url)
+      router.push(response.data.data.url);
   };
 
   const initBusiness = async (item) => {
-    await fetchWrapper
-      .post(`business/InitBusiness/${item.id}`)
-      .then((response) => {
-        const data = response.data.data;
-        if (response.data.code === HttpStatusCode.Ok) {
-          appConfigStore.reset();
-          businessStore.set({ id: item.id, title: data.title });
-        }
-        if (data.url) router.push(data.url);
-        else {
-          alert(`goto business: ${data.message}`);
-        }
+    const response = await fetchWrapper.post(
+      `business/InitBusiness/${item.id}`
+    );
+
+    if (response.data.code === HttpStatusCode.Ok) {
+      appConfigStore.reset();
+      businessStore.set({
+        id: item.id,
+        title: response.data?.data?.title,
       });
+    }
+
+    if (response.data?.data?.url)
+      router.push(response.data?.data?.url);
+    else {
+      alert(`goto business: ${response.data?.data?.message}`);
+    }
   };
 
   const setDefaultSearchModel = () => {

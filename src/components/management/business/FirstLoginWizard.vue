@@ -77,13 +77,28 @@
         <template v-slot:navigation>
           <q-stepper-navigation>
             <q-btn
+              v-if="step === 7"
+              class="primary-shadow"
+              unelevated
+              rounded
+              icon="save"
+              @click="save"
+              color="primary"
+              label="ذخیره"
+            />
+
+            <q-btn
+              v-else
               class="primary-shadow"
               unelevated
               rounded
               @click="$refs.stepper.next()"
               color="primary"
-              :label="step === 7 ? 'پایان' : 'به پیش'"
-            />
+              label="به پیش"
+            >
+              <q-icon class="q-px-sm" name="west"></q-icon>
+            </q-btn>
+
             <q-btn
               rounded
               v-if="step > 1"
@@ -161,17 +176,28 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useQuasar } from "quasar";
+  import { useQuasar, Dialog } from "quasar";
+  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
-  import BasicInfo from "src/components/areas/cmn/appConfig/BasicInfo.vue";
-  import ContactInfo from "src/components/areas/cmn/appConfig/ContactInfo.vue";
-  import VatInfo from "src/components/areas/cmn/appConfig/VATInfo.vue";
-  import SalaryInfo from "src/components/areas/cmn/appConfig/SalaryInfo.vue";
-  import SalesInfo from "src/components/areas/cmn/appConfig/SalesInfo.vue";
-  import LogoInfo from "src/components/areas/cmn/appConfig/LogoInfo.vue";
+  import BasicInfo from "src/components/areas/cmn/appConfig/BasicInfoForm.vue";
+  import ContactInfo from "src/components/areas/cmn/appConfig/ContactInfoForm.vue";
+  import VatInfo from "src/components/areas/cmn/appConfig/VATInfoForm.vue";
+  import SalaryInfo from "src/components/areas/cmn/appConfig/SalaryInfoForm.vue";
+  import SalesInfo from "src/components/areas/cmn/appConfig/SalesInfoForm.vue";
+  import LogoInfo from "src/components/areas/cmn/appConfig/LogoInfoForm.vue";
+  import CongratsDialog from "src/components/shared/CongratsDialog.vue";
 
   const $q = useQuasar();
   const step = ref(1);
+  const configStore = useAppConfigModel();
+
+  const save = async () => {
+    await configStore.saveAppConfig();
+    Dialog.create({
+      component: CongratsDialog,
+    });
+    //router.push("/");
+  };
 
   const cardWidth = () => {
     return $q.screen.gt.sm ? "step-card" : "";

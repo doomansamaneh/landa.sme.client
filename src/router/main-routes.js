@@ -11,7 +11,16 @@ export default {
       component: () =>
         import("src/pages/areas/dashboard/IndexPage.vue"),
     },
-    //{ path: "/", redirect: "/dashboard" },
+    {
+      path: "/landing",
+      name: "landing",
+      meta: {
+        icon: "celebration",
+        title: "راه اندازی اولیه کسب و کار",
+      },
+      component: () =>
+        import("src/pages/management/business/LandingPage.vue"),
+    },
     {
       path: ":businessId",
       component: () =>
@@ -21,7 +30,7 @@ export default {
       path: "/dashboard",
       component: () =>
         import("src/pages/areas/dashboard/IndexPage.vue"),
-      // meta: { title: "پیشخوان" },
+      meta: { title: "پیشخوان" },
     },
 
     {

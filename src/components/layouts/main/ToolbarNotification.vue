@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    v-if="false"
     :size="$q.screen.xs ? '10px' : ''"
     round
     unelevated

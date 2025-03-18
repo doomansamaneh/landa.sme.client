@@ -5,7 +5,7 @@
     </q-page-container>
 
     <header-mobile v-if="$q.screen.xs" />
-    <header-desktop v-if="$q.screen.gt.xs" />
+    <header-desktop v-else />
 
     <bottom-navigation />
     <menu-bar />
