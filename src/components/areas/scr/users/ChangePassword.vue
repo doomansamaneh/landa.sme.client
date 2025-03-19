@@ -103,12 +103,12 @@
       <q-btn
         flat
         size="md"
-        @click="$router.go(-1)"
         no-caps
         padding="8px 16px"
         v-close-popup
         rounded
       >
+        <!-- @click="$router.go(-1)" -->
         {{ $t("shared.labels.cancel") }}
       </q-btn>
     </q-card-actions>
@@ -117,7 +117,6 @@
 
 <script setup>
   import { ref } from "vue";
-
   import { useAuthStore } from "src/stores";
   import { fetchWrapper } from "src/helpers";
 
@@ -136,14 +135,10 @@
   const isPwdConfirmPassword = ref(true);
 
   async function submitForm() {
-    await form.value.validate().then((success) => {
-      if (success) {
-        changePassword();
-      } else {
-        //todo: how to show validation message to user
-        // alert("Validation error");
-      }
-    });
+    const success = await form.value.validate();
+    if (success) {
+      changePassword();
+    }
   }
 
   async function changePassword() {

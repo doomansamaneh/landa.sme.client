@@ -9,7 +9,6 @@
     :readonly="readonly"
     outlined
     dense
-    hide-buttom-space
     hide-bottom-space
     :rules="rules"
   >

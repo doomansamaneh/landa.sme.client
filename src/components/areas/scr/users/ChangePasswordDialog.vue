@@ -24,7 +24,6 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { useDialogPluginComponent } from "quasar";
 
   import ChangePassword from "./ChangePassword.vue";

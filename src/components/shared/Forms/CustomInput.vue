@@ -18,7 +18,7 @@
     :rounded="rounded"
     :rules="rules"
     :autogrow="autogrow"
-    :inputMode="inputMode"
+    :inputmode="inputmode"
   >
     <validation-alert
       v-if="validationMessage"
@@ -54,7 +54,7 @@
     readonly: Boolean,
     rounded: Boolean,
     autogrow: Boolean,
-    inputMode: Boolean,
+    inputmode: String,
   });
 
   const modelValue = defineModel("modelValue");
