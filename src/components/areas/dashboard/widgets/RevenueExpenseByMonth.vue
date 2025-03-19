@@ -132,7 +132,9 @@
     chartType.value = chartType.value === 1 ? 2 : 1;
   };
 
-  const isShakingComputed = computed(() => draggable.isShaking.value);
+  const isShakingComputed = computed(
+    () => draggable.state.isShaking.value
+  );
 </script>
 
 <style lang="scss" scoped>

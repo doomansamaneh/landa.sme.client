@@ -130,5 +130,7 @@
       "linear-gradient(to bottom, rgba(0, 123, 255, 0.12), rgba(0, 123, 255, 0.7))",
   }));
 
-  const isShakingComputed = computed(() => draggable.isShaking.value);
+  const isShakingComputed = computed(
+    () => draggable.state.isShaking.value
+  );
 </script>

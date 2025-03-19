@@ -4,6 +4,7 @@
     separator="horizontal"
     multiSelect
     flat
+    dense
     numbered
     wrapCells_
     expandable

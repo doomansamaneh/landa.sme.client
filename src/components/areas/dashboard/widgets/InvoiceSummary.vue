@@ -257,7 +257,9 @@
   const draggable = useGeneralTab();
   const dataStore = useInvoiceSummary();
 
-  const isShakingComputed = computed(() => draggable.isShaking.value);
+  const isShakingComputed = computed(
+    () => draggable.state.isShaking.value
+  );
   const isHoveredComputed = computed(() => draggable.isHovered.value);
 </script>
 

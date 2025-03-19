@@ -65,5 +65,7 @@
   });
 
   const dataSource = useBankAccount(`get${props.action}Debit`);
-  const isShakingComputed = computed(() => draggable.isShaking.value);
+  const isShakingComputed = computed(
+    () => draggable.state.isShaking.value
+  );
 </script>

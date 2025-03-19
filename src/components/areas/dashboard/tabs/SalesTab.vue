@@ -24,7 +24,7 @@
 
     <div class="flex q-gutter-sm items-center">
       <q-btn
-        v-if="draggable.isShaking.value"
+        v-if="draggable.state.isShaking.value"
         class="text-body2 primary-gradient text-white primary-shadow"
         rounded
         unelevated
@@ -36,7 +36,7 @@
       </q-btn>
 
       <q-btn
-        v-if="draggable.isShaking.value"
+        v-if="draggable.state.isShaking.value"
         class="bordered text-body2"
         rounded
         unelevated
@@ -56,7 +56,9 @@
       :key="widget.id"
       :class="[
         widget.class,
-        { shake: draggable.isShaking.value && !widget.isHovered },
+        {
+          shake: draggable.state.isShaking.value && !widget.isHovered,
+        },
       ]"
       @mouseover="widget.isHovered = true"
       @mouseleave="widget.isHovered = false"
@@ -64,10 +66,10 @@
       <component
         :class="[
           widget.class,
-          { grabbable: draggable.isShaking.value },
+          { grabbable: draggable.state.isShaking.value },
         ]"
         :is="getComponentById(widget.id)"
-        :draggable="draggable.isShaking.value"
+        :draggable="draggable.state.isShaking.value"
         @dragstart="draggable.onDragStart(index)"
         @dragover.prevent
         @drop="draggable.onDrop(index)"
@@ -80,7 +82,7 @@
   <div
     v-if="
       draggable.hiddenWidgets.value.length > 0 &&
-      draggable.isShaking.value
+      draggable.state.isShaking.value
     "
     class="q-mt-xl"
   >
@@ -120,7 +122,7 @@
   ];
 
   const activeButton = computed(() =>
-    draggable.isShaking.value ? "btn-active" : ""
+    draggable.state.isShaking.value ? "btn-active" : ""
   );
 
   const getComponentById = (id) =>

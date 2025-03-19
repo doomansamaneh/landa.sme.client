@@ -11,7 +11,7 @@
         dense
         active-color="primary"
         align="left"
-        v-model="tab"
+        v-model="state.tab.value"
       >
         <q-tab name="general" icon="o_dashboard" label="عمومی" />
         <q-tab name="sales" icon="o_receipt" label="فروش" />
@@ -23,13 +23,13 @@
 
     <keep-alive>
       <div>
-        <template v-if="tab === 'general'">
+        <template v-if="state.tab.value === 'general'">
           <general-tab />
         </template>
-        <template v-if="tab === 'sales'">
+        <template v-if="state.tab.value === 'sales'">
           <sales-tab />
         </template>
-        <template v-if="tab === 'expense'">
+        <template v-if="state.tab.value === 'expense'">
           <expense-tab />
         </template>
       </div>
@@ -40,12 +40,12 @@
 <script setup>
   import { ref } from "vue";
   import { useQuasar } from "quasar";
+  import { useTabsState } from "./_composables/useTabsState";
 
   import GeneralTab from "./tabs/GeneralTab.vue";
   import SalesTab from "./tabs/SalesTab.vue";
   import ExpenseTab from "./tabs/ExpenseTab.vue";
 
   const $q = useQuasar();
-
-  const tab = ref("general");
+  const state = useTabsState();
 </script>

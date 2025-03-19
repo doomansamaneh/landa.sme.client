@@ -240,5 +240,7 @@
     emit("hideWidget");
   };
 
-  const isShakingComputed = computed(() => draggable.isShaking.value);
+  const isShakingComputed = computed(
+    () => draggable.state.isShaking.value
+  );
 </script>
