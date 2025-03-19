@@ -11,7 +11,39 @@
         class="primary-gradient primary-shadow text-white"
         :to="`/${baseRoute}/edit/${model?.id}`"
       />
-      <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
+
+      <menu-button
+        icon="more_horiz"
+        :title="$t('shared.labels.more')"
+      />
+
+      <q-menu class="border-radius-lg" cover>
+        <q-list style="min-width: 200px" padding>
+          <menu-item-copy :to="`/${baseRoute}/copy/${model?.id}`" />
+          <menu-item-print @click="openPreview" />
+          <q-separator size="1px" />
+          <menu-item
+            :title="$t('shared.labels.exportExcel')"
+            icon="o_download"
+            @click="exportAll()"
+          />
+          <menu-item
+            icon="o_save"
+            :title="$t('shared.labels.downloadInsurrance')"
+            @click="emits('export-insurance')"
+          />
+
+          <menu-item
+            icon="o_save"
+            :title="$t('shared.labels.downloadTax')"
+            @click="emits('export-tax')"
+          />
+          <q-separator size="1px" />
+          <menu-item-delete @click="emits('delete-by-id')" />
+        </q-list>
+      </q-menu>
+
+      <!-- <menu-button-copy :to="`/${baseRoute}/copy/${model?.id}`" />
 
       <menu-button-delete @click="emits('delete-by-id')" />
       <menu-button-print @click="openPreview" />
@@ -31,7 +63,7 @@
         icon="o_save"
         :title="$t('shared.labels.downloadTax')"
         @click="emits('export-tax')"
-      />
+      /> -->
 
       <!-- <menu-button
         @click="printStore.downloadPdf()"
@@ -56,11 +88,17 @@
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
+  import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
+  import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
+  import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
+
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+
   import DataGridPreview from "./printPreview/DataGridPreview.vue";
 
   const props = defineProps({

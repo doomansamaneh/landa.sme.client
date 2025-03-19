@@ -9,7 +9,7 @@
         inline-label
         narrow-indicator
         dense
-        active-color="primary"
+        :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
         align="left"
         v-model="state.tab.value"
       >

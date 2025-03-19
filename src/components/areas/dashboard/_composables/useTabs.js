@@ -12,8 +12,11 @@ export function useTabs(metaData = [], storageKeyPrefix = "widgets") {
   const hiddenWidgetsKey = `${storageKeyPrefix}HiddenWidgetsKey`;
 
   const loadWidgets = () => {
-    widgets.value = JSON.parse(localStorage.getItem(storageKey)) || [...metaData];
-    hiddenWidgets.value = JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || [];
+    widgets.value = JSON.parse(localStorage.getItem(storageKey)) || [
+      ...metaData,
+    ];
+    hiddenWidgets.value =
+      JSON.parse(localStorage.getItem(hiddenWidgetsKey)) || [];
   };
 
   const onDragStart = (index) => {
@@ -48,7 +51,10 @@ export function useTabs(metaData = [], storageKeyPrefix = "widgets") {
   };
 
   const saveHiddenWidgetsToLocalStorage = () => {
-    localStorage.setItem(hiddenWidgetsKey, JSON.stringify(hiddenWidgets.value));
+    localStorage.setItem(
+      hiddenWidgetsKey,
+      JSON.stringify(hiddenWidgets.value)
+    );
   };
 
   const clearLocalStorage = () => {
@@ -57,10 +63,14 @@ export function useTabs(metaData = [], storageKeyPrefix = "widgets") {
   };
 
   const hideWidget = (id) => {
-    const widgetToHide = widgets.value.find((widget) => widget.id === id);
+    const widgetToHide = widgets.value.find(
+      (widget) => widget.id === id
+    );
     if (widgetToHide && !isWidgetHidden(id)) {
       hiddenWidgets.value.push(widgetToHide);
-      widgets.value = widgets.value.filter((widget) => widget.id !== id);
+      widgets.value = widgets.value.filter(
+        (widget) => widget.id !== id
+      );
       saveLayoutToLocalStorage();
       saveHiddenWidgetsToLocalStorage();
     }

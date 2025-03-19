@@ -17,9 +17,11 @@
     </div> -->
 
       <q-item-section avatar v-if="icon">
-        <q-avatar class="bg-on-dark text-on-dark">
-          <q-icon :name="icon" />
-        </q-avatar>
+        <slot name="avatar">
+          <q-avatar class="bg-on-dark text-on-dark">
+            <q-icon :name="icon" />
+          </q-avatar>
+        </slot>
       </q-item-section>
 
       <q-item-section class="text-body2">
