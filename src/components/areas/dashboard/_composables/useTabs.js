@@ -37,7 +37,9 @@ export function useTabs(metaData = [], storageKeyPrefix = "widgets") {
   };
 
   const toggleShake = () => {
-    state.isShaking.value = !state.isShaking.value;
+    const currentTab = state.tab.value;
+    state.shakingStates.value[currentTab] =
+      !state.shakingStates.value[currentTab];
   };
 
   const resetToDefault = () => {
@@ -88,7 +90,8 @@ export function useTabs(metaData = [], storageKeyPrefix = "widgets") {
   const saveLayoutChanges = () => {
     saveLayoutToLocalStorage();
     saveHiddenWidgetsToLocalStorage();
-    state.isShaking.value = false;
+    const currentTab = state.tab.value;
+    state.shakingStates.value[currentTab] = false;
   };
 
   onMounted(() => {
