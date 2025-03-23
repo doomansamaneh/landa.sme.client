@@ -68,7 +68,7 @@
 <script setup>
   import { computed } from "vue";
   import { helper } from "src/helpers";
-  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
+  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/generalTab/useRevenueExpense";
 
   const props = defineProps(["dataSource", "dataStore"]);
 

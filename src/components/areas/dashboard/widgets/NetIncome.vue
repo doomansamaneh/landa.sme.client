@@ -93,7 +93,7 @@
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
   import { useNetIncome } from "../../acc/_composables/useNetIncome";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   import VueApexCharts from "vue3-apexcharts";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";

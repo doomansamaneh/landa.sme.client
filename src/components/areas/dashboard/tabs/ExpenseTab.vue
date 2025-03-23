@@ -106,7 +106,7 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useExpenseTab } from "src/components/areas/dashboard/_composables/useExpenseTab";
+  import { useExpenseTab } from "src/components/areas/dashboard/_composables/expenseTab/useExpenseTab";
 
   import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/ExpenseWidget.vue";
 

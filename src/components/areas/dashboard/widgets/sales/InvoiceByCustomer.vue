@@ -1,68 +1,65 @@
 <template>
-  <q-card class="shadow bordered">
-    <q-card-section class="q-ma-sm">
-      <div class="row justify-between">
-        <div class="col-11">
-          <q-item class="no-padding">
-            <q-item-section avatar>
-              <q-avatar
-                rounded
-                color="blue"
-                text-color="white"
-                icon="o_shopping_basket"
-                size="md"
-                class="primary-shadow"
-              />
-            </q-item-section>
+  <q-card
+    :class="[isShakingComputed ? 'widget' : '']"
+    class="shadow main-card fit bordered q-pa-none"
+    flat
+  >
+    <template v-if="isShakingComputed">
+      <q-btn
+        class="off-btn bordered absolute-top-right q-ma-sm z-1"
+        round
+        dense
+        unelevated
+        @click="hideWidget"
+      >
+        <q-icon name="o_visibility_off" />
+      </q-btn>
+    </template>
 
-            <q-item-section>
-              <q-item-label class="text-body1 q-mb-xs">
-                فروش و درآمد، هزینه
-              </q-item-label>
-            </q-item-section>
-          </q-item>
-        </div>
-        <div class="col">
-          <div class="row justify-end">
-            <q-btn
-              unelevated
-              round
-              dense
-              :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-              size="md"
-              icon="o_more_vert"
-            />
+    <div
+      :class="
+        isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
+      "
+    >
+      <q-card-section class="col">
+        <div class="row q-gutter-md justify-between">
+          <div class="col-9">
+            <widget-title label="مهمترین مشتریان" icon="o_person" />
           </div>
         </div>
-      </div>
-    </q-card-section>
-    <template v-if="dataStore.chartSeries?.value">
-      <chart
-        :options="options"
-        :series="dataStore.chartSeries.value"
-        :height="height"
-        :legend="legend"
-        :title="title"
-        :class="direction"
-        type="area"
-        class="line-chart"
-      />
-    </template>
+      </q-card-section>
+      <q-inner-loading
+        :showing="chartStore.showLoader.value"
+        class="transparent z-1"
+      >
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
+
+      <template v-if="chartStore.chartSeries?.value">
+        <chart
+          height="350"
+          :series="chartStore.chartSeries?.value"
+          :options="options"
+          class="bar-chart"
+          :class="direction"
+        />
+      </template>
+    </div>
   </q-card>
 </template>
 
 <script setup>
-  import { ref, onMounted, watch, computed } from "vue";
+  import { ref, watch, onMounted, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/generalTab/useRevenueExpense";
-
-  import Chart from "vue3-apexcharts";
-  //import Chart from 'src/components/shared/charts/ChartView.vue';
-
-  const props = defineProps(["height", "legend", "title"]);
+  import { useInvoiceByCustomer } from "src/components/areas/dashboard/_composables/salesTab/useInvoiceByCustomer";
+  import { useSalesTab } from "../../_composables/salesTab/useSalesTab";
+  
+  import Chart from "src/components/shared/charts/ChartView.vue";
+  import WidgetTitle from "../WidgetTitle.vue";
 
   const $q = useQuasar();
-  const dataStore = useRevenueExpense();
+  const draggable = useSalesTab();
+  const chartStore = useInvoiceByCustomer({});
 
   const options = ref(null);
 
@@ -71,7 +68,7 @@
 
     options.value = {
       title: {
-        text: props.title,
+        text: "",
         align: "center",
         style: {
           fontSize: "14px",
@@ -79,13 +76,11 @@
           color: $q.dark.isActive ? "white" : "#2d2d2d",
         },
       },
-
       chart: {
-        fontFamily,
+        offsetY: 0,
         parentHeightOffset: 0,
-        sparkline: {
-          enabled: true,
-        },
+        fontFamily,
+        type: "bar",
         toolbar: {
           show: false,
         },
@@ -106,68 +101,53 @@
           },
         },
       },
-
+      plotOptions: {
+        bar: {
+          // borderRadius: 5,
+          // horizontal: false,
+          columnWidth: "15%",
+          // distributed: false,
+        },
+      },
       dataLabels: {
         enabled: false,
       },
-
-      stroke: {
-        width: 4,
-        curve: "smooth",
-      },
-
+      // stroke: {
+      //   width: 2.5,
+      // },
       markers: {
         size: 0,
       },
-
       grid: {
-        show: false,
-        padding: {
-          top: 100,
-          left: 0,
-          right: 0,
-          bottom: 0,
-        },
-        lines: {
-          show: false,
-        },
+        strokeDashArray: 5,
         borderColor: $q.dark.isActive ? "#ffffff47" : "#2d2d2d2d",
+        padding: {
+          top: 0,
+          right: 32,
+          bottom: 8,
+          left: 32,
+        },
       },
       xaxis: {
-        show: false,
         axisBorder: {
           show: false,
         },
         axisTicks: {
           show: false,
         },
-        categories: [
-          "فرودین",
-          "اردیبهشت",
-          "خرداد",
-          "تیر",
-          "مرداد",
-          "شهریور",
-          "مهر",
-          "آبان",
-          "آذر",
-          "دی",
-          "بهمن",
-          "اسفند",
-        ],
+        categories: chartStore.chartCategories?.value,
         labels: {
           show: false,
+          offsetY: 12,
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
           },
         },
       },
       yaxis: {
-        min: 0,
         show: false,
         opposite: false,
         labels: {
-          show: false,
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
           },
@@ -177,7 +157,8 @@
         },
       },
       legend: {
-        show: props.legend,
+        show: true,
+        showForSingleSeries: true,
         inverseOrder: true,
         labels: {
           colors: $q.dark.isActive ? "white" : "#2d2d2d",
@@ -185,24 +166,18 @@
         position: "top",
         fontSize: "14px",
         fontWeight: 400,
-        // offsetY: 16,
         markers: {
+          strokeWidth: 0,
           width: 14,
           height: 14,
           radius: 4,
           offsetX: $q.lang.rtl ? "-4" : "-4",
         },
         itemMargin: {
-          // vertical: 16,
           horizontal: 16,
         },
       },
-      colors: [
-        "rgb(0, 255, 0)",
-        "rgb(255, 0, 0)",
-        "rgb(0, 155, 227)",
-        "rgb(36, 183, 160)",
-      ],
+
       tooltip: {
         enabled: true,
         x: {
@@ -210,6 +185,9 @@
         },
         y: {
           show: true,
+          title: {
+            formatter: (seriesName) => seriesName == "",
+          },
         },
         style: {
           fontSize: "13px",
@@ -234,10 +212,11 @@
   );
 
   watch(
-    () => $q.lang.rtl,
+    () => chartStore.chartCategories?.value,
     () => {
       setOptions();
-    }
+    },
+    { deep: true }
   );
 
   onMounted(() => {
@@ -259,4 +238,14 @@
 
     return formattedValue;
   }
+
+  const emit = defineEmits(["hideWidget"]);
+
+  const hideWidget = () => {
+    emit("hideWidget");
+  };
+
+  const isShakingComputed = computed(
+    () => draggable.state.isShaking.value
+  );
 </script>

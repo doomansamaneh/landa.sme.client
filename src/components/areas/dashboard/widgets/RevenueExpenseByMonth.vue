@@ -111,8 +111,8 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { useRevenueExpenseState } from "../_composables/useRevenueExpenseState";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useRevenueExpenseState } from "../_composables/generalTab/useRevenueExpenseState";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   import RevenueExpenseChart from "./_RevenueExpenseChart.vue";
   import RevenueExpenseTable from "./_RevenueExpenseTable.vue";

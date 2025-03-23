@@ -25,7 +25,7 @@
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
-  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
+  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/generalTab/useRevenueExpense";
 
   import Chart from "src/components/shared/charts/ChartView.vue";
 

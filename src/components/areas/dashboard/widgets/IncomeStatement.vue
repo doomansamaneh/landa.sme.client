@@ -132,7 +132,7 @@
   import { helper } from "src/helpers";
   import { useIncomeStatement } from "../../acc/_composables/useIncomeStatement";
   import { accountCLTypeIds } from "src/constants";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 

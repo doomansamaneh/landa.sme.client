@@ -106,14 +106,16 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useSalesTab } from "src/components/areas/dashboard/_composables/useSalesTab";
+  import { useSalesTab } from "src/components/areas/dashboard/_composables/salesTab/useSalesTab";
 
   import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
   import SalesWidget from "src/components/areas/dashboard/widgets/sales/SalesWidget.vue";
+  import InvoiceByCustomer from "src/components/areas/dashboard/widgets/sales/InvoiceByCustomer.vue";
 
   const metaData = [
     { id: 1, class: "col-md-4 col-sm-12 col-xs-12" },
     { id: 2, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 3, class: "col-md-12 col-sm-12 col-xs-12" },
   ];
 
   const draggable = useSalesTab(metaData);
@@ -121,6 +123,7 @@
   const widgets = [
     { id: 1, component: SalesWidget },
     { id: 2, component: TopProducts },
+    { id: 3, component: InvoiceByCustomer },
   ];
 
   const activeButton = computed(() =>

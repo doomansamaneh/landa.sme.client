@@ -18,8 +18,8 @@
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
-  import { useRevenueExpenseState } from "../../_composables/useRevenueExpenseState";
-  import { useRevenueExpense } from "../../_composables/useRevenueExpense";
+  import { useRevenueExpenseState } from "../../_composables/generalTab/useRevenueExpenseState";
+  import { useRevenueExpense } from "../../_composables/generalTab/useRevenueExpense";
 
   import Chart from "src/components/shared/charts/ChartView.vue";
 
