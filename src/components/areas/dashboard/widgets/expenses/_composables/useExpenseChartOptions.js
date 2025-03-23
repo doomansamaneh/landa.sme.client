@@ -98,7 +98,7 @@ export function useExpenseChartOptions(reportStore, $q) {
       },
       stroke: {
         show: true,
-        width: 6,
+        width: 2,
         colors: $q.dark.isActive ? "var(--q-dark-page)" : "#FFFFFF",
       },
       legend: {

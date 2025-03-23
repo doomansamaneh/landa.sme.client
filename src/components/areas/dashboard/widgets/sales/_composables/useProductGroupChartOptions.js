@@ -1,7 +1,7 @@
 import { computed } from "vue";
 import { helper } from "src/helpers";
 
-export function useSalesChartOptions(reportStore, $q) {
+export function useProductGroupChartOptions(reportStore, $q) {
   const chartOptions = computed(() => {
     const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
     const total = reportStore.total.value;
@@ -53,8 +53,8 @@ export function useSalesChartOptions(reportStore, $q) {
       chart: {
         fontFamily,
         type: "donut",
-        offsetX: $q.lang.rtl ? ($q.screen.xs ? 40 : -16) : 0,
         offsetY: $q.screen.xs ? -32 : -24,
+        height: $q.screen.lt.md ? 300 : 300,
       },
       labels: reportStore.chartLabels.value,
       dataLabels: {
@@ -102,12 +102,29 @@ export function useSalesChartOptions(reportStore, $q) {
         colors: $q.dark.isActive ? "var(--q-dark-page)" : "#FFFFFF",
       },
       legend: {
-        show: false,
+        show: true,
+        position: "bottom",
+        horizontalAlign: "center",
+        fontSize: "14px",
+        fontFamily,
+        labels: {
+          colors: $q.dark.isActive ? "#fff" : "#000",
+        },
+        markers: {
+          width: 12,
+          height: 12,
+          strokeWidth: 0,
+          radius: 12,
+        },
+        itemMargin: {
+          horizontal: 8,
+          vertical: 5,
+        },
       },
       tooltip: {
         enabled: true,
         custom: function ({ series, seriesIndex, w }) {
-          const color = "#FF4560";
+          const color = w.globals.colors[seriesIndex];
           const percentage = (
             (series[seriesIndex] / total) *
             100

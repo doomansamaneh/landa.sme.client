@@ -25,8 +25,8 @@
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
             <widget-title
-              label="فروش بر اساس مشتریان"
-              icon="o_person"
+              label="فروش بر اساس محصولات"
+              icon="o_inventory_2"
             />
           </div>
         </div>
@@ -54,7 +54,7 @@
 <script setup>
   import { ref, watch, onMounted, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useInvoiceByCustomer } from "src/components/areas/dashboard/_composables/salesTab/useInvoiceByCustomer";
+  import { useInvoiceByProduct } from "src/components/areas/dashboard/_composables/salesTab/useInvoiceByProduct";
   import { useSalesTab } from "../../_composables/salesTab/useSalesTab";
 
   import Chart from "src/components/shared/charts/ChartView.vue";
@@ -62,7 +62,7 @@
 
   const $q = useQuasar();
   const draggable = useSalesTab();
-  const chartStore = useInvoiceByCustomer({});
+  const chartStore = useInvoiceByProduct({});
 
   const options = ref(null);
 
@@ -106,18 +106,12 @@
       },
       plotOptions: {
         bar: {
-          // borderRadius: 5,
-          // horizontal: false,
           columnWidth: "15%",
-          // distributed: false,
         },
       },
       dataLabels: {
         enabled: false,
       },
-      // stroke: {
-      //   width: 2.5,
-      // },
       markers: {
         size: 0,
       },
