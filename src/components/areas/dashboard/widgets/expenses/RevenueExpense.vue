@@ -134,7 +134,7 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
   import { useNetIncome } from "src/components/areas/acc/_composables/useNetIncome";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";

@@ -17,7 +17,7 @@
 
 <script setup>
   import { computed, onMounted } from "vue";
-  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/useRevenueExpense";
+  import { useRevenueExpense } from "src/components/areas/dashboard/_composables/generalTab/useRevenueExpense";
   import { useCustomerInvoiceState } from "../../../_composables/useCustomerInvoiceState";
   import { useDataTable } from "src/composables/useDataTable";
 

@@ -65,7 +65,7 @@
 <script setup>
   import { computed } from "vue";
   import { helper } from "src/helpers";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   const draggable = useGeneralTab();
 

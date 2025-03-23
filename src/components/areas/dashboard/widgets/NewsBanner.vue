@@ -105,7 +105,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   const $q = useQuasar();
   const draggable = useGeneralTab();

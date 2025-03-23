@@ -106,14 +106,22 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useSalesTab } from "src/components/areas/dashboard/_composables/useSalesTab";
+  import { useSalesTab } from "src/components/areas/dashboard/_composables/salesTab/useSalesTab";
 
   import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
   import SalesWidget from "src/components/areas/dashboard/widgets/sales/SalesWidget.vue";
+  import InvoiceByCustomer from "src/components/areas/dashboard/widgets/sales/InvoiceByCustomer.vue";
+  import InvoiceByProduct from "src/components/areas/dashboard/widgets/sales/InvoiceByProduct.vue";
+  import InvoiceByProductGroup from "src/components/areas/dashboard/widgets/sales/InvoiceByProductGroup.vue";
+  import FantasySalesPreview from "src/components/areas/dashboard/widgets/sales/GoToSalesReview.vue";
 
   const metaData = [
     { id: 1, class: "col-md-4 col-sm-12 col-xs-12" },
     { id: 2, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 3, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 4, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 5, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 6, class: "col-md-4 col-sm-12 col-xs-12" },
   ];
 
   const draggable = useSalesTab(metaData);
@@ -121,6 +129,10 @@
   const widgets = [
     { id: 1, component: SalesWidget },
     { id: 2, component: TopProducts },
+    { id: 3, component: InvoiceByCustomer },
+    { id: 4, component: InvoiceByProduct },
+    { id: 5, component: InvoiceByProductGroup },
+    { id: 6, component: FantasySalesPreview },
   ];
 
   const activeButton = computed(() =>

@@ -106,7 +106,7 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
   import SomeInfo from "src/components/areas/dashboard/widgets/NetIncome.vue";

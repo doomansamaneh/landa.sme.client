@@ -243,8 +243,8 @@
 <script setup>
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
-  import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/useInvoiceSummary";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/generalTab/useInvoiceSummary";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 

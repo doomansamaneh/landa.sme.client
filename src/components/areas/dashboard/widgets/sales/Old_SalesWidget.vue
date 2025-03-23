@@ -82,7 +82,7 @@
 
 <script setup>
   import { ref, computed } from "vue";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/useGeneralTab";
+  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   import ProductGroupChart from "src/components/areas/dashboard/widgets/sales/ProductGroupChart.vue";
   import ProductChart from "src/components/areas/dashboard/widgets/sales/ProductChart.vue";

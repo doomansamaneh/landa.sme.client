@@ -21,33 +21,29 @@
       "
     >
       <q-card-section class="q-pb-none">
-        <widget-title label="فروش و درآمد" icon="receipt_long" />
+        <widget-title
+          label="فروش بر اساس گروه محصولات"
+          icon="category"
+        />
       </q-card-section>
 
-      <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
-        <div class="col-md-8 col-xs-12">
-          <div class="text-h3 text-weight-700">
-            {{
-              formatRevenue(revenueExpenseStore.revenueTotal?.value)
-            }}
-          </div>
-        </div>
-        <div
-          :class="$q.screen.gt.xs ? 'absolute-top-right q-mt-xl' : ''"
-          :style="{ width: '250px' }"
-        >
-          <apex-chart
-            v-if="reportStore.chartSeries?.value"
-            class="pie-chart"
-            type="donut"
-            :options="chartOptions"
-            :series="reportStore.chartSeries.value"
-          />
-        </div>
-      </q-card-section>
-
-      <sales-sparkline />
+      <q-inner-loading
+        :showing="reportStore.showLoader.value"
+        class="transparent z-1"
+      >
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
     </div>
+
+    <q-card-section>
+      <apex-chart
+        v-if="reportStore.chartSeries.value"
+        class="pie-chart"
+        type="donut"
+        :options="chartOptions"
+        :series="reportStore.chartSeries.value"
+      />
+    </q-card-section>
   </q-card>
 </template>
 
@@ -58,22 +54,19 @@
   import { helper } from "src/helpers";
   import { useReport } from "src/components/areas/sls/_composables/useReport";
   import { useSalesTab } from "src/components/areas/dashboard/_composables/salesTab/useSalesTab";
-  import { useRevenueExpenseState } from "../../_composables/generalTab/useRevenueExpenseState";
-  import { useRevenueExpense } from "../../_composables/generalTab/useRevenueExpense";
-  import { useSalesChartOptions } from "./_composables/useSalesChartOptions";
+  import { useProductGroupChartOptions } from "./_composables/useProductGroupChartOptions";
 
   import ApexChart from "vue3-apexcharts";
-  import SalesSparkline from "./SalesSparkline.vue";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const $q = useQuasar();
   const draggable = useSalesTab();
-  const reportStore = useReport("invoiceByProduct");
-  const revenueExpenseStore = useRevenueExpense(
-    useRevenueExpenseState()
-  );
+  const reportStore = useReport("invoiceByProductGroup");
 
-  const { chartOptions } = useSalesChartOptions(reportStore, $q);
+  const { chartOptions } = useProductGroupChartOptions(
+    reportStore,
+    $q
+  );
 
   const isShakingComputed = computed(
     () => draggable.state.isShaking.value
