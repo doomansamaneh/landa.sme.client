@@ -109,12 +109,22 @@
   import { useExpenseTab } from "src/components/areas/dashboard/_composables/expenseTab/useExpenseTab";
 
   import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/ExpenseWidget.vue";
+  import TopExpenseBySL from "src/components/areas/dashboard/widgets/expenses/TopExpenseBySL.vue";
+  import TopExpenseByCL from "src/components/areas/dashboard/widgets/expenses/TopExpenseByCL.vue";
 
-  const metaData = [{ id: 1, class: "col-md-4 col-sm-12 col-xs-12" }];
+  const metaData = [
+    { id: 1, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 2, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 3, class: "col-md-4 col-sm-12 col-xs-12" },
+  ];
 
   const draggable = useExpenseTab(metaData);
 
-  const widgets = [{ id: 1, component: ExpensesWidget }];
+  const widgets = [
+    { id: 1, component: ExpensesWidget },
+    { id: 2, component: TopExpenseBySL },
+    { id: 3, component: TopExpenseByCL },
+  ];
 
   const activeButton = computed(() =>
     draggable.state.isTabShaking("expense") ? "btn-active" : ""

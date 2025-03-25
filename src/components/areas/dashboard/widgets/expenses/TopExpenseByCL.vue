@@ -1,7 +1,7 @@
 <template>
   <q-card
     :class="[isShakingComputed ? 'widget' : '']"
-    class="shadow main-card fit bordered q-pa-none"
+    class="fit shadow main-card fit bordered q-pa-none"
     flat
   >
     <template v-if="isShakingComputed">
@@ -24,10 +24,7 @@
       <q-card-section class="col">
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
-            <widget-title
-              label="فروش بر اساس مشتریان"
-              icon="o_person"
-            />
+            <widget-title label="هزینه‌" icon="o_account_balance" />
           </div>
         </div>
       </q-card-section>
@@ -54,15 +51,15 @@
 <script setup>
   import { ref, watch, onMounted, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useInvoiceByCustomer } from "src/components/areas/dashboard/_composables/salesTab/useInvoiceByCustomer";
-  import { useSalesTab } from "../../_composables/salesTab/useSalesTab";
+  import { useTopExpenseByCL } from "src/components/areas/dashboard/_composables/expenseTab/useTopExpenseByCL";
+  import { useExpenseTab } from "../../_composables/expenseTab/useExpenseTab";
 
   import Chart from "src/components/shared/charts/ChartView.vue";
   import WidgetTitle from "../WidgetTitle.vue";
 
   const $q = useQuasar();
-  const draggable = useSalesTab();
-  const chartStore = useInvoiceByCustomer({});
+  const draggable = useExpenseTab();
+  const chartStore = useTopExpenseByCL({});
 
   const options = ref(null);
 
@@ -106,18 +103,12 @@
       },
       plotOptions: {
         bar: {
-          // borderRadius: 5,
-          // horizontal: false,
           columnWidth: "10px",
-          // distributed: false,
         },
       },
       dataLabels: {
         enabled: false,
       },
-      // stroke: {
-      //   width: 2.5,
-      // },
       markers: {
         size: 0,
       },
@@ -161,26 +152,24 @@
       },
       legend: {
         show: true,
-        showForSingleSeries: true,
-        inverseOrder: true,
-        labels: {
-          colors: $q.dark.isActive ? "white" : "#2d2d2d",
-        },
-        position: "top",
+        position: "bottom",
+        horizontalAlign: "center",
         fontSize: "14px",
-        fontWeight: 400,
+        fontFamily,
+        labels: {
+          colors: $q.dark.isActive ? "#fff" : "#000",
+        },
         markers: {
+          width: 12,
+          height: 12,
           strokeWidth: 0,
-          width: 14,
-          height: 14,
-          radius: 4,
-          offsetX: $q.lang.rtl ? "-4" : "-4",
+          radius: 12,
         },
         itemMargin: {
-          horizontal: 16,
+          horizontal: 8,
+          vertical: 5,
         },
       },
-
       tooltip: {
         enabled: true,
         x: {

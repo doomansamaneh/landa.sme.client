@@ -106,7 +106,7 @@
       },
       plotOptions: {
         bar: {
-          columnWidth: "15%",
+          columnWidth: "10px",
         },
       },
       dataLabels: {

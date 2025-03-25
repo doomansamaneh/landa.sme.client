@@ -1,7 +1,64 @@
-import { computed } from "vue";
-import { helper } from "src/helpers";
+<template>
+  <q-card
+    :class="[isShakingComputed ? 'widget' : '']"
+    class="fit shadow border-radius-lg bordered"
+  >
+    <template v-if="isShakingComputed">
+      <q-btn
+        class="off-btn bordered absolute-top-right q-ma-sm z-1"
+        round
+        dense
+        unelevated
+        @click="hideWidget"
+      >
+        <q-icon name="o_visibility_off" />
+      </q-btn>
+    </template>
 
-export function useProductGroupChartOptions(reportStore, $q) {
+    <div
+      :class="
+        isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
+      "
+    >
+      <q-card-section class="q-pb-none">
+        <widget-title label="ریز هزینه" icon="o_account_balance" />
+      </q-card-section>
+
+      <q-inner-loading
+        :showing="reportStore.showLoader.value"
+        class="transparent z-1"
+      >
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
+    </div>
+
+    <q-card-section>
+      <apex-chart
+        v-if="reportStore.chartSeries.value"
+        class="pie-chart"
+        type="donut"
+        :options="chartOptions"
+        :series="reportStore.chartSeries.value"
+      />
+    </q-card-section>
+  </q-card>
+</template>
+
+<script setup>
+  import { computed } from "vue";
+  import { useQuasar } from "quasar";
+
+  import { helper } from "src/helpers";
+  import { useReport } from "src/components/areas/acc/_composables/useReport";
+  import { useExpenseTab } from "src/components/areas/dashboard/_composables/expenseTab/useExpenseTab";
+
+  import ApexChart from "vue3-apexcharts";
+  import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
+
+  const $q = useQuasar();
+  const draggable = useExpenseTab();
+  const reportStore = useReport("TopExpenseBySL");
+
   const chartOptions = computed(() => {
     const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
     const total = reportStore.total.value;
@@ -53,8 +110,8 @@ export function useProductGroupChartOptions(reportStore, $q) {
       chart: {
         fontFamily,
         type: "donut",
+        height: 300,
         offsetY: $q.screen.xs ? -32 : -24,
-        height: $q.screen.lt.md ? 300 : 300,
       },
       labels: reportStore.chartLabels.value,
       dataLabels: {
@@ -124,39 +181,41 @@ export function useProductGroupChartOptions(reportStore, $q) {
       },
       tooltip: {
         enabled: true,
+        style: {
+          fontFamily,
+          fontSize: "13px",
+        },
         custom: function ({ series, seriesIndex, w }) {
-          const color = w.globals.colors[seriesIndex];
+          const color = "#FF4560";
           const percentage = (
             (series[seriesIndex] / total) *
             100
           ).toFixed(2);
 
           return `
-      <div class="q-ml-md">
-        <div class="row no-wrap items-center row-reverse">
-          <div class="q-mr-sm" style="width: 12px; height: 12px; background-color: ${color}; border-radius: 50px;"></div>
-        <div>${w.globals.labels[seriesIndex]}:</div>
-        <div class="text-bold q-ml-xs">${helper.formatNumber(
-          series[seriesIndex]
-        )}</div>
-        </div>
-        <div class="text-h3 q-pa-lg no-line-height text-center text-weight-900">${percentage}%</div>
-      </div>
-    `;
-        },
-        style: {
-          fontFamily,
-          fontSize: "13px",
-        },
-        marker: {
-          width: 8,
-          height: 8,
+            <div class="q-ml-md" style="font-family: ${fontFamily}; font-size: 13px;">
+              <div class="row no-wrap items-center row-reverse">
+                <div class="q-mr-sm" style="width: 12px; height: 12px; background-color: ${color}; border-radius: 50px;"></div>
+                <div>${w.globals.labels[seriesIndex]}:</div>
+                <div class="text-bold q-ml-xs">${helper.formatNumber(
+                  series[seriesIndex]
+                )}</div>
+              </div>
+              <div class="text-weight-900 text-h3 q-pa-lg no-line-height text-center">${percentage}%</div>
+            </div>
+          `;
         },
       },
     };
   });
 
-  return {
-    chartOptions,
+  const isShakingComputed = computed(
+    () => draggable.state.isShaking.value
+  );
+
+  const emit = defineEmits(["hideWidget"]);
+
+  const hideWidget = () => {
+    emit("hideWidget");
   };
-}
+</script>
