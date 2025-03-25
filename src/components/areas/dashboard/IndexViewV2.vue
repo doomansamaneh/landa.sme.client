@@ -4,7 +4,12 @@
       $q.screen.xs ? 40 : $q.screen.sm ? 36 : 0
     }px`"
   >
-    <q-page-sticky class="block bg-main z-2" position="top" expand>
+    <q-page-sticky
+      class="block bg-main z-2"
+      position="top"
+      expand
+      style="margin-top: -1px"
+    >
       <q-tabs
         inline-label
         narrow-indicator
@@ -38,14 +43,11 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import { useQuasar } from "quasar";
   import { useTabsState } from "./_composables/useTabsState";
 
   import GeneralTab from "./tabs/GeneralTab.vue";
   import SalesTab from "./tabs/SalesTab.vue";
   import ExpenseTab from "./tabs/ExpenseTab.vue";
 
-  const $q = useQuasar();
   const state = useTabsState();
 </script>
