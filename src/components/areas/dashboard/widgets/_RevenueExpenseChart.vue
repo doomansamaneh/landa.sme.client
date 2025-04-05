@@ -6,7 +6,7 @@
     <q-spinner size="52px" color="primary" />
   </q-inner-loading>
 
-  <template v-if="chartStore.chartSeries?.value">
+  <template v-if="chartStore.chartSeries?.value && isChartVisible">
     <chart
       :options="options"
       :series="chartStore.chartSeries.value"
@@ -16,12 +16,20 @@
       :class="direction"
       type="area"
       class="line-chart"
+      ref="chartRef"
     />
   </template>
 </template>
 
 <script setup>
-  import { ref, onMounted, watch, computed } from "vue";
+  import {
+    ref,
+    onMounted,
+    watch,
+    computed,
+    onActivated,
+    onDeactivated,
+  } from "vue";
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
@@ -45,6 +53,8 @@
   });
 
   const options = ref(null);
+  const chartRef = ref(null);
+  const isChartVisible = ref(true);
 
   function setOptions() {
     const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
@@ -207,6 +217,9 @@
     () => $q.dark.isActive,
     () => {
       setOptions();
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
     }
   );
 
@@ -214,10 +227,30 @@
     () => $q.lang.rtl,
     () => {
       setOptions();
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
     }
   );
 
+  onActivated(() => {
+    isChartVisible.value = false;
+    setTimeout(() => {
+      isChartVisible.value = true;
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
+    }, 0);
+  });
+
+  onDeactivated(() => {
+    isChartVisible.value = false;
+  });
+
   onMounted(() => {
     setOptions();
+    if (chartRef.value?.chart) {
+      chartRef.value.chart.updateOptions(options.value, true);
+    }
   });
 </script>

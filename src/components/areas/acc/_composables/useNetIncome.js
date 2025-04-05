@@ -3,15 +3,21 @@ import { fetchWrapper, bus } from "src/helpers";
 import { accountCLType } from "src/constants";
 
 const model = ref({ thisYear: [{}], lastYear: [{}] });
+const showLoader = ref(false);
 
 export function useNetIncome() {
   async function loadData() {
-    const response = await fetchWrapper.get(
-      `acc/report/revenueExpense`,
-      null,
-      true
-    );
-    model.value = response.data.data;
+    try {
+      showLoader.value = true;
+      const response = await fetchWrapper.get(
+        `acc/report/revenueExpense`,
+        null,
+        true
+      );
+      model.value = response.data.data;
+    } finally {
+      showLoader.value = false;
+    }
   }
 
   const getThisYear = (clTypeId) => {
@@ -162,5 +168,6 @@ export function useNetIncome() {
     getThisYearAmount,
     getLastYearAmount,
     getPercentAmount,
+    showLoader,
   };
 }

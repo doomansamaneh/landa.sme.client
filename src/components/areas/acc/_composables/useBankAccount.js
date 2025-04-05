@@ -3,14 +3,20 @@ import { fetchWrapper, bus, helper } from "src/helpers";
 
 export function useBankAccount(action) {
   const model = ref([]);
+  const showLoader = ref(false);
 
   async function loadData() {
-    const response = await fetchWrapper.post(
-      `acc/report/${action}`,
-      [],
-      true
-    );
-    model.value = response.data.data;
+    showLoader.value = true;
+    try {
+      const response = await fetchWrapper.post(
+        `acc/report/${action}`,
+        [],
+        true
+      );
+      model.value = response.data.data;
+    } finally {
+      showLoader.value = false;
+    }
   }
 
   const chartSeries = computed(() =>
@@ -39,5 +45,6 @@ export function useBankAccount(action) {
     chartLabels,
     chartSeries,
     total,
+    showLoader,
   };
 }

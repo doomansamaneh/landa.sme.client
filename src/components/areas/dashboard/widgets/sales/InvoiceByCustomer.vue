@@ -38,13 +38,16 @@
         <q-spinner size="52px" color="primary" />
       </q-inner-loading>
 
-      <template v-if="chartStore.chartSeries?.value">
+      <template
+        v-if="chartStore.chartSeries?.value && isChartVisible"
+      >
         <chart
           height="300"
           :series="chartStore.chartSeries?.value"
           :options="options"
           class="bar-chart"
           :class="direction"
+          ref="chartRef"
         />
       </template>
     </div>
@@ -52,7 +55,14 @@
 </template>
 
 <script setup>
-  import { ref, watch, onMounted, computed } from "vue";
+  import {
+    ref,
+    watch,
+    onMounted,
+    computed,
+    onActivated,
+    onDeactivated,
+  } from "vue";
   import { useQuasar } from "quasar";
   import { useInvoiceByCustomer } from "src/components/areas/dashboard/_composables/salesTab/useInvoiceByCustomer";
   import { useSalesTab } from "../../_composables/salesTab/useSalesTab";
@@ -65,6 +75,8 @@
   const chartStore = useInvoiceByCustomer({});
 
   const options = ref(null);
+  const chartRef = ref(null);
+  const isChartVisible = ref(true);
 
   function setOptions() {
     const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
@@ -106,18 +118,12 @@
       },
       plotOptions: {
         bar: {
-          // borderRadius: 5,
-          // horizontal: false,
           columnWidth: "10px",
-          // distributed: false,
         },
       },
       dataLabels: {
         enabled: false,
       },
-      // stroke: {
-      //   width: 2.5,
-      // },
       markers: {
         size: 0,
       },
@@ -211,6 +217,9 @@
     () => $q.dark.isActive,
     () => {
       setOptions();
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
     }
   );
 
@@ -218,12 +227,32 @@
     () => chartStore.chartCategories?.value,
     () => {
       setOptions();
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
     },
     { deep: true }
   );
 
+  onActivated(() => {
+    isChartVisible.value = false;
+    setTimeout(() => {
+      isChartVisible.value = true;
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
+    }, 0);
+  });
+
+  onDeactivated(() => {
+    isChartVisible.value = false;
+  });
+
   onMounted(() => {
     setOptions();
+    if (chartRef.value?.chart) {
+      chartRef.value.chart.updateOptions(options.value, true);
+    }
   });
 
   function formatYAxisLabel(value) {

@@ -37,18 +37,25 @@
 
     <q-card-section>
       <apex-chart
-        v-if="reportStore.chartSeries.value"
+        v-if="reportStore.chartSeries.value && isChartVisible"
         class="pie-chart"
         type="donut"
         :options="chartOptions"
         :series="reportStore.chartSeries.value"
+        ref="chartRef"
       />
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import {
+    computed,
+    ref,
+    onMounted,
+    onActivated,
+    onDeactivated,
+  } from "vue";
   import { useQuasar } from "quasar";
 
   import { helper } from "src/helpers";
@@ -68,6 +75,9 @@
     $q
   );
 
+  const chartRef = ref(null);
+  const isChartVisible = ref(true);
+
   const isShakingComputed = computed(
     () => draggable.state.isShaking.value
   );
@@ -79,4 +89,24 @@
   const hideWidget = () => {
     emit("hideWidget");
   };
+
+  onActivated(() => {
+    isChartVisible.value = false;
+    setTimeout(() => {
+      isChartVisible.value = true;
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(chartOptions.value, true);
+      }
+    }, 0);
+  });
+
+  onDeactivated(() => {
+    isChartVisible.value = false;
+  });
+
+  onMounted(() => {
+    if (chartRef.value?.chart) {
+      chartRef.value.chart.updateOptions(chartOptions.value, true);
+    }
+  });
 </script>

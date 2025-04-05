@@ -27,22 +27,13 @@
     </q-page-sticky>
 
     <keep-alive>
-      <div>
-        <template v-if="state.tab.value === 'general'">
-          <general-tab />
-        </template>
-        <template v-if="state.tab.value === 'sales'">
-          <sales-tab />
-        </template>
-        <template v-if="state.tab.value === 'expense'">
-          <expense-tab />
-        </template>
-      </div>
+      <component :is="currentTab" :key="state.tab.value" />
     </keep-alive>
   </div>
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useTabsState } from "./_composables/useTabsState";
 
   import GeneralTab from "./tabs/GeneralTab.vue";
@@ -50,4 +41,17 @@
   import ExpenseTab from "./tabs/ExpenseTab.vue";
 
   const state = useTabsState();
+
+  const currentTab = computed(() => {
+    switch (state.tab.value) {
+      case "general":
+        return GeneralTab;
+      case "sales":
+        return SalesTab;
+      case "expense":
+        return ExpenseTab;
+      default:
+        return GeneralTab;
+    }
+  });
 </script>

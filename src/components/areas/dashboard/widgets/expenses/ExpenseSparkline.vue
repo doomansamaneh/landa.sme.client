@@ -1,5 +1,7 @@
 <template>
-  <template v-if="chartStore.chartExpenseSeries.value">
+  <template
+    v-if="chartStore.chartExpenseSeries.value && isChartVisible"
+  >
     <chart
       :options="options"
       :series="chartStore.chartExpenseSeries.value"
@@ -9,12 +11,20 @@
       type="area"
       class="area-chart"
       :class="direction"
+      ref="chartRef"
     />
   </template>
 </template>
 
 <script setup>
-  import { ref, onMounted, watch, computed } from "vue";
+  import {
+    ref,
+    onMounted,
+    watch,
+    computed,
+    onActivated,
+    onDeactivated,
+  } from "vue";
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
@@ -30,6 +40,8 @@
   const chartStore = useRevenueExpense(useRevenueExpenseState());
 
   const options = ref(null);
+  const chartRef = ref(null);
+  const isChartVisible = ref(true);
 
   function setOptions() {
     const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
@@ -201,8 +213,25 @@
     }
   );
 
+  onActivated(() => {
+    isChartVisible.value = false;
+    setTimeout(() => {
+      isChartVisible.value = true;
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
+    }, 0);
+  });
+
+  onDeactivated(() => {
+    isChartVisible.value = false;
+  });
+
   onMounted(() => {
     setOptions();
+    if (chartRef.value?.chart) {
+      chartRef.value.chart.updateOptions(options.value, true);
+    }
   });
 </script>
 

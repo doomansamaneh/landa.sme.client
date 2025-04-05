@@ -24,6 +24,13 @@
         <widget-title label="هزینه ها" icon="o_receipt_long" />
       </q-card-section>
 
+      <q-inner-loading
+        :showing="reportStore?.showLoader?.value"
+        class="transparent z-1"
+      >
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
+
       <q-card-section class="row q-col-gutter-md q-pt-md q-px-lg">
         <div class="col-md-8 col-xs-12">
           <div class="text-h3 text-weight-700">
@@ -37,11 +44,12 @@
           :style="{ width: '250px' }"
         >
           <apex-chart
-            v-if="reportStore.chartSeries?.value"
+            v-if="reportStore.chartSeries?.value && isChartVisible"
             class="pie-chart"
             type="donut"
             :options="chartOptions"
             :series="reportStore.chartSeries.value"
+            ref="chartRef"
           />
         </div>
       </q-card-section>
@@ -52,7 +60,13 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import {
+    computed,
+    ref,
+    onMounted,
+    onActivated,
+    onDeactivated,
+  } from "vue";
   import { useQuasar } from "quasar";
 
   import { helper } from "src/helpers";
@@ -74,6 +88,8 @@
   );
 
   const { chartOptions } = useExpenseChartOptions(reportStore, $q);
+  const chartRef = ref(null);
+  const isChartVisible = ref(true);
 
   const isShakingComputed = computed(
     () => draggable.state.isShaking.value
@@ -86,4 +102,24 @@
   const hideWidget = () => {
     emit("hideWidget");
   };
+
+  onActivated(() => {
+    isChartVisible.value = false;
+    setTimeout(() => {
+      isChartVisible.value = true;
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(chartOptions.value, true);
+      }
+    }, 0);
+  });
+
+  onDeactivated(() => {
+    isChartVisible.value = false;
+  });
+
+  onMounted(() => {
+    if (chartRef.value?.chart) {
+      chartRef.value.chart.updateOptions(chartOptions.value, true);
+    }
+  });
 </script>

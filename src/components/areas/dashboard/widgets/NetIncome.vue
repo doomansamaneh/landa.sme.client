@@ -4,6 +4,13 @@
     flat
     class="shadow bordered fit"
   >
+    <q-inner-loading
+      :showing="netIncomeStore?.showLoader?.value"
+      class="transparent z-1"
+    >
+      <q-spinner size="52px" color="primary" />
+    </q-inner-loading>
+
     <template v-if="isShakingComputed">
       <q-btn
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
@@ -72,7 +79,10 @@
           </div>
           <div class="col-4">
             <vue-apex-charts
-              ref="incomeChart"
+              v-if="
+                netIncomeStore.chartSeries.value && isChartVisible
+              "
+              ref="chartRef"
               :options="options"
               :series="netIncomeStore.chartSeries.value"
               height="140"
@@ -89,7 +99,14 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, watch, computed } from "vue";
+  import {
+    ref,
+    onMounted,
+    watch,
+    computed,
+    onActivated,
+    onDeactivated,
+  } from "vue";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
   import { useNetIncome } from "../../acc/_composables/useNetIncome";
@@ -109,8 +126,8 @@
     emit("hideWidget");
   };
 
-  const incomeChart = ref(null);
-
+  const chartRef = ref(null);
+  const isChartVisible = ref(true);
   const options = ref(null);
 
   function setOptions() {
@@ -153,18 +170,12 @@
       },
       plotOptions: {
         bar: {
-          // borderRadius: 5,
-          // horizontal: false,
           columnWidth: $q.screen.gt.xs ? "15%" : "20%",
-          // distributed: false,
         },
       },
       dataLabels: {
         enabled: false,
       },
-      // stroke: {
-      //   width: 2.5,
-      // },
       markers: {
         size: 0,
       },
@@ -217,17 +228,13 @@
         position: "top",
         fontSize: "14px",
         fontWeight: 400,
-        // offsetY: 16,
         markers: {
           width: 14,
           height: 14,
           radius: 4,
           offsetX: $q.lang.rtl ? "-4" : "-4",
         },
-        itemMargin: {
-          // vertical: 16,
-          // horizontal: 16,
-        },
+        itemMargin: {},
       },
       tooltip: {
         enabled: true,
@@ -265,6 +272,9 @@
     () => $q.dark.isActive,
     () => {
       setOptions();
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
     }
   );
 
@@ -272,11 +282,31 @@
     () => $q.lang.rtl,
     () => {
       setOptions();
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
     }
   );
 
+  onActivated(() => {
+    isChartVisible.value = false;
+    setTimeout(() => {
+      isChartVisible.value = true;
+      if (chartRef.value?.chart) {
+        chartRef.value.chart.updateOptions(options.value, true);
+      }
+    }, 0);
+  });
+
+  onDeactivated(() => {
+    isChartVisible.value = false;
+  });
+
   onMounted(() => {
     setOptions();
+    if (chartRef.value?.chart) {
+      chartRef.value.chart.updateOptions(options.value, true);
+    }
   });
 
   function formatYAxisLabel(value) {
