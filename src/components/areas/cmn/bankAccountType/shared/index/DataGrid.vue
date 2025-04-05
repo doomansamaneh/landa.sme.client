@@ -6,7 +6,7 @@
     :title="$t('main-menu-items.Cmn_BankAccountType_View')"
     :visible-columns="columns"
     activation
-  ></data-grid>
+  />
 </template>
 
 <script setup>

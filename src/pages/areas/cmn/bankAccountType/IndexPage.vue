@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import DataGrid from "src/components/areas/cmn/bankAccountType/shared/index/DataGrid.vue";
+  import DataGrid from "src/components/areas/cmn/bankAccountType/shared/index/DataGrid.vue";
 </script>

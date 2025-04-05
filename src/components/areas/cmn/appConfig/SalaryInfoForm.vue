@@ -33,16 +33,18 @@
   </div>
 
   <q-markup-table class="q-mt-lg" flat bordered separator="cell">
-    <thead class="bg-grey-4">
+    <thead class="bg-on-dark">
       <tr>
         <th class="text-left" style="width: 40%">
-          <span class="text-h5">اقلام حقوق و دستمزد</span>
+          <span class="text-body1 text-bold">
+            اقلام حقوق و دستمزد
+          </span>
         </th>
         <th class="text-left" style="width: 30%">
-          <span class="text-h5">مشمول مالیات</span>
+          <span class="text-body1 text-bold">مشمول مالیات</span>
         </th>
         <th class="text-left" style="width: 30%">
-          <span class="text-h5">مشمول بیمه</span>
+          <span class="text-body1 text-bold">مشمول بیمه</span>
         </th>
       </tr>
     </thead>

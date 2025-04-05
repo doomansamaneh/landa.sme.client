@@ -100,7 +100,13 @@
             >
               <q-icon name="o_delete" />
             </q-btn>
-            <q-btn class="text-caption" round unelevated no-caps>
+            <q-btn
+              :to="`/${baseRoute}/edit/${selectedIds}`"
+              class="text-caption"
+              round
+              unelevated
+              no-caps
+            >
               <q-icon name="o_edit" />
             </q-btn>
           </div>

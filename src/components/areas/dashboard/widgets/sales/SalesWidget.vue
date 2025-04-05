@@ -24,7 +24,10 @@
         <widget-title label="فروش و درآمد" icon="receipt_long" />
       </q-card-section>
 
-      <q-inner-loading :showing="isLoading" class="transparent z-1">
+      <q-inner-loading
+        :showing="reportStore?.showLoader?.value"
+        class="transparent z-1"
+      >
         <q-spinner size="52px" color="primary" />
       </q-inner-loading>
 
@@ -87,7 +90,6 @@
   const { chartOptions } = useSalesChartOptions(reportStore, $q);
   const chartRef = ref(null);
   const isChartVisible = ref(true);
-  const isLoading = ref(false);
 
   const isShakingComputed = computed(
     () => draggable.state.isShaking.value
@@ -103,10 +105,8 @@
 
   onActivated(() => {
     isChartVisible.value = false;
-    isLoading.value = true;
     setTimeout(() => {
       isChartVisible.value = true;
-      isLoading.value = false;
       if (chartRef.value?.chart) {
         chartRef.value.chart.updateOptions(chartOptions.value, true);
       }
@@ -118,12 +118,9 @@
   });
 
   onMounted(() => {
-    isLoading.value = true;
-    setTimeout(() => {
-      isLoading.value = false;
-      if (chartRef.value?.chart) {
-        chartRef.value.chart.updateOptions(chartOptions.value, true);
-      }
-    }, 300);
+    isChartVisible.value = true;
+    if (chartRef.value?.chart) {
+      chartRef.value.chart.updateOptions(chartOptions.value, true);
+    }
   });
 </script>

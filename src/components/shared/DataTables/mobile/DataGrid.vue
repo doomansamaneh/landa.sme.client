@@ -125,7 +125,9 @@
                         :thumb-style="{ opacity: 0 }"
                         style="height: 21px"
                       >
-                        <div class="row q-gutter-x-xs no-wrap q-pr-xs">
+                        <div
+                          class="row q-gutter-x-xs no-wrap q-pr-xs"
+                        >
                           <slot name="row-badge" :item="row"></slot>
                         </div>
                       </q-scroll-area>
@@ -223,10 +225,10 @@
 <script setup>
   import { ref, onMounted, onUnmounted, computed } from "vue";
   import { useDataTable } from "src/composables/useDataTable";
-
-  import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
   import { dataViewDefaultPageSize } from "src/constants";
   import { helper } from "src/helpers";
+
+  import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
   const props = defineProps({
     dataSource: String,

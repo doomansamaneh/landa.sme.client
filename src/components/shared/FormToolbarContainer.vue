@@ -1,6 +1,10 @@
 <template>
   <template v-if="$q.screen.xs">
-    <toolbar-mobile :title="title" @submit-call-back="handleSubmit" />
+    <toolbar-mobile
+      buttons
+      :title="title"
+      @submit-call-back="handleSubmit"
+    />
   </template>
   <template v-else>
     <toolbar-desktop

@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card bordered>
     <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
       <setting-form />
     </q-card-section>

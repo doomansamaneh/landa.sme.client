@@ -5,7 +5,15 @@
     :create-url="createUrl"
   >
     <template #body="{ item }">
-      <q-card flat bordered :class="tableStore?.getRowClass(item)">
+      <q-card
+        flat
+        bordered
+        :class="tableStore.getRowClass(item)"
+        v-touch-hold.capture="
+          () => tableStore?.selectRow(item, !item.selected)
+        "
+        @click="setActiveRow(item)"
+      >
         <q-card-section class="">
           <span
             class="q-mr-md"
@@ -61,7 +69,7 @@
 </template>
 
 <script setup>
-  import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
+  import DataGrid from "src/components/shared/DataTables/mobile/DataGrid.vue";
 
   const props = defineProps({
     tableStore: Object,
@@ -70,4 +78,10 @@
     baseRoute: String,
     createUrl: String,
   });
+
+  const setActiveRow = (row) => {
+    if (props.tableStore) {
+      props.tableStore.setActiveRow(row);
+    }
+  };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <q-card>
+  <q-card bordered>
     <q-card-section :class="$q.screen.gt.xs ? 'q-pa-lg' : 'q-pa-md'">
       <div class="q-gutter-y-lg">
         <div v-for="item in importList" :key="item.importAction">
