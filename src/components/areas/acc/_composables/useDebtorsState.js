@@ -9,6 +9,7 @@ const state = {
   rows,
   allSelectedIds: ref([]),
   activeRow: ref(null),
+  summaryData: ref(null),
 };
 
 const pagination = ref({
