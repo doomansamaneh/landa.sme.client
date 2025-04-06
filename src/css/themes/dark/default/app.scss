@@ -5,7 +5,7 @@
   --q-dark: #{$dark-page};
   background-color: $dark-page;
   @include q-avatar-dark();
-  @include q-tree-dark(); 
+  @include q-tree-dark();
   @include q-breadcrumbs-dark();
   @include q-card-dark();
   @include q-carousel-dark();
@@ -48,7 +48,8 @@
   @include warning-dark();
   @include border-dark();
   @include colors-dark();
-  @include boy-dark(); 
-  @include widget-dark(); 
-  @include alert-banner-dark(); 
+  @include boy-dark();
+  @include widget-dark();
+  @include alert-banner-dark();
+  @include chat-dark();
 }
