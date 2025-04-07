@@ -15,7 +15,7 @@
           <q-icon size="24px" name="o_tune" />
         </q-btn>
       </div>
-      <div class="q-ml-sm text-h6 text-weight-700_ text-on-dark">
+      <div class="q-ml-sm text-h6 text-weight-700 text-on-dark">
         پیشخوان عمومی
       </div>
     </div>

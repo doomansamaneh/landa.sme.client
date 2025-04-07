@@ -22,9 +22,22 @@
             active-color="primary"
             indicator-color="primary"
             align="justify"
+            active-class="primary-gradient-1"
           >
-            <q-tab name="new" label="تیکت جدید" />
-            <q-tab name="list" label="تیکت‌های من" />
+            <q-tab name="new">
+              <template #default>
+                <div class="text-body1 text-weight-500">
+                  تیکت جدید
+                </div>
+              </template>
+            </q-tab>
+            <q-tab name="list">
+              <template #default>
+                <div class="text-body1 text-weight-500">
+                  تیکت‌های من
+                </div>
+              </template>
+            </q-tab>
           </q-tabs>
         </q-card-section>
 

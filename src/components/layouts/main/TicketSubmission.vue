@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <ticket-fab @open-dialog="showDialog = true" />
-    <ticket-dialog v-model="showDialog" />
-  </div>
+  <ticket-fab @open-dialog="showDialog = true" />
+  <ticket-dialog v-model="showDialog" />
 </template>
 
 <script setup>

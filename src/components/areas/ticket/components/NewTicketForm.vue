@@ -1,40 +1,36 @@
 <template>
   <q-form @submit.prevent="onSubmit" ref="form">
     <div class="q-mb-md">
-      <q-input
+      <custom-input
         v-model="ticketModel.title"
         label="عنوان"
-        :rules="[(val) => !!val || 'عنوان الزامی است']"
-        outlined
+        required
       />
     </div>
 
     <div class="q-mb-md">
-      <q-select
+      <custom-select
         v-model="ticketModel.category"
         :options="categories"
         label="دسته‌بندی"
-        :rules="[(val) => !!val || 'دسته‌بندی الزامی است']"
-        outlined
+        required
       />
     </div>
 
     <div class="q-mb-md">
-      <q-select
+      <custom-select
         v-model="ticketModel.priority"
         :options="priorities"
         label="اولویت"
-        outlined
       />
     </div>
 
     <div class="q-mb-md">
-      <q-input
+      <custom-input
         v-model="ticketModel.description"
         type="textarea"
         label="توضیحات"
-        :rules="[(val) => !!val || 'توضیحات الزامی است']"
-        outlined
+        required
       />
     </div>
 
@@ -46,6 +42,8 @@
 
 <script setup>
   import { ref } from "vue";
+  import CustomInput from "src/components/shared/Forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/Forms/CustomSelect.vue";
 
   const props = defineProps({
     ticketModel: {

@@ -26,13 +26,11 @@
     <data-grid
       v-if="tab === 'received'"
       :filter-expression="receiptFilter"
-      :no-fullscreen
       title="چکهای دریافتی"
     />
     <data-grid
       v-else
       :filter-expression="payedFilter"
-      :no-fullscreen
       title="چکهای پرداختی"
     />
   </q-card>

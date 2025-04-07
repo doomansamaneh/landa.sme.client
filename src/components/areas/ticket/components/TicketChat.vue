@@ -124,8 +124,23 @@
       </q-input>
     </q-card-section>
   </q-card>
-  <div v-else class="text-center text-grey q-pa-md">
-    برای مشاهده جزئیات تیکت، لطفاً یک تیکت را از لیست انتخاب کنید
+  <div v-else class="text-center q-pa-lg">
+    <q-icon
+      name="support_agent"
+      size="64px"
+      :color="$q.dark.isActive ? 'grey-3' : 'grey-7'"
+      class="q-mb-md"
+    />
+    <div
+      class="text-h6 q-mb-sm"
+      :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
+    >
+      برای مشاهده جزئیات تیکت، لطفاً یک تیکت را از لیست انتخاب کنید
+    </div>
+    <div :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'">
+      با انتخاب یک تیکت از لیست، می‌توانید جزئیات و تاریخچه مکالمات آن
+      را مشاهده کنید
+    </div>
   </div>
 </template>
 

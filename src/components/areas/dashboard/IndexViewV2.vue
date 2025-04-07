@@ -21,6 +21,15 @@
         <q-tab name="general" icon="o_dashboard" label="عمومی" />
         <q-tab name="sales" icon="o_receipt" label="فروش" />
         <q-tab name="expense" icon="o_attach_money" label="هزینه" />
+        <q-tab
+          name="cheque-notification"
+          icon="campaign"
+          label="اعلان چک"
+        >
+          <q-badge v-if="notificationCount" color="red" floating>
+            {{ notificationCount }}
+          </q-badge>
+        </q-tab>
       </q-tabs>
 
       <q-separator />
@@ -35,12 +44,15 @@
 <script setup>
   import { computed } from "vue";
   import { useTabsState } from "./_composables/useTabsState";
+  import { useChequeNotification } from "src/composables/useChequeNotification";
 
   import GeneralTab from "./tabs/GeneralTab.vue";
   import SalesTab from "./tabs/SalesTab.vue";
   import ExpenseTab from "./tabs/ExpenseTab.vue";
+  import ChequeNotificationTab from "./tabs/ChequeNoTificationTab.vue";
 
   const state = useTabsState();
+  const { notificationCount } = useChequeNotification();
 
   const currentTab = computed(() => {
     switch (state.tab.value) {
@@ -50,6 +62,8 @@
         return SalesTab;
       case "expense":
         return ExpenseTab;
+      case "cheque-notification":
+        return ChequeNotificationTab;
       default:
         return GeneralTab;
     }
