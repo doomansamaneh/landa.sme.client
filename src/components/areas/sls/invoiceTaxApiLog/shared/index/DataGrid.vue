@@ -11,12 +11,21 @@
     expandable
   >
     <template #cell-logTime="{ item }">
-      <div>{{ item.logTime }}</div>
-      <div>{{ item.taxId }}</div>
+      <div class="caption-on-dark">{{ item.logTime }}</div>
+      <div class="text-weight-500">{{ item.taxId }}</div>
     </template>
+
     <template #cell-status="{ item }">
-      <q-badge class="primary-gradient">{{ item.status }}</q-badge>
+      <q-badge
+        class="text-weight-500 text-body3"
+        rounded
+        outline
+        :class="getStatusClasses(item.status)"
+      >
+        {{ item.status }}
+      </q-badge>
     </template>
+
     <template #cell-actions="{ item }">
       <q-btn
         v-if="
@@ -28,8 +37,8 @@
           taxStore.inquery(item.id, desktopGrid.tableStore.reloadData)
         "
         flat
+        round
         size="sm"
-        padding="sm"
         icon="o_refresh"
       >
         <q-tooltip class="custom-tooltip text-body1">
@@ -39,37 +48,37 @@
     </template>
 
     <template #expand="{ item }">
-      <div class="q-pa-md">
-        <ul style="direction: ltr">
-          <li>
-            <strong>tax id:</strong>
-            {{ item.taxId }}
-          </li>
-          <li>
-            <strong>ref no:</strong>
-            {{ item.referenceNumber }}
-          </li>
-          <li>
-            <strong>uid:</strong>
-            {{ item.uid }}
-          </li>
-        </ul>
-        <template v-if="item.errors?.length">
-          <h5 class="q-my-md">خطاها</h5>
-          <ul>
-            <li
-              class="text-wrap"
-              v-for="er in item.errors"
-              :key="er.code"
-            >
-              {{ er.code }}: {{ er.msg }}{{ er.message }}
+      <q-card bordered>
+        <q-card-section class="q-px-lg q-pb-none">
+          <div class="text-body1 text-weight-500">ریز اطلاعات</div>
+        </q-card-section>
+        <q-card-section class="q-pa-lg">
+          <div class="column q-gutter-md" style="direction: ltr">
+            <li>
+              <strong>tax id:</strong>
+              {{ item.taxId }}
             </li>
-          </ul>
-        </template>
-      </div>
+            <li>
+              <strong>ref no:</strong>
+              {{ item.referenceNumber }}
+            </li>
+            <li>
+              <strong>uid:</strong>
+              {{ item.uid }}
+            </li>
+          </div>
+          <template v-if="item.errors?.length">
+            <div class="text-body1 text-weight-500">خطاها</div>
+            <ul>
+              <li v-for="er in item.errors" :key="er.code">
+                {{ er.code }}: {{ er.msg }}{{ er.message }}
+              </li>
+            </ul>
+          </template>
+        </q-card-section>
+      </q-card>
     </template>
   </desktop>
-  <!-- </template> -->
 </template>
 
 <script setup>
@@ -88,6 +97,17 @@
     title: String,
     invoiceId: String,
   });
+
+  const getStatusClasses = (status) => {
+    const classes = {
+      [taxStatus.pending]: "bg-primary text-white",
+      [taxStatus.success]: "bg-green-2 text-green-8",
+      [taxStatus.failed]: "bg-red-2 text-red-8",
+      [taxStatus.inProgress]: "bg-yellow-3 text-orange-9",
+      [taxStatus.notFound]: "bg-grey-4 text-grey-8",
+    };
+    return classes[status] || "";
+  };
 
   const dataSource = "sls/InvoiceTaxApiLog/getGridData";
   const taxStore = useTaxApiLogModel();
@@ -110,9 +130,3 @@
     dataGrid: desktopGrid,
   });
 </script>
-<style>
-  .text-wrap {
-    white-space: pre-line;
-    word-wrap: break-word;
-  }
-</style>

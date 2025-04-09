@@ -164,8 +164,8 @@
               enter-active-class="animated fadeIn"
               leave-active-class="animated fadeOut"
             >
-              <tr class="expand" v-if="row.expanded">
-                <td colspan="100%">
+              <tr v-if="row.expanded">
+                <td colspan="100%" class="expand">
                   <div class="expand">
                     <slot name="expand" :item="row"></slot>
                   </div>

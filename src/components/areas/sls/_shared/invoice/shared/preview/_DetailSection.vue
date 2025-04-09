@@ -17,11 +17,11 @@
             />
           </div>
 
-          <div class="text-body3 text-weight-700">سند حسابداری</div>
+          <div class="text-body2 text-weight-700">سند حسابداری</div>
           <div v-if="model?.voucherId">
             <div class="q-mt-sm text-body3">
               <custom-link
-                class="text-body3"
+                class="text-body2"
                 :to="`/acc/voucher/preview/${model.voucherId}`"
                 :title="model.voucherNo"
               />
@@ -33,17 +33,17 @@
               <menu-button
                 icon="o_add"
                 title="ایجاد سند"
-                class="primary-gradient primary-shadow text-white text-body3"
+                class="primary-gradient primary-shadow text-white text-body2"
                 @click="createVoucher"
               />
             </div>
           </div>
 
           <div>
-            <div class="text-caption text-bold">مشتری</div>
-            <div class="q-mt-sm text-body3">
+            <div class="text-body2 text-bold">مشتری</div>
+            <div class="q-mt-sm">
               <custom-link
-                class="text-body3"
+                class="text-body2"
                 :to="`/crm/customer/preview/${model.customerId}`"
                 :title="model.customerName"
               />
@@ -51,8 +51,8 @@
           </div>
 
           <div v-if="model?.value?.invoiceId">
-            <div class="text-body3 text-weight-700">فاکتور</div>
-            <div class="q-mt-sm text-body3">
+            <div class="text-body2 text-weight-700">فاکتور</div>
+            <div class="q-mt-sm text-body2">
               <custom-link
                 :to="`/sls/invoice/preview/${model.invoiceId}`"
                 :title="model.invoiceNo"
@@ -61,22 +61,22 @@
           </div>
 
           <div v-if="model.marketerName">
-            <div class="text-body3 text-weight-700">بازاریاب</div>
-            <div class="q-mt-sm text-body3">
+            <div class="text-body2 text-weight-700">بازاریاب</div>
+            <div class="q-mt-sm text-body2">
               {{ model.marketerName }}
             </div>
           </div>
 
           <div v-if="model.contractTitle">
-            <div class="text-body3 text-weight-700">قرارداد</div>
-            <div class="q-mt-sm text-body3">
+            <div class="text-body2 text-weight-700">قرارداد</div>
+            <div class="q-mt-sm text-body2">
               {{ model.contractTitle }}
             </div>
           </div>
 
           <div v-if="model.inventoryTitle">
-            <div class="text-body3 text-weight-700">انبار</div>
-            <div class="q-mt-sm text-body3">
+            <div class="text-body2 text-weight-700">انبار</div>
+            <div class="q-mt-sm text-body2">
               {{ model.inventoryTitle }}
             </div>
           </div>
