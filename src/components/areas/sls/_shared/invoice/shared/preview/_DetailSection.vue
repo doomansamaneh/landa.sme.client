@@ -7,39 +7,39 @@
             <div class="text-body1 text-weight-700">
               #{{ model.no }}
             </div>
-            <menu-button
-              v-if="model?.voucherId"
-              icon="o_delete"
-              padding="6px 12px"
-              title="حذف سند"
-              class="text-negative"
-              @click="deleteVoucher"
-            />
           </div>
 
           <div class="text-body2 text-weight-700">سند حسابداری</div>
-          <div v-if="model?.voucherId">
-            <div class="q-mt-sm text-body3">
-              <custom-link
-                class="text-body2"
-                :to="`/acc/voucher/preview/${model.voucherId}`"
-                :title="model.voucherNo"
-              />
-            </div>
-          </div>
 
-          <div v-else>
-            <div class="q-mt-sm text-body3">
-              <menu-button
-                icon="o_add"
-                title="ایجاد سند"
-                class="primary-gradient primary-shadow text-white text-body2"
-                @click="createVoucher"
-              />
+          <span>
+            <div class="flex items-center q-gutter-sm">
+              <div v-if="model?.voucherId" class="q-pt-sm text-body3">
+                <custom-link
+                  class="text-body2"
+                  :to="`/acc/voucher/preview/${model.voucherId}`"
+                  :title="model.voucherNo"
+                />
+              </div>
+              <div class="q-pt-sm" v-else>
+                <menu-button
+                  icon="o_add"
+                  title="ایجاد سند"
+                  class="primary-gradient primary-shadow text-white text-body2"
+                  @click="createVoucher"
+                />
+              </div>
+              <div class="q-pt-sm" v-if="model?.voucherId">
+                <menu-button
+                  icon="o_delete"
+                  title="حذف سند"
+                  class="red-shadow red-gradient text-white text-body2"
+                  @click="deleteVoucher"
+                />
+              </div>
             </div>
-          </div>
+          </span>
 
-          <div>
+          <div v-if="model?.customerId">
             <div class="text-body2 text-bold">مشتری</div>
             <div class="q-mt-sm">
               <custom-link
