@@ -26,17 +26,19 @@
             :title="$t('main-menu-items.Inv_Production_View')"
           >
             <template #header>
-              <div class="q-gutter-sm">
-                <span>انبار مبدا:</span>
-                <span class="q-px-sm">
-                  {{ model?.inventoryTitle }}
-                </span>
-              </div>
-              <div class="q-gutter-sm">
-                <span>انبار مقصد:</span>
-                <span class="q-px-sm">
-                  {{ model?.toInventoryTitle }}
-                </span>
+              <div class="q-mt-sm q-gutter-y-sm">
+                <div class="q-gutter-sm">
+                  <span>انبار مبدا:</span>
+                  <span class="q-px-sm">
+                    {{ model?.inventoryTitle }}
+                  </span>
+                </div>
+                <div class="q-gutter-sm">
+                  <span>انبار مقصد:</span>
+                  <span class="q-px-sm">
+                    {{ model?.toInventoryTitle }}
+                  </span>
+                </div>
               </div>
             </template>
           </header-section>

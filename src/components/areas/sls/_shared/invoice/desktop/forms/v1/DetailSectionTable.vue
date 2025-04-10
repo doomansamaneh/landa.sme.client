@@ -212,7 +212,12 @@
         ];
 
   const productChanged = (product, row) => {
-    row.price = product?.price ?? product?.maxPrice ?? 0;
+    if (
+      props.formType === invoiceFormType.sales ||
+      props.formType === invoiceFormType.purchaseReturn
+    )
+      row.price = product?.price ?? product?.maxPrice ?? 0;
+    else row.price = product?.purchasePrice ?? product?.maxPrice ?? 0;
     row.productUnitId = product?.productUnitId ?? null;
     row.productUnitTitle = product?.productUnitTitle ?? null;
   };

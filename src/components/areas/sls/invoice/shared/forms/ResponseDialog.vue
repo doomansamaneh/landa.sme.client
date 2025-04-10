@@ -50,7 +50,7 @@
             v-if="responseData.amount > responseData.receivedAmount"
             clickable
             v-ripple
-            :to="`/trs/receipt/createFromInvoice/${responseData.id}`"
+            :to="`/trs/${paymentAction}/createFromInvoice/${responseData.id}`"
             class="rounded-borders"
           >
             <q-item-section avatar top>
@@ -62,8 +62,10 @@
             </q-item-section>
 
             <q-item-section>
-              <q-item-label lines="1">دریافت</q-item-label>
-              <q-item-label caption>دریافت مانده حساب</q-item-label>
+              <q-item-label lines="1">دریافت/پرداخت</q-item-label>
+              <q-item-label caption>
+                دریافت/پرداخت مانده حساب
+              </q-item-label>
             </q-item-section>
           </q-item>
 
@@ -129,6 +131,7 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useDialogPluginComponent } from "quasar";
 
   const props = defineProps({
@@ -140,6 +143,14 @@
 
   const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
     useDialogPluginComponent();
+
+  const paymentAction = computed(() => {
+    const baseRouteLower = props.baseRoute?.toLowerCase();
+    return baseRouteLower === "sls/inovoice" ||
+      baseRouteLower === "sls/purchasereturn"
+      ? "receipt"
+      : "payment";
+  });
 
   function onOKClick() {
     onDialogOK();

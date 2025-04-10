@@ -58,7 +58,7 @@
         <q-item
           clickable
           class="text-on-dark"
-          @click.stop="formStore.addProduct(item)"
+          @click.stop="formStore.addProduct(item, formType)"
         >
           <div class="row q-gutter-x-sm items-center">
             <q-avatar
@@ -153,7 +153,11 @@
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
-  import { productType, sortOrder } from "src/constants";
+  import {
+    invoiceFormType,
+    productType,
+    sortOrder,
+  } from "src/constants";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
@@ -162,6 +166,7 @@
   const props = defineProps({
     formStore: useInvoiceModel,
     model: invoiceModel,
+    formType: invoiceFormType,
   });
 
   const grid = ref(null);

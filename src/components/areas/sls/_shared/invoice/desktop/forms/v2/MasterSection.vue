@@ -133,12 +133,6 @@
 
 <script setup>
   import { computed, ref } from "vue";
-
-  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
-  import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
-  import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
-  import CashLookup from "src/components/shared/lookups/CashLookup.vue";
-  import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import {
     sqlOperator,
     vatType,
@@ -147,6 +141,11 @@
   } from "src/constants";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
+  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
+  import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
+  import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
+  import CashLookup from "src/components/shared/lookups/CashLookup.vue";
+  import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomLabel from "src/components/shared/forms/CustomLabel.vue";

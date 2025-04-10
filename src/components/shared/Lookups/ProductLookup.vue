@@ -52,8 +52,18 @@
             {{ row.stock }}
           </q-item-label>
           <q-item-label class="text-body2">
-            <span class="text-body3 text-bold">قیمت فروش:</span>
-            {{ row.price.toLocaleString() }}
+            <template v-if="row.purchasePrice">
+              <span class="text-body3 text-bold">قیمت خرید:</span>
+              <span class="q-px-xs">
+                {{ helper.formatNumber(row.purchasePrice) }}
+              </span>
+            </template>
+            <template v-if="row.price">
+              <span class="text-body3 text-bold">قیمت فروش:</span>
+              <span class="q-px-xs">
+                {{ helper.formatNumber(row.price) }}
+              </span>
+            </template>
           </q-item-label>
         </q-item-section>
       </q-item>

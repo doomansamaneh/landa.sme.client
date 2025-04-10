@@ -10,6 +10,7 @@ import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
+import { invoiceFormType } from "src/constants";
 
 export function useInvoiceModel(config) {
   const $q = useQuasar();
@@ -26,9 +27,15 @@ export function useInvoiceModel(config) {
     let responseData = null;
     const date = model.value.date;
     if (id) {
-      if (config.preview) responseData = await crudStore.getPreviewById(id);
-      else if (["createFromInvoice", "createFromQuote"].includes(action)) 
-        responseData = await crudStore.getById(id, `${config.baseRoute}/${action}`);
+      if (config.preview)
+        responseData = await crudStore.getPreviewById(id);
+      else if (
+        ["createFromInvoice", "createFromQuote"].includes(action)
+      )
+        responseData = await crudStore.getById(
+          id,
+          `${config.baseRoute}/${action}`
+        );
       else responseData = await crudStore.getById(id);
     } else
       responseData = await crudStore.getCreateModel(setInvoiceItems);
@@ -236,7 +243,7 @@ export function useInvoiceModel(config) {
     }
   };
 
-  const addProduct = (product) => {
+  const addProduct = (product, formType = invoiceFormType.sales) => {
     const selectedRows = model.value.invoiceItems.find(
       (r) => r.productId === product.id
     );
@@ -250,8 +257,17 @@ export function useInvoiceModel(config) {
       newRow.productCodeTitle = `${product.code} - ${product.title}`;
       newRow.productUnitId = product.productUnitId;
       newRow.productUnitTitle = product.productUnitTitle;
-      newRow.price =
-        product.price <= 0 ? product.maxPrice ?? 0 : product.price;
+      if (
+        formType === invoiceFormType.sales ||
+        formType === invoiceFormType.purchaseReturn
+      )
+        newRow.price =
+          product.price <= 0 ? product.maxPrice ?? 0 : product.price;
+      else
+        newRow.price =
+          product.purchasePrice <= 0
+            ? product.maxPrice ?? 0
+            : product.purchasePrice;
       newRow.quantity = 1;
       pushNewRow(newRow);
     }
