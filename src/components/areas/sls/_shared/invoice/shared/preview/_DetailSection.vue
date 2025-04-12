@@ -22,17 +22,21 @@
               </div>
               <div class="q-pt-sm" v-else>
                 <menu-button
+                  dense
+                  padding="4px 8px"
                   icon="o_add"
                   title="ایجاد سند"
-                  class="primary-gradient primary-shadow text-white text-body2"
+                  class="primary-gradient primary-shadow text-white text-body3"
                   @click="createVoucher"
                 />
               </div>
               <div class="q-pt-sm" v-if="model?.voucherId">
                 <menu-button
+                  dense
+                  padding="4px 8px"
                   icon="o_delete"
                   title="حذف سند"
-                  class="red-shadow red-gradient text-white text-body2"
+                  class="red-shadow red-gradient text-white text-body3"
                   @click="deleteVoucher"
                 />
               </div>

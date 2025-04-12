@@ -1,9 +1,23 @@
 <template>
   <div>
     <div class="flex q-gutter-md justify-between items-center">
-      <div class="text-body2 text-bold">
-        تاریخچه ارسال به سامانه مودیان
+      <div v-if="taxStore.apiResult.value.data">
+        <div class="flex items-center q-gutter-xs">
+          <div class="text-body2 text-bold">
+            تاریخچه ارسال به سامانه مودیان
+          </div>
+          <q-btn
+            unelevated
+            round
+            dense
+            size="sm"
+            @click="openHelpDialog"
+          >
+            <q-icon name="o_info" size="xs" />
+          </q-btn>
+        </div>
       </div>
+
       <q-btn
         v-if="!taxStore.apiResult.value.data"
         unelevated
@@ -20,6 +34,7 @@
         <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
         <span>ارسال به سامانه مودیان</span>
       </q-btn>
+
       <!-- v-if="!configStore.model.companySetting?.taxApiSetting?.clientId" -->
       <!-- <q-btn rounded to="/cmn/appConfig/VATInfo" flat unelevated>
       <q-icon name="o_settings" size="xs" class="q-mr-xs" />
@@ -35,6 +50,8 @@
       :invoice-id="model.id"
       no-fullscreen
     />
+
+    <help-dialog v-model="helpDialog" />
   </div>
 </template>
 
@@ -43,12 +60,18 @@
   import { useTaxApiLogModel } from "src/components/areas/sls/_composables/useTaxApiLogModel";
 
   import DataGrid from "src/components/areas/sls/invoiceTaxApiLog/shared/index/DataGrid.vue";
+  import HelpDialog from "./HelpDialog.vue";
 
   const props = defineProps({
     model: Object,
   });
   const taxGrid = ref(null);
   const taxStore = useTaxApiLogModel();
+  const helpDialog = ref(false);
+
+  const openHelpDialog = () => {
+    helpDialog.value = true;
+  };
 
   onMounted(() => {
     taxStore.isSentApiSuccessfully(props.model.id);
