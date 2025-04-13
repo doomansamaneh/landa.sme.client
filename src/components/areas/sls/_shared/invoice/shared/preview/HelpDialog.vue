@@ -6,24 +6,28 @@
     transition-hide="slide-down"
   >
     <q-card :style="$q.screen.xs ? '' : 'min-width: 750px'">
-      <q-card-section class="row items-center">
-        <div class="col-8 text-h6 text-weight-700">
+      <q-card-section
+        class="row items-center justify-between z-1"
+        :class="$q.dark.isActive ? 'bg-dark' : 'bg-white'"
+        style="position: sticky; top: 0"
+      >
+        <div class="col-8 text-body1 text-weight-700">
           پرسشهای متداول در اتصال به سامانه مودیان
         </div>
 
-        <q-space />
+        <div>
+          <q-btn
+            icon="close"
+            class="col-1 icon-hover dark-3"
+            flat
+            round
+            dense
+            v-close-popup
+          />
+        </div>
 
-        <q-btn
-          icon="close"
-          class="icon-hover dark-3"
-          flat
-          round
-          dense
-          v-close-popup
-        />
+        <q-separator class="absolute-bottom" />
       </q-card-section>
-
-      <q-separator />
 
       <q-card-section>
         <div class="text-body1 text-weight-700">
