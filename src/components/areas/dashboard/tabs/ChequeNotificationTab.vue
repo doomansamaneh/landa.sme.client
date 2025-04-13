@@ -1,13 +1,18 @@
 <template>
-  <q-toolbar v-if="$q.screen.gt.sm" class="no-padding">
+  <!--  <q-toolbar v-if="$q.screen.gt.sm" class="no-padding">
     <div class="row items-center q-py-lg">
-      <!-- <div class="q-ml-sm text-h6 text-weight-700 text-on-dark">
+      <div class="q-ml-sm text-h6 text-weight-700 text-on-dark">
         اعلان چک
-      </div> -->
+      </div>
     </div>
-  </q-toolbar>
+  </q-toolbar> -->
 
-  <div class="row q-col-gutter-lg">
+  <div
+    class="row q-col-gutter-lg"
+    :style="
+      $q.screen.gt.sm ? 'padding-top: 38px' : 'padding-top: 24px'
+    "
+  >
     <div class="col-md-12">
       <q-card bordered>
         <card-title title="چک‌های دریافتی" icon="o_receipt" />
