@@ -68,12 +68,42 @@
             </li>
           </div>
           <template v-if="item.errors?.length">
-            <div class="text-body1 text-weight-500">خطاها</div>
-            <ul>
-              <li v-for="er in item.errors" :key="er.code">
-                {{ er.code }}: {{ er.msg }}{{ er.message }}
-              </li>
-            </ul>
+            <q-separator class="q-my-md" />
+
+            <div class="row items-center q-mb-md">
+              <q-icon
+                name="o_error_outline"
+                size="xs"
+                color="negative"
+                class="q-mr-sm"
+              />
+              <div class="text-body1 text-weight-500 text-negative">
+                خطاها
+              </div>
+            </div>
+
+            <q-list bordered class="rounded-borders">
+              <q-item v-for="er in item.errors" :key="er.code">
+                <q-item-section>
+                  <div class="flex items-center q-gutter-xs">
+                    <q-icon
+                      size="xs"
+                      name="o_warning"
+                      color="orange-6"
+                    />
+                    <div class="text-body2 text-weight-700">
+                      کد: {{ er.code }}
+                    </div>
+                  </div>
+
+                  <q-separator class="q-my-sm" />
+
+                  <q-item-label class="text-body2">
+                    {{ er.msg }}{{ er.message }}
+                  </q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
           </template>
         </q-card-section>
       </q-card>
