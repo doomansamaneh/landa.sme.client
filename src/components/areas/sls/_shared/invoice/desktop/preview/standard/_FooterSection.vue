@@ -35,9 +35,7 @@
               <strong style="padding: 0 5px">مانده:</strong>
               <span class="text-weight-600">
                 {{
-                  helper.formatNumber(
-                    model.invoiceRemained.remainedAmount
-                  )
+                  helper.formatNumber(model.invoiceRemained.remained)
                 }}
               </span>
             </span>

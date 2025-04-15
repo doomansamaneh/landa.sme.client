@@ -1,40 +1,39 @@
 <template>
-  <div class="row items-center q-gutter-y-md">
-    <div class="row col-md col-sm col-xs-12 items-center">
-      <img
-        v-if="
-          showLogo &&
-          configStore.model?.value?.companySetting?.invoiceShowLogo &&
-          logoSource
-        "
-        :src="logoSource"
-        alt="logo"
-      />
-    </div>
-    <div
-      class="col-md col-sm-5 col-xs-12 items-center justify-center"
-    >
-      <div class="text-center text-body2 text-bold">
-        {{ title }}
-      </div>
-    </div>
-    <div class="col-md col-sm col-xs-12 row items-center justify-end">
-      <div class="column q-gutter-sm">
-        <div class="row">
+  <table style="width: 100%">
+    <tr>
+      <td style="width: 15%">
+        <img
+          v-if="
+            showLogo &&
+            configStore.model?.value?.companySetting
+              ?.invoiceShowLogo &&
+            logoSource
+          "
+          :src="logoSource"
+          alt="logo"
+        />
+      </td>
+      <td>
+        <div class="text-center text-body2 text-bold">
+          {{ title }}
+        </div>
+      </td>
+      <td style="width: 15%">
+        <div>
           <span>{{ $t("shared.labels.no") }}:</span>
           <span class="q-px-sm text-weight-600">
             {{ model.no }}
           </span>
         </div>
 
-        <div class="row justify-start">
+        <div>
           <span>{{ $t("shared.labels.date") }}:</span>
           <span class="q-px-sm text-weight-600">
             {{ model.date?.substring(0, 10) }}
           </span>
         </div>
 
-        <div v-if="showDueDate" class="row justify-start">
+        <div v-if="showDueDate">
           <span>{{ $t("shared.labels.dueDate") }}:</span>
           <span class="q-px-sm text-weight-600">
             {{ model.dueDate?.substring(0, 10) }}
@@ -50,9 +49,9 @@
             {{ model.lastApiLogModel.taxId }}
           </span>
         </div>
-      </div>
-    </div>
-  </div>
+      </td>
+    </tr>
+  </table>
 </template>
 
 <script setup>

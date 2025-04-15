@@ -45,7 +45,7 @@
         </q-item-label>
         <div class="q-pt-xs">
           <q-option-group
-            v-model="dlTypes"
+            v-model="model.dlTypeIds"
             :options="
               helper.getEnumOptions(accountDLType, 'accountDLType')
             "
@@ -107,11 +107,6 @@
     id: props.id,
     resetCallback: slGridStore.reset,
   });
-
-  //todo: modify backend to return desired array of detail type list
-  const dlTypes = computed(() =>
-    model.value.dlTypeIdList.map((c) => parseInt(c.id))
-  );
 
   const glChanged = async (gl) => {
     if (gl) {

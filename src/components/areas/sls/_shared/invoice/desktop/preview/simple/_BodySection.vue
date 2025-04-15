@@ -1,43 +1,29 @@
 <template>
   <div class="q-table__middle scroll">
     <table
-      :style="$q.screen.gt.xs ? 'width:100%;' : 'width: 900px;'"
       style="
-        border: 1px solid #2d2d2d;
+        width: 100%;
         border-collapse: collapse;
-        font-size: 13px;
+        font-size: 12.4px;
       "
     >
-      <tbody>
+      <thead>
         <tr>
-          <td
-            style="width: 1%; padding: 5px; border: 1px solid #2d2d2d"
+          <th
+            style="width: 1%; padding: 3px; border: 1px solid #2d2d2d"
           >
             #
-          </td>
-          <td
-            style="
-              width: 34%;
-              padding: 5px;
-              border: 1px solid #2d2d2d;
-            "
-          >
-            کالا/خدمت
-          </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
-            مقدار
-          </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">فی</td>
-          <td
-            style="
-              width: 25%;
-              padding: 5px;
-              border: 1px solid #2d2d2d;
-            "
-          >
-            مبلغ کل
-          </td>
+          </th>
+          <th style="border: 1px solid #2d2d2d">کالا/خدمت</th>
+          <th style="border: 1px solid #2d2d2d">مقدار</th>
+          <th style="border: 1px solid #2d2d2d">فی</th>
+          <th style="border: 1px solid #2d2d2d">
+            مبلغ کل ({{ model.currencyTitle }})
+          </th>
         </tr>
+      </thead>
+
+      <tbody>
         <tr
           v-for="(item, index) in model.invoiceItems"
           :key="item.id"
@@ -47,13 +33,13 @@
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <div class="text-wrap">
-              {{ item.productTitle }}
+              {{ item.productCode }} - {{ item.productTitle }}
               <small v-if="item.comment">({{ item.comment }})</small>
             </div>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             {{ helper.formatNumber(item.quantity) }}
-            ({{ item.productUnitTitle }})
+            <small>({{ item.productUnitTitle }})</small>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             {{ helper.formatNumber(item.price) }}
@@ -75,7 +61,9 @@
             {{ $t("shared.labels.subTotal") }}:
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ helper.formatNumber(model.totalNetPrice) }}
+            <strong>
+              {{ helper.formatNumber(model.totalNetPrice) }}
+            </strong>
           </td>
         </tr>
         <tr v-if="model.totalDiscount">
@@ -88,7 +76,7 @@
             colspan="4"
             class="text-right"
           >
-            discount
+            {{ $t("shared.labels.discount") }}:
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
@@ -109,7 +97,9 @@
             {{ $t("shared.labels.vat") }}:
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ helper.formatNumber(model.totalVat) }}
+            <strong>
+              {{ helper.formatNumber(model.totalVat) }}
+            </strong>
           </td>
         </tr>
         <tr>

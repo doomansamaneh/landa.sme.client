@@ -111,7 +111,7 @@
     columns: Array,
     noFullscreen: Boolean,
     title: String,
-    subTitle: String,
+    subTitle: { type: String, default: "" },
   });
 
   const searchStore = useVoucherSearch();

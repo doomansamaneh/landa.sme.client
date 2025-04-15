@@ -35,9 +35,7 @@
               <strong style="padding: 0 5px">مانده:</strong>
               <span class="text-weight-600">
                 {{
-                  helper.formatNumber(
-                    model.invoiceRemained.remainedAmount
-                  )
+                  helper.formatNumber(model.invoiceRemained.remained)
                 }}
               </span>
             </span>
@@ -71,6 +69,7 @@
             style="padding: 5px; border: 1px solid #2d2d2d"
             colspan="100%"
           >
+            <strong>شرح:</strong>
             <div>
               <strong v-if="model.contractTitle">
                 {{ model.contractTitle }}

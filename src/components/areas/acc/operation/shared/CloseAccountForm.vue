@@ -69,7 +69,9 @@
     const isValid = await form.value.validate();
     if (isValid) {
       await formStore.closeAccount();
+      return true;
     }
+    return false;
   }
 
   onMounted(() => {

@@ -14,7 +14,12 @@
   >
     <template #cell-productTitle="{ item }">
       {{ item.productTitle }}
-      <small v-if="item.itemComment">({{ item.itemComment }})</small>
+      <small v-if="item.summay || item.itemComment">
+        (
+        <span class="q-pr-xs">{{ item.summary }} /</span>
+        <span v-if="item.itemComment">{{ item.itemComment }}</span>
+        )
+      </small>
     </template>
 
     <template #footer-subtotal="{ selectedRows }">

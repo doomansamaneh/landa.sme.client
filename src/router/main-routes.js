@@ -770,6 +770,12 @@ export default {
             import("pages/areas/sls/invoice/PreviewPage.vue"),
           meta: { title: "فاکتور فروش - پیش نمایش" },
         },
+        {
+          path: "addressPreview/:id",
+          component: () =>
+            import("pages/areas/sls/invoice/PreviewAddressPage.vue"),
+          meta: { title: "فاکتور فروش - برچسب نشانی" },
+        },
       ],
     },
 

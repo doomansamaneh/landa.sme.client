@@ -16,21 +16,26 @@
               <strong>
                 {{ appConfigStore.model.value.companySetting.name }}
               </strong>
+              <span
+                v-if="
+                  appConfigStore.model.value.companySetting.nationalNo
+                "
+              >
+                / شناسه ملی:
+                {{
+                  appConfigStore.model.value.companySetting.nationalNo
+                }}
+              </span>
+              <span
+                v-else-if="
+                  appConfigStore.model.value.companySetting.taxNo
+                "
+              >
+                ش اقتصادی:
+                {{ appConfigStore.model.value.companySetting.taxNo }}
+              </span>
             </div>
-            <div
-              v-if="
-                appConfigStore.model.value.companySetting.nationalNo
-              "
-            >
-              شناسه ملی:
-              {{
-                appConfigStore.model.value.companySetting.nationalNo
-              }}
-            </div>
-            <div v-else>
-              شماره اقتصادی:
-              {{ appConfigStore.model.value.companySetting.taxNo }}
-            </div>
+
             <div>
               نشانی:
               <strong>
@@ -55,11 +60,13 @@
                   appConfigStore.model.value.companySetting.postalCode
                 }}
               </span>
-            </div>
 
-            <div>
-              تلفن:
-              {{ appConfigStore.model.value.companySetting.phone }}
+              <span
+                v-if="appConfigStore.model.value.companySetting.phone"
+              >
+                تلفن:
+                {{ appConfigStore.model.value.companySetting.phone }}
+              </span>
             </div>
           </td>
         </tr>
@@ -71,15 +78,20 @@
             <div>
               مشتری:
               <strong>{{ model.customerName }}</strong>
+              <span
+                v-if="model.customerSummary?.business?.nationalNo"
+              >
+                / شناسه ملی:
+                {{ model.customerSummary?.business?.nationalNo }}
+              </span>
+              <span
+                v-else-if="model.customerSummary?.business?.taxNo"
+              >
+                / ش اقتصادی:
+                {{ model.customerSummary?.business?.taxNo }}
+              </span>
             </div>
-            <div v-if="model.customerSummary?.business?.nationalNo">
-              شناسه ملی:
-              {{ model.customerSummary?.business?.nationalNo }}
-            </div>
-            <div v-if="model.customerSummary?.business?.taxNo">
-              شماره اقتصادی:
-              {{ model.customerSummary?.business?.taxNo }}
-            </div>
+
             <div v-if="model.customerSummary?.address?.address">
               نشانی:
               <strong
@@ -91,10 +103,11 @@
               <span class="text-wrap">
                 {{ model.customerSummary?.address?.address }}
               </span>
-              <div v-if="model.customerSummary?.address?.postalCode">
+              <span v-if="model.customerSummary?.address?.postalCode">
+                /
                 <strong>کد پستی:</strong>
                 {{ model.customerSummary?.address?.postalCode }}
-              </div>
+              </span>
             </div>
             <div v-if="model.customerSummary?.phone?.value">
               تلفن: {{ model.customerSummary?.phone?.value }}

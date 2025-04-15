@@ -1,11 +1,11 @@
 <template>
   <div class="q-table__middle scroll">
     <table
-      :style="$q.screen.gt.xs ? 'width:100%;' : 'width: 900px;'"
       style="
+        width: 100%;
         border: 1px solid #2d2d2d;
         border-collapse: collapse;
-        font-size: 13px;
+        font-size: 12.4px;
       "
     >
       <thead>
@@ -63,11 +63,12 @@
               border: 1px solid #2d2d2d;
             "
           >
-            جمع کل (
+            جمع کل
             <span class="text-weight-700">
+              (
               {{ model.currencyTitle }}
+              )
             </span>
-            )
           </td>
         </tr>
         <tr
@@ -88,10 +89,10 @@
               {{ item.productTitle }}
               <small v-if="item.comment || item.productComment">
                 (
-                <span v-if="item.productComment">
+                <span v-if="!item.productComment" class="q-pr-xs">
                   {{ item.productComment }}
                 </span>
-                <span v-if="item.comment" class="q-px-sm">
+                <span v-if="item.comment">
                   {{ item.comment }}
                 </span>
                 )
@@ -188,10 +189,7 @@
 
 <script setup>
   import { numberToWords } from "@persian-tools/persian-tools";
-  import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
-
-  const $q = useQuasar();
 
   const props = defineProps({
     model: Object,

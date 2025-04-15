@@ -146,7 +146,7 @@
 
   const paymentAction = computed(() => {
     const baseRouteLower = props.baseRoute?.toLowerCase();
-    return baseRouteLower === "sls/inovoice" ||
+    return baseRouteLower === "sls/invoice" ||
       baseRouteLower === "sls/purchasereturn"
       ? "receipt"
       : "payment";
