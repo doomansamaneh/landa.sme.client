@@ -1,127 +1,62 @@
 <template>
-  <toolbar buttons margin :title="title" back-button>
+  <toolbar-mobile
+    v-if="$q.screen.xs"
+    buttons
+    margin
+    :title="title"
+    back-button
+  >
     <template #buttons>
       <menu-button-print
         class="primary-gradient primary-shadow text-white text-body2"
         @click="printStore.handlePrint()"
       />
     </template>
-  </toolbar>
+  </toolbar-mobile>
+
+  <toolbar-desktop v-else buttons margin :title="title" back-button>
+    <template #buttons>
+      <menu-button-print
+        class="primary-gradient primary-shadow text-white text-body2"
+        @click="printStore.handlePrint()"
+      />
+    </template>
+  </toolbar-desktop>
 
   <q-card bordered square>
     <div :ref="printStore.printRef">
       <q-card-section>
-        <div
-          class="address-view"
-          style="display: flex; gap: 16px; margin-top: 8px"
-        >
-          <div
-            class="column q-gutter-y-sm q-pa-md col"
-            :style="
-              $q.dark.isActive
-                ? 'border: 1px solid #ffffff'
-                : 'border: 1px solid #2d2d2d'
-            "
-          >
-            <div>
-              <div
-                style="display: flex; gap: 6px; align-items: center"
-              >
-                <span class="text-body1 text-bold">فرستنده:</span>
-                <span>
-                  {{ appConfigStore.model.value.companySetting.name }}
-                </span>
-              </div>
-            </div>
-            <div class="text-body3">
-              <strong>
-                {{
-                  appConfigStore.model.value.companySetting.location
-                }}
-                -
-              </strong>
-              <span class="text-wrap">
-                {{
-                  appConfigStore.model.value.companySetting.address
-                }}
-              </span>
-            </div>
-            <div>
-              <div
-                style="display: flex; gap: 6px; align-items: center"
-              >
-                <span class="text-body3 text-bold">کد پستی:</span>
-                <span>
-                  {{
-                    appConfigStore.model.value.companySetting
-                      .postalCode
-                  }}
-                </span>
-              </div>
-            </div>
-            <div>
-              <div
-                style="display: flex; gap: 6px; align-items: center"
-              >
-                <span class="text-body3 text-bold">تلفن:</span>
-                <span>
-                  {{
-                    appConfigStore.model.value.companySetting.phone
-                  }}
-                </span>
-              </div>
-            </div>
+        <div class="row" style="gap: 16px">
+          <div class="col-md col-sm-12 col-xs-12">
+            <address-card
+              title="فرستنده"
+              :name="appConfigStore.model.value.companySetting.name"
+              :location="
+                appConfigStore.model.value.companySetting.location
+              "
+              :address="
+                appConfigStore.model.value.companySetting.address
+              "
+              :postal-code="
+                appConfigStore.model.value.companySetting.postalCode
+              "
+              :phone="appConfigStore.model.value.companySetting.phone"
+            />
           </div>
 
-          <div
-            class="column q-gutter-y-sm q-pa-md col"
-            :style="
-              $q.dark.isActive
-                ? 'border: 1px solid #ffffff'
-                : 'border: 1px solid #2d2d2d'
-            "
-          >
-            <div>
-              <div
-                style="display: flex; gap: 6px; align-items: center"
-              >
-                <span class="text-body1 text-bold">گیرنده:</span>
-                <span>
-                  {{ model.customerName }}
-                </span>
-              </div>
-            </div>
-            <div class="text-body3">
-              <span>
-                <strong>
-                  {{ model.customerSummary?.address?.locationTitle }}
-                  -
-                </strong>
-                <span class="text-wrap">
-                  {{ model.customerSummary?.address?.address }}
-                </span>
-              </span>
-            </div>
-            <div>
-              <div
-                style="display: flex; gap: 6px; align-items: center"
-              >
-                <span class="text-body3 text-bold">کد پستی:</span>
-                <span>
-                  {{ model.customerSummary?.address?.postalCode }}
-                </span>
-              </div>
-            </div>
-            <div>
-              <div
-                style="display: flex; gap: 6px; align-items: center"
-              >
-                <span class="text-body3 text-bold">تلفن:</span>
-                <span>
-                  {{ model.customerSummary?.phone?.value }}
-                </span>
-              </div>
-            </div>
+          <div class="column col-md col-sm-12 col-xs-12">
+            <address-card
+              title="گیرنده"
+              :name="model.customerName"
+              :location="
+                model.customerSummary?.address?.locationTitle
+              "
+              :address="model.customerSummary?.address?.address"
+              :postal-code="
+                model.customerSummary?.address?.postalCode
+              "
+              :phone="model.customerSummary?.phone?.value"
+            />
           </div>
         </div>
       </q-card-section>
@@ -136,8 +71,10 @@
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { usePrint } from "src/composables/usePrint";
 
-  import Toolbar from "src/components/shared/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/ToolBarPreviewMobile.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import AddressCard from "./AddressCard.vue";
 
   const props = defineProps({
     title: String,
