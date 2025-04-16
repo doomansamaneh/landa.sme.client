@@ -14,6 +14,7 @@
       {{ badgeCount }}
     </q-badge>
     <slot name="append"></slot>
+    <slot></slot>
   </q-btn>
 </template>
 <script setup>
