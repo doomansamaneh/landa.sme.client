@@ -63,6 +63,20 @@
             </div>
           </div>
 
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <inventory-lookup
+                v-model:selectedId="
+                  searchStore.searchModel.value.inventoryId
+                "
+                v-model:selectedText="
+                  searchStore.searchModel.value.inventoryTitle
+                "
+                :placeholder="$t('shared.labels.inventoryTitle')"
+              />
+            </div>
+          </div>
+
           <q-card-actions
             class="row q-col-gutter-md items-center q-px-none q-py-lg"
           >
@@ -105,6 +119,7 @@
   import { useProductStockSearch } from "../../_composables/useProductStockSearch";
 
   import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
+  import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
 
   const expanded = ref(false);
   const searchStore = useProductStockSearch();

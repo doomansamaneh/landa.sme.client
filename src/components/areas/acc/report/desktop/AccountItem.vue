@@ -121,7 +121,7 @@
     store:
       props.gridStore ||
       useBaseInfoGrid({
-        sortColumn: "voucherNo",
+        sortColumn: "voucherNo,rowNo",
         columns: props.columns || accountItemColumns,
         searchModel: searchStore.searchModel,
       }),
