@@ -19,12 +19,14 @@ export function usePrint() {
       if (printRef.value) {
         printRef.value.classList.remove("printable");
         printRef.value.style.direction = "";
+        resetAllBorderColors();
       }
     },
     onBeforeGetContent: async () => {
       if (printRef.value) {
         printRef.value.classList.add("printable");
         printRef.value.style.direction = $q.lang.rtl ? "rtl" : "ltr";
+        setAllBordersToBlack();
       }
     },
     onBeforePrint: () => {
@@ -38,6 +40,28 @@ export function usePrint() {
   };
 
   const { handlePrint } = useVueToPrint(options);
+
+  const setAllBordersToBlack = () => {
+    if (printRef.value) {
+      const allElements = printRef.value.querySelectorAll("*");
+      allElements.forEach((element) => {
+        if (window.getComputedStyle(element).border !== "none") {
+          element.style.borderColor = "black";
+        }
+      });
+    }
+  };
+
+  const resetAllBorderColors = () => {
+    if (printRef.value) {
+      const allElements = printRef.value.querySelectorAll("*");
+      allElements.forEach((element) => {
+        if (window.getComputedStyle(element).border !== "none") {
+          element.style.borderColor = "";
+        }
+      });
+    }
+  };
 
   const injectPrintPreviewTableStyles = () => {
     document.body.dataset.bgColor =

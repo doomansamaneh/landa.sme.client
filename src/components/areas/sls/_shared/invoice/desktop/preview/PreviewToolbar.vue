@@ -20,7 +20,24 @@
 
       <slot name="toolbar-custom-desktop"></slot>
 
-      <menu-button-print @click="printStore.handlePrint" />
+      <menu-button title="چاپ" icon="o_print">
+        <q-menu class="border-radius-lg" cover>
+          <q-list dense padding style="width: 220px">
+            <menu-item
+              icon="o_print"
+              :title="$t('shared.labels.print')"
+              @click="printStore.handlePrint()"
+            />
+
+            <menu-item
+              :to="`/${baseRoute}/addressPreview/${model.id}`"
+              icon="o_print"
+              title="چاپ برچسب نشانی"
+            />
+          </q-list>
+        </q-menu>
+      </menu-button>
+
       <menu-button
         :title="$t('shared.labels.downloadPdf')"
         icon="download"
@@ -49,6 +66,7 @@
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
 
   const props = defineProps({
     model: Object,

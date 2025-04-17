@@ -1,5 +1,5 @@
 <template>
-  <preview toolbar />
+  <preview title="برچسب نشانی" toolbar />
 </template>
 
 <script setup>
