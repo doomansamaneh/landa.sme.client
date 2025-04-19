@@ -58,8 +58,8 @@
               v-model:selectedText="
                 formStore.model.value.discountSLTitle
               "
-              :filter-expression="filterDiscount"
             />
+            <!-- :filter-expression="filterDiscount" -->
           </div>
         </div>
 
