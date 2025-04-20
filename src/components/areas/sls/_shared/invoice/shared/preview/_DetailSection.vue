@@ -33,10 +33,14 @@
               <div class="q-pt-sm" v-if="model?.voucherId">
                 <menu-button
                   dense
+                  unelevated
                   padding="4px 8px"
                   icon="o_delete"
                   title="حذف سند"
-                  class="red-shadow red-gradient text-white text-body3"
+                  class="text-body3"
+                  :class="
+                    $q.dark.isActive ? 'text-red-6' : 'text-negative'
+                  "
                   @click="deleteVoucher"
                 />
               </div>
