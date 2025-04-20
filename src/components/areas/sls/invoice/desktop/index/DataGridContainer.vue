@@ -5,7 +5,7 @@
 
   <q-card flat class="bordered shadow">
     <card-tabs
-      v-model="tab"
+      v-model="state.currentTab.value"
       :indicator-color="tabColor"
       :active-color="tabColor"
       @tabChanged="tabChanged"
@@ -39,6 +39,7 @@
   import { sqlOperator, voucherStatus } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
   import { useQuasar } from "quasar";
+  import { useInvoiceState } from "../../../_composables/useInvoiceState";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
   import DataGrid from "./DataGrid.vue";
@@ -53,7 +54,7 @@
   });
 
   const $q = useQuasar();
-  const tab = ref("invoice");
+  const state = useInvoiceState();
 
   function setDefaultFilter() {
     props.tableStore.setFilterExpression([
@@ -88,7 +89,7 @@
   const tabColor = computed(() =>
     $q.dark.isActive
       ? "yellow"
-      : tab.value == "canceled"
+      : state.currentTab.value == "canceled"
       ? "negative"
       : "primary"
   );

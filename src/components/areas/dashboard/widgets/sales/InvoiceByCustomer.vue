@@ -146,7 +146,7 @@
         },
         categories: chartStore.chartCategories?.value,
         labels: {
-          show: false,
+          show: true,
           offsetY: 12,
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
@@ -166,7 +166,7 @@
         },
       },
       legend: {
-        show: true,
+        show: false,
         showForSingleSeries: true,
         inverseOrder: true,
         labels: {
@@ -205,6 +205,7 @@
           width: 8,
           height: 8,
         },
+        intersect: false,
       },
     };
   }

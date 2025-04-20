@@ -47,15 +47,11 @@
           <div class="column col-md col-sm-12 col-xs-12">
             <address-card
               title="گیرنده"
-              :name="model.customerName"
-              :location="
-                model.customerSummary?.address?.locationTitle
-              "
-              :address="model.customerSummary?.address?.address"
-              :postal-code="
-                model.customerSummary?.address?.postalCode
-              "
-              :phone="model.customerSummary?.phone?.value"
+              :name="customerData?.name"
+              :location="customerData?.address?.locationTitle"
+              :address="customerData?.address?.address"
+              :postal-code="customerData?.address?.postalCode"
+              :phone="customerData?.phone?.value"
             />
           </div>
         </div>
@@ -85,6 +81,8 @@
   const id = computed(() => route.params.id);
   const model = ref({});
   const crudStore = useFormActions("", model, true);
+
+  const customerData = computed(() => model.value?.data);
 
   onMounted(async () => {
     model.value = await crudStore.customGetAction(
