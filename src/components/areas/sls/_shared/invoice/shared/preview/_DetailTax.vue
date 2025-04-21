@@ -24,12 +24,7 @@
         rounded
         text-color="white"
         class="primary-gradient primary-shadow"
-        @click="
-          taxStore.sendToTax(
-            model.id,
-            taxGrid.dataGrid.tableStore.reloadData
-          )
-        "
+        @click="taxStore.sendToTax(model.id, taxGrid?.reloadData)"
       >
         <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
         <span>ارسال به سامانه مودیان</span>

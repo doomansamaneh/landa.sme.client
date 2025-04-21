@@ -4,7 +4,7 @@
       <div class="col-md-6 col-sm-12 col-xs-12">
         <gl-lookup
           v-model:selectedId="model.glId"
-          v-model:selectedText="model.glTitle"
+          v-model:selectedText="model.glDisplay"
           label="حساب کل"
           required
           @rowSelected="glChanged"

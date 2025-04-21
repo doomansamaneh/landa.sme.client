@@ -35,7 +35,7 @@
           <div class="col-md-6 col-sm-12 col-xs-12">
             <sl-lookup
               v-model:selectedId="formStore.model.value.slId"
-              v-model:selectedText="formStore.model.value.slTitle"
+              v-model:selectedText="formStore.model.value.slDisplay"
               :filter-expression="filterSL"
               label="حساب معین"
               required
@@ -48,7 +48,7 @@
             <sl-lookup
               v-model:selectedId="formStore.model.value.discountSLId"
               v-model:selectedText="
-                formStore.model.value.discountSLTitle
+                formStore.model.value.discountSLDisplay
               "
               :filter-expression="filterProduct"
               label="حساب تخفیف"
@@ -62,7 +62,7 @@
             <sl-lookup
               v-model:selectedId="formStore.model.value.productSLId"
               v-model:selectedText="
-                formStore.model.value.productSLTitle
+                formStore.model.value.productSLDisplay
               "
               :filter-expression="filterProduct"
               label="حساب کالا"
@@ -76,7 +76,7 @@
             <sl-lookup
               v-model:selectedId="formStore.model.value.serviceSLId"
               v-model:selectedText="
-                formStore.model.value.serviceSLTitle
+                formStore.model.value.serviceSLDisplay
               "
               :filter-expression="filterProduct"
               label="حساب خدمات"

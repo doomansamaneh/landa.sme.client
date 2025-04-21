@@ -4,7 +4,7 @@
       <div class="col-md-6 col-sm-12 col-xs-12">
         <sl-lookup
           v-model:selectedId="formStore.model.value.slId"
-          v-model:selectedText="formStore.model.value.slTitle"
+          v-model:selectedText="formStore.model.value.slDisplay"
           :filter-expression="filterSL"
           label="حساب معین"
           required

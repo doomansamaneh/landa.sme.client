@@ -4,7 +4,7 @@
       <div class="col-md-6 col-sm-12 col-xs-12">
         <cl-lookup
           v-model:selectedId="formStore.model.value.clId"
-          v-model:selectedText="formStore.model.value.clTitle"
+          v-model:selectedText="formStore.model.value.clDisplay"
           label="گروه حساب"
           required
           @rowSelected="clChanged"

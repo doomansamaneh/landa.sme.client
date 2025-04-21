@@ -19,7 +19,7 @@
               </q-badge>
               <div class="text-overline">{{ item.logTime }}</div>
             </div>
-            <div class="text-body2 text-weight-bold">
+            <div class="text-body2 text-roboto text-weight-bold">
               {{ item.taxId }}
             </div>
           </div>
@@ -63,30 +63,24 @@
           <q-separator />
           <q-card-section class="q-pb-none">
             <div class="text-body2 text-weight-700">ریز اطلاعات</div>
-            <ul class="q-px-md q-pb-none">
-              <li class="q-mb-md">
-                <div class="text-body3 text-weight-500 text-grey-8">
-                  tax id:
-                </div>
-                <div class="text-body2 text-weight-600">
+            <ul class="q-px-md q-pb-none q-gutter-xs" dir="ltr">
+              <li>
+                <span class="text-grey-8 q-p-x-sm">tax id:</span>
+                <span class="text-roboto text-weight-500">
                   {{ item.taxId }}
-                </div>
-              </li>
-              <li class="q-mb-md">
-                <div class="text-body3 text-weight-500 text-grey-8">
-                  ref no:
-                </div>
-                <div class="text-body2 text-weight-600">
-                  {{ item.referenceNumber }}
-                </div>
+                </span>
               </li>
               <li>
-                <div class="text-body3 text-weight-500 text-grey-8">
-                  uid:
-                </div>
-                <div class="text-body2 text-weight-600">
+                <span class="text-grey-8 q-p-x-sm">ref no:</span>
+                <span class="text-roboto text-weight-500">
+                  {{ item.referenceNumber }}
+                </span>
+              </li>
+              <li>
+                <span class="text-grey-8 q-p-x-sm">uid:</span>
+                <span class="text-roboto text-weight-500">
                   {{ item.uid }}
-                </div>
+                </span>
               </li>
             </ul>
           </q-card-section>
@@ -117,7 +111,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
+  import { onMounted } from "vue";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { guidEmpty, sortOrder, sqlOperator } from "src/constants";
   import { taxStatus } from "src/components/areas/sls/_composables/constants";
@@ -170,5 +164,6 @@
 
   defineExpose({
     dataGrid: gridStore,
+    reloadData: reloadData,
   });
 </script>
