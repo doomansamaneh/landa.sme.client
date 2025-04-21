@@ -23,6 +23,20 @@
 
     <template #cell-no="{ item }">
       <span>{{ item.no }}</span>
+
+      <q-badge
+        v-if="item.docNo"
+        class="q-mx-xs"
+        outline
+        align="middle"
+        color="teal"
+      >
+        {{ item.docNo }}
+        <q-tooltip class="custom-tooltip text-body1">
+          ش رهگیری
+        </q-tooltip>
+      </q-badge>
+
       <tax-badge :tax-id="item.taxId" />
       <notification-badge :count="item.notificationCount" />
     </template>
@@ -174,6 +188,7 @@
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
   import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
+  import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
   import IsActive from "src/components/shared/IsActive.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
