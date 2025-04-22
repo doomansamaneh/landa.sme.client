@@ -14,7 +14,28 @@
         <th style="width: 10%">مبلغ واحد</th>
         <th style="width: 15%">ارزش افزوده</th>
         <th style="width: 10%">مبلغ مالیات</th>
-        <th style="width: 10%">مبلغ کل</th>
+        <th style="width: 15%">
+          مبلغ کل
+          <q-icon
+            name="o_info"
+            size="xs"
+            color="primary"
+            class="cursor-pointer"
+          >
+            <q-tooltip
+              :delay="600"
+              class="custom-tooltip"
+              anchor="top right"
+              self="bottom middle"
+              :offset="[50, 10]"
+            >
+              <span class="text-body2">
+                مبلغ کل = (تعداد * مبلغ) - مالیات بر ارزش + تخفیف +
+                افزوده
+              </span>
+            </q-tooltip>
+          </q-icon>
+        </th>
         <th style="min-width: 120px" />
       </tr>
     </thead>
