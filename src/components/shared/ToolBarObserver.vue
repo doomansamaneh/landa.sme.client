@@ -14,6 +14,11 @@
       class="z-1"
       position="top"
       expand
+      :style="
+        inside
+          ? 'background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;'
+          : ''
+      "
     >
       <slot></slot>
     </q-page-sticky>
@@ -21,9 +26,13 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
   import { useCheckDialogOpen } from "src/composables/useCheckDialogOpen";
+
+  const props = defineProps({
+    inside: Boolean,
+  });
 
   const $q = useQuasar();
   const checkDialog = useCheckDialogOpen();

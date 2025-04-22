@@ -6,126 +6,169 @@
     class="q-markup-table--impacted"
   >
     <thead>
-      <!-- <tr>
-        <th colspan="100%">
-          <div class="row items-center">
-            <div class="col-md-6 col-sm-12">
-              <add-by-code :form-store="formStore" />
-            </div>
-          </div>
-        </th>
-      </tr> -->
       <tr>
         <th style="width: 1%">#</th>
         <th style="width: 28%">کالا/خدمت</th>
         <th style="width: 7%">تعداد/مقدار</th>
-        <th style="width: 15%">واحد سنجش</th>
-        <th style="width: 15%">مبلغ واحد</th>
-        <th style="width: 15%">
-          مبلغ کل
-          <q-icon
-            name="o_info"
-            size="xs"
-            color="primary"
-            class="cursor-pointer"
-          >
-            <q-tooltip
-              :delay="600"
-              class="custom-tooltip"
-              anchor="top right"
-              self="bottom middle"
-              :offset="[50, 10]"
-            >
-              <span class="text-body2">
-                مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش
-                افزوده
-              </span>
-            </q-tooltip>
-          </q-icon>
-        </th>
-        <th style="width: 10%"></th>
+        <th style="width: 10%">واحد سنجش</th>
+        <th style="width: 10%">مبلغ واحد</th>
+        <th style="width: 15%">ارزش افزوده</th>
+        <th style="width: 10%">مبلغ مالیات</th>
+        <th style="width: 10%">مبلغ کل</th>
+        <th style="min-width: 120px" />
       </tr>
     </thead>
     <tbody>
-      <tr
+      <template
         v-for="(row, index) in model.invoiceItems"
         :key="index"
-        class="q-pa-md"
       >
-        <td class="text-center">{{ index + 1 }}</td>
-        <td>
-          <product-lookup
-            autogrow
-            :autofocus="index === formStore.newAddedItemIndex.value"
-            placeholder="انتخاب کالا/خدمت"
-            v-model:selectedId="row.productId"
-            v-model:selectedText="row.productDisplay"
-            :filterExpression="productFilter"
-            required
-            @rowSelected="productChanged($event, row)"
-          />
-        </td>
-        <td>
-          <custom-input-number
-            v-model="row.quantity"
-            placeholder="مقدار"
-            required
-          />
-        </td>
-        <td>
-          <product-unit-lookup
-            placeholder="واحد سنجش"
-            v-model:selectedId="row.productUnitId"
-            v-model:selectedText="row.productUnitTitle"
-            required
-          />
-        </td>
-        <td>
-          <custom-input-number
-            v-model="row.price"
-            placeholder="مبلغ واحد"
-            required
-          />
-        </td>
-        <td>
-          <q-field outlined dense disable>
-            <template #control>
-              <div
-                class="text-body2 self-center full-width no-outline"
-                tabindex="0"
-              >
-                {{ helper.formatNumber(row.totalPrice) }}
-              </div>
-            </template>
-          </q-field>
-        </td>
-        <td class="text-center">
-          <q-btn
-            unelevated
-            round
-            dense
-            class="text-on-dark"
-            size="14px"
-            @click="formStore.deleteRow(index)"
-          >
-            <q-icon size="24px" name="o_delete" />
-          </q-btn>
-          <q-btn
-            @click="openRowDetailSheet(row)"
-            unelevated
-            dense
-            round
-            class="text-on-dark"
-            size="14px"
-          >
-            <q-icon size="24px" name="o_more_horiz" />
-          </q-btn>
-        </td>
-      </tr>
+        <tr class="q-pa-md">
+          <td class="text-center">{{ index + 1 }}</td>
+          <td>
+            <product-lookup
+              autogrow
+              :autofocus="index === formStore.newAddedItemIndex.value"
+              placeholder="انتخاب کالا/خدمت"
+              v-model:selectedId="row.productId"
+              v-model:selectedText="row.productDisplay"
+              :filterExpression="productFilter"
+              required
+              @rowSelected="productChanged($event, row)"
+            />
+          </td>
+          <td>
+            <custom-input-number
+              v-model="row.quantity"
+              placeholder="مقدار"
+              required
+            />
+          </td>
+          <td>
+            <product-unit-lookup
+              placeholder="واحد سنجش"
+              v-model:selectedId="row.productUnitId"
+              v-model:selectedText="row.productUnitTitle"
+              required
+            />
+          </td>
+          <td>
+            <custom-input-number
+              v-model="row.price"
+              placeholder="مبلغ واحد"
+              required
+            />
+          </td>
+          <td>
+            <vat-lookup
+              input-class="text-body3 no-letter-spacing"
+              placeholder="ارزش افزوده"
+              v-model:selectedId="row.vatId"
+              v-model:selectedText="row.vatTitle"
+              :filterExpression="vatFilter"
+              @rowSelected="vatChanged($event, row)"
+            />
+          </td>
+          <td>
+            <custom-input-number
+              input-class="text-body2 no-letter-spacing"
+              v-model="row.vatAmount"
+              placeholder="مبلغ مالیات"
+            />
+          </td>
+          <td>
+            <q-field outlined dense disable>
+              <template #control>
+                <div
+                  class="text-body2 self-center full-width no-outline"
+                  tabindex="0"
+                >
+                  {{ helper.formatNumber(row.totalPrice) }}
+                </div>
+              </template>
+            </q-field>
+          </td>
+          <td class="text-center">
+            <q-btn
+              unelevated
+              round
+              dense
+              class="text-on-dark"
+              size="14px"
+              @click="formStore.deleteRow(index)"
+            >
+              <q-icon size="24px" name="o_delete" />
+            </q-btn>
+            <q-btn
+              @click="toggleRowDetails(index)"
+              unelevated
+              dense
+              round
+              class="text-on-dark"
+              size="14px"
+            >
+              <q-icon size="24px" name="o_more_horiz" />
+            </q-btn>
+          </td>
+        </tr>
+
+        <tr class="q-pa-md" v-if="expandedRows[index]">
+          <td class="text-center"></td>
+          <td colspan="3" style="width: 45%">
+            <custom-input
+              v-model="row.comment"
+              placeholder="شرح ردیف"
+              type="textarea"
+              dense
+              autogrow
+            />
+          </td>
+          <td colspan="2" style="width: 25%">
+            <custom-input
+              v-model="row.discountComment"
+              placeholder="شرح تخفیف"
+              type="textarea"
+              dense
+              autogrow
+            />
+          </td>
+          <td>
+            <custom-input-number
+              :disable="getDiscountType(index)"
+              v-model="row.discount"
+              placeholder="مبلغ تخفیف"
+              dense
+            />
+          </td>
+          <td>
+            <div class="row justify-center items-center">
+              <div class="q-mr-xs">مبلغ</div>
+              <q-toggle
+                :model-value="getDiscountType(index)"
+                @update:model-value="
+                  updateDiscountType(index, $event)
+                "
+                dense
+                size="40px"
+              />
+              <div class="q-ml-xs">درصد</div>
+            </div>
+          </td>
+          <td>
+            <custom-input-number
+              :disable="!getDiscountType(index)"
+              v-model="row.discountPercent"
+              placeholder="درصد تخفیف"
+              dense
+            />
+          </td>
+        </tr>
+      </template>
     </tbody>
+
     <tbody v-if="model.invoiceItems.length === 0">
       <tr>
-        <td colspan="100%" class="text-center">
+        <td colspan="9" class="text-center">
           <no-product-selected class="q-mt-md" />
           <q-btn
             class="q-mb-xl primary-shadow"
@@ -152,7 +195,7 @@
     @click="formStore.pushNewRow()"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="">افزودن ردیف</div>
+    افزودن ردیف
   </q-btn>
 
   <footer-section
@@ -163,18 +206,23 @@
 </template>
 
 <script setup>
-  import { sqlOperator, invoiceFormType } from "src/constants";
+  import { ref, reactive, watch } from "vue";
+  import {
+    sqlOperator,
+    invoiceFormType,
+    vatType,
+  } from "src/constants";
   import { helper } from "src/helpers";
-  import { useDialog } from "src/composables/useDialog";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
   import FooterSection from "./FooterSection.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+  import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import NoProductSelected from "../NoProductSelected.vue";
-  import RowDetailSheet from "./RowDetailSheet.vue";
 
   const props = defineProps({
     formStore: useInvoiceModel,
@@ -182,15 +230,32 @@
     model: invoiceModel,
   });
 
-  const dialogStore = useDialog();
+  const expandedRows = reactive({});
+  const discountTypes = reactive({});
 
-  const openRowDetailSheet = (item) => {
-    dialogStore.openDialog({
-      title: "shared.labels.additionalInformation",
-      component: RowDetailSheet,
-      props: { formType: props.formType, formStore: props.formStore },
-      item: item,
-    });
+  const getDiscountType = (index) => {
+    if (discountTypes[index] === undefined) {
+      discountTypes[index] = false;
+    }
+    return discountTypes[index];
+  };
+
+  const updateDiscountType = (index, value) => {
+    discountTypes[index] = value;
+
+    // Update discount values when toggle changes
+    const item = props.model.invoiceItems[index];
+    if (item) {
+      if (value) {
+        item.discount = 0;
+      } else {
+        item.discountPercent = 0;
+      }
+    }
+  };
+
+  const toggleRowDetails = (index) => {
+    expandedRows[index] = !expandedRows[index];
   };
 
   const productFilter =
@@ -211,6 +276,24 @@
           },
         ];
 
+  const vatFilter =
+    props.formType === invoiceFormType.sales ||
+    props.formType === invoiceFormType.salesReturn
+      ? [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.in,
+            value: `${vatType.sale},${vatType.purchaseAndSale}`,
+          },
+        ]
+      : [
+          {
+            fieldName: "isForSale",
+            operator: sqlOperator.in,
+            value: `${vatType.purchase},${vatType.purchaseAndSale}`,
+          },
+        ];
+
   const productChanged = (product, row) => {
     if (
       props.formType === invoiceFormType.sales ||
@@ -221,4 +304,29 @@
     row.productUnitId = product?.productUnitId ?? null;
     row.productUnitTitle = product?.productUnitTitle ?? null;
   };
+
+  const vatChanged = (vat, item) => {
+    item.vatPercent = vat?.rate ?? 0;
+  };
+
+  // Watch for changes in discount percent
+  watch(
+    () =>
+      props.model.invoiceItems.map((item) => item.discountPercent),
+    (discountPercents) => {
+      props.model.invoiceItems.forEach((item) => {
+        if (item.discountPercent) {
+          props.formStore.applyDiscountPercent(item.discountPercent);
+        }
+      });
+    },
+    { deep: true }
+  );
 </script>
+
+<style lang="scss" scoped>
+  th {
+    background-color: #{$primary}10;
+    border-bottom: 2px solid $primary;
+  }
+</style>
