@@ -7,83 +7,59 @@
     <q-btn
       round
       color="primary"
-      icon="fullscreen"
+      :icon="isFullscreen ? 'fullscreen_exit' : 'fullscreen'"
       class="primary-gradient primary-shadow"
-      v-if="!isFullscreen"
-      @click="toggleFullscreen"
-    />
-    <q-btn
-      round
-      color="primary"
-      icon="fullscreen_exit"
-      class="primary-gradient primary-shadow"
-      v-else
       @click="toggleFullscreen"
     />
   </q-page-sticky>
 
-  <template v-if="fullscreen">
-    <q-card square flat class="fullscreen scroll fit">
-      <div class="bg-main z-1" style="position: sticky; top: 0">
-        <form-toolbar-container
-          buttons
-          inside
-          :title="title"
-          @submit-call-back="
-            formStore.submitForm(form, action, saveCallBack)
-          "
+  <form-toolbar-container
+    buttons
+    :title="title"
+    @submit-call-back="
+      formStore.submitForm(form, action, saveCallBack)
+    "
+  />
+
+  <q-card
+    :class="fullscreen ? 'fullscreen scroll fit' : 'form-container'"
+    :square="fullscreen"
+    :flat="fullscreen"
+  >
+    <div
+      v-if="fullscreen"
+      class="bg-main z-1"
+      style="position: sticky; top: 0"
+    >
+      <form-toolbar-container
+        buttons
+        inside
+        :title="title"
+        @submit-call-back="
+          formStore.submitForm(form, action, saveCallBack)
+        "
+      />
+    </div>
+
+    <q-card-section
+      :class="fullscreen ? 'q-px-lg q-pb-lg q-pt-none' : ''"
+    >
+      <q-form ref="form" autofocus>
+        <desktop
+          v-if="$q.screen.gt.sm"
+          :form-store="formStore"
+          :model="model"
+          :form-type="formType"
         />
-      </div>
-
-      <q-card-section class="q-px-lg q-pb-lg q-pt-none">
-        <q-form ref="form" autofocus>
-          <desktop
-            v-if="$q.screen.gt.sm"
-            :form-store="formStore"
-            :model="model"
-            :form-type="formType"
-          />
-          <mobile
-            v-else
-            :form-store="formStore"
-            :model="model"
-            :form-type="formType"
-          />
-          <!-- <mobile :form-store="formStore" /> -->
-        </q-form>
-      </q-card-section>
-    </q-card>
-  </template>
-
-  <template v-else>
-    <form-toolbar-container
-      buttons
-      :title="title"
-      @submit-call-back="
-        formStore.submitForm(form, action, saveCallBack)
-      "
-    />
-
-    <q-card class="form-container">
-      <q-card-section>
-        <q-form ref="form" autofocus>
-          <desktop
-            v-if="$q.screen.gt.sm"
-            :form-store="formStore"
-            :model="model"
-            :form-type="formType"
-          />
-          <mobile
-            v-else
-            :form-store="formStore"
-            :model="model"
-            :form-type="formType"
-          />
-          <!-- <mobile :form-store="formStore" /> -->
-        </q-form>
-      </q-card-section>
-    </q-card>
-  </template>
+        <mobile
+          v-else
+          :form-store="formStore"
+          :model="model"
+          :form-type="formType"
+        />
+      </q-form>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>

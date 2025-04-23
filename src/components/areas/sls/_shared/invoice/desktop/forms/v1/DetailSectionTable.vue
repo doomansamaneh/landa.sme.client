@@ -44,11 +44,12 @@
         v-for="(row, index) in model.invoiceItems"
         :key="index"
       >
-        <tr class="q-pa-md">
+        <tr class="standard-row">
           <td class="text-center">{{ index + 1 }}</td>
           <td>
             <product-lookup
               autogrow
+              no-error-icon
               :autofocus="index === formStore.newAddedItemIndex.value"
               placeholder="انتخاب کالا/خدمت"
               v-model:selectedId="row.productId"
@@ -60,6 +61,7 @@
           </td>
           <td>
             <custom-input-number
+              no-error-icon
               v-model="row.quantity"
               placeholder="مقدار"
               required
@@ -67,6 +69,7 @@
           </td>
           <td>
             <product-unit-lookup
+              no-error-icon
               placeholder="واحد سنجش"
               v-model:selectedId="row.productUnitId"
               v-model:selectedText="row.productUnitTitle"
@@ -133,7 +136,15 @@
           </td>
         </tr>
 
-        <tr class="q-pa-md" v-if="expandedRows[index]">
+        <tr
+          class="expanded-row"
+          :style="
+            $q.dark.isActive
+              ? 'background: #ffffff08;'
+              : 'background: #00000004;'
+          "
+          v-if="expandedRows[index]"
+        >
           <td class="text-center"></td>
           <td colspan="3" style="width: 45%">
             <custom-input
@@ -141,7 +152,6 @@
               placeholder="شرح ردیف"
               type="textarea"
               dense
-              autogrow
             />
           </td>
           <td colspan="2" style="width: 25%">
@@ -150,7 +160,6 @@
               placeholder="شرح تخفیف"
               type="textarea"
               dense
-              autogrow
             />
           </td>
           <td>
@@ -334,10 +343,15 @@
   watch(
     () =>
       props.model.invoiceItems.map((item) => item.discountPercent),
-    (discountPercents) => {
-      props.model.invoiceItems.forEach((item) => {
-        if (item.discountPercent) {
-          props.formStore.applyDiscountPercent(item.discountPercent);
+    (discountPercents, oldDiscountPercents) => {
+      discountPercents.forEach((percent, index) => {
+        if (percent !== oldDiscountPercents[index]) {
+          const item = props.model.invoiceItems[index];
+          if (item && percent) {
+            item.discount = Math.floor(
+              (item.quantity * item.price * percent) / 100
+            );
+          }
         }
       });
     },
@@ -349,5 +363,11 @@
   th {
     background-color: #{$primary}10;
     border-bottom: 2px solid $primary;
+  }
+
+  .q-table {
+    td {
+      vertical-align: baseline;
+    }
   }
 </style>

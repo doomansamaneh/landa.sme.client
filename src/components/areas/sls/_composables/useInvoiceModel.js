@@ -156,10 +156,8 @@ export function useInvoiceModel(config) {
   addWatch();
 
   const applyDiscountAmount = (discount) => {
-    const total = Math.max(
-      totalPrice.value + totalDiscount.value - totalVat.value,
-      1
-    );
+    // Calculate total without current discount
+    const total = Math.max(totalPrice.value - totalVat.value, 1);
     let subTotal = 0;
     let lastItem = null;
     model.value.invoiceItems.forEach((item) => {
@@ -180,7 +178,9 @@ export function useInvoiceModel(config) {
   const applyDiscountPercent = (percent) => {
     model.value.invoiceItems.forEach((item) => {
       item.discountPercent = percent;
-      item.discount = (item.quantity * item.price * percent) / 100;
+      item.discount = Math.floor(
+        (item.quantity * item.price * percent) / 100
+      );
     });
   };
 

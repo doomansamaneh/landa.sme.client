@@ -7,6 +7,7 @@
     clear-icon="clear"
     :disable="disable"
     :readonly="readonly"
+    :no-error-icon="noErrorIcon"
     outlined
     dense
     hide-bottom-space
@@ -39,6 +40,7 @@
     placeholder: String,
     required: Boolean,
     disable: Boolean,
+    noErrorIcon: Boolean,
     readonly: Boolean,
     modelValue: {
       type: Number,
