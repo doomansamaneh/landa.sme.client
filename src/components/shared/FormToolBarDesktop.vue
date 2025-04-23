@@ -1,5 +1,5 @@
 <template>
-  <toolbar-observer ref="observer">
+  <toolbar-observer ref="observer" :inside="inside">
     <q-toolbar :style="customStyles">
       <div class="q-gutter-x-sm">
         <slot name="buttons">
@@ -46,6 +46,7 @@
 
   const props = defineProps({
     title: String,
+    inside: Boolean,
   });
 
   const emit = defineEmits(["submit-call-back"]);
@@ -58,11 +59,14 @@
   };
 
   const customStyles = computed(() => {
-    const padding = $q.screen.sm
-      ? "24px"
-      : $q.screen.gt.sm
-      ? "38px"
-      : "";
+    let padding = "";
+
+    if (props.inside) {
+      padding = "24px";
+    } else {
+      padding = $q.screen.sm ? "24px" : $q.screen.gt.sm ? "38px" : "";
+    }
+
     return {
       "margin-top": "4px",
       "margin-bottom": "4px",
