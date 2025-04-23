@@ -41,7 +41,7 @@
     <div class="col-md-6 col-sm-12 col-xs-12">
       <sl-lookup
         v-model:selectedId="localFormStore.model.value.slId"
-        v-model:selectedText="localFormStore.model.value.slTitle"
+        v-model:selectedText="localFormStore.model.value.slDisplay"
         label="حساب معین"
       />
     </div>

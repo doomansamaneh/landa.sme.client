@@ -42,7 +42,7 @@
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.slId"
-              v-model:selectedText="formStore.model.value.slTitle"
+              v-model:selectedText="formStore.model.value.slDisplay"
               :filter-expression="filterSL"
             />
           </div>
@@ -56,7 +56,7 @@
             <sl-lookup
               v-model:selectedId="formStore.model.value.discountSLId"
               v-model:selectedText="
-                formStore.model.value.discountSLTitle
+                formStore.model.value.discountSLDisplay
               "
             />
             <!-- :filter-expression="filterDiscount" -->
@@ -71,7 +71,7 @@
             <sl-lookup
               v-model:selectedId="formStore.model.value.productSLId"
               v-model:selectedText="
-                formStore.model.value.productSLTitle
+                formStore.model.value.productSLDisplay
               "
               :filter-expression="filterProduct"
             />
@@ -86,7 +86,7 @@
             <sl-lookup
               v-model:selectedId="formStore.model.value.serviceSLId"
               v-model:selectedText="
-                formStore.model.value.serviceSLTitle
+                formStore.model.value.serviceSLDisplay
               "
               :filter-expression="filterService"
             />
