@@ -11,6 +11,7 @@
       :input-class="inputClass"
       dense
       :autogrow="autogrow"
+      :no-error-icon="noErrorIcon"
       debounce="1000"
       :placeholder="placeholder"
       :autofocus="autofocus"
@@ -434,6 +435,7 @@
     createForm: Object,
     label: String,
     autogrow: Boolean,
+    noErrorIcon: Boolean,
     clearable: Boolean,
     inputClass: {
       type: String,
