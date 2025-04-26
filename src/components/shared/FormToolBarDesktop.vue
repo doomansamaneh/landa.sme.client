@@ -13,6 +13,17 @@
             <q-icon name="o_save" size="20px" class="q-mr-sm" />
             {{ $t("shared.labels.save") }}
           </q-btn>
+
+          <q-btn
+            class="text-body2"
+            padding="6px 12px"
+            rounded
+            unelevated
+            @click="saveAndNew"
+          >
+            <q-icon name="o_add" size="20px" class="q-mr-sm" />
+            {{ $t("shared.labels.saveAndNew") }}
+          </q-btn>
         </slot>
       </div>
       <div class="q-space" />
@@ -49,13 +60,17 @@
     inside: Boolean,
   });
 
-  const emit = defineEmits(["submit-call-back"]);
+  const emit = defineEmits(["submit-call-back", "submit-and-new-call-back"]);
 
   const $q = useQuasar();
   const observer = ref(null);
 
   const save = () => {
     emit("submit-call-back");
+  };
+
+  const saveAndNew = () => {
+    emit("submit-and-new-call-back");
   };
 
   const customStyles = computed(() => {

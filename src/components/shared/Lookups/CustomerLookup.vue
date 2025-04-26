@@ -124,7 +124,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, watch } from "vue";
   import { helper } from "src/helpers";
   import { useAccountDL } from "src/components/areas/acc/_composables/useAccountDL";
 
@@ -155,13 +155,26 @@
     emit("row-selected", row);
   };
 
+  // Watch for model changes to reset balance
+  watch(
+    () => props.model,
+    () => {
+      balanceModel.value = {};
+    }
+  );
+
   const getBadgeColor = (key) => {
     if (key === "debit") return "red";
     if (key === "credit") return "green";
     return "grey-2 text-black";
   };
 
+  const resetBalance = () => {
+    balanceModel.value = {};
+  };
+
   defineExpose({
     lookup,
+    resetBalance,
   });
 </script>

@@ -4,6 +4,7 @@
       <div class="row q-col-gutter-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <customer-lookup
+            ref="customerLookup"
             v-model:selectedId="model.customerId"
             v-model:selectedText="model.customerName"
             :label="customerTitle"
@@ -159,7 +160,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, watch } from "vue";
   import {
     sqlOperator,
     vatType,
@@ -182,6 +183,16 @@
     formType: invoiceFormType,
     model: invoiceModel,
   });
+
+  const customerLookup = ref(null);
+
+  // Watch for model changes to reset balance
+  watch(
+    () => props.model,
+    () => {
+      customerLookup.value?.resetBalance();
+    }
+  );
 
   const moreInfo = ref(false);
 

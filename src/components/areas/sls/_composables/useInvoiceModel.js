@@ -344,6 +344,48 @@ export function useInvoiceModel(config) {
     }
   }
 
+  async function submitAndNewForm(form, action, callBack) {
+    if (model.value.cashId) {
+      model.value.paymentItems = [
+        {
+          cashId: model.value.cashId,
+          amount: totalPrice.value,
+        },
+      ];
+    }
+
+    await crudStore.submitForm(form, action, (responseData) => {
+      if (responseData?.code !== 200) return;
+
+      config?.resetCallback?.();
+
+      // فیلدهای مورد نیاز را نگه می‌داریم
+      const {
+        dueDate,
+        typeId,
+        typeTitle,
+        inventoryId,
+        inventoryTitle,
+        defaultItem,
+      } = model.value;
+
+      // ریست مدل و بازگردانی فیلدها
+      model.value = {
+        ...invoiceModel,
+        dueDate,
+        typeId,
+        typeTitle,
+        inventoryId,
+        inventoryTitle,
+        defaultItem: { ...defaultItem },
+        invoiceItems: [],
+      };
+
+      setInvoiceItems();
+      callBack?.(responseData);
+    });
+  }
+
   return {
     model,
     crudStore,
@@ -366,6 +408,7 @@ export function useInvoiceModel(config) {
     cancelInvoice,
     cancelInvoices,
     submitForm,
+    submitAndNewForm,
 
     addProduct,
     removeProduct,

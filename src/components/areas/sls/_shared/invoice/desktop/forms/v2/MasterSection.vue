@@ -2,10 +2,12 @@
   <div class="row q-col-gutter-sm">
     <div class="col-md-5 col-sm-12 col-xs-12">
       <customer-lookup
+        ref="customerLookup"
         :label="customerTitle"
         v-model:selectedId="model.customerId"
         v-model:selectedText="model.customerName"
         required
+        dl-balance
       />
     </div>
 
@@ -132,7 +134,7 @@
 </template>
 
 <script setup>
-  import { computed, ref } from "vue";
+  import { computed, ref, watch } from "vue";
   import {
     sqlOperator,
     vatType,
@@ -152,14 +154,22 @@
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
 
   const props = defineProps({
-    formStore: Object,
-    formType: Object,
+    formStore: useInvoiceModel,
+    formType: invoiceFormType,
     model: invoiceModel,
   });
 
   const contractLookup = ref(null);
   const invoiceNo = ref(false);
   const customerLookup = ref(null);
+
+  // Watch for model changes to reset balance
+  watch(
+    () => props.model,
+    () => {
+      customerLookup.value?.resetBalance();
+    }
+  );
 
   const moreInfo = ref(false);
 
