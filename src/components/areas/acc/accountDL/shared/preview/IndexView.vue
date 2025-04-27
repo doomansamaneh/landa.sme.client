@@ -1,12 +1,12 @@
 <template>
-  <tool-bar :inside="inside" buttons :title="title" back-button>
+  <!-- <tool-bar :inside="inside" buttons :title="title" back-button>
     <template #buttons>
       <menu-button-print @click="printStore.handlePrint()" />
     </template>
-  </tool-bar>
+  </tool-bar> -->
 
   <q-card flat class="bordered shadow overflow-hidden">
-    <card-title title="گردش حساب" icon="o_repeat" />
+    <card-title :title="title" icon="o_repeat" />
 
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
@@ -20,6 +20,8 @@
           flat
           :columns="accountItemColumns"
           :filter-expression="filterExpression"
+          :title="title"
+          :sub-title="model.code"
         />
       </q-card-section>
     </div>
@@ -34,13 +36,13 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
   import { sqlOperator } from "src/constants";
-  import { useDataTable } from "src/composables/useDataTable";
+  // import { useDataTable } from "src/composables/useDataTable";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
-  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -64,10 +66,10 @@
   const route = useRoute();
   const id = computed(() => props.item?.id ?? route.params.id);
 
-  const tableStore = useDataTable({
-    dataSource: "",
-    store: null,
-  });
+  // const tableStore = useDataTable({
+  //   dataSource: "",
+  //   store: null,
+  // });
 
   onMounted(() => {
     crudStore.getById(id.value);

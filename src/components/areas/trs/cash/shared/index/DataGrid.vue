@@ -10,7 +10,11 @@
     activation
   >
     <template #expand="{ item }">
-      <preview :item="item" inside />
+      <preview
+        :item="item"
+        inside
+        :title="$t('main-menu-items.Trs_Cash_View')"
+      />
     </template>
   </data-grid>
 </template>
@@ -21,7 +25,6 @@
 
   import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
   import Preview from "../preview/IndexView.vue";
-  import { helper } from "src/helpers";
 
   const gridStore = useBaseInfoGrid({
     columns: cashColumns,

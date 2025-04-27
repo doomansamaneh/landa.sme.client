@@ -75,6 +75,7 @@
               v-for="col in tableStore?.columns.value"
               :key="col.name"
               class="filter"
+              :data-field="col.name"
             >
               <slot
                 v-if="col.showFilter"
@@ -85,6 +86,8 @@
                   v-model="col.value"
                   clearable
                   @keydown="handleEnterKey"
+                  @clear="handleClear(col)"
+                  @update:model-value="trackInputChange(col, $event)"
                 />
               </slot>
             </th>
@@ -238,7 +241,7 @@
 </template>
 
 <script setup>
-  import { onMounted, computed } from "vue";
+  import { onMounted, computed, ref } from "vue";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
   import { dataType } from "src/constants";
@@ -273,6 +276,9 @@
   });
 
   const $q = useQuasar();
+
+  // Track dirty state of inputs
+  const dirtyInputs = ref({});
 
   const tableStore = computed(
     () =>
@@ -389,8 +395,88 @@
   };
 
   function handleEnterKey(e) {
-    if (e.key === "Enter") {
+    if (e.key !== "Enter" && e.key !== "Tab") return;
+
+    const columnField = e.target
+      .closest(".filter")
+      ?.getAttribute("data-field");
+    if (!columnField) return;
+
+    if (e.key === "Tab") {
+      e.preventDefault();
+      handleTabNavigation(e);
+      return;
+    }
+
+    // For Enter key - reload if needed and reset dirty state when appropriate
+    const hasValue = !!e.target.value?.trim();
+    if (hasValue || dirtyInputs.value[columnField]) {
       reloadData();
+      // Reset dirty flag if empty but was dirty
+      if (!hasValue) dirtyInputs.value[columnField] = false;
+    }
+  }
+
+  function handleTabNavigation(e) {
+    const filterInputs = document.querySelectorAll(
+      ".filter input, .filter .q-field__native"
+    );
+    if (!filterInputs.length) return;
+
+    // Process current input and reload if needed
+    const currentInput = e.target;
+    const columnField = currentInput
+      .closest(".filter")
+      ?.getAttribute("data-field");
+    if (columnField) {
+      const hasValue = !!currentInput.value?.trim();
+
+      // Mark as dirty if has value, reload if needed
+      if (hasValue) dirtyInputs.value[columnField] = true;
+
+      if (hasValue || dirtyInputs.value[columnField]) {
+        reloadData();
+        if (!hasValue) dirtyInputs.value[columnField] = false;
+      }
+    }
+
+    // Find current input and move to next/previous
+    const inputs = Array.from(filterInputs);
+    const currentIndex = inputs.findIndex(
+      (input) =>
+        input === currentInput || input.contains(currentInput)
+    );
+    if (currentIndex === -1) return;
+
+    const nextIndex = e.shiftKey
+      ? currentIndex === 0
+        ? inputs.length - 1
+        : currentIndex - 1
+      : currentIndex === inputs.length - 1
+      ? 0
+      : currentIndex + 1;
+
+    // Focus the next input
+    const nextInput = inputs[nextIndex];
+    (nextInput.tagName.toLowerCase() === "input"
+      ? nextInput
+      : nextInput.querySelector("input") || nextInput
+    ).focus();
+  }
+
+  function handleClear(column) {
+    if (!column?.name) return;
+
+    const isDirty = dirtyInputs.value[column.name];
+    reloadData();
+
+    // Toggle dirty state
+    dirtyInputs.value[column.name] = !isDirty;
+  }
+
+  function trackInputChange(column, value) {
+    if (column?.name) {
+      dirtyInputs.value[column.name] = true;
     }
   }
 

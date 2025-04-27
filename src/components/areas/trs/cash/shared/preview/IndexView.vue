@@ -9,12 +9,12 @@
       <menu-button-delete
         @click="crudStore.deleteById(id, deleteCallBack)"
       />
-      <menu-button-print @click="printStore.handlePrint()" />
+      <!-- <menu-button-print @click="printStore.handlePrint()" /> -->
     </template>
   </tool-bar>
 
   <q-card>
-    <card-title title="صندوق نقدی" />
+    <card-title :title="title" />
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
@@ -24,6 +24,8 @@
           flat
           :columns="accountItemColumns"
           :filter-expression="filterExpression"
+          :title="title"
+          :sub-title="model.slTitle"
         />
       </q-card-section>
     </div>
@@ -46,7 +48,7 @@
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
-  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,

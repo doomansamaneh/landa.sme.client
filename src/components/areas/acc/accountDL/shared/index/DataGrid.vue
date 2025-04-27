@@ -37,7 +37,11 @@
     </template>
 
     <template #expand="{ item }">
-      <preview :item="item" inside />
+      <preview
+        :title="$t('main-menu-items.Acc_AccountDL_View')"
+        :item="item"
+        inside
+      />
     </template>
   </data-grid>
 </template>
