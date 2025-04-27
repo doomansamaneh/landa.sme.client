@@ -325,6 +325,7 @@
       "print": "چاپ",
       "printBatch": "چاپ دسته‌ای",
       "copyToPurchase": "کپی به فاکتور خرید",
+      "copyToSales": "کپی به فاکتور فروش",
       "cancelInvoice": "ابطال فاکتور",
       "cancelInvoiceMessage": "با ابطال فاکتور، سند حسابداری مربوط به آن نیز حذف خواهد شد. آیا ابطال انجام شود؟",
       "salesReturn": "برگشت از فروش",
