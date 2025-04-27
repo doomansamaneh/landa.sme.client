@@ -84,10 +84,8 @@
                 <custom-input
                   v-model="col.value"
                   clearable
-                  debounce="500"
-                  @update:model-value="reloadData"
+                  @keydown="handleEnterKey"
                 />
-                <!-- @keyup.enter="reloadData" -->
               </slot>
             </th>
             <th v-if="expandable" class="filter"></th>
@@ -389,6 +387,12 @@
   const toggleExpand = (row) => {
     tableStore.value.toggleExpand(row);
   };
+
+  function handleEnterKey(e) {
+    if (e.key === "Enter") {
+      reloadData();
+    }
+  }
 
   // onMounted(() => {
   //   bus.on("apply-search", reloadData);

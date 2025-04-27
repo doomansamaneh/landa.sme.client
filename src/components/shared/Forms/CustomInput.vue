@@ -19,6 +19,7 @@
     :rules="rules"
     :autogrow="autogrow"
     :inputmode="inputmode"
+    @keydown="$emit('keydown', $event)"
   >
     <validation-alert
       v-if="validationMessage"
