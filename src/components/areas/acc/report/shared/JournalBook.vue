@@ -13,6 +13,12 @@
       mobile-arrows
     >
       <card-tab
+        name="el"
+        title="گزارش دفتر الکترونیکی"
+        icon="o_menu_book"
+      />
+
+      <card-tab
         name="cl"
         title="گزارش دفتر روزنامه"
         icon="o_bubble_chart"
@@ -39,6 +45,15 @@
       keep-alive
       class="transparent"
     >
+      <q-tab-panel name="el" class="no-padding">
+        <review-item
+          :columns="journalBookTaxColumns"
+          sort-column="voucherNo"
+          title="گزارش دفتر"
+          sub-title="الکترونیکی"
+        />
+      </q-tab-panel>
+
       <q-tab-panel name="cl" class="no-padding">
         <journal-book-default
           sort-column="voucherNo,code"
@@ -69,9 +84,11 @@
 
 <script setup>
   import { ref } from "vue";
+  import { journalBookTaxColumns } from "../../_composables/constants";
 
   import JournalBookDefault from "../desktop/JournalBookDefault.vue";
   import JournalBookTotal from "../desktop/JournalBookTotal.vue";
+  import ReviewItem from "../desktop/AccountItem.vue";
 
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
@@ -81,5 +98,5 @@
     title: String,
   });
 
-  const tab = ref("cl");
+  const tab = ref("el");
 </script>
