@@ -38,6 +38,7 @@
               :class="tableStore.getSortableClass(col)"
               @click="tableStore.sortColumn(col)"
             >
+              <span>{{ col.label }}</span>
               <span
                 v-if="col.sortable"
                 class="q-icon q-table__sort-icon"
@@ -48,7 +49,6 @@
                   size="20px"
                 />
               </span>
-              <span>{{ col.label }}</span>
             </th>
             <th v-if="expandable" style="width: 1px"></th>
           </tr>
@@ -308,11 +308,24 @@
           (_, key) => row[key] ?? ""
         );
       } else if (col.field) {
-        const value = row[col.field];
-        if (col.type === dataType.date)
+        let value = row[col.field];
+
+        // First, apply col.format if defined
+        if (typeof col.format === "function") {
+          value = col.format(value, row);
+        }
+
+        // Then, if type is date, format it
+        if (col.type === dataType.date) {
           return value?.substring(0, 10);
-        else if (col.type === dataType.number)
+        }
+
+        // If type is number, format number
+        if (col.type === dataType.number) {
           return helper.formatNumber(value);
+        }
+
+        // Otherwise return value as-is
         return value;
       }
     }

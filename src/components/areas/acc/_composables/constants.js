@@ -165,14 +165,12 @@ export const journalBookTaxColumns = [
   {
     ...debitRemained,
     label: "گردش بدهکار (میلیون ریال)",
-    showFilter: true,
-    sortable: true,
+    format: (val) => val / 1_000_000,
   },
   {
     ...creditRemained,
     label: "گردش بستانکار (میلیون ریال)",
-    showFilter: true,
-    sortable: true,
+    format: (val) => val / 1_000_000,
   },
   { ...voucherDate, label: "تاریخ گردش حساب" },
 ];
