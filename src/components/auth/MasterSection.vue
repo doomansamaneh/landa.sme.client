@@ -100,7 +100,7 @@
               class="q-mb-sm text-body1"
               :class="$q.dark.isActive ? 'text-white' : 'text-grey-8'"
             >
-              کد صحت سنجی
+              کد امنیتی
             </div>
           </div>
 

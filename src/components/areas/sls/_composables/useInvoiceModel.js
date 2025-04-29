@@ -25,13 +25,10 @@ export function useInvoiceModel(config) {
 
   async function getById(id, action) {
     let responseData = null;
-    const date = model.value.date;
     if (id) {
       if (config.preview)
         responseData = await crudStore.getPreviewById(id);
-      else if (
-        ["createFromInvoice", "createFromQuote"].includes(action)
-      )
+      else if (action)
         responseData = await crudStore.getById(
           id,
           `${config.baseRoute}/${action}`
@@ -39,14 +36,6 @@ export function useInvoiceModel(config) {
       else responseData = await crudStore.getById(id);
     } else
       responseData = await crudStore.getCreateModel(setInvoiceItems);
-
-    if (responseData) {
-      if (action === "copy") {
-        model.value.quoteId = null;
-        model.value.fiscalYearId = null;
-        model.value.date = date;
-      }
-    }
 
     setInvoiceItems();
     addWatch();

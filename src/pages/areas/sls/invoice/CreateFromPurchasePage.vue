@@ -4,12 +4,12 @@
     :title="
       $t('shared.labels.create') +
       ' ' +
-      $t('main-menu-items.Sls_PurchaseReturn_View')
+      $t('main-menu-items.Sls_Invoice_View')
     "
     method="createFromPurchase"
   />
 </template>
 
 <script setup>
-  import Desktop from "src/components/areas/sls/purchaseReturn/shared/forms/CreateForm.vue";
+  import Desktop from "src/components/areas/sls/invoice/shared/forms/CreateForm.vue";
 </script>

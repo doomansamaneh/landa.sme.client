@@ -210,11 +210,15 @@
       : "نوع خرید"
   );
 
+  // const showOriginalDoc = computed(
+  //   () =>
+  //     props.model?.originalDocument &&
+  //     (props.formType === invoiceFormType.sales ||
+  //       props.formType === invoiceFormType.salesReturn)
+  // );
+
   const showOriginalDoc = computed(
-    () =>
-      props.model?.originalDocument &&
-      (props.formType === invoiceFormType.sales ||
-        props.formType === invoiceFormType.salesReturn)
+    () => props.model?.originalDocument
   );
 
   const originalFilterExpression = [

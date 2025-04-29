@@ -67,13 +67,13 @@
         <menu-item
           :title="$t('shared.labels.copyToSales')"
           icon="o_shopping_cart"
-          :to="`/sls/salesReturn/createFromInvoice/${row.id}`"
+          :to="`/sls/invoice/CreateFromPurchase/${row.id}`"
         />
 
         <menu-item
           :title="$t('shared.labels.purchaseReturn')"
           icon="o_undo"
-          :to="`/sls/purchaseReturn/createFromInvoice/${row.id}`"
+          :to="`/sls/purchaseReturn/createFromPurchase/${row.id}`"
         />
 
         <q-separator class="q-my-sm" />

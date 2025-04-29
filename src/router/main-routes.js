@@ -759,6 +759,14 @@ export default {
           meta: { title: "فاکتور فروش- تبدیل از پیش‌فاکتور" },
         },
         {
+          path: "createFromPurchase/:id",
+          component: () =>
+            import(
+              "pages/areas/sls/invoice/CreateFromPurchasePage.vue"
+            ),
+          meta: { title: "فاکتور فروش- کپی از فاکتور خرید" },
+        },
+        {
           path: "remained/:remained",
           component: () =>
             import("pages/areas/sls/invoice/IndexRemainedPage.vue"),
@@ -919,7 +927,7 @@ export default {
           meta: { title: "برگشت از خرید - پیش نمایش" },
         },
         {
-          path: "createFromInvoice/:id",
+          path: "createFromPurchase/:id",
           component: () =>
             import(
               "pages/areas/sls/purchaseReturn/CreateFromInvoicePage.vue"
