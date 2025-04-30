@@ -142,6 +142,7 @@
     documentType,
   } from "src/constants";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
+  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
