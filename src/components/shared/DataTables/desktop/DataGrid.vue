@@ -11,12 +11,8 @@
         tableStore.showLoader.value ? 'overflow-hidden' : 'scroll'
       "
     >
-      <slot name="toolbar" :tableStore="tableStore">
-        <toolbar
-          v-if="toolbar"
-          :table-store="tableStore"
-          :title="title"
-        />
+      <slot v-if="toolbar" name="toolbar" :tableStore="tableStore">
+        <toolbar :table-store="tableStore" :title="title" />
       </slot>
 
       <table class="q-table">

@@ -112,7 +112,25 @@
               </template>
             </q-field>
           </td>
-          <td class="text-center">
+          <td class="text-center q-guuter-x-sm">
+            <q-btn
+              color="primary"
+              unelevated
+              round
+              class="text-on-dark"
+              size="sm"
+              icon="o_add"
+              @click="formStore.addNewRow(index, row)"
+            />
+            <!-- <q-btn
+              color="red"
+              unelevated
+              round
+              class="text-on-dark"
+              size="sm"
+              icon="o_delete"
+              @click="formStore.deleteRow(index)"
+            /> -->
             <q-btn
               unelevated
               round
