@@ -70,7 +70,7 @@
   import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/ToolBarPreviewMobile.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
-  import AddressCard from "./AddressCard.vue";
+  import AddressCard from "../../../_shared/invoice/shared/preview/AddressCard.vue";
 
   const props = defineProps({
     title: String,

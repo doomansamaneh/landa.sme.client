@@ -784,6 +784,12 @@ export default {
             import("pages/areas/sls/invoice/PreviewAddressPage.vue"),
           meta: { title: "فاکتور فروش - برچسب نشانی" },
         },
+        {
+          path: "ExitPreview/:id",
+          component: () =>
+            import("pages/areas/sls/invoice/ExitPreviewPage.vue"),
+          meta: { title: "فاکتور فروش - خروج از انبار" },
+        },
       ],
     },
 
@@ -833,6 +839,14 @@ export default {
           component: () =>
             import("pages/areas/sls/purchase/PreviewPage.vue"),
           meta: { title: "فاکتور خرید - پیش نمایش" },
+        },
+        {
+          path: "ReceiptPreview/:id",
+          component: () =>
+            import(
+              "src/pages/areas/sls/purchase/ReceiptPreviewPage.vue"
+            ),
+          meta: { title: "فاکتور خرید - رسید انبار" },
         },
       ],
     },
