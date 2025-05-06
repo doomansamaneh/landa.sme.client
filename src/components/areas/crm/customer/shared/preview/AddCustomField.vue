@@ -23,13 +23,17 @@
         <div class="row q-gutter-md q-px-sm q-pb-sm">
           <div class="col">
             <div>
-              <q-item-label caption class="q-mb-sm">عنوان</q-item-label>
+              <q-item-label caption class="q-mb-sm">
+                عنوان
+              </q-item-label>
               <q-input v-model="text" outlined dense />
             </div>
           </div>
           <div class="col">
             <div>
-              <q-item-label caption class="q-mb-sm">مقدار</q-item-label>
+              <q-item-label caption class="q-mb-sm">
+                مقدار
+              </q-item-label>
               <q-input v-model="text" outlined dense />
             </div>
           </div>
@@ -45,7 +49,7 @@
             no-caps
             padding="8px 16px"
           >
-            ذخیره
+            {{ $t("shared.labels.save") }}
           </q-btn>
           <q-btn
             type="submit"
@@ -55,10 +59,10 @@
             no-caps
             padding="8px 16px"
           >
-            ذخیره و جدید
+            {{ $t("shared.labels.saveAndNew") }}
           </q-btn>
           <q-btn unelevated v-close-popup no-caps padding="8px 16px">
-            انصراف
+            {{ $t("shared.labels.cancel") }}
           </q-btn>
         </div>
       </q-card-actions>
@@ -67,13 +71,13 @@
 </template>
 
 <script setup>
-import Actions from "src/components/shared/forms/FormCardActions.vue";
+  import Actions from "src/components/shared/forms/FormCardActions.vue";
 </script>
 
 <style scoped>
-.q-item__label--caption {
-  font-size: 16px;
-  letter-spacing: 0;
-  color: #697588;
-}
+  .q-item__label--caption {
+    font-size: 16px;
+    letter-spacing: 0;
+    color: #697588;
+  }
 </style>
