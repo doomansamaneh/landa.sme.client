@@ -14,7 +14,9 @@
             style="border: 1px solid #2d2d2d; padding: 5px"
             colspan="100%"
           >
-            <div class="text-body2 text-weight-500">مشخصات کالا</div>
+            <div class="text-body2 text-weight-500">
+              مشخصات کالا یا خدمات مورد معامله
+            </div>
           </td>
         </tr>
       </thead>
@@ -23,29 +25,51 @@
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             ردیف
           </td>
+          <td style="padding: 5px; border: 1px solid #2d2d2d">کد</td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            کد کالا
+            کالا/خدمت
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            عنوان کالا
+            مقدار
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            مقدار اصلی
-          </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
-            واحد اصلی
-          </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
-            مقدار فرعی
-          </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
-            واحد فرعی
+            واحد
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             مبلغ واحد
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             مبلغ کل
+          </td>
+          <td
+            style="padding: 5px; border: 1px solid #2d2d2d"
+            v-if="model?.totalDiscount"
+          >
+            تخفیف
+          </td>
+          <td
+            style="padding: 5px; border: 1px solid #2d2d2d"
+            v-if="model?.totalDiscount"
+          >
+            مبلغ پس از تخفیف
+          </td>
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
+            جمع مالیات و عوارض
+          </td>
+          <td style="padding: 5px; border: 1px solid #2d2d2d">حمل</td>
+          <td
+            style="
+              min-width: 100px;
+              padding: 5px;
+              border: 1px solid #2d2d2d;
+            "
+          >
+            جمع کل
+            <span class="text-weight-700">
+              (
+              {{ model?.currencyTitle }}
+              )
+            </span>
           </td>
           <td
             style="
@@ -57,6 +81,7 @@
             توضیحات
           </td>
         </tr>
+
         <tr
           v-for="(item, index) in model?.invoiceItems"
           :key="item.id"
@@ -64,36 +89,72 @@
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             {{ index + 1 }}
           </td>
-
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item?.productCode }}
-          </td>
-
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item?.productTitle }}
+            {{ item.productCode }}
+            <small v-if="item.productTaxCode">
+              {{ item.productTaxCode }}
+            </small>
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ helper.formatNumber(item?.quantity) }}
+            <div class="text-wrap">
+              {{ item.productTitle }}
+              <small v-if="item.comment || item.productComment">
+                (
+                <span v-if="!item.productComment" class="q-pr-xs">
+                  {{ item.productComment }}
+                </span>
+                <span v-if="item.comment">
+                  {{ item.comment }}
+                </span>
+                )
+              </small>
+            </div>
+          </td>
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
+            {{ helper.formatNumber(item.quantity) }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             {{ item.productUnitTitle }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ helper.formatNumber(item?.subQuantity) || 0 }}
+            {{ helper.formatNumber(item.price) }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item?.subUnitTitle }}
+            {{ helper.formatNumber(item.quantity * item.price) }}
+          </td>
+          <td
+            style="padding: 5px; border: 1px solid #2d2d2d"
+            v-if="model?.totalDiscount"
+          >
+            {{ helper.formatNumber(item.discount) }}
+          </td>
+          <td
+            style="padding: 5px; border: 1px solid #2d2d2d"
+            v-if="model?.totalDiscount"
+          >
+            {{
+              helper.formatNumber(
+                item.quantity * item.price - item.discount
+              )
+            }}
           </td>
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ helper.formatNumber(item?.price) }}
+            {{ helper.formatNumber(item.vatAmount) }}
           </td>
+
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ helper.formatNumber(item?.totalPrice) }}
+            {{ helper.formatNumber(item?.totalShipping ?? 0) }}
           </td>
+
           <td style="padding: 5px; border: 1px solid #2d2d2d">
-            {{ item?.comment }}
+            {{ helper.formatNumber(item.totalPrice) }}
+          </td>
+
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
+            {{ model?.comment }}
           </td>
         </tr>
+
         <tr>
           <td
             style="
@@ -101,13 +162,14 @@
               border: 1px solid #2d2d2d;
               text-align: end;
             "
-            colspan="8"
+            colspan="6"
             class="text-right"
           >
             <strong>جمع کل:</strong>
             ({{ numberToWords(model?.totalPrice ?? 0) }}
             <b>{{ model?.currencyTitle }})</b>
           </td>
+
           <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
               {{ helper.formatNumber(model?.totalNetPrice) }}
@@ -127,20 +189,28 @@
           >
             <strong>
               {{
-                helper.formatNumber(model?.totalPrice - model?.totalVat)
+                helper.formatNumber(
+                  model?.totalPrice - model?.totalVat
+                )
               }}
             </strong>
           </td>
-          <!-- <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
               {{ helper.formatNumber(model?.totalVat) }}
             </strong>
-          </td> -->
-          <!-- <td style="padding: 5px; border: 1px solid #2d2d2d">
+          </td>
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
+            <strong>
+              {{ helper.formatNumber(model?.totalShipping ?? 0) }}
+            </strong>
+          </td>
+
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
               {{ helper.formatNumber(model?.totalPrice) }}
             </strong>
-          </td> -->
+          </td>
         </tr>
       </tbody>
     </table>
