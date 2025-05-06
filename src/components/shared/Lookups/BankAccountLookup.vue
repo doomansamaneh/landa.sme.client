@@ -33,30 +33,23 @@
       </div>
     </template>
 
-    <template #td="{ row, index }">
-      <div class="row items-center q-pa-md q-gutter-x-md">
-        <div style="width: 16px" class="text-body3">
-          {{ index }}
-        </div>
-        <div class="col-3 text-body3">
-          <div class="ellipsis">
-            {{ row.no }}
-            <q-tooltip
-              transition-show="scale"
-              transition-hide="scale"
-              :delay="700"
-              class="custom-tooltip text-body3"
-            >
-              {{ row.no }}
-            </q-tooltip>
-          </div>
-        </div>
-        <div class="col-4 text-body3">
-          {{ row.bankTitle }} - {{ row.title }}
-        </div>
-        <div class="col text-body3">
-          {{ helper.formatNumber(row.amount) }}
-        </div>
+    <template #tbody-cols="{ item }">
+      <div class="col text-body3">
+        {{ item.no }}
+        <q-tooltip
+          transition-show="scale"
+          transition-hide="scale"
+          :delay="700"
+          class="custom-tooltip text-body3"
+        >
+          {{ item.no }}
+        </q-tooltip>
+      </div>
+      <div class="col-4 text-body3">
+        {{ item.bankTitle }} - {{ item.title }}
+      </div>
+      <div class="col text-body3">
+        {{ helper.formatNumber(item.amount) }}
       </div>
     </template>
   </lookup-view>
