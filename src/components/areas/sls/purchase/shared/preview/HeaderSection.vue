@@ -15,10 +15,25 @@
         class="col"
         style="padding-left: 24px; padding-right: 24px"
       >
-        <table style="width: 100%; border-collapse: collapse">
+        <table
+          style="
+            width: 100%;
+            border-width: 1px;
+            border-style: solid;
+            border-image: initial;
+            border-collapse: collapse;
+          "
+        >
           <tbody>
             <tr>
-              <td style="padding: 4px 8px; border: 1px solid #2d2d2d">
+              <td
+                style="
+                  padding: 4px 8px;
+                  border-width: 1px;
+                  border-style: solid;
+                  border-image: initial;
+                "
+              >
                 <span class="text-body3">نام انبار:</span>
                 <span
                   class="text-body3 text-bold"
@@ -27,12 +42,26 @@
                   {{ model?.inventoryTitle }}
                 </span>
               </td>
-              <td style="padding: 4px 8px; border: 1px solid #2d2d2d">
+              <td
+                style="
+                  padding: 4px 8px;
+                  border-width: 1px;
+                  border-style: solid;
+                  border-image: initial;
+                "
+              >
                 <span class="text-body3">کد تحویل گیرنده:</span>
                 <span class="text-body3 text-bold q-ml-sm"></span>
               </td>
 
-              <td style="padding: 4px 8px; border: 1px solid #2d2d2d">
+              <td
+                style="
+                  padding: 4px 8px;
+                  border-width: 1px;
+                  border-style: solid;
+                  border-image: initial;
+                "
+              >
                 <span class="text-body3">نام تحویل گیرنده:</span>
                 <span
                   class="text-body3 text-bold"
@@ -42,7 +71,14 @@
                 </span>
               </td>
 
-              <td style="padding: 4px 8px; border: 1px solid #2d2d2d">
+              <td
+                style="
+                  padding: 4px 8px;
+                  border-width: 1px;
+                  border-style: solid;
+                  border-image: initial;
+                "
+              >
                 <span class="text-body3">نوع:</span>
                 <span
                   class="text-body3 text-bold"
@@ -62,7 +98,14 @@
         <table style="width: 100%; border-collapse: collapse">
           <tbody>
             <tr>
-              <td style="padding: 4px 8px; border: 1px solid #2d2d2d">
+              <td
+                style="
+                  padding: 4px 8px;
+                  border-width: 1px;
+                  border-style: solid;
+                  border-image: initial;
+                "
+              >
                 <span class="text-body3">شماره:</span>
                 <span
                   class="text-body2 text-bold"
@@ -73,7 +116,14 @@
               </td>
             </tr>
             <tr>
-              <td style="padding: 4px 8px; border: 1px solid #2d2d2d">
+              <td
+                style="
+                  padding: 4px 8px;
+                  border-width: 1px;
+                  border-style: solid;
+                  border-image: initial;
+                "
+              >
                 <span class="text-body3">تاریخ:</span>
                 <span
                   class="text-body2 text-bold"
