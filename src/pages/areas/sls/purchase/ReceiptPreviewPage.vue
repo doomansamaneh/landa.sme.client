@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  import Preview from "src/components/areas/sls/purchase/shared/preview/ReceiptPreviewView.vue";
+  import Preview from "src/components/areas/sls/purchase/shared/preview/ReceiptPreview.vue";
 </script>

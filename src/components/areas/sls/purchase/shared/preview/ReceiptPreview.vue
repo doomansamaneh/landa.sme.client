@@ -27,8 +27,7 @@
     <q-inner-loading :showing="loading" class="text-center q-pa-md">
       <q-spinner color="primary" size="2em" />
     </q-inner-loading>
-    <pre>
-    </pre>
+    <pre></pre>
     <div :ref="printStore.printRef">
       <header-section :title="title" :model="model" />
       <body-section :model="model" />
@@ -48,7 +47,6 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { usePrint } from "src/composables/usePrint";
-  import { numberToWords } from "@persian-tools/persian-tools";
 
   import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/ToolBarPreviewMobile.vue";
@@ -65,13 +63,12 @@
     signatureSource: String,
   });
 
-  const appConfigStore = useAppConfigModel();
   const printStore = usePrint();
   const route = useRoute();
   const model = ref(null);
   const loading = ref(true);
   const error = ref(null);
-  const crudStore = useFormActions("sls/purchase", model);
+  const crudStore = useFormActions("sls/purchase", model, true);
 
   const id = computed(() => props.item?.id ?? route.params.id);
 
@@ -99,7 +96,7 @@
     try {
       loading.value = true;
       error.value = null;
-      await await crudStore.getPreviewById(id.value);
+      await crudStore.getPreviewById(id.value);
       calculateTotals();
     } catch (err) {
       error.value = err;

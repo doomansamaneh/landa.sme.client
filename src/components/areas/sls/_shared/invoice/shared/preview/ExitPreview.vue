@@ -64,13 +64,12 @@
     signatureSource: String,
   });
 
-  const appConfigStore = useAppConfigModel();
   const printStore = usePrint();
   const route = useRoute();
   const model = ref(null);
   const loading = ref(true);
   const error = ref(null);
-  const crudStore = useFormActions("sls/invoice", model);
+  const crudStore = useFormActions("sls/invoice", model, true);
 
   const id = computed(() => props.item?.id ?? route.params.id);
 
@@ -98,7 +97,7 @@
     try {
       loading.value = true;
       error.value = null;
-      await await crudStore.getPreviewById(id.value);
+      await crudStore.getPreviewById(id.value);
       calculateTotals();
     } catch (err) {
       error.value = err;
