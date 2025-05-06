@@ -3,14 +3,23 @@
     <table
       :style="$q.screen.gt.xs ? 'width: 100%;' : 'width: 900px'"
       style="
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
-        border: 1px solid #2d2d2d;
         font-size: 13px;
       "
     >
       <tbody v-if="appConfigStore.model?.value?.companySetting">
         <tr>
-          <td style="border: 1px solid #2d2d2d; padding: 3px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 3px;
+            "
+          >
             <div>
               فروشنده:
               <strong>
@@ -74,7 +83,14 @@
 
       <tbody>
         <tr>
-          <td style="border: 1px solid #2d2d2d; padding: 3px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 3px;
+            "
+          >
             <div>
               مشتری:
               <strong>{{ model.customerName }}</strong>

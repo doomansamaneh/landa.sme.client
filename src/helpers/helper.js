@@ -225,10 +225,29 @@ export const helper = {
   },
 
   formatNumber(number, fraction) {
-    const absNum = Math.abs(number || 0).toLocaleString("en-US", {
+    if (number == null || isNaN(number)) {
+      return "";
+    }
+
+    // Determine fraction digits dynamically if not provided
+    if (fraction == null) {
+      const abs = Math.abs(number);
+      if (abs >= 1) {
+        fraction = 2;
+      } else if (abs >= 0.01) {
+        fraction = 4;
+      } else if (abs >= 0.0001) {
+        fraction = 6;
+      } else {
+        fraction = 8;
+      }
+    }
+
+    const absNum = Math.abs(number).toLocaleString("en-US", {
       minimumFractionDigits: 0,
-      maximumFractionDigits: fraction || 2,
+      maximumFractionDigits: fraction,
     });
+
     if (number < 0) {
       return `(${absNum})`;
     }

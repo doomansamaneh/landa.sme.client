@@ -19,6 +19,9 @@
     @submit-call-back="
       formStore.submitForm(form, action, saveCallBack)
     "
+    @submit-and-new-call-back="
+      formStore.submitAndNewForm(form, action, saveCallBack)
+    "
   />
 
   <q-card
@@ -37,6 +40,9 @@
         :title="title"
         @submit-call-back="
           formStore.submitForm(form, action, saveCallBack)
+        "
+        @submit-and-new-call-back="
+          formStore.submitAndNewForm(form, action, saveCallBack)
         "
       />
     </div>

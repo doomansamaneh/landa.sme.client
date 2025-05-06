@@ -17,6 +17,8 @@ import {
   creditRemained,
   inlineDebit,
   voucherNo,
+  clCode,
+  clTitle,
   slCode,
   slTitle,
   dlCode,
@@ -151,6 +153,26 @@ export const accountItemColumns = [
     sortable: true,
   },
   { ...inlineDebit },
+];
+
+export const journalBookTaxColumns = [
+  { ...clCode, label: "کد حساب کل" },
+  { ...clTitle, label: "عنوان حساب کل" },
+  { ...slCode, label: "کد حساب معین" },
+  { ...slTitle, label: "عنوان حساب معین" },
+  { ...dlCode, label: "کد حساب تفصیلی" },
+  { ...dlTitle, label: "عنوان حساب تفصیلی" },
+  {
+    ...debitRemained,
+    label: "گردش بدهکار (میلیون ریال)",
+    format: (val) => val / 1_000_000,
+  },
+  {
+    ...creditRemained,
+    label: "گردش بستانکار (میلیون ریال)",
+    format: (val) => val / 1_000_000,
+  },
+  { ...voucherDate, label: "تاریخ گردش حساب" },
 ];
 
 export const accountItemDLColumns = [

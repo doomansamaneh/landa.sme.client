@@ -50,8 +50,34 @@
     </template>
 
     <template #buttons-custom="{ row }">
+      <menu-item
+        :title="$t('shared.labels.reorder')"
+        icon="o_cached"
+        @click="reorder"
+      />
       <q-separator class="q-my-sm" />
+
       <template v-if="row">
+        <menu-item
+          :title="$t('shared.labels.cancelInvoice')"
+          icon="o_close"
+          @click="cancelInvoice(row.id)"
+        />
+
+        <menu-item
+          :title="$t('shared.labels.copyToSales')"
+          icon="o_shopping_cart"
+          :to="`/sls/invoice/CreateFromPurchase/${row.id}`"
+        />
+
+        <menu-item
+          :title="$t('shared.labels.purchaseReturn')"
+          icon="o_undo"
+          :to="`/sls/purchaseReturn/createFromPurchase/${row.id}`"
+        />
+
+        <q-separator class="q-my-sm" />
+
         <menu-item
           :title="$t('shared.labels.print')"
           icon="o_print"

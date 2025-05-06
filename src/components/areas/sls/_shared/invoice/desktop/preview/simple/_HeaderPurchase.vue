@@ -2,14 +2,22 @@
   <table
     style="
       width: 100%;
-      border-collapse: collapse;
-      border: 1px solid #2d2d2d;
+      border-width: 1px;
+      border-style: solid;
+      border-image: initial;
       font-size: 13px;
     "
   >
     <tbody>
       <tr>
-        <td style="border: 1px solid #2d2d2d; padding: 3px">
+        <td
+          style="
+            border-width: 1px;
+            border-style: solid;
+            border-image: initial;
+            padding: 3px;
+          "
+        >
           <div>
             فروشنده:
             <strong>{{ model.customerName }}</strong>
@@ -44,7 +52,14 @@
 
     <tbody v-if="appConfigStore.model?.value?.companySetting">
       <tr>
-        <td style="border: 1px solid #2d2d2d; padding: 3px">
+        <td
+          style="
+            border-width: 1px;
+            border-style: solid;
+            border-image: initial;
+            padding: 3px;
+          "
+        >
           <div>
             نام:
             <strong>

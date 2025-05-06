@@ -15,7 +15,7 @@
       :crud-store="crudStore"
       :data-source="dataSource"
       :base-route="baseRoute"
-      :create-url="createUrl"
+      :createUrl="`/${baseRoute}/create`"
       ref="mobileGrid"
     />
   </template>

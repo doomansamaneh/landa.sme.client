@@ -1,7 +1,7 @@
 <template>
   <q-card-section class="q-gutter-y-md">
     <div class="row">
-      <div class="col-1">
+      <div class="col-auto q-mr-sm">
         <span class="text-body3">گروه:</span>
       </div>
       <div class="text-body3">
@@ -10,7 +10,7 @@
     </div>
 
     <div class="row">
-      <div class="col-1">
+      <div class="col-auto q-mr-sm">
         <span class="text-body3">کالا:</span>
       </div>
       <div class="text-body2 text-bold">
@@ -19,7 +19,7 @@
     </div>
 
     <div v-if="item?.taxCode" class="row">
-      <div class="col-1">
+      <div class="col-auto q-mr-sm">
         <span class="text-body3">شناسه مالیاتی:</span>
       </div>
       <div class="text-body2">
@@ -28,11 +28,11 @@
     </div>
 
     <div class="row">
-      <div class="col-1">
+      <div class="col-auto q-mr-sm">
         <span class="text-body3">موجودی اول دوره:</span>
       </div>
       <div class="text-body2 text-bold">
-        {{ item?.openomgStock?.toLocaleString() }}
+        {{ item?.openingStock?.toLocaleString() }}
       </div>
     </div>
   </q-card-section>

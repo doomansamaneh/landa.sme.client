@@ -52,7 +52,7 @@ export const productColumns = [
     value: "",
   },
   { ...isActive },
-  actions,
+  //actions,
 ];
 
 export const bankBranchColumns = [

@@ -30,6 +30,7 @@
           </template>
         </toolbar>
       </template>
+
       <template #filter-typeId="{ item }">
         <custom-select
           v-model="item.value"
@@ -37,6 +38,7 @@
           @update:model-value="reloadData"
         />
       </template>
+
       <template #filter-isActive="{ item }">
         <custom-select
           v-model="item.value"
@@ -97,14 +99,14 @@
         />
       </template>
 
-      <template #cell-actions="{ item }">
+      <!-- <template #cell-actions="{ item }">
         <row-tool-bar
           base-route="cmn/product"
           :item="item"
           :table-store="tableStore"
           :crud-store="crudStore"
         />
-      </template>
+      </template> -->
 
       <template #expand="{ item }">
         <preview inside :item="item" :base-route="baseRoute" />

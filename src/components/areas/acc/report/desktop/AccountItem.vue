@@ -12,7 +12,7 @@
     :title="`${title} / ${subTitle}`"
   >
     <template #cell-voucherSubject="{ item }">
-      {{ item.voucherSubject }}
+      {{ item.voucherSubject }} -
       <div
         class="text-caption-sm"
         :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"

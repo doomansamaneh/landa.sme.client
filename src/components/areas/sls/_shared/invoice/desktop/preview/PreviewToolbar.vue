@@ -34,6 +34,20 @@
               icon="o_print"
               title="چاپ برچسب نشانی"
             />
+
+            <menu-item
+              v-if="$route.path.includes('sls/invoice/preview')"
+              :to="`/${baseRoute}/ExitPreview/${model.id}`"
+              icon="o_print"
+              title="چاپ خروج از انبار"
+            />
+
+            <menu-item
+              v-if="$route.path.includes('sls/purchase/preview')"
+              :to="`/${baseRoute}/ReceiptPreview/${model.id}`"
+              icon="o_print"
+              title="چاپ رسید انبار"
+            />
           </q-list>
         </q-menu>
       </menu-button>
@@ -66,7 +80,7 @@
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
-  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
+  import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
 
   const props = defineProps({
     model: Object,

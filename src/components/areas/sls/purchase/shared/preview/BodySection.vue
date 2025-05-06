@@ -1,5 +1,5 @@
 <template>
-  <div class="q-table__middle scroll">
+  <q-card-section>
     <table
       style="
         width: 100%;
@@ -106,7 +106,7 @@
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             تخفیف
           </td>
@@ -117,7 +117,7 @@
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             مبلغ پس از تخفیف
           </td>
@@ -133,6 +133,16 @@
           </td>
           <td
             style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            حمل
+          </td>
+          <td
+            style="
               min-width: 100px;
               padding: 5px;
               border-width: 1px;
@@ -143,13 +153,25 @@
             جمع کل
             <span class="text-weight-700">
               (
-              {{ model.currencyTitle }}
+              {{ model?.currencyTitle }}
               )
             </span>
           </td>
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              width: 30%;
+            "
+          >
+            توضیحات
+          </td>
         </tr>
+
         <tr
-          v-for="(item, index) in model.invoiceItems"
+          v-for="(item, index) in model?.invoiceItems"
           :key="item.id"
         >
           <td
@@ -244,7 +266,7 @@
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             {{ helper.formatNumber(item.discount) }}
           </td>
@@ -255,7 +277,7 @@
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             {{
               helper.formatNumber(
@@ -273,6 +295,18 @@
           >
             {{ helper.formatNumber(item.vatAmount) }}
           </td>
+
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            {{ helper.formatNumber(item?.totalShipping ?? 0) }}
+          </td>
+
           <td
             style="
               padding: 5px;
@@ -283,7 +317,19 @@
           >
             {{ helper.formatNumber(item.totalPrice) }}
           </td>
+
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            {{ model?.comment }}
+          </td>
         </tr>
+
         <tr>
           <td
             style="
@@ -297,9 +343,10 @@
             class="text-right"
           >
             <strong>جمع کل:</strong>
-            ({{ numberToWords(model.totalPrice ?? 0) }}
-            <b>{{ model.currencyTitle }})</b>
+            ({{ numberToWords(model?.totalPrice ?? 0) }}
+            <b>{{ model?.currencyTitle }})</b>
           </td>
+
           <td
             style="
               padding: 5px;
@@ -309,7 +356,7 @@
             "
           >
             <strong>
-              {{ helper.formatNumber(model.totalNetPrice) }}
+              {{ helper.formatNumber(model?.totalNetPrice) }}
             </strong>
           </td>
           <td
@@ -319,10 +366,10 @@
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             <strong>
-              {{ helper.formatNumber(model.totalDiscount) }}
+              {{ helper.formatNumber(model?.totalDiscount) }}
             </strong>
           </td>
           <td
@@ -332,11 +379,13 @@
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             <strong>
               {{
-                helper.formatNumber(model.totalPrice - model.totalVat)
+                helper.formatNumber(
+                  model?.totalPrice - model?.totalVat
+                )
               }}
             </strong>
           </td>
@@ -349,7 +398,7 @@
             "
           >
             <strong>
-              {{ helper.formatNumber(model.totalVat) }}
+              {{ helper.formatNumber(model?.totalVat) }}
             </strong>
           </td>
           <td
@@ -361,18 +410,31 @@
             "
           >
             <strong>
-              {{ helper.formatNumber(model.totalPrice) }}
+              {{ helper.formatNumber(model?.totalShipping ?? 0) }}
+            </strong>
+          </td>
+
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            <strong>
+              {{ helper.formatNumber(model?.totalPrice) }}
             </strong>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
+  </q-card-section>
 </template>
 
 <script setup>
-  import { numberToWords } from "@persian-tools/persian-tools";
   import { helper } from "src/helpers";
+  import { numberToWords } from "@persian-tools/persian-tools";
 
   const props = defineProps({
     model: Object,

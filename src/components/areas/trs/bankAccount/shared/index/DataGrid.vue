@@ -10,7 +10,11 @@
     activation
   >
     <template #expand="{ item }">
-      <preview :item="item" inside />
+      <preview
+        :title="$t('main-menu-items.Trs_BankAccount_View')"
+        :item="item"
+        inside
+      />
     </template>
   </data-grid>
 </template>

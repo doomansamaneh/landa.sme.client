@@ -92,15 +92,26 @@ export const productUnitTitle = {
   showFilter: true,
 };
 
-export const slCode = {
-  name: "slCode",
-  field: "slCode",
+export const clCode = {
+  name: "clCode",
+  field: "clCode",
   sortable: true,
-  label: "کد معین",
+  label: "کد کل",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
   style: "width: 80px;",
+  showFilter: true,
+};
+
+export const clTitle = {
+  name: "clTitle",
+  field: "clTitle",
+  sortable: true,
+  label: "حساب کل",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
   showFilter: true,
 };
 
@@ -181,6 +192,18 @@ export const typeId = {
   style: "width:120px;",
   showFilter: true,
   operator: sqlOperator.equal,
+};
+
+export const slCode = {
+  name: "slCode",
+  field: "slCode",
+  sortable: true,
+  label: "کد معین",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width: 80px;",
+  showFilter: true,
 };
 
 export const slTitle = {
@@ -309,13 +332,12 @@ export const voucherNo = {
 export const voucherDate = {
   name: "voucherDate",
   field: "voucherDate",
-  template: "{{ voucherDateString }}",
   sortable: true,
   label: "تاریخ",
   class: "text-left",
   style: "width:120px",
   showFilter: true,
-  type: dataType.number,
+  type: dataType.date,
 };
 
 export const voucherSubject = {

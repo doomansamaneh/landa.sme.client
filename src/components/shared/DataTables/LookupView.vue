@@ -287,7 +287,7 @@
               </div>
             </slot>
 
-            <slot name="create">
+            <!-- <slot name="create">
               <q-btn
                 dense
                 unelevated
@@ -300,7 +300,7 @@
                 <q-icon name="o_add" size="14px" />
                 <span class="text-body3">ایجاد</span>
               </q-btn>
-            </slot>
+            </slot> -->
           </div>
         </slot>
       </div>

@@ -65,8 +65,27 @@
             required
           />
         </td>
-        <td class="text-center">
+        <td class="text-center q-gutter-x-xs">
           <q-btn
+            color="primary"
+            unelevated
+            round
+            class="text-on-dark"
+            size="sm"
+            icon="o_add"
+            @click="formStore.addNewRow(index, row)"
+          />
+          <q-btn
+            color="red"
+            unelevated
+            round
+            class="text-on-dark"
+            size="sm"
+            icon="o_delete"
+            @click="formStore.deleteRow(index)"
+          />
+
+          <!-- <q-btn
             unelevated
             round
             dense
@@ -75,7 +94,7 @@
             @click="formStore.deleteRow(index)"
           >
             <q-icon size="24px" name="o_delete" />
-          </q-btn>
+          </q-btn> -->
         </td>
       </tr>
     </tbody>

@@ -23,7 +23,7 @@
     </template>
   </toolbar-desktop>
 
-  <q-card bordered square>
+  <q-card bordered>
     <div :ref="printStore.printRef">
       <q-card-section>
         <div class="row" style="gap: 16px">

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-table__middle scroll">
+  <q-card-section>
     <table
       style="
         width: 100%;
@@ -14,16 +14,14 @@
         <tr class="bg-on-dark text-center">
           <td
             style="
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
-              padding: 5px;
             "
             colspan="100%"
           >
-            <div class="text-body2 text-weight-500">
-              مشخصات کالا یا خدمات مورد معامله
-            </div>
+            <div class="text-body2 text-weight-500">مشخصات کالا</div>
           </td>
         </tr>
       </thead>
@@ -31,7 +29,7 @@
         <tr>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
@@ -41,47 +39,67 @@
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            کد
+            کد کالا
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            کالا/خدمت
+            عنوان کالا
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            مقدار
+            مقدار اصلی
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            واحد
+            واحد اصلی
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            مقدار فرعی
+          </td>
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            واحد فرعی
+          </td>
+          <td
+            style="
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
@@ -91,7 +109,7 @@
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
@@ -101,60 +119,22 @@
           </td>
           <td
             style="
-              padding: 5px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-            v-if="model.totalDiscount"
-          >
-            تخفیف
-          </td>
-          <td
-            style="
-              padding: 5px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-            v-if="model.totalDiscount"
-          >
-            مبلغ پس از تخفیف
-          </td>
-          <td
-            style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            جمع مالیات و عوارض
-          </td>
-          <td
-            style="
-              min-width: 100px;
-              padding: 5px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
-            جمع کل
-            <span class="text-weight-700">
-              (
-              {{ model.currencyTitle }}
-              )
-            </span>
+            توضیحات
           </td>
         </tr>
         <tr
-          v-for="(item, index) in model.invoiceItems"
+          v-for="(item, index) in model?.invoiceItems"
           :key="item.id"
         >
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
@@ -162,54 +142,41 @@
           >
             {{ index + 1 }}
           </td>
+
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            {{ item.productCode }}
-            <small v-if="item.productTaxCode">
-              {{ item.productTaxCode }}
-            </small>
+            {{ item?.productCode }}
           </td>
+
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            <div class="text-wrap">
-              {{ item.productTitle }}
-              <small v-if="item.comment || item.productComment">
-                (
-                <span v-if="!item.productComment" class="q-pr-xs">
-                  {{ item.productComment }}
-                </span>
-                <span v-if="item.comment">
-                  {{ item.comment }}
-                </span>
-                )
-              </small>
-            </div>
+            {{ item?.productTitle }}
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            {{ helper.formatNumber(item.quantity) }}
+            {{ helper.formatNumber(item?.quantity) }}
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
@@ -219,160 +186,132 @@
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            {{ helper.formatNumber(item.price) }}
+            {{ helper.formatNumber(item?.subQuantity) || 0 }}
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            {{ helper.formatNumber(item.quantity * item.price) }}
+            {{ item?.subUnitTitle }}
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
           >
-            {{ helper.formatNumber(item.discount) }}
+            {{ helper.formatNumber(item?.price) }}
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
           >
-            {{
-              helper.formatNumber(
-                item.quantity * item.price - item.discount
-              )
-            }}
+            {{ helper.formatNumber(item?.totalPrice) }}
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
-            {{ helper.formatNumber(item.vatAmount) }}
-          </td>
-          <td
-            style="
-              padding: 5px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
-            {{ helper.formatNumber(item.totalPrice) }}
+            {{ item?.comment }}
           </td>
         </tr>
         <tr>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
               text-align: end;
             "
-            colspan="6"
+            colspan="8"
             class="text-right"
           >
             <strong>جمع کل:</strong>
-            ({{ numberToWords(model.totalPrice ?? 0) }}
-            <b>{{ model.currencyTitle }})</b>
+            ({{ numberToWords(model?.totalPrice ?? 0) }}
+            <b>{{ model?.currencyTitle }})</b>
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
           >
             <strong>
-              {{ helper.formatNumber(model.totalNetPrice) }}
+              {{ helper.formatNumber(model?.totalNetPrice) }}
             </strong>
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             <strong>
-              {{ helper.formatNumber(model.totalDiscount) }}
+              {{ helper.formatNumber(model?.totalDiscount) }}
             </strong>
           </td>
           <td
             style="
-              padding: 5px;
+              padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
               border-image: initial;
             "
-            v-if="model.totalDiscount"
+            v-if="model?.totalDiscount"
           >
             <strong>
               {{
-                helper.formatNumber(model.totalPrice - model.totalVat)
+                helper.formatNumber(
+                  model?.totalPrice - model?.totalVat
+                )
               }}
             </strong>
           </td>
-          <td
-            style="
-              padding: 5px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
+          <!-- <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
-              {{ helper.formatNumber(model.totalVat) }}
+              {{ helper.formatNumber(model?.totalVat) }}
             </strong>
-          </td>
-          <td
-            style="
-              padding: 5px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
+          </td> -->
+          <!-- <td style="padding: 5px; border: 1px solid #2d2d2d">
             <strong>
-              {{ helper.formatNumber(model.totalPrice) }}
+              {{ helper.formatNumber(model?.totalPrice) }}
             </strong>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
-  </div>
+  </q-card-section>
 </template>
 
 <script setup>
-  import { numberToWords } from "@persian-tools/persian-tools";
   import { helper } from "src/helpers";
+  import { numberToWords } from "@persian-tools/persian-tools";
 
   const props = defineProps({
     model: Object,
