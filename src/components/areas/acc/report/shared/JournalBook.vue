@@ -1,6 +1,17 @@
 <template>
   <toolbar-desktop margin :title="title" />
 
+  <advanced-search />
+
+  <chip
+    icon="filter_alt"
+    icon-remove="o_close"
+    color="primary"
+    class="q-mb-sm"
+    :store="accountReviewStore"
+    key-type="accountTreeType"
+  />
+
   <q-card flat class="bordered shadow">
     <card-tabs
       v-model="tab"
@@ -89,6 +100,7 @@
   import JournalBookDefault from "../desktop/JournalBookDefault.vue";
   import JournalBookTotal from "../desktop/JournalBookTotal.vue";
   import ReviewItem from "../desktop/AccountItem.vue";
+  import AdvancedSearch from "../../voucher/desktop/index/AdvancedSearch.vue";
 
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
