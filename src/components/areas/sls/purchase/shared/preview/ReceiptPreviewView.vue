@@ -27,8 +27,7 @@
     <q-inner-loading :showing="loading" class="text-center q-pa-md">
       <q-spinner color="primary" size="2em" />
     </q-inner-loading>
-    <pre>
-    </pre>
+
     <div :ref="printStore.printRef">
       <header-section :title="title" :model="model" />
       <body-section :model="model" />

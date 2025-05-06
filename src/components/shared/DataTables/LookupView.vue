@@ -58,10 +58,10 @@
       />
 
       <q-menu
-        fit
         v-if="$q.screen.gt.xs"
         no-parent-event
         v-model="isPopupOpen"
+        @before-show="onBeforeShow"
         @show="onMenuShow"
         @hide="onMenuHide"
         ref="popup"
@@ -71,7 +71,7 @@
         :self="$q.screen.lt.sm ? 'top middle' : ''"
         no-focus
         no-refocus
-        :style="`width: ${width}`"
+        :style="`width: ${menuWidth}`"
       >
         <q-inner-loading
           :showing="tableStore.showLoader.value"
@@ -482,6 +482,7 @@
   const isPopupOpen = ref(false);
   const lookupDialog = ref(null);
   const validationMessage = ref("");
+  const menuWidth = ref("");
 
   function handleAdd(event) {
     hidePopup();
@@ -613,6 +614,12 @@
   async function showDialog() {
     reloadData();
     lookupDialog.value?.show();
+  }
+
+  function onBeforeShow() {
+    if ($q.screen.gt.xs) {
+      menuWidth.value = search.value?.$el?.offsetWidth + "px";
+    }
   }
 
   function onMenuShow() {
