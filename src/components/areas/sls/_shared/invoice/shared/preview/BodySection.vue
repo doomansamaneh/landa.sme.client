@@ -3,7 +3,9 @@
     <table
       style="
         width: 100%;
-        border: 1px solid #2d2d2d;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
         font-size: 12.4px;
       "
@@ -11,7 +13,12 @@
       <thead>
         <tr class="bg-on-dark text-center">
           <td
-            style="border: 1px solid #2d2d2d; padding: 5px"
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
             colspan="100%"
           >
             <div class="text-body2 text-weight-500">مشخصات کالا</div>
@@ -20,38 +27,102 @@
       </thead>
       <tbody>
         <tr>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             ردیف
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             کد کالا
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             عنوان کالا
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             مقدار اصلی
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             واحد اصلی
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             مقدار فرعی
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             واحد فرعی
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             مبلغ واحد
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             مبلغ کل
           </td>
           <td
             style="
-              padding: 5px;
-              border: 1px solid #2d2d2d;
-              width: 30%;
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
             توضیحات
@@ -61,44 +132,116 @@
           v-for="(item, index) in model?.invoiceItems"
           :key="item.id"
         >
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ index + 1 }}
           </td>
 
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ item?.productCode }}
           </td>
 
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ item?.productTitle }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ helper.formatNumber(item?.quantity) }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ item.productUnitTitle }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ helper.formatNumber(item?.subQuantity) || 0 }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ item?.subUnitTitle }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ helper.formatNumber(item?.price) }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ helper.formatNumber(item?.totalPrice) }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ item?.comment }}
           </td>
         </tr>
         <tr>
           <td
             style="
-              padding: 5px;
-              border: 1px solid #2d2d2d;
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="8"
@@ -108,13 +251,25 @@
             ({{ numberToWords(model?.totalPrice ?? 0) }}
             <b>{{ model?.currencyTitle }})</b>
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{ helper.formatNumber(model?.totalNetPrice) }}
             </strong>
           </td>
           <td
-            style="padding: 5px; border: 1px solid #2d2d2d"
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
             v-if="model?.totalDiscount"
           >
             <strong>
@@ -122,12 +277,19 @@
             </strong>
           </td>
           <td
-            style="padding: 5px; border: 1px solid #2d2d2d"
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
             v-if="model?.totalDiscount"
           >
             <strong>
               {{
-                helper.formatNumber(model?.totalPrice - model?.totalVat)
+                helper.formatNumber(
+                  model?.totalPrice - model?.totalVat
+                )
               }}
             </strong>
           </td>
