@@ -7,7 +7,7 @@ export function useBaseInfoModel({
   model,
   batchModel,
   baseRoute,
-  getCreateModel,
+  loadCreateModel,
   id,
   resetCallback,
 }) {
@@ -20,7 +20,12 @@ export function useBaseInfoModel({
 
   async function getById(id) {
     if (id) await crudStore.getById(id);
-    else if (getCreateModel) await crudStore.getCreateModel();
+    else await getCreateModel();
+  }
+
+  async function getCreateModel() {
+    if (loadCreateModel) await crudStore.getCreateModel();
+    else localModel.value = model?.value ?? { ...baseInfoModel };
   }
 
   async function submitForm(form, action, callBack) {
@@ -42,5 +47,6 @@ export function useBaseInfoModel({
     editBatchModel,
     submitForm,
     crudStore,
+    getCreateModel,
   };
 }

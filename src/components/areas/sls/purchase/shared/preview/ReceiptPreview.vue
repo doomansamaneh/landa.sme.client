@@ -45,7 +45,6 @@
   import { helper } from "src/helpers";
   import { useRoute } from "vue-router";
   import { useFormActions } from "src/composables/useFormActions";
-  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { usePrint } from "src/composables/usePrint";
 
   import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";

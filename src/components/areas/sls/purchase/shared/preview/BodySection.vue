@@ -14,23 +14,7 @@
         <tr class="bg-on-dark text-center">
           <td
             style="
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-              padding: 5px;
-            "
-            colspan="100%"
-          >
-            <div class="text-body2 text-weight-500">
-              مشخصات کالا یا خدمات مورد معامله
-            </div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            style="
+              width: 5px;
               padding: 5px;
               border-width: 1px;
               border-style: solid;
@@ -166,10 +150,12 @@
               width: 30%;
             "
           >
-            توضیحات
+            شرح
           </td>
         </tr>
+      </thead>
 
+      <tbody>
         <tr
           v-for="(item, index) in model?.invoiceItems"
           :key="item.id"

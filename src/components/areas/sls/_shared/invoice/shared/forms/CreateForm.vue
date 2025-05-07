@@ -1,6 +1,6 @@
 <template>
   <q-page-sticky
-    v-if="$q.screen.gt.sm"
+    v-if="isDesktop"
     class="z-top q-pa-md"
     position="bottom-right"
   >
@@ -14,14 +14,11 @@
   </q-page-sticky>
 
   <form-toolbar-container
-    buttons
     :title="title"
-    @submit-call-back="
-      formStore.submitForm(form, action, saveCallBack)
-    "
-    @submit-and-new-call-back="
-      formStore.submitAndNewForm(form, action, saveCallBack)
-    "
+    :buttons="true"
+    :show-save-and-new="action === formAction.create"
+    @submit-call-back="submitForm"
+    @submit-and-new-call-back="submitAndNewForm"
   />
 
   <q-card
@@ -35,15 +32,12 @@
       style="position: sticky; top: 0"
     >
       <form-toolbar-container
-        buttons
-        inside
         :title="title"
-        @submit-call-back="
-          formStore.submitForm(form, action, saveCallBack)
-        "
-        @submit-and-new-call-back="
-          formStore.submitAndNewForm(form, action, saveCallBack)
-        "
+        :buttons="true"
+        :show-save-and-new="action === formAction.create"
+        inside
+        @submit-call-back="submitForm"
+        @submit-and-new-call-back="submitAndNewForm"
       />
     </div>
 
@@ -51,14 +45,8 @@
       :class="fullscreen ? 'q-px-lg q-pb-lg q-pt-none' : ''"
     >
       <q-form ref="form" autofocus>
-        <desktop
-          v-if="$q.screen.gt.sm"
-          :form-store="formStore"
-          :model="model"
-          :form-type="formType"
-        />
-        <mobile
-          v-else
+        <component
+          :is="formComponent"
           :form-store="formStore"
           :model="model"
           :form-type="formType"
@@ -71,7 +59,8 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
-  import { invoiceFormType } from "src/constants";
+  import { useQuasar } from "quasar";
+  import { invoiceFormType, formAction } from "src/constants";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
@@ -90,15 +79,37 @@
   });
 
   const fullscreen = ref(false);
-
   const route = useRoute();
   const form = ref(null);
 
+  const $q = useQuasar();
+
   const isFullscreen = computed(() => fullscreen.value);
+  const isDesktop = computed(() => $q.screen.gt.sm);
 
   const toggleFullscreen = () => {
     fullscreen.value = !fullscreen.value;
   };
+
+  const submitForm = () => {
+    props.formStore.submitForm(
+      form.value,
+      props.action,
+      props.saveCallBack
+    );
+  };
+
+  const submitAndNewForm = () => {
+    props.formStore.submitForm(
+      form.value,
+      props.action,
+      props.formStore.getCreateModel
+    );
+  };
+
+  const formComponent = computed(() =>
+    isDesktop.value ? Desktop : Mobile
+  );
 
   onMounted(() => {
     props.formStore.getById(route.params.id, props.method);

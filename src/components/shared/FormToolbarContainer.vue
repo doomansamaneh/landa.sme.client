@@ -1,20 +1,15 @@
 <template>
-  <template v-if="$q.screen.xs">
-    <toolbar-mobile
-      buttons
-      :title="title"
-      @submit-call-back="handleSubmit"
-    />
-  </template>
-  <template v-else>
-    <toolbar-desktop
-      :title="title"
-      @submit-call-back="handleSubmit"
-    />
-  </template>
+  <component
+    :is="toolbarComponent"
+    :title="title"
+    :show-save-and-new="showSaveAndNew"
+    :buttons="true"
+  />
 </template>
 
 <script setup>
+  import { computed } from "vue";
+  import { useQuasar } from "quasar";
   import { defineAsyncComponent } from "vue";
 
   const ToolbarDesktop = defineAsyncComponent(() =>
@@ -30,11 +25,12 @@
       type: String,
       required: true,
     },
+    showSaveAndNew: Boolean,
   });
 
-  const emit = defineEmits(["submit-call-back"]);
+  const $q = useQuasar();
 
-  const handleSubmit = () => {
-    emit("submit-call-back");
-  };
+  const toolbarComponent = computed(() =>
+    $q.screen.xs ? ToolbarMobile : ToolbarDesktop
+  );
 </script>

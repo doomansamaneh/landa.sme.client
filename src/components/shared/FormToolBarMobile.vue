@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, onUnmounted } from "vue";
+  import { ref } from "vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
   import ToolbarObserver from "src/components/shared/ToolBarObserver.vue";
 

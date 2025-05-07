@@ -15,6 +15,7 @@
           </q-btn>
 
           <q-btn
+            v-if="showSaveAndNew"
             class="text-body2"
             padding="6px 12px"
             rounded
@@ -58,9 +59,13 @@
   const props = defineProps({
     title: String,
     inside: Boolean,
+    showSaveAndNew: Boolean,
   });
 
-  const emit = defineEmits(["submit-call-back", "submit-and-new-call-back"]);
+  const emit = defineEmits([
+    "submit-call-back",
+    "submit-and-new-call-back",
+  ]);
 
   const $q = useQuasar();
   const observer = ref(null);

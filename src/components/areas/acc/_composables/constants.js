@@ -1,3 +1,4 @@
+import { comment } from "postcss";
 import {
   rowNo,
   id,
@@ -156,23 +157,25 @@ export const accountItemColumns = [
 ];
 
 export const journalBookTaxColumns = [
+  { ...voucherNo, label: "شماره سند" },
   { ...clCode, label: "کد حساب کل" },
   { ...clTitle, label: "عنوان حساب کل" },
   { ...slCode, label: "کد حساب معین" },
   { ...slTitle, label: "عنوان حساب معین" },
-  { ...dlCode, label: "کد حساب تفصیلی" },
-  { ...dlTitle, label: "عنوان حساب تفصیلی" },
+  //{ ...dlCode, label: "کد حساب تفصیلی" },
+  //{ ...dlTitle, label: "عنوان حساب تفصیلی" },
   {
     ...debitRemained,
-    label: "گردش بدهکار (میلیون ریال)",
-    format: (val) => val / 1_000_000,
+    label: "مبلغ بدهکار (ریال)",
+    //format: (val) => val / 1_000_000,
   },
   {
     ...creditRemained,
-    label: "گردش بستانکار (میلیون ریال)",
-    format: (val) => val / 1_000_000,
+    label: "مبلغ بستانکار (ریال)",
+    //format: (val) => val / 1_000_000,
   },
-  { ...voucherDate, label: "تاریخ گردش حساب" },
+  { ...voucherDate, label: "تاریخ سند", showFilter: false },
+  { ...voucherSubject, label: "شرح سند", showFilter: false },
 ];
 
 export const accountItemDLColumns = [

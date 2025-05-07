@@ -14,21 +14,7 @@
         <tr class="bg-on-dark text-center">
           <td
             style="
-              padding: 4px 8px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-            colspan="100%"
-          >
-            <div class="text-body2 text-weight-500">مشخصات کالا</div>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            style="
+              width: 5px;
               padding: 4px 8px;
               border-width: 1px;
               border-style: solid;
@@ -65,7 +51,7 @@
               border-image: initial;
             "
           >
-            مقدار اصلی
+            مقدار
           </td>
           <td
             style="
@@ -75,27 +61,7 @@
               border-image: initial;
             "
           >
-            واحد اصلی
-          </td>
-          <td
-            style="
-              padding: 4px 8px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
-            مقدار فرعی
-          </td>
-          <td
-            style="
-              padding: 4px 8px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
-            واحد فرعی
+            واحد
           </td>
           <td
             style="
@@ -115,7 +81,7 @@
               border-image: initial;
             "
           >
-            مبلغ کل
+            تخفیف
           </td>
           <td
             style="
@@ -125,9 +91,22 @@
               border-image: initial;
             "
           >
-            توضیحات
+            مبلغ کل ({{ model?.currencyTitle }})
+          </td>
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            شرح
           </td>
         </tr>
+      </thead>
+
+      <tbody>
         <tr
           v-for="(item, index) in model?.invoiceItems"
           :key="item.id"
@@ -192,26 +171,6 @@
               border-image: initial;
             "
           >
-            {{ helper.formatNumber(item?.subQuantity) || 0 }}
-          </td>
-          <td
-            style="
-              padding: 4px 8px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
-            {{ item?.subUnitTitle }}
-          </td>
-          <td
-            style="
-              padding: 4px 8px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-          >
             {{ helper.formatNumber(item?.price) }}
           </td>
           <td
@@ -222,7 +181,21 @@
               border-image: initial;
             "
           >
-            {{ helper.formatNumber(item?.totalPrice) }}
+            {{ helper.formatNumber(item?.discount) }}
+          </td>
+          <td
+            style="
+              padding: 4px 8px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            {{
+              helper.formatNumber(
+                item?.quantity * item?.price - item?.discount
+              )
+            }}
           </td>
           <td
             style="
@@ -244,7 +217,7 @@
               border-image: initial;
               text-align: end;
             "
-            colspan="8"
+            colspan="7"
             class="text-right"
           >
             <strong>جمع کل:</strong>
@@ -293,16 +266,6 @@
               }}
             </strong>
           </td>
-          <!-- <td style="padding: 5px; border: 1px solid #2d2d2d">
-            <strong>
-              {{ helper.formatNumber(model?.totalVat) }}
-            </strong>
-          </td> -->
-          <!-- <td style="padding: 5px; border: 1px solid #2d2d2d">
-            <strong>
-              {{ helper.formatNumber(model?.totalPrice) }}
-            </strong>
-          </td> -->
         </tr>
       </tbody>
     </table>

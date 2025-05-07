@@ -1,6 +1,7 @@
 <template>
   <tool-bar
     :title="title"
+    :show-save-and-new="action === formAction.create"
     @submit-call-back="formStore.submitForm(form, action)"
     @submit-and-new-call-back="
       formStore.submitForm(form, action, clearModel)
@@ -43,7 +44,8 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref } from "vue";
+  import { formAction } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import ToolBar from "src/components/shared/FormToolbarContainer.vue";
@@ -58,8 +60,6 @@
 
   const form = ref(null);
   const clearModel = () => {
-    props.formStore.crudStore.getCreateModel();
+    props.formStore.getCreateModel();
   };
-
-  //const localFormStore = computed(() => props.formStore);
 </script>

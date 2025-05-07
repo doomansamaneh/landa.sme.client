@@ -42,34 +42,6 @@
                   {{ model?.inventoryTitle }}
                 </span>
               </td>
-              <td
-                style="
-                  padding: 4px 8px;
-                  border-width: 1px;
-                  border-style: solid;
-                  border-image: initial;
-                "
-              >
-                <span class="text-body3">کد تحویل گیرنده:</span>
-                <span class="text-body3 text-bold q-ml-sm"></span>
-              </td>
-
-              <td
-                style="
-                  padding: 4px 8px;
-                  border-width: 1px;
-                  border-style: solid;
-                  border-image: initial;
-                "
-              >
-                <span class="text-body3">نام تحویل گیرنده:</span>
-                <span
-                  class="text-body3 text-bold"
-                  style="margin-right: 4px"
-                >
-                  {{ model?.customerName }}
-                </span>
-              </td>
 
               <td
                 style="
