@@ -15,12 +15,12 @@
           <menu-item
             icon="o_table_chart"
             :title="$t('shared.labels.exportExcel')"
-            @click="exportToExcel"
+            @click="exportAllExcel"
           />
           <menu-item
             icon="o_description"
             :title="$t('shared.labels.exportCsv')"
-            @click="exportToCsv"
+            @click="exportAll"
           />
         </q-list>
       </q-card>
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-  import { helper } from "src/helpers";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
   import MenuItem from "./MenuItem.vue";
 
   const props = defineProps({
@@ -39,25 +39,7 @@
     },
   });
 
-  function exportToExcel() {
-    const columns = props.tableStore.columns.value.map((col) => ({
-      label: col.label,
-      field: col.field,
-      format: col.format,
-    }));
-
-    const rows = props.tableStore.rows.value;
-    helper.exportExcel(rows, columns);
-  }
-
-  function exportToCsv() {
-    const columns = props.tableStore.columns.value.map((col) => ({
-      label: col.label,
-      field: col.field,
-      format: col.format,
-    }));
-
-    const rows = props.tableStore.rows.value;
-    helper.exportCsv(rows, columns);
-  }
+  const { exportAll, exportAllExcel } = useDataTableExport(
+    props.tableStore
+  );
 </script>

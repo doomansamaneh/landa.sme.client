@@ -5,7 +5,7 @@
     unelevated
     class="text-on-dark"
     icon="o_table_chart"
-    @click="exportToExcel"
+    @click="exportAllExcel"
   >
     <q-tooltip class="custom-tooltip" :delay="600">
       {{ $t("shared.labels.exportExcel") }}
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-  import { helper } from "src/helpers";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   const props = defineProps({
     tableStore: {
@@ -23,16 +23,20 @@
     },
   });
 
-  function exportToExcel() {
-    const columns = props.tableStore.columns.value.map((col) => ({
-      label: col.label,
-      field: col.field,
-      format: col.format,
-    }));
+  const { exportAll, exportAllExcel } = useDataTableExport(
+    props.tableStore
+  );
 
-    const rows = props.tableStore.rows.value;
-    const fileName = `${props.tableStore.title || "export"}.xlsx`;
+  // function exportToExcel() {
+  //   const columns = props.tableStore.columns.value.map((col) => ({
+  //     label: col.label,
+  //     field: col.field,
+  //     format: col.format,
+  //   }));
 
-    helper.exportExcel(rows, columns, fileName);
-  }
+  //   const rows = props.tableStore.rows.value;
+  //   const fileName = `${props.tableStore.title || "export"}.xlsx`;
+
+  //   helper.exportExcel(rows, columns, fileName);
+  // }
 </script>
