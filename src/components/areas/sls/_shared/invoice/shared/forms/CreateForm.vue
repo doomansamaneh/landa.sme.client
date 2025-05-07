@@ -78,7 +78,8 @@
     saveCallBack: Function,
   });
 
-  const fullscreen = ref(false);
+  const fullscreen = ref(true);
+
   const route = useRoute();
   const form = ref(null);
 

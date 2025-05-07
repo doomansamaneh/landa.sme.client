@@ -1,5 +1,6 @@
 import { exportFile, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
+import * as XLSX from "xlsx";
 
 export const helper = {
   getEnumOptions(obj, prefix) {
@@ -325,6 +326,42 @@ export const helper = {
         color: "negative",
         icon: "warning",
       });
+    }
+  },
+
+  exportExcel(rows, columns, fileName = "landa-sme.xlsx") {
+    try {
+      // Create workbook and worksheet
+      const wb = XLSX.utils.book_new();
+
+      // Prepare data for Excel
+      const excelData = rows.map((row) => {
+        const rowData = {};
+        columns.forEach((col) => {
+          const value =
+            typeof col.field === "function"
+              ? col.field(row)
+              : row[col.field === void 0 ? col.name : col.field];
+
+          // Apply formatting if exists
+          const formattedValue = col.format
+            ? col.format(value, row)
+            : value;
+          rowData[col.label] = formattedValue;
+        });
+        return rowData;
+      });
+
+      // Create worksheet
+      const ws = XLSX.utils.json_to_sheet(excelData);
+
+      // Add worksheet to workbook
+      XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+      // Generate Excel file
+      XLSX.writeFile(wb, fileName);
+    } catch (error) {
+      console.error("Error exporting Excel:", error);
     }
   },
 
