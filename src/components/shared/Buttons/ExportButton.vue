@@ -1,8 +1,8 @@
 <template>
-  <q-btn size="11px" round unelevated>
-    <q-icon size="21px" name="o_download" />
-    <q-tooltip :delay="700" class="custom-tooltip">
-      <div class="text-body2">تبدیل به اکسل</div>
+  <q-btn round dense unelevated class="text-on-dark">
+    <q-icon name="o_download" />
+    <q-tooltip class="custom-tooltip" :delay="600">
+      {{ $t("shared.labels.export") }}
     </q-tooltip>
 
     <q-menu
@@ -12,45 +12,16 @@
     >
       <q-card class="bordered border-radius-md">
         <q-list dense padding>
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
-            @click="exportAll()"
-          >
-            <div class="q-py-sm">
-              <q-item-section avatar>
-                <q-avatar class="bg-on-dark" size="sm">
-                  <q-icon name="o_download" size="20px" />
-                </q-avatar>
-              </q-item-section>
-            </div>
-            <q-item-section>
-              <div class="text-body2">
-                {{ $t("shared.labels.eportToExcel") }}
-              </div>
-            </q-item-section>
-          </q-item>
-
-          <q-item
-            clickable
-            v-close-popup
-            tabindex="0"
-            @click="exportCurrentPage()"
-          >
-            <div class="q-py-sm">
-              <q-item-section avatar>
-                <q-avatar class="bg-on-dark" size="sm">
-                  <q-icon name="o_download" size="20px" />
-                </q-avatar>
-              </q-item-section>
-            </div>
-            <q-item-section>
-              <div class="text-body2">
-                {{ $t("shared.labels.exportExcelCurrentPage") }}
-              </div>
-            </q-item-section>
-          </q-item>
+          <menu-item
+            icon="o_table_chart"
+            :title="$t('shared.labels.exportExcel')"
+            @click="exportToExcel"
+          />
+          <menu-item
+            icon="o_description"
+            :title="$t('shared.labels.exportCsv')"
+            @click="exportToCsv"
+          />
         </q-list>
       </q-card>
     </q-menu>
@@ -58,14 +29,35 @@
 </template>
 
 <script setup>
-  import { useDataTable } from "src/composables/useDataTable";
-  import { useDataTableExport } from "src/composables/useDataTableExport";
+  import { helper } from "src/helpers";
+  import MenuItem from "./MenuItem.vue";
 
   const props = defineProps({
-    tableStore: useDataTable,
+    tableStore: {
+      type: Object,
+      required: true,
+    },
   });
 
-  const { exportAll, exportCurrentPage } = useDataTableExport(
-    props.tableStore
-  );
+  function exportToExcel() {
+    const columns = props.tableStore.columns.value.map((col) => ({
+      label: col.label,
+      field: col.field,
+      format: col.format,
+    }));
+
+    const rows = props.tableStore.rows.value;
+    helper.exportExcel(rows, columns);
+  }
+
+  function exportToCsv() {
+    const columns = props.tableStore.columns.value.map((col) => ({
+      label: col.label,
+      field: col.field,
+      format: col.format,
+    }));
+
+    const rows = props.tableStore.rows.value;
+    helper.exportCsv(rows, columns);
+  }
 </script>
