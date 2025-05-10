@@ -1,6 +1,6 @@
 <template>
   <q-page-sticky
-    v-if="$q.screen.gt.sm"
+    v-if="isDesktop"
     class="z-top q-pa-md"
     position="bottom-right"
   >
@@ -14,57 +14,57 @@
   </q-page-sticky>
 
   <form-toolbar-container
-    buttons
     :title="title"
+    buttons
     :show-save-and-new="action === formAction.create"
     @submit-call-back="submitForm"
     @submit-and-new-call-back="submitAndNewForm"
   />
 
-  <q-card
-    :class="fullscreen ? 'fullscreen scroll fit' : 'form-container'"
-    :square="fullscreen"
-    :flat="fullscreen"
-  >
-    <div
-      v-if="fullscreen"
-      class="bg-main z-1"
-      style="position: sticky; top: 0"
-    >
-      <form-toolbar-container
-        buttons
-        inside
-        :title="title"
-        @submit-call-back="
-          formStore.submitForm(form, action, saveCallBack)
-        "
-      />
-    </div>
+  <template v-if="fullscreen">
+    <q-card class="fullscreen scroll fit bg-main" square flat>
+      <div class="bg-main z-1" style="position: sticky; top: 0">
+        <form-toolbar-container
+          :title="title"
+          buttons
+          :show-save-and-new="action === formAction.create"
+          inside
+          @submit-call-back="submitForm"
+          @submit-and-new-call-back="submitAndNewForm"
+        />
+      </div>
+      <q-card-section
+        class="q-px-lg q-pb-lg q-pt-none"
+        style="margin-top: -32px"
+      >
+        <q-form ref="form" autofocus>
+          <component
+            :is="formComponent"
+            :form-store="formStore"
+            :model="model"
+            :form-type="formType"
+          />
+        </q-form>
+      </q-card-section>
+    </q-card>
+  </template>
 
-    <q-card-section
-      :class="fullscreen ? 'q-px-lg q-pb-lg q-pt-none' : ''"
-    >
-      <q-form ref="form" autofocus>
-        <desktop
-          v-if="$q.screen.gt.sm"
-          :form-store="formStore"
-          :model="model"
-          :form-type="formType"
-        />
-        <mobile
-          v-else
-          :form-store="formStore"
-          :model="model"
-          :form-type="formType"
-        />
-      </q-form>
-    </q-card-section>
-  </q-card>
+  <template v-else>
+    <q-form ref="form" autofocus>
+      <component
+        :is="formComponent"
+        :form-store="formStore"
+        :model="model"
+        :form-type="formType"
+      />
+    </q-form>
+  </template>
 </template>
 
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useRoute } from "vue-router";
+  import { useQuasar } from "quasar";
   import { formAction, invoiceFormType } from "src/constants";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
@@ -82,11 +82,17 @@
     formType: invoiceFormType,
     saveCallBack: Function,
   });
+
   const route = useRoute();
   const form = ref(null);
   const fullscreen = ref(true);
+  const $q = useQuasar();
 
   const isFullscreen = computed(() => fullscreen.value);
+  const isDesktop = computed(() => $q.screen.gt.sm);
+  const formComponent = computed(() =>
+    isDesktop.value ? Desktop : Mobile
+  );
 
   const toggleFullscreen = () => {
     fullscreen.value = !fullscreen.value;
