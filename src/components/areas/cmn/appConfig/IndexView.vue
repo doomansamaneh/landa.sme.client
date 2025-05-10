@@ -167,7 +167,7 @@
           class="q-py-md"
           :class="$q.screen.gt.xs ? '' : 'q-px-none'"
           clickable
-          to=""
+          to="/cmn/appConfig/plugin"
         >
           <q-item-section :class="itemClass">
             <q-item-label class="text-on-dark text-body2">

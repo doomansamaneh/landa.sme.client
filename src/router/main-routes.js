@@ -1447,6 +1447,12 @@ export default {
             import("pages/areas/cmn/appConfig/ImportPage.vue"),
           meta: { title: "پیکربندی سامانه - ورود اطلاعات" },
         },
+        {
+          path: "plugin",
+          component: () =>
+            import("pages/areas/cmn/appConfig/PluginPage.vue"),
+          meta: { title: "پیکربندی سامانه - Public API" },
+        },
       ],
     },
 
