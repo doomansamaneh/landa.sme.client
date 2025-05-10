@@ -35,7 +35,7 @@
       </div>
       <q-card-section
         class="q-px-lg q-pb-lg q-pt-none"
-        style="margin-top: -32px"
+        style="margin-top: -28px"
       >
         <q-form ref="form" autofocus>
           <component
