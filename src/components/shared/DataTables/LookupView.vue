@@ -71,7 +71,7 @@
         :self="$q.screen.lt.sm ? 'top middle' : ''"
         no-focus
         no-refocus
-        :style="`width: ${menuWidth}`"
+        :style="`min-width: ${menuWidth}`"
       >
         <q-inner-loading
           :showing="tableStore.showLoader.value"
@@ -399,7 +399,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, nextTick } from "vue";
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { useDataTable } from "src/composables/useDataTable";
@@ -607,7 +607,8 @@
   }
 
   async function showPopup() {
-    reloadData();
+    await reloadData();
+    await nextTick();
     popup.value?.show();
   }
 
@@ -618,7 +619,21 @@
 
   function onBeforeShow() {
     if ($q.screen.gt.xs) {
-      menuWidth.value = search.value?.$el?.offsetWidth + "px";
+      const inputWidth = search.value?.$el?.offsetWidth;
+
+      // Use nextTick to ensure menu is rendered
+      nextTick(() => {
+        const menu = document.querySelector(".q-menu");
+        if (menu) {
+          const contentWidth = menu.scrollWidth;
+          // Set width based on content vs input width
+          const finalWidth = Math.max(contentWidth, inputWidth);
+          menuWidth.value = `${finalWidth}px`;
+          menu.style.width = `${finalWidth}px`;
+        }
+      });
+
+      popup.value?.updatePosition();
     }
   }
 
