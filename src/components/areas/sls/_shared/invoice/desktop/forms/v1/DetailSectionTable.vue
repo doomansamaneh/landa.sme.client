@@ -112,7 +112,7 @@
               </template>
             </q-field>
           </td>
-          <td class="text-center q-guuter-x-sm">
+          <td class="text-center q-gutter-x-sm">
             <q-btn
               color="primary"
               unelevated
@@ -169,6 +169,7 @@
               v-model="row.comment"
               placeholder="شرح ردیف"
               type="textarea"
+              autogrow
               dense
             />
           </td>
@@ -177,39 +178,44 @@
               v-model="row.discountComment"
               placeholder="شرح تخفیف"
               type="textarea"
-              dense
-            />
-          </td>
-          <td>
-            <custom-input-number
-              :disable="getDiscountType(index)"
-              v-model="row.discount"
-              placeholder="مبلغ تخفیف"
+              autogrow
               dense
             />
           </td>
           <td>
             <div class="row justify-center items-center">
-              <div class="q-mr-xs">مبلغ</div>
-              <q-toggle
-                :model-value="getDiscountType(index)"
-                @update:model-value="
-                  updateDiscountType(index, $event)
+              <custom-input-number
+                v-model="row.discountValue"
+                :placeholder="
+                  getDiscountType(index) ? 'درصد تخفیف' : 'مبلغ تخفیف'
                 "
+                :model-value="row.discountValue || null"
                 dense
-                size="40px"
-              />
-              <div class="q-ml-xs">درصد</div>
+              >
+                <template #append>
+                  <q-btn
+                    size="8px"
+                    class="cursor-pointer"
+                    :color="$q.dark.isActive ? 'yellow' : 'primary'"
+                    round
+                    outline
+                    @click="toggleRowDiscountType(index)"
+                  >
+                    <q-icon
+                      size="14px"
+                      :name="
+                        getDiscountType(index)
+                          ? 'o_percent'
+                          : 'attach_money'
+                      "
+                    />
+                  </q-btn>
+                </template>
+              </custom-input-number>
             </div>
           </td>
-          <td>
-            <custom-input-number
-              :disable="!getDiscountType(index)"
-              v-model="row.discountPercent"
-              placeholder="درصد تخفیف"
-              dense
-            />
-          </td>
+          <td></td>
+          <td></td>
         </tr>
       </template>
     </tbody>
@@ -288,18 +294,10 @@
     return discountTypes[index];
   };
 
-  const updateDiscountType = (index, value) => {
-    discountTypes[index] = value;
-
-    // Update discount values when toggle changes
+  const toggleRowDiscountType = (index) => {
     const item = props.model.invoiceItems[index];
-    if (item) {
-      if (value) {
-        item.discount = 0;
-      } else {
-        item.discountPercent = 0;
-      }
-    }
+    discountTypes[index] = !discountTypes[index];
+    item.discountValue = 0;
   };
 
   const toggleRowDetails = (index) => {
@@ -357,19 +355,19 @@
     item.vatPercent = vat?.rate ?? 0;
   };
 
-  // Watch for changes in discount percent
   watch(
-    () =>
-      props.model.invoiceItems.map((item) => item.discountPercent),
-    (discountPercents, oldDiscountPercents) => {
-      discountPercents.forEach((percent, index) => {
-        if (percent !== oldDiscountPercents[index]) {
-          const item = props.model.invoiceItems[index];
-          if (item && percent) {
-            item.discount = Math.floor(
-              (item.quantity * item.price * percent) / 100
-            );
-          }
+    () => props.model.invoiceItems.map((item) => item.discountValue),
+    (newValues, oldValues) => {
+      newValues.forEach((value, index) => {
+        if (value === oldValues[index]) return;
+
+        const item = props.model.invoiceItems[index];
+        if (getDiscountType(index)) {
+          item.discount = Math.floor(
+            (item.quantity * item.price * value) / 100
+          );
+        } else {
+          item.discount = value;
         }
       });
     },
