@@ -26,7 +26,7 @@
       <q-card-section>
         <div class="flex q-gutter-sm items-center">
           <q-icon name="o_dashboard" size="20px" />
-          <div class="text-body1">
+          <div>
             {{ $t("main-menu-items.dashboard") }}
           </div>
         </div>
@@ -37,10 +37,11 @@
       @click="goToSettings"
       v-if="shouldShowSettings"
     >
+      <span class="q-focus-helper" />
       <q-card-section>
         <div class="flex q-gutter-sm items-center">
           <q-icon name="o_settings" size="20px" />
-          <div class="text-body1">
+          <div>
             {{ $t("main-menu-items.settings") }}
           </div>
         </div>
