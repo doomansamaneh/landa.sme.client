@@ -6,10 +6,7 @@
 <script setup>
   import { onMounted, ref } from "vue";
   import { useRoute } from "vue-router";
-  import { helper } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
-
-  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
   import Desktop from "src/components/management/payment/paymentDetail/desktop/DetailView.vue";
   import Mobile from "src/components/management/payment/paymentDetail/mobile/DetailView.vue";

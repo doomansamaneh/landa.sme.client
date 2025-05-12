@@ -71,7 +71,7 @@
     <div class="col-md-6 col-sm-6 col-xs-12 q-gutter-x-lg">
       <div class="row items-center">
         <q-radio
-          v-model="shape"
+          v-model="model.gatewayTypeId"
           checked-icon="task_alt"
           val="line"
           color=""
@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from "vue";
+  import { ref, onMounted } from "vue";
   import { useRoute } from "vue-router";
   import { fetchWrapper, helper } from "src/helpers";
   import { guidEmpty } from "src/constants/enums";
@@ -109,7 +109,6 @@
   const props = defineProps({ model: Object });
 
   const route = useRoute();
-  const shape = ref("line");
   const periodItems = ref([]);
   const selectedPeriod = ref(periodItems.value[0]);
   const selectedPlan = ref(null);

@@ -216,6 +216,11 @@ export const voucherStatus = {
   canceled: "a36af633-d0bb-4857-a542-364e12658d1c",
 };
 
+export const ipgGateWayes = {
+  sadad: 2033,
+  smatriz: 2034,
+};
+
 export const paymentOrReceipt = {
   payment: 1,
   receipt: 2,
