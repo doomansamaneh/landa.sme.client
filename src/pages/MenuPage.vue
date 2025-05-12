@@ -16,37 +16,43 @@
     </template>
   </q-input>
 
-  <div class="flex q-gutter-md q-mb-lg">
-    <q-card
-      class="q-hoverable cursor-pointer border-radius-sm"
-      @click="goToDashboard"
-      v-if="shouldShowDashboard"
-    >
-      <span class="q-focus-helper" />
-      <q-card-section>
-        <div class="flex q-gutter-sm items-center">
-          <q-icon name="o_dashboard" size="20px" />
-          <div>
-            {{ $t("main-menu-items.dashboard") }}
+  <div class="q-my-lg">
+    <div class="flex q-gutter-md">
+      <q-card
+        bordered
+        class="q-hoverable cursor-pointer border-radius-sm"
+        @click="goToDashboard"
+        v-if="shouldShowDashboard"
+      >
+        <span class="q-focus-helper" />
+        <q-card-section>
+          <div class="flex q-gutter-sm items-center">
+            <q-icon name="o_dashboard" size="20px" />
+            <div>
+              {{ $t("main-menu-items.dashboard") }}
+            </div>
           </div>
-        </div>
-      </q-card-section>
-    </q-card>
-    <q-card
-      class="q-hoverable cursor-pointer border-radius-sm"
-      @click="goToSettings"
-      v-if="shouldShowSettings"
-    >
-      <span class="q-focus-helper" />
-      <q-card-section>
-        <div class="flex q-gutter-sm items-center">
-          <q-icon name="o_settings" size="20px" />
-          <div>
-            {{ $t("main-menu-items.settings") }}
+        </q-card-section>
+      </q-card>
+      <q-card
+        bordered
+        class="q-hoverable cursor-pointer border-radius-sm"
+        @click="goToSettings"
+        v-if="shouldShowSettings"
+      >
+        <span class="q-focus-helper" />
+        <q-card-section>
+          <div class="flex q-gutter-sm items-center">
+            <q-icon name="o_settings" size="20px" />
+            <div>
+              {{ $t("main-menu-items.settings") }}
+            </div>
           </div>
-        </div>
-      </q-card-section>
-    </q-card>
+        </q-card-section>
+      </q-card>
+    </div>
+
+    <!-- <q-separator class="q-mt-md" /> -->
   </div>
 
   <div v-for="parentItem in filteredMenuItems" :key="parentItem.name">
@@ -68,6 +74,7 @@
           </q-card-section>
         </q-card>
       </div>
+      <q-separator class="q-mt-md" />
     </div>
   </div>
 </template>
