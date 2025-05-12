@@ -32,6 +32,11 @@ export default {
         import("src/pages/areas/dashboard/IndexPage.vue"),
       meta: { title: "پیشخوان" },
     },
+    {
+      path: "/menu",
+      component: () => import("src/pages/menuPage.vue"),
+      meta: { title: "منو" },
+    },
 
     {
       path: "acc/fiscalYear",

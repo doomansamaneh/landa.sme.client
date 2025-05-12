@@ -9,8 +9,8 @@
       <navigation-item
         label="منو"
         icon="menu"
-        :isActive="menuBarStore.state.visible.value"
-        @click="menuBarStore.toggle"
+        :isActive="isActiveMenu"
+        @click="goToMenu"
       />
       <navigation-item
         label="پیشخوان"
@@ -50,6 +50,7 @@
 
   const goToDashboard = () => router.push("/dashboard");
   const goToProfile = () => router.push("/scr/users/settings");
+  const goToMenu = () => router.push("/menu");
 
   const isActiveDashboard = computed(
     () => route.path === "/dashboard"
@@ -57,4 +58,5 @@
   const isActiveProfile = computed(
     () => route.path === "/scr/users/settings"
   );
+  const isActiveMenu = computed(() => route.path === "/menu");
 </script>
