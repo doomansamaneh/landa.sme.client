@@ -138,7 +138,7 @@
 <script setup>
   import { useRouter } from "vue-router";
   import { useMenuBar } from "src/composables/useMenuBar";
-  import { ref, computed, onMounted } from "vue";
+  import { ref, computed } from "vue";
   import { useI18n } from "vue-i18n";
 
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
@@ -146,17 +146,7 @@
   const router = useRouter();
   const menuBarStore = useMenuBar();
   const searchText = ref("");
-  const isLoading = ref(true);
   const { t } = useI18n();
-
-  onMounted(async () => {
-    try {
-      // Wait for menu items to be loaded
-      await menuBarStore.loadMenuItems();
-    } finally {
-      isLoading.value = false;
-    }
-  });
 
   const goToDashboard = () => router.push("/dashboard");
   const goToSettings = () => router.push("/cmn/appConfig");
@@ -177,10 +167,14 @@
 
   const filteredSubItems = (subItems) => {
     if (!searchText.value) return subItems;
-    return subItems.filter((subItem) =>
-      subItem.title
-        .toLowerCase()
-        .includes(searchText.value.toLowerCase())
+    return subItems.filter(
+      (subItem) =>
+        subItem.title
+          .toLowerCase()
+          .includes(searchText.value.toLowerCase()) ||
+        subItem.englishName
+          .toLowerCase()
+          .includes(searchText.value.toLowerCase())
     );
   };
 
@@ -193,16 +187,23 @@
         if (
           parentItem.title
             .toLowerCase()
+            .includes(searchText.value.toLowerCase()) ||
+          parentItem.englishName
+            .toLowerCase()
             .includes(searchText.value.toLowerCase())
         ) {
           return true;
         }
 
         // Check if any sub-item matches
-        return parentItem.subItems.some((subItem) =>
-          subItem.title
-            .toLowerCase()
-            .includes(searchText.value.toLowerCase())
+        return parentItem.subItems.some(
+          (subItem) =>
+            subItem.title
+              .toLowerCase()
+              .includes(searchText.value.toLowerCase()) ||
+            subItem.englishName
+              .toLowerCase()
+              .includes(searchText.value.toLowerCase())
         );
       })
       .map((parentItem) => ({

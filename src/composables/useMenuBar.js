@@ -49,8 +49,11 @@ export function useMenuBar() {
   }
 
   function handleMenuItemsData(data) {
-    state.items.value = data;
-    setMenuTitle();
+    state.items.value = data.map((item) => ({
+      ...item,
+      englishName: item.englishName || item.name, // Use englishName if available, fallback to name
+      title: t(`main-menu-items.${item.name}`),
+    }));
   }
 
   function setMenuTitle() {
@@ -84,12 +87,14 @@ export function useMenuBar() {
           const menuItemsWithSubItems = item.subItems.filter(
             (subItem) =>
               subItem.title.toLowerCase().includes(searchLower) ||
-              subItem.name.toLowerCase().includes(searchLower)
+              subItem.name.toLowerCase().includes(searchLower) ||
+              subItem.englishName.toLowerCase().includes(searchLower)
           );
 
           if (
             menuItemsWithSubItems.length > 0 ||
-            item.title.toLowerCase().includes(searchLower)
+            item.title.toLowerCase().includes(searchLower) ||
+            item.englishName.toLowerCase().includes(searchLower)
           ) {
             return {
               ...item,
