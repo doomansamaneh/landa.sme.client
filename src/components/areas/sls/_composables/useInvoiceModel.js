@@ -20,6 +20,7 @@ export function useInvoiceModel(config) {
   const formItemStore = useFormItemsModel();
 
   const model = config?.model ?? ref(invoiceModel);
+  const discountTypes = ref({});
 
   const crudStore = useFormActions(config.baseRoute, model);
 
@@ -299,6 +300,50 @@ export function useInvoiceModel(config) {
     () => totalPrice.value + totalDiscount.value - totalVat.value
   );
 
+  // --- Discount Type Logic ---
+
+  function getDiscountType(index) {
+    if (discountTypes.value[index] === undefined) {
+      const item = model.value.invoiceItems[index];
+      if (item.discountPercent > 0) {
+        discountTypes.value[index] = true;
+        item.discountValue = item.discountPercent;
+      } else if (item.discount > 0) {
+        discountTypes.value[index] = false;
+        item.discountValue = item.discount;
+      } else {
+        discountTypes.value[index] = false;
+      }
+    }
+    return discountTypes.value[index];
+  }
+
+  function toggleRowDiscountType(index) {
+    const item = model.value.invoiceItems[index];
+    discountTypes.value[index] = !getDiscountType(index);
+    // صفر کردن مقدار تخفیف
+    item.discountValue = 0;
+    item.discount = 0;
+    item.discountPercent = 0;
+  }
+
+  function setDiscountValue(index, value) {
+    const item = model.value.invoiceItems[index];
+    if (getDiscountType(index)) {
+      item.discountPercent = value;
+      item.discount = Math.floor(
+        (item.quantity * item.price * value) / 100
+      );
+    } else {
+      item.discount = value;
+      item.discountPercent =
+        value > 0 && item.quantity * item.price > 0
+          ? Math.floor((value * 100) / (item.quantity * item.price))
+          : 0;
+    }
+    item.discountValue = value;
+  }
+
   async function submitForm(form, action, callBack) {
     if (model.value.cashId) {
       model.value.paymentItems = [
@@ -360,5 +405,11 @@ export function useInvoiceModel(config) {
     addProduct,
     removeProduct,
     getProductQuantity,
+
+    // --- Discount Type Logic ---
+    discountTypes,
+    getDiscountType,
+    toggleRowDiscountType,
+    setDiscountValue,
   };
 }

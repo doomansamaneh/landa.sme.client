@@ -187,7 +187,9 @@
               <custom-input-number
                 v-model="row.discountValue"
                 :placeholder="
-                  getDiscountType(index) ? 'درصد تخفیف' : 'مبلغ تخفیف'
+                  formStore.getDiscountType(index)
+                    ? 'درصد تخفیف'
+                    : 'مبلغ تخفیف'
                 "
                 :model-value="row.discountValue || null"
                 dense
@@ -199,12 +201,12 @@
                     :color="$q.dark.isActive ? 'yellow' : 'primary'"
                     round
                     outline
-                    @click="toggleRowDiscountType(index)"
+                    @click="formStore.toggleRowDiscountType(index)"
                   >
                     <q-icon
                       size="14px"
                       :name="
-                        getDiscountType(index)
+                        formStore.getDiscountType(index)
                           ? 'o_percent'
                           : 'attach_money'
                       "
@@ -285,47 +287,6 @@
   });
 
   const expandedRows = reactive({});
-  const discountTypes = reactive({});
-
-  const getDiscountType = (index) => {
-    if (discountTypes[index] === undefined) {
-      // Initialize discount type based on existing values
-      const item = props.model.invoiceItems[index];
-      if (item.discountPercent > 0) {
-        discountTypes[index] = true;
-        item.discountValue = item.discountPercent;
-      } else if (item.discount > 0) {
-        discountTypes[index] = false;
-        item.discountValue = item.discount;
-      } else {
-        discountTypes[index] = false;
-      }
-    }
-    return discountTypes[index];
-  };
-
-  const toggleRowDiscountType = (index) => {
-    const item = props.model.invoiceItems[index];
-    discountTypes[index] = !discountTypes[index];
-    if (discountTypes[index]) {
-      // Converting from amount to percent
-      item.discountValue =
-        item.discount > 0
-          ? Math.floor(
-              (item.discount * 100) / (item.quantity * item.price)
-            )
-          : 0;
-    } else {
-      // Converting from percent to amount
-      item.discountValue =
-        item.discountPercent > 0
-          ? Math.floor(
-              (item.quantity * item.price * item.discountPercent) /
-                100
-            )
-          : 0;
-    }
-  };
 
   const toggleRowDetails = (index) => {
     expandedRows[index] = !expandedRows[index];
@@ -387,22 +348,7 @@
     (newValues, oldValues) => {
       newValues.forEach((value, index) => {
         if (value === oldValues[index]) return;
-
-        const item = props.model.invoiceItems[index];
-        if (getDiscountType(index)) {
-          item.discountPercent = value;
-          item.discount = Math.floor(
-            (item.quantity * item.price * value) / 100
-          );
-        } else {
-          item.discount = value;
-          item.discountPercent =
-            value > 0
-              ? Math.floor(
-                  (value * 100) / (item.quantity * item.price)
-                )
-              : 0;
-        }
+        props.formStore.setDiscountValue(index, value);
       });
     },
     { deep: true }
