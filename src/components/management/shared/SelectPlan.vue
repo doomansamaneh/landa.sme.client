@@ -26,7 +26,7 @@
     class="total-container rounded-borders row q-mt-lg justify-between items-center"
     :class="{
       'q-px-xl': $q.screen.gt.xs,
-      'q-px-lg': $q.screen.lt.sm,
+      'q-pa-lg': $q.screen.lt.sm,
     }"
   >
     <div class="col-md-6 col-sm-6 col-xs-12 q-gutter-y-lg">
@@ -90,6 +90,31 @@
             src="/sadad-new.png"
             alt="درگاه پرداخت الکترونیک سداد"
             :class="$q.dark.isActive ? 'logo' : ''"
+            style="width: 120px"
+          />
+        </div>
+      </div>
+      <div class="row items-center q-mt-md">
+        <q-radio
+          v-model="model.gatewayTypeId"
+          checked-icon="task_alt"
+          val="smartispay"
+          color=""
+          dense
+          size="40px"
+        >
+          <q-tooltip class="custom-tooltip text-body1">
+            <span class="sadad-tooltip">
+              پرداخت از طریق اپلیکیشن پرداخت شهری
+            </span>
+          </q-tooltip>
+        </q-radio>
+        <div class="q-pa-md">
+          <img
+            src="/smartispay.png"
+            alt="اپلیکیشن پرداخت شهری"
+            :class="$q.dark.isActive ? 'logo' : ''"
+            style="width: 120px"
           />
         </div>
       </div>

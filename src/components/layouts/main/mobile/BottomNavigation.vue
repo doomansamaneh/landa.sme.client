@@ -25,6 +25,12 @@
         @click="contactDrawerStore.toggle"
       />
       <navigation-item
+        label="پیکربندی"
+        icon="settings"
+        :isActive="isActiveConfig"
+        @click="goToConfig"
+      />
+      <navigation-item
         label="نمایه"
         icon="account_circle"
         :isActive="isActiveProfile"
@@ -38,7 +44,6 @@
   import { computed } from "vue";
   import { useRouter, useRoute } from "vue-router";
   import { useContactDrawer } from "src/composables/useContactDrawer";
-  import { useMenuBar } from "src/composables/useMenuBar";
 
   import NavigationItem from "src/components/layouts/main/mobile/NavigationItem.vue";
 
@@ -46,10 +51,10 @@
   const route = useRoute();
 
   const contactDrawerStore = useContactDrawer();
-  const menuBarStore = useMenuBar();
 
   const goToDashboard = () => router.push("/dashboard");
   const goToProfile = () => router.push("/scr/users/settings");
+  const goToConfig = () => router.push("/cmn/appConfig");
   const goToMenu = () => router.push("/menu");
 
   const isActiveDashboard = computed(
@@ -57,6 +62,9 @@
   );
   const isActiveProfile = computed(
     () => route.path === "/scr/users/settings"
+  );
+  const isActiveConfig = computed(
+    () => route.path === "/cmn/appConfig"
   );
   const isActiveMenu = computed(() => route.path === "/menu");
 </script>
