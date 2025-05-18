@@ -2,29 +2,26 @@
   <div class="row q-col-gutter-md">
     <div class="col-md-6 col-sm-6 col-xs-12">
       <customer-lookup
-        v-model="
-          configStore.model.value.companySetting.txtDefaultCustomerId
+        v-model:selectedId="configStore.model.value.defaultCustomerId"
+        v-model:selectedText="
+          configStore.model.value.defaultCustomerName
         "
         label="مشتری پیش‌فرض"
       />
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <vat-lookup
-        v-model="
-          configStore.model.value.companySetting.txtDefaultVatId
-        "
+        v-model:selectedId="configStore.model.value.defaultVatId"
+        v-model:selectedText="configStore.model.value.defaultVatTitle"
         label="نوع ارزش افزوده"
       />
     </div>
 
     <div class="col-md-6 col-sm-6 col-xs-12">
       <sale-type-lookup
-        v-model:selectedId="
-          configStore.model.value.companySetting.txtDefaultSaleTypeId
-        "
+        v-model:selectedId="configStore.model.value.defaultSaleTypeId"
         v-model:selectedText="
-          configStore.model.value.companySetting
-            .txtDefaultSaleTypeTitle
+          configStore.model.value.defaultSaleTypeTitle
         "
         label="نوع فروش"
         :filter-expression="saleTypeFilter"
@@ -33,12 +30,10 @@
     <div class="col-md-6 col-sm-6 col-xs-12">
       <sale-type-lookup
         v-model:selectedId="
-          configStore.model.value.companySetting
-            .txtDefaultPurchaseTypeId
+          configStore.model.value.defaultPurchaseTypeId
         "
         v-model:selectedText="
-          configStore.model.value.companySetting
-            .txtDefaultPurchaseTypeTitle
+          configStore.model.value.defaultPurchaseTypeTitle
         "
         label="نوع خرید"
         :filter-expression="purchaseTypeFilter"
@@ -47,17 +42,20 @@
 
     <div class="col-md-6 col-sm-6 col-xs-12">
       <bank-account-lookup
-        v-model="
-          configStore.model.value.companySetting
-            .txtDefaultBankAccountId
+        v-model:selectedId="
+          configStore.model.value.defaultBankAccountId
+        "
+        v-model:selectedText="
+          configStore.model.value.defaultBankAccountTitle
         "
         label="حساب بانکی پیش‌فرض"
       />
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <currency-lookup
-        v-model="
-          configStore.model.value.companySetting.txtDefaultCurrencyId
+        v-model:selectedId="configStore.model.value.defaultCurrencyId"
+        v-model:selectedText="
+          configStore.model.value.defaultCurrencyTitle
         "
         label="ارز پیش‌فرض"
       />
@@ -65,13 +63,13 @@
 
     <div class="col-md-6 col-sm-6 col-xs-12">
       <custom-input
-        v-model="configStore.model.value.companySetting.txtAudience"
+        v-model="configStore.model.value.audience"
         label="Audience"
       />
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <custom-select
-        v-model="configStore.model.value.companySetting.duration"
+        v-model="configStore.model.value.duration"
         label="مدت اعتبار"
         :options="durationOptions"
       />
@@ -82,7 +80,7 @@
         class="text-body2"
         dense
         size="46px"
-        v-model="configStore.model.value.companySetting.isActive"
+        v-model="configStore.model.value.isActive"
         label="فعال؟"
       />
     </div>
@@ -90,19 +88,21 @@
     <div class="col-12">
       <div class="row q-col-gutter-md">
         <div class="col-12">
-          <custom-input
-            v-model="configStore.model.value.companySetting.txtToken"
-            label="Token"
-            type="textarea"
+          <q-btn
+            unelevated
+            label="تولید توکن"
+            color="primary"
+            class="q-mt-md"
+            @click="configStore.generateToken()"
           />
         </div>
         <div class="col-12">
-          <q-btn
-            unelevated
-            label="generate"
-            color="primary"
-            class="q-mt-md"
-            @click="generateToken"
+          <custom-input
+            readonly
+            disable
+            v-model="configStore.model.value.token"
+            label="Token"
+            type="textarea"
           />
         </div>
       </div>
@@ -112,17 +112,19 @@
 
 <script setup>
   import { sqlOperator, vatType } from "src/constants";
-  import { useAppConfigModel } from "../_composables/useAppConfigModel";
+  import { usePublicApiModel } from "../_composables/usePublicApiModel";
 
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import BankAccountLookup from "src/components/shared/lookups/BankAccountLookup.vue";
   import CurrencyLookup from "src/components/shared/lookups/CurrencyLookup.vue";
-  import CustomInput from "src/components/shared/Forms/CustomInput.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
-  const configStore = useAppConfigModel();
+  const props = defineProps({
+    configStore: usePublicApiModel,
+  });
 
   const durationOptions = [
     { label: "1", value: 1 },
@@ -151,6 +153,4 @@
       value: vatType.purchase,
     },
   ];
-
-  function generateToken() {}
 </script>

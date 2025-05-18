@@ -105,22 +105,32 @@
 <script setup>
   import { ref } from "vue";
   import { useQuasar } from "quasar";
+  import { ipgGateWayes } from "src/constants";
+  import { fetchWrapper } from "src/helpers";
 
   import SelectPlan from "src/components/management/shared/SelectPlan.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
   const $q = useQuasar();
-  const model = ref({});
+  const model = ref({ gatewayTypeId: ipgGateWayes.sadad });
   const form = ref(null);
 
-  const submitForm = () => {
-    $q.notify({
-      type: "positive",
-      message: "عملیات با موفقیت انجام شد",
-      timeout: 1500,
-    });
-  };
+  async function submitForm() {
+    const success = await form.value.validate();
+    if (!success) return;
+
+    const response = await fetchWrapper.post(
+      "business/addBusiness",
+      model.value
+    );
+
+    if (response?.data?.data?.url) {
+      window.location.href = response.data.data.url;
+    } else {
+      console.warn("No URL returned from server");
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

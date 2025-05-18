@@ -73,32 +73,33 @@
         <q-radio
           v-model="model.gatewayTypeId"
           checked-icon="task_alt"
-          val="line"
+          :val="ipgGateWayes.sadad"
           color=""
           dense
           size="40px"
         >
           <q-tooltip class="custom-tooltip text-body1">
             <span class="sadad-tooltip">
-              پرداخت تنها از طریق درگاه پرداخت الکترونیکی سداد امکان
-              پذیر است
+              پرداخت از طریق درگاه پرداخت الکترونیکی سداد
             </span>
           </q-tooltip>
+
+          <div class="q-pa-md">
+            <img
+              src="/sadad-new.png"
+              alt="درگاه پرداخت الکترونیک سداد"
+              :class="$q.dark.isActive ? 'logo' : ''"
+              style="width: 120px"
+            />
+          </div>
         </q-radio>
-        <div class="q-pa-md">
-          <img
-            src="/sadad-new.png"
-            alt="درگاه پرداخت الکترونیک سداد"
-            :class="$q.dark.isActive ? 'logo' : ''"
-            style="width: 120px"
-          />
-        </div>
       </div>
+
       <div class="row items-center q-mt-md">
         <q-radio
           v-model="model.gatewayTypeId"
           checked-icon="task_alt"
-          val="smartispay"
+          :val="ipgGateWayes.smatriz"
           color=""
           dense
           size="40px"
@@ -108,15 +109,16 @@
               پرداخت از طریق اپلیکیشن پرداخت شهری
             </span>
           </q-tooltip>
+
+          <div class="q-pa-md">
+            <img
+              src="/smartispay.png"
+              alt="اپلیکیشن پرداخت شهری"
+              :class="$q.dark.isActive ? 'logo' : ''"
+              style="width: 120px"
+            />
+          </div>
         </q-radio>
-        <div class="q-pa-md">
-          <img
-            src="/smartispay.png"
-            alt="اپلیکیشن پرداخت شهری"
-            :class="$q.dark.isActive ? 'logo' : ''"
-            style="width: 120px"
-          />
-        </div>
       </div>
     </div>
   </div>
@@ -126,7 +128,7 @@
   import { ref, onMounted } from "vue";
   import { useRoute } from "vue-router";
   import { fetchWrapper, helper } from "src/helpers";
-  import { guidEmpty } from "src/constants/enums";
+  import { guidEmpty, ipgGateWayes } from "src/constants/enums";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import PlanLookup from "src/components/shared/lookups/PlanLookup.vue";

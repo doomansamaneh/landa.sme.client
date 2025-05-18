@@ -124,6 +124,7 @@
   import { ref, onMounted } from "vue";
   import { useRoute } from "vue-router";
   import { fetchWrapper } from "src/helpers";
+  import { ipgGateWayes } from "src/constants";
 
   import SelectPlan from "src/components/management/shared/SelectPlan.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
@@ -132,7 +133,7 @@
 
   const form = ref(null);
   const currentPlan = ref({});
-  const model = ref({});
+  const model = ref({ gatewayTypeId: ipgGateWayes.sadad });
 
   async function loadData() {
     const businessId = route.params.businessId;
