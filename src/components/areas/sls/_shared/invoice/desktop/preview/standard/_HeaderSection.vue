@@ -42,7 +42,10 @@
           class="row justify-start"
         >
           <span>{{ $t("shared.labels.taxId") }}:</span>
-          <span class="q-px-sm text-roboto text-weight-500">
+          <span
+            class="q-px-sm text-roboto text-weight-500"
+            style="font-size: 12px"
+          >
             {{ model.lastApiLogModel.taxId }}
           </span>
         </div>

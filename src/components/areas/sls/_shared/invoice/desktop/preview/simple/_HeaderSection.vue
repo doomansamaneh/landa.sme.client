@@ -2,7 +2,7 @@
   <table style="width: 100%">
     <tbody>
       <tr>
-        <td style="width: 15%">
+        <td style="width: 25%">
           <img
             v-if="
               showLogo &&
@@ -19,7 +19,7 @@
             {{ title }}
           </div>
         </td>
-        <td style="width: 15%">
+        <td style="width: 25%">
           <div>
             <span>{{ $t("shared.labels.no") }}:</span>
             <span class="q-px-sm text-weight-600">
@@ -46,7 +46,10 @@
             class="row justify-start"
           >
             <span>{{ $t("shared.labels.taxId") }}:</span>
-            <span class="q-px-sm text-roboto text-weight-500">
+            <span
+              class="q-px-sm text-roboto text-weight-500"
+              style="font-size: 12px"
+            >
               {{ model.lastApiLogModel.taxId }}
             </span>
           </div>

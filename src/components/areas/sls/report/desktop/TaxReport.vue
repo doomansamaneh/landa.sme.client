@@ -68,10 +68,10 @@
         <b>{{ helper.formatNumber(summary.discountAmount) }}</b>
       </td>
       <td>
-        <b>{{ helper.formatNumber(summary.vatAmount) }}</b>
+        <b>{{ helper.formatNumber(summary.netAmount) }}</b>
       </td>
       <td>
-        <b>{{ helper.formatNumber(summary.netAmount) }}</b>
+        <b>{{ helper.formatNumber(summary.vatAmount) }}</b>
       </td>
       <td colspan="100%"></td>
       <td v-if="expandable"></td>

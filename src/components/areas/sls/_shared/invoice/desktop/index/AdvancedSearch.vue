@@ -75,6 +75,20 @@
                 <div class="col-md-3 col-sm-2">
                   <custom-label
                     class="text-bold"
+                    :label="$t('shared.labels.taxId')"
+                  />
+                </div>
+                <div class="col-md col-sm-7 col-xs-12">
+                  <custom-input
+                    v-model="searchStore.searchModel.value.taxId"
+                  />
+                </div>
+              </div>
+
+              <div class="row items-center q-mt-md">
+                <div class="col-md-3 col-sm-2">
+                  <custom-label
+                    class="text-bold"
                     :label="$t('shared.labels.typeTitle')"
                   />
                 </div>

@@ -48,6 +48,7 @@
             {{ helper.formatNumber(item.quantity * item.price) }}
           </td>
         </tr>
+
         <tr>
           <td
             style="
@@ -66,6 +67,7 @@
             </strong>
           </td>
         </tr>
+
         <tr v-if="model.totalDiscount">
           <td
             style="
@@ -84,6 +86,7 @@
             </strong>
           </td>
         </tr>
+
         <tr v-if="model.totalVat">
           <td
             style="
@@ -102,6 +105,30 @@
             </strong>
           </td>
         </tr>
+
+        <tr v-if="model.invoiceItems?.length > 1">
+          <td
+            style="
+              padding: 5px;
+              border: 1px solid #2d2d2d;
+              text-align: end;
+            "
+            colspan="4"
+            class="text-right"
+          >
+            جمع مقدار:
+          </td>
+          <td style="padding: 5px; border: 1px solid #2d2d2d">
+            <strong>
+              {{
+                helper.formatNumber(
+                  helper.getSubtotal(model.invoiceItems, "quantity")
+                )
+              }}
+            </strong>
+          </td>
+        </tr>
+
         <tr>
           <td
             style="
@@ -128,10 +155,7 @@
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
-
-  const $q = useQuasar();
 
   const props = defineProps({
     model: Object,
