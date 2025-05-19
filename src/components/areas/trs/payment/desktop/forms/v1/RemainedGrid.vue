@@ -1,12 +1,11 @@
 <template>
-  <q-card>
+  <q-card bordered class="no-shadow">
     <data-grid
       ref="dataGrid"
       :grid-store="gridStore"
       separator="horizontal"
       multiSelect
       numbered
-      bordered
       flat
       wrapCells_
       @selected-rows-changed="selectedRowChanged"
