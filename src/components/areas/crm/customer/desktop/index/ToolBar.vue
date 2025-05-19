@@ -10,6 +10,15 @@
       <menu-button-edit :to="`/${baseRoute}/edit/${row.id}`" />
       <menu-button-copy :to="`/${baseRoute}/copy/${row.id}`" />
     </template>
+
+    <template #buttons-batch-action>
+      <menu-button
+        @click="editBatch"
+        :title="$t('shared.labels.editBatch')"
+        icon="o_edit"
+        :badge-count="selectedIds?.length"
+      />
+    </template>
   </toolbar-desktop>
 </template>
 
@@ -17,6 +26,7 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
 
@@ -28,4 +38,10 @@
     selectedIds: Array,
     baseRoute: { type: String, default: "crm/customer" },
   });
+
+  const emits = defineEmits(["edit-batch"]);
+
+  function editBatch() {
+    emits("edit-batch");
+  }
 </script>
