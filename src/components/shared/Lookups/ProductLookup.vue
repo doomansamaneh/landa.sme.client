@@ -48,7 +48,10 @@
           <q-item-label class="text-body3">
             {{ row.code }} - {{ row.title }}
           </q-item-label>
-          <q-item-label class="text-body2">
+          <q-item-label
+            class="text-body2"
+            v-if="row.typeTitle !== 'Enum_ProductType_Service'"
+          >
             <span class="text-body3 text-bold">موجودی:</span>
             {{ row.stock }}
           </q-item-label>
