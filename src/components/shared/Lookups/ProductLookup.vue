@@ -10,6 +10,7 @@
     show-add
     clearable
     :create-form="CreateForm"
+    @add="add"
   >
     <template #td="{ row }">
       <q-item
@@ -74,6 +75,7 @@
 <script setup>
   import { ref } from "vue";
   import { helper } from "src/helpers";
+  import { useProductModel } from "src/components/areas/cmn/_composables/useProductModel";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import CreateForm from "src/components/areas/cmn/product/shared/forms/CreateForm.vue";
@@ -82,6 +84,12 @@
     filterExpression: Array,
   });
   const lookup = ref(null);
+
+  const add = async (form) => {
+    await form.submitForm(() => {
+      lookup.value?.refresh();
+    });
+  };
 
   defineExpose({
     lookup,

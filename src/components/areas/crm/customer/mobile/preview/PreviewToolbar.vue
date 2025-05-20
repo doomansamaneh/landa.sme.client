@@ -1,5 +1,12 @@
 <template>
-  <tool-bar>
+  <tool-bar
+    :table-store="tableStore"
+    :crud-store="crudStore"
+    :base-route="baseRoute"
+    :selected-ids="selectedIds"
+    buttons
+    margin
+  >
     <template #default>
       <div
         class="ellipsis-2-lines text-weight-700"
@@ -23,6 +30,19 @@
         no-caps
       />
     </template>
+
+    <template #buttons-batch-action>
+      <q-btn
+        class="text-caption"
+        round
+        unelevated
+        no-caps
+        @click="editBatch"
+      >
+        <q-icon name="o_edit" />
+        <q-badge floating>{{ selectedIds?.length }}</q-badge>
+      </q-btn>
+    </template>
   </tool-bar>
 </template>
 
@@ -35,9 +55,18 @@
 
   const props = defineProps({
     title: String,
+    tableStore: Object,
+    crudStore: Object,
+    baseRoute: String,
+    selectedIds: Array,
   });
 
   const route = useRoute();
-
   const id = computed(() => route.params.id);
+
+  const emits = defineEmits(["edit-batch"]);
+
+  function editBatch() {
+    emits("edit-batch");
+  }
 </script>

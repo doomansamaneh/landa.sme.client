@@ -22,9 +22,9 @@ export function useFormItemsModel() {
   };
 
   const pushNewItem = (items, newItem) => {
-    items.push({ ...(newItem ?? defaultItem) });
-    newAddedItemIndex.value = items.length - 1;
-    handleFocus(items.length - 1);
+    items.unshift({ ...(newItem ?? defaultItem) });
+    newAddedItemIndex.value = 0;
+    handleFocus(0);
   };
 
   const deleteItem = (items, index) => {

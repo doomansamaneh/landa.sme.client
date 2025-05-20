@@ -89,13 +89,13 @@
               </div>
             </div>
           </div>
-          <q-separator
+          <!-- <q-separator
             v-if="
               parentItem !==
               filteredMenuItems[filteredMenuItems.length - 1]
             "
             class="q-mt-lg"
-          />
+          /> -->
         </div>
       </div>
     </template>

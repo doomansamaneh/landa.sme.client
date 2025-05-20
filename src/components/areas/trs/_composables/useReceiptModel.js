@@ -13,6 +13,8 @@ export function useReceiptModel({ baseRoute, preview }) {
   const itemStore = useReceiptItemModel();
 
   const model = ref(receiptModel);
+  const isAddingItem = ref(false);
+  const validationErrors = ref({});
 
   const crudStore = useFormActions(baseRoute, model);
   const formItemStore = useFormItemsModel();
@@ -46,18 +48,62 @@ export function useReceiptModel({ baseRoute, preview }) {
     }
   }
 
-  const addRow = (paymentMehod) => {
-    const amount = model.value.remainedAmount - totalAmount.value;
-    const item = {
-      ...itemStore.model.value,
-      amount: Math.max(amount, 0),
-      typeId: paymentMehod.value.id,
-    };
-    formItemStore.pushNewItem(model.value.paymentItems, item);
+  const addRow = async (paymentMehod) => {
+    try {
+      isAddingItem.value = true;
+      const amount = model.value.remainedAmount - totalAmount.value;
+      const item = {
+        ...itemStore.model.value,
+        amount: Math.max(amount, 0),
+        typeId: paymentMehod.value.id,
+      };
+
+      // Only validate typeId when adding a new item
+      const errors = validateNewItem(item);
+      if (Object.keys(errors).length > 0) {
+        validationErrors.value = errors;
+        console.error("Validation errors:", errors);
+        return;
+      }
+
+      formItemStore.pushNewItem(model.value.paymentItems, item);
+      validationErrors.value = {};
+    } catch (error) {
+      console.error("Error adding row:", error);
+      validationErrors.value = {
+        general: "Failed to add item. Please try again.",
+      };
+    } finally {
+      isAddingItem.value = false;
+    }
   };
 
-  const deleteRow = (index) => {
-    formItemStore.deleteItem(model.value.paymentItems, index);
+  const validateNewItem = (item) => {
+    const errors = {};
+    if (!item.typeId) {
+      errors.typeId = "Payment type is required";
+    }
+    return errors;
+  };
+
+  const validateItem = (item) => {
+    const errors = {};
+    if (!item.amount || item.amount <= 0) {
+      errors.amount = "Amount must be greater than 0";
+    }
+    if (!item.typeId) {
+      errors.typeId = "Payment type is required";
+    }
+    return errors;
+  };
+
+  const deleteRow = async (index) => {
+    try {
+      isAddingItem.value = true;
+      formItemStore.deleteItem(model.value.paymentItems, index);
+    } finally {
+      isAddingItem.value = false;
+    }
   };
 
   const editRow = (index, item) => {
@@ -90,6 +136,8 @@ export function useReceiptModel({ baseRoute, preview }) {
     crudStore,
     totalAmount,
     newAddedItemIndex: formItemStore.newAddedItemIndex,
+    isAddingItem,
+    validationErrors,
 
     getById,
     addRow,

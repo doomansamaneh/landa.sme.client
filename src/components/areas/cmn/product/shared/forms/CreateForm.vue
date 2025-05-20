@@ -112,7 +112,7 @@
   import { ref } from "vue";
   import { helper } from "src/helpers";
   import { productType } from "src/constants";
-  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
+  import { useProductModel } from "../../../_composables/useProductModel";
   import { productModel } from "src/models/areas/cmn/productModel";
   import { useProductGrid } from "../../../_composables/useProductGrid";
   import { useFormActions } from "src/composables/useFormActions";
@@ -134,7 +134,7 @@
   const actionStore = useFormActions(baseRoute);
   const model = ref({ ...productModel });
 
-  const formStore = useBaseInfoModel({
+  const formStore = useProductModel({
     baseRoute: baseRoute,
     model: model,
     resetCallback: productGridStore.reset,
