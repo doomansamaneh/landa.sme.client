@@ -1,6 +1,6 @@
 <template>
   <div class="q-mt-lg">
-    <div class="text-h6 q-mb-md">
+    <!-- <div class="text-h6 q-mb-md">
       <span
         :class="$q.dark.isActive ? 'text-yellow' : 'text-primary'"
       >
@@ -10,7 +10,7 @@
             : "روش‌های دریافت"
         }}
       </span>
-    </div>
+    </div> -->
 
     <div class="row items-center q-gutter-md q-mb-lg">
       <template
@@ -40,7 +40,7 @@
       </template>
     </div>
 
-    <q-separator class="q-mb-lg" />
+    <!-- <q-separator class="q-mb-lg" /> -->
 
     <template v-if="formStore.model.value.paymentItems.length">
       <payment-item
@@ -64,7 +64,6 @@
 <script setup>
   import { helper } from "src/helpers";
   import { paymentMethod, paymentOrReceipt } from "src/constants";
-  import { useReceiptModel } from "../../../_composables/useReceiptModel";
   import { useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
 
@@ -74,16 +73,14 @@
   const $q = useQuasar();
   const { t } = useI18n();
   const props = defineProps({
-    formStore: useReceiptModel,
+    formStore: Object,
     paymentReceiptType: paymentOrReceipt,
   });
 
   const handleAddItem = async (item) => {
     try {
-      console.log("Adding item:", item);
       await props.formStore.addRow(item);
     } catch (error) {
-      console.error("Error in handleAddItem:", error);
       $q.notify({
         type: "negative",
         message: t("payment.errors.addItemFailed"),

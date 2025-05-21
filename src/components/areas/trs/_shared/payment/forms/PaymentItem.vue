@@ -32,7 +32,7 @@
     <q-separator :class="{ 'q-mb-md': $q.screen.xs }" />
 
     <q-card-section>
-      <div v-if="hasValidationErrors" class="q-mb-md">
+      <!-- <div v-if="hasValidationErrors" class="q-mb-md">
         <q-banner class="bg-red-1 text-red">
           <template v-slot:avatar>
             <q-icon name="warning" color="red" />
@@ -44,46 +44,46 @@
             {{ error }}
           </div>
         </q-banner>
-      </div>
+      </div> -->
 
       <payment-item-cash
         v-if="item.typeId === paymentMethod.cash?.id"
         v-model="paymentMethod"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
-        :error="validationErrors[item.typeId]"
       />
+      <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-check
         v-if="item.typeId === paymentMethod.check?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
-        :error="validationErrors[item.typeId]"
       />
+      <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-check-spent
         v-if="item.typeId === paymentMethod.checkSpent?.id"
         v-model="paymentMethod"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
-        :error="validationErrors[item.typeId]"
       />
+      <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-transfer-bank
         v-if="item.typeId === paymentMethod.bankTransition?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
-        :error="validationErrors[item.typeId]"
       />
+      <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-pos
         v-if="item.typeId === paymentMethod.pos?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
-        :error="validationErrors[item.typeId]"
       />
+      <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-customer
         v-if="item.typeId === paymentMethod.customer?.id"
         :autofocus="index === formStore.newAddedItemIndex.value"
         :item="item"
-        :error="validationErrors[item.typeId]"
       />
+      <!-- :error="validationErrors[item.typeId]" -->
     </q-card-section>
   </q-card>
 </template>
