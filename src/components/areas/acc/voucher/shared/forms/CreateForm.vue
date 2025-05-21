@@ -1,51 +1,66 @@
 <template>
-  <q-page-sticky
-    v-if="$q.screen.gt.sm"
-    class="z-top q-pa-md"
-    position="bottom-right"
-  >
-    <q-btn
-      round
-      color="primary"
-      :icon="isFullscreen ? 'fullscreen_exit' : 'fullscreen'"
-      class="primary-gradient primary-shadow"
-      @click="toggleFullscreen"
-    />
-  </q-page-sticky>
-
-  <form-toolbar-container
-    buttons
-    :title="title"
-    @submit-call-back="formStore.submitForm(form, action)"
-  />
-
-  <q-card
-    :class="fullscreen ? 'fullscreen scroll fit' : 'form-container'"
-    :square="fullscreen"
-    :flat="fullscreen"
-  >
-    <div
-      v-if="fullscreen"
-      class="bg-main z-1"
-      style="position: sticky; top: 0"
-    >
-      <form-toolbar-container
-        buttons
-        inside
-        :title="title"
-        @submit-call-back="formStore.submitForm(form, action)"
+  <!-- Desktop View -->
+  <template v-if="$q.screen.gt.sm">
+    <q-page-sticky class="z-top q-pa-md" position="bottom-right">
+      <q-btn
+        round
+        color="primary"
+        :icon="isFullscreen ? 'fullscreen_exit' : 'fullscreen'"
+        class="primary-gradient primary-shadow"
+        @click="toggleFullscreen"
       />
-    </div>
+    </q-page-sticky>
 
-    <q-card-section
-      :class="fullscreen ? 'q-px-lg q-pb-lg q-pt-none' : ''"
+    <!-- Desktop, not fullscreen: Toolbar outside -->
+    <form-toolbar-container
+      v-if="!fullscreen"
+      buttons
+      :title="title"
+      @submit-call-back="formStore.submitForm(form, action)"
+    />
+
+    <q-card
+      :class="fullscreen ? 'fullscreen scroll fit' : 'form-container'"
+      :square="fullscreen"
+      :flat="fullscreen"
     >
-      <q-form ref="form" autofocus>
-        <desktop v-if="$q.screen.gt.sm" :form-store="formStore" />
-        <mobile v-else :form-store="formStore" />
-      </q-form>
-    </q-card-section>
-  </q-card>
+      <!-- Desktop, fullscreen: Toolbar inside -->
+      <div
+        v-if="fullscreen"
+        class="bg-main z-1"
+        style="position: sticky; top: 0"
+      >
+        <form-toolbar-container
+          buttons
+          inside
+          :title="title"
+          @submit-call-back="formStore.submitForm(form, action)"
+        />
+      </div>
+
+      <q-card-section
+        :class="fullscreen ? 'q-px-lg q-pb-lg q-pt-none' : ''"
+      >
+        <q-form ref="form" autofocus>
+          <desktop :form-store="formStore" />
+        </q-form>
+      </q-card-section>
+    </q-card>
+  </template>
+
+  <!-- Mobile View -->
+  <template v-else>
+    <!-- Mobile: Simple layout with toolbar always outside -->
+    <form-toolbar-container
+      buttons
+      :title="title"
+      @submit-call-back="formStore.submitForm(mobileForm, action)"
+    />
+
+    <q-form ref="mobileForm" autofocus>
+      <mobile :form-store="formStore" />
+    </q-form>
+  </template>
 </template>
 
 <script setup>
@@ -66,6 +81,7 @@
   const route = useRoute();
   const formStore = useVoucherModel({ baseRoute: "acc/voucher" });
   const form = ref(null);
+  const mobileForm = ref(null);
   const fullscreen = ref(true);
 
   const isFullscreen = computed(() => fullscreen.value);
@@ -78,3 +94,12 @@
     formStore.getById(route.params.id, props.method);
   });
 </script>
+
+<style scoped>
+  /* Fix for mobile margin if needed */
+  @media (max-width: 599px) {
+    :deep(.q-page-sticky + div) {
+      margin-bottom: 0 !important;
+    }
+  }
+</style>
