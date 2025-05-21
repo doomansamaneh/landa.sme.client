@@ -109,13 +109,14 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { productType } from "src/constants";
   import { useProductModel } from "../../../_composables/useProductModel";
   import { productModel } from "src/models/areas/cmn/productModel";
   import { useProductGrid } from "../../../_composables/useProductGrid";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useRouter, useRoute } from "vue-router";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
@@ -130,6 +131,7 @@
 
   const form = ref(null);
   const baseRoute = "cmn/product";
+  const route = useRoute();
   const productGridStore = useProductGrid();
   const actionStore = useFormActions(baseRoute);
   const model = ref({ ...productModel });
@@ -152,6 +154,10 @@
   async function submitForm(callBack) {
     await formStore.submitForm(form.value, props.action, callBack);
   }
+
+  onMounted(async () => {
+    await formStore.getById(route.params.id);
+  });
 
   defineExpose({
     submitForm,

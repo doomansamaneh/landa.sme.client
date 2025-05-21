@@ -90,16 +90,7 @@
     fullscreen.value = !fullscreen.value;
   };
 
-  onMounted(() => {
-    formStore.getById(route.params.id, props.method);
+  onMounted(async () => {
+    await formStore.getById(route.params.id, props.method);
   });
 </script>
-
-<style scoped>
-  /* Fix for mobile margin if needed */
-  @media (max-width: 599px) {
-    :deep(.q-page-sticky + div) {
-      margin-bottom: 0 !important;
-    }
-  }
-</style>
