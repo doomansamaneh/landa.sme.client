@@ -6,9 +6,9 @@
     show-avatar
     show-badge
   >
-    <template #header>
+    <!-- <template #header>
       <template></template>
-    </template>
+    </template> -->
 
     <template #row-avatar-title="{ item }">
       {{ helper.getFirstChar(item.name) }}

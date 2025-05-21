@@ -21,8 +21,8 @@
       <navigation-item
         label="مخاطبین"
         icon="person_search"
-        :isActive="contactDrawerStore.state.value"
-        @click="contactDrawerStore.toggle"
+        :isActive="isActiveContact"
+        @click="goToContact"
       />
       <navigation-item
         label="پیکربندی"
@@ -55,6 +55,7 @@
   const goToDashboard = () => router.push("/dashboard");
   const goToProfile = () => router.push("/scr/users/settings");
   const goToConfig = () => router.push("/cmn/appConfig");
+  const goToContact = () => router.push("/crm/customer");
   const goToMenu = () => router.push("/menu");
 
   const isActiveDashboard = computed(
@@ -65,6 +66,9 @@
   );
   const isActiveConfig = computed(
     () => route.path === "/cmn/appConfig"
+  );
+  const isActiveContact = computed(
+    () => route.path === "/crm/customer"
   );
   const isActiveMenu = computed(() => route.path === "/menu");
 </script>
