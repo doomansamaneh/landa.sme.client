@@ -25,7 +25,7 @@
   <div
     class="total-container rounded-borders row q-mt-lg justify-between items-center"
     :class="{
-      'q-px-xl': $q.screen.gt.xs,
+      'q-pa-xl': $q.screen.gt.xs,
       'q-pa-lg': $q.screen.lt.sm,
     }"
   >
@@ -68,7 +68,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-sm-6 col-xs-12 q-gutter-x-lg">
+    <div
+      class="col-md-6 col-sm-6 col-xs-12"
+      :class="$q.screen.gt.xs ? '' : 'q-mt-lg'"
+    >
       <div class="row items-center">
         <q-radio
           v-model="model.gatewayTypeId"
@@ -95,7 +98,7 @@
         </q-radio>
       </div>
 
-      <div class="row items-center q-mt-md">
+      <div class="row items-center">
         <q-radio
           v-model="model.gatewayTypeId"
           checked-icon="task_alt"
@@ -235,7 +238,6 @@
   }
 
   .total-container {
-    height: 300px;
     border: 1px solid $primary;
   }
 </style>
