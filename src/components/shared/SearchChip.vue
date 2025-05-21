@@ -9,7 +9,8 @@
         text-color="white"
         icon="search"
       >
-        {{ $t(`shared.labels.${item.label}`) }}: {{ item.value }}
+        {{ $t(`shared.labels.${item.label}`) }}:
+        {{ getFormattedValue(item) }}
       </q-chip>
     </template>
   </div>
@@ -18,6 +19,14 @@
 <script setup>
   import { computed } from "vue";
   import { helper } from "src/helpers";
+  import {
+    depositType,
+    dateRange,
+    taxSentStatus,
+  } from "src/constants";
+  import { useI18n } from "vue-i18n";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     searchModel: Object,
@@ -39,5 +48,26 @@
     if (Array.isArray(item.value)) {
       return item.value.length;
     } else return !helper.isGuid(item.value);
+  };
+
+  const getFormattedValue = (item) => {
+    // Handle enum values translation
+    if (item.name === "dateRange") {
+      return t(
+        `shared.labels.${helper.getEnumType(item.value, dateRange)}`
+      );
+    } else if (item.name === "depositType") {
+      return t(
+        `shared.labels.${helper.getEnumType(item.value, depositType)}`
+      );
+    } else if (item.name === "taxStatus") {
+      return t(
+        `shared.labels.${helper.getEnumType(
+          item.value,
+          taxSentStatus
+        )}`
+      );
+    }
+    return item.value;
   };
 </script>

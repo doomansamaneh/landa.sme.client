@@ -1,6 +1,6 @@
 <template>
-  <q-card class="q-mb-md" flat_ bordered>
-    <q-card-section class="q-ml-sm row items-center justify-between">
+  <q-card class="q-mb-md overflow-hidden" flat bordered>
+    <q-card-section class="row items-center justify-between">
       <q-option-group
         style="gap: 8px"
         class="row text-body2"
@@ -11,10 +11,29 @@
         v-model="searchStore.searchModel.value.dateRange"
         @update:model-value="searchStore.applySearch"
       />
+      <q-option-group
+        style="gap: 8px"
+        class="row text-body2"
+        type="radio"
+        dense
+        size="40px"
+        :options="depositTypeOptions"
+        v-model="searchStore.searchModel.value.depositType"
+        @update:model-value="searchStore.applySearch"
+      />
+    </q-card-section>
+    
+    <q-card-section
+      class="cursor-pointer q-pa-sm flex items-center justify-between bg-on-dark"
+      @click="expanded = !expanded"
+    >
+      <div class="flex items-center q-gutter-sm">
+        <q-icon name="o_search" size="24px" />
+        <div class="text-body2">جستجو پیشرفته</div>
+      </div>
       <q-btn
-        @click="expanded = !expanded"
-        padding="6px 12px"
-        rounded
+        @click.stop="expanded = !expanded"
+        round
         unelevated
         dense
         class="text-body2"
@@ -23,17 +42,14 @@
           :name="
             expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'
           "
-          class="q-mr-xs"
         />
-        <span class="text-body2">
-          {{ $t("shared.labels.advancedSearch") }}
-        </span>
       </q-btn>
     </q-card-section>
 
     <q-slide-transition duration="500">
       <div v-show="expanded">
-        <div class="q-px-lg">
+        <!-- <q-separator /> -->
+        <div class="q-mt-sm q-px-lg">
           <div class="row q-mb-md" v-if="false"></div>
 
           <div
@@ -62,7 +78,7 @@
                       )
                     "
                     style="gap: 8px"
-                    class="overflow-hidden row text-body2"
+                    class="row text-body2"
                     type="radio"
                     dense
                     size="40px"
@@ -326,7 +342,11 @@
 
 <script setup>
   import { computed, ref } from "vue";
-  import { dateRange, taxSentStatus } from "src/constants";
+  import {
+    dateRange,
+    depositType,
+    taxSentStatus,
+  } from "src/constants";
   import { helper } from "src/helpers";
   import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
 
@@ -347,5 +367,9 @@
 
   const dateRangeOptions = computed(() =>
     helper.getEnumOptions(dateRange)
+  );
+
+  const depositTypeOptions = computed(() =>
+    helper.getEnumOptions(depositType)
   );
 </script>

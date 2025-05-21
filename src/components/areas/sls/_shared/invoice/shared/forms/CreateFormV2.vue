@@ -21,44 +21,45 @@
     @submit-and-new-call-back="submitAndNewForm"
   />
 
-  <template v-if="fullscreen">
-    <q-card class="fullscreen scroll fit bg-main" square flat>
-      <div class="bg-main z-1" style="position: sticky; top: 0">
-        <form-toolbar-container
-          :title="title"
-          buttons
-          :show-save-and-new="action === formAction.create"
-          inside
-          @submit-call-back="submitForm"
-          @submit-and-new-call-back="submitAndNewForm"
-        />
-      </div>
-      <q-card-section
-        class="q-px-lg q-pb-lg q-pt-none"
-        style="margin-top: -28px"
-      >
-        <q-form ref="form" autofocus>
-          <component
-            :is="formComponent"
-            :form-store="formStore"
-            :model="model"
-            :form-type="formType"
-          />
-        </q-form>
-      </q-card-section>
-    </q-card>
-  </template>
-
-  <template v-else>
-    <q-form ref="form" autofocus>
-      <component
-        :is="formComponent"
-        :form-store="formStore"
-        :model="model"
-        :form-type="formType"
+  <q-card
+    :class="[
+      'bg-main',
+      fullscreen ? 'fullscreen scroll fit' : 'minimized-card',
+    ]"
+    square
+    flat
+  >
+    <div
+      v-if="fullscreen"
+      class="bg-main z-1"
+      style="position: sticky; top: 0"
+    >
+      <form-toolbar-container
+        :title="title"
+        buttons
+        :show-save-and-new="action === formAction.create"
+        inside
+        @submit-call-back="submitForm"
+        @submit-and-new-call-back="submitAndNewForm"
       />
-    </q-form>
-  </template>
+    </div>
+    <q-card-section
+      :class="[
+        fullscreen
+          ? 'q-pt-none q-mt-negative q-px-lg q-pb-lg'
+          : 'q-pa-none',
+      ]"
+    >
+      <q-form ref="form" autofocus>
+        <component
+          :is="formComponent"
+          :form-store="formStore"
+          :model="model"
+          :form-type="formType"
+        />
+      </q-form>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
@@ -118,3 +119,9 @@
     props.formStore.getById(route.params.id, props.method);
   });
 </script>
+
+<style scoped>
+  .q-mt-negative {
+    margin-top: -30px;
+  }
+</style>
