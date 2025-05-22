@@ -26,7 +26,7 @@
         <td>
           <sl-lookup
             v-model:selectedId="row.slId"
-            v-model:selectedText="row.slTitle"
+            v-model:selectedText="row.slDisplay"
             :autofocus="index === formStore.newAddedItemIndex.value"
             placeholder="حساب معین"
             required
@@ -38,7 +38,7 @@
           <dl-lookup
             ref="dl"
             v-model:selectedId="row.dlId"
-            v-model:selectedText="row.dlTitle"
+            v-model:selectedText="row.dlDisplay"
             placeholder="تفصیلی"
           />
           <!-- :filter-expression="getDlFilters(row)" -->
