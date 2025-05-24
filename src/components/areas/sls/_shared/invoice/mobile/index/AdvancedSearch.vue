@@ -172,6 +172,14 @@
           </div>
 
           <div>
+            <div class="text-body2 q-mb-sm">شماره فاکتور</div>
+            <custom-input-number
+              v-model="searchStore.searchModel.value.invoiceNumber"
+              display-format="n0"
+            />
+          </div>
+          
+          <div>
             <div class="text-body2 q-mb-sm">نوع فروش</div>
             <sale-type-lookup
               v-model:selectedId="
