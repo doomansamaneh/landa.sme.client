@@ -8,7 +8,7 @@
   <q-card class="form-container">
     <q-card-section>
       <q-form ref="form" autofocus>
-        <div class="row q-gutter-md q-mb-md">
+        <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               سازمان
@@ -22,8 +22,8 @@
           </div>
         </div>
 
-        <div class="row q-gutter-md q-mb-md">
-          <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="row q-col-gutter-md q-mb-md">
+          <div class="col-md-6 col-sm-6 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               کد
             </q-item-label>
@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <div class="row q-gutter-md q-mb-md">
+        <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               نوع واحد
@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="row q-gutter-md q-mb-md">
+        <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               عنوان
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <div class="row q-gutter-md q-mb-md">
+        <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               محل جغرافیایی
@@ -80,7 +80,7 @@
           </div>
         </div>
 
-        <div class="row q-gutter-md q-mb-md">
+        <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
               واحد بالادستی
@@ -93,7 +93,7 @@
           </div>
         </div>
 
-        <div class="row q-gutter-md q-mb-md">
+        <div class="row q-col-gutter-md q-mb-md">
           <q-checkbox
             dense
             size="48px"
