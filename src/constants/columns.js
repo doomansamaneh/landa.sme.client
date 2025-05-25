@@ -646,6 +646,18 @@ export const debit = {
   type: dataType.number,
 };
 
+export const debitOpening = {
+  name: "debitOpening",
+  field: "debitOpening",
+  sortable: false,
+  label: "بدهکار اول دوره",
+  align: "left",
+  class: "text-left",
+  style: "width:110px;",
+  showFilter: false,
+  type: dataType.number,
+};
+
 export const inlineDebit = {
   name: "inlineDebit",
   field: "inlineDebit",
@@ -676,6 +688,18 @@ export const credit = {
   field: "credit",
   sortable: false,
   label: "بستانکار",
+  align: "left",
+  class: "text-left",
+  style: "width:110px;",
+  showFilter: false,
+  type: dataType.number,
+};
+
+export const creditOpening = {
+  name: "creditOpening",
+  field: "creditOpening",
+  sortable: false,
+  label: "بستانکار اول دوره",
   align: "left",
   class: "text-left",
   style: "width:110px;",

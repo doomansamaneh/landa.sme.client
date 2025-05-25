@@ -270,6 +270,12 @@ export default {
           meta: { title: "تراز آزمایشی" },
         },
         {
+          path: "trialBalance6Col",
+          component: () =>
+            import("pages/areas/acc/report/TrialBalance6ColPage.vue"),
+          meta: { title: "تراز آزمایشی 6 ستونی" },
+        },
+        {
           path: "journal",
           component: () =>
             import("pages/areas/acc/report/JournalPage.vue"),

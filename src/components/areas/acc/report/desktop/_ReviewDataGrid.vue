@@ -55,6 +55,24 @@
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}
       </td>
+      <td v-if="showOpening">
+        <b>
+          {{
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "debitOpening")
+            )
+          }}
+        </b>
+      </td>
+      <td v-if="showOpening">
+        <b>
+          {{
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "creditOpening")
+            )
+          }}
+        </b>
+      </td>
       <td>
         <b>
           {{
@@ -97,6 +115,12 @@
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.total") }}
       </td>
+      <td v-if="showOpening">
+        <b>{{ helper.formatNumber(summary.debitOpening) }}</b>
+      </td>
+      <td v-if="showOpening">
+        <b>{{ helper.formatNumber(summary.debitOpening) }}</b>
+      </td>
       <td>
         <b>{{ helper.formatNumber(summary.debit) }}</b>
       </td>
@@ -128,17 +152,28 @@
     subTitle: String,
   });
 
-  const colspan = computed(
+  const showOpening = computed(
     () =>
       helper.findIndex(
         props.tableStore.columns.value,
         "name",
-        "debit"
-      ) +
-      1 + //numbered column
-      1 //multi check column
+        "debitOpening"
+      ) !== -1
   );
 
-  const openPreview = () => {
-  };
+  const colspan = computed(() => {
+    const columns = props.tableStore.columns.value;
+    const targetIndex =
+      helper.findIndex(columns, "name", "debitOpening") !== -1
+        ? helper.findIndex(columns, "name", "debitOpening")
+        : helper.findIndex(columns, "name", "debit");
+
+    return (
+      targetIndex +
+      1 + // numbered column
+      1 // multi check column
+    );
+  });
+
+  const openPreview = () => {};
 </script>

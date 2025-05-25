@@ -14,6 +14,8 @@ import {
   actions,
   debit,
   credit,
+  debitOpening,
+  creditOpening,
   debitRemained,
   creditRemained,
   inlineDebit,
@@ -208,6 +210,27 @@ export const reviewCLColumns = [
   { ...creditRemained, showFilter: true, sortable: true },
 ];
 
+export const reviewCL6Columns = [
+  { ...code },
+  { ...title },
+  { ...debitOpening, showFilter: true, sortable: true },
+  { ...creditOpening, showFilter: true, sortable: true },
+  {
+    ...debit,
+    label: "بدهکار طی دوره",
+    showFilter: true,
+    sortable: true,
+  },
+  {
+    ...credit,
+    label: "بستانکار طی دوره",
+    showFilter: true,
+    sortable: true,
+  },
+  { ...debitRemained },
+  { ...creditRemained },
+];
+
 export const reviewGLColumns = [...reviewCLColumns];
 export const reviewSLColumns = [...reviewCLColumns];
 export const reviewDLColumns = [
@@ -218,6 +241,30 @@ export const reviewDLColumns = [
   { ...credit, showFilter: true, sortable: true },
   { ...debitRemained, showFilter: true, sortable: true },
   { ...creditRemained, showFilter: true, sortable: true },
+];
+
+export const reviewGL6Columns = [...reviewCL6Columns];
+export const reviewSL6Columns = [...reviewCL6Columns];
+export const reviewDL6Columns = [
+  { ...code },
+  { ...title },
+  { ...type },
+  { ...debitOpening, showFilter: true, sortable: true },
+  { ...creditOpening, showFilter: true, sortable: true },
+  {
+    ...debit,
+    label: "بدهکار طی دوره",
+    showFilter: true,
+    sortable: true,
+  },
+  {
+    ...credit,
+    label: "بستانکار طی دوره",
+    showFilter: true,
+    sortable: true,
+  },
+  { ...debitRemained },
+  { ...creditRemained },
 ];
 export const reviewSLDLColumns = [
   { ...slCode },
