@@ -81,7 +81,8 @@ export function useBusinessGrid() {
     if (response.data?.data?.url)
       router.push(response.data?.data?.url);
     else {
-      alert(`goto business: ${response.data?.data?.message}`);
+      console.log(response);
+      alert(`goto business: ${response.data?.message}`);
     }
   };
 
