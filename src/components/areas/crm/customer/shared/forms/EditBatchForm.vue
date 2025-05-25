@@ -65,7 +65,9 @@
           <custom-select
             label="نوع"
             v-model="formStore.editBatchModel.value.type.fieldValue"
-            :options="customerType"
+            :options="
+              helper.getEnumOptions(customerType, 'customerType')
+            "
           />
         </div>
 

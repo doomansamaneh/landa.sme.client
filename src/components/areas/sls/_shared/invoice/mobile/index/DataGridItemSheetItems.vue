@@ -2,9 +2,10 @@
   <menu-item-edit :to="`/${baseRoute}/edit/${item.id}`" />
   <menu-item-copy :to="`/${baseRoute}/copy/${item.id}`" />
   <menu-item
-    :title="$t('shared.labels.cancelInvoice')"
-    icon="o_close"
-    @click="cancelInvoice(item.id)"
+    v-if="item.statusId !== quoteStatus.final"
+    :title="$t('shared.labels.convertToInvoice')"
+    icon="o_receipt"
+    :to="`/sls/invoice/createFromQuote/${item.id}`"
   />
   <q-separator class="q-my-sm" />
   <menu-item
@@ -26,6 +27,7 @@
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
+  import { quoteStatus } from "src/constants";
 
   import SendEmail from "../../shared/forms/SendEmailForm.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
@@ -69,7 +71,7 @@
       component: SendEmail,
       actionBar: true,
       props: {
-        id: props.model.id,
+        id: props.item.id,
         baseRoute: props.baseRoute,
       },
       okCallback: async (response) => {
