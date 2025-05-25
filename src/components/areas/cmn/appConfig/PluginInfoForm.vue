@@ -62,12 +62,6 @@
     </div>
 
     <div class="col-md-6 col-sm-6 col-xs-12">
-      <custom-input
-        v-model="configStore.model.value.audience"
-        label="Audience"
-      />
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
       <custom-select
         v-model="configStore.model.value.duration"
         label="مدت اعتبار"
@@ -75,7 +69,34 @@
       />
     </div>
 
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-md-12">
+      <custom-input
+        v-model="configStore.model.value.audience"
+        label="نشانی سایت ووکامرس"
+      />
+    </div>
+    
+    <div class="col-md-12">
+      <q-checkbox
+        class="text-body2"
+        dense
+        size="46px"
+        v-model="configStore.model.value.enableSsl"
+        label="موجودی کالا در ووکامرس از لاندا بروز شود"
+      />
+    </div>
+
+    <div class="col-md-12">
+      <q-checkbox
+        class="text-body2"
+        dense
+        size="46px"
+        v-model="configStore.model.value.updateStock"
+        label="موجودی کالا در ووکامرس از لاندا بروز شود"
+      />
+    </div>
+
+    <div class="col-md-12">
       <q-checkbox
         class="text-body2"
         dense
