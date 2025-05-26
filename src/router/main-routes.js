@@ -465,6 +465,12 @@ export default {
             import("pages/areas/trs/bankAccount/PreviewPage.vue"),
           meta: { title: "حساب بانکی - پیش نمایش" },
         },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/trs/cash/PreviewPage.vue"),
+          meta: { title: "صندوق‌های نقدی - پیش نمایش" },
+        },
       ],
     },
 
@@ -666,6 +672,12 @@ export default {
           component: () =>
             import("pages/areas/trs/cash/CopyPage.vue"),
           meta: { title: "صندوق نقدی - کپی" },
+        },
+        {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/trs/cash/PreviewPage.vue"),
+          meta: { title: "صندوق نقدی - پیش نمایش" },
         },
       ],
     },
