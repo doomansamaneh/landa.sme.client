@@ -1,5 +1,11 @@
 <template>
-  <tool-bar :inside="inside" buttons :title="title" back-button>
+  <tool-bar
+    :margin="!inside"
+    :inside="inside"
+    buttons
+    :title="`${model?.bankTitle}`"
+    back-button
+  >
     <template #buttons>
       <menu-button-edit
         :to="`/trs/bankAccount/edit/${id}`"
@@ -9,12 +15,10 @@
       <menu-button-delete
         @click="crudStore.deleteById(id, deleteCallBack)"
       />
-      <!-- <menu-button-print @click="printStore.handlePrint()" /> -->
     </template>
   </tool-bar>
 
-  <q-card flat_ bordered class="overflow-hidden">
-    <card-title :title="title" />
+  <q-card flat bordered class="overflow-hidden">
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
@@ -41,13 +45,11 @@
   import { sqlOperator } from "src/constants";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import HeaderSection from "./_HeaderSection.vue";
+  import HeaderSection from "../shared/preview/_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
-  import CardTitle from "src/components/shared/CardTitle.vue";
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
-  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,

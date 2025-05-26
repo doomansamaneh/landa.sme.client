@@ -1,7 +1,6 @@
 <template>
   <data-grid
     :data-table-store="tableStore"
-    :create-url="`/${baseRoute}/create`"
     :base-route="baseRoute"
     show-avatar
     show-badge
