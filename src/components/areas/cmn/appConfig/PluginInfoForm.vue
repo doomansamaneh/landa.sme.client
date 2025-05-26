@@ -75,14 +75,14 @@
         label="نشانی سایت ووکامرس"
       />
     </div>
-    
+
     <div class="col-md-12">
       <q-checkbox
         class="text-body2"
         dense
         size="46px"
         v-model="configStore.model.value.enableSsl"
-        label="موجودی کالا در ووکامرس از لاندا بروز شود"
+        label="ssl فعال باشد"
       />
     </div>
 
