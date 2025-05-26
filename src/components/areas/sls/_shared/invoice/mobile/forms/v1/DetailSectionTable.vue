@@ -1,19 +1,6 @@
 <template>
-  <div class="q-my-md">
-    <q-btn
-      size="11px"
-      class="primary-gradient primary-shadow"
-      text-color="white"
-      round
-      unelevated
-      @click="addItem"
-    >
-      <q-icon name="o_add" size="20px" />
-    </q-btn>
-  </div>
-
   <q-card
-    class="bordered"
+    class="q-mb-md bordered"
     v-if="formStore.model.value.invoiceItems.length === 0"
   >
     <q-card-section>
@@ -147,7 +134,7 @@
     <q-card-actions class="q-pa-md" align="between">
       <q-btn
         label="ویرایش"
-        class="text-body3 text-bold"
+        class="text-body2"
         flat
         rounded
         @click="editItem(index, row)"
@@ -163,7 +150,17 @@
     </q-card-actions>
   </q-card>
 
-  <!-- <q-separator spaced /> -->
+  <q-btn
+    padding="4px 12px"
+    unelevated
+    rounded
+    dense
+    class="bg-primary primary-shadow text-white"
+    @click="addItem"
+  >
+    <q-icon size="20px" name="o_add" class="q-mr-xs" />
+    <div class="">افزودن ردیف</div>
+  </q-btn>
 
   <q-dialog
     maximized
