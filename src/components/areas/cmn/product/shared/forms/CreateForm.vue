@@ -112,11 +112,11 @@
   import { ref, onMounted } from "vue";
   import { helper } from "src/helpers";
   import { productType } from "src/constants";
-  import { useProductModel } from "../../../_composables/useProductModel";
+  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { productModel } from "src/models/areas/cmn/productModel";
   import { useProductGrid } from "../../../_composables/useProductGrid";
   import { useFormActions } from "src/composables/useFormActions";
-  import { useRouter, useRoute } from "vue-router";
+  import { useRoute } from "vue-router";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
@@ -132,12 +132,11 @@
   const form = ref(null);
   const baseRoute = "cmn/product";
   const route = useRoute();
-  const router = useRouter();
   const productGridStore = useProductGrid();
   const actionStore = useFormActions(baseRoute);
   const model = ref({ ...productModel });
 
-  const formStore = useProductModel({
+  const formStore = useBaseInfoModel({
     baseRoute: baseRoute,
     model: model,
     resetCallback: productGridStore.reset,
@@ -153,14 +152,10 @@
   };
 
   async function submitForm(callBack) {
-    const response = await formStore.submitForm(
+    return await formStore.submitForm(
       form.value,
       props.action,
-      (responseData) => {
-        if (responseData) {
-          router.push(`/${baseRoute}`);
-        }
-      }
+      callBack
     );
   }
 

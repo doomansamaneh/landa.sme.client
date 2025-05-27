@@ -1,19 +1,19 @@
 <template>
   <lookup-view
     ref="lookup"
-    dataSource="crm/customer/getlookupData"
-    sortColumn="code"
-    textTemplate="{{ code }} {{ name }}"
-    searchField="name"
+    data-source="crm/customer/getlookupData"
+    sort-column="code"
+    text-template="{{ code }} {{ name }}"
+    search-field="name"
     columns="code,name"
     width="450px"
     show-add
     clearable
     :create-form="CreateForm"
-    @add="add"
     @row-selected="loadDlBalance"
     :label="label"
   >
+    <!-- @add="add" -->
     <template #td="{ row }">
       <q-item
         class="rounded-borders"

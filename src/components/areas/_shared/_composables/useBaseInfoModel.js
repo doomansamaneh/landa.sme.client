@@ -32,7 +32,8 @@ export function useBaseInfoModel({
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
       if (resetCallback) resetCallback();
-      else if (callBack) callBack(responseData);
+
+      if (callBack) callBack(responseData);
       else router.back(responseData);
     }
   }

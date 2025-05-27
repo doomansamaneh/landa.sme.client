@@ -10,8 +10,8 @@
     show-add
     clearable
     :create-form="CreateForm"
-    @add="add"
   >
+    <!-- @add="add" -->
     <template #td="{ row }">
       <q-item
         class="border-radius-xs"
@@ -88,11 +88,11 @@
   });
   const lookup = ref(null);
 
-  const add = async (form) => {
-    await form.submitForm(() => {
-      lookup.value?.refresh();
-    });
-  };
+  // const add = async (form) => {
+  //   await form.submitForm(() => {
+  //     lookup.value?.refresh();
+  //   });
+  // };
 
   defineExpose({
     lookup,
