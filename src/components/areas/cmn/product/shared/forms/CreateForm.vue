@@ -132,6 +132,7 @@
   const form = ref(null);
   const baseRoute = "cmn/product";
   const route = useRoute();
+  const router = useRouter();
   const productGridStore = useProductGrid();
   const actionStore = useFormActions(baseRoute);
   const model = ref({ ...productModel });
@@ -152,7 +153,15 @@
   };
 
   async function submitForm(callBack) {
-    await formStore.submitForm(form.value, props.action, callBack);
+    const response = await formStore.submitForm(
+      form.value,
+      props.action,
+      (responseData) => {
+        if (responseData) {
+          router.push(`/${baseRoute}`);
+        }
+      }
+    );
   }
 
   onMounted(async () => {

@@ -22,7 +22,7 @@
         @update:model-value="searchStore.applySearch"
       />
     </q-card-section>
-    
+
     <q-card-section
       class="cursor-pointer q-pa-sm flex items-center justify-between bg-on-dark"
       @click="expanded = !expanded"
@@ -48,256 +48,261 @@
 
     <q-slide-transition duration="500">
       <div v-show="expanded">
-        <!-- <q-separator /> -->
         <div class="q-mt-sm q-px-lg">
-          <div class="row q-mb-md" v-if="false"></div>
-
-          <div
-            :style="$q.screen.gt.sm ? 'width: 1024px;' : ''"
-            class="row"
-            :class="$q.screen.gt.sm ? 'q-col-gutter-xl' : ''"
-          >
+          <div class="col-md-12 col-sm-12">
             <div
-              class="col-md col-sm-12"
-              :class="$q.screen.gt.sm ? 'q-mr-xl' : ''"
+              class="row q-gutter-md items-center justify-center q-pt-lg"
             >
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.taxStatus')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <q-option-group
-                    inline
-                    :options="
-                      helper.getEnumOptions(
-                        taxSentStatus,
-                        'taxSentStatus'
-                      )
-                    "
-                    style="gap: 8px"
-                    class="row text-body2"
-                    type="radio"
-                    dense
-                    size="40px"
-                    v-model="searchStore.searchModel.value.taxStatus"
-                  />
-                </div>
+              <div class="col-md-auto col-sm-auto">
+                <custom-label
+                  class="text-bold"
+                  :label="$t('shared.labels.taxStatus')"
+                />
               </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.taxId')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <custom-input
-                    v-model="searchStore.searchModel.value.taxId"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.typeTitle')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <sale-type-lookup
-                    v-model:selectedId="
-                      searchStore.searchModel.value.typeId
-                    "
-                    v-model:selectedText="
-                      searchStore.searchModel.value.typeTitle
-                    "
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.inventoryTitle')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <inventory-lookup
-                    v-model:selectedId="
-                      searchStore.searchModel.value.inventoryId
-                    "
-                    v-model:selectedText="
-                      searchStore.searchModel.value.inventoryTitle
-                    "
-                    style="width: 398px"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.productGroupTitle')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <product-group-lookup
-                    v-model:selectedId="
-                      searchStore.searchModel.value.productGroupId
-                    "
-                    v-model:selectedText="
-                      searchStore.searchModel.value.productGroupTitle
-                    "
-                    style="width: 398px"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.productTitle')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <product-lookup
-                    v-model:selectedId="
-                      searchStore.searchModel.value.productId
-                    "
-                    v-model:selectedText="
-                      searchStore.searchModel.value.productTitle
-                    "
-                    style="width: 398px"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.contractTitle')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <contract-lookup
-                    v-model:selectedId="
-                      searchStore.searchModel.value.contractId
-                    "
-                    v-model:selectedText="
-                      searchStore.searchModel.value.contractTitle
-                    "
-                    style="width: 398px"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.marketerName')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <customer-lookup
-                    v-model:selectedId="
-                      searchStore.searchModel.value.marketerId
-                    "
-                    v-model:selectedText="
-                      searchStore.searchModel.value.marketerName
-                    "
-                    style="width: 398px"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.comment')"
-                  />
-                </div>
-                <div class="col-md col-sm-7 col-xs-12">
-                  <custom-input
-                    v-model="searchStore.searchModel.value.comment"
-                    class="text-body2"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md col-sm-12">
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.amountFrom')"
-                  />
-                </div>
-                <div class="col-md-6 col-sm-7 col-xs-12">
-                  <custom-input-number
-                    v-model="searchStore.searchModel.value.amountFrom"
-                    class="text-body2"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.amountTo')"
-                  />
-                </div>
-                <div class="col-md-6 col-sm-7 col-xs-12">
-                  <custom-input-number
-                    v-model="searchStore.searchModel.value.amountTo"
-                    class="text-body2"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.dateFrom')"
-                  />
-                </div>
-                <div class="col-md-6 col-sm-7 col-xs-12">
-                  <date-time
-                    v-model="searchStore.searchModel.value.dateFrom"
-                    class="text-body2"
-                  />
-                </div>
-              </div>
-
-              <div class="row items-center q-mt-md">
-                <div class="col-md-3 col-sm-2">
-                  <custom-label
-                    class="text-bold"
-                    :label="$t('shared.labels.dateTo')"
-                  />
-                </div>
-                <div class="col-md-6 col-sm-7 col-xs-12">
-                  <date-time
-                    v-model="searchStore.searchModel.value.dateTo"
-                    class="text-body2"
-                  />
-                </div>
+              <div class="col-md-auto col-sm-auto col-xs-12">
+                <q-option-group
+                  inline
+                  :options="
+                    helper.getEnumOptions(
+                      taxSentStatus,
+                      'taxSentStatus'
+                    )
+                  "
+                  style="gap: 8px"
+                  class="row text-body2"
+                  type="radio"
+                  dense
+                  size="40px"
+                  v-model="searchStore.searchModel.value.taxStatus"
+                />
               </div>
             </div>
           </div>
+
+          <q-card-section class="row justify-center items-center">
+            <div
+              :style="$q.screen.gt.sm ? 'width: 1300px;' : ''"
+              class="row justify-center"
+            >
+              <div
+                class="col-md col-sm-12"
+                :class="$q.screen.gt.sm ? 'q-mr-xl' : ''"
+              >
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.typeTitle')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <sale-type-lookup
+                      v-model:selectedId="
+                        searchStore.searchModel.value.typeId
+                      "
+                      v-model:selectedText="
+                        searchStore.searchModel.value.typeTitle
+                      "
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.inventoryTitle')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <inventory-lookup
+                      v-model:selectedId="
+                        searchStore.searchModel.value.inventoryId
+                      "
+                      v-model:selectedText="
+                        searchStore.searchModel.value.inventoryTitle
+                      "
+                      style="width: 398px"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.productGroupTitle')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <product-group-lookup
+                      v-model:selectedId="
+                        searchStore.searchModel.value.productGroupId
+                      "
+                      v-model:selectedText="
+                        searchStore.searchModel.value
+                          .productGroupTitle
+                      "
+                      style="width: 398px"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.productTitle')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <product-lookup
+                      v-model:selectedId="
+                        searchStore.searchModel.value.productId
+                      "
+                      v-model:selectedText="
+                        searchStore.searchModel.value.productTitle
+                      "
+                      style="width: 398px"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.contractTitle')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <contract-lookup
+                      v-model:selectedId="
+                        searchStore.searchModel.value.contractId
+                      "
+                      v-model:selectedText="
+                        searchStore.searchModel.value.contractTitle
+                      "
+                      style="width: 398px"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.marketerName')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <customer-lookup
+                      v-model:selectedId="
+                        searchStore.searchModel.value.marketerId
+                      "
+                      v-model:selectedText="
+                        searchStore.searchModel.value.marketerName
+                      "
+                      style="width: 398px"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md col-sm-12">
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.taxId')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <custom-input
+                      v-model="searchStore.searchModel.value.taxId"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.amountFrom')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <custom-input-number
+                      v-model="
+                        searchStore.searchModel.value.amountFrom
+                      "
+                      class="text-body2"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.amountTo')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <custom-input-number
+                      v-model="searchStore.searchModel.value.amountTo"
+                      class="text-body2"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.dateFrom')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <date-time
+                      v-model="searchStore.searchModel.value.dateFrom"
+                      class="text-body2"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.dateTo')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <date-time
+                      v-model="searchStore.searchModel.value.dateTo"
+                      class="text-body2"
+                    />
+                  </div>
+                </div>
+
+                <div class="row q-col-gutter-lg items-center q-pt-md">
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.comment')"
+                    />
+                  </div>
+                  <div class="col-md col-sm-7 col-xs-12">
+                    <custom-input
+                      v-model="searchStore.searchModel.value.comment"
+                      class="text-body2"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </q-card-section>
 
           <q-card-actions
             class="row q-col-gutter-md items-center q-px-none q-py-lg"
