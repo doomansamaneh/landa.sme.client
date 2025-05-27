@@ -15,7 +15,27 @@
                 outline
                 :class="getStatusClasses(item.status)"
               >
-                {{ item.status }}
+                <div>
+                  {{ item.status }}
+                </div>
+                <q-btn
+                  v-if="
+                    item.status === taxStatus.pending ||
+                    item.status === taxStatus.notFound ||
+                    item.status === taxStatus.inProgress
+                  "
+                  round
+                  unelevated
+                  dense
+                  size="0"
+                  @click="taxStore.inquery(item.id, reloadData)"
+                  class="q-ml-xs"
+                >
+                  <q-icon size="14px" name="o_refresh" />
+                  <q-tooltip class="custom-tooltip text-body1">
+                    دریافت دوباره اطلاعات از سامانه مودیان
+                  </q-tooltip>
+                </q-btn>
               </q-badge>
               <div class="text-overline">{{ item.logTime }}</div>
             </div>
@@ -24,24 +44,6 @@
             </div>
           </div>
           <div class="flex items-center">
-            <q-btn
-              v-if="
-                item.status === taxStatus.pending ||
-                item.status === taxStatus.notFound ||
-                item.status === taxStatus.inProgress
-              "
-              color="grey"
-              round
-              flat
-              dense
-              icon="o_refresh"
-              size="13px"
-              @click="taxStore.inquery(item.id, reloadData)"
-            >
-              <q-tooltip class="custom-tooltip text-body1">
-                دریافت دوباره اطلاعات از سامانه مودیان
-              </q-tooltip>
-            </q-btn>
             <q-btn
               color="grey"
               round
