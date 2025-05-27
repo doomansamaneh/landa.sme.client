@@ -2,6 +2,7 @@
   <review-data-grid
     :table-store="tableStore"
     toolbar
+    :expandable="false"
     @row-dbl-click="filterRow"
   />
 </template>

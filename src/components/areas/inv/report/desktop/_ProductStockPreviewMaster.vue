@@ -32,7 +32,7 @@
         <span class="text-body3">موجودی اول دوره:</span>
       </div>
       <div class="text-body2 text-bold">
-        {{ item?.openingStock?.toLocaleString() }}
+        {{ item?.openingQuantity?.toLocaleString() }}
       </div>
     </div>
   </q-card-section>
