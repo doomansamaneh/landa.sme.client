@@ -42,12 +42,18 @@
           v-close-popup
           class="text-on-dark"
         >
-          <div class="row items-center q-my-xs q-pl-sm">
+          <div
+            class="row q-my-xs q-pl-sm"
+            :class="
+              item.locationName || item.phoneNo || item.mobileNo
+                ? 'items-start'
+                : 'items-center'
+            "
+          >
             <q-item-section avatar>
               <customer-avatar
                 text-color="white"
                 size="52px"
-                square
                 :item="item.id"
                 :text-holder="item.name"
               />

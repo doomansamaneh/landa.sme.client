@@ -3,19 +3,25 @@
     <table
       :style="$q.screen.gt.xs ? 'width:100%' : 'width:900px'"
       style="
-        border: 1px solid #2d2d2d;
         border-collapse: collapse;
         font-size: 13px;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
+        margin-top: 5px;
       "
+      class="print-preview-table"
     >
       <tbody>
         <tr>
           <td
             style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               width: 50%;
               vertical-align: top;
               padding: 40px 6px;
-              border: 1px solid #2d2d2d;
             "
             class="text-body2"
           >
@@ -23,9 +29,11 @@
           </td>
           <td
             style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               vertical-align: top;
               padding: 40px 6px;
-              border: 1px solid #2d2d2d;
             "
             class="text-body2"
           >

@@ -58,7 +58,7 @@
               :class="tableStore.getRowClass(row)"
               flat
             >
-              <q-card-section class="row q-pa-xs items-center_">
+              <q-card-section class="row q-pa-xs">
                 <slot v-if="showAvatar" name="row-avatar" :item="row">
                   <div class="col-2 q-mr-sm">
                     <transition name="slide" appear mode="out-in">

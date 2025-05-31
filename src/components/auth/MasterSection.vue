@@ -4,9 +4,18 @@
     class="col-md-7 col-sm-12 col-xs-12"
   >
     <div :class="$q.screen.gt.xs ? 'q-pa-lg' : ''">
-      <div class="q-mb-sm">
+      <div class="">
         <div class="row items-center justify-between q-mb-lg">
-          <div class="text-h5 text-weight-700">ورود</div>
+          <div class="flex items-center">
+            <div class="text-h5 text-weight-700">ورود</div>
+            <a
+              href="https://my.landa-sme.ir/"
+              target="_blank"
+              class="no-decoration decoration-on-hover q-ml-sm text-body2 text-weight-700 text-white bg-red rounded-borders q-py-xs q-px-sm"
+            >
+              ورود با نسخه قدیمی
+            </a>
+          </div>
           <q-btn
             rounded
             target="_blank"

@@ -163,7 +163,7 @@
   });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @media print {
     .print-preview-table {
       width: 100%;

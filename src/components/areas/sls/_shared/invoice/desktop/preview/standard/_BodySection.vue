@@ -9,6 +9,7 @@
         border-collapse: collapse;
         font-size: 12.4px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr class="bg-on-dark text-center">

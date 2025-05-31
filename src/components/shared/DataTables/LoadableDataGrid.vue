@@ -26,7 +26,7 @@
           @keydown.enter="loadData"
           class="text-body2"
         >
-          <template v-slot:prepend>
+          <template #prepend>
             <q-icon name="o_search" color="primary" />
           </template>
         </q-input>

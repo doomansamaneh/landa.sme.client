@@ -39,7 +39,7 @@
     typeof value === "number" && !isNaN(value);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .print-preview-table {
     width: 100%;
     border-collapse: collapse;

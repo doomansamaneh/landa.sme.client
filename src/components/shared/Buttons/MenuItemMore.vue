@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 row justify-end text-caption text-weight-300">
+  <div class="col-2 bg-red row justify-end text-caption text-weight-300">
     <q-btn
       class="absolute-top-right q-ma-sm"
       round

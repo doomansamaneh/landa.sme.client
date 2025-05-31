@@ -10,6 +10,7 @@
         border-collapse: collapse;
         font-size: 13px;
       "
+      class="print-preview-table"
     >
       <tbody v-if="appConfigStore.model?.value?.companySetting">
         <tr
