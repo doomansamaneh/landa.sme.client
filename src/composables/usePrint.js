@@ -27,6 +27,20 @@ export function usePrint() {
         printRef.value.classList.add("printable");
         printRef.value.style.direction = $q.lang.rtl ? "rtl" : "ltr";
         setAllBordersToBlack();
+
+        // Add print styles for bg-on-dark
+        const style = document.createElement("style");
+        style.textContent = `
+          @media print {
+            .bg-on-dark {
+              background-color: #f2f2f2 !important;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+              color-adjust: exact !important;
+            }
+          }
+        `;
+        document.head.appendChild(style);
       }
     },
     onBeforePrint: () => {
@@ -81,6 +95,16 @@ export function usePrint() {
       table.querySelectorAll("th").forEach((th) => {
         th.style.backgroundColor = "#f2f2f2";
       });
+
+      table.querySelectorAll(".bg-on-dark").forEach((element) => {
+        element.style.backgroundColor = "#f2f2f2";
+        element.style.color = "black";
+      });
+    });
+
+    document.querySelectorAll(".bg-on-dark").forEach((element) => {
+      element.style.backgroundColor = "#f2f2f2";
+      element.style.color = "black";
     });
   };
 
