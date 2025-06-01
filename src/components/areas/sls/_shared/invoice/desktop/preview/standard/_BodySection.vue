@@ -188,7 +188,7 @@
               {{ item.productTitle }}
               <small v-if="item.comment || item.productComment">
                 (
-                <span v-if="!item.productComment" class="q-pr-xs">
+                <span v-if="!item.productComment">
                   {{ item.productComment }}
                 </span>
                 <span v-if="item.comment">
