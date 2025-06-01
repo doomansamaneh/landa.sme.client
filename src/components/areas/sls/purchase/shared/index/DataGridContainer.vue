@@ -1,5 +1,9 @@
 <template>
-  <toolbar-container v-if="toolbar" :table-store="tableStore" />
+  <toolbar-container
+    v-if="toolbar"
+    :title="title"
+    :table-store="tableStore"
+  />
 
   <data-grid-table :title="title" :table-store="tableStore" />
 </template>
