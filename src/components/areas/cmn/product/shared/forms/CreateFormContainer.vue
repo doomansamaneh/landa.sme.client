@@ -2,7 +2,9 @@
   <form-toolbar-container
     buttons
     :title="title"
+    :show-save-and-new="action === 'create'"
     @submit-call-back="form?.submitForm"
+    @submit-and-new-call-back="form?.submitFormAndNew"
   />
 
   <q-card class="form-container">

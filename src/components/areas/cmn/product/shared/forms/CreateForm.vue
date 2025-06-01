@@ -159,11 +159,18 @@
     );
   }
 
+  async function submitFormAndNew() {
+    await submitForm(() => {
+      model.value = { ...productModel };
+    });
+  }
+
   onMounted(async () => {
     await formStore.getById(route.params.id);
   });
 
   defineExpose({
     submitForm,
+    submitFormAndNew,
   });
 </script>
