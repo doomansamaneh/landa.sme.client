@@ -25,12 +25,6 @@
         icon="download"
         :title="$t('shared.labels.downloadPdf')"
       />
-
-      <menu-button
-        @click="sendEmail"
-        icon="send"
-        :title="$t('shared.labels.sendEmail')"
-      />
     </template>
   </tool-bar>
 </template>
@@ -57,7 +51,7 @@
 
   const router = useRouter();
   const printStore = usePrint();
-  
+
   function deleteCallBack() {
     //voucherStore.state.firstLoad.value = false;
     router.back();

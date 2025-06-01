@@ -545,11 +545,12 @@ export default {
             ),
           meta: { title: "دریافت - ایجاد از روی فاکتور" },
         },
-        // {
-        //   path: "copy/:id",
-        //   component: () =>
-        //     import("pages/areas/trs/receipt/CopyPage.vue"),
-        // },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/trs/receipt/CopyPage.vue"),
+          meta: { title: "دریافت - کپی" },
+        },
         {
           path: "preview/:id",
           component: () =>
@@ -588,11 +589,12 @@ export default {
             ),
           meta: { title: "پرداخت - ایجاد از روی خرید" },
         },
-        // {
-        //   path: "copy/:id",
-        //   component: () =>
-        //     import("pages/areas/trs/payment/CopyPage.vue"),
-        // },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/trs/payment/CopyPage.vue"),
+          meta: { title: "پرداخت - کپی" },
+        },
         {
           path: "preview/:id",
           component: () =>

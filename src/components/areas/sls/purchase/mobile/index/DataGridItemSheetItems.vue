@@ -7,19 +7,16 @@
     icon="o_close"
     @click="cancelInvoice(item.id)"
   />
-
   <menu-item
-    :title="$t('shared.labels.copyToPurchase')"
+    :title="$t('shared.labels.copyToSales')"
     icon="o_shopping_cart"
-    :to="`/sls/purchase/createFromInvoice/${item.id}`"
+    :to="`/sls/invoice/CreateFromPurchase/${item.id}`"
   />
-
   <menu-item
-    :title="$t('shared.labels.salesReturn')"
+    :title="$t('shared.labels.purchaseReturn')"
     icon="o_undo"
-    :to="`/sls/salesReturn/createFromInvoice/${item.id}`"
+    :to="`/sls/purchaseReturn/createFromPurchase/${item.id}`"
   />
-
   <q-separator class="q-my-sm" />
   <menu-item
     :title="$t('shared.labels.sendEmail')"
@@ -39,27 +36,30 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { useFormActions } from "src/composables/useFormActions";
-  import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
+  import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
 
-  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
+  import SendEmail from "../../../_shared/invoice/shared/forms/SendEmailForm.vue";
+  import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
   import MenuItemEdit from "src/components/shared/buttons/MenuItemEdit.vue";
   import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
   import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
-  import SendEmail from "src/components/areas/acc/voucher/shared/forms/SendEmailForm.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
-    baseRoute: { type: String, default: "sls/invoice" },
-    title: String,
-    status: Boolean,
+    baseRoute: String,
     item: Object,
     deleteCallBack: Function,
   });
+  const emits = defineEmits(["hide"]);
 
   const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
   const formStore = useInvoiceModel({ baseRoute: props.baseRoute });
+
+  function cancelInvoice(id) {
+    formStore.cancelInvoice(id, reloadData);
+  }
 
   const downloadPdf = () => {
     downloadManager.downloadGet(
@@ -72,10 +72,6 @@
       props.item.id,
       props.deleteCallBack ?? props.tableStore?.reloadData
     );
-  };
-
-  const cancelInvoice = async (id) => {
-    await formStore.cancelInvoice(id, reloadData);
   };
 
   function sendEmail() {
@@ -93,7 +89,7 @@
     });
   }
 
-  const reloadData = async () => {
-    await props.tableStore?.reloadData();
-  };
+  function reloadData() {
+    props.tableStore?.reloadData();
+  }
 </script>
