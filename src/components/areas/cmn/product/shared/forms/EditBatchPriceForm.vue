@@ -1,5 +1,11 @@
 <template>
-  <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
+  <h4>بزودی ...</h4>
+  <q-form
+    ref="form"
+    autofocus
+    :class="{ 'q-mb-md': $q.screen.sm }"
+    v-if="false"
+  >
     <div class="q-mb-lg">
       <div
         class="row items-center"
