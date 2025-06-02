@@ -13,7 +13,7 @@
       <div
         class="q-table__middle"
         :class="
-          tableStore.showLoader.value ? 'overflow-hidden' : 'scroll'
+          tableStore.showLoader.value ? 'overflow-hidden_' : 'scroll'
         "
         :style="$q.screen.xs ? 'min-width: 1200px' : ''"
       >

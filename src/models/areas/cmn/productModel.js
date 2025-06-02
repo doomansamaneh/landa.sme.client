@@ -1,4 +1,5 @@
 import { productType } from "src/constants";
+
 export const productModel = {
   isActive: true,
   isForSale: true,
@@ -39,5 +40,17 @@ export const productBatchModel = {
     fieldName: "IsActive",
     fieldValue: "0",
     isModified: false,
+  },
+  price: {
+    fieldName: "price",
+    fieldValue: "0",
+    isModified: false,
+    isIncrease: true,
+  },
+  purchasePrice: {
+    fieldName: "PurchasePrice",
+    fieldValue: "0",
+    isModified: false,
+    isIncrease: true,
   },
 };

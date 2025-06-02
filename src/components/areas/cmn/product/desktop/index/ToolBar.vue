@@ -18,6 +18,12 @@
         icon="o_edit"
         :badge-count="selectedIds?.length"
       />
+      <menu-button
+        @click="editBatchPrice"
+        title="اصلاح دسته‌ای قیمت"
+        icon="o_edit"
+        :badge-count="selectedIds?.length"
+      />
     </template>
   </toolbar-desktop>
 </template>
@@ -39,9 +45,13 @@
     baseRoute: String,
   });
 
-  const emits = defineEmits(["edit-batch"]);
+  const emits = defineEmits(["edit-batch", "edit-batch-price"]);
 
   function editBatch() {
     emits("edit-batch");
+  }
+
+  function editBatchPrice() {
+    emits("edit-batch-price");
   }
 </script>
