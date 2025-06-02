@@ -76,6 +76,6 @@
   const form = ref(null);
   const formStore = useBaseInfoModel({
     baseRoute: "acc/fiscalYear",
-    getCreateModel: true,
+    loadCreateModel: true,
   });
 </script>

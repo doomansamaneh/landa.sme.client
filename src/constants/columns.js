@@ -845,6 +845,14 @@ export const openingPrice = {
   showFilter: false,
 };
 
+export const totalPrice = {
+  ...price,
+  name: "totalPrice",
+  field: "totalPrice",
+  label: "جمع کل",
+  showFilter: false,
+};
+
 export const openingTotalPrice = {
   ...price,
   name: "openingTotalPrice",

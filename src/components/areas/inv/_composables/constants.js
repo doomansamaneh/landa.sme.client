@@ -22,6 +22,7 @@ import {
   openingTotalPrice,
   inQuantity,
   inPrice,
+  totalPrice,
   inTotalPrice,
   outQuantity,
   outPrice,
@@ -81,6 +82,7 @@ export const productStockItemColumns = [
   salesQuantity,
   inlineQuantity,
   { ...price, label: "فی", showFilter: false },
+  { ...totalPrice },
 ];
 
 export const closeOrderColumns = [
