@@ -34,7 +34,7 @@ export default {
     },
     {
       path: "/menu",
-      component: () => import("src/pages/menuPage.vue"),
+      component: () => import("src/pages/MenuPage.vue"),
       meta: { title: "منو" },
     },
 
@@ -82,6 +82,12 @@ export default {
           component: () =>
             import("pages/areas/acc/voucher/CreatePage.vue"),
           meta: { title: "سند حسابداری - ایجاد" },
+        },
+        {
+          path: "openingVoucher",
+          component: () =>
+            import("pages/areas/acc/voucher/CreateOpeningPage.vue"),
+          meta: { title: "سند حسابداری - ایجاد افتتاحیه" },
         },
         {
           path: "edit/:id",

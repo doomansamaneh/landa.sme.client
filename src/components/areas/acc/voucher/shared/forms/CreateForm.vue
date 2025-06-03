@@ -76,6 +76,7 @@
     title: String,
     action: String,
     method: String,
+    getOpening: Boolean,
   });
 
   const route = useRoute();
@@ -91,6 +92,7 @@
   };
 
   onMounted(async () => {
-    await formStore.getById(route.params.id, props.method);
+    if (props.getOpening) formStore.getOpeningModel();
+    else await formStore.getById(route.params.id, props.method);
   });
 </script>

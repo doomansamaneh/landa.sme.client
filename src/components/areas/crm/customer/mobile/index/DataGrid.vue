@@ -18,12 +18,14 @@
         <div class="col">
           <div class="row">
             <div class="col ellipsis text-body3 text-weight-600">
-              <span v-if="item.code">{{ item.code }} /</span>
+              <span v-if="item.code && item.code !== '-'">
+                {{ item.code }} /
+              </span>
               {{ item.name }}
             </div>
           </div>
           <div
-            v-if="item.locationName"
+            v-if="item.locationName || item.address"
             class="ellipsis text-body3 q-mt-xs"
           >
             <q-icon
@@ -31,7 +33,10 @@
               size="13px"
               color="primary"
             />
-            {{ item.locationName }} {{ item.address }}
+            <span v-if="item.locationName">
+              {{ item.locationName }} /
+            </span>
+            <span>{{ item.address }}</span>
           </div>
           <div class="row items-center">
             <div
@@ -57,14 +62,6 @@
                 color="primary"
                 size="13px"
               />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col ellipsis text-caption-sm">
-              <span v-if="item.locationName">
-                {{ item.locationName }} /
-              </span>
-              {{ item.address }}
             </div>
           </div>
         </div>
@@ -126,7 +123,7 @@
   });
 
   const item = ref(null);
-  const itemSheetStatus = ref(false)
+  const itemSheetStatus = ref(false);
 
   const showItemSheet = (row) => {
     item.value = row;

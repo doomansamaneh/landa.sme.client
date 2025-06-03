@@ -12,7 +12,7 @@
       <q-card
         v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
-        @click="operationStore.openBook(reloadData)"
+        @click="operationStore.openBook(openBookCallback)"
       >
         <span class="q-focus-helper" />
 
@@ -42,7 +42,7 @@
       <q-card
         v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
-        @click="operationStore.reorder(reloadData)"
+        @click="operationStore.reorder()"
       >
         <span class="q-focus-helper" />
         <q-card-section class="q-pa-lg">
@@ -71,7 +71,7 @@
       <q-card
         v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
-        @click="operationStore.calculateCogs(reloadData)"
+        @click="operationStore.calculateCogs()"
       >
         <span class="q-focus-helper" />
 
@@ -135,7 +135,7 @@
       <q-card
         v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
-        @click="operationStore.closeBook(reloadData)"
+        @click="operationStore.closeBook()"
       >
         <span class="q-focus-helper" />
 
@@ -165,7 +165,7 @@
       <q-card
         v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
-        @click="operationStore.deleteClosingBook(reloadData)"
+        @click="operationStore.deleteClosingBook()"
       >
         <span class="q-focus-helper" />
 
@@ -187,14 +187,23 @@
   </div>
 </template>
 <script setup>
+  import { useRouter } from "vue-router";
   import { useDialog } from "src/composables/useDialog";
+  import { voucherType } from "src/constants";
   import { useAccountingOperations } from "../../_composables/useAccountingOperations";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import CloseAccountForm from "./CloseAccountForm.vue";
 
+  const router = useRouter();
   const dialogStore = useDialog();
   const operationStore = useAccountingOperations();
+
+  const openBookCallback = (response) => {
+    if (!response?.data) {
+      router.push(`/acc/voucher/openingVoucher`);
+    }
+  };
 
   const showCloseAccountForm = async () => {
     dialogStore.openDialog({

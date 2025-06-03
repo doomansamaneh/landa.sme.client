@@ -39,6 +39,14 @@ export function useVoucherModel({ baseRoute, preview }) {
     }
   }
 
+  async function getOpeningModel() {
+    const responseData = await crudStore.customGetAction(
+      "GetOpeningVoucherModel"
+    );
+    model.value = responseData.data;
+    setVoucherItems();
+  }
+
   async function getRelation(id) {
     const responseData = await fetchWrapper.get(
       `${baseRoute}/VoucherRelation/${id}`
@@ -101,6 +109,7 @@ export function useVoucherModel({ baseRoute, preview }) {
     newAddedItemIndex: formItemStore.newAddedItemIndex,
 
     getById,
+    getOpeningModel,
     getRelation,
     pushNewRow,
     addNewRow,

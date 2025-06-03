@@ -28,11 +28,13 @@ export function useAccountingOperations() {
   }
 
   function notify(response, type = "positive") {
-    voucherStore.reset();
-    $q.notify({
-      type,
-      message: t(`messages.${response.data.message}`),
-    });
+    if (response?.message) {
+      voucherStore.reset();
+      $q.notify({
+        type,
+        message: t(`messages.${response.data.message}`),
+      });
+    }
   }
 
   async function getOperationStatus() {
