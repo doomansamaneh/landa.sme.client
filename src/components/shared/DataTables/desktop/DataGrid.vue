@@ -11,194 +11,203 @@
       </slot>
 
       <div
-        class="q-table__middle"
         :class="
           tableStore.showLoader.value ? 'overflow-hidden_' : 'scroll'
         "
-        :style="$q.screen.xs ? 'min-width: 1200px' : ''"
       >
-        <table class="q-table">
-          <thead>
-            <tr v-if="!hideHeader">
-              <th v-if="numbered" style="width: 1px" class="dense_">
-                #
-              </th>
-              <th v-if="multiSelect" style="width: 5px" class="dense">
-                <q-checkbox
-                  v-model="tableStore.checkedAll.value"
-                  @update:model-value="selectAll"
-                />
-              </th>
-              <th
-                v-for="col in tableStore?.columns.value"
-                :key="col.name"
-                :style="`${col.style}; font-size: ${tableStore.thFontSize.value}px`"
-                :class="tableStore.getSortableClass(col)"
-                @click="tableStore.sortColumn(col)"
-              >
-                <span>{{ col.label }}</span>
-                <span
-                  v-if="col.sortable"
-                  class="q-icon q-table__sort-icon"
+        <div
+          class="q-table__middle"
+          :style="$q.screen.xs ? 'min-width: 1200px' : ''"
+        >
+          <table class="q-table">
+            <thead>
+              <tr v-if="!hideHeader">
+                <th v-if="numbered" style="width: 1px" class="dense_">
+                  #
+                </th>
+                <th
+                  v-if="multiSelect"
+                  style="width: 5px"
+                  class="dense"
                 >
-                  <q-icon
-                    name="arrow_drop_down"
-                    color="primary"
-                    size="20px"
-                  />
-                </span>
-              </th>
-              <th v-if="expandable" style="width: 1px"></th>
-            </tr>
-            <tr v-if="!hideFilterRow" class="row-filter">
-              <!-- <th v-if="numbered" class="dense"></th> -->
-              <!-- <th v-if="multiSelect" class="dense"></th> -->
-              <th
-                v-if="multiSelect || numbered"
-                class="dense"
-                :colspan="multiSelect + numbered"
-              >
-                <q-icon
-                  :color="$q.dark.isActive ? 'white' : 'grey-6'"
-                  size="32px"
-                  :style="
-                    dense
-                      ? 'margin-right: 16px;'
-                      : 'margin-right: 32px;'
-                  "
-                  name="o_search"
-                />
-              </th>
-              <th
-                v-for="col in tableStore?.columns.value"
-                :key="col.name"
-                class="filter"
-                :data-field="col.name"
-              >
-                <slot
-                  v-if="col.showFilter"
-                  :name="`filter-${col.name}`"
-                  :item="col"
-                >
-                  <custom-input
-                    v-model="col.value"
-                    clearable
-                    @keydown="handleEnterKey"
-                    @clear="handleClear(col)"
-                    @update:model-value="
-                      trackInputChange(col, $event)
-                    "
-                  />
-                </slot>
-              </th>
-              <th v-if="expandable" class="filter"></th>
-            </tr>
-            <tr
-              v-if="tableStore.showLoader.value"
-              class="q-table__progress"
-            >
-              <th colspan="100%" class="relative-position">
-                <q-linear-progress
-                  indeterminate
-                  rounded
-                  color="primary"
-                  class="q-mt-sm"
-                />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <template
-              v-for="(row, index) in tableStore?.rows.value"
-              :key="row.id"
-            >
-              <tr
-                @click="setActiveRow(row)"
-                @dblclick="goToPreview(row)"
-                class="table-row"
-                :class="tableStore.getRowClass(row)"
-              >
-                <td v-if="numbered" class="dense_">
-                  <div class="text-caption text-on-dark">
-                    {{ tableStore.rowIndex(index) }}
-                  </div>
-                </td>
-                <td v-if="multiSelect" class="dense">
                   <q-checkbox
-                    v-model="row.selected"
-                    @update:model-value="selectRow(row, $event)"
+                    v-model="tableStore.checkedAll.value"
+                    @update:model-value="selectAll"
                   />
-                </td>
-                <td
+                </th>
+                <th
                   v-for="col in tableStore?.columns.value"
                   :key="col.name"
-                  :class="col.cellClass"
-                  :style="`${col.cellStyle}; font-size: ${tableStore.tdFontSize.value}px`"
+                  :style="`${col.style}; font-size: ${tableStore.thFontSize.value}px`"
+                  :class="tableStore.getSortableClass(col)"
+                  @click="tableStore.sortColumn(col)"
                 >
-                  <!-- :style="col.cellStyle" -->
-                  <slot :name="`cell-${col.name}`" :item="row">
-                    <div
-                      :class="col.class"
-                      v-html="getColText(row, col)"
-                    ></div>
-                  </slot>
-                </td>
-                <td v-if="expandable">
-                  <slot name="expandable" :item="row">
-                    <q-btn
-                      size="md"
-                      class="expand-icon"
-                      :color="$q.dark.isActive ? 'white' : 'grey-8'"
-                      flat
+                  <span>{{ col.label }}</span>
+                  <span
+                    v-if="col.sortable"
+                    class="q-icon q-table__sort-icon"
+                  >
+                    <q-icon
+                      name="arrow_drop_down"
+                      color="primary"
+                      size="20px"
+                    />
+                  </span>
+                </th>
+                <th v-if="expandable" style="width: 1px"></th>
+              </tr>
+              <tr v-if="!hideFilterRow" class="row-filter">
+                <!-- <th v-if="numbered" class="dense"></th> -->
+                <!-- <th v-if="multiSelect" class="dense"></th> -->
+                <th
+                  v-if="multiSelect || numbered"
+                  class="dense"
+                  :colspan="multiSelect + numbered"
+                >
+                  <q-icon
+                    :color="$q.dark.isActive ? 'white' : 'grey-6'"
+                    size="32px"
+                    :style="
                       dense
-                      round
-                      @click="toggleExpand(row)"
-                      icon="keyboard_arrow_up"
-                      :class="
-                        row.expanded ? 'expand-open' : 'expand-close'
+                        ? 'margin-right: 16px;'
+                        : 'margin-right: 32px;'
+                    "
+                    name="o_search"
+                  />
+                </th>
+                <th
+                  v-for="col in tableStore?.columns.value"
+                  :key="col.name"
+                  class="filter"
+                  :data-field="col.name"
+                >
+                  <slot
+                    v-if="col.showFilter"
+                    :name="`filter-${col.name}`"
+                    :item="col"
+                  >
+                    <custom-input
+                      v-model="col.value"
+                      clearable
+                      @keydown="handleEnterKey"
+                      @clear="handleClear(col)"
+                      @update:model-value="
+                        trackInputChange(col, $event)
                       "
                     />
                   </slot>
-                </td>
+                </th>
+                <th v-if="expandable" class="filter"></th>
               </tr>
-              <transition
-                enter-active-class="animated fadeIn"
-                leave-active-class="animated fadeOut"
+              <tr
+                v-if="tableStore.showLoader.value"
+                class="q-table__progress"
               >
-                <tr v-if="row.expanded">
-                  <td colspan="100%" class="expand">
-                    <div class="expand">
-                      <slot name="expand" :item="row"></slot>
+                <th colspan="100%" class="relative-position">
+                  <q-linear-progress
+                    indeterminate
+                    rounded
+                    color="primary"
+                    class="q-mt-sm"
+                  />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <template
+                v-for="(row, index) in tableStore?.rows.value"
+                :key="row.id"
+              >
+                <tr
+                  @click="setActiveRow(row)"
+                  @dblclick="goToPreview(row)"
+                  class="table-row"
+                  :class="tableStore.getRowClass(row)"
+                >
+                  <td v-if="numbered" class="dense_">
+                    <div class="text-caption text-on-dark">
+                      {{ tableStore.rowIndex(index) }}
                     </div>
                   </td>
+                  <td v-if="multiSelect" class="dense">
+                    <q-checkbox
+                      v-model="row.selected"
+                      @update:model-value="selectRow(row, $event)"
+                    />
+                  </td>
+                  <td
+                    v-for="col in tableStore?.columns.value"
+                    :key="col.name"
+                    :class="col.cellClass"
+                    :style="`${col.cellStyle}; font-size: ${tableStore.tdFontSize.value}px`"
+                  >
+                    <!-- :style="col.cellStyle" -->
+                    <slot :name="`cell-${col.name}`" :item="row">
+                      <div
+                        :class="col.class"
+                        v-html="getColText(row, col)"
+                      ></div>
+                    </slot>
+                  </td>
+                  <td v-if="expandable">
+                    <slot name="expandable" :item="row">
+                      <q-btn
+                        size="md"
+                        class="expand-icon"
+                        :color="$q.dark.isActive ? 'white' : 'grey-8'"
+                        flat
+                        dense
+                        round
+                        @click="toggleExpand(row)"
+                        icon="keyboard_arrow_up"
+                        :class="
+                          row.expanded
+                            ? 'expand-open'
+                            : 'expand-close'
+                        "
+                      />
+                    </slot>
+                  </td>
                 </tr>
-              </transition>
-            </template>
-          </tbody>
-          <tfoot class="table-total">
-            <tr
-              v-if="tableStore.selectedRows.value.length > 1"
-              class="grid-subtotal"
-            >
-              <slot
-                name="footer-subtotal"
-                :selectedRows="tableStore.selectedRows.value"
-              ></slot>
-            </tr>
-            <tr
-              v-if="
-                tableStore.rows.value.length > 1 &&
-                tableStore.summaryData != null
-              "
-              class="grid-total"
-            >
-              <slot
-                name="footer-total"
-                :summary="tableStore.summaryData.value"
-              ></slot>
-            </tr>
-          </tfoot>
-        </table>
+                <transition
+                  enter-active-class="animated fadeIn"
+                  leave-active-class="animated fadeOut"
+                >
+                  <tr v-if="row.expanded">
+                    <td colspan="100%" class="expand">
+                      <div class="expand">
+                        <slot name="expand" :item="row"></slot>
+                      </div>
+                    </td>
+                  </tr>
+                </transition>
+              </template>
+            </tbody>
+            <tfoot class="table-total">
+              <tr
+                v-if="tableStore.selectedRows.value.length > 1"
+                class="grid-subtotal"
+              >
+                <slot
+                  name="footer-subtotal"
+                  :selectedRows="tableStore.selectedRows.value"
+                ></slot>
+              </tr>
+              <tr
+                v-if="
+                  tableStore.rows.value.length > 1 &&
+                  tableStore.summaryData != null
+                "
+                class="grid-total"
+              >
+                <slot
+                  name="footer-total"
+                  :summary="tableStore.summaryData.value"
+                ></slot>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
 

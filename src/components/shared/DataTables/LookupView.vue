@@ -594,6 +594,7 @@
 
   async function searchInLookup() {
     tableStore.setSearchTerm(search.value?.nativeEl?.value);
+    selectedId.value = null;
     if ($q.screen.gt.xs) {
       await showPopup();
     } else {
@@ -665,7 +666,10 @@
       ? [
           (val) => {
             const valid =
-              val !== null && val !== undefined && val !== "";
+              val !== null &&
+              val !== undefined &&
+              val !== "" &&
+              selectedId.value !== null;
             validationMessage.value = valid
               ? ""
               : t("shared.labels.required");
