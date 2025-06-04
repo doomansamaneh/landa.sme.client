@@ -3,7 +3,7 @@ import { productType } from "src/constants";
 export const productModel = {
   isActive: true,
   isForSale: true,
-  isForPurchase: false,
+  isForPurchase: true,
   price: 0,
   purchasePrice: 0,
   typeId: productType.main,
