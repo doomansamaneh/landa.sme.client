@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="row q-mt-lg">
-    <div class="col-md-12">
+    <div class="col-12">
       <custom-input
         label="شرح"
         v-model="model.comment"

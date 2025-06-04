@@ -1,5 +1,5 @@
 <template>
-  <div class="row bordered-1 q-pa-md q-my-md">
+  <div class="row bordered-1 q-pa-sm q-my-md">
     <div class="col q-gutter-y-sm">
       <div class="row items-center justify-between">
         <div>
@@ -22,12 +22,19 @@
           </span>
         </div>
         <div class="row items-center">
-          <q-btn unelevated round class="text-on-dark" @click="edit">
+          <q-btn
+            dense
+            unelevated
+            round
+            class="text-on-dark"
+            @click="edit"
+          >
             <q-icon name="o_edit" size="20px" />
           </q-btn>
           <q-btn
             unelevated
             round
+            dense
             class="text-on-dark"
             @click="
               formStore.deleteById(item.id, tableStore.reloadData)

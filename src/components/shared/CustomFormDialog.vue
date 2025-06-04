@@ -31,7 +31,10 @@
         />
       </q-card-section>
 
-      <q-card-section style="max-height: 70vh" class="q-pa-lg scroll">
+      <q-card-section
+        :style="$q.screen.gt.xs ? 'max-height: 70vh;' : ''"
+        class="q-pa-lg scroll"
+      >
         <slot name="body">
           <component
             :is="component"
