@@ -1,9 +1,9 @@
 import config from "../../app-setting.json";
 //localhost
-//export const baseUrl = config.baseUrl_;
+export const baseUrl = config.baseUrl_;
 
 //api.landa-sme.ir
-export const baseUrl = config.baseUrl;
+//export const baseUrl = config.baseUrl;
 
 export const dataType = {
   string: 0,
@@ -389,33 +389,6 @@ export const cultures = [
   { name: "عربى", iso: "ar", calendar: "hijri", bodyClass: "arabic" },
 ];
 
-// export const cultures_ = [
-//   {
-//     iso: "fa-IR",
-//     code: "fa-IR",
-//     name: "فارسی",
-//     calendar: "persian",
-//     dir: "rtl",
-//     flag: "",
-//   },
-//   {
-//     iso: "ar",
-//     code: "ar",
-//     name: "العربیة",
-//     calendar: "hijri",
-//     dir: "rtl",
-//     flag: "",
-//   },
-//   {
-//     iso: "en-Us",
-//     code: "en",
-//     name: "English",
-//     calendar: "gregorian",
-//     dir: "ltr",
-//     flag: "",
-//   },
-// ];
-
 export const defaultPageSize = 10; //10
 
 export const defaultLookupPageSize = 10;
@@ -443,4 +416,15 @@ export const accountCLTypeIds = {
   revenue: 1014,
   expense: 1015,
   contra: 1016,
+};
+
+export const priceAdjustmentDirection = {
+  increase: 1,
+  decrease: 2,
+};
+
+export const priceAdjustmentTarget = {
+  sales: 1,
+  purchase: 2,
+  both: 3,
 };

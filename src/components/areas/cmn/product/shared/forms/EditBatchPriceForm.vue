@@ -1,97 +1,40 @@
 <template>
-  <h4>بزودی ...</h4>
-  <q-form
-    ref="form"
-    autofocus
-    :class="{ 'q-mb-md': $q.screen.sm }"
-    v-if="false"
-  >
+  <q-form ref="form" autofocus :class="{ 'q-mb-md': $q.screen.sm }">
     <div class="q-mb-lg">
-      <div
-        class="row items-center"
-        :class="
-          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
-        "
-      >
-        <div class="col-md-9 col-sm-9 col-xs-12">
-          <custom-input
-            label="قیمت خرید"
-            v-model="
-              formStore.editBatchModel.value.purchasePrice.fieldValue
-            "
-            type="number"
-          >
-            <template #append>
-              <q-btn-toggle
-                rounded
-                unelevated
-                padding="0 12px"
-                v-model="
-                  formStore.editBatchModel.value.purchasePrice
-                    .isIncrease
-                "
-                :options="[
-                  { label: 'افزایش', value: true },
-                  { label: 'کاهش', value: false },
-                ]"
-                dense
-              />
-            </template>
-          </custom-input>
-        </div>
-        <div class="col-md-3 col-sm-3 col-xs-12">
-          <q-checkbox
-            class="q-mt-lg"
-            dense
-            size="46px"
-            v-model="
-              formStore.editBatchModel.value.purchasePrice.isModified
-            "
-            label="اصلاح شود؟"
-          />
-        </div>
+      <div>
+        <q-option-group
+          label="نوع"
+          inline
+          :options="
+            helper.getEnumOptions(
+              priceAdjustmentDirection,
+              'priceAdjustmentDirection'
+            )
+          "
+          type="radio"
+          v-model="model.direction"
+        />
       </div>
-    </div>
+      <div>
+        <custom-input-number
+          v-model="model.percent"
+          label="درصد تغییر"
+        />
+      </div>
 
-    <div class="q-mb-lg">
-      <div
-        class="row items-center"
-        :class="
-          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
-        "
-      >
-        <div class="col-md-9 col-sm-9 col-xs-12">
-          <custom-input
-            label="قیمت فروش"
-            v-model="formStore.editBatchModel.value.price.fieldValue"
-            type="number"
-          >
-            <template #append>
-              <q-btn-toggle
-                rounded
-                unelevated
-                padding="0 12px"
-                v-model="
-                  formStore.editBatchModel.value.price.isIncrease
-                "
-                :options="[
-                  { label: 'افزایش', value: true },
-                  { label: 'کاهش', value: false },
-                ]"
-                dense
-              />
-            </template>
-          </custom-input>
-        </div>
-        <div class="col-md-3 col-sm-3 col-xs-12">
-          <q-checkbox
-            class="q-mt-lg"
-            dense
-            size="46px"
-            v-model="formStore.editBatchModel.value.price.isModified"
-            label="اصلاح شود؟"
-          />
-        </div>
+      <div>
+        <q-option-group
+          label="قیمت"
+          inline
+          :options="
+            helper.getEnumOptions(
+              priceAdjustmentTarget,
+              'priceAdjustmentTarget'
+            )
+          "
+          type="radio"
+          v-model="model.target"
+        />
       </div>
     </div>
   </q-form>
@@ -99,39 +42,53 @@
 
 <script setup>
   import { ref } from "vue";
-  import { productType } from "src/constants";
-  import { helper } from "src/helpers";
-  import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
-  import { productBatchModel } from "src/models/areas/cmn/productModel";
+  import { useI18n } from "vue-i18n";
+  import { useQuasar } from "quasar";
+  import {
+    priceAdjustmentDirection,
+    priceAdjustmentTarget,
+  } from "src/constants";
+  import { helper, bus, fetchWrapper } from "src/helpers";
 
-  import CustomInput from "src/components/shared/forms/CustomInput.vue";
-  import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
-  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-  import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
-  import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
   const props = defineProps({
     selectedIds: Array,
   });
 
   const form = ref(null);
-  const formStore = useBaseInfoModel({
-    baseRoute: "cmn/product",
-    batchModel: productBatchModel,
+  const $q = useQuasar();
+  const { t } = useI18n();
+
+  const model = ref({
+    direction: priceAdjustmentDirection.increase,
+    target: priceAdjustmentTarget.sales,
   });
 
-  async function submitForm() {
+  async function submitForm(callBack) {
     const isValid = await form.value.validate();
 
     if (isValid) {
-      await formStore.crudStore.editBatch(
-        props.selectedIds,
-        formStore.editBatchModel.value
-      );
-      return true;
-    } else {
-      // alert("Validation error");
-      return false;
+      if (props.selectedIds?.length == 0)
+        return $q.notify({
+          type: "negative",
+          message: t(`messages.noRowSelected`),
+        });
+
+      return fetchWrapper
+        .post(`cmn/product/adjustPrice`, {
+          selectedIds: props.selectedIds,
+          adjustment: model.value,
+        })
+        .then((response) => {
+          if (response?.data?.message)
+            $q.notify({
+              type: "positive",
+              message: t(`messages.${response?.data?.message}`),
+            });
+          if (callBack) callBack(response);
+          else bus.emit("apply-search");
+        });
     }
   }
 
