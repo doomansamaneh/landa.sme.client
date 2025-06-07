@@ -8,6 +8,7 @@
   />
 
   <q-card flat bordered class="overflow-hidden">
+    <card-title :title="model?.bankTitle" />
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
@@ -36,6 +37,7 @@
   import ToolBar from "../shared/preview/ToolBar.vue";
   import HeaderSection from "../shared/preview/_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     item: Object,
