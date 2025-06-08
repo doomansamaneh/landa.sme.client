@@ -11,13 +11,9 @@ export function useBillItemModel(item) {
 
   const calculateTotal = (row) => {
     const amount = row.amount;
-    row.vatAmount = (amount * row.vatPercent) / 100;
+    row.vatAmount = Math.floor((amount * row.vatPercent) / 100);
     row.total = amount + row.vatAmount;
   };
-
-  // watchEffect(() => {
-  //   calculateTotal(model.value);
-  // });
 
   return {
     model,

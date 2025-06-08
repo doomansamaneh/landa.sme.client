@@ -8,7 +8,7 @@
   />
 
   <q-card flat bordered class="overflow-hidden">
-    <card-title :title="model?.bankTitle" />
+    <card-title :title="title" />
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />

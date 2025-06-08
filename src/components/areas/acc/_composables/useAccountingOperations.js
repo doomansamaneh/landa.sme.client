@@ -32,7 +32,7 @@ export function useAccountingOperations() {
       voucherStore.reset();
       $q.notify({
         type,
-        message: t(`messages.${response.data.message}`),
+        message: t(`messages.${response.message}`),
       });
     }
   }
@@ -56,7 +56,7 @@ export function useAccountingOperations() {
         const response = await fetchWrapper.post(
           `acc/operation/reorder`
         );
-        notify(response);
+        notify(response.data);
         if (callBack) callBack();
       },
     });
@@ -72,7 +72,7 @@ export function useAccountingOperations() {
         const response = await fetchWrapper.post(
           `acc/operation/calculateCogs`
         );
-        notify(response);
+        notify(response.data);
         if (callBack) callBack();
       },
     });
@@ -88,8 +88,8 @@ export function useAccountingOperations() {
         const response = await fetchWrapper.post(
           `acc/operation/openBook`
         );
-        notify(response);
-        if (callBack) callBack();
+        notify(response.data);
+        if (callBack) callBack(response.data);
       },
     });
   }
@@ -104,7 +104,7 @@ export function useAccountingOperations() {
         const response = await fetchWrapper.post(
           `acc/operation/closeBook`
         );
-        notify(response);
+        notify(response.data);
         if (callBack) callBack();
       },
     });
@@ -120,7 +120,7 @@ export function useAccountingOperations() {
         const response = await fetchWrapper.post(
           `acc/operation/deleteClosingBook`
         );
-        notify(response);
+        notify(response.data);
         if (callBack) callBack();
       },
     });
@@ -148,7 +148,7 @@ export function useAccountingOperations() {
       `acc/operation/closeAccount`,
       model.value
     );
-    notify(response);
+    notify(response.data);
     if (callBack) callBack(response);
   }
 

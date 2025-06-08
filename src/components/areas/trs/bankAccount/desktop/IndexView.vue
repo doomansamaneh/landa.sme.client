@@ -19,7 +19,7 @@
   </tool-bar>
 
   <q-card>
-    <card-title :title="model?.bankTitle" />
+    <card-title :title="title" />
 
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>

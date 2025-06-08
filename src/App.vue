@@ -9,7 +9,7 @@
   const authStore = useAuthStore();
 
   console.log(
-    "%cSUPPORT: %cLANDA-SME.COM",
+    "%cSUPPORT: %cLANDA-SME.IR",
     "color: white; font-family: sans-serif; font-size: 2.5em; font-weight: bolder; text-shadow: #000 1px 1px;",
     "color: #0088ff; font-family: sans-serif; font-size: 2.5em; font-weight: bolder; text-shadow: #000 1px 1px;"
   );
