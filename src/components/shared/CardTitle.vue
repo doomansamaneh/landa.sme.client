@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-between primary-gradient-1">
-    <div class="row items-center q-px-md">
+    <div class="row items-center q-px-md" style="gap: 12px">
       <q-avatar
         v-if="icon"
         rounded
@@ -9,7 +9,7 @@
         size="md"
         :class="avatarClass"
       />
-      <div class="text-h6 text-weight-700 q-ml-md q-my-sm q-py-xs">
+      <div class="text-h6 text-weight-700 q-my-sm q-py-xs">
         {{ title }}
       </div>
     </div>

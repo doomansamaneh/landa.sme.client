@@ -18,7 +18,9 @@
     </template>
   </tool-bar>
 
-  <q-card flat bordered class="overflow-hidden">
+  <q-card>
+    <card-title :title="model?.bankTitle" />
+
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
@@ -50,6 +52,7 @@
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
   import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     item: Object,

@@ -35,6 +35,7 @@
   </tool-bar>
 
   <q-card flat bordered class="overflow-hidden">
+    <card-title :title="model?.title" />
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
         <header-section :model="model" />
@@ -73,6 +74,7 @@
   import HeaderSection from "src/components/areas/trs/cash/shared/preview/_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import DataGridItemSheet from "src/components/areas/trs/cash/mobile/index/DataGridItemSheet.vue";
+  import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({
     item: Object,
