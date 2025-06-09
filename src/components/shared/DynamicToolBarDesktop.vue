@@ -1,0 +1,275 @@
+<template>
+  <div :style="toolbarMargin">
+    <q-page-sticky
+      class="bg-main z-1"
+      :style="inside"
+      position="top"
+      expand
+      :class="isAtTop || inside ? '' : 'toolbar-glass-effect_'"
+    >
+      <q-toolbar
+        :style="[
+          inside ? '' : 'margin-top: 6px; margin-bottom: 6px;',
+          xPadding,
+        ]"
+      >
+        <div v-if="buttons" class="row items-center q-gutter-sm">
+          <template v-for="(item, index) in menuItems" :key="index">
+            <template v-if="item.type === menuItemType.item">
+              <menu-button
+                v-if="shouldShowItem(item)"
+                :title="$t(`shared.labels.${item.label}`)"
+                :icon="item.icon"
+                :to="getItemRoute(item)"
+                :class="item.class"
+                :badge-count="
+                  item.selectedIds ? selectedIds?.length : 0
+                "
+                @click="handleMenuItemClick(item)"
+              />
+            </template>
+            <template v-else-if="item.type === menuItemType.moreItem">
+              <q-btn
+                padding="6px 12px"
+                class="text-body2"
+                rounded
+                unelevated
+              >
+                <q-icon
+                  size="20px"
+                  name="more_horiz"
+                  class="q-mr-sm"
+                />
+                {{ $t("shared.labels.more") }}
+
+                <q-menu class="border-radius-lg" cover>
+                  <q-list dense padding style="width: 250px">
+                    <template
+                      v-for="(subItem, index) in item.subItems"
+                      :key="index"
+                    >
+                      <q-separator
+                        spaced
+                        v-if="subItem.type === menuItemType.separator"
+                      />
+                      <template
+                        v-else-if="subItem.type === menuItemType.item"
+                      >
+                        <menu-item
+                          v-if="shouldShowItem(subItem)"
+                          :title="
+                            $t(`shared.labels.${subItem.label}`)
+                          "
+                          :icon="subItem.icon"
+                          :to="getItemRoute(subItem)"
+                          :class="subItem.class"
+                          :badge-count="
+                            subItem.selectedIds
+                              ? selectedIds?.length
+                              : 0
+                          "
+                          @click="handleMenuItemClick(subItem)"
+                        />
+                      </template>
+                    </template>
+                  </q-list>
+                </q-menu>
+              </q-btn>
+            </template>
+          </template>
+        </div>
+
+        <div v-if="buttons" class="q-space" />
+
+        <template v-if="buttons">
+          <div v-if="title && !inside">
+            <slot name="header">
+              <span
+                class="text-weight-700"
+                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
+              >
+                <slot name="header-title">
+                  <span
+                    @mouseover="showItemsNumber"
+                    @mouseout="hideItemsNumber"
+                    class=""
+                  >
+                    {{ title }}
+                  </span>
+                  <q-btn
+                    v-if="
+                      tableStore?.pagination.value.totalItems > 0 &&
+                      itemsNumber
+                    "
+                    rounded
+                    unelevated
+                    dense
+                    padding="0px 10px"
+                    outline
+                    :label="tableStore?.pagination.value.totalItems"
+                    class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
+                  />
+                </slot>
+              </span>
+            </slot>
+
+            <back-button
+              v-if="backButton"
+              :class="$q.screen.xs ? 'q-mr-sm' : 'q-ml-sm'"
+            />
+          </div>
+        </template>
+
+        <template v-else>
+          <slot name="header">
+            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
+              <slot name="header-title">
+                <span class="text-weight-700">
+                  {{ title }}
+                </span>
+                <q-btn
+                  v-if="tableStore?.pagination.value.totalItems > 0"
+                  rounded
+                  unelevated
+                  dense
+                  padding="0px 10px"
+                  outline
+                  :label="tableStore?.pagination.value.totalItems"
+                  class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
+                />
+              </slot>
+            </span>
+            <q-space></q-space>
+            <back-button v-if="backButton" class="q-ml-md" />
+          </slot>
+        </template>
+      </q-toolbar>
+    </q-page-sticky>
+  </div>
+</template>
+
+<script setup>
+  import { ref, computed, onMounted, onUnmounted } from "vue";
+  import { useQuasar } from "quasar";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
+  import { useFormActions } from "src/composables/useFormActions";
+
+  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
+  import MenuButton from "src/components/shared/buttons/MenuButton.vue";
+  import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
+
+  const $q = useQuasar();
+  const isAtTop = ref(true);
+  const itemsNumber = ref(false);
+
+  const props = defineProps({
+    title: String,
+    baseRoute: String,
+    tableStore: useDataTable,
+    crudStore: Object,
+    activation: Boolean,
+    backButton: Boolean,
+    buttons: Boolean,
+    inside: Boolean,
+    margin: Boolean,
+    menuItems: {
+      type: Array,
+      default: () => [],
+    },
+  });
+
+  const emits = defineEmits([
+    "downloadPdf",
+    "download-batch-pdf",
+    "reorder",
+    "edit-batch",
+    "batch-print",
+    "menu-item-click",
+  ]);
+
+  const menuItemType = {
+    item: 1,
+    separator: 2,
+    moreItem: 3,
+  };
+
+  const handleMenuItemClick = (item) => {
+    emits("menu-item-click", item);
+  };
+
+  const shouldShowItem = (item) => {
+    return (
+      (!item.needId && !item.selectedIds) ||
+      (item.needId && props.tableStore?.activeRow?.value) ||
+      (item.selectedIds && selectedIds?.length > 0)
+    );
+  };
+
+  const getItemRoute = (item) => {
+    if (!item.route) return "";
+    return item.route.replace(
+      "{{id}}",
+      props.tableStore?.activeRow?.value?.id || ""
+    );
+  };
+
+  const selectedIds = computed(() =>
+    props.tableStore?.selectedRows?.value.map((item) => item.id)
+  );
+
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
+
+  const _crudStore = useFormActions(props.baseRoute);
+  const localCrudStore = computed(
+    () => props.crudStore ?? _crudStore
+  );
+
+  const toolbarMargin = computed(() => {
+    const baseMargin = $q.screen.lt.md
+      ? "margin-bottom: 56px;"
+      : "margin-bottom: 34px;";
+    const margin = $q.screen.lt.sm ? "margin-bottom: 34px;" : "";
+    return props.margin ? baseMargin : margin;
+  });
+
+  const xPadding = computed(() => {
+    return props.inside
+      ? "padding: 0 0 16px 0"
+      : $q.screen.gt.sm
+      ? "padding-left: 38px; padding-right: 38px;"
+      : "padding-left: 20px; padding-right: 20px;";
+  });
+
+  const inside = computed(() => {
+    if (props.inside) {
+      return "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;";
+    } else {
+      return "";
+    }
+  });
+
+  const handleScroll = () => {
+    const currentPosition =
+      window.scrollY || document.documentElement.scrollTop;
+    isAtTop.value = currentPosition === 0;
+  };
+
+  const showItemsNumber = () => {
+    itemsNumber.value = true;
+  };
+
+  const hideItemsNumber = () => {
+    itemsNumber.value = false;
+  };
+
+  onMounted(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
+  onUnmounted(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
+</script>

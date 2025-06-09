@@ -36,7 +36,7 @@
   import { useAccountingOperations } from "../../../_composables/useAccountingOperations";
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
-  import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
+  import ToolbarDesktop from "../../desktop/index/ToolBarV2.vue";
 
   const props = defineProps({
     toolbar: Boolean,
