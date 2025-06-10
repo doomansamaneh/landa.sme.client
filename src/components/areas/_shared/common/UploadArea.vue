@@ -1,136 +1,122 @@
 <template>
-  <div
-    class="relative-position border-radius-lg q-pa-md dashed row items-center justify-center text-center"
-    @dragover.prevent="handleDragOver"
-    @drop.prevent="handleDrop"
+  <q-card
+    flat
+    style="border: 2px dashed #00000040"
+    class="relative-position q-pa-md row items-center justify-center q-hoverable cursor-pointer"
     @click="triggerFileInput"
   >
-    <input
-      id="fileInput"
-      type="file"
-      class="input-upload"
-      @change="handleFileUpload"
-      accept="file/*.xlsx"
-    />
-    <div class="column items-center">
-      <q-icon
-        class="q-pb-lg q-mr-sm cursor-pointer"
-        name="attach_file"
-        size="70px"
-        color="grey"
+    <span class="q-focus-helper" />
+
+    <q-card-section class="no-pointer-events">
+      <q-file
+        ref="inputArea"
+        v-model="file"
+        class="absolute fit"
+        accept=".xlsx,.csv"
+        style="opacity: 0"
       />
-      <q-btn unelevated padding="12px 24px" rounded color="primary">
-        <q-icon size="20px" class="q-mr-xs" name="arrow_upward" />
-        <span class="text-body1">بارگزاری از فایل اکسل</span>
-      </q-btn>
-    </div>
-  </div>
 
-  <q-item
-    v-if="fileName"
-    class="q-py-md dashed border-radius-md q-my-sm"
-  >
-    <q-item-section avatar>
-      <q-avatar size="32px">
-        <q-icon size="20px" name="o_upload_file" />
-      </q-avatar>
-    </q-item-section>
-
-    <q-item-section>
-      <div class="text-body2 ellipsis">
-        {{ fileName }}
+      <div class="flex items-center justify-center q-gutter-sm">
+        <q-icon name="attach_file" size="56px" color="grey" />
+        <div v-if="file">
+          <div class="text-weight-500">
+            <span class="text-roboto text-body1">{{ fileName }}</span>
+            <a
+              href="#"
+              class="text-body1 text-primary q-ml-sm"
+              @click="clearFile"
+            >
+              اصلاح فایل
+            </a>
+          </div>
+          <div class="q-mt-xs">
+            حجم فایل شما:
+            <span>{{ formattedSize }}</span>
+          </div>
+        </div>
+        <div v-else>
+          <div class="text-body1 text-center text-weight-500">
+            می‌توانید
+            <a href="#" class="text-primary">فایل بارگذاری کنید</a>
+            یا آن را اینجا بکشید و رها کنید.
+          </div>
+          <div class="text-body3 q-mt-xs text-center">
+            فقط پسوندهای
+            <span class="text-roboto">XLSX & CSV</span>
+            پشتیبانی می‌شوند.
+          </div>
+        </div>
       </div>
-    </q-item-section>
+    </q-card-section>
+  </q-card>
 
-    <q-item-section side>
-      <div class="row items-center q-gutter-xs">
+  <slot name="actions">
+    <div v-if="file" class="row q-gutter-md q-mt-none">
+      <slot name="upload-button">
         <q-btn
-          padding="6px 12px"
-          color="primary"
           rounded
+          class="col primary-gradient text-white primary-shadow"
           unelevated
-          dense
+          padding="12px"
           @click="upload"
         >
-          <span class="text-body2">ارسال اطلاعات</span>
+          <q-icon size="20px" name="arrow_upward" class="q-mr-xs" />
+          <div class="text-body1">ارسال اطلاعات</div>
         </q-btn>
+      </slot>
 
+      <slot name="clear-button">
         <q-btn
+          class="col"
           unelevated
-          dense
-          round
-          icon="o_close"
+          rounded
+          padding="12px"
           @click="clearFile"
-        />
-      </div>
-    </q-item-section>
-  </q-item>
+        >
+          <q-icon size="20px" name="delete" class="q-mr-xs" />
+          <div class="text-body1">حذف</div>
+        </q-btn>
+      </slot>
+    </div>
+  </slot>
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
 
   const emits = defineEmits(["upload"]);
   const file = ref(null);
-  const fileName = ref("");
-  const fileFormat = ref("");
+  const inputArea = ref(null);
 
-  const handleFileUpload = (event) => {
-    file.value = event.target.files[0];
-    if (file.value) {
-      fileName.value = file.value.name;
-      fileFormat.value = file.value.type || "Unknown format";
+  const fileName = computed(() => file.value?.name || "");
+
+  const formattedSize = computed(() => {
+    if (!file.value) return "";
+    const size = file.value.size;
+    const units = ["بایت", "کیلوبایت", "مگابایت", "گیگابایت"];
+    let unitIndex = 0;
+    let value = size;
+
+    while (value >= 1024 && unitIndex < units.length - 1) {
+      value /= 1024;
+      unitIndex++;
     }
+
+    return `${value.toFixed(unitIndex === 3 ? 2 : 0)} ${
+      units[unitIndex]
+    }`;
+  });
+
+  const triggerFileInput = () => {
+    inputArea?.value.pickFiles();
   };
 
   const upload = () => {
+    if (!file.value) return;
     emits("upload", file);
   };
 
   const clearFile = () => {
     file.value = null;
-    fileName.value = null;
-    fileFormat.value = null;
-  };
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
-
-  const handleDrop = (event) => {
-    const file = event.dataTransfer.files[0];
-    if (file) {
-      fileName.value = file.name;
-      fileFormat.value = file.type || "Unknown format";
-    }
-  };
-
-  const triggerFileInput = () => {
-    document.getElementById("fileInput").click();
   };
 </script>
-
-<style lang="scss" scoped>
-  .cursor-crosshair {
-    cursor: crosshair;
-  }
-
-  .dashed {
-    border: 2px dashed #00000040;
-  }
-
-  .input-upload {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-
-  .file-info {
-    text-align: center;
-    color: #555;
-  }
-</style>
