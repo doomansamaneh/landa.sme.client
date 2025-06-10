@@ -19,11 +19,13 @@ export function useVoucherDataGridMenu(context) {
     },
     {
       ...menuItems.copy,
+      permission: "acc.voucher.create",
       route: `/acc/voucher/copy/${context.activeRow?.id ?? ""}`,
       visible: hasId,
     },
     {
       ...menuItems.delete,
+      permission: "acc.voucher.delete",
       badgeCount: context.selectedIds?.length,
       handler: () => {
         if (hasSelection && context.deleteBatch) {
@@ -50,16 +52,17 @@ export function useVoucherDataGridMenu(context) {
           handler: () => context.reloadData && context.reloadData(),
         },
         {
+          ...menuItems.defaultItem,
           label: "reorder",
           icon: "o_cached",
-          type: menuItemType.item,
+          permission: "acc.operation.reorder",
           handler: () =>
             context.reorderHandler && context.reorderHandler(),
-          visible: true,
         },
         menuItems.separator,
         {
           ...menuItems.print,
+          permission: "acc.voucher.print",
           handler: () => {
             if (context.printHandler && context.activeRow) {
               context.printHandler(context.activeRow.id);
@@ -69,16 +72,19 @@ export function useVoucherDataGridMenu(context) {
         },
         {
           ...menuItems.printBatch,
+          permission: "acc.voucher.print",
           handler: () =>
             context.printBatchHandler && context.printBatchHandler(),
         },
         menuItems.separator,
         {
           ...menuItems.exportExcel,
+          permission: "acc.voucher.export",
           handler: () => context.exportAll && context.exportAll(),
         },
         {
           ...menuItems.exportExcelCurrentPage,
+          permission: "acc.voucher.export",
           handler: () =>
             context.exportCurrentPage && context.exportCurrentPage(),
         },

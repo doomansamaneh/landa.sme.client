@@ -1,12 +1,15 @@
 import { menuItemType } from "./enums";
 
 export const menuItems = {
-  create: {
+  defaultItem: {
     type: menuItemType.item,
+    visible: true,
+  },
+  create: {
+    ...defaultItem,
     label: "create",
     icon: "o_add",
     class: "primary-gradient text-white primary-shadow",
-    visible: true,
   },
 
   edit: {
@@ -34,10 +37,9 @@ export const menuItems = {
   },
 
   refresh: {
-    type: menuItemType.item,
+    ...defaultItem,
     label: "refresh",
     icon: "o_refresh",
-    visible: true,
   },
 
   print: {
@@ -47,23 +49,20 @@ export const menuItems = {
   },
 
   printBatch: {
-    type: menuItemType.item,
+    ...defaultItem,
     label: "printBatch",
     icon: "o_print",
-    visible: true,
   },
 
   exportExcel: {
-    type: menuItemType.item,
+    ...defaultItem,
     label: "exportExcel",
     icon: "o_download",
-    visible: true,
   },
 
   exportExcelCurrentPage: {
-    type: menuItemType.item,
+    ...defaultItem,
     label: "exportExcelCurrentPage",
     icon: "o_download",
-    visible: true,
   },
 };
