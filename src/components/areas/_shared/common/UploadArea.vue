@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative-position border-radius-lg q-pa-xl dashed row items-center justify-center text-center"
+    class="relative-position border-radius-lg q-pa-md dashed row items-center justify-center text-center"
     @dragover.prevent="handleDragOver"
     @drop.prevent="handleDrop"
     @click="triggerFileInput"
@@ -16,7 +16,7 @@
       <q-icon
         class="q-pb-lg q-mr-sm cursor-pointer"
         name="attach_file"
-        size="180px"
+        size="70px"
         color="grey"
       />
       <q-btn unelevated padding="12px 24px" rounded color="primary">
@@ -88,7 +88,9 @@
   };
 
   const clearFile = () => {
+    file.value = null;
     fileName.value = null;
+    fileFormat.value = null;
   };
 
   const handleDragOver = (event) => {

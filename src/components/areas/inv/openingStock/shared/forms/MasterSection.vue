@@ -94,14 +94,14 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { baseUrl } from "src/constants";
   import { useRepositionModel } from "../../../_composables/useRepositionModel";
 
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
-  import UploadArea from "./UploadArea.vue";
+  import UploadArea from "src/components/areas/_shared/common/UploadArea.vue";
 
   const props = defineProps({
     formStore: useRepositionModel,
