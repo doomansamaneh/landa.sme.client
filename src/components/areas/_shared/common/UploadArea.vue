@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative-position border-radius-lg q-pa-xl dashed row items-center justify-center text-center"
+    class="relative-position border-radius-lg q-pa-md dashed row items-center justify-center text-center"
     @dragover.prevent="handleDragOver"
     @drop.prevent="handleDrop"
     @click="triggerFileInput"
@@ -16,7 +16,7 @@
       <q-icon
         class="q-pb-lg q-mr-sm cursor-pointer"
         name="attach_file"
-        size="180px"
+        size="70px"
         color="grey"
       />
       <q-btn unelevated padding="12px 24px" rounded color="primary">
@@ -50,6 +50,7 @@
           rounded
           unelevated
           dense
+          @click="upload"
         >
           <span class="text-body2">ارسال اطلاعات</span>
         </q-btn>
@@ -69,19 +70,27 @@
 <script setup>
   import { ref } from "vue";
 
+  const emits = defineEmits(["upload"]);
+  const file = ref(null);
   const fileName = ref("");
   const fileFormat = ref("");
 
   const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      fileName.value = file.name;
-      fileFormat.value = file.type || "Unknown format";
+    file.value = event.target.files[0];
+    if (file.value) {
+      fileName.value = file.value.name;
+      fileFormat.value = file.value.type || "Unknown format";
     }
   };
 
+  const upload = () => {
+    emits("upload", file);
+  };
+
   const clearFile = () => {
+    file.value = null;
     fileName.value = null;
+    fileFormat.value = null;
   };
 
   const handleDragOver = (event) => {

@@ -7,7 +7,7 @@
     </div>
 
     <q-btn
-      size="4px"
+      size="8px"
       round
       unelevated
       outline
@@ -15,9 +15,9 @@
       class="no-decoration"
       :href="`${baseUrl}/excelTemplate/import/${fileTemplate}`"
     >
-      <q-icon name="o_question_mark" size="16px" />
+      <q-icon name="o_download" size="16px" />
       <q-tooltip class="custom-tooltip">
-        الگوی درون‌ریزی {{ title }}
+        دریافت الگوی {{ title }}
       </q-tooltip>
     </q-btn>
   </div>
@@ -39,15 +39,14 @@
         @click="upload"
       >
         <q-icon name="arrow_upward" class="q-px-xs" size="xs" />
-        درون‌ریزی
+        import
       </q-btn>
     </template>
   </q-file>
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  import { useQuasar } from "quasar";
+  import { ref } from "vue";
   import { baseUrl } from "src/constants";
   import { useImport } from "../_composables/useImport";
 
@@ -64,6 +63,4 @@
   const upload = async () => {
     await importStore.uploadImportFile(props.importAction, file);
   };
-
-  const $q = useQuasar();
 </script>

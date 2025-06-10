@@ -107,7 +107,8 @@ function getCookie(name) {
 }
 
 function handleKnownError(url, response) {
-  if (response.data.code === 0) return Promise.reject(response);
+  if (response.data.code === 0 || response.data.code === 500)
+    return Promise.reject(response);
   return Promise.resolve(response);
 }
 
