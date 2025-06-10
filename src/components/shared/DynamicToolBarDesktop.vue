@@ -7,7 +7,7 @@
       expand
       :class="isAtTop || inside ? '' : 'toolbar-glass-effect_'"
     >
-      <q-toolbar :style="[toolbarPadding]">
+      <q-toolbar style="margin: 6px 0" :style="[toolbarPadding]">
         <div class="row items-center q-gutter-sm">
           <template v-for="(item, index) in menuItems" :key="index">
             <template v-if="item.type === menuItemType.item">
@@ -41,22 +41,27 @@
                       v-for="(subItem, subIndex) in item.subItems"
                       :key="subIndex"
                     >
-                      <q-separator
-                        v-if="subItem.type === menuItemType.separator"
-                        spaced
-                      />
-                      <menu-item
-                        v-else-if="
+                      <template
+                        v-if="
                           subItem.visible &&
                           subItem.type === menuItemType.item
                         "
-                        :title="$t(`shared.labels.${subItem.label}`)"
-                        :icon="subItem.icon"
-                        :to="subItem.route"
-                        :class="subItem.class"
-                        :badge-count="subItem.badgeCount"
-                        @click="handleMenuItemClick(subItem)"
-                      />
+                      >
+                        <menu-item
+                          :title="
+                            $t(`shared.labels.${subItem.label}`)
+                          "
+                          :icon="subItem.icon"
+                          :to="subItem.route"
+                          :class="subItem.class"
+                          :badge-count="subItem.badgeCount"
+                          @click="handleMenuItemClick(subItem)"
+                        />
+                        <q-separator
+                          v-if="subItem.addSeparator"
+                          spaced
+                        />
+                      </template>
                     </template>
                   </q-list>
                 </q-menu>
@@ -64,67 +69,6 @@
             </template>
           </template>
         </div>
-
-        <div v-if="buttons" class="q-space" />
-
-        <template v-if="buttons">
-          <div v-if="title && !inside">
-            <slot name="header">
-              <span
-                class="text-weight-700"
-                :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
-              >
-                <slot name="header-title">
-                  <span
-                    @mouseover="showItemsNumber"
-                    @mouseout="hideItemsNumber"
-                  >
-                    {{ title }}
-                  </span>
-                  <q-btn
-                    v-if="
-                      tableStore?.pagination.value.totalItems > 0 &&
-                      itemsNumber
-                    "
-                    rounded
-                    unelevated
-                    dense
-                    padding="0px 10px"
-                    outline
-                    :label="tableStore.pagination.value.totalItems"
-                    class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
-                  />
-                </slot>
-              </span>
-            </slot>
-            <back-button
-              v-if="backButton"
-              :class="$q.screen.xs ? 'q-mr-sm' : 'q-ml-sm'"
-            />
-          </div>
-        </template>
-
-        <template v-else>
-          <slot name="header">
-            <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
-              <slot name="header-title">
-                <span class="text-weight-700">{{ title }}</span>
-                <q-btn
-                  v-if="tableStore?.pagination.value.totalItems > 0"
-                  rounded
-                  unelevated
-                  dense
-                  padding="0px 10px"
-                  outline
-                  :label="tableStore.pagination.value.totalItems"
-                  class="q-ml-sm bg-dark text-on-dark text-body2 no-pointer-events"
-                />
-              </slot>
-            </span>
-            <q-space />
-            <back-button v-if="backButton" class="q-ml-md" />
-          </slot>
-        </template>
       </q-toolbar>
     </q-page-sticky>
   </div>
@@ -135,7 +79,6 @@
   import { useQuasar } from "quasar";
   import { menuItemType } from "src/constants";
 
-  import BackButton from "src/components/shared/buttons/GoBackLink.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
 

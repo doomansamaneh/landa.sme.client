@@ -56,10 +56,10 @@ export function useVoucherDataGridMenu(context) {
           label: "reorder",
           icon: "o_cached",
           permission: "acc.operation.reorder",
+          addSeparator: true,
           handler: () =>
             context.reorderHandler && context.reorderHandler(),
         },
-        menuItems.separator,
         {
           ...menuItems.print,
           permission: "acc.voucher.print",
@@ -73,10 +73,10 @@ export function useVoucherDataGridMenu(context) {
         {
           ...menuItems.printBatch,
           permission: "acc.voucher.print",
+          addSeparator: true,
           handler: () =>
             context.printBatchHandler && context.printBatchHandler(),
         },
-        menuItems.separator,
         {
           ...menuItems.exportExcel,
           permission: "acc.voucher.export",

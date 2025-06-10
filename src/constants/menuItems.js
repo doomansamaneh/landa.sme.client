@@ -1,15 +1,18 @@
 import { menuItemType } from "./enums";
 
+const defaultItem = {
+  type: menuItemType.item,
+  visible: true,
+};
+
 export const menuItems = {
-  defaultItem: {
-    type: menuItemType.item,
-    visible: true,
-  },
+  defaultItem,
   create: {
     ...defaultItem,
     label: "create",
     icon: "o_add",
     class: "primary-gradient text-white primary-shadow",
+    addSeparator: true,
   },
 
   edit: {
@@ -28,6 +31,7 @@ export const menuItems = {
     type: menuItemType.item,
     label: "delete",
     icon: "o_delete",
+    addSeparator: true,
   },
 
   separator: {

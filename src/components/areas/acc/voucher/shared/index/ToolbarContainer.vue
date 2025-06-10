@@ -7,7 +7,6 @@
       :base-route="baseRoute"
       :selected-ids="selectedIds"
       :menu-items="menuItems"
-      activation_
       search-btn
       sort-btn
       advanced-search

@@ -141,36 +141,46 @@
       <q-list padding>
         <template v-for="(item, index) in menuItems" :key="index">
           <template v-if="item.type === menuItemType.item">
-            <menu-item
-              v-if="item.visible"
-              :title="$t(`shared.labels.${item.label}`)"
-              :icon="item.icon"
-              :to="item.route"
-              :badge-count="item.badgeCount"
-              @click="handleMenuItemClick(item)"
-            />
+            <template v-if="item.visible">
+              <menu-item
+                :title="$t(`shared.labels.${item.label}`)"
+                :icon="item.icon"
+                :to="item.route"
+                :badge-count="item.badgeCount"
+                @click="handleMenuItemClick(item)"
+              />
+              <q-separator
+                v-if="item.addSeparator"
+                size="0.5px"
+                class="q-my-sm"
+              />
+            </template>
           </template>
+
           <template v-else-if="item.type === menuItemType.moreItem">
             <template
               v-for="(subItem, subIndex) in item.subItems"
               :key="subIndex"
             >
-              <q-separator
-                v-if="subItem.type === menuItemType.separator"
-                size="0.5px"
-                class="q-my-sm"
-              />
-              <menu-item
-                v-else-if="
+              <template
+                v-if="
                   subItem.visible &&
                   subItem.type === menuItemType.item
                 "
-                :title="$t(`shared.labels.${subItem.label}`)"
-                :icon="subItem.icon"
-                :to="subItem.route"
-                :badge-count="subItem.badgeCount"
-                @click="handleMenuItemClick(subItem)"
-              />
+              >
+                <menu-item
+                  :title="$t(`shared.labels.${subItem.label}`)"
+                  :icon="subItem.icon"
+                  :to="subItem.route"
+                  :badge-count="subItem.badgeCount"
+                  @click="handleMenuItemClick(subItem)"
+                />
+                <q-separator
+                  v-if="subItem.addSeparator"
+                  size="0.5px"
+                  class="q-my-sm"
+                />
+              </template>
             </template>
           </template>
         </template>
