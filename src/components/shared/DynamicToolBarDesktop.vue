@@ -192,7 +192,3 @@
     window.removeEventListener("scroll", handleScroll)
   );
 </script>
-
-<style scoped>
-  /* Optional: Custom styles if needed */
-</style>

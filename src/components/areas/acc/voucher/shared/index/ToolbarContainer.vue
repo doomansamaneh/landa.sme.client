@@ -6,13 +6,32 @@
       :title="title"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
-      @reorder="operationStore.reorder(tableStore.reloadData)"
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
-    />
+      :menu-items="menuItems"
+      activation_
+      search-btn
+      sort-btn
+      advanced-search
+      @menu-item-click="handleMenuItemClick"
+    >
+      <template #advanced-search>
+        <advanced-search :grid-store="tableStore" />
+      </template>
+
+      <template #search-btn-icon>
+        <q-icon
+          v-if="searchStore.isFiltered.value"
+          name="filter_alt"
+        />
+        <q-icon v-else name="o_filter_alt" />
+      </template>
+    </toolbar-mobile>
   </template>
   <template v-else>
-    <toolbar-desktop :menu-items="menuItems" margin />
+    <toolbar-desktop
+      :menu-items="menuItems"
+      margin
+      @menu-item-click="handleMenuItemClick"
+    />
   </template>
 </template>
 
@@ -26,9 +45,11 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { useAccountingOperations } from "../../../_composables/useAccountingOperations";
   import { useVoucherDataGridMenu } from "../../../_menus/useVoucherDataGridMenu";
+  import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
 
-  import ToolbarMobile from "../../mobile/index/ToolBar.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
   import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import AdvancedSearch from "../../mobile/index/AdvancedSearch.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -38,6 +59,7 @@
   });
 
   const $q = useQuasar();
+  const searchStore = useVoucherSearch();
 
   const crudStore = useFormActions(props.baseRoute);
   const operationStore = useAccountingOperations();
@@ -82,4 +104,8 @@
   const menuItems = computed(() =>
     useVoucherDataGridMenu(context.value)
   );
+
+  const handleMenuItemClick = (item) => {
+    // Handle any additional menu item click logic here if needed
+  };
 </script>
