@@ -88,30 +88,27 @@
         />
         <span>دانلود الگوی بارگزاری</span>
       </q-btn>
-      <upload-area />
+      <upload-area ref="uploadArea" @upload="upload" />
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { baseUrl } from "src/constants";
   import { useRepositionModel } from "../../../_composables/useRepositionModel";
 
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
-  import CustomLink from "src/components/shared/buttons/CustomLink.vue";
-  import UploadArea from "./UploadArea.vue";
+  import UploadArea from "src/components/areas/_shared/common/UploadArea.vue";
 
   const props = defineProps({
     formStore: useRepositionModel,
   });
 
-  const file = ref(null);
-
   const model = computed(() => props.formStore.model.value);
-  const upload = async () => {
+  const upload = async (file) => {
     await props.formStore.importProduct("ImportProduct", file);
   };
 </script>

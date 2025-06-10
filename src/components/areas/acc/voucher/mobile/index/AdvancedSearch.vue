@@ -111,8 +111,8 @@
       </q-scroll-area>
     </q-card-section>
 
-    <q-card-section>
-      <div class="row q-pa-md q-gutter-sm">
+    <q-card-section class="q-px-none">
+      <div class="row items-center q-pa-md q-gutter-sm">
         <div class="col">
           <q-btn
             padding="10px 12px"

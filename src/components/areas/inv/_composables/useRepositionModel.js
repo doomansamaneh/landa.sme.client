@@ -63,7 +63,7 @@ export function useRepositionModel({ baseRoute }) {
     const formData = new FormData();
     formData.append("ImportFile", file.value);
     const responseData = await fetchWrapper.post(
-      `{baseRoute}/${action}`,
+      `inv/openingStock/${action}`,
       formData
     );
     addItemsFromResponse(responseData);

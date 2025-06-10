@@ -134,6 +134,32 @@ export function useWageModel({ baseRoute, preview }) {
     formItemStore.editItem(model.value.wageItems, index, item);
   };
 
+  async function importItems(file) {
+    if (!file?.value) {
+      alert("pls select a file");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("ImportFile", file.value);
+    const responseData = await fetchWrapper.post(
+      `prl/wage/importItems`,
+      formData
+    );
+    addItemsFromResponse(responseData);
+  }
+
+  function addItemsFromResponse(responseData) {
+    if (responseData?.data?.data) {
+      responseData.data.data.forEach((item) => {
+        const exists = model.value.wageItems.some(
+          (c) => c.customerId === item.customerId
+        );
+
+        if (!exists) pushNewRow(item);
+      });
+    }
+  }
+
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
@@ -154,6 +180,7 @@ export function useWageModel({ baseRoute, preview }) {
     exportTax,
     exportInsurance,
     deleteRow,
+    importItems,
     submitForm,
   };
 }
