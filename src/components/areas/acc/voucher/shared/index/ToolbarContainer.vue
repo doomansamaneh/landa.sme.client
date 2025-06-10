@@ -12,17 +12,7 @@
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      :table-store="tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      buttons
-      margin
-      @reorder="operationStore.reorder(tableStore.reloadData)"
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
-    />
+    <toolbar-desktop :menu-items="menuItems" margin />
   </template>
 </template>
 
@@ -31,12 +21,14 @@
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import { useFormActions } from "src/composables/useFormActions";
   import { useAccountingOperations } from "../../../_composables/useAccountingOperations";
+  import { useVoucherDataGridMenu } from "../../../_menus/useVoucherDataGridMenu";
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
-  import ToolbarDesktop from "../../desktop/index/ToolBarV2.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -68,4 +60,26 @@
       "landa-voucher"
     );
   }
+
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
+
+  const context = computed(() => ({
+    selectedIds: selectedIds.value,
+    activeRow: props.tableStore?.activeRow?.value,
+    reloadData: props.tableStore?.reloadData,
+    deleteBatch: crudStore?.deleteBatch,
+    deleteById: crudStore?.deleteById,
+    exportAll,
+    exportCurrentPage,
+    reorderHandler: () =>
+      operationStore.reorder(props.tableStore?.reloadData),
+    printHandler: () => downloadPdf(),
+    printBatchHandler: () => downloadBatchPdf,
+  }));
+
+  const menuItems = computed(() =>
+    useVoucherDataGridMenu(context.value)
+  );
 </script>

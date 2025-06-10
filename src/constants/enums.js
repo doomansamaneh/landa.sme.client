@@ -1,9 +1,9 @@
 import config from "../../app-setting.json";
 //localhost
-//export const baseUrl = config.baseUrl_;
+export const baseUrl = config.baseUrl_;
 
 //api.landa-sme.ir
-export const baseUrl = config.baseUrl;
+//export const baseUrl = config.baseUrl;
 
 export const dataType = {
   string: 0,
@@ -427,4 +427,10 @@ export const priceAdjustmentTarget = {
   sales: 1,
   purchase: 2,
   both: 3,
+};
+
+export const menuItemType = {
+  item: 1,
+  separator: 2,
+  moreItem: 3,
 };
