@@ -5,6 +5,7 @@
 <script setup>
   import { getCurrentInstance, onMounted } from "vue";
   import { useAuthStore } from "src/stores/auth-store";
+  import { vAccess } from "src/directives/access";
 
   const authStore = useAuthStore();
 
@@ -23,6 +24,9 @@
         // Uncomment to log specific warnings:
         // console.warn(`Warning: ${msg}\nTrace: ${trace}`);
       };
+
+      // Register the v-access directive
+      app.directive("access", vAccess);
     }
     authStore.checkUser();
   });

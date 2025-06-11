@@ -13,6 +13,7 @@
             <template v-if="item.type === menuItemType.item">
               <menu-button
                 v-if="item.visible"
+                v-access="item.permission"
                 :title="$t(`shared.labels.${item.label}`)"
                 :icon="item.icon"
                 :to="item.route"
@@ -22,19 +23,15 @@
               />
             </template>
             <template v-else-if="item.type === menuItemType.moreItem">
-              <q-btn
-                padding="6px 12px"
-                :class="item.class ?? 'text-body2'"
-                rounded
-                unelevated
+              <menu-button
+                v-if="item.visible"
+                :title="$t(`shared.labels.${item.label}`)"
+                :icon="item.icon"
+                :to="item.route"
+                :class="item.class"
+                :badge-count="item.badgeCount"
+                @click="handleMenuItemClick(item)"
               >
-                <q-icon
-                  size="20px"
-                  :name="item.icon"
-                  class="q-mr-sm"
-                />
-                {{ $t(`shared.labels.${item.label}`) }}
-
                 <q-menu class="border-radius-lg" cover>
                   <q-list dense padding style="width: 250px">
                     <template
@@ -48,6 +45,8 @@
                         "
                       >
                         <menu-item
+                          v-if="subItem.permission"
+                          v-access="subItem.permission"
                           :title="
                             $t(`shared.labels.${subItem.label}`)
                           "
@@ -65,7 +64,7 @@
                     </template>
                   </q-list>
                 </q-menu>
-              </q-btn>
+              </menu-button>
             </template>
           </template>
         </div>

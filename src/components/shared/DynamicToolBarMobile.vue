@@ -79,6 +79,29 @@
           >
             <q-icon name="more_vert" />
           </q-btn>
+          <q-btn
+            class="text-caption"
+            round
+            unelevated
+            no-caps
+            @click="
+              crudStore.deleteBatch(
+                selectedIds,
+                tableStore.reloadData
+              )
+            "
+          >
+            <q-icon name="o_delete" />
+          </q-btn>
+          <q-btn
+            :to="`/${baseRoute}/edit/${selectedIds}`"
+            class="text-caption"
+            round
+            unelevated
+            no-caps
+          >
+            <q-icon name="o_edit" />
+          </q-btn>
         </div>
 
         <q-space />
@@ -120,6 +143,7 @@
           <template v-if="item.type === menuItemType.item">
             <template v-if="item.visible">
               <menu-item
+                v-access="item.permission"
                 :title="$t(`shared.labels.${item.label}`)"
                 :icon="item.icon"
                 :to="item.route"
@@ -146,6 +170,7 @@
                 "
               >
                 <menu-item
+                  v-access="subItem.permission"
                   :title="$t(`shared.labels.${subItem.label}`)"
                   :icon="subItem.icon"
                   :to="subItem.route"
