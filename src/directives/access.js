@@ -22,6 +22,12 @@ export const vAccess = {
       "acc.voucher.export",
 
       "acc.operation.reorder",
+
+      "trs.payment.create",
+      "trs.payment.edit",
+      "trs.payment.delete",
+      "trs.payment.print",
+      "trs.payment.export",
     ]);
 
     const hasPermission = permissions.value.includes(
