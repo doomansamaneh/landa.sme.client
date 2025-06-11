@@ -7,7 +7,12 @@
       expand
       :class="isAtTop || inside ? '' : 'toolbar-glass-effect_'"
     >
-      <q-toolbar style="margin: 6px 0" :style="[toolbarPadding]">
+      <q-toolbar
+        :style="[
+          inside ? '' : 'margin-top: 6px; margin-bottom: 6px;',
+          toolbarPadding,
+        ]"
+      >
         <div class="row items-center q-gutter-sm">
           <template v-for="(item, index) in menuItems" :key="index">
             <template v-if="item.type === menuItemType.item">
@@ -69,6 +74,18 @@
             </template>
           </template>
         </div>
+
+        <template v-if="title">
+          <div class="q-space" />
+          <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
+            <slot name="header-title">
+              <span class="text-weight-700">
+                {{ title }}
+              </span>
+            </slot>
+          </span>
+          <go-back-link v-if="backButton" class="q-ml-md" />
+        </template>
       </q-toolbar>
     </q-page-sticky>
   </div>
@@ -79,12 +96,12 @@
   import { useQuasar } from "quasar";
   import { menuItemType } from "src/constants";
 
+  import GoBackLink from "./buttons/GoBackLink.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
 
   const $q = useQuasar();
   const isAtTop = ref(true);
-  const itemsNumber = ref(false);
 
   const props = defineProps({
     title: String,
@@ -126,9 +143,6 @@
     isAtTop.value =
       (window.scrollY || document.documentElement.scrollTop) === 0;
   };
-
-  const showItemsNumber = () => (itemsNumber.value = true);
-  const hideItemsNumber = () => (itemsNumber.value = false);
 
   onMounted(() => window.addEventListener("scroll", handleScroll));
   onUnmounted(() =>

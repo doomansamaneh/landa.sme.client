@@ -1,4 +1,3 @@
-import { menuItemType } from "src/constants";
 import { menuItems } from "src/constants/menuItems";
 
 export function useVoucherDataGridMenu(context) {
