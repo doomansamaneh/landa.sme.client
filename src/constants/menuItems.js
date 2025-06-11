@@ -46,6 +46,13 @@ export const menuItems = {
     icon: "o_refresh",
   },
 
+  more: {
+    type: menuItemType.moreItem,
+    label: "more",
+    icon: "more_horiz",
+    visible: true,
+  },
+
   print: {
     type: menuItemType.item,
     label: "print",

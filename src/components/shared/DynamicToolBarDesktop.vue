@@ -24,16 +24,16 @@
             <template v-else-if="item.type === menuItemType.moreItem">
               <q-btn
                 padding="6px 12px"
-                class="text-body2"
+                :class="item.class ?? 'text-body2'"
                 rounded
                 unelevated
               >
                 <q-icon
                   size="20px"
-                  name="more_horiz"
+                  :name="item.icon"
                   class="q-mr-sm"
                 />
-                {{ $t("shared.labels.more") }}
+                {{ $t(`shared.labels.${item.label}`) }}
 
                 <q-menu class="border-radius-lg" cover>
                   <q-list dense padding style="width: 250px">

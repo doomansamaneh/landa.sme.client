@@ -28,28 +28,17 @@ export function useVoucherDataGridMenu(context) {
       permission: "acc.voucher.delete",
       badgeCount: context.selectedIds?.length,
       handler: () => {
-        if (hasSelection && context.deleteBatch) {
-          context.deleteBatch(
-            context.selectedIds,
-            context.reloadData
-          );
-        } else if (hasId && context.deleteById) {
-          context.deleteById(
-            context.activeRow.id,
-            context.reloadData
-          );
-        }
+        if (hasSelection) context.deleteBatch?.();
+        else if (hasId) context.deleteById?.();
       },
       visible: hasId || hasSelection,
     },
     {
-      type: menuItemType.moreItem,
-      label: "more",
-      icon: "o_more",
+      ...menuItems.more,
       subItems: [
         {
           ...menuItems.refresh,
-          handler: () => context.reloadData && context.reloadData(),
+          handler: () => context.reloadData?.(),
         },
         {
           ...menuItems.defaultItem,
@@ -57,36 +46,29 @@ export function useVoucherDataGridMenu(context) {
           icon: "o_cached",
           permission: "acc.operation.reorder",
           addSeparator: true,
-          handler: () =>
-            context.reorderHandler && context.reorderHandler(),
+          handler: () => context.reorder?.(),
         },
         {
           ...menuItems.print,
           permission: "acc.voucher.print",
-          handler: () => {
-            if (context.printHandler && context.activeRow) {
-              context.printHandler(context.activeRow.id);
-            }
-          },
+          handler: () => context.print?.(),
           visible: hasId,
         },
         {
           ...menuItems.printBatch,
           permission: "acc.voucher.print",
           addSeparator: true,
-          handler: () =>
-            context.printBatchHandler && context.printBatchHandler(),
+          handler: () => context.printBatch?.(),
         },
         {
           ...menuItems.exportExcel,
           permission: "acc.voucher.export",
-          handler: () => context.exportAll && context.exportAll(),
+          handler: () => context.exportAll?.(),
         },
         {
           ...menuItems.exportExcelCurrentPage,
           permission: "acc.voucher.export",
-          handler: () =>
-            context.exportCurrentPage && context.exportCurrentPage(),
+          handler: () => context.exportCurrentPage?.(),
         },
       ],
     },

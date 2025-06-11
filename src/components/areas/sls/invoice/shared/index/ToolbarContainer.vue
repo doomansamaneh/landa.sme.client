@@ -3,33 +3,14 @@
     <toolbar-mobile
       :title="title"
       :table-store="tableStore"
-      :crud-store="crudStore"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
-      buttons
       margin
-      @cancel-invoice="cancelInvoice"
-      @reorder="reorder"
-      @edit-batch="editBatch"
-      @download-pdf="downloadPdf"
-      @download-batch-pdf="downloadBatchPdf"
+      :menu-items="menuItems"
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      :title="title"
-      :table-store="tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      buttons
-      margin
-      @cancel-invoice="cancelInvoice"
-      @reorder="reorder"
-      @edit-batch="editBatch"
-      @download-pdf="downloadPdf"
-      @download-batch-pdf="downloadBatchPdf"
-    />
+    <toolbar-desktop :title="title" :menu-items="menuItems" margin />
   </template>
 </template>
 
@@ -38,12 +19,13 @@
   import { useDialog } from "src/composables/useDialog";
   import { downloadManager } from "src/helpers";
   import { invoiceFormType } from "src/constants";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
   import { useDataTable } from "src/composables/useDataTable";
-  import { useFormActions } from "src/composables/useFormActions";
   import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
+  import { useInvoiceDataGridMenu } from "../../../_menus/useInvoiceDataGridMenu";
 
-  import ToolbarDesktop from "../../desktop/index/ToolbarView.vue";
-  import ToolbarMobile from "../../mobile/index/_ToolBar.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
 
   import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
   import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderForm.vue";
@@ -57,25 +39,31 @@
   const dialogStore = useDialog();
   const baseRoute = "sls/Invoice";
 
-  const crudStore = useFormActions(baseRoute);
   const formStore = useInvoiceModel({ baseRoute: baseRoute });
+
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
 
   const selectedIds = computed(() =>
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function cancelInvoice(id) {
-    formStore.cancelInvoice(id, reloadData);
+  function cancelInvoice() {
+    formStore.cancelInvoice(
+      props.tableStore?.activeRow?.value?.id,
+      reloadData
+    );
   }
 
-  function downloadPdf(id) {
+  function print() {
     downloadManager.downloadGet(
-      `${baseRoute}/generatePdf/${id}`,
+      `${baseRoute}/generatePdf/${props.tableStore?.activeRow?.value?.id}`,
       "landa-invoice"
     );
   }
 
-  function downloadBatchPdf() {
+  function printBatch() {
     downloadManager.downloadPost(
       `${baseRoute}/GenerateBatchPdf`,
       props.tableStore.pagination.value,
@@ -112,4 +100,28 @@
   function reloadData() {
     props.tableStore.reloadData();
   }
+
+  const context = computed(() => ({
+    selectedIds: selectedIds.value,
+    activeRow: props.tableStore?.activeRow?.value,
+    exportAll,
+    exportCurrentPage,
+    reorder,
+    editBatch,
+    reloadData,
+    cancelInvoice,
+    print,
+    printBatch,
+    deleteBatch: () =>
+      formStore.crudStore.deleteBatch(selectedIds.value, reloadData),
+    deleteById: () =>
+      formStore.crudStore.deleteById(
+        props.tableStore?.activeRow?.value?.id,
+        reloadData
+      ),
+  }));
+
+  const menuItems = computed(() =>
+    useInvoiceDataGridMenu(context.value)
+  );
 </script>

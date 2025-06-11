@@ -67,14 +67,14 @@
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function downloadPdf() {
+  function print() {
     downloadManager.downloadGet(
       `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
       "landa-voucher"
     );
   }
 
-  function downloadBatchPdf() {
+  function printBatch() {
     downloadManager.downloadPost(
       `${props.baseRoute}/GenerateBatchPdf`,
       props.tableStore.pagination.value,
@@ -89,15 +89,23 @@
   const context = computed(() => ({
     selectedIds: selectedIds.value,
     activeRow: props.tableStore?.activeRow?.value,
-    reloadData: props.tableStore?.reloadData,
-    deleteBatch: crudStore?.deleteBatch,
-    deleteById: crudStore?.deleteById,
     exportAll,
     exportCurrentPage,
-    reorderHandler: () =>
+    print,
+    printBatch,
+    reloadData: () => props.tableStore?.reloadData,
+    deleteBatch: () =>
+      crudStore.deleteBatch(
+        selectedIds.value,
+        props.tableStore?.reloadData
+      ),
+    deleteById: () =>
+      crudStore.deleteById(
+        props.tableStore?.activeRow?.value?.id,
+        props.tableStore?.reloadData
+      ),
+    reorder: () =>
       operationStore.reorder(props.tableStore?.reloadData),
-    printHandler: () => downloadPdf(),
-    printBatchHandler: () => downloadBatchPdf,
   }));
 
   const menuItems = computed(() =>

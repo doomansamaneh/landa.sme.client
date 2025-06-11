@@ -79,29 +79,6 @@
           >
             <q-icon name="more_vert" />
           </q-btn>
-          <q-btn
-            class="text-caption"
-            round
-            unelevated
-            no-caps
-            @click="
-              crudStore.deleteBatch(
-                selectedIds,
-                tableStore.reloadData
-              )
-            "
-          >
-            <q-icon name="o_delete" />
-          </q-btn>
-          <q-btn
-            :to="`/${baseRoute}/edit/${selectedIds}`"
-            class="text-caption"
-            round
-            unelevated
-            no-caps
-          >
-            <q-icon name="o_edit" />
-          </q-btn>
         </div>
 
         <q-space />
