@@ -19,6 +19,7 @@
       :class="
         isShakingComputed ? 'no-pointer-events' : 'pointer-events-all'
       "
+      @click.stop
     >
       <q-card-section>
         <widget-title :label="title" icon="o_inbox" />

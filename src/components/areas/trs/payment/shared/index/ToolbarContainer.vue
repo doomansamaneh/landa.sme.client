@@ -6,20 +6,16 @@
       :title="title"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
+      :menu-items="menuItems"
+      sort-btn
+      @menu-item-click="handleMenuItemClick"
     />
   </template>
   <template v-else>
     <toolbar-desktop
-      :table-store="tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      buttons
+      :menu-items="menuItems"
+      @menu-item-click="handleMenuItemClick"
       margin
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
     />
   </template>
 </template>
@@ -29,11 +25,13 @@
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import { useFormActions } from "src/composables/useFormActions";
+  import { usePaymentDataGridMenu } from "../../../_menus/usePaymentDataGridMenu";
 
-  import ToolbarMobile from "../../mobile/index/ToolBar.vue";
-  import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -64,4 +62,36 @@
       "landa-payment"
     );
   }
+
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
+
+  const context = computed(() => ({
+    selectedIds: selectedIds.value,
+    activeRow: props.tableStore?.activeRow?.value,
+    exportAll,
+    exportCurrentPage,
+    print: downloadPdf,
+    printBatch: downloadBatchPdf,
+    reloadData: () => props.tableStore?.reloadData,
+    deleteBatch: () =>
+      crudStore.deleteBatch(
+        selectedIds.value,
+        props.tableStore?.reloadData
+      ),
+    deleteById: () =>
+      crudStore.deleteById(
+        props.tableStore?.activeRow?.value?.id,
+        props.tableStore?.reloadData
+      ),
+  }));
+
+  const menuItems = computed(() =>
+    usePaymentDataGridMenu(context.value)
+  );
+
+  const handleMenuItemClick = (item) => {
+    // Handle any additional menu item click logic here if needed
+  };
 </script>

@@ -8,6 +8,7 @@
     :to="to"
     @click="click"
   >
+  <slot></slot>
     <q-icon v-if="icon" size="20px" :name="icon" class="q-mr-xs" />
     {{ title }}
     <q-badge v-if="badgeCount" floating>

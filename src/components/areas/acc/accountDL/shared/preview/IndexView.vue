@@ -1,12 +1,8 @@
 <template>
-  <!-- <tool-bar :inside="inside" buttons :title="title" back-button>
-    <template #buttons>
-      <menu-button-print @click="printStore.handlePrint()" />
-    </template>
-  </tool-bar> -->
+  <tool-bar margin :inside="inside" title="حساب تفصیلی" back-button />
 
   <q-card flat class="bordered shadow overflow-hidden">
-    <card-title :title="title" icon="o_repeat" />
+    <card-title title="حساب تفصیلی" icon="o_repeat" />
 
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>
@@ -38,7 +34,7 @@
   import { sqlOperator } from "src/constants";
   // import { useDataTable } from "src/composables/useDataTable";
 
-  // import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
