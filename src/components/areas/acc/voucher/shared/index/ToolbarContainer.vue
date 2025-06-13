@@ -37,17 +37,18 @@
 <script setup>
   import { computed } from "vue";
   import { useQuasar } from "quasar";
+  import { useDialog } from "src/composables/useDialog";
   import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import { useFormActions } from "src/composables/useFormActions";
-  import { useAccountingOperations } from "../../../_composables/useAccountingOperations";
   import { useVoucherDataGridMenu } from "../../../_menus/useVoucherDataGridMenu";
   import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
 
   import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
   import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ReorderForm from "../forms/ReorderForm.vue";
   import AdvancedSearch from "../../mobile/index/AdvancedSearch.vue";
 
   const props = defineProps({
@@ -59,9 +60,8 @@
 
   const $q = useQuasar();
   const searchStore = useVoucherSearch();
-
+  const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
-  const operationStore = useAccountingOperations();
 
   const selectedIds = computed(() =>
     props.tableStore.selectedRows?.value.map((item) => item.id)
@@ -72,6 +72,17 @@
       `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
       "landa-voucher"
     );
+  }
+
+  function reorder() {
+    dialogStore.openDialog({
+      title: `shared.labels.reorder`,
+      component: ReorderForm,
+      actionBar: true,
+      okCallback: async (response) => {
+        await props.tableStore?.reloadData();
+      },
+    });
   }
 
   function printBatch() {
@@ -93,6 +104,7 @@
     exportCurrentPage,
     print,
     printBatch,
+    reorder,
     reloadData: () => props.tableStore?.reloadData,
     deleteBatch: () =>
       crudStore.deleteBatch(
@@ -104,8 +116,6 @@
         props.tableStore?.activeRow?.value?.id,
         props.tableStore?.reloadData
       ),
-    reorder: () =>
-      operationStore.reorder(props.tableStore?.reloadData),
   }));
 
   const menuItems = computed(() =>

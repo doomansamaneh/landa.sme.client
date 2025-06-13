@@ -46,20 +46,29 @@ export function useAccountingOperations() {
     operationStatusModel.value = response.data.data;
   }
 
-  async function reorder(callBack) {
-    confirmDialog({
-      title: t("shared.labels.reorder"),
-      message: t("shared.labels.reorderMessage"),
-      ok: t("shared.labels.reorder"),
-      okColor: "blue-7",
-      onOk: async () => {
-        const response = await fetchWrapper.post(
-          `acc/operation/reorder`
-        );
-        notify(response.data);
-        if (callBack) callBack();
-      },
-    });
+  // async function reorder(model, callBack) {
+  //   confirmDialog({
+  //     title: t("shared.labels.reorder"),
+  //     message: t("shared.labels.reorderMessage"),
+  //     ok: t("shared.labels.reorder"),
+  //     okColor: "blue-7",
+  //     onOk: async () => {
+  //       const response = await fetchWrapper.post(
+  //         `acc/operation/reorder`
+  //       );
+  //       notify(response.data);
+  //       if (callBack) callBack();
+  //     },
+  //   });
+  // }
+
+  async function reorder(model, callBack) {
+    const response = await fetchWrapper.post(
+      `acc/operation/reorder`,
+      model.value
+    );
+    notify(response.data);
+    if (callBack) callBack();
   }
 
   async function calculateCogs(callBack) {

@@ -1,42 +1,32 @@
 <template>
   <template v-if="$q.screen.xs">
     <toolbar-mobile
-      :table-store="tableStore"
-      :crud-store="crudStore"
       :title="title"
+      :table-store="tableStore"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
-      @edit-batch="editBatch"
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
+      margin
+      :menu-items="menuItems"
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      :title="title"
-      :table-store="tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      buttons
-      margin
-      @edit-batch="editBatch"
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
-    />
+    <toolbar-desktop :title="title" :menu-items="menuItems" margin />
   </template>
 </template>
 
 <script setup>
   import { computed } from "vue";
-  import { useDataTable } from "src/composables/useDataTable";
+  import { useDialog } from "src/composables/useDialog";
   import { downloadManager } from "src/helpers";
   import { invoiceFormType } from "src/constants";
-  import { useDialog } from "src/composables/useDialog";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
+  import { useDataTable } from "src/composables/useDataTable";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useQuoteDataGridMenu } from "../../../_menus/useQuoteDataGridMenu";
 
-  import ToolbarMobile from "../../mobile/index/ToolBar.vue";
-  import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+
   import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
 
   const props = defineProps({
@@ -45,25 +35,20 @@
     tableStore: useDataTable,
   });
 
-  const baseRoute = "sls/quote";
   const dialogStore = useDialog();
-  const crudStore = useFormActions(baseRoute);
+  const baseRoute = "sls/quote";
+  const crudStore = useFormActions({ baseRoute: baseRoute });
+  const { exportAll, exportCurrentPage } = useDataTableExport(
+    props.tableStore
+  );
 
   const selectedIds = computed(() =>
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function downloadPdf() {
+  function print() {
     downloadManager.downloadGet(
-      `${baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-quote"
-    );
-  }
-
-  function downloadBatchPdf() {
-    downloadManager.downloadPost(
-      `${baseRoute}/GenerateBatchPdf`,
-      props.tableStore.pagination.value,
+      `${baseRoute}/generatePdf/${props.tableStore?.activeRow?.value?.id}`,
       "landa-quote"
     );
   }
@@ -82,4 +67,29 @@
       },
     });
   }
+
+  function reloadData() {
+    props.tableStore.reloadData();
+  }
+
+  const context = computed(() => ({
+    selectedIds: selectedIds.value,
+    activeRow: props.tableStore?.activeRow?.value,
+    exportAll,
+    exportCurrentPage,
+    editBatch,
+    reloadData,
+    print,
+    deleteBatch: () =>
+      crudStore.deleteBatch(selectedIds.value, reloadData),
+    deleteById: () =>
+      crudStore.deleteById(
+        props.tableStore?.activeRow?.value?.id,
+        reloadData
+      ),
+  }));
+
+  const menuItems = computed(() =>
+    useQuoteDataGridMenu(context.value)
+  );
 </script>

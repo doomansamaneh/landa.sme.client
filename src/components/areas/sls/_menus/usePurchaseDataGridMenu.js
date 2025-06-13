@@ -1,7 +1,7 @@
 import { menuItemType } from "src/constants";
 import { menuItems } from "src/constants/menuItems";
 
-export function useInvoiceDataGridMenu(context) {
+export function usePurchaseDataGridMenu(context) {
   const hasId = !!context.activeRow?.id;
   const hasSelection = context.selectedIds?.length > 0;
 
@@ -9,49 +9,49 @@ export function useInvoiceDataGridMenu(context) {
     {
       ...menuItems.create,
       type: menuItemType.moreItem,
-      permission: "sls.invoice.create",
+      permission: "sls.purchase.create",
       subItems: [
         {
           ...menuItems.defaultItem,
           label: "create",
           icon: "o_add",
-          permission: "sls.invoice.create",
-          route: "/sls/invoice/create",
+          permission: "sls.purchase.create",
+          route: "/sls/purchase/create",
         },
         {
           ...menuItems.defaultItem,
           label: "createV2",
           icon: "o_bolt",
-          permission: "sls.invoice.create",
-          route: "/sls/invoice/createV2",
+          permission: "sls.purchase.create",
+          route: "/sls/purchase/createV2",
           //addSeparator: true,
         },
       ],
     },
     {
       ...menuItems.edit,
-      permission: "sls.invoice.edit",
-      route: `/sls/invoice/edit/${context.activeRow?.id}`,
+      permission: "sls.purchase.edit",
+      route: `/sls/purchase/edit/${context.activeRow?.id}`,
       visible: hasId,
     },
     {
       ...menuItems.defaultItem,
       label: "editBatch",
       icon: "o_edit",
-      permission: "sls.invoice.edit",
+      permission: "sls.purchase.edit",
       badgeCount: context.selectedIds?.length,
       handler: () => context.editBatch?.(),
       visible: hasSelection,
     },
     {
       ...menuItems.copy,
-      permission: "sls.invoice.create",
-      route: `/sls/invoice/copy/${context.activeRow?.id ?? ""}`,
+      permission: "sls.purchase.create",
+      route: `/sls/purchase/copy/${context.activeRow?.id ?? ""}`,
       visible: hasId,
     },
     {
       ...menuItems.delete,
-      permission: "sls.invoice.delete",
+      permission: "sls.purchase.delete",
       badgeCount: context.selectedIds?.length,
       handler: () => {
         if (hasSelection) context.deleteBatch?.();
@@ -65,62 +65,54 @@ export function useInvoiceDataGridMenu(context) {
         {
           ...menuItems.refresh,
           handler: () => context.reloadData?.(),
-        },
-        {
-          ...menuItems.defaultItem,
-          label: "reorder",
-          icon: "o_cached",
-          permission: "acc.operation.reorder",
           addSeparator: true,
-          handler: () => context.reorder?.(),
         },
         {
           ...menuItems.defaultItem,
           label: "cancelInvoice",
           icon: "o_close",
-          permission: "sls.invoice.cancelInvoice",
-          addSeparator: true,
+          permission: "sls.purchase.cancelInvoice",
           handler: () => context.cancelInvoice?.(),
           visible: hasId,
         },
         {
           ...menuItems.defaultItem,
-          label: "copyToPurchase",
+          label: "copyToSales",
           icon: "o_shopping_cart",
-          permission: "sls.purchase.create",
-          route: `/sls/purchase/createFromInvoice/${context.activeRow?.id}`,
+          permission: "sls.invoice.create",
+          route: `/sls/invioce/CreateFromPurchase/${context.activeRow?.id}`,
           visible: hasId,
         },
         {
           ...menuItems.defaultItem,
-          label: "salesReturn",
+          label: "purchaseReturn",
           icon: "o_undo",
-          permission: "sls.salesReturn.create",
-          route: `/sls/salesReturn/createFromInvoice/${context.activeRow?.id}`,
+          permission: "sls.purchaseReturn.create",
+          route: `/sls/purchaseReturn/createFromPurchase/${context.activeRow?.id}`,
           visible: hasId,
           addSeparator: true,
         },
 
         {
           ...menuItems.print,
-          permission: "sls.invoice.print",
+          permission: "sls.purchase.print",
           handler: () => context.print?.(),
           visible: hasId,
         },
         {
           ...menuItems.printBatch,
-          permission: "sls.invoice.print",
+          permission: "sls.purchase.print",
           addSeparator: true,
           handler: () => context.printBatch?.(),
         },
         {
           ...menuItems.exportExcel,
-          permission: "sls.invoice.export",
+          permission: "sls.purchase.export",
           handler: () => context.exportAll?.(),
         },
         {
           ...menuItems.exportExcelCurrentPage,
-          permission: "sls.invoice.export",
+          permission: "sls.purchase.export",
           handler: () => context.exportCurrentPage?.(),
         },
       ],

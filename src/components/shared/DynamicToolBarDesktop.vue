@@ -18,7 +18,7 @@
             <template v-if="item.type === menuItemType.item">
               <menu-button
                 v-if="item.visible"
-                v-access="item.permission"
+                v-access_="item.permission"
                 :title="$t(`shared.labels.${item.label}`)"
                 :icon="item.icon"
                 :to="item.route"
@@ -30,6 +30,7 @@
             <template v-else-if="item.type === menuItemType.moreItem">
               <menu-button
                 v-if="item.visible"
+                v-access_="item.permission"
                 :title="$t(`shared.labels.${item.label}`)"
                 :icon="item.icon"
                 :to="item.route"
@@ -50,8 +51,7 @@
                         "
                       >
                         <menu-item
-                          v-if="subItem.permission"
-                          v-access="subItem.permission"
+                          v-access_="subItem.permission"
                           :title="
                             $t(`shared.labels.${subItem.label}`)
                           "

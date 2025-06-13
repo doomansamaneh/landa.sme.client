@@ -28,7 +28,7 @@
   import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
 
   import EditBatch from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
-  import ReorderInvoice from "src/components/areas/sls/invoice/shared/forms/ReorderForm.vue";
+  import ReorderForm from "src/components/areas/sls/invoice/shared/forms/ReorderForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -89,7 +89,7 @@
   function reorder() {
     dialogStore.openDialog({
       title: `shared.labels.reorder`,
-      component: ReorderInvoice,
+      component: ReorderForm,
       actionBar: true,
       okCallback: async (response) => {
         await props.tableStore.reloadData();

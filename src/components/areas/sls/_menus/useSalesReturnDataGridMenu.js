@@ -1,31 +1,57 @@
 import { menuItemType } from "src/constants";
 import { menuItems } from "src/constants/menuItems";
 
-export function useVoucherDataGridMenu(context) {
+export function useSalesReturnDataGridMenu(context) {
   const hasId = !!context.activeRow?.id;
   const hasSelection = context.selectedIds?.length > 0;
 
   return [
     {
       ...menuItems.create,
-      permission: "acc.voucher.create",
-      route: "/acc/voucher/create",
+      type: menuItemType.moreItem,
+      permission: "sls.salesReturn.create",
+      subItems: [
+        {
+          ...menuItems.defaultItem,
+          label: "create",
+          icon: "o_add",
+          permission: "sls.salesReturn.create",
+          route: "/sls/salesReturn/create",
+        },
+        {
+          ...menuItems.defaultItem,
+          label: "createV2",
+          icon: "o_bolt",
+          permission: "sls.salesReturn.create",
+          route: "/sls/salesReturn/createV2",
+          //addSeparator: true,
+        },
+      ],
     },
     {
       ...menuItems.edit,
-      permission: "acc.voucher.edit",
-      route: `/acc/voucher/edit/${context.activeRow?.id ?? ""}`,
+      permission: "sls.salesReturn.edit",
+      route: `/sls/salesReturn/edit/${context.activeRow?.id}`,
       visible: hasId,
     },
     {
+      ...menuItems.defaultItem,
+      label: "editBatch",
+      icon: "o_edit",
+      permission: "sls.salesReturn.edit",
+      badgeCount: context.selectedIds?.length,
+      handler: () => context.editBatch?.(),
+      visible: hasSelection,
+    },
+    {
       ...menuItems.copy,
-      permission: "acc.voucher.create",
-      route: `/acc/voucher/copy/${context.activeRow?.id ?? ""}`,
+      permission: "sls.salesReturn.create",
+      route: `/sls/salesReturn/copy/${context.activeRow?.id ?? ""}`,
       visible: hasId,
     },
     {
       ...menuItems.delete,
-      permission: "acc.voucher.delete",
+      permission: "sls.salesReturn.delete",
       badgeCount: context.selectedIds?.length,
       handler: () => {
         if (hasSelection) context.deleteBatch?.();
@@ -39,35 +65,28 @@ export function useVoucherDataGridMenu(context) {
         {
           ...menuItems.refresh,
           handler: () => context.reloadData?.(),
-        },
-        {
-          ...menuItems.defaultItem,
-          label: "reorder",
-          icon: "o_cached",
-          permission: "acc.operation.reorder",
           addSeparator: true,
-          handler: () => context.reorder?.(),
         },
         {
           ...menuItems.print,
-          permission: "acc.voucher.print",
+          permission: "sls.salesReturn.print",
           handler: () => context.print?.(),
           visible: hasId,
         },
         {
           ...menuItems.printBatch,
-          permission: "acc.voucher.print",
+          permission: "sls.salesReturn.print",
           addSeparator: true,
           handler: () => context.printBatch?.(),
         },
         {
           ...menuItems.exportExcel,
-          permission: "acc.voucher.export",
+          permission: "sls.salesReturn.export",
           handler: () => context.exportAll?.(),
         },
         {
           ...menuItems.exportExcelCurrentPage,
-          permission: "acc.voucher.export",
+          permission: "sls.salesReturn.export",
           handler: () => context.exportCurrentPage?.(),
         },
       ],

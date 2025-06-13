@@ -42,7 +42,7 @@
       <q-card
         v-ripple
         class="fit bordered q-radius-lg q-hoverable cursor-pointer"
-        @click="operationStore.reorder()"
+        @click="reorder()"
       >
         <span class="q-focus-helper" />
         <q-card-section class="q-pa-lg">
@@ -189,15 +189,28 @@
 <script setup>
   import { useRouter } from "vue-router";
   import { useDialog } from "src/composables/useDialog";
-  import { voucherType } from "src/constants";
   import { useAccountingOperations } from "../../_composables/useAccountingOperations";
+  import { useVoucherState } from "../../_composables/useVoucherState";
 
+  import ReorderForm from "../../voucher/shared/forms/ReorderForm.vue";
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
   import CloseAccountForm from "./CloseAccountForm.vue";
 
   const router = useRouter();
   const dialogStore = useDialog();
   const operationStore = useAccountingOperations();
+  const voucherStore = useVoucherState();
+
+  function reorder() {
+    dialogStore.openDialog({
+      title: `shared.labels.reorder`,
+      component: ReorderForm,
+      actionBar: true,
+      okCallback: async (response) => {
+        voucherStore.reset();
+      },
+    });
+  }
 
   const openBookCallback = (response) => {
     if (!response?.data) {
