@@ -36,12 +36,12 @@
 </template>
 
 <script setup>
+  import { invoiceTemplate } from "src/constants";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import MasterSectionStandard from "./standard/_MasterSection.vue";
   import MasterSectionSimple from "./simple/_MasterSection.vue";
   import DetailSection from "../../shared/preview/_DetailSection.vue";
-  import { invoiceTemplate } from "src/constants";
 
   const props = defineProps({
     model: Object,
@@ -57,11 +57,4 @@
   });
 
   const appConfigStore = useAppConfigModel();
-
-  // const invoiceStore = useInvoiceState();
-
-  // function deleteCallBack() {
-  //   invoiceStore.state.firstLoad.value = false;
-  //   router.back();
-  // }
 </script>

@@ -1,17 +1,5 @@
 <template>
-  <tool-bar
-    :inside="inside"
-    :title="title"
-    :base-route="baseRoute"
-    :model="model"
-  >
-    <template #toolbar-custom-desktop>
-      <slot name="toolbar-custom-desktop" :model="model"></slot>
-    </template>
-    <template #toolbar-custom-mobile>
-      <slot name="toolbar-custom-mobile" :model="model"></slot>
-    </template>
-  </tool-bar>
+  <slot name="toolbar-container" :model="model"></slot>
 
   <mobile
     v-if="$q.screen.xs"
@@ -67,7 +55,6 @@
 
   import Mobile from "../../mobile/preview/IndexView.vue";
   import Desktop from "../../desktop/preview/IndexView.vue";
-  import ToolBar from "./ToolBar.vue";
   import DetailSection from "./_DetailSection.vue";
 
   const props = defineProps({

@@ -333,6 +333,8 @@
       "back": "بازگشت",
       "print": "چاپ",
       "printBatch": "چاپ دسته‌ای",
+      "printAddress": "چاپ برچسب نشانی",
+      "printInventoryExit": "چاپ خروج از انبار",
       "copyToPurchase": "کپی به فاکتور خرید",
       "copyToSales": "کپی به فاکتور فروش",
       "cancelInvoice": "ابطال فاکتور",
