@@ -23,6 +23,7 @@
           $t('shared.labels.invoice')
         "
         :model="model"
+        :inside="inside"
         base-route="sls/invoice"
       />
     </template>
@@ -37,6 +38,8 @@
 
   const props = defineProps({
     title: String,
+    inside: Boolean,
+    backButton: Boolean,
   });
 
   const appConfigStore = useAppConfigModel();

@@ -4,7 +4,6 @@
     :inside="inside"
     :margin="!inside"
     :title="title"
-    back-button
     :menu-items="menuItems"
   />
   <tool-bar-mobile
@@ -35,6 +34,7 @@
     model: Object,
     title: String,
     inside: Boolean,
+    backButton: Boolean,
     margin: Boolean,
     baseRoute: String,
     crudStore: Object,
