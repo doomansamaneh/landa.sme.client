@@ -12,12 +12,14 @@
     :title="title"
     :model="model"
     :crud-store="crudStore"
+    :table-store="tableStore"
     :base-route="baseRoute"
     :menu-items="menuItems"
   />
 </template>
 
 <script setup>
+  import { useDataTable } from "src/composables/useDataTable";
   import { usePreviewToolbar } from "src/components/areas/_shared/menus/usePreviewToolbar";
   import { useSalesReturnPreviewMenu } from "../../../_menus/useSalesReturnPreviewMenu";
   import { useSalesReturnState } from "../../../_composables/useSalesReturnState";
@@ -34,6 +36,9 @@
     crudStore: Object,
   });
 
+  const tableStore = useDataTable({
+    dataSource: "sls/salesReturn/getGridData",
+  });
   const salesReturnStore = useSalesReturnState();
 
   const { menuItems } = usePreviewToolbar({

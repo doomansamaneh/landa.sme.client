@@ -12,12 +12,15 @@
     :title="title"
     :model="model"
     :crud-store="crudStore"
+    :table-store="tableStore"
     :base-route="baseRoute"
     :menu-items="menuItems"
   />
 </template>
 
 <script setup>
+  import { useDataTable } from "src/composables/useDataTable";
+
   import { usePreviewToolbar } from "src/components/areas/_shared/menus/usePreviewToolbar";
   import { usePurchaseState } from "../../../_composables/usePurchaseState";
   import { usePurchasePreviewMenu } from "../../../_menus/usePurchasePreviewMenu";
@@ -32,6 +35,10 @@
     margin: Boolean,
     baseRoute: String,
     crudStore: Object,
+  });
+
+  const tableStore = useDataTable({
+    dataSource: "sls/purchase/getGridData",
   });
 
   const purchaseStore = usePurchaseState();

@@ -12,12 +12,14 @@
     :title="title"
     :model="model"
     :crud-store="crudStore"
+    :table-store="tableStore"
     :base-route="baseRoute"
     :menu-items="menuItems"
   />
 </template>
 
 <script setup>
+  import { useDataTable } from "src/composables/useDataTable";
   import { usePreviewToolbar } from "src/components/areas/_shared/menus/usePreviewToolbar";
   import { useQuotePreviewMenu } from "../../../_menus/useQuotePreviewMenu";
   import { useQuoteState } from "../../../_composables/useQuoteState";
@@ -32,6 +34,10 @@
     margin: Boolean,
     baseRoute: String,
     crudStore: Object,
+  });
+
+  const tableStore = useDataTable({
+    dataSource: "sls/quote/getGridData",
   });
 
   const quoteStore = useQuoteState();

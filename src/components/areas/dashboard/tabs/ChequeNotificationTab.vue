@@ -9,17 +9,15 @@
 
   <div
     class="row q-col-gutter-lg"
-    :style="
-      $q.screen.gt.sm ? 'padding-top: 38px' : 'padding-top: 24px'
-    "
+    :style="$q.screen.gt.sm ? 'padding-top: 38px' : 'padding-top: 0'"
   >
-    <div class="col-md-12">
+    <div class="col-12">
       <q-card bordered>
         <card-title title="چک‌های دریافتی" icon="o_receipt" />
         <check-data-grid :filter-expression="receiptFilter" />
       </q-card>
     </div>
-    <div class="col-md-12">
+    <div class="col-12">
       <q-card bordered>
         <card-title title="چک‌های پرداختی" icon="o_payment" />
         <check-data-grid :filter-expression="payedFilter" />
