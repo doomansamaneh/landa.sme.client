@@ -18,7 +18,7 @@
             <template v-if="item.type === menuItemType.item">
               <menu-button
                 v-if="item.visible"
-                v-access_="item.permission"
+                v-access="item.permission"
                 :title="$t(`shared.labels.${item.label}`)"
                 :icon="item.icon"
                 :to="item.route"
@@ -30,7 +30,7 @@
             <template v-else-if="item.type === menuItemType.moreItem">
               <menu-button
                 v-if="item.visible"
-                v-access_="item.permission"
+                v-access="item.permission"
                 :title="$t(`shared.labels.${item.label}`)"
                 :icon="item.icon"
                 :to="item.route"
@@ -51,7 +51,7 @@
                         "
                       >
                         <menu-item
-                          v-access_="subItem.permission"
+                          v-access="subItem.permission"
                           :title="
                             $t(`shared.labels.${subItem.label}`)
                           "
@@ -74,7 +74,7 @@
           </template>
         </div>
 
-        <template v-if="title">
+        <template v-if="!inside && title">
           <div class="q-space" />
           <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
             <slot name="header-title">
@@ -83,7 +83,7 @@
               </span>
             </slot>
           </span>
-          <go-back-link v-if="backButton" class="q-ml-md" />
+          <go-back-link v-if="!inside" class="q-ml-md" />
         </template>
       </q-toolbar>
     </q-page-sticky>
@@ -104,7 +104,6 @@
 
   const props = defineProps({
     title: String,
-    backButton: Boolean,
     inside: Boolean,
     margin: Boolean,
     menuItems: Array,

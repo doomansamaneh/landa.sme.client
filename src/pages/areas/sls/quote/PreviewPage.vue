@@ -1,5 +1,5 @@
 <template>
-  <preview toolbar />
+  <preview toolbar :title="$t('shared.labels.quote')" />
 </template>
 
 <script setup>

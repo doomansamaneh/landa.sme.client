@@ -1,7 +1,7 @@
 <template>
-  <preview toolbar :title="$t('main-menu-items.Sls_Purchase_View')" />
+  <preview toolbar :title="$t('shared.labels.purchase')" />
 </template>
 
 <script setup>
-import Preview from "components/areas/sls/purchase/shared/preview/IndexView.vue";
+  import Preview from "components/areas/sls/purchase/shared/preview/IndexView.vue";
 </script>

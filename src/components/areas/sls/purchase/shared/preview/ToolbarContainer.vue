@@ -13,16 +13,17 @@
     :model="model"
     :crud-store="crudStore"
     :base-route="baseRoute"
+    :menu-items="menuItems"
   />
 </template>
 
 <script setup>
-  import { useVoucherState } from "../../../_composables/useVoucherState";
   import { usePreviewToolbar } from "src/components/areas/_shared/menus/usePreviewToolbar";
-  import { useVoucherPreviewMenu } from "../../../_menus/useVoucherPreviewMenu";
+  import { usePurchaseState } from "../../../_composables/usePurchaseState";
+  import { usePurchasePreviewMenu } from "../../../_menus/usePurchasePreviewMenu";
 
   import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
-  import ToolBarMobile from "../../mobile/preview/PreviewToolbar.vue";
+  import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
 
   const props = defineProps({
     model: Object,
@@ -33,12 +34,12 @@
     crudStore: Object,
   });
 
-  const voucherStore = useVoucherState();
+  const purchaseStore = usePurchaseState();
   const { menuItems } = usePreviewToolbar({
     model: props.model,
     baseRoute: props.baseRoute,
     crudStore: props.crudStore,
-    onDeleteSuccess: () => voucherStore.reset(),
-    menuBuilder: useVoucherPreviewMenu,
+    onDeleteSuccess: () => purchaseStore.reset(),
+    menuBuilder: usePurchasePreviewMenu,
   });
 </script>

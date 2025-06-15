@@ -74,7 +74,7 @@
   import { useQuoteState } from "src/components/areas/sls/_composables/useQuoteState";
 
   import ToolBar from "src/components/shared/ToolBarDesktop.vue";
-  import SendEmail from "../../shared/forms/SendEmailForm.vue";
+  import SendEmailForm from "src/components/areas/_shared/forms/SendEmailForm.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
   import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
@@ -103,7 +103,7 @@
   function sendEmail() {
     dialogStore.openDialog({
       title: `shared.labels.sendMail`,
-      component: SendEmail,
+      component: SendEmailForm,
       actionBar: true,
       props: {
         id: props.model.id,

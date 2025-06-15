@@ -18,7 +18,7 @@ export function useVoucherDataGridMenu(context) {
     },
     {
       ...menuItems.copy,
-      permission: "acc.voucher.create",
+      permission: "acc.voucher.clone",
       route: `/acc/voucher/copy/${context.activeRow?.id ?? ""}`,
       visible: hasId,
     },

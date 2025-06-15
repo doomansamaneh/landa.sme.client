@@ -93,7 +93,7 @@
   import { useDialogPluginComponent } from "quasar";
   import { useDialog } from "src/composables/useDialog";
 
-  import SendEmail from "../../../_shared/invoice/shared/forms/SendEmailForm.vue";
+  import SendEmailForm from "src/components/areas/_shared/forms/SendEmailForm.vue";
 
   const props = defineProps({
     responseData: Object,
@@ -113,7 +113,7 @@
   function sendEmail() {
     dialogStore.openDialog({
       title: `shared.labels.sendMail`,
-      component: SendEmail,
+      component: SendEmailForm,
       actionBar: true,
       props: {
         id: props.responseData.id,

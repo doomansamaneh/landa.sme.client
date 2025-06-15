@@ -1,8 +1,8 @@
 import { menuItems } from "src/constants/menuItems";
 import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
 
-export function useVoucherPreviewMenu(context) {
+export function useQuotePreviewMenu(context) {
   return usePreviewMenu(context, {
-    permissionPrefix: "acc.voucher",
+    permissionPrefix: "sls.quote",
   });
 }

@@ -29,7 +29,7 @@
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
   import { quoteStatus } from "src/constants";
 
-  import SendEmail from "../../shared/forms/SendEmailForm.vue";
+  import SendEmailForm from "src/components/areas/_shared/forms/SendEmailForm.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
   import MenuItemEdit from "src/components/shared/buttons/MenuItemEdit.vue";
   import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
@@ -68,7 +68,7 @@
   function sendEmail() {
     dialogStore.openDialog({
       title: `shared.labels.sendMail`,
-      component: SendEmail,
+      component: SendEmailForm,
       actionBar: true,
       props: {
         id: props.item.id,

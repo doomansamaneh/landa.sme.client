@@ -8,20 +8,12 @@
       appConfigStore.model.value?.companySetting?.quoteComment
     "
   >
-    <template #toolbar-custom-desktop="{ model }">
-      <menu-button
-        v-if="model.statusId !== quoteStatus.final"
-        :to="`/sls/invoice/createFromQuote/${model.id}`"
-        icon="o_receipt"
-        :title="$t('shared.labels.convertToInvoice')"
-      />
-    </template>
-    <template #toolbar-custom-mobile="{ model }">
-      <menu-item
-        v-if="model.statusId !== quoteStatus.final"
-        :to="`/sls/invoice/createFromQuote/${model.id}`"
-        icon="o_receipt"
-        :title="$t('shared.labels.convertToInvoice')"
+    <template #toolbar-container="{ model }">
+      <toolbar-container
+        :title="title ?? $t('shared.labels.quote')"
+        :model="model"
+        :inside="inside"
+        base-route="sls/quote"
       />
     </template>
 
@@ -32,13 +24,16 @@
 </template>
 
 <script setup>
-  import { quoteStatus } from "src/constants";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import Preview from "../../../_shared/invoice/shared/preview/IndexView.vue";
   import DetailSection from "./_DetailSection.vue";
-  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
-  import MenuButton from "src/components/shared/buttons/MenuButton.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
+
+  const props = defineProps({
+    title: String,
+    inside: Boolean,
+  });
 
   const appConfigStore = useAppConfigModel();
 </script>

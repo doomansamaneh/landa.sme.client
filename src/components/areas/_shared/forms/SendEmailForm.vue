@@ -49,7 +49,7 @@
 
 <script setup>
   import { ref, onMounted } from "vue";
-  import { useSendEmail } from "src/components/areas/sls/_composables/useSendEmail";
+  import { useSendEmail } from "src/components/areas/_shared/_composables/useSendEmail";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 

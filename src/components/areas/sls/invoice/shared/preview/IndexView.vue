@@ -39,7 +39,6 @@
   const props = defineProps({
     title: String,
     inside: Boolean,
-    backButton: Boolean,
   });
 
   const appConfigStore = useAppConfigModel();

@@ -75,13 +75,13 @@ export function useBusinessGrid() {
       businessStore.set({
         id: item.id,
         title: response.data?.data?.title,
+        grants: response.data?.data?.grants,
       });
     }
 
     if (response.data?.data?.url)
       router.push(response.data?.data?.url);
     else {
-      console.log(response);
       alert(`goto business: ${response.data?.message}`);
     }
   };

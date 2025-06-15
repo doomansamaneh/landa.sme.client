@@ -1,12 +1,5 @@
 <template>
-  <preview
-    toolbar
-    :title="
-      $t('shared.labels.preview') +
-      ' ' +
-      $t('main-menu-items.Sls_PurchaseReturn_View')
-    "
-  />
+  <preview toolbar />
 </template>
 
 <script setup>

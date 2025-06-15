@@ -1,7 +1,7 @@
 <template>
   <invoice-grid
     :table-store="tableStore"
-    base-route="sls/salesReturn"
+    base-route="sls/purchaseReturn"
   >
     <template #expand="{ item }">
       <preview :item="item" inside />

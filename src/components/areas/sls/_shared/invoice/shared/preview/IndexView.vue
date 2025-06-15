@@ -1,5 +1,7 @@
 <template>
-  <slot name="toolbar-container" :model="model"></slot>
+  <template v-if="model?.id">
+    <slot name="toolbar-container" :model="model"></slot>
+  </template>
 
   <mobile
     v-if="$q.screen.xs"

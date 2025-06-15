@@ -6,7 +6,16 @@
     detail-url="trs/receipt"
     show-sale-header
     tax-api
-  />
+  >
+    <template #toolbar-container="{ model }">
+      <toolbar-container
+        :title="title ?? $t('shared.labels.purchaseReturn')"
+        :model="model"
+        :inside="inside"
+        base-route="sls/purchaseReturn"
+      />
+    </template>
+  </preview>
 </template>
 
 <script setup>

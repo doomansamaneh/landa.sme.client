@@ -46,7 +46,7 @@
   import MenuItemCopy from "src/components/shared/buttons/MenuItemCopy.vue";
   import MenuItemPrint from "src/components/shared/buttons/MenuItemPrint.vue";
   import MenuItemDelete from "src/components/shared/buttons/MenuItemDelete.vue";
-  import SendEmail from "src/components/areas/acc/voucher/shared/forms/SendEmailForm.vue";
+  import SendEmailForm from "src/components/areas/_shared/forms/SendEmailForm.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -81,7 +81,7 @@
   function sendEmail() {
     dialogStore.openDialog({
       title: `shared.labels.sendMail`,
-      component: SendEmail,
+      component: SendEmailForm,
       actionBar: true,
       props: {
         id: props.item.id,
