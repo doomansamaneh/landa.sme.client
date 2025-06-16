@@ -23,7 +23,9 @@
         <div class="col text-body3 text-weight-600">
           {{ item.customerName }}
         </div>
-        <menu-item-more @click="showItemSheet(item)" />
+        <!-- <menu-item-more @click="showItemSheet(item)" /> -->
+        <!-- :title="`${item.no} / ${item.customerName}`" -->
+        <mobile-row-toolbar title="بیشتر" />
       </div>
 
       <div class="row q-gutter-x-sm text-body3 text-weight-500">
@@ -68,6 +70,7 @@
         {{ item.subject }}
       </div>
     </template>
+
     <template #row-badge="{ item }">
       <tax-badge :tax-id="item.taxId" />
       <notification-badge :count="item.notificationCount" />
@@ -76,27 +79,12 @@
       <contract-badge :title="item?.contractTitle" :id="item?.id" />
     </template>
   </data-grid>
-
-  <item-sheet
-    v-if="itemSheetStatus"
-    :table-store="tableStore"
-    :base-route="baseRoute"
-    :status="itemSheetStatus"
-    :item="item"
-    @hide="hideItemSheet"
-  >
-    <template #items="{ item }">
-      <slot name="item-sheet-items" :item="item"></slot>
-    </template>
-  </item-sheet>
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { helper } from "src/helpers";
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
-  import ItemSheet from "./DataGridItemSheet.vue";
   import DataGridSummary from "./DataGridSummary.vue";
   import MenuItemMore from "src/components/shared/buttons/MenuItemMore.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
@@ -104,26 +92,11 @@
   import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
   import StatusBadge from "src/components/areas/_shared/badges/StatusBadge.vue";
+  import MobileRowToolbar from "src/components/shared/toolbars/MobileRowToolbar.vue";
 
   const props = defineProps({
     tableStore: Object,
     baseRoute: String,
     title: String,
-  });
-
-  const item = ref(null);
-  const itemSheetStatus = ref(false);
-
-  const showItemSheet = (row) => {
-    item.value = row;
-    itemSheetStatus.value = true;
-  };
-
-  const hideItemSheet = () => {
-    itemSheetStatus.value = false;
-  };
-
-  defineExpose({
-    hideItemSheet,
   });
 </script>
