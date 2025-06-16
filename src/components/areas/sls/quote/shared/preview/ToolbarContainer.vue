@@ -11,16 +11,14 @@
     :inside="inside"
     :title="title"
     :model="model"
-    :crud-store="crudStore"
-    :table-store="tableStore"
     :base-route="baseRoute"
     :menu-items="menuItems"
   />
 </template>
 
 <script setup>
-  import { useDataTable } from "src/composables/useDataTable";
-  import { usePreviewToolbar } from "src/components/areas/_shared/menus/usePreviewToolbar";
+  import { computed } from "vue";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useQuotePreviewMenu } from "../../../_menus/useQuotePreviewMenu";
   import { useQuoteState } from "../../../_composables/useQuoteState";
 
@@ -33,20 +31,18 @@
     inside: Boolean,
     margin: Boolean,
     baseRoute: String,
-    crudStore: Object,
-  });
-
-  const tableStore = useDataTable({
-    dataSource: "sls/quote/getGridData",
   });
 
   const quoteStore = useQuoteState();
+  const context = usePreviewMenuContext(
+    props.model,
+    props.baseRoute,
+    {
+      onDeleteSuccess: () => quoteStore.reset(),
+    }
+  );
 
-  const { menuItems } = usePreviewToolbar({
-    model: props.model,
-    baseRoute: props.baseRoute,
-    crudStore: props.crudStore,
-    onDeleteSuccess: () => quoteStore.reset(),
-    menuBuilder: useQuotePreviewMenu,
-  });
+  const menuItems = computed(() =>
+    useQuotePreviewMenu(context.value)
+  );
 </script>

@@ -11,34 +11,41 @@
     :inside="inside"
     :title="title"
     :model="model"
-    :crud-store="crudStore"
     :base-route="baseRoute"
+    :menu-items="menuItems"
   />
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useVoucherState } from "../../../_composables/useVoucherState";
-  import { usePreviewToolbar } from "src/components/areas/_shared/menus/usePreviewToolbar";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useVoucherPreviewMenu } from "../../../_menus/useVoucherPreviewMenu";
 
   import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
   import ToolBarMobile from "../../mobile/preview/PreviewToolbar.vue";
 
   const props = defineProps({
-    model: Object,
+    model: {
+      type: Object,
+      required: true,
+    },
     title: String,
     inside: Boolean,
     margin: Boolean,
     baseRoute: String,
-    crudStore: Object,
   });
 
   const voucherStore = useVoucherState();
-  const { menuItems } = usePreviewToolbar({
-    model: props.model,
-    baseRoute: props.baseRoute,
-    crudStore: props.crudStore,
-    onDeleteSuccess: () => voucherStore.reset(),
-    menuBuilder: useVoucherPreviewMenu,
-  });
+  const context = usePreviewMenuContext(
+    props.model,
+    props.baseRoute,
+    {
+      onDeleteSuccess: () => voucherStore.reset(),
+    }
+  );
+
+  const menuItems = computed(() =>
+    useVoucherPreviewMenu(context.value)
+  );
 </script>

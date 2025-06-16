@@ -22,9 +22,6 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
-  import { useRoute, useRouter } from "vue-router";
-  import { useVoucherState } from "../../../_composables/useVoucherState";
   import { usePrint } from "src/composables/usePrint.js";
 
   import BodySection from "../../shared/preview/_BodySection.vue";
@@ -42,17 +39,5 @@
     baseRoute: String,
   });
 
-  const voucherStore = useVoucherState();
   const printStore = usePrint();
-  const route = useRoute();
-  const router = useRouter();
-
-  const id = computed(
-    () => props.item?.id ?? props.voucherId ?? route.params.id
-  );
-
-  function deleteCallBack() {
-    voucherStore.state.firstLoad.value = false;
-    router.back();
-  }
 </script>
