@@ -11,16 +11,13 @@
     :inside="inside"
     :title="title"
     :model="model"
-    :crud-store="crudStore"
-    :table-store="tableStore"
-    :base-route="baseRoute"
     :menu-items="menuItems"
   />
 </template>
 
 <script setup>
-  import { useDataTable } from "src/composables/useDataTable";
-  import { usePreviewToolbar } from "src/components/areas/_shared/menus/usePreviewToolbar";
+  import { computed } from "vue";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useInvoiceState } from "../../../_composables/useInvoiceState";
   import { useInvoicePreviewMenu } from "../../../_menus/useInvoicePreviewMenu";
 
@@ -33,20 +30,18 @@
     inside: Boolean,
     margin: Boolean,
     baseRoute: String,
-    crudStore: Object,
-  });
-
-  const tableStore = useDataTable({
-    dataSource: "sls/invoice/getGridData",
   });
 
   const invoiceStore = useInvoiceState();
+  const context = usePreviewMenuContext(
+    props.model,
+    props.baseRoute,
+    {
+      onDeleteSuccess: () => invoiceStore.reset(),
+    }
+  );
 
-  const { menuItems } = usePreviewToolbar({
-    model: props.model,
-    baseRoute: props.baseRoute,
-    crudStore: props.crudStore,
-    onDeleteSuccess: () => invoiceStore.reset(),
-    menuBuilder: useInvoicePreviewMenu,
-  });
+  const menuItems = computed(() =>
+    useInvoicePreviewMenu(context.value)
+  );
 </script>

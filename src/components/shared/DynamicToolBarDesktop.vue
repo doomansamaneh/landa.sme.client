@@ -14,7 +14,10 @@
         ]"
       >
         <div class="row items-center q-gutter-sm">
-          <template v-for="(item, index) in menuItems" :key="index">
+          <template
+            v-for="(item, index) in menuItems.value"
+            :key="index"
+          >
             <template v-if="item.type === menuItemType.item">
               <menu-button
                 v-if="item.visible"

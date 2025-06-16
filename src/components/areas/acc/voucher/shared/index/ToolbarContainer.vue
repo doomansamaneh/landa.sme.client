@@ -10,7 +10,6 @@
       search-btn
       sort-btn
       advanced-search
-      @menu-item-click="handleMenuItemClick"
     >
       <template #advanced-search>
         <advanced-search :grid-store="tableStore" />
@@ -26,11 +25,7 @@
     </toolbar-mobile>
   </template>
   <template v-else>
-    <toolbar-desktop
-      :menu-items="menuItems"
-      margin
-      @menu-item-click="handleMenuItemClick"
-    />
+    <toolbar-desktop :menu-items="menuItems" margin />
   </template>
 </template>
 
@@ -39,8 +34,7 @@
   import { useQuasar } from "quasar";
   import { useDialog } from "src/composables/useDialog";
   import { useDataTable } from "src/composables/useDataTable";
-  import { downloadManager } from "src/helpers";
-  import { useDataTableExport } from "src/composables/useDataTableExport";
+  import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
   import { useFormActions } from "src/composables/useFormActions";
   import { useVoucherDataGridMenu } from "../../../_menus/useVoucherDataGridMenu";
@@ -67,62 +61,24 @@
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function print() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-voucher"
-    );
-  }
-
-  function reorder() {
-    dialogStore.openDialog({
-      title: `shared.labels.reorder`,
-      component: ReorderForm,
-      actionBar: true,
-      okCallback: async (response) => {
-        await props.tableStore?.reloadData();
+  const context = useDataGridMenuContext(
+    props.tableStore,
+    props.baseRoute,
+    {
+      reorder: () => {
+        dialogStore.openDialog({
+          title: "shared.labels.reorder",
+          component: ReorderForm,
+          actionBar: true,
+          okCallback: async () => {
+            await props.tableStore.reloadData();
+          },
+        });
       },
-    });
-  }
-
-  function printBatch() {
-    downloadManager.downloadPost(
-      `${props.baseRoute}/GenerateBatchPdf`,
-      props.tableStore.pagination.value,
-      "landa-voucher"
-    );
-  }
-
-  const { exportAll, exportCurrentPage } = useDataTableExport(
-    props.tableStore
+    }
   );
-
-  const context = computed(() => ({
-    selectedIds: selectedIds.value,
-    activeRow: props.tableStore?.activeRow?.value,
-    exportAll,
-    exportCurrentPage,
-    print,
-    printBatch,
-    reorder,
-    reloadData: () => props.tableStore?.reloadData,
-    deleteBatch: () =>
-      crudStore.deleteBatch(
-        selectedIds.value,
-        props.tableStore?.reloadData
-      ),
-    deleteById: () =>
-      crudStore.deleteById(
-        props.tableStore?.activeRow?.value?.id,
-        props.tableStore?.reloadData
-      ),
-  }));
 
   const menuItems = computed(() =>
     useVoucherDataGridMenu(context.value)
   );
-
-  const handleMenuItemClick = (item) => {
-    // Handle any additional menu item click logic here if needed
-  };
 </script>
