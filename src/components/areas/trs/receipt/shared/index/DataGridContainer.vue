@@ -21,8 +21,8 @@
 
   import { useDataTable } from "src/composables/useDataTable";
 
-  import DataGridTable from "../../../payment/shared/index/DataGridTable.vue";
-  import ToolbarContainer from "../../../payment/shared/index/ToolbarContainer.vue";
+  import DataGridTable from "./DataGridTable.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
 
   const props = defineProps({
     title: String,

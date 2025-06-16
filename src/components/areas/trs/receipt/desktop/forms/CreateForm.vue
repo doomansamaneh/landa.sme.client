@@ -1,8 +1,7 @@
 <template>
-  <master-section :form-store="formStore" :form-type="formType" />
+  <master-section ref="master" :form-store="formStore" />
   <payment-items
     :form-store="formStore"
-    :form-type="formType"
     :payment-receipt-type="paymentReceiptType"
   />
 </template>

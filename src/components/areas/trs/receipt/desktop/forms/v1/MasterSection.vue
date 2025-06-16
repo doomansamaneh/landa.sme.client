@@ -17,7 +17,7 @@
       <q-option-group
         inline
         :options="
-          helper.getEnumOptions(receiptFormType, 'receiptFormType')
+          helper.getEnumOptions(paymentFormType, 'paymentFormType')
         "
         type="radio"
         v-model="formType"
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div v-if="formType === receiptFormType.other" class="row q-mt-md">
+  <div v-if="formType === paymentFormType.other" class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <sl-lookup
         v-model:selectedId="localFormStore.model.value.slId"
@@ -70,8 +70,9 @@
   </div>
 
   <remained-grid
-    v-if="formType === receiptFormType.sales"
+    v-if="formType === paymentFormType.purhcase"
     class="q-mt-md"
+    ref="invoiceGrid"
     :form-store="formStore"
   />
 </template>
@@ -79,7 +80,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
-  import { receiptFormType } from "src/constants";
+  import { paymentFormType } from "src/constants";
   import { useReceiptModel } from "src/components/areas/trs/_composables/useReceiptModel";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -93,7 +94,8 @@
     formStore: useReceiptModel,
   });
 
-  const formType = ref(receiptFormType.sales);
+  const formType = ref(paymentFormType.purhcase);
+  const invoiceGrid = ref(null);
   const localFormStore = computed(() => props.formStore);
 
   const formTypeChanged = async (e) => {
