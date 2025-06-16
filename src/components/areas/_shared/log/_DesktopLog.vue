@@ -54,143 +54,146 @@
         </div>
       </div>
 
-      <div class="q-px-sm">
-        <q-timeline>
-          <q-timeline-entry
-            v-for="item in items"
-            :key="item.id"
-            :color="$q.dark.isActive ? 'yellow' : 'primary'"
-            avatar="https://cdn.quasar.dev/img/avatar4.jpg"
-          >
-            <q-card bordered class="border-radius-sm">
-              <q-card-section>
-                <div
-                  class="row justify-between items-center q-gutter-sm"
-                >
-                  <div class="row">
-                    <q-icon
-                      :name="getIconName(item)"
-                      size="16px"
-                      color="accent"
-                      class="q-mr-sm"
-                    />
-                    <span class="text-caption text-bold">
-                      {{ JSON.parse(item.logUser).name }}
-                    </span>
+      <custom-timeline>
+        <custom-timeline-entry
+          v-for="item in items"
+          :key="item.id"
+          :color="$q.dark.isActive ? 'yellow' : 'primary'"
+        >
+          <template #avatar>
+            <customer-avatar
+              size="31px"
+              text-color="white"
+              :item="authStore.user?.id"
+              :text-holder="authStore.user?.fullName"
+              text-holder-class="text-h5 text-bold "
+              :avatar="avatar"
+            />
+          </template>
+          <q-card bordered class="border-radius-sm">
+            <q-card-section>
+              <div
+                class="row justify-between items-center q-gutter-sm"
+              >
+                <div class="row">
+                  <q-icon
+                    :name="getIconName(item)"
+                    size="16px"
+                    color="accent"
+                    class="q-mr-sm"
+                  />
+                  <span class="text-caption text-bold">
+                    {{ JSON.parse(item.logUser).name }}
+                  </span>
 
-                    <span class="q-px-sm text-caption">
-                      {{ getTime(item) }}
-                      <q-tooltip
-                        class="glass_ custom-tooltip"
-                        transition-show="scale"
-                        transition-hide="scale"
-                        anchor="center left"
-                        self="center right"
-                        :offset="[10, 10]"
-                      >
-                        {{ item.logTime }}
-                      </q-tooltip>
-                    </span>
-                  </div>
-                  <div>
-                    <div class="flex q-gutter-sm text-caption">
-                      <div>
-                        {{ JSON.parse(item.logUser).ip }}
-                      </div>
-                      <div>
-                        {{ JSON.parse(item.logUser).userAgent }}
-                      </div>
+                  <span class="q-px-sm text-caption">
+                    {{ getTime(item) }}
+                    <q-tooltip
+                      class="glass_ custom-tooltip"
+                      transition-show="scale"
+                      transition-hide="scale"
+                      anchor="center left"
+                      self="center right"
+                      :offset="[10, 10]"
+                    >
+                      {{ item.logTime }}
+                    </q-tooltip>
+                  </span>
+                </div>
+                <div>
+                  <div class="flex q-gutter-sm text-caption">
+                    <div>
+                      {{ JSON.parse(item.logUser).ip }}
+                    </div>
+                    <div>
+                      {{ JSON.parse(item.logUser).userAgent }}
                     </div>
                   </div>
                 </div>
-              </q-card-section>
-              <q-card-section v-if="item.comment">
-                <div
-                  v-html="item.comment"
-                  class="line-height-sm"
-                  v-show="editItemId !== item.id"
-                />
-                <div
-                  class="q-gutter-y-md"
-                  v-show="editItemId === item.id"
-                >
-                  <q-editor v-model="item.comment" />
-                  <div class="q-gutter-x-sm">
-                    <q-btn
-                      @click="editComment(item)"
-                      flat
-                      rounded
-                      class="primary-gradient text-white"
-                    >
-                      <q-icon
-                        name="o_comment"
-                        size="xs"
-                        class="q-mr-sm"
-                      />
-                      <span>ذخیره</span>
-                    </q-btn>
-                    <q-btn
-                      @click="disableEdit(item)"
-                      unelevated
-                      rounded
-                      class="text-on-dark"
-                    >
-                      <q-icon
-                        name="o_close"
-                        size="xs"
-                        class="q-mr-xs"
-                      />
-                      <span>انصراف</span>
-                    </q-btn>
-                  </div>
-                </div>
-                <div
-                  v-if="editItemId !== item.id"
-                  class="row justify-end"
-                >
+              </div>
+            </q-card-section>
+            <q-card-section v-if="item.comment">
+              <div
+                v-html="item.comment"
+                class="line-height-sm"
+                v-show="editItemId !== item.id"
+              />
+              <div
+                class="q-gutter-y-md"
+                v-show="editItemId === item.id"
+              >
+                <q-editor v-model="item.comment" />
+                <div class="q-gutter-x-sm">
                   <q-btn
-                    @click="enableEdit(item)"
-                    unelevated
+                    @click="editComment(item)"
+                    flat
                     rounded
-                    class="text-on-dark"
+                    class="primary-gradient text-white"
                   >
-                    <q-icon name="o_edit" size="xs" class="q-mr-sm" />
-                    <span>ویرایش</span>
+                    <q-icon
+                      name="o_comment"
+                      size="xs"
+                      class="q-mr-sm"
+                    />
+                    <span>ذخیره</span>
                   </q-btn>
                   <q-btn
-                    @click="deleteComment(item)"
+                    @click="disableEdit(item)"
                     unelevated
                     rounded
                     class="text-on-dark"
                   >
                     <q-icon
-                      name="o_delete"
+                      name="o_close"
                       size="xs"
-                      class="q-mr-sm"
+                      class="q-mr-xs"
                     />
-                    <span>حذف</span>
+                    <span>انصراف</span>
                   </q-btn>
                 </div>
-              </q-card-section>
-
-              <q-card-section
-                v-if="
-                  item?.logInfo &&
-                  JSON.parse(item.logInfo).receiverEmail
-                "
+              </div>
+              <div
+                v-if="editItemId !== item.id"
+                class="row justify-end"
               >
-                <span class="q-pr-xs">
-                  ارسال ایمیل به:
-                  {{ JSON.parse(item.logInfo).receiverEmail }} -
-                </span>
-                <span>
-                  {{ JSON.parse(item.logInfo).subject }}
-                </span>
-              </q-card-section>
-            </q-card>
-          </q-timeline-entry>
-        </q-timeline>
-      </div>
+                <q-btn
+                  @click="enableEdit(item)"
+                  unelevated
+                  rounded
+                  class="text-on-dark"
+                >
+                  <q-icon name="o_edit" size="xs" class="q-mr-sm" />
+                  <span>ویرایش</span>
+                </q-btn>
+                <q-btn
+                  @click="deleteComment(item)"
+                  unelevated
+                  rounded
+                  class="text-on-dark"
+                >
+                  <q-icon name="o_delete" size="xs" class="q-mr-sm" />
+                  <span>حذف</span>
+                </q-btn>
+              </div>
+            </q-card-section>
+
+            <q-card-section
+              v-if="
+                item?.logInfo &&
+                JSON.parse(item.logInfo).receiverEmail
+              "
+            >
+              <span class="q-pr-xs">
+                ارسال ایمیل به:
+                {{ JSON.parse(item.logInfo).receiverEmail }} -
+              </span>
+              <span>
+                {{ JSON.parse(item.logInfo).subject }}
+              </span>
+            </q-card-section>
+          </q-card>
+        </custom-timeline-entry>
+      </custom-timeline>
     </q-card-section>
   </div>
 </template>
@@ -201,7 +204,14 @@
   import { logType } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
   import { helper } from "src/helpers";
+  import { useAuthStore } from "src/stores";
   import "src/helpers/extensions";
+
+  import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
+  import CustomTimeline from "../../../shared/CustomTimeline.vue";
+  import CustomTimelineEntry from "../../../shared/CustomTimelineEntry.vue";
+
+  const authStore = useAuthStore();
 
   const props = defineProps({
     items: Array,
