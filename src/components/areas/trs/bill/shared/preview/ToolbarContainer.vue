@@ -18,8 +18,10 @@
 
 <script setup>
   import { computed } from "vue";
+  import { useQuasar } from "quasar";
+  import { useBillState } from "../../../_composables/useBillState";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
-  import { useOpeningStockPreviewMenu } from "../../../_menus/useOpeningStockPreviewMenu";
+  import { useBillPreviewMenu } from "src/components/areas/trs/_menus/useBillPreviewMenu.js";
 
   import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
   import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
@@ -35,17 +37,15 @@
     baseRoute: String,
   });
 
+  const $q = useQuasar();
+  const billStore = useBillState();
   const context = usePreviewMenuContext(
     props.model,
     props.baseRoute,
     {
-      onDeleteSuccess: () => {
-        // Handle any cleanup after successful delete
-      },
+      onDeleteSuccess: () => billStore.reset(),
     }
   );
 
-  const menuItems = computed(() =>
-    useOpeningStockPreviewMenu(context.value)
-  );
+  const menuItems = computed(() => useBillPreviewMenu(context.value));
 </script>

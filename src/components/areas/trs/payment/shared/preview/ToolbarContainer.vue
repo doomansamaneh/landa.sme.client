@@ -18,8 +18,9 @@
 
 <script setup>
   import { computed } from "vue";
+  import { useReceiptState } from "../../../_composables/useReceiptState";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
-  import { useOpeningStockPreviewMenu } from "../../../_menus/useOpeningStockPreviewMenu";
+  import { usePaymentPreviewMenu } from "src/components/areas/trs/_menus/usePaymentPreviewMenu.js";
 
   import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
   import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
@@ -35,17 +36,16 @@
     baseRoute: String,
   });
 
+  const receiptStore = useReceiptState();
   const context = usePreviewMenuContext(
     props.model,
     props.baseRoute,
     {
-      onDeleteSuccess: () => {
-        // Handle any cleanup after successful delete
-      },
+      onDeleteSuccess: () => receiptStore.reset(),
     }
   );
 
   const menuItems = computed(() =>
-    useOpeningStockPreviewMenu(context.value)
+  usePaymentPreviewMenu(context.value)
   );
 </script>

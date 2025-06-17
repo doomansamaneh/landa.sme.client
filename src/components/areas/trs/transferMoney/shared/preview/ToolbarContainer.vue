@@ -18,8 +18,10 @@
 
 <script setup>
   import { computed } from "vue";
+  import { useQuasar } from "quasar";
+  import { useTransferMoneyState } from "../../../_composables/useTransferMoneyState";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
-  import { useOpeningStockPreviewMenu } from "../../../_menus/useOpeningStockPreviewMenu";
+  import { useTransferMoneyPreviewMenu } from "src/components/areas/trs/_menus/useTransferMoneyPreviewMenu.js";
 
   import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
   import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
@@ -35,17 +37,17 @@
     baseRoute: String,
   });
 
+  const $q = useQuasar();
+  const transferMoneyStore = useTransferMoneyState();
   const context = usePreviewMenuContext(
     props.model,
     props.baseRoute,
     {
-      onDeleteSuccess: () => {
-        // Handle any cleanup after successful delete
-      },
+      onDeleteSuccess: () => transferMoneyStore.reset(),
     }
   );
 
   const menuItems = computed(() =>
-    useOpeningStockPreviewMenu(context.value)
+    useTransferMoneyPreviewMenu(context.value)
   );
 </script>

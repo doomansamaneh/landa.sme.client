@@ -3,12 +3,14 @@
     v-if="toolbar"
     :title="title"
     :table-store="tableStore"
+    :base-route="baseRoute"
   />
 
   <data-grid-table
     :title="title"
     :icon="icon"
     :table-store="tableStore"
+    :base-route="baseRoute"
   />
 </template>
 
@@ -28,6 +30,8 @@
     toolbar: Boolean,
     dataSource: { type: String, default: "trs/bill/getGridData" },
   });
+
+  const baseRoute = "trs/bill";
 
   const gridStore = useBaseInfoGrid({
     columns: billColumns,

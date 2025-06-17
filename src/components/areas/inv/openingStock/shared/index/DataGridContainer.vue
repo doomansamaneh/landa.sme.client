@@ -3,6 +3,7 @@
     v-if="toolbar"
     :title="title"
     :table-store="tableStore"
+    :base-route="baseRoute"
   />
 
   <data-grid-table
@@ -31,6 +32,8 @@
       default: "inv/openingStock/getGridData",
     },
   });
+
+  const baseRoute = "inv/openingStock";
 
   const gridStore = useBaseInfoGrid({
     columns: openingStockColumns,

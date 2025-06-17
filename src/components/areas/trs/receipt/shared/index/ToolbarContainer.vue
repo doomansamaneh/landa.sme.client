@@ -24,8 +24,8 @@
   import { computed } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
-  import { downloadManager } from "src/helpers";
-  import { useDataTableExport } from "src/composables/useDataTableExport";
+  // import { downloadManager } from "src/helpers";
+  // import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import { useFormActions } from "src/composables/useFormActions";
   import { useReceiptDataGridMenu } from "../../../_menus/useReceiptDataGridMenu";
@@ -49,20 +49,20 @@
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function downloadPdf() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-payment"
-    );
-  }
+  // function downloadPdf() {
+  //   downloadManager.downloadGet(
+  //     `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
+  //     "landa-payment"
+  //   );
+  // }
 
-  function downloadBatchPdf() {
-    downloadManager.downloadPost(
-      `${props.baseRoute}/GenerateBatchPdf`,
-      props.tableStore.pagination.value,
-      "landa-payment"
-    );
-  }
+  // function downloadBatchPdf() {
+  //   downloadManager.downloadPost(
+  //     `${props.baseRoute}/GenerateBatchPdf`,
+  //     props.tableStore.pagination.value,
+  //     "landa-payment"
+  //   );
+  // }
 
   // const { exportAll, exportCurrentPage } = useDataTableExport(
   //   props.tableStore

@@ -1,6 +1,6 @@
 <template>
   <template v-if="model">
-    <tool-bar
+    <toolbar-container
       :inside="inside"
       :title="title"
       :base-route="baseRoute"
@@ -26,7 +26,7 @@
   import { useRoute } from "vue-router";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolBar from "./ToolBar.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import WageItemDataGrid from "../../desktop/index/WageItemDataGrid.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";

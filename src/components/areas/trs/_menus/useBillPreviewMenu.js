@@ -1,7 +1,7 @@
 import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
 
-export function usePaymentPreviewMenu(context) {
+export function useBillPreviewMenu(context) {
   return usePreviewMenu(context, {
-    permissionPrefix: "trs.payment",
+    permissionPrefix: "trs.bill",
   });
 }

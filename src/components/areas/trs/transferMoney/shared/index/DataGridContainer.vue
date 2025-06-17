@@ -3,12 +3,14 @@
     v-if="toolbar"
     :title="title"
     :table-store="tableStore"
+    :base-route="baseRoute"
   />
 
   <data-grid-table
     :title="title"
     :icon="icon"
     :table-store="tableStore"
+    :base-route="baseRoute"
   />
 </template>
 
@@ -31,6 +33,8 @@
       default: "trs/transferMoney/getGridData",
     },
   });
+
+  const baseRoute = "trs/transferMoney";
 
   const gridStore = useBaseInfoGrid({
     columns: transferMoneyColumns,
