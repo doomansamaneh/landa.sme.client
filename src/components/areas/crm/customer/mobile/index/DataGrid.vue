@@ -93,27 +93,25 @@
         :title="item.unitTitle"
       />
     </template>
-  </data-grid>
 
-  <item-sheet
-    v-if="itemSheetStatus"
-    :table-store="tableStore"
-    :status="itemSheetStatus"
-    :base-route="baseRoute"
-    :item="item"
-    @hide="hideItemSheet"
-  />
+    <template #row-toolbar="{ item }">
+      <mobile-row-toolbar
+        :title="`${item.name}`"
+        :menu-items="getItemMenu(item)"
+      />
+    </template>
+  </data-grid>
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
   import { customerType } from "src/constants";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
+  import { useCustomerPreviewMenu } from "../../../_menus/useCustomerPreviewMenu";
 
+  import MobileRowToolbar from "src/components/shared/toolbars/MobileRowToolbar.vue";
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
-  import MenuItemMore from "src/components/shared/buttons/MenuItemMore.vue";
-  import ItemSheet from "./DataGridItemSheet.vue";
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
 
   const props = defineProps({
@@ -122,14 +120,11 @@
     baseRoute: String,
   });
 
-  const item = ref(null);
-  const itemSheetStatus = ref(false);
-
-  const showItemSheet = (row) => {
-    item.value = row;
-    itemSheetStatus.value = true;
-  };
-  const hideItemSheet = () => {
-    itemSheetStatus.value = false;
-  };
+  function getItemMenu(item) {
+    const context = usePreviewMenuContext(item, props.baseRoute, {
+      onDeleteSuccess: async () =>
+        await props.tableStore?.reloadData(),
+    });
+    return useCustomerPreviewMenu(context.value);
+  }
 </script>

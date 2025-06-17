@@ -23,9 +23,6 @@
         <div class="col text-body3 text-weight-600">
           {{ item.customerName }}
         </div>
-        <!-- <menu-item-more @click="showItemSheet(item)" /> -->
-        <!-- :title="`${item.no} / ${item.customerName}`" -->
-        <mobile-row-toolbar title="بیشتر" />
       </div>
 
       <div class="row q-gutter-x-sm text-body3 text-weight-500">
@@ -78,6 +75,10 @@
       <type-badge :title="item?.typeTitle" />
       <contract-badge :title="item?.contractTitle" :id="item?.id" />
     </template>
+
+    <template #row-toolbar="{ item }">
+      <slot name="row-toolbar" :item="item" />
+    </template>
   </data-grid>
 </template>
 
@@ -86,13 +87,11 @@
 
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
   import DataGridSummary from "./DataGridSummary.vue";
-  import MenuItemMore from "src/components/shared/buttons/MenuItemMore.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
   import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
   import StatusBadge from "src/components/areas/_shared/badges/StatusBadge.vue";
-  import MobileRowToolbar from "src/components/shared/toolbars/MobileRowToolbar.vue";
 
   const props = defineProps({
     tableStore: Object,

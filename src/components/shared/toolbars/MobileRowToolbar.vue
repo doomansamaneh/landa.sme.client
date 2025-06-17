@@ -6,8 +6,7 @@
       dense
       unelevated
       size="11px"
-      @click="bottomSheet?.show()"
-      @click.prevent="click"
+      @click.stop="openBottomSheet"
     >
       <q-icon name="more_vert" size="20px" />
     </q-btn>
@@ -31,4 +30,8 @@
   });
 
   const bottomSheet = ref(null);
+
+  function openBottomSheet() {
+    bottomSheet.value?.show();
+  }
 </script>

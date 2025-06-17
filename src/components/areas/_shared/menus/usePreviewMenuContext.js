@@ -40,7 +40,7 @@ export function usePreviewMenuContext(
     deleteById: () => {
       crudStore.deleteById(model?.id, () => {
         customHandlers.onDeleteSuccess?.();
-        router.back();
+        //router.back();
       });
     },
   };

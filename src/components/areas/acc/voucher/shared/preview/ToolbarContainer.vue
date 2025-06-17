@@ -1,12 +1,12 @@
 <template>
-  <tool-bar-desktop
+  <toolbar-desktop
     v-if="$q.screen.gt.sm"
     :inside="inside"
     :margin="!inside"
     :title="title"
     :menu-items="menuItems"
   />
-  <tool-bar-mobile
+  <toolbar-mobile
     v-else
     :inside="inside"
     :title="title"
@@ -22,8 +22,8 @@
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useVoucherPreviewMenu } from "../../../_menus/useVoucherPreviewMenu";
 
-  import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
-  import ToolBarMobile from "../../mobile/preview/PreviewToolbar.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
 
   const props = defineProps({
     model: {

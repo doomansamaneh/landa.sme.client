@@ -6,24 +6,11 @@
       :title="title"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
-      @edit-batch="editBatch"
+      :menu-items="menuItems"
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      :table-store="tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      buttons
-      margin
-      @reorder="operationStore.reorder(tableStore.reloadData)"
-      @download-pdf="downloadPdf"
-      @download-pdf-batch="downloadBatchPdf"
-      @edit-batch="editBatch"
-    />
+    <toolbar-desktop :menu-items="menuItems" margin />
   </template>
 </template>
 
@@ -31,14 +18,15 @@
   import { computed } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
-  import { downloadManager } from "src/helpers";
   import { useDialog } from "src/composables/useDialog";
+  import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
+  import { useCustomerDataGridMenu } from "../../../_menus/useCustomerDataGridMenu";
 
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolbarMobile from "../../mobile/index/ToolBar.vue";
-  import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
-  import EditBatch from "../forms/EditBatchForm.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import EditBatchForm from "../forms/EditBatchForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -55,32 +43,27 @@
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function editBatch() {
-    dialogStore.openDialog({
-      title: `shared.labels.editBatch`,
-      component: EditBatch,
-      actionBar: true,
-      props: {
-        selectedIds: selectedIds?.value,
+  const context = useDataGridMenuContext(
+    props.tableStore,
+    props.baseRoute,
+    {
+      editBatch: () => {
+        dialogStore.openDialog({
+          title: `shared.labels.editBatch`,
+          component: EditBatchForm,
+          actionBar: true,
+          props: {
+            selectedIds: selectedIds?.value,
+          },
+          okCallback: async (response) => {
+            await props.tableStore.reloadData();
+          },
+        });
       },
-      okCallback: async (response) => {
-        await props.tableStore.reloadData();
-      },
-    });
-  }
+    }
+  );
 
-  function downloadPdf() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-voucher"
-    );
-  }
-
-  function downloadBatchPdf() {
-    downloadManager.downloadPost(
-      `${props.baseRoute}/GenerateBatchPdf`,
-      props.tableStore.pagination.value,
-      "landa-voucher"
-    );
-  }
+  const menuItems = computed(() =>
+    useCustomerDataGridMenu(context.value)
+  );
 </script>

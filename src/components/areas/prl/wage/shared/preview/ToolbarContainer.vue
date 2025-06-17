@@ -18,12 +18,18 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useQuasar } from "quasar";
+  import { downloadManager } from "src/helpers";
+  import { useDataTable } from "src/composables/useDataTable";
+  import { sqlOperator } from "src/constants";
+  import { usePreview } from "src/composables/usePreview";
   import { useWageState } from "../../../_composables/useWageState";
+  import { wageItemColumns } from "../../../_composables/constants";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
+  import { useDataTableExport } from "src/composables/useDataTableExport";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useWagePreviewMenu } from "src/components/areas/prl/_menus/useWagePreviewMenu.js";
-  import { downloadManager } from "src/helpers";
 
+  import DataGridPreview from "./printPreview/DataGridPreview.vue";
   import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
   import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
 
@@ -38,38 +44,61 @@
     baseRoute: String,
   });
 
-  const $q = useQuasar();
   const wageStore = useWageState();
+  const previewStore = usePreview();
 
-  function downloadPdf() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${props.model?.id}`,
-      "landa-wage"
-    );
-  }
+  const gridStore = useBaseInfoGrid({
+    columns: wageItemColumns,
+    sortColumn: "rowNo",
+    filterExpression: [
+      {
+        fieldName: "i.wageId",
+        operator: sqlOperator.equal,
+        value: props.model?.id,
+      },
+    ],
+  });
 
-  function exportTax() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/exportTax/${props.model?.id}`,
-      "landa-tax"
-    );
-  }
+  const tableStore = useDataTable({
+    dataSource: "prl/wageItem/getGridData",
+    store: gridStore,
+  });
 
-  function exportInsurance() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/exportInsurance/${props.model?.id}`,
-      "landa-insurance"
-    );
-  }
+  const { exportAll } = useDataTableExport(tableStore);
 
   const context = usePreviewMenuContext(
     props.model,
     props.baseRoute,
     {
       onDeleteSuccess: () => wageStore.reset(),
-      downloadPdf,
-      exportTax,
-      exportInsurance,
+
+      exportTax: async () => {
+        await downloadManager.downloadGet(
+          `${props.baseRoute}/exportTax/${props.model?.id}`,
+          "landa-tax"
+        );
+      },
+
+      exportInsurance: async () => {
+        await downloadManager.downloadGet(
+          `${props.baseRoute}/exportInsurance/${props.model?.id}`,
+          "landa-insurance"
+        );
+      },
+
+      print: async () => {
+        previewStore.openDialog({
+          title: props.title,
+          component: DataGridPreview,
+          previewProps: {
+            title: props.title,
+            model: props.model,
+            tableStore: tableStore,
+          },
+        });
+      },
+
+      exportAll,
     }
   );
 

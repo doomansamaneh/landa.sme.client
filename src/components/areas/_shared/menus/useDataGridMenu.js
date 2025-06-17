@@ -7,18 +7,20 @@ export function useDataGridMenu(context, config = {}) {
     permissionPrefix = "",
     extraMoreItems = [],
     overrideItems = {},
+    exclude = [],
   } = config;
 
+  const getItem = (key, fallbackItem) => {
+    if (exclude.includes(key)) return [];
+    const override = overrideItems[key];
+    if (override == null) return [fallbackItem];
+    return Array.isArray(override) ? override : [override];
+  };
+
+  const hasId = !!context.activeRow?.id;
+  const hasSelection = context.selectedIds?.length > 0;
+
   return computed(() => {
-    const hasId = !!context.activeRow?.id;
-    const hasSelection = context.selectedIds?.length > 0;
-
-    const getItem = (key, fallbackItem) => {
-      const override = overrideItems[key];
-      if (override == null) return [fallbackItem];
-      return Array.isArray(override) ? override : [override];
-    };
-
     const menu = [
       ...getItem("create", {
         ...menuItems.create,

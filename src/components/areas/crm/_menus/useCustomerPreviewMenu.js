@@ -1,7 +1,7 @@
 import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
 
-export function useQuotePreviewMenu(context) {
+export function useCustomerPreviewMenu(context) {
   return usePreviewMenu(context, {
-    permissionPrefix: "sls.quote",
+    permissionPrefix: "crm.customer",
   });
 }

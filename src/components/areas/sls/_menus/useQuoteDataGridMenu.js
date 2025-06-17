@@ -14,28 +14,28 @@ export function useQuoteDataGridMenu(context) {
       create: {
         ...menuItems.create,
         type: menuItemType.moreItem,
-        permission: "sls.quote.create",
+        permission: `sls.quote.create`,
         subItems: [
           {
             ...menuItems.defaultItem,
             label: "create",
             icon: "o_add",
-            permission: "sls.quote.create",
-            route: "/sls/quote/create",
+            permission: `sls.quote.create`,
+            route: `/sls/quote/create`,
           },
           {
             ...menuItems.defaultItem,
             label: "createV2",
             icon: "o_bolt",
-            permission: "sls.quote.create",
-            route: "/sls/quote/createV2",
+            permission: `sls.quote.create`,
+            route: `/sls/quote/createV2`,
           },
         ],
       },
       edit: [
         {
           ...menuItems.edit,
-          permission: "sls.quote.edit",
+          permission: `sls.quote.edit`,
           route: `/sls/quote/edit/${context.activeRow?.id}`,
           visible: hasId,
         },
@@ -43,7 +43,7 @@ export function useQuoteDataGridMenu(context) {
           ...menuItems.defaultItem,
           label: "editBatch",
           icon: "o_edit",
-          permission: "sls.quote.edit",
+          permission: `sls.quote.edit`,
           badgeCount: context.selectedIds?.length,
           handler: () => context.editBatch?.(),
           visible: hasSelection,

@@ -1,6 +1,7 @@
 <template>
   <slot name="title"></slot>
   <slot name="header">
+    <!-- Searchbar -->
     <q-input
       outlined
       rounded
@@ -37,30 +38,31 @@
           size="12px"
           @click="resetPage"
         />
-
         <slot name="header-guide"></slot>
       </template>
     </q-input>
   </slot>
 
+  <!-- Rows -->
   <div class="q-mt-sm q-gutter-y-sm" style="margin: 0">
     <template v-for="row in rows?.value" :key="row.id">
-      <slot name="body" :item="row">
-        <div>
-          <router-link
-            @contextmenu.prevent
-            class="no-decoration text-on-dark"
-            :to="baseRoute ? `/${baseRoute}/preview/${row.id}` : ''"
-          >
-            <q-card
-              v-touch-hold.capture="() => selectRow(row)"
-              class="border-radius-md"
-              :class="tableStore.getRowClass(row)"
-              flat
+      <q-card
+        v-touch-hold.capture="() => selectRow(row)"
+        class="border-radius-md"
+        :class="tableStore.getRowClass(row)"
+        flat
+      >
+        <q-card-section class="q-pa-xs">
+          <div class="row no-wrap items-start justify-between">
+            <!-- Left: avatar + body + badges -->
+            <router-link
+              class="col q-gutter-y-xs no-decoration text-on-dark"
+              :to="baseRoute ? `/${baseRoute}/preview/${row.id}` : ''"
+              @contextmenu.prevent
             >
-              <q-card-section class="row q-pa-xs">
+              <div class="row items-start">
                 <slot v-if="showAvatar" name="row-avatar" :item="row">
-                  <div class="col-2 q-mr-sm">
+                  <div class="col-auto q-mr-sm">
                     <transition name="slide" appear mode="out-in">
                       <q-avatar
                         :key="row.selected"
@@ -86,7 +88,7 @@
                             {{ helper.getFirstChar(row?.id) }}
                           </slot>
                         </div>
-                        <transition apear name="slide-fade">
+                        <transition appear name="slide-fade">
                           <q-icon
                             v-if="row.selected"
                             size="24px"
@@ -98,7 +100,7 @@
                   </div>
                 </slot>
 
-                <div class="col q-gutter-y-xs">
+                <div class="col">
                   <slot name="row-body" :item="row">
                     <div
                       v-for="col in gridStore?.columns.value"
@@ -118,6 +120,7 @@
                     </div>
                   </slot>
 
+                  <!-- Badge -->
                   <div v-if="showBadge" class="row no-wrap">
                     <div class="col no-wrap">
                       <q-scroll-area
@@ -134,16 +137,22 @@
                     </div>
                   </div>
                 </div>
-              </q-card-section>
-            </q-card>
-          </router-link>
-        </div>
-      </slot>
+              </div>
+            </router-link>
+
+            <!-- Right: Toolbar -->
+            <div class="col-auto q-ml-sm">
+              <slot name="row-toolbar" :item="row" />
+            </div>
+          </div>
+        </q-card-section>
+      </q-card>
     </template>
   </div>
 
   <slot name="footer"></slot>
 
+  <!-- No Data -->
   <div
     v-if="
       !tableStore.showLoader.value &&
@@ -154,6 +163,7 @@
     <no-data-found />
   </div>
 
+  <!-- Loader -->
   <q-inner-loading
     :showing="tableStore.showLoader.value"
     class="transparent z-max"
@@ -161,6 +171,7 @@
     <q-spinner size="52px" color="primary" />
   </q-inner-loading>
 
+  <!-- Pagebar -->
   <div
     v-if="showPagebar"
     class="row items-center justify-center q-gutter-sm q-my-lg"
@@ -190,13 +201,12 @@
       class="row primary-gradient primary-shadow items-center"
       @click="next"
     >
-      <span class="text-body3">
-        {{ $t("shared.labels.next") }}
-      </span>
+      <span class="text-body3">{{ $t("shared.labels.next") }}</span>
       <q-icon class="q-pl-xs" size="16px" name="west" />
     </q-btn>
   </div>
 
+  <!-- Create Button -->
   <template v-if="createUrl">
     <q-page-sticky position="bottom-right z-1" :offset="[18, 18]">
       <slot name="create-label">
@@ -212,9 +222,7 @@
         >
           <div class="row items-center q-gutter-x-xs">
             <q-icon name="o_add" size="20px" />
-            <span>
-              {{ $t("shared.labels.create") }}
-            </span>
+            <span>{{ $t("shared.labels.create") }}</span>
           </div>
         </q-btn>
       </slot>

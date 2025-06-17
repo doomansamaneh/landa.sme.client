@@ -1,62 +1,51 @@
 <template>
-  <template v-if="$q.screen.xs">
-    <toolbar-mobile :title="title" :item="item" buttons margin />
-  </template>
-  <template v-else>
-    <toolbar-desktop
-      :table-store="tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      :inside="inside"
-      :margin="!inside"
-      :title="title"
-      :item="item"
-      buttons
-      @edit-batch="editBatch"
-    />
-  </template>
+  <toolbar-desktop
+    v-if="$q.screen.gt.sm"
+    :inside="inside"
+    :margin="!inside"
+    :title="title"
+    :menu-items="menuItems"
+  />
+  <toolbar-mobile
+    v-else
+    :inside="inside"
+    :title="title"
+    :model="model"
+    :base-route="baseRoute"
+    :menu-items="menuItems"
+  />
 </template>
 
 <script setup>
   import { computed } from "vue";
-  import { useDialog } from "src/composables/useDialog";
-  import { useDataTable } from "src/composables/useDataTable";
-  import { useFormActions } from "src/composables/useFormActions";
+  import { useCustomerState } from "../../../_composables/useCustomerState";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
+  import { useCustomerPreviewMenu } from "../../../_menus/useCustomerPreviewMenu";
 
-  import ToolbarDesktop from "../../desktop/preview/PreviewToolbar.vue";
-  import ToolbarMobile from "../../mobile/preview/PreviewToolbar.vue";
-  import EditBatch from "../forms/EditBatchForm.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
 
   const props = defineProps({
-    toolbar: Boolean,
-    inside: Boolean,
+    model: {
+      type: Object,
+      required: true,
+    },
     title: String,
-    item: Object,
-    tableStore: useDataTable,
+    inside: Boolean,
+    margin: Boolean,
+    baseRoute: { type: String, default: "crm/customer" },
   });
 
-  const baseRoute = "crm/customer";
-  const dialogStore = useDialog();
-  const crudStore = useFormActions(baseRoute);
-
-  const selectedIds = computed(
-    () =>
-      props.tableStore?.selectedRows?.value?.map((item) => item.id) ||
-      []
+  const customerStore = useCustomerState();
+  const context = usePreviewMenuContext(
+    props.model,
+    props.baseRoute,
+    {
+      onDeleteSuccess: () => customerStore.reset(),
+    }
   );
 
-  function editBatch() {
-    dialogStore.openDialog({
-      title: `shared.labels.editBatch`,
-      component: EditBatch,
-      actionBar: true,
-      props: {
-        selectedIds: selectedIds?.value,
-      },
-      okCallback: async (response) => {
-        await props.tableStore.reloadData();
-      },
-    });
-  }
+  const menuItems = computed(() =>
+    useCustomerPreviewMenu(context.value)
+  );
 </script>

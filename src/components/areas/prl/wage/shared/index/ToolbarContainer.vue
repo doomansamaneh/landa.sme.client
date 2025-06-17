@@ -12,21 +12,15 @@
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      :menu-items="menuItems"
-      @menu-item-click="handleMenuItemClick"
-      margin
-    />
+    <toolbar-desktop :menu-items="menuItems" margin />
   </template>
 </template>
 
 <script setup>
   import { computed } from "vue";
   import { useQuasar } from "quasar";
-  import { useDataTable } from "src/composables/useDataTable";
   import { downloadManager } from "src/helpers";
-  import { useDataTableExport } from "src/composables/useDataTableExport";
-
+  import { useDataTable } from "src/composables/useDataTable";
   import { useFormActions } from "src/composables/useFormActions";
   import { useWageDataGridMenu } from "src/components/areas/prl/_menus/useWageDataGridMenu";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
@@ -49,70 +43,27 @@
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function downloadPdf() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-wage"
-    );
-  }
-
-  function downloadBatchPdf() {
-    downloadManager.downloadPost(
-      `${props.baseRoute}/GenerateBatchPdf`,
-      props.tableStore.pagination.value,
-      "landa-wage"
-    );
-  }
-
-  function exportTax() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/exportTax/${props.tableStore.activeRow.value.id}`,
-      "landa-tax"
-    );
-  }
-
-  function exportInsurance() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/exportInsurance/${props.tableStore.activeRow.value.id}`,
-      "landa-insurance"
-    );
-  }
-
-  const { exportAll, exportCurrentPage } = useDataTableExport(
-    props.tableStore
-  );
-
   const context = useDataGridMenuContext(
     props.tableStore,
     props.baseRoute,
-    // {
-    //   selectedIds: selectedIds.value,
-    //   activeRow: props.tableStore?.activeRow?.value,
-    //   exportAll,
-    //   exportCurrentPage,
-    //   print: downloadPdf,
-    //   printBatch: downloadBatchPdf,
-    //   reloadData: () => props.tableStore?.reloadData,
-    //   deleteBatch: () =>
-    //     crudStore.deleteBatch(
-    //       selectedIds.value,
-    //       props.tableStore?.reloadData
-    //     ),
-    //   deleteById: () =>
-    //     crudStore.deleteById(
-    //       props.tableStore?.activeRow?.value?.id,
-    //       props.tableStore?.reloadData
-    //     ),
-    //   exportTax,
-    //   exportInsurance,
-    // }
+    {
+      exportTax: async () => {
+        await downloadManager.downloadGet(
+          `${props.baseRoute}/exportTax/${props.model?.id}`,
+          "landa-tax"
+        );
+      },
+
+      exportInsurance: async () => {
+        await downloadManager.downloadGet(
+          `${props.baseRoute}/exportInsurance/${props.model?.id}`,
+          "landa-insurance"
+        );
+      },
+    }
   );
 
   const menuItems = computed(() =>
     useWageDataGridMenu(context.value)
   );
-
-  const handleMenuItemClick = (item) => {
-    // Handle any additional menu item click logic here if needed
-  };
 </script>

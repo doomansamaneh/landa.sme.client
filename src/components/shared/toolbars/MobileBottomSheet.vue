@@ -15,7 +15,7 @@
           v-for="(item, index) in menuItems.value"
           :key="index"
         >
-          <template v-if="item.type === menuItemType.item">
+          <template v-if="item?.type === menuItemType.item">
             <template v-if="item.visible">
               <menu-item
                 v-access="item.permission"
@@ -33,7 +33,7 @@
             </template>
           </template>
 
-          <template v-else-if="item.type === menuItemType.moreItem">
+          <template v-else-if="item?.type === menuItemType.moreItem">
             <template
               v-for="(subItem, subIndex) in item.subItems"
               :key="subIndex"
@@ -85,7 +85,7 @@
 
   const handleMenuItemClick = (item) => {
     item.handler?.();
-    emits("menu-item-click", item);
+    //emits("menu-item-click", item);
     onBottomSheetHide();
   };
 

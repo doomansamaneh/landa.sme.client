@@ -5,6 +5,7 @@ export function useWageDataGridMenu(context) {
   return useDataGridMenu(context, {
     baseRoute: "prl/wage",
     permissionPrefix: "prl.wage",
+
     extraMoreItems: [
       {
         ...menuItems.defaultItem,
@@ -23,7 +24,6 @@ export function useWageDataGridMenu(context) {
         addSeparator: true,
         visible: !!context.activeRow?.id,
       },
-
     ],
   });
 }

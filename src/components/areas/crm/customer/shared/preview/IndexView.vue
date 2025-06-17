@@ -1,9 +1,9 @@
 <template>
   <toolbar-container
+    v-if="model.id"
     :inside="inside"
-    :table-store="tableStore"
     :title="title"
-    :item="model"
+    :model="model"
   />
 
   <div class="row items-center q-col-gutter-lg q-pb-lg">
