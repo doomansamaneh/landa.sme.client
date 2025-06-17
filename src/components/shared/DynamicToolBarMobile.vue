@@ -1,7 +1,8 @@
 <template>
   <tool-bar-observer ref="observer">
     <q-toolbar>
-      <template v-if="selectedIds?.length == 0">
+      <!-- <template v-if="selectedIds?.length == 0"></template> -->
+      <template v-if="true">
         <div class="row items-center">
           <q-btn
             dense
@@ -68,7 +69,7 @@
         </div>
       </template>
 
-      <template v-if="selectedIds?.length > 0">
+      <template v-else>
         <div class="row items-center q-gutter-sm">
           <q-btn
             round
@@ -139,7 +140,10 @@
 
     <template #body>
       <q-list padding>
-        <template v-for="(item, index) in menuItems" :key="index">
+        <template
+          v-for="(item, index) in menuItems.value"
+          :key="index"
+        >
           <template v-if="item.type === menuItemType.item">
             <template v-if="item.visible">
               <menu-item
