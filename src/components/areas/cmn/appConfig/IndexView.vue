@@ -150,7 +150,7 @@
         >
           <q-item-section :class="itemClass">
             <q-item-label class="text-on-dark text-body2">
-              درون‌ریزی اطلاعات
+              ورود اطلاعات
             </q-item-label>
           </q-item-section>
 
@@ -161,9 +161,10 @@
           </q-item-section>
         </q-item>
 
-        <q-separator size="1px" />
+        <q-separator size="1px" v-access="`cmn.appConfig.api`" />
 
         <q-item
+          v-access="`cmn.appConfig.api`"
           class="q-py-md"
           :class="$q.screen.gt.xs ? '' : 'q-px-none'"
           clickable

@@ -1,5 +1,6 @@
 <template>
   <cash-balance
+    v-access="`acc.report.accountReview`"
     title="موجودی نقد"
     :height="$q.screen.gt.xs ? 350 : 10000"
     action="Cash"

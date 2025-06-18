@@ -87,7 +87,7 @@
   import { ref, onMounted, watch, computed } from "vue";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
-  import Chart from "src/components/shared/Charts/ChartView.vue";
+  import Chart from "src/components/shared/charts/ChartView.vue";
 
   const $q = useQuasar();
   const options = ref(null);

@@ -27,7 +27,7 @@ export function useWagePreviewMenu(context) {
             ...menuItems.defaultItem,
             label: "downloadInsurrance",
             icon: "o_save",
-            permission: `prl.wage.print`,
+            permission: `prl.wage.export`,
             handler: () => context.exportInsurance?.(),
             visible: true,
           },

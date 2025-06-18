@@ -1,5 +1,8 @@
 <template>
-  <div class="row q-col-gutter-md">
+  <div
+    v-access="`acc.report.accountReview`"
+    class="row q-col-gutter-md"
+  >
     <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
         title="حاشیه سود"

@@ -8,6 +8,7 @@
   </q-toolbar> -->
 
   <div
+    v-access="`acc.report.accountReview`"
     class="row q-col-gutter-lg"
     :style="$q.screen.gt.sm ? 'padding-top: 38px' : 'padding-top: 0'"
   >

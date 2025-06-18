@@ -11,7 +11,7 @@ export function useWageDataGridMenu(context) {
         ...menuItems.defaultItem,
         label: "downloadInsurrance",
         icon: "o_description",
-        permission: "prl.wage.print", // Assuming print permission covers downloads for now
+        permission: "prl.wage.export",
         handler: () => context.exportInsurance?.(),
         visible: !!context.activeRow?.id,
       },
@@ -19,7 +19,7 @@ export function useWageDataGridMenu(context) {
         ...menuItems.defaultItem,
         label: "downloadTax",
         icon: "o_description",
-        permission: "prl.wage.print", // Assuming print permission covers downloads for now
+        permission: "prl.wage.export",
         handler: () => context.exportTax?.(),
         addSeparator: true,
         visible: !!context.activeRow?.id,

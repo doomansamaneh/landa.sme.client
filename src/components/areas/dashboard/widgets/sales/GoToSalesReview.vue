@@ -1,5 +1,6 @@
 <template>
   <q-card
+    v-access="`sls.report.salesReview`"
     bordered
     class="cursor-pointer primary-gradient-1 relative q-radius-lg q-hoverable"
     @click="goToSalesReview"

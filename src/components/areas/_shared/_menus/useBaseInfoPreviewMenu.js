@@ -1,7 +1,7 @@
-import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
+import { usePreviewMenu } from "../menus/usePreviewMenu";
 
 export function useVoucherPreviewMenu(context) {
   return usePreviewMenu(context, {
-    permissionPrefix: "acc.voucher",
+    permissionPrefix: context.baseRoute?.replace("/", "."),
   });
 }

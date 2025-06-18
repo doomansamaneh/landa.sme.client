@@ -25,6 +25,7 @@
         @click="goToContact"
       />
       <navigation-item
+        v-access="`cmn.appconfig.edit`"
         label="پیکربندی"
         icon="settings"
         :isActive="isActiveConfig"

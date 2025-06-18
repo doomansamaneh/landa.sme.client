@@ -1,5 +1,6 @@
 <template>
   <q-card
+    v-access="`acc.report.accountReview`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="fit shadow main-card fit bordered q-pa-none"
     flat

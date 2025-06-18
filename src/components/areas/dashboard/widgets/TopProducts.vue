@@ -1,5 +1,6 @@
 <template>
   <q-card
+    v-access="`sls.invoice.view`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="fit shadow border-radius-lg bordered"
   >

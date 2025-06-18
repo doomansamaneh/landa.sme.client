@@ -19,10 +19,21 @@
         v-model="state.tab.value"
       >
         <q-tab name="general" icon="o_dashboard" label="عمومی" />
-        <q-tab name="sales" icon="o_receipt" label="فروش" />
-        <q-tab name="expense" icon="o_attach_money" label="هزینه" />
+        <q-tab
+          name="sales"
+          v-access="`sls.report.salesReview`"
+          icon="o_receipt"
+          label="فروش"
+        />
+        <q-tab
+          name="expense"
+          v-access="`acc.report.accountReview`"
+          icon="o_attach_money"
+          label="هزینه"
+        />
         <q-tab
           name="cheque-notification"
+          v-access="`acc.report.accountReview`"
           icon="campaign"
           label="اعلان چک"
         >

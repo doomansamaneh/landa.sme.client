@@ -1,6 +1,7 @@
 <template>
   <template
     v-if="chartStore.chartExpenseSeries.value && isChartVisible"
+    v-access="`acc.report.accountReview`"
   >
     <chart
       :options="options"

@@ -1,5 +1,9 @@
 <template>
-  <q-card class="shadow fit bordered" flat>
+  <q-card
+    v-access="`acc.report.accountReview`"
+    class="shadow fit bordered"
+    flat
+  >
     <q-card-section class="q-pb-none">
       <q-item class="no-padding">
         <q-item-section avatar>

@@ -54,7 +54,6 @@
 
   const draggable = useGeneralTab();
 
-  import BalanceChart from "./_CashBalanceChart.vue";
   import BalanceList from "./_CashBalanceList.vue";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
