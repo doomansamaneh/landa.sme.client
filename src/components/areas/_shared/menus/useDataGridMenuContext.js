@@ -56,6 +56,7 @@ export function useDataGridMenuContext(
   return computed(() => ({
     selectedIds: selectedIds.value,
     activeRow: activeRow.value,
+    baseRoute: baseRoute,
     ...defaultHandlers,
     ...customHandlers,
   }));

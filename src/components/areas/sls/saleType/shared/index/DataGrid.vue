@@ -6,7 +6,6 @@
     icon="subject"
     :visible-columns="columns"
     create-url="/sls/saleType/create"
-    activation
   >
     <template #cell-title="{ item }">
       <is-by-system :is-by-system="item.isBySystem" />

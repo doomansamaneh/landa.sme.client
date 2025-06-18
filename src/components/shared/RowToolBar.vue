@@ -1,6 +1,7 @@
 <template>
   <div class="row q-gutter-sm items-center">
     <q-btn
+      v-access="`${permissionPrefix}.edit`"
       round
       class="text-on-dark text-caption"
       :to="`/${baseRoute}/edit/${item.id}`"
@@ -13,6 +14,7 @@
     </q-btn>
 
     <q-btn
+      v-access="`${permissionPrefix}.clone`"
       round
       class="text-on-dark text-caption"
       :to="`/${baseRoute}/copy/${item.id}`"
@@ -25,6 +27,7 @@
     </q-btn>
 
     <q-btn
+      v-access="`${permissionPrefix}.delete`"
       round
       class="text-on-dark text-caption"
       unelevated
@@ -41,10 +44,16 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  baseRoute: String,
-  item: Object,
-  tableStore: Object,
-  crudStore: Object,
-});
+  import { computed } from "vue";
+
+  const props = defineProps({
+    baseRoute: String,
+    item: Object,
+    tableStore: Object,
+    crudStore: Object,
+  });
+
+  const permissionPrefix = computed(() =>
+    props.baseRoute.replace("/", ".")
+  );
 </script>

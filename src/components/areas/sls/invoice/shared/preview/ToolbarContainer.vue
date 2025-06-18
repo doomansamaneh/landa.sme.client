@@ -18,6 +18,7 @@
 <script setup>
   import { computed } from "vue";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
+  import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
   import { useInvoiceState } from "../../../_composables/useInvoiceState";
   import { useInvoicePreviewMenu } from "../../../_menus/useInvoicePreviewMenu";
 
@@ -33,11 +34,18 @@
   });
 
   const invoiceStore = useInvoiceState();
+  const formStore = useInvoiceModel({ baseRoute: props.baseRoute });
   const context = usePreviewMenuContext(
     props.model,
     props.baseRoute,
     {
       onDeleteSuccess: () => invoiceStore.reset(),
+      cancelInvoice: () => {
+        formStore.cancelInvoice(
+          props.tableStore?.activeRow?.value?.id,
+          props.tableStore.reloadData()
+        );
+      },
     }
   );
 

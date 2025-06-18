@@ -156,6 +156,7 @@
               />
               <q-separator
                 v-if="item.addSeparator"
+                v-access="item.permission"
                 size="0.5px"
                 class="q-my-sm"
               />
@@ -183,6 +184,7 @@
                 />
                 <q-separator
                   v-if="subItem.addSeparator"
+                  v-access="subItem.permission"
                   size="0.5px"
                   class="q-my-sm"
                 />

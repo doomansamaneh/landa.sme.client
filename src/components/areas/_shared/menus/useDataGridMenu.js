@@ -62,6 +62,7 @@ export function useDataGridMenu(context, config = {}) {
                 {
                   ...menuItems.refresh,
                   handler: () => context.reloadData?.(),
+                  addSeparator: true,
                 },
                 ...extraMoreItems,
                 {

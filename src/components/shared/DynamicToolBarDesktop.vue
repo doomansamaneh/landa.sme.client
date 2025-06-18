@@ -65,6 +65,7 @@
                           @click="handleMenuItemClick(subItem)"
                         />
                         <q-separator
+                          v-access="subItem.permission"
                           v-if="subItem.addSeparator"
                           spaced
                         />

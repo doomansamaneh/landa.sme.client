@@ -34,12 +34,6 @@ export const menuItems = {
     addSeparator: true,
   },
 
-  separator: {
-    type: menuItemType.separator,
-    label: "separator",
-    visible: true,
-  },
-
   refresh: {
     ...defaultItem,
     label: "refresh",

@@ -32,8 +32,8 @@
 
   import ToolbarMobile from "../../mobile/index/ToolBar.vue";
   import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
-  import EditBatch from "../forms/EditBatchForm.vue";
-  import EditBatchPrice from "../forms/EditBatchPriceForm.vue";
+  import EditBatchForm from "../forms/EditBatchForm.vue";
+  import EditBatchPriceForm from "../forms/EditBatchPriceForm.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -44,7 +44,6 @@
 
   const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
-  const showBatchPriceDialog = ref(false);
 
   const selectedIds = computed(() =>
     props.tableStore.selectedRows?.value.map((item) => item.id)
@@ -53,7 +52,7 @@
   function editBatch() {
     dialogStore.openDialog({
       title: `shared.labels.editBatch`,
-      component: EditBatch,
+      component: EditBatchForm,
       actionBar: true,
       props: {
         selectedIds: selectedIds?.value,
@@ -67,7 +66,7 @@
   function editBatchPrice() {
     dialogStore.openDialog({
       title: `اصلاح دسته‌ای قیمت`,
-      component: EditBatchPrice,
+      component: EditBatchPriceForm,
       actionBar: true,
       props: {
         selectedIds: selectedIds?.value,

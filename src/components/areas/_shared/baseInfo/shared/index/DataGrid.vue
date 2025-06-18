@@ -1,11 +1,12 @@
 <template>
-  <base-info-toolbar
+  <toolbar-container
     v-if="toolbar"
     buttons
     :title="title"
     :table-store="tableStore"
     :base-route="baseRoute"
-    activation
+    :crud-store="crudStore"
+    :permission-prefix="permissionPrefix"
   />
 
   <template v-if="$q.screen.lt.sm">
@@ -49,12 +50,13 @@
 
   import Desktop from "src/components/areas/_shared/baseInfo/desktop/index/DataGrid.vue";
   import Mobile from "src/components/areas/_shared/baseInfo/mobile/index/DataGrid.vue";
-  import BaseInfoToolbar from "./BaseInfoToolbar.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
 
   const props = defineProps({
     title: String,
     icon: String,
     baseRoute: String,
+    permissionPrefix: String,
     dataSource: String,
     createUrl: String,
     gridStore: Object,
@@ -77,14 +79,5 @@
         visibleColumns: props.visibleColumns,
         sortColumn: props.sortColumn,
       }),
-  });
-
-  const reloadData = async () => {
-    tableStore.reloadData();
-  };
-
-  defineExpose({
-    reloadData,
-    tableStore,
   });
 </script>
