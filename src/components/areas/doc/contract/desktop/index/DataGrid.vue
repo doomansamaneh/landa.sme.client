@@ -3,7 +3,6 @@
     <card-title :title="title" icon="o_subject" />
 
     <data-grid
-      ref="dataGrid"
       :data-source="dataSource"
       :grid-store="gridStore"
       :title="title"
@@ -72,17 +71,5 @@
     dataSource: String,
     baseRoute: String,
     title: String,
-  });
-
-  const dataGrid = ref(null);
-
-  async function reloadData() {
-    await tableStore.value.reloadData();
-  }
-
-  const tableStore = computed(() => dataGrid?.value?.tableStore);
-
-  defineExpose({
-    tableStore,
   });
 </script>

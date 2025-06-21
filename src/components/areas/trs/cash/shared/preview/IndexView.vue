@@ -3,8 +3,9 @@
     v-if="model"
     :inside="inside"
     :title="title"
+    :base-route="baseRoute"
     :model="model"
-    back-button
+    :crud-store="crudStore"
   />
 
   <q-card flat class="bordered shadow overflow-hidden">
