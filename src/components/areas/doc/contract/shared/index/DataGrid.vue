@@ -1,64 +1,27 @@
 <template>
-  <template v-if="$q.screen.lt.sm">
-    <toolbar-mobile
-      buttons
-      :title="title"
-      :table-store="mobileGrid?.tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      activation
-    ></toolbar-mobile>
-
-    <mobile
-      :title="title"
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :data-source="dataSource"
-      :base-route="baseRoute"
-      ref="mobileGrid"
-    />
-  </template>
-  <template v-else>
-    <toolbar-desktop
-      :title_="title"
-      :table-store="desktopGrid?.tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      activation
-      buttons
-      margin
-    ></toolbar-desktop>
-    <desktop
-      :title="title"
-      :grid-store="gridStore"
-      :crud-store="crudStore"
-      :data-source="dataSource"
-      :base-route="baseRoute"
-      ref="desktopGrid"
-    />
-  </template>
+  <data-grid
+    base-route="doc/contract"
+    data-source="doc/contract/getGridData"
+    :title="$t('main-menu-items.Doc_Contract_View')"
+    :columns="contractColumns"
+    sort-column="no"
+    create-url="/contract/contract/create"
+    expandable
+  >
+    <template #expand="{ item }">
+      <preview
+        inside
+        :item="item"
+        :base-route="baseRoute"
+        :title="$t('main-menu-items.Doc_Contract_View')"
+      />
+    </template>
+  </data-grid>
 </template>
 
 <script setup>
-  import { ref } from "vue";
-  import { useBaseInfoGrid } from "components/areas/_shared/_composables/useBaseInfoGrid";
-  import { contractColumns } from "components/areas/doc/_composables/constants";
-  import { useFormActions } from "src/composables/useFormActions";
+  import { contractColumns } from "../../../_composables/constants";
 
-  const props = defineProps({
-    title: String,
-  });
-
-  const gridStore = useBaseInfoGrid({ columns: contractColumns });
-
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
-  import Desktop from "../../desktop/index/DataGrid.vue";
-  import Mobile from "../../desktop/index/DataGrid.vue";
-
-  const dataSource = "doc/contract/getGridData";
-  const baseRoute = "doc/contract";
-  const crudStore = useFormActions(baseRoute);
-  const desktopGrid = ref(null);
-  const mobileGrid = ref(null);
+  import Preview from "../preview/IndexView.vue";
+  import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
 </script>

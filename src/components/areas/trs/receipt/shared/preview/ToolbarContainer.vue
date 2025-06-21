@@ -18,7 +18,6 @@
 
 <script setup>
   import { computed } from "vue";
-  import { useReceiptState } from "../../../_composables/useReceiptState";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useReceiptPreviewMenu } from "../../../_menus/useReceiptPreviewMenu";
 
@@ -36,14 +35,7 @@
     baseRoute: String,
   });
 
-  const receiptStore = useReceiptState();
-  const context = usePreviewMenuContext(
-    props.model,
-    props.baseRoute,
-    {
-      onDeleteSuccess: () => receiptStore.reset(),
-    }
-  );
+  const context = usePreviewMenuContext(props.model, props.baseRoute);
 
   const menuItems = computed(() =>
     useReceiptPreviewMenu(context.value)

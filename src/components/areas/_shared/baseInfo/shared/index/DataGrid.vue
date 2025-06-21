@@ -18,7 +18,6 @@
       :base-route="baseRoute"
       :createUrl="`/${baseRoute}/create`"
       preview-page
-      ref="mobileGrid"
     />
   </template>
   <template v-else>
@@ -30,7 +29,6 @@
       :data-source="dataSource"
       :base-route="baseRoute"
       :expandable="expandable"
-      ref="desktopGrid"
     >
       <template
         v-for="(slot, name) in $slots"

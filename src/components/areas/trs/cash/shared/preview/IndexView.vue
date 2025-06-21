@@ -1,5 +1,11 @@
 <template>
-  <toolbar-container :inside="inside" :title="title" back-button />
+  <toolbar-container
+    v-if="model"
+    :inside="inside"
+    :title="title"
+    :model="model"
+    back-button
+  />
 
   <q-card flat class="bordered shadow overflow-hidden">
     <card-title :title="title" />

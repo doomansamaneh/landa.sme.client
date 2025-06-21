@@ -1,8 +1,7 @@
 import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
 
-export function useReceiptPreviewMenu(context) {
+export function useRepositionPreviewMenu(context) {
   return usePreviewMenu(context, {
-    permissionPrefix: "trs.receipt",
-    exclude: ["sendMail"],
+    permissionPrefix: "inv.reposition",
   });
 }

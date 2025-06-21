@@ -1,4 +1,12 @@
 <template>
+  <toolbar-container
+    v-if="model"
+    :inside="inside"
+    :title="title"
+    :base-route="baseRoute"
+    :model="model"
+  />
+
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
@@ -23,11 +31,11 @@
 
 <script setup>
   import { ref, computed, onMounted } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+  import { useRoute } from "vue-router";
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolbarContainer from "src/components/shared/ToolbarContainer.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
   import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
@@ -45,7 +53,6 @@
   const crudStore = useFormActions(baseRoute, model);
   const printStore = usePrint();
   const route = useRoute();
-  const router = useRouter();
 
   const id = computed(() => props.item?.id ?? route.params.id);
 

@@ -1,5 +1,6 @@
 <template>
   <toolbar-container
+    v-if="model"
     :inside="inside"
     :title="title"
     :base-route="baseRoute"

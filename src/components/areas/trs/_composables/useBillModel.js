@@ -5,11 +5,9 @@ import { helper } from "src/helpers";
 import { useBillItemModel } from "./useBillItemModel";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { billModel } from "src/models/areas/trs/billModel";
-import { useReceiptState } from "./useReceiptState";
 
 export function useBillModel({ baseRoute, preview }) {
   const router = useRouter();
-  const stateStore = useReceiptState();
   const itemStore = useBillItemModel();
 
   const model = ref(billModel);

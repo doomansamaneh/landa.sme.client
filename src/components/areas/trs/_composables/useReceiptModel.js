@@ -5,11 +5,9 @@ import { helper } from "src/helpers";
 import { useReceiptItemModel } from "./useReceiptItemModel";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { receiptModel } from "src/models/areas/trs/receiptModel";
-import { useReceiptState } from "./useReceiptState";
 
 export function useReceiptModel({ baseRoute, preview }) {
   const router = useRouter();
-  const stateStore = useReceiptState();
   const itemStore = useReceiptItemModel();
 
   const model = ref(receiptModel);

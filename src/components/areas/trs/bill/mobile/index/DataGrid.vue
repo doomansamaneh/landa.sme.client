@@ -54,7 +54,7 @@
 
     <template #row-toolbar="{ item }">
       <mobile-row-toolbar
-        :title="`${item.title}`"
+        :title="`${item.subject}`"
         :menu-items="getItemMenu(item)"
       />
     </template>

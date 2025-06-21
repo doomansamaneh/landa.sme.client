@@ -19,7 +19,7 @@
 <script setup>
   import { computed } from "vue";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
-  import { useBaseInfoPreviewMenu } from "../../../_menus/useBaseInfoPreviewMenu";
+  import { useRepositionPreviewMenu } from "../../../_menus/useRepositionPreviewMenu";
 
   import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
@@ -32,12 +32,12 @@
     title: String,
     inside: Boolean,
     margin: Boolean,
-    baseRoute: String,
+    baseRoute: { type: String, default: "inv/reposition" },
   });
 
   const context = usePreviewMenuContext(props.model, props.baseRoute);
 
   const menuItems = computed(() =>
-    useBaseInfoPreviewMenu(context.value)
+    useRepositionPreviewMenu(context.value)
   );
 </script>

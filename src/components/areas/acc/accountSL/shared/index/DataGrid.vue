@@ -1,12 +1,10 @@
 <template>
   <data-grid
-    toolbar_
     base-route="acc/accountSL"
     data-source="acc/accountSL/getGridData"
     :title="$t('main-menu-items.Acc_AccountSL_View')"
     :grid-store="gridStore"
     create-url="/acc/accountSL/create"
-    activation
     expandable
   >
     <template #cell-code="{ item }">
