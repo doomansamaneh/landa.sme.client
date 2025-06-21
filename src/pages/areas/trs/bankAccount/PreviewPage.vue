@@ -1,12 +1,10 @@
 <template>
-  <desktop v-if="$q.screen.gt.sm" />
-  <mobile v-else />
+  <desktop
+    toolbar
+    :title="$t('main-menu-items.Trs_BankAccount_View')"
+  />
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
-  import Desktop from "src/components/areas/trs/bankAccount/desktop/IndexView.vue";
-  import Mobile from "src/components/areas/trs/bankAccount/mobile/IndexView.vue";
-
-  const $q = useQuasar();
+  import Desktop from "src/components/areas/trs/bankAccount/shared/preview/IndexView.vue";
 </script>

@@ -23,7 +23,6 @@
         <div class="col ellipsis text-body3 text-weight-500">
           {{ item.subject }}
         </div>
-        <menu-item-more @click="showItemSheet(item)" />
       </div>
 
       <div class="ellipsis-2-lines text-body1 text-bold">
@@ -52,43 +51,38 @@
         :id="item.contractId"
       />
     </template>
-  </data-grid>
 
-  <item-sheet
-    v-if="itemSheetStatus"
-    :table-store="tableStore"
-    :status="itemSheetStatus"
-    :item="item"
-    :base-route="baseRoute"
-    @hide="hideItemSheet"
-  />
+    <template #row-toolbar="{ item }">
+      <mobile-row-toolbar
+        :title="`${item.title}`"
+        :menu-items="getItemMenu(item)"
+      />
+    </template>
+  </data-grid>
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
 
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
+  import { useBillPreviewMenu } from "../../../_menus/useBillPreviewMenu";
   import DataGrid from "components/shared/dataTables/mobile/DataGrid.vue";
-  import ItemSheet from "./DataGridItemSheet.vue";
-  import MenuItemMore from "src/components/shared/buttons/MenuItemMore.vue";
+  import MobileRowToolbar from "src/components/shared/toolbars/MobileRowToolbar.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
   import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
-    baseRoute: String,
+    baseRoute: { type: String, default: "trs/bill" },
     title: String,
   });
 
-  const item = ref(null);
-  const itemSheetStatus = ref(false);
-
-  const showItemSheet = (row) => {
-    item.value = row;
-    itemSheetStatus.value = true;
-  };
-  const hideItemSheet = () => {
-    itemSheetStatus.value = false;
-  };
+  function getItemMenu(item) {
+    const context = usePreviewMenuContext(item, props.baseRoute, {
+      onDeleteSuccess: async () =>
+        await props.tableStore?.reloadData(),
+    });
+    return useBillPreviewMenu(context.value);
+  }
 </script>

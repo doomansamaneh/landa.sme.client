@@ -20,4 +20,5 @@
 
 <script setup>
   import Preview from "../../../_shared/invoice/shared/preview/IndexView.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
 </script>

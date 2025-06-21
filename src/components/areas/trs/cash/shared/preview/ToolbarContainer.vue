@@ -4,6 +4,7 @@
     :inside="inside"
     :margin="!inside"
     :title="title"
+    :base-route="baseRoute"
     :menu-items="menuItems"
   />
   <tool-bar-mobile
@@ -11,6 +12,7 @@
     :inside="inside"
     :title="title"
     :model="model"
+    :base-route="baseRoute"
     :menu-items="menuItems"
   />
 </template>
@@ -18,29 +20,25 @@
 <script setup>
   import { computed } from "vue";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
-  import { useSalesReturnPreviewMenu } from "../../../_menus/useSalesReturnPreviewMenu";
-  import { useSalesReturnState } from "../../../_composables/useSalesReturnState";
+  import { useBaseInfoPreviewMenu } from "src/components/areas/_shared/_menus/useBaseInfoPreviewMenu";
 
   import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
   import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
 
   const props = defineProps({
-    model: Object,
+    model: {
+      type: Object,
+      required: true,
+    },
     title: String,
     inside: Boolean,
     margin: Boolean,
-    baseRoute: String,
-    crudStore: Object,
+    baseRoute: { type: String, default: "trs/cash" },
   });
 
-  const salesReturnStore = useSalesReturnState();
-  const context = usePreviewMenuContext(
-    props.model,
-    props.baseRoute,
-    { onDeleteSuccess: () => salesReturnStore.reset() }
-  );
+  const context = usePreviewMenuContext(props.model, props.baseRoute);
 
   const menuItems = computed(() =>
-    useSalesReturnPreviewMenu(context.value)
+    useBaseInfoPreviewMenu(context.value)
   );
 </script>

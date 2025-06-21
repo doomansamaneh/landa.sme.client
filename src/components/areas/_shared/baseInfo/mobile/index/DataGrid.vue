@@ -65,6 +65,13 @@
         </q-card-section>
       </q-card>
     </template>
+
+    <template #row-toolbar="{ item }">
+      <mobile-row-toolbar
+        :title="`${item.title}`"
+        :menu-items="getItemMenu(item)"
+      />
+    </template>
   </data-grid>
 </template>
 
@@ -73,6 +80,10 @@
   import { dataType } from "src/constants/enums";
   import { helper } from "src/helpers/helper";
 
+  import { usePreviewMenuContext } from "../../../menus/usePreviewMenuContext";
+  import { useBaseInfoPreviewMenu } from "../../../_menus/useBaseInfoPreviewMenu";
+
+  import MobileRowToolbar from "src/components/shared/toolbars/MobileRowToolbar.vue";
   import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
 
   const router = useRouter();
@@ -105,4 +116,12 @@
     }
     return value;
   };
+
+  function getItemMenu(item) {
+    const context = usePreviewMenuContext(item, props.baseRoute, {
+      onDeleteSuccess: async () =>
+        await props.tableStore?.reloadData(),
+    });
+    return useBaseInfoPreviewMenu(context.value);
+  }
 </script>

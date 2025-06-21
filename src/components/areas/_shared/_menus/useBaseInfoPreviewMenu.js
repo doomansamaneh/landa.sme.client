@@ -1,6 +1,6 @@
 import { usePreviewMenu } from "../menus/usePreviewMenu";
 
-export function useVoucherPreviewMenu(context) {
+export function useBaseInfoPreviewMenu(context) {
   return usePreviewMenu(context, {
     permissionPrefix: context.baseRoute?.replace("/", "."),
   });
