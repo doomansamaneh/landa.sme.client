@@ -1,5 +1,5 @@
 <template>
-  <tool-bar
+  <toolbar-container
     :inside="inside"
     :title="title"
     :base-route="baseRoute"
@@ -25,7 +25,7 @@
   import { useRoute, useRouter } from "vue-router";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolBar from "./ToolBar.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
   import Mobile from "../../mobile/preview/IndexView.vue";
   import Desktop from "../../desktop/preview/IndexView.vue";
 

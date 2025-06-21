@@ -68,12 +68,13 @@ export function useDataGridMenu(context, config = {}) {
                 {
                   ...menuItems.print,
                   permission: `${permissionPrefix}.print`,
-                  visible: hasId,
+                  visible: hasId && exclude.includes("print"),
                   handler: () => context.print?.(),
                 },
                 {
                   ...menuItems.printBatch,
                   permission: `${permissionPrefix}.print`,
+                  visible: hasId && exclude.includes("printBatch"),
                   addSeparator: true,
                   handler: () => context.printBatch?.(),
                 },

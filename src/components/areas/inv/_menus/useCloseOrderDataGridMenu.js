@@ -1,9 +1,10 @@
 import { useDataGridMenu } from "../../_shared/menus/useDataGridMenu";
 
-export function useOpeningStockDataGridMenu(context) {
+export function useCloseOrderDataGridMenu(context) {
   return useDataGridMenu(context, {
-    baseRoute: "inv/openingStock",
-    permissionPrefix: "inv.openingStock",
+    baseRoute: "inv/closeOrder",
+    permissionPrefix: "inv.closeOrder",
+
     exclude: ["printBatch"],
   });
 }

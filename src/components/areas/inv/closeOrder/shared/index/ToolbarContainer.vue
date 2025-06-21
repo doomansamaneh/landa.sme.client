@@ -1,52 +1,37 @@
 <template>
-  <toolbar-desktop
-    :table-store="tableStore"
-    :crud-store="crudStore"
-    :base-route="baseRoute"
-    :selected-ids="selectedIds"
-    buttons
-    margin
-    @download-pdf="downloadPdf"
-  />
-  <!-- <template v-if="$q.screen.xs">
+  <template v-if="$q.screen.xs">
     <toolbar-mobile
       :table-store="tableStore"
       :crud-store="crudStore"
       :title="title"
       :base-route="baseRoute"
       :selected-ids="selectedIds"
-      @download-pdf="downloadPdf"
+      :menu-items="menuItems"
+      sort-btn
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      :table-store="tableStore"
-      :crud-store="crudStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      buttons
-      margin
-      @download-pdf="downloadPdf"
-    />
-  </template> -->
+    <toolbar-desktop :menu-items="menuItems" margin />
+  </template>
 </template>
 
 <script setup>
   import { computed } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
-  import { downloadManager } from "src/helpers";
 
   import { useFormActions } from "src/composables/useFormActions";
+  import { useCloseOrderDataGridMenu } from "../../../_menus/useCloseOrderDataGridMenu";
+  import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
-  //import ToolbarMobile from "../../mobile/index/ToolBar.vue";
-  import ToolbarDesktop from "../../desktop/index/ToolBar.vue";
+  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,
     title: String,
     tableStore: useDataTable,
-    baseRoute: String,
+    baseRoute: { type: String, default: "inv/closeOrder" },
   });
 
   const $q = useQuasar();
@@ -57,10 +42,12 @@
     props.tableStore.selectedRows?.value.map((item) => item.id)
   );
 
-  function downloadPdf() {
-    downloadManager.downloadGet(
-      `${props.baseRoute}/GeneratePdf/${props.tableStore.activeRow.value.id}`,
-      "landa-close-order"
-    );
-  }
+  const context = useDataGridMenuContext(
+    props.tableStore,
+    props.baseRoute
+  );
+
+  const menuItems = computed(() =>
+    useCloseOrderDataGridMenu(context.value)
+  );
 </script>

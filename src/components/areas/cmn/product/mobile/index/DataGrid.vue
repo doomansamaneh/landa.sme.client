@@ -18,7 +18,6 @@
             {{ item.code }} - {{ item.title }}
           </span>
         </div>
-        <menu-item-more @click="showItemSheet(item)" />
       </div>
 
       <div class="row q-gutter-x-xs">
@@ -50,27 +49,25 @@
         </span>
       </div>
     </template>
-  </data-grid>
 
-  <item-sheet
-    v-if="itemSheetStatus"
-    :table-store="tableStore"
-    :status="itemSheetStatus"
-    :base-route="baseRoute"
-    :item="item"
-    @hide="hideItemSheet"
-  />
+    <template #row-toolbar="{ item }">
+      <mobile-row-toolbar
+        :title="`${item.code} / ${item.title}`"
+        :menu-items="getItemMenu(item)"
+      />
+    </template>
+  </data-grid>
 </template>
 
 <script setup>
-  import { ref } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
+  import { useProductPreviewMenu } from "../../../_menus/useProductPreviewMenu";
 
+  import MobileRowToolbar from "src/components/shared/toolbars/MobileRowToolbar.vue";
   import DataGrid from "src/components/shared/dataTables/mobile/DataGrid.vue";
   import IsActive from "src/components/shared/IsActive.vue";
-  import ItemSheet from "./DataGridItemSheet.vue";
-  import MenuItemMore from "src/components/shared/buttons/MenuItemMore.vue";
 
   const props = defineProps({
     tableStore: useDataTable,
@@ -78,14 +75,11 @@
     baseRoute: String,
   });
 
-  const item = ref(null);
-  const itemSheetStatus = ref(false);
-
-  const showItemSheet = (row) => {
-    item.value = row;
-    itemSheetStatus.value = true;
-  };
-  const hideItemSheet = () => {
-    itemSheetStatus.value = false;
-  };
+  function getItemMenu(item) {
+    const context = usePreviewMenuContext(item, props.baseRoute, {
+      onDeleteSuccess: async () =>
+        await props.tableStore?.reloadData(),
+    });
+    return useProductPreviewMenu(context.value);
+  }
 </script>
