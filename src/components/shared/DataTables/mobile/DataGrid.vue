@@ -48,16 +48,16 @@
     <template v-for="row in rows?.value" :key="row.id">
       <q-card
         v-touch-hold.capture="() => selectRow(row)"
+        @click="setActiveRow(row)"
         class="border-radius-md"
         :class="tableStore.getRowClass(row)"
         flat
       >
         <q-card-section class="q-pa-xs">
           <div class="row no-wrap items-start justify-between">
-            <!-- Left: avatar + body + badges -->
             <router-link
               class="col q-gutter-y-xs no-decoration text-on-dark"
-              :to="baseRoute ? `/${baseRoute}/preview/${row.id}` : ''"
+              :to="getPreviewRoute(row)"
               @contextmenu.prevent
             >
               <div class="row items-start">
@@ -102,7 +102,7 @@
 
                 <div class="col">
                   <slot name="row-body" :item="row">
-                    <div
+                    <!-- <div
                       v-for="col in gridStore?.columns.value"
                       :key="col.name"
                     >
@@ -117,7 +117,7 @@
                           <span v-html="getColText(row, col)"></span>
                         </div>
                       </slot>
-                    </div>
+                    </div> -->
                   </slot>
 
                   <!-- Badge -->
@@ -140,7 +140,6 @@
               </div>
             </router-link>
 
-            <!-- Right: Toolbar -->
             <div class="col-auto q-ml-sm">
               <slot name="row-toolbar" :item="row" />
             </div>
@@ -249,6 +248,7 @@
     showBadge: Boolean,
     baseRoute: String,
     multiSelect: Boolean,
+    previewPage: { type: Boolean, default: true },
     dataTableStore: useDataTable,
   });
 
@@ -298,6 +298,12 @@
         );
       } else if (col.field) return row[col.field];
     }
+    return "";
+  }
+
+  function getPreviewRoute(row) {
+    if (props.previewPage && props.baseRoute)
+      return `/${props.baseRoute}/preview/${row.id}`;
     return "";
   }
 
@@ -378,6 +384,7 @@
     tableStore.value.pagination.value.currentPage -= 1;
     await reloadData();
   }
+
   async function next(e) {
     tableStore.value.pagination.value.currentPage += 1;
     await reloadData();

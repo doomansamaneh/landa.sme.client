@@ -17,7 +17,7 @@
       :data-source="dataSource"
       :base-route="baseRoute"
       :createUrl="`/${baseRoute}/create`"
-      preview-page
+      :preview-page="previewPage"
     />
   </template>
   <template v-else>
@@ -63,7 +63,7 @@
     sortColumn: String,
     toolbar: Boolean,
     expandable: Boolean,
-    activation: Boolean,
+    previewPage: Boolean,
   });
 
   const crudStore = useFormActions(props.baseRoute);

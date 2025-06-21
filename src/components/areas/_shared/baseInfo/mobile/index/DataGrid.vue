@@ -1,69 +1,46 @@
 <template>
   <data-grid
-    ref="dataGrid"
     :data-table-store="tableStore"
     :create-url="createUrl"
     :base-route="baseRoute"
+    :preview-page="previewPage"
   >
-    <template #body="{ item }">
-      <q-card
-        flat
-        bordered
-        :class="tableStore.getRowClass(item)"
-        v-touch-hold.capture="
-          () => tableStore?.selectRow(item, !item.selected)
-        "
-        @click="previewPage ? goToPreview(item) : setActiveRow(item)"
+    <template #row-body="{ item }">
+      <div
+        v-for="col in tableStore.columns?.value"
+        :key="col.name"
+        class="q-pa-sm"
       >
-        <q-card-section>
-          <div class="row q-col-gutter-sm">
-            <!-- <div class="col-12">
-              <span v-if="item.code">{{ item.code }} -</span>
-              {{ item.title }}
-              <div v-if="item.comment">
-                <small class="">{{ item.comment }}</small>
-              </div>
-            </div> -->
-            <div class="col-12">
-              <div
-                v-for="col in tableStore.columns?.value"
-                :key="col.name"
-                class="q-py-xs"
-              >
-                <span v-if="col.field && col.label" class="q-px-sm">
-                  <template v-if="col.name === 'isActive'">
-                    {{ col.label }}:
-                    <q-btn
-                      v-if="item[col.field]"
-                      round
-                      dense
-                      size="10px"
-                      unelevated
-                      icon="o_done"
-                      text-color="white"
-                      class="green-gradient green-shadow no-pointer-events"
-                    />
-                    <q-btn
-                      v-else
-                      round
-                      dense
-                      size="10px"
-                      unelevated
-                      icon="o_close"
-                      text-color="white"
-                      class="red-gradient red-shadow no-pointer-events"
-                    />
-                  </template>
-                  <template v-else>
-                    {{ col.label }}:
-                    {{ formatValue(col, item[col.field]) }}
-                  </template>
-                </span>
-              </div>
-            </div>
-          </div>
-        </q-card-section>
-      </q-card>
+        <span v-if="col.field && col.label" class="q-px-sm">
+          <template v-if="col.name === 'isActive'">
+            {{ col.label }}:
+            <q-btn
+              v-if="item[col.field]"
+              round
+              dense
+              size="10px"
+              unelevated
+              icon="o_done"
+              text-color="white"
+              class="green-gradient green-shadow no-pointer-events"
+            />
+            <q-btn
+              v-else
+              round
+              dense
+              size="10px"
+              unelevated
+              icon="o_close"
+              text-color="white"
+              class="red-gradient red-shadow no-pointer-events"
+            />
+          </template>
+          <template v-else>
+            {{ col.label }}:
+            {{ formatValue(col, item[col.field]) }}
+          </template>
+        </span>
+      </div>
     </template>
 
     <template #row-toolbar="{ item }">
