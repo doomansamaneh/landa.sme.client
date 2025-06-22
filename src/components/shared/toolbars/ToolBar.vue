@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-  import desktop from "src/components/shared/ToolBarDesktop.vue";
+  import desktop from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import mobile from "src/components/shared/ToolBarMobile.vue";
 
   const props = defineProps({

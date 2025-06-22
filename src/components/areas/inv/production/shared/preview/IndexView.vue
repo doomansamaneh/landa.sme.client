@@ -118,7 +118,7 @@
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import ProductItems from "./_ProductItems.vue";
   import UsedItems from "./_UsedItems.vue";

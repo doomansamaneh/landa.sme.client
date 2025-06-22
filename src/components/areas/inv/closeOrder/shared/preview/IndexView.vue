@@ -48,7 +48,7 @@
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
   import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";

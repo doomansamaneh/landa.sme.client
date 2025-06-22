@@ -29,8 +29,8 @@
   import { useOpeningStockDataGridMenu } from "../../../_menus/useOpeningStockDataGridMenu";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
-  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,

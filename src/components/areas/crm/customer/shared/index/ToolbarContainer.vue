@@ -24,8 +24,8 @@
 
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import EditBatchForm from "../forms/EditBatchForm.vue";
 
   const props = defineProps({

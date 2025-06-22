@@ -47,7 +47,7 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { usePrint } from "src/composables/usePrint";
 
-  import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/ToolBarPreviewMobile.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
   import HeaderSection from "./HeaderSection.vue";

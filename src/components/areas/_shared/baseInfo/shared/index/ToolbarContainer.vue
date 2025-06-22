@@ -18,8 +18,8 @@
   import { useDataGridMenuContext } from "../../../menus/useDataGridMenuContext";
   import { useBaseInfoDataGridMenu } from "../../../_menus/useBaseInfoDataGridMenu";
 
-  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
 
   const props = defineProps({
     title: String,

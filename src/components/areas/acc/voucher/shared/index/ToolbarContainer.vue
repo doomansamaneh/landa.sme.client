@@ -40,8 +40,8 @@
   import { useVoucherDataGridMenu } from "../../../_menus/useVoucherDataGridMenu";
   import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
 
-  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import ReorderForm from "../forms/ReorderForm.vue";
   import AdvancedSearch from "../../mobile/index/AdvancedSearch.vue";
 

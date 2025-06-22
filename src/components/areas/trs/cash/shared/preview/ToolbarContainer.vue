@@ -22,8 +22,8 @@
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useBaseInfoPreviewMenu } from "src/components/areas/_shared/_menus/useBaseInfoPreviewMenu";
 
-  import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
-  import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
 
   const props = defineProps({
     model: {

@@ -22,8 +22,8 @@
   import { usePurchaseState } from "../../../_composables/usePurchaseState";
   import { usePurchasePreviewMenu } from "../../../_menus/usePurchasePreviewMenu";
 
-  import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
-  import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
 
   const props = defineProps({
     model: Object,

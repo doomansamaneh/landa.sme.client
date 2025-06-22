@@ -22,8 +22,8 @@
   import { useInvoiceState } from "../../../_composables/useInvoiceState";
   import { useInvoicePreviewMenu } from "../../../_menus/useInvoicePreviewMenu";
 
-  import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
-  import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
 
   const props = defineProps({
     model: Object,

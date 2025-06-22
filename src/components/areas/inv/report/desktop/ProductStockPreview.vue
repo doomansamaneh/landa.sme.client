@@ -51,7 +51,7 @@
   import { useDialog } from "src/composables/useDialog";
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
-  import ToolBar from "src/components/shared/ToolBarDesktop.vue";
+  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import Preview from "./_ProductStockPreview.vue";
   import ModifyStockForm from "src/components/areas/inv/modifyStock/shared/forms/ModifyStockForm.vue";
 

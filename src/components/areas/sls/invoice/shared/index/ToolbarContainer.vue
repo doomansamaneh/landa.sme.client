@@ -23,8 +23,8 @@
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
   import { useInvoiceDataGridMenu } from "../../../_menus/useInvoiceDataGridMenu";
 
-  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
 
   import EditBatchForm from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
   import ReorderForm from "src/components/areas/sls/invoice/shared/forms/ReorderForm.vue";

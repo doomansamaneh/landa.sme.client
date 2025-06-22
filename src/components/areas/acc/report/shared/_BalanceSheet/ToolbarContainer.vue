@@ -37,7 +37,7 @@
   import { useBalanceSheet } from "src/components/areas/acc/_composables/useBalanceSheet";
   import { usePreview } from "src/composables/usePreview";
 
-  import ToolbarDesktop from "src/components/shared/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/ToolBarMobile.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
   import DataGridPreview from "./printPreview/DataGridPreview.vue";

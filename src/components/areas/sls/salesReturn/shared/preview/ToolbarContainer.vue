@@ -21,8 +21,8 @@
   import { useSalesReturnPreviewMenu } from "../../../_menus/useSalesReturnPreviewMenu";
   import { useSalesReturnState } from "../../../_composables/useSalesReturnState";
 
-  import ToolBarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
-  import ToolBarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
 
   const props = defineProps({
     model: Object,
