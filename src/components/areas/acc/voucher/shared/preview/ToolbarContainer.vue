@@ -23,7 +23,7 @@
   import { useVoucherPreviewMenu } from "../../../_menus/useVoucherPreviewMenu";
 
   import ToolbarDesktop from "src/components/shared/DynamicToolBarDesktop.vue";
-  import ToolbarMobile from "src/components/shared/DynamicToolBarMobile.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
 
   const props = defineProps({
     model: {
