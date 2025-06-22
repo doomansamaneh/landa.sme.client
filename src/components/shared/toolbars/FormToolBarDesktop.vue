@@ -54,7 +54,7 @@
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
-  import ToolbarObserver from "src/components/shared/ToolBarObserver.vue";
+  import ToolbarObserver from "src/components/shared/toolbars/ToolBarObserver.vue";
 
   const props = defineProps({
     title: String,

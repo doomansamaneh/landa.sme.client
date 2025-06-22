@@ -1,5 +1,5 @@
 <template>
-  <toolbar-desktop margin :title="title" />
+  <!-- <toolbar-desktop margin :title="title" /> -->
 
   <advanced-search />
 
@@ -104,7 +104,7 @@
 
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  // import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
 
   const props = defineProps({
     title: String,

@@ -1,5 +1,5 @@
 <template>
-  <template v-if="$q.screen.xs">
+  <!-- <template v-if="$q.screen.xs">
     <toolbar-mobile
       v-if="toolbar"
       :table-store="tableStore"
@@ -52,7 +52,7 @@
       :crud-store="crudStore"
       ref="mobileGrid"
     /> -->
-  </template>
+  <!-- </template> -->
 
   <desktop :table-store="tableStore" :title="title" />
 </template>
@@ -61,7 +61,7 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
-  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  // import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "../desktop/AccountReport.vue";
 
   const props = defineProps({

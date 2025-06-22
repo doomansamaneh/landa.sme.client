@@ -1,5 +1,6 @@
 <template>
-  <toolbar-desktop
+  .
+  <!-- <toolbar-desktop
     :table-store="tableStore"
     :crud-store="crudStore"
     :base-route="baseRoute"
@@ -18,15 +19,15 @@
     <template #bootons-edit>
       <span></span>
     </template>
-  </toolbar-desktop>
+  </toolbar-desktop> -->
 </template>
 
 <script setup>
   import { useDataTable } from "src/composables/useDataTable";
 
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import MenuButton from "src/components/shared/buttons/MenuButton.vue";
-  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  // import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  // import MenuButton from "src/components/shared/buttons/MenuButton.vue";
+  // import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
 
   const props = defineProps({
     toolbar: Boolean,

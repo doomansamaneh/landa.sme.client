@@ -1,5 +1,5 @@
-<template>
-  <toolbar-mobile
+<template>.
+  <!-- <toolbar-mobile
     :base-route="baseRoute"
     :title="title"
     buttons
@@ -11,14 +11,14 @@
         @click="openPreview"
       />
     </template>
-  </toolbar-mobile>
+  </toolbar-mobile> -->
 </template>
 
 <script setup>
   import { usePreview } from "src/composables/usePreview";
   import { useIncomeStatement } from "src/components/areas/acc/_composables/useIncomeStatement";
 
-  import ToolbarMobile from "components/shared/ToolbarMobile.vue";
+  // import ToolbarMobile from "components/shared/ToolbarMobile.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
   import DataGridPreview from "src/components/areas/acc/report/shared/IncomeStatement/printPreview/DataGridPreview.vue";
 

@@ -1,5 +1,5 @@
 <template>
-  <tool-bar
+  <!-- <tool-bar
     :inside="inside"
     :margin="!inside"
     buttons
@@ -12,7 +12,7 @@
         @click="printStore.handlePrint()"
       />
     </template>
-  </tool-bar>
+  </tool-bar> -->
 
   <q-card bordered>
     <div :ref="printStore.printRef" v-if="model">
@@ -28,10 +28,10 @@
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import BodySection from "./_BodySection.vue";
-  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,

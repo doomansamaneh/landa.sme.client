@@ -1,5 +1,9 @@
 <template>
-  <toolbar-container v-if="toolbar" :table-store="tableStore" />
+  <toolbar-container
+    v-if="toolbar"
+    :table-store="tableStore"
+    :title="$q.screen.gt.xs ? null : title"
+  />
 
   <data-grid-table :title="title" :table-store="tableStore" />
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <toolbar-desktop margin :title="title" />
+  <!-- <toolbar-desktop margin :title="title" /> -->
 
   <advanced-search />
 
@@ -122,7 +122,7 @@
   import InvoicePreview from "../../invoice/shared/preview/IndexView.vue";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  // import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
   import CardTab from "src/components/shared/CardTab.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import Chip from "src/components/shared/CustomChip.vue";

@@ -1,5 +1,5 @@
 <template>
-  <tool-bar
+  <!-- <tool-bar
     :inside="inside"
     :margin="!inside"
     :title="title"
@@ -15,7 +15,7 @@
       <menu-button-delete @click="crudStore.deleteById(id)" />
       <menu-button-print @click="printStore.handlePrint()" />
     </template>
-  </tool-bar>
+  </tool-bar> -->
 
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
@@ -118,17 +118,17 @@
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
 
-  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import ProductItems from "./_ProductItems.vue";
   import UsedItems from "./_UsedItems.vue";
   import CostItems from "./_CostItems.vue";
   import ScarpItems from "./_ScarpItems.vue";
   import DetailSection from "./_DetailSection.vue";
-  import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
-  import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
-  import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
-  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  // import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
+  // import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
+  // import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,

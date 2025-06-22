@@ -17,7 +17,7 @@
   );
 
   const ToolbarMobile = defineAsyncComponent(() =>
-    import("src/components/shared/FormToolBarMobile.vue")
+    import("src/components/shared/toolbars/FormToolBarMobile.vue")
   );
 
   const props = defineProps({

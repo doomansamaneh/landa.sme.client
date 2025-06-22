@@ -1,5 +1,5 @@
-<template>
-  <tool-bar
+<template>.
+  <!-- <tool-bar
     :table-store="tableStore"
     :crud-store="crudStore"
     :base-route="baseRoute"
@@ -7,13 +7,13 @@
     activation_
     search-btn_
     sort-btn
-  ></tool-bar>
+  ></tool-bar> -->
 </template>
 
 <script setup>
   import { useDataTable } from "src/composables/useDataTable";
 
-  import ToolBar from "components/shared/ToolBarMobile.vue";
+  // import ToolBar from "components/shared/ToolBarMobile.vue";
 
   const props = defineProps({
     toolbar: Boolean,

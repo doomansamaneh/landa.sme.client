@@ -1,6 +1,6 @@
 <template>
   <template v-if="$q.screen.xs">
-    <toolbar-mobile
+    <!-- <toolbar-mobile
       v-if="toolbar"
       :table-store="tableStore"
       :title="title"
@@ -42,13 +42,13 @@
           </q-menu>
         </q-btn>
       </template>
-    </toolbar-mobile>
+    </toolbar-mobile> -->
 
     <mobile :table-store="tableStore" :title="title" />
   </template>
 
   <template v-else>
-    <toolbar-desktop
+    <!-- <toolbar-desktop
       v-if="toolbar"
       :table-store="tableStore"
       :title_="title"
@@ -90,7 +90,7 @@
           </q-menu>
         </q-btn>
       </template>
-    </toolbar-desktop>
+    </toolbar-desktop> -->
 
     <desktop :table-store="tableStore" :title="title" />
   </template>
@@ -102,8 +102,8 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useProductFlowState } from "../../_composables/useProductFlowState";
 
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  import ToolbarMobile from "components/shared/ToolBarMobile.vue";
+  // import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  // import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "../desktop/ProductStock.vue";
   import Mobile from "../mobile/ProductStock.vue";
 

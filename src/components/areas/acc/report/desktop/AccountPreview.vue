@@ -1,5 +1,5 @@
 <template>
-  <tool-bar
+  <!-- <tool-bar
     v-if="false"
     :inside="inside"
     buttons
@@ -35,7 +35,7 @@
         </q-menu>
       </q-btn>
     </template>
-  </tool-bar>
+  </tool-bar> -->
 
   <q-card flat class="bordered shadow overflow-hidden">
     <card-title title="گردش حساب" icon="o_repeat" />
@@ -78,7 +78,7 @@
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import AccountItem from "./AccountItem.vue";
-  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({

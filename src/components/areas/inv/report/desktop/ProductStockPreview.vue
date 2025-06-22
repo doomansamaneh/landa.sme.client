@@ -1,5 +1,5 @@
 <template>
-  <tool-bar :inside="inside" buttons>
+  <!-- <tool-bar :inside="inside" buttons>
     <template #buttons>
       <q-btn
         class="primary-gradient primary-shadow text-white text-body2"
@@ -42,7 +42,7 @@
         </q-menu>
       </q-btn>
     </template>
-  </tool-bar>
+  </tool-bar> -->
   <preview :item="item" :title="title" ref="dataGrid" v-if="item" />
 </template>
 
@@ -51,7 +51,7 @@
   import { useDialog } from "src/composables/useDialog";
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
-  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import Preview from "./_ProductStockPreview.vue";
   import ModifyStockForm from "src/components/areas/inv/modifyStock/shared/forms/ModifyStockForm.vue";
 

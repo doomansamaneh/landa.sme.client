@@ -24,7 +24,7 @@
   import { useTransferMoneyPreviewMenu } from "src/components/areas/trs/_menus/useTransferMoneyPreviewMenu.js";
 
   import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
-  import ToolBarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolBarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
 
   const props = defineProps({
     model: {
