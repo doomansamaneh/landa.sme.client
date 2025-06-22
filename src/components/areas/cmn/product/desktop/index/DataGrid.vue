@@ -123,7 +123,7 @@
   import { usePreview } from "src/composables/usePreview";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-  import RowToolBar from "src/components/shared/RowToolBar.vue";
+  import RowToolBar from "src/components/shared/toolbars/DesktopRowToolbar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import Preview from "../../shared/preview/IndexView.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";

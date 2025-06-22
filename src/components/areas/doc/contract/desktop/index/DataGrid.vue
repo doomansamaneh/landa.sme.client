@@ -58,7 +58,7 @@
   import { helper } from "src/helpers";
   import { isActiveOptions } from "src/constants";
 
-  import RowToolBar from "src/components/shared/RowToolBar.vue";
+  import RowToolBar from "src/components/shared/toolbars/DesktopRowToolbar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import IsActive from "src/components/shared/IsActive.vue";

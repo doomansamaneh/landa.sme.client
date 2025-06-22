@@ -140,7 +140,7 @@
   import { isActiveOptions } from "src/constants";
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
-  import RowToolBar from "src/components/shared/RowToolBar.vue";
+  import RowToolBar from "src/components/shared/toolbars/DesktopRowToolbar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
   import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
