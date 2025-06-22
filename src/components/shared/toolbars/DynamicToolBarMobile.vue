@@ -1,5 +1,5 @@
 <template>
-  <tool-bar-observer ref="observer">
+  <toolbar-observer ref="observer">
     <q-toolbar>
       <!-- <template v-if="selectedIds?.length == 0"></template> -->
       <template v-if="true">
@@ -9,7 +9,7 @@
             round
             class="text-caption q-mr-sm"
             unelevated
-            @click="onBottomSheetShow"
+            @click="bottomSheet?.show()"
           >
             <q-icon name="more_vert" />
           </q-btn>
@@ -76,7 +76,7 @@
             class="text-caption"
             unelevated
             dense
-            @click="onBottomSheetShow"
+            @click="bottomSheet?.show()"
           >
             <q-icon name="more_vert" />
           </q-btn>
@@ -126,75 +126,9 @@
         </div>
       </template>
     </q-toolbar>
-  </tool-bar-observer>
+  </toolbar-observer>
 
-  <bottom-sheet
-    v-if="bottomSheetStatus"
-    header
-    :status="bottomSheetStatus"
-    @hide="onBottomSheetHide"
-  >
-    <template #header-title>
-      {{ $t("shared.labels.more") }}
-    </template>
-
-    <template #body>
-      <q-list padding>
-        <template
-          v-for="(item, index) in menuItems.value"
-          :key="index"
-        >
-          <template v-if="item.type === menuItemType.item">
-            <template v-if="item.visible">
-              <menu-item
-                v-access="item.permission"
-                :title="$t(`shared.labels.${item.label}`)"
-                :icon="item.icon"
-                :to="item.route"
-                :badge-count="item.badgeCount"
-                @click="handleMenuItemClick(item)"
-              />
-              <q-separator
-                v-if="item.addSeparator"
-                v-access="item.permission"
-                size="0.5px"
-                class="q-my-sm"
-              />
-            </template>
-          </template>
-
-          <template v-else-if="item.type === menuItemType.moreItem">
-            <template
-              v-for="(subItem, subIndex) in item.subItems"
-              :key="subIndex"
-            >
-              <template
-                v-if="
-                  subItem.visible &&
-                  subItem.type === menuItemType.item
-                "
-              >
-                <menu-item
-                  v-access="subItem.permission"
-                  :title="$t(`shared.labels.${subItem.label}`)"
-                  :icon="subItem.icon"
-                  :to="subItem.route"
-                  :badge-count="subItem.badgeCount"
-                  @click="handleMenuItemClick(subItem)"
-                />
-                <q-separator
-                  v-if="subItem.addSeparator"
-                  v-access="subItem.permission"
-                  size="0.5px"
-                  class="q-my-sm"
-                />
-              </template>
-            </template>
-          </template>
-        </template>
-      </q-list>
-    </template>
-  </bottom-sheet>
+  <mobile-bottom-sheet ref="bottomSheet" :menu-items="menuItems" />
 
   <mobile-sort-sheet
     :status="sortSheetStatus"
@@ -218,12 +152,12 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
-  import { menuItemType } from "src/constants";
+  // import { menuItemType } from "src/constants";
 
-  import BottomSheet from "src/components/shared/BottomSheet.vue";
-  import MobileSortSheet from "./MobileSortSheet.vue";
-  import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
-  import ToolBarObserver from "./ToolBarObserver.vue";
+  import MobileBottomSheet from "./MobileBottomSheet.vue";
+  import MobileSortSheet from "src/components/shared/MobileSortSheet.vue";
+  // import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
+  import ToolbarObserver from "src/components/shared/toolbars/ToolBarObserver.vue";
 
   const props = defineProps({
     title: String,
@@ -257,7 +191,8 @@
   });
 
   const $q = useQuasar();
-  const bottomSheetStatus = ref(false);
+  const bottomSheet = ref(null);
+  // const bottomSheetStatus = ref(false);
   const serachDialog = ref(false);
   const observer = ref(null);
   const sortSheetStatus = ref(false);
@@ -268,24 +203,24 @@
 
   const emits = defineEmits(["menu-item-click"]);
 
-  const handleMenuItemClick = (item) => {
-    item.handler?.();
-    emits("menu-item-click", item);
-    onBottomSheetHide();
-  };
+  // const handleMenuItemClick = (item) => {
+  //   item.handler?.();
+  //   emits("menu-item-click", item);
+  //   onBottomSheetHide();
+  // };
 
   function deselect() {
     props.tableStore.selectAll(false);
     props.tableStore.setActiveRow(null);
   }
 
-  const onBottomSheetShow = () => {
-    bottomSheetStatus.value = true;
-  };
+  // const onBottomSheetShow = () => {
+  //   bottomSheetStatus.value = true;
+  // };
 
-  const onBottomSheetHide = () => {
-    bottomSheetStatus.value = false;
-  };
+  // const onBottomSheetHide = () => {
+  //   bottomSheetStatus.value = false;
+  // };
 
   const showSearchDialog = () => {
     serachDialog.value = true;

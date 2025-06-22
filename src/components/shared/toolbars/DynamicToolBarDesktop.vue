@@ -99,7 +99,7 @@
   import { useQuasar } from "quasar";
   import { menuItemType } from "src/constants";
 
-  import GoBackLink from "./buttons/GoBackLink.vue";
+  import GoBackLink from "src/components/shared/Buttons/GoBackLink.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
 

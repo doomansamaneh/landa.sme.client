@@ -1,5 +1,5 @@
 <template>
-  <tool-bar
+  <!-- <tool-bar
     :inside="inside"
     :margin="!inside"
     :title="title"
@@ -34,7 +34,7 @@
         {{ $t("shared.labels.deleteCheckLog") }}
       </q-btn>
     </template>
-  </tool-bar>
+  </tool-bar> -->
 
   <div class="row q-col-gutter-lg">
     <div class="col-md-5 col-sm-12 col-xs-12">
@@ -71,7 +71,7 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { useDialog } from "src/composables/useDialog";
 
-  import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
   import BodySection from "./BodySection.vue";
   import ItemLog from "./ItemLog.vue";
 
