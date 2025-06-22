@@ -18,7 +18,15 @@
       :base-route="baseRoute"
       :createUrl="`/${baseRoute}/create`"
       :preview-page="previewPage"
-    />
+    >
+      <template
+        v-for="(slot, name) in $slots"
+        :key="slot"
+        #[name]="{ item }"
+      >
+        <slot :name="name" :item="item" />
+      </template>
+    </mobile>
   </template>
   <template v-else>
     <desktop

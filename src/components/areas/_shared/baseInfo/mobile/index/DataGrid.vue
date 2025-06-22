@@ -44,10 +44,12 @@
     </template>
 
     <template #row-toolbar="{ item }">
-      <mobile-row-toolbar
-        :title="`${item.title}`"
-        :menu-items="getItemMenu(item)"
-      />
+      <slot name="row-toolbar" :item="item">
+        <mobile-row-toolbar
+          :title="`${item[tableStore.columns?.value[0]?.field]}`"
+          :menu-items="getItemMenu(item)"
+        />
+      </slot>
     </template>
   </data-grid>
 </template>
@@ -76,16 +78,6 @@
       default: false,
     },
   });
-
-  const setActiveRow = (row) => {
-    if (props.tableStore) {
-      props.tableStore.setActiveRow(row);
-    }
-  };
-
-  const goToPreview = (row) => {
-    router.push(`/${props.baseRoute}/preview/${row.id}`);
-  };
 
   const formatValue = (col, value) => {
     if (col.type === dataType.number) {
