@@ -1,5 +1,5 @@
 <template>
-  <toolbar-container :title="title" />
+  <toolbar-container />
 
   <tip-banner
     closeable

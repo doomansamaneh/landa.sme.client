@@ -49,7 +49,7 @@
   import { ref } from "vue";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 

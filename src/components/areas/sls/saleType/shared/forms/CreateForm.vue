@@ -138,7 +138,7 @@
   } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";

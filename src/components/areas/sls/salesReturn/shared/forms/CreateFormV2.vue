@@ -34,7 +34,7 @@
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
   import { useSalesReturnState } from "../../../_composables/useSalesReturnState";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import Desktop from "src/components/areas/sls/_shared/invoice/desktop/forms/CreateFormV2.vue";
   import Mobile from "src/components/areas/sls/_shared/invoice/mobile/forms/CreateForm.vue";
 

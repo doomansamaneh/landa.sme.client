@@ -50,7 +50,7 @@
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
 
   const props = defineProps({
     action: String,

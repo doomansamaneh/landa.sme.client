@@ -1,5 +1,5 @@
 <template>
-  <toolbar-container :title="title" />
+  <toolbar-container />
   <data-grid-table :title="title" />
 </template>
 

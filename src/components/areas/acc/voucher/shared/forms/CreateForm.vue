@@ -68,7 +68,7 @@
   import { useRoute } from "vue-router";
   import { useVoucherModel } from "../../../_composables/useVoucherModel";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import Desktop from "src/components/areas/acc/voucher/desktop/forms/CreateForm.vue";
   import Mobile from "src/components/areas/acc/voucher/mobile/forms/CreateForm.vue";
 

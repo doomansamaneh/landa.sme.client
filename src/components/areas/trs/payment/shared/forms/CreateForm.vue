@@ -25,7 +25,7 @@
   import { paymentOrReceipt } from "src/constants";
   import { useReceiptModel } from "../../../_composables/useReceiptModel";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import DesktopForm from "../../desktop/forms/CreateForm.vue";
   //import MobileForm from "../../mobile/forms/CreateForm.vue";
 

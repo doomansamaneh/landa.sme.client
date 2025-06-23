@@ -68,7 +68,7 @@
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { precisionCounts } from "src/constants";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
 
