@@ -26,10 +26,14 @@
   </div>
 
   <div class="q-mt-lg">
-    <custom-input
-      class="q-mt-lg"
+    <location-lookup
       label="محل ثبت"
-      v-model="configStore.model.value.companySetting.location"
+      v-model:selectedId="
+        configStore.model.value.companySetting.countryId
+      "
+      v-model:selectedText="
+        configStore.model.value.companySetting.country
+      "
     />
   </div>
 
@@ -62,6 +66,7 @@
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CurrencyLookup from "src/components/shared/lookups/CurrencyLookup.vue";
+  import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
 
   const configStore = useAppConfigModel();
 </script>

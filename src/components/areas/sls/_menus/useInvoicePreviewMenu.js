@@ -3,14 +3,9 @@ import { voucherStatus } from "src/constants";
 import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
 
 export function useInvoicePreviewMenu(context) {
-  console.log(context.model);
   return usePreviewMenu(context, {
     permissionPrefix: "sls.invoice",
     exclude: ["sendMail"],
-    // routes: {
-    //   edit: (id) => `/sls/invoice/edit/${id}`,
-    //   copy: (id) => `/sls/invoice/copy/${id}`,
-    // },
     extraPrintItems: [
       (id) => ({
         ...menuItems.print,

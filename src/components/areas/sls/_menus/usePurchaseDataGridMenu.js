@@ -66,7 +66,7 @@ export function usePurchaseDataGridMenu(context) {
         label: "copyToSales",
         icon: "o_shopping_cart",
         permission: "sls.invoice.create",
-        route: `/sls/invioce/CreateFromPurchase/${context.activeRow?.id}`,
+        route: `/sls/invoice/CreateFromPurchase/${context.activeRow?.id}`,
         visible: hasId,
       },
       {

@@ -1,8 +1,15 @@
 <template>
-  <custom-input
-    label="کشور"
-    v-model="configStore.model.value.companySetting.country"
-  />
+  <div class="q-mt-lg">
+    <location-lookup
+      label="کشور/شهر"
+      v-model:selectedId="
+        configStore.model.value.companySetting.locationId
+      "
+      v-model:selectedText="
+        configStore.model.value.companySetting.location
+      "
+    />
+  </div>
   <div class="q-mt-lg">
     <custom-input
       label="نشانی"
@@ -39,6 +46,7 @@
 <script setup>
   import { useAppConfigModel } from "../_composables/useAppConfigModel";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
 
   const configStore = useAppConfigModel();
 </script>
