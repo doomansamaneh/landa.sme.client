@@ -64,6 +64,10 @@ export function useDataTable({
     state.value.rows.value.filter((row) => row.selected === true)
   );
 
+  const selectedIds = computed(() =>
+    selectedRows?.value.map((item) => item.id)
+  );
+
   const checkedAll = computed(() => {
     if (selectedRows.value?.length === 0) return false;
     if (selectedRows.value.length === state.value.rows.value.length)
@@ -346,6 +350,7 @@ export function useDataTable({
     inputInnerLoader,
     showLoader,
     selectedRows,
+    selectedIds,
     columns,
     showPagebar,
     dataViewShowPagebar,

@@ -13,7 +13,7 @@
   import { defineAsyncComponent } from "vue";
 
   const ToolbarDesktop = defineAsyncComponent(() =>
-    import("src/components/shared/FormToolBarDesktop.vue")
+    import("src/components/shared/toolbars/FormToolBarDesktop.vue")
   );
 
   const ToolbarMobile = defineAsyncComponent(() =>

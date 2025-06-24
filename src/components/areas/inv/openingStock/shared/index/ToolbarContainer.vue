@@ -1,22 +1,15 @@
 <template>
   <template v-if="$q.screen.xs">
     <toolbar-mobile
-      :table-store="tableStore"
-      :crud-store="crudStore"
       :title="title"
+      :table-store="tableStore"
       :base-route="baseRoute"
-      :selected-ids="selectedIds"
       :menu-items="menuItems"
       sort-btn
-      @menu-item-click="handleMenuItemClick"
     />
   </template>
   <template v-else>
-    <toolbar-desktop
-      :menu-items="menuItems"
-      @menu-item-click="handleMenuItemClick"
-      margin
-    />
+    <toolbar-desktop :menu-items="menuItems" margin />
   </template>
 </template>
 
@@ -25,7 +18,6 @@
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import { useFormActions } from "src/composables/useFormActions";
   import { useOpeningStockDataGridMenu } from "../../../_menus/useOpeningStockDataGridMenu";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
@@ -41,12 +33,6 @@
 
   const $q = useQuasar();
 
-  const crudStore = useFormActions(props.baseRoute);
-
-  const selectedIds = computed(() =>
-    props.tableStore.selectedRows?.value.map((item) => item.id)
-  );
-
   const context = useDataGridMenuContext(
     props.tableStore,
     props.baseRoute
@@ -55,8 +41,4 @@
   const menuItems = computed(() =>
     useOpeningStockDataGridMenu(context.value)
   );
-
-  const handleMenuItemClick = (item) => {
-    // Handle any additional menu item click logic here if needed
-  };
 </script>

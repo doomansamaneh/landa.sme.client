@@ -1,22 +1,4 @@
 <template>
-  <!-- <tool-bar
-    :inside="inside"
-    :margin="!inside"
-    :title="title"
-    buttons
-    back-button
-  >
-    <template #buttons>
-      <menu-button-edit
-        :to="`/${baseRoute}/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2"
-      />
-      <menu-button-copy :to="`/${baseRoute}/copy/${id}`" />
-      <menu-button-delete @click="crudStore.deleteById(id)" />
-      <menu-button-print @click="printStore.handlePrint()" />
-    </template>
-  </tool-bar> -->
-
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>

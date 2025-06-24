@@ -1,12 +1,11 @@
 <template>
   <template v-if="$q.screen.xs">
     <toolbar-mobile
-      :table-store="tableStore"
-      :crud-store="crudStore"
       :title="title"
+      :table-store="tableStore"
       :base-route="baseRoute"
-      :selected-ids="selectedIds"
       :menu-items="menuItems"
+      sort-btn
     />
   </template>
   <template v-else>
@@ -22,8 +21,6 @@
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
   import { useCustomerDataGridMenu } from "../../../_menus/useCustomerDataGridMenu";
 
-  import { useFormActions } from "src/composables/useFormActions";
-
   import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import EditBatchForm from "../forms/EditBatchForm.vue";
@@ -37,11 +34,6 @@
 
   const $q = useQuasar();
   const dialogStore = useDialog();
-  const crudStore = useFormActions(props.baseRoute);
-
-  const selectedIds = computed(() =>
-    props.tableStore.selectedRows?.value.map((item) => item.id)
-  );
 
   const context = useDataGridMenuContext(
     props.tableStore,
@@ -53,10 +45,10 @@
           component: EditBatchForm,
           actionBar: true,
           props: {
-            selectedIds: selectedIds?.value,
+            selectedIds: props.tableStore.selectedIds?.value,
           },
           okCallback: async (response) => {
-            await props.tableStore.reloadData();
+            await props.tableStore?.reloadData();
           },
         });
       },
