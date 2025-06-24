@@ -1,18 +1,11 @@
 <template>
-  <!-- <tool-bar
+  <toolbar-desktop
     :inside="inside"
     :margin="!inside"
-    buttons
     :title="title"
+    :menu-items="menuItems"
     back-button
-  >
-    <template #buttons>
-      <menu-button-print
-        class="primary-gradient primary-shadow text-white"
-        @click="printStore.handlePrint()"
-      />
-    </template>
-  </tool-bar> -->
+  />
 
   <q-card bordered>
     <div :ref="printStore.printRef" v-if="model">
@@ -27,11 +20,12 @@
   import { useRoute } from "vue-router";
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useWageItemPreviewMenu } from "src/components/areas/prl/_menus/useWageItemPreviewMenu.js";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
 
-  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import HeaderSection from "./_HeaderSection.vue";
   import BodySection from "./_BodySection.vue";
-  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -46,6 +40,16 @@
   const route = useRoute();
 
   const id = computed(() => props.item?.id ?? route.params.id);
+
+  const context = usePreviewMenuContext(crudStore, baseRoute, {
+    handlePrint: async () => {
+      printStore.handlePrint();
+    },
+  });
+
+  const menuItems = computed(() =>
+    useWageItemPreviewMenu(context.value)
+  );
 
   onMounted(() => {
     crudStore.getById(id.value);

@@ -9,6 +9,7 @@ import SendEmailForm from "../forms/SendEmailForm.vue";
 export function usePreviewMenuContext(
   model,
   baseRoute,
+  id,
   customHandlers = {}
 ) {
   const router = useRouter();
@@ -21,7 +22,7 @@ export function usePreviewMenuContext(
 
     downloadPdf: () => {
       downloadManager.downloadGet(
-        `${baseRoute}/generatePdf/${model?.id}`
+        `${baseRoute}/generatePdf/${id ?? model?.id}`
       );
     },
 
@@ -31,14 +32,14 @@ export function usePreviewMenuContext(
         component: SendEmailForm,
         actionBar: true,
         props: {
-          id: model?.id,
+          id: id ?? model?.id,
           baseRoute,
         },
       });
     },
 
     deleteById: () => {
-      crudStore.deleteById(model?.id, () => {
+      crudStore.deleteById(id ?? model?.id, () => {
         customHandlers.onDeleteSuccess?.();
         //router.back();
       });
@@ -48,6 +49,7 @@ export function usePreviewMenuContext(
   const context = computed(() => ({
     model,
     baseRoute,
+    id: id ?? model?.id,
     ...defaultHandlers,
     ...customHandlers, // overrides or additional
   }));

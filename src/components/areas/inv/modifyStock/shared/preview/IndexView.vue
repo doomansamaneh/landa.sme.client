@@ -1,21 +1,11 @@
 <template>
-  <!-- <tool-bar
+  <toolbar-desktop
     :inside="inside"
     :margin="!inside"
     :title="title"
-    buttons
+    :menu-items="menuItems"
     back-button
-  >
-    <template #buttons>
-      <menu-button-edit
-        :to="`/${baseRoute}/edit/${id}`"
-        class="primary-gradient primary-shadow text-white text-body2"
-      />
-      <menu-button-copy :to="`/${baseRoute}/copy/${id}`" />
-      <menu-button-delete @click="crudStore.deleteById(id)" />
-      <menu-button-print @click="printStore.handlePrint()" />
-    </template>
-  </tool-bar> -->
+  />
 
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
@@ -57,16 +47,14 @@
   import { useRoute, useRouter } from "vue-router";
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useModifyStockPreviewMenu } from "src/components/areas/inv/_menus/useModifyStockPreviewMenu.js";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
 
-  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
   import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
   import RepositionItems from "src/components/areas/_shared/preview/RepositionItems.vue";
-  // import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
-  // import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
-  // import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
-  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -88,6 +76,19 @@
     //voucherStore.state.firstLoad.value = false;
     router.back();
   }
+
+  const context = usePreviewMenuContext(
+    model.value,
+    baseRoute,
+    id.value,
+    {
+      delete: () => crudStore.deleteById(id.value, deleteCallBack),
+    }
+  );
+
+  const menuItems = computed(() =>
+    useModifyStockPreviewMenu(context.value)
+  );
 
   onMounted(() => {
     crudStore.getById(id.value);

@@ -413,7 +413,8 @@
       "taxApiStatus": "ارسال به سامانه مودیان",
       "productGroupTitle": "گروه کالا",
       "additionalInformation": "اطلاعات تکمیلی",
-      "accountItem": "ریز گردش"
+      "accountItem": "ریز گردش",
+      "modifyStock": "اصلاح موجودی"
     },
 
     "productType": {

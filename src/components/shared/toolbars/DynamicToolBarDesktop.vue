@@ -78,15 +78,22 @@
           </template>
         </div>
 
-        <template v-if="!inside && title">
+        <template v-if="!inside">
           <div class="q-space" />
-          <span :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'">
+          <span
+            v-if="title"
+            :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
+          >
             <slot name="header-title">
               <span class="text-weight-700">
                 {{ title }}
               </span>
             </slot>
           </span>
+          <go-back-link
+            v-if="!inside && backButton"
+            class="q-ml-sm"
+          />
         </template>
       </q-toolbar>
     </q-page-sticky>
@@ -99,6 +106,7 @@
   import { menuItemType } from "src/constants";
 
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
+  import GoBackLink from "src/components/shared/Buttons/GoBackLink.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
 
   const $q = useQuasar();
@@ -109,6 +117,7 @@
     inside: Boolean,
     margin: Boolean,
     menuItems: Array,
+    backButton: Boolean,
   });
 
   const emits = defineEmits(["menu-item-click"]);

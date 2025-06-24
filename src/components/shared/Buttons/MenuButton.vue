@@ -7,8 +7,9 @@
     padding="8px 16px"
     :to="to"
     @click="click"
+    :id="id"
   >
-  <slot></slot>
+    <slot></slot>
     <q-icon v-if="icon" size="20px" :name="icon" class="q-mr-xs" />
     {{ title }}
     <q-badge v-if="badgeCount" floating>
@@ -24,6 +25,7 @@
     title: String,
     to: String,
     badgeCount: Number,
+    id: String,
   });
 
   const emits = defineEmits(["click"]);
