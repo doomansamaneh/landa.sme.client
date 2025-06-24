@@ -1,4 +1,12 @@
 <template>
+  <toolbar-desktop
+    :inside="inside"
+    :margin="!inside"
+    :title="title"
+    :menu-items="menuItems"
+    back-button
+  />
+
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
@@ -8,7 +16,7 @@
             :title="$t('main-menu-items.Inv_CloseOrder_View')"
           >
             <template #header>
-              انبار: {{ model.inventoryTitle }}
+              انبار: {{ model?.inventoryTitle }}
             </template>
           </header-section>
 
@@ -29,16 +37,13 @@
   import { useRoute, useRouter } from "vue-router";
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useCloseOrderPreviewMenu } from "src/components/areas/inv/_menus/useCloseOrderPreviewMenu.js";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
 
-  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
-  // import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
   import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
   import BodySection from "./BodySection.vue";
-  // import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
-  // import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
-  // import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
-  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -60,6 +65,16 @@
     //voucherStore.state.firstLoad.value = false;
     router.back();
   }
+
+  const context = usePreviewMenuContext(
+    model.value,
+    baseRoute,
+    id.value
+  );
+
+  const menuItems = computed(() =>
+    useCloseOrderPreviewMenu(context.value)
+  );
 
   onMounted(() => {
     crudStore.getById(id.value);

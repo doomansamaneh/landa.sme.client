@@ -67,7 +67,7 @@
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { usePrint } from "src/composables/usePrint";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/ToolBarPreviewMobile.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
   import AddressCard from "./AddressCard.vue";

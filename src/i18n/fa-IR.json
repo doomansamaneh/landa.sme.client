@@ -414,7 +414,8 @@
       "productGroupTitle": "گروه کالا",
       "additionalInformation": "اطلاعات تکمیلی",
       "accountItem": "ریز گردش",
-      "modifyStock": "اصلاح موجودی"
+      "modifyStock": "اصلاح موجودی",
+      "inviteUser": "دعوت از کاربر"
     },
 
     "productType": {

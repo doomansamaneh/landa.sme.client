@@ -13,7 +13,7 @@
           toolbarPadding,
         ]"
       >
-        <div class="row items-center q-gutter-sm">
+        <div class="row items-center" style="gap: 8px">
           <template
             v-for="(item, index) in menuItems?.value"
             :key="index"
@@ -79,7 +79,7 @@
         </div>
 
         <template v-if="!inside">
-          <div class="q-space" />
+          <div v-if="menuItems?.value?.length > 0" class="q-space" />
           <span
             v-if="title"
             :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"

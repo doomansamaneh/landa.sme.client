@@ -193,7 +193,7 @@
   import { useVoucherState } from "../../_composables/useVoucherState";
 
   import ReorderForm from "../../voucher/shared/forms/ReorderForm.vue";
-  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import CloseAccountForm from "./CloseAccountForm.vue";
 
   const router = useRouter();

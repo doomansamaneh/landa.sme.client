@@ -13,7 +13,7 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import DataGridTable from "./DataGridTable.vue";
-  import Toolbar from "components/shared/ToolBarDesktop.vue";
+  import Toolbar from "components/shared/toolbars/DynamicToolBarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,

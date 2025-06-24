@@ -1,33 +1,21 @@
 <template>
-  .
-  <!-- <toolbar-desktop
+  <toolbar-desktop
     :table-store="tableStore"
     :crud-store="crudStore"
     :base-route="baseRoute"
+    :menu-items="menuItems"
     buttons
     margin
-  >
-    <template #buttons-create>
-      <menu-button
-        class="primary-gradient primary-shadow text-white"
-        :to="`/${baseRoute}/create`"
-        title="دعوت از کاربر"
-        icon="person_add"
-      />
-    </template>
-
-    <template #bootons-edit>
-      <span></span>
-    </template>
-  </toolbar-desktop> -->
+  />
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useUsersDataGridMenu } from "src/components/areas/scr/_menus/useUsersDataGridMenu.js";
+  import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
-  // import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
-  // import MenuButton from "src/components/shared/buttons/MenuButton.vue";
-  // import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
+  import ToolbarDesktop from "components/shared/toolbars/DynamicToolBarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -37,4 +25,13 @@
     selectedIds: Array,
     baseRoute: { type: String, default: "scr/users" },
   });
+
+  const context = useDataGridMenuContext(
+    props.tableStore,
+    props.baseRoute
+  );
+
+  const menuItems = computed(() =>
+    useUsersDataGridMenu(context.value)
+  );
 </script>

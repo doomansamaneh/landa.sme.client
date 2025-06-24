@@ -1,4 +1,12 @@
 <template>
+  <toolbar-desktop
+    :inside="inside"
+    :margin="!inside"
+    :title="title"
+    :menu-items="menuItems"
+    back-button
+  />
+
   <div class="row q-col-gutter-lg">
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
@@ -99,18 +107,16 @@
   import { useRoute, useRouter } from "vue-router";
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
+  import { useProductionPreviewMenu } from "src/components/areas/inv/_menus/useProductionPreviewMenu.js";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
 
-  // import ToolBar from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import ProductItems from "./_ProductItems.vue";
   import UsedItems from "./_UsedItems.vue";
   import CostItems from "./_CostItems.vue";
   import ScarpItems from "./_ScarpItems.vue";
   import DetailSection from "./_DetailSection.vue";
-  // import MenuButtonCopy from "src/components/shared/buttons/MenuButtonCopy.vue";
-  // import MenuButtonDelete from "src/components/shared/buttons/MenuButtonDelete.vue";
-  // import MenuButtonEdit from "src/components/shared/buttons/MenuButtonEdit.vue";
-  // import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
 
   const props = defineProps({
     item: Object,
@@ -133,6 +139,19 @@
     //voucherStore.state.firstLoad.value = false;
     router.back();
   }
+
+  const context = usePreviewMenuContext(
+    model.value,
+    baseRoute,
+    id.value,
+    {
+      delete: () => crudStore.deleteById(id.value, deleteCallBack),
+    }
+  );
+
+  const menuItems = computed(() =>
+  useProductionPreviewMenu(context.value)
+  );
 
   onMounted(() => {
     crudStore.getById(id.value);

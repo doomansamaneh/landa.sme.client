@@ -1,6 +1,6 @@
 <template>
   <toolbar-mobile v-if="$q.screen.xs" :menu-items="menuItems" />
-  <toolbar-desktop v-else :menu-items="menuItems" margin />
+  <toolbar-desktop v-else :menu-items="menuItems" margin :title="title" />
 </template>
 
 <script setup>

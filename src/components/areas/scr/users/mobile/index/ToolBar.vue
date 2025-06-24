@@ -1,19 +1,21 @@
-<template>.
-  <!-- <tool-bar
+<template>
+  <toolbar-mobile
     :table-store="tableStore"
     :crud-store="crudStore"
     :base-route="baseRoute"
+    :menu-items="menuItems"
     :title="title"
-    activation_
-    search-btn_
     sort-btn
-  ></tool-bar> -->
+  />
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useUsersDataGridMenu } from "src/components/areas/scr/_menus/useUsersDataGridMenu.js";
+  import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
-  // import ToolBar from "components/shared/ToolBarMobile.vue";
+  import ToolbarMobile from "components/shared/toolbars/DynamicToolBarMobile.vue";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -23,4 +25,13 @@
     selectedIds: Array,
     baseRoute: { type: String, default: "scr/users" },
   });
+
+  const context = useDataGridMenuContext(
+    props.tableStore,
+    props.baseRoute
+  );
+
+  const menuItems = computed(() =>
+    useUsersDataGridMenu(context.value)
+  );
 </script>

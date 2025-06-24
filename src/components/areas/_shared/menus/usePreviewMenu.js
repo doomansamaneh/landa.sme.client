@@ -16,7 +16,7 @@ export function usePreviewMenu(context, config = {}) {
     return Array.isArray(override) ? override : [override];
   };
 
-  const id = context.model?.id;
+  const id = context.model?.id ?? context.id;
   return computed(() => {
     const menu = [
       ...getItem("edit", {

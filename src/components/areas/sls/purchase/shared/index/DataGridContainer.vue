@@ -1,7 +1,6 @@
 <template>
   <toolbar-container
     v-if="toolbar"
-    :title="title"
     :table-store="tableStore"
   />
 

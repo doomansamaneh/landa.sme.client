@@ -74,7 +74,7 @@
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
   import { useProductStockState } from "../../_composables/useProductStockState";
 
-  import ToolbarDesktop from "components/shared/ToolBarDesktop.vue";
+  import ToolbarDesktop from "components/shared/toolbars/DynamicToolBarDesktop.vue";
   import ToolbarMobile from "components/shared/ToolBarMobile.vue";
   import Desktop from "../desktop/ProductStock.vue";
   import Mobile from "../mobile/ProductStock.vue";

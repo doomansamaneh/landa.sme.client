@@ -21,29 +21,24 @@
     title: String,
   });
 
-  const dialogSore = useDialog();
+  const dialogStore = useDialog();
   const dataGrid = ref(null);
 
   const tableStore = computed(() => dataGrid?.value?.tableStore);
 
   const { exportAll } = useDataTableExport(tableStore.value);
 
-  const context = usePreviewMenuContext(tableStore, null, {
-    modifyStock: async () => {
-      dialogSore.openDialog({
-        title: "main-menu-items.Inv_ModifyStock_View",
-        component: ModifyStockForm,
-        props: { id: props.item.id },
-        actionBar: true,
-        okCallback: async (response) => {
-          await tableStore.value.reloadData();
-        },
-      });
-    },
-    exportToExcel: async () => {
-      await exportAll();
-    },
-  });
+  const context = usePreviewMenuContext(
+    tableStore.value,
+    null,
+    props.item?.id,
+    {
+      props: props,
+      exportToExcel: async () => {
+        await exportAll();
+      },
+    }
+  );
 
   const menuItems = computed(() =>
     useProductStockPreviewMenu(context.value)

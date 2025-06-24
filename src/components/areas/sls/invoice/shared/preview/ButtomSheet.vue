@@ -184,7 +184,7 @@
   import { useInvoiceModel } from "components/areas/sls/_composables/useInvoiceModel";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/ToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
   import ToolbarMobile from "src/components/shared/ToolBarMobile.vue";
   import BottomSheet from "src/components/shared/BottomSheet.vue";
   import InvoiceHeader from "components/areas/sls/_shared/invoice/shared/preview/_HeaderSection.vue";
