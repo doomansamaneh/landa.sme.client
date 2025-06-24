@@ -87,7 +87,7 @@
   import { useInvoiceModel } from "src/components/areas/sls/_composables/useInvoiceModel";
   import { invoiceModel } from "src/models/areas/sls/invoiceModel";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import Desktop from "src/components/areas/sls/_shared/invoice/desktop/forms/CreateForm.vue";
   import Mobile from "src/components/areas/sls/_shared/invoice/mobile/forms/CreateForm.vue";
 
@@ -142,4 +142,3 @@
     props.formStore.getById(route.params.id, props.method);
   });
 </script>
-

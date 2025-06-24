@@ -48,7 +48,7 @@
   import { formAction } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-  import ToolBar from "src/components/shared/FormToolbarContainer.vue";
+  import ToolBar from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
 
   const props = defineProps({

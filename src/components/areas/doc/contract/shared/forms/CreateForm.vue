@@ -82,7 +82,7 @@
   import { ref } from "vue";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
 

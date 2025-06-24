@@ -1,5 +1,5 @@
 <template>
-  <div :style="toolbarMargin">
+  <div v-if="showToolbar" :style="toolbarMargin">
     <q-page-sticky
       class="bg-main z-1"
       :style="insideStyle"
@@ -15,7 +15,7 @@
       >
         <div class="row items-center q-gutter-sm">
           <template
-            v-for="(item, index) in menuItems.value"
+            v-for="(item, index) in menuItems?.value"
             :key="index"
           >
             <template v-if="item.type === menuItemType.item">
@@ -87,7 +87,6 @@
               </span>
             </slot>
           </span>
-          <go-back-link v-if="!inside" class="q-ml-md" />
         </template>
       </q-toolbar>
     </q-page-sticky>
@@ -99,9 +98,8 @@
   import { useQuasar } from "quasar";
   import { menuItemType } from "src/constants";
 
-  import GoBackLink from "src/components/shared/Buttons/GoBackLink.vue";
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
-  import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
+  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
 
   const $q = useQuasar();
   const isAtTop = ref(true);
@@ -139,6 +137,10 @@
     return props.inside
       ? "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;"
       : "";
+  });
+
+  const showToolbar = computed(() => {
+    return !!props.title || props.menuItems?.value?.length > 0;
   });
 
   const handleScroll = () => {

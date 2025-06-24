@@ -17,7 +17,7 @@
 <script setup>
   import { ref } from "vue";
 
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CreateForm from "./CreateForm.vue";
 
   const props = defineProps({

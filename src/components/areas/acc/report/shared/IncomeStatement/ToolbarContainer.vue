@@ -1,31 +1,14 @@
 <template>
-  <template v-if="$q.screen.xs">
-    <toolbar-mobile :title="title" @download-pdf="downloadPdf" />
-  </template>
-  <template v-else>
-    <toolbar-desktop :title="title" buttons margin @download-pdf="downloadPdf" />
-  </template>
+  <toolbar-mobile v-if="$q.screen.xs" :menu-items="menuItems" />
+  <toolbar-desktop v-else :menu-items="menuItems" margin />
 </template>
 
 <script setup>
-  import { useQuasar } from "quasar";
-  import { downloadManager } from "src/helpers";
+  import { computed } from "vue";
+  import { useIncomeStatementMenu } from "src/components/areas/acc/report/_menus/useIncomeStatementMenu.js";
 
-  import ToolbarMobile from "src/components/areas/acc/report/shared/IncomeStatement/mobile/index/_ToolBar.vue";
-  import ToolbarDesktop from "src/components/areas/acc/report/shared/IncomeStatement/desktop/index/_ToolBar.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
 
-  const props = defineProps({
-    toolbar: Boolean,
-    title: String,
-  });
-
-  const baseRoute = "acc/report";
-  const $q = useQuasar();
-
-  function downloadPdf() {
-    downloadManager.downloadGet(
-      `${baseRoute}/GenerateIncomeStatementPdf`,
-      "landa-income-statement"
-    );
-  }
+  const menuItems = computed(() => useIncomeStatementMenu());
 </script>

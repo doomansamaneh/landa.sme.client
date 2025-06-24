@@ -21,7 +21,7 @@
 
   import MasterSection from "./_MasterSection.vue";
   import DetailSection from "./_DetailSection.vue";
-  import FormToolbarContainer from "src/components/shared/FormToolbarContainer.vue";
+  import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
 
   const props = defineProps({
     action: String,

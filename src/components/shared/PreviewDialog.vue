@@ -68,13 +68,7 @@
           </div>
         </slot>
 
-        <q-btn
-          icon="close"
-          flat
-          round
-          dense
-          @click="closeDialog"
-        />
+        <q-btn icon="close" flat round dense @click="closeDialog" />
       </q-card-section>
 
       <q-card-section
@@ -99,7 +93,7 @@
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
   import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
   import PrintSetting from "src/components/shared/dialogs/PrintSettingDialog.vue";
-  import MenuItem from "src/components/shared/Buttons/MenuItem.vue";
+  import MenuItem from "src/components/shared/buttons/MenuItem.vue";
 
   const props = defineProps({
     title: String,
