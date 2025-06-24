@@ -4,6 +4,9 @@
       :title="title"
       :menu-items="menuItems"
       :create-url="createUrl"
+      :table-store="tableStore"
+      :base-route="baseRoute"
+      sort-btn
     />
   </template>
   <template v-else>

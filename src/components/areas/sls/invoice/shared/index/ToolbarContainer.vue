@@ -1,23 +1,36 @@
 <template>
-  <template v-if="$q.screen.xs">
-    <toolbar-mobile
-      :title="title"
-      :table-store="tableStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      :menu-items="menuItems"
-      margin
-    />
-  </template>
-  <template v-else>
-    <toolbar-desktop :title="title" :menu-items="menuItems" margin />
-  </template>
+  <toolbar-mobile
+    v-if="$q.screen.xs"
+    :title="title"
+    :table-store="tableStore"
+    :base-route="baseRoute"
+    :menu-items="menuItems"
+    search-btn
+    sort-btn
+    advanced-search
+  >
+    <template #advanced-search>
+      <advanced-search :grid-store="tableStore" />
+    </template>
+
+    <template #search-btn-icon>
+      <q-icon v-if="searchStore.isFiltered.value" name="filter_alt" />
+      <q-icon v-else name="o_filter_alt" />
+    </template>
+  </toolbar-mobile>
+  <toolbar-desktop
+    v-else
+    :title="title"
+    :menu-items="menuItems"
+    margin
+  />
 </template>
 
 <script setup>
   import { computed } from "vue";
   import { useDialog } from "src/composables/useDialog";
   import { invoiceFormType } from "src/constants";
+  import { useInvoiceSearch } from "../../../_composables/useInvoiceSearch";
   import { useDataTable } from "src/composables/useDataTable";
   import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
@@ -26,6 +39,7 @@
   import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
 
+  import AdvancedSearch from "../../../_shared/invoice/mobile/index/AdvancedSearch.vue";
   import EditBatchForm from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
   import ReorderForm from "src/components/areas/sls/invoice/shared/forms/ReorderForm.vue";
 
@@ -37,12 +51,8 @@
 
   const dialogStore = useDialog();
   const baseRoute = "sls/Invoice";
-
+  const searchStore = useInvoiceSearch();
   const formStore = useInvoiceModel({ baseRoute: baseRoute });
-
-  const selectedIds = computed(() =>
-    props.tableStore.selectedRows?.value.map((item) => item.id)
-  );
 
   const context = useDataGridMenuContext(
     props.tableStore,
@@ -65,7 +75,7 @@
           component: EditBatchForm,
           actionBar: true,
           props: {
-            selectedIds: selectedIds?.value,
+            selectedIds: props.tableStore?.selectedIds.value,
             formType: invoiceFormType.sales,
           },
           okCallback: async (response) => {

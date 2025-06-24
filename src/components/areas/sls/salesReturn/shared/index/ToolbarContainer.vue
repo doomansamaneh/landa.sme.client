@@ -1,17 +1,29 @@
 <template>
-  <template v-if="$q.screen.xs">
-    <toolbar-mobile
-      :title="title"
-      :table-store="tableStore"
-      :base-route="baseRoute"
-      :selected-ids="selectedIds"
-      margin
-      :menu-items="menuItems"
-    />
-  </template>
-  <template v-else>
-    <toolbar-desktop :title="title" :menu-items="menuItems" margin />
-  </template>
+  <toolbar-mobile
+    v-if="$q.screen.xs"
+    :title="title"
+    :table-store="tableStore"
+    :base-route="baseRoute"
+    :menu-items="menuItems"
+    search-btn
+    sort-btn
+    advanced-search
+  >
+    <template #advanced-search>
+      <advanced-search :grid-store="tableStore" />
+    </template>
+
+    <template #search-btn-icon>
+      <q-icon v-if="searchStore.isFiltered.value" name="filter_alt" />
+      <q-icon v-else name="o_filter_alt" />
+    </template>
+  </toolbar-mobile>
+  <toolbar-desktop
+    v-else
+    :title="title"
+    :menu-items="menuItems"
+    margin
+  />
 </template>
 
 <script setup>
@@ -19,9 +31,11 @@
   import { useDialog } from "src/composables/useDialog";
   import { invoiceFormType } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useInvoiceSearch } from "../../../_composables/useInvoiceSearch";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
   import { useSalesReturnDataGridMenu } from "../../../_menus/useSalesReturnDataGridMenu";
 
+  import AdvancedSearch from "../../../_shared/invoice/mobile/index/AdvancedSearch.vue";
   import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
 
@@ -35,10 +49,7 @@
 
   const dialogStore = useDialog();
   const baseRoute = "sls/salesReturn";
-
-  const selectedIds = computed(() =>
-    props.tableStore.selectedRows?.value.map((item) => item.id)
-  );
+  const searchStore = useInvoiceSearch();
 
   const context = useDataGridMenuContext(
     props.tableStore,
@@ -50,11 +61,11 @@
           component: EditBatchForm,
           actionBar: true,
           props: {
-            selectedIds: selectedIds?.value,
+            selectedIds: props.tableStore?.selectedIds?.value,
             formType: invoiceFormType.salesReturn,
           },
           okCallback: async (response) => {
-            await props.tableStore.reloadData();
+            await props.tableStore?.reloadData();
           },
         });
       },

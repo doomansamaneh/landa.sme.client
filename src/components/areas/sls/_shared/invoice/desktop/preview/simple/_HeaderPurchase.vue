@@ -5,6 +5,7 @@
       border-width: 1px;
       border-style: solid;
       border-image: initial;
+      border-collapse: collapse;
       font-size: 13px;
     "
   >

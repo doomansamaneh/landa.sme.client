@@ -2,10 +2,8 @@
   <template v-if="$q.screen.xs">
     <toolbar-mobile
       :table-store="tableStore"
-      :crud-store="crudStore"
-      :title="title"
       :base-route="baseRoute"
-      :selected-ids="selectedIds"
+      :title="title"
       :menu-items="menuItems"
       sort-btn
     />
@@ -20,7 +18,6 @@
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
 
-  import { useFormActions } from "src/composables/useFormActions";
   import { useCloseOrderDataGridMenu } from "../../../_menus/useCloseOrderDataGridMenu";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
@@ -35,12 +32,6 @@
   });
 
   const $q = useQuasar();
-
-  const crudStore = useFormActions(props.baseRoute);
-
-  const selectedIds = computed(() =>
-    props.tableStore.selectedRows?.value.map((item) => item.id)
-  );
 
   const context = useDataGridMenuContext(
     props.tableStore,

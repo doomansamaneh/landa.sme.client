@@ -1,11 +1,9 @@
 <template>
   <template v-if="$q.screen.xs">
     <toolbar-mobile
-      :table-store="tableStore"
-      :crud-store="crudStore"
       :title="title"
+      :table-store="tableStore"
       :base-route="baseRoute"
-      :selected-ids="selectedIds"
       :menu-items="menuItems"
       search-btn
       sort-btn
@@ -36,7 +34,6 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
-  import { useFormActions } from "src/composables/useFormActions";
   import { useVoucherDataGridMenu } from "../../../_menus/useVoucherDataGridMenu";
   import { useVoucherSearch } from "../../../_composables/useVoucherSearch";
 
@@ -55,11 +52,6 @@
   const $q = useQuasar();
   const searchStore = useVoucherSearch();
   const dialogStore = useDialog();
-  const crudStore = useFormActions(props.baseRoute);
-
-  const selectedIds = computed(() =>
-    props.tableStore.selectedRows?.value.map((item) => item.id)
-  );
 
   const context = useDataGridMenuContext(
     props.tableStore,
@@ -71,7 +63,7 @@
           component: ReorderForm,
           actionBar: true,
           okCallback: async () => {
-            await props.tableStore.reloadData();
+            await props.tableStore?.reloadData();
           },
         });
       },

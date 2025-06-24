@@ -1,11 +1,9 @@
 <template>
   <toolbar-mobile
     v-if="$q.screen.xs"
-    :table-store="tableStore"
-    :crud-store="crudStore"
     :title="title"
+    :table-store="tableStore"
     :base-route="baseRoute"
-    :selected-ids="selectedIds"
     :menu-items="menuItems"
     sort-btn
   />
@@ -38,10 +36,6 @@
   const dialogStore = useDialog();
   const crudStore = useFormActions(props.baseRoute);
 
-  const selectedIds = computed(() =>
-    props.tableStore.selectedRows?.value.map((item) => item.id)
-  );
-
   const context = useDataGridMenuContext(
     props.tableStore,
     props.baseRoute,
@@ -52,7 +46,7 @@
           component: EditBatchForm,
           actionBar: true,
           props: {
-            selectedIds: selectedIds?.value,
+            selectedIds: props.tableStore?.selectedIds?.value,
           },
           okCallback: async (response) => {
             await props.tableStore.reloadData();
@@ -66,7 +60,7 @@
           component: EditBatchPriceForm,
           actionBar: true,
           props: {
-            selectedIds: selectedIds?.value,
+            selectedIds: props.tableStore?.selectedIds?.value,
           },
           okCallback: async (response) => {
             await props.tableStore.reloadData();
