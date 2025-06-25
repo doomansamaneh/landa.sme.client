@@ -98,7 +98,7 @@
     {
       fieldName: "d.TypeId",
       operator: sqlOperator.in,
-      value: `${documentType.purchase},${documentType.salesReturn}`,
+      value: `${documentType.invoice},${documentType.purchaseReturn}`,
     },
   ];
   const gridStore = useBaseInfoGrid({

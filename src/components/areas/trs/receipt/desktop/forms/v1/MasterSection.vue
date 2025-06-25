@@ -17,7 +17,7 @@
       <q-option-group
         inline
         :options="
-          helper.getEnumOptions(paymentFormType, 'paymentFormType')
+          helper.getEnumOptions(receiptFormType, 'receiptFormType')
         "
         type="radio"
         v-model="formType"
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div v-if="formType === paymentFormType.other" class="row q-mt-md">
+  <div v-if="formType === receiptFormType.other" class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <sl-lookup
         v-model:selectedId="localFormStore.model.value.slId"
@@ -70,7 +70,7 @@
   </div>
 
   <remained-grid
-    v-if="formType === paymentFormType.purhcase"
+    v-if="formType === receiptFormType.sales"
     class="q-mt-md"
     ref="invoiceGrid"
     :form-store="formStore"
@@ -80,7 +80,7 @@
 <script setup>
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
-  import { paymentFormType } from "src/constants";
+  import { receiptFormType } from "src/constants";
   import { useReceiptModel } from "src/components/areas/trs/_composables/useReceiptModel";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
@@ -94,13 +94,12 @@
     formStore: useReceiptModel,
   });
 
-  const formType = ref(paymentFormType.purhcase);
+  const formType = ref(receiptFormType.sales);
   const invoiceGrid = ref(null);
   const localFormStore = computed(() => props.formStore);
 
   const formTypeChanged = async (e) => {
-    if (e === paymentFormType.purhcase)
-      localFormStore.value.resetSL();
+    if (e === receiptFormType.sales) localFormStore.value.resetSL();
     else localFormStore.value.resetRemainedInvoices();
   };
 </script>

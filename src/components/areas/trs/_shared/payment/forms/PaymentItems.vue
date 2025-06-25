@@ -42,9 +42,9 @@
 
     <!-- <q-separator class="q-mb-lg" /> -->
 
-    <template v-if="formStore.model.value.paymentItems.length">
+    <template v-if="formStore.model?.value?.paymentItems?.length">
       <payment-item
-        v-for="(item, index) in formStore.model.value.paymentItems"
+        v-for="(item, index) in formStore.model?.value?.paymentItems"
         :key="item.id || index"
         :item="item"
         :index="index"
@@ -52,7 +52,6 @@
         class="q-mb-md"
       />
     </template>
-
     <q-card v-else>
       <q-card-section>
         <no-data-found />
