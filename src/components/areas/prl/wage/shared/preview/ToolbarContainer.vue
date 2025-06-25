@@ -1,10 +1,11 @@
 <template>
   <tool-bar-desktop
     v-if="$q.screen.gt.sm"
-    :inside="inside"
-    :margin="!inside"
     :title="title"
+    :inside="inside"
     :menu-items="menuItems"
+    margin
+    back-button
   />
   <tool-bar-mobile
     v-else
@@ -13,6 +14,7 @@
     :model="model"
     :base-route="baseRoute"
     :menu-items="menuItems"
+    back-button
   />
 </template>
 

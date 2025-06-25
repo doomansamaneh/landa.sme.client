@@ -5,6 +5,7 @@
     :margin="!inside"
     :title="title"
     :menu-items="menuItems"
+    back-button
   />
   <tool-bar-mobile
     v-else
@@ -12,6 +13,7 @@
     :title="title"
     :model="model"
     :menu-items="menuItems"
+    back-button
   />
 </template>
 

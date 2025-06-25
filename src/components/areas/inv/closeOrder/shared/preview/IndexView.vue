@@ -2,10 +2,10 @@
   <toolbar-desktop
     v-if="model"
     :inside="inside"
-    :margin="!inside"
     :title="title"
     :menu-items="menuItems"
     back-button
+    margin
   />
 
   <div class="row q-col-gutter-lg">
