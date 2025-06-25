@@ -5,6 +5,6 @@ export function useCloseOrderDataGridMenu(context) {
     baseRoute: "inv/closeOrder",
     permissionPrefix: "inv.closeOrder",
 
-    exclude: ["printBatch"],
+    exclude: ["print", "printBatch"],
   });
 }

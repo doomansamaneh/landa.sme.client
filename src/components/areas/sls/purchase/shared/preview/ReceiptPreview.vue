@@ -1,27 +1,18 @@
 <template>
   <toolbar-mobile
     v-if="$q.screen.xs"
-    buttons
-    margin
     :title="title"
+    :menu-items="menuItems"
+    margin
     back-button
-  >
-    <template #buttons>
-      <menu-button-print
-        class="primary-gradient primary-shadow text-white text-body2"
-        @click="printStore.handlePrint()"
-      />
-    </template>
-  </toolbar-mobile>
-
-  <toolbar-desktop v-else buttons margin :title="title" back-button>
-    <template #buttons>
-      <menu-button-print
-        class="primary-gradient primary-shadow text-white text-body2"
-        @click="printStore.handlePrint()"
-      />
-    </template>
-  </toolbar-desktop>
+  />
+  <toolbar-desktop
+    v-else
+    :title="title"
+    :menu-items="menuItems"
+    margin
+    back-button
+  />
 
   <q-card bordered>
     <q-inner-loading :showing="loading" class="text-center q-pa-md">
@@ -46,10 +37,11 @@
   import { useRoute } from "vue-router";
   import { useFormActions } from "src/composables/useFormActions";
   import { usePrint } from "src/composables/usePrint";
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
+  import { useReceiptPreviewMenu } from "../../../_menus/useReceiptPreviewMenu";
 
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
-  import ToolbarMobile from "src/components/shared/ToolBarPreviewMobile.vue";
-  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
   import HeaderSection from "./HeaderSection.vue";
   import BodySection from "./BodySection.vue";
   import FooterSection from "./FooterSection.vue";
@@ -90,6 +82,11 @@
       model.value.totalDiscount -
       model.value.totalVat;
   };
+
+  const context = usePreviewMenuContext(model.value);
+  const menuItems = computed(() =>
+    useReceiptPreviewMenu(context.value)
+  );
 
   onMounted(async () => {
     try {

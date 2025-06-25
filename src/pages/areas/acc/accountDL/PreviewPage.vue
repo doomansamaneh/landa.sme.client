@@ -1,5 +1,5 @@
 <template>
-  <desktop />
+  <desktop :title="$t('main-menu-items.Acc_AccountDL_View')" />
 </template>
 
 <script setup>

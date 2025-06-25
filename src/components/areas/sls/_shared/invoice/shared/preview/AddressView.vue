@@ -1,27 +1,18 @@
 <template>
   <toolbar-mobile
     v-if="$q.screen.xs"
-    buttons
-    margin
     :title="title"
+    :menu-items="menuItems"
+    margin
     back-button
-  >
-    <template #buttons>
-      <menu-button-print
-        class="primary-gradient primary-shadow text-white text-body2"
-        @click="printStore.handlePrint()"
-      />
-    </template>
-  </toolbar-mobile>
-
-  <toolbar-desktop v-else buttons margin :title="title" back-button>
-    <template #buttons>
-      <menu-button-print
-        class="primary-gradient primary-shadow text-white text-body2"
-        @click="printStore.handlePrint()"
-      />
-    </template>
-  </toolbar-desktop>
+  />
+  <toolbar-desktop
+    v-else
+    :title="title"
+    :menu-items="menuItems"
+    margin
+    back-button
+  />
 
   <q-card bordered>
     <div :ref="printStore.printRef">
@@ -67,9 +58,11 @@
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { usePrint } from "src/composables/usePrint";
 
+  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
+  import { useExitPreviewMenu } from "src/components/areas/sls/_menus/useExitPreviewMenu";
+
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
-  import ToolbarMobile from "src/components/shared/ToolBarPreviewMobile.vue";
-  import MenuButtonPrint from "src/components/shared/buttons/MenuButtonPrint.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
   import AddressCard from "./AddressCard.vue";
 
   const props = defineProps({
@@ -83,6 +76,9 @@
   const crudStore = useFormActions("", model, true);
 
   const customerData = computed(() => model.value?.data);
+
+  const context = usePreviewMenuContext(model.value);
+  const menuItems = computed(() => useExitPreviewMenu(context.value));
 
   onMounted(async () => {
     model.value = await crudStore.customGetAction(

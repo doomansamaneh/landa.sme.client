@@ -4,6 +4,6 @@ export function useOpeningStockDataGridMenu(context) {
   return useDataGridMenu(context, {
     baseRoute: "inv/openingStock",
     permissionPrefix: "inv.openingStock",
-    exclude: ["printBatch"],
+    exclude: ["print", "printBatch"],
   });
 }

@@ -22,8 +22,9 @@ export function usePrint() {
         resetAllBorderColors();
       }
     },
+
     onBeforeGetContent: async () => {
-      if (printRef.value) {
+      if (printRef?.value) {
         printRef.value.classList.add("printable");
         printRef.value.style.direction = $q.lang.rtl ? "rtl" : "ltr";
         setAllBordersToBlack();
@@ -43,12 +44,15 @@ export function usePrint() {
         document.head.appendChild(style);
       }
     },
+
     onBeforePrint: () => {
       console.log("Before printing...");
     },
+
     onPrintError: (location, error) => {
       console.error(`Error in ${location}:`, error);
     },
+
     removeAfterPrint: true,
     suppressErrors: false,
   };

@@ -8,10 +8,6 @@ export function useDataGridMenuContext(
   baseRoute = "",
   customHandlers = {}
 ) {
-  const selectedIds = computed(() =>
-    tableStore.selectedRows?.value.map((item) => item.id)
-  );
-
   const activeRow = computed(() => tableStore.activeRow?.value);
   const { exportAll, exportCurrentPage } =
     useDataTableExport(tableStore);
@@ -23,7 +19,10 @@ export function useDataGridMenuContext(
     },
 
     deleteBatch: () =>
-      crudStore.deleteBatch(selectedIds.value, tableStore.reloadData),
+      crudStore.deleteBatch(
+        tableStore.selectedIds.value,
+        tableStore.reloadData
+      ),
 
     deleteById: () =>
       crudStore.deleteById(
@@ -54,7 +53,7 @@ export function useDataGridMenuContext(
   };
 
   return computed(() => ({
-    selectedIds: selectedIds.value,
+    selectedIds: tableStore.selectedIds.value,
     activeRow: activeRow.value,
     baseRoute: baseRoute,
     ...defaultHandlers,

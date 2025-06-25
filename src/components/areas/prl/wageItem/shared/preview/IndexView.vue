@@ -1,5 +1,6 @@
 <template>
   <toolbar-desktop
+    v-if="model"
     :inside="inside"
     :margin="!inside"
     :title="title"
@@ -41,11 +42,7 @@
 
   const id = computed(() => props.item?.id ?? route.params.id);
 
-  const context = usePreviewMenuContext(crudStore, baseRoute, {
-    handlePrint: async () => {
-      printStore.handlePrint();
-    },
-  });
+  const context = usePreviewMenuContext(crudStore, baseRoute);
 
   const menuItems = computed(() =>
     useWageItemPreviewMenu(context.value)

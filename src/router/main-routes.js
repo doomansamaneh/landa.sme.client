@@ -198,6 +198,12 @@ export default {
           meta: { title: "حساب معین - کپی" },
         },
         {
+          path: "preview/:id",
+          component: () =>
+            import("pages/areas/acc/accountSL/PreviewPage.vue"),
+          meta: { title: "حساب معین - پیش نمایش" },
+        },
+        {
           path: "tree",
           component: () =>
             import("pages/areas/acc/accountSL/TreePage.vue"),

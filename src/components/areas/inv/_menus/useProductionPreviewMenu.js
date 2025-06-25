@@ -4,7 +4,7 @@ import { menuItems } from "src/constants/menuItems";
 export function useProductionPreviewMenu(context) {
   return usePreviewMenu(context, {
     permissionPrefix: "inv.production",
-    exclude: ["sendMail"],
+    exclude: ["sendMail", "printPdf"],
 
     overrideItems: {
       edit: {

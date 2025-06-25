@@ -7,6 +7,8 @@ export function usePreviewMenu(context, config = {}) {
     extraPrintItems = [],
     overrideItems = {},
     exclude = [],
+    routes = {},
+    handlers = {},
   } = config;
 
   const getItem = (key, fallbackItem) => {
@@ -16,7 +18,22 @@ export function usePreviewMenu(context, config = {}) {
     return Array.isArray(override) ? override : [override];
   };
 
+  const getMoreItem = () => {
+    const key = "more";
+    if (exclude.includes(key)) return [];
+
+    const override = overrideItems[key];
+    if (Array.isArray(override)) return override;
+
+    return [
+      {
+        ...override,
+      },
+    ];
+  };
+
   const id = context.model?.id ?? context.id;
+
   return computed(() => {
     const menu = [
       ...getItem("edit", {
@@ -24,8 +41,7 @@ export function usePreviewMenu(context, config = {}) {
         class: "primary-gradient primary-shadow text-white",
         permission: `${permissionPrefix}.edit`,
         route:
-          config.routes?.edit?.(id) ||
-          `/${context.baseRoute}/edit/${id}`,
+          routes.edit?.(id) ?? `/${context.baseRoute}/edit/${id}`,
         visible: true,
       }),
 
@@ -33,16 +49,14 @@ export function usePreviewMenu(context, config = {}) {
         ...menuItems.copy,
         permission: `${permissionPrefix}.clone`,
         route:
-          config.routes?.copy?.(id) ||
-          `/${context.baseRoute}/copy/${id}`,
+          routes.copy?.(id) ?? `/${context.baseRoute}/copy/${id}`,
         visible: true,
       }),
 
       ...getItem("delete", {
         ...menuItems.delete,
         permission: `${permissionPrefix}.delete`,
-        handler:
-          config.handlers?.delete || (() => context.deleteById?.()),
+        handler: handlers.delete ?? (() => context.deleteById?.()),
         visible: true,
       }),
 
@@ -53,24 +67,23 @@ export function usePreviewMenu(context, config = {}) {
         permission: `${permissionPrefix}.print`,
         visible: true,
         subItems: [
-          {
+          ...getItem("printMain", {
             ...menuItems.print,
             permission: `${permissionPrefix}.print`,
-            handler:
-              config.handlers?.print || (() => context.print?.()),
+            handler: handlers.print ?? (() => context.print?.()),
             visible: true,
             addSeparator: extraPrintItems?.length > 0,
-          },
-          ...(extraPrintItems?.map((fn) => fn(id)) || []),
-          {
-            ...menuItems.defaultItem,
+          }),
+          ...(extraPrintItems?.map((fn) => fn(id)) ?? []),
+          ...getItem("printPdf", {
+            ...menuItems.print,
             icon: "download",
             label: "downloadPdf",
             permission: `${permissionPrefix}.print`,
+            visible: true,
             handler:
-              config.handlers?.downloadPdf ||
-              (() => context.downloadPdf?.()),
-          },
+              handlers.downloadPdf ?? (() => context.downloadPdf?.()),
+          }),
         ],
       }),
 
@@ -79,12 +92,11 @@ export function usePreviewMenu(context, config = {}) {
         icon: "send",
         label: "sendMail",
         permission: `${permissionPrefix}.print`,
-        handler:
-          config.handlers?.sendMail || (() => context.sendMail?.()),
+        handler: handlers.sendMail ?? (() => context.sendMail?.()),
+        visible: true,
       }),
 
-      // only if explicitly overridden
-      ...(overrideItems.more ? getItem("more", []) : []),
+      ...getMoreItem(),
     ];
 
     return menu;

@@ -1,5 +1,10 @@
 <template>
-  <stock-preview :item="model" :title="title" :inside="inside" />
+  <stock-preview
+    v-if="model"
+    :item="model"
+    :title="title"
+    :inside="inside"
+  />
 </template>
 
 <script setup>

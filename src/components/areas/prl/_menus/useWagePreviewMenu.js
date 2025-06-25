@@ -15,7 +15,7 @@ export function useWagePreviewMenu(context) {
       },
       more: {
         ...menuItems.more,
-        permission: `prl.wage.print`,
+        permission: `prl.wage.export`,
         subItems: [
           {
             ...menuItems.exportExcel,
@@ -35,7 +35,7 @@ export function useWagePreviewMenu(context) {
             ...menuItems.defaultItem,
             label: "downloadTax",
             icon: "o_save",
-            permission: `prl.wage.print`,
+            permission: `prl.wage.export`,
             handler: () => context.exportTax?.(),
             visible: true,
           },

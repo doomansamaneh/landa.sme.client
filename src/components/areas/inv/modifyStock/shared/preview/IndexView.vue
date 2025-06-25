@@ -1,5 +1,6 @@
 <template>
   <toolbar-desktop
+    v-if="model"
     :inside="inside"
     :margin="!inside"
     :title="title"
@@ -64,14 +65,7 @@
     router.back();
   }
 
-  const context = usePreviewMenuContext(
-    model.value,
-    baseRoute,
-    id.value,
-    {
-      delete: () => crudStore.deleteById(id.value, deleteCallBack),
-    }
-  );
+  const context = usePreviewMenuContext(model.value, baseRoute);
 
   const menuItems = computed(() =>
     useModifyStockPreviewMenu(context.value)

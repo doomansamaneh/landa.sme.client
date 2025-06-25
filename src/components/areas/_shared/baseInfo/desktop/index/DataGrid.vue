@@ -10,6 +10,7 @@
       flat
       :expandable="expandable"
       :title="title"
+      @row-dbl-click="gotoPreview"
       toolbar
     >
       <template #filter-isActive="{ item }">
@@ -57,6 +58,7 @@
 </template>
 
 <script setup>
+  import { useRouter } from "vue-router";
   import { helper } from "src/helpers";
   import { isActiveOptions } from "src/constants";
   import { useDataTable } from "src/composables/useDataTable";
@@ -75,4 +77,10 @@
     title: String,
     icon: String,
   });
+  const router = useRouter();
+
+  function gotoPreview(row) {
+    if (props.expandable)
+      router.push(`/${props.baseRoute}/preview/${row.id}`);
+  }
 </script>

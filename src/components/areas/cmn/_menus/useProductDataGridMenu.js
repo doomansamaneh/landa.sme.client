@@ -14,7 +14,7 @@ export function useProductDataGridMenu(context, config = {}) {
       edit: [
         {
           ...menuItems.edit,
-          route: `/cmn/edit/product/${context.activeRow?.id}`,
+          route: `/cmn/product/edit/${context.activeRow?.id}`,
           permission: "cmn.product.edit",
           visible: hasId,
         },

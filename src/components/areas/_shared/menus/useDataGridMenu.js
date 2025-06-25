@@ -10,6 +10,9 @@ export function useDataGridMenu(context, config = {}) {
     exclude = [],
   } = config;
 
+  const hasId = !!context.activeRow?.id;
+  const hasSelection = context.selectedIds?.length > 0;
+
   const getItem = (key, fallbackItem) => {
     if (exclude.includes(key)) return [];
     const override = overrideItems[key];
@@ -17,8 +20,51 @@ export function useDataGridMenu(context, config = {}) {
     return Array.isArray(override) ? override : [override];
   };
 
-  const hasId = !!context.activeRow?.id;
-  const hasSelection = context.selectedIds?.length > 0;
+  const getMoreItem = () => {
+    if (exclude.includes("more")) return [];
+
+    const fallbackSubItems = [
+      {
+        ...menuItems.refresh,
+        handler: () => context.reloadData?.(),
+        addSeparator: true,
+      },
+      ...extraMoreItems,
+      ...getItem("print", {
+        ...menuItems.print,
+        permission: `${permissionPrefix}.print`,
+        visible: hasId,
+        handler: () => context.print?.(),
+      }),
+      ...getItem("printBatch", {
+        ...menuItems.printBatch,
+        permission: `${permissionPrefix}.print`,
+        visible: true,
+        addSeparator: true,
+        handler: () => context.printBatch?.(),
+      }),
+      ...getItem("exportExcel", {
+        ...menuItems.exportExcel,
+        permission: `${permissionPrefix}.export`,
+        handler: () => context.exportAll?.(),
+      }),
+      ...getItem("exportExcelCurrentPage", {
+        ...menuItems.exportExcelCurrentPage,
+        permission: `${permissionPrefix}.export`,
+        handler: () => context.exportCurrentPage?.(),
+      }),
+    ];
+
+    const override = overrideItems["more"];
+    if (Array.isArray(override)) return override;
+
+    return [
+      {
+        ...menuItems.more,
+        subItems: fallbackSubItems,
+      },
+    ];
+  };
 
   return computed(() => {
     const menu = [
@@ -53,44 +99,7 @@ export function useDataGridMenu(context, config = {}) {
         },
       }),
 
-      ...(Array.isArray(overrideItems.more)
-        ? overrideItems.more
-        : [
-            {
-              ...menuItems.more,
-              subItems: [
-                {
-                  ...menuItems.refresh,
-                  handler: () => context.reloadData?.(),
-                  addSeparator: true,
-                },
-                ...extraMoreItems,
-                {
-                  ...menuItems.print,
-                  permission: `${permissionPrefix}.print`,
-                  visible: hasId && exclude.includes("print"),
-                  handler: () => context.print?.(),
-                },
-                {
-                  ...menuItems.printBatch,
-                  permission: `${permissionPrefix}.print`,
-                  visible: hasId && exclude.includes("printBatch"),
-                  addSeparator: true,
-                  handler: () => context.printBatch?.(),
-                },
-                {
-                  ...menuItems.exportExcel,
-                  permission: `${permissionPrefix}.export`,
-                  handler: () => context.exportAll?.(),
-                },
-                {
-                  ...menuItems.exportExcelCurrentPage,
-                  permission: `${permissionPrefix}.export`,
-                  handler: () => context.exportCurrentPage?.(),
-                },
-              ],
-            },
-          ]),
+      ...getMoreItem(),
     ];
 
     return menu;

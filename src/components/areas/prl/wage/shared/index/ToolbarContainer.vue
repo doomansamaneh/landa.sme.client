@@ -39,14 +39,14 @@
     {
       exportTax: async () => {
         await downloadManager.downloadGet(
-          `${props.baseRoute}/exportTax/${props.model?.id}`,
+          `${props.baseRoute}/exportTax/${props.tableStore?.activeRow?.value.id}`,
           "landa-tax"
         );
       },
 
       exportInsurance: async () => {
         await downloadManager.downloadGet(
-          `${props.baseRoute}/exportInsurance/${props.model?.id}`,
+          `${props.baseRoute}/exportInsurance/${props.tableStore?.activeRow?.value.id}`,
           "landa-insurance"
         );
       },

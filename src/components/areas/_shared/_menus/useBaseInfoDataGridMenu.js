@@ -8,6 +8,7 @@ export function useBaseInfoDataGridMenu(context, config) {
   return useDataGridMenu(context, {
     baseRoute: context.baseRoute,
     permissionPrefix: permissionPrefix,
+    exclude: ["print", "printBatch"],
 
     extraMoreItems: [
       {

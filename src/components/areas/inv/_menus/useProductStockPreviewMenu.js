@@ -5,6 +5,7 @@ import ModifyStockForm from "src/components/areas/inv/modifyStock/shared/forms/M
 
 export function useProductStockPreviewMenu(context) {
   const dialogStore = useDialog();
+
   return usePreviewMenu(context, {
     permissionPrefix: "inv.productStock",
     exclude: ["copy", "delete", "print", "sendMail"],
@@ -18,28 +19,14 @@ export function useProductStockPreviewMenu(context) {
           dialogStore.openDialog({
             title: "main-menu-items.Inv_ModifyStock_View",
             component: ModifyStockForm,
-            props: { id: context.props?.item?.id },
+            props: { id: context.model?.id },
             actionBar: true,
             okCallback: async (response) => {
-              await context.model?.value?.reloadData?.();
+              //await context.model?.value?.reloadData?.();
             },
           });
         },
         visible: true,
-      },
-      more: {
-        ...menuItems.more,
-        subItems: [
-          {
-            ...menuItems.exportExcel,
-            label: "exportExcel",
-            icon: "o_download",
-            handler: () => {
-              context.exportToExcel?.();
-            },
-            visible: true,
-          },
-        ],
       },
     },
   });
