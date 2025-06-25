@@ -35,6 +35,7 @@
 
         <q-btn
           v-if="tableStore?.activeRow?.value"
+          v-access="`${permissionPrefix}.edit`"
           :to="`/${baseRoute}/edit/${tableStore?.activeRow?.value?.id}`"
           class="text-caption"
           round
@@ -46,6 +47,7 @@
 
         <q-btn
           v-if="tableStore?.selectedIds?.value?.length"
+          v-access="`${permissionPrefix}.delete`"
           class="text-caption"
           round
           unelevated
@@ -53,6 +55,22 @@
           @click="
             crudStore.deleteBatch(
               tableStore?.selectedIds?.value,
+              tableStore.reloadData
+            )
+          "
+        >
+          <q-icon name="o_delete" />
+        </q-btn>
+        <q-btn
+          v-else-if="tableStore?.activeRow?.value"
+          v-access="`${permissionPrefix}.delete`"
+          class="text-caption"
+          round
+          unelevated
+          no-caps
+          @click="
+            crudStore.deleteById(
+              tableStore?.activeRow?.value?.id,
               tableStore.reloadData
             )
           "
@@ -139,7 +157,7 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { computed, ref } from "vue";
   import { useQuasar } from "quasar";
 
   import { useFormActions } from "src/composables/useFormActions";
@@ -196,6 +214,10 @@
   const showSortSheet = () => {
     sortSheetStatus.value = true;
   };
+
+  const permissionPrefix = computed(() =>
+    props.baseRoute?.replace("/", ".")
+  );
 </script>
 
 <style lang="scss">

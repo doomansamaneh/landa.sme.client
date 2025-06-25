@@ -21,8 +21,8 @@
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
   import { useCustomerDataGridMenu } from "../../../_menus/useCustomerDataGridMenu";
 
-  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolbarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import EditBatchForm from "../forms/EditBatchForm.vue";
 
   const props = defineProps({

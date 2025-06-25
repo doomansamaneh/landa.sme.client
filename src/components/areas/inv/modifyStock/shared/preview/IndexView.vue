@@ -38,7 +38,7 @@
   import { useModifyStockPreviewMenu } from "src/components/areas/inv/_menus/useModifyStockPreviewMenu.js";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import FooterSection from "src/components/areas/_shared/preview/VoucherFooter.vue";
   import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";

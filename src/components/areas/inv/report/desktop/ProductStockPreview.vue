@@ -13,7 +13,7 @@
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useProductStockPreviewMenu } from "src/components/areas/inv/_menus/useProductStockPreviewMenu.js";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import Preview from "./_ProductStockPreview.vue";
 
   const props = defineProps({

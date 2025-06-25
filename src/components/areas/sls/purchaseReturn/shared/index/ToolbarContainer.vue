@@ -36,8 +36,8 @@
   import { usePurchaseReturnDataGridMenu } from "../../../_menus/usePurchaseReturnDataGridMenu";
 
   import AdvancedSearch from "../../../_shared/invoice/mobile/index/AdvancedSearch.vue";
-  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolbarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
 
   import EditBatchForm from "../../../_shared/invoice/shared/forms/EditBatchForm.vue";
 

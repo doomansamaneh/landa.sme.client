@@ -20,7 +20,7 @@
   import { useQuotePreviewMenu } from "../../../_menus/useQuotePreviewMenu";
   import { useQuoteState } from "../../../_composables/useQuoteState";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import ToolbarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
 
   const props = defineProps({

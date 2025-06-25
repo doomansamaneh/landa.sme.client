@@ -132,7 +132,7 @@
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
   import AdvancedSearch from "../../voucher/desktop/index/AdvancedSearch.vue";
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import TipBanner from "src/components/shared/TipBanner.vue";
 
   const props = defineProps({

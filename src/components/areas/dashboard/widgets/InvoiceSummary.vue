@@ -25,6 +25,7 @@
         <div class="row items-center q-gutter-md justify-between">
           <widget-title label="فاکتورهای فروش" icon="o_receipt" />
           <q-btn
+            v-access="`sls.invoice.create`"
             to="/sls/invoice/create"
             unelevated
             :dense="$q.screen.xs"

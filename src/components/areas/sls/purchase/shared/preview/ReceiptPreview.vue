@@ -40,7 +40,7 @@
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useReceiptPreviewMenu } from "../../../_menus/useReceiptPreviewMenu";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import ToolbarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
   import HeaderSection from "./HeaderSection.vue";
   import BodySection from "./BodySection.vue";

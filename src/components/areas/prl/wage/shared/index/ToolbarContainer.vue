@@ -21,8 +21,8 @@
   import { useWageDataGridMenu } from "src/components/areas/prl/_menus/useWageDataGridMenu";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
-  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolBarMobile.vue";
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/DynamicToolbarMobile.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
 
   const props = defineProps({
     toolbar: Boolean,

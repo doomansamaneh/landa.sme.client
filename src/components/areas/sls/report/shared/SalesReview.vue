@@ -122,7 +122,7 @@
   import InvoicePreview from "../../invoice/shared/preview/IndexView.vue";
 
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
-  import ToolbarDesktop from "components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "components/shared/toolbars/DynamicToolbarDesktop.vue";
   import CardTab from "src/components/shared/CardTab.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import Chip from "src/components/shared/CustomChip.vue";

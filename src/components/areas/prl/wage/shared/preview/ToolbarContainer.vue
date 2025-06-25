@@ -30,7 +30,7 @@
   import { useWagePreviewMenu } from "src/components/areas/prl/_menus/useWagePreviewMenu.js";
 
   import DataGridPreview from "./printPreview/DataGridPreview.vue";
-  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import ToolBarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
 
   const props = defineProps({

@@ -41,7 +41,7 @@
   import { useCloseOrderPreviewMenu } from "src/components/areas/inv/_menus/useCloseOrderPreviewMenu.js";
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import DetailSection from "src/components/areas/_shared/preview/VoucherDetail.vue";
   import BodySection from "./BodySection.vue";

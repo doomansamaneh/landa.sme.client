@@ -15,7 +15,7 @@
   import { useUsersDataGridMenu } from "src/components/areas/scr/_menus/useUsersDataGridMenu.js";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
 
-  import ToolbarMobile from "components/shared/toolbars/DynamicToolBarMobile.vue";
+  import ToolbarMobile from "components/shared/toolbars/DynamicToolbarMobile.vue";
 
   const props = defineProps({
     toolbar: Boolean,

@@ -22,7 +22,7 @@
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useInvoicePreviewMenu } from "../../../_menus/useInvoicePreviewMenu";
 
-  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import ToolBarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
 
   const props = defineProps({

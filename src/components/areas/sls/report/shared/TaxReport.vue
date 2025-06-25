@@ -83,7 +83,7 @@
   import TaxReport from "../desktop/TaxReport.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
-  import ToolbarDesktop from "components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolbarDesktop from "components/shared/toolbars/DynamicToolbarDesktop.vue";
   import AdvancedSearch from "components/areas/sls/_shared/invoice/desktop/index/AdvancedSearch.vue";
 
   const props = defineProps({

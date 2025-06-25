@@ -1,6 +1,6 @@
 <template>
   <q-form ref="form" autofocus>
-    <div class="row q-gutter-md q-mb-md">
+    <div class="row q-mb-md">
       <div class="col-md-6 col-sm-6 col-xs-12">
         <bank-lookup
           label="بانک"
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="row q-gutter-md q-mb-md">
+    <div class="row q-mb-md">
       <div class="col-md-3 col-sm-6 col-xs-12">
         <custom-input
           label="کد"
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div class="row q-gutter-md q-mb-md">
+    <div class="row q-mb-md">
       <div class="col-md-6 col-sm-6 col-xs-12">
         <custom-input
           label="عنوان"
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="row q-gutter-md q-mb-md">
+    <div class="row q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
         <location-lookup
           label="محل جغرافیایی"
@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div class="row q-gutter-md q-mb-md">
+    <div class="row q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input
           label="شرح"
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div class="row q-gutter-md q-mb-md">
+    <div class="row q-mb-md">
       <q-checkbox
         dense
         size="48px"

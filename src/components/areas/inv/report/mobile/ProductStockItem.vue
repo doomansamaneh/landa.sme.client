@@ -143,7 +143,7 @@
   import RowToolBar from "src/components/shared/toolbars/DesktopRowToolbar.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
-  import ToolBar from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBar from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import IsActive from "src/components/shared/IsActive.vue";
 
   const props = defineProps({

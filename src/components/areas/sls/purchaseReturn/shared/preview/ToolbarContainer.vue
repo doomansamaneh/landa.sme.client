@@ -22,7 +22,7 @@
   import { usePurchaseReturnPreviewMenu } from "../../../_menus/usePurchaseReturnPreviewMenu";
   import { usePurchaseReturnState } from "../../../_composables/usePurchaseReturnState";
 
-  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import ToolBarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
 
   const props = defineProps({

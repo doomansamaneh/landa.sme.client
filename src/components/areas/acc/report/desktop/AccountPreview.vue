@@ -78,7 +78,7 @@
   import { useDataTableExport } from "src/composables/useDataTableExport";
 
   import AccountItem from "./AccountItem.vue";
-  // import ToolBar from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import CardTitle from "src/components/shared/CardTitle.vue";
 
   const props = defineProps({

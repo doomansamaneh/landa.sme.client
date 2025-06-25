@@ -71,7 +71,7 @@
   import { useFormActions } from "src/composables/useFormActions";
   import { useDialog } from "src/composables/useDialog";
 
-  // import ToolBar from "src/components/shared/toolbars/DynamicToolBarDesktop.vue";
+  // import ToolBar from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
   import BodySection from "./BodySection.vue";
   import ItemLog from "./ItemLog.vue";
 

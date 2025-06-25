@@ -1,7 +1,7 @@
 <template>
   <toolbar-container
     v-if="toolbar"
-    buttons
+    :title="title"
     :table-store="tableStore"
     :base-route="baseRoute"
     :crud-store="crudStore"
