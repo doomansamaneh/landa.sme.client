@@ -19,7 +19,7 @@
       </div>
     </template> -->
 
-    <template #body="{ item }">
+    <template #row-body="{ item }">
       <q-card class="bordered row bg-dark rounded-borders q-pa-md">
         <div class="col-6">
           <div class="row">
