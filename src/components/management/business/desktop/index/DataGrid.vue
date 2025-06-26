@@ -57,7 +57,7 @@
       </q-item>
     </template>
 
-    <template #row-body="{ item }">
+    <template #body="{ item }">
       <div
         class="col-5 flex no-wrap items-center q-gutter-md text-weight-medium"
       >

@@ -42,7 +42,7 @@
       </q-item>
     </template>
 
-    <template #row-body="{ item }">
+    <template #body="{ item }">
       <div class="col-5">
         <div class="flex justify-start">
           <q-item-label caption class="text-on-dark">
