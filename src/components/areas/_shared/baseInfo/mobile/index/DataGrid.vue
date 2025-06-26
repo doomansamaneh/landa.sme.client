@@ -4,41 +4,43 @@
     :create-url="createUrl"
     :base-route="baseRoute"
     :preview-page="previewPage"
+    show-avatar
   >
+    <template #row-avatar="{ item }">
+      <div class="col-auto q-mr-sm">
+        <transition name="slide" appear mode="out-in">
+          <q-avatar
+            :key="item.selected"
+            size="36px"
+            text-color="white"
+            :class="item.selected ? 'primary-gradient' : status(item)"
+            @click.prevent.stop="setActiveRow(item)"
+          >
+            <q-icon
+              v-if="!item.selected"
+              :name="item.isActive ? 'o_done' : 'o_close'"
+              round
+              dense
+              size="24px"
+              unelevated
+              text-color="white"
+            />
+            <transition appear name="slide-fade">
+              <q-icon v-if="item.selected" size="24px" name="check" />
+            </transition>
+          </q-avatar>
+        </transition>
+      </div>
+    </template>
+
     <template #row-body="{ item }">
-      <div
-        v-for="col in tableStore.columns?.value"
-        :key="col.name"
-        class="q-pa-sm"
-      >
-        <span v-if="col.field && col.label" class="q-px-sm">
-          <template v-if="col.name === 'isActive'">
-            {{ col.label }}:
-            <q-btn
-              v-if="item[col.field]"
-              round
-              dense
-              size="10px"
-              unelevated
-              icon="o_done"
-              text-color="white"
-              class="green-gradient green-shadow no-pointer-events"
-            />
-            <q-btn
-              v-else
-              round
-              dense
-              size="10px"
-              unelevated
-              icon="o_close"
-              text-color="white"
-              class="red-gradient red-shadow no-pointer-events"
-            />
-          </template>
-          <template v-else>
-            {{ col.label }}:
-            {{ formatValue(col, item[col.field]) }}
-          </template>
+      <div v-for="col in tableStore.columns?.value" :key="col.name">
+        <span
+          v-if="col.field && col.label && col.name !== 'isActive'"
+          class="q-px-sm"
+        >
+          {{ col.label }}:
+          {{ formatValue(col, item[col.field]) }}
         </span>
       </div>
     </template>
@@ -55,6 +57,7 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useRouter } from "vue-router";
   import { dataType } from "src/constants/enums";
   import { helper } from "src/helpers/helper";
@@ -92,5 +95,18 @@
         await props.tableStore?.reloadData(),
     });
     return useBaseInfoPreviewMenu(context.value);
+  }
+
+  const status = (item) => {
+    return item?.isActive ? "green-gradient" : "red-gradient";
+  };
+
+  function setActiveRow(item) {
+    if (props.tableStore.selectedRows?.value?.length > 0) {
+      props.tableStore.selectRow(item, !item.selected);
+    } else {
+      const isSame = props.tableStore.activeRow?.value === item;
+      props.tableStore.setActiveRow(isSame ? null : item);
+    }
   }
 </script>
