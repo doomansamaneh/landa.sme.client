@@ -1,7 +1,8 @@
 <template>
-  <!-- <toolbar-desktop margin :title="title" /> -->
+  <toolbar-desktop margin :title="title" />
 
-  <advanced-search class="q-mb-lg" />
+  <advanced-search class="q-mb-md" />
+  <tip-banner :tip="tip" />
 
   <chip
     icon="filter_alt"
@@ -84,7 +85,7 @@
   // import ReviewItem from "../desktop/ReviewItem.vue";
 
   import AdvancedSearch from "../desktop/ProductStockSearch.vue";
-  // import ToolbarDesktop from "components/shared/toolbars/DynamicToolbarDesktop.vue";
+  import ToolbarDesktop from "components/shared/toolbars/DynamicToolbarDesktop.vue";
   import CardTab from "src/components/shared/CardTab.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import Chip from "src/components/shared/CustomChip.vue";
