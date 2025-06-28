@@ -153,13 +153,7 @@
     </q-card-section>
   </q-card>
 
-  <detail-section
-    class="q-mt-md"
-    :model="model"
-    tax-api
-    :detail-url="detailUrl"
-    :show-receipt="showReceipt"
-  />
+  <slot name="detail-section" :model="model"></slot>
 </template>
 
 <script setup>
@@ -168,7 +162,6 @@
   import { numberToWords } from "@persian-tools/persian-tools";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
-  import DetailSection from "../../shared/preview/_DetailSection.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
   import StatusBadge from "src/components/areas/_shared/badges/StatusBadge.vue";
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";

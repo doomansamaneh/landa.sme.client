@@ -43,10 +43,7 @@
     {
       onDeleteSuccess: () => invoiceStore.reset(),
       cancelInvoice: () => {
-        formStore.cancelInvoice(
-          props.tableStore?.activeRow?.value?.id,
-          props.tableStore.reloadData()
-        );
+        formStore.cancelInvoice(props.model.id, invoiceStore.reset());
       },
     }
   );

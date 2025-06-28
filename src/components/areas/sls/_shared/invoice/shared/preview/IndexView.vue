@@ -18,7 +18,16 @@
     </template>
 
     <template #detail-section>
-      <slot name="detail-section" :model="model"></slot>
+      <div class="q-mt-md">
+        <slot name="detail-section" :model="model">
+          <detail-section
+            :model="model"
+            :tax-api="taxApi"
+            :detail-url="detailUrl"
+            :show-receipt="showReceipt"
+          />
+        </slot>
+      </div>
     </template>
   </mobile>
 

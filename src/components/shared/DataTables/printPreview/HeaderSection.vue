@@ -10,7 +10,7 @@
     </div>
     <div>
       <span class="text-body1">
-        {{ title }}
+        {{ $t(title) }}
       </span>
     </div>
   </q-card-section>

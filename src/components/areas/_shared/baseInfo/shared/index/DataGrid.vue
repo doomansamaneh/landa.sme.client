@@ -85,4 +85,8 @@
         sortColumn: props.sortColumn,
       }),
   });
+
+  defineExpose({
+    tableStore,
+  });
 </script>

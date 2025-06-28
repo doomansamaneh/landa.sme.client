@@ -79,7 +79,7 @@
             formType: invoiceFormType.sales,
           },
           okCallback: async (response) => {
-            await props.tableStore.reloadData();
+            //await props.tableStore.reloadData();
           },
         });
       },
@@ -87,7 +87,7 @@
       cancelInvoice: () => {
         formStore.cancelInvoice(
           props.tableStore?.activeRow?.value?.id,
-          props.tableStore.reloadData()
+          props.tableStore.reloadData
         );
       },
     }

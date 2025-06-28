@@ -1,5 +1,5 @@
 <template>
-  <q-card class="bordered" style="margin-top: 0">
+  <q-card class="bordered">
     <q-card-section>
       <slot name="header">
         <div class="column q-gutter-y-sm">

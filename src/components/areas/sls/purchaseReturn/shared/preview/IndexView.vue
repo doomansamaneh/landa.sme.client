@@ -5,7 +5,7 @@
     entity-name="Sls.[Invoice]"
     detail-url="trs/receipt"
     show-sale-header
-    tax-api
+    tax-api_
   >
     <template #toolbar-container="{ model }">
       <toolbar-container

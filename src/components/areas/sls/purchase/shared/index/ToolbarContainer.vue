@@ -67,7 +67,7 @@
             formType: invoiceFormType.purchase,
           },
           okCallback: async (response) => {
-            await props.tableStore?.reloadData();
+            //await props.tableStore?.reloadData();
           },
         });
       },

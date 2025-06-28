@@ -10,7 +10,7 @@
     />
   </template>
   <template v-else>
-    <toolbar-desktop :title="title" :menu-items="menuItems" margin />
+    <toolbar-desktop :menu-items="menuItems" margin />
   </template>
 </template>
 
