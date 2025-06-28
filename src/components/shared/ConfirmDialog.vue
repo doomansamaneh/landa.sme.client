@@ -9,7 +9,7 @@
     <q-card flat class="q-dialog-plugin">
       <q-card-section class="row items-center q-pl-lg q-pr-md">
         <div class="text-h6">
-          {{ title }}
+          {{ $t(title) }}
         </div>
         <q-space />
         <q-btn
@@ -23,7 +23,7 @@
       </q-card-section>
       <q-card-section>
         <div class="q-px-sm q-mb-sm">
-          {{ message }}
+          {{ $t(message) }}
         </div>
       </q-card-section>
 
@@ -34,7 +34,7 @@
           unelevated
           no-caps
           padding="8px 16px"
-          :label="ok ?? $t('shared.labels.ok')"
+          :label="ok ? $t(`${ok}`) : $t('shared.labels.ok')"
           @click="onOKClick"
         />
         <q-btn
@@ -43,7 +43,9 @@
           size="md"
           padding="8px 16px"
           no-caps
-          :label="cancel ?? $t('shared.labels.cancel')"
+          :label="
+            cancel ? $t(`${cancel}`) : $t('shared.labels.cancel')
+          "
           @click="onDialogCancel"
         />
       </q-card-actions>
@@ -52,22 +54,22 @@
 </template>
 
 <script setup>
-import { useDialogPluginComponent } from "quasar";
+  import { useDialogPluginComponent } from "quasar";
 
-const props = defineProps({
-  title: String,
-  message: String,
-  ok: String,
-  cancel: String,
-  okColor: String,
-});
+  const props = defineProps({
+    title: String,
+    message: String,
+    ok: String,
+    cancel: String,
+    okColor: String,
+  });
 
-defineEmits([...useDialogPluginComponent.emits]);
+  defineEmits([...useDialogPluginComponent.emits]);
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent();
+  const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
+    useDialogPluginComponent();
 
-function onOKClick() {
-  onDialogOK();
-}
+  function onOKClick() {
+    onDialogOK();
+  }
 </script>

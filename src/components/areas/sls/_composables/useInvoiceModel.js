@@ -1,21 +1,21 @@
 import { ref, computed, watch } from "vue";
-import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
 import { useFormActions } from "src/composables/useFormActions";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { fetchWrapper, helper } from "src/helpers";
 import { useInvoiceItemModel } from "./useInvoiceItemModel";
 import { invoiceModel } from "src/models/areas/sls/invoiceModel";
+import { invoiceFormType } from "src/constants";
 
 import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 import ResponseDialog from "src/components/areas/sls/invoice/shared/forms/ResponseDialog.vue";
-import { invoiceFormType } from "src/constants";
 
 export function useInvoiceModel(config) {
   const $q = useQuasar();
-  const router = useRouter();
   const { t } = useI18n();
+  const router = useRouter();
   const itemStore = useInvoiceItemModel();
   const formItemStore = useFormItemsModel();
 
@@ -58,9 +58,9 @@ export function useInvoiceModel(config) {
       $q.dialog({
         component: ConfirmDialog,
         componentProps: {
-          title: t("shared.labels.cancelInvoice"),
-          message: `${t("shared.labels.cancelInvoiceMessage")}.`,
-          ok: t("shared.labels.cancelInvoice"),
+          title: "shared.labels.cancelInvoice",
+          message: "shared.labels.cancelInvoiceMessage",
+          ok: "shared.labels.cancelInvoice",
           okColor: "deep-orange-7",
         },
       }).onOk(async () => {
@@ -70,7 +70,7 @@ export function useInvoiceModel(config) {
         notifyResponse(response.data);
         if (callBack) callBack();
       });
-    } else notify("no row selected", "negative");
+    } else notify("noRowSelected", "negative");
   }
 
   async function cancelInvoices(idList, callBack) {
@@ -93,7 +93,7 @@ export function useInvoiceModel(config) {
         notifyResponse(response.data);
         if (callBack) callBack();
       });
-    } else notify("no row selected", "negative");
+    } else notify("noRowSelected", "negative");
   }
 
   async function reorder(callBack) {
@@ -108,7 +108,7 @@ export function useInvoiceModel(config) {
   function notify(message, type = "positive") {
     $q.notify({
       type: type,
-      message: message,
+      message: t(`messages.${message}`),
     });
   }
 

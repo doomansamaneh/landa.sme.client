@@ -1,13 +1,19 @@
 <template>
+  <toolbar-container
+    v-if="grid"
+    :title="title"
+    :table-store="grid?.tableStore"
+  />
+
   <data-grid
     ref="grid"
-    toolbar
-    base-route="acc/accountDL"
-    data-source="acc/accountDL/getGridData"
     :title="$t('main-menu-items.Acc_AccountDL_View')"
-    :grid-store="gridStore"
+    base-route="acc/accountDL"
     create-url="/acc/accountGL/create"
-    activation
+    data-source="acc/accountDL/getGridData"
+    :grid-store="gridStore"
+    icon="view_comfy"
+    toolbar_
     expandable
   >
     <template #filter-typeId="{ item }">
@@ -16,7 +22,7 @@
         :options="
           helper.getEnumOptions(accountDLType, 'accountDLType')
         "
-        @update:model-value="grid?.reloadData"
+        @update:model-value="grid?.tableStore?.reloadData"
       />
     </template>
 
@@ -56,6 +62,7 @@
   import DataGrid from "components/areas/_shared/baseInfo/shared/index/DataGrid.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import Preview from "../preview/IndexView.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
 
   const gridStore = useBaseInfoGrid({
     columns: accountDLColumns,

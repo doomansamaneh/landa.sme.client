@@ -188,7 +188,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
 
   const editBatch = (idList, editBatchModel, callBack) => {
     if (!validateIdList(idList))
-      return notify("no row selected", "negative");
+      return notify("noRowSelected", "negative");
 
     return fetchWrapper
       .post(`${baseURL}/editBatch`, {
@@ -196,6 +196,22 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
         model: Object.values(editBatchModel).filter(
           (item) => item.isModified === true
         ),
+      })
+      .then((response) => {
+        notifyResponse(response.data);
+        if (callBack) callBack();
+        else bus.emit("apply-search");
+      });
+  };
+
+  const merge = (idList, mergeModel, callBack) => {
+    if (!validateIdList(idList))
+      return notify("noRowSelected", "negative");
+
+    return fetchWrapper
+      .post(`${baseURL}/merge`, {
+        selectedIds: idList,
+        ...mergeModel,
       })
       .then((response) => {
         notifyResponse(response.data);
@@ -245,6 +261,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     getPreviewById,
     createOrEdit,
     editBatch,
+    merge,
     deleteById,
     deleteBatch,
     activate,

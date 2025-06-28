@@ -65,7 +65,7 @@
             formType: invoiceFormType.salesReturn,
           },
           okCallback: async (response) => {
-            await props.tableStore?.reloadData();
+            //await props.tableStore?.reloadData();
           },
         });
       },

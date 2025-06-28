@@ -1,29 +1,23 @@
 import { computed } from "vue";
-import { useI18n } from "vue-i18n";
 import { menuItems } from "src/constants/menuItems";
 import { usePreview } from "src/composables/usePreview";
 import { useBalanceSheet } from "src/components/areas/acc/_composables/useBalanceSheet";
 
-import DataGridPreview from "src/components/areas/acc/report/shared/_BalanceSheet/printPreview/DataGridPreview.vue";
+import DataGridPreview from "src/components/areas/acc/report/shared/balanceSheet/printPreview/DataGridPreview.vue";
 
-export function useBalanceSheetMenu(context, config = {}) {
-  const { t } = useI18n();
-  const {
-    permissionPrefix = "acc.report.balancesheet",
-    baseRoute = "acc/report",
-    title = t(`main-menu-items.Acc_Report_BalanceSheet`),
-  } = config;
+export function useBalanceSheetMenu(context) {
+  const permissionPrefix = "acc.report";
 
   const previewStore = usePreview();
   const dataStore = useBalanceSheet();
 
   const openPreview = () => {
     previewStore.openDialog({
-      title,
+      title: "main-menu-items.Acc_Report_BalanceSheet",
       component: DataGridPreview,
       previewProps: {
         tableStore: dataStore,
-        title,
+        title: "main-menu-items.Acc_Report_BalanceSheet",
       },
     });
   };
@@ -32,7 +26,7 @@ export function useBalanceSheetMenu(context, config = {}) {
     {
       ...menuItems.print,
       class: "primary-shadow primary-gradient text-white",
-      permission: `${permissionPrefix}.print`,
+      permission: `${permissionPrefix}.AccountReview`,
       visible: true,
       handler: openPreview,
     },

@@ -64,7 +64,7 @@
 
         <slot name="title">
           <div class="text-h6 q-mr-sm">
-            {{ title }}
+            {{ $t(title) }}
           </div>
         </slot>
 

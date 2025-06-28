@@ -43,12 +43,12 @@
 </template>
 
 <script setup>
-  import { useBalanceSheet } from "../../../_composables/useBalanceSheet";
+  import { useBalanceSheet } from "../../_composables/useBalanceSheet";
 
-  import Asset from "../balanceSheet/AssetSheet.vue";
-  import Liability from "../balanceSheet/LiabilitySheet.vue";
-  import Equity from "../balanceSheet/EquitySheet.vue";
-  import ToolbarContainer from "./ToolbarContainer.vue";
+  import Asset from "./BalanceSheet/AssetSheet.vue";
+  import Liability from "./BalanceSheet/LiabilitySheet.vue";
+  import Equity from "./BalanceSheet/EquitySheet.vue";
+  import ToolbarContainer from "./BalanceSheet/ToolbarContainer.vue";
   import TipBanner from "src/components/shared/TipBanner.vue";
 
   const props = defineProps({
