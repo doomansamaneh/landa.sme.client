@@ -26,7 +26,7 @@
       </q-btn>
     </template>
 
-    <template #body="{ item }">
+    <template #row-body="{ item }">
       <q-card class="bordered bg-dark rounded-borders">
         <q-card-section class="row">
           <div class="col-2 q-mr-xs">
