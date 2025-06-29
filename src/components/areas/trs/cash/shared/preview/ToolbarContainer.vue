@@ -1,5 +1,5 @@
 <template>
-  <tool-bar-desktop
+  <toolbar-desktop
     v-if="$q.screen.gt.sm"
     :inside="inside"
     :title="title"
@@ -8,7 +8,7 @@
     margin
     back-button
   />
-  <tool-bar-mobile
+  <toolbar-mobile
     v-else
     :inside="inside"
     :title="title"
@@ -24,8 +24,8 @@
   import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
   import { useBaseInfoPreviewMenu } from "src/components/areas/_shared/_menus/useBaseInfoPreviewMenu";
 
-  import ToolBarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
-  import ToolBarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
+  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
+  import ToolbarMobile from "src/components/shared/toolbars/MobilePreviewToolbar.vue";
 
   const props = defineProps({
     model: {

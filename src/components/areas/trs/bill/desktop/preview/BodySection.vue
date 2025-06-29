@@ -8,6 +8,7 @@
         font-size: 13px;
         margin-bottom: 5px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
@@ -91,6 +92,7 @@
         border-collapse: collapse;
         font-size: 13px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
