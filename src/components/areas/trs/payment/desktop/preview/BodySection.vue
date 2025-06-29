@@ -165,7 +165,10 @@
               padding: 5px;
             "
           >
-            {{ item.itemNo }}
+            <span v-if="item.checkSpentNo">
+              {{ item.checkSpentNo }}
+            </span>
+            <span v-else>{{ item.itemNo }}</span>
           </td>
           <td
             style="
@@ -175,7 +178,12 @@
               padding: 5px;
             "
           >
-            {{ model?.date?.substring(0, 10) }}
+            <span v-if="item.checkSpentDate">
+              {{ item.checkSpentDate.substring(0, 10) }}
+            </span>
+            <span v-else>
+              {{ model?.date?.substring(0, 10) }}
+            </span>
           </td>
           <td
             style="
@@ -185,15 +193,18 @@
               padding: 5px;
             "
           >
-            <div v-if="item.bankAccountNo">
+            <span v-if="item.checkSpentCustomerName">
+              {{ item.checkSpentCustomerName }}
+            </span>
+            <span v-else-if="item.bankAccountNo">
               {{ item.bankAccountTitle }} /
               {{ item.bankAccountTypeTitle }} /
               {{ item.bankAccountNo }}
-            </div>
-            <div v-else>
+            </span>
+            <span v-else>
               {{ item.cashTitle }}
               {{ item.customerName }}
-            </div>
+            </span>
           </td>
           <td
             style="

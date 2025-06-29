@@ -115,7 +115,7 @@ export function useReceiptModel({ baseRoute, preview }) {
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
-      stateStore.state.firstLoad.value = false;
+      //stateStore.state.firstLoad.value = false;
       router.back();
     }
   }

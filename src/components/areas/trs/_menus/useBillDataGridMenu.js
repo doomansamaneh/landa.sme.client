@@ -4,5 +4,6 @@ export function useBillDataGridMenu(context) {
   return useDataGridMenu(context, {
     baseRoute: "trs/bill",
     permissionPrefix: "trs.bill",
+    exclude: ["print", "printBatch"],
   });
 }
