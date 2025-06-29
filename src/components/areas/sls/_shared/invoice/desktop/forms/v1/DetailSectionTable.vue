@@ -36,7 +36,7 @@
             </q-tooltip>
           </q-icon>
         </th>
-        <th style="min-width: 120px" />
+        <th style="min-width: 140px" />
       </tr>
     </thead>
     <tbody>
@@ -44,8 +44,12 @@
         v-for="(row, index) in model.invoiceItems"
         :key="index"
       >
-        <tr class="standard-row">
-          <td class="text-center">{{ index + 1 }}</td>
+        <tr>
+          <td class="text-center">
+            <div class="q-mt-sm">
+              {{ index + 1 }}
+            </div>
+          </td>
           <td>
             <product-lookup
               autogrow
@@ -112,17 +116,18 @@
               </template>
             </q-field>
           </td>
-          <td class="text-center q-gutter-x-sm">
-            <q-btn
-              color="primary"
-              unelevated
-              round
-              class="text-on-dark"
-              size="sm"
-              icon="o_add"
-              @click="formStore.addNewRow(index, row)"
-            />
-            <!-- <q-btn
+          <td>
+            <div class="text-center q-mt-xs q-gutter-x-sm">
+              <q-btn
+                color="primary"
+                unelevated
+                round
+                class="text-on-dark"
+                size="sm"
+                icon="o_add"
+                @click="formStore.addNewRow(index, row)"
+              />
+              <!-- <q-btn
               color="red"
               unelevated
               round
@@ -131,26 +136,27 @@
               icon="o_delete"
               @click="formStore.deleteRow(index)"
             /> -->
-            <q-btn
-              unelevated
-              round
-              dense
-              class="text-on-dark"
-              size="14px"
-              @click="formStore.deleteRow(index)"
-            >
-              <q-icon size="24px" name="o_delete" />
-            </q-btn>
-            <q-btn
-              @click="toggleRowDetails(index)"
-              unelevated
-              dense
-              round
-              class="text-on-dark"
-              size="14px"
-            >
-              <q-icon size="24px" name="o_more_horiz" />
-            </q-btn>
+              <q-btn
+                unelevated
+                round
+                dense
+                class="text-on-dark"
+                size="14px"
+                @click="formStore.deleteRow(index)"
+              >
+                <q-icon size="24px" name="o_delete" />
+              </q-btn>
+              <q-btn
+                @click="toggleRowDetails(index)"
+                unelevated
+                dense
+                round
+                class="text-on-dark"
+                size="14px"
+              >
+                <q-icon size="24px" name="o_more_horiz" />
+              </q-btn>
+            </div>
           </td>
         </tr>
 
@@ -363,7 +369,7 @@
 
   .q-table {
     td {
-      vertical-align: baseline;
+      vertical-align: top;
     }
   }
 </style>
