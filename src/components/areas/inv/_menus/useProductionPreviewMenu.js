@@ -1,7 +1,24 @@
+import { computed } from "vue";
+import { usePreview } from "src/composables/usePreview";
 import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
 import { menuItems } from "src/constants/menuItems";
 
+import DataGridPreview from "src/components/areas/inv/production/shared/preview/printPreview/DataGridPreview.vue";
+
 export function useProductionPreviewMenu(context) {
+  const previewStore = usePreview();
+
+  const openPreview = () => {
+    previewStore.openDialog({
+      title: "main-menu-items.Inv_Production_View",
+      component: DataGridPreview,
+      previewProps: {
+        model: context.model.value,
+        title: "main-menu-items.Inv_Production_View",
+      },
+    });
+  };
+
   return usePreviewMenu(context, {
     permissionPrefix: "inv.production",
     exclude: ["sendMail", "printPdf"],
@@ -24,6 +41,22 @@ export function useProductionPreviewMenu(context) {
           context.delete?.();
         },
         visible: true,
+      },
+      print: {
+        ...menuItems.more,
+        icon: "o_print",
+        label: "print",
+        permission: "inv.production.print",
+        visible: true,
+        subItems: [
+          {
+            ...menuItems.print,
+            permission: "inv.production.print",
+            handler: openPreview,
+            visible: true,
+            addSeparator: false,
+          },
+        ],
       },
     },
   });

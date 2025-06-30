@@ -114,7 +114,7 @@
   }
 
   const showLoader = computed(
-    () => props.previewProps.tableStore.showLoader.value
+    () => props.previewProps?.tableStore?.showLoader?.value || false
   );
 
   const openPrintSettings = () => {
@@ -122,7 +122,7 @@
       title: "تنظیمات چاپ",
       component: PrintSetting,
       props: {
-        tableStore: props.previewProps.tableStore,
+        tableStore: props.previewProps?.tableStore,
         title: props.title,
         actionBar: true,
       },
