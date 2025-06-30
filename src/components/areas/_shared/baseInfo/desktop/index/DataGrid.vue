@@ -77,6 +77,7 @@
     title: String,
     icon: String,
   });
+
   const router = useRouter();
 
   function gotoPreview(row) {

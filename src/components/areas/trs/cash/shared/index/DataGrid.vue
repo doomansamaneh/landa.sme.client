@@ -7,7 +7,6 @@
     :grid-store="gridStore"
     create-url="/trs/cash/create"
     expandable
-    activation
   >
     <template #expand="{ item }">
       <preview

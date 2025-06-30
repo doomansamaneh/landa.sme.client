@@ -159,8 +159,8 @@
 <script setup>
   import { computed, ref } from "vue";
   import { useQuasar } from "quasar";
-
   import { useFormActions } from "src/composables/useFormActions";
+
   import MobileBottomSheet from "./MobileBottomSheet.vue";
   import MobileSortSheet from "src/components/shared/MobileSortSheet.vue";
   import ToolbarObserver from "src/components/shared/toolbars/ToolBarObserver.vue";
@@ -180,10 +180,6 @@
     searchStore: {
       type: Object,
       default: () => ({ isFiltered: { value: false } }),
-    },
-    activation: {
-      type: Boolean,
-      default: false,
     },
     searchBtn: {
       type: Boolean,
