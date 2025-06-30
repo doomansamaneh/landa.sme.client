@@ -18,6 +18,18 @@
         </div>
       </div>
 
+      <q-card class="bg-primary border-radius-xs fit help-card">
+        <q-card-section class="text-center">
+          <a
+            class="text-body2 text-white"
+            href="https://landa-sme.ir/LandaKnowledge/b2b39ffb-51cb-4781-8e20-b44ca1e46d0c"
+            target="_blank"
+          >
+            راهنمای اتصال لاندا به سامانه مودیان
+          </a>
+        </q-card-section>
+      </q-card>
+
       <q-btn
         v-if="!taxStore.apiResult.value.data"
         unelevated
@@ -72,3 +84,24 @@
     taxStore.isSentApiSuccessfully(props.model.id);
   });
 </script>
+
+<style lang="scss" scoped>
+  .help-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .help-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/favicon.ico");
+    background-repeat: repeat;
+    background-size: calc((100% / 15) - 14px);
+    background-position: center;
+    opacity: 0.2;
+    pointer-events: none;
+    background-color: $primary;
+    z-index: 0;
+  }
+</style>
