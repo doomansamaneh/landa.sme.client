@@ -3,21 +3,64 @@
     <table
       style="
         width: 100%;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
         font-size: 12.4px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
           <th
-            style="width: 1%; padding: 3px; border: 1px solid #2d2d2d"
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
           >
             #
           </th>
-          <th style="border: 1px solid #2d2d2d">کالا/خدمت</th>
-          <th style="border: 1px solid #2d2d2d">مقدار</th>
-          <th style="border: 1px solid #2d2d2d">فی</th>
-          <th style="border: 1px solid #2d2d2d">
+          <th
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
+            کالا/خدمت
+          </th>
+          <th
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
+            مقدار
+          </th>
+          <th
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
+            فی
+          </th>
+          <th
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             مبلغ کل ({{ model.currencyTitle }})
           </th>
         </tr>
@@ -28,23 +71,58 @@
           v-for="(item, index) in model.invoiceItems"
           :key="item.id"
         >
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ index + 1 }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <div class="text-wrap">
               {{ item.productCode }} - {{ item.productTitle }}
               <small v-if="item.comment">({{ item.comment }})</small>
             </div>
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ helper.formatNumber(item.quantity) }}
             <small>({{ item.productUnitTitle }})</small>
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ helper.formatNumber(item.price) }}
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             {{ helper.formatNumber(item.quantity * item.price) }}
           </td>
         </tr>
@@ -53,7 +131,9 @@
           <td
             style="
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="4"
@@ -61,7 +141,14 @@
           >
             {{ $t("shared.labels.subTotal") }}:
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{ helper.formatNumber(model.totalNetPrice) }}
             </strong>
@@ -72,7 +159,9 @@
           <td
             style="
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="4"
@@ -80,7 +169,14 @@
           >
             {{ $t("shared.labels.discount") }}:
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{ helper.formatNumber(model.totalDiscount) }}
             </strong>
@@ -91,7 +187,9 @@
           <td
             style="
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="4"
@@ -99,7 +197,14 @@
           >
             {{ $t("shared.labels.vat") }}:
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{ helper.formatNumber(model.totalVat) }}
             </strong>
@@ -110,7 +215,9 @@
           <td
             style="
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="4"
@@ -118,7 +225,14 @@
           >
             جمع مقدار:
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{
                 helper.formatNumber(
@@ -133,7 +247,9 @@
           <td
             style="
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="4"
@@ -142,7 +258,14 @@
             <strong>{{ $t("shared.labels.total") }}:</strong>
           </td>
 
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{ helper.formatNumber(model.totalPrice) }}
             </strong>

@@ -3,7 +3,10 @@
     <table
       :style="$q.screen.gt.xs ? 'width:100%' : 'width:900px'"
       style="
-        border: 1px solid #2d2d2d;
+        width: 100%;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
         font-size: 13px;
       "
@@ -19,7 +22,9 @@
           <td
             style="
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: left;
             "
             colspan="100%"
@@ -66,7 +71,12 @@
 
         <tr v-if="model.contractTitle || model.summary || comment">
           <td
-            style="padding: 5px; border: 1px solid #2d2d2d"
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
             colspan="100%"
           >
             <strong>شرح:</strong>
@@ -91,9 +101,11 @@
           <td
             colspan="100%"
             style="
-              width: 50%;
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              width: 50%;
               height: 90px;
             "
             class="text-body2 vertical-top"
