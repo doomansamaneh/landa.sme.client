@@ -106,7 +106,7 @@
   import { menuItemType } from "src/constants";
 
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
-  import GoBackLink from "src/components/shared/Buttons/GoBackLink.vue";
+  import GoBackLink from "src/components/shared/buttons/GoBackLink.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
 
   const $q = useQuasar();
@@ -115,7 +115,6 @@
   const props = defineProps({
     title: String,
     inside: Boolean,
-    margin: Boolean,
     menuItems: Array,
     backButton: Boolean,
   });
@@ -132,7 +131,7 @@
       ? "margin-bottom: 56px;"
       : "margin-bottom: 34px;";
     const small = $q.screen.lt.sm ? "margin-bottom: 34px;" : "";
-    return props.margin ? base : small;
+    return props.inside ? small : base;
   });
 
   const toolbarPadding = computed(() => {

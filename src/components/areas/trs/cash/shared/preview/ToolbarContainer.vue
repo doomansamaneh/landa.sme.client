@@ -5,7 +5,7 @@
     :title="title"
     :base-route="baseRoute"
     :menu-items="menuItems"
-    margin
+    margin_
     back-button
   />
   <toolbar-mobile
