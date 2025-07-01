@@ -183,7 +183,7 @@
               {{ item.checkSpentDate.substring(0, 10) }}
             </span>
             <span v-else>
-              {{ model?.date?.substring(0, 10) }}
+              {{ item?.itemDate?.substring(0, 10) }}
             </span>
           </td>
           <td
@@ -219,8 +219,22 @@
               $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
             }}
 
+            {{
+              $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
+            }}
+
+            <span v-if="item.bankBranchDisplay">
+              | شعبه بانک:
+              {{ item.bankBranchDisplay }}
+            </span>
+
+            <span v-if="item.sayad">
+              | ش صیاد:
+              {{ item.sayad }}
+            </span>
+
             <span v-if="item.comment">
-              /
+              |
               {{ item.comment }}
             </span>
           </td>
