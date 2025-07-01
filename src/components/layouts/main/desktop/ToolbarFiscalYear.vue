@@ -14,6 +14,7 @@
     menu-anchor="bottom middle"
     menu-self="top middle"
     style="white-space: nowrap"
+    :style="{ fontFamily: $q.lang.rtl ? 'vazir' : 'Roboto' }"
   >
     <template #label>
       <div v-if="$q.screen.gt.xs">
@@ -85,7 +86,7 @@
               size="12px"
               color="primary"
               text-color="white"
-              icon="chevron_right"
+              :icon="$q.lang.rtl ? 'chevron_right' : 'chevron_left'"
               @click="previous($event)"
             >
               <q-tooltip
@@ -106,7 +107,7 @@
               size="12px"
               color="primary"
               text-color="white"
-              icon="chevron_left"
+              :icon="$q.lang.rtl ? 'chevron_left' : 'chevron_right'"
               @click="next($event)"
             >
               <q-tooltip

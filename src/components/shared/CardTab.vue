@@ -1,5 +1,5 @@
 <template>
-  <q-tab :name="name">
+  <q-tab no-caps :name="name">
     <template #default>
       <q-avatar
         rounded

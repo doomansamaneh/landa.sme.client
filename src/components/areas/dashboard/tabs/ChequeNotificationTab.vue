@@ -1,12 +1,4 @@
 <template>
-  <!--  <q-toolbar v-if="$q.screen.gt.sm" class="no-padding">
-    <div class="row items-center q-py-lg">
-      <div class="q-ml-sm text-h6 text-weight-700 text-on-dark">
-        اعلان چک
-      </div>
-    </div>
-  </q-toolbar> -->
-
   <div
     v-access="`acc.report.accountReview`"
     class="row q-col-gutter-lg"
@@ -14,13 +6,19 @@
   >
     <div class="col-12">
       <q-card bordered>
-        <card-title title="چک‌های دریافتی" icon="o_receipt" />
+        <card-title
+          :title="$t('dashboard.chequeNotificationTab.received')"
+          icon="o_receipt"
+        />
         <check-data-grid :filter-expression="receiptFilter" />
       </q-card>
     </div>
     <div class="col-12">
       <q-card bordered>
-        <card-title title="چک‌های پرداختی" icon="o_payment" />
+        <card-title
+          :title="$t('dashboard.chequeNotificationTab.payed')"
+          icon="o_payment"
+        />
         <check-data-grid :filter-expression="payedFilter" />
       </q-card>
     </div>

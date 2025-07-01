@@ -12,13 +12,13 @@
     >
       <card-tab
         name="invoice"
-        title="فاکتورهای فروش"
+        :title="$t('main-menu-items.Sls_Invoice_View')"
         icon="o_receipt"
       />
 
       <card-tab
         name="canceled"
-        title="ابطال شده"
+        :title="$t('shared.labels.canceled')"
         icon="o_cancel"
         avatar-class="red-gradient red-shadow"
       />
