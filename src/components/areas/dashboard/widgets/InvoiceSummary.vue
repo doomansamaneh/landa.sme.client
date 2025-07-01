@@ -3,6 +3,7 @@
     v-access="`sls.invoice.view`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="shadow border-radius-lg bordered fit"
+    :style="{ fontFamily: $q.lang.rtl ? 'vazir' : 'Roboto' }"
   >
     <template v-if="isShakingComputed">
       <q-btn
@@ -23,7 +24,10 @@
     >
       <q-card-section>
         <div class="row items-center q-gutter-md justify-between">
-          <widget-title label="فاکتورهای فروش" icon="o_receipt" />
+          <widget-title
+            :label="$t('main-menu-items.Sls_Invoice_View')"
+            icon="o_receipt"
+          />
           <q-btn
             v-access="`sls.invoice.create`"
             to="/sls/invoice/create"
@@ -32,13 +36,14 @@
             :round="$q.screen.xs"
             :rounded="$q.screen.gt.xs"
             class="bordered bg-dark q-py-xs"
+            no-caps
           >
             <q-icon name="o_add" size="20px" />
             <span
               class="text-weight-300 q-ml-xs"
               v-if="$q.screen.gt.xs"
             >
-              ایجاد فاکتور
+              {{ $t("shared.labels.create") }}
             </span>
           </q-btn>
         </div>
@@ -59,7 +64,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                جمع کل
+                {{ $t("page.payment-detail.total-total") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"
@@ -99,7 +104,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                دریافت شده
+                {{ $t("page.payment-detail.total-receipt") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"
@@ -154,7 +159,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                مانده امسال
+                {{ $t("page.payment-detail.remained") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"
@@ -209,7 +214,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                مانده از قبل
+                {{ $t("page.payment-detail.remained-but-this-year") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"

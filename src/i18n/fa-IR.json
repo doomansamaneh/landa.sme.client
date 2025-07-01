@@ -416,7 +416,8 @@
       "additionalInformation": "اطلاعات تکمیلی",
       "accountItem": "ریز گردش",
       "modifyStock": "اصلاح موجودی",
-      "inviteUser": "دعوت از کاربر"
+      "inviteUser": "دعوت از کاربر",
+      "canceled": "ابطال شده"
     },
 
     "productType": {
@@ -659,6 +660,32 @@
     },
     "prompts": {
       "are-you-sure": "آیا اطمینان دارید"
+    }
+  },
+
+  "dashboard": {
+    "tabs": {
+      "general": "عمومی",
+      "sales": "فروش",
+      "expense": "هزینه",
+      "chequeNotification": "اعلان چک"
+    },
+    "generalTab": {
+      "title": "پیشخوان عمومی"
+    },
+    "salesTab": {
+      "title": "پیشخوان فروش"
+    },
+    "expenseTab": {
+      "title": "پیشخوان هزینه"
+    },
+    "chequeNotificationTab": {
+      "received": "چک‌های دریافتی",
+      "payed": "چک‌های پرداختی"
+    },
+    "buttons": {
+      "save": "ذخیره",
+      "default": "حالت پیشفرض"
     }
   }
 }

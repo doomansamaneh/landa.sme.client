@@ -16,7 +16,7 @@
         </q-btn>
       </div>
       <div class="q-ml-sm text-h6 text-weight-700 text-on-dark">
-        پیشخوان فروش
+        {{ $t("dashboard.salesTab.title") }}
       </div>
     </div>
 
@@ -32,7 +32,9 @@
         @click="draggable.saveLayoutChanges"
       >
         <q-icon class="q-mr-xs" size="20px" name="o_save" />
-        <div class="text-body2">ذخیره</div>
+        <div class="text-body2">
+          {{ $t("dashboard.buttons.save") }}
+        </div>
       </q-btn>
 
       <q-btn
@@ -45,7 +47,9 @@
         @click="draggable.resetToDefault"
       >
         <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
-        <div class="text-body2">حالت پیشفرض</div>
+        <div class="text-body2">
+          {{ $t("dashboard.buttons.default") }}
+        </div>
       </q-btn>
     </div>
   </q-toolbar>
@@ -88,7 +92,9 @@
     "
     class="q-mt-xl"
   >
-    <div class="text-h6 text-center q-pb-lg">ابزارک‌های مخفی شده</div>
+    <div class="text-h6 text-center q-pb-lg">
+      {{ $t("dashboard.salesTab.hiddenWidgets") }}
+    </div>
     <div class="row q-col-gutter-md">
       <div
         v-for="widget in draggable.hiddenWidgets.value"
