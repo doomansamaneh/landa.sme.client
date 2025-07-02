@@ -12,11 +12,24 @@
             {{ $t("main-menu-items.dashboard") }}
           </div>
           <div>
-            <q-btn dense class="text-body2" round unelevated no-caps>
+            <q-btn
+              no-caps
+              dense
+              class="text-body2"
+              round
+              unelevated
+              no-caps
+            >
               <q-icon size="20px" name="o_tune" />
             </q-btn>
 
-            <q-btn class="text-body2" rounded unelevated no-caps>
+            <q-btn
+              no-caps
+              class="text-body2"
+              rounded
+              unelevated
+              no-caps
+            >
               <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
               <div class="text-body2">حالت پیشفرض</div>
             </q-btn>

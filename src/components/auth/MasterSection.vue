@@ -17,6 +17,7 @@
             </a>
           </div>
           <q-btn
+            no-caps
             rounded
             target="_blank"
             href="https://landa-sme.ir/account/register"
@@ -129,6 +130,7 @@
               >
                 <template #append>
                   <q-btn
+                    no-caps
                     round
                     flat
                     color="primary"
@@ -155,6 +157,7 @@
         <div class="row items-center q-mt-xl">
           <div class="col-md-5 col-sm-5 col-xs-12">
             <q-btn
+              no-caps
               rounded
               unelevated
               type="submit"

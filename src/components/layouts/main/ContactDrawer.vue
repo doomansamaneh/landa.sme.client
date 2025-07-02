@@ -22,6 +22,7 @@
       <template #close>
         <div v-if="$q.screen.lt.md" class="col-1">
           <q-btn
+            no-caps
             round
             unelevated
             text-color="white"

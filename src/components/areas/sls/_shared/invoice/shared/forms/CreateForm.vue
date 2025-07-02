@@ -3,6 +3,7 @@
   <template v-if="isDesktop">
     <q-page-sticky class="z-top q-pa-md" position="bottom-right">
       <q-btn
+        no-caps
         round
         color="primary"
         :icon="isFullscreen ? 'fullscreen_exit' : 'fullscreen'"

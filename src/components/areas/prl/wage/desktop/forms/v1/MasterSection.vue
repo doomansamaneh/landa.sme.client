@@ -39,6 +39,7 @@
 
     <div class="col q-gutter-y-md">
       <q-btn
+        no-caps
         rounded
         unelevated
         :href="`${baseUrl}/excelTemplate/import/payrollTemplate.xlsx`"

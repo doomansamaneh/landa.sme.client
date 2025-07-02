@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     v-if="isActive"
     round
     dense
@@ -10,6 +11,7 @@
     class="green-gradient green-shadow no-pointer-events"
   />
   <q-btn
+    no-caps
     v-else
     round
     dense

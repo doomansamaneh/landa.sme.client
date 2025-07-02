@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     size="11px"
     round
     unelevated

@@ -34,6 +34,7 @@
       <div class="col-md-2 col-sm-12 col-xs-12">
         <div class="q-pt-xs q-gutter-md">
           <q-btn
+            no-caps
             color="primary"
             unelevated
             round
@@ -43,6 +44,7 @@
             @click="formStore.addNewRow(index, row)"
           />
           <q-btn
+            no-caps
             color="red"
             unelevated
             round
@@ -65,6 +67,7 @@
     <q-card-section class="text-center">
       <no-item-selected />
       <q-btn
+        no-caps
         class="primary-shadow q-mb-lg"
         rounded
         unelevated

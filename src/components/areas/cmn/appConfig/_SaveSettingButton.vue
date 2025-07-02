@@ -1,6 +1,7 @@
 <template>
   <q-card-actions align="right" class="q-pa-md dark-1">
     <q-btn
+      no-caps
       color="primary"
       class="primary-shadow"
       rounded
@@ -17,6 +18,7 @@
       </div>
     </q-btn>
     <q-btn
+      no-caps
       class="q-ml-xs"
       no-cpas
       rounded

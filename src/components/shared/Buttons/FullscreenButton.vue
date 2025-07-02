@@ -1,6 +1,7 @@
 <template>
   <div class="flex items-center">
     <q-btn
+      no-caps
       size="11px"
       round
       unelevated

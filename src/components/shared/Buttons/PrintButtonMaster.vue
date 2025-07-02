@@ -1,5 +1,5 @@
 <template>
-  <q-btn size="11px" round unelevated>
+  <q-btn no-caps size="11px" round unelevated>
     <q-icon size="21px" name="o_print" />
     <q-tooltip :delay="700" class="custom-tooltip">
       <div class="text-body2">چاپ</div>

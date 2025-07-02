@@ -2,7 +2,7 @@
   <account-tree-node :node="node" />
   <q-space />
   <div class="row items-center">
-    <q-btn dense round unelevated icon="o_more_horiz">
+    <q-btn no-caps dense round unelevated icon="o_more_horiz">
       <q-menu class="border-radius-lg" fit :offset="[0, 10]">
         <q-list dense padding style="width: 200px">
           <q-item

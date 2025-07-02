@@ -1,5 +1,12 @@
 <template>
-  <q-btn size="11px" round flat :disable="disable" class="delete-btn">
+  <q-btn
+    no-caps
+    size="11px"
+    round
+    flat
+    :disable="disable"
+    class="delete-btn"
+  >
     <q-icon size="22px" name="o_delete" />
   </q-btn>
 </template>

@@ -43,6 +43,7 @@
 
     <template #cell-amount="{ item }">
       <q-btn
+        no-caps
         v-if="item.statusId === voucherStatus.canceled"
         round
         text-color="white"

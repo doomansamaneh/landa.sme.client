@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     flat
     dense
     round
@@ -14,15 +15,8 @@
       transition-hide="jump-up"
       :offset="[10, 24]"
     >
-      <q-list
-        dense
-        padding
-        class="user-setting"
-      >
-        <q-item-label
-          class="text-h6"
-          header
-        >
+      <q-list dense padding class="user-setting">
+        <q-item-label class="text-h6" header>
           <div class="column items-center justify-center q-mt-md">
             <div class="q-mt-md">
               <span class="text-on-dark">تنظیمات</span>
@@ -38,5 +32,5 @@
 </template>
 
 <script setup>
-import SwitchLanguage from "src/components/shared/SwitchLanguage.vue"
+  import SwitchLanguage from "src/components/shared/SwitchLanguage.vue";
 </script>

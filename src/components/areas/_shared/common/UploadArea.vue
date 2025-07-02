@@ -54,6 +54,7 @@
     <div v-if="file" class="row q-gutter-md q-mt-none">
       <slot name="upload-button">
         <q-btn
+          no-caps
           rounded
           class="col primary-gradient text-white primary-shadow"
           unelevated
@@ -67,6 +68,7 @@
 
       <slot name="clear-button">
         <q-btn
+          no-caps
           class="col"
           unelevated
           rounded

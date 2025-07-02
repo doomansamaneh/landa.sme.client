@@ -11,7 +11,7 @@
         v-model="searchStore.searchModel.value.dateRange"
         @update:model-value="searchStore.applySearch"
       />
-      <q-btn
+      <q-btn no-caps
         @click="expanded = !expanded"
         padding="6px 12px"
         rounded
@@ -115,7 +115,7 @@
             <div
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
-              <q-btn
+              <q-btn no-caps
                 class="q-mr-sm text-body2 primary-gradient text-white"
                 rounded
                 padding="8px 16px"
@@ -125,7 +125,7 @@
                 <q-icon name="search" class="q-mr-xs" size="20px" />
                 {{ $t("shared.labels.search") }}
               </q-btn>
-              <q-btn
+              <q-btn no-caps
                 class="text-body2"
                 rounded
                 unelevated
@@ -138,7 +138,7 @@
               </q-btn>
             </div>
           </q-card-actions>
-        </div>
+        </div>F
       </div>
     </q-slide-transition>
   </q-card>

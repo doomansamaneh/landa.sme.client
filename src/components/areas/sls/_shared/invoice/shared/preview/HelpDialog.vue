@@ -17,6 +17,7 @@
 
         <div>
           <q-btn
+            no-caps
             icon="close"
             class="col-1 icon-hover dark-3"
             flat

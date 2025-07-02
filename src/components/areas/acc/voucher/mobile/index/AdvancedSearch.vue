@@ -5,6 +5,7 @@
         <div class="text-body1">جستجو در اسناد</div>
         <div>
           <q-btn
+            no-caps
             size="8px"
             round
             unelevated
@@ -115,6 +116,7 @@
       <div class="row items-center q-pa-md q-gutter-sm">
         <div class="col">
           <q-btn
+            no-caps
             padding="10px 12px"
             rounded
             unelevated
@@ -132,6 +134,7 @@
 
         <div class="col">
           <q-btn
+            no-caps
             padding="10px 12px"
             rounded
             unelevated
@@ -165,7 +168,7 @@
       <q-card-section>
         <div class="row justify-between items-center">
           <span class="text-body1">انتخاب نوع سند</span>
-          <q-btn dense flat icon="close" v-close-popup />
+          <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 

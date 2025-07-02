@@ -38,6 +38,7 @@
         </td>
         <td class="text-center q-gutter-x-sm">
           <q-btn
+            no-caps
             color="primary"
             unelevated
             round
@@ -47,6 +48,7 @@
             @click="formStore.addNewRow(index, row)"
           />
           <q-btn
+            no-caps
             color="red"
             unelevated
             round
@@ -62,6 +64,7 @@
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
+            no-caps
             class="q-my-xl primary-shadow"
             rounded
             unelevated

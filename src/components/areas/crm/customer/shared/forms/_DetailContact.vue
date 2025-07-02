@@ -1,6 +1,7 @@
 <template>
   <template v-if="!edit">
     <q-btn
+      no-caps
       unelevated
       rounded
       padding="6px 12px"

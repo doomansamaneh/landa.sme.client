@@ -55,6 +55,7 @@
                   />
                   <div class="q-gutter-x-sm">
                     <q-btn
+                      no-caps
                       @click="editCommentBtn = false"
                       padding="4px 12px"
                       flat
@@ -69,6 +70,7 @@
                       <span>ذخیره</span>
                     </q-btn>
                     <q-btn
+                      no-caps
                       @click="editCommentBtn = false"
                       unelevated
                       rounded
@@ -85,6 +87,7 @@
                 </div>
                 <div v-if="!editCommentBtn" class="row justify-start">
                   <q-btn
+                    no-caps
                     @click="editComment"
                     padding="4px 12px"
                     unelevated
@@ -95,6 +98,7 @@
                     <span>ویرایش</span>
                   </q-btn>
                   <q-btn
+                    no-caps
                     @click="deleteAlert"
                     padding="4px 12px"
                     unelevated

@@ -5,6 +5,7 @@
         <div class="col">
           <div class="row items-center text-bold text-body1">
             <q-btn
+              no-caps
               unelevated
               size="8px"
               class="bg-primary text-white q-mr-sm text-caption-sm no-pointer-events"
@@ -19,6 +20,7 @@
 
         <div class="q-gutter-sm col-auto">
           <q-btn
+            no-caps
             size="11px"
             round
             flat
@@ -28,6 +30,7 @@
           </q-btn>
 
           <q-btn
+            no-caps
             size="11px"
             round
             flat

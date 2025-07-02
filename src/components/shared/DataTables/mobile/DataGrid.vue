@@ -32,6 +32,7 @@
           @click="clearSearch"
         />
         <q-btn
+          no-caps
           round
           unelevated
           dense
@@ -164,6 +165,7 @@
     class="row items-center justify-center q-gutter-sm q-my-lg"
   >
     <q-btn
+      no-caps
       :disable="previousDisabled"
       unelevated
       rounded
@@ -179,6 +181,7 @@
       </span>
     </q-btn>
     <q-btn
+      no-caps
       :disable="nextDisabled"
       unelevated
       rounded
@@ -201,6 +204,7 @@
   >
     <slot name="create-label">
       <q-btn
+        no-caps
         text-color="white"
         rounded
         unelevated

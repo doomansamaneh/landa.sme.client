@@ -29,7 +29,7 @@
     </q-item-section>
 
     <q-item-section side :class="$q.screen.lt.sm ? 'q-mx-sm' : ''">
-      <q-btn round dense unelevated>
+      <q-btn no-caps round dense unelevated>
         <q-icon :name="expandIcon" size="24px" />
       </q-btn>
     </q-item-section>
@@ -40,7 +40,7 @@
 <script setup>
   import { computed } from "vue";
   import { useQuasar } from "quasar";
-  
+
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const props = defineProps({

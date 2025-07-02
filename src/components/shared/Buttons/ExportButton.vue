@@ -1,5 +1,5 @@
 <template>
-  <q-btn round dense unelevated class="text-on-dark">
+  <q-btn no-caps round dense unelevated class="text-on-dark">
     <q-icon name="o_download" />
     <q-tooltip class="custom-tooltip" :delay="600">
       {{ $t("shared.labels.export") }}

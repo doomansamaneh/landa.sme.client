@@ -1,9 +1,9 @@
 <template>
   <q-btn
+    no-caps
     class="text-body2"
     rounded
     unelevated
-    no-caps
     padding="8px 16px"
     :to="to"
     @click="click"

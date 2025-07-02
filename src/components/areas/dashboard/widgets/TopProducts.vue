@@ -6,6 +6,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -29,6 +30,7 @@
           />
 
           <q-btn
+            no-caps
             round
             size="10px"
             unelevated

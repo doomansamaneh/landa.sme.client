@@ -78,6 +78,7 @@
     >
       <div class="row q-gutter-md items-center">
         <q-btn
+          no-caps
           type="submit"
           @click="submitForm"
           unelevated

@@ -25,7 +25,7 @@
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -46,7 +46,7 @@
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -67,7 +67,7 @@
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -88,7 +88,7 @@
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -109,7 +109,7 @@
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -130,7 +130,7 @@
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -155,7 +155,7 @@
           </q-item-section>
 
           <q-item-section :class="itemClass" side>
-            <q-btn round dense unelevated>
+            <q-btn no-caps round dense unelevated>
               <q-icon :name="expandIcon()" size="24px" />
             </q-btn>
           </q-item-section>
@@ -177,7 +177,7 @@
           </q-item-section>
 
           <q-item-section side :class="itemClass">
-            <q-btn round dense unelevated>
+            <q-btn no-caps round dense unelevated>
               <q-icon :name="expandIcon()" size="24px" />
             </q-btn>
           </q-item-section>

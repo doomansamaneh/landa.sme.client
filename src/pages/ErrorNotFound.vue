@@ -14,6 +14,7 @@
             احتمالا آدرس اشتباهی را جستجو کرده‌اید
           </div>
           <q-btn
+            no-caps
             to="/"
             class="primary-gradient primary-shadow text-on-dark q-mt-lg text-body1"
             rounded

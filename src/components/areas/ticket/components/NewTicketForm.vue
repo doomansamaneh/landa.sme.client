@@ -35,7 +35,12 @@
     </div>
 
     <div class="row justify-end q-mt-md">
-      <q-btn label="ارسال تیکت" type="submit" color="primary" />
+      <q-btn
+        no-caps
+        label="ارسال تیکت"
+        type="submit"
+        color="primary"
+      />
     </div>
   </q-form>
 </template>

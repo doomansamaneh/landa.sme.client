@@ -1,11 +1,11 @@
 <template>
   <q-btn-dropdown
+    no-caps
     transition-show="slide-down"
     transition-hide="slide-up"
     transition-duration="600"
     class="desktop-toolbar-gradient bordered text-body3 text-weight-500 text-on-dark q-py-xs q-px-sm"
     rounded
-    no-caps
     unelevated
     dropdown-icon="expand_more"
     content-class="bordered border-radius-lg"
@@ -46,6 +46,7 @@
 
         <div class="years-container q-pa-lg text-on-dark">
           <q-btn
+            no-caps
             v-for="year in tableStore.rows.value"
             :key="year.id"
             unelevated
@@ -64,6 +65,7 @@
         </div>
         <div class="q-gutter-sm q-px-lg q-pb-lg">
           <q-btn
+            no-caps
             unelevated
             round
             dense
@@ -79,6 +81,7 @@
 
           <template v-if="tableStore.pagination.value.totalPages > 1">
             <q-btn
+              no-caps
               :disable="tableStore.pagination.value.currentPage <= 1"
               unelevated
               round
@@ -97,6 +100,7 @@
               </q-tooltip>
             </q-btn>
             <q-btn
+              no-caps
               :disable="
                 tableStore.pagination.value.currentPage >=
                 tableStore.pagination.value.totalPages
@@ -119,6 +123,7 @@
             </q-btn>
           </template>
           <q-btn
+            no-caps
             unelevated
             round
             dense

@@ -110,6 +110,7 @@
       <div class="row q-col-gutter-md">
         <div class="col-12">
           <q-btn
+            no-caps
             unelevated
             label="تولید توکن"
             color="primary"

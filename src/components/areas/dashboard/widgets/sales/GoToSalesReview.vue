@@ -8,6 +8,7 @@
     <span class="q-focus-helper" />
     <q-card-section class="q-pa-lg">
       <q-btn
+        no-caps
         size="12px"
         unelevated
         round

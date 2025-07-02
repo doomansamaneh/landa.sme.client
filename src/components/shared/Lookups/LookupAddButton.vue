@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-btn
+      no-caps
       dense
       unelevated
       text-color="white"

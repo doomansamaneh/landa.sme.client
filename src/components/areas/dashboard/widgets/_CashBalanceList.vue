@@ -9,6 +9,7 @@
   >
     <q-item-section avatar>
       <q-btn
+        no-caps
         v-if="getBankLogo(item.label)"
         class="bordered no-pointer-events border-radius-xs"
         unelevated
@@ -22,6 +23,7 @@
         />
       </q-btn>
       <q-btn
+        no-caps
         v-else
         class="bordered no-pointer-events border-radius-xs"
         unelevated

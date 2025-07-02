@@ -16,6 +16,7 @@
       <data-grid-toolbar :table-store="tableStore">
         <template #print-button>
           <q-btn
+            no-caps
             size="11px"
             round
             unelevated

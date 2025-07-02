@@ -16,6 +16,7 @@
       </div>
       <div class="column items-center q-gutter-y-sm q-mt-sm">
         <q-btn
+          no-caps
           style="width: 150px"
           rounded
           flat
@@ -24,6 +25,7 @@
           آپلود تصویر جدید
         </q-btn>
         <q-btn
+          no-caps
           style="width: 150px"
           rounded
           flat

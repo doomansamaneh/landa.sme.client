@@ -40,6 +40,7 @@
 
       <div class="row items-center q-py-md q-gutter-md">
         <q-btn
+          no-caps
           class="primary-shadow"
           rounded
           unelevated
@@ -51,6 +52,7 @@
         </q-btn>
 
         <q-btn
+          no-caps
           v-if="model?.repositionItems?.length"
           color="red"
           class="text-on-dark"
@@ -62,6 +64,7 @@
           حذف همه
         </q-btn>
         <q-btn
+          no-caps
           v-else
           class="primary-shadow"
           rounded
@@ -76,6 +79,7 @@
     </div>
     <div class="col q-gutter-y-md">
       <q-btn
+        no-caps
         rounded
         unelevated
         :href="`${baseUrl}/excelTemplate/import/openingStockTemplate.xlsx`"

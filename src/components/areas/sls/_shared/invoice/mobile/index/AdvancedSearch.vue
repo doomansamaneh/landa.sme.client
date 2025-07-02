@@ -7,6 +7,7 @@
         </div>
         <div>
           <q-btn
+            no-caps
             size="8px"
             round
             unelevated
@@ -29,6 +30,7 @@
         <div>
           <div class="row items-center q-gutter-sm no-wrap">
             <q-btn
+              no-caps
               no-wrap
               rounded
               unelevated
@@ -39,7 +41,6 @@
                   ? 'active-shine text-white primary-gradient'
                   : ''
               "
-              no-caps
               @click="openDateRangeDialog"
             >
               <template
@@ -63,6 +64,7 @@
             </q-btn>
 
             <q-btn
+              no-caps
               no-wrap
               rounded
               unelevated
@@ -73,7 +75,6 @@
                   ? 'active-shine text-white primary-gradient'
                   : ''
               "
-              no-caps
               @click="openDepositTypeDialog"
             >
               <template
@@ -97,6 +98,7 @@
             </q-btn>
 
             <q-btn
+              no-caps
               no-wrap
               rounded
               unelevated
@@ -107,7 +109,6 @@
                   ? 'active-shine text-white primary-gradient'
                   : ''
               "
-              no-caps
               @click="openTaxSentStatusDialog"
             >
               <template
@@ -257,6 +258,7 @@
       <div class="row q-gutter-sm">
         <div class="col">
           <q-btn
+            no-caps
             padding="10px 12px"
             rounded
             unelevated
@@ -274,6 +276,7 @@
 
         <div class="col">
           <q-btn
+            no-caps
             padding="10px 12px"
             rounded
             unelevated
@@ -307,7 +310,7 @@
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
           <span class="text-body1">انتخاب تسویه</span>
-          <q-btn dense flat icon="close" v-close-popup />
+          <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 
@@ -336,7 +339,7 @@
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
           <span class="text-body1">انتخاب زمان</span>
-          <q-btn dense flat icon="close" v-close-popup />
+          <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 
@@ -365,7 +368,7 @@
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
           <span class="text-body1">سامانه مودیان</span>
-          <q-btn dense flat icon="close" v-close-popup />
+          <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 

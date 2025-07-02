@@ -1,7 +1,7 @@
 <template>
   <!-- <tool-bar :inside="inside" buttons title="قرارداد">
     <template #buttons>
-      <q-btn
+      <q-btn no-caps
         :to="`/doc/contract/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 "
         padding="6px 12px"
@@ -13,7 +13,7 @@
         ویرایش
       </q-btn>
 
-      <q-btn
+      <q-btn no-caps
         padding="6px 12px"
         class="text-body2 "
         rounded

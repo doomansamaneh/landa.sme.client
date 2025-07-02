@@ -61,6 +61,7 @@
 
     <div class="row justify-center" v-if="hasMoreData">
       <q-btn
+        no-caps
         rounded
         unelevated
         @click="gotoNext"
@@ -93,6 +94,7 @@
 
     <div class="row justify-center" v-if="hasMoreData">
       <q-btn
+        no-caps
         rounded
         unelevated
         @click="gotoNext"

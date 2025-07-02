@@ -9,6 +9,7 @@
   >
     <template #buttons>
       <q-btn
+        no-caps
         :to="`/sls/invoice/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2"
         padding="6px 12px"
@@ -20,6 +21,7 @@
         {{ $t("shared.labels.edit") }}
       </q-btn>
       <q-btn
+        no-caps
         :to="`/sls/invoice/copy/${id}`"
         class="text-body2"
         padding="6px 12px"
@@ -31,6 +33,7 @@
         {{ $t("shared.labels.copy") }}
       </q-btn>
       <q-btn
+        no-caps
         @click="formStore.crudStore.deleteById(id)"
         class="text-body2"
         padding="6px 12px"
@@ -42,6 +45,7 @@
         {{ $t("shared.labels.delete") }}
       </q-btn>
       <q-btn
+        no-caps
         @click="printStore.handlePrint()"
         class="text-body2"
         padding="6px 12px"
@@ -53,6 +57,7 @@
         چاپ
       </q-btn>
       <q-btn
+        no-caps
         @click="printStore.downloadPdf()"
         class="text-body2"
         padding="6px 12px"
@@ -75,6 +80,7 @@
     <template #buttons>
       <div class="row items-center q-gutter-sm">
         <q-btn
+          no-caps
           :to="`/sls/invoice/edit/${id}`"
           round
           class="text-caption"
@@ -83,6 +89,7 @@
           <q-icon name="o_edit" />
         </q-btn>
         <q-btn
+          no-caps
           @click="onBottomSheetShow"
           round
           class="text-caption"

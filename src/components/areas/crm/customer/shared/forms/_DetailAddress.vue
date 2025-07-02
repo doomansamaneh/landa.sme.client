@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     unelevated
     rounded
     padding="6px 12px"

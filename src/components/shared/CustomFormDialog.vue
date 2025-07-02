@@ -22,6 +22,7 @@
 
         <q-space />
         <q-btn
+          no-caps
           icon="close"
           class="icon-hover dark-3"
           flat

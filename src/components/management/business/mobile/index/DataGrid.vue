@@ -14,6 +14,7 @@
   >
     <template #header-guide>
       <q-btn
+        no-caps
         rounded
         unelevated
         dense
@@ -85,6 +86,7 @@
             <div class="row justify-end items-center q-gutter-sm">
               <renew-subscribtion :business="item" />
               <q-btn
+                no-caps
                 size="13px"
                 unelevated
                 round
@@ -100,6 +102,7 @@
 
     <template #create-label>
       <q-btn
+        no-caps
         v-if="showCreate"
         rounded
         unelevated

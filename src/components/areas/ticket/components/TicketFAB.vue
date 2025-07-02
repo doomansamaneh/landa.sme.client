@@ -6,6 +6,7 @@
     :offset="[8, 8]"
   >
     <q-btn
+      no-caps
       round
       dense
       size="24px"

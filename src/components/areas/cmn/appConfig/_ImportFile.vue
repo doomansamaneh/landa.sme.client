@@ -7,6 +7,7 @@
     </div>
 
     <q-btn
+      no-caps
       size="8px"
       round
       unelevated
@@ -28,6 +29,7 @@
     </template>
     <template #append>
       <q-btn
+        no-caps
         :disabled="!file"
         color="primary"
         class="primary-shadow"

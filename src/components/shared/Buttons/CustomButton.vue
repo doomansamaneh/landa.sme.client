@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     unelevated
     :rounded="$q.screen.gt.xs"
     :round="$q.screen.xs"

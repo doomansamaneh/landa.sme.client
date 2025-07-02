@@ -19,6 +19,7 @@
       >
         <template v-if="isShakingComputed">
           <q-btn
+            no-caps
             class="off-btn bordered absolute-top-right q-ma-sm z-1"
             round
             dense
@@ -42,19 +43,19 @@
                 class="col-md-8 col-sm-12 col-xs-12 q-gutter-sm q-pa-md"
               >
                 <div class="text-h6 text-weight-500">
-                  راهنمای اتصال حسابداری آنلاین لاندا به سامانه مودیان
+                  {{ $t("newsBanner.title") }}
                 </div>
                 <div class="text-body2">
-                  روش اتصال به سامانه مودیان و مراحل ارسال صورتحساب و
-                  فاکتورهای خود به سامانه مودیان
+                  {{ $t("newsBanner.description") }}
                 </div>
                 <q-btn
+                  no-caps
                   rounded
                   color="primary"
                   unelevated
                   dense
                   padding="4px 16px"
-                  label="ادامه مطلب"
+                  :label="$t('newsBanner.readMore')"
                   class="q-mt-md"
                   href="https://landa-sme.ir/LandaKnowledge/b2b39ffb-51cb-4781-8e20-b44ca1e46d0c"
                   target="_blank"
@@ -67,7 +68,7 @@
       </q-card>
     </q-carousel-slide>
 
-    <q-carousel-slide v-if="false" class="no-padding" :name="2">
+    <!-- <q-carousel-slide v-if="false" class="no-padding" :name="2">
       <q-card
         flat
         class="full-height border-radius-lg"
@@ -75,6 +76,7 @@
       >
         <template v-if="isShakingComputed">
           <q-btn
+            no-caps
             class="off-btn bordered absolute-top-right q-ma-sm z-1"
             round
             dense
@@ -98,7 +100,7 @@
           </div>
         </q-card-section>
       </q-card>
-    </q-carousel-slide>
+    </q-carousel-slide> -->
   </q-carousel>
 </template>
 
@@ -121,7 +123,7 @@
   const computedStyle = computed(() => ({
     backgroundImage: "url(/panjere.png)",
     backgroundSize: "300px",
-    backgroundPosition: "top left",
+    backgroundPosition: $q.lang.rtl ? "top left" : "top right",
     backgroundRepeat: "no-repeat",
   }));
 

@@ -56,6 +56,7 @@
       </div>
       <div class="">
         <q-btn
+          no-caps
           to="/sls/invoice/create"
           unelevated
           rounded

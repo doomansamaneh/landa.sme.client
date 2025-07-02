@@ -91,6 +91,7 @@
         >
           <template #reload>
             <q-btn
+              no-caps
               class="q-mr-md"
               size="sm"
               round

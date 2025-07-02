@@ -7,6 +7,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -29,6 +30,7 @@
             icon="o_receipt"
           />
           <q-btn
+            no-caps
             v-access="`sls.invoice.create`"
             to="/sls/invoice/create"
             unelevated
@@ -36,7 +38,6 @@
             :round="$q.screen.xs"
             :rounded="$q.screen.gt.xs"
             class="bordered bg-dark q-py-xs"
-            no-caps
           >
             <q-icon name="o_add" size="20px" />
             <span
@@ -135,6 +136,7 @@
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-btn
+                no-caps
                 flat
                 dense
                 size="0"
@@ -186,6 +188,7 @@
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-btn
+                no-caps
                 flat
                 dense
                 size="0"

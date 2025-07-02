@@ -9,6 +9,7 @@
       <div class="row items-center q-gutter-x-sm">
         <span class="text-h6">داشبورد</span>
         <q-btn
+          no-caps
           @click="widgetsLayout"
           size="13px"
           unelevated
@@ -18,6 +19,7 @@
           <q-icon name="o_widgets" :color="activeColor" />
         </q-btn>
         <q-btn
+          no-caps
           v-if="togglewidgetsLayout"
           unelevated
           rounded
@@ -111,6 +113,7 @@
             <div class="col">
               <div class="row justify-end">
                 <q-btn
+                  no-caps
                   unelevated
                   round
                   dense

@@ -89,11 +89,11 @@
 
     <q-card-actions class="q-pa-md dark-1">
       <q-btn
+        no-caps
         type="submit"
         @click="submitForm"
         text-color="white"
         unelevated
-        no-caps
         padding="8px 16px"
         rounded
         class="primary-gradient primary-shadow"
@@ -101,9 +101,9 @@
         {{ $t("change-password-page.buttons.change-password") }}
       </q-btn>
       <q-btn
+        no-caps
         flat
         size="md"
-        no-caps
         padding="8px 16px"
         v-close-popup
         rounded
