@@ -1,5 +1,5 @@
 <template>
-  <toolbar :title="`مانده ${title}`" back-button margin />
+  <toolbar :title="`مانده ${title}`" back-button />
 
   <data-grid-table
     :title="title"

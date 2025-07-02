@@ -147,11 +147,7 @@
                   size="xl"
                   class="active-shine orange-gradient orange-shadow"
                 >
-                  <q-icon
-                    color="white"
-                    size="23px"
-                    name="o_account_balance_wallet"
-                  />
+                  <q-icon color="white" size="23px" name="o_remove" />
                 </q-avatar>
                 <div class="mouse-icon"></div>
               </q-btn>

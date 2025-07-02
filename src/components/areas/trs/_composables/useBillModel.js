@@ -1,6 +1,7 @@
 import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
+import { useBillState } from "./useBillState";
 import { helper } from "src/helpers";
 import { useBillItemModel } from "./useBillItemModel";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
@@ -9,6 +10,7 @@ import { billModel } from "src/models/areas/trs/billModel";
 export function useBillModel({ baseRoute, preview }) {
   const router = useRouter();
   const itemStore = useBillItemModel();
+  const stateStore = useBillState();
 
   const model = ref(billModel);
 
@@ -99,7 +101,7 @@ export function useBillModel({ baseRoute, preview }) {
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
-      stateStore.state.firstLoad.value = false;
+      stateStore.reset();
       router.back();
     }
   }
