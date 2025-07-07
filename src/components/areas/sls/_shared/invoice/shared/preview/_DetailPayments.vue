@@ -2,6 +2,7 @@
   <div class="row q-gutter-sm q-pb-md">
     <template v-if="remainedAmount">
       <q-btn
+        no-caps
         v-if="showReceipt"
         class="primary-shadow"
         rounded
@@ -14,6 +15,7 @@
         <span>دریافت</span>
       </q-btn>
       <q-btn
+        no-caps
         v-else
         class="primary-shadow q-mr-xs"
         rounded
@@ -27,6 +29,7 @@
       </q-btn>
 
       <q-btn
+        no-caps
         class="primary-shadow"
         rounded
         color="primary"

@@ -7,7 +7,7 @@
   >
     <q-card class="congrats-card border-radius-xl">
       <q-card-section class="text-center q-pa-xl">
-        <!-- <q-btn
+        <!-- <q-btn no-caps
           class="absolute-top-right q-ma-md"
           icon="o_close"
           round
@@ -37,6 +37,7 @@
 
         <div class="q-pa-lg">
           <q-btn
+            no-caps
             class="primary-shadow"
             color="primary"
             unelevated

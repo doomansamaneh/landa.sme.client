@@ -1,6 +1,7 @@
 <template>
   <div class="col text-center" @click="handleClick">
     <q-btn
+      no-caps
       dense
       unelevated
       padding="2px 14px"

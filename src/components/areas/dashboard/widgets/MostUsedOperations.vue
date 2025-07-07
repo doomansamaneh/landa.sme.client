@@ -1,5 +1,5 @@
 <template>
-  <q-btn-dropdown
+  <q-btn no-caps-dropdown
     transition-show="slide-down"
     transition-hide="slide-up"
     transition-duration="600"

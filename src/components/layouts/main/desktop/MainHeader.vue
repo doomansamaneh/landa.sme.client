@@ -11,6 +11,7 @@
             <steam-animation />
 
             <q-btn
+              no-caps
               @click="menuBarStore.toggle"
               round
               unelevated
@@ -45,7 +46,7 @@
         <div class="row items-center justify-end q-gutter-x-md">
           <most-used-operations />
 
-          <!-- <q-btn
+          <!-- <q-btn no-caps
             round
             dense
             unelevated
@@ -59,6 +60,7 @@
           <notification />
 
           <q-btn
+            no-caps
             flat
             dense
             round

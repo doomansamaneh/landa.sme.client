@@ -33,6 +33,7 @@
       <div v-if="$q.screen.lt.md" class="col-1">
         <div>
           <q-btn
+            no-caps
             size="8px"
             round
             unelevated
@@ -74,6 +75,7 @@
           </div>
           <div class="col-1 q-mr-md">
             <q-btn
+              no-caps
               unelevated
               round
               dense

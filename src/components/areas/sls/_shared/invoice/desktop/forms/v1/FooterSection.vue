@@ -16,7 +16,7 @@
 
       <div class="row">
         <div class="col row q-gutter-sm items-center">
-          <q-btn outline round icon="o_add" size="xs">
+          <q-btn no-caps outline round icon="o_add" size="xs">
             <q-tooltip
               anchor="center left"
               self="center right"
@@ -42,6 +42,7 @@
                   <custom-input-number v-model="generalDiscountValue">
                     <template #append>
                       <q-btn
+                        no-caps
                         size="8px"
                         class="cursor-pointer"
                         :color="
@@ -66,6 +67,7 @@
 
                 <q-card-actions class="dark-1 q-px-md">
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated
@@ -75,6 +77,7 @@
                     {{ $t("shared.labels.accept") }}
                   </q-btn>
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated
@@ -98,7 +101,7 @@
 
       <div class="row">
         <div class="col row q-gutter-sm items-center">
-          <q-btn outline round icon="o_add" size="xs">
+          <q-btn no-caps outline round icon="o_add" size="xs">
             <q-tooltip
               anchor="center left"
               self="center right"
@@ -133,6 +136,7 @@
 
                 <q-card-actions class="dark-1 q-px-md">
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated
@@ -142,6 +146,7 @@
                     {{ $t("shared.labels.accept") }}
                   </q-btn>
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated

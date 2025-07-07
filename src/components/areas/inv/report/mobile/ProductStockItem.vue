@@ -2,6 +2,7 @@
   <tool-bar inside buttons title="کاردکس کالا">
     <template #buttons>
       <q-btn
+        no-caps
         :to="`/sls/invoice/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2"
         padding="6px 12px"
@@ -13,7 +14,13 @@
         اصلاح موجودی
       </q-btn>
 
-      <q-btn padding="6px 12px" class="text-body2" rounded unelevated>
+      <q-btn
+        no-caps
+        padding="6px 12px"
+        class="text-body2"
+        rounded
+        unelevated
+      >
         <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
         {{ $t("shared.labels.more") }}
 

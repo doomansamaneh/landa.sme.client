@@ -5,6 +5,7 @@
         <div class="col">
           <div class="row items-center text-bold text-body1">
             <q-btn
+              no-caps
               unelevated
               size="9px"
               class="q-mr-sm text-caption-sm no-pointer-events"

@@ -29,7 +29,7 @@
 
       <div v-if="buttons" class="q-gutter-x-sm">
         <slot name="buttons">
-          <!-- <q-btn
+          <!-- <q-btn no-caps
             v-if="$q.screen.gt.xs"
             class="primary-gradient primary-shadow text-white text-body2 "
             padding="6px 12px"
@@ -42,7 +42,7 @@
           </q-btn> -->
           <!-- v-if="$q.screen.xs" -->
 
-          <q-btn round unelevated @click="save">
+          <q-btn no-caps round unelevated @click="save">
             <q-icon name="o_save" />
           </q-btn>
         </slot>

@@ -5,6 +5,7 @@
     position="bottom-right"
   >
     <q-btn
+      no-caps
       round
       color="primary"
       :icon="isFullscreen ? 'fullscreen_exit' : 'fullscreen'"

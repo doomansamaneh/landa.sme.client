@@ -7,6 +7,7 @@
             تاریخچه ارسال به سامانه مودیان
           </div>
           <q-btn
+            no-caps
             unelevated
             round
             dense
@@ -31,6 +32,7 @@
       </q-card>
 
       <q-btn
+        no-caps
         v-if="!taxStore.apiResult.value.data"
         unelevated
         rounded
@@ -43,7 +45,7 @@
       </q-btn>
 
       <!-- v-if="!configStore.model.companySetting?.taxApiSetting?.clientId" -->
-      <!-- <q-btn rounded to="/cmn/appConfig/VATInfo" flat unelevated>
+      <!-- <q-btn no-caps rounded to="/cmn/appConfig/VATInfo" flat unelevated>
       <q-icon name="o_settings" size="xs" class="q-mr-xs" />
       <span>پیکربندی سامانه مودیان</span>
     </q-btn> -->

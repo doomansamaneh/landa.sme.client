@@ -14,6 +14,7 @@
   >
     <template #append>
       <q-btn
+        no-caps
         padding="0 12px"
         unelevated
         label="افزودن کالا"

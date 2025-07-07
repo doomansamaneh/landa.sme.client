@@ -11,7 +11,14 @@
         <q-card-section class="row items-center">
           <div class="text-h6">پشتیبانی</div>
           <q-space />
-          <q-btn icon="close" flat round dense v-close-popup />
+          <q-btn
+            no-caps
+            icon="close"
+            flat
+            round
+            dense
+            v-close-popup
+          />
         </q-card-section>
 
         <q-separator />

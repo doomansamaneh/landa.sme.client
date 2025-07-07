@@ -10,6 +10,7 @@
       />
 
       <q-btn
+        no-caps
         unelevated
         round
         class="text-on-dark"

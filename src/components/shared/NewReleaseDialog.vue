@@ -7,6 +7,7 @@
     <q-card class="new-release-card border-radius-xl">
       <q-card-section class="text-center q-pa-xl">
         <q-btn
+          no-caps
           class="absolute-top-right q-ma-md"
           icon="o_close"
           round
@@ -32,6 +33,7 @@
         :class="$q.dark.isActive ? 'bg-on-dark' : 'bg-grey-3'"
       >
         <q-btn
+          no-caps
           unelevated
           label="تازه‌سازی"
           class="text-h6"
@@ -42,6 +44,7 @@
           @click="reload"
         />
         <q-btn
+          no-caps
           label="انصراف"
           class="text-h6"
           dense

@@ -1,6 +1,7 @@
 <template>
   <div class="row q-gutter-sm items-center">
     <q-btn
+      no-caps
       v-access="`${permissionPrefix}.edit`"
       round
       class="text-on-dark text-caption"
@@ -14,6 +15,7 @@
     </q-btn>
 
     <q-btn
+      no-caps
       v-access="`${permissionPrefix}.clone`"
       round
       class="text-on-dark text-caption"
@@ -27,6 +29,7 @@
     </q-btn>
 
     <q-btn
+      no-caps
       v-access="`${permissionPrefix}.delete`"
       round
       class="text-on-dark text-caption"

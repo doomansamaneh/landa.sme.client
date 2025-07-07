@@ -7,6 +7,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -26,7 +27,7 @@
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
             <widget-title
-              label="فروش و درآمد، هزینه"
+              :label="$t('shared.labels.revenueExpense')"
               icon="o_shopping_basket"
             />
           </div>
@@ -43,13 +44,14 @@
                   :color="$q.dark.isActive ? 'dark' : 'white'"
                   text-color="primary"
                   :options="[
-                    { label: 'چارت', value: 1 },
-                    { label: 'جدول', value: 2 },
+                    { label: $t('shared.labels.chart'), value: 1 },
+                    { label: $t('shared.labels.table'), value: 2 },
                   ]"
                 />
               </template>
               <template v-else>
                 <q-btn
+                  no-caps
                   :icon="
                     chartType === 1 ? 'o_pie_chart' : 'o_table_chart'
                   "

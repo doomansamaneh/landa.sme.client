@@ -17,6 +17,7 @@
 
         <q-card-section class="q-pb-xs">
           <q-btn
+            no-caps
             :style="activeBtnStyle(themeName)"
             size="20px"
             unelevated

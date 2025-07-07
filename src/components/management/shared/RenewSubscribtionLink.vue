@@ -1,6 +1,7 @@
 <template>
   <template v-if="$q.screen.gt.xs">
     <q-btn
+      no-caps
       v-if="showLink"
       class="text-body3 green-gradient green-shadow"
       :to="addPaymentUrl"
@@ -17,6 +18,7 @@
 
   <template v-if="$q.screen.lt.sm">
     <q-btn
+      no-caps
       v-if="showLink"
       class="text-caption-sm green-shadow green-gradient"
       :to="addPaymentUrl"

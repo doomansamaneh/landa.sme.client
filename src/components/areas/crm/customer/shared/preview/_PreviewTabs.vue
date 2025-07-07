@@ -11,7 +11,7 @@
     >
       <card-tab name="main" title="اطلاعات پایه" icon="o_person" />
 
-      <q-btn-dropdown
+      <q-btn no-caps-dropdown
         dropdown-icon="o_expand_more"
         auto-close
         :class="

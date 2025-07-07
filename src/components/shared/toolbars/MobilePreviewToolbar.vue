@@ -11,6 +11,7 @@
           {{ title }}
         </span>
         <q-btn
+          no-caps
           v-if="tableStore?.pagination.value.totalItems > 0"
           rounded
           unelevated
@@ -25,6 +26,7 @@
       <q-space />
 
       <q-btn
+        no-caps
         dense
         round
         class="text-caption q-mr-sm"

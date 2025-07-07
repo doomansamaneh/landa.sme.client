@@ -25,6 +25,7 @@
     >
       <template #buttons>
         <q-btn
+          no-caps
           padding="6px 12px"
           class="text-body2"
           rounded

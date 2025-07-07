@@ -113,6 +113,7 @@
       >
         <template v-slot:before>
           <q-btn
+            no-caps
             round
             dense
             flat

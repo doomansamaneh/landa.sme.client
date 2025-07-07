@@ -184,6 +184,7 @@
           >
             <template #reload>
               <q-btn
+                no-caps
                 class="q-mr-md"
                 size="sm"
                 round
@@ -214,6 +215,7 @@
           </div>
           <div class="flex flex-center">
             <q-btn
+              no-caps
               round
               unelevated
               text-color="white"
@@ -288,7 +290,7 @@
             </slot>
 
             <!-- <slot name="create">
-              <q-btn
+              <q-btn no-caps
                 dense
                 unelevated
                 color="primary"
@@ -374,6 +376,7 @@
         >
           <template #reload>
             <q-btn
+              no-caps
               class="q-mr-md"
               size="sm"
               round

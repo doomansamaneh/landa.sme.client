@@ -11,6 +11,7 @@
     </template>
     <template #expandable="{ item }">
       <q-btn
+        no-caps
         size="md"
         :color="$q.dark.isActive ? 'white' : 'grey-8'"
         flat

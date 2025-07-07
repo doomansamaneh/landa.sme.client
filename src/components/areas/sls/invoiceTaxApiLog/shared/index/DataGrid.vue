@@ -19,6 +19,7 @@
                   {{ item.status }}
                 </div>
                 <q-btn
+                  no-caps
                   v-if="
                     item.status === taxStatus.pending ||
                     item.status === taxStatus.notFound ||
@@ -45,6 +46,7 @@
           </div>
           <div class="flex items-center">
             <q-btn
+              no-caps
               color="grey"
               round
               flat

@@ -29,8 +29,8 @@ export const bankAccountColumns = [
   {
     name: "bankTitle",
     field: "bankTitle",
+    label: "bankTitle",
     sortable: true,
-    label: "بانک",
     style: "",
     showFilter: true,
     class: "text-left",
@@ -38,8 +38,8 @@ export const bankAccountColumns = [
   {
     name: "bankAccountTypeTitle",
     field: "bankAccountTypeTitle",
+    label: "bankAccountTypeTitle",
     sortable: true,
-    label: "نوع حساب",
     style: "",
     showFilter: true,
     class: "text-left",
@@ -48,33 +48,41 @@ export const bankAccountColumns = [
   {
     name: "no",
     field: "no",
+    label: "no",
     sortable: true,
-    label: "شماره حساب",
     style: "",
     showFilter: true,
     class: "text-left",
     value: "",
   },
-  { ...debitRemained, label: "موجودی", class: "text-weight-600" },
+  {
+    ...debitRemained,
+    name: "debitRemained",
+    class: "text-weight-600",
+  },
   { ...isActive },
   actions,
 ];
 
 export const cashColumns = [
-  { ...title },
-  { ...debitRemained, label: "موجودی", class: "text-weight-600" },
+  { ...title, name: "title" },
+  {
+    ...debitRemained,
+    name: "debitRemained",
+    class: "text-weight-600",
+  },
   { ...isActive },
   actions,
 ];
 
 export const transferMoneyColumns = [
-  { ...rowNo },
-  { ...date },
+  { ...rowNo, name: "rowNo" },
+  { ...date, name: "date" },
   {
     name: "fromTitle",
     field: "fromTitle",
+    label: "fromTitle",
     sortable: true,
-    label: "از",
     style: "",
     showFilter: true,
     class: "text-left",
@@ -83,32 +91,32 @@ export const transferMoneyColumns = [
   {
     name: "toTitle",
     field: "toTitle",
+    label: "toTitle",
     sortable: true,
-    label: "به",
     style: "",
     showFilter: true,
     class: "text-left",
     value: "",
   },
-  { ...subject },
-  { ...amount, class: "text-weight-600" },
+  { ...subject, name: "subject" },
+  { ...amount, name: "amount", class: "text-weight-600" },
   //actions,
 ];
 
 export const receiptColumns = [
-  { ...no },
-  { ...date },
-  { ...subject },
-  { ...customerName },
-  { ...amount, class: "text-weight-600" },
+  { ...no, name: "no" },
+  { ...date, name: "date" },
+  { ...subject, name: "subject" },
+  { ...customerName, name: "customerName" },
+  { ...amount, name: "amount", class: "text-weight-600" },
   //actions,
 ];
 
 export const billColumns = [
-  { ...rowNo },
-  { ...date },
-  { ...subject },
-  { ...amount, class: "text-weight-600" },
+  { ...rowNo, name: "rowNo" },
+  { ...date, name: "date" },
+  { ...subject, name: "subject" },
+  { ...amount, name: "amount", class: "text-weight-600" },
   //actions,
 ];
 
@@ -119,16 +127,15 @@ export const checkItemColumns = [
     name: "paymentDate",
     field: "paymentDate",
   },
-  { ...itemNo },
+  { ...itemNo, name: "itemNo" },
   {
     ...date,
     name: "itemDate",
     field: "itemDate",
-    label: "تاریخ چک",
   },
-  { ...customerName, style: "" },
-  { ...subject },
-  { ...amount, class: "text-weight-600" },
-  { ...statusId },
+  { ...customerName, name: "customerName", style: "" },
+  { ...subject, name: "subject" },
+  { ...amount, name: "amount", class: "text-weight-600" },
+  { ...statusId, name: "statusId" },
   //actions,
 ];

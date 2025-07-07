@@ -12,7 +12,12 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn color="primary" label="بستن" @click="onOKClick" />
+        <q-btn
+          no-caps
+          color="primary"
+          label="بستن"
+          @click="onOKClick"
+        />
       </q-card-actions>
     </q-card>
   </q-dialog>

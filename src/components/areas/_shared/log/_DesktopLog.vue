@@ -15,6 +15,7 @@
               placeholder="در اینجا می‌توانید یادداشت بگذارید..."
             />
             <q-btn
+              no-caps
               @click="addComment"
               flat
               rounded
@@ -37,6 +38,7 @@
           تاریخچه
         </div>
         <q-btn
+          no-caps
           round
           unelevated
           dense
@@ -109,6 +111,7 @@
                 <q-editor v-model="item.comment" />
                 <div class="q-gutter-x-sm">
                   <q-btn
+                    no-caps
                     @click="editComment(item)"
                     flat
                     rounded
@@ -122,6 +125,7 @@
                     <span>ذخیره</span>
                   </q-btn>
                   <q-btn
+                    no-caps
                     @click="disableEdit()"
                     unelevated
                     rounded
@@ -142,6 +146,7 @@
                 class="row justify-end"
               >
                 <q-btn
+                  no-caps
                   @click="enableEdit(item)"
                   unelevated
                   rounded
@@ -151,6 +156,7 @@
                   <span>ویرایش</span>
                 </q-btn>
                 <q-btn
+                  no-caps
                   @click="deleteComment(item)"
                   unelevated
                   rounded

@@ -29,9 +29,12 @@
     >
       <div class="flex items-center q-gutter-sm">
         <q-icon name="o_search" size="24px" />
-        <div class="text-body2">جستجو پیشرفته</div>
+        <div class="text-body2">
+          {{ $t("shared.labels.advancedSearch") }}
+        </div>
       </div>
       <q-btn
+        no-caps
         @click.stop="expanded = !expanded"
         round
         unelevated
@@ -312,6 +315,7 @@
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
               <q-btn
+                no-caps
                 class="q-mr-sm text-body2 primary-gradient primary-shadow text-white"
                 rounded
                 padding="8px 16px"
@@ -319,9 +323,10 @@
                 @click="searchStore.applySearch"
               >
                 <q-icon name="search" class="q-mr-xs" size="20px" />
-                جستجو
+                {{ $t("shared.labels.search") }}
               </q-btn>
               <q-btn
+                no-caps
                 class="text-body2"
                 rounded
                 unelevated
@@ -330,7 +335,7 @@
                 @click="searchStore.clearSearch"
               >
                 <q-icon name="clear" class="q-mr-xs" size="20px" />
-                حذف فیلتر
+                {{ $t("shared.labels.clearSearch") }}
               </q-btn>
             </div>
           </q-card-actions>

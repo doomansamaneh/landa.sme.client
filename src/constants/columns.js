@@ -4,7 +4,7 @@ export const id = {
   name: "id",
   field: "id",
   sortable: false,
-  label: "نوع",
+  label: "id",
   align: "left",
   class: "text-left",
   style: "width:120px;",
@@ -15,7 +15,7 @@ export const type = {
   name: "typeId",
   field: "typeId",
   sortable: true,
-  label: "نوع",
+  label: "typeId",
   align: "left",
   class: "text-left",
   style: "width:150px;",
@@ -26,7 +26,7 @@ export const code = {
   name: "code",
   field: "code",
   sortable: true,
-  label: "کد",
+  label: "code",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -38,7 +38,7 @@ export const productGroupCode = {
   name: "productGroupCode",
   field: "productGroupCode",
   sortable: true,
-  label: "کد گروه",
+  label: "productGroupCode",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -50,7 +50,7 @@ export const productGroupTitle = {
   name: "productGroupTitle",
   field: "productGroupTitle",
   sortable: true,
-  label: "گروه",
+  label: "productGroupTitle",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -61,7 +61,7 @@ export const productCode = {
   name: "productCode",
   field: "productCode",
   sortable: true,
-  label: "کد کالا",
+  label: "productCode",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -73,7 +73,7 @@ export const productTitle = {
   name: "productTitle",
   field: "productTitle",
   sortable: true,
-  label: "کالا / خدمت",
+  label: "productTitle",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -84,7 +84,7 @@ export const productUnitTitle = {
   name: "productUnitTitle",
   field: "productUnitTitle",
   sortable: true,
-  label: "واحد سنجش",
+  label: "productUnitTitle",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -96,7 +96,7 @@ export const clCode = {
   name: "clCode",
   field: "clCode",
   sortable: true,
-  label: "کد کل",
+  label: "clCode",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -108,7 +108,7 @@ export const clTitle = {
   name: "clTitle",
   field: "clTitle",
   sortable: true,
-  label: "حساب کل",
+  label: "clTitle",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -119,7 +119,7 @@ export const dlCode = {
   name: "dlCode",
   field: "dlCode",
   sortable: true,
-  label: "کد تفصیلی",
+  label: "dlCode",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -131,7 +131,7 @@ export const name = {
   name: "name",
   field: "name",
   sortable: true,
-  label: "نام",
+  label: "name",
   style: "",
   showFilter: true,
   class: "text-left",
@@ -142,7 +142,7 @@ export const loginName = {
   name: "loginName",
   field: "loginName",
   sortable: true,
-  label: "نام کاربری",
+  label: "loginName",
   style: "",
   showFilter: true,
   class: "text-left",
@@ -153,7 +153,7 @@ export const jobTitle = {
   name: "jobTitle",
   field: "jobTitle",
   sortable: true,
-  label: "شغل",
+  label: "jobTitle",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -163,7 +163,7 @@ export const title = {
   name: "title",
   field: "title",
   sortable: true,
-  label: "عنوان",
+  label: "title",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -174,7 +174,7 @@ export const parentTitle = {
   name: "parentTitle",
   field: "parentTitle",
   sortable: true,
-  label: "بالادستی",
+  label: "parentTitle",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -185,7 +185,7 @@ export const typeId = {
   name: "typeId",
   field: "typeId",
   sortable: true,
-  label: "نوع",
+  label: "typeId",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -198,7 +198,7 @@ export const slCode = {
   name: "slCode",
   field: "slCode",
   sortable: true,
-  label: "کد معین",
+  label: "slCode",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -210,7 +210,7 @@ export const slTitle = {
   name: "slTitle",
   field: "slTitle",
   sortable: true,
-  label: "حساب معین",
+  label: "slTitle",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -221,7 +221,7 @@ export const dlTitle = {
   name: "dlTitle",
   field: "dlTitle",
   sortable: true,
-  label: "حساب تفصیلی",
+  label: "dlTitle",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -232,7 +232,7 @@ export const isActive = {
   name: "isActive",
   field: "isActive",
   sortable: true,
-  label: "فعال",
+  label: "isActive",
   align: "left",
   class: "text-left",
   style: "width:120px;",
@@ -244,7 +244,7 @@ export const no = {
   name: "no",
   field: "no",
   sortable: true,
-  label: "شماره",
+  label: "no",
   class: "text-left",
   cellClass: "text-left",
   cellStyle: "",
@@ -258,7 +258,7 @@ export const itemNo = {
   name: "itemNo",
   field: "itemNo",
   sortable: true,
-  label: "شماره چک",
+  label: "itemNo",
   class: "text-left",
   cellClass: "text-left",
   style: "width:100px;",
@@ -270,7 +270,7 @@ export const date = {
   field: "date",
   //template: "{{dateString}}",
   sortable: true,
-  label: "تاریخ",
+  label: "date",
   class: "text-left",
   style: "width:100px",
   showFilter: true,
@@ -281,21 +281,21 @@ export const startDate = {
   ...date,
   name: "startDate",
   field: "startDate",
-  label: "تاریخ شروع",
+  label: "startDate",
 };
 
 export const finishDate = {
   ...date,
   name: "finishDate",
   field: "finishDate",
-  label: "تاریخ پایان",
+  label: "finishDate",
 };
 
 export const comment = {
   name: "comment",
   field: "comment",
   sortable: true,
-  label: "شرح",
+  label: "comment",
   class: "text-left",
   showFilter: true,
 };
@@ -304,7 +304,7 @@ export const itemComment = {
   name: "itemComment",
   field: "itemComment",
   sortable: true,
-  label: "شرح",
+  label: "itemComment",
   class: "text-left",
   showFilter: true,
 };
@@ -313,7 +313,7 @@ export const rowNo = {
   name: "rowNo",
   field: "rowNo",
   sortable: true,
-  label: "ش پیگیری",
+  label: "rowNo",
   class: "text-left",
   style: "width:90px",
   showFilter: true,
@@ -323,7 +323,7 @@ export const voucherNo = {
   name: "voucherNo",
   field: "voucherNo",
   sortable: true,
-  label: "ش سند",
+  label: "voucherNo",
   class: "text-left",
   style: "width:100px",
   showFilter: true,
@@ -333,7 +333,7 @@ export const voucherDate = {
   name: "voucherDate",
   field: "voucherDate",
   sortable: true,
-  label: "تاریخ",
+  label: "voucherDate",
   class: "text-left",
   style: "width:120px",
   showFilter: true,
@@ -344,7 +344,7 @@ export const voucherSubject = {
   name: "voucherSubject",
   field: "voucherSubject",
   sortable: true,
-  label: "شرح",
+  label: "voucherSubject",
   class: "text-left",
   showFilter: true,
 };
@@ -353,7 +353,7 @@ export const customerName = {
   name: "customerName",
   field: "customerName",
   sortable: true,
-  label: "طرف حساب",
+  label: "customerName",
   style: "",
   template: "{{customerCode}} {{customerName}}",
   showFilter: true,
@@ -365,7 +365,7 @@ export const subject = {
   name: "subject",
   field: "subject",
   sortable: true,
-  label: "شرح",
+  label: "subject",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -375,7 +375,7 @@ export const contractTitle = {
   name: "contractTitle",
   field: "contractTitle",
   sortable: true,
-  label: "قرارداد",
+  label: "contractTitle",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -385,7 +385,7 @@ export const inventoryTitle = {
   name: "inventoryTitle",
   field: "inventoryTitle",
   sortable: true,
-  label: "انبار",
+  label: "inventoryTitle",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -395,7 +395,7 @@ export const toInventoryTitle = {
   name: "toInventoryTitle",
   field: "toInventoryTitle",
   sortable: true,
-  label: "انبار مقصد",
+  label: "toInventoryTitle",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -405,7 +405,7 @@ export const amount = {
   name: "amount",
   field: "amount",
   sortable: true,
-  label: "جمع کل",
+  label: "amount",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -417,105 +417,105 @@ export const taxAmount = {
   ...amount,
   name: "taxAmount",
   field: "taxAmount",
-  label: "مالیات",
+  label: "taxAmount",
 };
 
 export const salary = {
   ...amount,
   name: "salary",
   field: "salary",
-  label: "دستمزد روزانه",
+  label: "salary",
 };
 
 export const baseYear = {
   ...amount,
   name: "baseYear",
   field: "baseYear",
-  label: "پایه سنوات",
+  label: "baseYear",
 };
 
 export const housing = {
   ...amount,
   name: "housing",
   field: "housing",
-  label: "حق مسکن",
+  label: "housing",
 };
 
 export const food = {
   ...amount,
   name: "food",
   field: "food",
-  label: "بن",
+  label: "food",
 };
 
 export const child = {
   ...amount,
   name: "child",
   field: "child",
-  label: "حق اولاد",
+  label: "child",
 };
 
 export const spouse = {
   ...amount,
   name: "spouse",
   field: "spouse",
-  label: "حق تاهل",
+  label: "spouse",
 };
 
 export const reward = {
   ...amount,
   name: "reward",
   field: "reward",
-  label: "پاداش بهره‌وری",
+  label: "reward",
 };
 
 export const bonus = {
   ...amount,
   name: "bonus",
   field: "bonus",
-  label: "عیدی و پاداش",
+  label: "bonus",
 };
 
 export const overtime = {
   ...amount,
   name: "overtime",
   field: "overtime",
-  label: "اضافه کار",
+  label: "overtime",
 };
 
 export const mission = {
   ...amount,
   name: "mission",
   field: "mission",
-  label: "ماموریت",
+  label: "mission",
 };
 
 export const serviceBenefit = {
   ...amount,
   name: "serviceBenefit",
   field: "serviceBenefit",
-  label: "بازخرید سنوات",
+  label: "serviceBenefit",
 };
 
 export const leave = {
   ...amount,
   name: "leave",
   field: "leave",
-  label: "بازخرید مرخصی",
+  label: "leave",
 };
 
 export const addition = {
   ...amount,
   name: "addition",
   field: "addition",
-  label: "سایر مزایا",
+  label: "addition",
 };
 
 export const deduction = {
   ...amount,
   name: "deduction",
   field: "deduction",
-  label: "سایر کسورات",
+  label: "deduction",
 };
 
 export const payable = {
@@ -523,35 +523,35 @@ export const payable = {
   name: "payable",
   field: "payable",
   class: "text-weight-700",
-  label: "قابل پرداخت",
+  label: "payable",
 };
 
 export const insurranceEmp = {
   ...amount,
   name: "insurranceEmp",
   field: "insurranceEmp",
-  label: "بیمه کارگر",
+  label: "insurranceEmp",
 };
 
 export const income = {
   ...amount,
   name: "income",
   field: "income",
-  label: "درآمد",
+  label: "income",
 };
 
 export const expense = {
   ...amount,
   name: "expense",
   field: "expense",
-  label: "هزینه",
+  label: "expense",
 };
 
 export const netIncome = {
   ...amount,
   name: "netIncome",
   field: "netIncome",
-  label: "درآمد خالص",
+  label: "netIncome",
   class: "text-weight-600",
 };
 
@@ -559,7 +559,7 @@ export const year = {
   name: "year",
   field: "year",
   sortable: true,
-  label: "سال",
+  label: "year",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -570,7 +570,7 @@ export const month = {
   ...year,
   name: "month",
   field: "month",
-  label: "ماه",
+  label: "month",
   style: "width:90px",
 };
 
@@ -578,56 +578,56 @@ export const day = {
   ...year,
   name: "day",
   field: "day",
-  label: "کارکرد",
+  label: "day",
 };
 
 export const insurranceAmount = {
   ...amount,
   name: "insurranceAmount",
   field: "insurranceAmount",
-  label: "بیمه",
+  label: "insurranceAmount",
 };
 
 export const vatAmount = {
   ...amount,
   name: "vatAmount",
   field: "vatAmount",
-  label: "ارزش افزوده",
+  label: "vatAmount",
 };
 
 export const netAmount = {
   ...amount,
   name: "netAmount",
   field: "netAmount",
-  label: "مبلغ پس از تخفیف",
+  label: "netAmount",
 };
 
 export const payedAmount = {
   ...amount,
   name: "payedAmount",
   field: "payedAmount",
-  label: "دریافت شده",
+  label: "payedAmount",
 };
 
 export const remainedAmount = {
   ...amount,
   name: "remainedAmount",
   field: "remainedAmount",
-  label: "مانده",
+  label: "remainedAmount",
 };
 
 export const discountAmount = {
   ...amount,
   name: "discountAmount",
   field: "discountAmount",
-  label: "تخفیف",
+  label: "discountAmount",
 };
 
 export const actions = {
   name: "actions",
   field: "",
   sortable: false,
-  label: "",
+  label: "actions",
   align: "left",
   class: "text-left",
   style: "width:160px;",
@@ -638,7 +638,7 @@ export const debit = {
   name: "debit",
   field: "debit",
   sortable: false,
-  label: "بدهکار",
+  label: "debit",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -650,7 +650,7 @@ export const debitOpening = {
   name: "debitOpening",
   field: "debitOpening",
   sortable: false,
-  label: "بدهکار اول دوره",
+  label: "debitOpening",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -662,7 +662,7 @@ export const inlineDebit = {
   name: "inlineDebit",
   field: "inlineDebit",
   sortable: false,
-  label: "مانده بدهکار",
+  label: "inlineDebit",
   align: "left",
   class: "text-left",
   style: "width:120px;",
@@ -675,7 +675,7 @@ export const debitRemained = {
   name: "debitRemained",
   field: "debitRemained",
   sortable: false,
-  label: "مانده بدهکار",
+  label: "debitRemained",
   align: "left",
   class: "text-left",
   style: "width:120px;",
@@ -687,7 +687,7 @@ export const credit = {
   name: "credit",
   field: "credit",
   sortable: false,
-  label: "بستانکار",
+  label: "credit",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -699,7 +699,7 @@ export const creditOpening = {
   name: "creditOpening",
   field: "creditOpening",
   sortable: false,
-  label: "بستانکار اول دوره",
+  label: "creditOpening",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -711,7 +711,7 @@ export const creditRemained = {
   name: "creditRemained",
   field: "creditRemained",
   sortable: false,
-  label: "مانده بستانکار",
+  label: "creditRemained",
   align: "left",
   class: "text-left",
   style: "width:120px;",
@@ -723,7 +723,7 @@ export const purchaseQuantity = {
   name: "purchaseQuantity",
   field: "purchaseQuantity",
   sortable: false,
-  label: "ورود",
+  label: "purchaseQuantity",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -735,20 +735,21 @@ export const inQuantity = {
   ...purchaseQuantity,
   name: "inQuantity",
   field: "inQuantity",
+  label: "inQuantity",
 };
 
 export const openingQuantity = {
   ...purchaseQuantity,
-  name: "inQuantity",
+  name: "openingQuantity",
   field: "openingQuantity",
-  label: "موجودی اول دوره",
+  label: "openingQuantity",
 };
 
 export const salesQuantity = {
   name: "salesQuantity",
   field: "salesQuantity",
   sortable: false,
-  label: "خروج",
+  label: "salesQuantity",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -760,13 +761,14 @@ export const outQuantity = {
   ...salesQuantity,
   name: "outQuantity",
   field: "outQuantity",
+  label: "outQuantity",
 };
 
 export const quantity = {
   name: "quantity",
   field: "quantity",
   sortable: false,
-  label: "تعداد/مقدار",
+  label: "quantity",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -778,7 +780,7 @@ export const stock = {
   name: "stock",
   field: "stock",
   sortable: false,
-  label: "موجودی",
+  label: "stock",
   align: "left",
   class: "text-left",
   style: "width:110px;",
@@ -788,7 +790,7 @@ export const stock = {
 
 export const closingQuantity = {
   ...quantity,
-  label: "موجودی",
+  label: "closingQuantity",
   showFilter: false,
   class: "text-weight-600",
 };
@@ -796,7 +798,7 @@ export const closingQuantity = {
 export const statusId = {
   name: "statusId",
   field: "statusId",
-  label: "وضعیت",
+  label: "statusId",
   align: "left",
   class: "text-left",
   style: "width:120px;",
@@ -807,7 +809,7 @@ export const unitTitle = {
   name: "unitTitle",
   field: "unitTitle",
   sortable: true,
-  label: "واحد سنجش",
+  label: "unitTitle",
   align: "left",
   class: "text-left",
   style: "width:180px;",
@@ -818,7 +820,7 @@ export const inlineQuantity = {
   name: "inlineQuantity",
   field: "inlineQuantity",
   sortable: false,
-  label: "موجودی",
+  label: "inlineQuantity",
   align: "left",
   style: "width:130px;",
   class: "text-left text-weight-600",
@@ -830,7 +832,7 @@ export const price = {
   name: "price",
   field: "price",
   sortable: false,
-  label: "مبلغ",
+  label: "price",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -839,9 +841,9 @@ export const price = {
 
 export const openingPrice = {
   ...price,
-  name: "inQuantity",
+  name: "openingPrice",
   field: "openingPrice",
-  label: "فی اول دوره",
+  label: "openingPrice",
   showFilter: false,
 };
 
@@ -849,7 +851,7 @@ export const totalPrice = {
   ...price,
   name: "totalPrice",
   field: "totalPrice",
-  label: "جمع کل",
+  label: "totalPrice",
   showFilter: false,
 };
 
@@ -857,7 +859,7 @@ export const openingTotalPrice = {
   ...price,
   name: "openingTotalPrice",
   field: "openingTotalPrice",
-  label: "جمع کل اول دوره",
+  label: "openingTotalPrice",
   showFilter: false,
 };
 
@@ -865,7 +867,7 @@ export const inTotalPrice = {
   ...price,
   name: "inTotalPrice",
   field: "inTotalPrice",
-  label: "جمع کل ورود",
+  label: "inTotalPrice",
   showFilter: false,
 };
 
@@ -873,7 +875,7 @@ export const inPrice = {
   ...price,
   name: "inPrice",
   field: "inPrice",
-  label: "فی ورود",
+  label: "inPrice",
   showFilter: false,
 };
 
@@ -881,15 +883,15 @@ export const outPrice = {
   ...price,
   name: "outPrice",
   field: "outPrice",
-  label: "فی خروج",
+  label: "outPrice",
   showFilter: false,
 };
 
 export const outTotalPrice = {
   ...price,
-  name: "inPrice",
+  name: "outTotalPrice",
   field: "outTotalPrice",
-  label: "جمع کل خروج",
+  label: "outTotalPrice",
   showFilter: false,
 };
 
@@ -897,7 +899,7 @@ export const cogs = {
   ...price,
   name: "cogs",
   field: "cogs",
-  label: "بهای تمام شده",
+  label: "cogs",
   showFilter: false,
 };
 
@@ -905,7 +907,7 @@ export const summary = {
   name: "summary",
   field: "summary",
   sortable: false,
-  label: "شرح",
+  label: "summary",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -915,7 +917,7 @@ export const address = {
   name: "address",
   field: "address",
   sortable: true,
-  label: "نشانی",
+  label: "address",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -925,7 +927,7 @@ export const provinceTitle = {
   name: "provinceTitle",
   field: "provinceTitle",
   sortable: true,
-  label: "استان",
+  label: "provinceTitle",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -935,7 +937,7 @@ export const taxNo = {
   name: "taxNo",
   field: "taxNo",
   sortable: true,
-  label: "شماره اقتصادی",
+  label: "taxNo",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -945,7 +947,7 @@ export const nationalNo = {
   name: "nationalNo",
   field: "nationalNo",
   sortable: true,
-  label: "شناسه ملی",
+  label: "nationalNo",
   align: "left",
   class: "text-left",
   showFilter: true,
@@ -955,7 +957,7 @@ export const currencyTitle = {
   name: "currencyTitle",
   field: "currencyTitle",
   sortable: true,
-  label: "ارز",
+  label: "currencyTitle",
   align: "left",
   class: "text-left",
   showFilter: true,

@@ -21,6 +21,7 @@
         </q-item>
 
         <q-btn
+          no-caps
           class="primary-shadow primary-gradient text-white text-caption"
           padding="6px 12px"
           rounded

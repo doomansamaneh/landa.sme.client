@@ -25,6 +25,7 @@
 
     <div class="flex q-mt-lg items-center justify-center col">
       <q-btn
+        no-caps
         v-if="$q.screen.gt.xs"
         :text-color="$q.dark.isActive ? 'white' : 'grey-9'"
         round
@@ -37,6 +38,7 @@
       </q-btn>
 
       <q-btn
+        no-caps
         v-if="$q.screen.xs"
         round
         size="11px"

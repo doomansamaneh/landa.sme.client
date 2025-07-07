@@ -2,7 +2,7 @@
   <account-tree-node :node="node" />
   <q-space />
   <div class="row items-center q-gutter-md">
-    <q-btn dense round unelevated icon="o_more_horiz">
+    <q-btn no-caps dense round unelevated icon="o_more_horiz">
       <q-menu
         ref="accountTreeNodeMenu"
         class="border-radius-lg"

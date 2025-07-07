@@ -119,6 +119,7 @@
           <td>
             <div class="text-center q-mt-xs q-gutter-x-sm">
               <q-btn
+                no-caps
                 color="primary"
                 unelevated
                 round
@@ -127,7 +128,7 @@
                 icon="o_add"
                 @click="formStore.addNewRow(index, row)"
               />
-              <!-- <q-btn
+              <!-- <q-btn no-caps
               color="red"
               unelevated
               round
@@ -137,6 +138,7 @@
               @click="formStore.deleteRow(index)"
             /> -->
               <q-btn
+                no-caps
                 unelevated
                 round
                 dense
@@ -147,6 +149,7 @@
                 <q-icon size="24px" name="o_delete" />
               </q-btn>
               <q-btn
+                no-caps
                 @click="toggleRowDetails(index)"
                 unelevated
                 dense
@@ -202,6 +205,7 @@
               >
                 <template #append>
                   <q-btn
+                    no-caps
                     size="8px"
                     class="cursor-pointer"
                     :color="$q.dark.isActive ? 'yellow' : 'primary'"
@@ -233,6 +237,7 @@
         <td colspan="9" class="text-center">
           <no-product-selected class="q-mt-md" />
           <q-btn
+            no-caps
             class="q-mb-xl primary-shadow"
             rounded
             unelevated
@@ -248,6 +253,7 @@
   </q-markup-table>
 
   <q-btn
+    no-caps
     v-if="model.invoiceItems.length > 0"
     padding="4px 12px"
     unelevated

@@ -3,13 +3,13 @@
     <div class="row items-center q-py-lg">
       <div class="row items-center q-gutter-sm">
         <q-btn
+          no-caps
           dense
           class="bordered_ text-body2"
           size="14px"
           round
           unelevated
           :class="activeButton"
-          no-caps
           @click="draggable.toggleShake"
         >
           <q-icon size="24px" name="o_tune" />
@@ -24,11 +24,11 @@
 
     <div class="flex q-gutter-sm items-center">
       <q-btn
+        no-caps
         v-if="draggable.state.isTabShaking('general')"
         class="text-body2 primary-gradient text-white primary-shadow"
         rounded
         unelevated
-        no-caps
         @click="draggable.saveLayoutChanges"
       >
         <q-icon class="q-mr-xs" size="20px" name="o_save" />
@@ -38,11 +38,11 @@
       </q-btn>
 
       <q-btn
+        no-caps
         v-if="draggable.state.isTabShaking('general')"
         class="bordered text-body2"
         rounded
         unelevated
-        no-caps
         size="14px"
         @click="draggable.resetToDefault"
       >

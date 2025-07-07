@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     flat
     round
     dense
@@ -46,7 +47,9 @@
             </q-item-section>
           </div>
           <q-item-section>
-            <div class="text-body2">تنظیمات شخصی</div>
+            <div class="text-body2">
+              {{ $t("shared.labels.personalSettings") }}
+            </div>
           </q-item-section>
         </q-item>
         <!-- <q-item clickable v-close-popup tabindex="0" class="q-py-sm" @click="openPasswordDialog">

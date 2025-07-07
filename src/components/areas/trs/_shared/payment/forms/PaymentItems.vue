@@ -21,6 +21,7 @@
         :key="index"
       >
         <q-btn
+          no-caps
           v-if="
             (item.value.id === paymentMethod.checkSpent.id &&
               paymentReceiptType === paymentOrReceipt.payment) ||

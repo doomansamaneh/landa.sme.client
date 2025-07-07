@@ -81,6 +81,7 @@
         </div>
         <div class="col-1 row items-center justify-end q-gutter-x-sm">
           <q-btn
+            no-caps
             color="primary"
             unelevated
             round
@@ -90,6 +91,7 @@
             @click="formStore.addNewRow(index, row)"
           />
           <q-btn
+            no-caps
             unelevated
             round
             class="text-on-dark"
@@ -160,6 +162,7 @@
           <q-input dense outlined v-model="row.discount">
             <template v-slot:append>
               <q-btn
+                no-caps
                 size="8px"
                 class="cursor-pointer"
                 :color="$q.dark.isActive ? 'yellow' : 'primary'"

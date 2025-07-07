@@ -12,6 +12,7 @@
         @update:model-value="searchStore.applySearch"
       />
       <q-btn
+        no-caps
         @click="expanded = !expanded"
         padding="6px 12px"
         rounded
@@ -116,6 +117,7 @@
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
               <q-btn
+                no-caps
                 class="q-mr-sm text-body2 primary-gradient text-white"
                 rounded
                 padding="8px 16px"
@@ -126,6 +128,7 @@
                 {{ $t("shared.labels.search") }}
               </q-btn>
               <q-btn
+                no-caps
                 class="text-body2"
                 rounded
                 unelevated

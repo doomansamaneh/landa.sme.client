@@ -23,6 +23,7 @@
         <div class="row items-center">
           <div>
             <q-btn
+              no-caps
               class="text-on-dark"
               dense
               unelevated
@@ -38,6 +39,7 @@
         </div>
         <div class="row items-center">
           <q-btn
+            no-caps
             round
             unelevated
             dense

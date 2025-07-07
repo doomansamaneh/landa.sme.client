@@ -13,6 +13,7 @@
 
     <slot name="close-btn">
       <q-btn
+        no-caps
         v-if="closeable"
         dense
         unelevated

@@ -22,6 +22,7 @@
 
         <q-space />
         <q-btn
+          no-caps
           icon="close"
           class="icon-hover dark-3"
           flat
@@ -47,11 +48,11 @@
         >
           <q-space />
           <q-btn
+            no-caps
             type="submit"
             @click="download"
             text-color="white"
             unelevated
-            no-caps
             padding="8px 16px"
             rounded
             class="primary-gradient primary-shadow"

@@ -24,6 +24,7 @@
         <div class="flex q-gutter-sm">
           <template v-if="$q.screen.xs">
             <q-btn
+              no-caps
               dense
               round
               class="text-caption q-mr-sm"
@@ -68,7 +69,14 @@
           </div>
         </slot>
 
-        <q-btn icon="close" flat round dense @click="closeDialog" />
+        <q-btn
+          no-caps
+          icon="close"
+          flat
+          round
+          dense
+          @click="closeDialog"
+        />
       </q-card-section>
 
       <q-card-section

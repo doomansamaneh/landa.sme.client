@@ -5,6 +5,7 @@
         <div class="text-body1">جهت مرتب‌ سازی</div>
         <div>
           <q-btn
+            no-caps
             size="8px"
             round
             unelevated

@@ -77,6 +77,7 @@
         <template v-slot:navigation>
           <q-stepper-navigation>
             <q-btn
+              no-caps
               v-if="step === 7"
               class="primary-shadow"
               unelevated
@@ -88,6 +89,7 @@
             />
 
             <q-btn
+              no-caps
               v-else
               class="primary-shadow"
               unelevated
@@ -100,6 +102,7 @@
             </q-btn>
 
             <q-btn
+              no-caps
               rounded
               v-if="step > 1"
               flat

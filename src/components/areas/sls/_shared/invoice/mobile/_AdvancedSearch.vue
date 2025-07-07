@@ -3,7 +3,7 @@
     <q-card-section>
       <div class="row justify-between items-center">
         <span class="text-body1">جستجو در فاکتورها</span>
-        <q-btn dense flat icon="close" v-close-popup />
+        <q-btn no-caps dense flat icon="close" v-close-popup />
       </div>
     </q-card-section>
 
@@ -16,6 +16,7 @@
         <div>
           <div class="row items-center q-gutter-md no-wrap">
             <q-btn
+              no-caps
               v-for="option in dateRangeOptions"
               :key="option.value"
               @click="handleDateRangeClick(option.value)"
@@ -36,6 +37,7 @@
             </q-btn>
 
             <q-btn
+              no-caps
               rounded
               unelevated
               padding="8px 12px"
@@ -188,6 +190,7 @@
 
     <div class="row q-my-lg q-mx-lg">
       <q-btn
+        no-caps
         padding="10px 12px"
         rounded
         unelevated
@@ -202,6 +205,7 @@
       </q-btn>
 
       <q-btn
+        no-caps
         padding="10px 12px"
         rounded
         unelevated
@@ -232,7 +236,7 @@
       <q-card-section>
         <div class="row justify-between items-center">
           <span class="text-body1">انتخاب تسویه</span>
-          <q-btn dense flat icon="close" v-close-popup />
+          <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
 

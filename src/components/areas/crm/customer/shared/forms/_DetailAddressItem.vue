@@ -5,6 +5,7 @@
         <div class="col">
           <div class="row items-center text-bold text-body1">
             <q-btn
+              no-caps
               unelevated
               size="8px"
               class="q-mr-sm text-caption-sm no-pointer-events"
@@ -18,10 +19,10 @@
         </div>
 
         <div class="col-auto">
-          <q-btn size="11px" round flat @click="addItem()">
+          <q-btn no-caps size="11px" round flat @click="addItem()">
             <q-icon size="22px" name="o_add" />
           </q-btn>
-          <q-btn size="11px" round flat @click="deleteItem()">
+          <q-btn no-caps size="11px" round flat @click="deleteItem()">
             <q-icon size="22px" name="o_delete" />
           </q-btn>
         </div>

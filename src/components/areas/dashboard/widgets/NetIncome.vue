@@ -4,6 +4,9 @@
     :class="[isShakingComputed ? 'widget' : '']"
     flat
     class="shadow bordered fit"
+    :style="
+      $q.lang.rtl ? 'font-family: vazir;' : 'font-family: Roboto;'
+    "
   >
     <q-inner-loading
       :showing="netIncomeStore?.showLoader?.value"
@@ -14,6 +17,7 @@
 
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -32,7 +36,10 @@
       <q-card-section>
         <div class="row">
           <div class="col">
-            <widget-title label="درآمد" icon="arrow_downward" />
+            <widget-title
+              :label="$t('shared.labels.revenue')"
+              icon="arrow_downward"
+            />
 
             <div class="q-mt-md">
               <div class="text-body1 text-weight-700">
@@ -49,7 +56,7 @@
                     size="18px"
                     color="green"
                   />
-                  رشد
+                  {{ $t("shared.labels.growth") }}
                 </span>
                 <span v-else>
                   <q-icon
@@ -57,7 +64,7 @@
                     size="18px"
                     color="red"
                   />
-                  کاهش
+                  {{ $t("shared.labels.decrease") }}
                 </span>
                 <span
                   class="text-body2 text-bold"
@@ -74,7 +81,7 @@
                     )
                   }}%
                 </span>
-                به نسبت پارسال
+                {{ $t("shared.labels.comparedToLastYear") }}
               </q-item-label>
             </div>
           </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="col-2 row justify-end text-caption text-weight-300">
     <q-btn
+      no-caps
       class="absolute-top-right q-ma-sm"
       round
       dense

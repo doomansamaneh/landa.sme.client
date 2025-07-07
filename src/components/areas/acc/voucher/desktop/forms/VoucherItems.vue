@@ -71,6 +71,7 @@
           </td>
           <td class="text-center q-gutter-x-xs">
             <q-btn
+              no-caps
               color="primary"
               unelevated
               round
@@ -80,6 +81,7 @@
               @click="formStore.addNewRow(index, row)"
             />
             <q-btn
+              no-caps
               color="red"
               unelevated
               round
@@ -89,7 +91,7 @@
               @click="formStore.deleteRow(index)"
             />
 
-            <!-- <q-btn
+            <!-- <q-btn no-caps
               unelevated
               round
               dense
@@ -106,7 +108,7 @@
         <tr>
           <td colspan="100%" class="text-center">
             <no-item-selected />
-            <!-- <q-btn
+            <!-- <q-btn no-caps
               class="q-my-xl primary-shadow"
               rounded
               unelevated
@@ -145,6 +147,7 @@
     </q-markup-table>
 
     <q-btn
+      no-caps
       padding="4px 12px"
       unelevated
       rounded

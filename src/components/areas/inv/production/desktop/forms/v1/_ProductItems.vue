@@ -12,6 +12,7 @@
           <div class="row q-gutter-sm text-body1 text-weight-700">
             <div>
               <q-btn
+                no-caps
                 round
                 unelevated
                 dense
@@ -73,6 +74,7 @@
         </td>
         <td class="text-center">
           <q-btn
+            no-caps
             unelevated
             round
             dense
@@ -89,6 +91,7 @@
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
+            no-caps
             class="q-my-xl primary-shadow"
             rounded
             unelevated
@@ -104,6 +107,7 @@
   </q-markup-table>
 
   <q-btn
+    no-caps
     v-if="model?.items?.length > 0"
     padding="4px 12px"
     unelevated

@@ -3,6 +3,7 @@
     <q-toolbar>
       <div class="row items-center q-gutter-sm">
         <q-btn
+          no-caps
           round
           class="text-caption"
           unelevated
@@ -20,7 +21,7 @@
             <span class="text-body2">
               {{ title }}
             </span>
-            <!-- <q-btn
+            <!-- <q-btn no-caps
                 v-if="tableStore?.pagination.value.totalItems > 0"
                 rounded
                 unelevated
@@ -34,24 +35,24 @@
         </div>
 
         <q-btn
+          no-caps
           v-if="tableStore?.activeRow?.value"
           v-access="`${permissionPrefix}.edit`"
           :to="`/${baseRoute}/edit/${tableStore?.activeRow?.value?.id}`"
           class="text-caption"
           round
           unelevated
-          no-caps
         >
           <q-icon name="o_edit" />
         </q-btn>
 
         <q-btn
+          no-caps
           v-if="tableStore?.selectedIds?.value?.length"
           v-access="`${permissionPrefix}.delete`"
           class="text-caption"
           round
           unelevated
-          no-caps
           @click="
             crudStore.deleteBatch(
               tableStore?.selectedIds?.value,
@@ -62,12 +63,12 @@
           <q-icon name="o_delete" />
         </q-btn>
         <q-btn
+          no-caps
           v-else-if="tableStore?.activeRow?.value"
           v-access="`${permissionPrefix}.delete`"
           class="text-caption"
           round
           unelevated
-          no-caps
           @click="
             crudStore.deleteById(
               tableStore?.activeRow?.value?.id,
@@ -86,6 +87,7 @@
         class="row items-center q-gutter-sm"
       >
         <q-btn
+          no-caps
           padding="0 9px"
           rounded
           outline
@@ -94,6 +96,7 @@
           {{ tableStore?.selectedIds?.value?.length }}
         </q-btn>
         <q-btn
+          no-caps
           round
           unelevated
           class="text-caption text-on-dark"
@@ -105,6 +108,7 @@
         <template v-if="sortBtn">
           <slot name="sort-btn">
             <q-btn
+              no-caps
               round
               class="text-caption q-mr-sm"
               unelevated
@@ -119,6 +123,7 @@
         <template v-if="searchBtn">
           <slot name="search-btn">
             <q-btn
+              no-caps
               round
               unelevated
               dense

@@ -95,7 +95,7 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn flat dense size="0">
+            <q-btn no-caps flat dense size="0">
               <q-avatar
                 rounded
                 text-color="white"
@@ -141,7 +141,7 @@
       <div class="col col-md col-sm-12 col-xs-12">
         <q-item class="no-padding">
           <q-item-section avatar>
-            <q-btn flat dense size="0">
+            <q-btn no-caps flat dense size="0">
               <q-avatar
                 rounded
                 text-color="white"

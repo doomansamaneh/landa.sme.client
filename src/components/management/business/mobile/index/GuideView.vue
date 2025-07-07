@@ -9,6 +9,7 @@
         <div class="row items-center justify-between">
           <div class="text-body1 text-weight-700">راهنما</div>
           <q-btn
+            no-caps
             round
             icon="o_close"
             dense
@@ -78,6 +79,7 @@
         <div v-show="slide === 5">
           <div class="row items-center justify-center">
             <q-btn
+              no-caps
               class="green-gradient green-shadow no-pointer-events"
               rounded
               padding="8px 12px"
@@ -106,6 +108,7 @@
             </div>
 
             <q-btn
+              no-caps
               padding="4px 12px"
               unelevated
               label="دانشنامه"
@@ -120,6 +123,7 @@
       <q-card-actions class="q-mb-xl absolute-bottom" align="center">
         <div class="row items-center q-gutter-sm justify-center">
           <q-btn
+            no-caps
             v-for="buttonLabel in [1, 2, 3, 4, 5, 6]"
             :key="buttonLabel"
             :round="true"

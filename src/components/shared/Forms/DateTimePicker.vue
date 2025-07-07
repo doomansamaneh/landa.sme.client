@@ -25,6 +25,7 @@
           >
             <div class="row items-center justify-end q-gutter-sm rtl">
               <q-btn
+                no-caps
                 :label="$t('shared.labels.cancel')"
                 color="primary"
                 flat
@@ -32,6 +33,7 @@
                 v-close-popup
               />
               <q-btn
+                no-caps
                 rounded
                 :label="$t('shared.labels.select')"
                 color="primary"

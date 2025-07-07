@@ -2,6 +2,7 @@
   <div class="flex justify-between items-center">
     <div class="">
       <q-btn
+        no-caps
         :size="$q.screen.xs ? '8px' : ''"
         round
         dense

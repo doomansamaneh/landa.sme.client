@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     round
     dense
     unelevated

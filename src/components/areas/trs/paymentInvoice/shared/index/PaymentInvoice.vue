@@ -14,6 +14,7 @@
     <template #cell-no="{ item }">
       <span v-if="item.invoiceId">
         <q-btn
+          no-caps
           size="sm"
           dense
           round
