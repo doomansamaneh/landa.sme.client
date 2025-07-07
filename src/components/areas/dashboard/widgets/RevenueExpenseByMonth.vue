@@ -27,7 +27,7 @@
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
             <widget-title
-              :label="$t('shared.labels.revenueExpense')"
+              :label="$t('shared.labels.revenueExpenseByMonth')"
               icon="o_shopping_basket"
             />
           </div>

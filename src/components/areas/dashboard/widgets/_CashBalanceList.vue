@@ -48,7 +48,7 @@
         {{ item.label }}
       </span>
       <span class="text-body3">
-        <span>موجودی:</span>
+        <span>{{ $t("shared.labels.amount") }}:</span>
         <span class="text-weight-600 q-px-xs">
           {{ helper.formatNumber(item.amount) }}
         </span>

@@ -5,7 +5,7 @@
   >
     <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
-        title="حاشیه سود"
+        :title="$t('shared.labels.ratios_net_margin_title')"
         :ratio="ratioStore.model.value.netMargin"
         ratio-sign="%"
         @hide-widget="hideWidget"
@@ -20,20 +20,20 @@
           />
         </template>
         <template #info>
-          <strong>حاشیه سود خالص</strong>
-          از تقسیم درآمد خالص (سود خالص) بر فروش خالص بدست می آید و
-          این نسبت بیانگر این است كه چند درصد از فروش را سود خالص
-          تشكیل می‌دهد. ضعف این نسبت آنست كه بسیاری از هزینه‌ها همانند
-          هزینه تامین مالی كه در محاسبه سود خالص لحاظ شده‌اند ارتباطی
-          به فعالیت فروش نداشته ولی درنسبت ظاهرمی‌گردد. تغییرات این
-          نسبت تحت تاثیر سه عامل حجم فروش، سیاست قیمت گذاری، و ساختار
-          هزینه دارد. این نسبت هرچه بالاتر باشد بهتر است.
+          <div
+            v-html="
+              $t('shared.labels.ratios_net_margin_info').replace(
+                /\n/g,
+                '<br>'
+              )
+            "
+          ></div>
         </template>
       </ratio-widget>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
-        title="نسبت بدهی"
+        :title="$t('shared.labels.ratios_debt_ratio_title')"
         :ratio="ratioStore.model.value.debtRatio"
         ratio-sign="%"
         @hide-widget="hideWidget"
@@ -48,22 +48,20 @@
           />
         </template>
         <template #info>
-          <strong>نسبت بدهی</strong>
-          نشان می‌دهد چند درصد از داراییها از محل بدهی‌ها تامین شده
-          است. (دارایی = بدهی + سرمایه) هرچه این نسبت افزایش یابد
-          سودآوری شركت افزایش خواهد یافت مشروط بر اینكه نرخ بازده
-          داراییها بیش از نرخ بهره‌ی بدهی‌ها باشد. این نسبت توانایی
-          شركت درتحمل كاهش خالص داراییها براثر زیانهای وارده بدون به
-          مخاطره افتادن منابع اعتبار دهندگان را نشان می‌دهد. عدد قابل
-          قبول برای این نسبت بستگی به ثبات سودآوری در طول سالیان مختلف
-          دارد هرچه ثبات سودآوری تاریخی بیشتر باشد اعتباردهندگان و
-          سرمایه‌گذاران نسبتهای بالاتری را تحمل خواهند كرد.
+          <div
+            v-html="
+              $t('shared.labels.ratios_debt_ratio_info').replace(
+                /\n/g,
+                '<br>'
+              )
+            "
+          ></div>
         </template>
       </ratio-widget>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
-        title="نسبت جاری"
+        :title="$t('shared.labels.ratios_current_ratio_title')"
         :ratio="ratioStore.model.value.currentRatio"
         ratio-sign=""
         :fraction="2"
@@ -79,22 +77,22 @@
           />
         </template>
         <template #info>
-          <strong>نسبت جاری</strong>
-          از تقسیم داراییهای جاری بر بدهی‌های جاری حاصل می‌شود دارایی
-          جاری به داراییهایی گفته می‌شود كه به سرعت و به سهولت به وجه
-          نقد تبدیل می‌شود و بدهی جاری به بدهی‌هایی گفته می‌شود كه با
-          سررسید كمتر از یک سال است. نسبت جاری بیشتر می‌تواند بیانگر
-          وضعیت مطلوب نقدینگی باشد. اگر این عدد بزرگتر از 2 باشد مطلوب
-          است و وام دهندگان بزرگ مانند بانکها به این کسب و کار نظر
-          مساعدی خواهند داشت.
+          <div
+            v-html="
+              $t('shared.labels.ratios_current_ratio_info').replace(
+                /\n/g,
+                '<br>'
+              )
+            "
+          ></div>
         </template>
       </ratio-widget>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <ratio-widget
-        title="دوره وصول مطالبات"
+        :title="$t('shared.labels.ratios_dso_title')"
         :ratio="ratioStore.model.value.dso"
-        ratio-sign="روز"
+        :ratio-sign="$t('shared.columns.day')"
         @hide-widget="hideWidget"
       >
         <template #avatar>
@@ -107,12 +105,14 @@
           />
         </template>
         <template #info>
-          <strong>دوره وصول مطالبات</strong>
-          بیانگر تعداد روزهایی است كه طول می‌كشد شركت مطالبات خود را
-          وصول كند. هر چه این نسبت كوچكتر باشد بهتر است زیرا به این
-          معناست كه مطالبات شركت سریعتر وصول می‌شود. البته كوچک بودن
-          بیش از حد آن به معنای شرایط اعتباری سخت شركت است که ممکن به
-          ضرر شرکت تمام شود.
+          <div
+            v-html="
+              $t('shared.labels.ratios_dso_info').replace(
+                /\n/g,
+                '<br>'
+              )
+            "
+          ></div>
         </template>
       </ratio-widget>
     </div>

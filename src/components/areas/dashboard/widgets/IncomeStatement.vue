@@ -23,7 +23,10 @@
       "
     >
       <q-card-section class="q-pb-none">
-        <widget-title label="صورت سود و زیان" icon="o_balance" />
+        <widget-title
+          :label="$t('main-menu-items.Acc_Report_IncomeStatement')"
+          icon="o_balance"
+        />
       </q-card-section>
 
       <q-card-section class="q-pr-none">
@@ -113,10 +116,10 @@
 
           <q-item-section>
             <q-item-label lines="1" class="text-h6 text-weight-600">
-              درآمد خالص
+              {{ $t("shared.labels.netIncome") }}
             </q-item-label>
             <q-item-label lines="1">
-              سود پیش از کسر مالیات
+              {{ $t("shared.labels.profitBeforeTax") }}
             </q-item-label>
           </q-item-section>
 
