@@ -62,7 +62,6 @@
           no-caps
           class="green-shadow green-gradient no-pointer-events text-body3"
           rounded
-          no-caps
           text-color="white"
           unelevated
           padding="6px 12px"

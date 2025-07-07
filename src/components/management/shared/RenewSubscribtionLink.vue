@@ -6,7 +6,6 @@
       class="text-body3 green-gradient green-shadow"
       :to="addPaymentUrl"
       rounded
-      no-caps
       text-color="white"
       unelevated
       padding="6px 12px"
@@ -24,7 +23,6 @@
       :to="addPaymentUrl"
       rounded
       padding="4px 8px"
-      no-caps
       text-color="white"
       dense
       unelevated

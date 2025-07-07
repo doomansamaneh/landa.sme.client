@@ -3,7 +3,6 @@
     no-caps
     rounded
     class="text-body1"
-    no-caps
     outline
     :color="$q.dark.isActive ? 'yellow' : 'primary'"
     unelevated
