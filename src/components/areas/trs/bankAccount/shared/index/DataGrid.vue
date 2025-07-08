@@ -5,6 +5,7 @@
     data-source="trs/bankAccount/getGridData"
     :title="$t('main-menu-items.Trs_BankAccount_View')"
     create-url="/trs/bankAccount/create"
+    preview-page
     :grid-store="gridStore"
     expandable
     activation

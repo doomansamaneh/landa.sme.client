@@ -5,6 +5,7 @@
     data-source="trs/cash/getGridData"
     :title="$t('main-menu-items.Trs_Cash_View')"
     :grid-store="gridStore"
+    preview-page
     create-url="/trs/cash/create"
     expandable
   >

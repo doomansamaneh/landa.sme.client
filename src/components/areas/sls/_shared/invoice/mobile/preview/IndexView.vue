@@ -87,6 +87,10 @@
               </q-badge>
               {{ item.productCode }} - {{ item.productTitle }} /
               {{ helper.formatNumber(item.price) }}
+              <span v-if="item.comment">
+                /
+                {{ item.comment }}
+              </span>
             </span>
 
             <div class="text-right text-weight-500">
@@ -99,6 +103,10 @@
     </q-card-section>
 
     <q-card-section>
+      <div v-if="model.summary" class="q-mb-md">
+        {{ model.summary }}
+      </div>
+
       <q-separator class="q-mb-lg" />
       <div class="q-gutter-y-sm border-radius text-on-dark">
         <div class="row items-center justify-between">
