@@ -1,7 +1,7 @@
 <template>
   <q-card-actions
     class="q-pa-md dark-1"
-    :class="$q.screen.xs ? 'absolute-bottom' : ''"
+    :class="$q.screen.xs ? 'fixed-bottom' : ''"
   >
     <slot name="start"></slot>
     <slot name="ok">

@@ -7,7 +7,23 @@
     show-avatar
   >
     <template #row-avatar="{ item }">
-      <div class="col-auto q-mr-sm">
+      <div v-if="notActive">
+        <q-avatar
+          :key="item.selected"
+          size="36px"
+          text-color="white"
+          :class="item.selected ? 'primary-gradient' : status(item)"
+          @click.prevent.stop="setActiveRow(item)"
+        >
+          <span v-if="!item.selected" class="text-body2 text-on-dark">
+            {{ getItemIndex(item) + 1 }}
+          </span>
+          <transition appear name="slide-fade">
+            <q-icon v-if="item.selected" size="24px" name="check" />
+          </transition>
+        </q-avatar>
+      </div>
+      <div v-else class="col-auto q-mr-sm">
         <transition name="slide" appear mode="out-in">
           <q-avatar
             :key="item.selected"
@@ -76,6 +92,7 @@
     dataSource: String,
     baseRoute: String,
     createUrl: String,
+    notActive: Boolean,
     previewPage: {
       type: Boolean,
       default: false,
@@ -98,6 +115,7 @@
   }
 
   const status = (item) => {
+    if (props.notActive) return "bg-on-dark";
     return item?.isActive ? "green-gradient" : "red-gradient";
   };
 
@@ -108,5 +126,11 @@
       const isSame = props.tableStore.activeRow?.value === item;
       props.tableStore.setActiveRow(isSame ? null : item);
     }
+  }
+
+  function getItemIndex(item) {
+    return props.tableStore.rows.value.findIndex(
+      (row) => row === item
+    );
   }
 </script>

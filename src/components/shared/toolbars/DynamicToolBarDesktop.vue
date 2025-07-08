@@ -79,7 +79,7 @@
         </div>
 
         <template v-if="!inside">
-          <div v-if="menuItems?.value?.length > 0" class="q-space" />
+          <q-space v-if="menuItems?.value?.length > 0" />
           <span
             v-if="title"
             :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
@@ -90,6 +90,9 @@
               </span>
             </slot>
           </span>
+
+          <q-space v-if="!menuItems?.value?.length" />
+
           <go-back-link
             v-if="!inside && backButton"
             class="q-ml-sm"
