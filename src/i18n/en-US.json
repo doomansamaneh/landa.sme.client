@@ -300,6 +300,7 @@
       "more": "More",
       "all": "All",
       "today": "Today",
+      "day": "Workdays",
       "thisWeek": "This Week",
       "thisMonth": "This Month",
       "amountFrom": "Amount From",
@@ -412,6 +413,7 @@
       "paymentItemCheck": "Cheque Account Movement",
       "receipt": "Receipt",
       "expense": "Expense",
+      "expenseDetail": "Expense Detail",
       "revenue": "Revenue",
       "growth": "Growth",
       "decrease": "Decrease",
@@ -446,7 +448,15 @@
       "ratios_dso_title": "Receivables Collection Period",
       "ratios_dso_info": "Receivables collection period\nIndicates the number of days it takes for the company to collect its receivables. The smaller this ratio, the better, as it means the company's receivables are collected faster. However, being too small may mean the company has strict credit terms, which could be detrimental.",
       "cashBalance": "Cash Balance",
-      "bankBalance": "Bank Balance"
+      "bankBalance": "Bank Balance",
+      "topProducts": "Top Products",
+      "salesAndRevenue": "Sales and Revenue",
+      "invoiceByCustomer": "Sales by Customers",
+      "invoiceByProduct": "Sales by Products",
+      "salesByProductGroup": "Sales by Product Group",
+      "salesReviewReport": "Sales Review Report",
+      "salesReviewDescription": "Comprehensive review and analysis of sales data",
+      "viewReport": "View Report"
     },
     "messages": {
       "deleted-successfully": "Deleted successfully"

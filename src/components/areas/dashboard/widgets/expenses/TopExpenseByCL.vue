@@ -26,7 +26,10 @@
       <q-card-section class="col">
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
-            <widget-title label="هزینه‌" icon="o_account_balance" />
+            <widget-title
+              :label="$t('shared.labels.expense')"
+              icon="o_account_balance"
+            />
           </div>
         </div>
       </q-card-section>
@@ -78,7 +81,7 @@
   const isChartVisible = ref(true);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir;" : "Roboto, vazir;";
 
     options.value = {
       title: {

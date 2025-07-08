@@ -23,7 +23,10 @@
       "
     >
       <q-card-section class="q-pb-none">
-        <widget-title label="فروش و درآمد" icon="receipt_long" />
+        <widget-title
+          :label="$t('shared.labels.salesAndRevenue')"
+          icon="receipt_long"
+        />
       </q-card-section>
 
       <q-inner-loading

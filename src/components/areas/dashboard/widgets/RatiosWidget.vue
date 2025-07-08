@@ -92,7 +92,7 @@
       <ratio-widget
         :title="$t('shared.labels.ratios_dso_title')"
         :ratio="ratioStore.model.value.dso"
-        :ratio-sign="$t('shared.columns.day')"
+        :ratio-sign="$t('shared.labels.day')"
         @hide-widget="hideWidget"
       >
         <template #avatar>

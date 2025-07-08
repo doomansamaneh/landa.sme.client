@@ -302,6 +302,7 @@
       "more": "بیشتر",
       "all": "همه",
       "today": "امروز",
+      "day": "روز",
       "thisWeek": "این هفته",
       "thisMonth": "این ماه",
       "amountFrom": "مبلغ از",
@@ -414,6 +415,7 @@
       "paymentItemCheck": "گردش حساب چک",
       "receipt": "دریافت",
       "expense": "هزینه",
+      "expenseDetail": "ریز هزینه",
       "revenue": "درآمد",
       "growth": "رشد",
       "decrease": "کاهش",
@@ -460,9 +462,16 @@
       "ratios_dso_title": "دوره وصول مطالبات",
       "ratios_dso_info": "دوره وصول مطالبات\nبیانگر تعداد روزهایی است كه طول می‌كشد شركت مطالبات خود را وصول كند. هر چه این نسبت كوچكتر باشد بهتر است زیرا به این معناست كه مطالبات شركت سریعتر وصول می‌شود. البته كوچک بودن بیش از حد آن به معنای شرایط اعتباری سخت شركت است که ممکن به ضرر شرکت تمام شود.",
       "cashBalance": "موجودی نقد",
-      "bankBalance": "موجودی بانک"
+      "bankBalance": "موجودی بانک",
+      "topProducts": "کالا و خدمات پرفروش",
+      "salesAndRevenue": "فروش و درآمد",
+      "invoiceByCustomer": "فروش بر اساس مشتریان",
+      "invoiceByProduct": "فروش بر اساس محصولات",
+      "salesByProductGroup": "فروش بر اساس گروه محصولات",
+      "salesReviewReport": "گزارش مرور فروش",
+      "salesReviewDescription": "بررسی و تحلیل جامع داده‌های فروش",
+      "viewReport": "مشاهده گزارش"
     },
-
     "productType": {
       "main": "اصلی",
       "part": "قطعه",
