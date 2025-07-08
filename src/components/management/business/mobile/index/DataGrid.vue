@@ -10,6 +10,7 @@
     data-source="business/getBusinessGridData"
     create-url="/business/addBusiness"
     :grid-store="gridStore"
+    no-active-row
     class="q-my-xl"
   >
     <template #header-guide>

@@ -227,6 +227,7 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { dataViewDefaultPageSize } from "src/constants";
   import { helper } from "src/helpers";
+
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
   // Props
@@ -243,6 +244,7 @@
     multiSelect: Boolean,
     previewPage: { type: Boolean, default: true },
     dataTableStore: useDataTable,
+    noActiveRow: Boolean,
   });
 
   // Emits
@@ -307,7 +309,9 @@
       selectRow(row);
     } else {
       const isSame = tableStore.value.activeRow.value === row;
-      tableStore.value.setActiveRow(isSame ? null : row);
+      if (!props.noActiveRow) {
+        tableStore.value.setActiveRow(isSame ? null : row);
+      }
     }
     emit("active-row-changed", row);
   }
