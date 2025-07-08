@@ -245,6 +245,7 @@
     previewPage: { type: Boolean, default: true },
     dataTableStore: useDataTable,
     noActiveRow: Boolean,
+    noSelectRow: Boolean,
   });
 
   // Emits
@@ -300,13 +301,14 @@
   }
 
   function selectRow(row) {
-    tableStore.value.selectRow(row, !row.selected);
-    emitSelectedRows();
+    if (!props.noSelectRow) {
+      tableStore.value.selectRow(row, !row.selected);
+      emitSelectedRows();
+    }
   }
 
   function setActiveRow(row) {
     if (tableStore.value.selectedRows.value.length > 0) {
-      selectRow(row);
     } else {
       const isSame = tableStore.value.activeRow.value === row;
       if (!props.noActiveRow) {

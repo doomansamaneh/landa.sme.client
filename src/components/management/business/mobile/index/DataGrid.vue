@@ -11,6 +11,7 @@
     create-url="/business/addBusiness"
     :grid-store="gridStore"
     no-active-row
+    no-select-row
     class="q-my-xl"
   >
     <template #header-guide>
