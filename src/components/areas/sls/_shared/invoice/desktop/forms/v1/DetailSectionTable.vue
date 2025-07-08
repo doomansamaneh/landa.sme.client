@@ -94,6 +94,8 @@
               v-model:selectedId="row.vatId"
               v-model:selectedText="row.vatTitle"
               :filterExpression="vatFilter"
+              required
+              no-error-icon
               @rowSelected="vatChanged($event, row)"
             />
           </td>

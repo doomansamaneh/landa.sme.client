@@ -37,7 +37,7 @@ export const wageColumns = [
 ];
 
 export const wageItemColumns = [
-  { ...customerName, label: "پرسنل" },
+  { ...customerName, label: "personnel" },
   { ...day, showFilter: false },
   { ...salary, showFilter: false },
   { ...baseYear, showFilter: false },

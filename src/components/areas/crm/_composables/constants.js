@@ -20,7 +20,7 @@ export const customerColumns = [
   { ...typeId, template: "{{typeTitle}}" },
   { ...code },
   { ...name },
-  { ...unitTitle, label: "واحد سازمانی" },
+  { ...unitTitle, label: "unitTitle" },
   { ...jobTitle },
   { ...isActive },
 ];

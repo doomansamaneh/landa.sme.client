@@ -41,7 +41,7 @@ export const productStockColumns = [
   purchaseQuantity,
   salesQuantity,
   { ...stock, class: "text-weight-600", sortable: true },
-  { ...debit, label: "موجودی ریالی" },
+  { ...debit, label: "inventoryValue" },
 ];
 
 export const productGroupStockColumns = [
@@ -50,7 +50,7 @@ export const productGroupStockColumns = [
   purchaseQuantity,
   salesQuantity,
   { ...stock, class: "text-weight-600", sortable: true },
-  { ...debit, label: "موجودی ریالی" },
+  { ...debit, label: "inventoryValue" },
 ];
 
 export const productFlowColumns = [
@@ -81,7 +81,7 @@ export const productStockItemColumns = [
   purchaseQuantity,
   salesQuantity,
   inlineQuantity,
-  { ...price, label: "فی", showFilter: false },
+  { ...price, label: "unitPrice", showFilter: false },
   { ...totalPrice },
 ];
 
