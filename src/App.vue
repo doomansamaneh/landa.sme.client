@@ -6,6 +6,7 @@
   import { getCurrentInstance, onMounted } from "vue";
   import { useAuthStore } from "src/stores/auth-store";
   import { vAccess } from "src/directives/vAccess";
+  import { useCulture } from "src/composables/useCulture";
 
   const authStore = useAuthStore();
 
@@ -29,5 +30,6 @@
       app.directive("access", vAccess);
     }
     authStore.checkUser();
+    useCulture();
   });
 </script>

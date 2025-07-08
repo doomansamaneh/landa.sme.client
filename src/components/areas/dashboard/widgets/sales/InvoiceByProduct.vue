@@ -27,7 +27,7 @@
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
             <widget-title
-              label="فروش بر اساس محصولات"
+              :label="$t('shared.labels.invoiceByProduct')"
               icon="o_inventory_2"
             />
           </div>
@@ -81,7 +81,7 @@
   const isChartVisible = ref(true);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir;" : "Roboto, vazir;";
 
     options.value = {
       title: {
@@ -152,6 +152,7 @@
           offsetY: 12,
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
+            fontFamily,
           },
         },
       },
@@ -161,6 +162,7 @@
         labels: {
           style: {
             colors: $q.dark.isActive ? "white" : "#2d2d2d",
+            fontFamily,
           },
           formatter: function (value) {
             return formatYAxisLabel(value);

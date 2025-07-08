@@ -24,7 +24,7 @@
     >
       <q-card-section class="q-pb-none">
         <widget-title
-          label="فروش بر اساس گروه محصولات"
+          :label="$t('shared.labels.salesByProductGroup')"
           icon="category"
         />
       </q-card-section>

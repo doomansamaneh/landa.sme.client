@@ -3,7 +3,7 @@ import { helper } from "src/helpers";
 
 export function useExpenseChartOptions(reportStore, $q) {
   const chartOptions = computed(() => {
-    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir;" : "Roboto, vazir;";
     const total = reportStore.total.value;
 
     return {

@@ -3,7 +3,6 @@
     v-access="`sls.invoice.view`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="shadow border-radius-lg bordered fit"
-    :style="{ fontFamily: $q.lang.rtl ? 'vazir' : 'Roboto' }"
   >
     <template v-if="isShakingComputed">
       <q-btn

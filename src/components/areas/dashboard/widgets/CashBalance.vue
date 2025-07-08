@@ -1,7 +1,7 @@
 <template>
   <cash-balance
     v-access="`acc.report.accountReview`"
-    title="موجودی نقد"
+    :title="$t('shared.labels.cashBalance')"
     :height="$q.screen.gt.xs ? 350 : 10000"
     action="Cash"
     @click="hideWidget"

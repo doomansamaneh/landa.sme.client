@@ -14,7 +14,6 @@
     menu-anchor="bottom middle"
     menu-self="top middle"
     style="white-space: nowrap"
-    :style="{ fontFamily: $q.lang.rtl ? 'vazir' : 'Roboto' }"
   >
     <template #label>
       <div v-if="$q.screen.gt.xs">

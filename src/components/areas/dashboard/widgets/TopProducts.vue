@@ -25,7 +25,7 @@
       <q-card-section class="q-pb-none">
         <div class="row items-center justify-between">
           <widget-title
-            label="کالا و خدمات پرفروش"
+            :label="$t('shared.labels.topProducts')"
             icon="o_inventory_2"
           />
 
@@ -117,7 +117,8 @@
                   {{ item.productCode }} - {{ item.productTitle }}
                 </span>
                 <div class="text-body3">
-                  قیمت فروش: {{ helper.formatNumber(item.price) }}
+                  {{ $t("shared.priceAdjustmentTarget.sales") }}:
+                  {{ helper.formatNumber(item.price) }}
                   <span>({{ item.productUnitTitle }})</span>
                 </div>
                 <div class="text-body3">

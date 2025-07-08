@@ -206,7 +206,6 @@
           @click="okClicked"
           color="primary"
           unelevated
-          no-caps
           padding="8px 16px"
           rounded
           class="text-body2 primary-shadow"
@@ -219,7 +218,6 @@
           no-caps
           flat
           @click="cancelClicked"
-          no-caps
           padding="8px 16px"
           v-close-popup
           rounded

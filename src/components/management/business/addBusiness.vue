@@ -85,7 +85,6 @@
           class="green-shadow green-gradient"
           rounded
           text-color="white"
-          no-caps
           padding="8px 16px"
         >
           <q-icon

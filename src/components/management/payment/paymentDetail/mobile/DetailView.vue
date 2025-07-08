@@ -18,7 +18,6 @@
         class="text-caption"
         round
         unelevated
-        no-caps
         @click="printStore.downloadPdf()"
       >
         <q-icon name="o_print" />
@@ -29,7 +28,6 @@
         class="text-caption"
         round
         unelevated
-        no-caps
         @click="loadData"
       >
         <q-icon name="o_refresh" />
