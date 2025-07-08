@@ -1,4 +1,3 @@
-import { comment } from "postcss";
 import {
   rowNo,
   id,
@@ -94,7 +93,7 @@ export const voucherColumns = [
     name: "systemId",
     field: "systemId",
     sortable: true,
-    label: "سیستم",
+    label: "system",
     align: "left",
     class: "text-left",
     style: "width:160px;",
@@ -145,13 +144,13 @@ export const accountItemColumns = [
   { ...voucherSubject },
   {
     ...debitRemained,
-    label: "بدهکار",
+    label: "debit",
     showFilter: true,
     sortable: true,
   },
   {
     ...creditRemained,
-    label: "بستانکار",
+    label: "credit",
     showFilter: true,
     sortable: true,
   },
@@ -186,8 +185,8 @@ export const accountItemDLColumns = [
   { ...slCode },
   { ...slTitle },
   { ...voucherSubject },
-  { ...debitRemained, label: "بدهکار", showFilter: true },
-  { ...creditRemained, label: "بستانکار", showFilter: true },
+  { ...debitRemained, label: "debit", showFilter: true },
+  { ...creditRemained, label: "credit", showFilter: true },
   { ...inlineDebit },
 ];
 
@@ -197,8 +196,8 @@ export const accountItemSLColumns = [
   { ...dlCode },
   { ...dlTitle },
   { ...voucherSubject },
-  { ...debitRemained, label: "بدهکار" },
-  { ...creditRemained, label: "بستانکار" },
+  { ...debitRemained, label: "debit" },
+  { ...creditRemained, label: "credit" },
 ];
 
 export const reviewCLColumns = [

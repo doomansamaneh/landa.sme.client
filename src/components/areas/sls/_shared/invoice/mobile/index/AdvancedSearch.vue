@@ -245,7 +245,7 @@
 
           <div>
             <div class="text-body2 q-mb-sm">شرح</div>
-            <custom-input-number
+            <custom-input
               type="textarea"
               v-model="searchStore.searchModel.value.comment"
             />
@@ -395,10 +395,11 @@
   import { helper } from "src/helpers";
   import { useInvoiceSearch } from "src/components/areas/sls/_composables/useInvoiceSearch";
 
-  import dateTime from "src/components/shared/forms/DateTimePicker.vue";
+  import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
-  import customInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
 

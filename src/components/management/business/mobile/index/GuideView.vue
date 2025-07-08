@@ -83,7 +83,6 @@
               class="green-gradient green-shadow no-pointer-events"
               rounded
               padding="8px 12px"
-              no-caps
               text-color="white"
               dense
               unelevated

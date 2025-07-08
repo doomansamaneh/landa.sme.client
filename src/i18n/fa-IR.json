@@ -309,6 +309,8 @@
       "depositType": "نوع تسویه",
       "dateFrom": "تاریخ از",
       "dateTo": "تاریخ تا",
+      "noFrom": "ش از",
+      "noTo": "ش تا",
       "total": "جمع کل",
       "subTotal": "سرجمع",
       "price": "مبلغ",
@@ -712,7 +714,7 @@
       "finishDate": "تاریخ پایان",
       "comment": "توضیح",
       "itemComment": "توضیح آیتم",
-      "rowNo": "ردیف",
+      "rowNo": "ش پیگیری",
       "voucherNo": "شماره سند",
       "voucherDate": "تاریخ سند",
       "voucherSubject": "شرح سند",
@@ -780,7 +782,7 @@
       "outTotalPrice": "جمع خروجی",
       "cogs": "بهای تمام شده",
       "summary": "خلاصه",
-      "address": "آدرس",
+      "address": "نشانی",
       "provinceTitle": "استان",
       "taxNo": "شماره مالیاتی",
       "nationalNo": "شناسه ملی",
@@ -795,7 +797,8 @@
       "toTitle": "به",
       "paymentNo": "شماره پرداخت",
       "paymentDate": "تاریخ پرداخت",
-      "itemDate": "تاریخ چک"
+      "itemDate": "تاریخ چک",
+      "system": "سیستم"
     }
   },
 

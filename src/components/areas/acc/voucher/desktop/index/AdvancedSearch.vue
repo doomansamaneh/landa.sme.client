@@ -11,7 +11,8 @@
         v-model="searchStore.searchModel.value.dateRange"
         @update:model-value="searchStore.applySearch"
       />
-      <q-btn no-caps
+      <q-btn
+        no-caps
         @click="expanded = !expanded"
         padding="6px 12px"
         rounded
@@ -69,6 +70,22 @@
 
           <div class="row q-col-gutter-md q-mt-sm">
             <div class="col-md-2 col-sm-6 col-xs-12">
+              <custom-input
+                v-model="searchStore.searchModel.value.noFrom"
+                :placeholder="$t('shared.labels.noFrom')"
+              />
+            </div>
+
+            <div class="col-md-2 col-sm-6 col-xs-12">
+              <custom-input
+                v-model="searchStore.searchModel.value.noTo"
+                :placeholder="$t('shared.labels.noTo')"
+              />
+            </div>
+          </div>
+
+          <div class="row q-col-gutter-md q-mt-sm">
+            <div class="col-md-2 col-sm-6 col-xs-12">
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
                 :placeholder="$t('shared.labels.dateFrom')"
@@ -115,7 +132,8 @@
             <div
               class="row items-center justify-end col-md-12 col-sm-12 col-xs-12"
             >
-              <q-btn no-caps
+              <q-btn
+                no-caps
                 class="q-mr-sm text-body2 primary-gradient text-white"
                 rounded
                 padding="8px 16px"
@@ -125,7 +143,8 @@
                 <q-icon name="search" class="q-mr-xs" size="20px" />
                 {{ $t("shared.labels.search") }}
               </q-btn>
-              <q-btn no-caps
+              <q-btn
+                no-caps
                 class="text-body2"
                 rounded
                 unelevated
@@ -138,7 +157,7 @@
               </q-btn>
             </div>
           </q-card-actions>
-        </div>F
+        </div>
       </div>
     </q-slide-transition>
   </q-card>

@@ -263,13 +263,23 @@
                   <div class="col-md-2 col-sm-2">
                     <custom-label
                       class="text-bold"
-                      :label="$t('shared.labels.dateFrom')"
+                      :label="$t('shared.labels.noFrom')"
                     />
                   </div>
-                  <div class="col-md col-sm-7 col-xs-12">
-                    <date-time
-                      v-model="searchStore.searchModel.value.dateFrom"
-                      class="text-body2"
+                  <div class="col-md-4 col-sm-7 col-xs-12">
+                    <custom-input
+                      v-model="searchStore.searchModel.value.noFrom"
+                    />
+                  </div>
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
+                      :label="$t('shared.labels.noTo')"
+                    />
+                  </div>
+                  <div class="col-md-4 col-sm-7 col-xs-12">
+                    <custom-input
+                      v-model="searchStore.searchModel.value.noTo"
                     />
                   </div>
                 </div>
@@ -278,10 +288,22 @@
                   <div class="col-md-2 col-sm-2">
                     <custom-label
                       class="text-bold"
+                      :label="$t('shared.labels.dateFrom')"
+                    />
+                  </div>
+                  <div class="col-md-4 col-sm-7 col-xs-12">
+                    <date-time
+                      v-model="searchStore.searchModel.value.dateFrom"
+                      class="text-body2"
+                    />
+                  </div>
+                  <div class="col-md-2 col-sm-2">
+                    <custom-label
+                      class="text-bold"
                       :label="$t('shared.labels.dateTo')"
                     />
                   </div>
-                  <div class="col-md col-sm-7 col-xs-12">
+                  <div class="col-md-4 col-sm-7 col-xs-12">
                     <date-time
                       v-model="searchStore.searchModel.value.dateTo"
                       class="text-body2"
