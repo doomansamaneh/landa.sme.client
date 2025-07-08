@@ -10,7 +10,6 @@
         color="primary"
         class="primary-shadow"
         rounded
-        no-caps
         padding="8px 16px"
         unelevated
         @click="configStore.saveSetting()"

@@ -40,7 +40,6 @@
                   no-caps
                   rounded
                   unelevated
-                  no-caps
                   padding="8px 16px"
                   :label="ok ?? $t('shared.labels.download')"
                   icon="download"
