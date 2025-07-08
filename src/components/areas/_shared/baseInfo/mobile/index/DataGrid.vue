@@ -55,7 +55,7 @@
           v-if="col.field && col.label && col.name !== 'isActive'"
           class="q-px-sm"
         >
-          {{ col.label }}:
+          {{ $t(`shared.columns.${col.label}`) }}:
           {{ formatValue(col, item[col.field]) }}
         </span>
       </div>
