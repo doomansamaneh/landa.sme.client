@@ -176,10 +176,9 @@
         >
           <td class="text-center"></td>
           <td colspan="3" style="width: 45%">
-            <custom-input
+            <comment-input
               v-model="row.comment"
               placeholder="شرح ردیف"
-              type="textarea"
               autogrow
               dense
             />
@@ -293,6 +292,7 @@
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import NoProductSelected from "../NoProductSelected.vue";
+  import CommentInput from "src/components/shared/forms/CommentInput.vue";
 
   const props = defineProps({
     formStore: useInvoiceModel,

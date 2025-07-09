@@ -1,5 +1,9 @@
 <template>
-  <custom-input v-model="modelValue" :type="type">
+  <custom-input
+    v-model="modelValue"
+    :type="type"
+    :placeholder="placeholder"
+  >
     <template #append>
       <q-btn
         no-caps
@@ -19,11 +23,12 @@
     no-parent-event
     transition-show="jump-down"
     transition-hide="jump-up"
-    fit
+    cover
   >
     <div class="bg-on-dark q-pa-md">
-      <div class="text-body2">انتخاب شرح</div>
+      <div class="text-body2 text-bold">انتخاب شرح</div>
     </div>
+
     <div class="q-pa-md">
       <lookup-view
         ref="lookupRef"
@@ -45,6 +50,7 @@
 
   const props = defineProps({
     type: String,
+    placeholder: String,
   });
 
   const modelValue = defineModel("modelValue");
