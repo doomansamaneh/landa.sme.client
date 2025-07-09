@@ -3,6 +3,7 @@
     v-model="modelValue"
     :type="type"
     :placeholder="placeholder"
+    :label="label"
   >
     <template #append>
       <q-btn
@@ -51,6 +52,7 @@
   const props = defineProps({
     type: String,
     placeholder: String,
+    label: String,
   });
 
   const modelValue = defineModel("modelValue");
