@@ -26,6 +26,7 @@
       <q-space />
 
       <q-btn
+        v-if="!noItems"
         no-caps
         dense
         round
@@ -51,6 +52,7 @@
   const props = defineProps({
     title: String,
     menuItems: Array,
+    noItems: Boolean,
   });
 
   const bottomSheet = ref(null);
