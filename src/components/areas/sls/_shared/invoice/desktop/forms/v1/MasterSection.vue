@@ -104,9 +104,7 @@
 
           <div class="row q-mt-md">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <comment-input
-                v-model="model.summary"
-              />
+              <comment-input label="شرح" v-model="model.summary" />
             </div>
           </div>
         </div>

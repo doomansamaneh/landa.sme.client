@@ -1,29 +1,72 @@
 <template>
-  <form-toolbar-container
-    buttons
-    :title="title"
-    @submit-call-back="formStore.submitForm(form, action)"
-  />
+  <!-- Desktop View -->
+  <template v-if="$q.screen.gt.sm">
+    <q-page-sticky class="z-top q-pa-md" position="bottom-right">
+      <q-btn
+        no-caps
+        round
+        color="primary"
+        :icon="fullscreen ? 'fullscreen_exit' : 'fullscreen'"
+        class="primary-gradient primary-shadow"
+        @click="toggleFullscreen"
+      />
+    </q-page-sticky>
 
-  <q-card class="form-container">
-    <q-card-section>
-      <q-form ref="form" autofocus>
-        <desktop
-          v-if="$q.screen.gt.sm"
-          :form-store="formStore"
-          :model="model"
-          :form-type="invoiceFormType.salesReturn"
+    <!-- Toolbar outside if not fullscreen -->
+    <form-toolbar-container
+      v-if="!fullscreen"
+      buttons
+      :title="title"
+      @submit-call-back="submitForm"
+    />
+
+    <q-card
+      :class="fullscreen ? 'fullscreen scroll fit' : 'form-container'"
+      :square="fullscreen"
+      :flat="fullscreen"
+    >
+      <!-- Toolbar inside if fullscreen -->
+      <div
+        v-if="fullscreen"
+        class="bg-main z-1"
+        style="position: sticky; top: 0"
+      >
+        <form-toolbar-container
+          buttons
+          :title="title"
+          inside
+          @submit-call-back="submitForm"
         />
-        <mobile
-          v-else
-          :form-store="formStore"
-          :model="model"
-          :form-type="invoiceFormType.salesReturn"
-        />
-        <!-- <mobile :form-store="formStore" /> -->
-      </q-form>
-    </q-card-section>
-  </q-card>
+      </div>
+      <q-card-section
+        :class="fullscreen ? 'q-px-lg q-pb-lg q-pt-none' : ''"
+      >
+        <q-form ref="form" autofocus>
+          <desktop
+            :form-store="formStore"
+            :model="model"
+            :form-type="invoiceFormType.salesReturn"
+          />
+        </q-form>
+      </q-card-section>
+    </q-card>
+  </template>
+
+  <!-- Mobile View -->
+  <template v-else>
+    <form-toolbar-container
+      buttons
+      :title="title"
+      @submit-call-back="submitForm"
+    />
+    <q-form ref="form" autofocus>
+      <mobile
+        :form-store="formStore"
+        :model="model"
+        :form-type="invoiceFormType.salesReturn"
+      />
+    </q-form>
+  </template>
 </template>
 
 <script setup>
@@ -53,6 +96,15 @@
     model: model,
   });
   const form = ref(null);
+  const fullscreen = ref(true);
+
+  const toggleFullscreen = () => {
+    fullscreen.value = !fullscreen.value;
+  };
+
+  const submitForm = () => {
+    formStore.submitForm(form.value, props.action);
+  };
 
   onMounted(() => {
     formStore.getById(route.params.id, props.method);
