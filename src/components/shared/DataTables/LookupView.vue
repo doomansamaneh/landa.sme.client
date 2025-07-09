@@ -71,7 +71,7 @@
         :self="$q.screen.lt.sm ? 'top middle' : ''"
         no-focus
         no-refocus
-        :style="`min-width: ${menuWidth}`"
+        :style="`width: ${menuWidth}`"
       >
         <q-inner-loading
           :showing="tableStore.showLoader.value"
@@ -624,19 +624,7 @@
   function onBeforeShow() {
     if ($q.screen.gt.xs) {
       const inputWidth = search.value?.$el?.offsetWidth;
-
-      // Use nextTick to ensure menu is rendered
-      nextTick(() => {
-        const menu = document.querySelector(".q-menu");
-        if (menu) {
-          const contentWidth = menu.scrollWidth;
-          // Set width based on content vs input width
-          const finalWidth = Math.max(contentWidth, inputWidth);
-          menuWidth.value = `${finalWidth}px`;
-          menu.style.width = `${finalWidth}px`;
-        }
-      });
-
+      menuWidth.value = inputWidth ? `${inputWidth}px` : "200px";
       popup.value?.updatePosition();
     }
   }

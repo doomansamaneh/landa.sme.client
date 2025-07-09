@@ -104,10 +104,8 @@
 
           <div class="row q-mt-md">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <custom-input
+              <comment-input
                 v-model="model.summary"
-                type="textarea"
-                label="شرح"
               />
             </div>
           </div>
@@ -179,6 +177,7 @@
   import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CommentInput from "src/components/shared/forms/CommentInput.vue";
 
   const props = defineProps({
     formStore: useInvoiceModel,
