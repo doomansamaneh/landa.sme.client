@@ -104,7 +104,10 @@
 
           <div class="row q-mt-md">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <comment-lookup label="شرح" v-model="model.summary" />
+              <comment-lookup
+                label="شرح"
+                v-model:selectedText="model.summary"
+              />
             </div>
           </div>
         </div>

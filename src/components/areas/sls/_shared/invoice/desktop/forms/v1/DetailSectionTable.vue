@@ -177,7 +177,7 @@
           <td class="text-center"></td>
           <td colspan="3" style="width: 45%">
             <comment-lookup
-              v-model="row.comment"
+              v-model:selectedText="row.comment"
               placeholder="شرح ردیف"
               autogrow
               dense
