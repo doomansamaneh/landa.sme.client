@@ -213,7 +213,12 @@
         </div>
       </div>
       <q-card-section class="q-py-none q-px-sm">
-        <q-inner-loading :showing="tableStore.showLoader.value" />
+        <q-inner-loading
+          :showing="tableStore.showLoader.value"
+          class="inner-loader_ q-mt-xl"
+        >
+          <q-spinner size="52px" color="primary" />
+        </q-inner-loading>
         <div
           v-for="(row, index) in tableStore.rows.value"
           :key="row.id"

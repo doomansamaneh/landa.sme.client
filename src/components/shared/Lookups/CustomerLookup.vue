@@ -8,7 +8,6 @@
     columns="code,name"
     width="450px"
     show-add
-    clearable
     :create-form="CreateForm"
     @row-selected="loadDlBalance"
     :label="label"
