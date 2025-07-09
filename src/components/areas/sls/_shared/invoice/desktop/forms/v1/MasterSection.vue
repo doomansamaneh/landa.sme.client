@@ -106,6 +106,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <comment-lookup
                 label="شرح"
+                type="textarea"
                 v-model:selectedText="model.summary"
               />
             </div>
