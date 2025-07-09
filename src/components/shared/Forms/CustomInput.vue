@@ -5,6 +5,7 @@
     outlined
     dense
     clear-icon="clear"
+    color="primary"
     hide-bottom-space
     :disable="disable"
     :readonly="readonly"
@@ -26,7 +27,6 @@
       v-if="validationMessage"
       :message="validationMessage"
     />
-
     <template v-if="hasPrepend" #prepend>
       <slot name="prepend"></slot>
     </template>

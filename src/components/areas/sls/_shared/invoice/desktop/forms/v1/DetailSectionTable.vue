@@ -176,7 +176,7 @@
         >
           <td class="text-center"></td>
           <td colspan="3" style="width: 45%">
-            <comment-input
+            <comment-lookup
               v-model="row.comment"
               placeholder="شرح ردیف"
               autogrow
@@ -292,7 +292,7 @@
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import NoProductSelected from "../NoProductSelected.vue";
-  import CommentInput from "src/components/shared/forms/CommentInput.vue";
+  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
 
   const props = defineProps({
     formStore: useInvoiceModel,

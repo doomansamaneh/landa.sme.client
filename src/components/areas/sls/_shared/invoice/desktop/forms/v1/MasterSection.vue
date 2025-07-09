@@ -104,7 +104,7 @@
 
           <div class="row q-mt-md">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <comment-input label="شرح" v-model="model.summary" />
+              <comment-lookup label="شرح" v-model="model.summary" />
             </div>
           </div>
         </div>
@@ -175,7 +175,7 @@
   import InvoiceLookup from "src/components/shared/lookups/InvoiceLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
-  import CommentInput from "src/components/shared/forms/CommentInput.vue";
+  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
 
   const props = defineProps({
     formStore: useInvoiceModel,
