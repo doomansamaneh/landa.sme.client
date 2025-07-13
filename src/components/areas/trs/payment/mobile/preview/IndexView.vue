@@ -78,11 +78,13 @@
 
           <div class="col">
             <div class="flex items-center">
-              <div v-if="item?.bankAccountDisplay" class="text-body3">
+              <div v-if="item?.bankAccountDisplay">
                 {{ item.bankAccountDisplay }}
               </div>
+            </div>
 
-              <div class="flex items-center q-gutter-xs">
+            <div class="flex items-center">
+              <div>
                 {{
                   $t(
                     `shared.paymentMethod.${getItemType(item.typeId)}`
@@ -104,15 +106,16 @@
                 </span>
               </div>
 
-
               <div
                 v-if="
                   item.bankBranchDisplay &&
                   item.bankBranchDisplay !== ' / '
                 "
-                class="text-body3"
               >
-                شعبه: {{ item.bankBranchDisplay }}
+                شعبه:
+                <span>
+                  {{ item.bankBranchDisplay }}
+                </span>
               </div>
 
               <div
@@ -120,13 +123,14 @@
                   item.checkSpentDisplay &&
                   item.checkSpentDisplay !== ' / '
                 "
-                class="text-body3"
               >
-                چک: {{ item.checkSpentDisplay }}
+                چک:
+                <span>{{ item.checkSpentDisplay }}</span>
               </div>
 
-              <div v-if="item.fee > 0" class="text-body3">
-                کارمزد: {{ helper.formatNumber(item.fee) }} ریال
+              <div v-if="item.fee > 0">
+                کارمزد: {{ helper.formatNumber(item.fee) }}
+                <span class="text-body3">ریال</span>
               </div>
             </div>
 
