@@ -62,7 +62,7 @@
                   <contract-lookup
                     v-model:selectedId="model.contractId"
                     v-model:selectedText="model.contractTitle"
-                    label="قرارداد"
+                    :label="$t('shared.labels.contractTitle')"
                   />
                 </div>
 
@@ -70,7 +70,7 @@
                   <customer-lookup
                     v-model:selectedId="model.contactId"
                     v-model:selectedText="model.contactName"
-                    label="بازاریاب"
+                    :label="$t('shared.labels.marketerName')"
                   />
                 </div>
               </div>
@@ -80,7 +80,7 @@
                   <inventory-lookup
                     v-model:selectedId="model.inventoryId"
                     v-model:selectedText="model.inventoryTitle"
-                    label="انبار"
+                    :label="$t('shared.labels.inventoryTitle')"
                     required
                   />
                 </div>
@@ -95,7 +95,7 @@
                     "
                     v-model:selectedText="model.originalDocument.no"
                     :filter-expression="originalFilterExpression"
-                    label="سند مرجع"
+                    :label="$t('shared.labels.referenceDocument')"
                   />
                 </div>
               </div>
@@ -105,7 +105,7 @@
           <div class="row q-mt-md">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <comment-lookup
-                label="شرح"
+                :label="$t('shared.labels.comment')"
                 type="textarea"
                 v-model:selectedText="model.summary"
               />
@@ -123,7 +123,7 @@
         <div class="col-md-6 col-sm-12 col-xs-12">
           <custom-input
             v-model="model.no"
-            label="شماره فاکتور"
+            :label="$t('shared.labels.invoiceNumber')"
             type="number"
             :disable="!model.manualNo"
           >
@@ -140,19 +140,26 @@
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <custom-input v-model="model.docNo" label="ش رهگیری" />
+          <custom-input
+            v-model="model.docNo"
+            :label="$t('shared.labels.trackingNumber')"
+          />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
-          <date-time v-model="model.date" label="تاریخ" required />
+          <date-time
+            v-model="model.date"
+            :label="$t('shared.labels.date')"
+            required
+          />
         </div>
       </div>
       <div class="row justify-end q-mt-md">
         <div class="col-md-6 col-sm-12 col-xs-12">
           <date-time
             v-model="model.dueDate"
-            label="سررسید"
+            :label="$t('shared.labels.dueDate')"
             required
           />
         </div>
@@ -163,6 +170,7 @@
 
 <script setup>
   import { ref, computed, watch } from "vue";
+  import { useI18n } from "vue-i18n";
   import {
     sqlOperator,
     vatType,
@@ -180,6 +188,8 @@
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
+
+  const { t: $t } = useI18n();
 
   const props = defineProps({
     formStore: useInvoiceModel,
@@ -202,15 +212,15 @@
   const customerTitle = computed(() =>
     props.formType === invoiceFormType.sales ||
     props.formType === invoiceFormType.salesReturn
-      ? "مشتری"
-      : "فروشنده"
+      ? $t("shared.customerRole.customer")
+      : $t("shared.labels.seller")
   );
 
   const saleTypeTitle = computed(() =>
     props.formType === invoiceFormType.sales ||
     props.formType === invoiceFormType.salesReturn
-      ? "نوع فروش"
-      : "نوع خرید"
+      ? $t("shared.labels.saleType")
+      : $t("shared.labels.purchaseType")
   );
 
   // const showOriginalDoc = computed(

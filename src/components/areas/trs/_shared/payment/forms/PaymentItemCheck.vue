@@ -3,13 +3,16 @@
     <div class="col-md-3 col-sm-12 col-xs-12">
       <custom-input-number
         v-model="paymentItem.amount"
-        label="مبلغ"
+        :label="$t('shared.labels.amount')"
         required
       />
     </div>
 
     <div class="col-md-2 col-sm-12 col-xs-12">
-      <custom-input-number v-model="paymentItem.fee" label="کارمزد" />
+      <custom-input-number
+        v-model="paymentItem.fee"
+        :label="$t('shared.labels.fee')"
+      />
     </div>
   </div>
 
@@ -18,7 +21,7 @@
       <bank-account-lookup
         v-model:selectedId="paymentItem.bankAccountId"
         v-model:selectedText="paymentItem.bankAccountDisplay"
-        label="حساب بانکی"
+        :label="$t('shared.labels.bankAccountTypeTitle')"
       />
     </div>
   </div>
@@ -27,7 +30,7 @@
     <div class="col-md-3 col-sm-12 col-xs-12">
       <custom-input
         v-model="paymentItem.itemNo"
-        label="ش چک"
+        :label="$t('shared.labels.checkNumber')"
         required
       />
     </div>
@@ -35,7 +38,7 @@
     <div class="col-md-3 col-sm-12 col-xs-12">
       <date-time-picker
         v-model="paymentItem.itemDate"
-        label="تاریخ چک"
+        :label="$t('shared.labels.itemDate')"
         required
       />
     </div>
@@ -45,14 +48,17 @@
     <div class="col-md-6 col-sm-12 col-xs-12">
       <custom-input
         v-model="paymentItem.accountNo"
-        label="شماره حساب"
+        :label="$t('shared.labels.accountNumber')"
       />
     </div>
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <custom-input v-model="paymentItem.sayad" label="شماره صیاد" />
+      <custom-input
+        v-model="paymentItem.sayad"
+        :label="$t('shared.labels.sayadNumber')"
+      />
     </div>
   </div>
 
@@ -61,7 +67,7 @@
       <bank-branch-lookup
         v-model:selectedId="paymentItem.bankBranchId"
         v-model:selectedText="paymentItem.bankTitle"
-        label="شعبه بانک"
+        :label="$t('shared.labels.bankBranch')"
         rquired
       />
     </div>
@@ -72,7 +78,7 @@
       <custom-input
         v-model="paymentItem.comment"
         type="textarea"
-        label="شرح"
+        :label="$t('shared.labels.comment')"
       />
     </div>
   </div>

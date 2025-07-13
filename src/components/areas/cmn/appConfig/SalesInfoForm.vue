@@ -1,12 +1,12 @@
 <template>
   <custom-input
-    label="عنوان فاکتور در چاپ"
+    :label="$t('shared.labels.invoiceTitleInPrint')"
     v-model="configStore.model.value.companySetting.invoiceTitle"
   />
 
   <div class="q-mt-lg">
     <custom-select
-      label="الگوی چاپ فاکتور، پیش‌فاکتور"
+      :label="$t('shared.labels.invoicePrintTemplate')"
       :options="
         helper.getEnumOptions(
           invoicePreviewTemplate,
@@ -19,7 +19,7 @@
 
   <div class="q-mt-lg">
     <custom-select
-      label="روش محاسبه بهای تمام شده"
+      :label="$t('shared.labels.cogsCalculationMethod')"
       :options="
         helper.getEnumOptions(cogsCalcMethod, 'cogsCalcMethod')
       "
@@ -55,7 +55,7 @@
         dense
         class="text-body2"
         size="46px"
-        label="امکان تعیین مبلغ مالیات بر ارزش افزوده در ثبت فاکتور فروش"
+        :label="$t('shared.labels.allowVatAmountInSalesInvoice')"
         v-model="
           configStore.model.value.companySetting.invoiceVatAmount
         "
@@ -64,7 +64,7 @@
         dense
         class="text-body2"
         size="46px"
-        label="ستون تخفیف را در هنگام چاپ نشان نده"
+        :label="$t('shared.labels.hideDiscountColumnInPrint')"
         v-model="
           configStore.model.value.companySetting.hideDiscountInInvoice
         "
@@ -73,7 +73,7 @@
         dense
         class="text-body2"
         size="46px"
-        label="مانده فاکتورهای مشتری را در چاپ فاکتور نشان بده"
+        :label="$t('shared.labels.showCustomerBalanceInInvoice')"
         v-model="
           configStore.model.value.companySetting.showRemainedInInvoice
         "
@@ -82,14 +82,14 @@
         dense
         class="text-body2"
         size="46px"
-        label="فیلد قرارداد را در فرمهای فروش و سند نشان بده"
+        :label="$t('shared.labels.showContractInSalesForms')"
         v-model="configStore.model.value.companySetting.showContract"
       />
       <q-checkbox
         dense
         class="text-body2"
         size="46px"
-        label="این کسب و کار دارای چندین انبار است"
+        :label="$t('shared.labels.multiWarehouseBusiness')"
         v-model="
           configStore.model.value.companySetting.multiWarehouse
         "
@@ -98,7 +98,7 @@
         dense
         class="text-body2"
         size="46px"
-        label="از فروش کالاهای با موجودی منفی جلوگیری کن"
+        :label="$t('shared.labels.preventNegativeStockSales')"
         v-model="
           configStore.model.value.companySetting.preventNegativeSales
         "
@@ -107,13 +107,13 @@
         dense
         class="text-body2"
         size="46px"
-        label="بازاریاب را در فرمهای فروش نشان بده"
+        :label="$t('shared.labels.showMarketerInSalesForms')"
         v-model="configStore.model.value.companySetting.showMarketer"
       />
 
       <div>
         <custom-input
-          label="درصد بازاریابی"
+          :label="$t('shared.labels.marketingPercentage')"
           type="number"
           v-model="
             configStore.model.value.companySetting.marketingPercent
@@ -125,7 +125,7 @@
 
   <div class="q-mt-lg">
     <custom-input
-      label="شرح فاکتور"
+      :label="$t('shared.labels.invoiceDescription')"
       type="textarea"
       v-model="configStore.model.value.companySetting.invoiceComment"
     />
@@ -133,7 +133,7 @@
 
   <div class="q-mt-lg">
     <custom-input
-      label="شرح پیش فاکتور"
+      :label="$t('shared.labels.quoteDescription')"
       type="textarea"
       v-model="configStore.model.value.companySetting.quoteComment"
     />

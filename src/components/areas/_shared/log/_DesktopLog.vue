@@ -12,7 +12,7 @@
             <q-editor
               class="border-radius-sm"
               v-model="noteModel.comment"
-              placeholder="در اینجا می‌توانید یادداشت بگذارید..."
+              :placeholder="$t('shared.labels.addNotePlaceholder')"
             />
             <q-btn
               no-caps
@@ -22,7 +22,7 @@
               class="primary-gradient text-white q-mt-md"
             >
               <q-icon name="o_comment" size="xs" class="q-mr-sm" />
-              <span>ذخیره</span>
+              <span>{{ $t("shared.labels.save") }}</span>
             </q-btn>
           </div>
         </div>
@@ -35,7 +35,7 @@
       >
         <div>
           <q-icon name="o_history" size="sm" class="icon q-pr-sm" />
-          تاریخچه
+          {{ $t("shared.labels.history") }}
         </div>
         <q-btn
           no-caps
@@ -122,7 +122,7 @@
                       size="xs"
                       class="q-mr-sm"
                     />
-                    <span>ذخیره</span>
+                    <span>{{ $t("shared.labels.save") }}</span>
                   </q-btn>
                   <q-btn
                     no-caps
@@ -136,7 +136,7 @@
                       size="xs"
                       class="q-mr-xs"
                     />
-                    <span>انصراف</span>
+                    <span>{{ $t("shared.labels.cancel") }}</span>
                   </q-btn>
                 </div>
               </div>
@@ -153,7 +153,7 @@
                   class="text-on-dark"
                 >
                   <q-icon name="o_edit" size="xs" class="q-mr-sm" />
-                  <span>ویرایش</span>
+                  <span>{{ $t("shared.labels.edit") }}</span>
                 </q-btn>
                 <q-btn
                   no-caps
@@ -163,14 +163,15 @@
                   class="text-on-dark"
                 >
                   <q-icon name="o_delete" size="xs" class="q-mr-sm" />
-                  <span>حذف</span>
+                  <span>{{ $t("shared.labels.delete") }}</span>
                 </q-btn>
               </div>
             </q-card-section>
 
             <q-card-section v-if="parseInfo(item)?.receiverEmail">
               <span class="q-pr-xs">
-                ارسال ایمیل به: {{ parseInfo(item).receiverEmail }} -
+                {{ $t("shared.labels.sendEmailTo") }}
+                {{ parseInfo(item).receiverEmail }} -
               </span>
               <span>{{ parseInfo(item).subject }}</span>
             </q-card-section>
@@ -184,6 +185,7 @@
 <script setup>
   import { ref } from "vue";
   import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
   import { logType } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
   import { helper } from "src/helpers";
@@ -200,6 +202,7 @@
   });
 
   const $q = useQuasar();
+  const { t: $t } = useI18n();
   const addNoteForm = ref(null);
   const editItemId = ref(null);
 
@@ -259,20 +262,25 @@
 
     if (secondsAgo < 60)
       return secondsAgo <= 5
-        ? "چند لحظه پیش"
-        : `${secondsAgo} ثانیه پیش`;
+        ? $t("shared.labels.momentAgo")
+        : `${secondsAgo} ${$t("shared.labels.secondsAgo")}`;
     const minutes = Math.floor(secondsAgo / 60);
-    if (minutes < 60) return `${minutes} دقیقه پیش`;
+    if (minutes < 60)
+      return `${minutes} ${$t("shared.labels.minutesAgo")}`;
     const hours = Math.floor(minutes / 60);
-    if (hours < 24) return `${hours} ساعت پیش`;
+    if (hours < 24) return `${hours} ${$t("shared.labels.hoursAgo")}`;
     const days = Math.floor(hours / 24);
-    if (days < 7) return days === 1 ? "دیروز" : `${days} روز پیش`;
+    if (days < 7)
+      return days === 1
+        ? $t("shared.labels.yesterday")
+        : `${days} ${$t("shared.labels.daysAgo")}`;
     const weeks = Math.floor(days / 7);
-    if (weeks < 4) return `${weeks} هفته پیش`;
+    if (weeks < 4) return `${weeks} ${$t("shared.labels.weeksAgo")}`;
     const months = Math.floor(days / 30);
-    if (months < 12) return `${months} ماه پیش`;
+    if (months < 12)
+      return `${months} ${$t("shared.labels.monthsAgo")}`;
     const years = Math.floor(days / 365);
-    return `${years} سال پیش`;
+    return `${years} ${$t("shared.labels.yearsAgo")}`;
   };
 
   const parseUser = (item) => {

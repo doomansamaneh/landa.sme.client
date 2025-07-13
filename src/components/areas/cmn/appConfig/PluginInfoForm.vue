@@ -6,14 +6,14 @@
         v-model:selectedText="
           configStore.model.value.defaultCustomerName
         "
-        label="مشتری پیش‌فرض"
+        :label="$t('shared.labels.defaultCustomer')"
       />
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
       <vat-lookup
         v-model:selectedId="configStore.model.value.defaultVatId"
         v-model:selectedText="configStore.model.value.defaultVatTitle"
-        label="نوع ارزش افزوده"
+        :label="$t('shared.labels.defaultVatType')"
       />
     </div>
 
@@ -23,7 +23,7 @@
         v-model:selectedText="
           configStore.model.value.defaultSaleTypeTitle
         "
-        label="نوع فروش"
+        :label="$t('shared.labels.defaultSaleType')"
         :filter-expression="saleTypeFilter"
       />
     </div>
@@ -35,7 +35,7 @@
         v-model:selectedText="
           configStore.model.value.defaultPurchaseTypeTitle
         "
-        label="نوع خرید"
+        :label="$t('shared.labels.defaultPurchaseType')"
         :filter-expression="purchaseTypeFilter"
       />
     </div>
@@ -48,7 +48,7 @@
         v-model:selectedText="
           configStore.model.value.defaultBankAccountTitle
         "
-        label="حساب بانکی پیش‌فرض"
+        :label="$t('shared.labels.defaultBankAccount')"
       />
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -57,14 +57,14 @@
         v-model:selectedText="
           configStore.model.value.defaultCurrencyTitle
         "
-        label="ارز پیش‌فرض"
+        :label="$t('shared.labels.defaultCurrency')"
       />
     </div>
 
     <div class="col-md-6 col-sm-6 col-xs-12">
       <custom-select
         v-model="configStore.model.value.duration"
-        label="مدت اعتبار"
+        :label="$t('shared.labels.validityPeriod')"
         :options="durationOptions"
       />
     </div>
@@ -72,7 +72,7 @@
     <div class="col-md-12">
       <custom-input
         v-model="configStore.model.value.audience"
-        label="نشانی سایت ووکامرس"
+        :label="$t('shared.labels.woocommerceSiteAddress')"
       />
     </div>
 
@@ -82,7 +82,7 @@
         dense
         size="46px"
         v-model="configStore.model.value.enableSsl"
-        label="ssl فعال باشد"
+        :label="$t('shared.labels.enableSsl')"
       />
     </div>
 
@@ -92,7 +92,7 @@
         dense
         size="46px"
         v-model="configStore.model.value.updateStock"
-        label="موجودی کالا در ووکامرس از لاندا بروز شود"
+        :label="$t('shared.labels.updateStockInWooCommerce')"
       />
     </div>
 
@@ -102,7 +102,7 @@
         dense
         size="46px"
         v-model="configStore.model.value.isActive"
-        label="فعال؟"
+        :label="$t('shared.labels.isActive')"
       />
     </div>
 
@@ -112,7 +112,7 @@
           <q-btn
             no-caps
             unelevated
-            label="تولید توکن"
+            :label="$t('shared.labels.generateToken')"
             color="primary"
             class="q-mt-md"
             @click="configStore.generateToken()"
@@ -123,7 +123,7 @@
             readonly
             disable
             v-model="configStore.model.value.token"
-            label="Token"
+            :label="$t('shared.labels.token')"
             type="textarea"
           />
         </div>

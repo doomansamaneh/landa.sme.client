@@ -145,11 +145,10 @@
   });
 
   const combinedStyle = computed(() => {
-    const position = $q.lang.rtl ? "left: 0" : "right: 0";
+    const position = $q.lang.rtl ? "right: 0" : "left: 0";
     if (props.inside) {
       return `background: transparent; transform: 0px; z-index: 0; position: relative; ${position}`;
     }
-    return position;
   });
 
   const showToolbar = computed(() => {

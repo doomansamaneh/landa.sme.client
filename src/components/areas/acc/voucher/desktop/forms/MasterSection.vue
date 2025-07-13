@@ -3,7 +3,7 @@
     <div class="col-md-2 col-sm-4 col-xs-12">
       <custom-input
         v-model="localFormStore.model.value.no"
-        label="شماره"
+         :label="$t('shared.labels.no')"
         readonly
         disable
       />
@@ -11,7 +11,7 @@
     <div class="col-md-3 col-sm-4 col-xs-12">
       <date-time
         v-model="localFormStore.model.value.date"
-        label="تاریخ"
+         :label="$t('shared.labels.date')"
         required
       />
     </div>
@@ -24,17 +24,17 @@
         v-model:selectedText="
           localFormStore.model.value.contractTitle
         "
-        label="قرارداد"
+         :label="$t('shared.labels.contractTitle')"
       />
     </div>
   </div>
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <custom-input
-        v-model="localFormStore.model.value.subject"
+      <comment-lookup
+        v-model:selectedText="localFormStore.model.value.subject"
         type="textarea"
-        label="شرح"
+        :label="$t('shared.labels.comment')"
         required
       />
     </div>
@@ -47,6 +47,7 @@
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
 
   const props = defineProps({
     formStore: Object,

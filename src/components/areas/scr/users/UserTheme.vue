@@ -1,10 +1,12 @@
 <template>
   <div class="text-body1 q-mb-lg">
-    زبان مورد نظر خود را انتخاب کنید
+    {{ $t("shared.labels.selectPreferredLanguage") }}
   </div>
   <lang-switcher />
 
-  <div class="text-body1 q-mb-lg">یک رنگ برای تم خود انتخاب کنید</div>
+  <div class="text-body1 q-mb-lg">
+    {{ $t("shared.labels.selectThemeColor") }}
+  </div>
   <theme-selector />
 </template>
 

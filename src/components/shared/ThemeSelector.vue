@@ -66,33 +66,35 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
   import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
 
   const $q = useQuasar();
+  const { t } = useI18n();
 
-  const themes = {
+  const themes = computed(() => ({
     blue: {
       primary: "#007acc",
-      name: "آبی لاندا",
+      name: t("shared.labels.themeBlue"),
     },
     green: {
       primary: "#00b200",
-      name: "سبز سیدی",
+      name: t("shared.labels.themeGreen"),
     },
     orange: {
       primary: "#ff6600",
-      name: "نارنجی تابستانی",
+      name: t("shared.labels.themeOrange"),
     },
     purple: {
       primary: "#c729df",
-      name: "بنفش ساسانی",
+      name: t("shared.labels.themePurple"),
     },
     red: {
       primary: "#dc143c",
-      name: "رز آمریکایی",
+      name: t("shared.labels.themeRed"),
     },
-  };
+  }));
 
   const selectedTheme = ref(localStorage.getItem("selectedTheme"));
 
@@ -114,7 +116,7 @@
   };
 
   const getPrimaryColor = (themeName) => {
-    return themes[themeName].primary;
+    return themes.value[themeName].primary;
   };
 
   const getClass = (themeName) => {
