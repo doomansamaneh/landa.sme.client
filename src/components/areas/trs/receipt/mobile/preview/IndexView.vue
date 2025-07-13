@@ -104,17 +104,13 @@
                 </span>
               </div>
 
-              <div class="text-right text-weight-500">
-                {{ helper.formatNumber(item.amount) }}
-                <span class="text-weight-300 text-body3">ریال</span>
-              </div>
 
               <div
                 v-if="
                   item.bankBranchDisplay &&
                   item.bankBranchDisplay !== ' / '
                 "
-                class="text-body3 q-mb-xs"
+                class="text-body3"
               >
                 شعبه: {{ item.bankBranchDisplay }}
               </div>
@@ -124,12 +120,12 @@
                   item.checkSpentDisplay &&
                   item.checkSpentDisplay !== ' / '
                 "
-                class="text-body3 q-mb-xs"
+                class="text-body3"
               >
                 چک: {{ item.checkSpentDisplay }}
               </div>
 
-              <div v-if="item.fee > 0" class="text-body3 q-mb-xs">
+              <div v-if="item.fee > 0" class="text-body3">
                 کارمزد: {{ helper.formatNumber(item.fee) }} ریال
               </div>
             </div>
