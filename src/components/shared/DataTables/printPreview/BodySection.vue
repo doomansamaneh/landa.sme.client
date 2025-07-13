@@ -9,7 +9,7 @@
             :key="col.name"
           >
             <th v-if="col.field">
-              {{ col.label }}
+              {{ $t(`shared.columns.${col.label}`) }}
             </th>
           </template>
         </tr>

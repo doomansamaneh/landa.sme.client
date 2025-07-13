@@ -23,7 +23,7 @@
         @click="handlePopup"
         ref="addBtnRef"
       >
-        <q-icon size="16px" name="o_add" />
+        <q-icon size="16px" name="o_message" />
       </q-btn>
     </template>
     <template #prepend v-if="tableStore.inputInnerLoader.value">

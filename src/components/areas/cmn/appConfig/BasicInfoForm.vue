@@ -1,33 +1,33 @@
 <template>
   <custom-input
-    label="نام"
+    :label="$t('shared.labels.name')"
     v-model="configStore.model.value.companySetting.name"
   />
 
   <div class="q-mt-lg">
     <custom-input
-      label="نام مسئول یا مدیر"
+      :label="$t('shared.labels.managerName')"
       v-model="configStore.model.value.companySetting.managerName"
     />
   </div>
 
   <div class="q-mt-lg">
     <custom-input
-      label="موضوع"
+      :label="$t('shared.labels.subject')"
       v-model="configStore.model.value.companySetting.subject"
     />
   </div>
 
   <div class="q-mt-lg">
     <custom-input
-      label="شماره ثبت"
+      :label="$t('shared.labels.registrationNumber')"
       v-model="configStore.model.value.companySetting.regNo"
     />
   </div>
 
   <div class="q-mt-lg">
     <location-lookup
-      label="محل ثبت"
+      :label="$t('shared.labels.registrationLocation')"
       v-model:selectedId="
         configStore.model.value.companySetting.countryId
       "
@@ -39,7 +39,7 @@
 
   <div class="q-mt-lg">
     <currency-lookup
-      label="ارز"
+      :label="$t('shared.labels.currencyTitle')"
       v-model:selectedId="
         configStore.model.value.companySetting.defaultCurrencyId
       "
@@ -53,7 +53,7 @@
       class="text-body2"
       dense
       size="46px"
-      label="ش پیگیری را در چاپ سند حسابداری نشان بده"
+      :label="$t('shared.labels.showTrackingNumberInVoucher')"
       v-model="
         configStore.model.value.companySetting.showDocNoInVoucher
       "

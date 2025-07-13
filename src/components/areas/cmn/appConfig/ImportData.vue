@@ -17,8 +17,10 @@
 
 <script setup>
   import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
 
   import ImportFile from "./_ImportFile.vue";
+  const { t: $t } = useI18n();
   const props = defineProps({
     inside: Boolean,
   });
@@ -27,31 +29,31 @@
 
   const importList = [
     {
-      title: "مخاطب، شخص",
+      title: $t("shared.labels.contactPerson"),
       importAction: "importCustomer",
       fileTemplate: "customerTemplate.xlsx",
       permission: "crm.customer.create",
     },
     {
-      title: "کالا، خدمت",
+      title: $t("shared.labels.productService"),
       importAction: "importProduct",
       fileTemplate: "productTemplate.xlsx",
       permission: "cmn.product.create",
     },
     {
-      title: "اسناد حسابداری",
+      title: $t("shared.labels.accountingDocuments"),
       importAction: "importVoucher",
       fileTemplate: "voucherTemplate.xlsx",
       permission: "acc.voucher.create",
     },
     {
-      title: "فاکتورهای فروش",
+      title: $t("shared.labels.salesInvoices"),
       importAction: "importInvoice",
       fileTemplate: "invoiceTemplate.xlsx",
       permission: "sls.invoice.create",
     },
     {
-      title: "فاکتورهای خرید",
+      title: $t("shared.labels.purchaseInvoices"),
       importAction: "importPurchase",
       fileTemplate: "purchaseTemplate.xlsx",
       permission: "sls.purchase.create",

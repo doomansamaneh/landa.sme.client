@@ -3,7 +3,7 @@
     <div class="col-md col-sm col-xs-12">
       <div>
         <custom-input
-          label="کد کارگاه"
+          :label="$t('shared.labels.workshopCode')"
           v-model="configStore.model.value.companySetting.insuranceNo"
         />
       </div>
@@ -11,7 +11,7 @@
     <div class="col-md col-sm col-xs-12">
       <div>
         <custom-input
-          label="شعبه تامین اجتماعی"
+          :label="$t('shared.labels.socialSecurityBranch')"
           v-model="
             configStore.model.value.companySetting.insuranceBranchName
           "
@@ -23,7 +23,7 @@
   <div class="q-mt-lg">
     <div>
       <custom-input
-        label="شرح"
+        :label="$t('shared.labels.comment')"
         type="textarea"
         v-model="
           configStore.model.value.companySetting.insuranceComment
@@ -37,20 +37,24 @@
       <tr>
         <th class="text-left" style="width: 40%">
           <span class="text-body1 text-bold">
-            اقلام حقوق و دستمزد
+            {{ $t("shared.labels.salaryAndWageItems") }}
           </span>
         </th>
         <th class="text-left" style="width: 30%">
-          <span class="text-body1 text-bold">مشمول مالیات</span>
+          <span class="text-body1 text-bold">
+            {{ $t("shared.labels.taxable") }}
+          </span>
         </th>
         <th class="text-left" style="width: 30%">
-          <span class="text-body1 text-bold">مشمول بیمه</span>
+          <span class="text-body1 text-bold">
+            {{ $t("shared.labels.insurable") }}
+          </span>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="text-left">حق مسکن</td>
+        <td class="text-left">{{ $t("shared.columns.housing") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -69,7 +73,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">بن</td>
+        <td class="text-left">{{ $t("shared.columns.food") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -88,7 +92,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">حق تاهل</td>
+        <td class="text-left">{{ $t("shared.columns.spouse") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -107,7 +111,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">حق اولاد</td>
+        <td class="text-left">{{ $t("shared.columns.child") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -126,7 +130,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">ماموریت</td>
+        <td class="text-left">{{ $t("shared.columns.mission") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -145,7 +149,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">اضافه کار</td>
+        <td class="text-left">{{ $t("shared.columns.overtime") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -164,7 +168,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">سایر مزایا</td>
+        <td class="text-left">{{ $t("shared.columns.addition") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -183,7 +187,9 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">باز خرید مرخصی</td>
+        <td class="text-left">
+          {{ $t("shared.labels.leaveBuyback") }}
+        </td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -202,7 +208,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">پاداش بهره‌وری</td>
+        <td class="text-left">{{ $t("shared.columns.reward") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -221,7 +227,7 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">عیدی و پاداش</td>
+        <td class="text-left">{{ $t("shared.columns.bonus") }}</td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -240,7 +246,9 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">بازخرید سنوات</td>
+        <td class="text-left">
+          {{ $t("shared.labels.serviceBenefitBuyback") }}
+        </td>
         <td class="text-left">
           <q-checkbox
             v-model="
@@ -260,7 +268,7 @@
       </tr>
       <tr>
         <td class="text-left">
-          ضریب معافیت حق بیمه (از بیمه بیکاری)
+          {{ $t("shared.labels.insuranceExemptionCoefficient") }}
         </td>
         <td class="text-left">
           <custom-input
@@ -274,7 +282,9 @@
         <td class="text-left"></td>
       </tr>
       <tr>
-        <td class="text-left">درصد حق بیمه</td>
+        <td class="text-left">
+          {{ $t("shared.labels.insurancePercentage") }}
+        </td>
         <td class="text-left"></td>
         <td class="text-left">
           <custom-input
@@ -287,7 +297,9 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">بیمه سهم کارفرما</td>
+        <td class="text-left">
+          {{ $t("shared.labels.employerInsuranceShare") }}
+        </td>
         <td class="text-left"></td>
         <td class="text-left">
           <custom-input
@@ -300,7 +312,9 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">بیمه سهم کارگر</td>
+        <td class="text-left">
+          {{ $t("shared.labels.employeeInsuranceShare") }}
+        </td>
         <td class="text-left"></td>
         <td class="text-left">
           <custom-input
@@ -313,7 +327,9 @@
         </td>
       </tr>
       <tr>
-        <td class="text-left">بیمه بیکاری</td>
+        <td class="text-left">
+          {{ $t("shared.labels.unemploymentInsurance") }}
+        </td>
         <td class="text-left"></td>
         <td class="text-left">
           <custom-input

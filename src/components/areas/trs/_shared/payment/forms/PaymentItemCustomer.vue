@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-12 col-xs-12">
       <custom-input-number
         v-model="paymentItem.amount"
-        label="مبلغ"
+        :label="$t('shared.labels.amount')"
         requird
       />
     </div>
@@ -11,7 +11,7 @@
     <div class="col-md-2 col-sm-12 col-xs-12">
       <custom-input-number
         v-model="paymentItem.fee"
-        label="کارمزد"
+        :label="$t('shared.labels.fee')"
         required
       />
     </div>
@@ -22,7 +22,7 @@
       <sl-lookup
         v-model:selectedId="paymentItem.slId"
         v-model:selectedText="paymentItem.slTitle"
-        label="حساب معین"
+        :label="$t('shared.labels.subLedgerAccount')"
         required
       />
     </div>
@@ -33,7 +33,7 @@
       <customer-lookup
         v-model:selectedId="paymentItem.customerId"
         v-model:selectedText="paymentItem.customerName"
-        label="طرف حساب، مخاطب"
+        :label="$t('shared.labels.customerContact')"
         required
       />
     </div>
@@ -44,7 +44,7 @@
       <custom-input
         v-model="paymentItem.comment"
         type="textarea"
-        label="شرح"
+        :label="$t('shared.labels.comment')"
       />
     </div>
   </div>

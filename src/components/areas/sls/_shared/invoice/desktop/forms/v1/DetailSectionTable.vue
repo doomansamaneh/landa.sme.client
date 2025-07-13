@@ -8,14 +8,24 @@
     <thead>
       <tr>
         <th style="width: 1%">#</th>
-        <th style="width: 28%">کالا/خدمت</th>
-        <th style="width: 7%">تعداد/مقدار</th>
-        <th style="width: 10%">واحد سنجش</th>
-        <th style="width: 10%">مبلغ واحد</th>
-        <th style="width: 15%">ارزش افزوده</th>
-        <th style="width: 10%">مبلغ مالیات</th>
+        <th style="width: 28%">
+          {{ $t("shared.columns.productTitle") }}
+        </th>
+        <th style="width: 7%">{{ $t("shared.columns.quantity") }}</th>
+        <th style="width: 10%">
+          {{ $t("shared.columns.productUnitTitle") }}
+        </th>
+        <th style="width: 10%">
+          {{ $t("shared.columns.unitPrice") }}
+        </th>
         <th style="width: 15%">
-          مبلغ کل
+          {{ $t("shared.columns.vatAmount") }}
+        </th>
+        <th style="width: 10%">
+          {{ $t("shared.columns.taxAmount") }}
+        </th>
+        <th style="width: 15%">
+          {{ $t("shared.columns.totalPrice") }}
           <q-icon
             name="o_info"
             size="xs"
@@ -30,8 +40,7 @@
               :offset="[50, 10]"
             >
               <span class="text-body2">
-                مبلغ کل = (تعداد * مبلغ) - مالیات بر ارزش + تخفیف +
-                افزوده
+                {{ $t("shared.labels.totalAmountFormula") }}
               </span>
             </q-tooltip>
           </q-icon>
@@ -55,7 +64,7 @@
               autogrow
               no-error-icon
               :autofocus="index === formStore.newAddedItemIndex.value"
-              placeholder="انتخاب کالا/خدمت"
+              :placeholder="$t('shared.labels.selectProduct')"
               v-model:selectedId="row.productId"
               v-model:selectedText="row.productDisplay"
               :filterExpression="productFilter"
@@ -67,14 +76,14 @@
             <custom-input-number
               no-error-icon
               v-model="row.quantity"
-              placeholder="مقدار"
+              :placeholder="$t('shared.labels.amount')"
               required
             />
           </td>
           <td>
             <product-unit-lookup
               no-error-icon
-              placeholder="واحد سنجش"
+              :placeholder="$t('shared.labels.productUnitTitle')"
               v-model:selectedId="row.productUnitId"
               v-model:selectedText="row.productUnitTitle"
               required
@@ -83,14 +92,14 @@
           <td>
             <custom-input-number
               v-model="row.price"
-              placeholder="مبلغ واحد"
+              :placeholder="$t('shared.labels.unit-price')"
               required
             />
           </td>
           <td>
             <vat-lookup
               input-class="text-body3 no-letter-spacing"
-              placeholder="ارزش افزوده"
+              :placeholder="$t('shared.labels.vat')"
               v-model:selectedId="row.vatId"
               v-model:selectedText="row.vatTitle"
               :filterExpression="vatFilter"
@@ -103,7 +112,7 @@
             <custom-input-number
               input-class="text-body2 no-letter-spacing"
               v-model="row.vatAmount"
-              placeholder="مبلغ مالیات"
+              :placeholder="$t('shared.labels.taxAmount')"
             />
           </td>
           <td>
@@ -178,7 +187,7 @@
           <td colspan="3" style="width: 45%">
             <comment-lookup
               v-model:selectedText="row.comment"
-              placeholder="شرح ردیف"
+              :placeholder="$t('shared.labels.rowDescription')"
               autogrow
               dense
             />
@@ -186,7 +195,7 @@
           <td colspan="2" style="width: 25%">
             <custom-input
               v-model="row.discountComment"
-              placeholder="شرح تخفیف"
+              :placeholder="$t('shared.labels.discountDescription')"
               type="textarea"
               autogrow
               dense
@@ -198,8 +207,8 @@
                 v-model="row.discountValue"
                 :placeholder="
                   formStore.getDiscountType(index)
-                    ? 'درصد تخفیف'
-                    : 'مبلغ تخفیف'
+                    ? $t('shared.labels.discountPercent')
+                    : $t('shared.labels.discountAmount')
                 "
                 :model-value="row.discountValue || null"
                 dense
@@ -246,7 +255,7 @@
             @click="formStore.pushNewRow()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
+            {{ $t("shared.labels.addRow") }}
           </q-btn>
         </td>
       </tr>
@@ -264,7 +273,7 @@
     @click="formStore.pushNewRow()"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    افزودن ردیف
+    {{ $t("shared.labels.addRow") }}
   </q-btn>
 
   <footer-section

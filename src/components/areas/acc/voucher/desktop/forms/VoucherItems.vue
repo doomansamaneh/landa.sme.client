@@ -12,11 +12,19 @@
       <thead>
         <tr>
           <th style="width: 1px">#</th>
-          <th style="width: 25%">حساب معین</th>
-          <th style="width: 23%">تفصیلی</th>
-          <th style="width: 25%">شرح</th>
-          <th style="width: 10%">بدهکار</th>
-          <th style="width: 10%">بستانکار</th>
+          <th style="width: 25%">
+            {{ $t("shared.columns.slTitle") }}
+          </th>
+          <th style="width: 23%">
+            {{ $t("shared.columns.dlTitle") }}
+          </th>
+          <th style="width: 25%">
+            {{ $t("shared.labels.comment") }}
+          </th>
+          <th style="width: 10%">{{ $t("shared.columns.debit") }}</th>
+          <th style="width: 10%">
+            {{ $t("shared.columns.credit") }}
+          </th>
           <th></th>
         </tr>
       </thead>
@@ -32,7 +40,7 @@
               v-model:selectedId="row.slId"
               v-model:selectedText="row.slDisplay"
               :autofocus="index === formStore.newAddedItemIndex.value"
-              placeholder="حساب معین"
+              :placeholder="$t('shared.columns.slTitle')"
               required
               clearable
               @rowSelected="slChanged($event, row, index)"
@@ -43,29 +51,28 @@
               ref="dl"
               v-model:selectedId="row.dlId"
               v-model:selectedText="row.dlDisplay"
-              placeholder="تفصیلی"
+              :placeholder="$t('shared.columns.dlTitle')"
             />
             <!-- :filter-expression="getDlFilters(row)" -->
           </td>
           <td>
-            <custom-input
-              v-model="row.comment"
+            <comment-lookup
+              v-model:selectedText="row.comment"
               autogrow
-              placeholder="شرح"
               required
             />
           </td>
           <td>
             <custom-input-number
               v-model="row.debit"
-              placeholder="بدهکار"
+              :placeholder="$t('shared.columns.debit')"
               required
             />
           </td>
           <td>
             <custom-input-number
               v-model="row.credit"
-              placeholder="بستانکار"
+              :placeholder="$t('shared.columns.credit')"
               required
             />
           </td>
@@ -127,7 +134,7 @@
       >
         <tr class="grid-total">
           <td colspan="4" class="text-right">
-            <strong>سرجمع:</strong>
+            <strong>{{ $t("shared.labels.subTotal") }}:</strong>
           </td>
           <td>
             <b>
@@ -156,7 +163,7 @@
       @click="formStore.pushNewRow()"
     >
       <q-icon size="20px" name="o_add" class="q-mr-xs" />
-      <div class="">افزودن ردیف</div>
+      <div class="">{{ $t("shared.labels.addRow") }}</div>
     </q-btn>
   </template>
 </template>
@@ -172,6 +179,7 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import MobileVoucherItems from "../../mobile/forms/VoucherItems.vue";
+  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
 
   const props = defineProps({
     formStore: Object,

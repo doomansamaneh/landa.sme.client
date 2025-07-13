@@ -4,7 +4,7 @@
       <check-lookup
         v-model:selectedId="paymentItem.checkId"
         v-model:selectedText="paymentItem.checkSpentDisplay"
-        label="چک"
+        :label="$t('shared.labels.check')"
         required
         @row-selected="checkSelected"
       />
@@ -17,14 +17,17 @@
         v-model="paymentItem.amount"
         disable
         readonly
-        label="مبلغ"
+        :label="$t('shared.labels.amount')"
       />
     </div>
   </div>
 
   <div class="row q-mb-md">
     <div class="col-md-2 col-sm-12 col-xs-12">
-      <custom-input-number v-model="paymentItem.fee" label="کارمزد" />
+      <custom-input-number
+        v-model="paymentItem.fee"
+        :label="$t('shared.labels.fee')"
+      />
     </div>
   </div>
 
@@ -33,7 +36,7 @@
       <custom-input
         v-model="paymentItem.comment"
         type="textarea"
-        label="شرح"
+        :label="$t('shared.labels.comment')"
       />
     </div>
   </div>
@@ -42,7 +45,7 @@
 <script setup>
   import { computed } from "vue";
 
-  import CheckLookup from "src/components/shared/lookups/CheckLookup.vue";
+  import CheckLookup from "src/components/shared/Lookups/CheckLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import { payedAmount } from "src/constants/columns";

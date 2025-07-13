@@ -1,7 +1,7 @@
 <template>
   <div class="q-mt-lg">
     <location-lookup
-      label="کشور/شهر"
+      :label="$t('shared.labels.countryCity')"
       v-model:selectedId="
         configStore.model.value.companySetting.locationId
       "
@@ -12,32 +12,32 @@
   </div>
   <div class="q-mt-lg">
     <custom-input
-      label="نشانی"
+      :label="$t('shared.labels.address')"
       v-model="configStore.model.value.companySetting.address"
     />
   </div>
 
   <div class="q-mt-lg">
     <custom-input
-      label="کد پستی"
+      :label="$t('shared.labels.postalCode')"
       v-model="configStore.model.value.companySetting.postalCode"
     />
   </div>
   <div class="q-mt-lg">
     <custom-input
-      label="تلفن"
+      :label="$t('shared.labels.phone')"
       v-model="configStore.model.value.companySetting.phone"
     />
   </div>
   <div class="q-mt-lg">
     <custom-input
-      label="نمابر"
+      :label="$t('shared.labels.fax')"
       v-model="configStore.model.value.companySetting.fax"
     />
   </div>
   <div class="q-mt-lg">
     <custom-input
-      label="ایمیل"
+      :label="$t('shared.labels.email')"
       v-model="configStore.model.value.companySetting.email"
     />
   </div>
