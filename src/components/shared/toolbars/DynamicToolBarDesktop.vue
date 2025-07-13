@@ -2,7 +2,7 @@
   <div v-if="showToolbar" :style="toolbarMargin">
     <q-page-sticky
       class="bg-main z-1"
-      :style="insideStyle"
+      :style="combinedStyle"
       position="top"
       expand
       :class="isAtTop || inside ? '' : 'toolbar-glass-effect_'"
@@ -144,10 +144,12 @@
       : "padding-left: 20px; padding-right: 20px;";
   });
 
-  const insideStyle = computed(() => {
-    return props.inside
-      ? "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;"
-      : "";
+  const combinedStyle = computed(() => {
+    const position = $q.lang.rtl ? "left: 0" : "right: 0";
+    if (props.inside) {
+      return `background: transparent; transform: 0px; z-index: 0; position: relative; ${position}`;
+    }
+    return position;
   });
 
   const showToolbar = computed(() => {
