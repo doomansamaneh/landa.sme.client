@@ -1,10 +1,5 @@
 <template>
-  <!-- todo: show after completion this part -->
-  <q-page-sticky
-    v-if="false"
-    position="bottom-right"
-    :offset="[8, 8]"
-  >
+  <q-page-sticky position="bottom-right" :offset="[8, 8]">
     <q-btn
       no-caps
       round

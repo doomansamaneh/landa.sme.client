@@ -33,10 +33,10 @@
 
   const theme = useTheme();
   const $q = useQuasar();
-  const MenuBarStore = useMenuBar();
+  const menuBarStore = useMenuBar();
 
   if ($q.screen.lt.md) {
-    MenuBarStore.state.visible.value = false;
+    menuBarStore.state.visible.value = false;
   }
 
   onMounted(() => {

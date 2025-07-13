@@ -1,35 +1,19 @@
 <template>
   <q-form @submit.prevent="onSubmit" ref="form">
     <div class="q-mb-md">
-      <custom-input
-        v-model="ticketModel.title"
-        label="عنوان"
+      <custom-select
+        v-model="model.typeId"
+        :options="helper.getEnumOptions(feedbackType, 'feedbackType')"
+        label="نوع"
         required
       />
     </div>
 
     <div class="q-mb-md">
-      <custom-select
-        v-model="ticketModel.category"
-        :options="categories"
-        label="دسته‌بندی"
-        required
-      />
-    </div>
-
-    <div class="q-mb-md">
-      <custom-select
-        v-model="ticketModel.priority"
-        :options="priorities"
-        label="اولویت"
-      />
-    </div>
-
-    <div class="q-mb-md">
       <custom-input
-        v-model="ticketModel.description"
+        label="شرح"
         type="textarea"
-        label="توضیحات"
+        v-model="model.comment"
         required
       />
     </div>
@@ -47,41 +31,22 @@
 
 <script setup>
   import { ref } from "vue";
-  import CustomInput from "src/components/shared/Forms/CustomInput.vue";
-  import CustomSelect from "src/components/shared/Forms/CustomSelect.vue";
+  import { helper } from "src/helpers";
+  import { feedbackType, guidEmpty } from "src/constants";
+  import { useFormActions } from "src/composables/useFormActions";
 
-  const props = defineProps({
-    ticketModel: {
-      type: Object,
-      required: true,
-    },
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+
+  const model = ref({
+    statusId: 1,
+    userId: guidEmpty,
+    businessId: guidEmpty,
   });
-
-  const emit = defineEmits(["submit"]);
-
+  const formStore = useFormActions("business", model);
   const form = ref(null);
 
-  const categories = [
-    "مشکل فنی",
-    "درخواست ویژگی جدید",
-    "گزارش خطا",
-    "پرسش عمومی",
-    "سایر",
-  ];
-
-  const priorities = [
-    { label: "کم", value: "low" },
-    { label: "متوسط", value: "medium" },
-    { label: "زیاد", value: "high" },
-  ];
-
   async function onSubmit() {
-    try {
-      const isValid = await form.value.validate();
-      if (!isValid) return;
-      emit("submit", form.value);
-    } catch (error) {
-      console.error("Form validation error:", error);
-    }
+    await formStore.submitForm(form.value, "addFeedback");
   }
 </script>

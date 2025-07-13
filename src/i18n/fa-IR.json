@@ -715,6 +715,16 @@
       "purchase": "قیمت خرید",
       "both": "هر دو"
     },
+    "feedbackType": {
+      "incident": "مشکل",
+      "request": "درخواست، پیشنهاد"
+    },
+    "feedbackStatus": {
+      "inProgress": "در حال انجام",
+      "done": "بسته شده",
+      "unDone": "قابل انجام نیست",
+      "responded": "پاسخ داده شد"
+    },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",
       "loading-message": "لطفا کمی صبر کنید"

@@ -3,19 +3,26 @@
     <q-card-section class="flex items-center justify-between">
       <div>
         <div class="text-h6">
-          {{ ticket.title }}
+          {{ ticket.comment }}
         </div>
-        <div class="text-subtitle2">
-          {{ ticket.category }} -
-          {{ getPriorityLabel(ticket.priority) }}
+        <div class="text-subtitle2_">
+          {{ ticket.dateString }}
         </div>
       </div>
+
       <q-chip
-        :color="getStatusColor(ticket.status)"
+        :color="getStatusColor(ticket.statusId)"
         text-color="white"
         size="md"
       >
-        {{ getStatusLabel(ticket.status) }}
+        {{
+          $t(
+            `shared.feedbackStatus.${helper.getEnumType(
+              ticket?.statusId,
+              feedbackStatus
+            )}`
+          )
+        }}
       </q-chip>
     </q-card-section>
 
@@ -30,56 +37,24 @@
         style="height: calc(100vh - 360px)"
       >
         <div class="chat-messages q-pa-md">
-          <div class="row q-mb-md">
-            <div class="col-12">
+          <div
+            v-for="(message, index) in messages"
+            :key="index"
+            class="row_ q-mb-md"
+          >
+            <div class="col-12_">
               <q-chat-message
-                :name="authStore.user?.fullName"
-                :text="[ticket.description]"
-                sent
+                :name="message.senderName"
+                :avatar="message.senderId"
+                :text="[message.comment]"
+                :sent="message.senderTypeId == 2"
               >
                 <template #avatar>
                   <customer-avatar
                     size="48px"
                     text-color="white"
-                    :item="authStore.user?.id"
-                    :text-holder="authStore.user?.fullName"
-                    text-holder-class="text-h5 text-bold "
-                    :avatar="avatar"
-                    class="q-ml-sm"
-                  />
-                </template>
-              </q-chat-message>
-            </div>
-          </div>
-
-          <div v-if="ticket.response" class="row q-mb-md">
-            <div class="col-12">
-              <q-chat-message
-                name="پشتیبانی"
-                avatar="/favicon.png"
-                :text="[ticket.response]"
-              />
-            </div>
-          </div>
-
-          <div
-            v-for="(message, index) in messages"
-            :key="index"
-            class="row q-mb-md"
-          >
-            <div class="col-12">
-              <q-chat-message
-                :name="message.sender"
-                :avatar="message.avatar"
-                :text="[message.text]"
-                :sent="message.sent"
-              >
-                <template #avatar v-if="message.sent">
-                  <customer-avatar
-                    size="48px"
-                    text-color="white"
-                    :item="authStore.user?.id"
-                    :text-holder="authStore.user?.fullName"
+                    :item="message.senderId"
+                    :text-holder="message.senderName"
                     text-holder-class="text-h5 text-bold"
                     :avatar="avatar"
                     class="q-ml-sm"
@@ -98,33 +73,37 @@
       class="q-pa-none"
       :class="{ 'chat-disabled': isChatDisabled }"
     >
-      <q-input
-        v-model="newMessage"
-        dense
-        outlined
-        :disable="isChatDisabled"
-        :placeholder="
-          isChatDisabled
-            ? 'این تیکت بسته شده است'
-            : 'پیام خود را بنویسید...'
-        "
-        class="q-pa-md"
-        @keyup.enter="sendMessage"
-      >
-        <template v-slot:before>
-          <q-btn
-            no-caps
-            round
-            dense
-            flat
-            icon="send"
-            color="primary"
-            @click="sendMessage"
-          />
-        </template>
-      </q-input>
+      <q-form ref="form" @submit.prevent="sendMessage">
+        <q-input
+          v-model="model.comment"
+          dense
+          outlined
+          :disable="isChatDisabled"
+          :placeholder="
+            isChatDisabled
+              ? 'این تیکت بسته شده است'
+              : 'پیام خود را بنویسید...'
+          "
+          class="q-pa-md"
+          @keyup.enter="sendMessage"
+        >
+          <template v-slot:before>
+            <q-btn
+              no-caps
+              round
+              dense
+              flat
+              icon="send"
+              color="primary"
+              @click="sendMessage"
+            />
+          </template>
+        </q-input>
+      </q-form>
+      <q-btn icon="refresh" @click="tableStore.reloadData()"></q-btn>
     </q-card-section>
   </q-card>
+
   <div v-else class="text-center q-pa-lg">
     <q-icon
       name="support_agent"
@@ -148,57 +127,35 @@
 <script setup>
   import { ref, watch, nextTick, computed } from "vue";
   import { helper } from "src/helpers";
-  import { useAuthStore } from "src/stores";
+  import { feedbackStatus } from "src/constants";
+  import { useFormActions } from "src/composables/useFormActions";
+  import { useDataTable } from "src/composables/useDataTable";
 
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
+  import { sortOrder } from "../../../../constants/enums";
 
-  const props = defineProps({
-    ticket: {
-      type: Object,
-      default: null,
-    },
-    messages: {
-      type: Array,
-      default: () => [],
-    },
-  });
-
-  const authStore = useAuthStore();
-  const emit = defineEmits(["send-message"]);
-
-  const newMessage = ref("");
+  const ticket = ref(null);
   const chatScroll = ref(null);
   const scrollAnchor = ref(null);
 
+  const form = ref(null);
+  const model = ref({ comment: "", senderName: "user" });
+  const formStore = useFormActions("business", model);
+
+  const messages = computed(() => tableStore.rows?.value);
+
   const isChatDisabled = computed(
-    () => props.ticket?.status === "closed"
+    () =>
+      ticket?.value?.statusId === feedbackStatus.done ||
+      ticket?.value?.statusId === feedbackStatus.unDone
   );
 
-  const priorities = [
-    { label: "کم", value: "low" },
-    { label: "متوسط", value: "medium" },
-    { label: "زیاد", value: "high" },
-  ];
-
-  const statusLabels = {
-    open: "باز",
-    "in-progress": "در حال بررسی",
-    closed: "بسته",
-  };
-
   const statusColors = {
-    open: "orange",
-    "in-progress": "blue",
-    closed: "green",
+    1: "orange",
+    2: "blue",
+    3: "red",
+    4: "green",
   };
-
-  function getPriorityLabel(value) {
-    return priorities.find((p) => p.value === value)?.label || value;
-  }
-
-  function getStatusLabel(value) {
-    return statusLabels[value] || value;
-  }
 
   function getStatusColor(value) {
     return statusColors[value] || "grey";
@@ -215,34 +172,59 @@
     });
   }
 
-  function sendMessage() {
-    if (!newMessage.value.trim() || !props.ticket) return;
+  async function sendMessage() {
+    if (!model.value.comment?.trim() || !ticket?.value) return;
 
-    emit("send-message", {
-      text: newMessage.value,
-      sender: authStore.user?.fullName,
-      avatar: null,
-      sent: true,
-    });
+    model.value.feedbackId = ticket.value.id;
+    const responseData = await formStore.submitForm(
+      form.value,
+      "AddFeedbackMessage"
+    );
 
-    newMessage.value = "";
-    scrollToBottom();
-  }
-
-  watch(
-    () => props.ticket,
-    () => {
+    if (responseData) {
+      model.value.comment = "";
       scrollToBottom();
     }
-  );
+  }
 
-  watch(
-    () => props.messages,
-    () => {
-      scrollToBottom();
-    },
-    { deep: true }
-  );
+  const baseDataSource = "business/getFeedbackMessageGridData";
+  const configStore = {
+    pagination: ref({
+      currentPage: 1,
+      pageSize: 10,
+      sortOrder: sortOrder.ascending,
+      sortColumn: "dateCreated",
+    }),
+  };
+  const tableStore = useDataTable({
+    dataSource: baseDataSource,
+    store: configStore,
+  });
+
+  // watch(
+  //   () => ticket,
+  //   () => {
+  //     scrollToBottom();
+  //   }
+  // );
+
+  // watch(
+  //   () => messages,
+  //   () => {
+  //     scrollToBottom();
+  //   },
+  //   { deep: true }
+  // );
+
+  function setSelectedTicket(item) {
+    if (item) {
+      ticket.value = item;
+      tableStore.setDataSource(`${baseDataSource}/${item.id}`);
+      tableStore.reloadData();
+    } else ticket.value = null;
+  }
+
+  defineExpose({ setSelectedTicket });
 </script>
 
 <style scoped>

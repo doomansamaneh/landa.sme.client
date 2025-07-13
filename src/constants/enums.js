@@ -1,9 +1,9 @@
 import config from "../../app-setting.json";
 //localhost
-//export const baseUrl = config.baseUrl_;
+export const baseUrl = config.baseUrl_;
 
 //api.landa-sme.ir
-export const baseUrl = config.baseUrl;
+//export const baseUrl = config.baseUrl;
 
 export const dataType = {
   string: 0,
@@ -433,4 +433,16 @@ export const menuItemType = {
   item: 1,
   separator: 2,
   moreItem: 3,
+};
+
+export const feedbackType = {
+  incident: 1,
+  request: 2,
+};
+
+export const feedbackStatus = {
+  inProgress: 1,
+  done: 2,
+  unDone: 3,
+  responded: 4,
 };

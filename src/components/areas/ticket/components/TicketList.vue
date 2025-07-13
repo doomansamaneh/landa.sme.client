@@ -1,84 +1,87 @@
 <template>
-  <q-scroll-area
-    :bar-style="helper.barStyle"
-    :thumb-style="helper.thumbStyle"
-    style="height: calc(100vh - 200px)"
-  >
-    <q-list bordered separator>
-      <q-item
-        v-for="ticket in tickets"
-        :key="ticket.id"
-        clickable
-        v-ripple
-        :active="selectedTicket?.id === ticket.id"
-        @click="$emit('select-ticket', ticket)"
+  <div class="row q-col-gutter-md full-height">
+    <div class="col-12 col-md-4">
+      <q-scroll-area
+        :bar-style="helper.barStyle"
+        :thumb-style="helper.thumbStyle"
+        style="height: calc(100vh - 200px)"
       >
-        <q-item-section>
-          <q-item-label>
-            {{ ticket.title }}
-          </q-item-label>
-          <q-item-label caption>
-            {{ ticket.category }} -
-            {{ getPriorityLabel(ticket.priority) }}
-          </q-item-label>
-        </q-item-section>
-        <q-item-section side>
-          <q-chip
-            :color="getStatusColor(ticket.status)"
-            text-color="white"
-            size="sm"
+        <q-btn
+          icon="refresh"
+          @click="tableStore.reloadData()"
+        ></q-btn>
+        <q-list bordered separator>
+          <pre>{{ tickets }}</pre>
+          <q-item
+            v-for="item in tickets"
+            :key="item.id"
+            clickable
+            v-ripple
+            :active="tableStore.activeRow?.id === item.id"
+            @click="selectTicket(item)"
           >
-            {{ getStatusLabel(ticket.status) }}
-          </q-chip>
-        </q-item-section>
-      </q-item>
-    </q-list>
-  </q-scroll-area>
+            <q-item-section>
+              <q-item-label>
+                {{ item.comment }}
+              </q-item-label>
+              <q-item-label caption>
+                {{ item.dateString }}
+              </q-item-label>
+            </q-item-section>
+            <q-item-section side>
+              <q-chip
+                :color="getStatusColor(item.statusId)"
+                text-color="white"
+                size="sm"
+              >
+                {{
+                  $t(
+                    `shared.feedbackStatus.${helper.getEnumType(
+                      item.statusId,
+                      feedbackStatus
+                    )}`
+                  )
+                }}
+              </q-chip>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+    </div>
+
+    <div class="col-12 col-md-8">
+      <ticket-chat ref="chatContainer" />
+    </div>
+  </div>
 </template>
 
 <script setup>
+  import { ref, computed } from "vue";
   import { helper } from "src/helpers";
+  import { feedbackType, feedbackStatus } from "src/constants";
+  import { useDataTable } from "src/composables/useDataTable";
 
-  defineProps({
-    tickets: {
-      type: Array,
-      required: true,
-    },
-    selectedTicket: {
-      type: Object,
-      default: null,
-    },
+  import TicketChat from "./TicketChat.vue";
+
+  const tableStore = useDataTable({
+    dataSource: "business/getFeedbackGridData",
   });
 
-  defineEmits(["select-ticket"]);
-
-  const priorities = [
-    { label: "کم", value: "low" },
-    { label: "متوسط", value: "medium" },
-    { label: "زیاد", value: "high" },
-  ];
-
-  const statusLabels = {
-    open: "باز",
-    "in-progress": "در حال بررسی",
-    closed: "بسته",
-  };
-
+  const chatContainer = ref(null);
   const statusColors = {
-    open: "orange",
-    "in-progress": "blue",
-    closed: "green",
+    1: "orange",
+    2: "blue",
+    3: "red",
+    4: "green",
   };
-
-  function getPriorityLabel(value) {
-    return priorities.find((p) => p.value === value)?.label || value;
-  }
-
-  function getStatusLabel(value) {
-    return statusLabels[value] || value;
-  }
 
   function getStatusColor(value) {
     return statusColors[value] || "grey";
   }
+
+  const selectTicket = (item) => {
+    chatContainer.value.setSelectedTicket(item);
+  };
+
+  const tickets = computed(() => tableStore.rows.value);
 </script>
