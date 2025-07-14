@@ -185,7 +185,7 @@
         >
           <td class="text-center"></td>
           <td colspan="3" style="width: 45%">
-            <comment-lookup
+            <custom-input
               v-model:selectedText="row.comment"
               :placeholder="$t('shared.labels.rowDescription')"
               autogrow

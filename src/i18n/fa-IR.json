@@ -271,6 +271,8 @@
 
   "shared": {
     "labels": {
+      "sent": "ارسال شده",
+      "notSent": "ارسال نشده",
       "rial": "ریال",
       "settings": "تنظیمات",
       "systemConfiguration": "پیکربندی سامانه",
@@ -395,7 +397,6 @@
       "rowNo": "ش پیگیری",
       "date": "تاریخ",
       "dueDate": "سررسید",
-      "taxId": "ش مالیاتی",
       "addItemByProductCode": "با جستجوی کد، بارکد یک کالا/خدمت را اضافه کنید",
       "moreData": "اطلاعات بیشتر",
       "productTitle": "کالا",
@@ -947,6 +948,7 @@
       "typeId": "نوع",
       "orgTitle": "سازمان",
       "code": "کد",
+      "taxId": "ش مالیاتی",
       "productGroupCode": "کد گروه",
       "productGroupTitle": "گروه کالا",
       "productCode": "کد کالا",

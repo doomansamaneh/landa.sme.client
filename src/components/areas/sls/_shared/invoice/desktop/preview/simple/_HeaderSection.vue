@@ -45,7 +45,7 @@
             v-if="model?.lastApiLogModel?.taxId"
             class="row justify-start"
           >
-            <span>{{ $t("shared.labels.taxId") }}:</span>
+            <span>{{ $t("shared.columns.taxId") }}:</span>
             <span
               class="q-px-sm text-roboto text-weight-500"
               style="font-size: 12px"

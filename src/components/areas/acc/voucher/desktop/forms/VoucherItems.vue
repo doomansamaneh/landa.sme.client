@@ -56,7 +56,7 @@
             <!-- :filter-expression="getDlFilters(row)" -->
           </td>
           <td>
-            <comment-lookup
+            <custom-input
               v-model:selectedText="row.comment"
               autogrow
               required

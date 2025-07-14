@@ -25,6 +25,8 @@ import {
   netAmount,
   statusId,
   contractTitle,
+  typeTitle,
+  taxId,
 } from "src/constants/columns";
 
 export const taxStatus = {
@@ -37,11 +39,14 @@ export const taxStatus = {
 
 export const invoiceColumns = [
   { ...no },
+  { ...taxId, hidden: true },
   { ...date },
+  { ...typeTitle, hidden: true },
   { ...customerName },
-  { ...contractTitle },
+  { ...contractTitle, hidden: true },
   { ...subject },
   { ...amount },
+  { ...vatAmount, hidden: true },
   { ...payedAmount },
   { ...remainedAmount },
 ];

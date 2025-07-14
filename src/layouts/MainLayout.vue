@@ -8,7 +8,7 @@
     <header-desktop v-else />
 
     <bottom-navigation />
-    <ticket-submission />
+    <ticket-submission v-if="false" />
     <menu-bar />
     <contact-drawer />
     <notif-drawer />

@@ -217,7 +217,7 @@
                   <div class="col-md-2 col-sm-2">
                     <custom-label
                       class="text-bold"
-                      :label="$t('shared.labels.taxId')"
+                      :label="$t('shared.columns.taxId')"
                     />
                   </div>
                   <div class="col-md col-sm-7 col-xs-12">

@@ -7,7 +7,7 @@ export function useDataTableExport(tableStore) {
   function getTranslatedColumns() {
     return tableStore.columns.value.map((col) => ({
       ...col,
-      label: t(`shared.columns.${col.name}`) || col.label,
+      label: t(`shared.columns.${col.label}`) || col.label,
     }));
   }
 

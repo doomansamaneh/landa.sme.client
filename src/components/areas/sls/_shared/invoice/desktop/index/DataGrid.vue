@@ -13,7 +13,7 @@
     @row-dbl-click="gotoPreview"
     :no-fullscreen="noFullscreen"
   >
-  <!-- If we need show custom print preview -->
+    <!-- If we need show custom print preview -->
     <!-- <template #toolbar>
       <DataGridToolbar
         :table-store="tableStore"
@@ -216,7 +216,7 @@
   const colspan = computed(
     () =>
       helper.findIndex(
-        props.tableStore.columns.value,
+        props.tableStore.columns.value.filter((col) => !col.hidden),
         "name",
         "amount"
       ) +

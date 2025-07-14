@@ -28,7 +28,7 @@
 
       <div class="row q-mt-md">
         <div class="col-md-9 col-sm-12 col-xs-12">
-          <comment-lookup
+          <custom-input
             v-model="localFormStore.model.value.summary"
             :label="$t('shared.labels.comment')"
             type="textarea"

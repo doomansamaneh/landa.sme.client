@@ -381,6 +381,26 @@ export const contractTitle = {
   showFilter: true,
 };
 
+export const typeTitle = {
+  name: "typeTitle",
+  field: "typeTitle",
+  sortable: true,
+  label: "typeId",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
+export const taxId = {
+  name: "taxId",
+  field: "taxId",
+  sortable: false,
+  label: "taxId",
+  align: "left",
+  class: "text-left",
+  showFilter: true,
+};
+
 export const inventoryTitle = {
   name: "inventoryTitle",
   field: "inventoryTitle",
