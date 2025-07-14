@@ -1,5 +1,7 @@
 <template>
-  <div class="text-h6 text-weight-600 q-py-lg">اقلام ارزش افزوده</div>
+  <div class="text-h6 text-weight-600 q-py-lg">
+    {{ $t("shared.labels.vatDeductionItems") }}
+  </div>
   <q-card
     class="q-my-sm"
     flat
@@ -9,11 +11,14 @@
   >
     <div class="row q-pa-md q-col-gutter-sm">
       <div class="col-md-3 col-sm-12 col-xs-12">
-        <custom-input placeholder="عنوان" v-model="row.title" />
+        <custom-input
+          placeholder="$t('shared.labels.title')"
+          v-model="row.title"
+        />
       </div>
       <div class="col-md-4 col-sm-12 col-xs-12">
         <sl-lookup
-          placeholder="حساب معین"
+          :placeholder="$t('shared.labels.slTitle')"
           v-model:selectedId="row.slId"
           v-model:selectedText="row.slTitle"
           :filter-expression="slFilter"
@@ -75,7 +80,7 @@
         @click="formStore.pushNewRow()"
       >
         <q-icon name="o_add" size="20px" />
-        افزودن ردیف
+        {{ $t("shared.labels.addRow") }}
       </q-btn>
     </q-card-section>
   </q-card>
@@ -84,24 +89,19 @@
   <q-card class="warning q-my-md">
     <q-card-section>
       <div>
-        <div class="title">هشدار</div>
+        <div class="title">{{$t('shared.labels.warning')}}</div>
         <div class="q-mt-md">
           <p>
-            <strong>عنوان: </strong>
-            عنوانی که در سند حسابداری برای این قلم نشان داده می‌شود، مانند
-            مالیات بر ارزش افزوده پرداختنی
+            <strong>{{$t('shared.labels.title')}}: </strong>
+            {{$t('vatDetailSection.warningTitle')}}
           </p>
           <p>
-            <strong>حساب معین: </strong>
-            حسابهای معین پیشفرض:
-            <strong> 30501: </strong>
-            مالیات بر ارزش افزوده پرداختنی و 30502: عوارض ارزش افزوده پرداختنی
+            <strong>{{$t('shared.labels.slTitle')}}: </strong>
+            {{$t('vatDetailSection.warningSl')}}
           </p>
           <p>
-            <strong>نرخ: </strong>
-            نرخ مالیات بر ارزش افزوده براساس اقلام ارزش افزوده، در سند حسابداری
-            که به صورت خودکار از روی فاکتور، خرید، و... ایجاد می‌شود، شکسته
-            می‌شود.
+            <strong>{{$t('shared.labels.rate')}}: </strong>
+            {{$t('vatDetailSection.warningRate')}}
           </p>
         </div>
       </div>
@@ -110,24 +110,19 @@
   <q-card class="danger q-my-md">
     <q-card-section>
       <div>
-        <div class="title">اخطار</div>
+        <div class="title">{{$t('shared.labels.danger')}}</div>
         <div class="q-mt-md">
           <p>
-            <strong>عنوان: </strong>
-            عنوانی که در سند حسابداری برای این قلم نشان داده می‌شود، مانند
-            مالیات بر ارزش افزوده پرداختنی
+            <strong>{{$t('shared.labels.title')}}: </strong>
+            {{$t('vatDetailSection.dangerTitle')}}
           </p>
           <p>
-            <strong>حساب معین: </strong>
-            حسابهای معین پیشفرض:
-            <strong> 30501: </strong>
-            مالیات بر ارزش افزوده پرداختنی و 30502: عوارض ارزش افزوده پرداختنی
+            <strong>{{$t('shared.labels.slTitle')}}: </strong>
+            {{$t('vatDetailSection.dangerSl')}}
           </p>
           <p>
-            <strong>نرخ: </strong>
-            نرخ مالیات بر ارزش افزوده براساس اقلام ارزش افزوده، در سند حسابداری
-            که به صورت خودکار از روی فاکتور، خرید، و... ایجاد می‌شود، شکسته
-            می‌شود.
+            <strong>{{$t('shared.labels.rate')}}: </strong>
+            {{$t('vatDetailSection.dangerRate')}}
           </p>
         </div>
       </div>
@@ -139,25 +134,19 @@
   <q-card class="tips q-my-md">
     <q-card-section>
       <div>
-        <div class="title">راهنما</div>
+        <div class="title">{{ $t("shared.labels.guide") }}</div>
         <div class="q-mt-md">
           <p>
-            <strong>عنوان:</strong>
-            عنوانی که در سند حسابداری برای این قلم نشان داده می‌شود،
-            مانند مالیات بر ارزش افزوده پرداختنی
+            <strong>{{ $t("shared.labels.title") }}:</strong>
+            {{ $t("vatDetailSection.tipsTitle") }}
           </p>
           <p>
-            <strong>حساب معین:</strong>
-            حسابهای معین پیشفرض:
-            <strong>30501:</strong>
-            مالیات بر ارزش افزوده پرداختنی و 30502: عوارض ارزش افزوده
-            پرداختنی
+            <strong>{{ $t("shared.labels.slTitle") }}:</strong>
+            {{ $t("vatDetailSection.tipsSl") }}
           </p>
           <p>
-            <strong>نرخ:</strong>
-            نرخ مالیات بر ارزش افزوده براساس اقلام ارزش افزوده، در سند
-            حسابداری که به صورت خودکار از روی فاکتور، خرید، و... ایجاد
-            می‌شود، شکسته می‌شود.
+            <strong>{{ $t("shared.labels.rate") }}:</strong>
+            {{ $t("vatDetailSection.tipsRate") }}
           </p>
         </div>
       </div>
@@ -167,6 +156,7 @@
 
 <script setup>
   import { computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { accountCLType, sqlOperator } from "src/constants";
 
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
@@ -177,6 +167,8 @@
   const props = defineProps({
     formStore: Object,
   });
+
+  const { t: $t } = useI18n();
 
   const slFilter = [
     {

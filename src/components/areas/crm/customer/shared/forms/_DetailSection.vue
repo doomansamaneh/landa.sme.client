@@ -12,25 +12,25 @@
       class="q-mx-xs"
       name="personal-info"
       v-if="model.value.typeId !== customerType.legal"
-      label="اطلاعات شخصی"
+      :label="$t('shared.labels.personalInfo')"
       icon="o_accessibility"
     />
     <q-tab
       class="q-mx-xs"
       name="business-info"
-      label="اطلاعات کسب و کار"
+      :label="$t('shared.labels.businessInfo')"
       icon="o_business"
     />
     <q-tab
       class="q-mx-xs"
       name="address-info"
-      label="نشانی"
+      :label="$t('shared.columns.address')"
       icon="o_my_location"
     />
     <q-tab
       class="q-mx-xs"
       name="contact-info"
-      label="تماس"
+      :label="$t('shared.labels.contact')"
       icon="o_headset_mic"
     />
   </q-tabs>
@@ -66,12 +66,15 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { customerType } from "src/constants";
 
   import PersonalInfo from "./_DetailPersonal.vue";
   import BusinessInfo from "./_DetailBusiness.vue";
   import AddressInfo from "./_DetailAddress.vue";
   import ContactInfo from "./_DetailContact.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

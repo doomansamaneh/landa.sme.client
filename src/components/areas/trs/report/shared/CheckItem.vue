@@ -14,35 +14,38 @@
       <card-tab
         name="received"
         icon="o_arrow_downward"
-        title="چکهای دریافتی"
+        :title="$t('dashboard.chequeNotificationTab.received')"
       />
       <card-tab
         name="payed"
         icon="o_arrow_upward"
-        title="چکهای پرداختی"
+        :title="$t('dashboard.chequeNotificationTab.payed')"
       />
     </card-tabs>
 
     <data-grid
       v-if="tab === 'received'"
       :filter-expression="receiptFilter"
-      title="چکهای دریافتی"
+      :title="$t('dashboard.chequeNotificationTab.received')"
     />
     <data-grid
       v-else
       :filter-expression="payedFilter"
-      title="چکهای پرداختی"
+      :title="$t('dashboard.chequeNotificationTab.payed')"
     />
   </q-card>
 </template>
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { sqlOperator, documentType } from "src/constants";
 
   import DataGrid from "../desktop/_CheckItemDataGrid.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({ customerId: String, title: String });
 

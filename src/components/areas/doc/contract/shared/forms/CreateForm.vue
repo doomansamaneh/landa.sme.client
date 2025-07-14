@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-2 col-sm-6 col-xs-6">
             <custom-input
-              label="شماره"
+              :label="$t('shared.columns.no')"
               hide-bottom-space
               v-model="formStore.model.value.no"
               required
@@ -22,7 +22,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-2 col-sm-6 col-xs-6">
             <custom-input
-              label="شناسه مالیاتی"
+              :label="$t('shared.labels.taxCode')"
               hide-bottom-space
               v-model="formStore.model.value.taxCode"
             />
@@ -32,7 +32,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="عنوان"
+              :label="$t('shared.labels.title')"
               hide-bottom-space
               v-model="formStore.model.value.title"
               required
@@ -43,13 +43,13 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-2 col-sm-6 col-xs-6">
             <date-time
-              label="تاریخ شروع"
+              :label="$t('shared.columns.startDate')"
               v-model="formStore.model.value.startDate"
             />
           </div>
           <div class="col-md-2 col-sm-6 col-xs-6">
             <date-time
-              label="تاریخ پایان"
+              :label="$t('shared.columns.finishDate')"
               v-model="formStore.model.value.finishDate"
             />
           </div>
@@ -58,7 +58,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="شرح"
+              :label="$t('shared.labels.comment')"
               type="textarea"
               v-model="formStore.model.value.comment"
             />
@@ -70,7 +70,7 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.labels.isActive')"
           />
         </div>
       </q-form>
@@ -80,6 +80,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
@@ -95,4 +96,5 @@
   const formStore = useBaseInfoModel({
     baseRoute: "doc/contract",
   });
+  const { t: $t } = useI18n();
 </script>

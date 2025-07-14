@@ -8,28 +8,28 @@
     >
       <card-tab
         name="production-used-items"
-        title="کالاهای استفاده شده"
+        :title="$t('shared.labels.productionUsedItems')"
         icon="o_assignment"
         avatar-class="primary-gradient primary-shadow"
       />
 
       <card-tab
         name="production-costs"
-        title="سربار و هزینه تولید"
+        :title="$t('shared.labels.productionCosts')"
         icon="o_assignment"
         avatar-class="red-gradient red-shadow"
       />
 
       <card-tab
         name="product"
-        title="کالاهای تولید شده"
+        :title="$t('shared.labels.producedProducts')"
         icon="o_keyboard"
         avatar-class="green-gradient green-shadow"
       />
 
       <card-tab
         name="scrap"
-        title="ضایعات"
+        :title="$t('shared.labels.scrap')"
         icon="o_assignment"
         avatar-class="orange-gradient red-shadow"
       />
@@ -57,6 +57,7 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useQuasar } from "quasar";
 
   import ProductItems from "./_ProductItems.vue";
@@ -65,6 +66,8 @@
   import ProductionCosts from "./ProductionCosts.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

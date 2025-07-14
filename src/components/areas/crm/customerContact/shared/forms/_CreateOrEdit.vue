@@ -6,7 +6,7 @@
         dense
         v-model="model.isPrimary"
         val="customer"
-        label="اصلی"
+        :label="$t('shared.labels.isPrimary')"
       />
     </div>
   </div>
@@ -14,21 +14,24 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
       <contact-type-lookup
-        label="نوع"
+        :label="$t('shared.columns.typeTitle')"
         v-model:selectedId="model.contactTypeId"
         v-model:selectedText="model.contactTypeTitle"
         :filter-expression="contactTypeFilter"
       />
     </div>
     <div class="col-md col-sm col-xs-12">
-      <custom-input label="مقدار" v-model="model.value" />
+      <custom-input
+        :label="$t('shared.columns.amount')"
+        v-model="model.value"
+      />
     </div>
   </div>
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
       <custom-input
-        label="شرح"
+        :label="$t('shared.columns.comment')"
         v-model="model.comment"
         type="textarea"
         autogrow
@@ -39,10 +42,13 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { sqlOperator } from "src/constants";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import ContactTypeLookup from "src/components/shared/lookups/ContactTypeLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     item: Object,

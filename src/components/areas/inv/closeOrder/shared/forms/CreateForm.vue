@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-2 col-sm-6 col-xs-6">
             <date-time
-              label="تاریخ"
+              :label="$t('shared.columns.date')"
               v-model="formStore.model.value.date"
               hide-bottom-space
               required
@@ -22,7 +22,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <inventory-lookup
-              label="انبار"
+              :label="$t('shared.columns.inventoryTitle')"
               v-model:selectedId="formStore.model.value.inventoryId"
               v-model:selectedText="
                 formStore.model.value.inventoryTitle
@@ -36,7 +36,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <contract-lookup
-              label="قرارداد"
+              :label="$t('shared.labels.contract')"
               v-model:selectedId="formStore.model.value.contractId"
               v-model:selectedText="
                 formStore.model.value.contractTitle
@@ -50,7 +50,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="شرح"
+              :label="$t('shared.columns.summary')"
               type="textarea"
               v-model="formStore.model.value.summary"
             />
@@ -63,6 +63,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { useCloseOrderState } from "../../../_composables/useCloseOrderState";
 
@@ -71,6 +72,8 @@
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import InventoryLookup from "src/components/shared/lookups/InventoryLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

@@ -6,7 +6,7 @@
         dense
         v-model="model.isPrimary"
         val="customer"
-        label="اصلی"
+        :label="$t('shared.labels.isPrimary')"
       />
     </div>
   </div>
@@ -14,7 +14,7 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
       <contact-type-lookup
-        label="نوع"
+        :label="$t('shared.columns.typeTitle')"
         v-model:selectedId="model.contactTypeId"
         v-model:selectedText="model.contactTypeTitle"
         :filter-expression="contactTypeFilter"
@@ -22,7 +22,7 @@
     </div>
     <div class="col-md col-sm col-xs-12">
       <location-lookup
-        label="محل جغرافیایی"
+        :label="$t('shared.columns.locationTitle')"
         v-model:selectedId="model.locationId"
         v-model:selectedText="model.locationTitle"
       />
@@ -32,7 +32,7 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
       <custom-input
-        label="نشانی"
+        :label="$t('shared.columns.address')"
         v-model="model.address"
         type="textarea"
         autogrow
@@ -61,21 +61,30 @@
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
-      <custom-input label="کد پستی" v-model="model.postalCode" />
+      <custom-input
+        :label="$t('shared.labels.postalCode')"
+        v-model="model.postalCode"
+      />
     </div>
     <div class="col-md col-sm col-xs-12">
-      <custom-input label="صندوق پستی" v-model="model.postBox" />
+      <custom-input
+        :label="$t('shared.labels.postBox')"
+        v-model="model.postBox"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { contactType, sqlOperator } from "src/constants";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
   import ContactTypeLookup from "src/components/shared/lookups/ContactTypeLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     item: Object,

@@ -12,7 +12,7 @@
           <div class="col-md-3 col-sm-12 col-xs-12">
             <custom-input-number
               v-model="model.amount"
-              label="مبلغ"
+              :label="$t('shared.labels.price')"
               required
             />
           </div>
@@ -20,7 +20,11 @@
 
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
-            <date-time v-model="model.date" label="تاریخ" required />
+            <date-time
+              v-model="model.date"
+              :label="$t('shared.labels.date')"
+              required
+            />
           </div>
         </div>
 
@@ -29,7 +33,7 @@
             <custom-input
               v-model="model.subject"
               type="textarea"
-              label="شرح"
+              :label="$t('shared.labels.subject')"
               required
             />
           </div>
@@ -38,7 +42,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              از
+              {{ $t("shared.labels.from") }}
             </q-item-label>
             <q-option-group
               inline
@@ -72,7 +76,7 @@
           <div class="col-md-3 col-sm-12 col-xs-12">
             <custom-input-number
               v-model="model.fromFee"
-              label="کارمزد"
+              :label="$t('shared.labels.fee')"
             />
           </div>
         </div>
@@ -80,7 +84,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              به
+              {{ $t("shared.labels.toTitle") }}
             </q-item-label>
             <q-option-group
               inline
@@ -114,6 +118,7 @@
 
 <script setup>
   import { ref, onMounted } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { transferMoneyType } from "src/constants";
   import { transferMoneyModel } from "src/models/areas/trs/transferMoneyModel";
@@ -125,6 +130,8 @@
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import BankAccountLookup from "src/components/shared/lookups/BankAccountLookup.vue";
   import CashLookup from "src/components/shared/lookups/CashLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

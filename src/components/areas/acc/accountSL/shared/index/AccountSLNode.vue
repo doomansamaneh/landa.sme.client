@@ -19,7 +19,9 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2">ویرایش</div>
+              <div class="text-body2">
+                {{ $t("shared.labels.edit") }}
+              </div>
             </q-item-section>
           </q-item>
           <q-item
@@ -36,7 +38,9 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2">حذف</div>
+              <div class="text-body2">
+                {{ $t("shared.labels.delete") }}
+              </div>
             </q-item-section>
           </q-item>
         </q-list>
@@ -46,11 +50,14 @@
 </template>
 
 <script setup>
+  import { useI18n } from "vue-i18n";
   import { useDialog } from "src/composables/useDialog";
   import { useFormActions } from "src/composables/useFormActions";
 
   import AccountTreeNode from "./AccountTreeNode.vue";
   import SLCreateForm from "../forms/CreateForm.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     node: Object,
@@ -61,7 +68,7 @@
 
   const editAccountSL = (node) => {
     dialogStore.openDialog({
-      title: "ویرایش حساب معین",
+      title: $t("shared.labels.editSubLedgerAccount"),
       component: SLCreateForm,
       actionBar: true,
       props: {

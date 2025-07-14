@@ -2,7 +2,7 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <custom-input
-        label="عنوان"
+        :label="$t('shared.labels.title')"
         hide-bottom-space
         v-model="model.value.title"
         required
@@ -24,7 +24,7 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md-2 col-sm-6 col-xs-6">
       <custom-input
-        label="نرخ"
+        :label="$t('shared.labels.rate')"
         type="number"
         hide-bottom-space
         v-model="model.value.rate"
@@ -42,13 +42,14 @@
       dense
       size="48px"
       v-model="model.value.isActive"
-      label="فعال"
+      :label="$t('shared.labels.isActive')"
     />
   </div>
 </template>
 
 <script setup>
   import { computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { vatType } from "src/constants";
 
@@ -59,4 +60,5 @@
   });
 
   const model = computed(() => props.formStore.model);
+  const { t: $t } = useI18n();
 </script>

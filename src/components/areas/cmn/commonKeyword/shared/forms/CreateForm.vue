@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="عنوان"
+              :label="$t('shared.labels.title')"
               hide-bottom-space
               v-model="formStore.model.value.title"
               required

@@ -14,10 +14,11 @@
       <template #title>
         <div class="q-pa-lg">
           <div class="text-body1 text-weight-700">
-            صورتحسابهای دارای مانده
+            {{ $t("shared.labels.salesInvoices") }}
+            {{ $t("shared.labels.hasRemain") }}
           </div>
           <div class="text-body2 q-mt-xs caption-on-dark">
-            برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید
+            {{ $t("shared.labels.selectInvoicesForReceiptPayment") }}
           </div>
         </div>
       </template>
@@ -38,7 +39,7 @@
           >
             {{ item.contractTitle }}
             <q-tooltip class="custom-tooltip text-body1">
-              قرارداد
+              {{ $t("shared.labels.contract") }}
             </q-tooltip>
           </q-badge>
         </div>
@@ -78,6 +79,7 @@
 
 <script setup>
   import { ref, computed, watch } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import {
     documentType,
@@ -88,6 +90,8 @@
   import { invoiceRemainedColumns } from "src/components/areas/sls/_composables/constants";
 
   import DataGrid from "src/components/shared/dataTables/desktop/DataGrid.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

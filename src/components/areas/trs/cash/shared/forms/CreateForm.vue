@@ -6,7 +6,7 @@
           v-model:selectedId="formStore.model.value.slId"
           v-model:selectedText="formStore.model.value.slDisplay"
           :filter-expression="filterSL"
-          label="حساب معین"
+          :label="$t('shared.labels.subLedgerAccount')"
           required
         />
       </div>
@@ -16,7 +16,7 @@
       <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input
           v-model="formStore.model.value.title"
-          label="عنوان"
+          :label="$t('shared.labels.title')"
           required
         />
       </div>
@@ -26,7 +26,7 @@
       <div class="col-md-2 col-sm-4 col-xs-12">
         <date-time
           v-model="formStore.model.value.openingDate"
-          label="تاریخ آغاز"
+          :label="$t('shared.labels.date')"
           required=""
         />
       </div>
@@ -37,16 +37,17 @@
         dense
         size="48px"
         v-model="formStore.model.value.isActive"
-        label="فعال"
+        :label="$t('shared.labels.isActive')"
       />
     </div>
   </q-form>
   <q-card flat class="tips">
     <q-card-section>
-      <div class="title q-mb-sm">راهنما</div>
+      <div class="title q-mb-sm">
+        {{ $t("shared.labels.userGuide") }}
+      </div>
       <div class="text-body1">
-        حساب معین را از حسابهای موجودی نزد صندوق با کد 10102، یا
-        موجودی نزد تنخواه گردانها با کد 10103 انتخاب کنید
+        {{ $t("shared.labels.cashSubLedgerAccountGuide") }}
       </div>
     </q-card-section>
   </q-card>
@@ -54,12 +55,15 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { sqlOperator, accountCLType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

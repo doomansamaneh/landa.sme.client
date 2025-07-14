@@ -3,7 +3,9 @@
     :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''"
   >
     <div class="theme-settings-container">
-      <form-toolbar title="بازرگانی، خرید و فروش" />
+      <form-toolbar
+        :title="$t('shared.labels.commercePurchaseSale')"
+      />
       <index-view />
     </div>
   </div>

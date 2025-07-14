@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <product-unit-lookup
-              label="واحد سنجش اصلی"
+              :label="$t('shared.labels.masterUnitTitle')"
               v-model:selectedId="formStore.model.value.masterUnitId"
               v-model:selectedText="
                 formStore.model.value.masterUnitTitle
@@ -23,7 +23,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <product-unit-lookup
-              label="واحد سنجش فرعی"
+              :label="$t('shared.labels.detailUnitTitle')"
               v-model:selectedId="formStore.model.value.detailUnitId"
               v-model:selectedText="
                 formStore.model.value.detailUnitTitle
@@ -35,7 +35,7 @@
         <div class="row q-gutter-md q-mb-md">
           <div class="col-md-2 col-sm-6 col-xs-6">
             <custom-input-number
-              label="نرخ"
+              :label="$t('shared.labels.rate')"
               v-model="formStore.model.value.rate"
             />
           </div>
@@ -47,6 +47,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
@@ -62,4 +63,6 @@
   const formStore = useBaseInfoModel({
     baseRoute: "cmn/productUnitRelation",
   });
+
+  const { t: $t } = useI18n();
 </script>

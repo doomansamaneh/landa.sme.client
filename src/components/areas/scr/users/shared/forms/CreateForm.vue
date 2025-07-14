@@ -10,7 +10,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
             <custom-input
-              label="نام"
+              :label="$t('shared.columns.name')"
               v-model="formStore.model.value.name"
               required
             />
@@ -19,7 +19,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-3 col-sm-6 col-xs-12">
             <custom-input
-              label="ایمیل"
+              :label="$t('shared.labels.email')"
               v-model="formStore.model.value.email"
               required
             />
@@ -28,7 +28,9 @@
 
         <div class="row q-mb-md">
           <div class="col-md-12 col-sm-12 col-xs-12">
-            <custom-label label="گروه‌های دسترسی کاربر" />
+            <custom-label
+              :label="$t('shared.labels.userAccessGroups')"
+            />
             <div class="q-gutter-sm q-pt-xs">
               <q-option-group
                 type="checkbox"
@@ -46,11 +48,14 @@
 
 <script setup>
   import { computed, onMounted, ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useUserModel } from "../../../_composables/useUserModel";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomLabel from "src/components/shared/forms/CustomLabel.vue";
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

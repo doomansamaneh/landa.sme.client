@@ -9,9 +9,13 @@
     <thead>
       <tr>
         <th style="width: 1px">#</th>
-        <th>کالا</th>
-        <th style="width: 110px">تعداد/مقدار</th>
-        <th style="width: 150px">مبلغ واحد</th>
+        <th>{{ $t("shared.columns.productTitle") }}</th>
+        <th style="width: 110px">
+          {{ $t("shared.columns.quantity") }}
+        </th>
+        <th style="width: 150px">
+          {{ $t("shared.columns.unitPrice") }}
+        </th>
         <th></th>
       </tr>
     </thead>
@@ -26,7 +30,7 @@
           <product-lookup
             class="first"
             autofocus
-            placeholder="کالا"
+            :placeholder="$t('shared.columns.productTitle')"
             v-model:selectedId="row.productId"
             v-model:selectedText="row.productTitle"
             :filterExpression="productFilter"
@@ -35,13 +39,13 @@
         <td>
           <custom-input-number
             v-model="row.quantity"
-            placeholder="تعداد/مقدار"
+            :placeholder="$t('shared.columns.quantity')"
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.price"
-            placeholder="مبلغ واحد"
+            :placeholder="$t('shared.columns.unitPrice')"
           />
         </td>
         <td class="text-center q-gutter-x-sm">
@@ -80,10 +84,13 @@
 
 <script setup>
   import { computed } from "vue";
+  import { useI18n } from "vue-i18n";
 
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

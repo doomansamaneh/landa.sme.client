@@ -6,7 +6,7 @@
           v-model:selectedId="formStore.model.value.slId"
           v-model:selectedText="formStore.model.value.slDisplay"
           :filter-expression="filterSL"
-          label="حساب معین"
+          :label="$t('shared.labels.subLedgerAccount')"
           required
         />
       </div>
@@ -17,7 +17,7 @@
         <bank-branch-lookup
           v-model:selectedId="formStore.model.value.bankBranchId"
           v-model:selectedText="formStore.model.value.bankBranchTitle"
-          label="شعبه بانک"
+          :label="$t('shared.labels.bankBranch')"
           required
         />
       </div>
@@ -30,7 +30,7 @@
           v-model:selectedText="
             formStore.model.value.bankAccountTypeTitle
           "
-          label="نوع حساب"
+          :label="$t('shared.labels.bankAccountTypeTitle')"
           required
         />
       </div>
@@ -40,7 +40,7 @@
       <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input
           v-model="formStore.model.value.no"
-          label="شماره حساب"
+          :label="$t('shared.labels.accountNumber')"
           required
         />
       </div>
@@ -50,7 +50,7 @@
       <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input
           v-model="formStore.model.value.ownerName"
-          label="نام صاحب حساب"
+          :label="$t('shared.labels.name')"
           required
         />
       </div>
@@ -60,7 +60,7 @@
       <div class="col-md-2 col-sm-4 col-xs-12">
         <date-time
           v-model="formStore.model.value.openingDate"
-          label="تاریخ آغاز"
+          :label="$t('shared.labels.date')"
           required
         />
       </div>
@@ -71,15 +71,17 @@
         dense
         size="48px"
         v-model="formStore.model.value.isActive"
-        label="فعال"
+        :label="$t('shared.labels.isActive')"
       />
     </div>
   </q-form>
   <q-card flat class="tips">
     <q-card-section>
-      <div class="title q-mb-sm">راهنما</div>
+      <div class="title q-mb-sm">
+        {{ $t("shared.labels.userGuide") }}
+      </div>
       <div class="text-body1">
-        حساب معین پیشفرض: موجودی نزد بانک با کد 10101
+        {{ $t("shared.labels.defaultSubLedgerAccount") }}
       </div>
     </q-card-section>
   </q-card>
@@ -87,6 +89,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { sqlOperator, accountCLType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
@@ -95,6 +98,8 @@
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import BankBranchLookup from "src/components/shared/lookups/BankBranchLookup.vue";
   import AccountTypeLookup from "src/components/shared/lookups/BankAccountTypeLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

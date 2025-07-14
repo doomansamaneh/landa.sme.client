@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-6 col-xs-12">
       <date-time
         v-model="localFormStore.model.value.date"
-        label="تاریخ"
+        :label="$t('shared.labels.date')"
         required
       />
     </div>
@@ -16,7 +16,7 @@
         v-model:selectedText="
           localFormStore.model.value.contractTitle
         "
-        label="قرارداد"
+        :label="$t('shared.labels.contract')"
       />
     </div>
   </div>
@@ -26,7 +26,7 @@
       <custom-input
         v-model="localFormStore.model.value.summary"
         type="textarea"
-        label="شرح"
+        :label="$t('shared.labels.subject')"
         required
       />
     </div>
@@ -35,10 +35,13 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

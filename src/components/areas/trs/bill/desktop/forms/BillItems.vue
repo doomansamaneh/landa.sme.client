@@ -9,12 +9,18 @@
     <thead>
       <tr>
         <th style="width: 1%">#</th>
-        <th style="width: 25%">هزینه</th>
-        <th>شرح</th>
-        <th style="width: 12%">مبلغ</th>
-        <th style="width: 10%">مالیات بر ارزش افزوده</th>
-        <th style="width: 9%">مبلغ مالیات</th>
-        <th style="width: 12%">مبلغ کل</th>
+        <th style="width: 25%">{{ $t("shared.columns.expense") }}</th>
+        <th>{{ $t("shared.columns.subject") }}</th>
+        <th style="width: 12%">{{ $t("shared.columns.amount") }}</th>
+        <th style="width: 10%">
+          {{ $t("shared.columns.vatAmount") }}
+        </th>
+        <th style="width: 9%">
+          {{ $t("shared.columns.taxAmount") }}
+        </th>
+        <th style="width: 12%">
+          {{ $t("shared.columns.totalPrice") }}
+        </th>
         <th style="width: 1px"></th>
       </tr>
     </thead>
@@ -28,7 +34,7 @@
         <td>
           <sl-lookup
             :autofocus="index === formStore.newAddedItemIndex.value"
-            placeholder="سرفصل هزینه"
+            :placeholder="$t('shared.columns.expense')"
             v-model:selectedId="row.slId"
             v-model:selectedText="row.slTitle"
             :filterExpression="slFilter"
@@ -40,20 +46,20 @@
             v-model="row.comment"
             type="textarea"
             autogrow
-            placeholder="شرح"
+            :placeholder="$t('shared.columns.subject')"
             required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.amount"
-            placeholder="مبلغ"
+            :placeholder="$t('shared.columns.amount')"
             required
           />
         </td>
         <td>
           <vat-lookup
-            placeholder="مالیات بر ارزش افزوده"
+            :placeholder="$t('shared.columns.vatAmount')"
             v-model:selectedId="row.vatId"
             v-model:selectedText="row.vatTitle"
             :filterExpression="vatFilter"
@@ -64,7 +70,7 @@
         <td>
           <custom-input-number
             v-model="row.vatAmount"
-            placeholder="مبلغ مالیات"
+            :placeholder="$t('shared.columns.taxAmount')"
           />
         </td>
         <td>
@@ -115,14 +121,16 @@
             @click="formStore.pushNewItem()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
+            {{ $t("shared.labels.addRow") }}
           </q-btn>
         </td>
       </tr>
     </tbody>
     <tbody v-else>
       <tr>
-        <td colspan="6" class="text-right text-weight-700">سرجمع:</td>
+        <td colspan="6" class="text-right text-weight-700">
+          {{ $t("shared.labels.subTotal") }}:
+        </td>
         <td>
           <strong>
             {{
@@ -139,11 +147,14 @@
 <script setup>
   import { helper } from "src/helpers";
   import { sqlOperator, vatType, closeAccounts } from "src/constants";
+  import { useI18n } from "vue-i18n";
 
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,
