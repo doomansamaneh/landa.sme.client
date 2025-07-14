@@ -27,6 +27,7 @@ import {
   dlTitle,
   voucherDate,
   voucherSubject,
+  contractTitle,
 } from "src/constants/columns";
 
 export const accountGLColumns = [
@@ -88,6 +89,7 @@ export const voucherColumns = [
   { ...no },
   { ...date },
   { ...subject },
+  { ...contractTitle },
   { ...type },
   {
     name: "systemId",
