@@ -13,13 +13,14 @@
     @row-dbl-click="gotoPreview"
     :no-fullscreen="noFullscreen"
   >
-    <template #toolbar>
+  <!-- If we need show custom print preview -->
+    <!-- <template #toolbar>
       <DataGridToolbar
         :table-store="tableStore"
         :title="title"
         :printPreviewComponent="InvoicePrintPreview"
       />
-    </template>
+    </template> -->
     <template #filter-statusId="{ item }">
       <custom-select
         v-model="item.value"

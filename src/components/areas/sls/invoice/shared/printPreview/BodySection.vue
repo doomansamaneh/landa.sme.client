@@ -53,7 +53,7 @@
         <tr>
           <td
             class="text-bold"
-            :colspan="getColspan() + 1"
+            :colspan="getColspan()"
             style="text-align: end"
           >
             {{ $t("shared.labels.total") }}
@@ -66,7 +66,7 @@
               {{ helper.formatNumber(data.summaryData[fieldName]) }}
             </td>
           </template>
-         
+          <td></td>
         </tr>
       </tfoot>
     </table>
