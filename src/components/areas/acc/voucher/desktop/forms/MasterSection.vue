@@ -3,7 +3,7 @@
     <div class="col-md-2 col-sm-4 col-xs-12">
       <custom-input
         v-model="localFormStore.model.value.no"
-         :label="$t('shared.labels.no')"
+        :label="$t('shared.labels.no')"
         readonly
         disable
       />
@@ -11,7 +11,7 @@
     <div class="col-md-3 col-sm-4 col-xs-12">
       <date-time
         v-model="localFormStore.model.value.date"
-         :label="$t('shared.labels.date')"
+        :label="$t('shared.labels.date')"
         required
       />
     </div>
@@ -24,14 +24,14 @@
         v-model:selectedText="
           localFormStore.model.value.contractTitle
         "
-         :label="$t('shared.labels.contractTitle')"
+        :label="$t('shared.labels.contractTitle')"
       />
     </div>
   </div>
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <comment-lookup
+      <custom-input
         v-model:selectedText="localFormStore.model.value.subject"
         type="textarea"
         :label="$t('shared.labels.comment')"

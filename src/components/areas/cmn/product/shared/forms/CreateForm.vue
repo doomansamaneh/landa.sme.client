@@ -55,7 +55,7 @@
         <custom-select
           v-model="model.typeId"
           :options="helper.getEnumOptions(productType, 'productType')"
-          :label="$t('shared.columns.typeTitle')"
+          :label="$t('shared.columns.typeId')"
           required
         />
       </div>

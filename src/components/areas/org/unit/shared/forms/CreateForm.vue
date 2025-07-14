@@ -38,7 +38,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              {{ $t("shared.columns.unitTypeTitle") }}
+              {{ $t("shared.columns.typeId") }}
             </q-item-label>
             <unit-type-lookup
               hide-bottom-space

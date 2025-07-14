@@ -12,7 +12,7 @@
   </div>
   <div class="q-mt-lg">
     <custom-input
-      :label="$t('shared.labels.address')"
+      :label="$t('shared.columns.address')"
       v-model="configStore.model.value.companySetting.address"
     />
   </div>

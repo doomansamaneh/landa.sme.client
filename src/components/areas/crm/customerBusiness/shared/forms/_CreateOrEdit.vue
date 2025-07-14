@@ -4,7 +4,7 @@
       <div class="q-gutter-lg">
         <div>
           <custom-input
-            :label="$t('shared.labels.nationalNo')"
+            :label="$t('shared.columns.nationalNo')"
             v-model="model.nationalNo"
           />
         </div>
@@ -26,7 +26,7 @@
       <div class="q-gutter-lg">
         <div>
           <custom-input
-            :label="$t('shared.labels.taxNo')"
+            :label="$t('shared.columns.taxNo')"
             v-model="model.taxNo"
           />
         </div>

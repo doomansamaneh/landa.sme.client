@@ -3,7 +3,7 @@
     <div class="col-md col-sm col-xs-12">
       <div>
         <custom-input
-          :label="$t('shared.labels.nationalNo')"
+          :label="$t('shared.columns.nationalNo')"
           v-model="configStore.model.value.companySetting.nationalNo"
         />
       </div>
@@ -12,7 +12,7 @@
     <div class="col-md col-sm col-xs-12">
       <div>
         <custom-input
-          :label="$t('shared.labels.economicId')"
+          :label="$t('shared.columns.taxNo')"
           v-model="configStore.model.value.companySetting.taxNo"
         />
       </div>

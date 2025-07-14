@@ -14,7 +14,7 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
       <contact-type-lookup
-        :label="$t('shared.columns.typeTitle')"
+        :label="$t('shared.columns.typeId')"
         v-model:selectedId="model.contactTypeId"
         v-model:selectedText="model.contactTypeTitle"
         :filter-expression="contactTypeFilter"

@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-select
-              :label="$t('shared.columns.typeTitle')"
+              :label="$t('shared.columns.typeId')"
               hide-bottom-space
               v-model="formStore.model.value.typeId"
               :options="
