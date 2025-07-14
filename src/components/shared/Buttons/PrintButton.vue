@@ -10,11 +10,15 @@
 <script setup>
   import { usePreview } from "src/composables/usePreview";
 
-  import DataGridDefaultPreview from "src/components/shared/dataTables/printPreview/DataGridDefaultPreview.vue";
+  import DataGridDefaultPreview from "src/components/shared/DataTables/printPreview/DataGridDefaultPreview.vue";
 
   const props = defineProps({
     tableStore: Object,
     title: String,
+    previewComponent: {
+      type: Object,
+      default: () => DataGridDefaultPreview,
+    },
   });
 
   const previewStore = usePreview();
@@ -22,7 +26,7 @@
   const openPreview = async () => {
     previewStore.openDialog({
       title: props.title,
-      component: DataGridDefaultPreview,
+      component: props.previewComponent,
       previewProps: {
         tableStore: props.tableStore,
         title: props.title,

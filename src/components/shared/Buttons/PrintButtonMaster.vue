@@ -22,7 +22,7 @@
   import { downloadManager } from "src/helpers";
   import { usePreview } from "src/composables/usePreview";
 
-  import DataGridDefaultPreview from "src/components/shared/dataTables/printPreview/DataGridDefaultPreview.vue";
+  import DataGridDefaultPreview from "src/components/shared/DataTables/printPreview/DataGridDefaultPreview.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
 
   const props = defineProps({

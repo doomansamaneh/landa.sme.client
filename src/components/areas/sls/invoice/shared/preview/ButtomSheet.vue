@@ -15,7 +15,6 @@
         padding="6px 12px"
         rounded
         unelevated
-        no-caps
       >
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
         {{ $t("shared.labels.edit") }}
@@ -27,7 +26,6 @@
         padding="6px 12px"
         rounded
         unelevated
-        no-caps
       >
         <q-icon size="20px" name="o_copy" class="q-mr-xs" />
         {{ $t("shared.labels.copy") }}
@@ -39,7 +37,6 @@
         padding="6px 12px"
         rounded
         unelevated
-        no-caps
       >
         <q-icon size="20px" name="o_delete" class="q-mr-xs" />
         {{ $t("shared.labels.delete") }}
@@ -51,7 +48,6 @@
         padding="6px 12px"
         rounded
         unelevated
-        no-caps
       >
         <q-icon size="20px" name="o_print" class="q-mr-xs" />
         چاپ
@@ -63,7 +59,6 @@
         padding="6px 12px"
         rounded
         unelevated
-        no-caps
       >
         <q-icon size="20px" name="download" class="q-mr-xs" />
         تبدیل به pdf
