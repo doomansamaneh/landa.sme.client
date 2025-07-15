@@ -14,14 +14,13 @@
               round
               size="10px"
               unelevated
-              @click="grid.loadData()"
+              @click="loadableDataGrid.loadData()"
             >
               <q-icon name="refresh" size="24px" />
             </q-btn>
           </div>
 
           <q-separator class="q-mb-md" v-if="$q.screen.lt.md" />
-
 
           <q-card-section
             :class="$q.screen.lt.md ? 'no-padding' : 'q-px-none'"
@@ -32,7 +31,7 @@
               first-load
               :scrollArea="false"
               :show-search="false"
-              sort-column="comment"
+              sort-column="dateCreated"
               data-source="business/getFeedbackGridData"
               :scrollBarStyle="
                 $q.screen.xs
