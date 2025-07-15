@@ -1,7 +1,7 @@
 <template>
   <custom-label class="q-mb-sm" :label="label" />
   <q-input
-    ref="search"
+    ref="mainSearch"
     v-model="selectedText"
     :type="type"
     :placeholder="placeholder"
@@ -10,7 +10,6 @@
     color="primary"
     class="first input lookup"
     @keydown.enter.prevent.stop="selectRow"
-    @keydown="handleKeyDown"
   >
     <template #append>
       <q-btn
@@ -76,7 +75,7 @@
     </div>
     <div class="q-px-md q-pb-md">
       <q-input
-        ref="search"
+        ref="menuSearch"
         v-model="searchText"
         hide-bottom-space
         outlined
@@ -87,8 +86,6 @@
         debounce="500"
         :placeholder="'جستجو...'"
         @update:model-value="onSearch"
-        @keydown.enter.prevent.stop="selectRow"
-        @keydown="handleKeyDown"
       >
         <template #append>
           <q-icon
@@ -169,7 +166,7 @@
           </div>
         </div>
         <q-input
-          ref="search"
+          ref="dialogSearch"
           v-model="searchText"
           hide-bottom-space
           outlined
@@ -180,8 +177,6 @@
           debounce="500"
           :placeholder="'جستجو...'"
           @update:model-value="onSearch"
-          @keydown.enter.prevent.stop="selectRow"
-          @keydown="handleKeyDown"
         >
           <template #append>
             <q-icon
@@ -264,7 +259,13 @@
 </template>
 
 <script setup>
-  import { ref, nextTick } from "vue";
+  import {
+    ref,
+    nextTick,
+    watch,
+    onMounted,
+    onBeforeUnmount,
+  } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { defaultLookupPageSize, sortOrder } from "src/constants";
@@ -279,16 +280,21 @@
     label: String,
   });
 
+  const emit = defineEmits(["row-selected"]);
+
   const $q = useQuasar();
   const selectedText = defineModel("selectedText");
   const isPopupOpen = ref(false);
   const isDialogOpen = ref(false);
   const searchText = ref("");
-  const selectedRowIndex = ref(-1);
+  const selectedRowIndex = ref(0); // default to 0 for first row
   const isAscending = ref(true);
   const addBtnRef = ref(null);
   const popup = ref(null);
   const lookupDialog = ref(null);
+  const menuSearch = ref(null);
+  const dialogSearch = ref(null);
+  const mainSearch = ref(null);
 
   const store = {
     pagination: ref({
@@ -336,7 +342,7 @@
     const idx = tableStore.rows.value.findIndex(
       (row) => row.title === selectedText.value
     );
-    selectedRowIndex.value = idx;
+    selectedRowIndex.value = idx >= 0 ? idx : 0;
   }
 
   function onBeforeShow() {
@@ -346,6 +352,17 @@
   function onMenuShow() {
     isPopupOpen.value = true;
     syncSelectedRowIndex();
+    nextTick(() => {
+      if (
+        menuSearch.value &&
+        typeof menuSearch.value.focus === "function"
+      ) {
+        menuSearch.value.focus();
+      } else if (menuSearch.value && menuSearch.value.$el) {
+        const input = menuSearch.value.$el.querySelector("input");
+        if (input) input.focus();
+      }
+    });
   }
 
   function onMenuHide() {
@@ -354,6 +371,17 @@
 
   function onDialogShow() {
     tableStore.reloadData().then(syncSelectedRowIndex);
+    nextTick(() => {
+      if (
+        dialogSearch.value &&
+        typeof dialogSearch.value.focus === "function"
+      ) {
+        dialogSearch.value.focus();
+      } else if (dialogSearch.value && dialogSearch.value.$el) {
+        const input = dialogSearch.value.$el.querySelector("input");
+        if (input) input.focus();
+      }
+    });
   }
 
   function onRowClicked(row, index) {
@@ -362,13 +390,16 @@
   }
 
   function selectRow(row) {
-    if (!row && tableStore.rows.value.length > 0) {
-      row = tableStore.rows.value[0];
-      selectedRowIndex.value = 0;
+    if (!isPopupOpen.value && !isDialogOpen.value) return;
+    // Always select the row at selectedRowIndex if no row is passed
+    if (!row) {
+      if (tableStore.rows.value.length === 0) return;
+      row = tableStore.rows.value[selectedRowIndex.value];
     }
     selectedText.value = row.title;
     isPopupOpen.value = false;
     isDialogOpen.value = false;
+    emit("row-selected", row);
   }
 
   function reloadData() {
@@ -393,29 +424,75 @@
       : sortOrder.descending;
     tableStore.pagination.value.sortColumn = "title";
     tableStore.reloadData();
-    selectedRowIndex.value = -1;
+    selectedRowIndex.value = 0;
   }
 
   function handleKeyDown(event) {
+    if (!isPopupOpen.value && !isDialogOpen.value) return;
     switch (event.key) {
       case "ArrowDown":
+        if (tableStore.rows.value.length === 0) break;
         if (
-          selectedRowIndex.value <
+          selectedRowIndex.value ===
           tableStore.rows.value.length - 1
         ) {
+          selectedRowIndex.value = 0;
+        } else {
           selectedRowIndex.value++;
         }
         break;
       case "ArrowUp":
-        if (selectedRowIndex.value > 0) {
+        if (tableStore.rows.value.length === 0) break;
+        if (selectedRowIndex.value === 0) {
+          selectedRowIndex.value = tableStore.rows.value.length - 1;
+        } else {
           selectedRowIndex.value--;
         }
         break;
       case "Enter":
-        selectRow(tableStore.rows.value[selectedRowIndex.value]);
+        selectRow();
         break;
     }
   }
+
+  // Global keydown handler for navigation
+  function globalKeydownHandler(e) {
+    // Only handle up/down/enter
+    if (["ArrowUp", "ArrowDown", "Enter"].includes(e.key)) {
+      // Prevent default scroll/submit
+      e.preventDefault();
+      handleKeyDown(e);
+    }
+  }
+
+  // Watch for menu/dialog open/close to add/remove global keydown
+  watch([isPopupOpen, isDialogOpen], ([popup, dialog]) => {
+    if (popup || dialog) {
+      window.addEventListener("keydown", globalKeydownHandler);
+    } else {
+      window.removeEventListener("keydown", globalKeydownHandler);
+    }
+  });
+
+  // Clean up on component unmount
+  onBeforeUnmount(() => {
+    window.removeEventListener("keydown", globalKeydownHandler);
+  });
+
+  // Focus main search input on mount
+  onMounted(() => {
+    nextTick(() => {
+      if (
+        mainSearch.value &&
+        typeof mainSearch.value.focus === "function"
+      ) {
+        mainSearch.value.focus();
+      } else if (mainSearch.value && mainSearch.value.$el) {
+        const input = mainSearch.value.$el.querySelector("input");
+        if (input) input.focus();
+      }
+    });
+  });
 </script>
 
 <style scoped>
