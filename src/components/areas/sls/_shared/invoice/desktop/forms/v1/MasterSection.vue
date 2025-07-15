@@ -107,7 +107,7 @@
               <custom-input
                 :label="$t('shared.labels.comment')"
                 type="textarea"
-                v-model:selectedText="model.summary"
+                v-model="model.summary"
               />
             </div>
           </div>

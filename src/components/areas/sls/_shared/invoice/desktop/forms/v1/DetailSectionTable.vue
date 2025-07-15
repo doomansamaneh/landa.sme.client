@@ -186,7 +186,7 @@
           <td class="text-center"></td>
           <td colspan="3" style="width: 45%">
             <custom-input
-              v-model:selectedText="row.comment"
+              v-model="row.comment"
               :placeholder="$t('shared.labels.rowDescription')"
               autogrow
               dense

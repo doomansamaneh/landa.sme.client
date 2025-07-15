@@ -174,7 +174,7 @@
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
           <custom-input
-            v-model:selectedText="wageItem.comment"
+            v-model="wageItem.comment"
             :label="$t('shared.columns.comment')"
           />
         </div>

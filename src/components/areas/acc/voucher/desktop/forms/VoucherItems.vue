@@ -57,7 +57,7 @@
           </td>
           <td>
             <custom-input
-              v-model:selectedText="row.comment"
+              v-model="row.comment"
               autogrow
               required
             />
