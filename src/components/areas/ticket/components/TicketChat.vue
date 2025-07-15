@@ -1,8 +1,19 @@
 <template>
-  <q-card v-if="ticket" flat bordered class="full-height">
-    <q-card-section class="flex items-center justify-between">
+  <q-card
+    :square="$q.screen.lt.md"
+    :flat="$q.screen.lt.md"
+    v-if="ticket"
+    :bordered="$q.screen.gt.md"
+  >
+    <q-card-section
+      :class="
+        $q.screen.lt.md
+          ? 'q-pa-sm flex items-center justify-between'
+          : 'flex items-center justify-between'
+      "
+    >
       <div>
-        <div class="text-h6">
+        <div :class="$q.screen.lt.md ? 'text-body2' : 'text-h6'">
           {{ ticket.comment }}
         </div>
         <div class="text-subtitle2_">
@@ -10,31 +21,54 @@
         </div>
       </div>
 
-      <q-chip
-        :color="getStatusColor(ticket.statusId)"
-        text-color="white"
-        size="md"
-      >
-        {{
-          $t(
-            `shared.feedbackStatus.${helper.getEnumType(
-              ticket?.statusId,
-              feedbackStatus
-            )}`
-          )
-        }}
-      </q-chip>
+      <div class="flex items-center">
+        <q-chip
+          :color="getStatusColor(ticket.statusId)"
+          text-color="white"
+          size="md"
+        >
+          {{
+            $t(
+              `shared.feedbackStatus.${helper.getEnumType(
+                ticket?.statusId,
+                feedbackStatus
+              )}`
+            )
+          }}
+        </q-chip>
+
+        <q-btn
+          unelevated
+          round
+          dense
+          icon="refresh"
+          @click="tableStore.reloadData()"
+        />
+        <q-btn
+          v-if="$q.screen.lt.md"
+          unelevated
+          round
+          dense
+          icon="close"
+          v-close-popup
+        />
+      </div>
     </q-card-section>
 
     <q-card-section
       class="chat-container q-pa-none"
+      :style="
+        $q.screen.lt.md
+          ? 'height: calc(100vh);'
+          : 'height: calc(100vh - 272px);'
+      "
       :class="{ 'chat-disabled': isChatDisabled }"
     >
       <q-scroll-area
         ref="chatScroll"
         :bar-style="helper.barStyle"
         :thumb-style="helper.thumbStyle"
-        style="height: calc(100vh - 360px)"
+        style="height: calc(100vh)"
       >
         <div class="chat-messages q-pa-md">
           <div
@@ -44,6 +78,7 @@
           >
             <div class="col-12_">
               <q-chat-message
+                class="fit"
                 :name="message.senderName"
                 :avatar="message.senderId"
                 :text="[message.comment]"
@@ -70,58 +105,69 @@
     </q-card-section>
 
     <q-card-section
-      class="q-pa-none"
-      :class="{ 'chat-disabled': isChatDisabled }"
+      class="q-pa-none bg-dark"
+      :class="{
+        'chat-disabled': isChatDisabled,
+        'fixed-bottom': $q.screen.lt.md,
+      }"
     >
       <q-form ref="form" @submit.prevent="sendMessage">
-        <q-input
-          v-model="model.comment"
-          dense
-          outlined
-          :disable="isChatDisabled"
-          :placeholder="
-            isChatDisabled
-              ? 'این تیکت بسته شده است'
-              : 'پیام خود را بنویسید...'
-          "
-          class="q-pa-md"
-          @keyup.enter="sendMessage"
-        >
-          <template v-slot:before>
-            <q-btn
-              no-caps
-              round
-              dense
-              flat
-              icon="send"
-              color="primary"
-              @click="sendMessage"
-            />
-          </template>
-        </q-input>
+        <div>
+          <q-input
+            dense
+            autogrow
+            v-model="model.comment"
+            outlined
+            :disable="isChatDisabled"
+            :placeholder="
+              isChatDisabled
+                ? 'این تیکت بسته شده است'
+                : 'پیام خود را بنویسید...'
+            "
+            class="q-pa-md"
+            @keyup.enter="sendMessage"
+          >
+            <template v-slot:before>
+              <q-btn
+                no-caps
+                round
+                dense
+                flat
+                icon="send"
+                color="primary"
+                @click="sendMessage"
+              />
+            </template>
+          </q-input>
+        </div>
       </q-form>
-      <q-btn icon="refresh" @click="tableStore.reloadData()"></q-btn>
     </q-card-section>
   </q-card>
 
-  <div v-else class="text-center q-pa-lg">
-    <q-icon
-      name="support_agent"
-      size="64px"
-      :color="$q.dark.isActive ? 'grey-3' : 'grey-7'"
-      class="q-mb-md"
-    />
-    <div
-      class="text-h6 q-mb-sm"
-      :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
-    >
-      برای مشاهده جزئیات تیکت، لطفاً یک تیکت را از لیست انتخاب کنید
-    </div>
-    <div :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'">
-      با انتخاب یک تیکت از لیست، می‌توانید جزئیات و تاریخچه مکالمات آن
-      را مشاهده کنید
-    </div>
-  </div>
+  <q-card
+    v-else
+    class="text-center q-pa-lg"
+    :class="$q.screen.lt.md ? 'no-shadow' : 'bordered'"
+  >
+    <q-card-section>
+      <q-icon
+        name="support_agent"
+        size="64px"
+        :color="$q.dark.isActive ? 'grey-3' : 'grey-7'"
+        class="q-mb-md"
+      />
+      <div
+        class="text-h6 q-mb-sm"
+        :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
+      >
+        برای مشاهده جزئیات تیکت، لطفاً یک تیکت را از لیست انتخاب کنید
+      </div>
+      <div :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'">
+        با انتخاب یک تیکت از لیست، می‌توانید جزئیات و تاریخچه مکالمات
+        آن را مشاهده کنید
+      </div>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>
@@ -231,7 +277,6 @@
   .chat-container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 360px);
   }
 
   .chat-disabled {

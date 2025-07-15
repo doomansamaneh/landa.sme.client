@@ -934,7 +934,9 @@
       "inProgress": "در حال انجام",
       "done": "بسته شده",
       "unDone": "قابل انجام نیست",
-      "responded": "پاسخ داده شد"
+      "responded": "پاسخ داده شد",
+      "incident": "مشکل",
+      "request": "درخواست، پیشنهاد"
     },
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",
