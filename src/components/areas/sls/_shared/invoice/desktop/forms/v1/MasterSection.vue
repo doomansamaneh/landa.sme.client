@@ -104,16 +104,17 @@
 
           <div class="row q-mt-md">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <!-- <comment-lookup
-                :label="$t('shared.labels.comment')"
-                type="textarea"
-                v-model="model.summary"
-              /> -->
-              <custom-input
+              <comment-lookup
                 :label="$t('shared.labels.comment')"
                 type="textarea"
                 v-model="model.summary"
               />
+
+              <!-- <custom-input
+                :label="$t('shared.labels.comment')"
+                type="textarea"
+                v-model="model.summary"
+              /> -->
             </div>
           </div>
         </div>
