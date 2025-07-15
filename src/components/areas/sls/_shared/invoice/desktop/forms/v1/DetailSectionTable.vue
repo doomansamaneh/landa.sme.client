@@ -191,6 +191,12 @@
               autogrow
               dense
             />
+            <!-- <custom-input
+              v-model:selectedText="row.comment"
+              :placeholder="$t('shared.labels.rowDescription')"
+              autogrow
+              dense
+            /> -->
           </td>
           <td colspan="2" style="width: 25%">
             <custom-input

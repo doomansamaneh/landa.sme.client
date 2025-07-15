@@ -1,16 +1,23 @@
 <template>
   <custom-label class="q-mb-sm" :label="label" />
   <q-input
-    ref="search"
+    ref="mainSearch"
     v-model="selectedText"
     :type="type"
     :placeholder="placeholder"
     outlined
+    hide-bottom-space
     dense
     color="primary"
     class="first input lookup"
     @keydown.enter.prevent.stop="selectRow"
-    @keydown="handleKeyDown"
+    :rules="rules"
+    :error="!!validationMessage"
+    @blur="
+      () => {
+        if (props.required) rules.value[0](selectedText);
+      }
+    "
   >
     <template #append>
       <q-btn
@@ -26,6 +33,7 @@
         <q-icon size="16px" name="o_message" />
       </q-btn>
     </template>
+
     <template #prepend v-if="tableStore.inputInnerLoader.value">
       <q-spinner
         v-if="tableStore.inputInnerLoader.value"
@@ -33,113 +41,116 @@
         color="primary"
       />
     </template>
-  </q-input>
 
-  <q-menu
-    v-model="isPopupOpen"
-    no-parent-event
-    transition-show="jump-down"
-    transition-hide="jump-up"
-    ref="popup"
-    :context-menu="false"
-    cover
-    :target="addBtnRef?.value?.$el"
-    @before-show="onBeforeShow"
-    @show="onMenuShow"
-    @hide="onMenuHide"
-  >
-    <q-inner-loading
-      :showing="tableStore.showLoader.value"
-      class="inner-loader_ q-mt-xl"
-    >
-      <q-spinner size="52px" color="primary" />
-    </q-inner-loading>
+    <validation-alert
+      v-if="validationMessage"
+      :message="validationMessage"
+    />
 
-    <div
-      class="header text-caption text-bold q-pa-md bg-dark z-max"
-      style="border-bottom: 1px solid var(--q-primary)"
+    <q-menu
+      v-model="isPopupOpen"
+      no-parent-event
+      transition-show="jump-down"
+      transition-hide="jump-up"
+      ref="popup"
+      :context-menu="false"
+      cover
+      :target="addBtnRef?.value?.$el"
+      @before-show="onBeforeShow"
+      @show="onMenuShow"
+      @hide="onMenuHide"
     >
-      <div
-        class="row q-col-gutter-md items-center"
-        style="width: 100%; margin-left: 0px"
+      <q-inner-loading
+        :showing="tableStore.showLoader.value"
+        class="inner-loader_ q-mt-xl"
       >
-        <div class="col-1">#</div>
-        <div class="col">
-          <header-column
-            fieldName="title"
-            :title="$t('shared.labels.title') || 'شرح'"
-            :table-store="tableStore"
-            @click="sortTitle"
+        <q-spinner size="52px" color="primary" />
+      </q-inner-loading>
+
+      <div
+        class="header text-caption text-bold q-pa-md bg-dark z-max"
+        style="border-bottom: 1px solid var(--q-primary)"
+      >
+        <div
+          class="row q-col-gutter-md items-center"
+          style="width: 100%; margin-left: 0px"
+        >
+          <div class="col-1">#</div>
+          <div class="col">
+            <header-column
+              fieldName="title"
+              :title="$t('shared.labels.title') || 'شرح'"
+              :table-store="tableStore"
+              @click="sortTitle"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="q-px-md q-pb-md">
+        <q-input
+          ref="menuSearch"
+          v-model="searchText"
+          hide-bottom-space
+          outlined
+          color="primary"
+          class="q-mt-md first input lookup"
+          input-class="text-body2 "
+          dense
+          debounce="500"
+          :placeholder="'جستجو...'"
+          @update:model-value="onSearch"
+        >
+          <template #append>
+            <q-icon
+              name="o_close"
+              v-if="searchText"
+              class="cursor-pointer q-field__focusable-action"
+              @click="clearSearch"
+            />
+          </template>
+        </q-input>
+        <div
+          v-for="(row, index) in tableStore.rows.value"
+          :key="row.id"
+          class="cursor-pointer q-my-sm rounded-borders"
+          :class="{ 'row-active': index === selectedRowIndex }"
+          @click="onRowClicked(row, index)"
+        >
+          <q-item
+            class="rounded-borders"
+            style="padding: 12px"
+            clickable
+          >
+            <div
+              class="row items-center q-gutter-lg_"
+              style="width: 100%; margin-left: 0px"
+            >
+              <div class="col-1 text-caption">{{ index + 1 }}</div>
+              <div class="col text-body2">{{ row.title }}</div>
+            </div>
+          </q-item>
+        </div>
+        <div
+          v-if="
+            !tableStore.showLoader.value &&
+            tableStore.rows.value.length == 0
+          "
+          class="q-table__bottom items-center q-table__bottom--nodata"
+        >
+          <no-data-found />
+        </div>
+        <div
+          v-if="tableStore.showPagebar.value"
+          class="q-mt-md flex flex-center"
+        >
+          <page-bar
+            :pagination="tableStore.pagination.value"
+            @page-changed="reloadData"
           />
         </div>
       </div>
-    </div>
-    <div class="q-px-md q-pb-md">
-      <q-input
-        ref="search"
-        v-model="searchText"
-        hide-bottom-space
-        outlined
-        color="primary"
-        class="q-mt-md first input lookup"
-        input-class="text-body2 "
-        dense
-        debounce="500"
-        :placeholder="'جستجو...'"
-        @update:model-value="onSearch"
-        @keydown.enter.prevent.stop="selectRow"
-        @keydown="handleKeyDown"
-      >
-        <template #append>
-          <q-icon
-            name="o_close"
-            v-if="searchText"
-            class="cursor-pointer q-field__focusable-action"
-            @click="clearSearch"
-          />
-        </template>
-      </q-input>
-      <div
-        v-for="(row, index) in tableStore.rows.value"
-        :key="row.id"
-        class="cursor-pointer q-my-sm rounded-borders"
-        :class="{ 'row-active': index === selectedRowIndex }"
-        @click="onRowClicked(row, index)"
-      >
-        <q-item
-          class="rounded-borders"
-          style="padding: 12px"
-          clickable
-        >
-          <div
-            class="row items-center q-gutter-lg_"
-            style="width: 100%; margin-left: 0px"
-          >
-            <div class="col-1 text-caption">{{ index + 1 }}</div>
-            <div class="col text-body2">{{ row.title }}</div>
-          </div>
-        </q-item>
-      </div>
-      <div
-        v-if="
-          !tableStore.showLoader.value &&
-          tableStore.rows.value.length == 0
-        "
-        class="q-table__bottom items-center q-table__bottom--nodata"
-      >
-        <no-data-found />
-      </div>
-      <div
-        v-if="tableStore.showPagebar.value"
-        class="q-mt-md flex flex-center"
-      >
-        <page-bar
-          :pagination="tableStore.pagination.value"
-          @page-changed="reloadData"
-        />
-      </div>
-    </div>
-  </q-menu>
+    </q-menu>
+  </q-input>
 
   <q-dialog
     ref="lookupDialog"
@@ -169,7 +180,7 @@
           </div>
         </div>
         <q-input
-          ref="search"
+          ref="dialogSearch"
           v-model="searchText"
           hide-bottom-space
           outlined
@@ -180,8 +191,6 @@
           debounce="500"
           :placeholder="'جستجو...'"
           @update:model-value="onSearch"
-          @keydown.enter.prevent.stop="selectRow"
-          @keydown="handleKeyDown"
         >
           <template #append>
             <q-icon
@@ -264,31 +273,67 @@
 </template>
 
 <script setup>
-  import { ref, nextTick } from "vue";
+  import {
+    ref,
+    nextTick,
+    watch,
+    onMounted,
+    onBeforeUnmount,
+    computed,
+  } from "vue";
   import { useQuasar } from "quasar";
   import { useDataTable } from "src/composables/useDataTable";
   import { defaultLookupPageSize, sortOrder } from "src/constants";
+  import { useI18n } from "vue-i18n";
+
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
   import PageBar from "src/components/shared/dataTables/PageBar.vue";
   import CustomLabel from "../forms/CustomLabel.vue";
+  import ValidationAlert from "src/components/shared/forms/ValidationAlert.vue";
 
   const props = defineProps({
     type: String,
     placeholder: String,
     label: String,
+    required: Boolean,
   });
 
+  const emit = defineEmits(["row-selected"]);
+
+  const { t } = useI18n();
   const $q = useQuasar();
   const selectedText = defineModel("selectedText");
   const isPopupOpen = ref(false);
   const isDialogOpen = ref(false);
   const searchText = ref("");
-  const selectedRowIndex = ref(-1);
+  const selectedRowIndex = ref(0); // default to 0 for first row
   const isAscending = ref(true);
   const addBtnRef = ref(null);
   const popup = ref(null);
   const lookupDialog = ref(null);
+  const menuSearch = ref(null);
+  const dialogSearch = ref(null);
+  const mainSearch = ref(null);
+  const validationMessage = ref(""); // <-- add validation message
+
+  const rules = computed(() => {
+    return props.required
+      ? [
+          (val) => {
+            const valid =
+              val !== null &&
+              val !== undefined &&
+              val !== "" &&
+              selectedText.value !== null;
+            validationMessage.value = valid
+              ? ""
+              : t("shared.labels.required");
+            return valid;
+          },
+        ]
+      : [];
+  });
 
   const store = {
     pagination: ref({
@@ -336,7 +381,7 @@
     const idx = tableStore.rows.value.findIndex(
       (row) => row.title === selectedText.value
     );
-    selectedRowIndex.value = idx;
+    selectedRowIndex.value = idx >= 0 ? idx : 0;
   }
 
   function onBeforeShow() {
@@ -346,6 +391,17 @@
   function onMenuShow() {
     isPopupOpen.value = true;
     syncSelectedRowIndex();
+    nextTick(() => {
+      if (
+        menuSearch.value &&
+        typeof menuSearch.value.focus === "function"
+      ) {
+        menuSearch.value.focus();
+      } else if (menuSearch.value && menuSearch.value.$el) {
+        const input = menuSearch.value.$el.querySelector("input");
+        if (input) input.focus();
+      }
+    });
   }
 
   function onMenuHide() {
@@ -354,6 +410,17 @@
 
   function onDialogShow() {
     tableStore.reloadData().then(syncSelectedRowIndex);
+    nextTick(() => {
+      if (
+        dialogSearch.value &&
+        typeof dialogSearch.value.focus === "function"
+      ) {
+        dialogSearch.value.focus();
+      } else if (dialogSearch.value && dialogSearch.value.$el) {
+        const input = dialogSearch.value.$el.querySelector("input");
+        if (input) input.focus();
+      }
+    });
   }
 
   function onRowClicked(row, index) {
@@ -362,13 +429,16 @@
   }
 
   function selectRow(row) {
-    if (!row && tableStore.rows.value.length > 0) {
-      row = tableStore.rows.value[0];
-      selectedRowIndex.value = 0;
+    if (!isPopupOpen.value && !isDialogOpen.value) return;
+    // Always select the row at selectedRowIndex if no row is passed
+    if (!row) {
+      if (tableStore.rows.value.length === 0) return;
+      row = tableStore.rows.value[selectedRowIndex.value];
     }
     selectedText.value = row.title;
     isPopupOpen.value = false;
     isDialogOpen.value = false;
+    emit("row-selected", row);
   }
 
   function reloadData() {
@@ -393,29 +463,75 @@
       : sortOrder.descending;
     tableStore.pagination.value.sortColumn = "title";
     tableStore.reloadData();
-    selectedRowIndex.value = -1;
+    selectedRowIndex.value = 0;
   }
 
   function handleKeyDown(event) {
+    if (!isPopupOpen.value && !isDialogOpen.value) return;
     switch (event.key) {
       case "ArrowDown":
+        if (tableStore.rows.value.length === 0) break;
         if (
-          selectedRowIndex.value <
+          selectedRowIndex.value ===
           tableStore.rows.value.length - 1
         ) {
+          selectedRowIndex.value = 0;
+        } else {
           selectedRowIndex.value++;
         }
         break;
       case "ArrowUp":
-        if (selectedRowIndex.value > 0) {
+        if (tableStore.rows.value.length === 0) break;
+        if (selectedRowIndex.value === 0) {
+          selectedRowIndex.value = tableStore.rows.value.length - 1;
+        } else {
           selectedRowIndex.value--;
         }
         break;
       case "Enter":
-        selectRow(tableStore.rows.value[selectedRowIndex.value]);
+        selectRow();
         break;
     }
   }
+
+  // Global keydown handler for navigation
+  function globalKeydownHandler(e) {
+    // Only handle up/down/enter
+    if (["ArrowUp", "ArrowDown", "Enter"].includes(e.key)) {
+      // Prevent default scroll/submit
+      e.preventDefault();
+      handleKeyDown(e);
+    }
+  }
+
+  // Watch for menu/dialog open/close to add/remove global keydown
+  watch([isPopupOpen, isDialogOpen], ([popup, dialog]) => {
+    if (popup || dialog) {
+      window.addEventListener("keydown", globalKeydownHandler);
+    } else {
+      window.removeEventListener("keydown", globalKeydownHandler);
+    }
+  });
+
+  // Clean up on component unmount
+  onBeforeUnmount(() => {
+    window.removeEventListener("keydown", globalKeydownHandler);
+  });
+
+  // Focus main search input on mount
+  onMounted(() => {
+    nextTick(() => {
+      if (
+        mainSearch.value &&
+        typeof mainSearch.value.focus === "function"
+      ) {
+        mainSearch.value.focus();
+      } else if (mainSearch.value && mainSearch.value.$el) {
+        const input = mainSearch.value.$el.querySelector("input");
+        if (input) input.focus();
+      }
+    });
+  });
 </script>
 
 <style scoped>
