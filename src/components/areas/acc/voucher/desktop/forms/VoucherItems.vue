@@ -56,11 +56,16 @@
             <!-- :filter-expression="getDlFilters(row)" -->
           </td>
           <td>
-            <custom-input
+            <comment-lookup
               v-model:selectedText="row.comment"
               autogrow
               required
             />
+            <!-- <custom-input
+              v-model:selectedText="row.comment"
+              autogrow
+              required
+            /> -->
           </td>
           <td>
             <custom-input-number

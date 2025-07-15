@@ -31,12 +31,18 @@
 
   <div class="row q-mt-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
-      <custom-input
+      <comment-lookup
         v-model:selectedText="localFormStore.model.value.subject"
         type="textarea"
         :label="$t('shared.labels.comment')"
         required
       />
+      <!-- <custom-input
+        v-model:selectedText="localFormStore.model.value.subject"
+        type="textarea"
+        :label="$t('shared.labels.comment')"
+        required
+      /> -->
     </div>
   </div>
 </template>

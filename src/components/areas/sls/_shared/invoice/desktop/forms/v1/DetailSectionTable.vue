@@ -185,12 +185,18 @@
         >
           <td class="text-center"></td>
           <td colspan="3" style="width: 45%">
-            <custom-input
+            <comment-lookup
               v-model:selectedText="row.comment"
               :placeholder="$t('shared.labels.rowDescription')"
               autogrow
               dense
             />
+            <!-- <custom-input
+              v-model:selectedText="row.comment"
+              :placeholder="$t('shared.labels.rowDescription')"
+              autogrow
+              dense
+            /> -->
           </td>
           <td colspan="2" style="width: 25%">
             <custom-input
