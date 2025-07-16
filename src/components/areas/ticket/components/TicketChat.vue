@@ -9,7 +9,7 @@
       :class="
         $q.screen.lt.md
           ? 'q-pa-sm flex items-center justify-between'
-          : 'flex items-center justify-between'
+          : 'q-py-sm flex items-center justify-between'
       "
     >
       <div>
@@ -60,7 +60,7 @@
       :style="
         $q.screen.lt.md
           ? 'height: calc(100vh);'
-          : 'height: calc(100vh - 272px);'
+          : 'height: calc(100vh - 257px);'
       "
       :class="{ 'chat-disabled': isChatDisabled }"
     >
@@ -69,37 +69,89 @@
         :bar-style="helper.barStyle"
         :thumb-style="helper.thumbStyle"
         style="height: calc(100vh)"
+        @scroll="handleScroll"
       >
         <div class="chat-messages q-pa-md">
-          <div
-            v-for="(message, index) in messages"
-            :key="index"
-            class="row_ q-mb-md"
-          >
-            <div class="col-12_">
-              <q-chat-message
-                class="fit"
-                :name="message.senderName"
-                :avatar="message.senderId"
-                :text="[message.comment]"
-                :sent="message.senderTypeId == 2"
+          <div v-for="group in groupedMessages" :key="group.date">
+            <div class="flex item-center justify-center q-mb-sm">
+              <q-badge
+                rounded
+                text-color="black"
+                color="white"
+                class="text-body2 q-py-xs q-px-sm bordered"
               >
-                <template #avatar>
-                  <customer-avatar
-                    size="48px"
-                    text-color="white"
-                    :item="message.senderId"
-                    :text-holder="message.senderName"
-                    text-holder-class="text-h5 text-bold"
-                    :avatar="avatar"
-                    class="q-ml-sm"
-                  />
-                </template>
-              </q-chat-message>
+                {{ group.date }}
+              </q-badge>
+            </div>
+            <div
+              v-for="(message, index) in group.msgs"
+              :key="index"
+              class="row_ q-mb-md"
+            >
+              <div class="col-12_">
+                <q-chat-message
+                  class="fit"
+                  :name="message.senderName"
+                  :avatar="message.senderId"
+                  :text="[message.comment]"
+                  :sent="message.senderTypeId == 2"
+                  :bg-color="
+                    message.senderTypeId == 1 ? 'secondary' : 'dark'
+                  "
+                  :text-color="
+                    message.senderTypeId == 1 ? 'white' : 'white'
+                  "
+                  :stamp="null"
+                >
+                  <template #avatar>
+                    <customer-avatar
+                      size="48px"
+                      text-color="white"
+                      :item="message.senderId"
+                      :text-holder="message.senderName"
+                      text-holder-class="text-h6 text-bold"
+                      :avatar="avatar"
+                      class="q-px-sm"
+                    />
+                  </template>
+                  <template #stamp>
+                    <span>
+                      <q-icon
+                        v-if="message.senderTypeId == 1"
+                        :name="
+                          message.status === 'read'
+                            ? 'done_all'
+                            : 'done'
+                        "
+                        :color="
+                          message.status === 'read'
+                            ? 'primary'
+                            : 'grey'
+                        "
+                        size="18px"
+                        class="q-ml-xs"
+                      />
+
+                      {{
+                        new Date(
+                          message.dateString
+                        ).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false,
+                        })
+                      }}
+                    </span>
+                  </template>
+                </q-chat-message>
+              </div>
             </div>
           </div>
-
           <div ref="scrollAnchor" class="scroll-anchor"></div>
+
+          <div v-if="isLoadingMore" class="text-center q-pa-sm">
+            <q-spinner size="30px" color="primary" />
+          </div>
         </div>
       </q-scroll-area>
     </q-card-section>
@@ -171,7 +223,7 @@
 </template>
 
 <script setup>
-  import { ref, watch, nextTick, computed } from "vue";
+  import { ref, computed, nextTick } from "vue";
   import { helper } from "src/helpers";
   import { feedbackStatus } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
@@ -188,7 +240,30 @@
   const model = ref({ comment: "", senderName: "user" });
   const formStore = useFormActions("business", model);
 
-  const messages = computed(() => tableStore.rows?.value);
+  const messages = computed(() => tableStore.rows?.value || []);
+
+  const groupedMessages = computed(() => {
+    if (!messages.value) return [];
+    const groups = [];
+    let lastDate = null;
+    messages.value.forEach((msg) => {
+      const dateObj = new Date(msg.dateString);
+      // Format as yyyy-mm-dd for grouping
+      const dateKey =
+        dateObj.getFullYear() +
+        "-" +
+        (dateObj.getMonth() + 1).toString().padStart(2, "0") +
+        "-" +
+        dateObj.getDate().toString().padStart(2, "0");
+      if (!lastDate || lastDate !== dateKey) {
+        groups.push({ date: dateKey, msgs: [msg] });
+        lastDate = dateKey;
+      } else {
+        groups[groups.length - 1].msgs.push(msg);
+      }
+    });
+    return groups;
+  });
 
   const isChatDisabled = computed(
     () =>
@@ -247,27 +322,56 @@
     store: configStore,
   });
 
-  // watch(
-  //   () => ticket,
-  //   () => {
-  //     scrollToBottom();
-  //   }
-  // );
-
-  // watch(
-  //   () => messages,
-  //   () => {
-  //     scrollToBottom();
-  //   },
-  //   { deep: true }
-  // );
-
   function setSelectedTicket(item) {
     if (item) {
       ticket.value = item;
       tableStore.setDataSource(`${baseDataSource}/${item.id}`);
+      tableStore.pagination.value.currentPage = 1;
       tableStore.reloadData();
     } else ticket.value = null;
+  }
+
+  const isLoadingMore = ref(false);
+
+  const hasMoreMessages = computed(() => {
+    return (
+      tableStore.pagination.value.currentPage <
+      tableStore.pagination.value.totalPages
+    );
+  });
+
+  async function loadMoreMessages() {
+    if (isLoadingMore.value || !hasMoreMessages.value) return;
+
+    isLoadingMore.value = true;
+
+    // Save current messages
+    const previousMessages = tableStore.rows.value || [];
+
+    // Increment page and reload data
+    tableStore.pagination.value.currentPage += 1;
+    await tableStore.reloadData();
+
+    // Append new messages to existing ones
+    tableStore.rows.value = [
+      ...previousMessages,
+      ...tableStore.rows.value,
+    ];
+
+    isLoadingMore.value = false;
+  }
+
+  function handleScroll({
+    verticalPosition,
+    verticalSize,
+    verticalContainerSize,
+  }) {
+    const atBottom =
+      verticalPosition + verticalContainerSize >= verticalSize - 1;
+
+    if (atBottom) {
+      loadMoreMessages();
+    }
   }
 
   defineExpose({ setSelectedTicket });
