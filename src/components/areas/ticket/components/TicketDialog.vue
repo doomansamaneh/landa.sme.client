@@ -117,15 +117,15 @@
             class="bordered border-radius-sm"
           >
             <q-item-section class="flex items-center justify-between">
-              <div class="text-body1">تلفن واحد فروش:</div>
-              <div class="text-h6">09124593902</div>
+              <div class="text-body1">تلفن واحد پشتیبانی:</div>
+              <div class="text-h6">02191070419</div>
             </q-item-section>
           </q-item>
         </q-card-section>
         <q-separator />
         <q-card-actions align="right">
           <q-btn
-            href="tel:09124593902"
+            href="tel:02191070419"
             class="primary-shadow primary-gradient text-white"
             padding="6px 12px"
             rounded
@@ -162,11 +162,11 @@
   }
 
   function copyNumberToClipboard() {
-    const number = "09124593902";
+    const number = "02191070419";
     copyToClipboard(number)
       .then(() => {
         Notify.create({
-          message: "تلفن واحد فروش کپی شد.",
+          message: "تلفن کپی شد.",
           color: "positive",
           position: "top",
         });
