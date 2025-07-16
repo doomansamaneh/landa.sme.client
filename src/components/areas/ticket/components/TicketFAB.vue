@@ -6,7 +6,7 @@
     dense
     padding="4px 12px"
     size="14px"
-    @click="$emit('open-dialog')"
+    to="/tickets"
     class="bordered text-on-dark gt-xs"
   >
     <q-icon name="support_agent" class="q-mr-sm" />
