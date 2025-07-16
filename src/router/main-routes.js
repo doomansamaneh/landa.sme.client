@@ -37,6 +37,11 @@ export default {
       component: () => import("src/pages/MenuPage.vue"),
       meta: { title: "منو" },
     },
+    {
+      path: "/tickets",
+      component: () => import("src/pages/tickets.vue"),
+      meta: { title: "پشتیبانی" },
+    },
 
     {
       path: "acc/fiscalYear",

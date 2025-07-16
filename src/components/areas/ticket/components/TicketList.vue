@@ -61,13 +61,17 @@
                 </q-input>
               </template>
 
-              <template #item="{ item }">
+              <template #item="{ item, index}">
                 <q-item
                   clickable
                   v-ripple
-                  :active="tableStore.activeRow?.id === item.id"
                   @click="selectTicket(item)"
-                  class="no-decoration q-pl-xs q-pb-md q-pr-xs border-radius-sm text-on-dark"
+                  :class="[
+                    'no-decoration q-pl-xs q-pb-md q-pr-xs border-radius-sm text-on-dark',
+                    selectedTicket === item.id
+                      ? 'row-active active-shine'
+                      : '',
+                  ]"
                 >
                   <q-item-section>
                     <q-item-label>
@@ -104,6 +108,10 @@
                     </q-chip>
                   </q-item-section>
                 </q-item>
+                <q-separator
+                  v-if="index < tableStore.rows.value.length - 1"
+                  class="q-my-xs"
+                />
               </template>
             </loadable-data-grid>
           </q-card-section>
@@ -150,16 +158,20 @@
   const chatContainerDesktop = ref(null);
   const chatContainerMobile = ref(null);
   const showChat = ref(false);
+  const selectedTicket = ref(null);
 
   const selectTicket = async (item) => {
+    selectedTicket.value = item.id; // or any unique identifier
+
     if ($q.screen.gt.md) {
       chatContainerDesktop.value?.setSelectedTicket(item);
     } else {
-      showChat.value = true; // open the dialog first
-      await nextTick(); // wait for DOM update & component mount
-      chatContainerMobile.value?.setSelectedTicket(item); // then call method
+      showChat.value = true;
+      await nextTick();
+      chatContainerMobile.value?.setSelectedTicket(item);
     }
   };
+
   const loadableDataGrid = ref(null);
 
   const statusColors = {

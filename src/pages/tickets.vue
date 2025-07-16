@@ -1,80 +1,51 @@
 <template>
-  <q-dialog
-    v-model="showTicketDialog"
-    maximized
-    transition-show="slide-up"
-    transition-hide="slide-down"
-  >
-    <q-card class="column no-scroll">
-      <div class="sticky-header">
-        <q-card-section class="row items-center bg-main">
-          <div
-            v-if="$q.screen.gt.md"
-            class="flex items-center q-gutter-sm"
-          >
-            <q-btn
-              rounded
-              unelevated
-              color="primary"
-              class="primary-shadow primary-gradient"
-              @click="showNewTicketDialog = true"
-            >
-              <q-icon size="16px" class="q-mr-xs" name="o_add" />
-              <div class="text-body2">ثبت تیکت جدید</div>
-            </q-btn>
+  <q-page>
+    <FormToolbarDesktop v-if="$q.screen.gt.sm" :title="'پشتیبانی'">
+      <template #buttons>
+        <q-btn
+          rounded
+          unelevated
+          color="primary"
+          class="primary-shadow primary-gradient"
+          @click="showNewTicketDialog = true"
+        >
+          <q-icon size="16px" class="q-mr-xs" name="o_add" />
+          <div class="text-body2">ثبت تیکت جدید</div>
+        </q-btn>
+        <q-btn rounded unelevated @click="showContactDialog = true">
+          <q-icon size="16px" class="q-mr-xs" name="phone" />
+          <div class="text-body2">تماس با واحد فروش</div>
+        </q-btn>
+      </template>
+    </FormToolbarDesktop>
 
-            <q-btn
-              rounded
-              unelevated
-              @click="showContactDialog = true"
-            >
-              <q-icon size="16px" class="q-mr-xs" name="phone" />
-              <div class="text-body2">تماس با واحد فروش</div>
-            </q-btn>
-          </div>
+    <FormToolbarMobile v-else :title="'پشتیبانی'" buttons>
+      <template #buttons>
+        <q-btn
+          round
+          unelevated
+          color="primary"
+          class="primary-shadow primary-gradient"
+          @click="showNewTicketDialog = true"
+        >
+          <q-icon size="24px" name="o_add" />
+        </q-btn>
+        <q-btn round unelevated @click="showContactDialog = true">
+          <q-icon size="24px" name="phone" />
+        </q-btn>
+        <q-btn
+          no-caps
+          icon="close"
+          flat
+          round
+          dense
+          v-close-popup
+          class="q-ml-sm"
+        />
+      </template>
+    </FormToolbarMobile>
+    <TicketList />
 
-          <div v-else class="flex items-center q-gutter-sm bg-main">
-            <q-btn
-              round
-              unelevated
-              color="primary"
-              class="primary-shadow primary-gradient"
-              @click="showNewTicketDialog = true"
-            >
-              <q-icon size="24px" name="o_add" />
-            </q-btn>
-
-            <q-btn round unelevated @click="showContactDialog = true">
-              <q-icon size="24px" name="phone" />
-            </q-btn>
-          </div>
-
-          <q-space v-if="$q.screen.gt.md" />
-
-          <q-space v-if="$q.screen.lt.md" />
-
-          <div class="text-h6">پشتیبانی</div>
-
-          <q-btn
-            no-caps
-            icon="close"
-            flat
-            round
-            dense
-            v-close-popup
-            class="q-ml-sm"
-          />
-        </q-card-section>
-
-        <q-separator />
-      </div>
-
-      <q-card-section class="col no-scroll">
-        <ticket-list />
-      </q-card-section>
-    </q-card>
-
-    <!-- New Ticket Dialog -->
     <q-dialog
       v-model="showNewTicketDialog"
       maximized
@@ -141,16 +112,17 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-  </q-dialog>
+  </q-page>
 </template>
 
 <script setup>
   import { ref } from "vue";
-  import { Notify } from "quasar";
+  import { Notify, copyToClipboard } from "quasar";
 
-  import NewTicketForm from "./NewTicketForm.vue";
-  import TicketList from "./TicketList.vue";
-  import { copyToClipboard } from "quasar";
+  import FormToolbarDesktop from "src/components/shared/toolbars/FormToolbarDesktop.vue";
+  import FormToolbarMobile from "src/components/shared/toolbars/FormToolbarMobile.vue";
+  import TicketList from "src/components/areas/ticket/components/TicketList.vue";
+  import NewTicketForm from "src/components/areas/ticket/components/NewTicketForm.vue";
 
   const showNewTicketDialog = ref(false);
   const showTicketDialog = ref(true);
@@ -175,7 +147,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .sticky-header {
     position: sticky;
     top: 0;
