@@ -8,7 +8,10 @@
     <q-card class="column no-scroll">
       <div class="sticky-header">
         <q-card-section class="row items-center bg-main">
-          <div v-if="$q.screen.gt.md" class="flex items-center q-gutter-sm">
+          <div
+            v-if="$q.screen.gt.md"
+            class="flex items-center q-gutter-sm"
+          >
             <q-btn
               rounded
               unelevated
@@ -38,25 +41,19 @@
               class="primary-shadow primary-gradient"
               @click="showNewTicketDialog = true"
             >
-              <q-icon size="24px"  name="o_add" />
+              <q-icon size="24px" name="o_add" />
             </q-btn>
 
-            <q-btn
-              round
-              unelevated
-              @click="showContactDialog = true"
-            >
+            <q-btn round unelevated @click="showContactDialog = true">
               <q-icon size="24px" name="phone" />
             </q-btn>
           </div>
 
           <q-space v-if="$q.screen.gt.md" />
 
-
           <q-space v-if="$q.screen.lt.md" />
 
           <div class="text-h6">پشتیبانی</div>
-
 
           <q-btn
             no-caps
@@ -73,7 +70,6 @@
       </div>
 
       <q-card-section class="col no-scroll">
-
         <ticket-list />
       </q-card-section>
     </q-card>

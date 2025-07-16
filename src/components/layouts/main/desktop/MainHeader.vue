@@ -72,6 +72,7 @@
           />
 
           <profile />
+          <ticket-submission />
         </div>
       </q-toolbar>
     </div>
@@ -93,6 +94,7 @@
   import TodayDate from "src/components/shared/TodayDate.vue";
   import SteamAnimation from "src/assets/SteamAnimation.vue";
   import MostUsedOperations from "src/components/layouts/main/desktop/MostUsedOperations.vue";
+  import TicketSubmission from "src/components/layouts/main/TicketSubmission.vue";
 
   const contactDrawerStore = useContactDrawer();
   const notifDrawerStore = useNotifDrawer();
