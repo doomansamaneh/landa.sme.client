@@ -8,7 +8,7 @@
 
   <div
     v-if="showSearch"
-    class="row items-center q-gutter-md justify-between q-px-sm q-py-md"
+    class="row items-center q-gutter-md_ justify-between q-px-sm q-py-md"
   >
     <div class="col">
       <slot name="search">

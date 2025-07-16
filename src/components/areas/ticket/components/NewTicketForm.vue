@@ -20,17 +20,21 @@
 
     <div class="row justify-end q-mt-md">
       <q-btn
-        no-caps
-        label="ارسال تیکت"
-        type="submit"
+        rounded
+        unelevated
         color="primary"
-      />
+        class="primary-shadow primary-gradient"
+        type="submit"
+      >
+        <div class="text-body1">ارسال تیکت</div>
+      </q-btn>
     </div>
   </q-form>
 </template>
 
 <script setup>
   import { ref } from "vue";
+  import { defineEmits } from "vue";
   import { helper } from "src/helpers";
   import { feedbackType, guidEmpty } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
@@ -45,8 +49,15 @@
   });
   const formStore = useFormActions("business", model);
   const form = ref(null);
+  const emit = defineEmits(["submit"]);
 
   async function onSubmit() {
-    await formStore.submitForm(form.value, "addFeedback");
+    const result = await formStore.submitForm(
+      form.value,
+      "addFeedback"
+    );
+    if (result) {
+      emit("submit");
+    }
   }
 </script>
