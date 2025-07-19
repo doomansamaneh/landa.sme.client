@@ -72,7 +72,7 @@
           />
 
           <profile />
-          <ticket-submission />
+          <ticket-submission  />
         </div>
       </q-toolbar>
     </div>

@@ -1,11 +1,13 @@
 <template>
   <div class="row q-col-gutter-md">
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-3">
       <q-card :class="$q.screen.lt.md ? 'no-shadow' : 'bordered'">
-        <q-card-section :class="$q.screen.lt.md ? 'no-padding' : ''">
+        <q-card-section
+          :class="$q.screen.lt.md ? 'no-padding' : 'q-pr-none'"
+        >
           <div
             class="row items-center justify-between"
-            :class="$q.screen.lt.md ? 'q-mb-md' : ''"
+            v-if="$q.screen.gt.sm"
           >
             <widget-title label="تیکتهای من" icon="o_message" />
 
@@ -15,12 +17,11 @@
               size="10px"
               unelevated
               @click="loadableDataGrid.loadData()"
+              class="q-mr-md"
             >
               <q-icon name="refresh" size="24px" />
             </q-btn>
           </div>
-
-          <q-separator class="q-mb-md" v-if="$q.screen.lt.md" />
 
           <q-card-section
             :class="$q.screen.lt.md ? 'no-padding' : 'q-px-none'"
@@ -61,7 +62,7 @@
                 </q-input>
               </template>
 
-              <template #item="{ item, index}">
+              <template #item="{ item }">
                 <q-item
                   clickable
                   v-ripple
@@ -71,6 +72,7 @@
                     selectedTicket === item.id
                       ? 'row-active active-shine'
                       : '',
+                    $q.screen.gt.sm ? 'q-mr-md' : '',
                   ]"
                 >
                   <q-item-section>
@@ -85,7 +87,7 @@
                       }}
                     </q-item-label>
                     <q-item-label>
-                      {{ item.comment }}
+                      <div v-html="item.comment"></div>
                     </q-item-label>
                     <q-item-label caption>
                       {{ item.dateString }}
@@ -109,8 +111,8 @@
                   </q-item-section>
                 </q-item>
                 <q-separator
-                  v-if="index < tableStore.rows.value.length - 1"
-                  class="q-my-xs"
+                  spaced
+                  :class="$q.screen.gt.sm ? 'q-mr-md' : ''"
                 />
               </template>
             </loadable-data-grid>
@@ -119,7 +121,7 @@
       </q-card>
     </div>
 
-    <div v-if="$q.screen.gt.md" class="col-12 col-md-8">
+    <div v-if="$q.screen.gt.md" class="col-12 col-md">
       <ticket-chat ref="chatContainerDesktop" />
     </div>
 

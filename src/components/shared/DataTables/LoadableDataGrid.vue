@@ -39,8 +39,10 @@
   <q-scroll-area
     v-if="gridStore.rows.value.length > 3"
     :style="props.scrollBarStyle"
-    :thumb-style="helper.thumbStyle"
-    :bar-style="helper.barStyle"
+    :thumb-style="
+      $q.screen.lt.md ? { opacity: 0 } : helper.thumbStyle
+    "
+    :bar-style="$q.screen.lt.md ? { opacity: 0 } : helper.barStyle"
   >
     <template
       v-for="(item, index) in gridStore.rows.value"

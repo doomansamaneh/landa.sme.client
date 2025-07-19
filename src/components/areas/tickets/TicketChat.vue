@@ -14,7 +14,7 @@
     >
       <div>
         <div :class="$q.screen.lt.md ? 'text-body2' : 'text-h6'">
-          {{ ticket.comment }}
+          <div v-html="ticket.comment"></div>
         </div>
         <div class="text-subtitle2_">
           {{ ticket.dateString }}
@@ -93,7 +93,6 @@
                   class="fit"
                   :name="message.senderName"
                   :avatar="message.senderId"
-                  :text="[message.comment]"
                   :sent="message.senderTypeId == 2"
                   :bg-color="
                     message.senderTypeId == 1 ? 'secondary' : 'dark'
@@ -103,6 +102,9 @@
                   "
                   :stamp="null"
                 >
+                  <template #default>
+                    <div v-html="message.comment"></div>
+                  </template>
                   <template #avatar>
                     <customer-avatar
                       size="48px"
@@ -230,7 +232,7 @@
   import { useDataTable } from "src/composables/useDataTable";
 
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
-  import { sortOrder } from "../../../../constants/enums";
+  import { sortOrder } from "../../../constants/enums";
 
   const ticket = ref(null);
   const chatScroll = ref(null);

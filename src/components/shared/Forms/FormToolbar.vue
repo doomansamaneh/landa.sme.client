@@ -15,7 +15,7 @@
 <script setup>
   import { ref } from "vue";
 
-  import Mobile from "src/components/shared/toolbars/FormToolbarMobile.vue";
+  import Mobile from "src/components/shared/toolbars/FormToolBarMobile.vue";
   import BackButton from "src/components/shared/buttons/GoBackLink.vue";
 
   const props = defineProps({

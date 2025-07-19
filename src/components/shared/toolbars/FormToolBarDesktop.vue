@@ -44,6 +44,7 @@
             </slot>
           </span>
           <back-button
+            v-if="!noBackButton"
             :class="$q.screen.xs ? 'q-mr-sm' : 'q-ml-sm'"
           />
         </slot>
@@ -62,6 +63,7 @@
     title: String,
     inside: Boolean,
     showSaveAndNew: Boolean,
+    noBackButton: Boolean,
   });
 
   const emit = defineEmits([
