@@ -11,6 +11,7 @@
     outlined
     dense
     hide-bottom-space
+    lazy-rules
     :rules="rules"
   >
     <validation-alert
@@ -81,12 +82,15 @@
     }
   );
 
-  const rules = computed(() => {
+    const rules = computed(() => {
     return props.required
       ? [
           (val) => {
+            // For number inputs, we need to check if the value is not 0 and not empty
             const valid =
-              val !== null && val !== undefined && val !== "";
+              numberValue.value !== null &&
+              numberValue.value !== undefined &&
+              numberValue.value !== 0;
             validationMessage.value = valid
               ? ""
               : t("shared.labels.required");

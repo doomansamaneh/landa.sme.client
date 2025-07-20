@@ -23,8 +23,7 @@
     @keydown="$emit('keydown', $event)"
     @clear="$emit('clear')"
   >
-    <!-- @keydown="$emit('keydown', $event)"
-    @clear="$emit('clear')" -->
+   
     <validation-alert
       v-if="validationMessage"
       :message="validationMessage"

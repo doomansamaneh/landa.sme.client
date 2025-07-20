@@ -8,6 +8,7 @@
         v-model="paymentItem.amount"
         :autofocus="autofocus"
         hide-bottom-space
+        required
       />
     </div>
 
@@ -31,6 +32,7 @@
         v-model:selectedId="paymentItem.bankAccountId"
         v-model:selectedText="paymentItem.no"
         hide-bottom-space
+        required
       />
     </div>
   </div>
