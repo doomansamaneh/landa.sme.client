@@ -25,7 +25,9 @@
     </div>
 
     <template v-else>
-      <no-data-found v-if="filteredMenuItems.length === 0" />
+      <no-data-found
+        v-if="filteredMenuItems.length === 0 && !showSettingsItem"
+      />
 
       <div
         v-else
@@ -98,6 +100,38 @@
           /> -->
         </div>
       </div>
+
+      <!-- System Configuration Item -->
+      <div v-if="showSettingsItem" class="q-mb-lg">
+        <div class="row q-col-gutter-sm">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <router-link
+              to="/cmn/appConfig"
+              class="no-decoration text-black"
+            >
+              <q-card
+                bordered
+                class="no-shadow q-hoverable cursor-pointer"
+                style="border-radius: 50px"
+              >
+                <span class="q-focus-helper" />
+                <q-card-section class="q-pa-sm q-ma-xs">
+                  <div class="flex items-center q-gutter-sm">
+                    <q-icon
+                      name="o_settings"
+                      size="24px"
+                      :color="$q.dark.isActive ? 'yellow' : 'primary'"
+                    />
+                    <span class="text-weight-medium">
+                      {{ $t("main-menu-items.settings") }}
+                    </span>
+                  </div>
+                </q-card-section>
+              </q-card>
+            </router-link>
+          </div>
+        </div>
+      </div>
     </template>
   </div>
 </template>
@@ -158,6 +192,13 @@
         ...parentItem,
         subItems: filteredSubItems(parentItem.subItems),
       }));
+  });
+
+  const showSettingsItem = computed(() => {
+    if (!searchText.value) return true;
+
+    const settingsText = t("main-menu-items.settings").toLowerCase();
+    return settingsText.includes(searchText.value.toLowerCase());
   });
 </script>
 

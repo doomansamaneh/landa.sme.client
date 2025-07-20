@@ -9,7 +9,10 @@
             class="row items-center justify-between"
             v-if="$q.screen.gt.sm"
           >
-            <widget-title label="تیکتهای من" icon="o_message" />
+            <widget-title
+              :label="$t('shared.labels.myTickets')"
+              icon="o_message"
+            />
 
             <q-btn
               no-caps

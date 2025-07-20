@@ -11,7 +11,7 @@
     class="bordered text-on-dark gt-xs"
   >
     <q-icon name="support_agent" class="q-mr-sm" />
-    <div class="text-body2">پشتیبانی</div>
+    <div class="text-body2">{{ $t("shared.labels.support") }}</div>
   </q-btn>
 </template>
 

@@ -7,31 +7,31 @@
   >
     <div class="row items-center q-py-sm">
       <navigation-item
-        label="منو"
+        :label="$t('shared.labels.menu')"
         icon="menu"
         :isActive="isActiveMenu"
         @click="goToMenu"
       />
       <navigation-item
-        label="پیشخوان"
+        :label="$t('shared.labels.dashboard')"
         icon="dashboard"
         :isActive="isActiveDashboard"
         @click="goToDashboard"
       />
       <navigation-item
-        label="مخاطبین"
+        :label="$t('shared.labels.contacts')"
         icon="person_search"
         :isActive="isActiveContact"
         @click="goToContact"
       />
       <navigation-item
-        label="پشتیبانی"
+        :label="$t('shared.labels.support')"
         icon="support_agent"
         :isActive="isActiveTicket"
         @click="goToTicket"
       />
       <navigation-item
-        label="نمایه"
+        :label="$t('shared.labels.profile')"
         icon="account_circle"
         :isActive="isActiveProfile"
         @click="goToProfile"
@@ -64,9 +64,7 @@
   const isActiveProfile = computed(
     () => route.path === "/scr/users/settings"
   );
-  const isActiveTicket = computed(
-    () => route.path === "/tickets"
-  );
+  const isActiveTicket = computed(() => route.path === "/tickets");
   const isActiveContact = computed(
     () => route.path === "/crm/customer"
   );

@@ -175,8 +175,8 @@
             :disable="isChatDisabled"
             :placeholder="
               isChatDisabled
-                ? 'این تیکت بسته شده است'
-                : 'پیام خود را بنویسید...'
+                ? $t('shared.labels.ticketClosed')
+                : $t('shared.labels.writeYourMessage')
             "
             class="q-pa-md"
             @keyup.enter="sendMessage"
@@ -214,11 +214,10 @@
         class="text-h6 q-mb-sm"
         :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
       >
-        برای مشاهده جزئیات تیکت، لطفاً یک تیکت را از لیست انتخاب کنید
+        {{ $t("shared.labels.selectTicketToViewDetails") }}
       </div>
       <div :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'">
-        با انتخاب یک تیکت از لیست، می‌توانید جزئیات و تاریخچه مکالمات
-        آن را مشاهده کنید
+        {{ $t("shared.labels.selectTicketToViewHistory") }}
       </div>
     </q-card-section>
   </q-card>

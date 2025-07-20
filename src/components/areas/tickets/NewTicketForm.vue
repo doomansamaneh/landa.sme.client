@@ -10,7 +10,7 @@
           class="q-mr-sm"
         />
         <span class="text-h6 text-weight-medium text-grey-8">
-          نوع تیکت
+          {{ $t("shared.labels.ticketType") }}
         </span>
       </div>
       <div class="row q-col-gutter-md">
@@ -60,8 +60,8 @@
                   <div class="text-caption opacity-80">
                     {{
                       option.value === feedbackType.incident
-                        ? "گزارش مشکل یا خطا"
-                        : "درخواست یا پیشنهاد جدید"
+                        ? $t("shared.labels.reportProblemOrError")
+                        : $t("shared.labels.newRequestOrSuggestion")
                     }}
                   </div>
                 </div>
@@ -88,13 +88,13 @@
           class="q-mr-sm"
         />
         <span class="text-h6 text-weight-medium text-grey-8">
-          شرح تیکت
+          {{ $t("shared.labels.ticketDescription") }}
         </span>
       </div>
       <div>
         <q-editor
           v-model="model.comment"
-          placeholder="لطفاً جزئیات تیکت خود را به طور کامل شرح دهید..."
+          :placeholder="$t('shared.labels.describeTicketDetails')"
           required
           class="q-mb-md"
         />
@@ -103,27 +103,17 @@
             <div class="row q-gutter-sm">
               <div class="col-12 col-sm-6">
                 <div class="row items-center q-gutter-xs no-wrap">
-                  <q-icon
-                    name="o_info"
-                    size="14px"
-                    color="info"
-                  />
+                  <q-icon name="o_info" size="14px" color="info" />
                   <span class="text-body3">
-                    برای مشکلات فنی، لطفاً مراحل تکرار مشکل را ذکر
-                    کنید
+                    {{ $t("shared.labels.technicalProblemSteps") }}
                   </span>
                 </div>
               </div>
               <div class="col-12 col-sm-6">
                 <div class="row items-center q-gutter-xs no-wrap">
-                  <q-icon
-                    name="o_info"
-                    size="14px"
-                    color="info"
-                  />
+                  <q-icon name="o_info" size="14px" color="info" />
                   <span class="text-body3">
-                    برای درخواست‌ها، جزئیات کامل درخواست خود را
-                    بنویسید
+                    {{ $t("shared.labels.requestDetails") }}
                   </span>
                 </div>
               </div>
@@ -142,7 +132,9 @@
         class="primary-shadow primary-gradient"
         type="submit"
       >
-        <div class="text-body2">ارسال تیکت</div>
+        <div class="text-body2">
+          {{ $t("shared.labels.submitTicket") }}
+        </div>
       </q-btn>
     </q-card-actions>
   </q-form>

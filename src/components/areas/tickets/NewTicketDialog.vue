@@ -24,10 +24,10 @@
                 />
                 <div>
                   <div class="text-h6 text-weight-medium">
-                    ثبت تیکت جدید
+                    {{ $t("shared.labels.registerNewTicket") }}
                   </div>
                   <div class="text-caption text-grey-3">
-                    لطفاً اطلاعات تیکت خود را وارد کنید
+                    {{ $t("shared.labels.enterTicketInformation") }}
                   </div>
                 </div>
               </div>
