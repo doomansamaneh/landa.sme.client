@@ -3,7 +3,7 @@
     <div class="col-md-3 col-sm-12 col-xs-12">
       <custom-input-number
         v-model="paymentItem.amount"
-        :label="$t('shared.labels.amount')"
+        :label="$t('shared.labels.price')"
         required
       />
     </div>

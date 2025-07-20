@@ -17,7 +17,7 @@
         v-model="paymentItem.amount"
         disable
         readonly
-        :label="$t('shared.labels.amount')"
+        :label="$t('shared.labels.price')"
       />
     </div>
   </div>

@@ -1,13 +1,10 @@
 <template>
   <div class="row q-col-gutter-md">
     <div class="col-md-3 col-sm-12 col-xs-12">
-      <q-item-label caption class="q-mb-sm">
-        {{ $t("shared.labels.amount") }}
-      </q-item-label>
       <custom-input-number
         v-model="paymentItem.amount"
         :autofocus="autofocus"
-        hide-bottom-space
+        :label="$t('shared.labels.price')"
         required
       />
     </div>
@@ -16,10 +13,7 @@
       <q-item-label caption class="q-mb-sm">
         {{ $t("shared.labels.fee") }}
       </q-item-label>
-      <custom-input-number
-        v-model="paymentItem.fee"
-        hide-bottom-space
-      />
+      <custom-input-number v-model="paymentItem.fee" />
     </div>
   </div>
 

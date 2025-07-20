@@ -37,7 +37,7 @@ export const productStockColumns = [
   code,
   dlCode,
   title,
-  unitTitle,
+  { ...unitTitle, label: "productUnitTitle" },
   purchaseQuantity,
   salesQuantity,
   { ...stock, class: "text-weight-600", sortable: true },
