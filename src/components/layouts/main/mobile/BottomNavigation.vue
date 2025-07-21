@@ -24,12 +24,14 @@
         :isActive="isActiveContact"
         @click="goToContact"
       />
+
       <navigation-item
         :label="$t('shared.labels.support')"
         icon="support_agent"
         :isActive="isActiveTicket"
         @click="goToTicket"
       />
+
       <navigation-item
         :label="$t('shared.labels.profile')"
         icon="account_circle"
