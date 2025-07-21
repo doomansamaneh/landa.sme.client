@@ -60,15 +60,7 @@
     item: Object,
   });
 
-  const paymentItem = ref({
-    typeId: paymentMethod.cash.id,
-    amount: 0,
-    fee: 0,
-    cashId: null,
-    cashTitle: "",
-    itemNo: "",
-    comment: "",
-  });
+  const paymentItem = ref({});
 
   onMounted(() => {
     if (props.item) {

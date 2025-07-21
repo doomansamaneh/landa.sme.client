@@ -111,55 +111,36 @@
   };
 
   const handleAddItem = async (item) => {
-    try {
-      const component = getDialogComponent(item.value.id);
-      if (!component) {
-        throw new Error("Component not found for payment type");
-      }
-
+    const component = getDialogComponent(item.value.id);
+    alert(props.formStore.remainedAmount.value);
+    if (component) {
+      const paymentItem = {
+        typeId: item.value.id,
+        amount: props.formStore.remainedAmount.value,
+        fee: 0,
+        // bankAccountId: null,
+        // bankAccountDisplay: "",
+        // itemNo: "",
+        // itemDate: null,
+        // accountNo: "",
+        // sayad: "",
+        // bankBranchId: null,
+        // bankTitle: "",
+        // comment: "",
+      };
       dialogStore.openDialog({
         title: `shared.paymentMethod.${getPaymentMethodName(
           item.value.id
         )}`,
         component: component,
         actionBar: true,
-        width: "800px",
-        okCallback: async (paymentItemData) => {
-          try {
-            // Create a payment method object that addRow expects
-            const paymentMethodObj = {
-              value: {
-                id: item.value.id,
-                color: item.value.color,
-              },
-            };
-
-            await props.formStore.addRow(paymentMethodObj);
-
-            // Update the added item with the form data
-            const lastIndex =
-              props.formStore.model?.value?.paymentItems?.length - 1;
-            if (lastIndex >= 0) {
-              Object.assign(
-                props.formStore.model.value.paymentItems[lastIndex],
-                paymentItemData
-              );
-            }
-          } catch (error) {
-            console.error("Error adding payment item:", error);
-            $q.notify({
-              type: "negative",
-              message: t("payment.errors.addItemFailed"),
-              position: "top",
-            });
-          }
+        props: {
+          item: paymentItem,
         },
-      });
-    } catch (error) {
-      $q.notify({
-        type: "negative",
-        message: t("payment.errors.addItemFailed"),
-        position: "top",
+        width: "800px",
+        okCallback: async (item) => {
+          props.formStore.addRow(item);
+        },
       });
     }
   };

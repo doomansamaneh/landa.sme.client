@@ -50,7 +50,7 @@
 <script setup>
   import { computed } from "vue";
 
-  import CashLookup from "src/components/shared/Lookups/CashLookup.vue";
+  import CashLookup from "src/components/shared/lookups/CashLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 

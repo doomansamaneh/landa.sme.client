@@ -46,35 +46,42 @@ export function useReceiptModel({ baseRoute, preview }) {
     }
   }
 
-  const addRow = async (paymentMehod) => {
-    try {
-      isAddingItem.value = true;
-      const amount = model.value.remainedAmount - totalAmount.value;
-      const item = {
-        ...itemStore.model.value,
-        amount: Math.max(amount, 0),
-        typeId: paymentMehod.value.id,
-      };
+  // const addRow = async (paymentMehod) => {
+  //   try {
+  //     isAddingItem.value = true;
+  //     const item = {
+  //       ...itemStore.model.value,
+  //       amount: Math.max(remainedAmount.value, 0),
+  //       typeId: paymentMehod.value.id,
+  //     };
 
-      // Only validate typeId when adding a new item
-      const errors = validateNewItem(item);
-      if (Object.keys(errors).length > 0) {
-        validationErrors.value = errors;
-        console.error("Validation errors:", errors);
-        return;
-      }
+  //     // Only validate typeId when adding a new item
+  //     const errors = validateNewItem(item);
+  //     if (Object.keys(errors).length > 0) {
+  //       validationErrors.value = errors;
+  //       console.error("Validation errors:", errors);
+  //       return;
+  //     }
 
-      formItemStore.pushNewItem(model.value.paymentItems, item);
-      validationErrors.value = {};
-    } catch (error) {
-      console.error("Error adding row:", error);
-      validationErrors.value = {
-        general: "Failed to add item. Please try again.",
-      };
-    } finally {
-      isAddingItem.value = false;
-    }
+  //     formItemStore.pushNewItem(model.value.paymentItems, item);
+  //     validationErrors.value = {};
+  //   } catch (error) {
+  //     console.error("Error adding row:", error);
+  //     validationErrors.value = {
+  //       general: "Failed to add item. Please try again.",
+  //     };
+  //   } finally {
+  //     isAddingItem.value = false;
+  //   }
+  // };
+
+  const addRow = async (item) => {
+    formItemStore.pushNewItem(model.value.paymentItems, item);
   };
+
+  const remainedAmount = computed(() => {
+    return model.value.remainedAmount - totalAmount.value;
+  });
 
   const validateNewItem = (item) => {
     const errors = {};
@@ -136,6 +143,7 @@ export function useReceiptModel({ baseRoute, preview }) {
     newAddedItemIndex: formItemStore.newAddedItemIndex,
     isAddingItem,
     validationErrors,
+    remainedAmount,
 
     getById,
     addRow,

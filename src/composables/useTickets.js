@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { Notify, copyToClipboard } from "quasar";
+import { phoneNumbers } from "src/constants";
 
 const ticketState = ref({
   showNewTicketDialog: false,
@@ -25,7 +26,7 @@ export function useTickets() {
   }
 
   function copyNumberToClipboard() {
-    const number = "02191070419";
+    const number = phoneNumbers.support;
     copyToClipboard(number)
       .then(() => {
         Notify.create({

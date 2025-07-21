@@ -1,5 +1,5 @@
-<template>
-  <q-form ref="form" autofocus>
+<template>1
+  <!-- <q-form ref="form" autofocus>
     <div class="row q-col-gutter-md">
       <div class="col-md-8 col-sm-12 col-xs-12">
         <custom-input-number
@@ -13,27 +13,26 @@
         <custom-input-number
           v-model="paymentItem.fee"
           :label="$t('shared.labels.fee')"
+        />
+      </div>
+
+      گوشیم خاموش شد :) الان میام
+    </div>
+    <div class="row q-mt-sm q-col-gutter-md">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <cash-lookup
+          v-model:selectedId="paymentItem.cashId"
+          v-model:selectedText="paymentItem.cashTitle"
+          :label="$t('shared.labels.cash')"
           required
         />
       </div>
     </div>
     <div class="row q-mt-sm q-col-gutter-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <sl-lookup
-          v-model:selectedId="paymentItem.slId"
-          v-model:selectedText="paymentItem.slTitle"
-          :label="$t('shared.labels.subLedgerAccount')"
-          required
-        />
-      </div>
-    </div>
-    <div class="row q-mt-sm q-col-gutter-md">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <customer-lookup
-          v-model:selectedId="paymentItem.customerId"
-          v-model:selectedText="paymentItem.customerName"
-          :label="$t('shared.labels.customerContact')"
-          required
+        <custom-input
+          v-model="paymentItem.itemNo"
+          :label="$t('shared.labels.receiptNumber')"
         />
       </div>
     </div>
@@ -46,17 +45,17 @@
         />
       </div>
     </div>
-  </q-form>
+  </q-form> -->
 </template>
 
 <script setup>
   import { ref, onMounted, nextTick } from "vue";
   import { paymentMethod } from "src/constants";
-
-  import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
-  import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
+  import CashLookup from "src/components/shared/Lookups/CashLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+
+  import PaymentItemCash from "../PaymentItemCash.vue";
 
   const form = ref(null);
   const amountInput = ref(null);

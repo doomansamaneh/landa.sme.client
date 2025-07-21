@@ -81,6 +81,7 @@
 <script setup>
   import { ref, onMounted, nextTick } from "vue";
   import { paymentMethod } from "src/constants";
+
   import BankAccountLookup from "src/components/shared/lookups/BankAccountLookup.vue";
   import BankBranchLookup from "src/components/shared/lookups/BankBranchLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
@@ -95,18 +96,7 @@
   });
 
   const paymentItem = ref({
-    typeId: paymentMethod.check.id,
-    amount: 0,
-    fee: 0,
-    bankAccountId: null,
-    bankAccountDisplay: "",
-    itemNo: "",
-    itemDate: null,
-    accountNo: "",
-    sayad: "",
-    bankBranchId: null,
-    bankTitle: "",
-    comment: "",
+    
   });
 
   onMounted(() => {

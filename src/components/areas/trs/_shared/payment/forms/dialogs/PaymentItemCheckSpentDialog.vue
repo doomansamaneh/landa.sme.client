@@ -55,14 +55,7 @@
     item: Object,
   });
 
-  const paymentItem = ref({
-    typeId: paymentMethod.checkSpent.id,
-    checkId: null,
-    checkSpentDisplay: "",
-    amount: 0,
-    fee: 0,
-    comment: "",
-  });
+  const paymentItem = ref({});
 
   const checkSelected = (row) => {
     paymentItem.value.amount = 0;

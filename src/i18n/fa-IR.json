@@ -658,6 +658,7 @@
       "addAddress": "افزودن نشانی",
       "addContact": "افزودن تماس",
       "phone": "تلفن",
+      "": "تلفن",
       "mobile": "موبایل",
       "email": "ایمیل",
       "website": "وبسایت",
@@ -703,7 +704,10 @@
       "currentAssets": "داراییهای جاری",
       "fixedAssets": "داراییهای ثابت",
       "currentLiability": "بدهی جاری",
-      "longTermLiability": "بدهی بلند مدت"
+      "longTermLiability": "بدهی بلند مدت",
+      "supportPhone": "تلفن واحد پشتیبانی",
+      "call": "تماس",
+      "close": "بستن"
     },
     "productType": {
       "main": "اصلی",
