@@ -13,7 +13,7 @@
       "
     >
       <div>
-        <div :class="$q.screen.lt.md ? 'text-body2' : 'text-h6'">
+        <div :class="$q.screen.lt.md ? 'text-body2' : 'text-body1'">
           <div v-html="ticket.comment"></div>
         </div>
         <div class="text-subtitle2_">
@@ -75,10 +75,12 @@
           <div v-for="group in groupedMessages" :key="group.date">
             <div class="flex item-center justify-center q-mb-sm">
               <q-badge
+                :class="{
+                  'glass-badge-dark': $q.dark.isActive,
+                  'glass-badge-light': !$q.dark.isActive,
+                }"
                 rounded
-                text-color="black"
-                color="white"
-                class="text-body2 q-py-xs q-px-sm bordered"
+                class="text-body3 q-py-xs q-px-sm"
               >
                 {{ group.date }}
               </q-badge>
@@ -90,15 +92,14 @@
             >
               <div class="col-12_">
                 <q-chat-message
-                  class="fit"
                   :name="message.senderName"
                   :avatar="message.senderId"
                   :sent="message.senderTypeId == 2"
                   :bg-color="
-                    message.senderTypeId == 1 ? 'secondary' : 'dark'
+                    message.senderTypeId == 1 ? 'white' : 'primary'
                   "
                   :text-color="
-                    message.senderTypeId == 1 ? 'white' : 'white'
+                    message.senderTypeId == 1 ? 'black' : 'white'
                   "
                   :stamp="null"
                 >
@@ -378,7 +379,7 @@
   defineExpose({ setSelectedTicket });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .chat-container {
     display: flex;
     flex-direction: column;
@@ -415,5 +416,17 @@
   .scroll-anchor {
     height: 1px;
     width: 100%;
+  }
+
+  .glass-badge-light {
+    background: rgba(255, 255, 255, 0.45);
+    color: #222;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .glass-badge-dark {
+    background: rgba(40, 40, 40, 0.35);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 </style>

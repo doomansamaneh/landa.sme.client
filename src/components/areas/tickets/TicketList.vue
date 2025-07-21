@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-col-gutter-md">
+  <div class="row q-col-gutter-md chat-list">
     <div class="col-12 col-md-4">
       <q-card :class="$q.screen.lt.md ? 'no-shadow' : 'bordered'">
         <q-card-section
@@ -69,14 +69,11 @@
                 <q-item
                   clickable
                   v-ripple
+                  :active="selectedTicket === item.id"
+                  active-class="active-shine"
                   @click="selectTicket(item)"
-                  :class="[
-                    'no-decoration q-pl-xs q-pb-md q-pr-xs border-radius-sm text-on-dark',
-                    selectedTicket === item.id
-                      ? 'row-active active-shine'
-                      : '',
-                    $q.screen.gt.sm ? 'q-mr-md' : '',
-                  ]"
+                  class="no-decoration q-pl-xs q-pb-md q-pr-xs border-radius-sm text-on-dark"
+                  :class="$q.screen.gt.sm ? 'q-mr-md' : ''"
                 >
                   <q-item-section>
                     <q-item-label>
