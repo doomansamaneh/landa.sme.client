@@ -19,8 +19,8 @@
               round
               size="10px"
               unelevated
-              @click="loadableDataGrid.loadData()"
               class="q-mr-md"
+              @click="loadableDataGrid?.loadData()"
             >
               <q-icon name="refresh" size="24px" />
             </q-btn>
@@ -36,6 +36,7 @@
               :scrollArea="false"
               :show-search="false"
               sort-column="dateCreated"
+              :sort-column-order="sortOrder.descending"
               data-source="business/getFeedbackGridData"
               :scrollBarStyle="
                 $q.screen.xs
@@ -55,10 +56,10 @@
                   clearable
                   clear-icon="o_clear"
                   rounded
-                  @keydown.enter="loadableDataGrid.loadData()"
                   class="text-body2"
                   style="margin: auto -8px"
                 >
+                  <!-- @keydown.enter="loadableDataGrid.loadData()" -->
                   <template #prepend>
                     <q-icon name="o_search" color="primary" />
                   </template>
@@ -111,6 +112,15 @@
                         )
                       }}
                     </q-chip>
+
+                    <q-badge
+                      v-if="item.unreadCount > 0"
+                      color="red"
+                      text-color="white"
+                      :label="item.unreadCount"
+                      align="top right"
+                      class="q-ml-sm"
+                    />
                   </q-item-section>
                 </q-item>
                 <q-separator
@@ -147,17 +157,17 @@
   import { ref, computed, onMounted } from "vue";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
-  import { feedbackType, feedbackStatus } from "src/constants";
-  import { useDataTable } from "src/composables/useDataTable";
+  import {
+    feedbackType,
+    defaultPageSize,
+    feedbackStatus,
+    sortOrder,
+  } from "src/constants";
   import { nextTick } from "vue";
 
   import TicketChat from "./TicketChat.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
-
-  const tableStore = useDataTable({
-    dataSource: "business/getFeedbackGridData",
-  });
 
   const $q = useQuasar();
   const chatContainerDesktop = ref(null);
@@ -190,9 +200,7 @@
     return statusColors[value] || "grey";
   }
 
-  // const tickets = computed(() => tableStore.rows.value);
-
   onMounted(() => {
-    tableStore.loadData();
+    loadableDataGrid?.value?.loadData();
   });
 </script>

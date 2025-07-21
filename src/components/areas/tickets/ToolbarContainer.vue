@@ -20,7 +20,7 @@
       </q-btn>
       <q-btn rounded unelevated @click="store.openContactDialog">
         <q-icon size="16px" class="q-mr-xs" name="phone" />
-        <div class="text-body2">تماس با واحد فروش</div>
+        <div class="text-body2">تماس با واحد پشتیبانی</div>
       </q-btn>
     </template>
   </component>
