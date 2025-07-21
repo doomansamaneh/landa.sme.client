@@ -13,7 +13,7 @@
         />
       </div>
 
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input-number
           v-model="paymentItem.amount"
           disable
@@ -22,7 +22,7 @@
         />
       </div>
 
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input-number
           v-model="paymentItem.fee"
           :label="$t('shared.labels.fee')"
