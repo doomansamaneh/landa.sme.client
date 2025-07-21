@@ -96,10 +96,10 @@
                   :avatar="message.senderId"
                   :sent="message.senderTypeId == 2"
                   :bg-color="
-                    message.senderTypeId == 1 ? 'white' : 'primary'
+                    message.senderTypeId == 1 ? 'primary' : 'white'
                   "
                   :text-color="
-                    message.senderTypeId == 1 ? 'black' : 'white'
+                    message.senderTypeId == 1 ? 'white' : 'black'
                   "
                   :stamp="null"
                 >
@@ -125,11 +125,6 @@
                           message.status === 'read'
                             ? 'done_all'
                             : 'done'
-                        "
-                        :color="
-                          message.status === 'read'
-                            ? 'primary'
-                            : 'grey'
                         "
                         size="18px"
                         class="q-ml-xs"
