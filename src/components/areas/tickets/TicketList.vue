@@ -1,6 +1,6 @@
 <template>
   <div class="row q-col-gutter-md">
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-4">
       <q-card :class="$q.screen.lt.md ? 'no-shadow' : 'bordered'">
         <q-card-section
           :class="$q.screen.lt.md ? 'no-padding' : 'q-pr-none'"
