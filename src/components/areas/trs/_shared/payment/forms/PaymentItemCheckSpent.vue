@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-mb-md">
+  <div class="row q-mb-md q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <check-lookup
         v-model:selectedId="paymentItem.checkId"
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="row q-mb-md">
+  <div class="row q-mb-md q-col-gutter-md">
     <div class="col-md-3 col-sm-12 col-xs-12">
       <custom-input-number
         v-model="paymentItem.amount"
@@ -20,10 +20,7 @@
         :label="$t('shared.labels.price')"
       />
     </div>
-  </div>
-
-  <div class="row q-mb-md">
-    <div class="col-md-2 col-sm-12 col-xs-12">
+    <div class="col-md-3 col-sm-12 col-xs-12">
       <custom-input-number
         v-model="paymentItem.fee"
         :label="$t('shared.labels.fee')"
@@ -31,7 +28,7 @@
     </div>
   </div>
 
-  <div class="row q-mt-md">
+  <div class="row q-col-gutter-md">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <custom-input
         v-model="paymentItem.comment"
