@@ -647,7 +647,7 @@ export const actions = {
   name: "actions",
   field: "",
   sortable: false,
-  label: "actions",
+  label: "",
   align: "left",
   class: "text-left",
   style: "width:160px;",

@@ -4,6 +4,7 @@ import {
   actions,
   date,
   subject,
+  contractTitle,
   rowNo,
   no,
   amount,
@@ -104,19 +105,21 @@ export const transferMoneyColumns = [
 ];
 
 export const receiptColumns = [
-  { ...no, name: "no" },
-  { ...date, name: "date" },
-  { ...subject, name: "subject" },
-  { ...customerName, name: "customerName" },
-  { ...amount, name: "amount", class: "text-weight-600" },
+  { ...no },
+  { ...date },
+  { ...subject },
+  { ...contractTitle, hidden: true },
+  { ...customerName },
+  { ...amount, class: "text-weight-600" },
   //actions,
 ];
 
 export const billColumns = [
-  { ...rowNo, name: "rowNo" },
-  { ...date, name: "date" },
-  { ...subject, name: "subject" },
-  { ...amount, name: "amount", class: "text-weight-600" },
+  { ...rowNo },
+  { ...date },
+  { ...subject },
+  { ...contractTitle, hidden: true },
+  { ...amount, class: "text-weight-600" },
   //actions,
 ];
 
@@ -127,15 +130,15 @@ export const checkItemColumns = [
     name: "paymentDate",
     field: "paymentDate",
   },
-  { ...itemNo, name: "itemNo" },
+  { ...itemNo },
   {
     ...date,
     name: "itemDate",
     field: "itemDate",
   },
-  { ...customerName, name: "customerName", style: "" },
-  { ...subject, name: "subject" },
-  { ...amount, name: "amount", class: "text-weight-600" },
-  { ...statusId, name: "statusId" },
+  { ...customerName },
+  { ...subject },
+  { ...amount, class: "text-weight-600" },
+  { ...statusId },
   //actions,
 ];

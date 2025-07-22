@@ -42,7 +42,9 @@
                   :class="tableStore.getSortableClass(col)"
                   @click="tableStore.sortColumn(col)"
                 >
-                  <span>{{ $t(`shared.columns.${col.label}`) }}</span>
+                  <span v-if="col.label">
+                    {{ $t(`shared.columns.${col.label}`) }}
+                  </span>
                   <span
                     v-if="col.sortable"
                     class="q-icon q-table__sort-icon"

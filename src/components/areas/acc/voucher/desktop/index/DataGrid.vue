@@ -133,7 +133,7 @@
   const colspan = computed(
     () =>
       helper.findIndex(
-        props.tableStore.columns.value,
+        props.tableStore.columns.value.filter((col) => !col.hidden),
         "name",
         "amount"
       ) +

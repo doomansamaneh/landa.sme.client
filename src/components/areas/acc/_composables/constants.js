@@ -89,7 +89,7 @@ export const voucherColumns = [
   { ...no },
   { ...date },
   { ...subject },
-  { ...contractTitle },
+  { ...contractTitle, hidden: true },
   { ...type },
   {
     name: "systemId",
