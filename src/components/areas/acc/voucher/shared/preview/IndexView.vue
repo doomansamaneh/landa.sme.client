@@ -13,7 +13,12 @@
     :model="model"
     :base-route="baseRoute"
   />
-  <desktop v-else :model="model" :base-route="baseRoute" />
+  <desktop
+    v-else
+    :model="model"
+    :base-route="baseRoute"
+    :voucher-item-id="voucherItemId"
+  />
 </template>
 
 <script setup>

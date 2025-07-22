@@ -3,8 +3,8 @@
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-3 col-sm-12 col-xs-12'
+          ? 'col-md-8 col-sm-12 col-xs-12'
+          : 'col-md-4 col-sm-12 col-xs-12'
       "
     >
       <custom-input-number
@@ -18,8 +18,8 @@
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-3 col-sm-12 col-xs-12'
+          ? 'col-md-4 col-sm-12 col-xs-12'
+          : 'col-md-2 col-sm-12 col-xs-12'
       "
     >
       <custom-input-number
@@ -40,7 +40,7 @@
       <bank-account-lookup
         v-model:selectedId="paymentItem.bankAccountId"
         v-model:selectedText="paymentItem.bankAccountDisplay"
-        :label="$t('shared.labels.bankAccountTypeTitle')"
+        :label="$t('shared.columns.bankAccount')"
       />
     </div>
   </div>

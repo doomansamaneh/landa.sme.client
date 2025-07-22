@@ -3,14 +3,13 @@
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-3 col-sm-12 col-xs-12'
+          ? 'col-md-8 col-sm-12 col-xs-12'
+          : 'col-md-4 col-sm-12 col-xs-12'
       "
     >
       <custom-input-number
         ref="focusable"
         v-model="paymentItem.amount"
-        :autofocus="autofocus"
         :label="$t('shared.labels.price')"
         required
       />
@@ -19,14 +18,14 @@
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-3 col-sm-12 col-xs-12'
+          ? 'col-md-4 col-sm-12 col-xs-12'
+          : 'col-md-2 col-sm-12 col-xs-12'
       "
     >
-      <q-item-label caption class="q-mb-sm">
-        {{ $t("shared.labels.fee") }}
-      </q-item-label>
-      <custom-input-number v-model="paymentItem.fee" />
+      <custom-input-number
+        v-model="paymentItem.fee"
+        :label="$t('shared.labels.fee')"
+      />
     </div>
   </div>
 
@@ -44,7 +43,7 @@
       <bank-account-lookup
         v-model:selectedId="paymentItem.bankAccountId"
         v-model:selectedText="paymentItem.no"
-        hide-bottom-space
+        :label="$t('shared.columns.bankAccount')"
         required
       />
     </div>
@@ -93,7 +92,7 @@
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
   const focusable = ref(null);
-  
+
   const props = defineProps({
     modelValue: Object,
     autofocus: Boolean,

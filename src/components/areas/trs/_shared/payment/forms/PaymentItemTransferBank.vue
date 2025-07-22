@@ -40,7 +40,7 @@
       <bank-account-lookup
         v-model:selectedId="paymentItem.bankAccountId"
         v-model:selectedText="paymentItem.bankAccountDisplay"
-        :label="$t('shared.labels.bankTitle')"
+        :label="$t('shared.columns.bankAccount')"
         required
       />
     </div>

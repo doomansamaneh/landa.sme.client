@@ -2,13 +2,13 @@ import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
-import { useReceiptItemModel } from "./useReceiptItemModel";
+//import { useReceiptItemModel } from "./useReceiptItemModel";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { receiptModel } from "src/models/areas/trs/receiptModel";
 
 export function useReceiptModel({ baseRoute, preview }) {
   const router = useRouter();
-  const itemStore = useReceiptItemModel();
+  //const itemStore = useReceiptItemModel();
 
   const model = ref(receiptModel);
   const isAddingItem = ref(false);
@@ -83,24 +83,24 @@ export function useReceiptModel({ baseRoute, preview }) {
     return model.value.remainedAmount - totalAmount.value;
   });
 
-  const validateNewItem = (item) => {
-    const errors = {};
-    if (!item.typeId) {
-      errors.typeId = "Payment type is required";
-    }
-    return errors;
-  };
+  // const validateNewItem = (item) => {
+  //   const errors = {};
+  //   if (!item.typeId) {
+  //     errors.typeId = "Payment type is required";
+  //   }
+  //   return errors;
+  // };
 
-  const validateItem = (item) => {
-    const errors = {};
-    if (!item.amount || item.amount <= 0) {
-      errors.amount = "Amount must be greater than 0";
-    }
-    if (!item.typeId) {
-      errors.typeId = "Payment type is required";
-    }
-    return errors;
-  };
+  // const validateItem = (item) => {
+  //   const errors = {};
+  //   if (!item.amount || item.amount <= 0) {
+  //     errors.amount = "Amount must be greater than 0";
+  //   }
+  //   if (!item.typeId) {
+  //     errors.typeId = "Payment type is required";
+  //   }
+  //   return errors;
+  // };
 
   const deleteRow = async (index) => {
     try {

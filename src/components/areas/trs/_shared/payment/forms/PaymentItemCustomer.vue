@@ -3,28 +3,44 @@
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-3 col-sm-12 col-xs-12'
+          ? 'col-md-8 col-sm-12 col-xs-12'
+          : 'col-md-4 col-sm-12 col-xs-12'
       "
     >
       <custom-input-number
         ref="focusable"
         v-model="paymentItem.amount"
         :label="$t('shared.labels.price')"
-        requird
+        required
       />
     </div>
 
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
+          ? 'col-md-4 col-sm-12 col-xs-12'
           : 'col-md-2 col-sm-12 col-xs-12'
       "
     >
       <custom-input-number
         v-model="paymentItem.fee"
         :label="$t('shared.labels.fee')"
+      />
+    </div>
+  </div>
+
+  <div class="row q-mt-sm q-col-gutter-md">
+    <div
+      :class="
+        isDialog
+          ? 'col-md-12 col-sm-12 col-xs-12'
+          : 'col-md-6 col-sm-12 col-xs-12'
+      "
+    >
+      <sl-lookup
+        v-model:selectedId="paymentItem.slId"
+        v-model:selectedText="paymentItem.slTitle"
+        :label="$t('shared.columns.slTitle')"
         required
       />
     </div>
@@ -34,29 +50,14 @@
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-2 col-sm-12 col-xs-12'
-      "
-    >
-      <sl-lookup
-        v-model:selectedId="paymentItem.slId"
-        v-model:selectedText="paymentItem.slTitle"
-        :label="$t('shared.labels.subLedgerAccount')"
-        required
-      />
-    </div>
-
-    <div
-      :class="
-        isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
+          ? 'col-md-12 col-sm-12 col-xs-12'
           : 'col-md-6 col-sm-12 col-xs-12'
       "
     >
       <customer-lookup
         v-model:selectedId="paymentItem.customerId"
         v-model:selectedText="paymentItem.customerName"
-        :label="$t('shared.labels.customerContact')"
+        :label="$t('shared.paymentMethod.customer')"
         required
       />
     </div>

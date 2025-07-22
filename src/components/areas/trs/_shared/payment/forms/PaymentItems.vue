@@ -64,8 +64,6 @@
 <script setup>
   import { helper } from "src/helpers";
   import { paymentMethod, paymentOrReceipt } from "src/constants";
-  import { useQuasar } from "quasar";
-  import { useI18n } from "vue-i18n";
   import { useDialog } from "src/composables/useDialog";
 
   import PaymentItem from "./PaymentItem.vue";
@@ -73,8 +71,6 @@
 
   import PaymentItemDialog from "./PaymentItemDialog.vue";
 
-  const $q = useQuasar();
-  const { t } = useI18n();
   const dialogStore = useDialog();
 
   const props = defineProps({
@@ -92,20 +88,10 @@
   };
 
   const handleAddItem = async (item) => {
-    // alert(props.formStore.remainedAmount.value);
     const paymentItem = {
       typeId: item.value.id,
-      amount: props.formStore.remainedAmount.value,
+      amount: props.formStore.remainedAmount?.value,
       fee: 0,
-      // bankAccountId: null,
-      // bankAccountDisplay: "",
-      // itemNo: "",
-      // itemDate: null,
-      // accountNo: "",
-      // sayad: "",
-      // bankBranchId: null,
-      // bankTitle: "",
-      // comment: "",
     };
     dialogStore.openDialog({
       title: `shared.paymentMethod.${getPaymentMethodName(

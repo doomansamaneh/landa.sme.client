@@ -44,7 +44,7 @@
               <td
                 style="padding: 5px; border-bottom: 1px solid #2d2d2d"
               >
-                دستمزد پایه سنوات:
+                پایه سنوات:
               </td>
               <td
                 style="padding: 5px; border-bottom: 1px solid #2d2d2d"
@@ -244,7 +244,7 @@
                   border-bottom: 1px solid #2d2d2d;
                 "
               >
-                بیم سهم پرسنل:
+                بیمه سهم پرسنل:
               </td>
               <td
                 style="padding: 5px; border-bottom: 1px solid #2d2d2d"

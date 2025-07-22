@@ -71,16 +71,23 @@ export function useBillModel({ baseRoute, preview }) {
     formItemStore.deleteItem(model.value.billItems, index);
   };
 
-  const addRow = (paymentMehod) => {
-    const amount = totalBillAmount.value - totalAmount.value;
-    formItemStore.pushNewItem(model.value.paymentItems, {
-      ...itemStore.model.value,
-      amount: Math.max(amount, 0),
-      typeId: paymentMehod.value.id,
-      color: paymentMehod.value.color,
-      header: paymentMehod.label,
-    });
+  // const addRow = (paymentMehod) => {
+  //   formItemStore.pushNewItem(model.value.paymentItems, {
+  //     ...itemStore.model.value,
+  //     amount: Math.max(remainedAmount.value, 0),
+  //     typeId: paymentMehod.value.id,
+  //     color: paymentMehod.value.color,
+  //     header: paymentMehod.label,
+  //   });
+  // };
+
+  const addRow = async (item) => {
+    formItemStore.pushNewItem(model.value.paymentItems, item);
   };
+
+  const remainedAmount = computed(() => {
+    return totalBillAmount.value - totalAmount.value;
+  });
 
   const deleteRow = (index) => {
     formItemStore.deleteItem(model.value.paymentItems, index);
@@ -112,6 +119,7 @@ export function useBillModel({ baseRoute, preview }) {
     totalAmount,
     totalBillAmount,
     newAddedItemIndex: formItemStore.newAddedItemIndex,
+    remainedAmount,
 
     getById,
     addRow,

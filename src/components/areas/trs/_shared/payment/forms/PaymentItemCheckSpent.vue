@@ -19,26 +19,27 @@
     </div>
   </div>
 
-  <div class="row q-mb-md q-col-gutter-md">
+  <div class="row q-col-gutter-md">
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-3 col-sm-12 col-xs-12'
+          ? 'col-md-8 col-sm-12 col-xs-12'
+          : 'col-md-4 col-sm-12 col-xs-12'
       "
     >
       <custom-input-number
+        ref="focusable"
         v-model="paymentItem.amount"
-        disable
-        readonly
         :label="$t('shared.labels.price')"
+        required
       />
     </div>
+
     <div
       :class="
         isDialog
-          ? 'col-md-6 col-sm-12 col-xs-12'
-          : 'col-md-3 col-sm-12 col-xs-12'
+          ? 'col-md-4 col-sm-12 col-xs-12'
+          : 'col-md-2 col-sm-12 col-xs-12'
       "
     >
       <custom-input-number

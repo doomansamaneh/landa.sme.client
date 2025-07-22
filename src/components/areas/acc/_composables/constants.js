@@ -137,6 +137,7 @@ export const creditorColumns = [
 ];
 
 export const accountItemColumns = [
+  { ...rowNo, label: "rowNo", style: "width:70px" },
   { ...voucherNo },
   { ...voucherDate },
   { ...slCode },
