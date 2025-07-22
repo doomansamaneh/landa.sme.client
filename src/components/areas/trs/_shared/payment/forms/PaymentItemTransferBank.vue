@@ -1,14 +1,27 @@
 <template>
   <div class="row q-col-gutter-md">
-    <div class="col-md-3 col-sm-12 col-xs-12">
+    <div
+      :class="
+        isDialog
+          ? 'col-md-6 col-sm-12 col-xs-12'
+          : 'col-md-3 col-sm-12 col-xs-12'
+      "
+    >
       <custom-input-number
+        ref="focusable"
         v-model="paymentItem.amount"
         :label="$t('shared.labels.price')"
         required
       />
     </div>
 
-    <div class="col-md-2 col-sm-12 col-xs-12">
+    <div
+      :class="
+        isDialog
+          ? 'col-md-6 col-sm-12 col-xs-12'
+          : 'col-md-3 col-sm-12 col-xs-12'
+      "
+    >
       <custom-input-number
         v-model="paymentItem.fee"
         :label="$t('shared.labels.fee')"
@@ -17,7 +30,13 @@
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
+    <div
+      :class="
+        isDialog
+          ? 'col-md-12 col-sm-12 col-xs-12'
+          : 'col-md-6 col-sm-12 col-xs-12'
+      "
+    >
       <bank-account-lookup
         v-model:selectedId="paymentItem.bankAccountId"
         v-model:selectedText="paymentItem.bankAccountDisplay"
@@ -28,7 +47,13 @@
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
+    <div
+      :class="
+        isDialog
+          ? 'col-md-12 col-sm-12 col-xs-12'
+          : 'col-md-6 col-sm-12 col-xs-12'
+      "
+    >
       <custom-input
         v-model="paymentItem.itemNo"
         :label="$t('shared.labels.receiptNumber')"
@@ -37,7 +62,13 @@
   </div>
 
   <div class="row q-mt-sm q-col-gutter-md">
-    <div class="col-md-6 col-sm-12 col-xs-12">
+    <div
+      :class="
+        isDialog
+          ? 'col-md-12 col-sm-12 col-xs-12'
+          : 'col-md-6 col-sm-12 col-xs-12'
+      "
+    >
       <custom-input
         type="textarea"
         v-model="paymentItem.comment"
@@ -48,16 +79,27 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref, computed, onMounted, nextTick } from "vue";
 
   import BankAccountLookup from "src/components/shared/lookups/BankAccountLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
 
+  const focusable = ref(null);
+
   const props = defineProps({
-    item: Object,
+    modelValue: Object,
     autofocus: Boolean,
+    isDialog: Boolean,
   });
 
-  const paymentItem = computed(() => props.item);
+  const paymentItem = computed(() => props.modelValue);
+
+  onMounted(() => {
+    nextTick(() => {
+      if (focusable.value && focusable.value.focus) {
+        focusable.value.focus();
+      }
+    });
+  });
 </script>

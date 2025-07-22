@@ -49,40 +49,50 @@
 
       <payment-item-cash
         v-if="item.typeId === paymentMethod.cash?.id"
-        v-model="paymentMethod"
+        :model-value="item"
+        @update:model-value="updateItem"
         :autofocus="index === formStore.newAddedItemIndex.value"
-        :item="item"
+        :is-dialog="false"
       />
       <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-check
         v-if="item.typeId === paymentMethod.check?.id"
+        :model-value="item"
+        @update:model-value="updateItem"
         :autofocus="index === formStore.newAddedItemIndex.value"
-        :item="item"
+        :is-dialog="false"
       />
       <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-check-spent
         v-if="item.typeId === paymentMethod.checkSpent?.id"
-        v-model="paymentMethod"
+        :model-value="item"
+        @update:model-value="updateItem"
         :autofocus="index === formStore.newAddedItemIndex.value"
-        :item="item"
+        :is-dialog="false"
       />
       <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-transfer-bank
         v-if="item.typeId === paymentMethod.bankTransition?.id"
+        :model-value="item"
+        @update:model-value="updateItem"
         :autofocus="index === formStore.newAddedItemIndex.value"
-        :item="item"
+        :is-dialog="false"
       />
       <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-pos
         v-if="item.typeId === paymentMethod.pos?.id"
+        :model-value="item"
+        @update:model-value="updateItem"
         :autofocus="index === formStore.newAddedItemIndex.value"
-        :item="item"
+        :is-dialog="false"
       />
       <!-- :error="validationErrors[item.typeId]" -->
       <payment-item-customer
         v-if="item.typeId === paymentMethod.customer?.id"
+        :model-value="item"
+        @update:model-value="updateItem"
         :autofocus="index === formStore.newAddedItemIndex.value"
-        :item="item"
+        :is-dialog="false"
       />
       <!-- :error="validationErrors[item.typeId]" -->
     </q-card-section>
@@ -147,6 +157,10 @@
       props.formStore.deleteRow(props.index);
     });
   };
+
+  function updateItem(val) {
+    Object.assign(props.item, val);
+  }
 </script>
 
 <style lang="scss" scoped>

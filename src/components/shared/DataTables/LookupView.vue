@@ -636,6 +636,10 @@
     }
   }
 
+  function focus() {
+    search.value?.focus();
+  }
+
   function hidePopup() {
     popup.value?.hide();
   }
@@ -673,6 +677,7 @@
   defineExpose({
     setIdText,
     setCustomText,
+    focus,
     selectedId,
     selectedText,
     tableStore,

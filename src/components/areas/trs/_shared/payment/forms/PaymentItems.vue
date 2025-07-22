@@ -71,13 +71,7 @@
   import PaymentItem from "./PaymentItem.vue";
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-  // Import dialog components
-  import PaymentItemCashDialog from "./dialogs/PaymentItemCashDialog.vue";
-  import PaymentItemCheckDialog from "./dialogs/PaymentItemCheckDialog.vue";
-  import PaymentItemCheckSpentDialog from "./dialogs/PaymentItemCheckSpentDialog.vue";
-  import PaymentItemTransferBankDialog from "./dialogs/PaymentItemTransferBankDialog.vue";
-  // import PaymentItemPosDialog from "./dialogs/PaymentItemPosDialog.vue";
-  import PaymentItemCustomerDialog from "./dialogs/PaymentItemCustomerDialog.vue";
+  import PaymentItemDialog from "./PaymentItemDialog.vue";
 
   const $q = useQuasar();
   const { t } = useI18n();
@@ -97,51 +91,35 @@
     return "cash"; // fallback
   };
 
-  const getDialogComponent = (paymentType) => {
-    const componentMap = {
-      [paymentMethod.cash.id]: PaymentItemCashDialog,
-      [paymentMethod.check.id]: PaymentItemCheckDialog,
-      [paymentMethod.checkSpent.id]: PaymentItemCheckSpentDialog,
-      [paymentMethod.bankTransition.id]:
-        PaymentItemTransferBankDialog,
-      // [paymentMethod.pos.id]: PaymentItemPosDialog,
-      [paymentMethod.customer.id]: PaymentItemCustomerDialog,
-    };
-    return componentMap[paymentType];
-  };
-
   const handleAddItem = async (item) => {
-    const component = getDialogComponent(item.value.id);
-    alert(props.formStore.remainedAmount.value);
-    if (component) {
-      const paymentItem = {
-        typeId: item.value.id,
-        amount: props.formStore.remainedAmount.value,
-        fee: 0,
-        // bankAccountId: null,
-        // bankAccountDisplay: "",
-        // itemNo: "",
-        // itemDate: null,
-        // accountNo: "",
-        // sayad: "",
-        // bankBranchId: null,
-        // bankTitle: "",
-        // comment: "",
-      };
-      dialogStore.openDialog({
-        title: `shared.paymentMethod.${getPaymentMethodName(
-          item.value.id
-        )}`,
-        component: component,
-        actionBar: true,
-        props: {
-          item: paymentItem,
-        },
-        width: "800px",
-        okCallback: async (item) => {
-          props.formStore.addRow(item);
-        },
-      });
-    }
+    // alert(props.formStore.remainedAmount.value);
+    const paymentItem = {
+      typeId: item.value.id,
+      amount: props.formStore.remainedAmount.value,
+      fee: 0,
+      // bankAccountId: null,
+      // bankAccountDisplay: "",
+      // itemNo: "",
+      // itemDate: null,
+      // accountNo: "",
+      // sayad: "",
+      // bankBranchId: null,
+      // bankTitle: "",
+      // comment: "",
+    };
+    dialogStore.openDialog({
+      title: `shared.paymentMethod.${getPaymentMethodName(
+        item.value.id
+      )}`,
+      component: PaymentItemDialog,
+      actionBar: true,
+      props: {
+        item: paymentItem,
+      },
+      width: "800px",
+      okCallback: async (item) => {
+        props.formStore.addRow(item);
+      },
+    });
   };
 </script>
