@@ -31,14 +31,18 @@
             colspan="100%"
           >
             <span>
-              <strong style="padding: 0 5px">جمع دریافتی:</strong>
+              <strong style="padding: 0 5px">
+                {{ $t("shared.labels.totalReceipt") }}
+              </strong>
               {{
                 helper.formatNumber(model.invoiceRemained.payedAmount)
               }}
             </span>
 
             <span>
-              <strong style="padding: 0 5px">مانده:</strong>
+              <strong style="padding: 0 5px">
+                {{ $t("shared.labels.remained") }}
+              </strong>
               <span class="text-weight-600">
                 {{
                   helper.formatNumber(model.invoiceRemained.remained)
@@ -48,7 +52,9 @@
 
             <template v-if="model.invoiceRemained.otherRemained">
               <span>
-                <strong style="padding: 0 5px">مانده از قبل:</strong>
+                <strong style="padding: 0 5px">
+                  {{ $t("shared.labels.remainedButThisYear") }}
+                </strong>
                 <span class="text-weight-600">
                   {{
                     helper.formatNumber(
@@ -59,7 +65,9 @@
               </span>
 
               <span>
-                <strong style="padding: 0 5px">جمع مانده:</strong>
+                <strong style="padding: 0 5px">
+                  {{ $t("shared.labels.remainedTotal") }}
+                </strong>
                 {{
                   helper.formatNumber(
                     model.invoiceRemained.totalRemained
@@ -80,7 +88,7 @@
             "
             colspan="100%"
           >
-            <strong>شرح:</strong>
+            <strong>{{ $t("shared.labels.comment") }}</strong>
             <div>
               <strong v-if="model.contractTitle">
                 {{ model.contractTitle }}
@@ -111,7 +119,7 @@
             "
             class="text-body2 vertical-top"
           >
-            مهر و امضا فروشنده
+            {{ $t("shared.labels.sellerSignature") }}
             <div v-if="showSignature && signatureSource">
               <img
                 :src="signatureSource"

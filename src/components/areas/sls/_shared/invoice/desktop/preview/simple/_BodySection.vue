@@ -141,7 +141,7 @@
             colspan="4"
             class="text-right"
           >
-            {{ $t("shared.columns.subTotal") }}:
+            {{ $t("shared.labels.subTotal") }}:
           </td>
           <td
             style="
@@ -169,7 +169,7 @@
             colspan="4"
             class="text-right"
           >
-            {{ $t("shared.columns.discount") }}:
+            {{ $t("shared.labels.discount") }}:
           </td>
           <td
             style="
@@ -197,7 +197,7 @@
             colspan="4"
             class="text-right"
           >
-            {{ $t("shared.columns.vat") }}:
+            {{ $t("shared.labels.vat") }}:
           </td>
           <td
             style="
@@ -257,7 +257,7 @@
             colspan="4"
             class="text-right"
           >
-            <strong>{{ $t("shared.columns.total") }}:</strong>
+            <strong>{{ $t("shared.labels.total") }}:</strong>
           </td>
 
           <td

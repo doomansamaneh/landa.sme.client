@@ -20,19 +20,19 @@
           "
         >
           <div>
-            فروشنده:
+            {{ $t("shared.labels.supplier") }}:
             <strong>{{ model.customerName }}</strong>
           </div>
           <div v-if="model.customerSummary?.business?.nationalNo">
-            شناسه ملی:
+            {{ $t("shared.labels.nationalNo") }}:
             {{ model.customerSummary?.business?.nationalNo }}
           </div>
           <div v-else>
-            شماره اقتصادی:
+            {{ $t("shared.labels.taxNo") }}:
             {{ model.customerSummary?.business?.taxNo }}
           </div>
           <div>
-            نشانی:
+            {{ $t("shared.columns.address") }}:
             <strong>
               {{ model.customerSummary?.address?.locationTitle }} -
             </strong>
@@ -40,12 +40,13 @@
               {{ model.customerSummary?.address?.address }}
             </span>
             <span v-if="model.customerSummary?.address?.postalCode">
-              کد پستی:
+              {{ $t("shared.labels.postalCode") }}:
               {{ model.customerSummary?.address?.postalCode }}
             </span>
           </div>
           <div v-if="model.customerSummary?.phone?.value">
-            تلفن: {{ model.customerSummary?.phone?.value }}
+            {{ $t("shared.labels.phone") }}:
+            {{ model.customerSummary?.phone?.value }}
           </div>
         </td>
       </tr>
@@ -62,7 +63,7 @@
           "
         >
           <div>
-            نام:
+            {{ $t("shared.labels.name") }}:
             <strong>
               {{ appConfigStore.model.value.companySetting.name }}
             </strong>
@@ -72,15 +73,15 @@
               appConfigStore.model.value.companySetting.nationalNo
             "
           >
-            شناسه ملی:
+            {{ $t("shared.labels.nationalNo") }}:
             {{ appConfigStore.model.value.companySetting.nationalNo }}
           </div>
           <div v-else>
-            شماره اقتصادی:
+            {{ $t("shared.labels.taxNo") }}:
             {{ appConfigStore.model.value.companySetting.taxNo }}
           </div>
           <div>
-            نشانی:
+            {{ $t("shared.columns.address") }}:
             <strong>
               {{ appConfigStore.model.value.companySetting.location }}
               -
@@ -88,11 +89,11 @@
             <span class="text-wrap">
               {{ appConfigStore.model.value.companySetting.address }}
             </span>
-            کد پستی:
+            {{ $t("shared.labels.postalCode") }}:
             {{ appConfigStore.model.value.companySetting.postalCode }}
           </div>
           <div v-if="appConfigStore.model.value.companySetting.phone">
-            تلفن:
+            {{ $t("shared.labels.phone") }}:
             {{ appConfigStore.model.value.companySetting.phone }}
           </div>
         </td>

@@ -26,7 +26,9 @@
             "
             colspan="100%"
           >
-            <div class="text-body2 text-weight-500">فروشنده</div>
+            <div class="text-body2 text-weight-500">
+              {{ $t("shared.labels.supplier") }}
+            </div>
           </td>
         </tr>
         <tr>
@@ -38,7 +40,7 @@
               padding: 3px;
             "
           >
-            نام:
+            {{ $t("shared.labels.name") }}:
             <strong>
               {{ appConfigStore.model.value.companySetting.name }}
             </strong>
@@ -52,7 +54,7 @@
               padding: 3px;
             "
           >
-            شماره ثبت:
+            {{ $t("shared.labels.regNo") }}:
             {{ appConfigStore.model.value.companySetting.regNo }}
           </td>
           <td
@@ -64,7 +66,7 @@
               padding: 3px;
             "
           >
-            شماره اقتصادی:
+            {{ $t("shared.labels.taxNo") }}:
             {{ appConfigStore.model.value.companySetting.taxNo }}
           </td>
           <td
@@ -76,7 +78,7 @@
               padding: 3px;
             "
           >
-            شناسه ملی:
+            {{ $t("shared.labels.nationalNo") }}:
             {{ appConfigStore.model.value.companySetting.nationalNo }}
           </td>
         </tr>
@@ -90,7 +92,7 @@
             "
             colspan="2"
           >
-            نشانی:
+            {{ $t("shared.labels.address") }}:
             <strong>
               {{ appConfigStore.model.value.companySetting.location }}
               -
@@ -107,7 +109,7 @@
               padding: 3px;
             "
           >
-            کد پستی:
+            {{ $t("shared.labels.postalCode") }}:
             {{ appConfigStore.model.value.companySetting.postalCode }}
           </td>
           <td
@@ -118,7 +120,7 @@
               padding: 3px;
             "
           >
-            تلفن:
+            {{ $t("shared.labels.phone") }}:
             {{ appConfigStore.model.value.companySetting.phone }}
           </td>
         </tr>
@@ -137,7 +139,9 @@
             "
             colspan="100%"
           >
-            <div class="text-body2 text-weight-500">خریدار</div>
+            <div class="text-body2 text-weight-500">
+              {{ $t("shared.labels.customer") }}
+            </div>
           </td>
         </tr>
         <tr>
@@ -149,7 +153,7 @@
               padding: 3px;
             "
           >
-            نام:
+            {{ $t("shared.labels.name") }}:
             <strong>{{ model.customerName }}</strong>
           </td>
           <td
@@ -160,7 +164,7 @@
               padding: 3px;
             "
           >
-            شماره ثبت:
+            {{ $t("shared.labels.regNo") }}:
             {{ model.customerSummary?.business?.regNo }}
           </td>
           <td
@@ -171,7 +175,7 @@
               padding: 3px;
             "
           >
-            شماره اقتصادی:
+            {{ $t("shared.labels.taxNo") }}:
             {{ model.customerSummary?.business?.taxNo }}
           </td>
           <td
@@ -182,7 +186,7 @@
               padding: 3px;
             "
           >
-            شناسه ملی:
+            {{ $t("shared.labels.nationalNo") }}:
             {{ model.customerSummary?.business?.nationalNo }}
           </td>
         </tr>
@@ -196,7 +200,7 @@
               padding: 3px;
             "
           >
-            نشانی:
+            {{ $t("shared.labels.address") }}:
             <strong>
               {{ model.customerSummary?.address?.locationTitle }}
               -
@@ -213,7 +217,7 @@
               padding: 3px;
             "
           >
-            کد پستی:
+            {{ $t("shared.labels.postalCode") }}:
             {{ model.customerSummary?.address?.postalCode }}
           </td>
           <td
@@ -224,7 +228,8 @@
               padding: 3px;
             "
           >
-            تلفن: {{ model.customerSummary?.phone?.value }}
+            {{ $t("shared.labels.phone") }}:
+            {{ model.customerSummary?.phone?.value }}
           </td>
         </tr>
       </tbody>
