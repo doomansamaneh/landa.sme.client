@@ -45,6 +45,7 @@
       <custom-input-number
         v-model="paymentItem.fee"
         :label="$t('shared.labels.fee')"
+        required
       />
     </div>
   </div>
