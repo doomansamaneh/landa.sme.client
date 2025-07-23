@@ -704,7 +704,12 @@
       "longTermLiability": "بدهی بلند مدت",
       "supportPhone": "تلفن واحد پشتیبانی",
       "call": "تماس",
-      "close": "بستن"
+      "close": "بستن",
+      "no-product-found": "کالا یا خدمتی انتخاب نشده است",
+      "productOrServiceDetails": "مشخصات کالا یا خدمات مورد معامله",
+      "totalQuantity": "جمع مقدار",
+      "productOrService": "کالا/خدمت",
+      "totalAmount": "مبلغ کل"
     },
     "productType": {
       "main": "اصلی",
@@ -1100,7 +1105,8 @@
       "unitPrice": "مبلغ واحد",
       "subSystem": "زیرسیستم",
       "quantity": "تعداد/مقدار",
-      "taxAmount": "مالیات"
+      "taxAmount": "مالیات",
+      "totalQuantity": "جمع مقدار"
     },
     "vatDetailSection": {
       "warningTitle": "عنوانی که در سند حسابداری برای این قلم نشان داده می‌شود، مانند مالیات بر ارزش افزوده پرداختنی",

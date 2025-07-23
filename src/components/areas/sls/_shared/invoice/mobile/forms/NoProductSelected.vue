@@ -1,16 +1,10 @@
 <template>
   <div class="column items-center q-gutter-md q-py-md">
-    <img
-      src="/productshelf.svg"
-      style="width: 120px"
-      alt=""
-    >
+    <img src="/productshelf.svg" style="width: 120px" alt="" />
     <div class="text-body1">
-      کالا یا خدمتی انتخاب نشده است
+      {{ $t("shared.no-product-found") }}
     </div>
   </div>
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
