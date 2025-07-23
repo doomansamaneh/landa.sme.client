@@ -2,10 +2,16 @@
   <div class="q-pb-md q-px-md">
     <div class="q-mb-md">
       <q-badge color="warning" rounded class="q-mr-sm" />
-      کمتر از میانگین سالانه (میانگین از تقسیم جمع هر ردیف بر تعداد 12
-      ماه بدست می‌آید)
+      {{ $t("shared.labels.lessThanAnnualAverage") }}
     </div>
-    <q-markup-table bordered flat class="revenue-expense-table">
+    <q-markup-table
+      bordered
+      flat
+      class="revenue-expense-table"
+      :style="
+        $q.lang.rtl ? 'font-family: vazir;' : 'font-family: Roboto;'
+      "
+    >
       <thead>
         <tr>
           <th class="text-left"></th>
@@ -20,7 +26,9 @@
             </span>
           </th>
           <th class="text-left" style="width: 8%">
-            <span class="text-body2 text-weight-500">جمع</span>
+            <span class="text-body2 text-weight-500">
+              {{ $t("shared.labels.total") }}
+            </span>
           </th>
         </tr>
       </thead>
@@ -49,7 +57,7 @@
 
         <tr v-if="netRevenue">
           <td class="text-black text-body2 text-weight-500 bg-lime">
-            درآمد خالص
+            {{ $t("shared.columns.netIncome") }}
           </td>
           <td
             v-for="(col, index) in netRevenue"

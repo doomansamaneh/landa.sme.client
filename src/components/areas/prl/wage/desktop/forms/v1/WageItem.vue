@@ -5,6 +5,7 @@
         <div class="col">
           <div class="row items-center text-bold text-body1">
             <q-btn
+              no-caps
               unelevated
               size="8px"
               class="bg-primary text-white q-mr-sm text-caption-sm no-pointer-events"
@@ -19,6 +20,7 @@
 
         <div class="q-gutter-sm col-auto">
           <q-btn
+            no-caps
             size="11px"
             round
             flat
@@ -28,6 +30,7 @@
           </q-btn>
 
           <q-btn
+            no-caps
             size="11px"
             round
             flat
@@ -49,7 +52,7 @@
             v-model:selectedId="wageItem.customerId"
             v-model:selectedText="wageItem.customerName"
             :filter-expression="personnelFilter"
-            label="پرسنل"
+            :label="$t('shared.columns.personnel')"
             required
           />
         </div>
@@ -59,7 +62,7 @@
             :options="
               helper.getEnumOptions(insuranceType, 'insuranceType')
             "
-            label="نوع بیمه"
+            :label="$t('shared.columns.insurranceEmp')"
             required
           />
         </div>
@@ -67,107 +70,113 @@
           <custom-select
             v-model="wageItem.day"
             :options="days"
-            label="روزهای کارکرد"
+            :label="$t('shared.columns.day')"
             required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.salary"
-            label="دستمزد روزانه"
+            :label="$t('shared.columns.salary')"
             required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.baseYear"
-            label="مزد پایه سنوات روزانه"
+            :label="$t('shared.columns.baseYear')"
             required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.housing"
-            label="حق مسکن"
+            :label="$t('shared.columns.housing')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <custom-input-number v-model="wageItem.food" label="بن" />
+          <custom-input-number
+            v-model="wageItem.food"
+            :label="$t('shared.columns.food')"
+          />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.spouse"
-            label="حق تاهل"
+            :label="$t('shared.columns.spouse')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.child"
-            label="حق اولاد"
+            :label="$t('shared.columns.child')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.mission"
-            label="حق ماموریت"
+            :label="$t('shared.columns.mission')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.overtime"
-            label="اضافه کار"
+            :label="$t('shared.columns.overtime')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.addition"
-            label="دیگر مزایا"
+            :label="$t('shared.columns.addition')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.deduction"
-            label="دیگر کسورات"
+            :label="$t('shared.columns.deduction')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.leave"
-            label="بازخرید مرخصی"
+            :label="$t('shared.columns.leave')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.reward"
-            label="پاداش بهره‌وری"
+            :label="$t('shared.columns.reward')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.bonus"
-            label="عیدی و پاداش"
+            :label="$t('shared.columns.bonus')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.serviceBenefit"
-            label="بازخرید سنوات"
+            :label="$t('shared.columns.serviceBenefit')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <date-time-picker
             v-model="wageItem.dateEnter"
-            label="تاریخ آغاز به کار"
+            :label="$t('shared.columns.dateEnter')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <date-time-picker
             v-model="wageItem.dateExit"
-            label="تاریخ ترک کار"
+            :label="$t('shared.columns.dateExit')"
           />
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
-          <custom-input v-model="wageItem.comment" label="شرح" />
+          <custom-input
+            v-model="wageItem.comment"
+            :label="$t('shared.columns.comment')"
+          />
         </div>
       </div>
     </q-card-section>
@@ -188,6 +197,7 @@
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
 
   const props = defineProps({
     item: Object,

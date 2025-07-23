@@ -1,13 +1,14 @@
 <template>
   <template v-if="!edit">
     <q-btn
+      no-caps
       unelevated
       rounded
       padding="6px 12px"
       class="primary-gradient primary-shadow text-white text-on-dark"
     >
       <q-icon name="o_add" size="xs" class="q-mr-xs text-body2" />
-      افزودن تماس
+      {{ $t("shared.labels.addContact") }}
       <q-menu class="border-radius-lg" :offset="[0, 20]" fit>
         <q-list dense padding>
           <q-item
@@ -24,7 +25,9 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2">تلفن</div>
+              <div class="text-body2">
+                {{ $t("shared.labels.phone") }}
+              </div>
             </q-item-section>
           </q-item>
 
@@ -42,7 +45,9 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2">موبایل</div>
+              <div class="text-body2">
+                {{ $t("shared.labels.mobile") }}
+              </div>
             </q-item-section>
           </q-item>
 
@@ -60,7 +65,9 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2">ایمیل</div>
+              <div class="text-body2">
+                {{ $t("shared.labels.email") }}
+              </div>
             </q-item-section>
           </q-item>
 
@@ -78,7 +85,9 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2">وبسایت</div>
+              <div class="text-body2">
+                {{ $t("shared.labels.website") }}
+              </div>
             </q-item-section>
           </q-item>
         </q-list>
@@ -94,14 +103,14 @@
         <contact-item
           :item="item"
           :index="index"
-          title="تلفن"
+          :title="$t('shared.labels.phone')"
           @item-deleted="formStore.deletePhone(index)"
           @item-added="formStore.addPhone(index)"
           :type-id="contactType.phone"
         >
           <template #header-title>
             <q-icon name="o_call" size="18px" class="q-mx-sm" />
-            <span>تلفن</span>
+            <span>{{ $t("shared.labels.phone") }}</span>
           </template>
         </contact-item>
       </div>
@@ -114,7 +123,7 @@
         <contact-item
           :item="item"
           :index="index"
-          title="موبایل"
+          :title="$t('shared.labels.mobile')"
           @item-deleted="formStore.deleteMobile(index)"
           @item-added="formStore.addMobile(index)"
           :type-id="contactType.mobile"
@@ -125,7 +134,7 @@
               size="18px"
               class="q-mx-sm"
             />
-            <span>موبایل</span>
+            <span>{{ $t("shared.labels.mobile") }}</span>
           </template>
         </contact-item>
       </div>
@@ -138,14 +147,14 @@
         <contact-item
           :item="item"
           :index="index"
-          title="ایمیل"
+          :title="$t('shared.labels.email')"
           @item-deleted="formStore.deleteEmail(index)"
           @item-added="formStore.addEmail(index)"
           :type-id="contactType.email"
         >
           <template #header-title>
             <q-icon name="o_email" size="18px" class="q-mx-sm" />
-            <span>ایمیل</span>
+            <span>{{ $t("shared.labels.email") }}</span>
           </template>
         </contact-item>
       </div>
@@ -158,14 +167,14 @@
         <contact-item
           :item="item"
           :index="index"
-          title="وب سایت"
+          :title="$t('shared.labels.website')"
           @item-deleted="formStore.deleteWebsite(index)"
           @item-added="formStore.addWebsite(index)"
           :type-id="contactType.website"
         >
           <template #header-title>
             <q-icon name="o_public" size="18px" class="q-mx-sm" />
-            <span>وب سایت</span>
+            <span>{{ $t("shared.labels.website") }}</span>
           </template>
         </contact-item>
       </div>
@@ -175,10 +184,13 @@
 
 <script setup>
   import { onMounted } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useRoute } from "vue-router";
   import { contactType } from "src/constants";
 
   import ContactItem from "./_DetailContactItem.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

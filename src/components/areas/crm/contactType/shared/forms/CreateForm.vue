@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-select
-              label="نوع تماس"
+              :label="$t('shared.labels.contactType')"
               hide-bottom-space
               v-model="formStore.model.value.typeId"
               :options="
@@ -24,7 +24,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="عنوان"
+              :label="$t('shared.labels.title')"
               hide-bottom-space
               v-model="formStore.model.value.title"
               required
@@ -37,7 +37,7 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.labels.isActive')"
           />
         </div>
       </q-form>
@@ -47,6 +47,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { contactType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
@@ -64,4 +65,5 @@
   const formStore = useBaseInfoModel({
     baseRoute: "crm/contactType",
   });
+  const { t: $t } = useI18n();
 </script>

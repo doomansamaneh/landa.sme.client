@@ -4,6 +4,7 @@
     class="text-center"
   >
     <q-btn
+      no-caps
       class="q-my-xl primary-shadow"
       rounded
       unelevated

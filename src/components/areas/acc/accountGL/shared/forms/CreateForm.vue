@@ -5,7 +5,7 @@
         <cl-lookup
           v-model:selectedId="formStore.model.value.clId"
           v-model:selectedText="formStore.model.value.clDisplay"
-          label="گروه حساب"
+          :label="$t('shared.labels.cl')"
           required
           @rowSelected="clChanged"
         />
@@ -16,7 +16,7 @@
       <div class="col-md-3 col-sm-6 col-xs-12">
         <custom-input
           v-model="formStore.model.value.code"
-          label="کد"
+          :label="$t('shared.labels.code')"
           required
         />
       </div>
@@ -24,7 +24,7 @@
         <custom-select
           v-model="formStore.model.value.typeId"
           :options="helper.getEnumOptions(accountType, 'accountType')"
-          label="ماهیت حساب"
+          :label="$t('shared.labels.accountNature')"
           required
         />
       </div>
@@ -34,7 +34,7 @@
       <div class="col-md-6 col-sm-12 col-xs-12">
         <custom-input
           v-model="formStore.model.value.title"
-          label="عنوان"
+          :label="$t('shared.labels.title')"
           required
         />
       </div>
@@ -45,7 +45,7 @@
         v-model="formStore.model.value.isActive"
         dense
         size="48px"
-        label="فعال"
+        :label="$t('shared.labels.isActive')"
       />
     </div>
   </q-form>
@@ -53,6 +53,7 @@
 
 <script setup>
   import { onMounted, ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { accountType } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
@@ -62,6 +63,8 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import ClLookup from "src/components/shared/lookups/AccountCLLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     id: String,

@@ -2,7 +2,7 @@
   <q-card v-if="status" flat class="tips">
     <q-card-section>
       <slot name="title">
-        <div class="q-mb-xs title">
+        <div class="q-mb-sm title">
           {{ title }}
         </div>
       </slot>
@@ -13,6 +13,7 @@
 
     <slot name="close-btn">
       <q-btn
+        no-caps
         v-if="closeable"
         dense
         unelevated

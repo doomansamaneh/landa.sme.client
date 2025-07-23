@@ -262,21 +262,30 @@ export const helper = {
     const suffix = number < 0 ? "(" : "";
     const postfix = number < 0 ? ")" : "";
 
-    const format = (num, unit) => {
-      const rounded = num % 1 === 0 ? num.toFixed(0) : num.toFixed(1);
-      return rounded.replace(/\.0$/, "") + " " + unit;
-    };
+    const lang = this.getCurrentLanguage
+      ? this.getCurrentLanguage()
+      : "english";
+    const units =
+      lang === "farsi"
+        ? ["هزار", "میلیون", "میلیارد", "همت"]
+        : ["Thousand", "Million", "Billion", "Trillion"];
+    const thresholds = [1e3, 1e6, 1e9, 1e12];
 
-    const formattedNumber =
-      absNum < 1e3
-        ? absNum.toString()
-        : absNum < 1e6
-        ? format(absNum / 1e3, "هزار")
-        : absNum < 1e9
-        ? format(absNum / 1e6, "میلیون")
-        : absNum < 1e12
-        ? format(absNum / 1e9, "میلیارد")
-        : format(absNum / 1e12, "همت");
+    let value = absNum;
+    let unit = "";
+    for (let i = thresholds.length - 1; i >= 0; i--) {
+      if (absNum >= thresholds[i]) {
+        value = absNum / thresholds[i];
+        unit = units[i];
+        break;
+      }
+    }
+
+    const rounded =
+      value % 1 === 0 ? value.toFixed(0) : value.toFixed(1);
+    const formattedNumber = unit
+      ? `${rounded.replace(/\.0$/, "")} ${unit}`
+      : rounded;
 
     return suffix + formattedNumber + postfix;
   },
@@ -564,4 +573,15 @@ export const helper = {
     "موسسه مالی و اعتباری نور": "src/assets/nour.png",
     "موسسه مالی و اعتباری کاسپین": "src/assets/kaspian-logo.png",
   },
+
+  getCurrentLanguage() {
+    const { locale } = useI18n();
+    if (locale.value === "fa-IR") return "farsi";
+    if (locale.value === "en-US") return "english";
+    return locale.value;
+  },
+
+  // Example usage:
+  // const lang = helper.getCurrentLanguage();
+  // console.log(lang); // 'farsi', 'english', or locale code
 };

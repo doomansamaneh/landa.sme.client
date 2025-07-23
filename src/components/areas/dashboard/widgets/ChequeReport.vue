@@ -22,7 +22,7 @@
         </div>
 
         <div>
-          <q-btn rounded padding="6px 12px" unelevated dense>
+          <q-btn no-caps rounded padding="6px 12px" unelevated dense>
             ماهانه
           </q-btn>
         </div>
@@ -57,7 +57,7 @@
             <span class="text-body2  q-mr-xs">
               نقد شده
             </span>
-            <q-btn
+            <q-btn no-caps
               unelevated
               class="no-pointer-events border-radius-xs"
               padding="6.5px 7px"
@@ -70,7 +70,7 @@
             <span class="text-body2  q-mr-xs">
             نقد نشده
           </span>
-          <q-btn
+          <q-btn no-caps
             unelevated
             class="no-pointer-events border-radius-xs"
             padding="6.5px 7px"

@@ -2,6 +2,7 @@
   <body-section :tableStore="tableStore">
     <template #cell-isActive="{ item }">
       <q-btn
+        no-caps
         v-if="item.isActive"
         round
         dense
@@ -12,6 +13,7 @@
         class="green-gradient green-shadow no-pointer-events"
       />
       <q-btn
+        no-caps
         v-else
         round
         dense

@@ -1,16 +1,16 @@
 <template>
   <q-card-actions
     class="q-pa-md dark-1"
-    :class="$q.screen.xs ? 'absolute-bottom' : ''"
+    :class="$q.screen.xs ? 'fixed-bottom' : ''"
   >
     <slot name="start"></slot>
     <slot name="ok">
       <q-btn
+        no-caps
         type="submit"
         @click="okClicked"
         text-color="white"
         unelevated
-        no-caps
         padding="8px 16px"
         rounded
         class="primary-gradient primary-shadow"
@@ -21,10 +21,10 @@
     <slot name="between"></slot>
     <slot name="cancel">
       <q-btn
+        no-caps
         flat
         size="md"
         @click="cancelClicked"
-        no-caps
         padding="8px 16px"
         v-close-popup
         rounded

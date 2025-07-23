@@ -4,7 +4,6 @@
     :inside="inside"
     :title="title"
     :menu-items="menuItems"
-    margin
     back-button
   />
   <tool-bar-mobile

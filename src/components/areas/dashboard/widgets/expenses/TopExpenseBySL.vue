@@ -6,6 +6,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -22,7 +23,10 @@
       "
     >
       <q-card-section class="q-pb-none">
-        <widget-title label="ریز هزینه" icon="o_account_balance" />
+        <widget-title
+          :label="$t('shared.labels.expenseDetail')"
+          icon="o_account_balance"
+        />
       </q-card-section>
 
       <q-inner-loading
@@ -71,7 +75,7 @@
   const isChartVisible = ref(true);
 
   const chartOptions = computed(() => {
-    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir;" : "Roboto, vazir;";
     const total = reportStore.total.value;
 
     return {

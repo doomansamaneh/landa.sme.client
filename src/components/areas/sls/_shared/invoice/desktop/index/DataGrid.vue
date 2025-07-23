@@ -13,6 +13,14 @@
     @row-dbl-click="gotoPreview"
     :no-fullscreen="noFullscreen"
   >
+    <!-- If we need show custom print preview -->
+    <!-- <template #toolbar>
+      <DataGridToolbar
+        :table-store="tableStore"
+        :title="title"
+        :printPreviewComponent="InvoicePrintPreview"
+      />
+    </template> -->
     <template #filter-statusId="{ item }">
       <custom-select
         v-model="item.value"
@@ -43,6 +51,7 @@
 
     <template #cell-amount="{ item }">
       <q-btn
+        no-caps
         v-if="item.statusId === voucherStatus.canceled"
         round
         text-color="white"
@@ -192,6 +201,8 @@
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
   import IsActive from "src/components/shared/IsActive.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
+  import DataGridToolbar from "src/components/shared/dataTables/desktop/DataGridToolbar.vue";
+  import InvoicePrintPreview from "src/components/areas/sls/invoice/shared/printPreview/DataGridPreview.vue";
 
   const props = defineProps({
     tableStore: Object,
@@ -205,7 +216,7 @@
   const colspan = computed(
     () =>
       helper.findIndex(
-        props.tableStore.columns.value,
+        props.tableStore.columns.value.filter((col) => !col.hidden),
         "name",
         "amount"
       ) +

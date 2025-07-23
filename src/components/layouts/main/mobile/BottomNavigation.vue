@@ -7,32 +7,33 @@
   >
     <div class="row items-center q-py-sm">
       <navigation-item
-        label="منو"
+        :label="$t('shared.labels.menu')"
         icon="menu"
         :isActive="isActiveMenu"
         @click="goToMenu"
       />
       <navigation-item
-        label="پیشخوان"
+        :label="$t('shared.labels.dashboard')"
         icon="dashboard"
         :isActive="isActiveDashboard"
         @click="goToDashboard"
       />
       <navigation-item
-        label="مخاطبین"
+        :label="$t('shared.labels.contacts')"
         icon="person_search"
         :isActive="isActiveContact"
         @click="goToContact"
       />
+
       <navigation-item
-        v-access="`cmn.appconfig.edit`"
-        label="پیکربندی"
-        icon="settings"
-        :isActive="isActiveConfig"
-        @click="goToConfig"
+        :label="$t('shared.labels.support')"
+        icon="support_agent"
+        :isActive="isActiveTicket"
+        @click="goToTicket"
       />
+
       <navigation-item
-        label="نمایه"
+        :label="$t('shared.labels.profile')"
         icon="account_circle"
         :isActive="isActiveProfile"
         @click="goToProfile"
@@ -55,7 +56,7 @@
 
   const goToDashboard = () => router.push("/dashboard");
   const goToProfile = () => router.push("/scr/users/settings");
-  const goToConfig = () => router.push("/cmn/appConfig");
+  const goToTicket = () => router.push("/tickets");
   const goToContact = () => router.push("/crm/customer");
   const goToMenu = () => router.push("/menu");
 
@@ -65,9 +66,7 @@
   const isActiveProfile = computed(
     () => route.path === "/scr/users/settings"
   );
-  const isActiveConfig = computed(
-    () => route.path === "/cmn/appConfig"
-  );
+  const isActiveTicket = computed(() => route.path === "/tickets");
   const isActiveContact = computed(
     () => route.path === "/crm/customer"
   );

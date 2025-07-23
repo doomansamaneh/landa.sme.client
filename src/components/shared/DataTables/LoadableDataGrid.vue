@@ -8,7 +8,7 @@
 
   <div
     v-if="showSearch"
-    class="row items-center q-gutter-md justify-between q-px-sm q-py-md"
+    class="row items-center q-gutter-md_ justify-between q-px-sm q-py-md"
   >
     <div class="col">
       <slot name="search">
@@ -39,8 +39,10 @@
   <q-scroll-area
     v-if="gridStore.rows.value.length > 3"
     :style="props.scrollBarStyle"
-    :thumb-style="helper.thumbStyle"
-    :bar-style="helper.barStyle"
+    :thumb-style="
+      $q.screen.lt.md ? { opacity: 0 } : helper.thumbStyle
+    "
+    :bar-style="$q.screen.lt.md ? { opacity: 0 } : helper.barStyle"
   >
     <template
       v-for="(item, index) in gridStore.rows.value"
@@ -61,6 +63,7 @@
 
     <div class="row justify-center" v-if="hasMoreData">
       <q-btn
+        no-caps
         rounded
         unelevated
         @click="gotoNext"
@@ -93,6 +96,7 @@
 
     <div class="row justify-center" v-if="hasMoreData">
       <q-btn
+        no-caps
         rounded
         unelevated
         @click="gotoNext"

@@ -4,5 +4,6 @@ export function useTransferMoneyDataGridMenu(context) {
   return useDataGridMenu(context, {
     baseRoute: "trs/transferMoney",
     permissionPrefix: "trs.transferMoney",
+    exclude: ["print", "printBatch"],
   });
 }

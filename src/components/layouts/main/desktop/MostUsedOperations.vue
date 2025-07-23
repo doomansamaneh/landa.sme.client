@@ -1,5 +1,5 @@
 <template>
-  <q-btn round dense unelevated>
+  <q-btn no-caps round dense unelevated>
     <q-icon name="o_bolt" size="24px" color="orange-7" />
     <q-menu
       transition-show="jump-down"

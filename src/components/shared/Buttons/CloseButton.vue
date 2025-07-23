@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     round
     unelevated
     text-color="white"

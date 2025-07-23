@@ -9,6 +9,12 @@
     }
   }
 
+  .chat-list .q-item--active {
+    background-color: #{$yellow}35;
+    color: $yellow;
+    font-weight: 700;
+  }
+
   .menu-bar .sub-item-container {
     border-left: 1px solid $white;
   }

@@ -5,6 +5,7 @@
         <div class="row items-center q-gutter-sm">
           <div class="col-2">
             <q-btn
+              no-caps
               round
               dense
               unelevated
@@ -40,6 +41,7 @@
         <div class="row items-center q-gutter-sm">
           <div class="col-2">
             <q-btn
+              no-caps
               round
               dense
               unelevated

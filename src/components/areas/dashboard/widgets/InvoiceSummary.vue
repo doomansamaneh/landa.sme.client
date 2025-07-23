@@ -6,6 +6,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -23,8 +24,12 @@
     >
       <q-card-section>
         <div class="row items-center q-gutter-md justify-between">
-          <widget-title label="فاکتورهای فروش" icon="o_receipt" />
+          <widget-title
+            :label="$t('main-menu-items.Sls_Invoice_View')"
+            icon="o_receipt"
+          />
           <q-btn
+            no-caps
             v-access="`sls.invoice.create`"
             to="/sls/invoice/create"
             unelevated
@@ -38,7 +43,7 @@
               class="text-weight-300 q-ml-xs"
               v-if="$q.screen.gt.xs"
             >
-              ایجاد فاکتور
+              {{ $t("shared.labels.create") }}
             </span>
           </q-btn>
         </div>
@@ -59,7 +64,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                جمع کل
+                {{ $t("page.payment-detail.total-total") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"
@@ -99,7 +104,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                دریافت شده
+                {{ $t("page.payment-detail.total-receipt") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"
@@ -130,6 +135,7 @@
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-btn
+                no-caps
                 flat
                 dense
                 size="0"
@@ -142,11 +148,7 @@
                   size="xl"
                   class="active-shine orange-gradient orange-shadow"
                 >
-                  <q-icon
-                    color="white"
-                    size="23px"
-                    name="o_account_balance_wallet"
-                  />
+                  <q-icon color="white" size="23px" name="o_remove" />
                 </q-avatar>
                 <div class="mouse-icon"></div>
               </q-btn>
@@ -154,7 +156,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                مانده امسال
+                {{ $t("page.payment-detail.remained") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"
@@ -185,6 +187,7 @@
           <q-item class="no-padding">
             <q-item-section avatar>
               <q-btn
+                no-caps
                 flat
                 dense
                 size="0"
@@ -209,7 +212,7 @@
 
             <q-item-section>
               <q-item-label class="text-body3 q-mb-xs">
-                مانده از قبل
+                {{ $t("page.payment-detail.remained-but-this-year") }}
               </q-item-label>
               <q-item-label
                 v-if="!dataStore.isLoading.value"

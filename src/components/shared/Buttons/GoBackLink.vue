@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     round
     unelevated
     dense
@@ -9,7 +10,7 @@
     <q-icon
       size="20px"
       :name="
-        icon ?? $q.screen.xs ? mobileArrowIcon : desktopArrowIcon
+        icon ?? $q.screen.lt.md ? mobileArrowIcon : desktopArrowIcon
       "
     />
     <q-tooltip class="custom-tooltip">

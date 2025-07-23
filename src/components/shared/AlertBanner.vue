@@ -6,6 +6,7 @@
     >
       <div class="flex items-center q-gutter-sm text-black">
         <q-btn
+          no-caps
           round
           unelevated
           padding="0px"
@@ -49,6 +50,7 @@
       <div v-if="authErrors">
         <div class="flex q-gutter-xs q-pt-md">
           <q-btn
+            no-caps
             to="/account/login"
             rounded
             unelevated
@@ -56,7 +58,13 @@
           >
             ورود از نو
           </q-btn>
-          <q-btn to="/business" class="text-dark" unelevated rounded>
+          <q-btn
+            no-caps
+            to="/business"
+            class="text-dark"
+            unelevated
+            rounded
+          >
             بازگشت به کسب و کارها
           </q-btn>
         </div>
@@ -64,6 +72,7 @@
 
       <template #action>
         <q-btn
+          no-caps
           @click="hideBanner"
           flat
           dense

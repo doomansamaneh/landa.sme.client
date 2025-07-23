@@ -17,6 +17,7 @@
       :base-route="baseRoute"
       :createUrl="`/${baseRoute}/create`"
       :preview-page="previewPage"
+      :not-active="notActive"
     >
       <template
         v-for="(slot, name) in $slots"
@@ -71,6 +72,7 @@
     toolbar: Boolean,
     expandable: Boolean,
     previewPage: Boolean,
+    notActive: Boolean,
   });
 
   const crudStore = useFormActions(props.baseRoute);

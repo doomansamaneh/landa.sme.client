@@ -26,24 +26,26 @@
               class="text-body1 text-primary q-ml-sm"
               @click="clearFile"
             >
-              اصلاح فایل
+              {{ $t("shared.labels.editFile") }}
             </a>
           </div>
           <div class="q-mt-xs">
-            حجم فایل شما:
+            {{ $t("shared.labels.fileSize") }}
             <span>{{ formattedSize }}</span>
           </div>
         </div>
         <div v-else>
           <div class="text-body1 text-center text-weight-500">
-            می‌توانید
-            <a href="#" class="text-primary">فایل بارگذاری کنید</a>
-            یا آن را اینجا بکشید و رها کنید.
+            {{ $t("shared.labels.youCan") }}
+            <a href="#" class="text-primary">
+              {{ $t("shared.labels.uploadFile") }}
+            </a>
+            {{ $t("shared.labels.orDragAndDrop") }}
           </div>
           <div class="text-body3 q-mt-xs text-center">
-            فقط پسوندهای
+            {{ $t("shared.labels.onlyExtensions") }}
             <span class="text-roboto">XLSX & CSV</span>
-            پشتیبانی می‌شوند.
+            {{ $t("shared.labels.areSupported") }}
           </div>
         </div>
       </div>
@@ -54,6 +56,7 @@
     <div v-if="file" class="row q-gutter-md q-mt-none">
       <slot name="upload-button">
         <q-btn
+          no-caps
           rounded
           class="col primary-gradient text-white primary-shadow"
           unelevated
@@ -61,12 +64,15 @@
           @click="upload"
         >
           <q-icon size="20px" name="arrow_upward" class="q-mr-xs" />
-          <div class="text-body1">ارسال اطلاعات</div>
+          <div class="text-body1">
+            {{ $t("shared.labels.uploadData") }}
+          </div>
         </q-btn>
       </slot>
 
       <slot name="clear-button">
         <q-btn
+          no-caps
           class="col"
           unelevated
           rounded
@@ -74,7 +80,9 @@
           @click="clearFile"
         >
           <q-icon size="20px" name="delete" class="q-mr-xs" />
-          <div class="text-body1">حذف</div>
+          <div class="text-body1">
+            {{ $t("shared.labels.delete") }}
+          </div>
         </q-btn>
       </slot>
     </div>
@@ -83,6 +91,9 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
+
+  const { t } = useI18n();
 
   const emits = defineEmits(["upload"]);
   const file = ref(null);
@@ -93,7 +104,12 @@
   const formattedSize = computed(() => {
     if (!file.value) return "";
     const size = file.value.size;
-    const units = ["بایت", "کیلوبایت", "مگابایت", "گیگابایت"];
+    const units = [
+      t("shared.labels.fileSizeUnits.byte"),
+      t("shared.labels.fileSizeUnits.kilobyte"),
+      t("shared.labels.fileSizeUnits.megabyte"),
+      t("shared.labels.fileSizeUnits.gigabyte"),
+    ];
     let unitIndex = 0;
     let value = size;
 

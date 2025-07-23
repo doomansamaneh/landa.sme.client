@@ -6,6 +6,7 @@
     :title="$t('main-menu-items.Cmn_CommonKeyword_View')"
     :visible-columns="columns"
     create-url="/cmn/commonKeyword/create"
+    not-active
   />
 </template>
 

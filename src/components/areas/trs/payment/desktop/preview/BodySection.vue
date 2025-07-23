@@ -72,6 +72,7 @@
         border-collapse: collapse;
         font-size: 13px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
@@ -165,7 +166,10 @@
               padding: 5px;
             "
           >
-            {{ item.itemNo }}
+            <span v-if="item.checkSpentNo">
+              {{ item.checkSpentNo }}
+            </span>
+            <span v-else>{{ item.itemNo }}</span>
           </td>
           <td
             style="
@@ -175,7 +179,12 @@
               padding: 5px;
             "
           >
-            {{ model?.date?.substring(0, 10) }}
+            <span v-if="item.checkSpentDate">
+              {{ item.checkSpentDate.substring(0, 10) }}
+            </span>
+            <span v-else>
+              {{ item?.itemDate?.substring(0, 10) }}
+            </span>
           </td>
           <td
             style="
@@ -185,15 +194,18 @@
               padding: 5px;
             "
           >
-            <div v-if="item.bankAccountNo">
+            <span v-if="item.checkSpentCustomerName">
+              {{ item.checkSpentCustomerName }}
+            </span>
+            <span v-else-if="item.bankAccountNo">
               {{ item.bankAccountTitle }} /
               {{ item.bankAccountTypeTitle }} /
               {{ item.bankAccountNo }}
-            </div>
-            <div v-else>
+            </span>
+            <span v-else>
               {{ item.cashTitle }}
               {{ item.customerName }}
-            </div>
+            </span>
           </td>
           <td
             style="
@@ -207,8 +219,22 @@
               $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
             }}
 
+            {{
+              $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
+            }}
+
+            <span v-if="item.bankBranchDisplay">
+              | شعبه بانک:
+              {{ item.bankBranchDisplay }}
+            </span>
+
+            <span v-if="item.sayad">
+              | ش صیاد:
+              {{ item.sayad }}
+            </span>
+
             <span v-if="item.comment">
-              /
+              |
               {{ item.comment }}
             </span>
           </td>

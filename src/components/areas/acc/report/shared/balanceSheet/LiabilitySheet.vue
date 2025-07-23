@@ -4,14 +4,14 @@
       <balance-sheet-card-header
         icon="o_attach_money"
         icon-class="orange-gradient red-shadow"
-        title="بدهی"
+        :title="$t('shared.labels.liability')"
       />
     </q-card-section>
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
       <q-list class="statement-bar q-pr-md q-pl-sm">
         <template v-if="totalCL.value !== 0">
-          <balance-sheet-item-header title="بدهی جاری" />
+          <balance-sheet-item-header :title="$t('shared.labels.currentLiability')" />
 
           <div>
             <balance-sheet-item
@@ -25,7 +25,7 @@
         </template>
 
         <template v-if="totalFL.value !== 0">
-          <balance-sheet-item-header title="بدهی بلند مدت" />
+          <balance-sheet-item-header :title="$t('shared.labels.longTermLiability')" />
 
           <div class="q-pl-xs sub-item-container">
             <balance-sheet-item
@@ -46,7 +46,7 @@
       <q-item>
         <q-item-section>
           <q-item-label lines="1" class="text-h6 text-weight-600">
-            جمع بدهی
+            {{$t('shared.labels.liabilityTotal')}}
           </q-item-label>
         </q-item-section>
 
@@ -60,6 +60,7 @@
 
 <script setup>
   import { computed } from "vue";
+  import { useI18n } from 'vue-i18n';
   import { helper } from "src/helpers/helper";
   import { accountCLType } from "src/constants";
 
@@ -96,4 +97,5 @@
       0
     )
   );
+  const { t: $t } = useI18n();
 </script>

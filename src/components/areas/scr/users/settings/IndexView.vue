@@ -3,7 +3,7 @@
     <div>
       <div>
         <div class="text-h6 text-weight-700 q-mb-md">
-          {{ pageTitle }}
+          {{ $t("shared.labels.settings") }}
         </div>
         <settings-card :class="cardClass">
           <user-profile-section :user="authStore.user" />
@@ -29,6 +29,7 @@
 <script setup>
   import { computed } from "vue";
   import { useMeta, useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
   import { useAuthStore } from "src/stores";
 
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
@@ -36,14 +37,13 @@
   import UserProfileSection from "./UserProfileSection.vue";
   import SettingsMenuItem from "./SettingsMenuItem.vue";
 
-  const pageTitle = "تنظیمات";
-
+  const { t } = useI18n();
   const $q = useQuasar();
   const authStore = useAuthStore();
 
   const metaData = {
     title: "لاندا",
-    titleTemplate: (title) => pageTitle,
+    titleTemplate: (title) => t("shared.labels.settings"),
   };
 
   useMeta(metaData);
@@ -59,22 +59,22 @@
   const settingsMenuItems = [
     {
       to: "/scr/users/settings/theme",
-      label: "رنگ تم و زبان",
+      label: t("shared.labels.themeAndLanguage"),
     },
     {
       to: "/scr/users/settings/changePassword",
-      label: "تغییر رمز عبور",
+      label: t("change-password-page.title"),
     },
   ];
 
   const businessMenuItems = [
     {
       to: "/business",
-      label: "کسب و کارهای من",
+      label: t("page.card-title"),
     },
     {
       to: "/account/login",
-      label: "خروج از حساب",
+      label: t("shared.labels.logout"),
       icon: "o_logout",
       iconClass: "mirror",
     },

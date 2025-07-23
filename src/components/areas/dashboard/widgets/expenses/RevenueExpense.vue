@@ -6,6 +6,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -23,7 +24,7 @@
     >
       <q-card-section>
         <widget-title
-          label="مقایسه سود و زیان"
+          :label="$t('shared.labels.revenueExpenseComparison')"
           icon="o_receipt_long"
         />
       </q-card-section>
@@ -39,9 +40,15 @@
           <thead>
             <tr>
               <th class="text-left"></th>
-              <th class="text-left">امسال</th>
-              <th class="text-left">پارسال</th>
-              <th class="text-left">%</th>
+              <th class="text-left">
+                {{ $t("shared.labels.thisYear") }}
+              </th>
+              <th class="text-left">
+                {{ $t("shared.labels.lastYear") }}
+              </th>
+              <th class="text-left">
+                {{ $t("shared.labels.percent") }}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -89,7 +96,7 @@
               </td>
             </tr>
             <tr class="green-gradient text-white text-weight-600">
-              <td>درآمد خالص</td>
+              <td>{{ $t("shared.labels.netIncome") }}</td>
               <td>
                 {{
                   helper.formatNumber(

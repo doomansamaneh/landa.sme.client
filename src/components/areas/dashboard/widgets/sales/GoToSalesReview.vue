@@ -8,6 +8,7 @@
     <span class="q-focus-helper" />
     <q-card-section class="q-pa-lg">
       <q-btn
+        no-caps
         size="12px"
         unelevated
         round
@@ -17,14 +18,18 @@
         to="/sls/report/salesReview"
         @click.stop
       >
-        <q-tooltip class="custom-tooltip">مشاهده گزارش</q-tooltip>
+        <q-tooltip class="custom-tooltip">
+          {{ t("shared.labels.viewReport") }}
+        </q-tooltip>
       </q-btn>
       <div class="row justify-center q-pt-lg">
         <div class="col-12 text-center q-mb-md">
           <div
             class="text-weight-bold animated fadeIn faster text-h3"
           >
-            <span class="primary-text">گزارش مرور فروش</span>
+            <span class="primary-text">
+              {{ t("shared.labels.salesReviewReport") }}
+            </span>
             <q-icon
               name="o_analytics"
               size="3rem"
@@ -36,7 +41,7 @@
           <div
             class="caption-on-dark q-mt-sm animated fadeIn text-h6"
           >
-            بررسی و تحلیل جامع اطلاعات فروش
+            {{ t("shared.labels.salesReviewDescription") }}
           </div>
         </div>
       </div>
@@ -46,7 +51,9 @@
 
 <script setup>
   import { useRouter } from "vue-router";
+  import { useI18n } from "vue-i18n";
 
+  const { t } = useI18n();
   const router = useRouter();
 
   const goToSalesReview = () => {

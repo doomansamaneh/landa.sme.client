@@ -11,6 +11,7 @@
           {{ title }}
         </span>
         <q-btn
+          no-caps
           v-if="tableStore?.pagination.value.totalItems > 0"
           rounded
           unelevated
@@ -25,6 +26,8 @@
       <q-space />
 
       <q-btn
+        v-if="!noItems"
+        no-caps
         dense
         round
         class="text-caption q-mr-sm"
@@ -49,6 +52,7 @@
   const props = defineProps({
     title: String,
     menuItems: Array,
+    noItems: Boolean,
   });
 
   const bottomSheet = ref(null);

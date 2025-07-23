@@ -17,6 +17,7 @@
         <toolbar class="q-pa-md" :table-store="tableStore">
           <template #print-button>
             <q-btn
+              no-caps
               size="11px"
               round
               unelevated
@@ -78,6 +79,7 @@
 
       <template #cell-isActive="{ item }">
         <q-btn
+          no-caps
           v-if="item.isActive"
           round
           dense
@@ -88,6 +90,7 @@
           class="green-gradient green-shadow no-pointer-events"
         />
         <q-btn
+          no-caps
           v-else
           round
           dense

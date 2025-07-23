@@ -26,6 +26,7 @@
 
         <div class="row items-center q-gutter-md">
           <q-btn
+            no-caps
             padding="10px 24px"
             rounded
             unelevated
@@ -34,6 +35,7 @@
             label="آپلود تصویر نمایه"
           />
           <q-btn
+            no-caps
             dense
             color="negative"
             outline

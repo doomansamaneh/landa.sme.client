@@ -21,6 +21,7 @@
         :key="index"
       >
         <q-btn
+          no-caps
           v-if="
             (item.value.id === paymentMethod.checkSpent.id &&
               paymentReceiptType === paymentOrReceipt.payment) ||
@@ -63,28 +64,48 @@
 <script setup>
   import { helper } from "src/helpers";
   import { paymentMethod, paymentOrReceipt } from "src/constants";
-  import { useQuasar } from "quasar";
-  import { useI18n } from "vue-i18n";
+  import { useDialog } from "src/composables/useDialog";
 
   import PaymentItem from "./PaymentItem.vue";
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
-  const $q = useQuasar();
-  const { t } = useI18n();
+  import PaymentItemDialog from "./PaymentItemDialog.vue";
+
+  const dialogStore = useDialog();
+
   const props = defineProps({
     formStore: Object,
     paymentReceiptType: paymentOrReceipt,
   });
 
-  const handleAddItem = async (item) => {
-    try {
-      await props.formStore.addRow(item);
-    } catch (error) {
-      $q.notify({
-        type: "negative",
-        message: t("payment.errors.addItemFailed"),
-        position: "top",
-      });
+  const getPaymentMethodName = (paymentTypeId) => {
+    for (const [key, value] of Object.entries(paymentMethod)) {
+      if (value.id === paymentTypeId) {
+        return key;
+      }
     }
+    return "cash"; // fallback
+  };
+
+  const handleAddItem = async (item) => {
+    const paymentItem = {
+      typeId: item.value.id,
+      amount: props.formStore.remainedAmount?.value,
+      fee: 0,
+    };
+    dialogStore.openDialog({
+      title: `shared.paymentMethod.${getPaymentMethodName(
+        item.value.id
+      )}`,
+      component: PaymentItemDialog,
+      actionBar: true,
+      props: {
+        item: paymentItem,
+      },
+      width: "800px",
+      okCallback: async (item) => {
+        props.formStore.addRow(item);
+      },
+    });
   };
 </script>

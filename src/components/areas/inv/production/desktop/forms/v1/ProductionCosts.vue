@@ -12,6 +12,7 @@
           <div class="row q-gutter-sm text-body1 text-weight-700">
             <div>
               <q-btn
+                no-caps
                 round
                 unelevated
                 dense
@@ -19,14 +20,14 @@
                 class="red-gradient"
               />
             </div>
-            <div>سربار و هزینه تولید</div>
+            <div>{{ $t("shared.labels.productionCosts") }}</div>
           </div>
         </th>
       </tr>
       <tr>
         <th style="width: 1px">#</th>
-        <th style="width: 65%">سرفصل هزینه</th>
-        <th style="width: 25%">مبلغ</th>
+        <th style="width: 65%">{{ $t("shared.columns.slTitle") }}</th>
+        <th style="width: 25%">{{ $t("shared.columns.amount") }}</th>
         <th style="width: 10%"></th>
       </tr>
     </thead>
@@ -42,19 +43,20 @@
             v-model:selectedId="row.slId"
             v-model:selectedText="row.slTitle"
             :filterExpression="slFilter"
-            placeholder="سرفصل هزینه"
+            :placeholder="$t('shared.columns.slTitle')"
             required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.amount"
-            placeholder="مبلغ"
+            :placeholder="$t('shared.columns.amount')"
             required
           />
         </td>
         <td class="text-center">
           <q-btn
+            no-caps
             unelevated
             round
             dense
@@ -71,6 +73,7 @@
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
+            no-caps
             class="q-my-xl primary-shadow"
             rounded
             unelevated
@@ -78,7 +81,7 @@
             @click="formStore.pushNewCost()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
+            {{ $t("shared.labels.addRow") }}
           </q-btn>
         </td>
       </tr>
@@ -86,6 +89,7 @@
   </q-markup-table>
 
   <q-btn
+    no-caps
     v-if="model?.costs?.length > 0"
     padding="4px 12px"
     unelevated
@@ -95,16 +99,19 @@
     @click="formStore.addNewCost(index)"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="">افزودن ردیف</div>
+    <div class="">{{ $t("shared.labels.addRow") }}</div>
   </q-btn>
 </template>
 
 <script setup>
   import { computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { sqlOperator, closeAccounts } from "src/constants";
 
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

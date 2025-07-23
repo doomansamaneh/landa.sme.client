@@ -71,7 +71,7 @@
         :self="$q.screen.lt.sm ? 'top middle' : ''"
         no-focus
         no-refocus
-        :style="`min-width: ${menuWidth}`"
+        :style="`width: ${menuWidth}`"
       >
         <q-inner-loading
           :showing="tableStore.showLoader.value"
@@ -184,6 +184,7 @@
           >
             <template #reload>
               <q-btn
+                no-caps
                 class="q-mr-md"
                 size="sm"
                 round
@@ -214,6 +215,7 @@
           </div>
           <div class="flex flex-center">
             <q-btn
+              no-caps
               round
               unelevated
               text-color="white"
@@ -288,7 +290,7 @@
             </slot>
 
             <!-- <slot name="create">
-              <q-btn
+              <q-btn no-caps
                 dense
                 unelevated
                 color="primary"
@@ -374,6 +376,7 @@
         >
           <template #reload>
             <q-btn
+              no-caps
               class="q-mr-md"
               size="sm"
               round
@@ -621,19 +624,7 @@
   function onBeforeShow() {
     if ($q.screen.gt.xs) {
       const inputWidth = search.value?.$el?.offsetWidth;
-
-      // Use nextTick to ensure menu is rendered
-      nextTick(() => {
-        const menu = document.querySelector(".q-menu");
-        if (menu) {
-          const contentWidth = menu.scrollWidth;
-          // Set width based on content vs input width
-          const finalWidth = Math.max(contentWidth, inputWidth);
-          menuWidth.value = `${finalWidth}px`;
-          menu.style.width = `${finalWidth}px`;
-        }
-      });
-
+      menuWidth.value = inputWidth ? `${inputWidth}px` : "200px";
       popup.value?.updatePosition();
     }
   }
@@ -643,6 +634,10 @@
     if ($q.screen.gt.xs) {
       search.value?.focus();
     }
+  }
+
+  function focus() {
+    search.value?.focus();
   }
 
   function hidePopup() {
@@ -682,6 +677,7 @@
   defineExpose({
     setIdText,
     setCustomText,
+    focus,
     selectedId,
     selectedText,
     tableStore,

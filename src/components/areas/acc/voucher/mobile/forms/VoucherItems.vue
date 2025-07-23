@@ -68,6 +68,7 @@
 
     <q-card-actions class="q-pa-md" align="between">
       <q-btn
+        no-caps
         label="ویرایش"
         class="text-body2"
         flat
@@ -75,6 +76,7 @@
         @click="editItem(index, row)"
       />
       <q-btn
+        no-caps
         size="12px"
         color="red"
         unelevated
@@ -87,6 +89,7 @@
   </q-card>
 
   <q-btn
+    no-caps
     padding="4px 12px"
     unelevated
     rounded
@@ -115,6 +118,7 @@
           <span class="text-bold text-body1">{{ dialogTitle }}</span>
           <q-space />
           <q-btn
+            no-caps
             round
             unelevated
             text-color="white"
@@ -191,11 +195,11 @@
 
       <q-card-actions class="absolute-bottom q-pa-md dark-1">
         <q-btn
+          no-caps
           type="submit"
           @click="saveItem"
           color="primary"
           unelevated
-          no-caps
           padding="8px 16px"
           rounded
           class="text-body2 primary-shadow"
@@ -205,9 +209,9 @@
           {{ $t("shared.labels.save") }}
         </q-btn>
         <q-btn
+          no-caps
           flat
           @click="cancelEdit"
-          no-caps
           padding="8px 16px"
           v-close-popup
           rounded

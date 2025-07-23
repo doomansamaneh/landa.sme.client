@@ -78,13 +78,13 @@
     >
       <div class="row q-gutter-md items-center">
         <q-btn
+          no-caps
           type="submit"
           @click="submitForm"
           unelevated
           class="green-shadow green-gradient"
           rounded
           text-color="white"
-          no-caps
           padding="8px 16px"
         >
           <q-icon

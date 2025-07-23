@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     v-if="false"
     :size="$q.screen.xs ? '10px' : ''"
     round
@@ -20,6 +21,7 @@
     />
 
     <q-btn
+      no-caps
       v-if="notifDrawerStore.hasUnreadNotifications.value"
       color="red"
       round

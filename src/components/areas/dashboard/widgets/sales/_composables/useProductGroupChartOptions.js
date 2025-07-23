@@ -1,9 +1,11 @@
 import { computed } from "vue";
 import { helper } from "src/helpers";
+import { useI18n } from "vue-i18n";
 
 export function useProductGroupChartOptions(reportStore, $q) {
+  const { t } = useI18n();
   const chartOptions = computed(() => {
-    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir;" : "Roboto, vazir;";
     const total = reportStore.total.value;
 
     return {
@@ -40,7 +42,7 @@ export function useProductGroupChartOptions(reportStore, $q) {
               total: {
                 show: false,
                 showAlways: false,
-                label: "Total",
+                label: t("shared.labels.total"),
                 fontSize: "22px",
                 fontFamily,
                 fontWeight: 600,

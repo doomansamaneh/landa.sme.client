@@ -6,6 +6,7 @@
   >
     <template v-if="isShakingComputed">
       <q-btn
+        no-caps
         class="off-btn bordered absolute-top-right q-ma-sm z-1"
         round
         dense
@@ -23,7 +24,7 @@
     >
       <q-card-section class="q-pb-none">
         <widget-title
-          label="فروش بر اساس گروه محصولات"
+          :label="$t('shared.labels.salesByProductGroup')"
           icon="category"
         />
       </q-card-section>

@@ -9,7 +9,9 @@
             </div>
           </div>
 
-          <div class="text-body2 text-weight-700">سند حسابداری</div>
+          <div class="text-body2 text-weight-700">
+            {{ $t("shared.labels.accountingDocument") }}
+          </div>
 
           <span>
             <div class="flex items-center q-gutter-sm">
@@ -25,7 +27,7 @@
                   dense
                   padding="4px 8px"
                   icon="o_add"
-                  title="ایجاد سند"
+                  :title="$t('shared.labels.createDocument')"
                   class="primary-gradient primary-shadow text-white text-body3"
                   @click="createVoucher"
                 />
@@ -36,7 +38,7 @@
                   unelevated
                   padding="4px 8px"
                   icon="o_delete"
-                  title="حذف سند"
+                  :title="$t('shared.labels.deleteDocument')"
                   class="text-body3"
                   :class="
                     $q.dark.isActive ? 'text-red-6' : 'text-negative'
@@ -48,7 +50,9 @@
           </span>
 
           <div v-if="model?.customerId">
-            <div class="text-body2 text-bold">مشتری</div>
+            <div class="text-body2 text-bold">
+              {{ $t("shared.labels.customer") }}
+            </div>
             <div class="q-mt-sm">
               <custom-link
                 class="text-body2"
@@ -59,7 +63,9 @@
           </div>
 
           <div v-if="model?.value?.invoiceId">
-            <div class="text-body2 text-weight-700">فاکتور</div>
+            <div class="text-body2 text-weight-700">
+              {{ $t("shared.labels.invoice") }}
+            </div>
             <div class="q-mt-sm text-body2">
               <custom-link
                 :to="`/sls/invoice/preview/${model.invoiceId}`"
@@ -69,21 +75,27 @@
           </div>
 
           <div v-if="model.marketerName">
-            <div class="text-body2 text-weight-700">بازاریاب</div>
+            <div class="text-body2 text-weight-700">
+              {{ $t("shared.labels.marketer") }}
+            </div>
             <div class="q-mt-sm text-body2">
               {{ model.marketerName }}
             </div>
           </div>
 
           <div v-if="model.contractTitle">
-            <div class="text-body2 text-weight-700">قرارداد</div>
+            <div class="text-body2 text-weight-700">
+              {{ $t("shared.labels.contract") }}
+            </div>
             <div class="q-mt-sm text-body2">
               {{ model.contractTitle }}
             </div>
           </div>
 
           <div v-if="model.inventoryTitle">
-            <div class="text-body2 text-weight-700">انبار</div>
+            <div class="text-body2 text-weight-700">
+              {{ $t("shared.labels.inventoryTitle") }}
+            </div>
             <div class="q-mt-sm text-body2">
               {{ model.inventoryTitle }}
             </div>
@@ -110,7 +122,7 @@
               <div class="row items-center no-wrap q-gutter-xs">
                 <q-icon size="20px" name="o_arrow_downward" />
                 <div class="text-body2 text-weight-700">
-                  دریافت و پرداخت
+                  {{ $t("shared.labels.receiptAndPayment") }}
                 </div>
               </div>
             </template>
@@ -119,7 +131,9 @@
             <template #default>
               <div class="row items-center no-wrap q-gutter-xs">
                 <q-icon size="20px" name="o_paid" />
-                <div class="text-body2 text-weight-700">مالیات</div>
+                <div class="text-body2 text-weight-700">
+                  {{ $t("shared.labels.taxAmount") }}
+                </div>
               </div>
             </template>
           </q-tab>
@@ -127,7 +141,9 @@
             <template #default>
               <div class="row items-center no-wrap q-gutter-xs">
                 <q-icon size="20px" name="o_history" />
-                <div class="text-body2 text-weight-700">تاریخچه</div>
+                <div class="text-body2 text-weight-700">
+                  {{ $t("shared.labels.history") }}
+                </div>
               </div>
             </template>
           </q-tab>

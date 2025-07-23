@@ -3,7 +3,7 @@
     :class="$q.screen.gt.sm ? 'flex items-center justify-center' : ''"
   >
     <div class="theme-settings-container">
-      <form-toolbar title="مالیات" />
+      <form-toolbar :title="$t('shared.labels.tax')" />
       <index-view />
     </div>
   </div>

@@ -5,7 +5,7 @@
         <product-group-lookup
           v-model:selectedId="model.productGroupId"
           v-model:selectedText="model.productGroupTitle"
-          label="گروه کالا"
+          :label="$t('shared.columns.productGroupTitle')"
           required
           @rowSelected="pgChanged"
         />
@@ -17,19 +17,33 @@
       :class="$q.screen.gt.xs ? 'q-mb-xl' : 'q-mb-md'"
     >
       <div class="col-md-2 col-sm col-xs-12">
-        <custom-input v-model="model.code" label="کد" required />
+        <custom-input
+          v-model="model.code"
+          :label="$t('shared.columns.code')"
+          required
+        />
       </div>
       <div class="col-md-2 col-sm col-xs-12">
-        <custom-input v-model="model.barcode" label="بارکد" />
+        <custom-input
+          v-model="model.barcode"
+          :label="$t('shared.labels.barcode')"
+        />
       </div>
       <div class="col-md-2 col-sm col-xs-12">
-        <custom-input v-model="model.taxCode" label="شناسه مالیاتی" />
+        <custom-input
+          v-model="model.taxCode"
+          :label="$t('shared.labels.taxCode')"
+        />
       </div>
     </div>
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <custom-input v-model="model.title" label="عنوان" required />
+        <custom-input
+          v-model="model.title"
+          :label="$t('shared.columns.title')"
+          required
+        />
       </div>
     </div>
 
@@ -41,7 +55,7 @@
         <custom-select
           v-model="model.typeId"
           :options="helper.getEnumOptions(productType, 'productType')"
-          label="نوع"
+          :label="$t('shared.columns.typeId')"
           required
         />
       </div>
@@ -50,7 +64,7 @@
         <product-unit-lookup
           v-model:selectedId="model.productUnitId"
           v-model:selectedText="model.productUnitTitle"
-          label="واحد سنجش"
+          :label="$t('shared.columns.productUnitTitle')"
           required
         />
       </div>
@@ -60,7 +74,7 @@
       <div class="col-md-3 col-sm col-xs-12">
         <custom-input-number
           v-model="model.purchasePrice"
-          label="قیمت خرید"
+          :label="$t('shared.labels.purchasePrice')"
           required
         />
         <q-checkbox
@@ -68,13 +82,13 @@
           dense
           size="48px"
           v-model="model.isForPurchase"
-          label="برای خرید"
+          :label="$t('shared.labels.forPurchase')"
         />
       </div>
       <div class="col-md-3 col-sm col-xs-12">
         <custom-input-number
           v-model="model.price"
-          label="قیمت فروش"
+          :label="$t('shared.labels.price')"
           required
         />
         <q-checkbox
@@ -82,7 +96,7 @@
           dense
           size="48px"
           v-model="model.isForSale"
-          label="برای فروش"
+          :label="$t('shared.labels.forSale')"
         />
       </div>
     </div>
@@ -92,7 +106,7 @@
         <custom-input
           v-model="model.comment"
           type="textarea"
-          label="شرح"
+          :label="$t('shared.columns.comment')"
         />
       </div>
     </div>
@@ -102,7 +116,7 @@
         dense
         size="48px"
         v-model="model.isActive"
-        label="فعال"
+        :label="$t('shared.labels.isActive')"
       />
     </div>
   </q-form>
@@ -110,6 +124,7 @@
 
 <script setup>
   import { ref, onMounted } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { productType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
@@ -123,6 +138,8 @@
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

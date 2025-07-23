@@ -44,6 +44,7 @@
 
 <script setup>
   import { useBalanceSheet } from "../../_composables/useBalanceSheet";
+  import { useI18n } from "vue-i18n";
 
   import Asset from "./BalanceSheet/AssetSheet.vue";
   import Liability from "./BalanceSheet/LiabilitySheet.vue";
@@ -57,9 +58,9 @@
 
   const dataStore = useBalanceSheet();
 
+  const { t: $t } = useI18n();
   const tip = {
-    title: "دارایی = بدهی + سرمایه",
-    message:
-      "وضعیت مالی هر کسب و کار، کوچک یا بزرگ، بر اساس دو جزء اصلی  ترازنامه ارزیابی می شود: دارایی ها و بدهی ها. حقوق صاحبان  سهام، بخش سوم ترازنامه است. معادله حسابداری نمایانگر نحوه  ارتباط این سه جزء مهم با یکدیگر است. معادله حسابداری معادله اساسی حسابداری یا معادله ترازنامه نیز نامیده می شود.",
+    title: $t("balanceSheet.tipTitle"),
+    message: $t("balanceSheet.tipMessage"),
   };
 </script>

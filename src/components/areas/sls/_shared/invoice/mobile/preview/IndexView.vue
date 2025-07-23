@@ -69,7 +69,7 @@
       </q-scroll-area>
     </q-card-section>
 
-    <q-card-section class="q-gutter-md">
+    <q-card-section>
       <template
         v-for="(item, index) in model.invoiceItems"
         :key="item.id"
@@ -87,9 +87,13 @@
               </q-badge>
               {{ item.productCode }} - {{ item.productTitle }} /
               {{ helper.formatNumber(item.price) }}
+              <span v-if="item.comment">
+                /
+                {{ item.comment }}
+              </span>
             </span>
 
-            <div class="text-right text-weight-500">
+            <div class="text-right text-weight-500 q-mt-md">
               {{ helper.formatNumber(item.quantity * item.price) }}
               <span class="text-weight-300 text-body3">ریال</span>
             </div>
@@ -98,8 +102,13 @@
       </template>
     </q-card-section>
 
+    <q-separator />
+
     <q-card-section>
-      <q-separator class="q-mb-lg" />
+      <div v-if="model.summary" class="q-mb-md">
+        {{ model.summary }}
+      </div>
+
       <div class="q-gutter-y-sm border-radius text-on-dark">
         <div class="row items-center justify-between">
           <div clenuass="text-body3">

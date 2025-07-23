@@ -43,34 +43,116 @@
           :thumb-style="{ opacity: 0 }"
           style="height: 21px"
         >
-          <div class="row q-gutter-x-xs no-wrap">
-            <contract-badge :title="model?.contractTitle" />
+          <div class="row no-wrap q-pr-xs items-center q-gutter-xs">
+            <status-badge
+              class="text-weight-500 text-caption"
+              padding="0 8px"
+              :title="model?.statusTitle"
+            />
+
+            <type-badge
+              class="text-weight-500 text-caption"
+              padding="0 8px"
+              :title="model?.typeTitle"
+            />
+
+            <contract-badge
+              class="text-weight-500 text-caption"
+              padding="0 8px"
+              :title="model?.contractTitle"
+            />
           </div>
         </q-scroll-area>
       </div>
     </q-card-section>
 
-    <q-card-section class="q-gutter-md">
+    <q-card-section>
       <template
-        v-for="(item, index) in model?.voucherItems"
+        v-for="(item, index) in model?.paymentItems"
         :key="item.id"
       >
-        <div class="row items-start q-gutter-sm text-body_">
-          <div
-            class="col-1 text-white text-center rounded-borders bg-secondary"
-          >
-            <div>
-              {{ index + 1 }}
+        <div class="row items-start q-gutter-sm">
+          <span class="text-bold caption-on-dark text-body3">
+            #{{ index + 1 }}
+          </span>
+
+          <div class="col">
+            <div class="flex items-center">
+              <div v-if="item?.bankAccountDisplay">
+                {{ item.bankAccountDisplay }}
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <div class="">
+                {{
+                  $t(
+                    `shared.paymentMethod.${getItemType(item.typeId)}`
+                  )
+                }}
+                <span v-if="item.bankBranchDisplay">
+                  | شعبه بانک:
+                  {{ item.bankBranchDisplay }}
+                </span>
+
+                <span v-if="item.sayad">
+                  | ش صیاد:
+                  {{ item.sayad }}
+                </span>
+
+                <span v-if="item.comment">
+                  |
+                  {{ item.comment }}
+                </span>
+              </div>
+
+              <div
+                v-if="
+                  item.bankBranchDisplay &&
+                  item.bankBranchDisplay !== ' / '
+                "
+              >
+                شعبه:
+                <span>
+                  {{ item.bankBranchDisplay }}
+                </span>
+              </div>
+
+              <div
+                v-if="
+                  item.checkSpentDisplay &&
+                  item.checkSpentDisplay !== ' / '
+                "
+              >
+                چک:
+                <span>
+                  {{ item.checkSpentDisplay }}
+                </span>
+              </div>
+
+              <div v-if="item.fee > 0">
+                کارمزد: {{ helper.formatNumber(item.fee) }}
+                <span class="text-body3">ریال</span>
+              </div>
+            </div>
+
+            <div class="text-right text-weight-500 q-mt-md">
+              {{ helper.formatNumber(item.amount) }}
+              <span class="text-weight-300 text-body3">ریال</span>
             </div>
           </div>
-          <div class="col">
-            <span>
-              {{ item.comment }}
-            </span>
-          </div>
         </div>
+
+        <q-separator
+          v-if="index < model?.paymentItems?.length - 1"
+          class="q-my-sm"
+        />
       </template>
-      <q-separator />
+    </q-card-section>
+
+    <q-separator />
+
+    <q-card-section>
       <div class="text-right">
         <span class="text-weight-600">
           {{ helper.formatNumber(model?.amount) }}
@@ -93,12 +175,12 @@
 
 <script setup>
   import { helper } from "src/helpers";
-  import { subSystem, voucherType } from "src/constants";
+  import { documentType, paymentMethod } from "src/constants";
 
   import DetailSection from "../../shared/preview/_DetailSection.vue";
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
+  import StatusBadge from "src/components/areas/_shared/badges/StatusBadge.vue";
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
-  import SystemBadge from "src/components/areas/_shared/badges/SystemBadge.vue";
   import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
 
   const props = defineProps({
@@ -109,4 +191,13 @@
     showReceipt: Boolean,
     taxApi: Boolean,
   });
+
+  const getItemType = (typeId) => {
+    for (const key in paymentMethod) {
+      if (paymentMethod[key].id === typeId) {
+        return key;
+      }
+    }
+    return paymentMethod[0];
+  };
 </script>

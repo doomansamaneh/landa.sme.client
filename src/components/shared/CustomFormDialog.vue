@@ -13,7 +13,7 @@
       flat
     >
       <q-card-section
-        class="row items-center q-pb-none q-pr-md"
+        class="row items-center q-pr-md"
         :class="$q.screen.gt.xs ? 'q-pl-lg' : 'q-pl-md'"
       >
         <slot name="title">
@@ -22,6 +22,7 @@
 
         <q-space />
         <q-btn
+          no-caps
           icon="close"
           class="icon-hover dark-3"
           flat
@@ -31,9 +32,20 @@
         />
       </q-card-section>
 
+      <q-separator />
+
+
       <q-card-section
-        :style="$q.screen.gt.xs ? 'max-height: 70vh;' : ''"
-        class="q-pa-lg scroll"
+        :style="
+          $q.screen.gt.xs
+            ? 'max-height: 70vh;'
+            : 'max-height: calc(100vh - 20%)'
+        "
+        :class="
+          $q.screen.gt.xs
+            ? 'q-pa-lg scroll'
+            : 'q-pa-lg scroll hide-scrollbar'
+        "
       >
         <slot name="body">
           <component
@@ -44,6 +56,7 @@
           />
         </slot>
       </q-card-section>
+
 
       <slot name="action-bar">
         <action-buttons v-if="actionBar" @ok-clicked="submitForm" />

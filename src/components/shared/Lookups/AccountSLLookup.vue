@@ -15,14 +15,14 @@
       <div style="width: 16%">
         <header-column
           fieldName="code"
-          title="کد"
+          :title="$t('shared.columns.code')"
           :table-store="tableStore"
         />
       </div>
       <div class="col">
         <header-column
           fieldName="title"
-          title="عنوان"
+          :title="$t('shared.columns.title')"
           :table-store="tableStore"
         />
       </div>
@@ -46,9 +46,12 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
 
   import LookupView from "src/components/shared/dataTables/LookupView.vue";
   import HeaderColumn from "src/components/shared/lookups/_HeaderColumn.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     filterExpression: Array,

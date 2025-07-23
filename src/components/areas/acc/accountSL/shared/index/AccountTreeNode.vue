@@ -1,6 +1,7 @@
 <template>
   <div class="row items-center q-gutter-md q-pa-sm">
     <q-btn
+      no-caps
       v-if="node.isActive"
       size="8px"
       round
@@ -11,6 +12,7 @@
       <q-icon color="white" name="o_check" size="16px" />
     </q-btn>
     <q-btn
+      no-caps
       v-else
       size="8px"
       round

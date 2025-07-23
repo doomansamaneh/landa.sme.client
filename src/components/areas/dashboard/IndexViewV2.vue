@@ -18,24 +18,28 @@
         align="left"
         v-model="state.tab.value"
       >
-        <q-tab name="general" icon="o_dashboard" label="عمومی" />
+        <q-tab
+          name="general"
+          icon="o_dashboard"
+          :label="$t('dashboard.tabs.general')"
+        />
         <q-tab
           name="sales"
           v-access="`sls.report.salesReview`"
           icon="o_receipt"
-          label="فروش"
+          :label="$t('dashboard.tabs.sales')"
         />
         <q-tab
           name="expense"
           v-access="`acc.report.accountReview`"
           icon="o_attach_money"
-          label="هزینه"
+          :label="$t('dashboard.tabs.expense')"
         />
         <q-tab
           name="cheque-notification"
           v-access="`acc.report.accountReview`"
           icon="campaign"
-          label="اعلان چک"
+          :label="$t('dashboard.tabs.chequeNotification')"
         >
           <q-badge v-if="notificationCount" color="red" floating>
             {{ notificationCount }}

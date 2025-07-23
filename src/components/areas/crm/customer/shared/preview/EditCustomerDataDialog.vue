@@ -9,6 +9,7 @@
     <edit-customer-data :title="title" @submitted="submitted">
       <template #close-icon>
         <q-btn
+          no-caps
           icon="close"
           class="icon-hover dark-3"
           flat
@@ -28,20 +29,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useDialogPluginComponent } from "quasar";
-import EditCustomerData from "./EditCustomerData.vue";
-import EditContactData from "./EditContactData.vue";
-import EditAddressData from "./EditAddressData.vue";
-import EditBankData from "./EditBankData.vue";
-import EditBusinessData from "./EditBusinessData.vue";
+  import { ref } from "vue";
+  import { useDialogPluginComponent } from "quasar";
+  import EditCustomerData from "./EditCustomerData.vue";
+  import EditContactData from "./EditContactData.vue";
+  import EditAddressData from "./EditAddressData.vue";
+  import EditBankData from "./EditBankData.vue";
+  import EditBusinessData from "./EditBusinessData.vue";
 
-const title = "ویرایش اطلاعات تماس مخاطب";
+  const title = "ویرایش اطلاعات تماس مخاطب";
 
-const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
-  useDialogPluginComponent();
+  const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
+    useDialogPluginComponent();
 
-function submitted(response) {
-  onDialogOK();
-}
+  function submitted(response) {
+    onDialogOK();
+  }
 </script>

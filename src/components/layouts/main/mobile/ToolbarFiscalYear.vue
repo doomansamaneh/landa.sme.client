@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     :size="$q.screen.xs ? '10px' : ''"
     class="q-px-md text-on-dark no-wrap bordered desktop-toolbar-gradient"
     rounded
@@ -40,13 +41,21 @@
             </span>
           </div>
 
-          <q-btn unelevated round dense icon="close" v-close-popup />
+          <q-btn
+            no-caps
+            unelevated
+            round
+            dense
+            icon="close"
+            v-close-popup
+          />
         </div>
       </q-card-section>
 
       <q-card-section class="q-px-lg q-pt-none q-pb-lg">
         <div class="years-container">
           <q-btn
+            no-caps
             v-for="year in tableStore.rows.value"
             :key="year.id"
             unelevated
@@ -65,6 +74,7 @@
         </div>
         <div class="q-gutter-sm q-mt-lg">
           <q-btn
+            no-caps
             unelevated
             round
             dense
@@ -80,6 +90,7 @@
 
           <template v-if="tableStore.pagination.value.totalPages > 1">
             <q-btn
+              no-caps
               :disable="tableStore.pagination.value.currentPage <= 1"
               unelevated
               round
@@ -98,6 +109,7 @@
               </q-tooltip>
             </q-btn>
             <q-btn
+              no-caps
               :disable="
                 tableStore.pagination.value.currentPage >=
                 tableStore.pagination.value.totalPages

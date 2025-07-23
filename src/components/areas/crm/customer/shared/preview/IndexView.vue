@@ -33,33 +33,8 @@
       </div>
     </div>
 
-    <div class="col-md-8">
-      <div class="row q-col-gutter-lg">
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <number-widget
-            :value="balanceModel.debit"
-            title="گردش بدهکار"
-          />
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <number-widget
-            :value="balanceModel.credit"
-            title="گردش بستانکار"
-          />
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <number-widget
-            v-if="balanceModel.creditRemained"
-            :value="balanceModel.creditRemained"
-            title="مانده بستانکار"
-          />
-          <number-widget
-            v-else
-            :value="balanceModel.debitRemained"
-            title="مانده بدهکار"
-          />
-        </div>
-      </div>
+    <div class="col-md-8" v-access="`acc.report.accountReview`">
+      <customer-balance v-if="model" :model="model" />
     </div>
   </div>
 
@@ -71,15 +46,13 @@
 <script setup>
   import { ref, computed, watch, onMounted } from "vue";
   import { useRoute } from "vue-router";
-  import { guidEmpty } from "src/constants";
   import { useFormActions } from "src/composables/useFormActions";
-  import { useAccountDL } from "src/components/areas/acc/_composables/useAccountDL";
 
   import ToolbarContainer from "./ToolbarContainer.vue";
   import InvoiceSummary from "./_InvoiceSummary.vue";
-  import NumberWidget from "src/components/areas/dashboard/widgets/NumberWidget.vue";
   import Tabs from "./_PreviewTabs.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
+  import CustomerBalance from "./CustomerBalance.vue";
 
   const props = defineProps({
     item: Object,
@@ -89,17 +62,11 @@
 
   const route = useRoute();
   const model = ref({});
-  const balanceModel = ref({});
   const formStore = useFormActions("crm/customer", model);
-  const accountDLStore = useAccountDL();
-
   const id = computed(() => props.item?.id ?? route.params.id);
 
   const loadData = async () => {
     await formStore.getById(id.value);
-    balanceModel.value = await accountDLStore.getDlBalance(
-      model.value.dlId ?? guidEmpty
-    );
   };
 
   onMounted(() => {

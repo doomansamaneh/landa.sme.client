@@ -10,7 +10,7 @@
       <q-card-section class="row items-center q-pa-md">
         <div class="text-h5 text-weight-700">نتیجه عملیات</div>
         <!-- <q-space />
-        <q-btn
+        <q-btn no-caps
           icon="close"
           class="icon-hover dark-3"
           flat
@@ -75,10 +75,10 @@
 
       <q-card-actions class="q-pa-md dark-1" align="right">
         <q-btn
+          no-caps
           rounded
           :color="okColor ?? 'primary'"
           unelevated
-          no-caps
           padding="8px 16px"
           :label="ok ?? $t('shared.labels.ok')"
           icon="check"

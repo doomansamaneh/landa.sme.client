@@ -11,6 +11,7 @@
         <div class="text-h6">ایجاد ویژگی‌ها</div>
         <q-space />
         <q-btn
+          no-caps
           icon="close"
           class="icon-hover dark-3"
           flat
@@ -42,6 +43,7 @@
       <q-card-actions class="q-pa-md dark-1">
         <div class="row q-gutter-sm">
           <q-btn
+            no-caps
             type="submit"
             @click="okClicked"
             color="primary"
@@ -52,6 +54,7 @@
             {{ $t("shared.labels.save") }}
           </q-btn>
           <q-btn
+            no-caps
             type="submit"
             @click="okClicked"
             color="negative"
@@ -61,7 +64,13 @@
           >
             {{ $t("shared.labels.saveAndNew") }}
           </q-btn>
-          <q-btn unelevated v-close-popup no-caps padding="8px 16px">
+          <q-btn
+            no-caps
+            unelevated
+            v-close-popup
+            no-caps
+            padding="8px 16px"
+          >
             {{ $t("shared.labels.cancel") }}
           </q-btn>
         </div>

@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              سازمان
+              {{ $t("shared.columns.orgTitle") }}
             </q-item-label>
             <org-lookup
               hide-bottom-space
@@ -25,7 +25,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-6 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              کد
+              {{ $t("shared.columns.code") }}
             </q-item-label>
             <custom-input
               hide-bottom-space
@@ -38,7 +38,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              نوع واحد
+              {{ $t("shared.columns.typeId") }}
             </q-item-label>
             <unit-type-lookup
               hide-bottom-space
@@ -54,7 +54,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              عنوان
+              {{ $t("shared.columns.title") }}
             </q-item-label>
             <custom-input
               hide-bottom-space
@@ -67,7 +67,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              محل جغرافیایی
+              {{ $t("shared.columns.locationTitle") }}
             </q-item-label>
             <location-lookup
               hide-bottom-space
@@ -83,7 +83,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              واحد بالادستی
+              {{ $t("shared.columns.parentTitle") }}
             </q-item-label>
             <unit-lookup
               hide-bottom-space
@@ -98,7 +98,7 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.labels.isActive')"
           />
         </div>
       </q-form>
@@ -108,6 +108,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
@@ -116,6 +117,8 @@
   import UnitTypeLookup from "src/components/shared/lookups/UnitTypeLookup.vue";
   import UnitLookup from "src/components/shared/lookups/UnitLookup.vue";
   import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

@@ -11,7 +11,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-select
-              label="نوع"
+              :label="$t('shared.columns.typeId')"
               hide-bottom-space
               v-model="formStore.model.value.typeId"
               :options="
@@ -24,7 +24,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="کد"
+              :label="$t('shared.columns.code')"
               hide-bottom-space
               v-model="formStore.model.value.code"
               required
@@ -35,7 +35,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="عنوان"
+              :label="$t('shared.columns.title')"
               hide-bottom-space
               v-model="formStore.model.value.title"
               required
@@ -46,7 +46,7 @@
         <div class="row q-col-gutter-md q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <location-lookup
-              label="محل بالادستی"
+              :label="$t('shared.columns.parentTitle')"
               hide-bottom-space
               v-model:selectedId="formStore.model.value.parentId"
               v-model:selectedText="formStore.model.value.parentTitle"
@@ -59,7 +59,7 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.labels.isActive')"
           />
         </div>
       </q-form>
@@ -69,6 +69,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { helper } from "src/helpers";
   import { locationType } from "src/constants";
@@ -77,6 +78,8 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import LocationLookup from "src/components/shared/lookups/LocationLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

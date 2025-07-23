@@ -9,7 +9,7 @@
     <q-card class="q-dialog-plugin">
       <q-card-section class="row items-center q-pa-md">
         <div class="text-h5 text-weight-700">
-          نتیجه درون‌ریزی اطلاعات
+          {{ $t("shared.labels.importResultTitle") }}
         </div>
       </q-card-section>
 
@@ -18,28 +18,28 @@
           <q-item-label header>
             <div class="q-gutter-y-md">
               <div>
-                تعداد کل سطرها:
+                {{ $t("shared.labels.totalRowsCount") }}
                 <span class="text-h6 text-weight-700">
                   {{ importResult.count.toLocaleString() }}
                 </span>
               </div>
               <div>
-                تعداد import شده:
+                {{ $t("shared.labels.importedCount") }}
                 <span class="text-h6 text-weight-700">
                   {{ importResult.importedCount.toLocaleString() }}
                 </span>
               </div>
               <div>
-                تعداد خطا:
+                {{ $t("shared.labels.errorCount") }}
                 <span class="text-h6 text-weight-700">
                   {{ importResult.errorList.length.toLocaleString() }}
                 </span>
               </div>
               <div v-if="importResult.errorList?.length">
                 <q-btn
+                  no-caps
                   rounded
                   unelevated
-                  no-caps
                   padding="8px 16px"
                   :label="ok ?? $t('shared.labels.download')"
                   icon="download"
@@ -61,10 +61,10 @@
 
       <q-card-actions class="q-pa-md dark-1" align="right">
         <q-btn
+          no-caps
           rounded
           :color="okColor ?? 'primary'"
           unelevated
-          no-caps
           padding="8px 16px"
           :label="ok ?? $t('shared.labels.ok')"
           icon="check"

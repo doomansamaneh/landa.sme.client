@@ -1,5 +1,12 @@
 <template>
-  <q-btn size="10px" round dense unelevated @click="toggleStatus">
+  <q-btn
+    no-caps
+    size="10px"
+    round
+    dense
+    unelevated
+    @click="toggleStatus"
+  >
     <q-icon name="o_bolt" size="24px" color="orange-7" />
   </q-btn>
 
@@ -26,6 +33,7 @@
           </div>
 
           <q-btn
+            no-caps
             size="8px"
             round
             unelevated

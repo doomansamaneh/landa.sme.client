@@ -10,6 +10,7 @@
     >
       <template #append>
         <q-btn
+          no-caps
           padding="4px 12px"
           rounded
           color="primary"

@@ -32,6 +32,7 @@
           @click="clearSearch"
         />
         <q-btn
+          no-caps
           round
           unelevated
           dense
@@ -164,6 +165,7 @@
     class="row items-center justify-center q-gutter-sm q-my-lg"
   >
     <q-btn
+      no-caps
       :disable="previousDisabled"
       unelevated
       rounded
@@ -179,6 +181,7 @@
       </span>
     </q-btn>
     <q-btn
+      no-caps
       :disable="nextDisabled"
       unelevated
       rounded
@@ -201,6 +204,7 @@
   >
     <slot name="create-label">
       <q-btn
+        no-caps
         text-color="white"
         rounded
         unelevated
@@ -223,6 +227,7 @@
   import { useDataTable } from "src/composables/useDataTable";
   import { dataViewDefaultPageSize } from "src/constants";
   import { helper } from "src/helpers";
+
   import NoDataFound from "src/components/shared/dataTables/NoDataFound.vue";
 
   // Props
@@ -239,6 +244,8 @@
     multiSelect: Boolean,
     previewPage: { type: Boolean, default: true },
     dataTableStore: useDataTable,
+    noActiveRow: Boolean,
+    noSelectRow: Boolean,
   });
 
   // Emits
@@ -294,16 +301,19 @@
   }
 
   function selectRow(row) {
-    tableStore.value.selectRow(row, !row.selected);
-    emitSelectedRows();
+    if (!props.noSelectRow) {
+      tableStore.value.selectRow(row, !row.selected);
+      emitSelectedRows();
+    }
   }
 
   function setActiveRow(row) {
     if (tableStore.value.selectedRows.value.length > 0) {
-      selectRow(row);
     } else {
       const isSame = tableStore.value.activeRow.value === row;
-      tableStore.value.setActiveRow(isSame ? null : row);
+      if (!props.noActiveRow) {
+        tableStore.value.setActiveRow(isSame ? null : row);
+      }
     }
     emit("active-row-changed", row);
   }

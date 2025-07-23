@@ -25,6 +25,7 @@
         <div class="col">
           <div class="row justify-end">
             <q-btn
+              no-caps
               unelevated
               round
               dense

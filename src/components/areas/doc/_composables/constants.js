@@ -13,7 +13,7 @@ export const contractColumns = [
     name: "no",
     field: "no",
     sortable: true,
-    label: "شماره",
+    label: "no",
     style: "",
     showFilter: true,
     class: "text-left",

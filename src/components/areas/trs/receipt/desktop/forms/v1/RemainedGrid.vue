@@ -14,10 +14,10 @@
       <template #title>
         <div class="q-pa-lg">
           <div class="text-body1 text-weight-700">
-            صورتحسابهای دارای مانده
+            {{ $t("shared.labels.hasRemain") }}
           </div>
           <div class="text-body2 q-mt-xs caption-on-dark">
-            برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید
+            {{ $t("shared.labels.selectInvoicesForReceiptPayment") }}
           </div>
         </div>
       </template>
@@ -38,7 +38,7 @@
           >
             {{ item.contractTitle }}
             <q-tooltip class="custom-tooltip text-body1">
-              قرارداد
+              {{ $t("shared.labels.contract") }}
             </q-tooltip>
           </q-badge>
         </div>

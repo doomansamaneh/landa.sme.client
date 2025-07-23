@@ -59,9 +59,9 @@
       </q-carousel-slide>
       <q-carousel-slide :name="5" class="column no-wrap flex-center">
         <q-btn
+          no-caps
           class="green-shadow green-gradient no-pointer-events text-body3"
           rounded
-          no-caps
           text-color="white"
           unelevated
           padding="6px 12px"
@@ -83,6 +83,7 @@
           {{ $t("page.buttons.guide.slide6") }}
         </div>
         <q-btn
+          no-caps
           padding="4px 12px"
           unelevated
           label="دانشنامه"

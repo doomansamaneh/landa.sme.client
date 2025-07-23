@@ -23,6 +23,7 @@
         </div>
         <div class="row items-center">
           <q-btn
+            no-caps
             dense
             unelevated
             round
@@ -32,6 +33,7 @@
             <q-icon name="o_edit" size="20px" />
           </q-btn>
           <q-btn
+            no-caps
             unelevated
             round
             dense

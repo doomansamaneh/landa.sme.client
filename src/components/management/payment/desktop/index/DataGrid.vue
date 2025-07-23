@@ -18,6 +18,7 @@
         <q-card-actions class="no-padding">
           <div class="flex items-center">
             <q-btn
+              no-caps
               round
               unelevated
               class="text-on-dark"
@@ -85,6 +86,7 @@
       </div>
       <div class="more-options col-1 q-pl-md">
         <q-btn
+          no-caps
           class="more-icon text-on-dark"
           unelevated
           falt

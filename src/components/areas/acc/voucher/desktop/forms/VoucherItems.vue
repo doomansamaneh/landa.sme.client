@@ -12,11 +12,19 @@
       <thead>
         <tr>
           <th style="width: 1px">#</th>
-          <th style="width: 25%">حساب معین</th>
-          <th style="width: 23%">تفصیلی</th>
-          <th style="width: 25%">شرح</th>
-          <th style="width: 10%">بدهکار</th>
-          <th style="width: 10%">بستانکار</th>
+          <th style="width: 25%">
+            {{ $t("shared.columns.slTitle") }}
+          </th>
+          <th style="width: 23%">
+            {{ $t("shared.columns.dlTitle") }}
+          </th>
+          <th style="width: 25%">
+            {{ $t("shared.labels.comment") }}
+          </th>
+          <th style="width: 10%">{{ $t("shared.columns.debit") }}</th>
+          <th style="width: 10%">
+            {{ $t("shared.columns.credit") }}
+          </th>
           <th></th>
         </tr>
       </thead>
@@ -32,7 +40,7 @@
               v-model:selectedId="row.slId"
               v-model:selectedText="row.slDisplay"
               :autofocus="index === formStore.newAddedItemIndex.value"
-              placeholder="حساب معین"
+              :placeholder="$t('shared.columns.slTitle')"
               required
               clearable
               @rowSelected="slChanged($event, row, index)"
@@ -43,34 +51,35 @@
               ref="dl"
               v-model:selectedId="row.dlId"
               v-model:selectedText="row.dlDisplay"
-              placeholder="تفصیلی"
+              :placeholder="$t('shared.columns.dlTitle')"
             />
             <!-- :filter-expression="getDlFilters(row)" -->
           </td>
           <td>
-            <custom-input
-              v-model="row.comment"
+            <custom-input v-model="row.comment" autogrow required />
+            <!-- <custom-input
+              v-model:selectedText="row.comment"
               autogrow
-              placeholder="شرح"
               required
-            />
+            /> -->
           </td>
           <td>
             <custom-input-number
               v-model="row.debit"
-              placeholder="بدهکار"
+              :placeholder="$t('shared.columns.debit')"
               required
             />
           </td>
           <td>
             <custom-input-number
               v-model="row.credit"
-              placeholder="بستانکار"
+              :placeholder="$t('shared.columns.credit')"
               required
             />
           </td>
           <td class="text-center q-gutter-x-xs">
             <q-btn
+              no-caps
               color="primary"
               unelevated
               round
@@ -80,6 +89,7 @@
               @click="formStore.addNewRow(index, row)"
             />
             <q-btn
+              no-caps
               color="red"
               unelevated
               round
@@ -89,7 +99,7 @@
               @click="formStore.deleteRow(index)"
             />
 
-            <!-- <q-btn
+            <!-- <q-btn no-caps
               unelevated
               round
               dense
@@ -106,7 +116,7 @@
         <tr>
           <td colspan="100%" class="text-center">
             <no-item-selected />
-            <!-- <q-btn
+            <!-- <q-btn no-caps
               class="q-my-xl primary-shadow"
               rounded
               unelevated
@@ -125,7 +135,7 @@
       >
         <tr class="grid-total">
           <td colspan="4" class="text-right">
-            <strong>سرجمع:</strong>
+            <strong>{{ $t("shared.labels.subTotal") }}:</strong>
           </td>
           <td>
             <b>
@@ -145,6 +155,7 @@
     </q-markup-table>
 
     <q-btn
+      no-caps
       padding="4px 12px"
       unelevated
       rounded
@@ -153,7 +164,7 @@
       @click="formStore.pushNewRow()"
     >
       <q-icon size="20px" name="o_add" class="q-mr-xs" />
-      <div class="">افزودن ردیف</div>
+      <div class="">{{ $t("shared.labels.addRow") }}</div>
     </q-btn>
   </template>
 </template>
@@ -169,6 +180,7 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import MobileVoucherItems from "../../mobile/forms/VoucherItems.vue";
+  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
 
   const props = defineProps({
     formStore: Object,

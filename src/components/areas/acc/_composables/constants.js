@@ -1,4 +1,3 @@
-import { comment } from "postcss";
 import {
   rowNo,
   id,
@@ -28,6 +27,7 @@ import {
   dlTitle,
   voucherDate,
   voucherSubject,
+  contractTitle,
 } from "src/constants/columns";
 
 export const accountGLColumns = [
@@ -36,7 +36,7 @@ export const accountGLColumns = [
     name: "clTitle",
     field: "clTitle",
     sortable: true,
-    label: "گروه حساب",
+    label: "clTitle",
     style: "",
     showFilter: true,
     class: "text-left",
@@ -53,7 +53,7 @@ export const accountSLColumns = [
     name: "clTitle",
     field: "clTitle",
     sortable: true,
-    label: "گروه حساب",
+    label: "clTitle",
     style: "",
     showFilter: true,
     class: "text-left",
@@ -63,7 +63,7 @@ export const accountSLColumns = [
     name: "glTitle",
     field: "glTitle",
     sortable: true,
-    label: "حساب کل",
+    label: "glTitle",
     style: "",
     showFilter: true,
     class: "text-left",
@@ -89,12 +89,13 @@ export const voucherColumns = [
   { ...no },
   { ...date },
   { ...subject },
+  { ...contractTitle, hidden: true },
   { ...type },
   {
     name: "systemId",
     field: "systemId",
     sortable: true,
-    label: "سیستم",
+    label: "subSystem",
     align: "left",
     class: "text-left",
     style: "width:160px;",
@@ -136,6 +137,7 @@ export const creditorColumns = [
 ];
 
 export const accountItemColumns = [
+  { ...rowNo, label: "rowNo", style: "width:70px" },
   { ...voucherNo },
   { ...voucherDate },
   { ...slCode },
@@ -145,13 +147,13 @@ export const accountItemColumns = [
   { ...voucherSubject },
   {
     ...debitRemained,
-    label: "بدهکار",
+    label: "debit",
     showFilter: true,
     sortable: true,
   },
   {
     ...creditRemained,
-    label: "بستانکار",
+    label: "credit",
     showFilter: true,
     sortable: true,
   },
@@ -159,25 +161,29 @@ export const accountItemColumns = [
 ];
 
 export const journalBookTaxColumns = [
-  { ...voucherNo, label: "شماره سند" },
-  { ...clCode, label: "کد حساب کل" },
-  { ...clTitle, label: "عنوان حساب کل" },
-  { ...slCode, label: "کد حساب معین" },
-  { ...slTitle, label: "عنوان حساب معین" },
+  { ...voucherNo, label: "journalVoucherNo" },
+  { ...clCode, label: "journalClCode" },
+  { ...clTitle, label: "journalClTitle" },
+  { ...slCode, label: "journalSlCode" },
+  { ...slTitle, label: "journalSlTitle" },
   //{ ...dlCode, label: "کد حساب تفصیلی" },
   //{ ...dlTitle, label: "عنوان حساب تفصیلی" },
   {
     ...debitRemained,
-    label: "مبلغ بدهکار (ریال)",
+    label: "journalDebit",
     //format: (val) => val / 1_000_000,
   },
   {
     ...creditRemained,
-    label: "مبلغ بستانکار (ریال)",
+    label: "journalCredit",
     //format: (val) => val / 1_000_000,
   },
-  { ...voucherDate, label: "تاریخ سند", showFilter: false },
-  { ...voucherSubject, label: "شرح سند", showFilter: false },
+  { ...voucherDate, label: "journalVoucherDate", showFilter: false },
+  {
+    ...voucherSubject,
+    label: "journalVoucherSubject",
+    showFilter: false,
+  },
 ];
 
 export const accountItemDLColumns = [
@@ -186,8 +192,8 @@ export const accountItemDLColumns = [
   { ...slCode },
   { ...slTitle },
   { ...voucherSubject },
-  { ...debitRemained, label: "بدهکار", showFilter: true },
-  { ...creditRemained, label: "بستانکار", showFilter: true },
+  { ...debitRemained, label: "debit", showFilter: true },
+  { ...creditRemained, label: "credit", showFilter: true },
   { ...inlineDebit },
 ];
 
@@ -197,8 +203,8 @@ export const accountItemSLColumns = [
   { ...dlCode },
   { ...dlTitle },
   { ...voucherSubject },
-  { ...debitRemained, label: "بدهکار" },
-  { ...creditRemained, label: "بستانکار" },
+  { ...debitRemained, label: "debit" },
+  { ...creditRemained, label: "credit" },
 ];
 
 export const reviewCLColumns = [
@@ -217,13 +223,13 @@ export const reviewCL6Columns = [
   { ...creditOpening, showFilter: true, sortable: true },
   {
     ...debit,
-    label: "بدهکار طی دوره",
+    label: "debitDuringPeriod",
     showFilter: true,
     sortable: true,
   },
   {
     ...credit,
-    label: "بستانکار طی دوره",
+    label: "creditDuringPeriod",
     showFilter: true,
     sortable: true,
   },
@@ -253,13 +259,13 @@ export const reviewDL6Columns = [
   { ...creditOpening, showFilter: true, sortable: true },
   {
     ...debit,
-    label: "بدهکار طی دوره",
+    label: "debitDuringPeriod",
     showFilter: true,
     sortable: true,
   },
   {
     ...credit,
-    label: "بستانکار طی دوره",
+    label: "creditDuringPeriod",
     showFilter: true,
     sortable: true,
   },

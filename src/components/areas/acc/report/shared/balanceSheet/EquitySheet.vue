@@ -4,13 +4,13 @@
       <balance-sheet-card-header
         icon="o_attach_money"
         icon-class="green-gradient green-shadow"
-        title="سرمایه"
+        :title="$t('shared.labels.equity')"
       />
     </q-card-section>
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
       <q-list class="statement-bar q-pr-md q-pl-sm">
-        <balance-sheet-item-header title="حقوق صاحبان سرمایه" />
+        <balance-sheet-item-header :title="$t('shared.labels.ownersEquity')" />
 
         <div>
           <balance-sheet-item
@@ -36,7 +36,7 @@
             </div>
           </q-item-section>
 
-          <q-item-section>سود و زیان سال جاری</q-item-section>
+          <q-item-section>{{$t('shared.labels.netIncome')}}</q-item-section>
 
           <q-item-section side>
             <span>
@@ -53,7 +53,7 @@
       <q-item>
         <q-item-section>
           <q-item-label lines="1" class="text-h6 text-weight-600">
-            جمع کل
+            {{$t('shared.labels.total')}}
           </q-item-label>
         </q-item-section>
 
@@ -67,6 +67,7 @@
 
 <script setup>
   import { computed } from "vue";
+  import { useI18n } from 'vue-i18n';
   import { helper } from "src/helpers/helper";
   import { accountCLType } from "src/constants";
 
@@ -97,4 +98,5 @@
       0
     )
   );
+  const { t: $t } = useI18n();
 </script>

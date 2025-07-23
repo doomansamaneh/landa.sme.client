@@ -7,10 +7,9 @@
 
   <q-card class="q-mt-xl tips">
     <q-card-section>
-      <div class="title">نکته</div>
+      <div class="title">{{ $t("shared.labels.note") }}</div>
       <div class="text-body1 q-mt-sm">
-        تاریخ آغاز سال مالی، یک نوروز و تاریخ پایان سال مالی، پایان
-        اسفند است.
+        {{ $t("shared.labels.fiscalYearNote") }}
       </div>
     </q-card-section>
   </q-card>
@@ -21,7 +20,7 @@
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
             <custom-input
-              label="سال مالی"
+              :label="$t('shared.labels.fiscalYear')"
               type="number"
               hide-bottom-space
               v-model="formStore.model.value.year"
@@ -33,7 +32,7 @@
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
             <date-time
-              label="از تاریخ"
+              :label="$t('shared.labels.dateFrom')"
               v-model="formStore.model.value.fromDate"
             />
           </div>
@@ -41,7 +40,7 @@
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
             <date-time
-              label="تا تاریخ"
+              :label="$t('shared.labels.dateTo')"
               v-model="formStore.model.value.toDate"
             />
           </div>
@@ -52,7 +51,7 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.labels.isActive')"
           />
         </div>
       </q-form>
@@ -62,11 +61,14 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
 
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

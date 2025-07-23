@@ -3,20 +3,20 @@
     <div class="row items-center q-py-lg">
       <div class="row items-center q-gutter-sm">
         <q-btn
+          no-caps
           dense
           class="bordered_ text-body2"
           size="14px"
           round
           unelevated
           :class="activeButton"
-          no-caps
           @click="draggable.toggleShake"
         >
           <q-icon size="24px" name="o_tune" />
         </q-btn>
       </div>
       <div class="q-ml-sm text-h6 text-weight-700 text-on-dark">
-        پیشخوان عمومی
+        {{ $t("dashboard.generalTab.title") }}
       </div>
     </div>
 
@@ -24,28 +24,32 @@
 
     <div class="flex q-gutter-sm items-center">
       <q-btn
+        no-caps
         v-if="draggable.state.isTabShaking('general')"
         class="text-body2 primary-gradient text-white primary-shadow"
         rounded
         unelevated
-        no-caps
         @click="draggable.saveLayoutChanges"
       >
         <q-icon class="q-mr-xs" size="20px" name="o_save" />
-        <div class="text-body2">ذخیره</div>
+        <div class="text-body2">
+          {{ $t("dashboard.buttons.save") }}
+        </div>
       </q-btn>
 
       <q-btn
+        no-caps
         v-if="draggable.state.isTabShaking('general')"
         class="bordered text-body2"
         rounded
         unelevated
-        no-caps
         size="14px"
         @click="draggable.resetToDefault"
       >
         <q-icon class="q-mr-xs" size="20px" name="o_refresh" />
-        <div class="text-body2">حالت پیشفرض</div>
+        <div class="text-body2">
+          {{ $t("dashboard.buttons.default") }}
+        </div>
       </q-btn>
     </div>
   </q-toolbar>
@@ -88,7 +92,9 @@
     "
     class="q-mt-xl"
   >
-    <div class="text-h6 text-center q-pb-lg">ابزارک‌های مخفی شده</div>
+    <div class="text-h6 text-center q-pb-lg">
+      {{ $t("dashboard.generalTab.hiddenWidgets") }}
+    </div>
     <div class="row q-col-gutter-md">
       <div
         v-for="widget in draggable.hiddenWidgets.value"

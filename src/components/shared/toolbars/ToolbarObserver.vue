@@ -16,7 +16,8 @@
       expand
       :style="
         inside
-          ? 'background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;'
+          ? 'background: transparent; transform: 0px; z-index: 0; position: relative;' +
+            ($q.lang.rtl ? 'right: 0;' : 'left: 0;')
           : ''
       "
     >

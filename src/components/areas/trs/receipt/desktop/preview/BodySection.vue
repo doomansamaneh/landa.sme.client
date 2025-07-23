@@ -72,6 +72,7 @@
         border-collapse: collapse;
         font-size: 13px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
@@ -175,7 +176,7 @@
               padding: 5px;
             "
           >
-            {{ model?.date?.substring(0, 10) }}
+            {{ item?.itemDate?.substring(0, 10) }}
           </td>
           <td
             style="
@@ -207,8 +208,18 @@
               $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
             }}
 
+            <span v-if="item.bankBranchDisplay">
+              | شعبه بانک:
+              {{ item.bankBranchDisplay }}
+            </span>
+
+            <span v-if="item.sayad">
+              | ش صیاد:
+              {{ item.sayad }}
+            </span>
+
             <span v-if="item.comment">
-              /
+              |
               {{ item.comment }}
             </span>
           </td>

@@ -6,7 +6,7 @@
         <span class="text-weight-700">{{ model.value.no }}</span>
       </div>
       <div v-if="relationModel?.url">
-        <q-btn :to="`/${relationModel.url}`" flat_unelevated>
+        <q-btn no-caps :to="`/${relationModel.url}`" flat_unelevated>
           <span>مشاهده سند اصلی</span>
           <q-icon name="o_arrow_back" size="xs" class="q-ml-xs" />
         </q-btn>

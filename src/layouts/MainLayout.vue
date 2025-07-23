@@ -8,7 +8,6 @@
     <header-desktop v-else />
 
     <bottom-navigation />
-    <ticket-submission />
     <menu-bar />
     <contact-drawer />
     <notif-drawer />
@@ -28,15 +27,14 @@
   import HeaderDesktop from "src/components/layouts/main/desktop/MainHeader.vue";
   import HeaderMobile from "src/components/layouts/main/mobile/MainHeader.vue";
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
-  import TicketSubmission from "src/components/layouts/main/TicketSubmission.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
-  const MenuBarStore = useMenuBar();
+  const menuBarStore = useMenuBar();
 
   if ($q.screen.lt.md) {
-    MenuBarStore.state.visible.value = false;
+    menuBarStore.state.visible.value = false;
   }
 
   onMounted(() => {

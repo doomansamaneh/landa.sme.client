@@ -31,13 +31,13 @@ export const wageColumns = [
   month,
   date,
   summary,
-  { ...amount, class: "text-weight-600" },
+  { ...amount, label: "totalPrice", class: "text-weight-600" },
   taxAmount,
   insurranceAmount,
 ];
 
 export const wageItemColumns = [
-  { ...customerName, label: "پرسنل" },
+  { ...customerName, label: "personnel" },
   { ...day, showFilter: false },
   { ...salary, showFilter: false },
   { ...baseYear, showFilter: false },

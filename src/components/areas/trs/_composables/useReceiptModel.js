@@ -2,13 +2,13 @@ import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useFormActions } from "src/composables/useFormActions";
 import { helper } from "src/helpers";
-import { useReceiptItemModel } from "./useReceiptItemModel";
+//import { useReceiptItemModel } from "./useReceiptItemModel";
 import { useFormItemsModel } from "src/composables/useFormItemsModel";
 import { receiptModel } from "src/models/areas/trs/receiptModel";
 
 export function useReceiptModel({ baseRoute, preview }) {
   const router = useRouter();
-  const itemStore = useReceiptItemModel();
+  //const itemStore = useReceiptItemModel();
 
   const model = ref(receiptModel);
   const isAddingItem = ref(false);
@@ -46,54 +46,61 @@ export function useReceiptModel({ baseRoute, preview }) {
     }
   }
 
-  const addRow = async (paymentMehod) => {
-    try {
-      isAddingItem.value = true;
-      const amount = model.value.remainedAmount - totalAmount.value;
-      const item = {
-        ...itemStore.model.value,
-        amount: Math.max(amount, 0),
-        typeId: paymentMehod.value.id,
-      };
+  // const addRow = async (paymentMehod) => {
+  //   try {
+  //     isAddingItem.value = true;
+  //     const item = {
+  //       ...itemStore.model.value,
+  //       amount: Math.max(remainedAmount.value, 0),
+  //       typeId: paymentMehod.value.id,
+  //     };
 
-      // Only validate typeId when adding a new item
-      const errors = validateNewItem(item);
-      if (Object.keys(errors).length > 0) {
-        validationErrors.value = errors;
-        console.error("Validation errors:", errors);
-        return;
-      }
+  //     // Only validate typeId when adding a new item
+  //     const errors = validateNewItem(item);
+  //     if (Object.keys(errors).length > 0) {
+  //       validationErrors.value = errors;
+  //       console.error("Validation errors:", errors);
+  //       return;
+  //     }
 
-      formItemStore.pushNewItem(model.value.paymentItems, item);
-      validationErrors.value = {};
-    } catch (error) {
-      console.error("Error adding row:", error);
-      validationErrors.value = {
-        general: "Failed to add item. Please try again.",
-      };
-    } finally {
-      isAddingItem.value = false;
-    }
+  //     formItemStore.pushNewItem(model.value.paymentItems, item);
+  //     validationErrors.value = {};
+  //   } catch (error) {
+  //     console.error("Error adding row:", error);
+  //     validationErrors.value = {
+  //       general: "Failed to add item. Please try again.",
+  //     };
+  //   } finally {
+  //     isAddingItem.value = false;
+  //   }
+  // };
+
+  const addRow = async (item) => {
+    formItemStore.pushNewItem(model.value.paymentItems, item);
   };
 
-  const validateNewItem = (item) => {
-    const errors = {};
-    if (!item.typeId) {
-      errors.typeId = "Payment type is required";
-    }
-    return errors;
-  };
+  const remainedAmount = computed(() => {
+    return model.value.remainedAmount - totalAmount.value;
+  });
 
-  const validateItem = (item) => {
-    const errors = {};
-    if (!item.amount || item.amount <= 0) {
-      errors.amount = "Amount must be greater than 0";
-    }
-    if (!item.typeId) {
-      errors.typeId = "Payment type is required";
-    }
-    return errors;
-  };
+  // const validateNewItem = (item) => {
+  //   const errors = {};
+  //   if (!item.typeId) {
+  //     errors.typeId = "Payment type is required";
+  //   }
+  //   return errors;
+  // };
+
+  // const validateItem = (item) => {
+  //   const errors = {};
+  //   if (!item.amount || item.amount <= 0) {
+  //     errors.amount = "Amount must be greater than 0";
+  //   }
+  //   if (!item.typeId) {
+  //     errors.typeId = "Payment type is required";
+  //   }
+  //   return errors;
+  // };
 
   const deleteRow = async (index) => {
     try {
@@ -115,7 +122,7 @@ export function useReceiptModel({ baseRoute, preview }) {
   async function submitForm(form, action) {
     await crudStore.submitForm(form, action, saveCallBack);
     function saveCallBack(responseData) {
-      stateStore.state.firstLoad.value = false;
+      //stateStore.state.firstLoad.value = false;
       router.back();
     }
   }
@@ -136,6 +143,7 @@ export function useReceiptModel({ baseRoute, preview }) {
     newAddedItemIndex: formItemStore.newAddedItemIndex,
     isAddingItem,
     validationErrors,
+    remainedAmount,
 
     getById,
     addRow,

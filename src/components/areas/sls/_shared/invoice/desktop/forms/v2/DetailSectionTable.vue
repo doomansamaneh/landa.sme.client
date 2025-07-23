@@ -81,6 +81,7 @@
         </td>
         <td class="text-center">
           <q-btn
+            no-caps
             unelevated
             round
             dense
@@ -91,6 +92,7 @@
             <q-icon size="24px" name="o_delete" />
           </q-btn>
           <q-btn
+            no-caps
             @click="openRowDetailSheet(row)"
             unelevated
             dense
@@ -206,4 +208,3 @@
   //   row.vatPercent = vat?.rate ?? 0;
   // };
 </script>
-

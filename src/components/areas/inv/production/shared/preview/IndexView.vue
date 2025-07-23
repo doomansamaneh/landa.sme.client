@@ -141,7 +141,9 @@
     router.back();
   }
 
-  const context = usePreviewMenuContext(model.value, baseRoute);
+  const context = usePreviewMenuContext(model, baseRoute, {
+    onDeleteSuccess: deleteCallBack,
+  });
 
   const menuItems = computed(() =>
     useProductionPreviewMenu(context.value)

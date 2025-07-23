@@ -5,6 +5,7 @@
     outlined
     dense
     clear-icon="clear"
+    color="primary"
     hide-bottom-space
     :disable="disable"
     :readonly="readonly"
@@ -22,11 +23,11 @@
     @keydown="$emit('keydown', $event)"
     @clear="$emit('clear')"
   >
+   
     <validation-alert
       v-if="validationMessage"
       :message="validationMessage"
     />
-
     <template v-if="hasPrepend" #prepend>
       <slot name="prepend"></slot>
     </template>

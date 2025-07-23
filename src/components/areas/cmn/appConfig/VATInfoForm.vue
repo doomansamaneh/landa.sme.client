@@ -3,7 +3,7 @@
     <div class="col-md col-sm col-xs-12">
       <div>
         <custom-input
-          label="شناسه ملی"
+          :label="$t('shared.columns.nationalNo')"
           v-model="configStore.model.value.companySetting.nationalNo"
         />
       </div>
@@ -12,7 +12,7 @@
     <div class="col-md col-sm col-xs-12">
       <div>
         <custom-input
-          label="شناسه اقتصادی"
+          :label="$t('shared.columns.taxNo')"
           v-model="configStore.model.value.companySetting.taxNo"
         />
       </div>
@@ -20,14 +20,14 @@
   </div>
 
   <div class="q-mt-lg text-body1 text-weight-600">
-    تنظمیات سامانه مودیان مالیاتی
+    {{ $t("shared.labels.taxSystemSettings") }}
   </div>
 
   <q-separator spaced />
 
   <div class="q-mt-lg">
     <custom-input
-      label="شناسه حافظه مالیاتی"
+      :label="$t('shared.labels.taxMemoryId')"
       v-model="
         configStore.model.value.companySetting.taxApiSetting.clientId
       "
@@ -35,7 +35,7 @@
   </div>
   <div class="q-mt-lg">
     <custom-input
-      label="کلید خصوصی"
+      :label="$t('shared.labels.privateKey')"
       type="textarea"
       v-model="
         configStore.model.value.companySetting.taxApiSetting
@@ -46,7 +46,7 @@
 
   <div class="q-mt-lg">
     <custom-select
-      label="نوع"
+      :label="$t('shared.labels.typeTitle')"
       :options="
         helper.getEnumOptions(taxApiInvoiceType, 'taxApiInvoiceType')
       "
@@ -58,7 +58,7 @@
   </div>
   <div class="q-mt-lg">
     <custom-select
-      label="الگوی صورتحساب"
+      :label="$t('shared.labels.invoicePattern')"
       :options="
         helper.getEnumOptions(
           taxApiInvoicePattern,

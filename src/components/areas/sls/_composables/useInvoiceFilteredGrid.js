@@ -51,6 +51,7 @@ export function useInvoiceFilteredGrid(
   const filterExpression = computed(() => {
     const filters = defaultFilters ?? [];
     const remained = route.params.remained;
+
     if (remained === "remainedThisYear")
       filters.push({
         fieldName: "Remained",
@@ -63,6 +64,12 @@ export function useInvoiceFilteredGrid(
         operator: sqlOperator.equal,
         value: "butThisYear",
       });
+
+    filters.push({
+      fieldName: "d.StatusId",
+      operator: sqlOperator.notEqual,
+      value: voucherStatus.canceled,
+    });
 
     return filters;
   });

@@ -14,6 +14,7 @@
     <template #cell-no="{ item }">
       <span v-if="item.paymentId">
         <q-btn
+          no-caps
           size="sm"
           dense
           round
@@ -28,6 +29,7 @@
       </span>
       <span v-else>
         <q-btn
+          no-caps
           size="sm"
           dense
           round

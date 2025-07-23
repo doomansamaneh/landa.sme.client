@@ -36,13 +36,15 @@
                   />
                 </th>
                 <th
-                  v-for="col in tableStore?.columns.value"
+                  v-for="col in visibleColumns"
                   :key="col.name"
                   :style="`${col.style}; font-size: ${tableStore.thFontSize.value}px`"
                   :class="tableStore.getSortableClass(col)"
                   @click="tableStore.sortColumn(col)"
                 >
-                  <span>{{ col.label }}</span>
+                  <span v-if="col.label">
+                    {{ $t(`shared.columns.${col.label}`) }}
+                  </span>
                   <span
                     v-if="col.sortable"
                     class="q-icon q-table__sort-icon"
@@ -76,7 +78,7 @@
                   />
                 </th>
                 <th
-                  v-for="col in tableStore?.columns.value"
+                  v-for="col in visibleColumns"
                   :key="col.name"
                   class="filter"
                   :data-field="col.name"
@@ -136,7 +138,7 @@
                     />
                   </td>
                   <td
-                    v-for="col in tableStore?.columns.value"
+                    v-for="col in visibleColumns"
                     :key="col.name"
                     :class="col.cellClass"
                     :style="`${col.cellStyle}; font-size: ${tableStore.tdFontSize.value}px`"
@@ -502,6 +504,10 @@
       dirtyInputs.value[column.name] = true;
     }
   }
+
+  const visibleColumns = computed(() =>
+    tableStore?.value.columns.value.filter((col) => !col.hidden)
+  );
 
   // onMounted(() => {
   //   bus.on("apply-search", reloadData);

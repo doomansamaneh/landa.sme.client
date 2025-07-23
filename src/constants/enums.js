@@ -434,3 +434,19 @@ export const menuItemType = {
   separator: 2,
   moreItem: 3,
 };
+
+export const feedbackType = {
+  incident: 1,
+  request: 2,
+};
+
+export const feedbackStatus = {
+  inProgress: 1,
+  done: 2,
+  unDone: 3,
+  responded: 4,
+};
+
+export const phoneNumbers = {
+  support: "02191070419",
+};

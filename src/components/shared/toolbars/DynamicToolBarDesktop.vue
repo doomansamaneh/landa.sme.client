@@ -2,7 +2,7 @@
   <div v-if="showToolbar" :style="toolbarMargin">
     <q-page-sticky
       class="bg-main z-1"
-      :style="insideStyle"
+      :style="combinedStyle"
       position="top"
       expand
       :class="isAtTop || inside ? '' : 'toolbar-glass-effect_'"
@@ -79,7 +79,7 @@
         </div>
 
         <template v-if="!inside">
-          <div v-if="menuItems?.value?.length > 0" class="q-space" />
+          <q-space v-if="menuItems?.value?.length > 0" />
           <span
             v-if="title"
             :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
@@ -90,6 +90,9 @@
               </span>
             </slot>
           </span>
+
+          <q-space v-if="!menuItems?.value?.length" />
+
           <go-back-link
             v-if="!inside && backButton"
             class="q-ml-sm"
@@ -106,7 +109,7 @@
   import { menuItemType } from "src/constants";
 
   import MenuButton from "src/components/shared/buttons/MenuButton.vue";
-  import GoBackLink from "src/components/shared/Buttons/GoBackLink.vue";
+  import GoBackLink from "src/components/shared/buttons/GoBackLink.vue";
   import MenuItem from "src/components/shared/buttons/MenuItem.vue";
 
   const $q = useQuasar();
@@ -115,7 +118,6 @@
   const props = defineProps({
     title: String,
     inside: Boolean,
-    margin: Boolean,
     menuItems: Array,
     backButton: Boolean,
   });
@@ -132,7 +134,7 @@
       ? "margin-bottom: 56px;"
       : "margin-bottom: 34px;";
     const small = $q.screen.lt.sm ? "margin-bottom: 34px;" : "";
-    return props.margin ? base : small;
+    return props.inside ? small : base;
   });
 
   const toolbarPadding = computed(() => {
@@ -142,10 +144,11 @@
       : "padding-left: 20px; padding-right: 20px;";
   });
 
-  const insideStyle = computed(() => {
-    return props.inside
-      ? "background: transparent; transform: 0px; z-index: 0; right: 0; position: relative;"
-      : "";
+  const combinedStyle = computed(() => {
+    const position = $q.lang.rtl ? "right: 0" : "left: 0";
+    if (props.inside) {
+      return `background: transparent; transform: 0px; z-index: 0; position: relative; ${position}`;
+    }
   });
 
   const showToolbar = computed(() => {

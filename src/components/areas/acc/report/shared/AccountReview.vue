@@ -116,6 +116,7 @@
 
 <script setup>
   import { useAccountReview } from "src/components/areas/acc/_composables/useAccountReview";
+  import { useI18n } from "vue-i18n";
 
   import ReviewCl from "../desktop/ReviewCL.vue";
   import ReviewGl from "../desktop/ReviewGL.vue";
@@ -137,6 +138,6 @@
 
   const accountReviewStore = useAccountReview();
 
-  const tip =
-    "بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در  تب‌های پس از آن مشاهده کنید";
+  const { t: $t } = useI18n();
+  const tip = $t("accountReview.tip");
 </script>

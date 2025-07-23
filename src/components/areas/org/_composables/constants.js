@@ -1,4 +1,9 @@
-import { code, title, isActive, actions } from "src/constants/columns";
+import {
+  code,
+  title,
+  isActive,
+  actions,
+} from "src/constants/columns";
 export const unitColumns = [
   code,
   title,
@@ -6,7 +11,7 @@ export const unitColumns = [
     name: "unitTypeTitle",
     field: "unitTypeTitle",
     sortable: true,
-    label: "نوع",
+    label: "typeId",
     showFilter: true,
     class: "text-left",
   },
@@ -14,7 +19,7 @@ export const unitColumns = [
     name: "locationTitle",
     field: "locationTitle",
     sortable: true,
-    label: "محل جغرافیایی",
+    label: "locationTitle",
     style: "",
     showFilter: true,
     class: "text-left",

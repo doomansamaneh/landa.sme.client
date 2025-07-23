@@ -77,6 +77,7 @@
         <div class="col-1">
           <div class="row justify-end q-gutter-xs">
             <q-btn
+              no-caps
               size="13px"
               unelevated
               round
@@ -91,6 +92,7 @@
 
     <template #create-label>
       <q-btn
+        no-caps
         round
         unelevated
         @click="$router.push(`/business`)"

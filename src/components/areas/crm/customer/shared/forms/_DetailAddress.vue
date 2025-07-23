@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     unelevated
     rounded
     padding="6px 12px"
@@ -7,7 +8,7 @@
     @click="formStore.addAddress()"
   >
     <q-icon name="o_add" size="xs" class="q-mr-xs text-body2" />
-    افزودن نشانی
+    {{ $t("shared.labels.addAddress") }}
   </q-btn>
 
   <div class="q-pt-md q-col-gutter-md">
@@ -27,8 +28,11 @@
 
 <script setup>
   import { onMounted } from "vue";
+  import { useI18n } from "vue-i18n";
   import { useRoute } from "vue-router";
   import AddressItem from "./_DetailAddressItem.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

@@ -24,6 +24,7 @@
         <div class="flex q-gutter-sm">
           <template v-if="$q.screen.xs">
             <q-btn
+              no-caps
               dense
               round
               class="text-caption q-mr-sm"
@@ -68,7 +69,14 @@
           </div>
         </slot>
 
-        <q-btn icon="close" flat round dense @click="closeDialog" />
+        <q-btn
+          no-caps
+          icon="close"
+          flat
+          round
+          dense
+          @click="closeDialog"
+        />
       </q-card-section>
 
       <q-card-section
@@ -114,7 +122,7 @@
   }
 
   const showLoader = computed(
-    () => props.previewProps.tableStore.showLoader.value
+    () => props.previewProps?.tableStore?.showLoader?.value || false
   );
 
   const openPrintSettings = () => {
@@ -122,7 +130,7 @@
       title: "تنظیمات چاپ",
       component: PrintSetting,
       props: {
-        tableStore: props.previewProps.tableStore,
+        tableStore: props.previewProps?.tableStore,
         title: props.title,
         actionBar: true,
       },

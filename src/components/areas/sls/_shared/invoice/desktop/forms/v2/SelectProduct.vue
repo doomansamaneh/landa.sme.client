@@ -132,6 +132,7 @@
               class="absolute-top-right q-pa-sm"
             >
               <q-btn
+                no-caps
                 flat
                 unelevated
                 round

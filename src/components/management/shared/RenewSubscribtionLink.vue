@@ -1,11 +1,11 @@
 <template>
   <template v-if="$q.screen.gt.xs">
     <q-btn
+      no-caps
       v-if="showLink"
       class="text-body3 green-gradient green-shadow"
       :to="addPaymentUrl"
       rounded
-      no-caps
       text-color="white"
       unelevated
       padding="6px 12px"
@@ -17,12 +17,12 @@
 
   <template v-if="$q.screen.lt.sm">
     <q-btn
+      no-caps
       v-if="showLink"
       class="text-caption-sm green-shadow green-gradient"
       :to="addPaymentUrl"
       rounded
       padding="4px 8px"
-      no-caps
       text-color="white"
       dense
       unelevated

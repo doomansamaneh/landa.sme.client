@@ -4,7 +4,7 @@
     :title="
       $t('shared.labels.create') +
       ' ' +
-      $t('main-menu-items.Sls_PruchaseReturn_View')
+      $t('main-menu-items.Sls_PurchaseReturn_View')
     "
   />
 </template>

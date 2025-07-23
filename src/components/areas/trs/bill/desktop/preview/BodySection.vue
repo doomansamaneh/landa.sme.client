@@ -8,6 +8,7 @@
         font-size: 13px;
         margin-bottom: 5px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
@@ -91,6 +92,7 @@
         border-collapse: collapse;
         font-size: 13px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
@@ -154,7 +156,7 @@
             {{ item.itemNo }}
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
-            {{ item.date ?? model?.date.substring(0, 10) }}
+            {{ item.itemDate?.substring(0, 10) }}
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
             <div v-if="item.bankAccountNo">
@@ -168,7 +170,24 @@
             </div>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
-            {{ item.comment }}
+            {{
+              $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
+            }}
+
+            <span v-if="item.bankBranchDisplay">
+              | شعبه بانک:
+              {{ item.bankBranchDisplay }}
+            </span>
+
+            <span v-if="item.sayad">
+              | ش صیاد:
+              {{ item.sayad }}
+            </span>
+
+            <span v-if="item.comment">
+              |
+              {{ item.comment }}
+            </span>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
             {{ item.amount?.toLocaleString() }}
@@ -212,10 +231,19 @@
 <script setup>
   import { numberToWords } from "@persian-tools/persian-tools";
   import { helper } from "src/helpers";
-  import { documentType } from "src/constants";
+  import { documentType, paymentMethod } from "src/constants";
 
   const props = defineProps({
     model: Object,
     type: documentType,
   });
+
+  const getItemType = (typeId) => {
+    for (const key in paymentMethod) {
+      if (paymentMethod[key].id === typeId) {
+        return key;
+      }
+    }
+    return paymentMethod[0];
+  };
 </script>

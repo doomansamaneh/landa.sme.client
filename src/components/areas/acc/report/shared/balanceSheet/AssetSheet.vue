@@ -2,7 +2,7 @@
   <q-card flat class="shadow bordered">
     <q-card-section class="q-px-lg">
       <balance-sheet-card-header
-        title="دارایی"
+        :title="$t('shared.labels.asset')"
         icon="o_attach_money"
         icon-class="primary-gradient primary-shadow"
       />
@@ -10,7 +10,7 @@
 
     <q-card-section class="q-pt-none q-pb-md_ q-pr-none">
       <q-list class="statement-bar q-pr-md q-pl-sm">
-        <balance-sheet-item-header title="داراییهای جاری" />
+        <balance-sheet-item-header :title="$t('shared.labels.currentAssets')" />
 
         <div>
           <balance-sheet-item
@@ -21,7 +21,7 @@
           />
         </div>
 
-        <balance-sheet-item-header title="داراییهای ثابت" />
+        <balance-sheet-item-header :title="$t('shared.labels.fixedAssets')" />
 
         <div class="q-pl-xs">
           <balance-sheet-item
@@ -40,7 +40,7 @@
       <q-item>
         <q-item-section>
           <q-item-label lines="1" class="text-h6 text-weight-600">
-            جمع کل
+            {{$t('shared.labels.total')}}
           </q-item-label>
         </q-item-section>
 
@@ -54,6 +54,7 @@
 
 <script setup>
   import { computed, ref } from "vue";
+  import { useI18n } from 'vue-i18n';
   import { helper } from "src/helpers/helper";
   import { accountCLType } from "src/constants";
 
@@ -90,4 +91,5 @@
       0
     )
   );
+  const { t: $t } = useI18n();
 </script>

@@ -7,6 +7,7 @@
       </div>
       <div v-if="relationModel?.url">
         <q-btn
+          no-caps
           :to="`/${relationModel.url}`"
           text-color="white"
           class="primary-gradient primary-shadow"
@@ -23,7 +24,10 @@
     <q-separator />
 
     <q-card-section v-if="model?.id">
-      <preview-log :entity-id="model.id" entity-name="Acc.[Voucher]" />
+      <preview-log
+        :entity-id="model.id"
+        entity-name="Acc.[Voucher]"
+      />
     </q-card-section>
   </q-card>
 </template>

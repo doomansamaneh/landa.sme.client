@@ -2,6 +2,7 @@
   <custom-input-number v-model="model">
     <template #append>
       <q-btn
+        no-caps
         size="8px"
         class="cursor-pointer"
         :color="$q.dark.isActive ? 'yellow' : 'primary'"
@@ -30,6 +31,4 @@
   const toggleType = () => {
     isCash.value = !isCash.value;
   };
-
-  
 </script>

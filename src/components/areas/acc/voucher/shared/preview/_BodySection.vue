@@ -3,10 +3,13 @@
     <table
       :style="$q.screen.gt.xs ? 'width:100%;' : 'width: 900px;'"
       style="
-        border: 1px solid #2d2d2d;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
         font-size: 13px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
@@ -14,7 +17,9 @@
             style="
               width: 5px;
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
             ردیف
@@ -24,7 +29,9 @@
               width: 150px;
               padding: 5px;
               text-align: start;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
             کد حساب
@@ -33,15 +40,31 @@
             style="
               padding: 5px;
               text-align: start;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
             شرح
           </th>
-          <th style="width: 150px; border: 1px solid #2d2d2d">
+          <th
+            style="
+              width: 150px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             بدهکار
           </th>
-          <th style="width: 150px; border: 1px solid #2d2d2d">
+          <th
+            style="
+              width: 150px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             بستانکار
           </th>
         </tr>
@@ -56,14 +79,23 @@
               item.id === voucherItemId ? 'bg-blue-5 text-white' : ''
             "
           >
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 3px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               {{ index + 1 }}
             </td>
             <td
               style="
                 vertical-align: top;
                 padding: 3px;
-                border: 1px solid #2d2d2d;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
               "
             >
               <div>
@@ -73,7 +105,14 @@
                 {{ item.dlCode }}
               </div>
             </td>
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 3px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               <div class="text-wrap">
                 {{ item.slTitle }}
               </div>
@@ -88,7 +127,9 @@
               style="
                 vertical-align: top;
                 padding: 3px;
-                border: 1px solid #2d2d2d;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
               "
             >
               {{ helper.formatNumber(item.debit) }}
@@ -97,7 +138,9 @@
               style="
                 vertical-align: top;
                 padding: 3px;
-                border: 1px solid #2d2d2d;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
               "
             >
               {{ helper.formatNumber(item.credit) }}
@@ -111,7 +154,9 @@
           <td
             style="
               padding: 3px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="3"
@@ -127,7 +172,14 @@
             <strong>{{ model?.currencyTitle }}</strong>
             )
           </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 3px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{
                 helper.formatNumber(
@@ -136,7 +188,14 @@
               }}
             </strong>
           </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 3px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <strong>
               {{
                 helper.formatNumber(

@@ -4,7 +4,9 @@
   >
     <div class="theme-settings-container form-container_">
       <div class="row items-center justify-between q-mb-md">
-        <div class="text-h6 text-weight-700">رنگ تم و زبان</div>
+        <div class="text-h6 text-weight-700">
+          {{ $t("shared.labels.themeAndLanguageTitle") }}
+        </div>
         <back-button />
       </div>
       <desktop />

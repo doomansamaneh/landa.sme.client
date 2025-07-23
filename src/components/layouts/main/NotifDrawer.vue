@@ -22,6 +22,7 @@
       />
       <div v-if="$q.screen.lt.md" class="q-ml-md col-1">
         <q-btn
+          no-caps
           round
           icon="o_close"
           dense

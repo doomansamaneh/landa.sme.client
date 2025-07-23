@@ -15,10 +15,8 @@
 </template>
 
 <script setup>
-  import { sortOrder } from "src/constants";
+  import { useBillState } from "../../../_composables/useBillState";
   import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
-  import { billColumns } from "src/components/areas/trs/_composables/constants";
-
   import { useDataTable } from "src/composables/useDataTable";
 
   import ToolbarContainer from "./ToolbarContainer.vue";
@@ -32,12 +30,8 @@
   });
 
   const baseRoute = "trs/bill";
-
-  const gridStore = useBaseInfoGrid({
-    columns: billColumns,
-    sortColumn: "date",
-    sortOrder: sortOrder.descending,
-  });
+  const stateStore = useBillState();
+  const gridStore = useBaseInfoGrid(stateStore);
 
   const tableStore = useDataTable({
     dataSource: props.dataSource,

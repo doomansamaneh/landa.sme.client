@@ -1,6 +1,7 @@
 <template>
   <lookup-view
     ref="lookup"
+    auto-focus
     dataSource="trs/payment/getChecklookupData"
     sortColumn="itemDate"
     textTemplate="{{ itemNo }} / {{bankTitle}} / {{ accountNo }}"
@@ -68,7 +69,6 @@
         {{ helper.formatNumber(item.amount) }}
       </div>
     </template>
-    
   </lookup-view>
 </template>
 

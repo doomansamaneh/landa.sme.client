@@ -5,7 +5,7 @@
     <div>
       <div>
         <div class="text-h6 text-weight-700 q-mb-md">
-          پیکربندی سامانه
+          {{ $t("shared.labels.systemConfiguration") }}
         </div>
 
         <q-card
@@ -20,12 +20,12 @@
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                اطلاعات اصلی
+                {{ $t("shared.labels.basicInfo") }}
               </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -41,12 +41,12 @@
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                تماس
+                {{ $t("shared.labels.contact") }}
               </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -62,12 +62,12 @@
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                مالیات
+                {{ $t("shared.labels.tax") }}
               </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -83,12 +83,12 @@
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                حقوق و دستمزد
+                {{ $t("shared.labels.salaryAndWages") }}
               </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -104,12 +104,12 @@
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                بازرگانی، خرید و فروش
+                {{ $t("shared.labels.commercePurchaseSale") }}
               </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -125,12 +125,12 @@
           >
             <q-item-section :class="itemClass">
               <q-item-label class="text-on-dark text-body2">
-                لوگو
+                {{ $t("shared.labels.logo") }}
               </q-item-label>
             </q-item-section>
 
             <q-item-section side :class="itemClass">
-              <q-btn round dense unelevated>
+              <q-btn no-caps round dense unelevated>
                 <q-icon :name="expandIcon()" size="24px" />
               </q-btn>
             </q-item-section>
@@ -150,12 +150,12 @@
         >
           <q-item-section :class="itemClass">
             <q-item-label class="text-on-dark text-body2">
-              ورود اطلاعات
+              {{ $t("shared.labels.dataImport") }}
             </q-item-label>
           </q-item-section>
 
           <q-item-section :class="itemClass" side>
-            <q-btn round dense unelevated>
+            <q-btn no-caps round dense unelevated>
               <q-icon :name="expandIcon()" size="24px" />
             </q-btn>
           </q-item-section>
@@ -172,12 +172,12 @@
         >
           <q-item-section :class="itemClass">
             <q-item-label class="text-on-dark text-body2">
-              پلاگین‌ها
+              {{ $t("shared.labels.plugins") }}
             </q-item-label>
           </q-item-section>
 
           <q-item-section side :class="itemClass">
-            <q-btn round dense unelevated>
+            <q-btn no-caps round dense unelevated>
               <q-icon :name="expandIcon()" size="24px" />
             </q-btn>
           </q-item-section>
@@ -190,8 +190,10 @@
 <script setup>
   import { computed } from "vue";
   import { useQuasar } from "quasar";
+  import { useI18n } from "vue-i18n";
 
   const $q = useQuasar();
+  const { t } = useI18n();
 
   const expandIcon = () => {
     if ($q.lang.rtl) {

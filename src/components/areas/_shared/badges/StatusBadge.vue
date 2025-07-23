@@ -1,5 +1,6 @@
 <template>
   <q-btn
+    no-caps
     v-if="title"
     padding="0 8px"
     unelevated

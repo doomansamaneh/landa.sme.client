@@ -8,7 +8,7 @@
       :style="$q.screen.xs ? 'width: 100%' : 'width: 280px'"
     >
       <div class="row">
-        <div class="col">مبلغ</div>
+        <div class="col">{{ $t("shared.labels.price") }}</div>
         <div>
           {{ helper.formatNumber(formStore.totalNetPrice.value) }}
         </div>
@@ -16,7 +16,7 @@
 
       <div class="row">
         <div class="col row q-gutter-sm items-center">
-          <q-btn outline round icon="o_add" size="xs">
+          <q-btn no-caps outline round icon="o_add" size="xs">
             <q-tooltip
               anchor="center left"
               self="center right"
@@ -24,7 +24,7 @@
               class="text-body2 q-px-sm custom-tooltip"
               :delay="600"
             >
-              ایجاد تخفیف
+              {{ $t("shared.labels.createDiscount") }}
             </q-tooltip>
 
             <q-menu
@@ -36,12 +36,15 @@
             >
               <q-card class="bordered">
                 <q-card-section class="q-pb-none">
-                  <div class="text-h6 text-weight-700">تخفیف</div>
+                  <div class="text-h6 text-weight-700">
+                    {{ $t("shared.labels.discount") }}
+                  </div>
                 </q-card-section>
                 <q-card-section>
                   <custom-input-number v-model="generalDiscountValue">
                     <template #append>
                       <q-btn
+                        no-caps
                         size="8px"
                         class="cursor-pointer"
                         :color="
@@ -66,6 +69,7 @@
 
                 <q-card-actions class="dark-1 q-px-md">
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated
@@ -75,6 +79,7 @@
                     {{ $t("shared.labels.accept") }}
                   </q-btn>
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated
@@ -87,7 +92,7 @@
             </q-menu>
           </q-btn>
 
-          <span>تخفیف</span>
+          <span>{{ $t("shared.labels.discount") }}</span>
         </div>
         <div>
           <span class="text-red">
@@ -98,7 +103,7 @@
 
       <div class="row">
         <div class="col row q-gutter-sm items-center">
-          <q-btn outline round icon="o_add" size="xs">
+          <q-btn no-caps outline round icon="o_add" size="xs">
             <q-tooltip
               anchor="center left"
               self="center right"
@@ -106,7 +111,7 @@
               class="text-body2 q-px-sm custom-tooltip"
               :delay="600"
             >
-              انتخاب مالیات بر ارزش افزوده
+              {{ $t("shared.labels.selectVat") }}
             </q-tooltip>
 
             <q-menu
@@ -119,7 +124,7 @@
               <q-card class="bordered">
                 <q-card-section class="q-pb-none">
                   <div class="text-h6 text-weight-700">
-                    ارزش افزوده
+                    {{ $t("shared.labels.vat") }}
                   </div>
                 </q-card-section>
                 <q-card-section>
@@ -133,6 +138,7 @@
 
                 <q-card-actions class="dark-1 q-px-md">
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated
@@ -142,6 +148,7 @@
                     {{ $t("shared.labels.accept") }}
                   </q-btn>
                   <q-btn
+                    no-caps
                     padding="4px 12px"
                     rounded
                     unelevated
@@ -154,7 +161,7 @@
             </q-menu>
           </q-btn>
 
-          <span>ارزش افزوده</span>
+          <span>{{ $t("shared.labels.vat") }}</span>
         </div>
         <div>
           <span>
@@ -166,7 +173,9 @@
       <q-separator />
 
       <div class="row">
-        <div class="col text-bold">جمع کل</div>
+        <div class="col text-bold">
+          {{ $t("shared.labels.total") }}
+        </div>
         <div>
           <strong>
             {{ helper.formatNumber(formStore.totalPrice.value) }}

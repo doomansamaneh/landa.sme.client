@@ -13,21 +13,21 @@
 
     <div class="flex items-center q-gutter-sm">
       <q-btn
+        no-caps
         dense
         class="text-caption"
         round
         unelevated
-        no-caps
         @click="printStore.downloadPdf()"
       >
         <q-icon name="o_print" />
       </q-btn>
       <q-btn
+        no-caps
         dense
         class="text-caption"
         round
         unelevated
-        no-caps
         @click="loadData"
       >
         <q-icon name="o_refresh" />
@@ -64,6 +64,7 @@
           <div class="row items-center">
             <div>
               <q-btn
+                no-caps
                 class="text-on-dark"
                 dense
                 unelevated
@@ -79,6 +80,7 @@
           </div>
           <div class="row items-center">
             <q-btn
+              no-caps
               round
               unelevated
               dense

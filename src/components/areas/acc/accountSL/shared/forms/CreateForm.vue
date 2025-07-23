@@ -5,7 +5,7 @@
         <gl-lookup
           v-model:selectedId="model.glId"
           v-model:selectedText="model.glDisplay"
-          label="حساب کل"
+          :label="$t('shared.labels.gl')"
           required
           @rowSelected="glChanged"
         />
@@ -14,16 +14,27 @@
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <custom-input v-model="model.code" label="کد" required />
+        <custom-input
+          v-model="model.code"
+          :label="$t('shared.labels.code')"
+          required
+        />
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <custom-input v-model="model.syncCode" label="کد معادل" />
+        <custom-input
+          v-model="model.syncCode"
+          :label="$t('shared.labels.syncCode')"
+        />
       </div>
     </div>
 
     <div class="row q-col-gutter-md q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <custom-input v-model="model.title" label="عنوان" required />
+        <custom-input
+          v-model="model.title"
+          :label="$t('shared.labels.title')"
+          required
+        />
       </div>
     </div>
 
@@ -32,7 +43,7 @@
         <custom-select
           v-model="model.typeId"
           :options="helper.getEnumOptions(accountType, 'accountType')"
-          label="ماهیت حساب"
+          :label="$t('shared.labels.accountNature')"
           required
         />
       </div>
@@ -41,7 +52,7 @@
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-          تفصیلیهای مرتبط
+          {{ $t("shared.labels.relatedDetailAccounts") }}
         </q-item-label>
         <div class="q-pt-xs">
           <q-option-group
@@ -63,7 +74,7 @@
         v-model="model.isActive"
         dense
         size="48px"
-        label="فعال"
+        :label="$t('shared.labels.isActive')"
       />
     </div>
   </q-form>
@@ -71,6 +82,7 @@
 
 <script setup>
   import { ref, onMounted } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { accountType, accountDLType } from "src/constants";
   import { accountSLModel } from "src/models/areas/acc/accountSLModel";
@@ -81,6 +93,8 @@
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import GlLookup from "src/components/shared/lookups/AccountGLLookup.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     action: String,

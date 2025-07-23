@@ -2,6 +2,7 @@
   <div class="q-pa-md">
     <div class="q-gutter-x-sm">
       <q-btn
+        no-caps
         unelevated
         class="text-body2 primary-shadow primary-gradient"
         text-color="white"
@@ -53,6 +54,7 @@
       </q-btn>
 
       <q-btn
+        no-caps
         unelevated
         round
         class="text-on-dark"

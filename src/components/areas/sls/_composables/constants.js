@@ -24,6 +24,9 @@ import {
   discountAmount,
   netAmount,
   statusId,
+  contractTitle,
+  typeTitle,
+  taxId,
 } from "src/constants/columns";
 
 export const taxStatus = {
@@ -36,10 +39,14 @@ export const taxStatus = {
 
 export const invoiceColumns = [
   { ...no },
+  { ...taxId, hidden: true },
   { ...date },
+  { ...typeTitle, hidden: true },
   { ...customerName },
+  { ...contractTitle, hidden: true },
   { ...subject },
   { ...amount },
+  { ...vatAmount, hidden: true },
   { ...payedAmount },
   { ...remainedAmount },
 ];
@@ -130,7 +137,7 @@ export const taxApiLogColumns = [
     name: "logTime",
     field: "logTime",
     sortable: true,
-    label: "زمان",
+    label: "time",
     style: "",
     showFilter: true,
     class: "text-left",
@@ -140,7 +147,7 @@ export const taxApiLogColumns = [
     name: "status",
     field: "status",
     sortable: true,
-    label: "وضعیت",
+    label: "statusId",
     style: "",
     showFilter: true,
     class: "text-left",

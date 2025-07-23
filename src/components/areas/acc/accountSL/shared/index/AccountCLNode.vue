@@ -2,7 +2,7 @@
   <account-tree-node :node="node" />
   <q-space />
   <div class="row items-center q-gutter-md">
-    <q-btn dense round unelevated icon="o_more_horiz">
+    <q-btn no-caps dense round unelevated icon="o_more_horiz">
       <q-menu
         ref="accountTreeNodeMenu"
         class="border-radius-lg"
@@ -24,7 +24,9 @@
               </q-item-section>
             </div>
             <q-item-section>
-              <div class="text-body2">ایجاد حساب کل</div>
+              <div class="text-body2">
+                {{ $t("shared.labels.createGeneralLedgerAccount") }}
+              </div>
             </q-item-section>
           </q-item>
         </q-list>
@@ -34,10 +36,13 @@
 </template>
 
 <script setup>
+  import { useI18n } from "vue-i18n";
   import { useDialog } from "src/composables/useDialog";
 
   import AccountTreeNode from "./AccountTreeNode.vue";
   import GLCreateForm from "../../../accountGL/shared/forms/CreateForm.vue";
+
+  const { t } = useI18n();
 
   const dialogStore = useDialog();
 
@@ -47,7 +52,7 @@
 
   const createAccountGL = () => {
     dialogStore.openDialog({
-      title: "ایجاد حساب کل",
+      title: $t("shared.labels.createGeneralLedgerAccount"),
       component: GLCreateForm,
       actionBar: true,
       props: {

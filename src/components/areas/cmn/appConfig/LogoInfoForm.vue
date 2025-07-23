@@ -4,7 +4,7 @@
       dense
       size="46px"
       class="text-body1"
-      label="لوگو در چاپ باشد"
+      :label="t('shared.labels.logoInPrint')"
       v-model="configStore.model.value.companySetting.invoiceShowLogo"
     />
   </q-card-section>
@@ -28,7 +28,7 @@
       dense
       size="46px"
       class="text-body1"
-      label="امضا در چاپ باشد"
+      :label="t('shared.labels.signatureInPrint')"
       v-model="
         configStore.model.value.companySetting.invoiceShowSignature
       "
@@ -53,10 +53,12 @@
   import { useQuasar } from "quasar";
   import { useAppConfigModel } from "../_composables/useAppConfigModel";
   import { mediaType } from "src/constants";
+  import { useI18n } from "vue-i18n";
 
   const logoSource = ref("");
   const signatureSource = ref("");
   const configStore = useAppConfigModel();
+  const { t } = useI18n();
 
   const handleLogoUpload = (event) => {
     const file = event.target.files[0];

@@ -7,6 +7,7 @@
     </div>
 
     <q-btn
+      no-caps
       size="8px"
       round
       unelevated
@@ -28,6 +29,7 @@
     </template>
     <template #append>
       <q-btn
+        no-caps
         :disabled="!file"
         color="primary"
         class="primary-shadow"
@@ -35,7 +37,6 @@
         unelevated
         padding="4px 12px"
         use
-        no-caps
         @click="upload"
       >
         <q-icon name="arrow_upward" class="q-px-xs" size="xs" />

@@ -9,6 +9,7 @@
   >
     <q-item-section avatar>
       <q-btn
+        no-caps
         v-if="getBankLogo(item.label)"
         class="bordered no-pointer-events border-radius-xs"
         unelevated
@@ -22,6 +23,7 @@
         />
       </q-btn>
       <q-btn
+        no-caps
         v-else
         class="bordered no-pointer-events border-radius-xs"
         unelevated
@@ -46,7 +48,7 @@
         {{ item.label }}
       </span>
       <span class="text-body3">
-        <span>موجودی:</span>
+        <span>{{ $t("shared.labels.amount") }}:</span>
         <span class="text-weight-600 q-px-xs">
           {{ helper.formatNumber(item.amount) }}
         </span>

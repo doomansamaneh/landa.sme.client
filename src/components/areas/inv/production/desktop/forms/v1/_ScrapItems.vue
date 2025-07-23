@@ -12,6 +12,7 @@
           <div class="row q-gutter-sm text-body1 text-weight-700">
             <div>
               <q-btn
+                no-caps
                 round
                 unelevated
                 dense
@@ -19,16 +20,20 @@
                 class="orange-gradient"
               />
             </div>
-            <div>ضایعات</div>
+            <div>{{ $t("shared.labels.scrap") }}</div>
           </div>
         </th>
       </tr>
       <tr>
         <th style="width: 1px">#</th>
-        <th>کالا</th>
-        <th>واحد سنجش</th>
-        <th style="width: 20%">تعداد/مقدار</th>
-        <th style="width: 20%">قیمت فی</th>
+        <th>{{ $t("shared.columns.productTitle") }}</th>
+        <th>{{ $t("shared.columns.productUnitTitle") }}</th>
+        <th style="width: 20%">
+          {{ $t("shared.columns.quantity") }}
+        </th>
+        <th style="width: 20%">
+          {{ $t("shared.columns.unitPrice") }}
+        </th>
         <th style="width: 10%"></th>
       </tr>
     </thead>
@@ -44,7 +49,7 @@
             v-model:selectedId="row.productId"
             v-model:selectedText="row.productTitle"
             :filterExpression="productFilter"
-            placeholder="کالا"
+            :placeholder="$t('shared.columns.productTitle')"
             required
             @rowSelected="productChanged($event, row)"
           />
@@ -53,26 +58,27 @@
           <product-unit-lookup
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
-            placeholder="واحد سنجش"
+            :placeholder="$t('shared.columns.productUnitTitle')"
             required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.quantity"
-            placeholder="تعداد/مقدار"
+            :placeholder="$t('shared.columns.quantity')"
             required
           />
         </td>
         <td>
           <custom-input-number
             v-model="row.price"
-            placeholder="قیمت فی"
+            :placeholder="$t('shared.columns.unitPrice')"
             required
           />
         </td>
         <td class="text-center">
           <q-btn
+            no-caps
             unelevated
             round
             dense
@@ -89,6 +95,7 @@
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
+            no-caps
             class="q-my-xl primary-shadow"
             rounded
             unelevated
@@ -96,7 +103,7 @@
             @click="formStore.pushNewScrapItem()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
+            {{ $t("shared.labels.addRow") }}
           </q-btn>
         </td>
       </tr>
@@ -104,6 +111,7 @@
   </q-markup-table>
 
   <q-btn
+    no-caps
     v-if="model?.scrapItems?.length > 0"
     padding="4px 12px"
     unelevated
@@ -113,17 +121,20 @@
     @click="formStore.pushNewScrapItem()"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="">افزودن ردیف</div>
+    <div class="">{{ $t("shared.labels.addRow") }}</div>
   </q-btn>
 </template>
 
 <script setup>
   import { computed } from "vue";
+  import { useI18n } from "vue-i18n";
   import { productType, sqlOperator } from "src/constants";
 
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

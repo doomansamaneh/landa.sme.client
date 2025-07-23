@@ -19,6 +19,7 @@
         <q-card-actions>
           <div class="flex items-center q-mr-xs">
             <q-btn
+              no-caps
               round
               unelevated
               class="text-on-dark"
@@ -37,6 +38,7 @@
           </div>
           <div class="flex items-center q-gutter-x-md">
             <q-btn
+              no-caps
               round
               unelevated
               dense
@@ -114,6 +116,7 @@
 
       <div class="more-options col-1 q-pl-md">
         <q-btn
+          no-caps
           class="more-icon text-on-dark"
           unelevated
           flat

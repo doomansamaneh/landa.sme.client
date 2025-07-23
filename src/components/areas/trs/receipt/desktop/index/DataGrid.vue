@@ -70,10 +70,6 @@
 
   const router = useRouter();
 
-  async function reloadData() {
-    await props.tableStore.reloadData();
-  }
-
   function gotoPreview(row) {
     router.push(`/${props.baseRoute}/preview/${row.id}`);
   }
@@ -81,7 +77,7 @@
   const colspan = computed(
     () =>
       helper.findIndex(
-        props.tableStore.columns.value,
+        props.tableStore.columns.value.filter((col) => !col.hidden),
         "name",
         "amount"
       ) +
