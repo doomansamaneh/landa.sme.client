@@ -45,10 +45,14 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
 
   const validateIdList = (idList) => idList && idList.length > 0;
 
-  const onGetById = async (url, id) => {
+  const onGetById = async (url, id, silent = false) => {
     if (!id) return Promise.resolve(null);
 
-    const response = await fetchWrapper.get(`${url}/${id}`);
+    const response = await fetchWrapper.get(
+      `${url}/${id}`,
+      undefined,
+      silent
+    );
     if (response.data.data) model.value = response.data.data;
     return response.data.data;
   };
@@ -61,12 +65,13 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
   //     }
   //   );
 
-  const getById = async (id, url) => {
-    showLoader.value = true;
+  const getById = async (id, url, silent = false) => {
+    showLoader.value = !silent;
     try {
       const responseData = await onGetById(
         url ?? `${baseURL}/getById`,
-        id
+        id,
+        silent
       );
       if (!diableDirtyCheck) resetIsDirty();
       return responseData;
@@ -75,9 +80,9 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     }
   };
 
-  const getCreateModel = (callBack) =>
+  const getCreateModel = (callBack, silent = false) =>
     fetchWrapper
-      .get(`${baseURL}/getCreateModel`)
+      .get(`${baseURL}/getCreateModel`, undefined, silent)
       .then(async (response) => {
         model.value = response.data.data;
         if (callBack) callBack();
@@ -85,15 +90,16 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
         return model.value;
       });
 
-  const getPreviewById = (id) =>
-    onGetById(`${baseURL}/getPreviewById`, id);
+  const getPreviewById = (id, silent = false) =>
+    onGetById(`${baseURL}/getPreviewById`, id, silent);
 
-  const createOrEdit = async (action) => {
+  const createOrEdit = async (action, silent = false) => {
     if (action === "create") model.value.id = null;
 
     const response = await fetchWrapper.post(
       `${baseURL}/${action}`,
-      model.value
+      model.value,
+      silent
     );
     notifyResponse(response.data);
     if (response.data.data) {
@@ -104,23 +110,29 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     return response.data;
   };
 
-  const customPostAction = async (actionUrl, actionModel) => {
+  const customPostAction = async (
+    actionUrl,
+    actionModel,
+    silent = false
+  ) => {
     return fetchWrapper
-      .post(`${baseURL}/${actionUrl}`, actionModel)
+      .post(`${baseURL}/${actionUrl}`, actionModel, silent)
       .then((response) => {
         notifyResponse(response.data);
         return response.data;
       });
   };
 
-  const customGetAction = async (actionUrl) => {
+  const customGetAction = async (actionUrl, silent = false) => {
     const url = baseURL ? `${baseURL}/${actionUrl}` : actionUrl;
-    return fetchWrapper.get(url).then((response) => {
-      return response.data;
-    });
+    return fetchWrapper
+      .get(url, undefined, silent)
+      .then((response) => {
+        return response.data;
+      });
   };
 
-  const deleteById = async (id, callBack, action) => {
+  const deleteById = async (id, callBack, action, silent = false) => {
     if (!id) return notify("no row selected", "negative");
 
     $q.dialog({
@@ -134,7 +146,9 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     }).onOk(async () => {
       const deleteAction = action ?? "delete";
       const response = await fetchWrapper.post(
-        `${baseURL}/${deleteAction}/${id}`
+        `${baseURL}/${deleteAction}/${id}`,
+        undefined,
+        silent
       );
       notifyResponse(response.data);
       if (callBack) callBack();
@@ -142,7 +156,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     });
   };
 
-  const deleteBatch = (idList, callBack) => {
+  const deleteBatch = (idList, callBack, silent = false) => {
     if (!validateIdList(idList))
       return notify("no row selected", "negative");
 
@@ -159,7 +173,8 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     }).onOk(async () => {
       const response = await fetchWrapper.post(
         `${baseURL}/deleteBatch`,
-        idList
+        idList,
+        silent
       );
       notifyResponse(response.data);
       if (callBack) callBack();
@@ -167,18 +182,18 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     });
   };
 
-  const activate = (idList, callBack) =>
-    batchAction("activate", idList, callBack);
+  const activate = (idList, callBack, silent = false) =>
+    batchAction("activate", idList, callBack, silent);
 
-  const deactivate = (idList, callBack) =>
-    batchAction("deactivate", idList, callBack);
+  const deactivate = (idList, callBack, silent = false) =>
+    batchAction("deactivate", idList, callBack, silent);
 
-  const batchAction = (action, idList, callBack) => {
+  const batchAction = (action, idList, callBack, silent = false) => {
     if (!validateIdList(idList))
       return notify("no row selected", "negative");
 
     return fetchWrapper
-      .post(`${baseURL}/${action}`, idList)
+      .post(`${baseURL}/${action}`, idList, silent)
       .then((response) => {
         notifyResponse(response.data);
         if (callBack) callBack();
@@ -186,17 +201,26 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
       });
   };
 
-  const editBatch = (idList, editBatchModel, callBack) => {
+  const editBatch = (
+    idList,
+    editBatchModel,
+    callBack,
+    silent = false
+  ) => {
     if (!validateIdList(idList))
       return notify("noRowSelected", "negative");
 
     return fetchWrapper
-      .post(`${baseURL}/editBatch`, {
-        selectedIds: idList,
-        model: Object.values(editBatchModel).filter(
-          (item) => item.isModified === true
-        ),
-      })
+      .post(
+        `${baseURL}/editBatch`,
+        {
+          selectedIds: idList,
+          model: Object.values(editBatchModel).filter(
+            (item) => item.isModified === true
+          ),
+        },
+        silent
+      )
       .then((response) => {
         notifyResponse(response.data);
         if (callBack) callBack();
@@ -204,15 +228,19 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
       });
   };
 
-  const merge = (idList, mergeModel, callBack) => {
+  const merge = (idList, mergeModel, callBack, silent = false) => {
     if (!validateIdList(idList))
       return notify("noRowSelected", "negative");
 
     return fetchWrapper
-      .post(`${baseURL}/merge`, {
-        selectedIds: idList,
-        ...mergeModel,
-      })
+      .post(
+        `${baseURL}/merge`,
+        {
+          selectedIds: idList,
+          ...mergeModel,
+        },
+        silent
+      )
       .then((response) => {
         notifyResponse(response.data);
         if (callBack) callBack();

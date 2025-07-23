@@ -112,11 +112,12 @@
 
                     <q-badge
                       v-if="item.unreadCount > 0"
+                      floating
                       color="red"
                       text-color="white"
                       :label="item.unreadCount"
                       align="top right"
-                      class="q-ml-sm"
+                      class="q-ml-sm z-1"
                     />
                   </q-item-section>
                 </q-item>
