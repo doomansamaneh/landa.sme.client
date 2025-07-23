@@ -28,14 +28,18 @@
             colspan="100%"
           >
             <span>
-              <strong style="padding: 0 5px">جمع دریافتی:</strong>
+              <strong style="padding: 0 5px">
+                {{ t("shared.labels.totalReceipt") }}
+              </strong>
               {{
                 helper.formatNumber(model.invoiceRemained.payedAmount)
               }}
             </span>
 
             <span>
-              <strong style="padding: 0 5px">مانده:</strong>
+              <strong style="padding: 0 5px">
+                {{ t("shared.labels.remained") }}
+              </strong>
               <span class="text-weight-600">
                 {{
                   helper.formatNumber(model.invoiceRemained.remained)
@@ -45,7 +49,9 @@
 
             <template v-if="model.invoiceRemained.otherRemained">
               <span>
-                <strong style="padding: 0 5px">مانده از قبل:</strong>
+                <strong style="padding: 0 5px">
+                  {{ t("shared.labels.remainedButThisYear") }}
+                </strong>
                 <span class="text-weight-600">
                   {{
                     helper.formatNumber(
@@ -56,7 +62,9 @@
               </span>
 
               <span>
-                <strong style="padding: 0 5px">جمع مانده:</strong>
+                <strong style="padding: 0 5px">
+                  {{ t("shared.labels.remainedTotal") }}
+                </strong>
                 {{
                   helper.formatNumber(
                     model.invoiceRemained.totalRemained
@@ -106,7 +114,7 @@
             "
             class="text-body2 vertical-top"
           >
-            مهر و امضا فروشنده
+            {{ t("shared.labels.sellerSignature") }}
             <div v-if="showSignature && signatureSource">
               <img
                 :src="signatureSource"
@@ -124,7 +132,7 @@
             "
             class="text-body2 vertical-top"
           >
-            مهر و امضا خریدار
+            {{ t("shared.labels.customer") }}
           </td>
         </tr>
       </tbody>
@@ -134,10 +142,13 @@
 
 <script setup>
   import { ref, onMounted } from "vue";
+  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { mediaType } from "src/constants";
 
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     model: Object,

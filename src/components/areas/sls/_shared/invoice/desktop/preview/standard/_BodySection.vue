@@ -23,7 +23,7 @@
             colspan="100%"
           >
             <div class="text-body2 text-weight-500">
-              مشخصات کالا یا خدمات مورد معامله
+              {{ $t("shared.labels.productOrServiceDetails") }}
             </div>
           </td>
         </tr>
@@ -38,7 +38,7 @@
               border-image: initial;
             "
           >
-            ردیف
+            {{ $t("shared.columns.rowNo") }}
           </td>
           <td
             style="
@@ -48,7 +48,7 @@
               border-image: initial;
             "
           >
-            کد
+            {{ $t("shared.columns.code") }}
           </td>
           <td
             style="
@@ -58,7 +58,7 @@
               border-image: initial;
             "
           >
-            کالا/خدمت
+            {{ $t("shared.columns.productTitle") }}
           </td>
           <td
             style="
@@ -68,7 +68,7 @@
               border-image: initial;
             "
           >
-            مقدار
+            {{ $t("shared.columns.quantity") }}
           </td>
           <td
             style="
@@ -78,7 +78,7 @@
               border-image: initial;
             "
           >
-            واحد
+            {{ $t("shared.columns.productUnitTitle") }}
           </td>
           <td
             style="
@@ -88,7 +88,7 @@
               border-image: initial;
             "
           >
-            مبلغ واحد
+            {{ $t("shared.columns.unitPrice") }}
           </td>
           <td
             style="
@@ -98,18 +98,7 @@
               border-image: initial;
             "
           >
-            مبلغ کل
-          </td>
-          <td
-            style="
-              padding: 5px;
-              border-width: 1px;
-              border-style: solid;
-              border-image: initial;
-            "
-            v-if="model.totalDiscount"
-          >
-            تخفیف
+            {{ $t("shared.columns.totalPrice") }}
           </td>
           <td
             style="
@@ -120,7 +109,18 @@
             "
             v-if="model.totalDiscount"
           >
-            مبلغ پس از تخفیف
+            {{ $t("shared.columns.discountAmount") }}
+          </td>
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+            v-if="model.totalDiscount"
+          >
+            {{ $t("shared.columns.netAmount") }}
           </td>
           <td
             style="
@@ -130,7 +130,7 @@
               border-image: initial;
             "
           >
-            جمع مالیات و عوارض
+            {{ $t("shared.columns.vatAmount") }}
           </td>
           <td
             style="
@@ -141,7 +141,7 @@
               border-image: initial;
             "
           >
-            جمع کل
+            {{ $t("shared.columns.totalPrice") }}
             <span class="text-weight-700">
               (
               {{ model.currencyTitle }}
@@ -297,7 +297,7 @@
             colspan="6"
             class="text-right"
           >
-            <strong>جمع کل:</strong>
+            <strong>{{ $t("shared.columns.total") }}:</strong>
             ({{ numberToWords(model.totalPrice ?? 0) }}
             <b>{{ model.currencyTitle }})</b>
           </td>

@@ -50,8 +50,11 @@ function removeEmpty(obj) {
 }
 
 function createRequest(method, responseType) {
-  return async (url, data, disableLoader) => {
-    if (!disableLoader) onInitRequest();
+  // Accept 'silent' as the third argument (backward compatible with 'disableLoader')
+  return async (url, data, silentOrDisableLoader) => {
+    // Support both 'silent' and 'disableLoader' naming
+    const silent = silentOrDisableLoader === true;
+    if (!silent) onInitRequest();
     const fullUrl = `${baseUrl}/${url}`;
     const authHeaders = getAuthHeaders(fullUrl);
 
@@ -75,7 +78,7 @@ function createRequest(method, responseType) {
         return await handleError(url, error);
       }
     } finally {
-      if (!disableLoader) onCompleteRequest();
+      if (!silent) onCompleteRequest();
     }
   };
 }

@@ -82,7 +82,7 @@
     }
   );
 
-    const rules = computed(() => {
+  const rules = computed(() => {
     return props.required
       ? [
           (val) => {
@@ -90,7 +90,7 @@
             const valid =
               numberValue.value !== null &&
               numberValue.value !== undefined &&
-              numberValue.value !== 0;
+              numberValue.value !== "";
             validationMessage.value = valid
               ? ""
               : t("shared.labels.required");

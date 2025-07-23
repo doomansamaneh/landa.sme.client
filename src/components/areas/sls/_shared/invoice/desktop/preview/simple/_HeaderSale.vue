@@ -22,7 +22,7 @@
             "
           >
             <div>
-              فروشنده:
+              {{ $t("shared.labels.supplier") }}:
               <strong>
                 {{ appConfigStore.model.value.companySetting.name }}
               </strong>
@@ -31,7 +31,7 @@
                   appConfigStore.model.value.companySetting.nationalNo
                 "
               >
-                / شناسه ملی:
+                / {{ $t("shared.labels.nationalNo") }}:
                 {{
                   appConfigStore.model.value.companySetting.nationalNo
                 }}
@@ -41,13 +41,13 @@
                   appConfigStore.model.value.companySetting.taxNo
                 "
               >
-                ش اقتصادی:
+                / {{ $t("shared.labels.taxNo") }}:
                 {{ appConfigStore.model.value.companySetting.taxNo }}
               </span>
             </div>
 
             <div>
-              نشانی:
+              {{ $t("shared.columns.address") }}:
               <strong>
                 {{
                   appConfigStore.model.value.companySetting.location
@@ -65,7 +65,7 @@
                 "
                 class="q-px-sm"
               >
-                <strong>کد پستی:</strong>
+                <strong>{{ $t("shared.labels.postalCode") }}:</strong>
                 {{
                   appConfigStore.model.value.companySetting.postalCode
                 }}
@@ -74,7 +74,7 @@
               <span
                 v-if="appConfigStore.model.value.companySetting.phone"
               >
-                تلفن:
+                {{ $t("shared.labels.phone") }}:
                 {{ appConfigStore.model.value.companySetting.phone }}
               </span>
             </div>
@@ -93,24 +93,24 @@
             "
           >
             <div>
-              مشتری:
+              {{ $t("shared.labels.customer") }}:
               <strong>{{ model.customerName }}</strong>
               <span
                 v-if="model.customerSummary?.business?.nationalNo"
               >
-                / شناسه ملی:
+                / {{ $t("shared.labels.nationalNo") }}:
                 {{ model.customerSummary?.business?.nationalNo }}
               </span>
               <span
                 v-else-if="model.customerSummary?.business?.taxNo"
               >
-                / ش اقتصادی:
+                / {{ $t("shared.labels.taxNo") }}:
                 {{ model.customerSummary?.business?.taxNo }}
               </span>
             </div>
 
             <div v-if="model.customerSummary?.address?.address">
-              نشانی:
+              {{ $t("shared.columns.address") }}:
               <strong
                 v-if="model.customerSummary?.address?.locationTitle"
               >
@@ -122,12 +122,13 @@
               </span>
               <span v-if="model.customerSummary?.address?.postalCode">
                 /
-                <strong>کد پستی:</strong>
+                <strong>{{ $t("shared.labels.postalCode") }}:</strong>
                 {{ model.customerSummary?.address?.postalCode }}
               </span>
             </div>
             <div v-if="model.customerSummary?.phone?.value">
-              تلفن: {{ model.customerSummary?.phone?.value }}
+              {{ $t("shared.labels.phone") }}:
+              {{ model.customerSummary?.phone?.value }}
             </div>
           </td>
         </tr>

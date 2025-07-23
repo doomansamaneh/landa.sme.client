@@ -21,7 +21,7 @@
               padding: 5px;
             "
           >
-            #
+            {{ $t("shared.columns.rowNo") }}
           </th>
           <th
             style="
@@ -31,7 +31,7 @@
               padding: 5px;
             "
           >
-            کالا/خدمت
+            {{ $t("shared.columns.productTitle") }}
           </th>
           <th
             style="
@@ -41,7 +41,7 @@
               padding: 5px;
             "
           >
-            مقدار
+            {{ $t("shared.columns.quantity") }}
           </th>
           <th
             style="
@@ -51,7 +51,7 @@
               padding: 5px;
             "
           >
-            فی
+            {{ $t("shared.columns.unitPrice") }}
           </th>
           <th
             style="
@@ -61,7 +61,9 @@
               padding: 5px;
             "
           >
-            مبلغ کل ({{ model.currencyTitle }})
+            {{ $t("shared.columns.totalPrice") }} ({{
+              model.currencyTitle
+            }})
           </th>
         </tr>
       </thead>
@@ -223,7 +225,7 @@
             colspan="4"
             class="text-right"
           >
-            جمع مقدار:
+            {{ $t("shared.labels.totalQuantity") }}:
           </td>
           <td
             style="
