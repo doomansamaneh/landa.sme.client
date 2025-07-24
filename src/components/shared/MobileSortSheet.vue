@@ -1,6 +1,8 @@
 <template>
   <bottom-sheet header :status="status" @hide="hide">
-    <template #header-title>مرتب‌ سازی بر اساس</template>
+    <template #header-title>
+      {{ $t("shared.labels.orderBy") }}
+    </template>
 
     <template #body>
       <q-list padding>
@@ -13,7 +15,7 @@
             <q-item-section>
               <div class="row">
                 <div>
-                  {{ item.label }}
+                  {{ $t(`shared.columns.${item.label}`) }}
                 </div>
                 <template
                   v-if="

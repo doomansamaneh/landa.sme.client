@@ -11,7 +11,9 @@
     <div class="q-gutter-md">
       <div>
         <div class="row items-center q-gutter-sm">
-          <div class="col-auto">شناسه ملی:</div>
+          <div class="col-auto">
+            {{ $t("shared.labels.nationalNo") }}:
+          </div>
           <div class="col text-body2 text-weight-700">
             {{ model.nationalNo }}
             <copy-clipboard
@@ -23,7 +25,7 @@
       </div>
       <div>
         <div class="row items-center q-gutter-sm">
-          <div class="col-auto">کد اقتصادی:</div>
+          <div class="col-auto">{{ $t("shared.labels.taxNo") }}:</div>
           <div class="col text-body2">
             {{ model.taxNo }}
           </div>
@@ -34,7 +36,9 @@
           class="row items-center q-gutter-sm"
           v-if="model.branchNo"
         >
-          <div class="col-auto">کد شعبه:</div>
+          <div class="col-auto">
+            {{ $t("shared.labels.branchNo") }}:
+          </div>
           <div class="col text-body2">
             {{ model.branchNo }}
           </div>
@@ -45,7 +49,9 @@
           class="row items-center q-gutter-sm"
           v-if="model.insuranceWorkNo"
         >
-          <div class="col-auto">شناسه کارگاه بیمه:</div>
+          <div class="col-auto">
+            {{ $t("shared.labels.insuranceWorkNo") }}:
+          </div>
           <div class="col text-body2">
             {{ model.insuranceWorkNo }}
           </div>
@@ -53,7 +59,7 @@
       </div>
       <div>
         <div class="row items-center q-gutter-sm">
-          <div class="col-auto">شماره ثبت:</div>
+          <div class="col-auto">{{ $t("shared.labels.regNo") }}:</div>
           <div class="col text-body2">
             {{ model.regNo }}
           </div>
@@ -61,7 +67,9 @@
       </div>
       <div>
         <div class="row items-center q-gutter-sm">
-          <div class="col-auto">تاریخ ثبت:</div>
+          <div class="col-auto">
+            {{ $t("shared.labels.regDate") }}:
+          </div>
           <div class="col text-body2">
             {{ model.regDate?.substring(0, 10) }}
           </div>
@@ -69,7 +77,9 @@
       </div>
       <div>
         <div class="row">
-          <div class="col-auto">شرح:</div>
+          <div class="col-auto">
+            {{ $t("shared.labels.comment") }}:
+          </div>
           <div class="col">
             {{ model.comment }}
           </div>
