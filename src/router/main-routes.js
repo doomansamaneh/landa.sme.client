@@ -42,6 +42,11 @@ export default {
       component: () => import("src/pages/tickets.vue"),
       meta: { title: "پشتیبانی" },
     },
+    {
+      path: "/push-notification",
+      component: () => import("src/pages/PushNotificationPage.vue"),
+      meta: { title: "Push Notification" },
+    },
 
     {
       path: "acc/fiscalYear",
