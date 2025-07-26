@@ -8,6 +8,7 @@
       rounded
       :class="buttonClass"
     >
+      <slot></slot>
       <q-icon :size="iconSize" :name="iconFill" />
     </q-btn>
     <div
@@ -41,8 +42,8 @@
   const buttonClass = computed(() =>
     props.isActive
       ? $q.dark.isActive
-        ? "bg-yellow-7 active-shine text-dark"
-        : "primary-gradient active-shine text-white"
+        ? "bg-yellow-7 active-shine_ text-dark"
+        : "primary-gradient active-shine_ text-white"
       : ""
   );
 

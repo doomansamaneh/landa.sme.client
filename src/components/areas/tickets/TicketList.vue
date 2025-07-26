@@ -109,15 +109,16 @@
                         )
                       }}
                     </q-chip>
+                  </q-item-section>
 
+                  <q-item-section side top>
                     <q-badge
                       v-if="item.unreadCount > 0"
                       floating
+                      class="q-mt-sm q-mx-sm"
                       color="red"
                       text-color="white"
                       :label="item.unreadCount"
-                      align="top right"
-                      class="q-ml-sm z-1"
                     />
                   </q-item-section>
                 </q-item>
@@ -152,9 +153,10 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from "vue";
+  import { ref, computed, onMounted, onUnmounted } from "vue";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
+  import { fetchWrapper } from "src/helpers";
   import {
     feedbackType,
     defaultPageSize,
@@ -162,6 +164,7 @@
     sortOrder,
   } from "src/constants";
   import { nextTick } from "vue";
+  import usePolling from "src/composables/usePolling";
 
   import TicketChat from "./TicketChat.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
@@ -172,6 +175,58 @@
   const chatContainerMobile = ref(null);
   const showChat = ref(false);
   const selectedTicket = ref(null);
+  const loadableDataGrid = ref(null);
+
+  // Polling for unread count updates
+  const checkUnreadCount = async () => {
+    try {
+      // Get current pagination from the data grid
+      const currentPagination = loadableDataGrid.value?.tableStore
+        ?.pagination?.value || {
+        currentPage: 1,
+        pageSize: defaultPageSize,
+        sortColumn: "dateCreated",
+        sortOrder: sortOrder.descending,
+      };
+
+      // Use silent parameter to avoid showing loading indicators
+      const response = await fetchWrapper.post(
+        "business/getFeedbackGridData",
+        currentPagination,
+        true // silent parameter
+      );
+
+      if (response?.data?.data?.items) {
+        // Update unread counts without triggering full reload
+        const newItems = response.data.data.items;
+        // Access the gridStore rows which contain the displayed data
+        const currentItems =
+          loadableDataGrid.value?.tableStore?.store?.rows?.value ||
+          [];
+
+        // Update unread counts for existing items
+        currentItems.forEach((currentItem, index) => {
+          const newItem = newItems.find(
+            (item) => item.id === currentItem.id
+          );
+          if (
+            newItem &&
+            newItem.unreadCount !== currentItem.unreadCount
+          ) {
+            currentItems[index].unreadCount = newItem.unreadCount;
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Error checking unread count:", error);
+    }
+  };
+
+  // Initialize polling with 30 second interval
+  const { start: startPolling, clear: stopPolling } = usePolling(
+    checkUnreadCount,
+    5000 // 5 seconds
+  );
 
   const selectTicket = async (item) => {
     selectedTicket.value = item.id; // or any unique identifier
@@ -184,8 +239,6 @@
       chatContainerMobile.value?.setSelectedTicket(item);
     }
   };
-
-  const loadableDataGrid = ref(null);
 
   const statusColors = {
     1: "orange",
@@ -200,5 +253,12 @@
 
   onMounted(() => {
     loadableDataGrid?.value?.loadData();
+    // Start polling after initial load
+    startPolling();
+  });
+
+  onUnmounted(() => {
+    // Stop polling when component is unmounted
+    stopPolling();
   });
 </script>

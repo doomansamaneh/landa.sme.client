@@ -18,7 +18,6 @@
       color="red"
       text-color="white"
       :label="unreadCount"
-      class="q-ml-sm"
     />
   </q-btn>
 </template>
@@ -44,7 +43,7 @@
     unreadCount.value = data.data;
   };
 
-  const { start, clear } = usePolling(getUnreadMessageCount, 10000); // poll every 10s
+  const { start, clear } = usePolling(getUnreadMessageCount, 5000); // poll every 5s
 
   const activeButton = computed(() => {
     return route.path === "/tickets" ? "btn-active" : "";

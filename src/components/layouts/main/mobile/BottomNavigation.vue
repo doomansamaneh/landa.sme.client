@@ -30,7 +30,15 @@
         icon="support_agent"
         :isActive="isActiveTicket"
         @click="goToTicket"
-      />
+      >
+        <q-badge
+          v-if="unreadCount > 0"
+          floating
+          color="red"
+          text-color="white"
+          :label="unreadCount"
+        />
+      </navigation-item>
 
       <navigation-item
         :label="$t('shared.labels.profile')"
@@ -43,16 +51,29 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref, computed, onMounted } from "vue";
   import { useRouter, useRoute } from "vue-router";
-  import { useContactDrawer } from "src/composables/useContactDrawer";
+  import { useFormActions } from "src/composables/useFormActions";
+  import usePolling from "src/composables/usePolling";
 
   import NavigationItem from "src/components/layouts/main/mobile/NavigationItem.vue";
 
   const router = useRouter();
   const route = useRoute();
+  const unreadCount = ref(0);
+  const formStore = useFormActions();
 
-  const contactDrawerStore = useContactDrawer();
+  // Add silent variable
+  const silent = true;
+
+  const getUnreadMessageCount = async () => {
+    const data = await formStore.customGetAction(
+      "business/getUnreadMessageCount",
+      silent
+    );
+    unreadCount.value = data.data;
+  };
+  const { start, clear } = usePolling(getUnreadMessageCount, 5000); // poll every 5s
 
   const goToDashboard = () => router.push("/dashboard");
   const goToProfile = () => router.push("/scr/users/settings");
@@ -71,4 +92,9 @@
     () => route.path === "/crm/customer"
   );
   const isActiveMenu = computed(() => route.path === "/menu");
+
+  onMounted(() => {
+    getUnreadMessageCount(); // initial fetch
+    start(); // start polling
+  });
 </script>

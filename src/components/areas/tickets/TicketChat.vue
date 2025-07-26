@@ -121,11 +121,7 @@
                     <span>
                       <q-icon
                         v-if="message.senderTypeId == 1"
-                        :name="
-                          message.status === 'read'
-                            ? 'done_all'
-                            : 'done'
-                        "
+                        :name="message.isRead ? 'done_all' : 'done'"
                         size="18px"
                         class="q-ml-xs"
                       />
