@@ -15,10 +15,7 @@
           tableStore.showLoader.value ? 'overflow-hidden_' : 'scroll'
         "
       >
-        <div
-          class="q-table__middle"
-          :style="$q.screen.xs ? 'min-width: 1200px' : ''"
-        >
+        <div class="q-table__middle">
           <table class="q-table">
             <thead>
               <tr v-if="!hideHeader">
@@ -531,5 +528,24 @@
   .expand-close {
     transform: rotate(0);
     transition-duration: 300ms;
+  }
+
+  // Mobile full width styles
+  @media (max-width: 599px) {
+    .q-table {
+      width: 100%;
+      min-width: auto;
+
+      th,
+      td {
+        white-space: nowrap;
+        min-width: auto;
+      }
+    }
+
+    .q-table__middle {
+      width: 100%;
+      overflow-x: auto;
+    }
   }
 </style>

@@ -44,7 +44,7 @@
       </template>
     </toolbar-mobile> -->
 
-    <mobile :table-store="tableStore" :title="title" />
+    <desktop :table-store="tableStore" :title="title" />
   </template>
 
   <template v-else>

@@ -88,67 +88,53 @@
         return;
       }
 
-      // Request notification permission if not granted
-      if (Notification.permission === "default") {
-        const permission = await Notification.requestPermission();
-        if (permission !== "granted") {
-          $q.notify({
-            type: "negative",
-            message: "Notification permission denied",
-          });
-          return;
-        }
+      // Check and request notification permission
+      let permission = Notification.permission;
+
+      if (permission === "default") {
+        permission = await Notification.requestPermission();
       }
 
-      // Send notification
-      if (Notification.permission === "granted") {
-        console.log(
-          "Creating notification with:",
-          notificationData.title,
-          notificationData.message
-        );
-
-        // Use simple notification like the test function
-        const notification = new Notification(
-          notificationData.title,
-          {
-            body: notificationData.message,
-            icon: "/icons/icon-128x128.png",
-          }
-        );
-
-        // Handle notification click
-        notification.onclick = function () {
-          console.log("Notification clicked");
-          window.focus();
-          notification.close();
-        };
-
-        // Add event listeners to debug
-        notification.onshow = function () {
-          console.log("Notification shown successfully");
-        };
-
-        notification.onerror = function (error) {
-          console.error("Notification error:", error);
-        };
-
-        // Show success message and reset form immediately
-        $q.notify({
-          type: "positive",
-          message: "Push notification sent successfully!",
-        });
-
-        // Reset form
-        notificationData.title = "";
-        notificationData.message = "";
-        form.value.reset();
-      } else {
+      if (permission !== "granted") {
         $q.notify({
           type: "negative",
-          message: "Notification permission denied",
+          message:
+            permission === "denied"
+              ? "Notification permission was denied. Please enable it in your browser settings."
+              : "Notification permission not granted",
         });
+        return;
       }
+
+      // Send the notification
+      const notification = new Notification(notificationData.title, {
+        body: notificationData.message,
+        icon: "/icons/icon-128x128.png",
+      });
+
+      notification.onclick = () => {
+        window.focus();
+        alert("this is onclick test")
+        notification.close();
+      };
+
+      notification.onshow = () => {
+        console.log("Notification shown successfully");
+      };
+
+      notification.onerror = (error) => {
+        console.error("Notification error:", error);
+      };
+
+      $q.notify({
+        type: "positive",
+        message: "Push notification sent successfully!",
+      });
+
+      // Reset form
+      notificationData.title = "";
+      notificationData.message = "";
+      form.value.reset();
     } catch (error) {
       console.error("Error sending notification:", error);
       $q.notify({

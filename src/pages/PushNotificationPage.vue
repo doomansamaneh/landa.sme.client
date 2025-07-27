@@ -1,11 +1,9 @@
 <template>
-  <q-page class="q-pa-md">
-    <div class="row justify-center">
-      <div class="col-12 col-md-8 col-lg-6">
-        <push-notification-form />
-      </div>
+  <div class="row justify-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <push-notification-form />
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script setup>
