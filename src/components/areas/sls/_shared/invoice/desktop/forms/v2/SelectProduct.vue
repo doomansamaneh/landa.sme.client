@@ -17,7 +17,9 @@
         <q-tab name="mostSold" class="q-mr-xs">
           <template #default>
             <q-icon name="o_inventory_2" size="xs" class="q-mr-sm" />
-            <div class="text-body3 text-bold">پر فروشها</div>
+            <div class="text-body3 text-bold">
+              {{ $t("shared.labels.mostSold") }}
+            </div>
           </template>
         </q-tab>
         <q-tab name="latest" class="q-mr-xs">
@@ -27,7 +29,9 @@
               size="xs"
               class="q-mr-sm"
             />
-            <div class="text-body3 text-bold">تازه‌ترین فروشها</div>
+            <div class="text-body3 text-bold">
+              {{ $t("shared.labels.latestSales") }}
+            </div>
           </template>
         </q-tab>
         <q-tab name="default" class="q-mr-xs">
@@ -37,7 +41,9 @@
               size="xs"
               class="q-mr-sm"
             />
-            <div class="text-body3 text-bold">به ترتیب کد</div>
+            <div class="text-body3 text-bold">
+              {{ $t("shared.labels.byCodeOrder") }}
+            </div>
           </template>
         </q-tab>
       </q-tabs>
@@ -103,22 +109,22 @@
                 {{ item.code }} - {{ item.title }}
               </span>
               <span v-if="item.purchasePrice" class="text-body3">
-                قیمت خرید:
+                {{ $t("shared.columns.purchasePrice") }}:
                 {{ helper.formatNumber(item.purchasePrice) }}
               </span>
               <span class="text-body3">
-                قیمت فروش:
+                {{ $t("shared.columns.price") }}:
                 {{ helper.formatNumber(item.price) }}
               </span>
               <span v-if="item.maxPrice" class="text-body3">
-                بیشترین قیمت فروش:
+                {{ $t("shared.labels.maxSalePrice") }}:
                 {{ helper.formatNumber(item.maxPrice) }}
               </span>
               <span
                 v-if="item.typeId !== productType.service"
                 class="text-body3"
               >
-                موجودی:
+                {{ $t("shared.columns.stock") }}:
                 <q-icon
                   v-if="item.stock <= 0"
                   class="text-warning"

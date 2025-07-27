@@ -11,7 +11,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
-              label="عنوان"
+              :label="$t('shared.columns.title')"
               v-model="formStore.model.value.title"
               required
             />
@@ -25,7 +25,7 @@
               :options="
                 helper.getEnumOptions(paymentType, 'paymentType')
               "
-              label="روش تسویه"
+              :label="$t('shared.labels.paymentMethod')"
               required
             />
           </div>
@@ -37,7 +37,7 @@
               v-model:selectedId="formStore.model.value.slId"
               v-model:selectedText="formStore.model.value.slDisplay"
               :filter-expression="filterSL"
-              label="حساب معین"
+              :label="$t('shared.columns.slTitle')"
               required
             />
           </div>
@@ -51,7 +51,7 @@
                 formStore.model.value.discountSLDisplay
               "
               :filter-expression="filterProduct"
-              label="حساب تخفیف"
+              :label="$t('shared.labels.discountAccount')"
               required
             />
           </div>
@@ -65,7 +65,7 @@
                 formStore.model.value.productSLDisplay
               "
               :filter-expression="filterProduct"
-              label="حساب کالا"
+              :label="$t('shared.labels.productAccount')"
               required
             />
           </div>
@@ -79,7 +79,7 @@
                 formStore.model.value.serviceSLDisplay
               "
               :filter-expression="filterProduct"
-              label="حساب خدمات"
+              :label="$t('shared.labels.serviceAccount')"
               required
             />
           </div>
@@ -90,35 +90,44 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.columns.isActive')"
           />
         </div>
       </q-form>
       <q-card flat class="tips">
         <q-card-section>
-          <div class="title q-mb-sm">راهنما</div>
+          <div class="title q-mb-sm">
+            {{ $t("shared.labels.userGuide") }}
+          </div>
           <div class="text-body1">
             <ul class="q-gutter-y-sm">
               <li>
-                <strong>روش تسویه:</strong>
-                برای ارسال به سامانه مودیان استفاده می‌شود
+                <strong>
+                  {{ $t("shared.labels.paymentMethod") }}:
+                </strong>
+                {{ $t("shared.labels.paymentMethodGuide") }}
               </li>
               <li>
-                <strong>حساب معین:</strong>
-                حسابهای دریافتنی تجاری با کد 10301
+                <strong>{{ $t("shared.columns.slTitle") }}:</strong>
+                {{ $t("shared.labels.slAccountGuide") }}
               </li>
               <li>
-                <strong>حساب تخفیف:</strong>
-                برگشت از فروش و تخفیفها با کد 60103
+                <strong>
+                  {{ $t("shared.labels.discountAccount") }}:
+                </strong>
+                {{ $t("shared.labels.discountAccountGuide") }}
               </li>
               <li>
-                <strong>حساب کالا:</strong>
-                فروش کالا و خدمات با کد 60101
+                <strong>
+                  {{ $t("shared.labels.productAccount") }}:
+                </strong>
+                {{ $t("shared.labels.productAccountGuide") }}
               </li>
               <li>
-                <strong>حساب خدمات:</strong>
-                فروش کالا و خدمات با کد 60101. همچنین می‌توانید یک
-                حساب معین جداگانه برای خدمات ایجاد کنید
+                <strong>
+                  {{ $t("shared.labels.serviceAccount") }}:
+                </strong>
+                {{ $t("shared.labels.serviceAccountGuide") }}
               </li>
             </ul>
           </div>

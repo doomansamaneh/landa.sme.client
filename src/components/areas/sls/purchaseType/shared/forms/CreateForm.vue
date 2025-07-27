@@ -11,7 +11,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              عنوان
+              {{ $t("shared.columns.title") }}
             </q-item-label>
             <custom-input
               hide-bottom-space
@@ -24,7 +24,7 @@
         <div class="row q-mb-md">
           <div class="col-md-3 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              روش تسویه
+              {{ $t("shared.labels.paymentMethod") }}
             </q-item-label>
             <custom-select
               :options="
@@ -38,7 +38,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              حساب معین
+              {{ $t("shared.columns.slTitle") }}
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.slId"
@@ -51,7 +51,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              حساب تخفیف
+              {{ $t("shared.labels.discountAccount") }}
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.discountSLId"
@@ -66,7 +66,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              حساب کالا
+              {{ $t("shared.labels.productAccount") }}
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.productSLId"
@@ -81,7 +81,7 @@
         <div class="row q-mb-md">
           <div class="col-md-6 col-sm-12 col-xs-12">
             <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-              حساب خدمات
+              {{ $t("shared.labels.serviceAccount") }}
             </q-item-label>
             <sl-lookup
               v-model:selectedId="formStore.model.value.serviceSLId"
@@ -98,36 +98,44 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.columns.isActive')"
           />
         </div>
       </q-form>
       <q-card flat class="tips">
         <q-card-section>
-          <div class="title q-mb-sm">راهنما</div>
+          <div class="title q-mb-sm">
+            {{ $t("shared.labels.userGuide") }}
+          </div>
           <div class="text-body1">
             <ul class="q-gutter-y-sm">
               <li>
-                <strong>روش تسویه:</strong>
-                برای ارسال به سامانه مودیان در صورت نیاز استفاده
-                می‌شود
+                <strong>
+                  {{ $t("shared.labels.paymentMethod") }}:
+                </strong>
+                {{ $t("shared.labels.paymentMethodGuidePurchase") }}
               </li>
               <li>
-                <strong>حساب معین:</strong>
-                حسابهای پرداختنی تجاری با کد 30103
+                <strong>{{ $t("shared.columns.slTitle") }}:</strong>
+                {{ $t("shared.labels.slAccountGuidePurchase") }}
               </li>
               <li>
-                <strong>حساب تخفیف:</strong>
-                برگشت از خرید و تخفیفها با کد 81002
+                <strong>
+                  {{ $t("shared.labels.discountAccount") }}:
+                </strong>
+                {{ $t("shared.labels.discountAccountGuidePurchase") }}
               </li>
               <li>
-                <strong>حساب کالا:</strong>
-                خرید کالا با کد 81001 یا موجودی مواد اولیه با کد 10501
+                <strong>
+                  {{ $t("shared.labels.productAccount") }}:
+                </strong>
+                {{ $t("shared.labels.productAccountGuidePurchase") }}
               </li>
               <li>
-                <strong>حساب خدمات:</strong>
-                خرید کالا و خدمات با کد 81001. همچنین می‌توانید یک
-                حساب معین هزینه جداگانه ایجاد کنید
+                <strong>
+                  {{ $t("shared.labels.serviceAccount") }}:
+                </strong>
+                {{ $t("shared.labels.serviceAccountGuidePurchase") }}
               </li>
             </ul>
           </div>

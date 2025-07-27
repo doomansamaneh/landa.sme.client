@@ -3,12 +3,20 @@
     <thead>
       <tr>
         <th style="width: 1%">#</th>
-        <th style="width: 40%">کالا/خدمت</th>
-        <th style="width: 10%">تعداد/مقدار</th>
-        <th style="width: 15%">واحد سنجش</th>
-        <th style="width: 16%">مبلغ واحد</th>
+        <th style="width: 40%">
+          {{ $t("shared.columns.productTitle") }}
+        </th>
+        <th style="width: 10%">
+          {{ $t("shared.columns.quantity") }}
+        </th>
+        <th style="width: 15%">
+          {{ $t("shared.columns.productUnitTitle") }}
+        </th>
+        <th style="width: 16%">
+          {{ $t("shared.columns.unitPrice") }}
+        </th>
         <th style="width: 17%">
-          مبلغ کل
+          {{ $t("shared.columns.totalPrice") }}
           <q-icon
             name="o_info"
             size="xs"
@@ -23,8 +31,7 @@
               :offset="[50, 10]"
             >
               <span class="text-body2">
-                مبلغ کل = (تعداد * مبلغ) - تخفیف + مالیات بر ارزش
-                افزوده
+                {{ $t("shared.labels.totalAmountFormula") }}
               </span>
             </q-tooltip>
           </q-icon>
@@ -51,7 +58,7 @@
           <custom-input-number
             ref="quantityInput"
             v-model="row.quantity"
-            placeholder="مقدار"
+            :placeholder="$t('shared.labels.quantity')"
             type_="number"
             step_="0.01"
             min="0"
@@ -59,7 +66,7 @@
         </td>
         <td>
           <product-unit-lookup
-            placeholder="واحد سنجش"
+            :placeholder="$t('shared.columns.productUnitTitle')"
             v-model:selectedId="row.productUnitId"
             v-model:selectedText="row.productUnitTitle"
           />
@@ -67,7 +74,7 @@
         <td>
           <custom-input-number
             v-model="row.price"
-            placeholder="مبلغ واحد"
+            :placeholder="$t('shared.columns.unitPrice')"
           />
         </td>
 

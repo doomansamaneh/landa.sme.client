@@ -13,14 +13,18 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
       <cash-lookup
-        label="صندوق"
+        :label="$t('shared.labels.cash')"
         v-model:selectedId="model.cashId"
         v-model:selectedText="model.cashTitle"
       />
     </div>
 
     <div class="col-md-3 col-sm-6 col-xs-12">
-      <date-time label="تاریخ" v-model="model.date" required />
+      <date-time
+        :label="$t('shared.columns.date')"
+        v-model="model.date"
+        required
+      />
     </div>
 
     <div class="flex q-mt-lg items-center justify-center col">
@@ -54,7 +58,10 @@
     <div v-show="moreInfo">
       <div class="row q-col-gutter-sm q-pt-sm">
         <div class="col-md-3 col-sm-6 col-xs-12">
-          <custom-label label="شماره فاکتور" class="q-mb-sm" />
+          <custom-label
+            :label="$t('shared.columns.invoiceNumber')"
+            class="q-mb-sm"
+          />
           <q-input
             type="number"
             hide-bottom-space
@@ -75,7 +82,10 @@
         </div>
 
         <div class="col-md-3 col-sm-6 col-xs-12">
-          <date-time label="سررسید" v-model="model.dueDate" />
+          <date-time
+            :label="$t('shared.columns.dueDate')"
+            v-model="model.dueDate"
+          />
         </div>
 
         <div class="col-md-6 col-sm-12 col-xs-12">
@@ -89,7 +99,7 @@
 
         <div class="col-md-6 col-sm-6 col-xs-12">
           <inventory-lookup
-            label="انبار"
+            :label="$t('shared.columns.inventoryTitle')"
             v-model:selectedId="model.inventoryId"
             v-model:selectedText="model.inventoryTitle"
             required
@@ -97,7 +107,7 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <contract-lookup
-            label="قرارداد"
+            :label="$t('shared.columns.contractTitle')"
             v-model:selectedId="model.contractId"
             v-model:selectedText="model.contractTitle"
           />
@@ -105,7 +115,7 @@
 
         <div class="col-md-6 col-sm-12 col-xs-12">
           <customer-lookup
-            label="بازاریاب"
+            :label="$t('shared.labels.marketer')"
             v-model:selectedId="model.contactId"
             v-model:selectedText="model.contactName"
           />
@@ -118,12 +128,14 @@
             v-model:selectedId="model.originalDocument.parentId"
             v-model:selectedText="model.originalDocument.no"
             :filter-expression="originalFilterExpression"
-            label="سند مرجع"
+            :label="$t('shared.labels.referenceDocument')"
           />
         </div>
 
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            {{ $t("shared.labels.subject") }}
+          </q-item-label>
           <custom-input
             v-model="model.summary"
             hide-bottom-space
@@ -137,6 +149,7 @@
 
 <script setup>
   import { computed, ref, watch } from "vue";
+  import { useI18n } from "vue-i18n";
   import {
     sqlOperator,
     vatType,
@@ -162,6 +175,8 @@
     model: invoiceModel,
   });
 
+  const { t } = useI18n();
+
   const contractLookup = ref(null);
   const invoiceNo = ref(false);
   const customerLookup = ref(null);
@@ -177,10 +192,14 @@
   const moreInfo = ref(false);
 
   const customerTitle =
-    props.formType == invoiceFormType.sales ? "مشتری" : "فروشنده";
+    props.formType == invoiceFormType.sales
+      ? t("shared.labels.customer")
+      : t("shared.labels.supplier");
 
   const saleTypeTitle =
-    props.formType == invoiceFormType.sales ? "نوع فروش" : "نوع خرید";
+    props.formType == invoiceFormType.sales
+      ? t("shared.labels.saleType")
+      : t("shared.labels.purchaseType");
 
   const originalFilterExpression = [
     {
