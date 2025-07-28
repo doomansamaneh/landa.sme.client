@@ -22,7 +22,7 @@
           flat
           class="primary-shadow primary-gradient text-body2 text-white"
         >
-          آپلود تصویر جدید
+          {{ $t("shared.labels.uploadNewImage") }}
         </q-btn>
         <q-btn
           no-caps
@@ -31,7 +31,7 @@
           flat
           class="text-body2 text-on-dark"
         >
-          حذف
+          {{ $t("shared.labels.delete") }}
         </q-btn>
       </div>
     </div>
@@ -40,12 +40,15 @@
       <div class="q-col-gutter-lg">
         <div class="row">
           <div class="col-md-4 col-sm-8 col-xs-12">
-            <custom-input label="کد" v-model="model.value.code" />
+            <custom-input
+              :label="$t('shared.labels.code')"
+              v-model="model.value.code"
+            />
           </div>
         </div>
         <div>
           <q-option-group
-            label="نوع"
+            :label="$t('shared.labels.type')"
             inline
             :options="
               helper.getEnumOptions(customerType, 'customerType')
@@ -57,7 +60,7 @@
         <div v-if="model.value?.typeId == customerType.legal">
           <custom-input
             v-model="model.value.name"
-            label="نام"
+            :label="$t('shared.labels.name')"
             rquired
           />
         </div>
@@ -65,20 +68,20 @@
           <div class="col-md col-sm col-xs-12">
             <custom-input
               v-model="model.value.person.name"
-              label="نام"
+              :label="$t('shared.labels.name')"
               rquired
             />
           </div>
           <div class="col-md col-sm col-xs-12">
             <custom-input
               v-model="model.value.person.lastName"
-              label="نام خانوادگی"
+              :label="$t('shared.labels.lastName')"
               rquired
             />
           </div>
           <div class="col-md col-sm col-xs-12">
             <q-item-label class="q-mb-sm text-body2 caption-on-dark">
-              جنسیت
+              {{ $t("shared.labels.gender") }}
             </q-item-label>
             <div class="row q-pt-xs q-col-gutter-md">
               <q-option-group
@@ -95,12 +98,12 @@
           <unit-lookup
             v-model:selectedId="model.value.unitId"
             v-model:selectedText="model.value.unitTitle"
-            label="واحد سازمانی"
+            :label="$t('shared.labels.organizationalUnit')"
             required
           />
         </div>
         <div>
-          <custom-label label="نقش" />
+          <custom-label :label="$t('shared.labels.role')" />
           <div class="q-gutter-sm q-pt-xs">
             <q-option-group
               inline
@@ -116,7 +119,7 @@
           <custom-input
             v-model="model.value.comment"
             type="textarea"
-            label="شرح"
+            :label="$t('shared.labels.description')"
             autogrow
           />
         </div>
@@ -124,7 +127,7 @@
           <div class="col-md-4 col-sm-4 col-xs-6">
             <custom-input-number
               v-model="model.value.marketingPercent"
-              label="درصد بازاریابی"
+              :label="$t('shared.labels.marketingPercentage')"
             />
           </div>
         </div>

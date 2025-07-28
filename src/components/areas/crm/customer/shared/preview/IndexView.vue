@@ -24,7 +24,7 @@
           v-if="model.code && model.code !== '-'"
           class="ellipsis_ caption-on-dark text-h6_"
         >
-          کد: {{ model.code }}
+          {{ $t("shared.labels.code") }}: {{ model.code }}
         </div>
         <div class="ellipsis caption-on-dark text-h5">
           {{ model.unitTitle }}
