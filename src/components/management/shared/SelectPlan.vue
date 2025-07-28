@@ -102,7 +102,7 @@
         <q-radio
           v-model="model.gatewayTypeId"
           checked-icon="task_alt"
-          :val="ipgGateWayes.smatriz"
+          :val="ipgGateWayes.smartiz"
           color=""
           dense
           size="40px"
@@ -123,6 +123,15 @@
           </div>
         </q-radio>
       </div>
+
+      <div class="row_items-center">
+        <custom-input
+          v-if="model.gatewayTypeId === ipgGateWayes.smartiz"
+          v-model="model.paymentUserName"
+          label="شماره مشتری در اسمارتیز"
+          required
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -134,6 +143,7 @@
   import { guidEmpty, ipgGateWayes } from "src/constants/enums";
 
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import PlanLookup from "src/components/shared/lookups/PlanLookup.vue";
 
   const props = defineProps({ model: Object });

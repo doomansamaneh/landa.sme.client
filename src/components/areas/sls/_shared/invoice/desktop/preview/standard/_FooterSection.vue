@@ -29,7 +29,7 @@
           >
             <span>
               <strong style="padding: 0 5px">
-                {{ t("shared.labels.totalReceipt") }}
+                {{ t("shared.columns.totalReceipt") }}
               </strong>
               {{
                 helper.formatNumber(model.invoiceRemained.payedAmount)
@@ -38,7 +38,7 @@
 
             <span>
               <strong style="padding: 0 5px">
-                {{ t("shared.labels.remained") }}
+                {{ t("shared.columns.remained") }}
               </strong>
               <span class="text-weight-600">
                 {{
@@ -50,7 +50,7 @@
             <template v-if="model.invoiceRemained.otherRemained">
               <span>
                 <strong style="padding: 0 5px">
-                  {{ t("shared.labels.remainedButThisYear") }}
+                  {{ t("shared.columns.remainedButThisYear") }}
                 </strong>
                 <span class="text-weight-600">
                   {{
@@ -63,7 +63,7 @@
 
               <span>
                 <strong style="padding: 0 5px">
-                  {{ t("shared.labels.remainedTotal") }}
+                  {{ t("shared.columns.remainedTotal") }}
                 </strong>
                 {{
                   helper.formatNumber(
@@ -106,6 +106,7 @@
         <tr>
           <td
             style="
+              width: 50%;
               padding: 5px;
               border-width: 1px;
               border-style: solid;

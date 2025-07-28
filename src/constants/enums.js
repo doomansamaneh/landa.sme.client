@@ -218,7 +218,7 @@ export const voucherStatus = {
 
 export const ipgGateWayes = {
   sadad: 2033,
-  smatriz: 2034,
+  smartiz: 2034,
 };
 
 export const paymentOrReceipt = {
