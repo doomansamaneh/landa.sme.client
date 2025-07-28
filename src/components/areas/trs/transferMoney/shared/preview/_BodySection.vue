@@ -61,7 +61,7 @@
             style="padding: 5px; border: 1px solid #2d2d2d"
           >
             <span>
-              جمع کل:
+              {{ $t("shared.labels.total") }}:
               <span class="text-weight-800">
                 {{ model?.amount.toLocaleString() }}
               </span>

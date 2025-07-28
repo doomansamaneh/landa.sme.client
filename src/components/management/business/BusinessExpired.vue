@@ -48,7 +48,7 @@
     <q-card-section class="flex items-center justify-center">
       <img src="/sad.svg" alt="expired" class="q-mt-md" />
       <span class="text-subtitle1 text-center q-mt-md">
-        متاسفانه کسب و کار شما منقضی شده است.
+        {{ $t("shared.labels.businessExpiredMessage") }}
       </span>
 
       <renew-subscribtion

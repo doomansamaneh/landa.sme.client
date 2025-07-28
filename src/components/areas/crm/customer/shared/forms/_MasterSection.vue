@@ -134,7 +134,7 @@
             class="q-mb-sm text-body2"
             dense
             v-model="model.value.isActive"
-            label="فعال"
+            :label="$t('shared.columns.isActive')"
           />
         </div>
       </div>

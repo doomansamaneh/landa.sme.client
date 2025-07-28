@@ -40,9 +40,7 @@
         'no-padding': $q.screen.lt.sm,
       }"
     >
-      شما می‌توانید با یک نام کاربری، چندین کسب و کار ایجاد کنید. هر
-      کسب و کار داده‌های ویژه خود را دارد و اشتراک جداگانه‌ای برای آن
-      محاسبه می‌شود.
+      {{ $t("page.add-business.description") }}
     </q-card-section>
 
     <q-card-section

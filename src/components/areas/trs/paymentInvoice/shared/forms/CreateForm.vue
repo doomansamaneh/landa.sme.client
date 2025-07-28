@@ -1,7 +1,7 @@
 <template>
   <q-card flat class="tips">
     <q-card-section>
-      <div class="title q-mb-sm">راهنما</div>
+      <div class="title q-mb-sm">{{ $t("shared.labels.userGuide") }}</div>
       <div class="text-body1">
         <p>
           با ثبت این فرم، مانده صورتحساب انتخاب شده تسویه می‌شود، اما

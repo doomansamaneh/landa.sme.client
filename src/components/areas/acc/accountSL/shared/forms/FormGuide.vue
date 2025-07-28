@@ -1,7 +1,7 @@
 <template>
   <q-card flat class="tips">
     <q-card-section>
-      <div class="title">راهنما</div>
+      <div class="title">{{ $t("shared.labels.userGuide") }}</div>
       <div class="q-mt-md text-body1">
         <ul class="q-gutter-y-md">
           <li>

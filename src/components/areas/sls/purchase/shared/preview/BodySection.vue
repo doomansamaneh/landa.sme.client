@@ -328,7 +328,7 @@
             colspan="6"
             class="text-right"
           >
-            <strong>جمع کل:</strong>
+            <strong>{{ $t("shared.labels.total") }}:</strong>
             ({{ numberToWords(model?.totalPrice ?? 0) }}
             <b>{{ model?.currencyTitle }})</b>
           </td>

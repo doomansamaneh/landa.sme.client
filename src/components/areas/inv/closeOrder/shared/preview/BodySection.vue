@@ -107,7 +107,7 @@
             colspan="4"
             class="text-right"
           >
-            <strong>جمع کل:</strong>
+            <strong>{{ $t("shared.labels.total") }}:</strong>
           </td>
           <td style="padding: 3px; border: 1px solid #2d2d2d">
             <span class="text-weight-600">

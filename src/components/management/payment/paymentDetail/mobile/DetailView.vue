@@ -140,9 +140,9 @@
           <div class="row q-col-gutter-lg">
             <div class="col-md col-sm col-xs text-body3 q-mb-md">
               <div class="q-mb-sm">
-                {{ $t("page.payment-detail.seller") }}:
+                {{ $t("page.payment-detail.seller") }}
                 <span class="text-weight-600">
-                  حسابداری آنلاین لاندا
+                  {{ appConfigStore.model.value.companySetting.name }}
                 </span>
               </div>
               <div>
@@ -175,7 +175,9 @@
                 <th>
                   {{ $t("page.payment-detail.row") }}
                 </th>
-                <th>عنوان</th>
+                <th>
+                  {{ $t("shared.labels.title") }}
+                </th>
                 <th>
                   {{ $t("page.payment-detail.amount") }}
                 </th>
@@ -200,8 +202,10 @@
                     </div>
                     <div>
                       <span class="">
-                        دوره: ({{ model.fromDateString }} -
-                        {{ model.toDateString }})
+                        {{ $t("shared.labels.period") }}: ({{
+                          model.fromDateString
+                        }}
+                        - {{ model.toDateString }})
                       </span>
                     </div>
                   </div>
@@ -209,7 +213,7 @@
                 <td>
                   {{ model.month }}
                 </td>
-                <td>ماه</td>
+                <td>{{ $t("shared.labels.month") }}</td>
                 <td>
                   {{ helper.formatNumber(model.planCost) }}
                 </td>
@@ -233,7 +237,9 @@
               </tr>
               <tr>
                 <td class="text-right" colspan="5">
-                  <span class="text-bold">تخفیف:</span>
+                  <span class="text-bold">
+                    {{ $t("shared.labels.discount") }}:
+                  </span>
                 </td>
                 <td>
                   {{
@@ -245,7 +251,9 @@
               </tr>
               <tr>
                 <td class="text-right" colspan="5">
-                  <span class="q-pl-xs text-bold">جمع کل:</span>
+                  <span class="q-pl-xs text-bold">
+                    {{ $t("shared.labels.total") }}:
+                  </span>
                   <span v-if="model?.amount">
                     ({{ numberToWords(model?.amount) }}
                     <span class="text-bold">
@@ -270,6 +278,7 @@
   import { helper } from "src/helpers";
   import { usePrint } from "src/composables/usePrint";
   import { numberToWords } from "@persian-tools/persian-tools";
+  import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   const props = defineProps({
     model: Object,
@@ -277,6 +286,7 @@
   });
 
   const printStore = usePrint();
+  const appConfigStore = useAppConfigModel();
 </script>
 
 <style scoped>

@@ -60,7 +60,11 @@
     <table class="q-table data-table">
       <tbody>
         <tr>
-          <td><span class="text-body3">جمع کل:</span></td>
+          <td>
+            <span class="text-body3">
+              {{ $t("shared.labels.total") }}:
+            </span>
+          </td>
           <td>
             <div class="text-body3 text-bold" style="text-align: end">
               {{ helper.formatNumber(model.amount) }}

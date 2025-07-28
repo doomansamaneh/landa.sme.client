@@ -146,9 +146,11 @@
 
         <q-item-section>
           <q-item-label lines="1" class="text-h6 text-weight-600">
-            درآمد خالص
+            {{ $t("shared.labels.netIncome") }}
           </q-item-label>
-          <q-item-label lines="1">سود پیش از کسر مالیات</q-item-label>
+          <q-item-label lines="1">
+            {{ $t("shared.labels.profitBeforeTax") }}
+          </q-item-label>
         </q-item-section>
 
         <q-item-section side class="ext-subtitle1 text-weight-700">

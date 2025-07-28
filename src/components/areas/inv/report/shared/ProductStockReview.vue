@@ -75,6 +75,7 @@
 <script setup>
   import { ref } from "vue";
   import { useProductStockReview } from "src/components/areas/inv/_composables/useProductStockReview";
+  import { useI18n } from "vue-i18n";
 
   import ReviewProductGroup from "../desktop/ReviewProductGroup.vue";
   import ReviewProduct from "../desktop/ReviewProduct.vue";
@@ -95,10 +96,11 @@
     title: String,
   });
 
+  const { t } = useI18n();
+
   const reviewStore = useProductStockReview();
 
   const tab = ref("pg");
 
-  const tip =
-    "بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در تب‌های پس از آن مشاهده کنید";
+  const tip = t("shared.labels.salesReviewTip");
 </script>

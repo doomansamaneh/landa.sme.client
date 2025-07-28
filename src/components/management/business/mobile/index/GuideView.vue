@@ -7,7 +7,7 @@
     <q-card class="no-shadow no-border">
       <q-card-section>
         <div class="row items-center justify-between">
-          <div class="text-body1 text-weight-700">راهنما</div>
+          <div class="text-body1 text-weight-700">{{ $t("shared.labels.userGuide") }}</div>
           <q-btn
             no-caps
             round

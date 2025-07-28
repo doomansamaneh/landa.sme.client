@@ -35,7 +35,7 @@
             dense
             size="48px"
             v-model="formStore.model.value.isActive"
-            label="فعال"
+            :label="$t('shared.columns.isActive')"
           />
         </div>
       </q-form>
