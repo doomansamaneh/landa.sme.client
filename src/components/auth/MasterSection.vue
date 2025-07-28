@@ -7,13 +7,15 @@
       <div class="">
         <div class="row items-center justify-between q-mb-lg">
           <div class="flex items-center">
-            <div class="text-h5 text-weight-700">ورود</div>
+            <div class="text-h5 text-weight-700">
+              {{ $t("shared.labels.login") }}
+            </div>
             <a
               href="https://my.landa-sme.ir/"
               target="_blank"
               class="no-decoration decoration-on-hover q-ml-sm text-body2 text-weight-700 text-white bg-red rounded-borders q-py-xs q-px-sm"
             >
-              ورود با نسخه قدیمی
+              {{ $t("shared.labels.loginWithOldVersion") }}
             </a>
           </div>
           <q-btn
@@ -26,7 +28,7 @@
             padding="8px 16px"
             class="primary-gradient text-body1 signup"
           >
-            ثبت‌نام
+            {{ $t("shared.labels.signup") }}
           </q-btn>
         </div>
       </div>
@@ -110,7 +112,7 @@
               class="q-mb-sm text-body1"
               :class="$q.dark.isActive ? 'text-white' : 'text-grey-8'"
             >
-              کد امنیتی
+              {{ $t("shared.labels.securityCode") }}
             </div>
           </div>
 

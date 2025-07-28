@@ -738,7 +738,11 @@
       "slAccountGuidePurchase": "حسابهای پرداختنی تجاری با کد 30103",
       "discountAccountGuidePurchase": "برگشت از خرید و تخفیفها با کد 81002",
       "productAccountGuidePurchase": "خرید کالا با کد 81001 یا موجودی مواد اولیه با کد 10501",
-      "serviceAccountGuidePurchase": "خرید کالا و خدمات با کد 81001. همچنین می‌توانید یک حساب معین هزینه جداگانه ایجاد کنید"
+      "serviceAccountGuidePurchase": "خرید کالا و خدمات با کد 81001. همچنین می‌توانید یک حساب معین هزینه جداگانه ایجاد کنید",
+      "login": "ورود",
+      "loginWithOldVersion": "ورود با نسخه قدیمی",
+      "signup": "ثبت‌نام",
+      "securityCode": "کد امنیتی"
     },
     "productType": {
       "main": "اصلی",
