@@ -206,7 +206,7 @@
             "
             true-value="1"
             false-value="0"
-            label="فعال"
+            :label="$t('shared.columns.isActive')"
             dense
             size="46px"
           />

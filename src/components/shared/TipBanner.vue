@@ -27,20 +27,28 @@
   </q-card>
 </template>
 
+<script>
+  import { useI18n } from "vue-i18n";
+
+  export default {
+    props: {
+      title: {
+        type: String,
+        default() {
+          const { t } = useI18n();
+          return t("shared.labels.userGuide");
+        },
+      },
+      tip: String,
+      closeable: Boolean,
+    },
+  };
+</script>
+
 <script setup>
   import { ref } from "vue";
 
-  const props = defineProps({
-    title: {
-      type: String,
-      default: "راهنما",
-    },
-    tip: String,
-    closeable: Boolean,
-  });
-
   const status = ref(true);
-
   const toggle = () => {
     status.value = !status.value;
   };

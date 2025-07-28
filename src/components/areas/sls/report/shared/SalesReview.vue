@@ -113,6 +113,7 @@
 <script setup>
   import { ref } from "vue";
   import { useSalesReview } from "src/components/areas/acc/_composables/useSalesReview";
+  import { useI18n } from "vue-i18n";
 
   import ReviewPg from "../desktop/ReviewProductGroup.vue";
   import ReviewPrd from "../desktop/ReviewProduct.vue";
@@ -133,10 +134,10 @@
     actionName: { type: String, default: "Invoice" },
   });
 
+  const { t } = useI18n();
   const salesReviewStore = useSalesReview();
 
   const tab = ref("pg");
 
-  const tip =
-    "بر روی سطر مورد نظر دابل کلیک کنید تا گردشهای آن ردیف را در تب‌های پس از آن مشاهده کنید";
+  const tip = t("shared.labels.salesReviewTip");
 </script>

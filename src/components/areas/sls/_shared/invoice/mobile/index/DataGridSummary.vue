@@ -22,7 +22,9 @@
 
           <div class="col">
             <div class="row q-gutter-xs">
-              <div class="text-caption">جمع کل:</div>
+              <div class="text-caption">
+                {{ $t("shared.labels.total") }}:
+              </div>
               <div class="text-bold text-white text-caption">
                 {{
                   helper.formatNumberReadable(
@@ -83,7 +85,9 @@
           </div>
           <div class="col">
             <div class="row q-gutter-xs">
-              <div class="text-caption">جمع کل:</div>
+              <div class="text-caption">
+                {{ $t("shared.labels.total") }}:
+              </div>
               <div class="text-bold text-caption">
                 {{
                   helper.formatNumberReadable(

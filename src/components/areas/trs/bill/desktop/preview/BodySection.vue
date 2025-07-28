@@ -70,7 +70,7 @@
             colspan="3"
             class="text-right"
           >
-            <strong>جمع کل:</strong>
+            <strong>{{ $t("shared.labels.total") }}:</strong>
             (
             {{ numberToWords(model?.amount) }}
             <strong>{{ model?.currencyTitle }}</strong>
@@ -203,7 +203,7 @@
             colspan="5"
             class="text-right"
           >
-            <strong>جمع کل:</strong>
+            <strong>{{ $t("shared.labels.total") }}:</strong>
             (
             {{
               numberToWords(

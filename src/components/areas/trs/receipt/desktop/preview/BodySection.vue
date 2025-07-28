@@ -246,7 +246,7 @@
             colspan="5"
             class="text-right"
           >
-            <strong>جمع کل:</strong>
+            <strong>{{ $t("shared.labels.total") }}:</strong>
             (
             {{
               numberToWords(
