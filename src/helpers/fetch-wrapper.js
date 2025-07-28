@@ -84,30 +84,24 @@ function createRequest(method, responseType) {
 }
 
 function getAuthHeaders(url) {
-  const { user } = useAuthStore();
-  const isLoggedIn = !!user?.token;
+  const { currentUser } = useAuthStore();
+  const isLoggedIn = !!currentUser?.token;
 
   const headers = {};
 
   if (isLoggedIn && isApiUrl(url)) {
-    headers.Authorization = `Bearer ${user.token}`;
+    headers.Authorization = `Bearer ${currentUser.token}`;
   }
-
-  // const cookie = getCookie(".Landa.SME.Culture")
-  // if (cookie) {
-  //   headers.Cookie = cookie
-  // }
-
   return headers;
 }
 
-function getCookie(name) {
-  //return `${name}=fa`
-  const cookieValue = document.cookie.match(
-    `(^|[^;]+)\\s*${name}\\s*=\\s*([^;]+)`
-  );
-  return cookieValue ? cookieValue.pop() : null;
-}
+// function getCookie(name) {
+//   //return `${name}=fa`
+//   const cookieValue = document.cookie.match(
+//     `(^|[^;]+)\\s*${name}\\s*=\\s*([^;]+)`
+//   );
+//   return cookieValue ? cookieValue.pop() : null;
+// }
 
 function handleKnownError(url, response) {
   if (response.data.code === 0 || response.data.code === 500)
@@ -123,9 +117,9 @@ function handleError(url, error) {
   };
   if (error.response) {
     alertData.status = error.response.status;
-    const { user, logout } = useAuthStore();
+    const { currentUser, logout } = useAuthStore();
     if (error.response.status === 401) {
-      if (user) {
+      if (currentUser) {
         logout();
       }
     } else if (error.response.status === 403) {

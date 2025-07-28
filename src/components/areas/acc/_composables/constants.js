@@ -162,12 +162,16 @@ export const accountItemColumns = [
 
 export const journalBookTaxColumns = [
   { ...voucherNo, label: "journalVoucherNo" },
+  { ...voucherDate, label: "journalVoucherDate", showFilter: false },
   { ...clCode, label: "journalClCode" },
   { ...clTitle, label: "journalClTitle" },
   { ...slCode, label: "journalSlCode" },
   { ...slTitle, label: "journalSlTitle" },
-  //{ ...dlCode, label: "کد حساب تفصیلی" },
-  //{ ...dlTitle, label: "عنوان حساب تفصیلی" },
+  {
+    ...voucherSubject,
+    label: "journalVoucherSubject",
+    showFilter: false,
+  },
   {
     ...debitRemained,
     label: "journalDebit",
@@ -177,12 +181,6 @@ export const journalBookTaxColumns = [
     ...creditRemained,
     label: "journalCredit",
     //format: (val) => val / 1_000_000,
-  },
-  { ...voucherDate, label: "journalVoucherDate", showFilter: false },
-  {
-    ...voucherSubject,
-    label: "journalVoucherSubject",
-    showFilter: false,
   },
 ];
 

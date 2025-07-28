@@ -60,7 +60,7 @@
   async function changePassword() {
     await fetchWrapper
       .post("scr/users/changePassword", {
-        id: authStore.user.id,
+        id: authStore.currentUser.id,
         oldPassword: oldPassword.value,
         password: newPassword.value,
         confirmPassword: confirmNewPassword.value,

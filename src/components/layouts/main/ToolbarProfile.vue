@@ -20,8 +20,8 @@
             <customer-avatar
               size="72px"
               text-color="white"
-              :item="authStore.user?.id"
-              :text-holder="authStore.user?.fullName"
+              :item="authStore.currentUser?.id"
+              :text-holder="authStore.currentUser?.fullName"
               text-holder-class="text-h5 text-bold "
               :avatar="avatar"
             />
@@ -130,7 +130,7 @@
   }
 
   const username = computed(() => {
-    if (authStore.user) return authStore.user.fullName;
+    if (authStore.currentUser) return authStore.currentUser.fullName;
     return "";
   });
 </script>

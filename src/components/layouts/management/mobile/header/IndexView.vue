@@ -122,7 +122,7 @@
   const headerStore = useHeader();
 
   const username = computed(() => {
-    if (authStore.user) return authStore.user.fullName;
+    if (authStore.currentUser) return authStore.currentUser.fullName;
     return "";
   });
 

@@ -29,4 +29,6 @@
   import Background from "src/assets/BusinessBackground.vue";
 
   const gridStore = useBusinessGrid();
+
+  gridStore.reset();
 </script>

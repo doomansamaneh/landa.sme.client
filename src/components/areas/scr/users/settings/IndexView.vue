@@ -6,7 +6,7 @@
           {{ $t("shared.labels.settings") }}
         </div>
         <settings-card :class="cardClass">
-          <user-profile-section :user="authStore.user" />
+          <user-profile-section :user="authStore.currentUser" />
           <settings-menu-item
             v-for="item in settingsMenuItems"
             :key="item.to"

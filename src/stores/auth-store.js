@@ -3,7 +3,7 @@ import { fetchWrapper, encryptor } from "../helpers";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: JSON.parse(localStorage.getItem("user")),
+    currentUser: JSON.parse(localStorage.getItem("user")),
     returnUrl: null,
     isLoggingIn: false,
     captcha: null,
@@ -40,12 +40,12 @@ export const useAuthStore = defineStore("auth", {
     },
 
     setUser(response) {
-      this.user = response.data.data;
-      localStorage.setItem("user", JSON.stringify(this.user));
+      this.currentUser = response.data.data;
+      localStorage.setItem("user", JSON.stringify(this.currentUser));
     },
 
     clearUser() {
-      this.user = null;
+      this.currentUser = null;
       localStorage.removeItem("user");
     },
 

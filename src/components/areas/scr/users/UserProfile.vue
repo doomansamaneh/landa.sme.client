@@ -50,7 +50,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted, computed } from "vue";
+  import { computed } from "vue";
 
   import { useAuthStore } from "src/stores";
   import { helper } from "src/helpers";
@@ -58,7 +58,7 @@
   const authStore = useAuthStore();
 
   const username = computed(() => {
-    if (authStore.user) return authStore.user.fullName;
+    if (authStore.currentUser) return authStore.currentUser.fullName;
     return "";
   });
 </script>
