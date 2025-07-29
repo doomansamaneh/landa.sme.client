@@ -42,7 +42,7 @@
       <sl-lookup
         v-model:selectedId="localFormStore.model.value.slId"
         v-model:selectedText="localFormStore.model.value.slDisplay"
-        :label="$t('shared.labels.subLedgerAccount')"
+        :label="$t('shared.columns.slTitle')"
       />
     </div>
   </div>

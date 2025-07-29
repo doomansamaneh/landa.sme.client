@@ -115,6 +115,29 @@ export const clTitle = {
   showFilter: true,
 };
 
+export const glCode = {
+  name: "glCode",
+  field: "glCode",
+  sortable: true,
+  label: "glCode",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  style: "width: 80px;",
+  showFilter: true,
+};
+
+export const glTitle = {
+  name: "glTitle",
+  field: "glTitle",
+  sortable: true,
+  label: "glTitle",
+  class: "text-left",
+  cellClass: "text-left",
+  cellStyle: "",
+  showFilter: true,
+};
+
 export const dlCode = {
   name: "dlCode",
   field: "dlCode",

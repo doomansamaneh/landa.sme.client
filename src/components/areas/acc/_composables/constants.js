@@ -19,8 +19,8 @@ import {
   creditRemained,
   inlineDebit,
   voucherNo,
-  clCode,
-  clTitle,
+  glCode,
+  glTitle,
   slCode,
   slTitle,
   dlCode,
@@ -163,8 +163,8 @@ export const accountItemColumns = [
 export const journalBookTaxColumns = [
   { ...voucherNo, label: "journalVoucherNo" },
   { ...voucherDate, label: "journalVoucherDate", showFilter: false },
-  { ...clCode, label: "journalClCode" },
-  { ...clTitle, label: "journalClTitle" },
+  { ...glCode, label: "journalGlCode" },
+  { ...glTitle, label: "journalGlTitle" },
   { ...slCode, label: "journalSlCode" },
   { ...slTitle, label: "journalSlTitle" },
   {

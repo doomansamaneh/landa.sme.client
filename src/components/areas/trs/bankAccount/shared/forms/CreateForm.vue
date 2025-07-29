@@ -6,7 +6,7 @@
           v-model:selectedId="formStore.model.value.slId"
           v-model:selectedText="formStore.model.value.slDisplay"
           :filter-expression="filterSL"
-          :label="$t('shared.labels.subLedgerAccount')"
+          :label="$t('shared.columns.slTitle')"
           required
         />
       </div>
@@ -30,7 +30,7 @@
           v-model:selectedText="
             formStore.model.value.bankAccountTypeTitle
           "
-          :label="$t('shared.labels.bankAccountTypeTitle')"
+          :label="$t('shared.columns.bankAccountTypeTitle')"
           required
         />
       </div>
