@@ -4,7 +4,7 @@
       <go-back-link />
 
       <div
-        class="title-width ellipsis-2-lines text-weight-700"
+        class="title-width_ ellipsis-2-lines text-weight-700 q-mr-sm"
         :class="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
       >
         <span class="text-body2">
@@ -30,7 +30,7 @@
         no-caps
         dense
         round
-        class="text-caption q-mr-sm"
+        class="text-caption"
         unelevated
         @click="bottomSheet?.show()"
       >
