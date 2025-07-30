@@ -77,7 +77,9 @@
                   :class="$q.screen.gt.sm ? 'q-mr-md' : ''"
                 >
                   <q-item-section>
-                    <q-item-label>
+                    <q-item-label
+                      class="text-body3 text-bold text-grey"
+                    >
                       {{
                         $t(
                           `shared.feedbackStatus.${helper.getEnumType(
@@ -88,7 +90,10 @@
                       }}
                     </q-item-label>
                     <q-item-label>
-                      <div v-html="item.comment"></div>
+                      <div
+                        class="ellipsis text-body2"
+                        v-html="item.comment"
+                      ></div>
                     </q-item-label>
                     <q-item-label caption>
                       {{ item.dateString }}

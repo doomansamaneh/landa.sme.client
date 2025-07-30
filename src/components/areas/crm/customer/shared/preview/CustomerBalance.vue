@@ -3,25 +3,25 @@
     <div class="col-md-4 col-sm-4 col-xs-12">
       <number-widget
         :value="balanceModel.debit"
-        title="گردش بدهکار"
+        :title="$t('shared.labels.debitTurnover')"
       />
     </div>
     <div class="col-md-4 col-sm-4 col-xs-12">
       <number-widget
         :value="balanceModel.credit"
-        title="گردش بستانکار"
+        :title="$t('shared.labels.creditTurnover')"
       />
     </div>
     <div class="col-md-4 col-sm-4 col-xs-12">
       <number-widget
         v-if="balanceModel.creditRemained"
         :value="balanceModel.creditRemained"
-        title="مانده بستانکار"
+        :title="$t('shared.labels.creditBalance')"
       />
       <number-widget
         v-else
         :value="balanceModel.debitRemained"
-        title="مانده بدهکار"
+        :title="$t('shared.labels.debitBalance')"
       />
     </div>
   </div>

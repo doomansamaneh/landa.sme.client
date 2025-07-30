@@ -14,7 +14,7 @@
         </q-btn>
 
         <div
-          class="title-width ellipsis-2-lines text-weight-700"
+          class="title-width_ ellipsis-2-lines text-weight-700"
           :class_="$q.screen.gt.sm ? 'text-h6' : 'text-body2'"
         >
           <slot name="header-title">

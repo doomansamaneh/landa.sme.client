@@ -6,24 +6,32 @@
     full-width
     position="bottom"
     transition-show="slide-up"
+    transition-duration="600"
     transition-hide="slide-down"
   >
     <q-card
-      :style="`min-height: ${minHeight}px`"
+      :style="`min-height: ${dynamicMinHeight}px; max-height: 750px;`"
       class="no-border border-radius-lg bottom-sheet"
     >
-      <q-card-section class="no-padding">
-        <slot name="header">
-          <div
-            v-if="header"
-            class="q-pt-lg q-pb-sm q-px-lg text-body2 text-center"
-          >
+      <div v-touch-swipe.mouse.down="closeBottomSheet">
+        <div class="flex items-center justify-center">
+          <q-separator
+            size="4px"
+            style="width: 40px; border-radius: 25px"
+            spaced
+          />
+        </div>
+        <q-card-section
+          v-if="header"
+          class="header-sticky q-px-md q-pt-none q-pb-sm text-body2 text-center"
+        >
+          <slot name="header">
             <slot name="header-title" />
-          </div>
-        </slot>
-      </q-card-section>
+          </slot>
+        </q-card-section>
+      </div>
 
-      <q-card-section class="no-padding">
+      <q-card-section class="no-padding scroll hide-scrollbar">
         <slot name="body" />
       </q-card-section>
     </q-card>
@@ -31,28 +39,30 @@
 </template>
 
 <script setup>
-  import { onBeforeRouteLeave } from "vue-router";
   import { ref } from "vue";
 
   const props = defineProps({
     status: Boolean,
     header: Boolean,
-    minHeight: String,
+    minHeight: Number,
   });
 
   const bottomSheet = ref(null);
 
-  // Todo: How to prevent backButton from router
-  // onBeforeRouteLeave((to, from, next) => {
-  //   if (props.status) {
-  //     bottomSheet.value.hide();
-  //     next(false);
-
-  //     setTimeout(() => {
-  //       next();
-  //     }, 300);
-  //   } else {
-  //     next();
-  //   }
-  // });
+  function closeBottomSheet() {
+    bottomSheet.value.hide();
+  }
 </script>
+
+<style scoped>
+  .scroll {
+    max-height: calc(100vh - 350px);
+    overflow-y: auto;
+  }
+
+  .header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+</style>

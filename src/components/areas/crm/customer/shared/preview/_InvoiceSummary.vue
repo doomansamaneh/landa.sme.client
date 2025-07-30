@@ -5,7 +5,9 @@
     v-if="dataStore.data?.value?.total"
   >
     <q-card-section class="q-pa-lg">
-      <div class="text-h6 text-weight-700">فاکتورهای فروش</div>
+      <div class="text-h6 text-weight-700">
+        {{ $t("shared.labels.salesInvoices") }}
+      </div>
     </q-card-section>
 
     <q-card-section
@@ -25,7 +27,7 @@
 
           <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
-              جمع کل
+              {{ $t("shared.labels.total") }}
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
@@ -65,7 +67,7 @@
 
           <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
-              امسال
+              {{ $t("shared.labels.thisYear") }}
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
@@ -113,7 +115,7 @@
 
           <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
-              دریافت شده
+              {{ $t("shared.labels.received") }}
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
@@ -159,7 +161,7 @@
 
           <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
-              مانده
+              {{ $t("shared.labels.remaining") }}
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
