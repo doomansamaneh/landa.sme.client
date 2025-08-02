@@ -1,6 +1,6 @@
 <template>
   <q-card-actions
-    class="q-pa-md dark-1"
+    class="q-pa-md bg-main"
     :class="$q.screen.xs ? 'fixed-bottom' : ''"
   >
     <slot name="start"></slot>
@@ -15,7 +15,9 @@
         rounded
         class="primary-gradient primary-shadow"
       >
-        <slot name="ok-label">{{ $t("shared.labels.save") }}</slot>
+        <slot name="ok-label">
+          {{ $t(okLabel || "shared.labels.save") }}
+        </slot>
       </q-btn>
     </slot>
     <slot name="between"></slot>
@@ -39,6 +41,10 @@
 </template>
 
 <script setup>
+  const props = defineProps({
+    okLabel: String,
+  });
+
   const emit = defineEmits(["ok-clicked", "cancel-clicked"]);
 
   function okClicked() {

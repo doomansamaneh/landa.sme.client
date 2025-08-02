@@ -225,6 +225,7 @@
     <div v-if="tableStore.showPagebar.value" class="q-table__bottom">
       <page-bar
         :pagination="tableStore.pagination.value"
+        :loading="tableStore.showLoader.value"
         @page-changed="reloadData"
         max-pages="5"
         sizeSeletion
@@ -237,6 +238,7 @@
             unelevated
             class="text-on-dark q-mr-md"
             icon="o_refresh"
+            :disable="tableStore.showLoader.value"
             @click="reloadData"
           >
             <q-tooltip class="custom-tooltip" :delay="600">
@@ -342,6 +344,10 @@
   }
 
   async function reloadData() {
+    // Prevent reload if data is still loading
+    if (tableStore.value.showLoader.value) {
+      return;
+    }
     await tableStore.value.reloadData();
   }
 
