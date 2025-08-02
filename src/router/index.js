@@ -35,7 +35,7 @@ export default route(function (/* { store, ssrContext } */) {
 
     // Redirect to /dashboard if path === /
     if (to.path === "/") {
-      next("/dashboard");
+      next("/business");
     } else {
       next();
     }

@@ -92,7 +92,7 @@
   }
 
   .dark-1 {
-    background-color: $dark;
+    background-color: lighten($dark, 7%);
   }
 
   .dark-2,

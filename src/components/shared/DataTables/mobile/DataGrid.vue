@@ -60,7 +60,7 @@
         @click="setActiveRow(row)"
       >
         <q-card-section class="q-pa-xs">
-          <div class="row no-wrap items-start justify-between">
+          <div class="row_ no-wrap items-start justify-between">
             <router-link
               class="col q-gutter-y-xs no-decoration text-on-dark"
               :to="getPreviewRoute(row)"

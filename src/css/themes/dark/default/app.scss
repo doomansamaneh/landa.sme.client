@@ -2,7 +2,7 @@
   --q-primary: #{$primary};
   --q-secondary: #{$secondary};
   --q-accent: #{$accent};
-  --q-dark: #{$dark-page};
+  --q-dark: #{$dark};
   background-color: $dark-page;
   @include q-avatar-dark();
   @include q-tree-dark();

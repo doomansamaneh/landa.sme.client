@@ -218,7 +218,7 @@
     props.formType === invoiceFormType.sales ||
     props.formType === invoiceFormType.salesReturn
       ? $t("shared.customerRole.customer")
-      : $t("shared.labels.seller")
+      : $t("shared.labels.customer")
   );
 
   const saleTypeTitle = computed(() =>

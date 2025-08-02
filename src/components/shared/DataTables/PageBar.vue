@@ -33,6 +33,7 @@
       color="grey-8"
       active-color="primary"
       class="pagination"
+      :disable="loading"
       @update:model-value="handlePageChange"
     />
 
@@ -45,6 +46,7 @@
       outlined
       v-model="paged.pageSize"
       :options="pageSizeOptions"
+      :disable="loading"
       @update:model-value="handlePageChange"
       transition-show="flip-up"
       transition-hide="flip-down"
@@ -62,6 +64,10 @@
     sizeSeletion: Boolean,
     showPageCount: Boolean,
     maxPages: Number,
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   const paged = computed(() => props.pagination);
@@ -95,6 +101,9 @@
 
   const emit = defineEmits(["page-changed"]);
   function handlePageChange(val) {
-    emit("page-changed");
+    // Only emit if not loading
+    if (!props.loading) {
+      emit("page-changed");
+    }
   }
 </script>

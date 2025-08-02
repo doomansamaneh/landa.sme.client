@@ -7,11 +7,6 @@ export default {
   },
   children: [
     {
-      path: "/",
-      component: () =>
-        import("src/pages/areas/dashboard/IndexPage.vue"),
-    },
-    {
       path: "/landing",
       name: "landing",
       meta: {

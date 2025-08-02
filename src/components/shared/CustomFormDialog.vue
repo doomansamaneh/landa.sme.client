@@ -34,7 +34,6 @@
 
       <q-separator />
 
-
       <q-card-section
         :style="
           $q.screen.gt.xs
@@ -57,9 +56,12 @@
         </slot>
       </q-card-section>
 
-
       <slot name="action-bar">
-        <action-buttons v-if="actionBar" @ok-clicked="submitForm" />
+        <action-buttons
+          v-if="actionBar"
+          @ok-clicked="submitForm"
+          :ok-label="okLabel"
+        />
       </slot>
     </q-card>
   </q-dialog>
@@ -69,7 +71,7 @@
   import { ref } from "vue";
   import { useDialogPluginComponent } from "quasar";
 
-  import ActionButtons from "src/components/shared/forms/FormCardActions.vue";
+  import ActionButtons from "src/components/shared/Forms/FormCardActions.vue";
 
   const props = defineProps({
     title: String,
@@ -81,6 +83,7 @@
       type: String,
       default: "700px",
     },
+    okLabel: String,
   });
 
   const emit = defineEmits([...useDialogPluginComponent.emits]);

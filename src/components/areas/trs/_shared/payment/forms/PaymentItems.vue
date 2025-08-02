@@ -106,6 +106,7 @@
       okCallback: async (item) => {
         props.formStore.addRow(item);
       },
+      okLabel: "shared.labels.create",
     });
   };
 </script>
