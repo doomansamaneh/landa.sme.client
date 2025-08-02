@@ -1,5 +1,6 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { fetchWrapper, bus } from "src/helpers";
+import { useAccess } from "src/directives/useAccess";
 import { useComposables } from "src/stores/useComposables";
 
 const firstLoad = ref(false);
@@ -7,6 +8,7 @@ const isLoading = ref(false);
 const data = ref(null);
 
 export function useInvoiceSummary() {
+  const { hasAccess } = useAccess();
   const composablesStore = useComposables();
   composablesStore.register({
     reset: () => {
@@ -15,6 +17,8 @@ export function useInvoiceSummary() {
   });
 
   onMounted(() => {
+    if (!hasAccess("sls.invoice.view")) return;
+
     loadData();
     bus.on("render-page", loadData);
   });

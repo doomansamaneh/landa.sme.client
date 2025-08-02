@@ -184,13 +184,10 @@
 
 <script setup>
   import { onMounted } from "vue";
-  import { useI18n } from "vue-i18n";
   import { useRoute } from "vue-router";
   import { contactType } from "src/constants";
 
   import ContactItem from "./_DetailContactItem.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

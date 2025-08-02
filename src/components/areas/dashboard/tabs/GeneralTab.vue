@@ -74,7 +74,7 @@
           widget.class,
           { grabbable: draggable.state.isTabShaking('general') },
         ]"
-        :is="getComponentById(widget.id)"
+        :is="getComponentById(widget.id)?.component"
         :draggable="draggable.state.isTabShaking('general')"
         @dragstart="draggable.onDragStart(index)"
         @dragover.prevent
@@ -103,7 +103,7 @@
       >
         <component
           class="overflow-hidden no-pointer-events disabled non-selectable"
-          :is="getComponentById(widget.id)"
+          :is="getComponentById(widget.id)?.component"
         />
       </div>
     </div>
@@ -114,16 +114,13 @@
   import { computed } from "vue";
   import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
-  import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
+  import InvoiceSummary from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
   import SomeInfo from "src/components/areas/dashboard/widgets/NetIncome.vue";
   import RevenueExpenseByMonth from "src/components/areas/dashboard/widgets/RevenueExpenseByMonth.vue";
   import IncomeStatement from "src/components/areas/dashboard/widgets/IncomeStatement.vue";
   import RatiosWidget from "src/components/areas/dashboard/widgets/RatiosWidget.vue";
-  // import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
-  // import SalesWidget from "src/components/areas/dashboard/widgets/sales/SalesWidget.vue";
   import CashBalance from "src/components/areas/dashboard/widgets/CashBalance.vue";
   import BankBalance from "src/components/areas/dashboard/widgets/BankBalance.vue";
-  // import ExpensesWidget from "src/components/areas/dashboard/widgets/expenses/ExpenseWidget.vue";
   import RevenueExpense from "src/components/areas/dashboard/widgets/expenses/RevenueExpense.vue";
   import NewsCarousel from "src/components/areas/dashboard/widgets/NewsBanner.vue";
 
@@ -135,9 +132,6 @@
     { id: 5, class: "col-md-4 col-sm-12 col-xs-12" },
     { id: 6, class: "col-md-8 col-sm-12 col-xs-12" },
     { id: 7, class: "col-md-12 col-sm-12 col-xs-12" },
-    // { id: 8, class: "col-md-4 col-sm-12 col-xs-12" },
-    // { id: 9, class: "col-md-4 col-sm-12 col-xs-12" },
-    // { id: 10, class: "col-md-4 col-sm-6 col-xs-12" },
     { id: 8, class: "col-md-4 col-sm-12 col-xs-12" },
     { id: 9, class: "col-md-4 col-sm-6 col-xs-12" },
   ];
@@ -145,18 +139,43 @@
   const draggable = useGeneralTab(metaData);
 
   const widgets = [
-    { id: 1, component: SomeInfo },
-    { id: 2, component: InvoicesWidgetV2 },
-    { id: 3, component: NewsCarousel },
-    { id: 4, component: RevenueExpenseByMonth },
-    { id: 5, component: RatiosWidget },
-    { id: 6, component: RevenueExpense },
-    { id: 7, component: IncomeStatement },
-    // { id: 8, component: SalesWidget },
-    // { id: 9, component: ExpensesWidget },
-    // { id: 10, component: TopProducts },
-    { id: 8, component: CashBalance },
-    { id: 9, component: BankBalance },
+    { id: 1, component: SomeInfo, permission: "" },
+    {
+      id: 2,
+      component: InvoiceSummary,
+      permission: "sls.invoice.view",
+    },
+    { id: 3, component: NewsCarousel, permission: "" },
+    {
+      id: 4,
+      component: RevenueExpenseByMonth,
+      permission: "acc.report.accountReview",
+    },
+    {
+      id: 5,
+      component: RatiosWidget,
+      permission: "acc.report.accountReview",
+    },
+    {
+      id: 6,
+      component: RevenueExpense,
+      permission: "acc.report.accountReview",
+    },
+    {
+      id: 7,
+      component: IncomeStatement,
+      permission: "acc.report.accountReview",
+    },
+    {
+      id: 8,
+      component: CashBalance,
+      permission: "acc.report.accountReview",
+    },
+    {
+      id: 9,
+      component: BankBalance,
+      permission: "acc.report.accountReview",
+    },
   ];
 
   const activeButton = computed(() =>
@@ -164,5 +183,5 @@
   );
 
   const getComponentById = (id) =>
-    widgets.find((widget) => widget.id === id)?.component;
+    widgets.find((widget) => widget.id === id);
 </script>

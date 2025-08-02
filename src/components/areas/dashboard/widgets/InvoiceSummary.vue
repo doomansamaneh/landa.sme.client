@@ -246,7 +246,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers";
   import { useInvoiceSummary } from "src/components/areas/dashboard/_composables/generalTab/useInvoiceSummary";
   import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
@@ -265,7 +265,6 @@
   const isShakingComputed = computed(
     () => draggable.state.isShaking.value
   );
-  const isHoveredComputed = computed(() => draggable.isHovered.value);
 </script>
 
 <style lang="scss" scoped>

@@ -25,7 +25,7 @@
           colspan="100%"
         >
           <div class="text-body2 text-weight-500">
-            {{ $t("shared.labels.supplier") }}
+            {{ $t("shared.labels.seller") }}
           </div>
         </td>
       </tr>

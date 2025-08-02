@@ -20,7 +20,7 @@
           "
         >
           <div>
-            {{ $t("shared.labels.supplier") }}:
+            {{ $t("shared.labels.seller") }}:
             <strong>{{ model.customerName }}</strong>
           </div>
           <div v-if="model.customerSummary?.business?.nationalNo">

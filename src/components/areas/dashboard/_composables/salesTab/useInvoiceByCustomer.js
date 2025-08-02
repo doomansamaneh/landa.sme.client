@@ -1,8 +1,10 @@
 import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import { helper, fetchWrapper, bus } from "src/helpers";
+import { useAccess } from "src/directives/useAccess";
 import { useComposables } from "src/stores/useComposables";
 
 export function useInvoiceByCustomer({ dataSource, dataStore }) {
+  const { hasAccess } = useAccess();
   const _state = {
     firstLoad: ref(false),
     data: ref(null),
@@ -18,6 +20,8 @@ export function useInvoiceByCustomer({ dataSource, dataStore }) {
   });
 
   onMounted(() => {
+    if (!hasAccess("sls.invoice.view")) return;
+
     loadData();
     bus.on("render-page", loadData);
   });

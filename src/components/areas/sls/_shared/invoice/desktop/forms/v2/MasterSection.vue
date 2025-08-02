@@ -194,7 +194,7 @@
   const customerTitle =
     props.formType == invoiceFormType.sales
       ? t("shared.labels.customer")
-      : t("shared.labels.supplier");
+      : t("shared.labels.seller");
 
   const saleTypeTitle =
     props.formType == invoiceFormType.sales

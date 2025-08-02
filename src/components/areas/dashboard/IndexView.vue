@@ -37,7 +37,7 @@
   <div style="margin-top: 42px">
     <div class="row">
       <div class="col-8 col-md-8 col-sm-12">
-        <invoices-widget-v2 />
+        <invoice-summary />
       </div>
       <div class="col col-md col-sm-12">
         <sales-widget />
@@ -219,7 +219,7 @@
   import PieChart from "src/components/shared/charts/PieChart.vue";
   import DonutChart from "src/components/shared/charts/DonutChart.vue";
   import InfoCarousel from "src/components/areas/dashboard/widgets/InfoCarousel.vue";
-  import InvoicesWidgetV2 from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
+  import InvoiceSummary from "src/components/areas/dashboard/widgets/InvoiceSummary.vue";
   import SalesWidget from "src/components/areas/dashboard/widgets/SalesWidget.vue";
   import RatiosWidget from "src/components/areas/dashboard/widgets/RatiosWidget.vue";
   import MarkupTable from "src/components/shared/dataTables/MarkupTable.vue";

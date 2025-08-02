@@ -1,6 +1,6 @@
 <template>
   <q-card
-    v-access="`acc.report.accountReview`"
+    v-if="hasAccess('acc.report.accountReview')"
     :class="[isShakingComputed ? 'widget' : '']"
     class="shadow main-card fit bordered q-pa-none"
     flat
@@ -114,6 +114,7 @@
 
 <script setup>
   import { ref, computed } from "vue";
+  import { useAccess } from "src/directives/useAccess";
   import { useRevenueExpenseState } from "../_composables/generalTab/useRevenueExpenseState";
   import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
@@ -123,6 +124,7 @@
 
   const revenueExpenseStore = useRevenueExpenseState();
   const draggable = useGeneralTab();
+  const { hasAccess } = useAccess();
 
   const emit = defineEmits(["hideWidget"]);
 

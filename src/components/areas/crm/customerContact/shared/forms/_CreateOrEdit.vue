@@ -22,7 +22,7 @@
     </div>
     <div class="col-md col-sm col-xs-12">
       <custom-input
-        :label="$t('shared.columns.amount')"
+        :label="$t('shared.labels.value')"
         v-model="model.value"
       />
     </div>
@@ -41,14 +41,11 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  import { useI18n } from "vue-i18n";
+  import { computed } from "vue";
   import { sqlOperator } from "src/constants";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import ContactTypeLookup from "src/components/shared/lookups/ContactTypeLookup.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     item: Object,

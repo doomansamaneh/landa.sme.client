@@ -1,11 +1,16 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { fetchWrapper, bus, helper } from "src/helpers";
+import { useAccess } from "src/directives/useAccess";
 
 export function useReport(action) {
+  const { hasAccess } = useAccess();
+
   const model = ref([]);
   const showLoader = ref(false);
 
   async function loadData() {
+    if (!hasAccess("sls.invoice.view")) return;
+
     showLoader.value = true;
     try {
       const response = await fetchWrapper.post(

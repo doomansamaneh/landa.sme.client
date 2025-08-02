@@ -1,8 +1,10 @@
 import { ref, onMounted, onUnmounted, computed } from "vue";
 import { helper, fetchWrapper, bus } from "src/helpers";
+import { useAccess } from "src/directives/useAccess";
 import { useComposables } from "src/stores/useComposables";
 
 export function useRevenueExpense({ dataSource, dataStore }) {
+  const { hasAccess } = useAccess();
   const _state = {
     firstLoad: ref(false),
     data: ref(null),
@@ -18,6 +20,8 @@ export function useRevenueExpense({ dataSource, dataStore }) {
   });
 
   onMounted(() => {
+    if (!hasAccess("acc.report.accountReview")) return;
+
     loadData();
     bus.on("render-page", loadData);
   });

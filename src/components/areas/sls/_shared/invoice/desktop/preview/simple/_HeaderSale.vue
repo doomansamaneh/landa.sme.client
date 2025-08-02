@@ -22,7 +22,7 @@
             "
           >
             <div>
-              {{ $t("shared.labels.supplier") }}:
+              {{ $t("shared.labels.seller") }}:
               <strong>
                 {{ appConfigStore.model.value.companySetting.name }}
               </strong>
