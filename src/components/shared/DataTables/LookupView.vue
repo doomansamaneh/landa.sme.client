@@ -176,7 +176,7 @@
 
         <div
           v-if="tableStore.showPagebar.value"
-          class="q-pa-md row items-center footer dark-1"
+          class="q-pa-md row items-center footer bg-main"
         >
           <page-bar
             :pagination="tableStore.pagination.value"
@@ -368,7 +368,7 @@
 
       <div
         v-if="tableStore.showPagebar.value"
-        class="q-pa-md row items-center footer dark-1"
+        class="q-pa-md row items-center footer bg-main"
       >
         <page-bar
           :pagination="tableStore.pagination.value"

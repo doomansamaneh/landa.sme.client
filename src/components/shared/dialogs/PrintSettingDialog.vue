@@ -43,7 +43,7 @@
 
       <slot name="actions">
         <q-card-actions
-          class="q-pa-md dark-1"
+          class="q-pa-md bg-main"
           :class="$q.screen.xs ? 'absolute-bottom' : ''"
         >
           <q-space />

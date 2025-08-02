@@ -1,5 +1,5 @@
 <template>
-  <q-card-actions align="right" class="q-pa-md dark-1">
+  <q-card-actions align="right" class="q-pa-md bg-main">
     <q-btn
       no-caps
       color="primary"

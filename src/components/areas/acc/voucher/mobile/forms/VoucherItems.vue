@@ -193,7 +193,7 @@
         </q-card-section>
       </q-scroll-area>
 
-      <q-card-actions class="absolute-bottom q-pa-md dark-1">
+      <q-card-actions class="absolute-bottom q-pa-md bg-main">
         <q-btn
           no-caps
           type="submit"

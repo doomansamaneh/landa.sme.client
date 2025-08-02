@@ -181,7 +181,9 @@
                       {{ product.openingQuantity }}
                     </span>
                   </q-badge>
-                  <span class="text-bold text-caption text-on-dark-1">
+                  <span
+                    class="text-bold text-caption text-on-bg-main"
+                  >
                     موجودی
                   </span>
                 </div>

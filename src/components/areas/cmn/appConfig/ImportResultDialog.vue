@@ -59,7 +59,7 @@
         </q-list>
       </q-card-section>
 
-      <q-card-actions class="q-pa-md dark-1" align="right">
+      <q-card-actions class="q-pa-md bg-main" align="right">
         <q-btn
           no-caps
           rounded

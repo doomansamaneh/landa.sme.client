@@ -10,13 +10,13 @@
             >
               <span class="text-bold text-caption">18</span>
             </q-badge>
-            <span class="text-bold text-caption text-on-dark-1">
+            <span class="text-bold text-caption text-on-bg-main">
               فاکتورها
             </span>
           </div>
           <div class="text-h6 text-bold text-on-dark q-gutter-xs">
             240,000,000
-            <span class="text-body1 text-bold text-on-dark-1">
+            <span class="text-body1 text-bold text-on-bg-main">
               ریال
             </span>
           </div>
@@ -34,13 +34,13 @@
             >
               <span class="text-bold text-caption">0</span>
             </q-badge>
-            <span class="text-bold text-caption text-on-dark-1">
+            <span class="text-bold text-caption text-on-bg-main">
               مانده حساب
             </span>
           </div>
           <div class="text-h6 text-bold text-on-dark q-gutter-xs">
             0
-            <span class="text-body1 text-bold text-on-dark-1">
+            <span class="text-body1 text-bold text-on-bg-main">
               ریال
             </span>
           </div>
@@ -58,14 +58,14 @@
             >
               <span class="text-bold text-caption">4</span>
             </q-badge>
-            <span class="text-bold text-caption text-on-dark-1">
+            <span class="text-bold text-caption text-on-bg-main">
               بدهکار
             </span>
           </div>
           <div class="text-h6 text-bold text-on-dark q-gutter-xs">
             2,000,000
             <span
-              class="text-body1 text-bold text-on-dark-1 q-gutter-xs"
+              class="text-body1 text-bold text-on-bg-main q-gutter-xs"
             >
               ریال
             </span>
@@ -84,14 +84,14 @@
             >
               <span class="text-bold text-caption">4</span>
             </q-badge>
-            <span class="text-bold text-caption text-on-dark-1">
+            <span class="text-bold text-caption text-on-bg-main">
               بدهکار
             </span>
           </div>
           <div class="text-h6 text-bold text-on-dark q-gutter-xs">
             2,000,000
             <span
-              class="text-body1 text-bold text-on-dark-1 q-gutter-xs"
+              class="text-body1 text-bold text-on-bg-main q-gutter-xs"
             >
               ریال
             </span>

@@ -67,7 +67,7 @@
                   </custom-input-number>
                 </q-card-section>
 
-                <q-card-actions class="dark-1 q-px-md">
+                <q-card-actions class="bg-main q-px-md">
                   <q-btn
                     no-caps
                     padding="4px 12px"
@@ -136,7 +136,7 @@
                   />
                 </q-card-section>
 
-                <q-card-actions class="dark-1 q-px-md">
+                <q-card-actions class="bg-main q-px-md">
                   <q-btn
                     no-caps
                     padding="4px 12px"

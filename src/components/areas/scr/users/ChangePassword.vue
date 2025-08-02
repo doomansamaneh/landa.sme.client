@@ -87,7 +87,7 @@
       </q-card-section>
     </slot>
 
-    <q-card-actions class="q-pa-md dark-1">
+    <q-card-actions class="q-pa-md bg-main">
       <q-btn
         no-caps
         type="submit"

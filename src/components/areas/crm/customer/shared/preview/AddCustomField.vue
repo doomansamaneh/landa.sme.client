@@ -40,7 +40,7 @@
           </div>
         </div>
       </q-card-section>
-      <q-card-actions class="q-pa-md dark-1">
+      <q-card-actions class="q-pa-md bg-main">
         <div class="row q-gutter-sm">
           <q-btn
             no-caps

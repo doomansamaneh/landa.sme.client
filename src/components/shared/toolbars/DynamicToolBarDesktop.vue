@@ -1,7 +1,7 @@
 <template>
   <div v-if="showToolbar" :style="toolbarMargin">
     <q-page-sticky
-      class="z-1"
+      class="bg-main z-1"
       :style="combinedStyle"
       position="top"
       expand
