@@ -12,46 +12,54 @@
           : 'q-py-sm flex items-center justify-between'
       "
     >
-      <div>
-        <div :class="$q.screen.lt.md ? 'text-body2' : 'text-body1'">
-          <div v-html="ticket.comment"></div>
+      <div class="row items-center justify-between full-width">
+        <div class="col">
+          <div :class="$q.screen.lt.md ? 'text-body2' : 'text-body1'">
+            <div
+              :style="$q.screen.lt.md ? '' : 'width: 40%'"
+              class="ellipsis"
+              v-html="ticket.comment"
+            ></div>
+          </div>
+          <div class="text-subtitle2_">
+            {{ ticket.dateString }}
+          </div>
         </div>
-        <div class="text-subtitle2_">
-          {{ ticket.dateString }}
+
+        <div class="row items-center q-ml-md">
+          <q-chip
+            :color="getStatusColor(ticket.statusId)"
+            text-color="white"
+            size="md"
+          >
+            {{
+              $t(
+                `shared.feedbackStatus.${helper.getEnumType(
+                  ticket?.statusId,
+                  feedbackStatus
+                )}`
+              )
+            }}
+          </q-chip>
+
+          <q-btn
+            unelevated
+            round
+            dense
+            icon="refresh"
+            @click="tableStore.reloadData()"
+            class="q-ml-sm"
+          />
+          <q-btn
+            v-if="$q.screen.lt.md"
+            unelevated
+            round
+            dense
+            icon="close"
+            v-close-popup
+            class="q-ml-sm"
+          />
         </div>
-      </div>
-
-      <div class="flex items-center">
-        <q-chip
-          :color="getStatusColor(ticket.statusId)"
-          text-color="white"
-          size="md"
-        >
-          {{
-            $t(
-              `shared.feedbackStatus.${helper.getEnumType(
-                ticket?.statusId,
-                feedbackStatus
-              )}`
-            )
-          }}
-        </q-chip>
-
-        <q-btn
-          unelevated
-          round
-          dense
-          icon="refresh"
-          @click="tableStore.reloadData()"
-        />
-        <q-btn
-          v-if="$q.screen.lt.md"
-          unelevated
-          round
-          dense
-          icon="close"
-          v-close-popup
-        />
       </div>
     </q-card-section>
 
@@ -60,7 +68,7 @@
       :style="
         $q.screen.lt.md
           ? 'height: calc(100vh);'
-          : 'height: calc(100vh - 257px);'
+          : 'height: calc(100vh - 300px);'
       "
       :class="{ 'chat-disabled': isChatDisabled }"
     >
@@ -380,17 +388,6 @@
     opacity: 0.7;
     pointer-events: none;
     position: relative;
-  }
-
-  .chat-disabled::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.5);
-    z-index: 1;
   }
 
   .chat-scroll-area {

@@ -41,7 +41,7 @@
               :scrollBarStyle="
                 $q.screen.xs
                   ? 'height: calc(100vh - 150px);'
-                  : 'height: calc(100vh - 215px);'
+                  : 'height: calc(100vh - 265px);'
               "
             >
               <template #search>
