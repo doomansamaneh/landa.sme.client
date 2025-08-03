@@ -335,11 +335,12 @@ export function useInvoiceModel(config) {
         (item.quantity * item.price * value) / 100
       );
     } else {
+      item.discountPercent = 0;
       item.discount = value;
-      item.discountPercent =
-        value > 0 && item.quantity * item.price > 0
-          ? Math.floor((value * 100) / (item.quantity * item.price))
-          : 0;
+      // item.discountPercent =
+      //   value > 0 && item.quantity * item.price > 0
+      //     ? Math.floor((value * 100) / (item.quantity * item.price))
+      //     : 0;
     }
     item.discountValue = value;
   }
