@@ -49,34 +49,65 @@ function removeEmpty(obj) {
   return obj;
 }
 
+// function createRequest_(method, responseType) {
+//   // Accept 'silent' as the third argument (backward compatible with 'disableLoader')
+//   return async (url, data, silentOrDisableLoader) => {
+//     // Support both 'silent' and 'disableLoader' naming
+//     const silent = silentOrDisableLoader === true;
+//     if (!silent) onInitRequest();
+//     const fullUrl = `${baseUrl}/${url}`;
+//     const authHeaders = getAuthHeaders(fullUrl);
+
+//     let cleanedData = data;
+//     if (data instanceof FormData) {
+//       authHeaders["Content-Type"] = "multipart/form-data";
+//     } else cleanedData = removeEmpty(data);
+
+//     try {
+//       try {
+//         const response = await axios({
+//           method: method,
+//           url: fullUrl,
+//           headers: authHeaders,
+//           //data: data,
+//           data: cleanedData,
+//           responseType: responseType,
+//         });
+//         return await handleKnownError(url, response);
+//       } catch (error) {
+//         return await handleError(url, error);
+//       }
+//     } finally {
+//       if (!silent) onCompleteRequest();
+//     }
+//   };
+// }
+
 function createRequest(method, responseType) {
   // Accept 'silent' as the third argument (backward compatible with 'disableLoader')
   return async (url, data, silentOrDisableLoader) => {
-    // Support both 'silent' and 'disableLoader' naming
     const silent = silentOrDisableLoader === true;
     if (!silent) onInitRequest();
+
     const fullUrl = `${baseUrl}/${url}`;
+
     const authHeaders = getAuthHeaders(fullUrl);
 
-    let cleanedData = data;
-    if (data instanceof FormData) {
-      authHeaders["Content-Type"] = "multipart/form-data";
-    } else cleanedData = removeEmpty(data);
+    // Clean the data object unless it's FormData
+    let cleanedData =
+      data instanceof FormData ? data : removeEmpty(data);
 
     try {
-      try {
-        const response = await axios({
-          method: method,
-          url: fullUrl,
-          headers: authHeaders,
-          //data: data,
-          data: cleanedData,
-          responseType: responseType,
-        });
-        return await handleKnownError(url, response);
-      } catch (error) {
-        return await handleError(url, error);
-      }
+      const response = await axios({
+        method,
+        url: fullUrl,
+        headers: authHeaders,
+        data: cleanedData,
+        responseType,
+      });
+      return await handleKnownError(url, response);
+    } catch (error) {
+      return await handleError(url, error);
     } finally {
       if (!silent) onCompleteRequest();
     }
@@ -84,15 +115,16 @@ function createRequest(method, responseType) {
 }
 
 function getAuthHeaders(url) {
-  const { currentUser } = useAuthStore();
-  const isLoggedIn = !!currentUser?.token;
+  return {};
+  // const { currentUser } = useAuthStore();
+  // const isLoggedIn = !!currentUser?.token;
 
-  const headers = {};
+  // const headers = {};
 
-  if (isLoggedIn && isApiUrl(url)) {
-    headers.Authorization = `Bearer ${currentUser.token}`;
-  }
-  return headers;
+  // if (isLoggedIn && isApiUrl(url)) {
+  //   headers.Authorization = `Bearer ${currentUser.token}`;
+  // }
+  // return headers;
 }
 
 // function getCookie(name) {
@@ -117,11 +149,10 @@ function handleError(url, error) {
   };
   if (error.response) {
     alertData.status = error.response.status;
-    const { currentUser, logout } = useAuthStore();
+    const { logout } = useAuthStore();
     if (error.response.status === 401) {
-      if (currentUser) {
-        logout();
-      }
+      logout();
+      return Promise.reject(error);
     } else if (error.response.status === 403) {
       alertData.message = "forbidden";
       alertData.comment = url;
