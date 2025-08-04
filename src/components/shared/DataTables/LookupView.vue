@@ -71,7 +71,7 @@
         :self="$q.screen.lt.sm ? 'top middle' : ''"
         no-focus
         no-refocus
-        :style="`width: ${menuWidth}`"
+        :style="`min-width: ${menuWidth}`"
       >
         <q-inner-loading
           :showing="tableStore.showLoader.value"

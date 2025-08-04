@@ -6,6 +6,12 @@
     background-color: $dark;
   }
 
+  @media (max-width: $breakpoint-xs-max) {
+    .q-field--outlined .q-field__control:before {
+      background-color: $dark-page;
+    }
+  }
+
   .q-item__label--caption .q-field__control {
     color: $white;
   }

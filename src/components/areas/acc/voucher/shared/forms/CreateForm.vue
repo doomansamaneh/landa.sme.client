@@ -28,7 +28,7 @@
       <!-- Desktop, fullscreen: Toolbar inside -->
       <div
         v-if="fullscreen"
-        class="bg-main z-1"
+        class="bg-on-dark z-1"
         style="position: sticky; top: 0"
       >
         <form-toolbar-container

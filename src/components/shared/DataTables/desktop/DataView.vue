@@ -68,7 +68,7 @@
 
     <page-bar
       v-if="tableStore.dataViewShowPagebar.value"
-      class="q-pa-md bg-main"
+      class="q-pa-md bg-on-dark"
       :pagination="tableStore.pagination.value"
       @page-changed="tableStore.reloadData"
       size-seletion

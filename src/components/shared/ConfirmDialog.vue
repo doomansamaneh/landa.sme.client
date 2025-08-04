@@ -6,8 +6,8 @@
     no-backdrop-dismiss
     @hide="onDialogHide"
   >
-    <q-card flat class="q-dialog-plugin">
-      <q-card-section class="row items-center q-pl-lg q-pr-md">
+    <q-card style="width: 700px" flat class="q-dialog-plugin">
+      <q-card-section class="row items-center">
         <div class="text-h6">
           {{ $t(title) }}
         </div>
@@ -23,12 +23,12 @@
         />
       </q-card-section>
       <q-card-section>
-        <div class="q-px-sm q-mb-sm">
+        <div>
           {{ $t(message) }}
         </div>
       </q-card-section>
 
-      <q-card-actions class="q-pa-md bg-main" align="right">
+      <q-card-actions class="q-pa-md" align="right">
         <q-btn
           no-caps
           rounded

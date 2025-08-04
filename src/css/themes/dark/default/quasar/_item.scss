@@ -133,8 +133,8 @@
   .menu-bar-background {
     background: linear-gradient(
       180deg,
-      $dark-page,
-      scale-color($dark-page, $lightness: 5%)
+      $dark,
+      scale-color($dark-page)
     );
   }
 

@@ -108,6 +108,16 @@
     background-color: $dark-page;
   }
 
+  @media (max-width: $breakpoint-xs-max) {
+    .bg-main {
+      background-color: $dark-page !important;
+    }
+
+    .bg-light {
+      background-color: $dark-page !important;
+    }
+  }
+
   .no-outline {
     outline: none;
   }

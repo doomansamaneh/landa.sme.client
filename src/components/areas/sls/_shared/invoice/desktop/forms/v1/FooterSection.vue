@@ -36,7 +36,7 @@
             >
               <q-card class="bordered">
                 <q-card-section class="q-pb-none">
-                  <div class="text-h6 text-weight-700">
+                  <div class="text-body1 text-weight-700">
                     {{ $t("shared.labels.discount") }}
                   </div>
                 </q-card-section>
@@ -67,7 +67,7 @@
                   </custom-input-number>
                 </q-card-section>
 
-                <q-card-actions class="bg-main q-px-md">
+                <q-card-actions class=" q-pt-sm q-pb-md q-px-md">
                   <q-btn
                     no-caps
                     padding="4px 12px"
@@ -123,7 +123,7 @@
             >
               <q-card class="bordered">
                 <q-card-section class="q-pb-none">
-                  <div class="text-h6 text-weight-700">
+                  <div class="text-body1 text-weight-700">
                     {{ $t("shared.labels.vat") }}
                   </div>
                 </q-card-section>
@@ -136,7 +136,7 @@
                   />
                 </q-card-section>
 
-                <q-card-actions class="bg-main q-px-md">
+                <q-card-actions class="q-pt-sm q-pb-md q-px-md">
                   <q-btn
                     no-caps
                     padding="4px 12px"
