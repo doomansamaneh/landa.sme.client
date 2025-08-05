@@ -71,7 +71,7 @@
         :self="$q.screen.lt.sm ? 'top middle' : ''"
         no-focus
         no-refocus
-        :style="`min-width: ${menuWidth}`"
+        :style="`width: ${menuWidth}`"
       >
         <q-inner-loading
           :showing="tableStore.showLoader.value"
@@ -176,7 +176,7 @@
 
         <div
           v-if="tableStore.showPagebar.value"
-          class="q-pa-md row items-center footer bg-main"
+          class="q-pa-md row items-center footer bg-on-dark"
         >
           <page-bar
             :pagination="tableStore.pagination.value"
@@ -623,7 +623,7 @@
 
   function onBeforeShow() {
     if ($q.screen.gt.xs) {
-      const inputWidth = search.value?.$el?.offsetWidth;
+      const inputWidth = search.value?.$el?.offsetWidth + 100;
       menuWidth.value = inputWidth ? `${inputWidth}px` : "200px";
       popup.value?.updatePosition();
     }

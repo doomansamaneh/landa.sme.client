@@ -3,7 +3,7 @@
     class="menu-bar menu-bar-background q-mb-xl z-max"
     side="left"
     bordered
-    :width="$q.screen.gt.xs ? 288 : deviceWidth"
+    :width="$q.screen.gt.xs ? 270 : deviceWidth"
     v-model="menuBarStore.state.visible.value"
     :breakpoint="400"
     :overlay="$q.screen.lt.md"
@@ -59,7 +59,7 @@
         >
           <div class="col">
             <q-item
-              class="z-1 border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
+              class="z-1 border-radius-xl first-item q-mb-xs text-body2 no-lette-spacing items-center cursor-pointer q-pa-sm"
               :class="{ 'active-shine': isActiveItem('/dashboard') }"
               to="/dashboard"
             >
@@ -89,7 +89,7 @@
 
         <div v-else>
           <q-item
-            class="z-1 border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer"
+            class="z-1 border-radius-xl first-item q-mb-xs flex text-body2 no-lette-spacing items-center cursor-pointer q-pa-sm"
             :class="{ 'active-shine': isActiveItem('/dashboard') }"
             to="/dashboard"
           >
@@ -139,7 +139,7 @@
                 :key="subItem.name"
                 :to="subItem.url"
                 clickable
-                class="border-radius-xl sub-item q-ml-xs q-my-xs"
+                class="border-radius-xl sub-item q-ml-xs q-my-xs q-pa-sm"
                 :class="{
                   'active-shine': isActiveItem(subItem.url),
                 }"
@@ -158,7 +158,7 @@
         </div>
         <q-item
           to="/cmn/appConfig"
-          class="last-item border-radius-xl flex text-body2 no-lette-spacing items-center cursor-pointer q-my-sm"
+          class="last-item border-radius-xl flex text-body2 no-lette-spacing items-center cursor-pointer q-my-sm q-pa-sm"
           :class="{ 'active-shine': isActiveItem('/cmn/appConfig') }"
         >
           <q-icon

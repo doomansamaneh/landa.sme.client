@@ -1,5 +1,5 @@
 <template>
-  <q-card class="q-mb-md overflow-hidden" flat bordered>
+  <q-card class="q-mb-md overflow-hidden bordered">
     <q-card-section class="row items-center justify-between">
       <q-option-group
         style="gap: 8px"
