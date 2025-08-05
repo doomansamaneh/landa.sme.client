@@ -67,7 +67,7 @@
       class="chat-container q-pa-none"
       :style="
         $q.screen.lt.md
-          ? 'height: calc(100vh);'
+          ? 'height: calc(100vh - 126px);'
           : 'height: calc(100vh - 300px);'
       "
       :class="{ 'chat-disabled': isChatDisabled }"
@@ -79,7 +79,7 @@
         style="height: calc(100vh)"
         @scroll="handleScroll"
       >
-        <div class="chat-messages q-pa-md">
+        <div class="chat-messages q-pt-md q-px-md">
           <div v-for="group in groupedMessages" :key="group.date">
             <div class="flex item-center justify-center q-mb-sm">
               <q-badge
@@ -159,10 +159,9 @@
     </q-card-section>
 
     <q-card-section
-      class="q-pa-none bg-dark"
+      class="q-pa-none"
       :class="{
         'chat-disabled': isChatDisabled,
-        'fixed-bottom': $q.screen.lt.md,
       }"
     >
       <q-form ref="form" @submit.prevent="sendMessage">
@@ -212,11 +211,11 @@
       />
       <div
         class="text-h6 q-mb-sm"
-        :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'"
+        :class="$q.dark.isActive ? 'text-white' : ''"
       >
         {{ $t("shared.labels.selectTicketToViewDetails") }}
       </div>
-      <div :class="$q.dark.isActive ? 'text-grey-6' : 'text-grey-7'">
+      <div :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-7'">
         {{ $t("shared.labels.selectTicketToViewHistory") }}
       </div>
     </q-card-section>
