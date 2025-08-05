@@ -6,6 +6,7 @@
     :bordered="$q.screen.gt.md"
   >
     <q-card-section
+      class="bg-dark"
       :class="
         $q.screen.lt.md
           ? 'q-pa-sm flex items-center justify-between'
@@ -161,7 +162,7 @@
     </q-card-section>
 
     <q-card-section
-      class="q-pa-none"
+      class="q-pa-none bg-dark"
       :class="{
         'chat-disabled': isChatDisabled,
       }"
