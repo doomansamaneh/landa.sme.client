@@ -5,6 +5,7 @@
     expandable
     flat
     toolbar
+    wrap-cells
     :title="title"
   >
     <template #filter-statusId="{ item }">
