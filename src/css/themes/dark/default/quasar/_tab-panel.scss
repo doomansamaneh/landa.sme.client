@@ -1,7 +1,13 @@
 @mixin q-tab-panel-dark {
   .q-tab-panel {
-    background-color: $dark-page;
+    background-color: $dark;
     border-radius: 16px !important;
+  }
+
+  @media (max-width: $breakpoint-xs-max) {
+    .q-tab-panel {
+      background-color: $dark-page;
+    }
   }
 
   .q-tab__indicator {

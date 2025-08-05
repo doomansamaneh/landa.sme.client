@@ -35,14 +35,14 @@
   }
 
   .row-active {
-    background-color: #{$primary}20 !important;
+    background-color: #{$primary}45 !important;
     td {
       box-shadow: 0 0.8px 0 $primary inset, 0 -0.8px 0 $primary inset;
     }
   }
 
   .row-selected {
-    background-color: scale-color($dark-page, $lightness: 5%);
+    background-color: #{$primary}25;
   }
 
   .div-table-container {

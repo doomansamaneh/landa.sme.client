@@ -20,22 +20,18 @@
           src="/favicon.png"
           class="animated-img pulse"
         />
-        <div class="q-mt-lg text-dark text-h6 text-weight-700">
-          درود بر شما، نسخه جدید در دسترس است
+        <div class="q-mt-lg text-on-dark text-h6 text-weight-700">
+          {{ $t("shared.labels.newReleaseTitle") }}
         </div>
-        <div class="q-mt-sm text-body1 text-grey-7">
-          برای دریافت نسخه جدید بر روی تازه‌سازی کلیک کنید
+        <div class="q-mt-sm text-body1 caption-on-dark">
+          {{ $t("shared.labels.newReleaseDescription") }}
         </div>
       </q-card-section>
-      <q-card-actions
-        align="center"
-        class="q-pa-md"
-        :class="$q.dark.isActive ? 'bg-on-dark' : 'bg-grey-3'"
-      >
+      <q-card-actions align="center" class="q-pa-md bg-on-dark">
         <q-btn
           no-caps
           unelevated
-          label="تازه‌سازی"
+          :label="$t('shared.labels.refresh')"
           class="text-h6"
           color="primary"
           rounded
@@ -45,7 +41,7 @@
         />
         <q-btn
           no-caps
-          label="انصراف"
+          :label="$t('shared.labels.cancel')"
           class="text-h6"
           dense
           rounded

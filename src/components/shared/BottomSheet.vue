@@ -23,7 +23,7 @@
         </div>
         <q-card-section
           v-if="header"
-          class="header-sticky q-px-md q-pt-none q-pb-sm text-body2 text-center"
+          class="header-sticky q-px-md q-py-sm text-body2 text-center"
         >
           <slot name="header">
             <slot name="header-title" />
@@ -56,7 +56,7 @@
 
 <style scoped>
   .scroll {
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 260px);
     overflow-y: auto;
   }
 

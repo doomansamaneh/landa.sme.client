@@ -7,7 +7,7 @@
     dense
     toolbar_
     numbered
-    wrapCells_
+    wrapCells
     expandable
     :title="title"
     @row-dbl-click="gotoPreview"

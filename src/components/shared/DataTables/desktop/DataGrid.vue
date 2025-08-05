@@ -392,7 +392,7 @@
         : cardDefaultClass.value) +
       ($q.dark?.isActive === true ? " q-table--dark" : "") +
       (props.dense ? " q-table--dense" : "") +
-      (props.wrapCells === false ? " q-table--no-wrap_" : "") +
+      (props.wrapCells === false ? " q-table--no-wrap" : "") +
       (props.bordered === true ? " bordered" : "") +
       (props.noFullscreen
         ? " scroll"
@@ -544,7 +544,7 @@
 
       th,
       td {
-        white-space: nowrap;
+        // white-space: nowrap;
         min-width: auto;
       }
     }

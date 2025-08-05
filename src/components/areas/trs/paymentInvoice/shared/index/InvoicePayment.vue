@@ -10,6 +10,7 @@
     ref="desktopGrid"
     expandable_
     no-fullscreen
+    wrap-cells
   >
     <template #cell-no="{ item }">
       <span v-if="item.paymentId">
