@@ -1,6 +1,6 @@
 <template>
   <q-card-actions
-    class="q-pa-md bg-main"
+    class="q-pa-md bg-on-dark"
     :class="$q.screen.xs ? 'fixed-bottom' : ''"
   >
     <slot name="start"></slot>

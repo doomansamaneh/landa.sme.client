@@ -13,6 +13,7 @@
       numbered
       expandable
       toolbar
+      wrap-cells
       :title="title"
     >
       <template #expand="{ item }">

@@ -3,6 +3,7 @@
     ref="dataGrid"
     flat
     bordered_
+    wrapCells_
     :data-source="dataSource"
     :grid-store="gridStore"
     @row-dbl-click="rowDblClick"

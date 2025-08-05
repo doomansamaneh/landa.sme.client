@@ -9,6 +9,7 @@
       toolbar
       multiSelect
       numbered
+      wrapCells
       dense
       expandable
       @row-dbl-click="gotoPreview"

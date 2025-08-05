@@ -7,6 +7,7 @@
     numbered
     dense
     expandable
+    wrapCells
     :title="title"
     @row-dbl-click="gotoPreview"
   >

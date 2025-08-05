@@ -104,7 +104,7 @@
     multiSelect_
     numbered
     bordered
-    wrapCells_
+    wrapCells
     dense_
     :expandable="true"
     class="q-mb-md"

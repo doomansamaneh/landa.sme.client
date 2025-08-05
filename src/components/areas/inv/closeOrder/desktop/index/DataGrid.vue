@@ -7,6 +7,7 @@
     numbered
     dense
     expandable
+    wrapCells
     @row-dbl-click="gotoPreview"
   >
     <template #cell-amount="{ item }">

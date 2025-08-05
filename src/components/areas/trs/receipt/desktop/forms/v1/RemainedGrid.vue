@@ -7,7 +7,7 @@
       multiSelect
       numbered
       flat
-      wrapCells_
+      wrapCells
       @selected-rows-changed="selectedRowChanged"
       no-fullscreen
     >

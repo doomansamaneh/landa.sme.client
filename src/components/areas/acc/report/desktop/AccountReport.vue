@@ -7,6 +7,7 @@
       separator="horizontal"
       numbered
       flat
+      wrapCells
       toolbar
       expandable
     >

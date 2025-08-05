@@ -8,6 +8,7 @@
       multiSelect
       numbered
       flat
+      wrapCells
       :expandable="expandable"
       :title="title"
       @row-dbl-click="gotoPreview"

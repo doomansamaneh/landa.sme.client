@@ -6,7 +6,7 @@
     flat
     dense
     numbered
-    wrapCells_
+    wrapCells
     expandable
     toolbar
     :title="`${title} / ${subTitle}`"

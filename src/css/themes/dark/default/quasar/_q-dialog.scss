@@ -1,6 +1,6 @@
 @mixin q-dialog-dark {
   .q-dialog__backdrop {
-    background-color: #{$white}30;
+    background-color: #{$white}40;
   }
 
   .preview-dialog .q-dialog__inner--maximized > div {
