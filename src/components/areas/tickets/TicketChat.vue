@@ -74,8 +74,10 @@
     >
       <q-scroll-area
         ref="chatScroll"
-        :bar-style="helper.barStyle"
-        :thumb-style="helper.thumbStyle"
+        :bar-style="$q.screen.xs ? { opacity: 0 } : helper.barStyle"
+        :thumb-style="
+          $q.screen.xs ? { opacity: 0 } : helper.thumbStyle
+        "
         style="height: calc(100vh)"
         @scroll="handleScroll"
       >
