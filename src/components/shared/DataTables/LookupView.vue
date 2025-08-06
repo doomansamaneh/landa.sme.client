@@ -59,19 +59,17 @@
 
       <q-menu
         v-if="$q.screen.gt.xs"
-        no-parent-event
+        ref="popup"
         v-model="isPopupOpen"
+        no-parent-event
+        no-focus
+        no-refocus
+        fit
+        transition-show="jump-down"
+        transition-hide="jump-up"
         @before-show="onBeforeShow"
         @show="onMenuShow"
         @hide="onMenuHide"
-        ref="popup"
-        transition-show="jump-down"
-        transition-hide="jump-up"
-        :anchor="$q.screen.lt.sm ? 'bottom middle' : ''"
-        :self="$q.screen.lt.sm ? 'top middle' : ''"
-        no-focus
-        no-refocus
-        :style="`width: ${menuWidth}`"
       >
         <q-inner-loading
           :showing="tableStore.showLoader.value"
@@ -102,6 +100,7 @@
                     :fieldName="col"
                     :title="$t(`shared.labels.${col}`)"
                     :table-store="tableStore"
+                    @sorted="reloadData"
                   />
                 </div>
               </slot>
@@ -623,9 +622,9 @@
 
   function onBeforeShow() {
     if ($q.screen.gt.xs) {
-      const inputWidth = search.value?.$el?.offsetWidth + 100;
-      menuWidth.value = inputWidth ? `${inputWidth}px` : "200px";
-      popup.value?.updatePosition();
+      const inputWidth = search.value?.$el?.offsetWidth;
+      menuWidth.value = inputWidth ? `${inputWidth}px` : "";
+      updatePosition();
     }
   }
 
@@ -654,6 +653,11 @@
 
   const reloadData = async () => {
     await tableStore.reloadData();
+    updatePosition();
+  };
+
+  const updatePosition = async () => {
+    popup.value?.updatePosition();
   };
 
   const rules = computed(() => {

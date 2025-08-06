@@ -22,11 +22,15 @@
     tableStore: Object,
   });
 
+  const emit = defineEmits(["sorted"]);
+
   function sortColumn() {
     props.tableStore.sortColumn({
       name: props.fieldName,
       sortable: true,
     });
+
+    emit("sorted");
   }
 
   const isAscending = computed(
