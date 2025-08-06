@@ -207,7 +207,7 @@
     transition-show="slide-up"
     transition-hide="slide-down"
   >
-    <q-card class="no-border">
+    <q-card class="no-border hide-scrollbar">
       <q-card-section>
         <div class="row items-center q-col-gutter-md">
           <div class="col text-body2 text-bold">
@@ -368,7 +368,7 @@
 
       <div
         v-if="tableStore.showPagebar.value"
-        class="q-pa-md row items-center footer bg-main"
+        class="q-pa-md row items-center footer bg-on-dark"
       >
         <page-bar
           :pagination="tableStore.pagination.value"

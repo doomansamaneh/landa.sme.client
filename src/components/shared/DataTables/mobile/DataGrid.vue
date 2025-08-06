@@ -85,7 +85,7 @@
                         :class="
                           row.selected ? 'primary-gradient' : ''
                         "
-                        @click.prevent.stop="setActiveRow(row)"
+                        @click.prevent.stop="selectRow(row)"
                       >
                         <div
                           v-if="!row.selected"
