@@ -14,7 +14,7 @@
       outline
       v-if="fileTemplate"
       class="no-decoration"
-      :href="`${baseUrl}/excelTemplate/import/${fileTemplate}`"
+      :href="`/excelTemplate/import/${fileTemplate}`"
     >
       <q-icon name="o_download" size="16px" />
       <q-tooltip class="custom-tooltip">
