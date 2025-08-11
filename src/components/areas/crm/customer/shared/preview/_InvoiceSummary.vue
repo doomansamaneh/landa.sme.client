@@ -161,7 +161,7 @@
 
           <q-item-section>
             <q-item-label class="text-body3 q-mb-xs">
-              {{ $t("shared.labels.remaining") }}
+              {{ $t("shared.columns.remainedAmount") }}
             </q-item-label>
             <q-item-label
               v-if="!dataStore.isLoading.value"
