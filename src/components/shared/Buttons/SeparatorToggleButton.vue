@@ -17,9 +17,9 @@
     >
       <div class="text-body2">
         <template v-if="tableStore?.separator.value === 'none'">
-          خط‌ دار
+          {{ $t("shared.labels.separatorOn") }}
         </template>
-        <template v-else>بدون خط</template>
+        <template v-else>{{ $t("shared.labels.separatorOff") }}</template>
       </div>
     </q-tooltip>
   </q-btn>

@@ -29,9 +29,9 @@
       >
         <div class="text-body2">
           <template v-if="tableStore?.inFullscreen.value">
-            خروج از تمام صفحه
+            {{ $t("shared.labels.exitFullscreen") }}
           </template>
-          <template v-else>تمام صفحه</template>
+          <template v-else>{{ $t("shared.labels.fullscreen") }}</template>
         </div>
       </q-tooltip>
     </q-btn>

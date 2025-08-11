@@ -71,7 +71,6 @@
           ? 'height: calc(100vh - 126px);'
           : 'height: calc(100vh - 300px);'
       "
-      :class="{ 'chat-disabled': isChatDisabled }"
     >
       <q-scroll-area
         ref="chatScroll"
@@ -384,12 +383,6 @@
   .chat-container {
     display: flex;
     flex-direction: column;
-  }
-
-  .chat-disabled {
-    opacity: 0.7;
-    pointer-events: none;
-    position: relative;
   }
 
   .chat-scroll-area {
