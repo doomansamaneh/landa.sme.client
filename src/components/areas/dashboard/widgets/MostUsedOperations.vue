@@ -1,5 +1,5 @@
 <template>
-  <q-btn no-caps-dropdown
+  <q-btn-dropdown
     transition-show="slide-down"
     transition-hide="slide-up"
     transition-duration="600"
@@ -15,7 +15,9 @@
     style="white-space: nowrap"
   >
     <template #label>
-      <span class="text-body3">دسترسی سریع</span>
+      <span class="text-body3">
+        {{ $t("shared.labels.quickAccess") }}
+      </span>
     </template>
 
     <template #default>

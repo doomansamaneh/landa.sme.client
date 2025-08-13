@@ -29,7 +29,9 @@
               size="sm"
               color="orange-7"
             />
-            <span class="text-bold text-on-dark">دسترسی سریع</span>
+            <span class="text-bold text-on-dark">
+              {{ $t("shared.labels.quickAccess") }}
+            </span>
           </div>
 
           <q-btn

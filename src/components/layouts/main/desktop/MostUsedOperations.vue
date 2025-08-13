@@ -20,7 +20,7 @@
               class="q-mr-xs"
             />
             <div class="text-body2 text-bold text-on-dark">
-              دسترسی سریع
+              {{ $t("shared.labels.quickAccess") }}
             </div>
           </div>
         </q-card-section>
