@@ -9,7 +9,11 @@
       narrow-indicator
       mobile-arrows
     >
-      <card-tab name="main" title="اطلاعات پایه" icon="o_person" />
+      <card-tab
+        name="main"
+        :title="$t('shared.labels.basicInfo')"
+        icon="o_person"
+      />
 
       <q-btn-dropdown
         no-caps
@@ -43,7 +47,11 @@
           </q-avatar>
 
           <div class="text-h6 text-weight-700">
-            {{ tab === "quote" ? "پیش فاکتورها" : "فاکتورهای فروش" }}
+            {{
+              tab === "quote"
+                ? $t("main-menu-items.Sls_Quote_View")
+                : $t("shared.labels.salesInvoices")
+            }}
           </div>
         </template>
 
@@ -59,7 +67,7 @@
               />
             </q-item-section>
             <q-item-section class="text-h6 text-weight-700">
-              پیش فاکتورها
+              {{ $t("main-menu-items.Sls_Quote_View") }}
             </q-item-section>
           </q-item>
 
@@ -74,7 +82,7 @@
               />
             </q-item-section>
             <q-item-section class="text-h6 text-weight-700">
-              فاکتورهای فروش
+              {{ $t("shared.labels.salesInvoices") }}
             </q-item-section>
           </q-item>
         </q-list>
@@ -89,11 +97,23 @@
 
       <card-tab name="invoice" title="فاکتورها" icon="o_receipt" /> -->
 
-      <card-tab name="review" title="گردش حساب" icon="o_repeat" />
+      <card-tab
+        name="review"
+        :title="$t('shared.labels.accountItem')"
+        icon="o_repeat"
+      />
 
-      <card-tab name="check" title="چکها" icon="o_receipt" />
+      <card-tab
+        name="check"
+        :title="$t('shared.labels.paymentItemCheck')"
+        icon="o_receipt"
+      />
 
-      <card-tab name="log" title="تاریخچه" icon="o_history" />
+      <card-tab
+        name="log"
+        :title="$t('shared.labels.history')"
+        icon="o_history"
+      />
     </card-tabs>
 
     <q-card-section class="q-pa-lg">
