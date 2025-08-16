@@ -3,11 +3,13 @@
 
 body {
   font-family: "vazir", "Roboto", sans-serif;
-  //font-weight: 300; conflict with strong tag
 }
 
 .english {
   font-family: "Roboto", "vazir", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .persian {

@@ -148,10 +148,6 @@ html {
   letter-spacing: 32px !important;
 }
 
-// . {
-//   letter-spacing: 0 !important;
-// }
-
 .no-line-height {
   line-height: 0 !important;
 }
@@ -166,71 +162,4 @@ html {
 
 .text-roboto {
   font-family: "Roboto";
-}
-
-// Language-specific font size adjustments for LTR
-[dir="ltr"] .text-caption-sm,
-.ltr .text-caption-sm {
-  font-size: 9px; // 10px - 1
-}
-
-[dir="ltr"] .text-caption-xs,
-.ltr .text-caption-xs {
-  font-size: 8.7px; // 9.7px - 1
-}
-
-[dir="ltr"] .text-body3,
-.ltr .text-body3 {
-  font-size: 12px; // 13px - 1
-}
-
-[dir="ltr"] .text-body2,
-.ltr .text-body2 {
-  font-size: 14px; // 15px - 1
-}
-
-[dir="ltr"] .text-body1,
-.ltr .text-body1 {
-  font-size: 15px; // 16px - 1
-}
-
-[dir="ltr"] .text-body,
-.ltr .text-body {
-  font-size: 16px; // 17px - 1
-}
-
-[dir="ltr"] .text-h6,
-.ltr .text-h6 {
-  font-size: 17px; // 18px - 1
-}
-
-[dir="ltr"] .text-h5,
-.ltr .text-h5 {
-  font-size: 19px; // 20px - 1
-}
-
-[dir="ltr"] .text-h4,
-.ltr .text-h4 {
-  font-size: 21px; // 22px - 1
-}
-
-[dir="ltr"] .text-h3,
-.ltr .text-h3 {
-  font-size: 23px; // 24px - 1
-}
-
-[dir="ltr"] .text-h2,
-.ltr .text-h2 {
-  font-size: 27px; // 28px - 1
-}
-
-[dir="ltr"] .text-h1,
-.ltr .text-h1 {
-  font-size: 31px; // 32px - 1
-  line-height: 41px; // 42px - 1
-}
-
-[dir="ltr"] .text-42,
-.ltr .text-42 {
-  font-size: 41px; // 42px - 1
 }
