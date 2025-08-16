@@ -13,7 +13,7 @@
               formStore.editBatchModel.value.invoiceType.fieldValue
             "
             :filterExpression="filterExpression"
-            label="نوع"
+            :label="$t('shared.labels.typeTitle')"
           />
         </div>
 
@@ -25,7 +25,7 @@
             v-model="
               formStore.editBatchModel.value.invoiceType.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -43,7 +43,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.contract.fieldValue
             "
-            label="قرارداد"
+            :label="$t('shared.labels.contract')"
           />
         </div>
 
@@ -55,7 +55,7 @@
             v-model="
               formStore.editBatchModel.value.contract.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -73,7 +73,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.customer.fieldValue
             "
-            label="مشتری"
+            :label="$t('shared.labels.customerName')"
           />
         </div>
 
@@ -85,7 +85,33 @@
             v-model="
               formStore.editBatchModel.value.customer.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.isModified')"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="q-mb-md">
+      <div
+        class="row items-center"
+        :class="
+          $q.screen.gt.xs ? 'q-col-gutter-xl' : 'q-col-gutter-sm'
+        "
+      >
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <date-time-picker
+            v-model="formStore.editBatchModel.value.date.fieldValue"
+            :label="$t('shared.labels.date')"
+          />
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <q-checkbox
+            class="q-mt-lg"
+            dense
+            size="46px"
+            v-model="formStore.editBatchModel.value.date.isModified"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -106,6 +132,7 @@
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import CustomerLookup from "src/components/shared/lookups/CustomerLookup.vue";
+  import DateTimePicker from "src/components/shared/forms/DateTimePicker.vue";
 
   const props = defineProps({
     selectedIds: Array,

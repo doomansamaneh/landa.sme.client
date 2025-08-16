@@ -10,6 +10,7 @@ export function useBaseInfoModel({
   loadCreateModel,
   id,
   resetCallback,
+  afterGetByIdCallback,
 }) {
   const route = useRoute();
   const router = useRouter();
@@ -29,18 +30,20 @@ export function useBaseInfoModel({
   }
 
   async function submitForm(form, action, callBack) {
-    await crudStore.submitForm(form, action, saveCallBack);
-    function saveCallBack(responseData) {
+    await crudStore.submitForm(form, action, (responseData) => {
       if (resetCallback) resetCallback();
 
       if (callBack) callBack(responseData);
       else router.back(responseData);
-    }
+    });
   }
 
-  onMounted(() => {
+  onMounted(async () => {
     const selectedId = id ?? route.params.id;
-    getById(selectedId);
+    await getById(selectedId);
+
+    if (afterGetByIdCallback)
+      await afterGetByIdCallback(localModel.value);
   });
 
   return {
@@ -48,6 +51,7 @@ export function useBaseInfoModel({
     editBatchModel,
     submitForm,
     crudStore,
+    getById,
     getCreateModel,
   };
 }

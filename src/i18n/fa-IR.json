@@ -517,6 +517,7 @@
       "additionalInformation": "اطلاعات تکمیلی",
       "accountItem": "ریز گردش",
       "modifyStock": "اصلاح موجودی",
+      "isModified": "اصلاح شود؟",
       "inviteUser": "دعوت از کاربر",
       "canceled": "ابطال شده",
       "revenueExpenseByMonth": "فروش و درآمد، هزینه",

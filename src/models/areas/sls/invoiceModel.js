@@ -25,4 +25,8 @@ export const invoiceBatchModel = {
     fieldName: "CustomerId",
     isModified: false,
   },
+  date: {
+    fieldName: "Date",
+    isModified: false,
+  },
 };
