@@ -12,7 +12,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.productGroup.fieldValue
             "
-            label="گروه کالا"
+            :label="$t('shared.labels.productGroup')"
           />
         </div>
 
@@ -24,7 +24,7 @@
             v-model="
               formStore.editBatchModel.value.productGroup.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
           />
         </div>
       </div>
@@ -39,7 +39,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-input
-            label="شناسه مالیاتی"
+            :label="$t('shared.labels.taxId')"
             v-model="
               formStore.editBatchModel.value.taxCode.fieldValue
             "
@@ -54,7 +54,7 @@
             v-model="
               formStore.editBatchModel.value.taxCode.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
           />
         </div>
       </div>
@@ -69,7 +69,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-select
-            label="نوع"
+            :label="$t('shared.labels.typeTitle')"
             v-model="
               formStore.editBatchModel.value.productType.fieldValue
             "
@@ -87,7 +87,7 @@
             v-model="
               formStore.editBatchModel.value.productType.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
           />
         </div>
       </div>
@@ -102,7 +102,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <product-unit-lookup
-            label="واحد سنجش"
+            :label="$t('shared.labels.productUnitTitle')"
             v-model:selectedId="
               formStore.editBatchModel.value.productUnit.fieldValue
             "
@@ -117,7 +117,7 @@
             v-model="
               formStore.editBatchModel.value.productUnit.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
           />
         </div>
       </div>
@@ -138,7 +138,7 @@
             "
             true-value="1"
             false-value="0"
-            label="برای خرید"
+            :label="$t('shared.labels.forPurchase')"
             dense
             size="46px"
           />
@@ -149,7 +149,7 @@
             v-model="
               formStore.editBatchModel.value.isForPurchase.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
             dense
             size="46px"
           />
@@ -174,7 +174,7 @@
             dense
             size="46px"
             false-value="0"
-            label="برای فروش"
+            :label="$t('shared.labels.forSale')"
           />
         </div>
         <div class="col-md-3 col-sm-3 col-xs-12">
@@ -183,7 +183,7 @@
             v-model="
               formStore.editBatchModel.value.isForSale.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
             dense
             size="46px"
           />
@@ -217,7 +217,7 @@
             v-model="
               formStore.editBatchModel.value.isActive.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
             dense
             size="46px"
           />

@@ -13,7 +13,7 @@
               formStore.editBatchModel.value.invoiceType.fieldValue
             "
             :filterExpression="filterExpression"
-            label="نوع"
+            :label="$t('shared.labels.typeTitle')"
           />
         </div>
 
@@ -25,7 +25,7 @@
             v-model="
               formStore.editBatchModel.value.invoiceType.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
           />
         </div>
       </div>
@@ -43,7 +43,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.contract.fieldValue
             "
-            label="قرارداد"
+            :label="$t('shared.labels.contractTitle')"
           />
         </div>
 
@@ -55,7 +55,7 @@
             v-model="
               formStore.editBatchModel.value.contract.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
           />
         </div>
       </div>
@@ -73,7 +73,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.customer.fieldValue
             "
-            label="مشتری"
+            :label="$t('shared.labels.contactPerson')"
           />
         </div>
 
@@ -85,7 +85,7 @@
             v-model="
               formStore.editBatchModel.value.customer.isModified
             "
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.shouldBeModified')"
           />
         </div>
       </div>

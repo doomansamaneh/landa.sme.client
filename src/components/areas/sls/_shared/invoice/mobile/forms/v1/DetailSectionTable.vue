@@ -30,7 +30,9 @@
 
       <div class="row justify-between items-center">
         <div class="col row items-center">
-          <div class="text-caption q-mr-xs">شماره:</div>
+          <div class="text-caption q-mr-xs">
+            {{ $t("shared.labels.no") }}:
+          </div>
           <div class="text-caption text-on-dark">{{ index + 1 }}</div>
         </div>
 
@@ -59,7 +61,9 @@
 
       <div class="row items-center q-mb-md" v-if="row.comment">
         <div class="col-4">
-          <span class="text-caption text-on-dark">شرح</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.comment") }}
+          </span>
         </div>
         <div class="col text-caption">
           {{ row.comment }}
@@ -71,7 +75,9 @@
         v-if="row.discountComment"
       >
         <div class="col-4">
-          <span class="text-caption text-on-dark">شرح تخفیف</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.discountComment") }}
+          </span>
         </div>
         <div class="col text-caption">
           {{ row.discountComment }}
@@ -80,7 +86,9 @@
 
       <div class="row items-center q-mb-md">
         <div class="col-4">
-          <span class="text-caption text-on-dark">مقدار</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.quantity") }}
+          </span>
         </div>
         <div class="col">
           <span class="text-caption text-bold">
@@ -92,7 +100,9 @@
 
       <div class="row items-center q-mb-md">
         <div class="col-4">
-          <span class="text-caption text-on-dark">قیمت واحد</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.unitPrice") }}
+          </span>
         </div>
         <div class="col text-caption">
           {{ helper.formatNumber(row.price) }}
@@ -101,7 +111,9 @@
 
       <div class="row items-center q-mb-md" v-if="row.discount">
         <div class="col-4">
-          <span class="text-caption text-on-dark">تخفیف</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.discount") }}
+          </span>
         </div>
         <div class="col text-caption">
           {{ helper.formatNumber(row.discount) }}
@@ -111,7 +123,7 @@
       <div class="row items-center q-mb-md" v-if="row.vatAmount">
         <div class="col-4">
           <span class="text-caption text-on-dark">
-            مالیات بر ارزش افزوده
+            {{ $t("shared.labels.vat") }}
           </span>
         </div>
         <div class="col text-caption">
@@ -121,7 +133,9 @@
 
       <div class="row items-center">
         <div class="col-4">
-          <span class="text-caption text-on-dark">جمع کل</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.total") }}
+          </span>
         </div>
         <div class="col text-caption text-bold">
           {{ helper.formatNumber(row.totalPrice) }}
@@ -134,7 +148,7 @@
     <q-card-actions class="q-pa-md" align="between">
       <q-btn
         no-caps
-        label="ویرایش"
+        :label="$t('shared.labels.edit')"
         class="text-body2"
         flat
         rounded
@@ -162,7 +176,7 @@
     @click="addItem"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="">افزودن ردیف</div>
+    <div class="">{{ $t("shared.labels.addRow") }}</div>
   </q-btn>
 
   <q-dialog
@@ -174,12 +188,18 @@
   >
     <q-card>
       <q-scroll-area
-        :thumb-style="helper.thumbStyle"
-        :bar-style="helper.barStyle"
+        :thumb-style="
+          $q.screen.gt.xs ? helper.thumbStyle : { opacity: 0 }
+        "
+        :bar-style="
+          $q.screen.gt.xs ? helper.barStyle : { opacity: 0 }
+        "
         style="height: calc(100vh - 10%)"
       >
         <q-card-section class="row items-center q-pb-none">
-          <span class="text-bold text-body1">افزودن/ویرایش کالا</span>
+          <span class="text-bold text-body1">
+            {{ $t("shared.labels.addEditProduct") }}
+          </span>
           <q-space />
           <q-btn
             no-caps

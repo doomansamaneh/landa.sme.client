@@ -3,7 +3,7 @@
     <div class="q-mb-lg">
       <div>
         <q-option-group
-          label="نوع"
+          :label="$t('shared.labels.typeTitle')"
           inline
           :options="
             helper.getEnumOptions(
@@ -18,13 +18,13 @@
       <div>
         <custom-input-number
           v-model="model.percent"
-          label="درصد تغییر"
+          :label="$t('shared.labels.percentChange')"
         />
       </div>
 
       <div>
         <q-option-group
-          label="قیمت"
+          :label="$t('shared.labels.price')"
           inline
           :options="
             helper.getEnumOptions(
