@@ -29,6 +29,7 @@
       gutter="xs"
       round
       padding="3px 2px 1px 2px"
+      size="13px"
       color="grey-8"
       active-color="primary"
       class="pagination"
