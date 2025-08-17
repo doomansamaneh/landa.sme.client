@@ -2,7 +2,9 @@
   <q-card bordered>
     <q-card-section class="q-gutter-md">
       <div class="q-gutter-sm">
-        <span class="text-caption">شماره:</span>
+        <span class="text-caption">
+          {{ $t("shared.columns.no") }}:
+        </span>
         <span class="text-weight-700">{{ model?.no }}</span>
       </div>
       <div v-if="relationModel?.url">
@@ -15,7 +17,7 @@
           flat
           unelevated
         >
-          <span>مشاهده سند اصلی</span>
+          <span>{{ $t("shared.labels.viewOriginalDocument") }}</span>
           <q-icon name="o_arrow_back" size="xs" class="q-mx-xs" />
         </q-btn>
       </div>

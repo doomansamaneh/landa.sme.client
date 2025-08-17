@@ -22,7 +22,7 @@
               border-image: initial;
             "
           >
-            ردیف
+            {{ $t("shared.columns.rowNo") }}
           </th>
           <th
             style="
@@ -34,7 +34,7 @@
               border-image: initial;
             "
           >
-            کد حساب
+            {{ $t("shared.labels.accountCode") }}
           </th>
           <th
             style="
@@ -45,7 +45,7 @@
               border-image: initial;
             "
           >
-            شرح
+            {{ $t("shared.labels.description") }}
           </th>
           <th
             style="
@@ -55,7 +55,7 @@
               border-image: initial;
             "
           >
-            بدهکار
+            {{ $t("shared.accountType.debit") }}
           </th>
           <th
             style="
@@ -65,7 +65,7 @@
               border-image: initial;
             "
           >
-            بستانکار
+            {{ $t("shared.accountType.credit") }}
           </th>
         </tr>
       </thead>
@@ -101,7 +101,12 @@
               <div>
                 {{ item.slCode }}
               </div>
-              <div style="text-align: end" class="text-blue-10">
+              <div
+                style="text-align: end"
+                :class="
+                  $q.dark.isActive ? 'text-yellow' : 'text-primary'
+                "
+              >
                 {{ item.dlCode }}
               </div>
             </td>
@@ -116,7 +121,12 @@
               <div class="text-wrap">
                 {{ item.slTitle }}
               </div>
-              <div class="text-wrap text-blue-10">
+              <div
+                class="text-wrap"
+                :class="
+                  $q.dark.isActive ? 'text-yellow' : 'text-primary'
+                "
+              >
                 {{ item.dlTitle }}
               </div>
               <div class="text-wrap">
