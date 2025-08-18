@@ -24,7 +24,7 @@
             v-model="
               formStore.editBatchModel.value.productGroup.isModified
             "
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -54,7 +54,7 @@
             v-model="
               formStore.editBatchModel.value.taxCode.isModified
             "
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -87,7 +87,7 @@
             v-model="
               formStore.editBatchModel.value.productType.isModified
             "
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -117,7 +117,7 @@
             v-model="
               formStore.editBatchModel.value.productUnit.isModified
             "
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -149,7 +149,7 @@
             v-model="
               formStore.editBatchModel.value.isForPurchase.isModified
             "
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
             dense
             size="46px"
           />
@@ -183,7 +183,7 @@
             v-model="
               formStore.editBatchModel.value.isForSale.isModified
             "
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
             dense
             size="46px"
           />
@@ -217,7 +217,7 @@
             v-model="
               formStore.editBatchModel.value.isActive.isModified
             "
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
             dense
             size="46px"
           />

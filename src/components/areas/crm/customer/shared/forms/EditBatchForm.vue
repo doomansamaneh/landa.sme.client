@@ -21,7 +21,7 @@
             dense
             size="46px"
             v-model="formStore.editBatchModel.value.unit.isModified"
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -48,7 +48,7 @@
             dense
             size="46px"
             v-model="formStore.editBatchModel.value.job.isModified"
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -76,7 +76,7 @@
             dense
             size="46px"
             v-model="formStore.editBatchModel.value.type.isModified"
-            :label="$t('shared.labels.shouldBeModified')"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
