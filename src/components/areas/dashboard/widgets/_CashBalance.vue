@@ -23,7 +23,27 @@
       @click.stop
     >
       <q-card-section>
-        <widget-title :label="title" icon="o_inbox" />
+        <widget-title icon="o_inbox">
+          <template #title>
+            <div class="flex items-center q-col-gutter-sm">
+              <div class="text-h6 q-my-none">
+                {{ title }}
+              </div>
+
+              <div
+                v-if="dataSource.total.value"
+                class="text-body2 q-my-none"
+              >
+                {{ helper.formatNumber(dataSource.total.value) }}
+                {{ $t("shared.labels.rial") }}
+                <q-tooltip class="custom-tooltip">
+                  {{ numberToWords(dataSource.total.value) }}
+                  {{ $t("shared.labels.rial") }}
+                </q-tooltip>
+              </div>
+            </div>
+          </template>
+        </widget-title>
 
         <!-- <template v-else-if="dataSource.chartSeries.value.length">
         <balance-chart
@@ -57,6 +77,7 @@
 
   import BalanceList from "./_CashBalanceList.vue";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
+  import { numberToWords } from "src/helpers/numberToWords";
 
   const props = defineProps({
     title: String,
