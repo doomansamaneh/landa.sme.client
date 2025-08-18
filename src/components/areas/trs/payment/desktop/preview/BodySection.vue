@@ -294,7 +294,7 @@
 </template>
 
 <script setup>
-  import { numberToWords } from "@persian-tools/persian-tools";
+  import { numberToWords } from "src/helpers/numberToWords.js";
   import { helper } from "src/helpers";
   import { documentType, paymentMethod } from "src/constants";
 
