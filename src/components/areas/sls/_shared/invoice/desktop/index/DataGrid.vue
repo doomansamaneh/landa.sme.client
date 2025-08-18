@@ -41,7 +41,7 @@
       >
         {{ item.docNo }}
         <q-tooltip class="custom-tooltip text-body1">
-          ش رهگیری
+          {{ $t("shared.labels.trackingNumber") }}
         </q-tooltip>
       </q-badge>
 

@@ -8,6 +8,7 @@
     numbered
     dense
     expandable
+    wrap-cells
     @row-dbl-click="gotoPreview"
   >
     <template #cell-subject="{ item }">

@@ -6,13 +6,13 @@
       >
         <div class="col-5">
           <div>
-            ش سند:
+            {{ $t("shared.labels.docNo") }}:
             <span class="text-weight-500">
               {{ model?.voucherNo }}
             </span>
           </div>
           <div>
-            تاریخ:
+            {{ $t("shared.labels.date") }}:
             <span class="text-weight-500">
               {{ model?.date?.substring(0, 10) }}
             </span>

@@ -3,7 +3,10 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
       <q-card bordered>
         <div :ref="printStore.printRef">
-          <header-section :model="model" title="سند حسابداری" />
+          <header-section
+            :model="model"
+            :title="$t('shared.labels.accountingDocument')"
+          />
 
           <q-card-section class="q-gutter-y-sm_">
             <body-section
