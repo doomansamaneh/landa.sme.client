@@ -132,7 +132,7 @@
     { id: 5, class: "col-md-4 col-sm-12 col-xs-12" },
     { id: 6, class: "col-md-8 col-sm-12 col-xs-12" },
     { id: 7, class: "col-md-12 col-sm-12 col-xs-12" },
-    { id: 8, class: "col-md-4 col-sm-12 col-xs-12" },
+    { id: 8, class: "col-md-4 col-sm-6 col-xs-12" },
     { id: 9, class: "col-md-4 col-sm-6 col-xs-12" },
   ];
 
