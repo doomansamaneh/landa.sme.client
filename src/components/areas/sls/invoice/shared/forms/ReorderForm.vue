@@ -2,7 +2,7 @@
   <q-form ref="form" autofocus>
     <div>
       <q-item-label class="caption-on-dark text-body2 q-mb-sm">
-        ش شروع
+        {{ $t("shared.labels.startNo") }}
       </q-item-label>
       <custom-input-number
         v-model="formStore.model.value.startNo"

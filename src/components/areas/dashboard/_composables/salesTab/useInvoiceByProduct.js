@@ -1,6 +1,7 @@
 import { ref, onMounted, onUnmounted, computed, watch } from "vue";
 import { fetchWrapper, bus } from "src/helpers";
 import { useComposables } from "src/stores/useComposables";
+import { useAccess } from "src/directives/useAccess";
 
 export function useInvoiceByProduct({ dataSource, dataStore }) {
   const { hasAccess } = useAccess();
