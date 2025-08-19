@@ -786,8 +786,8 @@
       "electronicReport": "گزارش دفتر الکترونیکی",
       "journalReport": "گزارش دفتر روزنامه",
       "generalLedgerReport": "گزارش دفتر کل",
-      "journalTotalReport": "گزارش دفتر روزنامه",
-      "generalLedgerTotalReport": "گزارش دفتر کل",
+      "journalTotalReport": "Total: گزارش دفتر روزنامه",
+      "generalLedgerTotalReport": "Total: گزارش دفتر کل",
       "report": "گزارش دفتر",
       "electronic": "الکترونیکی"
     },

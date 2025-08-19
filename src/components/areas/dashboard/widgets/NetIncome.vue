@@ -250,28 +250,15 @@
         itemMargin: {},
       },
       tooltip: {
-        enabled: true,
-        x: {
-          show: true,
-        },
         y: {
-          show: true,
-          title: {
-            formatter: (seriesName) => seriesName == "",
+          formatter: function (value, { series, seriesIndex, w }) {
+            return helper.formatNumber(value, 2);
           },
-        },
-        style: {
-          fontSize: "13px",
-        },
-        marker: {
-          width: 8,
-          height: 8,
-        },
-        fixed: {
-          enabled: true,
-          position: "topLeft",
-          offsetX: 0,
-          offsetY: 0,
+          title: {
+            formatter: function () {
+              return "";
+            },
+          },
         },
       },
     };

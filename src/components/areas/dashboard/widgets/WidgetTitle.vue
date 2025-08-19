@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center q-gutter-md">
+    <div class="flex items-center q-gutter-md no-wrap">
       <q-avatar
         v-if="icon"
         rounded
@@ -9,8 +9,8 @@
         :size="size"
         :class="props.class"
       />
-      <div v-if="label" class="text-h6">
-        <span>{{ label }}</span>
+      <div class="text-h6">
+        <slot name="title">{{ label }}</slot>
       </div>
     </div>
   </div>

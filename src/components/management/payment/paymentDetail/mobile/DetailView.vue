@@ -277,7 +277,7 @@
 <script setup>
   import { helper } from "src/helpers";
   import { usePrint } from "src/composables/usePrint";
-  import { numberToWords } from "@persian-tools/persian-tools";
+  import { numberToWords } from "src/helpers/numberToWords.js";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   const props = defineProps({

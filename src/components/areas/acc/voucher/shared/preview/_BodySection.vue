@@ -222,7 +222,7 @@
 
 <script setup>
   import { useQuasar } from "quasar";
-  import { numberToWords } from "@persian-tools/persian-tools";
+  import { numberToWords } from "src/helpers/numberToWords.js";
   import { helper } from "src/helpers";
 
   const $q = useQuasar();
