@@ -1,83 +1,78 @@
-/* eslint-env serviceworker */
-
-/*
- * This file (which will be your service worker)
- * is picked up by the build system ONLY if
- * quasar.config file > pwa > workboxMode is set to "InjectManifest"
- */
-
-import { clientsClaim } from "workbox-core";
-import {
-  precacheAndRoute,
-  cleanupOutdatedCaches,
-  createHandlerBoundToURL,
-} from "workbox-precaching";
+import { precacheAndRoute } from "workbox-precaching";
 import { registerRoute, NavigationRoute } from "workbox-routing";
+import { StaleWhileRevalidate, CacheFirst } from "workbox-strategies";
+import { ExpirationPlugin } from "workbox-expiration";
+import { createHandlerBoundToURL } from "workbox-precaching";
 
-self.skipWaiting();
-clientsClaim();
-
-// Use with precache injection
+// ⚠️ فقط اگر از InjectManifest استفاده می‌کنی
+// console.log("[SW] مرحله 0: شروع پیش‌کش کردن فایل‌ها");
 precacheAndRoute(self.__WB_MANIFEST);
+// console.log("[SW] مرحله 0: پیش‌کش کردن فایل‌ها کامل شد");
 
-cleanupOutdatedCaches();
+// ✅ 1. کش کردن پاسخ‌های API با Stale-While-Revalidate
+// console.log(
+//   "[SW] مرحله 1: ثبت route برای API با StaleWhileRevalidate"
+// );
+registerRoute(
+  ({ request }) => {
+    const isApi =
+      request.destination === "" && request.url.includes("/api/");
+    if (isApi) {
+      console.log(`[SW] درخواست API شناسایی شد: ${request.url}`);
+    }
+    return isApi;
+  },
+  new StaleWhileRevalidate({
+    cacheName: "api-cache",
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 60 * 60, // 1 ساعت
+      }),
+    ],
+  })
+);
 
-// Non-SSR fallbacks to index.html
-// Production SSR fallbacks to offline.html (except for dev)
-if (process.env.MODE !== "ssr" || process.env.PROD) {
-  registerRoute(
-    new NavigationRoute(
-      createHandlerBoundToURL(process.env.PWA_FALLBACK_HTML),
-      {
-        denylist: [
-          new RegExp(process.env.PWA_SERVICE_WORKER_REGEX),
-          /workbox-(.)*\.js$/,
-        ],
-      }
-    )
-  );
-}
+// ✅ 2. کش کردن تصاویر با CacheFirst
+// console.log("[SW] مرحله 2: ثبت route برای تصاویر با CacheFirst");
+registerRoute(
+  ({ request }) => {
+    const isImage = request.destination === "image";
+    if (isImage) {
+      console.log(`[SW] تصویر شناسایی شد: ${request.url}`);
+    }
+    return isImage;
+  },
+  new CacheFirst({
+    cacheName: "image-cache",
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 100,
+        maxAgeSeconds: 7 * 24 * 60 * 60, // یک هفته
+      }),
+    ],
+  })
+);
 
-// Handle push notifications
-self.addEventListener("push", function (event) {
-  if (event.data) {
-    const data = event.data.json();
-    const options = {
-      body: data.message,
-      icon: "/icons/icon-128x128.png",
-      badge: "/icons/icon-128x128.png",
-      tag: "push-notification",
-      requireInteraction: true,
-      actions: [
-        {
-          action: "open",
-          title: "Open",
-          icon: "/icons/icon-128x128.png",
-        },
-        {
-          action: "close",
-          title: "Close",
-          icon: "/icons/icon-128x128.png",
-        },
-      ],
-    };
+// ✅ 3. صفحه fallback آفلاین
+// console.log("[SW] مرحله 3: ثبت route برای fallback آفلاین");
+// registerRoute(
+//   new NavigationRoute(createHandlerBoundToURL("/offline.html"), {
+//     denylist: [
+//       // مسیری که برای Service Worker هست رو مستثنا می‌کنیم
+//       new RegExp(process.env.PWA_SERVICE_WORKER_REGEX),
+//       /workbox-(.)*\.js$/,
+//     ],
+//   })
+// );
 
-    event.waitUntil(
-      self.registration.showNotification(data.title, options)
-    );
-  }
+// ✅ 4. Listener برای نصب و فعال‌سازی (اختیاری برای کنترل دقیق‌تر)
+self.addEventListener("install", (event) => {
+  console.log("[SW] مرحله 4: رویداد install");
+  self.skipWaiting(); // فوری فعال شه
 });
 
-// Handle notification click
-self.addEventListener("notificationclick", function (event) {
-  event.notification.close();
-
-  if (event.action === "open") {
-    event.waitUntil(clients.openWindow("/"));
-  }
-});
-
-// Handle notification close
-self.addEventListener("notificationclose", function (event) {
-  console.log("Notification closed:", event.notification.tag);
+self.addEventListener("activate", (event) => {
+  console.log("[SW] مرحله 4: رویداد activate");
+  clients.claim(); // تمام تب‌ها از SW جدید استفاده کنن
 });
