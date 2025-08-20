@@ -83,6 +83,7 @@ export default defineConfig((ctx) => {
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
       // https: true,
+      port: 9000,
       open: true, // opens browser window automatically
     },
 
@@ -139,7 +140,7 @@ export default defineConfig((ctx) => {
       // manualPostHydrationTrigger: true,
 
       pwa: false,
-      // pwaOfflineHtmlFilename: 'offline.html', // do NOT use index.html as name!
+      pwaOfflineHtmlFilename: "offline.html", // do NOT use index.html as name!
 
       // pwaExtendGenerateSWOptions (cfg) {},
       // pwaExtendInjectManifestOptions (cfg) {}
@@ -147,7 +148,11 @@ export default defineConfig((ctx) => {
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
     pwa: {
-      workboxMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
+      // workboxMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
+      workboxMode: "InjectManifest", // 👈 Use your own SW
+      injectManifest: {
+        swSrc: "src-pwa/custom-service-worker.js", // 👈 Your custom SW file
+      },
       // swFilename: 'sw.js',
       // manifestFilename: 'manifest.json',
       // extendManifestJson (json) {},
