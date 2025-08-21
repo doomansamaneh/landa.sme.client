@@ -5,7 +5,7 @@
         dense
         size="40px"
         class="text-body2"
-        label="نمایش موجودی صفر"
+        :label="$t('shared.labels.showZeroInventory')"
         left-label
         v-model="searchStore.searchModel.value.showZeroStock"
         @update:model-value="searchStore.applySearch"

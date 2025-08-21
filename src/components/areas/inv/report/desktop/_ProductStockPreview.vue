@@ -1,6 +1,9 @@
 <template>
   <q-card flat bordered>
-    <card-title title="کاردکس کالا" icon="o_inventory_2" />
+    <card-title
+      :title="$t('shared.labels.stockLedger')"
+      icon="o_inventory_2"
+    />
 
     <preview-master :item="item" :title="title" v-if="item" />
     <preview-detail

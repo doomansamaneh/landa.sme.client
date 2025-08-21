@@ -1,5 +1,5 @@
 <template>
-  <tool-bar inside buttons title="کاردکس کالا">
+  <tool-bar inside buttons :title="$t('shared.labels.stockLedger')">
     <template #buttons>
       <q-btn
         no-caps
@@ -8,10 +8,9 @@
         padding="6px 12px"
         rounded
         unelevated
-        no-caps
       >
         <q-icon size="20px" name="o_edit" class="q-mr-xs" />
-        اصلاح موجودی
+        {{ $t("shared.labels.modifyStock") }}
       </q-btn>
 
       <q-btn
@@ -53,7 +52,9 @@
 
   <div class="q-pb-lg row q-col-gutter-md">
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 q-mb-sm">کد</div>
+      <div class="text-body3 q-mb-sm">
+        {{ $t("shared.columns.code") }}
+      </div>
       <q-field dense outlined>
         <template v-slot:control>
           <div class="text-body3">
@@ -64,7 +65,9 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 q-mb-sm">عنوان</div>
+      <div class="text-body3 q-mb-sm">
+        {{ $t("shared.labels.title") }}
+      </div>
       <q-field dense outlined>
         <template v-slot:control>
           <div class="text-body3">
@@ -75,16 +78,22 @@
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 q-mb-sm">گروه</div>
+      <div class="text-body3 q-mb-sm">
+        {{ $t("shared.labels.group") }}
+      </div>
       <q-field dense outlined>
         <template v-slot:control>
-          <div class="text-body3">گروه لوازم اداری و مصرفی</div>
+          <div class="text-body3">
+            {{ $t("shared.labels.OfficeSuppliesandConsumables") }}
+          </div>
         </template>
       </q-field>
     </div>
 
     <div class="col-md col-sm-6 col-xs-12">
-      <div class="text-body3 q-mb-sm">موجودی اول دوره</div>
+      <div class="text-body3 q-mb-sm">
+        {{ $t("shared.labels.openingQuantity") }}
+      </div>
       <q-field dense outlined>
         <template v-slot:control>
           <div class="text-body3">
