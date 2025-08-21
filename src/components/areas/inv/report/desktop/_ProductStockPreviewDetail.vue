@@ -10,17 +10,21 @@
   >
     <card-tab
       name="basic-info"
-      title="ریز گردش حساب"
+      :title="$t('shared.labels.AccountTransactionDetails')"
       icon="o_receipt"
     />
 
     <card-tab
       name="quote"
-      title="ورود و خروج کالا"
+      :title="$t('shared.labels.stockMovement')"
       icon="swap_vert"
     />
 
-    <card-tab name="log" title="تاریخچه" icon="o_history" />
+    <card-tab
+      name="log"
+      :title="$t('shared.labels.history')"
+      icon="o_history"
+    />
   </card-tabs>
 
   <q-tab-panels v-model="tab" keep-alive animated>
@@ -29,14 +33,18 @@
         :columns="accountItemDLColumns"
         :filter-expression="accountItemfilter"
         no-fullscreen
-        :title="`ریز گردش حساب / ${item.code} - ${item.title}`"
+        :title="`${$t(
+          'shared.labels.AccountTransactionDetails'
+        )}   / ${item.code} - ${item.title}`"
       />
     </q-tab-panel>
     <q-tab-panel class="no-padding" name="quote">
       <product-stock-item
         :filter-expression="stockFilter"
         no-fullscreen
-        :title="`کاردکس کالا / ${item.code} - ${item.title}`"
+        :title="`${$t('shared.labels.stockLedger')} / ${
+          item.code
+        } - ${item.title}`"
       />
     </q-tab-panel>
     <q-tab-panel name="log">

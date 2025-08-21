@@ -22,7 +22,9 @@
 
       <div class="row q-gutter-x-xs">
         <span class="text-caption-sm">
-          <span class="text-on-dark">گروه:</span>
+          <span class="text-on-dark">
+            {{ $t("shared.labels.group") }}:
+          </span>
           {{ item.productGroupTitle }}
         </span>
       </div>
@@ -33,7 +35,9 @@
           {{ item.barcode }}
         </span>
         <span v-if="item.taxCode" class="text-caption-sm">
-          <span class="text-on-dark">شناسه مالیاتی:</span>
+          <span class="text-on-dark">
+            {{ $t("shared.labels.taxCode") }}:
+          </span>
           {{ item.taxCode }}
         </span>
       </div>

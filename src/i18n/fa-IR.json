@@ -526,6 +526,7 @@
       "taxApiGuide": "راهنمای اتصال لاندا به سامانه مودیان",
       "taxApiConfiguration": "پیکربندی سامانه مودیان",
       "productGroupTitle": "گروه کالا",
+      "group": "گروه",
       "additionalInformation": "اطلاعات تکمیلی",
       "accountItem": "ریز گردش",
       "modifyStock": "اصلاح موجودی",
@@ -665,6 +666,7 @@
       "createSubLedgerAccount": "ایجاد حساب معین",
       "editGeneralLedgerAccount": "ویرایش حساب کل",
       "accountNature": "ماهیت حساب",
+      "AccountTransactionDetails": "ریز گردش حساب",
       "cash": "صندوق",
       "cl": "گروه حساب",
       "gl": "حساب کل",
@@ -813,7 +815,11 @@
       "employeeInsuranceShare": "بیمه سهم پرسنل",
       "salaryTax": "مالیات حقوق",
       "otherDeductions": "دیگر کسورات",
-      "netPayable": "خالص دریافتی"
+      "netPayable": "خالص دریافتی",
+      "stockLedger": "خالص دریافتی",
+      "stockMovement": "ورود و خروج کالا",
+      "OfficeSuppliesandConsumables": "گروه لوازم اداری و مصرفی",
+      "showZeroInventory": "نمایش موجودی صفر"
     },
     "productType": {
       "main": "اصلی",
