@@ -18,7 +18,7 @@
     >
       <q-icon name="o_download" size="16px" />
       <q-tooltip class="custom-tooltip">
-        دریافت الگوی {{ title }}
+        {{ $t("shared.labels.downloadTemplate") }} {{ title }}
       </q-tooltip>
     </q-btn>
   </div>
@@ -40,7 +40,7 @@
         @click="upload"
       >
         <q-icon name="arrow_upward" class="q-px-xs" size="xs" />
-        import
+        {{ $t("shared.labels.import") }}
       </q-btn>
     </template>
   </q-file>

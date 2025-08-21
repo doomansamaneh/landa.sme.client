@@ -4,7 +4,7 @@
       <div class="text-h6">
         {{ appConfigStore.model?.value?.companySetting.name }}
       </div>
-      <div class="text-body2 text-bold">فیش حقوق و دستمزد</div>
+      <div class="text-body2 text-bold">{{ $t("shared.labels.payrollSlip") }}</div>
     </div>
   </q-card-section>
 

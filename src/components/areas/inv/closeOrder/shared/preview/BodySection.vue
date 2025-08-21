@@ -3,56 +3,95 @@
     <table
       :style="$q.screen.gt.xs ? 'width:100%;' : 'width: 900px;'"
       style="
-        border: 1px solid #2d2d2d;
+        width: 100%;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
-        font-size: 13px;
+        font-size: 12.4px;
       "
+      class="print-preview-table"
     >
       <thead>
         <tr>
           <th
             style="
-              width: 5px;
               padding: 5px;
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
-            ردیف
+            {{ $t("shared.labels.rowNo") }}
           </th>
           <th
             style="
               width: 95px;
-              padding: 5px;
               text-align: start;
-              border: 1px solid #2d2d2d;
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
-            کد کالا
+            {{ $t("shared.columns.productCode") }}
           </th>
           <th
             style="
-              padding: 5px;
               text-align: start;
-              border: 1px solid #2d2d2d;
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
-            کالا
+            {{ $t("shared.columns.productTitle") }}
           </th>
           <th
             style="
-              padding: 5px;
               text-align: start;
-              border: 1px solid #2d2d2d;
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
             "
           >
-            واحد سنجش
+            {{ $t("shared.columns.productUnitTitle") }}
           </th>
-          <th style="width: 110px; border: 1px solid #2d2d2d">
-            تعداد/مقدار
+          <th
+            style="
+              width: 110px;
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            {{ $t("shared.columns.quantity") }}
           </th>
-          <th style="width: 130px; border: 1px solid #2d2d2d">فی</th>
-          <th style="width: 150px; border: 1px solid #2d2d2d">
-            مبلغ کل ({{ model?.currencyTitle }})
+          <th
+            style="
+              width: 130px;
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            {{ $t("shared.columns.per") }}
+          </th>
+          <th
+            style="
+              width: 150px;
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
+            {{ $t("shared.labels.totalAmount") }} ({{
+              model?.currencyTitle
+            }})
           </th>
         </tr>
       </thead>
@@ -63,31 +102,75 @@
               item.id === voucherItemId ? 'bg-blue-5 text-white' : ''
             "
           >
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               {{ index + 1 }}
             </td>
             <td
               style="
                 vertical-align: top;
-                padding: 3px;
-                border: 1px solid #2d2d2d;
+                padding: 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
               "
             >
               {{ item.productCode }}
             </td>
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               {{ item.productTitle }}
             </td>
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               {{ item.productUnitTitle }}
             </td>
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               {{ helper.formatNumber(item.quantity) }}
             </td>
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               {{ helper.formatNumber(item.price) }}
             </td>
-            <td style="padding: 3px; border: 1px solid #2d2d2d">
+            <td
+              style="
+                padding: 5px;
+                border-width: 1px;
+                border-style: solid;
+                border-image: initial;
+              "
+            >
               <span class="text-weight-600">
                 {{ helper.formatNumber(item.totalPrice) }}
               </span>
@@ -100,8 +183,10 @@
         <tr>
           <td
             style="
-              padding: 3px;
-              border: 1px solid #2d2d2d;
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               text-align: end;
             "
             colspan="4"
@@ -109,7 +194,14 @@
           >
             <strong>{{ $t("shared.labels.total") }}:</strong>
           </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <span class="text-weight-600">
               {{
                 helper.formatNumber(
@@ -118,7 +210,14 @@
               }}
             </span>
           </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <span class="text-weight-600">
               {{
                 helper.formatNumber(
@@ -127,7 +226,14 @@
               }}
             </span>
           </td>
-          <td style="padding: 3px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              padding: 5px;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+            "
+          >
             <span class="text-weight-600">
               {{
                 helper.formatNumber(

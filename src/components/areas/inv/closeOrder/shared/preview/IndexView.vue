@@ -17,7 +17,8 @@
             :title="$t('main-menu-items.Inv_CloseOrder_View')"
           >
             <template #header>
-              انبار: {{ model?.inventoryTitle }}
+              {{ $t("shared.labels.inventoryTitle") }}:
+              {{ model?.inventoryTitle }}
             </template>
           </header-section>
 

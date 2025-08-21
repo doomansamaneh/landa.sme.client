@@ -7,7 +7,7 @@
       </div>
       <div v-if="model?.voucherId" class="row items-center">
         <span class="col-2 text-caption text-bold">
-          سند حسابداری:
+          {{ $t("shared.labels.accountingDocument") }}:
         </span>
         <span class="text-body3 q-mx-md">
           <custom-link
