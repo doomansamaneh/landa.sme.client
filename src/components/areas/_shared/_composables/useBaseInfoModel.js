@@ -38,10 +38,10 @@ export function useBaseInfoModel({
     }
   }
 
-  onMounted(() => {
-    const selectedId = id ?? route.params.id;
-    getById(selectedId);
-  });
+  // onMounted(() => {
+  //   const selectedId = id ?? route.params.id;
+  //   getById(selectedId);
+  // });
 
   return {
     model: localModel,
