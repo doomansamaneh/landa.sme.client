@@ -132,7 +132,7 @@
             style="padding: 5px; border: 1px solid #2d2d2d"
             class="text-body2  vertical-top"
           >
-            مهر و امضا خریدار
+            {{ $t("shared.labels.buyerSignature") }}
           </td> -->
         </tr>
       </tbody>

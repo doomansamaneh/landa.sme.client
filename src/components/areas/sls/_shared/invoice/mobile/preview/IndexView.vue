@@ -168,7 +168,7 @@
 <script setup>
   import { ref } from "vue";
   import { helper } from "src/helpers";
-  import { numberToWords } from "@persian-tools/persian-tools";
+  import { numberToWords } from "src/helpers/numberToWords.js";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";

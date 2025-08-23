@@ -129,7 +129,8 @@
               </div>
 
               <div v-if="item.fee > 0">
-                کارمزد: {{ helper.formatNumber(item.fee) }}
+                {{ $t("shared.labels.fee") }}:
+                {{ helper.formatNumber(item.fee) }}
                 <span class="text-body3">ریال</span>
               </div>
             </div>

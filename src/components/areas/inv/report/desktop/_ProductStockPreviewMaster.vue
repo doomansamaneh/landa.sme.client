@@ -2,7 +2,9 @@
   <q-card-section class="q-gutter-y-md">
     <div class="row">
       <div class="col-auto q-mr-sm">
-        <span class="text-body3">گروه:</span>
+        <span class="text-body3">
+          {{ $t("shared.labels.group") }}:
+        </span>
       </div>
       <div class="text-body3">
         {{ item?.productGroupTitle }}
@@ -11,7 +13,9 @@
 
     <div class="row">
       <div class="col-auto q-mr-sm">
-        <span class="text-body3">کالا:</span>
+        <span class="text-body3">
+          {{ $t("shared.labels.productTitle") }}:
+        </span>
       </div>
       <div class="text-body2 text-bold">
         {{ item?.code }} / {{ item?.title }}
@@ -20,7 +24,9 @@
 
     <div v-if="item?.taxCode" class="row">
       <div class="col-auto q-mr-sm">
-        <span class="text-body3">شناسه مالیاتی:</span>
+        <span class="text-body3">
+          {{ $t("shared.labels.taxCode") }}:
+        </span>
       </div>
       <div class="text-body2">
         {{ item?.taxCode }}
@@ -29,7 +35,9 @@
 
     <div class="row">
       <div class="col-auto q-mr-sm">
-        <span class="text-body3">موجودی اول دوره:</span>
+        <span class="text-body3">
+          {{ $t("shared.labels.openingQuantity") }}:
+        </span>
       </div>
       <div class="text-body2 text-bold">
         {{ item?.openingQuantity?.toLocaleString() }}

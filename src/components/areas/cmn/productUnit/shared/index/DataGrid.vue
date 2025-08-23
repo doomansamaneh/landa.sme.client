@@ -9,7 +9,9 @@
     <template #cell-code="{ item }">
       {{ item.code }}
       <div v-if="item.taxCode">
-        <small>شناسه مالیاتی: {{ item.taxCode }}</small>
+        <small>
+          {{ $t("shared.labels.taxCode") }}: {{ item.taxCode }}
+        </small>
       </div>
     </template>
   </data-grid>

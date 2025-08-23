@@ -18,7 +18,7 @@
               width: 1px;
             "
           >
-            ردیف
+            {{ $t("shared.labels.rowNo") }}
           </th>
           <th
             style="
@@ -27,10 +27,10 @@
               padding: 5px;
             "
           >
-            کالا
+            {{ $t("shared.labels.productTitle") }}
           </th>
           <th style="border: 1px solid #2d2d2d; padding: 5px">
-            واحد سنجش
+            {{ $t("shared.labels.productUnitTitle") }}
           </th>
           <th
             style="
@@ -39,7 +39,7 @@
               width: 90px;
             "
           >
-            تعداد/مقدار
+            {{ $t("shared.columns.quantity") }}
           </th>
           <th
             style="
@@ -48,7 +48,7 @@
               width: 110px;
             "
           >
-            مبلغ واحد
+            {{ $t("shared.columns.unitPrice") }}
           </th>
           <th
             style="
@@ -57,7 +57,7 @@
               width: 120px;
             "
           >
-            جمع کل
+            {{ $t("shared.labels.totalPrice") }}
           </th>
         </tr>
       </thead>
@@ -94,7 +94,7 @@
             colspan="3"
             class="text-right"
           >
-            <strong>سرجمع:</strong>
+            <strong>{{ $t("shared.labels.totalPrice") }}:</strong>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
             <span class="text-weight-700">
@@ -130,7 +130,7 @@
 </template>
 
 <script setup>
-  import { numberToWords } from "@persian-tools/persian-tools";
+  import { numberToWords } from "src/helpers/numberToWords.js";
   import { helper } from "src/helpers";
 
   const props = defineProps({

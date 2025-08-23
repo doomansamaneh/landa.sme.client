@@ -25,27 +25,33 @@
     >
       <card-tab
         name="el"
-        title="گزارش دفتر الکترونیکی"
+        :title="t('shared.labels.electronicReport')"
         icon="o_menu_book"
       />
 
       <card-tab
         name="cl"
-        title="گزارش دفتر روزنامه"
+        :title="t('shared.labels.journalReport')"
         icon="o_bubble_chart"
       />
 
-      <card-tab name="gl" title="گزارش دفتر کل" icon="o_subject" />
+      <card-tab
+        name="gl"
+        :title="t('shared.labels.generalLedgerReport')"
+        icon="o_subject"
+      />
 
       <card-tab
         name="sl"
-        title="Total: گزارش دفتر روزنامه"
+        :title="t('shared.labels.journalTotalReport')"
         icon="o_menu"
       />
 
       <card-tab
         name="dl"
-        title="Total: گزارش دفتر کل"
+        :title="
+          t('shared.labels.generalLedgerTotalReport')
+        "
         icon="o_view_comfy"
       />
     </card-tabs>
@@ -60,33 +66,35 @@
         <review-item
           :columns="journalBookTaxColumns"
           sort-column="voucherNo"
-          title="گزارش دفتر"
-          sub-title="الکترونیکی"
+          :title="t('shared.labels.report')"
+          :sub-title="t('shared.labels.electronic')"
         />
       </q-tab-panel>
 
       <q-tab-panel name="cl" class="no-padding">
         <journal-book-default
           sort-column="voucherNo,code"
-          title="گزارش دفتر روزنامه"
+          :title="t('shared.labels.journalReport')"
         />
       </q-tab-panel>
       <q-tab-panel name="gl" class="no-padding">
         <journal-book-default
           sort-column="code,voucherNo"
-          title="گزارش دفتر کل"
+          :title="t('shared.labels.generalLedgerReport')"
         />
       </q-tab-panel>
       <q-tab-panel name="sl" class="no-padding">
         <journal-book-total
           sort-column="month,code,credit"
-          title="Total: گزارش دفتر روزنامه"
+          :title="t('shared.labels.journalTotalReport')"
         />
       </q-tab-panel>
       <q-tab-panel name="dl" class="no-padding">
         <journal-book-total
           sort-column="code,month,credit"
-          title="Total: گزارش دفتر کل"
+          :title="
+            t('shared.labels.generalLedgerTotalReport')
+          "
         />
       </q-tab-panel>
     </q-tab-panels>
@@ -95,6 +103,7 @@
 
 <script setup>
   import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
   import { journalBookTaxColumns } from "../../_composables/constants";
 
   import JournalBookDefault from "../desktop/JournalBookDefault.vue";
@@ -105,6 +114,8 @@
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
   // import ToolbarDesktop from "components/shared/toolbars/DynamicToolbarDesktop.vue";
+
+  const { t } = useI18n();
 
   const props = defineProps({
     title: String,

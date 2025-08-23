@@ -47,7 +47,7 @@
 
   <div class="border-radius-sm bordered overflow-hidden">
     <div class="text-body1 text-weight-500 text-center q-pa-md">
-      فهرست دریافت، پرداخت
+      {{ $t("shared.labels.paymentList") }}
     </div>
     <invoice-payment
       ref="paymentsGrid"
@@ -73,7 +73,11 @@
         </tr>
 
         <tr>
-          <td><span class="text-body3">جمع دریافتی:</span></td>
+          <td>
+            <span class="text-body3">
+              {{ $t("shared.columns.totalReceipt") }}:
+            </span>
+          </td>
           <td>
             <div class="text-body3 text-bold" style="text-align: end">
               {{ helper.formatNumber(payedAmount) }}
@@ -82,7 +86,11 @@
         </tr>
 
         <tr>
-          <td><span class="text-body3 text-bold">مانده:</span></td>
+          <td>
+            <span class="text-body3 text-bold">
+              {{ $t("shared.columns.remained") }}:
+            </span>
+          </td>
           <td>
             <div class="text-body2 text-bold" style="text-align: end">
               {{ helper.formatNumber(remainedAmount) }}

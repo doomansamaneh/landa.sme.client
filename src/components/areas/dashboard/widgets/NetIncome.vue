@@ -116,6 +116,9 @@
   import { helper } from "src/helpers";
   import { useNetIncome } from "../../acc/_composables/useNetIncome";
   import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
+  import { useI18n } from "vue-i18n";
+
+  const { t } = useI18n();
 
   import VueApexCharts from "vue3-apexcharts";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
@@ -136,7 +139,9 @@
   const options = ref(null);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir, Roboto" : "Roboto, vazir";
+    const fontFamily = $q.lang.rtl
+      ? "vazir, Roboto"
+      : "Roboto, vazir";
 
     options.value = {
       title: {
@@ -202,7 +207,10 @@
         axisTicks: {
           show: false,
         },
-        categories: ["پارسال", "امسال"],
+        categories: [
+          t("shared.labels.lastYear"),
+          t("shared.labels.thisYear"),
+        ],
         labels: {
           show: false,
           offsetY: 12,
@@ -242,28 +250,15 @@
         itemMargin: {},
       },
       tooltip: {
-        enabled: true,
-        x: {
-          show: true,
-        },
         y: {
-          show: true,
-          title: {
-            formatter: (seriesName) => seriesName == "",
+          formatter: function (value, { series, seriesIndex, w }) {
+            return helper.formatNumber(value, 2);
           },
-        },
-        style: {
-          fontSize: "13px",
-        },
-        marker: {
-          width: 8,
-          height: 8,
-        },
-        fixed: {
-          enabled: true,
-          position: "topLeft",
-          offsetX: 0,
-          offsetY: 0,
+          title: {
+            formatter: function () {
+              return "";
+            },
+          },
         },
       },
     };

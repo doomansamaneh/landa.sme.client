@@ -274,7 +274,7 @@
 
 <script setup>
   import { helper } from "src/helpers";
-  import { numberToWords } from "@persian-tools/persian-tools";
+  import { numberToWords } from "src/helpers/numberToWords.js";
 
   const props = defineProps({
     model: Object,

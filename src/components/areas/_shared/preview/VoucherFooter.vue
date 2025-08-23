@@ -25,7 +25,7 @@
             "
             class="text-body2"
           >
-            <slot name="cell1">تهیه کننده</slot>
+            <slot name="cell1">{{ $t("shared.labels.preparedBy") }}</slot>
           </td>
           <td
             style="
@@ -37,7 +37,7 @@
             "
             class="text-body2"
           >
-            <slot name="cell2">تصویب کننده</slot>
+            <slot name="cell2">{{ $t("shared.labels.approvedBy") }}</slot>
           </td>
         </tr>
       </tbody>
