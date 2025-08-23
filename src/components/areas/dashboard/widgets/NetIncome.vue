@@ -4,9 +4,6 @@
     :class="[isShakingComputed ? 'widget' : '']"
     flat
     class="shadow bordered fit"
-    :style="
-      $q.lang.rtl ? 'font-family: vazir;' : 'font-family: Roboto;'
-    "
   >
     <q-inner-loading
       :showing="netIncomeStore?.showLoader?.value"
@@ -139,7 +136,7 @@
   const options = ref(null);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir, Roboto" : "Roboto, vazir";
 
     options.value = {
       title: {

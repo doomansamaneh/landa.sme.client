@@ -9,7 +9,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <unit-lookup
-            label="واحد سازمانی"
+            :label="$t('shared.labels.organizationalUnit')"
             v-model:selectedId="
               formStore.editBatchModel.value.unit.fieldValue
             "
@@ -21,7 +21,7 @@
             dense
             size="46px"
             v-model="formStore.editBatchModel.value.unit.isModified"
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -36,7 +36,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <job-lookup
-            label="شغل"
+            :label="$t('shared.labels.job')"
             v-model:selectedId="
               formStore.editBatchModel.value.job.fieldValue
             "
@@ -48,7 +48,7 @@
             dense
             size="46px"
             v-model="formStore.editBatchModel.value.job.isModified"
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>
@@ -63,7 +63,7 @@
       >
         <div class="col-md-9 col-sm-9 col-xs-12">
           <custom-select
-            label="نوع"
+            :label="$t('shared.labels.typeTitle')"
             v-model="formStore.editBatchModel.value.type.fieldValue"
             :options="
               helper.getEnumOptions(customerType, 'customerType')
@@ -76,7 +76,7 @@
             dense
             size="46px"
             v-model="formStore.editBatchModel.value.type.isModified"
-            label="اصلاح شود؟"
+            :label="$t('shared.labels.isModified')"
           />
         </div>
       </div>

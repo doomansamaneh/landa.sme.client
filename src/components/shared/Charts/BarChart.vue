@@ -37,7 +37,7 @@
   ]);
 
   function setOptions() {
-    const fontFamily = $q.lang.rtl ? "vazir" : "Roboto";
+    const fontFamily = $q.lang.rtl ? "vazir, Roboto" : "Roboto, vazir";
 
     options.value = {
       title: {

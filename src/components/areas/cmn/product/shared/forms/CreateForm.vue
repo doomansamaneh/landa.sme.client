@@ -124,22 +124,18 @@
 
 <script setup>
   import { ref, onMounted } from "vue";
-  import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { productType } from "src/constants";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { productModel } from "src/models/areas/cmn/productModel";
   import { useProductGrid } from "../../../_composables/useProductGrid";
   import { useFormActions } from "src/composables/useFormActions";
-  import { useRoute } from "vue-router";
 
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
   import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
   import ProductUnitLookup from "src/components/shared/lookups/ProductUnitLookup.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     action: String,
@@ -148,7 +144,6 @@
 
   const form = ref(null);
   const baseRoute = "cmn/product";
-  const route = useRoute();
   const productGridStore = useProductGrid();
   const actionStore = useFormActions(baseRoute);
   const model = ref({ ...productModel });
@@ -157,12 +152,21 @@
     baseRoute: baseRoute,
     model: model,
     resetCallback: productGridStore.reset,
+    afterGetByIdCallback: async (product) => {
+      if (props.action === "create" && product?.productGroupId) {
+        getNewCode(product.productGroupId);
+      }
+    },
   });
 
   const pgChanged = async (pg) => {
-    if (pg) {
+    await getNewCode(pg?.id);
+  };
+
+  const getNewCode = async (pgId) => {
+    if (pgId) {
       var response = await actionStore.customPostAction(
-        `getNewCode/${pg.id}`
+        `getNewCode/${pgId}`
       );
       model.value.code = response.data;
     }
@@ -182,9 +186,7 @@
     });
   }
 
-  onMounted(async () => {
-    await formStore.getById(route.params.id);
-  });
+  onMounted(async () => {});
 
   defineExpose({
     submitForm,
