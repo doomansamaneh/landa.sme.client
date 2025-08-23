@@ -17,7 +17,7 @@
               border: 1px solid #2d2d2d;
             "
           >
-            از:
+            {{ $t("shared.labels.fromTitle") }}:
             <span v-if="model?.fromBankTitle">
               {{ model?.fromBankTitle }} /
               {{ model?.fromBankAccountTypeTitle }} /
@@ -34,7 +34,7 @@
               border: 1px solid #2d2d2d;
             "
           >
-            به:
+            {{ $t("shared.labels.toTitle") }}:
             <span v-if="model?.toBankTitle">
               {{ model?.toBankTitle }} /
               {{ model?.toBankAccountTypeTitle }} /
@@ -51,7 +51,8 @@
             style="padding: 5px; border: 1px solid #2d2d2d"
           >
             <div class="text-wrap">
-              موضوع: {{ model?.subject }} {{ model?.summary }}
+              {{ $t("shared.labels.topic") }} {{ model?.subject }}
+              {{ model?.summary }}
             </div>
           </td>
         </tr>
@@ -70,7 +71,7 @@
               )
             </span>
             <span v-if="model?.fromFee" class="q-mx-md">
-              کارمزد:
+              {{ $t("shared.labels.fee") }}:
               {{ model?.fromFee.toLocaleString() }}
               ({{ numberToWords(model?.fromFee) }}
               <strong>{{ model?.currencyTitle }}</strong>
@@ -87,7 +88,7 @@
               border: 1px solid #2d2d2d;
             "
           >
-            مهر و امضا دریافت کننده
+            {{ $t("shared.labels.RecipientSignature") }}
           </td>
           <td
             style="
@@ -96,7 +97,7 @@
               border: 1px solid #2d2d2d;
             "
           >
-            مهر و امضا پرداخت کننده
+            {{ $t("shared.labels.payerSignature") }}
           </td>
         </tr>
       </tbody>

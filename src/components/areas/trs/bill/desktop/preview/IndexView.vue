@@ -12,8 +12,12 @@
               :type="type"
             />
             <footer-section :model="model">
-              <template #cell1>مهر و امضا دریافت کننده</template>
-              <template #cell2>مهر و امضا پرداخت کننده</template>
+              <template #cell1>
+                {{ $t("shared.labels.RecipientSignature") }}
+              </template>
+              <template #cell2>
+                {{ $t("shared.labels.payerSignature") }}
+              </template>
             </footer-section>
           </q-card-section>
         </div>

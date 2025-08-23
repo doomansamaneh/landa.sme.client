@@ -38,7 +38,10 @@
   </tool-bar> -->
 
   <q-card flat class="bordered shadow overflow-hidden">
-    <card-title title="گردش حساب" icon="o_repeat" />
+    <card-title
+      :title="$t('shared.labels.AccountTransaction')"
+      icon="o_repeat"
+    />
 
     <q-card-section>
       <div class="row q-mb-sm">

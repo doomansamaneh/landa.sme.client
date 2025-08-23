@@ -1,6 +1,9 @@
 <template>
   <q-card flat class="bordered shadow overflow-hidden">
-    <card-title title="حساب تفصیلی" icon="o_repeat" />
+    <card-title
+      :title="$t('shared.columns.dlTitle')"
+      icon="o_repeat"
+    />
 
     <div :ref="printStore.printRef" v-if="model">
       <q-card-section>

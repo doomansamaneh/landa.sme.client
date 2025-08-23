@@ -9,7 +9,10 @@
   />
 
   <q-card flat class="bordered shadow overflow-hidden">
-    <card-title title="گردش حساب" icon="o_repeat" />
+    <card-title
+      :title="$t('shared.labels.AccountTransaction')"
+      icon="o_repeat"
+    />
 
     <q-separator size="1px" />
 

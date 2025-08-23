@@ -10,10 +10,10 @@
   >
     <card-tab
       name="main-info"
-      title="ریز گردش حساب"
+      :title="$t('shared.labels.AccountTransactionDetails')"
       icon="o_arrow_downward"
     />
-    <card-tab name="log" title="تاریخچه" icon="o_history" />
+    <card-tab name="log"  :title="$t('shared.labels.history')" icon="o_history" />
   </card-tabs>
   <q-tab-panels class="transparent" v-model="tab" animated keep-alive>
     <q-tab-panel name="main-info" class="no-padding">

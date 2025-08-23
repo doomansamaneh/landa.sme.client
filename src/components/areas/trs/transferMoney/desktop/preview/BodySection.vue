@@ -2,17 +2,25 @@
   <table
     style="
       width: 100%;
-      border: 1px solid #2d2d2d;
+      border-width: 1px;
+      border-style: solid;
+      border-image: initial;
       border-collapse: collapse;
-      font-size: 12px;
+      font-size: 12.4px;
     "
+    class="print-preview-table"
   >
     <tbody>
       <tr>
         <td
-          style="width: 50%; padding: 5px; border: 1px solid #2d2d2d"
+          style="
+            border-width: 1px;
+            border-style: solid;
+            border-image: initial;
+            padding: 5px;
+          "
         >
-          از:
+          {{ $t("shared.labels.fromTitle") }}:
           <span v-if="model?.fromBankTitle">
             {{ model?.fromBankTitle }} /
             {{ model?.fromBankAccountTypeTitle }} /
@@ -23,9 +31,14 @@
           </span>
         </td>
         <td
-          style="width: 50%; padding: 5px; border: 1px solid #2d2d2d"
+          style="
+            border-width: 1px;
+            border-style: solid;
+            border-image: initial;
+            padding: 5px;
+          "
         >
-          به:
+          {{ $t("shared.labels.toTitle") }}:
           <span v-if="model?.toBankTitle">
             {{ model?.toBankTitle }} /
             {{ model?.toBankAccountTypeTitle }} /
@@ -39,17 +52,28 @@
       <tr>
         <td
           colspan="2"
-          style="padding: 5px; border: 1px solid #2d2d2d"
+          style="
+            border-width: 1px;
+            border-style: solid;
+            border-image: initial;
+            padding: 5px;
+          "
         >
           <div class="text-wrap">
-            موضوع: {{ model?.subject }} {{ model?.summary }}
+            {{ $t("shared.labels.topic") }} {{ model?.subject }}
+            {{ model?.summary }}
           </div>
         </td>
       </tr>
       <tr>
         <td
           colspan="2"
-          style="padding: 5px; border: 1px solid #2d2d2d"
+          style="
+            border-width: 1px;
+            border-style: solid;
+            border-image: initial;
+            padding: 5px;
+          "
         >
           <span>
             {{ $t("shared.labels.total") }}:
@@ -61,7 +85,7 @@
             )
           </span>
           <span v-if="model?.fromFee" class="q-mx-md">
-            کارمزد:
+            {{ $t("shared.labels.fee") }}:
             {{ helper.formatNumber(model?.fromFee) }}
             ({{ numberToWords(model?.fromFee) }}
             <strong>{{ model?.currencyTitle }}</strong>

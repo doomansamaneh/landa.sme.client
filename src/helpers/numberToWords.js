@@ -253,6 +253,13 @@ function chunkUnderThousand(number0to999, language) {
 }
 
 export function numberToWords(value, lang) {
+  if (
+    value == null ||
+    (typeof value !== "number" && typeof value !== "bigint")
+  ) {
+    return 0;
+  }
+
   const language = ["english", "persian", "arabic"].includes(lang)
     ? lang
     : detectLanguageFromQuasarOrStorage();
