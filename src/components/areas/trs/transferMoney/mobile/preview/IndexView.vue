@@ -28,7 +28,7 @@
 
     <q-card-section class="q-gutter-y-sm">
       <div>
-        از:
+        {{ $t("shared.labels.fromTitle") }}:
         <span v-if="model?.fromBankTitle">
           {{ model?.fromBankTitle }} /
           {{ model?.fromBankAccountTypeTitle }} /
@@ -39,7 +39,7 @@
         </span>
       </div>
       <div>
-        به:
+        {{ $t("shared.labels.toTitle") }}:
         <span v-if="model?.toBankTitle">
           {{ model?.toBankTitle }} /
           {{ model?.toBankAccountTypeTitle }} /
@@ -59,7 +59,7 @@
       </div>
       <q-separator />
       <div v-if="model?.fromFee" class="text-right">
-        کارمزد:
+        {{ $t("shared.labels.fee") }}:
         <span class="text-weight-500">
           {{ helper.formatNumber(model?.fromFee) }}
         </span>

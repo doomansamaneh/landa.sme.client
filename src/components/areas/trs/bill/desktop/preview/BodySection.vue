@@ -3,10 +3,11 @@
     <table
       style="
         width: 100%;
-        border: 1px solid #2d2d2d;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
-        font-size: 13px;
-        margin-bottom: 5px;
+        font-size: 12.4px;
       "
       class="print-preview-table"
     >
@@ -14,57 +15,101 @@
         <tr>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
-              width: 1px;
             "
           >
-            ردیف
-          </th>
-          <th style="border: 1px solid #2d2d2d; padding: 5px">
-            شرح هزینه
+            {{ $t("shared.labels.rowNo") }}
           </th>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
+            {{ $t("shared.columns.costComment") }}
+          </th>
+          <th
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
               width: 120px;
             "
           >
-            ارزش افزوده
+            {{ $t("shared.labels.vat") }}
           </th>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
               width: 130px;
             "
           >
-            مبلغ ({{ model?.currencyTitle }})
+            {{ $t("shared.labels.price") }} ({{
+              model?.currencyTitle
+            }})
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in model?.billItems" :key="item.Id">
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ index + 1 }}
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ item.slCode }} / {{ item.slTitle }} /
             {{ item.comment }}
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ helper.formatNumber(item.vatAmount) }}
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ helper.formatNumber(item.amount) }}
           </td>
         </tr>
         <tr>
           <td
             style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
-              border: 1px solid #2d2d2d;
               text-align: end;
             "
             colspan="3"
@@ -73,10 +118,18 @@
             <strong>{{ $t("shared.labels.total") }}:</strong>
             (
             {{ numberToWords(model?.amount) }}
+
             <strong>{{ model?.currencyTitle }}</strong>
             )
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             <strong>
               {{ helper.formatNumber(model?.amount) }}
             </strong>
@@ -88,9 +141,11 @@
     <table
       style="
         width: 100%;
-        border: 1px solid #2d2d2d;
+        border-width: 1px;
+        border-style: solid;
+        border-image: initial;
         border-collapse: collapse;
-        font-size: 13px;
+        font-size: 12.4px;
       "
       class="print-preview-table"
     >
@@ -98,49 +153,71 @@
         <tr>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
-              width: 1px;
             "
           >
-            ردیف
+            {{ $t("shared.columns.rowNo") }}
           </th>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
               width: 90px;
             "
           >
-            شماره
+            {{ $t("shared.labels.no") }}
           </th>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
               width: 75px;
             "
           >
-            تاریخ
+            {{ $t("shared.labels.date") }}
           </th>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
               width: 200px;
             "
           >
-            حساب بانکی / صندوق / طرف حساب
+            {{ $t("shared.labels.account") }} /
+            {{ $t("shared.accountDLType.cash") }} /
+            {{ $t("shared.accountDLType.customer") }}
           </th>
-          <th style="border: 1px solid #2d2d2d; padding: 5px">شرح</th>
           <th
             style="
-              border: 1px solid #2d2d2d;
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
+            {{ $t("shared.labels.comment") }}
+          </th>
+          <th
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
               width: 130px;
             "
           >
-            مبلغ ({{ model?.currencyTitle }})
+            {{ $t("shared.labels.price") }} ({{
+              model?.currencyTitle
+            }})
           </th>
         </tr>
       </thead>
@@ -149,16 +226,44 @@
           v-for="(item, index) in model?.paymentItems"
           :key="item.Id"
         >
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ index + 1 }}
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ item.itemNo }}
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ item.itemDate?.substring(0, 10) }}
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             <div v-if="item.bankAccountNo">
               {{ item.bankAccountTitle }} /
               {{ item.bankAccountTypeTitle }} /
@@ -169,18 +274,25 @@
               {{ item.customerName }}
             </div>
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{
               $t(`shared.paymentMethod.${getItemType(item.typeId)}`)
             }}
 
             <span v-if="item.bankBranchDisplay">
-              | شعبه بانک:
+              | {{ $t("shared.labels.bankBranch") }}:
               {{ item.bankBranchDisplay }}
             </span>
 
             <span v-if="item.sayad">
-              | ش صیاد:
+              | {{ $t("shared.labels.sayadNumber") }}:
               {{ item.sayad }}
             </span>
 
@@ -189,15 +301,24 @@
               {{ item.comment }}
             </span>
           </td>
-          <td style="border: 1px solid #2d2d2d; padding: 5px">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             {{ item.amount?.toLocaleString() }}
           </td>
         </tr>
         <tr>
           <td
             style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
               padding: 5px;
-              border: 1px solid #2d2d2d;
               text-align: end;
             "
             colspan="5"
@@ -210,10 +331,19 @@
                 helper.getSubtotal(model?.paymentItems, "amount")
               )
             }}
+
+            <!-- {{ helper.getSubtotal(model?.paymentItems, "amount") }} -->
             <strong>{{ model?.currencyTitle }}</strong>
             )
           </td>
-          <td style="padding: 5px; border: 1px solid #2d2d2d">
+          <td
+            style="
+              border-width: 1px;
+              border-style: solid;
+              border-image: initial;
+              padding: 5px;
+            "
+          >
             <strong>
               {{
                 helper

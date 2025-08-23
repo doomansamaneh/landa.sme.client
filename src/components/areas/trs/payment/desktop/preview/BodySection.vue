@@ -23,7 +23,7 @@
             "
           >
             <span v-if="type === documentType.receipt">
-              دریافت از:
+              دریافت {{ $t("shared.labels.fromTitle") }}:
             </span>
             <span v-else>پرداخت به:</span>
           </td>

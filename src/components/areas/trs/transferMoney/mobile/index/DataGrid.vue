@@ -22,11 +22,11 @@
     <template #row-body="{ item }">
       <div class="row justify-between">
         <div class="col ellipsis text-body3 text-weight-500">
-          از: {{ item.fromTitle }}
+          {{ $t("shared.labels.fromTitle") }}: {{ item.fromTitle }}
         </div>
       </div>
       <div class="col ellipsis text-body3 text-weight-500_">
-        به: {{ item.toTitle }}
+        {{ $t("shared.labels.toTitle") }}: {{ item.toTitle }}
       </div>
 
       <div class="ellipsis-2-lines text-body1 text-bold">

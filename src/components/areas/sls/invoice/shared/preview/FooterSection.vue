@@ -59,7 +59,7 @@
               "
               class="text-body2 vertical-top"
             >
-              مهر و امضا خریدار
+              {{ $t("shared.labels.buyerSignature") }}
             </td>
           </tr>
         </tbody>
