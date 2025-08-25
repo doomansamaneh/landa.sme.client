@@ -73,7 +73,7 @@
             @click="formStore.pushNewRow()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
-            افزودن ردیف
+            {{ $t("shared.labels.addRow") }}
           </q-btn>
         </td>
       </tr>

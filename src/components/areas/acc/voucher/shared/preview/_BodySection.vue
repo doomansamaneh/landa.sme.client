@@ -74,11 +74,7 @@
           v-for="(item, index) in model?.voucherItems"
           :key="item.id"
         >
-          <tr
-            :class="
-              item.id === voucherItemId ? 'bg-blue-5 text-white' : ''
-            "
-          >
+          <tr :class="item.id === voucherItemId ? 'bg-on-dark' : ''">
             <td
               style="
                 padding: 3px;

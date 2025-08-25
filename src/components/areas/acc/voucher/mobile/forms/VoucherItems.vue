@@ -16,7 +16,9 @@
     <div class="q-pa-lg">
       <div class="row items-center q-mb-md">
         <div class="col-4">
-          <span class="text-caption text-on-dark">حساب معین</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.columns.slTitle") }}
+          </span>
         </div>
         <div class="col">
           <span class="text-body2">{{ row.slDisplay }}</span>
@@ -25,7 +27,9 @@
 
       <div class="row items-center q-mb-md">
         <div class="col-4">
-          <span class="text-caption text-on-dark">تفصیلی</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.columns.dlTitle") }}
+          </span>
         </div>
         <div class="col">
           <span class="text-body2">{{ row.dlDisplay }}</span>
@@ -34,7 +38,9 @@
 
       <div class="row items-center q-mb-md" v-if="row.comment">
         <div class="col-4">
-          <span class="text-caption text-on-dark">شرح</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.comment") }}
+          </span>
         </div>
         <div class="col">
           <span class="text-body2">{{ row.comment }}</span>
@@ -43,7 +49,9 @@
 
       <div class="row items-center q-mb-md">
         <div class="col-4">
-          <span class="text-caption text-on-dark">بدهکار</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.columns.debit") }}
+          </span>
         </div>
         <div class="col">
           <span class="text-body2">
@@ -54,7 +62,9 @@
 
       <div class="row items-center">
         <div class="col-4">
-          <span class="text-caption text-on-dark">بستانکار</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.columns.credit") }}
+          </span>
         </div>
         <div class="col">
           <span class="text-body2">
@@ -69,7 +79,7 @@
     <q-card-actions class="q-pa-md" align="between">
       <q-btn
         no-caps
-        label="ویرایش"
+        :label="$t('shared.labels.edit')"
         class="text-body2"
         flat
         rounded
@@ -98,7 +108,7 @@
     @click="addNewItem()"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
-    <div class="">افزودن ردیف</div>
+    <div class="">{{ $t("shared.labels.addRow") }}</div>
   </q-btn>
 
   <q-dialog
@@ -138,7 +148,7 @@
                   v-model:selectedId="selectedItem.slId"
                   v-model:selectedText="selectedItem.slDisplay"
                   :autofocus="true"
-                  label="حساب معین"
+                  :label="$t('shared.columns.slTitle')"
                   required
                   clearable
                   @rowSelected="
@@ -154,7 +164,7 @@
                   ref="dl"
                   v-model:selectedId="selectedItem.dlId"
                   v-model:selectedText="selectedItem.dlDisplay"
-                  label="تفصیلی"
+                  :label="$t('shared.columns.dlTitle')"
                 />
               </div>
             </div>
@@ -164,7 +174,7 @@
                 <custom-input
                   v-model="selectedItem.comment"
                   autogrow
-                  label="شرح"
+                  :label="$t('shared.labels.comment')"
                   required
                 />
               </div>
@@ -174,7 +184,7 @@
               <div class="col">
                 <custom-input-number
                   v-model="selectedItem.debit"
-                  label="بدهکار"
+                  :label="$t('shared.columns.debit')"
                   required
                 />
               </div>
@@ -184,7 +194,7 @@
               <div class="col">
                 <custom-input-number
                   v-model="selectedItem.credit"
-                  label="بستانکار"
+                  :label="$t('shared.columns.credit')"
                   required
                 />
               </div>
@@ -226,7 +236,9 @@
     <q-card-section>
       <div class="row items-center q-mb-sm">
         <div class="col-4">
-          <span class="text-caption text-on-dark">بدهکار:</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.columns.debit") }}:
+          </span>
         </div>
         <div class="col">
           <b>{{ helper.formatNumber(formStore.totalDebit.value) }}</b>
@@ -234,7 +246,9 @@
       </div>
       <div class="row items-center q-mb-sm">
         <div class="col-4">
-          <span class="text-caption text-on-dark">بستانکار:</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.columns.credit") }}:
+          </span>
         </div>
         <div class="col">
           <b>
@@ -244,7 +258,9 @@
       </div>
       <div class="row items-center">
         <div class="col-4">
-          <span class="text-caption text-on-dark">تفاوت:</span>
+          <span class="text-caption text-on-dark">
+            {{ $t("shared.labels.difference") }}:
+          </span>
         </div>
         <div class="col">
           <b>{{ helper.formatNumber(formStore.totalDif.value) }}</b>
@@ -258,6 +274,7 @@
   import { ref, computed } from "vue";
   import { sqlOperator } from "src/constants";
   import { helper } from "src/helpers";
+  import { useI18n } from "vue-i18n";
 
   import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
@@ -269,13 +286,17 @@
     formStore: Object,
   });
 
+  const { t } = useI18n();
+
   const dl = ref(null);
   const showDialog = ref(false);
   const selectedItem = ref({});
   const selectedIndex = ref(-1);
 
   const dialogTitle = computed(() => {
-    return selectedIndex.value === -1 ? "افزودن ردیف" : "ویرایش ردیف";
+    return selectedIndex.value === -1
+      ? t("shared.labels.addRow")
+      : t("shared.labels.editRow");
   });
 
   const slChanged = (sl, row, index) => {

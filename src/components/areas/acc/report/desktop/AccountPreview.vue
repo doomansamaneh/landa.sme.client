@@ -45,14 +45,14 @@
 
     <q-card-section>
       <div class="row q-mb-sm">
-        <span class="col-1">کد:</span>
+        <span class="col-1">{{ $t("shared.labels.code") }}:</span>
         <span class="text-body1 q-mx-md">
           {{ item?.code }}
         </span>
       </div>
 
       <div class="row q-mb-sm">
-        <span class="col-1">عنوان:</span>
+        <span class="col-1">{{ $t("shared.labels.title") }}:</span>
         <span class="text-body1 q-mx-md">
           {{ item?.title }}
         </span>

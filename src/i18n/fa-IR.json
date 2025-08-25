@@ -280,6 +280,7 @@
   "shared": {
     "labels": {
       "taxId": "ش مالیاتی",
+      "chequeAccount": "ش حساب",
       "seller": "فروشنده",
       "orderBy": "مرتب‌سازی براساس",
       "address": "نشانی",
@@ -307,6 +308,7 @@
       "preparedBy": "تهیه کننده",
       "approvedBy": "تصویب کننده",
       "invoice": "صورتحساب فروش کالا و خدمات",
+      "invoiceNo": "فاکتور شماره",
       "required": "پر کردن این فیلد اجباری است",
       "settlement": "تسویه حساب",
       "select": "انتخاب",
@@ -581,6 +583,7 @@
       "noFrom": "شماره از",
       "noTo": "شماره تا",
       "addRow": "افزودن ردیف",
+      "editRow": "ویرایش ردیف",
       "addEditProduct": "افزودن/ویرایش کالا",
       "selectProduct": "انتخاب کالا/خدمت",
       "selectProductService": "انتخاب کالا/خدمت",
@@ -691,6 +694,7 @@
       "marriageStatus": "وضعیت تاهل",
       "childCount": "تعداد فرزند",
       "job": "شغل",
+      "difference": "تفاوت",
       "iddNo": "شماره شناسنامه",
       "nationality": "ملیت",
       "birthLocation": "محل تولد",
@@ -825,7 +829,16 @@
       "stockLedger": "خالص دریافتی",
       "stockMovement": "ورود و خروج کالا",
       "OfficeSuppliesandConsumables": "گروه لوازم اداری و مصرفی",
-      "showZeroInventory": "نمایش موجودی صفر"
+      "showZeroInventory": "نمایش موجودی صفر",
+      "chequeTransaction": "گردش چک",
+      "chequeDetail": "جزئیات چک",
+      "chequeNo": "شماره چک",
+      "chequeDate": "تاریخ چک",
+      "chequeAmount": "مبلغ چک",
+      "chequeStatus": "وضعیت چک",
+      "chequeType": "نوع چک",
+      "chequeBank": "بانک چک",
+      "chequeBranch": "شعبه چک"
     },
     "productType": {
       "main": "اصلی",

@@ -112,7 +112,7 @@
                   <slot name="row-body" :item="row" />
 
                   <!-- Badge Slot -->
-                  <div v-if="showBadge" class="row no-wrap">
+                  <div v-if="showBadge" class="row no-wrap q-mt-sm">
                     <div class="col no-wrap">
                       <q-scroll-area
                         :bar-style="{ opacity: 0 }"
@@ -175,7 +175,11 @@
       class="row primary-gradient primary-shadow items-center"
       @click="previous"
     >
-      <q-icon class="q-pr-xs" size="16px" name="east" />
+      <q-icon
+        class="q-pr-xs"
+        size="16px"
+        :name="$q.lang.rtl ? 'east' : 'west'"
+      />
       <span class="text-body3">
         {{ $t("shared.labels.previous") }}
       </span>
@@ -192,7 +196,11 @@
       @click="next"
     >
       <span class="text-body3">{{ $t("shared.labels.next") }}</span>
-      <q-icon class="q-pl-xs" size="16px" name="west" />
+      <q-icon
+        class="q-pl-xs"
+        size="16px"
+        :name="$q.lang.rtl ? 'west' : 'east'"
+      />
     </q-btn>
   </div>
 
