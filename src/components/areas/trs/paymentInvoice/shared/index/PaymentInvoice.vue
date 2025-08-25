@@ -24,7 +24,7 @@
           icon="o_info"
           :to="`/${getInvoiceUrl(item)}/preview/${item.invoiceId}`"
         />
-        فاکتور شماره:
+        {{ $t("shared.labels.invoiceNo") }}:
         <span class="q-px-sm">
           {{ item.no }} -
           {{ item.date.substring(0, 10) }}
