@@ -64,7 +64,7 @@
               text-color="white"
               :item="parseUser(item)?.id"
               :text-holder="parseUser(item)?.name"
-              text-holder-class="text-h5 text-bold"
+              text-holder-class="text-body1 text-weight-900"
               :avatar="avatar"
             />
           </template>
