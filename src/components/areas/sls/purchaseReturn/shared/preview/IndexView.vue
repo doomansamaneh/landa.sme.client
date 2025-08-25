@@ -4,7 +4,7 @@
     base-route="sls/purchaseReturn"
     entity-name="Sls.[Invoice]"
     detail-url="trs/receipt"
-    show-sale-header
+    show-sale-header_
     tax-api_
   >
     <template #toolbar-container="{ model }">
