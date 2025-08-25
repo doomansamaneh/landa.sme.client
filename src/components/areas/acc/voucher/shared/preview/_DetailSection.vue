@@ -18,7 +18,11 @@
           unelevated
         >
           <span>{{ $t("shared.labels.viewOriginalDocument") }}</span>
-          <q-icon name="o_arrow_back" size="xs" class="q-mx-xs" />
+          <q-icon
+            :name="$q.lang.rtl ? 'o_arrow_back' : 'o_arrow_forward'"
+            size="xs"
+            class="q-mx-xs"
+          />
         </q-btn>
       </div>
     </q-card-section>
