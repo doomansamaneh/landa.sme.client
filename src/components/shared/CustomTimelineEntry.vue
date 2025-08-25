@@ -20,7 +20,7 @@
             text-color="white"
             :item="authStore.currentUser?.id"
             :text-holder="authStore.currentUser?.fullName"
-            text-holder-class="text-h5 text-bold "
+            text-holder-class="text-body1 text-weight-900"
             :avatar="avatar"
           />
         </template>

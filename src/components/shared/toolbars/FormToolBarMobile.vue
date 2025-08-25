@@ -16,7 +16,7 @@
         <slot name="header">
           <span
             :style="
-              $q.screen.gt.xs ? 'width: auto;' : 'max-width: 160px;'
+              $q.screen.gt.xs ? 'width: auto;' : 'max-width: auto;'
             "
             class="ellipsis-2-lines text-weight-700"
             :class="$q.screen.gt.sm ? 'text-h6' : 'text-body1'"
