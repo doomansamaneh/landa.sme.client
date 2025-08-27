@@ -31,7 +31,9 @@
 
       <div class="row q-gutter-x-xs">
         <span v-if="item.barcode" class="text-caption-sm">
-          <span class="text-on-dark">بارکد:</span>
+          <span class="text-on-dark">
+            {{ $t("shared.labels.barcode") }}:
+          </span>
           {{ item.barcode }}
         </span>
         <span v-if="item.taxCode" class="text-caption-sm">
@@ -44,11 +46,15 @@
 
       <div class="row q-gutter-x-xs">
         <span v-if="item.price" class="text-caption-sm">
-          <span class="text-on-dark">قیمت فروش:</span>
+          <span class="text-on-dark">
+            {{ $t("shared.priceAdjustmentTarget.sales") }}:
+          </span>
           {{ helper.formatNumber(item.price) }}
         </span>
         <span v-if="item.purchasePrice" class="text-caption-sm">
-          <span class="text-on-dark">قیمت خرید:</span>
+          <span class="text-on-dark">
+            {{ $t("shared.priceAdjustmentTarget.purchase") }}:
+          </span>
           {{ helper.formatNumber(item.purchasePrice) }}
         </span>
       </div>

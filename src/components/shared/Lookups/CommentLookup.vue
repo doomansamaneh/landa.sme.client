@@ -82,7 +82,10 @@
             <div class="col">
               <header-column
                 fieldName="title"
-                :title="$t('shared.labels.title') || 'شرح'"
+                :title="
+                  $t('shared.labels.title') ||
+                  $t('shared.labels.subject')
+                "
                 :table-store="tableStore"
                 @click="sortTitle"
               />
@@ -160,7 +163,10 @@
     <q-card class="no-border">
       <q-card-section>
         <div class="row items-center q-col-gutter-md">
-          <div class="col text-body2 text-bold">انتخاب شرح</div>
+          <div class="col text-body2 text-bold">
+            {{ $t("shared.labels.select") }}
+            {{ $t("shared.labels.subject") }}
+          </div>
           <div class="flex flex-center">
             <q-btn
               no-caps
@@ -185,7 +191,7 @@
           input-class="text-body2 "
           dense
           debounce="500"
-          :placeholder="'جستجو...'"
+          :placeholder="$t('shared.labels.search') + '...'"
           @update:model-value="searchInLookup"
         >
           <template #append>
@@ -210,7 +216,10 @@
           <div class="col">
             <header-column
               fieldName="title"
-              :title="$t('shared.labels.title') || 'شرح'"
+              :title="
+                $t('shared.labels.title') ||
+                $t('shared.labels.subject')
+              "
               :table-store="tableStore"
               @click="sortTitle"
             />

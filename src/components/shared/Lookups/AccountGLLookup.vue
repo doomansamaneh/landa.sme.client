@@ -12,8 +12,12 @@
     </template>
 
     <template #thead-cols>
-      <div class="col-1">کد</div>
-      <div class="col">عنوان</div>
+      <div class="col-1">
+        {{ $t("shared.labels.code") }}
+      </div>
+      <div class="col">
+        {{ $t("shared.labels.title") }}
+      </div>
     </template>
 
     <template #tbody-index="{ index }">
