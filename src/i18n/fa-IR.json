@@ -311,6 +311,7 @@
       "invoiceNo": "فاکتور شماره",
       "required": "پر کردن این فیلد اجباری است",
       "settlement": "تسویه حساب",
+      "clearance": "تسویه",
       "select": "انتخاب",
       "selectInvoicesForReceiptPayment": "برای دریافت / پرداخت صورتحسابهای مورد نظر را تیک بزنید",
       "ok": "بسیار خوب",
