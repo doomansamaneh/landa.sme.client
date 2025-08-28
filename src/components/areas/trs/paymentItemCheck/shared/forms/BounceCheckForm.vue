@@ -11,15 +11,15 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         {{ $t("shared.labels.checkNo") }}:
         <span class="text-weight-600">
-          {{ item?.value?.itemNo }}
+          {{ item?.itemNo }}
         </span>
       </div>
     </div>
-    <div v-if="item?.value?.sayad" class="row q-mb-md">
+    <div v-if="item?.sayad" class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
         {{ $t("shared.labels.sayadNumber") }}:
         <span class="text-weight-600">
-          {{ item?.value?.sayad }}
+          {{ item?.sayad }}
         </span>
       </div>
     </div>
