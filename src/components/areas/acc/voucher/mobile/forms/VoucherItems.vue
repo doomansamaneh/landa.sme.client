@@ -79,7 +79,7 @@
     <q-card-actions class="q-pa-md" align="between">
       <q-btn
         no-caps
-        label="ویرایش"
+        :label="$t('shared.labels.edit')"
         class="text-body2"
         flat
         rounded

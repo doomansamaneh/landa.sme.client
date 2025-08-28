@@ -50,22 +50,22 @@
   </tool-bar> -->
 
   <div class="row q-mb-md">
-    <span class="col-1">شماره:</span>
+    <span class="col-1">{{ $t("shared.labels.no") }}:</span>
     <span>{{ model?.no }}</span>
   </div>
   <div class="row q-mb-md">
-    <span class="col-1">عنوان:</span>
+    <span class="col-1">{{ $t("shared.labels.title") }}:</span>
     <span>{{ model?.title }}</span>
   </div>
   <div class="row q-mb-md">
-    <span class="col-1">تاریخ:</span>
+    <span class="col-1">{{ $t("shared.labels.date") }}:</span>
     <span>
       {{ model?.startDate?.substring(0, 10) }} -
       {{ model?.finishDate?.substring(0, 10) }}
     </span>
   </div>
   <div class="row q-mb-md">
-    <span class="col-1">شرح:</span>
+    <span class="col-1">{{ $t("shared.labels.description") }}:</span>
     <span>
       {{ model?.comment }}
     </span>

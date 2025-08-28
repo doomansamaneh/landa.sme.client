@@ -46,9 +46,11 @@
               <template
                 v-if="searchStore.searchModel.value.dateRange > 0"
               >
-                بازه زمانی:
+                {{ $t("shared.labels.dateRange") }}:
               </template>
-              <template v-else>بازه زمانی</template>
+              <template v-else>
+                {{ $t("shared.labels.dateRange") }}
+              </template>
 
               <div
                 class="q-ml-xs"
@@ -80,9 +82,11 @@
               <template
                 v-if="searchStore.searchModel.value.depositType > 0"
               >
-                تسویه:
+                {{ $t("shared.labels.clearance") }}:
               </template>
-              <template v-else>تسویه</template>
+              <template v-else>
+                {{ $t("shared.labels.clearance") }}
+              </template>
 
               <div
                 class="q-ml-xs"
@@ -114,9 +118,11 @@
               <template
                 v-if="searchStore.searchModel.value.taxStatus > 0"
               >
-                سامانه مودیان:
+                {{ $t("shared.labels.taxStatus") }}:
               </template>
-              <template v-else>سامانه مودیان</template>
+              <template v-else>
+                {{ $t("shared.labels.taxStatus") }}
+              </template>
 
               <div
                 class="q-ml-xs"
@@ -142,14 +148,18 @@
         <div class="column q-pb-lg q-col-gutter-lg">
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <div class="text-body2 q-mb-sm">مبلغ از</div>
+              <div class="text-body2 q-mb-sm">
+                {{ $t("shared.labels.amountFrom") }}
+              </div>
               <custom-input-number
                 v-model="searchStore.searchModel.value.amountFrom"
                 display-format="n0"
               />
             </div>
             <div class="col">
-              <div class="text-body2 q-mb-sm">مبلغ تا</div>
+              <div class="text-body2 q-mb-sm">
+                {{ $t("shared.labels.amountTo") }}
+              </div>
               <custom-input-number
                 v-model="searchStore.searchModel.value.amountTo"
                 display-format="n0"
@@ -159,13 +169,17 @@
 
           <div class="row q-col-gutter-sm">
             <div class="col">
-              <div class="text-body2 q-mb-sm">تاریخ از</div>
+              <div class="text-body2 q-mb-sm">
+                {{ $t("shared.labels.dateFrom") }}
+              </div>
               <date-time
                 v-model="searchStore.searchModel.value.dateFrom"
               />
             </div>
             <div class="col">
-              <div class="text-body2 q-mb-sm">تاریخ تا</div>
+              <div class="text-body2 q-mb-sm">
+                {{ $t("shared.labels.dateTo") }}
+              </div>
               <date-time
                 v-model="searchStore.searchModel.value.dateTo"
               />
@@ -173,14 +187,18 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm">شماره</div>
+            <div class="text-body2 q-mb-sm">
+              {{ $t("shared.labels.no") }}
+            </div>
             <custom-input-number
               v-model="searchStore.searchModel.value.no"
             />
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm">نوع فروش</div>
+            <div class="text-body2 q-mb-sm">
+              {{ $t("shared.labels.salesType") }}
+            </div>
             <sale-type-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.typeId
@@ -192,7 +210,9 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm">مشتری</div>
+            <div class="text-body2 q-mb-sm">
+              {{ $t("shared.labels.customer") }}
+            </div>
             <customer-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.customerId
@@ -205,7 +225,9 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm">کالا و خدمات</div>
+            <div class="text-body2 q-mb-sm">
+              {{ $t("shared.accountDLType.product") }}
+            </div>
             <product-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.productId
@@ -218,7 +240,9 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm">قرارداد</div>
+            <div class="text-body2 q-mb-sm">
+              {{ $t("shared.labels.contractTitle") }}
+            </div>
             <contract-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.contractId
@@ -231,7 +255,9 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm">بازاریاب</div>
+            <div class="text-body2 q-mb-sm">
+              {{ $t("shared.labels.marketerName") }}
+            </div>
             <customer-lookup
               v-model:selectedId="
                 searchStore.searchModel.value.marketerId
@@ -244,7 +270,9 @@
           </div>
 
           <div>
-            <div class="text-body2 q-mb-sm">شرح</div>
+            <div class="text-body2 q-mb-sm">
+              {{ $t("shared.labels.subject") }}
+            </div>
             <custom-input
               type="textarea"
               v-model="searchStore.searchModel.value.comment"
@@ -309,7 +337,10 @@
     >
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
-          <span class="text-body1">انتخاب تسویه</span>
+          <span class="text-body1">
+            {{ $t("shared.labels.select") }}
+            {{ $t("shared.labels.clearance") }}
+          </span>
           <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
@@ -338,7 +369,10 @@
     >
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
-          <span class="text-body1">انتخاب زمان</span>
+          <span class="text-body1">
+            {{ $t("shared.labels.select") }}
+            {{ $t("shared.labels.dateRange") }}
+          </span>
           <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
@@ -367,7 +401,9 @@
     >
       <q-card-section class="q-pb-none">
         <div class="row justify-between items-center">
-          <span class="text-body1">سامانه مودیان</span>
+          <span class="text-body1">
+            {{ $t("shared.labels.taxStatus") }}
+          </span>
           <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>

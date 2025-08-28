@@ -17,7 +17,7 @@
         flat
         dense
         round
-        icon="chevron_left"
+        :icon="$q.lang.rtl ? 'chevron_left' : 'chevron_right'"
         :to="`/acc/voucher/preview/${item.id}`"
       />
     </template>

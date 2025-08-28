@@ -50,7 +50,7 @@
       transition-show="flip-up"
       transition-hide="flip-down"
       class="select text-on-dark text-body3"
-      popup-content-class="text-body3  text-weight-medium text-grey-8"
+      popup-content-class="text-body3 text-weight-medium text-grey-8"
     />
   </q-card-actions>
 </template>
