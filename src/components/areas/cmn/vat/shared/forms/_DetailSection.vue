@@ -18,7 +18,7 @@
       </div>
       <div class="col-md-4 col-sm-12 col-xs-12">
         <sl-lookup
-          :placeholder="$t('shared.labels.slTitle')"
+          :placeholder="$t('shared.columns.slTitle')"
           v-model:selectedId="row.slId"
           v-model:selectedText="row.slTitle"
           :filter-expression="slFilter"
@@ -96,7 +96,7 @@
             {{$t('vatDetailSection.warningTitle')}}
           </p>
           <p>
-            <strong>{{$t('shared.labels.slTitle')}}: </strong>
+            <strong>{{$t('shared.columns.slTitle')}}: </strong>
             {{$t('vatDetailSection.warningSl')}}
           </p>
           <p>
@@ -117,7 +117,7 @@
             {{$t('vatDetailSection.dangerTitle')}}
           </p>
           <p>
-            <strong>{{$t('shared.labels.slTitle')}}: </strong>
+            <strong>{{$t('shared.columns.slTitle')}}: </strong>
             {{$t('vatDetailSection.dangerSl')}}
           </p>
           <p>
@@ -141,7 +141,7 @@
             {{ $t("vatDetailSection.tipsTitle") }}
           </p>
           <p>
-            <strong>{{ $t("shared.labels.slTitle") }}:</strong>
+            <strong>{{ $t("shared.columns.slTitle") }}:</strong>
             {{ $t("vatDetailSection.tipsSl") }}
           </p>
           <p>

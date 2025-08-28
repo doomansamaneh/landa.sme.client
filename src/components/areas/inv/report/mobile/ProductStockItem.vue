@@ -92,7 +92,7 @@
 
     <div class="col-md col-sm-6 col-xs-12">
       <div class="text-body3 q-mb-sm">
-        {{ $t("shared.labels.openingQuantity") }}
+        {{ $t("shared.columns.openingQuantity") }}
       </div>
       <q-field dense outlined>
         <template v-slot:control>

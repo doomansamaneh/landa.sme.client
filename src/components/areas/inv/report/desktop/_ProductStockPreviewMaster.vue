@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-auto q-mr-sm">
         <span class="text-body3">
-          {{ $t("shared.labels.openingQuantity") }}:
+          {{ $t("shared.columns.openingQuantity") }}:
         </span>
       </div>
       <div class="text-body2 text-bold">
