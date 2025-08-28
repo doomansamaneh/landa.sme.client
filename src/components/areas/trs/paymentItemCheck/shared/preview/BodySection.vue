@@ -7,7 +7,7 @@
       <div class="col">{{ model?.customerName }}</div>
     </div>
     <div class="row">
-      <div class="col-2">{{ $t("shared.labels.chequeNo") }}:</div>
+      <div class="col-2">{{ $t("shared.labels.checkNo") }}:</div>
       <div class="col">{{ model?.itemNo }}</div>
     </div>
     <div v-if="model?.sayad" class="row">
@@ -17,13 +17,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-2">{{ $t("shared.labels.chequeDate") }}:</div>
+      <div class="col-2">{{ $t("shared.labels.checkDate") }}:</div>
       <div class="col text-weight-600">
         {{ model?.itemDate?.substring(0, 10) }}
       </div>
     </div>
     <div class="row">
-      <div class="col-2">{{ $t("shared.labels.chequeAmount") }}:</div>
+      <div class="col-2">{{ $t("shared.labels.amount") }}:</div>
       <div class="col text-weight-700">
         {{ helper.formatNumber(model?.amount) }}
       </div>
@@ -41,9 +41,8 @@
           </span>
         </div>
         <div v-else>
-          {{ model?.bankTitle }} / ({{
-            $t("shared.labels.chequeAccount")
-          }}: {{ model?.bankAccountNo }})
+          {{ model?.bankTitle }} / ({{ $t("shared.labels.account") }}:
+          {{ model?.bankAccountNo }})
         </div>
         <div>{{ model?.subject }}</div>
         <div>{{ model?.comment }}</div>

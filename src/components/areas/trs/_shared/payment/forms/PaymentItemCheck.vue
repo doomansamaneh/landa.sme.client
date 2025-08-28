@@ -56,7 +56,7 @@
     >
       <custom-input
         v-model="paymentItem.itemNo"
-        :label="$t('shared.labels.checkNumber')"
+        :label="$t('shared.labels.checkNo')"
         required
       />
     </div>
