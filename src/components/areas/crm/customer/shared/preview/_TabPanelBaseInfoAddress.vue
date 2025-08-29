@@ -5,7 +5,7 @@
         class="text-body2 primary-shadow primary-gradient"
         text-color="white"
         icon="o_add"
-        title="افزودن نشانی"
+        :title="$t('shared.labels.addAddress')"
         @click="add"
       />
 

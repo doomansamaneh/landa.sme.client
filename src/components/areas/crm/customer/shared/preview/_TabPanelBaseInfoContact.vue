@@ -15,7 +15,9 @@
           name="o_add"
           :class="$q.screen.gt.xs ? 'q-mr-xs' : ''"
         />
-        <span v-if="$q.screen.gt.xs">افزودن تماس</span>
+        <span v-if="$q.screen.gt.xs">
+          {{ $t("shared.labels.addContact") }}
+        </span>
         <q-menu class="border-radius-lg" cover>
           <q-list dense padding style="width: 200px">
             <template
@@ -108,7 +110,7 @@
 
   const addContact = (typeId) => {
     dialogStore.openDialog({
-      title: "افزودن تماس",
+      title: "shared.labels.addContact",
       component: CreateForm,
       actionBar: true,
       props: {

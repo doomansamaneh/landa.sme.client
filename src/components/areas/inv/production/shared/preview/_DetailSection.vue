@@ -2,7 +2,9 @@
   <q-card bordered>
     <q-card-section class="q-gutter-md">
       <div class="q-gutter-sm">
-        <span class="text-caption">ش پیگیری:</span>
+        <span class="text-caption">
+          {{ $t("shared.labels.rowNo") }}:
+        </span>
         <span class="text-weight-700">{{ model?.rowNo }}</span>
       </div>
       <div v-if="model?.voucherId" class="row items-center">

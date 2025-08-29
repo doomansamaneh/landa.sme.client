@@ -48,7 +48,7 @@
       <div class="row q-col-gutter-md">
         <div class="col-md-4 col-sm-6 col-xs-12">
           <q-item-label caption class="q-mb-sm">
-            سرفصل هزینه
+            {{ $t("shared.labels.costHeading") }}
           </q-item-label>
           <sl-lookup
             :autofocus="index === formStore.newAddedItemIndex.value"
@@ -59,7 +59,9 @@
           />
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            {{ $t("shared.labels.description") }}
+          </q-item-label>
           <custom-input
             v-model="billItem.comment"
             type="textarea"
@@ -68,15 +70,17 @@
           />
         </div>
         <div class="col-md-2 col-sm-3 col-xs-12">
-          <q-item-label caption class="q-mb-sm">مبلغ</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            {{ $t("shared.labels.amount") }}
+          </q-item-label>
           <custom-input-number
             v-model="billItem.amount"
-            placeholder="مبلغ"
+            :placeholder="$t('shared.labels.amount')"
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <q-item-label caption class="q-mb-sm">
-            ارزش افزوده
+            {{ $t("shared.labels.vat") }}
           </q-item-label>
           <vat-lookup
             v-model:selectedId="billItem.vatId"
@@ -88,7 +92,7 @@
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <q-item-label caption class="q-mb-sm">
-            مبلغ مالیات
+            {{ $t("shared.labels.vatAmount") }}
           </q-item-label>
           <custom-input-number
             v-model="billItem.vatAmount"
@@ -96,7 +100,9 @@
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
-          <q-item-label caption class="q-mb-sm">جمع کل</q-item-label>
+          <q-item-label caption class="q-mb-sm">
+            {{ $t("shared.labels.total") }}
+          </q-item-label>
           <q-field outlined dense disable>
             <template v-slot:control>
               <div

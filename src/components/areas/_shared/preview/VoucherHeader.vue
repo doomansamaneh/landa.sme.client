@@ -20,7 +20,7 @@
         "
       >
         <span style="padding-left: 2px">
-          {{ $t("shared.labels.rowNo") }}:
+          {{ $t("shared.labels.row") }}:
         </span>
         <span class="text-weight-700">
           {{ model?.rowNo }}

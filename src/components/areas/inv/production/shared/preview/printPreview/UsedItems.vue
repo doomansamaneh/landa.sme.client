@@ -4,17 +4,22 @@
     v-if="model?.usedItems?.length > 0"
   >
     <div class="text-body2 text-bold q-mb-sm">
-      کالاهای استفاده شده
+      {{ $t("shared.labels.productionUsedItems") }}
     </div>
     <table class="print-preview-table">
       <thead>
         <tr>
           <th style="width: 1px">#</th>
-          <th>کالا</th>
-          <th>واحد سنجش</th>
-          <th style="width: 180px">تعداد/مقدار</th>
+          <th>{{ $t("shared.labels.productTitle") }}</th>
+          <th>{{ $t("shared.labels.productUnitTitle") }}</th>
           <th style="width: 180px">
-            قیمت فی ({{ model?.currencyTitle }})
+            {{ $t("shared.columns.quantity") }}
+          </th>
+          <th style="width: 180px">
+            {{ $t("shared.columns.price") }}
+            {{ $t("shared.columns.per") }} ({{
+              model?.currencyTitle
+            }})
           </th>
         </tr>
       </thead>

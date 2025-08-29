@@ -8,7 +8,7 @@
       <thead>
         <tr>
           <th style="width: 1px">#</th>
-          <th>سرفصل هزینه</th>
+          <th>{{ $t("shared.labels.costHeading") }}</th>
           <th style="width: 180px">
             هزینه ({{ model?.currencyTitle }})
           </th>

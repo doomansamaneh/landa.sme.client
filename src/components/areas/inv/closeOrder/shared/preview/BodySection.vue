@@ -22,7 +22,7 @@
               border-image: initial;
             "
           >
-            {{ $t("shared.labels.rowNo") }}
+            {{ $t("shared.labels.row") }}
           </th>
           <th
             style="

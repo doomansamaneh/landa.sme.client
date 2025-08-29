@@ -5,7 +5,7 @@
         class="text-body2 primary-shadow primary-gradient"
         text-color="white"
         icon="o_add"
-        title="افزودن فیلد سفارشی"
+        :title="$t('shared.labels.addCustomField')"
         @click="add"
       />
 
@@ -58,7 +58,7 @@
 
   const add = () => {
     dialogStore.openDialog({
-      title: "افزودن فیلد سفارشی",
+      title: "shared.labels.addCustomField",
       component: CreateForm,
       actionBar: true,
       props: {
