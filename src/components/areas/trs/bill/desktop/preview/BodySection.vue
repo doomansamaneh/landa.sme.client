@@ -21,7 +21,7 @@
               padding: 5px;
             "
           >
-            {{ $t("shared.labels.row") }}
+            {{ $t("shared.labels.rowNo") }}
           </th>
           <th
             style="

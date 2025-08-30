@@ -412,7 +412,7 @@
       "wrongAddress": "The address may be incorrect",
       "backToDashboard": "Back to Dashboard",
       "calculating": "Calculating",
-      "rowNo": "Tracking No",
+      "rowNo": "Row",
       "date": "Date",
       "dueDate": "Due Date",
       "addItemByProductCode": "Add item/service by searching code or barcode",
@@ -831,7 +831,12 @@
       "checkStatus": "Status",
       "checkType": "Type",
       "checkBank": "Bank",
-      "checkBranch": "Bank Branch"
+      "checkBranch": "Bank Branch",
+      "contactSupport": "Contact Us",
+      "addBankAccount": "Add Bank Account",
+      "addCustomField": "Add Custom Field",
+      "costHeading": "Cost Heading",
+      "invoiceNo": "Invoice No"
     },
 
     "productType": {
@@ -1182,6 +1187,7 @@
       "subject": "Description",
       "contractTitle": "Contract",
       "inventoryTitle": "Inventory",
+      "fromInventoryTitle": "Source Inventory",
       "toInventoryTitle": "Destination Inventory",
       "amount": "Total Amount",
       "salary": "Daily Salary",

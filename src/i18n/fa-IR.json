@@ -1137,6 +1137,7 @@
       "itemComment": "شرح ردیف",
       "costComment": "شرح ردیف",
       "row": "ردیف",
+      "rowNo": "ردیف",
       "docRowNo": "ش پیگیری",
       "docNo": "شماره سند",
       "startNo": "ش شروع",

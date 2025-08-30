@@ -52,7 +52,7 @@
               padding: 5px;
             "
           >
-            {{ $t("shared.labels.regarding") }}::
+            {{ $t("shared.labels.regarding") }}:
           </td>
           <td
             style="
