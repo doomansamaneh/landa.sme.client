@@ -760,6 +760,7 @@
       "close": "بستن",
       "businessExpiredMessage": "متاسفانه کسب و کار شما منقضی شده است.",
       "no-product-found": "کالا یا خدمتی انتخاب نشده است",
+      "noDataFound": "اطلاعاتی وجود ندارد، یک ردیف اضافه کنید",
       "productOrServiceDetails": "مشخصات کالا یا خدمات مورد معامله",
       "totalQuantity": "جمع مقدار",
       "productOrService": "کالا/خدمت",

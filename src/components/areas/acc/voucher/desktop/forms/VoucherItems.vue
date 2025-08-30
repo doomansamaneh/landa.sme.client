@@ -131,7 +131,7 @@
       </tbody>
       <tfoot
         class="table-total"
-        v-if="formStore.totalDebit.value > 0"
+        v-if="formStore.model.value.voucherItems.length > 0"
       >
         <tr class="grid-total">
           <td colspan="4" class="text-right">
