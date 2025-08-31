@@ -157,32 +157,47 @@ function handleError(url, error) {
     type: "error",
   };
 
+  // If server responded with an error
   if (error.response) {
     alertData.status = error.response.status;
     const { logout } = useAuthStore();
+
     if (error.response.status === 401) {
-      logout();
+      logout(); // Unauthorized
       return Promise.reject(error);
     } else if (error.response.status === 403) {
       alertData.message = "forbidden";
       alertData.comment = url;
     } else if (error.response.data) {
       alertData.message =
-        error.response.data.message ?? "validationError"; //error.response.data.title;
+        error.response.data.message ?? "validationError";
       alertData.errors = error.response.data.errors;
       alertData.comment = error.response.data.stackTrace;
     }
-  } else if (error.request) {
-    // Network error - show connection lost dialog
-    if ($q) {
+  }
+
+  // If there's no response from server (network issues, timeout, etc.)
+  else if (
+    !navigator.onLine ||
+    error.code === "ECONNABORTED" ||
+    error.message === "Network Error"
+  ) {
+    // Show connection lost dialog if defined
+    if (typeof $q !== "undefined" && $q?.dialog) {
       $q.dialog({
         component: ConnectionLostDialog,
       });
     }
     return Promise.reject(error);
-  } else {
-    alertData.message = error;
   }
+
+  // Any other unhandled error
+  else {
+    alertData.message =
+      typeof error === "string" ? error : "Unknown error occurred";
+  }
+
+  // Set the final error object
   setError(alertData);
   return Promise.reject(error);
 }
