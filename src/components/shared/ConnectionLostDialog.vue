@@ -18,10 +18,10 @@
           />
 
           <div class="text-body1 text-weight-700">
-            {{ $t("shared.messages.connectionLost") }}
+            {{ $t("messages.connectionLost") }}
           </div>
           <div class="text-body1 text-weight-700 caption-on-dark">
-            {{ $t("shared.messages.checkConnection") }}
+            {{ $t("messages.checkConnection") }}
           </div>
         </div>
 
@@ -43,7 +43,7 @@
         :style="
           $q.dark.isActive
             ? 'border-top: 1px solid white'
-            : 'border-top: 1px solid grey'
+            : 'border-top: 1px solid #2d2d2d2d'
         "
         class="fixed-bottom flex flex-center q-pa-lg bg-dark"
       >
