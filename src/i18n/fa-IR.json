@@ -274,7 +274,9 @@
     "accountOpenedSuccessfully": "سند افتتاحیه با موفقیت صادر شد",
     "interimAccountClosedSuccessfully": "سند سود و زیانی با موفقیت صادر شد",
     "interimAccountClosedBefore": "سند سود و زیانی پیشتر صادر شده است",
-    "captcha": "کد امنیتی درست نیست"
+    "captcha": "کد امنیتی درست نیست",
+    "connectionLost": "متاسفیم، ارتباط با سرورهای لاندا امکان پذیر نیست",
+    "checkConnection": "لطفا از اتصال اینترنت خود اطمینان حاصل کنید"
   },
 
   "shared": {
@@ -367,6 +369,7 @@
       "fee": "کارمزد",
       "vat": "ارزش افزوده",
       "discount": "تخفیف",
+      "retry": "تلاش دوباره",
       "createDiscount": "ایجاد تخفیف",
       "selectVat": "انتخاب مالیات بر ارزش افزوده",
       "selectedRows": "انتخاب شده‌ها",

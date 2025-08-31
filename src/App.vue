@@ -7,8 +7,10 @@
   import { useAuthStore } from "src/stores/auth-store";
   import { vAccess } from "src/directives/vAccess";
   import { useCulture } from "src/composables/useCulture";
+  import { useConnectionLost } from "src/composables/useConnectionLost";
 
   const authStore = useAuthStore();
+  const connectionLostStore = useConnectionLost();
 
   console.log(
     "%cSUPPORT: %cLANDA-SME.IR",
