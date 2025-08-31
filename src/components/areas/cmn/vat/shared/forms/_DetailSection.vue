@@ -134,19 +134,19 @@
   <q-card class="tips q-my-md">
     <q-card-section>
       <div>
-        <div class="title">{{ $t("shared.labels.guide") }}</div>
+        <div class="title">{{ $t("shared.labels.userGuide") }}</div>
         <div class="q-mt-md">
           <p>
             <strong>{{ $t("shared.labels.title") }}:</strong>
-            {{ $t("vatDetailSection.tipsTitle") }}
+            {{ $t("messages.vatDetailSection.tipsTitle") }}
           </p>
           <p>
             <strong>{{ $t("shared.columns.slTitle") }}:</strong>
-            {{ $t("vatDetailSection.tipsSl") }}
+            {{ $t("messages.vatDetailSection.tipsSl") }}
           </p>
           <p>
             <strong>{{ $t("shared.labels.rate") }}:</strong>
-            {{ $t("vatDetailSection.tipsRate") }}
+            {{ $t("messages.vatDetailSection.tipsRate") }}
           </p>
         </div>
       </div>
