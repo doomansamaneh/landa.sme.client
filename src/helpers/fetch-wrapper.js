@@ -4,6 +4,15 @@ import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
 import { baseUrl } from "src/constants";
 import { Loading } from "quasar";
+import ConnectionLostDialog from "src/components/shared/ConnectionLostDialog.vue";
+
+// Global reference to Quasar instance
+let $q = null;
+
+// Function to set Quasar instance
+export const setQuasarInstance = (quasarInstance) => {
+  $q = quasarInstance;
+};
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.withCredentials = true;
@@ -147,30 +156,48 @@ function handleError(url, error) {
     message: url,
     type: "error",
   };
+
+  // If server responded with an error
   if (error.response) {
     alertData.status = error.response.status;
     const { logout } = useAuthStore();
+
     if (error.response.status === 401) {
-      logout();
+      logout(); // Unauthorized
       return Promise.reject(error);
     } else if (error.response.status === 403) {
       alertData.message = "forbidden";
       alertData.comment = url;
     } else if (error.response.data) {
       alertData.message =
-        error.response.data.message ?? "validationError"; //error.response.data.title;
+        error.response.data.message ?? "validationError";
       alertData.errors = error.response.data.errors;
       alertData.comment = error.response.data.stackTrace;
     }
-  } else if (error.request) {
-    alertData.status = error.request.status;
-    if (error.data && error.data.message) {
-      alertData.type = "warning";
-      alertData.message = error.data.message;
-    } else alertData.message = "network-error";
-  } else {
-    alertData.message = error;
   }
+
+  // If there's no response from server (network issues, timeout, etc.)
+  else if (
+    !navigator.onLine ||
+    error.code === "ECONNABORTED" ||
+    error.message === "Network Error"
+  ) {
+    // Show connection lost dialog if defined
+    if (typeof $q !== "undefined" && $q?.dialog) {
+      $q.dialog({
+        component: ConnectionLostDialog,
+      });
+    }
+    return Promise.reject(error);
+  }
+
+  // Any other unhandled error
+  else {
+    alertData.message =
+      typeof error === "string" ? error : "Unknown error occurred";
+  }
+
+  // Set the final error object
   setError(alertData);
   return Promise.reject(error);
 }
