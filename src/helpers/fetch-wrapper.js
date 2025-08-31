@@ -4,6 +4,15 @@ import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
 import { baseUrl } from "src/constants";
 import { Loading } from "quasar";
+import ConnectionLostDialog from "src/components/shared/ConnectionLostDialog.vue";
+
+// Global reference to Quasar instance
+let $q = null;
+
+// Function to set Quasar instance
+export const setQuasarInstance = (quasarInstance) => {
+  $q = quasarInstance;
+};
 
 axios.defaults.baseURL = baseUrl;
 axios.defaults.withCredentials = true;
@@ -147,6 +156,7 @@ function handleError(url, error) {
     message: url,
     type: "error",
   };
+
   if (error.response) {
     alertData.status = error.response.status;
     const { logout } = useAuthStore();
@@ -163,11 +173,13 @@ function handleError(url, error) {
       alertData.comment = error.response.data.stackTrace;
     }
   } else if (error.request) {
-    alertData.status = error.request.status;
-    if (error.data && error.data.message) {
-      alertData.type = "warning";
-      alertData.message = error.data.message;
-    } else alertData.message = "network-error";
+    // Network error - show connection lost dialog
+    if ($q) {
+      $q.dialog({
+        component: ConnectionLostDialog,
+      });
+    }
+    return Promise.reject(error);
   } else {
     alertData.message = error;
   }

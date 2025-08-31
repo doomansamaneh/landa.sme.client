@@ -32,7 +32,7 @@
             padding="4px 16px"
             color="primary"
             rounded
-            @click="store.retryConnection"
+            @click="retryConnection"
           >
             {{ $t("shared.labels.retry") }}
           </q-btn>
@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-  import { useConnectionLost } from "src/composables/useConnectionLost";
-
-  const store = useConnectionLost();
+  const retryConnection = async () => {
+    window.location.reload();
+  };
 </script>
