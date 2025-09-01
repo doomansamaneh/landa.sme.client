@@ -274,6 +274,8 @@
     "interimAccountClosedSuccessfully": "Profit & Loss voucher issued successfully",
     "interimAccountClosedBefore": "Profit & Loss voucher was already issued",
     "captcha": "Security code is incorrect",
+    "connectionLost": "Unable to connect to Landa servers",
+    "checkConnection": "Please make sure you are connected to the Internet",
     "vatDetailSection": {
       "warningTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
       "warningSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
