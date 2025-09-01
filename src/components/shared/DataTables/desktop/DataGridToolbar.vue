@@ -19,11 +19,11 @@
 </template>
 
 <script setup>
-  import ReloadButton from "../../Buttons/ReloadButton.vue";
-  import SeparatorToggleButton from "../../Buttons/SeparatorToggleButton.vue";
-  import PrintButton from "../../Buttons/PrintButton.vue";
-  import ExportButton from "../../Buttons/ExportButton.vue";
-  import FullscreenButton from "../../Buttons/FullscreenButton.vue";
+  import ReloadButton from "../../buttons/ReloadButton.vue";
+  import SeparatorToggleButton from "../../buttons/SeparatorToggleButton.vue";
+  import PrintButton from "../../buttons/PrintButton.vue";
+  import ExportButton from "../../buttons/ExportButton.vue";
+  import FullscreenButton from "../../buttons/FullscreenButton.vue";
 
   const props = defineProps({
     tableStore: Object,
