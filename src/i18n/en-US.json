@@ -273,7 +273,18 @@
     "accountOpenedSuccessfully": "Opening voucher issued successfully",
     "interimAccountClosedSuccessfully": "Profit & Loss voucher issued successfully",
     "interimAccountClosedBefore": "Profit & Loss voucher was already issued",
-    "captcha": "Security code is incorrect"
+    "captcha": "Security code is incorrect",
+    "vatDetailSection": {
+      "warningTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
+      "warningSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
+      "warningRate": "VAT rate based on VAT items; in the accounting document automatically created from invoices, purchases, etc., it will be broken down accordingly.",
+      "dangerTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
+      "dangerSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
+      "dangerRate": "VAT rate based on VAT items; in the accounting document automatically created from invoices, purchases, etc., it will be broken down accordingly.",
+      "tipsTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
+      "tipsSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
+      "tipsRate": "VAT rate based on VAT items; in the accounting document automatically created from invoices, purchases, etc., it will be broken down accordingly."
+    }
   },
 
   "shared": {
@@ -1291,18 +1302,6 @@
       "taxAmount": "Tax Amount",
       "totalQuantity": "Total Quantity",
       "per": "Per"
-    },
-
-    "vatDetailSection": {
-      "warningTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
-      "warningSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
-      "warningRate": "VAT rate based on VAT items; in the accounting document automatically created from invoices, purchases, etc., it will be broken down accordingly.",
-      "dangerTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
-      "dangerSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
-      "dangerRate": "VAT rate based on VAT items; in the accounting document automatically created from invoices, purchases, etc., it will be broken down accordingly.",
-      "tipsTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
-      "tipsSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
-      "tipsRate": "VAT rate based on VAT items; in the accounting document automatically created from invoices, purchases, etc., it will be broken down accordingly."
     }
   },
 
