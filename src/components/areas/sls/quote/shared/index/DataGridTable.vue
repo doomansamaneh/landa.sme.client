@@ -3,14 +3,14 @@
     <mobile
       :table-store="tableStore"
       :crud-store="crudStore"
-      :title="title"
+      :title="subTitle ? `${title} / ${subTitle}` : title"
     />
   </template>
   <template v-else>
     <desktop
       :table-store="tableStore"
       :no-fullscreen="noFullscreen"
-      :title="title"
+      :title="subTitle ? `${title} / ${subTitle}` : title"
       advanced-search
     />
   </template>
@@ -22,6 +22,7 @@
 
   const props = defineProps({
     title: String,
+    subTitle: String,
     tableStore: Object,
     noFullscreen: Boolean,
     crudStore: Object,

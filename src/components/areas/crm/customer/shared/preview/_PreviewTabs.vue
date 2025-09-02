@@ -88,15 +88,6 @@
         </q-list>
       </q-btn-dropdown>
 
-      <!-- <card-tab
-        name="quote"
-        title="پیش فاکتورها"
-        icon="o_assignment"
-      >
-      </card-tab>
-
-      <card-tab name="invoice" title="فاکتورها" icon="o_receipt" /> -->
-
       <card-tab
         name="review"
         :title="$t('shared.labels.accountItem')"

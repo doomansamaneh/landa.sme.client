@@ -4,12 +4,14 @@
       :table-store="tableStore"
       :crud-store="crudStore"
       :title="title"
+      :sub-title="subTitle"
     />
   </template>
   <template v-else>
     <desktop
       :table-store="tableStore"
       :title="title"
+      :sub-title="subTitle"
       advanced-search
       :no-fullscreen="noFullscreen"
     />
@@ -22,6 +24,7 @@
 
   const props = defineProps({
     title: String,
+    subTitle: String,
     gridStore: Object,
     tableStore: Object,
     crudStore: Object,

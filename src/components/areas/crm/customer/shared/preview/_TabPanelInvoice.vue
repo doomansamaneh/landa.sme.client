@@ -12,6 +12,8 @@
     :table-store="tableStore"
     :advanced-search="false"
     :no-fullscreen="true"
+    :title="$t('shared.labels.salesInvoices')"
+    :sub-title="item.name"
   />
 </template>
 

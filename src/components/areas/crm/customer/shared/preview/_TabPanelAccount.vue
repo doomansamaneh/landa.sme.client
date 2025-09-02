@@ -1,106 +1,4 @@
 <template>
-  <!-- <div class="row q-col-gutter-md" v-if="false">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-card flat bordered class="info-box_">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            >
-              <span class="text-bold text-caption">18</span>
-            </q-badge>
-            <span class="text-bold text-caption text-on-bg-main">
-              فاکتورها
-            </span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            240,000,000
-            <span class="text-body1 text-bold text-on-bg-main">
-              ریال
-            </span>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-card flat bordered class="info-box_">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            >
-              <span class="text-bold text-caption">0</span>
-            </q-badge>
-            <span class="text-bold text-caption text-on-bg-main">
-              مانده حساب
-            </span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            0
-            <span class="text-body1 text-bold text-on-bg-main">
-              ریال
-            </span>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-card flat bordered class="info-box_">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            >
-              <span class="text-bold text-caption">4</span>
-            </q-badge>
-            <span class="text-bold text-caption text-on-bg-main">
-              بدهکار
-            </span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            2,000,000
-            <span
-              class="text-body1 text-bold text-on-bg-main q-gutter-xs"
-            >
-              ریال
-            </span>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-      <q-card flat bordered class="info-box_">
-        <q-card-section class="q-gutter-md">
-          <div class="">
-            <q-badge
-              rounded
-              class="q-px-sm q-mr-sm text-on-dark bg-on-dark"
-            >
-              <span class="text-bold text-caption">4</span>
-            </q-badge>
-            <span class="text-bold text-caption text-on-bg-main">
-              بدهکار
-            </span>
-          </div>
-          <div class="text-h6 text-bold text-on-dark q-gutter-xs">
-            2,000,000
-            <span
-              class="text-body1 text-bold text-on-bg-main q-gutter-xs"
-            >
-              ریال
-            </span>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
-  </div> -->
-
   <account-item
     class="border-radius-lg"
     flat
@@ -111,6 +9,8 @@
     :columns="accountItemColumns"
     :filter-expression="filterExpression"
     :no-fullscreen="true"
+    :title="$t('shared.labels.accountItem')"
+    :sub-title="item.name"
   />
 </template>
 

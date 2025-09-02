@@ -27,7 +27,7 @@
     <data-grid
       :table-store="tableStore"
       toolbar
-      :title="`${title}`"
+      :title="subTitle ? `${title} / ${subTitle}` : title"
       base-route="sls/invoice"
       :no-fullscreen="noFullscreen"
     />
@@ -49,6 +49,7 @@
   const props = defineProps({
     tableStore: useDataTable,
     title: String,
+    subTitle: String,
     advancedSearch: Boolean,
     noFullscreen: Boolean,
   });
