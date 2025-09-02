@@ -319,6 +319,7 @@
       "preparedBy": "Prepared by",
       "approvedBy": "Approved by",
       "invoice": "Invoice",
+      "defaultInvoice": "Invoice",
       "required": "This field is required",
       "settlement": "Settlement",
       "select": "Select",
