@@ -197,7 +197,7 @@
 
           <div>
             <div class="text-body2 q-mb-sm">
-              {{ $t("shared.labels.salesType") }}
+              {{ $t("shared.labels.typeTitle") }}
             </div>
             <sale-type-lookup
               v-model:selectedId="
