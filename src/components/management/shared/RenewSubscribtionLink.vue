@@ -27,7 +27,9 @@
       dense
       unelevated
     >
-      <span class="text-caption-sm">تمدید</span>
+      <span class="text-caption-sm">
+        {{ $t("pages.renew-subscription") }}
+      </span>
     </q-btn>
   </template>
 </template>

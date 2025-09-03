@@ -73,18 +73,7 @@
           size="42px"
         />
         <div @click="gridStore.gotoBusiness(item)">
-          <div class="ellipsis">{{ item.title }}</div>
-          <q-tooltip
-            class="custom-tooltip text-body2"
-            transition-show="scale"
-            transition-hide="scale"
-            :delay="600"
-            anchor="top left"
-            self="top right"
-            :offset="[5, 5]"
-          >
-            {{ item.title }}
-          </q-tooltip>
+          {{ item.title }}
         </div>
       </div>
 

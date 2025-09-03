@@ -4,14 +4,18 @@
       <slot name="header">
         <div class="column q-gutter-y-sm">
           <div class="row items-center">
-            <span class="col-2 text-caption text-bold">شماره:</span>
+            <span class="col-2 text-caption text-bold">
+              {{ $t("shared.labels.no") }}:
+            </span>
             <span class="text-body3 q-mx-md">
               {{ model.no }}
             </span>
           </div>
 
           <div class="row items-center">
-            <span class="col-2 text-caption text-bold">مشتری:</span>
+            <span class="col-2 text-caption text-bold">
+              {{ $t("shared.labels.customer") }}:
+            </span>
             <span class="text-body3 q-mx-md">
               <custom-link
                 :to="`/crm/customer/preview/${model.customerId}`"
@@ -21,7 +25,9 @@
           </div>
 
           <div v-if="model.invoiceId" class="row items-center">
-            <span class="col-2 text-caption text-bold">فاکتور:</span>
+            <span class="col-2 text-caption text-bold">
+              {{ $t("shared.labels.defaultInvoice") }}:
+            </span>
             <span class="text-body3 q-mx-md">
               <custom-link
                 :to="`/sls/invoice/preview/${model.invoiceId}`"

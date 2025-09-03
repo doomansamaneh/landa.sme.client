@@ -86,7 +86,7 @@
           no-caps
           padding="4px 12px"
           unelevated
-          label="دانشنامه"
+          :label="$t('shared.labels.encyclopedia')"
           href="https://www.landa-sme.ir/LandaKnowledge"
           target="_blank"
           class="q-mt-md text-on-dark bordered-btn"
