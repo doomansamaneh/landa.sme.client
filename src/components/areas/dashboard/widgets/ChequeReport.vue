@@ -22,7 +22,7 @@
         </div>
 
         <div>
-          <q-btn no-caps rounded padding="6px 12px" unelevated dense>
+          <q-btn no-caps rounded padding="4px 12px" unelevated dense>
             ماهانه
           </q-btn>
         </div>

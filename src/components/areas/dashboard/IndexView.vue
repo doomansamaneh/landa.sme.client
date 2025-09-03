@@ -24,7 +24,7 @@
           unelevated
           rounded
           dense
-          padding="6px 12px"
+          padding="4px 12px"
         >
           <q-icon name="o_restart_alt" class="q-pr-xs" size="20px" />
           <span>حالت اولیه</span>

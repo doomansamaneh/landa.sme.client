@@ -24,7 +24,7 @@
         <q-btn
           :href="`tel:${phoneNumbers.support}`"
           class="primary-shadow primary-gradient text-white"
-          padding="6px 12px"
+          padding="4px 12px"
           rounded
           unelevated
         >
@@ -36,7 +36,7 @@
           rounded
           unelevated
           v-close-popup
-          padding="6px 12px"
+          padding="4px 12px"
           @click="store.closeContactDialog"
         >
           <div class="text-body2">{{ t("shared.labels.close") }}</div>

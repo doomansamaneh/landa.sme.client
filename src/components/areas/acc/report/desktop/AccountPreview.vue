@@ -6,7 +6,7 @@
     :title="`${item.title} - ${item.code}`"
   >
     <template #buttons>
-      <q-btn no-caps padding="6px 12px" class="text-body2" rounded unelevated>
+      <q-btn no-caps padding="4px 12px" class="text-body2" rounded unelevated>
         <q-icon size="20px" name="more_horiz" class="q-mr-xs" />
         {{ $t("shared.labels.more") }}
 

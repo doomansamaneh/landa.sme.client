@@ -4,7 +4,7 @@
     rounded
     class="text-white primary-gradient primary-shadow"
     unelevated
-    padding="6px 12px"
+    padding="4px 12px"
   >
     <router-link
       to="/business/addBusiness"
