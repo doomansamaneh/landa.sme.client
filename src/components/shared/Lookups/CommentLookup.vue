@@ -16,7 +16,6 @@
       :rules="rules"
       :error="!!validationMessage"
       @keydown.enter="onInputEnter"
-      @update:model-value="searchInLookup"
     >
       <template #append>
         <q-btn
@@ -31,14 +30,6 @@
         >
           <q-icon size="16px" name="o_message" />
         </q-btn>
-      </template>
-
-      <template #prepend v-if="tableStore.inputInnerLoader.value">
-        <q-spinner
-          v-if="tableStore.inputInnerLoader.value"
-          size="18px"
-          color="primary"
-        />
       </template>
 
       <validation-alert
@@ -63,13 +54,6 @@
         no-refocus
         :style="`width: ${menuWidth}`"
       >
-        <q-inner-loading
-          :showing="tableStore.showLoader.value"
-          class="inner-loader_ q-mt-xl"
-        >
-          <q-spinner size="52px" color="primary" />
-        </q-inner-loading>
-
         <div
           class="header text-caption text-bold q-pa-md bg-dark z-max"
           style="border-bottom: 1px solid var(--q-primary)"
@@ -91,6 +75,37 @@
               />
             </div>
           </div>
+        </div>
+        <div class="q-px-md q-pt-md">
+          <q-input
+            ref="menuSearch"
+            v-model="searchText"
+            hide-bottom-space
+            outlined
+            color="primary"
+            class="first input lookup"
+            input-class="text-body2 "
+            dense
+            debounce="500"
+            :placeholder="$t('shared.labels.search') + '...'"
+            @update:model-value="searchInLookup"
+          >
+            <template #append>
+              <q-icon
+                name="o_close"
+                v-if="searchText"
+                class="cursor-pointer q-field__focusable-action"
+                @click="clearSearch"
+              />
+            </template>
+            <template v-if="tableStore.showLoader.value" #prepend>
+              <q-spinner
+                v-if="tableStore.showLoader.value"
+                size="18px"
+                color="primary"
+              />
+            </template>
+          </q-input>
         </div>
         <div class="q-px-md q-pb-md">
           <div
@@ -410,7 +425,15 @@
   function onMenuShow() {
     isPopupOpen.value = true;
     syncSelectedRowIndex();
-    mainSearch?.value.focus();
+    if (
+      menuSearch.value &&
+      typeof menuSearch.value.focus === "function"
+    ) {
+      menuSearch.value.focus();
+    } else if (menuSearch.value && menuSearch.value.$el) {
+      const input = menuSearch.value.$el.querySelector("input");
+      if (input) input.focus();
+    }
   }
 
   function onMenuHide() {
@@ -444,7 +467,9 @@
       if (tableStore.rows.value.length === 0) return;
       row = tableStore.rows.value[selectedRowIndex.value];
     }
-    model.value = row.title;
+    const current = model.value || "";
+    const needsSpace = current.length > 0 && !current.endsWith(" ");
+    model.value = `${current}${needsSpace ? " " : ""}${row.title}`;
     isPopupOpen.value = false;
     isDialogOpen.value = false;
     emit("row-selected", row);
@@ -460,20 +485,15 @@
   //   tableStore.reloadData().then(syncSelectedRowIndex);
   // }
 
-  async function searchInLookup() {
-    tableStore.setSearchTerm(mainSearch.value?.nativeEl?.value);
+  async function searchInLookup(val) {
+    tableStore.setSearchTerm(val);
     tableStore.pagination.value.currentPage = 1;
-    tableStore.reloadData().then(syncSelectedRowIndex);
-    if ($q.screen.gt.xs) {
-      await onMenuShow();
-    } else {
-      await onDialogShow();
-    }
+    await tableStore.reloadData().then(syncSelectedRowIndex);
   }
 
   function clearSearch() {
     searchText.value = "";
-    // onSearch("");
+    searchInLookup("");
   }
 
   function sortTitle() {
