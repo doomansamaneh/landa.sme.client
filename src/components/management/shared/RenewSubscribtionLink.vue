@@ -8,7 +8,7 @@
       rounded
       text-color="white"
       unelevated
-      padding="6px 12px"
+      padding="4px 12px"
     >
       <q-icon name="add" class="q-pr-xs" size="16px" />
       {{ $t("pages.renew-subscription") }}

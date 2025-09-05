@@ -165,7 +165,7 @@
   .q-table {
     td,
     th {
-      padding: 6px 12px;
+      padding: 4px 12px;
     }
   }
 </style>

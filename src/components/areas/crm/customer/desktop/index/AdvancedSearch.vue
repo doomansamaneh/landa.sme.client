@@ -14,7 +14,7 @@
       <q-btn
         no-caps
         @click="expanded = !expanded"
-        padding="6px 12px"
+        padding="4px 12px"
         rounded
         unelevated
         dense

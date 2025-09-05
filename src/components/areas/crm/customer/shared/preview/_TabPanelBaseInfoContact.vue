@@ -8,7 +8,7 @@
         text-color="white"
         :rounded="$q.screen.gt.xs"
         :round="$q.screen.xs"
-        :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
+        :padding="$q.screen.gt.xs ? '4px 12px' : '5px'"
       >
         <q-icon
           size="20px"
