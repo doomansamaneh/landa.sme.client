@@ -22,7 +22,7 @@
               text-color="white"
               :item="authStore.currentUser?.id"
               :text-holder="authStore.currentUser?.fullName"
-              text-holder-class="text-h5 text-bold "
+              text-holder-class="text-h3 text-bold q-pb-sm"
               :avatar="avatar"
             />
             <div class="q-mt-md">
