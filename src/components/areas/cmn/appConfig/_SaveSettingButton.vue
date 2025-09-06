@@ -1,38 +1,30 @@
 <template>
-  <q-card-actions align="right" class="q-pa-md bg-on-dark">
+  <!-- <q-card-actions align="right" class="q-pa-md bg-on-dark"> -->
+  <q-card-section class="bg-on-dark flex justify-end">
     <q-btn
       no-caps
-      color="primary"
-      class="primary-shadow"
+      class="primary-gradient primary-shadow text-white text-body2"
       rounded
-      padding="8px 16px"
       unelevated
       @click="configStore.saveAppConfig()"
     >
-      <div class="flex q-gutter-sm">
-        <q-icon name="save" size="sm" />
-        <div class="text-body1">
-          {{ $t("shared.labels.save") }}
-        </div>
-      </div>
+      <q-icon name="o_save" size="20px" class="q-mr-xs" />
+      {{ $t("shared.labels.save") }}
     </q-btn>
     <q-btn
       no-caps
-      class="q-ml-xs"
       no-cpas
       rounded
-      padding="8px 16px"
       unelevated
       @click="configStore.reloadData()"
+      class="q-ml-xs text-body2"
     >
-      <div class="flex q-gutter-sm">
-        <q-icon name="refresh" size="sm" />
-        <div class="text-body1">
-          {{ $t("shared.labels.reloadDefault") }}
-        </div>
-      </div>
+      <q-icon name="refresh" size="20px" class="q-mr-xs" />
+      {{ $t("shared.labels.reloadDefault") }}
     </q-btn>
-  </q-card-actions>
+  </q-card-section>
+
+  <!-- </q-card-actions> -->
 </template>
 
 <script setup>

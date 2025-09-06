@@ -168,10 +168,8 @@
 
   <q-btn
     no-caps
-    padding="4px 12px"
     unelevated
     rounded
-    dense
     class="bg-primary primary-shadow text-white"
     @click="addItem"
   >

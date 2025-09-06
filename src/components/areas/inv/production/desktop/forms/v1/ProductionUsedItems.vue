@@ -108,10 +108,8 @@
   <q-btn
     no-caps
     v-if="model?.usedItems.length > 0"
-    padding="4px 12px"
     unelevated
     rounded
-    dense
     class="bg-primary primary-shadow text-white q-my-md"
     @click="formStore.addNewUsedItem(index)"
   >

@@ -4,7 +4,6 @@
     class="text-body2"
     rounded
     unelevated
-    padding="8px 16px"
     :to="to"
     @click="click"
     :id="id"

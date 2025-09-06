@@ -9,7 +9,7 @@
     >
       <template #buttons>
         <q-btn no-caps
-          padding="4px 12px"
+          padding="8px 16px"
           class="text-body2"
           rounded
           unelevated
@@ -57,7 +57,7 @@
     >
       <template #buttons>
         <q-btn no-caps
-          padding="4px 12px"
+          padding="8px 16px"
           class="text-body2"
           rounded
           unelevated

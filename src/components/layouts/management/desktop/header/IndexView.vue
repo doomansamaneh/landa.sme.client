@@ -30,7 +30,7 @@
           unelevated
           rounded
           dense
-          padding="4px 12px"
+          padding="8px 16px"
           size="14px"
           class="bordered text-on-dark gt-xs"
         >

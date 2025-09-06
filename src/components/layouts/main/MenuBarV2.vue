@@ -9,6 +9,7 @@
   >
     <q-tabs
       v-model="tab"
+      no-caps
       class="text-h6 text-weight-700 primary-tabs q-mt-lg"
       :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"
       :active-color="$q.dark.isActive ? 'yellow' : 'primary'"

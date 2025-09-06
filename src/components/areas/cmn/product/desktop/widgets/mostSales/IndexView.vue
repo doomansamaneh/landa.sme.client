@@ -23,7 +23,7 @@
         <q-btn
           no-caps
           class="primary-shadow primary-gradient text-white text-caption"
-          padding="4px 12px"
+          padding="8px 16px"
           rounded
           unelevated
         >

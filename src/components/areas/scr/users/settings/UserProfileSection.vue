@@ -16,7 +16,7 @@
         :item="user.id"
         :text-holder="user.fullName"
         :avatar="avatar"
-        text-holder-class="text-h5 q-pb-xs"
+        text-holder-class="text-h5 text-weight-700 q-pb-xs"
       />
     </q-item-section>
 
