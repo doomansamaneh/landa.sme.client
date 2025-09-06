@@ -2,6 +2,7 @@
   <div class="primary-gradient-1 overflow-hidden">
     <q-tabs
       v-model="currentTab"
+      no-caps
       :indicator-color="indicatorColor"
       :active-color="activeColor"
       align="left"

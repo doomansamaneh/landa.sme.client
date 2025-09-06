@@ -11,6 +11,7 @@
       style="margin-top: -1px"
     >
       <q-tabs
+        no-caps
         inline-label
         narrow-indicator
         dense

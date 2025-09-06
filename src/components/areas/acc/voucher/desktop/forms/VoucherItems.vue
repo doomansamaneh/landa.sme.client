@@ -24,6 +24,14 @@
           <th style="width: 10%">{{ $t("shared.columns.debit") }}</th>
           <th style="width: 1px">
             <q-btn
+              :disabled="
+                formStore.model.value.voucherItems.length === 0
+              "
+              :class="
+                formStore.model.value.voucherItems.length === 0
+                  ? 'no-pointer-events'
+                  : ''
+              "
               no-caps
               size="sm"
               unelevated
@@ -179,10 +187,8 @@
 
     <q-btn
       no-caps
-      padding="4px 12px"
       unelevated
       rounded
-      dense
       class="bg-primary primary-shadow text-white q-mt-md"
       @click="formStore.pushNewRow()"
     >

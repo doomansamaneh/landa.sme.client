@@ -109,6 +109,7 @@
     <template v-if="model.id">
       <slot name="body">
         <q-tabs
+          no-caps
           align="left"
           v-model="tab"
           inline-label

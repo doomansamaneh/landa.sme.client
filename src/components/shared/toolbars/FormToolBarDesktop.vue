@@ -6,7 +6,6 @@
           <q-btn
             no-caps
             class="primary-gradient primary-shadow text-white text-body2"
-            padding="4px 12px"
             rounded
             unelevated
             @click="save"
@@ -19,7 +18,6 @@
             no-caps
             v-if="showSaveAndNew"
             class="text-body2"
-            padding="4px 12px"
             rounded
             unelevated
             @click="saveAndNew"

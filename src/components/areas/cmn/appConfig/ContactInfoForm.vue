@@ -1,5 +1,5 @@
 <template>
-  <div class="q-mt-lg">
+  <div>
     <location-lookup
       :label="$t('shared.labels.countryCity')"
       v-model:selectedId="

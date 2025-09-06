@@ -271,10 +271,8 @@
   <q-btn
     no-caps
     v-if="model.invoiceItems.length > 0"
-    padding="4px 12px"
     unelevated
     rounded
-    dense
     class="bg-primary primary-shadow text-white q-mt-md"
     @click="formStore.pushNewRow()"
   >

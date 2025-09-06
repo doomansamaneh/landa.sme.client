@@ -34,7 +34,7 @@
               no-wrap
               rounded
               unelevated
-              padding="4px 12px"
+              padding="8px 16px"
               class="text-body2 bordered text-on-dark"
               :class="
                 searchStore.searchModel.value.dateRange > 0
@@ -70,7 +70,7 @@
               no-wrap
               rounded
               unelevated
-              padding="4px 12px"
+              padding="8px 16px"
               class="text-body2 bordered text-on-dark"
               :class="
                 searchStore.searchModel.value.depositType > 0
@@ -106,7 +106,7 @@
               no-wrap
               rounded
               unelevated
-              padding="4px 12px"
+              padding="8px 16px"
               class="text-body2 bordered text-on-dark"
               :class="
                 searchStore.searchModel.value.taxStatus > 0
