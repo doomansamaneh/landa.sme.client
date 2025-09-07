@@ -10,7 +10,7 @@
     <q-icon
       size="20px"
       :name="
-        icon ?? $q.screen.lt.md ? mobileArrowIcon : desktopArrowIcon
+        icon ?? $q.screen.lt.sm ? mobileArrowIcon : desktopArrowIcon
       "
     />
     <q-tooltip class="custom-tooltip">

@@ -72,11 +72,11 @@
     <q-card-section class="text-center">
       <no-item-selected />
       <q-btn
+        padding="8px 16px"
         no-caps
-        class="primary-shadow q-mb-lg"
+        class="primary-gradient primary-shadow text-white q-mb-lg"
         rounded
         unelevated
-        color="primary"
         @click="formStore.pushNewRow()"
       >
         <q-icon name="o_add" size="20px" />

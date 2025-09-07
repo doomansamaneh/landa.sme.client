@@ -186,10 +186,11 @@
     </q-markup-table>
 
     <q-btn
+      padding="8px 16px"
       no-caps
       unelevated
       rounded
-      class="bg-primary primary-shadow text-white q-mt-md"
+      class="primary-gradient primary-shadow text-white q-mt-md"
       @click="formStore.pushNewRow()"
     >
       <q-icon size="20px" name="o_add" class="q-mr-xs" />

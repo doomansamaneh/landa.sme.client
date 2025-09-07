@@ -42,7 +42,6 @@
           no-caps
           rounded
           flat
-          size="md"
           padding="8px 16px"
           :label="
             cancel ? $t(`${cancel}`) : $t('shared.labels.cancel')

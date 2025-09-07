@@ -28,7 +28,7 @@
       icon-next="chevron_right"
       gutter="xs"
       round
-      padding="2px 2px 1px 3px"
+      padding="4px"
       color="grey-8"
       active-color="primary"
       class="pagination"

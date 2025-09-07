@@ -1,6 +1,7 @@
 <template>
   <div>
     <q-btn
+      :to="to"
       no-caps
       dense
       unelevated
@@ -17,3 +18,9 @@
     </q-btn>
   </div>
 </template>
+
+<script setup>
+  const props = defineProps({
+    to: String,
+  });
+</script>

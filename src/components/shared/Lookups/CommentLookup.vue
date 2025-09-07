@@ -17,6 +17,17 @@
       :error="!!validationMessage"
       @keydown.enter="onInputEnter"
     >
+      <template
+        v-if="tableStore.showLoader.value && !isPopupOpen"
+        #prepend
+      >
+        <q-spinner
+          v-if="tableStore.showLoader.value"
+          size="18px"
+          color="primary"
+        />
+      </template>
+
       <template #append>
         <q-btn
           no-caps
@@ -74,6 +85,8 @@
                 @click="sortTitle"
               />
             </div>
+
+            <lookup-add-button to="/cmn/commonKeyword/create" />
           </div>
         </div>
         <div class="q-px-md q-pt-md">
@@ -311,6 +324,7 @@
   import PageBar from "src/components/shared/dataTables/PageBar.vue";
   import CustomLabel from "../forms/CustomLabel.vue";
   import ValidationAlert from "src/components/shared/forms/ValidationAlert.vue";
+  import LookupAddButton from "src/components/shared/lookups/LookupAddButton.vue";
 
   const props = defineProps({
     modelValue: String, // <-- add for v-model

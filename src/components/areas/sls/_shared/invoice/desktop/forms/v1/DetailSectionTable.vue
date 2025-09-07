@@ -253,6 +253,7 @@
         <td colspan="9" class="text-center">
           <no-product-selected class="q-mt-md" />
           <q-btn
+            padding="8px 16px"
             no-caps
             class="q-mb-xl primary-shadow"
             rounded
@@ -269,6 +270,7 @@
   </q-markup-table>
 
   <q-btn
+    padding="8px 16px"
     no-caps
     v-if="model.invoiceItems.length > 0"
     unelevated

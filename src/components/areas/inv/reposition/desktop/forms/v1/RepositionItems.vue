@@ -64,8 +64,9 @@
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
+            padding="8px 16px"
             no-caps
-            class="q-my-xl primary-shadow"
+            class="q-my-xl primary-gradient primary-shadow text-white"
             rounded
             unelevated
             color="primary"

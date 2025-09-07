@@ -67,12 +67,12 @@
           {{ $t("shared.labels.deleteAll") }}
         </q-btn>
         <q-btn
+          padding="8px 16px"
           no-caps
           v-else
-          class="primary-shadow"
+          class="primary-gradient primary-shadow text-white"
           rounded
           unelevated
-          color="primary"
           @click="formStore.pushNewRow()"
         >
           <q-icon name="o_add" size="20px" class="q-mr-xs" />

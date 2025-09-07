@@ -32,6 +32,7 @@
       </q-card>
 
       <q-btn
+        padding="8px 16px"
         no-caps
         v-if="!taxStore.apiResult.value.data"
         unelevated
@@ -51,6 +52,7 @@
           authStore.currentUser?.id ===
             '749c90c7-7229-44fe-8b0d-a1207b5614cb'
         "
+        padding="8px 16px"
         no-caps
         unelevated
         rounded
