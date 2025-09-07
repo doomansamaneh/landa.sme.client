@@ -57,7 +57,7 @@
                     <q-btn
                       no-caps
                       @click="editCommentBtn = false"
-                      padding="4px 12px"
+                      padding="8px 16px"
                       flat
                       rounded
                       class="primary-gradient text-white text-body3"
@@ -89,7 +89,7 @@
                   <q-btn
                     no-caps
                     @click="editComment"
-                    padding="4px 12px"
+                    padding="8px 16px"
                     unelevated
                     rounded
                     class="text-on-dark text-body3"
@@ -100,7 +100,7 @@
                   <q-btn
                     no-caps
                     @click="deleteAlert"
-                    padding="4px 12px"
+                    padding="8px 16px"
                     unelevated
                     rounded
                     class="text-on-dark text-body3"

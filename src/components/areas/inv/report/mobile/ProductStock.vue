@@ -11,7 +11,7 @@
       <template #append>
         <q-btn
           no-caps
-          padding="4px 12px"
+          padding="8px 16px"
           rounded
           color="primary"
           dense

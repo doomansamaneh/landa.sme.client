@@ -67,10 +67,10 @@
                   </custom-input-number>
                 </q-card-section>
 
-                <q-card-actions class=" q-pt-sm q-pb-md q-px-md">
+                <q-card-actions class="q-pt-sm q-pb-md q-px-md">
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
                     class="primary-gradient text-white"
@@ -80,7 +80,7 @@
                   </q-btn>
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
                     @click="discountVisible = false"
@@ -139,7 +139,7 @@
                 <q-card-actions class="q-pt-sm q-pb-md q-px-md">
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
                     class="primary-gradient text-white"
@@ -149,7 +149,7 @@
                   </q-btn>
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
                     @click="vatVisible = false"

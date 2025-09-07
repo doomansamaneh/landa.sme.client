@@ -110,7 +110,7 @@
 
             <q-btn
               no-caps
-              padding="4px 12px"
+              padding="8px 16px"
               unelevated
               :label="$t('shared.labels.encyclopedia')"
               href="https://www.landa-sme.ir/LandaKnowledge"

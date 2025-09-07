@@ -7,12 +7,12 @@
         class="primary-shadow"
         rounded
         color="primary"
-        padding="4px 12px"
+        padding="8px 16px"
         unelevated
         :to="`/trs/receipt/createFromInvoice/${model.id}`"
       >
         <q-icon name="o_add" size="xs" />
-        <span>دریافت</span>
+        <span>{{ $t("shared.labels.receipt") }}</span>
       </q-btn>
       <q-btn
         no-caps
@@ -20,12 +20,12 @@
         class="primary-shadow q-mr-xs"
         rounded
         color="primary"
-        padding="4px 12px"
+        padding="8px 16px"
         unelevated
         :to="`/trs/payment/createFromInvoice/${model.id}`"
       >
         <q-icon name="o_add" size="xs" />
-        <span>پرداخت</span>
+        <span>{{ $t("shared.labels.payment") }}</span>
       </q-btn>
 
       <q-btn
@@ -33,7 +33,7 @@
         class="primary-shadow"
         rounded
         color="primary"
-        padding="4px 12px"
+        padding="8px 16px"
         unelevated
         @click="settlement"
       >

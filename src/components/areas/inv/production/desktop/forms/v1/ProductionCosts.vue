@@ -91,7 +91,7 @@
   <q-btn
     no-caps
     v-if="model?.costs?.length > 0"
-    padding="4px 12px"
+    padding="8px 16px"
     unelevated
     rounded
     dense
