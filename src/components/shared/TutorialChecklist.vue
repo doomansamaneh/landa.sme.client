@@ -117,13 +117,18 @@
   import { ref, computed, onMounted, watch } from "vue";
   import { useQuasar } from "quasar";
   import { useRouter, useRoute } from "vue-router";
+  import { useTutorialChecklist } from "src/composables/useTutorialChecklist";
 
   const $q = useQuasar();
   const router = useRouter();
   const route = useRoute();
 
+  const COMPLETED_KEY = "tutorial_checklist_completed";
+
   const popup = ref(null);
   const isDismissed = ref(false);
+  const FINISHED_KEY = "tutorial_checklist_finished";
+  const tutorialStore = useTutorialChecklist();
 
   const tasks = ref([
     {
@@ -136,7 +141,7 @@
       title: "تنظیم حساب کاربری",
       description: "افزودن اطلاعات شرکت",
       completed: false,
-      route: null,
+      route: "/cmn/appConfig/basicInfo",
     },
     {
       title: "ایجاد پیش‌فاکتور",
@@ -163,6 +168,22 @@
     ).length;
     return completedCount / tasks.value.length;
   });
+
+  function checkAllDoneAndFinish() {
+    const allDone = tasks.value.every((t) => t.completed);
+    if (allDone) {
+      try {
+        localStorage.setItem(FINISHED_KEY, "1");
+      } catch {}
+      isDismissed.value = true;
+      onPopupHide();
+      // Open congrats dialog and signal layout to hide checklist
+      tutorialStore.markAllDone();
+      window.dispatchEvent(
+        new CustomEvent("tutorial-checklist-finished")
+      );
+    }
+  }
 
   function showPopup() {
     if (isDismissed.value) return;
@@ -202,24 +223,67 @@
       });
   }
 
-  function updateCompletionFromRoute() {
-    const currentPath = route.fullPath || route.path || "";
+  function loadCompletedRoutes() {
+    try {
+      const raw = localStorage.getItem(COMPLETED_KEY);
+      const list = raw ? JSON.parse(raw) : [];
+      return new Set(Array.isArray(list) ? list : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function saveCompletedRoutes(completedSet) {
+    try {
+      localStorage.setItem(
+        COMPLETED_KEY,
+        JSON.stringify(Array.from(completedSet))
+      );
+    } catch {
+      // ignore
+    }
+  }
+
+  const completedRoutes = ref(loadCompletedRoutes());
+
+  function applyCompletedToTasks() {
     tasks.value.forEach((task) => {
-      if (task.route) {
-        // mark done if current route equals or starts with target route
-        task.completed =
-          currentPath === task.route ||
-          currentPath.startsWith(task.route + "/");
+      if (!task.route) return;
+      if (completedRoutes.value.has(task.route)) {
+        task.completed = true;
       }
     });
   }
 
+  function updateCompletionFromRoute() {
+    const currentPath = route.fullPath || route.path || "";
+    let changed = false;
+    tasks.value.forEach((task) => {
+      if (!task.route) return;
+      const matches =
+        currentPath === task.route ||
+        currentPath.startsWith(task.route + "/");
+      if (matches && !completedRoutes.value.has(task.route)) {
+        completedRoutes.value.add(task.route);
+        task.completed = true; // mark and keep it
+        changed = true;
+      } else if (completedRoutes.value.has(task.route)) {
+        task.completed = true; // keep previously completed tasks checked
+      }
+    });
+    if (changed) saveCompletedRoutes(completedRoutes.value);
+    checkAllDoneAndFinish();
+  }
+
   onMounted(() => {
-    isDismissed.value =
+    const dismissed =
       localStorage.getItem("tutorial_checklist_dismissed") === "1";
+    const finished = localStorage.getItem(FINISHED_KEY) === "1";
+    isDismissed.value = dismissed || finished;
     if (!isDismissed.value) {
       showPopup();
     }
+    applyCompletedToTasks();
     updateCompletionFromRoute();
   });
 
