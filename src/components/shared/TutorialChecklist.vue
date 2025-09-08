@@ -4,7 +4,7 @@
     position="bottom-right"
     :offset="[18, 18]"
     class="z-1"
-    @click="showPopup"
+    @click="handleOpen"
   >
     <q-btn
       rounded
@@ -16,6 +16,7 @@
       <span>چک لیست تازه کار</span>
 
       <q-menu
+        v-if="$q.screen.gt.sm"
         ref="popup"
         no-parent-event
         no-focus
@@ -25,11 +26,13 @@
         fit
         @show="onPopupShow"
         @hide="onPopupHide"
-        class="q-ma-md"
+        class="q-ma-md border-radius-lg"
       >
         <q-card flat class="checklist-card">
           <q-card-section class="text-subtitle2">
-            <div class="flex items-center justify-between">
+            <div
+              class="flex items-center justify-between q-gutter-md"
+            >
               <div>این آموزش‌ها به شما کمک می‌کنند شروع کنید</div>
 
               <q-btn
@@ -64,7 +67,7 @@
               :key="index"
               :clickable="!!task.route"
               @click="task.route && goTo(task)"
-              :class="{ 'bg-grey-2': task.completed }"
+              :class="{ 'bg-on-dark': task.completed }"
             >
               <q-item-section avatar>
                 <q-icon
@@ -111,6 +114,90 @@
       </q-menu>
     </q-btn>
   </q-page-sticky>
+
+  <q-dialog v-model="dialog" position="bottom">
+    <q-card flat class="checklist-card">
+      <q-card-section class="text-subtitle2">
+        <div class="flex items-center justify-between">
+          <div>این آموزش‌ها به شما کمک می‌کنند شروع کنید</div>
+
+          <q-btn
+            size="sm"
+            round
+            dense
+            unelevated
+            @click="closeDialog"
+          >
+            <q-icon name="o_close" />
+          </q-btn>
+        </div>
+      </q-card-section>
+
+      <q-linear-progress
+        :value="progress"
+        color="primary"
+        track-color="grey-3"
+        class="q-mb-md rounded-borders"
+        height="16px"
+      >
+        <template v-slot:default>
+          <div class="text-caption text-white q-pa-xs">
+            {{ Math.round(progress * 100) }}%
+          </div>
+        </template>
+      </q-linear-progress>
+
+      <q-list>
+        <q-item
+          v-for="(task, index) in tasks"
+          :key="index"
+          :clickable="!!task.route"
+          @click="task.route && goTo(task)"
+          :class="{ 'bg-on-dark': task.completed }"
+        >
+          <q-item-section avatar>
+            <q-icon
+              :name="
+                task.completed
+                  ? 'check_circle'
+                  : 'radio_button_unchecked'
+              "
+              :color="task.completed ? 'green' : 'grey-5'"
+            />
+          </q-item-section>
+          <q-item-section>
+            <div class="text-subtitle2 text-weight-bold">
+              {{ task.title }}
+            </div>
+            <div class="text-caption text-grey-6">
+              {{ task.description }}
+            </div>
+          </q-item-section>
+          <q-item-section side v-if="task.route">
+            <q-btn
+              flat
+              round
+              dense
+              color="primary"
+              icon="chevron_left"
+              @click.stop="goTo(task)"
+              :aria-label="`رفتن به ${task.title}`"
+            />
+          </q-item-section>
+        </q-item>
+      </q-list>
+
+      <q-card-actions align="right">
+        <q-btn
+          flat
+          size="sm"
+          color="grey-6"
+          label="دیگر نمایش نده"
+          @click="onDismissClick"
+        />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script setup>
@@ -129,6 +216,7 @@
   const isDismissed = ref(false);
   const FINISHED_KEY = "tutorial_checklist_finished";
   const tutorialStore = useTutorialChecklist();
+  const dialog = ref(false);
 
   const tasks = ref([
     {
@@ -275,6 +363,14 @@
     checkAllDoneAndFinish();
   }
 
+  const showDialog = () => {
+    dialog.value = true;
+  };
+
+  const closeDialog = () => {
+    dialog.value = false;
+  };
+
   onMounted(() => {
     const dismissed =
       localStorage.getItem("tutorial_checklist_dismissed") === "1";
@@ -293,14 +389,18 @@
       updateCompletionFromRoute();
     }
   );
+
+  const handleOpen = () => {
+    if ($q.screen.gt.sm) {
+      showPopup();
+    } else {
+      showDialog();
+    }
+  };
 </script>
 
 <style scoped lang="scss">
-  .checklist-card {
-    min-width: 380px;
-  }
-
-  .rounded-borders {
-    border-radius: 12px;
-  }
+  // .checklist-card {
+  //   min-width: 380px;
+  // }
 </style>
