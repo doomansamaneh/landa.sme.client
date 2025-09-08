@@ -2,6 +2,7 @@
   <!-- <q-card-actions align="right" class="q-pa-md bg-on-dark"> -->
   <q-card-section class="bg-on-dark flex justify-end">
     <q-btn
+      padding="8px 16px"
       no-caps
       class="primary-gradient primary-shadow text-white text-body2"
       rounded
@@ -12,6 +13,7 @@
       {{ $t("shared.labels.save") }}
     </q-btn>
     <q-btn
+      padding="8px 16px"
       no-caps
       no-cpas
       rounded

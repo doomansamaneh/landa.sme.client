@@ -1,10 +1,10 @@
 <template>
   <q-btn
+    padding="8px 16px"
     no-caps
     rounded
     class="text-white primary-gradient primary-shadow"
     unelevated
-    padding="8px 16px"
   >
     <router-link
       to="/business/addBusiness"

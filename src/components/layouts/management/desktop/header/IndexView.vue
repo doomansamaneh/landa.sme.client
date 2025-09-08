@@ -29,9 +29,6 @@
           no-caps
           unelevated
           rounded
-          dense
-          padding="8px 16px"
-          size="14px"
           class="bordered text-on-dark gt-xs"
         >
           <q-icon size="sm" name="o_account_circle" class="q-mr-sm" />

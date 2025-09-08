@@ -73,11 +73,11 @@
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
+            padding="8px 16px"
             no-caps
-            class="q-my-xl primary-shadow"
+            class="q-my-xl primary-gradient primary-shadow text-white"
             rounded
             unelevated
-            color="primary"
             @click="formStore.pushNewCost()"
           >
             <q-icon name="o_add" size="20px" class="q-mr-xs" />
@@ -95,7 +95,7 @@
     unelevated
     rounded
     dense
-    class="bg-primary primary-shadow text-white q-my-md"
+    class="primary-gradient primary-shadow text-white q-my-md"
     @click="formStore.addNewCost(index)"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />
