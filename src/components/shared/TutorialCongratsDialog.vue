@@ -31,12 +31,12 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useTutorialChecklist } from "src/composables/useTutorialChecklist";
+  import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
 
-  const store = useTutorialChecklist();
+  const store = useFirstUsageWizard();
 
   function onClose() {
-    store.closeCongrats();
+    store.hideChecklistCongrats();
   }
 </script>
 
