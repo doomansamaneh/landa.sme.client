@@ -233,6 +233,8 @@ export function numberToWords(number, lang) {
   // 🔹 detect dynamically each call if lang not given
   lang = lang || detectLanguageFromQuasarOrStorage();
 
+  number = Math.trunc(number);  
+
   if (number === 0) {
     if (lang === "fa") return "صفر";
     if (lang === "en") return "zero";

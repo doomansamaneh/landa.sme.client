@@ -1,7 +1,5 @@
 <template>
-  <confetti-animation
-    v-if="showCongrat && congratsStore.confetti.value"
-  />
+  <confetti-animation v-if="congratsStore.confetti.value" />
   <home />
 </template>
 
@@ -18,8 +16,6 @@
   const { t } = useI18n();
   const congratsStore = useCongrats();
 
-  const showCongrat = false;
-
   const metaData = {
     title: t("pages.dashboard"),
   };
@@ -28,7 +24,7 @@
 
   onMounted(() => {
     //todo: if user login for first time should show congrats.
-    if (showCongrat)
+    if (congratsStore.firstUsage.value)
       Dialog.create({
         component: CongratsDialog,
       });
