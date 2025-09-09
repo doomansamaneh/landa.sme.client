@@ -14,21 +14,16 @@
     <alert-banner class="fixed-bottom z-max" />
 
     <tutorial-checklist v-if="showChecklist" />
-    <!-- v-if="
-    !congratsStore.confetti.value &&
-    !congratsStore.congratsDialog.value
-    " -->
     <tutorial-congrats-dialog />
   </q-layout>
 </template>
 
 <script setup>
-  import { ref, onBeforeUnmount, onMounted } from "vue";
+  import { onMounted, computed } from "vue";
   import { useQuasar } from "quasar";
   import { useTheme } from "src/components/layouts/main/_composables/useTheme.js";
   import { useMenuBar } from "src/composables/useMenuBar";
-  import { useCongrats } from "src/composables/useCongrats";
-  import { useTutorialChecklist } from "src/composables/useTutorialChecklist";
+  import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
 
   import MenuBar from "src/components/layouts/main/MenuBar.vue";
   import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue";
@@ -43,33 +38,20 @@
   const theme = useTheme();
   const $q = useQuasar();
   const menuBarStore = useMenuBar();
-  const congratsStore = useCongrats();
-  const showChecklist = ref(true);
-  const tutorialStore = useTutorialChecklist();
-
-  function onFinished() {
-    showChecklist.value = false;
-  }
+  const tutorialStore = useFirstUsageWizard();
 
   if ($q.screen.lt.md) {
     menuBarStore.state.visible.value = false;
   }
 
+  const showChecklist = computed(
+    () =>
+      tutorialStore.hasCompletedCongrats.value &&
+      !tutorialStore.isFinished.value &&
+      !tutorialStore.isChecklistDismissed.value
+  );
+
   onMounted(() => {
     theme.store();
-    if (tutorialStore.isFinished.value) {
-      showChecklist.value = false;
-    }
-    window.addEventListener(
-      "tutorial-checklist-finished",
-      onFinished
-    );
-  });
-
-  onBeforeUnmount(() => {
-    window.removeEventListener(
-      "tutorial-checklist-finished",
-      onFinished
-    );
   });
 </script>
