@@ -3,7 +3,11 @@
   --q-secondary: #{$secondary};
   --q-accent: #{$accent};
   --q-dark: #{$dark};
-  background-color: $dark-page;
+
+  .q-dark {
+    color: #e1e4e8;
+  }
+
   @include q-avatar-dark();
   @include q-tree-dark();
   @include q-breadcrumbs-dark();
