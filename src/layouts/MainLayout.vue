@@ -10,7 +10,7 @@
     <bottom-navigation />
     <menu-bar />
     <contact-drawer />
-    <notif-drawer />
+    <notif-drawer v-if="false" />
     <alert-banner class="fixed-bottom z-max" />
 
     <tutorial-checklist v-if="showChecklist" />
