@@ -85,13 +85,10 @@
             )}`
           )
         "
+        :type-id="item?.typeId"
       />
 
-      <type-badge
-        :color="$q.dark.isActive ? 'blue-grey-8' : 'grey-4'"
-        :text-color="$q.dark.isActive ? 'white' : 'black'"
-        :title="item.unitTitle"
-      />
+      <type-badge :title="item.unitTitle" :type-id="item?.typeId" />
     </template>
 
     <template #row-toolbar="{ item }">

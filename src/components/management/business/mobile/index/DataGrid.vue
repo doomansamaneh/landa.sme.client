@@ -13,6 +13,7 @@
     no-active-row
     no-select-row
     class="q-my-xl"
+    card-padding="no-padding"
   >
     <template #header-guide>
       <q-btn

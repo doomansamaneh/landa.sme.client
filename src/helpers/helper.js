@@ -153,6 +153,7 @@ export const helper = {
 
     let hash = 0;
     if (input) {
+      input = input.toString();
       for (let i = 0; i < input.length; i++) {
         hash = input.charCodeAt(i) + ((hash << 5) - hash);
       }

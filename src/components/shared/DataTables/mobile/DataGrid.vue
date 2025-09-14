@@ -47,93 +47,99 @@
   </slot>
 
   <!-- Rows -->
-  <template
-    v-for="(row, index) in rows?.value"
-    :key="row.id || index"
-  >
-    <q-card
-      flat
-      v-touch-hold.capture="() => selectRow(row)"
-      class="border-radius-md"
-      :class="tableStore.getRowClass(row)"
-      @click="setActiveRow(row)"
+  <div class="q-gutter-y-sm q-pt-sm">
+    <template
+      v-for="(row, index) in rows?.value"
+      :key="row.id || index"
     >
-      <q-card-section class="q-pa-xs">
-        <div class="row_ no-wrap items-start justify-between">
-          <router-link
-            class="col q-gutter-y-xs no-decoration text-on-dark"
-            :to="getPreviewRoute(row)"
-            @contextmenu.prevent
-          >
-            <div class="row items-start">
-              <!-- Avatar Slot -->
-              <slot v-if="showAvatar" name="row-avatar" :item="row">
-                <div class="col-auto q-mr-sm">
-                  <transition name="slide" appear mode="out-in">
-                    <q-avatar
-                      :key="row.selected"
-                      size="48px"
-                      text-color="white"
-                      :style="
-                        !row.selected
-                          ? helper.generateAvatarStyle(
-                              row[avatarField ?? id]
-                            )
-                          : ''
-                      "
-                      :class="row.selected ? 'primary-gradient' : ''"
-                      @click.prevent.stop="selectRow(row)"
-                    >
-                      <div
-                        v-if="!row.selected"
-                        class="text-body2 text-bold"
+      <q-card
+        flat
+        v-touch-hold.capture="() => selectRow(row)"
+        class="border-radius-md"
+        :class="tableStore.getRowClass(row)"
+        @click="setActiveRow(row)"
+      >
+        <q-card-section :class="cardPadding">
+          <div class="row_ no-wrap items-start justify-between">
+            <router-link
+              class="col q-gutter-y-xs no-decoration text-on-dark"
+              :to="getPreviewRoute(row)"
+              @contextmenu.prevent
+            >
+              <div class="row items-start">
+                <!-- Avatar Slot -->
+                <slot v-if="showAvatar" name="row-avatar" :item="row">
+                  <div class="col-auto q-mr-sm">
+                    <transition name="slide" appear mode="out-in">
+                      <q-avatar
+                        :key="row.selected"
+                        size="48px"
+                        text-color="white"
+                        :style="
+                          !row.selected
+                            ? helper.generateAvatarStyle(
+                                row[avatarField ?? id]
+                              )
+                            : ''
+                        "
+                        :class="
+                          row.selected ? 'primary-gradient' : ''
+                        "
+                        @click.prevent.stop="selectRow(row)"
                       >
-                        <slot name="row-avatar-title" :item="row">
-                          {{ helper.getFirstChar(row?.id) }}
-                        </slot>
-                      </div>
-                      <transition appear name="slide-fade">
-                        <q-icon
-                          v-if="row.selected"
-                          size="24px"
-                          name="check"
-                        />
-                      </transition>
-                    </q-avatar>
-                  </transition>
-                </div>
-              </slot>
+                        <div
+                          v-if="!row.selected"
+                          class="text-body2 text-bold"
+                        >
+                          <slot name="row-avatar-title" :item="row">
+                            {{ helper.getFirstChar(row?.id) }}
+                          </slot>
+                        </div>
+                        <transition appear name="slide-fade">
+                          <q-icon
+                            v-if="row.selected"
+                            size="24px"
+                            name="check"
+                          />
+                        </transition>
+                      </q-avatar>
+                    </transition>
+                  </div>
+                </slot>
 
-              <!-- Row Content -->
-              <div class="col">
-                <slot name="row-body" :item="row" />
+                <!-- Row Content -->
+                <div class="col">
+                  <slot name="row-body" :item="row" />
 
-                <!-- Badge Slot -->
-                <div v-if="showBadge" class="row no-wrap q-mt-sm">
-                  <div class="col no-wrap">
-                    <q-scroll-area
-                      :bar-style="{ opacity: 0 }"
-                      :thumb-style="{ opacity: 0 }"
-                      style="height: 21px"
-                    >
-                      <div class="row q-gutter-x-xs no-wrap q-pr-xs">
-                        <slot name="row-badge" :item="row" />
-                      </div>
-                    </q-scroll-area>
+                  <!-- Badge Slot -->
+                  <div v-if="showBadge" class="row no-wrap q-mt-sm">
+                    <div class="col no-wrap">
+                      <q-scroll-area
+                        :bar-style="{ opacity: 0 }"
+                        :thumb-style="{ opacity: 0 }"
+                        style="height: 21px"
+                      >
+                        <div
+                          class="row q-gutter-x-xs no-wrap q-pr-xs"
+                        >
+                          <slot name="row-badge" :item="row" />
+                        </div>
+                      </q-scroll-area>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </router-link>
+            </router-link>
 
-          <!-- Row Toolbar -->
-          <div class="col-auto q-ml-sm">
-            <slot name="row-toolbar" :item="row" />
+            <!-- Row Toolbar -->
+            <div class="col-auto q-ml-sm">
+              <slot name="row-toolbar" :item="row" />
+            </div>
           </div>
-        </div>
-      </q-card-section>
-    </q-card>
-  </template>
+        </q-card-section>
+      </q-card>
+    </template>
+  </div>
 
   <slot name="footer" />
 
@@ -248,6 +254,7 @@
     dataTableStore: useDataTable,
     noActiveRow: Boolean,
     noSelectRow: Boolean,
+    cardPadding: { type: String, default: "q-pa-xs" },
   });
 
   // Emits

@@ -72,6 +72,7 @@
             )}`
           )
         "
+        :type-id="item?.typeId"
       />
 
       <system-badge
