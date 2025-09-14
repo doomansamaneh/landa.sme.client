@@ -85,10 +85,9 @@
             )}`
           )
         "
-        :type-id="item?.typeId"
       />
 
-      <type-badge :title="item.unitTitle" :type-id="item?.typeId" />
+      <type-badge :title="item.unitTitle" />
     </template>
 
     <template #row-toolbar="{ item }">

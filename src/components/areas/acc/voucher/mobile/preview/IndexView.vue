@@ -42,7 +42,6 @@
               )}`
             )
           "
-          :type-id="model?.typeId"
         />
 
         <system-badge

@@ -224,12 +224,55 @@ export const helper = {
     };
   },
 
+  // Calculate relative luminance of a color (0-1, where 0 is black, 1 is white)
+  getLuminance(hex) {
+    const rgb = parseInt(hex.slice(1), 16);
+    const r = (rgb >> 16) / 255;
+    const g = ((rgb >> 8) & 0x00ff) / 255;
+    const b = (rgb & 0x0000ff) / 255;
+
+    // Apply gamma correction
+    const toLinear = (c) =>
+      c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+
+    return (
+      0.2126 * toLinear(r) +
+      0.7152 * toLinear(g) +
+      0.0722 * toLinear(b)
+    );
+  },
+
+  // Check if white text will be readable on a given background color
+  isWhiteTextReadable(hex, threshold = 0.5) {
+    return this.getLuminance(hex) < threshold;
+  },
+
   generateGradientStyle(id) {
-    const { gradient } = this.generateGradientColor(id, {
+    let options = {
       degree: 310,
-      proximity: 0.4,
-      darkness: 0.2,
-    });
+      proximity: 0.8, // Increased for better contrast between gradient colors
+      darkness: 0.4, // Increased darkness for better white text readability
+    };
+
+    // Generate initial gradient
+    let { gradient } = this.generateGradientColor(id, options);
+
+    // Extract colors from gradient string to check readability
+    const colorMatch = gradient.match(/#[0-9A-Fa-f]{6}/g);
+    if (colorMatch && colorMatch.length >= 2) {
+      const [color1, color2] = colorMatch;
+
+      // If colors are too light for white text, increase darkness
+      if (
+        !this.isWhiteTextReadable(color1) ||
+        !this.isWhiteTextReadable(color2)
+      ) {
+        options.darkness = Math.min(0.7, options.darkness + 0.2);
+        const newGradient = this.generateGradientColor(id, options);
+        gradient = newGradient.gradient;
+      }
+    }
+
     return {
       background: gradient,
     };

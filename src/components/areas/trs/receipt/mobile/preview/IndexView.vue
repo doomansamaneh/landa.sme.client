@@ -54,7 +54,6 @@
               class="text-weight-500 text-caption"
               padding="0 8px"
               :title="model?.typeTitle"
-              :type-id="model?.typeId"
             />
 
             <contract-badge
