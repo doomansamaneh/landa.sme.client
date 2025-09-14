@@ -1,5 +1,6 @@
 import {
   no,
+  docNo,
   productGroupCode,
   productGroupTitle,
   productCode,
@@ -40,6 +41,7 @@ export const taxStatus = {
 export const invoiceColumns = [
   { ...no },
   { ...taxId, hidden: true },
+  { ...docNo, hidden: true },
   { ...date },
   { ...typeTitle, hidden: true },
   { ...customerName },
@@ -62,6 +64,7 @@ export const invoiceRemainedColumns = [
 
 export const quoteColumns = [
   { ...no },
+  { ...docNo, hidden: true },
   { ...date },
   { ...customerName },
   { ...subject },
