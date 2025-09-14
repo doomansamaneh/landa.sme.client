@@ -86,7 +86,7 @@
         {{ item.summary }}
       </div>
       <div class="q-gutter-x-sm">
-        <type-badge :title="item.typeTitle" />
+        <type-badge :title="item.typeTitle" :type-id="item.typeId" />
         <contract-badge
           :title="item.contractTitle"
           :id="item.contractId"

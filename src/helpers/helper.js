@@ -137,7 +137,20 @@ export const helper = {
     return false;
   },
 
-  generateGradientColor(input) {
+  generateGradientColor(input, options = {}) {
+    // Default options
+    const {
+      degree = 135, // Gradient degree (default: 135deg)
+      proximity = 0.6, // Color proximity factor (0-1, default: 0.6)
+      // proximity controls how different the colors are:
+      // 0 = very similar colors (subtle gradient)
+      // 1 = very different colors (strong gradient)
+      darkness = 0, // Darkness factor (0-1, default: 0)
+      // darkness controls how dark the colors should be:
+      // 0 = normal brightness
+      // 1 = very dark colors
+    } = options;
+
     let hash = 0;
     if (input) {
       for (let i = 0; i < input.length; i++) {
@@ -169,28 +182,55 @@ export const helper = {
         .toUpperCase()}`; // Combine and convert back to hex
     }
 
+    // Calculate color factors based on proximity and darkness
+    // Higher proximity = more difference between colors
+    // Higher darkness = darker overall colors
+    const baseLightFactor = 1 + 0.3 * proximity; // Range: 1.0 to 1.3
+    const baseDarkFactor = 1 - 0.3 * proximity; // Range: 0.7 to 1.0
+
+    // Apply darkness factor to both colors
+    const darknessMultiplier = 1 - darkness; // Range: 1.0 to 0.0
+    const lightFactor = baseLightFactor * darknessMultiplier;
+    const darkFactor = baseDarkFactor * darknessMultiplier;
+
     // Create a lighter color and a darker color for the gradient
-    const lighterColor = adjustColor(baseColor, 1.3);
-    const darkerColor = adjustColor(baseColor, 0.7);
+    const lighterColor = adjustColor(baseColor, lightFactor);
+    const darkerColor = adjustColor(baseColor, darkFactor);
 
     // Darken the darker color further for the box shadow
     const boxShadowColor = adjustColor(darkerColor, 0.7);
 
-    // Create the gradient CSS string
-    const gradient = `linear-gradient(135deg, ${lighterColor}, ${darkerColor})`;
+    // Create the gradient CSS string with custom degree
+    const gradient = `linear-gradient(${degree}deg, ${lighterColor}, ${darkerColor})`;
 
     return { gradient, boxShadowColor };
   },
 
   generateAvatarStyle(id) {
-    const { gradient, boxShadowColor } =
-      this.generateGradientColor(id);
+    const { gradient, boxShadowColor } = this.generateGradientColor(
+      id,
+      {
+        degree: 135,
+        proximity: 1,
+      }
+    );
     const $q = useQuasar();
     return {
       background: gradient,
       ...($q.dark.isActive
         ? {}
         : { boxShadow: `0 4px 8px -4px ${boxShadowColor}` }),
+    };
+  },
+
+  generateGradientStyle(id) {
+    const { gradient } = this.generateGradientColor(id, {
+      degree: 310,
+      proximity: 0.4,
+      darkness: 0.2,
+    });
+    return {
+      background: gradient,
     };
   },
 
