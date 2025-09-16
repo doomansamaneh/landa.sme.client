@@ -70,7 +70,7 @@
     >
       <date-time-picker
         v-model="paymentItem.itemDate"
-        :label="$t('shared.labels.itemDate')"
+        :label="$t('shared.columns.itemDate')"
         required
       />
     </div>
