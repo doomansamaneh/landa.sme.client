@@ -7,6 +7,16 @@ export default {
   },
   children: [
     {
+      path: "/landing",
+      name: "landing",
+      meta: {
+        icon: "celebration",
+        title: "راه اندازی اولیه کسب و کار",
+      },
+      component: () =>
+        import("src/pages/management/business/LandingPage.vue"),
+    },
+    {
       path: "",
       name: "business-index",
 

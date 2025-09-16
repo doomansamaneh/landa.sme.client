@@ -583,11 +583,16 @@
       "bankBalance": "Bank Balance",
       "topProducts": "Top Selling Products & Services",
       "salesAndRevenue": "Sales & Revenue",
+      "purchasesAndExpenses": "Purchases & Expenses",
       "invoiceByCustomer": "Sales by Customer",
+      "invoiceBySupplier": "Purchases by Supplier",
       "invoiceByProduct": "Sales by Product",
       "salesByProductGroup": "Sales by Product Group",
+      "purchasesByProductGroup": "Purchases by Product Group",
       "salesReviewReport": "Sales Review Report",
+      "purchaseReviewReport": "Purchase Review Report",
       "salesReviewDescription": "Comprehensive analysis and review of sales data",
+      "purchaseReviewDescription": "Comprehensive analysis and review of purchase data",
       "viewReport": "View Report",
       "noFrom": "From Number",
       "noTo": "To Number",
@@ -1312,6 +1317,7 @@
     "tabs": {
       "general": "General",
       "sales": "Sales",
+      "purchase": "Purchase",
       "expense": "Expense",
       "chequeNotification": "Cheque Notification"
     },
@@ -1320,6 +1326,10 @@
     },
     "salesTab": {
       "title": "Sales Dashboard"
+    },
+    "purchaseTab": {
+      "title": "Purchase Dashboard",
+      "hiddenWidgets": "Hidden Widgets"
     },
     "expenseTab": {
       "title": "Expense Dashboard"

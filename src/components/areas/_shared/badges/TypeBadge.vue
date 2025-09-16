@@ -21,6 +21,6 @@
 
   const props = defineProps({
     title: String,
-    typeId: [String, Number],
+    typeId: String,
   });
 </script>

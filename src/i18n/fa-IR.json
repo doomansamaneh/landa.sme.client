@@ -591,11 +591,16 @@
       "bankBalance": "موجودی بانک",
       "topProducts": "کالا و خدمات پرفروش",
       "salesAndRevenue": "فروش و درآمد",
+      "purchasesAndExpenses": "خرید و هزینه",
       "invoiceByCustomer": "فروش بر اساس مشتریان",
+      "invoiceBySupplier": "خرید بر اساس تامین‌کنندگان",
       "invoiceByProduct": "فروش بر اساس محصولات",
       "salesByProductGroup": "فروش بر اساس گروه محصولات",
+      "purchasesByProductGroup": "خرید بر اساس گروه محصولات",
       "salesReviewReport": "گزارش مرور فروش",
+      "purchaseReviewReport": "گزارش مرور خرید",
       "salesReviewDescription": "بررسی و تحلیل جامع داده‌های فروش",
+      "purchaseReviewDescription": "بررسی و تحلیل جامع داده‌های خرید",
       "viewReport": "مشاهده گزارش",
       "noFrom": "شماره از",
       "noTo": "شماره تا",
@@ -1280,6 +1285,7 @@
     "tabs": {
       "general": "عمومی",
       "sales": "فروش",
+      "purchase": "خرید",
       "expense": "هزینه",
       "chequeNotification": "اعلان چک"
     },
@@ -1288,6 +1294,10 @@
     },
     "salesTab": {
       "title": "پیشخوان فروش"
+    },
+    "purchaseTab": {
+      "title": "پیشخوان خرید",
+      "hiddenWidgets": "ویجت‌های مخفی"
     },
     "expenseTab": {
       "title": "پیشخوان هزینه"

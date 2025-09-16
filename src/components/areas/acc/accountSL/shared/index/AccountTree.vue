@@ -22,7 +22,7 @@
         node-key="id"
         accordion
         icon="o_arrow_forward_ios"
-        selected-color="black"
+        :selected-color="$q.dark.isActive ? 'yellow' : 'primary'"
         :selected="selected"
         @update:selected="setActiveRow"
       >
