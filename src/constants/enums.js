@@ -450,3 +450,59 @@ export const feedbackStatus = {
 export const phoneNumbers = {
   support: "02191070419",
 };
+
+export const leadSourceType = {
+  Google: 1,
+  SocialNetwork: 2,
+  CustomerReferal: 3,
+  Advertisement: 4,
+  Event: 5,
+  Website: 6,
+  EmailCampaign: 7,
+  None: 9,
+};
+
+export const country = {
+  UnitedState: 1,
+  Iran: 98,
+};
+
+export const city = {
+  Tehran: 21,
+  Karaj: 26,
+  Qazvin: 28,
+  Qom: 25,
+  Isfahan: 31,
+  Shiraz: 71,
+  Tabriz: 41,
+  Urmia: 44,
+  Rasht: 13,
+  Sari: 11,
+  Gorgan: 17,
+  Ardabil: 45,
+  Zanjan: 24,
+  Hamedan: 81,
+  Kermanshah: 83,
+  Sanandaj: 87,
+  Ilam: 84,
+  Khorramabad: 66,
+  Ahvaz: 61,
+  Bushehr: 77,
+  Yasuj: 74,
+  BandarAbbas: 76,
+  Zahedan: 54,
+  Kerman: 34,
+  Yazd: 35,
+  Mashhad: 51,
+  Bojnord: 58,
+  Birjand: 56,
+};
+
+export const businessActivityField = {
+  Trade: 1,
+  IT: 2,
+  Accounting: 3,
+  Services: 4,
+  FoodServices: 5,
+  Other: 99,
+};
