@@ -80,7 +80,8 @@ export function useBusinessGrid() {
     }
 
     if (response.data?.data?.url)
-      router.push(response.data?.data?.url + "dashboard");
+      router.push(response.data?.data?.url);
+    // + "/dashboard"
     else {
       alert(`goto business: ${response.data?.message}`);
     }

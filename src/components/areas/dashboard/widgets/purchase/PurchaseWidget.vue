@@ -1,6 +1,6 @@
 <template>
   <q-card
-    v-access="`sls.invoice.view`"
+    v-access="`sls.purchase.view`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="shadow border-radius-lg bordered"
   >
@@ -75,10 +75,10 @@
   import { useQuasar } from "quasar";
 
   import { helper } from "src/helpers";
-  import { useReport } from "src/components/areas/sls/_composables/useReport";
+  import { usePurchaseReport } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseReport";
   import { usePurchaseTab } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseTab";
   import { useRevenueExpenseState } from "../../_composables/generalTab/useRevenueExpenseState";
-  import { useRevenueExpense } from "../../_composables/generalTab/useRevenueExpense";
+  import { usePurchaseRevenueExpense } from "../../_composables/purchaseTab/usePurchaseRevenueExpense";
   import { usePurchaseChartOptions } from "./_composables/usePurchaseChartOptions";
 
   import ApexChart from "vue3-apexcharts";
@@ -87,8 +87,8 @@
 
   const $q = useQuasar();
   const draggable = usePurchaseTab();
-  const reportStore = useReport("invoiceByProduct");
-  const revenueExpenseStore = useRevenueExpense(
+  const reportStore = usePurchaseReport("purchaseByProduct");
+  const revenueExpenseStore = usePurchaseRevenueExpense(
     useRevenueExpenseState()
   );
 

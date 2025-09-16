@@ -116,9 +116,9 @@
 
   import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
   import PurchaseWidget from "src/components/areas/dashboard/widgets/purchase/PurchaseWidget.vue";
-  import InvoiceBySupplier from "src/components/areas/dashboard/widgets/purchase/InvoiceBySupplier.vue";
-  import InvoiceByProduct from "src/components/areas/dashboard/widgets/purchase/InvoiceByProduct.vue";
-  import InvoiceByProductGroup from "src/components/areas/dashboard/widgets/purchase/InvoiceByProductGroup.vue";
+  import PurchaseBySupplier from "src/components/areas/dashboard/widgets/purchase/PurchaseBySupplier.vue";
+  import PurchaseByProduct from "src/components/areas/dashboard/widgets/purchase/PurchaseByProduct.vue";
+  import PurchaseByProductGroup from "src/components/areas/dashboard/widgets/purchase/PurchaseByProductGroup.vue";
   import FantasyPurchasePreview from "src/components/areas/dashboard/widgets/purchase/GoToPurchaseReview.vue";
 
   const metaData = [
@@ -135,9 +135,9 @@
   const widgets = [
     { id: 1, component: PurchaseWidget },
     { id: 2, component: TopProducts },
-    { id: 3, component: InvoiceBySupplier },
-    { id: 4, component: InvoiceByProduct },
-    { id: 5, component: InvoiceByProductGroup },
+    { id: 3, component: PurchaseBySupplier },
+    { id: 4, component: PurchaseByProduct },
+    { id: 5, component: PurchaseByProductGroup },
     { id: 6, component: FantasyPurchasePreview },
   ];
 

@@ -595,6 +595,8 @@
       "invoiceByCustomer": "فروش بر اساس مشتریان",
       "invoiceBySupplier": "خرید بر اساس تامین‌کنندگان",
       "invoiceByProduct": "فروش بر اساس محصولات",
+      "purchaseByProduct": "خرید بر اساس محصولات",
+      "purchaseBySupplier": "خرید بر اساس تامین‌کنندگان",
       "salesByProductGroup": "فروش بر اساس گروه محصولات",
       "purchasesByProductGroup": "خرید بر اساس گروه محصولات",
       "salesReviewReport": "گزارش مرور فروش",

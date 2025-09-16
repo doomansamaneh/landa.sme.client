@@ -180,6 +180,7 @@
 <script setup>
   import { ref } from "vue";
   import { useQuasar, Dialog } from "quasar";
+  import { useRouter } from "vue-router";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
   import BasicInfo from "src/components/areas/cmn/appConfig/BasicInfoForm.vue";
@@ -188,18 +189,19 @@
   import SalaryInfo from "src/components/areas/cmn/appConfig/SalaryInfoForm.vue";
   import SalesInfo from "src/components/areas/cmn/appConfig/SalesInfoForm.vue";
   import LogoInfo from "src/components/areas/cmn/appConfig/LogoInfoForm.vue";
-  import CongratsDialog from "src/components/shared/CongratsDialog.vue";
+  // import CongratsDialog from "src/components/shared/CongratsDialog.vue";
 
   const $q = useQuasar();
+  const router = useRouter();
   const step = ref(1);
   const configStore = useAppConfigModel();
 
   const save = async () => {
     await configStore.saveAppConfig();
-    Dialog.create({
-      component: CongratsDialog,
-    });
-    //router.push("/");
+    // Dialog.create({
+    //   component: CongratsDialog,
+    // });
+    router.push("/dashboard");
   };
 
   const cardWidth = () => {
