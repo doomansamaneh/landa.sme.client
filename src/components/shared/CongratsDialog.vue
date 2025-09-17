@@ -107,7 +107,7 @@
   import { ref, computed, watch } from "vue";
   import { useI18n } from "vue-i18n";
   import { useQuasar } from "quasar";
-  import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
+  import { useFirstLogin } from "src/composables/useFirstLogin";
   import { fetchWrapper } from "src/helpers";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
@@ -118,7 +118,7 @@
     businessActivityField,
   } from "src/constants";
 
-  const store = useFirstUsageWizard();
+  const store = useFirstLogin();
   const { t } = useI18n();
   const $q = useQuasar();
 

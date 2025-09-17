@@ -70,17 +70,24 @@ export function useBusinessGrid() {
       `business/InitBusiness/${item.id}`
     );
 
-    // let firstLogin = true; // Default value
+    // Initialize firstLogin as true by default
+    let firstLogin = true;
 
     if (response.data.code === HttpStatusCode.Ok) {
       appConfigStore.reset();
-      // firstLogin = response.data?.data?.firstLogin || true;
+      // Use server response if available, otherwise keep default true
+      firstLogin =
+        response.data?.data?.firstLogin !== undefined
+          ? response.data.data.firstLogin
+          : true;
+
+          console.log(response.data.data.firstLogin);
 
       // Store firstLogin in localStorage
       try {
         localStorage.setItem(
           "firstLogin",
-          response.data?.data?.firstLogin ? "true" : "false"
+          firstLogin ? "true" : "false"
         );
       } catch {}
 
@@ -88,11 +95,11 @@ export function useBusinessGrid() {
         id: item.id,
         title: response.data?.data?.title,
         grants: response.data?.data?.grants,
-        firstLogin: response.data?.data?.firstLogin,
+        firstLogin: firstLogin,
       });
     }
 
-    if (response.data?.data?.firstLogin) {
+    if (firstLogin) {
       // If firstLogin is true, redirect to landing page
       router.push("/landing");
     } else if (response.data?.data?.url) {

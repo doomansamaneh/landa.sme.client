@@ -31,9 +31,9 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
+  import { useFirstLogin } from "src/composables/useFirstLogin";
 
-  const store = useFirstUsageWizard();
+  const store = useFirstLogin();
   const visible = ref(false);
 
   function onClose() {

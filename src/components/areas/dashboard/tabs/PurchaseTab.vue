@@ -116,7 +116,7 @@
 
   import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
   import PurchaseWidget from "src/components/areas/dashboard/widgets/purchase/PurchaseWidget.vue";
-  import PurchaseBySupplier from "src/components/areas/dashboard/widgets/purchase/PurchaseBySupplier.vue";
+  import PurchaseByCustomer from "src/components/areas/dashboard/widgets/purchase/PurchaseByCustomer.vue";
   import PurchaseByProduct from "src/components/areas/dashboard/widgets/purchase/PurchaseByProduct.vue";
   import PurchaseByProductGroup from "src/components/areas/dashboard/widgets/purchase/PurchaseByProductGroup.vue";
   import FantasyPurchasePreview from "src/components/areas/dashboard/widgets/purchase/GoToPurchaseReview.vue";
@@ -135,7 +135,7 @@
   const widgets = [
     { id: 1, component: PurchaseWidget },
     { id: 2, component: TopProducts },
-    { id: 3, component: PurchaseBySupplier },
+    { id: 3, component: PurchaseByCustomer },
     { id: 4, component: PurchaseByProduct },
     { id: 5, component: PurchaseByProductGroup },
     { id: 6, component: FantasyPurchasePreview },
