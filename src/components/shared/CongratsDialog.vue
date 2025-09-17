@@ -104,7 +104,7 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, watch } from "vue";
   import { useI18n } from "vue-i18n";
   import { useQuasar } from "quasar";
   import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
@@ -122,7 +122,7 @@
   const { t } = useI18n();
   const $q = useQuasar();
 
-  const visible = ref(true);
+  const visible = computed(() => store.firstLogin.value);
   const formRef = ref(null);
   const isLoading = ref(false);
 
@@ -262,15 +262,22 @@
       // Show success message
       notifyResponse(response.data);
 
-      // Complete the wizard and close dialog
-      store.completeCongrats();
-      visible.value = false;
+      // Complete the first login (this sets the flag to show tutorial after dialog closes)
+      store.completeFirstLogin();
     } catch (error) {
       console.error("Error saving profile:", error);
     } finally {
       isLoading.value = false;
     }
   }
+
+  // Watch for dialog close and show tutorial if needed
+  watch(visible, (newValue) => {
+    if (!newValue) {
+      // Dialog is closing, check if we should show tutorial
+      store.showTutorialAfterDialogClose();
+    }
+  });
 </script>
 
 <style scoped lang="scss">

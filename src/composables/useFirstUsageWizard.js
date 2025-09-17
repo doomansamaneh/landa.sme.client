@@ -1,134 +1,90 @@
 import { ref } from "vue";
 
-// Keys
-const FIRST_CONGRATS_SHOWN_KEY = "first_usage_congrats_shown";
-const FINISHED_KEY = "tutorial_checklist_finished";
-const COMPLETED_KEY = "tutorial_checklist_completed"; // now boolean flag (all steps completed)
-const DISMISSED_KEY = "tutorial_checklist_dismissed";
-
-// Safe storage helpers
-function readFlag(key) {
+// Simple helper to read from localStorage
+function getFromStorage(key) {
   try {
-    const v = localStorage.getItem(key);
-    return v === "true" || v === "1";
+    const value = localStorage.getItem(key);
+    return value === "true";
   } catch {
     return false;
   }
 }
 
-function writeFlag(key, value) {
+// Simple helper to set in localStorage
+function setInStorage(key, value) {
   try {
     localStorage.setItem(key, value ? "true" : "false");
   } catch {}
 }
 
-// First-usage congrats state
-const hasShownCongrats = readFlag(FIRST_CONGRATS_SHOWN_KEY);
-const firstUsage = ref(!hasShownCongrats);
-const confetti = ref(!hasShownCongrats);
-const hasCompletedCongrats = ref(hasShownCongrats);
+// State management
+const firstLogin = ref(getFromStorage("firstLogin"));
+const showTutorial = ref(false); // Always start as false, will be set when needed
+const shouldShowTutorialAfterDialogClose = ref(false);
 
-function completeCongrats() {
-  confetti.value = false;
-  firstUsage.value = false;
-  hasCompletedCongrats.value = true;
-  writeFlag(FIRST_CONGRATS_SHOWN_KEY, true);
+function completeFirstLogin() {
+  firstLogin.value = false;
+  setInStorage("firstLogin", false);
+
+  // Set flag to show tutorial after dialog closes
+  shouldShowTutorialAfterDialogClose.value = true;
 }
 
-// Checklist state
-const isFinished = ref(readFlag(FINISHED_KEY));
-const congratsVisible = ref(false);
-// completed flag is stored as boolean under COMPLETED_KEY
-const isChecklistDismissed = ref(
-  readFlag(DISMISSED_KEY) || isFinished.value
-);
-
-// no per-route persistence anymore
-
-function markAllDone() {
-  if (!isFinished.value) {
-    congratsVisible.value = true;
+function showTutorialAfterDialogClose() {
+  if (shouldShowTutorialAfterDialogClose.value) {
+    // Check if tutorial was previously dismissed
+    const tutorialDismissed = getFromStorage("tutorialDismissed");
+    if (!tutorialDismissed) {
+      showTutorial.value = true;
+      setInStorage("showTutorial", true);
+    }
+    shouldShowTutorialAfterDialogClose.value = false;
   }
 }
 
-function setChecklistFinished() {
-  if (isFinished.value) return;
-  isFinished.value = true;
-  writeFlag(FINISHED_KEY, true);
+function hideTutorial() {
+  showTutorial.value = false;
+  setInStorage("showTutorial", false);
+  setInStorage("tutorialDismissed", true);
 }
 
-function dismissChecklist() {
-  isChecklistDismissed.value = true;
-  writeFlag(DISMISSED_KEY, true);
-}
+// Function to mark a task as completed based on route
+function markTaskCompletedByRoute(currentPath, tasks) {
+  if (!currentPath || !Array.isArray(tasks)) return false;
 
-function applyCompletedToTasks(tasks) {
-  if (!Array.isArray(tasks)) return;
-  // If the global completed flag or finished flag is true, mark all tasks completed
-  const allCompletedFlag =
-    readFlag(COMPLETED_KEY) || readFlag(FINISHED_KEY);
-  if (allCompletedFlag) {
-    tasks.forEach((task) => {
-      task.completed = true;
-    });
-  }
-}
+  let hasChanges = false;
 
-function updateCompletionFromPath(currentPath, tasks) {
-  if (!currentPath || !Array.isArray(tasks)) return;
   tasks.forEach((task) => {
     if (!task?.route) return;
+
+    // Check if current path matches the task route
     const isMatch =
       currentPath === task.route ||
       currentPath.startsWith(task.route + "/");
+
     if (isMatch && !task.completed) {
       task.completed = true;
+      hasChanges = true;
     }
   });
-  // no persistence per-route
 
-  const allDone = tasks.every((t) => t.completed);
-  if (allDone) {
-    // persist both finished and completed (boolean)
-    writeFlag(FINISHED_KEY, true);
-    writeFlag(COMPLETED_KEY, true);
-    isChecklistDismissed.value = true;
-    markAllDone();
-    setChecklistFinished();
-  }
+  return hasChanges;
 }
 
-function loadChecklistState(currentPath, tasks) {
-  // refresh dismissed state in case finished changed elsewhere
-  isChecklistDismissed.value =
-    readFlag(DISMISSED_KEY) || isFinished.value;
-  applyCompletedToTasks(tasks);
-  if (currentPath) updateCompletionFromPath(currentPath, tasks);
-}
-
-function hideChecklistCongrats() {
-  congratsVisible.value = false;
+// Function to check if all tasks are completed
+function areAllTasksCompleted(tasks) {
+  if (!Array.isArray(tasks)) return false;
+  return tasks.every((task) => task.completed);
 }
 
 export function useFirstUsageWizard() {
   return {
-    // congrats (first usage)
-    firstUsage,
-    confetti,
-    hasCompletedCongrats,
-    completeCongrats,
-
-    // tutorial checklist (persistence & flags)
-    isFinished,
-    isChecklistDismissed,
-    congratsVisible,
-    markAllDone,
-    setChecklistFinished,
-    dismissChecklist,
-
-    // checklist helpers (task-agnostic)
-    updateCompletionFromPath,
-    loadChecklistState,
-    hideChecklistCongrats,
+    firstLogin,
+    showTutorial,
+    completeFirstLogin,
+    showTutorialAfterDialogClose,
+    hideTutorial,
+    markTaskCompletedByRoute,
+    areAllTasksCompleted,
   };
 }

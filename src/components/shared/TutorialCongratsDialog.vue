@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="store.congratsVisible.value">
+  <q-dialog v-model="visible">
     <q-card
       class="q-pa-lg q-rounded-xl"
       style="width: 560px; max-width: 95vw"
@@ -34,9 +34,10 @@
   import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
 
   const store = useFirstUsageWizard();
+  const visible = ref(false);
 
   function onClose() {
-    store.hideChecklistCongrats();
+    visible.value = false;
   }
 </script>
 

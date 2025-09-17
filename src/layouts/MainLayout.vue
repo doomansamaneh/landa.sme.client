@@ -14,7 +14,6 @@
     <alert-banner class="fixed-bottom z-max" />
 
     <tutorial-checklist v-if="showChecklist" />
-    <tutorial-congrats-dialog />
   </q-layout>
 </template>
 
@@ -33,7 +32,6 @@
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
   import TutorialChecklist from "src/components/shared/TutorialChecklist.vue";
-  import TutorialCongratsDialog from "src/components/shared/TutorialCongratsDialog.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
@@ -46,9 +44,8 @@
 
   const showChecklist = computed(
     () =>
-      tutorialStore.hasCompletedCongrats.value &&
-      !tutorialStore.isFinished.value &&
-      !tutorialStore.isChecklistDismissed.value
+      tutorialStore.showTutorial.value &&
+      !tutorialStore.firstLogin.value
   );
 
   onMounted(() => {

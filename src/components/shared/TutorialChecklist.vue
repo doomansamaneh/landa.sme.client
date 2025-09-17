@@ -1,6 +1,6 @@
 <template>
   <q-page-sticky
-    v-if="!isDismissed"
+    v-if="showChecklist"
     position="bottom-right"
     :offset="[18, 18]"
     class="z-1"
@@ -214,6 +214,13 @@
   const popup = ref(null);
   const tutorialStore = useFirstUsageWizard();
   const dialog = ref(false);
+
+  // Show checklist based on showTutorial state and firstLogin state
+  const showChecklist = computed(
+    () =>
+      tutorialStore.showTutorial.value &&
+      !tutorialStore.firstLogin.value
+  );
   const tasks = ref([
     {
       title: "ثبت‌نام",
@@ -251,12 +258,9 @@
     const completed = tasks.value.filter((t) => t.completed).length;
     return completed / total;
   });
-  const isDismissed = computed(
-    () => tutorialStore.isChecklistDismissed.value
-  );
 
   function showPopup() {
-    if (isDismissed.value) return;
+    if (!showChecklist.value) return;
     popup?.value?.show();
   }
 
@@ -280,14 +284,9 @@
         okColor: "primary",
       },
     }).onOk(() => {
-      tutorialStore.dismissChecklist();
+      tutorialStore.hideTutorial();
       onPopupHide();
     });
-  }
-
-  function updateFromRoute() {
-    const currentPath = route.fullPath || route.path || "";
-    tutorialStore.updateCompletionFromPath(currentPath, tasks.value);
   }
 
   const showDialog = () => {
@@ -298,20 +297,37 @@
     dialog.value = false;
   };
 
-  onMounted(() => {
-    tutorialStore.loadChecklistState(
-      route.fullPath || route.path || "",
+  // Function to update tasks based on current route
+  function updateTasksFromRoute() {
+    const currentPath = route.fullPath || route.path || "";
+    const hasChanges = tutorialStore.markTaskCompletedByRoute(
+      currentPath,
       tasks.value
     );
-    if (!isDismissed.value) {
+
+    if (hasChanges) {
+      // Check if all tasks are completed
+      if (tutorialStore.areAllTasksCompleted(tasks.value)) {
+        // Auto-hide tutorial when all tasks are completed
+        tutorialStore.hideTutorial();
+      }
+    }
+  }
+
+  onMounted(() => {
+    // Check current route on mount
+    updateTasksFromRoute();
+
+    if (showChecklist.value) {
       showPopup();
     }
   });
 
+  // Watch for route changes
   watch(
     () => route.fullPath,
     () => {
-      updateFromRoute();
+      updateTasksFromRoute();
     }
   );
 

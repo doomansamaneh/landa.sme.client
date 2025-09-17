@@ -72,14 +72,21 @@ export function useBusinessGrid() {
 
     if (response.data.code === HttpStatusCode.Ok) {
       appConfigStore.reset();
+
+      const firstLogin = response.data?.data?.firstLogin || true;
+      // Store firstLogin in localStorage
+      try {
+        localStorage.setItem("firstLogin", firstLogin);
+      } catch {}
+
       businessStore.set({
         id: item.id,
         title: response.data?.data?.title,
         grants: response.data?.data?.grants,
+        firstLogin: firstLogin,
       });
     }
 
-    alert(response.data?.data?.firstLogin);
     if (response.data?.data?.url)
       router.push(response.data?.data?.url);
     else {
