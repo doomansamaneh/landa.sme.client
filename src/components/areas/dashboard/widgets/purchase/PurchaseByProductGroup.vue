@@ -1,6 +1,6 @@
 <template>
   <q-card
-    v-access="`sls.invoice.view`"
+    v-access="`sls.purchase.view`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="shadow border-radius-lg bordered"
   >
@@ -61,7 +61,7 @@
   import { useQuasar } from "quasar";
 
   import { helper } from "src/helpers";
-  import { useReport } from "src/components/areas/sls/_composables/useReport";
+  import { usePurchaseReport } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseReport";
   import { usePurchaseTab } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseTab";
   import { useProductGroupChartOptions } from "./_composables/useProductGroupChartOptions";
 
@@ -70,7 +70,7 @@
 
   const $q = useQuasar();
   const draggable = usePurchaseTab();
-  const reportStore = useReport("invoiceByProductGroup");
+  const reportStore = usePurchaseReport("purchaseByProductGroup");
 
   const { chartOptions } = useProductGroupChartOptions(
     reportStore,

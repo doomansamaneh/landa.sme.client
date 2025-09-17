@@ -1,6 +1,10 @@
 <template>
   <template
-    v-if="chartStore.chartExpenseSeries.value && isChartVisible"
+    v-if="
+      chartStore.chartExpenseSeries &&
+      chartStore.chartExpenseSeries.value &&
+      isChartVisible
+    "
   >
     <chart
       :options="options"
@@ -29,7 +33,7 @@
   import { useI18n } from "vue-i18n";
   import { helper } from "src/helpers";
   import { useRevenueExpenseState } from "../../_composables/generalTab/useRevenueExpenseState";
-  import { useRevenueExpense } from "../../_composables/generalTab/useRevenueExpense";
+  import { usePurchaseRevenueExpense } from "../../_composables/purchaseTab/usePurchaseRevenueExpense";
 
   import Chart from "src/components/shared/charts/ChartView.vue";
 
@@ -37,7 +41,9 @@
 
   const $q = useQuasar();
   const { t } = useI18n();
-  const chartStore = useRevenueExpense(useRevenueExpenseState());
+  const chartStore = usePurchaseRevenueExpense(
+    useRevenueExpenseState()
+  );
 
   const options = ref(null);
   const chartRef = ref(null);

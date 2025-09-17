@@ -1,6 +1,6 @@
 <template>
   <q-card
-    v-access="`sls.invoice.view`"
+    v-access="`sls.purchase.view`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="shadow main-card fit bordered q-pa-none"
     flat
@@ -27,8 +27,8 @@
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
             <widget-title
-              :label="$t('shared.labels.invoiceBySupplier')"
-              icon="o_business"
+              :label="$t('shared.labels.purchaseByProduct')"
+              icon="o_inventory_2"
             />
           </div>
         </div>
@@ -66,7 +66,7 @@
     onDeactivated,
   } from "vue";
   import { useQuasar } from "quasar";
-  import { useInvoiceByCustomer } from "src/components/areas/dashboard/_composables/salesTab/useInvoiceByCustomer";
+  import { usePurchaseByProduct } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseByProduct";
   import { usePurchaseTab } from "../../_composables/purchaseTab/usePurchaseTab";
 
   import Chart from "src/components/shared/charts/ChartView.vue";
@@ -74,7 +74,7 @@
 
   const $q = useQuasar();
   const draggable = usePurchaseTab();
-  const chartStore = useInvoiceByCustomer({});
+  const chartStore = usePurchaseByProduct({});
 
   const options = ref(null);
   const chartRef = ref(null);

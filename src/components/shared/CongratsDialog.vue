@@ -23,7 +23,7 @@
           به لاندا خوش آمدید
         </div>
         <div class="text-body1 q-mt-sm text-grey-7">
-          ممنون میشیم بگی چطور با ما آشنا شدی 😊
+          لطفاً اطلاعات کسب‌وکار خود را تکمیل کنید
         </div>
       </q-card-section>
 
@@ -32,50 +32,59 @@
         ref="formRef"
         class="q-card-section q-pa-none"
       >
-        <q-list separator class="rounded-borders">
-          <q-item
-            v-for="option in options"
-            :key="option.value"
-            clickable
-            v-ripple
-            @click="selectOption(option.value)"
-            :active="selectedOption === option.value"
-            active-class="bg-primary text-white"
-            class="q-px-md q-py-sm"
-          >
-            <q-item-section avatar>
-              <q-icon
-                :name="option.icon"
-                size="24px"
-                class="q-mr-sm"
-              />
-            </q-item-section>
-            <q-item-section>
-              <div class="text-subtitle1">{{ option.label }}</div>
-            </q-item-section>
-            <q-item-section
-              side
-              v-if="selectedOption === option.value"
-            >
-              <q-icon name="check" color="white" />
-            </q-item-section>
-          </q-item>
+        <!-- Profile Form Fields -->
+        <div class="q-mb-md">
+          <custom-select
+            v-model="profileData.countryId"
+            :label="$t('shared.labels.country')"
+            :options="countryOptions"
+            :placeholder="$t('shared.labels.selectCountry')"
+            required
+          />
+        </div>
 
-          <q-item
-            v-if="selectedOption === 'other'"
-            class="q-pt-sm q-pb-md q-px-md bg-grey-1"
-          >
-            <q-item-section>
-              <custom-input
-                v-model="otherText"
-                outlined
-                type="textarea"
-                :placeholder="$t('shared.labels.subject')"
-                required
-              />
-            </q-item-section>
-          </q-item>
-        </q-list>
+        <div class="q-mb-md">
+          <custom-select
+            v-model="profileData.cityId"
+            :label="$t('shared.labels.city')"
+            :options="cityOptions"
+            :placeholder="$t('shared.labels.selectCity')"
+            required
+          />
+        </div>
+
+        <div class="q-mb-md">
+          <custom-select
+            v-model="profileData.activityFieldId"
+            :label="$t('shared.labels.activityField')"
+            :options="activityFieldOptions"
+            :placeholder="$t('shared.labels.selectActivityField')"
+            required
+          />
+        </div>
+
+        <div class="q-mb-md">
+          <custom-select
+            v-model="profileData.leadSourceId"
+            :label="$t('shared.labels.leadSource')"
+            :options="leadSourceOptions"
+            :placeholder="$t('shared.labels.selectLeadSource')"
+            required
+          />
+        </div>
+
+        <div
+          class="q-mb-md"
+          v-if="profileData.leadSourceId === leadSourceType.None"
+        >
+          <custom-input
+            v-model="profileData.leadSource"
+            :label="$t('shared.labels.leadSourceDescription')"
+            :placeholder="$t('shared.labels.enterLeadSource')"
+            type="textarea"
+            :maxlength="240"
+          />
+        </div>
 
         <q-card-actions align="right" class="q-mt-md">
           <q-btn
@@ -86,6 +95,7 @@
             class="primary-gradient primary-shadow text-white text-weight-medium"
             color="primary"
             :label="$t('shared.labels.save')"
+            :loading="isLoading"
           />
         </q-card-actions>
       </q-form>
@@ -94,54 +104,172 @@
 </template>
 
 <script setup>
-  import { ref } from "vue";
+  import { ref, computed } from "vue";
+  import { useI18n } from "vue-i18n";
+  import { useQuasar } from "quasar";
   import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
+  import { fetchWrapper } from "src/helpers";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
+  import {
+    leadSourceType,
+    country,
+    city,
+    businessActivityField,
+  } from "src/constants";
 
   const store = useFirstUsageWizard();
+  const { t } = useI18n();
+  const $q = useQuasar();
 
   const visible = ref(true);
   const formRef = ref(null);
-  const selectedOption = ref(null);
-  const otherText = ref("");
+  const isLoading = ref(false);
 
-  const options = [
-    {
-      label: "دوستان، همکاران و آشنایان",
-      value: "friends_family",
-      icon: "o_groups",
-    },
-    {
-      label: "جستجو در گوگل",
-      value: "search_engine",
-      icon: "o_search",
-    },
-    {
-      label: "شبکه‌های اجتماعی",
-      value: "social_media",
-      icon: "o_whatshot",
-    },
-    { label: "موارد دیگر", value: "other", icon: "o_more_horiz" },
-  ];
+  const profileData = ref({
+    countryId: null,
+    cityId: null,
+    activityFieldId: null,
+    leadSourceId: null,
+    leadSource: "",
+  });
 
-  function selectOption(value) {
-    selectedOption.value = value;
-    if (value !== "other") {
-      otherText.value = "";
+  // Country options
+  const countryOptions = computed(() => [
+    { label: t("shared.labels.iran"), value: country.Iran },
+    {
+      label: t("shared.labels.unitedStates"),
+      value: country.UnitedState,
+    },
+  ]);
+
+  // City options
+  const cityOptions = computed(() => [
+    { label: t("shared.labels.tehran"), value: city.Tehran },
+    { label: t("shared.labels.karaj"), value: city.Karaj },
+    { label: t("shared.labels.qazvin"), value: city.Qazvin },
+    { label: t("shared.labels.qom"), value: city.Qom },
+    { label: t("shared.labels.isfahan"), value: city.Isfahan },
+    { label: t("shared.labels.shiraz"), value: city.Shiraz },
+    { label: t("shared.labels.tabriz"), value: city.Tabriz },
+    { label: t("shared.labels.urmia"), value: city.Urmia },
+    { label: t("shared.labels.rasht"), value: city.Rasht },
+    { label: t("shared.labels.sari"), value: city.Sari },
+    { label: t("shared.labels.gorgan"), value: city.Gorgan },
+    { label: t("shared.labels.ardabil"), value: city.Ardabil },
+    { label: t("shared.labels.zanjan"), value: city.Zanjan },
+    { label: t("shared.labels.hamedan"), value: city.Hamedan },
+    { label: t("shared.labels.kermanshah"), value: city.Kermanshah },
+    { label: t("shared.labels.sanandaj"), value: city.Sanandaj },
+    { label: t("shared.labels.ilam"), value: city.Ilam },
+    {
+      label: t("shared.labels.khorramabad"),
+      value: city.Khorramabad,
+    },
+    { label: t("shared.labels.ahvaz"), value: city.Ahvaz },
+    { label: t("shared.labels.bushehr"), value: city.Bushehr },
+    { label: t("shared.labels.yasuj"), value: city.Yasuj },
+    {
+      label: t("shared.labels.bandarAbbas"),
+      value: city.BandarAbbas,
+    },
+    { label: t("shared.labels.zahedan"), value: city.Zahedan },
+    { label: t("shared.labels.kerman"), value: city.Kerman },
+    { label: t("shared.labels.yazd"), value: city.Yazd },
+    { label: t("shared.labels.mashhad"), value: city.Mashhad },
+    { label: t("shared.labels.bojnord"), value: city.Bojnord },
+    { label: t("shared.labels.birjand"), value: city.Birjand },
+  ]);
+
+  // Activity field options
+  const activityFieldOptions = computed(() => [
+    {
+      label: t("shared.labels.trade"),
+      value: businessActivityField.Trade,
+    },
+    { label: t("shared.labels.it"), value: businessActivityField.IT },
+    {
+      label: t("shared.labels.accounting"),
+      value: businessActivityField.Accounting,
+    },
+    {
+      label: t("shared.labels.services"),
+      value: businessActivityField.Services,
+    },
+    {
+      label: t("shared.labels.foodServices"),
+      value: businessActivityField.FoodServices,
+    },
+    {
+      label: t("shared.labels.other"),
+      value: businessActivityField.Other,
+    },
+  ]);
+
+  // Lead source options
+  const leadSourceOptions = computed(() => [
+    {
+      label: t("shared.labels.google"),
+      value: leadSourceType.Google,
+    },
+    {
+      label: t("shared.labels.socialNetwork"),
+      value: leadSourceType.SocialNetwork,
+    },
+    {
+      label: t("shared.labels.customerReferal"),
+      value: leadSourceType.CustomerReferal,
+    },
+    {
+      label: t("shared.labels.advertisement"),
+      value: leadSourceType.Advertisement,
+    },
+    { label: t("shared.labels.event"), value: leadSourceType.Event },
+    {
+      label: t("shared.labels.website"),
+      value: leadSourceType.Website,
+    },
+    {
+      label: t("shared.labels.emailCampaign"),
+      value: leadSourceType.EmailCampaign,
+    },
+    { label: t("shared.labels.none"), value: leadSourceType.None },
+  ]);
+
+  const notifyResponse = (data) => {
+    if (data.message) {
+      $q.notify({
+        type: "positive",
+        message: data.message,
+      });
     }
-  }
+  };
 
-  function onSubmit() {
-    if (!selectedOption.value) return;
-    if (selectedOption.value === "other" && !otherText.value.trim()) {
-      formRef.value &&
-        formRef.value.validate &&
-        formRef.value.validate();
-      return;
+  async function onSubmit() {
+    if (!formRef.value) return;
+
+    const isValid = await formRef.value.validate();
+    if (!isValid) return;
+
+    isLoading.value = true;
+
+    try {
+      const response = await fetchWrapper.post(
+        "business/SaveProfile",
+        profileData.value
+      );
+
+      // Show success message
+      notifyResponse(response.data);
+
+      // Complete the wizard and close dialog
+      store.completeCongrats();
+      visible.value = false;
+    } catch (error) {
+      console.error("Error saving profile:", error);
+    } finally {
+      isLoading.value = false;
     }
-
-    store.completeCongrats();
-    visible.value = false;
   }
 </script>
 

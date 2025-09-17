@@ -5,6 +5,7 @@ const shakingStates = ref({
   general: false,
   sales: false,
   expense: false,
+  purchase: false,
 });
 
 export function useTabsState() {
