@@ -342,6 +342,16 @@ export const rowNo = {
   showFilter: true,
 };
 
+export const docNo = {
+  name: "docNo",
+  field: "docNo",
+  sortable: true,
+  label: "docNo",
+  class: "text-left",
+  style: "width:90px",
+  showFilter: true,
+};
+
 export const voucherNo = {
   name: "voucherNo",
   field: "voucherNo",
