@@ -1,5 +1,5 @@
 <template>
-  <confetti-animation v-if="congratsStore.confetti.value" />
+  <confetti-animation v-if="congratsStore.firstLogin.value" />
   <home />
 </template>
 
@@ -23,7 +23,7 @@
   useMeta(metaData);
 
   onMounted(() => {
-    if (congratsStore.firstUsage.value) {
+    if (congratsStore.firstLogin.value) {
       Dialog.create({ component: CongratsDialog });
     }
   });

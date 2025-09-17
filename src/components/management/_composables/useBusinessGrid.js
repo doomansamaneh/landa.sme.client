@@ -70,20 +70,36 @@ export function useBusinessGrid() {
       `business/InitBusiness/${item.id}`
     );
 
+    // let firstLogin = true; // Default value
+
     if (response.data.code === HttpStatusCode.Ok) {
       appConfigStore.reset();
+      // firstLogin = response.data?.data?.firstLogin || true;
+
+      // Store firstLogin in localStorage
+      try {
+        localStorage.setItem(
+          "firstLogin",
+          response.data?.data?.firstLogin ? "true" : "false"
+        );
+      } catch {}
+
       businessStore.set({
         id: item.id,
         title: response.data?.data?.title,
         grants: response.data?.data?.grants,
+        firstLogin: response.data?.data?.firstLogin,
       });
     }
 
-    if (response.data?.data?.url)
+    if (response.data?.data?.firstLogin) {
+      // If firstLogin is true, redirect to landing page
+      router.push("/landing");
+    } else if (response.data?.data?.url) {
       router.push(response.data?.data?.url);
-    // + "/dashboard"
-    else {
-      alert(`goto business: ${response.data?.message}`);
+    } else {
+      // Default redirect to dashboard
+      router.push("/dashboard");
     }
   };
 
