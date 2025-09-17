@@ -79,6 +79,7 @@ export function useBusinessGrid() {
       });
     }
 
+    alert(response.data?.data?.firstLogin);
     if (response.data?.data?.url)
       router.push(response.data?.data?.url);
     else {
