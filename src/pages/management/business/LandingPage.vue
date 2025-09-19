@@ -18,12 +18,12 @@
 
 <script setup>
   // import { computed } from "vue";
-  import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
+  import { useFirstLogin } from "src/composables/useFirstLogin";
   import Background from "src/assets/BusinessBackground.vue";
   import IndexView from "src/components/management/business/FirstLoginWizard.vue";
   // import CongratsDialog from "src/components/shared/CongratsDialog.vue";
 
-  const tutorialStore = useFirstUsageWizard();
+  const tutorialStore = useFirstLogin();
   // const showCongratsDialog = computed(
   //   () => tutorialStore.firstLogin.value
   // );

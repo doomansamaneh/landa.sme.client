@@ -596,7 +596,7 @@
       "invoiceBySupplier": "خرید بر اساس تامین‌کنندگان",
       "invoiceByProduct": "فروش بر اساس محصولات",
       "purchaseByProduct": "خرید بر اساس محصولات",
-      "purchaseBySupplier": "خرید بر اساس تامین‌کنندگان",
+      "purchaseByCustomer": "خرید بر اساس تامین‌کنندگان",
       "salesByProductGroup": "فروش بر اساس گروه محصولات",
       "purchasesByProductGroup": "خرید بر اساس گروه محصولات",
       "salesReviewReport": "گزارش مرور فروش",
@@ -874,9 +874,308 @@
       "selectCity": "انتخاب شهر",
       "selectActivityField": "انتخاب حوزه فعالیت",
       "selectLeadSource": "انتخاب نحوه آشنایی",
-      "enterLeadSource": "نحوه آشنایی خود را توضیح دهید",
-      "iran": "ایران",
-      "unitedStates": "آمریکا",
+      "enterLeadSource": "نحوه آشنایی خود را توضیح دهید"
+    },
+
+    "productType": {
+      "main": "اصلی",
+      "part": "قطعه",
+      "useable": "مصرفی",
+      "service": "خدمت/نرم افزار"
+    },
+
+    "isActiveOptions": {
+      "active": "فعال",
+      "inActive": "غیرفعال"
+    },
+
+    "paymentMethod": {
+      "cash": "نقدی",
+      "check": "چک",
+      "bankTransition": "واریز بانکی",
+      "pos": "دستگاه پوز",
+      "customer": "طرف حساب",
+      "checkSpent": "خرج چک"
+    },
+
+    "paymentStatus": {
+      "normal": "دریافت شده",
+      "transferedToBank": "در جریان وصول/واگذاری به بانک",
+      "cashed": "چک نقد شده",
+      "checkBounced": "چک برگشتی",
+      "checkSpent": "انتقال چک/ خرج شده"
+    },
+
+    "insuranceType": {
+      "normal": "30 درصد",
+      "none": "فاقد بیمه",
+      "ceo": "هیات مدیره"
+    },
+
+    "customerType": {
+      "legal": "حقوقی",
+      "person": "حقیقی",
+      "personnel": "پرسنل",
+      "engagement": "مشارکت مدنی",
+      "foreignNational": "اتباع خارجی"
+    },
+
+    "vatType": {
+      "purchaseAndSale": "خرید و فروش (هر دو)",
+      "sale": "برای فروش",
+      "purchase": "برای خرید"
+    },
+
+    "months": {
+      "1": "فروردین",
+      "2": "اردیبهشت",
+      "3": "خرداد",
+      "4": "تیر",
+      "5": "مرداد",
+      "6": "شهریور",
+      "7": "مهر",
+      "8": "آبان",
+      "9": "آذر",
+      "10": "دی",
+      "11": "بهمن",
+      "12": "اسفند"
+    },
+
+    "gender": {
+      "male": "مرد",
+      "female": "زن"
+    },
+
+    "customerRole": {
+      "customer": "مشتری",
+      "supplier": "تامین کننده",
+      "marketer": "بازاریاب",
+      "shareHolder": "سهامدار",
+      "personnel": "پرسنل"
+    },
+
+    "militaryStatus": {
+      "done": "انجام داده",
+      "exempt": "معاف دائم",
+      "illnessExemption": "معافیت پزشکی",
+      "educationalExepmtion": "معافیت تحصیلی",
+      "temporalExemption": "معافیت موقت"
+    },
+
+    "marriageStatus": {
+      "single": "مجرد",
+      "married": "متاهل",
+      "divorced": "متارکه شده"
+    },
+
+    "accountDLType": {
+      "other": "سایر",
+      "customer": "طرف حساب",
+      "personnel": "پرسنل",
+      "cash": "صندوق",
+      "bankAccount": "حساب بانکی",
+      "costCenter": "مرکز هزینه",
+      "product": "کالا و خدمات"
+    },
+
+    "closeAccounts": {
+      "revenue": "فروش و درآمد",
+      "expense": "هزینه",
+      "cogs": "بهای تمام شده"
+    },
+
+    "quoteStatus": {
+      "temp": "موقت",
+      "final": "دائم"
+    },
+
+    "paymentType": {
+      "cash": "نقد",
+      "trust": "نسیه",
+      "both": "نقد و نسیه"
+    },
+
+    "receiptFormType": {
+      "sales": "فروش، برگشت از خرید",
+      "other": "سایر"
+    },
+
+    "paymentFormType": {
+      "purhcase": "خرید، برگشت از فروش",
+      "other": "سایر"
+    },
+
+    "accountType": {
+      "debit": "بدهکار",
+      "credit": "بستانکار",
+      "debitCredit": "مهم نیست",
+      "debitRemained": "مانده بدهکار",
+      "creditRemained": "مانده بستانکار"
+    },
+
+    "taxApiInvoiceType": {
+      "b2B": "نوع 1: فروش شرکتی",
+      "b2C": "نوع 2: فروش به اشخاص حقیقی",
+      "posOnline": "نوع 3: فروش از طریق درگاه و دستگاه پوز"
+    },
+
+    "taxSentStatus": {
+      "all": "همه موارد",
+      "sent": "ارسال شده",
+      "notSent": "ارسال نشده",
+      "0": "همه موارد",
+      "1": "ارسال شده",
+      "2": "ارسال نشده"
+    },
+
+    "taxApiInvoicePattern": {
+      "sales": "فروش",
+      "currencySales": "فروش ارزی",
+      "goldAndGem": "صورتحساب طلا، جواهر، پلاتین",
+      "contract": "قرارداد پیمانکاری",
+      "generalService": "قبوض خدماتی",
+      "airplaneTicket": "بلیت هواپیما"
+    },
+
+    "voucherType": {
+      "general": "عمومی",
+      "closeInterimAccount": "بستن حسابها",
+      "openingVoucher": "افتتاحیه",
+      "closingVoucher": "اختتامیه",
+      "modificationVoucher": "اصلاحیه"
+    },
+
+    "depositType": {
+      "all": "همه موارد",
+      "hasRemain": "دارای مانده",
+      "deposited": "تسویه کامل",
+      "partialDeposit": "تسویه ناقص",
+      "0": " همه موارد",
+      "1": "دارای مانده",
+      "2": "کامل",
+      "3": "ناقص"
+    },
+
+    "dateRange": {
+      "all": "همه",
+      "today": "امروز",
+      "thisWeek": "این هفته",
+      "thisMonth": "این ماه",
+      "0": "همه",
+      "2": "امروز",
+      "3": "این هفته",
+      "4": "این ماه"
+    },
+
+    "accountTreeType": {
+      "cl": "گروه حساب",
+      "gl": "حساب کل",
+      "sl": "حساب معین",
+      "dl": "حساب تفصیلی",
+      "slDl": "حساب معین / تفصیلی"
+    },
+
+    "salesReviewType": {
+      "pg": "گروه کالا و خدمات",
+      "prd": "کالا و خدمات",
+      "crm": "طرف حساب",
+      "prdCrm": "طرف حساب / کالا و خدمات"
+    },
+
+    "stockReviewType": {
+      "pg": "گروه کالا",
+      "prd": "کالا",
+      "stockItem": "ریز ورود و خروج"
+    },
+
+    "subSystem": {
+      "accounting": "حسابداری",
+      "receiptAndPayment": "دریافت و پرداخت",
+      "sales": "بازرگانی، خرید و فروش",
+      "afterSalesService": "خدمات پس از فروش",
+      "payroll": "حقوق و دستمزد",
+      "asset": "اموال و داراییهای ثابت",
+      "inventory": "انبارداری",
+      "contract": "پیمانکاری"
+    },
+
+    "modifyStockType": {
+      "add": "افزایش",
+      "reduce": "کاهش"
+    },
+
+    "contactType": {
+      "phone": "تلفن",
+      "mobile": "موبایل",
+      "email": "ایمیل",
+      "address": "نشانی",
+      "website": "وب سایت",
+      "socialNetwork": "شبکه اجتماعی"
+    },
+
+    "locationType": {
+      "country": "کشور",
+      "province": "استان",
+      "city": "شهرستان",
+      "section": "بخش",
+      "town": "دهستان"
+    },
+
+    "newsBanner": {
+      "title": "راهنمای اتصال حسابداری آنلاین لاندا به سامانه مودیان",
+      "description": "روش اتصال به سامانه مودیان و مراحل ارسال صورتحساب و فاکتورهای خود به سامانه مودیان",
+      "readMore": "ادامه مطلب",
+      "question": "آیا یک کاربر می‌تواند بیش از یک کسب و کار داشته باشد؟",
+      "answer": "بله. هر کاربر می‌تواند چندین کسب و کار با اشتراک و طرح جداگانه ایجاد کند. کسی که مالک چندین شرکت است با یک نام کاربری می‌تواند به همه کسب و کارهای خود دسترسی داشته باشد. همچنین مالک کسب و کار امکان دعوت از سایر کاربران را از طریق ایمیل دارد. در اینصورت کاربر دعوت شده با ایمیل خودش به این کسب و کار دسترسی خواهد شد."
+    },
+
+    "cogsCalcMethod": {
+      "none": "هیچکدام",
+      "fifo": "FIFO",
+      "average": "میانگین موزون"
+    },
+
+    "invoicePreviewTemplate": {
+      "standard": "استاندارد دارایی",
+      "simple": "ساده"
+    },
+
+    "transferMoneyType": {
+      "bankAccount": "حساب بانکی",
+      "cash": "صندوق نقدی"
+    },
+
+    "priceAdjustmentDirection": {
+      "increase": "افزایش قیمت",
+      "decrease": "کاهش قیمت"
+    },
+
+    "priceAdjustmentTarget": {
+      "sales": "قیمت فروش",
+      "purchase": "قیمت خرید",
+      "both": "هر دو"
+    },
+
+    "feedbackType": {
+      "incident": "مشکل",
+      "request": "درخواست، پیشنهاد"
+    },
+
+    "feedbackStatus": {
+      "inProgress": "در حال انجام",
+      "done": "بسته شده",
+      "unDone": "قابل انجام نیست",
+      "responded": "پاسخ داده شد",
+      "incident": "مشکل",
+      "request": "درخواست، پیشنهاد"
+    },
+
+    "country": {
+      "unitedState": "ایالات متحده",
+      "iran": "ایران"
+    },
+
+    "city": {
       "tehran": "تهران",
       "karaj": "کرج",
       "qazvin": "قزوین",
@@ -904,282 +1203,38 @@
       "yazd": "یزد",
       "mashhad": "مشهد",
       "bojnord": "بجنورد",
-      "birjand": "بیرجند",
+      "birjand": "بیرجند"
+    },
+
+    "businessActivityField": {
       "trade": "بازرگانی و فروشگاه‌ها",
       "it": "فناوری اطلاعات و نرم‌افزار",
       "accounting": "حسابداری و مالی",
-      "services": "خدمات حرفه‌ای",
-      "foodServices": "رستوران و خدمات غذایی",
-      "other": "سایر",
-      "google": "جستجو در گوگل",
+      "services": "خدمات حرفه‌ای مثل مشاوره، طراحی، وکالت",
+      "foodServices": "رستوران، کافی‌شاپ و خدمات غذایی",
+      "other": "سایر حوزه‌ها"
+    },
+
+    "leadSourceType": {
+      "google": "جستجوی گوگل",
       "socialNetwork": "شبکه‌های اجتماعی",
-      "customerReferal": "معرفی مشتریان",
+      "customerReferal": "معرفی مشتری",
       "advertisement": "تبلیغات",
       "event": "رویداد",
-      "website": "وب‌سایت",
-      "emailCampaign": "کمپین ایمیل",
+      "website": "وب سایت",
+      "emailCampaign": "ایمیلهای تبلیغاتی",
       "none": "سایر"
     },
-    "productType": {
-      "main": "اصلی",
-      "part": "قطعه",
-      "useable": "مصرفی",
-      "service": "خدمت/نرم افزار"
-    },
-    "isActiveOptions": {
-      "active": "فعال",
-      "inActive": "غیرفعال"
-    },
-    "paymentMethod": {
-      "cash": "نقدی",
-      "check": "چک",
-      "bankTransition": "واریز بانکی",
-      "pos": "دستگاه پوز",
-      "customer": "طرف حساب",
-      "checkSpent": "خرج چک"
-    },
-    "paymentStatus": {
-      "normal": "دریافت شده",
-      "transferedToBank": "در جریان وصول/واگذاری به بانک",
-      "cashed": "چک نقد شده",
-      "checkBounced": "چک برگشتی",
-      "checkSpent": "انتقال چک/ خرج شده"
-    },
-    "insuranceType": {
-      "normal": "30 درصد",
-      "none": "فاقد بیمه",
-      "ceo": "هیات مدیره"
-    },
-    "customerType": {
-      "legal": "حقوقی",
-      "person": "حقیقی",
-      "personnel": "پرسنل",
-      "engagement": "مشارکت مدنی",
-      "foreignNational": "اتباع خارجی"
-    },
-    "vatType": {
-      "purchaseAndSale": "خرید و فروش (هر دو)",
-      "sale": "برای فروش",
-      "purchase": "برای خرید"
-    },
-    "months": {
-      "1": "فروردین",
-      "2": "اردیبهشت",
-      "3": "خرداد",
-      "4": "تیر",
-      "5": "مرداد",
-      "6": "شهریور",
-      "7": "مهر",
-      "8": "آبان",
-      "9": "آذر",
-      "10": "دی",
-      "11": "بهمن",
-      "12": "اسفند"
-    },
-    "gender": {
-      "male": "مرد",
-      "female": "زن"
-    },
-    "customerRole": {
-      "customer": "مشتری",
-      "supplier": "تامین کننده",
-      "marketer": "بازاریاب",
-      "shareHolder": "سهامدار",
-      "personnel": "پرسنل"
-    },
-    "militaryStatus": {
-      "done": "انجام داده",
-      "exempt": "معاف دائم",
-      "illnessExemption": "معافیت پزشکی",
-      "educationalExepmtion": "معافیت تحصیلی",
-      "temporalExemption": "معافیت موقت"
-    },
-    "marriageStatus": {
-      "single": "مجرد",
-      "married": "متاهل",
-      "divorced": "متارکه شده"
-    },
-    "accountDLType": {
-      "other": "سایر",
-      "customer": "طرف حساب",
-      "personnel": "پرسنل",
-      "cash": "صندوق",
-      "bankAccount": "حساب بانکی",
-      "costCenter": "مرکز هزینه",
-      "product": "کالا و خدمات"
-    },
-    "closeAccounts": {
-      "revenue": "فروش و درآمد",
-      "expense": "هزینه",
-      "cogs": "بهای تمام شده"
-    },
-    "quoteStatus": {
-      "temp": "موقت",
-      "final": "دائم"
-    },
-    "paymentType": {
-      "cash": "نقد",
-      "trust": "نسیه",
-      "both": "نقد و نسیه"
-    },
-    "receiptFormType": {
-      "sales": "فروش، برگشت از خرید",
-      "other": "سایر"
-    },
-    "paymentFormType": {
-      "purhcase": "خرید، برگشت از فروش",
-      "other": "سایر"
-    },
-    "accountType": {
-      "debit": "بدهکار",
-      "credit": "بستانکار",
-      "debitCredit": "مهم نیست",
-      "debitRemained": "مانده بدهکار",
-      "creditRemained": "مانده بستانکار"
-    },
-    "taxApiInvoiceType": {
-      "b2B": "نوع 1: فروش شرکتی",
-      "b2C": "نوع 2: فروش به اشخاص حقیقی",
-      "posOnline": "نوع 3: فروش از طریق درگاه و دستگاه پوز"
-    },
-    "taxSentStatus": {
-      "all": "همه موارد",
-      "sent": "ارسال شده",
-      "notSent": "ارسال نشده",
-      "0": "همه موارد",
-      "1": "ارسال شده",
-      "2": "ارسال نشده"
-    },
-    "taxApiInvoicePattern": {
-      "sales": "فروش",
-      "currencySales": "فروش ارزی",
-      "goldAndGem": "صورتحساب طلا، جواهر، پلاتین",
-      "contract": "قرارداد پیمانکاری",
-      "generalService": "قبوض خدماتی",
-      "airplaneTicket": "بلیت هواپیما"
-    },
-    "voucherType": {
-      "general": "عمومی",
-      "closeInterimAccount": "بستن حسابها",
-      "openingVoucher": "افتتاحیه",
-      "closingVoucher": "اختتامیه",
-      "modificationVoucher": "اصلاحیه"
-    },
-    "depositType": {
-      "all": "همه موارد",
-      "hasRemain": "دارای مانده",
-      "deposited": "تسویه کامل",
-      "partialDeposit": "تسویه ناقص",
-      "0": " همه موارد",
-      "1": "دارای مانده",
-      "2": "کامل",
-      "3": "ناقص"
-    },
-    "dateRange": {
-      "all": "همه",
-      "today": "امروز",
-      "thisWeek": "این هفته",
-      "thisMonth": "این ماه",
-      "0": "همه",
-      "2": "امروز",
-      "3": "این هفته",
-      "4": "این ماه"
-    },
-    "accountTreeType": {
-      "cl": "گروه حساب",
-      "gl": "حساب کل",
-      "sl": "حساب معین",
-      "dl": "حساب تفصیلی",
-      "slDl": "حساب معین / تفصیلی"
-    },
-    "salesReviewType": {
-      "pg": "گروه کالا و خدمات",
-      "prd": "کالا و خدمات",
-      "crm": "طرف حساب",
-      "prdCrm": "طرف حساب / کالا و خدمات"
-    },
-    "stockReviewType": {
-      "pg": "گروه کالا",
-      "prd": "کالا",
-      "stockItem": "ریز ورود و خروج"
-    },
-    "subSystem": {
-      "accounting": "حسابداری",
-      "receiptAndPayment": "دریافت و پرداخت",
-      "sales": "بازرگانی، خرید و فروش",
-      "afterSalesService": "خدمات پس از فروش",
-      "payroll": "حقوق و دستمزد",
-      "asset": "اموال و داراییهای ثابت",
-      "inventory": "انبارداری",
-      "contract": "پیمانکاری"
-    },
-    "modifyStockType": {
-      "add": "افزایش",
-      "reduce": "کاهش"
-    },
-    "contactType": {
-      "phone": "تلفن",
-      "mobile": "موبایل",
-      "email": "ایمیل",
-      "address": "نشانی",
-      "website": "وب سایت",
-      "socialNetwork": "شبکه اجتماعی"
-    },
-    "locationType": {
-      "country": "کشور",
-      "province": "استان",
-      "city": "شهرستان",
-      "section": "بخش",
-      "town": "دهستان"
-    },
-    "newsBanner": {
-      "title": "راهنمای اتصال حسابداری آنلاین لاندا به سامانه مودیان",
-      "description": "روش اتصال به سامانه مودیان و مراحل ارسال صورتحساب و فاکتورهای خود به سامانه مودیان",
-      "readMore": "ادامه مطلب",
-      "question": "آیا یک کاربر می‌تواند بیش از یک کسب و کار داشته باشد؟",
-      "answer": "بله. هر کاربر می‌تواند چندین کسب و کار با اشتراک و طرح جداگانه ایجاد کند. کسی که مالک چندین شرکت است با یک نام کاربری می‌تواند به همه کسب و کارهای خود دسترسی داشته باشد. همچنین مالک کسب و کار امکان دعوت از سایر کاربران را از طریق ایمیل دارد. در اینصورت کاربر دعوت شده با ایمیل خودش به این کسب و کار دسترسی خواهد شد."
-    },
-    "cogsCalcMethod": {
-      "none": "هیچکدام",
-      "fifo": "FIFO",
-      "average": "میانگین موزون"
-    },
-    "invoicePreviewTemplate": {
-      "standard": "استاندارد دارایی",
-      "simple": "ساده"
-    },
-    "transferMoneyType": {
-      "bankAccount": "حساب بانکی",
-      "cash": "صندوق نقدی"
-    },
-    "priceAdjustmentDirection": {
-      "increase": "افزایش قیمت",
-      "decrease": "کاهش قیمت"
-    },
-    "priceAdjustmentTarget": {
-      "sales": "قیمت فروش",
-      "purchase": "قیمت خرید",
-      "both": "هر دو"
-    },
-    "feedbackType": {
-      "incident": "مشکل",
-      "request": "درخواست، پیشنهاد"
-    },
-    "feedbackStatus": {
-      "inProgress": "در حال انجام",
-      "done": "بسته شده",
-      "unDone": "قابل انجام نیست",
-      "responded": "پاسخ داده شد",
-      "incident": "مشکل",
-      "request": "درخواست، پیشنهاد"
-    },
+
     "messages": {
       "deleted-successfully": "با موفقیت حذف شد",
       "loading-message": "لطفا کمی صبر کنید"
     },
+
     "prompts": {
       "are-you-sure": "آیا اطمینان دارید"
     },
+
     "columns": {
       "invoiceNumber": "شماره فاکتور",
       "dueDate": "سررسید",

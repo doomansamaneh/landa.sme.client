@@ -204,7 +204,7 @@
   import { ref, computed, onMounted, watch } from "vue";
   import { useQuasar } from "quasar";
   import { useRouter, useRoute } from "vue-router";
-  import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
+  import { useFirstLogin } from "src/composables/useFirstLogin";
   import ConfirmDialog from "src/components/shared/ConfirmDialog.vue";
 
   const $q = useQuasar();
@@ -212,7 +212,7 @@
   const route = useRoute();
 
   const popup = ref(null);
-  const tutorialStore = useFirstUsageWizard();
+  const tutorialStore = useFirstLogin();
   const dialog = ref(false);
 
   // Show checklist based on showTutorial state and firstLogin state
@@ -308,8 +308,8 @@
     if (hasChanges) {
       // Check if all tasks are completed
       if (tutorialStore.areAllTasksCompleted(tasks.value)) {
-        // Auto-hide tutorial when all tasks are completed
-        tutorialStore.hideTutorial();
+        // Auto-complete tutorial when all tasks are completed
+        tutorialStore.completeTutorial();
       }
     }
   }

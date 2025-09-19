@@ -27,7 +27,7 @@
         <div class="row q-gutter-md justify-between">
           <div class="col-9">
             <widget-title
-              :label="$t('shared.labels.purchaseBySupplier')"
+              :label="$t('shared.labels.purchaseByCustomer')"
               icon="o_business"
             />
           </div>
@@ -66,7 +66,7 @@
     onDeactivated,
   } from "vue";
   import { useQuasar } from "quasar";
-  import { usePurchaseBySupplier } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseBySupplier";
+  import { usePurchaseByCustomer } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseByCustomer";
   import { usePurchaseTab } from "../../_composables/purchaseTab/usePurchaseTab";
 
   import Chart from "src/components/shared/charts/ChartView.vue";
@@ -74,7 +74,7 @@
 
   const $q = useQuasar();
   const draggable = usePurchaseTab();
-  const chartStore = usePurchaseBySupplier({});
+  const chartStore = usePurchaseByCustomer({});
 
   const options = ref(null);
   const chartRef = ref(null);

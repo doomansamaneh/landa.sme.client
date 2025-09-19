@@ -22,7 +22,7 @@
   import { useQuasar } from "quasar";
   import { useTheme } from "src/components/layouts/main/_composables/useTheme.js";
   import { useMenuBar } from "src/composables/useMenuBar";
-  import { useFirstUsageWizard } from "src/composables/useFirstUsageWizard";
+  import { useFirstLogin } from "src/composables/useFirstLogin";
 
   import MenuBar from "src/components/layouts/main/MenuBar.vue";
   import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue";
@@ -36,16 +36,14 @@
   const theme = useTheme();
   const $q = useQuasar();
   const menuBarStore = useMenuBar();
-  const tutorialStore = useFirstUsageWizard();
+  const tutorialStore = useFirstLogin();
 
   if ($q.screen.lt.md) {
     menuBarStore.state.visible.value = false;
   }
 
   const showChecklist = computed(
-    () =>
-      tutorialStore.showTutorial.value &&
-      !tutorialStore.firstLogin.value
+    () => tutorialStore.showTutorial.value
   );
 
   onMounted(() => {

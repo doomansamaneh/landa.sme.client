@@ -72,12 +72,11 @@ export function useBusinessGrid() {
 
     if (response.data.code === HttpStatusCode.Ok) {
       appConfigStore.reset();
-
-      const firstLogin = response.data?.data?.firstLogin || false;
-      // Store firstLogin in localStorage
-      try {
-        localStorage.setItem("firstLogin", firstLogin);
-      } catch {}
+      const firstLogin =
+        response.data?.data?.firstLogin !== undefined
+          ? response.data.data.firstLogin
+          : false;
+      localStorage.setItem("firstLogin", firstLogin);
 
       businessStore.set({
         id: item.id,

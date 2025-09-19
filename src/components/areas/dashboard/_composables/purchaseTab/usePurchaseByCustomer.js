@@ -3,7 +3,7 @@ import { helper, fetchWrapper, bus } from "src/helpers";
 import { useAccess } from "src/directives/useAccess";
 import { useComposables } from "src/stores/useComposables";
 
-export function usePurchaseBySupplier({ dataSource, dataStore }) {
+export function usePurchaseByCustomer({ dataSource, dataStore }) {
   const { hasAccess } = useAccess();
   const _state = {
     firstLoad: ref(false),
@@ -42,7 +42,7 @@ export function usePurchaseBySupplier({ dataSource, dataStore }) {
   async function reloadData() {
     showLoader.value = true;
     const response = await fetchWrapper.post(
-      dataSource ?? `sls/report/PurchaseBySupplier`,
+      dataSource ?? `sls/report/PurchaseByCustomer`,
       null,
       true
     );
@@ -52,7 +52,7 @@ export function usePurchaseBySupplier({ dataSource, dataStore }) {
 
   const chartSeries = computed(() => [
     {
-      name: "تامین کننده",
+      name: "مشتری",
       data: state.value.data?.value?.map((item) => item.amount) ?? [],
     },
   ]);

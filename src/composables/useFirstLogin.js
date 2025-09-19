@@ -19,7 +19,7 @@ function setInStorage(key, value) {
 
 // State management
 const firstLogin = ref(getFromStorage("firstLogin"));
-const showTutorial = ref(false); // Always start as false, will be set when needed
+const showTutorial = ref(getFromStorage("showTutorial")); // Load from storage, independent of firstLogin
 const shouldShowTutorialAfterDialogClose = ref(false);
 
 function completeFirstLogin() {
@@ -32,9 +32,11 @@ function completeFirstLogin() {
 
 function showTutorialAfterDialogClose() {
   if (shouldShowTutorialAfterDialogClose.value) {
-    // Check if tutorial was previously dismissed
+    // Check if tutorial was previously dismissed or completed
     const tutorialDismissed = getFromStorage("tutorialDismissed");
-    if (!tutorialDismissed) {
+    const tutorialCompleted = getFromStorage("tutorialCompleted");
+
+    if (!tutorialDismissed && !tutorialCompleted) {
       showTutorial.value = true;
       setInStorage("showTutorial", true);
     }
@@ -46,6 +48,12 @@ function hideTutorial() {
   showTutorial.value = false;
   setInStorage("showTutorial", false);
   setInStorage("tutorialDismissed", true);
+}
+
+function completeTutorial() {
+  showTutorial.value = false;
+  setInStorage("showTutorial", false);
+  setInStorage("tutorialCompleted", true);
 }
 
 // Function to mark a task as completed based on route
@@ -77,13 +85,14 @@ function areAllTasksCompleted(tasks) {
   return tasks.every((task) => task.completed);
 }
 
-export function useFirstUsageWizard() {
+export function useFirstLogin() {
   return {
     firstLogin,
     showTutorial,
     completeFirstLogin,
     showTutorialAfterDialogClose,
     hideTutorial,
+    completeTutorial,
     markTaskCompletedByRoute,
     areAllTasksCompleted,
   };
