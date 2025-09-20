@@ -512,14 +512,6 @@
     tableStore?.value.columns.value.filter((col) => !col.hidden)
   );
 
-  // onMounted(() => {
-  //   bus.on("apply-search", reloadData);
-  // });
-
-  // onUnmounted(() => {
-  //   bus.off("apply-search", reloadData);
-  // });
-
   defineExpose({
     tableStore,
   });

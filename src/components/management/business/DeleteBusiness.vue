@@ -15,8 +15,7 @@
     </q-card-section>
 
     <q-card-section>
-      با حذف کسب و کار، تاریخچه و داده‌های آن از بین رفته و قابل
-      بازیابی نخواهد بود.
+      {{ $t("shared.labels.deleteBusinessMessage") }}
     </q-card-section>
 
     <q-card-section>

@@ -35,7 +35,7 @@
           <!-- <q-btn no-caps
             v-if="$q.screen.gt.xs"
             class="primary-gradient primary-shadow text-white text-body2 "
-            padding="6px 12px"
+            padding="8px 16px"
             rounded
             unelevated
             @click="save"

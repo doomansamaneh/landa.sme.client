@@ -11,7 +11,7 @@
       <q-card bordered>
         <q-card-section class="bg-green-5 text-white">
           <span class="text-h5">
-            {{ $t("shared.labels.chequeDetail") }}
+            {{ $t("shared.labels.checkDetail") }}
           </span>
         </q-card-section>
         <q-separator></q-separator>
@@ -27,7 +27,7 @@
       <q-card bordered>
         <q-card-section class="bg-blue-12 text-white">
           <span class="text-h5">
-            {{ $t("shared.labels.chequeTransaction") }}
+            {{ $t("shared.labels.checkTransaction") }}
           </span>
         </q-card-section>
         <q-separator />

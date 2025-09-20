@@ -45,7 +45,7 @@
               no-caps
               size="md"
               outline
-              label="دانشنامه"
+              :label="$t('shared.labels.encyclopedia')"
               href="https://www.landa-sme.ir/LandaKnowledge"
             />
             <q-btn

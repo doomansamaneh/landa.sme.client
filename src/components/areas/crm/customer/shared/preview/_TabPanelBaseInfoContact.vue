@@ -8,14 +8,16 @@
         text-color="white"
         :rounded="$q.screen.gt.xs"
         :round="$q.screen.xs"
-        :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
+        :padding="$q.screen.gt.xs ? '8px 16px' : '5px'"
       >
         <q-icon
           size="20px"
           name="o_add"
           :class="$q.screen.gt.xs ? 'q-mr-xs' : ''"
         />
-        <span v-if="$q.screen.gt.xs">افزودن تماس</span>
+        <span v-if="$q.screen.gt.xs">
+          {{ $t("shared.labels.addContact") }}
+        </span>
         <q-menu class="border-radius-lg" cover>
           <q-list dense padding style="width: 200px">
             <template
@@ -108,7 +110,7 @@
 
   const addContact = (typeId) => {
     dialogStore.openDialog({
-      title: "افزودن تماس",
+      title: "shared.labels.addContact",
       component: CreateForm,
       actionBar: true,
       props: {

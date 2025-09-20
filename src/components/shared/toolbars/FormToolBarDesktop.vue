@@ -4,9 +4,9 @@
       <div class="q-gutter-x-sm">
         <slot name="buttons">
           <q-btn
+            padding="8px 16px"
             no-caps
             class="primary-gradient primary-shadow text-white text-body2"
-            padding="6px 12px"
             rounded
             unelevated
             @click="save"
@@ -16,10 +16,10 @@
           </q-btn>
 
           <q-btn
+            padding="8px 16px"
             no-caps
             v-if="showSaveAndNew"
             class="text-body2"
-            padding="6px 12px"
             rounded
             unelevated
             @click="saveAndNew"

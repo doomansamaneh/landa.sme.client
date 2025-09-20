@@ -1,9 +1,9 @@
 import config from "../../app-setting.json";
 //localhost
-//export const baseUrl = config.baseUrl_;
+export const baseUrl = config.baseUrl_;
 
 //api.landa-sme.ir
-export const baseUrl = config.baseUrl;
+//export const baseUrl = config.baseUrl;
 
 export const dataType = {
   string: 0,
@@ -449,4 +449,60 @@ export const feedbackStatus = {
 
 export const phoneNumbers = {
   support: "02191070419",
+};
+
+export const leadSourceType = {
+  google: 1,
+  socialNetwork: 2,
+  customerReferal: 3,
+  advertisement: 4,
+  event: 5,
+  website: 6,
+  //emailCampaign: 7,
+  none: 9,
+};
+
+export const country = {
+  unitedState: 1,
+  iran: 98,
+};
+
+export const city = {
+  tehran: 21,
+  karaj: 26,
+  qazvin: 28,
+  qom: 25,
+  isfahan: 31,
+  shiraz: 71,
+  tabriz: 41,
+  urmia: 44,
+  rasht: 13,
+  sari: 11,
+  gorgan: 17,
+  ardabil: 45,
+  zanjan: 24,
+  hamedan: 81,
+  kermanshah: 83,
+  sanandaj: 87,
+  ilam: 84,
+  khorramabad: 66,
+  ahvaz: 61,
+  bushehr: 77,
+  yasuj: 74,
+  bandarAbbas: 76,
+  zahedan: 54,
+  kerman: 34,
+  yazd: 35,
+  mashhad: 51,
+  bojnord: 58,
+  birjand: 56,
+};
+
+export const businessActivityField = {
+  trade: 1,
+  it: 2,
+  accounting: 3,
+  services: 4,
+  foodServices: 5,
+  other: 99,
 };

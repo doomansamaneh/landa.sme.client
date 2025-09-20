@@ -3,7 +3,7 @@
     no-caps
     unelevated
     rounded
-    padding="6px 12px"
+    padding="8px 16px"
     class="primary-gradient primary-shadow text-white text-on-dark"
     @click="formStore.addAddress()"
   >

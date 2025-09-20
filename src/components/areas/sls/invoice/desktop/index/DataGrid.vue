@@ -3,6 +3,7 @@
     :no-fullscreen="noFullscreen"
     :table-store="tableStore"
     :title="title"
+    :sub-title="subTitle"
     base-route="sls/invoice"
   >
     <template #expand="{ item }">
@@ -19,5 +20,6 @@
     tableStore: Object,
     noFullscreen: Boolean,
     title: String,
+    subTitle: String,
   });
 </script>

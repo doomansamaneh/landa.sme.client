@@ -95,8 +95,9 @@
       <tr>
         <td colspan="100%" class="text-center">
           <q-btn
+            padding="8px 16px"
             no-caps
-            class="q-my-xl primary-shadow"
+            class="q-my-xl primary-gradient primary-shadow text-white"
             rounded
             unelevated
             color="primary"
@@ -111,13 +112,12 @@
   </q-markup-table>
 
   <q-btn
+    padding="8px 16px"
     no-caps
     v-if="model?.scrapItems?.length > 0"
-    padding="4px 12px"
     unelevated
     rounded
-    dense
-    class="bg-primary primary-shadow text-white q-my-md"
+    class="primary-gradient primary-shadow text-white q-my-md"
     @click="formStore.pushNewScrapItem()"
   >
     <q-icon size="20px" name="o_add" class="q-mr-xs" />

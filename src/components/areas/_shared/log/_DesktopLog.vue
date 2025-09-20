@@ -15,11 +15,12 @@
               :placeholder="$t('shared.labels.addNotePlaceholder')"
             />
             <q-btn
+              padding="8px 16px"
+              class="primary-gradient primary-shadow text-white q-mt-md text-body2"
               no-caps
               @click="addComment"
               flat
               rounded
-              class="primary-gradient text-white q-mt-md"
             >
               <q-icon name="o_comment" size="xs" class="q-mr-sm" />
               <span>{{ $t("shared.labels.save") }}</span>
@@ -64,7 +65,7 @@
               text-color="white"
               :item="parseUser(item)?.id"
               :text-holder="parseUser(item)?.name"
-              text-holder-class="text-body1 text-weight-900"
+              text-holder-class="text-body1 text-weight-900 q-pb-xs"
               :avatar="avatar"
             />
           </template>
@@ -111,11 +112,12 @@
                 <q-editor v-model="item.comment" />
                 <div class="q-gutter-x-sm">
                   <q-btn
+                    padding="8px 16px"
                     no-caps
                     @click="editComment(item)"
                     flat
                     rounded
-                    class="primary-gradient text-white"
+                    class="primary-gradient primary-shadow text-white"
                   >
                     <q-icon
                       name="o_comment"
@@ -125,6 +127,7 @@
                     <span>{{ $t("shared.labels.save") }}</span>
                   </q-btn>
                   <q-btn
+                    padding="8px 16px"
                     no-caps
                     @click="disableEdit()"
                     unelevated
@@ -146,6 +149,7 @@
                 class="row justify-end"
               >
                 <q-btn
+                  padding="8px 16px"
                   no-caps
                   @click="enableEdit(item)"
                   unelevated
@@ -156,6 +160,7 @@
                   <span>{{ $t("shared.labels.edit") }}</span>
                 </q-btn>
                 <q-btn
+                  padding="8px 16px"
                   no-caps
                   @click="deleteComment(item)"
                   unelevated

@@ -47,7 +47,7 @@
   </slot>
 
   <!-- Rows -->
-  <div class="q-mt-sm q-gutter-y-sm" style="margin: 0">
+  <div class="q-gutter-y-sm q-pt-sm">
     <template
       v-for="(row, index) in rows?.value"
       :key="row.id || index"
@@ -59,7 +59,7 @@
         :class="tableStore.getRowClass(row)"
         @click="setActiveRow(row)"
       >
-        <q-card-section class="q-pa-xs">
+        <q-card-section :class="cardPadding">
           <div class="row_ no-wrap items-start justify-between">
             <router-link
               class="col q-gutter-y-xs no-decoration text-on-dark"
@@ -254,6 +254,7 @@
     dataTableStore: useDataTable,
     noActiveRow: Boolean,
     noSelectRow: Boolean,
+    cardPadding: { type: String, default: "q-pa-xs" },
   });
 
   // Emits

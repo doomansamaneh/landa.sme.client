@@ -26,7 +26,7 @@
             <div class="q-gutter-y-md">
               پیش‌فاکتور با موفقیت ثبت شد.
               <div>
-                شماره:
+                {{ $t("shared.labels.no") }}:
                 <span class="text-h6 text-weight-700">
                   {{ responseData.no }}
                 </span>

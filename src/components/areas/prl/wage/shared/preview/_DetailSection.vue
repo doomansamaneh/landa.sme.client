@@ -2,7 +2,9 @@
   <q-card bordered>
     <q-card-section class="q-gutter-md">
       <div class="q-gutter-sm">
-        <span class="text-caption">شماره:</span>
+        <span class="text-caption">
+          {{ $t("shared.labels.no") }}:
+        </span>
         <span class="text-weight-700">{{ model.value.no }}</span>
       </div>
       <div v-if="relationModel?.url">

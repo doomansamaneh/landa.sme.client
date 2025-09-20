@@ -1,4 +1,5 @@
 //import { useI18n } from "vue-i18n";
+import { i18nInstance } from "src/boot/i18n";
 import { useQuasar } from "quasar";
 import { route } from "quasar/wrappers";
 import {
@@ -66,12 +67,40 @@ export default route(function (/* { store, ssrContext } */) {
   });
 
   const setDocumentTitle = (to) => {
-    //const { t } = useI18n();
-    if (to.meta && to.meta.title) {
-      document.title = to.meta.title;
-    } else {
-      document.title = "Landa SME";
+    const metaTitle = to?.meta?.title;
+    const defaultTitle = "Landa SME";
+
+    if (!metaTitle) {
+      document.title = defaultTitle;
+      return;
     }
+
+    try {
+      const t = i18nInstance?.global?.t;
+      if (typeof t === "function") {
+        // Allow meta.title to be a function so routes can use JS template literals
+        if (typeof metaTitle === "function") {
+          try {
+            const computed = metaTitle(t, to);
+            document.title =
+              String(computed || "").trim() || defaultTitle;
+            return;
+          } catch (e) {
+            // fall through to other strategy
+          }
+        }
+
+        const maybeTranslated = t(metaTitle);
+        // If translation returns the same key, treat metaTitle as literal text
+        document.title =
+          maybeTranslated === metaTitle ? metaTitle : maybeTranslated;
+        return;
+      }
+    } catch (e) {
+      // fall through to literal title
+    }
+
+    document.title = metaTitle || defaultTitle;
   };
 
   return Router;

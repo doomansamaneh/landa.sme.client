@@ -7,7 +7,9 @@
     <q-card class="no-shadow no-border">
       <q-card-section>
         <div class="row items-center justify-between">
-          <div class="text-body1 text-weight-700">{{ $t("shared.labels.userGuide") }}</div>
+          <div class="text-body1 text-weight-700">
+            {{ $t("shared.labels.userGuide") }}
+          </div>
           <q-btn
             no-caps
             round
@@ -108,9 +110,9 @@
 
             <q-btn
               no-caps
-              padding="4px 12px"
+              padding="8px 16px"
               unelevated
-              label="دانشنامه"
+              :label="$t('shared.labels.encyclopedia')"
               href="https://www.landa-sme.ir/LandaKnowledge"
               target="_blank"
               class="q-mt-md text-on-dark bordered-btn"

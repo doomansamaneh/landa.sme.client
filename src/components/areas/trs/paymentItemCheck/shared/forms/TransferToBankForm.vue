@@ -2,12 +2,19 @@
   <q-form ref="form" autofocus_>
     <div class="row q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <custom-input v-model="model.docNo" label="شماره رسید" />
+        <custom-input
+          v-model="model.docNo"
+          :label="$t('shared.labels.receiptNumber')"
+        />
       </div>
     </div>
     <div class="row q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <date-time v-model="model.date" label="تاریخ" required />
+        <date-time
+          v-model="model.date"
+          :label="$t('shared.labels.date')"
+          required
+        />
       </div>
     </div>
     <div class="row q-mb-md">
@@ -15,7 +22,7 @@
         <bank-account-lookup
           v-model:selectedId="model.bankAccountId"
           v-model:selectedText="model.bankAccountDisplay"
-          label="حساب بانکی"
+          :label="$t('shared.columns.bankAccount')"
           required
         />
       </div>
@@ -26,7 +33,7 @@
         <custom-input
           v-model="model.comment"
           type="textarea"
-          label="شرح"
+          :label="$t('shared.labels.comment')"
         />
       </div>
     </div>

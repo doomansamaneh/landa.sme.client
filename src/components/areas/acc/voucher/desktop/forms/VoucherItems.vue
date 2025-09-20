@@ -22,6 +22,25 @@
             {{ $t("shared.labels.comment") }}
           </th>
           <th style="width: 10%">{{ $t("shared.columns.debit") }}</th>
+          <th style="width: 1px">
+            <q-btn
+              :disabled="
+                formStore.model.value.voucherItems.length === 0
+              "
+              :class="
+                formStore.model.value.voucherItems.length === 0
+                  ? 'no-pointer-events'
+                  : ''
+              "
+              no-caps
+              size="sm"
+              unelevated
+              round
+              dense
+              @click="swapAllRows"
+              icon="o_swap_horiz"
+            />
+          </th>
           <th style="width: 10%">
             {{ $t("shared.columns.credit") }}
           </th>
@@ -68,6 +87,17 @@
               v-model="row.debit"
               :placeholder="$t('shared.columns.debit')"
               required
+            />
+          </td>
+          <td class="text-center">
+            <q-btn
+              no-caps
+              size="sm"
+              unelevated
+              round
+              dense
+              icon="o_swap_horiz"
+              @click="swapRowValues(index)"
             />
           </td>
           <td>
@@ -131,7 +161,7 @@
       </tbody>
       <tfoot
         class="table-total"
-        v-if="formStore.totalDebit.value > 0"
+        v-if="formStore.model.value.voucherItems.length > 0"
       >
         <tr class="grid-total">
           <td colspan="4" class="text-right">
@@ -142,6 +172,7 @@
               {{ helper.formatNumber(formStore.totalDebit.value) }}
             </b>
           </td>
+          <td></td>
           <td>
             <b>
               {{ helper.formatNumber(formStore.totalCredit.value) }}
@@ -155,12 +186,11 @@
     </q-markup-table>
 
     <q-btn
+      padding="8px 16px"
       no-caps
-      padding="4px 12px"
       unelevated
       rounded
-      dense
-      class="bg-primary primary-shadow text-white q-mt-md"
+      class="primary-gradient primary-shadow text-white q-mt-md"
       @click="formStore.pushNewRow()"
     >
       <q-icon size="20px" name="o_add" class="q-mr-xs" />
@@ -201,5 +231,22 @@
         value: row.slId,
       },
     ];
+  };
+
+  const swapRowValues = (index) => {
+    const row = props.formStore.model.value.voucherItems[index];
+    if (row) {
+      const tempDebit = row.debit;
+      row.debit = row.credit;
+      row.credit = tempDebit;
+    }
+  };
+
+  const swapAllRows = () => {
+    props.formStore.model.value.voucherItems.forEach((row) => {
+      const tempDebit = row.debit;
+      row.debit = row.credit;
+      row.credit = tempDebit;
+    });
   };
 </script>

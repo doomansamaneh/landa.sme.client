@@ -11,6 +11,7 @@
       style="margin-top: -1px"
     >
       <q-tabs
+        no-caps
         inline-label
         narrow-indicator
         dense
@@ -28,6 +29,12 @@
           v-access="`sls.report.salesReview`"
           icon="o_receipt"
           :label="$t('dashboard.tabs.sales')"
+        />
+        <q-tab
+          name="purchase"
+          v-access="`sls.report.purchaseReview`"
+          icon="o_shopping_cart"
+          :label="$t('dashboard.tabs.purchase')"
         />
         <q-tab
           name="expense"
@@ -63,8 +70,9 @@
 
   import GeneralTab from "./tabs/GeneralTab.vue";
   import SalesTab from "./tabs/SalesTab.vue";
+  import PurchaseTab from "./tabs/PurchaseTab.vue";
   import ExpenseTab from "./tabs/ExpenseTab.vue";
-  import ChequeNotificationTab from "./tabs/ChequeNoTificationTab.vue";
+  import ChequeNotificationTab from "./tabs/ChequeNotificationTab.vue";
 
   const state = useTabsState();
   const { notificationCount } = useChequeNotification();
@@ -75,6 +83,8 @@
         return GeneralTab;
       case "sales":
         return SalesTab;
+      case "purchase":
+        return PurchaseTab;
       case "expense":
         return ExpenseTab;
       case "cheque-notification":

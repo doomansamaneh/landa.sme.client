@@ -3,12 +3,13 @@
   <component
     v-if="$q.screen.gt.sm"
     :is="ToolbarDesktop"
-    :title="title"
+    :title="$t('shared.labels.support')"
     :buttons="true"
     no-back-button
   >
     <template #buttons>
       <q-btn
+        no-caps
         rounded
         unelevated
         color="primary"
@@ -16,11 +17,20 @@
         @click="store.openNewTicketDialog"
       >
         <q-icon size="16px" class="q-mr-xs" name="o_add" />
-        <div class="text-body2">ثبت تیکت جدید</div>
+        <div class="text-body2">
+          {{ $t("shared.labels.registerNewTicket") }}
+        </div>
       </q-btn>
-      <q-btn rounded unelevated @click="store.openContactDialog">
+      <q-btn
+        no-caps
+        rounded
+        unelevated
+        @click="store.openContactDialog"
+      >
         <q-icon size="16px" class="q-mr-xs" name="phone" />
-        <div class="text-body2">تماس با واحد پشتیبانی</div>
+        <div class="text-body2">
+          {{ $t("shared.labels.contactSupport") }}
+        </div>
       </q-btn>
     </template>
   </component>
@@ -53,13 +63,6 @@
   const ToolbarMobile = defineAsyncComponent(() =>
     import("src/components/shared/toolbars/FormToolBarMobile.vue")
   );
-
-  const props = defineProps({
-    title: {
-      type: String,
-      default: "پشتیبانی",
-    },
-  });
 
   const $q = useQuasar();
   const store = useTickets();

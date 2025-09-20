@@ -7,8 +7,11 @@
   import { useAuthStore } from "src/stores/auth-store";
   import { vAccess } from "src/directives/vAccess";
   import { useCulture } from "src/composables/useCulture";
+  import { useQuasar } from "quasar";
+  import { setQuasarInstance } from "src/helpers/fetch-wrapper";
 
   const authStore = useAuthStore();
+  const $q = useQuasar();
 
   console.log(
     "%cSUPPORT: %cLANDA-SME.IR",
@@ -29,6 +32,10 @@
       // Register the v-access directive
       app.directive("access", vAccess);
     }
+
+    // Set Quasar instance for fetch wrapper
+    setQuasarInstance($q);
+
     authStore.checkUser();
     useCulture();
   });

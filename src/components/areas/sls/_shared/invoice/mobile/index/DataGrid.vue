@@ -9,6 +9,7 @@
     avatar-field="customerId"
     show-badge
     ref="dataGrid"
+    card-padding="q-pa-xs"
   >
     <template #header>
       <template></template>
@@ -72,7 +73,7 @@
       <tax-badge :tax-id="item.taxId" />
       <notification-badge :count="item.notificationCount" />
       <status-badge :title="item?.statusTitle" />
-      <type-badge :title="item?.typeTitle" />
+      <type-badge :title="item?.typeTitle" :type-id="item?.typeId" />
       <contract-badge :title="item?.contractTitle" :id="item?.id" />
     </template>
 

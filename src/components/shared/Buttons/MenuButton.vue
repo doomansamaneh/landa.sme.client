@@ -2,9 +2,9 @@
   <q-btn
     no-caps
     class="text-body2"
+    padding="8px 16px"
     rounded
     unelevated
-    padding="8px 16px"
     :to="to"
     @click="click"
     :id="id"

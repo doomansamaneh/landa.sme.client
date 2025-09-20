@@ -17,14 +17,14 @@
       <div class="col">
         <header-column
           fieldName="title"
-          title="عنوان"
+          :title="$t('shared.labels.title')"
           :table-store="tableStore"
         />
       </div>
       <div class="col-2">
         <header-column
           fieldName="cost"
-          title="هزینه"
+          :title="$t('shared.labels.expense')"
           :table-store="tableStore"
         />
       </div>

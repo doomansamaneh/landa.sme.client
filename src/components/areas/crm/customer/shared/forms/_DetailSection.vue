@@ -1,5 +1,6 @@
 <template>
   <q-tabs
+    no-caps
     v-model="tab"
     class="text-h6_ text-weight-700_ primary-tabs q-mt-lg"
     :indicator-color="$q.dark.isActive ? 'yellow' : 'primary'"

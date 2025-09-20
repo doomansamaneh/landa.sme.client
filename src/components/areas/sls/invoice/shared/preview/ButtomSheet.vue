@@ -12,7 +12,7 @@
         no-caps
         :to="`/sls/invoice/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2"
-        padding="6px 12px"
+        padding="8px 16px"
         rounded
         unelevated
       >
@@ -23,7 +23,7 @@
         no-caps
         :to="`/sls/invoice/copy/${id}`"
         class="text-body2"
-        padding="6px 12px"
+        padding="8px 16px"
         rounded
         unelevated
       >
@@ -34,7 +34,7 @@
         no-caps
         @click="formStore.crudStore.deleteById(id)"
         class="text-body2"
-        padding="6px 12px"
+        padding="8px 16px"
         rounded
         unelevated
       >
@@ -45,7 +45,7 @@
         no-caps
         @click="printStore.handlePrint()"
         class="text-body2"
-        padding="6px 12px"
+        padding="8px 16px"
         rounded
         unelevated
       >
@@ -56,7 +56,7 @@
         no-caps
         @click="printStore.downloadPdf()"
         class="text-body2"
-        padding="6px 12px"
+        padding="8px 16px"
         rounded
         unelevated
       >

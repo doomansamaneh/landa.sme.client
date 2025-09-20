@@ -5,7 +5,7 @@
         class="text-body2 primary-shadow primary-gradient"
         text-color="white"
         icon="o_add"
-        title="افزودن حساب بانکی"
+        :title="$t('shared.labels.addBankAccount')"
         @click="addBankAccount"
       />
 
@@ -65,7 +65,7 @@
 
   const addBankAccount = () => {
     dialogStore.openDialog({
-      title: "افزودن حساب بانکی",
+      title: "shared.labels.addBankAccount",
       component: CreateForm,
       actionBar: true,
       props: { customerId: props.item.id, action: formAction.create },

@@ -3,9 +3,6 @@
     no-caps
     unelevated
     rounded
-    dense
-    padding="4px 12px"
-    size="14px"
     to="/tickets"
     :class="activeButton"
     class="bordered text-on-dark gt-xs"

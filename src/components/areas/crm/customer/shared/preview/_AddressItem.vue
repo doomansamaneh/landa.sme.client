@@ -17,7 +17,7 @@
           :text="`${item.locationTitle} - ${item.address}`"
         />
         <span v-if="item.postalCode">
-          / کد پستی:
+          / {{ $t("shared.labels.postalCode") }}:
           <strong>{{ item.postalCode }}</strong>
           <copy-clipboard :text="item.postalCode" />
         </span>

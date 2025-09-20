@@ -85,7 +85,9 @@
                   border-image: initial;
                 "
               >
-                <span class="text-body3">شماره:</span>
+                <span class="text-body3">
+                  {{ $t("shared.labels.no") }}:
+                </span>
                 <span
                   class="text-body2 text-bold"
                   style="margin-right: 4px"

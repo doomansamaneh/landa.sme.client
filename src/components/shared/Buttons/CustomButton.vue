@@ -4,7 +4,7 @@
     unelevated
     :rounded="$q.screen.gt.xs"
     :round="$q.screen.xs"
-    :padding="$q.screen.gt.xs ? '6px 12px' : '5px'"
+    :padding="$q.screen.gt.xs ? '8px 16px' : '5px'"
   >
     <q-icon
       v-if="icon"

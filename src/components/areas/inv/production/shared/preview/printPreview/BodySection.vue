@@ -16,7 +16,7 @@
           <tbody>
             <tr v-if="model">
               <td style="border: 1px solid; padding: 5px 20px">
-                انبار مبدا:
+                {{ $t("shared.columns.fromInventoryTitle") }}:
               </td>
               <td style="border: 1px solid; padding: 5px 20px">
                 {{ model.inventoryTitle || "-" }}
@@ -24,7 +24,7 @@
             </tr>
             <tr v-if="model">
               <td style="border: 1px solid; padding: 5px 20px">
-                انبار مقصد:
+                {{ $t("shared.columns.toInventoryTitle") }}:
               </td>
               <td style="border: 1px solid; padding: 5px 20px">
                 {{ model.toInventoryTitle || "-" }}

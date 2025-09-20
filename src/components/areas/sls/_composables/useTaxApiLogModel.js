@@ -11,6 +11,13 @@ export function useTaxApiLogModel() {
     //console.log(response);
   };
 
+  const sendCancelToTax = async (invoiceId, callback) => {
+    const response = await fetchWrapper.post(
+      `sls/InvoiceTaxApiLog/CancelInvoiceByDocNo/${invoiceId}`
+    );
+    if (callback) await callback();
+  };
+
   const isSentApiSuccessfully = async (invoiceId) => {
     const response = await fetchWrapper.get(
       `sls/InvoiceTaxApiLog/IsSentApiSuccessfully/${invoiceId}`
@@ -28,6 +35,7 @@ export function useTaxApiLogModel() {
     apiResult,
 
     sendToTax,
+    sendCancelToTax,
     inquery,
     isSentApiSuccessfully,
   };

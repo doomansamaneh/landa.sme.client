@@ -12,8 +12,7 @@
               :placeholder="
                 $t('change-password-page.placeholders.old-password')
               "
-              dense
-              class="text-body"
+              input-class="text-body2"
               required
               lazy-rules
             >
@@ -36,8 +35,7 @@
               :placeholder="
                 $t('change-password-page.placeholders.new-password')
               "
-              dense
-              class="text-body"
+              input-class="text-body2"
               required
               lazy-rules
             >
@@ -62,8 +60,7 @@
                   'change-password-page.placeholders.confirm-password'
                 )
               "
-              dense
-              class="text-body"
+              input-class="text-body2"
               required
               lazy-rules
             >

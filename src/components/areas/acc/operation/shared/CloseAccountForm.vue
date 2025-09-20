@@ -3,7 +3,7 @@
     <div class="row q-mb-md">
       <div class="col-md-4 col-sm-12 col-xs-12">
         <date-time
-          label="تاریخ"
+          :label="$t('shared.labels.date')"
           v-model="formStore.model.value.date"
         />
       </div>
@@ -11,7 +11,7 @@
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <sl-lookup
-          label="حساب مقصد"
+          :label="$t('shared.columns.toAccountTitle')"
           v-model:selectedId="formStore.model.value.destinationSLId"
           v-model:selectedText="
             formStore.model.value.destinationSLTitle
@@ -23,7 +23,7 @@
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <custom-input
-          label="شرح"
+          :label="$t('shared.labels.comment')"
           v-model="formStore.model.value.subject"
         />
       </div>
@@ -32,7 +32,7 @@
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <q-option-group
-          label="نوع حساب"
+          :label="$t('shared.columns.accountTypeTitle')"
           class="q-pt-sm flex q-gutter-md"
           size="46px"
           dense

@@ -99,6 +99,7 @@ export function useAppConfigModel(disableLoad) {
   const getAvatar = async (typeId, width, height) => {
     const id = model.value.companySetting.id;
     if (!id) return "";
+
     const url = `cmn/uploadMedia/GetAvatar/${id}/${
       typeId ?? mediaType.avatar
     }/${width ?? 30}/${height ?? 30}`;

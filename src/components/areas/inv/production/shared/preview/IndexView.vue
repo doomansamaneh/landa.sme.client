@@ -19,13 +19,17 @@
             <template #header>
               <div class="q-mt-sm q-gutter-y-sm">
                 <div class="q-gutter-sm">
-                  <span>انبار مبدا:</span>
+                  <span>
+                    {{ $t("shared.columns.fromInventoryTitle") }}:
+                  </span>
                   <span class="q-px-sm">
                     {{ model?.inventoryTitle }}
                   </span>
                 </div>
                 <div class="q-gutter-sm">
-                  <span>انبار مقصد:</span>
+                  <span>
+                    {{ $t("shared.columns.toInventoryTitle") }}:
+                  </span>
                   <span class="q-px-sm">
                     {{ model?.toInventoryTitle }}
                   </span>
@@ -47,25 +51,25 @@
               <q-tab
                 class="q-mr-xs"
                 name="usedItem"
-                label="کالاهای استفاده شده"
+                :label="$t('shared.labels.productionUsedItems')"
                 icon="o_keyboard"
               />
               <q-tab
                 class="q-mr-xs"
                 name="cost"
-                label="سربار و هزینه"
+                :label="$t('shared.labels.productionCosts')"
                 icon="o_assignment"
               />
               <q-tab
                 class="q-mr-xs"
                 name="scrap"
-                label="ضایعات"
+                :label="$t('shared.labels.scrap')"
                 icon="o_assignment"
               />
               <q-tab
                 class="q-mr-xs"
                 name="product"
-                label="کالاهای تولید شده"
+                :label="$t('shared.labels.producedProducts')"
                 icon="o_assignment"
               />
             </q-tabs>

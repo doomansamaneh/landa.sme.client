@@ -34,7 +34,7 @@
               self="bottom left"
               :offset="[10, 8]"
             >
-              <q-card class="bordered">
+              <q-card flat>
                 <q-card-section class="q-pb-none">
                   <div class="text-body1 text-weight-700">
                     {{ $t("shared.labels.discount") }}
@@ -67,20 +67,20 @@
                   </custom-input-number>
                 </q-card-section>
 
-                <q-card-actions class=" q-pt-sm q-pb-md q-px-md">
+                <q-card-actions class="q-pt-sm q-pb-md q-px-md">
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
-                    class="primary-gradient text-white"
+                    class="primary-gradient primary-shadow text-white"
                     @click="confirmGeneralDiscount"
                   >
                     {{ $t("shared.labels.accept") }}
                   </q-btn>
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
                     @click="discountVisible = false"
@@ -121,7 +121,7 @@
               self="bottom left"
               :offset="[10, 8]"
             >
-              <q-card class="bordered">
+              <q-card flat>
                 <q-card-section class="q-pb-none">
                   <div class="text-body1 text-weight-700">
                     {{ $t("shared.labels.vat") }}
@@ -139,17 +139,17 @@
                 <q-card-actions class="q-pt-sm q-pb-md q-px-md">
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
-                    class="primary-gradient text-white"
+                    class="primary-gradient primary-shadow text-white"
                     @click="confirmVat"
                   >
                     {{ $t("shared.labels.accept") }}
                   </q-btn>
                   <q-btn
                     no-caps
-                    padding="4px 12px"
+                    padding="8px 16px"
                     rounded
                     unelevated
                     @click="vatVisible = false"

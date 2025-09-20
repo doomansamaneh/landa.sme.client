@@ -5,6 +5,7 @@
     outlined
     dense
     clear-icon="clear"
+    :input-class="inputClass"
     color="primary"
     hide-bottom-space
     :disable="disable"
@@ -23,7 +24,6 @@
     @keydown="$emit('keydown', $event)"
     @clear="$emit('clear')"
   >
-   
     <validation-alert
       v-if="validationMessage"
       :message="validationMessage"
@@ -58,6 +58,8 @@
     rounded: Boolean,
     autogrow: Boolean,
     inputmode: String,
+    dense: Boolean,
+    inputClass: String,
   });
 
   const modelValue = defineModel("modelValue");

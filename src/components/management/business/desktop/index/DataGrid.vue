@@ -16,46 +16,38 @@
             {{ $t("page.card-message") }}
           </q-item-label>
         </q-item-section>
-        <q-card-actions>
-          <div class="flex items-center q-mr-xs">
-            <q-btn
-              no-caps
-              round
-              unelevated
-              class="text-on-dark"
-              dense
-              icon="o_refresh"
-              clickable
-              @click="reloadData"
-            >
-              <q-tooltip
-                class="text-body2 custom-tooltip"
-                :delay="600"
-              >
-                {{ $t("shared.labels.refresh") }}
-              </q-tooltip>
-            </q-btn>
-          </div>
-          <div class="flex items-center q-gutter-x-md">
-            <q-btn
-              no-caps
-              round
-              unelevated
-              dense
-              class="text-on-dark"
-              icon="o_help_outline"
-              @click="showGuideDialog"
-            >
-              <q-tooltip
-                class="text-body2 custom-tooltip"
-                :delay="600"
-              >
-                {{ $t("page.buttons.guide-tooltip") }}
-              </q-tooltip>
-            </q-btn>
-            <add-business />
-          </div>
-        </q-card-actions>
+        <div class="flex items-center q-mr-xs">
+          <q-btn
+            no-caps
+            round
+            unelevated
+            class="text-on-dark"
+            dense
+            icon="o_refresh"
+            clickable
+            @click="reloadData"
+          >
+            <q-tooltip class="text-body2 custom-tooltip" :delay="600">
+              {{ $t("shared.labels.refresh") }}
+            </q-tooltip>
+          </q-btn>
+        </div>
+        <div class="flex items-center q-gutter-x-md">
+          <q-btn
+            no-caps
+            round
+            unelevated
+            dense
+            class="text-on-dark"
+            icon="o_help_outline"
+            @click="showGuideDialog"
+          >
+            <q-tooltip class="text-body2 custom-tooltip" :delay="600">
+              {{ $t("page.buttons.guide-tooltip") }}
+            </q-tooltip>
+          </q-btn>
+          <add-business />
+        </div>
       </q-item>
     </template>
 
@@ -73,18 +65,7 @@
           size="42px"
         />
         <div @click="gridStore.gotoBusiness(item)">
-          <div class="ellipsis">{{ item.title }}</div>
-          <q-tooltip
-            class="custom-tooltip text-body2"
-            transition-show="scale"
-            transition-hide="scale"
-            :delay="600"
-            anchor="top left"
-            self="top right"
-            :offset="[5, 5]"
-          >
-            {{ item.title }}
-          </q-tooltip>
+          {{ item.title }}
         </div>
       </div>
 

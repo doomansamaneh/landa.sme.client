@@ -51,12 +51,11 @@
                 <q-btn
                   no-caps
                   rounded
-                  color="primary"
                   unelevated
                   dense
                   padding="4px 16px"
                   :label="$t('newsBanner.readMore')"
-                  class="q-mt-md"
+                  class="q-mt-md primary-gradient text-white"
                   href="https://landa-sme.ir/LandaKnowledge/b2b39ffb-51cb-4781-8e20-b44ca1e46d0c"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -129,7 +128,7 @@
 
   const gradientStyle = computed(() => ({
     background:
-      "linear-gradient(to bottom, rgba(0, 123, 255, 0.12), rgba(0, 123, 255, 0.7))",
+      "linear-gradient(to bottom, color-mix(in srgb, var(--q-primary) 12%, transparent), color-mix(in srgb, var(--q-primary) 70%, transparent))",
   }));
 
   const isShakingComputed = computed(

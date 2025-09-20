@@ -2,10 +2,12 @@
   <q-markup-table bordered flat dense_ separator="horizontal">
     <thead>
       <tr>
-        <th style="width: 1px">#</th>
-        <th>سرفصل هزینه</th>
-        <th style="width: 180px">
-          هزینه ({{ model?.currencyTitle }})
+        <th class="text-left" style="width: 1px">#</th>
+        <th class="text-left">
+          {{ $t("shared.labels.costHeading") }}
+        </th>
+        <th class="text-left" style="width: 180px">
+          {{ $t("shared.labels.cost") }} ({{ model?.currencyTitle }})
         </th>
       </tr>
     </thead>
@@ -15,9 +17,11 @@
         :key="index"
         class="q-pa-md"
       >
-        <td class="text-center">{{ index + 1 }}</td>
-        <td>{{ row.slCode }} - {{ row.slTitle }}</td>
-        <td>
+        <td class="text-left">{{ index + 1 }}</td>
+        <td class="text-left">
+          {{ row.slCode }} - {{ row.slTitle }}
+        </td>
+        <td class="text-left">
           {{ helper.formatNumber(row.amount) }}
         </td>
       </tr>

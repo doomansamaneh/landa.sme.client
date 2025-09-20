@@ -9,28 +9,35 @@
     </div>
     <div class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        شماره چک:
+        {{ $t("shared.labels.checkNo") }}:
         <span class="text-weight-600">
-          {{ item?.value?.itemNo }}
+          {{ item?.itemNo }}
         </span>
       </div>
     </div>
-    <div v-if="item?.value?.sayad" class="row q-mb-md">
+    <div v-if="item?.sayad" class="row q-mb-md">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        ش صیادی:
+        {{ $t("shared.labels.sayadNumber") }}:
         <span class="text-weight-600">
-          {{ item?.value?.sayad }}
+          {{ item?.sayad }}
         </span>
       </div>
     </div>
     <div class="row q-mt-lg q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <custom-input v-model="model.docNo" label="شماره رسید" />
+        <custom-input
+          v-model="model.docNo"
+          :label="$t('shared.labels.receiptNumber')"
+        />
       </div>
     </div>
     <div class="row q-mb-md">
       <div class="col-md-6 col-sm-12 col-xs-12">
-        <date-time v-model="model.date" label="تاریخ" required />
+        <date-time
+          v-model="model.date"
+          :label="$t('shared.labels.date')"
+          required
+        />
       </div>
     </div>
 
@@ -39,7 +46,7 @@
         <custom-input
           v-model="model.comment"
           type="textarea"
-          label="شرح"
+          :label="$t('shared.labels.comment')"
         />
       </div>
     </div>

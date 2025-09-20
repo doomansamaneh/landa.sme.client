@@ -12,7 +12,7 @@
             v-model:selectedId="
               formStore.editBatchModel.value.productGroup.fieldValue
             "
-            :label="$t('shared.labels.productGroup')"
+            :label="$t('shared.labels.productGroupTitle')"
           />
         </div>
 

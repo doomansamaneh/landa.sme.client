@@ -23,9 +23,13 @@
             "
           >
             <span v-if="type === documentType.receipt">
-              دریافت {{ $t("shared.labels.fromTitle") }}:
+              {{ $t("shared.labels.receipt") }}
+              {{ $t("shared.labels.fromTitle") }}:
             </span>
-            <span v-else>پرداخت به:</span>
+            <span v-else>
+              {{ $t("shared.labels.payment") }}
+              {{ $t("shared.labels.toTitle") }}:
+            </span>
           </td>
           <td
             style="
@@ -48,7 +52,7 @@
               padding: 5px;
             "
           >
-            بابت:
+            {{ $t("shared.labels.regarding") }}:
           </td>
           <td
             style="
@@ -85,7 +89,7 @@
               width: 1px;
             "
           >
-            ردیف
+            {{ $t("shared.columns.rowNo") }}
           </th>
           <th
             style="
@@ -96,7 +100,7 @@
               width: 90px;
             "
           >
-            شماره
+            {{ $t("shared.columns.no") }}
           </th>
           <th
             style="
@@ -107,7 +111,7 @@
               width: 75px;
             "
           >
-            تاریخ
+            {{ $t("shared.columns.date") }}
           </th>
           <th
             style="
@@ -118,7 +122,9 @@
               width: 200px;
             "
           >
-            حساب بانکی / صندوق / طرف حساب
+            {{ $t("shared.columns.bankAccount") }} /
+            {{ $t("shared.labels.cash") }} /
+            {{ $t("shared.accountDLType.customer") }}
           </th>
           <th
             style="
@@ -128,7 +134,7 @@
               padding: 5px;
             "
           >
-            شرح
+            {{ $t("shared.labels.description") }}
           </th>
           <th
             style="
@@ -139,7 +145,9 @@
               width: 130px;
             "
           >
-            مبلغ ({{ model?.currencyTitle }})
+            {{ $t("shared.labels.amount") }} ({{
+              model?.currencyTitle
+            }})
           </th>
         </tr>
       </thead>
@@ -209,12 +217,12 @@
             }}
 
             <span v-if="item.bankBranchDisplay">
-              | شعبه بانک:
+              | {{ $t("shared.labels.bankBranch") }}:
               {{ item.bankBranchDisplay }}
             </span>
 
             <span v-if="item.sayad">
-              | ش صیاد:
+              | {{ $t("shared.labels.sayadNumber") }}:
               {{ item.sayad }}
             </span>
 

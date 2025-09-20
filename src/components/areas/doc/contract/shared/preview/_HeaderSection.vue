@@ -4,7 +4,7 @@
       <q-btn no-caps
         :to="`/doc/contract/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2 "
-        padding="6px 12px"
+        padding="8px 16px"
         rounded
         unelevated
         no-caps
@@ -14,7 +14,7 @@
       </q-btn>
 
       <q-btn no-caps
-        padding="6px 12px"
+        padding="8px 16px"
         class="text-body2 "
         rounded
         unelevated

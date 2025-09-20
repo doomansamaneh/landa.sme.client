@@ -35,12 +35,12 @@
         class="primary-shadow"
         rounded
         unelevated
-        padding="4px 12px"
+        padding="8px 16px"
         use
         @click="upload"
       >
         <q-icon name="arrow_upward" class="q-px-xs" size="xs" />
-        {{ $t("shared.labels.import") }}
+        {{ $t("shared.labels.dataImport") }}
       </q-btn>
     </template>
   </q-file>

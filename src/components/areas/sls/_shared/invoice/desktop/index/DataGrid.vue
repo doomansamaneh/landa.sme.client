@@ -10,17 +10,10 @@
     wrapCells
     expandable
     :title="title"
+    :sub-title="subTitle"
     @row-dbl-click="gotoPreview"
     :no-fullscreen="noFullscreen"
   >
-    <!-- If we need show custom print preview -->
-    <!-- <template #toolbar>
-      <DataGridToolbar
-        :table-store="tableStore"
-        :title="title"
-        :printPreviewComponent="InvoicePrintPreview"
-      />
-    </template> -->
     <template #filter-statusId="{ item }">
       <custom-select
         v-model="item.value"
@@ -93,7 +86,7 @@
         {{ item.summary }}
       </div>
       <div class="q-gutter-x-sm">
-        <type-badge :title="item.typeTitle" />
+        <type-badge :title="item.typeTitle" :type-id="item.typeId" />
         <contract-badge
           :title="item.contractTitle"
           :id="item.contractId"
@@ -197,17 +190,15 @@
   import ContractBadge from "src/components/areas/_shared/badges/ContractBadge.vue";
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
   import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
-  import RowNoBadge from "src/components/areas/_shared/badges/RowNoBadge.vue";
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
   import IsActive from "src/components/shared/IsActive.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
-  import DataGridToolbar from "src/components/shared/dataTables/desktop/DataGridToolbar.vue";
-  import InvoicePrintPreview from "src/components/areas/sls/invoice/shared/printPreview/DataGridPreview.vue";
 
   const props = defineProps({
     tableStore: Object,
     baseRoute: String,
     title: String,
+    subTitle: String,
     noFullscreen: Boolean,
   });
 
@@ -231,10 +222,6 @@
         "name",
         "payedAmount"
       ) >= 0
-
-    // props.tableStore.columns.value.findIndex(
-    //   (column) => column.name === "payedAmount"
-    // ) >= 0
   );
 
   const showDiscount = computed(

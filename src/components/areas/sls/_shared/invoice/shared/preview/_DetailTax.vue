@@ -32,6 +32,7 @@
       </q-card>
 
       <q-btn
+        padding="8px 16px"
         no-caps
         v-if="!taxStore.apiResult.value.data"
         unelevated
@@ -44,13 +45,27 @@
         <span>{{ t("shared.labels.taxApiStatus") }}</span>
       </q-btn>
 
-      <!-- v-if="!configStore.model.companySetting?.taxApiSetting?.clientId" -->
-      <!-- <q-btn no-caps rounded to="/cmn/appConfig/VATInfo" flat unelevated>
-      <q-icon name="o_settings" size="xs" class="q-mr-xs" />
-      <span>{{ t('shared.labels.taxApiConfiguration') }}</span>
-    </q-btn> -->
+      <q-btn
+        v-if="
+          authStore.currentUser?.id ===
+            'a2bacd9e-8b88-4d15-aa86-93e6b642c558' ||
+          authStore.currentUser?.id ===
+            '749c90c7-7229-44fe-8b0d-a1207b5614cb'
+        "
+        padding="8px 16px"
+        no-caps
+        unelevated
+        rounded
+        text-color="white"
+        class="primary-gradient primary-shadow"
+        @click="
+          taxStore.sendCancelToTax(model.id, taxGrid?.reloadData)
+        "
+      >
+        <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
+        <span>send cancel invoice</span>
+      </q-btn>
     </div>
-
     <data-grid
       ref="taxGrid"
       class="border-radius-sm q-mt-md"
@@ -67,6 +82,7 @@
 <script setup>
   import { ref, onMounted } from "vue";
   import { useI18n } from "vue-i18n";
+  import { useAuthStore } from "src/stores";
   import { useTaxApiLogModel } from "src/components/areas/sls/_composables/useTaxApiLogModel";
 
   import DataGrid from "src/components/areas/sls/invoiceTaxApiLog/shared/index/DataGrid.vue";
@@ -78,6 +94,7 @@
   const { t } = useI18n();
   const taxGrid = ref(null);
   const taxStore = useTaxApiLogModel();
+  const authStore = useAuthStore();
   const helpDialog = ref(false);
 
   const openHelpDialog = () => {

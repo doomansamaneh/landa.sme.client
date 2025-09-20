@@ -6,16 +6,7 @@ export default {
     icon: "o_dashboard",
   },
   children: [
-    {
-      path: "/landing",
-      name: "landing",
-      meta: {
-        icon: "celebration",
-        title: "راه اندازی اولیه کسب و کار",
-      },
-      component: () =>
-        import("src/pages/management/business/LandingPage.vue"),
-    },
+   
     {
       path: ":businessId",
       component: () =>
@@ -25,7 +16,7 @@ export default {
       path: "/dashboard",
       component: () =>
         import("src/pages/areas/dashboard/IndexPage.vue"),
-      meta: { title: "پیشخوان" },
+      meta: { title: "shared.labels.dashboard" },
     },
     {
       path: "/menu",
@@ -35,7 +26,7 @@ export default {
     {
       path: "/tickets",
       component: () => import("src/pages/tickets.vue"),
-      meta: { title: "پشتیبانی" },
+      meta: { title: "shared.labels.support" },
     },
     {
       path: "/push-notification",
@@ -50,25 +41,40 @@ export default {
           path: "",
           component: () =>
             import("pages/areas/acc/fiscalYear/IndexPage.vue"),
-          meta: { title: "سال مالی" },
+          meta: { title: "shared.labels.fiscalYear" },
         },
         {
           path: "create",
           component: () =>
             import("pages/areas/acc/fiscalYear/CreatePage.vue"),
-          meta: { title: "سال مالی -ایجاد" },
+          meta: {
+            title: (t) =>
+              `${t("shared.labels.create")} - ${t(
+                "shared.labels.fiscalYear"
+              )}`,
+          },
         },
         {
           path: "edit/:id",
           component: () =>
             import("pages/areas/acc/fiscalYear/EditPage.vue"),
-          meta: { title: "سال مالی - ویرایش" },
+          meta: {
+            title: (t) =>
+              `${t("shared.labels.edit")} - ${t(
+                "shared.labels.fiscalYear"
+              )}`,
+          },
         },
         {
           path: "copy/:id",
           component: () =>
             import("pages/areas/acc/fiscalYear/CopyPage.vue"),
-          meta: { title: "سال مالی - کپی" },
+          meta: {
+            title: (t) =>
+              `${t("shared.labels.copy")} - ${t(
+                "shared.labels.fiscalYear"
+              )}`,
+          },
         },
       ],
     },

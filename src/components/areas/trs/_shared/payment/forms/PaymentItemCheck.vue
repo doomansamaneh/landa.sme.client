@@ -56,7 +56,7 @@
     >
       <custom-input
         v-model="paymentItem.itemNo"
-        :label="$t('shared.labels.checkNumber')"
+        :label="$t('shared.labels.checkNo')"
         required
       />
     </div>
@@ -70,7 +70,7 @@
     >
       <date-time-picker
         v-model="paymentItem.itemDate"
-        :label="$t('shared.labels.itemDate')"
+        :label="$t('shared.columns.itemDate')"
         required
       />
     </div>

@@ -6,7 +6,7 @@
       >
         <div class="col-5">
           <div>
-            شماره:
+            {{ $t("shared.labels.no") }}:
             <span class="text-weight-500">
               {{ model?.no }}
             </span>

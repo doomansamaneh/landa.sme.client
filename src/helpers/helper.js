@@ -137,9 +137,23 @@ export const helper = {
     return false;
   },
 
-  generateGradientColor(input) {
+  generateGradientColor(input, options = {}) {
+    // Default options
+    const {
+      degree = 135, // Gradient degree (default: 135deg)
+      proximity = 0.6, // Color proximity factor (0-1, default: 0.6)
+      // proximity controls how different the colors are:
+      // 0 = very similar colors (subtle gradient)
+      // 1 = very different colors (strong gradient)
+      darkness = 0, // Darkness factor (0-1, default: 0)
+      // darkness controls how dark the colors should be:
+      // 0 = normal brightness
+      // 1 = very dark colors
+    } = options;
+
     let hash = 0;
     if (input) {
+      input = input.toString();
       for (let i = 0; i < input.length; i++) {
         hash = input.charCodeAt(i) + ((hash << 5) - hash);
       }
@@ -169,28 +183,98 @@ export const helper = {
         .toUpperCase()}`; // Combine and convert back to hex
     }
 
+    // Calculate color factors based on proximity and darkness
+    // Higher proximity = more difference between colors
+    // Higher darkness = darker overall colors
+    const baseLightFactor = 1 + 0.3 * proximity; // Range: 1.0 to 1.3
+    const baseDarkFactor = 1 - 0.3 * proximity; // Range: 0.7 to 1.0
+
+    // Apply darkness factor to both colors
+    const darknessMultiplier = 1 - darkness; // Range: 1.0 to 0.0
+    const lightFactor = baseLightFactor * darknessMultiplier;
+    const darkFactor = baseDarkFactor * darknessMultiplier;
+
     // Create a lighter color and a darker color for the gradient
-    const lighterColor = adjustColor(baseColor, 1.3);
-    const darkerColor = adjustColor(baseColor, 0.7);
+    const lighterColor = adjustColor(baseColor, lightFactor);
+    const darkerColor = adjustColor(baseColor, darkFactor);
 
     // Darken the darker color further for the box shadow
     const boxShadowColor = adjustColor(darkerColor, 0.7);
 
-    // Create the gradient CSS string
-    const gradient = `linear-gradient(135deg, ${lighterColor}, ${darkerColor})`;
+    // Create the gradient CSS string with custom degree
+    const gradient = `linear-gradient(${degree}deg, ${lighterColor}, ${darkerColor})`;
 
     return { gradient, boxShadowColor };
   },
 
   generateAvatarStyle(id) {
-    const { gradient, boxShadowColor } =
-      this.generateGradientColor(id);
+    const { gradient, boxShadowColor } = this.generateGradientColor(
+      id,
+      {
+        degree: 135,
+        proximity: 1,
+      }
+    );
     const $q = useQuasar();
     return {
       background: gradient,
       ...($q.dark.isActive
         ? {}
         : { boxShadow: `0 4px 8px -4px ${boxShadowColor}` }),
+    };
+  },
+
+  // Calculate relative luminance of a color (0-1, where 0 is black, 1 is white)
+  getLuminance(hex) {
+    const rgb = parseInt(hex.slice(1), 16);
+    const r = (rgb >> 16) / 255;
+    const g = ((rgb >> 8) & 0x00ff) / 255;
+    const b = (rgb & 0x0000ff) / 255;
+
+    // Apply gamma correction
+    const toLinear = (c) =>
+      c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+
+    return (
+      0.2126 * toLinear(r) +
+      0.7152 * toLinear(g) +
+      0.0722 * toLinear(b)
+    );
+  },
+
+  // Check if white text will be readable on a given background color
+  isWhiteTextReadable(hex, threshold = 0.5) {
+    return this.getLuminance(hex) < threshold;
+  },
+
+  generateGradientStyle(id) {
+    let options = {
+      degree: 310,
+      proximity: 0.8, // Increased for better contrast between gradient colors
+      darkness: 0.4, // Increased darkness for better white text readability
+    };
+
+    // Generate initial gradient
+    let { gradient } = this.generateGradientColor(id, options);
+
+    // Extract colors from gradient string to check readability
+    const colorMatch = gradient.match(/#[0-9A-Fa-f]{6}/g);
+    if (colorMatch && colorMatch.length >= 2) {
+      const [color1, color2] = colorMatch;
+
+      // If colors are too light for white text, increase darkness
+      if (
+        !this.isWhiteTextReadable(color1) ||
+        !this.isWhiteTextReadable(color2)
+      ) {
+        options.darkness = Math.min(0.7, options.darkness + 0.2);
+        const newGradient = this.generateGradientColor(id, options);
+        gradient = newGradient.gradient;
+      }
+    }
+
+    return {
+      background: gradient,
     };
   },
 

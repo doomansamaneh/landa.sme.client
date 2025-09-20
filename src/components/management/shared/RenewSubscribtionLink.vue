@@ -1,6 +1,7 @@
 <template>
   <template v-if="$q.screen.gt.xs">
     <q-btn
+      padding="8px 16px"
       no-caps
       v-if="showLink"
       class="text-body3 green-gradient green-shadow"
@@ -8,7 +9,6 @@
       rounded
       text-color="white"
       unelevated
-      padding="6px 12px"
     >
       <q-icon name="add" class="q-pr-xs" size="16px" />
       {{ $t("pages.renew-subscription") }}
@@ -19,15 +19,14 @@
     <q-btn
       no-caps
       v-if="showLink"
-      class="text-caption-sm green-shadow green-gradient"
+      class="text-caption green-shadow green-gradient text-white"
       :to="addPaymentUrl"
       rounded
-      padding="4px 8px"
-      text-color="white"
       dense
+      padding="2px 10px"
       unelevated
     >
-      <span class="text-caption-sm">تمدید</span>
+      {{ $t("pages.renew-subscription") }}
     </q-btn>
   </template>
 </template>

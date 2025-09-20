@@ -6,6 +6,7 @@ import {
   month,
   date,
   subject,
+  comment,
   type,
   title,
   isActive,
@@ -145,6 +146,7 @@ export const accountItemColumns = [
   { ...dlCode },
   { ...dlTitle },
   { ...voucherSubject },
+  { ...comment, hidden: true },
   {
     ...debitRemained,
     label: "debit",

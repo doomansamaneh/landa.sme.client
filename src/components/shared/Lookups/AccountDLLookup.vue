@@ -15,14 +15,14 @@
       <div style="width: 16%">
         <header-column
           fieldName="code"
-          title="کد"
+          :title="$t('shared.labels.code')"
           :table-store="tableStore"
         />
       </div>
       <div class="col">
         <header-column
           fieldName="title"
-          title="عنوان"
+          :title="$t('shared.labels.title')"
           :table-store="tableStore"
         />
       </div>

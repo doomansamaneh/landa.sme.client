@@ -1,6 +1,6 @@
 <template>
   <q-card
-    v-access="`sls.invoice.view`"
+    v-access="`sls.purchase.view`"
     :class="[isShakingComputed ? 'widget' : '']"
     class="fit shadow border-radius-lg bordered"
   >
@@ -44,7 +44,7 @@
       <q-card-section class="q-px-none" style="min-height: 300px">
         <loadable-data-grid
           ref="grid"
-          data-source="sls/report/getInvoiceByProduct"
+          data-source="sls/report/getPurchaseByProduct"
           :data-store="gridStore"
           sort-column="quantity"
           first-load
@@ -139,16 +139,16 @@
 <script setup>
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
-  import { useInvoiceProductState } from "../../sls/_composables/useInvoiceProductState";
+  import { usePurchaseProductState } from "../../dashboard/_composables/purchaseTab/usePurchaseProductState";
   import { useDataTable } from "src/composables/useDataTable";
   import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
 
-  const gridStore = useInvoiceProductState();
+  const gridStore = usePurchaseProductState();
   const tableStore = useDataTable({
-    dataSource: "sls/report/getInvoiceByProduct",
+    dataSource: "sls/report/getPurchaseByProduct",
     store: gridStore,
   });
   const draggable = useGeneralTab();

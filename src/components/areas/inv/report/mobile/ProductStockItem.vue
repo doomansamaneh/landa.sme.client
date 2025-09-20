@@ -5,7 +5,7 @@
         no-caps
         :to="`/sls/invoice/edit/${id}`"
         class="primary-gradient primary-shadow text-white text-body2"
-        padding="6px 12px"
+        padding="8px 16px"
         rounded
         unelevated
       >
@@ -15,7 +15,7 @@
 
       <q-btn
         no-caps
-        padding="6px 12px"
+        padding="8px 16px"
         class="text-body2"
         rounded
         unelevated
@@ -92,7 +92,7 @@
 
     <div class="col-md col-sm-6 col-xs-12">
       <div class="text-body3 q-mb-sm">
-        {{ $t("shared.labels.openingQuantity") }}
+        {{ $t("shared.columns.openingQuantity") }}
       </div>
       <q-field dense outlined>
         <template v-slot:control>

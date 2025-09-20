@@ -1,36 +1,38 @@
 import { ref } from "vue";
-import { useQuasar } from "quasar"
+import { useQuasar } from "quasar";
 
-const selectedTheme = ref("")
+const selectedTheme = ref("");
 
 export function useTheme() {
-  const $q = useQuasar()
+  const $q = useQuasar();
 
   const store = () => {
-    const darkModeisActive = localStorage.getItem("darkMode")
+    const darkModeisActive = localStorage.getItem("darkMode");
     if (darkModeisActive === "true") {
-      $q.dark.set(true)
+      $q.dark.set(true);
     }
 
     const selectTheme = (theme) => {
       if (selectedTheme.value) {
-        document.body.classList.remove(`theme--${selectedTheme.value}`)
+        document.body.classList.remove(
+          `theme--${selectedTheme.value}`
+        );
       }
-      document.body.classList.add(`theme--${theme}`)
-      selectedTheme.value = theme
-      localStorage.setItem("selectedTheme", theme)
-    }
+      document.body.classList.add(`theme--${theme}`);
+      selectedTheme.value = theme;
+      localStorage.setItem("selectedTheme", theme);
+    };
 
-    const storedTheme = localStorage.getItem("selectedTheme")
+    const storedTheme = localStorage.getItem("selectedTheme");
     if (storedTheme) {
-      selectTheme(storedTheme)
+      selectTheme(storedTheme);
+    } else {
+      selectTheme("blue");
     }
-  }
+  };
 
   return {
     selectedTheme,
-    store
-  }
-
+    store,
+  };
 }
-

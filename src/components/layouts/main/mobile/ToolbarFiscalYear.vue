@@ -72,65 +72,84 @@
             </div>
           </q-btn>
         </div>
-        <div class="q-gutter-sm q-mt-lg">
+
+        <div
+          class="flex items-center justify-between q-mt-lg"
+        >
           <q-btn
             no-caps
             unelevated
             round
             dense
-            size="12px"
-            :text-color="$q.dark.isActive ? 'white' : 'grey-8'"
-            icon="o_refresh"
-            @click="reloadData"
+            color="primary"
+            text-color="white"
+            icon="add"
+            to="/acc/fiscalYear/create"
           >
             <q-tooltip class="text-body2 custom-tooltip" :delay="600">
-              {{ $t("shared.labels.refresh") }}
+              {{ $t("shared.labels.addFiscalYear") }}
             </q-tooltip>
           </q-btn>
 
-          <template v-if="tableStore.pagination.value.totalPages > 1">
+          <div class="q-gutter-xs">
             <q-btn
               no-caps
-              :disable="tableStore.pagination.value.currentPage <= 1"
               unelevated
               round
               dense
-              size="12px"
-              color="primary"
-              text-color="white"
-              icon="chevron_right"
-              @click="previous($event)"
+              icon="o_refresh"
+              @click="reloadData"
             >
               <q-tooltip
                 class="text-body2 custom-tooltip"
                 :delay="600"
               >
-                {{ $t("shared.labels.next") }}
+                {{ $t("shared.labels.refresh") }}
               </q-tooltip>
             </q-btn>
-            <q-btn
-              no-caps
-              :disable="
-                tableStore.pagination.value.currentPage >=
-                tableStore.pagination.value.totalPages
-              "
-              unelevated
-              round
-              dense
-              size="12px"
-              color="primary"
-              text-color="white"
-              icon="chevron_left"
-              @click="next($event)"
+
+            <template
+              v-if="tableStore.pagination.value.totalPages > 1"
             >
-              <q-tooltip
-                class="text-body2 custom-tooltip"
-                :delay="600"
+              <q-btn
+                no-caps
+                :disable="
+                  tableStore.pagination.value.currentPage <= 1
+                "
+                unelevated
+                round
+                dense
+                :icon="$q.lang.rtl ? 'chevron_right' : 'chevron_left'"
+                @click="previous($event)"
               >
-                {{ $t("shared.labels.previous") }}
-              </q-tooltip>
-            </q-btn>
-          </template>
+                <q-tooltip
+                  class="text-body2 custom-tooltip"
+                  :delay="600"
+                >
+                  {{ $t("shared.labels.next") }}
+                </q-tooltip>
+              </q-btn>
+              <q-btn
+                no-caps
+                :disable="
+                  tableStore.pagination.value.currentPage >=
+                  tableStore.pagination.value.totalPages
+                "
+                unelevated
+                round
+                dense
+                :icon="$q.lang.rtl ? 'chevron_left' : 'chevron_right'"
+                @click="next($event)"
+              >
+                <q-tooltip
+                  class="text-body2 custom-tooltip"
+                  :delay="600"
+                >
+                  {{ $t("shared.labels.previous") }}
+                </q-tooltip>
+              </q-btn>
+            </template>
+          </div>
         </div>
       </q-card-section>
 
