@@ -22,7 +22,7 @@
         <div class="text-h6 q-mt-lg text-weight-bold">
           به لاندا خوش آمدید
         </div>
-        <div class="text-body1 q-mt-sm text-grey-7">
+        <div class="text-body1 q-mt-sm">
           لطفاً اطلاعات زیر رو تکمیل کنید. پر کردنش باعث می‌شه بتونیم
           خدمات حسابداری لاندا رو دقیقتر و مناسبتر برای شما فراهم
           کنیم.
@@ -83,7 +83,7 @@
 
         <div
           class="q-mb-md"
-          v-if="model.leadSourceId === leadSourceType.None"
+          v-if="model.leadSourceId === leadSourceType.none"
         >
           <custom-input
             v-model="model.leadSource"
@@ -91,10 +91,11 @@
             :placeholder="$t('shared.labels.enterLeadSource')"
             type="textarea"
             :maxlength="240"
+            required
           />
         </div>
 
-        <q-card-actions align="right" class="q-mt-md">
+        <q-card-actions align="right" class="q-mt-md q-px-none">
           <q-btn
             type="submit"
             unelevated
@@ -141,15 +142,6 @@
     leadSource: "",
   });
 
-  const notifyResponse = (data) => {
-    if (data.message) {
-      $q.notify({
-        type: "positive",
-        message: data.message,
-      });
-    }
-  };
-
   async function onSubmit() {
     if (!formRef.value) return;
 
@@ -163,9 +155,6 @@
         "business/SaveProfile",
         model.value
       );
-
-      // Show success message
-      notifyResponse(response.data);
 
       // Complete the first login (this sets the flag to show tutorial after dialog closes)
       store.completeFirstLogin();

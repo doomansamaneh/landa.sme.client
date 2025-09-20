@@ -9,11 +9,18 @@
     <q-btn
       rounded
       unelevated
-      padding="8px 16px"
+      padding="8px 16px 8px 24px"
       class="primary-shadow primary-gradient text-white"
     >
       <q-icon name="o_menu" class="q-mr-xs" />
       <span>چک لیست تازه کار</span>
+      <q-badge
+        v-if="remainingTasks > 0"
+        :label="remainingTasks"
+        color="negative"
+        floating
+        class="text-body2 q-mr-xs"
+      />
 
       <q-menu
         v-if="$q.screen.gt.sm"
@@ -42,7 +49,7 @@
                 unelevated
                 @click="onPopupHide"
               >
-                <q-icon name="o_close" />
+                <q-icon name="o_expand_more" size="20px" />
               </q-btn>
             </div>
           </q-card-section>
@@ -65,8 +72,8 @@
             <q-item
               v-for="(task, index) in tasks"
               :key="index"
-              :clickable="!!task.route"
-              @click="task.route && goTo(task)"
+              :clickable="isTaskClickable(index)"
+              @click="isTaskClickable(index) && goTo(task)"
               :class="{ 'bg-on-dark': task.completed }"
             >
               <q-item-section avatar>
@@ -83,11 +90,14 @@
                 <div class="text-subtitle2 text-weight-bold">
                   {{ task.title }}
                 </div>
-                <div class="text-caption text-grey-6">
+                <div class="text-caption caption-on-dark">
                   {{ task.description }}
                 </div>
               </q-item-section>
-              <q-item-section side v-if="task.route">
+              <q-item-section
+                side
+                v-if="task.route && isTaskClickable(index)"
+              >
                 <q-btn
                   flat
                   round
@@ -103,9 +113,9 @@
 
           <q-card-actions align="right">
             <q-btn
+              rounded
               flat
               size="sm"
-              color="grey-6"
               label="دیگر نمایش نده"
               @click="onDismissClick"
             />
@@ -151,8 +161,8 @@
         <q-item
           v-for="(task, index) in tasks"
           :key="index"
-          :clickable="!!task.route"
-          @click="task.route && goTo(task)"
+          :clickable="isTaskClickable(index)"
+          @click="isTaskClickable(index) && goTo(task)"
           :class="{ 'bg-on-dark': task.completed }"
         >
           <q-item-section avatar>
@@ -169,11 +179,14 @@
             <div class="text-subtitle2 text-weight-bold">
               {{ task.title }}
             </div>
-            <div class="text-caption text-grey-6">
+            <div class="text-caption caption-on-dark">
               {{ task.description }}
             </div>
           </q-item-section>
-          <q-item-section side v-if="task.route">
+          <q-item-section
+            side
+            v-if="task.route && isTaskClickable(index)"
+          >
             <q-btn
               flat
               round
@@ -181,7 +194,6 @@
               color="primary"
               icon="chevron_left"
               @click.stop="goTo(task)"
-              :aria-label="`رفتن به ${task.title}`"
             />
           </q-item-section>
         </q-item>
@@ -189,9 +201,9 @@
 
       <q-card-actions align="right">
         <q-btn
+          rounded
           flat
           size="sm"
-          color="grey-6"
           label="دیگر نمایش نده"
           @click="onDismissClick"
         />
@@ -223,26 +235,38 @@
   );
   const tasks = ref([
     {
-      title: "ثبت‌نام",
+      title: "ثبت نام",
       description: "ایجاد حساب کاربری رایگان",
       completed: true,
       route: null,
     },
     {
-      title: "تنظیم حساب کاربری",
-      description: "افزودن اطلاعات شرکت",
-      completed: false,
-      route: "/cmn/appConfig/basicInfo",
+      title: "راه اندازی کسب و کار",
+      description: "تنظیمات اولیه کسب و کار",
+      completed: true,
+      route: null,
     },
     {
-      title: "ایجاد پیش‌فاکتور",
-      description: "راهنمای مرحله‌به‌مرحله ایجاد پیش‌فاکتور",
+      title: "ایجاد حسابهای بانکی",
+      description: "یک یا چند حساب بانکی خود را تعریف کنید",
       completed: false,
-      route: "/sls/quote/create",
+      route: "/trs/bankAccount",
     },
     {
-      title: "ایجاد فاکتور",
-      description: "آشنایی با مراحل صدور فاکتور",
+      title: "ایجاد کالاها و خدمات",
+      description: "کالا و خدمات خود را تعریف کنید",
+      completed: false,
+      route: "/cmn/product",
+    },
+    {
+      title: "ایجاد مشتریان",
+      description: "مشتریان و طرف حسابهای خود را تعریف کنید",
+      completed: false,
+      route: "/crm/customer",
+    },
+    {
+      title: "ایجاد اولین فاکتور فروش",
+      description: "اولین فاکتور فروش خود را ایجاد کنید",
       completed: false,
       route: "/sls/invoice/create",
     },
@@ -253,10 +277,35 @@
     router.push(task.route);
   }
 
+  // Function to check if a task is clickable (can be accessed)
+  function isTaskClickable(index) {
+    const task = tasks.value[index];
+
+    // If task has no route, it's not clickable
+    if (!task.route) return false;
+
+    // First task is always clickable
+    if (index === 0) return true;
+
+    // For other tasks, check if all previous tasks are completed
+    for (let i = 0; i < index; i++) {
+      if (!tasks.value[i].completed) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   const progress = computed(() => {
     const total = tasks.value.length || 1;
     const completed = tasks.value.filter((t) => t.completed).length;
     return completed / total;
+  });
+
+  // Computed property for remaining tasks count
+  const remainingTasks = computed(() => {
+    return tasks.value.filter((t) => !t.completed).length;
   });
 
   function showPopup() {
@@ -306,10 +355,28 @@
     );
 
     if (hasChanges) {
+      // Ensure sequential completion - only allow completing tasks in order
+      ensureSequentialCompletion();
+
       // Check if all tasks are completed
       if (tutorialStore.areAllTasksCompleted(tasks.value)) {
         // Auto-complete tutorial when all tasks are completed
         tutorialStore.completeTutorial();
+      }
+    }
+  }
+
+  // Function to ensure tasks are completed sequentially
+  function ensureSequentialCompletion() {
+    for (let i = 0; i < tasks.value.length; i++) {
+      const task = tasks.value[i];
+
+      // If this task is not completed, uncomplete all subsequent tasks
+      if (!task.completed) {
+        for (let j = i + 1; j < tasks.value.length; j++) {
+          tasks.value[j].completed = false;
+        }
+        break;
       }
     }
   }
