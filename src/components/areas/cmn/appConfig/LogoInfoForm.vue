@@ -1,14 +1,14 @@
 <template>
-  <q-card-section>
+  <q-card-section class="no-padding">
     <q-checkbox
       dense
       size="46px"
-      class="text-body1"
+      class="q-mb-md text-body1"
       :label="t('shared.labels.logoInPrint')"
       v-model="configStore.model.value.companySetting.invoiceShowLogo"
     />
   </q-card-section>
-  <q-card-section>
+  <q-card-section class="no-padding">
     <q-avatar square>
       <img :src="logoSource" />
     </q-avatar>
@@ -23,18 +23,18 @@
 
   <q-separator class="q-my-md" />
 
-  <q-card-section>
+  <q-card-section class="no-padding">
     <q-checkbox
       dense
       size="46px"
-      class="text-body1"
+      class="q-mb-md text-body1"
       :label="t('shared.labels.signatureInPrint')"
       v-model="
         configStore.model.value.companySetting.invoiceShowSignature
       "
     />
   </q-card-section>
-  <q-card-section>
+  <q-card-section class="no-padding">
     <q-avatar square>
       <img :src="signatureSource" />
     </q-avatar>

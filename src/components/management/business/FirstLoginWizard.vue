@@ -1,185 +1,132 @@
 <template>
   <div :class="headerMargin()">
-    <div :class="titlePadding()" class="text-h6 text-weight-700">
-      راه اندازی اولیه کسب و کار
-    </div>
-
-    <div :class="cardWidth()">
-      <q-stepper
-        contracted
-        class="border-radius-xl"
-        :class="styles()"
-        v-model="step"
-        ref="stepper"
-        color="primary"
-        animated
+    <tip-banner
+      :title="$t('pages.first-login-wizard')"
+      :tip="$t('shared.labels.firstLoginWizardTip')"
+      :class="$q.screen.gt.sm ? 'q-mb-md' : 'q-mb-md q-mx-md'"
+      class="z-1"
+    />
+    <q-stepper
+      :class="styles()"
+      v-model="step"
+      ref="stepper"
+      :active-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      :done-color="$q.dark.isActive ? 'yellow' : 'primary'"
+      animated
+      header-class="text-weight-bold"
+      class="z-1"
+    >
+      <q-step
+        prefix="1"
+        :name="1"
+        :title="$t('shared.labels.basicInfo')"
+        icon="info"
+        :done="step > 1"
+        class="hide-scrollbar overflow-hidden-y"
       >
-        <q-step
-          prefix="1"
-          :name="1"
-          title="اطلاعات اصلی"
-          icon="info"
-          :done="step > 1"
-        >
-          <basic-info inside />
-        </q-step>
+        <basic-info />
+      </q-step>
 
-        <q-step
-          prefix="2"
-          :name="2"
-          title="تماس"
-          icon="phone"
-          :done="step > 2"
-        >
-          <contact-info inside />
-        </q-step>
+      <q-step
+        prefix="2"
+        :name="2"
+        :title="$t('shared.labels.contact')"
+        icon="phone"
+        :done="step > 2"
+        class="hide-scrollbar overflow-hidden-y"
+      >
+        <contact-info />
+      </q-step>
 
-        <q-step
-          prefix="3"
-          :name="3"
-          title="مالیات"
-          icon="paid"
-          :done="step > 3"
-        >
-          <vat-info inside />
-        </q-step>
+      <q-step
+        prefix="3"
+        :name="3"
+        :title="$t('shared.labels.tax')"
+        icon="paid"
+        :done="step > 3"
+        class="hide-scrollbar overflow-hidden-y"
+      >
+        <vat-info />
+      </q-step>
 
-        <q-step
-          prefix="5"
-          :name="5"
-          title="حقوق و دستمزد"
-          icon="payments"
-          :done="step > 5"
-        >
-          <salary-info inside />
-        </q-step>
+      <q-step
+        prefix="4"
+        :name="4"
+        :title="$t('shared.labels.salaryAndWages')"
+        icon="payments"
+        :done="step > 4"
+        class="hide-scrollbar overflow-hidden-y"
+      >
+        <salary-info />
+      </q-step>
 
-        <q-step
-          prefix="6"
-          :name="6"
-          title="بازرگانی، خرید و فروش"
-          icon="storefront"
-          :done="step > 6"
-        >
-          <sales-info inside />
-        </q-step>
+      <q-step
+        prefix="5"
+        :name="5"
+        :title="$t('shared.labels.commercePurchaseSale')"
+        icon="storefront"
+        :done="step > 5"
+        class="hide-scrollbar overflow-hidden-y"
+      >
+        <sales-info />
+      </q-step>
 
-        <q-step
-          prefix="7"
-          :name="7"
-          title="لوگو"
-          icon="diamond"
-          :done="step > 7"
-        >
-          <logo-info inside />
-        </q-step>
+      <q-step
+        prefix="6"
+        :name="6"
+        :title="$t('shared.labels.logo')"
+        icon="diamond"
+        :done="step > 6"
+        class="hide-scrollbar overflow-hidden-y"
+      >
+        <logo-info />
+      </q-step>
 
-        <template v-slot:navigation>
-          <q-stepper-navigation>
-            <q-btn
-              no-caps
-              v-if="step === 7"
-              class="primary-shadow"
-              unelevated
-              rounded
-              icon="save"
-              @click="save"
-              color="primary"
-              label="ذخیره"
-            />
+      <template #navigation>
+        <q-stepper-navigation>
+          <q-btn
+            padding="8px 16px"
+            no-caps
+            v-if="step === 6"
+            class="primary-shadow primary-gradient text-body1"
+            unelevated
+            rounded
+            @click="save"
+            color="primary"
+            :label="$t('shared.labels.save')"
+          />
 
-            <q-btn
-              no-caps
-              v-else
-              class="primary-shadow"
-              unelevated
-              rounded
-              @click="$refs.stepper.next()"
-              color="primary"
-              label="به پیش"
-            >
-              <q-icon class="q-px-sm" name="west"></q-icon>
-            </q-btn>
+          <q-btn
+            padding="8px 16px"
+            no-caps
+            v-else
+            class="primary-shadow primary-gradient text-body1"
+            unelevated
+            rounded
+            @click="$refs.stepper.next()"
+            color="primary"
+            :label="$t('shared.labels.next')"
+          />
 
-            <q-btn
-              no-caps
-              rounded
-              v-if="step > 1"
-              flat
-              color="primary"
-              @click="$refs.stepper.previous()"
-              label="پسین"
-              class="q-ml-sm"
-            />
-          </q-stepper-navigation>
-        </template>
-
-        <template v-slot:message>
-          <q-banner class="bg-on-dark" v-if="step === 1">
-            <div class="row items-center q-gutter-sm">
-              <q-icon size="24px" name="o_info" />
-              <div class="text-body1 text-weight-700">
-                اطلاعات اصلی
-              </div>
-            </div>
-          </q-banner>
-
-          <q-banner class="bg-on-dark" v-if="step === 2">
-            <div class="row items-center q-gutter-sm">
-              <q-icon size="24px" name="o_phone" />
-              <div class="text-body1 text-weight-700">تماس</div>
-            </div>
-          </q-banner>
-
-          <q-banner class="bg-on-dark" v-if="step === 3">
-            <div class="row items-center q-gutter-sm">
-              <q-icon size="24px" name="o_paid" />
-              <div class="text-body1 text-weight-700">مالیات</div>
-            </div>
-          </q-banner>
-
-          <q-banner class="bg-on-dark" v-if="step === 4">
-            <div class="row items-center q-gutter-sm">
-              <q-icon size="24px" name="o_local_hospital" />
-              <div class="text-body1 text-weight-700">بیمه</div>
-            </div>
-          </q-banner>
-
-          <q-banner class="bg-on-dark" v-if="step === 5">
-            <div class="row items-center q-gutter-sm">
-              <q-icon size="24px" name="o_payments" />
-              <div class="text-body1 text-weight-700">
-                حقوق و دستمزد
-              </div>
-            </div>
-          </q-banner>
-
-          <q-banner class="bg-on-dark" v-if="step === 6">
-            <div class="row items-center q-gutter-sm">
-              <q-icon size="24px" name="storefront" />
-              <div class="text-body1 text-weight-700">
-                بازرگانی، خرید و فروش
-              </div>
-            </div>
-          </q-banner>
-
-          <q-banner class="bg-on-dark" v-if="step === 7">
-            <div class="row items-center q-gutter-sm">
-              <q-icon size="24px" name="o_diamond" />
-              <div class="text-body1 text-weight-700">
-                لوگو و امضا
-              </div>
-            </div>
-          </q-banner>
-        </template>
-      </q-stepper>
-    </div>
+          <q-btn
+            padding="8px 16px"
+            no-caps
+            rounded
+            v-if="step > 1"
+            flat
+            class="primary q-ml-sm text-body1"
+            @click="$refs.stepper.previous()"
+            :label="$t('shared.labels.previous')"
+          />
+        </q-stepper-navigation>
+      </template>
+    </q-stepper>
   </div>
 </template>
 
 <script setup>
   import { ref } from "vue";
-  import { useQuasar, Dialog } from "quasar";
+  import { useQuasar } from "quasar";
   import { useRouter } from "vue-router";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
 
@@ -189,7 +136,7 @@
   import SalaryInfo from "src/components/areas/cmn/appConfig/SalaryInfoForm.vue";
   import SalesInfo from "src/components/areas/cmn/appConfig/SalesInfoForm.vue";
   import LogoInfo from "src/components/areas/cmn/appConfig/LogoInfoForm.vue";
-  // import CongratsDialog from "src/components/shared/CongratsDialog.vue";
+  import TipBanner from "src/components/shared/TipBanner.vue";
 
   const $q = useQuasar();
   const router = useRouter();
@@ -198,20 +145,14 @@
 
   const save = async () => {
     await configStore.saveAppConfig();
-    // Dialog.create({
-    //   component: CongratsDialog,
-    // });
+
     router.push("/dashboard");
   };
 
-  const cardWidth = () => {
-    return $q.screen.gt.sm ? "step-card" : "";
-  };
-
   const styles = () => {
-    return $q.screen.gt.xs
+    return $q.screen.gt.sm
       ? "q-card bordered"
-      : "no-border no-shadow";
+      : "no-border no-shadow bg-main";
   };
 
   const headerMargin = () => {
@@ -219,14 +160,11 @@
       ? "q-mt-lg q-pt-md q-pb-md q-mb-xl"
       : "q-my-lg";
   };
-
-  const titlePadding = () => {
-    return $q.screen.gt.xs ? "q-mb-md" : "q-px-lg";
-  };
 </script>
 
 <style lang="scss">
-  .step-card {
-    width: 900px;
+  .q-stepper--horizontal .q-stepper__line:before,
+  .q-stepper--horizontal .q-stepper__line:after {
+    height: 2px;
   }
 </style>

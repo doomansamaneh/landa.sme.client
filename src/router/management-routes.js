@@ -10,7 +10,7 @@ export default {
       path: "/landing",
       name: "landing",
       meta: {
-        icon: "celebration",
+        icon: "flag",
         title: "راه اندازی اولیه کسب و کار",
       },
       component: () =>
