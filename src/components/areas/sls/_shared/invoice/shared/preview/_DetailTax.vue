@@ -14,7 +14,7 @@
             size="sm"
             @click="openHelpDialog"
           >
-            <q-icon name="o_info" size="xs" />
+            <q-icon name="help_outline" size="xs" />
           </q-btn>
         </div>
       </div>

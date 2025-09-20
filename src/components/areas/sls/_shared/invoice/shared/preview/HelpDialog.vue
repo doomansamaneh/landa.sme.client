@@ -1,6 +1,7 @@
 <template>
   <q-dialog
-    v-model="modelValue"
+    :model-value="modelValue"
+    @update:model-value="emit('update:modelValue', $event)"
     :maximized="$q.screen.xs"
     transition-show="slide-up"
     transition-hide="slide-down"
@@ -38,12 +39,12 @@
             rounded
             outline
           >
-            IN_PROGRESS
+            {{ getStatusTranslation("IN_PROGRESS") }}
           </q-badge>
           به چه معناست؟
         </div>
         <p class="text-body2 q-mt-sm">
-          صورتحساب به سامانه مودیان ارسال شده و در حال پردازش است. بسته به شلوغی سرورهای مالیاتی، پردازش ممکن است تا ۷۲ ساعت طول بکشد. در صورت موفقیت، وضعیت به SUCCESS تغییر می‌کند؛ در غیر این صورت به FAILED تغییر یافته و لازم است خطاهای اعلام شده را برطرف کرده و دوباره اقدام به ارسال نمایید.
+          {{ getStatusDescription("IN_PROGRESS") }}
         </p>
         <div class="text-body1 text-weight-700">
           وضعیت
@@ -52,23 +53,40 @@
             rounded
             outline
           >
-            FAILED
+            {{ getStatusTranslation("FAILED") }}
           </q-badge>
           به چه معناست؟
         </div>
         <p class="text-body2 q-mt-sm">
-          چند خطا در ارسال وجود دارد. مهم‌ترین آن‌ها در ادامه آمده است. لطفاً پس از رفع خطاها، دوباره اقدام کنید.
-          <ul>
-            <li>خطای شماره مالیات صورتحساب</li>
-            <li>خطای تاریخ صورتحساب</li>
-            <li>خطای نرخ مالیات بر ارزش افزوده</li>
-            <li>خطای شناسه مالیاتی کالا</li>
-            <li>...</li>
-          </ul>
+          {{ getStatusDescription("FAILED") }}
         </p>
       </q-card-section>
     </q-card>
   </q-dialog>
 </template>
 
-<script setup></script>
+<script setup>
+  import { useI18n } from "vue-i18n";
+
+  const props = defineProps({
+    modelValue: {
+      type: Boolean,
+      default: false,
+    },
+  });
+
+  const emit = defineEmits(["update:modelValue"]);
+
+  const { t } = useI18n();
+
+  const getStatusTranslation = (status) => {
+    return t(
+      `shared.labels.taxApiStatusTranslations.${status}`,
+      status
+    );
+  };
+
+  const getStatusDescription = (status) => {
+    return t(`shared.labels.taxApiStatusDescriptions.${status}`, "");
+  };
+</script>

@@ -15,28 +15,49 @@
                 outline
                 :class="getStatusClasses(item.status)"
               >
-                <div>
-                  {{ item.status }}
+                <div class="row items-center q-gutter-xs">
+                  <span>{{ getStatusTranslation(item.status) }}</span>
+                  <q-btn
+                    size="0"
+                    no-caps
+                    round
+                    flat
+                    dense
+                    class="q-ml-xs"
+                  >
+                    <q-icon name="help_outline" size="14px" />
+                    <q-tooltip
+                      class="custom-tooltip text-body1"
+                      max-width="400px"
+                    >
+                      <div class="text-weight-bold q-mb-xs">
+                        {{ getStatusTranslation(item.status) }}
+                      </div>
+                      <div class="text-body2">
+                        {{ getStatusDescription(item.status) }}
+                      </div>
+                    </q-tooltip>
+                  </q-btn>
+                  <q-btn
+                    no-caps
+                    v-if="
+                      item.status === taxStatus.pending ||
+                      item.status === taxStatus.notFound ||
+                      item.status === taxStatus.inProgress
+                    "
+                    round
+                    unelevated
+                    dense
+                    size="0"
+                    @click="taxStore.inquery(item.id, reloadData)"
+                    class="q-ml-xs"
+                  >
+                    <q-icon size="14px" name="o_refresh" />
+                    <q-tooltip class="custom-tooltip text-body1">
+                      دریافت دوباره اطلاعات از سامانه مودیان
+                    </q-tooltip>
+                  </q-btn>
                 </div>
-                <q-btn
-                  no-caps
-                  v-if="
-                    item.status === taxStatus.pending ||
-                    item.status === taxStatus.notFound ||
-                    item.status === taxStatus.inProgress
-                  "
-                  round
-                  unelevated
-                  dense
-                  size="0"
-                  @click="taxStore.inquery(item.id, reloadData)"
-                  class="q-ml-xs"
-                >
-                  <q-icon size="14px" name="o_refresh" />
-                  <q-tooltip class="custom-tooltip text-body1">
-                    دریافت دوباره اطلاعات از سامانه مودیان
-                  </q-tooltip>
-                </q-btn>
               </q-badge>
               <div class="text-overline">{{ item.logTime }}</div>
             </div>
@@ -69,19 +90,19 @@
             <div class="text-body2 text-weight-700">ریز اطلاعات</div>
             <ul class="q-px-md q-pb-none q-gutter-xs" dir="ltr">
               <li>
-                <span class="text-grey-8 q-p-x-sm">tax id:</span>
+                <span class="q-px-xs caption-on-dark">tax id:</span>
                 <span class="text-roboto text-weight-500">
                   {{ item.taxId }}
                 </span>
               </li>
               <li>
-                <span class="text-grey-8 q-p-x-sm">ref no:</span>
+                <span class="q-px-xs caption-on-dark">ref no:</span>
                 <span class="text-roboto text-weight-500">
                   {{ item.referenceNumber }}
                 </span>
               </li>
               <li>
-                <span class="text-grey-8 q-p-x-sm">uid:</span>
+                <span class="q-px-xs caption-on-dark">uid:</span>
                 <span class="text-roboto text-weight-500">
                   {{ item.uid }}
                 </span>
@@ -98,7 +119,7 @@
                   :key="error.code"
                   class="q-mb-md"
                 >
-                  <div class="text-body1 text-weight-700 text-grey-8">
+                  <div class="text-body1 text-weight-700">
                     {{ error.code }}
                   </div>
                   <div class="text-body2 text-weight-600">
@@ -122,6 +143,7 @@
   import { taxApiLogColumns } from "src/components/areas/sls/_composables/constants";
   import { useTaxApiLogModel } from "src/components/areas/sls/_composables/useTaxApiLogModel";
   import { useDataTable } from "src/composables/useDataTable";
+  import { useI18n } from "vue-i18n";
 
   const props = defineProps({
     toolbar: Boolean,
@@ -129,15 +151,28 @@
     invoiceId: String,
   });
 
+  const { t } = useI18n();
+
   const getStatusClasses = (status) => {
     const classes = {
       [taxStatus.pending]: "bg-primary text-white",
       [taxStatus.success]: "bg-green-2 text-green-8",
       [taxStatus.failed]: "bg-red-2 text-red-8",
       [taxStatus.inProgress]: "bg-yellow-3 text-orange-9",
-      [taxStatus.notFound]: "bg-grey-4 text-grey-8",
+      [taxStatus.notFound]: "bg-grey-4 ",
     };
     return classes[status] || "";
+  };
+
+  const getStatusTranslation = (status) => {
+    return t(
+      `shared.labels.taxApiStatusTranslations.${status}`,
+      status
+    );
+  };
+
+  const getStatusDescription = (status) => {
+    return t(`shared.labels.taxApiStatusDescriptions.${status}`, "");
   };
 
   const dataSource = "sls/InvoiceTaxApiLog/getGridData";
