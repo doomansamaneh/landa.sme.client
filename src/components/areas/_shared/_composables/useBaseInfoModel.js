@@ -38,12 +38,6 @@ export function useBaseInfoModel({
     });
   }
 
-<<<<<<< HEAD
-  // onMounted(() => {
-  //   const selectedId = id ?? route.params.id;
-  //   getById(selectedId);
-  // });
-=======
   onMounted(async () => {
     const selectedId = id ?? route.params.id;
     await getById(selectedId);
@@ -51,7 +45,6 @@ export function useBaseInfoModel({
     if (afterGetByIdCallback)
       await afterGetByIdCallback(localModel.value);
   });
->>>>>>> be6b812978456eae930a2d9aee097e7a5ce25e4f
 
   return {
     model: localModel,

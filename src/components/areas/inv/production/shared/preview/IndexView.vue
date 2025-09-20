@@ -1,11 +1,10 @@
 <template>
-  <toolbar-desktop
+  <toolbar-container
     v-if="model"
+    :model="model"
     :inside="inside"
     :margin="!inside"
     :title="title"
-    :menu-items="menuItems"
-    back-button
   />
 
   <div class="row q-col-gutter-lg">
@@ -109,13 +108,11 @@
 
 <script setup>
   import { ref, computed, onMounted } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+  import { useRoute } from "vue-router";
   import { usePrint } from "src/composables/usePrint";
   import { useFormActions } from "src/composables/useFormActions";
-  import { useProductionPreviewMenu } from "src/components/areas/inv/_menus/useProductionPreviewMenu.js";
-  import { usePreviewMenuContext } from "src/components/areas/_shared/menus/usePreviewMenuContext";
 
-  import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
+  import ToolbarContainer from "./ToolbarContainer.vue";
   import HeaderSection from "src/components/areas/_shared/preview/VoucherHeader.vue";
   import ProductItems from "./_ProductItems.vue";
   import UsedItems from "./_UsedItems.vue";
@@ -136,22 +133,8 @@
   const crudStore = useFormActions(baseRoute, model);
   const printStore = usePrint();
   const route = useRoute();
-  const router = useRouter();
 
   const id = computed(() => props.item?.id ?? route.params.id);
-
-  function deleteCallBack() {
-    //voucherStore.state.firstLoad.value = false;
-    router.back();
-  }
-
-  const context = usePreviewMenuContext(model, baseRoute, {
-    onDeleteSuccess: deleteCallBack,
-  });
-
-  const menuItems = computed(() =>
-    useProductionPreviewMenu(context.value)
-  );
 
   onMounted(() => {
     crudStore.getById(id.value);
