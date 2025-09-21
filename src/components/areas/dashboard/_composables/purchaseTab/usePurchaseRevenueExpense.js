@@ -70,7 +70,7 @@ export function usePurchaseRevenueExpense({ dataSource, dataStore }) {
   );
 
   const chartRevenueSeries = computed(() => [
-    chartSeries.value?.find((series) => series.name === "revenue"),
+    chartSeries.value?.find((series) => series.name === "expense"),
   ]);
 
   const revenueTotal = computed(
