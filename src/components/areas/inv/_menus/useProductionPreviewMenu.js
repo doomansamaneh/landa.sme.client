@@ -1,4 +1,3 @@
-import { computed } from "vue";
 import { usePreview } from "src/composables/usePreview";
 import { usePreviewMenu } from "../../_shared/menus/usePreviewMenu";
 import { menuItems } from "src/constants/menuItems";
@@ -38,7 +37,7 @@ export function useProductionPreviewMenu(context) {
       delete: {
         ...menuItems.delete,
         handler: () => {
-          context.delete?.();
+          context.deleteById?.();
         },
         visible: true,
       },
