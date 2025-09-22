@@ -40,6 +40,7 @@
           name="o_expand_more"
           id="expand-more-icon"
           class="show-lookup-icon cursor-pointer"
+          :class="isPopupOpen ? 'expand-open' : 'expand-close'"
           size="sm"
         />
       </template>
@@ -688,7 +689,7 @@
   });
 </script>
 
-<style>
+<style scoped>
   .header {
     position: sticky;
     top: 0;
@@ -697,5 +698,15 @@
   .footer {
     position: sticky;
     bottom: 0;
+  }
+
+  .expand-open {
+    transform: rotate(-180deg);
+    transition-duration: 300ms;
+  }
+
+  .expand-close {
+    transform: rotate(0);
+    transition-duration: 300ms;
   }
 </style>

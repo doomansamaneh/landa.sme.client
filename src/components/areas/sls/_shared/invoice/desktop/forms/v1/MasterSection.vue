@@ -34,9 +34,13 @@
               round
               unelevated
               class="text-body2"
+              :class="moreInfo ? 'expand-open' : 'expand-close'"
               @click="toggleMoreInfo"
             >
-              <q-icon size="24px" name="keyboard_arrow_down" />
+              <q-icon size="24px" name="expand_more" />
+              <notif-tooltip closeable>
+                برای مشاهده گزینه‌های بیشتر کلیک کنید
+              </notif-tooltip>
             </q-btn>
 
             <q-btn
@@ -45,9 +49,13 @@
               round
               size="11px"
               unelevated
+              :class="moreInfo ? 'expand-open' : 'expand-close'"
               @click="toggleMoreInfo"
             >
-              <q-icon size="20px" name="keyboard_arrow_down" />
+              <q-icon size="24px" name="expand_more" />
+              <notif-tooltip closeable arrow="top-left">
+                برای مشاهده گزینه‌های بیشتر کلیک کنید
+              </notif-tooltip>
             </q-btn>
           </div>
         </div>
@@ -193,6 +201,7 @@
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
+  import NotifTooltip from "src/components/shared/NotifTooltip.vue";
 
   const { t: $t } = useI18n();
 
@@ -274,3 +283,15 @@
     moreInfo.value = !moreInfo.value;
   };
 </script>
+
+<style scoped>
+  .expand-open {
+    transform: rotate(-180deg);
+    transition-duration: 300ms;
+  }
+
+  .expand-close {
+    transform: rotate(0);
+    transition-duration: 300ms;
+  }
+</style>
