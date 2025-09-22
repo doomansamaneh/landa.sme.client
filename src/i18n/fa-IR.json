@@ -261,6 +261,8 @@
 
   "messages": {
     "noRowSelected": "هیچ سطری انتخاب نشده است",
+    "welcome": "خیلی خوش آمدید",
+    "welcomeDescription": "لطفاً قبل از ورود فرم زیر را تکمیل کنید، پر کردن این اطلاعات باعث می‌شه بتونیم دقیق‌تر و بهتر خدمتگزار شما باشیم.",
     "Msg_DatabaseUniqueKeyError": "اطلاعات وارد شده تکراری است",
     "Msg_YouAreNotBusinessOwner": "شما مالک کسب و کار نیستید",
     "Val_Required": "ورود این فیلد اجباری است",
