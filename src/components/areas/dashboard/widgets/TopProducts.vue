@@ -25,7 +25,7 @@
       <q-card-section class="q-pb-none">
         <div class="row items-center justify-between">
           <widget-title
-            :label="$t('shared.labels.topProducts')"
+            :label="$t('shared.labels.topPurchasedProducts')"
             icon="o_inventory_2"
           />
 
