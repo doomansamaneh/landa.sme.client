@@ -25,7 +25,7 @@
       <q-card-section class="q-pb-none">
         <div class="row items-center justify-between">
           <widget-title
-            :label="$t('shared.labels.topProducts')"
+            :label="$t('shared.labels.topPurchasedProducts')"
             icon="o_inventory_2"
           />
 
@@ -117,7 +117,7 @@
                   {{ item.productCode }} - {{ item.productTitle }}
                 </span>
                 <div class="text-body3">
-                  {{ $t("shared.priceAdjustmentTarget.sales") }}:
+                  {{ $t("shared.priceAdjustmentTarget.purchase") }}:
                   {{ helper.formatNumber(item.price) }}
                   <span>({{ item.productUnitTitle }})</span>
                 </div>
@@ -139,9 +139,9 @@
 <script setup>
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
-  import { usePurchaseProductState } from "../../dashboard/_composables/purchaseTab/usePurchaseProductState";
+  import { usePurchaseProductState } from "../../_composables/purchaseTab/usePurchaseProductState";
   import { useDataTable } from "src/composables/useDataTable";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
+  import { usePurchaseTab } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
@@ -151,7 +151,7 @@
     dataSource: "sls/report/getPurchaseByProduct",
     store: gridStore,
   });
-  const draggable = useGeneralTab();
+  const draggable = usePurchaseTab();
 
   const grid = ref(null);
   const emit = defineEmits(["hideWidget"]);
