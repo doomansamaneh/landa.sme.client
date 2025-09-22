@@ -114,7 +114,7 @@
   import { computed } from "vue";
   import { usePurchaseTab } from "src/components/areas/dashboard/_composables/purchaseTab/usePurchaseTab";
 
-  import TopProducts from "src/components/areas/dashboard/widgets/TopProducts.vue";
+  import TopProductsPurchase from "src/components/areas/dashboard/widgets/purchase/TopProductsPurchase.vue";
   import PurchaseWidget from "src/components/areas/dashboard/widgets/purchase/PurchaseWidget.vue";
   import PurchaseByCustomer from "src/components/areas/dashboard/widgets/purchase/PurchaseByCustomer.vue";
   import PurchaseByProduct from "src/components/areas/dashboard/widgets/purchase/PurchaseByProduct.vue";
@@ -134,7 +134,7 @@
 
   const widgets = [
     { id: 1, component: PurchaseWidget },
-    { id: 2, component: TopProducts },
+    { id: 2, component: TopProductsPurchase },
     { id: 3, component: PurchaseByCustomer },
     { id: 4, component: PurchaseByProduct },
     { id: 5, component: PurchaseByProductGroup },

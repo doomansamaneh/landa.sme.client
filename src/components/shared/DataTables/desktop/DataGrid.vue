@@ -158,7 +158,7 @@
                         dense
                         round
                         @click="toggleExpand(row)"
-                        icon="keyboard_arrow_up"
+                        icon="expand_more"
                         :class="
                           row.expanded
                             ? 'expand-open'
