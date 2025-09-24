@@ -2,6 +2,7 @@ import { ref, watch, computed } from "vue";
 import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { cultures } from "src/constants/enums";
+import { fetchWrapper } from "src/helpers/fetch-wrapper";
 
 export function useCulture() {
   const GeneralStorageKey = "selectedLanguage";
@@ -23,8 +24,27 @@ export function useCulture() {
     cultures.find((culture) => culture.iso === lang.value)
   );
 
-  const setCulture = (iso) => {
+  const setCulture = async (iso) => {
+    // Update the local language - applyCulture will handle the API call
     lang.value = iso;
+  };
+
+  const getCultureCode = (iso) => {
+    // Map ISO codes to API culture codes
+    const cultureMap = {
+      "fa-IR": "fa",
+      "en-US": "en",
+      ar: "ar",
+    };
+    return cultureMap[iso] || "fa";
+  };
+
+  const changeLocale = async (cultureCode) => {
+    return await fetchWrapper.post(
+      `account/changeLocale/${cultureCode}`,
+      null,
+      true
+    );
   };
 
   const applyCulture = async () => {
@@ -49,8 +69,16 @@ export function useCulture() {
         culture.value.iso
       }; expires=${expirationDate.toUTCString()}; path=/`;
       document.cookie = cookieString;
-    } catch (error) {
-      console.log("error setLang", error);
+
+      // Always call API to sync server-side culture
+      const cultureCode = getCultureCode(iso);
+      try {
+        await changeLocale(cultureCode);
+      } catch {
+        // Don't throw error here as we want the UI to still work
+      }
+    } catch {
+      // Error handling for culture setting
     }
   };
 

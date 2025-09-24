@@ -30,10 +30,20 @@
 <script setup>
   import { cultures } from "src/constants/enums";
   import { useCulture } from "src/composables/useCulture";
+  import { useComposables } from "src/stores/useComposables";
+  import { bus } from "src/helpers";
 
   const cultureStore = useCulture();
 
-  const onLanguageChange = (iso) => {
-    cultureStore.setCulture(iso);
+  const reloadData = () => {
+    const composablesStore = useComposables();
+    composablesStore.reset();
+    bus.emit("render-page");
+  };
+
+  const onLanguageChange = async (iso) => {
+    await cultureStore.setCulture(iso);
+    // Reload data after language change
+    reloadData();
   };
 </script>
