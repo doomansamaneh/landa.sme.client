@@ -5,9 +5,18 @@
   --q-dark: #{$dark};
 
   background-color: $dark-page;
+  color: #e1e4e8 !important;
 
   .q-dark {
     color: #e1e4e8;
+  }
+
+  .q-btn {
+    color: #e1e4e8 !important;
+  }
+
+  .text-white {
+    color: #e1e4e8 !important;
   }
 
   @include q-avatar-dark();

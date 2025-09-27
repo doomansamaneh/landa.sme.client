@@ -217,10 +217,8 @@ export const helper = {
     );
     const $q = useQuasar();
     return {
-      background: gradient,
-      ...($q.dark.isActive
-        ? {}
-        : { boxShadow: `0 4px 8px -4px ${boxShadowColor}` }),
+      background: `${gradient} !important`,
+      boxShadow: `0 4px 8px -4px ${boxShadowColor}`,
     };
   },
 
