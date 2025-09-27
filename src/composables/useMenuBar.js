@@ -1,6 +1,6 @@
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted, onUnmounted } from "vue";
 import { useI18n } from "vue-i18n";
-import { fetchWrapper } from "src/helpers";
+import { fetchWrapper, bus } from "src/helpers";
 
 const state = {
   firstLoad: ref(true),
@@ -14,6 +14,14 @@ const searchText = ref("");
 
 export function useMenuBar() {
   const { t, locale } = useI18n();
+
+  onMounted(() => {
+    bus.on("render-page", reloadData);
+  });
+
+  onUnmounted(() => {
+    bus.off("render-page", reloadData);
+  });
 
   const reset = () => {
     state.firstLoad.value = true;

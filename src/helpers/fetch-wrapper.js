@@ -14,10 +14,16 @@ export const setQuasarInstance = (quasarInstance) => {
   $q = quasarInstance;
 };
 
+// Configure axios defaults
 axios.defaults.baseURL = baseUrl;
 axios.defaults.withCredentials = true;
+axios.defaults.timeout = 10000;
+// Prevent reuse of broken sockets - this is the key fix!
+axios.defaults.httpAgent = false;
+axios.defaults.httpsAgent = false;
 
 const requestCount = ref(0);
+const isConnectionDialogOpen = ref(false);
 
 export const fetchWrapper = {
   get: createRequest("GET"),
@@ -26,7 +32,10 @@ export const fetchWrapper = {
   delete: createRequest("DELETE"),
   downloadGet: createRequest("GET", "blob"),
   downloadPost: createRequest("POST", "blob"),
+  retryConnection: retryConnection,
 };
+
+export { isConnectionDialogOpen };
 
 function removeEmpty(obj) {
   if (Array.isArray(obj)) {
@@ -58,51 +67,13 @@ function removeEmpty(obj) {
   return obj;
 }
 
-// function createRequest_(method, responseType) {
-//   // Accept 'silent' as the third argument (backward compatible with 'disableLoader')
-//   return async (url, data, silentOrDisableLoader) => {
-//     // Support both 'silent' and 'disableLoader' naming
-//     const silent = silentOrDisableLoader === true;
-//     if (!silent) onInitRequest();
-//     const fullUrl = `${baseUrl}/${url}`;
-//     const authHeaders = getAuthHeaders(fullUrl);
-
-//     let cleanedData = data;
-//     if (data instanceof FormData) {
-//       authHeaders["Content-Type"] = "multipart/form-data";
-//     } else cleanedData = removeEmpty(data);
-
-//     try {
-//       try {
-//         const response = await axios({
-//           method: method,
-//           url: fullUrl,
-//           headers: authHeaders,
-//           //data: data,
-//           data: cleanedData,
-//           responseType: responseType,
-//         });
-//         return await handleKnownError(url, response);
-//       } catch (error) {
-//         return await handleError(url, error);
-//       }
-//     } finally {
-//       if (!silent) onCompleteRequest();
-//     }
-//   };
-// }
-
 function createRequest(method, responseType) {
-  // Accept 'silent' as the third argument (backward compatible with 'disableLoader')
   return async (url, data, silentOrDisableLoader) => {
     const silent = silentOrDisableLoader === true;
     if (!silent) onInitRequest();
 
     const fullUrl = `${baseUrl}/${url}`;
-
     const authHeaders = getAuthHeaders(fullUrl);
-
-    // Clean the data object unless it's FormData
     let cleanedData =
       data instanceof FormData ? data : removeEmpty(data);
 
@@ -125,24 +96,7 @@ function createRequest(method, responseType) {
 
 function getAuthHeaders(url) {
   return {};
-  // const { currentUser } = useAuthStore();
-  // const isLoggedIn = !!currentUser?.token;
-
-  // const headers = {};
-
-  // if (isLoggedIn && isApiUrl(url)) {
-  //   headers.Authorization = `Bearer ${currentUser.token}`;
-  // }
-  // return headers;
 }
-
-// function getCookie(name) {
-//   //return `${name}=fa`
-//   const cookieValue = document.cookie.match(
-//     `(^|[^;]+)\\s*${name}\\s*=\\s*([^;]+)`
-//   );
-//   return cookieValue ? cookieValue.pop() : null;
-// }
 
 function handleKnownError(url, response) {
   if (response.data.code === 0 || response.data.code === 500)
@@ -157,13 +111,12 @@ function handleError(url, error) {
     type: "error",
   };
 
-  // If server responded with an error
   if (error.response) {
     alertData.status = error.response.status;
     const { logout } = useAuthStore();
 
     if (error.response.status === 401) {
-      logout(); // Unauthorized
+      logout();
       return Promise.reject(error);
     } else if (error.response.status === 403) {
       alertData.message = "forbidden";
@@ -174,36 +127,32 @@ function handleError(url, error) {
       alertData.errors = error.response.data.errors;
       alertData.comment = error.response.data.stackTrace;
     }
-  }
-
-  // If there's no response from server (network issues, timeout, etc.)
-  else if (
+  } else if (
     !navigator.onLine ||
     error.code === "ECONNABORTED" ||
     error.message === "Network Error"
   ) {
-    // Show connection lost dialog if defined
-    if (typeof $q !== "undefined" && $q?.dialog) {
+    if (
+      typeof $q !== "undefined" &&
+      $q?.dialog &&
+      !isConnectionDialogOpen.value
+    ) {
+      isConnectionDialogOpen.value = true;
       $q.dialog({
         component: ConnectionLostDialog,
+        onDismiss: () => {
+          isConnectionDialogOpen.value = false;
+        },
       });
     }
     return Promise.reject(error);
-  }
-
-  // Any other unhandled error
-  else {
+  } else {
     alertData.message =
       typeof error === "string" ? error : "Unknown error occurred";
   }
 
-  // Set the final error object
   setError(alertData);
   return Promise.reject(error);
-}
-
-function isApiUrl(url) {
-  return true;
 }
 
 function onInitRequest() {
@@ -239,4 +188,21 @@ function showLoader() {
 
 function hideLoader() {
   Loading.hide();
+}
+
+async function retryConnection() {
+  try {
+    const response = await axios({
+      method: "GET",
+      url: `${baseUrl}/account/CheckConnection`,
+      timeout: 5000,
+    });
+
+    if (response.status === 200) {
+      isConnectionDialogOpen.value = false;
+      return true;
+    }
+  } catch (error) {
+    return false;
+  }
 }
