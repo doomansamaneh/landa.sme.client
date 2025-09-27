@@ -17,7 +17,7 @@ export const setQuasarInstance = (quasarInstance) => {
 // Configure axios defaults
 axios.defaults.baseURL = baseUrl;
 axios.defaults.withCredentials = true;
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 20000;
 // Prevent reuse of broken sockets - this is the key fix!
 axios.defaults.httpAgent = false;
 axios.defaults.httpsAgent = false;

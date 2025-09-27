@@ -1,7 +1,7 @@
 <template>
   <toolbar-desktop margin :title="title" />
 
-  <advanced-search />
+  <advanced-search :show-deposit-type="false" />
 
   <tip-banner :tip="tip" closeable class="q-mb-md" />
 

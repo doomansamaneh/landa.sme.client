@@ -12,6 +12,7 @@
         @update:model-value="searchStore.applySearch"
       />
       <q-option-group
+        v-if="showDepositType"
         style="gap: 8px"
         class="row text-body2"
         type="radio"
@@ -393,6 +394,13 @@
   import SaleTypeLookup from "src/components/shared/lookups/SaleTypeLookup.vue";
   import ProductGroupLookup from "src/components/shared/lookups/ProductGroupLookup.vue";
   import ProductLookup from "src/components/shared/lookups/ProductLookup.vue";
+
+  const props = defineProps({
+    showDepositType: {
+      type: Boolean,
+      default: true,
+    },
+  });
 
   const expanded = ref(false);
   const searchStore = useInvoiceSearch();
