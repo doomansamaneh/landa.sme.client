@@ -44,7 +44,7 @@
       <q-card-section class="q-px-none" style="min-height: 300px">
         <loadable-data-grid
           ref="grid"
-          data-source="sls/report/getPurchaseByProduct"
+          data-source="sls/report/getInvoiceByProduct"
           :data-store="gridStore"
           sort-column="quantity"
           first-load
@@ -139,19 +139,19 @@
 <script setup>
   import { ref, computed } from "vue";
   import { helper } from "src/helpers";
-  import { usePurchaseProductState } from "../../dashboard/_composables/purchaseTab/usePurchaseProductState";
+  import { useSalesProductState } from "../../dashboard/_composables/salesTab/useSalesProductState";
   import { useDataTable } from "src/composables/useDataTable";
-  import { useGeneralTab } from "src/components/areas/dashboard/_composables/generalTab/useGeneralTab";
+  import { useSalesTab } from "src/components/areas/dashboard/_composables/salesTab/useSalesTab";
 
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
 
-  const gridStore = usePurchaseProductState();
+  const gridStore = useSalesProductState();
   const tableStore = useDataTable({
-    dataSource: "sls/report/getPurchaseByProduct",
+    dataSource: "sls/report/getInvoiceByProduct",
     store: gridStore,
   });
-  const draggable = useGeneralTab();
+  const draggable = useSalesTab();
 
   const grid = ref(null);
   const emit = defineEmits(["hideWidget"]);
