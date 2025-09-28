@@ -39,7 +39,7 @@
             >
               <q-icon size="24px" name="expand_more" />
               <notif-tooltip closeable>
-                برای مشاهده گزینه‌های بیشتر کلیک کنید
+                {{ $t("shared.labels.clickToExpand") }}
               </notif-tooltip>
             </q-btn>
 
@@ -54,7 +54,7 @@
             >
               <q-icon size="24px" name="expand_more" />
               <notif-tooltip closeable arrow="top-left">
-                برای مشاهده گزینه‌های بیشتر کلیک کنید
+                {{ $t("shared.labels.clickToExpand") }}
               </notif-tooltip>
             </q-btn>
           </div>

@@ -865,7 +865,8 @@
       "selectCity": "Select City",
       "selectActivityField": "Select Activity Field",
       "selectLeadSource": "Select Lead Source",
-      "enterLeadSource": "Enter your lead source"
+      "enterLeadSource": "Enter your lead source",
+      "clickToExpand": "Click to expand"
     },
 
     "productType": {

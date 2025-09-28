@@ -207,7 +207,7 @@
   });
 
   const $q = useQuasar();
-  const { t: $t } = useI18n();
+  const { t } = useI18n();
   const addNoteForm = ref(null);
   const editItemId = ref(null);
 
@@ -259,34 +259,31 @@
     }
   };
 
-  const getTime = (item) => {
+  function getTime(item) {
     const past = helper.parseDateString(item.logTime);
-    const now = helper.parseDateString(new Date().toDateTimeString());
-    const secondsAgo =
-      helper.dateToNumber(now) - helper.dateToNumber(past);
+    const now = new Date();
 
-    if (secondsAgo < 60)
-      return secondsAgo <= 5
-        ? $t("shared.labels.momentAgo")
-        : `${secondsAgo} ${$t("shared.labels.secondsAgo")}`;
-    const minutes = Math.floor(secondsAgo / 60);
-    if (minutes < 60)
-      return `${minutes} ${$t("shared.labels.minutesAgo")}`;
-    const hours = Math.floor(minutes / 60);
-    if (hours < 24) return `${hours} ${$t("shared.labels.hoursAgo")}`;
-    const days = Math.floor(hours / 24);
-    if (days < 7)
-      return days === 1
-        ? $t("shared.labels.yesterday")
-        : `${days} ${$t("shared.labels.daysAgo")}`;
+    const diff = now - past;
+
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(diff / (1000 * 60));
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const weeks = Math.floor(days / 7);
-    if (weeks < 4) return `${weeks} ${$t("shared.labels.weeksAgo")}`;
     const months = Math.floor(days / 30);
-    if (months < 12)
-      return `${months} ${$t("shared.labels.monthsAgo")}`;
     const years = Math.floor(days / 365);
-    return `${years} ${$t("shared.labels.yearsAgo")}`;
-  };
+
+    if (seconds < 60) return t("shared.labels.momentAgo");
+    if (minutes < 60)
+      return `${minutes} ${t("shared.labels.minutesAgo")}`;
+    if (hours < 24) return `${hours} ${t("shared.labels.hoursAgo")}`;
+    if (days === 1) return t("shared.labels.yesterday");
+    if (days < 7) return `${days} ${t("shared.labels.daysAgo")}`;
+    if (weeks < 5) return `${weeks} ${t("shared.labels.weeksAgo")}`;
+    if (months < 12)
+      return `${months} ${t("shared.labels.monthsAgo")}`;
+    return `${years} ${t("shared.labels.yearsAgo")}`;
+  }
 
   const parseUser = (item) => {
     try {
