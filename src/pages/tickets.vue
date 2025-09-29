@@ -18,7 +18,9 @@
     >
       <div class="flex items-center">
         <q-icon size="16px" name="o_add" class="q-mr-xs" />
-        <span class="text-body2">{{ $t("shared.labels.registerNewTicket") }}</span>
+        <span class="text-body2">
+          {{ $t("shared.labels.registerNewTicket") }}
+        </span>
       </div>
     </q-btn>
   </q-page-sticky>

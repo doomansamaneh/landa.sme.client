@@ -74,6 +74,35 @@ export const helper = {
     return `${parseInt(day)} ${persianMonth}`;
   },
 
+  formatGregorianDate(dateString) {
+    const gregorianMonths = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const [year, month, day] = dateString.split("/");
+    const gregorianMonth = gregorianMonths[parseInt(month, 10) - 1];
+    return `${parseInt(day)} ${gregorianMonth}`;
+  },
+
+  formatDate(dateString) {
+    const $q = useQuasar();
+    if ($q.lang.rtl) {
+      return this.formatPersianDate(dateString);
+    } else {
+      return this.formatGregorianDate(dateString);
+    }
+  },
+
   dateToNumber(date) {
     const seconds =
       date.seconds +

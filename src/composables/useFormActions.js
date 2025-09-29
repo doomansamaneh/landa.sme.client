@@ -38,7 +38,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     if (message) {
       $q.notify({
         type: type,
-        message: t(`messages.${message}`),
+        message: t(`${message}`),
       });
     }
   };

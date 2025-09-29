@@ -276,6 +276,7 @@
     "captcha": "Security code is incorrect",
     "connectionLost": "Unable to connect to Landa servers",
     "checkConnection": "Please make sure you are connected to the Internet",
+    "checkingConnection": "Checking connection...",
     "vatDetailSection": {
       "warningTitle": "The title shown in the accounting document for this item, e.g., VAT Payable",
       "warningSl": "Default sub-ledger accounts: 30501: VAT Payable and 30502: VAT Surcharge Payable",
