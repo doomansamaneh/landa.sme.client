@@ -9,7 +9,7 @@
           color="primary"
           class="q-mr-sm"
         />
-        <span class="text-h6 text-weight-medium text-grey-8">
+        <span class="text-h6 text-weight-medium">
           {{ $t("shared.labels.ticketType") }}
         </span>
       </div>
@@ -87,7 +87,7 @@
           color="primary"
           class="q-mr-sm"
         />
-        <span class="text-h6 text-weight-medium text-grey-8">
+        <span class="text-h6 text-weight-medium">
           {{ $t("shared.labels.ticketDescription") }}
         </span>
       </div>
@@ -158,11 +158,11 @@
   });
 
   const formStore = useFormActions("business", model);
-  const ticketStore = useTickets();
+  const { triggerTicketSubmitted, closeNewTicketDialog } =
+    useTickets();
 
   const form = ref(null);
   const isSubmitting = ref(false);
-  const emit = defineEmits(["submit"]);
 
   async function onSubmit() {
     isSubmitting.value = true;
@@ -172,8 +172,8 @@
         "addFeedback"
       );
       if (result) {
-        emit("submit");
-        ticketStore.closeNewTicketDialog();
+        triggerTicketSubmitted();
+        closeNewTicketDialog();
       }
     } catch (error) {
       console.error("Error submitting ticket:", error);

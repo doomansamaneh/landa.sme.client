@@ -1,7 +1,9 @@
 import { computed } from "vue";
+import { useQuasar } from "quasar";
 import { menuItems } from "src/constants/menuItems";
 
 export function usePreviewMenu(context, config = {}) {
+  const $q = useQuasar();
   const {
     permissionPrefix = "",
     extraPrintItems = [],
@@ -60,22 +62,9 @@ export function usePreviewMenu(context, config = {}) {
         visible: true,
       }),
 
-      ...getItem("print", {
-        ...menuItems.more,
-        icon: "o_print",
-        label: "print",
-        permission: `${permissionPrefix}.print`,
-        visible: true,
-        subItems: [
-          ...getItem("printMain", {
-            ...menuItems.print,
-            permission: `${permissionPrefix}.print`,
-            handler: handlers.print ?? (() => context.print?.()),
-            visible: true,
-            addSeparator: extraPrintItems?.length > 0,
-          }),
-          ...(extraPrintItems?.map((fn) => fn(id)) ?? []),
-          ...getItem("printPdf", {
+      // On mobile, show only PDF download directly, on desktop show full print menu
+      ...($q.screen.lt.md
+        ? getItem("printPdf", {
             ...menuItems.print,
             icon: "download",
             label: "downloadPdf",
@@ -83,9 +72,34 @@ export function usePreviewMenu(context, config = {}) {
             visible: true,
             handler:
               handlers.downloadPdf ?? (() => context.downloadPdf?.()),
-          }),
-        ],
-      }),
+          })
+        : getItem("print", {
+            ...menuItems.more,
+            icon: "o_print",
+            label: "print",
+            permission: `${permissionPrefix}.print`,
+            visible: true,
+            subItems: [
+              ...getItem("printMain", {
+                ...menuItems.print,
+                permission: `${permissionPrefix}.print`,
+                handler: handlers.print ?? (() => context.print?.()),
+                visible: true,
+                addSeparator: extraPrintItems?.length > 0,
+              }),
+              ...(extraPrintItems?.map((fn) => fn(id)) ?? []),
+              ...getItem("printPdf", {
+                ...menuItems.print,
+                icon: "download",
+                label: "downloadPdf",
+                permission: `${permissionPrefix}.print`,
+                visible: true,
+                handler:
+                  handlers.downloadPdf ??
+                  (() => context.downloadPdf?.()),
+              }),
+            ],
+          })),
 
       ...getItem("sendMail", {
         ...menuItems.defaultItem,

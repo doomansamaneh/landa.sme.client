@@ -30,7 +30,7 @@
         <div class="row items-center q-ml-md">
           <q-chip
             :color="getStatusColor(ticket.statusId)"
-            text-color="white"
+            :text-color="ticket?.statusId === 1 ? 'dark' : 'white'"
             size="md"
           >
             {{
@@ -182,7 +182,7 @@
             class="q-pa-md"
             @keyup.enter="sendMessage"
           >
-            <template v-slot:before>
+            <template #before>
               <q-btn
                 no-caps
                 round
@@ -306,6 +306,7 @@
 
     if (responseData) {
       model.value.comment = "";
+      await tableStore.reloadData();
       scrollToBottom();
     }
   }

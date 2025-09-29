@@ -39,7 +39,7 @@
   <component
     v-else
     :is="ToolbarMobile"
-    :title="title"
+    :title="$t('shared.labels.support')"
     :buttons="true"
     no-back-button
   >
