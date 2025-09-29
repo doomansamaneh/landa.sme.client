@@ -42,7 +42,7 @@
         no-caps
         rounded
         unelevated
-        :href="`${baseUrl}/excelTemplate/import/payrollTemplate.xlsx`"
+        :href="/excelTemplate/import/payrollTemplate.xlsx"
       >
         <q-icon
           name="file_download"
