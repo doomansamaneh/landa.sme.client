@@ -1,26 +1,34 @@
 <template>
   <q-btn
-    no-caps
     v-if="title"
-    padding="0 8px"
+    no-caps
     unelevated
-    class="text-center text-caption-xs text-white border-radius-lg no-pointer-events"
-    :style="[
-      { whiteSpace: 'nowrap' },
-      typeId
-        ? helper.generateGradientStyle(typeId)
-        : { background: 'primary-gradient' },
-    ]"
+    padding="0 8px"
+    :class="badgeClasses"
+    :style="badgeStyles"
   >
     {{ title }}
   </q-btn>
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { helper } from "src/helpers/helper";
 
   const props = defineProps({
     title: String,
     typeId: String,
+  });
+
+  const badgeClasses = computed(() => [
+    "text-center text-caption-xs border-radius-lg no-pointer-events",
+    props.typeId ? "text-white" : "primary-gradient text-white",
+  ]);
+
+  const badgeStyles = computed(() => {
+    const base = { whiteSpace: "nowrap" };
+    return props.typeId
+      ? { ...base, ...helper.generateGradientStyle(props.typeId) }
+      : base;
   });
 </script>

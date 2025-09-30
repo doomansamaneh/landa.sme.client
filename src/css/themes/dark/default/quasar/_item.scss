@@ -1,4 +1,8 @@
 @mixin q-item-dark {
+  .q-item--dark {
+    color: #e1e4e8;
+  }
+  
   .menu-bar .q-item.q-router-link--active {
     background-color: #{$yellow}35;
     color: $yellow;
@@ -16,11 +20,11 @@
   }
 
   .menu-bar .sub-item-container {
-    border-left: 1px solid $white;
+    border-left: 1px solid #e1e4e8;
   }
 
   .statement-bar .sub-item-container {
-    border-left: 1px solid $white;
+    border-left: 1px solid #e1e4e8;
   }
 
   .balance-sheet-expansion-item {

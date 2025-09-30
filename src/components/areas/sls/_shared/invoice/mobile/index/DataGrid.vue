@@ -56,7 +56,7 @@
           <div>{{ item.no }}#</div>
           <div class="row items-center q-gutter-xs">
             <q-icon size="10px" name="o_calendar_today" />
-            <div>{{ helper.formatPersianDate(item.date) }}</div>
+            <div>{{ helper.formatDate(item.date) }}</div>
           </div>
         </div>
       </div>

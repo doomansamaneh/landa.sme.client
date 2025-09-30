@@ -72,7 +72,7 @@
                   v-ripple
                   :active="selectedTicket === item.id"
                   active-class="active-shine"
-                  @click="selectTicket(item)"
+                  @click="handleSelectTicket(item)"
                   class="no-decoration q-pl-xs q-pb-md q-pr-xs border-radius-sm text-on-dark"
                   :class="$q.screen.gt.sm ? 'q-mr-md' : ''"
                 >
@@ -102,7 +102,9 @@
                   <q-item-section side>
                     <q-chip
                       :color="getStatusColor(item.statusId)"
-                      text-color="white"
+                      :text-color="
+                        item?.statusId === 1 ? 'dark' : 'white'
+                      "
                       size="sm"
                     >
                       {{
@@ -158,83 +160,36 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted, onUnmounted } from "vue";
+  import { onMounted, onUnmounted } from "vue";
   import { useQuasar } from "quasar";
   import { helper } from "src/helpers";
-  import { fetchWrapper } from "src/helpers";
   import {
     feedbackType,
-    defaultPageSize,
     feedbackStatus,
     sortOrder,
   } from "src/constants";
   import { nextTick } from "vue";
-  import usePolling from "src/composables/usePolling";
+  import { useTickets } from "src/composables/useTickets";
 
   import TicketChat from "./TicketChat.vue";
   import LoadableDataGrid from "src/components/shared/dataTables/LoadableDataGrid.vue";
   import WidgetTitle from "src/components/areas/dashboard/widgets/WidgetTitle.vue";
 
   const $q = useQuasar();
-  const chatContainerDesktop = ref(null);
-  const chatContainerMobile = ref(null);
-  const showChat = ref(false);
-  const selectedTicket = ref(null);
-  const loadableDataGrid = ref(null);
+  const {
+    loadableDataGrid,
+    selectedTicket,
+    showChat,
+    chatContainerDesktop,
+    chatContainerMobile,
+    selectTicket,
+    getStatusColor,
+    initializeTicketList,
+    cleanupTicketList,
+  } = useTickets();
 
-  // Polling for unread count updates
-  const checkUnreadCount = async () => {
-    try {
-      // Get current pagination from the data grid
-      const currentPagination = loadableDataGrid.value?.tableStore
-        ?.pagination?.value || {
-        currentPage: 1,
-        pageSize: defaultPageSize,
-        sortColumn: "dateCreated",
-        sortOrder: sortOrder.descending,
-      };
-
-      // Use silent parameter to avoid showing loading indicators
-      const response = await fetchWrapper.post(
-        "business/getFeedbackGridData",
-        currentPagination,
-        true // silent parameter
-      );
-
-      if (response?.data?.data?.items) {
-        // Update unread counts without triggering full reload
-        const newItems = response.data.data.items;
-        // Access the gridStore rows which contain the displayed data
-        const currentItems =
-          loadableDataGrid.value?.tableStore?.store?.rows?.value ||
-          [];
-
-        // Update unread counts for existing items
-        currentItems.forEach((currentItem, index) => {
-          const newItem = newItems.find(
-            (item) => item.id === currentItem.id
-          );
-          if (
-            newItem &&
-            newItem.unreadCount !== currentItem.unreadCount
-          ) {
-            currentItems[index].unreadCount = newItem.unreadCount;
-          }
-        });
-      }
-    } catch (error) {
-      console.error("Error checking unread count:", error);
-    }
-  };
-
-  // Initialize polling with 30 second interval
-  const { start: startPolling, clear: stopPolling } = usePolling(
-    checkUnreadCount,
-    5000 // 5 seconds
-  );
-
-  const selectTicket = async (item) => {
-    selectedTicket.value = item.id; // or any unique identifier
+  const handleSelectTicket = async (item) => {
+    selectTicket(item);
 
     if ($q.screen.gt.md) {
       chatContainerDesktop.value?.setSelectedTicket(item);
@@ -245,25 +200,11 @@
     }
   };
 
-  const statusColors = {
-    1: "orange",
-    2: "blue",
-    3: "red",
-    4: "green",
-  };
-
-  function getStatusColor(value) {
-    return statusColors[value] || "grey";
-  }
-
   onMounted(() => {
-    loadableDataGrid?.value?.loadData();
-    // Start polling after initial load
-    startPolling();
+    initializeTicketList();
   });
 
   onUnmounted(() => {
-    // Stop polling when component is unmounted
-    stopPolling();
+    cleanupTicketList();
   });
 </script>

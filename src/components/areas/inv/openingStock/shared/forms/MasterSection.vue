@@ -85,7 +85,7 @@
         no-caps
         rounded
         unelevated
-        :href="`${baseUrl}/excelTemplate/import/openingStockTemplate.xlsx`"
+        :href="/excelTemplate/import/openingStockTemplate.xlsx"
       >
         <q-icon
           name="file_download"

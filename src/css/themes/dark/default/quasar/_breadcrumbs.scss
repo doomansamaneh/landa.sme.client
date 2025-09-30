@@ -1,10 +1,10 @@
 @mixin q-breadcrumbs-dark {
   .q-breadcrumbs__el {
-    color: $white;
+    color: #e1e4e8;
   }
 
   .q-breadcrumbs__separator {
-    color: $white;
+    color: #e1e4e8;
   }
 
   .q-breadcrumbs__el.q-router-link--active {

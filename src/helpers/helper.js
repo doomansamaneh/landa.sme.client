@@ -74,6 +74,35 @@ export const helper = {
     return `${parseInt(day)} ${persianMonth}`;
   },
 
+  formatGregorianDate(dateString) {
+    const gregorianMonths = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const [year, month, day] = dateString.split("/");
+    const gregorianMonth = gregorianMonths[parseInt(month, 10) - 1];
+    return `${parseInt(day)} ${gregorianMonth}`;
+  },
+
+  formatDate(dateString) {
+    const $q = useQuasar();
+    if ($q.lang.rtl) {
+      return this.formatPersianDate(dateString);
+    } else {
+      return this.formatGregorianDate(dateString);
+    }
+  },
+
   dateToNumber(date) {
     const seconds =
       date.seconds +
@@ -217,10 +246,8 @@ export const helper = {
     );
     const $q = useQuasar();
     return {
-      background: gradient,
-      ...($q.dark.isActive
-        ? {}
-        : { boxShadow: `0 4px 8px -4px ${boxShadowColor}` }),
+      background: `${gradient} !important`,
+      boxShadow: `0 4px 8px -4px ${boxShadowColor}`,
     };
   },
 
@@ -668,4 +695,61 @@ export const helper = {
   // Example usage:
   // const lang = helper.getCurrentLanguage();
   // console.log(lang); // 'farsi', 'english', or locale code
+
+  jalaliToGregorian(jy, jm, jd) {
+    const gy = jy + 621;
+    const isLeapJalali =
+      jy % 33 === 1 ||
+      jy % 33 === 5 ||
+      jy % 33 === 9 ||
+      jy % 33 === 13 ||
+      jy % 33 === 17 ||
+      jy % 33 === 22 ||
+      jy % 33 === 26 ||
+      jy % 33 === 30;
+
+    const jalaliMonthDays = [
+      31,
+      isLeapJalali ? 30 : 29,
+      31,
+      31,
+      31,
+      31,
+      30,
+      30,
+      30,
+      30,
+      30,
+      29,
+    ];
+    let days = jd;
+
+    for (let i = 0; i < jm - 1; i++) {
+      days += jalaliMonthDays[i];
+    }
+
+    const gDate = new Date(gy, 2, 21);
+    gDate.setDate(gDate.getDate() + days - 1);
+    return gDate;
+  },
+
+  parseDateString(dateStr) {
+    if (!dateStr) return null;
+
+    if (dateStr.startsWith("20")) {
+      return new Date(dateStr.replace(/-/g, "/"));
+    }
+
+    if (dateStr.startsWith("13") || dateStr.startsWith("14")) {
+      const [datePart, timePart] = dateStr.split(" ");
+      const [jy, jm, jd] = datePart.split("/").map(Number);
+      const [hh, mm, ss] = timePart.split(":").map(Number);
+
+      const gDate = this.jalaliToGregorian(jy, jm, jd);
+      gDate.setHours(hh, mm, ss);
+      return gDate;
+    }
+
+    return null;
+  },
 };

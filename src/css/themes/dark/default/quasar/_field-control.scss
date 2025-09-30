@@ -2,6 +2,14 @@
   .q-field__control {
     color: $primary;
   }
+
+  .q-field--dark .q-field__native,
+  .q-field--dark .q-field__prefix,
+  .q-field--dark .q-field__suffix,
+  .q-field--dark .q-field__input {
+    color: #e1e4e8;
+  }
+
   .q-field--outlined .q-field__control:before {
     background-color: $dark;
   }
@@ -13,7 +21,7 @@
   }
 
   .q-item__label--caption .q-field__control {
-    color: $white;
+    color: #e1e4e8;
   }
 
   .q-item__label--caption .q-field__control {
@@ -21,7 +29,7 @@
   }
 
   .q-field__native.q-placeholder {
-    color: $white;
+    color: #e1e4e8;
   }
 
   .searchbox .q-field__control {
