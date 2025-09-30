@@ -380,6 +380,7 @@
       "createDiscount": "Create Discount",
       "selectVat": "Select VAT",
       "selectedRows": "Selected Rows",
+      "waitToSendTax": "Waiting to Send to Tax System",
       "convertToInvoice": "Convert to Invoice",
       "export": "Export",
       "exportExcel": "Export to Excel",

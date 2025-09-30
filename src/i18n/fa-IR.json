@@ -390,6 +390,7 @@
       "createDiscount": "ایجاد تخفیف",
       "selectVat": "انتخاب مالیات بر ارزش افزوده",
       "selectedRows": "انتخاب شده‌ها",
+      "waitToSendTax": "در انتظار ارسال به سامانه مودیان",
       "convertToInvoice": "تبدیل به فاکتور",
       "export": "خروجی",
       "exportExcel": "تبدیل به اکسل",

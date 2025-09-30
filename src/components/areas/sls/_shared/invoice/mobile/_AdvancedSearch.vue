@@ -2,7 +2,9 @@
   <q-card class="no-border q-pt-sm q-px-sm">
     <q-card-section>
       <div class="row justify-between items-center">
-        <span class="text-body1">جستجو در فاکتورها</span>
+        <span class="text-body1">
+          {{ $t("shared.labels.search") }}
+        </span>
         <q-btn no-caps dense flat icon="close" v-close-popup />
       </div>
     </q-card-section>
@@ -45,7 +47,7 @@
               style="min-width: 90px"
               @click="openCheckoutModal"
             >
-              <span>تسویه</span>
+              <span>{{ $t("shared.labels.settlement") }}</span>
               <q-icon
                 size="xs"
                 class="q-ml-sm"
@@ -75,7 +77,7 @@
           <div class="row q-col-gutter-sm">
             <div class="col">
               <q-item-label caption class="q-mb-sm">
-                مبلغ از
+                {{ $t("shared.labels.amountFrom") }}
               </q-item-label>
               <custom-input
                 v-model="searchModel.amountFrom"
@@ -84,7 +86,7 @@
             </div>
             <div class="col">
               <q-item-label caption class="q-mb-sm">
-                مبلغ تا
+                {{ $t("shared.labels.amountTo") }}
               </q-item-label>
               <custom-input
                 v-model="searchModel.amountTo"
@@ -96,13 +98,13 @@
           <div class="row q-col-gutter-sm">
             <div class="col">
               <q-item-label caption class="q-mb-sm">
-                تاریخ از
+                {{ $t("shared.labels.dateFrom") }}
               </q-item-label>
               <date-time v-model="searchModel.dateFrom" />
             </div>
             <div class="col">
               <q-item-label caption class="q-mb-sm">
-                تاریخ تا
+                {{ $t("shared.labels.dateTo") }}
               </q-item-label>
               <date-time v-model="searchModel.dateTo" />
             </div>
@@ -110,14 +112,14 @@
 
           <div>
             <q-item-label caption class="q-mb-sm">
-              قرارداد
+              {{ $t("shared.labels.contractTitle") }}
             </q-item-label>
             <contract-lookup />
           </div>
 
           <div>
             <q-item-label caption class="q-mb-sm">
-              بازاریاب
+              {{ $t("shared.labels.marketerName") }}
             </q-item-label>
             <q-input
               readonly
@@ -137,14 +139,14 @@
 
           <div>
             <q-item-label caption class="q-mb-sm">
-              نوع فروش
+              {{ $t("shared.labels.saleType") }}
             </q-item-label>
             <sale-type-lookup />
           </div>
 
           <div>
             <q-item-label caption class="q-mb-sm">
-              کالا و خدمات
+              {{ $t("shared.labels.productService") }}
             </q-item-label>
             <q-input
               readonly
@@ -163,7 +165,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">مشتری</q-item-label>
+            <q-item-label caption class="q-mb-sm">
+              {{ $t("shared.labels.customer") }}
+            </q-item-label>
             <q-input
               readonly
               outlined
@@ -181,7 +185,9 @@
           </div>
 
           <div>
-            <q-item-label caption class="q-mb-sm">شرح</q-item-label>
+            <q-item-label caption class="q-mb-sm">
+              {{ $t("shared.labels.comment") }}
+            </q-item-label>
             <custom-input v-model="searchModel.comment" />
           </div>
         </div>
@@ -200,7 +206,7 @@
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_close" class="q-mr-xs" />
-          <span>حذف فیلتر</span>
+          <span>{{ $t("shared.labels.clearSearch") }}</span>
         </div>
       </q-btn>
 
@@ -215,7 +221,7 @@
       >
         <div class="row items-center">
           <q-icon size="xs" name="o_search" class="q-mr-xs" />
-          <span>جستجو</span>
+          <span>{{ $t("shared.labels.search") }}</span>
         </div>
       </q-btn>
     </div>
@@ -235,7 +241,9 @@
     >
       <q-card-section>
         <div class="row justify-between items-center">
-          <span class="text-body1">انتخاب تسویه</span>
+          <span class="text-body1">
+            {{ $t("shared.labels.settlement") }}
+          </span>
           <q-btn no-caps dense flat icon="close" v-close-popup />
         </div>
       </q-card-section>
