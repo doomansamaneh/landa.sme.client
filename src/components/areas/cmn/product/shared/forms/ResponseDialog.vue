@@ -2,7 +2,9 @@
   <q-dialog ref="dialogRef" @hide="onDialogHide">
     <q-card class="q-dialog-plugin">
       <q-card-section>
-        <div class="text-h6">اطلاعات</div>
+        <div class="text-h6">
+          {{ $t("shared.labels.information") }}
+        </div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">

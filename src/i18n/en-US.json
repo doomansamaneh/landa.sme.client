@@ -867,7 +867,21 @@
       "selectActivityField": "Select Activity Field",
       "selectLeadSource": "Select Lead Source",
       "enterLeadSource": "Enter your lead source",
-      "clickToExpand": "Click to expand"
+      "clickToExpand": "Click to expand",
+      "operationResult": "Operation Result",
+      "invoiceRegisteredSuccessfully": "Sales invoice (bill) has been successfully registered.",
+      "selectNextStep": "Select the next step:",
+      "preview": "Preview",
+      "previewAndPrint": "Preview and Print",
+      "receivePayment": "Receive/Payment",
+      "receivePaymentBalance": "Receive/Payment account balance",
+      "sendPdfEmailDescription": "If you want to email this document as PDF",
+      "viewAccountingDocumentDescription": "View accounting document. The accounting document is automatically issued by the system",
+      "customerCreatedSuccessfully": "New contact has been successfully created.",
+      "viewProfile": "View Profile",
+      "quoteRegisteredSuccessfully": "Quote has been successfully created.",
+      "receiveAccountBalance": "Receive account balance",
+      "information": "Information"
     },
 
     "productType": {

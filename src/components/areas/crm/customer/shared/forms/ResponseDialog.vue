@@ -8,14 +8,16 @@
   >
     <q-card class="q-dialog-plugin">
       <q-card-section class="row items-center q-pa-md">
-        <div class="text-h5 text-weight-700">نتیجه عملیات</div>
+        <div class="text-h5 text-weight-700">
+          {{ $t("shared.labels.operationResult") }}
+        </div>
       </q-card-section>
 
       <q-card-section>
         <q-list>
           <q-item-label header>
             <div class="q-gutter-y-md">
-              مخاطب جدید با موفقیت ایجاد شد.
+              {{ $t("shared.labels.customerCreatedSuccessfully") }}
             </div>
           </q-item-label>
           <q-item
@@ -32,7 +34,9 @@
               />
             </q-item-section>
             <q-item-section>
-              <q-item-label lines="1">مشاهده پروفایل</q-item-label>
+              <q-item-label lines="1">
+                {{ $t("shared.labels.viewProfile") }}
+              </q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
