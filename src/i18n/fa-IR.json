@@ -586,6 +586,8 @@
       "checkDate": "تاریخ چک",
       "checkNo": "ش چک",
       "accountNumber": "شماره حساب",
+      "cardNumber": "شماره کارت",
+      "ibanNumber": "شماره شبا",
       "sayadNumber": "ش صیاد",
       "bankBranch": "شعبه بانک",
       "check": "چک",

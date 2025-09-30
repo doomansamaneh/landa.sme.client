@@ -38,7 +38,9 @@
               v-if="tableStore?.summaryData?.value?.payedAmount"
               class="row q-gutter-xs q-pt-xs"
             >
-              <div class="text-caption">دریافت شده:</div>
+              <div class="text-caption">
+                {{ $t("shared.labels.received") }}:
+              </div>
               <div class="text-bold text-white text-caption">
                 {{
                   helper.formatNumberReadable(
@@ -52,7 +54,9 @@
               v-if="tableStore?.summaryData?.value?.remainedAmount"
               class="row q-gutter-xs q-pt-xs"
             >
-              <div class="text-caption">مانده:</div>
+              <div class="text-caption">
+                {{ $t("shared.columns.remained") }}:
+              </div>
               <div class="text-bold text-white text-caption">
                 {{
                   helper.formatNumberReadable(
@@ -109,7 +113,9 @@
               "
               class="row q-gutter-xs q-pt-xs"
             >
-              <div class="text-caption">مانده:</div>
+              <div class="text-caption">
+                {{ $t("shared.columns.remained") }}:
+              </div>
               <div class="text-bold text-caption">
                 {{
                   helper.formatNumberReadable(

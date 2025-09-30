@@ -562,6 +562,8 @@
       "checkDate": "Check Date",
       "checkNo": "Check No.",
       "accountNumber": "Account Number",
+      "cardNumber": "Card Number",
+      "ibanNumber": "IBAN",
       "sayadNumber": "Sayad No.",
       "bankBranch": "Bank Branch",
       "check": "Check",
