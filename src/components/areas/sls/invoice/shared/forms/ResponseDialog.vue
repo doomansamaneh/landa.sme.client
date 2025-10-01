@@ -8,21 +8,23 @@
   >
     <q-card class="q-dialog-plugin">
       <q-card-section class="row items-center q-pa-md">
-        <div class="text-h5 text-weight-700">نتیجه عملیات</div>
+        <div class="text-h5 text-weight-700">
+          {{ $t("shared.labels.operationResult") }}
+        </div>
       </q-card-section>
 
       <q-card-section>
         <q-list>
           <q-item-label header>
             <div class="q-gutter-y-md">
-              فاکتور فروش (صورتحساب) با موفقیت ثبت شد.
+              {{ $t("shared.labels.invoiceRegisteredSuccessfully") }}
               <div>
                 {{ $t("shared.labels.no") }}:
                 <span class="text-h6 text-weight-700">
                   {{ responseData.no }}
                 </span>
               </div>
-              <div>گام بعدی را انتخاب کنید:</div>
+              <div>{{ $t("shared.labels.selectNextStep") }}</div>
             </div>
           </q-item-label>
 
@@ -41,8 +43,12 @@
             </q-item-section>
 
             <q-item-section>
-              <q-item-label lines="1">پیش نمایش</q-item-label>
-              <q-item-label caption>پیش نمایش و چاپ</q-item-label>
+              <q-item-label lines="1">
+                {{ $t("shared.labels.preview") }}
+              </q-item-label>
+              <q-item-label caption>
+                {{ $t("shared.labels.previewAndPrint") }}
+              </q-item-label>
             </q-item-section>
           </q-item>
 
@@ -62,9 +68,11 @@
             </q-item-section>
 
             <q-item-section>
-              <q-item-label lines="1">دریافت/پرداخت</q-item-label>
+              <q-item-label lines="1">
+                {{ $t("shared.labels.receivePayment") }}
+              </q-item-label>
               <q-item-label caption>
-                دریافت/پرداخت مانده حساب
+                {{ $t("shared.labels.receivePaymentBalance") }}
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -80,9 +88,11 @@
             </q-item-section>
 
             <q-item-section>
-              <q-item-label lines="1">ارسال ایمیل</q-item-label>
+              <q-item-label lines="1">
+                {{ $t("shared.labels.sendEmail") }}
+              </q-item-label>
               <q-item-label caption>
-                اگر می‌خواهید این سند را به صورت pdf ایمیل کنید
+                {{ $t("shared.labels.sendPdfEmailDescription") }}
               </q-item-label>
             </q-item-section>
           </q-item>
@@ -104,10 +114,15 @@
             </q-item-section>
 
             <q-item-section>
-              <q-item-label lines="1">سند حسابداری</q-item-label>
+              <q-item-label lines="1">
+                {{ $t("shared.labels.accountingDocument") }}
+              </q-item-label>
               <q-item-label caption>
-                مشاهده سند حسابداری. سند حسابداری به صورت خودکار توسط
-                سامانه صادر می‌شود
+                {{
+                  $t(
+                    "shared.labels.viewAccountingDocumentDescription"
+                  )
+                }}
               </q-item-label>
             </q-item-section>
           </q-item>

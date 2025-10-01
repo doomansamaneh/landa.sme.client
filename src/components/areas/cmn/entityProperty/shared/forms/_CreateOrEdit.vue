@@ -1,10 +1,16 @@
 <template>
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-md col-sm col-xs-12">
-      <custom-input label="عنوان" v-model="model.title" />
+      <custom-input
+        :label="$t('shared.labels.title')"
+        v-model="model.title"
+      />
     </div>
     <div class="col-md col-sm col-xs-12">
-      <custom-input label="مقدار" v-model="model.value" />
+      <custom-input
+        :label="$t('shared.labels.value')"
+        v-model="model.value"
+      />
     </div>
   </div>
 </template>

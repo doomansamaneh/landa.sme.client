@@ -6,7 +6,7 @@
         dense
         v-model="model.isPrimary"
         val="customer"
-        label="اصلی"
+        :label="$t('shared.labels.isPrimary')"
       />
     </div>
   </div>
@@ -14,7 +14,7 @@
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-12">
       <bank-lookup
-        label="بانک"
+        :label="$t('shared.labels.bankTitle')"
         v-model:selectedId="model.bankId"
         v-model:selectedText="model.bankTitle"
       />
@@ -23,26 +23,35 @@
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-12">
-      <custom-input label="شماره حساب" v-model="model.accountNo" />
-    </div>
-  </div>
-
-  <div class="row q-col-gutter-md q-mb-md">
-    <div class="col-12">
-      <custom-input label="شماره کارت" v-model="model.cardNo" />
-    </div>
-  </div>
-
-  <div class="row q-col-gutter-md q-mb-md">
-    <div class="col-12">
-      <custom-input label="شماره شبا" v-model="model.shaba" />
+      <custom-input
+        :label="$t('shared.labels.accountNumber')"
+        v-model="model.accountNo"
+      />
     </div>
   </div>
 
   <div class="row q-col-gutter-md q-mb-md">
     <div class="col-12">
       <custom-input
-        label="شرح"
+        :label="$t('shared.labels.cardNumber')"
+        v-model="model.cardNo"
+      />
+    </div>
+  </div>
+
+  <div class="row q-col-gutter-md q-mb-md">
+    <div class="col-12">
+      <custom-input
+        :label="$t('shared.labels.ibanNumber')"
+        v-model="model.shaba"
+      />
+    </div>
+  </div>
+
+  <div class="row q-col-gutter-md q-mb-md">
+    <div class="col-12">
+      <custom-input
+        :label="$t('shared.labels.comment')"
         v-model="model.comment"
         type="textarea"
         autogrow
