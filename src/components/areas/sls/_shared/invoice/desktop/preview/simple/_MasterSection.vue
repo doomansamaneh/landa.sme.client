@@ -2,14 +2,18 @@
   <q-card bordered>
     <div :ref="printStore.printRef">
       <q-card-section class="q-pb-none">
-        <invoice-header show-logo :model="model" :title="title" />
+        <invoice-header
+          :show-logo="showSaleHeader"
+          :model="model"
+          :title="title"
+        />
       </q-card-section>
       <q-card-section class="q-gutter-y-sm">
         <header-sale v-if="showSaleHeader" :model="model" />
         <header-purchase v-else :model="model" />
         <invoice-body :model="model" />
         <invoice-footer
-          show-signature
+          :show-signature="showSaleHeader"
           :model="model"
           :comment="comment"
         />

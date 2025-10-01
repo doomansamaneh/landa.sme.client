@@ -2,7 +2,11 @@
   <div class="row items-center q-gutter-y-md">
     <div class="row col-md col-sm col-xs-12 items-center">
       <img
-        v-if="showLogo && logoSource"
+        v-if="
+          showLogo &&
+          configStore.model?.value?.companySetting?.invoiceShowLogo &&
+          logoSource
+        "
         :src="logoSource"
         alt="logo"
       />

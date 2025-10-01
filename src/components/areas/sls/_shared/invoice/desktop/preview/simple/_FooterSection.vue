@@ -120,7 +120,14 @@
             class="text-body2 vertical-top"
           >
             {{ $t("shared.labels.sellerSignature") }}
-            <div v-if="showSignature && signatureSource">
+            <div
+              v-if="
+                showSignature &&
+                configStore.model?.value?.companySetting
+                  ?.invoiceShowSignature &&
+                signatureSource
+              "
+            >
               <img
                 :src="signatureSource"
                 alt="signature"
