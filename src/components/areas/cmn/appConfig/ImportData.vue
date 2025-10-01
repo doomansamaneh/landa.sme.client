@@ -35,7 +35,7 @@
       permission: "crm.customer.create",
     },
     {
-      title: $t("shared.labels.productService"),
+      title: $t("shared.labels.productOrService"),
       importAction: "importProduct",
       fileTemplate: "productTemplate.xlsx",
       permission: "cmn.product.create",

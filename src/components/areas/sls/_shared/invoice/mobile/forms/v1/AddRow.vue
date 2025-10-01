@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6 col-sm-12 col-xs-12">
       <q-item-label caption class="q-mb-sm">
-        {{ $t("shared.labels.productService") }}
+        {{ $t("shared.labels.productOrService") }}
       </q-item-label>
       <product-lookup
         :placeholder="$t('shared.labels.selectProductService')"

@@ -57,7 +57,7 @@
               width: 120px;
             "
           >
-            {{ $t("shared.labels.totalPrice") }}
+            {{ $t("shared.columns.totalPrice") }}
           </th>
         </tr>
       </thead>
@@ -94,7 +94,7 @@
             colspan="3"
             class="text-right"
           >
-            <strong>{{ $t("shared.labels.totalPrice") }}:</strong>
+            <strong>{{ $t("shared.columns.totalPrice") }}:</strong>
           </td>
           <td style="border: 1px solid #2d2d2d; padding: 5px">
             <span class="text-weight-700">

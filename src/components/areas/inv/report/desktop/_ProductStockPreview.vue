@@ -1,8 +1,8 @@
 <template>
   <q-card flat bordered>
     <card-title
-      :title="$t('shared.labels.stockLedger')"
-      icon="o_inventory_2"
+      :title="$t('shared.labels.productOrService')"
+      icon="desktop_mac"
     />
 
     <preview-master :item="item" :title="title" v-if="item" />

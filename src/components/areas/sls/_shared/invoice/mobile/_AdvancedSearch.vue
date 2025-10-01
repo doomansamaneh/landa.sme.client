@@ -146,7 +146,7 @@
 
           <div>
             <q-item-label caption class="q-mb-sm">
-              {{ $t("shared.labels.productService") }}
+              {{ $t("shared.labels.productOrService") }}
             </q-item-label>
             <q-input
               readonly

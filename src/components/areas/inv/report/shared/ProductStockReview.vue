@@ -1,8 +1,7 @@
 <template>
   <toolbar-desktop margin :title="title" />
-
-  <advanced-search class="q-mb-md" />
-  <tip-banner :tip="tip" />
+  <advanced-search />
+  <tip-banner :tip="tip" class="q-my-md" />
 
   <chip
     icon="filter_alt"
@@ -80,10 +79,6 @@
   import ReviewProductGroup from "../desktop/ReviewProductGroup.vue";
   import ReviewProduct from "../desktop/ReviewProduct.vue";
   import ProductStockItem from "../desktop/ProductStockItem.vue";
-  // import ReviewPg from "../desktop/ReviewProductGroup.vue";
-  // import ReviewCustomer from "../desktop/ReviewCustomer.vue";
-  // import ReviewPrdCustomer from "../desktop/ReviewProductCustomer.vue";
-  // import ReviewItem from "../desktop/ReviewItem.vue";
 
   import AdvancedSearch from "../desktop/ProductStockSearch.vue";
   import ToolbarDesktop from "components/shared/toolbars/DynamicToolbarDesktop.vue";

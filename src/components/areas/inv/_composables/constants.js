@@ -38,8 +38,8 @@ export const productStockColumns = [
   dlCode,
   title,
   { ...unitTitle, label: "productUnitTitle" },
-  purchaseQuantity,
-  salesQuantity,
+  { ...purchaseQuantity, label: "inQuantity" },
+  { ...salesQuantity, label: "outQuantity" },
   { ...stock, class: "text-weight-600", sortable: true },
   { ...debit, label: "inventoryValue" },
 ];
@@ -47,8 +47,8 @@ export const productStockColumns = [
 export const productGroupStockColumns = [
   code,
   title,
-  purchaseQuantity,
-  salesQuantity,
+  { ...purchaseQuantity, label: "inQuantity" },
+  { ...salesQuantity, label: "outQuantity" },
   { ...stock, class: "text-weight-600", sortable: true },
   { ...debit, label: "inventoryValue" },
 ];
@@ -78,8 +78,8 @@ export const productStockItemColumns = [
   date,
   subject,
   // summary,
-  purchaseQuantity,
-  salesQuantity,
+  { ...purchaseQuantity, label: "inQuantity", showFilter: false },
+  { ...salesQuantity, label: "outQuantity", showFilter: false },
   inlineQuantity,
   { ...price, label: "unitPrice", showFilter: false },
   { ...totalPrice },

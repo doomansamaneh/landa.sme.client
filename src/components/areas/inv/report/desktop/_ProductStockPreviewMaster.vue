@@ -40,13 +40,15 @@
         </span>
       </div>
       <div class="text-body2 text-bold">
-        {{ item?.openingQuantity?.toLocaleString() }}
+        {{ helper.formatNumber(item?.openingQuantity) }}
       </div>
     </div>
   </q-card-section>
 </template>
 
 <script setup>
+  import { helper } from "src/helpers/helper";
+
   const props = defineProps({
     item: Object,
   });
