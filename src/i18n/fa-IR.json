@@ -345,6 +345,8 @@
       "new": "جدید",
       "create": "ایجاد",
       "createV2": "ایجاد سریع",
+      "welcomeBackTitle": "ای دوست که باز آمدی به دیار ما خوش آمدی به خانه، به سرای ما",
+      "lastLoginInfo": "آخرین ورود شما: {days} روز پیش",
       "editBatch": "ویرایش دسته‌ای",
       "merge": "ادغام",
       "editProductPrice": "اصلاح قیمت",

@@ -75,9 +75,6 @@ export function useBusinessGrid() {
       const firstLogin = response.data?.data?.firstLogin;
       localStorage.setItem("firstLogin", firstLogin);
 
-      console.log("firstLogin", firstLogin);
-
-
       businessStore.set({
         id: item.id,
         title: response.data?.data?.title,
