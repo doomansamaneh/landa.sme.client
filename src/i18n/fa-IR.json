@@ -345,7 +345,7 @@
       "new": "جدید",
       "create": "ایجاد",
       "createV2": "ایجاد سریع",
-      "welcomeBackTitle": "ای دوست که باز آمدی به دیار ما خوش آمدی به خانه، به سرای ما",
+      "welcomeBackTitle": "خیلی وقت بود شما رو ندیده بودیم! از دیدن دوباره‌تون خوشحالیم. دیگه وقت بررسی اعداد و گزارشهاست ",
       "lastLoginInfo": "آخرین ورود شما: {days} روز پیش",
       "editBatch": "ویرایش دسته‌ای",
       "merge": "ادغام",
@@ -911,7 +911,9 @@
       "customerCreatedSuccessfully": "مخاطب جدید با موفقیت ایجاد شد.",
       "viewProfile": "مشاهده پروفایل",
       "quoteRegisteredSuccessfully": "پیش‌فاکتور با موفقیت ثبت شد.",
-      "receiveAccountBalance": "دریافت مانده حساب"
+      "receiveAccountBalance": "دریافت مانده حساب",
+      "modifyStockEnterSLCode": "کد حساب پیشفرض اصلاح موجودی- افزایش",
+      "modifyStockExitSLCode": "کد حساب پیشفرض اصلاح موجودی- کاهش"
     },
 
     "productType": {

@@ -71,7 +71,7 @@
   import { ref } from "vue";
   import { useDialogPluginComponent } from "quasar";
 
-  import ActionButtons from "src/components/shared/Forms/FormCardActions.vue";
+  import ActionButtons from "src/components/shared/forms/FormCardActions.vue";
 
   const props = defineProps({
     title: String,

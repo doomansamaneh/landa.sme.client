@@ -1,6 +1,6 @@
 <template>
   <stock-preview
-    v-if="item"
+    v-if="model"
     :item="model"
     :title="title"
     :inside="inside"

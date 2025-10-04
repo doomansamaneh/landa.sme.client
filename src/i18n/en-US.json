@@ -883,7 +883,9 @@
       "viewProfile": "View Profile",
       "quoteRegisteredSuccessfully": "Quote has been successfully created.",
       "receiveAccountBalance": "Receive account balance",
-      "information": "Information"
+      "information": "Information",
+      "modifyStockEnterSLCode": "Modify Stock Default Code: addition",
+      "modifyStockExitSLCode": "Modify Stock Default Code: deduction"
     },
 
     "productType": {

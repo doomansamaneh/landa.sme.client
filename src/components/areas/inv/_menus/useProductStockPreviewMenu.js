@@ -19,7 +19,7 @@ export function useProductStockPreviewMenu(context) {
           dialogStore.openDialog({
             title: "main-menu-items.Inv_ModifyStock_View",
             component: ModifyStockForm,
-            props: { id: context.model?.id },
+            props: { id: context.id },
             actionBar: true,
             okCallback: async (response) => {
               //await context.model?.value?.reloadData?.();

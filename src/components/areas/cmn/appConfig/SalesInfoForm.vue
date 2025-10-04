@@ -27,6 +27,24 @@
     />
   </div>
 
+  <div class="q-mt-lg">
+    <custom-input
+      :label="$t('shared.labels.modifyStockEnterSLCode')"
+      v-model="
+        configStore.model.value.companySetting.modifyStockEnterSLCode
+      "
+    />
+  </div>
+
+  <div class="q-mt-lg">
+    <custom-input
+      :label="$t('shared.labels.modifyStockExitSLCode')"
+      v-model="
+        configStore.model.value.companySetting.modifyStockExitSLCode
+      "
+    />
+  </div>
+
   <!-- <div class="q-mt-lg">
         <q-item-label
           class="caption-on-dark  text-body2 q-mb-sm"

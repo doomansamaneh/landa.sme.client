@@ -1,11 +1,6 @@
 <template>
-  <toolbar-desktop
-    v-if="item"
-    :inside="inside"
-    :menu-items="menuItems"
-  />
-
-  <preview :item="item" :title="title" ref="dataGrid" v-if="item" />
+  <toolbar-desktop :inside="inside" :menu-items="menuItems" />
+  <preview :item="item" :title="title" ref="dataGrid" />
 </template>
 
 <script setup>
