@@ -14,7 +14,6 @@
     <alert-banner class="fixed-bottom z-max" />
 
     <tutorial-checklist v-if="showChecklist" />
-    <welcome-back-dialog />
   </q-layout>
 </template>
 
@@ -32,7 +31,6 @@
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
   import TutorialChecklist from "src/components/shared/TutorialChecklist.vue";
-  import WelcomeBackDialog from "src/components/shared/WelcomeBackDialog.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
