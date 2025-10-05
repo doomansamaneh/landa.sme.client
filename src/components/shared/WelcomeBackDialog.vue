@@ -17,7 +17,7 @@
           <q-icon name="o_close" size="24px" />
         </q-btn>
       </q-card-section>
-      <q-card-section class="text-center q-pa-xl">
+      <q-card-section class="text-center q-px-xl q-pt-xl q-pb-none">
         <div class="text-h1">🌻</div>
         <div
           class="text-h6"
@@ -38,6 +38,18 @@
           {{ $t("shared.labels.lastIpInfo") }} {{ lastIp }}
         </div>
       </q-card-section>
+
+      <q-card-actions align="center" class="q-pa-lg">
+        <q-btn
+          padding="4px 12px"
+          rounded
+          dense
+          unelevated
+          :label="$t('shared.labels.ok')"
+          class="primary-gradient primary-shadow"
+          @click="onDialogHide"
+        />
+      </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
