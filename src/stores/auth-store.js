@@ -45,7 +45,6 @@ export const useAuthStore = defineStore("auth", {
       this.clearUser();
       await fetchWrapper.post("account/logoff");
       this.redirect("/account/login");
-      this.clearWelcomeBackSessionStorage();
     },
 
     setUser(user) {
@@ -68,18 +67,14 @@ export const useAuthStore = defineStore("auth", {
       this.router.push(url);
     },
 
-    clearWelcomeBackSessionStorage() {
-      const keysToRemove = [];
-      for (let i = 0; i < sessionStorage.length; i++) {
-        const key = sessionStorage.key(i);
-        if (key && key.startsWith("welcomeBackShown_")) {
-          keysToRemove.push(key);
-        }
+    updateLastLoginDate(date) {
+      if (this.currentUser) {
+        this.currentUser.lastLoginDate = date;
+        localStorage.setItem(
+          "user",
+          JSON.stringify(this.currentUser)
+        );
       }
-      keysToRemove.forEach((key) => {
-        sessionStorage.removeItem(key);
-        console.log("🗑️ Cleared WelcomeBack session storage:", key);
-      });
     },
   },
 });

@@ -41,12 +41,12 @@
 
       <q-card-actions align="center" class="q-pa-lg">
         <q-btn
-          padding="4px 12px"
+          padding="8px 12px"
           rounded
           dense
           unelevated
           :label="$t('shared.labels.ok')"
-          class="primary-gradient primary-shadow"
+          class="primary-gradient primary-shadow text-white"
           @click="onDialogHide"
         />
       </q-card-actions>
@@ -55,15 +55,12 @@
 </template>
 
 <script setup>
-  import { computed, ref, watch } from "vue";
+  import { computed, ref } from "vue";
   import { useWelcomeBack } from "src/composables/useWelcomeBack";
   import { useAuthStore } from "src/stores";
 
-  const {
-    shouldShowWelcomeBack,
-    markWelcomeBackAsShown,
-    getDaysSinceLastLogin,
-  } = useWelcomeBack();
+  const { shouldShowWelcomeBack, getDaysSinceLastLogin } =
+    useWelcomeBack();
 
   const authStore = useAuthStore();
   const visible = ref(shouldShowWelcomeBack.value);
@@ -74,12 +71,8 @@
     return user?.lastLoginIp || null;
   });
 
-  watch(shouldShowWelcomeBack, (newValue) => {
-    visible.value = newValue;
-  });
-
   function onDialogHide() {
-    markWelcomeBackAsShown();
+    authStore.updateLastLoginDate(new Date().toISOString());
     visible.value = false;
   }
 </script>
