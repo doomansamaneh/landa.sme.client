@@ -4,10 +4,7 @@
       <thead>
         <tr>
           <th style="width: 1px">{{ $t("shared.columns.rowNo") }}</th>
-          <template
-            v-for="col in tableStore.columns.value"
-            :key="col.name"
-          >
+          <template v-for="col in visibleColumns" :key="col.name">
             <th v-if="col.field">
               {{ $t(`shared.columns.${col.label}`) }}
             </th>
@@ -23,10 +20,7 @@
               </div>
             </td>
 
-            <template
-              v-for="col in tableStore?.columns.value"
-              :key="col.name"
-            >
+            <template v-for="col in visibleColumns" :key="col.name">
               <td
                 v-if="col.field"
                 :class="col.cellClass"
@@ -65,7 +59,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from "vue";
+  import { ref, onMounted, computed } from "vue";
   import { helper } from "src/helpers";
   import { useDataTable } from "src/composables/useDataTable";
   import { dataType } from "src/constants";
@@ -75,6 +69,13 @@
   });
 
   const data = ref({});
+
+  const visibleColumns = computed(() => {
+    return (
+      props.tableStore?.columns?.value.filter((col) => !col.hidden) ||
+      []
+    );
+  });
 
   function getColText(row, col) {
     if (row && col) {
@@ -97,11 +98,7 @@
 
   const showSummaryColumn = (fieldName) => {
     return (
-      helper.findIndex(
-        props.tableStore.columns.value,
-        "field",
-        fieldName
-      ) >= 0
+      helper.findIndex(visibleColumns.value, "field", fieldName) >= 0
     );
   };
 
@@ -110,11 +107,8 @@
     const firstFieldName = Object.keys(data.value.summaryData)[0];
 
     return (
-      helper.findIndex(
-        props.tableStore.columns.value,
-        "name",
-        firstFieldName
-      ) + 1
+      helper.findIndex(visibleColumns.value, "name", firstFieldName) +
+      1
     ); //row no column
   };
 

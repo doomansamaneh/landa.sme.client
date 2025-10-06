@@ -5,10 +5,12 @@ export function useDataTableExport(tableStore) {
   const { t } = useI18n();
 
   function getTranslatedColumns() {
-    return tableStore.columns.value.map((col) => ({
-      ...col,
-      label: t(`shared.columns.${col.label}`) || col.label,
-    }));
+    return tableStore.columns.value
+      .filter((col) => !col.hidden)
+      .map((col) => ({
+        ...col,
+        label: t(`shared.columns.${col.label}`) || col.label,
+      }));
   }
 
   async function exportAll() {
