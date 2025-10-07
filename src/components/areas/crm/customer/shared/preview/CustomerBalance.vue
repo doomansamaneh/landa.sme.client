@@ -3,13 +3,13 @@
     <div class="col-md-4 col-sm-4 col-xs-12">
       <number-widget
         :value="balanceModel.debit"
-        :title="$t('shared.labels.debitTurnover')"
+        :title="$t('shared.columns.debit')"
       />
     </div>
     <div class="col-md-4 col-sm-4 col-xs-12">
       <number-widget
         :value="balanceModel.credit"
-        :title="$t('shared.labels.creditTurnover')"
+        :title="$t('shared.columns.credit')"
       />
     </div>
     <div class="col-md-4 col-sm-4 col-xs-12">
