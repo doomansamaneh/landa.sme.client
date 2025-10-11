@@ -64,10 +64,7 @@ export function useInvoiceModel(config) {
           okColor: "deep-orange-7",
         },
       }).onOk(async () => {
-        const response = await fetchWrapper.post(
-          `${config.baseRoute}/cancelInvoice/${id}`
-        );
-        notifyResponse(response.data);
+        await crudStore.customPostAction(`cancelInvoice/${id}`);
         if (callBack) callBack();
       });
     } else notify("noRowSelected", "negative");
@@ -86,11 +83,7 @@ export function useInvoiceModel(config) {
           okColor: "deep-orange-7",
         },
       }).onOk(async () => {
-        const response = await fetchWrapper.post(
-          `${config.baseRoute}/cancelInvoice`,
-          idList
-        );
-        notifyResponse(response.data);
+        await crudStore.customPostAction(`cancelInvoice`, idList);
         if (callBack) callBack();
       });
     } else notify("noRowSelected", "negative");
@@ -99,10 +92,6 @@ export function useInvoiceModel(config) {
   async function reorder(callBack) {
     await crudStore.customPostAction("reorder", model.value);
     if (callBack) callBack();
-  }
-
-  function notifyResponse(data) {
-    notify(data.message);
   }
 
   function notify(message, type = "positive") {
@@ -357,8 +346,9 @@ export function useInvoiceModel(config) {
     await crudStore.submitForm(form, action, saveCallBack);
 
     function saveCallBack(responseData) {
-      if (responseData?.code === 200 && config?.resetCallback)
-        config.resetCallback();
+      if (responseData?.code === 200) {
+        if (config?.resetCallback) config.resetCallback();
+      }
 
       if (callBack) callBack(responseData);
       else if (responseData?.code === 200) {
