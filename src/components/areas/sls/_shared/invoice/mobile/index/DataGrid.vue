@@ -53,7 +53,10 @@
 
       <div>
         <div class="row q-gutter-x-xs text-caption">
-          <div>{{ item.no }}#</div>
+          <div class="row items-center">
+            <q-icon name="o_tag" />
+            <div>{{ item.no }}</div>
+          </div>
           <div class="row items-center q-gutter-xs">
             <q-icon size="10px" name="o_calendar_today" />
             <div>{{ helper.formatDate(item.date) }}</div>

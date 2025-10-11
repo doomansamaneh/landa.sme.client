@@ -21,11 +21,15 @@
         </div>
       </div>
 
-      <div class="row">
-        <span class="text-caption-sm">
-          {{ item.no }} -
-          {{ helper.formatPersianDate(item.date) }}
-        </span>
+      <div class="row q-gutter-x-xs text-caption">
+        <div class="row items-center">
+          <q-icon name="o_tag" />
+          <div>{{ item.no }}</div>
+        </div>
+        <div class="row items-center q-gutter-xs">
+          <q-icon name="o_schedule" />
+          <div>{{ helper.formatDate(item.date) }}</div>
+        </div>
       </div>
 
       <div v-if="item.amount" class="row q-gutter-x-xs">

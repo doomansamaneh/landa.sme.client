@@ -31,10 +31,13 @@
       </div>
 
       <div class="row q-gutter-x-xs text-caption">
-        <div>{{ item.no }}#</div>
+        <div class="row items-center">
+          <q-icon name="o_tag" />
+          <div>{{ item.no }}</div>
+        </div>
         <div class="row items-center q-gutter-xs">
           <q-icon name="o_schedule" />
-          <div>{{ helper.formatPersianDate(item.date) }}</div>
+          <div>{{ helper.formatDate(item.date) }}</div>
         </div>
       </div>
 
