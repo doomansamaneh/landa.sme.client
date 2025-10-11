@@ -3,21 +3,20 @@
     class="border-radius-lg"
     flat
     bordered
-    toolbar_
     multi-select
+    no-fullscreen
     data-source="acc/report/getItemAllData"
-    :columns="accountItemColumns"
-    :filter-expression="filterExpression"
-    :no-fullscreen="true"
+    :grid-store="gridStore"
     :title="$t('shared.labels.accountItem')"
     :sub-title="item.name"
   />
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref } from "vue";
   import { accountItemDLColumns } from "src/components/areas/acc/_composables/constants";
-  import { sqlOperator } from "src/constants";
+  import { sortOrder, sqlOperator, voucherType } from "src/constants";
+  import { useBaseInfoGrid } from "src/components/areas/_shared/_composables/useBaseInfoGrid";
 
   import AccountItem from "src/components/areas/acc/report/desktop/AccountItem.vue";
 
@@ -25,12 +24,24 @@
     item: Object,
   });
 
-  const accountItemColumns = accountItemDLColumns;
-  const filterExpression = computed(() => [
-    {
-      fieldName: "vi.dlId",
-      operator: sqlOperator.equal,
-      value: props.item.dlId,
-    },
-  ]);
+  const searchModel = ref({
+    voucherTypeIds: [
+      voucherType.general,
+      voucherType.modificationVoucher,
+    ],
+  });
+
+  const gridStore = useBaseInfoGrid({
+    sortColumn: "voucherDate,rowNo",
+    sortOrder: sortOrder.descending,
+    columns: accountItemDLColumns,
+    searchModel: searchModel,
+    filterExpression: [
+      {
+        fieldName: "vi.dlId",
+        operator: sqlOperator.equal,
+        value: props.item.dlId,
+      },
+    ],
+  });
 </script>

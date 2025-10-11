@@ -117,7 +117,6 @@
   const searchStore = useVoucherSearch();
   const tableStore = useDataTable({
     dataSource: props.dataSource,
-    dataColumns: props.columns || accountItemColumns,
     store:
       props.gridStore ||
       useBaseInfoGrid({
