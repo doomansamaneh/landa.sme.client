@@ -11,6 +11,7 @@
       </slot>
       <separator-toggle-button :table-store="tableStore" />
       <export-button :table-store="tableStore" />
+      <column-manager :table-store="tableStore" />
     </div>
     <div class="flex items-center">
       <fullscreen-button :table-store="tableStore" />
@@ -24,6 +25,7 @@
   import PrintButton from "../../buttons/PrintButton.vue";
   import ExportButton from "../../buttons/ExportButton.vue";
   import FullscreenButton from "../../buttons/FullscreenButton.vue";
+  import ColumnManager from "../../buttons/ColumnManager.vue"
 
   const props = defineProps({
     tableStore: Object,

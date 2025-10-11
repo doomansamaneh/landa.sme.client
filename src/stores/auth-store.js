@@ -76,6 +76,16 @@ export const useAuthStore = defineStore("auth", {
         );
       }
     },
+
+    updateAnniversaryShown(date) {
+      if (this.currentUser) {
+        this.currentUser.anniversaryShown = date;
+        localStorage.setItem(
+          "user",
+          JSON.stringify(this.currentUser)
+        );
+      }
+    },
   },
 });
 

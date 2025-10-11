@@ -185,7 +185,10 @@
       "save": "حفظ",
       "new": "جديد",
       "edit": "تعديل",
-      "delete": "حذف"
+      "delete": "حذف",
+      "columnVisibility": "رؤية الأعمدة",
+      "showAll": "إظهار الكل",
+      "hideAll": "إخفاء الكل"
     },
     "messages": {
       "deleted-successfully": "تم الحذف بنجاح"
