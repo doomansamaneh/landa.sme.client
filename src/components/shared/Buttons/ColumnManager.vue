@@ -121,8 +121,8 @@
   const {
     getColumnVisibility,
     saveColumnVisibility,
-    getOriginalColumnStates,
-    saveOriginalColumnStates,
+    getOriginalStates,
+    saveOriginalStates,
     resetToDefault,
   } = useColumnSettings(
     props.pageName,
@@ -143,7 +143,7 @@
   const initializeOriginalStates = () => {
     if (props.tableStore?.columns?.value) {
       // Load saved original states from localStorage
-      const savedOriginalStates = getOriginalColumnStates();
+      const savedOriginalStates = getOriginalStates();
 
       props.tableStore.columns.value.forEach((column) => {
         if (!(column.name in originalColumnStates.value)) {
@@ -156,7 +156,7 @@
       });
 
       // Save original states to localStorage
-      saveOriginalColumnStates(originalColumnStates.value);
+      saveOriginalStates(originalColumnStates.value);
     }
   };
 
