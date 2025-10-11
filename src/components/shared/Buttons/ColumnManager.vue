@@ -94,12 +94,42 @@
 </template>
 
 <script setup>
-  import { computed, ref, onMounted } from "vue";
+  import { computed, ref, onMounted, watch } from "vue";
   import { helper } from "src/helpers";
+  import { useColumnSettings } from "src/composables/useColumnSettings";
 
   const props = defineProps({
     tableStore: Object,
+    pageName: {
+      type: String,
+      required: true,
+      default: "defaultPage",
+    },
+    widgetName: {
+      type: String,
+      required: true,
+      default: "defaultWidget",
+    },
+    tableId: {
+      type: String,
+      required: false,
+      default: null,
+    },
   });
+
+  // Initialize column settings composable
+  const {
+    getColumnVisibility,
+    saveColumnVisibility,
+    getOriginalColumnStates,
+    saveOriginalColumnStates,
+    resetToDefault,
+  } = useColumnSettings(
+    props.pageName,
+    props.widgetName,
+    props.tableId,
+    props.tableStore
+  );
 
   const allColumns = computed(() => {
     return props.tableStore?.columns?.value || [];
@@ -112,16 +142,56 @@
   // Initialize original states when component mounts
   const initializeOriginalStates = () => {
     if (props.tableStore?.columns?.value) {
+      // Load saved original states from localStorage
+      const savedOriginalStates = getOriginalColumnStates();
+
       props.tableStore.columns.value.forEach((column) => {
         if (!(column.name in originalColumnStates.value)) {
-          originalColumnStates.value[column.name] = column.hidden;
+          // Use saved original state or current column state
+          originalColumnStates.value[column.name] =
+            savedOriginalStates[column.name] !== undefined
+              ? savedOriginalStates[column.name]
+              : column.hidden;
         }
       });
+
+      // Save original states to localStorage
+      saveOriginalColumnStates(originalColumnStates.value);
+    }
+  };
+
+  // Load column visibility from localStorage
+  const loadColumnVisibility = () => {
+    if (props.tableStore?.columns?.value) {
+      const savedVisibility = getColumnVisibility();
+
+      props.tableStore.columns.value.forEach((column) => {
+        if (savedVisibility[column.name] !== undefined) {
+          column.hidden = savedVisibility[column.name];
+        }
+      });
+
+      // Trigger reactivity update
+      props.tableStore.columns.value = [
+        ...props.tableStore.columns.value,
+      ];
+    }
+  };
+
+  // Save current column visibility to localStorage
+  const saveCurrentColumnVisibility = () => {
+    if (props.tableStore?.columns?.value) {
+      const visibilitySettings = {};
+      props.tableStore.columns.value.forEach((column) => {
+        visibilitySettings[column.name] = column.hidden;
+      });
+      saveColumnVisibility(visibilitySettings);
     }
   };
 
   onMounted(() => {
     initializeOriginalStates();
+    loadColumnVisibility();
   });
 
   const toggleColumnVisibility = (column) => {
@@ -131,6 +201,8 @@
       props.tableStore.columns.value = [
         ...props.tableStore.columns.value,
       ];
+      // Save to localStorage
+      saveCurrentColumnVisibility();
     }
   };
 
@@ -154,6 +226,8 @@
       props.tableStore.columns.value = [
         ...props.tableStore.columns.value,
       ];
+      // Save to localStorage
+      saveCurrentColumnVisibility();
     }
   };
 
@@ -167,6 +241,16 @@
       props.tableStore.columns.value = [
         ...props.tableStore.columns.value,
       ];
+      // Save to localStorage
+      saveCurrentColumnVisibility();
     }
+  };
+
+  // Reset to default settings
+  const resetToDefaultSettings = () => {
+    resetToDefault();
+    // Reload the original states and visibility
+    initializeOriginalStates();
+    loadColumnVisibility();
   };
 </script>
