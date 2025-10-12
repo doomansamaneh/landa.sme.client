@@ -56,7 +56,7 @@
     padding: 5px;
   }
   .print-preview-table th {
-    background-color: $dark;
+    background-color: scale-color($dark, $lightness: 17%);
   }
 
   .balance-sheet-preview-table {
@@ -70,7 +70,7 @@
     text-align: start;
   }
   .balance-sheet-preview-table th {
-    background-color: $dark;
+    background-color: scale-color($dark, $lightness: 17%);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -123,7 +123,7 @@
   }
 
   .striped-table tr:nth-child(even) {
-    background-color: $dark;
+    background-color: scale-color($dark, $lightness: 17%);
   }
 
   @media print {
