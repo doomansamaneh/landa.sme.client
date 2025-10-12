@@ -38,7 +38,7 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     if (message) {
       $q.notify({
         type: type,
-        message: t(`${message}`),
+        message: t(`messages.${message}`),
       });
     }
   };
@@ -56,14 +56,6 @@ export function useFormActions(baseURL, model, diableDirtyCheck) {
     if (response.data.data) model.value = response.data.data;
     return response.data.data;
   };
-
-  // const getById = (id, url) =>
-  //   onGetById(url ?? `${baseURL}/getById`, id).then(
-  //     (responseData) => {
-  //       if (!diableDirtyCheck) resetIsDirty();
-  //       return responseData;
-  //     }
-  //   );
 
   const getById = async (id, url, silent = false) => {
     showLoader.value = !silent;

@@ -2,6 +2,7 @@ import axios from "axios";
 import { ref } from "vue";
 import { useAuthStore } from "src/stores";
 import { useAlertStore } from "src/stores";
+import { useVoucherState } from "src/components/areas/acc/_composables/useVoucherState";
 import { baseUrl } from "src/constants";
 import { Loading } from "quasar";
 import ConnectionLostDialog from "src/components/shared/ConnectionLostDialog.vue";
@@ -99,8 +100,31 @@ function getAuthHeaders(url) {
 }
 
 function handleKnownError(url, response) {
-  if (response.data.code === 0 || response.data.code === 500)
+  if (response.data.code === 0 || response.data.code === 500) {
     return Promise.reject(response);
+  }
+
+  const actionTypes = [
+    "create",
+    "edit",
+    "modify",
+    "save",
+    "delete",
+    "activate",
+    "cancel",
+    "undo",
+  ];
+
+  const lowercaseUrl = url.toLowerCase();
+  if (
+    actionTypes.some((action) =>
+      lowercaseUrl.includes(action.toLowerCase())
+    )
+  ) {
+    const voucherStore = useVoucherState();
+    voucherStore.reset();
+  }
+
   return Promise.resolve(response);
 }
 
