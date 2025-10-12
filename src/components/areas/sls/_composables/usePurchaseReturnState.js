@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { invoiceColumns } from "./constants";
+import { useInvoiceSearch } from "./useInvoiceSearch";
 
 import {
   defaultPageSize,
@@ -9,6 +10,7 @@ import {
 import { useComposables } from "src/stores/useComposables";
 
 //const rows = ref([])
+const searchStore = useInvoiceSearch();
 
 const state = {
   firstLoad: ref(false),
@@ -17,10 +19,7 @@ const state = {
   activeRow: ref(null),
   summaryData: ref(null),
   filterExpression: [],
-  searchModel: ref({
-    dateRange: 0,
-    waitToSendTax: false,
-  }),
+  searchModel: searchStore.searchModel,
 };
 
 const pagination = ref({

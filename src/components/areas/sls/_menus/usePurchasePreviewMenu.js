@@ -44,7 +44,7 @@ export function usePurchasePreviewMenu(context) {
             label: "copyToSales",
             icon: "o_shopping_cart",
             permission: "sls.invoice.create",
-            route: `/sls/invoice/CreateFromPurchase/${context.activeRow?.id}`,
+            route: `/sls/invoice/CreateFromPurchase/${context.id}`,
             visible: true,
           },
           {
@@ -52,7 +52,7 @@ export function usePurchasePreviewMenu(context) {
             label: "purchaseReturn",
             icon: "o_undo",
             permission: "sls.purchaseReturn.create",
-            route: `/sls/purchaseReturn/createFromPurchase/${context.activeRow?.id}`,
+            route: `/sls/purchaseReturn/createFromPurchase/${context.id}`,
             visible: true,
           },
         ],
