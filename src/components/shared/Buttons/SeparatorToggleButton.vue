@@ -1,6 +1,6 @@
 <template>
   <q-btn
-    :disable="tableStore.showLoader.value"
+    :disable="tableStore?.showLoader?.value"
     no-caps
     size="11px"
     round

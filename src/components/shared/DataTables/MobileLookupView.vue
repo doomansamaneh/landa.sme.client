@@ -43,7 +43,7 @@
       no-refocus
     >
       <q-inner-loading
-        :showing="tableStore.showLoader.value"
+        :showing="tableStore?.showLoader?.value"
         class="inner-loader q-mt-xl"
       >
         <q-spinner size="52px" color="primary" />
@@ -71,7 +71,7 @@
 
       <div
         v-if="
-          !tableStore.showLoader.value &&
+          !tableStore?.showLoader?.value &&
           tableStore.rows.value.length == 0
         "
         class="q-table__bottom items-center q-table__bottom--nodata"
@@ -284,7 +284,7 @@
   const containerClass = computed(
     () =>
       __containerClass.value +
-      (tableStore.showLoader.value === true
+      (tableStore?.showLoader?.value === true
         ? " q-table--loading"
         : "")
   );

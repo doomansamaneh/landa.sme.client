@@ -30,7 +30,7 @@
       <div :style="$q.screen.gt.xs ? 'width: 400px;' : ''">
         <div class="row justify-between q-px-lg q-pt-md">
           <q-inner-loading
-            :showing="tableStore.showLoader.value"
+            :showing="tableStore?.showLoader?.value"
             class="transparent z-max"
           >
             <q-spinner size="52px" color="primary" />

@@ -1,6 +1,6 @@
 <template>
   <q-inner-loading
-    :showing="tableStore.showLoader.value"
+    :showing="tableStore?.showLoader?.value"
     class="transparent z-1"
   >
     <q-spinner size="52px" color="primary" />
@@ -53,7 +53,7 @@
 
     <div
       v-if="
-        !tableStore.showLoader.value &&
+        !tableStore?.showLoader?.value &&
         gridStore.rows.value.length === 0
       "
       class="text-on-dark"
@@ -86,7 +86,7 @@
 
     <div
       v-if="
-        !tableStore.showLoader.value &&
+        !tableStore?.showLoader?.value &&
         gridStore.rows.value.length === 0
       "
       class="text-on-dark"

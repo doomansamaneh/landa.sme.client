@@ -73,7 +73,7 @@
         @hide="onMenuHide"
       >
         <q-inner-loading
-          :showing="tableStore.showLoader.value"
+          :showing="tableStore?.showLoader?.value"
           class="inner-loader_ q-mt-xl"
         >
           <q-spinner size="52px" color="primary" />
@@ -164,7 +164,7 @@
 
         <div
           v-if="
-            !tableStore.showLoader.value &&
+            !tableStore?.showLoader?.value &&
             tableStore.rows.value.length == 0
           "
           class="q-table__bottom items-center q-table__bottom--nodata"
@@ -356,7 +356,7 @@
 
       <div
         v-if="
-          !tableStore.showLoader.value &&
+          !tableStore?.showLoader?.value &&
           tableStore.rows.value.length == 0
         "
         class="q-table__bottom items-center q-table__bottom--nodata"
@@ -390,7 +390,7 @@
       </div>
 
       <q-inner-loading
-        :showing="tableStore.showLoader.value"
+        :showing="tableStore?.showLoader?.value"
         class="inner-loader_ q-mt-xl"
       >
         <q-spinner size="52px" color="primary" />

@@ -73,9 +73,7 @@
           </q-btn>
         </div>
 
-        <div
-          class="flex items-center justify-between q-mt-lg"
-        >
+        <div class="flex items-center justify-between q-mt-lg">
           <q-btn
             no-caps
             unelevated
@@ -154,7 +152,7 @@
       </q-card-section>
 
       <q-inner-loading
-        :showing="tableStore.showLoader.value"
+        :showing="tableStore?.showLoader?.value"
         class="transparent z-max"
       >
         <q-spinner size="52px" color="primary" />
