@@ -1,6 +1,12 @@
 <template>
   <div class="flex items-center">
-    <q-btn no-caps size="11px" round unelevated>
+    <q-btn
+      :disable="tableStore.showLoader.value"
+      no-caps
+      size="11px"
+      round
+      unelevated
+    >
       <q-icon size="24px" name="o_settings" />
       <q-menu>
         <q-list style="min-width: 300px">

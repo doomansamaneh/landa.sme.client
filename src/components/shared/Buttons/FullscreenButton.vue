@@ -1,6 +1,7 @@
 <template>
   <div class="flex items-center">
     <q-btn
+      :disable="tableStore.showLoader.value"
       no-caps
       size="11px"
       round
@@ -31,7 +32,9 @@
           <template v-if="tableStore?.inFullscreen.value">
             {{ $t("shared.labels.exitFullscreen") }}
           </template>
-          <template v-else>{{ $t("shared.labels.fullscreen") }}</template>
+          <template v-else>
+            {{ $t("shared.labels.fullscreen") }}
+          </template>
         </div>
       </q-tooltip>
     </q-btn>
