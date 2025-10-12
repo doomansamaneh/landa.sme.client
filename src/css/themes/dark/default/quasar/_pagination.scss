@@ -1,6 +1,6 @@
 @mixin q-pagination-dark {
   .q-pagination .q-icon.notranslate.material-icons {
-    color: $accent;
+    color: #e1e4e8;
   }
 
   .q-pagination .q-btn__content {
@@ -8,6 +8,6 @@
   }
 
   .pagination-el {
-    background-color: $dark;
+    background-color: #e1e4e8;
   }
 }

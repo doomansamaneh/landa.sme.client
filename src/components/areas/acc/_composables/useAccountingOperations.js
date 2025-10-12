@@ -76,7 +76,6 @@ export function useAccountingOperations() {
       title: t("shared.labels.calculateCogs"),
       message: t("shared.labels.calculateCogsMessage"),
       ok: t("shared.labels.calculateCogs"),
-      okColor: "blue-7",
       onOk: async () => {
         const response = await fetchWrapper.post(
           `acc/operation/calculateCogs`
@@ -92,7 +91,6 @@ export function useAccountingOperations() {
       title: t("shared.labels.openBook"),
       message: t("shared.labels.openBookMessage"),
       ok: t("shared.labels.openBook"),
-      okColor: "blue-7",
       onOk: async () => {
         const response = await fetchWrapper.post(
           `acc/operation/openBook`
@@ -108,7 +106,6 @@ export function useAccountingOperations() {
       title: t("shared.labels.closeBook"),
       message: t("shared.labels.closeBookMessage"),
       ok: t("shared.labels.closeBook"),
-      okColor: "blue-7",
       onOk: async () => {
         const response = await fetchWrapper.post(
           `acc/operation/closeBook`
