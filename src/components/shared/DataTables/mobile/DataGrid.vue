@@ -145,7 +145,7 @@
 
   <!-- No Data -->
   <div
-    v-if="!tableStore.showLoader.value && rows?.value.length === 0"
+    v-if="!tableStore?.showLoader?.value && rows?.value.length === 0"
     class="text-on-dark"
   >
     <no-data-found />
@@ -153,7 +153,7 @@
 
   <!-- Loader -->
   <q-inner-loading
-    :showing="tableStore.showLoader.value"
+    :showing="tableStore?.showLoader?.value"
     class="transparent z-max"
   >
     <q-spinner size="52px" color="primary" />

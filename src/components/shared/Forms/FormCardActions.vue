@@ -9,11 +9,10 @@
         no-caps
         type="submit"
         @click="okClicked"
-        text-color="white"
         unelevated
         padding="8px 16px"
         rounded
-        class="primary-gradient primary-shadow"
+        class="primary-gradient primary-shadow text-white"
       >
         <slot name="ok-label">
           {{ $t(okLabel || "shared.labels.save") }}

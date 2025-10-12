@@ -6,7 +6,7 @@
       class="progress"
       indeterminate
       size="xs"
-      v-if="tableStore.showLoader.value"
+      v-if="tableStore?.showLoader?.value"
     />
 
     <q-card-section class="q-pb-xs">
@@ -59,7 +59,7 @@
 
     <q-card-section
       v-if="
-        !tableStore.showLoader.value &&
+        !tableStore?.showLoader?.value &&
         tableStore.rows.value.length == 0
       "
     >

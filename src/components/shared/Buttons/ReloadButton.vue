@@ -5,7 +5,7 @@
     round
     unelevated
     @click="tableStore?.reloadData"
-    :disable="tableStore.showLoader.value"
+    :disable="tableStore?.showLoader?.value"
   >
     <q-icon size="24px" name="o_refresh" />
     <q-tooltip :delay="700" class="custom-tooltip">

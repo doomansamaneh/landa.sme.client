@@ -18,11 +18,11 @@
       @keydown.enter="onInputEnter"
     >
       <template
-        v-if="tableStore.showLoader.value && !isPopupOpen"
+        v-if="tableStore?.showLoader?.value && !isPopupOpen"
         #prepend
       >
         <q-spinner
-          v-if="tableStore.showLoader.value"
+          v-if="tableStore?.showLoader?.value"
           size="18px"
           color="primary"
         />
@@ -111,9 +111,9 @@
                 @click="clearSearch"
               />
             </template>
-            <template v-if="tableStore.showLoader.value" #prepend>
+            <template v-if="tableStore?.showLoader?.value" #prepend>
               <q-spinner
-                v-if="tableStore.showLoader.value"
+                v-if="tableStore?.showLoader?.value"
                 size="18px"
                 color="primary"
               />
@@ -144,7 +144,7 @@
           </div>
           <div
             v-if="
-              !tableStore.showLoader.value &&
+              !tableStore?.showLoader?.value &&
               tableStore.rows.value.length == 0
             "
             class="q-table__bottom items-center q-table__bottom--nodata"
@@ -256,7 +256,7 @@
       </div>
       <q-card-section class="q-py-none q-px-sm">
         <q-inner-loading
-          :showing="tableStore.showLoader.value"
+          :showing="tableStore?.showLoader?.value"
           class="inner-loader_ q-mt-xl"
         >
           <q-spinner size="52px" color="primary" />
@@ -284,7 +284,7 @@
         </div>
         <div
           v-if="
-            !tableStore.showLoader.value &&
+            !tableStore?.showLoader?.value &&
             tableStore.rows.value.length == 0
           "
           class="q-table__bottom items-center q-table__bottom--nodata"

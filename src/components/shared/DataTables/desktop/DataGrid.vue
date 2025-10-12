@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="tableStore.showLoader.value ? 'min-height: 250px' : ''"
+    :style="tableStore?.showLoader?.value ? 'min-height: 250px' : ''"
     :class="containerClass"
   >
     <slot name="title"></slot>
@@ -12,7 +12,9 @@
 
       <div
         :class="
-          tableStore.showLoader.value ? 'overflow-hidden_' : 'scroll'
+          tableStore?.showLoader?.value
+            ? 'overflow-hidden_'
+            : 'scroll'
         "
       >
         <div class="q-table__middle">
@@ -99,7 +101,7 @@
                 <th v-if="expandable" class="filter"></th>
               </tr>
               <tr
-                v-if="tableStore.showLoader.value"
+                v-if="tableStore?.showLoader?.value"
                 class="q-table__progress"
               >
                 <th colspan="100%" class="relative-position">
@@ -212,7 +214,7 @@
 
     <div
       v-if="
-        !tableStore.showLoader.value &&
+        !tableStore?.showLoader?.value &&
         tableStore.rows.value.length == 0
       "
       class="q-table__bottom items-center q-table__bottom--nodata"
@@ -225,7 +227,7 @@
     <div v-if="tableStore.showPagebar.value" class="q-table__bottom">
       <page-bar
         :pagination="tableStore.pagination.value"
-        :loading="tableStore.showLoader.value"
+        :loading="tableStore?.showLoader?.value"
         @page-changed="reloadData"
         max-pages="5"
         sizeSeletion
@@ -238,7 +240,7 @@
             unelevated
             class="text-on-dark q-mr-md"
             icon="o_refresh"
-            :disable="tableStore.showLoader.value"
+            :disable="tableStore?.showLoader?.value"
             @click="reloadData"
           >
             <q-tooltip class="custom-tooltip" :delay="600">
