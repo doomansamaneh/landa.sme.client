@@ -63,7 +63,9 @@
     useAnniversary();
 
   const authStore = useAuthStore();
-  const visible = ref(shouldShowAnniversary.value);
+  //todo: return showAniverary from api backend
+  //const visible = ref(shouldShowAnniversary.value);
+  const visible = ref(false);
   const yearsSinceCreation = computed(() => getYearsSinceCreation());
 
   function onDialogHide() {
