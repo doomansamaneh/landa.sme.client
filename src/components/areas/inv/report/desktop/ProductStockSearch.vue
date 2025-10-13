@@ -90,7 +90,7 @@
                 rounded
                 padding="8px 16px"
                 unelevated
-                @click="searchStore.applySearch"
+                @click="handleSearch"
               >
                 <q-icon name="search" class="q-mr-xs" size="20px" />
                 {{ $t("shared.labels.search") }}
@@ -126,4 +126,9 @@
 
   const expanded = ref(false);
   const searchStore = useProductStockSearch();
+
+  const handleSearch = () => {
+    searchStore.applySearch();
+    expanded.value = false;
+  };
 </script>
