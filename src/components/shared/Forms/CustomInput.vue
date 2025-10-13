@@ -21,6 +21,7 @@
     :rules="rules"
     :autogrow="autogrow"
     :inputmode="inputmode"
+    :autofocus="autofocus"
     @keydown="$emit('keydown', $event)"
     @clear="$emit('clear')"
   >
@@ -60,6 +61,7 @@
     inputmode: String,
     dense: Boolean,
     inputClass: String,
+    autofocus: Boolean,
   });
 
   const modelValue = defineModel("modelValue");

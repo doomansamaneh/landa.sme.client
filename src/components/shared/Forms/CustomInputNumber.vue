@@ -13,6 +13,7 @@
     hide-bottom-space
     lazy-rules
     :rules="rules"
+    :autofocus="autofocus"
   >
     <validation-alert
       v-if="validationMessage"
@@ -43,6 +44,7 @@
     disable: Boolean,
     noErrorIcon: Boolean,
     readonly: Boolean,
+    autofocus: Boolean,
     modelValue: {
       type: Number,
       default: 0,

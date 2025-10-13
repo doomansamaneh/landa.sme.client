@@ -4,6 +4,7 @@
     :label="label"
     :required="required"
     :placeholder="placeholder"
+    :autofocus="autofocus"
     clearable
     mask="date"
   >
@@ -59,6 +60,7 @@
     label: String,
     placeholder: String,
     required: Boolean,
+    autofocus: Boolean,
   });
   const modelValue = defineModel("modelValue");
 

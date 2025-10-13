@@ -8,6 +8,7 @@
           :label="$t('shared.labels.gl')"
           required
           @rowSelected="glChanged"
+          autofocus
         />
       </div>
     </div>

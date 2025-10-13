@@ -8,6 +8,7 @@
           :label="$t('shared.labels.cl')"
           required
           @rowSelected="clChanged"
+          autofocus
         />
       </div>
     </div>

@@ -14,6 +14,7 @@
             "
             :filterExpression="filterExpression"
             :label="$t('shared.labels.typeTitle')"
+            autofocus
           />
         </div>
 

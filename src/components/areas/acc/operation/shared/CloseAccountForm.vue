@@ -5,6 +5,7 @@
         <date-time
           :label="$t('shared.labels.date')"
           v-model="formStore.model.value.date"
+          autofocus
         />
       </div>
     </div>

@@ -7,6 +7,7 @@
       <custom-input-number
         v-model="model.startNo"
         style="width: 50%"
+        autofocus
       />
     </div>
   </q-form>
