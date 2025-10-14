@@ -70,6 +70,8 @@
     node: Object,
   });
 
+  const emit = defineEmits(["node-updated"]);
+
   const dialogStore = useDialog();
 
   const createAccountSL = () => {
@@ -83,7 +85,11 @@
       },
       okCallback: async (responseData) => {
         if (responseData?.model) {
+          if (!props.node.children) {
+            props.node.children = [];
+          }
           props.node.children.push({
+            id: responseData.model.id,
             code: responseData.model.code,
             title: responseData.model.title,
             isActive: responseData.model.isActive,
@@ -91,10 +97,13 @@
             checkBalance: responseData.model.checkBalance,
             hasDL: responseData.model.hasDL,
             isBySystem: responseData.model.isBySystem,
+            header: "sl",
+            level: { key: "sl" },
+            lazy: false,
+            children: [],
           });
+          emit("node-updated");
         }
-
-        console.log(responseData);
       },
     });
   };
@@ -113,6 +122,7 @@
           props.node.code = responseData.model.code;
           props.node.title = responseData.model.title;
           props.node.isActive = responseData.model.isActive;
+          emit("node-updated");
         }
       },
     });
