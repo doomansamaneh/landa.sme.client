@@ -32,7 +32,7 @@
         />
       </q-card-section>
 
-      <q-separator />
+      <!-- <q-separator /> -->
 
       <q-card-section
         :style="
