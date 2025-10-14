@@ -1,6 +1,7 @@
 <template>
   <q-card-actions
-    class="q-pa-md bg-on-dark"
+    class="q-pa-md"
+    align="right"
     :class="$q.screen.xs ? 'fixed-bottom' : ''"
   >
     <slot name="start"></slot>
@@ -14,6 +15,7 @@
         rounded
         class="primary-gradient primary-shadow text-white"
       >
+        <q-icon size="20px" name="o_save" class="q-mr-xs"/>
         <slot name="ok-label">
           {{ $t(okLabel || "shared.labels.save") }}
         </slot>

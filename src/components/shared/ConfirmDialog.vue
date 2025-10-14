@@ -33,6 +33,7 @@
           no-caps
           rounded
           :color="okColor ?? 'primary'"
+          :class="okButtonClasses"
           unelevated
           padding="8px 16px"
           :label="ok ? $t(`${ok}`) : $t('shared.labels.ok')"
@@ -55,6 +56,7 @@
 
 <script setup>
   import { useDialogPluginComponent } from "quasar";
+  import { computed } from "vue";
 
   const props = defineProps({
     title: String,
@@ -68,6 +70,13 @@
 
   const { dialogRef, onDialogHide, onDialogOK, onDialogCancel } =
     useDialogPluginComponent();
+
+  const okButtonClasses = computed(() => {
+    if (props.okColor === "deep-orange-7") {
+      return "red-shadow";
+    }
+    return "primary-gradient primary-shadow";
+  });
 
   function onOKClick() {
     onDialogOK();
