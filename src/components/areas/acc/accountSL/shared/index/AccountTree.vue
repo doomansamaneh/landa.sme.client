@@ -27,13 +27,22 @@
         @update:selected="setActiveRow"
       >
         <template #header-cl="prop">
-          <Account-CL-Node :node="prop.node" />
+          <Account-CL-Node
+            :node="prop.node"
+            @node-updated="onNodeUpdated"
+          />
         </template>
         <template #header-gl="prop">
-          <Account-GL-Node :node="prop.node" />
+          <Account-GL-Node
+            :node="prop.node"
+            @node-updated="onNodeUpdated"
+          />
         </template>
         <template #header-sl="prop">
-          <Account-SL-Node :node="prop.node" />
+          <Account-SL-Node
+            :node="prop.node"
+            @node-updated="onNodeUpdated"
+          />
         </template>
       </q-tree>
     </q-card-section>
@@ -130,6 +139,8 @@
   const loadData = () => {
     accountLevel.cl.store.loadData(accountLevel.cl);
   };
+
+  const onNodeUpdated = () => {};
 
   onMounted(() => {
     loadData();

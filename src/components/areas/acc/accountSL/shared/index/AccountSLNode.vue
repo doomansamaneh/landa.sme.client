@@ -70,6 +70,8 @@
     node: Object,
   });
 
+  const emit = defineEmits(["node-updated"]);
+
   const dialogStore = useDialog();
   const formStore = useFormActions("acc/accountSL");
 
@@ -87,12 +89,15 @@
           props.node.code = responseData.model.code;
           props.node.title = responseData.model.title;
           props.node.isActive = responseData.model.isActive;
+          emit("node-updated");
         }
       },
     });
   };
 
   const deleteAccountSL = (node) => {
-    formStore.deleteById(node.id, () => {});
+    formStore.deleteById(node.id, () => {
+      emit("node-updated");
+    });
   };
 </script>

@@ -57,6 +57,8 @@
     node: Object,
   });
 
+  const emit = defineEmits(["node-updated"]);
+
   const createAccountGL = () => {
     dialogStore.openDialog({
       title: t("shared.labels.createGeneralLedgerAccount"),
@@ -66,7 +68,28 @@
         action: "create",
         accountCl: props.node,
       },
-      okCallback: async () => {},
+      okCallback: async (responseData) => {
+        if (responseData?.model) {
+          if (!props.node.children) {
+            props.node.children = [];
+          }
+          props.node.children.push({
+            id: responseData.model.id,
+            code: responseData.model.code,
+            title: responseData.model.title,
+            isActive: responseData.model.isActive,
+            typeId: responseData.model.typeId,
+            checkBalance: responseData.model.checkBalance,
+            hasDL: responseData.model.hasDL,
+            isBySystem: responseData.model.isBySystem,
+            header: "gl",
+            level: { key: "gl" },
+            lazy: true,
+            children: [],
+          });
+          emit("node-updated");
+        }
+      },
     });
   };
 </script>
