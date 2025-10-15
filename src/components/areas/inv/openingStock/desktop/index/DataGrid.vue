@@ -31,7 +31,7 @@
       </span>
     </template>
 
-    <template #footer-subtotal="{ selectedRows }">
+    <template #footer-subtotal="{ selectedRows, visibleColumns }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}
       </td>
@@ -47,7 +47,7 @@
       <td colspan="100%"></td>
     </template>
 
-    <template #footer-total="{ summary }">
+    <template #footer-total="{ summary, visibleColumns }">
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.total") }}
       </td>

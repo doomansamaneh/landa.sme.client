@@ -114,11 +114,14 @@
       </div>
     </template>
 
-    <template #footer-subtotal="{ selectedRows }">
+    <template
+      #footer-subtotal="{ selectedRows, visibleColumns }"
+      v-if="shouldShowFooter"
+    >
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}
       </td>
-      <td>
+      <td v-if="visibleColumns.find((col) => col.name === 'amount')">
         <b>
           {{
             helper.formatNumber(
@@ -127,7 +130,11 @@
           }}
         </b>
       </td>
-      <td v-if="showDiscount">
+      <td
+        v-if="
+          visibleColumns.find((col) => col.name === 'discountAmount')
+        "
+      >
         <b>
           {{
             helper.formatNumber(
@@ -136,7 +143,22 @@
           }}
         </b>
       </td>
-      <td v-if="showPayed">
+      <td
+        v-if="visibleColumns.find((col) => col.name === 'vatAmount')"
+      >
+        <b>
+          {{
+            helper.formatNumber(
+              helper.getSubtotal(selectedRows, "vatAmount")
+            )
+          }}
+        </b>
+      </td>
+      <td
+        v-if="
+          visibleColumns.find((col) => col.name === 'payedAmount')
+        "
+      >
         <b>
           {{
             helper.formatNumber(
@@ -145,7 +167,11 @@
           }}
         </b>
       </td>
-      <td v-if="showRemained">
+      <td
+        v-if="
+          visibleColumns.find((col) => col.name === 'remainedAmount')
+        "
+      >
         <b>
           {{
             helper.formatNumber(
@@ -157,20 +183,40 @@
       <td colspan="100%"></td>
     </template>
 
-    <template #footer-total="{ summary }">
+    <template
+      #footer-total="{ summary, visibleColumns }"
+      v-if="shouldShowFooter"
+    >
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.total") }}
       </td>
-      <td>
+      <td v-if="visibleColumns.find((col) => col.name === 'amount')">
         <b>{{ helper.formatNumber(summary?.amount) }}</b>
       </td>
-      <td v-if="showDiscount">
+      <td
+        v-if="
+          visibleColumns.find((col) => col.name === 'discountAmount')
+        "
+      >
         <b>{{ helper.formatNumber(summary?.discountAmount) }}</b>
       </td>
-      <td v-if="showPayed">
+      <td
+        v-if="visibleColumns.find((col) => col.name === 'vatAmount')"
+      >
+        <b>{{ helper.formatNumber(summary?.vatAmount) }}</b>
+      </td>
+      <td
+        v-if="
+          visibleColumns.find((col) => col.name === 'payedAmount')
+        "
+      >
         <b>{{ helper.formatNumber(summary?.payedAmount) }}</b>
       </td>
-      <td v-if="showRemained">
+      <td
+        v-if="
+          visibleColumns.find((col) => col.name === 'remainedAmount')
+        "
+      >
         <b>{{ helper.formatNumber(summary?.remainedAmount) }}</b>
       </td>
 
@@ -215,28 +261,20 @@
       1 //multi check column
   );
 
-  const showPayed = computed(
-    () =>
-      helper.findIndex(
-        props.tableStore.columns.value,
-        "name",
-        "payedAmount"
-      ) >= 0
-  );
-
-  const showDiscount = computed(
-    () =>
-      props.tableStore.columns.value.findIndex(
-        (column) => column.name === "discountAmount"
-      ) >= 0
-  );
-
-  const showRemained = computed(
-    () =>
-      props.tableStore.columns.value.findIndex(
-        (column) => column.name === "remainedAmount"
-      ) >= 0
-  );
+  const shouldShowFooter = computed(() => {
+    const footerColumns = [
+      "amount",
+      "discountAmount",
+      "vatAmount",
+      "payedAmount",
+      "remainedAmount",
+    ];
+    return footerColumns.some((colName) =>
+      props.tableStore.columns.value.find(
+        (col) => col.name === colName && !col.hidden
+      )
+    );
+  });
 
   async function reloadData() {
     await props.tableStore.reloadData();

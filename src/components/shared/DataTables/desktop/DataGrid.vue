@@ -192,6 +192,7 @@
                 <slot
                   name="footer-subtotal"
                   :selectedRows="tableStore.selectedRows.value"
+                  :visibleColumns="visibleColumns"
                 ></slot>
               </tr>
               <tr
@@ -204,6 +205,7 @@
                 <slot
                   name="footer-total"
                   :summary="tableStore.summaryData.value"
+                  :visibleColumns="visibleColumns"
                 ></slot>
               </tr>
             </tfoot>

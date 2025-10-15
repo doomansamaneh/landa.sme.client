@@ -22,11 +22,16 @@
       </small>
     </template>
 
-    <template #footer-subtotal="{ selectedRows }">
+    <template
+      #footer-subtotal="{ selectedRows, visibleColumns }"
+      v-if="shouldShowFooter"
+    >
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.selectedRows") }}
       </td>
-      <td>
+      <td
+        v-if="visibleColumns.find((col) => col.name === 'quantity')"
+      >
         <b>
           {{
             helper.formatNumber(
@@ -35,7 +40,9 @@
           }}
         </b>
       </td>
-      <td v-if="vatVisible >= 0">
+      <td
+        v-if="visibleColumns.find((col) => col.name === 'vatAmount')"
+      >
         <b>
           {{
             helper.formatNumber(
@@ -44,7 +51,7 @@
           }}
         </b>
       </td>
-      <td>
+      <td v-if="visibleColumns.find((col) => col.name === 'amount')">
         <b>
           {{
             helper.formatNumber(
@@ -56,17 +63,24 @@
       <td v-if="expandable"></td>
     </template>
 
-    <template #footer-total="{ summary }">
+    <template
+      #footer-total="{ summary, visibleColumns }"
+      v-if="shouldShowFooter"
+    >
       <td :colspan="colspan" class="text-right">
         {{ $t("shared.labels.total") }}
       </td>
-      <td>
+      <td
+        v-if="visibleColumns.find((col) => col.name === 'quantity')"
+      >
         <b>{{ helper.formatNumber(summary.quantity) }}</b>
       </td>
-      <td v-if="vatVisible >= 0">
+      <td
+        v-if="visibleColumns.find((col) => col.name === 'vatAmount')"
+      >
         <b>{{ helper.formatNumber(summary.vatAmount) }}</b>
       </td>
-      <td>
+      <td v-if="visibleColumns.find((col) => col.name === 'amount')">
         <b>{{ helper.formatNumber(summary.amount) }}</b>
       </td>
       <td v-if="expandable"></td>
@@ -103,11 +117,12 @@
       1 //multi check column
   );
 
-  const vatVisible = computed(() =>
-    helper.findIndex(
-      props.tableStore.columns.value,
-      "name",
-      "vatAmount"
-    )
-  );
+  const shouldShowFooter = computed(() => {
+    const footerColumns = ["quantity", "vatAmount", "amount"];
+    return footerColumns.some((colName) =>
+      props.tableStore.columns.value.find(
+        (col) => col.name === colName && !col.hidden
+      )
+    );
+  });
 </script>
