@@ -95,18 +95,34 @@
     </template>
 
     <template #cell-statusId="{ item }">
-      <is-active
+      <span v-if="item.statusId === quoteStatus.final">
+        <!-- <is-active
         v-if="item.statusId === quoteStatus.final"
         is-active
-      />
-      {{
-        $t(
-          `shared.quoteStatus.${helper.getEnumType(
-            item.statusId,
-            quoteStatus
-          )}`
-        )
-      }}
+      /> -->
+        <q-chip color="green text-white">
+          {{
+            $t(
+              `shared.quoteStatus.${helper.getEnumType(
+                item.statusId,
+                quoteStatus
+              )}`
+            )
+          }}
+        </q-chip>
+      </span>
+      <span v-else>
+        <q-chip>
+          {{
+            $t(
+              `shared.quoteStatus.${helper.getEnumType(
+                item.statusId,
+                quoteStatus
+              )}`
+            )
+          }}
+        </q-chip>
+      </span>
     </template>
     <template #expand="{ item }">
       <div>

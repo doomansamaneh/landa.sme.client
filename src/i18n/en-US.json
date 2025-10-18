@@ -292,6 +292,9 @@
 
   "shared": {
     "labels": {
+      "createQuote": "Create Quote",
+      "createInvoice": "Create Invoice",
+      "createVoucher": "Create Voucher",
       "taxId": "Tax ID",
       "seller": "Seller",
       "orderBy": "Sort by",

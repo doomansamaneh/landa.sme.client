@@ -13,6 +13,7 @@ export function useQuoteDataGridMenu(context) {
     overrideItems: {
       create: {
         ...menuItems.create,
+        label: "createQuote",
         type: menuItemType.moreItem,
         permission: `sls.quote.create`,
         subItems: [

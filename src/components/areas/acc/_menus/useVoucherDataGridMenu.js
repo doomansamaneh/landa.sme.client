@@ -6,6 +6,12 @@ export function useVoucherDataGridMenu(context) {
     baseRoute: "acc/voucher",
     permissionPrefix: "acc.voucher",
 
+    overrideItems: {
+      create: {
+        ...menuItems.create,
+        label: "createVoucher",
+      },
+    },
     extraMoreItems: [
       {
         ...menuItems.defaultItem,

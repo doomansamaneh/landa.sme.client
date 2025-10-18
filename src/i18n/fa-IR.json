@@ -296,6 +296,9 @@
 
   "shared": {
     "labels": {
+      "createQuote": "ایجاد پیش‌فاکتور",
+      "createInvoice": "ایجاد فاکتور",
+      "createVoucher": "ایجاد سند",
       "taxId": "ش مالیاتی",
       "chequeAccount": "ش حساب",
       "seller": "فروشنده",

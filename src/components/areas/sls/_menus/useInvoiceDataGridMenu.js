@@ -13,6 +13,7 @@ export function useInvoiceDataGridMenu(context) {
     overrideItems: {
       create: {
         ...menuItems.create,
+        label: "createInvoice",
         type: menuItemType.moreItem,
         permission: "sls.invoice.create",
         subItems: [
