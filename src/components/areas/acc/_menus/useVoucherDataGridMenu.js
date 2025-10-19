@@ -10,6 +10,7 @@ export function useVoucherDataGridMenu(context) {
       create: {
         ...menuItems.create,
         label: "createVoucher",
+        route: "/acc/voucher/create",
       },
     },
     extraMoreItems: [
