@@ -1005,7 +1005,7 @@
       "cogs": "Cost of Goods Sold"
     },
 
-    "quoteStatus": {
+    "voucherStatus": {
       "temp": "Temporary",
       "final": "Final"
     },

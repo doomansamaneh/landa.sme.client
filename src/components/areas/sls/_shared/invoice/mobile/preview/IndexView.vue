@@ -51,6 +51,7 @@
           <status-badge
             class="text-weight-500 text-caption"
             padding="0 8px"
+            :status-id="model.statusId"
             :title="model.statusTitle"
           />
 

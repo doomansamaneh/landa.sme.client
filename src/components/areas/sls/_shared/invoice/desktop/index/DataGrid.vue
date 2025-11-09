@@ -17,7 +17,9 @@
     <template #filter-statusId="{ item }">
       <custom-select
         v-model="item.value"
-        :options="helper.getEnumOptions(quoteStatus, 'quoteStatus')"
+        :options="
+          helper.getEnumOptions(voucherStatus, 'voucherStatus')
+        "
         @update:model-value="reloadData"
       />
     </template>
@@ -43,18 +45,15 @@
     </template>
 
     <template #cell-amount="{ item }">
-      <q-btn
-        no-caps
+      <span
+        class="text-weight-600"
         v-if="item.statusId === voucherStatus.canceled"
-        round
-        text-color="white"
-        dense
-        size="9px"
-        unelevated
-        icon="clear"
-        class="q-mr-xs red-gradient red-shadow no-pointer-events"
-      />
-      <span class="text-weight-600">
+      >
+        <q-chip icon="clear" text-color="white" color="red">
+          {{ helper.formatNumber(item.amount) }}
+        </q-chip>
+      </span>
+      <span v-else class="text-weight-600">
         {{ helper.formatNumber(item.amount) }}
       </span>
     </template>
@@ -95,17 +94,13 @@
     </template>
 
     <template #cell-statusId="{ item }">
-      <span v-if="item.statusId === quoteStatus.final">
-        <!-- <is-active
-        v-if="item.statusId === quoteStatus.final"
-        is-active
-      /> -->
+      <span v-if="item.statusId === voucherStatus.final">
         <q-chip color="green text-white">
           {{
             $t(
-              `shared.quoteStatus.${helper.getEnumType(
+              `shared.voucherStatus.${helper.getEnumType(
                 item.statusId,
-                quoteStatus
+                voucherStatus
               )}`
             )
           }}
@@ -115,9 +110,9 @@
         <q-chip>
           {{
             $t(
-              `shared.quoteStatus.${helper.getEnumType(
+              `shared.voucherStatus.${helper.getEnumType(
                 item.statusId,
-                quoteStatus
+                voucherStatus
               )}`
             )
           }}
@@ -244,7 +239,7 @@
 <script setup>
   import { computed } from "vue";
   import { useRouter } from "vue-router";
-  import { quoteStatus, voucherStatus } from "src/constants";
+  import { voucherStatus } from "src/constants";
   import { helper } from "src/helpers";
 
   import DataGrid from "components/shared/dataTables/desktop/DataGrid.vue";
@@ -253,7 +248,6 @@
   import TypeBadge from "src/components/areas/_shared/badges/TypeBadge.vue";
   import NotificationBadge from "src/components/areas/_shared/badges/NotificationBadge.vue";
   import TaxBadge from "src/components/areas/_shared/badges/TaxBadge.vue";
-  import IsActive from "src/components/shared/IsActive.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const props = defineProps({

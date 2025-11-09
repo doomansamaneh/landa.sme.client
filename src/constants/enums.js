@@ -283,11 +283,6 @@ export const insuranceType = {
   ceo: 2,
 };
 
-export const quoteStatus = {
-  temp: "e84d4f06-29ea-4131-b78e-e36302d37e7c",
-  final: "c84e9c9d-31e6-4f45-9a6d-265d825e3d4c",
-};
-
 export const documentType = {
   voucher: "ee0d0341-14d3-4f30-8162-ca8b530ec229",
   invoice: "7b1af164-933c-4b5e-a4f0-0d71f95631b5",

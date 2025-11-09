@@ -75,7 +75,10 @@
     <template #row-badge="{ item }">
       <tax-badge :tax-id="item.taxId" />
       <notification-badge :count="item.notificationCount" />
-      <status-badge :title="item?.statusTitle" />
+      <status-badge
+        :status-id="item?.statusId"
+        :title="item?.statusTitle"
+      />
       <type-badge :title="item?.typeTitle" :type-id="item?.typeId" />
       <contract-badge :title="item?.contractTitle" :id="item?.id" />
     </template>

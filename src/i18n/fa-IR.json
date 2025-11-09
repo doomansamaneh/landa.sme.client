@@ -1035,9 +1035,10 @@
       "cogs": "بهای تمام شده"
     },
 
-    "quoteStatus": {
-      "temp": "موقت",
-      "final": "دائم"
+    "voucherStatus": {
+      "init": "موقت",
+      "final": "دائم",
+      "canceled": "ابطال شده"
     },
 
     "paymentType": {
