@@ -11,7 +11,11 @@
   <q-card
     v-for="(row, index) in formStore.model.value.voucherItems"
     :key="index"
-    class="bordered q-mb-md"
+    :ref="(el) => setCardRef(el, index)"
+    :class="[
+      'bordered q-mb-md',
+      highlightedIndex === index ? 'highlighted-item' : '',
+    ]"
   >
     <div class="q-pa-lg">
       <div class="row items-center q-mb-md">
@@ -77,34 +81,38 @@
     <q-separator size="1px" />
 
     <q-card-actions class="q-pa-md" align="between">
-      <q-btn
-        no-caps
-        :label="$t('shared.labels.edit')"
-        class="text-body2"
-        flat
-        rounded
-        @click="editItem(index, row)"
-      />
-      <q-btn
-        no-caps
-        size="12px"
-        color="secondary"
-        unelevated
-        round
-        class="text-on-dark"
-        icon="o_content_copy"
-        @click="duplicateItem(index)"
-      />
-      <q-btn
-        no-caps
-        size="12px"
-        color="red"
-        unelevated
-        round
-        class="text-on-dark"
-        icon="o_delete"
-        @click="formStore.deleteRow(index)"
-      />
+      <div>
+        <q-btn
+          no-caps
+          :label="$t('shared.labels.edit')"
+          class="text-body2"
+          flat
+          rounded
+          @click="editItem(index, row)"
+        />
+      </div>
+      <div class="flex items-center q-gutter-md">
+        <q-btn
+          no-caps
+          unelevated
+          round
+          class="text-on-dark"
+          size="sm"
+          @click="duplicateItem(index)"
+        >
+          <q-icon size="20px" name="o_copy" />
+        </q-btn>
+        <q-btn
+          no-caps
+          size="12px"
+          color="red"
+          unelevated
+          round
+          class="text-on-dark"
+          icon="o_delete"
+          @click="formStore.deleteRow(index)"
+        />
+      </div>
     </q-card-actions>
   </q-card>
 
@@ -280,10 +288,11 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, nextTick } from "vue";
   import { sqlOperator } from "src/constants";
   import { helper } from "src/helpers";
   import { useI18n } from "vue-i18n";
+  import { useQuasar } from "quasar";
 
   import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
@@ -296,11 +305,14 @@
   });
 
   const { t } = useI18n();
+  const $q = useQuasar();
 
   const dl = ref(null);
   const showDialog = ref(false);
   const selectedItem = ref({});
   const selectedIndex = ref(-1);
+  const highlightedIndex = ref(-1);
+  const cardRefs = ref({});
 
   const dialogTitle = computed(() => {
     return selectedIndex.value === -1
@@ -359,7 +371,33 @@
     selectedItem.value = {};
   };
 
-  const duplicateItem = (index) => {
+  const setCardRef = (el, index) => {
+    if (el) {
+      cardRefs.value[index] = el.$el || el;
+    }
+  };
+
+  const scrollToItem = async (index) => {
+    await nextTick();
+    // Wait a bit more to ensure DOM is fully updated
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const cardElement = cardRefs.value[index];
+    if (cardElement) {
+      cardElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
+
+  const highlightItem = (index) => {
+    highlightedIndex.value = index;
+    setTimeout(() => {
+      highlightedIndex.value = -1;
+    }, 3000);
+  };
+
+  const duplicateItem = async (index) => {
     const items = props.formStore.model.value.voucherItems;
     const currentRow = items[index];
     if (!currentRow) return;
@@ -375,5 +413,9 @@
     delete cloned.modifiedBy;
     delete cloned.modifiedOn;
     Object.assign(items[newIndex], cloned);
+
+    // Highlight and scroll to the new item
+    highlightItem(newIndex);
+    await scrollToItem(newIndex);
   };
 </script>
