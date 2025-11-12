@@ -118,6 +118,7 @@
               icon="o_add"
               @click="formStore.addNewRow(index, row)"
             />
+
             <q-btn
               no-caps
               color="red"
@@ -128,6 +129,17 @@
               icon="o_delete"
               @click="formStore.deleteRow(index)"
             />
+
+            <q-btn
+              no-caps
+              unelevated
+              round
+              class="text-on-dark"
+              size="sm"
+              @click="duplicateRow(index)"
+            >
+              <q-icon size="20px" name="o_copy" />
+            </q-btn>
 
             <!-- <q-btn no-caps
               unelevated
@@ -248,5 +260,24 @@
       row.debit = row.credit;
       row.credit = tempDebit;
     });
+  };
+
+  const duplicateRow = (index) => {
+    const items = props.formStore.model.value.voucherItems;
+    const currentRow = items[index];
+    if (!currentRow) return;
+
+    // Insert a new row and then copy values into it
+    props.formStore.addNewRow(index);
+    const newIndex = index + 1;
+    const cloned = { ...currentRow };
+    delete cloned.id;
+    delete cloned.recordVersion;
+    delete cloned.voucherId;
+    delete cloned.createdBy;
+    delete cloned.createdOn;
+    delete cloned.modifiedBy;
+    delete cloned.modifiedOn;
+    props.formStore.editRow(newIndex, cloned);
   };
 </script>

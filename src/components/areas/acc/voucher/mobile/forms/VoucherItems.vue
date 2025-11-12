@@ -88,6 +88,16 @@
       <q-btn
         no-caps
         size="12px"
+        color="secondary"
+        unelevated
+        round
+        class="text-on-dark"
+        icon="o_content_copy"
+        @click="duplicateItem(index)"
+      />
+      <q-btn
+        no-caps
+        size="12px"
         color="red"
         unelevated
         round
@@ -347,5 +357,23 @@
   const cancelEdit = () => {
     selectedIndex.value = -1;
     selectedItem.value = {};
+  };
+
+  const duplicateItem = (index) => {
+    const items = props.formStore.model.value.voucherItems;
+    const currentRow = items[index];
+    if (!currentRow) return;
+
+    props.formStore.addNewRow(index);
+    const newIndex = index + 1;
+    const cloned = { ...currentRow };
+    delete cloned.id;
+    delete cloned.recordVersion;
+    delete cloned.voucherId;
+    delete cloned.createdBy;
+    delete cloned.createdOn;
+    delete cloned.modifiedBy;
+    delete cloned.modifiedOn;
+    Object.assign(items[newIndex], cloned);
   };
 </script>
