@@ -3,6 +3,7 @@
     v-if="model"
     :model="model"
     :inside="inside"
+    :title="title"
     :base-route="baseRoute"
   />
 

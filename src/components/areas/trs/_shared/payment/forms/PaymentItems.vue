@@ -76,6 +76,7 @@
   const props = defineProps({
     formStore: Object,
     paymentReceiptType: paymentOrReceipt,
+    okIcon: String,
   });
 
   const getPaymentMethodName = (paymentTypeId) => {
@@ -107,6 +108,7 @@
         props.formStore.addRow(item);
       },
       okLabel: "shared.labels.create",
+      okIcon: "o_add",
     });
   };
 </script>

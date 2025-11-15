@@ -60,6 +60,7 @@
         autoDecimalDigits: false,
         useGrouping: true,
         accountingSign: false,
+        precision: { min: 0, max: 4 },
       }),
     },
   });

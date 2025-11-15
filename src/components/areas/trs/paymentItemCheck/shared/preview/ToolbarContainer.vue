@@ -1,11 +1,12 @@
 <template>
   <toolbar-desktop
+    v-if="$q.screen.gt.sm"
     :inside="inside"
+    :title="title"
     :menu-items="menuItems"
-    margin_
+    :margin="!inside"
     back-button
   />
-  <!-- v-if="$q.screen.gt.sm"
   <toolbar-mobile
     v-else
     :inside="inside"
@@ -14,7 +15,7 @@
     :base-route="baseRoute"
     :menu-items="menuItems"
     back-button
-  /> -->
+  />
 </template>
 
 <script setup>

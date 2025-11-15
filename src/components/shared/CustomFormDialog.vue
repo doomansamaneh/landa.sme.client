@@ -61,6 +61,7 @@
           v-if="actionBar"
           @ok-clicked="submitForm"
           :ok-label="okLabel"
+          :ok-icon="okIcon"
         />
       </slot>
     </q-card>
@@ -84,6 +85,7 @@
       default: "700px",
     },
     okLabel: String,
+    okIcon: String,
   });
 
   const emit = defineEmits([...useDialogPluginComponent.emits]);

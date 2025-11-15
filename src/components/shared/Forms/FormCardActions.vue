@@ -15,7 +15,7 @@
         rounded
         class="primary-gradient primary-shadow text-white"
       >
-        <q-icon size="20px" name="o_save" class="q-mr-xs"/>
+        <q-icon size="20px" :name="okIcon || 'o_save'" class="q-mr-xs"/>
         <slot name="ok-label">
           {{ $t(okLabel || "shared.labels.save") }}
         </slot>
@@ -44,6 +44,7 @@
 <script setup>
   const props = defineProps({
     okLabel: String,
+    okIcon: String,
   });
 
   const emit = defineEmits(["ok-clicked", "cancel-clicked"]);
