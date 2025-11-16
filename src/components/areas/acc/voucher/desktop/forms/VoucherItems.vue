@@ -75,7 +75,8 @@
             <!-- :filter-expression="getDlFilters(row)" -->
           </td>
           <td>
-            <custom-input v-model="row.comment" autogrow required />
+            <comment-lookup dense v-model="row.comment" required />
+            <!-- <custom-input v-model="row.comment" autogrow required /> -->
             <!-- <custom-input
               v-model:selectedText="row.comment"
               autogrow
@@ -219,10 +220,9 @@
   import NoItemSelected from "src/components/shared/dataTables/NoItemSelected.vue";
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import DlLookup from "src/components/shared/lookups/AccountDLLookup.vue";
-  import CustomInput from "src/components/shared/forms/CustomInput.vue";
+  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
   import MobileVoucherItems from "../../mobile/forms/VoucherItems.vue";
-  import CommentLookup from "src/components/shared/Lookups/CommentLookup.vue";
 
   const props = defineProps({
     formStore: Object,
