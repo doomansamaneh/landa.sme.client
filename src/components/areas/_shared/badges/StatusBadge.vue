@@ -41,14 +41,19 @@
     class="red-gradient text-white text-center text-caption-xs border-radius-lg no-pointer-events"
     style="white-space: nowrap"
   >
-    {{
-      $t(
-        `shared.voucherStatus.${helper.getEnumType(
-          statusId,
-          voucherStatus
-        )}`
-      )
-    }}
+    <template v-if="title">
+      {{ title }}
+    </template>
+    <template v-else>
+      {{
+        $t(
+          `shared.voucherStatus.${helper.getEnumType(
+            statusId,
+            voucherStatus
+          )}`
+        )
+      }}
+    </template>
   </q-btn>
 </template>
 
