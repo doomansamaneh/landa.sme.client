@@ -104,14 +104,32 @@ export const helper = {
   },
 
   dateToNumber(date) {
-    const seconds =
-      date.seconds +
-      date.minutes * 60 +
-      date.hours * 3600 +
-      date.day * 86400 +
-      date.month * 2592000 + // Rough estimate for months
-      date.year * 31104000;
-    return seconds;
+    // Support both Date instances and plain objects with Y/M/D/H/M/S
+    if (date instanceof Date && !isNaN(date.getTime())) {
+      return date.getTime();
+    }
+
+    if (date && typeof date === "object") {
+      const {
+        year = 1970,
+        month = 1,
+        day = 1,
+        hours = 0,
+        minutes = 0,
+        seconds = 0,
+      } = date;
+      const d = new Date(
+        year,
+        (month || 1) - 1,
+        day || 1,
+        hours || 0,
+        minutes || 0,
+        seconds || 0
+      );
+      return d.getTime();
+    }
+
+    return 0;
   },
 
   deepEqual(obj1, obj2) {
@@ -708,19 +726,21 @@ export const helper = {
       jy % 33 === 26 ||
       jy % 33 === 30;
 
+    // Correct Jalali month lengths:
+    // Months 1-6: 31 days, Months 7-11: 30 days, Month 12: 29 (or 30 in leap years)
     const jalaliMonthDays = [
       31,
+      31,
+      31,
+      31,
+      31,
+      31,
+      30,
+      30,
+      30,
+      30,
+      30,
       isLeapJalali ? 30 : 29,
-      31,
-      31,
-      31,
-      31,
-      30,
-      30,
-      30,
-      30,
-      30,
-      29,
     ];
     let days = jd;
 
