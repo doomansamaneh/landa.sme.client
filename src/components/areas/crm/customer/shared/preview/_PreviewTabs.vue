@@ -107,33 +107,32 @@
       />
     </card-tabs>
 
-    <q-card-section class="q-pa-lg">
+    <!-- <q-card-section class="q-pa-lg"> -->
       <q-tab-panels
         v-model="tab"
-        animated
         keep-alive
         class="transparent"
       >
-        <q-tab-panel name="main" class="no-padding">
+        <q-tab-panel name="main">
           <base-info v-if="item.id" :item="item" />
         </q-tab-panel>
-        <q-tab-panel name="quote" class="no-padding">
+        <q-tab-panel name="quote">
           <quote-review :item="item" />
         </q-tab-panel>
-        <q-tab-panel name="invoice" class="no-padding">
+        <q-tab-panel name="invoice">
           <invoice-review :item="item" />
         </q-tab-panel>
-        <q-tab-panel name="review" class="no-padding">
+        <q-tab-panel name="review">
           <account-review :item="item" />
         </q-tab-panel>
-        <q-tab-panel name="check" class="no-padding">
+        <q-tab-panel name="check" :class="$q.screen.xs ? 'q-pa-none' : ''">
           <check-item :customer-id="item.id" />
         </q-tab-panel>
-        <q-tab-panel name="log" class="no-padding">
+        <q-tab-panel name="log">
           <log :entity-id="item.id" entity-name="Crm.[Customer]" />
         </q-tab-panel>
       </q-tab-panels>
-    </q-card-section>
+    <!-- </q-card-section> -->
   </q-card>
 </template>
 
