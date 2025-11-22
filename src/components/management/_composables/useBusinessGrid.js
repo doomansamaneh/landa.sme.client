@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 import { fetchWrapper } from "src/helpers";
 import { useBusiness } from "src/stores/useBusiness";
 import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
+import { useCulture } from "src/composables/useCulture";
 import { HttpStatusCode } from "axios";
 
 const rows = ref([]);
@@ -47,6 +48,7 @@ export function useBusinessGrid() {
   const router = useRouter();
   const appConfigStore = useAppConfigModel(true);
   const businessStore = useBusiness();
+  const cultureStore = useCulture();
 
   const reset = () => {
     state.firstLoad.value = false;
@@ -71,16 +73,22 @@ export function useBusinessGrid() {
     );
 
     if (response.data.code === HttpStatusCode.Ok) {
-      appConfigStore.reset();
       const firstLogin = response.data?.data?.firstLogin;
       localStorage.setItem("firstLogin", firstLogin);
+
+      const savedLanguage = businessStore.getLanguage(item.id);
 
       businessStore.set({
         id: item.id,
         title: response.data?.data?.title,
         grants: response.data?.data?.grants,
         firstLogin: firstLogin,
+        language: savedLanguage,
       });
+
+      cultureStore.reloadLanguageForCurrentBusiness();
+
+      appConfigStore.reset();
     }
 
     if (response.data?.data?.url)

@@ -4,6 +4,7 @@ import { useFiscalYear } from "src/components/areas/acc/_composables/useFiscalYe
 import { useComposables } from "src/stores/useComposables";
 import { useMenuBar } from "src/composables/useMenuBar";
 import { useCulture } from "src/composables/useCulture";
+import { useBusiness } from "src/stores/useBusiness";
 import { mediaType } from "src/constants";
 
 const firstLoad = ref(false);
@@ -22,6 +23,7 @@ export function useAppConfigModel(disableLoad) {
   const menuStore = useMenuBar();
   const fiscalYearStore = useFiscalYear();
   const cultureStore = useCulture();
+  const businessStore = useBusiness();
 
   const reloadData = async () => {
     firstLoad.value = true;
@@ -33,7 +35,19 @@ export function useAppConfigModel(disableLoad) {
     model.value = response?.data?.data.appConfig;
     userSetting.value = response?.data?.data.userSetting;
     if (userSetting?.value) {
-      cultureStore.setCulture(userSetting.value.currentCulture);
+      const business = businessStore.get();
+      const storedBusinessLanguage = business?.id
+        ? businessStore.getLanguage()
+        : null;
+
+      const languageToSet =
+        storedBusinessLanguage || userSetting.value.currentCulture;
+      cultureStore.setCulture(languageToSet);
+
+      if (business?.id && !storedBusinessLanguage) {
+        businessStore.setLanguage(userSetting.value.currentCulture);
+      }
+
       fiscalYearStore.setFiscalYear({
         id: userSetting.value.fiscalYearId,
         title: userSetting.value.fiscalYear,
@@ -61,7 +75,6 @@ export function useAppConfigModel(disableLoad) {
   const uploadFile = async (file) => {
     const formData = new FormData();
     formData.append("file", file);
-    //formData.append("entityName", "Cmn.AppConfig");
 
     const response = await fetchWrapper.post(
       "cmn/UploadMedia/Upload",

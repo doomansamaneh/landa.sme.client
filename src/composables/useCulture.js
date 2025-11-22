@@ -3,10 +3,12 @@ import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import { cultures } from "src/constants/enums";
 import { fetchWrapper } from "src/helpers/fetch-wrapper";
+import { useBusiness } from "src/stores/useBusiness";
 
 export function useCulture() {
   const GeneralStorageKey = "selectedLanguage";
   const cookieKey = ".Landa.SME.Culture";
+  const businessStore = useBusiness();
 
   const $t = useI18n();
   const $q = useQuasar();
@@ -16,21 +18,49 @@ export function useCulture() {
   );
 
   const defaultLanguage = "fa-IR";
-  const lang = ref(
-    localStorage.getItem(GeneralStorageKey) || defaultLanguage
-  );
 
-  const culture = computed(() =>
-    cultures.find((culture) => culture.iso === lang.value)
-  );
+  const getLanguageForBusiness = () => {
+    const business = businessStore.get();
+    if (business?.id) {
+      const businessLanguage = businessStore.getLanguage();
+      return businessLanguage || defaultLanguage;
+    }
+    return localStorage.getItem(GeneralStorageKey) || defaultLanguage;
+  };
+
+  const lang = ref(getLanguageForBusiness());
+
+  const culture = computed(() => {
+    const found = cultures.find(
+      (culture) => culture.iso === lang.value
+    );
+    return (
+      found ||
+      cultures.find((culture) => culture.iso === defaultLanguage) ||
+      cultures[0]
+    );
+  });
 
   const setCulture = async (iso) => {
-    // Update the local language - applyCulture will handle the API call
     lang.value = iso;
   };
 
+  const reloadLanguageForCurrentBusiness = () => {
+    const newLang = getLanguageForBusiness();
+    if (newLang !== lang.value) {
+      lang.value = newLang;
+    }
+  };
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("storage", (e) => {
+      if (e.key === "selectedBusiness") {
+        reloadLanguageForCurrentBusiness();
+      }
+    });
+  }
+
   const getCultureCode = (iso) => {
-    // Map ISO codes to API culture codes
     const cultureMap = {
       "fa-IR": "fa",
       "en-US": "en",
@@ -49,6 +79,7 @@ export function useCulture() {
 
   const applyCulture = async () => {
     try {
+      if (!culture.value) return;
       const iso = culture.value.iso;
       const langModule = await qLangList[
         `/node_modules/quasar/lang/${iso}.js`
@@ -56,7 +87,12 @@ export function useCulture() {
       $q.lang.set(langModule.default);
       $t.locale.value = lang.value;
 
-      localStorage.setItem(GeneralStorageKey, iso);
+      const business = businessStore.get();
+      if (business?.id) {
+        businessStore.setLanguage(iso);
+      } else {
+        localStorage.setItem(GeneralStorageKey, iso);
+      }
 
       document.body.classList.remove("persian", "english", "arabic");
       document.body.classList.add(culture.value.bodyClass);
@@ -70,19 +106,17 @@ export function useCulture() {
       }; expires=${expirationDate.toUTCString()}; path=/`;
       document.cookie = cookieString;
 
-      // Always call API to sync server-side culture
       const cultureCode = getCultureCode(iso);
       try {
         await changeLocale(cultureCode);
-      } catch {
-        // Don't throw error here as we want the UI to still work
-      }
-    } catch {
-      // Error handling for culture setting
-    }
+      } catch {}
+    } catch {}
   };
 
-  if (!localStorage.getItem(GeneralStorageKey)) {
+  if (
+    !businessStore.getLanguage() &&
+    !localStorage.getItem(GeneralStorageKey)
+  ) {
     document.body.classList.add("persian");
   }
 
@@ -97,5 +131,6 @@ export function useCulture() {
   return {
     culture,
     setCulture,
+    reloadLanguageForCurrentBusiness,
   };
 }

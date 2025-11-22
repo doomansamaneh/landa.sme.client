@@ -15,7 +15,7 @@
               {{ language.name }}
             </div>
             <q-icon
-              v-if="cultureStore.culture.value.iso === language.iso"
+              v-if="cultureStore.culture.value?.iso === language.iso"
               color="primary"
               name="check"
               size="24px"
