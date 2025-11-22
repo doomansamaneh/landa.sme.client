@@ -19,7 +19,7 @@
 
 <script setup>
   import { onMounted, computed } from "vue";
-  import { useQuasar } from "quasar";
+  import { useQuasar, Dialog } from "quasar";
   import { useTheme } from "src/components/layouts/main/_composables/useTheme.js";
   import { useMenuBar } from "src/composables/useMenuBar";
   import { useFirstLogin } from "src/composables/useFirstLogin";
@@ -31,6 +31,7 @@
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
   import TutorialChecklist from "src/components/shared/TutorialChecklist.vue";
+  // import NewReleaseDialog from "src/components/shared/NewReleaseDialog.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
@@ -47,5 +48,9 @@
 
   onMounted(() => {
     theme.store();
+
+    // Dialog.create({
+    //   component: NewReleaseDialog,
+    // });
   });
 </script>

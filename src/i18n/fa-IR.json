@@ -690,6 +690,8 @@
       "logout": "خروج از حساب",
       "newReleaseTitle": "درود بر شما، نسخه جدید در دسترس است",
       "newReleaseDescription": "برای دریافت نسخه جدید بر روی تازه‌سازی کلیک کنید",
+      "newChangesAvailableTitle": "درود، تغییرات جدیدی در دسترس است",
+      "newChangesAvailableDescription": "برای دریافت تغییرات جدید بر روی تازه سازی کلیک کنید",
       "cancel": "انصراف",
       "managerName": "نام مسئول یا مدیر",
       "registrationNumber": "شماره ثبت",
