@@ -7,14 +7,6 @@
     >
       <q-card class="new-release-card border-radius-xl">
         <q-card-section class="text-center q-pa-xl">
-          <q-btn
-            no-caps
-            class="absolute-top-right q-ma-md"
-            icon="o_close"
-            round
-            unelevated
-            v-close-popup
-          />
           <q-img
             width="150px"
             spinner-color="primary"
@@ -66,52 +58,71 @@
       <q-card
         :style="$q.screen.xs ? '' : 'width: 720px; max-width: 95vw'"
       >
-        <q-card-section class="flex justify-between">
-          <div class="col">
-            <div class="text-weight-700 text-body2 q-mb-xs">
-              {{ $t("shared.labels.newReleaseTitle") }}
+        <q-card-section class="q-pt-xl">
+          <div class="text-center q-pb-lg">
+            <div class="rocket-symbol q-mb-md">🚀</div>
+            <div class="text-body2 text-weight-700 q-mb-xs">
+              <i18n-t keypath="shared.labels.newReleaseMessage">
+                <template #version>
+                  <q-badge
+                    rounded
+                    class="bordered text-h6 text-weight-700"
+                    color="white"
+                    text-color="dark"
+                    style="padding: 0px 8px"
+                  >
+                    {{ latest.version }}
+                    <img
+                      src="/favicon.png"
+                      width="20px"
+                      height="20px"
+                      class="q-ml-xs"
+                    />
+                  </q-badge>
+                </template>
+              </i18n-t>
             </div>
-            <div :class="$q.screen.xs ? 'text-body3' : 'text-body2'">
+
+            <div class="text-body2">
               {{ $t("shared.labels.newReleaseDescription") }}
             </div>
           </div>
-          <div class="col-auto">
-            <q-btn
-              no-caps
-              icon="o_close"
-              round
-              dense
-              unelevated
-              v-close-popup
-            />
+
+          <div class="text-body2 text-weight-700 q-mt-lg">
+            <q-icon name="list" size="20px" />
+            {{ $t("shared.labels.latestChangesList") }}
           </div>
         </q-card-section>
 
-        <q-separator />
-
         <q-card-section
-          class="scroll"
-          :class="$q.screen.xs ? 'hide-scrollbar' : ''"
           :style="
             $q.screen.xs
-              ? 'height: calc(100vh - 180px)'
-              : 'height: 50vh'
+              ? 'max-height: calc(100vh - 310px)'
+              : 'max-height: 35vh'
           "
+          class="scroll q-pt-none q-px-none"
+          :class="$q.screen.xs ? 'hide-scrollbar q-pb-xl' : ''"
         >
-          <div class="text-body2 text-weight-700">
-            لیست آخرین تغییرات
-          </div>
           <div v-if="latest?.items?.length">
             <q-list separator>
               <q-item
                 v-for="(item, index) in latest.items"
                 :key="index"
               >
-                <q-item-section avatar>
-                  <q-icon name="o_new_releases" color="primary" />
+                <q-item-section avatar top>
+                  <q-avatar
+                    color="primary"
+                    size="20px"
+                    text-color="white"
+                    style="margin-top: 5px"
+                  >
+                    <q-icon name="check" size="16px" />
+                  </q-avatar>
                 </q-item-section>
                 <q-item-section>
-                  <div class="text-body2">{{ item }}</div>
+                  <q-item-label class="text-body2">
+                    {{ item }}
+                  </q-item-label>
                 </q-item-section>
               </q-item>
             </q-list>
@@ -122,7 +133,11 @@
         <q-card-actions
           align="center"
           class="q-pa-md"
-          :class="$q.screen.gt.xs ? 'bg-on-dark' : ''"
+          :class="
+            $q.screen.gt.xs
+              ? 'bg-on-dark'
+              : 'absolute-bottom bg-main q-pa-lg'
+          "
         >
           <q-btn
             no-caps
@@ -159,7 +174,7 @@
   };
 
   const CURRENT_VERSION = "0.0.1";
-  const MOCK_LATEST_VERSION = "0.0.1"; // change to "0.0.2" to simulate update
+  const MOCK_LATEST_VERSION = "0.0.2"; // change to "0.0.2" to simulate update
   const MOCK_NOTES_BY_VERSION = {
     "0.0.1": [
       "اضافه شدن قابلیت کپی در سند حسابداری",
@@ -167,6 +182,12 @@
       "نمایش گردش حساب چک در موبایل",
     ],
     "0.0.2": [
+      "بهبود عملکرد بارگذاری صفحه داشبورد و این یک متن تستی تولید شده توسط من است که هیچ ارزشی ندارد و صرفا از آن برای تست در نرم‌افزار استفاده می‌کنم. این متن می‌تواند برای دیگر افراد تنبل همچون من هم مفید واقع شود تا سرعت کارشان را افزایش دهند.",
+      "رفع چند باگ گزارش شده در چاپ فاکتور",
+      "افزودن فیلترهای جدید به لیست چک‌ها",
+      "بهبود عملکرد بارگذاری صفحه داشبورد",
+      "رفع چند باگ گزارش شده در چاپ فاکتور",
+      "افزودن فیلترهای جدید به لیست چک‌ها",
       "بهبود عملکرد بارگذاری صفحه داشبورد",
       "رفع چند باگ گزارش شده در چاپ فاکتور",
       "افزودن فیلترهای جدید به لیست چک‌ها",
@@ -206,6 +227,25 @@
     }
     100% {
       transform: scale(1);
+    }
+  }
+
+  .rocket-symbol {
+    font-size: 72px;
+    line-height: 1;
+    animation: rocketFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes rocketFloat {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-8px) rotate(-5deg);
+    }
+    75% {
+      transform: translateY(-8px) rotate(5deg);
     }
   }
 </style>

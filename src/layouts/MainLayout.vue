@@ -23,6 +23,7 @@
   import { useTheme } from "src/components/layouts/main/_composables/useTheme.js";
   import { useMenuBar } from "src/composables/useMenuBar";
   import { useFirstLogin } from "src/composables/useFirstLogin";
+  
   import MenuBar from "src/components/layouts/main/MenuBar.vue";
   import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue";
   import NotifDrawer from "src/components/layouts/main/NotifDrawer.vue";
@@ -31,7 +32,7 @@
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
   import TutorialChecklist from "src/components/shared/TutorialChecklist.vue";
-  // import NewReleaseDialog from "src/components/shared/NewReleaseDialog.vue";
+  import NewReleaseDialog from "src/components/shared/NewReleaseDialog.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
@@ -49,8 +50,8 @@
   onMounted(() => {
     theme.store();
 
-    // Dialog.create({
-    //   component: NewReleaseDialog,
-    // });
+    Dialog.create({
+      component: NewReleaseDialog,
+    });
   });
 </script>
