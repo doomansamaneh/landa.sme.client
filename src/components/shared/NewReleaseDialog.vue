@@ -167,45 +167,93 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref, computed, onMounted, watch } from "vue";
+  import { useI18n } from "vue-i18n";
+  import packageJson from "../../../package.json";
+
+  const { locale } = useI18n();
 
   const reload = () => {
     location.reload();
   };
 
-  const CURRENT_VERSION = "0.0.1";
-  const MOCK_LATEST_VERSION = "0.0.2"; // change to "0.0.2" to simulate update
-  const MOCK_NOTES_BY_VERSION = {
-    "0.0.1": [
-      "اضافه شدن قابلیت کپی در سند حسابداری",
-      "ایجاد قابلیت افزودن فروشنده در سند حسابداری",
-      "نمایش گردش حساب چک در موبایل",
-    ],
-    "0.0.2": [
-      "بهبود عملکرد بارگذاری صفحه داشبورد و این یک متن تستی تولید شده توسط من است که هیچ ارزشی ندارد و صرفا از آن برای تست در نرم‌افزار استفاده می‌کنم. این متن می‌تواند برای دیگر افراد تنبل همچون من هم مفید واقع شود تا سرعت کارشان را افزایش دهند.",
-      "رفع چند باگ گزارش شده در چاپ فاکتور",
-      "افزودن فیلترهای جدید به لیست چک‌ها",
-      "بهبود عملکرد بارگذاری صفحه داشبورد",
-      "رفع چند باگ گزارش شده در چاپ فاکتور",
-      "افزودن فیلترهای جدید به لیست چک‌ها",
-      "بهبود عملکرد بارگذاری صفحه داشبورد",
-      "رفع چند باگ گزارش شده در چاپ فاکتور",
-      "افزودن فیلترهای جدید به لیست چک‌ها",
-    ],
-  };
+  const RELEASE_NOTES_URL = "/release-notes.json";
 
-  const currentVersion = ref(MOCK_LATEST_VERSION);
-  const lastVersion = ref(CURRENT_VERSION);
+  const currentVersion = ref(null);
+  const latestVersion = ref(null);
+  const releaseNotes = ref({});
+  const latest = ref({
+    version: null,
+    items: [],
+  });
+
   const isSameVersion = computed(
     () =>
       Boolean(currentVersion.value) &&
-      Boolean(lastVersion.value) &&
-      String(currentVersion.value) === String(lastVersion.value)
+      Boolean(latestVersion.value) &&
+      String(currentVersion.value) === String(latestVersion.value)
   );
 
-  const latest = ref({
-    version: currentVersion.value,
-    items: MOCK_NOTES_BY_VERSION[currentVersion.value] || [],
+  const getNotesForCurrentLocale = (versionNotes) => {
+    if (!versionNotes) return [];
+
+    if (Array.isArray(versionNotes)) {
+      return versionNotes;
+    }
+
+    const currentLocale = locale.value || "fa-IR";
+    return (
+      versionNotes[currentLocale] ||
+      versionNotes["fa-IR"] ||
+      versionNotes["en-US"] ||
+      []
+    );
+  };
+
+  const updateLatestNotes = () => {
+    if (
+      latestVersion.value &&
+      releaseNotes.value[latestVersion.value]
+    ) {
+      const versionNotes = releaseNotes.value[latestVersion.value];
+      latest.value = {
+        version: latestVersion.value,
+        items: getNotesForCurrentLocale(versionNotes),
+      };
+    }
+  };
+
+  const loadReleaseNotes = async () => {
+    try {
+      currentVersion.value = packageJson.version;
+
+      const response = await fetch(RELEASE_NOTES_URL);
+      if (!response.ok) {
+        throw new Error("Failed to load release notes");
+      }
+      const data = await response.json();
+
+      releaseNotes.value = data.notes || {};
+      latestVersion.value = data.latestVersion;
+
+      updateLatestNotes();
+    } catch (error) {
+      console.error("Error loading release notes:", error);
+      currentVersion.value = packageJson.version || "0.0.1";
+      latestVersion.value = "0.0.1";
+      latest.value = {
+        version: latestVersion.value,
+        items: [],
+      };
+    }
+  };
+
+  watch(locale, () => {
+    updateLatestNotes();
+  });
+
+  onMounted(() => {
+    loadReleaseNotes();
   });
 </script>
 
