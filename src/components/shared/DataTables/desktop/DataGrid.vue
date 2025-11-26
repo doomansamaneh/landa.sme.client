@@ -532,6 +532,16 @@
     transition-duration: 300ms;
   }
 
+  // When wrapCells is true (no q-table--no-wrap class), allow text wrapping
+  .q-table__container:not(.q-table--no-wrap) {
+    .q-table {
+      th,
+      td {
+        white-space: normal;
+      }
+    }
+  }
+
   // Mobile full width styles
   @media (max-width: 599px) {
     .q-table {
