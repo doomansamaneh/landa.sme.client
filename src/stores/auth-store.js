@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { fetchWrapper, encryptor, helper } from "../helpers";
+import { fetchWrapper, encryptor } from "../helpers";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
@@ -45,7 +45,6 @@ export const useAuthStore = defineStore("auth", {
       this.clearUser();
       await fetchWrapper.post("account/logoff");
       this.redirect("/account/login");
-      helper.clearCookies();
     },
 
     setUser(user) {

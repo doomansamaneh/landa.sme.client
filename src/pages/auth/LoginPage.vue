@@ -19,6 +19,7 @@
 <script setup>
   import { onMounted } from "vue";
   import { useQuasar } from "quasar";
+  import { fetchWrapper } from "src/helpers";
 
   import LoginBackground from "src/assets/LoginBackground.vue";
   import MasterSection from "src/components/auth/MasterSection.vue";
@@ -30,7 +31,10 @@
     ? "flex full-screen items-center justify-center"
     : "q-pt-lg";
 
-  onMounted(() => {
+  onMounted(async () => {
     $q.dark.set(false);
+    try {
+      await fetchWrapper.post("account/logoff", null, true);
+    } catch (error) {}
   });
 </script>
