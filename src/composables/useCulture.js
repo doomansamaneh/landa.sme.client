@@ -87,11 +87,11 @@ export function useCulture() {
       $q.lang.set(langModule.default);
       $t.locale.value = lang.value;
 
+      localStorage.setItem(GeneralStorageKey, iso);
+
       const business = businessStore.get();
       if (business?.id) {
         businessStore.setLanguage(iso);
-      } else {
-        localStorage.setItem(GeneralStorageKey, iso);
       }
 
       document.body.classList.remove("persian", "english", "arabic");
