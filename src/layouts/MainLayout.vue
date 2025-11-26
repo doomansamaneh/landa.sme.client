@@ -32,7 +32,7 @@
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
   import TutorialChecklist from "src/components/shared/TutorialChecklist.vue";
-  import NewReleaseDialog from "src/components/shared/NewReleaseDialog.vue";
+  // import NewReleaseDialog from "src/components/shared/NewReleaseDialog.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
@@ -50,8 +50,8 @@
   onMounted(() => {
     theme.store();
 
-    Dialog.create({
-      component: NewReleaseDialog,
-    });
+    // Dialog.create({
+    //   component: NewReleaseDialog,
+    // });
   });
 </script>
