@@ -19,13 +19,14 @@
 <script setup>
   import { onMounted } from "vue";
   import { useQuasar } from "quasar";
-  import { fetchWrapper } from "src/helpers";
+  import { useAuthStore } from "src/stores";
 
   import LoginBackground from "src/assets/LoginBackground.vue";
   import MasterSection from "src/components/auth/MasterSection.vue";
   import DetailSection from "src/components/auth/DetailSection.vue";
 
   const $q = useQuasar();
+  const authStore = useAuthStore();
 
   const pageStyle = $q.screen.gt.xs
     ? "flex full-screen items-center justify-center"
@@ -33,8 +34,6 @@
 
   onMounted(async () => {
     $q.dark.set(false);
-    try {
-      await fetchWrapper.post("account/logoff", null, true);
-    } catch (error) {}
+    authStore.logout();
   });
 </script>

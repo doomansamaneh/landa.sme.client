@@ -89,7 +89,7 @@
           v-close-popup
           tabindex="0"
           class="q-py-sm"
-          @click="authStore.logout()"
+          to="/account/login"
         >
           <div class="q-py-sm">
             <q-item-section avatar>
@@ -114,20 +114,10 @@
 <script setup>
   import { ref, computed } from "vue";
   import { useAuthStore } from "src/stores";
-  import { helper } from "src/helpers";
-  import { useQuasar } from "quasar";
 
-  import ChangePasswordDialog from "src/components/areas/scr/users/ChangePasswordDialog.vue";
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
 
   const authStore = useAuthStore();
-  const $q = useQuasar();
-
-  function openPasswordDialog() {
-    $q.dialog({
-      component: ChangePasswordDialog,
-    });
-  }
 
   const username = computed(() => {
     if (authStore.currentUser) return authStore.currentUser.fullName;

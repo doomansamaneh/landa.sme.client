@@ -77,7 +77,7 @@
                   clickable
                   v-close-popup
                   tabindex="0"
-                  @click="authStore.logout()"
+                  to="/account/login"
                   class="q-py-sm"
                 >
                   <div class="q-py-sm">
@@ -107,11 +107,10 @@
 </template>
 
 <script setup>
-  import { computed, onMounted, onUnmounted } from "vue";
+  import { computed } from "vue";
   import { helper } from "src/helpers";
   import { useQuasar } from "quasar";
   import { useAuthStore } from "src/stores";
-  import { useHeader } from "src/composables/mobile/useHeader";
 
   import SwitchTheme from "src/components/shared/SwitchTheme.vue";
   import BreadCrumbs from "src/components/shared/BreadCrumbs.vue";
@@ -119,7 +118,6 @@
 
   const $q = useQuasar();
   const authStore = useAuthStore();
-  const headerStore = useHeader();
 
   const username = computed(() => {
     if (authStore.currentUser) return authStore.currentUser.fullName;
@@ -131,14 +129,6 @@
       component: ChangePasswordDialog,
     });
   }
-
-  // onMounted(() => {
-  //   window.addEventListener('scroll', headerStore.handleScroll)
-  // })
-
-  // onUnmounted(() => {
-  //   window.removeEventListener('scroll', headerStore.handleScroll)
-  // })
 </script>
 
 <style lang="scss">

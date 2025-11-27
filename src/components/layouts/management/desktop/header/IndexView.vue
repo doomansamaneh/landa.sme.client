@@ -83,7 +83,7 @@
                 clickable
                 v-close-popup
                 tabindex="0"
-                @click="authStore.logout()"
+                to="/account/login"
                 class="q-py-sm"
               >
                 <div class="q-py-sm">
