@@ -22,6 +22,12 @@
           v-bind="item"
         />
       </settings-card>
+
+      <div class="text-center q-mt-lg">
+        <div class="text-caption text-grey">
+          {{ $t("shared.labels.version") }}: {{ version }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -31,11 +37,14 @@
   import { useMeta, useQuasar } from "quasar";
   import { useI18n } from "vue-i18n";
   import { useAuthStore } from "src/stores";
+  import packageJson from "../../../../../../package.json";
 
   import CustomerAvatar from "src/components/shared/CustomerAvatar.vue";
   import SettingsCard from "./SettingsCard.vue";
   import UserProfileSection from "./UserProfileSection.vue";
   import SettingsMenuItem from "./SettingsMenuItem.vue";
+
+  const version = packageJson.version;
 
   const { t } = useI18n();
   const $q = useQuasar();

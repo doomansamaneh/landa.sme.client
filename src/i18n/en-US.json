@@ -900,7 +900,8 @@
       "receiveAccountBalance": "Receive account balance",
       "information": "Information",
       "modifyStockEnterSLCode": "Modify Stock Default Code: addition",
-      "modifyStockExitSLCode": "Modify Stock Default Code: deduction"
+      "modifyStockExitSLCode": "Modify Stock Default Code: deduction",
+      "version": "Version"
     },
 
     "productType": {

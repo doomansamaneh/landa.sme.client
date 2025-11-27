@@ -930,7 +930,8 @@
       "quoteRegisteredSuccessfully": "پیش‌فاکتور با موفقیت ثبت شد.",
       "receiveAccountBalance": "دریافت مانده حساب",
       "modifyStockEnterSLCode": "کد حساب پیشفرض اصلاح موجودی- افزایش",
-      "modifyStockExitSLCode": "کد حساب پیشفرض اصلاح موجودی- کاهش"
+      "modifyStockExitSLCode": "کد حساب پیشفرض اصلاح موجودی- کاهش",
+      "version": "نسخه"
     },
 
     "productType": {
