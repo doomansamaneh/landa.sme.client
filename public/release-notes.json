@@ -4,12 +4,10 @@
     "0.0.1": {
       "fa-IR": [
         "اضافه شدن قابلیت کپی در سند حسابداری",
-        "ایجاد قابلیت افزودن فروشنده در سند حسابداری",
         "نمایش گردش حساب چک در موبایل"
       ],
       "en-US": [
         "Added copy functionality in accounting document",
-        "Created ability to add seller in accounting document",
         "Display check account flow in mobile"
       ]
     },
