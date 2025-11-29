@@ -1501,6 +1501,14 @@ export default {
             import("pages/areas/cmn/appConfig/PluginPage.vue"),
           meta: { title: "پیکربندی سامانه - Public API" },
         },
+        {
+          path: "invoiceTableDesigner",
+          component: () =>
+            import(
+              "pages/areas/cmn/appConfig/InvoiceTableDesignerPage.vue"
+            ),
+          meta: { title: "پیکربندی سامانه - طراح جدول فاکتور" },
+        },
       ],
     },
 
