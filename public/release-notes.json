@@ -3,11 +3,11 @@
   "notes": {
     "0.0.1": {
       "fa-IR": [
-        "اضافه شدن قابلیت کپی در سند حسابداری",
-        "نمایش گردش حساب چک در موبایل"
+        "اضافه شدن قابلیت کپی در اقلام سند حسابداری",
+        "بهبود نمایش گردش حساب چک در موبایل"
       ],
       "en-US": [
-        "Added copy functionality in accounting document",
+        "Added copy functionality in voucher item create or edit",
         "Display check account flow in mobile"
       ]
     },
