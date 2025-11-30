@@ -161,7 +161,7 @@
 
           <div
             v-if="designer.showHeader"
-            class="q-table__middle scroll q-pb-sm"
+            class="q-table__middle scroll q-pt-md q-pb-sm"
           >
             <table
               :style="
