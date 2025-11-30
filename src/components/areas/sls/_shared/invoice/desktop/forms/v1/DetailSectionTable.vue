@@ -76,7 +76,7 @@
             <custom-input-number
               no-error-icon
               v-model="row.quantity"
-              :placeholder="$t('shared.labels.amount')"
+              :placeholder="$t('shared.labels.quantity')"
               required
             />
           </td>
@@ -92,7 +92,7 @@
           <td>
             <custom-input-number
               v-model="row.price"
-              :placeholder="$t('shared.labels.unit-price')"
+              :placeholder="$t('shared.labels.unitPrice')"
               required
             />
           </td>

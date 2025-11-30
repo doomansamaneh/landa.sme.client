@@ -1,4 +1,5 @@
 import { ref, computed, watch } from "vue";
+import Decimal from "decimal.js";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useQuasar } from "quasar";
@@ -38,8 +39,6 @@ export function useInvoiceModel(config) {
 
   async function getCreateModel() {
     await crudStore.getCreateModel(setInvoiceItems);
-    // setInvoiceItems();
-    // addWatch();
   }
 
   function setInvoiceItems() {
@@ -103,17 +102,6 @@ export function useInvoiceModel(config) {
 
   function addWatch() {
     if (!model.value.invoiceItems) return;
-    // watch(
-    //   model.value.invoiceItems,
-    //   async (newItems) => {
-    //     newItems.forEach((item) => {
-    //       console.log(item);
-    //       itemStore.calculateTotal(item);
-    //     });
-    //     watching = false;
-    //   },
-    //   { deep: true }
-    // );
 
     watch(
       () =>
@@ -135,31 +123,48 @@ export function useInvoiceModel(config) {
   addWatch();
 
   const applyDiscountAmount = (discount) => {
-    // Calculate total without current discount
-    const total = Math.max(totalPrice.value - totalVat.value, 1);
-    let subTotal = 0;
+    // محاسبه total بدون تخفیف فعلی
+    const total = new Decimal(
+      Math.max(totalPrice.value - totalVat.value, 1)
+    );
+    let subTotal = new Decimal(0);
     let lastItem = null;
+
     model.value.invoiceItems.forEach((item) => {
       lastItem = item;
-      const itemDiscount = Math.floor(
-        (discount * item.quantity * item.price) / total
-      );
-      if (item.discount !== itemDiscount)
-        item.discount = itemDiscount;
-      subTotal += itemDiscount;
+
+      const itemTotalPrice = new Decimal(item.quantity).times(
+        item.price
+      ); // قیمت کل هر کالا
+      const itemDiscount = itemTotalPrice
+        .times(discount)
+        .div(total)
+        .toDecimalPlaces(0, Decimal.ROUND_DOWN); // تخفیف برای هر کالا
+
+      if (item.discount !== itemDiscount.toNumber())
+        item.discount = itemDiscount.toNumber(); // اعمال تخفیف
+      subTotal = subTotal.plus(itemDiscount); // جمع تخفیف‌های اعمال‌شده
     });
 
-    if (discount != subTotal) {
-      lastItem.discount += discount - subTotal;
+    // اطمینان از اینکه جمع تخفیف‌ها برابر با مقدار کلی تخفیف است
+    const lastItemDiscountDiff = new Decimal(discount).minus(
+      subTotal
+    );
+    if (!lastItemDiscountDiff.isZero()) {
+      lastItem.discount += lastItemDiscountDiff.toNumber();
     }
   };
 
   const applyDiscountPercent = (percent) => {
     model.value.invoiceItems.forEach((item) => {
+      const itemDiscount = new Decimal(item.quantity)
+        .times(item.price)
+        .times(percent)
+        .div(100)
+        .toDecimalPlaces(0, Decimal.ROUND_DOWN); // تخفیف به درصد
+
       item.discountPercent = percent;
-      item.discount = Math.floor(
-        (item.quantity * item.price * percent) / 100
-      );
+      item.discount = itemDiscount.toNumber(); // اعمال تخفیف به کالا
     });
   };
 
@@ -169,7 +174,7 @@ export function useInvoiceModel(config) {
         if (item.vatId !== vat.id) {
           item.vatId = vat.id;
           item.vatTitle = vat.title;
-          item.vatPercent = vat.rate;
+          item.vatPercent = vat.rate; // تنظیم درصد VAT
         }
       });
     }
@@ -276,18 +281,29 @@ export function useInvoiceModel(config) {
     formItemStore.editItem(model.value.invoiceItems, index, item);
   };
 
-  const totalPrice = computed(() =>
-    helper.getSubtotal(model.value.invoiceItems, "totalPrice")
-  );
-  const totalDiscount = computed(() =>
-    helper.getSubtotal(model.value.invoiceItems, "discount")
-  );
-  const totalVat = computed(() =>
-    helper.getSubtotal(model.value.invoiceItems, "vatAmount")
-  );
-  const totalNetPrice = computed(
-    () => totalPrice.value + totalDiscount.value - totalVat.value
-  );
+  const totalPrice = computed(() => {
+    return new Decimal(
+      helper.getSubtotal(model.value.invoiceItems, "totalPrice")
+    );
+  });
+
+  const totalDiscount = computed(() => {
+    return new Decimal(
+      helper.getSubtotal(model.value.invoiceItems, "discount")
+    );
+  });
+
+  const totalVat = computed(() => {
+    return new Decimal(
+      helper.getSubtotal(model.value.invoiceItems, "vatAmount")
+    );
+  });
+
+  const totalNetPrice = computed(() => {
+    return totalPrice.value
+      .add(totalDiscount.value)
+      .sub(totalVat.value);
+  });
 
   // --- Discount Type Logic ---
 
