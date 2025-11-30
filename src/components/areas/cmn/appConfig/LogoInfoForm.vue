@@ -9,16 +9,21 @@
     />
   </q-card-section>
   <q-card-section class="no-padding">
-    <q-avatar square>
-      <img :src="logoSource" />
-    </q-avatar>
-    <input
-      class="upload-box"
-      type="file"
-      id="logoUpload"
-      @change="handleLogoUpload"
-      accept="image/*"
-    />
+    <div class="image-preview-container">
+      <img
+        v-if="logoSource"
+        :src="logoSource"
+        class="preview-image"
+        alt="logo"
+      />
+      <input
+        class="upload-box"
+        type="file"
+        id="logoUpload"
+        @change="handleLogoUpload"
+        accept="image/*"
+      />
+    </div>
   </q-card-section>
 
   <q-separator class="q-my-md" />
@@ -35,16 +40,21 @@
     />
   </q-card-section>
   <q-card-section class="no-padding">
-    <q-avatar square>
-      <img :src="signatureSource" />
-    </q-avatar>
-    <input
-      class="upload-box"
-      type="file"
-      id="signatureUpload"
-      @change="handleSignatureUpload"
-      accept="image/*"
-    />
+    <div class="image-preview-container">
+      <img
+        v-if="signatureSource"
+        :src="signatureSource"
+        class="preview-image"
+        alt="signature"
+      />
+      <input
+        class="upload-box"
+        type="file"
+        id="signatureUpload"
+        @change="handleSignatureUpload"
+        accept="image/*"
+      />
+    </div>
   </q-card-section>
 </template>
 
@@ -73,15 +83,54 @@
   };
 
   onMounted(async () => {
-    configStore.resetAvatars();
-    logoSource.value = await configStore.getAvatar(mediaType.avatar);
-    signatureSource.value = await configStore.getAvatar(
-      mediaType.signature
-    );
+    try {
+      if (!configStore.model.value?.companySetting?.id) {
+        await configStore.reloadData?.();
+      }
+
+      configStore.resetAvatars();
+      logoSource.value = await configStore.getAvatar(
+        mediaType.avatar,
+        300,
+        200
+      );
+      signatureSource.value = await configStore.getAvatar(
+        mediaType.signature,
+        300,
+        200
+      );
+    } catch (error) {
+      console.error("Error loading logo/signature:", error);
+    }
   });
 </script>
 
 <style lang="scss">
+  .image-preview-container {
+    position: relative;
+    width: 120px;
+    height: 80px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    overflow: hidden;
+  }
+
+  .preview-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    image-rendering: auto;
+    -ms-interpolation-mode: bicubic;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
   .upload-box {
     position: absolute;
     top: 0;
