@@ -126,12 +126,18 @@
     computed,
     onMounted,
     watch,
-    getCurrentInstance,
   } from "vue";
   import { useI18n } from "vue-i18n";
   import { i18nInstance } from "src/boot/i18n";
   import messages from "src/i18n";
   import packageJson from "../../../package.json";
+
+  const props = defineProps({
+    swVersion: {
+      type: String,
+      default: null,
+    },
+  });
 
   const getLocale = () => {
     try {
@@ -164,7 +170,9 @@
 
   const RELEASE_NOTES_URL = "/release-notes.json";
 
-  const currentVersion = ref(packageJson.version || "0.0.1");
+  const currentVersion = ref(
+    props.swVersion || packageJson.version || "0.0.1"
+  );
   const releaseNotes = ref({});
   const latest = ref({
     version: null,
@@ -198,7 +206,6 @@
           message;
       }
     } catch (e) {
-      console.error("Error getting translation:", e);
       try {
         const currentLocale =
           localStorage.getItem("selectedLanguage") || "fa-IR";
@@ -210,7 +217,6 @@
           localeMessages?.shared?.labels?.newReleaseMessage ||
           message;
       } catch (err) {
-        console.error("Error in fallback translation:", err);
       }
     }
 
@@ -265,13 +271,14 @@
 
       releaseNotes.value = data.notes || {};
 
-      if (data.version) {
+      if (props.swVersion) {
+        currentVersion.value = props.swVersion;
+      } else if (data.version) {
         currentVersion.value = data.version;
       }
 
       updateLatestNotes();
     } catch (error) {
-      console.error("Error loading release notes:", error);
       latest.value = {
         version: currentVersion.value,
         items: [],

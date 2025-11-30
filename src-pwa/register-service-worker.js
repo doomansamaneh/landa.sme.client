@@ -1,45 +1,81 @@
 import { register } from "register-service-worker";
-import { Notify, Dialog } from "quasar";
+import { Dialog } from "quasar";
 import NewReleaseDialog from "src/components/shared/NewReleaseDialog.vue";
 import { appInstance } from "src/boot/i18n";
 
+let swVersion = null;
+let dialogShown = false;
+
+const requestVersionFromSW = async () => {
+  if (
+    "serviceWorker" in navigator &&
+    navigator.serviceWorker.controller
+  ) {
+    try {
+      const messageChannel = new MessageChannel();
+      messageChannel.port1.onmessage = (event) => {
+        if (event.data && event.data.type === "SW_VERSION_INFO") {
+          swVersion = event.data.version;
+        }
+      };
+      navigator.serviceWorker.controller.postMessage(
+        { type: "GET_VERSION" },
+        [messageChannel.port2]
+      );
+    } catch {}
+  }
+};
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.addEventListener("message", (event) => {
+    if (event.data && event.data.type === "SW_VERSION_INFO") {
+      swVersion = event.data.version;
+
+      if (swVersion && !dialogShown) {
+        dialogShown = true;
+        Dialog.create({
+          component: NewReleaseDialog,
+          componentProps: {
+            swVersion: swVersion,
+          },
+          ...(appInstance && { app: appInstance }),
+        });
+      }
+    }
+  });
+}
+
 register(process.env.SERVICE_WORKER_FILE, {
-  ready(/* registration */) {
-    console.log("Service worker is active.")
+  ready() {
+    requestVersionFromSW();
   },
 
   registered(registration) {
-    console.log("Service worker has been registered.")
-
     document.addEventListener("visibilitychange", () => {
       if (document.visibilityState === "visible")
         registration.update();
     });
   },
 
-  cached(/* registration */) {
-    console.log("Content has been cached for offline use.")
+  cached() {},
+
+  updatefound() {},
+
+  updated(registration) {
+    dialogShown = false;
+
+    setTimeout(() => {
+      if (!swVersion && !dialogShown) {
+        dialogShown = true;
+        Dialog.create({
+          component: NewReleaseDialog,
+          ...(appInstance && { app: appInstance }),
+        });
+      }
+    }, 1000);
   },
 
-  updatefound(/* registration */) {
-    console.log("New content is downloading.")
-  },
+  offline() {},
 
-  updated(/* registration */) {
-    console.log("New content is available; please refresh.")
-
-    // Use the app instance to ensure Dialog has access to i18n and all plugins
-    Dialog.create({
-      component: NewReleaseDialog,
-      ...(appInstance && { app: appInstance }),
-    });
-  },
-
-  offline() {
-    console.log("No internet connection found. App is running in offline mode.")
-  },
-
-  error(/* err */) {
-    console.error("Error during service worker registration:", err)
-  },
+  error() {},
 });

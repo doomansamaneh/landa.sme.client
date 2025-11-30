@@ -48,7 +48,9 @@ export default defineConfig((ctx) => {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        APP_VERSION: require("./package.json").version,
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
@@ -148,19 +150,28 @@ export default defineConfig((ctx) => {
 
     // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
     pwa: {
-      workboxMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
-      //workboxMode: "InjectManifest", // 👈 Use your own SW
-      // injectManifest: {
-      //   swSrc: "src-pwa/custom-service-worker.js", // 👈 Your custom SW file
-      // },
+      //workboxMode: "GenerateSW", // 'GenerateSW' or 'InjectManifest'
+      workboxMode: "InjectManifest", // 👈 Use your own SW to send version info
+      injectManifest: {
+        swSrc: "src-pwa/custom-service-worker.js", // 👈 Your custom SW file
+      },
       // swFilename: 'sw.js',
       // manifestFilename: 'manifest.json',
       // extendManifestJson (json) {},
       // useCredentialsForManifestTag: true,
       // injectPwaMetaTags: false,
-      // extendPWACustomSWConf (esbuildConf) {},
+      extendPWACustomSWConf (esbuildConf) {
+        // Inject APP_VERSION into service worker at build time
+        esbuildConf.define = {
+          ...esbuildConf.define,
+          "process.env.APP_VERSION": JSON.stringify(require("./package.json").version),
+        };
+      },
       // extendGenerateSWOptions (cfg) {},
-      // extendInjectManifestOptions (cfg) {}
+      extendInjectManifestOptions (cfg) {
+        // Ensure version is available in service worker
+        cfg.additionalManifestEntries = cfg.additionalManifestEntries || [];
+      }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
