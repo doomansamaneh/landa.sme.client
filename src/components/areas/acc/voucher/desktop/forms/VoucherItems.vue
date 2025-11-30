@@ -87,7 +87,7 @@
             <custom-input-number
               v-model="row.debit"
               :placeholder="$t('shared.columns.debit')"
-              required
+              required_
             />
           </td>
           <td class="text-center">
@@ -105,7 +105,7 @@
             <custom-input-number
               v-model="row.credit"
               :placeholder="$t('shared.columns.credit')"
-              required
+              required_
             />
           </td>
           <td class="text-center q-gutter-x-xs">

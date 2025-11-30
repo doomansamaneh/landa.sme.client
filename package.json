@@ -17,6 +17,7 @@
     "@quasar/extras": "^1.16.4",
     "apexcharts": "^4.3.0",
     "axios": "^1.2.1",
+    "decimal.js": "^10.6.0",
     "html2pdf.js": "^0.10.1",
     "mitt": "^3.0.1",
     "pinia": "^2.0.11",

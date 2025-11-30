@@ -1,5 +1,6 @@
 import { exportFile, useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
+import Decimal from "decimal.js";
 import * as XLSX from "xlsx";
 
 export const helper = {
@@ -342,10 +343,13 @@ export const helper = {
   },
 
   getSubtotal(items, fieldName) {
-    if (!items) return 0;
+    if (!items || items.length === 0) return new Decimal(0);
+
     return items.reduce((sum, item) => {
-      return sum + item[fieldName];
-    }, 0);
+      const value = item[fieldName] ?? 0; // اگر null یا undefined باشد 0 می‌شود
+      const decimalValue = new Decimal(value); // تبدیل مقدار به Decimal
+      return sum.plus(decimalValue); // جمع کردن مقدار به مجموع
+    }, new Decimal(0)); // شروع جمع از 0 به صورت Decimal
   },
 
   findIndex(items, fieldName, fieldValue) {
@@ -354,7 +358,48 @@ export const helper = {
     return items.findIndex((obj) => obj[fieldName] === fieldValue);
   },
 
-  formatNumber(number, fraction) {
+  formatNumber(raw, fraction = 4) {
+    if (raw == null || raw === "") return "";
+
+    let negative = false;
+    raw = String(raw).replace(/[^0-9.\-]/g, "");
+    if (raw.startsWith("-")) {
+      negative = true;
+      raw = raw.slice(1);
+    }
+
+    let [intPart, decPart] = raw.split(".");
+    if (!intPart) intPart = "0";
+
+    // حذف صفرهای پیشرو فقط برای اعداد ≥ 1
+    intPart = intPart.replace(/^0+(?=\d)/, "");
+
+    // تعیین fraction پویا
+    if (fraction === null) {
+      const absNum =
+        parseFloat(intPart + "." + (decPart || "0")) || 0;
+      if (absNum >= 1) fraction = 2;
+      else if (absNum >= 0.01) fraction = 4;
+      else if (absNum >= 0.0001) fraction = 6;
+      else fraction = 8;
+    }
+
+    // حفظ تمام ارقام اعشار اما محدود کردن به fraction
+    if (decPart) {
+      if (decPart.length > fraction)
+        decPart = decPart.slice(0, fraction);
+      // اگر کمتر از fraction باشد، صفر اضافه نکنیم
+    }
+
+    const intWithCommas = intPart.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ","
+    );
+    const result = intWithCommas + (decPart ? "." + decPart : "");
+    return negative ? `(${result})` : result;
+  },
+
+  formatNumber_(number, fraction) {
     if (number == null || isNaN(number)) {
       return "";
     }

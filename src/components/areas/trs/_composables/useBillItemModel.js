@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import Decimal from "decimal.js";
 
 export function useBillItemModel(item) {
   const model = ref({
@@ -10,9 +11,19 @@ export function useBillItemModel(item) {
   if (item) model.value = { ...item };
 
   const calculateTotal = (row) => {
-    const amount = row.amount;
-    row.vatAmount = Math.floor((amount * row.vatPercent) / 100);
-    row.total = amount + row.vatAmount;
+    const amount = new Decimal(row.amount || 0); // تبدیل به Decimal
+    const vatPercent = new Decimal(row.vatPercent || 0); // تبدیل به Decimal
+
+    // محاسبه vatAmount با گرد کردن از پایین
+    row.vatAmount = amount
+      .times(vatPercent)
+      .div(100)
+      .toDecimalPlaces(2, Decimal.ROUND_DOWN);
+
+    // محاسبه total با گرد کردن از پایین
+    row.total = amount
+      .plus(row.vatAmount)
+      .toDecimalPlaces(2, Decimal.ROUND_DOWN);
   };
 
   return {
