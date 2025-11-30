@@ -391,9 +391,40 @@ export const helper = {
     const suffix = number < 0 ? "(" : "";
     const postfix = number < 0 ? ")" : "";
 
-    const lang = this.getCurrentLanguage
-      ? this.getCurrentLanguage()
-      : "english";
+    // Get language - prioritize Quasar RTL (more reliable on first load), then i18n locale
+    let lang = "english";
+
+    // First check Quasar RTL (same pattern as formatDate method)
+    try {
+      const $q = useQuasar();
+      if ($q.lang.rtl) {
+        lang = "farsi";
+      }
+    } catch (e) {
+      // If useQuasar fails, continue to other checks
+    }
+
+    // If not determined by RTL, check i18n locale
+    if (lang === "english") {
+      try {
+        const { locale } = useI18n();
+        if (locale.value === "fa-IR") {
+          lang = "farsi";
+        }
+      } catch (e) {
+        // If useI18n fails, continue to body class check
+      }
+    }
+
+    // Last fallback: check body class
+    if (
+      lang === "english" &&
+      typeof document !== "undefined" &&
+      document.body.classList.contains("persian")
+    ) {
+      lang = "farsi";
+    }
+
     const units =
       lang === "farsi"
         ? ["هزار", "میلیون", "میلیارد", "همت"]
