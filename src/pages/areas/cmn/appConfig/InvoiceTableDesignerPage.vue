@@ -9,7 +9,11 @@
       <div class="column q-gutter-md">
         <q-card bordered>
           <q-card-section>
-            <q-expansion-item icon="o_view_stream" label="ستون‌ها">
+            <q-expansion-item
+              icon="o_view_stream"
+              label="ستون‌ها"
+              class="settings-expansion-item"
+            >
               <div class="row q-col-gutter-md q-py-sm">
                 <div
                   v-for="col in defaultPalette"
@@ -55,30 +59,104 @@
               icon="o_tune"
               label="تنظیمات کلی"
               default-opened
+              class="settings-expansion-item"
             >
-              <div class="q-gutter-sm q-mt-sm">
-                <q-toggle
-                  v-model="designer.showHeader"
-                  label="نمایش هدر"
-                />
-                <q-toggle
-                  v-model="designer.showLogo"
-                  label="نمایش لوگو در هدر"
-                />
-                <q-toggle
-                  v-model="designer.showFooter"
-                  label="نمایش فوتر"
-                />
-                <q-toggle
-                  v-model="designer.showSignature"
-                  label="نمایش امضا در فوتر"
-                />
+              <div class="column">
+                <q-separator size="1px" spaced />
+                <div class="text-subtitle2 text-weight-bold q-pb-md">
+                  بخش هدر فاکتور
+                </div>
+                <div class="column q-gutter-sm q-pb-md">
+                  <q-toggle
+                    dense
+                    v-model="designer.showHeader"
+                    label="نمایش هدر"
+                  />
+                  <q-toggle
+                    dense
+                    v-model="designer.showLogo"
+                    label="نمایش لوگو"
+                  />
+                  <q-toggle
+                    dense
+                    v-model="designer.showInvoiceInfo"
+                    label="نمایش شماره و تاریخ"
+                  />
+                </div>
                 <q-input
                   v-model="designer.headerTitle"
                   dense
                   outlined
                   label="عنوان هدر"
                 />
+
+                <q-separator size="1px" spaced />
+                <div class="text-subtitle2 text-weight-bold q-pb-md">
+                  بخش اطلاعات اصلی
+                </div>
+                <div class="column q-gutter-sm">
+                  <q-toggle
+                    dense
+                    v-model="designer.showSellerInfo"
+                    label="نمایش اطلاعات فروشنده"
+                  />
+                  <q-toggle
+                    dense
+                    v-model="designer.showCustomerInfo"
+                    label="نمایش اطلاعات خریدار"
+                  />
+                </div>
+
+                <q-separator size="1px" spaced />
+                <div class="text-subtitle2 text-weight-bold q-pb-md">
+                  بخش اقلام فاکتور
+                </div>
+                <div class="column q-gutter-sm q-pb-md">
+                  <q-toggle
+                    dense
+                    v-model="designer.showInvoiceItems"
+                    label="نمایش اقلام فاکتور"
+                  />
+                  <q-toggle
+                    dense
+                    v-model="designer.showRemained"
+                    label="نمایش مانده"
+                  />
+                </div>
+
+                <q-separator size="1px" spaced />
+                <div class="text-subtitle2 text-weight-bold q-pb-md">
+                  بخش پاورقی فاکتور
+                </div>
+                <div class="column q-gutter-sm">
+                  <q-toggle
+                    dense
+                    v-model="designer.showSummary"
+                    label="نمایش شرح"
+                  />
+                  <q-toggle
+                    dense
+                    v-model="designer.showContract"
+                    label="نمایش قرارداد"
+                  />
+                </div>
+
+                <q-separator size="1px" spaced />
+                <div class="text-subtitle2 text-weight-bold q-pb-md">
+                  بخش فوتر
+                </div>
+                <div class="column q-gutter-sm q-pb-md">
+                  <q-toggle
+                    dense
+                    v-model="designer.showFooter"
+                    label="نمایش فوتر"
+                  />
+                  <q-toggle
+                    dense
+                    v-model="designer.showSignature"
+                    label="نمایش امضا"
+                  />
+                </div>
                 <q-input
                   v-model="designer.footerNote"
                   dense
@@ -115,7 +193,10 @@
                       {{ headerTitle }}
                     </div>
                   </td>
-                  <td style="width: 25%">
+                  <td
+                    style="width: 25%"
+                    v-if="designer.showInvoiceInfo"
+                  >
                     <div>
                       <span>{{ $t("shared.labels.no") }}:</span>
                       <span class="q-px-sm text-weight-600">
@@ -154,6 +235,7 @@
                       </span>
                     </div>
                   </td>
+                  <td v-else style="width: 25%"></td>
                 </tr>
               </tbody>
             </table>
@@ -177,7 +259,10 @@
               class="print-preview-table"
             >
               <tbody
-                v-if="appConfigStore.model?.value?.companySetting"
+                v-if="
+                  designer.showSellerInfo &&
+                  appConfigStore.model?.value?.companySetting
+                "
               >
                 <tr>
                   <td
@@ -270,7 +355,7 @@
                 </tr>
               </tbody>
 
-              <tbody>
+              <tbody v-if="designer.showCustomerInfo">
                 <tr>
                   <td
                     style="
@@ -320,7 +405,10 @@
             </table>
           </div>
 
-          <div class="q-table__middle scroll">
+          <div
+            v-if="designer.showInvoiceItems"
+            class="q-table__middle scroll"
+          >
             <table
               style="
                 width: 100%;
@@ -418,7 +506,7 @@
                   </td>
                 </tr>
 
-                <tr v-if="hasDiscountColumn && previewDiscount">
+                <tr>
                   <td
                     style="
                       padding: 5px;
@@ -446,7 +534,7 @@
                   </td>
                 </tr>
 
-                <tr v-if="hasVatColumn && previewVat">
+                <tr>
                   <td
                     style="
                       padding: 5px;
@@ -559,6 +647,7 @@
                 <tbody>
                   <tr
                     v-if="
+                      designer.showRemained &&
                       previewInvoiceRemained &&
                       appConfigStore.model?.value?.companySetting
                         ?.showRemainedInInvoice
@@ -632,8 +721,10 @@
 
                   <tr
                     v-if="
-                      previewInvoiceModel.contractTitle ||
-                      previewInvoiceModel.summary ||
+                      (designer.showContract &&
+                        previewInvoiceModel.contractTitle) ||
+                      (designer.showSummary &&
+                        previewInvoiceModel.summary) ||
                       designer.footerNote
                     "
                   >
@@ -651,18 +742,27 @@
                       </strong>
                       <div>
                         <strong
-                          v-if="previewInvoiceModel.contractTitle"
+                          v-if="
+                            designer.showContract &&
+                            previewInvoiceModel.contractTitle
+                          "
                         >
                           {{ previewInvoiceModel.contractTitle }}
                           <span
-                            v-if="previewInvoiceModel.summary"
+                            v-if="
+                              designer.showSummary &&
+                              previewInvoiceModel.summary
+                            "
                             style="padding: 5px"
                           >
                             /
                           </span>
                         </strong>
                         <span
-                          v-if="previewInvoiceModel.summary"
+                          v-if="
+                            designer.showSummary &&
+                            previewInvoiceModel.summary
+                          "
                           class="text-wrap"
                           v-html="previewInvoiceModel.summary"
                         ></span>
@@ -809,65 +909,144 @@
     () => previewInvoiceModel.value.currencyTitle || "ریال"
   );
   const previewInvoiceModel = ref({
-    invoiceItems: [
-      {
-        rowNo: 1,
-        productCode: "26135",
-        productTitle: "موز اکوادور",
-        productDisplay: "26135 - موز اکوادور",
-        quantity: 1.0,
-        productUnitTitle: "کیلوگرم",
-        price: 0.0,
-        totalPrice: 0.0,
-        comment: "سلام شرح ردیف",
-      },
-      {
-        rowNo: 2,
-        productCode: "002w-41",
-        productTitle: "موس",
-        productDisplay: "002w-41 - موس",
-        quantity: 4.0,
-        productUnitTitle: "عدد",
-        price: 45.0,
-        totalPrice: 180.0,
-        comment: null,
-      },
-    ],
-    totalNetPrice: 180.0,
-    totalDiscount: 0.0,
-    totalVat: 0.0,
-    totalPrice: 180.0,
-    currencyTitle: "ریال",
-    invoiceRemained: {
-      payedAmount: 858000000,
-      remained: 857999820,
-      otherRemained: 1048226800,
-      totalRemained: 190226980,
-    },
+    docTypeId: "7b1af164-933c-4b5e-a4f0-0d71f95631b5",
+    fiscalYearId: "8a95918d-12b6-4d6e-a847-b5ebbf06ce5c",
+    no: 297,
+    inventoryId: "11111111-0000-1111-0000-000000000001",
+    contractId: "c7d790eb-ffc4-46c1-927c-9bc428eb4be9",
+    currencyId: "3cb80957-7dee-4d87-bbef-6b9583d9e3bf",
+    typeId: "3a9d106c-fe74-42fc-9a11-29a9dd16a851",
+    customerId: "2041c16e-8285-4168-9e88-8748f6c88827",
+    amount: 180.0,
+    vatAmount: 0.0,
+    discountAmount: 0.0,
+    subject: "فاکتور فروش موز اکوادور-موس",
+    summary:
+      "با سلام و عرض ادب خدمت تیم لاندا، لطفا پس از بررسی اقدام لازم انجام گیرد.",
+    statusId: "c84e9c9d-31e6-4f45-9a6d-265d825e3d4c",
+    statusTitle: "دائم",
+    rowNo: "7463",
+    date: "1402/03/11",
+    dueDate: "1402/04/10",
+    receivedAmount: 858000000.0,
+    typeTitle: "فروش نقدی کالا و خدمات",
+    paymentTypeId: 1,
     customerName: "خشایار شمالی",
+    customerTypeId: 172,
+    inventoryTitle: "انبار مرکزی",
+    currencyTitle: "ریال",
+    voucherId: "6d6ca098-cb62-41ea-bdea-f2d705c3a43f",
+    voucherNo: 62,
+    invoiceNo: 0,
+    contractNo: "1600",
+    contractTitle:
+      "سفارش شماره 1600 شماره 1403 گمرک به سند 240 مجوز 5 - دفتر کار شماره 540",
+    creationType: "ByUser",
     customerSummary: {
-      business: {
-        nationalNo: "0481038280",
-        taxNo: "ثقثث",
-      },
+      typeId: 0,
+      gender: 0,
+      nationalCode: "0481038280",
       address: {
+        customerId: null,
+        contactTypeId: null,
+        locationId: null,
         locationTitle: "تهران",
         address: "خیایان شهید رجایی - شهرک سیزده آب",
         postalCode: "1881",
+        isPrimary: false,
+        id: null,
+        emptyModel: false,
       },
       phone: {
+        customerId: null,
+        contactTypeId: null,
+        contactTypeTitle: "تلفن محل کار",
+        typeId: 0,
         value: "02155511102",
+        isPrimary: false,
+        id: null,
+        emptyModel: false,
+      },
+      business: {
+        taxNo: "ثقثث",
+        insuranceWorkNo: "55",
+        nationalNo: "0481038280",
+        regNo: "45555",
+        regDate: "1402/07/08",
+        customerId: null,
+        id: null,
+        emptyModel: false,
       },
     },
-    no: 297,
-    date: "1402/03/11",
-    dueDate: "1402/04/10",
-    lastApiLogModel: {
-      taxId: "0123456789",
+    invoiceItems: [
+      {
+        quoteId: null,
+        invoiceId: null,
+        rowNo: 1,
+        productId: "57ee96c6-8107-42ca-a92e-7b504f634f85",
+        quantity: 1.0,
+        discountPercent: 0.0,
+        discount: 0.0,
+        vatId: "7c5c5cae-bcf8-4713-9bec-a705afa3c119",
+        vatPercent: 0.0,
+        vatAmount: 0.0,
+        price: 0.0,
+        totalPrice: 0.0,
+        comment: "سلام شرح ردیف",
+        productCode: "26135",
+        productTitle: "موز اکوادور",
+        productDisplay: "26135-موز اکوادور",
+        productUnitId: "47d4e382-e788-441f-ace0-a60872c23d93",
+        productTypeId: 0,
+        productUnitTitle: "کیلوگرم",
+        vatTitle: "بدون ارزش افزوده",
+        invoiceNo: 0,
+        cogsAmount: 0,
+        id: "fdfc6ac5-371f-4994-ad67-d2ab53c6c1f4",
+        recordVersion: "-7714939940080975872",
+        emptyModel: false,
+      },
+      {
+        quoteId: null,
+        invoiceId: null,
+        rowNo: 2,
+        productId: "c338ea12-3624-4eb6-b333-f0b8e6586c5b",
+        quantity: 4.0,
+        discountPercent: 0.0,
+        discount: 0.0,
+        vatId: "7c5c5cae-bcf8-4713-9bec-a705afa3c119",
+        vatPercent: 0.0,
+        vatAmount: 0.0,
+        price: 45.0,
+        totalPrice: 180.0,
+        productCode: "002w-41",
+        productTitle: "موس",
+        productDisplay: "002w-41-موس",
+        productUnitId: "a544b002-390a-44e6-9b45-741a723d5663",
+        productTypeId: 0,
+        productUnitTitle: "عدد",
+        vatTitle: "بدون ارزش افزوده",
+        invoiceNo: 0,
+        cogsAmount: 0,
+        id: "059a711b-1a83-4d5f-8f8a-a6aeac03d499",
+        recordVersion: "-7642882346043047936",
+        emptyModel: false,
+      },
+    ],
+    manualNo: false,
+    precisionCount: 2,
+    displayFormat: 0,
+    transportationCost: 0,
+    invoiceRemained: {
+      amount: 180.0,
+      payedAmount: 858000000.0,
+      remained: -857999820.0,
+      otherRemained: 1048226800.0,
+      totalRemained: 190226980.0,
     },
-    contractTitle: null,
-    summary:
-      "با سلام و عرض ادب خدمت تیم لاندا، لطفا پس از بررسی اقدام لازم انجام گیرد.",
+    id: "ed601a7c-0dc4-4a9f-8939-06ea1ea7823b",
+    recordVersion: "-7786997534118903808",
+    emptyModel: false,
   });
 
   const previewInvoiceRemained = computed(
@@ -930,6 +1109,13 @@
     showFooter: true,
     showLogo: true,
     showSignature: true,
+    showInvoiceInfo: true,
+    showSellerInfo: true,
+    showCustomerInfo: true,
+    showInvoiceItems: true,
+    showRemained: true,
+    showSummary: true,
+    showContract: true,
     headerTitle: "",
     footerNote: "",
     columns: [],
@@ -1176,6 +1362,13 @@
         showFooter: config.showFooter !== false,
         showLogo: config.showLogo !== false,
         showSignature: config.showSignature !== false,
+        showInvoiceInfo: config.showInvoiceInfo !== false,
+        showSellerInfo: config.showSellerInfo !== false,
+        showCustomerInfo: config.showCustomerInfo !== false,
+        showInvoiceItems: config.showInvoiceItems !== false,
+        showRemained: config.showRemained !== false,
+        showSummary: config.showSummary !== false,
+        showContract: config.showContract !== false,
         headerTitle: config.headerTitle || "",
         footerNote: config.footerNote || "",
         columns: Array.isArray(config.columns)
@@ -1204,7 +1397,7 @@
       }
     });
 
-    designer.value.headerTitle = "صورت حساب فروش کالا و خدمات";
+    designer.value.headerTitle = "صورتحساب فروش کالا و خدمات";
     designer.value.footerNote = "از خرید شما سپاسگزاریم.";
   };
 
@@ -1222,6 +1415,13 @@
         showFooter: designer.value.showFooter,
         showLogo: designer.value.showLogo,
         showSignature: designer.value.showSignature,
+        showInvoiceInfo: designer.value.showInvoiceInfo,
+        showSellerInfo: designer.value.showSellerInfo,
+        showCustomerInfo: designer.value.showCustomerInfo,
+        showInvoiceItems: designer.value.showInvoiceItems,
+        showRemained: designer.value.showRemained,
+        showSummary: designer.value.showSummary,
+        showContract: designer.value.showContract,
         headerTitle: designer.value.headerTitle,
         footerNote: designer.value.footerNote,
         columns: designer.value.columns.map((c) => ({
@@ -1261,9 +1461,14 @@
   onMounted(loadInitial);
 </script>
 
-<style scoped>
+<style lang="scss">
   .text-wrap {
     white-space: pre-line;
     word-wrap: break-word;
+  }
+
+  .settings-expansion-item .q-item {
+    padding: 0 4px !important;
+    border-radius: 4px !important;
   }
 </style>
