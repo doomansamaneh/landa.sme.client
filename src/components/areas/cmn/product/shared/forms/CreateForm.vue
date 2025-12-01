@@ -75,7 +75,7 @@
         <custom-input-number
           v-model="model.purchasePrice"
           :label="$t('shared.labels.purchasePrice')"
-          required
+          required_
         />
         <q-checkbox
           class="q-mt-sm"
@@ -89,7 +89,7 @@
         <custom-input-number
           v-model="model.price"
           :label="$t('shared.labels.price')"
-          required
+          required_
         />
         <q-checkbox
           class="q-mt-sm"
