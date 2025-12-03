@@ -1,4 +1,9 @@
 {
+  "name": "LandaSME",
+  "short_name": "LandaSME",
+  "description": "Online Accounting Software",
+  "display": "standalone",
+  "start_url": "/",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#000000",
