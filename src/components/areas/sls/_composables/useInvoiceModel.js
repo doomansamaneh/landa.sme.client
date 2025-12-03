@@ -281,32 +281,23 @@ export function useInvoiceModel(config) {
     formItemStore.editItem(model.value.invoiceItems, index, item);
   };
 
-  const totalPrice = computed(() => {
-    return new Decimal(
-      helper.getSubtotal(model.value.invoiceItems, "totalPrice")
-    );
-  });
+  const totalPrice = computed(() =>
+    helper.getSubtotal(model.value.invoiceItems, "totalPrice")
+  );
 
-  const totalDiscount = computed(() => {
-    return new Decimal(
-      helper.getSubtotal(model.value.invoiceItems, "discount")
-    );
-  });
+  const totalDiscount = computed(() =>
+    helper.getSubtotal(model.value.invoiceItems, "discount")
+  );
 
-  const totalVat = computed(() => {
-    return new Decimal(
-      helper.getSubtotal(model.value.invoiceItems, "vatAmount")
-    );
-  });
+  const totalVat = computed(() =>
+    helper.getSubtotal(model.value.invoiceItems, "vatAmount")
+  );
 
-  const totalNetPrice = computed(() => {
-    return totalPrice.value
-      .add(totalDiscount.value)
-      .sub(totalVat.value);
-  });
+  const totalNetPrice = computed(() =>
+    totalPrice.value.minus(totalVat.value).plus(totalDiscount.value)
+  );
 
   // --- Discount Type Logic ---
-
   function getDiscountType(index) {
     if (discountTypes.value[index] === undefined) {
       const item = model.value.invoiceItems[index];
@@ -418,5 +409,7 @@ export function useInvoiceModel(config) {
     getDiscountType,
     toggleRowDiscountType,
     setDiscountValue,
+
+    //calculateTotal,
   };
 }

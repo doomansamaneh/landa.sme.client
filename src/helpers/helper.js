@@ -346,10 +346,15 @@ export const helper = {
     if (!items || items.length === 0) return new Decimal(0);
 
     return items.reduce((sum, item) => {
-      const value = item[fieldName] ?? 0; // اگر null یا undefined باشد 0 می‌شود
-      const decimalValue = new Decimal(value); // تبدیل مقدار به Decimal
-      return sum.plus(decimalValue); // جمع کردن مقدار به مجموع
-    }, new Decimal(0)); // شروع جمع از 0 به صورت Decimal
+      let raw = item[fieldName] ?? 0;
+
+      // تبدیل قطعی به رشته بدون کاما و فاصله
+      raw = String(raw).replace(/,/g, "").trim();
+
+      const decimalValue = new Decimal(raw);
+
+      return sum.plus(decimalValue);
+    }, new Decimal(0));
   },
 
   findIndex(items, fieldName, fieldValue) {

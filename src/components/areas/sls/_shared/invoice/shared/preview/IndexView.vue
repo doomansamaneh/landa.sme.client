@@ -90,29 +90,31 @@
   const model = ref({});
   const crudStore = useFormActions(props.baseRoute, model, true);
 
-  const calculateTotals = () => {
-    model.value.entityName = props.entityName;
-    model.value.totalPrice = helper.getSubtotal(
+  function calculateTotal() {
+    const totalPrice = helper.getSubtotal(
       model.value.invoiceItems,
       "totalPrice"
     );
-    model.value.totalDiscount = helper.getSubtotal(
+    const totalDiscount = helper.getSubtotal(
       model.value.invoiceItems,
       "discount"
     );
-    model.value.totalVat = helper.getSubtotal(
+    const totalVat = helper.getSubtotal(
       model.value.invoiceItems,
       "vatAmount"
     );
-    model.value.totalNetPrice =
-      model.value.totalPrice +
-      model.value.totalDiscount -
-      model.value.totalVat;
-  };
+
+    model.value.totalPrice = totalPrice;
+    model.value.totalDiscount = totalDiscount;
+    model.value.totalVat = totalVat;
+    model.value.totalNetPrice = totalPrice
+      .plus(totalDiscount)
+      .minus(totalVat);
+  }
 
   onMounted(async () => {
     await crudStore.getPreviewById(id.value);
-    calculateTotals();
+    calculateTotal();
   });
 
   defineExpose({ model });

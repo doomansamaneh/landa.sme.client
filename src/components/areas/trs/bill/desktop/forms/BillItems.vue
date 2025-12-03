@@ -147,14 +147,11 @@
 <script setup>
   import { helper } from "src/helpers";
   import { sqlOperator, vatType, closeAccounts } from "src/constants";
-  import { useI18n } from "vue-i18n";
 
   import SlLookup from "src/components/shared/lookups/AccountSLLookup.vue";
   import VatLookup from "src/components/shared/lookups/VatLookup.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomInputNumber from "src/components/shared/forms/CustomInputNumber.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,

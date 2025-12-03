@@ -9,25 +9,21 @@ export function useFormItemsModel() {
         '[data-autofocus="true"]'
       );
       if (autofocusElement) {
-        //console.log(autofocusElement);
         autofocusElement.focus();
       }
     });
   };
 
   const addNewItem = (items, index, newItem) => {
-    items.splice(index + 1, 0, newItem ?? defaultItem);
+    items.splice(index + 1, 0, newItem);
     newAddedItemIndex.value = index + 1;
     handleFocus(index + 1);
   };
 
   const pushNewItem = (items, newItem) => {
-    items.push({ ...(newItem ?? defaultItem) });
+    items.push({ ...newItem });
     newAddedItemIndex.value = items.length - 1;
     handleFocus(items.length - 1);
-    // items.unshift({ ...(newItem ?? defaultItem) });
-    // newAddedItemIndex.value = 0;
-    // handleFocus(0);
   };
 
   const deleteItem = (items, index) => {

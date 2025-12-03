@@ -42,14 +42,28 @@ export function useBillModel({ baseRoute, preview }) {
 
   function addWatch() {
     watch(
-      model.value.billItems,
-      async () => {
-        model.value.billItems.forEach((item) => {
-          itemStore.calculateTotal(item);
-        });
-      },
-      { deep: true }
+      () =>
+        model.value.billItems.map((x) => [
+          x.amount,
+          x.vatPercent,
+          x.vatAmount,
+        ]),
+      () => {
+        model.value.billItems.forEach((item) =>
+          itemStore.calculateTotal(item)
+        );
+      }
     );
+
+    // watch(
+    //   model.value.billItems,
+    //   async () => {
+    //     model.value.billItems.forEach((item) => {
+    //       itemStore.calculateTotal(item);
+    //     });
+    //   },
+    //   { deep: true }
+    // );
   }
 
   addWatch();
@@ -82,7 +96,8 @@ export function useBillModel({ baseRoute, preview }) {
   // };
 
   const addRow = async (item) => {
-    formItemStore.pushNewItem(model.value.paymentItems, item);
+    const newRow = item ?? { ...itemStore.model.value };
+    formItemStore.pushNewItem(model.value.paymentItems, newRow);
   };
 
   const remainedAmount = computed(() => {

@@ -34,14 +34,11 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  import { useI18n } from "vue-i18n";
+  import { computed } from "vue";
 
   import ContractLookup from "src/components/shared/lookups/ContractLookup.vue";
   import DateTime from "src/components/shared/forms/DateTimePicker.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     formStore: Object,
