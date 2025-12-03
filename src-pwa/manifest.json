@@ -1,4 +1,5 @@
 {
+  "id": "ir.landa_sme.spa.twa",
   "name": "LandaSME",
   "short_name": "LandaSME",
   "description": "Online Accounting Software",
@@ -33,5 +34,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "display_override": ["standalone", "window-controls-overlay"]
 }
