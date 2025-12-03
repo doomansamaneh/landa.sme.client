@@ -14,7 +14,7 @@
           <div class="rocket-symbol q-mb-md">🚀</div>
           <div
             v-if="latest?.version"
-            class="text-body2 text-weight-700 q-mb-xs"
+            class="text-body1 text-weight-700 q-mb-xs"
           >
             {{ releaseMessageParts.before }}
             <q-badge
@@ -121,12 +121,7 @@
 </template>
 
 <script setup>
-  import {
-    ref,
-    computed,
-    onMounted,
-    watch,
-  } from "vue";
+  import { ref, computed, onMounted, watch } from "vue";
   import { useI18n } from "vue-i18n";
   import { i18nInstance } from "src/boot/i18n";
   import messages from "src/i18n";
@@ -139,33 +134,30 @@
     },
   });
 
-  const getLocale = () => {
+  const getCurrentLocale = () => {
     try {
       const i18n = useI18n();
-      return i18n.locale;
-    } catch (e) {
-      return ref(localStorage.getItem("selectedLanguage") || "fa-IR");
+      return i18n.locale?.value || i18n.locale;
+    } catch {
+      return localStorage.getItem("selectedLanguage") || "fa-IR";
     }
   };
 
-  const locale = getLocale();
-
-  const getT = () => {
-    if (i18nInstance?.global) {
-      return (key) => i18nInstance.global.t(key);
-    }
+  const getTranslation = (key) => {
     try {
+      if (i18nInstance?.global) {
+        return i18nInstance.global.t(key);
+      }
       const i18n = useI18n();
-      return i18n.t;
-    } catch (e) {
-      return (key) => key;
+      return i18n.t(key);
+    } catch {
+      const locale = getCurrentLocale();
+      return messages[locale]?.shared?.labels?.[key] || key;
     }
   };
-
-  const t = getT();
 
   const reload = () => {
-    location.reload();
+    window.location.reload();
   };
 
   const RELEASE_NOTES_URL = "/release-notes.json";
@@ -182,67 +174,30 @@
   const releaseMessageParts = computed(() => {
     if (!latest.value?.version) return { before: "", after: "" };
 
-    let message = "shared.labels.newReleaseMessage";
-    try {
-      if (i18nInstance?.global) {
-        message = i18nInstance.global.t(
-          "shared.labels.newReleaseMessage"
-        );
-      } else if (t) {
-        message = t("shared.labels.newReleaseMessage");
-      } else {
-        const currentLocale =
-          typeof locale === "object" && "value" in locale
-            ? locale.value
-            : typeof locale === "string"
-            ? locale
-            : localStorage.getItem("selectedLanguage") || "fa-IR";
-        const localeMessages =
-          messages[currentLocale] ||
-          messages["fa-IR"] ||
-          messages["en-US"];
-        message =
-          localeMessages?.shared?.labels?.newReleaseMessage ||
-          message;
-      }
-    } catch (e) {
-      try {
-        const currentLocale =
-          localStorage.getItem("selectedLanguage") || "fa-IR";
-        const localeMessages =
-          messages[currentLocale] ||
-          messages["fa-IR"] ||
-          messages["en-US"];
-        message =
-          localeMessages?.shared?.labels?.newReleaseMessage ||
-          message;
-      } catch (err) {
-      }
+    let message = getTranslation("shared.labels.newReleaseMessage");
+
+    if (!message.includes("{version}")) {
+      const locale = getCurrentLocale();
+      message =
+        messages[locale]?.shared?.labels?.newReleaseMessage ||
+        messages["fa-IR"]?.shared?.labels?.newReleaseMessage ||
+        "درود بر شما، نسخه {version} در دسترس است";
     }
 
-    const parts = message.split("{version}");
+    const [before, after] = message.split("{version}");
     return {
-      before: parts[0] || "",
-      after: parts[1] || "",
+      before: before || "",
+      after: after || "",
     };
   });
 
   const getNotesForCurrentLocale = (versionNotes) => {
     if (!versionNotes) return [];
+    if (Array.isArray(versionNotes)) return versionNotes;
 
-    if (Array.isArray(versionNotes)) {
-      return versionNotes;
-    }
-
-    const currentLocaleValue =
-      typeof locale === "object" && locale.value
-        ? locale.value
-        : typeof locale === "string"
-        ? locale
-        : localStorage.getItem("selectedLanguage") || "fa-IR";
-
+    const locale = getCurrentLocale();
     return (
-      versionNotes[currentLocaleValue] ||
+      versionNotes[locale] ||
       versionNotes["fa-IR"] ||
       versionNotes["en-US"] ||
       []
@@ -287,10 +242,7 @@
   };
 
   watch(
-    () =>
-      typeof locale === "object" && "value" in locale
-        ? locale.value
-        : locale,
+    () => getCurrentLocale(),
     () => {
       updateLatestNotes();
     }
@@ -302,26 +254,6 @@
 </script>
 
 <style lang="scss">
-  .new-release-card {
-    width: 700px;
-  }
-
-  .animated-img {
-    animation: pulseAnimation 2s infinite;
-  }
-
-  @keyframes pulseAnimation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.025);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
   .rocket-symbol {
     font-size: 72px;
     line-height: 1;
