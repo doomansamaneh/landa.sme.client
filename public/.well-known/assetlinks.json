@@ -1,0 +1,19 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ir.landa_sme.spa.twa",
+      "sha256_cert_fingerprints": [
+        "32:A2:64:18:36:7D:B3:EE:9F:05:27:FA:CF:10:06:21:68:00:B6:BF:13:0B:21:19:40:CB:FF:46:43:50:85:6A"
+      ]
+    }
+  },
+  {
+    "relation": ["check_validation"],
+    "target": {
+      "namespace": "cafebazaar_twa",
+      "package_name": "ir.landa_sme.spa.twa"
+    }
+  }
+]
