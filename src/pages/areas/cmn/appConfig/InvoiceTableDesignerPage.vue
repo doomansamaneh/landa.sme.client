@@ -35,10 +35,8 @@
                         class="row items-center q-gutter-xs no-wrap"
                       >
                         <q-icon size="20px" name="o_view_stream" />
-                        <div class="column">
-                          <div class="text-body2">
-                            {{ col.label }}
-                          </div>
+                        <div class="q-item__label">
+                          {{ col.label }}
                         </div>
                         <q-space />
                         <q-icon
@@ -53,123 +51,117 @@
               </q-expansion-item>
 
               <q-expansion-item
-                icon="o_tune"
-                label="تنظیمات کلی"
+                icon="o_description"
+                label="سربرگ"
                 default-opened
                 class="settings-expansion-item"
               >
                 <q-card-section class="column q-py-sm q-px-none">
-                  <div
-                    class="text-subtitle2 text-weight-bold q-pb-md"
-                  >
-                    بخش هدر فاکتور
-                  </div>
                   <div class="column q-gutter-sm q-pb-md">
                     <q-toggle
                       dense
                       v-model="designer.showHeader"
-                      label="نمایش هدر"
+                      label="سربرگ"
                     />
                     <q-toggle
                       dense
                       v-model="designer.showLogo"
-                      label="نمایش لوگو"
+                      label="لوگو"
                     />
                     <q-toggle
                       dense
                       v-model="designer.showInvoiceInfo"
-                      label="نمایش شماره و تاریخ"
+                      label="شماره و تاریخ"
                     />
                   </div>
                   <q-input
                     v-model="designer.headerTitle"
                     dense
                     outlined
-                    label="عنوان هدر"
+                    label="عنوان سربرگ"
                   />
+                </q-card-section>
+              </q-expansion-item>
 
-                  <q-separator size="1px" spaced />
-                  <div
-                    class="text-subtitle2 text-weight-bold q-pb-md"
-                  >
-                    بخش اطلاعات اصلی
-                  </div>
+              <q-expansion-item
+                icon="o_people"
+                label="فروشنده و خریدار"
+                class="settings-expansion-item"
+              >
+                <q-card-section class="column q-py-sm q-px-none">
                   <div class="column q-gutter-sm">
                     <q-toggle
                       dense
                       v-model="designer.showSellerInfo"
-                      label="نمایش اطلاعات فروشنده"
+                      label="فروشنده"
                     />
                     <q-toggle
                       dense
                       v-model="designer.showCustomerInfo"
-                      label="نمایش اطلاعات خریدار"
+                      label="خریدار"
                     />
                   </div>
+                </q-card-section>
+              </q-expansion-item>
 
-                  <q-separator size="1px" spaced />
-                  <div
-                    class="text-subtitle2 text-weight-bold q-pb-md"
-                  >
-                    بخش اقلام فاکتور
-                  </div>
+              <q-expansion-item
+                icon="o_table_chart"
+                label="اقلام فاکتور"
+                class="settings-expansion-item"
+              >
+                <q-card-section class="column q-py-sm q-px-none">
                   <div class="column q-gutter-sm">
                     <q-toggle
                       dense
                       v-model="designer.showInvoiceItems"
-                      label="نمایش اقلام فاکتور"
+                      label="اقلام فاکتور"
                     />
                     <q-toggle
                       dense
                       v-model="designer.showRemained"
-                      label="نمایش مانده"
+                      label="مانده"
                     />
                   </div>
+                </q-card-section>
+              </q-expansion-item>
 
-                  <q-separator size="1px" spaced />
-                  <div
-                    class="text-subtitle2 text-weight-bold q-pb-md"
-                  >
-                    بخش پاورقی فاکتور
-                  </div>
+              <q-expansion-item
+                icon="o_description"
+                label="پاورقی"
+                class="settings-expansion-item"
+              >
+                <q-card-section class="column q-py-sm q-px-none">
                   <div class="column q-gutter-sm">
                     <q-toggle
                       dense
+                      v-model="designer.showFooter"
+                      label="پاورقی"
+                    />
+                    <q-toggle
+                      dense
                       v-model="designer.showSummary"
-                      label="نمایش شرح"
+                      label="شرح"
                     />
                     <q-toggle
                       dense
                       v-model="designer.showContract"
-                      label="نمایش قرارداد"
+                      label="قرارداد"
                     />
-                  </div>
 
-                  <q-separator size="1px" spaced />
-                  <div
-                    class="text-subtitle2 text-weight-bold q-pb-md"
-                  >
-                    بخش فوتر
-                  </div>
-                  <div class="column q-gutter-sm q-pb-md">
-                    <q-toggle
-                      dense
-                      v-model="designer.showFooter"
-                      label="نمایش فوتر"
-                    />
                     <q-toggle
                       dense
                       v-model="designer.showSignature"
-                      label="نمایش امضا"
+                      label="امضا"
                     />
                   </div>
                   <q-input
                     v-model="designer.footerNote"
                     dense
                     outlined
-                    label="یادداشت فوتر"
+                    label="یادداشت "
                     type="textarea"
                     autogrow
+                    class="q-mt-md"
                   />
                 </q-card-section>
               </q-expansion-item>
@@ -190,10 +182,12 @@
 <script setup>
   import { ref, computed, onMounted } from "vue";
   import { useI18n } from "vue-i18n";
+  import { useQuasar } from "quasar";
   import { useAppConfigModel } from "src/components/areas/cmn/_composables/useAppConfigModel";
   import { mediaType } from "src/constants";
   import { helper } from "src/helpers";
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
+  import CodeOutputDialog from "./CodeOutputDialog.vue";
 
   const AVATAR_SIZES = {
     logo: { width: 120, height: 55 },
@@ -201,6 +195,7 @@
   };
 
   const { t } = useI18n();
+  const $q = useQuasar();
   const appConfigStore = useAppConfigModel();
 
   const logoSrc = ref("");
@@ -347,37 +342,37 @@
     emptyModel: false,
   });
 
-  const templateHtml = ref(`<div class="" style="">
-  <div class="q-card__section q-card__section--vert q-pb-none" style="">
+  const templateHtml = ref(`<div>
+  <div class="q-card__section q-card__section--vert q-pb-none" name="header">
   <table style="width: 100%;">
-  <tbody style="">
-  <tr style="">
-  <td style="width: 25%;"><img src="{{logoSrc}}" alt="logo" style=""></td>
-  <td style=""><div class="text-center text-body2 text-bold" style="">{{headerTitle}}</div></td>
-  <td style="width: 25%;"><div style=""><span style="">شماره:</span><span class="q-px-sm text-weight-600" style="">{{no}}</span></div><div style=""><span style="">تاریخ:</span><span class="q-px-sm text-weight-600" style="">{{date}}</span></div></td>
+  <tbody>
+  <tr>
+  <td style="width: 25%;" name="logo"><img src="{{logoSrc}}" alt="logo"></td>
+  <td><div class="text-center text-body2 text-bold">{{headerTitle}}</div></td>
+  <td style="width: 25%;" name="invoiceInfo"><div><span>شماره:</span><span class="q-px-sm text-weight-600">{{no}}</span></div><div><span>تاریخ:</span><span class="q-px-sm text-weight-600">{{date}}</span></div></td>
   </tr>
   </tbody>
   </table>
   </div>
-  <div class="q-card__section q-card__section--vert q-gutter-y-sm" style="">
-  <div class="q-table__middle scroll" style="">
+  <div class="q-card__section q-card__section--vert q-gutter-y-sm">
+  <div class="q-table__middle scroll">
   <table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 13px;">
-  <tbody style="">
-  <tr style="">
-  <td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div style="">فروشنده: <strong style="">{{sellerName}}</strong></div><div style="">نشانی: <strong style="">{{sellerLocation}} - </strong><span class="text-wrap" style="">{{sellerAddress}}</span></div></td>
+  <tbody name="sellerInfo">
+  <tr>
+  <td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>فروشنده: <strong>{{sellerName}}</strong></div><div>نشانی: <strong>{{sellerLocation}} - </strong><span class="text-wrap">{{sellerAddress}}</span></div></td>
   </tr>
   </tbody>
-  <tbody style="">
-  <tr style="">
-  <td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div style="">مشتری: <strong style="">{{customerName}}</strong><span style=""> / شناسه ملی: {{customerNationalNo}}</span></div><div style="">نشانی: <strong style="">{{customerLocation}} - </strong><span class="text-wrap" style="">{{customerAddress}}</span><span style=""> / <strong style="">کد پستی:</strong> {{customerPostalCode}}</span></div><div style="">تلفن: {{customerPhone}}</div></td>
+  <tbody name="customerInfo">
+  <tr>
+  <td style="border-width: 1px; border-style: solid; border-image: initial; padding: 3px;"><div>مشتری: <strong>{{customerName}}</strong><span> / شناسه ملی: {{customerNationalNo}}</span></div><div>نشانی: <strong>{{customerLocation}} - </strong><span class="text-wrap">{{customerAddress}}</span><span> / <strong>کد پستی:</strong> {{customerPostalCode}}</span></div><div>تلفن: {{customerPhone}}</div></td>
   </tr>
   </tbody>
   </table>
   </div>
-  <div class="q-table__middle scroll" style="">
+  <div class="q-table__middle scroll" name="invoiceItems">
   <table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 12.4px;">
-  <thead style="">
-  <tr style="">
+  <thead>
+  <tr>
   <th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">ردیف</th>
   <th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">کالا / خدمت</th>
   <th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">تعداد/مقدار</th>
@@ -385,50 +380,50 @@
   <th style="border-width: 1px; border-style: solid; border-image: initial; padding: 5px;">جمع کل (ریال) </th>
   </tr>
   </thead>
-  <tbody style="">
+  <tbody>
   {{#items}}
-  <tr style="">
+  <tr>
   <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{rowNo}}</td>
-  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><div class="text-wrap" style="">{{productDisplay}} <small style="">{{commentDisplay}}</small></div></td>
-  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantity}} <small style="">({{productUnitTitle}})</small></td>
+  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><div class="text-wrap">{{productDisplay}} <small>{{commentDisplay}}</small></div></td>
+  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{quantity}} <small>({{productUnitTitle}})</small></td>
   <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{price}}</td>
   <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;">{{totalPrice}}</td>
   </tr>
   {{/items}}
-  <tr style="">
+  <tr>
   <td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">سرجمع: </td>
-  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong style="">{{totalNetPrice}}</strong></td>
+  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalNetPrice}}</strong></td>
   </tr>
-  <tr style="">
+  <tr>
   <td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">تخفیف: </td>
-  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong style="">{{totalDiscount}}</strong></td>
+  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalDiscount}}</strong></td>
   </tr>
-  <tr style="">
+  <tr>
   <td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">ارزش افزوده: </td>
-  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong style="">{{totalVat}}</strong></td>
+  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalVat}}</strong></td>
   </tr>
-  <tr style="">
+  <tr>
   <td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;">جمع مقدار: </td>
-  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong style="">{{totalQuantity}}</strong></td>
+  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalQuantity}}</strong></td>
   </tr>
-  <tr style="">
-  <td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;"><strong style="">جمع کل:</strong></td>
-  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong style="">{{totalPrice}}</strong> {{currencyTitle}}</td>
+  <tr>
+  <td colspan="4" class="text-right" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: end;"><strong>جمع کل:</strong></td>
+  <td style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>{{totalPrice}}</strong> {{currencyTitle}}</td>
   </tr>
   </tbody>
   </table>
   </div>
-  <div class="q-table__middle scroll" style="">
+  <div class="q-table__middle scroll" name="footer">
   <table class="print-preview-table" style="width: 100%; border-width: 1px; border-style: solid; border-image: initial; border-collapse: collapse; font-size: 13px;">
-  <tbody style="">
-  <tr style="">
-  <td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: left;"><span style=""><strong style="padding: 0px 5px;">جمع دریافتی</strong> {{remainedPayedAmount}}</span><span style=""><strong style="padding: 0px 5px;">مانده</strong><span class="text-weight-600" style="">{{remainedAmount}}</span></span><span style=""><strong style="padding: 0px 5px;">مانده از قبل</strong><span class="text-weight-600" style="">{{remainedOtherRemained}}</span></span><span style=""><strong style="padding: 0px 5px;">جمع مانده</strong> {{remainedTotalRemained}}</span></td>
+  <tbody>
+  <tr name="remained">
+  <td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; text-align: left;"><span><strong style="padding: 0px 5px;">جمع دریافتی</strong> {{remainedPayedAmount}}</span><span><strong style="padding: 0px 5px;">مانده</strong><span class="text-weight-600">{{remainedAmount}}</span></span><span><strong style="padding: 0px 5px;">مانده از قبل</strong><span class="text-weight-600">{{remainedOtherRemained}}</span></span><span><strong style="padding: 0px 5px;">جمع مانده</strong> {{remainedTotalRemained}}</span></td>
   </tr>
-  <tr style="">
-  <td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong style="">شرح</strong><div style=""><strong style="">{{contractTitle}}<span style="padding: 5px;"> / </span></strong><span class="text-wrap" style="">{{summary}}</span></div><div class="text-wrap" style="">{{footerNote}}</div></td>
+  <tr name="summary">
+  <td colspan="100%" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial;"><strong>شرح</strong><div><strong name="contract">{{contractTitle}}<span style="padding: 5px;"> / </span></strong><span class="text-wrap">{{summary}}</span></div><div class="text-wrap">{{footerNote}}</div></td>
   </tr>
-  <tr style="">
-  <td colspan="100%" class="text-body2 vertical-top" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; width: 50%; height: 90px;">مهر و امضا فروشنده <div style=""><img src="{{signatureSrc}}" alt="signature" style="width: 120px;"></div></td>
+  <tr name="signature">
+  <td colspan="100%" class="text-body2 vertical-top" style="padding: 5px; border-width: 1px; border-style: solid; border-image: initial; width: 50%; height: 90px;">مهر و امضا فروشنده <div><img src="{{signatureSrc}}" alt="signature" style="width: 120px;"></div></td>
   </tr>
   </tbody>
   </table>
@@ -453,85 +448,137 @@
     columns: [],
   });
 
-  const headerTitle = computed(() => {
-    return (
+  const headerTitle = computed(
+    () =>
       designer.value.headerTitle ||
       appConfigStore.model?.value?.companySetting?.invoiceTitle ||
       t("shared.labels.invoice")
-    );
-  });
+  );
 
-  const formatPreviewNumber = (num) =>
-    typeof num === "number" ? helper.formatNumber(num) : num;
-
-  const replaceVar = (template, key, value) => {
-    const safeValue = value != null ? String(value) : "";
-    return template.replace(
+  const formatNumber = (value) =>
+    typeof value === "number"
+      ? helper.formatNumber(value ?? 0)
+      : value ?? 0;
+  const replaceVar = (template, key, value) =>
+    template.replace(
       new RegExp(`\\{\\{${key}\\}\\}`, "g"),
-      safeValue
+      value != null ? String(value) : ""
     );
-  };
 
   const renderTemplate = (tpl, data) => {
-    const loopRegex = /\{\{#items\}\}([\s\S]*?)\{\{\/items\}\}/;
-    const loopMatch = tpl.match(loopRegex);
-
+    const loopRegex = /\{\{#items\}\}([\s\S]*?)\{\{\/items\}\}/,
+      loopMatch = tpl.match(loopRegex);
     if (loopMatch) {
       const rowTemplate = loopMatch[1];
-      const rowsHtml = (data.items || [])
-        .map((item) =>
-          Object.keys(item).reduce(
-            (row, key) => replaceVar(row, key, item[key]),
-            rowTemplate
+      tpl = tpl.replace(
+        loopRegex,
+        (data.items || [])
+          .map((item) =>
+            Object.keys(item).reduce(
+              (row, key) => replaceVar(row, key, item[key]),
+              rowTemplate
+            )
           )
-        )
-        .join("");
-      tpl = tpl.replace(loopRegex, rowsHtml);
+          .join("")
+      );
     }
-
     Object.entries(data)
       .filter(([key]) => key !== "items")
       .forEach(([key, value]) => {
         tpl = replaceVar(tpl, key, value);
       });
-
     return tpl;
   };
 
-  const safeGet = (obj, path, defaultValue = "") => {
-    const keys = path.split(".");
-    let value = obj;
-    for (const key of keys) {
-      value = value?.[key];
-      if (value == null) return defaultValue;
-    }
-    return value ?? defaultValue;
-  };
-
-  const formatNumber = (value) => formatPreviewNumber(value ?? 0);
+  const safeGet = (obj, path, defaultValue = "") =>
+    path
+      .split(".")
+      .reduce((val, key) => val?.[key] ?? defaultValue, obj) ??
+    defaultValue;
 
   const company = computed(
     () => appConfigStore.model?.value?.companySetting
   );
 
   const invoiceData = computed(() => {
-    const invoice = items.value;
-    const remained = invoice.invoiceRemained || {};
-    const customer = invoice.customerSummary || {};
-    const invoiceItems = invoice.invoiceItems || [];
-    const totalQuantity = invoiceItems.reduce(
-      (sum, item) => sum + (item.quantity || 0),
-      0
-    );
-
+    const invoice = items.value,
+      remained = invoice.invoiceRemained || {},
+      customer = invoice.customerSummary || {},
+      invoiceItems = invoice.invoiceItems || [];
     return {
       invoice,
       remained,
       customer,
       invoiceItems,
-      totalQuantity,
+      totalQuantity: invoiceItems.reduce(
+        (sum, item) => sum + (item.quantity || 0),
+        0
+      ),
     };
   });
+
+  const filterTemplateByAttributes = (html, settings) => {
+    let filteredHtml = html;
+    const attributeMap = {
+      header: settings.showHeader,
+      logo: settings.showLogo,
+      invoiceInfo: settings.showInvoiceInfo,
+      sellerInfo: settings.showSellerInfo,
+      customerInfo: settings.showCustomerInfo,
+      invoiceItems: settings.showInvoiceItems,
+      remained: settings.showRemained,
+      contract: settings.showContract,
+      summary: settings.showSummary,
+      signature: settings.showSignature,
+      footer: settings.showFooter,
+    };
+    const removeElementByName = (html, attrName) => {
+      let result = html,
+        prevResult = "";
+      while (result !== prevResult) {
+        prevResult = result;
+        const match = result.match(
+          new RegExp(
+            `<([a-zA-Z]+)[^>]*\\s+name=["']${attrName}["'][^>]*>`,
+            "i"
+          )
+        );
+        if (!match) break;
+        const tag = match[1].toLowerCase(),
+          start = match.index;
+        let depth = 1,
+          pos = start + match[0].length;
+        while (depth > 0) {
+          const open = result.indexOf(`<${tag}`, pos),
+            close = result.indexOf(`</${tag}>`, pos);
+          if (close === -1) break;
+          if (open !== -1 && open < close) {
+            depth++;
+            pos = result.indexOf(">", open) + 1;
+          } else {
+            depth--;
+            if (depth === 0) {
+              result =
+                result.slice(0, start) +
+                result.slice(close + tag.length + 3);
+              break;
+            }
+            pos = close + tag.length + 3;
+          }
+        }
+      }
+      return result;
+    };
+
+    Object.entries(attributeMap).forEach(([attrName, shouldShow]) => {
+      if (!shouldShow)
+        filteredHtml = removeElementByName(filteredHtml, attrName);
+    });
+
+    return filteredHtml
+      .replace(/<tr[^>]*>\s*<\/tr>/gi, "")
+      .replace(/<td[^>]*>\s*<\/td>/gi, "");
+  };
 
   const renderedTemplate = computed(() => {
     const {
@@ -548,7 +595,6 @@
       (item.productCode && item.productTitle
         ? `${item.productCode} - ${item.productTitle}`
         : item.productTitle || item.productCode || "");
-
     const templateData = {
       customerName: invoice.customerName || "",
       date: invoice.date || "",
@@ -558,20 +604,17 @@
       summary: invoice.summary || "",
       contractTitle: invoice.contractTitle || "",
       currencyTitle: invoice.currencyTitle || "ریال",
-
       totalNetPrice: formatNumber(invoice.totalNetPrice),
       totalDiscount: formatNumber(invoice.totalDiscount),
       totalVat: formatNumber(invoice.totalVat),
       totalPrice: formatNumber(invoice.totalPrice),
       totalQuantity: formatNumber(totalQuantity),
-
       customerNationalNo: safeGet(customer, "business.nationalNo"),
       customerTaxNo: safeGet(customer, "business.taxNo"),
       customerAddress: safeGet(customer, "address.address"),
       customerLocation: safeGet(customer, "address.locationTitle"),
       customerPostalCode: safeGet(customer, "address.postalCode"),
       customerPhone: safeGet(customer, "phone.value"),
-
       sellerName: comp?.name || "",
       sellerNationalNo: comp?.nationalNo || "",
       sellerTaxNo: comp?.taxNo || "",
@@ -579,18 +622,15 @@
       sellerLocation: comp?.location || "",
       sellerPostalCode: comp?.postalCode || "",
       sellerPhone: comp?.phone || "",
-
       logoSrc: logoSrc.value,
       signatureSrc: signatureSrc.value,
       headerTitle: headerTitle.value,
       footerNote: designer.value.footerNote || "",
       taxId: safeGet(invoice, "lastApiLogModel.taxId"),
-
       remainedPayedAmount: formatNumber(remained.payedAmount),
       remainedAmount: formatNumber(remained.remained),
       remainedOtherRemained: formatNumber(remained.otherRemained),
       remainedTotalRemained: formatNumber(remained.totalRemained),
-
       items: invoiceItems.map((item) => ({
         rowNo: item.rowNo || "",
         productCode: item.productCode || "",
@@ -604,8 +644,10 @@
         commentDisplay: item.comment ? `(${item.comment})` : "",
       })),
     };
-
-    return renderTemplate(templateHtml.value, templateData);
+    return filterTemplateByAttributes(
+      renderTemplate(templateHtml.value, templateData),
+      designer.value
+    );
   });
 
   const defaultPalette = [
@@ -621,27 +663,22 @@
 
   const isColumnSelected = (col) =>
     designer.value.columns.some((c) => c.field === col.field);
-
   const getColumnIcon = (col) =>
     isColumnSelected(col)
       ? "o_check_circle"
       : "o_radio_button_unchecked";
-
   const getColumnColor = (col) =>
     isColumnSelected(col) ? "positive" : "grey";
-
   const toggleColumn = (col) => {
     const index = designer.value.columns.findIndex(
       (c) => c.field === col.field
     );
-    if (index > -1) {
-      designer.value.columns.splice(index, 1);
-    } else {
-      designer.value.columns.push({
-        field: col.field,
-        label: col.label,
-      });
-    }
+    index > -1
+      ? designer.value.columns.splice(index, 1)
+      : designer.value.columns.push({
+          field: col.field,
+          label: col.label,
+        });
   };
 
   const loadTemplateConfig = async () => {
@@ -654,15 +691,11 @@
         Object.assign(designer.value, config.designer);
     } catch (error) {}
   };
-
   const loadMediaAssets = async () => {
     try {
-      if (!appConfigStore.model.value?.companySetting?.id) {
+      if (!appConfigStore.model.value?.companySetting?.id)
         await appConfigStore.reloadData?.();
-      }
-
       appConfigStore.resetAvatars?.();
-
       const [logo, signature] = await Promise.all([
         appConfigStore.getAvatar?.(
           mediaType.avatar,
@@ -675,13 +708,21 @@
           AVATAR_SIZES.signature.height
         ),
       ]);
-
       logoSrc.value = logo || "";
       signatureSrc.value = signature || "";
     } catch (error) {}
   };
-
-  const handleSave = async () => {};
+  const handleSave = async () => {
+    $q.dialog({
+      component: CodeOutputDialog,
+      componentProps: {
+        code: filterTemplateByAttributes(
+          templateHtml.value,
+          designer.value
+        ),
+      },
+    });
+  };
 
   onMounted(async () => {
     await loadMediaAssets();
