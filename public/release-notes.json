@@ -1,6 +1,10 @@
 {
-  "version": "0.0.5",
+  "version": "0.0.6",
   "notes": {
+    "0.0.6": {
+      "fa-IR": ["بهینه سازی نمایش پیشخوان"],
+      "en-US": ["Optimize dashboard loading data"]
+    },
     "0.0.5": {
       "fa-IR": [
         "رفع اشکال از فرم ثبت هزینه",

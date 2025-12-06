@@ -16,11 +16,11 @@ export function useMenuBar() {
   const { t, locale } = useI18n();
 
   onMounted(() => {
-    bus.on("render-page", reloadData);
+    //bus.on("render-page", reloadData);
   });
 
   onUnmounted(() => {
-    bus.off("render-page", reloadData);
+    //bus.off("render-page", reloadData);
   });
 
   const reset = () => {
@@ -49,7 +49,7 @@ export function useMenuBar() {
     showLoader.value = true;
     const response = await fetchWrapper.get(
       "scr/users/getMenuItems",
-      undefined,
+      null,
       true
     );
     handleMenuItemsData(response.data.data);

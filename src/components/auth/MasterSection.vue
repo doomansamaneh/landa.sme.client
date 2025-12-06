@@ -10,13 +10,13 @@
             <div class="text-h5 text-weight-700">
               {{ $t("shared.labels.login") }}
             </div>
-            <a
+            <!-- <a
               href="https://my.landa-sme.ir/"
               target="_blank"
               class="no-decoration decoration-on-hover q-ml-sm text-body2 text-weight-700 text-white bg-red rounded-borders q-py-xs q-px-sm"
             >
               {{ $t("shared.labels.loginWithOldVersion") }}
-            </a>
+            </a> -->
           </div>
           <q-btn
             no-caps

@@ -37,7 +37,9 @@
 
   const $q = useQuasar();
   const { t } = useI18n();
-  const chartStore = useRevenueExpense(useRevenueExpenseState());
+  const chartStore = useRevenueExpense({
+    dataStore: useRevenueExpenseState(),
+  });
 
   const options = ref(null);
   const chartRef = ref(null);

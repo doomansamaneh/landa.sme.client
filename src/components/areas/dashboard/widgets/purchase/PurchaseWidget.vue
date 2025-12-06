@@ -88,9 +88,9 @@
   const $q = useQuasar();
   const draggable = usePurchaseTab();
   const reportStore = usePurchaseReport("purchaseByProduct");
-  const revenueExpenseStore = usePurchaseRevenueExpense(
-    useRevenueExpenseState()
-  );
+  const revenueExpenseStore = usePurchaseRevenueExpense({
+    dataStore: useRevenueExpenseState(),
+  });
 
   const { chartOptions } = usePurchaseChartOptions(reportStore, $q);
   const chartRef = ref(null);

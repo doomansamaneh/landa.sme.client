@@ -88,9 +88,9 @@
   const $q = useQuasar();
   const draggable = useExpenseTab();
   const reportStore = useBankAccount("TopExpenseByCL");
-  const revenueExpenseStore = useRevenueExpense(
-    useRevenueExpenseState()
-  );
+  const revenueExpenseStore = useRevenueExpense({
+    dataStore: useRevenueExpenseState(),
+  });
 
   const { chartOptions } = useExpenseChartOptions(reportStore, $q);
   const chartRef = ref(null);

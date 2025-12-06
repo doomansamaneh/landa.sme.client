@@ -5,11 +5,11 @@ import { useComposables } from "src/stores/useComposables";
 
 export function useRevenueExpense({ dataSource, dataStore }) {
   const { hasAccess } = useAccess();
+  const showLoader = ref(false);
   const _state = {
     firstLoad: ref(false),
     data: ref(null),
   };
-  const showLoader = ref(false);
   const state = computed(() => dataStore?.state ?? _state);
 
   const composablesStore = useComposables();

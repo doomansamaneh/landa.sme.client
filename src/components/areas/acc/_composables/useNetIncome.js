@@ -1,12 +1,37 @@
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { fetchWrapper, bus } from "src/helpers";
 import { accountCLType } from "src/constants";
+import { useAccess } from "src/directives/useAccess";
+import { useComposables } from "src/stores/useComposables";
 
 const model = ref({ thisYear: [{}], lastYear: [{}] });
-const showLoader = ref(false);
+const _state = {
+  firstLoad: ref(false),
+  data: ref(null),
+};
 
 export function useNetIncome() {
+  const { hasAccess } = useAccess();
+  const showLoader = ref(false);
+  const state = computed(() => _state);
+
+  const composablesStore = useComposables();
+  composablesStore.register({
+    reset: () => {
+      state.value.firstLoad.value = false;
+    },
+  });
+
   async function loadData() {
+    if (!state.value.firstLoad.value) {
+      state.value.firstLoad.value = true;
+      await reloadData();
+      return true;
+    }
+    return false;
+  }
+
+  async function reloadData() {
     try {
       showLoader.value = true;
       const response = await fetchWrapper.get(
@@ -148,6 +173,8 @@ export function useNetIncome() {
   });
 
   onMounted(() => {
+    if (!hasAccess("acc.report.accountReview")) return;
+
     loadData();
     bus.on("render-page", loadData);
   });
