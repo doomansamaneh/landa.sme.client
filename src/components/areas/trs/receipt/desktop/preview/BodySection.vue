@@ -61,7 +61,12 @@
               padding: 5px;
             "
           >
-            {{ model?.subject }}
+            <div>
+              {{ model?.subject }}
+            </div>
+            <div v-if="model?.summary">
+              {{ model?.summary }}
+            </div>
           </td>
         </tr>
       </tbody>

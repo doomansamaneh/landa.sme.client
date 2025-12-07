@@ -21,11 +21,13 @@
               border-image: initial;
               width: 50%;
               vertical-align: top;
-              padding: 40px 6px;
+              padding: 5px 5px 80px;
             "
             class="text-body2"
           >
-            <slot name="cell1">{{ $t("shared.labels.preparedBy") }}</slot>
+            <slot name="cell1">
+              {{ $t("shared.labels.preparedBy") }}
+            </slot>
           </td>
           <td
             style="
@@ -33,11 +35,13 @@
               border-style: solid;
               border-image: initial;
               vertical-align: top;
-              padding: 40px 6px;
+              padding: 5px 5px 80px;
             "
             class="text-body2"
           >
-            <slot name="cell2">{{ $t("shared.labels.approvedBy") }}</slot>
+            <slot name="cell2">
+              {{ $t("shared.labels.approvedBy") }}
+            </slot>
           </td>
         </tr>
       </tbody>

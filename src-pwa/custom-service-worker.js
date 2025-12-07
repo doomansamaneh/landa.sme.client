@@ -3,6 +3,7 @@ import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate, CacheFirst } from "workbox-strategies";
 import { ExpirationPlugin } from "workbox-expiration";
 
+self.__WB_DISABLE_DEV_LOGS = true;
 precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(
@@ -86,5 +87,27 @@ self.addEventListener("message", (event) => {
       version: APP_VERSION,
       timestamp: Date.now(),
     });
+  }
+
+  if (event.data && event.data.type === "CLEAR_API_CACHE") {
+    event.waitUntil(
+      (async () => {
+        try {
+          const cache = await caches.open("api-cache");
+          const keys = await cache.keys();
+          await Promise.all(keys.map((key) => cache.delete(key)));
+          event.ports[0]?.postMessage({
+            type: "API_CACHE_CLEARED",
+            success: true,
+          });
+        } catch (error) {
+          event.ports[0]?.postMessage({
+            type: "API_CACHE_CLEARED",
+            success: false,
+            error: error.message,
+          });
+        }
+      })()
+    );
   }
 });

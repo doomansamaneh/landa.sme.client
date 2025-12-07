@@ -1,6 +1,10 @@
 {
-  "version": "0.0.7",
+  "version": "0.0.8",
   "notes": {
+    "0.0.8": {
+      "fa-IR": ["افزودن شرح در پیش نمایش دریافت و پرداخت"],
+      "en-US": ["Add summary in payment, receiption"]
+    },
     "0.0.7": {
       "fa-IR": ["رفع اشکالات گزارش شده در بخش نمایش فیش حقوقی"],
       "en-US": ["Bug fix in payroll item preview"]

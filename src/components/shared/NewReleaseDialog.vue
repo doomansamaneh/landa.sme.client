@@ -36,7 +36,7 @@
           </div>
 
           <div class="text-body2">
-            {{ $t("shared.labels.newReleaseDescription") }}
+            {{ t("shared.labels.newReleaseDescription") }}
           </div>
         </div>
 
@@ -45,7 +45,7 @@
           class="text-body2 text-weight-700 q-mt-lg"
         >
           <q-icon name="list" size="20px" />
-          {{ $t("shared.labels.latestChangesList") }}
+          {{ t("shared.labels.latestChangesList") }}
         </div>
       </q-card-section>
 
@@ -97,7 +97,7 @@
         <q-btn
           no-caps
           unelevated
-          :label="$t('shared.labels.refresh')"
+          :label="t('shared.labels.refresh')"
           class="text-h6"
           color="primary"
           rounded
@@ -107,7 +107,7 @@
         />
         <q-btn
           no-caps
-          :label="$t('shared.labels.cancel')"
+          :label="t('shared.labels.cancel')"
           class="text-h6"
           dense
           rounded
@@ -123,9 +123,13 @@
 <script setup>
   import { ref, computed, onMounted, watch } from "vue";
   import { useI18n } from "vue-i18n";
+  import { useQuasar } from "quasar";
   import { i18nInstance } from "src/boot/i18n";
   import messages from "src/i18n";
   import packageJson from "../../../package.json";
+
+  const { t } = useI18n();
+  const $q = useQuasar();
 
   const props = defineProps({
     swVersion: {
@@ -167,7 +171,7 @@
   );
   const releaseNotes = ref({});
   const latest = ref({
-    version: null,
+    version: props.swVersion || packageJson.version || "0.0.1",
     items: [],
   });
 
@@ -213,6 +217,11 @@
           ? getNotesForCurrentLocale(versionNotes)
           : [],
       };
+    } else {
+      latest.value = {
+        version: props.swVersion || packageJson.version || "0.0.1",
+        items: [],
+      };
     }
   };
 
@@ -226,16 +235,19 @@
 
       releaseNotes.value = data.notes || {};
 
-      if (props.swVersion) {
-        currentVersion.value = props.swVersion;
-      } else if (data.version) {
-        currentVersion.value = data.version;
+      if (!props.swVersion) {
+        currentVersion.value = packageJson.version || "0.0.1";
       }
 
       updateLatestNotes();
     } catch (error) {
+      const version =
+        currentVersion.value ||
+        props.swVersion ||
+        packageJson.version ||
+        "0.0.1";
       latest.value = {
-        version: currentVersion.value,
+        version: version,
         items: [],
       };
     }
