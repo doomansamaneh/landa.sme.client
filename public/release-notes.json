@@ -1,6 +1,10 @@
 {
-  "version": "0.0.6",
+  "version": "0.0.7",
   "notes": {
+    "0.0.7": {
+      "fa-IR": ["رفع اشکالات گزارش شده در بخش نمایش فیش حقوقی"],
+      "en-US": ["Bug fix in payroll item preview"]
+    },
     "0.0.6": {
       "fa-IR": ["بهینه سازی نمایش پیشخوان"],
       "en-US": ["Optimize dashboard loading data"]

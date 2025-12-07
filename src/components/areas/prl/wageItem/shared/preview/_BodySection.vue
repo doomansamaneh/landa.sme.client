@@ -181,7 +181,11 @@
                   border-image: initial;
                 "
               >
-                {{ helper.formatNumber(model?.spouse) }}
+                {{
+                  helper.formatNumber(
+                    model?.calculatedModel?.monthSpouse
+                  )
+                }}
               </td>
             </tr>
             <tr>
@@ -203,7 +207,11 @@
                   border-image: initial;
                 "
               >
-                {{ helper.formatNumber(model?.child) }}
+                {{
+                  helper.formatNumber(
+                    model?.calculatedModel?.monthChild
+                  )
+                }}
               </td>
             </tr>
             <tr>
