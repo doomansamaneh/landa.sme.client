@@ -42,7 +42,7 @@
         @click="taxStore.sendToTax(model.id, taxGrid?.reloadData)"
       >
         <q-icon name="o_arrow_upward" size="xs" class="q-mr-xs" />
-        <span>{{ t("shared.labels.taxApiStatus") }}</span>
+        <span>{{ t("shared.labels.sendToTax") }}</span>
       </q-btn>
 
       <q-btn

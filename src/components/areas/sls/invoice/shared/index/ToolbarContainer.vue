@@ -35,6 +35,7 @@
   import { useInvoiceModel } from "../../../_composables/useInvoiceModel";
   import { useDataGridMenuContext } from "src/components/areas/_shared/menus/useDataGridMenuContext";
   import { useInvoiceDataGridMenu } from "../../../_menus/useInvoiceDataGridMenu";
+  import { useTaxApiLogModel } from "../../../_composables/useTaxApiLogModel";
 
   import ToolbarMobile from "src/components/shared/toolbars/DynamicToolbarMobile.vue";
   import ToolbarDesktop from "src/components/shared/toolbars/DynamicToolbarDesktop.vue";
@@ -52,6 +53,7 @@
   const dialogStore = useDialog();
   const baseRoute = "sls/Invoice";
   const searchStore = useInvoiceSearch();
+  const taxStore = useTaxApiLogModel();
   const formStore = useInvoiceModel({ baseRoute: baseRoute });
 
   const context = useDataGridMenuContext(
@@ -87,6 +89,20 @@
       cancelInvoice: () => {
         formStore.cancelInvoice(
           props.tableStore?.activeRow?.value?.id,
+          props.tableStore.reloadData
+        );
+      },
+
+      sendToTax: () => {
+        taxStore.sendToTaxBatch(
+          props.tableStore?.selectedIds.value,
+          props.tableStore.reloadData
+        );
+      },
+
+      inqueryTax: () => {
+        taxStore.inqueryBatch(
+          props.tableStore?.selectedIds.value,
           props.tableStore.reloadData
         );
       },

@@ -11,6 +11,14 @@ export function useTaxApiLogModel() {
     //console.log(response);
   };
 
+  const sendToTaxBatch = async (invoiceIds, callback) => {
+    const response = await fetchWrapper.post(
+      `sls/InvoiceTaxApiLog/SendToTaxApiBatch`,
+      invoiceIds
+    );
+    if (callback) await callback();
+  };
+
   const sendCancelToTax = async (invoiceId, callback) => {
     const response = await fetchWrapper.post(
       `sls/InvoiceTaxApiLog/CancelInvoiceByDocNo/${invoiceId}`
@@ -31,12 +39,22 @@ export function useTaxApiLogModel() {
     if (callBack) callBack();
   };
 
+  const inqueryBatch = async (invoiceIds, callBack) => {
+    await fetchWrapper.post(
+      `sls/InvoiceTaxApiLog/InqueryTaxBatch`,
+      invoiceIds
+    );
+    if (callBack) callBack();
+  };
+
   return {
     apiResult,
 
     sendToTax,
+    sendToTaxBatch,
     sendCancelToTax,
     inquery,
+    inqueryBatch,
     isSentApiSuccessfully,
   };
 }
