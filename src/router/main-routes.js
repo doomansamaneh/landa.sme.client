@@ -6,7 +6,7 @@ export default {
     icon: "o_dashboard",
   },
   children: [
-   
+
     {
       path: ":businessId",
       component: () =>
@@ -1509,6 +1509,20 @@ export default {
             ),
           meta: { title: "پیکربندی سامانه - طراح جدول فاکتور" },
         },
+        {
+          path: "invoiceTablePreview",
+          component: () =>
+            import("pages/areas/cmn/appConfig/InvoiceTablePreviewPage.vue"),
+          meta: { title: "پیکربندی سامانه - نمایش جدول فاکتور" },
+        }
+        // {
+        //   path: "invoiceTablePreview",
+        //   component: () =>
+        //     import(
+        //       "pages/areas/cmn/appConfig/InvoiceTablePreviewPage.vue"
+        //     ),
+        //   meta: { title: "پیکربندی سامانه - نمایش جدول فاکتور" },
+        // },
       ],
     },
 
