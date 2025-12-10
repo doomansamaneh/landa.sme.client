@@ -6,7 +6,6 @@ export default {
     icon: "o_dashboard",
   },
   children: [
-
     {
       path: ":businessId",
       component: () =>
@@ -1223,6 +1222,36 @@ export default {
     },
 
     {
+      path: "cmn/documentTemplate",
+      children: [
+        {
+          path: "",
+          component: () =>
+            import("pages/areas/cmn/documentTemplate/IndexPage.vue"),
+          meta: { title: "فهرست الگوهای چاپ فاکتور" },
+        },
+        {
+          path: "create",
+          component: () =>
+            import("pages/areas/cmn/documentTemplate/CreatePage.vue"),
+          meta: { title: "الگوی چاپ - ایجاد" },
+        },
+        {
+          path: "edit/:id",
+          component: () =>
+            import("pages/areas/cmn/documentTemplate/EditPage.vue"),
+          meta: { title: "الگوی چاپ - ویرایش" },
+        },
+        {
+          path: "copy/:id",
+          component: () =>
+            import("pages/areas/cmn/documentTemplate/CopyPage.vue"),
+          meta: { title: "الگوی چاپ - کپی" },
+        },
+      ],
+    },
+
+    {
       path: "cmn/currency",
       children: [
         {
@@ -1502,27 +1531,13 @@ export default {
           meta: { title: "پیکربندی سامانه - Public API" },
         },
         {
-          path: "invoiceTableDesigner",
-          component: () =>
-            import(
-              "pages/areas/cmn/appConfig/InvoiceTableDesignerPage.vue"
-            ),
-          meta: { title: "پیکربندی سامانه - طراح جدول فاکتور" },
-        },
-        {
           path: "invoiceTablePreview",
           component: () =>
-            import("pages/areas/cmn/appConfig/InvoiceTablePreviewPage.vue"),
+            import(
+              "pages/areas/cmn/appConfig/InvoiceTablePreviewPage.vue"
+            ),
           meta: { title: "پیکربندی سامانه - نمایش جدول فاکتور" },
-        }
-        // {
-        //   path: "invoiceTablePreview",
-        //   component: () =>
-        //     import(
-        //       "pages/areas/cmn/appConfig/InvoiceTablePreviewPage.vue"
-        //     ),
-        //   meta: { title: "پیکربندی سامانه - نمایش جدول فاکتور" },
-        // },
+        },
       ],
     },
 

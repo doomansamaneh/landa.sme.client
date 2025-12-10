@@ -99,11 +99,17 @@ function getAuthHeaders(url) {
   return {};
 }
 
-function handleKnownError(url, response) {
+async function handleKnownError(url, response) {
   if (response.data.code === 0 || response.data.code === 500) {
-    return Promise.reject(response);
+    const error = { response: { status: 500, data: response.data } };
+    await handleError(url, error);
   }
 
+  resetVoucher(url);
+  return Promise.resolve(response);
+}
+
+function resetVoucher(url) {
   const actionTypes = [
     "create",
     "edit",
@@ -124,8 +130,6 @@ function handleKnownError(url, response) {
     const voucherStore = useVoucherState();
     voucherStore.reset();
   }
-
-  return Promise.resolve(response);
 }
 
 function handleError(url, error) {

@@ -21,10 +21,12 @@
     <q-card-section>
       <q-form @submit="submitForm" ref="form" autofocus>
         <custom-input
+          name="pwd-input"
           outlined
           v-model="password"
           :type="isPwd ? 'password' : 'text'"
           :placeholder="$t('login-page.placeholders.password')"
+          autocomplete="new-password"
           dense
           required
           lazy-rules

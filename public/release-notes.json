@@ -1,6 +1,20 @@
 {
-  "version": "0.0.8",
+  "version": "1.0.10",
   "notes": {
+    "1.0.10": {
+      "fa-IR": ["رفع برخی اشکالات گزارش شده"],
+      "en-US": ["Fix some minor bugs"]
+    },
+    "0.0.9": {
+      "fa-IR": [
+        "افزوده شدن امکان ارسال دسته‌ای صورتحسابها به سامانه مودیان",
+        "امکان بروز رسانی دسته‌ای وضعیت فاکتورها از سامانه مودیان"
+      ],
+      "en-US": [
+        "Send invoices in batch to TAX",
+        "TAX batch status inquiry"
+      ]
+    },
     "0.0.8": {
       "fa-IR": ["افزودن شرح در پیش نمایش دریافت و پرداخت"],
       "en-US": ["Add summary in payment, receiption"]

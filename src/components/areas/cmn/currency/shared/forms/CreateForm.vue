@@ -12,7 +12,6 @@
           <div class="col-md-6 col-sm-12 col-xs-12">
             <custom-input
               :label="$t('shared.columns.title')"
-              hide-bottom-space
               v-model="formStore.model.value.title"
               required
             />
@@ -45,15 +44,12 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useI18n } from "vue-i18n";
   import { useBaseInfoModel } from "src/components/areas/_shared/_composables/useBaseInfoModel";
   import { precisionCounts } from "src/constants";
 
   import FormToolbarContainer from "src/components/shared/toolbars/FormToolbarContainer.vue";
   import CustomInput from "src/components/shared/forms/CustomInput.vue";
   import CustomSelect from "src/components/shared/forms/CustomSelect.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({
     action: String,
