@@ -71,21 +71,18 @@
             v-model="wageItem.day"
             :options="days"
             :label="$t('shared.columns.day')"
-            required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.salary"
             :label="$t('shared.columns.salary')"
-            required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">
           <custom-input-number
             v-model="wageItem.baseYear"
             :label="$t('shared.columns.baseYear')"
-            required
           />
         </div>
         <div class="col-md-2 col-sm-4 col-xs-12">

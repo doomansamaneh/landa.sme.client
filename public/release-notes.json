@@ -1,6 +1,10 @@
 {
-  "version": "1.0.10",
+  "version": "1.0.11",
   "notes": {
+    "1.0.11": {
+      "fa-IR": ["اختیاری کردن ورود اقلام در فرم حقوق و دستمزد"],
+      "en-US": ["Items in payroll form are optional now"]
+    },
     "1.0.10": {
       "fa-IR": ["رفع برخی اشکالات گزارش شده"],
       "en-US": ["Fix some minor bugs"]
