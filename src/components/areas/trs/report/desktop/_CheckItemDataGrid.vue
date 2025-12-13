@@ -19,6 +19,12 @@
     </template>
 
     <template #cell-statusId="{ item }">
+      <q-icon
+        v-if="item.notifyCheck"
+        size="24px"
+        name="o_warning"
+        color="warning"
+      />
       {{
         $t(
           `shared.paymentStatus.${helper.getEnumType(
@@ -27,12 +33,6 @@
           )}`
         )
       }}
-      <q-icon
-        v-if="item.notifyCheck"
-        size="24px"
-        name="o_warning"
-        color="warning"
-      />
     </template>
 
     <template #expand="{ item }">

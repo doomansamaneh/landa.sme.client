@@ -2,13 +2,11 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { Notify, copyToClipboard } from "quasar";
 import {
   phoneNumbers,
-  feedbackType,
   defaultPageSize,
-  feedbackStatus,
   sortOrder,
 } from "src/constants";
 import { fetchWrapper } from "src/helpers";
-import usePolling from "src/composables/usePolling";
+import { usePolling } from "src/composables/usePolling";
 
 const ticketState = ref({
   showNewTicketDialog: false,

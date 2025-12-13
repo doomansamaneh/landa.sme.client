@@ -2,7 +2,7 @@ import { computed, ref } from "vue";
 import { sortOrder } from "src/constants/index";
 import { fetchWrapper, bus } from "src/helpers";
 import { useComposables } from "src/stores/useComposables";
-import { useServiceWorker } from "src/composables/useServiceWorker";
+//import { useServiceWorker } from "src/composables/useServiceWorker";
 
 const state = {
   disableApplySearch: true,
@@ -37,7 +37,7 @@ const columns = ref([
 
 export function useFiscalYear() {
   const composablesStore = useComposables();
-  const { clearApiCache } = useServiceWorker();
+  //const { clearApiCache } = useServiceWorker();
 
   const reset = () => {
     state.firstLoad.value = false;
@@ -51,7 +51,7 @@ export function useFiscalYear() {
     );
     setFiscalYear(year);
 
-    await clearApiCache();
+    //await clearApiCache();
 
     composablesStore.reset();
     bus.emit("render-page");

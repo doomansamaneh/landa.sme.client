@@ -124,12 +124,6 @@
   import { ref, computed, onMounted, watch } from "vue";
   import { useI18n } from "vue-i18n";
   import { useQuasar } from "quasar";
-  import { i18nInstance } from "src/boot/i18n";
-  import messages from "src/i18n";
-  import packageJson from "../../../package.json";
-
-  const { t } = useI18n();
-  const $q = useQuasar();
 
   const props = defineProps({
     swVersion: {
@@ -138,131 +132,72 @@
     },
   });
 
-  const getCurrentLocale = () => {
-    try {
-      const i18n = useI18n();
-      return i18n.locale?.value || i18n.locale;
-    } catch {
-      return localStorage.getItem("selectedLanguage") || "fa-IR";
-    }
-  };
+  const { t, locale } = useI18n();
+  const $q = useQuasar();
 
-  const getTranslation = (key) => {
-    try {
-      if (i18nInstance?.global) {
-        return i18nInstance.global.t(key);
-      }
-      const i18n = useI18n();
-      return i18n.t(key);
-    } catch {
-      const locale = getCurrentLocale();
-      return messages[locale]?.shared?.labels?.[key] || key;
-    }
-  };
-
-  const reload = () => {
-    window.location.reload();
-  };
+  const CURRENT_VERSION = process.env.APP_VERSION || "1.0.0";
+  const latestVersion = computed(
+    () => props.swVersion || CURRENT_VERSION
+  );
 
   const RELEASE_NOTES_URL = "/release-notes.json";
-
-  const currentVersion = ref(
-    props.swVersion || packageJson.version || "0.0.1"
-  );
   const releaseNotes = ref({});
   const latest = ref({
-    version: props.swVersion || packageJson.version || "0.0.1",
+    version: latestVersion.value,
     items: [],
   });
 
   const releaseMessageParts = computed(() => {
-    if (!latest.value?.version) return { before: "", after: "" };
+    const template =
+      t("shared.labels.newReleaseMessage") ||
+      "New version {version} is available";
 
-    let message = getTranslation("shared.labels.newReleaseMessage");
-
-    if (!message.includes("{version}")) {
-      const locale = getCurrentLocale();
-      message =
-        messages[locale]?.shared?.labels?.newReleaseMessage ||
-        messages["fa-IR"]?.shared?.labels?.newReleaseMessage ||
-        "درود بر شما، نسخه {version} در دسترس است";
-    }
-
-    const [before, after] = message.split("{version}");
-    return {
-      before: before || "",
-      after: after || "",
-    };
+    const [before, after] = template.split("{version}");
+    return { before, after };
   });
 
-  const getNotesForCurrentLocale = (versionNotes) => {
-    if (!versionNotes) return [];
-    if (Array.isArray(versionNotes)) return versionNotes;
+  const loadReleaseNotes = async () => {
+    try {
+      const res = await fetch(RELEASE_NOTES_URL, {
+        cache: "no-store",
+      });
+      if (!res.ok) throw new Error("Failed to load release notes");
 
-    const locale = getCurrentLocale();
+      releaseNotes.value = await res.json();
+      updateLatestNotes();
+    } catch {
+      updateLatestNotes();
+    }
+  };
+
+  const getLocalizedNotes = (notes) => {
+    if (!notes) return [];
+    if (Array.isArray(notes)) return notes;
+
     return (
-      versionNotes[locale] ||
-      versionNotes["fa-IR"] ||
-      versionNotes["en-US"] ||
-      []
+      notes[locale.value] || notes["fa-IR"] || notes["en-US"] || []
     );
   };
 
   const updateLatestNotes = () => {
-    if (currentVersion.value) {
-      const versionNotes = releaseNotes.value[currentVersion.value];
-      latest.value = {
-        version: currentVersion.value,
-        items: versionNotes
-          ? getNotesForCurrentLocale(versionNotes)
-          : [],
-      };
-    } else {
-      latest.value = {
-        version: props.swVersion || packageJson.version || "0.0.1",
-        items: [],
-      };
-    }
+    const notes = releaseNotes.value[latestVersion.value];
+    latest.value = {
+      version: latestVersion.value,
+      items: getLocalizedNotes(notes),
+    };
   };
 
-  const loadReleaseNotes = async () => {
-    try {
-      const response = await fetch(RELEASE_NOTES_URL);
-      if (!response.ok) {
-        throw new Error("Failed to load release notes");
-      }
-      const data = await response.json();
-
-      releaseNotes.value = data.notes || {};
-
-      if (!props.swVersion) {
-        currentVersion.value = packageJson.version || "0.0.1";
-      }
-
-      updateLatestNotes();
-    } catch (error) {
-      const version =
-        currentVersion.value ||
-        props.swVersion ||
-        packageJson.version ||
-        "0.0.1";
-      latest.value = {
-        version: version,
-        items: [],
-      };
+  const reload = async () => {
+    if ("serviceWorker" in navigator) {
+      const reg = await navigator.serviceWorker.getRegistration();
+      reg?.waiting?.postMessage({ type: "SKIP_WAITING" });
     }
+    window.location.reload();
   };
 
-  watch(
-    () => getCurrentLocale(),
-    () => {
-      updateLatestNotes();
-    }
-  );
+  watch([locale, () => props.swVersion], updateLatestNotes);
 
-  onMounted(() => {
-    loadReleaseNotes();
-  });
+  onMounted(loadReleaseNotes);
 </script>
 
 <style lang="scss">

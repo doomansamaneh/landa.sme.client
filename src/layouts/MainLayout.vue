@@ -19,10 +19,12 @@
 
 <script setup>
   import { onMounted, computed } from "vue";
-  import { useQuasar, Dialog } from "quasar";
+  import { useQuasar } from "quasar";
   import { useTheme } from "src/components/layouts/main/_composables/useTheme.js";
   import { useMenuBar } from "src/composables/useMenuBar";
   import { useFirstLogin } from "src/composables/useFirstLogin";
+  import { useUnreadMessage } from "src/composables/useUnreadMessage";
+  import { usePolling } from "src/composables/usePolling";
 
   import MenuBar from "src/components/layouts/main/MenuBar.vue";
   import ContactDrawer from "src/components/layouts/main/ContactDrawer.vue";
@@ -32,7 +34,6 @@
   import BottomNavigation from "src/components/layouts/main/mobile/BottomNavigation.vue";
   import AlertBanner from "src/components/shared/AlertBanner.vue";
   import TutorialChecklist from "src/components/shared/TutorialChecklist.vue";
-  // import NewReleaseDialog from "src/components/shared/NewReleaseDialog.vue";
 
   const theme = useTheme();
   const $q = useQuasar();
@@ -47,11 +48,12 @@
     () => tutorialStore.showTutorial.value
   );
 
+  const { getUnreadMessageCount } = useUnreadMessage();
+
+  const { start } = usePolling(getUnreadMessageCount, 5000);
+
   onMounted(() => {
     theme.store();
-
-    // Dialog.create({
-    //   component: NewReleaseDialog,
-    // });
+    start();
   });
 </script>

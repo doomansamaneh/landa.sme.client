@@ -107,9 +107,7 @@ export function useCulture() {
       document.cookie = cookieString;
 
       const cultureCode = getCultureCode(iso);
-      try {
-        await changeLocale(cultureCode);
-      } catch {}
+      await changeLocale(cultureCode);
     } catch {}
   };
 
@@ -120,9 +118,9 @@ export function useCulture() {
     document.body.classList.add("persian");
   }
 
-  (async () => {
-    await applyCulture();
-  })();
+  // (async () => {
+  //   await applyCulture();
+  // })();
 
   watch(lang, async () => {
     await applyCulture();

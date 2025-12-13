@@ -1,7 +1,7 @@
 // src/composables/usePolling.js
 import { ref, onMounted, onUnmounted } from "vue";
 
-export default function usePolling(method, timeInterval = 10000) {
+export function usePolling(method, timeInterval = 10000) {
   const interval = ref(null);
   const isPolling = ref(false);
 

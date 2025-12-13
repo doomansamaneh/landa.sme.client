@@ -1,113 +1,73 @@
 import { precacheAndRoute } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
-import { StaleWhileRevalidate, CacheFirst } from "workbox-strategies";
+import { CacheFirst } from "workbox-strategies";
 import { ExpirationPlugin } from "workbox-expiration";
 
 self.__WB_DISABLE_DEV_LOGS = true;
+
+// --------------------------------------------------
+// Precache build assets (JS/CSS handled here safely)
+// --------------------------------------------------
 precacheAndRoute(self.__WB_MANIFEST);
 
+// --------------------------------------------------
+// Runtime cache: images & fonts ONLY
+// --------------------------------------------------
 registerRoute(
-  ({ request }) => {
-    return (
-      request.destination === "" && request.url.includes("/api/")
-    );
-  },
-  new StaleWhileRevalidate({
-    cacheName: "api-cache",
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 60 * 60,
-      }),
-    ],
-  })
-);
-
-registerRoute(
-  ({ request }) => {
-    return request.destination === "image";
-  },
+  ({ request }) => ["image", "font"].includes(request.destination),
   new CacheFirst({
-    cacheName: "image-cache",
+    cacheName: "static-assets",
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 100,
-        maxAgeSeconds: 7 * 24 * 60 * 60,
+        maxEntries: 200,
+        maxAgeSeconds: 30 * 24 * 60 * 60,
       }),
     ],
   })
 );
 
-const APP_VERSION = process.env.APP_VERSION || "0.0.1";
+// --------------------------------------------------
+// App version
+// --------------------------------------------------
+const APP_VERSION = process.env.APP_VERSION || "1.0.0";
 
-self.addEventListener("install", (event) => {
+// --------------------------------------------------
+// Install: activate immediately
+// --------------------------------------------------
+self.addEventListener("install", () => {
   self.skipWaiting();
 });
 
+// --------------------------------------------------
+// Activate: claim clients & notify version
+// --------------------------------------------------
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
       await self.clients.claim();
 
-      try {
-        const allClients = await self.clients.matchAll({
-          includeUncontrolled: true,
+      const clients = await self.clients.matchAll({
+        includeUncontrolled: true,
+      });
+
+      for (const client of clients) {
+        client.postMessage({
+          type: "SW_VERSION_INFO",
+          version: APP_VERSION,
         });
-
-        for (const client of allClients) {
-          client.postMessage({
-            type: "SW_VERSION_INFO",
-            version: APP_VERSION,
-            timestamp: Date.now(),
-          });
-        }
-      } catch (error) {}
-
-      const cacheNames = await caches.keys();
-      await Promise.all(
-        cacheNames
-          .filter((cacheName) => {
-            return (
-              cacheName.startsWith("quasar-") ||
-              cacheName.startsWith("workbox-")
-            );
-          })
-          .map((cacheName) => {
-            return caches.delete(cacheName);
-          })
-      );
+      }
     })()
   );
 });
 
+// --------------------------------------------------
+// Messages from client
+// --------------------------------------------------
 self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "GET_VERSION") {
+  if (event.data?.type === "GET_VERSION") {
     event.ports[0]?.postMessage({
       type: "SW_VERSION_INFO",
       version: APP_VERSION,
-      timestamp: Date.now(),
     });
-  }
-
-  if (event.data && event.data.type === "CLEAR_API_CACHE") {
-    event.waitUntil(
-      (async () => {
-        try {
-          const cache = await caches.open("api-cache");
-          const keys = await cache.keys();
-          await Promise.all(keys.map((key) => cache.delete(key)));
-          event.ports[0]?.postMessage({
-            type: "API_CACHE_CLEARED",
-            success: true,
-          });
-        } catch (error) {
-          event.ports[0]?.postMessage({
-            type: "API_CACHE_CLEARED",
-            success: false,
-            error: error.message,
-          });
-        }
-      })()
-    );
   }
 });

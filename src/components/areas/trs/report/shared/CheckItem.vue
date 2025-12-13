@@ -76,15 +76,12 @@
 
 <script setup>
   import { ref } from "vue";
-  import { useI18n } from "vue-i18n";
   import { sqlOperator, documentType } from "src/constants";
 
   import DataGrid from "../desktop/_CheckItemDataGrid.vue";
   import CheckDataGridMobile from "src/components/areas/trs/report/mobile/_CheckItemDataGrid.vue";
   import CardTabs from "src/components/shared/CardTabs.vue";
   import CardTab from "src/components/shared/CardTab.vue";
-
-  const { t } = useI18n();
 
   const props = defineProps({ customerId: String, title: String });
 

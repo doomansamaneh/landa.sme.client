@@ -139,6 +139,6 @@ export const checkItemColumns = [
   { ...customerName },
   { ...subject },
   { ...amount, class: "text-weight-600" },
-  { ...statusId },
+  { ...statusId, style: "width:240px;" },
   //actions,
 ];
