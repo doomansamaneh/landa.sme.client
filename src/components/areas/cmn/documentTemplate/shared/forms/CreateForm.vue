@@ -957,12 +957,12 @@
     model.value.body = finalTemplate;
     formStore.submitForm(form.value, props.action);
 
-    $q.dialog({
-      component: CodeOutputDialog,
-      componentProps: {
-        code: finalTemplate,
-      },
-    });
+    // $q.dialog({
+    //   component: CodeOutputDialog,
+    //   componentProps: {
+    //     code: finalTemplate,
+    //   },
+    // });
   };
 
   onMounted(async () => {
