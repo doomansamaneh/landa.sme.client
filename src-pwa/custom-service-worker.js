@@ -6,12 +6,12 @@ import { ExpirationPlugin } from "workbox-expiration";
 self.__WB_DISABLE_DEV_LOGS = true;
 
 // --------------------------------------------------
-// Precache build assets (JS/CSS handled here safely)
+// Precache build assets
 // --------------------------------------------------
 precacheAndRoute(self.__WB_MANIFEST);
 
 // --------------------------------------------------
-// Runtime cache: images & fonts ONLY
+// Runtime cache: images & fonts
 // --------------------------------------------------
 registerRoute(
   ({ request }) => ["image", "font"].includes(request.destination),

@@ -1,19 +1,14 @@
 {
-  "1.0.18": {
-    "fa-IR": ["بهینه سازی چکها"],
-    "en-US": ["Check linq"]
-  },
-  "1.0.14": {
-    "fa-IR": ["بهینه سازی نسخه موبایل و تغییر زبان"],
-    "en-US": ["Change locale"]
-  },
   "1.0.13": {
-    "fa-IR": ["بهینه سازی نسخه موبایل و تغییر زبان"],
-    "en-US": ["Change locale"]
+    "fa-IR": [
+      "رفع برخی اشکالات گزارش شده",
+      "بهینه سازی ساختار برنامه"
+    ],
+    "en-US": ["Fix some minor bugs", "Optimize app performance"]
   },
   "1.0.12": {
     "fa-IR": ["بهینه سازی نسخه موبایل و تغییر زبان"],
-    "en-US": ["Change locale"]
+    "en-US": ["Optimize mobile version and change locale"]
   },
   "1.0.11": {
     "fa-IR": ["اختیاری کردن ورود اقلام در فرم حقوق و دستمزد"],
